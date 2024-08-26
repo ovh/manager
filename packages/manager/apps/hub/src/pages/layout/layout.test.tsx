@@ -9,9 +9,15 @@ import {
   useRouteSynchro,
 } from '@ovh-ux/manager-react-shell-client';
 import Layout from '@/pages/layout/layout';
+import { ApiEnvelope } from '@/types/apiEnvelope.type';
+import { Services } from '@/types/services.type';
+import { LastOrder } from '@/types/lastOrder.type';
 
-const services = { count: 0, data: [] };
-let lastOrder = null;
+const services: ApiEnvelope<Services> = {
+  data: { count: 0, data: {} },
+  status: 'OK',
+};
+const lastOrder: LastOrder = { data: null, status: 'OK' };
 let isLastOrderLoading = true;
 let isAccountSidebarVisible = false;
 
@@ -63,12 +69,15 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   };
 });
 vi.mock('@/data/hooks/services/useServices', () => ({
-  useFetchHubServices: () => ({ data: { data: services }, isPending: false }),
+  useFetchHubServices: (): {
+    data: ApiEnvelope<Services>;
+    isPending: boolean;
+  } => ({ data: services, isPending: false }),
 }));
 
 vi.mock('@/data/hooks/lastOrder/useLastOrder', () => ({
-  useFetchHubLastOrder: () => ({
-    data: { data: lastOrder, status: 'OK' },
+  useFetchHubLastOrder: (): { data: LastOrder; isPending: boolean } => ({
+    data: lastOrder,
     isPending: isLastOrderLoading,
   }),
 }));
@@ -106,7 +115,7 @@ describe('Layout.page', () => {
   });
 
   it('should render correct components for customers with services or order', async () => {
-    lastOrder = {
+    lastOrder.data = {
       date: '2024-08-22T12:24:08+02:00',
       expirationDate: '2024-09-05T23:29:59+02:00',
       orderId: 214110656,

@@ -1,3 +1,5 @@
+import { ApiAggregateEnvelope, ApiEnvelope } from '@/types/apiEnvelope.type';
+
 type Service = {
   propertyId: string;
   resource: {
@@ -19,22 +21,14 @@ type Service = {
   url: string;
 };
 
-type ServiceTypeItem = {
-  count: number;
-  data: Service[];
+type ServiceTypeItem = ApiAggregateEnvelope<Service[]>;
+
+type ServicesListByType = Record<string, ServiceTypeItem[]>;
+
+export type Services = ApiAggregateEnvelope<ServicesListByType>;
+
+type ServicesData = {
+  services: ApiEnvelope<Services>;
 };
 
-export type Services = {
-  count: number;
-  data: Record<string, ServiceTypeItem[]>;
-};
-
-export type ServicesEnvelope = {
-  data: {
-    services: {
-      data: Services;
-      status: string;
-    };
-  };
-  status: string;
-};
+export type ServicesEnvelope = ApiEnvelope<ServicesData>;

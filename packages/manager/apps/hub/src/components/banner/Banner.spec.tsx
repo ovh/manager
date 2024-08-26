@@ -9,9 +9,10 @@ import {
 import * as reactShellClientModule from '@ovh-ux/manager-react-shell-client';
 import { useFetchHubBanner } from '@/data/hooks/banner/useBanner';
 import Banner from '@/components/banner/Banner.component';
+import { Banner as TBanner } from '@/types/banner.type';
 
 let loading = true;
-let banner = null;
+let banner: TBanner | null = null;
 const locale = 'fr_FR';
 
 const trackingSpy = vi.fn();

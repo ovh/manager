@@ -1,28 +1,28 @@
+import { ApiEnvelope } from '@/types/apiEnvelope.type';
+
 type Price = {
   currencyCode: string;
   text: string;
   value: number;
 };
 
-export type LastOrder = {
-  date: Date;
-  expirationDate: Date;
+export type Order = {
+  date: string;
+  expirationDate: string;
   orderId: number;
   password: string;
   pdfUrl: string;
   priceWithTax: Price;
   priceWithoutTax: Price;
-  retractionDate: Date;
+  retractionDate: string;
   tax: Price;
   url: string;
 };
 
-export type LastOrderEnvelope = {
-  data: {
-    lastOrder: {
-      data: LastOrder;
-      status: string;
-    };
-  };
-  status: string;
+export type LastOrder = ApiEnvelope<Order>;
+
+type LastOrderData = {
+  lastOrder: LastOrder;
 };
+
+export type LastOrderEnvelope = ApiEnvelope<LastOrderData>;
