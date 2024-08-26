@@ -9,15 +9,13 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
-import useProductNavReshuffle from '@/core/product-nav-reshuffle/useProductNavReshuffle';
+import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 
 type SidebarLinkProps = {
   count?: number | boolean;
   node?: Node;
   linkParams?: Record<string, string>;
-  handleOnMouseOver?(): void;
-  handleOnMouseLeave?(): void;
-  handleNavigation?(): void;
+  handleOnClick?(): void;
   handleOnEnter?(node: Node): void;
   id?: string;
   isShortText?: boolean;
@@ -27,19 +25,17 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   count = 0,
   node = {},
   linkParams = {},
-  handleOnMouseOver = () => {},
-  handleOnMouseLeave = () => {},
-  handleNavigation = () =>  {},
-  handleOnEnter = () => {},
+  handleOnClick = () => { },
+  handleOnEnter = () => { },
   id = '',
   isShortText = false,
 }: SidebarLinkProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
-  const { isMobile } = useProductNavReshuffle();
 
   return !node.children && (node.url || node.routing) ? (
     <StaticLink
-      handleClick={handleNavigation}
+      handleClick={handleOnClick}
+      handleOnEnter={handleOnEnter}
       count={count}
       node={node}
       linkParams={linkParams}
@@ -49,21 +45,19 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   ) : (
     <button
       className={style['button-as-div']}
-      title={t(isShortText ? node.shortTranslation : node.translation)}
-      onMouseOver={!isMobile ? handleOnMouseOver : null}
-      onMouseLeave={!isMobile ? handleOnMouseLeave : null}
-      onFocus={!isMobile ? handleOnMouseOver : null}
-      onTouchEnd={isMobile ? handleNavigation : null}
+      title={t(node.translation)}
       onKeyUp={(e) => {
         if (e.key === 'Enter') {
           handleOnEnter(node);
         }
       }}
+      onClick={handleOnClick}
       id={id}
       role="button"
     >
-      <span> {t(isShortText ? node.shortTranslation : node.translation)}</span>
-      <div className='flex align-items-center'>
+      {isShortText ? <SvgIconWrapper name={node.svgIcon} height={42} width={42} className='p-1 fill-white block' />
+        : <span>{t(node.translation)}</span>}
+      <span className="flex justify-end align-items-center">
         {!isShortText && (count as number) > 0 && (
           <OsdsIcon
             name={ODS_ICON_NAME.SHAPE_DOT}
@@ -78,8 +72,8 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
           ></span>
         ) : null}
         {!isShortText && <SidebarLinkTag node={node} />}
-      </div>
-    </button>
+      </span>
+    </button >
   );
 };
 

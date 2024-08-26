@@ -4,7 +4,7 @@ const helpRoot = 'https://help.ovhcloud.com/csm';
 const homeIndex = '-home?id=csm_index';
 const support = `${helpRoot}?id=csm_cases_requests&ovhSubsidiary=`;
 
-interface ContentURLS {
+export interface ContentURLS {
   help: {
     [key in string]: string;
   };

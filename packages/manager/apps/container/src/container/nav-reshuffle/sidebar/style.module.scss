@@ -6,16 +6,36 @@ $sidebar-font-size: 0.875rem;
 
 .sidebar {
   @import '@ovh-ux/manager-hub/src/variables.scss';
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  width: fit-content;
+  height: 100vh;
   background-color: $p-700;
   position: relative;
-  width: 20rem;
-  height: auto;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  min-width: 20rem;
   color: white;
+  
+  &_wrapper {
+    display: flex;
+    height: 100%;
+    width: 20rem;
+    min-width: 20rem;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow-y: auto;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &_logo {
+    display: flex;
+    
+    img {
+      height: 1.85rem;
+    }
+  }
 
   &_short {
     width: 4.5rem;
@@ -32,13 +52,10 @@ $sidebar-font-size: 0.875rem;
     & .sidebar_toggle_btn {
       justify-content: center;
     }
-  }
 
-  &_logo {
-    display: block;
-    
-    img {
-      height: 1.85rem;
+    & .sidebar_logo {
+      display: flex;
+      justify-content: center;
     }
   }
 
@@ -66,6 +83,10 @@ $sidebar-font-size: 0.875rem;
 
   &_menu {
     flex: 1;
+
+    &_short {
+      padding-top: 1rem;
+    }
   }
 
   ul {
@@ -74,13 +95,34 @@ $sidebar-font-size: 0.875rem;
     list-style-type: none;
   }
 
-  &_menu_items button {
+  &_menu_items button, &_menu_items a {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
-  &_menu_items:hover, &_menu_items_selected {
-    background-color: $p-800;
+  &_menu_items {
+    a:hover, a:focus, button:hover, button:focus {
+      background-color: $p-800;
+    }
+  }
+  &_menu_items_selected {
+    a, button {
+      background-color: $p-800;
+    }
+  }
+
+  &_submenu_items {
+    a:hover, a:focus, button:hover, button:focus {
+      background-color: darken($p-800, 5);
+      text-decoration: none;
+    }
+  }
+
+  &_submenu_items_selected {
+    a, button {
+      background-color: darken($p-800, 5);
+      text-decoration: none !important;
+    }
   }
 
   li {
@@ -98,10 +140,6 @@ $sidebar-font-size: 0.875rem;
       display: inline-block;
       width: 100%;
       outline: none;
-    }
-
-    a:hover, a:focus {
-      text-decoration: underline !important;
     }
   }
 
@@ -171,10 +209,6 @@ $sidebar-font-size: 0.875rem;
     flex-grow: 1;
   }
 
-  &_selected {
-    background-color: $p-800;
-  }
-
   select {
     width: 100%;
     height: 2.5rem;
@@ -201,6 +235,7 @@ $sidebar-font-size: 0.875rem;
   }
 
   &_toggle_btn {
+    width: 100%;
     height: 2.5rem;
     background-color: $p-500;
     color: white;
@@ -218,80 +253,36 @@ $sidebar-font-size: 0.875rem;
   }
 }
 
-.subtree {
-  width: 100%;
-  height: 100%;
-  background-color: rgba($p-500, 0.50);
-  position: fixed;
-  top: 0;
-  left: 20rem;
-  z-index: 901;
-  overflow-y: auto;
-  &_content {
-    background: $p-800;
-    height: auto;
-    min-height: 100%;
-    width: 20rem;
-  }
-  &_list {
-    min-height: 28.125rem;
-    overflow-y: auto;
-  }
-  &_illustration {
-    width: 55%;
-    margin: auto;
-    & > img {
-      width: 100%;
-    }
-  }
-  &_back_btn{
-    display: none;
-    height: 2.5rem;
-    background-color: $p-500;
-    color: white;
-    border: none;
-    cursor: pointer;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0 0.625em;
-    width: 100%;
-  }
-  &_section_title{
-    color: $p-200 !important;
-    text-transform: uppercase;
-    font-size: 1rem !important;
-  }
-  &_section{
-    border-bottom: solid 1px $p-200;
-    margin-top: 0.625em;
-  }
-}
-
-.hidden {
-  visibility: hidden;
-}
-
 @media (max-width: $device-breakpoint-tablet-max-width) {
   .sidebar {
     padding-top: 4em;
     width: 100%;
     min-width: unset;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    .sidebar::-webkit-scrollbar {
+      display: none;
+    }
+    
     &_logo {
       display: none;
     }
     &_toggle_btn {
       display: none;
     }
-  }
-  .subtree {
-    left: 0;
-    width: 100%;
-    &_content {
-      padding-top: 2.75rem;
+    
+    &_wrapper {
       width: 100%;
+      min-height: stretch;
     }
-    &_back_btn {
-      display: flex;
+
+    &_selected {
+      .sidebar_wrapper {
+        transform: translatex(-100%);
+        transition-duration: 0.2s;
+      }
     }
   }
 }
@@ -313,3 +304,9 @@ $sidebar-font-size: 0.875rem;
   margin-right: .25rem;
   background-color: var(--ods-color-primary-300);
 }
+
+.hidden {
+  visibility: hidden;
+}
+
+
