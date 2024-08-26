@@ -6,5 +6,6 @@
   "managed_vcd_vdc_quota_value": "{{quota}} Go",
   "managed_vcd_vdc_disk_space_count": "Total espace disque",
   "managed_vcd_vdc_vcpu_speed": "Vitesse vCPU",
-  "managed_vcd_vdc_vcpu_value": "{{speed}} GHz"
+  "managed_vcd_vdc_vcpu_value": "{{speed}} GHz",
+  "managed_vcd_vdc_id": "ID"
 }
