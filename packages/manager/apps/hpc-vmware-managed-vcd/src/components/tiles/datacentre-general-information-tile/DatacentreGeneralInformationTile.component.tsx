@@ -102,6 +102,9 @@ export default function DatacentreGenerationInformationTile({
           <OsdsDivider separator />
           <TileSubtitle>{t('managed_vcd_dashboard_api_url')}</TileSubtitle>
           <Clipboard value={vcdOrganization?.currentState?.apiUrl} />
+          <OsdsDivider separator />
+          <TileSubtitle>{tVdc('managed_vcd_vdc_id')}</TileSubtitle>
+          <Clipboard value={vcdDatacentre?.id} />
         </div>
       </div>
     </OsdsTile>
