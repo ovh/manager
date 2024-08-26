@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.13.0...@ovh-ux/manager-netapp@1.14.0) (2024-08-26)
+
+
+### Features
+
+* **dedicated.netapp:** modify efs volume size ([#12425](https://github.com/ovh/manager/issues/12425)) ([9cacc32](https://github.com/ovh/manager/commit/9cacc3213a0f72c1d5790fe2709b2616fb24c86c))
+
+
+
+
+
 # [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.12.0...@ovh-ux/manager-netapp@1.13.0) (2024-08-26)
 
 
