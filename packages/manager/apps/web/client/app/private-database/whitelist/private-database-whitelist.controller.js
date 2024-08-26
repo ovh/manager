@@ -107,10 +107,12 @@ angular.module('App').controller(
       );
     }
 
-    transformItem(whitelist) {
-      return this.whitelistService
-        .getWhitelist(this.serviceName, whitelist.id)
-        .catch((err) => this.alerter.error(err));
+    transformItem({ id }) {
+      return id
+        ? this.whitelistService
+            .getWhitelist(this.serviceName, id)
+            .catch((err) => this.alerter.error(err))
+        : null;
     }
 
     /*

@@ -1,0 +1,43 @@
+<div data-ng-controller="MultisiteDiagnosticCtrl as ctrl">
+    <div
+        data-wizard
+        data-wizard-on-finish="ctrl.closeModal"
+        data-wizard-on-cancel="ctrl.closeModal"
+        data-wizard-confirm-button-text="'wizard_close' | translate"
+        data-wizard-hide-cancel-button="true"
+        data-wizard-title="'hosting_multisite_dialog_title' | translate"
+    >
+        <div data-wizard-step>
+            <div class="text-center" data-ng-if="ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!ctrl.loading">
+                <p
+                    data-translate="hosting_multisite_dialog_{{ ctrl.ip ? 'edit' : 'add' }}_record_description"
+                    data-translate-values="{
+                    recordType: ctrl.recordType,
+                    ip: ctrl.ip || ctrl.hostingIp,
+                    domain: ctrl.domain,
+                }"
+                ></p>
+
+                <p
+                    data-ng-if="ctrl.isOVHZone && !ctrl.canChangeDns && !ctrl.hasError"
+                    data-translate="hosting_multisite_dialog_edit_record_other_nic"
+                    data-translate-values="{ nic: ctrl.contactAdmin }"
+                ></p>
+
+                <a
+                    data-ng-if="ctrl.canChangeDns && !ctrl.hasError"
+                    data-ng-href="{{ ctrl.linkToARecordModification }}"
+                >
+                    <span
+                        data-translate="hosting_multisite_dialog_edit_record_link"
+                        data-translate-values="{ recordType: ctrl.recordType }"
+                    ></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
