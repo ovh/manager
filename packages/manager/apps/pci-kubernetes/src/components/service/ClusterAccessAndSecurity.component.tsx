@@ -175,7 +175,7 @@ export default function ClusterAccessAndSecurity({
             <OsdsIcon
               name={ODS_ICON_NAME.HELP}
               size={ODS_ICON_SIZE.xs}
-              className="ml-4"
+              className="ml-4 cursor-help"
               color={ODS_THEME_COLOR_INTENT.primary}
             />
           </span>
