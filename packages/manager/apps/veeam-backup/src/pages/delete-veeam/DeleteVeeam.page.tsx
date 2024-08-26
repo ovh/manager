@@ -49,7 +49,7 @@ export default function DeleteVeeamBackupModal() {
         });
         addSuccessMessage(
           t('terminate_veeam_backup_success', {
-            name: getVeeamBackupDisplayName(data),
+            name: getVeeamBackupDisplayName(data.data),
           }),
           { veeamBackupId: id },
         );
