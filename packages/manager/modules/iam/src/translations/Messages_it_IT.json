@@ -96,5 +96,5 @@
   "iam_resource_type_ipService": "IP: Servizio",
   "iam_resource_type_okms": "Key Management System (KMS)",
   "iam_resource_type_okms/kmip": "Key Management System (KMS)/KMIP",
-  "iam_resource_type_okms/serviceKey": "Key Management System (KMS) / Chiave"
+  "iam_resource_type_okms/serviceKey": "Key Management System (KMS)/Chiave"
 }
