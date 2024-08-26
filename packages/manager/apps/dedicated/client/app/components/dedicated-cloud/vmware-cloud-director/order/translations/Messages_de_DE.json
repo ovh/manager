@@ -7,5 +7,7 @@
   "dedicatedCloud_vmware_cloud_director_order_error": "Bei der Bestätigung der Migration zum VCD Angebot ist ein Fehler aufgetreten.",
   "dedicatedCloud_vmware_cloud_director_order_cancel": "Abbrechen",
   "dedicatedCloud_vmware_cloud_director_order_confirm": "Weiter",
-  "dedicatedCloud_vmware_cloud_director_order_terminate": "Schließen"
+  "dedicatedCloud_vmware_cloud_director_order_terminate": "Schließen",
+  "dedicatedCloud_vmware_cloud_director_order_info": "Die Validierung der Migration kann einige Minuten in Anspruch nehmen.",
+  "dedicatedCloud_vmware_cloud_director_order_terms": "Besondere Vertragsbedingungen für Managed VCD"
 }
