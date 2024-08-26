@@ -1,4 +1,5 @@
 import dedicatedIcons from './icons/dedicatedIcons';
+import containerIcons from './icons/containerIcons';
 import telecomIcons from './icons/telecomIcons';
 import webIcons from './icons/webIcons';
 import OdsIconWrapper from './utils/OdsIconWrapper';
@@ -48,6 +49,7 @@ export {
   dedicatedIcons,
   telecomIcons,
   webIcons,
+  containerIcons,
   OdsIconWrapper,
   SvgIconWrapper,
   HOSTING_SVG,

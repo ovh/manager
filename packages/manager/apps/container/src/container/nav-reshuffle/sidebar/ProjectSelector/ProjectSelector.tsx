@@ -89,6 +89,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
     }),
     control: (provided: any, { isFocused }: { isFocused: boolean }) => ({
       ...provided,
+      cursor: 'pointer',
       backgroundColor: isFocused
         ? 'var(--ods-color-primary-075)'
         : 'var(--ods-color-default-000)',
@@ -122,14 +123,14 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
 
   useEffect(() => {
     setOptions([
+      ...(seeAllProjectsOption ? [seeAllProjectsOption] : []),
+      ...(createProjectOption ? [createProjectOption] : []),
       ...(projects
         ? projects.map(({ project_id: projectId, description }) => ({
             id: projectId,
             label: description || projectId,
           }))
-        : []),
-      ...(createProjectOption ? [createProjectOption] : []),
-      ...(seeAllProjectsOption ? [seeAllProjectsOption] : []),
+        : [])
     ]);
   }, [projects, createProjectOption]);
 

@@ -54,7 +54,7 @@ function LegacyContainer(): JSX.Element {
       tracking.waitForConfig().then(() => {
         tracking.trackMVTest({
           test: '[product-navigation-reshuffle]',
-          waveId: 1,
+          waveId: 2,
           creation: '[old-nav]',
         });
       });

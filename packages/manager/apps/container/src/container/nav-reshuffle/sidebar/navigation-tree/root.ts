@@ -7,24 +7,32 @@ import sunrise from './services/sunrise';
 import telecom from './services/telecom';
 import webCloud from './services/webCloud';
 import securityIdentityOperation from './services/securityIdentityOperation';
+import { assistanceTree } from './assistance';
 
 const root: Node = {
   id: 'home',
-  translation: 'sidebar_home',
   count: false,
   routing: {
     application: 'hub',
     hash: '#/',
   },
   children: [
-    bareMetalCloud,
-    hostedPrivateCloud,
-    network,
-    publicCloud,
-    sunrise,
-    securityIdentityOperation,
-    telecom,
-    webCloud,
+    {
+      id: 'sidebar',
+      translation: 'sidebar_home',
+      count: false,
+      children: [
+        bareMetalCloud,
+        hostedPrivateCloud,
+        network,
+        publicCloud,
+        sunrise,
+        securityIdentityOperation,
+        telecom,
+        webCloud,
+      ],
+    },
+    assistanceTree,
   ],
 };
 

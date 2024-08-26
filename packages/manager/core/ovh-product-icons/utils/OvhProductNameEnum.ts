@@ -16,6 +16,19 @@ enum OvhProductName {
   VEEAM = 'VEEAM',
   VRACK = 'VRACK',
   LINECOMMUNICATING = 'LineCommunicating',
+  BAREMETALCLOUD = 'BareMetalCloud',
+  HOSTEDPRIVATECLOUD = 'HostedPrivateCloud',
+  NETWORK = 'Network',
+  PUBLICCLOUD = 'PublicCloud',
+  SECURITYIDENTITYOPERATION = 'SecurityIdentityOperation',
+  SUNRISE = 'Sunrise',
+  TELECOM = 'Telecom',
+  WEBCLOUD = 'Webcloud',
+  HELPECENTER = 'Helpe',
+  LEAF = 'Leaf',
+  LIVECHAT = 'LiveChat',
+  NETWORKSTATUS = 'NetworkStatus',
+  STORE = 'Store',
 }
 
 export default OvhProductName;
