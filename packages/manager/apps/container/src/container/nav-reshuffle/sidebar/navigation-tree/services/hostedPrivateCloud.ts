@@ -1,6 +1,6 @@
 import illustration from '@/assets/images/sidebar/hosted-private-cloud.png';
 import { Node } from '../node';
-import HostedPrivateCloudIcon from './icons/HostedPrivateCloudIcon';
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 const hostedPrivateCloudUniverse: Node = {
   id: 'hosted-private-cloud',
@@ -8,7 +8,7 @@ const hostedPrivateCloudUniverse: Node = {
   translation: 'sidebar_hpc',
   shortTranslation: 'sidebar_hpc_short',
   illustration,
-  iconNode: HostedPrivateCloudIcon,
+  svgIcon: OvhProductName.HOSTEDPRIVATECLOUD,
   features: ['hosted-private-cloud'],
 };
 

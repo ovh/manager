@@ -1,6 +1,6 @@
 import { Node, NodeTag } from '../node';
 import illustration from '@/assets/images/sidebar/public-cloud.png';
-import PublicCloudIcon from './icons/PublicCloudIcon';
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 const pciNode: Node = {
   id: 'pci',
@@ -9,7 +9,7 @@ const pciNode: Node = {
   shortTranslation: 'sidebar_pci_short',
   illustration,
   universe: 'pci',
-  iconNode: PublicCloudIcon,
+  svgIcon: OvhProductName.PUBLICCLOUD,
   features: ['public-cloud'],
   forceVisibility: true,
   routing: {

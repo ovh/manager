@@ -1,6 +1,6 @@
 import illustration from '@/assets/images/sidebar/web-cloud.png';
 import { Node } from "../node";
-import WebCloudIcon from './icons/WebCloudIcon';
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 const webCloudUniverse : Node = {
   id: 'web-cloud',
@@ -8,7 +8,7 @@ const webCloudUniverse : Node = {
   translation: 'sidebar_web_cloud',
   shortTranslation: 'sidebar_web_cloud_short',
   illustration,
-  iconNode: WebCloudIcon,
+  svgIcon: OvhProductName.WEBCLOUD,
   routing: {
     application: 'web',
     hash: '#/',

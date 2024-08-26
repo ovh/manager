@@ -17,8 +17,35 @@ import { ReactComponent as Sharepoint } from './sharepoint.svg';
 import { ReactComponent as Exchange } from './exchange.svg';
 import { ReactComponent as Headset } from './headset.svg';
 
+import { ReactComponent as BareMetalCloud } from './container/bare _metal_cloud.svg';
+import { ReactComponent as HostedPrivateCloud } from './container/hosted_private_cloud.svg';
+import { ReactComponent as Network } from './container/network.svg';
+import { ReactComponent as PublicCloud } from './container/public_cloud.svg';
+import { ReactComponent as SecurityIdentityOperation } from './container/security_dentity_and_perations.svg';
+import { ReactComponent as Sunrise } from './container/sunrise.svg';
+import { ReactComponent as Telecom } from './container/telecom.svg';
+import { ReactComponent as Webcloud } from './container/webcloud.svg';
+
+import { ReactComponent as Helpe } from './container/helpe.svg';
+import { ReactComponent as Leaf } from './container/leaf.svg';
+import { ReactComponent as LiveChat } from './container/live_chat.svg';
+import { ReactComponent as NetworkStatus } from './container/network_status.svg';
+import { ReactComponent as Store } from './container/store.svg';
+
 export { Hosting, Office365, Sharepoint, Exchange };
 export { TelecomEthernet, Telephony, Headset };
+
+export { Helpe, Leaf, LiveChat, NetworkStatus, Store };
+export {
+  BareMetalCloud,
+  HostedPrivateCloud,
+  Network,
+  PublicCloud,
+  SecurityIdentityOperation,
+  Sunrise,
+  Telecom,
+  Webcloud,
+};
 
 export {
   ProjectCloud,

@@ -9,7 +9,7 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
-import useProductNavReshuffle from '@/core/product-nav-reshuffle/useProductNavReshuffle';
+import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 
 type SidebarLinkProps = {
   count?: number | boolean;
@@ -31,9 +31,6 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   isShortText = false,
 }: SidebarLinkProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
-  const { isMobile } = useProductNavReshuffle();
-
-  const Icon = node.iconNode;
 
   return !node.children && (node.url || node.routing) ? (
     <StaticLink
@@ -58,9 +55,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       id={id}
       role="button"
     >
-
-      {isShortText ?
-        <Icon className='p-1 fill-white block' />
+      {isShortText ? <SvgIconWrapper name={node.svgIcon} height={42} width={42} className='p-1 fill-white block' />
         : <span>{t(node.translation)}</span>}
       <span className="flex justify-end align-items-center">
         {!isShortText && (count as number) > 0 && (

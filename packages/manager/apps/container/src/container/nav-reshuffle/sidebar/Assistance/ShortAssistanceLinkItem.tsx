@@ -3,6 +3,7 @@ import { Node } from '../navigation-tree/node';
 import style from '../style.module.scss';
 import { FunctionComponent } from 'react';
 import { useShell } from '@/context';
+import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 
 type Props = {
     node: Node;
@@ -25,7 +26,6 @@ export const ShortAssistanceLinkItem: FunctionComponent<Props> = ({ node, isSele
         url = node.url as string;
     }
 
-    const Icon = node.iconNode;
 
     return (
         <li className={`flex p-1 justify-center ${isSelected ? style.sidebar_menu_items_selected : ''} ${style.sidebar_menu_items}`} role="menuitem" >
@@ -39,7 +39,7 @@ export const ShortAssistanceLinkItem: FunctionComponent<Props> = ({ node, isSele
                 role="link"
                 className='d-flex items-center justify-center'
             >
-                <Icon className='fill-white size-[24px] block' />
+                <SvgIconWrapper name={node.svgIcon} height={24} width={24} className='fill-white block' />
             </a>
         </li>
     )
