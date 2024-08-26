@@ -1,6 +1,10 @@
-import { DatagridColumn, DataGridTextCell } from '@ovhcloud/manager-components';
+import {
+  Clipboard,
+  DatagridColumn,
+  DataGridTextCell,
+} from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsClipboard, OsdsLink } from '@ovhcloud/ods-components/react';
+import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import ActionsComponent from '@/components/listing/actions.component';
@@ -28,10 +32,7 @@ export const useDatagridColumn = () => {
       id: 'id',
       cell: (props: TKube) => (
         <DataGridTextCell>
-          <OsdsClipboard
-            aria-label="clipboard"
-            value={props.id}
-          ></OsdsClipboard>
+          <Clipboard aria-label="clipboard" value={props.id} />
         </DataGridTextCell>
       ),
       label: t('kube_list_id'),
