@@ -76,6 +76,8 @@ export const IP_COMPONENTS_LIST_TRACKING_HIT = {
 export const PAGE_SIZE_MIN = 10;
 export const PAGE_SIZE_MAX = 100;
 
+export const IP_LISTING_ID = 'module-ip-table';
+
 export default {
   BADGES,
   IP_TYPE,
@@ -88,4 +90,5 @@ export default {
   PCC,
   FAILOVER,
   ADMIN_ROLE,
+  IP_LISTING_ID,
 };
