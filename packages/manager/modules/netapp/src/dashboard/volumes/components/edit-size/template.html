@@ -1,0 +1,29 @@
+<oui-modal
+    heading="{{:: 'netapp_volumes_edit_size_title' | translate }}"
+    loading="$ctrl.isCreating"
+    primary-action="$ctrl.modifySize()"
+    primary-label="{{:: 'netapp_volumes_edit_size_submit' | translate }}"
+    primary-disabled="$ctrl.editVolumeSizeForm.$invalid"
+    secondary-action="$ctrl.cancel()"
+    secondary-label="{{:: 'netapp_volumes_edit_size_cancel' | translate }}"
+    on-dismiss="$ctrl.cancel()"
+>
+    <oui-message data-type="error" data-ng-if="$ctrl.errorMessage">
+        <span data-ng-bind-html="$ctrl.errorMessage"></span>
+    </oui-message>
+    <form novalidate name="$ctrl.editVolumeSizeForm">
+        <oui-field
+            data-label="{{:: 'netapp_volumes_edit_size_label' | translate: { name: $ctrl.volume.name || $ctrl.volume.id } }}"
+            data-help-text="{{:: 'netapp_volumes_edit_size_rules' | translate: { min: $ctrl.boundaries.min, max: $ctrl.boundaries.max } }}"
+        >
+            <oui-numeric
+                data-id="size"
+                data-name="size"
+                min="$ctrl.boundaries.min"
+                max="$ctrl.boundaries.max"
+                model="$ctrl.model.size"
+            >
+            </oui-numeric>
+        </oui-field>
+    </form>
+</oui-modal>

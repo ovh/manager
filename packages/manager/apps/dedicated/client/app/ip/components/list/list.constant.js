@@ -5,6 +5,8 @@ export const IP_TYPE = {
 export const TRACKING_PREFIX = 'dedicated::ip::dashboard';
 
 export const SUB_RANGE = 'SUBRANGE';
+export const ADMIN_ROLE = 'ADMIN';
+
 export const BADGE_FO = 'FO';
 export const BADGE_BYOIP = 'BYOIP';
 export const BADGES = [BADGE_FO, BADGE_BYOIP];
@@ -85,4 +87,5 @@ export default {
   VRACK,
   PCC,
   FAILOVER,
+  ADMIN_ROLE,
 };

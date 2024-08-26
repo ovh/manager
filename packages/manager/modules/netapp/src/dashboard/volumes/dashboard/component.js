@@ -11,6 +11,7 @@ export default {
     volume: '<',
     updateVolume: '<',
     goToVolumeDashboard: '<',
+    goToEditVolumeSize: '<',
   },
   controller,
   template,

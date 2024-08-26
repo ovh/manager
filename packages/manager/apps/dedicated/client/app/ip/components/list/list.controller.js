@@ -22,6 +22,7 @@ import {
   PAGE_SIZE_MAX,
   FILTER_OPTIONS,
   TRACKING_OPTIONS,
+  ADMIN_ROLE,
 } from './list.constant';
 
 export default class IpListController {
@@ -91,6 +92,12 @@ export default class IpListController {
       coreConfig,
     } = this;
     let cancelFetch;
+    let versionFilter = null;
+    const { ipTypeFilter } = $location.search();
+
+    if (Object.values(FILTER_OPTIONS).includes(parseInt(ipTypeFilter, 10))) {
+      versionFilter = parseInt(ipTypeFilter, 10);
+    }
 
     $scope.IP_TYPE = IP_TYPE;
     $scope.SUB_RANGE = SUB_RANGE;
@@ -102,8 +109,8 @@ export default class IpListController {
     $scope.showBYOIPBadge = (self.badges || BADGES).includes(BADGE_BYOIP);
     $scope.showFOBadge = (self.badges || BADGES).includes(BADGE_FO);
     $scope.advancedModeFilter = true;
-    $scope.version = null;
-    $scope.selected_option = FILTER_OPTIONS.ALL_IPS;
+    $scope.version = versionFilter;
+    $scope.selected_option = versionFilter || FILTER_OPTIONS.ALL_IPS;
     $scope.PAGE_SIZE_MAX = PAGE_SIZE_MAX;
 
     this.securityUrl =
@@ -130,6 +137,7 @@ export default class IpListController {
         self.serviceType || $location.search().serviceType || null;
       $scope.params = self.params || null;
       $scope.isAdditionalIp = self.isAdditionalIp;
+      $scope.isAdmin = coreConfig.getUser().auth?.roles?.includes(ADMIN_ROLE);
 
       $scope.tracking = {
         'enable-permanent-mitigation': `${TRACKING_PREFIX}::enable-permanent-mitigation`,
@@ -662,6 +670,7 @@ export default class IpListController {
     };
 
     $scope.getIpsOnFilter = function getIpsOnFilter(version) {
+      $location.search('ipTypeFilter', version);
       $scope.version = version;
       atInternet.trackClick({
         name:
