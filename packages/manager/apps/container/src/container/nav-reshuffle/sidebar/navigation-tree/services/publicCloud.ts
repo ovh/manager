@@ -288,7 +288,7 @@ pciNode.children = [
         },
         features: ['pci-rancher'],
         forceVisibility: true,
-        tag: NodeTag.BETA,
+        tag: NodeTag.NEW,
       },
       {
         id: 'pci-kubernetes',
