@@ -2,6 +2,7 @@ import {
   DataGridTextCell,
   Datagrid,
   DatagridColumn,
+  useDatagridSearchParams,
 } from '@ovhcloud/manager-components';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,16 +14,56 @@ import ActionsCell from './ActionsCell';
 import { SavingsPlanDatagridWrapper } from './Table.type';
 import { convertToDuration } from '@/utils/commercial-catalog/utils';
 
+type SortableKey = Pick<
+  SavingsPlanService,
+  'displayName' | 'endDate' | 'period' | 'periodEndDate'
+>;
+
 export default function TableContainer({
   data,
 }: Readonly<SavingsPlanDatagridWrapper>) {
   const { t } = useTranslation('listing');
   const navigate = useNavigate();
 
+  const {
+    pagination,
+    setPagination,
+    sorting,
+    setSorting,
+  } = useDatagridSearchParams();
+
+  const paginatedData = useMemo(() => {
+    const start = pagination.pageIndex * pagination.pageSize;
+    const end = start + pagination.pageSize;
+    const { desc, id } = sorting;
+    return (
+      data
+        ?.sort((a, b) => {
+          const order = desc ? -1 : 1;
+          switch (id) {
+            case 'size':
+              return order > 0 ? a.size - b.size : b.size - a.size;
+            default: {
+              if (a[id as keyof SortableKey]) {
+                return (
+                  order *
+                  a[id as keyof SortableKey].localeCompare(
+                    b[id as keyof SortableKey],
+                  )
+                );
+              }
+              return 1;
+            }
+          }
+        })
+        .slice(start, end) || []
+    );
+  }, [data, pagination, sorting]);
+
   const columns: DatagridColumn<SavingsPlanService>[] = useMemo(
     () => [
       {
-        id: 'name',
+        id: 'displayName',
         label: t('name'),
         cell: (props: SavingsPlanService) => (
           <DataGridTextCell>
@@ -39,14 +80,14 @@ export default function TableContainer({
         ),
       },
       {
-        id: 'quantity',
+        id: 'size',
         label: t('quantity'),
         cell: (props: SavingsPlanService) => (
           <DataGridTextCell>{props.size}</DataGridTextCell>
         ),
       },
       {
-        id: 'duration',
+        id: 'period',
         label: t('duration'),
         cell: (props: SavingsPlanService) => (
           <DataGridTextCell>
@@ -55,7 +96,7 @@ export default function TableContainer({
         ),
       },
       {
-        id: 'renew',
+        id: 'periodEndAction',
         label: t('renew'),
         accessorKey: 'periodEndAction',
         cell: (props: SavingsPlanService) => (
@@ -106,8 +147,16 @@ export default function TableContainer({
 
   return (
     <>
-      {data && columns && (
-        <Datagrid items={data} columns={columns} totalItems={data.length}  />
+      {paginatedData && columns && (
+        <Datagrid
+          items={paginatedData}
+          columns={columns}
+          totalItems={data.length}
+          pagination={pagination}
+          onPaginationChange={setPagination}
+          sorting={sorting}
+          onSortChange={setSorting}
+        />
       )}
     </>
   );

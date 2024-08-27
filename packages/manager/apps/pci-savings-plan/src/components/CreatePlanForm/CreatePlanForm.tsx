@@ -8,6 +8,7 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_CHECKBOX_BUTTON_SIZE,
   ODS_INPUT_TYPE,
+  ODS_MESSAGE_TYPE,
   ODS_SPINNER_SIZE,
   ODS_TILE_VARIANT,
   OdsInputValueChangeEventDetail,
@@ -18,6 +19,8 @@ import {
   OsdsCheckbox,
   OsdsCheckboxButton,
   OsdsInput,
+  OsdsLink,
+  OsdsMessage,
   OsdsSpinner,
   OsdsTabBar,
   OsdsTabBarItem,
@@ -28,7 +31,7 @@ import {
 import React, { FC, useEffect, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import QuantitySelector from '@/components/QuantitySelector/QuantitySelector';
 import useTechnicalInfo, { usePricingInfo } from '@/hooks/useCatalogCommercial';
@@ -46,6 +49,7 @@ import Commitment from '../Commitment/Commitment';
 import LegalLinks from '../LegalLinks/LegalLinks';
 import SimpleTile from '../SimpleTile/SimpleTile';
 import { TileTechnicalInfo } from '../TileTechnicalInfo/TileTechnicalInfo';
+import { getQuotaUrl } from '../../utils/routes';
 
 export const isValidName = (name: string) =>
   /^[a-z0-9][-_.A-Za-z0-9]{1,61}$/.test(name);
@@ -103,6 +107,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   setTechnicalModel,
   onCreatePlan,
 }: CreatePlanFormProps) => {
+  const { projectId } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation('create');
   const [selectedResource, setSelectedResource] = useState<ResourceType>(
@@ -160,12 +165,16 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   };
 
   const onCreateSavingsPlan = () => {
-    onCreatePlan({
-      offerId: offerIdSelected,
-      displayName: planName,
-      size: quantity,
-    });
+    if (offerIdSelected) {
+      onCreatePlan({
+        offerId: offerIdSelected,
+        displayName: planName,
+        size: quantity,
+      });
+    }
   };
+
+  const onChangeQuantity = (v: number) => setQuantity(v);
 
   return (
     <div>
@@ -244,9 +253,30 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
               quantity={quantity}
               onMinusClick={() => setQuantity(quantity - 1)}
               onPlusClick={() => setQuantity(quantity + 1)}
+              onChangeQuantity={onChangeQuantity}
             />
           </span>
         </OsdsTile>
+        <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="my-4">
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            className="inline-block"
+          >
+            {t(
+              isInstance
+                ? 'quantity_banner_instance'
+                : 'quantity_banner_rancher',
+            )}
+            {isInstance && (
+              <OsdsLink
+                color={ODS_THEME_COLOR_INTENT.primary}
+                href={getQuotaUrl(projectId)}
+              >
+                {t('quantity_banner_instance_link')}
+              </OsdsLink>
+            )}
+          </OsdsText>
+        </OsdsMessage>
       </Block>
       <Block>
         <Subtitle>{t('select_commitment')}</Subtitle>
