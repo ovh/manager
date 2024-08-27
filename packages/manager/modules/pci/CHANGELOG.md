@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.59.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.59.0...@ovh-ux/manager-pci@6.59.1) (2024-08-27)
+
+
+### Bug Fixes
+
+* **pci.instances:** fix instance creation with more than one instance ([#12540](https://github.com/ovh/manager/issues/12540)) ([f3a3557](https://github.com/ovh/manager/commit/f3a3557eac2da3ed1e02f70f33300435fb277efc))
+* **pci.project:** redirection after project creation ([#12789](https://github.com/ovh/manager/issues/12789)) ([202cc56](https://github.com/ovh/manager/commit/202cc565518d032cc08b079ad3c9a931af15bedd))
+* **pci:** floating-ips link ([#12687](https://github.com/ovh/manager/issues/12687)) ([a63f024](https://github.com/ovh/manager/commit/a63f024339f487ad95a65eda88c67a062b68b245))
+
+
+
+
+
 # [6.59.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.58.0...@ovh-ux/manager-pci@6.59.0) (2024-08-20)
 
 
