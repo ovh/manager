@@ -69,11 +69,6 @@ export const createTechnicalInfo = ({
             ],
             raid: 'local',
           },
-          vrack: {
-            guaranteed: false,
-            level: 8000,
-            unlimited: false,
-          },
         },
       },
     },

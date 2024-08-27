@@ -24,39 +24,44 @@ const LegacyTechnicalSchema = z.object({
   blobs: z.object({
     content: z.object({
       technical: z.object({
-        bandwidth: z.object({
-          guaranteed: z.boolean(),
-          level: z.number(),
-          unlimited: z.boolean(),
-        }),
-        cpu: z.object({
-          cores: z.number(),
-          frequency: z.number(),
-          model: z.string(),
-          type: z.string(),
-        }),
-        memory: z.object({
-          size: z.number(),
-        }),
-        name: z.string(),
-        os: z.object({
-          family: z.string(),
-        }),
-        storage: z.object({
-          disks: z.array(
-            z.object({
-              capacity: z.number(),
-              number: z.number(),
-              technology: z.string(),
-            }),
-          ),
-          raid: z.string(),
-        }),
-        vrack: z.object({
-          guaranteed: z.boolean(),
-          level: z.number(),
-          unlimited: z.boolean(),
-        }),
+        bandwidth: z
+          .object({
+            guaranteed: z.boolean(),
+            level: z.number(),
+            unlimited: z.boolean(),
+          })
+          .optional(),
+        cpu: z
+          .object({
+            cores: z.number(),
+            frequency: z.number(),
+            model: z.string(),
+            type: z.string(),
+          })
+          .optional(),
+        memory: z
+          .object({
+            size: z.number(),
+          })
+          .optional(),
+        name: z.string().optional(),
+        os: z
+          .object({
+            family: z.string(),
+          })
+          .optional(),
+        storage: z
+          .object({
+            disks: z.array(
+              z.object({
+                capacity: z.number(),
+                number: z.number(),
+                technology: z.string(),
+              }),
+            ),
+            raid: z.string(),
+          })
+          .optional(),
       }),
     }),
   }),

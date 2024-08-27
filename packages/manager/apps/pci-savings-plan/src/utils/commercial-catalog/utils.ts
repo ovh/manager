@@ -2,7 +2,7 @@ const MONTH_IN_YEAR = 12;
 const HOUR_IN_MONTH = 720;
 
 export const convertToPrice = (price: number) =>
-  Number.isNaN(price) ? 0 : price / 100000000;
+  price && !Number.isNaN(price) ? price / 100000000 : 0;
 
 export const convertHourlyPriceToMonthly = (price: number) =>
   price * HOUR_IN_MONTH;
