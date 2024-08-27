@@ -29,7 +29,7 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementCtrl(
     =            INITIALIZATION           =
     ======================================= */
 
-  function initAction(taskCount, offerCount, isInXdslPack) {
+  function initAction(taskCount, offerCount) {
     const actions = [
       {
         name: 'line_details_offer',
@@ -93,7 +93,7 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementCtrl(
       {
         name: 'line_to_number',
         sref: 'telecom.telephony.billingAccount.line.dashboard.convert',
-        disabled: isInXdslPack || self.line.isVoicefax(),
+        disabled: self.line.isVoicefax(),
         text: $translate.instant(
           'telephony_line_management_actions_line_to_number',
         ),
@@ -156,7 +156,6 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementCtrl(
   function init() {
     let taskCount = 0;
     let offerCount = 0;
-    let isInXdslPack = false;
 
     self.loading.init = true;
 
@@ -185,15 +184,12 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementCtrl(
                 }
                 return result;
               }),
-            self.line.isIncludedInXdslPack().then((inPack) => {
-              isInXdslPack = inPack;
-            }),
           ])
           .then(() => {
-            initAction(taskCount, offerCount, isInXdslPack);
+            initAction(taskCount, offerCount);
           })
           .catch(() => {
-            initAction(taskCount, offerCount, isInXdslPack);
+            initAction(taskCount, offerCount);
           })
           .finally(() => {
             self.loading.init = false;
