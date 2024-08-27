@@ -3,6 +3,7 @@ import {
   Description,
   LinkType,
   Links,
+  Clipboard,
 } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_HUE,
@@ -12,7 +13,6 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import {
-  OsdsClipboard,
   OsdsDivider,
   OsdsIcon,
   OsdsText,
@@ -30,20 +30,6 @@ type TTileProps = {
   vcdOrganization: IVcdOrganization;
   datacenterCount?: number;
 };
-
-// TODO remove when Clipboard is available in manager-components
-export function Clipboard({ value }: { value: string }) {
-  return (
-    <OsdsClipboard className="mb-2" value={value}>
-      <span slot="success-message">
-        <OsdsText color={ODS_THEME_COLOR_INTENT.success}>Copied !</OsdsText>
-      </span>
-      <span slot="error-message">
-        <OsdsText color={ODS_THEME_COLOR_INTENT.error}>Error</OsdsText>
-      </span>
-    </OsdsClipboard>
-  );
-}
 
 export default function OrganizationGenerationInformationTile({
   vcdOrganization,
