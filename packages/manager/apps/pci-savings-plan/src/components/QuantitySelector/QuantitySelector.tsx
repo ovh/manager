@@ -20,12 +20,14 @@ type QuantitySelectorProps = {
   quantity: number;
   onMinusClick: () => void;
   onPlusClick: () => void;
+  onChangeQuantity: (v?: number) => void;
 };
 
 const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   quantity,
   onMinusClick,
   onPlusClick,
+  onChangeQuantity,
 }) => (
   <OsdsQuantity>
     <OsdsButton
@@ -37,11 +39,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
       variant={ODS_BUTTON_VARIANT.flat}
       text-align="center"
     >
-      <OsdsIcon
-        size={ODS_ICON_SIZE.sm}
-        name={ODS_ICON_NAME.MINUS}
-        color={ODS_THEME_COLOR_INTENT.default}
-      />
+      <OsdsIcon size={ODS_ICON_SIZE.sm} name={ODS_ICON_NAME.MINUS} contrasted />
     </OsdsButton>
     <OsdsInput
       type={ODS_INPUT_TYPE.number}
@@ -49,6 +47,12 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
       min={1}
       step={1}
       value={quantity}
+      onOdsValueChange={(e) => {
+        const value = Number(e.detail.value);
+        if (value > 0) {
+          onChangeQuantity(value);
+        }
+      }}
       size={ODS_INPUT_SIZE.md}
     ></OsdsInput>
     <OsdsButton
@@ -64,7 +68,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
       <OsdsIcon
         size={ODS_ICON_SIZE.sm}
         name={ODS_ICON_NAME.PLUS}
-        color={ODS_THEME_COLOR_INTENT.default}
+        contrasted
       ></OsdsIcon>
     </OsdsButton>
   </OsdsQuantity>

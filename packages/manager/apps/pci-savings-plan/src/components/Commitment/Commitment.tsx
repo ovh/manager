@@ -1,4 +1,7 @@
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import { ODS_TILE_SIZE, ODS_TILE_VARIANT } from '@ovhcloud/ods-components';
 import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
 import React from 'react';
@@ -50,7 +53,7 @@ const Commitment = ({
           {t('commitment_month', { value: duration })}
         </OsdsText>
         <OsdsText color={ODS_THEME_COLOR_INTENT.success} className="ml-3">
-          {diffInPercent} %
+          - {diffInPercent} %
         </OsdsText>
       </span>
       <span slot="end" className="flex flex-col items-end justify-center">
@@ -61,7 +64,11 @@ const Commitment = ({
           >
             ~ {priceByMonthWithoutCommitment.toFixed(2)} €
           </OsdsText>
-          <OsdsText color={ODS_THEME_COLOR_INTENT.success} className="ml-3">
+          <OsdsText
+            size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+            color={ODS_THEME_COLOR_INTENT.success}
+            className="ml-3"
+          >
             {priceNumber.toFixed(2)} €
           </OsdsText>
         </div>

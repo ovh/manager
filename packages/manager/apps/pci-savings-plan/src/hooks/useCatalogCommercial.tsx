@@ -45,7 +45,15 @@ export const useTechnicalInfo = ({
     queryKey: ['technicalInfo', productCode],
     queryFn: () => getTechnicalInfo(productCode),
     select: (res) =>
-      res.map(formatTechnicalInfo).filter((item) => item.id !== ''),
+      res
+        .map(formatTechnicalInfo)
+        .filter((item) => item.id !== '')
+        .sort((a, z) => {
+          if (a.technical?.cpu?.cores) {
+            return a.technical.cpu.cores - z.technical.cpu.cores;
+          }
+          return 1;
+        }),
   });
 
 export const usePricingInfo = ({
