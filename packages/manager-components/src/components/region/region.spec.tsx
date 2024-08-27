@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import { render } from '../../utils/test.provider';
 import Region, { RegionProps } from './region.component';
 import { DemoRegion, DemoDatacenter } from './region.stories';
-import translatedRegion from './translations/Messages_fr_FR.json';
+import translatedRegion from './translations/region/Messages_fr_FR.json';
 
 const renderComponent = (props: RegionProps) => {
   return render(<Region {...props} />);
@@ -13,11 +13,8 @@ describe('Region component', () => {
     renderComponent({
       ...DemoRegion.args,
     });
-    const regionKey = DemoRegion.args.name
-      .replace(/-/g, '_')
-      ?.toLocaleLowerCase();
     const regionElement = screen.getByText(
-      translatedRegion[`region_${regionKey}`],
+      translatedRegion[`region_${DemoRegion.args.name}`],
     );
     expect(regionElement).toBeVisible();
   });
