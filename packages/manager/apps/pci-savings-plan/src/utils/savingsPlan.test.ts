@@ -5,6 +5,7 @@ describe('isValidSavingsPlanName', () => {
     expect(isValidSavingsPlanName('validName123')).toBe(true);
     expect(isValidSavingsPlanName('anotherValidName')).toBe(true);
     expect(isValidSavingsPlanName('123456')).toBe(true);
+    expect(isValidSavingsPlanName('123_a-456')).toBe(true);
   });
 
   it('should return false for names with special characters', () => {

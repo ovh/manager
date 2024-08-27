@@ -35,7 +35,6 @@ describe('formatter utility functions', () => {
             ],
             raid: 'local',
           },
-          vrack: { guaranteed: false, level: 8000, unlimited: false },
         },
       });
     });

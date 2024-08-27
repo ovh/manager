@@ -24,7 +24,7 @@ describe('Commitment', () => {
 
   it('should render the commitment price', async () => {
     await setupSpecTest();
-    expect(screen.getByText('86 %')).toBeInTheDocument();
+    expect(screen.getByText('- 86 %')).toBeInTheDocument();
   });
 
   it('should render the hourly price without commitment', async () => {

@@ -1,5 +1,4 @@
 import { formatTechnicalInfo } from '@/utils/formatter/formatter';
-import { CommercialCatalogTechnicalType } from './commercial-catalog.type';
 
 export enum ResourceType {
   instance = 'instance',
