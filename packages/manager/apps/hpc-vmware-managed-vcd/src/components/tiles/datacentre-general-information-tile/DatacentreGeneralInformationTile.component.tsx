@@ -3,6 +3,7 @@ import {
   Description,
   LinkType,
   Links,
+  Clipboard,
 } from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
@@ -14,7 +15,6 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Clipboard } from '@/components/tiles/organization-general-information-tile/OrganizationGeneralInformationTile.component';
 import IVcdDatacentre from '@/types/vcd-datacenter.interface';
 import TileSubtitle from '@/components/tiles/tile-subtitle/TileSubtitle.component';
 import IVcdOrganization from '@/types/vcd-organization.interface';
