@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
-import routes from '@/routes';
+import routes from '@/routes/routes';
 
 const router = createHashRouter(routes);
 
