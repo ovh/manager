@@ -24,15 +24,15 @@
   "confirm": "Zatwierdź",
   "copy": "Skopiowano",
   "error": "Błąd",
-  "createRancherDiscoveryMode": "Aktualnie jesteś w trybie „Discovery”. <strong>Aby dokończyć tworzenie zasobu</strong>, aktywuj projekt.",
+  "createRancherDiscoveryMode": "Aktualnie jesteś w trybie Discovery. <strong>Aby dokończyć tworzenie zasobu</strong>, aktywuj projekt.",
   "createRancherDiscoveryModeActive": "Uruchom projekt",
   "createRancherTitle": "Managed Rancher",
   "createRancherInfoMessage": "Skorzystaj z naszej bezpłatnej usługi w fazie beta. Pamiętaj, że po zakończeniu fazy beta zużycie będzie fakturowane za godzinę, w oparciu o całkowitą liczbę vCPU w każdym z węzłów roboczych w „downstream clusters” Rancher, przy <strong>minimalnej liczbie 20 vCPU</strong>.",
   "createRancherName": "Nazwa",
   "createRancherDescription": "W ramach tej usługi będziesz mógł zarządzać kilkoma „downstream clusters”.",
-  "createRancherPlaceholder": "mój_rancher",
+  "createRancherPlaceholder": "moj_rancher",
   "createRancherServiceLevel": "Wybór usługi",
-  "createRancherServiceLevelDescription": " Obydwie usługi zapewniają wszystkie funkcjonalności Rancher. Usługa OVHcloud Edition umożliwia jedynie tworzenie „downstream clusters” w chmurze publicznej OVHcloud, przy czym „samozarządzające się” węzły są dodawane pojedynczo. Usługa Standard jest idealna do zastosowań typu prywatna chmura, multicloud lub Edge. W każdej chwili możesz zmienić usługę na Standard.",
+  "createRancherServiceLevelDescription": " Obydwie oferty zapewniają wszystkie funkcjonalności Ranchera. Usługa OVHcloud Edition umożliwia jedynie tworzenie „downstream clusters” w chmurze publicznej OVHcloud, przy czym „samozarządzające się” węzły są dodawane pojedynczo. Usługa Standard jest idealna do zastosowań typu prywatna chmura, multicloud lub Edge. W każdej chwili możesz zmienić usługę na Standard.",
   "createRancherVersion": "Wersja Ranchera",
   "createRancherVersionDescription": "Usługa oparta jest na SUSE Rancher. OVHcloud wspiera najnowsze wersje Ranchera. Zalecamy użycie najnowszej wersji. Regularnie wdrażamy łatki bezpieczeństwa i dostarczamy nowe wersje, zgodnie z naszą polityką cyklu życia oprogramowania.",
   "createRancherCTA": "Utwórz usługę Managed Rancher",
@@ -40,5 +40,5 @@
   "createRancherRecomendedVersion": "Zalecana wersja",
   "createRancherOVHCloudPlanDescription": "Twórz lub zarządzaj „downstream clusters” Managed Kubernetes lub „self managed” w chmurze publicznej OVHcloud lub na własnych maszynach. Możesz również rejestrować klastry zewnętrzne (bez zarządzania chmurą)",
   "createRancherStandardPlanDescription": "Twórz lub rejestruj „downstream clusters” w dowolnej chmurze publicznej wspieranej przez Rancher lub w zautomatyzowanej chmurze prywatnej (np. VMware vSphere), w tym scenariusze obsługiwane w usłudze OVHcloud Edition.",
-  "createNameModaleHelperInput": "Nazwa usługi musi zawierać od 3 do 63 znaków, musi zaczynać się i kończyć małym znakiem alfanumerycznym (od „a” do „z” i od 0 do 9) i może zawierać następujące znaki interpunkcyjne: „_”, „.” oraz „-”."
+  "createNameModaleHelperInput": "Nazwa usługi może zawierać od 3 do 63 znaków, musi zaczynać się i kończyć małym znakiem alfanumerycznym (od „a” do „z” i od 0 do 9) i może zawierać następujące znaki: „_”, „.” oraz „-”."
 }

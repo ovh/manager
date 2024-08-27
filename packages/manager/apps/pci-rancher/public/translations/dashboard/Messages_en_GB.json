@@ -24,13 +24,13 @@
   "confirm": "Confirm",
   "copy": "Copied",
   "error": "Error",
-  "createRancherDiscoveryMode": "You are currently in Discovery mode. <strong>To finish creating your resource, you must activate your project</strong>.",
+  "createRancherDiscoveryMode": "You are currently in Discovery mode. <strong>To finish creating your resource,</strong> you must activate your project.",
   "createRancherDiscoveryModeActive": "Activate your project",
   "createRancherTitle": "Managed Rancher Service",
   "createRancherInfoMessage": "Take advantage of the free beta version of our service. Please note that after the completion of beta testing, you will be charged an hourly rate based on the total number of worker nodes’ vCPUs in your downstream Rancher clusters, with <strong>a minimum of 20 vCPUs billed</strong>.",
   "createRancherName": "Name",
   "createRancherDescription": "You can manage multiple downstream clusters within this service.",
-  "createRancherPlaceholder": "my_rancher",
+  "createRancherPlaceholder": "mon_rancher",
   "createRancherServiceLevel": "Choose plan",
   "createRancherServiceLevelDescription": " Both plans offer all the Rancher features. The OVHcloud Edition plan only supports self-managed nodes brought individually to create downstream clusters on OVHcloud Public Cloud. The Standard plan is perfect for private, multi-cloud and edge cloud uses. You can migrate to the Standard plan at any time.",
   "createRancherVersion": "Rancher version",
@@ -39,6 +39,6 @@
   "createRancherError": "An error has occurred creating your Managed Rancher Service.{{rancherCreationErrorMessage}}.",
   "createRancherRecomendedVersion": "Recommended version",
   "createRancherOVHCloudPlanDescription": "Create or manage Managed Kubernetes Service or ‘self-managed’ ‘downstream clusters’ on OVHcloud Public Cloud, or via your own machines. You can also register external clusters (without cloud management)",
-  "createRancherStandardPlanDescription": "Create or register downstream clusters with any public cloud supported by Rancher, or on an automatable private cloud (e.g. VMware vSphere), including scenarios supported by the OVHcloud Edition solution.",
+  "createRancherStandardPlanDescription": "Create or register downstream clusters on any Rancher-supported public cloud, or on an automatable private cloud (e.g., VMware vSphere), including scenarios supported by the OVHcloud Edition solution.",
   "createNameModaleHelperInput": "The service name must be between 3 and 63 characters, must start and end with lower-case alphanumeric characters (a to z and 0 to 9), and may include the following punctuation marks: ‘_’ ‘.’ and ‘-’."
 }
