@@ -370,15 +370,15 @@ export default class PciProjectNewPaymentCtrl {
       const isNewClient = this.projects?.length === 0;
 
       const user = this.coreConfig.getUser();
-      mixCommanderProjectCreation(
-        user?.customerCode,
-        user?.country,
-        this.summary.prices?.withoutTax?.value,
-        user?.currency?.code,
-        this.defaultPaymentMethod?.label,
-        this.summary.prices?.withTax?.value,
-        isNewClient,
-      );
+      mixCommanderProjectCreation({
+        userId: user?.customerCode,
+        region: user?.country,
+        orderAmoutTaxFree: this.summary.prices?.withoutTax?.value,
+        currencyCode: user?.currency?.code,
+        paymentMethod: this.defaultPaymentMethod?.label,
+        discountPrice: this.summary.prices?.withTax?.value,
+        isNewCustomer: isNewClient,
+      });
     }
 
     this.sendTrack(tag);
