@@ -1,9 +1,9 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { odsSetup } from '@ovhcloud/ods-common-core';
-import queryClient from '@/api/queryClient';
+import queryClient from '@/queryClient';
 import '@ovhcloud/ods-theme-blue-jeans';
-import Router from './components/router/Router';
+import Router from './routes/Router';
 
 odsSetup();
 
