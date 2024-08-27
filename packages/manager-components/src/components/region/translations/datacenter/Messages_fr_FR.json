@@ -1,0 +1,18 @@
+{
+  "region_eri": "Londres (ERI{{micro}}) - Angleterre",
+  "region_bhs": "Beauharnois (BHS{{micro}}) - Canada",
+  "region_dc": "Beauharnois (DC{{micro}}) - Canada",
+  "region_p": "Paris (P{{micro}}) - France",
+  "region_gra": "Gravelines (GRA{{micro}}) - France",
+  "region_hil": "Hillsboro (HIL{{micro}}) - États-Unis",
+  "region_lim": "Limburg (LIM{{micro}}) - Allemagne",
+  "region_rbx": "Roubaix (RBX{{micro}}) - France",
+  "region_sbg": "Strasbourg (SBG{{micro}}) - France",
+  "region_sgp": "Singapour (SGP{{micro}}) - Asie",
+  "region_syd": "Sydney (SYD{{micro}}) - Australie",
+  "region_vin": "Vint Hill (VIN{{micro}}) - États-Unis",
+  "region_waw": "Varsovie (WAW{{micro}}) - Pologne",
+  "region_rbx_hz": "Roubaix (RBXHZ) - France",
+  "region_gsw": "(GSW) - France",
+  "region_ynm": "Mumbai (YNM{{micro}}) - Inde"
+}

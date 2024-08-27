@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import './translations';
+import './translations/region';
+import './translations/datacenter';
 
 export interface RegionProps {
   mode: string;
@@ -8,7 +9,7 @@ export interface RegionProps {
 }
 
 export function Region({ mode = 'region', name, micro }: RegionProps) {
-  const { t } = useTranslation('region');
+  const { t } = useTranslation(mode === 'region' ? 'region' : 'datacenter');
   const key = name.replace(/-/g, '_')?.toLocaleLowerCase();
 
   return (
