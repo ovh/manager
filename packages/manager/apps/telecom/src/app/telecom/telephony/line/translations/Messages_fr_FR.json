@@ -17,6 +17,7 @@
   "telephony_line_softphone_configure_title": "Configurer la ligne",
   "telephony_line_softphone_configure_description": "Vous avez la possibilité de configurer jusqu'à trois appareils au total. Vous pouvez configurer un seul appareil à la fois.",
   "telephony_line_softphone_upload_logo": "Upload logo",
+  "telephony_line_softphone_save_theme_description": "Le thème sélectionné sera appliqué à l'ensemble de vos lignes",
   "telephony_line_softphone_save_theme": "Vous devez redémarrer l'application afin que le thème soit actif",
   "telephony_line_softphone_delete_device_error": "La suppression de votre softphone a échoué: {{status}}.",
   "telephony_line_softphone_btn_delete": "Supprimer",
