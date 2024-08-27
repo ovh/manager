@@ -3,7 +3,7 @@ import template from './vmac-unavailable-banner.html';
 
 export default {
   controller,
-  name: 'ovhManagerVmacUnavailableBanner',
+  name: 'ovhManagerBmServerComponentsVmacUnavailableBanner',
   template,
   bindings: {
     serviceId: '<',
