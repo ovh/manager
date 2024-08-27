@@ -1,0 +1,79 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PlanComponent > should render 1`] = `
+<div>
+  <div
+    class="w-full"
+  >
+    <div
+      class="border-solid border border-t-0 border-x-0 border-[--ods-color-blue-200] my-4 py-4"
+    >
+      <osds-text
+        color="text"
+        data-testid="name"
+        level="body"
+        size="200"
+      >
+        S
+      </osds-text>
+    </div>
+    <ul
+      class="list-none p-0 m-0"
+    >
+      <li
+        data-testid="capacity"
+      >
+        <osds-text
+          color="text"
+          level="body"
+          size="400"
+        >
+          private_registry_upgrade_plan_available_storage
+          :
+        </osds-text>
+        <osds-text
+          color="text"
+          level="body"
+          size="400"
+        >
+          10 B
+        </osds-text>
+      </li>
+      <li
+        data-testid="connections"
+      >
+        <osds-text
+          color="text"
+          level="body"
+          size="400"
+        >
+          private_registry_upgrade_plan_connections:50
+        </osds-text>
+      </li>
+      <li
+        data-testid="core-registry-99"
+      >
+        <osds-text
+          color="text"
+          level="body"
+          size="400"
+        >
+          private_registry_upgrade_core_registry_99
+        </osds-text>
+      </li>
+    </ul>
+    <div
+      class="border-solid border border-b-0 border-x-0 border-[--ods-color-blue-200] my-2"
+      data-testid="price"
+    >
+      <osds-text
+        color="text"
+        level="body"
+        size="400"
+      >
+        formattedPrice
+      </osds-text>
+    </div>
+  </div>
+</div>
+`;
