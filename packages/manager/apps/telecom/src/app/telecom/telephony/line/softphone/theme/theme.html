@@ -13,5 +13,6 @@
             'background-color': $ctrl.color
         }"
     ></div>
-    <span data-ng-bind="$ctrl.themeId"></span>
+    <span data-ng-if="$ctrl.themeId!==1" data-ng-bind="$ctrl.themeId"></span>
+    <span data-ng-if="$ctrl.themeId===1" data-ng-bind="'OVHcloud'"></span>
 </div>
