@@ -1,0 +1,36 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CreatePage > should render 1`] = `
+<div>
+  <div
+    data-testid="breadcrumb"
+  >
+    Breadcrumb
+  </div>
+  <div
+    class="header mt-8"
+  >
+    <div>
+      Headers
+    </div>
+  </div>
+  <div>
+    Notifications
+  </div>
+  <div
+    data-testid="region-step"
+  >
+    RegionStep
+  </div>
+  <div
+    data-testid="name-step"
+  >
+    NameStep
+  </div>
+  <div
+    data-testid="plan-step"
+  >
+    PlanStep
+  </div>
+</div>
+`;
