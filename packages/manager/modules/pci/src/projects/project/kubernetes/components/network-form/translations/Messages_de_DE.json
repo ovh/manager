@@ -7,9 +7,11 @@
   "kubernetes_network_form_gateway_private_description_p1": "Wählen Sie diese Option aus, wenn Sie ein",
   "kubernetes_network_form_gateway_private_description_p2": "oder ein individuelles Gateway, wie in Ihrem privaten Netzwerk konfiguriert, verwenden möchten.",
   "kubernetes_network_form_gateway_private_description_link": "Managed Gateway von OVHcloud",
-  "kubernetes_network_form_gateway_private_description_help": "IP-Adresse Ihres Gateways. Lassen Sie dieses Feld leer, um den DHCP-definierte Gateway zu verwenden.",
   "kubernetes_network_form_gateway_vrack_field_ip_placeholder": "IP-Adresse angeben",
   "kubernetes_network_form_gateway_vrack_field_ip_error_pattern": "Gültige IP-Adresse angeben",
+  "kubernetes_network_form_gateway_mode_auto": "Standardgateway, das entsprechend der DHCP-Konfiguration Ihres privaten Netzwerks festgelegt wird (empfohlen)",
+  "kubernetes_network_form_gateway_mode_custom": "Standardgateway statisch überladen",
+  "kubernetes_network_form_gateway_mode_custom_placeholder": "IP-Adresse Ihres Standardgateways",
   "kubernetes_network_form_label": "Verbundenes privates Netzwerk",
   "kubernetes_network_form_none": "Keine (öffentlichen IPs)",
   "kubernetes_network_form_description": "Standardmäßig verfügen Ihre Worker-Nodes über eine öffentliche IPv4. Wenn Sie sich für ein privates Netzwerk entscheiden, werden die öffentlichen IP-Adressen dieser Nodes ausschließlich für deren Verwaltung und der Verbindung zur Kubernetes-Control-Panel-Ebene verwendet. Ihren Nodes wird eine IP im vLAN des gewählten privaten Netzwerks zugewiesen.",
@@ -25,8 +27,5 @@
   "kubernetes_network_form_load_balancers_subnet": "Wählen Sie ein dediziertes Subnetz für Ihre Loadbalancer aus.",
   "kubernetes_network_form_load_balancers_subnet_description": "Sie können ein spezielles Subnetz für Ihre Loadbalancer definieren. Dies ist insbesondere dann erforderlich, wenn das für Ihren Cluster gewählte Subnetz die für die Erstellung von verwalteten OVHcloud Loadbalancern erforderlichen Voraussetzungen nicht erfüllt.",
   "kubernetes_network_form_load_balancers_subnet_toggler": "Erweiterte Einstellungen",
-  "kubernetes_network_form_gateway_mode_auto": "Standardgateway, das entsprechend der DHCP-Konfiguration Ihres privaten Netzwerks festgelegt wird (empfohlen)",
-  "kubernetes_network_form_gateway_mode_custom": "Standardgateway statisch überladen",
-  "kubernetes_network_form_gateway_mode_custom_placeholder": "IP-Adresse Ihres Standardgateways",
   "kubernetes_network_form_rebuild": "Achtung: Um die Strategie für das ausgehende Routing zu ändern, müssen die Nodes Ihres Clusters in einem Rolling-Update neu bereitgestellt werden."
 }
