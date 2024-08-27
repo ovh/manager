@@ -394,6 +394,9 @@
         <h3
             data-translate="telephony_group_line_softphone_apply_theme_globally"
         ></h3>
+        <p
+            data-translate="telephony_group_line_line_softphone_save_theme_description"
+        ></p>
         <form
             name="form"
             data-ng-submit=":: DashboardCtrl.applyThemeGlobally()"
@@ -406,23 +409,11 @@
                     data-selected="DashboardCtrl.currentTheme"
                 ></theme-picker>
             </div>
-            <h5
-                data-translate="telephony_group_line_softphone_upload_logo"
-            ></h5>
-            <oui-field
-                data-label="{{ 'telephony_group_line_softphone_your_logo' | translate }}"
-                data-help-text="{{ DashboardCtrl.acceptedFormatsDesc + ' (< '+ DashboardCtrl.maxSizeLogoFile/1000 + ' KB)' }}"
+            <button
+                data-ng-disabled="DashboardCtrl.currentTheme===1"
+                type="submit"
+                class="btn btn-default"
             >
-                <oui-file
-                    data-accept="{{ DashboardCtrl.acceptedFormats }}"
-                    data-maxsize="DashboardCtrl.maxSizeLogoFile"
-                    data-on-select="DashboardCtrl.updateFilesList()"
-                    data-droparea
-                    data-model="DashboardCtrl.fileModel"
-                >
-                </oui-file>
-            </oui-field>
-            <button type="submit" class="btn btn-default">
                 <span
                     data-translate="telephony_group_line_softphone_btn_apply_theme"
                 ></span>
