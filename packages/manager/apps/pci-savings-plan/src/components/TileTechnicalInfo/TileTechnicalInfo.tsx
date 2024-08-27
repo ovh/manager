@@ -69,7 +69,9 @@ export const TileTechnicalInfo: React.FC<TileTechnicalInfoProps> = ({
       >
         {name}
       </OsdsText>
-      {technical && <DisplayTechnicalInfo technical={technical} />}
+      {technical && technical.bandwidth && (
+        <DisplayTechnicalInfo technical={technical} />
+      )}
     </div>
   </SimpleTile>
 );

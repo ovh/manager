@@ -17,6 +17,7 @@ import {
   OsdsMessage,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
+import i18next from 'i18next';
 
 import { Title } from '@ovhcloud/manager-components';
 
@@ -27,11 +28,9 @@ import {
   useServiceId,
 } from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
-import i18next from 'i18next';
 
 export const formatDateString = (dateString: string, locale?: string) => {
   const date = new Date(dateString);
-  console.log({ date, dateString });
   return date.toString() !== 'Invalid Date'
     ? date.toLocaleString(locale, {
         day: 'numeric',
@@ -44,7 +43,7 @@ export const formatDateString = (dateString: string, locale?: string) => {
 };
 
 const Banner = ({ message }: { message: string }) => (
-  <OsdsMessage type={ODS_MESSAGE_TYPE.success} className="my-2">
+  <OsdsMessage type={ODS_MESSAGE_TYPE.success} className="my-4">
     <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="inline-block">
       {message}
     </OsdsText>

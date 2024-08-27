@@ -1,4 +1,3 @@
-import { CreatePlanFormContainer } from '@/components/CreatePlanForm/CreatePlanForm';
 import {
   PciDiscoveryBanner,
   Title,
@@ -7,6 +6,7 @@ import {
 } from '@ovhcloud/manager-components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { CreatePlanFormContainer } from '@/components/CreatePlanForm/CreatePlanForm';
 
 const CreateSavingsPlan = () => {
   const { t } = useTranslation('create');
