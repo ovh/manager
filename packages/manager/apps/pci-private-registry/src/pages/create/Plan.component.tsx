@@ -40,6 +40,7 @@ export default function PlanComponent({
     <div className="w-full">
       <div className="border-solid border border-t-0 border-x-0 border-[--ods-color-blue-200] my-4 py-4">
         <OsdsText
+          data-testid="name"
           color={ODS_THEME_COLOR_INTENT.text}
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
           size={ODS_THEME_TYPOGRAPHY_SIZE._200}
@@ -48,7 +49,7 @@ export default function PlanComponent({
         </OsdsText>
       </div>
       <ul className="list-none p-0 m-0">
-        <li>
+        <li data-testid="capacity">
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -64,7 +65,7 @@ export default function PlanComponent({
             {capacity}
           </OsdsText>
         </li>
-        <li>
+        <li data-testid="connections">
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -76,7 +77,7 @@ export default function PlanComponent({
           </OsdsText>
         </li>
         {plan.name === 'SMALL' && (
-          <li>
+          <li data-testid="core-registry-99">
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -88,7 +89,7 @@ export default function PlanComponent({
         )}
         {plan.name !== 'SMALL' && (
           <>
-            <li>
+            <li data-testid="core-registry-95">
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -131,13 +132,16 @@ export default function PlanComponent({
           </li>
         )}
       </ul>
-      <div className="border-solid border border-b-0 border-x-0 border-[--ods-color-blue-200] my-2">
+      <div
+        className="border-solid border border-b-0 border-x-0 border-[--ods-color-blue-200] my-2"
+        data-testid="price"
+      >
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
         >
-          {getFormattedMonthlyCatalogPrice(addon?.pricings[0].price)}{' '}
+          {getFormattedMonthlyCatalogPrice(addon?.pricings[0].price)}
         </OsdsText>
       </div>
     </div>
