@@ -1,7 +1,4 @@
-import {
-  DashboardLayout,
-  ErrorBanner,
-} from '@ovhcloud/manager-react-components';
+import { DashboardLayout, ErrorBanner } from '@ovh-ux/manager-react-components';
 import React, { Suspense } from 'react';
 import {
   Outlet,

@@ -31,7 +31,7 @@ import {
 import {
   handleClick,
   useFeatureAvailability,
-} from '@ovhcloud/manager-react-components';
+} from '@ovh-ux/manager-react-components';
 import {
   getVrackServicesResourceListQueryKey,
   useVrackServicesList,

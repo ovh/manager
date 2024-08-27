@@ -2,7 +2,7 @@ import {
   DashboardLayout,
   Subtitle,
   Title,
-} from '@ovhcloud/manager-react-components';
+} from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';

@@ -1,4 +1,4 @@
-import { ColumnSort } from '@ovhcloud/manager-react-components';
+import { ColumnSort } from '@ovh-ux/manager-react-components';
 
 export type OKMS = {
   id: string;

@@ -1,4 +1,4 @@
-import { ColumnSort } from '@ovhcloud/manager-react-components';
+import { ColumnSort } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
 import { IAMResource, useServiceList, useVrackService } from '@/data';
 

@@ -8,7 +8,7 @@ import {
   PageType,
   TrackingClickParams,
 } from '@ovh-ux/manager-react-shell-client';
-import { DeleteModal } from '@ovhcloud/manager-react-components';
+import { DeleteModal } from '@ovh-ux/manager-react-components';
 import {
   useVrackService,
   useUpdateVrackServices,

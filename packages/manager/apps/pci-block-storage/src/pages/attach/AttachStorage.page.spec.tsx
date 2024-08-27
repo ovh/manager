@@ -17,7 +17,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-vi.mock('@ovhcloud/manager-react-components', () => ({
+vi.mock('@ovh-ux/manager-react-components', () => ({
   useNotifications: vi.fn().mockReturnValue({
     addError: vi.fn(),
     addSuccess: vi.fn(),

@@ -1,4 +1,4 @@
-import { defineConfig  } from 'vitepress';
+import { defineConfig } from 'vitepress';
 
 export default defineConfig({
   title: 'Manager',
@@ -10,7 +10,6 @@ export default defineConfig({
   srcDir: './docs',
   base: '/manager/',
   ignoreDeadLinks: true,
-
 
   themeConfig: {
     nav: [
@@ -25,8 +24,8 @@ export default defineConfig({
             items: [
               {
                 text: 'Discussions',
-                link: 'https://github.com/ovh/manager/discussions'
-              }
+                link: 'https://github.com/ovh/manager/discussions',
+              },
             ],
           },
           {
@@ -70,60 +69,57 @@ export default defineConfig({
         items: [
           {
             text: 'Getting started',
-            link: 'getting-started'
+            link: 'getting-started',
           },
           {
             text: 'Architecture',
-            link: 'architecture'
+            link: 'architecture',
           },
           {
             text: 'Applications',
-            link: 'applications'
+            link: 'applications',
           },
           {
             text: 'Modules',
-            link: 'modules'
+            link: 'modules',
           },
           {
             text: 'Components',
-            link: 'components'
+            link: 'components',
           },
           {
             text: 'Tools',
-            link: 'tools'
+            link: 'tools',
           },
           {
             text: 'Scripts',
-            link: 'scripts'
+            link: 'scripts',
           },
           {
             text: 'Releasing',
-            link: 'releasing'
+            link: 'releasing',
           },
           {
-            text: 'Testing' ,
-            link: 'testing'
+            text: 'Testing',
+            link: 'testing',
           },
           {
-            text: 'Manager Components',
-            link: 'manager-components'
-          }
-        ]
-      }
+            text: 'Manager React Components',
+            link: 'manager-react-components',
+          },
+        ],
+      },
     },
 
     search: {
       provider: 'local',
     },
 
-
     editLink: {
       pattern: 'https://github.com/ovh/manager/edit/master/docs/docs/:path',
-      text: 'Edit this page on GitHub'
+      text: 'Edit this page on GitHub',
     },
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/ovh/manager' },
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/ovh/manager' }],
   },
 });

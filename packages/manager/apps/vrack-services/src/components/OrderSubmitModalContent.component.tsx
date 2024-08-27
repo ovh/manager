@@ -20,7 +20,7 @@ import {
   OsdsIcon,
 } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { handleClick } from '@ovhcloud/manager-react-components';
+import { handleClick } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,

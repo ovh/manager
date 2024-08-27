@@ -1,4 +1,4 @@
-import { PaginationState } from '@ovhcloud/manager-react-components';
+import { PaginationState } from '@ovh-ux/manager-react-components';
 
 export const paginateResults = <T>(
   items: T[],

@@ -5,7 +5,7 @@ import {
   OsdsBreadcrumb,
 } from '@ovhcloud/ods-components/react';
 
-import { Notifications } from '@ovhcloud/manager-react-components';
+import { Notifications } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,

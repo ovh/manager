@@ -1,8 +1,5 @@
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
-import {
-  ColumnSort,
-  PaginationState,
-} from '@ovhcloud/manager-react-components';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { Voucher } from '@/interface';
 import {
   creditComparator,

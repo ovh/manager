@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import {
   ErrorMessage,
   TRACKING_LABELS,
-} from '@ovhcloud/manager-react-components';
+} from '@ovh-ux/manager-react-components';
 import { ErrorObject } from '@/components/Error/Errors';
 
 export function getTypology(error: ErrorMessage) {

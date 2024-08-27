@@ -4,7 +4,7 @@ import {
   useCatalogPrice,
   useProject,
   useTranslatedMicroRegions,
-} from '@ovhcloud/manager-react-components';
+} from '@ovh-ux/manager-react-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { TPricing } from '@/api/data/catalog';
 import {

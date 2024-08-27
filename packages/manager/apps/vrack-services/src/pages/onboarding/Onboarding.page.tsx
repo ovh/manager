@@ -7,7 +7,7 @@ import {
   Card,
   CardProps,
   useFeatureAvailability,
-} from '@ovhcloud/manager-react-components';
+} from '@ovh-ux/manager-react-components';
 import {
   OrderDescription,
   useOrderPollingStatus,

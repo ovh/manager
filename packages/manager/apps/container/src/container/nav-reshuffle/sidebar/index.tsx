@@ -24,7 +24,7 @@ import {
 } from './utils';
 import { Node } from './navigation-tree/node';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
-import { fetchFeatureAvailabilityData } from '@ovhcloud/manager-react-components';
+import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
 
 interface ServicesCountError {
   url: string;

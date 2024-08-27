@@ -1,7 +1,7 @@
 import {
   DatagridColumn,
   DataGridTextCell,
-} from '@ovhcloud/manager-react-components';
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import {
