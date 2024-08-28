@@ -21,6 +21,7 @@ sioUniverse.children = [
     id: 'security-identity',
     idAttr: 'security-identity-link',
     translation: 'sidebar_security_identity',
+    universe: sioUniverse.id,
     features: ['iam', 'key-management-service'],
     children: [
       {
@@ -51,6 +52,7 @@ sioUniverse.children = [
     id: 'security-operations',
     idAttr: 'security-operations-link',
     translation: 'sidebar_security_operations',
+    universe: sioUniverse.id,
     features:['logs-data-platform'],
     children: [
       {
@@ -68,3 +70,5 @@ sioUniverse.children = [
     ]
   }
 ];
+
+export default sioUniverse;
