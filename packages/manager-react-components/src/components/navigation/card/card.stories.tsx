@@ -1,5 +1,4 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Card, CardProps } from './card.component';
 
 export const defaultProps: CardProps = {
@@ -12,8 +11,7 @@ export const defaultProps: CardProps = {
   href: 'https://ovh.com',
   img: {
     alt: 'offer',
-    src:
-      'https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png',
+    src: 'https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png',
   },
 };
 
@@ -81,11 +79,9 @@ WithBadges.args = {
   badges: [
     {
       text: 'Cloud computing',
-      color: ODS_THEME_COLOR_INTENT.primary,
     },
     {
       text: 'Beta',
-      color: ODS_THEME_COLOR_INTENT.success,
     },
   ],
 };

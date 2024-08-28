@@ -1,6 +1,5 @@
 import React from 'react';
-import { OsdsClipboard, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsClipboard, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 
 type DataGridClipboardCellProps = {
@@ -13,18 +12,14 @@ export function DataGridClipboardCell({
 }: Readonly<DataGridClipboardCellProps>) {
   const { t } = useTranslation('datagrid');
   return (
-    <OsdsClipboard value={text}>
+    <OdsClipboard value={text}>
       <span slot="success-message">
-        <OsdsText color={ODS_THEME_COLOR_INTENT.success}>
-          {t('common_clipboard_success_label')}
-        </OsdsText>
+        <OdsText>{t('common_clipboard_success_label')}</OdsText>
       </span>
       <span slot="error-message">
-        <OsdsText color={ODS_THEME_COLOR_INTENT.error}>
-          {t('common_clipboard_error_label')}
-        </OsdsText>
+        <OdsText>{t('common_clipboard_error_label')}</OdsText>
       </span>
-    </OsdsClipboard>
+    </OdsClipboard>
   );
 }
 
