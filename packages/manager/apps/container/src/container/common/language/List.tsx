@@ -1,6 +1,3 @@
-import React from 'react';
-import {useKey} from 'react-use';
-
 import { KeyPairName } from '@ovh-ux/manager-config';
 import { useTranslation } from 'react-i18next';
 
@@ -18,8 +15,7 @@ const LanguageMenu = ({ currentLanguage, languages = [], onSelect, show }: Props
   const { t } = useTranslation('language');
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
-  
-  useKey('Escape', () => console.log('eeeeeee'));
+
 
   return (
     <div className="oui-navbar-menu__wrapper">
