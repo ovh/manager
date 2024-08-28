@@ -8,7 +8,7 @@ import {
 import { OsdsText } from '@ovhcloud/ods-components/react';
 
 export interface DescriptionProps {
-  children?: string;
+  children?: React.ReactNode;
   className?: string;
 }
 export const Description: React.FC<DescriptionProps> = ({

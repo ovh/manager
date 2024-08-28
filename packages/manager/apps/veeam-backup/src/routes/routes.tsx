@@ -33,6 +33,19 @@ export const routes: any[] = [
         },
         children: [
           {
+            id: 'edit-veeam',
+            path: urls.editVeeamDisplayName,
+            ...lazyRouteConfig(() =>
+              import('@/pages/edit-name/EditVeeamBackupDisplayNameModal.page'),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'edit_veeam-backup',
+                pageType: PageType.popup,
+              },
+            },
+          },
+          {
             id: 'delete-veeam',
             path: urls.deleteVeeam,
             ...lazyRouteConfig(() =>
@@ -48,30 +61,39 @@ export const routes: any[] = [
         ],
       },
       {
+        id: 'dashboard',
         path: urls.dashboard,
-        ...lazyRouteConfig(() => import('@/pages/dashboard')),
+        ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
+        handle: {
+          tracking: {
+            pageName: 'dashboard',
+            pageType: PageType.dashboard,
+          },
+        },
         children: [
           {
-            id: 'dashboard',
-            path: '',
+            id: 'edit-veeam-dashboard',
+            path: urls.editVeeamDisplayNameFromDashboard,
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/general-informations'),
+              import('@/pages/edit-name/EditVeeamBackupDisplayNameModal.page'),
             ),
             handle: {
               tracking: {
-                pageName: 'dashboard',
-                pageType: PageType.dashboard,
+                pageName: 'edit_veeam-backup',
+                pageType: PageType.popup,
               },
             },
           },
           {
-            id: 'dashboard.tab2',
-            path: 'Tab2',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/tab2')),
+            id: 'delete-veeam-dashboard',
+            path: urls.deleteVeeamFromDashboard,
+            ...lazyRouteConfig(() =>
+              import('@/pages/delete-veeam/DeleteVeeam.page'),
+            ),
             handle: {
               tracking: {
-                pageName: 'tab2',
-                pageType: PageType.dashboard,
+                pageName: 'delete_veeam-backup',
+                pageType: PageType.popup,
               },
             },
           },
