@@ -54,17 +54,17 @@ execa('lerna', ['ls', '-pl', '--json', '--toposort'])
                     'prepare',
                     '--if-present',
                   ]),
-                () =>
-                  execa('lerna', [
-                    'exec',
-                    '--scope',
-                    pkg.name,
-                    '--',
-                    'yarn',
-                    'publish',
-                    '--access=public',
-                    '--non-interactive',
-                  ]),
+                // () =>
+                //   execa('lerna', [
+                //     'exec',
+                //     '--scope',
+                //     pkg.name,
+                //     '--',
+                //     'yarn',
+                //     'publish',
+                //     '--access=public',
+                //     '--non-interactive',
+                //   ]),
               ]);
             };
           }
