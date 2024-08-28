@@ -2,7 +2,7 @@ import React, { Suspense, useEffect } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { odsSetup } from '@ovhcloud/ods-common-core';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
+import '../src/lib.scss';
 import { Preview } from '@storybook/react';
 import '../src/tailwind/theme.css';
 import i18n from './i18n';

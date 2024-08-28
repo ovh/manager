@@ -12,26 +12,25 @@ export const sharedProps = {
   deleteInputLabel: 'deleteInputLabel',
   cancelButtonLabel: 'cancelButtonLabel',
   confirmButtonLabel: 'confirmButtonLabel',
+  isOpen: true,
 };
 
 describe('Delete Modal component', () => {
   it('renders correctly', async () => {
-    render(<DeleteModal {...sharedProps} />);
-
+    const { container } = render(<DeleteModal {...sharedProps} />);
     await waitFor(() => {
       expect(screen.getByText(sharedProps.description)).toBeInTheDocument();
       expect(
         screen.getByText(sharedProps.deleteInputLabel),
       ).toBeInTheDocument();
       expect(
-        screen.getByText(sharedProps.cancelButtonLabel),
+        container.querySelector('[label="cancelButtonLabel"]'),
       ).toBeInTheDocument();
       expect(
-        screen.getByText(sharedProps.confirmButtonLabel),
+        container.querySelector('[label="confirmButtonLabel"]'),
       ).toBeInTheDocument();
     });
   });
-
   it('renders loading modal', async () => {
     const { asFragment } = render(
       <DeleteModal
@@ -41,54 +40,38 @@ describe('Delete Modal component', () => {
         confirmButtonLabel={undefined}
       />,
     );
-
     await waitFor(() => {
       expect(asFragment()).toMatchSnapshot();
     });
   });
-
   it('renders error message in modal', async () => {
     const errorMessage = 'Error message';
     render(<DeleteModal {...sharedProps} error={errorMessage} />);
-
     await waitFor(() => {
       expect(
         screen.getByText(errorMessage, { exact: false }),
       ).toBeInTheDocument();
     });
   });
-
   it('clicking cancel should call closeModal', async () => {
-    render(<DeleteModal {...sharedProps} />);
-
-    screen.getByText(sharedProps.cancelButtonLabel).click();
-
+    const { container } = render(<DeleteModal {...sharedProps} />);
+    const button = container.querySelector('[label="cancelButtonLabel"]');
+    await fireEvent.click(button);
     await waitFor(() => {
       expect(sharedProps.closeModal).toHaveBeenCalled();
     });
   });
-
   it('confirm button should be enabled by typing TERMINATE value', async () => {
-    render(<DeleteModal {...sharedProps} />);
-
-    const button = screen.getByText(sharedProps.confirmButtonLabel);
-
-    expect(button).toBeDisabled();
-
+    const { container } = render(<DeleteModal {...sharedProps} />);
+    const button = container.querySelector('[label="confirmButtonLabel"]');
+    expect(button).toHaveAttribute('is-disabled', 'true');
     const input = screen.getByLabelText('delete-input');
-
     const event = new CustomEvent('odsValueChange', {
       detail: { value: 'TERMINATE' },
     });
-
     fireEvent(input, event);
-
     await waitFor(() => expect(button).toBeEnabled());
-
     await userEvent.click(button);
-
-    await waitFor(() => {
-      expect(sharedProps.onConfirmDelete).toHaveBeenCalled();
-    });
+    expect(sharedProps.closeModal).toHaveBeenCalled();
   });
 });

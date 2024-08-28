@@ -21,16 +21,16 @@ export const sharedProps: UpdateNameModalProps = {
 
 describe('Update Name Modal component', () => {
   it('renders correctly', async () => {
-    render(<UpdateNameModal {...sharedProps} />);
+    const { container } = render(<UpdateNameModal {...sharedProps} />);
 
     await waitFor(() => {
       expect(screen.getByText(sharedProps.description)).toBeInTheDocument();
       expect(screen.getByText(sharedProps.inputLabel)).toBeInTheDocument();
       expect(
-        screen.getByText(sharedProps.cancelButtonLabel),
+        container.querySelector('[label="confirmButtonLabel"]'),
       ).toBeInTheDocument();
       expect(
-        screen.getByText(sharedProps.confirmButtonLabel),
+        container.querySelector('[label="cancelButtonLabel"]'),
       ).toBeInTheDocument();
     });
   });
@@ -53,7 +53,6 @@ describe('Update Name Modal component', () => {
   it('renders error message in modal', async () => {
     const errorMessage = 'Error message';
     render(<UpdateNameModal {...sharedProps} error={errorMessage} />);
-
     await waitFor(() => {
       expect(
         screen.getByText(errorMessage, { exact: false }),
@@ -62,36 +61,30 @@ describe('Update Name Modal component', () => {
   });
 
   it('clicking cancel should call closeModal', async () => {
-    render(<UpdateNameModal {...sharedProps} />);
-
-    screen.getByText(sharedProps.cancelButtonLabel).click();
-
+    const { container } = render(<UpdateNameModal {...sharedProps} />);
+    const button = container.querySelector('[label="cancelButtonLabel"]');
+    await userEvent.click(button);
     await waitFor(() => {
       expect(sharedProps.closeModal).toHaveBeenCalled();
     });
   });
 
   it('confirm button should trigger the updateDisplayName function', async () => {
-    render(<UpdateNameModal {...sharedProps} />);
-
-    const button = screen.getByText(sharedProps.confirmButtonLabel);
-
+    const { container } = render(<UpdateNameModal {...sharedProps} />);
+    const button = container.querySelector('[label="confirmButtonLabel"]');
     const input = screen.getByLabelText('update-input');
-
     const event = new CustomEvent('odsValueChange', {
       detail: { value: 'Test' },
     });
     fireEvent(input, event);
-
     await userEvent.click(button);
-
     await waitFor(() => {
       expect(sharedProps.updateDisplayName).toHaveBeenCalled();
     });
   });
 
   it('render patternMessage when pattern is present and button validate is clickable', async () => {
-    render(<UpdateNameModal {...sharedProps} />);
+    const { container } = render(<UpdateNameModal {...sharedProps} />);
     const input = screen.getByLabelText('update-input');
     const event = new CustomEvent('odsValueChange', {
       detail: { value: 'Test' },
@@ -99,29 +92,30 @@ describe('Update Name Modal component', () => {
     fireEvent(input, event);
 
     await waitFor(() => {
-      const patternMessage = screen.getByText(sharedProps.patternMessage);
-      expect(patternMessage).toHaveAttribute('color', 'text');
-      expect(patternMessage).toBeVisible();
+      expect(screen.getByText('regex epression to respect')).toBeVisible();
 
-      const validateButton = screen.getByText(sharedProps.confirmButtonLabel);
-      expect(validateButton).toHaveAttribute('tabindex', '0');
+      const validateButton = container.querySelector(
+        '[label="confirmButtonLabel"]',
+      );
+      expect(validateButton).toHaveAttribute('is-disabled', 'false');
       expect(validateButton).toBeVisible();
     });
   });
 
   it('button validate is disabled when pattern is invalid ', async () => {
-    render(<UpdateNameModal {...sharedProps} />);
-    const input = screen.getByLabelText('update-input');
-    const event = new CustomEvent('odsValueChange', {
-      detail: { value: 'Test*******' },
-    });
-    fireEvent(input, event);
+    const { container } = render(
+      <UpdateNameModal {...sharedProps} defaultValue="Test*******" />,
+    );
     await waitFor(() => {
-      const validateButton = screen.getByText(sharedProps.confirmButtonLabel);
-      expect(validateButton).toHaveAttribute('disabled');
+      const validateButton = container.querySelector(
+        '[label="confirmButtonLabel"]',
+      );
+      expect(validateButton).toHaveAttribute('is-disabled', 'true');
       expect(validateButton).toBeVisible();
       const patternMessage = screen.getByText(sharedProps.patternMessage);
-      expect(patternMessage).toHaveAttribute('color', 'error');
+      expect(screen.getByText('regex epression to respect')).toHaveClass(
+        'error',
+      );
       expect(patternMessage).toBeVisible();
     });
   });

@@ -20,7 +20,7 @@ const setupTest = (params: GetServicesMocksParams) => {
   server.listen({ onUnhandledRequest: 'bypass' });
 
   const onConfirm = jest.fn();
-  render(
+  const { container } = render(
     <UpdateIamNameModal
       {...sharedProps}
       resourceName="test-id"
@@ -30,7 +30,7 @@ const setupTest = (params: GetServicesMocksParams) => {
 
   return {
     onConfirm,
-    button: screen.getByText(sharedProps.confirmButtonLabel),
+    button: container.querySelector('[label="confirmButtonLabel"]'),
     input: screen.getByLabelText('update-input'),
   };
 };

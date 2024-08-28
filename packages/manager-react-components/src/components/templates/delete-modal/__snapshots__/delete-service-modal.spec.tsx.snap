@@ -2,68 +2,65 @@
 
 exports[`Delete Modal component renders loading modal 1`] = `
 <DocumentFragment>
-  <osds-modal
+  <ods-modal
+    class="modal-actions"
     color="warning"
-    dismissible="true"
-    headline="headline"
+    is-open="true"
   >
-    <osds-text
-      class="block my-4"
-      color="text"
-      level="body"
+    <div>
+      <ods-text
+        class="delete-modal-headline"
+        preset="heading-6"
+      >
+        headline
+      </ods-text>
+    </div>
+    <ods-text
+      class="delete-modal-description"
     >
       description
-    </osds-text>
-    <osds-form-field
+    </ods-text>
+    <ods-form-field
       class="mb-8"
     >
       <div
         slot="label"
       >
-        <osds-text
-          class="block mb-3"
-          color="text"
-          level="body"
-          size="200"
+        <ods-text
+          class="delete-modal-input-label"
         >
-          deleteInputLabel
-        </osds-text>
+          <b>
+            deleteInputLabel
+          </b>
+        </ods-text>
       </div>
-      <osds-input
-        aria-disabled="true"
+      <ods-input
         aria-label="delete-input"
-        disabled="true"
-        internals-disabled=""
+        is-disabled="true"
+        name=""
         type="text"
         value=""
       />
-    </osds-form-field>
+    </ods-form-field>
     <div
       class="flex justify-center"
     >
-      <osds-spinner
-        inline="true"
+      <ods-spinner
         size="md"
       />
     </div>
-    <osds-button
+    <ods-button
       color="primary"
-      disabled="true"
+      is-disabled="true"
+      label="Annuler"
       slot="actions"
-      type="button"
       variant="ghost"
-    >
-      Annuler
-    </osds-button>
-    <osds-button
-      color="primary"
-      disabled="true"
+    />
+    <ods-button
+      is-disabled="true"
+      label="Supprimer"
       slot="actions"
-      type="button"
-      variant="flat"
-    >
-      Supprimer
-    </osds-button>
-  </osds-modal>
+    />
+  </ods-modal>
 </DocumentFragment>
 `;
