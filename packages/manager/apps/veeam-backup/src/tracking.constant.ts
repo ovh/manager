@@ -24,4 +24,6 @@ export const APP_NAME = appName;
 export enum PageName {
   successDeleteVeeamBackup = 'delete_veeam-backup_success',
   errorDeleteVeeamBackup = 'delete_veeam-backup_error',
+  successUpdateVeeamBackup = 'update_veeam-backup_success',
+  errorUpdateVeeamBackup = 'update_veeam-backup_error',
 }
