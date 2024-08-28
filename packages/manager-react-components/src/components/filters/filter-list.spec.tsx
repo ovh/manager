@@ -1,4 +1,4 @@
-import { OsdsChip } from '@ovhcloud/ods-components';
+import { OdsTag } from '@ovhcloud/ods-components';
 import { act } from '@testing-library/react';
 import { FilterList, FilterListProps } from './filter-list.component';
 import { render } from '../../utils/test.provider';
@@ -8,7 +8,7 @@ const renderComponent = (props: FilterListProps) => {
 };
 
 describe('FilterList tests', () => {
-  it('should not display chips when the filters props is empty', () => {
+  it('should not display tags when the filters props is empty', () => {
     const propsWithEmptyFilters = {
       filters: [],
       onRemoveFilter: jest.fn(),
@@ -19,7 +19,7 @@ describe('FilterList tests', () => {
     expect(container).toBeEmptyDOMElement();
   });
 
-  it('should display 1 chip when the filters array props have one element', () => {
+  it('should display 1 tag when the filters array props have one element', () => {
     const propsWithOneFiltersItem = {
       filters: [
         {
@@ -36,13 +36,13 @@ describe('FilterList tests', () => {
       propsWithOneFiltersItem,
     );
 
-    const filterChipItems = getAllByTestId('filter-list_chip_item');
+    const filterChipItems = getAllByTestId('filter-list_tag_item');
 
     expect(container).not.toBeEmptyDOMElement();
     expect(filterChipItems).toHaveLength(1);
   });
 
-  it('should display 2 chips when the filters array props have two elements', () => {
+  it('should display 2 tags when the filters array props have two elements', () => {
     const propsWithTwoFiltersItem = {
       filters: [
         {
@@ -65,13 +65,13 @@ describe('FilterList tests', () => {
       propsWithTwoFiltersItem,
     );
 
-    const filterChipItems = getAllByTestId('filter-list_chip_item');
+    const filterChipItems = getAllByTestId('filter-list_tag_item');
 
     expect(container).not.toBeEmptyDOMElement();
     expect(filterChipItems).toHaveLength(2);
   });
 
-  it('should call onRemoveFilter function when the chip cross is clicked', () => {
+  it('should call onRemoveFilter function when the tag cross is clicked', () => {
     const mockOnRemoveFilter = jest.fn();
     const propsWithOneFiltersItem = {
       filters: [
@@ -87,12 +87,12 @@ describe('FilterList tests', () => {
 
     const { getByTestId } = renderComponent(propsWithOneFiltersItem);
 
-    const filterChipItem = (getByTestId(
-      'filter-list_chip_item',
-    ) as unknown) as OsdsChip;
+    const filterChipItem = getByTestId(
+      'filter-list_tag_item',
+    ) as unknown as OdsTag;
 
     act(() => {
-      filterChipItem.odsChipRemoval.emit();
+      filterChipItem.onClick();
     });
 
     expect(mockOnRemoveFilter).toHaveBeenNthCalledWith(1, {
