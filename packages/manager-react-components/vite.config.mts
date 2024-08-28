@@ -55,11 +55,9 @@ export default defineConfig({
         'react-router-dom',
         'react-i18next',
         'zustand',
-        "@ovhcloud/ods-common-core",
-        "@ovhcloud/ods-common-theming",
-        "@ovhcloud/ods-components",
-        "@ovhcloud/ods-components/react",
-        "@ovhcloud/ods-theme-blue-jeans"
+        '@ovhcloud/ods-components',
+        '@ovhcloud/ods-components/react',
+        '@ovhcloud/ods-themes',
       ],
       output: {
         globals: {

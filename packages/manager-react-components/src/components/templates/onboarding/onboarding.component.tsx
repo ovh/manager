@@ -1,22 +1,12 @@
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsText, OdsLink } from '@ovhcloud/ods-components/react';
 import React, { PropsWithChildren } from 'react';
 
 import placeholderImg from '../../../../public/assets/placeholder.png';
-
-import {
-  ODS_THEME_COLOR_HUE,
-  ODS_THEME_COLOR_INTENT,
-} from '@ovhcloud/ods-common-theming';
 
 type OnboardingLayoutButtonProps = {
   orderButtonLabel?: string;
@@ -50,40 +40,20 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
   }
   return (
     <div className="flex sm:pt-8 xs:pt-2.5 flex-row items-center space-x-4 justify-center">
-      {orderButtonLabel && (
-        <OsdsButton
-          inline
-          color={ODS_THEME_COLOR_INTENT.primary}
-          size={ODS_BUTTON_SIZE.md}
-          href={orderHref}
-          onClick={onOrderButtonClick}
-          disabled={(!onOrderButtonClick && !orderHref) || undefined}
-        >
-          {orderButtonLabel}
-        </OsdsButton>
-      )}
+      <OdsButton
+        size={ODS_BUTTON_SIZE.md}
+        onClick={onOrderButtonClick}
+        label={orderButtonLabel}
+      />
 
       {moreInfoButtonLabel && moreInfoHref && (
-        <OsdsButton
-          inline
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.stroked}
-          size={ODS_BUTTON_SIZE.md}
+        <OdsLink
           onClick={onmoreInfoButtonClick}
           {...(isActionDisabled && { disabled: true })}
           href={moreInfoHref}
-          target={OdsHTMLAnchorElementTarget._blank}
-        >
-          {moreInfoButtonLabel}
-          <span slot="end">
-            <OsdsIcon
-              className="ml-4 cursor-pointer"
-              name={ODS_ICON_NAME.EXTERNAL_LINK}
-              size={ODS_ICON_SIZE.xs}
-              hoverable
-            ></OsdsIcon>
-          </span>
-        </OsdsButton>
+          label={moreInfoButtonLabel}
+          icon={ODS_ICON_NAME.externalLink}
+        />
       )}
     </div>
   );
@@ -107,30 +77,29 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   return (
     <div className="flex flex-col mx-auto sm:px-10">
       {!hideHeadingSection && (
-        <section className="flex flex-col items-center mt-8">
-          <img
-            className={`max-h-[150px] ${imgClassName ?? ''}`}
-            src={placeholderImg}
-            {...imgProps}
-          />
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.primary}
-            level={ODS_TEXT_LEVEL.heading}
-            size={ODS_TEXT_SIZE._700}
-            hue={ODS_THEME_COLOR_HUE._800}
+        <section className="flex flex-col items-center">
+          {(img?.src || placeholderImg) && (
+            <div className="flex justify-center pt-8 max-h-28 w-full">
+              <img
+                {...imgProps}
+                className="max-h-[150px]"
+                src={img?.src ?? placeholderImg}
+                alt=""
+                width={img?.width}
+                height={img?.height}
+              />
+            </div>
+          )}
+          <OdsText
+            preset={ODS_TEXT_PRESET.heading1}
             className="block text-center sm:pt-8 xs:pt-2.5"
           >
             {title}
-          </OsdsText>
+          </OdsText>
           {description && (
-            <OsdsText
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_TEXT_SIZE._400}
-              color={ODS_TEXT_COLOR_INTENT.text}
-              className="block text-center xs:pt-2.5 sm:pt-8 max-w-4xl"
-            >
+            <OdsText preset="span" className="onboarding-description">
               {description}
-            </OsdsText>
+            </OdsText>
           )}
           <OnboardingLayoutButton
             isActionDisabled={isActionDisabled}

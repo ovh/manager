@@ -15,3 +15,29 @@
 .manager-table td:last-child {
   border-right: solid 1px var(--ods-color-blue-200);
 }
+
+/* to rework */
+.update-name-headline::part(text) {
+  margin-top: 0px;
+  margin-bottom: 0;
+}
+
+.update-name-description::part(text) {
+  margin-bottom: 0;
+}
+
+.update-name-input-label::part(text) {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.update-name-modal-pattern-message::part(text) {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.update-name-modal-pattern-message.error::part(text) {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  color: var(--ods-color-critical-400);
+}
