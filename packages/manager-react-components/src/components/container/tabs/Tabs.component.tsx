@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useMedia } from 'react-use';
 import { clsx } from 'clsx';
 import { v4 as uuidV4 } from 'uuid';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { OdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { hashCode } from '../../../utils';
 
@@ -125,23 +125,21 @@ export function TabsComponent<Item>({
                 onKeyDown={() => setSelectedItem(item)}
               >
                 <div className="w-full">
-                  {titleElement(item, item === state.selectedItem)}
+                  <OdsText>
+                    {titleElement(item, item === state.selectedItem)}
+                  </OdsText>
                 </div>
                 <div className="w-fit flex items-center">
                   {!Object.is(state.selectedItem, item) ? (
-                    <OsdsIcon
-                      className=""
-                      name={ODS_ICON_NAME.CHEVRON_DOWN}
-                      size={ODS_ICON_SIZE.sm}
+                    <OdsIcon
+                      name={ODS_ICON_NAME.chevronDown}
                       color={ODS_THEME_COLOR_INTENT.primary}
-                    ></OsdsIcon>
+                    ></OdsIcon>
                   ) : (
-                    <OsdsIcon
-                      className=""
-                      name={ODS_ICON_NAME.CHEVRON_UP}
-                      size={ODS_ICON_SIZE.sm}
+                    <OdsIcon
+                      name={ODS_ICON_NAME.chevronUp}
                       color={ODS_THEME_COLOR_INTENT.primary}
-                    ></OsdsIcon>
+                    ></OdsIcon>
                   )}
                 </div>
               </button>

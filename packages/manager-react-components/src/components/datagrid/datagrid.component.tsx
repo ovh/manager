@@ -8,24 +8,14 @@ import {
   useReactTable,
   getSortedRowModel,
 } from '@tanstack/react-table';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
-  ODS_THEME_COLOR_HUE,
-  ODS_THEME_COLOR_INTENT,
-} from '@ovhcloud/ods-common-theming';
-import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsPagination,
-  OsdsText,
-  OsdsTable,
+  OdsButton,
+  OdsIcon,
+  OdsPagination,
+  OdsTable,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { DataGridTextCell } from './text-cell.component';
 import './translations';
@@ -145,7 +135,7 @@ export const Datagrid = <T,>({
   return (
     <div>
       <div className={`contents px-[1px] ${className || ''}`}>
-        <OsdsTable className="overflow-x-visible">
+        <OdsTable className="overflow-x-visible">
           <table className="w-full border-collapse">
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
@@ -171,25 +161,17 @@ export const Datagrid = <T,>({
                           data-testid={`header-${header.id}`}
                         >
                           <span>
-                            <OsdsText
-                              size={ODS_TEXT_SIZE._500}
-                              color={ODS_THEME_COLOR_INTENT.text}
-                              level={ODS_TEXT_LEVEL.body}
-                              hue={ODS_THEME_COLOR_HUE._500}
-                            >
-                              <>
-                                {flexRender(
-                                  header.column.columnDef.header,
-                                  header.getContext(),
-                                )}
-                              </>
-                            </OsdsText>
+                            <>
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
+                            </>
                           </span>
                           <span
                             className={`align-middle inline-block h-4 -mt-6`}
                           >
-                            <OsdsIcon
-                              size={ODS_ICON_SIZE.xxs}
+                            <OdsIcon
                               color={ODS_THEME_COLOR_INTENT.primary}
                               className={
                                 header.column.getIsSorted() ? '' : 'invisible'
@@ -197,8 +179,8 @@ export const Datagrid = <T,>({
                               name={
                                 (header.column.getIsSorted() as string) ===
                                 'asc'
-                                  ? ODS_ICON_NAME.ARROW_UP
-                                  : ODS_ICON_NAME.ARROW_DOWN
+                                  ? ODS_ICON_NAME.arrowUp
+                                  : ODS_ICON_NAME.arrowDown
                               }
                             />
                           </span>
@@ -250,16 +232,16 @@ export const Datagrid = <T,>({
               )}
             </tbody>
           </table>
-        </OsdsTable>
+        </OdsTable>
       </div>
       {!onFetchNextPage && items?.length > 0 && pagination ? (
-        <OsdsPagination
+        <OdsPagination
           defaultCurrentPage={pagination.pageIndex + 1}
           className={'flex xs:justify-start md:justify-end'}
           total-items={totalItems}
           total-pages={pageCount}
           default-items-per-page={pagination.pageSize}
-          onOdsPaginationChanged={({ detail }) => {
+          onOdsChange={({ detail }) => {
             if (detail.current !== detail.oldCurrent) {
               onPaginationChange({
                 ...pagination,
@@ -268,7 +250,7 @@ export const Datagrid = <T,>({
               });
             }
           }}
-          onOdsPaginationItemPerPageChanged={({ detail }) => {
+          onOdsItemPerPageChange={({ detail }) => {
             if (detail.current !== pagination.pageSize)
               onPaginationChange({
                 ...pagination,
@@ -283,19 +265,16 @@ export const Datagrid = <T,>({
           <span slot="after-total-items" className="ml-3">
             {t('common_pagination_results')}
           </span>
-        </OsdsPagination>
+        </OdsPagination>
       ) : (
         <></>
       )}
       {hasNextPage && (
         <div className="grid justify-items-center my-5">
-          <OsdsButton
-            color={ODS_THEME_COLOR_INTENT.info}
-            variant={ODS_BUTTON_VARIANT.stroked}
+          <OdsButton
+            label={t('common_pagination_load_more')}
             onClick={onFetchNextPage}
-          >
-            {t('common_pagination_load_more')}
-          </OsdsButton>
+          />
         </div>
       )}
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import {
   DashboardTile,
   DashboardTileBlockItem,
@@ -29,7 +29,7 @@ const items: DashboardTileBlockItem[] = [
   {
     id: 'loading-component-example',
     label: 'Loading',
-    value: <OsdsSkeleton />,
+    value: <OdsSkeleton />,
   },
   {
     id: 'text-directly',

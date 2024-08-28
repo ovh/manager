@@ -17,14 +17,7 @@ export const regular: Story = {
 export const disabled: Story = {
   args: {
     value: 'Disabled clipboard',
-    disabled: true,
-  },
-};
-
-export const inline: Story = {
-  args: {
-    value: 'Inline clipboard',
-    inline: true,
+    isDisabled: true,
   },
 };
 

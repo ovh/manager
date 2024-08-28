@@ -24,7 +24,7 @@ type TState<S, G> = {
 export const TilesInputComponent = function TilesInputComponent<
   T,
   S = void,
-  G = void
+  G = void,
 >({
   id,
   items,

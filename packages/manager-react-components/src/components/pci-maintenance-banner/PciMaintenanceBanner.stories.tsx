@@ -1,12 +1,20 @@
 import React from 'react';
 import { PciMaintenanceBanner } from './PciMaintenanceBanner.component';
 
-const PciMaintenanceBannerProjectStory = () => {
-  return <PciMaintenanceBanner maintenanceURL="#" projectName="myPciProject" />;
+const PciMaintenanceBannerProjectStory = ({ projectName, maintenanceURL }) => {
+  return (
+    <PciMaintenanceBanner
+      maintenanceURL={maintenanceURL}
+      projectName={projectName}
+    />
+  );
 };
 
 export const Primary = {
-  name: 'Notifications',
+  args: {
+    projectName: 'myPciProjectTest',
+    maintenanceURL: 'https://ovh.com',
+  },
 };
 
 export default {

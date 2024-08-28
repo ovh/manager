@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { ActionBanner } from '../action-banner.component';
 import './translations/discovery';
@@ -31,7 +31,7 @@ export function PciDiscoveryBanner({
     <ActionBanner
       message={t('pci_projects_project_activate_project_banner_message')}
       cta={t('pci_projects_project_activate_project_banner_cta')}
-      type={ODS_MESSAGE_TYPE.warning}
+      color={ODS_MESSAGE_COLOR.warning}
       onClick={activateDiscoveryProject}
     />
   );

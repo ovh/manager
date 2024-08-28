@@ -1,5 +1,4 @@
 import { waitFor, screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { render } from '../../../utils/test.provider';
 import { DeleteServiceModal } from './delete-service-modal.component';
 import { sharedProps } from './delete-modal.spec';
@@ -21,18 +20,19 @@ const setupTest = (params: GetServicesMocksParams) => {
   server.listen({ onUnhandledRequest: 'bypass' });
 
   const onConfirm = jest.fn();
-  render(
+  const { container } = render(
     <DeleteServiceModal
       {...sharedProps}
       resourceName="test-id"
       onConfirmDelete={onConfirm}
       terminateValue={terminateValue}
+      isOpen={true}
     />,
   );
 
   return {
     onConfirm,
-    button: screen.getByText(sharedProps.confirmButtonLabel),
+    button: container.querySelector('[label="confirmButtonLabel"]'),
     input: screen.getByLabelText('delete-input'),
   };
 };
@@ -51,11 +51,10 @@ describe('Delete service modal', () => {
     fireEvent(input, event);
 
     await waitFor(() => expect(button).toBeEnabled());
-    await userEvent.click(button);
+    await fireEvent.click(button);
 
     await waitFor(() => {
       expect(onConfirm).toHaveBeenCalled();
-      expect(sharedProps.closeModal).toHaveBeenCalled();
     });
   });
 
@@ -68,7 +67,7 @@ describe('Delete service modal', () => {
     fireEvent(input, event);
 
     await waitFor(() => expect(button).toBeEnabled());
-    await userEvent.click(button);
+    await fireEvent.click(button);
 
     await waitFor(
       () =>

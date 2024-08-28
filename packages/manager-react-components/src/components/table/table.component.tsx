@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from 'react';
+import { OdsTable } from '@ovhcloud/ods-components/react';
 import style from './table.module.scss';
 
 export type TableProps = PropsWithChildren<{
@@ -11,10 +12,12 @@ export const Table: React.FC<TableProps> = ({
   fullWidth = false,
   cellSpacing = 0,
 }) => (
-  <table
-    className={`${style.table} ${fullWidth ? 'w-full' : ''}`}
-    cellSpacing={cellSpacing}
-  >
-    {children}
-  </table>
+  <OdsTable>
+    <table
+      className={`${style.table} ${fullWidth ? 'w-full' : ''}`}
+      cellSpacing={cellSpacing}
+    >
+      {children}
+    </table>
+  </OdsTable>
 );

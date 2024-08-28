@@ -1,12 +1,8 @@
 import React from 'react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  OsdsDivider,
-  OsdsText,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsDivider, OdsText, OdsCard } from '@ovhcloud/ods-components/react';
 import { TileBlock } from './tile-block.component';
+import './dashboard-tile.scss';
 
 export type DashboardTileBlockItem = {
   id: string;
@@ -23,25 +19,27 @@ export const DashboardTile: React.FC<DashboardTileProps> = ({
   title,
   items,
 }) => (
-  <OsdsTile className="w-full h-full flex-col" inline rounded>
+  <OdsCard className="w-full h-full flex-col px-[1rem] py-[0.5rem]">
     <div className="flex flex-col w-full">
       {title && (
         <>
-          <OsdsText
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
+          <OdsText
+            className="dashboard-tile-title"
+            preset={ODS_TEXT_PRESET.heading5}
           >
             {title}
-          </OsdsText>
-          <OsdsDivider separator />
+          </OdsText>
+          <OdsDivider />
         </>
       )}
-      {items.map(({ id, label, value }) => (
-        <TileBlock key={id} label={label}>
-          {value}
-        </TileBlock>
+      {items.map((item, index) => (
+        <>
+          <TileBlock key={item.id} label={item.label}>
+            {item.value}
+          </TileBlock>
+          {index < items.length - 1 && <OdsDivider />}
+        </>
       ))}
     </div>
-  </OsdsTile>
+  </OdsCard>
 );

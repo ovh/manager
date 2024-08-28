@@ -2,78 +2,72 @@
 
 exports[`Update Name Modal component renders loading modal 1`] = `
 <DocumentFragment>
-  <osds-modal
-    dismissible="true"
-    headline="headline"
+  <ods-modal
+    is-open="false"
   >
-    <osds-text
-      class="block my-4"
-      color="text"
-      level="body"
+    <div>
+      <ods-text
+        class="update-name-headline"
+        preset="heading-6"
+      >
+        headline
+      </ods-text>
+    </div>
+    <ods-text
+      class="update-name-description"
     >
       description
-    </osds-text>
-    <osds-form-field
+    </ods-text>
+    <ods-form-field
       class="mb-8"
     >
       <div
         slot="label"
       >
-        <osds-text
-          class="block mb-3"
-          color="text"
-          level="body"
-          size="200"
+        <ods-text
+          class="update-name-input-label"
         >
-          inputLabel
-        </osds-text>
+          <b>
+            inputLabel
+          </b>
+        </ods-text>
       </div>
-      <osds-input
-        aria-disabled="true"
+      <ods-input
         aria-label="update-input"
-        disabled="true"
-        internals-disabled=""
+        is-disabled="true"
+        name="update-name-modal-input"
         type="text"
       />
       <div
         class="mt-5"
       >
-        <osds-text
-          class="block"
-          color="text"
-          level="body"
-          size="100"
+        <ods-text
+          class="update-name-modal-pattern-message "
         >
           regex epression to respect
-        </osds-text>
+        </ods-text>
       </div>
-    </osds-form-field>
+    </ods-form-field>
     <div
       class="flex justify-center"
     >
-      <osds-spinner
-        inline="true"
+      <ods-spinner
         size="md"
       />
     </div>
-    <osds-button
+    <ods-button
       color="primary"
-      disabled="true"
+      is-disabled="true"
+      label="Annuler"
       slot="actions"
-      type="button"
       variant="ghost"
-    >
-      Annuler
-    </osds-button>
-    <osds-button
+    />
+    <ods-button
       color="primary"
-      disabled="true"
+      is-disabled="true"
+      label="Confirmer"
       slot="actions"
-      type="button"
-      variant="flat"
-    >
-      Confirmer
-    </osds-button>
-  </osds-modal>
+    />
+  </ods-modal>
 </DocumentFragment>
 `;

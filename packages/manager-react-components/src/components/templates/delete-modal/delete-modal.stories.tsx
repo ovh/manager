@@ -8,6 +8,7 @@ const meta: Meta = {
   title: 'Templates/Delete Modal',
   component: DeleteModalComponent,
   argTypes: {
+    isOpen: { control: 'boolean' },
     isLoading: { control: 'boolean' },
     error: { control: 'text' },
     headline: { control: 'text' },
@@ -17,6 +18,7 @@ const meta: Meta = {
     confirmButtonLabel: { control: 'text' },
   },
   args: {
+    isOpen: true,
     closeModal: () => console.log('close'),
     onConfirmDelete: () => console.log('onDelete'),
     headline: 'headline',

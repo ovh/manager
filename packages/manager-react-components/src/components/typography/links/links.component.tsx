@@ -1,7 +1,7 @@
 import React from 'react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsLink, OsdsIcon } from '@ovhcloud/ods-components/react';
+import { OdsLink, OdsIcon } from '@ovhcloud/ods-components/react';
 import {
   OdsHTMLAnchorElementRel,
   OdsHTMLAnchorElementTarget,
@@ -17,7 +17,7 @@ export enum LinkType {
 export interface LinksProps {
   className?: string;
   download?: string;
-  label?: ReactI18NextChild | Iterable<ReactI18NextChild>;
+  label?: string;
   href?: string;
   rel?: OdsHTMLAnchorElementRel;
   target?: OdsHTMLAnchorElementTarget;
@@ -31,18 +31,19 @@ export const Links: React.FC<LinksProps> = ({
   type,
   ...props
 }: LinksProps) => (
-  <OsdsLink
-    color={ODS_THEME_COLOR_INTENT.primary}
+  <OdsLink
+    href="#"
     onClick={onClickReturn}
     {...props}
+    {...(type === LinkType.next && { icon: ODS_ICON_NAME.arrowRight })}
+    {...(type === LinkType.external && { icon: ODS_ICON_NAME.externalLink })}
+    label={label}
   >
     <span slot="start">
       {type === LinkType.back && (
-        <OsdsIcon
+        <OdsIcon
           className="mr-4"
-          hoverable
-          name={ODS_ICON_NAME.ARROW_LEFT}
-          size={ODS_ICON_SIZE.xxs}
+          name={ODS_ICON_NAME.arrowLeft}
           color={ODS_THEME_COLOR_INTENT.primary}
         />
       )}
@@ -51,21 +52,19 @@ export const Links: React.FC<LinksProps> = ({
     {label}
     {[LinkType.next, LinkType.external].includes(type) && (
       <span slot="end">
-        <OsdsIcon
+        <OdsIcon
           aria-hidden="true"
           className="ml-4"
           name={
             type === LinkType.external
-              ? ODS_ICON_NAME.EXTERNAL_LINK
-              : ODS_ICON_NAME.ARROW_RIGHT
+              ? ODS_ICON_NAME.externalLink
+              : ODS_ICON_NAME.arrowRight
           }
-          hoverable
-          size={ODS_ICON_SIZE.xxs}
           color={ODS_THEME_COLOR_INTENT.primary}
         />
       </span>
     )}
-  </OsdsLink>
+  </OdsLink>
 );
 
 export default Links;

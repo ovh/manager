@@ -1,26 +1,15 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_COLOR_HUE,
-} from '@ovhcloud/ods-common-theming';
 
-import { OsdsText, OsdsChip, OsdsTile } from '@ovhcloud/ods-components/react';
-
+import { OdsText, OdsBadge, OdsCard } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-
-import {
-  ODS_CHIP_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  ODS_TILE_VARIANT,
-} from '@ovhcloud/ods-components';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { LinkType, Links } from '../../typography';
 import './translations/translations';
+import './card.scss';
 
 export interface Badge {
   text: string;
-  color: ODS_THEME_COLOR_INTENT;
 }
 
 export interface ImageDetails {
@@ -67,15 +56,7 @@ export const Card: React.FC<CardProps> = ({
       onClick={onClick}
       {...props}
     >
-      <OsdsTile
-        className="w-full h-full"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        rounded
-        inline
-        variant={ODS_TILE_VARIANT.stroked}
-        hoverable={hoverable}
-        data-tracking={trackingLabel}
-      >
+      <OdsCard className="w-full h-full p-[1rem]" data-tracking={trackingLabel}>
         <div className="flex flex-col ">
           {img?.src && (
             <img
@@ -84,57 +65,37 @@ export const Card: React.FC<CardProps> = ({
               alt={img.alt}
             />
           )}
-          <OsdsText
-            className="block"
-            level={ODS_TEXT_LEVEL.heading}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            hue={ODS_THEME_COLOR_HUE._500}
-          >
-            {category}
-            <span style={{ marginLeft: 'var(--ods-size-03)' }}>
+          <div>
+            <span>
+              <OdsText
+                className="card-category"
+                preset={ODS_TEXT_PRESET.heading5}
+              >
+                <b>{category}</b>
+              </OdsText>
+            </span>
+            <span className="ml-[10px] card-badges-section">
               {badges?.map((b) => (
-                <OsdsChip
-                  className="mr-1"
-                  key={b.text}
-                  color={b.color}
-                  size={ODS_CHIP_SIZE.sm}
-                  inline
-                >
-                  {b.text}
-                </OsdsChip>
+                <OdsBadge className="mr-1" key={b.text} label={b.text} />
               ))}
             </span>
-          </OsdsText>
+          </div>
 
-          <OsdsText
-            className="block mb-4"
-            level={ODS_TEXT_LEVEL.heading}
-            size={ODS_TEXT_SIZE._500}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            hue={ODS_THEME_COLOR_HUE._800}
-          >
+          <OdsText className="card-title" preset={ODS_TEXT_PRESET.heading6}>
             {title}
-          </OsdsText>
+          </OdsText>
           {description && (
-            <OsdsText
-              className="block mb-4"
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_TEXT_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-              hue={ODS_THEME_COLOR_HUE._500}
-            >
-              {description}
-            </OsdsText>
+            <OdsText className="block mb-4">{description}</OdsText>
           )}
-
-          <Links
-            tab-index="-1"
-            label={hrefLabel ?? t('see_more_label')}
-            type={isExternalHref ? LinkType.external : LinkType.next}
-          />
+          <div className="section-see-more-label">
+            <Links
+              tab-index="-1"
+              label={hrefLabel ?? t('see_more_label')}
+              type={isExternalHref ? LinkType.external : LinkType.next}
+            />
+          </div>
         </div>
-      </OsdsTile>
+      </OdsCard>
     </a>
   );
 };

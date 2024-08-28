@@ -1,0 +1,13 @@
+.delete-modal-headline::part(text) {
+  margin-top: 0px;
+  margin-bottom: 0;
+}
+
+.delete-modal-description::part(text) {
+  margin-bottom: 0;
+}
+
+.delete-modal-input-label::part(text) {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}

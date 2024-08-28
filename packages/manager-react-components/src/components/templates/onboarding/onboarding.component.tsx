@@ -1,21 +1,13 @@
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsText, OdsLink } from '@ovhcloud/ods-components/react';
 import React, { PropsWithChildren } from 'react';
 
-import {
-  ODS_THEME_COLOR_HUE,
-  ODS_THEME_COLOR_INTENT,
-} from '@ovhcloud/ods-common-theming';
 import placeholderSrc from './assets/placeholder.png';
+import './onboarding.scss';
 
 type OnboardingLayoutButtonProps = {
   orderButtonLabel?: string;
@@ -53,37 +45,20 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
   }
   return (
     <div className="flex sm:pt-8 xs:pt-2.5 flex-row items-center space-x-4 justify-center">
-      <OsdsButton
-        inline
-        color={ODS_THEME_COLOR_INTENT.primary}
+      <OdsButton
         size={ODS_BUTTON_SIZE.md}
-        href={orderHref}
         onClick={onOrderButtonClick}
-      >
-        {orderButtonLabel}
-      </OsdsButton>
+        label={orderButtonLabel}
+      />
 
       {moreInfoButtonLabel && moreInfoHref && (
-        <OsdsButton
-          inline
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.stroked}
-          size={ODS_BUTTON_SIZE.md}
+        <OdsLink
           onClick={onmoreInfoButtonClick}
           {...(isActionDisabled && { disabled: true })}
           href={moreInfoHref}
-          target={OdsHTMLAnchorElementTarget._blank}
-        >
-          {moreInfoButtonLabel}
-          <span slot="end">
-            <OsdsIcon
-              className="ml-4 cursor-pointer"
-              name={ODS_ICON_NAME.EXTERNAL_LINK}
-              size={ODS_ICON_SIZE.xs}
-              hoverable
-            ></OsdsIcon>
-          </span>
-        </OsdsButton>
+          label={moreInfoButtonLabel}
+          icon={ODS_ICON_NAME.externalLink}
+        />
       )}
     </div>
   );
@@ -118,24 +93,14 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
               />
             </div>
           )}
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.primary}
-            level={ODS_TEXT_LEVEL.heading}
-            size={ODS_TEXT_SIZE._700}
-            hue={ODS_THEME_COLOR_HUE._800}
+          <OdsText
+            preset={ODS_TEXT_PRESET.heading1}
             className="block text-center sm:pt-8 xs:pt-2.5"
           >
             {title}
-          </OsdsText>
+          </OdsText>
           {description && (
-            <OsdsText
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_TEXT_SIZE._400}
-              color={ODS_TEXT_COLOR_INTENT.text}
-              className="block text-center xs:pt-2.5 sm:pt-8 max-w-4xl"
-            >
-              {description}
-            </OsdsText>
+            <OdsText className="onboarding-description">{description}</OdsText>
           )}
           <OnboardingLayoutButton
             isActionDisabled={isActionDisabled}

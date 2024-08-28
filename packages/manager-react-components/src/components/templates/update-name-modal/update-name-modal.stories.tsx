@@ -20,8 +20,10 @@ const meta: Meta = {
     confirmButtonLabel: { control: 'text' },
     pattern: { control: 'text' },
     patternMessage: { control: 'text' },
+    isOpen: { control: 'text' },
   },
   args: {
+    isOpen: true,
     closeModal: () => console.log('close'),
     updateDisplayName: (name) => console.log('updateDisplayName', name),
     headline: 'headline',
