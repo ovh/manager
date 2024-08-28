@@ -50,6 +50,7 @@ export type Task = {
 export type VeeamBackup = {
   id: string;
   currentState: {
+    vms?: number;
     offers: VeeamBackupOffer[];
     region: VCDRegion;
   };

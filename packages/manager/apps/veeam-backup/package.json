@@ -16,6 +16,7 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-veeam-backup-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-veeam-backup-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-veeam-backup-app' --include-dependencies -- npm run dev:watch --if-present",
+    "test": "vitest run",
     "test:e2e": "tsc && node ../../../../scripts/run-playwright-bdd.js",
     "test:e2e:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci"
   },
@@ -48,6 +49,8 @@
     "@ovh-ux/manager-vite-config": "*",
     "@playwright/test": "^1.41.2",
     "typescript": "^4.3.2",
+    "@vitejs/plugin-react": "^4.3.0",
+    "@vitest/coverage-v8": "^1.6.0",
     "vite": "^5.2.13"
   },
   "regions": [

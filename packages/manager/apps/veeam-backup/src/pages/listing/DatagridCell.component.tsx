@@ -5,9 +5,18 @@ import {
   OsdsSkeleton,
 } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
-import { ActionMenu, DataGridTextCell } from '@ovhcloud/manager-components';
+import {
+  ActionMenu,
+  DataGridTextCell,
+  Description,
+  LinkType,
+  Links,
+} from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
-import { ovhLocaleToI18next } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  ovhLocaleToI18next,
+} from '@ovh-ux/manager-react-shell-client';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
@@ -19,7 +28,7 @@ import {
   useRegions,
   getVeeamBackupDisplayName,
 } from '@/data';
-import { iamActions } from '@/veeam-backup.config';
+import { iamActions, vcdOrganizationAppName } from '@/veeam-backup.config';
 import { urls } from '@/routes/routes.constant';
 
 export const DisplayNameCell = (backup: VeeamBackupWithIam): JSX.Element => {
@@ -47,10 +56,15 @@ const colorByStatus: { [s in ResourceStatus]: ODS_THEME_COLOR_INTENT } = {
 
 export const StatusCell = ({
   resourceStatus,
-}: VeeamBackupWithIam): JSX.Element => {
+  className,
+}: VeeamBackupWithIam & { className?: string }): JSX.Element => {
   const { t } = useTranslation('veeam-backup');
   return (
-    <OsdsChip inline color={colorByStatus[resourceStatus]}>
+    <OsdsChip
+      className={className}
+      inline
+      color={colorByStatus[resourceStatus]}
+    >
       {t(resourceStatus)}
     </OsdsChip>
   );
@@ -60,28 +74,57 @@ export const OvhRefCell = ({ id }: VeeamBackupWithIam) => (
   <DataGridTextCell>{id}</DataGridTextCell>
 );
 
-export const OrganizationCell = ({ id }: VeeamBackupWithIam): JSX.Element => {
+export const OrganizationCell = ({
+  id,
+  withLink,
+  className,
+}: VeeamBackupWithIam & {
+  className?: string;
+  withLink?: boolean;
+}): JSX.Element => {
   const organizationId = getOrganizationIdFromBackupId(id);
   const { isLoading, data } = useOrganization(organizationId);
+  const { shell } = React.useContext(ShellContext);
+  const [href, setHref] = React.useState('');
 
-  return isLoading ? (
-    <OsdsSkeleton />
+  const value = getOrganizationDisplayName(data?.data);
+
+  React.useEffect(() => {
+    shell.navigation
+      .getURL(vcdOrganizationAppName, `/${organizationId}`, {})
+      .then((url: string) => setHref(url));
+  }, []);
+
+  if (isLoading || (withLink && !href)) {
+    return <OsdsSkeleton />;
+  }
+  return withLink ? (
+    <Links
+      className={className}
+      href={href}
+      type={LinkType.next}
+      label={value}
+    />
   ) : (
-    <DataGridTextCell>{getOrganizationDisplayName(data.data)}</DataGridTextCell>
+    <DataGridTextCell>{value}</DataGridTextCell>
   );
 };
 
-export const RegionCell = (backup: VeeamBackupWithIam): JSX.Element => {
+export const RegionCell = ({
+  currentState,
+  isDashboard,
+}: VeeamBackupWithIam & { isDashboard?: boolean }): JSX.Element => {
   const { flattenData, isLoading } = useRegions();
-  return isLoading ? (
-    <OsdsSkeleton />
+  const label = flattenData?.find((r) => r.region === currentState?.region)
+    ?.location;
+
+  if (isLoading) {
+    return <OsdsSkeleton />;
+  }
+  return isDashboard ? (
+    <Description>{label}</Description>
   ) : (
-    <DataGridTextCell>
-      {
-        flattenData?.find((r) => r.region === backup.currentState.region)
-          ?.location
-      }
-    </DataGridTextCell>
+    <DataGridTextCell>{label}</DataGridTextCell>
   );
 };
 
@@ -109,10 +152,19 @@ export const ActionCell = (backup: VeeamBackupWithIam): JSX.Element => {
       items={[
         {
           id: 0,
+          label: t('edit_name_action'),
+          color: ODS_THEME_COLOR_INTENT.primary,
+          urn: backup.iam.urn,
+          iamActions: [iamActions.iamResourceEdit],
+          onClick: () =>
+            navigate(urls.editVeeamDisplayName.replace(':id', backup.id)),
+        },
+        {
+          id: 1,
           label: t('delete_action'),
           color: ODS_THEME_COLOR_INTENT.error,
           urn: backup.iam.urn,
-          iamActions: [iamActions.vmwareCloudDirectorBackupGet],
+          iamActions: [iamActions.terminateService],
           onClick: () => navigate(urls.deleteVeeam.replace(':id', backup.id)),
         },
       ]}
