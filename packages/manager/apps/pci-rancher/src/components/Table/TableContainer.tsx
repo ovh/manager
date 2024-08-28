@@ -16,6 +16,7 @@ import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import TableComponent from './Table';
 import ActionsCell from './ActionsCell';
 import LinkService from './LinkService';
+import DataGridCell from './DataGridCell';
 import { RancherService } from '@/api/api.type';
 import { RancherDatagridWrapper } from './Table.type';
 import DisplayCellText from './TextCell';
@@ -54,6 +55,12 @@ export default function TableContainer({
         header: t('name'),
         accessorKey: 'currentState.name',
         cell: LinkService,
+      },
+      {
+        id: 'id',
+        header: 'ID',
+        accessorKey: 'id',
+        cell: DataGridCell,
       },
       {
         id: 'serviceLevel',
