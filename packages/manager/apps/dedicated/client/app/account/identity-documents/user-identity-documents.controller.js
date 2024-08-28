@@ -1,12 +1,11 @@
 import {
   USER_TYPE,
-  MAX_SIZE,
+  PROOF_TYPE,
   TRACKING_TASK_TAG,
   LEGAL_LINK1,
   LEGAL_LINK2,
   LEGAL_LINK3,
   KYC_STATUS,
-  KYC_ALLOWED_FILE_EXTENSIONS,
   DOCUMENTS_MATRIX,
 } from './user-identity-documents.constant';
 
@@ -18,8 +17,6 @@ export default class AccountUserIdentityDocumentsController {
     this.$scope = $scope;
     this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
-    this.maximum_size = MAX_SIZE;
-    this.fileExtensionsValid = true;
     this.atInternet = atInternet;
     this.LEGAL_LINK1 = LEGAL_LINK1;
     this.LEGAL_LINK2 = LEGAL_LINK2;
@@ -28,7 +25,9 @@ export default class AccountUserIdentityDocumentsController {
     this.KYC_STATUS = KYC_STATUS;
     this.TRACKING_TASK_TAG = TRACKING_TASK_TAG;
     this.USER_TYPE = USER_TYPE;
+    this.PROOF_TYPE = PROOF_TYPE;
     this.DOCUMENTS_MATRIX = DOCUMENTS_MATRIX;
+    this.isValid = false;
   }
 
   $onInit() {
@@ -44,23 +43,22 @@ export default class AccountUserIdentityDocumentsController {
       ? USER_TYPE[this.currentUser]
       : USER_TYPE.default;
 
-    this.$scope.$watchCollection('$ctrl.files', () => {
-      this.isFileExtensionsValid();
-    });
-
-    this.isListView = true;
     this.proofs = this.DOCUMENTS_MATRIX[this.user_type]?.proofs;
-    this.currentProofType = null;
+    this.selectProofType(null);
   }
 
   selectProofType(proof) {
     if (proof) {
       this.currentProofType = proof;
       this.currentProof = this.proofs[proof];
+      this.currentDocumentType = this.getDocumentType(proof);
+      this.currentDocumentFiles = this.getDocumentFiles(proof);
       this.isListView = false;
     } else {
       this.currentProofType = null;
       this.currentProof = null;
+      this.currentDocumentType = null;
+      this.currentDocumentFiles = [];
       this.isListView = true;
     }
   }
@@ -70,8 +68,10 @@ export default class AccountUserIdentityDocumentsController {
     this.loading = true;
     this.displayError = false;
     this.trackClick(TRACKING_TASK_TAG.upload);
-    if (!this.form.$invalid && this.isFileExtensionsValid()) {
-      this.getUploadDocumentsLinks(this.files.length)
+    if (this.isValid) {
+      this.getUploadDocumentsLinks(
+        Object.values(this.files).flatMap(({ files }) => files).length,
+      )
         .then(() => {
           this.loading = false;
           this.kycStatus.status = KYC_STATUS.OPEN;
@@ -95,6 +95,42 @@ export default class AccountUserIdentityDocumentsController {
     this.isOpenInformationModal = open;
   }
 
+  addDocuments(proofType, documentType, files) {
+    this.files[proofType] = {
+      document: documentType,
+      files,
+    };
+    this.checkValidity();
+  }
+
+  checkValidity() {
+    this.isValid =
+      this.user_type === this.USER_TYPE.individual
+        ? this.files[this.PROOF_TYPE.aadhaar_card] ||
+          (this.files[this.PROOF_TYPE.identity] &&
+            this.files[this.PROOF_TYPE.address])
+        : Object.keys(this.proofs).reduce(
+            (acc, proofType) =>
+              (acc &&
+                (this.files[proofType] ||
+                  proofType === this.PROOF_TYPE.authority_declaration)) ||
+              (this.user_type === this.USER_TYPE.default &&
+                proofType === this.PROOF_TYPE.vat),
+            true,
+          );
+  }
+
+  getDocumentType(proofType) {
+    return (
+      this.files[proofType]?.document ||
+      Object.keys(this.proofs[proofType].documents)[0]
+    );
+  }
+
+  getDocumentFiles(proofType) {
+    return this.files[proofType]?.files || [];
+  }
+
   getUploadDocumentsLinks(count) {
     return this.$http
       .post(`/me/procedure/identity`, {
@@ -102,9 +138,12 @@ export default class AccountUserIdentityDocumentsController {
       })
       .then(({ data: response }) => {
         const { uploadLinks } = response;
+        const flattenFiles = Object.values(this.files).flatMap(
+          ({ files }) => files,
+        );
         return this.$q.all(
           uploadLinks.map((uploadLink, index) =>
-            this.uploadDocumentsToS3usingLinks(uploadLink, this.files[index]),
+            this.uploadDocumentsToS3usingLinks(uploadLink, flattenFiles[index]),
           ),
         );
       })
@@ -125,23 +164,6 @@ export default class AccountUserIdentityDocumentsController {
       .catch(() => {
         this.displayErrorBanner();
       });
-  }
-
-  isFileExtensionsValid() {
-    const badFileExtensionsList = [];
-    this.fileExtensionsValid = this.files.reduce(
-      (acc, { infos: { extension } }) => {
-        const formatedExtension = extension.toLowerCase();
-        const isExtensionIncluded = KYC_ALLOWED_FILE_EXTENSIONS.includes(
-          formatedExtension,
-        );
-        if (!isExtensionIncluded) badFileExtensionsList.push(formatedExtension);
-        return isExtensionIncluded && acc;
-      },
-      true,
-    );
-    this.badFileExtensionsFormatedList = badFileExtensionsList.join(', ');
-    return this.fileExtensionsValid;
   }
 
   displayErrorBanner() {

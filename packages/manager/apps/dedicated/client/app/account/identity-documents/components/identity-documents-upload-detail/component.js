@@ -5,11 +5,11 @@ export default {
   controller,
   template,
   bindings: {
-    proof: '@',
-    userType: '@',
-    extended: '<',
-    isLoaded: '<',
-    kycStatus: '<',
-    onClick: '&',
+    proof: '<',
+    proofType: '<',
+    document: '<',
+    documentFiles: '<',
+    goBack: '&',
+    addDocuments: '&',
   },
 };
