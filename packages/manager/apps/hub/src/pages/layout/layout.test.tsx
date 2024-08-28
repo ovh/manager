@@ -6,14 +6,13 @@ import * as reactShellClientModule from '@ovh-ux/manager-react-shell-client';
 import {
   ShellContext,
   ShellContextType,
-  useRouteSynchro,
 } from '@ovh-ux/manager-react-shell-client';
 import Layout from '@/pages/layout/layout';
 import { ApiEnvelope } from '@/types/apiEnvelope.type';
-import { Services } from '@/types/services.type';
+import { ProductList } from '@/types/services.type';
 import { LastOrder } from '@/types/lastOrder.type';
 
-const services: ApiEnvelope<Services> = {
+const services: ApiEnvelope<ProductList> = {
   data: { count: 0, data: {} },
   status: 'OK',
 };
@@ -55,6 +54,10 @@ vi.mock('@/components/banner/Banner.component', () => ({
   default: () => <div>Banner</div>,
 }));
 
+vi.mock('@/components/products/Products.component', () => ({
+  default: () => <div>Products</div>,
+}));
+
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const original: typeof reactShellClientModule = await importOriginal();
   return {
@@ -70,7 +73,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
 });
 vi.mock('@/data/hooks/services/useServices', () => ({
   useFetchHubServices: (): {
-    data: ApiEnvelope<Services>;
+    data: ApiEnvelope<ProductList>;
     isPending: boolean;
   } => ({ data: services, isPending: false }),
 }));
@@ -84,11 +87,18 @@ vi.mock('@/data/hooks/lastOrder/useLastOrder', () => ({
 
 describe('Layout.page', () => {
   it('should render skeletons while loading', async () => {
-    const { getByTestId } = renderComponent();
+    const { getByTestId, findByTestId } = renderComponent();
 
     expect(getByTestId('welcome_skeleton')).not.toBeNull();
     expect(getByTestId('banners_skeleton')).not.toBeNull();
-    expect(getByTestId('products_and_catalog_skeleton')).not.toBeNull();
+    const tileGridTitleSkeleton = await findByTestId(
+      'tile_grid_title_skeleton',
+    );
+    const tileGridContentSkeleton = await findByTestId(
+      'tile_grid_content_skeletons',
+    );
+    expect(tileGridTitleSkeleton).not.toBeNull();
+    expect(tileGridContentSkeleton).not.toBeNull();
   });
 
   it('should render correct components for "fresh" customers', async () => {
@@ -110,7 +120,7 @@ describe('Layout.page', () => {
     ).not.toBeInTheDocument();
     expect(queryByText('ovh-manager-hub-support')).not.toBeInTheDocument();
     expect(queryByText('hub-order-tracking')).not.toBeInTheDocument();
-    expect(queryByText('hub-products')).not.toBeInTheDocument();
+    expect(queryByText('Products')).not.toBeInTheDocument();
     expect(getByText('hub-catalog-items')).not.toBeNull();
   });
 
@@ -166,7 +176,7 @@ describe('Layout.page', () => {
     ).not.toBeNull();
     expect(getByText('ovh-manager-hub-support')).not.toBeNull();
     expect(getByText('hub-order-tracking')).not.toBeNull();
-    expect(getByText('hub-products')).not.toBeNull();
+    expect(getByText('Products')).not.toBeNull();
     expect(queryByText('hub-catalog-items')).not.toBeInTheDocument();
   });
 
@@ -175,7 +185,7 @@ describe('Layout.page', () => {
 
     expect(getByTestId('hub_main_div')).toHaveAttribute(
       'class',
-      'position-absolute hub-main w-full h-full ',
+      'absolute hub-main w-full h-full ',
     );
   });
 
@@ -185,7 +195,7 @@ describe('Layout.page', () => {
 
     expect(getByTestId('hub_main_div')).toHaveAttribute(
       'class',
-      'position-absolute hub-main w-full h-full hub-main-view_sidebar_expanded',
+      'absolute hub-main w-full h-full hub-main-view_sidebar_expanded',
     );
   });
 
