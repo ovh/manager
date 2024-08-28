@@ -1,8 +1,8 @@
 name: New Feature Request for Manager Components (Internal)
 description: Request for new component/hook/util
-title: '[manager-react-components]: <TITLE>'
-labels: ['manager-react-components', 'feature']
-projects: ['ovh/22']
+title: '[manager-components]: <TITLE>'
+labels: ['manager-components', 'feature']
+projects: ["ovh/22"]
 body:
   - type: markdown
     attributes:
@@ -12,8 +12,8 @@ body:
       value: Please make sure to check if similar component already exists.
   - type: checkboxes
     attributes:
-      label: Have you already checked if a similar item is present on manager-react-components?
-      description: Before to open a request on our GitHub repository, did you already check if the similar item is present on the manager-react-components storybook?
+      label: Have you already checked if a similar item is present on manager-components?
+      description: Before to open a request on our GitHub repository, did you already check if the similar item is present on the manager-components storybook?
       options:
         - label: Yes, I have already checked the existing components/hooks/utils.
           required: false
