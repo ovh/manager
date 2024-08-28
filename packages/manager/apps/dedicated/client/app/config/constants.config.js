@@ -1471,7 +1471,7 @@ const constants = {
         changeOwner:
           'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
-          "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+          "https://ca.ovh.com/en/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
         exchangeOrder: 'https://www.ovh.com/ca/en/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/ca/en/vps/faq-help.xml',
