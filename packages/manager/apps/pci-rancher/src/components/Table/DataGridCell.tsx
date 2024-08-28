@@ -9,7 +9,7 @@ interface DisplayCellInterface {
 }
 
 const ClipboardInput = ({ cell }: Readonly<DisplayCellInterface>) => {
-  const id = cell.renderValue() as string;
+  const id = cell.renderValue() as RancherService['id'];
 
   return (
     <DataGridTextCell>
