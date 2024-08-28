@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.51.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.51.0...@ovh-ux/manager-dedicated@19.51.1) (2024-08-28)
+
+
+### Bug Fixes
+
+* **dedicated.account:** fix helpcenter link blank page redirect ([#12855](https://github.com/ovh/manager/issues/12855)) ([ce32596](https://github.com/ovh/manager/commit/ce32596a81923be41df0792bcc849914d466638d))
+* **dedicated.contacts:** fixed wrong url for ca ([#12557](https://github.com/ovh/manager/issues/12557)) ([5535048](https://github.com/ovh/manager/commit/5535048dcf2267334c7f2e80c2d2c8a48e7fc65f))
+
+
+
+
+
 # [19.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.50.0...@ovh-ux/manager-dedicated@19.51.0) (2024-08-26)
 
 
