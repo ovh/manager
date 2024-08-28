@@ -63,9 +63,6 @@ export default function DashboardPage() {
   return (
     <BaseLayout
       header={headerProps}
-      backLinkLabel={tDashboard(
-        'key_management_service_dashboard_back-link-label',
-      )}
       onClickReturn={() => {
         navigate(ROUTES_URLS.root);
       }}

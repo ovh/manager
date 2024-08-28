@@ -100,9 +100,6 @@ export default function Key() {
           title: kmsKey.name || kmsKey.id,
           headerButton: <KmsGuidesHeader />,
         }}
-        backLinkLabel={t(
-          'key_management_service_service-keys_dashboard_back-link-label',
-        )}
         onClickReturn={() => {
           navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
         }}
