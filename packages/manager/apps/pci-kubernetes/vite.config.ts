@@ -21,6 +21,8 @@ export default defineConfig({
       'react-i18next',
       'react-router-dom',
       'zustand',
+      '@ovh-ux/manager-react-components',
+      '@ovh-ux/manager-react-shell-client',
     ],
   },
 });

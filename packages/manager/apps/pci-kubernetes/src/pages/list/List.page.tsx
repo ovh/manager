@@ -30,9 +30,10 @@ import {
   OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { useRef, useState } from 'react';
+import { useRef, useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useKubes } from '@/api/hooks/useKubernetes';
 import { useDatagridColumn } from './useDatagridColumn';
 

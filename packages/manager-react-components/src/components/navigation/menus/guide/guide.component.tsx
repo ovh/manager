@@ -1,22 +1,10 @@
 import React from 'react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
-import {
-  OsdsMenu,
-  OsdsMenuGroup,
-  OsdsMenuItem,
-  OsdsButton,
-  OsdsIcon,
-} from '@ovhcloud/ods-components/react';
-import {
-  OdsHTMLAnchorElementRel,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-common-core';
+import { OdsPopover, OdsButton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { Links, LinkType } from '../../../typography';
 import '../translations/translation';
@@ -25,9 +13,9 @@ export interface GuideItem {
   id: number;
   href: string;
   download?: string;
-  target?: OdsHTMLAnchorElementTarget;
-  rel?: OdsHTMLAnchorElementRel;
-  label: React.ReactNode;
+  target?: string;
+  rel?: string;
+  label: string;
 }
 
 export interface GuideButtonProps {
@@ -37,28 +25,21 @@ export interface GuideButtonProps {
 export const GuideButton: React.FC<GuideButtonProps> = ({ items }) => {
   const { t } = useTranslation('buttons');
   return (
-    <OsdsMenu>
-      <OsdsButton
-        slot="menu-title"
-        className="block mb-6"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        size={ODS_BUTTON_SIZE.sm}
-        inline
-      >
-        <span slot="start">
-          <OsdsIcon
-            name={ODS_ICON_NAME.GUIDES}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_ICON_SIZE.sm}
-          />
-        </span>
-        {t('user_account_guides_header')}
-      </OsdsButton>
+    <>
+      <div id="navigation-menu-guide-trigger">
+        <OdsButton
+          slot="menu-title"
+          className="block mb-6"
+          variant={ODS_BUTTON_VARIANT.ghost}
+          size={ODS_BUTTON_SIZE.sm}
+          label={t('user_account_guides_header')}
+          icon={ODS_ICON_NAME.book}
+        />
+      </div>
 
-      {items.map((item) => (
-        <OsdsMenuGroup key={item.id}>
-          <OsdsMenuItem>
+      <OdsPopover triggerId="navigation-menu-guide-trigger" with-arrow="true">
+        {items.map((item) => (
+          <div key={item.id}>
             <Links
               href={item.href}
               target={item.target}
@@ -67,10 +48,10 @@ export const GuideButton: React.FC<GuideButtonProps> = ({ items }) => {
               type={LinkType.external}
               label={item.label}
             />
-          </OsdsMenuItem>
-        </OsdsMenuGroup>
-      ))}
-    </OsdsMenu>
+          </div>
+        ))}
+      </OdsPopover>
+    </>
   );
 };
 

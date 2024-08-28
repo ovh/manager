@@ -1,10 +1,6 @@
 import React, { PropsWithChildren, RefAttributes, HTMLAttributes } from 'react';
 import { JSX } from '@ovhcloud/ods-components';
-import {
-  OsdsText,
-  OsdsTooltip,
-  OsdsTooltipContent,
-} from '@ovhcloud/ods-components/react';
+import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 import { StyleReactProps } from '@ovhcloud/ods-components/react/dist/types/react-component-lib/interfaces';
 import { useTranslation } from 'react-i18next';
 import './translations';
@@ -23,22 +19,27 @@ export const ManagerText = ({
   ...restProps
 }: ManagerTextProps &
   Partial<
-    JSX.OsdsText &
-      Omit<HTMLAttributes<HTMLOsdsTextElement>, 'style'> &
+    JSX.OdsText &
+      Omit<HTMLAttributes<HTMLOdsTextElement>, 'style'> &
       StyleReactProps &
-      RefAttributes<HTMLOsdsTextElement>
+      RefAttributes<HTMLOdsTextElement>
   >) => {
   const { t } = useTranslation('iam');
   const { isAuthorized } = useAuthorizationIam(iamActions, urn);
+
   if (!isAuthorized) {
     return (
-      <OsdsTooltip>
-        <OsdsText {...restProps}>{t('iam_hidden_text').toUpperCase()}</OsdsText>
-        <OsdsTooltipContent slot="tooltip-content">
+      <>
+        <div id="tooltip-iam" className="w-fit">
+          <OdsText preset="span" {...restProps}>
+            {t('iam_hidden_text').toUpperCase()}
+          </OdsText>
+        </div>
+        <OdsTooltip triggerId="tooltip-iam" with-arrow>
           <div>{t('common_iam_get_message')}</div>
-        </OsdsTooltipContent>
-      </OsdsTooltip>
+        </OdsTooltip>
+      </>
     );
   }
-  return <OsdsText {...restProps}>{children}</OsdsText>;
+  return <OdsText {...restProps}>{children}</OdsText>;
 };
