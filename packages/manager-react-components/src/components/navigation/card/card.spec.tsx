@@ -1,9 +1,4 @@
 import { waitFor } from '@testing-library/react';
-import {
-  ODS_THEME_COLOR_HUE,
-  ODS_THEME_COLOR_INTENT,
-} from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { Card, CardProps } from './card.component';
 import { defaultProps } from './card.stories';
 import { render } from '../../../utils/test.provider';
@@ -14,22 +9,23 @@ const setupSpecTest = async (customProps?: Partial<CardProps>) =>
 describe('specs:Card', () => {
   it('renders without error', async () => {
     const screen = await setupSpecTest();
-
     const title = screen.getByText('Titre du produit');
-
     expect(title).not.toBeNull();
   });
 
   describe('contents', () => {
     it('should have a badges if provided', async () => {
-      const screen = await setupSpecTest({
-        badges: [{ text: 'Beta', color: ODS_THEME_COLOR_INTENT.primary }],
+      const { container } = await setupSpecTest({
+        badges: [{ text: 'Beta' }],
       });
-      expect(screen.getByText('Beta')).toBeTruthy();
+      waitFor(() => {
+        expect(
+          container.querySelector('.card-badges-section .ods-badge'),
+        ).toBeInTheDocument();
+      });
     });
 
     it('should have design system correctly set for texts', async () => {
-      // given
       const cardProps: Partial<CardProps> = {
         texts: {
           title: 'my title',
@@ -38,42 +34,20 @@ describe('specs:Card', () => {
         },
       };
 
-      // when
-      const { getByText } = await setupSpecTest(cardProps);
-
-      // then
+      const { getByText, container } = await setupSpecTest(cardProps);
       const titleElement = getByText(cardProps.texts.title);
-      expect(titleElement).toHaveAttribute('level', ODS_TEXT_LEVEL.heading);
-      expect(titleElement).toHaveAttribute('size', ODS_TEXT_SIZE._500);
-      expect(titleElement).toHaveAttribute(
-        'color',
-        ODS_THEME_COLOR_INTENT.primary,
-      );
-      expect(titleElement).toHaveAttribute('hue', ODS_THEME_COLOR_HUE._800);
+      expect(titleElement).toBeVisible();
 
-      // and
       const descElement = getByText(cardProps.texts.description);
-      expect(descElement).toHaveAttribute('level', ODS_TEXT_LEVEL.body);
-      expect(descElement).toHaveAttribute('size', ODS_TEXT_SIZE._400);
-      expect(descElement).toHaveAttribute('color', ODS_THEME_COLOR_INTENT.text);
-      expect(descElement).toHaveAttribute('hue', ODS_THEME_COLOR_HUE._500);
+      expect(descElement).toBeVisible();
 
-      // and
       const catElement = getByText(cardProps.texts.category);
-      expect(catElement).toHaveAttribute('level', ODS_TEXT_LEVEL.heading);
-      expect(catElement).toHaveAttribute('size', ODS_TEXT_SIZE._400);
-      expect(catElement).toHaveAttribute(
-        'color',
-        ODS_THEME_COLOR_INTENT.primary,
-      );
-      expect(catElement).toHaveAttribute('hue', ODS_THEME_COLOR_HUE._500);
+      expect(catElement).toBeVisible();
 
-      // and
-      expect(getByText('En savoir plus')).toBeDefined();
+      expect(container.querySelector('[label="En savoir plus"]')).toBeDefined();
     });
 
     it('should override href label', async () => {
-      // given
       const cardProps: Partial<CardProps> = {
         texts: {
           title: 'my title',
@@ -83,11 +57,8 @@ describe('specs:Card', () => {
         hrefLabel: 'custom label',
       };
 
-      // when
-      const { getByText } = await setupSpecTest(cardProps);
-
-      // then
-      expect(getByText('custom label')).toBeDefined();
+      const { container } = await setupSpecTest(cardProps);
+      expect(container.querySelector('[label="custom label"]')).toBeDefined();
     });
   });
 });

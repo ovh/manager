@@ -1,54 +1,44 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
+
 import { Notifications } from './notifications.component';
 import { useNotifications } from './useNotifications';
 
 const NotificationsStory = () => {
-  const {
-    addSuccess,
-    addWarning,
-    addError,
-    clearNotifications,
-  } = useNotifications();
+  const { addSuccess, addWarning, addError, clearNotifications } =
+    useNotifications();
 
   return (
     <>
       <div className="flex">
-        <OsdsButton
+        <OdsButton
           className="mr-2"
           size={ODS_BUTTON_SIZE.md}
-          color={ODS_THEME_COLOR_INTENT.success}
           onClick={() => addSuccess('success message')}
-        >
-          Add success
-        </OsdsButton>
-        <OsdsButton
+          label="Add success"
+        />
+        <OdsButton
           className="mr-2"
           size={ODS_BUTTON_SIZE.md}
-          color={ODS_THEME_COLOR_INTENT.warning}
+          color={ODS_BUTTON_COLOR.critical}
           onClick={() => addWarning('warning message')}
-        >
-          Add warning
-        </OsdsButton>
-        <OsdsButton
+          label="Add warning"
+        />
+        <OdsButton
           className="mr-2"
           size={ODS_BUTTON_SIZE.md}
-          color={ODS_THEME_COLOR_INTENT.error}
+          color={ODS_BUTTON_COLOR.critical}
           onClick={() => addError('error message')}
-        >
-          Add error
-        </OsdsButton>
-        <OsdsButton
+          label="Add error"
+        />
+        <OdsButton
           className="mr-2"
           size={ODS_BUTTON_SIZE.md}
-          color={ODS_THEME_COLOR_INTENT.primary}
           onClick={clearNotifications}
-        >
-          Clear
-        </OsdsButton>
+          label="Clear"
+        />
       </div>
       <div className="mt-4">
         <Notifications />
