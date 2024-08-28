@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Outlet, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import {
-  OsdsText,
   OsdsTabs,
   OsdsTabBar,
   OsdsTabBarItem,
@@ -9,17 +8,15 @@ import {
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_CHIP_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  OdsTabsChangeEventDetail,
+  OsdsTabsCustomEvent,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 
 export type DashboardTabItemProps = {
-  name: string;
+  url: string;
   title: string;
   disabled?: boolean;
-  to?: string;
 };
 
 export type DashboardLayoutProps = {
@@ -27,57 +24,57 @@ export type DashboardLayoutProps = {
 };
 
 const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
-  const [panel, setActivePanel] = useState('');
+  const [activePanel, setActivePanel] = useState('');
   const location = useLocation();
+  const { okmsId } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/dashboard');
 
   useEffect(() => {
-    const activeTab = tabs.find((tab) => tab.to === location.pathname);
-    if (activeTab) {
-      setActivePanel(activeTab.name);
-    } else {
-      setActivePanel(tabs[0].name);
-      navigate(`${tabs[0].to}`);
-    }
-  }, [location.pathname]);
+    const activeTab = tabs.find(
+      (tab) => `/${okmsId}/${tab.url}` === location.pathname,
+    );
+    if (!activeTab) return;
+    setActivePanel(activeTab?.url);
+  }, [location]);
+
+  const handleTabChange = (
+    event: OsdsTabsCustomEvent<OdsTabsChangeEventDetail>,
+  ) => {
+    const {
+      detail: { panel },
+    } = event;
+    const url = `/${okmsId}/${panel}`;
+
+    setActivePanel(panel);
+    navigate(url);
+  };
 
   return (
-    <>
-      <div className="mb-6">
-        <div className="py-4">
-          <OsdsText
-            level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_TEXT_SIZE._600}
-          >
-            {location.pathname.split('/')[2]}
-          </OsdsText>
-        </div>
-        <OsdsTabs panel={panel}>
-          <OsdsTabBar slot="top">
-            {tabs.map((tab: DashboardTabItemProps) => (
-              <OsdsTabBarItem
-                key={`osds-tab-bar-item-${tab.name}`}
-                panel={tab.name}
-                disabled={tab.disabled}
-                className="flex items-center justify-center"
-              >
-                <NavLink to={tab.to} className="no-underline">
-                  {tab.title}
-                </NavLink>
-                {tab.disabled && (
-                  <OsdsChip size={ODS_CHIP_SIZE.sm} inline className="ml-2">
-                    {t('key_management_service_dashboard_tab_comming_soon')}
-                  </OsdsChip>
-                )}
-              </OsdsTabBarItem>
-            ))}
-          </OsdsTabBar>
-        </OsdsTabs>
-      </div>
-      <Outlet />
-    </>
+    <div className="mb-6">
+      <OsdsTabs
+        panel={activePanel}
+        onOdsTabsChanged={(event) => handleTabChange(event)}
+      >
+        <OsdsTabBar slot="top">
+          {tabs.map((tab: DashboardTabItemProps) => (
+            <OsdsTabBarItem
+              key={`osds-tab-bar-item-${tab.url}`}
+              panel={tab.url}
+              disabled={tab.disabled}
+              className="flex items-center justify-center"
+            >
+              {tab.title}
+              {tab.disabled && (
+                <OsdsChip size={ODS_CHIP_SIZE.sm} inline className="ml-2">
+                  {t('key_management_service_dashboard_tab_comming_soon')}
+                </OsdsChip>
+              )}
+            </OsdsTabBarItem>
+          ))}
+        </OsdsTabBar>
+      </OsdsTabs>
+    </div>
   );
 };
 

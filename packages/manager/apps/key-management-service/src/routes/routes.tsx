@@ -27,7 +27,7 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/listing')),
         children: [
           {
-            path: `${ROUTES_URLS.terminateOkms}/:okmsId`,
+            path: `${ROUTES_URLS.terminateOkms}/${ROUTES_URLS.okmsId}`,
             ...lazyRouteConfig(() =>
               import('@/pages/listing/terminate/TerminateKms'),
             ),
@@ -43,7 +43,7 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/onboarding')),
       },
       {
-        path: '/:okmsId',
+        path: ROUTES_URLS.okmsId,
         ...lazyRouteConfig(() => import('@/pages/dashboard')),
         children: [
           {
@@ -51,6 +51,48 @@ export default [
             ...lazyRouteConfig(() =>
               import(
                 '@/pages/dashboard/generalInformations/GeneralInformations'
+              ),
+            ),
+          },
+          {
+            path: ROUTES_URLS.keys,
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/serviceKeyList/serviceKeyList.page'),
+            ),
+            children: [
+              {
+                path: `${ROUTES_URLS.serviceKeyDeactivate}/${ROUTES_URLS.keyId}`,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/serviceKey/deactivateServiceKeyModal/deactivateServiceKeyModal.page'
+                  ),
+                ),
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.createKmsServiceKey}`,
+        ...lazyRouteConfig(() => import('@/pages/serviceKey/createKey.page')),
+      },
+      {
+        path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.keyId}`,
+        ...lazyRouteConfig(() => import('@/pages/serviceKey/serviceKey.page')),
+        children: [
+          {
+            path: ROUTES_URLS.serviceKeyEditName,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/serviceKey/editServiceKeyNameModal/editServiceKeyNameModal.page'
+              ),
+            ),
+          },
+          {
+            path: ROUTES_URLS.serviceKeyDeactivate,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/serviceKey/deactivateServiceKeyModal/deactivateServiceKeyModal.page'
               ),
             ),
           },

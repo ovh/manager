@@ -1,37 +1,42 @@
 import React from 'react';
 import {
+  ActionMenu,
   DataGridClipboardCell,
   DataGridTextCell,
-  useNotifications,
+  Links,
 } from '@ovhcloud/manager-components';
-import { OsdsLink } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_COLOR_INTENT } from '@ovhcloud/ods-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { ODS_ICON_NAME, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { OKMS } from '@/types/okms.type';
 import KmsActionMenu from '../menu/KmsActionMenu.component';
+import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
+import { useServiceKeyTypeTranslations } from '@/hooks/serviceKey/useServiceKeyTypeTranslations';
+import { ServiceKeyStatus } from '../serviceKey/serviceKeyStatus/serviceKeyStatus.component';
+import useServiceKeyActionsList from '@/hooks/serviceKey/useServiceKeyActionsList';
+import { useOkmsServiceKeyById } from '@/data/hooks/useOkmsServiceKeys';
+import { useFormattedDate } from '@/hooks/useFormattedDate';
+import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
+import { OkmsServiceState } from '../layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
+
+export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
+  return <DataGridClipboardCell text={props.id} />;
+};
 
 export const DatagridCellName = (props: OKMS) => {
   const navigate = useNavigate();
-  const { clearNotifications } = useNotifications();
 
   return (
     <div>
-      <OsdsLink
-        onClick={() => {
-          clearNotifications();
+      <Links
+        onClickReturn={() => {
           navigate(`/${props?.id}`);
         }}
-        color={ODS_TEXT_COLOR_INTENT.primary}
-      >
-        {props?.iam.displayName}
-      </OsdsLink>
+        label={props?.iam.displayName}
+      />
     </div>
   );
-};
-
-export const DatagridCellId = (props: OKMS) => {
-  return <DataGridClipboardCell text={props.id} />;
 };
 
 export const DatagridCellRegion = (props: OKMS) => {
@@ -43,10 +48,91 @@ export const DatagridCellRegion = (props: OKMS) => {
   );
 };
 
-export const DatagridCellRestApiEndpoint = (props: OKMS) => {
-  return <OsdsLink href={props?.restEndpoint}>{props?.restEndpoint}</OsdsLink>;
+export const DatagridCellStatus = (props: OKMS) => {
+  const { data: OkmsServiceInfos, isLoading, isError } = useKMSServiceInfos(
+    props,
+  );
+  if (isLoading) {
+    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />;
+  }
+  if (isError) {
+    return <></>;
+  }
+  return (
+    <OkmsServiceState
+      state={OkmsServiceInfos.data.resource.state}
+      inline={true}
+    ></OkmsServiceState>
+  );
 };
 
 export const DatagridActionMenu = (props: OKMS) => {
   return <KmsActionMenu {...props} />;
+};
+
+export const DatagridServiceKeyCellName = (props: OkmsAllServiceKeys) => {
+  const navigate = useNavigate();
+  return (
+    <div>
+      <Links
+        onClickReturn={() => {
+          navigate(`${props?.id}`);
+        }}
+        label={props?.name}
+      />
+    </div>
+  );
+};
+
+export const DatagridServiceKeyCellId = (props: OkmsAllServiceKeys) => {
+  return <DataGridClipboardCell text={props.id} />;
+};
+
+export const DatagridCellType = (props: OkmsAllServiceKeys) => {
+  const translatedValue = useServiceKeyTypeTranslations(props.type);
+  return <DataGridTextCell> {translatedValue}</DataGridTextCell>;
+};
+
+export const DatagridCreationDate = (props: OkmsAllServiceKeys) => {
+  const date = new Date(Date.parse(props.createdAt));
+
+  const formattedDate = useFormattedDate({
+    date,
+    options: {
+      hour12: false,
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    },
+  });
+
+  return <DataGridTextCell>{formattedDate}</DataGridTextCell>;
+};
+
+export const DatagridStatus = (props: OkmsAllServiceKeys) => {
+  return <ServiceKeyStatus state={props.state} inline />;
+};
+
+export const DatagridServiceKeyActionMenu = (props: OkmsAllServiceKeys) => {
+  const { okmsId } = useParams();
+  const { data: serviceKey, isPending } = useOkmsServiceKeyById({
+    okmsId,
+    keyId: props.id,
+  });
+  const actionList = useServiceKeyActionsList(okmsId, serviceKey?.data, true);
+
+  if (isPending) {
+    return <></>;
+  }
+
+  return (
+    <ActionMenu
+      items={actionList}
+      isCompact
+      icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
+    />
+  );
 };

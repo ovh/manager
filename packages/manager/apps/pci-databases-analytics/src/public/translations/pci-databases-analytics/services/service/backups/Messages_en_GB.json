@@ -8,7 +8,7 @@
   "detailsBackupTime": "Backup time (UTC)",
   "tableHeadName": "Name",
   "tableHeadLocation": "Location",
-  "tableHeadCreationDate": "Creation date",
+  "tableHeadCreationDate": "Created on",
   "tableHeadNExpiryDate": "Expiry date",
   "tableHeadStatus": "Status",
   "tableActionFork": "Duplicate (Fork)",

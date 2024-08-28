@@ -8,20 +8,15 @@ import {
   ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components';
 import {
-  OsdsText,
-  OsdsDivider,
-  OsdsBreadcrumb,
   OsdsButton,
   OsdsMessage,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import {
+  BaseLayout,
   Datagrid,
+  HeadersProps,
   Notifications,
   useDatagridSearchParams,
   useNotifications,
@@ -33,6 +28,7 @@ import {
   DatagridCellId,
   DatagridCellName,
   DatagridCellRegion,
+  DatagridCellStatus,
 } from '@/components/Listing/ListingCells';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 
@@ -59,6 +55,11 @@ export default function Listing() {
       label: t('key_management_service_listing_region_cell'),
     },
     {
+      id: 'status',
+      cell: DatagridCellStatus,
+      label: t('key_management_service_listing_status_cell'),
+    },
+    {
       id: 'action',
       cell: DatagridActionMenu,
       isSortable: false,
@@ -78,28 +79,12 @@ export default function Listing() {
     }
   }, [okms.length, isLoading]);
 
+  const headerProps: HeadersProps = {
+    title: t('key_management_service_listing_title'),
+    headerButton: <KmsGuidesHeader />,
+  };
   return (
-    <>
-      <OsdsBreadcrumb
-        items={[
-          {
-            href: ROUTES_URLS.listing,
-            label: t('key_management_service_listing_title'),
-          },
-        ]}
-      ></OsdsBreadcrumb>
-      <div className={'flex items-center justify-between mt-4'}>
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        >
-          {t('key_management_service_listing_title')}
-        </OsdsText>
-        <KmsGuidesHeader />
-      </div>
-      <OsdsDivider></OsdsDivider>
-      <Notifications />
+    <BaseLayout header={headerProps} message={<Notifications />}>
       <div className={'flex mb-3 mt-6'}>
         <OsdsButton
           className="mr-1"
@@ -138,6 +123,6 @@ export default function Listing() {
         </div>
       )}
       <Outlet />
-    </>
+    </BaseLayout>
   );
 }
