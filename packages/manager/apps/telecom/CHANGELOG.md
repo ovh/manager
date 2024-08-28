@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.20.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.20.4...@ovh-ux/manager-telecom@15.20.5) (2024-08-28)
+
+
+### Bug Fixes
+
+* **telecom:** accept transform xdsl line into number ([#12824](https://github.com/ovh/manager/issues/12824)) ([df5f43e](https://github.com/ovh/manager/commit/df5f43e5be67ff28788eb21f1a5234c950806271))
+
+
+
+
+
 ## [15.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.20.3...@ovh-ux/manager-telecom@15.20.4) (2024-08-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
