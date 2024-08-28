@@ -16,8 +16,8 @@ const { refetch } = vi.hoisted(() => {
   return { refetch: vi.fn() };
 });
 
-vi.mock('../tile-skeleton/TileSkeleton.component', () => ({
-  TileSkeleton: () => <div data-testid="tile-skeleton"></div>,
+vi.mock('../skeletons/Skeletons.component', () => ({
+  Skeletons: () => <div data-testid="tile-skeleton"></div>,
 }));
 
 vi.mock('./hub-support-table/HubSupportTable.component', () => ({
