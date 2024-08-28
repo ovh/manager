@@ -339,7 +339,7 @@ export default class PciInstancesAddController {
     );
   }
 
-  IsComingSoonPricingBannerDisplayed() {
+  IsSavingsPlanBannerDisplayed() {
     return this.model.flavorGroup?.tagsBlob?.includes(TAGS_BLOB.COMING_SOON);
   }
 
@@ -1047,6 +1047,37 @@ export default class PciInstancesAddController {
         this.isLoading = false;
         return this.handleError(err);
       });
+  }
+
+  getSavingsPlanPrice() {
+    this.PciProjectsProjectInstanceService.getCommercialCatalog({
+      productCode: this.model.flavorGroup.name,
+      nature: 'BILLING_PLAN',
+      ovhSubsidiary: this.coreConfig.getUser().ovhSubsidiary,
+    })
+      .then((savingsPlan) => {
+        const hasSavingsPlanOnFlavor = savingsPlan.length > 0;
+        if (!this.isLocalZone() && hasSavingsPlanOnFlavor) {
+          this.hasSavingsPlan = true;
+        }
+      })
+      .catch(() => {
+        this.hasSavingsPlan = false;
+      });
+  }
+
+  onBillingFocus() {
+    this.isLoadBillingStep = true;
+    this.getUAppUrl(
+      'public-cloud',
+      `#/pci/projects/${this.projectId}/savings-plan`,
+    ).then((url) => {
+      this.savingsPlanUrl = url;
+    });
+
+    this.getSavingsPlanPrice();
+
+    this.isLoadBillingStep = false;
   }
 
   onCreateFormStepperSubmit() {

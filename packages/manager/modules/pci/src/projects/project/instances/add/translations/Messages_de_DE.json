@@ -72,7 +72,6 @@
   "pci_projects_project_instances_add_automated_backup_recommended": "Empfohlen",
   "pci_projects_project_instances_add_automated_backup_infos": "Diese Funktion ermöglicht es Ihnen, Ihre Instanz automatisch nach Ihren Vorgaben zu sichern.",
   "pci_projects_project_instances_add_billing_title": "Wählen Sie einen Abrechnungszeitraum aus",
-  "pci_projects_project_instances_add_billing_coming_soon_message_title": "Monatliche Preise",
   "pci_projects_project_instances_add_billing_coming_soon_message_description": "Die monatlichen Preise werden mit der Einführung der Saving Plans in Kürze verfügbar sein.",
   "pci_projects_project_instances_add_billing_montly_discount_message": "Verringern Sie den Rechnungsbetrag, indem Sie Ihre Instanz auf die monatliche Abrechnung umstellen.",
   "pci_projects_project_instances_add_billing_montly_discount_message_link": "Preise anzeigen",

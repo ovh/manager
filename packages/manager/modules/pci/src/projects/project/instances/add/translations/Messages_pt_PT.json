@@ -72,7 +72,6 @@
   "pci_projects_project_instances_add_automated_backup_recommended": "Recomendado",
   "pci_projects_project_instances_add_automated_backup_infos": "Esta funcionalidade permite-lhe fazer um backup da sua instância de forma automática em função da ordem à sua escolha.",
   "pci_projects_project_instances_add_billing_title": "Selecione um período de faturação",
-  "pci_projects_project_instances_add_billing_coming_soon_message_title": "Preços mensais",
   "pci_projects_project_instances_add_billing_coming_soon_message_description": "Os preços mensais estarão disponíveis em breve com a chegada dos Saving Plans.",
   "pci_projects_project_instances_add_billing_montly_discount_message": "Reduza o montante da sua fatura passando a sua instância para o plano mensal.",
   "pci_projects_project_instances_add_billing_montly_discount_message_link": "Ver os preços",

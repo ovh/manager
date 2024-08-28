@@ -67,6 +67,9 @@
                     data-heading="{{:: continent }}"
                 >
                     <div class="container-fluid px-0">
+                        <span
+                            data-translate="pci_project_instances_instance_add_region_savings_plan_info"
+                        ></span>
                         <div class="row">
                             <oui-select-picker
                                 class="d-inline-block col-md-6 col-xl-3 my-3"
@@ -977,23 +980,34 @@
         data-on-cancel="$ctrl.cancel()"
         data-editable="!$ctrl.isLoading"
         name="instances_add_billing"
+        data-on-focus="$ctrl.onBillingFocus()"
         data-on-submit="$ctrl.onCreateFormStepperSubmit()"
         data-navigation="!$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError && (!$ctrl.isPrivateMode() || (!$ctrl.isLoadBillingStep && $ctrl.isPrivateMode()))"
     >
         <oui-message
             data-type="info"
-            data-ng-if="$ctrl.IsComingSoonPricingBannerDisplayed() && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
+            data-ng-if="$ctrl.IsSavingsPlanBannerDisplayed() && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
         >
-            <h6
-                data-translate="pci_projects_project_instances_add_billing_coming_soon_message_title"
-            ></h6>
             <p
-                data-translate="pci_projects_project_instances_add_billing_coming_soon_message_description"
+                data-translate="pci_projects_project_instances_add_billing_savings_plan_banner"
             ></p>
+            <a
+                class="oui-link oui-link_icon"
+                data-ng-href="{{:: $ctrl.savingsPlanUrl }}"
+                target="_blank"
+            >
+                <span
+                    data-translate="pci_projects_project_instances_add_billing_savings_plan_cta"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-arrow-right"
+                    aria-hidden="true"
+                ></span>
+            </a>
         </oui-message>
 
         <p
-            data-ng-if="!$ctrl.IsComingSoonPricingBannerDisplayed() && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
+            data-ng-if="!$ctrl.IsSavingsPlanBannerDisplayed() && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
         >
             <span
                 data-translate="pci_projects_project_instances_add_billing_montly_discount_message"

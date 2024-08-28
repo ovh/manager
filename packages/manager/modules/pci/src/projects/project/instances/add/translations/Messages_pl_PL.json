@@ -72,7 +72,6 @@
   "pci_projects_project_instances_add_automated_backup_recommended": "Zalecane",
   "pci_projects_project_instances_add_automated_backup_infos": "Dzięki tej funkcji możesz automatycznie zapisać instancję w wybranej przez Ciebie kolejności.",
   "pci_projects_project_instances_add_billing_title": "Wybierz okres rozliczeniowy",
-  "pci_projects_project_instances_add_billing_coming_soon_message_title": "Ceny miesięczne",
   "pci_projects_project_instances_add_billing_coming_soon_message_description": "Ceny miesięczne będą dostępne wkrótce, wraz z uruchomieniem Saving Plans.",
   "pci_projects_project_instances_add_billing_montly_discount_message": "Obniż kwotę faktury, zmieniając płatność  za tę instancję na abonament na miesięczny.",
   "pci_projects_project_instances_add_billing_montly_discount_message_link": "Sprawdź ceny",
