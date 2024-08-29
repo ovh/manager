@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.4.2...@ovh-ux/manager-key-management-service-app@0.5.0) (2024-08-29)
+
+
+### Features
+
+* **key-management-service:** add b2 features ([#12868](https://github.com/ovh/manager/issues/12868)) ([cef4b6a](https://github.com/ovh/manager/commit/cef4b6aff8d5e3ca9dd8275be7f0739e722a89be))
+
+
+
+
+
 ## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.4.1...@ovh-ux/manager-key-management-service-app@0.4.2) (2024-08-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
