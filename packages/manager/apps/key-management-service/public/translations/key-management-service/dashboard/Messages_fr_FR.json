@@ -1,5 +1,4 @@
 {
-  "key_management_service_dashboard_title": "Mon KMS {{okmsId}}",
   "results": "résultats",
   "loading": "chargement",
   "error_service": "No services info",
@@ -36,7 +35,7 @@
   "key_management_service_dashboard_region_labeu_west_1_preprod": "LABEU (France - Croix) (PREPROD)",
   "key_management_service_dashboard_region_labeu_west_1_dev_1": "LABEU (France - Croix) (DEV-1)",
   "key_management_service_dashboard_region_labeu_west_1_dev_2": "LABEU (France - Croix) (DEV-2)",
-  "billing_informations": "Abonnement",
+  "billing_informations": "Mon offre",
   "key_management_service_dashboard_field_label_creation_date": "Date de création",
   "key_management_service_dashboard_field_label_next_billing_date": "Prochaine échéance",
   "key_management_service_dashboard_field_label_engagement": "Engagement",
@@ -47,5 +46,13 @@
   "key_management_service_dashboard_contact_type_administrator": "Administrateur",
   "key_management_service_dashboard_contact_type_technical": "Technique",
   "key_management_service_dashboard_contact_type_billing": "Facturation",
-  "key_management_service_dashboard_action_billing_terminate": "Résilier"
+  "key_management_service_dashboard_action_billing_terminate": "Résilier",
+  "service_status": "Etat du service",
+  "key_management_service_dashboard_field_label_state": "Statut",
+  "key_management_service_dashboard_dashboard_field_state_active": "Actif",
+  "key_management_service_dashboard_dashboard_field_state_deleted": "Supprimé",
+  "key_management_service_dashboard_dashboard_field_state_suspended": "Suspendu",
+  "key_management_service_dashboard_dashboard_field_state_toActivate": "À activer",
+  "key_management_service_dashboard_dashboard_field_state_toDelete": "À supprimer",
+  "key_management_service_dashboard_dashboard_field_state_toSuspend": "À suspendre"
 }
