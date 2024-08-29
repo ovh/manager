@@ -195,5 +195,7 @@
   "sidebar_identity_security_operations": "Identidad, Seguridad y Operaciones",
   "sidebar_key-management-service": "Key Management Service",
   "sidebar_pci_ai_dashboard": "AI Dashboard",
-  "sidebar_reduce": "Minimizar"
+  "sidebar_reduce": "Minimizar",
+  "sidebar_security_operations": "Operaciones",
+  "sidebar_security_identity": "Identidad y seguridad"
 }
