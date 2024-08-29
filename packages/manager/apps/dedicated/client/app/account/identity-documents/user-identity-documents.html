@@ -23,28 +23,26 @@
         ></span>
     </oui-message>
 
-    <!--My Identity document title-->
-    <h2
-        class="oui-heading_4 mb-1 mt-3"
-        data-translate="user_account_identity_documents_title"
-    ></h2>
     <!--My Identity document description-->
     <div class="oui-tile__body">
         <span data-translate="user_account_identity_documents_intro"></span>
-        <h2
-            data-translate="user_account_identity_documents_upload"
-            class="oui-heading_4 mt-2 mb-1"
-        ></h2>
-        <p
-            data-ng-if="$ctrl.user_type === $ctrl.USER_TYPE.default"
-            data-translate="user_account_identity_documents_intro_others"
-            class="font-italic font-weight-bold"
-        ></p>
     </div>
-    <account-upload-identity-documents-requirements
-        data-user-type="$ctrl.user_type"
-    ></account-upload-identity-documents-requirements>
-    <!--End of Header section-->
+
+    <div class="d-flex w-75 flex-column mt-3" data-ng-if="$ctrl.isListView">
+        <div
+            data-ng-repeat="(proof, values) in $ctrl.proofs"
+            class="d-flex w-100"
+        >
+            <account-upload-identity-documents-proof-tile
+                class="d-flex w-100 my-2"
+                data-user-type="{{$ctrl.user_type}}"
+                data-proof="{{proof}}"
+                data-extended="values.extended"
+                data-on-click="$ctrl.selectProofType(proof)"
+                data-is-loaded="$ctrl.files.length !== 0"
+            ></account-upload-identity-documents-proof-tile>
+        </div>
+    </div>
 </div>
 
 <!-- Loader -->
