@@ -494,9 +494,22 @@ pciNode.children = [
     idAttr: 'pci-ai-link',
     universe: pciNode.id,
     translation: 'sidebar_pci_ai',
-    features: ['notebooks', 'ai-apps', 'training'],
+    features: ['notebooks', 'ai-apps', 'training', 'ai-dashboard'],
     forceVisibility: true,
     children: [
+      {
+        id: 'pci-ai-dashboard',
+        idAttr: 'pci-ai-dashboard-link',
+        universe: pciNode.id,
+        translation: 'sidebar_pci_ai_dashboard',
+        serviceType: 'CLOUD_PROJECT_AI_DASHBOARD',
+        routing: {
+          application: 'public-cloud',
+          hash: '#/pci/projects/{projectId}/ai-dashboard/home',
+        },
+        features: ['ai-dashboard'],
+        forceVisibility: true,
+      },
       {
         id: 'pci-ai-notebooks',
         idAttr: 'pci-ai-notebooks-link',
