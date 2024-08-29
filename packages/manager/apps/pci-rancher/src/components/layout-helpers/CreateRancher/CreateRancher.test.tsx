@@ -35,6 +35,10 @@ jest.mock('@ovhcloud/manager-components', () => ({
   PciDiscoveryBanner: jest.fn(
     () => 'pci_projects_project_activate_project_banner_message',
   ),
+  useCatalogPrice: jest.fn(() => ({
+    getFormattedHourlyCatalogPrice: jest.fn(() => 0.0171),
+    getFormattedMonthlyCatalogPrice: jest.fn(() => 12.312),
+  })),
 }));
 
 jest.mock('react-router-dom', () => ({
