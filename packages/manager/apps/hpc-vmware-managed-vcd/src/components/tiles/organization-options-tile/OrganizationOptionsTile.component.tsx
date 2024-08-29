@@ -1,8 +1,8 @@
+import React from 'react';
 import { CommonTitle } from '@ovhcloud/manager-components';
 import { OsdsDivider, OsdsTile } from '@ovhcloud/ods-components/react';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
-import TileSubtitle from '../tile-subtitle/TileSubtitle.component';
+import OptionsTileLicense from './OptionsTileLicense';
 
 export default function OrganizationOptionsTile() {
   const { t } = useTranslation('dashboard');
@@ -12,9 +12,7 @@ export default function OrganizationOptionsTile() {
       <div className="flex flex-col w-full">
         <CommonTitle>{t('managed_vcd_dashboard_options')}</CommonTitle>
         <OsdsDivider separator />
-        <TileSubtitle>
-          {t('managed_vcd_dashboard_windows_licence')}
-        </TileSubtitle>
+        <OptionsTileLicense />
       </div>
     </OsdsTile>
   );

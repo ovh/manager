@@ -4,6 +4,7 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import React from 'react';
 import OrganizationOptionsTile from './OrganizationOptionsTile.component';
 
 describe('OrganizationOptionsTile component unit test suite', () => {
@@ -23,7 +24,7 @@ describe('OrganizationOptionsTile component unit test suite', () => {
     );
 
     // and
-    const licenceTitle = getByText('managed_vcd_dashboard_windows_licence');
+    const licenceTitle = getByText('managed_vcd_dashboard_windows_license');
     expect(licenceTitle).toHaveAttribute(
       'size',
       ODS_THEME_TYPOGRAPHY_SIZE._200,
