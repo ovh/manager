@@ -44,10 +44,7 @@
         <div
             data-ng-class="'row row-cols-xs-1 row-cols-md-' + $ctrl.files.length + ' my-3'"
         >
-            <div
-                class="col d-flex flex-column justify-content-end"
-                data-ng-repeat="(index, file) in $ctrl.files"
-            >
+            <div class="col" data-ng-repeat="(index, file) in $ctrl.files">
                 <div>
                     <span
                         data-translate="upload-documents-details-add-document"
