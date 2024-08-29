@@ -165,8 +165,9 @@ describe('Users page', () => {
       projectId: 'projectId',
       service: {
         ...mockedService,
+        aclsEnabled: true,
         engine: database.EngineEnum.opensearch,
-      },
+      } as database.Service,
       category: 'operational',
       serviceQuery: {} as UseQueryResult<database.Service, Error>,
     });
@@ -181,6 +182,7 @@ describe('Users page', () => {
     ]);
     render(<Users />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
+      expect(screen.getByTestId('toggle-acl')).toBeInTheDocument();
       expect(screen.getByText('tableHeadACLs')).toBeInTheDocument();
     });
     // open the subrow to display acls

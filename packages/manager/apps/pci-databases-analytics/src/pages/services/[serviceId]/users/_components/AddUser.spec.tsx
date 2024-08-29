@@ -470,10 +470,13 @@ describe('Add user modal', () => {
     render(
       <AddEditUserModal
         controller={controller}
-        service={{
-          ...mockedService,
-          engine: database.EngineEnum.opensearch,
-        }}
+        service={
+          {
+            ...mockedService,
+            aclsEnabled: true,
+            engine: database.EngineEnum.opensearch,
+          } as database.Service
+        }
         isEdition={false}
         onSuccess={onSuccess}
         users={[]}
@@ -498,7 +501,6 @@ describe('Add user modal', () => {
       fireEvent.click(screen.getByTestId('acl-select-submit-button'));
     });
     await waitFor(() => {
-      screen.debug(undefined, 300000);
       const list = screen.getByTestId('acl-select-list-acl-item');
       expect(getByText(list, 'pattern*')).toBeInTheDocument();
     });

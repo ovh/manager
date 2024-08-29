@@ -215,11 +215,15 @@ export const useUserForm = ({
       };
       break;
     case database.EngineEnum.opensearch:
-      schema = openSearchSchema;
-      defaultValues = {
-        ...defaultValues,
-        acls: (editedUser as database.opensearch.User)?.acls || [],
-      };
+      if ('aclsEnabled' in service && service.aclsEnabled) {
+        schema = openSearchSchema;
+        defaultValues = {
+          ...defaultValues,
+          acls: (editedUser as database.opensearch.User)?.acls || [],
+        };
+      } else {
+        schema = baseSchema;
+      }
       break;
     default:
       schema = baseSchema;

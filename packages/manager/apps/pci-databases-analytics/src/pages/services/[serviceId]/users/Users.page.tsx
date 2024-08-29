@@ -1,6 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
-import { Plus } from 'lucide-react';
+import { InfoIcon, Plus } from 'lucide-react';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useServiceData } from '../Service.context';
 import { useGetUsers } from '@/hooks/api/database/user/useGetUsers.hook';
@@ -16,6 +16,10 @@ import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
 import AddEditUserModal from './_components/AddEditUser.component';
 import { Badge } from '@/components/ui/badge';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import ToggleAcl from './_components/ToggleAcl.component';
 
 export function breadcrumb() {
   return (
@@ -38,9 +42,11 @@ const Users = () => {
   const usersQuery = useGetUsers(projectId, service.engine, service.id, {
     refetchInterval: isUserActive && POLLING.USERS,
   });
+  const aclsEnabled = !!('aclsEnabled' in service && service.aclsEnabled);
+
   const columns: ColumnDef<GenericUser>[] = getColumns({
     displayGroupCol: service.engine === database.EngineEnum.m3db,
-    displayACLSCol: service.engine === database.EngineEnum.opensearch,
+    displayACLSCol: aclsEnabled,
     displayRolesCol: [
       database.EngineEnum.mongodb,
       database.EngineEnum.postgresql,
@@ -60,7 +66,8 @@ const Users = () => {
     },
   });
   let rowExpension = null;
-  if (service.engine === database.EngineEnum.opensearch) {
+
+  if (aclsEnabled) {
     rowExpension = (user: GenericUser) => (
       <div className="p-4">
         {'acls' in user && (
@@ -108,6 +115,7 @@ const Users = () => {
   return (
     <>
       <h2>{t('title')}</h2>
+      {service.engine === database.EngineEnum.opensearch && <ToggleAcl />}
       {service.capabilities.users?.create && (
         <Button
           data-testid="users-add-button"
@@ -124,7 +132,6 @@ const Users = () => {
           {t('addButtonLabel')}
         </Button>
       )}
-
       {usersQuery.isSuccess ? (
         <DataTable
           columns={columns}
