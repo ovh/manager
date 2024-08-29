@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.27.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.26.0...@ovhcloud/manager-components@1.27.0) (2024-08-29)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 3249] ([0fcb249](https://github.com/ovh/manager/commit/0fcb2492511b91b90e993eaf0f60279085430130))
+
+### Features
+
+- **manager-components:** update name modal add pattern ([b445485](https://github.com/ovh/manager/commit/b44548583c83d04b8e9e2768876bb978014f42ce))
+
 # [1.26.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.25.0...@ovhcloud/manager-components@1.26.0) (2024-08-14)
 
 ### Bug Fixes

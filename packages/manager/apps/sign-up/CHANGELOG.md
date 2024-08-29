@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.8.4](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.8.3...@ovh-ux/sign-up-app@3.8.4) (2024-08-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3242] ([9ba51ef](https://github.com/ovh/manager/commit/9ba51efd5ea7fe0542e3c5296a38609b95b99fc0))
+
+
+
+
+
 ## [3.8.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.8.2...@ovh-ux/sign-up-app@3.8.3) (2024-08-13)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app

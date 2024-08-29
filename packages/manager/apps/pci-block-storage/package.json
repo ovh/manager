@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-block-storage-app",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -20,7 +20,7 @@
     "@ovh-ux/manager-react-shell-client": "^0.7.0",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
     "@ovh-ux/shell": "^3.7.0",
-    "@ovhcloud/manager-components": "^1.26.0",
+    "@ovhcloud/manager-components": "^1.27.0",
     "@ovhcloud/ods-common-core": "^17.2.2",
     "@ovhcloud/ods-common-stencil": "^17.2.2",
     "@ovhcloud/ods-common-theming": "^17.2.2",
