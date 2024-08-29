@@ -9,6 +9,7 @@ import {
   KYC_ALLOWED_FILE_EXTENSIONS,
   DELAY_BETWEEN_RETRY,
   MAX_RETRIES,
+  DOCUMENTS_MATRIX,
 } from './user-identity-documents.constant';
 
 export default class AccountUserIdentityDocumentsController {
@@ -29,6 +30,7 @@ export default class AccountUserIdentityDocumentsController {
     this.KYC_STATUS = KYC_STATUS;
     this.TRACKING_TASK_TAG = TRACKING_TASK_TAG;
     this.USER_TYPE = USER_TYPE;
+    this.DOCUMENTS_MATRIX = DOCUMENTS_MATRIX;
   }
 
   $onInit() {
@@ -48,6 +50,22 @@ export default class AccountUserIdentityDocumentsController {
     this.$scope.$watchCollection('$ctrl.files', () => {
       this.isFileExtensionsValid();
     });
+
+    this.isListView = true;
+    this.proofs = this.DOCUMENTS_MATRIX[this.user_type]?.proofs;
+    this.currentProofType = null;
+  }
+
+  selectProofType(proof) {
+    if (proof) {
+      this.currentProofType = proof;
+      this.currentProof = this.proofs[proof];
+      this.isListView = false;
+    } else {
+      this.currentProofType = null;
+      this.currentProof = null;
+      this.isListView = true;
+    }
   }
 
   uploadIdentityDocuments() {
