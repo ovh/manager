@@ -39,6 +39,12 @@ export default class SoftphoneController {
         this.devices = devices;
         this.isLoading = false;
       });
+    this.softphoneService
+      .getLogo(this.billingAccount, this.serviceName)
+      .then(({ url, filename }) => {
+        this.logoUrl = url;
+        this.logoFilename = filename;
+      });
   }
 
   saveSoftphoneName(deviceId) {
@@ -146,5 +152,16 @@ export default class SoftphoneController {
           ),
         ),
       );
+  }
+
+  deleteLogo() {
+    this.softphoneService.putSoftphoneLogo(
+      this.billingAccount,
+      this.serviceName,
+    );
+  }
+
+  helpTextForLogo() {
+    return `${this.acceptedFormatsDesc} (< ${this.maxSizeLogoFile / 1000} KB)`;
   }
 }
