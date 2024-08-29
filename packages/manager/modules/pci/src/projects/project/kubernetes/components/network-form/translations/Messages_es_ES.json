@@ -7,9 +7,11 @@
   "kubernetes_network_form_gateway_private_description_p1": "Seleccione si desea usar una",
   "kubernetes_network_form_gateway_private_description_p2": "o personalizada tal como está configurado en su red privada.",
   "kubernetes_network_form_gateway_private_description_link": "Gateway gestionada de OVHcloud",
-  "kubernetes_network_form_gateway_private_description_help": "Dirección IP de su puerta de enlace o «gateway» (deje este campo en blanco si desea utilizar la puerta de enlace definida por DHCP)",
   "kubernetes_network_form_gateway_vrack_field_ip_placeholder": "Introducir una dirección IP",
   "kubernetes_network_form_gateway_vrack_field_ip_error_pattern": "Introduzca una dirección IP válida",
+  "kubernetes_network_form_gateway_mode_auto": "Puerta de enlace predeterminada definida según la configuración DHCP de la red privada (recomendado)",
+  "kubernetes_network_form_gateway_mode_custom": "Puerta de enlace predeterminada sobrecargada estáticamente",
+  "kubernetes_network_form_gateway_mode_custom_placeholder": "Dirección IP de la puerta de enlace predeterminada",
   "kubernetes_network_form_label": "Red privada asociada",
   "kubernetes_network_form_none": "Ninguna (IP públicas)",
   "kubernetes_network_form_description": "Por defecto, sus nodos de trabajo disponen de una IPv4 pública. Si elige una red privada, las IP públicas de estos nodos solo se utilizarán para su administración/el enlace con el plano de control Kubernetes, y a sus nodos se les asignará una IP en la VLAN de la red privada elegida.",
@@ -25,8 +27,5 @@
   "kubernetes_network_form_load_balancers_subnet": "Seleccione una subred dedicada para sus Load Balancers",
   "kubernetes_network_form_load_balancers_subnet_description": "Es posible definir una subred específica para los Load Balancers. Esto es sobre todo necesario si la subred elegida para su cluster no cumple los requisitos necesarios para la creación de Load Balancers administrados de OVHcloud.",
   "kubernetes_network_form_load_balancers_subnet_toggler": "Configuración avanzada",
-  "kubernetes_network_form_gateway_mode_auto": "Puerta de enlace predeterminada definida según la configuración DHCP de la red privada (recomendado)",
-  "kubernetes_network_form_gateway_mode_custom": "Puerta de enlace predeterminada sobrecargada estáticamente",
-  "kubernetes_network_form_gateway_mode_custom_placeholder": "Dirección IP de la puerta de enlace predeterminada",
   "kubernetes_network_form_rebuild": "Atención: cambiar la estrategia de enrutamiento saliente implica redesplegar los nodos de su clúster mediante un procedimiento de «rolling update»."
 }

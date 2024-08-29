@@ -35,6 +35,18 @@ exports[`Update Name Modal component renders loading modal 1`] = `
         internals-disabled=""
         type="text"
       />
+      <div
+        class="mt-5"
+      >
+        <osds-text
+          class="block"
+          color="text"
+          level="body"
+          size="100"
+        >
+          regex epression to respect
+        </osds-text>
+      </div>
     </osds-form-field>
     <div
       class="flex justify-center"

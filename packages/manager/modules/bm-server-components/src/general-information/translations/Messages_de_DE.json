@@ -8,8 +8,9 @@
   "dedicated_server_dashboard_distribution": "Betriebssystem (OS)",
   "dedicated_server_dashboard_distribution_none": "Auf Ihrem Server ist kein Betriebssystem installiert.",
   "dedicated_server_dashboard_installation_no_public_network": "Die auf Ihrem Server angewandte Netzwerkkonfiguration ermöglicht keinen Zugang zum öffentlichen Netzwerk. Daher kann kein Betriebssystem auf diesem Server (re)installiert werden. Um diese Aktion zu ermöglichen, ändern Sie bitte Ihre Netzwerkkonfiguration im Tab \"Netzwerk-Interfaces\".",
-  "dedicated_server_dashboard_reinstallation_button": "Neu installieren",
-  "dedicated_server_dashboard_installation_button": "Installieren",
+  "dedicated_server_dashboard_installation_progress_button": "Installationsfortschritt anzeigen",
+  "dedicated_server_dashboard_installation_ovh_button": "Mit einer OVHcloud Vorlage installieren",
+  "dedicated_server_dashboard_installation_gabarit_button": "Mit einer Ihrer Vorlagen installieren",
   "dedicated_server_dashboard_boot": "Boot",
   "dedicated_server_dashboard_datacenter": "Rechenzentrum",
   "dedicated_server_dashboard_netboot_unavailable": "Information nicht verfügbar",
@@ -52,8 +53,5 @@
   "server_configuration_installation_inputs_item_number_increase_tooltip": "Klicken Sie hier, um diesen Wert zu erhöhen.",
   "server_configuration_installation_inputs_item_number_decrease_tooltip": "Klicken Sie hier, um diesen Wert zu verringern.",
   "server_configuration_installation_inputs_item_keyValue_add_tooltip": "Klicken Sie hier, um ein Schlüssel-Wert-Paar hinzuzufügen.",
-  "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Klicken Sie hier, um dieses Schlüssel-Wert-Paar zu löschen.",
-  "dedicated_server_dashboard_installation_progress_button": "Installationsfortschritt anzeigen",
-  "dedicated_server_dashboard_installation_ovh_button": "Mit einer OVHcloud Vorlage installieren",
-  "dedicated_server_dashboard_installation_gabarit_button": "Mit einer Ihrer Vorlagen installieren"
+  "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Klicken Sie hier, um dieses Schlüssel-Wert-Paar zu löschen."
 }

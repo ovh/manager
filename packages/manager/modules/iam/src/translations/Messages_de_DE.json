@@ -95,6 +95,6 @@
   "iam_resource_type_xdslSpare": "Spare-xDSL-Modem",
   "iam_resource_type_ipService": "IP: Dienst",
   "iam_resource_type_okms": "Key Management System (KMS)",
-  "iam_resource_type_okms/kmip": "Key Management System (KMS) / KMIP",
-  "iam_resource_type_okms/serviceKey": "Key Management System (KMS) / Key"
+  "iam_resource_type_okms/kmip": "Key Management System (KMS)/KMIP",
+  "iam_resource_type_okms/serviceKey": "Key Management System (KMS)/Schlüssel"
 }

@@ -16,7 +16,7 @@
   "log_button_transfer_stream": "Subscribe",
   "logs_info_link": "Find out more",
   "logs_list_add_data_stream_button": "Add data stream",
-  "logs_list_subscription_success": "You have successfully subscribed!",
+  "logs_list_subscription_success": "Your subscription is now active",
   "logs_list_unsubscription_success": "Your subscription has been successfully cancelled.",
   "list_column_account": "LDP account",
   "list_column_stream_name": "Data stream",

@@ -8,7 +8,7 @@
   "displayName": "Name",
   "productStatus": "Status",
   "region": "Region",
-  "vrackId": "Private network (vRack)",
+  "vrackId": "Private network",
   "createdAt": "Created on",
   "ERI": "London (ERI)",
   "BHS": "Beauharnois (BHS)",

@@ -7,9 +7,11 @@
   "kubernetes_network_form_gateway_private_description_p1": "Select if you want to use a",
   "kubernetes_network_form_gateway_private_description_p2": "or customised as configured in your private network.",
   "kubernetes_network_form_gateway_private_description_link": "OVHcloud Managed Gateway",
-  "kubernetes_network_form_gateway_private_description_help": "IP address of your gateway (leave empty to use the gateway defined by DHCP)",
   "kubernetes_network_form_gateway_vrack_field_ip_placeholder": "Enter an IP address",
   "kubernetes_network_form_gateway_vrack_field_ip_error_pattern": "Please enter a valid IP address",
+  "kubernetes_network_form_gateway_mode_auto": "Default gateway set according to your private network DHCP configuration (recommended)",
+  "kubernetes_network_form_gateway_mode_custom": "Default gateway statically overloaded",
+  "kubernetes_network_form_gateway_mode_custom_placeholder": "IP address of your default gateway",
   "kubernetes_network_form_label": "Private network attached",
   "kubernetes_network_form_none": "None (public IPs)",
   "kubernetes_network_form_description": "By default, your worker nodes have a public IPv4. If you choose a private network, the public IPs of these nodes will be used exclusively for administration/linking to the Kubernetes control plane, and your nodes will be assigned an IP on the vLAN of the private network you have chosen.",
@@ -25,8 +27,5 @@
   "kubernetes_network_form_load_balancers_subnet": "Choose a dedicated subnet for your Load Balancers",
   "kubernetes_network_form_load_balancers_subnet_description": "You can define a specific subnet for your Load Balancers. This is particularly important if the subnet you have chosen for your cluster does not meet the requirements for creating OVHcloud Managed Load Balancers.",
   "kubernetes_network_form_load_balancers_subnet_toggler": "Advanced settings",
-  "kubernetes_network_form_gateway_mode_auto": "Default gateway set according to your private network DHCP configuration (recommended)",
-  "kubernetes_network_form_gateway_mode_custom": "Default gateway statically overloaded",
-  "kubernetes_network_form_gateway_mode_custom_placeholder": "IP address of your default gateway",
   "kubernetes_network_form_rebuild": "Warning: To change the outgoing routing strategy, you need to redeploy your cluster’s nodes using a rolling update process."
 }

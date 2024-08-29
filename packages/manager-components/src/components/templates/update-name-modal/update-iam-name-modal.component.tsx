@@ -22,12 +22,8 @@ export const UpdateIamNameModal: React.FC<UpdateIamNameModalProps> = ({
   mutationKey,
   ...props
 }) => {
-  const {
-    updateDisplayName,
-    isPending,
-    error,
-    isError,
-  } = useUpdateServiceDisplayName({ onSuccess, onError, mutationKey });
+  const { updateDisplayName, isPending, error, isError } =
+    useUpdateServiceDisplayName({ onSuccess, onError, mutationKey });
 
   return (
     <UpdateNameModal
