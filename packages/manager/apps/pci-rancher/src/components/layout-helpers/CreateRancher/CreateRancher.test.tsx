@@ -29,25 +29,12 @@ jest.mock('react-use', () => ({
 }));
 
 jest.mock('@ovhcloud/manager-components', () => ({
+  ...jest.requireActual('@ovhcloud/manager-components'),
   Subtitle: jest.fn(),
   Title: jest.fn(),
   PciDiscoveryBanner: jest.fn(
     () => 'pci_projects_project_activate_project_banner_message',
   ),
-  useCatalogPrice: jest.fn((type) => {
-    switch (type) {
-      case 5:
-        return {
-          getFormattedHourlyCatalogPrice: jest.fn((price) => price),
-        };
-      case 1:
-        return {
-          getFormattedMonthlyCatalogPrice: jest.fn((price) => price),
-        };
-      default:
-        return {};
-    }
-  }),
 }));
 
 jest.mock('react-router-dom', () => ({
@@ -64,6 +51,10 @@ jest.mock('@ovh-ux/manager-react-shell-client', () => ({
     trackPage: jest.fn(),
     trackClick: jest.fn(),
   })),
+}));
+
+jest.mock('@/api/api.type', () => ({
+  ...jest.requireActual('@/api/api.type'),
 }));
 
 const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>

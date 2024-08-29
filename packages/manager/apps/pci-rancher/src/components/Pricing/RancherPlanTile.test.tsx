@@ -5,6 +5,7 @@ import { render, waitFor } from '@/utils/test/test.provider';
 
 const mockedUsedNavigate = jest.fn();
 const mockSetSelectedPlan = jest.fn();
+const [standardPlan] = rancherPlan;
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -30,13 +31,14 @@ const setupSpecTest = async (props?: Partial<RancherPlanTileProps>) =>
   waitFor(() =>
     render(
       <RancherPlanTile
-        plan={rancherPlan[1]}
+        plan={standardPlan}
         name="Test Plan"
-        selectedPlan={rancherPlan[1]}
+        selectedPlan={standardPlan}
         setSelectedPlan={mockSetSelectedPlan}
         planDescription="Description"
-        hourlyPrice="$10"
-        monthlyPrice="$100"
+        formattedHourlyPrice="0,00685 € HT / heure"
+        formattedMonthlyPrice="4,93 € HT / mois"
+        isPricing={true}
         {...props}
       />,
     ),
@@ -47,7 +49,7 @@ describe('RancherPlanTile', () => {
     const screen = await setupSpecTest();
     expect(screen.getByText('Test Plan')).toBeInTheDocument();
     expect(screen.getByText('Description')).toBeInTheDocument();
-    expect(screen.getByText('$10')).toBeInTheDocument();
-    expect(screen.getByText('~ $100')).toBeInTheDocument();
+    expect(screen.getByText('0,00685 € HT / heure')).toBeInTheDocument();
+    expect(screen.getByText('~ 4,93 € HT / mois')).toBeInTheDocument();
   });
 });

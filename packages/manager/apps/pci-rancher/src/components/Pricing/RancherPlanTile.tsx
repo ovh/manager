@@ -11,8 +11,9 @@ export interface RancherPlanTileProps {
   selectedPlan: RancherPlan;
   setSelectedPlan: (plan: RancherPlan) => void;
   planDescription: string | null;
-  hourlyPrice: string;
-  monthlyPrice: string;
+  formattedHourlyPrice: string;
+  formattedMonthlyPrice: string;
+  isPricing: boolean;
 }
 
 const RancherPlanTile: React.FC<RancherPlanTileProps> = ({
@@ -21,8 +22,9 @@ const RancherPlanTile: React.FC<RancherPlanTileProps> = ({
   selectedPlan,
   setSelectedPlan,
   planDescription,
-  hourlyPrice,
-  monthlyPrice,
+  formattedHourlyPrice,
+  formattedMonthlyPrice,
+  isPricing,
 }) => {
   return (
     <li key={plan.name}>
@@ -35,7 +37,12 @@ const RancherPlanTile: React.FC<RancherPlanTileProps> = ({
         )}
       >
         <div>
-          <div className="border-solid border-0 border-b border-b-[#bef1ff] w-full mx-3 pb-2 text-[#4d5592] text-sm">
+          <div
+            className={clsx(
+              'border-0 border-b border-b-[#bef1ff] w-full mx-3 pb-2 text-[#4d5592] text-sm',
+              isPricing && 'border-solid',
+            )}
+          >
             <div
               className={clsx(
                 'border-b-[--ods-color-blue-100] font-bold pb-2',
@@ -44,21 +51,29 @@ const RancherPlanTile: React.FC<RancherPlanTileProps> = ({
             >
               <span>{name}</span>
             </div>
-            <div className="pt-2 pb-8 text-[#4d5592] font-sans text-xs">
+            <div
+              className={clsx(
+                'pt-2 text-[#4d5592] font-sans text-xs',
+                isPricing && ' pb-8',
+              )}
+            >
               {planDescription}
             </div>
           </div>
-          <div className="text-center border-t border-t-[#bef1ff]">
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              className="block pt-4"
-            >
-              <strong>{hourlyPrice}</strong>
-            </OsdsText>
-            <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="block">
-              ~ {monthlyPrice}
-            </OsdsText>
-          </div>
+          {isPricing && (
+            <div className="text-center border-t border-t-[#bef1ff]">
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                className="block pt-4"
+              >
+                <strong>{formattedHourlyPrice}</strong>
+              </OsdsText>
+              <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="block">
+                ~ {formattedMonthlyPrice}
+              </OsdsText>
+              <div></div>
+            </div>
+          )}
         </div>
       </OsdsTile>
     </li>

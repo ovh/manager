@@ -22,7 +22,7 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMedia } from 'react-use';
 
@@ -134,8 +134,6 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const isValidName = rancherName !== '' && isValidRancherName(rancherName);
   const hasInputError = rancherName !== '' && !isValidName;
   const isCreateRancherAllowed = isValidName && !isProjectDiscoveryMode;
-  const { getFormattedHourlyCatalogPrice } = useCatalogPrice(5);
-  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(1);
 
   const { t } = useTranslation([
     'pci-rancher/dashboard',
@@ -145,6 +143,8 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const trackAction = useTrackingAction();
   const simpleTrackAction = useSimpleTrackingAction();
   const isDesktop: boolean = useMedia(`(min-width: 760px)`);
+  const { getFormattedHourlyCatalogPrice } = useCatalogPrice(5);
+  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(2);
 
   useEffect(() => {
     if (selectedPlan === null && plans?.length) {
@@ -154,7 +154,6 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         )[0],
       );
     }
-
     if (selectedVersion === null && versions?.length) {
       const availableVersions = versions.filter(
         (version) => version.status === 'AVAILABLE',
@@ -188,6 +187,13 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
 
   const sortedVersions: RancherVersion[] = versions?.sort((a, b) =>
     b.name.localeCompare(a.name),
+  );
+
+  const getPricing = useCallback(
+    (plan: RancherPlan) => {
+      return pricing?.find((p) => p.name === plan.name);
+    },
+    [pricing],
   );
 
   return (
@@ -272,23 +278,25 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
               isDesktop ? 'grid-cols-3' : 'grid-cols-1',
             )}
           >
-            {plans &&
-              plans?.map((plan) => (
-                <RancherPlanTile
-                  key={plan.name}
-                  name={t(plan.name)}
-                  plan={plan}
-                  selectedPlan={selectedPlan}
-                  setSelectedPlan={setSelectedPlan}
-                  planDescription={t(getRancherPlanDescription(plan.name))}
-                  hourlyPrice={getFormattedHourlyCatalogPrice(
-                    pricing?.find((p) => p.name === plan.name)?.hourlyPrice,
-                  )}
-                  monthlyPrice={getFormattedMonthlyCatalogPrice(
-                    pricing?.find((p) => p.name === plan.name)?.monthlyPrice,
-                  )}
-                />
-              ))}
+            {plans?.map((plan) => (
+              <RancherPlanTile
+                key={plan.name}
+                name={t(plan.name)}
+                plan={plan}
+                selectedPlan={selectedPlan}
+                setSelectedPlan={setSelectedPlan}
+                planDescription={t(getRancherPlanDescription(plan.name))}
+                formattedHourlyPrice={getFormattedHourlyCatalogPrice(
+                  getPricing(plan)?.hourlyPrice,
+                )}
+                formattedMonthlyPrice={getFormattedMonthlyCatalogPrice(
+                  getPricing(plan)?.monthlyPrice,
+                )}
+                isPricing={
+                  !!pricing?.some((p) => p.hourlyPrice || p.monthlyPrice)
+                }
+              />
+            ))}
           </ul>
         </div>
         <Block>

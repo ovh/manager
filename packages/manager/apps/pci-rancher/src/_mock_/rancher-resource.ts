@@ -7,12 +7,12 @@ import {
 
 export const rancherPlansPricing: TRancherPricing[] = [
   {
-    name: RancherPlanName.OVHCLOUD_EDITION,
+    name: 'OVHCLOUD_EDITION',
     hourlyPrice: 0.00685,
     monthlyPrice: 4.932,
   },
   {
-    name: RancherPlanName.STANDARD,
+    name: 'STANDARD',
     hourlyPrice: 0.0171,
     monthlyPrice: 12.312,
   },

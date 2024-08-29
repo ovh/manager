@@ -8,23 +8,15 @@ import {
 export const useRancherPrices = () => {
   const { data: catalog, isLoading, isError } = useCatalog();
 
-  if (!catalog || !catalog.addons.length) {
-    throw new Error('Catalog not available');
-  }
-
   const getRancherPrice = (planCode: string) => {
     const plan = catalog?.addons.find(
       (element) => element.planCode === planCode,
     );
 
-    if (!plan) {
-      throw new Error(`Plan ${planCode} not found`);
-    }
-
     const isConsumption = plan?.pricings?.[0]?.capacities.includes(
       'consumption',
     );
-    const hourlyPrice = plan?.pricings?.[0]?.price * 100_000_000 || 0;
+    const hourlyPrice = plan?.pricings?.[0]?.price || 0;
     const monthlyPrice = hourlyPrice * 720 || 0;
 
     const selectedPlan = planCode.includes('ovhcloud')
