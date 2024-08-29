@@ -17,7 +17,7 @@
   "user_account_menu_role_none": "Lecture seule",
   "user_account_menu_role_provider": "SSO",
   "user_account_menu_user_id": "Identifiant : <strong>{{nichandle}}</strong>",
-  "user_account_menu_notification_email": "Notification : {{email}}",
+  "user_account_menu_notification_email": "Notification : ",
   "user_account_menu_notification_email_strong": "Notification : <strong>{{email}}</strong>",
   "user_account_menu_profile": "Mon compte",
   "user_account_menu_my_invoices": "Mes factures",
