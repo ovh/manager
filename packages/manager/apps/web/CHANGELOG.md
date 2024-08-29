@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.34.0...@ovh-ux/manager-web@18.34.1) (2024-08-29)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([4371b0d](https://github.com/ovh/manager/commit/4371b0d281ed667fda75a4d9fbf1fb677148087a))
+
+
+
+
+
 # [18.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.33.0...@ovh-ux/manager-web@18.34.0) (2024-08-26)
 
 

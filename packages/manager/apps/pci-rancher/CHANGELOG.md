@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.12.2...@ovh-ux/manager-pci-rancher-app@1.12.3) (2024-08-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3262] ([9105f1e](https://github.com/ovh/manager/commit/9105f1e2b196906da75b9a95602a00c72960ea1f))
+
+
+
+
+
 ## [1.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.12.1...@ovh-ux/manager-pci-rancher-app@1.12.2) (2024-08-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app

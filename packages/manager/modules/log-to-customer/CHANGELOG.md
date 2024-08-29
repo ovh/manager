@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.3.0...@ovh-ux/manager-log-to-customer@2.3.1) (2024-08-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3253] ([a292edf](https://github.com/ovh/manager/commit/a292edfc15ff67ea344592a60b55110fabd93907))
+* **i18n:** add missing translations [CDS 3268] ([e49f1c0](https://github.com/ovh/manager/commit/e49f1c04cfd115e9559a01bf52c04b2130c24042))
+
+
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.2.0...@ovh-ux/manager-log-to-customer@2.3.0) (2024-08-13)
 
 

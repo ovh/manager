@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.12.0...@ovh-ux/manager-generator@0.12.1) (2024-08-29)
+
+
+### Bug Fixes
+
+* **generator:** fix tsconfig and package json ([8dfab9e](https://github.com/ovh/manager/commit/8dfab9efdcadeaf79f9282390308b798a3b6e145))
+
+
+
+
+
 # [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.11.0...@ovh-ux/manager-generator@0.12.0) (2024-08-14)
 
 
