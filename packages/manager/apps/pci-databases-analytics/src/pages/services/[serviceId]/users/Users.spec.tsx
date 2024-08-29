@@ -74,6 +74,8 @@ describe('Users page', () => {
         })),
       };
     });
+    const mockScrollIntoView = vi.fn();
+    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
   });
   afterEach(() => {
     vi.clearAllMocks();
@@ -156,6 +158,43 @@ describe('Users page', () => {
     render(<Users />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText('testGroup')).toBeInTheDocument();
+    });
+  });
+  it('renders acl column for opensearch', async () => {
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
+      projectId: 'projectId',
+      service: {
+        ...mockedService,
+        engine: database.EngineEnum.opensearch,
+      },
+      category: 'operational',
+      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+    });
+    vi.mocked(usersApi.getUsers).mockResolvedValue([
+      {
+        ...mockedDatabaseUser,
+        acls: [
+          { pattern: 'pattern1', permission: 'admin' },
+          { pattern: 'pattern2', permission: 'read' },
+        ],
+      },
+    ]);
+    render(<Users />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByText('tableHeadACLs')).toBeInTheDocument();
+    });
+    // open the subrow to display acls
+    act(() => {
+      const expandButton = screen.getAllByTestId('table-row-expand-button')[0];
+      fireEvent.click(expandButton);
+    });
+    await waitFor(() => {
+      expect(screen.getByText('tableHeadPattern')).toBeInTheDocument();
+      expect(screen.getByText('tableHeadPermission')).toBeInTheDocument();
+      expect(screen.getByText('pattern1')).toBeInTheDocument();
+      expect(screen.getByText('pattern2')).toBeInTheDocument();
+      expect(screen.getByText('admin')).toBeInTheDocument();
+      expect(screen.getByText('read')).toBeInTheDocument();
     });
   });
   it('displays add user button if capability is present', async () => {

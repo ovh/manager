@@ -8,13 +8,14 @@ import { GenericUser } from '@/data/api/database/user.api';
 import * as database from '@/types/cloud/project/database';
 import { getColumns } from './_components/UsersTableColumns.component';
 import { Button } from '@/components/ui/button';
-import { DataTable } from '@/components/ui/data-table';
+import { DataTable, SortableHeader } from '@/components/ui/data-table';
 import { useModale } from '@/hooks/useModale';
 import DeleteUser from './_components/DeleteUser.component';
 import ResetUserPassword from './_components/ResetUserPassword.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
 import AddEditUserModal from './_components/AddEditUser.component';
+import { Badge } from '@/components/ui/badge';
 
 export function breadcrumb() {
   return (
@@ -39,6 +40,7 @@ const Users = () => {
   });
   const columns: ColumnDef<GenericUser>[] = getColumns({
     displayGroupCol: service.engine === database.EngineEnum.m3db,
+    displayACLSCol: service.engine === database.EngineEnum.opensearch,
     displayRolesCol: [
       database.EngineEnum.mongodb,
       database.EngineEnum.postgresql,
@@ -57,6 +59,42 @@ const Users = () => {
       addEditModale.open(user.id);
     },
   });
+  let rowExpension = null;
+  if (service.engine === database.EngineEnum.opensearch) {
+    rowExpension = (user: GenericUser) => (
+      <div className="p-4">
+        {'acls' in user && (
+          <DataTable
+            columns={[
+              {
+                id: 'pattern',
+                header: ({ column }) => (
+                  <SortableHeader column={column}>
+                    {t('tableHeadPattern')}
+                  </SortableHeader>
+                ),
+                accessorFn: (row) => row.pattern,
+              },
+              {
+                id: 'permission',
+                header: ({ column }) => (
+                  <SortableHeader column={column}>
+                    {t('tableHeadPermission')}
+                  </SortableHeader>
+                ),
+                accessorFn: (row) => row.permission,
+                cell: ({ row }) => (
+                  <Badge variant="outline">{row.original.permission}</Badge>
+                ),
+              },
+            ]}
+            data={user.acls}
+            pageSize={5}
+          />
+        )}
+      </div>
+    );
+  }
 
   const userToDelete = usersQuery.data?.find(
     (u) => u.id === deleteModale.value,
@@ -88,7 +126,12 @@ const Users = () => {
       )}
 
       {usersQuery.isSuccess ? (
-        <DataTable columns={columns} data={usersQuery.data} pageSize={25} />
+        <DataTable
+          columns={columns}
+          data={usersQuery.data}
+          pageSize={25}
+          renderRowExpansion={rowExpension}
+        />
       ) : (
         <div data-testid="users-table-skeleton">
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />

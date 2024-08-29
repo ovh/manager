@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { ChevronDown, ChevronUp, ChevronsUpDown, ChevronLeft, ChevronRight, ChevronFirst, ChevronLast } from 'lucide-react';
 import {
   ColumnDef,
@@ -43,7 +43,7 @@ export function DataTablePagination<TData>({
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
-              {[10, 25, 50, 100, 300].map((pageSize) => (
+              {[5, 10, 25, 50, 100, 300].map((pageSize) => (
                 <SelectItem key={pageSize} value={`${pageSize}`}>
                   {pageSize}
                 </SelectItem>
@@ -102,14 +102,18 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   pageSize?: number;
+  renderRowExpansion?: (row: TData) => ReactElement | null;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   pageSize,
+  renderRowExpansion,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
+
   const table = useReactTable({
     data,
     columns,
@@ -125,6 +129,14 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  const toggleRowExpansion = (rowId: string) => {
+    setExpandedRows((prev) => ({
+      ...prev,
+      [rowId]: !prev[rowId],
+    }));
+  };
+
+
   return (
     <>
       <div>
@@ -132,6 +144,9 @@ export function DataTable<TData, TValue>({
           <TableHeader className="bg-primary-100 text-primary-700 border border-primary-100">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id} className="hover:bg-primary-100">
+                {renderRowExpansion && (
+                  <TableHead></TableHead>
+                )}
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead key={header.id} className="text-primary-700">
@@ -150,11 +165,23 @@ export function DataTable<TData, TValue>({
           <TableBody className="border border-primary-100">
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
+                <React.Fragment key={row.id}>
                 <TableRow
                   className="border-primary-100"
-                  key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
                 >
+                  {renderRowExpansion && (
+                    <TableCell>
+                      <Button variant='ghost' onClick={() => toggleRowExpansion(row.id)} data-testid="table-row-expand-button">
+                      {expandedRows[row.id] ? (
+                            <ChevronUp className="h-4 w-4" />
+                          ) : (
+                            <ChevronDown className="h-4 w-4" />
+                          )
+                        }
+                      </Button>
+                    </TableCell>
+                  )}
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       {flexRender(
@@ -164,6 +191,14 @@ export function DataTable<TData, TValue>({
                     </TableCell>
                   ))}
                 </TableRow>
+                {expandedRows[row.id] && renderRowExpansion && (
+                  <TableRow>
+                    <TableCell colSpan={columns.length + 1}>
+                      {renderRowExpansion(row.original)}
+                    </TableCell>
+                  </TableRow>
+                )}
+                </React.Fragment>
               ))
             ) : (
               <TableRow>

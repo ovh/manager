@@ -39,6 +39,8 @@ import { useUserForm } from './formUser/useUserForm.hook';
 import RolesSelect from './formUser/RolesSelect.component';
 import { useServiceData } from '../../Service.context';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import AclsSelect from './formUser/AclsSelect.component';
+import { UserAcl } from '@/types/cloud/project/database/opensearch';
 
 interface AddEditUserModalProps {
   isEdition: boolean;
@@ -313,6 +315,21 @@ const AddEditUserModal = ({
                           >).element
                         }
                       />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
+            {'acls' in schema.shape && (
+              <FormField
+                control={form.control}
+                name="acls"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('formUserFieldAclsLabel')}</FormLabel>
+                    <FormControl>
+                      <AclsSelect {...field} value={field.value as UserAcl[]} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
