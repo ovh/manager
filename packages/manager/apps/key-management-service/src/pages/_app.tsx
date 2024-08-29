@@ -1,3 +1,5 @@
+// TODO: delete this file
+
 import React from 'react';
 import i18next from 'i18next';
 

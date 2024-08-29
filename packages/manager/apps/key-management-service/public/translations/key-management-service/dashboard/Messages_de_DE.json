@@ -37,7 +37,7 @@
   "key_management_service_dashboard_region_labeu_west_1_preprod": "LABEU (Frankreich – Croix) (PREPROD)",
   "key_management_service_dashboard_region_labeu_west_1_dev_1": "LABEU (Frankreich – Croix) (DEV-1)",
   "key_management_service_dashboard_region_labeu_west_1_dev_2": "LABEU (Frankreich – Croix) (DEV-2)",
-  "billing_informations": "Abonnement",
+  "billing_informations": "Mein Angebot",
   "key_management_service_dashboard_field_label_creation_date": "Erstellungsdatum",
   "key_management_service_dashboard_field_label_next_billing_date": "Nächstes Zahlungsdatum",
   "key_management_service_dashboard_field_label_engagement": "Vertragsbindung",
@@ -48,5 +48,13 @@
   "key_management_service_dashboard_contact_type_administrator": "Administrator",
   "key_management_service_dashboard_contact_type_technical": "Technisch",
   "key_management_service_dashboard_contact_type_billing": "Abrechnung",
-  "key_management_service_dashboard_action_billing_terminate": "Kündigen"
+  "key_management_service_dashboard_action_billing_terminate": "Kündigen",
+  "service_status": "Zustand des Dienstes",
+  "key_management_service_dashboard_field_label_state": "Status",
+  "key_management_service_dashboard_dashboard_field_state_active": "Aktiv",
+  "key_management_service_dashboard_dashboard_field_state_deleted": "Gelöscht",
+  "key_management_service_dashboard_dashboard_field_state_suspended": "Ausgesetzt",
+  "key_management_service_dashboard_dashboard_field_state_toActivate": "Zu aktivieren",
+  "key_management_service_dashboard_dashboard_field_state_toDelete": "Zu löschen",
+  "key_management_service_dashboard_dashboard_field_state_toSuspend": "Auszusetzen"
 }
