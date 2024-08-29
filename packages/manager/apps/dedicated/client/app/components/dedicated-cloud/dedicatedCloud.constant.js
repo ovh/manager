@@ -28,7 +28,7 @@ export const VCD_GUIDE_LINKS = {
   FR: {
     OFFER: 'https://www.ovhcloud.com/fr/lp/vmware-vcd-evolution/',
     TERMS:
-      'https://help.ovhcloud.com/csm/fr-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad&spa=1',
+      'https://storage.gra.cloud.ovh.net/v1/AUTH_325716a587c64897acbef9a4a4726e38/contracts/c0f4445-OVHcloud_managed_vcd-FR-1.0.pdf',
     MIGRATION:
       'https://help.ovhcloud.com/csm/fr-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad&spa=1',
   },
