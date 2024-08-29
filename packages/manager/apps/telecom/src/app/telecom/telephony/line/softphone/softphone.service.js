@@ -104,7 +104,7 @@ export default class SofpthoneService {
       .then(({ data }) => data);
   }
 
-  putSoftphoneLogo(billingAccount, serviceName, filename, url) {
+  putSoftphoneLogo(billingAccount, serviceName, filename = '', url = '') {
     return this.$http
       .put(`/telephony/${billingAccount}/line/${serviceName}/softphone/logo`, {
         filename,
@@ -158,6 +158,7 @@ export default class SofpthoneService {
    */
 
   uploadDocument(file) {
+    let globalGetUrl = null;
     const createDocument = () =>
       this.$http
         .post('/me/document', {
@@ -177,9 +178,10 @@ export default class SofpthoneService {
             'Content-type': 'multipart/form-data',
           },
         })
-        .then(() => putUrl);
+        .then(() => globalGetUrl);
 
-    return createDocument().then(({ putUrl }) => {
+    return createDocument().then(({ putUrl, getUrl }) => {
+      globalGetUrl = getUrl;
       return applyCors().then(() => saveDocumentFile(putUrl));
     });
   }
