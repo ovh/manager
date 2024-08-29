@@ -11,10 +11,10 @@
     <div data-wizard-step data-wizard-step-valid="$ctrl.isFormValid()">
         <form novalidate name="$ctrl.newKmsForm">
             <oui-field
-                data-label="{{:: 'dedicatedCloud_vm_encryption_kms_ip' | translate }}"
+                data-label="{{:: 'dedicatedCloud_vm_encryption_kms_domain_or_ip' | translate }}"
                 data-error-messages="{
                             required: ('dedicatedCloud_vm_encryption_kms_required_field' | translate),
-                            pattern: ('dedicatedCloud_vm_encryption_add_kms_ip_invalid_format' | translate)
+                            pattern: ('dedicatedCloud_vm_encryption_add_kms_domain_or_ip_invalid_format' | translate)
                         }"
             >
                 <input
@@ -23,7 +23,7 @@
                     id="ip"
                     name="ip"
                     data-ng-model="$ctrl.kms.ip"
-                    data-ng-pattern="$ctrl.regex.ip"
+                    data-ng-pattern="$ctrl.regex.domainOrIp"
                     data-required
                 />
             </oui-field>
@@ -39,19 +39,19 @@
                 />
             </oui-field>
             <oui-field
-                data-label="{{:: 'dedicatedCloud_vm_encryption_kms_sslThumbprint' | translate }}"
+                data-label="{{:: 'dedicatedCloud_vm_encryption_kms_tls_fingerprint' | translate }}"
                 data-error-messages="{
                             required: ('dedicatedCloud_vm_encryption_kms_required_field' | translate),
-                            pattern: ('dedicatedCloud_vm_encryption_kms_sslThumbprint_invalid_format' | translate)
+                            pattern: ('dedicatedCloud_vm_encryption_kms_tls_fingerprint_invalid_format' | translate)
                         }"
             >
                 <input
                     class="oui-input"
                     type="text"
-                    id="sslThumbprint"
-                    name="sslThumbprint"
-                    data-ng-model="$ctrl.kms.sslThumbprint"
-                    data-ng-pattern="$ctrl.regex.sslThumbprint"
+                    id="tls_fingerprint"
+                    name="tls_fingerprint"
+                    data-ng-model="$ctrl.kms.tlsFingerprint"
+                    data-ng-pattern="$ctrl.regex.tlsFingerprint"
                     required
                 />
             </oui-field>

@@ -13,8 +13,8 @@ export default class {
     this.DedicatedCloud = DedicatedCloud;
 
     this.regex = {
-      ip: VM_ENCRYPTION_KMS.regex.ip,
-      sslThumbprint: VM_ENCRYPTION_KMS.regex.sslThumbprint,
+      domainOrIp: VM_ENCRYPTION_KMS.regex.domainOrIp,
+      tlsFingerprint: VM_ENCRYPTION_KMS.regex.tlsFingerprint,
     };
   }
 
@@ -24,7 +24,7 @@ export default class {
     this.kms = {
       ip: null,
       description: null,
-      sslThumbprint: null,
+      tlsFingerprint: null,
     };
 
     this.kmsCreationTask = {
