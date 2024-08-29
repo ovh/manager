@@ -5,6 +5,10 @@ export default {
   controller,
   template,
   bindings: {
-    userType: '<',
+    proof: '@',
+    userType: '@',
+    extended: '<',
+    isLoaded: '<',
+    onClick: '&',
   },
 };
