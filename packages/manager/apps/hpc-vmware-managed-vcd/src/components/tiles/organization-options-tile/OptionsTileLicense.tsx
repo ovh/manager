@@ -9,7 +9,7 @@ export default function OptionsTileLicense() {
   const { t } = useTranslation('dashboard');
   const { id } = useParams();
   const { data: vcdOrganization } = useManagedVcdOrganization(id);
-  const isLicenseActive = vcdOrganization.data.currentState.spla;
+  const isLicenseActive = vcdOrganization?.data?.currentState?.spla;
 
   return isLicenseActive ? (
     <>
