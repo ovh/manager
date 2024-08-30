@@ -54,9 +54,10 @@ export default class UpdateScalingCtrl {
     );
     this.resourcePriceTax = resourcePrice.tax * 60;
     this.resourcePriceInUcents = resourcePrice.priceInUcents * 60;
-
     this.nbResources =
-      this.app.spec.resources.cpu + this.app.spec.resources.gpu;
+      this.app.spec.resources.gpu > 0
+        ? this.app.spec.resources.gpu
+        : this.app.spec.resources.cpu;
   }
 
   computeTotalPrice(resourcePrice) {
