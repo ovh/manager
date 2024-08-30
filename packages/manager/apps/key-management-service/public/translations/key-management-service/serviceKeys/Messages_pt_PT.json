@@ -33,7 +33,7 @@
   "key_management_service_service-keys_dashboard_field_operations_sign": "Assinatura",
   "key_management_service_service-keys_dashboard_field_operations_verify": "Verificação",
   "key_management_service_service-keys_dashboard_field_operations_wrapKey": "Encapsulamento",
-  "key_management_service_service-keys_dashboard_field_operations_unwrapKey": "Desencapsulamento",
+  "key_management_service_service-keys_dashboard_field_operations_unwrapKey": "Descapsulação",
   "key_management_service_service-keys_update_name_title": "Alterar o nome",
   "key_management_service_service-keys_update_name_error_required": "O nome deve ter entre 1 e 32 caracteres.",
   "key_management_service_service-keys_update_name_error_max": "Foi excedido o número de caracteres permitido. (Máximo de 32 caracteres)",

@@ -89,6 +89,5 @@
   "key_management_service_service-keys_delete_success": "La clé a été supprimée avec succès",
   "key_management_service_service-keys_delete_error": "La suppression n'a pas été prise en compte. {{error}}",
   "key_management_service_service-keys_deactivation_success": "La clé a été désactivée avec succès",
-  "key_management_service_service-keys_reactivate_success": "La clé a été réactivée avec succès",
-  "key_management_service_service-keys_dashboard_back-link-label": "Retour à la liste"
+  "key_management_service_service-keys_reactivate_success": "La clé a été réactivée avec succès"
 }
