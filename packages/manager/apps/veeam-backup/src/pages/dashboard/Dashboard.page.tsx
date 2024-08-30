@@ -25,9 +25,7 @@ import { DisplayNameWithEditButton } from './DisplayName.component';
 import { OfferProgress } from './OfferProgress.component';
 import { SubscriptionTile } from './SubscriptionTile.component';
 import { ComingSoonBadge } from '@/components/ComingSoonBadge/ComingSoonBadge';
-
-// TODO: Missing from specs : will have to create a hook to get the right url according to the subsidiary
-const bilingModalitiesUrl = '/#';
+import { BillingLink } from '@/components/BillingLink/BillingLink.component';
 
 export default function DashboardPage() {
   const { id } = useParams();
@@ -115,13 +113,7 @@ export default function DashboardPage() {
                 },
                 {
                   id: 'bilingModalities',
-                  value: (
-                    <Links
-                      type={LinkType.external}
-                      label={t('billing_modalities_label')}
-                      href={bilingModalitiesUrl}
-                    />
-                  ),
+                  value: <BillingLink />,
                 },
               ].filter(Boolean)}
             />
