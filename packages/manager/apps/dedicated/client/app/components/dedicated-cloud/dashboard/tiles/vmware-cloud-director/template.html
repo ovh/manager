@@ -1,7 +1,10 @@
 <div class="row text-center" data-ng-if="$ctrl.loading">
     <oui-spinner data-size="s"></oui-spinner>
 </div>
-<div class="oui-tile mt-3" data-ng-if="!$ctrl.loading">
+<div
+    class="oui-tile mt-3"
+    data-ng-if="!$ctrl.loading && $ctrl.vcdMigrationState.isAllowed"
+>
     <h4 class="oui-tile__title oui-heading_4">
         <span
             data-translate="dedicatedCloud_vmware_cloud_director_title"
@@ -13,43 +16,44 @@
         </span>
     </h4>
 
-    <oui-tile-definition
-        data-term="{{:: 'dedicatedCloud_vmware_cloud_director_subscription' | translate }}"
-    >
-        <oui-tile-description>
-            <p data-ng-bind-html=":: $ctrl.subscriptionLabel"></p>
+    <oui-tile-definition data-term="{{:: $ctrl.migrationTitle }}">
+        <oui-tile-description data-ng-if=":: $ctrl.vcdMigrationState.isDone">
             <span
-                data-ng-if="$ctrl.isSubscribed"
                 class="oui-badge oui-badge_success"
-                data-translate="dedicatedCloud_vmware_cloud_director_subscribed_status"
+                data-translate="dedicatedCloud_vmware_cloud_director_migration_confirmed"
             >
             </span>
+            <p
+                class="pt-1"
+                data-translate="dedicatedCloud_vmware_cloud_director_migration_confirmed_detail"
+            ></p>
         </oui-tile-description>
-
-        <oui-action-menu
-            data-compact
-            data-placement="end"
-            data-ng-if=":: !$ctrl.isSubscribed"
-        >
-            <oui-action-menu-item data-on-click="$ctrl.goToVcdOrder()">
+        <oui-tile-description data-ng-if=":: !$ctrl.vcdMigrationState.isDone">
+            <p
+                data-translate="dedicatedCloud_vmware_cloud_director_validate_migration_detail"
+            ></p>
+            <oui-button
+                data-variant="primary"
+                data-on-click="$ctrl.goToVcdOrder()"
+            >
                 <span
-                    data-translate="dedicatedCloud_vmware_cloud_director_order"
+                    data-translate="dedicatedCloud_vmware_cloud_director_validate"
                 ></span>
-            </oui-action-menu-item>
-        </oui-action-menu>
+            </oui-button>
+        </oui-tile-description>
     </oui-tile-definition>
 
     <oui-tile-definition
         data-term="{{:: 'dedicatedCloud_vmware_cloud_director_useful_links' | translate }}"
     >
-        <oui-tile-description>
+        <oui-tile-description data-ng-if=":: $ctrl.vcdMigrationState.isDone">
             <a
-                data-ng-href="{{ :: $ctrl.messageLink}}"
+                data-ng-href="{{ :: $ctrl.guideLinks.MIGRATION}}"
                 target="_blank"
                 rel="nooponer"
             >
                 <span
-                    data-translate="dedicatedCloud_vmware_cloud_director_announcement_message"
+                    data-translate="dedicatedCloud_vmware_cloud_director_migration_documentation"
                 >
                 </span>
                 <i
@@ -57,9 +61,10 @@
                     aria-hidden="true"
                 ></i>
             </a>
-            <br />
+        </oui-tile-description>
+        <oui-tile-description data-ng-if=":: !$ctrl.vcdMigrationState.isDone">
             <a
-                data-ng-href="{{ :: $ctrl.guideLink}}"
+                data-ng-href="{{ :: $ctrl.guideLinks.OFFER}}"
                 target="_blank"
                 rel="nooponer"
             >
@@ -72,6 +77,22 @@
                     aria-hidden="true"
                 ></i>
             </a>
+            <br />
+            <a
+                data-ng-href="{{ :: $ctrl.guideLinks.TERMS}}"
+                target="_blank"
+                rel="nooponer"
+            >
+                <span
+                    data-translate="dedicatedCloud_vmware_cloud_director_offer_terms_and_conditions"
+                >
+                </span>
+                <i
+                    class="pl-1 oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></i>
+            </a>
+            <br />
         </oui-tile-description>
     </oui-tile-definition>
 </div>
