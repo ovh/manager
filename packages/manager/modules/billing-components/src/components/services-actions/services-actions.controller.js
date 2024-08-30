@@ -15,13 +15,13 @@ export default class ServicesActionsCtrl {
 
     this.SERVICE_TYPE = SERVICE_TYPE;
     this.isLoading = true;
+    this.billingManagementAvailabilityAndHaveAutorenewLink = false;
   }
 
   $onInit() {
     const fetchAutoRenewLink = this.$q.defer();
-    if (!this.billingManagementAvailability) {
-      fetchAutoRenewLink.resolve(null);
-    } else if (this.$injector.has('shellClient')) {
+
+    if (this.$injector.has('shellClient')) {
       this.$injector
         .get('shellClient')
         .navigation.getURL('dedicated', '#/billing/autorenew')
@@ -36,6 +36,8 @@ export default class ServicesActionsCtrl {
     }
     return fetchAutoRenewLink.promise.then((link) => {
       this.autorenewLink = link;
+      this.billingManagementAvailabilityAndHaveAutorenewLink =
+        this.billingManagementAvailability && !!this.autorenewLink;
       this.isLoading = false;
       if (this.service.SERVICE_TYPE !== this.SERVICE_TYPE.VRACK) {
         this.initLinks();
@@ -118,10 +120,16 @@ export default class ServicesActionsCtrl {
       case SERVICE_TYPE.VRACK_SERVICES:
         this.resiliateLink = `${this.autorenewLink}/terminate-service?id=${this.service.id}${serviceTypeParam}`;
         break;
-      default:
+      case SERVICE_TYPE.NUTANIX:
         this.resiliateLink = this.service.canResiliateByEndRule()
           ? resiliationByEndRuleLink
           : this.autorenewLink &&
+            `${this.autorenewLink}/delete?serviceId=${this.service.serviceId}${serviceTypeParam}`;
+        break;
+      default:
+        this.resiliateLink = this.service.canResiliateByEndRule()
+          ? resiliationByEndRuleLink
+          : this.billingManagementAvailabilityAndHaveAutorenewLink &&
             `${this.autorenewLink}/delete?serviceId=${this.service.serviceId}${serviceTypeParam}`;
         break;
     }
