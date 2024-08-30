@@ -1,6 +1,6 @@
+import { DataGridTextCell } from '@ovhcloud/manager-components';
 import { render } from '@testing-library/react';
 import { describe, vi } from 'vitest';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import DatagridContainer, {
   TDatagridContainerProps,
 } from './DatagridContainer.component';
@@ -16,43 +16,30 @@ vi.mock('react-router-dom', () => ({
   }),
 }));
 
-vi.mock('@tanstack/react-query', async (reactQuery) => {
-  const module = await reactQuery<typeof import('@tanstack/react-query')>();
-  return {
-    ...module,
-    useInfiniteQuery: vi.fn().mockReturnValue({
-      data: { pages: [{ data: [{ value: 'value' }] }] },
-      isLoading: false,
-    }),
-  };
-});
-
 vi.mock('@ovhcloud/manager-components', async (managerComonents) => {
   const module = await managerComonents<
     typeof import('@ovhcloud/manager-components')
   >();
   return {
     ...module,
+    useResourcesIcebergV2: vi.fn().mockReturnValue({
+      data: { pages: [{ data: [{ id: 'id value' }] }] },
+      isLoading: false,
+    }),
     useDatagridSearchParams: vi.fn().mockReturnValue({
       pagination: {
         pageIndex: 0,
         pageSize: 10,
       },
       setPagination: vi.fn(),
-      sorting: { desc: false, id: 'id' },
+      sorting: { desc: false, id: 'value for id' },
       setSorting: vi.fn(),
     }),
   };
 });
 
 const renderComponent = (props: TDatagridContainerProps) => {
-  const queryClient = new QueryClient();
-
-  return render(
-    <QueryClientProvider client={queryClient}>
-      <DatagridContainer {...props} />
-    </QueryClientProvider>,
-  );
+  return render(<DatagridContainer {...props} />);
 };
 
 describe('DatagridContainer component unit test suite', () => {
@@ -69,7 +56,13 @@ describe('DatagridContainer component unit test suite', () => {
           onboarding: 'onboarding',
         },
         containerId: 'containerId',
-        columns: [],
+        columns: [
+          {
+            id: 'id',
+            cell: ({ id }) => <DataGridTextCell>{id}</DataGridTextCell>,
+            label: 'title for id',
+          },
+        ],
         isEmbedded,
         title: 'my datagrid',
       };
@@ -78,15 +71,16 @@ describe('DatagridContainer component unit test suite', () => {
       const { getByTestId, container, getByText } = renderComponent(props);
 
       // then
-      expect(getByTestId('DatagridContainer--title')).toHaveTextContent(
-        props.title,
-      );
+      expect(getByTestId('header-id')).toHaveTextContent('title for id');
 
       // and
       expect(container).toContainHTML(`class="px-10 ${css}"`);
 
       // and
-      expect(getByText('common_pagination_results')).toBeDefined();
+      expect(getByText(props.title)).toBeDefined();
+
+      // and
+      expect(getByText('value for id')).toBeDefined();
     },
   );
 });
