@@ -11,7 +11,6 @@
   "BRONZE_tooltip": "Vous êtes facturé en fonction de l'espace de stockage réel, mesuré chaque heure, à l'heure près.",
   "SILVER_tooltip": "Vous êtes facturé en fonction de l'espace de stockage réel, mesuré chaque heure, à l'heure près. Sur le dépot primaire et secondaire.",
   "GOLD_tooltip": "Vous êtes facturé en fonction de l'espace de stockage réel, mesuré chaque heure, à l'heure près. Sur le dépot primaire et secondaire.",
-  "billing_modalities_label": "En savoir plus sur les modalités de facturation",
   "subscription": "Abonnement",
   "next_billing": "Prochaine échéance",
   "creation_date": "Date de création",

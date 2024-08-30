@@ -1,6 +1,8 @@
 {
   "hpc-crumb": "Hosted Private Cloud",
   "listing-crumb": "Managed Veeam for VCD",
+  "order-veeam": "Commander",
+  "more_info_billing_modalities": "En savoir plus sur les modalités de facturation.",
   "update_display_name_modal_headline": "Modifier le nom de la sauvegarde {{id}}",
   "update_display_name_input_label": "Nom de la sauvegarde",
   "update_display_name_description": "",
