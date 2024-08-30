@@ -22,7 +22,9 @@
     "prepare": "yarn run build",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-container-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-container-app' --include-dependencies -- npm run dev --if-present",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-container-app' --include-dependencies -- npm run dev:watch --if-present"
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-container-app' --include-dependencies -- npm run dev:watch --if-present",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
