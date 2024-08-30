@@ -6,6 +6,8 @@ export const SERVICE_WITH_AGORA_TERMINATION = [
   'vrack-services',
   'okms',
   'logs-account',
+  'logs-enterprise',
+  'logs-enterprise-hds',
 ];
 
 export default {
