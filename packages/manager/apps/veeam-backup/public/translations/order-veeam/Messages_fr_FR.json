@@ -1,0 +1,10 @@
+{
+  "description": "Nos services sont basés sur la solution Veeam Data Platform et le plugin Veeam pour VMware Cloud Director (pour la sauvegarde). Nos solutions sont implémentées au niveau de l'infrastructure VMware Cloud Foundation et pilotent directement les vCenter afin de réaliser les opérations via snapshot VMware (si possible avec un accès direct au stockage). La solution fournie en standard est mutualisée pour l'ensemble des clients de la plateforme. La solution fonctionne sans agent dans les machines virtuelles.",
+  "select_offer_title": "Sélectionner votre offre",
+  "select_offer_description": "Ajoutez le service de Veeam Data Platform à votre infrastructure VMware Cloud Director. La sélection de l'organisation VMware Cloud Director se fera à la prochaine étape. En savoir plus sur les modalités de facturation.",
+  "offer_title": "Activer {{productName}}",
+  "offer_content_part1": "Le service Veeam Data Platform dispose d'un plugin VCD pour sauvegarder les VM et les vApps depuis n'importe quel Virtual Data Center (VDC) de l'organisation.",
+  "offer_content_part2": "Il est disponible au niveau de l'organisation pour tout utilisateur de VMware Cloud Director ayant le rôle d'administrateur de l'organisation.",
+  "offer_price": "9e HT/VM/mois + consommation de OVHcloud Object storage",
+  "next_step": "Suivant"
+}
