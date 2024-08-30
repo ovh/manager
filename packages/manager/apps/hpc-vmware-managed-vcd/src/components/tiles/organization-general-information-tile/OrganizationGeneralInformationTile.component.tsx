@@ -24,7 +24,7 @@ import { useNavigate } from 'react-router-dom';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import TileSubtitle from '@/components/tiles/tile-subtitle/TileSubtitle.component';
 import RegionLabel from '@/components/region-label/RegionLabel.component';
-import { urlParts } from '@/routes/routes.constant';
+import { subRoutes } from '@/routes/routes.constant';
 
 type TTileProps = {
   vcdOrganization: IVcdOrganization;
@@ -54,7 +54,7 @@ export default function OrganizationGenerationInformationTile({
             name={ODS_ICON_NAME.PEN}
             size={ODS_ICON_SIZE.xxs}
             color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => navigate(urlParts.editName)}
+            onClick={() => navigate(subRoutes.editName)}
           />
         </div>
         <OsdsDivider separator />
@@ -70,7 +70,7 @@ export default function OrganizationGenerationInformationTile({
               name={ODS_ICON_NAME.PEN}
               size={ODS_ICON_SIZE.xxs}
               color={ODS_THEME_COLOR_INTENT.primary}
-              onClick={() => navigate(urlParts.editDescription)}
+              onClick={() => navigate(subRoutes.editDescription)}
             />
           </div>
           <OsdsDivider separator />

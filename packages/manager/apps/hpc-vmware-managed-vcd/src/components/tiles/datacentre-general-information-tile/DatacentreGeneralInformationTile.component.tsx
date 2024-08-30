@@ -18,7 +18,7 @@ import { useNavigate } from 'react-router-dom';
 import IVcdDatacentre from '@/types/vcd-datacenter.interface';
 import TileSubtitle from '@/components/tiles/tile-subtitle/TileSubtitle.component';
 import IVcdOrganization from '@/types/vcd-organization.interface';
-import { urlParts } from '@/routes/routes.constant';
+import { subRoutes } from '@/routes/routes.constant';
 
 type TTileProps = {
   vcdDatacentre: IVcdDatacentre;
@@ -49,7 +49,7 @@ export default function DatacentreGenerationInformationTile({
             <OsdsIcon
               aria-label="edit"
               className="mx-6 cursor-pointer"
-              onClick={() => navigate(urlParts.editDescription)}
+              onClick={() => navigate(subRoutes.editDescription)}
               name={ODS_ICON_NAME.PEN}
               size={ODS_ICON_SIZE.xxs}
               color={ODS_THEME_COLOR_INTENT.primary}
