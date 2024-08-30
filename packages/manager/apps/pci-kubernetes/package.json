@@ -29,8 +29,7 @@
     "@ovhcloud/ods-common-theming": "17.2.2",
     "@ovhcloud/ods-components": "17.2.2",
     "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
-    "@tanstack/react-query": "^5.50.1",
-    "@tanstack/react-query-devtools": "^5.50.1",
+    "@tanstack/react-query": "^5.51.21",
     "@tanstack/react-table": "^8.17.3",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
@@ -48,6 +47,7 @@
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@ovh-ux/manager-vite-config": "*",
+    "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^16.0.0",
