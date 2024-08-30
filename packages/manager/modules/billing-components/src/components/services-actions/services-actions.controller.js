@@ -26,7 +26,6 @@ export default class ServicesActionsCtrl {
   }
 
   $onInit() {
-
     this.user = this.coreConfig.getUser();
     this.BillingLinksService.generateAutorenewLinks(this.service, {
       billingManagementAvailability: this.billingManagementAvailability,
@@ -37,6 +36,8 @@ export default class ServicesActionsCtrl {
     })
       .then((links) => {
         this.autorenewLink = links.autorenewLink;
+        this.billingManagementAvailabilityAndHaveAutorenewLink =
+          links.billingManagementAvailabilityAndHaveAutorenewLink;
         this.commitmentLink = links.commitmentLink;
         this.cancelCommitmentLink = links.cancelCommitmentLink;
         this.cancelResiliationLink = links.cancelResiliationLink;

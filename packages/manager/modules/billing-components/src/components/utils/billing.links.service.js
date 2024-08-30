@@ -11,7 +11,6 @@ export default class BillingLinksService {
 
   generateAutorenewLinks(service, options) {
     const {
-      billingManagementAvailability,
       getCommitmentLink,
       getCancelCommitmentLink,
       getCancelResiliationLink,
@@ -21,9 +20,7 @@ export default class BillingLinksService {
     const links = {};
     const fetchAutoRenewLink = this.$q.defer();
 
-    if (!billingManagementAvailability) {
-      fetchAutoRenewLink.resolve(null);
-    } else if (this.$injector.has('shellClient')) {
+    if (this.$injector.has('shellClient')) {
       this.$injector
         .get('shellClient')
         .navigation.getURL('dedicated', '#/billing/autorenew')
@@ -37,6 +34,8 @@ export default class BillingLinksService {
 
     return fetchAutoRenewLink.promise.then((autorenewLink) => {
       links.autorenewLink = autorenewLink;
+      links.billingManagementAvailabilityAndHaveAutorenewLink =
+        options.billingManagementAvailability && !!autorenewLink;
 
       if (service.SERVICE_TYPE === SERVICE_TYPE.VRACK) return links;
 
@@ -110,8 +109,7 @@ export default class BillingLinksService {
         default:
           links.resiliateLink = service.canResiliateByEndRule()
             ? resiliationByEndRuleLink
-            : autorenewLink &&
-              `${autorenewLink}/delete?serviceId=${service.serviceId}${serviceTypeParam}`;
+            : `${links.billingManagementAvailabilityAndHaveAutorenewLink}/delete?serviceId=${service.serviceId}${serviceTypeParam}`;
           break;
       }
 
