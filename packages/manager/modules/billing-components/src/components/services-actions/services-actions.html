@@ -2,7 +2,7 @@
     aria-label="{{:: 'billing_services_actions_menu_label' | translate }}"
     compact
     data-placement="end"
-    data-ng-if="!$ctrl.isLoading && ($ctrl.autorenewLink || $ctrl.service.canBeEngaged || $ctrl.service.hasPendingEngagement)"
+    data-ng-if="!$ctrl.isLoading && ($ctrl.billingManagementAvailabilityAndHaveAutorenewLink || $ctrl.service.serviceType === $ctrl.SERVICE_TYPE.NUTANIX || $ctrl.service.canBeEngaged || $ctrl.service.hasPendingEngagement)"
 >
     <oui-action-menu-item
         ng-if="$ctrl.autorenewLink && $ctrl.service.hasDebt() && !$ctrl.service.hasBillingRights($ctrl.user.nichandle)"
@@ -25,7 +25,7 @@
     </oui-action-menu-item>
 
     <div
-        data-ng-if=":: $ctrl.autorenewLink && !$ctrl.service.hasParticularRenew() && !$ctrl.service.hasPendingResiliation() && !$ctrl.service.hasDebt()"
+        data-ng-if=":: $ctrl.billingManagementAvailabilityAndHaveAutorenewLink && !$ctrl.service.hasParticularRenew() && !$ctrl.service.hasPendingResiliation() && !$ctrl.service.hasDebt()"
     >
         <!-- Service in autorenew -->
         <oui-action-menu-item
