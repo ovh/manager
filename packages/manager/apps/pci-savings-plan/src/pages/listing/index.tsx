@@ -54,6 +54,7 @@ export interface ListingProps {
   data: SavingsPlanService[];
   refetchSavingsPlans: () => void;
 }
+
 const ListingTablePage: React.FC<ListingProps> = ({
   data,
   refetchSavingsPlans,
@@ -81,6 +82,9 @@ const ListingTablePage: React.FC<ListingProps> = ({
 
   const mutationSpCreate = useMutationState<{
     status: MutationStatus;
+    error?: {
+      code: string;
+    };
   }>({
     filters: { mutationKey: getMutationKeyCreateSavingsPlan(serviceId) },
   });
@@ -116,7 +120,7 @@ const ListingTablePage: React.FC<ListingProps> = ({
           }
         />
       )}
-      {mutationSpCreate.length > 0 && (
+      {mutationSpCreate.length > 0 && !mutationSpCreate[0].error.code && (
         <Banner
           message={t('banner_create_sp', {
             startDate: formatDateString(

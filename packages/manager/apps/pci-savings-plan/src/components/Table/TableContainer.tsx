@@ -1,30 +1,46 @@
+import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import {
   DataGridTextCell,
   Datagrid,
   DatagridColumn,
   useDatagridSearchParams,
 } from '@ovhcloud/manager-components';
-import React, { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { convertToDuration } from '@/utils/commercial-catalog/utils';
+
 import { SavingsPlanService } from '@/types/api.type';
 import PlannedChangeStatusChip from '../PlannedChangeStatusChip/PlannedChangeStatusChip';
 import StatusChip from '../StatusChip/StatusChip';
 import ActionsCell from './ActionsCell';
 import { SavingsPlanDatagridWrapper } from './Table.type';
-import { convertToDuration } from '@/utils/commercial-catalog/utils';
 
 type SortableKey = Pick<
   SavingsPlanService,
   'displayName' | 'endDate' | 'period' | 'periodEndDate'
 >;
 
+const usePciUrl = () => {
+  const { projectId } = useParams();
+
+  const nav = useContext(ShellContext).shell.navigation;
+  const [url, setUrl] = useState('');
+
+  useEffect(() => {
+    nav.getURL('public-cloud', `#/pci/projects/${projectId}`, {}).then(setUrl);
+  }, [projectId]);
+
+  return url;
+};
+
 export default function TableContainer({
   data,
 }: Readonly<SavingsPlanDatagridWrapper>) {
   const { t } = useTranslation('listing');
   const navigate = useNavigate();
-
+  const pciUrl = usePciUrl();
   const {
     pagination,
     setPagination,
@@ -38,23 +54,21 @@ export default function TableContainer({
     const { desc, id } = sorting;
     return (
       data
+        ?.slice()
         ?.sort((a, b) => {
           const order = desc ? -1 : 1;
-          switch (id) {
-            case 'size':
-              return order > 0 ? a.size - b.size : b.size - a.size;
-            default: {
-              if (a[id as keyof SortableKey]) {
-                return (
-                  order *
-                  a[id as keyof SortableKey].localeCompare(
-                    b[id as keyof SortableKey],
-                  )
-                );
-              }
-              return 1;
-            }
+          if (id === 'size') {
+            return order > 0 ? a.size - b.size : b.size - a.size;
           }
+          if (a[id as keyof SortableKey]) {
+            return (
+              order *
+              a[id as keyof SortableKey].localeCompare(
+                b[id as keyof SortableKey],
+              )
+            );
+          }
+          return 1;
         })
         .slice(start, end) || []
     );
@@ -72,11 +86,11 @@ export default function TableContainer({
         ),
       },
       {
-        id: 'model',
+        id: 'flavor',
         label: t('model'),
-        accessorKey: 'model',
+        accessorKey: 'flavor',
         cell: (props: SavingsPlanService) => (
-          <DataGridTextCell>{props.model}</DataGridTextCell>
+          <DataGridTextCell>{props.flavor}</DataGridTextCell>
         ),
       },
       {
@@ -133,7 +147,9 @@ export default function TableContainer({
         accessorKey: 'actions',
         cell: (props: SavingsPlanService) => (
           <ActionsCell
+            pciUrl={pciUrl}
             id={props.id}
+            flavor={props.flavor}
             status={props.status}
             periodEndAction={props.periodEndAction}
             onClickRenew={() => navigate(`./${props.id}/renew`)}
