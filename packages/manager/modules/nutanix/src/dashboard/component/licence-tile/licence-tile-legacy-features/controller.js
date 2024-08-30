@@ -1,7 +1,12 @@
+import { GUIDES_URL } from '../../../general-info/constants';
+
 export default class NutanixLicenceTileLegacyFeaturesCtrl {
   /* @ngInject */
-  constructor(atInternet) {
+  constructor(atInternet, coreConfig) {
     this.atInternet = atInternet;
+    const { ovhSubsidiary } = coreConfig.getUser();
+    this.guideLink = `${GUIDES_URL[ovhSubsidiary] ||
+      GUIDES_URL.DEFAULT}packaged`;
   }
 
   $onInit() {
