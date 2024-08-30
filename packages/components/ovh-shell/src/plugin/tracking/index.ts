@@ -12,6 +12,17 @@ export interface TrackingAPI {
   onUserConsentFromModal(consent: boolean): PromiseLike<void>;
   trackClick(data: LegacyTrackingData): PromiseLike<void>;
   trackPage(data: LegacyTrackingData): PromiseLike<void>;
+  addAdditionalParams(
+    paramName: string,
+    value: string,
+    isMsrParam: boolean,
+  ): PromiseLike<void>;
+  removeAdditionalParams(
+    paramName: string,
+    isMsrParam: boolean,
+  ): PromiseLike<void>;
+  addImageTag(): PromiseLike<void>;
+
   trackEvent(data: LegacyTrackingData): PromiseLike<void>;
   trackImpression(data: LegacyTrackingData): PromiseLike<void>;
   trackClickImpression(data: LegacyTrackingData): PromiseLike<void>;
@@ -52,6 +63,28 @@ export function exposeTrackingAPI(shellClient: ShellClient): TrackingAPI {
         plugin: 'tracking',
         method: 'trackPage',
         args: [data],
+      }),
+    addAdditionalParams: (
+      paramName: string,
+      value: string,
+      isMsrParam: boolean,
+    ) =>
+      shellClient.invokePluginMethod<void>({
+        plugin: 'tracking',
+        method: 'addAdditionalParams',
+        args: [paramName, value, isMsrParam],
+      }),
+    removeAdditionalParams: (paramName: string, isMsrParam: boolean) =>
+      shellClient.invokePluginMethod<void>({
+        plugin: 'tracking',
+        method: 'removeAdditionalParams',
+        args: [paramName, isMsrParam],
+      }),
+    addImageTag: () =>
+      shellClient.invokePluginMethod<void>({
+        plugin: 'tracking',
+        method: 'addImageTag',
+        args: [],
       }),
     trackEvent: (data: LegacyTrackingData) =>
       shellClient.invokePluginMethod<void>({
