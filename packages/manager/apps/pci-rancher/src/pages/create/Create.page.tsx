@@ -19,9 +19,10 @@ import {
   TrackingEvent,
   TrackingPageView,
 } from '../../utils/tracking';
-import queryClient from '@/query.client';
-import useVersions from '@/hooks/useVersions';
+
 import { useRancherPrices } from '@/hooks/useRancherPrices';
+import queryClient from '@/queryClient';
+import useVersions from '@/data/hooks/useVersions/useVersions';
 
 export default function Create() {
   const { projectId } = useParams();

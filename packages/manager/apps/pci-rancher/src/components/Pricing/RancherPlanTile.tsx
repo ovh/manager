@@ -3,7 +3,7 @@ import React from 'react';
 import { OsdsTile, OsdsText } from '@ovhcloud/ods-components/react';
 import clsx from 'clsx';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { RancherPlan } from '@/api/api.type';
+import { RancherPlan } from '@/types/api.type';
 
 export interface RancherPlanTileProps {
   plan: RancherPlan;

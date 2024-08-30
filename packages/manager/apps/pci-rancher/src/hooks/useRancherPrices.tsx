@@ -1,9 +1,9 @@
-import { useCatalog } from '@/api/';
+import { useCatalog } from '@/data/api/services';
 import {
   RancherPlanCode,
   RancherPlanName,
   TRancherPricing,
-} from '@/api/api.type';
+} from '@/types/api.type';
 
 export const useRancherPrices = () => {
   const { data: catalog, isLoading, isError } = useCatalog();

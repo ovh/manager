@@ -6,16 +6,17 @@ import {
   rancherVersion,
   rancherPlansPricing,
 } from '@/_mock_/rancher-resource';
-import dashboardTranslation from '../../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
-import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
+import dashboardTranslation from '../../../../public/translations/dashboard/Messages_fr_FR.json';
+import listingTranslation from '../../../../public/translations/listing/Messages_fr_FR.json';
 import {
   act,
   fireEvent,
   render,
   waitFor,
 } from '../../../utils/test/test.provider';
-import CreateRancher, { CreateRancherProps } from './CreateRancher';
+
 import { getRanchersUrl } from '@/utils/route';
+import CreateRancher, { CreateRancherProps } from './CreateRancher.component';
 
 const onCreateRancher = jest.fn();
 const mockedUsedNavigate = jest.fn();
@@ -35,6 +36,10 @@ jest.mock('@ovhcloud/manager-components', () => ({
   PciDiscoveryBanner: jest.fn(
     () => 'pci_projects_project_activate_project_banner_message',
   ),
+  useCatalogPrice: jest.fn(() => ({
+    getFormattedHourlyCatalogPrice: jest.fn(() => 0.0171),
+    getFormattedMonthlyCatalogPrice: jest.fn(() => 12.312),
+  })),
 }));
 
 jest.mock('react-router-dom', () => ({
@@ -51,10 +56,6 @@ jest.mock('@ovh-ux/manager-react-shell-client', () => ({
     trackPage: jest.fn(),
     trackClick: jest.fn(),
   })),
-}));
-
-jest.mock('@/api/api.type', () => ({
-  ...jest.requireActual('@/api/api.type'),
 }));
 
 const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>

@@ -8,7 +8,7 @@ import {
   RancherService,
   RancherVersion,
   TCatalog,
-} from '@/api/api.type';
+} from '@/types/api.type';
 
 type RancherInfo = 'plan' | 'version';
 

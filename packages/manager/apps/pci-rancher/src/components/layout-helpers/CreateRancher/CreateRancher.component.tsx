@@ -27,19 +27,23 @@ import { useNavigate } from 'react-router-dom';
 import { useMedia } from 'react-use';
 
 import clsx from 'clsx';
-import {
-  CreateRancherPayload,
-  RancherPlan,
-  RancherVersion,
-  TRancherPricing,
-} from '@/api/api.type';
-import Block from '@/components/Block/Block';
-import { useTrackingAction } from '@/hooks/useTrackingPage';
+
 import { isValidRancherName } from '@/utils/rancher';
 import { getRanchersUrl } from '@/utils/route';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
-import { useSimpleTrackingAction } from '../../../hooks/useTrackingPage';
+
 import RancherPlanTile from '@/components/Pricing/RancherPlanTile';
+import Block from '@/components/Block/Block.component';
+import {
+  useTrackingAction,
+  useSimpleTrackingAction,
+} from '@/hooks/useTrackingPage/useTrackingPage';
+import {
+  RancherPlan,
+  RancherVersion,
+  CreateRancherPayload,
+  TRancherPricing,
+} from '@/types/api.type';
 
 const TileSection: React.FC<{
   name: string;

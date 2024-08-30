@@ -1,9 +1,4 @@
-import {
-  RancherPlan,
-  RancherPlanName,
-  RancherVersion,
-  TRancherPricing,
-} from '@/api/api.type';
+import { TRancherPricing, RancherPlan, RancherVersion } from '@/types/api.type';
 
 export const rancherPlansPricing: TRancherPricing[] = [
   {
