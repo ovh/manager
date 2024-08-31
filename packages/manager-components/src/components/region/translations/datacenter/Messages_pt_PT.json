@@ -1,6 +1,6 @@
 {
   "region_ERI": "Londres (ERI{{micro}}) - Inglaterra",
-  "region_BHS": "Beauharnois (BHS{{micro}}) - Canadá",
+  "region_BHS": "Beauharnois (BHS {{micro}}) - Canadá",
   "region_DC": "Beauharnois (DC{{micro}}) - Canadá",
   "region_P": "Paris (P{{micro}}) - França",
   "region_GRA": "Gravelines (GRA{{micro}}) - França",
@@ -14,5 +14,5 @@
   "region_WAW": "Varsóvia (WAW{{micro}}) - Polónia",
   "region_RBX_HZ": "Roubaix (RBXHZ) - França",
   "region_GSW": "(GSW) - França",
-  "region_YNM": "Mumbai (YNM {{micro}}) - Índia"
+  "region_YNM": "Mumbai (YNM{{micro}}) - Índia"
 }
