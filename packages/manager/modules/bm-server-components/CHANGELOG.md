@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.31.1...@ovh-ux/manager-bm-server-components@1.31.2) (2024-09-02)
+
+
+### Bug Fixes
+
+* **dedicated:** fix rise 2 gb dashboard after plan change ([#12916](https://github.com/ovh/manager/issues/12916)) ([6cfb1b4](https://github.com/ovh/manager/commit/6cfb1b45b15f86fcb185a5df40688fbeffa80138))
+
+
+
+
+
 ## [1.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.31.0...@ovh-ux/manager-bm-server-components@1.31.1) (2024-08-29)
 
 
