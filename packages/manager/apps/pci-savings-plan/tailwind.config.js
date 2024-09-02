@@ -7,7 +7,7 @@ module.exports = {
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
     path.join(
-      path.dirname(require.resolve('@ovhcloud/manager-components')),
+      path.dirname(require.resolve('@ovh-ux/manager-react-components')),
       '**/*.{js,jsx,ts,tsx}',
     ),
   ],

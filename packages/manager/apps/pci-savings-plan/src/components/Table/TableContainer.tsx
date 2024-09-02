@@ -8,7 +8,7 @@ import {
   Datagrid,
   DatagridColumn,
   useDatagridSearchParams,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { convertToDuration } from '@/utils/commercial-catalog/utils';
 
 import { SavingsPlanService } from '@/types/api.type';
@@ -22,14 +22,18 @@ type SortableKey = Pick<
   'displayName' | 'endDate' | 'period' | 'periodEndDate'
 >;
 
-const usePciUrl = () => {
+export const usePciUrl = () => {
   const { projectId } = useParams();
 
   const nav = useContext(ShellContext).shell.navigation;
   const [url, setUrl] = useState('');
 
   useEffect(() => {
-    nav.getURL('public-cloud', `#/pci/projects/${projectId}`, {}).then(setUrl);
+    nav
+      .getURL('public-cloud', `#/pci/projects/${projectId}`, {})
+      .then((data) => {
+        setUrl(data as string);
+      });
   }, [projectId]);
 
   return url;
@@ -40,7 +44,6 @@ export default function TableContainer({
 }: Readonly<SavingsPlanDatagridWrapper>) {
   const { t } = useTranslation('listing');
   const navigate = useNavigate();
-  const pciUrl = usePciUrl();
   const {
     pagination,
     setPagination,
@@ -147,7 +150,6 @@ export default function TableContainer({
         accessorKey: 'actions',
         cell: (props: SavingsPlanService) => (
           <ActionsCell
-            pciUrl={pciUrl}
             id={props.id}
             flavor={props.flavor}
             status={props.status}

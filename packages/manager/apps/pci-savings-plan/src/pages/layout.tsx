@@ -8,7 +8,7 @@ import {
   ErrorBanner,
   PageLayout,
   useProject,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import React, { Suspense, useContext, useEffect } from 'react';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
