@@ -2,7 +2,9 @@
   "pci_projects_project_edit_remove_title": "Supprimer le projet",
   "pci_projects_project_edit_remove_please_note": "Il est important de noter que tous vos services, ressources, paramètres et données seront détruits, sans possibilité de restauration ultérieure, à l'exception des IP Failovers, qui seront parkées.",
   "pci_projects_project_discovery_edit_remove_please_note": "Veuillez noter que la suppression de votre projet est irréversible. Vous devrez en recréer un pour profiter à nouveau de l’univers Public Cloud.",
+  "pci_projects_project_discovery_edit_savings_plan": "Vous avez un Savings Plan en cours sur ce projet. Vous ne pouvez pas le supprimer. Veuillez contacter le service client pour connaître la procédure de suppression.",
   "pci_projects_project_edit_remove_submit": "Supprimer le projet",
+  "pci_projects_project_edit_remove_submit_client_service": "Contacter le service client",
   "pci_projects_project_edit_remove_cancel": "Annuler",
   "pci_projects_project_edit_remove_error": "Une erreur est survenue lors de la suppression du projet : {{ error }}",
   "pci_projects_project_edit_remove_success": "Une confirmation de suppression vient de vous être envoyée par e-mail."

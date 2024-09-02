@@ -1,7 +1,7 @@
 <oui-modal
     data-heading="{{:: 'pci_projects_project_edit_remove_title' | translate}}"
     data-primary-action="$ctrl.remove()"
-    data-primary-label="{{:: 'pci_projects_project_edit_remove_submit' | translate }}"
+    data-primary-label="{{ $ctrl.getPrimaryButtonLabel() | translate }}"
     data-primary-disabled="$ctrl.isLoading"
     data-secondary-action="$ctrl.cancel()"
     data-secondary-label="{{:: 'pci_projects_project_edit_remove_cancel' | translate }}"
