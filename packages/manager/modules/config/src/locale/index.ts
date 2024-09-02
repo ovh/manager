@@ -21,6 +21,11 @@ export interface OVHLanguages {
   preferred: PreferredRegionByLang;
 }
 
+// Default language should not be configurable => MANAGER-15185
+export const useDefaultLanguage = (language: string): void => {
+  LANGUAGES.defaultLoc = language;
+};
+
 const preferredCountry = (language: LangId, region: Region) => {
   if (['FR', 'EN'].includes(language.toUpperCase())) {
     const customLanguage = LANGUAGES?.preferred[language][region];
