@@ -1,4 +1,4 @@
-export const urlParts = {
+export const subRoutes = {
   onboarding: 'onboarding',
   dashboard: ':id',
   editName: 'edit-name',
@@ -12,13 +12,13 @@ export const urlParts = {
 export const urls = {
   root: '/',
   listing: '/',
-  onboarding: `/${urlParts.onboarding}`,
-  dashboard: `/${urlParts.dashboard}`,
-  editName: `/${urlParts.dashboard}/${urlParts.editName}`,
-  editDescription: `/${urlParts.dashboard}/${urlParts.editDescription}`,
-  datacentres: `/${urlParts.dashboard}/${urlParts.datacentres}`,
-  datacentreDashboard: `/${urlParts.dashboard}/${urlParts.datacentres}/${urlParts.vdcId}`,
-  datacentreEditDescription: `/${urlParts.dashboard}/${urlParts.datacentres}/${urlParts.vdcId}/${urlParts.editDescription}`,
-  datacentreStorage: `/${urlParts.dashboard}/${urlParts.datacentres}/${urlParts.vdcId}/${urlParts.datacentreStorage}`,
-  datacentreCompute: `/${urlParts.dashboard}/${urlParts.datacentres}/${urlParts.vdcId}/${urlParts.datacentreCompute}`,
+  onboarding: `/${subRoutes.onboarding}`,
+  dashboard: `/${subRoutes.dashboard}`,
+  editName: `/${subRoutes.dashboard}/${subRoutes.editName}`,
+  editDescription: `/${subRoutes.dashboard}/${subRoutes.editDescription}`,
+  datacentres: `/${subRoutes.dashboard}/${subRoutes.datacentres}`,
+  datacentreDashboard: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}`,
+  datacentreEditDescription: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}/${subRoutes.editDescription}`,
+  datacentreStorage: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}/${subRoutes.datacentreStorage}`,
+  datacentreCompute: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}/${subRoutes.datacentreCompute}`,
 };

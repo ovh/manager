@@ -7,6 +7,7 @@ import DatagridContainer, {
 } from '@/components/datagrid/container/DatagridContainer.component';
 import { urls } from '@/routes/routes.constant';
 import IVcdDatacentre from '@/types/vcd-datacenter.interface';
+import { getVcdDatacentresRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
 
 /* ========= datagrid cells ========= */
 const DatagridIdCell = (vcdDatacentre: IVcdDatacentre) => {
@@ -17,7 +18,7 @@ const DatagridIdCell = (vcdDatacentre: IVcdDatacentre) => {
     <DataGridTextCell>
       <Links
         onClickReturn={() => navigate(`/${id}/datacentres/${vcdDatacentre.id}`)}
-        label={vcdDatacentre.id}
+        label={vcdDatacentre.currentState.name}
       ></Links>
     </DataGridTextCell>
   );
@@ -121,7 +122,7 @@ export default function DatacentresListing() {
     containerId: `vdcs-${id}`,
     isEmbedded: true,
     route: {
-      api: `/vmwareCloudDirector/organization/${id}/virtualDataCenter`,
+      api: getVcdDatacentresRoute(id),
       onboarding: urls.onboarding,
     },
     columns,
