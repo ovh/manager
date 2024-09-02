@@ -19,6 +19,7 @@ import {
   SavingsPlanPlanedChangeStatus,
   SavingsPlanStatus,
 } from '@/types/api.type';
+import { usePciUrl } from './TableContainer';
 
 interface SavingsPlanActionsCell {
   onClickEditName: (path: string) => void;
@@ -27,7 +28,6 @@ interface SavingsPlanActionsCell {
   flavor: string;
   status: SavingsPlanStatus;
   periodEndAction: SavingsPlanPlanedChangeStatus;
-  pciUrl: string;
 }
 
 const MenuItems = ({
@@ -93,7 +93,9 @@ const MenuItems = ({
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.ghost}
           text-align="start"
-          href={isInstance ? `${pciUrl}/instances` : `${pciUrl}/rancher`}
+          href={
+            isInstance ? `${pciUrl}/instances/new` : `${pciUrl}/rancher/new`
+          }
         >
           <span slot="start">
             <span>{t(isInstance ? 'order_instance' : 'order_rancher')}</span>
@@ -111,8 +113,9 @@ export default function ActionsCell({
   flavor,
   onClickEditName,
   onClickRenew,
-  pciUrl,
 }: Readonly<SavingsPlanActionsCell>) {
+  const pciUrl = usePciUrl();
+
   const editable = true;
 
   const onClickEdit = useCallback(() => onClickEditName(id), [id]);

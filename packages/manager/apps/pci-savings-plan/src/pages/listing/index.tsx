@@ -19,7 +19,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import i18next from 'i18next';
 
-import { Title } from '@ovhcloud/manager-components';
+import { Title } from '@ovh-ux/manager-react-components';
 
 import TableContainer from '@/components/Table/TableContainer';
 import {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OnboardingLayout, PageLayout } from '@ovhcloud/manager-components';
+import { OnboardingLayout, PageLayout } from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
 import onboardingImgSrc from './onboarding-img.png';
 
