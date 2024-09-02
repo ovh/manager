@@ -17,6 +17,7 @@ import { ModalController } from '@/hooks/useModale';
 import * as database from '@/types/cloud/project/database';
 import { useDeleteIndex } from '@/hooks/api/database/indexes/useDeleteIndex.hook';
 import { useServiceData } from '../../Service.context';
+import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 
 interface DeleteIndexModalProps {
   service: database.Service;
@@ -43,7 +44,7 @@ const DeleteIndexModal = ({
       toast.toast({
         title: t('deleteIndexToastErrorTitle'),
         variant: 'destructive',
-        description: err.response.data.details.message,
+        description: getCdbApiErrorMessage(err),
       });
       if (onError) {
         onError(err);

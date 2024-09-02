@@ -17,6 +17,7 @@ import { ModalController } from '@/hooks/useModale';
 import * as database from '@/types/cloud/project/database';
 import { useDeletePattern } from '@/hooks/api/database/pattern/useDeletePattern.hook';
 import { useServiceData } from '../../Service.context';
+import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 
 interface DeletePatternModalProps {
   service: database.Service;
@@ -43,7 +44,7 @@ const DeletePatternModal = ({
       toast.toast({
         title: t('deletePatternToastErrorTitle'),
         variant: 'destructive',
-        description: err.response.data.details.message,
+        description: getCdbApiErrorMessage(err),
       });
       if (onError) {
         onError(err);

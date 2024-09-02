@@ -17,7 +17,6 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -26,6 +25,8 @@ import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
 import { useAddPattern } from '@/hooks/api/database/pattern/useAddPattern.hook';
 import { useServiceData } from '../../Service.context';
+import { PATTERN_CREATION } from './pattern.constants';
+import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 
 interface AddPatternModalProps {
   service: database.Service;
@@ -50,7 +51,7 @@ const AddPattern = ({
       toast.toast({
         title: t('addPatternToastErrorTitle'),
         variant: 'destructive',
-        description: err.response.data.details.message,
+        description: getCdbApiErrorMessage(err),
       });
       if (onError) {
         onError(err);
@@ -72,23 +73,31 @@ const AddPattern = ({
   const schema = z.object({
     pattern: z
       .string()
-      .min(3, {
-        message: t('addPatternErrorMinLength', { min: 1 }),
+      .min(PATTERN_CREATION.pattern.min, {
+        message: t('addPatternErrorMinLength', {
+          min: PATTERN_CREATION.pattern.min,
+        }),
       })
-      .max(1024, {
-        message: t('addPatternErrorMaxLength', { max: 1024 }),
+      .max(PATTERN_CREATION.pattern.max, {
+        message: t('addPatternErrorMaxLength', {
+          max: PATTERN_CREATION.pattern.max,
+        }),
       })
-      .regex(/^[A-Za-z0-9-_.*?]+$/, {
+      .regex(PATTERN_CREATION.pattern.pattern, {
         message: t('addPatternErrorFormat'),
       }),
     maxIndexCount: z.coerce
       .number()
       .int()
-      .min(0, {
-        message: t('addPatternErrorMin', { min: 0 }),
+      .min(PATTERN_CREATION.maxIndexCount.min, {
+        message: t('addPatternErrorMin', {
+          min: PATTERN_CREATION.maxIndexCount.min,
+        }),
       })
-      .max(9223372036854776000, {
-        message: t('addPatternErrorMax', { max: 9223372036854776000 }),
+      .max(PATTERN_CREATION.maxIndexCount.max, {
+        message: t('addPatternErrorMax', {
+          max: PATTERN_CREATION.maxIndexCount.max,
+        }),
       }),
   });
   // generate a form controller
