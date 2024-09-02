@@ -1,14 +1,16 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
-  getVcdProjectListQueryKey,
   updateVcdOrganizationDetails,
   UpdateVcdOrganizationDetailsParams,
 } from '../api/hpc-vmware-managed-vcd';
+import { VCD_ORGANIZATION_ROUTE } from '../api/hpc-vmware-managed-vcd.constants';
 
 const updateVcdOrganizationDetailsQueryKey = (id: string) => [
-  `put/vmwareCloudDirector/organization/${id}`,
+  `put/${VCD_ORGANIZATION_ROUTE}/${id}`,
 ];
+
+const getVcdProjectListQueryKey = [`get/${VCD_ORGANIZATION_ROUTE}`];
 
 export const useUpdateVcdOrganizationDetails = ({
   id,
