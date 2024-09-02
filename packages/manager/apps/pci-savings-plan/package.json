@@ -26,7 +26,7 @@
     "@ovh-ux/manager-react-shell-client": "*",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "*",
-    "@ovhcloud/manager-components": "*",
+    "@ovh-ux/manager-react-components": "*",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
     "@ovhcloud/ods-components": "17.2.2",

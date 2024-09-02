@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { UpdateNameModal } from '@ovhcloud/manager-components';
+import { UpdateNameModal } from '@ovh-ux/manager-react-components';
 import Errors from '@/components/Error/Error';
 import { useSavingsPlan, useSavingsPlanEditName } from '@/hooks/useSavingsPlan';
 import { REGEX } from '@/utils/savingsPlan';

@@ -1,4 +1,4 @@
-import { LinkType, Links } from '@ovhcloud/manager-components';
+import { LinkType, Links } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
