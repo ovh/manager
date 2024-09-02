@@ -29,12 +29,12 @@ export default function BillingTile({ id }: TBillingTileProps) {
         title={t('managed_vcd_dashboard_service_management')}
         items={[
           {
-            id: '',
+            id: 'mailingList',
             label: t('managed_vcd_dashboard_mailing_list'),
             value: <Description>{user?.email}</Description>,
           },
           {
-            id: '',
+            id: 'serviceRenew',
             label: t('managed_vcd_dashboard_service_renew'),
             value: nextBillingDate ? (
               <Links
@@ -46,7 +46,7 @@ export default function BillingTile({ id }: TBillingTileProps) {
             ),
           },
           {
-            id: '',
+            id: 'password',
             label: t('managed_vcd_dashboard_password'),
             value: (
               <div className="flex-wrap">
