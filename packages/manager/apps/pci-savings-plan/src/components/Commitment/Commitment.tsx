@@ -21,19 +21,22 @@ const Commitment = ({
   isActive: boolean;
   onClick: () => void;
 }) => {
+  const { t } = useTranslation('create');
+
   const priceByMonthWithoutCommitment = convertHourlyPriceToMonthly(
     hourlyPriceWithoutCommitment,
   );
 
   const priceNumber = Number(price);
 
-  const diffInPercent = (
-    ((Number(priceByMonthWithoutCommitment) - priceNumber) /
-      Number(priceByMonthWithoutCommitment)) *
-    100
-  ).toFixed(0);
+  const diffInPercent = priceByMonthWithoutCommitment
+    ? (
+        ((Number(priceByMonthWithoutCommitment) - priceNumber) /
+          Number(priceByMonthWithoutCommitment)) *
+        100
+      ).toFixed(0)
+    : 0;
 
-  const { t } = useTranslation('create');
   return (
     <OsdsTile
       size={ODS_TILE_SIZE.sm}
@@ -53,7 +56,7 @@ const Commitment = ({
           {t('commitment_month', { value: duration })}
         </OsdsText>
         <OsdsText color={ODS_THEME_COLOR_INTENT.success} className="ml-3">
-          - {diffInPercent} %
+          {diffInPercent ? `- ${diffInPercent} %` : ''}
         </OsdsText>
       </span>
       <span slot="end" className="flex flex-col items-end justify-center">
@@ -62,7 +65,9 @@ const Commitment = ({
             color={ODS_THEME_COLOR_INTENT.text}
             className="line-through"
           >
-            ~ {priceByMonthWithoutCommitment.toFixed(2)} €
+            {priceByMonthWithoutCommitment
+              ? `~ ${priceByMonthWithoutCommitment.toFixed(2)} €`
+              : ''}
           </OsdsText>
           <OsdsText
             size={ODS_THEME_TYPOGRAPHY_SIZE._500}

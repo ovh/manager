@@ -4,7 +4,7 @@ import {
   isDiscoveryProject,
   useProject,
 } from '@ovhcloud/manager-components';
-import React from 'react';
+import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CreatePlanFormContainer } from '@/components/CreatePlanForm/CreatePlanForm';
 

@@ -28,14 +28,19 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState, useRef } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { MutationStatus, useMutationState } from '@tanstack/react-query';
 import QuantitySelector from '@/components/QuantitySelector/QuantitySelector';
 import useTechnicalInfo, { usePricingInfo } from '@/hooks/useCatalogCommercial';
-import { useSavingsPlanCreate } from '@/hooks/useSavingsPlan';
+import {
+  getMutationKeyCreateSavingsPlan,
+  useSavingsPlanCreate,
+  useServiceId,
+} from '@/hooks/useSavingsPlan';
 import { formatPricingInfo } from '@/utils/formatter/formatter';
 import rancherSrc from '../../assets/images/rancher.png';
 import serviceSrc from '../../assets/images/service.png';
@@ -52,7 +57,7 @@ import { TileTechnicalInfo } from '../TileTechnicalInfo/TileTechnicalInfo';
 import { getQuotaUrl } from '../../utils/routes';
 
 export const isValidName = (name: string) =>
-  /^[a-z0-9][-_.A-Za-z0-9]{1,61}$/.test(name);
+  /^[-_.A-Za-z0-9]{1,61}$/.test(name);
 
 const COMMON_SPACING = 'my-4';
 
@@ -95,6 +100,27 @@ export const getDescriptionInstanceKey = (resource: string) => {
   return `select_model_description_instance_${resource}`;
 };
 
+const buildDisplayName = (instanceDisplayName: string) =>
+  `Savings-Plan-${instanceDisplayName}-${
+    new Date().toISOString().split('T')[0]
+  }`;
+
+const getInstanceDisplayName = (
+  instanceTechnicalName: InstanceTechnicalName,
+) => {
+  switch (instanceTechnicalName) {
+    case InstanceTechnicalName.c3:
+      return 'CPU';
+    case InstanceTechnicalName.r3:
+      return 'RAM';
+    case InstanceTechnicalName.rancher:
+      return 'RANCHER';
+    case InstanceTechnicalName.b3:
+    default:
+      return 'GP';
+  }
+};
+
 const CreatePlanForm: FC<CreatePlanFormProps> = ({
   instancesInfo,
   resources,
@@ -113,10 +139,38 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   const [selectedResource, setSelectedResource] = useState<ResourceType>(
     ResourceType.instance,
   );
+  const DEFAULT_NAME = buildDisplayName(
+    getInstanceDisplayName(instanceCategory),
+  );
   const [quantity, setQuantity] = useState<number>(1);
-  const [planName, setPlanName] = useState<string>('');
+  const [planName, setPlanName] = useState<string>(DEFAULT_NAME);
   const [offerIdSelected, setOfferIdSelected] = useState<string>();
   const [isLegalChecked, setIsLegalChecked] = useState<boolean>(false);
+
+  const serviceId = useServiceId();
+
+  const mutationSPCreate = useMutationState<{
+    status: MutationStatus;
+    variables: {
+      periodEndAction: 'REACTIVATE' | 'ACTIVATE';
+    };
+    error?: {
+      response: {
+        statusText: string;
+      };
+    };
+  }>({
+    filters: { mutationKey: getMutationKeyCreateSavingsPlan(serviceId) },
+  });
+
+  const hasCreationErrorMessage =
+    mutationSPCreate[0]?.error?.response?.statusText;
+
+  useEffect(() => {
+    if (hasCreationErrorMessage) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }
+  }, [hasCreationErrorMessage]);
 
   const isInstance = selectedResource === ResourceType.instance;
   const tabsList = isInstance
@@ -149,6 +203,12 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
     (item) => item.name === technicalModel,
   );
 
+  useEffect(() => {
+    if (instanceCategory) {
+      setPlanName(buildDisplayName(getInstanceDisplayName(instanceCategory)));
+    }
+  }, [instanceCategory]);
+
   // Change Between Instance And Rancher we reset the selectedModel
   const onChangeResource = (value: ResourceType) => {
     setSelectedResource(value);
@@ -179,6 +239,17 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   return (
     <div>
       <Block>
+        {hasCreationErrorMessage && (
+          <OsdsMessage type={ODS_MESSAGE_TYPE.error} className="my-4">
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              className="inline-block"
+            >
+              Une erreur est survenue lors de la création : &nbsp;
+              {hasCreationErrorMessage}
+            </OsdsText>
+          </OsdsMessage>
+        )}
         <Subtitle>{t('choose_ressource')}</Subtitle>
         <DescriptionWrapper>
           {t('choose_ressource_description')}

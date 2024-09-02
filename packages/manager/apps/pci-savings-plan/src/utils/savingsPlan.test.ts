@@ -22,4 +22,12 @@ describe('isValidSavingsPlanName', () => {
   it('should return false for empty names', () => {
     expect(isValidSavingsPlanName('')).toBe(false);
   });
+
+  it('should return false for long name', () => {
+    expect(
+      isValidSavingsPlanName(
+        'veryveryverylonglonglonglongnamenameveryveryverylonglonglonglongnamenameveryveryverylonglonglonglongnamename',
+      ),
+    ).toBe(false);
+  });
 });
