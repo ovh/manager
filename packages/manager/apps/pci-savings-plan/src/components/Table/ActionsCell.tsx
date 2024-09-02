@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  OsdsButton,
-  OsdsMenu,
-  OsdsMenuItem,
-  OsdsIcon,
-} from '@ovhcloud/ods-components/react';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
-} from '@ovhcloud/ods-components/';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+} from '@ovhcloud/ods-components';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsMenu,
+  OsdsMenuItem,
+} from '@ovhcloud/ods-components/react';
 import {
   SavingsPlanPlanedChangeStatus,
   SavingsPlanStatus,
@@ -23,39 +24,35 @@ interface SavingsPlanActionsCell {
   onClickEditName: (path: string) => void;
   onClickRenew: () => void;
   id: string;
+  flavor: string;
   status: SavingsPlanStatus;
   periodEndAction: SavingsPlanPlanedChangeStatus;
+  pciUrl: string;
 }
 
-export default function ActionsCell({
+const MenuItems = ({
   status,
-  periodEndAction,
-  id,
-  onClickEditName,
+  flavor,
+  onClickEdit,
   onClickRenew,
-}: Readonly<SavingsPlanActionsCell>) {
-  const editable = true;
+  periodEndAction,
+  pciUrl,
+}: {
+  status: SavingsPlanStatus;
+  flavor: string;
+  onClickEdit: () => void;
+  onClickRenew: () => void;
+  periodEndAction: SavingsPlanPlanedChangeStatus;
+  pciUrl: string;
+}) => {
   const { t } = useTranslation('listing');
 
-  const onClick = () => onClickEditName(id);
+  // We don't have a better way to check that, api return only a specific code and not an id related to scope (instance, rancher),
+  // So if we have number in the flavor (b3-8, c3-16) it's an instance else it's a Rancher
+  const isInstance = /\d/.test(flavor);
+
   return (
-    <OsdsMenu className="absolute  mt-[-15px]">
-      <OsdsButton
-        slot="menu-title"
-        inline
-        circle
-        color={ODS_THEME_COLOR_INTENT.info}
-        variant={ODS_BUTTON_VARIANT.stroked}
-        type={ODS_BUTTON_TYPE.button}
-        size={ODS_BUTTON_SIZE.sm}
-        disabled={!editable || undefined}
-      >
-        <OsdsIcon
-          color={ODS_THEME_COLOR_INTENT.primary}
-          name={ODS_ICON_NAME.ELLIPSIS}
-          size={ODS_ICON_SIZE.xs}
-        />
-      </OsdsButton>
+    <>
       {status === SavingsPlanStatus.ACTIVE && (
         <OsdsMenuItem>
           <OsdsButton
@@ -63,7 +60,7 @@ export default function ActionsCell({
             size={ODS_BUTTON_SIZE.sm}
             variant={ODS_BUTTON_VARIANT.ghost}
             text-align="start"
-            onClick={onClick}
+            onClick={onClickEdit}
           >
             <span slot="start">
               <span>{t('edit')}</span>
@@ -89,6 +86,63 @@ export default function ActionsCell({
           </span>
         </OsdsButton>
       </OsdsMenuItem>
+
+      <OsdsMenuItem>
+        <OsdsButton
+          color={ODS_THEME_COLOR_INTENT.primary}
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.ghost}
+          text-align="start"
+          href={isInstance ? `${pciUrl}/instances` : `${pciUrl}/rancher`}
+        >
+          <span slot="start">
+            <span>{t('order')}</span>
+          </span>
+        </OsdsButton>
+      </OsdsMenuItem>
+    </>
+  );
+};
+
+export default function ActionsCell({
+  status,
+  periodEndAction,
+  id,
+  flavor,
+  onClickEditName,
+  onClickRenew,
+  pciUrl,
+}: Readonly<SavingsPlanActionsCell>) {
+  const editable = true;
+
+  const onClickEdit = useCallback(() => onClickEditName(id), [id]);
+
+  return (
+    <OsdsMenu className="absolute  mt-[-15px]">
+      <OsdsButton
+        slot="menu-title"
+        inline
+        circle
+        color={ODS_THEME_COLOR_INTENT.info}
+        variant={ODS_BUTTON_VARIANT.stroked}
+        type={ODS_BUTTON_TYPE.button}
+        size={ODS_BUTTON_SIZE.sm}
+        disabled={!editable || undefined}
+      >
+        <OsdsIcon
+          color={ODS_THEME_COLOR_INTENT.primary}
+          name={ODS_ICON_NAME.ELLIPSIS}
+          size={ODS_ICON_SIZE.xs}
+        />
+      </OsdsButton>
+      <MenuItems
+        pciUrl={pciUrl}
+        flavor={flavor}
+        status={status}
+        periodEndAction={periodEndAction}
+        onClickEdit={onClickEdit}
+        onClickRenew={onClickRenew}
+      />
     </OsdsMenu>
   );
 }

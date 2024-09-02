@@ -1,14 +1,14 @@
 export interface PciProject {
-    project_id: string;
-    projectName: string;
-    description: string;
-    planCode: PciProjectPlanCode;
-    access: string;
-    creationDate: string;
-    serviceId: number;
-    unleash: boolean;
-    status: string;
-  }
+  project_id: string;
+  projectName: string;
+  description: string;
+  planCode: PciProjectPlanCode;
+  access: string;
+  creationDate: string;
+  serviceId: number;
+  unleash: boolean;
+  status: string;
+}
 
 export enum PciProjectPlanCode {
   DISCOVERY = 'project.discovery',
@@ -40,21 +40,22 @@ export interface SavingsPlanTask {
 export interface SavingsPlanService {
   id: string;
   model: string;
+  flavor: string;
   displayName: string;
   offerId: string;
   endDate: string;
   period: string;
   periodEndAction: SavingsPlanPlanedChangeStatus;
   periodEndDate: string;
-  periodStartDate: string
+  periodStartDate: string;
   plannedChanges: [
     {
       plannedOn: string;
       properties: {
         status: string;
-      }
-    }
-  ],
+      };
+    },
+  ];
   size: number;
   startDate: string;
   status: SavingsPlanStatus;
