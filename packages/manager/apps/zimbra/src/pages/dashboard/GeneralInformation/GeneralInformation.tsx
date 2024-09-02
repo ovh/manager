@@ -63,15 +63,28 @@ function GeneralInformation() {
                 <BadgeStatus itemStatus={organisation?.resourceStatus} />
               </TileBlock>
             )}
-            <TileBlock label={t('zimbra_dashboard_tile_status_ongoingTask')}>
-              {platformUrn && (
+            {/* To uncomment to have task
+             */}
+            <TileBlock
+              label={t(
+                'Coming Soon',
+              )} /* label={t('zimbra_dashboard_tile_status_ongoingTask')}> */
+            >
+              {/* {platformUrn && (
                 <ManagerText
                   urn={platformUrn}
                   iamActions={[IAM_ACTIONS.platform.get, IAM_ACTIONS.task.get]}
                 >
-                  <OngoingTasks />
+
+                   <OngoingTasks />
                 </ManagerText>
-              )}
+              )} */}
+              <ManagerText
+                urn={platformUrn}
+                iamActions={[IAM_ACTIONS.platform.get]}
+              >
+                Coming Soon
+              </ManagerText>
             </TileBlock>
           </div>
         </OsdsTile>
@@ -112,8 +125,9 @@ function GeneralInformation() {
             <Subtitle>{t('zimbra_dashboard_tile_usefulLinks_title')}</Subtitle>
             {guideLinks({
               zimbra_dashboard_webmail: webmail,
-              zimbra_dashboard_administrator_guide:
-                GUIDES_LIST.administrator_guide.url[ovhSubsidiary],
+              /* To uncomment for adminstrator guide */
+              /* zimbra_dashboard_administrator_guide:
+                GUIDES_LIST.administrator_guide.url[ovhSubsidiary], */
               zimbra_dashboard_user_guides:
                 GUIDES_LIST.user_guide.url[ovhSubsidiary],
             })}
