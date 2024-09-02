@@ -1,5 +1,5 @@
 export const ELIGIBLE_FOR_UPGRADE = {
-  PLAN_NAME: 'RISE-2',
+  PLANCODE: '24rise02',
   SUBSIDIARIES: ['GB'],
 };
 
