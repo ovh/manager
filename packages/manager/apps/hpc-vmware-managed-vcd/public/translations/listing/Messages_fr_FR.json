@@ -3,6 +3,5 @@
   "managed_vcd_listing_name": "Nom",
   "managed_vcd_listing_location": "Région",
   "managed_vcd_listing_description": "Description",
-  "managed_vcd_listing_web_interface_url": "URL interface web",
-  "managed_vcd_listing_load_more": "Charger plus de résultats"
+  "managed_vcd_listing_web_interface_url": "URL interface web"
 }
