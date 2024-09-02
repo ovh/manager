@@ -1,5 +1,5 @@
 import { Story } from '@storybook/react';
-import Region from './region.component';
+import { Region } from './region.component';
 
 const managerRegion = {
   title: 'Components/Region',
