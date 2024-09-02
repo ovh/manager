@@ -147,10 +147,10 @@ export const OnboardingWalkMe = () => {
   };
 
   const resizeObserver = new ResizeObserver((entries) => {
-    entries.forEach((entry) => {
-      const el: HTMLElement = stepElement.current;
-      el.style.height = `${entry.borderBoxSize[0].blockSize + ELEMENT_OFFSET}px`;
-    })
+    const currentStepID = steps[currentStepIndex]?.selector.replace('#', '');
+    const el: HTMLElement = stepElement.current;
+    const entry: ResizeObserverEntry = entries.find((entry) => entry.target.id === currentStepID);
+    el.style.height = `${entry.borderBoxSize[0].blockSize + ELEMENT_OFFSET}px`;
   })
 
   const onNextBtnClick = () => {
