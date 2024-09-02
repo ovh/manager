@@ -1,4 +1,4 @@
-import { Description, Subtitle } from '@ovhcloud/manager-components';
+import { Description, Subtitle } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
