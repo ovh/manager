@@ -1,7 +1,7 @@
 import {
   Datagrid,
+  DatagridColumn,
   ErrorBanner,
-  useDatagridSearchParams,
 } from '@ovhcloud/manager-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import React from 'react';
@@ -19,19 +19,18 @@ import {
 } from '@/components/credential/credentialDatagrid/credentialDatagridCells';
 import { getOkmsCredentialsQueryKey } from '@/data/api/okmsCredential';
 import Loading from '@/components/Loading/Loading';
+import { OkmsCredential } from '@/types/okmsCredential.type';
 
 const CredentialDatagrid = () => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
   const { okmsId } = useParams();
 
-  const { sorting, setSorting } = useDatagridSearchParams();
-
   const {
     data: credentials,
     isLoading: isLoadingCredentials,
     error: credentialsError,
-  } = useOkmsCredentials({ sorting, okmsId });
+  } = useOkmsCredentials(okmsId);
 
   if (isLoadingCredentials) return <Loading />;
 
@@ -48,46 +47,50 @@ const CredentialDatagrid = () => {
       />
     );
 
-  const columns = [
+  const columns: DatagridColumn<OkmsCredential>[] = [
     {
       id: 'name',
       cell: DatagridCredentialCellName,
       label: t('key_management_service_credential_list_column_name'),
+      isSortable: false,
     },
     {
       id: 'id',
       cell: DatagridCredentialCellId,
       label: t('key_management_service_credential_list_column_id'),
+      isSortable: false,
     },
     {
       id: 'identities',
       cell: DatagridCredentialCellIdentities,
       label: t('key_management_service_credential_list_column_identities'),
+      isSortable: false,
     },
     {
       id: 'creation_date',
       cell: DatagridCredentialCellCreationDate,
       label: t('key_management_service_credential_list_column_creation_date'),
+      isSortable: false,
     },
     {
       id: 'expiration_date',
       cell: DatagridCredentialCellExpirationDate,
       label: t('key_management_service_credential_list_column_expiration_date'),
+      isSortable: false,
     },
     {
       id: 'status',
       cell: DatagridCredentialCellStatus,
       label: t('key_management_service_credential_list_column_status'),
+      isSortable: false,
     },
   ];
 
   return (
     <Datagrid
       columns={columns}
-      items={credentials || []}
-      totalItems={credentials.length}
-      sorting={sorting}
-      onSortChange={setSorting}
+      items={credentials.data || []}
+      totalItems={credentials.data.length}
       contentAlignLeft
     />
   );
