@@ -112,10 +112,6 @@ export default function AddAndEditAccount() {
       },
     },
     ...(editEmailAccountId && {
-      initials: {
-        value: '',
-        touched: false,
-      },
       description: {
         value: '',
         touched: false,
