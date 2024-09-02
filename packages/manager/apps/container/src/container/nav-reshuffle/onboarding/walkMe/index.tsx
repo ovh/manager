@@ -146,6 +146,13 @@ export const OnboardingWalkMe = () => {
     }
   };
 
+  const resizeObserver = new ResizeObserver((entries) => {
+    entries.forEach((entry) => {
+      const el: HTMLElement = stepElement.current;
+      el.style.height = `${entry.borderBoxSize[0].blockSize + ELEMENT_OFFSET}px`;
+    })
+  })
+
   const onNextBtnClick = () => {
     const currentStep = steps[currentStepIndex];
     if(!isLastStep){
@@ -197,6 +204,7 @@ export const OnboardingWalkMe = () => {
     } else {
       const targetElement = document.querySelector(currentStep.selector);
       targetPos = targetElement.getBoundingClientRect();
+      resizeObserver.observe(targetElement);
       updatePos(targetPos);
     }
   }, [currentStepIndex, isMobile]);
