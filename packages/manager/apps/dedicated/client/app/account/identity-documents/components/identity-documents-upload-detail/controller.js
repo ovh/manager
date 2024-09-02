@@ -13,7 +13,6 @@ export default class AccountUserIdentityDocumentsUploadDetailController {
     this.MAX_SIZE = MAX_SIZE;
     this.multipleFile = false;
     this.isValid = false;
-    this.badFileExtensionsFormatedList = undefined;
     this.fileExtensionsValid = true;
   }
 
@@ -62,11 +61,9 @@ export default class AccountUserIdentityDocumentsUploadDetailController {
     ].mandatory;
     this.isFileExtensionsValid(this.files.flatMap((fileSlot) => fileSlot));
     let isMandatoryOk = true;
-    for (let i = 0; i < numberOfMandatoryDocuments && isMandatoryOk; i += 1) {
-      isMandatoryOk = this.files[i]?.length === 1;
-    }
     this.isValid =
       this.files.reduce((acc, fileSlot, index) => {
+        isMandatoryOk = index < numberOfMandatoryDocuments && isMandatoryOk;
         const isNotMandatory = numberOfMandatoryDocuments <= index;
         const isSingle = fileSlot?.length === 1;
         const isNotInError = fileSlot[0]?.errors === undefined;
