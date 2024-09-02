@@ -1590,7 +1590,12 @@ export default class Server {
         ovhSubsidiary,
       })
       .$promise.then(({ addons, plans, products }) => {
-        const plan = find(plans, { invoiceName: planName });
+        const plan = plans.find(
+          (currentPlan) =>
+            currentPlan.planCode.startsWith(planName) ||
+            currentPlan.invoiceName === planName,
+        );
+        if (!plan) return '';
         const cpu = find(products, { name: plan.product });
         const memoryPlan = find(plan.addonFamilies, { name: 'memory' });
         const memory = find(addons, { planCode: memoryPlan.default });
