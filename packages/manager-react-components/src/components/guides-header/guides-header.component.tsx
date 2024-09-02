@@ -60,7 +60,7 @@ export function GuidesHeader({
         <GuidesHeaderItem
           key={guide}
           guide={guides[guide]}
-          href={`${guides[guide].url[ovhSubsidiary]}`}
+          href={guides[guide].url[ovhSubsidiary] || guides[guide].url.DEFAULT}
           label={getGuideLabel(guides[guide])}
           onClick={(g: Guide) => {
             if (onGuideClick) {
