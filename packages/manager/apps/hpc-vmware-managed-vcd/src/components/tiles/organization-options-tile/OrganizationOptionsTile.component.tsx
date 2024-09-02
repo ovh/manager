@@ -10,27 +10,9 @@ import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 export default function OrganizationOptionsTile({
   isLicenseActive,
 }: {
-  isLicenseActive: boolean;
+  readonly isLicenseActive: boolean;
 }) {
   const { t } = useTranslation('dashboard');
-
-  const LicenseItem = () =>
-    isLicenseActive ? (
-      <Description>
-        {t('managed_vcd_dashboard_windows_license_active')}
-      </Description>
-    ) : (
-      <div className="flex justify-between items-center">
-        <Description>
-          {t('managed_vcd_dashboard_windows_license_unactive')}
-        </Description>
-        <ActionMenu
-          items={[]}
-          isCompact
-          icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
-        />
-      </div>
-    );
 
   return (
     <div className="h-fit">
@@ -40,7 +22,22 @@ export default function OrganizationOptionsTile({
           {
             id: 'license',
             label: t('managed_vcd_dashboard_windows_license'),
-            value: <LicenseItem />,
+            value: isLicenseActive ? (
+              <Description>
+                {t('managed_vcd_dashboard_windows_license_active')}
+              </Description>
+            ) : (
+              <div className="flex justify-between items-center">
+                <Description>
+                  {t('managed_vcd_dashboard_windows_license_unactive')}
+                </Description>
+                <ActionMenu
+                  items={[]}
+                  isCompact
+                  icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
+                />
+              </div>
+            ),
           },
         ]}
       />
