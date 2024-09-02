@@ -33,7 +33,7 @@ exports[`Detail > should render correctly 1`] = `
           <osds-menu-item>
             <osds-button
               color="primary"
-              href="undefined"
+              href="https://docs.ovh.com/gb/en/public-cloud/"
               size="sm"
               target="_blank"
               variant="ghost"
@@ -59,7 +59,7 @@ exports[`Detail > should render correctly 1`] = `
           <osds-menu-item>
             <osds-button
               color="primary"
-              href="undefined"
+              href="https://docs.ovh.com/gb/en/public-cloud/public-cloud-first-steps/"
               size="sm"
               target="_blank"
               variant="ghost"
@@ -85,7 +85,7 @@ exports[`Detail > should render correctly 1`] = `
           <osds-menu-item>
             <osds-button
               color="primary"
-              href="undefined"
+              href="https://docs.ovh.com/gb/en/kubernetes/creating-a-cluster/"
               size="sm"
               target="_blank"
               variant="ghost"
@@ -111,7 +111,7 @@ exports[`Detail > should render correctly 1`] = `
           <osds-menu-item>
             <osds-button
               color="primary"
-              href="undefined"
+              href="https://docs.ovh.com/gb/en/kubernetes/deploying-an-application/"
               size="sm"
               target="_blank"
               variant="ghost"
@@ -137,7 +137,7 @@ exports[`Detail > should render correctly 1`] = `
           <osds-menu-item>
             <osds-button
               color="primary"
-              href="undefined"
+              href="https://docs.ovh.com/gb/en/kubernetes/using-lb/"
               size="sm"
               target="_blank"
               variant="ghost"
