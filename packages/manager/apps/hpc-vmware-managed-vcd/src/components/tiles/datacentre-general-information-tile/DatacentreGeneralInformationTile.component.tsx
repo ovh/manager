@@ -8,10 +8,12 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import IVcdDatacentre from '@/types/vcd-datacenter.interface';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import { subRoutes } from '@/routes/routes.constant';
-import UpdateIcon from '@/components/icon/UpdateIcon.component';
 
 type TTileProps = {
   vcdDatacentre: IVcdDatacentre;
@@ -38,7 +40,14 @@ export default function DatacentreGenerationInformationTile({
               <Description>
                 {vcdDatacentre?.currentState?.description}
               </Description>
-              <UpdateIcon onClick={() => navigate(subRoutes.editDescription)} />
+              <OsdsIcon
+                aria-label="edit"
+                className="mx-6 cursor-pointer"
+                name={ODS_ICON_NAME.PEN}
+                size={ODS_ICON_SIZE.xxs}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                onClick={() => navigate(subRoutes.editDescription)}
+              />
             </div>
           ),
         },
