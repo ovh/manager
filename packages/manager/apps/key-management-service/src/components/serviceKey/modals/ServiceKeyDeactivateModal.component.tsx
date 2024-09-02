@@ -15,7 +15,7 @@ import {
   OdsSelectValueChangeEvent,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import Modal from '@/components/Modal/Modal';
 
 import { useUpdateOkmsServiceKey } from '@/data/hooks/useUpdateOkmsServiceKey';
