@@ -97,7 +97,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         if (isEligible) {
           return Server.getUpgradeProductName(
-            ELIGIBLE_FOR_UPGRADE.PLAN_NAME,
+            ELIGIBLE_FOR_UPGRADE.PLANCODE,
             user.ovhSubsidiary,
           ).then((upgradeName) => ({
             isEligible,
