@@ -14,6 +14,7 @@ import DatagridContainer, {
 import RegionLabel from '@/components/region-label/RegionLabel.component';
 import { urls } from '@/routes/routes.constant';
 import IVcdOrganization from '@/types/vcd-organization.interface';
+import { VCD_ORGANIZATION_ROUTE } from '@/data/api/hpc-vmware-managed-vcd.constants';
 
 /* ========= datagrid cells ========== */
 const DatagridIdCell = (vdcOrg: IVcdOrganization) => {
@@ -79,7 +80,7 @@ export default function Listing() {
     title: t('managed_vcd_listing_title'),
     containerId: 'organizations',
     route: {
-      api: '/vmwareCloudDirector/organization',
+      api: VCD_ORGANIZATION_ROUTE,
       onboarding: urls.onboarding,
     },
     columns,
