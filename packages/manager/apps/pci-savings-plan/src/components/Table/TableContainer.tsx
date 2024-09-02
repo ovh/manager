@@ -105,7 +105,7 @@ export default function TableContainer({
         label: t('duration'),
         cell: (props: SavingsPlanService) => (
           <DataGridTextCell>
-            {t('months', { monthValue: convertToDuration(props.period) })}
+            {t('months', { count: convertToDuration(props.period) })}
           </DataGridTextCell>
         ),
       },
