@@ -5,6 +5,7 @@ import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import VcdDashboardLayout from '@/components/dashboard/layout/VcdDashboardLayout.component';
 import { useManagedVcdDatacentre } from '@/data/hooks/useManagedVcdDatacentres';
 import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
+import { COMPUTE_TITLE, STORAGE_TITLE } from './DatacentreDashboard.constant';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
@@ -21,17 +22,17 @@ function DatacentreDashboardPage() {
     },
     {
       name: 'compute',
-      title: 'Compute',
+      title: COMPUTE_TITLE,
       to: useResolvedPath('compute').pathname,
     },
     {
       name: 'storage',
-      title: 'Storage',
+      title: STORAGE_TITLE,
       to: useResolvedPath('storage').pathname,
     },
   ];
 
-  const serviceName = vcdDatacentre?.data?.currentState?.description;
+  const serviceName = vcdDatacentre?.data?.currentState?.name;
   const hasServiceRenamed = vdcId !== serviceName;
 
   const header = hasServiceRenamed
