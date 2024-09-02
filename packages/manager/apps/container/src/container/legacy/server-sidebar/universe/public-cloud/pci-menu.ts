@@ -414,7 +414,7 @@ export function getPciProjectMenu(
         },
         {
           id: 'savings',
-          title: 'Savings Plan',
+          title: 'Savings Plans',
           badge: 'new',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/savings-plan`),
         },
