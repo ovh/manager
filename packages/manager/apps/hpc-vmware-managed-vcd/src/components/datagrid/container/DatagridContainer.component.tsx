@@ -1,25 +1,14 @@
-import React, { useEffect, useState } from 'react';
 import {
   Datagrid,
   ErrorBanner,
-  useDatagridSearchParams,
+  Subtitle,
+  Title,
+  useResourcesIcebergV2,
 } from '@ovhcloud/manager-components';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { OsdsDivider } from '@ovhcloud/ods-components/react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  OsdsButton,
-  OsdsDivider,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
 import Loading from '@/components/loading/Loading.component';
-import { getListingIcebergV2 } from '@/data/api/hpc-vmware-managed-vcd';
 import TDatagridRoute from '@/types/datagrid-route.type';
 
 export type TDatagridContainerProps = {
@@ -39,15 +28,7 @@ export default function DatagridContainer({
 }: TDatagridContainerProps) {
   const [flattenData, setFlattenData] = useState<Record<string, unknown>[]>([]);
   const navigate = useNavigate();
-  const { t } = useTranslation('listing');
 
-  const {
-    pagination,
-    setPagination,
-    sorting,
-    setSorting,
-  } = useDatagridSearchParams();
-  const { pageSize } = pagination;
   const {
     data,
     fetchNextPage,
@@ -56,22 +37,19 @@ export default function DatagridContainer({
     isLoading,
     error,
     status,
-  }: any = useInfiniteQuery({
-    initialPageParam: null,
-    queryKey: [`servicesListingIceberg-${containerId}`],
-    queryFn: ({ pageParam }) =>
-      getListingIcebergV2({
-        pageSize,
-        cursor: pageParam,
-        route: api,
-      }),
-    staleTime: Infinity,
-    retry: false,
-    getNextPageParam: (lastPage) => lastPage.cursorNext,
+    sorting,
+    setSorting,
+  } = useResourcesIcebergV2({
+    route: api,
+    queryKey: ['servicesListingIceberg', containerId],
   });
 
   useEffect(() => {
-    if (status === 'success' && data?.pages[0].data.length === 0) {
+    if (
+      status === 'success' &&
+      data?.pages[0].data.length === 0 &&
+      onboarding
+    ) {
       navigate(onboarding);
     }
     const flatten = data?.pages.map((page: any) => page.data).flat();
@@ -79,7 +57,16 @@ export default function DatagridContainer({
   }, [data]);
 
   if (isError) {
-    return <ErrorBanner error={error.response} />;
+    // return <ErrorBanner error={error} />;
+    // TODO temporary fix
+    return (
+      <ErrorBanner
+        error={{
+          status: 500,
+          data: { message: 'An error occured while fetching data' },
+        }}
+      />
+    );
   }
 
   if (isLoading && !flattenData.length) {
@@ -90,20 +77,17 @@ export default function DatagridContainer({
     );
   }
 
-  const layoutCss = `px-10 pt-${!isEmbedded ? '5' : '0'}`;
+  const layoutCss = `px-10 pt-${isEmbedded ? '0' : '5'}`;
+
+  const header = isEmbedded ? (
+    <Subtitle>{title}</Subtitle>
+  ) : (
+    <Title>{title}</Title>
+  );
 
   return (
     <div className={layoutCss}>
-      <div className="flex items-center justify-between mt-4">
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-          color={ODS_THEME_COLOR_INTENT.text}
-          data-testid="DatagridContainer--title"
-        >
-          {title}
-        </OsdsText>
-      </div>
+      <div className="flex items-center justify-between mt-4">{header}</div>
       <OsdsDivider />
       <React.Suspense>
         {flattenData.length && (
@@ -111,27 +95,15 @@ export default function DatagridContainer({
             columns={columns}
             items={flattenData}
             totalItems={0}
-            pagination={pagination}
-            onPaginationChange={setPagination}
+            onFetchNextPage={fetchNextPage}
+            hasNextPage={hasNextPage && !isLoading}
             sorting={sorting}
             onSortChange={setSorting}
+            manualSorting={false}
             contentAlignLeft
           />
         )}
       </React.Suspense>
-      <div className="grid justify-items-center my-5">
-        {hasNextPage && (
-          <div>
-            <OsdsButton
-              color={ODS_THEME_COLOR_INTENT.info}
-              variant={ODS_BUTTON_VARIANT.stroked}
-              onClick={fetchNextPage}
-            >
-              {t('managed_vcd_listing_load_more')}
-            </OsdsButton>
-          </div>
-        )}
-      </div>
     </div>
   );
 }
