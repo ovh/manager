@@ -103,7 +103,7 @@ export const usePaginatedClusterNodePools = (
           }),
         };
       }),
-    [pools, flavors],
+    [pools, flavors, t],
   );
 
   return {
