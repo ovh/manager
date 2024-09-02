@@ -116,6 +116,10 @@ const Sidebar = (): JSX.Element => {
   }, [memoizedServiceCount]);
 
   useEffect(() => {
+    if (isMobile) setOpen(true);
+  }, [isMobile])
+
+  useEffect(() => {
     if (!currentNavigationNode) return;
 
     // We want to know if we already stored a node in the memory or in the local storage
@@ -279,6 +283,7 @@ const Sidebar = (): JSX.Element => {
       <div
         className={`${style.sidebar_wrapper} ${!open && style.sidebar_short}`}
       >
+        <div className={style.sidebar_lvl1}>
         {!isMobile && (
           <a
             role="img"
@@ -377,6 +382,7 @@ const Sidebar = (): JSX.Element => {
             aria-hidden="true"
           ></span>
         </button>
+        </div>
       </div>
       {selectedNode !== null && (
         <SubTree
