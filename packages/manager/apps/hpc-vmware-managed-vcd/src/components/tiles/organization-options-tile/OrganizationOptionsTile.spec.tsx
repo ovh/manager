@@ -4,12 +4,24 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import React from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import OrganizationOptionsTile from './OrganizationOptionsTile.component';
+
+const renderComponent = () => {
+  const queryClient = new QueryClient();
+
+  return render(
+    <QueryClientProvider client={queryClient}>
+      <OrganizationOptionsTile />
+    </QueryClientProvider>,
+  );
+};
 
 describe('OrganizationOptionsTile component unit test suite', () => {
   it('should define all sections with correct typo', () => {
     // when
-    const { getByText } = render(<OrganizationOptionsTile />);
+    const { getByText } = renderComponent();
 
     // then
     const optionsTitle = getByText('managed_vcd_dashboard_options');
@@ -23,7 +35,7 @@ describe('OrganizationOptionsTile component unit test suite', () => {
     );
 
     // and
-    const licenceTitle = getByText('managed_vcd_dashboard_windows_licence');
+    const licenceTitle = getByText('managed_vcd_dashboard_windows_license');
     expect(licenceTitle).toHaveAttribute(
       'size',
       ODS_THEME_TYPOGRAPHY_SIZE._200,
