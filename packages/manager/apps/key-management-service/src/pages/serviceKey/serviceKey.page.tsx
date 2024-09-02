@@ -5,7 +5,7 @@ import {
   BaseLayout,
   ErrorBanner,
   Notifications,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
   OsdsButton,
