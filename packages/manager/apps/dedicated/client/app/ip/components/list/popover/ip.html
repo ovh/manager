@@ -1,331 +1,233 @@
-<div data-ng-if="ipBlock.version === IP_TYPE.V6" data-uib-dropdown>
-    <button
-        type="button"
-        class="btn btn-link dropdown-toggle"
-        title="{{:: 'common_actions' | translate }}"
-        data-uib-dropdown-toggle
+<!-- ACTIONS FOR UNIQ IPV4 AND UNIQ IPV6 -->
+<oui-action-menu
+    compact
+    aria-label="{{:: 'common_actions' | translate }}"
+    data-placement="bottom-end"
+>
+    <!-- DESCRIPTION -->
+    <oui-action-menu-item
+        data-on-click="goToEditDescription(ipBlock)"
+        data-ng-if="ipBlock.isUniq"
     >
         <span
-            class="ovh-font ovh-font-dots align-top"
-            aria-label="{{:: 'common_actions' | translate }}"
-            aria-hidden="true"
-        >
-        </span>
-    </button>
+            data-ng-bind="ipBlock.description && ('ip_description_edit_title' | translate) || ('ip_description_new_title' | translate)"
+        ></span>
+    </oui-action-menu-item>
 
-    <!-- IPv6 -->
-    <ul class="dropdown-menu-right" data-uib-dropdown-menu>
-        <li data-ng-if="ipBlock.isUniq">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="goToEditDescription(ipBlock)"
-                data-ng-bind="ipBlock.description && ('ip_description_edit_title' | translate) || ('ip_description_new_title' | translate)"
-            ></button>
-        </li>
+    <!-- REVERSE -->
+    <oui-action-menu-item data-on-click="goToUpdateReverse(ipBlock, ip)">
+        <span data-translate="ip_table_manage_reverse"></span>
+    </oui-action-menu-item>
 
-        <li>
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="goToUpdateReverse(ipBlock, ip)"
-                data-translate="ip_table_manage_reverse"
-            ></button>
-        </li>
-    </ul>
-</div>
-
-<div data-ng-if="ipBlock.version === IP_TYPE.V4" data-uib-dropdown>
-    <button
-        type="button"
-        class="btn btn-link dropdown-toggle"
-        title="{{:: 'common_actions' | translate }}"
-        data-uib-dropdown-toggle
-    >
-        <span
-            class="ovh-font ovh-font-dots align-top"
-            aria-label="{{:: 'common_actions' | translate }}"
-            aria-hidden="true"
-        >
-        </span>
-    </button>
-
-    <!-- IPv4 -->
-    <ul class="dropdown-menu-right" data-uib-dropdown-menu>
-        <!-- DESCRIPTION -->
-        <li data-ng-if="ipBlock.isUniq">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="goToEditDescription(ipBlock)"
-                data-ng-bind="ipBlock.description && ('ip_description_edit_title' | translate) || ('ip_description_new_title' | translate)"
-            ></button>
-        </li>
-
-        <!-- REVERSE -->
-        <li>
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="goToUpdateReverse(ipBlock, ip)"
-                data-translate="ip_table_manage_reverse"
-            ></button>
-        </li>
-
-        <li
-            class="divider"
+    <!-- UNDER THIS LINE ACTIONS ARE ONLY FOR UNIQ IPV4 -->
+    <div data-ng-if="ipBlock.version === IP_TYPE.V4">
+        <oui-action-menu-divider
             data-ng-if="ipBlock.service.category !== 'CLOUD' || ipBlock.type === FAILOVER"
-            role="separator"
-        ></li>
+        ></oui-action-menu-divider>
 
-        <!-- VIRTUAL MAC -->
-        <li data-ng-if="ipBlock.type === FAILOVER">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/virtual-mac/add/ip-ip-virtual-mac-add', { ipBlock: ipBlock, ip: ip ,tracking : tracking['mac-add']})"
-                data-translate="ip_table_manage_add_virtualmac"
-                data-ng-disabled="ipBlock.service.category !== 'DEDICATED' || (ipBlock.virtualMac && ipBlock.virtualMac.status !== 'OK') || ipBlock.virtualMac.virtualMacs[ip.ip]"
-                data-oui-tooltip-placement="left"
-                data-oui-tooltip="{{ ipBlock.service.category === 'DEDICATED' && ipBlock.virtualMac.status === 'OK' && ipBlock.virtualMac.virtualMacs[ip.ip] ? getVirtualMacMessage(ipBlock) : '' }}"
-            ></button>
-        </li>
-        <li
+        <!-- VMAC SECTION -->
+        <!-- ADD VIRTUAL MAC -->
+        <oui-action-menu-item
+            data-ng-if="ipBlock.type === FAILOVER"
+            data-on-click="setAction('ip/virtual-mac/add/ip-ip-virtual-mac-add', { ipBlock: ipBlock, ip: ip ,tracking : tracking['mac-add']})"
+            data-disabled="ipBlock.service.category !== 'DEDICATED' || (ipBlock.virtualMac && ipBlock.virtualMac.status !== 'OK') || ipBlock.virtualMac.virtualMacs[ip.ip]"
+            data-oui-tooltip-placement="left"
+            data-oui-tooltip="{{ ipBlock.service.category === 'DEDICATED' && ipBlock.virtualMac.status === 'OK' && ipBlock.virtualMac.virtualMacs[ip.ip] ? getVirtualMacMessage(ipBlock) : '' }}"
+        >
+            <span data-translate="ip_table_manage_add_virtualmac"></span>
+        </oui-action-menu-item>
+
+        <!-- MANAGE VIRTUAL MAC -->
+        <oui-action-menu-item
             data-ng-if="ipBlock.service.category === 'DEDICATED' && ipBlock.type == FAILOVER && ipBlock.virtualMac.status === 'OK' && ipBlock.virtualMac.virtualMacs[ip.ip]"
+            data-on-click="setAction('ip/virtual-mac/ip-ip-virtual-mac', { ipBlock: ipBlock, ip: ip ,tracking : tracking['mac-details']})"
         >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/virtual-mac/ip-ip-virtual-mac', { ipBlock: ipBlock, ip: ip ,tracking : tracking['mac-details']})"
-                data-translate="ip_table_manage_view_virtualmac"
-            ></button>
-        </li>
-        <li
-            data-ng-if="ipBlock.service.category == 'DEDICATED' && ipBlock.type == FAILOVER && ipBlock.virtualMac.status === 'OK' && ipBlock.virtualMac.virtualMacs[ip.ip]"
-        >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/virtual-mac/delete/ip-ip-virtual-mac-delete', { ipBlock: ipBlock, ip: ip,tracking : tracking['mac-delete'] })"
-                data-translate="ip_table_manage_del_virtualmac"
-            ></button>
-        </li>
+            <span data-translate="ip_table_manage_view_virtualmac"></span>
+        </oui-action-menu-item>
 
-        <li
-            class="divider"
+        <!-- DELETE VIRTUAL MAC -->
+        <oui-action-menu-item
+            data-ng-if="ipBlock.service.category == 'DEDICATED' && ipBlock.type == FAILOVER && ipBlock.virtualMac.status === 'OK' && ipBlock.virtualMac.virtualMacs[ip.ip]"
+            data-on-click="setAction('ip/virtual-mac/delete/ip-ip-virtual-mac-delete', { ipBlock: ipBlock, ip: ip,tracking : tracking['mac-delete'] })"
+        >
+            <span data-translate="ip_table_manage_del_virtualmac"></span>
+        </oui-action-menu-item>
+
+        <!-- MITIGATION SECTION -->
+        <oui-action-menu-divider
             data-ng-if="ip.mitigation && ipBlock.service.category !== 'HOUSING'"
-            role="separator"
-        ></li>
+        ></oui-action-menu-divider>
 
         <!-- MITIGATION::SWITCH DEFAULT > PERMANENT -->
-        <li
+        <oui-action-menu-item
             data-ng-if="(!ip.mitigation || ip.mitigation == 'DEFAULT') && ipBlock.service.category !== 'HOUSING'"
+            data-on-click="setAction('ip/mitigation/update/ip-ip-mitigation-update', { ipBlock: ipBlock, ip: ip,tracking : tracking['enable-permanent-mitigation']})"
         >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/mitigation/update/ip-ip-mitigation-update', { ipBlock: ipBlock, ip: ip,tracking : tracking['enable-permanent-mitigation']})"
+            <span
                 data-translate="ip_table_manage_mitigation_DEFAULT_to_PERMANENT"
-            ></button>
-        </li>
+            ></span>
+        </oui-action-menu-item>
+
         <!-- MITIGATION::SWITCH PERMANENT > DEFAULT -->
-        <li
+        <oui-action-menu-item
             data-ng-if="ip.mitigation == 'PERMANENT' && ipBlock.service.category !== 'HOUSING'"
+            data-on-click="setAction('ip/mitigation/update/ip-ip-mitigation-update', { ipBlock: ipBlock, ip: ip ,tracking : tracking['switch-auto-mitigation']})"
         >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/mitigation/update/ip-ip-mitigation-update', { ipBlock: ipBlock, ip: ip ,tracking : tracking['switch-auto-mitigation']})"
+            <span
                 data-translate="ip_table_manage_mitigation_PERMANENT_to_AUTO"
-            ></button>
-        </li>
+            ></span>
+        </oui-action-menu-item>
 
         <!-- MITIGATION::STATS -->
-        <li
+        <oui-action-menu-item
             data-ng-if="(ip.mitigation == 'PERMANENT' || ip.mitigation == 'FORCED')"
+            data-on-click="displayStatistics(ipBlock)"
         >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="displayStatistics(ipBlock)"
-                data-translate="ip_table_manage_mitigation_stats"
-            ></button>
-        </li>
+            <span data-translate="ip_table_manage_mitigation_stats"></span>
+        </oui-action-menu-item>
 
-        <li
-            class="divider"
+        <oui-action-menu-divider
             data-ng-if="ip.gameMitigation && ipBlock.service.category !== 'HOUSING'"
-            role="separator"
-        ></li>
+        ></oui-action-menu-divider>
 
         <!-- GAME MITIGATION -->
-        <li
+        <oui-action-menu-item
             data-ng-if="ip.gameMitigation && ipBlock.service.category !== 'CLOUD'"
+            data-on-click="displayGameFirewall(ipBlock, ip)"
         >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="displayGameFirewall(ipBlock, ip)"
-                data-translate="ip_table_manage_game_mitigation"
-            ></button>
-        </li>
+            <span data-translate="ip_table_manage_game_mitigation"></span>
+        </oui-action-menu-item>
 
-        <li
-            class="divider"
+        <!-- FIREWALL SECTION -->
+        <oui-action-menu-divider
             data-ng-if="ip.mitigation !== 'CREATION_PENDING' && ip.mitigation !== 'REMOVAL_PENDING' && ipBlock.service.category !== 'HOUSING'"
-            role="separator"
-        ></li>
+        ></oui-action-menu-divider>
 
         <!-- FIREWALL::NEW -->
-        <li
+        <oui-action-menu-item
             data-ng-if="ip.mitigation != 'FORCED' && ip.firewall == 'NOT_CONFIGURED' && ipBlock.service.category !== 'HOUSING'"
+            data-on-click="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', { ipBlock: ipBlock, ip: ip, tracking : tracking['create-firewall']})"
         >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', { ipBlock: ipBlock, ip: ip, tracking : tracking['create-firewall']})"
-                data-translate="ip_table_manage_firewall_configure"
-            ></button>
-        </li>
-        <!-- FIREWALL::ENABLE -->
-        <li
-            data-ng-if="ip.mitigation != 'FORCED' && ip.firewall == 'DEACTIVATED'"
-        >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', { ipBlock: ipBlock, ip: ip , tracking : tracking['enable-firewall']})"
-                data-translate="ip_table_manage_firewall_enable"
-            ></button>
-        </li>
-        <!-- FIREWALL::DISABLE -->
-        <li
-            data-ng-if="(!ip.mitigation || ip.mitigation == 'DEFAULT') && ip.firewall == 'ACTIVATED'"
-        >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', { ipBlock: ipBlock, ip: ip, tracking : tracking['disable-firewall'] })"
-                data-translate="ip_table_manage_firewall_disable"
-            ></button>
-        </li>
-        <!-- FIREWALL::DISABLED -->
-        <li data-ng-if="ip.mitigation && ip.mitigation != 'DEFAULT'">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-translate="ip_table_manage_firewall_disable"
-                data-oui-tooltip-placement="left"
-                data-oui-tooltip="{{:: 'ip_table_manage_firewall_disable_tooltip' | translate }}"
-                disabled
-            ></button>
-        </li>
-        <!-- FIREWALL::CONFIGURE -->
-        <li data-ng-if="ip.firewall && ip.firewall != 'NOT_CONFIGURED'">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="displayFirewall(ipBlock, ip)"
-                data-translate="ip_table_manage_firewall_rules"
-            ></button>
-        </li>
+            <span data-translate="ip_table_manage_firewall_configure"></span>
+        </oui-action-menu-item>
 
-        <li class="divider" data-ng-if="ip.hasSpamAlerts" role="separator"></li>
+        <!-- FIREWALL::ENABLE -->
+        <oui-action-menu-item
+            data-ng-if="ip.mitigation != 'FORCED' && ip.firewall == 'DEACTIVATED'"
+            data-on-click="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', { ipBlock: ipBlock, ip: ip , tracking : tracking['enable-firewall']})"
+        >
+            <span data-translate="ip_table_manage_firewall_enable"></span>
+        </oui-action-menu-item>
+
+        <!-- FIREWALL::DISABLE -->
+        <oui-action-menu-item
+            data-ng-if="(!ip.mitigation || ip.mitigation == 'DEFAULT') && ip.firewall == 'ACTIVATED'"
+            data-on-click="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', { ipBlock: ipBlock, ip: ip, tracking : tracking['disable-firewall'] })"
+        >
+            <span data-translate="ip_table_manage_firewall_disable"></span>
+        </oui-action-menu-item>
+
+        <!-- FIREWALL::DISABLED -->
+        <oui-action-menu-item
+            data-ng-if="ip.mitigation && ip.mitigation != 'DEFAULT'"
+            disabled
+            data-oui-tooltip-placement="left"
+            data-oui-tooltip="{{:: 'ip_table_manage_firewall_disable_tooltip' | translate }}"
+        >
+            <span data-translate="ip_table_manage_firewall_disable"></span>
+        </oui-action-menu-item>
+
+        <!-- FIREWALL::CONFIGURE -->
+        <oui-action-menu-item
+            data-ng-if="ip.firewall && ip.firewall != 'NOT_CONFIGURED'"
+            data-on-click="displayFirewall(ipBlock, ip)"
+        >
+            <span data-translate="ip_table_manage_firewall_rules"></span>
+        </oui-action-menu-item>
+
+        <!-- SPAM SECTION -->
+        <oui-action-menu-divider
+            data-ng-if="ip.hasSpamAlerts"
+        ></oui-action-menu-divider>
 
         <!-- SPAM::UNBLOCK -->
-        <li data-ng-if="ip.hasSpamAlerts">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="displayAntispam(ipBlock, ip)"
-                data-translate="ip_table_manage_antispam_unblock"
-            ></button>
-        </li>
+        <oui-action-menu-item
+            data-ng-if="ip.hasSpamAlerts"
+            data-on-click="displayAntispam(ipBlock, ip)"
+        >
+            <span data-translate="ip_table_manage_antispam_unblock"></span>
+        </oui-action-menu-item>
 
         <!-- ANTIHACK::UNBLOCK -->
-        <li data-ng-if="ip.hasAntihackAlerts">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/antihack/ip-ip-antihack', { ipBlock: ipBlock, ip: ip })"
-                data-translate="ip_table_manage_view_antihack"
-            ></button>
-        </li>
+        <oui-action-menu-item
+            data-ng-if="ip.hasAntihackAlerts"
+            data-on-click="setAction('ip/antihack/ip-ip-antihack', { ipBlock: ipBlock, ip: ip })"
+        >
+            <span data-translate="ip_table_manage_view_antihack"></span>
+        </oui-action-menu-item>
 
-        <li
-            class="divider"
+        <oui-action-menu-divider
             data-ng-if="ipBlock.type == FAILOVER && ipBlock.isUniq"
-            role="separator"
-        ></li>
+        ></oui-action-menu-divider>
 
         <!-- ORGANISATION -->
-        <li
+        <oui-action-menu-item
             data-ng-if="ipBlock.type === FAILOVER && ipBlock.isUniq && ipBlock.organizationId"
+            data-on-click="setAction('ip/organisation/view/ip-ip-organisation-view', { ipBlock: ipBlock })"
         >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/organisation/view/ip-ip-organisation-view', { ipBlock: ipBlock })"
+            <span
                 data-translate="ip_table_manage_view_iporganisation_details"
-            ></button>
-        </li>
+            ></span>
+        </oui-action-menu-item>
 
-        <li
+        <oui-action-menu-item
             data-ng-if="ipBlock.type === FAILOVER && ipBlock.isUniq && ipBlock.organizationId"
+            data-on-click="setAction('ip/organisation/change/ip-ip-organisation-change', { ipBlock: ipBlock })"
         >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/organisation/change/ip-ip-organisation-change', { ipBlock: ipBlock })"
+            <span
                 data-translate="ip_table_manage_view_iporganisation_change"
-            ></button>
-        </li>
+            ></span>
+        </oui-action-menu-item>
 
         <!-- IPMOVE -->
-        <li data-ng-if="ipBlock.type === FAILOVER && ipBlock.isUniq">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/block/move/ip-ip-block-move', { ipBlock: ipBlock, tracking : tracking['move-failover']})"
+        <oui-action-menu-item
+            data-ng-if="ipBlock.type === FAILOVER && ipBlock.isUniq"
+            data-on-click="setAction('ip/block/move/ip-ip-block-move', { ipBlock: ipBlock, tracking : tracking['move-failover']})"
+        >
+            <span
                 data-ng-bind=":: ('ip_table_manage_move_ipblock' | translate) + ADDITIONAL_IP"
-            ></button>
-        </li>
+            ></span>
+        </oui-action-menu-item>
 
         <!-- PCC DELETE / VRACK DELETE-->
-        <li data-ng-if="ipBlock.type === PCC || ipBlock.type === VRACK">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/block/delete/ip-ip-block-delete', { ipBlock: ipBlock , tracking : (ipBlock.type === PCC ? tracking['delete-pcc'] : tracking['delete-vrack'])})"
-                data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
-                data-oui-tooltip-placement="left"
-                data-ng-disabled="!ipBlock.canBeTerminated"
+        <oui-action-menu-item
+            data-ng-if="ipBlock.type === PCC || ipBlock.type === VRACK"
+            data-on-click="setAction('ip/block/delete/ip-ip-block-delete', { ipBlock: ipBlock , tracking : (ipBlock.type === PCC ? tracking['delete-pcc'] : tracking['delete-vrack'])})"
+        >
+            <span
                 data-ng-bind=":: ('ip_table_manage_delete_ipblock' | translate) + ADDITIONAL_IP"
-            ></button>
-        </li>
+            ></span>
+        </oui-action-menu-item>
 
         <!-- Additional IP DELETE -->
-        <li data-ng-if="ipBlock.type === FAILOVER && ipBlock.isUniq">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/block/delete/ip-ip-block-delete', { ipBlock: ipBlock , tracking : tracking['delete-failover']})"
-                data-ng-disabled="!ipBlock.canBeTerminated"
-                data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
-                data-oui-tooltip-placement="left"
-                data-ng-bind=":: ('ip_table_manage_delete_ipblock' | translate) + ADDITIONAL_IP"
-            ></button>
-        </li>
-        <!-- BYOIP Aggregate -->
-        <li
-            data-ng-if="ipBlock.bringYourOwnIp && !ipBlock.ipBlock.endsWith('/24')"
+        <oui-action-menu-item
+            data-ng-if="ipBlock.type === FAILOVER && ipBlock.isUniq"
+            data-on-click="setAction('ip/block/delete/ip-ip-block-delete', { ipBlock: ipBlock , tracking : tracking['delete-failover']})"
+            data-disabled="!ipBlock.canBeTerminated"
+            data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
+            data-oui-tooltip-placement="left"
         >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/byoip/aggregate/ip-ip-byoip-aggregate', { ipBlock: ipBlock })"
-                data-translate="ip_table_manage_byoip_aggregate"
-            ></button>
-        </li>
-    </ul>
-</div>
+            <span
+                data-ng-bind=":: ('ip_table_manage_delete_ipblock' | translate) + ADDITIONAL_IP"
+            ></span>
+        </oui-action-menu-item>
+
+        <!-- BYOIP Aggregate -->
+        <oui-action-menu-item
+            data-ng-if="ipBlock.bringYourOwnIp && !ipBlock.ipBlock.endsWith('/24')"
+            data-on-click="setAction('ip/byoip/aggregate/ip-ip-byoip-aggregate', { ipBlock: ipBlock })"
+        >
+            <span data-translate="ip_table_manage_byoip_aggregate"></span>
+        </oui-action-menu-item>
+    </div>
+</oui-action-menu>
