@@ -32,41 +32,39 @@ const CredentialList = () => {
   if (isLoadingIam) return <Loading />;
 
   return (
-    <>
-      <div className={'flex flex-col gap-8 mt-8'}>
+    <div className={'flex flex-col gap-8 mt-8'}>
+      <Description>
+        {t('key_management_service_credential_headline')}
+      </Description>
+      <ManagerButton
+        size={ODS_BUTTON_SIZE.sm}
+        inline
+        color={ODS_THEME_COLOR_INTENT.primary}
+        variant={ODS_BUTTON_VARIANT.stroked}
+        className={'w-fit'}
+        onClick={() => {
+          navigate(ROUTES_URLS.createCredential);
+        }}
+        iamActions={['okms:apiovh:resource/credential/create']}
+        urn={okms.iam.urn}
+      >
+        <span slot="start">
+          <OsdsIcon
+            name={ODS_ICON_NAME.ADD}
+            size={ODS_ICON_SIZE.xs}
+            color={ODS_THEME_COLOR_INTENT.primary}
+          ></OsdsIcon>
+        </span>
+        {t('key_management_service_credential_cta_create')}
+      </ManagerButton>
+      {isAuthorized ? (
+        <CredentialDatagrid />
+      ) : (
         <Description>
-          {t('key_management_service_credential_headline')}
+          {t('key_management_service_credential_not_authorized')}
         </Description>
-        <ManagerButton
-          size={ODS_BUTTON_SIZE.sm}
-          inline
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.stroked}
-          className={'w-fit'}
-          onClick={() => {
-            navigate(ROUTES_URLS.createCredential);
-          }}
-          iamActions={['okms:apiovh:resource/credential/create']}
-          urn={okms.iam.urn}
-        >
-          <span slot="start">
-            <OsdsIcon
-              name={ODS_ICON_NAME.ADD}
-              size={ODS_ICON_SIZE.xs}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            ></OsdsIcon>
-          </span>
-          {t('key_management_service_credential_cta_create')}
-        </ManagerButton>
-        {isAuthorized ? (
-          <CredentialDatagrid />
-        ) : (
-          <Description>
-            {t('key_management_service_credential_not_authorized')}
-          </Description>
-        )}
-      </div>
-    </>
+      )}
+    </div>
   );
 };
 
