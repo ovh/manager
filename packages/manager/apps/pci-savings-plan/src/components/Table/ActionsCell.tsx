@@ -96,7 +96,7 @@ const MenuItems = ({
           href={isInstance ? `${pciUrl}/instances` : `${pciUrl}/rancher`}
         >
           <span slot="start">
-            <span>{t('order')}</span>
+            <span>{t(isInstance ? 'order_instance' : 'order_rancher')}</span>
           </span>
         </OsdsButton>
       </OsdsMenuItem>
