@@ -3,7 +3,7 @@ import template from './general.html';
 
 export default {
   bindings: {
-    price: '<',
+    price: '@',
     workflowName: '=?',
   },
   controller,

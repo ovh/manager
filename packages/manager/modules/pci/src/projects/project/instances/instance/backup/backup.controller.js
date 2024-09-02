@@ -70,4 +70,12 @@ export default class PciInstanceBackupController {
       type: 'action',
     });
   }
+
+  formatPrice() {
+    return this.monthlyPrice?.price
+      ? this.PciProjectsProjectInstanceService.formatHourlyToMonthlyPrice(
+          this.monthlyPrice.price,
+        )
+      : '?';
+  }
 }

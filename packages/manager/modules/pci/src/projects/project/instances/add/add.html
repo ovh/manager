@@ -461,7 +461,7 @@
             <p
                 class="font-weight-bold"
                 data-translate="pci_workflow_create_monthly_backup_price"
-                data-translate-values="{ price : $ctrl.automatedBackup.price.price.text }"
+                data-translate-values="{ price : $ctrl.formatAutomatedBackupPrice() }"
             ></p>
             <pci-projects-project-workflow-schedule
                 data-ng-if="$ctrl.automatedBackup.selected"

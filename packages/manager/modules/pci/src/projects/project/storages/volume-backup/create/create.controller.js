@@ -5,6 +5,7 @@ import {
   VOLUME_OPTION_BACKUP,
   VOLUME_OPTION_SNAPSHOT,
   VOLUMES_OPTIONS,
+  PRICE_DECIMAL,
 } from './create.constants';
 import { VOLUME_BACKUP_TRACKING } from '../volume-backup.constants';
 
@@ -52,7 +53,12 @@ export default class VolumeBackupCreateController {
 
   formatVolumePrice(volumeOption) {
     const { price } = this.getVolumeAddon(volumeOption).pricings[0];
-    const convertPrice = this.cucCurrencyService.convertUcentsToCurrency(price);
+    const convertPrice =
+      Math.round(
+        this.cucCurrencyService.convertUcentsToCurrency(price * 720) *
+          10 ** PRICE_DECIMAL,
+      ) /
+      10 ** PRICE_DECIMAL;
     const priceCurrency = this.cucCurrencyService.getCurrentCurrency();
 
     return `${convertPrice}${priceCurrency}`;
