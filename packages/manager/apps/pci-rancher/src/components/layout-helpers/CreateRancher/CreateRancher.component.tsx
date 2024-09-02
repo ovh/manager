@@ -139,11 +139,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const hasInputError = rancherName !== '' && !isValidName;
   const isCreateRancherAllowed = isValidName && !isProjectDiscoveryMode;
 
-  const { t } = useTranslation([
-    'pci-rancher/dashboard',
-    'pci-rancher/listing',
-    'pci-rancher/order',
-  ]);
+  const { t } = useTranslation(['order-price', 'dashboard', 'listing']);
   const trackAction = useTrackingAction();
   const simpleTrackAction = useSimpleTrackingAction();
   const isDesktop: boolean = useMedia(`(min-width: 760px)`);

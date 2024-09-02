@@ -2,7 +2,13 @@ import i18n from 'i18next';
 import I18NextHttpBackend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
-export const ns = ['listing', 'dashboard', 'updateSoftware', 'onboarding'];
+export const ns = [
+  'listing',
+  'dashboard',
+  'updateSoftware',
+  'onboarding',
+  'order-price',
+];
 
 export default async function initI18n(
   locale = 'fr_FR',
