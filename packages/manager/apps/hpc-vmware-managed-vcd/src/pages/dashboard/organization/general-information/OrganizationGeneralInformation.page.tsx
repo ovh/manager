@@ -42,7 +42,9 @@ function GeneralInformation() {
         datacenterCount={vDatacentres?.data?.length}
       />
       <div>
-        <OrganizationOptionsTile />
+        <OrganizationOptionsTile
+          isLicenseActive={!!vcdOrganization?.data?.currentState?.spla}
+        />
       </div>
       <div>
         <BillingTile id={id} />

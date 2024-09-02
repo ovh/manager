@@ -1,21 +1,46 @@
-import { CommonTitle } from '@ovhcloud/manager-components';
-import { OsdsDivider, OsdsTile } from '@ovhcloud/ods-components/react';
 import React from 'react';
+import {
+  ActionMenu,
+  DashboardTile,
+  Description,
+} from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
-import TileSubtitle from '../tile-subtitle/TileSubtitle.component';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
-export default function OrganizationOptionsTile() {
+export default function OrganizationOptionsTile({
+  isLicenseActive,
+}: {
+  readonly isLicenseActive: boolean;
+}) {
   const { t } = useTranslation('dashboard');
 
   return (
-    <OsdsTile>
-      <div className="flex flex-col w-full">
-        <CommonTitle>{t('managed_vcd_dashboard_options')}</CommonTitle>
-        <OsdsDivider separator />
-        <TileSubtitle>
-          {t('managed_vcd_dashboard_windows_licence')}
-        </TileSubtitle>
-      </div>
-    </OsdsTile>
+    <div className="h-fit">
+      <DashboardTile
+        title={t('managed_vcd_dashboard_options')}
+        items={[
+          {
+            id: 'license',
+            label: t('managed_vcd_dashboard_windows_license'),
+            value: isLicenseActive ? (
+              <Description>
+                {t('managed_vcd_dashboard_windows_license_active')}
+              </Description>
+            ) : (
+              <div className="flex justify-between items-center">
+                <Description>
+                  {t('managed_vcd_dashboard_windows_license_unactive')}
+                </Description>
+                <ActionMenu
+                  items={[]}
+                  isCompact
+                  icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
+                />
+              </div>
+            ),
+          },
+        ]}
+      />
+    </div>
   );
 }
