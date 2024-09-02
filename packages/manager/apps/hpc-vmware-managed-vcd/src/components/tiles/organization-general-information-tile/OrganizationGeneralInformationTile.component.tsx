@@ -11,14 +11,14 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import RegionLabel from '@/components/region-label/RegionLabel.component';
 import { subRoutes } from '@/routes/routes.constant';
+import UpdateIcon from '@/components/icon/UpdateIcon.component';
 
 type TTileProps = {
   vcdOrganization: IVcdOrganization;
@@ -44,14 +44,7 @@ export default function OrganizationGenerationInformationTile({
               <Description>
                 {vcdOrganization?.currentState?.fullName}
               </Description>
-              <OsdsIcon
-                aria-label="edit"
-                className="mx-6 cursor-pointer"
-                name={ODS_ICON_NAME.PEN}
-                size={ODS_ICON_SIZE.xxs}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                onClick={() => navigate(subRoutes.editName)}
-              />
+              <UpdateIcon onClick={() => navigate(subRoutes.editName)} />
             </div>
           ),
         },
@@ -63,14 +56,7 @@ export default function OrganizationGenerationInformationTile({
               <Description>
                 {vcdOrganization?.currentState?.description}
               </Description>
-              <OsdsIcon
-                aria-label="edit"
-                className="mx-6 cursor-pointer"
-                name={ODS_ICON_NAME.PEN}
-                size={ODS_ICON_SIZE.xxs}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                onClick={() => navigate(subRoutes.editDescription)}
-              />
+              <UpdateIcon onClick={() => navigate(subRoutes.editDescription)} />
             </div>
           ),
         },

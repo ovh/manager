@@ -5,15 +5,13 @@ import {
   Clipboard,
   DashboardTile,
 } from '@ovhcloud/manager-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import IVcdDatacentre from '@/types/vcd-datacenter.interface';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import { subRoutes } from '@/routes/routes.constant';
+import UpdateIcon from '@/components/icon/UpdateIcon.component';
 
 type TTileProps = {
   vcdDatacentre: IVcdDatacentre;
@@ -40,14 +38,7 @@ export default function DatacentreGenerationInformationTile({
               <Description>
                 {vcdDatacentre?.currentState?.description}
               </Description>
-              <OsdsIcon
-                aria-label="edit"
-                className="mx-6 cursor-pointer"
-                onClick={() => navigate(subRoutes.editDescription)}
-                name={ODS_ICON_NAME.PEN}
-                size={ODS_ICON_SIZE.xxs}
-                color={ODS_THEME_COLOR_INTENT.primary}
-              />
+              <UpdateIcon onClick={() => navigate(subRoutes.editDescription)} />
             </div>
           ),
         },
