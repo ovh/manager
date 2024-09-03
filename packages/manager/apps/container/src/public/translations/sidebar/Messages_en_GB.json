@@ -185,13 +185,17 @@
   "sidebar_sunrise_contact_center": "Contact Centre Solution",
   "sidebar_sunrise_office": "Office 365 Resellers",
   "sidebar_sunrise_ssl_gateway": "SSL Gateway",
-  "sidebar_security_identity_operations": "Security, Identity &amp; Operations",
-  "sidebar_security_identity_operations_short": "SIO",
+  "sidebar_security_identity_operations": "Identity, Security &amp; Operations",
+  "sidebar_security_identity_operations_short": "ISO",
   "sidebar_security_identity_operations_kms": "Key Management Service",
   "sidebar_security_identity_operations_iam": "Identity &amp; Access Management",
   "sidebar_security_identity_operations_logs": "Logs Data Platform",
   "sidebar_assistance_carbon_calculator": "My carbon footprint",
   "sidebar_back_menu": "Back to menu",
   "sidebar_identity_security_operations": "Identity, Security &amp; Operations",
-  "sidebar_key-management-service": "Key Management Service"
+  "sidebar_key-management-service": "Key Management Service",
+  "sidebar_pci_ai_dashboard": "AI Dashboard",
+  "sidebar_reduce": "Minimise",
+  "sidebar_security_operations": "Operations",
+  "sidebar_security_identity": "Identity and Security"
 }

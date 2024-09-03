@@ -44,7 +44,7 @@
   "user_account_menu_beta_feedback_text": "¡Ayúdenos a mejorar los servicios de OVHcloud!",
   "user_account_menu_role_provider": "SSO",
   "user_account_menu_role_account": "Administrador",
-  "user_account_menu_notification_email": "Notificación: {{email}}",
+  "user_account_menu_notification_email": "Notificación: ",
   "user_account_menu_notification_email_strong": "Notificación: <strong>{{email}}</strong>",
   "user_account_menu_support": "Soporte",
   "user_account_menu_role_connexion": "Conexión",

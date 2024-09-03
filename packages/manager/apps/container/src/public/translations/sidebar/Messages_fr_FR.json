@@ -74,6 +74,7 @@
   "sidebar_pci_ai_training": "AI Training",
   "sidebar_pci_ai_app": "AI Deploy",
   "sidebar_pci_ai_endpoints": "AI Endpoints",
+  "sidebar_pci_ai_dashboard": "AI Dashboard",
   "sidebar_pci_ml_serving": "ML Serving",
   "sidebar_pci_data_processing": "Data Processing",
   "sidebar_pci_logs_data_platform": "Logs Data Platform",
@@ -161,8 +162,8 @@
   "sidebar_sunrise_contact_center": "Contact Center Solution",
   "sidebar_sunrise_office": "Office 365 Revendeurs",
   "sidebar_sunrise_ssl_gateway": "SSL Gateway",
-  "sidebar_security_identity_operations": "Sécurité, Identité & Opérations",
-  "sidebar_security_identity_operations_short": "SIO",
+  "sidebar_security_identity_operations": "Identité, Sécurité & Opérations",
+  "sidebar_security_identity_operations_short": "ISO",
   "sidebar_security_identity_operations_kms": "Key Management Service",
   "sidebar_security_identity_operations_iam": "Identity & Access Management",
   "sidebar_security_identity_operations_logs": "Logs Data Platform",
@@ -185,5 +186,8 @@
   "sidebar_access_dashboard": "Accéder au tableau de bord",
   "sidebar_network_security": "Network Security Dashboard",
   "sidebar_identity_security_operations": "Identité, Sécurité & Opérations",
-  "sidebar_key-management-service": "Key Management Service"
+  "sidebar_key-management-service": "Key Management Service",
+  "sidebar_reduce": "Réduire",
+  "sidebar_security_operations": "Opérations",
+  "sidebar_security_identity": "Identité et Sécurité"
 }
