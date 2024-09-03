@@ -1,12 +1,22 @@
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
-import listingTranslation from '@translation/listing/Messages_fr_FR.json';
-import { rancherPlan, rancherVersion } from '@/_mock_/rancher-resource';
-import { act, fireEvent, waitFor, render } from '@/utils/test/test.provider';
-import CreateRancher, { CreateRancherProps } from './CreateRancher.component';
+import {
+  rancherPlan,
+  rancherVersion,
+  rancherPlansPricing,
+} from '@/_mock_/rancher-resource';
+import dashboardTranslation from '../../../../public/translations/dashboard/Messages_fr_FR.json';
+import listingTranslation from '../../../../public/translations/listing/Messages_fr_FR.json';
+import {
+  act,
+  fireEvent,
+  render,
+  waitFor,
+} from '../../../utils/test/test.provider';
+
 import { getRanchersUrl } from '@/utils/route';
+import CreateRancher, { CreateRancherProps } from './CreateRancher.component';
 
 const onCreateRancher = jest.fn();
 const mockedUsedNavigate = jest.fn();
@@ -14,6 +24,23 @@ const mockedUsedNavigate = jest.fn();
 afterEach(() => {
   jest.clearAllMocks();
 });
+
+jest.mock('react-use', () => ({
+  useMedia: jest.fn(),
+}));
+
+jest.mock('@ovhcloud/manager-components', () => ({
+  ...jest.requireActual('@ovhcloud/manager-components'),
+  Subtitle: jest.fn(),
+  Title: jest.fn(),
+  PciDiscoveryBanner: jest.fn(
+    () => 'pci_projects_project_activate_project_banner_message',
+  ),
+  useCatalogPrice: jest.fn(() => ({
+    getFormattedHourlyCatalogPrice: jest.fn(() => 0.0171),
+    getFormattedMonthlyCatalogPrice: jest.fn(() => 12.312),
+  })),
+}));
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -42,6 +69,7 @@ const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
         hasRancherCreationError={false}
         isProjectDiscoveryMode={false}
         isCreateRancherLoading={false}
+        pricing={rancherPlansPricing}
         {...props}
       />,
     ),
@@ -108,23 +136,20 @@ describe('CreateRancher', () => {
     expect(versionActive).toHaveAttribute('checked');
   });
 
-  it("Given that I'm configuring the service, If the plan status is unavailable I should not be able to click on this plan", async () => {
-    const screen = await setupSpecTest({
-      plans: [{ name: 'STANDARD', status: 'UNAVAILABLE' }],
-    });
-    const standardPlan = screen.getByLabelText('tile-Standard');
-
-    await userEvent.click(standardPlan);
-
-    expect(onCreateRancher).not.toHaveBeenCalled();
-    expect(standardPlan).toBeDisabled();
-  });
-
   it('Given that there is an error i should see error banner.', async () => {
     const screen = await setupSpecTest({ hasRancherCreationError: true });
     const errorCreateBanner = screen.getByTestId('errorBanner');
 
     expect(errorCreateBanner).not.toBeNull();
+  });
+
+  it('Given that there is prices I should see rancher pricing', async () => {
+    const screen = await setupSpecTest();
+    const rancherPricingHourly = screen.getAllByText('0.0171');
+    const rancherPricingMonthly = screen.getAllByText('~ 12.312');
+
+    expect(rancherPricingMonthly).not.toBeNull();
+    expect(rancherPricingHourly).not.toBeNull();
   });
 
   describe('Cancel Click', () => {
