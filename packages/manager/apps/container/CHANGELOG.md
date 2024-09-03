@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.71.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.70.1...@ovh-ux/manager-container-app@0.71.0) (2024-09-03)
+
+
+### Bug Fixes
+
+* **container:** fixed interpolation issue with user widget ([#12721](https://github.com/ovh/manager/issues/12721)) ([fc51fd8](https://github.com/ovh/manager/commit/fc51fd83101e52c78e60a7fd4860f2208d280a99))
+
+
+### Features
+
+* **container:**  improved pnr sidebar wording ([#12206](https://github.com/ovh/manager/issues/12206)) ([e71e726](https://github.com/ovh/manager/commit/e71e726e8a61b858e19ba85980a8ad92a56cd106))
+* **container:** added ai dashboard to pnr v2 navigation ([#12731](https://github.com/ovh/manager/issues/12731)) ([e2ba8c9](https://github.com/ovh/manager/commit/e2ba8c963c215898f73caaf435293366d36f2303))
+* **container:** pnr added kms entry on security, identity & operations ([#12258](https://github.com/ovh/manager/issues/12258)) ([ae58073](https://github.com/ovh/manager/commit/ae5807393ad3b99a56092e2db467d4d98e95e006))
+
+
+
+
+
 ## [0.70.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.70.0...@ovh-ux/manager-container-app@0.70.1) (2024-08-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
