@@ -7,6 +7,7 @@ import {
   Headers,
   Notifications,
   PciGuidesHeader,
+  RedirectionGuard,
   useColumnFilters,
   useDataGrid,
   useNotifications,
@@ -59,7 +60,11 @@ export default function ListPage() {
   );
 
   return (
-    <>
+    <RedirectionGuard
+      isLoading={isPending}
+      condition={allKube.rows?.length === 0}
+      route={`/pci/projects/${projectId}/kubernetes/onboarding`}
+    >
       {project && (
         <OsdsBreadcrumb
           items={[
@@ -191,6 +196,6 @@ export default function ListPage() {
           />
         </div>
       )}
-    </>
+    </RedirectionGuard>
   );
 }
