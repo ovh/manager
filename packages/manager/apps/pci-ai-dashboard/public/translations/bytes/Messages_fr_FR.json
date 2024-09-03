@@ -1,0 +1,20 @@
+{
+  "unitShort-B": "o",
+  "unitShort-KB": "Ko",
+  "unitShort-MB": "Mo",
+  "unitShort-GB": "Go",
+  "unitShort-TB": "To",
+  "unitShort-PB": "Po",
+  "unitLong-B_one": "octet",
+  "unitLong-B_other": "octets",
+  "unitLong-KB_one": "kilooctet",
+  "unitLong-KB_other": "kilooctets",
+  "unitLong-MB_one": "mégaoctet",
+  "unitLong-MB_other": "mégaoctets",
+  "unitLong-GB_one": "gigaoctet",
+  "unitLong-GB_other": "gigaoctets",
+  "unitLong-TB_one": "téraoctet",
+  "unitLong-TB_other": "téraoctets",
+  "unitLong-PB_one": "pétaoctet",
+  "unitLong-PB_other": "pétaoctets"
+}
