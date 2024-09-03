@@ -46,10 +46,7 @@ module.exports = {
         },
       },
       moduleDirectories: ['node_modules'],
-      modulePathIgnorePatterns: [
-        '/dist/',
-        'packages/manager/apps/container/src/__tests__/navbar/navbar.spec.tsx',
-      ],
+      modulePathIgnorePatterns: ['/dist/', 'packages/manager/apps/container'],
     },
   ],
 };
