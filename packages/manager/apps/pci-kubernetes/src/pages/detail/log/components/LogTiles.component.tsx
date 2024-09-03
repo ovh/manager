@@ -41,7 +41,11 @@ export function LogTiles({ projectId, kubeId }: Readonly<LogTilesProps>) {
     projectId,
     kubeId,
   );
-  if (isLogsPending) return undefined;
+
+  if (isLogsPending) {
+    return <></>;
+  }
+
   return (
     <>
       {logs?.length === 0 && <LogHowTo />}
@@ -71,7 +75,7 @@ export function LogTiles({ projectId, kubeId }: Readonly<LogTilesProps>) {
                 color={ODS_THEME_COLOR_INTENT.primary}
               />
             </span>
-            {t('log_button_transfer_stream')}
+            {t('log_tile_subscriptions_subscribe')}
           </OsdsButton>
         </>
       )}
