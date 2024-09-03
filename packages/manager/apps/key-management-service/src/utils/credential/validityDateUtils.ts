@@ -5,9 +5,14 @@ export function getNextMonth(): Date {
 }
 
 export function getDaysFromDate(date: Date): number {
-  const referenceDate: Date = new Date();
+  const referenceDate = new Date();
   const oneDay = 24 * 60 * 60 * 1000;
-  const diffInTime = date.getTime() - referenceDate.getTime();
-  const diffInDays = Math.floor(diffInTime / oneDay);
-  return diffInDays;
+  const diffInTime =
+    Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
+    Date.UTC(
+      referenceDate.getFullYear(),
+      referenceDate.getMonth(),
+      referenceDate.getDate(),
+    );
+  return Math.floor(diffInTime / oneDay);
 }
