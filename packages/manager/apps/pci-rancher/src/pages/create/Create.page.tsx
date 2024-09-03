@@ -19,6 +19,8 @@ import {
   TrackingEvent,
   TrackingPageView,
 } from '../../utils/tracking';
+
+import { useRancherPrices } from '@/hooks/useRancherPrices';
 import queryClient from '@/queryClient';
 import useVersions from '@/data/hooks/useVersions/useVersions';
 
@@ -61,7 +63,7 @@ export default function Create() {
     queryKey: [getReferenceRancherInfo(projectId, 'plan')],
     queryFn: () => getRancherPlan(projectId),
   });
-
+  const { plansPricing } = useRancherPrices();
   const { data: versions } = useVersions();
 
   return (
@@ -75,6 +77,7 @@ export default function Create() {
         onCreateRancher={createRancher}
         versions={versions?.filter((v) => v.status === 'AVAILABLE')}
         plans={plans?.data}
+        pricing={plansPricing}
         isProjectDiscoveryMode={
           project?.planCode === PciProjectPlanCode.DISCOVERY
         }

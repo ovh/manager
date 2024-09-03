@@ -2,6 +2,7 @@ import {
   PciDiscoveryBanner,
   Subtitle,
   Title,
+  useCatalogPrice,
 } from '@ovhcloud/manager-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Trans, useTranslation } from 'react-i18next';
@@ -23,20 +24,28 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useMedia } from 'react-use';
 
-import {
-  CreateRancherPayload,
-  RancherPlan,
-  RancherVersion,
-} from '@/types/api.type';
+import clsx from 'clsx';
+
+import { getRancherPlanDescription, isValidRancherName } from '@/utils/rancher';
+import { getRanchersUrl } from '@/utils/route';
+import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+
+import RancherPlanTile from '@/components/Pricing/RancherPlanTile';
 import Block from '@/components/Block/Block.component';
 import {
   useTrackingAction,
   useSimpleTrackingAction,
 } from '@/hooks/useTrackingPage/useTrackingPage';
-import { isValidRancherName } from '@/utils/rancher';
-import { getRanchersUrl } from '@/utils/route';
-import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+import {
+  RancherPlan,
+  RancherVersion,
+  CreateRancherPayload,
+  TRancherPricing,
+  RancherPlanName,
+} from '@/types/api.type';
+import { useFormattedRancherPrices } from '@/data/hooks/useFormattedPrices/useFormattedPrices';
 
 const TileSection: React.FC<{
   name: string;
@@ -88,17 +97,6 @@ const TileSection: React.FC<{
   </OsdsTile>
 );
 
-const getRancherPlanDescription = (rancherPlan: RancherPlan['name']) => {
-  switch (rancherPlan) {
-    case 'STANDARD':
-      return 'createRancherStandardPlanDescription';
-    case 'OVHCLOUD_EDITION':
-      return 'createRancherOVHCloudPlanDescription';
-    default:
-      return null;
-  }
-};
-
 export interface CreateRancherProps {
   projectId: string;
   plans: RancherPlan[];
@@ -108,6 +106,7 @@ export interface CreateRancherProps {
   onCreateRancher: (payload: CreateRancherPayload) => void;
   isProjectDiscoveryMode?: boolean;
   isCreateRancherLoading: boolean;
+  pricing?: TRancherPricing[];
 }
 
 const CreateRancher: React.FC<CreateRancherProps> = ({
@@ -119,6 +118,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   projectId,
   isProjectDiscoveryMode,
   isCreateRancherLoading,
+  pricing,
 }) => {
   const [rancherName, setRancherName] = useState(null);
   const [selectedPlan, setSelectedPlan] = useState(null);
@@ -130,9 +130,11 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const hasInputError = rancherName !== '' && !isValidName;
   const isCreateRancherAllowed = isValidName && !isProjectDiscoveryMode;
 
-  const { t } = useTranslation(['dashboard', 'listing']);
+  const { t } = useTranslation(['order-price', 'dashboard', 'listing']);
   const trackAction = useTrackingAction();
   const simpleTrackAction = useSimpleTrackingAction();
+  const isDesktop: boolean = useMedia(`(min-width: 760px)`);
+  const formattedPrices = useFormattedRancherPrices(plans, pricing);
 
   useEffect(() => {
     if (selectedPlan === null && plans?.length) {
@@ -142,7 +144,6 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         )[0],
       );
     }
-
     if (selectedVersion === null && versions?.length) {
       const availableVersions = versions.filter(
         (version) => version.status === 'AVAILABLE',
@@ -254,16 +255,28 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
           </OsdsText>
         </div>
         <div className="flex my-5">
-          {plans?.map((plan) => (
-            <TileSection
-              key={plan.name}
-              isActive={plan.name === selectedPlan?.name}
-              isDisabled={plan.status !== 'AVAILABLE'}
-              name={t(plan.name)}
-              description={t(getRancherPlanDescription(plan.name))}
-              onClick={() => setSelectedPlan(plan)}
-            />
-          ))}
+          <ul
+            className={clsx(
+              'grid gap-5 list-none p-0 m-0',
+              isDesktop ? 'grid-cols-3' : 'grid-cols-1',
+            )}
+          >
+            {plans?.map((plan) => (
+              <RancherPlanTile
+                key={plan.name}
+                name={t(plan.name)}
+                plan={plan}
+                selectedPlan={selectedPlan}
+                setSelectedPlan={setSelectedPlan}
+                planDescription={t(getRancherPlanDescription(plan.name))}
+                formattedHourlyPrice={formattedPrices[plan.name]?.hourly}
+                formattedMonthlyPrice={formattedPrices[plan.name]?.monthly}
+                isPricing={
+                  !!pricing?.some((p) => p.hourlyPrice || p.monthlyPrice)
+                }
+              />
+            ))}
+          </ul>
         </div>
         <Block>
           <Subtitle>{t('createRancherVersion')}</Subtitle>
