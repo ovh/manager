@@ -30,6 +30,7 @@ import {
 } from '@/data';
 import { iamActions, vcdOrganizationAppName } from '@/veeam-backup.config';
 import { urls } from '@/routes/routes.constant';
+import { useFormattedDate } from '@/hook/date';
 
 export const DisplayNameCell = (backup: VeeamBackupWithIam): JSX.Element => {
   const navigate = useNavigate();
@@ -131,15 +132,8 @@ export const RegionCell = ({
 export const CreatedAtCell = ({
   createdAt,
 }: VeeamBackupWithIam): JSX.Element => {
-  const { i18n } = useTranslation('veeam-backup');
-  const date = new Date(createdAt);
-  return (
-    <DataGridTextCell>
-      {date.toString() !== 'Invalid Date'
-        ? date.toLocaleDateString(ovhLocaleToI18next(i18n.language))
-        : '-'}
-    </DataGridTextCell>
-  );
+  const date = useFormattedDate(createdAt);
+  return <DataGridTextCell>{date}</DataGridTextCell>;
 };
 
 export const ActionCell = (backup: VeeamBackupWithIam): JSX.Element => {
