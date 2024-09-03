@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.32.0...@ovh-ux/manager-bm-server-components@1.33.0) (2024-09-03)
+
+
+### Features
+
+* **dedicated:** disposal of terminatesbg route ([#12083](https://github.com/ovh/manager/issues/12083)) ([d56f68d](https://github.com/ovh/manager/commit/d56f68d00469cbb4b7972925faf60a6de65c44f1))
+
+
+
+
+
 # [1.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.31.2...@ovh-ux/manager-bm-server-components@1.32.0) (2024-09-03)
 
 
