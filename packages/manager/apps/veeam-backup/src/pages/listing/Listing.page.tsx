@@ -8,8 +8,8 @@ import {
   Datagrid,
   BaseLayout,
   DatagridColumn,
+  RedirectionGuard,
 } from '@ovhcloud/manager-components';
-import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constant';
@@ -31,8 +31,6 @@ export default function Listing() {
   const {
     data,
     flattenData,
-    sorting,
-    setSorting,
     fetchNextPage,
     hasNextPage,
     isError,
@@ -86,67 +84,48 @@ export default function Listing() {
     },
   ];
 
-  React.useEffect(() => {
-    if (status === 'success') {
-      if (data?.pages[0].data.length === 0) {
-        navigate(urls.onboarding);
-      }
-    }
-  }, [status, data]);
-
   if (isError) {
     return <ErrorBanner error={error} />;
   }
 
-  if (isLoading && !flattenData) {
-    return <Loading />;
-  }
-
   return (
-    <BaseLayout
-      breadcrumb={<Breadcrumb />}
-      header={{
-        title: 'Managed Veeam for VCD',
-      }}
-      description={t('description')}
-      message={<SuccessMessages />}
+    <RedirectionGuard
+      isLoading={isLoading || !flattenData}
+      condition={status === 'success' && data?.pages[0].data.length === 0}
+      route={urls.onboarding}
     >
-      <div className="flex mb-6">
-        <OsdsButton
-          variant={ODS_BUTTON_VARIANT.stroked}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          inline
-          onClick={() => navigate(urls.orderVeeam)}
-        >
-          {t('order_button')}
-        </OsdsButton>
-      </div>
-      <React.Suspense>
-        {flattenData && (
-          <Datagrid
-            columns={columns}
-            items={flattenData}
-            totalItems={flattenData.length || 0}
-            pagination={null}
-            sorting={sorting}
-            onSortChange={setSorting}
-          />
-        )}
-      </React.Suspense>
-      <div className="grid justify-items-center my-5">
-        {hasNextPage && (
-          <div>
-            <OsdsButton
-              color={ODS_THEME_COLOR_INTENT.info}
-              variant={ODS_BUTTON_VARIANT.stroked}
-              onClick={() => fetchNextPage()}
-            >
-              {t('load_more_button')}
-            </OsdsButton>
-          </div>
-        )}
-      </div>
-      <Outlet />
-    </BaseLayout>
+      <BaseLayout
+        breadcrumb={<Breadcrumb />}
+        header={{
+          title: 'Managed Veeam for VCD',
+        }}
+        description={t('description')}
+        message={<SuccessMessages />}
+      >
+        <div className="flex mb-6">
+          <OsdsButton
+            variant={ODS_BUTTON_VARIANT.stroked}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            inline
+            onClick={() => navigate(urls.orderVeeam)}
+          >
+            {t('order_button')}
+          </OsdsButton>
+        </div>
+        <React.Suspense>
+          {flattenData && (
+            <Datagrid
+              columns={columns}
+              items={flattenData}
+              totalItems={flattenData.length || 0}
+              hasNextPage={hasNextPage}
+              onFetchNextPage={() => fetchNextPage()}
+              contentAlignLeft
+            />
+          )}
+        </React.Suspense>
+        <Outlet />
+      </BaseLayout>
+    </RedirectionGuard>
   );
 }
