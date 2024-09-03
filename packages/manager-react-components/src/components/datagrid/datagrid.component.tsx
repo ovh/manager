@@ -144,8 +144,8 @@ export const Datagrid = <T,>({
 
   return (
     <div>
-      <div className={`contents overflow-x-auto px-[1px] ${className || ''}`}>
-        <OsdsTable>
+      <div className={`contents px-[1px] ${className || ''}`}>
+        <OsdsTable className="overflow-x-visible">
           <table className="w-full border-collapse">
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
