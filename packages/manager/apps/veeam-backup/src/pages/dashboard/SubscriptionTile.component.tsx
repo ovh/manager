@@ -5,7 +5,6 @@ import {
   OsdsIcon,
   OsdsSkeleton,
 } from '@ovhcloud/ods-components/react';
-import { ovhLocaleToI18next } from '@ovh-ux/manager-react-shell-client';
 import {
   ODS_BUTTON_VARIANT,
   ODS_BUTTON_SIZE,
@@ -23,17 +22,22 @@ import {
 } from '@ovhcloud/manager-components';
 import { VeeamBackupWithIam } from '@/data';
 import { urls } from '@/routes/routes.constant';
-import { formatDateString } from '@/utils/date';
+import { useFormattedDate } from '@/hook/date';
 import { iamActions } from '@/veeam-backup.config';
+import { LoadingChip } from '@/components/Loading/Loading';
 
 export const SubscriptionTile: React.FC<VeeamBackupWithIam> = ({
   id,
   createdAt,
   iam,
 }) => {
-  const { t, i18n } = useTranslation('dashboard');
+  const { t } = useTranslation('dashboard');
   const { data, isLoading } = useServiceDetails({ resourceName: iam.id });
   const navigate = useNavigate();
+  const creationDate = useFormattedDate(createdAt);
+  const nextBillingDate = useFormattedDate(
+    data?.data?.billing?.nextBillingDate,
+  );
 
   return (
     <DashboardTile
@@ -43,17 +47,13 @@ export const SubscriptionTile: React.FC<VeeamBackupWithIam> = ({
           id: 'nextBilling',
           label: t('next_billing'),
           value: isLoading ? (
-            <OsdsSkeleton />
+            <>
+              <OsdsSkeleton />
+              <LoadingChip className="mt-5" />
+            </>
           ) : (
             <>
-              {data?.data?.billing?.nextBillingDate && (
-                <Description className="block">
-                  {formatDateString(
-                    data.data.billing.nextBillingDate,
-                    ovhLocaleToI18next(i18n.language),
-                  )}
-                </Description>
-              )}
+              <Description className="block">{nextBillingDate}</Description>
               {data?.data?.renew?.current?.mode && (
                 <OsdsChip
                   className="mt-5"
@@ -69,11 +69,7 @@ export const SubscriptionTile: React.FC<VeeamBackupWithIam> = ({
         {
           id: 'creationDate',
           label: t('creation_date'),
-          value: (
-            <Description>
-              {formatDateString(createdAt, ovhLocaleToI18next(i18n.language))}
-            </Description>
-          ),
+          value: <Description>{creationDate}</Description>,
         },
         {
           id: 'deleteService',

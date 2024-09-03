@@ -69,6 +69,12 @@ export type VCDLocation = {
   region: VCDRegion;
 };
 
+export enum BackupStatus {
+  active = 'active',
+  none = 'none',
+  error = 'error',
+}
+
 export type VCDOrganization = {
   id: string;
   resourceStatus: ResourceStatus;
@@ -88,6 +94,10 @@ export type VCDOrganization = {
     fullName: string;
   };
   currentTasks: Task[];
+};
+
+export type VCDOrganizationWithBackupStatus = VCDOrganization & {
+  backupStatus?: BackupStatus;
 };
 
 export type VCDOrganizationWithIam = VCDOrganization & { iam: IamData };

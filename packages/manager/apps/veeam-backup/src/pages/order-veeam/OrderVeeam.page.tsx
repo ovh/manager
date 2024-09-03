@@ -16,12 +16,13 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { BillingLink } from '@/components/BillingLink/BillingLink.component';
+import { BillingLink } from '@/components/Links/BillingLink.component';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
+import { OrderVeeamStep2 } from './OrderVeeamStep2.component';
 
 const productName = 'Managed Veeam for VCD';
 
-export default function OrderVeeamStep1() {
+export default function OrderVeeamPage() {
   const { t } = useTranslation('order-veeam');
   const [isStep2Visible, setIsStep2Visible] = React.useState(false);
 
@@ -59,17 +60,20 @@ export default function OrderVeeamStep1() {
           </OsdsText>
         </OsdsTile>
       </DashboardGridLayout>
-      {!isStep2Visible && (
-        <OsdsButton
-          className="mt-9"
-          inline
-          color={ODS_THEME_COLOR_INTENT.primary}
-          size={ODS_BUTTON_SIZE.sm}
-          onClick={() => setIsStep2Visible(true)}
-        >
-          {t('next_step')}
-        </OsdsButton>
-      )}
+      <div className="mt-9">
+        {isStep2Visible ? (
+          <OrderVeeamStep2 />
+        ) : (
+          <OsdsButton
+            inline
+            color={ODS_THEME_COLOR_INTENT.primary}
+            size={ODS_BUTTON_SIZE.sm}
+            onClick={() => setIsStep2Visible(true)}
+          >
+            {t('next_step')}
+          </OsdsButton>
+        )}
+      </div>
     </BaseLayout>
   );
 }
