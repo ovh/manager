@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.20.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.20.6...@ovh-ux/manager-telecom@15.20.7) (2024-09-03)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** clean old easypabx and minipabx code ([0154708](https://github.com/ovh/manager/commit/0154708e0c35944aee2a72e8b38869b8626b707e))
+
+
+
+
+
 ## [15.20.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.20.5...@ovh-ux/manager-telecom@15.20.6) (2024-08-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
