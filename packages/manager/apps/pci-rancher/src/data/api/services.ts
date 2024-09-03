@@ -177,11 +177,3 @@ export const getCatalogQuery = (ovhSubsidiary: string) => ({
   queryKey: [getCatalogUrl(ovhSubsidiary)],
   queryFn: () => getCatalog(ovhSubsidiary),
 });
-
-export const useCatalog = () => {
-  const { me } = useMe();
-  return useQuery({
-    ...getCatalogQuery(me?.ovhSubsidiary),
-    enabled: !!me,
-  });
-};

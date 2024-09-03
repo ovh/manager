@@ -22,13 +22,13 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMedia } from 'react-use';
 
 import clsx from 'clsx';
 
-import { isValidRancherName } from '@/utils/rancher';
+import { getRancherPlanDescription, isValidRancherName } from '@/utils/rancher';
 import { getRanchersUrl } from '@/utils/route';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
@@ -43,7 +43,9 @@ import {
   RancherVersion,
   CreateRancherPayload,
   TRancherPricing,
+  RancherPlanName,
 } from '@/types/api.type';
+import { useFormattedRancherPrices } from '@/data/hooks/useFormattedPrices/useFormattedPrices';
 
 const TileSection: React.FC<{
   name: string;
@@ -95,17 +97,6 @@ const TileSection: React.FC<{
   </OsdsTile>
 );
 
-const getRancherPlanDescription = (rancherPlan: RancherPlan['name']) => {
-  switch (rancherPlan) {
-    case 'STANDARD':
-      return 'createRancherStandardPlanDescription';
-    case 'OVHCLOUD_EDITION':
-      return 'createRancherOVHCloudPlanDescription';
-    default:
-      return null;
-  }
-};
-
 export interface CreateRancherProps {
   projectId: string;
   plans: RancherPlan[];
@@ -143,8 +134,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const trackAction = useTrackingAction();
   const simpleTrackAction = useSimpleTrackingAction();
   const isDesktop: boolean = useMedia(`(min-width: 760px)`);
-  const { getFormattedHourlyCatalogPrice } = useCatalogPrice(5);
-  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(2);
+  const formattedPrices = useFormattedRancherPrices(plans, pricing);
 
   useEffect(() => {
     if (selectedPlan === null && plans?.length) {
@@ -187,13 +177,6 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
 
   const sortedVersions: RancherVersion[] = versions?.sort((a, b) =>
     b.name.localeCompare(a.name),
-  );
-
-  const getPricing = useCallback(
-    (plan: RancherPlan) => {
-      return pricing?.find((p) => p.name === plan.name);
-    },
-    [pricing],
   );
 
   return (
@@ -286,12 +269,8 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
                 selectedPlan={selectedPlan}
                 setSelectedPlan={setSelectedPlan}
                 planDescription={t(getRancherPlanDescription(plan.name))}
-                formattedHourlyPrice={getFormattedHourlyCatalogPrice(
-                  getPricing(plan)?.hourlyPrice,
-                )}
-                formattedMonthlyPrice={getFormattedMonthlyCatalogPrice(
-                  getPricing(plan)?.monthlyPrice,
-                )}
+                formattedHourlyPrice={formattedPrices[plan.name]?.hourly}
+                formattedMonthlyPrice={formattedPrices[plan.name]?.monthly}
                 isPricing={
                   !!pricing?.some((p) => p.hourlyPrice || p.monthlyPrice)
                 }
