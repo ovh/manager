@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.19.0...@ovh-ux/manager-nutanix@1.20.0) (2024-09-03)
+
+
+### Features
+
+* **hpc.nutanix:**  update guide links ([#12688](https://github.com/ovh/manager/issues/12688)) ([2e908f8](https://github.com/ovh/manager/commit/2e908f8aec5c4c685c324460d6555eb21ebd83a0))
+
+
+
+
+
 # [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.18.1...@ovh-ux/manager-nutanix@1.19.0) (2024-08-13)
 
 

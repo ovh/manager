@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-paas-app",
-  "version": "2.2.12",
+  "version": "2.2.13",
   "private": true,
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-web-paas-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-billing-components": "^3.19.0",
+    "@ovh-ux/manager-billing-components": "^3.20.0",
     "@ovh-ux/manager-config": "^7.3.3",
     "@ovh-ux/manager-core": "^12.17.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
