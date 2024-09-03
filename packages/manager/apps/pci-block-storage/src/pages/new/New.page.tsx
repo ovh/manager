@@ -2,9 +2,7 @@ import {
   Headers,
   isDiscoveryProject,
   PciDiscoveryBanner,
-  PciFreeLocalzonesBanner,
   StepComponent,
-  useMe,
   useNotifications,
   useProject,
   useProjectUrl,
@@ -30,7 +28,6 @@ export default function NewPage(): JSX.Element {
   const { projectId } = useParams();
   const { data: project } = useProject(projectId || '');
   const navigate = useNavigate();
-  const { me } = useMe();
   const projectUrl = useProjectUrl('public-cloud');
   const backHref = useHref('..');
   const isDiscovery = isDiscoveryProject(project);
@@ -103,12 +100,6 @@ export default function NewPage(): JSX.Element {
           <PciDiscoveryBanner projectId={projectId} />
         )}
       </div>
-      {me && (
-        <PciFreeLocalzonesBanner
-          ovhSubsidiary={me.ovhSubsidiary}
-          showConfirm={false}
-        />
-      )}
       <div className="mt-8">
         <StepComponent
           order={1}
