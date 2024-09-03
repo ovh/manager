@@ -225,8 +225,6 @@ export default class DomainDnsModifyCtrl {
       this.dns.originalNames.push(ns.nameServer);
       // Keep the original values to be able to reset the form
       this.dns.original.push(nameServer);
-      // Pre-fill the form with existing values
-      this.modifiedDnsList.push(nameServer);
     });
 
     const { configurationType } = resource.currentState.dnsConfiguration;
@@ -236,6 +234,9 @@ export default class DomainDnsModifyCtrl {
     this.selectedConfigurationType = this.isZone
       ? this.currentConfigurationType
       : CONFIGURATION_TYPES.EXTERNAL;
+
+    // Pre-fill the form with existing values
+    this.initDnsList();
   }
 
   setDnsRegistryConfiguration(resource) {

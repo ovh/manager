@@ -1,20 +1,11 @@
 import angular from 'angular';
-import template from './validation-buttons.html';
+import validationButtonsComponent from './validation-buttons.component';
 
-const moduleName = 'validationButtonsModule';
+const moduleName = 'webDomainDnsModifyValidationButtonsModule';
 
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate'])
-  .component('validationButtons', {
-    template,
-    bindings: {
-      openValidationModal: '&',
-      cancelModifications: '&',
-      showCancelModificationsButton: '<',
-      canSubmit: '<',
-      shouldClearForm: '=',
-    },
-  })
+  .component('webDomainDnsModifyValidationButtons', validationButtonsComponent)
   .run(/* @ngTranslationsInject:json */);
 
 export default moduleName;

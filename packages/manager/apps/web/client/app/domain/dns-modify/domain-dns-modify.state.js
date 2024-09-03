@@ -1,6 +1,6 @@
 import { NS_UPDATE_RESULT } from './domain-dns-modify.constants';
 
-export const componentName = 'domainDnsModify';
+export const componentName = 'webDomainDnsModify';
 
 const state = {
   url: '/dns-modify',

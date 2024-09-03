@@ -175,7 +175,7 @@
                 <oui-tile-definition
                     data-term-popover="{{ ::'domain_configuration_web_hosting_offer_START_explain' | translate }}"
                     data-term="{{ ::'domain_dashboard_enable_web_hosting' | translate }}"
-                    ng-if="$ctrl.isStart10mAvailable"
+                    data-ng-if="$ctrl.isStart10mAvailable"
                 >
                     <oui-tile-description>
                         <a
@@ -549,7 +549,7 @@
                     </oui-tile-description>
                     <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
-                            ng-if="$ctrl.actions.manageContact.href"
+                            data-ng-if="$ctrl.actions.manageContact.href"
                             aria-label="{{ ::$ctrl.actions.manageContact.text }}"
                             href="{{ ::$ctrl.actions.manageContact.href }}"
                             top

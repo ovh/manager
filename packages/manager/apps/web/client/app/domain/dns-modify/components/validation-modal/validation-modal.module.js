@@ -1,19 +1,11 @@
 import angular from 'angular';
-import template from './validation-modal.html';
+import validationModalComponent from './validation-modal.component';
 
-const moduleName = 'validationModalModule';
+const moduleName = 'webDomainDnsModifyValidationModalModule';
 
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate'])
-  .component('validationModal', {
-    template,
-    bindings: {
-      modifiedDnsList: '<',
-      isUpdating: '<',
-      closeValidationModal: '&',
-      applyConfiguration: '&',
-    },
-  })
+  .component('webDomainDnsModifyValidationModal', validationModalComponent)
   .run(/* @ngTranslationsInject:json */);
 
 export default moduleName;

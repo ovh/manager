@@ -1,27 +1,19 @@
 import 'angular-translate';
-import addDnsFormsModule from './components/add-dns-forms/add-dns-forms.module';
-import validationButtonsModule from './components/validation-buttons/validation-buttons.module';
-import validationModalModule from './components/validation-modal/validation-modal.module';
-import controller from './domain-dns-modify.controller';
-import template from './domain-dns-modify.html';
-import routing, { componentName } from './domain-dns-modify.state';
+import webDomainDnsModifyAddDnsForms from './components/add-dns-forms/add-dns-forms.module';
+import webDomainDnsModifyValidationButtonsModule from './components/validation-buttons/validation-buttons.module';
+import webDomainValidationModalModule from './components/validation-modal/validation-modal.module';
+import domainDnsModifyComponent from './domain-dns-modify.component';
+import routing from './domain-dns-modify.state';
 
 angular
-  .module(componentName, [
+  .module(domainDnsModifyComponent.name, [
     'pascalprecht.translate',
-    addDnsFormsModule,
-    validationModalModule,
-    validationButtonsModule,
+    webDomainDnsModifyAddDnsForms,
+    webDomainValidationModalModule,
+    webDomainDnsModifyValidationButtonsModule,
   ])
-  .component(componentName, {
-    controller,
-    template,
-    bindings: {
-      modifiedDnsList: '<',
-      goBack: '<',
-    },
-  })
+  .component(domainDnsModifyComponent.name, domainDnsModifyComponent)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
-export default componentName;
+export default domainDnsModifyComponent.name;
