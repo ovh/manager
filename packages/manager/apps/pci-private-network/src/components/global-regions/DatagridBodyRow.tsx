@@ -87,13 +87,17 @@ export default function DataGridBodyRow({
     >
       {index === 0 && (
         <>
-          <td rowSpan={network.subnets.length}>{renderText(network.vlanId)}</td>
-          <td rowSpan={network.subnets.length}>{renderText(network.name)}</td>
+          <td className="py-4 px-2" rowSpan={network.subnets.length}>
+            {renderText(network.vlanId)}
+          </td>
+          <td className="py-4 px-2" rowSpan={network.subnets.length}>
+            {renderText(network.name)}
+          </td>
         </>
       )}
-      <td>{renderText(subnetDetail.region)}</td>
-      <td>{renderText(subnetDetail.cidr)}</td>
-      <td>
+      <td className="py-4 px-2">{renderText(subnetDetail.region)}</td>
+      <td className="py-4 px-2">{renderText(subnetDetail.cidr)}</td>
+      <td className="py-4 px-2">
         {subnetDetail.gatewayName && (
           <OsdsLink
             href={`${projectUrl}/gateway`}
@@ -107,7 +111,7 @@ export default function DataGridBodyRow({
           subnetDetail.dhcpEnabled &&
           renderText(subnetDetail.gatewayIp)}
       </td>
-      <td>
+      <td className="py-4 px-2">
         {renderText(
           subnetDetail.dhcpEnabled
             ? renderChip(
@@ -120,8 +124,8 @@ export default function DataGridBodyRow({
               ),
         )}
       </td>
-      <td>{renderText(subnetDetail.allocatedIp)}</td>
-      <td className="text-right pr-6 min-w-16">
+      <td className="py-4 px-2">{renderText(subnetDetail.allocatedIp)}</td>
+      <td className="text-right py-4 px-2 min-w-16">
         {subnetDetail.gatewayIp &&
           renderTooltipButton(
             ODS_ICON_NAME.SETTINGS,
