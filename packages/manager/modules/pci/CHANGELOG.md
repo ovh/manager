@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.59.2...@ovh-ux/manager-pci@6.60.0) (2024-09-03)
+
+
+### Features
+
+* **pci.ai:** display scaling info ([#12609](https://github.com/ovh/manager/issues/12609)) ([eb775cf](https://github.com/ovh/manager/commit/eb775cf6c2202a29241dbade39bd8ecd4054821b))
+
+
+
+
+
 ## [6.59.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.59.1...@ovh-ux/manager-pci@6.59.2) (2024-08-29)
 
 
