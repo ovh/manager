@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-log-live-tail@2.3.0...@ovh-ux/ng-log-live-tail@2.4.0) (2024-09-03)
+
+
+### Features
+
+* **pci:** log to customer display css ([#12768](https://github.com/ovh/manager/issues/12768)) ([5762d7d](https://github.com/ovh/manager/commit/5762d7db240c14b1123ff08d1c3744b9d1cf7ba5))
+
+
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-log-live-tail@2.2.0...@ovh-ux/ng-log-live-tail@2.3.0) (2024-09-03)
 
 

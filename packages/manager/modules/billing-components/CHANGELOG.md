@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.20.0...@ovh-ux/manager-billing-components@3.21.0) (2024-09-03)
+
+
+### Bug Fixes
+
+* **billing us:** ldp enterprise offers should be terminated by Agora ([#12813](https://github.com/ovh/manager/issues/12813)) ([5d72738](https://github.com/ovh/manager/commit/5d72738c3e65018f64ebb334b45639b20258e409))
+
+
+### Features
+
+* **dedicated:** move billing status and action in commitment section ([#12602](https://github.com/ovh/manager/issues/12602)) ([3c61a8e](https://github.com/ovh/manager/commit/3c61a8e76f07d3b7dcb0648a0c1e557db2766f79))
+
+
+
+
+
 # [3.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.19.0...@ovh-ux/manager-billing-components@3.20.0) (2024-09-03)
 
 

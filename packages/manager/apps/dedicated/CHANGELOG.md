@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.52.0...@ovh-ux/manager-dedicated@19.53.0) (2024-09-03)
+
+
+### Features
+
+* **dedicated.pcc:** add Managed VCD migration ([#12547](https://github.com/ovh/manager/issues/12547)) ([14db45e](https://github.com/ovh/manager/commit/14db45e958134b607103b1ccd005da26fb23631e))
+* **dedicated:** updating IAM on HPC to GA ([#12329](https://github.com/ovh/manager/issues/12329)) ([7ba3a0b](https://github.com/ovh/manager/commit/7ba3a0ba482ddbaf56b5d8e40f6107bc8b88f605))
+
+
+
+
+
 # [19.52.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.51.3...@ovh-ux/manager-dedicated@19.52.0) (2024-09-03)
 
 
