@@ -3,7 +3,7 @@ import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import React, { useContext, useEffect } from 'react';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import { ErrorBanner, useProject } from '@ovhcloud/manager-components';
-import Loading from '@/components/Loading/Loading';
+import Loading from '@/components/Loading/Loading.component';
 
 interface MatchHandle {
   tracking?: {
