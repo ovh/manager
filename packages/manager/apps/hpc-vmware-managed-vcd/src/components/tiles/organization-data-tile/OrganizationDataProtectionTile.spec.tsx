@@ -6,41 +6,46 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import OrganizationOptionsTile from './OrganizationOptionsTile.component';
+import OrganizationDataProtectionTile from './OrganizationDataProtectionTile.component';
 
 const renderComponent = () => {
   const queryClient = new QueryClient();
 
   return render(
     <QueryClientProvider client={queryClient}>
-      <OrganizationOptionsTile isLicenseActive={false} />
+      <OrganizationDataProtectionTile />
     </QueryClientProvider>,
   );
 };
 
-describe('OrganizationOptionsTile component unit test suite', () => {
+describe('OrganizationDataProtectionTile component unit test suite', () => {
   it('should define all sections with correct typo', () => {
     // when
     const { getByText } = renderComponent();
 
     // then
-    const optionsTitle = getByText('managed_vcd_dashboard_options');
-    expect(optionsTitle).toHaveAttribute(
-      'size',
-      ODS_THEME_TYPOGRAPHY_SIZE._400,
-    );
-    expect(optionsTitle).toHaveAttribute(
+    const dataTitle = getByText('managed_vcd_dashboard_data_protection');
+    expect(dataTitle).toHaveAttribute('size', ODS_THEME_TYPOGRAPHY_SIZE._400);
+    expect(dataTitle).toHaveAttribute(
       'level',
       ODS_THEME_TYPOGRAPHY_LEVEL.heading,
     );
 
     // and
-    const licenceTitle = getByText('managed_vcd_dashboard_windows_license');
-    expect(licenceTitle).toHaveAttribute(
+    const backupTitle = getByText('Managed Backup');
+    expect(backupTitle).toHaveAttribute('size', ODS_THEME_TYPOGRAPHY_SIZE._200);
+    expect(backupTitle).toHaveAttribute(
+      'level',
+      ODS_THEME_TYPOGRAPHY_LEVEL.heading,
+    );
+
+    // and
+    const recoveryTitle = getByText('Managed Backup');
+    expect(recoveryTitle).toHaveAttribute(
       'size',
       ODS_THEME_TYPOGRAPHY_SIZE._200,
     );
-    expect(licenceTitle).toHaveAttribute(
+    expect(recoveryTitle).toHaveAttribute(
       'level',
       ODS_THEME_TYPOGRAPHY_LEVEL.heading,
     );
