@@ -3,5 +3,5 @@
   "pci_projects_maintenance_banner_info_list_page": "Maintenance: At least one of your {{productName}} services is affected.",
   "pci_projects_maintenance_banner_info_product_page": "Maintenance: your {{productServiceName}} service is affected by maintenance.",
   "pci_projects_maintenance_banner_info_link": "Find out more.",
-  "pci_projects_project_network_private": "Private network (vRack)"
+  "pci_projects_project_network_private": "Private Network"
 }
