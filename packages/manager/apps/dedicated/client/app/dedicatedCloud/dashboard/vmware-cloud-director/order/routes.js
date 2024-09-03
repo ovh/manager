@@ -9,9 +9,9 @@ export default /* @ngInject */ ($stateProvider) =>
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('dedicatedCloudDescription')
-        .then((dedicatedCloudDescription) =>
-          !dedicatedCloudDescription.canMigrateToVCD
+        .getAsync('managedVCDAvailability')
+        .then((managedVCDAvailability) =>
+          !managedVCDAvailability
             ? { state: 'app.dedicatedCloud.details.dashboard' }
             : false,
         ),

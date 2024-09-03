@@ -20,6 +20,8 @@ import {
 } from './dedicatedCloud.constant';
 
 import { VM_ENCRYPTION_KMS } from './security/dedicatedCloud-security.constants';
+import VCDMigrationState from './vcdMigrationState.class';
+import PCCMigrationState from './pccMigrationState.class';
 
 const moduleName = 'ovhManagerPccService';
 
@@ -1704,7 +1706,7 @@ class DedicatedCloudService {
     this.Poller.kill({ namespace: opts.namespace });
   }
 
-  getVCDGuideLink() {
+  getVCDGuideLinks() {
     const { ovhSubsidiary } = this.coreConfig.getUser();
     return VCD_GUIDE_LINKS[ovhSubsidiary] || VCD_GUIDE_LINKS.DEFAULT;
   }
@@ -1718,12 +1720,30 @@ class DedicatedCloudService {
       );
   }
 
-  hasSubscribedVCDOffer(serviceName) {
-    return this.$http
-      .get('/services', {
-        params: { resourceName: `${serviceName}/option/tovcdmigration` },
+  getManagedVCDMigrationState(serviceName) {
+    const resourcePath = `${serviceName}/option/tovcdmigration`;
+    return this.$q
+      .all({
+        step1: this.$http.get('/services', {
+          params: { resourceName: resourcePath },
+        }),
+        step2: this.$http.get('/services', {
+          params: {
+            resourceName: `${resourcePath}/migration`,
+          },
+        }),
       })
-      .then(({ data }) => data?.length > 0);
+      .then(({ step1, step2 }) => {
+        const countStep1 = step1?.data?.length;
+        const countStep2 = step2?.data?.length;
+        return new VCDMigrationState((countStep1 ?? 0) + (countStep2 ?? 0));
+      });
+  }
+
+  getPCCMigrationState(serviceName) {
+    return this.$http
+      .get(`/dedicatedCloud/${serviceName}/tag/vcdMigration`)
+      .then(({ data }) => new PCCMigrationState(data?.state));
   }
 }
 

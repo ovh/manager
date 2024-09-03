@@ -62,36 +62,23 @@ export default class ServerTerminateCtrl {
    */
   submitCancelSubscription() {
     const serviceInfosRenew = pick(this.serviceInfos, 'renew');
-
     let promise = this.$q.when(true);
     switch (this.cancelSubscriptionForm.cancelMethod) {
       case 'terminate':
-        promise = (this.server.engagement
-          ? this.$http
-              .post(`/support/service/terminateSBG`, {
-                serviceId: this.server.serviceId,
-              })
-              .then(() =>
-                this.goBack(
-                  this.$translate.instant(
-                    'dedicated_server_terminate_success_engaged',
-                  ),
-                  'DONE',
-                ),
-              )
-          : this.Server.terminate(this.$stateParams.productId).then(() =>
-              this.goBack(
-                this.$translate.instant('server_close_service_success'),
-                'DONE',
-              ),
-            )
-        ).catch((err) => {
-          return this.goBack(
-            `${this.$translate.instant('server_close_service_error')} ${err.data
-              ?.message || err.message}`,
-            'error',
-          );
-        });
+        promise = this.Server.terminate(this.$stateParams.productId)
+          .then(() =>
+            this.goBack(
+              this.$translate.instant('server_close_service_success'),
+              'DONE',
+            ),
+          )
+          .catch((err) => {
+            return this.goBack(
+              `${this.$translate.instant('server_close_service_error')} ${err
+                .data?.message || err.message}`,
+              'error',
+            );
+          });
         break;
       case 'deleteAtExpiration':
         set(serviceInfosRenew, 'renew.automatic', true);

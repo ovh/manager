@@ -34,6 +34,7 @@ export default {
     setMessage: '<',
     trackingPrefix: '<',
     dedicatedCloudDescription: '<',
+    managedVCDAvailability: '<',
   },
   template,
 };
