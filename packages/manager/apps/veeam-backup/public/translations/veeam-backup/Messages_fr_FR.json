@@ -7,5 +7,6 @@
   "update_display_name_input_label": "Nom de la sauvegarde",
   "update_display_name_description": "",
   "update_veeam_backup_display_name_success": "Le nom a été modifié avec succès.",
-  "coming_soon": "Prochainement"
+  "coming_soon": "Prochainement",
+  "unknown_date": "N/A"
 }

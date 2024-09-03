@@ -17,11 +17,16 @@ export const veeamBackupQueryKey = (id: string) => [
   `/vmwareCloudDirector/backup/${id}`,
 ];
 
-export const useVeeamBackup = (id: string) =>
+export const useVeeamBackup = (id?: string) =>
   useQuery<ApiResponse<VeeamBackupWithIam>, ApiError>({
     queryKey: veeamBackupQueryKey(id),
     queryFn: () => getVmwareCloudDirectorBackup(id),
     retry: false,
+    retryOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    enabled: !!id,
   });
 
 export const getVeeamBackupDisplayName = (backup?: VeeamBackupWithIam) =>
