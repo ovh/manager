@@ -1,6 +1,7 @@
 {
   "nutanix_title": "Nutanix on OVHcloud",
   "nutanix_order": "Commander",
+  "nutanix_contact_us": "Contactez-nous",
   "nutanix_guides": "Guides",
   "nutanix_guides_main": "Nutanix guides",
   "nutanix_cluster_list_name": "Nom du cluster",

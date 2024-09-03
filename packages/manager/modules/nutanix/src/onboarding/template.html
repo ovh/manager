@@ -19,7 +19,14 @@
             target="_blank"
             rel="noopener"
         >
-            <span data-translate="nutanix_onboarding_order"></span>
+            <span
+                ng-if="$ctrl.ovhSubsidiary === 'US'"
+                data-translate="nutanix_onboarding_contact_us"
+            ></span>
+            <span
+                ng-if="$ctrl.ovhSubsidiary !== 'US'"
+                data-translate="nutanix_onboarding_order"
+            ></span>
         </a>
     </onboarding-description>
 </manager-on-boarding-layout>

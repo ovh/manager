@@ -92,13 +92,14 @@ export default /* @ngInject */ ($stateProvider) => {
         $window,
         coreConfig,
         atInternet,
+        ctaLabel,
       ) => ({
         cta: {
           type: 'button',
           displayed: true,
           disabled: false,
-          label: $translate.instant('nutanix_order'),
-          value: $translate.instant('nutanix_order'),
+          label: ctaLabel,
+          value: ctaLabel,
           onClick: () => {
             atInternet.trackClick({
               name: 'hpc::nutanix::clusters::order',
@@ -112,6 +113,10 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       }),
       hideBreadcrumb: () => true,
+      ctaLabel: /* @ngInject */ (coreConfig, $translate) =>
+        coreConfig.getUser().ovhSubsidiary === 'US'
+          ? $translate.instant('nutanix_contact_us')
+          : $translate.instant('nutanix_order'),
       isPackTypeAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
           .checkFeatureAvailability([FEATURES.PACK_TYPE])
