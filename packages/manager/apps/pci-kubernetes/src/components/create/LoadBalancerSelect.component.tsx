@@ -24,7 +24,7 @@ export default function LoadBalancerSelect({
   onSelect,
 }: Readonly<LoadBalancerSelectProps>) {
   const { t } = useTranslation('network-add');
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <div>
