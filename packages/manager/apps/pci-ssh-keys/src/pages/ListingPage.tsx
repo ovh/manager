@@ -105,6 +105,7 @@ export default function ListingPage() {
     searchQueries,
   );
 
+  // default odstext size is 400
   return (
     <>
       {project && (
