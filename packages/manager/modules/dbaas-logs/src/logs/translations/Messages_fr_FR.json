@@ -136,7 +136,6 @@
   "logs_password_setup_error": "Une erreur est survenue lors de la configuration du mot de passe : {{message}}",
   "logs_home_info_title": "À propos",
   "logs_home_info": "Logs Data Platform est une interface de collecte, d'indexation et d'analyse de logs. Quelque soit la provenance de vos logs, la plateforme vous permet de choisir différents points d'entrée en fonction du protocole, du niveau de sécurité et du format. L'analyse et l'exploitation des données peuvent se faire grâce à différentes API et interfaces web.",
-  "logs_home_account_disabled_title": "Compte désactivé",
   "logs_home_account_disabled_message": "Votre compte a été désactivé le {{disabledDate}}. Contactez le support pour le réactiver.",
   "logs_home_shortcuts": "Raccourcis",
   "logs_home_shortcuts_last_stream": "Dernier flux de données modifié",
