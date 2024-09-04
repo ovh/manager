@@ -1,4 +1,4 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useHref, useParams } from 'react-router-dom';
 import { useMemo, useRef, useState } from 'react';
 import {
   ODS_BUTTON_SIZE,
@@ -15,6 +15,7 @@ import {
 import {
   OsdsButton,
   OsdsIcon,
+  OsdsLink,
   OsdsPopover,
   OsdsPopoverContent,
   OsdsSearchBar,
@@ -44,6 +45,11 @@ export default function NodesPage(): JSX.Element {
   const { t: tKubeNodes } = useTranslation('kube-nodes');
   const { t: tFilter } = useTranslation('filter');
   const { t: tListing } = useTranslation('listing');
+  const { t: tCommon } = useTranslation('common');
+
+  const backLink = useHref(
+    `/pci/projects/${projectId}/kubernetes/${kubeId}/nodepools`,
+  );
 
   const [searchField, setSearchField] = useState('');
   const filterPopoverRef = useRef(undefined);
@@ -86,7 +92,25 @@ export default function NodesPage(): JSX.Element {
       >
         {pool?.name}
       </OsdsText>
+
       <Notifications />
+      <div>
+        <OsdsLink
+          color={ODS_THEME_COLOR_INTENT.primary}
+          className="mt-10"
+          href={backLink}
+        >
+          <OsdsIcon
+            slot="start"
+            name={ODS_ICON_NAME.ARROW_LEFT}
+            size={ODS_ICON_SIZE.xs}
+            color={ODS_THEME_COLOR_INTENT.primary}
+          ></OsdsIcon>
+          <span className="ml-4">
+            {tCommon('common_back_button_back_to_previous_page')}
+          </span>
+        </OsdsLink>
+      </div>
       <p>
         <OsdsText
           color={ODS_TEXT_COLOR_INTENT.text}
