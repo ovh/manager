@@ -40,13 +40,13 @@ export const GIT_STATUS = {
 
 export const GIT_STATUS_WITH_TOOLTIP = {
   unlimitedPath: {
-    [GIT_STATUS.created]: 'lastDeploy',
+    [GIT_STATUS.disabled]: 'disabled',
     [GIT_STATUS.initialError]: 'lastDeploy',
     [GIT_STATUS.error]: 'lastDeploy',
     [GIT_STATUS.deleting]: 'lastDeploy',
   },
   limitedPath: {
-    [GIT_STATUS.created]: 'limitedNumberPath',
+    [GIT_STATUS.disabled]: 'disabled',
     [GIT_STATUS.initialError]: 'lastDeploy',
     [GIT_STATUS.error]: 'limitedNumberPath',
     [GIT_STATUS.deploying]: 'limitedNumberPath',
