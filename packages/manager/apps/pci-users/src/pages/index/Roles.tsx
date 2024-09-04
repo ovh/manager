@@ -7,7 +7,6 @@ import { OsdsText } from '@ovhcloud/ods-components/react';
 import { Role } from '@/interface';
 
 export default function Roles({ roles }: { roles: Role[] }) {
-  // default size is 400
   return (
     <>
       {roles.map((role, idx) => (
