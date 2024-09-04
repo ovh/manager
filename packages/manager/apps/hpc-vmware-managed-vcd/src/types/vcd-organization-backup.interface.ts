@@ -7,7 +7,7 @@ export enum BackupResourceStatus {
   UPDATING = 'UPDATING',
 }
 
-interface BackupOffer {
+interface IBackupOffer {
   name: string;
   quotaInTB: number;
   status: string;
@@ -15,7 +15,7 @@ interface BackupOffer {
 }
 
 interface IVcdOrganizationBackupState {
-  offers: BackupOffer[];
+  offers: IBackupOffer[];
   region: string;
 }
 

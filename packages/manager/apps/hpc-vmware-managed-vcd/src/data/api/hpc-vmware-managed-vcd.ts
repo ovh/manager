@@ -27,9 +27,11 @@ export const getVcdOrganization = async (
  * Get VCD Backup
  */
 export const getVcdOrganizationBackup = async (
-  id: string,
+  organizationId: string,
 ): Promise<ApiResponse<IVcdOrganizationBackup>> =>
-  apiClient.v2.get(`${VCD_ORGANIZATION_ROUTE}/${id}/backup`);
+  apiClient.v2.get(
+    `${VCD_ORGANIZATION_ROUTE}/backup/${organizationId}-veeam-backup`,
+  );
 
 /**
  * Edit VCD Organization

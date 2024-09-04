@@ -15,17 +15,8 @@ import Loading from '@/components/loading/Loading.component';
 export default function DataProtectionTile() {
   const { t } = useTranslation('dashboard');
   const { id } = useParams();
-  const {
-    data: vcdOrganizationBackup,
-    isError,
-    isLoading,
-  } = useManagedVcdOrganizationBackup(id);
-
-  const backupStatus = vcdOrganizationBackup?.data?.resourceStatus;
-  const backupStatusMessage =
-    isError || !backupStatus
-      ? t('managed_vcd_dashboard_backup_status_error')
-      : t(`managed_vcd_dashboard_backup_status_${backupStatus}`);
+  const { data: vcdBackup, isLoading } = useManagedVcdOrganizationBackup(id);
+  const backupStatus = vcdBackup?.data?.resourceStatus ?? 'error';
 
   return (
     <div>
@@ -39,8 +30,12 @@ export default function DataProtectionTile() {
               <div className="flex flex-col">
                 {/* TODO: check other ways to handle error (+refetch) inside a Tile
                 (<ErrorBanner /> is too big to be used here) */}
-                {isLoading && <Loading className="w-8" />}
-                {!isLoading && <span>{backupStatusMessage}</span>}
+                {isLoading && <Loading className="w-8" data-testid="loading" />}
+                {!isLoading && (
+                  <span data-testid="backupStatus">
+                    {t(`managed_vcd_dashboard_backup_status_${backupStatus}`)}
+                  </span>
+                )}
                 <Links
                   type={LinkType.external}
                   label={t('managed_vcd_dashboard_backup_link')}

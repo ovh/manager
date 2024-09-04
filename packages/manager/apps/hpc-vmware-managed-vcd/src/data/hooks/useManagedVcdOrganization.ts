@@ -13,7 +13,7 @@ const getVcdOrganizationQueryKey = (id: string) => [
 ];
 
 const getVcdOrganizationBackupQueryKey = (id: string) => [
-  `get/${VCD_ORGANIZATION_ROUTE}/${id}/backup`,
+  `${getVcdOrganizationQueryKey(id)}/backup`,
 ];
 
 const useManagedVcdOrganization = (id: string) => {
