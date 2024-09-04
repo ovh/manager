@@ -34,7 +34,7 @@ import { useCatalog } from '@/api/hooks/catalog';
 import BillingStep, {
   TBillingStepProps,
 } from '@/components/create/BillingStep.component';
-import { ANTI_AFFINITY_MAX_NODES, NAME_INPUT_CONSTRAINTS } from '@/constants';
+import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
 import queryClient from '@/queryClient';
 import { useTrack } from '@/hooks/track';
 
@@ -61,7 +61,6 @@ export default function NewPage(): JSX.Element {
 
   const [state, setState] = useState({
     isAdding: false,
-    name: { isTouched: false, hasError: false },
   });
 
   const [billingState, setBillingState] = useState<TBillingStepProps>({
@@ -91,21 +90,6 @@ export default function NewPage(): JSX.Element {
     },
     warn: false,
   });
-
-  // Set error message for name input
-  useEffect(() => {
-    if (state.name.isTouched) {
-      setState((prev) => ({
-        ...prev,
-        name: {
-          ...prev.name,
-          hasError:
-            store.name?.length > NAME_INPUT_CONSTRAINTS.MAX_LENGTH ||
-            !NAME_INPUT_CONSTRAINTS.PATTERN.exec(store.name),
-        },
-      }));
-    }
-  }, [store.name, state.name.isTouched]);
 
   // reset store on mount
   useEffect(() => {
@@ -171,7 +155,7 @@ export default function NewPage(): JSX.Element {
 
     const param: TCreateNodePoolParam = {
       flavorName: store.flavor?.name || '',
-      name: store.name,
+      name: store.name.value,
       antiAffinity: store.antiAffinity,
       monthlyBilled: store.isMonthlyBilling,
       autoscale: store.autoScaling.isAutoscale,
@@ -188,7 +172,7 @@ export default function NewPage(): JSX.Element {
           <Translation ns="add">
             {(_t) =>
               _t('kube_add_node_pool_success', {
-                nodePoolName: store.name,
+                nodePoolName: store.name.value,
               })
             }
           </Translation>,
@@ -212,7 +196,7 @@ export default function NewPage(): JSX.Element {
             {(_t) =>
               _t('kube_add_node_pool_error', {
                 message: e?.response?.data?.message || e?.message || null,
-                nodePoolName: store.name,
+                nodePoolName: store.name.value,
               })
             }
           </Translation>,
@@ -248,7 +232,7 @@ export default function NewPage(): JSX.Element {
         isLocked={store.steps.get(StepsEnum.NAME).isLocked}
         next={{
           action:
-            state.name.isTouched && !state.name.hasError
+            store.name.isTouched && !store.name.hasError
               ? () => {
                   store.check(StepsEnum.NAME);
                   store.lock(StepsEnum.NAME);
@@ -269,7 +253,7 @@ export default function NewPage(): JSX.Element {
           className="mt-4"
           inline
           error={
-            state.name.hasError
+            store.name.hasError
               ? tAdd('kube_add_node_pool_name_input_pattern_validation_error')
               : ''
           }
@@ -277,7 +261,7 @@ export default function NewPage(): JSX.Element {
           <OsdsText
             slot="label"
             color={
-              state.name.hasError
+              store.name.hasError
                 ? ODS_THEME_COLOR_INTENT.error
                 : ODS_THEME_COLOR_INTENT.text
             }
@@ -288,18 +272,14 @@ export default function NewPage(): JSX.Element {
           </OsdsText>
           <OsdsInput
             data-testid="name-input"
-            value={store.name}
+            value={store.name.value}
             inline
             color={ODS_THEME_COLOR_INTENT.primary}
             onOdsValueChange={(e) => {
-              setState((prev) => ({
-                ...prev,
-                name: { ...prev.name, isTouched: true },
-              }));
               store.set.name(e.detail.value);
             }}
             type={ODS_INPUT_TYPE.text}
-            error={state.name.hasError}
+            error={store.name.hasError}
             className="border"
           />
         </OsdsFormField>

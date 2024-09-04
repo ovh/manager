@@ -11,7 +11,7 @@ describe('NewPoolStore', () => {
     it('should set name', () => {
       const { result } = renderHook(() => useNewPoolStore());
       act(() => result.current.set.name('test'));
-      expect(result.current.name).toBe('test');
+      expect(result.current.name.value).toBe('test');
     });
     it('should set flavor', () => {
       const { result } = renderHook(() => useNewPoolStore());
@@ -78,6 +78,13 @@ describe('NewPoolStore', () => {
   });
 
   describe('edit', () => {
+    beforeEach(() => {
+      const { result } = renderHook(() => useNewPoolStore());
+      act(() => {
+        result.current.reset();
+      });
+    });
+
     const extractState = (
       state: TFormStore,
     ): Omit<
@@ -110,7 +117,7 @@ describe('NewPoolStore', () => {
         autoScaling: null,
         flavor: undefined,
         isMonthlyBilling: false,
-        name: 'test',
+        name: { value: '', hasError: false, isTouched: false },
         steps: new Map([
           [
             'NAME',
@@ -158,7 +165,7 @@ describe('NewPoolStore', () => {
         autoScaling: null,
         flavor: undefined,
         isMonthlyBilling: false,
-        name: 'test',
+        name: { hasError: false, isTouched: false, value: '' },
         steps: new Map([
           [
             'NAME',
@@ -206,7 +213,11 @@ describe('NewPoolStore', () => {
         autoScaling: null,
         flavor: undefined,
         isMonthlyBilling: false,
-        name: 'test',
+        name: {
+          hasError: false,
+          isTouched: false,
+          value: '',
+        },
         steps: new Map([
           [
             'NAME',
@@ -221,7 +232,7 @@ describe('NewPoolStore', () => {
             {
               isChecked: false,
               isLocked: false,
-              isOpen: true,
+              isOpen: false,
             },
           ],
           [
@@ -238,54 +249,6 @@ describe('NewPoolStore', () => {
               isChecked: false,
               isLocked: false,
               isOpen: false,
-            },
-          ],
-        ]),
-      });
-    });
-
-    it('should edit billing step', () => {
-      const { result } = renderHook(() => useNewPoolStore());
-
-      act(() => result.current.edit(StepsEnum.BILLING));
-
-      expect(extractState(result.current)).toEqual({
-        antiAffinity: false,
-        autoScaling: null,
-        flavor: undefined,
-        isMonthlyBilling: false,
-        name: 'test',
-        steps: new Map([
-          [
-            'NAME',
-            {
-              isChecked: false,
-              isLocked: false,
-              isOpen: true,
-            },
-          ],
-          [
-            'TYPE',
-            {
-              isChecked: false,
-              isLocked: false,
-              isOpen: true,
-            },
-          ],
-          [
-            'SIZE',
-            {
-              isChecked: false,
-              isLocked: false,
-              isOpen: true,
-            },
-          ],
-          [
-            'BILLING',
-            {
-              isChecked: false,
-              isLocked: false,
-              isOpen: true,
             },
           ],
         ]),

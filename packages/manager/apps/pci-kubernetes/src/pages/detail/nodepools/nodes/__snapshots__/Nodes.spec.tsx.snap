@@ -7,6 +7,24 @@ exports[`NodesPage > should render correctly 1`] = `
     level="heading"
     size="700"
   />
+  <div>
+    <osds-link
+      class="mt-10"
+      color="primary"
+    >
+      <osds-icon
+        color="primary"
+        name="arrow-left"
+        size="xs"
+        slot="start"
+      />
+      <span
+        class="ml-4"
+      >
+        common_back_button_back_to_previous_page
+      </span>
+    </osds-link>
+  </div>
   <p>
     <osds-text
       color="text"

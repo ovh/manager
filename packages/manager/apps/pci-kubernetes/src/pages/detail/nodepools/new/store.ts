@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { TFlavor } from '@ovh-ux/manager-pci-common';
 import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
 import { AutoscalingState } from '@/components/Autoscaling.component';
+import { ANTI_AFFINITY_MAX_NODES, NAME_INPUT_CONSTRAINTS } from '@/constants';
 
 type TStep = {
   isOpen: boolean;
@@ -10,7 +11,11 @@ type TStep = {
 };
 
 export type TFormStore = {
-  name: string;
+  name: {
+    value: string;
+    isTouched: boolean;
+    hasError: boolean;
+  };
   flavor: TFlavor;
   autoScaling: AutoscalingState;
   antiAffinity: boolean;
@@ -37,50 +42,68 @@ export type TFormStore = {
   reset: () => void;
 };
 
-const initialSteps = new Map<StepsEnum, TStep>([
-  [
-    StepsEnum.NAME,
-    {
-      isOpen: true,
-      isLocked: false,
-      isChecked: false,
-    },
-  ],
-  [
-    StepsEnum.TYPE,
-    {
-      isOpen: false,
-      isLocked: false,
-      isChecked: false,
-    },
-  ],
-  [
-    StepsEnum.SIZE,
-    {
-      isOpen: false,
-      isLocked: false,
-      isChecked: false,
-    },
-  ],
-  [
-    StepsEnum.BILLING,
-    {
-      isOpen: false,
-      isLocked: false,
-      isChecked: false,
-    },
-  ],
-]);
+const initialSteps = () =>
+  new Map<StepsEnum, TStep>([
+    [
+      StepsEnum.NAME,
+      {
+        isOpen: true,
+        isLocked: false,
+        isChecked: false,
+      },
+    ],
+    [
+      StepsEnum.TYPE,
+      {
+        isOpen: false,
+        isLocked: false,
+        isChecked: false,
+      },
+    ],
+    [
+      StepsEnum.SIZE,
+      {
+        isOpen: false,
+        isLocked: false,
+        isChecked: false,
+      },
+    ],
+    [
+      StepsEnum.BILLING,
+      {
+        isOpen: false,
+        isLocked: false,
+        isChecked: false,
+      },
+    ],
+  ]);
 
 export const useNewPoolStore = create<TFormStore>()((set, get) => ({
-  name: '',
+  name: {
+    value: '',
+    hasError: false,
+    isTouched: false,
+  },
   flavor: undefined,
   autoScaling: null,
   antiAffinity: false,
   isMonthlyBilling: false,
-  steps: new Map(initialSteps),
+  steps: initialSteps(),
   set: {
-    name: (val: string) => set({ name: val }),
+    name: (val: string) => {
+      if (val !== get().name.value) {
+        set({
+          name: {
+            value: val,
+            isTouched: true,
+            hasError:
+              val.length > NAME_INPUT_CONSTRAINTS.MAX_LENGTH ||
+              !NAME_INPUT_CONSTRAINTS.PATTERN.exec(val),
+          },
+        });
+      }
+    },
+
     flavor: (val: TFlavor) => set({ flavor: val }),
     autoScaling: (val: AutoscalingState) => set({ autoScaling: val }),
     antiAffinity: (val: boolean) => set({ antiAffinity: val }),
@@ -202,14 +225,14 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
     }
   },
   reset() {
-    set((state) => ({
-      ...state,
-      name: '',
+    set(() => ({
+      ...get(),
+      name: { value: '', hasError: false, isTouched: false },
       flavor: undefined,
       autoScaling: null,
       antiAffinity: false,
       isMonthlyBilling: false,
-      steps: new Map(initialSteps),
+      steps: initialSteps(),
     }));
   },
 }));
