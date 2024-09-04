@@ -45,8 +45,8 @@ export const SubnetSelector = ({
   onSelect,
   showSpinner,
 }: Readonly<SubnetSelectorProps>) => {
-  const [subnet, setSubnet] = useState(
-    allowsEmpty ? { id: 'none' } : undefined,
+  const [subnet, setSubnet] = useState<TPrivateNetworkSubnet>(
+    allowsEmpty ? ({ id: 'none' } as TPrivateNetworkSubnet) : undefined,
   );
   const { t: tAdd } = useTranslation('network-add');
   const { t: tCommon } = useTranslation('common');
@@ -72,52 +72,54 @@ export const SubnetSelector = ({
     );
 
   return (
-    <OsdsFormField className={className}>
-      {title && (
-        <OsdsText
-          level={ODS_TEXT_LEVEL.body}
-          size={ODS_TEXT_SIZE._200}
-          color={ODS_THEME_COLOR_INTENT.text}
-          slot="label"
-        >
-          {title}
-        </OsdsText>
-      )}
-      {error && (
-        <OsdsMessage
-          type={ODS_MESSAGE_TYPE.error}
-          color={ODS_THEME_COLOR_INTENT.error}
-          className="my-6"
-        >
-          {tAdd('kubernetes_network_form_subnet_error_default', {
-            error: error.message,
-          })}
-        </OsdsMessage>
-      )}
-      <OsdsSelect
-        name="subnet"
-        size={ODS_SELECT_SIZE.md}
-        value={subnet?.id}
-        onOdsValueChange={({ detail }) => {
-          const sub = availableSubnets?.find((net) => net.id === detail.value);
-          setSubnet(sub || { id: 'none' });
-          onSelect?.(sub);
-        }}
-        disabled={disabled || undefined}
-      >
-        {allowsEmpty && (
-          <OsdsSelectOption key="none" value="none">
-            {tCommon('common_none')}
-          </OsdsSelectOption>
+    <>
+      <OsdsFormField className={className}>
+        {title && (
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._200}
+            color={ODS_THEME_COLOR_INTENT.text}
+            slot="label"
+          >
+            {title}
+          </OsdsText>
         )}
-        {availableSubnets?.map((sub) => (
-          <OsdsSelectOption key={sub.id} value={sub.id}>
-            {sub.id}
-            {' - '}
-            {sub.cidr}
-          </OsdsSelectOption>
-        ))}
-      </OsdsSelect>
-    </OsdsFormField>
+        {error && (
+          <OsdsMessage
+            type={ODS_MESSAGE_TYPE.error}
+            color={ODS_THEME_COLOR_INTENT.error}
+            className="my-6"
+          >
+            {tAdd('kubernetes_network_form_subnet_error_default', {
+              error: error.message,
+            })}
+          </OsdsMessage>
+        )}
+        <OsdsSelect
+          name="subnet"
+          size={ODS_SELECT_SIZE.md}
+          value={subnet?.id}
+          onOdsValueChange={({ detail }) => {
+            const sub = availableSubnets?.find(
+              (net) => net.id === detail.value,
+            );
+            setSubnet(sub || ({ id: 'none' } as TPrivateNetworkSubnet));
+            onSelect?.(sub);
+          }}
+          disabled={disabled || undefined}
+        >
+          {allowsEmpty && (
+            <OsdsSelectOption key="none" value="none">
+              {tCommon('common_none')}
+            </OsdsSelectOption>
+          )}
+          {availableSubnets?.map((sub) => (
+            <OsdsSelectOption key={sub.id} value={sub.id}>
+              {`${sub.id} - ${sub.cidr}`}
+            </OsdsSelectOption>
+          ))}
+        </OsdsSelect>
+      </OsdsFormField>
+    </>
   );
 };
