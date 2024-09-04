@@ -1,9 +1,9 @@
 {
   "upload-documents-details-title-identity": "Ajouter votre preuve d'identité",
   "upload-documents-details-title-address": "Ajouter votre preuve d'adresse",
-  "upload-documents-details-title-aadhaar_card": "Ajouter votre Carte AADHAAR",
+  "upload-documents-details-title-aadhaar_card": "Ajouter votre carte Aadhaar",
   "upload-documents-details-title-authority_declaration": "Ajouter votre attestation sur l'honneur",
-  "upload-documents-details-title-vat": "Ajouter votre Carte preuve de TVA",
+  "upload-documents-details-title-vat": "Ajouter votre preuve de TVA",
   "upload-documents-details-choose-document": "Choisir un type de document",
   "upload-documents-details-document-type-aadhaar_card": "Carte Aadhaar",
   "upload-documents-details-document-type-id_card": "Carte d'identité",
@@ -31,5 +31,7 @@
   "upload-documents-details-acceptance-criteria-company_name_vat": "Le nom de l'entreprise et la TVA doivent être mentionnés.",
   "upload-documents-details-acceptance-criteria-mandatory_names": "Votre nom, celui du représentant légal ou du directeur des opérations doivent être mentionnés.",
   "upload-documents-details-acceptance-criteria-names_date_sign_gst": "Le nom, prénom, date et signature du représentant légal, du directeur des opérations ou de tout autre contact mentionné dans le certificat GST.",
-  "upload-documents-details-acceptance-criteria-delegate_dates": "Dates de la période de délégation"
+  "upload-documents-details-acceptance-criteria-delegate_dates": "Dates de la période de délégation",
+  "upload-documents-details-acceptance-criteria-accepted-formats": "Formats acceptés pour tous les documents : pdf, .png, .jpg, .jpeg",
+  "upload-documents-details-acceptance-criteria-maxsize": "Poids maximum pour chaque document téléchargé : 10 Mb"
 }
