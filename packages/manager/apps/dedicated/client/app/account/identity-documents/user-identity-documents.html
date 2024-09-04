@@ -1,166 +1,170 @@
 <!--Header section-->
 <div class="mt-2">
-    <h1
-        class="oui-header__title"
-        data-translate="user_account_identity_documents"
-    ></h1>
-    <!-- information banner for open status -->
-    <oui-message
-        data-type="info"
-        data-ng-if="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN && !$ctrl.displayError && $ctrl.showUploadOption"
-    >
-        <span
-            data-translate="user_account_identity_documents_verification_in_progress_info"
-        ></span>
-    </oui-message>
-    <!-- information banner for required status with additional files-->
-    <oui-message
-        data-type="info"
-        data-ng-if="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.REQUIRED && !!$ctrl.kycStatus.ticketId && !$ctrl.displayError"
-    >
-        <span
-            data-translate="user_account_identity_documents_verification_waiting_info"
-        ></span>
-    </oui-message>
-
-    <!--My Identity document description-->
-    <div class="oui-tile__body">
-        <span data-translate="user_account_identity_documents_intro"></span>
-    </div>
-
-    <div class="d-flex w-75 flex-column mt-3" data-ng-if="$ctrl.isListView">
-        <div
-            data-ng-repeat="(proof, values) in $ctrl.proofs"
-            class="d-flex w-100"
+    <div class="d-flex w-100 flex-column mt-3" data-ng-if="!$ctrl.isListView">
+        <account-upload-identity-documents-upload-detail
+            class="d-flex w-100 my-2"
+            data-proof="$ctrl.currentProof"
+            data-proof-type="$ctrl.currentProofType"
+            data-go-back="$ctrl.selectProofType(null)"
+            data-add-documents="$ctrl.addDocuments(proofType, documentType, files)"
+            data-document-files="$ctrl.currentDocumentFiles"
+            data-document="$ctrl.currentDocumentType"
         >
-            <account-upload-identity-documents-proof-tile
-                class="d-flex w-100 my-2"
-                data-user-type="{{$ctrl.user_type}}"
-                data-proof="{{proof}}"
-                data-extended="values.extended"
-                data-on-click="$ctrl.selectProofType(proof)"
-                data-is-loaded="$ctrl.files.length !== 0"
-            ></account-upload-identity-documents-proof-tile>
+        </account-upload-identity-documents-upload-detail>
+    </div>
+    <div class="d-flex w-100 flex-column mt-3" data-ng-if="$ctrl.isListView">
+        <h1
+            class="oui-header__title"
+            data-translate="user_account_identity_documents"
+        ></h1>
+        <!-- information banner for open status -->
+        <oui-message
+            data-type="info"
+            data-ng-if="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN && !$ctrl.displayError && $ctrl.showUploadOption"
+        >
+            <span
+                data-translate="user_account_identity_documents_verification_in_progress_info"
+            ></span>
+        </oui-message>
+        <!-- information banner for required status with additional files-->
+        <oui-message
+            data-type="info"
+            data-ng-if="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.REQUIRED && !!$ctrl.kycStatus.ticketId && !$ctrl.displayError"
+        >
+            <span
+                data-translate="user_account_identity_documents_verification_waiting_info"
+            ></span>
+        </oui-message>
+
+        <!--My Identity document description-->
+        <div class="oui-tile__body">
+            <span data-translate="user_account_identity_documents_intro"></span>
         </div>
-    </div>
-</div>
-
-<!-- Loader -->
-<div class="text-center mt-5" data-ng-if="$ctrl.loading">
-    <oui-spinner></oui-spinner>
-</div>
-<!-- End of Loader -->
-
-<!-- Document upload option -->
-<div class="mt-2" data-ng-if="!$ctrl.loading && $ctrl.showUploadOption">
-    <div data-ng-if="$ctrl.displayError && $ctrl.fileExtensionsValid">
-        <oui-message data-type="error">
+        <div class="oui-tile__body">
             <span
-                data-translate="user_account_identity_documents_submit_error_message_description"
+                data-ng-if="$ctrl.user_type === $ctrl.USER_TYPE.default"
+                data-translate="user_account_identity_documents_default_info"
             ></span>
-        </oui-message>
+        </div>
+
+        <div class="d-flex w-75 flex-column mt-3">
+            <div
+                data-ng-repeat="(proof, values) in $ctrl.proofs"
+                class="d-flex w-100"
+            >
+                <account-upload-identity-documents-proof-tile
+                    class="d-flex w-100 my-2"
+                    data-user-type="{{$ctrl.user_type}}"
+                    data-proof="{{proof}}"
+                    data-extended="values.extended"
+                    data-on-click="$ctrl.selectProofType(proof)"
+                    data-is-loaded="$ctrl.files[proof] && $ctrl.files[proof].length !== 0"
+                    data-kyc-status="$ctrl.kycStatus"
+                ></account-upload-identity-documents-proof-tile>
+            </div>
+        </div>
+
+        <!-- Loader -->
+        <div class="text-center mt-5" data-ng-if="$ctrl.loading">
+            <oui-spinner></oui-spinner>
+        </div>
+        <!-- End of Loader -->
+
+        <!-- Document upload option -->
+        <div class="mt-2" data-ng-if="!$ctrl.loading && $ctrl.showUploadOption">
+            <div data-ng-if="$ctrl.displayError">
+                <oui-message data-type="error">
+                    <span
+                        data-translate="user_account_identity_documents_submit_error_message_description"
+                    ></span>
+                </oui-message>
+            </div>
+
+            <oui-button
+                class="mt-5"
+                data-variant="primary"
+                data-size="l"
+                data-disabled="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN || !$ctrl.isValid || $ctrl.links"
+                data-on-click="$ctrl.handleUploadConfirmModal(true)"
+            >
+                <span
+                    data-translate="{{:: 'user_account_identity_documents_submit' | translate}}"
+                ></span
+            ></oui-button>
+        </div>
+        <!-- End of upload option -->
+
+        <!-- Suceess Banner -->
+        <div
+            class="mt-2"
+            data-ng-if="!$ctrl.loading && !$ctrl.showUploadOption"
+        >
+            <oui-message data-type="success">
+                <p
+                    class="oui-heading_4"
+                    data-translate="user_account_identity_documents_submit_success_message_title"
+                ></p>
+                <p
+                    data-translate="user_account_identity_documents_submit_success_message_description"
+                ></p>
+            </oui-message>
+            <!-- go back to dashboard option -->
+            <a
+                class="oui-link_icon mt-3"
+                data-ng-href="{{:: $ctrl.dashboardRedirectURL }}"
+                data-track-on="click"
+                data-track-name="{{:: $ctrl.TRACKING_TASK_TAG.goToHub }}"
+                data-track-type="action"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="user_account_identity_documents_go_back_to_dashboard"
+                ></span>
+            </a>
+            <!--end of go back to dashboard option -->
+        </div>
+        <!-- End of Suceess Banner -->
+        <!-- Modal confirmation for uploading documents -->
+        <upload-identity-documents-confirm
+            data-is-open-modal="$ctrl.isOpenModal"
+            data-on-confirm="$ctrl.uploadIdentityDocuments()"
+            data-on-cancel="$ctrl.handleUploadConfirmModal(false)"
+        ></upload-identity-documents-confirm>
     </div>
-    <!-- error banner if the users uploads invalid files-->
-    <div data-ng-if="!$ctrl.fileExtensionsValid">
-        <oui-message class="my-1" data-type="error">
-            <span
-                data-translate="user_account_identity_documents_selection_file_format_invalid"
+    <!--legal section-->
+    <div class="mt-4">
+        <small>
+            <p
+                data-translate="user_account_identity_documents_legal_info3"
+                class="mb-0"
+            ></p>
+            <p
+                data-translate="user_account_identity_documents_legal_info1"
                 data-translate-values="{
-                  values: $ctrl.badFileExtensionsFormatedList
-                }"
-            ></span>
-        </oui-message>
+          link1: $ctrl.LEGAL_LINK1,
+          link2: $ctrl.LEGAL_LINK2
+      }"
+                class="mb-0"
+            ></p>
+            <p
+                data-translate="user_account_identity_documents_legal_info2"
+                data-translate-values="{
+          link: $ctrl.LEGAL_LINK3
+      }"
+                class="mb-0"
+            ></p>
+            <p>
+                <span>*</span>
+                <span
+                    data-translate="user_account_identity_documents_legal_info4"
+                ></span>
+            </p>
+        </small>
+
+        <!--end of legal section-->
     </div>
-    <small
-        class="bold"
-        data-translate="user_account_identity_documents_selection_file_format"
-    >
-    </small>
-    <form novalidate name="$ctrl.form" class="mt-2">
-        <oui-file
-            data-model="$ctrl.files"
-            data-accept="application/pdf,image/jpeg,image/png,image/jpg"
-            data-multiple
-            data-maxsize="$ctrl.maximum_size"
-            data-name="files"
-            data-disabled="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN || $ctrl.links"
-        ></oui-file>
-
-        <oui-form-actions
-            class="mt-5"
-            data-disabled="$ctrl.form.$invalid || !$ctrl.files || $ctrl.files.length === 0 || $ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN || !$ctrl.fileExtensionsValid"
-            data-on-submit="$ctrl.handleUploadConfirmModal(true)"
-            data-submit-text="{{:: 'user_account_identity_documents_submit' | translate}}"
-        ></oui-form-actions>
-    </form>
 </div>
-<!-- End of upload option -->
-
-<!-- Suceess Banner -->
-<div class="mt-2" data-ng-if="!$ctrl.loading && !$ctrl.showUploadOption">
-    <oui-message data-type="success">
-        <p
-            class="oui-heading_4"
-            data-translate="user_account_identity_documents_submit_success_message_title"
-        ></p>
-        <p
-            data-translate="user_account_identity_documents_submit_success_message_description"
-        ></p>
-    </oui-message>
-    <!-- go back to dashboard option -->
-    <a
-        class="oui-link_icon mt-3"
-        data-ng-href="{{:: $ctrl.dashboardRedirectURL }}"
-        data-track-on="click"
-        data-track-name="{{:: $ctrl.TRACKING_TASK_TAG.gotToHub }}"
-        data-track-type="action"
-        target="_blank"
-        rel="noopener"
-    >
-        <span
-            data-translate="user_account_identity_documents_go_back_to_dashboard"
-        ></span>
-    </a>
-    <!--end of go back to dashboard option -->
-</div>
-<!-- End of Suceess Banner -->
-<!--legal section-->
-<div class="mt-4">
-    <small>
-        <p
-            data-translate="user_account_identity_documents_legal_info3"
-            class="mb-0"
-        ></p>
-        <p
-            data-translate="user_account_identity_documents_legal_info1"
-            data-translate-values="{
-                link1: $ctrl.LEGAL_LINK1,
-                link2: $ctrl.LEGAL_LINK2
-            }"
-            class="mb-0"
-        ></p>
-        <p
-            data-translate="user_account_identity_documents_legal_info2"
-            data-translate-values="{
-                link: $ctrl.LEGAL_LINK3
-            }"
-            class="mb-0"
-        ></p>
-        <p>
-            <span>*</span>
-            <span
-                data-translate="user_account_identity_documents_legal_info4"
-            ></span>
-        </p>
-    </small>
-</div>
-<!--end of legal section-->
-<!-- Modal confirmation for uploading documents -->
-<upload-identity-documents-confirm
-    data-is-open-modal="$ctrl.isOpenModal"
-    data-on-confirm="$ctrl.uploadIdentityDocuments()"
-    data-on-cancel="$ctrl.handleUploadConfirmModal(false)"
-></upload-identity-documents-confirm>
 <!-- Modal confirmation after uploading documents -->
 <document-upload-validation-modal
     data-is-open-modal="$ctrl.isOpenInformationModal"

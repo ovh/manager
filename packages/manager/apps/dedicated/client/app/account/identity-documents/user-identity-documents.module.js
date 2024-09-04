@@ -6,6 +6,7 @@ import routing from './user-identity-documents.routes';
 import uploadConfirmModule from './upload-identity-documents-confirm';
 import documentUploadValidationModalModule from './document-upload-validation-modal';
 import uploadDocumentsProofTile from './components/identity-documents-proof-tile';
+import uploadDocumentsDetail from './components/identity-documents-upload-detail';
 
 const moduleName = 'DedicatedUserAccountIdentityDocuments';
 
@@ -16,6 +17,7 @@ angular
     uploadConfirmModule,
     documentUploadValidationModalModule,
     uploadDocumentsProofTile,
+    uploadDocumentsDetail,
     'oui',
     'pascalprecht.translate',
     'ui.router',

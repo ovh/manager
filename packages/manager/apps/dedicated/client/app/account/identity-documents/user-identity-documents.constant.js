@@ -6,6 +6,8 @@ export const USER_TYPE = {
   default: 'others',
 };
 
+export const PAGE_TYPE = ['front', 'back', 'last-page'];
+
 export const PROOF_TYPE = {
   aadhaar_card: 'aadhaar_card',
   address: 'address',
@@ -113,21 +115,21 @@ const DOCUMENT_INDIVIDUAL_MATRIX = {
         quantity: 2,
         mandatory: 2,
         acceptance_criteria: [
-          DOCUMENT_ACCEPTANCE_CRITERIA.names_account_address,
+          DOCUMENT_ACCEPTANCE_CRITERIA.names_address_account,
         ],
       },
       gst_certificate: {
         quantity: 3,
         mandatory: 1,
         acceptance_criteria: [
-          DOCUMENT_ACCEPTANCE_CRITERIA.names_account_address,
+          DOCUMENT_ACCEPTANCE_CRITERIA.names_address_account,
         ],
       },
       bill: {
         quantity: 1,
         mandatory: 1,
         acceptance_criteria: [
-          DOCUMENT_ACCEPTANCE_CRITERIA.names_account_address,
+          DOCUMENT_ACCEPTANCE_CRITERIA.names_address_account,
           DOCUMENT_ACCEPTANCE_CRITERIA.less_than_three,
         ],
       },
@@ -275,7 +277,7 @@ export const TRACKING_TASK_TAG = {
   upload: `${TRACKING_PREFIX}::upload`,
   uploadSuccess: `${TRACKING_PREFIX}::upload-success`,
   uploadError: `${TRACKING_PREFIX}::upload-error`,
-  gotToHub: `${TRACKING_PREFIX}::goto-hub`,
+  goToHub: `${TRACKING_PREFIX}::goto-hub`,
 };
 
 export const KYC_STATUS = {

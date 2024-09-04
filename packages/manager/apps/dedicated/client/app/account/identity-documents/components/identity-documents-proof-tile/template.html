@@ -24,7 +24,7 @@
     <div class="d-flex flex-shrink-1 flex-end align-items-center mt-3">
         <oui-button
             variant="primary"
-            data-ng-if="!$ctrl.isLoaded"
+            data-ng-if="$ctrl.kycStatus.status !== $ctrl.KYC_STATUS.OPEN && !$ctrl.isLoaded"
             data-ng-click="$ctrl.onClick()"
         >
             <span
@@ -32,8 +32,14 @@
             ></span>
         </oui-button>
         <span
-            data-ng-if="$ctrl.isLoaded"
+            data-ng-click="$ctrl.onClick()"
+            data-ng-if="$ctrl.kycStatus.status !== $ctrl.KYC_STATUS.OPEN && $ctrl.isLoaded"
             class="oui-icon oui-icon-chevron-right"
         ></span>
+        <span
+            data-ng-if="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN"
+            class="oui-icon oui-icon-success-circle text-success"
+        >
+        </span>
     </div>
 </div>

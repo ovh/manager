@@ -1,0 +1,91 @@
+<div class="upload-documents-details d-flex w-100 flex-column">
+    <h3
+        class="oui-header__title d-flex align-items-center"
+        data-ng-click="$ctrl.goBack()"
+    >
+        <span class="oui-icon oui-icon-chevron-left" aria-hidden="true"></span
+        ><span
+            data-translate="{{'upload-documents-details-title-' + $ctrl.proofType}}"
+        ></span>
+    </h3>
+    <oui-tile
+        data-heading="{{:: 'upload-documents-details-choose-document' | translate }}"
+        class="my-3 w-100"
+        data-ng-if="$ctrl.numberOfDocuments > 1"
+    >
+        <oui-radio
+            data-model="$ctrl.currentDocument"
+            data-ng-repeat="(document, values) in $ctrl.proof.documents"
+            data-value="document"
+            data-on-change="$ctrl.onDocumentChange()"
+        >
+            <span
+                data-translate="{{'upload-documents-details-document-type-' + document }}"
+            ></span>
+        </oui-radio>
+    </oui-tile>
+    <oui-tile
+        data-heading="{{:: 'upload-documents-details-add-document' | translate}}"
+        class="my-3 w-100"
+    >
+        <div class="oui-box">
+            <h4
+                class="oui-box__heading"
+                data-translate="user_account_identity_documents_details_acceptance_criteria"
+            ></h4>
+            <ul>
+                <li
+                    data-ng-repeat="(index, acceptanceCriteria) in $ctrl.currentAcceptanceCriteria"
+                    data-translate="{{'upload-documents-details-acceptance-criteria-' + acceptanceCriteria }}"
+                    id="{{acceptanceCriteria + index}}"
+                ></li>
+            </ul>
+        </div>
+        <div class="row my-3">
+            <div class="col" data-ng-repeat="(index, file) in $ctrl.files">
+                <div>
+                    <span
+                        data-translate="upload-documents-details-add-document"
+                    ></span>
+                    -
+                    <span
+                        data-translate="{{'upload-documents-details-' + $ctrl.PAGE_TYPE[index]}}"
+                    ></span>
+                </div>
+                <oui-file
+                    class="w-100"
+                    data-model="file"
+                    data-name="$ctrl.proofType + '-' + index"
+                    data-accept="application/pdf,image/jpeg,image/png,image/jpg"
+                    data-on-select="$ctrl.checkValidity()"
+                    data-on-remove="$ctrl.checkValidity()"
+                    data-preview
+                    data-droparea
+                    data-multiple="$ctrl.multipleFile"
+                    data-maxsize="$ctrl.MAX_SIZE"
+                >
+                </oui-file>
+            </div>
+        </div>
+    </oui-tile>
+    <!-- error banner if the users uploads invalid files-->
+    <div data-ng-if="!$ctrl.fileExtensionsValid">
+        <oui-message class="my-1" data-type="error">
+            <span
+                data-translate="user_account_identity_documents_selection_file_format_invalid"
+                data-translate-values="{
+        values: $ctrl.badFileExtensionsFormatedList
+      }"
+            ></span>
+        </oui-message>
+    </div>
+    <oui-button
+        class="mx-2"
+        data-on-click="$ctrl.clickAddDocuments()"
+        data-variant="primary"
+        data-size="l"
+        data-disabled="!$ctrl.isValid"
+    >
+        <span data-translate="upload-documents-details-add-documents"></span>
+    </oui-button>
+</div>
