@@ -98,7 +98,8 @@ const AddPattern = ({
         message: t('addPatternErrorMax', {
           max: PATTERN_CREATION.maxIndexCount.max,
         }),
-      }),
+      })
+      .step(1),
   });
   // generate a form controller
   const form = useForm<z.infer<typeof schema>>({
