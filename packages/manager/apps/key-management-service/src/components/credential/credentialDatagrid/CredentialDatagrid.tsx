@@ -16,7 +16,7 @@ import {
   DatagridCredentialCellIdentities,
   DatagridCredentialCellName,
   DatagridCredentialCellStatus,
-} from '@/components/credential/credentialDatagrid/credentialDatagridCells';
+} from '@/components/credential/credentialDatagrid/CredentialDatagridCells';
 import { getOkmsCredentialsQueryKey } from '@/data/api/okmsCredential';
 import Loading from '@/components/Loading/Loading';
 import { OkmsCredential } from '@/types/okmsCredential.type';

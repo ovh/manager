@@ -6,7 +6,7 @@ import {
 import { render } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 import { OkmsCredentialStatus } from '@/types/okmsCredential.type';
-import { CredentialStatus } from './credentialStatus.component';
+import { CredentialStatus } from './CredentialStatus.component';
 
 describe('CredentialStatus component test suite', () => {
   const useCases: {
