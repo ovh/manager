@@ -13,6 +13,7 @@ import PrivateNetworkSelect from '@/components/create/PrivateNetworkSelect.compo
 import SubnetSelect from '@/components/create/SubnetSelect.component';
 import LoadBalancerSelect from '@/components/create/LoadBalancerSelect.component';
 import { LoadBalancerWarning } from '@/components/network/LoadBalancerWarning.component';
+import { SubnetWarning } from '@/components/network/SubnetWarning.component';
 
 export type TNetworkFormState = {
   privateNetwork?: TNetwork;
@@ -42,6 +43,8 @@ export default function NetworkClusterStep({
     onChange(form);
   }, [form]);
 
+  const shouldWarnSubnet = form.subnet && !form.subnet?.gatewayIp;
+
   const shouldWarnLoadBalancerSubnet =
     form.subnet?.gatewayIp &&
     form.loadBalancersSubnet &&
@@ -64,21 +67,26 @@ export default function NetworkClusterStep({
               setForm((network) => ({
                 ...network,
                 privateNetwork,
+                subnet: null,
+                loadBalancersSubnet: null,
               }))
             }
           />
           {form.privateNetwork && (
-            <SubnetSelect
-              className="mt-8"
-              projectId={projectId}
-              privateNetwork={form.privateNetwork}
-              onSelect={(subnet) =>
-                setForm((network) => ({
-                  ...network,
-                  subnet,
-                }))
-              }
-            />
+            <div>
+              <SubnetSelect
+                className="mt-8"
+                projectId={projectId}
+                privateNetwork={form.privateNetwork}
+                onSelect={(subnet) =>
+                  setForm((network) => ({
+                    ...network,
+                    subnet,
+                  }))
+                }
+              />
+              {shouldWarnSubnet && <SubnetWarning />}
+            </div>
           )}
           {form.privateNetwork && form.subnet && (
             <>

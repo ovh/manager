@@ -146,11 +146,14 @@ export const terminateCluster = async (projectId: string, kubeId: string) => {
 };
 
 export type TResetClusterParams = {
+  loadBalancersSubnetId: string;
+  nodesSubnetId: string;
   privateNetworkConfiguration?: TNetworkConfiguration;
   privateNetworkId: string;
   version: string;
   workerNodesPolicy: string;
 };
+
 export const resetCluster = async (
   projectId: string,
   kubeId: string,

@@ -1,7 +1,7 @@
 import {
   OsdsButton,
   OsdsFormField,
-  OsdsLink,
+  OsdsIcon,
   OsdsMessage,
   OsdsModal,
   OsdsRadio,
@@ -13,10 +13,12 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { Translation, useTranslation } from 'react-i18next';
-import { useNotifications, useProjectUrl } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovhcloud/manager-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
   ODS_RADIO_BUTTON_SIZE,
   ODS_SPINNER_SIZE,
@@ -34,23 +36,31 @@ import {
   useKubernetesCluster,
   useResetCluster,
 } from '@/api/hooks/useKubernetes';
-import { GATEWAY_IP_REGEX, WORKER_NODE_POLICIES } from '@/constants';
+import { WORKER_NODE_POLICIES } from '@/constants';
 import { useGetCloudSchema } from '@/api/hooks/useCloud';
 import { getFormatedKubeVersion } from '@/helpers';
 import { useAvailablePrivateNetworks } from '@/api/hooks/useNetwork';
-import GatewayManagement from '@/components/GatewayManagement.component';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
+import { TNetwork } from '@/api/data/network';
+import { SubnetSelector } from '@/components/network/SubnetSelector.component';
+import {
+  GatewaySelector,
+  GatewaySelectorState,
+} from '@/components/network/GatewaySelector.component';
+import { SubnetWarning } from '@/components/network/SubnetWarning.component';
 
 export default function ResetClusterPage() {
   const { t: tReset } = useTranslation('reset');
   const { t: tListing } = useTranslation('listing');
+  const { t } = useTranslation('network-add');
+
   const { addError, addSuccess } = useNotifications();
   const { projectId, kubeId } = useParams();
   const navigate = useNavigate();
-  const urlProject = useProjectUrl('public-cloud');
-  const [gatewayError, setGatewayError] = useState(false);
-  const onClose = () => navigate('..');
   const { tracking } = useContext(ShellContext)?.shell || {};
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const onClose = () => navigate('..');
 
   const {
     data: kubernetesCluster,
@@ -69,18 +79,39 @@ export default function ResetClusterPage() {
     isPending: isPendingPrivateNetworks,
   } = useAvailablePrivateNetworks(projectId, kubernetesCluster?.region);
 
+  const defaultNetwork = {
+    id: 'none',
+    name: t('kubernetes_network_form_none'),
+  } as TNetwork;
+
+  const getPrivateNetworkById = (id: string): TNetwork =>
+    privateNetworks?.find(
+      (privateNetwork) => privateNetwork.clusterRegion.openstackId === id,
+    );
+
   const [formState, setFormState] = useState({
     workerNodesPolicy: WORKER_NODE_POLICIES.DELETE,
     selectedVersion: getFormatedKubeVersion(kubernetesCluster?.version || ''),
     privateNetworkId: kubernetesCluster?.privateNetworkId,
+    subnet: null,
+    loadBalancersSubnet: null,
     gateway: {
-      enabled: !!kubernetesCluster?.privateNetworkConfiguration
-        ?.defaultVrackGateway,
+      isEnabled:
+        kubernetesCluster?.privateNetworkConfiguration
+          ?.privateNetworkRoutingAsDefault ||
+        !!kubernetesCluster?.privateNetworkConfiguration?.defaultVrackGateway,
       ip:
         kubernetesCluster?.privateNetworkConfiguration?.defaultVrackGateway ||
         '',
-    },
+    } as GatewaySelectorState,
   });
+
+  const shouldWarnSubnet = formState.subnet && !formState.subnet?.gatewayIp;
+
+  const shouldWarnLoadBalancerSubnet =
+    formState.subnet?.gatewayIp &&
+    formState.loadBalancersSubnet &&
+    !formState.loadBalancersSubnet?.gatewayIp;
 
   const { resetCluster, isPending: isPendingResetCluster } = useResetCluster({
     onError(error: ApiError) {
@@ -108,12 +139,12 @@ export default function ResetClusterPage() {
     projectId,
     kubeId,
     params: {
-      ...(formState.gateway.enabled && {
-        privateNetworkConfiguration: {
-          defaultVrackGateway: formState.gateway.ip,
-          privateNetworkRoutingAsDefault: true,
-        },
-      }),
+      loadBalancersSubnetId: formState.loadBalancersSubnet?.id,
+      nodesSubnetId: formState.subnet?.id,
+      privateNetworkConfiguration: {
+        privateNetworkRoutingAsDefault: formState.gateway?.mode === 'auto',
+        defaultVrackGateway: formState.gateway?.ip || '',
+      },
       privateNetworkId: formState.privateNetworkId,
       version: formState.selectedVersion,
       workerNodesPolicy: formState.workerNodesPolicy,
@@ -156,6 +187,7 @@ export default function ResetClusterPage() {
                 }}
               />
             </OsdsMessage>
+
             <OsdsFormField className="mt-6">
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
@@ -227,6 +259,7 @@ export default function ResetClusterPage() {
                 </OsdsRadio>
               </OsdsRadioGroup>
             </OsdsFormField>
+
             <OsdsFormField className="mt-6">
               <OsdsText
                 slot="label"
@@ -254,7 +287,9 @@ export default function ResetClusterPage() {
                 ))}
               </OsdsSelect>
             </OsdsFormField>
-            <OsdsFormField className="mt-10">
+
+            {/* PrivateNetwork */}
+            <OsdsFormField className="mt-8">
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
                 level={ODS_TEXT_LEVEL.body}
@@ -264,53 +299,112 @@ export default function ResetClusterPage() {
                 {tListing('kubernetes_add_private_network_label')}
               </OsdsText>
               <OsdsSelect
-                value={formState.privateNetworkId}
+                value={formState.privateNetworkId || defaultNetwork?.id}
                 onOdsValueChange={(event) => {
                   setFormState({
                     ...formState,
-                    privateNetworkId: event.detail.value.toString(),
+                    privateNetworkId: `${event.detail.value}`,
+                    subnet: null,
+                    loadBalancersSubnet: null,
                   });
                 }}
               >
+                <OsdsSelectOption value={defaultNetwork.id}>
+                  {defaultNetwork.name}
+                </OsdsSelectOption>
                 {privateNetworks?.map((network) => (
                   <OsdsSelectOption
                     key={network.id}
-                    value={network.clusterRegion.openstackId}
+                    value={network?.clusterRegion?.openstackId}
                   >
                     {network.name}
                   </OsdsSelectOption>
                 ))}
               </OsdsSelect>
-              <OsdsText
-                className="mt-3"
-                color={ODS_THEME_COLOR_INTENT.text}
-                level={ODS_TEXT_LEVEL.body}
-                size={ODS_TEXT_SIZE._400}
-              >
-                {tListing('kubernetes_add_private_network_description')}
-                <OsdsLink
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  href={`${urlProject}/private-networks`}
-                >
-                  {tListing('kubernetes_add_private_network_add')}
-                </OsdsLink>
-              </OsdsText>
             </OsdsFormField>
-            <GatewayManagement
-              className="mt-10"
-              clusterGateway={formState.gateway}
-              gatewayError={gatewayError}
-              onUpdated={(gateway) => {
-                setFormState({
-                  ...formState,
-                  gateway,
-                });
-                setGatewayError(
-                  gateway.ip &&
-                    RegExp(GATEWAY_IP_REGEX).test(gateway.ip) === false,
-                );
-              }}
-            />
+
+            {formState.privateNetworkId && (
+              <div>
+                <SubnetSelector
+                  className="mt-6"
+                  title={t('kubernetes_network_form_subnet')}
+                  projectId={projectId}
+                  networkId={formState.privateNetworkId}
+                  region={
+                    getPrivateNetworkById(formState.privateNetworkId)
+                      ?.clusterRegion?.region
+                  }
+                  onSelect={(subnet) =>
+                    setFormState((network) => ({
+                      ...network,
+                      subnet,
+                    }))
+                  }
+                  showSpinner
+                />
+
+                {shouldWarnSubnet && <SubnetWarning />}
+              </div>
+            )}
+
+            {formState.privateNetworkId && formState.subnet && (
+              <>
+                <GatewaySelector
+                  initialValue={formState.gateway}
+                  className="mt-8"
+                  onSelect={(gateway) =>
+                    setFormState((prevState) => ({
+                      ...prevState,
+                      gateway,
+                    }))
+                  }
+                />
+
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  level={ODS_TEXT_LEVEL.heading}
+                  size={ODS_TEXT_SIZE._400}
+                  className="block my-8 flex items-center"
+                  onClick={() => setIsExpanded((e) => !e)}
+                >
+                  {t('kubernetes_network_form_load_balancers_subnet_toggler')}
+                  <OsdsIcon
+                    name={
+                      isExpanded
+                        ? ODS_ICON_NAME.CHEVRON_UP
+                        : ODS_ICON_NAME.CHEVRON_DOWN
+                    }
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    size={ODS_ICON_SIZE.sm}
+                    aria-hidden="true"
+                    className="ml-4"
+                  />
+                </OsdsText>
+
+                <div className={isExpanded ? 'block' : 'hidden'}>
+                  <SubnetSelector
+                    className="mt-6"
+                    title={t('kubernetes_network_form_load_balancers_subnet')}
+                    projectId={projectId}
+                    networkId={formState.privateNetworkId}
+                    region={
+                      getPrivateNetworkById(formState.privateNetworkId)
+                        ?.clusterRegion?.region
+                    }
+                    onSelect={(loadBalancersSubnet) =>
+                      setFormState((prevState) => ({
+                        ...prevState,
+                        loadBalancersSubnet,
+                      }))
+                    }
+                    allowsEmpty
+                    preselectedId={kubernetesCluster?.loadBalancersSubnetId}
+                  />
+
+                  {shouldWarnLoadBalancerSubnet && <SubnetWarning />}
+                </div>
+              </>
+            )}
           </div>
         )}
       </slot>
@@ -331,7 +425,7 @@ export default function ResetClusterPage() {
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        disabled={isPending || gatewayError || undefined}
+        disabled={isPending || undefined}
         onClick={() => {
           tracking?.trackClick({
             name: `${KUBE_TRACK_PREFIX}::details::service::reset::confirm`,

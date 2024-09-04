@@ -32,18 +32,25 @@ export const GatewayModeSelector = ({
   initialValue,
   onSelect,
 }: Readonly<GatewaySelectorProps>) => {
+  const { t: tAdd } = useTranslation('network-add');
+
   const [gatewayMode, setGatewayMode] = useState(initialValue?.mode || 'auto');
   const [gatewayIp, setGatewayIp] = useState({
     isTouched: false,
+    hasError: false,
     value: initialValue?.ip || '',
   });
-  const { t: tAdd } = useTranslation('network-add');
-  const gatewayIpError =
-    gatewayIp.isTouched && !GATEWAY_IP_REGEX.test(gatewayIp.value);
 
   useEffect(() => {
     onSelect(gatewayMode, gatewayIp.value);
   }, []);
+
+  useEffect(() => {
+    setGatewayIp({
+      ...gatewayIp,
+      hasError: gatewayIp.isTouched && !GATEWAY_IP_REGEX.test(gatewayIp.value),
+    });
+  }, [gatewayIp.value, gatewayIp.isTouched]);
 
   return (
     <>
@@ -90,7 +97,7 @@ export const GatewayModeSelector = ({
         <OsdsFormField
           className="mt-4 ml-[3rem]"
           error={
-            gatewayIpError
+            gatewayIp.hasError
               ? tAdd(
                   'kubernetes_network_form_gateway_vrack_field_ip_error_pattern',
                 )
@@ -108,7 +115,7 @@ export const GatewayModeSelector = ({
           <OsdsInput
             type={ODS_INPUT_TYPE.text}
             color={ODS_THEME_COLOR_INTENT.primary}
-            className={gatewayIpError ? 'bg-red-100' : ''}
+            className={gatewayIp.hasError ? 'bg-red-100' : 'bg-white'}
             placeholder={tAdd(
               'kubernetes_network_form_gateway_mode_custom_placeholder',
             )}
