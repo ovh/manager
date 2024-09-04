@@ -22,27 +22,10 @@ export default function DataProtectionTile() {
   } = useManagedVcdOrganizationBackup(id);
 
   const backupStatus = vcdOrganizationBackup?.data?.resourceStatus;
-
-  // TODO: check other ways to handle error (+refetch) inside a Tile
-  // (<ErrorBanner /> is too big to be used here)
-  const BackupTileItem = () => {
-    const isStatusError = isError || !backupStatus;
-    const status = isStatusError
+  const backupStatusMessage =
+    isError || !backupStatus
       ? t('managed_vcd_dashboard_backup_status_error')
       : t(`managed_vcd_dashboard_backup_status_${backupStatus}`);
-
-    return (
-      <div className="flex flex-col">
-        {isLoading && <Loading className="w-8" />}
-        {!isLoading && <span>{status}</span>}
-        <Links
-          type={LinkType.external}
-          label={t('managed_vcd_dashboard_backup_link')}
-          href={'/'} // TODO : replace with Veeam listing page link
-        />
-      </div>
-    );
-  };
 
   return (
     <div>
@@ -52,7 +35,19 @@ export default function DataProtectionTile() {
           {
             id: 'backup',
             label: DATA_PROTECTION_BACKUP_TITLE,
-            value: <BackupTileItem />,
+            value: (
+              <div className="flex flex-col">
+                {/* TODO: check other ways to handle error (+refetch) inside a Tile
+                (<ErrorBanner /> is too big to be used here) */}
+                {isLoading && <Loading className="w-8" />}
+                {!isLoading && <span>{backupStatusMessage}</span>}
+                <Links
+                  type={LinkType.external}
+                  label={t('managed_vcd_dashboard_backup_link')}
+                  href={'/'} // TODO : replace with Veeam listing page link
+                />
+              </div>
+            ),
           },
           {
             id: 'recovery',

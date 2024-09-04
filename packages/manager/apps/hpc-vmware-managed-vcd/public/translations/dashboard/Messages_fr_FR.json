@@ -30,7 +30,6 @@
   "managed_vcd_dashboard_backup_status_REMOVED": "Retiré",
   "managed_vcd_dashboard_backup_status_UPDATING": "Mise à jour en cours",
   "managed_vcd_dashboard_backup_link": "Gérer vos sauvegardes",
-
   "managed_vcd_dashboard_edit_modal_error": "Une erreur est survenue: {{error}}.",
   "managed_vcd_dashboard_edit_modal_cta_cancel": "Annuler",
   "managed_vcd_dashboard_edit_modal_cta_edit": "Modifier",
