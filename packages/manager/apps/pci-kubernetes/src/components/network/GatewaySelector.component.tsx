@@ -44,7 +44,7 @@ export const GatewaySelector = ({
   );
   const { t: tAdd } = useTranslation('network-add');
   const projectURL = useProjectUrl('public-cloud');
-  const gatewaysURL = `${projectURL}/gateways`;
+  const gatewaysURL = `${projectURL}/gateway`;
 
   useEffect(() => {
     onSelect?.({
