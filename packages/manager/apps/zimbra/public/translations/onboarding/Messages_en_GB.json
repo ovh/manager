@@ -1,7 +1,7 @@
 {
   "title": "Zimbra",
-  "description": "Explore managed storage services that are based on the OpenZFS file system. Use centralised storage spaces in just a few clicks to store or back up your data and files.",
-  "orderButtonLabel": "Order a Zimbra service",
+  "description": "The Zimbra email solution will be available soon. Want to join the Zimbra beta testing?",
+  "orderButtonLabel": "Join beta testing",
   "orderButtonLink": "/#/dedicated/zimbra/order",
   "moreInfoButtonLabel": "Find out more about Zimbra",
   "moreInfoButtonLink": "/#/dedicated/zimbra/info",
