@@ -78,17 +78,20 @@ export const usePaginatedNodes = (
           return 'monthly_pending';
         })();
 
+        const formattedFlavor = t('kube_flavor', {
+          name: flavor?.name?.toUpperCase(),
+          cpuNumber: flavor?.vcpus,
+          ramCapacity: flavor?.ram / 1000,
+          diskCapacity: flavor?.disk,
+        });
+
         return {
           ...node,
-          formattedFlavor: t('kube_flavor', {
-            name: flavor?.name?.toUpperCase(),
-            cpuNumber: flavor?.vcpus,
-            ramCapacity: flavor?.ram / 1000,
-            diskCapacity: flavor?.disk,
-          }),
+          formattedFlavor,
           billingType,
           canSwitchToMonthly:
             billingType === 'hourly' && !!flavor?.planCodes?.monthly,
+          search: `${node.id} ${node.name} ${formattedFlavor} ${billingType}`,
         } as TNode;
       }),
     [nodes, flavors, instances],
