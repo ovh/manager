@@ -7,7 +7,7 @@ import {
 } from '@ovhcloud/manager-components';
 import { OkmsCredential } from '@/types/okmsCredential.type';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
-import { CredentialStatus } from '../credentialStatus/credentialStatus.component';
+import { CredentialStatus } from '../credentialStatus/CredentialStatus.component';
 
 export const DatagridCredentialCellName = (credential: OkmsCredential) => {
   const navigate = useNavigate();
