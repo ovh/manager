@@ -221,8 +221,6 @@ export default function NewPage(): JSX.Element {
         {tListing('kube_common_create_node_pool')}
       </OsdsText>
 
-      <Notifications />
-
       <StepComponent
         id={StepsEnum.NAME}
         order={1}
