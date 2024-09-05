@@ -9,7 +9,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useAccountList, useGenerateUrl, usePlatform } from '@/hooks';
 import { deleteZimbraPlatformDomain } from '@/api/domain';
 import Modal from '@/components/Modals/Modal';

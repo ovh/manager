@@ -7,7 +7,7 @@ import {
   Links,
   ManagerText,
   Subtitle,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { AccountStatistics } from '@/api/api.type';
 import { TileBlock } from '@/components/TileBlock';

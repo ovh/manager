@@ -4,7 +4,7 @@ import {
   Links,
   Subtitle,
   useNotifications,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {

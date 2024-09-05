@@ -20,7 +20,7 @@ vi.mock('@/hooks', () => {
   };
 });
 
-vi.mock('@ovhcloud/manager-components', async (importOriginal) => {
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const actual: any = await importOriginal();
   return {
     ...actual,

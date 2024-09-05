@@ -13,7 +13,7 @@ import {
   OsdsMessage,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useQuery } from '@tanstack/react-query';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import Modal from '@/components/Modals/Modal';

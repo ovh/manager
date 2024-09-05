@@ -34,7 +34,7 @@ vi.mock('react-router-dom', () => ({
   ]),
 }));
 
-vi.mock('@ovhcloud/manager-components', () => {
+vi.mock('@ovh-ux/manager-react-components', () => {
   return {
     useNotifications: vi.fn(() => ({
       addError: () => vi.fn(),

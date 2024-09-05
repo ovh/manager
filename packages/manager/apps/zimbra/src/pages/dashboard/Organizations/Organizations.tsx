@@ -15,7 +15,7 @@ import {
   DatagridColumn,
   ManagerButton,
   Notifications,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { ResourceStatus } from '@/api/api.type';
 
 import { useOrganizationList, usePlatform, useGenerateUrl } from '@/hooks';
@@ -108,6 +108,7 @@ export default function Organizations() {
             urn={platformUrn}
             iamActions={[IAM_ACTIONS.organization.create]}
             data-testid="add-organization-btn"
+            className="mb-6"
           >
             <span slot="start">
               <OsdsIcon

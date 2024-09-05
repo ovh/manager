@@ -6,7 +6,7 @@ import {
   OsdsTabBarItem,
   OsdsChip,
 } from '@ovhcloud/ods-components/react';
-import { Headers } from '@ovhcloud/manager-components';
+import { Headers } from '@ovh-ux/manager-react-components';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useOverridePage, useOrganization } from '@/hooks';

@@ -22,7 +22,7 @@ import {
   ODS_INPUT_TYPE,
   ODS_TOOLTIP_VARIANT,
 } from '@ovhcloud/ods-components';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useGenerateUrl, useOrganization, usePlatform } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {

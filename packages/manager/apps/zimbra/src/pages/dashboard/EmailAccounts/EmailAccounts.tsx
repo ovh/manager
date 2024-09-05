@@ -18,7 +18,7 @@ import {
   LinkType,
   ManagerButton,
   Notifications,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { Outlet } from 'react-router-dom';
 import { AccountType } from '@/api/account';
 import {
@@ -152,6 +152,7 @@ export default function EmailAccounts() {
                 iamActions={[IAM_ACTIONS.account.create]}
                 href={hrefAddEmailAccount}
                 data-testid="add-account-btn"
+                className="mb-6"
               >
                 <span slot="start">
                   <OsdsIcon
