@@ -13,14 +13,15 @@ import maxBy from 'lodash/maxBy';
 import reduce from 'lodash/reduce';
 import some from 'lodash/some';
 
+import { DOMAIN_TRACKING } from '../../hosting/hosting.constants';
+import { DOMAINS_BADGES_STATUS } from '../list/list-domain-layout.constants';
 import {
   DNSSEC_STATUS,
-  PRODUCT_TYPE,
-  PROTECTION_TYPES,
   DOMAIN_SERVICE_STATES,
   DOMAIN_STATE_TYPE,
+  PRODUCT_TYPE,
+  PROTECTION_TYPES,
 } from './general-information.constants';
-import { DOMAIN_TRACKING } from '../../hosting/hosting.constants';
 
 export default class DomainTabGeneralInformationsCtrl {
   /* @ngInject */
@@ -86,6 +87,7 @@ export default class DomainTabGeneralInformationsCtrl {
   }
 
   $onInit() {
+    this.DOMAINS_BADGES_STATUS = DOMAINS_BADGES_STATUS;
     this.domain = this.$scope.ctrlDomain.domain;
     this.domainInfos = this.$scope.ctrlDomain.domainInfos;
     this.allDom = this.$scope.ctrlDomain.allDom;
