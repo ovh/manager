@@ -1,0 +1,16 @@
+{
+  "zimbra_domains_add_domain_cta_back": "Back to domain names",
+  "zimbra_domains_add_domain_cta_confirm": "Confirm",
+  "zimbra_domains_add_domain_cta_next": "Next",
+  "zimbra_domains_add_domain_title": "Domain name",
+  "zimbra_domains_add_domain_title_select": "Add a domain",
+  "zimbra_domains_add_domain_select_title": "Select a domain from the list",
+  "zimbra_domains_add_domain_select": "Select a domain name",
+  "zimbra_domains_add_domain_input": "Enter your domain name",
+  "zimbra_domains_add_domain_input_title": "Enter a domain name not managed by our OVHcloud account",
+  "zimbra_domains_add_domain_organization": "Organisation",
+  "zimbra_domains_add_domain_organization_select": "Select an organisation",
+  "zimbra_domains_add_domain_configuration_title": "Configuration",
+  "zimbra_domains_add_domain_success_message": "Your add-in request has been submitted. It will be executed in a few moments.",
+  "zimbra_domains_add_domain_error_message": "Unable to submit your add-in request. {{ error }}"
+}
