@@ -1,6 +1,7 @@
 {
-  "title": "Bienvenue uapp",
-  "crumb": "hub",
-  "tabs_2": "Tabs 2",
-  "onboarding": "Onboarding"
+  "manager_hub_dashboard_welcome": "Bienvenue {{ name }} !",
+  "manager_hub_trusted_nic_badge_label": "Zone de confiance",
+  "manager_hub_skip_to_main_content": "Aller au contenu principal",
+  "manager_hub_dashboard_overview": "Vue d'ensemble de mon activité",
+  "manager_hub_dashboard_services": "Mes produits et services"
 }
