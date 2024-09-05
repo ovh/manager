@@ -1,4 +1,4 @@
-import { useMe } from '@ovhcloud/manager-components';
+import { useMe } from '@ovh-ux/manager-react-components';
 import { useQuery } from '@tanstack/react-query';
 import { getCatalogQuery } from '@/data/api/services';
 

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useCatalogPrice } from '@ovhcloud/manager-components';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import {
   RancherPlan,
   TRancherPricing,
