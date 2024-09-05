@@ -17,7 +17,17 @@ export default /* @ngInject */ ($stateProvider) =>
         ),
     layout: { name: 'modal', backdrop: 'static', keyboard: true },
     resolve: {
-      goBack: /* @ngInject */ (goBackToDashboard) => goBackToDashboard,
+      goBack: /* @ngInject */ (
+        goBackToDashboard,
+        atInternet,
+        trackingPrefix,
+      ) => () => {
+        atInternet.trackClick({
+          name: `${trackingPrefix}::vmware::tile::button::migrate_to_managed_vcd::close`,
+          type: 'action',
+        });
+        return goBackToDashboard();
+      },
       datacenters: /* @ngInject */ (datacenterList) => datacenterList,
       breadcrumb: () => null,
     },

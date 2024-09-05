@@ -8,7 +8,12 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       pccView: 'pccDashboard',
     },
+    atInternet: {
+      rename:
+        'Baremetal::Managed_baremetal::vmware::vmware::dashboard::general-information',
+    },
     resolve: {
+      trackingPrefix: () => 'Baremetal::Managed_baremetal::',
       deleteDrp: /* @ngInject */ ($state) => () =>
         $state.go('app.managedBaremetal.details.dashboard.deleteDrp'),
       featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
@@ -114,9 +119,17 @@ export default /* @ngInject */ ($stateProvider) => {
             option,
           },
         ),
-      goToVcdOrder: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.details.dashboard.vcd-order'),
-
+      goToVcdOrder: /* @ngInject */ (
+        $state,
+        atInternet,
+        trackingPrefix,
+      ) => () => {
+        atInternet.trackClick({
+          name: `${trackingPrefix}vmware::tile::button::migrate_to_managed_vcd::confirm`,
+          type: 'action',
+        });
+        return $state.go('app.managedBaremetal.details.dashboard.vcd-order');
+      },
       goBack: /* @ngInject */ (goBackToDashboard) => goBackToDashboard,
       breadcrumb: () => null,
     },

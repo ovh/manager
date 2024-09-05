@@ -1,13 +1,21 @@
 export default class {
   /* @ngInject */
-  constructor($translate, DedicatedCloud) {
+  constructor($translate, DedicatedCloud, atInternet) {
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
     this.guideLinks = this.DedicatedCloud.getVCDGuideLinks();
     this.checkMigration();
+  }
+
+  trackGuideClick(guideName) {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}vmware::tile::external-link::go-to-${guideName}`,
+      type: 'action',
+    });
   }
 
   checkMigration() {
