@@ -26,17 +26,47 @@ export default class FtthEligibilityCtrl {
     this.getAllServices();
   }
 
+  static sortList(listToSort) {
+    const sorted = listToSort.sort((a, b) => {
+      if (a.accessType < b.accessType) {
+        return -1;
+      }
+      if (a.accessType > b.accessType) {
+        return 1;
+      }
+
+      return 0;
+    });
+    return sorted;
+  }
+
+  static getAccessSorted(services) {
+    // Group by access type to display first ADSL and VDSL access
+    const groupBy = Object.groupBy(services, ({ accessType }) => {
+      return [ACCESS_TYPE.adsl, ACCESS_TYPE.vdsl].includes(accessType)
+        ? ELIGIBILITY.eligible
+        : ELIGIBILITY.not_eligible;
+    });
+    const eligible = this.sortList(groupBy.eligible);
+    const notEligible = this.sortList(groupBy.not_eligible);
+
+    const sorted = [...eligible, ...notEligible];
+    return sorted;
+  }
+
   getAllServices() {
     this.FtthEligibilityService.getAllServices()
       .then((data) => {
         this.servicesLength = data.length;
-        if (data.length <= this.amountServicesDisplayed) {
-          this.createServiceList(data).then((services) => {
+
+        const sorted = this.constructor.getAccessSorted(data);
+        if (sorted.length <= this.amountServicesDisplayed) {
+          this.createServiceList(sorted).then((services) => {
             this.services = services;
           });
         } else {
           // Get only this.amountServicesDisplayed elements from the list
-          const limitedServices = data.slice(0, this.amountServicesDisplayed);
+          const limitedServices = sorted.slice(0, this.amountServicesDisplayed);
           this.createServiceList(limitedServices).then((services) => {
             this.services = services;
           });
