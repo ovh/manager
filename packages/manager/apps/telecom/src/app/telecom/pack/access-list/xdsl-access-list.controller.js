@@ -7,8 +7,17 @@ import {
 
 export default class XdslAccessListCtrl {
   /* @ngInject */
-  constructor($q, coreURLBuilder, XdslAccessListService, TucToastError) {
+  constructor(
+    $filter,
+    $q,
+    $translate,
+    coreURLBuilder,
+    XdslAccessListService,
+    TucToastError,
+  ) {
+    this.$filter = $filter;
     this.$q = $q;
+    this.$translate = $translate;
     this.coreURLBuilder = coreURLBuilder;
     this.XdslAccessListService = XdslAccessListService;
     this.TucToastError = TucToastError;
@@ -27,7 +36,7 @@ export default class XdslAccessListCtrl {
   }
 
   getServices() {
-    this.XdslAccessListService.getServices()
+    return this.XdslAccessListService.getServices()
       .then((data) =>
         this.buildServicesList(data || []).then((services) => {
           this.services = services;
@@ -38,10 +47,47 @@ export default class XdslAccessListCtrl {
       });
   }
 
+  static sortList(list) {
+    const sorted = list.sort((a, b) => {
+      if (a.accessType < b.accessType) {
+        return -1;
+      }
+      if (a.accessType > b.accessType) {
+        return 1;
+      }
+
+      return 0;
+    });
+    return sorted;
+  }
+
+  static getSortedServiceList(services) {
+    // First group by ADSL and VDSL then others access type
+    const accessTypeGroupBy = Object.groupBy(services, ({ accessType }) => {
+      return [ACCESS_TYPE.adsl, ACCESS_TYPE.vdsl].includes(accessType)
+        ? ELIGIBILITY.eligible
+        : ELIGIBILITY.not_eligible;
+    });
+
+    // Order each group and add them to the sorted services list
+    const sortedServicesList = [
+      ...this.sortList(accessTypeGroupBy.eligible),
+      ...this.sortList(accessTypeGroupBy.not_eligible),
+    ];
+    return sortedServicesList;
+  }
+
   buildServicesList(services) {
+    // Sort services to have ADSL and VDSL services in first positions
+    const sortedServices = this.constructor.getSortedServiceList(services);
+
     // Retrieve service info for each service
-    const serviceList = services.map((service) => {
-      if (service.accessType !== this.ACCESS_TYPE.ftth) {
+    const serviceList = sortedServices.map((service) => {
+      if (
+        ![this.ACCESS_TYPE.ftth, this.ACCESS_TYPE.sdsl].includes(
+          service.accessType,
+        )
+      ) {
         return this.XdslAccessListService.getFiberEligibilityList(
           service.accessName,
         ).then((data) =>
@@ -54,6 +100,7 @@ export default class XdslAccessListCtrl {
       }
       return this.createService(service, this.ELIGIBILITY.not_concerned);
     });
+
     return this.$q.all(serviceList);
   }
 
@@ -74,8 +121,24 @@ export default class XdslAccessListCtrl {
         `#/pack/${packName}/migration`,
       ),
     };
+    // Set closure date
+    newService.closureDate = this.$translate.instant(
+      'xdsl_access_list_not_concerned',
+    );
     if (copperGridClosureTrajectory) {
       newService.copperGridClosureTrajectory = copperGridClosureTrajectory;
+      if (migrationAvailable) {
+        if (copperGridClosureTrajectory.technicalClosureDate) {
+          newService.closureDate = this.$filter('date')(
+            copperGridClosureTrajectory.technicalClosureDate,
+            'shortDate',
+          );
+        } else {
+          newService.closureDate = this.$translate.instant(
+            'xdsl_access_list_not_available',
+          );
+        }
+      }
     }
     return newService;
   }
