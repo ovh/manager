@@ -152,7 +152,7 @@ export default function NodesPage(): JSX.Element {
                 pageSize: pagination.pageSize,
               });
               addFilter({
-                key: 'name',
+                key: 'search',
                 value: detail.inputValue,
                 comparator: FilterComparator.Includes,
                 label: '',
