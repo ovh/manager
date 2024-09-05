@@ -10,7 +10,11 @@ import map from 'lodash/map';
 import range from 'lodash/range';
 import uniq from 'lodash/uniq';
 
-import { DASHBOARD_STATE_NAME } from '../ip-ip-agoraOrder.constant';
+import {
+  DASHBOARD_STATE_NAME,
+  IP_TYPE_TITLE,
+} from '../ip-ip-agoraOrder.constant';
+
 import {
   IP_LOCATION_GROUPS,
   PRODUCT_TYPES,
@@ -57,6 +61,7 @@ export default class AgoraIpV4OrderController {
     this.BLOCK_ADDITIONAL_IP = BLOCK_ADDITIONAL_IP;
     this.ALERT_ID = ALERT_ID;
     this.region = coreConfig.getRegion();
+    this.type = IP_TYPE_TITLE.IPv4;
   }
 
   $onInit() {
