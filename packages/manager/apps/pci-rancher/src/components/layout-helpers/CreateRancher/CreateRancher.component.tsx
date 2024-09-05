@@ -1,4 +1,5 @@
 import {
+  ActionBanner,
   PciDiscoveryBanner,
   Subtitle,
   Title,
@@ -7,16 +8,22 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Trans, useTranslation } from 'react-i18next';
 import {
   ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_TYPE,
   ODS_TEXT_LEVEL,
   OdsInputValueChangeEventDetail,
   OsdsInputCustomEvent,
 } from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+
 import {
   OsdsButton,
   OsdsChip,
+  OsdsIcon,
   OsdsInput,
+  OsdsLink,
   OsdsMessage,
   OsdsText,
   OsdsTile,
@@ -24,6 +31,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMedia } from 'react-use';
+import { usePciUrl } from '@ovh-ux/manager-pci-common';
 
 import clsx from 'clsx';
 
@@ -122,6 +130,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [selectedVersion, setSelectedVersion] = useState(null);
 
+  const url = usePciUrl();
   const navigate = useNavigate();
 
   const isValidName = rancherName !== '' && isValidRancherName(rancherName);
@@ -184,7 +193,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
       <OsdsMessage
         color={ODS_THEME_COLOR_INTENT.info}
         type={ODS_MESSAGE_TYPE.info}
-        className="my-6"
+        className="my-6  max-w-5xl"
       >
         <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
           <Trans> {t('createRancherInfoMessage')}</Trans> <br />
@@ -251,6 +260,32 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             <Trans>{t('createRancherServiceLevelDescription')}</Trans>
           </OsdsText>
         </div>
+        <OsdsMessage
+          color={ODS_THEME_COLOR_INTENT.info}
+          type={ODS_MESSAGE_TYPE.info}
+          className="my-6 flex items-center max-w-5xl"
+        >
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            className="flex items-center"
+          >
+            <Trans>{t('savingsPlanMessage')}</Trans>
+          </OsdsText>
+          <OsdsLink
+            className="sm:mt-0 mt-4 sm:ml-4 ml-0"
+            color={ODS_THEME_COLOR_INTENT.primary}
+            href={`${url}/savings-plan`}
+            target={OdsHTMLAnchorElementTarget._blank}
+          >
+            {t('savingsPlanCTA')}
+          </OsdsLink>
+          <OsdsIcon
+            className="ml-3"
+            name={ODS_ICON_NAME.ARROW_RIGHT}
+            size={ODS_ICON_SIZE.sm}
+            color={ODS_THEME_COLOR_INTENT.primary}
+          />
+        </OsdsMessage>
         <div className="flex my-5">
           <ul
             className={clsx(
