@@ -108,6 +108,7 @@ export default function Organizations() {
             urn={platformUrn}
             iamActions={[IAM_ACTIONS.organization.create]}
             data-testid="add-organization-btn"
+            className="mb-6"
           >
             <span slot="start">
               <OsdsIcon
