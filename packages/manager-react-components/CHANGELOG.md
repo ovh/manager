@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.27.0...@ovh-ux/manager-react-components@1.28.0) (2024-09-05)
+
+### Bug Fixes
+
+- **manager-components:** datagrid delete overflow x ([68ca1dd](https://github.com/ovh/manager/commit/68ca1ddd5f0353469e659704cde2867c0512805b))
+
+### Features
+
+- **manager-components:** replace name of manager components react lib ([4e7add0](https://github.com/ovh/manager/commit/4e7add042f939f34ad7f969be1253b76133495e0))
+
 # [1.27.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.26.0...@ovhcloud/manager-components@1.27.0) (2024-08-29)
 
 ### Bug Fixes
