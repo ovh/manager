@@ -112,6 +112,7 @@ export default function Domains() {
                 urn={platformUrn}
                 iamActions={[IAM_ACTIONS.domain.create]}
                 data-testid="add-domain-btn"
+                className="mb-6"
               >
                 <span slot="start">
                   <OsdsIcon
