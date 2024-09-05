@@ -90,7 +90,7 @@
     "json": "11.0.0",
     "lint-staged": "13.2.3",
     "msw": "2.3.1",
-    "postcss": "8.4.27",
+    "postcss": "8.4.31",
     "prettier": "3.0.1",
     "prop-types": "15.8.1",
     "react-dom": "18.2.0",
