@@ -22,6 +22,7 @@ export function NodeSizeStep({
 }: Readonly<NodeSizeStepProps>) {
   const { t: tStepper } = useTranslation('stepper');
   const [scaling, setScaling] = useState<AutoscalingState>();
+
   return (
     <>
       <div className="mb-8">
@@ -37,7 +38,11 @@ export function NodeSizeStep({
           className="mt-4 w-fit"
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
-          disabled={scaling ? undefined : true}
+          disabled={
+            !scaling ||
+            scaling.quantity.min === scaling.quantity.max ||
+            undefined
+          }
           onClick={() => scaling && onSubmit(scaling)}
         >
           {tStepper('common_stepper_next_button_label')}

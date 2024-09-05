@@ -347,6 +347,8 @@ export default function NewPage(): JSX.Element {
               }
             : undefined,
           label: tCommon('common_stepper_next_button_label'),
+          isDisabled:
+            store.autoScaling?.quantity.max === store.autoScaling?.quantity.min,
         }}
         edit={{
           action: () => {
