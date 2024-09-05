@@ -2,7 +2,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import React, { useContext, useEffect } from 'react';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
-import { ErrorBanner, useProject } from '@ovhcloud/manager-components';
+import { ErrorBanner, useProject } from '@ovh-ux/manager-react-components';
 import Loading from '@/components/Loading/Loading.component';
 
 interface MatchHandle {
