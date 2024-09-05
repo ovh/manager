@@ -30,7 +30,7 @@
         <oui-datagrid-column
             data-title="'xdsl_access_list_service_name' | translate"
             data-property="accessName"
-            data-sortable="desc"
+            data-sortable
         >
             <div>
                 <a data-ng-href="{{ $row.accessLink }}">
@@ -65,20 +65,10 @@
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title="'xdsl_access_list_copper_closure_date' | translate"
+            data-property="closureDate"
+            data-sortable
         >
-            <span
-                data-ng-if="$row.migrationAvailable === $ctrl.ELIGIBILITY.eligible && $row.copperGridClosureTrajectory.technicalClosureDate"
-                data-ng-bind="$row.copperGridClosureTrajectory.technicalClosureDate | date:'shortDate'"
-            >
-            </span>
-            <span
-                data-ng-if="$row.migrationAvailable === $ctrl.ELIGIBILITY.eligible && !$row.copperGridClosureTrajectory.technicalClosureDate"
-                data-translate="xdsl_access_list_not_available"
-            ></span>
-            <span
-                data-ng-if="$row.migrationAvailable != $ctrl.ELIGIBILITY.eligible"
-                data-translate="xdsl_access_list_not_concerned"
-            ></span>
+            <span data-ng-bind="$row.closureDate"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title="'xdsl_access_list_actions' | translate"
