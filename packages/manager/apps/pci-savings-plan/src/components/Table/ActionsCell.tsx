@@ -15,11 +15,11 @@ import {
   OsdsMenu,
   OsdsMenuItem,
 } from '@ovhcloud/ods-components/react';
+import { usePciUrl } from '@ovh-ux/manager-pci-common';
 import {
   SavingsPlanPlanedChangeStatus,
   SavingsPlanStatus,
 } from '@/types/api.type';
-import { usePciUrl } from './TableContainer';
 
 interface SavingsPlanActionsCell {
   onClickEditName: (path: string) => void;
