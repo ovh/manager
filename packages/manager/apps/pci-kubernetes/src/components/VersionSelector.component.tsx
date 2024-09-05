@@ -58,7 +58,7 @@ export function VersionSelector({
           onClick={() => selectVersion(version)}
         >
           <OsdsText
-            className="my-3"
+            className="my-3 flex flex-col items-center"
             color={ODS_THEME_COLOR_INTENT.text}
             level={ODS_TEXT_LEVEL.body}
             size={
