@@ -7,6 +7,7 @@ import { getShellClient, setShellClient } from './shell';
 
 defineApplicationVersion(__VERSION__);
 
+// comment for test zimbra with web
 initShellClient('web')
   .then((client) => {
     if (!isTopLevelApplication()) {
