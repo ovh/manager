@@ -46,7 +46,7 @@
   "cdn_configuration_cacherule_update_step1_question": "Möchten Sie die Cache-Regel {{t0}} ändern?",
   "cdn_configuration_cacherule_update_step1_current": "Derzeitige TTL:",
   "cdn_configuration_cacherule_update_step1_new": "Neue TTL:",
-  "cdn_configuration_cacherule_update_step1_info": "Hinweis: Hinweis: die Änderung einer deaktivierten Regel reaktiviert diese.",
+  "cdn_configuration_cacherule_update_step1_info": "Hinweis: Das Bearbeiten einer deaktivierten Regel führt dazu, dass diese wieder aktiviert wird.",
   "cdn_configuration_cacherule_update_step2_summary": "Zusammenfassung",
   "cdn_configuration_cacherule_update_step2_old_ttl": "Alte TTL:",
   "cdn_configuration_cacherule_update_step2_new_ttl": "Neue TTL:",
