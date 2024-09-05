@@ -68,10 +68,10 @@ export const WINDOWS_SERVER_LINKS = {
     'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-hyperv-network-hg-scale?id=kb_article_view&sysparm_article=KB0043583',
 };
 
-export const vmacFeatureAvailablity = 'ip:create-vmac';
+export const VMAC_CREATION_ERROR_403 = 'ip:vmac-creation-error';
 
 export default {
   PROXMOX_LINKS,
   WINDOWS_SERVER_LINKS,
-  vmacFeatureAvailablity,
+  VMAC_CREATION_ERROR_403,
 };
