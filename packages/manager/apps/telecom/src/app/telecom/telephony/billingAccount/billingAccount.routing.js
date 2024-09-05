@@ -106,7 +106,8 @@ export default /* @ngInject */ ($stateProvider) => {
       currentTheme: /* @ngInject */ (softphoneService, billingAccountId) =>
         softphoneService
           .getSoftphoneCurrentGlobalTheme(billingAccountId)
-          .then(({ themeId }) => themeId),
+          .then(({ themeId }) => themeId)
+          .catch(() => {}),
     },
     translations: { value: ['..', '.', './dashboard'], format: 'json' },
   });

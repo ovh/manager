@@ -42,7 +42,8 @@ export default /* @ngInject */ ($stateProvider) => {
         ) =>
           softphoneService
             .getSoftphoneCurrentTheme(billingAccount, serviceName)
-            .then(({ themeId }) => themeId),
+            .then(({ themeId }) => themeId)
+            .catch(() => {}),
         storeLinks: /* @ngInject */ (softphoneService) =>
           softphoneService.getStoreLinks(),
       },
