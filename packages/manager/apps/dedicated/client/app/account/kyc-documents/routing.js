@@ -1,10 +1,11 @@
 import { FRAUD_STATUS } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
+  const kycFraudFeatureFlippingKey = 'procedures:fraud';
+
   $stateProvider.state('app.account.kyc-documents', {
     url: '/documents',
     template: '<div data-ui-view></div>',
-    redirectTo: 'app.account.kyc-documents.documents',
     resolve: {
       breadcrumb: () => null,
       breadcrumbPrefix: /* @ngInject */ (
@@ -30,14 +31,36 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         ]);
       },
+      isKycFraudAvailable: /* @ngInject */ ($http) => {
+        return $http
+          .get(`/feature/${kycFraudFeatureFlippingKey}/availability`, {
+            serviceType: 'aapi',
+          })
+          .then(
+            ({ data: featureAvailability }) =>
+              featureAvailability[kycFraudFeatureFlippingKey],
+          );
+      },
       apiPath: () => '/me/procedure/fraud',
-      resource: /* @ngInject */ ($http, apiPath) =>
-        $http.get(apiPath).then(({ data }) => data),
+      resource: /* @ngInject */ ($http, apiPath, isKycFraudAvailable) =>
+        isKycFraudAvailable
+          ? $http.get(apiPath).then(({ data }) => data)
+          : null,
       isDisabled: /* @ngInject */ (resource) =>
         resource.status !== FRAUD_STATUS.REQUIRED,
       user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
       hubLink: /* @ngInject */ (coreURLBuilder) =>
         coreURLBuilder.buildURL('hub', '/#'),
     },
+    redirectTo: (transition) =>
+      Promise.all([
+        transition.injector().getAsync('isKycFraudAvailable'),
+        transition.injector().getAsync('resource'),
+      ]).then(([isKycFraudAvailable, resource]) => {
+        return isKycFraudAvailable &&
+          [FRAUD_STATUS.REQUIRED, FRAUD_STATUS.OPEN].includes(resource?.status)
+          ? { state: 'app.account.kyc-documents.documents' }
+          : { state: 'app.account.user.dashboard' };
+      }),
   });
 };
