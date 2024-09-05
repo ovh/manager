@@ -9,7 +9,7 @@ import {
   DashboardTile,
   Description,
   RedirectionGuard,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { getVeeamBackupDisplayName, useVeeamBackup } from '@/data';
 import { urls } from '@/routes/routes.constant';

@@ -9,7 +9,7 @@ import {
   BaseLayout,
   DatagridColumn,
   RedirectionGuard,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import ErrorBanner from '@/components/Error/Error';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constant';

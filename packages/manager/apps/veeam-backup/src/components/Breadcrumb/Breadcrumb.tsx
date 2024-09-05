@@ -1,6 +1,6 @@
 import React from 'react';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_ICON_NAME,
@@ -9,6 +9,7 @@ import {
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
 import { appName } from '@/veeam-backup.config';
+import { getVeeamBackupDisplayName, useVeeamBackup } from '@/data';
 
 export type BreadcrumbItem = {
   label: string | undefined;
@@ -20,6 +21,8 @@ export function Breadcrumb() {
   const location = useLocation();
   const navigate = useNavigate();
   const { shell } = React.useContext(ShellContext);
+  const { id } = useParams();
+  const { data } = useVeeamBackup(id);
 
   const rootItems: (OdsBreadcrumbAttributeItem & { onClick?: () => void })[] = [
     {
@@ -39,7 +42,7 @@ export function Breadcrumb() {
 
   const pathnames = location.pathname.split('/').filter(Boolean);
   const paths = pathnames.map((value) => ({
-    label: t(value),
+    label: getVeeamBackupDisplayName(data?.data) ?? t(value),
     href: `/#/${appName}/${value}`,
   }));
 

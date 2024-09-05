@@ -19,7 +19,7 @@ import {
   Description,
   ManagerButton,
   useServiceDetails,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { VeeamBackupWithIam } from '@/data';
 import { urls } from '@/routes/routes.constant';
 import { useFormattedDate } from '@/hook/date';

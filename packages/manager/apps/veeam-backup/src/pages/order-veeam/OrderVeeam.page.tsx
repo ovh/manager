@@ -4,7 +4,7 @@ import {
   CommonTitle,
   DashboardGridLayout,
   Description,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { OsdsButton, OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
 import {

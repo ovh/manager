@@ -11,7 +11,7 @@ import {
   Description,
   LinkType,
   Links,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import {
   ShellContext,
@@ -91,9 +91,11 @@ export const OrganizationCell = ({
   const value = getOrganizationDisplayName(data?.data);
 
   React.useEffect(() => {
-    shell.navigation
-      .getURL(vcdOrganizationAppName, `/${organizationId}`, {})
-      .then((url: string) => setHref(url));
+    if (withLink) {
+      shell.navigation
+        .getURL(vcdOrganizationAppName, `/${organizationId}`, {})
+        .then((url: string) => setHref(url));
+    }
   }, []);
 
   if (isLoading || (withLink && !href)) {
