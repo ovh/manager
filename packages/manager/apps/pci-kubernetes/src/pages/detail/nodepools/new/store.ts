@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { TFlavor } from '@ovh-ux/manager-pci-common';
 import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
 import { AutoscalingState } from '@/components/Autoscaling.component';
-import { ANTI_AFFINITY_MAX_NODES, NAME_INPUT_CONSTRAINTS } from '@/constants';
+import { NAME_INPUT_CONSTRAINTS } from '@/constants';
 
 type TStep = {
   isOpen: boolean;
