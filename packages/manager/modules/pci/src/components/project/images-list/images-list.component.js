@@ -15,7 +15,7 @@ export default {
     onChange: '&?',
     serviceName: '@',
     region: '<?',
-    onTabChange: '&?',
+    onTabChange: '&',
   },
   transclude: true,
 };

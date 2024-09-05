@@ -12,6 +12,6 @@ export default {
     addons: '<?',
     isLocalZone: '<',
     hourlyPriceInformation: '<',
-    onBillingTypeChange: '&?',
+    onBillingTypeChange: '&',
   },
 };

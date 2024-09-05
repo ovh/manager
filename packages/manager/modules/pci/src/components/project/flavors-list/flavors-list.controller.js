@@ -153,9 +153,7 @@ export default class FlavorsListController {
   }
 
   onActiveChange(category) {
-    if (this.onTabChange) {
-      this.onTabChange({ category });
-    }
+    this.onTabChange({ category });
   }
 
   onFlavorChange(flavor, category) {
