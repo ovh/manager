@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useHref, useNavigate } from 'react-router-dom';
+import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { Translation, useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -43,6 +43,7 @@ export default function NewPage() {
   const { t } = useTranslation('add');
   const { t: tListing } = useTranslation('listing');
   const { t: tStepper } = useTranslation('stepper');
+  const { projectId } = useParams();
   const { data: project } = useProject();
   const { tracking } = useContext(ShellContext).shell;
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ export default function NewPage() {
     createCluster,
     isPending: isCreationPending,
   } = useCreateKubernetesCluster({
-    projectId: project.project_id,
+    projectId: project?.project_id,
     onSuccess: () => {
       navigate('..');
       addSuccess(
@@ -158,7 +159,7 @@ export default function NewPage() {
           }}
         >
           <LocationStep
-            projectId={project.project_id}
+            projectId={projectId}
             onSubmit={stepper.location.submit}
             step={stepper.location.step}
           />
@@ -205,7 +206,7 @@ export default function NewPage() {
           }}
         >
           <NodeTypeStep
-            projectId={project.project_id}
+            projectId={projectId}
             region={stepper.form.region?.name}
             onSubmit={stepper.nodeType.submit}
             step={stepper.nodeType.step}
