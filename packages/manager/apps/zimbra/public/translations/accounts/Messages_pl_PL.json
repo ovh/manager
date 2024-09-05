@@ -1,0 +1,15 @@
+{
+  "zimbra_account_datagrid_email_label": "Konta e-mail",
+  "zimbra_account_datagrid_organization_label": "Organizacja",
+  "zimbra_account_datagrid_offer_label": "Pakiet",
+  "zimbra_account_datagrid_webmail_label": "Webmail - dostęp do poczty przez przeglądarkę:",
+  "zimbra_account_datagrid_quota": "Rozmiar",
+  "zimbra_account_datagrid_quota_octets": "Bajty",
+  "zimbra_account_datagrid_quota_ko": "KB",
+  "zimbra_account_datagrid_quota_mo": "MB",
+  "zimbra_account_datagrid_quota_go": "GB",
+  "zimbra_account_datagrid_quota_to": "TB",
+  "zimbra_account_datagrid_tooltip_modification": "Edytuj",
+  "zimbra_account_datagrid_tooltip_delete": "Usuń",
+  "zimbra_account_account_add": "Załóż konto"
+}
