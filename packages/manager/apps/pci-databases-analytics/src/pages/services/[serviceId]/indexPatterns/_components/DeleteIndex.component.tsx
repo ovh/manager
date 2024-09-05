@@ -75,7 +75,7 @@ const DeleteIndexModal = ({
     <Dialog {...controller}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle data-testid="delete-indexs-modal">
+          <DialogTitle data-testid="delete-indexes-modal">
             {t('deleteIndexTitle')}
           </DialogTitle>
           <DialogDescription>
@@ -87,7 +87,7 @@ const DeleteIndexModal = ({
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
             <Button
-              data-testid="delete-indexs-cancel-button"
+              data-testid="delete-indexes-cancel-button"
               type="button"
               variant="outline"
             >
@@ -95,7 +95,7 @@ const DeleteIndexModal = ({
             </Button>
           </DialogClose>
           <Button
-            data-testid="delete-indexs-submit-button"
+            data-testid="delete-indexes-submit-button"
             type="button"
             disabled={isPending}
             onClick={handleDelete}
