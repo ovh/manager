@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 
 import {
-  vmacFeatureAvailablity,
+  VMAC_CREATION_ERROR_403,
   PROXMOX_LINKS,
   WINDOWS_SERVER_LINKS,
 } from '../ip-ip-virtual-mac.constant';
@@ -24,9 +24,9 @@ export default /* @ngInject */ (
   const { ovhSubsidiary } = coreConfig.getUser();
 
   ovhFeatureFlipping
-    .checkFeatureAvailability(vmacFeatureAvailablity)
+    .checkFeatureAvailability(VMAC_CREATION_ERROR_403)
     .then((feature) => {
-      isVmacAvailable = feature.isFeatureAvailable(vmacFeatureAvailablity);
+      isVmacAvailable = feature.isFeatureAvailable(VMAC_CREATION_ERROR_403);
     });
 
   $scope.data = $scope.currentActionData; // service and sub
