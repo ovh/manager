@@ -9,7 +9,12 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       pccView: 'pccDashboard',
     },
+    atInternet: {
+      rename:
+        'Enterprise::PrivateCloud::vmware::vmware::dashboard::general-information',
+    },
     resolve: {
+      trackingPrefix: () => 'Enterprise::PrivateCloud::',
       deleteDrp: /* @ngInject */ ($state) => () =>
         $state.go('app.dedicatedCloud.details.dashboard.deleteDrp'),
       featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
@@ -98,8 +103,17 @@ export default /* @ngInject */ ($stateProvider) => {
           productId,
           datacenterId,
         }),
-      goToVcdOrder: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedCloud.details.dashboard.vcd-order'),
+      goToVcdOrder: /* @ngInject */ (
+        $state,
+        atInternet,
+        trackingPrefix,
+      ) => () => {
+        atInternet.trackClick({
+          name: `${trackingPrefix}vmware::tile::button::migrate_to_managed_vcd::confirm`,
+          type: 'action',
+        });
+        return $state.go('app.dedicatedCloud.details.dashboard.vcd-order');
+      },
       disableVmwareOption: /* @ngInject */ ($state) => (option) =>
         $state.go(
           'app.dedicatedCloud.details.dashboard.vmware-option-disable',
