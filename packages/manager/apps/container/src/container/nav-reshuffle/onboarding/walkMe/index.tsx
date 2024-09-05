@@ -150,7 +150,9 @@ export const OnboardingWalkMe = () => {
     const currentStepID = steps[currentStepIndex]?.selector.replace('#', '');
     const el: HTMLElement = stepElement.current;
     const entry: ResizeObserverEntry = entries.find((entry) => entry.target.id === currentStepID);
-    el.style.height = `${entry.borderBoxSize[0].blockSize + ELEMENT_OFFSET}px`;
+    if (entry?.borderBoxSize[0]?.blockSize) {
+      el.style.height = `${entry.borderBoxSize[0].blockSize + ELEMENT_OFFSET}px`;
+    }
   })
 
   const onNextBtnClick = () => {
