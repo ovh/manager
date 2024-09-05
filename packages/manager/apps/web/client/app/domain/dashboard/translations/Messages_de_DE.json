@@ -214,7 +214,7 @@
   "domain_tab_ZONE_no_defaut_dns_used": "Sie verwenden derzeit folgende DNS-Server: ",
   "domain_tab_ZONE_set_defaut_dns": "Verwenden Sie für untenstehende DNS- Zone bitte folgende DNS-Server: ",
   "domain_tab_ZONE_title": "Hier können Sie die Konfiguration der verschiedenen Einträge Ihrer Domain einsehen.",
-  "domain_tab_ZONE_info": "Sie haben auch die Möglichkeit, diese Einträge so zu konfigurieren, dass Ihre Domain auf Ihre verschiedenen Dienstleistungen verweist (mit dem Button \"Einen Eintrag hinzufügen\").",
+  "domain_tab_ZONE_info": "Sie haben auch die Möglichkeit, diese Einträge so zu konfigurieren, dass Ihre Domain auf Ihre verschiedenen Dienste verweist (mit dem Button „Eintrag hinzufügen“).",
   "domain_tab_ZONE_status_error": "Unsere Systeme haben bei der Überprüfung Ihrer Zone Fehler festgestellt. <strong>Ihre letzten Änderungen wurden daher nicht übernommen</strong>. Bitte beheben Sie folgende Probleme:",
   "domain_tab_ZONE_status_warning": "Ihre Zone wurde bereitgestellt. Es wurden jedoch folgende Anomalien festgestellt:",
   "domain_tab_ZONE_empty_zone": "Es sind keine Einträge in Ihrer DNS-Zone vorhanden.",
