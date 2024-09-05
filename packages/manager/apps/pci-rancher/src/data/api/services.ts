@@ -1,6 +1,4 @@
 import { apiClient, fetchIcebergV2, v6 } from '@ovh-ux/manager-core-api';
-import { useQuery } from '@tanstack/react-query';
-import { useMe } from '@ovhcloud/manager-components';
 import {
   CreateRancherPayload,
   PciProject,
