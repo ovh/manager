@@ -1,0 +1,16 @@
+{
+  "zimbra_domains_add_domain_cta_back": "Powrót do domen",
+  "zimbra_domains_add_domain_cta_confirm": "Zatwierdź",
+  "zimbra_domains_add_domain_cta_next": "Dalej",
+  "zimbra_domains_add_domain_title": "Domena",
+  "zimbra_domains_add_domain_title_select": "Dodaj domenę",
+  "zimbra_domains_add_domain_select_title": "Wybierz domenę z listy",
+  "zimbra_domains_add_domain_select": "Wybierz nazwę domeny",
+  "zimbra_domains_add_domain_input": "Wpisz nazwę domeny",
+  "zimbra_domains_add_domain_input_title": "Wpisz domenę, która nie jest zarządzana w ramach konta OVHcloud",
+  "zimbra_domains_add_domain_organization": "Organizacja",
+  "zimbra_domains_add_domain_organization_select": "Wybierz organizację",
+  "zimbra_domains_add_domain_configuration_title": "Konfiguracja",
+  "zimbra_domains_add_domain_success_message": "Dyspozycja dodania została przyjęta. Zostanie wykonana w ciągu kilku minut.",
+  "zimbra_domains_add_domain_error_message": "Dodanie nie powiodło się. {{error}}"
+}

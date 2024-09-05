@@ -19,10 +19,18 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
+      "@/public/*": ["./public/*"],
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "types", "src/__tests__"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "types",
+    "src/pages/dashboard/Organizations/__test__",
+    "src/pages/dashboard/Domains/__test__",
+    "src/pages/dashboard/EmailAccounts/__test__",
+    "src/hook/__test__"
+  ]
 }
