@@ -29,8 +29,8 @@ jest.mock('react-use', () => ({
   useMedia: jest.fn(),
 }));
 
-jest.mock('@ovhcloud/manager-components', () => ({
-  ...jest.requireActual('@ovhcloud/manager-components'),
+jest.mock('@ovh-ux/manager-react-components', () => ({
+  ...jest.requireActual('@ovh-ux/manager-react-components'),
   Subtitle: jest.fn(),
   Title: jest.fn(),
   PciDiscoveryBanner: jest.fn(
