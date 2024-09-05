@@ -88,14 +88,14 @@ export default [
           {
             path: ROUTES_URLS.keys,
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/serviceKeyList/serviceKeyList.page'),
+              import('@/pages/dashboard/serviceKeyList/ServiceKeyList.page'),
             ),
             children: [
               {
                 path: `${ROUTES_URLS.serviceKeyDeactivate}/${ROUTES_URLS.keyId}`,
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/serviceKey/deactivateServiceKeyModal/deactivateServiceKeyModal.page'
+                    '@/pages/serviceKey/deactivateServiceKeyModal/DeactivateServiceKeyModal.page'
                   ),
                 ),
               },
@@ -104,34 +104,34 @@ export default [
           {
             path: ROUTES_URLS.credentials,
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/credentialList/credentialList.page'),
+              import('@/pages/dashboard/credentialList/CredentialList.page'),
             ),
           },
         ],
       },
       {
         path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.createKmsServiceKey}`,
-        ...lazyRouteConfig(() => import('@/pages/serviceKey/createKey.page')),
+        ...lazyRouteConfig(() => import('@/pages/serviceKey/CreateKey.page')),
       },
       {
         path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.credentials}/${ROUTES_URLS.createCredential}`,
         ...lazyRouteConfig(() =>
-          import('@/pages/credential/createCredential.page'),
+          import('@/pages/credential/CreateCredential.page'),
         ),
       },
       {
         path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.credentials}/${ROUTES_URLS.credentialId}`,
-        ...lazyRouteConfig(() => import('@/pages/credential/credential.page')),
+        ...lazyRouteConfig(() => import('@/pages/credential/Credential.page')),
       },
       {
         path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.keyId}`,
-        ...lazyRouteConfig(() => import('@/pages/serviceKey/serviceKey.page')),
+        ...lazyRouteConfig(() => import('@/pages/serviceKey/ServiceKey.page')),
         children: [
           {
             path: ROUTES_URLS.serviceKeyEditName,
             ...lazyRouteConfig(() =>
               import(
-                '@/pages/serviceKey/editServiceKeyNameModal/editServiceKeyNameModal.page'
+                '@/pages/serviceKey/editServiceKeyNameModal/EditServiceKeyNameModal.page'
               ),
             ),
           },
@@ -139,7 +139,7 @@ export default [
             path: ROUTES_URLS.serviceKeyDeactivate,
             ...lazyRouteConfig(() =>
               import(
-                '@/pages/serviceKey/deactivateServiceKeyModal/deactivateServiceKeyModal.page'
+                '@/pages/serviceKey/deactivateServiceKeyModal/DeactivateServiceKeyModal.page'
               ),
             ),
           },

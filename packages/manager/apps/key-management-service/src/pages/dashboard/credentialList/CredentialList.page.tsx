@@ -15,7 +15,7 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import Loading from '@/components/Loading/Loading';
-import CredentialDatagrid from '../../../components/credential/credentialDatagrid/credentialDatagrid';
+import CredentialDatagrid from '../../../components/credential/credentialDatagrid/CredentialDatagrid';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { useOutletKms } from '@/hooks/kms/useOutletKms';
 
