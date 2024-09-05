@@ -1,7 +1,7 @@
 import {
   StepComponent,
   TilesInputComponent,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';

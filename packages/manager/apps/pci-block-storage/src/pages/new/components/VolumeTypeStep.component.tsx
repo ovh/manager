@@ -11,7 +11,7 @@ import {
 import {
   TilesInputComponent,
   useCatalogPrice,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 
 import { ODS_BUTTON_SIZE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';

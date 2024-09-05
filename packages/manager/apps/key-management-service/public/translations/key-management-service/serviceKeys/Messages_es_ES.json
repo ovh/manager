@@ -1,7 +1,7 @@
 {
   "key_management_service_service_keys": "Claves de cifrado",
   "key_management_service_service-keys_headline": "Cree, importe y gestione sus claves de cifrado CMK (Customer Managed Keys).",
-  "key_management_service_service-keys_column_name": "Nombre",
+  "key_management_service_service-keys_column_name": "Apellido",
   "key_management_service_service-keys_column_id": "ID",
   "key_management_service_service-keys_column_type": "Tipo",
   "key_management_service_service-keys_column_created-at": "Fecha de creación",
@@ -39,7 +39,7 @@
   "key_management_service_service-keys_update_name_error_max": "El nombre supera el número de caracteres permitido. (32 caracteres máximo)",
   "key_management_service_service-keys_update_name_error_invalid_characters": "El texto introducido no es válido.",
   "key_management_service_service-keys_update_name_success": "El nombre se ha modificado correctamente.",
-  "key_management_service_service-keys_update_error": "No ha sido posible modificar el nombre. {{error}}",
+  "key_management_service_service-keys_update_error": "No se ha podido realizar el cambio. {{error}}",
   "key_management_service_service-keys_create_title": "Crear una clave",
   "key_management_service_service-keys_create_subtitle": "Cree una clave CMS (Customer Managed Key) generada por OVHcloud.",
   "key_management_service_service-keys_create_general_information_title": "Información general",
@@ -87,7 +87,7 @@
   "key_management_service_service-keys_modal_deactivation_reason_label": "Motivo de la desactivación",
   "key_management_service_service-keys_modal_deactivation_reason_select_placeholder": "Seleccione el motivo",
   "key_management_service_service-keys_delete_success": "La clave se ha eliminado correctamente.",
-  "key_management_service_service-keys_delete_error": "No ha sido posible eliminar la clave. {{error}}",
+  "key_management_service_service-keys_delete_error": "No se ha podido realizar la eliminación. {{error}}",
   "key_management_service_service-keys_deactivation_success": "La clave se ha desactivado correctamente",
   "key_management_service_service-keys_reactivate_success": "La clave se ha reactivado correctamente"
 }

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
-import { DataGridTextCell } from '@ovhcloud/manager-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { Voucher } from '@/interface';

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Links, LinkType } from '@ovhcloud/manager-components';
+import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {

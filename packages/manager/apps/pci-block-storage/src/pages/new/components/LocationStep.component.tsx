@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { isDiscoveryProject, useProject } from '@ovhcloud/manager-components';
+import {
+  isDiscoveryProject,
+  useProject,
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { RegionSelector } from '@/components/region-selector/RegionSelector.component';
 import { RegionSummary } from '@/components/region-selector/RegionSummary.component';

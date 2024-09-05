@@ -6,7 +6,7 @@ import '@testing-library/jest-dom';
 import CreditCell from '@/components/vouchers/listing/Credit';
 import { Credit } from '@/interface';
 
-vi.mock('@ovhcloud/manager-components', async () => ({
+vi.mock('@ovh-ux/manager-react-components', async () => ({
   DataGridTextCell: ({ children }: { children: ReactNode }) => <>{children}</>,
 }));
 

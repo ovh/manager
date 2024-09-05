@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTask } from '@ovhcloud/manager-components';
+import { useTask } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { VrackTask } from '../vrack.type';

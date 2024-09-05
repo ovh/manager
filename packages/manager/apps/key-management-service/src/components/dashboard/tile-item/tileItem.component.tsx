@@ -1,6 +1,6 @@
 import React from 'react';
 import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
-import { CommonTitle } from '@ovhcloud/manager-components';
+import { CommonTitle } from '@ovh-ux/manager-react-components';
 
 type TileItemProps = {
   title: string;

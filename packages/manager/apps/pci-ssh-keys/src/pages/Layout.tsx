@@ -1,7 +1,7 @@
 import { Outlet, useParams, useRouteError } from 'react-router-dom';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { Suspense } from 'react';
-import { ErrorBanner } from '@ovhcloud/manager-components';
+import { ErrorBanner } from '@ovh-ux/manager-react-components';
 
 import BreadCrumbs from '@/components/BreadCrumbs';
 import ShellRoutingSync from '@/core/ShellRoutingSync';

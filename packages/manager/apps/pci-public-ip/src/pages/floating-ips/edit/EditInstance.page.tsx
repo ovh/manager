@@ -21,7 +21,7 @@ import {
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useAllFloatingIP, useUpdateInstance } from '@/api/hooks/useFloatingIP';
 import { useFilteredInstance } from '@/api/hooks/useInstance';
 import { FloatingIP, IPAddress, ResponseAPIError } from '@/interface';

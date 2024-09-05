@@ -26,7 +26,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-import { handleClick } from '@ovhcloud/manager-components';
+import { handleClick } from '@ovh-ux/manager-react-components';
 import { PageName } from '@/utils/tracking';
 import { LoadingText } from '@/components/LoadingText.component';
 import {

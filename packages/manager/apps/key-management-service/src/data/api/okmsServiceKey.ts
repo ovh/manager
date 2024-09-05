@@ -1,4 +1,4 @@
-import { ColumnSort } from '@ovhcloud/manager-components';
+import { ColumnSort } from '@ovh-ux/manager-react-components';
 import apiClient from '@ovh-ux/manager-core-api';
 import { defaultCompareFunctionSortKey } from './utils';
 import {

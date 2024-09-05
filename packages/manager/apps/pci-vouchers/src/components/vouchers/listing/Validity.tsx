@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import * as dateFnsLocales from 'date-fns/locale';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { DataGridTextCell } from '@ovhcloud/manager-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 
 export default function Validity({ date }: { date: string | null }) {

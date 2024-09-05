@@ -1,6 +1,6 @@
 import { OsdsTile } from '@ovhcloud/ods-components/react';
 import React from 'react';
-import { CommonTitle } from '@ovhcloud/manager-components';
+import { CommonTitle } from '@ovh-ux/manager-react-components';
 
 export type TileProps = {
   title: string;

@@ -22,7 +22,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { handleClick } from '@ovhcloud/manager-components';
+import { handleClick } from '@ovh-ux/manager-react-components';
 import {
   getDisplayName,
   getVrackServicesResourceListQueryKey,

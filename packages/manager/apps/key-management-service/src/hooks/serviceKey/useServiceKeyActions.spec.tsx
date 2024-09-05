@@ -8,7 +8,7 @@ vi.mock('react-i18next', () => ({
   useTranslation: vi.fn(() => ({ t: vi.fn((key) => key) })),
 }));
 
-vi.mock('@ovhcloud/manager-components', () => ({
+vi.mock('@ovh-ux/manager-react-components', () => ({
   useNotifications: vi.fn(() => ({ addSuccess: vi.fn() })),
 }));
 

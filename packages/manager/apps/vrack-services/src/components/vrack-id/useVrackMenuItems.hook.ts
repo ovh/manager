@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { ActionMenuItem } from '@ovhcloud/manager-components';
+import { ActionMenuItem } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,

@@ -4,7 +4,7 @@ import {
   DataGridClipboardCell,
   DataGridTextCell,
   Links,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { GuideButton } from '@ovhcloud/manager-components';
+import { GuideButton } from '@ovh-ux/manager-react-components';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 
 export default function KmsGuidesHeader() {

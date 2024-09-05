@@ -3,7 +3,7 @@ import React from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Title } from '@ovhcloud/manager-components';
+import { Title } from '@ovh-ux/manager-react-components';
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
 import {
   patchRancherServiceQueryKey,

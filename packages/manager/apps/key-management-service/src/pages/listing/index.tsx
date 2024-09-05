@@ -20,7 +20,7 @@ import {
   Notifications,
   useDatagridSearchParams,
   useNotifications,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useOKMS } from '@/data/hooks/useOKMS';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import {

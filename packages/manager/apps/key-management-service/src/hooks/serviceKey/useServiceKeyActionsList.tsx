@@ -1,4 +1,7 @@
-import { ActionMenuItem, useNotifications } from '@ovhcloud/manager-components';
+import {
+  ActionMenuItem,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';

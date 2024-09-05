@@ -4,7 +4,7 @@ import {
   Card,
   OnboardingLayout,
   PageLayout,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';

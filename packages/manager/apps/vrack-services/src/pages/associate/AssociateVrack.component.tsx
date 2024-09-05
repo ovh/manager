@@ -25,7 +25,7 @@ import {
   PageType,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate, useParams } from 'react-router-dom';
-import { handleClick } from '@ovhcloud/manager-components';
+import { handleClick } from '@ovh-ux/manager-react-components';
 import {
   getVrackServicesResourceListQueryKey,
   useVrackService,

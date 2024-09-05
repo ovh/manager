@@ -11,7 +11,7 @@ import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation, Translation } from 'react-i18next';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useRegeneratePassword } from '@/api/hooks/useUser';
 import { User } from '@/interface';
 import { PAGE_PREFIX, PCI_LEVEL2 } from '@/tracking.constants';

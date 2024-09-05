@@ -9,7 +9,7 @@ import {
   useProject,
   useProjectUrl,
   Notifications,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { Translation, useTranslation } from 'react-i18next';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { ApiError } from '@ovh-ux/manager-core-api';

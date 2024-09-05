@@ -6,7 +6,7 @@ import { User } from '@ovh-ux/manager-config';
 import ovhCloudLogo from './assets/logo-ovhcloud.png';
 import links from './links';
 import { useApplication } from '@/context';
-import { Subtitle, Links, LinksProps } from '@ovhcloud/manager-components';
+import { Subtitle, Links, LinksProps } from '@ovh-ux/manager-react-components';
 import {
   OsdsButton,
   OsdsModal,
