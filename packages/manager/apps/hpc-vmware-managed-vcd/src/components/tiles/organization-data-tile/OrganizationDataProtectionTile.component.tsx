@@ -5,18 +5,29 @@ import { DashboardTile, Links, LinkType } from '@ovhcloud/manager-components';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   DATA_PROTECTION_BACKUP_TITLE,
   DATA_PROTECTION_RECOVERY_TITLE,
 } from '@/pages/dashboard/organization/OrganizationDashboard.constants';
 import { useManagedVcdOrganizationBackup } from '@/data/hooks/useManagedVcdOrganization';
 import Loading from '@/components/loading/Loading.component';
+import { veeamBackupAppName } from '@/routes/routes.constant';
 
 export default function DataProtectionTile() {
   const { t } = useTranslation('dashboard');
   const { id } = useParams();
+  const { shell } = React.useContext(ShellContext);
   const { data: vcdBackup, isLoading } = useManagedVcdOrganizationBackup(id);
+  const [veeamHref, setVeeamHref] = React.useState('');
+
   const backupStatus = vcdBackup?.data?.resourceStatus ?? 'error';
+
+  React.useEffect(() => {
+    shell.navigation
+      .getURL(veeamBackupAppName, '', {})
+      .then((url: string) => setVeeamHref(url));
+  });
 
   return (
     <div>
@@ -39,7 +50,7 @@ export default function DataProtectionTile() {
                 <Links
                   type={LinkType.external}
                   label={t('managed_vcd_dashboard_backup_link')}
-                  href={'/'} // TODO : replace with Veeam listing page link
+                  href={veeamHref}
                 />
               </div>
             ),
