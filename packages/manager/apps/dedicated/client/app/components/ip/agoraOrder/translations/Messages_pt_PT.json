@@ -61,5 +61,6 @@
   "ipv6-per-region_limit_reached_error": "O número máximo de 3 blocos IPv6 adicionais já foi atingido na região selecionada. Escolha outra região",
   "ipv6_limit_reached_error": "O número máximo de blocos IPv6 adicionais já foi atingido",
   "ip_agora_like_this": "Gostou?",
-  "ip_agora_like_this_tooltip": "Gostou desta página? Partilhe connosco as suas observações!"
+  "ip_agora_like_this_tooltip": "Gostou desta página? Partilhe connosco as suas observações!",
+  "ip_agora_ip_localisation_description": "Escolha uma das localizações disponíveis para o seu novo bloco de endereços {{ ipType }} adicional."
 }

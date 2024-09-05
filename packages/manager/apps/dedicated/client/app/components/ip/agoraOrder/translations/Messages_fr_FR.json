@@ -5,6 +5,7 @@
   "ip_agora_table_header_organisation": "Associer une organisation",
   "ip_agora_select_quantity_title": "Choisissez votre quantité",
   "ip_agora_ip_localisation_title": "Localisation de l'adresse IP",
+  "ip_agora_ip_localisation_description": "Veuillez choisir l'un des emplacements disponibles pour votre nouveau bloc d'adresses {{ ipType }} supplémentaire.",
   "ipv4_select_placeholder": "Selectionner une taille",
   "license_dashboard_title": "Commander une IP",
   "ipv4Block_description": "Bloc d'adresse IPv4. Les tailles de bloc disponibles varient en fonction du service associé.",

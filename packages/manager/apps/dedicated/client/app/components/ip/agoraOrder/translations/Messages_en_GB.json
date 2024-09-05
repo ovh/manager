@@ -61,5 +61,6 @@
   "ipv6-per-region_limit_reached_error": "You have reached the maximum limit of 3 additional IPv6 blocks in the selected region. Please select another region",
   "ipv6_limit_reached_error": "You have reached the maximum limit of additional IPv6 blocks",
   "ip_agora_like_this": "Like it?",
-  "ip_agora_like_this_tooltip": "Like this page? Send us your feedback!"
+  "ip_agora_like_this_tooltip": "Like this page? Send us your feedback!",
+  "ip_agora_ip_localisation_description": "Please select one of the locations available for your new additional {{ ipType }} address block."
 }
