@@ -1,6 +1,6 @@
 {
   "kubernetes_network_form_gateway_label": "Directiva de enrutamiento saliente",
-  "kubernetes_network_form_gateway_description": "Puede configurar el modo en que los nodos de trabajo enrutan el tráfico saliente (por ejemplo, para recuperar imágenes de un registro).",
+  "kubernetes_network_form_gateway_description": "Puede configurar cómo los nodos de trabajo enrutan el tráfico saliente (por ejemplo, para recuperar las imágenes de un repositorio).",
   "kubernetes_network_form_gateway_public": "Interfaz pública de los nodos",
   "kubernetes_network_form_gateway_public_description": "Cada nodo utilizará su propia interfaz pública.",
   "kubernetes_network_form_gateway_private": "Interfaz privada de los nodos",
@@ -9,8 +9,8 @@
   "kubernetes_network_form_gateway_private_description_link": "Gateway gestionada de OVHcloud",
   "kubernetes_network_form_gateway_vrack_field_ip_placeholder": "Introducir una dirección IP",
   "kubernetes_network_form_gateway_vrack_field_ip_error_pattern": "Introduzca una dirección IP válida",
-  "kubernetes_network_form_gateway_mode_auto": "Puerta de enlace predeterminada definida según la configuración DHCP de la red privada (recomendado)",
-  "kubernetes_network_form_gateway_mode_custom": "Puerta de enlace predeterminada sobrecargada estáticamente",
+  "kubernetes_network_form_gateway_mode_auto": "Puerta de enlace predeterminada definida según la configuración DHCP de su red privada (recomendado)",
+  "kubernetes_network_form_gateway_mode_custom": "Puerta de enlace predeterminada redefinida de manera estática",
   "kubernetes_network_form_gateway_mode_custom_placeholder": "Dirección IP de la puerta de enlace predeterminada",
   "kubernetes_network_form_label": "Red privada asociada",
   "kubernetes_network_form_none": "Ninguna (IP públicas)",
