@@ -19,6 +19,7 @@ export type TNode = TRawNode & {
   formattedFlavor: string;
   billingType: 'hourly' | 'monthly' | 'monthly_pending';
   canSwitchToMonthly: boolean;
+  search?: string;
 };
 
 export const getNodes = async (
