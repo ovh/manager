@@ -46,7 +46,7 @@
   "cdn_configuration_cacherule_update_step1_question": "Do you want to modify the cache rule {{t0}}?",
   "cdn_configuration_cacherule_update_step1_current": "Current TTL:",
   "cdn_configuration_cacherule_update_step1_new": "New TTL:",
-  "cdn_configuration_cacherule_update_step1_info": "Note: NB: modifying a disabled rule will re-enable it.",
+  "cdn_configuration_cacherule_update_step1_info": "Note: Editing a disabled rule re-enables it.",
   "cdn_configuration_cacherule_update_step2_summary": "Summary:",
   "cdn_configuration_cacherule_update_step2_old_ttl": "Old TTL:",
   "cdn_configuration_cacherule_update_step2_new_ttl": "New TTL:",

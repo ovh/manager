@@ -49,7 +49,7 @@
   "cdn_configuration_cacherule_update_step1_question": "Vous souhaitez modifier la règle de cache {{t0}} ?",
   "cdn_configuration_cacherule_update_step1_current": "TTL actuel :",
   "cdn_configuration_cacherule_update_step1_new": "Nouveau TTL :",
-  "cdn_configuration_cacherule_update_step1_info": "Note : La modification d'une règle désactivée l'a réactive.",
+  "cdn_configuration_cacherule_update_step1_info": "Note : La modification d'une règle désactivée la réactive.",
   "cdn_configuration_cacherule_update_step2_summary": "Résumé :",
   "cdn_configuration_cacherule_update_step2_old_ttl": "Ancien ttl :",
   "cdn_configuration_cacherule_update_step2_new_ttl": "Nouveau ttl :",
