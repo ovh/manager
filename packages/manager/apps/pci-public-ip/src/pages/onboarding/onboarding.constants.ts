@@ -13,7 +13,7 @@ export const GUIDES = {
     SG:
       'https://docs.ovh.com/sg/en/publiccloud/network-services/additional-ip-vs-floating-ip/',
     US:
-      'https://docs.ovh.com/us/en/publiccloud/network-services/additional-ip-vs-floating-ip/',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/21134381741715-Concepts-Additional-IP-or-Floating-IP',
     ES:
       'https://docs.ovh.com/es/publiccloud/network-services/additional-ip-vs-floating-ip/',
     FR:
@@ -41,7 +41,7 @@ export const GUIDES = {
     SG:
       'https://docs.ovh.com/sg/en/publiccloud/network-services/configure-additional-ip/',
     US:
-      'https://docs.ovh.com/us/en/publiccloud/network-services/configure-additional-ip/',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/19770592015891-Configuring-an-Additional-IP-for-OVHcloud-Public-Cloud-Projects',
     ES:
       'https://docs.ovh.com/es/publiccloud/network-services/configure-additional-ip/',
     FR:
@@ -69,7 +69,7 @@ export const GUIDES = {
     SG:
       'https://docs.ovh.com/sg/en/publiccloud/network-services/attaching-pci-floating-ip-to-instance/',
     US:
-      'https://docs.ovh.com/us/en/publiccloud/network-services/attaching-pci-floating-ip-to-instance/',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/18466423089811-How-to-Attach-a-Floating-IP-to-a-Public-Cloud-Instance',
     ES:
       'https://docs.ovh.com/es/publiccloud/network-services/attaching-pci-floating-ip-to-instance/',
     FR:
