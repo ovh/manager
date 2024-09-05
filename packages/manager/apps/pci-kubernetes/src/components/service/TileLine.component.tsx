@@ -8,9 +8,9 @@ type TileLineProps = {
 };
 export default function TileLine({ title, value }: Readonly<TileLineProps>) {
   return (
-    <>
+    <div className="truncate">
       <OsdsText
-        className="mb-4"
+        className="mb-4 block"
         size={ODS_TEXT_SIZE._200}
         level={ODS_TEXT_LEVEL.heading}
         color={ODS_THEME_COLOR_INTENT.text}
@@ -19,6 +19,6 @@ export default function TileLine({ title, value }: Readonly<TileLineProps>) {
       </OsdsText>
       {value}
       <OsdsDivider separator />
-    </>
+    </div>
   );
 }

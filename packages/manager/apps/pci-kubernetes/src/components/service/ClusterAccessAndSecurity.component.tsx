@@ -136,7 +136,7 @@ export default function ClusterAccessAndSecurity({
                 <OsdsSkeleton />
               ) : (
                 <OsdsText
-                  className="mb-4"
+                  className="mb-4 block"
                   data-testid="ClusterAccessAndSecurity-ClusterRestrictions"
                   size={ODS_TEXT_SIZE._400}
                   level={ODS_TEXT_LEVEL.body}
