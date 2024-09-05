@@ -20,7 +20,7 @@ import {
   OsdsText,
   OsdsTextarea,
 } from '@ovhcloud/ods-components/react';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CSR_PLACEHOLDER } from '../CreateGeneralInformations.constants';
 import { CredentialCreationMethodErrorsType } from '@/utils/credential/validateCredentialCreationMethod';
@@ -45,15 +45,12 @@ const CreateGeneralInformationsCreationMethod = ({
   const getCreationMethodErrorMessage = (
     error: CredentialCreationMethodErrorsType,
   ) => {
-    switch (error) {
-      case 'REQUIRED':
-        return t(
-          'key_management_service_credential_update_custom_csr_error_required',
-        );
-
-      default:
-        return null;
+    if (error === 'REQUIRED') {
+      return t(
+        'key_management_service_credential_update_custom_csr_error_required',
+      );
     }
+    return null;
   };
 
   return (
