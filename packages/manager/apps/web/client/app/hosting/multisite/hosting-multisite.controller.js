@@ -191,6 +191,24 @@ angular
         );
       };
 
+      function isMainDomain(hosting, domain) {
+        return ['ovh.net', 'hosting.ovh.net']
+          .map(
+            (suffix) => `${hosting.primaryLogin}.${hosting.cluster}.${suffix}`,
+          )
+          .some((mainDomain) => mainDomain === domain.name);
+      }
+
+      $scope.isUpdateDomainDisabled = function isUpdateDomainDisabled(
+        hosting,
+        domain,
+      ) {
+        return (
+          domain.status === HOSTING_STATUS.UPDATING ||
+          isMainDomain(hosting, domain)
+        );
+      };
+
       $scope.loadDomains = function loadDomains(count, offset) {
         $scope.loading.domains = true;
 
