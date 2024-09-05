@@ -29,6 +29,7 @@ enum OvhProductName {
   LIVECHAT = 'LiveChat',
   NETWORKSTATUS = 'NetworkStatus',
   STORE = 'Store',
+  EMAIL = 'Email',
 }
 
 export default OvhProductName;
