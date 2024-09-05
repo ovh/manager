@@ -34,6 +34,19 @@
                 data-loading="$ctrl.loading.dnsStatus || $ctrl.loading.hosting || $ctrl.loading.associatedHosting"
             >
                 <oui-tile-definition
+                    data-term="{{ ::'domains_status' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="{{:: 'oui-badge ' + $ctrl.DOMAINS_BADGES_STATUS[$ctrl.domainInfos.state] }}"
+                        >
+                            {{ ::'domains_status_' + $ctrl.domainInfos.state |
+                            translate }}
+                        </span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <oui-tile-definition
                     data-ng-if="$ctrl.isAllDom && $ctrl.allDom"
                     data-term="{{ ::'domain_dashboard_type_alldom_' + $ctrl.constructor.parseType($ctrl.allDom.type) | translate }}"
                 >
