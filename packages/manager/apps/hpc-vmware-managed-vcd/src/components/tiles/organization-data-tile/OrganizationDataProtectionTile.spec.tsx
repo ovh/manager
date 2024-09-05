@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -11,6 +11,10 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import {
+  ShellContext,
+  ShellContextType,
+} from '@ovh-ux/manager-react-shell-client';
 import OrganizationDataProtectionTile from './OrganizationDataProtectionTile.component';
 import { useManagedVcdOrganizationBackup } from '../../../data/hooks/useManagedVcdOrganization';
 import IVcdOrganizationBackup, {
@@ -24,20 +28,34 @@ vi.mocked(useManagedVcdOrganizationBackup).mockReturnValue(
   {} as UseQueryResult<ApiResponse<IVcdOrganizationBackup>, ApiError>,
 );
 
+const shellContext = {
+  shell: {
+    navigation: {
+      getURL: vi.fn(),
+    },
+  },
+};
+shellContext.shell.navigation.getURL.mockResolvedValue('https://www.ovh.com');
+
 const renderComponent = () => {
   const queryClient = new QueryClient();
 
   return render(
     <QueryClientProvider client={queryClient}>
-      <OrganizationDataProtectionTile />
+      <ShellContext.Provider
+        value={(shellContext as unknown) as ShellContextType}
+      >
+        <OrganizationDataProtectionTile />
+      </ShellContext.Provider>
     </QueryClientProvider>,
   );
 };
 
 describe('OrganizationDataProtectionTile component unit test suite', () => {
-  it('should define all sections with correct typo', () => {
+  it('should define all sections with correct typo', async () => {
     // when
-    const { getByText } = renderComponent();
+    await act(async () => renderComponent());
+    const { getByText } = screen;
 
     // then
     const dataTitle = getByText('managed_vcd_dashboard_data_protection');
@@ -69,51 +87,60 @@ describe('OrganizationDataProtectionTile component unit test suite', () => {
 });
 
 describe('OrganizationDataProtectionTile query state-based behavior unit test suite', () => {
-  it('should display loader when the query is loading', () => {
-    // when
+  it('should display backupLoading when query isLoading', async () => {
     vi.mocked(useManagedVcdOrganizationBackup).mockReturnValue({
       isLoading: true,
     } as UseQueryResult<ApiResponse<IVcdOrganizationBackup>, ApiError>);
 
-    const { getByTestId } = renderComponent();
+    // when
+    await act(async () => renderComponent());
+    const { getByTestId } = screen;
+
     // then
-    expect(getByTestId('loading')).toBeInTheDocument();
+    expect(getByTestId('backupLoading')).toBeInTheDocument();
   });
 
-  it('should display backupStatus when the query is not loading', () => {
-    // when
-    vi.mocked(useManagedVcdOrganizationBackup).mockReturnValue({
-      isLoading: false,
-    } as UseQueryResult<ApiResponse<IVcdOrganizationBackup>, ApiError>);
-
-    const { getByTestId } = renderComponent();
-    // then
-    expect(getByTestId('backupStatus')).toBeInTheDocument();
-  });
-
-  it('should display backupErrorStatus when the query has an error', () => {
-    // when
+  it('should display backupError when query isError', async () => {
     vi.mocked(useManagedVcdOrganizationBackup).mockReturnValue({
       isError: true,
     } as UseQueryResult<ApiResponse<IVcdOrganizationBackup>, ApiError>);
 
-    const { getByTestId } = renderComponent();
+    // when
+    await act(async () => renderComponent());
+    const { getByTestId } = screen;
+
     // then
-    expect(getByTestId('backupStatus')).toHaveTextContent(
+    expect(getByTestId('backupError')).toHaveTextContent(
       'managed_vcd_dashboard_backup_status_error',
     );
   });
 
-  it('should display the corresponding status when the query has no error', () => {
-    // when
+  it('should display noBackup when query isError 404', async () => {
     vi.mocked(useManagedVcdOrganizationBackup).mockReturnValue({
-      data: { data: { resourceStatus: BackupResourceStatus.CREATING } },
+      isError: true,
+      error: { response: { status: 404 } },
     } as UseQueryResult<ApiResponse<IVcdOrganizationBackup>, ApiError>);
 
-    const { getByTestId } = renderComponent();
+    // when
+    await act(async () => renderComponent());
+    const { getByTestId } = screen;
+
     // then
-    expect(getByTestId('backupStatus')).toHaveTextContent(
-      'managed_vcd_dashboard_backup_status_CREATING',
-    );
+    expect(getByTestId('noBackup')).toBeInTheDocument();
+  });
+
+  it('should display backupStatus when query isSuccess', async () => {
+    const testStatus = BackupResourceStatus.CREATING;
+    vi.mocked(useManagedVcdOrganizationBackup).mockReturnValue({
+      isSuccess: true,
+      data: { data: { resourceStatus: testStatus } },
+    } as UseQueryResult<ApiResponse<IVcdOrganizationBackup>, ApiError>);
+
+    // when
+    await act(async () => renderComponent());
+    const { getByTestId } = screen;
+
+    // then
+    expect(getByTestId('backupStatus')).toHaveTextContent(testStatus);
   });
 });

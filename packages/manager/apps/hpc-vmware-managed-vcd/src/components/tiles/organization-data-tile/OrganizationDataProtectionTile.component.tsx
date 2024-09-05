@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { DashboardTile, Links, LinkType } from '@ovhcloud/manager-components';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
+import { OsdsChip, OsdsSkeleton } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -11,23 +11,39 @@ import {
   DATA_PROTECTION_RECOVERY_TITLE,
 } from '@/pages/dashboard/organization/OrganizationDashboard.constants';
 import { useManagedVcdOrganizationBackup } from '@/data/hooks/useManagedVcdOrganization';
-import Loading from '@/components/loading/Loading.component';
 import { veeamBackupAppName } from '@/routes/routes.constant';
+import { BackupResourceStatus } from '@/types/vcd-organization-backup.interface';
+
+const colorByStatus: { [s in BackupResourceStatus]: ODS_THEME_COLOR_INTENT } = {
+  CREATING: ODS_THEME_COLOR_INTENT.info,
+  DISABLED: ODS_THEME_COLOR_INTENT.default,
+  DISABLING: ODS_THEME_COLOR_INTENT.default,
+  READY: ODS_THEME_COLOR_INTENT.success,
+  REMOVED: ODS_THEME_COLOR_INTENT.error,
+  UPDATING: ODS_THEME_COLOR_INTENT.info,
+};
 
 export default function DataProtectionTile() {
   const { t } = useTranslation('dashboard');
   const { id } = useParams();
   const { shell } = React.useContext(ShellContext);
-  const { data: vcdBackup, isLoading } = useManagedVcdOrganizationBackup(id);
+  const {
+    data: vcdBackup,
+    isSuccess,
+    isLoading,
+    isError,
+    error,
+  } = useManagedVcdOrganizationBackup(id);
   const [veeamHref, setVeeamHref] = React.useState('');
 
-  const backupStatus = vcdBackup?.data?.resourceStatus ?? 'error';
+  const hasNoBackup = error?.response?.status === 404;
+  const backupStatus = vcdBackup?.data?.resourceStatus;
 
   React.useEffect(() => {
     shell.navigation
       .getURL(veeamBackupAppName, '', {})
       .then((url: string) => setVeeamHref(url));
-  });
+  }, []);
 
   return (
     <div>
@@ -38,14 +54,31 @@ export default function DataProtectionTile() {
             id: 'backup',
             label: DATA_PROTECTION_BACKUP_TITLE,
             value: (
-              <div className="flex flex-col">
+              <div className="flex flex-col items-start">
                 {/* TODO: check other ways to handle error (+refetch) inside a Tile
                 (<ErrorBanner /> is too big to be used here) */}
-                {isLoading && <Loading className="w-8" data-testid="loading" />}
-                {!isLoading && (
-                  <span data-testid="backupStatus">
-                    {t(`managed_vcd_dashboard_backup_status_${backupStatus}`)}
-                  </span>
+                {isLoading && <OsdsSkeleton data-testid="backupLoading" />}
+                {isError && (
+                  <OsdsChip
+                    inline
+                    data-testid={hasNoBackup ? 'noBackup' : 'backupError'}
+                    color={ODS_THEME_COLOR_INTENT.default}
+                    size={ODS_CHIP_SIZE.sm}
+                  >
+                    {hasNoBackup
+                      ? t('managed_vcd_dashboard_backup_status_none')
+                      : t('managed_vcd_dashboard_backup_status_error')}
+                  </OsdsChip>
+                )}
+                {isSuccess && (
+                  <OsdsChip
+                    inline
+                    data-testid="backupStatus"
+                    color={colorByStatus[backupStatus]}
+                    size={ODS_CHIP_SIZE.sm}
+                  >
+                    {backupStatus}
+                  </OsdsChip>
                 )}
                 <Links
                   type={LinkType.external}
