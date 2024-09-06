@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useHref, useNavigate, useParams } from 'react-router-dom';
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
+import { addDays } from 'date-fns';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -28,6 +29,7 @@ import {
   useServiceId,
 } from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
+import { formatDate } from '../../utils/formatter/date';
 
 export const formatDateString = (dateString: string, locale?: string) => {
   const date = new Date(dateString);
@@ -42,13 +44,29 @@ export const formatDateString = (dateString: string, locale?: string) => {
     : '-';
 };
 
-const Banner = ({ message }: { message: string }) => (
-  <OsdsMessage type={ODS_MESSAGE_TYPE.success} className="my-4">
-    <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="inline-block">
-      {message}
-    </OsdsText>
-  </OsdsMessage>
-);
+const Banner = ({ message }: { message: string }) => {
+  const [showBanner, setShowBanner] = useState(true);
+
+  useEffect(() => {
+    if (message) {
+      setShowBanner(true);
+    }
+  }, [message]);
+  return (
+    showBanner && (
+      <OsdsMessage
+        type={ODS_MESSAGE_TYPE.success}
+        className="my-4"
+        removable
+        onOdsRemoveClick={() => setShowBanner(false)}
+      >
+        <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="inline-block">
+          {message}
+        </OsdsText>
+      </OsdsMessage>
+    )
+  );
+};
 
 export interface ListingProps {
   data: SavingsPlanService[];
@@ -68,6 +86,7 @@ const ListingTablePage: React.FC<ListingProps> = ({
     variables: {
       periodEndAction: 'REACTIVATE' | 'ACTIVATE';
     };
+    data: SavingsPlanService;
   }>({
     filters: { mutationKey: ['savings-plan', serviceId, 'change-period'] },
   });
@@ -88,6 +107,22 @@ const ListingTablePage: React.FC<ListingProps> = ({
   }>({
     filters: { mutationKey: getMutationKeyCreateSavingsPlan(serviceId) },
   });
+
+  const endDatePlan = lastMutation?.data?.periodEndDate ?? new Date();
+  const renewBannerMessage = t(
+    lastMutation?.variables.periodEndAction === 'REACTIVATE'
+      ? 'banner_renew_activate'
+      : 'banner_renew_deactivate',
+    {
+      planName: lastMutation?.data?.displayName,
+      endDate:
+        lastMutation?.variables.periodEndAction === 'REACTIVATE'
+          ? formatDate(addDays(new Date(endDatePlan), 1))
+          : formatDate(new Date(endDatePlan)),
+    },
+  );
+
+  console.log({ lastMutation, mutationSpCreate: mutationSpCreate[0]?.error });
 
   return (
     <>
@@ -112,15 +147,9 @@ const ListingTablePage: React.FC<ListingProps> = ({
         </OsdsButton>
       </div>
       {mutationSPChangePeriod.length > 0 && (
-        <Banner
-          message={
-            lastMutation?.variables.periodEndAction === 'REACTIVATE'
-              ? t('banner_renew_activate')
-              : t('banner_renew_deactivate')
-          }
-        />
+        <Banner message={renewBannerMessage} />
       )}
-      {mutationSpCreate.length > 0 && !mutationSpCreate[0].error.code && (
+      {mutationSpCreate.length > 0 && !mutationSpCreate[0].error?.code && (
         <Banner
           message={t('banner_create_sp', {
             startDate: formatDateString(

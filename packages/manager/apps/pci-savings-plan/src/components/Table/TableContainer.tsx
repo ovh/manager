@@ -22,6 +22,23 @@ type SortableKey = Pick<
   'displayName' | 'endDate' | 'period' | 'periodEndDate'
 >;
 
+export const usePciUrl = () => {
+  const { projectId } = useParams();
+
+  const nav = useContext(ShellContext).shell.navigation;
+  const [url, setUrl] = useState('');
+
+  useEffect(() => {
+    nav
+      .getURL('public-cloud', `#/pci/projects/${projectId}`, {})
+      .then((data) => {
+        setUrl(data as string);
+      });
+  }, [projectId]);
+
+  return url;
+};
+
 export default function TableContainer({
   data,
 }: Readonly<SavingsPlanDatagridWrapper>) {
@@ -66,7 +83,7 @@ export default function TableContainer({
         id: 'displayName',
         label: t('name'),
         cell: (props: SavingsPlanService) => (
-          <DataGridTextCell>
+          <DataGridTextCell className="overflow-hidden text-ellipsis">
             {props.displayName || 'Savings Plan'}
           </DataGridTextCell>
         ),
