@@ -6,12 +6,18 @@ describe('isValidSavingsPlanName', () => {
     expect(isValidSavingsPlanName('anotherValidName')).toBe(true);
     expect(isValidSavingsPlanName('123456')).toBe(true);
     expect(isValidSavingsPlanName('123_a-456')).toBe(true);
+    expect(
+      isValidSavingsPlanName(
+        'Savings-Plan-GP-2024-09-05-dedsqdqsdqsdqsdsqdqsdqsdsqdqsdsqD',
+      ),
+    ).toBe(true);
   });
 
   it('should return false for names with special characters', () => {
     expect(isValidSavingsPlanName('invalidName!')).toBe(false);
     expect(isValidSavingsPlanName('invalid@Name')).toBe(false);
     expect(isValidSavingsPlanName('invalid#Name')).toBe(false);
+    expect(isValidSavingsPlanName('invalid.Name')).toBe(false);
   });
 
   it('should return false for names with spaces', () => {
@@ -23,10 +29,10 @@ describe('isValidSavingsPlanName', () => {
     expect(isValidSavingsPlanName('')).toBe(false);
   });
 
-  it('should return false for long name', () => {
+  it('should return false for long name exceed 60 characters', () => {
     expect(
       isValidSavingsPlanName(
-        'veryveryverylonglonglonglongnamenameveryveryverylonglonglonglongnamenameveryveryverylonglonglonglongnamename',
+        'Savings-Plan-GP-2024-09-05-dedsqdqsdqsdqsdsqdqsdqsdsqdqsdsqDd',
       ),
     ).toBe(false);
   });
