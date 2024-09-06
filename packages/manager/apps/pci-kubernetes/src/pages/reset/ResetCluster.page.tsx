@@ -48,6 +48,7 @@ import {
   GatewaySelectorState,
 } from '@/components/network/GatewaySelector.component';
 import { SubnetWarning } from '@/components/network/SubnetWarning.component';
+import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
 
 export default function ResetClusterPage() {
   const { t: tReset } = useTranslation('reset');
@@ -425,7 +426,12 @@ export default function ResetClusterPage() {
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        disabled={isPending || undefined}
+        disabled={
+          isPending ||
+          (formState.gateway.mode === ModeEnum.CUSTOM &&
+            formState.gateway.ip === '') ||
+          undefined
+        }
         onClick={() => {
           tracking?.trackClick({
             name: `${KUBE_TRACK_PREFIX}::details::service::reset::confirm`,

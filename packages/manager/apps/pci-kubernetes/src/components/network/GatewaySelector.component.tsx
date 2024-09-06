@@ -16,13 +16,13 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { GatewayModeSelector } from './GatewayModeSelector.component';
+import { GatewayModeSelector, ModeEnum } from './GatewayModeSelector.component';
 
 export const GATEWAY_IP_REGEX = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}$/;
 
 export interface GatewaySelectorState {
   isEnabled: boolean;
-  mode?: string;
+  mode?: ModeEnum;
   ip?: string;
 }
 
@@ -50,7 +50,7 @@ export const GatewaySelector = ({
     onSelect?.({
       ...gateway,
       ip:
-        gateway.mode === 'custom' && GATEWAY_IP_REGEX.test(gateway.ip)
+        gateway.mode === ModeEnum.CUSTOM && GATEWAY_IP_REGEX.test(gateway.ip)
           ? gateway.ip
           : '',
     });
@@ -146,8 +146,8 @@ export const GatewaySelector = ({
         <GatewayModeSelector
           initialValue={gateway}
           onSelect={(mode, ip) => {
-            setGateway((gw) => ({
-              ...gw,
+            setGateway((prevValue) => ({
+              ...prevValue,
               mode,
               ip,
             }));
