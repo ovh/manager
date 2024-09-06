@@ -13,7 +13,7 @@ const renderComponent = () => {
 
   return render(
     <QueryClientProvider client={queryClient}>
-      <OrganizationOptionsTile />
+      <OrganizationOptionsTile isLicenseActive={false} />
     </QueryClientProvider>,
   );
 };
