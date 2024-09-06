@@ -8,30 +8,20 @@ interface IcebergV2Hook {
   defaultSorting?: ColumnSort;
 }
 
-export const getResourcesIcebergV2 = async ({
-  route,
-  pageSize,
-  cursor,
-}: {
-  route: string;
-  pageSize: number;
-  cursor?: string;
-}) => {
-  const { data, status, cursorNext } = await fetchIcebergV2({
-    route,
-    pageSize,
-    cursor,
-  });
-  return { data, status, cursorNext };
-};
+export const defaultPageSize = 10;
 
-export function useResourcesIcebergV2({
+/**
+ * @deprecated use fetchIcebergV2 from @ovh-ux/manager-core-api
+ */
+export const getResourcesIcebergV2 = fetchIcebergV2;
+
+export function useResourcesIcebergV2<T = unknown>({
   route,
-  pageSize = 10,
+  pageSize = defaultPageSize,
   queryKey,
   defaultSorting = undefined,
 }: IcebergFetchParamsV2 & IcebergV2Hook) {
-  const [flattenData, setFlattenData] = useState([]);
+  const [flattenData, setFlattenData] = useState<T[]>([]);
   const [sorting, setSorting] = useState<ColumnSort>(defaultSorting);
   const {
     data,
@@ -45,7 +35,7 @@ export function useResourcesIcebergV2({
     initialPageParam: null,
     queryKey,
     queryFn: ({ pageParam }) =>
-      getResourcesIcebergV2({ route, pageSize, cursor: pageParam }),
+      fetchIcebergV2<T>({ route, pageSize, cursor: pageParam }),
     staleTime: Infinity,
     retry: false,
     getNextPageParam: (lastPage) => lastPage.cursorNext,

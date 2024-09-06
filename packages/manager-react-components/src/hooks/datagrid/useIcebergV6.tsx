@@ -13,31 +13,19 @@ interface QueryParams {
   sorting?: ColumnSort;
 }
 
-export const getResourcesIcebergV6 = async ({
-  route,
-  pageSize,
-  page,
-  sortBy,
-  sortReverse,
-}: IcebergFetchParamsV6) => {
-  const { data, status, totalCount } = await fetchIcebergV6({
-    route,
-    pageSize,
-    page,
-    sortBy,
-    sortReverse,
-  });
-  return { data, status, totalCount };
-};
+/**
+ * @deprecated use fetchIcebergV6 from @ovh-ux/manager-core-api
+ */
+export const getResourcesIcebergV6 = fetchIcebergV6;
 
-export function useResourcesIcebergV6({
+export function useResourcesIcebergV6<T = unknown>({
   route,
   pageSize = 10,
   queryKey,
   defaultSorting = undefined,
 }: IcebergFetchParamsV6 & IcebergV6Hook) {
   const [totalCount, setTotalCount] = useState(0);
-  const [flattenData, setFlattenData] = useState([]);
+  const [flattenData, setFlattenData] = useState<T[]>([]);
   const [queryParams, setQueryParams] = useState<QueryParams>({
     pageIndex: 1,
     sorting: { desc: false, id: '' },
@@ -55,7 +43,7 @@ export function useResourcesIcebergV6({
     initialPageParam: null,
     queryKey: [...queryKey, sorting],
     queryFn: ({ pageParam }) =>
-      getResourcesIcebergV6({
+      fetchIcebergV6<T>({
         route,
         pageSize,
         page: pageParam,
@@ -64,9 +52,7 @@ export function useResourcesIcebergV6({
       }),
     staleTime: Infinity,
     retry: false,
-    getNextPageParam: () => {
-      return queryParams.pageIndex;
-    },
+    getNextPageParam: () => queryParams.pageIndex,
   });
 
   useEffect(() => {
