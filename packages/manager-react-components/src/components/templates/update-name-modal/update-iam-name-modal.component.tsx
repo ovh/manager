@@ -11,7 +11,7 @@ import {
 export type UpdateIamNameModalProps = {
   resourceName: string;
   onConfirm?: () => void;
-} & Omit<UpdateNameModalProps, 'isLoading' | 'error' | 'updateDisplayName'> &
+} & Omit<UpdateNameModalProps, 'error' | 'updateDisplayName'> &
   UseUpdateServiceDisplayNameParams;
 
 export const UpdateIamNameModal: React.FC<UpdateIamNameModalProps> = ({
@@ -20,6 +20,7 @@ export const UpdateIamNameModal: React.FC<UpdateIamNameModalProps> = ({
   onSuccess,
   onError,
   mutationKey,
+  isLoading,
   ...props
 }) => {
   const { updateDisplayName, isPending, error, isError } =
@@ -28,7 +29,7 @@ export const UpdateIamNameModal: React.FC<UpdateIamNameModalProps> = ({
   return (
     <UpdateNameModal
       {...props}
-      isLoading={isPending}
+      isLoading={isPending || isLoading}
       error={isError ? error?.response?.data?.message : null}
       updateDisplayName={(displayName) => {
         onConfirm?.();
