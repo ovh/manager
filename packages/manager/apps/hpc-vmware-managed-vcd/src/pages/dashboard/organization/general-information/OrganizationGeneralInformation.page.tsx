@@ -7,6 +7,7 @@ import OrganizationGenerationInformationTile from '@/components/tiles/organizati
 import OrganizationOptionsTile from '@/components/tiles/organization-options-tile/OrganizationOptionsTile.component';
 import useManagedVcdDatacentres from '@/data/hooks/useManagedVcdDatacentres';
 import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
+import DataProtectionTile from '@/components/tiles/organization-data-tile/OrganizationDataProtectionTile.component';
 
 function GeneralInformation() {
   const { id } = useParams();
@@ -41,10 +42,11 @@ function GeneralInformation() {
         vcdOrganization={vcdOrganization?.data}
         datacenterCount={vDatacentres?.data?.length}
       />
-      <div>
+      <div className="flex flex-col gap-8">
         <OrganizationOptionsTile
           isLicenseActive={!!vcdOrganization?.data?.currentState?.spla}
         />
+        <DataProtectionTile />
       </div>
       <div>
         <BillingTile id={id} />

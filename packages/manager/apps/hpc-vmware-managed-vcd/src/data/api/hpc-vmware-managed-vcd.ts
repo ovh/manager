@@ -3,6 +3,7 @@ import IVcdOrganization, {
   IVcdOrganizationState,
 } from '@/types/vcd-organization.interface';
 import { VCD_ORGANIZATION_ROUTE } from './hpc-vmware-managed-vcd.constants';
+import IVcdOrganizationBackup from '@/types/vcd-organization-backup.interface';
 
 export type GetVcdOrganizationListParams = {
   /** Filter resources on IAM tags */
@@ -21,6 +22,16 @@ export const getVcdOrganization = async (
   id: string,
 ): Promise<ApiResponse<IVcdOrganization>> =>
   apiClient.v2.get(`${VCD_ORGANIZATION_ROUTE}/${id}`);
+
+/**
+ * Get VCD Backup
+ */
+export const getVcdOrganizationBackup = async (
+  organizationId: string,
+): Promise<ApiResponse<IVcdOrganizationBackup>> =>
+  apiClient.v2.get(
+    `${VCD_ORGANIZATION_ROUTE}/backup/${organizationId}-veeam-backup`,
+  );
 
 /**
  * Edit VCD Organization

@@ -1,3 +1,4 @@
+import React from 'react';
 import { DataGridTextCell } from '@ovhcloud/manager-components';
 import { render } from '@testing-library/react';
 import { describe, vi } from 'vitest';
@@ -23,7 +24,7 @@ vi.mock('@ovhcloud/manager-components', async (managerComonents) => {
   return {
     ...module,
     useResourcesIcebergV2: vi.fn().mockReturnValue({
-      data: { pages: [{ data: [{ id: 'id value' }] }] },
+      data: { pages: [{ data: [{ id: 'value for id' }] }] },
       isLoading: false,
     }),
     useDatagridSearchParams: vi.fn().mockReturnValue({
