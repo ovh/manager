@@ -5,6 +5,7 @@ import {
   OnboardingLayoutProps,
 } from './onboarding.component';
 import { Card } from '../../navigation/card/card.component';
+import placeholderSrc from './assets/placeholder.png';
 
 export const defaultProps: OnboardingLayoutProps = {
   title: 'Welcome to Onboarding',
@@ -13,7 +14,7 @@ export const defaultProps: OnboardingLayoutProps = {
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   moreInfoHref: 'https://example.com/more-info',
   img: {
-    src: 'https://example.com/image',
+    src: placeholderSrc,
   },
   moreInfoButtonLabel: 'Learn More',
   children: (
