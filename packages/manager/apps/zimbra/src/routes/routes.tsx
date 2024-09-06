@@ -141,6 +141,12 @@ export const Routes: any = [
               },
             ],
           },
+          {
+            path: 'mailing_lists',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/MailingList/MailingLists'),
+            ),
+          },
         ],
       },
       {
