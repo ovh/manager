@@ -1,4 +1,6 @@
+import { usePciUrl } from '@ovh-ux/manager-pci-common';
 import { Description, Subtitle } from '@ovh-ux/manager-react-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -28,12 +30,12 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import React, { FC, useEffect, useMemo, useState, useRef } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
+
 import QuantitySelector from '@/components/QuantitySelector/QuantitySelector';
 import useTechnicalInfo, { usePricingInfo } from '@/hooks/useCatalogCommercial';
 import {
@@ -41,7 +43,6 @@ import {
   useSavingsPlanCreate,
   useServiceId,
 } from '@/hooks/useSavingsPlan';
-import { formatPricingInfo } from '@/utils/formatter/formatter';
 import rancherSrc from '../../assets/images/rancher.png';
 import serviceSrc from '../../assets/images/service.png';
 import {
@@ -50,14 +51,16 @@ import {
   Resource,
   ResourceType,
 } from '../../types/CreatePlan.type';
+import { formatDate } from '../../utils/formatter/date';
+import { isValidSavingsPlanName } from '../../utils/savingsPlan';
 import Commitment from '../Commitment/Commitment';
 import LegalLinks from '../LegalLinks/LegalLinks';
 import SimpleTile from '../SimpleTile/SimpleTile';
 import { TileTechnicalInfo } from '../TileTechnicalInfo/TileTechnicalInfo';
-import { getQuotaUrl } from '../../utils/routes';
-
-export const isValidName = (name: string) =>
-  /^[-_.A-Za-z0-9]{1,61}$/.test(name);
+import {
+  PricingByDurationType,
+  useDefaultOfferId,
+} from '../../hooks/planCreation/useDefaultOffer';
 
 const COMMON_SPACING = 'my-4';
 
@@ -80,7 +83,7 @@ export type CreatePlanFormProps = {
   resources: Resource[];
   instanceCategory: InstanceTechnicalName;
   setInstanceCategory: (category: InstanceTechnicalName) => void;
-  pricingByDuration: ReturnType<typeof formatPricingInfo>[];
+  pricingByDuration: PricingByDurationType[];
   isPricingLoading: boolean;
   isTechnicalInfoLoading: boolean;
   technicalModel: string;
@@ -94,6 +97,7 @@ export type CreatePlanFormProps = {
     displayName: string;
     size: number;
   }) => void;
+  isDiscoveryProject: boolean;
 };
 
 export const getDescriptionInstanceKey = (resource: string) => {
@@ -101,9 +105,7 @@ export const getDescriptionInstanceKey = (resource: string) => {
 };
 
 const buildDisplayName = (instanceDisplayName: string) =>
-  `Savings-Plan-${instanceDisplayName}-${
-    new Date().toISOString().split('T')[0]
-  }`;
+  `Savings-Plan-${instanceDisplayName}-${formatDate(new Date())}`;
 
 const getInstanceDisplayName = (
   instanceTechnicalName: InstanceTechnicalName,
@@ -132,8 +134,9 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   technicalModel,
   setTechnicalModel,
   onCreatePlan,
+  isDiscoveryProject,
 }: CreatePlanFormProps) => {
-  const { projectId } = useParams();
+  const pciUrl = usePciUrl();
   const navigate = useNavigate();
   const { t } = useTranslation('create');
   const [selectedResource, setSelectedResource] = useState<ResourceType>(
@@ -144,7 +147,9 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   );
   const [quantity, setQuantity] = useState<number>(1);
   const [planName, setPlanName] = useState<string>(DEFAULT_NAME);
-  const [offerIdSelected, setOfferIdSelected] = useState<string>();
+  const [offerIdSelected, setOfferIdSelected] = useDefaultOfferId(
+    pricingByDuration,
+  );
   const [isLegalChecked, setIsLegalChecked] = useState<boolean>(false);
 
   const serviceId = useServiceId();
@@ -185,13 +190,17 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       offerIdSelected &&
       technicalModel &&
       selectedResource &&
-      isLegalChecked,
+      isLegalChecked &&
+      planName &&
+      !isDiscoveryProject,
     [
       quantity,
       offerIdSelected,
       technicalModel,
       selectedResource,
       isLegalChecked,
+      planName,
+      isDiscoveryProject,
     ],
   );
 
@@ -341,7 +350,8 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
             {isInstance && (
               <OsdsLink
                 color={ODS_THEME_COLOR_INTENT.primary}
-                href={getQuotaUrl(projectId)}
+                href={`${pciUrl}/quota`}
+                target={OdsHTMLAnchorElementTarget._blank}
               >
                 {t('quantity_banner_instance_link')}
               </OsdsLink>
@@ -378,7 +388,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           aria-label="savings-plan-name-input"
           type={ODS_INPUT_TYPE.text}
           color={
-            isValidName(planName) || planName === ''
+            isValidSavingsPlanName(planName)
               ? ODS_THEME_COLOR_INTENT.primary
               : ODS_THEME_COLOR_INTENT.error
           }
@@ -437,7 +447,11 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
 
 const DEFAULT_PRODUCT_CODE = 'b3-8';
 
-export const CreatePlanFormContainer = () => {
+export const CreatePlanFormContainer = ({
+  isDiscoveryProject,
+}: {
+  isDiscoveryProject: boolean;
+}) => {
   const { t } = useTranslation('create');
 
   const [instanceCategory, setInstanceCategory] = useState<
@@ -529,6 +543,7 @@ export const CreatePlanFormContainer = () => {
       isPricingLoading={isPricingLoading}
       setTechnicalModel={setTechnicalModel}
       technicalModel={technicalModel}
+      isDiscoveryProject={isDiscoveryProject}
     />
   );
 };

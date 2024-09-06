@@ -62,9 +62,7 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
 
   React.useEffect(() => {
     const regex = new RegExp(pattern);
-    if (displayName) {
-      setIsPatternError(!displayName.match(regex));
-    }
+    setIsPatternError(!displayName?.match(regex));
   }, [displayName, pattern]);
 
   return (
