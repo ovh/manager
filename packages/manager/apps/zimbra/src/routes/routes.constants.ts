@@ -12,4 +12,5 @@ export const urls = {
   email_accounts_alias: '/:serviceName/email_accounts/alias',
   email_accounts_alias_add: '/:serviceName/email_accounts/alias/add',
   email_accounts_alias_delete: '/:serviceName/email_accounts/alias/delete',
+  mailing_lists: '/:serviceName/mailing_lists',
 };
