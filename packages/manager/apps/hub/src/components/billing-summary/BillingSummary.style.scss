@@ -1,0 +1,46 @@
+@import '@/index.scss';
+
+@mixin manager-hub-billing-summary {
+  $bg-color: #4bb2f6;
+  $bg-image: url('./assets/billing-background.svg');
+
+  background-color: $bg-color;
+  background-image: $bg-image;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  text-align: center;
+  border-radius: $hub-tile-border-radius;
+  padding: $hub-tile-padding;
+  width: 100%;
+
+  > osds-text,
+  > div > osds-text {
+    color: #fff;
+  }
+
+  p,
+  span {
+    > a {
+      margin-bottom: -1.5rem;
+    }
+  }
+
+  :host(osds-select).select-trigger {
+    background-color: transparent;
+    color: #fff;
+    border-color: #fff;
+    border-width: 2px;
+  }
+
+  &__bill-total {
+    font-weight: 600;
+    font-size: calc(2rem + 1vw);
+  }
+}
+
+.manager-hub-billing-summary {
+  @include manager-hub-billing-summary;
+}

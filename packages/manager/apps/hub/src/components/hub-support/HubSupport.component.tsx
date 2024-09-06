@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   OsdsChip,
   OsdsIcon,
@@ -32,9 +27,9 @@ import { SUPPORT_URLS } from './HubSupport.constants';
 import { HubSupportHelp } from './hub-support-help/HubSupportHelp.component';
 import { HubSupportTable } from './hub-support-table/HubSupportTable.component';
 import { Skeletons } from '../skeletons/Skeletons.component';
-import { TileError } from '../tile-error/TileError.component';
+import TileError from '../tile-error/TileError.component';
 
-export const HubSupport: FunctionComponent = () => {
+export default function HubSupport() {
   const { t } = useTranslation('hub/support');
   const { data, refetch, isLoading, error } = useFetchHubSupport();
   const context = useContext(ShellContext);
@@ -59,24 +54,21 @@ export const HubSupport: FunctionComponent = () => {
     refetch();
   };
 
-  if (error)
-    return (
-      <TileError
-        className="block p-4"
-        message={t('hub_support_error_message')}
-        refetch={handlerRefetch}
-      />
-    );
-
   return (
     <OsdsTile className="w-full block p-4" inline>
       {isLoading ? (
         <Skeletons />
       ) : (
         <div className="flex flex-col">
-          {data.count <= 0 ? (
-            <HubSupportHelp />
-          ) : (
+          {error && (
+            <TileError
+              className="block p-4"
+              message={t('hub_support_error_message')}
+              refetch={handlerRefetch}
+            />
+          )}
+          {!error && data.count <= 0 && <HubSupportHelp />}
+          {!error && data.count > 0 && (
             <>
               <div className="flex mb-2 gap-4 items-center">
                 <OsdsText
@@ -137,4 +129,4 @@ export const HubSupport: FunctionComponent = () => {
       )}
     </OsdsTile>
   );
-};
+}

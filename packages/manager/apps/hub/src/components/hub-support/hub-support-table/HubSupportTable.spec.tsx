@@ -1,7 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { HubSupport } from '@/components/hub-support/HubSupport.component';
 import '@testing-library/jest-dom';
 import { Ticket } from '@/types/support.type';
 import { HubSupportTable } from './HubSupportTable.component';

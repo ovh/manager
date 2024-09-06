@@ -29,10 +29,24 @@ const Products = lazy(() => import('@/components/products/Products.component'));
 const TileGridSkeleton = lazy(() =>
   import('@/components/tile-grid-skeleton/TileGridSkeleton.component'),
 );
+const HubSupport = lazy(() =>
+  import('@/components/hub-support/HubSupport.component'),
+);
+const BillingSummary = lazy(() =>
+  import('@/components/billing-summary/BillingSummary.component'),
+);
+const EnterpriseBillingSummary = lazy(() =>
+  import(
+    '@/components/enterprise-billing-summary/EnterpriseBillingSummary.component'
+  ),
+);
 
 export default function Layout() {
   const location = useLocation();
-  const { shell } = useContext(ShellContext);
+  const {
+    shell,
+    environment: { user },
+  } = useContext(ShellContext);
   const { trackCurrentPage } = useOvhTracking();
   const { t } = useTranslation();
   const mainContentRef = useRef<HTMLAnchorElement>(null);
@@ -44,6 +58,7 @@ export default function Layout() {
 
   useEffect(() => {
     shell.ux.hidePreloader();
+    shell.ux.stopProgress();
   }, []);
 
   // const { data: availability, isPending: isAvailabilityLoading } = useFeatureAvailability(features);
@@ -159,7 +174,7 @@ export default function Layout() {
                   >
                     {t('manager_hub_dashboard_overview')}
                   </OsdsText>
-                  <div className="row">
+                  <div className="flex flex-wrap -mx-6">
                     {isLoading && (
                       <>
                         <OsdsSkeleton />
@@ -169,19 +184,41 @@ export default function Layout() {
                       </>
                     )}
                     {!isLoading && (
-                      <div className="md:w-8/12 mb-6 mb-md-4">
+                      <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
                         hub-payment-status
                       </div>
                     )}
                     {!isLoading && !isFreshCustomer && (
                       <>
-                        <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2">
-                          hub-enterprise-billing-summary & hub-billing-summary
+                        <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
+                          <Suspense
+                            fallback={
+                              <OsdsSkeleton
+                                data-testid="billing_summary_skeleton"
+                                inline
+                              />
+                            }
+                          >
+                            {user.enterprise ? (
+                              <EnterpriseBillingSummary />
+                            ) : (
+                              <BillingSummary />
+                            )}
+                          </Suspense>
                         </div>
-                        <div className="md:w-8/12 mb-6 md:mb-8 order-2 md:order-3">
-                          ovh-manager-hub-support
+                        <div className="md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 px-6 box-border">
+                          <Suspense
+                            fallback={
+                              <OsdsSkeleton
+                                data-testid="support_skeleton"
+                                inline
+                              />
+                            }
+                          >
+                            <HubSupport />
+                          </Suspense>
                         </div>
-                        <div className="md:w-4/12 order-4">
+                        <div className="md:w-4/12 order-4 px-6 box-border">
                           hub-order-tracking
                         </div>
                       </>
