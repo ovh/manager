@@ -4,7 +4,7 @@ import {
   isDiscoveryProject,
   useProject,
 } from '@ovh-ux/manager-react-components';
-import React, { useRef } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { CreatePlanFormContainer } from '@/components/CreatePlanForm/CreatePlanForm';
 
@@ -20,7 +20,7 @@ const CreateSavingsPlan = () => {
         <PciDiscoveryBanner projectId={project.project_id} />
       )}
 
-      <CreatePlanFormContainer />
+      <CreatePlanFormContainer isDiscoveryProject={isDiscoveryProject}/>
     </div>
   );
 };

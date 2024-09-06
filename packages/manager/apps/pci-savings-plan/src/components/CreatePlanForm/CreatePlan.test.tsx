@@ -16,6 +16,10 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
+vi.mock('@ovh-ux/manager-pci-common', () => ({
+  usePciUrl: vi.fn(() => '/url'),
+}));
+
 const mockOnCreatePlan = vi.fn();
 const mockSetTechnicalModel = vi.fn();
 

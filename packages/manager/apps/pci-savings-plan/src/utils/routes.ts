@@ -8,6 +8,3 @@ export const getOnboardingUrl = (projectId: string) =>
 
 export const getCreateSavingsPlanUrl = (projectId: string) =>
   `${getSavingsPlansUrl(projectId)}/new`;
-
-export const getQuotaUrl = (projectId: string) =>
-  `${getProjectIdUrl(projectId)}/quota`;
