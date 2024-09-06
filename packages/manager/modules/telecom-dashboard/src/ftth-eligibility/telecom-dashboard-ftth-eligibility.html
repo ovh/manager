@@ -23,7 +23,7 @@
 
     <oui-datagrid
         data-rows="FtthEligibilityCtrl.services"
-        data-page-size="{{FtthEligibilityCtrl.amountServicesDisplayed}}"
+        data-pagination-mode="arrows"
     >
         <oui-datagrid-column
             data-title="'telecom_dashboard_ftth_eligibility_service_name' | translate"
@@ -63,6 +63,7 @@
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title="'telecom_dashboard_ftth_eligibility_copper_closure_date' | translate"
+            data-sortable
         >
             <span
                 data-ng-if="$row.migrationAvailable === FtthEligibilityCtrl.ELIGIBILITY.eligible && $row.copperGridClosureTrajectory.technicalClosureDate"

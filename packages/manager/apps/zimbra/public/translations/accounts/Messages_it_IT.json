@@ -1,0 +1,15 @@
+{
+  "zimbra_account_datagrid_email_label": "Account email",
+  "zimbra_account_datagrid_organization_label": "Organizzazione",
+  "zimbra_account_datagrid_offer_label": "Piano",
+  "zimbra_account_datagrid_webmail_label": "Webmail:",
+  "zimbra_account_datagrid_quota": "Taglia",
+  "zimbra_account_datagrid_quota_octets": "byte",
+  "zimbra_account_datagrid_quota_ko": "KB",
+  "zimbra_account_datagrid_quota_mo": "MB",
+  "zimbra_account_datagrid_quota_go": "GB",
+  "zimbra_account_datagrid_quota_to": "TB",
+  "zimbra_account_datagrid_tooltip_modification": "Modificare",
+  "zimbra_account_datagrid_tooltip_delete": "Eliminare",
+  "zimbra_account_account_add": "Crea un account"
+}

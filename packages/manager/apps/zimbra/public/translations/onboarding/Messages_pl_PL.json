@@ -1,7 +1,7 @@
 {
   "title": "Zimbra",
-  "description": "Poznaj usługi zarządzanej przestrzeni dyskowej oparte na systemie plików OpenZFS. Skorzystaj za pomocą kilku kliknięć ze scentralizowanej przestrzeni dyskowej do przechowywania i zapisywania danych i plików.",
-  "orderButtonLabel": "Zamów rozwiązanie Zimbra",
+  "description": "Oferta e-mail Zimbra będzie wkrótce dostępna. Chcesz dołączyć do grona użytkowników testujących wersję beta Zimbra?",
+  "orderButtonLabel": "Dołącz do wersji beta",
   "orderButtonLink": "/#/dedicated/zimbra/order",
   "moreInfoButtonLabel": "Więcej informacji o rozwiązaniu Zimbra",
   "moreInfoButtonLink": "/#/dedicated/zimbra/info",
