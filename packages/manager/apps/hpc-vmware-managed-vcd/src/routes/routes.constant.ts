@@ -22,3 +22,5 @@ export const urls = {
   datacentreStorage: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}/${subRoutes.datacentreStorage}`,
   datacentreCompute: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}/${subRoutes.datacentreCompute}`,
 };
+
+export const veeamBackupAppName = 'veeam-backup';
