@@ -14,7 +14,7 @@ import {
 
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+// import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import TabsPanel, { TabItemProps } from './TabsPanel';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { GUIDES_LIST } from '@/guides.constants';
@@ -75,6 +75,12 @@ export const Dashboard: React.FC = () => {
       title: t('zimbra_dashboard_email_accounts'),
       to: `${basePath}/email_accounts`,
       pathMatchers: computePathMatchers([urls.email_accounts]),
+    },
+    {
+      name: 'mailing_lists',
+      title: t('zimbra_dashboard_mailing_lists'),
+      to: `${basePath}/mailing_lists`,
+      pathMatchers: computePathMatchers([urls.mailing_lists]),
     },
   ];
 
