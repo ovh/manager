@@ -7,6 +7,7 @@ import { StepState } from '../useStep';
 import NetworkClusterStep, {
   TNetworkFormState,
 } from './NetworkClusterStep.component';
+import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
 
 export interface NetworkStepProps {
   region: string;
@@ -23,9 +24,10 @@ export function NetworkStep({
   const [state, setState] = useState<TNetworkFormState>({});
   const isGatewayValid =
     !state.gateway?.isEnabled ||
-    state.gateway?.mode === 'auto' ||
+    state.gateway?.mode === ModeEnum.AUTO ||
     state.gateway?.ip;
   const isValid = !state.privateNetwork || isGatewayValid;
+
   return (
     <>
       <NetworkClusterStep region={region} onChange={setState} />
