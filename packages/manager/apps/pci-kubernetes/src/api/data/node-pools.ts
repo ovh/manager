@@ -52,6 +52,7 @@ export type TClusterNodePool = Pick<
   | 'maxNodes'
 > & {
   formattedFlavor: string;
+  search?: string;
 };
 
 export const getClusterNodePools = async (

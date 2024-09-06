@@ -105,7 +105,7 @@ export default function NodePoolsPage() {
                 pageSize: pagination.pageSize,
               });
               addFilter({
-                key: 'name',
+                key: 'search',
                 value: detail.inputValue,
                 comparator: FilterComparator.Includes,
                 label: '',
