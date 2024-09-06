@@ -32,6 +32,7 @@ import { TPrivateNetworkSubnet } from '@/api/data/subnets';
 import { editNetwork } from '@/api/data/kubernetes';
 import queryClient from '@/queryClient';
 import { getRegionSubsnetsQueryKey } from '@/api/hooks/useSubnets';
+import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
 
 export default function EditNetworkPage() {
   const { t } = useTranslation('edit-network');
@@ -43,7 +44,7 @@ export default function EditNetworkPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [gatewayForm, setGatewayForm] = useState<GatewaySelectorState>({
     isEnabled: false,
-    mode: 'auto',
+    mode: ModeEnum.AUTO,
     ip: '',
   });
   const [loadBalancerSubnet, setLoadBalancerSubnet] = useState<
@@ -62,7 +63,8 @@ export default function EditNetworkPage() {
     isPrivateRouting !== gatewayForm.isEnabled ||
     (gatewayForm.isEnabled && gatewayForm.ip !== gatewayIp);
 
-  const isIpValid = gatewayForm.mode === 'custom' ? !!gatewayForm.ip : true;
+  const isIpValid =
+    gatewayForm.mode === ModeEnum.CUSTOM ? !!gatewayForm.ip : true;
 
   const hasLoadBalancersChanges =
     kubeDetail?.loadBalancersSubnetId !== loadBalancerSubnet?.id;
@@ -77,7 +79,7 @@ export default function EditNetworkPage() {
       hasGatewayChanges && {
         privateNetworkRoutingAsDefault: gatewayForm.isEnabled,
         defaultVrackGateway:
-          gatewayForm.mode === 'custom' ? gatewayForm.ip : '',
+          gatewayForm.mode === ModeEnum.CUSTOM ? gatewayForm.ip : '',
       },
       hasLoadBalancersChanges && loadBalancerSubnet?.id,
     )

@@ -18,14 +18,18 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 export const GATEWAY_IP_REGEX = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}$/;
 
+export enum ModeEnum {
+  CUSTOM = 'custom',
+  AUTO = 'auto',
+}
 export interface GatewayModeSelectorState {
-  mode?: string;
+  mode?: ModeEnum;
   ip?: string;
 }
 
 export interface GatewaySelectorProps {
   initialValue?: GatewayModeSelectorState;
-  onSelect?: (mode: string, ip: string) => void;
+  onSelect?: (mode: ModeEnum, ip: string) => void;
 }
 
 export const GatewayModeSelector = ({
@@ -34,7 +38,10 @@ export const GatewayModeSelector = ({
 }: Readonly<GatewaySelectorProps>) => {
   const { t: tAdd } = useTranslation('network-add');
 
-  const [gatewayMode, setGatewayMode] = useState(initialValue?.mode || 'auto');
+  const [gatewayMode, setGatewayMode] = useState(
+    initialValue?.mode || ModeEnum.AUTO,
+  );
+
   const [gatewayIp, setGatewayIp] = useState({
     isTouched: false,
     hasError: false,
@@ -57,14 +64,14 @@ export const GatewayModeSelector = ({
       <OsdsRadioGroup
         className="block mt-4 ml-[1.5rem]"
         name="mode"
-        value={gatewayMode || 'auto'}
+        value={gatewayMode || ModeEnum.AUTO}
         onOdsValueChange={({ detail }) => {
-          const mode = detail.newValue;
+          const mode = detail.newValue as ModeEnum;
           setGatewayMode(mode);
           onSelect(mode, gatewayIp?.value);
         }}
       >
-        <OsdsRadio name="mode" value="auto">
+        <OsdsRadio name="mode" value={ModeEnum.AUTO}>
           <OsdsRadioButton
             color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_RADIO_BUTTON_SIZE.xs}
@@ -78,7 +85,7 @@ export const GatewayModeSelector = ({
             </OsdsText>
           </OsdsRadioButton>
         </OsdsRadio>
-        <OsdsRadio className="mt-4" name="mode" value="custom">
+        <OsdsRadio className="mt-4" name="mode" value={ModeEnum.CUSTOM}>
           <OsdsRadioButton
             color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_RADIO_BUTTON_SIZE.xs}
