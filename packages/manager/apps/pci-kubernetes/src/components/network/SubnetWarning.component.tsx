@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -44,6 +45,7 @@ export function SubnetWarning() {
           <Links
             href={subnetDocumentationLink}
             type={LinkType.external}
+            target={OdsHTMLAnchorElementTarget._blank}
             label={t('kubernetes_network_form_subnet_error_no_gateway_ip_link')}
           />
         </OsdsText>
