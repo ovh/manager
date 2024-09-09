@@ -1,0 +1,51 @@
+<div>
+    <oui-field
+        data-ng-if="$ctrl.userSshKeys.length > 0 && !$ctrl.loading.init"
+        data-label="{{:: 'manager_components_select_ssh_key' | translate }}"
+        data-label-popover="{{:: 'manager_components_select_ssh_key_help' | translate }}"
+    >
+        <oui-select
+            id="sshKeys"
+            name="sshKeys"
+            data-items="$ctrl.userSshKeys"
+            data-match="keyName"
+            data-model="$ctrl.selectedSshKey"
+            data-on-change="$ctrl.getSshKeyInfo()"
+        ></oui-select>
+    </oui-field>
+
+    <div class="text-center" data-ng-if="$ctrl.loading.sshkey">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.loading.sshkey">
+        <oui-field
+            data-label="{{:: 'manager_components_sshkey_input' | translate}}"
+        >
+            <div
+                class="float-right sshkey-switch"
+                data-ng-model="model.keyIsValid"
+                data-sshkey-switch
+                data-sshkey-switch-key="{{$ctrl.publicKey}}"
+            ></div>
+
+            <textarea
+                class="oui-input form-control"
+                name="sshKey"
+                id="sshKey"
+                placeholder="{{:: 'manager_components_sshkey_input_placeholder' | translate:{t0: $ctrl.ssh.inputRules.placeholder} }}"
+                data-ng-model="$ctrl.publicKey"
+                data-ng-change="$ctrl.selectedSshKey = ''"
+                data-ng-required="$ctrl.required"
+                data-ng-pattern="$ctrl.ssh.inputRules.pattern"
+                data-ng-trim="true"
+                spellcheck="false"
+                autocomplete="off"
+                autocapitalize="off"
+                autocorrect="off"
+                rows="{{ $ctrl.ssh.inputRules.rows }}"
+            >
+            </textarea>
+        </oui-field>
+    </div>
+</div>

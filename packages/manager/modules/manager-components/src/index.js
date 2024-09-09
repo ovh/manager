@@ -5,6 +5,7 @@ import timeRange from './time-range';
 import serverBandwidth from './bandwidth';
 import editServiceName from './edit-name';
 import taskTracker from './task-tracker';
+import sshKey from './ssh-key';
 
 export {
   inlinePropertyEditor,
@@ -13,6 +14,7 @@ export {
   serverBandwidth,
   editServiceName,
   taskTracker,
+  sshKey,
 };
 
 export default { resourceSelector };
