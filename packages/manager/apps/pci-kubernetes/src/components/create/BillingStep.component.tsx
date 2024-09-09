@@ -45,7 +45,6 @@ export type TBillingStepProps = {
 
 export default function BillingStep(props: TBillingStepProps): JSX.Element {
   const { t } = useTranslation('billing-anti-affinity');
-  const { t: tNodePool } = useTranslation('node-pool');
   const { t: tFlavourBilling } = useTranslation('flavor-billing');
 
   const {
@@ -55,7 +54,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
 
   return (
     <>
-      <div>
+      <div className="mb-6">
         <OsdsCheckbox
           data-testid="checkbox"
           name="kube_anti_affinity"
@@ -71,66 +70,67 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
             size={ODS_CHECKBOX_BUTTON_SIZE.sm}
             color={ODS_THEME_COLOR_INTENT.primary}
           >
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_TEXT_SIZE._400}
-              slot="end"
-            >
-              {t('kubernetes_node_pool_anti_affinity')}
-            </OsdsText>
+            <div slot="end">
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_TEXT_SIZE._400}
+              >
+                {t('kubernetes_node_pool_anti_affinity')}
+              </OsdsText>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_TEXT_SIZE._100}
+              >
+                {t('kubernetes_node_pool_anti_affinity_description', {
+                  maxNodes: ANTI_AFFINITY_MAX_NODES,
+                })}
+              </OsdsText>
+            </div>
           </OsdsCheckboxButton>
         </OsdsCheckbox>
-
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          level={ODS_TEXT_LEVEL.body}
-          size={ODS_TEXT_SIZE._400}
-        >
-          {t('kubernetes_node_pool_anti_affinity_description', {
-            maxNodes: ANTI_AFFINITY_MAX_NODES,
-          })}
-        </OsdsText>
       </div>
-      {props.monthlyBilling.isComingSoon ? (
-        <OsdsMessage
-          data-testid="coming_soon_message"
-          type={ODS_MESSAGE_TYPE.info}
-          color={ODS_THEME_COLOR_INTENT.info}
-        >
-          <div>
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-              className="block"
-            >
-              {t(
-                'kubernetes_add_billing_anti_affinity_coming_soon_message_title',
-              )}
-            </OsdsText>
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-              className="block"
-            >
-              {t(
-                'kubernetes_add_billing_anti_affinity_coming_soon_message_description',
-              )}
-            </OsdsText>
-          </div>
-        </OsdsMessage>
-      ) : (
-        <OsdsText
-          data-testid="billing_description"
-          color={ODS_THEME_COLOR_INTENT.text}
-          level={ODS_TEXT_LEVEL.body}
-          size={ODS_TEXT_SIZE._400}
-        >
-          {tNodePool('kube_add_billing_type_description')}
-        </OsdsText>
-      )}
+
+      <div className="my-6">
+        {props.monthlyBilling.isComingSoon ? (
+          <OsdsMessage
+            data-testid="coming_soon_message"
+            type={ODS_MESSAGE_TYPE.info}
+            color={ODS_THEME_COLOR_INTENT.info}
+          >
+            <div className="flex flex-col">
+              <OsdsText
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                color={ODS_THEME_COLOR_INTENT.text}
+              >
+                {t(
+                  'kubernetes_add_billing_anti_affinity_coming_soon_message_title',
+                )}
+              </OsdsText>
+              <OsdsText
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                color={ODS_THEME_COLOR_INTENT.text}
+              >
+                {t(
+                  'kubernetes_add_billing_anti_affinity_coming_soon_message_description',
+                )}
+              </OsdsText>
+            </div>
+          </OsdsMessage>
+        ) : (
+          <OsdsText
+            data-testid="billing_description"
+            color={ODS_THEME_COLOR_INTENT.text}
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+          >
+            {t('kubernetes_add_billing_type_description')}
+          </OsdsText>
+        )}
+      </div>
 
       <div className="flex gap-10 my-8">
         <OsdsTile
@@ -142,7 +142,6 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
           onClick={() => {
             props.monthlyBilling.check(false);
           }}
-          disabled={false}
         >
           <div className="w-full">
             <OsdsText
@@ -153,25 +152,23 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
               {tFlavourBilling('pci_project_flavors_billing_hourly')}
             </OsdsText>
             <hr className={separatorClass} />
-
-            <>
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                color={ODS_THEME_COLOR_INTENT.text}
-                className="block"
-              >
-                <strong>
-                  {tFlavourBilling(
-                    'pci_project_flavors_billing_price_hourly_price_label',
-                  )}
-                </strong>
-                {getFormattedHourlyCatalogPrice(props.price)}
-              </OsdsText>
-            </>
+            <OsdsText
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              color={ODS_THEME_COLOR_INTENT.text}
+              className="block"
+            >
+              <strong>
+                {tFlavourBilling(
+                  'pci_project_flavors_billing_price_hourly_price_label',
+                )}
+              </strong>
+              {` ${getFormattedHourlyCatalogPrice(props.price)}`}
+            </OsdsText>
           </div>
         </OsdsTile>
-        {props.monthlyPrice !== undefined && (
+
+        {!props.monthlyBilling.isComingSoon && (
           <OsdsTile
             data-testid="monthly_tile"
             className={clsx(
@@ -182,7 +179,6 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
             onClick={() => {
               props.monthlyBilling.check(true);
             }}
-            disabled={false}
           >
             <div className="w-full">
               <OsdsText
@@ -193,22 +189,19 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
                 {tFlavourBilling('pci_project_flavors_billing_monthly')}
               </OsdsText>
               <hr className={separatorClass} />
-
-              <>
-                <OsdsText
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  className="block"
-                >
-                  <strong>
-                    {tFlavourBilling(
-                      'pci_project_flavors_billing_price_monthly_instance_price_label',
-                    )}
-                  </strong>
-                  {getFormattedMonthlyCatalogPrice(props.monthlyPrice)}
-                </OsdsText>
-              </>
+              <OsdsText
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                color={ODS_THEME_COLOR_INTENT.text}
+                className="block"
+              >
+                <strong>
+                  {tFlavourBilling(
+                    'pci_project_flavors_billing_price_monthly_instance_price_label',
+                  )}
+                </strong>
+                {` ${getFormattedMonthlyCatalogPrice(props.monthlyPrice)}`}
+              </OsdsText>
             </div>
           </OsdsTile>
         )}
