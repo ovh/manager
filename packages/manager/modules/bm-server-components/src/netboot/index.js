@@ -4,6 +4,7 @@ import '@ovh-ux/ui-kit';
 import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-at-internet';
+import { sshKey } from '@ovh-ux/manager-components';
 
 import component from './component';
 import service from './service';
@@ -12,6 +13,7 @@ const moduleName = 'ovhManagerBmServerComponentsNetbootComponent';
 
 angular
   .module(moduleName, [
+    sshKey,
     'oui',
     'pascalprecht.translate',
     'ngTranslateAsyncLoader',

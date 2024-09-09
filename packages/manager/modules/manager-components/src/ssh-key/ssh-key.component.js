@@ -3,8 +3,11 @@ import template from './ssh-key.template.html';
 
 export default {
   bindings: {
-    required: '<?',
     publicKey: '=?',
+    required: '<?',
+    rows: '<?',
+    name: '<?',
+    placeholder: '@?',
   },
   controller,
   template,

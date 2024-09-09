@@ -21,7 +21,7 @@ export default class SshKeyController {
   loadSshKeys() {
     this.loading.sshkey = true;
     this.SshKeyService.getSshKeys()
-      .then((data) => {
+      .then(({ data }) => {
         this.userSshKeys = data.sort();
         return this.userSshKeys;
       })

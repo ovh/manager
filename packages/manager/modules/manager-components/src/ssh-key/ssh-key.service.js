@@ -1,14 +1,11 @@
 export default class SshKeyService {
   /* @ngInject */
-  constructor($http, OvhApiMe) {
+  constructor($http) {
     this.$http = $http;
-    this.OvhApiMe = OvhApiMe;
   }
 
   getSshKeys() {
-    return this.OvhApiMe.SshKey()
-      .v6()
-      .query().$promise;
+    return this.$http.get(`/me/sshKey`).then((data) => data);
   }
 
   getSshKeyInfo(selectedSshKey) {

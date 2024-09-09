@@ -4,6 +4,7 @@ import '@ovh-ux/ui-kit';
 import 'angular-translate';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
+import { sshKey } from '@ovh-ux/manager-components';
 
 import inputs from './inputs';
 import gabarit from './installation/gabarit';
@@ -20,6 +21,7 @@ angular
     'oui',
     'pascalprecht.translate',
     ngOvhFeatureFlipping,
+    sshKey,
     inputs,
     gabarit,
     ovh,

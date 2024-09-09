@@ -31,9 +31,9 @@
 
             <textarea
                 class="oui-input form-control"
-                name="sshKey"
+                name="{{ $ctrl.name ? $ctrl.name: 'sshKey'}}"
                 id="sshKey"
-                placeholder="{{:: 'manager_components_sshkey_input_placeholder' | translate:{t0: $ctrl.ssh.inputRules.placeholder} }}"
+                placeholder="{{:: ($ctrl.placeholder ? $ctrl.placeholder : 'manager_components_sshkey_input_placeholder' | translate:{t0: $ctrl.ssh.inputRules.placeholder})}}"
                 data-ng-model="$ctrl.publicKey"
                 data-ng-change="$ctrl.selectedSshKey = ''"
                 data-ng-required="$ctrl.required"
@@ -43,7 +43,7 @@
                 autocomplete="off"
                 autocapitalize="off"
                 autocorrect="off"
-                rows="{{ $ctrl.ssh.inputRules.rows }}"
+                rows="{{ $ctrl.rows ? $ctrl.rows: $ctrl.ssh.inputRules.rows }}"
             >
             </textarea>
         </oui-field>

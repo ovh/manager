@@ -32,12 +32,6 @@ export const UNSUPPORTED_SSH_KEY_RESCUES = [
   'WinRescue',
   'rescue-customer-windows',
 ];
-export const SSH_KEY = {
-  pattern: /\b(ssh-rsa|ecdsa-sha\d+-nistp\d+|ssh-ed\d+)\s+(AAAA[a-zA-Z0-9/=+]+)(\s+(\S{1,128}))*$/,
-  placeholder:
-    'ssh-rsa AAAAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX== my-public-key',
-  rows: 15,
-};
 
 export const getNetbootGuideUrl = (subsidiary) => {
   return NETBOOT_GUIDES[subsidiary] || NETBOOT_GUIDES.DEFAULT;
@@ -46,5 +40,4 @@ export const getNetbootGuideUrl = (subsidiary) => {
 export default {
   getNetbootGuideUrl,
   UNSUPPORTED_SSH_KEY_RESCUES,
-  SSH_KEY,
 };
