@@ -4,7 +4,7 @@ import {
   Subtitle,
   Title,
   useResourcesIcebergV2,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { OsdsDivider } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';

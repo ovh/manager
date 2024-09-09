@@ -1,4 +1,4 @@
-import { DataGridTextCell, Links } from '@ovhcloud/manager-components';
+import { DataGridTextCell, Links } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';

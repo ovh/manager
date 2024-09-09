@@ -6,7 +6,7 @@ import {
   DataGridTextCell,
   Links,
   LinkType,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 
 import DatagridContainer, {
   TDatagridContainerProps,
