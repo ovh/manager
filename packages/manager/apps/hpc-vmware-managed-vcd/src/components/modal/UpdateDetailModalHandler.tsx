@@ -27,7 +27,7 @@ export const UpdateDetailModalHandler = ({
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
   const { id } = useParams();
-  const { data: vcdOrganization } = useManagedVcdOrganization(id);
+  const { data: vcdOrganization } = useManagedVcdOrganization({ id });
   const { updateDetails, error, isError } = useUpdateVcdOrganizationDetails({
     id,
     onSuccess: closeModal,

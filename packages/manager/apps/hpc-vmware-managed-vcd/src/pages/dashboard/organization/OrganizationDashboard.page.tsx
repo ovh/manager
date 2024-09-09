@@ -10,7 +10,7 @@ export default function DashboardPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
-  const { data: vcdOrganisation } = useManagedVcdOrganization(id);
+  const { data: vcdOrganisation } = useManagedVcdOrganization({ id });
 
   const tabsList = [
     {

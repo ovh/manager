@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, useParams } from 'react-router-dom';
-import Errors from '@/components/error/Error.component';
+import Errors from '@/components/Error/Error.component';
 import Loading from '@/components/loading/Loading.component';
 import BillingTile from '@/components/tiles/billing-tile/BillingTile.component';
 import OrganizationGenerationInformationTile from '@/components/tiles/organization-general-information-tile/OrganizationGeneralInformationTile.component';
@@ -16,7 +16,11 @@ function GeneralInformation() {
     isError,
     error,
     isLoading,
-  } = useManagedVcdOrganization(id);
+  } = useManagedVcdOrganization({
+    id,
+    refetchOnWindowFocus: true,
+    refetchInterval: 5000,
+  });
   const {
     data: vDatacentres,
     isError: isErrorvDc,
