@@ -5,7 +5,7 @@
   "zimbra_organization_add_modal_content_part2": "Permite aplicar políticas de gestión agrupadas y definir el aislamiento de sus cuentas de correo (límite del directorio de empresa).",
   "zimbra_organization_edit_modal_title": "Modificar la organización",
   "zimbra_organization_add_form_input_mandatory": "Los campos marcados con un asterisco (*) son obligatorios.",
-  "zimbra_organization_add_form_input_name_title": "Nombre",
+  "zimbra_organization_add_form_input_name_title": "Apellido",
   "zimbra_organization_add_form_input_name_placeholder": "nombre",
   "zimbra_organization_add_form_input_name_error": "Campo obligatorio. Solo puede incluir caracteres alfanuméricos.",
   "zimbra_organization_add_form_input_label_title": "Label de la organización",

@@ -1,11 +1,11 @@
 {
   "zimbra_organization_add": "Confermare",
-  "zimbra_organization_add_modal_title": "Aggiungi un'organizzazione",
+  "zimbra_organization_add_modal_title": "Aggiungere un'organizzazione",
   "zimbra_organization_add_modal_content_part1": "L'organizzazione rappresenta un insieme logico di domini e caselle email.",
   "zimbra_organization_add_modal_content_part2": "Permette di definire le politiche di gestione raggruppate e precisare l'isolamento delle tue caselle email (limite della directory aziendale).",
   "zimbra_organization_edit_modal_title": "Modificare l'organizzazione",
   "zimbra_organization_add_form_input_mandatory": "I campi contrassegnati con un asterisco * sono obbligatori",
-  "zimbra_organization_add_form_input_name_title": "Nome",
+  "zimbra_organization_add_form_input_name_title": "Cognome",
   "zimbra_organization_add_form_input_name_placeholder": "nome",
   "zimbra_organization_add_form_input_name_error": "Campo obbligatorio Deve essere composto esclusivamente da caratteri alfanumerici.",
   "zimbra_organization_add_form_input_label_title": "Label dell’organizzazione",

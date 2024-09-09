@@ -5,7 +5,7 @@
   "region_P": "París (P{{micro}}) - Francia",
   "region_GRA": "Gravelines (GRA{{micro}}) - Francia",
   "region_HIL": "Hillsboro (HIL{{micro}}) - Estados Unidos",
-  "region_LIM": "Limburg (LIM{{micro}}) - Alemania",
+  "region_LIM": "Limburgo (LIM{{micro}}) - Alemania",
   "region_RBX": "Roubaix (RBX{{micro}}) - Francia",
   "region_SBG": "Estrasburgo (SBG{{micro}}) - Francia",
   "region_SGP": "Singapur (SGP{{micro}}) - Asia",
@@ -14,5 +14,5 @@
   "region_WAW": "Varsovia (WAW{{micro}}) - Polonia",
   "region_RBX_HZ": "Roubaix (RBXHZ) - Francia",
   "region_GSW": "(GSW) - Francia",
-  "region_YNM": "Bombay (YNM {{micro}}) - India"
+  "region_YNM": "Mumbai (YNM{{micro}}) - India"
 }

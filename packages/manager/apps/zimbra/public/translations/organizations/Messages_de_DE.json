@@ -1,3 +1,10 @@
 {
-  "add_organisation_cta": "Organisation hinzufügen"
+  "add_organisation_cta": "Organisation hinzufügen",
+  "zimbra_organization_cta": "Organisation hinzufügen",
+  "zimbra_organization_account_number": "Anzahl der Accounts",
+  "zimbra_organization_edit": "Ändern",
+  "zimbra_organization_delete": "Löschen",
+  "zimbra_organization_label": "Label",
+  "zimbra_organization_name": "Name",
+  "zimbra_organization_status": "Status"
 }

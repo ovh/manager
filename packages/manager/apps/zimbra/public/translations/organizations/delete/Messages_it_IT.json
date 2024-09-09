@@ -4,6 +4,6 @@
   "zimbra_organization_delete_modal_content": "Vuoi davvero eliminare l'organizzazione?",
   "zimbra_organization_delete_modal_message_disabled_part1": "All'organizzazione è ancora associato almeno un dominio.",
   "zimbra_organization_delete_modal_message_disabled_part2": "Elimina i domini associati prima di eliminare la tua organizzazione.",
-  "zimbra_organization_delete_success_message": "La richiesta di eliminazione è stata presa in carico correttamente Sarà eseguita entro pochi minuti.",
+  "zimbra_organization_delete_success_message": "La tua richiesta di eliminazione è stata presa in carico correttamente. Sarà eseguita entro pochi minuti.",
   "zimbra_organization_delete_error_message": "La tua richiesta di eliminazione non è andata a buon fine. {{ error }}"
 }

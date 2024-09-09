@@ -2,8 +2,8 @@
   "common_pagination_of": "von",
   "common_pagination_results": "Ergebnissen",
   "common_pagination_no_results": "Keine Ergebnisse",
-  "common_clipboard_success_label": "Kopiert!",
-  "common_clipboard_error_label": "Fehler beim Kopieren.",
+  "common_clipboard_success_label": "Kopiert",
+  "common_clipboard_error_label": "Fehler beim Kopieren",
   "common_pagination_load_more": "Mehr laden",
   "common_empty_text_cell": "Keine"
 }

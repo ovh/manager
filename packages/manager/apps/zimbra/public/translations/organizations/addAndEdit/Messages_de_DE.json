@@ -1,0 +1,20 @@
+{
+  "zimbra_organization_add": "Bestätigen",
+  "zimbra_organization_add_modal_title": "Organisation hinzufügen",
+  "zimbra_organization_add_modal_content_part1": "Die Organisation ist eine logische Gruppierung von Domains und Postfächern.",
+  "zimbra_organization_add_modal_content_part2": "Sie erlaubt die Festlegung von gruppierten Verwaltungsrichtlinien und definiert die Isolierung Ihrer Postfächer (Begrenzung des Unternehmensverzeichnisses).",
+  "zimbra_organization_edit_modal_title": "Organisation ändern",
+  "zimbra_organization_add_form_input_mandatory": "Die mit einem Stern * gekennzeichneten Felder sind Pflichtfelder.",
+  "zimbra_organization_add_form_input_name_title": "Name",
+  "zimbra_organization_add_form_input_name_placeholder": "Name",
+  "zimbra_organization_add_form_input_name_error": "Pflichtfeld. Darf nur aus alphanumerischen Zeichen bestehen.",
+  "zimbra_organization_add_form_input_label_title": "Label der Organisation",
+  "zimbra_organization_add_form_input_label_placeholder": "Label",
+  "zimbra_organization_add_form_input_label_error": "Pflichtfeld. Darf nur aus alphanumerischen Zeichen bestehen. Maximal {{ value }} Zeichen.",
+  "zimbra_organization_add_form_input_label_tooltip": "Das Label ist ein kurzer Text, der zum Filtern und Navigieren im Kundencenter verwendet wird.",
+  "zimbra_organization_add_form_input_label_helper": "Maximal {{ value }} Zeichen.",
+  "zimbra_organization_add_success_message": "Ihre Anfrage zum Hinzufügen einer Organisation wurde registriert. Sie wird in Kürze wirksam.",
+  "zimbra_organization_add_error_message": "Ihre Anfrage zum Hinzufügen einer Organisation ist fehlgeschlagen. {{ error }}",
+  "zimbra_organization_edit_success_message": "Ihre Änderungsanfrage wurde registriert. Sie wird in Kürze ausgeführt.",
+  "zimbra_organization_edit_error_message": "Ihre Änderungsanfrage ist fehlgeschlagen. {{ error }}"
+}

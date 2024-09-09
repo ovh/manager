@@ -1,0 +1,10 @@
+{
+  "zimbra_domain_delete": "Löschen",
+  "zimbra_domain_delete_modal_title": "Domain löschen",
+  "zimbra_domain_delete_modal_content": "Sind Sie sicher, dass Sie die Domain vom Zimbra-Server löschen möchten?",
+  "zimbra_domain_delete_modal_message_disabled": "Ihre Domain wird gerade verwendet. Diese Domain kann nicht gelöscht werden, solange dies der Fall ist.",
+  "zimbra_domain_delete_success_message": "Ihre Löschanfrage wurde registriert Sie wird in Kürze ausgeführt.",
+  "zimbra_domain_delete_error_message": "Ihre Löschanfrage ist fehlgeschlagen. {{ error }}",
+  "zimbra_domain_delete_modal_message_disabled_part1": "Diesem Domainnamen ist noch mindestens ein E-Mail-Account zugewiesen.",
+  "zimbra_domain_delete_modal_message_disabled_part2": "Bitte löschen Sie die zugehörigen E-Mail-Accounts, bevor Sie Ihren Domainnamen löschen."
+}
