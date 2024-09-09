@@ -306,6 +306,7 @@
                                         class="oui-action-button"
                                         data-ng-click="MultisiteLogsCtrl.generateLogHref(domain)"
                                         oui-dropdown-trigger
+                                        data-ng-disabled="isUpdateDomainDisabled(hosting, domain)"
                                     >
                                         <span
                                             class="oui-icon oui-icon-ellipsis"

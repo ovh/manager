@@ -1,0 +1,16 @@
+{
+  "zimbra_domains_add_domain_cta_back": "Voltar para os nomes de domínio",
+  "zimbra_domains_add_domain_cta_confirm": "Confirmar",
+  "zimbra_domains_add_domain_cta_next": "Seguinte",
+  "zimbra_domains_add_domain_title": "Domínio",
+  "zimbra_domains_add_domain_title_select": "Adicionar domínio",
+  "zimbra_domains_add_domain_select_title": "Selecione um domínio da lista",
+  "zimbra_domains_add_domain_select": "Escolher um nome de domínio",
+  "zimbra_domains_add_domain_input": "Introduza o seu nome de domínio",
+  "zimbra_domains_add_domain_input_title": "Introduzir um nome de domínio não gerido pela sua conta OVHcloud",
+  "zimbra_domains_add_domain_organization": "Organização",
+  "zimbra_domains_add_domain_organization_select": "Escolher uma organização",
+  "zimbra_domains_add_domain_configuration_title": "Configuração",
+  "zimbra_domains_add_domain_success_message": "O seu pedido de adição foi registado. Será executado dentro de alguns instantes.",
+  "zimbra_domains_add_domain_error_message": "O seu pedido de adição não foi bem-sucedido. {{ error }}"
+}

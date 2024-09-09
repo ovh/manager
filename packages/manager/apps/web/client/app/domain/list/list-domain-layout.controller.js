@@ -276,6 +276,7 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
         DOMAIN_STATUS.PENDING_INCOMING_TRANSFER,
         DOMAIN_STATUS.DELETED,
         DOMAIN_STATUS.PENDING_CREATE,
+        DOMAIN_STATUS.AUTORENEW_IN_PROGRESS,
       ].includes(domain.state) &&
       domain.renewalState !== DOMAIN_RENEWABLE_STATE.CANCELLATION_REQUESTED
     );

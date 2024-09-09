@@ -1,0 +1,9 @@
+{
+  "zimbra_domains_add_domain_title": "Adicionar domínio",
+  "zimbra_domains_datagrid_account_label": "Número de contas",
+  "zimbra_domains_datagrid_diagnostic_label": "Diagnóstico",
+  "zimbra_domains_datagrid_domain_label": "Domínio",
+  "zimbra_domains_datagrid_organization_label": "Organização",
+  "zimbra_domains_datagrid_account_number": "Número de contas",
+  "zimbra_domains_tooltip_delete": "Eliminar"
+}
