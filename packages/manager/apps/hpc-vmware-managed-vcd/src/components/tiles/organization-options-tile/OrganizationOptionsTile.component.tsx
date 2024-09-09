@@ -3,7 +3,7 @@ import {
   ActionMenu,
   DashboardTile,
   Description,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
