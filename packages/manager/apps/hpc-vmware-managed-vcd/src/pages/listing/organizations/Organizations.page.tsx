@@ -6,12 +6,12 @@ import {
   DataGridTextCell,
   Links,
   LinkType,
+  Region,
 } from '@ovh-ux/manager-react-components';
 
 import DatagridContainer, {
   TDatagridContainerProps,
 } from '@/components/datagrid/container/DatagridContainer.component';
-import RegionLabel from '@/components/region-label/RegionLabel.component';
 import { urls } from '@/routes/routes.constant';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import { VCD_ORGANIZATION_ROUTE } from '@/data/api/hpc-vmware-managed-vcd.constants';
@@ -31,7 +31,7 @@ const DatagridIdCell = (vdcOrg: IVcdOrganization) => {
 
 const DatagridRegionCell = (vdcOrg: IVcdOrganization) => (
   <DataGridTextCell>
-    <RegionLabel code={vdcOrg.currentState?.region} />
+    <Region name={vdcOrg.currentState?.region?.toLowerCase()} mode="region" />
   </DataGridTextCell>
 );
 

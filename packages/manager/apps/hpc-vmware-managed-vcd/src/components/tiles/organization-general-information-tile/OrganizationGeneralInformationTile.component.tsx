@@ -4,6 +4,7 @@ import {
   Links,
   Clipboard,
   DashboardTile,
+  Region,
 } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_HUE,
@@ -17,7 +18,6 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import IVcdOrganization from '@/types/vcd-organization.interface';
-import RegionLabel from '@/components/region-label/RegionLabel.component';
 import { subRoutes } from '@/routes/routes.constant';
 
 type TTileProps = {
@@ -85,9 +85,10 @@ export default function OrganizationGenerationInformationTile({
               color={ODS_THEME_COLOR_INTENT.text}
               hue={ODS_THEME_COLOR_HUE._500}
             >
-              <RegionLabel
-                code={vcdOrganization?.currentState?.region}
-              ></RegionLabel>
+              <Region
+                name={vcdOrganization?.currentState?.region?.toLowerCase()}
+                mode="region"
+              />
             </OsdsText>
           ),
         },

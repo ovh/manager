@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  DashboardLayout,
-  HeadersProps,
-} from '@ovh-ux/manager-react-components';
+import { HeadersProps, BaseLayout } from '@ovh-ux/manager-react-components';
 import {
   OsdsTabBar,
   OsdsTabBarItem,
@@ -50,7 +47,7 @@ export default function VcdDashboardLayout({
 
   return (
     <div>
-      <DashboardLayout
+      <BaseLayout
         header={header}
         tabs={
           <OsdsTabs panel={panel}>
