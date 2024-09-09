@@ -98,6 +98,10 @@ export const SubnetSelector = ({
         <OsdsSelect
           name="subnet"
           size={ODS_SELECT_SIZE.md}
+          key={
+            `${projectId}${region}${networkId}`
+            /* fixes ODS select not refreshing correctly */
+          }
           value={subnet?.id}
           onOdsValueChange={({ detail }) => {
             const sub = availableSubnets?.find(
