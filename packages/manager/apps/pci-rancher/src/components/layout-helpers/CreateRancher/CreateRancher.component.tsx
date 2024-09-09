@@ -42,7 +42,6 @@ import {
   RancherVersion,
   CreateRancherPayload,
   TRancherPricing,
-  RancherPlanName,
 } from '@/types/api.type';
 import { useFormattedRancherPrices } from '@/data/hooks/useFormattedPrices/useFormattedPrices';
 

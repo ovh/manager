@@ -1,6 +1,11 @@
 import { format } from 'date-fns';
 
-import { CommonTitle, TileBlock } from '@ovh-ux/manager-react-components';
+import {
+  CommonTitle,
+  Notifications,
+  TileBlock,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -38,7 +43,9 @@ export interface RancherDetailProps {
   rancher: RancherService;
   editNameResponseType: ODS_MESSAGE_TYPE | null;
   updateSoftwareResponseType: MutationStatus;
+  updateOfferResponseType: MutationStatus;
   hasErrorAccessDetail: boolean;
+  updateOfferErrorMessage?: string;
   versions: RancherVersion[];
 }
 
@@ -46,7 +53,9 @@ const RancherDetail = ({
   rancher,
   editNameResponseType,
   updateSoftwareResponseType,
+  updateOfferResponseType,
   hasErrorAccessDetail,
+  updateOfferErrorMessage,
   versions,
 }: RancherDetailProps) => {
   const { t } = useTranslation(['dashboard', 'updateSoftware', 'listing']);
@@ -54,15 +63,30 @@ const RancherDetail = ({
   const hrefEdit = useHref('./edit');
   const hrefUpdateSoftware = useHref('./update-software');
   const hrefGenerateAccess = useHref('./generate-access');
+  const hrefUpdateOffer = useHref('./update-offer');
   const [isPendingUpdate, setIsPendingUpdate] = useState(false);
+  const [isPendingOffer, setIsPendingOffer] = useState(false);
   const [hasTaskPending, setHasTaskPending] = useState(false);
   const { resourceStatus, currentState, currentTasks } = rancher;
+  const { addError, addInfo, clearNotifications } = useNotifications();
+
+  useEffect(() => {
+    if (updateOfferErrorMessage) {
+      addError(
+        t('updateOfferError', { errorMessage: updateOfferErrorMessage }),
+      );
+    }
+  }, [updateOfferErrorMessage]);
 
   useEffect(() => {
     if (updateSoftwareResponseType === 'pending') {
       setIsPendingUpdate(true);
     }
-  }, [updateSoftwareResponseType]);
+    if (updateOfferResponseType === 'pending') {
+      setIsPendingOffer(true);
+      addInfo(t('updateOfferPending'));
+    }
+  }, [updateSoftwareResponseType, updateOfferResponseType]);
 
   useEffect(() => {
     if (currentTasks.length) {
@@ -73,13 +97,17 @@ const RancherDetail = ({
   useEffect(() => {
     if (hasTaskPending && currentTasks.length === 0) {
       setIsPendingUpdate(false);
+      setIsPendingOffer(false);
       setHasTaskPending(false);
+      clearNotifications();
     }
   }, [currentTasks]);
 
-  const computedStatus = isPendingUpdate
-    ? ResourceStatus.UPDATING
-    : resourceStatus;
+  const computedStatus =
+    isPendingUpdate || isPendingOffer
+      ? ResourceStatus.UPDATING
+      : resourceStatus;
+
   const isReadyStatus = computedStatus === ResourceStatus.READY;
 
   const { name, version, plan, url } = currentState;
@@ -97,6 +125,7 @@ const RancherDetail = ({
 
   return (
     <div className="max-w-4xl">
+      <Notifications></Notifications>
       {editNameResponseType && (
         <OsdsMessage type={editNameResponseType} className="my-4 p-3">
           <OsdsText
@@ -200,6 +229,12 @@ const RancherDetail = ({
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
                   {t(plan)}
                 </OsdsText>
+                <LinkIcon
+                  iconName={ODS_ICON_NAME.ARROW_RIGHT}
+                  href={hrefUpdateOffer}
+                  text={t('updateOfferModaleTitle')}
+                  isDisabled={!isReadyStatus}
+                />
               </TileBlock>
               <TileBlock label={t('count_cpu_orchestrated')}>
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>

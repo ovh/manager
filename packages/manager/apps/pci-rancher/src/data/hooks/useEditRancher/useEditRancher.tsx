@@ -8,6 +8,7 @@ import { RancherService } from '@/types/api.type';
 export enum EditAction {
   EditName = 'EditName',
   UpdateSoftware = 'UpdateSoftware',
+  UpdateOffer = 'UpdateOffer',
 }
 
 export type EditMutationVariables = {

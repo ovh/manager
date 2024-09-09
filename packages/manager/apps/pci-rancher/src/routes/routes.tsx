@@ -25,6 +25,7 @@ export enum Route {
   DeleteRancher = 'DeleteRancher',
   EditRancherName = 'EditRancherName',
   GenerateAccess = 'GenerateAccess',
+  UpdateOffer = 'UpdateOffer',
 }
 
 export default [
@@ -110,6 +111,18 @@ export default [
             handle: {
               tracking: {
                 pageName: Route.GenerateAccess,
+                pageType: PageType.popup,
+              },
+            },
+          },
+          {
+            path: 'update-offer',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/update-offer/UpdateOfferModal.page'),
+            ),
+            handle: {
+              tracking: {
+                pageName: Route.UpdateOffer,
                 pageType: PageType.popup,
               },
             },
