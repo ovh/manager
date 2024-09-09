@@ -12,12 +12,14 @@ import { CredentialStatus } from '../credentialStatus/CredentialStatus.component
 export const DatagridCredentialCellName = (credential: OkmsCredential) => {
   const navigate = useNavigate();
   return (
-    <Links
-      onClickReturn={() => {
-        navigate(`${credential.id}`);
-      }}
-      label={credential.name}
-    />
+    <div>
+      <Links
+        onClickReturn={() => {
+          navigate(`${credential.id}`);
+        }}
+        label={credential.name}
+      />
+    </div>
   );
 };
 

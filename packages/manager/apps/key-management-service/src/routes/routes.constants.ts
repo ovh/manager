@@ -11,6 +11,7 @@ export const ROUTES_URLS = {
   credentials: 'credentials',
   createCredential: 'create',
   credentialId: ':credentialId',
+  credentialIdentities: 'identities',
   createKmsServiceKey: 'create',
   serviceKeyDeactivate: 'deactivate',
 };
