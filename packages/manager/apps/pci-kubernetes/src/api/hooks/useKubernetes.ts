@@ -97,7 +97,7 @@ export const useKubes = (
   ]);
 };
 
-function getKubernetesClusterQuery(projectId: string, kubeId: string) {
+export function getKubernetesClusterQuery(projectId: string, kubeId: string) {
   return ['project', projectId, 'kube', kubeId];
 }
 
