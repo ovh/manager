@@ -38,6 +38,7 @@ import { ClusterNameStep } from './steps/ClusterNameStep.component';
 import { ClusterBillingStep } from './steps/ClusterBillingStep.component';
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { PAGE_PREFIX } from '@/tracking.constants';
+import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
 
 export default function NewPage() {
   const { t } = useTranslation('add');
@@ -263,7 +264,12 @@ export default function NewPage() {
                     autoscale: stepper.form.scaling?.isAutoscale,
                     desiredNodes: stepper.form.scaling?.quantity.desired,
                     minNodes: stepper.form.scaling?.quantity.min,
-                    maxNodes: stepper.form.scaling?.quantity.max,
+                    maxNodes: stepper.form.antiAffinity
+                      ? Math.min(
+                          ANTI_AFFINITY_MAX_NODES,
+                          stepper.form.scaling?.quantity.max,
+                        )
+                      : stepper.form.scaling?.quantity.max,
                     flavorName: stepper.form.flavor?.name,
                     monthlyBilled: stepper.form.isMonthlyBilled,
                   },
