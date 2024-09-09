@@ -39,6 +39,15 @@
             <span data-ng-bind=":: $ctrl.getResourceName($row)"> </span>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title=":: 'streams_subscriptions_kind_label' | translate"
+            data-property="kind"
+            data-type="string"
+            data-sortable="asc"
+            data-searchable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'logs_col_last_modified' | translate"
             data-property="updatedAt"
             data-sortable
