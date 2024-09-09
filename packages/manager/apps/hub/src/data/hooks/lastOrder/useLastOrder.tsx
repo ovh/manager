@@ -7,5 +7,4 @@ export const useFetchHubLastOrder = () =>
   useQuery<LastOrder, AxiosError>({
     queryKey: ['getHubLastOrder'],
     queryFn: getLastOrder,
-    retry: 0,
   });
