@@ -5,12 +5,12 @@ import {
   ODS_TILE_VARIANT,
 } from '@ovhcloud/ods-components';
 import {
-  OsdsClipboard,
   OsdsDivider,
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { Clipboard } from '@ovhcloud/manager-components';
 import { TKube } from '@/types';
 import ClusterStatus from './ClusterStatus.component';
 import TileLine from './TileLine.component';
@@ -24,7 +24,6 @@ export default function ClusterInformation({
 }: Readonly<ClusterInformationProps>) {
   const { t } = useTranslation('service');
   const { t: tDetail } = useTranslation('listing');
-  const { t: tCommon } = useTranslation('common');
 
   return (
     <OsdsTile
@@ -46,15 +45,11 @@ export default function ClusterInformation({
         <TileLine
           title={tDetail('kube_list_id')}
           value={
-            <OsdsClipboard
+            <Clipboard
               aria-label="clipboard"
               value={kubeDetail.id}
               data-testid="clusterInformation-clipboardKubeId"
-            >
-              <span slot="success-message">
-                {tCommon('common_clipboard_copied')}
-              </span>
-            </OsdsClipboard>
+            />
           }
         />
 
@@ -62,7 +57,7 @@ export default function ClusterInformation({
           title={t('kube_service_name')}
           value={
             <OsdsText
-              className="mb-4"
+              className="mb-4 break-words"
               size={ODS_TEXT_SIZE._400}
               level={ODS_TEXT_LEVEL.body}
               color={ODS_THEME_COLOR_INTENT.text}
@@ -108,15 +103,11 @@ export default function ClusterInformation({
         <TileLine
           title={t('kube_service_cluster_nodes_url')}
           value={
-            <OsdsClipboard
+            <Clipboard
               aria-label="clipboard"
               data-testid="clusterInformation-clipboardNodeUrls"
               value={kubeDetail.nodesUrl}
-            >
-              <span slot="success-message">
-                {tCommon('common_clipboard_copied')}
-              </span>
-            </OsdsClipboard>
+            />
           }
         />
       </div>
