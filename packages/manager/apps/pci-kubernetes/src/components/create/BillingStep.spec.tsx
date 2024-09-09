@@ -102,10 +102,14 @@ describe('BillingStep', () => {
   });
   describe('Monthly billing', () => {
     describe('tile', () => {
-      it('should not show monthly billing tile if if monthly price is not defined', () => {
+      it('should not show monthly billing tile when monthlyBilling.isComingSoon is true', () => {
         const props = {
           ...defaultProps,
           monthlyPrice: undefined,
+          monthlyBilling: {
+            ...defaultProps.monthlyBilling,
+            isComingSoon: true,
+          },
         };
         const { queryByTestId } = render(<BillingStep {...props} />);
 
@@ -114,10 +118,14 @@ describe('BillingStep', () => {
         expect(monthlyTile).not.toBeInTheDocument();
       });
 
-      it('should not show monthly billing tile if if monthly price is defined', () => {
+      it('should show monthly billing tile when monthlyBilling.isComingSoon is false', () => {
         const props = {
           ...defaultProps,
           monthlyPrice: 15,
+          monthlyBilling: {
+            ...defaultProps.monthlyBilling,
+            isComingSoon: false,
+          },
         };
         const { queryByTestId } = render(<BillingStep {...props} />);
 

@@ -6,6 +6,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepState } from '../useStep';
 import { TClusterCreationForm } from '../useCusterCreationStepper';
 import BillingStep from '@/components/create/BillingStep.component';
+import { TAGS_BLOB } from '@/constants';
 
 export interface BillingStepProps {
   form: TClusterCreationForm;
@@ -21,13 +22,17 @@ export function ClusterBillingStep({
   const { t: tStepper } = useTranslation('stepper');
   const [antiAffinity, setIsAntiaffinity] = useState(false);
   const [isMonthlyBilled, setIsMonthlyBilled] = useState(false);
+
+  const isPricingComingSoon = form.flavor?.blobs?.tags?.includes(
+    TAGS_BLOB.COMING_SOON,
+  );
+
   return (
     <>
       <BillingStep
         price={form.flavor.pricingsHourly.price * form.scaling.quantity.desired}
         monthlyPrice={
-          form.flavor.pricingsMonthly?.price * form.scaling.quantity.desired ||
-          undefined
+          form.flavor.pricingsMonthly?.price * form.scaling.quantity.desired
         }
         antiAffinity={{
           isChecked: antiAffinity,
@@ -35,7 +40,7 @@ export function ClusterBillingStep({
           onChange: setIsAntiaffinity,
         }}
         monthlyBilling={{
-          isComingSoon: true,
+          isComingSoon: isPricingComingSoon,
           isChecked: isMonthlyBilled,
           check: setIsMonthlyBilled,
         }}
