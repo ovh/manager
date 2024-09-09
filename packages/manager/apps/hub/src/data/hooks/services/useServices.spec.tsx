@@ -5,7 +5,7 @@ import { describe, it, vi } from 'vitest';
 import { useFetchHubServices } from '@/data/hooks/services/useServices';
 import * as ServicesApi from '@/data/api/services';
 import { ApiEnvelope } from '@/types/apiEnvelope.type';
-import { Services } from '@/types/services.type';
+import { ProductList } from '@/types/services.type';
 
 const queryClient = new QueryClient();
 
@@ -15,7 +15,7 @@ const wrapper = ({ children }: PropsWithChildren) => (
 
 describe('useFetchHubServices', () => {
   it('returns capsule even if api returned no services', async () => {
-    const services: ApiEnvelope<Services> = {
+    const services: ApiEnvelope<ProductList> = {
       data: {
         data: {},
         count: 0,

@@ -5,7 +5,7 @@ type Service = {
   resource: {
     displayName: string;
     name: string;
-    product: {
+    product?: {
       description: string;
       name: string;
     };
@@ -17,18 +17,26 @@ type Service = {
   };
   serviceId: number;
   serviceType?: string;
-  universe: string[];
+  universe: Record<string, string>;
   url: string;
 };
 
-type ServiceTypeItem = ApiAggregateEnvelope<Service[]>;
+type ServiceList = ApiAggregateEnvelope<Service[]>;
 
-type ServicesListByType = Record<string, ServiceTypeItem[]>;
+type Products = Record<string, ServiceList>;
 
-export type Services = ApiAggregateEnvelope<ServicesListByType>;
+export type ProductList = ApiAggregateEnvelope<Products>;
 
 type ServicesData = {
-  services: ApiEnvelope<Services>;
+  services: ApiEnvelope<ProductList>;
 };
 
 export type ServicesEnvelope = ApiEnvelope<ServicesData>;
+
+export type HubProduct = {
+  data: Service[];
+  count: number;
+  type: string;
+  formattedType: string;
+  link: Promise<string> | null;
+};

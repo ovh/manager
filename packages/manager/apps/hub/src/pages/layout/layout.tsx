@@ -25,6 +25,10 @@ import { useFetchHubLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
 
 const Welcome = lazy(() => import('@/components/welcome/Welcome.component'));
 const Banner = lazy(() => import('@/components/banner/Banner.component'));
+const Products = lazy(() => import('@/components/products/Products.component'));
+const TileGridSkeleton = lazy(() =>
+  import('@/components/tile-grid-skeleton/TileGridSkeleton.component'),
+);
 
 export default function Layout() {
   const location = useLocation();
@@ -76,9 +80,9 @@ export default function Layout() {
           {t('manager_hub_skip_to_main_content')}
         </OsdsButton>
       </div>
-      <div className="position-relative w-full h-full overflow-auto">
+      <div className="relative w-full h-full overflow-auto">
         <div
-          className={`position-absolute hub-main w-full h-full ${
+          className={`absolute hub-main w-full h-full ${
             shell.ux.isAccountSidebarVisible()
               ? 'hub-main-view_sidebar_expanded'
               : ''
@@ -98,7 +102,7 @@ export default function Layout() {
             </div>
             {/* /Skip content target */}
             <div className="pt-8">
-              <div className="container hub-main-view_container px-4">
+              <div className="hub-main-view_container px-6">
                 <div className="pb-12">
                   <Suspense
                     fallback={
@@ -184,20 +188,44 @@ export default function Layout() {
                     )}
                   </div>
                   <div className="hub-dashboard-product">
-                    <OsdsText
-                      className="inline-block my-6"
-                      level={ODS_TEXT_LEVEL.heading}
-                      size={ODS_TEXT_SIZE._700}
-                      color={ODS_THEME_COLOR_INTENT.text}
-                    >
-                      {t('manager_hub_dashboard_services')}
-                    </OsdsText>
                     {isLoading && (
-                      <OsdsSkeleton data-testid="products_and_catalog_skeleton" />
+                      <Suspense
+                        fallback={
+                          <OsdsSkeleton
+                            data-testid="tile_grid_skeleton_skeleton"
+                            inline
+                          />
+                        }
+                      >
+                        <TileGridSkeleton />
+                      </Suspense>
                     )}
-                    {!isLoading && !isFreshCustomer && <div>hub-products</div>}
+                    {!isLoading && !isFreshCustomer && (
+                      <Suspense fallback={<TileGridSkeleton />}>
+                        <Products services={services}></Products>
+                      </Suspense>
+                    )}
                     {!isLoading && isFreshCustomer && (
-                      <div>hub-catalog-items</div>
+                      <>
+                        {/* TODO: move these titles in the dedicated "Catalog" component */}
+                        <OsdsText
+                          className="inline-block my-6"
+                          level={ODS_TEXT_LEVEL.heading}
+                          size={ODS_TEXT_SIZE._700}
+                          color={ODS_THEME_COLOR_INTENT.text}
+                        >
+                          {t('manager_hub_catalog_title')}
+                        </OsdsText>
+                        <OsdsText
+                          className="inline-block my-6"
+                          level={ODS_TEXT_LEVEL.subheading}
+                          size={ODS_TEXT_SIZE._400}
+                          color={ODS_THEME_COLOR_INTENT.text}
+                        >
+                          {t('manager_hub_catalog_description')}
+                        </OsdsText>
+                        <div>hub-catalog-items</div>
+                      </>
                     )}
                   </div>
                 </div>
