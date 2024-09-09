@@ -18,6 +18,7 @@ export function LoadBalancerWarning() {
   const { ovhSubsidiary } = context.environment.getUser();
   const loadBalancerDocumentationLink =
     LOAD_BALANCER_DOC[ovhSubsidiary] ?? LOAD_BALANCER_DOC.DEFAULT;
+
   return (
     <OsdsMessage
       type={ODS_MESSAGE_TYPE.warning}

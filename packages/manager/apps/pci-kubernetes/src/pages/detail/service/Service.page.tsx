@@ -36,6 +36,8 @@ export default function ServicePage() {
     return false;
   }, [cloudSchema, kubeDetail]);
 
+  console.log('service page => ', kubeDetail);
+
   return (
     <>
       {isPending ? (
