@@ -58,9 +58,14 @@ export const SubnetSelector = ({
 
   useEffect(() => {
     if (preselectedId) {
-      setSubnet(availableSubnets?.find((net) => net.id === preselectedId));
+      const selected = availableSubnets?.find(
+        (net) => net.id === preselectedId,
+      );
+      setSubnet(selected);
+      onSelect?.(selected);
     } else if (availableSubnets?.length && !allowsEmpty) {
       setSubnet(availableSubnets[0]);
+      onSelect?.(availableSubnets[0]);
     }
   }, [availableSubnets]);
 
