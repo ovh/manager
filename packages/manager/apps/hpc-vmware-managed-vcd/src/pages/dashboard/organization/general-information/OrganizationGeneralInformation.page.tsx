@@ -48,6 +48,7 @@ function GeneralInformation() {
       />
       <div className="flex flex-col gap-8">
         <OrganizationOptionsTile
+          organizationName={vcdOrganization?.data?.currentState?.fullName}
           isLicenseActive={!!vcdOrganization?.data?.currentState?.spla}
         />
         <DataProtectionTile />

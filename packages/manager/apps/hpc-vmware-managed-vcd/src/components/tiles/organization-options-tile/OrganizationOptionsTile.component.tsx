@@ -1,5 +1,8 @@
 import React from 'react';
-import { useOrderURL, vcdProductSettings } from '@ovh-ux/manager-module-order';
+import {
+  useOrderURL,
+  getVcdProductSettings,
+} from '@ovh-ux/manager-module-order';
 import {
   ActionMenu,
   DashboardTile,
@@ -10,11 +13,15 @@ import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 export default function OrganizationOptionsTile({
   isLicenseActive,
-}: {
-  readonly isLicenseActive: boolean;
-}) {
+  organizationName,
+}: Readonly<{
+  isLicenseActive: boolean;
+  organizationName: string;
+}>) {
   const { t } = useTranslation('dashboard');
+
   const orderBaseUrl = useOrderURL('express_review_base');
+  const vcdProductSettings = getVcdProductSettings(organizationName);
   const orderLink = `${orderBaseUrl}?products=~(${vcdProductSettings})`;
   const handleActivateLicense = () => {
     window.open(orderLink, '_blank', 'noopener,noreferrer');
