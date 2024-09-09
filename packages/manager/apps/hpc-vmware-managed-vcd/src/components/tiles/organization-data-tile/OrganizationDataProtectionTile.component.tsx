@@ -1,7 +1,11 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { DashboardTile, Links, LinkType } from '@ovhcloud/manager-components';
+import {
+  DashboardTile,
+  Links,
+  LinkType,
+} from '@ovh-ux/manager-react-components';
 import { OsdsChip, OsdsSkeleton } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
