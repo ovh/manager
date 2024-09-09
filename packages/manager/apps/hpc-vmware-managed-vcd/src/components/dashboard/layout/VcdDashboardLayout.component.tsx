@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { DashboardLayout, HeadersProps } from '@ovhcloud/manager-components';
+import {
+  DashboardLayout,
+  HeadersProps,
+} from '@ovh-ux/manager-react-components';
 import {
   OsdsTabBar,
   OsdsTabBarItem,
