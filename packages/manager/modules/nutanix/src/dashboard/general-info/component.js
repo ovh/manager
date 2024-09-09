@@ -25,6 +25,7 @@ export default {
     getAccountAuthorizations: '<',
     nutanixClusterIamName: '@',
     accountAuthorizations: '<',
+    goToResiliate: '<',
   },
   controller,
   template,

@@ -96,4 +96,12 @@ export default class ServicesActionsCtrl {
       this.atInternet.trackClick({ name, type: 'action' });
     }
   }
+
+  handleClickResiliate() {
+    this.trackAction('go-to-resiliate');
+
+    if (this.handleGoToResiliation) {
+      this.handleGoToResiliation();
+    }
+  }
 }

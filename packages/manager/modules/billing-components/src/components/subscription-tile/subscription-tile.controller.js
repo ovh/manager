@@ -232,4 +232,13 @@ export default class ServicesActionsCtrl {
       this.serviceInfos.serviceType,
     );
   }
+
+  handleClickResiliate(event) {
+    this.trackAction('stop', true);
+
+    if (this.isCustomResiliationHandle) {
+      event.preventDefault();
+      this.handleGoToResiliation();
+    }
+  }
 }
