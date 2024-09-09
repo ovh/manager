@@ -1,6 +1,4 @@
 export const PROXMOX_LINKS = {
-  DEFAULT:
-    'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043909',
   FR:
     'https://help.ovhcloud.com/csm/fr-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043915',
   DE:
@@ -30,6 +28,8 @@ export const PROXMOX_LINKS = {
   CA:
     'https://help.ovhcloud.com/csm/en-ca-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043904',
   US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/30928201993619-Configuring-the-Network-on-Proxmox-VE-with-ADVANCE-Gen-3-Servers',
+  DEFAULT:
     'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043909',
 };
 
@@ -63,7 +63,7 @@ export const WINDOWS_SERVER_LINKS = {
   QC:
     'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-hyperv-network-hg-scale?id=kb_article_view&sysparm_article=KB0043588',
   US:
-    'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-hyperv-network-hg-scale?id=kb_article_view&sysparm_article=KB0043583',
+    'https://support.us.ovhcloud.com/hc/en-us/articles/30937249373843-Configuring-the-Network-on-Windows-Server-with-Hyper-V-on-the-ADVANCE-Gen-3-Servers',
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-hyperv-network-hg-scale?id=kb_article_view&sysparm_article=KB0043583',
 };
