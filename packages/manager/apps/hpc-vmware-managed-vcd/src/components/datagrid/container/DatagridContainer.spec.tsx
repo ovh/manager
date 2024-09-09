@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataGridTextCell } from '@ovhcloud/manager-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { render } from '@testing-library/react';
 import { describe, vi } from 'vitest';
 import DatagridContainer, {
@@ -17,9 +17,9 @@ vi.mock('react-router-dom', () => ({
   }),
 }));
 
-vi.mock('@ovhcloud/manager-components', async (managerComonents) => {
+vi.mock('@ovh-ux/manager-react-components', async (managerComonents) => {
   const module = await managerComonents<
-    typeof import('@ovhcloud/manager-components')
+    typeof import('@ovh-ux/manager-react-components')
   >();
   return {
     ...module,
