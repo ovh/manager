@@ -16,9 +16,9 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import { TKube } from '@/types';
-import TileLine from './TileLine.component';
-import { useRegionSubnets } from '@/api/hooks/useSubnets';
 import { PROCESSING_STATUS } from '@/constants';
+import { useRegionSubnets } from '@/api/hooks/useSubnets';
+import TileLine from './TileLine.component';
 
 export type ClusterNetworkProps = {
   projectId: string;
@@ -152,7 +152,7 @@ export default function ClusterNetwork({
           </>
         )}
 
-        {(kubeSubnet || kubeLoadBalancerSubnet) && (
+        {shouldLoadSubnets && (
           <OsdsButton
             color={ODS_THEME_COLOR_INTENT.primary}
             variant={ODS_BUTTON_VARIANT.ghost}
