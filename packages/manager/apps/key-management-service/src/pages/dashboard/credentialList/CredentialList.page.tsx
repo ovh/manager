@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { useAuthorizationIam } from '@ovhcloud/manager-components/src/hooks/iam';
+import { useAuthorizationIam } from '@ovh-ux/manager-react-components/src/hooks/iam';
 import {
   Description,
   ManagerButton,
-} from '@ovhcloud/manager-components/src/components';
+} from '@ovh-ux/manager-react-components/src/components';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,

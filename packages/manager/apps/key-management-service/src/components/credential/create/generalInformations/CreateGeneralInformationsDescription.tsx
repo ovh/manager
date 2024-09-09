@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { CommonTitle } from '@ovhcloud/manager-components';
+import { CommonTitle } from '@ovh-ux/manager-react-components';
 import {
   OsdsFormField,
   OsdsText,

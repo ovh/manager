@@ -91,6 +91,22 @@ export default [
       {
         path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.credentials}/${ROUTES_URLS.credentialId}`,
         ...lazyRouteConfig(() => import('@/pages/credential/Credential.page')),
+        children: [
+          {
+            path: '',
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/credential/generalInformations/generalInformations.page'
+              ),
+            ),
+          },
+          {
+            path: ROUTES_URLS.credentialIdentities,
+            ...lazyRouteConfig(() =>
+              import('@/pages/credential/identities/identities.page'),
+            ),
+          },
+        ],
       },
       {
         path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.keyId}`,
