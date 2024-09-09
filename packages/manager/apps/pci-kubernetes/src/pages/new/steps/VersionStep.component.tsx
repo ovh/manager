@@ -10,9 +10,10 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import clsx from 'clsx';
 import { StepState } from '../useStep';
 import { VersionSelector } from '@/components/VersionSelector.component';
+import { UpgradePolicyTileSelector } from './UpgradePolicySelector.component';
 
 export interface VersionStepProps {
-  onSubmit: (version: string) => void;
+  onSubmit: (version: string, policy: string) => void;
   step: StepState;
 }
 
@@ -20,10 +21,12 @@ export function VersionStep({ onSubmit, step }: Readonly<VersionStepProps>) {
   const { t: tStepper } = useTranslation('stepper');
   const { t: tVersion } = useTranslation('versions');
   const [version, setVersion] = useState('');
+  const [policy, setPolicy] = useState(null);
   return (
     <>
       <div className={clsx(step.isLocked && 'hidden')}>
         <VersionSelector onSelectVersion={setVersion} />
+        <UpgradePolicyTileSelector onSelectPolicy={setPolicy} />
       </div>
       {step.isLocked && version && (
         <OsdsTile color={ODS_THEME_COLOR_INTENT.primary} inline>
@@ -43,7 +46,7 @@ export function VersionStep({ onSubmit, step }: Readonly<VersionStepProps>) {
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
           disabled={version ? undefined : true}
-          onClick={() => version && onSubmit(version)}
+          onClick={() => version && onSubmit(version, policy)}
         >
           {tStepper('common_stepper_next_button_label')}
         </OsdsButton>
