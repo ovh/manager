@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.4.0...@ovh-ux/manager-pci-block-storage-app@0.4.1) (2024-09-09)
+
+
+### Bug Fixes
+
+* **pci.block-storage:** remove outdated free localzones banner ([#12935](https://github.com/ovh/manager/issues/12935)) ([5c06ff1](https://github.com/ovh/manager/commit/5c06ff11ad7e00fb6be4e0b2e84b946e822e7f41))
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.3.2...@ovh-ux/manager-pci-block-storage-app@0.4.0) (2024-09-05)
 
 

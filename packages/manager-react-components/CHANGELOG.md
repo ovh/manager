@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.28.0...@ovh-ux/manager-react-components@1.28.1) (2024-09-09)
+
+### Bug Fixes
+
+- **pci.block-storage:** remove outdated free localzones banner ([#12935](https://github.com/ovh/manager/issues/12935)) ([5c06ff1](https://github.com/ovh/manager/commit/5c06ff11ad7e00fb6be4e0b2e84b946e822e7f41))
+
 # [1.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.27.0...@ovh-ux/manager-react-components@1.28.0) (2024-09-05)
 
 ### Bug Fixes
