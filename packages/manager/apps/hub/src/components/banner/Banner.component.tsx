@@ -2,8 +2,6 @@ import React, { useContext } from 'react';
 import {
   ShellContext,
   useOvhTracking,
-  ButtonType,
-  PageLocation,
 } from '@ovh-ux/manager-react-shell-client';
 import { OsdsLink, OsdsSkeleton } from '@ovhcloud/ods-components/react';
 import {

@@ -32,7 +32,7 @@ describe('useFetchHubLastOrder', () => {
     });
   });
 
-  it('returns the last order if api returned one', () => {
+  it('returns the last order if api returned one', async () => {
     const lastOrder: LastOrder = {
       status: 'OK',
       data: {
@@ -70,7 +70,7 @@ describe('useFetchHubLastOrder', () => {
       wrapper,
     });
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(result.current.data).toEqual(lastOrder);
     });
   });
