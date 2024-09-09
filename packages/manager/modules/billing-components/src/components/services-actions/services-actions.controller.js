@@ -120,12 +120,6 @@ export default class ServicesActionsCtrl {
       case SERVICE_TYPE.VRACK_SERVICES:
         this.resiliateLink = `${this.autorenewLink}/terminate-service?id=${this.service.id}${serviceTypeParam}`;
         break;
-      case SERVICE_TYPE.NUTANIX:
-        this.resiliateLink = this.service.canResiliateByEndRule()
-          ? resiliationByEndRuleLink
-          : this.autorenewLink &&
-            `${this.autorenewLink}/delete?serviceId=${this.service.serviceId}${serviceTypeParam}`;
-        break;
       default:
         this.resiliateLink = this.service.canResiliateByEndRule()
           ? resiliationByEndRuleLink
@@ -164,6 +158,14 @@ export default class ServicesActionsCtrl {
         : `${this.trackingPrefix}::${action}`;
 
       this.atInternet.trackClick({ name, type: 'action' });
+    }
+  }
+
+  handleClickResiliate() {
+    this.trackAction('go-to-resiliate');
+
+    if (this.handleGoToResiliation) {
+      this.handleGoToResiliation();
     }
   }
 }

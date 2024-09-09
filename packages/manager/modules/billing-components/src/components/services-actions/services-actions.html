@@ -140,8 +140,8 @@
     >
         <oui-action-menu-item
             ng-if="$ctrl.resiliateLink && ($ctrl.service.hasAdminRights($ctrl.user.auth.account) || $ctrl.service.hasAdminRights($ctrl.user.nichandle))"
-            href="{{:: $ctrl.resiliateLink }}"
-            on-click="$ctrl.trackAction('go-to-resiliate')"
+            href="{{:: $ctrl.isCustomResiliationHandle === true ? undefined : $ctrl.resiliateLink }}"
+            on-click="$ctrl.handleClickResiliate()"
             data-navi-id="go-to-resiliate"
             top
         >
