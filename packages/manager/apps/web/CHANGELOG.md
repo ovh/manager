@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.34.1...@ovh-ux/manager-web@18.35.0) (2024-09-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3202] ([#12565](https://github.com/ovh/manager/issues/12565)) ([05ce8c4](https://github.com/ovh/manager/commit/05ce8c43054881eeb0999570fad90ac0b1edaeda))
+
+
+### Features
+
+* **domains:** add domain status ([#12720](https://github.com/ovh/manager/issues/12720)) ([13495e7](https://github.com/ovh/manager/commit/13495e7d6317a8c180d911125ae88830d779b0ee))
+* **domains:** process autorenew status  ([#12588](https://github.com/ovh/manager/issues/12588)) ([0faaff0](https://github.com/ovh/manager/commit/0faaff02f9497ccc820c2c0f778f761181596179))
+* **hosting.multisite:** prevent action on main domain ([#12198](https://github.com/ovh/manager/issues/12198)) ([56b6b6c](https://github.com/ovh/manager/commit/56b6b6c3440061e32f420f7ce778d0a882923397))
+* **web:** display ssh key only if private repo ([#12876](https://github.com/ovh/manager/issues/12876)) ([d3c3169](https://github.com/ovh/manager/commit/d3c3169cbe0448acbdbfc52692d259e4ad55f52c))
+
+
+
+
+
 ## [18.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.34.0...@ovh-ux/manager-web@18.34.1) (2024-08-29)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.74.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.73.1...@ovh-ux/manager-container-app@0.74.0) (2024-09-09)
+
+
+### Features
+
+* **zimbra:** project zimbra beta ([#11715](https://github.com/ovh/manager/issues/11715)) ([fb0308f](https://github.com/ovh/manager/commit/fb0308f0be8e022dd971b26f63fff24d5c7d6eee))
+
+
+
+
+
 ## [0.73.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.73.0...@ovh-ux/manager-container-app@0.73.1) (2024-09-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.20.7...@ovh-ux/manager-telecom@15.21.0) (2024-09-09)
+
+
+### Features
+
+* **telecom.pack:** display adsl and vdsl accesses first ([#12733](https://github.com/ovh/manager/issues/12733)) ([52ba781](https://github.com/ovh/manager/commit/52ba781238de5f77643857a6e03702b3319fcbde))
+
+
+
+
+
 ## [15.20.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.20.6...@ovh-ux/manager-telecom@15.20.7) (2024-09-03)
 
 
