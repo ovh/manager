@@ -168,7 +168,7 @@ export default function NewPage() {
         <StepComponent
           order={2}
           {...stepper.version.step}
-          title={t('kubernetes_add_version_title')}
+          title={t('kubernetes_add_version_and_upgrade_policy_title')}
           edit={{
             action: stepper.version.edit,
             label: tStepper('common_stepper_modify_this_step'),
