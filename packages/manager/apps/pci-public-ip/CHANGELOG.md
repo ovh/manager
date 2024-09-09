@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.4.0...@ovh-ux/manager-pci-public-ip-app@0.4.1) (2024-09-09)
+
+
+### Bug Fixes
+
+* **pci-public-ip:** replace tuto onboarding url for us ([#12848](https://github.com/ovh/manager/issues/12848)) ([026f26e](https://github.com/ovh/manager/commit/026f26e13cc8bc2cafcaa440c16f2e37606ce19c))
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.3.2...@ovh-ux/manager-pci-public-ip-app@0.4.0) (2024-09-05)
 
 
