@@ -8,15 +8,14 @@ import { useNavigate } from 'react-router-dom';
 import {
   ActionMenu,
   DataGridTextCell,
+  DateFormat,
   Description,
   LinkType,
   Links,
+  useFormattedDate,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import {
-  ShellContext,
-  ovhLocaleToI18next,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
@@ -30,7 +29,6 @@ import {
 } from '@/data';
 import { iamActions, vcdOrganizationAppName } from '@/veeam-backup.config';
 import { urls } from '@/routes/routes.constant';
-import { useFormattedDate } from '@/hook/date';
 
 export const DisplayNameCell = (backup: VeeamBackupWithIam): JSX.Element => {
   const navigate = useNavigate();
@@ -134,7 +132,10 @@ export const RegionCell = ({
 export const CreatedAtCell = ({
   createdAt,
 }: VeeamBackupWithIam): JSX.Element => {
-  const date = useFormattedDate(createdAt);
+  const date = useFormattedDate({
+    dateString: createdAt,
+    format: DateFormat.compact,
+  });
   return <DataGridTextCell>{date}</DataGridTextCell>;
 };
 

@@ -8,8 +8,20 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
+    setupFiles: ['./setup-test.tsx'],
     coverage: {
       include: ['src/utils'],
+    },
+    testTimeout: 60000,
+    fileParallelism: false,
+    maxWorkers: 1,
+    pollOptions: {
+      forks: {
+        singleFork: true,
+      },
+      threads: {
+        singleThread: true,
+      },
     },
   },
   resolve: {

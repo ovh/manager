@@ -117,7 +117,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   return (
     <OsdsMenu disabled={disabled || undefined}>
       <OsdsButton
-        className="min-w-[32px]"
+        className="min-w-9"
         slot="menu-title"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.stroked}

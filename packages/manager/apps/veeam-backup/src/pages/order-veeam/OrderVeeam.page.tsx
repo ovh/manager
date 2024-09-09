@@ -19,8 +19,7 @@ import {
 import { BillingLink } from '@/components/Links/BillingLink.component';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { OrderVeeamStep2 } from './OrderVeeamStep2.component';
-
-const productName = 'Managed Veeam for VCD';
+import { productName } from '@/veeam-backup.config';
 
 export default function OrderVeeamPage() {
   const { t } = useTranslation('order-veeam');

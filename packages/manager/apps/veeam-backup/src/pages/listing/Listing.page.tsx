@@ -24,6 +24,7 @@ import {
   StatusCell,
   OrganizationCell,
 } from './DatagridCell.component';
+import { productFullName } from '@/veeam-backup.config';
 
 export default function Listing() {
   const { t } = useTranslation('listing');
@@ -97,7 +98,7 @@ export default function Listing() {
       <BaseLayout
         breadcrumb={<Breadcrumb />}
         header={{
-          title: 'Managed Veeam for VCD',
+          title: productFullName,
         }}
         description={t('description')}
         message={<SuccessMessages />}

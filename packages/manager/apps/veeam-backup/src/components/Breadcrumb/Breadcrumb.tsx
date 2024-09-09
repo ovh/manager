@@ -8,7 +8,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
-import { appName } from '@/veeam-backup.config';
+import { appName, productName } from '@/veeam-backup.config';
 import { getVeeamBackupDisplayName, useVeeamBackup } from '@/data';
 
 export type BreadcrumbItem = {
@@ -35,7 +35,7 @@ export function Breadcrumb() {
         shell.navigation.navigateTo('dedicated', '#/dedicated_cloud', {}),
     },
     {
-      label: t('listing-crumb'),
+      label: productName,
       onClick: () => navigate(urls.listing),
     },
   ];

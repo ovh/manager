@@ -11,6 +11,7 @@ import { useGuideUtils } from './useGuideUtils';
 import onboardingImgSrc from '@/assets/veeamxOVHcloud.svg';
 import { urls } from '@/routes/routes.constant';
 import { useBillingUrl } from '@/components/Links/BillingLink.component';
+import { productFullName } from '@/veeam-backup.config';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
@@ -35,7 +36,7 @@ export default function Onboarding() {
 
   return (
     <OnboardingLayout
-      title="Managed Veeam for VMware Cloud Director"
+      title={productFullName}
       img={{ src: onboardingImgSrc }}
       description={t('description')}
       orderButtonLabel={t('order_button_label')}
