@@ -1,5 +1,5 @@
 {
-  "dedicatedCloud_vmware_cloud_director_order_title": "Abonnement mit Vorbestellung für das VCD-Angebot",
+  "dedicatedCloud_vmware_cloud_director_order_title": "Bestätigung der Migration zum VCD Angebot",
   "dedicatedCloud_vmware_cloud_director_order_costs": "VCD-Preise für die Hosts anzeigen",
   "dedicatedCloud_vmware_cloud_director_order_host": "Host {{host}}: ",
   "dedicatedCloud_vmware_cloud_director_order_hosts_list": "Hier die Liste der Hosts des {{pcc}}:",
@@ -8,6 +8,6 @@
   "dedicatedCloud_vmware_cloud_director_order_cancel": "Abbrechen",
   "dedicatedCloud_vmware_cloud_director_order_confirm": "Weiter",
   "dedicatedCloud_vmware_cloud_director_order_terminate": "Schließen",
-  "dedicatedCloud_vmware_cloud_director_order_info": "Die Validierung der Migration kann einige Minuten in Anspruch nehmen.",
-  "dedicatedCloud_vmware_cloud_director_order_terms": "Besondere Vertragsbedingungen für Managed VCD"
+  "dedicatedCloud_vmware_cloud_director_order_info": "Es kann einige Minuten dauern, bis die Validierung der Migration wirksam ist.",
+  "dedicatedCloud_vmware_cloud_director_order_terms": "Besondere Vertragsbedingungen des Managed VCD Dienstes ansehen"
 }

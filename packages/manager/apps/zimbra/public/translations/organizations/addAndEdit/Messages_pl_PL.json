@@ -5,7 +5,7 @@
   "zimbra_organization_add_modal_content_part2": "Pozwala na zdefiniowanie zasad zarządzania grupą i na odizolowanie skrzynek e-mail (limit firmowej książki adresowej).",
   "zimbra_organization_edit_modal_title": "Zmodyfikuj organizację",
   "zimbra_organization_add_form_input_mandatory": "Pola oznaczone gwiazdką * są obowiązkowe",
-  "zimbra_organization_add_form_input_name_title": "Nazwa",
+  "zimbra_organization_add_form_input_name_title": "Nazwisko",
   "zimbra_organization_add_form_input_name_placeholder": "nazwa",
   "zimbra_organization_add_form_input_name_error": "Pole obowiązkowe Może składać się wyłącznie ze znaków alfanumerycznych.",
   "zimbra_organization_add_form_input_label_title": "Etykieta organizacji",
