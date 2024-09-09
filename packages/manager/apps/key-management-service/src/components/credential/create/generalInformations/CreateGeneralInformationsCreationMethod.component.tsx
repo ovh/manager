@@ -2,7 +2,7 @@ import {
   CommonTitle,
   Description,
   Subtitle,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_TYPOGRAPHY_SIZE,
   ODS_THEME_COLOR_INTENT,
