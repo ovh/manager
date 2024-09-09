@@ -1,15 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { OkmsCredential } from '@/types/okmsCredential.type';
-import {
-  getOkmsCredential,
-  getOkmsCredentials,
-  getOkmsCredentialsQueryKey,
-  getOkmsCredentialQueryKey,
-} from '../api/okmsCredential';
+import { getOkmsCredential, getOkmsCredentials } from '../api/okmsCredential';
 import { ErrorResponse } from '@/types/api.type';
 
 /* Credential List */
+
+export const getOkmsCredentialsQueryKey = (okmsId: string) => [
+  `get/okms/resource/${okmsId}/credential`,
+];
 
 export const useOkmsCredentials = (okmsId: string) => {
   return useQuery<{ data: OkmsCredential[] }, ApiError>({
@@ -23,6 +22,14 @@ export const useOkmsCredentials = (okmsId: string) => {
 };
 
 /* Credential */
+
+export const getOkmsCredentialQueryKey = ({
+  okmsId,
+  credentialId,
+}: {
+  okmsId: string;
+  credentialId: string;
+}) => [`get/okms/resource/${okmsId}/credential/${credentialId}`];
 
 export const useOkmsCredentialById = ({
   okmsId,
