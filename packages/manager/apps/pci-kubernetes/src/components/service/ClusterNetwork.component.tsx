@@ -39,6 +39,8 @@ export default function ClusterNetwork({
     kubeDetail.privateNetworkId,
   );
 
+  const shouldLoadSubnets = !!kubeDetail.privateNetworkId;
+
   const ip = kubeDetail?.privateNetworkConfiguration?.defaultVrackGateway;
   const publicNetwork =
     !kubeDetail?.privateNetworkConfiguration ||
@@ -100,50 +102,56 @@ export default function ClusterNetwork({
             </OsdsText>
           }
         />
-        {(kubeSubnet || isSubnetPending) && (
-          <TileLine
-            title={t('kube_service_cluster_network_subnet')}
-            value={
-              <OsdsText
-                className="mb-4"
-                size={ODS_TEXT_SIZE._400}
-                level={ODS_TEXT_LEVEL.body}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {isSubnetPending && <OsdsSkeleton />}
-                {!isSubnetPending && (
-                  <span>
-                    {kubeSubnet?.id}
-                    {' - '}
-                    {kubeSubnet?.cidr}
-                  </span>
-                )}
-              </OsdsText>
-            }
-          />
+        {shouldLoadSubnets && (
+          <>
+            {(kubeSubnet || isSubnetPending) && (
+              <TileLine
+                title={t('kube_service_cluster_network_subnet')}
+                value={
+                  <OsdsText
+                    className="mb-4"
+                    size={ODS_TEXT_SIZE._400}
+                    level={ODS_TEXT_LEVEL.body}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                  >
+                    {isSubnetPending && <OsdsSkeleton />}
+                    {!isSubnetPending && (
+                      <span>
+                        {kubeSubnet?.id}
+                        {' - '}
+                        {kubeSubnet?.cidr}
+                      </span>
+                    )}
+                  </OsdsText>
+                }
+              />
+            )}
+
+            {(kubeLoadBalancerSubnet || isSubnetPending) && (
+              <TileLine
+                title={t('kube_service_cluster_network_lb_subnet')}
+                value={
+                  <OsdsText
+                    className="mb-4"
+                    size={ODS_TEXT_SIZE._400}
+                    level={ODS_TEXT_LEVEL.body}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                  >
+                    {isSubnetPending && <OsdsSkeleton />}
+                    {!isSubnetPending && (
+                      <span>
+                        {kubeLoadBalancerSubnet?.id}
+                        {' - '}
+                        {kubeLoadBalancerSubnet?.cidr}
+                      </span>
+                    )}
+                  </OsdsText>
+                }
+              />
+            )}
+          </>
         )}
-        {(kubeLoadBalancerSubnet || isSubnetPending) && (
-          <TileLine
-            title={t('kube_service_cluster_network_lb_subnet')}
-            value={
-              <OsdsText
-                className="mb-4"
-                size={ODS_TEXT_SIZE._400}
-                level={ODS_TEXT_LEVEL.body}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {isSubnetPending && <OsdsSkeleton />}
-                {!isSubnetPending && (
-                  <span>
-                    {kubeLoadBalancerSubnet?.id}
-                    {' - '}
-                    {kubeLoadBalancerSubnet?.cidr}
-                  </span>
-                )}
-              </OsdsText>
-            }
-          />
-        )}
+
         {(kubeSubnet || kubeLoadBalancerSubnet) && (
           <OsdsButton
             color={ODS_THEME_COLOR_INTENT.primary}
