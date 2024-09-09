@@ -121,7 +121,9 @@ export const useDatagridColumns = () => {
             inline
             size={ODS_CHIP_SIZE.sm}
           >
-            {tKubeNodes(`kube_nodes_status_${pool.status}`)}
+            <span className="whitespace-nowrap">
+              {tKubeNodes(`kube_nodes_status_${pool.status}`)}
+            </span>
           </OsdsChip>
         </DataGridTextCell>
       ),
