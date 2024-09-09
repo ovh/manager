@@ -158,11 +158,9 @@ export default function OnBoardingPage() {
           navigate(`/pci/projects/${projectId}/kubernetes/new`)
         }
       >
-        <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
-          {tileItems.map((tile) => (
-            <Card key={tile.id} href={tile.href} texts={tile.texts} />
-          ))}
-        </aside>
+        {tileItems.map((tile) => (
+          <Card key={tile.id} href={tile.href} texts={tile.texts} />
+        ))}
       </OnboardingLayout>
       <Suspense>
         <Outlet />
