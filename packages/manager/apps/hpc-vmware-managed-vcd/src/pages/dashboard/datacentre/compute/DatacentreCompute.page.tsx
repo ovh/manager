@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { DataGridTextCell } from '@ovhcloud/manager-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { VHOSTS_TITLE } from './DatacentreCompute.constants';
 import DatagridContainer, {
   TDatagridContainerProps,

@@ -3,7 +3,7 @@ import {
   DashboardTile,
   Description,
   Links,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { OsdsChip, OsdsLink } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';

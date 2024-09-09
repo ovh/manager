@@ -4,7 +4,7 @@ import {
   Links,
   Clipboard,
   DashboardTile,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_HUE,
   ODS_THEME_COLOR_INTENT,
