@@ -29,5 +29,9 @@
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_minor": "Zainstaluj aktualizację pomocniczą ({{version}} - build {{build}})",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_reschedule_update": "Zmień datę aktualizacji",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_move": "Przypisz bloki IP do innej usługi",
-  "ovhManagerPccDashboardGeneralInformation_commercial_range": "Nazwa oferty"
+  "ovhManagerPccDashboardGeneralInformation_commercial_range": "Gama",
+  "ovhManagerPccDashboardGeneralInformation_loadLocation_error": "Wystąpił błąd podczas pobierania danych niezbędnych do wyświetlenia informacji o lokalizacji.",
+  "ovhManagerPccDashboardGeneralInformation_location_zone": "Strefa Private Cloud",
+  "ovhManagerPccDashboardGeneralInformation_location_region_location": "Lokalizacja",
+  "ovhManagerPccDashboardGeneralInformation_location_region": "Region"
 }
