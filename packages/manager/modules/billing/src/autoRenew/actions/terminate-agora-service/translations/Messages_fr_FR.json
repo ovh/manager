@@ -11,5 +11,9 @@
   "autorenew_agora_terminate_service_success_DBAAS_LOGS": "Votre demande de résiliation de votre LDP a été prise en compte. Un e-mail contenant la procédure vous a été envoyé.",
   "autorenew_agora_terminate_service_error_DBAAS_LOGS": "Une erreur est survenue lors de la demande de résiliation de votre LDP. {{error}}",
   "autorenew_agora_terminate_service_error_VRACK_SERVICES_RESOURCE": "Une erreur est survenue lors de la demande de résiliation de vRack Services. {{error}}",
-  "autorenew_agora_terminate_service_confirm_input": "Entrez \"TERMINATE\" dans le champ ci-dessous pour confirmer"
+  "autorenew_agora_terminate_service_confirm_input": "Entrez \"TERMINATE\" dans le champ ci-dessous pour confirmer",
+  "autorenew_agora_terminate_service_NUTANIX": "Résilier mon Nutanix",
+  "autorenew_agora_terminate_service_warning_NUTANIX": "Veuillez confirmer la résiliation de votre Nutanix",
+  "autorenew_agora_terminate_service_success_NUTANIX": "Votre demande de résiliation de votre Nutanix a été prise en compte. Un e-mail contenant la procédure vous a été envoyé.",
+  "autorenew_agora_terminate_service_error_NUTANIX": "Une erreur est survenue lors de la demande de résiliation de votre Nutanix. {{error}}"
 }

@@ -18,6 +18,7 @@ import editName from './edit-display-name';
 import licenceTile from '../component/licence-tile/module';
 import redeploy from './redeploy';
 import datacenterName from '../component/datacenter-name/module';
+import resiliate from './resiliate';
 
 const moduleName = 'ovhManagerNutanixGeneralInfo';
 
@@ -37,6 +38,7 @@ angular
     licenceTile,
     redeploy,
     datacenterName,
+    resiliate,
   ])
   .config(routing)
   .component('nutanixGeneralInfo', component)
