@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { Subtitle } from '@ovhcloud/manager-components';
+import { Subtitle } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';

@@ -4,7 +4,7 @@ import {
   DataGridClipboardCell,
   DataGridTextCell,
   Links,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { OkmsCredential } from '@/types/okmsCredential.type';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { CredentialStatus } from '../credentialStatus/CredentialStatus.component';
@@ -12,12 +12,14 @@ import { CredentialStatus } from '../credentialStatus/CredentialStatus.component
 export const DatagridCredentialCellName = (credential: OkmsCredential) => {
   const navigate = useNavigate();
   return (
-    <Links
-      onClickReturn={() => {
-        navigate(`${credential.id}`);
-      }}
-      label={credential.name}
-    />
+    <div>
+      <Links
+        onClickReturn={() => {
+          navigate(`${credential.id}`);
+        }}
+        label={credential.name}
+      />
+    </div>
   );
 };
 
