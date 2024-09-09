@@ -1,4 +1,4 @@
-import { CommonTitle, Description } from '@ovhcloud/manager-components';
+import { CommonTitle, Description } from '@ovh-ux/manager-react-components';
 import {
   ODS_INPUT_TYPE,
   OdsInputValueChangeEventDetail,

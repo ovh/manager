@@ -1,44 +1,68 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useQueryClient } from '@tanstack/react-query';
-import { BaseLayout, ErrorBanner } from '@ovhcloud/manager-components';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import {
+  OdsTabsChangeEventDetail,
+  OsdsTabsCustomEvent,
+} from '@ovhcloud/ods-components';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { BaseLayout, ErrorBanner } from '@ovh-ux/manager-react-components';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
 import {
   OsdsTabBar,
   OsdsTabBarItem,
   OsdsTabs,
 } from '@ovhcloud/ods-components/react';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
-import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
-
+import {
+  getOkmsCredentialQueryKey,
+  useOkmsCredentialById,
+} from '@/data/hooks/useOkmsCredential';
 import Loading from '@/components/Loading/Loading';
 import { ROUTES_URLS } from '@/routes/routes.constants';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { useOKMSById } from '@/data/hooks/useOKMS';
-import { useOkmsCredentialById } from '@/data/hooks/useOkmsCredential';
-import { getOkmsCredentialQueryKey } from '@/data/api/okmsCredential';
 
-const Credentials = () => {
+const CredentialDashboard = () => {
+  const navigate = useNavigate();
+  const { t } = useTranslation('key-management-service/credential');
+  const [activePanel, setActivePanel] = useState('');
+  const location = useLocation();
   const { okmsId, credentialId } = useParams();
-  const { data: okms } = useOKMSById(okmsId);
-  const { data: credential, error, isLoading } = useOkmsCredentialById({
+
+  const { data: okms, isLoading: isLoadingKms, error: errorKms } = useOKMSById(
+    okmsId,
+  );
+
+  const {
+    data,
+    isLoading: isLoadingCredential,
+    error: errorCredential,
+  } = useOkmsCredentialById({
     okmsId,
     credentialId,
   });
-  const { t } = useTranslation('key-management-service/credential');
-  const queryClient = useQueryClient();
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    setActivePanel(location.pathname);
+  }, [location]);
 
-  const kms = okms?.data;
-  const kmsCredential = credential?.data;
+  const handleTabChange = (
+    event: OsdsTabsCustomEvent<OdsTabsChangeEventDetail>,
+  ) => {
+    const {
+      detail: { panel },
+    } = event;
+    setActivePanel(panel);
+    navigate(panel);
+  };
 
-  if (isLoading) return <Loading />;
+  if (isLoadingCredential || isLoadingKms) return <Loading />;
 
-  if (error)
+  if (errorCredential || errorKms) {
     return (
       <ErrorBanner
-        error={error.response}
+        error={errorKms?.response || errorCredential?.response}
         onRedirectHome={() => navigate(ROUTES_URLS.listing)}
         onReloadPage={() =>
           queryClient.refetchQueries({
@@ -47,11 +71,14 @@ const Credentials = () => {
         }
       />
     );
+  }
+
+  const credential = data.data;
 
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
-      label: kms.iam.displayName,
+      label: okms.data.iam.displayName,
       navigateTo: `/${okmsId}`,
     },
     {
@@ -61,8 +88,13 @@ const Credentials = () => {
     },
     {
       id: credentialId,
-      label: kmsCredential.name,
+      label: credential.name,
       navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}`,
+    },
+    {
+      id: ROUTES_URLS.credentialIdentities,
+      label: t('key_management_service_credential_identities'),
+      navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}/${ROUTES_URLS.credentialIdentities}`,
     },
   ];
 
@@ -71,18 +103,31 @@ const Credentials = () => {
       <BaseLayout
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         header={{
-          title: kmsCredential.name || kmsCredential.id,
+          title: credential.name || credential.id,
           headerButton: <KmsGuidesHeader />,
         }}
+        backLinkLabel={t(
+          'key_management_service_credential_dashboard_backlink',
+        )}
+        onClickReturn={() => navigate(`/${okmsId}/${ROUTES_URLS.credentials}`)}
         tabs={
-          <OsdsTabs>
+          <OsdsTabs
+            panel={activePanel}
+            onOdsTabsChanged={(event) => handleTabChange(event)}
+          >
             <OsdsTabBar slot="top">
-              <OsdsTabBarItem panel="tab1" role="tab">
+              <OsdsTabBarItem
+                panel={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}`}
+                role="tab"
+              >
                 {t(
                   'key_management_service_credential_dashboard_tab_informations',
                 )}
               </OsdsTabBarItem>
-              <OsdsTabBarItem panel="tab2" role="tab">
+              <OsdsTabBarItem
+                panel={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}/${ROUTES_URLS.credentialIdentities}`}
+                role="tab"
+              >
                 {t(
                   'key_management_service_credential_dashboard_tab_identities',
                 )}
@@ -90,10 +135,11 @@ const Credentials = () => {
             </OsdsTabBar>
           </OsdsTabs>
         }
-      />
-      <Outlet />
+      >
+        <Outlet context={credential} />
+      </BaseLayout>
     </Suspense>
   );
 };
 
-export default Credentials;
+export default CredentialDashboard;

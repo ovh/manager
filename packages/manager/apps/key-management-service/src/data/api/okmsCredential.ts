@@ -11,21 +11,9 @@ export const getOkmsCredentials = async (
   return apiClient.v2.get(`okms/resource/${okmsId}/credential`);
 };
 
-export const getOkmsCredentialsQueryKey = (okmsId: string) => [
-  `get/okms/resource/${okmsId}/credential`,
-];
-
 /**
  *  Get okms Credential
  */
-
-export const getOkmsCredentialQueryKey = ({
-  okmsId,
-  credentialId,
-}: {
-  okmsId: string;
-  credentialId: string;
-}) => [`get/okms/resource/${okmsId}/credential/${credentialId}`];
 
 export const getOkmsCredential = async ({
   okmsId,
@@ -33,6 +21,6 @@ export const getOkmsCredential = async ({
 }: {
   okmsId: string;
   credentialId: string;
-}): Promise<{ data: OkmsCredential }> => {
+}): Promise<ApiResponse<OkmsCredential>> => {
   return apiClient.v2.get(`okms/resource/${okmsId}/credential/${credentialId}`);
 };

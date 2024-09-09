@@ -2,13 +2,16 @@ import {
   Datagrid,
   DatagridColumn,
   ErrorBanner,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ROUTES_URLS } from '@/routes/routes.constants';
-import { useOkmsCredentials } from '@/data/hooks/useOkmsCredential';
+import {
+  getOkmsCredentialsQueryKey,
+  useOkmsCredentials,
+} from '@/data/hooks/useOkmsCredential';
 import {
   DatagridCredentialCellCreationDate,
   DatagridCredentialCellExpirationDate,
@@ -17,7 +20,6 @@ import {
   DatagridCredentialCellName,
   DatagridCredentialCellStatus,
 } from '@/components/credential/credentialDatagrid/CredentialDatagridCells';
-import { getOkmsCredentialsQueryKey } from '@/data/api/okmsCredential';
 import Loading from '@/components/Loading/Loading';
 import { OkmsCredential } from '@/types/okmsCredential.type';
 
