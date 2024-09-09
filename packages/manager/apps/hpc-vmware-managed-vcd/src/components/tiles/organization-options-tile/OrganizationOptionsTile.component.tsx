@@ -1,4 +1,5 @@
 import React from 'react';
+import { useOrderURL, vcdProductSettings } from '@ovh-ux/manager-module-order';
 import {
   ActionMenu,
   DashboardTile,
@@ -13,6 +14,11 @@ export default function OrganizationOptionsTile({
   readonly isLicenseActive: boolean;
 }) {
   const { t } = useTranslation('dashboard');
+  const orderBaseUrl = useOrderURL('express_review_base');
+  const orderLink = `${orderBaseUrl}?products=~(${vcdProductSettings})`;
+  const handleActivateLicense = () => {
+    window.open(orderLink, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <div className="h-fit">
@@ -32,7 +38,15 @@ export default function OrganizationOptionsTile({
                   {t('managed_vcd_dashboard_windows_license_unactive')}
                 </Description>
                 <ActionMenu
-                  items={[]}
+                  items={[
+                    {
+                      id: 1,
+                      label: t(
+                        'managed_vcd_dashboard_windows_license_activate',
+                      ),
+                      onClick: handleActivateLicense,
+                    },
+                  ]}
                   isCompact
                   icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
                 />
@@ -44,3 +58,4 @@ export default function OrganizationOptionsTile({
     </div>
   );
 }
+// orderconfirmation.tsx // order funnel example
