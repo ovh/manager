@@ -76,9 +76,9 @@
             ></span>
         </div>
 
-        <div data-ng-if="$ctrl.options[rule.type].canEditIndividually">
+        <div data-ng-if="$ctrl.options[contactType].canEditIndividually">
             <oui-checkbox
-                data-model="$ctrl.options[rule.type].areFieldsEditedIndividually"
+                data-model="$ctrl.options[contactType].areFieldsEditedIndividually"
             >
                 <span data-translate="domain_optin_edit_individually"></span>
             </oui-checkbox>
@@ -86,7 +86,7 @@
             <div
                 class="d-flex flex-row flex-wrap"
                 data-ng-repeat="field in rule.fields track by $index"
-                data-ng-if="$ctrl.options[rule.type].areFieldsEditedIndividually"
+                data-ng-if="$ctrl.options[contactType].areFieldsEditedIndividually"
             >
                 <label
                     for="{{:: rule.type_field }}"
