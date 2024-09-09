@@ -1,6 +1,7 @@
 import { ResponseAPIError } from '@ovh-ux/manager-pci-common';
 import {
   ActionMenu,
+  Clipboard,
   Links,
   LinkType,
   useNotifications,
@@ -19,7 +20,6 @@ import {
 } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
-  OsdsClipboard,
   OsdsDivider,
   OsdsIcon,
   OsdsPopover,
@@ -54,7 +54,6 @@ export default function ClusterAccessAndSecurity({
   kubeDetail,
 }: Readonly<ClusterAccessAndSecurityProps>) {
   const { t } = useTranslation('service');
-  const { t: tCommon } = useTranslation('common');
 
   const { kubeId, projectId } = useParams();
   const { addError } = useNotifications();
@@ -116,15 +115,11 @@ export default function ClusterAccessAndSecurity({
         <TileLine
           title={t('kube_service_cluster_api_url')}
           value={
-            <OsdsClipboard
+            <Clipboard
               aria-label="clipboard"
               value={kubeDetail?.url}
               data-testid="clusterAccessAndSecurity-kubeUrl"
-            >
-              <span slot="success-message">
-                {tCommon('common_clipboard_copied')}
-              </span>
-            </OsdsClipboard>
+            />
           }
         />
 
@@ -228,16 +223,11 @@ export default function ClusterAccessAndSecurity({
             <div className="flex items-center justify-between">
               {isOidcDefined ? (
                 <div className="w-fit">
-                  <OsdsClipboard
+                  <Clipboard
                     aria-label="clipboard"
                     value={oidcProvider.issuerUrl}
                     data-testid="ClusterAccessAndSecurity-ClipboardIssuerUrl"
-                    className="block"
-                  >
-                    <span slot="success-message">
-                      {tCommon('common_clipboard_copied')}
-                    </span>
-                  </OsdsClipboard>
+                  />
                   <OsdsText
                     className="mb-4 block"
                     size={ODS_TEXT_SIZE._400}
