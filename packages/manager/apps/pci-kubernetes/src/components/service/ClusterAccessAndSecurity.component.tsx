@@ -114,13 +114,7 @@ export default function ClusterAccessAndSecurity({
 
         <TileLine
           title={t('kube_service_cluster_api_url')}
-          value={
-            <Clipboard
-              aria-label="clipboard"
-              value={kubeDetail?.url}
-              data-testid="clusterAccessAndSecurity-kubeUrl"
-            />
-          }
+          value={<Clipboard aria-label="clipboard" value={kubeDetail?.url} />}
         />
 
         <TileLine
@@ -226,7 +220,6 @@ export default function ClusterAccessAndSecurity({
                   <Clipboard
                     aria-label="clipboard"
                     value={oidcProvider.issuerUrl}
-                    data-testid="ClusterAccessAndSecurity-ClipboardIssuerUrl"
                   />
                   <OsdsText
                     className="mb-4 block"
