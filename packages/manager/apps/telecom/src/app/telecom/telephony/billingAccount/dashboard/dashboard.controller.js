@@ -306,28 +306,13 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   };
 
   this.applyThemeGlobally = function applyThemeGlobally() {
-    let promise;
     const applyTheme = () => {
       return softphoneService.putSoftphoneThemeGlobally(
-        this.billingAccountId,
+        $stateParams.billingAccount,
         this.currentTheme,
       );
     };
-    if (!this.fileModel) {
-      promise = $q.resolve(applyTheme());
-    } else {
-      promise = softphoneService
-        .uploadDocument(this.fileModel[0])
-        .then((url) => {
-          softphoneService
-            .putSoftphoneLogo(
-              this.billingAccountId,
-              this.fileModel[0].infos.name,
-              url,
-            )
-            .then(applyTheme());
-        });
-    }
+    const promise = $q.resolve(applyTheme());
 
     promise.catch(
       (error) =>
@@ -340,6 +325,41 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
           ),
         ),
     );
+  };
+
+  this.applyLogoGlobally = function applyLogoGlobally() {
+    if (!this.fileModel) {
+      return;
+    }
+    const promise = softphoneService
+      .uploadDocument(this.fileModel[0])
+      .then((url) => {
+        softphoneService.putSoftphoneLogoGlobally(
+          $stateParams.billingAccount,
+          this.fileModel[0].infos.name,
+          url,
+        );
+      });
+
+    promise.catch(
+      (error) =>
+        new TucToastError(
+          $translate.instant(
+            'telephony_group_line_softphone_apply_logo_error',
+            {
+              errorMessage: error.message,
+            },
+          ),
+        ),
+    );
+  };
+
+  this.deleteGlobalLogo = function deleteGlobalLogo() {
+    softphoneService.putSoftphoneLogoGlobally($stateParams.billingAccount);
+  };
+
+  this.helpTextForLogo = function helpTextForLogo() {
+    return `${this.acceptedFormatsDesc} (< ${this.maxSizeLogoFile / 1000} KB)`;
   };
 
   /*= =====================================
@@ -366,6 +386,13 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
     };
 
     self.billingDepositLink = billingDepositLink;
+
+    softphoneService
+      .getGlobalLogo(this.billingAccountId)
+      .then(({ url, filename }) => {
+        this.logoUrl = url;
+        this.logoFilename = filename;
+      });
 
     getGroup().then(() => {
       self.actions = [

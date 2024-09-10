@@ -121,7 +121,7 @@ export default class SofpthoneService {
       .then(({ data }) => data);
   }
 
-  putSoftphoneLogoGlobally(billingAccount, filename, url) {
+  putSoftphoneLogoGlobally(billingAccount, filename = '', url = '') {
     return this.$http
       .put(`/telephony/${billingAccount}/softphone/logo`, {
         filename,
@@ -147,6 +147,12 @@ export default class SofpthoneService {
   getLogo(billingAccount, serviceName) {
     return this.$http
       .get(`/telephony/${billingAccount}/line/${serviceName}/softphone/logo`)
+      .then(({ data }) => data);
+  }
+
+  getGlobalLogo(billingAccount) {
+    return this.$http
+      .get(`/telephony/${billingAccount}/softphone/logo`)
       .then(({ data }) => data);
   }
 
