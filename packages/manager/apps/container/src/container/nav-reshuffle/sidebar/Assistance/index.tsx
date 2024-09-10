@@ -7,6 +7,8 @@ import useContainer from '@/core/container';
 import { Node } from '../navigation-tree/node';
 import { AssistanceLinkItem } from './AssistanceLinkItem';
 import { ShortAssistanceLinkItem } from './ShortAssistanceLinkItem';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_TYPOGRAPHY_LEVEL, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 
 interface AssistanceProps {
   nodeTree?: Node;
@@ -80,10 +82,12 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   return (
     <ul className="mt-auto pb-3" id="useful-links" role="menu">
       {!isShort &&
-        <li className="assistance_header px-3 mb-3">
-          <h2 className="flex justify-between">
-            <span>{t('sidebar_assistance_title')}</span>
-          </h2>
+        <li className="px-3 mb-3">
+          <OsdsText className="flex justify-between"
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._400} contrasted>
+            {t('sidebar_assistance_title')}
+          </OsdsText>
         </li>}
       {nodeTree.children.map((node: Node) => (isShort ?
         <ShortAssistanceLinkItem
