@@ -36,6 +36,7 @@ export type TDbaasStream = {
   retentionId: string;
   streamId: string;
   indexingEnabled: boolean;
+  nbSubscription: number;
 };
 
 export async function getStream(serviceName: string, streamId: string) {
