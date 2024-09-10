@@ -41,5 +41,11 @@
   "createRancherOVHCloudPlanDescription": "Create or manage Managed Kubernetes Service or ‘self-managed’ ‘downstream clusters’ on OVHcloud Public Cloud, or via your own machines. You can also register external clusters (without cloud management)",
   "createRancherStandardPlanDescription": "Create or register downstream clusters on any Rancher-supported public cloud, or on an automatable private cloud (e.g., VMware vSphere), including scenarios supported by the OVHcloud Edition solution.",
   "createNameModaleHelperInput": "The service name must be between 3 and 63 characters, must start and end with lower-case alphanumeric characters (a to z and 0 to 9), and may include the following punctuation marks: ‘_’ ‘.’ and ‘-’.",
-  "generateAccessModalPasswordDescription": "Copy this temporary password to log in to your Rancher. After logging in, you will be prompted to create a new password for security reasons."
+  "generateAccessModalPasswordDescription": "Copy this temporary password to log in to your Rancher. After logging in, you will be prompted to create a new password for security reasons.",
+  "updateOfferModalCancelButton": "Cancel",
+  "updateOfferModalValidateButton": "Confirm",
+  "updateOfferModaleTitle": "Change Offer",
+  "updateOfferModalDescription": "You are about to change your current offer to the {{availableServicePlan}} offer. You will be charged {{planPricing}} excluding tax per orchestrated vCPUs. This change will take effect immediately and will not impact your downstream clusters or the data in your managed Rancher. Please confirm if you wish to proceed.",
+  "updateOfferPending": "Your offer change has been successfully processed. Please wait, it may take a few minutes.",
+  "updateOfferError": "An error occurred: {{errorMessage}}"
 }
