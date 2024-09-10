@@ -1,13 +1,12 @@
 {
   "dedicatedCloud_vmware_cloud_director_order_title": "Confirmación de la migración hacia la solución VCD",
-  "dedicatedCloud_vmware_cloud_director_order_costs": "Ver los precios VCD correspondientes a los hosts",
+  "dedicatedCloud_vmware_cloud_director_order_info": "La validación de la migración puede tardar unos minutos en completarse.",
+  "dedicatedCloud_vmware_cloud_director_order_terms": "Ver las condiciones particulares del servicio Managed VCD",
   "dedicatedCloud_vmware_cloud_director_order_host": "Host {{host}}: ",
   "dedicatedCloud_vmware_cloud_director_order_hosts_list": "Lista de hosts del {{pcc}}:",
   "dedicatedCloud_vmware_cloud_director_order_success": "Haga clic en este <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">enlace</a> para confirmar la migración de su servicio.",
   "dedicatedCloud_vmware_cloud_director_order_error": "Se ha producido un error al confirmar la migración hacia la solución VCD",
   "dedicatedCloud_vmware_cloud_director_order_cancel": "Cancelar",
   "dedicatedCloud_vmware_cloud_director_order_confirm": "Siguiente",
-  "dedicatedCloud_vmware_cloud_director_order_terminate": "Cerrar",
-  "dedicatedCloud_vmware_cloud_director_order_info": "La validación de la migración puede tardar unos minutos en completarse.",
-  "dedicatedCloud_vmware_cloud_director_order_terms": "Ver las condiciones particulares del servicio Managed VCD"
+  "dedicatedCloud_vmware_cloud_director_order_terminate": "Cerrar"
 }
