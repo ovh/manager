@@ -3,7 +3,6 @@ import ngOvhTelecomUniverseComponents from '@ovh-ux/ng-ovh-telecom-universe-comp
 import '@uirouter/angularjs';
 import routing from './softphone.routing';
 import component from './softphone.component';
-import themeComponent from './theme/theme.component';
 import softphoneService from './softphone.service';
 import './softphone.scss';
 import deleteModalComponent from './deleteModal/delete-modal.component';
@@ -18,7 +17,6 @@ angular
     'ui.router',
     'oc.lazyLoad',
   ])
-  .component('themePicker', themeComponent)
   .component('telecomTelephonyLineSoftphoneDeleteModal', deleteModalComponent)
   .component('ovhManagerTelecomTelephonyLineSoftphoneComponent', component)
   .service('softphoneService', softphoneService)
