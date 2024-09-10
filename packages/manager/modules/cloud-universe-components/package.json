@@ -34,7 +34,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-cloud-universe-components' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/ui-kit": "^6.10.4",
+    "@ovh-ux/ui-kit": "^6.10.5",
     "bootstrap": "~3.3.0",
     "jsurl": "^0.1.5",
     "lodash": "^4.17.15",
