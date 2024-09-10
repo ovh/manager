@@ -65,6 +65,7 @@ import {
   postZimbraDomain,
 } from '@/api/domain';
 import { GUIDES_LIST } from '@/guides.constants';
+import { DNS_CONFIG_TYPE, DNS_RECORD_TYPE } from '@/utils';
 
 export default function AddDomain() {
   const { t } = useTranslation('domains/addDomain');
@@ -92,27 +93,25 @@ export default function AddDomain() {
     selectedRadioConfigurationType,
     setSelectedRadioConfigurationType,
   ] = useState('');
-  const [expertConfigItemsState, setExpertConfigItemsState] = useState({});
+  const [expertConfigItemsState, setExpertConfigItemsState] = useState<
+    Record<string, boolean>
+  >({});
 
   const expertConfigItems = [
     {
-      name: 'SRV',
-      key: 'SRV',
+      name: DNS_RECORD_TYPE.SRV,
       label: t('zimbra_domains_add_domain_configuration_expert_configure_srv'),
     },
     {
-      name: 'MX',
-      key: 'MX',
+      name: DNS_RECORD_TYPE.MX,
       label: t('zimbra_domains_add_domain_configuration_expert_configure_mx'),
     },
     {
-      name: 'SPF',
-      key: 'SPF',
+      name: DNS_RECORD_TYPE.SPF,
       label: t('zimbra_domains_add_domain_configuration_expert_configure_spf'),
     },
     {
-      name: 'DKIM',
-      key: 'DKIM',
+      name: DNS_RECORD_TYPE.DKIM,
       label: t('zimbra_domains_add_domain_configuration_expert_configure_dkim'),
     },
   ];
@@ -417,60 +416,37 @@ export default function AddDomain() {
                   handleRadioConfigurationTypeChange(value)
                 }
               >
-                <OsdsRadio value="standardConfiguration">
-                  <OsdsRadioButton
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    size={ODS_RADIO_BUTTON_SIZE.sm}
-                  >
-                    <div slot="end" className="flex flex-col">
-                      <OsdsText
-                        color={ODS_THEME_COLOR_INTENT.text}
-                        size={ODS_TEXT_SIZE._400}
-                        level={ODS_TEXT_LEVEL.body}
+                {[DNS_CONFIG_TYPE.STANDARD, DNS_CONFIG_TYPE.EXPERT].map(
+                  (type) => (
+                    <OsdsRadio key={type} value={`${type}Configuration`}>
+                      <OsdsRadioButton
+                        color={ODS_THEME_COLOR_INTENT.primary}
+                        size={ODS_RADIO_BUTTON_SIZE.sm}
                       >
-                        {t(
-                          'zimbra_domains_add_domain_configuration_choice_standard',
-                        )}
-                      </OsdsText>
-                      <OsdsText
-                        color={ODS_THEME_COLOR_INTENT.text}
-                        size={ODS_TEXT_SIZE._100}
-                        level={ODS_TEXT_LEVEL.body}
-                      >
-                        {t(
-                          'zimbra_domains_add_domain_configuration_choice_standard_info',
-                        )}
-                      </OsdsText>
-                    </div>
-                  </OsdsRadioButton>
-                </OsdsRadio>
-                <OsdsRadio value="expertConfiguration">
-                  <OsdsRadioButton
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    size={ODS_RADIO_BUTTON_SIZE.sm}
-                  >
-                    <div slot="end" className="flex flex-col">
-                      <OsdsText
-                        color={ODS_THEME_COLOR_INTENT.text}
-                        size={ODS_TEXT_SIZE._400}
-                        level={ODS_TEXT_LEVEL.body}
-                      >
-                        {t(
-                          'zimbra_domains_add_domain_configuration_choice_expert',
-                        )}
-                      </OsdsText>
-                      <OsdsText
-                        color={ODS_THEME_COLOR_INTENT.text}
-                        size={ODS_TEXT_SIZE._100}
-                        level={ODS_TEXT_LEVEL.body}
-                      >
-                        {t(
-                          'zimbra_domains_add_domain_configuration_choice_expert_info',
-                        )}
-                      </OsdsText>
-                    </div>
-                  </OsdsRadioButton>
-                </OsdsRadio>
+                        <div slot="end" className="flex flex-col">
+                          <OsdsText
+                            color={ODS_THEME_COLOR_INTENT.text}
+                            size={ODS_TEXT_SIZE._400}
+                            level={ODS_TEXT_LEVEL.body}
+                          >
+                            {t(
+                              `zimbra_domains_add_domain_configuration_choice_${type}`,
+                            )}
+                          </OsdsText>
+                          <OsdsText
+                            color={ODS_THEME_COLOR_INTENT.text}
+                            size={ODS_TEXT_SIZE._100}
+                            level={ODS_TEXT_LEVEL.body}
+                          >
+                            {t(
+                              `zimbra_domains_add_domain_configuration_choice_${type}_info`,
+                            )}
+                          </OsdsText>
+                        </div>
+                      </OsdsRadioButton>
+                    </OsdsRadio>
+                  ),
+                )}
               </OsdsRadioGroup>
             </OsdsFormField>
           )}
@@ -488,9 +464,9 @@ export default function AddDomain() {
                   components={{ bold: <strong /> }}
                 />
               </OsdsText>
-              {expertConfigItems.map(({ name, label, key }) => (
+              {expertConfigItems.map(({ name, label }) => (
                 <OsdsCheckbox
-                  key={key}
+                  key={name}
                   checked={expertConfigItemsState[name]}
                   name={name}
                   onOdsCheckedChange={handleExpertConfigItemsChange}
