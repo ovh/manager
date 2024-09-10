@@ -6,13 +6,17 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { useParams } from 'react-router-dom';
+import useLicenseOrder from '@/data/hooks/useLicenseOrder';
 
 export default function OrganizationOptionsTile({
   isLicenseActive,
-}: {
-  readonly isLicenseActive: boolean;
-}) {
+}: Readonly<{
+  isLicenseActive: boolean;
+}>) {
   const { t } = useTranslation('dashboard');
+  const { id } = useParams();
+  const { redirectToLicenseOrder } = useLicenseOrder(id);
 
   return (
     <div className="h-fit">
@@ -32,7 +36,15 @@ export default function OrganizationOptionsTile({
                   {t('managed_vcd_dashboard_windows_license_unactive')}
                 </Description>
                 <ActionMenu
-                  items={[]}
+                  items={[
+                    {
+                      id: 1,
+                      label: t(
+                        'managed_vcd_dashboard_windows_license_activate',
+                      ),
+                      onClick: redirectToLicenseOrder,
+                    },
+                  ]}
                   isCompact
                   icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
                 />
