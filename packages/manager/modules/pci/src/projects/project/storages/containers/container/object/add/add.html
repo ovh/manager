@@ -42,7 +42,7 @@
             />
         </oui-field>
         <oui-field
-            data-ng-if="$ctrl.container.s3StorageType"
+            data-ng-if="$ctrl.container.s3StorageType && $ctrl.showStorageClass()"
             data-label="{{:: 'pci_projects_project_storages_containers_container_object_add_storage_class_label' | translate }}"
         >
             <oui-radio-group data-model="$ctrl.storageClass">

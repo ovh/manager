@@ -1,7 +1,12 @@
 import find from 'lodash/find';
 import { getCriteria } from '../../project.utils';
 
-import { OBJECT_CONTAINER_OFFERS_TYPES } from './containers.constants';
+import {
+  OBJECT_CONTAINER_OFFERS_TYPES,
+  OBJECT_CONTAINER_MODE_MONO_ZONE,
+  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  OBJECT_CONTAINER_DEPLOIMENT_MODE_TYPES,
+} from './containers.constants';
 
 export default class PciStoragesContainersController {
   /* @ngInject */
@@ -17,6 +22,8 @@ export default class PciStoragesContainersController {
     this.publicToggleLoading = false;
     this.OBJECT_CONTAINER_OFFERS_TYPES = OBJECT_CONTAINER_OFFERS_TYPES;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
+    this.OBJECT_CONTAINER_MODE_MONO_ZONE = OBJECT_CONTAINER_MODE_MONO_ZONE;
+    this.OBJECT_CONTAINER_MODE_MULTI_ZONES = OBJECT_CONTAINER_MODE_MULTI_ZONES;
   }
 
   $onInit() {
@@ -41,6 +48,9 @@ export default class PciStoragesContainersController {
       this.trackPage(this.trackingTag);
     }
     this.setContainerLoadingErrors();
+
+    this.setDeploimentModeOptions();
+    this.addDeploimentMode();
   }
 
   setSolutionTypeOptions() {
@@ -52,6 +62,27 @@ export default class PciStoragesContainersController {
         `pci_projects_project_storages_containers_offer_${type}`,
       );
     });
+  }
+
+  setDeploimentModeOptions() {
+    this.deploimentModeOptions = {
+      values: {},
+    };
+    Object.values(OBJECT_CONTAINER_DEPLOIMENT_MODE_TYPES).forEach((type) => {
+      this.deploimentModeOptions.values[type] = this.$translate.instant(
+        `pci_projects_project_storages_containers_deploiment_mode_${type}`,
+      );
+    });
+  }
+
+  addDeploimentMode() {
+    this.containers = this.containers.reduce((acc, container) => {
+      acc.push({
+        ...container,
+        deploimentMode: this.regions[container.region].type,
+      });
+      return acc;
+    }, []);
   }
 
   addContainerSolution() {

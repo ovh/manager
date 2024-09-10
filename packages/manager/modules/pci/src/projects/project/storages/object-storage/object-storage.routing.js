@@ -48,6 +48,14 @@ export default /* @ngInject */ ($stateProvider) => {
       containersRegions: /* @ngInject */ (containers) =>
         Array.from(new Set(containers.map(({ region }) => region))),
 
+      regions: /* @ngInject */ (PciProjectRegions, projectId) =>
+        PciProjectRegions.getAvailableRegions(projectId).then((regions) => {
+          return regions.reduce((acc, region) => {
+            acc[region.name] = region;
+            return acc;
+          }, {});
+        }),
+
       containersLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.storages.object-storage.objects', {
           projectId,

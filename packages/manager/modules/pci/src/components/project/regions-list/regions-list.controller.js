@@ -30,6 +30,10 @@ export default class RegionsListController {
     if (has(changes, 'regions')) {
       this.updateRegions();
     }
+
+    if (has(changes, 'deploimentMode')) {
+      this.updateRegions();
+    }
   }
 
   static sortRegionsOnMicroCode(regions) {
@@ -50,7 +54,15 @@ export default class RegionsListController {
   }
 
   updateRegions() {
-    const formattedRegions = map(this.regions, (region) => ({
+    let regionsByDeploimentMmode = this.regions;
+
+    if (this.deploimentMode) {
+      regionsByDeploimentMmode = this.regions.filter(
+        (item) => item.type === this.deploimentMode,
+      );
+    }
+
+    const formattedRegions = map(regionsByDeploimentMmode, (region) => ({
       ...this.ovhManagerRegionService.getRegion(region.name),
       name: region.name,
       continentCode: region.continentCode,
@@ -90,6 +102,7 @@ export default class RegionsListController {
       },
       {},
     );
+
     if (this.selectedRegion) {
       this.region = find(
         formattedRegions,

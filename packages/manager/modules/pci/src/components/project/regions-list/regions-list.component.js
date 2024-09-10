@@ -12,5 +12,6 @@ export default {
     displaySelectedRegion: '<',
     quotaUrl: '<?',
     currentRegion: '<?',
+    deploimentMode: '<?',
   },
 };

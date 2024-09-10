@@ -72,8 +72,10 @@ export default class PciStoragesContainersService {
       const regionDetails = region.services.find(
         ({ name }) => name === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
       );
+
       return {
         endpoints: { [selectedRegion.toLowerCase()]: regionDetails.endpoint },
+        regionDetails: region,
       };
     });
   }
@@ -170,6 +172,7 @@ export default class PciStoragesContainersService {
             errors: data.errors,
           };
         }
+
         return map(
           data.resources,
           (container) =>
@@ -230,7 +233,8 @@ export default class PciStoragesContainersService {
                 }),
             ),
             id: containerId,
-            publicUrl,
+            publicUrl: publicUrl.url,
+            regionDetails: publicUrl.regionDetails,
             virtualHost: container.virtualHost,
             storageGateway: STORAGE_GATEWAY[
               this.coreConfig.getRegion()
@@ -247,7 +251,7 @@ export default class PciStoragesContainersService {
       projectId,
       s3StorageType,
       container.region,
-    ).then(({ endpoints }) => {
+    ).then(({ endpoints, regionDetails }) => {
       const url = !s3StorageType
         ? `${
             endpoints[(container.region || OPENIO_DEFAULT_REGION).toLowerCase()]
@@ -258,7 +262,8 @@ export default class PciStoragesContainersService {
       if (file) {
         return `${url}/${encodeURIComponent(file)}`;
       }
-      return url;
+
+      return { url, regionDetails };
     });
   }
 

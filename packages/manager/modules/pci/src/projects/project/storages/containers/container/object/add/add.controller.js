@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import {
   STORAGE_PRICES_LINK,
   OBJECT_CONTAINER_STORAGE_CLASS,
+  OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE,
 } from '../../../containers.constants';
 
 export default class PciBlockStorageContainersContainerObjectAddController {
@@ -17,6 +18,7 @@ export default class PciBlockStorageContainersContainerObjectAddController {
     this.coreConfig = coreConfig;
     this.OBJECT_CONTAINER_STORAGE_CLASS = OBJECT_CONTAINER_STORAGE_CLASS;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
+    this.OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE = OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE;
   }
 
   $onInit() {
@@ -28,6 +30,17 @@ export default class PciBlockStorageContainersContainerObjectAddController {
     this.storageClass = OBJECT_CONTAINER_STORAGE_CLASS.STANDARD;
     this.prefix = '/';
     this.files = [];
+  }
+
+  showStorageClass() {
+    return (
+      this.container.regionDetails.services.length > 1 &&
+      this.container.regionDetails.services.some(
+        (item) =>
+          item.name === OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE &&
+          item.status === 'UP',
+      )
+    );
   }
 
   addObjects() {

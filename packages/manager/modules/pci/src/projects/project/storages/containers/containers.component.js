@@ -32,5 +32,6 @@ export default {
     goBackWithTrackingPage: '<',
     trackingTag: '<',
     trackPage: '<',
+    regions: '<?',
   },
 };

@@ -1,7 +1,7 @@
 {
   "pci_projects_project_storages_containers_container_back_label": "Retour",
   "pci_projects_project_storages_containers_container_back_button_label": "Mes conteneurs",
-  "pci_projects_project_storages_containers_container_archive_info_storedObjects": "Archives : {{ count }}",
+  "pci_projects_project_storages_containers_container_archive_info_storedObjects": "Archives",
   "pci_projects_project_storages_containers_container_object_info_storedObjects": "Objets : {{ count }}",
   "pci_projects_project_storages_containers_container_info_storedBytes": "Espace utilisé : {{ bytes }}",
   "pci_projects_project_storages_containers_container_info_data_encryption_enabled": "Chiffrement : <strong>SSE-S3</strong>",
@@ -43,5 +43,6 @@
   "pci_projects_project_storages_containers_container_documentation_title_veeam": "L'Object Storage S3 avec Veeam",
   "pci_projects_project_storages_containers_container_documentation_description_veeam": "Configurez Veeam pour utiliser votre espace de stockage S3 Object Storage.",
   "pci_projects_project_storages_containers_container_documentation_title_s3-limitation": "Les limites techniques de l'Object Storage S3",
-  "pci_projects_project_storages_containers_container_documentation_description_s3-limitation": "Retrouvez ici les limites techniques relatives à l’offre S3 Object Storage"
+  "pci_projects_project_storages_containers_container_documentation_description_s3-limitation": "Retrouvez ici les limites techniques relatives à l’offre S3 Object Storage",
+  "pci_projects_project_storages_containers_container_region": "Localisation  : {{ region }}"
 }

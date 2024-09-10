@@ -32,5 +32,8 @@
   "pci_projects_project_storages_containers_switch_to_private_label": "Passer en Privé",
   "pci_projects_project_storages_containers_switch_to_public_label": "Passer en Public",
   "pci_projects_project_storages_containers_swift_containers_load_error": "Une erreur est survenue sur un ou plusieurs de vos conteneurs Swift. Veuillez réessayer ultérieurement.",
-  "pci_projects_project_storages_containers_s3_containers_load_error": "Une erreur est survenue sur un ou plusieurs de vos conteneurs S3 dans la région {{ regions }}. Veuillez réessayer ultérieurement."
+  "pci_projects_project_storages_containers_s3_containers_load_error": "Une erreur est survenue sur un ou plusieurs de vos conteneurs S3 dans la région {{ regions }}. Veuillez réessayer ultérieurement.",
+  "pci_projects_project_storages_containers_deploiment_mode_label": "Mode de déploiment",
+  "pci_projects_project_storages_containers_deploiment_mode_region": "Région - Mono Zone",
+  "pci_projects_project_storages_containers_deploiment_mode_region-multizones": "Région - Multi Zones"
 }
