@@ -1,5 +1,9 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
+import {
+  keepPreviousData,
+  useQuery,
+  UseQueryOptions,
+} from '@tanstack/react-query';
 import {
   getVcdOrganization,
   getVcdOrganizationBackup,
@@ -32,9 +36,7 @@ const useManagedVcdOrganization = ({
     retry: false,
     refetchInterval,
     refetchOnWindowFocus,
-    ...{
-      keepPreviousData: true,
-    },
+    placeholderData: keepPreviousData,
   });
 };
 
@@ -43,9 +45,7 @@ export const useManagedVcdOrganizationBackup = (id: string) => {
     queryKey: getVcdOrganizationBackupQueryKey(id),
     queryFn: () => getVcdOrganizationBackup(id),
     retry: false,
-    ...{
-      keepPreviousData: true,
-    },
+    placeholderData: keepPreviousData,
   });
 };
 
