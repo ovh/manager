@@ -14,7 +14,7 @@ import { useHref } from 'react-router-dom';
 export default function ClusterSecurityUpgradeBanner({
   isDisabled,
 }: {
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }) {
   const { t } = useTranslation('service');
 
@@ -39,7 +39,7 @@ export default function ClusterSecurityUpgradeBanner({
           color={ODS_THEME_COLOR_INTENT.primary}
           data-testid="upgradeBanner-button"
           href={hrefForceVersion}
-          disabled={isDisabled || undefined}
+          disabled={isDisabled}
           inline
         >
           {t('kube_service_common_update')}
