@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.54.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.53.1...@ovh-ux/manager-dedicated@19.54.0) (2024-09-10)
+
+
+### Bug Fixes
+
+* **dedicated.account:** disable access to kyc fraud without menu ([#12452](https://github.com/ovh/manager/issues/12452)) ([ede30f7](https://github.com/ovh/manager/commit/ede30f7e5ed7232682d5174603f5580e133dbdc1))
+* **dedicated.cdn:** fix typo ([c3ba15e](https://github.com/ovh/manager/commit/c3ba15ed14b3e31f34e812983bcdd9c3920513e9))
+
+
+### Features
+
+* **dedicated.ip:** save advance mode choice ([#12833](https://github.com/ovh/manager/issues/12833)) ([686a1b6](https://github.com/ovh/manager/commit/686a1b6a4ae87ed64eb583feffb632e2cd8db33e))
+* **dedicated.vcd:** tracking vcd ([#12881](https://github.com/ovh/manager/issues/12881)) ([9d1caa8](https://github.com/ovh/manager/commit/9d1caa850e104b15d6caba245e837a1b23e51f6e))
+* **dedicated:** change the sentence for IP location on order page ([#12944](https://github.com/ovh/manager/issues/12944)) ([b768514](https://github.com/ovh/manager/commit/b76851494b3ad18a28d80d838446c5a63cb35d98))
+
+
+
+
+
 ## [19.53.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.53.0...@ovh-ux/manager-dedicated@19.53.1) (2024-09-05)
 
 
