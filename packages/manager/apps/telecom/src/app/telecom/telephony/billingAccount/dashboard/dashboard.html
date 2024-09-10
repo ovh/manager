@@ -421,6 +421,60 @@
         </form>
         <p data-translate="telephony_group_line_softphone_save_theme"></p>
     </div>
+    <div class="oui-tile mb-5">
+        <h3 data-translate="telephony_group_line_softphone_upload_logo"></h3>
+        <form name="form" data-ng-submit=":: DashboardCtrl.applyLogoGlobally()">
+            <div class="row">
+                <oui-field
+                    data-ng-class="{
+                                    'col-md-10': DashboardCtrl.logoFilename!=='',
+                                    'col-md-12': DashboardCtrl.logoFilename===''
+                                }"
+                    data-label="{{ 'telephony_group_line_softphone_your_logo' | translate }}"
+                    data-help-text="{{ DashboardCtrl.helpTextForLogo() }}"
+                >
+                    <oui-file
+                        data-accept="{{ DashboardCtrl.acceptedFormats }}"
+                        data-maxsize="DashboardCtrl.maxSizeLogoFile"
+                        data-on-select="DashboardCtrl.updateFilesList()"
+                        data-droparea
+                        data-model="DashboardCtrl.fileModel"
+                    >
+                    </oui-file>
+                </oui-field>
+                <img
+                    class="col-md-2"
+                    data-ng-if="DashboardCtrl.logoFilename!==''"
+                    src="{{:: DashboardCtrl.logoUrl }}"
+                    width="512"
+                    height="auto"
+                    alt="{{:: 'telephony_line_softphone_logo_image' | translate  }}"
+                />
+            </div>
+            <button
+                data-ng-disabled="!DashboardCtrl.fileModel"
+                type="submit"
+                class="btn btn-default"
+            >
+                <span
+                    data-translate="telephony_group_line_softphone_upload_logo"
+                ></span>
+            </button>
+            <button
+                class="btn btn-default"
+                data-ng-click="DashboardCtrl.deleteGlobalLogo()"
+            >
+                <span
+                    data-translate="telephony_group_line_softphone_logo_delete"
+                ></span>
+            </button>
+            <div class="row ml-2">
+                <p
+                    data-translate="telephony_group_line_softphone_save_logo"
+                ></p>
+            </div>
+        </form>
+    </div>
     <!-- /.widget-presentation -->
 </div>
 <!-- /.telephony-group-dashboard -->
