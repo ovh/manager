@@ -37,6 +37,8 @@ export interface FlavorTileProps {
     disk: FlavorDiskType[];
     nvme: FlavorDiskType[];
     bandwidth: number;
+    gpuNumber: number;
+    gpuModel: string;
   };
   flavorCompatibility: {
     localzone: boolean;
@@ -163,6 +165,15 @@ export function FlavorTile({
           {t('pci_project_flavors_spec_bandwidth_detail', {
             bandwidth: flavorSpecs.bandwidth,
           })}
+        </OsdsText>
+        <OsdsText
+          className="block"
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {flavorSpecs.gpuNumber > 1 ? `${flavorSpecs.gpuNumber}x ` : ''}
+          {flavorSpecs.gpuModel}
         </OsdsText>
         <hr className={separatorClass} />
         <OsdsText
