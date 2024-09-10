@@ -30,7 +30,7 @@ export default function PublicCloudSidebar() {
 
   const menu = useMemo(() => {
     if (!availability) return [];
-    const menuItems = getPciProjectMenu(projectId, region, (...args):string =>
+    const menuItems = getPciProjectMenu(projectId, region, availability, (...args):string =>
       navigation.getURL(...args),
     );
     const filterItemByRegion = (item: any) => {
@@ -45,9 +45,6 @@ export default function PublicCloudSidebar() {
         ...item,
         subItems: item.subItems
           ?.filter(filterItemByRegion)
-          ?.filter((item) => {
-            return !item.feature || availability?.[item.feature];
-          })
           .map((item) => ({
             ...item,
             selected:
