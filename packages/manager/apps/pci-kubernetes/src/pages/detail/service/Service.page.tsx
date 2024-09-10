@@ -38,7 +38,7 @@ export default function ServicePage() {
       const kubeVersions = cloudSchema?.models['cloud.kube.VersionEnum'].enum;
       return kubeVersions.includes(clusterMinorVersion);
     }
-    return false;
+    return true;
   }, [cloudSchema, kubeDetail]);
 
   const isProcessing = (status: string) => PROCESSING_STATUS.includes(status);
