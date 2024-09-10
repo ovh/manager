@@ -27,6 +27,7 @@
     "@ovh-ux/manager-react-components": "^1.36.0",
     "@ovh-ux/manager-react-core-application": "^0.10.2",
     "@ovh-ux/manager-react-shell-client": "^0.7.2",
+    "@ovh-ux/manager-core-utils": "*",
     "@ovh-ux/request-tagger": "^0.3.0",
     "@ovh-ux/shell": "^3.8.0",
     "@ovhcloud/ods-common-core": "17.2.2",

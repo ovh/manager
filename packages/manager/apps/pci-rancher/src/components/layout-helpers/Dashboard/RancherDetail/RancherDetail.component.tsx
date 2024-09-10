@@ -1,4 +1,6 @@
 import { format } from 'date-fns';
+import * as dateFnsLocales from 'date-fns/locale';
+import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 
 import {
   CommonTitle,
@@ -22,7 +24,7 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useHref } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -120,11 +122,28 @@ const RancherDetail = ({
 
   const onAccessRancherUrl = () =>
     trackAction(TrackingPageView.DetailRancher, TrackingEvent.accessUi);
-
+  const { i18n } = useTranslation('common');
   const shouldDisplayUpdateSoftware =
     getLatestVersionAvailable(rancher, versions) &&
     isReadyStatus &&
     !updateSoftwareResponseType;
+  const locales = useRef({ ...dateFnsLocales }).current;
+  const userLocale = getDateFnsLocale(i18n.language);
+
+  const displayDate = useCallback(
+    (value: string) => {
+      if (userLocale in locales) {
+        const localeId = userLocale as keyof typeof locales;
+        return format(new Date(dateUsage), value, {
+          locale: locales[localeId],
+        });
+      }
+      return format(new Date(dateUsage), value, {
+        locale: locales.fr,
+      });
+    },
+    [userLocale, locales],
+  );
 
   const isEligibleForUpgrade = plan === RancherPlanName.OVHCLOUD_EDITION;
 
@@ -243,14 +262,14 @@ const RancherDetail = ({
               </TileBlock>
               <TileBlock label={t('count_cpu_orchestrated')}>
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                  {rancher.currentState.usage?.orchestratedVcpus || '-'}
+                  {rancher.currentState.usage?.orchestratedVcpus}
                 </OsdsText>
-                {dateUsage && (
+                {displayDate && (
                   <div className="mt-3">
                     <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
                       {t('last_update_date', {
-                        date: format(dateUsage, 'yyyy_MM_dd'),
-                        hour: format(dateUsage, 'HH:mm:ss'),
+                        date: displayDate('PP'),
+                        hour: displayDate('HH:mm:ss'),
                       })}
                     </OsdsText>
                   </div>
