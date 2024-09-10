@@ -155,10 +155,12 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
         };
       })
       .sort((a, b) => {
-        const aGroup = a.name.replace(/-[^-]+/, '');
-        const bGroup = b.name.replace(/-[^-]+/, '');
-        if (aGroup === bGroup) return a.ram - b.ram;
-        return bGroup.localeCompare(aGroup);
+        const aGroup = Number((a.name.match(/[0-9]+/) || [])[0]);
+        const bGroup = Number((b.name.match(/[0-9]+/) || [])[0]);
+        const aRank = Number((a.name.match(/-([^-]+)$/) || [])[1]);
+        const bRank = Number((b.name.match(/-([^-]+)$/) || [])[1]);
+        if (aGroup === bGroup) return aRank - bRank;
+        return bGroup - aGroup;
       });
   }, [availability, catalog, flavors, kubeFlavors, quota]);
   return {
