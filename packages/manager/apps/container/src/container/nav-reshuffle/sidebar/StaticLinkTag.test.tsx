@@ -19,14 +19,28 @@ const node: Node = {
   tag: NodeTag.BETA,
 };
 
-const renderStaticLinkTagComponent = () => {
+const nodeWithoutTag: Node = {
+  id: 'help',
+  translation: 'sidebar_assistance_help_center',
+  url: 'help',
+  count: false,
+  isExternal: true,
+};
+
+const renderStaticLinkTagComponent = (node: Node) => {
   return render(<StaticLinkTag node={node} />);
 };
 
 describe('StaticLinkTag.component', () => {
   it('should render', async () => {
-    renderStaticLinkTagComponent();
+    renderStaticLinkTagComponent(node);
 
     expect(screen.queryByTestId(`static-link-tag-${node.id}`)).not.toBeNull();
   });
+
+  it('should not render', async () => {
+    renderStaticLinkTagComponent(nodeWithoutTag);
+
+    expect(screen.queryByTestId(`static-link-tag-${node.id}`)).toBeNull();
+  })
 });
