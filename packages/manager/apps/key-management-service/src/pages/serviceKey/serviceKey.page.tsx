@@ -103,6 +103,7 @@ export default function Key() {
         onClickReturn={() => {
           navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
         }}
+        backLinkLabel={t('key_management_service_service_keys_back_link')}
         message={<Notifications />}
         tabs={
           <OsdsTabs>

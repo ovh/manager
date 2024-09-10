@@ -66,6 +66,7 @@ export default function DashboardPage() {
       onClickReturn={() => {
         navigate(ROUTES_URLS.root);
       }}
+      backLinkLabel={tDashboard('key_management_service_dashboard_back_link')}
       breadcrumb={<Breadcrumb items={breadcrumbItems} />}
       message={<Notifications />}
       tabs={<Dashboard tabs={tabsList} />}
