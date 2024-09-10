@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
-import { TileSkeleton } from './TileSkeleton.component';
+import { Skeletons } from './Skeletons.component';
 
 vi.mock('@ovhcloud/ods-components/react', () => ({
   OsdsSkeleton: ({
@@ -20,9 +20,9 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
   ),
 }));
 
-describe('TileSkeleton Component', () => {
+describe('Skeletons Component', () => {
   it('renders four OsdsSkeleton components', () => {
-    render(<TileSkeleton />);
+    render(<Skeletons />);
 
     const skeletons = screen.getAllByTestId('osds-skeleton');
 
