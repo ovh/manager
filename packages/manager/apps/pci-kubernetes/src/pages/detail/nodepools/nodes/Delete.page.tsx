@@ -20,8 +20,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMemo, useState } from 'react';
 import { useNotifications } from '@ovhcloud/manager-components';
-import { useDeleteNode, useNodes } from '@/api/hooks/nodes';
+import { getNodesQueryKey, useDeleteNode, useNodes } from '@/api/hooks/nodes';
 import { useTrack } from '@/hooks/track';
+import queryClient from '@/queryClient';
 
 const CONFIRMATION_TEXT = 'DELETE';
 
@@ -68,6 +69,9 @@ export default function DeletePage(): JSX.Element {
     },
     onSuccess(): void {
       addSuccess(tKubeNodes('kube_nodes_delete_success'));
+      queryClient.invalidateQueries({
+        queryKey: getNodesQueryKey(projectId, clusterId, poolId),
+      });
       goBack();
     },
     projectId,
