@@ -145,7 +145,7 @@ const RancherDetail = ({
         locale: locales.fr,
       });
     },
-    [userLocale, locales],
+    [userLocale, locales, dateUsage],
   );
 
   const isEligibleForUpgrade = plan === RancherPlanName.OVHCLOUD_EDITION;
