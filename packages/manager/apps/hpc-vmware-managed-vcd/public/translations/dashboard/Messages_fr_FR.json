@@ -11,6 +11,7 @@
   "managed_vcd_dashboard_api_url": "URL API",
   "managed_vcd_dashboard_options": "Options",
   "managed_vcd_dashboard_windows_license": "Licence Windows",
+  "managed_vcd_dashboard_windows_license_activate": "Activer",
   "managed_vcd_dashboard_windows_license_active": "Votre licence spla est activée.",
   "managed_vcd_dashboard_windows_license_unactive": "Votre licence spla n'est pas activée.",
   "managed_vcd_dashboard_service_management": "Gestion du service",
