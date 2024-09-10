@@ -1,19 +1,34 @@
 import { render } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  ShellContext,
+  ShellContextType,
+} from '@ovh-ux/manager-react-shell-client';
 import OrganizationOptionsTile from './OrganizationOptionsTile.component';
+
+const shellContext = {
+  environment: {
+    getRegion: vi.fn(),
+    getUser: vi.fn(),
+  },
+};
 
 const renderComponent = () => {
   const queryClient = new QueryClient();
 
   return render(
     <QueryClientProvider client={queryClient}>
-      <OrganizationOptionsTile isLicenseActive={false} />
+      <ShellContext.Provider
+        value={(shellContext as unknown) as ShellContextType}
+      >
+        <OrganizationOptionsTile isLicenseActive={false} />
+      </ShellContext.Provider>
     </QueryClientProvider>,
   );
 };
