@@ -1,5 +1,4 @@
 {
   "dedicatedCloud_user_management_authorization_vsphere": "Gestión de las autorizaciones de usuario en el cliente vSphere",
-  "dedicatedCloud_user_management_iam": "IAM OVHcloud",
-  "dedicatedCloud_user_management_beta": "BETA"
+  "dedicatedCloud_user_management_iam": "IAM OVHcloud"
 }

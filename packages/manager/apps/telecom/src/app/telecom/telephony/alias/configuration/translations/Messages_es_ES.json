@@ -1,4 +1,5 @@
 {
+  "telephony_alias_configuration_breadcrumb": "Configuración",
   "telephony_alias_configuration_back_link": "Retour à la configuration du numéro",
   "telephony_alias_configuration_change_type": "Cambiar el tipo de número",
   "telephony_alias_configuration_actions_number_modification_new": "Cambiar el tipo de número",
@@ -48,10 +49,6 @@
   "telephony_alias_config_change_type_label_easyHunting": "Cola de llamadas",
   "telephony_alias_config_change_type_desc_easyHunting": "Con la cola de llamadas, podrá gestionar el flujo de sus llamadas.<br/><br/>Utilice un sonido de bienvenida, personalice la música de espera y haga sonar los teléfonos de sus colaboradores o diferentes servicios en función de las estrategias definidas, en los tramos horarios que elija. Puede especificar el número máximo de llamadas en cola, así como el tiempo máximo de espera. Si no puede responder, el interlocutor será redirigido al contestador de una línea de OVHcloud.<br/><br/><b class=\"text-danger\">Tenga en cuenta que en este modo de funcionamiento, los reenvíos de llamadas de los miembros de su cola de llamadas se desactivarán automáticamente.</b>",
   "telephony_alias_config_change_type_label_cloudHunting": "Cola de llamadas (modo experto)",
-  "telephony_alias_config_change_type_label_easyPabx": "Easy PABX",
-  "telephony_alias_config_change_type_desc_easyPabx": "Con easyPABX no perderá más llamadas. Redirija su número hacia una o más líneas OVHcloud o números externos. Distribuya sus llamadas entrantes según las estrategias definidas. Si no puede responder, el interlocutor será redirigido al contestador.",
-  "telephony_alias_config_change_type_label_miniPabx": "Mini PABX",
-  "telephony_alias_config_change_type_desc_miniPabx": "Con el miniPABX podrá gestionar el flujo de llamadas a los distintos departamentos o trabajadores en función de su disponibilidad. Usted elige el reparto de las llamadas, así como el número y el tiempo máximo de las llamadas en la cola.",
   "telephony_alias_config_change_type_label_contactCenterSolution": "Cola de llamadas",
   "telephony_alias_config_change_type_desc_contactCenterSolution": "La cola de llamadas le permite redirigir una llamada entrante hacia varias líneas, asociadas o no a su identificador OVHcloud.",
   "telephony_alias_config_change_type_label_contactCenterSolutionExpert": "Contact Center Solution",
@@ -112,6 +109,5 @@
   "telephony_alias_config_conference_report_status_none": "Aucun rapport",
   "telephony_alias_config_conference_report_status_other": "Recevoir sur une autre adresse e-mail",
   "telephony_alias_config_conference_report_status_customer": "Recevoir sur l’adresse e-mail de mon compte",
-  "telephony_alias_config_conference_invalid_file_format": "Formato de archivo no autorizado.",
-  "telephony_alias_configuration_breadcrumb": "Configuración"
+  "telephony_alias_config_conference_invalid_file_format": "Formato de archivo no autorizado."
 }

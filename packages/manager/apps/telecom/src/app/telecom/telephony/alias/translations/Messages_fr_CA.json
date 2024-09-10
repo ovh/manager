@@ -52,8 +52,6 @@
   "telephony_alias_configuration_configuration_type_svi": "Serveur Vocal Interactif (mode expert) en VXML",
   "telephony_alias_configuration_configuration_type_easyHunting": "File d'appels",
   "telephony_alias_configuration_configuration_type_cloudHunting": "File d'appels (mode expert)",
-  "telephony_alias_configuration_configuration_type_easyPabx": "Easy PABX",
-  "telephony_alias_configuration_configuration_type_miniPabx": "Mini PABX",
   "telephony_alias_configuration_configuration_type_contactCenterSolution": "File d'appels",
   "telephony_alias_configuration_configuration_type_contactCenterSolutionExpert": "Contact Center Solution",
   "telephony_alias_configuration_configuration_type_empty": "Aucune",
@@ -86,8 +84,5 @@
   "telephony_alias_special_number_rsva": "Tarification du numéro",
   "telephony_alias_config_feature_type_contactCenterSolutionExpert": "Avec le mode expert de Contact Center Solution, vous pouvez gérer le flux de vos appels de bout en bout. En fonction des numéros appelants ou des plages horaires, choisissez vous-même votre stratégie. Jouez des sons d'accueils, personnalisez votre musique d'attente, faites sonner les postes de vos différents services.",
   "telephony_alias_config_feature_type_cloudHunting": "Avec la File d'appels expert, vous pouvez gérer votre flux de communications de manière plus complète. Jouez un son d'accueil, personnalisez votre musique d'attente et faites sonner les postes de vos différents services en fonction de stratégies que vous définissez, sur des plages horaires choisies. Vous pouvez indiquer le nombre maximum d'appelants dans la file et leur temps d'attente maximal. Cette solution est en bêta-test.",
-  "telephony_alias_config_feature_type_svi": "Le Serveur vocal interactif en VXML vous permet, via une configuration 2.1, d’utiliser un menu interactif avancé. L’appelant est invité, via des messages pré-enregistrés ou une synthèse vocale, à interagir avec le serveur grâce aux touches de son téléphone. Selon la configuration choisie, il sera possible de lire des sons ou de transférer un appel vers d’autres numéros. Notez que seuls les transferts vers les numéros OVHcloud sont possibles.",
-  "telephony_alias_config_obsolete_feature_type_part_one": "Pour configurer votre numéro en Easy (ou mini) PABX, merci de vous rendre dans le",
-  "telephony_alias_config_obsolete_feature_type_part_two": "Sachez que prochainement cette configuration sera définitivement remplacée par la configuration File d'appels.",
-  "telephony_alias_config_obsolete_feature_type_warning": "Attention {{featureType}} est une configuration obsolète, ce choix ne sera plus proposé lors d’une nouvelle configuration."
+  "telephony_alias_config_feature_type_svi": "Le Serveur vocal interactif en VXML vous permet, via une configuration 2.1, d’utiliser un menu interactif avancé. L’appelant est invité, via des messages pré-enregistrés ou une synthèse vocale, à interagir avec le serveur grâce aux touches de son téléphone. Selon la configuration choisie, il sera possible de lire des sons ou de transférer un appel vers d’autres numéros. Notez que seuls les transferts vers les numéros OVHcloud sont possibles."
 }

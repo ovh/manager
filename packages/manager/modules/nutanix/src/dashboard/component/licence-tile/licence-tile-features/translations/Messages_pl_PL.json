@@ -1,6 +1,5 @@
 {
   "nutanix_cluster_cloud_licence_title": "Licencje Nutanix Cloud Platform (NCP)",
   "nutanix_cluster_cloud_licence_NCI": "Nutanix Cloud Infrastructure (NCI)",
-  "nutanix_cluster_cloud_licence_NCM": "Nutanix Cloud Management (NCM)",
-  "nutanix_cluster_cloud_licence_detail": "Wyświetl szczegóły dotyczące licencji zawartych w pakiecie"
+  "nutanix_cluster_cloud_licence_NCM": "Nutanix Cloud Management (NCM)"
 }

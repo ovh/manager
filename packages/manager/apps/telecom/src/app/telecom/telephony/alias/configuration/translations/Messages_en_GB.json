@@ -1,4 +1,5 @@
 {
+  "telephony_alias_configuration_breadcrumb": "Configuration",
   "telephony_alias_configuration_back_link": "Back to number configuration",
   "telephony_alias_configuration_change_type": "Change number type",
   "telephony_alias_configuration_actions_number_modification_new": "Change number type",
@@ -48,10 +49,6 @@
   "telephony_alias_config_change_type_label_easyHunting": "Call queue",
   "telephony_alias_config_change_type_desc_easyHunting": "With the call queue, you can manage the flow of your calls.<br/><br/>Play a welcome sound, customise your waiting music and ring your employees or different services according to the strategies you define, on selected time slots. You can set the maximum number of callers in the queue, and the maximum wait time. If you cannot reply, your contact will be redirected to the voicemail of an OVHcloud line.<br/><br/><b class=\"text-danger\">Please note that in this mode of operation, call forwarding for members of your call queue will be automatically disabled.</b>",
   "telephony_alias_config_change_type_label_cloudHunting": "Call queue (expert mode)",
-  "telephony_alias_config_change_type_label_easyPabx": "Easy PABX",
-  "telephony_alias_config_change_type_desc_easyPabx": "With easyPABX, you never have to miss a call again. Redirect your number to one or more OVHcloud lines or external numbers. Distribute your incoming calls according to the policies you define. If you cannot answer, your contact will be redirected to an answering machine.",
-  "telephony_alias_config_change_type_label_miniPabx": "Mini PABX",
-  "telephony_alias_config_change_type_desc_miniPabx": "Use the mini PABX to manage a call flow to different departments or agents depending on their availability. You choose the call distribution, the number and the maximum duration of calls in the call queue.",
   "telephony_alias_config_change_type_label_contactCenterSolution": "Call queue",
   "telephony_alias_config_change_type_desc_contactCenterSolution": "The call queue allows you to redirect an incoming call to multiple lines, and they don’t have to be attached to your OVHcloud NIC handle.",
   "telephony_alias_config_change_type_label_contactCenterSolutionExpert": "Contact Centre Solution",
@@ -112,6 +109,5 @@
   "telephony_alias_config_conference_report_status_none": "No report",
   "telephony_alias_config_conference_report_status_other": "Send to another email address",
   "telephony_alias_config_conference_report_status_customer": "Send to the email address on my account",
-  "telephony_alias_config_conference_invalid_file_format": "File format not supported.",
-  "telephony_alias_configuration_breadcrumb": "Configuration"
+  "telephony_alias_config_conference_invalid_file_format": "File format not supported."
 }

@@ -1,4 +1,5 @@
 {
+  "telephony_alias_breadcrumb": "Líneas",
   "telephony_alias_page_title": "Número «{{name}}»",
   "telephony_alias_tab_order": "Contratación de números",
   "telephony_alias_tab_number": "Mon numéro",
@@ -50,14 +51,12 @@
   "telephony_alias_configuration_configuration_type_svi": "Servidor de voz interactivo (modo experto) en VXML",
   "telephony_alias_configuration_configuration_type_easyHunting": "Cola de llamadas",
   "telephony_alias_configuration_configuration_type_cloudHunting": "Cola de llamadas (modo experto)",
-  "telephony_alias_configuration_configuration_type_easyPabx": "Easy PABX",
-  "telephony_alias_configuration_configuration_type_miniPabx": "Mini PABX",
   "telephony_alias_configuration_configuration_type_contactCenterSolution": "Cola de llamadas",
   "telephony_alias_configuration_configuration_type_contactCenterSolutionExpert": "Contact Center Solution",
   "telephony_alias_configuration_configuration_type_empty": "Ninguno",
+  "telephony_alias_configuration_queues_breadcrumb": "Gestionar las colas de llamadas",
   "telephony_alias_configuration_redirect_to": "Vers la ligne",
   "telephony_alias_configuration_choose": "Choisir une configuration",
-  "telephony_alias_configuration_queues_breadcrumb": "Gestionar las colas de llamadas",
   "telephony_alias_configuration_configure": "Paramétrer la configuration",
   "telephony_alias_configuration_delete_configuration": "Supprimer la configuration",
   "telephony_alias_configuration_delete_configuration_question_part1": "Êtes-vous sûr de vouloir supprimer votre configuration ?",
@@ -76,9 +75,5 @@
   "telephony_alias_special_number_rsva": "Tarification du numéro",
   "telephony_alias_config_feature_type_contactCenterSolutionExpert": "Avec le mode expert de Contact Center Solution, vous pouvez gérer le flux de vos appels de bout en bout. En fonction des numéros appelants ou des plages horaires, choisissez vous-même votre stratégie. Jouez des sons d'accueils, personnalisez votre musique d'attente, faites sonner les postes de vos différents services.",
   "telephony_alias_config_feature_type_cloudHunting": "Avec la File d'appels expert, vous pouvez gérer votre flux de communications de manière plus complète. Jouez un son d'accueil, personnalisez votre musique d'attente et faites sonner les postes de vos différents services en fonction de stratégies que vous définissez, sur des plages horaires choisies. Vous pouvez indiquer le nombre maximum d'appelants dans la file et leur temps d'attente maximal. Cette solution est en bêta-test.",
-  "telephony_alias_config_feature_type_svi": "El servidor vocal interactivo en VXML le permite, a través de una configuración 2.1, utilizar un menú interactivo avanzado. A través de mensajes previamente grabados o una síntesis de voz, el interlocutor podrá interactuar con el servidor mediante las teclas de su teléfono. Según la configuración elegida, será posible leer sonidos o transferir llamadas a otros números. Tenga en cuenta que solo es posible realizar transferencias hacia números de OVHcloud.",
-  "telephony_alias_config_obsolete_feature_type_part_one": "Pour configurer votre numéro en Easy (ou mini) PABX, merci de vous rendre dans le",
-  "telephony_alias_config_obsolete_feature_type_part_two": "Sachez que prochainement cette configuration sera définitivement remplacée par la configuration File d'appels.",
-  "telephony_alias_config_obsolete_feature_type_warning": "Attention {{featureType}} est une configuration obsolète, ce choix ne sera plus proposé lors d’une nouvelle configuration.",
-  "telephony_alias_breadcrumb": "Líneas"
+  "telephony_alias_config_feature_type_svi": "El servidor vocal interactivo en VXML le permite, a través de una configuración 2.1, utilizar un menú interactivo avanzado. A través de mensajes previamente grabados o una síntesis de voz, el interlocutor podrá interactuar con el servidor mediante las teclas de su teléfono. Según la configuración elegida, será posible leer sonidos o transferir llamadas a otros números. Tenga en cuenta que solo es posible realizar transferencias hacia números de OVHcloud."
 }
