@@ -4,5 +4,6 @@
   "iam_dashboard_header_tabs_item_identities": "Identità",
   "iam_dashboard_header_tabs_item_policies": "Policy",
   "iam_dashboard_header_tabs_item_resource_groups": "Gruppi di risorse",
+  "iam_dashboard_header_tabs_item_applications": "Applications",
   "iam_error": "Non hai i permessi per effettuare questa azione: {{details}}"
 }
