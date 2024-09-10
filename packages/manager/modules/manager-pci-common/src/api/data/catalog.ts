@@ -83,6 +83,21 @@ export type TAddon = {
         threads: number;
         type: string;
       };
+      gpu: {
+        brand?: string;
+        memory: {
+          customizable?: boolean;
+          ecc?: boolean;
+          frequency?: number;
+          interface?: string;
+          ramType?: string;
+          size?: number;
+          sizeUnit?: string;
+        };
+        model?: string;
+        number?: number;
+        performance?: number;
+      };
       nvme?: {
         disks: {
           capacity: number;
