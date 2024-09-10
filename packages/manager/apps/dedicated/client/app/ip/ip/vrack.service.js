@@ -30,6 +30,18 @@ export default class Vrack {
       );
   };
 
+  getAllowedVrackServices = (serviceName) => {
+    return this.$http
+      .get(`/vrack/${serviceName}/allowedServices?serviceFamily=ipv6`)
+      .then(({ data }) => data);
+  };
+
+  getVrackIpv6List = (serviceName) => {
+    return this.$http
+      .get(`/vrack/${serviceName}/ipv6`)
+      .then(({ data }) => data);
+  };
+
   addIpv6 = (serviceName, ipv6) => {
     return this.$http.post(`/vrack/${serviceName}/ipv6`, { block: ipv6 });
   };

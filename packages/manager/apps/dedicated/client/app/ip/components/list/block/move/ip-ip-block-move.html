@@ -88,7 +88,7 @@
 
         <div
             data-wizard-step
-            data-wizard-step-valid="!loading.save && model.serviceName && model.serviceName.service"
+            data-wizard-step-valid="!loading.save && model.serviceName && model.serviceName.service && loading.ipCanBeMovedTo"
             data-wizard-step-on-previous="onPreviousAction"
         >
             <div data-ng-show="!loading.save && !data.ipBlock.isAdditionalIpv6">
@@ -115,54 +115,72 @@
             </div>
 
             <div data-ng-show="!loading.save && data.ipBlock.isAdditionalIpv6">
-                <p>
-                    <span
-                        data-translate="vrack_add_ipv6_modal_description"
-                        data-translate-values="{ ipblock: '<strong>' + data.ipBlock.ipBlock + '</strong>', vrack: '<strong>' + model.serviceName.service + '</strong>', region: '<strong>' + data.ipBlock.region + '</strong>' }"
-                    ></span>
-                </p>
-                <p>
-                    <span
-                        data-translate="vrack_add_ipv6_modal_description1"
-                    ></span>
-                </p>
-                <p>
-                    <span
-                        data-translate="vrack_add_ipv6_modal_description2"
-                        data-translate-values="{ region: '<strong>' + data.ipBlock.region + '</strong>' }"
-                    ></span>
-                </p>
-                <p>
-                    <span
-                        data-translate="vrack_add_ipv6_modal_description3"
-                    ></span>
-                    <a
-                        class="oui-link_icon"
-                        aria-hidden="true"
-                        data-ng-href="{{ helpLink }}"
-                        target="_blank"
+                <div data-ng-show="loading.ipCanBeMovedTo">
+                    <p>
+                        <span
+                            data-translate="vrack_add_ipv6_modal_description"
+                            data-translate-values="{ ipblock: '<strong>' + data.ipBlock.ipBlock + '</strong>', vrack: '<strong>' + model.serviceName.service + '</strong>', region: '<strong>' + data.ipBlock.region + '</strong>' }"
+                        ></span>
+                    </p>
+                    <p>
+                        <span
+                            data-translate="vrack_add_ipv6_modal_description1"
+                        ></span>
+                    </p>
+                    <p>
+                        <span
+                            data-translate="vrack_add_ipv6_modal_description2"
+                            data-translate-values="{ region: '<strong>' + data.ipBlock.region + '</strong>' }"
+                        ></span>
+                    </p>
+                    <p>
+                        <span
+                            data-translate="vrack_add_ipv6_modal_description3"
+                        ></span>
+                        <a
+                            class="oui-link_icon"
+                            aria-hidden="true"
+                            data-ng-href="{{ helpLink }}"
+                            target="_blank"
+                        >
+                            <span
+                                data-translate="vrack_add_ipv6_modal_help_link"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-book ml-0"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </p>
+                    <div
+                        data-ng-if="hasIpv6"
+                        class="oui-message oui-message_warning"
+                        role="alert"
                     >
                         <span
-                            data-translate="vrack_add_ipv6_modal_help_link"
-                        ></span>
-                        <span
-                            class="oui-icon oui-icon-book ml-0"
+                            class="oui-message__icon oui-icon oui-icon-warning-circle"
                             aria-hidden="true"
                         ></span>
-                    </a>
-                </p>
+                        <p
+                            class="oui-message__body"
+                            data-translate="vrack_add_ipv6_modal_alert_msg"
+                        ></p>
+                    </div>
+                </div>
+
                 <div
-                    data-ng-if="$ctrl.state.hasIpv6"
-                    class="oui-message oui-message_warning"
+                    data-ng-show="!loading.ipCanBeMovedTo"
+                    class="oui-message oui-message_error"
                     role="alert"
                 >
                     <span
-                        class="oui-message__icon oui-icon oui-icon-warning-circle"
+                        class="oui-message__icon oui-icon oui-icon-error-circle"
                         aria-hidden="true"
                     ></span>
                     <p
                         class="oui-message__body"
-                        data-translate="vrack_add_ipv6_modal_alert_msg"
+                        data-translate="vrack_cannot_add_ipv6_alert_msg"
+                        data-translate-values="{t0: data.ipBlock.ipBlock, t1: model.serviceName.service }"
                     ></p>
                 </div>
             </div>

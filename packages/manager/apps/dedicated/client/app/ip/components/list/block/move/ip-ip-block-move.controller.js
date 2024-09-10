@@ -17,8 +17,6 @@ export default /* @ngInject */ (
   $scope.data = $scope.currentActionData;
   $scope.model = { serviceName: null, nexthop: null };
   $scope.noTasksPending = false;
-  $scope.ipCanBeMovedTo = false;
-  $scope.ipCanBeMovedToError = '';
   $scope.ADDITIONAL_IP = ADDITIONAL_IP;
   $scope.helpLink =
     IPV6_GUIDES_LINK[user.ovhSubsidiary] || IPV6_GUIDES_LINK.DEFAULT;
@@ -85,35 +83,23 @@ export default /* @ngInject */ (
     });
   }
 
-  $scope.checkIfIpCanBeMovedTo = function checkIfIpCanBeMovedTo() {
-    if (
-      $scope.model.serviceName !== '_PARK' &&
-      $scope.model.service.type !== 'ipv6'
-    ) {
-      $scope.ipCanBeMovedToError = '';
-      $scope.loading.ipCanBeMovedTo = true;
-      Ip.checkIfIpCanBeMovedTo(
-        $scope.model.serviceName,
-        $scope.data.ipBlock.ipBlock,
-      )
-        .then(
-          () => {
-            $scope.ipCanBeMovedTo = true;
-          },
-          (data) => {
-            if (data && data.message) {
-              $scope.ipCanBeMovedToError = data.message;
-            }
-            $scope.ipCanBeMovedTo = false;
-          },
-        )
-        .finally(() => {
-          $scope.loading.ipCanBeMovedTo = false;
-        });
-    } else {
-      $scope.ipCanBeMovedTo = true;
-      $scope.loading.ipCanBeMovedTo = false;
-    }
+  $scope.checkIfIpCanBeMovedTo = (serviceName, ipBlock) => {
+    $q.all({
+      allowedVrackServices: Vrack.getAllowedVrackServices(serviceName),
+      vrackIpv6List: Vrack.getVrackIpv6List(serviceName),
+    })
+      .then(({ allowedVrackServices, vrackIpv6List }) => {
+        $scope.loading.ipCanBeMovedTo = allowedVrackServices.ipv6?.includes(
+          ipBlock,
+        );
+        console.log(ipBlock, $scope.loading.ipCanBeMovedTo);
+        $scope.hasIpv6 = !!vrackIpv6List.length;
+        $scope.loading.save = false;
+      })
+      .catch(() => {
+        $scope.loading.ipCanBeMovedTo = false;
+        $scope.loading.save = false;
+      });
   };
 
   $scope.moveIpv6Action = (serviceName, ipBlock) => {
@@ -125,13 +111,7 @@ export default /* @ngInject */ (
         });
       })
       .catch((err) => {
-        Alerter.alertFromSWS(
-          $translate.instant('ip_table_manage_move_ipblock_failure', {
-            t0: $scope.data.ipBlock.ipBlock,
-            t1: $scope.model.serviceName.service,
-          }),
-          err,
-        );
+        Alerter.error(err.data?.message || err.message || err);
         $scope.resetAction();
       });
   };
@@ -269,6 +249,14 @@ export default /* @ngInject */ (
       name: `${$scope.data?.tracking}::next`,
       type: 'action',
     });
+
+    if ($scope.data.ipBlock.isAdditionalIpv6) {
+      $scope.loading.save = true;
+      $scope.checkIfIpCanBeMovedTo(
+        $scope.model.serviceName.service,
+        $scope.data.ipBlock.ipBlock,
+      );
+    }
   };
 
   $scope.onPreviousAction = function() {

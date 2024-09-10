@@ -41,6 +41,6 @@ angular
   .filter('ipFilterByService', ipFilterByService)
   .filter('ipFirewallRulePort', ipFirewallRulePort)
   .filter('ipPunycode', ipPunycode)
-  .run(/* @ngTranslationsInject:json ./translations ./../../../../../modules/vrack/src/vrack-associated-services/ipv6/translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
