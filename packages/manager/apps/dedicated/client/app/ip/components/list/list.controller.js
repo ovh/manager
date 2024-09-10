@@ -23,6 +23,7 @@ import {
   FILTER_OPTIONS,
   TRACKING_OPTIONS,
   ADMIN_ROLE,
+  IP_LISTING_ID,
 } from './list.constant';
 
 export default class IpListController {
@@ -99,6 +100,7 @@ export default class IpListController {
       versionFilter = parseInt(ipTypeFilter, 10);
     }
 
+    $scope.IP_LISTING_ID = IP_LISTING_ID;
     $scope.IP_TYPE = IP_TYPE;
     $scope.SUB_RANGE = SUB_RANGE;
     $scope.ADDITIONAL_IP = ADDITIONAL_IP;
@@ -108,7 +110,6 @@ export default class IpListController {
     $scope.FAILOVER = FAILOVER;
     $scope.showBYOIPBadge = (self.badges || BADGES).includes(BADGE_BYOIP);
     $scope.showFOBadge = (self.badges || BADGES).includes(BADGE_FO);
-    $scope.advancedModeFilter = true;
     $scope.version = versionFilter;
     $scope.selected_option = versionFilter || FILTER_OPTIONS.ALL_IPS;
     $scope.PAGE_SIZE_MAX = PAGE_SIZE_MAX;
@@ -116,7 +117,13 @@ export default class IpListController {
     this.securityUrl =
       SECURITY_URL[coreConfig.getUser().ovhSubsidiary] || SECURITY_URL.DEFAULT;
 
+    function loadAdvancedModeConfig() {
+      const savedConfig = localStorage.getItem(`${$scope.IP_LISTING_ID}Config`);
+      $scope.advancedModeFilter = !!parseInt(savedConfig, 10);
+    }
+
     function init() {
+      loadAdvancedModeConfig();
       // pagination
       const { page, pageSize } = $location.search();
       $scope.pageNumber = toInteger(page) || 1;
@@ -157,6 +164,13 @@ export default class IpListController {
         'ip-firewall-add-rule': `${TRACKING_PREFIX}::ip::firewall::add-rule`,
         'ip-firewall-delete-rule': `${TRACKING_PREFIX}::ip::firewall::delete-rule`,
       };
+    }
+
+    function saveAdvancedModeConfig(advancedModeValue) {
+      localStorage.setItem(
+        `${$scope.IP_LISTING_ID}Config`,
+        advancedModeValue ? 1 : 0,
+      );
     }
 
     function refreshIp(ip) {
@@ -603,7 +617,10 @@ export default class IpListController {
       });
     };
 
-    $scope.onAdvancedModeFilterChanged = function onAdvancedModeFilterChanged() {
+    $scope.onAdvancedModeFilterChanged = function onAdvancedModeFilterChanged(
+      advancedModeValue,
+    ) {
+      saveAdvancedModeConfig(advancedModeValue);
       $timeout(() => {
         atInternet.trackClick({
           type: 'action',

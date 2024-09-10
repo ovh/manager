@@ -5,6 +5,7 @@ export default {
   bindings: {
     goToVcdOrder: '<',
     productId: '<',
+    trackingPrefix: '<',
   },
   name: 'ovhManagerPccDashboardVmwareCloudDirector',
   controller,
