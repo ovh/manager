@@ -520,6 +520,9 @@ export const useCreateSubscription = ({
         queryKey: ['dbaas-logs-subscriptions'],
       });
       await queryClient.invalidateQueries({
+        queryKey: ['dbaas-logs-streams'],
+      });
+      await queryClient.invalidateQueries({
         queryKey: getSubscribedLogsQueryKey(projectId, kubeId, 'audit'),
       });
       onSuccess();
@@ -551,6 +554,9 @@ export const useRemoveSubscription = ({
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: ['dbaas-logs-subscriptions'],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ['dbaas-logs-streams'],
       });
       await queryClient.invalidateQueries({
         queryKey: getSubscribedLogsQueryKey(projectId, kubeId, 'audit'),

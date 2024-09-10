@@ -30,11 +30,13 @@ import { LOG_LIST_TRACKING_HITS } from '../constants';
 export interface StreamSubscriptionsProps {
   serviceName: string;
   streamId: string;
+  subscriptionCount: number;
 }
 
 export function StreamSubscriptions({
   serviceName,
   streamId,
+  subscriptionCount,
 }: Readonly<StreamSubscriptionsProps>) {
   const { t } = useTranslation('logs');
   const { projectId, kubeId } = useParams();
@@ -110,7 +112,7 @@ export function StreamSubscriptions({
   if (isPending) return <OsdsSkeleton />;
   return (
     <>
-      {subscriptions?.length > 0 && (
+      {subscriptionCount > 0 && (
         <OsdsLink
           className="mr-4"
           color={ODS_THEME_COLOR_INTENT.primary}
@@ -122,7 +124,7 @@ export function StreamSubscriptions({
           }
           target={OdsHTMLAnchorElementTarget._blank}
         >
-          {subscriptions?.length}
+          {subscriptionCount}
           <span slot="end">
             <OsdsIcon
               aria-hidden="true"
