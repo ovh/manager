@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.16.1...@ovh-ux/manager-hub@3.17.0) (2024-09-10)
+
+
+### Features
+
+* **hub:**  bypass fraud api call on us manager hub ([#12337](https://github.com/ovh/manager/issues/12337)) ([c555ae0](https://github.com/ovh/manager/commit/c555ae07c54b3e9fc12966f190e085c9936af06b))
+
+
+
+
+
 ## [3.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.16.0...@ovh-ux/manager-hub@3.16.1) (2024-08-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub
