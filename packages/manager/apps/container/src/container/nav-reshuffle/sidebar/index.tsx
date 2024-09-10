@@ -10,8 +10,9 @@ import {
   OsdsPopover,
   OsdsPopoverContent,
   OsdsIcon,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -330,9 +331,11 @@ const Sidebar = (): JSX.Element => {
             <ul id="menu" role="menu">
               <li className="px-3 mb-3 mt-2 h-8">
                 {open && currentNavigationNode && (
-                  <h2 className="whitespace-nowrap">
+                  <OsdsText
+                    level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+                    size={ODS_THEME_TYPOGRAPHY_SIZE._400} contrasted>
                     {t(currentNavigationNode.translation)}
-                  </h2>
+                  </OsdsText>
                 )}
               </li>
 

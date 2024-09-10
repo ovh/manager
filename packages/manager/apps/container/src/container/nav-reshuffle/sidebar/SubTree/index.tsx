@@ -1,7 +1,11 @@
 import { FocusEvent, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { OsdsIcon, OsdsMedium, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import style from './style.module.scss';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 import {
@@ -99,7 +103,8 @@ const SubTree = ({
           className={`d-block py-3 ${style.subtree_illustration}`}
           role="img"
         >
-          <img
+          <OsdsMedium
+            width={200}
             src={rootNode?.illustration}
             alt={t(rootNode?.translation)}
             aria-hidden="true"
@@ -114,7 +119,13 @@ const SubTree = ({
           aria-label={t(rootNode?.translation)}
         >
           <li className="mb-4 px-3">
-            <h2>{t(rootNode?.translation)}</h2>
+            <OsdsText
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              contrasted
+            >
+              {t(rootNode?.translation)}
+            </OsdsText>
           </li>
 
           {rootNode?.id.startsWith('pci') ? (

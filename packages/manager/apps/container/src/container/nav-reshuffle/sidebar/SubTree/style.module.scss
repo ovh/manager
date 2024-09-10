@@ -51,6 +51,7 @@
   }
   &_illustration {
     width: 55%;
+    text-align: center;
     margin: 0 auto;
     & > img {
       width: 100%;
@@ -72,16 +73,6 @@
     color: $p-200 !important;
     text-transform: uppercase;
     font-size: 1rem !important;
-  }
-  &_section {
-    &:after {
-      content: '';
-      margin: 0 1rem;
-      width: auto;
-      border-bottom: solid 1px $p-200;
-      margin-top: 0.625em;
-      display: flex;
-    }
   }
 
   &_close {
