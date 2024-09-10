@@ -31,7 +31,7 @@ import { useFetchHubSupport } from '@/data/hooks/apiHubSupport/useHubSupport';
 import { SUPPORT_URLS } from './HubSupport.constants';
 import { HubSupportHelp } from './hub-support-help/HubSupportHelp.component';
 import { HubSupportTable } from './hub-support-table/HubSupportTable.component';
-import { TileSkeleton } from '../tile-skeleton/TileSkeleton.component';
+import { Skeletons } from '../skeletons/Skeletons.component';
 import { TileError } from '../tile-error/TileError.component';
 
 export const HubSupport: FunctionComponent = () => {
@@ -71,7 +71,7 @@ export const HubSupport: FunctionComponent = () => {
   return (
     <OsdsTile className="w-full block p-4" inline>
       {isLoading ? (
-        <TileSkeleton />
+        <Skeletons />
       ) : (
         <div className="flex flex-col">
           {data.count <= 0 ? (
