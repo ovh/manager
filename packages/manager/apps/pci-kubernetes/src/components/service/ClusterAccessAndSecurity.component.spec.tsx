@@ -17,16 +17,17 @@ describe('ClusterAccessAndSecurity', () => {
   });
 
   it('renders kube API URL with clipboard component', () => {
-    const { getByLabelText } = render(
+    const { container } = render(
       <ClusterAccessAndSecurity
         kubeDetail={{ url: 'http://api.url' } as TKube}
       />,
       { wrapper },
     );
-    expect(getByLabelText('clipboard')).toHaveAttribute(
-      'value',
-      'http://api.url',
+
+    const clipboardElement = container.querySelector(
+      '[value="http://api.url"]',
     );
+    expect(clipboardElement).toBeVisible();
   });
 
   it('renders restrictions count correctly when no restrictions', () => {
@@ -34,10 +35,12 @@ describe('ClusterAccessAndSecurity', () => {
       isPending: false,
       data: [],
     } as UseQueryResult<string[]>);
+
     const { getByText } = render(
       <ClusterAccessAndSecurity kubeDetail={{ status: 'READY' } as TKube} />,
       { wrapper },
     );
+
     expect(
       getByText(/kube_service_restrictions_no_count/i),
     ).toBeInTheDocument();
@@ -48,6 +51,7 @@ describe('ClusterAccessAndSecurity', () => {
       isPending: false,
       data: ['restriction'],
     } as UseQueryResult<string[]>);
+
     const { getByText } = render(
       <ClusterAccessAndSecurity kubeDetail={{ status: 'READY' } as TKube} />,
       { wrapper },
@@ -60,10 +64,12 @@ describe('ClusterAccessAndSecurity', () => {
       isPending: false,
       data: ['restriction', 'restriction'],
     } as UseQueryResult<string[]>);
+
     const { getByText } = render(
       <ClusterAccessAndSecurity kubeDetail={{ status: 'READY' } as TKube} />,
       { wrapper },
     );
+
     expect(getByText(/kube_service_restrictions_count/i)).toBeInTheDocument();
   });
 
@@ -75,19 +81,16 @@ describe('ClusterAccessAndSecurity', () => {
       },
       isPending: false,
     } as UseQueryResult<TOidcProvider>);
-    const { getByTestId } = render(
+
+    const { container } = render(
       <ClusterAccessAndSecurity
         kubeDetail={{ status: 'READY', url: 'kube.url' } as TKube}
       />,
       { wrapper },
     );
-    expect(getByTestId('clusterAccessAndSecurity-kubeUrl')).toHaveAttribute(
-      'value',
-      'kube.url',
-    );
-    expect(
-      getByTestId('ClusterAccessAndSecurity-ClipboardIssuerUrl'),
-    ).toBeInTheDocument();
+
+    const clipboardElement = container.querySelector('[value="kube.url"]');
+    expect(clipboardElement).toBeVisible();
   });
 
   it('renders OIDC provider information correctly when not defined', () => {

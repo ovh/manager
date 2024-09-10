@@ -59,7 +59,7 @@ export default function ServicePage() {
             {!kubeDetail?.isUpToDate &&
               kubeDetail?.status !== STATUS.UPDATING && (
                 <ClusterSecurityUpgradeBanner
-                  isDisabled={isProcessing(kubeDetail?.status)}
+                  isDisabled={isProcessing(kubeDetail?.status) || undefined}
                 />
               )}
           </div>

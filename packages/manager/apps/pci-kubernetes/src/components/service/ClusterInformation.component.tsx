@@ -44,13 +44,7 @@ export default function ClusterInformation({
 
         <TileLine
           title={tDetail('kube_list_id')}
-          value={
-            <Clipboard
-              aria-label="clipboard"
-              value={kubeDetail.id}
-              data-testid="clusterInformation-clipboardKubeId"
-            />
-          }
+          value={<Clipboard aria-label="clipboard" value={kubeDetail.id} />}
         />
 
         <TileLine
@@ -103,11 +97,7 @@ export default function ClusterInformation({
         <TileLine
           title={t('kube_service_cluster_nodes_url')}
           value={
-            <Clipboard
-              aria-label="clipboard"
-              data-testid="clusterInformation-clipboardNodeUrls"
-              value={kubeDetail.nodesUrl}
-            />
+            <Clipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
           }
         />
       </div>
