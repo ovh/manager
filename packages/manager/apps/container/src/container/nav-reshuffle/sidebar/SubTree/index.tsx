@@ -8,10 +8,11 @@ import {
   getLastElement,
 } from '@/container/nav-reshuffle/sidebar/utils';
 import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTree/SubTreeSection';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { OsdsIcon, OsdsMedium, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { PublicCloudPanel } from './PublicCloudPanel';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle/useProductNavReshuffle';
+import { ODS_THEME_TYPOGRAPHY_LEVEL, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 
 interface SubTreeProps {
   rootNode: Node;
@@ -89,7 +90,8 @@ const SubTree = ({
           className={`d-block py-3 ${style.subtree_illustration}`}
           role="img"
         >
-          <img
+          <OsdsMedium
+            width={200}
             src={rootNode.illustration}
             alt={t(rootNode.translation)}
             aria-hidden="true"
@@ -104,7 +106,12 @@ const SubTree = ({
           aria-label={t(rootNode.translation)}
         >
           <li className="mb-4 px-3">
-            <h2>{t(rootNode.translation)}</h2>
+            <OsdsText
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              contrasted>
+              {t(rootNode.translation)}
+            </OsdsText>
           </li>
 
           {rootNode.id.startsWith('pci') ? (
