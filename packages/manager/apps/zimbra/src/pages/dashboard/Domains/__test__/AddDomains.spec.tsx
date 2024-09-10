@@ -83,6 +83,16 @@ describe('Add Domain page', () => {
     });
   };
 
+  const clickRadioConfigType = async (radioGroup, type) => {
+    await act(async () => {
+      radioGroup.dispatchEvent(
+        new CustomEvent('odsValueChange', {
+          detail: { newValue: type },
+        }),
+      );
+    });
+  };
+
   const clickIsselectedDomainOvh = async (selectDomain) => {
     await act(async () => {
       fireEvent.change(selectDomain, { target: { value: 'test.fr' } });
@@ -125,7 +135,7 @@ describe('Add Domain page', () => {
     expect(submitButton).toBeDisabled();
   });
 
-  it('Button should be enabled when both organization and domain name are provided', async () => {
+  it('Button should not be enabled when only organization and domain name are provided if domain is ovh', async () => {
     const { getByTestId } = render(<AddDomain />);
 
     const selectOrganization = getByTestId('select-organization');
@@ -140,6 +150,59 @@ describe('Add Domain page', () => {
 
     const selectedDomain = getByTestId('select-domain');
     await clickIsselectedDomainOvh(selectedDomain);
+
+    await waitFor(() => {
+      expect(selectedDomain).toBeDefined();
+      expect(getByTestId('add-domain-submit-btn')).toBeDisabled();
+    });
+  });
+
+  it('Button should be enabled when organization, domain name and configuration type standard are provided if domain name is ovh', async () => {
+    const { getByTestId } = render(<AddDomain />);
+
+    const selectOrganization = getByTestId('select-organization');
+    await clickSelectOrganization(selectOrganization);
+
+    const radioGroup = getByTestId('radio-group');
+    await waitFor(() => {
+      expect(radioGroup).toBeDefined();
+    });
+
+    await clickRadioDomainOvh(radioGroup);
+
+    const selectedDomain = getByTestId('select-domain');
+    await clickIsselectedDomainOvh(selectedDomain);
+
+    const selectedRadioConfigType = getByTestId('radio-group-config');
+    await clickRadioConfigType(
+      selectedRadioConfigType,
+      'standardConfiguration',
+    );
+
+    await waitFor(() => {
+      expect(selectedDomain).toBeDefined();
+      expect(getByTestId('add-domain-submit-btn')).toBeEnabled();
+    });
+  });
+
+  it('Button should be enabled when organization, domain name and configuration type expert are provided if domain name is ovh', async () => {
+    const { getByTestId } = render(<AddDomain />);
+
+    const selectOrganization = getByTestId('select-organization');
+    await clickSelectOrganization(selectOrganization);
+
+    const radioGroup = getByTestId('radio-group');
+    await waitFor(() => {
+      expect(radioGroup).toBeDefined();
+    });
+
+    await clickRadioDomainOvh(radioGroup);
+
+    const selectedDomain = getByTestId('select-domain');
+    await clickIsselectedDomainOvh(selectedDomain);
+
+    const selectedRadioConfigType = getByTestId('radio-group-config');
+    await clickRadioConfigType(selectedRadioConfigType, 'expertConfiguration');
 
     await waitFor(() => {
       expect(selectedDomain).toBeDefined();

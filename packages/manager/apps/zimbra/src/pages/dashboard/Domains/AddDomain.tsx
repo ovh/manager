@@ -7,7 +7,7 @@ import {
   Clipboard,
 } from '@ovh-ux/manager-react-components';
 
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
   OsdsFormField,
@@ -23,8 +23,11 @@ import {
   OsdsMessage,
   OsdsLink,
   OsdsIcon,
+  OsdsCheckboxButton,
+  OsdsCheckbox,
 } from '@ovhcloud/ods-components/react';
 import {
+  ODS_THEME_COLOR_HUE,
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -39,8 +42,10 @@ import {
   ODS_SPINNER_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
+  OdsCheckboxCheckedChangeEventDetail,
   OdsInputValueChangeEvent,
   OdsSelectValueChangeEventDetail,
+  OsdsCheckboxCustomEvent,
   OsdsRadioGroupCustomEvent,
   OsdsSelectCustomEvent,
 } from '@ovhcloud/ods-components';
@@ -83,6 +88,34 @@ export default function AddDomain() {
   const [selectedRadioDomain, setSelectedRadioDomain] = useState('');
   const [selectedDomainName, setSelectedDomainName] = useState('');
   const [cnameToCheck, setCnameToCheck] = useState('');
+  const [
+    selectedRadioConfigurationType,
+    setSelectedRadioConfigurationType,
+  ] = useState('');
+  const [expertConfigItemsState, setExpertConfigItemsState] = useState({});
+
+  const expertConfigItems = [
+    {
+      name: 'SRV',
+      key: 'SRV',
+      label: t('zimbra_domains_add_domain_configuration_expert_configure_srv'),
+    },
+    {
+      name: 'MX',
+      key: 'MX',
+      label: t('zimbra_domains_add_domain_configuration_expert_configure_mx'),
+    },
+    {
+      name: 'SPF',
+      key: 'SPF',
+      label: t('zimbra_domains_add_domain_configuration_expert_configure_spf'),
+    },
+    {
+      name: 'DKIM',
+      key: 'DKIM',
+      label: t('zimbra_domains_add_domain_configuration_expert_configure_dkim'),
+    },
+  ];
 
   const goBackUrl = useGenerateUrl('..', 'path');
   const backLinkUrl = useGenerateUrl('..', 'href');
@@ -98,9 +131,14 @@ export default function AddDomain() {
     event: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>,
   ) => {
     setSelectedDomainName(event.detail.value as string);
+    setSelectedRadioConfigurationType('');
+    setExpertConfigItemsState({});
   };
 
   const ovhDomain = selectedRadioDomain === 'ovhDomain';
+
+  const isExpertConfigurationSelected =
+    selectedRadioConfigurationType === 'expertConfiguration';
 
   const handleRadioDomainChange = useCallback(
     (
@@ -111,8 +149,33 @@ export default function AddDomain() {
     ) => {
       const type = `${event.detail.newValue}` || '';
       setSelectedRadioDomain(type);
+      setSelectedDomainName('');
     },
     [setSelectedRadioDomain],
+  );
+
+  const handleRadioConfigurationTypeChange = useCallback(
+    (
+      event: OsdsRadioGroupCustomEvent<{
+        newValue?: string;
+        previousValue?: string;
+      }>,
+    ) => {
+      const type = `${event.detail.newValue}` || '';
+      setSelectedRadioConfigurationType(type);
+      setExpertConfigItemsState({});
+    },
+    [setSelectedRadioConfigurationType],
+  );
+
+  const handleExpertConfigItemsChange = useCallback(
+    (event: OsdsCheckboxCustomEvent<OdsCheckboxCheckedChangeEventDetail>) => {
+      setExpertConfigItemsState((prev) => ({
+        ...prev,
+        [event.target.name]: event.detail.checked,
+      }));
+    },
+    [expertConfigItemsState],
   );
 
   const handleAddDomainClick = () => {
@@ -165,7 +228,7 @@ export default function AddDomain() {
 
   return (
     <div
-      className="flex flex-col items-start w-full md:w-3/4 space-y-4"
+      className="flex flex-col items-start w-full"
       data-testid="add-domain-page"
     >
       <Links
@@ -175,9 +238,11 @@ export default function AddDomain() {
       />
       {!cnameToCheck ? (
         <>
-          <Subtitle>{t('zimbra_domains_add_domain_title_select')}</Subtitle>
+          <Subtitle className="mt-8">
+            {t('zimbra_domains_add_domain_title_select')}
+          </Subtitle>
 
-          <OsdsFormField className="w-full">
+          <OsdsFormField className="w-full mt-8">
             <div slot="label">
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
@@ -215,18 +280,21 @@ export default function AddDomain() {
             )}
           </OsdsFormField>
           {selectedOrganization && !isLoadingDomain && (
-            <OsdsFormField className="w-full">
+            <OsdsFormField className="w-full mt-8">
               <OsdsRadioGroup
                 value={selectedRadioDomain}
                 data-testid="radio-group"
                 onOdsValueChange={(value) => handleRadioDomainChange(value)}
               >
                 <OsdsRadio value="ovhDomain">
-                  <OsdsRadioButton size={ODS_RADIO_BUTTON_SIZE.sm}>
+                  <OsdsRadioButton
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    size={ODS_RADIO_BUTTON_SIZE.sm}
+                  >
                     <span slot="end">
                       <OsdsText
                         color={ODS_THEME_COLOR_INTENT.text}
-                        size={ODS_TEXT_SIZE._100}
+                        size={ODS_TEXT_SIZE._400}
                         level={ODS_TEXT_LEVEL.body}
                       >
                         {t('zimbra_domains_add_domain_select_title')}
@@ -235,11 +303,14 @@ export default function AddDomain() {
                   </OsdsRadioButton>
                 </OsdsRadio>
                 <OsdsRadio value="externalDomain">
-                  <OsdsRadioButton size={ODS_RADIO_BUTTON_SIZE.sm}>
+                  <OsdsRadioButton
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    size={ODS_RADIO_BUTTON_SIZE.sm}
+                  >
                     <span slot="end">
                       <OsdsText
                         color={ODS_THEME_COLOR_INTENT.text}
-                        size={ODS_TEXT_SIZE._100}
+                        size={ODS_TEXT_SIZE._400}
                         level={ODS_TEXT_LEVEL.body}
                       >
                         {t('zimbra_domains_add_domain_input_title')}
@@ -260,7 +331,7 @@ export default function AddDomain() {
             </OsdsFormField>
           )}
           {selectedRadioDomain && (
-            <OsdsFormField className="w-full">
+            <OsdsFormField className="w-full mt-8">
               <div slot="label">
                 <OsdsText
                   color={ODS_THEME_COLOR_INTENT.text}
@@ -319,6 +390,124 @@ export default function AddDomain() {
                   </OsdsMessage>
                 </>
               )}
+            </OsdsFormField>
+          )}
+          {selectedRadioDomain && ovhDomain && selectedDomainName && (
+            <OsdsFormField className="w-full mt-8 space-y-5">
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.primary}
+                size={ODS_TEXT_SIZE._600}
+                level={ODS_TEXT_LEVEL.body}
+                hue={ODS_THEME_COLOR_HUE._800}
+              >
+                {t('zimbra_domains_add_domain_configuration_title')}
+              </OsdsText>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                size={ODS_TEXT_SIZE._400}
+                level={ODS_TEXT_LEVEL.body}
+              >
+                {t('zimbra_domains_add_domain_configuration_description')}
+              </OsdsText>
+              <OsdsRadioGroup
+                className="space-y-5"
+                value={selectedRadioConfigurationType}
+                data-testid="radio-group-config"
+                onOdsValueChange={(value) =>
+                  handleRadioConfigurationTypeChange(value)
+                }
+              >
+                <OsdsRadio value="standardConfiguration">
+                  <OsdsRadioButton
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    size={ODS_RADIO_BUTTON_SIZE.sm}
+                  >
+                    <div slot="end" className="flex flex-col">
+                      <OsdsText
+                        color={ODS_THEME_COLOR_INTENT.text}
+                        size={ODS_TEXT_SIZE._400}
+                        level={ODS_TEXT_LEVEL.body}
+                      >
+                        {t(
+                          'zimbra_domains_add_domain_configuration_choice_standard',
+                        )}
+                      </OsdsText>
+                      <OsdsText
+                        color={ODS_THEME_COLOR_INTENT.text}
+                        size={ODS_TEXT_SIZE._100}
+                        level={ODS_TEXT_LEVEL.body}
+                      >
+                        {t(
+                          'zimbra_domains_add_domain_configuration_choice_standard_info',
+                        )}
+                      </OsdsText>
+                    </div>
+                  </OsdsRadioButton>
+                </OsdsRadio>
+                <OsdsRadio value="expertConfiguration">
+                  <OsdsRadioButton
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    size={ODS_RADIO_BUTTON_SIZE.sm}
+                  >
+                    <div slot="end" className="flex flex-col">
+                      <OsdsText
+                        color={ODS_THEME_COLOR_INTENT.text}
+                        size={ODS_TEXT_SIZE._400}
+                        level={ODS_TEXT_LEVEL.body}
+                      >
+                        {t(
+                          'zimbra_domains_add_domain_configuration_choice_expert',
+                        )}
+                      </OsdsText>
+                      <OsdsText
+                        color={ODS_THEME_COLOR_INTENT.text}
+                        size={ODS_TEXT_SIZE._100}
+                        level={ODS_TEXT_LEVEL.body}
+                      >
+                        {t(
+                          'zimbra_domains_add_domain_configuration_choice_expert_info',
+                        )}
+                      </OsdsText>
+                    </div>
+                  </OsdsRadioButton>
+                </OsdsRadio>
+              </OsdsRadioGroup>
+            </OsdsFormField>
+          )}
+          {isExpertConfigurationSelected && (
+            <OsdsFormField className="w-full mt-8 space-y-5">
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                size={ODS_TEXT_SIZE._400}
+                level={ODS_TEXT_LEVEL.body}
+              >
+                <Trans
+                  t={t}
+                  i18nKey="zimbra_domains_add_domain_configuration_expert_title"
+                  values={{ domain: selectedDomainName }}
+                  components={{ bold: <strong /> }}
+                />
+              </OsdsText>
+              {expertConfigItems.map(({ name, label, key }) => (
+                <OsdsCheckbox
+                  key={key}
+                  checked={expertConfigItemsState[name]}
+                  name={name}
+                  onOdsCheckedChange={handleExpertConfigItemsChange}
+                >
+                  <OsdsCheckboxButton color={ODS_THEME_COLOR_INTENT.primary}>
+                    <span slot="end">
+                      <OsdsText
+                        color={ODS_THEME_COLOR_INTENT.text}
+                        size={ODS_TEXT_SIZE._400}
+                        level={ODS_TEXT_LEVEL.body}
+                      >
+                        {label}
+                      </OsdsText>
+                    </span>
+                  </OsdsCheckboxButton>
+                </OsdsCheckbox>
+              ))}
             </OsdsFormField>
           )}
         </>
@@ -381,14 +570,17 @@ export default function AddDomain() {
         </>
       )}
       {!cnameToCheck && (
-        <OsdsFormField className="w-full">
+        <OsdsFormField>
           <OsdsButton
             data-testid="add-domain-submit-btn"
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={handleAddDomainClick}
             inline
-            className="mt-8 w-1/2"
-            {...(!selectedOrganization || !selectedDomainName || isSubmitting
+            className="mt-8"
+            {...(!selectedOrganization ||
+            !selectedDomainName ||
+            (!selectedRadioConfigurationType && ovhDomain) ||
+            isSubmitting
               ? { disabled: true }
               : {})}
           >
