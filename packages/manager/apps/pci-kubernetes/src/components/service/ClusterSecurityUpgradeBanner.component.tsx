@@ -11,7 +11,11 @@ import {
 import { Trans, useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 
-export default function ClusterSecurityUpgradeBanner() {
+export default function ClusterSecurityUpgradeBanner({
+  isDisabled,
+}: {
+  isDisabled: boolean;
+}) {
   const { t } = useTranslation('service');
 
   const hrefForceVersion = useHref('./update?forceVersion');
@@ -35,6 +39,7 @@ export default function ClusterSecurityUpgradeBanner() {
           color={ODS_THEME_COLOR_INTENT.primary}
           data-testid="upgradeBanner-button"
           href={hrefForceVersion}
+          disabled={isDisabled || undefined}
           inline
         >
           {t('kube_service_common_update')}
