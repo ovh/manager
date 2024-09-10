@@ -6,5 +6,5 @@
   "nutanix_cluster_licence_show_less": "Show less options",
   "nutanix_cluster_licence_show_files_objects_size": "Included (max. {{size}} TB)",
   "nutanix_cluster_licence_show_LCM": "Included (Software upgrade only)",
-  "nutanix_cluster_licence_detail": "See details of the licences included in this pack"
+  "nutanix_cluster_licence_detail": "See details of the licences included with this pack"
 }

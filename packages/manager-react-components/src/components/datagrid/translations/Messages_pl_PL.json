@@ -1,7 +1,7 @@
 {
   "common_pagination_of": "z",
-  "common_pagination_results": "wyniki",
-  "common_pagination_no_results": "Brak wyników wyszukiwania",
+  "common_pagination_results": "Wyniki",
+  "common_pagination_no_results": "Brak wyników",
   "common_clipboard_success_label": "Skopiowano!",
   "common_clipboard_error_label": "Błąd kopiowania.",
   "common_pagination_load_more": "Załaduj więcej",

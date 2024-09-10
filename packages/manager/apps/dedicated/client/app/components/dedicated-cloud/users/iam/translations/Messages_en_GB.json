@@ -4,7 +4,7 @@
   "dedicatedCloud_USER_iam_enable": "Enable OVHcloud IAM",
   "dedicatedCloud_USER_iam_disable": "Disable OVHcloud IAM",
   "dedicatedCloud_USER_iam_manage_iam": "Manage access and policies",
-  "dedicatedCloud_USER_iam_description": "Activating OVHcloud IAM delegates the management of access to the OVHcloud IAM service. You can manage the associated roles and their permissions in vSphere via this page. Policy and access is managed via the OVHcloud IAM. Only the vSphere product is integrated with the OVHcloud IAM.",
+  "dedicatedCloud_USER_iam_description": "Enabling OVHcloud IAM delegates access management to the OVHcloud IAM service. You can manage the associated roles and their permissions in vSphere via this page. Policy and access is managed via the OVHcloud IAM. Only the vSphere product is integrated with the OVHcloud IAM.",
   "dedicatedCloud_USER_iam_usage_warning": "Infrastructure with enhanced security options or a certified service (HDS, PCI-DSS or SNC) cannot currently use OVHcloud IAM.",
   "dedicatedCloud_USER_iam_api_error_returned": "Unable to complete action Issue: {{message}}"
 }

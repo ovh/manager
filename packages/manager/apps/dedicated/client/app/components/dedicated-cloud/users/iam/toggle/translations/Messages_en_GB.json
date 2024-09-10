@@ -3,7 +3,7 @@
   "dedicatedCloud_USER_iam_disable_title": "Disable OVHcloud IAM",
   "dedicatedCloud_USER_iam_enable_available": "Are you sure you want to enable OVHcloud IAM?",
   "dedicatedCloud_USER_iam_disable_available": "Are you sure you want to disable OVHcloud IAM?",
-  "dedicatedCloud_USER_iam_enable_usage_warning": "Only the vSphere product is integrated with the OVHcloud IAM. Infrastructure with enhanced security options or a certified service (HDS, PCI-DSS or SNC) cannot currently use OVHcloud IAM. If you would like to enable one of these certified options or services later, you will need to disable OVHcloud IAM.",
+  "dedicatedCloud_USER_iam_enable_usage_warning": "Only the vSphere product is integrated with the OVHcloud IAM. Infrastructure with enhanced security options or a certified service (HDS, PCI-DSS or SNC) cannot currently use OVHcloud IAM. If you decide to enable one of these certified options or services later, you will need to disable OVHcloud IAM.",
   "dedicatedCloud_USER_iam_enable_unavailable": "Failed to enable OVHcloud IAM.",
   "dedicatedCloud_USER_iam_disable_unavailable": "Failed to disable OVHcloud IAM.",
   "dedicatedCloud_USER_iam_enable_error": "Could not enable OVHcloud IAM.",
