@@ -97,6 +97,7 @@ export const useStreamsListColumns = (account: TDbaasLog) => {
           <StreamSubscriptions
             serviceName={account.serviceName}
             streamId={stream.streamId}
+            subscriptionCount={stream.nbSubscription}
           />
         </DataGridTextCell>
       ),
