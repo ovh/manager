@@ -17,7 +17,12 @@ import ClusterManagement from '@/components/service/ClusterManagement.component'
 import ClusterSecurityUpgradeBanner from '@/components/service/ClusterSecurityUpgradeBanner.component';
 import ClusterVersionUpgradeBanner from '@/components/service/ClusterVersionUpgradeBanner.component';
 import ClusterNetwork from '@/components/service/ClusterNetwork.component';
-import { KUBE_INSTALL_URL, KUBECTL_URL, STATUS } from '@/constants';
+import {
+  KUBE_INSTALL_URL,
+  KUBECTL_URL,
+  PROCESSING_STATUS,
+  STATUS,
+} from '@/constants';
 
 export default function ServicePage() {
   const { t } = useTranslation('service');
@@ -36,7 +41,7 @@ export default function ServicePage() {
     return false;
   }, [cloudSchema, kubeDetail]);
 
-  console.log('service page => ', kubeDetail);
+  const isProcessing = (status: string) => PROCESSING_STATUS.includes(status);
 
   return (
     <>
@@ -53,7 +58,9 @@ export default function ServicePage() {
 
             {!kubeDetail?.isUpToDate &&
               kubeDetail?.status !== STATUS.UPDATING && (
-                <ClusterSecurityUpgradeBanner />
+                <ClusterSecurityUpgradeBanner
+                  isDisabled={isProcessing(kubeDetail?.status)}
+                />
               )}
           </div>
 
