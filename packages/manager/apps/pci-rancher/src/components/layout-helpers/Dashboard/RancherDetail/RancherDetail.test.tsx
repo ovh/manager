@@ -15,12 +15,16 @@ jest.mock('@ovh-ux/manager-react-shell-client', () => ({
   })),
 }));
 
+const updateOfferErrorMessage = 'error message';
+
 const defaultProps: RancherDetailProps = {
+  updateOfferErrorMessage,
   versions: versionsMocked,
   rancher: rancherMocked,
   editNameResponseType: null,
   hasErrorAccessDetail: false,
   updateSoftwareResponseType: null,
+  updateOfferResponseType: null,
 };
 const setupSpecTest = async (props: RancherDetailProps = defaultProps) =>
   waitFor(() => render(<RancherDetail {...props} />));

@@ -47,7 +47,6 @@ const getResponseStatusByEditAction = (
   mutationState.length && mutationState[0].variables.editAction === editAction
     ? mutationState[0].status
     : null;
-
 const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   const { projectId, rancherId } = useParams();
   const { data: versions } = useVersions();
@@ -61,9 +60,22 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
       rancher: RancherService;
     };
     status: MutationStatus;
+    error: {
+      response: {
+        data: {
+          message: string;
+        };
+      };
+    };
   }>({
     filters: { mutationKey: patchRancherServiceQueryKey(rancherId) },
   });
+
+  const updateError = mutationEditRancherState?.find(
+    (state) => state?.status === 'error',
+  );
+
+  const errorMessage = updateError?.error?.response?.data?.message;
 
   const mutationGenerateAccessState = useMutationState({
     filters: {
@@ -80,6 +92,11 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   const updateSoftwareResponseType = getResponseStatusByEditAction(
     mutationEditRancherState,
     EditAction.UpdateSoftware,
+  );
+
+  const updateOfferResponseType = getResponseStatusByEditAction(
+    mutationEditRancherState,
+    EditAction.UpdateOffer,
   );
 
   let editNameBannerType = null;
@@ -110,6 +127,8 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
         versions={versions}
         editNameResponseType={editNameBannerType}
         updateSoftwareResponseType={updateSoftwareResponseType}
+        updateOfferResponseType={updateOfferResponseType}
+        updateOfferErrorMessage={errorMessage}
         hasErrorAccessDetail={mutationGenerateAccessState.length > 0}
       />
       <Outlet />
