@@ -61,7 +61,11 @@ const RancherDetail = ({
   updateOfferErrorMessage,
   versions,
 }: RancherDetailProps) => {
-  const { t } = useTranslation(['dashboard', 'updateSoftware', 'listing']);
+  const { t, i18n } = useTranslation([
+    'dashboard',
+    'updateSoftware',
+    'listing',
+  ]);
   const trackAction = useTrackingAction();
   const hrefEdit = useHref('./edit');
   const hrefUpdateSoftware = useHref('./update-software');
@@ -122,7 +126,6 @@ const RancherDetail = ({
 
   const onAccessRancherUrl = () =>
     trackAction(TrackingPageView.DetailRancher, TrackingEvent.accessUi);
-  const { i18n } = useTranslation('common');
   const shouldDisplayUpdateSoftware =
     getLatestVersionAvailable(rancher, versions) &&
     isReadyStatus &&
