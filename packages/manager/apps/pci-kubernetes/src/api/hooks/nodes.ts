@@ -9,21 +9,26 @@ import { deleteNode, getNodes, TNode } from '@/api/data/nodes';
 import { useInstances } from '@/api/hooks/instances';
 import { paginateResults } from '@/helpers';
 
+
+export const getNodesQueryKey = ( projectId: string,
+  clusterId: string,
+  nodePoolId: string) => [
+  'project',
+  projectId,
+  'kubernetes',
+  clusterId,
+  'nodePools',
+  nodePoolId,
+  'nodes',
+];
+
 export const useNodes = (
   projectId: string,
   clusterId: string,
   nodePoolId: string,
 ) =>
   useQuery({
-    queryKey: [
-      'project',
-      projectId,
-      'kubernetes',
-      clusterId,
-      'nodePools',
-      nodePoolId,
-      'nodes',
-    ],
+    queryKey: getNodesQueryKey(projectId, clusterId, nodePoolId),
     queryFn: () => getNodes(projectId, clusterId, nodePoolId),
     throwOnError: true,
   });
