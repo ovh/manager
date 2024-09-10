@@ -84,12 +84,12 @@ const RancherDetail = ({
     }
     if (updateOfferResponseType === 'pending') {
       setIsPendingOffer(true);
-      addInfo(t('updateOfferPending'));
     }
   }, [updateSoftwareResponseType, updateOfferResponseType]);
 
   useEffect(() => {
     if (currentTasks.length) {
+      addInfo(t('updateOfferPending'));
       setHasTaskPending(true);
     }
   }, [currentTasks]);
@@ -97,8 +97,10 @@ const RancherDetail = ({
   useEffect(() => {
     if (hasTaskPending && currentTasks.length === 0) {
       setIsPendingUpdate(false);
-      setIsPendingOffer(false);
       setHasTaskPending(false);
+      setIsPendingOffer(false);
+    }
+    if (currentTasks.length === 0) {
       clearNotifications();
     }
   }, [currentTasks]);
