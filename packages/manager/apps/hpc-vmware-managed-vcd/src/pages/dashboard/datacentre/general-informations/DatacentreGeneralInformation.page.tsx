@@ -7,7 +7,9 @@ import Loading from '@/components/loading/Loading.component';
 
 export default function DatacentresGeneralInformationPage() {
   const { id, vdcId } = useParams();
-  const { data: vcdOrganization, isLoading } = useManagedVcdOrganization(id);
+  const { data: vcdOrganization, isLoading } = useManagedVcdOrganization({
+    id,
+  });
   const {
     data: vcdDatacentre,
     isLoading: isLoadingVdc,

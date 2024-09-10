@@ -1,5 +1,5 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import {
   getVcdDatacentre,
   getVcdDatacentres,
@@ -15,9 +15,7 @@ const useManagedVcdDatacentres = (id: string) => {
     queryKey: getVcdDatacentresQueryKey(id),
     queryFn: () => getVcdDatacentres(id),
     retry: false,
-    ...{
-      keepPreviousData: true,
-    },
+    placeholderData: keepPreviousData,
   });
 };
 
@@ -30,9 +28,7 @@ export const useManagedVcdDatacentre = (id: string, vdcId: string) => {
     queryKey: getVcdDatacentreQueryKey(id, vdcId),
     queryFn: () => getVcdDatacentre(id, vdcId),
     retry: false,
-    ...{
-      keepPreviousData: true,
-    },
+    placeholderData: keepPreviousData,
   });
 };
 
