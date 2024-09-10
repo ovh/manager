@@ -23,18 +23,18 @@ type Props = {
   message: string;
   refetch: () => void;
   className?: string;
-  tileVarian?: ODS_TILE_VARIANT;
+  tileVariant?: ODS_TILE_VARIANT;
 };
 
 export const TileError: FunctionComponent<Props> = ({
   message,
   refetch,
   className,
-  tileVarian,
+  tileVariant,
 }) => {
   const { t } = useTranslation('hub/error');
   return (
-    <OsdsTile variant={tileVarian} className={className} inline>
+    <OsdsTile variant={tileVariant} className={className} inline>
       <div className="flex gap-1 flex-col items-center">
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.error}
