@@ -303,9 +303,10 @@ export default function ResetClusterPage() {
               <OsdsSelect
                 value={formState.privateNetworkId || defaultNetwork?.id}
                 onOdsValueChange={(event) => {
+                  const value = `${event.detail.value}`;
                   setFormState({
                     ...formState,
-                    privateNetworkId: `${event.detail.value}`,
+                    privateNetworkId: value === 'none' ? undefined : value,
                     subnet: null,
                     loadBalancersSubnet: null,
                   });
