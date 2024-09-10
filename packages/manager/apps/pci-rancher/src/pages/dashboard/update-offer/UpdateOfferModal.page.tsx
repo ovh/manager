@@ -1,10 +1,6 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import {
-  useCatalogPrice,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { useRancher } from '@/data/hooks/useRancher/useRancher';
 import UpdateOfferModal from '@/components/Modal/UpdateOfferModal/UpdateOfferModal.component';
 import { RancherPlanName } from '@/types/api.type';
@@ -32,8 +28,6 @@ const UpdateOfferModalPage = () => {
   const { mutate, isPending } = useEditRancher({
     projectId,
     rancherId: rancher?.id,
-    onSuccess: () => {},
-    onError: () => {},
   });
 
   const { plan: planName } = rancher.currentState;

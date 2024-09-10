@@ -24,8 +24,8 @@ const useEditRancher = ({
 }: {
   rancherId: string;
   projectId: string;
-  onSuccess: () => void;
-  onError: () => void;
+  onSuccess?: () => void;
+  onError?: () => void;
 }) => {
   return useMutation({
     mutationFn: ({ rancher }: EditMutationVariables) =>

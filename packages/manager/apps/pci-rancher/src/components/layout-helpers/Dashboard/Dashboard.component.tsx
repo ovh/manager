@@ -71,10 +71,6 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
     filters: { mutationKey: patchRancherServiceQueryKey(rancherId) },
   });
 
-  // const errorMessages = mutationEditRancherState[0].status === 'error'
-  // ? mutationEditRancherState[0].variables.editAction
-  // : null;
-
   const updateError = mutationEditRancherState?.find(
     (state) => state?.status === 'error',
   );
