@@ -128,8 +128,6 @@ export default function EditNetworkPage() {
       });
   };
 
-  console.log();
-
   return (
     <OsdsModal
       onOdsModalClose={() => {
