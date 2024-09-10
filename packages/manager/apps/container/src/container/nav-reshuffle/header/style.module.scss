@@ -1,6 +1,15 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
+
 .navbar {
   box-shadow: none !important;
   width: 100%;
+  padding: 0 1.5rem 0 0.375rem !important;
+
+  @media (max-width: $device-breakpoint-tablet-max-width) {
+    padding: 0 0.5rem 0 0.375rem !important;
+  }
 
   &List {
     display: flex;
