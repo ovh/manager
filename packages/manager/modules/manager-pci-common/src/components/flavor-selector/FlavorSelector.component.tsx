@@ -75,6 +75,8 @@ export function FlavorSelector({
                     disk: flavor.blobs.technical.storage?.disks,
                     nvme: flavor.blobs.technical.nvme?.disks,
                     bandwidth: flavor.blobs.technical.bandwidth?.level,
+                    gpuNumber: flavor.blobs.technical.gpu?.number,
+                    gpuModel: flavor.blobs.technical.gpu?.model,
                   }}
                   flavorCompatibility={flavor.compatibility}
                   flavorPrice={{
