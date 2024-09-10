@@ -34,7 +34,7 @@ import {
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useClusterNodePools } from '@/api/hooks/node-pools';
 import { useDatagridColumns } from './useDatagridColumns';
-import { usePaginatedNodes } from '@/api/hooks/nodes';
+import { getNodesQueryKey, usePaginatedNodes } from '@/api/hooks/nodes';
 import queryClient from '@/queryClient';
 import LoadingSkeleton from '@/components/LoadingSkeleton.component';
 
@@ -71,15 +71,7 @@ export default function NodesPage(): JSX.Element {
 
   const refresh = () => {
     queryClient.invalidateQueries({
-      queryKey: [
-        'project',
-        projectId,
-        'kubernetes',
-        kubeId,
-        'nodePools',
-        poolId,
-        'nodes',
-      ],
+      queryKey: getNodesQueryKey(projectId, kubeId, poolId),
     });
   };
 
