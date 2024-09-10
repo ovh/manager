@@ -1,31 +1,22 @@
 import React from 'react';
 import {
-  useOrderURL,
-  getVcdProductSettings,
-} from '@ovh-ux/manager-module-order';
-import {
   ActionMenu,
   DashboardTile,
   Description,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { useParams } from 'react-router-dom';
+import useLicenseOrder from '@/data/hooks/useLicenseOrder';
 
 export default function OrganizationOptionsTile({
   isLicenseActive,
-  organizationName,
 }: Readonly<{
   isLicenseActive: boolean;
-  organizationName: string;
 }>) {
   const { t } = useTranslation('dashboard');
-
-  const orderBaseUrl = useOrderURL('express_review_base');
-  const vcdProductSettings = getVcdProductSettings(organizationName);
-  const orderLink = `${orderBaseUrl}?products=~(${vcdProductSettings})`;
-  const handleActivateLicense = () => {
-    window.open(orderLink, '_blank', 'noopener,noreferrer');
-  };
+  const { id } = useParams();
+  const { redirectToLicenseOrder } = useLicenseOrder(id);
 
   return (
     <div className="h-fit">
@@ -51,7 +42,7 @@ export default function OrganizationOptionsTile({
                       label: t(
                         'managed_vcd_dashboard_windows_license_activate',
                       ),
-                      onClick: handleActivateLicense,
+                      onClick: redirectToLicenseOrder,
                     },
                   ]}
                   isCompact
@@ -65,4 +56,3 @@ export default function OrganizationOptionsTile({
     </div>
   );
 }
-// orderconfirmation.tsx // order funnel example

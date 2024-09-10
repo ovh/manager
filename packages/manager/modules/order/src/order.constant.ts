@@ -36,7 +36,7 @@ export const getKMSProductSettings = ({ region }: { region: string }) =>
 export const getVcdProductSettings = (serviceName: string) =>
   JSURL.stringify({
     serviceName,
-    productId: 'vmware-cloud-director',
+    productId: 'vcd',
     planCode: 'vcd-microsoft-license',
     duration: 'P1M',
     pricingMode: 'default',
