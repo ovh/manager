@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { getByRole, render } from '@testing-library/react';
 import { describe, it } from 'vitest';
 import ClusterInformation from '@/components/service/ClusterInformation.component';
 import { TKube } from '@/types';
@@ -25,11 +25,11 @@ describe('ClusterInformation', () => {
   });
 
   it('renders cluster ID with clipboard component', () => {
-    const { getByTestId } = render(
+    const { container } = render(
       <ClusterInformation
         kubeDetail={
           {
-            id: '1',
+            id: 'id-1',
             name: 'Cluster1',
             status: 'READY',
             version: '1.18',
@@ -41,10 +41,9 @@ describe('ClusterInformation', () => {
         }
       />,
     );
-    expect(getByTestId('clusterInformation-clipboardKubeId')).toHaveAttribute(
-      'value',
-      '1',
-    );
+
+    const clipboardElement = container.querySelector('[value="id-1"]');
+    expect(clipboardElement).toBeVisible();
   });
 
   it('renders cluster name correctly', () => {
@@ -128,7 +127,7 @@ describe('ClusterInformation', () => {
   });
 
   it('renders nodes URL with clipboard component', () => {
-    const { getByTestId } = render(
+    const { container } = render(
       <ClusterInformation
         kubeDetail={
           {
@@ -144,9 +143,10 @@ describe('ClusterInformation', () => {
         }
       />,
     );
-    expect(getByTestId('clusterInformation-clipboardNodeUrls')).toHaveAttribute(
-      'value',
-      'http://nodes.url',
+
+    const clipboardElement = container.querySelector(
+      '[value="http://nodes.url"]',
     );
+    expect(clipboardElement).toBeVisible();
   });
 });
