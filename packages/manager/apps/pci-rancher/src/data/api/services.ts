@@ -3,6 +3,7 @@ import {
   CreateRancherPayload,
   PciProject,
   RancherPlan,
+  RancherPlanName,
   RancherService,
   RancherVersion,
   TCatalog,
@@ -82,6 +83,18 @@ export const createRancherService = async ({
   data: CreateRancherPayload;
 }) => {
   return apiClient.v2.post(getRancherByProjectIdQueryKey(projectId), {
+    targetSpec: data,
+  });
+};
+
+export const patchRancherService = async ({
+  projectId,
+  data,
+}: {
+  projectId: string;
+  data: CreateRancherPayload;
+}) => {
+  return apiClient.v2.put(getRancherByProjectIdQueryKey(projectId), {
     targetSpec: data,
   });
 };

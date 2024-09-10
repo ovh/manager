@@ -8,6 +8,7 @@ import { RancherService } from '@/types/api.type';
 export enum EditAction {
   EditName = 'EditName',
   UpdateSoftware = 'UpdateSoftware',
+  UpdateOffer = 'UpdateOffer',
 }
 
 export type EditMutationVariables = {
@@ -23,8 +24,8 @@ const useEditRancher = ({
 }: {
   rancherId: string;
   projectId: string;
-  onSuccess: () => void;
-  onError: () => void;
+  onSuccess?: () => void;
+  onError?: () => void;
 }) => {
   return useMutation({
     mutationFn: ({ rancher }: EditMutationVariables) =>
