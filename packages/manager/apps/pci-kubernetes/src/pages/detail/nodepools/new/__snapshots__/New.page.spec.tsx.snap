@@ -9,6 +9,7 @@ exports[`New > should render correctly 1`] = `
   >
     kube_common_create_node_pool
   </osds-text>
+  <div />
   <section
     class="flex flex-row border-0 border-t-[1px] border-solid border-t-[#b3b3b3] pt-5 mb-5"
   >
@@ -70,6 +71,7 @@ exports[`New > should render correctly 1`] = `
       </div>
     </div>
   </section>
+  <div />
   <section
     class="flex flex-row border-0 border-t-[1px] border-solid border-t-[#b3b3b3] pt-5 mb-5"
   >
@@ -102,6 +104,7 @@ exports[`New > should render correctly 1`] = `
       </div>
     </div>
   </section>
+  <div />
   <section
     class="flex flex-row border-0 border-t-[1px] border-solid border-t-[#b3b3b3] pt-5 mb-5"
   >
@@ -134,6 +137,7 @@ exports[`New > should render correctly 1`] = `
       </div>
     </div>
   </section>
+  <div />
   <section
     class="flex flex-row border-0 border-t-[1px] border-solid border-t-[#b3b3b3] pt-5 mb-5"
   >
