@@ -1,4 +1,4 @@
-import { DataGridTextCell } from '@ovhcloud/manager-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import {
   ODS_ICON_NAME,
   ODS_INPUT_TYPE,

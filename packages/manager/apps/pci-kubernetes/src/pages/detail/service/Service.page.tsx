@@ -1,4 +1,4 @@
-import { Notifications } from '@ovhcloud/manager-components';
+import { Notifications } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_SPINNER_SIZE,

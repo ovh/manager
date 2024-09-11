@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useMe } from '@ovhcloud/manager-components';
+import { useMe } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,

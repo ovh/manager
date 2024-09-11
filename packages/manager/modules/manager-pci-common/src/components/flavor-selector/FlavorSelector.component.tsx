@@ -6,7 +6,7 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { TabsComponent } from '@ovhcloud/manager-components';
+import { TabsComponent } from '@ovh-ux/manager-react-components';
 import {
   KUBE_FLAVOR_CATEGORIES,
   useMergedKubeFlavors,

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { DataGridTextCell } from '@ovhcloud/manager-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { OsdsChip, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
