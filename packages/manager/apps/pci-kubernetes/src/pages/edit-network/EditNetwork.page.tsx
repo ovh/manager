@@ -153,6 +153,7 @@ export default function EditNetworkPage() {
             />
             <SubnetSelector
               className="mt-6"
+              key={kubeDetail?.privateNetworkId}
               title={tAdd('kubernetes_network_form_label')}
               projectId={projectId}
               networkId={kubeDetail?.privateNetworkId}

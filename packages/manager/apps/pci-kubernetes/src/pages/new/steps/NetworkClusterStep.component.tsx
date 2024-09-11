@@ -75,6 +75,7 @@ export default function NetworkClusterStep({
           {form.privateNetwork && (
             <div>
               <SubnetSelect
+                key={form.privateNetwork?.id}
                 className="mt-8"
                 projectId={projectId}
                 privateNetwork={form.privateNetwork}
