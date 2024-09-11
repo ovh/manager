@@ -1,0 +1,11 @@
+{
+  "zimbra_account_delete_modal_title": "Postfach löschen",
+  "zimbra_account_delete_modal_content_step1": "Sie sind im Begriff, das Postfach des Zimbra-Servers zu löschen.",
+  "zimbra_account_delete_modal_mail_label": "Postfach:",
+  "zimbra_account_delete_modal_content_step2": "Sind Sie sicher, dass Sie das Postfach des Zimbra-Servers löschen möchten?",
+  "zimbra_account_delete_modal_warn_message": "Achtung: Diese Aktion kann nicht rückgängig gemacht werden und führt zur Löschung der Daten.",
+  "zimbra_account_delete_button_delete": "Löschen",
+  "zimbra_account_delete_button_cancel": "Abbrechen",
+  "zimbra_account_delete_success_message": "Ihre Löschanfrage wurde registriert",
+  "zimbra_account_delete_error_message": "Ihre Löschanfrage ist fehlgeschlagen. {{ error }}"
+}
