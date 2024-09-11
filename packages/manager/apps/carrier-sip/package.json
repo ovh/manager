@@ -34,7 +34,7 @@
     "@ovh-ux/ng-ovh-telecom-universe-components": "^7.28.3",
     "@ovh-ux/ng-translate-async-loader": "^2.2.1",
     "@ovh-ux/request-tagger": "^0.3.0",
-    "@ovh-ux/ui-kit": "^6.10.4",
+    "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.22",
     "CSV-JS": "^1.2.0",
     "angular": "^1.7.8",

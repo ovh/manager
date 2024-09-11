@@ -27,7 +27,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.1",
     "@ovh-ux/ng-translate-async-loader": "^2.2.1",
     "@ovh-ux/request-tagger": "^0.3.0",
-    "@ovh-ux/ui-kit": "^6.10.4",
+    "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.5",
