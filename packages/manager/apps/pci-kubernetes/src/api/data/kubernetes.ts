@@ -296,11 +296,12 @@ export async function deleteSubscription(
 export async function editNetwork(
   projectId: string,
   kubeId: string,
+  hasLoadBalancersChanges: boolean,
+  loadBalancersSubnetId: string,
   privateNetworkConfiguration?: {
     privateNetworkRoutingAsDefault: boolean;
     defaultVrackGateway: string;
   },
-  loadBalancersSubnetId?: string,
 ) {
   const todo = [];
   if (privateNetworkConfiguration) {
@@ -311,7 +312,7 @@ export async function editNetwork(
       ),
     );
   }
-  if (loadBalancersSubnetId) {
+  if (hasLoadBalancersChanges) {
     todo.push(
       v6.put(
         `/cloud/project/${projectId}/kube/${kubeId}/updateLoadBalancersSubnetId`,
