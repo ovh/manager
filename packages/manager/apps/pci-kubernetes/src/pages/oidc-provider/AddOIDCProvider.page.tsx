@@ -19,7 +19,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useAddOidcProvider } from '@/api/hooks/useKubernetes';
 import { TOidcProvider } from '@/api/data/kubernetes';

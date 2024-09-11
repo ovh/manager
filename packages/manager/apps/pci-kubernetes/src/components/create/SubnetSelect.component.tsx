@@ -1,5 +1,5 @@
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { Links, LinkType } from '@ovhcloud/manager-components';
+import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';

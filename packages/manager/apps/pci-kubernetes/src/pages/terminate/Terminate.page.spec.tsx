@@ -10,7 +10,7 @@ import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
 
-vi.mock('@ovhcloud/manager-components', () => ({
+vi.mock('@ovh-ux/manager-react-components', () => ({
   useNotifications: () => ({
     addError: vi.fn(),
     addSuccess: vi.fn(),

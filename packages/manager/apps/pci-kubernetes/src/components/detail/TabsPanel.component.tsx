@@ -5,7 +5,7 @@ import {
   OsdsTabBar,
   OsdsTabBarItem,
 } from '@ovhcloud/ods-components/react';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 export type TabItemProps = {

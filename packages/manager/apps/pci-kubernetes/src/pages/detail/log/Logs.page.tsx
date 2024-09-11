@@ -8,7 +8,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { Notifications, useMe } from '@ovhcloud/manager-components';
+import { Notifications, useMe } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { LOGS_INFO } from './constants';

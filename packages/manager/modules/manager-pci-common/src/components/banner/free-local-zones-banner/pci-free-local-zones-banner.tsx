@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActionBanner } from '@ovhcloud/manager-components';
+import { ActionBanner } from '@ovh-ux/manager-react-components';
 
 import './translations';
 

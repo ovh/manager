@@ -1,6 +1,6 @@
 import { useHref } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ActionMenu } from '@ovhcloud/manager-components';
+import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { TClusterNodePool } from '@/api/data/node-pools';
 
 type ActionsComponentProps = {
