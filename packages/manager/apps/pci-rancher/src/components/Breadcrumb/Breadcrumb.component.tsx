@@ -3,7 +3,7 @@ import { Params, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { useProject } from '@ovh-ux/manager-react-components';
+import { useProject } from '@ovh-ux/manager-pci-common';
 
 export type BreadcrumbHandleParams = {
   data: unknown;
