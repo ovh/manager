@@ -33,19 +33,11 @@ export default function PublicCloudSidebar() {
     const menuItems = getPciProjectMenu(projectId, region, availability, (...args):string =>
       navigation.getURL(...args),
     );
-    const filterItemByRegion = (item: any) => {
-      if (item.regions) {
-        return [].concat(item.regions).includes(region);
-      }
-      return true;
-    };
     return menuItems
-      .filter(filterItemByRegion)
       .map((item) => ({
         ...item,
         subItems: item.subItems
-          ?.filter(filterItemByRegion)
-          .map((item) => ({
+          ?.map((item) => ({
             ...item,
             selected:
               location?.pathname?.indexOf(item.href?.replace(/^.*#/, '')) >= 0,

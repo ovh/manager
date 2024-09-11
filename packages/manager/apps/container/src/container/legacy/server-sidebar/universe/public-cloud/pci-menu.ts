@@ -4,7 +4,6 @@ export type PciMenuItem = {
   href?: string;
   external?: boolean;
   subItems?: PciMenuItem[];
-  regions?: string[];
   badge?: string;
 };
 
@@ -61,7 +60,7 @@ export function getPciProjectMenu(
   const pciMenu: PciMenuItem[] = [];
 
   const isFeaturesAvailable = (...features: string[]): boolean =>
-    Boolean(features.find((f: string) => featureAvailabilities[f]));
+    Boolean(features.find((feature: string) => featureAvailabilities[feature]));
 
   if (isFeaturesAvailable('instance')) {
     pciMenu.push({
@@ -109,7 +108,7 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/storages/objects`,
           ),
         },
-         isFeaturesAvailable('archive') && {
+        isFeaturesAvailable('archive') && {
           id: 'archive',
           title: 'Cloud Archive',
           href: getURL(
@@ -126,7 +125,7 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/storages/cold-archive`,
           ),
         },
-         isFeaturesAvailable('snapshot') && {
+        isFeaturesAvailable('snapshot') && {
           id: 'snapshot',
           title: 'Volume Snapshot',
           href: getURL(
@@ -359,7 +358,6 @@ export function getPciProjectMenu(
     pciMenu.push({
       id: 'ai',
       title: 'AI & Machine Learning',
-      regions: ['EU', 'CA'],
       subItems: [
         isFeaturesAvailable('ai-dashboard') && {
           id: 'dashboard',
@@ -382,13 +380,11 @@ export function getPciProjectMenu(
         isFeaturesAvailable('ai-apps') && {
           id: 'apps',
           title: 'AI Deploy',
-          regions: ['CA', 'EU'],
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/apps`),
         },
         isFeaturesAvailable('ai-endpoints') && {
           id: 'endpoints',
           title: 'AI Endpoints',
-          regions: ['CA', 'EU'],
           badge: 'alpha',
           href: 'https://endpoints.ai.cloud.ovh.net/',
           external: true,
