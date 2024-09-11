@@ -9,6 +9,7 @@ export enum TrackingPageView {
   GenerateAccessModal = 'generate-access',
   EditNameModal = 'edit',
   ListingPage = '',
+  UpdateOfferModal = 'update-offer-modal',
 }
 
 export enum TrackingEvent {
@@ -18,4 +19,5 @@ export enum TrackingEvent {
   accessUi = 'access-ui',
   generateAccess = 'generate-access',
   close = 'close',
+  updateOfferModal = 'update-offer-modal',
 }

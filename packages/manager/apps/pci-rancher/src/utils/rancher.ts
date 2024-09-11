@@ -1,4 +1,4 @@
-import { RancherService, RancherVersion } from '@/types/api.type';
+import { RancherPlan, RancherService, RancherVersion } from '@/types/api.type';
 
 export const isValidRancherName = (name: string) =>
   /^[a-z0-9][-_.A-Za-z0-9]{1,61}[a-z0-9]$/.test(name);
@@ -57,4 +57,15 @@ export const getLatestVersionAvailable = (
 
 export const isVersionDeprecated = (version: RancherVersion) => {
   return version.status === 'UNAVAILABLE' && version.cause === 'DEPRECATED';
+};
+
+export const getRancherPlanDescription = (rancherPlan: RancherPlan['name']) => {
+  switch (rancherPlan) {
+    case 'STANDARD':
+      return 'createRancherStandardPlanDescription';
+    case 'OVHCLOUD_EDITION':
+      return 'createRancherOVHCloudPlanDescription';
+    default:
+      return null;
+  }
 };
