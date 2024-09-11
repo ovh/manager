@@ -2,6 +2,8 @@
   "zimbra_domains_add_domain_title": "Ajouter un domaine",
   "zimbra_domains_datagrid_account_label": "Nombre de comptes",
   "zimbra_domains_datagrid_diagnostic_label": "Diagnostique",
+  "zimbra_domains_datagrid_diagnostic_configuration_ok": "Configuration OK",
+  "zimbra_domains_datagrid_diagnostic_tooltip_title": "Diagnostic {{ diagType }}",
   "zimbra_domains_datagrid_domain_label": "Domaine",
   "zimbra_domains_datagrid_organization_label": "Organisation",
   "zimbra_domains_datagrid_account_number": "Nombre de comptes",

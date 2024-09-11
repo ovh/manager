@@ -39,6 +39,8 @@ import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 import Loading from '@/components/Loading/Loading';
+import { DiagnosticBadge } from '@/components/DiagnosticBadge';
+import {DomainType} from '../../../api/domain/type';
 
 export type DomainsItem = {
   id: string;
@@ -64,25 +66,35 @@ const columns: DatagridColumn<DomainsItem>[] = [
   },
   {
     id: 'organization',
-    cell: (item) =>
-      item.organizationLabel && (
-        <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
-      ),
+    cell: (item) => (
+      <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
+    ),
     label: 'zimbra_domains_datagrid_organization_label',
   },
   {
     id: 'account',
-    cell: (item) =>
-      item.account && (
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_TEXT_SIZE._100}
-          level={ODS_TEXT_LEVEL.body}
-        >
-          {item.account}
-        </OsdsText>
-      ),
+    cell: (item) => (
+      <OsdsText
+        color={ODS_THEME_COLOR_INTENT.text}
+        size={ODS_TEXT_SIZE._100}
+        level={ODS_TEXT_LEVEL.body}
+      >
+        {item.account}
+      </OsdsText>
+    ),
     label: 'zimbra_domains_datagrid_account_number',
+  },
+  {
+    id: 'diagnostic',
+    cell: () => (
+      <>
+        <DiagnosticBadge diagType="MX" status="success" />
+        <DiagnosticBadge diagType="SRV" status="error" />
+        <DiagnosticBadge diagType="SPF" status="success" />
+        <DiagnosticBadge diagType="DKIM" status="warning" />
+      </>
+    ),
+    label: 'zimbra_domains_datagrid_diagnostic_label',
   },
   {
     id: 'tooltip',
@@ -109,7 +121,7 @@ export default function Domains() {
   const hrefAddDomain = useGenerateUrl('./add', 'href');
 
   const items: DomainsItem[] =
-    data?.map((item) => ({
+    data?.map((item: DomainType) => ({
       name: item.currentState.name,
       id: item.id,
       organizationId: item.currentState.organizationId,
