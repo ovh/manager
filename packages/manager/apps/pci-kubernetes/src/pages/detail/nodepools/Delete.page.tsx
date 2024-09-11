@@ -70,11 +70,11 @@ export default function DeletePage(): JSX.Element {
       goBack();
     },
     onSuccess: async () => {
+      goBack();
+      addSuccess(tNodePoolDelete('kube_node_pool_delete_success'));
       await queryClient.invalidateQueries({
         queryKey: ['project', projectId, 'kubernetes', clusterId, 'nodePools'],
       });
-      addSuccess(tNodePoolDelete('kube_node_pool_delete_success'));
-      goBack();
     },
     projectId,
     clusterId,
