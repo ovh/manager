@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { TFlavor } from '@ovh-ux/manager-pci-common';
+import { createRef, MutableRefObject } from 'react';
 import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
 import { AutoscalingState } from '@/components/Autoscaling.component';
 import { NAME_INPUT_CONSTRAINTS } from '@/constants';
@@ -8,6 +9,7 @@ type TStep = {
   isOpen: boolean;
   isLocked: boolean;
   isChecked: boolean;
+  ref: MutableRefObject<HTMLDivElement>;
 };
 
 export type TFormStore = {
@@ -40,6 +42,8 @@ export type TFormStore = {
   edit: (step: StepsEnum) => void;
 
   reset: () => void;
+
+  scrollToStep: (step: StepsEnum) => void;
 };
 
 const initialSteps = () =>
@@ -50,6 +54,7 @@ const initialSteps = () =>
         isOpen: true,
         isLocked: false,
         isChecked: false,
+        ref: createRef(),
       },
     ],
     [
@@ -58,6 +63,7 @@ const initialSteps = () =>
         isOpen: false,
         isLocked: false,
         isChecked: false,
+        ref: createRef(),
       },
     ],
     [
@@ -66,6 +72,7 @@ const initialSteps = () =>
         isOpen: false,
         isLocked: false,
         isChecked: false,
+        ref: createRef(),
       },
     ],
     [
@@ -74,6 +81,7 @@ const initialSteps = () =>
         isOpen: false,
         isLocked: false,
         isChecked: false,
+        ref: createRef(),
       },
     ],
   ]);
@@ -118,6 +126,8 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
         steps,
       };
     });
+
+    get().scrollToStep(id);
   },
   close: (id: StepsEnum) => {
     set((state) => {
@@ -234,5 +244,13 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
       isMonthlyBilling: false,
       steps: initialSteps(),
     }));
+  },
+  scrollToStep: (id: StepsEnum) => {
+    get()
+      .steps.get(id)
+      .ref.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
   },
 }));
