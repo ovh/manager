@@ -21,6 +21,7 @@ export type TDbaasLog = {
 export async function getLogs() {
   const { data } = await fetchIcebergV6<TDbaasLog>({
     route: `/dbaas/logs`,
+    disableCache: true,
   });
   return data;
 }
@@ -63,6 +64,7 @@ export async function getStreams(
     page: pagination.pageIndex,
     pageSize: pagination.pageSize,
     filters,
+    disableCache: true,
   });
   return { data, totalCount };
 }
@@ -112,6 +114,7 @@ export type TSubscription = {
 export async function getSubscriptions(serviceName: string, streamId: string) {
   const { data } = await fetchIcebergV6<TSubscription>({
     route: `/dbaas/logs/${serviceName}/output/graylog/stream/${streamId}/subscription`,
+    disableCache: true,
   });
   return data;
 }
