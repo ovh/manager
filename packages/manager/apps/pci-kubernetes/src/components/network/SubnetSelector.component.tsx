@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import {
   OsdsFormField,
   OsdsMessage,
-  OsdsSelect,
   OsdsSelectOption,
   OsdsSkeleton,
   OsdsSpinner,
@@ -19,6 +18,7 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { TPrivateNetworkSubnet } from '@/api/data/subnets';
 import { useRegionSubnets } from '@/api/hooks/useSubnets';
+import { SelectComponent } from '@/components/input/Select.component';
 
 export interface SubnetSelectorProps {
   projectId: string;
@@ -100,7 +100,7 @@ export const SubnetSelector = ({
             })}
           </OsdsMessage>
         )}
-        <OsdsSelect
+        <SelectComponent
           name="subnet"
           size={ODS_SELECT_SIZE.md}
           value={subnet?.id}
@@ -123,7 +123,7 @@ export const SubnetSelector = ({
               {`${sub.id} - ${sub.cidr}`}
             </OsdsSelectOption>
           ))}
-        </OsdsSelect>
+        </SelectComponent>
       </OsdsFormField>
     </>
   );
