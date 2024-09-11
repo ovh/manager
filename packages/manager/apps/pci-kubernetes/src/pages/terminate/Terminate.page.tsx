@@ -9,7 +9,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Translation, useTranslation } from 'react-i18next';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,

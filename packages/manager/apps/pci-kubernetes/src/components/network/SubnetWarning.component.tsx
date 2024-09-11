@@ -8,7 +8,7 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { LinkType, Links } from '@ovhcloud/manager-components';
+import { LinkType, Links } from '@ovh-ux/manager-react-components';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import { SUBNET_DOC } from '@/constants';
 

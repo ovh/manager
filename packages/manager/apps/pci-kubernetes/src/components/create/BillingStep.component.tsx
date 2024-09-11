@@ -18,7 +18,7 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { useCatalogPrice } from '@ovhcloud/manager-components';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
 
 const checkedClass =
