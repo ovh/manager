@@ -35,11 +35,12 @@ import {
   WAITING_PAYMENT_LABEL,
 } from '@/data/api/apiOrder/apiOrder.constants';
 import useDateFormat from '@/hooks/dateFormat/useDateFormat';
-import { Skeletons } from '../skeletons/Skeletons.component';
 import { LastOrderTrackingResponse, OrderHistory } from '@/types/order.type';
-import { TileError } from '../tile-error/TileError.component';
+// FIXME: lazy load these comoponents
+import { Skeletons } from '@/components/skeletons/Skeletons.component';
+import TileError from '@/components/tile-error/TileError.component';
 
-export const HubOrderTracking: FunctionComponent = () => {
+export default function HubOrderTracking() {
   const { t } = useTranslation('hub/order');
   const {
     data: orderDataResponse,
@@ -220,4 +221,4 @@ export const HubOrderTracking: FunctionComponent = () => {
       </div>
     </OsdsTile>
   );
-};
+}

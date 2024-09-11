@@ -27,8 +27,10 @@ import {
 import { Await } from 'react-router-dom';
 import { useFetchHubBills } from '@/data/hooks/bills/useBills';
 import { useFetchHubDebt } from '@/data/hooks/debt/useDebt';
-import { Period } from '@/types/bills.type';
-import '@/components/billing-summary/BillingSummary.style.scss';
+import '@/pages/layout/BillingSummary.style.scss';
+import { BILLING_SUMMARY_PERIODS_IN_MONTHS } from '@/pages/layout/layout.constants';
+import { usePeriodFilter } from '@/hooks/periodFilter/usePeriodFilter';
+import { usePriceFormat } from '@/hooks/priceFormat/usePriceFormat';
 
 const TileError = lazy(() =>
   import('@/components/tile-error/TileError.component'),
@@ -38,9 +40,7 @@ export default function BillingSummary() {
   const { t } = useTranslation('hub/billing');
   const {
     shell: { navigation },
-    environment,
   } = useContext(ShellContext);
-  const locale = environment.getUserLocale();
   const { trackClick } = useOvhTracking();
   const [months, setMonths] = useState(1);
 
@@ -54,29 +54,8 @@ export default function BillingSummary() {
 
   const isLoading = areBillsLoading || isDebtLoading;
 
-  const getPeriodFilter = ({ from, to }: Period) => [
-    {
-      field: 'date',
-      comparator: 'isAfter',
-      reference: [from],
-    },
-    {
-      field: 'date',
-      comparator: 'isBefore',
-      reference: [to],
-    },
-  ];
-
-  const getFormattedPrice = (price: number, currency: string) =>
-    currency && price
-      ? Intl.NumberFormat(locale.replace('_', '-'), {
-          style: 'currency',
-          currency,
-        }).format(price)
-      : '';
-
-  const formattedPrice = getFormattedPrice(bills?.total, bills?.currency?.code);
-  const formattedDebtPrice = getFormattedPrice(
+  const formattedPrice = usePriceFormat(bills?.total, bills?.currency?.code);
+  const formattedDebtPrice = usePriceFormat(
     debt?.dueAmount?.value,
     debt?.dueAmount?.currencyCode,
   );
@@ -91,7 +70,7 @@ export default function BillingSummary() {
       navigation.getURL('dedicated', '#/billing/history', {
         // From BFF's code, it seems that period cannot be null or undefined, so this code could probably be simplified
         filter: bills?.period
-          ? JSON.stringify(getPeriodFilter(bills.period))
+          ? JSON.stringify(usePeriodFilter(bills.period))
           : '',
       }),
     [bills?.period],
@@ -135,7 +114,7 @@ export default function BillingSummary() {
               setMonths(Number(event.detail.value as string))
             }
           >
-            {[1, 3, 6].map((month) => (
+            {BILLING_SUMMARY_PERIODS_IN_MONTHS.map((month) => (
               <OsdsSelectOption
                 data-testid={`months_period_option_${month}`}
                 key={`months_period_option_${month}`}

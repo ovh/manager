@@ -26,6 +26,9 @@ import { useFetchHubLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
 const Welcome = lazy(() => import('@/components/welcome/Welcome.component'));
 const Banner = lazy(() => import('@/components/banner/Banner.component'));
 const Products = lazy(() => import('@/components/products/Products.component'));
+const OrderTracking = lazy(() =>
+  import('@/components/hub-order-tracking/HubOrderTracking.component'),
+);
 const TileGridSkeleton = lazy(() =>
   import('@/components/tile-grid-skeleton/TileGridSkeleton.component'),
 );
@@ -33,12 +36,10 @@ const HubSupport = lazy(() =>
   import('@/components/hub-support/HubSupport.component'),
 );
 const BillingSummary = lazy(() =>
-  import('@/components/billing-summary/BillingSummary.component'),
+  import('@/pages/layout/BillingSummary.component'),
 );
 const EnterpriseBillingSummary = lazy(() =>
-  import(
-    '@/components/enterprise-billing-summary/EnterpriseBillingSummary.component'
-  ),
+  import('@/pages/layout/EnterpriseBillingSummary.component'),
 );
 
 export default function Layout() {
@@ -219,7 +220,16 @@ export default function Layout() {
                           </Suspense>
                         </div>
                         <div className="md:w-4/12 order-4 px-6 box-border">
-                          hub-order-tracking
+                          <Suspense
+                            fallback={
+                              <OsdsSkeleton
+                                data-testid="order_tracking_skeleton"
+                                inline
+                              />
+                            }
+                          >
+                            <OrderTracking />
+                          </Suspense>
                         </div>
                       </>
                     )}

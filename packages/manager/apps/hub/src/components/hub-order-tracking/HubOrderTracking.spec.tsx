@@ -7,7 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { HubOrderTracking } from '@/components/hub-order-tracking/HubOrderTracking.component';
+import HubOrderTracking from '@/components/hub-order-tracking/HubOrderTracking.component';
 import '@testing-library/jest-dom';
 
 const { refetch } = vi.hoisted(() => ({
@@ -21,7 +21,7 @@ vi.mock('../skeletons/Skeletons.component', () => ({
 }));
 
 vi.mock('../tile-error/TileError.component', () => ({
-  TileError: () => <div data-testid="tile-error"></div>,
+  default: () => <div data-testid="tile-error"></div>,
 }));
 
 const useFetchLastOrderMockValue: any = {

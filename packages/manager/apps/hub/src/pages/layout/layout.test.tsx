@@ -15,9 +15,9 @@ import Layout from '@/pages/layout/layout';
 import { ApiEnvelope } from '@/types/apiEnvelope.type';
 import { ProductList } from '@/types/services.type';
 import { LastOrder } from '@/types/lastOrder.type';
-import BillingSummary from '@/components/billing-summary/BillingSummary.component';
+import BillingSummary from '@/pages/layout/BillingSummary.component';
 import * as UseBillsHook from '@/data/hooks/bills/useBills';
-import EnterpriseBillingSummary from '@/components/enterprise-billing-summary/EnterpriseBillingSummary.component';
+import EnterpriseBillingSummary from '@/pages/layout/EnterpriseBillingSummary.component';
 
 const queryClient = new QueryClient();
 
@@ -89,6 +89,10 @@ vi.mock('@/components/products/Products.component', () => ({
 
 vi.mock('@/components/hub-support/HubSupport.component', () => ({
   default: () => <div>Support</div>,
+}));
+
+vi.mock('@/components/hub-order-tracking/HubOrderTracking.component', () => ({
+  default: () => <div>Order Tracking</div>,
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
@@ -201,7 +205,7 @@ describe('Layout.page', () => {
     expect(getByText('oui-message.kycFraud')).not.toBeNull();
     expect(getByText('hub-payment-status')).not.toBeNull();
     expect(queryByText('Support')).not.toBeInTheDocument();
-    expect(queryByText('hub-order-tracking')).not.toBeInTheDocument();
+    expect(queryByText('Order Tracking')).not.toBeInTheDocument();
     expect(queryByText('Products')).not.toBeInTheDocument();
     expect(getByText('hub-catalog-items')).not.toBeNull();
   });
@@ -255,7 +259,7 @@ describe('Layout.page', () => {
     expect(getByText('oui-message.kycFraud')).not.toBeNull();
     expect(getByText('hub-payment-status')).not.toBeNull();
     expect(getByText('Support')).not.toBeNull();
-    expect(getByText('hub-order-tracking')).not.toBeNull();
+    expect(getByText('Order Tracking')).not.toBeNull();
     expect(getByText('Products')).not.toBeNull();
     expect(queryByText('hub-catalog-items')).not.toBeInTheDocument();
 

@@ -13,8 +13,8 @@ import {
   OdsHTMLAnchorElementRel,
   OdsHTMLAnchorElementTarget,
 } from '@ovhcloud/ods-common-core';
-import { LINK } from '@/components/enterprise-billing-summary/EnterpriseBillingSummary.constants';
-import '@/components/billing-summary/BillingSummary.style.scss';
+import { LINK } from '@/pages/layout/layout.constants';
+import '@/pages/layout/BillingSummary.style.scss';
 
 export default function EnterpriseBillingSummary() {
   const { t } = useTranslation('hub/billing');
