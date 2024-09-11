@@ -32,20 +32,30 @@ export interface GatewaySelectorProps {
   onSelect?: (state: GatewaySelectorState) => void;
 }
 
+const DEFAULT_GATEWAY = {
+  isEnabled: false,
+  mode: ModeEnum.AUTO,
+  ip: '',
+};
+
 export const GatewaySelector = ({
   initialValue,
   className,
   onSelect,
 }: Readonly<GatewaySelectorProps>) => {
   const [gateway, setGateway] = useState(
-    initialValue || {
-      isEnabled: false,
-    },
+    initialValue
+      ? {
+          ...initialValue,
+          mode: initialValue.ip ? ModeEnum.CUSTOM : ModeEnum.AUTO,
+        }
+      : DEFAULT_GATEWAY,
   );
   const { t: tAdd } = useTranslation('network-add');
   const projectURL = useProjectUrl('public-cloud');
   const gatewaysURL = `${projectURL}/gateway`;
 
+  console.log({ gateway });
   useEffect(() => {
     onSelect?.({
       ...gateway,
