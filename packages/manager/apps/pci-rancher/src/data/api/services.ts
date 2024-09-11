@@ -1,10 +1,12 @@
-import { apiClient, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
+import { apiClient, fetchIcebergV2, v6 } from '@ovh-ux/manager-core-api';
 import {
   CreateRancherPayload,
   PciProject,
   RancherPlan,
+  RancherPlanName,
   RancherService,
   RancherVersion,
+  TCatalog,
 } from '@/types/api.type';
 
 type RancherInfo = 'plan' | 'version';
@@ -81,6 +83,18 @@ export const createRancherService = async ({
   data: CreateRancherPayload;
 }) => {
   return apiClient.v2.post(getRancherByProjectIdQueryKey(projectId), {
+    targetSpec: data,
+  });
+};
+
+export const patchRancherService = async ({
+  projectId,
+  data,
+}: {
+  projectId: string;
+  data: CreateRancherPayload;
+}) => {
+  return apiClient.v2.put(getRancherByProjectIdQueryKey(projectId), {
     targetSpec: data,
   });
 };
@@ -162,3 +176,15 @@ export const getListingIceberg = async () => {
     return Promise.reject(error);
   }
 };
+export const getCatalogUrl = (ovhSubsidiary: string) =>
+  `/order/catalog/public/cloud?ovhSubsidiary=${ovhSubsidiary}&productName=cloud`;
+
+export const getCatalog = async (ovhSubsidiary: string): Promise<TCatalog> => {
+  const { data } = await v6.get<TCatalog>(getCatalogUrl(ovhSubsidiary));
+  return data;
+};
+
+export const getCatalogQuery = (ovhSubsidiary: string) => ({
+  queryKey: [getCatalogUrl(ovhSubsidiary)],
+  queryFn: () => getCatalog(ovhSubsidiary),
+});
