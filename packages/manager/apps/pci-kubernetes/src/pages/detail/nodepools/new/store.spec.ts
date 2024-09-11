@@ -98,6 +98,7 @@ describe('NewPoolStore', () => {
       | 'uncheck'
       | 'edit'
       | 'reset'
+      | 'scrollToStep'
     > => ({
       name: state.name,
       flavor: state.flavor,
@@ -125,6 +126,7 @@ describe('NewPoolStore', () => {
               isChecked: false,
               isLocked: false,
               isOpen: true,
+              ref: { current: null },
             },
           ],
           [
@@ -133,6 +135,7 @@ describe('NewPoolStore', () => {
               isChecked: false,
               isLocked: false,
               isOpen: false,
+              ref: { current: null },
             },
           ],
           [
@@ -141,6 +144,7 @@ describe('NewPoolStore', () => {
               isChecked: false,
               isLocked: false,
               isOpen: false,
+              ref: { current: null },
             },
           ],
           [
@@ -149,6 +153,7 @@ describe('NewPoolStore', () => {
               isChecked: false,
               isLocked: false,
               isOpen: false,
+              ref: { current: null },
             },
           ],
         ]),
@@ -173,6 +178,7 @@ describe('NewPoolStore', () => {
               isChecked: false,
               isLocked: false,
               isOpen: true,
+              ref: { current: null },
             },
           ],
           [
@@ -181,6 +187,7 @@ describe('NewPoolStore', () => {
               isChecked: false,
               isLocked: false,
               isOpen: true,
+              ref: { current: null },
             },
           ],
           [
@@ -189,6 +196,7 @@ describe('NewPoolStore', () => {
               isChecked: false,
               isLocked: false,
               isOpen: false,
+              ref: { current: null },
             },
           ],
           [
@@ -197,6 +205,7 @@ describe('NewPoolStore', () => {
               isChecked: false,
               isLocked: false,
               isOpen: false,
+              ref: { current: null },
             },
           ],
         ]),
@@ -225,6 +234,7 @@ describe('NewPoolStore', () => {
               isChecked: false,
               isLocked: false,
               isOpen: true,
+              ref: { current: null },
             },
           ],
           [
@@ -233,6 +243,7 @@ describe('NewPoolStore', () => {
               isChecked: false,
               isLocked: false,
               isOpen: false,
+              ref: { current: null },
             },
           ],
           [
@@ -241,6 +252,7 @@ describe('NewPoolStore', () => {
               isChecked: false,
               isLocked: false,
               isOpen: true,
+              ref: { current: null },
             },
           ],
           [
@@ -249,6 +261,7 @@ describe('NewPoolStore', () => {
               isChecked: false,
               isLocked: false,
               isOpen: false,
+              ref: { current: null },
             },
           ],
         ]),
