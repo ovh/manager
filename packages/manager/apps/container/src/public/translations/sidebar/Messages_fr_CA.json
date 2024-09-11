@@ -187,5 +187,8 @@
   "sidebar_network_security": "Network Security Dashboard",
   "sidebar_identity_security_operations": "Identité, Sécurité & Opérations",
   "sidebar_key-management-service": "Key Management Service",
+  "sidebar_reduce": "Réduire",
+  "sidebar_security_operations": "Opérations",
+  "sidebar_security_identity": "Identité et Sécurité",
   "sidebar_zimbra": "Zimbra"
 }
