@@ -1,17 +1,23 @@
-<oui-datagrid rows="$ctrl.nodes" data-page-size="25" class="mt-5">
+<oui-datagrid rows="$ctrl.nodesMapped" data-page-size="25" class="mt-5">
     <oui-datagrid-column
         data-title="'nutanix_dashboard_nodes_list_display_name' | translate"
-        data-property="displayName"
+        data-property="iam.displayName"
         data-sortable
         data-searchable
         data-filterable
     >
         <a
+            data-ng-if="!$row.isHiddenNode"
             class="oui-link"
             data-ui-sref="{{:: $ctrl.constructor.getNodeDetailsState($row.name) }}"
-            data-ng-bind="$row.displayName"
+            data-ng-bind="$row.iam.displayName"
         >
         </a>
+        <span
+            data-ng-if="$row.isHiddenNode"
+            data-translate="nutanix_dashboard_nodes_list_data_hidden"
+        >
+        </span>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="'nutanix_dashboard_nodes_list_type_of_server' | translate"
@@ -30,8 +36,14 @@
         data-filterable
     >
         <span
+            data-ng-if="!$row.isHiddenNode"
             class="{{'oui-badge ' + $ctrl.NODE_BADGE_STATE[$row.state] }}"
             data-translate="{{ 'nutanix_dashboard_nodes_list_status_' + $row.state }}"
+        >
+        </span>
+        <span
+            data-ng-if="$row.isHiddenNode"
+            data-translate="nutanix_dashboard_nodes_list_data_hidden"
         >
         </span>
     </oui-datagrid-column>
@@ -39,6 +51,15 @@
         data-title="'nutanix_dashboard_nodes_list_localisation' | translate"
         data-property="datacenter"
     >
-        <datacenter-name datacenter="$row.datacenter"> </datacenter-name>
+        <datacenter-name
+            data-ng-if="!$row.isHiddenNode"
+            datacenter="$row.datacenter"
+        >
+        </datacenter-name>
+        <span
+            data-ng-if="$row.isHiddenNode"
+            data-translate="nutanix_dashboard_nodes_list_data_hidden"
+        >
+        </span>
     </oui-datagrid-column>
 </oui-datagrid>

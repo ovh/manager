@@ -1,6 +1,10 @@
 <oui-spinner size="s" data-ng-if="$row.loadingDatacenter"> </oui-spinner>
+<div
+    data-ng-if="!$row.loadingDatacenter && $row.datacenter === ''"
+    data-translate="nutanix_cluster_list_data_hidden"
+></div>
 <datacenter-name
-    data-ng-if="!$row.loadingDatacenter"
+    data-ng-if="!$row.loadingDatacenter && $row.datacenter !== ''"
     datacenter="$row.datacenter"
 >
 </datacenter-name>

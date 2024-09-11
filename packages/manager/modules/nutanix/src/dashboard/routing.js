@@ -20,13 +20,17 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceInfo: /* @ngInject */ (NutanixService, serviceName) =>
         NutanixService.getServiceInfo(serviceName),
       serviceDetails: /* @ngInject */ (NutanixService, serviceInfo) =>
-        NutanixService.getServiceDetails(serviceInfo.serviceId),
-
-      isOldCluster: /* @ngInject */ (NutanixService, serviceInfo) =>
+        NutanixService.getServiceDetails(serviceInfo.serviceId).catch(() => {
+          return {};
+        }),
+      isOldCluster: /* @ngInject */ (NutanixService, serviceInfo) => {
         // If the plan code is nutanix-standard or nutanix-advanced or nutanix-byol its newCluster
-        NutanixService.getServicesDetails(serviceInfo.serviceId).then((data) =>
-          OLD_CLUSTER_PLAN_CODE.includes(data.billing.plan.code),
-        ),
+        return NutanixService.getServicesDetails(serviceInfo.serviceId)
+          .then((data) =>
+            OLD_CLUSTER_PLAN_CODE.includes(data.billing.plan.code),
+          )
+          .catch(() => {});
+      },
       getTechnicalDetails: /* @ngInject */ (
         NutanixService,
         serviceInfo,
@@ -35,12 +39,17 @@ export default /* @ngInject */ ($stateProvider) => {
         NutanixService.getClusterHardwareInfo(
           serviceInfo.serviceId,
           server.serviceId,
-        ),
+        ).catch(() => {}),
       clusterTechnicalDetails: /* ngInject */ (getTechnicalDetails) =>
-        getTechnicalDetails.nutanixCluster,
+        getTechnicalDetails?.baremetalServers.nutanixCluster,
       technicalDetails: /* ngInject */ (getTechnicalDetails) =>
-        getTechnicalDetails.baremetalServers,
+        getTechnicalDetails?.baremetalServers,
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+      userResources: /* @ngInject */ (NutanixService) =>
+        NutanixService.getUserResources().then(({ data }) => data),
+      nutanixClusterIamName: /* @ngInject */ (userResources, serviceName) =>
+        userResources.find((resource) => resource.name === serviceName)
+          .displayName,
     },
   });
 };

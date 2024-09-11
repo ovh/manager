@@ -20,5 +20,6 @@
   "nutanix_dashboard_cluster_redeploy_modal_header": "Redéploiement du cluster",
   "nutanix_dashboard_cluster_redeploy_modal_description": "Il est nécessaire de désinstaller votre licence Nutanix de votre cluster dans Prism Central avant le redéploiement de votre cluster.",
   "nutanix_dashboard_cluster_redeploy_modal_continue": "Continuer",
-  "nutanix_dashboard_cluster_redeploy_modal_cancel": "Annuler"
+  "nutanix_dashboard_cluster_redeploy_modal_cancel": "Annuler",
+  "nutanix_dashboard_cluster_hidden": "CACHÉ"
 }

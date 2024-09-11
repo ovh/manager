@@ -6,10 +6,12 @@ export default class NutanixAllNodesCtrl {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.$translate = $translate;
     this.NODE_BADGE_STATE = NODE_BADGE_STATE;
+    this.nodesMapped = [];
   }
 
   $onInit() {
     const uniqueStates = [...new Set(this.nodes.map(({ state }) => state))];
+    this.mapNodes = this.mapAllNodes();
 
     this.stateColumnOptions = {
       hideOperators: true,
@@ -27,5 +29,30 @@ export default class NutanixAllNodesCtrl {
 
   static getNodeDetailsState(nodeId) {
     return `nutanix.dashboard.nodes.node.general-info({ nodeId: '${nodeId}'})`;
+  }
+
+  mapAllNodes() {
+    console.log({ nodes: this.nodes });
+    this.nodesMapped = this.nodes.map((node) =>
+      node.displayName !== null
+        ? node
+        : {
+            isHiddenNode: true,
+            iam: {
+              displayName: this.$translate.instant(
+                'nutanix_dashboard_nodes_list_data_hidden',
+              ),
+            },
+            state: this.$translate.instant(
+              'nutanix_dashboard_nodes_list_data_hidden',
+            ),
+            commercialRange: this.$translate.instant(
+              'nutanix_dashboard_nodes_list_data_hidden',
+            ),
+            datacenter: this.$translate.instant(
+              'nutanix_dashboard_nodes_list_data_hidden',
+            ),
+          },
+    );
   }
 }

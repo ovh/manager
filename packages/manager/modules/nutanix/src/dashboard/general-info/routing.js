@@ -7,9 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'nutanixGeneralInfo',
     resolve: {
       trackingPrefix: /* @ngInject */ () => TRACKING.DASHBOARD,
-      goToEditName: /* @ngInject */ ($state) => (displayName) =>
+      goToEditName: /* @ngInject */ ($state) => (nutanixClusterIamName) =>
         $state.go('nutanix.dashboard.general-info.edit-display-name', {
-          displayName,
+          nutanixClusterIamName,
         }),
       goToNutanixGeneralInfo: /* @ngInject */ (
         $state,
@@ -34,11 +34,11 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
       packType: /* @ngInject */ (clusterTechnicalDetails) =>
-        clusterTechnicalDetails.license.edition,
+        clusterTechnicalDetails?.license?.edition,
       isLegacyPack: /* @ngInject */ (packType) =>
         LEGACY_PACK_TYPES.includes(packType),
       clusterAddOns: /* @ngInject */ (NutanixService, serviceInfo) =>
-        NutanixService.getClusterOptions(serviceInfo.serviceId),
+        NutanixService.getClusterOptions(serviceInfo.serviceId).catch(() => []),
       goToUpgradePrivateBandwidth: /* @ngInject */ ($state) => () =>
         $state.go('nutanix.dashboard.general-info.bandwidth-private-order'),
       handleError: /* @ngInject */ (Alerter) => (error) =>
@@ -57,6 +57,8 @@ export default /* @ngInject */ ($stateProvider) => {
             featureAvailability.isFeatureAvailable(FEATURES.PACK_TYPE),
           )
           .catch(() => false),
+      accountAuthorizations: /* @ngInject */ (NutanixService, userResources) =>
+        NutanixService.checkIAMAccountAuthorizations(userResources),
     },
     atInternet: {
       rename: TRACKING.DASHBOARD,

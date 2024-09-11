@@ -13,13 +13,11 @@
                 term="{{:: 'nutanix_dashboard_cluster_name' | translate }}"
             >
                 <oui-tile-description>
-                    <span
-                        data-ng-bind="$ctrl.serviceDetails.resource.displayName"
-                    ></span>
+                    <span data-ng-bind="$ctrl.nutanixClusterIamName"></span>
                 </oui-tile-description>
                 <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
-                        on-click="$ctrl.goToEditName($ctrl.serviceDetails.resource.displayName)"
+                        on-click="$ctrl.goToEditName($ctrl.nutanixClusterIamName)"
                     >
                         <span
                             data-translate="nutanix_dashboard_cluster_edit_button"
@@ -45,6 +43,11 @@
                     <span
                         data-ng-if="!$ctrl.loadingServicesDetails && $ctrl.packType === $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
                         data-ng-bind="$ctrl.servicesDetails.billing.plan.invoiceName"
+                    >
+                    </span>
+                    <span
+                        data-ng-if="!$ctrl.haveServicesAuthorizations()"
+                        data-translate="nutanix_dashboard_cluster_hidden"
                     >
                     </span>
                 </oui-tile-description>
@@ -106,7 +109,7 @@
             >
                 <oui-tile-description>
                     <a
-                        data-ng-if="!$ctrl.isLegacyPack"
+                        data-ng-if="!$ctrl.isLegacyPack && $ctrl.haveServicesAuthorizations()"
                         class="oui-link oui-link_icon"
                         data-ng-href="{{:: $ctrl.NUTANIX_LINK }}"
                         target="_blank"
@@ -125,6 +128,11 @@
                         data-ng-if="$ctrl.isLegacyPack"
                         data-ng-bind="$ctrl.packType"
                     ></span>
+                    <span
+                        data-ng-if="!$ctrl.haveServicesAuthorizations()"
+                        data-translate="nutanix_dashboard_cluster_hidden"
+                    >
+                    </span>
                 </oui-tile-description>
             </oui-tile-definition>
 
@@ -168,8 +176,16 @@
                 term="{{:: 'nutanix_dashboard_cluster_datacenter' | translate }}"
             >
                 <oui-tile-description>
-                    <datacenter-name datacenter="$ctrl.server.datacenter">
+                    <datacenter-name
+                        data-ng-if="$ctrl.haveServicesAuthorizations()"
+                        datacenter="$ctrl.server.datacenter"
+                    >
                     </datacenter-name>
+                    <span
+                        data-ng-if="!$ctrl.haveServicesAuthorizations()"
+                        data-translate="nutanix_dashboard_cluster_hidden"
+                    >
+                    </span>
                 </oui-tile-description>
             </oui-tile-definition>
 
@@ -178,7 +194,15 @@
                 term="{{:: 'nutanix_dashboard_cluster_rack' | translate }}"
             >
                 <oui-tile-description>
-                    <span data-ng-bind=":: $ctrl.getNodeRacks() || '-'"></span>
+                    <span
+                        ng-if="$ctrl.haveServicesAuthorizations()"
+                        data-ng-bind=":: $ctrl.getNodeRacks() || '-'"
+                    ></span>
+                    <span
+                        data-ng-if="!$ctrl.haveServicesAuthorizations()"
+                        data-translate="nutanix_dashboard_cluster_hidden"
+                    >
+                    </span>
                 </oui-tile-description>
             </oui-tile-definition>
         </oui-tile>
@@ -193,7 +217,7 @@
     </oui-spinner>
     <div
         class="col-md-6 col-lg-4 mb-3"
-        data-ng-if="!$ctrl.loadingTechnicalDetails && $ctrl.packType !== $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
+        data-ng-if="!$ctrl.loadingTechnicalDetails && $ctrl.haveSupportAuthorizations() && $ctrl.packType !== $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
     >
         <nutanix-licence-tile
             data-is-legacy-pack="$ctrl.isLegacyPack"
@@ -205,7 +229,10 @@
     </div>
 
     <!-- Network -->
-    <div class="col-md-6 col-lg-4 mb-3" data-ng-if="!$ctrl.server.isExpired">
+    <div
+        class="col-md-6 col-lg-4 mb-3"
+        data-ng-if="!$ctrl.server.isExpired && $ctrl.haveServicesAuthorizations()"
+    >
         <nutanix-network-tile
             cluster="$ctrl.cluster"
             on-error="$ctrl.handleError(error)"
@@ -222,6 +249,7 @@
             service-name="{{$ctrl.serviceName}}"
             travaux-url="{{$ctrl.TRAVAUX_LINK}}"
             tracking-prefix="$ctrl.trackingPrefix"
+            is-hidden="!$ctrl.haveSupportAuthorizations()"
         ></server-support>
     </div>
 
