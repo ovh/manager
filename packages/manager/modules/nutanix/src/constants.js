@@ -42,6 +42,19 @@ export function getNutanixOrderUrl(subsidiary) {
   return NUTANIX_ORDER_URL[subsidiary] || NUTANIX_ORDER_URL.DEFAULT;
 }
 
+export const IAM_RESOURCE_SERVICES_PREFIX = ':resource:account:';
+export const IAM_ACTION_SERVICES = [
+  'account:apiovh:services/get',
+  'account:apiovh:services/options/get',
+  'account:apiovh:services/technicalDetails/get',
+];
+export const IAM_ACTION_SUPPORT = ['account:apiovh:support/tickets/get'];
+
+export const NUTANIX_AUTHORIZATION_TYPE = {
+  SERVICES: 'SERVICES',
+  SUPPORT: 'SUPPORT',
+};
+
 export default {
   CLUSTER_STATUS,
   NOT_SUBSCRIBED,
