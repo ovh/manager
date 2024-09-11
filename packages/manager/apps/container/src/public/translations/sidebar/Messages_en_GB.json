@@ -194,5 +194,9 @@
   "sidebar_back_menu": "Back to menu",
   "sidebar_identity_security_operations": "Identity, Security &amp; Operations",
   "sidebar_key-management-service": "Key Management Service",
-  "sidebar_zimbra": "Zimbra"
+  "sidebar_zimbra": "Zimbra",
+  "sidebar_pci_ai_dashboard": "AI Dashboard",
+  "sidebar_security_operations": "Operations",
+  "sidebar_security_identity": "Identity and Security",
+  "sidebar_reduce": "Minimise"
 }
