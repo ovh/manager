@@ -55,7 +55,6 @@ export const GatewaySelector = ({
   const projectURL = useProjectUrl('public-cloud');
   const gatewaysURL = `${projectURL}/gateway`;
 
-  console.log({ gateway });
   useEffect(() => {
     onSelect?.({
       ...gateway,
