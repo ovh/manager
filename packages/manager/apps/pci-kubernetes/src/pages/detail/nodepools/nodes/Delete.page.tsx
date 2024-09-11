@@ -19,7 +19,7 @@ import {
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMemo, useState } from 'react';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { getNodesQueryKey, useDeleteNode, useNodes } from '@/api/hooks/nodes';
 import { useTrack } from '@/hooks/track';
 import queryClient from '@/queryClient';

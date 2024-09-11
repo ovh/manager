@@ -1,4 +1,4 @@
-import { useProjectUrl } from '@ovhcloud/manager-components';
+import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {

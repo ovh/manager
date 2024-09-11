@@ -1,4 +1,4 @@
-import { PaginationState } from '@ovhcloud/manager-components';
+import { PaginationState } from '@ovh-ux/manager-react-components';
 
 export const compareFunction = <T>(key: keyof T) => (a: T, b: T) => {
   const aValue = a[key] || '';

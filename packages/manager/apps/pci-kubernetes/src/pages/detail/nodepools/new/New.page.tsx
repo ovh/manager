@@ -21,7 +21,7 @@ import {
   Notifications,
   StepComponent,
   useNotifications,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { FlavorSelector } from '@ovh-ux/manager-pci-common';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';

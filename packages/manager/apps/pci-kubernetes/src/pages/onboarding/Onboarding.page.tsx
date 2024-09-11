@@ -20,7 +20,7 @@ import {
   OnboardingLayout,
   RedirectionGuard,
   useProjectUrl,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { Suspense, useContext, useMemo } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';

@@ -16,7 +16,7 @@ import {
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useNodes } from '@/api/hooks/nodes';
 import { useSwitchToMonthlyBilling } from '@/api/hooks/instances';
 import { useTrack } from '@/hooks/track';

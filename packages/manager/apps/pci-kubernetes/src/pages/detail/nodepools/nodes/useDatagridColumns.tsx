@@ -2,7 +2,7 @@ import {
   Clipboard,
   DatagridColumn,
   DataGridTextCell,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';

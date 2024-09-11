@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
-import { ActionBanner } from '@ovhcloud/manager-components';
+import { ActionBanner } from '@ovh-ux/manager-react-components';
 import { TProject } from '../../../api/data';
 
 import './translations';

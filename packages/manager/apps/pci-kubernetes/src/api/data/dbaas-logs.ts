@@ -1,5 +1,5 @@
 import { Filter, fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
-import { PaginationState } from '@ovhcloud/manager-components';
+import { PaginationState } from '@ovh-ux/manager-react-components';
 
 export type TDbaasLog = {
   createdAt: string;

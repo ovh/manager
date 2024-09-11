@@ -10,7 +10,7 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { Clipboard } from '@ovhcloud/manager-components';
+import { Clipboard } from '@ovh-ux/manager-react-components';
 import { TKube } from '@/types';
 import ClusterStatus from './ClusterStatus.component';
 import TileLine from './TileLine.component';

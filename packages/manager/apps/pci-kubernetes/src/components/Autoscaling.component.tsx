@@ -19,7 +19,7 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { useMe } from '@ovhcloud/manager-components';
+import { useMe } from '@ovh-ux/manager-react-components';
 import { useEffect, useState } from 'react';
 import { QuantitySelector } from '@ovh-ux/manager-pci-common';
 

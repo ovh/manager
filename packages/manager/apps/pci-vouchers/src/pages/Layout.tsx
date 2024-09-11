@@ -1,6 +1,6 @@
 import { Suspense, useContext } from 'react';
 import { Outlet, useRouteError } from 'react-router-dom';
-import { ErrorBanner } from '@ovhcloud/manager-components';
+import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import { ResponseAPIError, useProject } from '@ovh-ux/manager-pci-common';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import HidePreloader from '@/core/HidePreloader';

@@ -17,7 +17,10 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
-import { useCatalogPrice, useProjectUrl } from '@ovhcloud/manager-components';
+import {
+  useCatalogPrice,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
 import { useBytes } from '../../hooks';
 import { FlavorLocalzoneChip } from './FlavorLocalzoneChip';
 

@@ -18,7 +18,7 @@ import {
   OsdsRadioGroupCustomEvent,
 } from '@ovhcloud/ods-components';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useContext, useEffect, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';

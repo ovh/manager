@@ -27,8 +27,8 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
   };
 });
 
-vi.mock('@ovhcloud/manager-components', async () => {
-  const mod = await vi.importActual('@ovhcloud/manager-components');
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const mod = await vi.importActual('@ovh-ux/manager-react-components');
   return {
     ...mod,
     useProjectUrl: vi.fn().mockReturnValue('mockProjectUrl'),

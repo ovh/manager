@@ -30,7 +30,7 @@ import {
   Notifications,
   useColumnFilters,
   useDataGrid,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useClusterNodePools } from '@/api/hooks/node-pools';
 import { useDatagridColumns } from './useDatagridColumns';

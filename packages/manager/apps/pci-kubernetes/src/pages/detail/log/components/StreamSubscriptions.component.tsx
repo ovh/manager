@@ -18,7 +18,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { useContext, useEffect, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useSubscriptions } from '@/api/hooks/useDbaasLogs';
 import {

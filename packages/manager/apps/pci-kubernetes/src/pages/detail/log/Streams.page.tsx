@@ -20,7 +20,10 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useContext, useEffect, useState } from 'react';
-import { Notifications, useNotifications } from '@ovhcloud/manager-components';
+import {
+  Notifications,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useLogs } from '@/api/hooks/useDbaasLogs';
 import { StreamsList } from './components/StreamsList.component';

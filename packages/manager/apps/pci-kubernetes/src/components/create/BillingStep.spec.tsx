@@ -18,7 +18,7 @@ const defaultProps: TBillingStepProps = {
   warn: false,
 };
 
-vi.mock('@ovhcloud/manager-components', () => ({
+vi.mock('@ovh-ux/manager-react-components', () => ({
   useCatalogPrice: () => ({
     getTextPrice: (price: number) => price,
     getFormattedCatalogPrice: (price: number) => price,

@@ -27,7 +27,7 @@ import {
   StepComponent,
   useNotifications,
   useProjectUrl,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useClusterCreationStepper } from './useCusterCreationStepper';
 import { LocationStep } from './steps/LocationStep.component';
 import { VersionStep } from './steps/VersionStep.component';

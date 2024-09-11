@@ -14,7 +14,7 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { Links, LinkType } from '@ovhcloud/manager-components';
+import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import React, { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
