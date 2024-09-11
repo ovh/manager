@@ -38,9 +38,7 @@ describe('useDateFormat', () => {
     expect(formatter.resolvedOptions().year).toBe('numeric');
     expect(formatter.resolvedOptions().month).toBe('long');
     expect(formatter.resolvedOptions().day).toBe('numeric');
-    expect(formatter.format(new Date('2024-01-01T01:00:00+02:00'))).toBe(
-      'January 1, 2024',
-    );
+    expect(formatter.format(new Date('2024-01-01'))).toBe('January 1, 2024');
   });
 
   it('should handle locale conversion correctly', () => {
