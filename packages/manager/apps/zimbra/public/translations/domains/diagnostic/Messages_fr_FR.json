@@ -1,0 +1,16 @@
+{
+  "zimbra_domain_modal_diagnostic_srv_title": "Diagnostic SRV",
+  "zimbra_domain_modal_diagnostic_srv_content": "Pour faciliter la configuration des boites mails sur vos terminaux, veuillez ajouter cette configuration à votre DNS (consulter notre <guide/>)",
+  "zimbra_domain_modal_diagnostic_srv_content_ovh_hosted_domain": "La configuration SRV permet la configuration automatique de vos boites mails sur vos clients de messagerie.<br/>Votre domaine est hébergé chez OVH Cloud, Nous allons procéder à la configuration de votre champ SRV.",
+  "zimbra_domain_modal_diagnostic_srv_guide": "guide",
+  "zimbra_domain_modal_diagnostic_srv_domain": "Domaine",
+  "zimbra_domain_modal_diagnostic_srv_fields": "Champs SRV",
+  "zimbra_domain_modal_diagnostic_srv_action_validate": "Valider",
+  "zimbra_domain_modal_diagnostic_srv_action_cancel": "Annuler",
+  "zimbra_domain_modal_diagnostic_srv_action_close": "Fermer",
+  "zimbra_domain_modal_diagnostic_srv_field_subdomain": "Sous domaine : <strong>{{subdomain}}</strong>",
+  "zimbra_domain_modal_diagnostic_srv_field_priority": "Priorité : <strong>{{priority}}</strong>",
+  "zimbra_domain_modal_diagnostic_srv_field_weight": "Poids : <strong>{{weight}}</strong>",
+  "zimbra_domain_modal_diagnostic_srv_field_port": "Port : <strong>{{port}}</strong>",
+  "zimbra_domain_modal_diagnostic_srv_field_target": "Cible : <strong>{{target}}</strong>"
+}

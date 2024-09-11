@@ -80,6 +80,12 @@ export const Routes: any = [
                   import('@/pages/dashboard/Domains/ModalDeleteDomain'),
                 ),
               },
+              {
+                path: 'diagnostic_srv',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/ModalDiagnosticSRV'),
+                ),
+              },
             ],
           },
           {
