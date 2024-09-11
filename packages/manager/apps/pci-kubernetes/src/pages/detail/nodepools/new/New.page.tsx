@@ -162,7 +162,9 @@ export default function NewPage(): JSX.Element {
       desiredNodes: store.autoScaling.isAutoscale
         ? store.autoScaling.quantity.min
         : store.autoScaling.quantity.desired,
-      maxNodes: store.autoScaling.quantity.max,
+      maxNodes: store.antiAffinity
+        ? Math.min(ANTI_AFFINITY_MAX_NODES, store.autoScaling.quantity.max)
+        : store.autoScaling.quantity.max,
     };
 
     createNodePool(projectId, clusterId, param)
