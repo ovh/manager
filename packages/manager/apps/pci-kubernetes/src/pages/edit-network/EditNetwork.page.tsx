@@ -86,12 +86,13 @@ export default function EditNetworkPage() {
     editNetwork(
       projectId,
       kubeId,
+      hasLoadBalancersChanges,
+      loadBalancerSubnet?.id || null,
       hasGatewayChanges && {
         privateNetworkRoutingAsDefault: gatewayForm.isEnabled,
         defaultVrackGateway:
           gatewayForm.mode === ModeEnum.CUSTOM ? gatewayForm.ip : '',
       },
-      hasLoadBalancersChanges && loadBalancerSubnet?.id,
     )
       .then(async () => {
         await queryClient.invalidateQueries({
