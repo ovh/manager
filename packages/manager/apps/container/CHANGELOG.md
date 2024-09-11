@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.75.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.74.0...@ovh-ux/manager-container-app@0.75.0) (2024-09-11)
+
+
+### Features
+
+* rancher GA launch ([#12618](https://github.com/ovh/manager/issues/12618)) ([#13037](https://github.com/ovh/manager/issues/13037)) ([8f49801](https://github.com/ovh/manager/commit/8f49801555fc956d053a8bbf9fd666ff5b76b103))
+
+
+
+
+
 # [0.74.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.73.1...@ovh-ux/manager-container-app@0.74.0) (2024-09-09)
 
 
