@@ -17,7 +17,10 @@ export interface VersionStepProps {
   step: StepState;
 }
 
-export function VersionStep({ onSubmit, step }: Readonly<VersionStepProps>) {
+export function VersionAndUpgradePolicyStep({
+  onSubmit,
+  step,
+}: Readonly<VersionStepProps>) {
   const { t: tStepper } = useTranslation('stepper');
   const { t: tVersion } = useTranslation('versions');
   const [version, setVersion] = useState('');
