@@ -1,0 +1,16 @@
+{
+  "zimbra_domains_add_domain_cta_back": "Zurück zu den Domainnamen",
+  "zimbra_domains_add_domain_cta_confirm": "Bestätigen",
+  "zimbra_domains_add_domain_cta_next": "Weiter",
+  "zimbra_domains_add_domain_title": "Domainname",
+  "zimbra_domains_add_domain_title_select": "Domain hinzufügen",
+  "zimbra_domains_add_domain_select_title": "Domain in der Liste auswählen",
+  "zimbra_domains_add_domain_select": "Einen Domainnamen auswählen",
+  "zimbra_domains_add_domain_input": "Geben Sie Ihren Domainnamen ein.",
+  "zimbra_domains_add_domain_input_title": "Eine Domain angeben, die nicht von unserem OVHcloud Account verwaltet wird",
+  "zimbra_domains_add_domain_organization": "Organisation",
+  "zimbra_domains_add_domain_organization_select": "Eine Organisation auswählen",
+  "zimbra_domains_add_domain_configuration_title": "Konfiguration",
+  "zimbra_domains_add_domain_success_message": "Ihre Anfrage zum Hinzufügen wurde registriert. Sie wird in Kürze ausgeführt.",
+  "zimbra_domains_add_domain_error_message": "Ihre Anfrage zum Hinzufügen ist fehlgeschlagen. {{ error }}"
+}
