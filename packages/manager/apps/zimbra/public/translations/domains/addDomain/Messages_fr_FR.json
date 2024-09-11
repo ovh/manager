@@ -17,7 +17,7 @@
   "zimbra_domains_add_domain_configuration_choice_standard_info": "Nous configurons votre service pour assurer le meilleur niveau de sécurité.",
   "zimbra_domains_add_domain_configuration_choice_expert": "Configuration personnalisée",
   "zimbra_domains_add_domain_configuration_choice_expert_info": "Vous pouvez personnaliser la configuration et choisir quand basculer vos emails vers ce service.",
-  "zimbra_domains_add_domain_configuration_expert_title": "Votre domaine <bold>{{domain}}</bold> sera configuré en mode autoritatif.",
+  "zimbra_domains_add_domain_configuration_expert_title": "Votre domaine <strong>{{domain}}</strong> sera configuré en mode autoritatif.",
   "zimbra_domains_add_domain_configuration_expert_configure_srv": "Configurer l'enregistrement SRV automatiquement (autodiscover)",
   "zimbra_domains_add_domain_configuration_expert_configure_mx": "Configurer l'enregistrement MX automatiquement (réception des emails)",
   "zimbra_domains_add_domain_configuration_expert_configure_spf": "Configurer l'enregistrement SPF automatiquement",

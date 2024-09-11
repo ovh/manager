@@ -461,7 +461,6 @@ export default function AddDomain() {
                   t={t}
                   i18nKey="zimbra_domains_add_domain_configuration_expert_title"
                   values={{ domain: selectedDomainName }}
-                  components={{ bold: <strong /> }}
                 />
               </OsdsText>
               {expertConfigItems.map(({ name, label }) => (
