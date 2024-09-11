@@ -42,9 +42,11 @@ export default function ClusterNetwork({
   const shouldLoadSubnets = !!kubeDetail.privateNetworkId;
 
   const ip = kubeDetail?.privateNetworkConfiguration?.defaultVrackGateway;
+
   const publicNetwork =
     !kubeDetail?.privateNetworkConfiguration ||
     !kubeDetail?.privateNetworkConfiguration?.privateNetworkRoutingAsDefault;
+
   const privateNetwork =
     kubeDetail?.privateNetworkConfiguration?.privateNetworkRoutingAsDefault;
 
@@ -81,23 +83,35 @@ export default function ClusterNetwork({
               level={ODS_TEXT_LEVEL.body}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              <span className="block">{kubeDetail.attachedTo}</span>
-
-              {publicNetwork && (
+              {!kubeDetail?.privateNetworkId && (
                 <span className="block">
-                  {tKubernetes('pci_kubernetes_network_data_public')}
+                  {t('kube_service_cluster_network_public')}
                 </span>
               )}
-              {privateNetwork && (
-                <>
-                  <span className="block">
-                    {tKubernetes('pci_kubernetes_network_data_private')}
-                  </span>
-                  <span>
-                    {tKubernetes('pci_kubernetes_network_data_ip')}:{' '}
-                    {ip || tKubernetes('pci_kubernetes_network_data_dhcp')}
-                  </span>
-                </>
+
+              {kubeDetail?.privateNetworkId && (
+                <span className="block">{kubeDetail.attachedTo}</span>
+              )}
+
+              {kubeDetail?.privateNetworkId && (
+                <div>
+                  {publicNetwork && (
+                    <span className="block">
+                      {tKubernetes('pci_kubernetes_network_data_public')}
+                    </span>
+                  )}
+                  {privateNetwork && (
+                    <>
+                      <span className="block">
+                        {tKubernetes('pci_kubernetes_network_data_private')}
+                      </span>
+                      <span>
+                        {tKubernetes('pci_kubernetes_network_data_ip')}:{' '}
+                        {ip || tKubernetes('pci_kubernetes_network_data_dhcp')}
+                      </span>
+                    </>
+                  )}
+                </div>
               )}
             </OsdsText>
           }
