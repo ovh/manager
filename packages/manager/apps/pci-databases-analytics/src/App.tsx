@@ -3,7 +3,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { odsSetup } from '@ovhcloud/ods-common-core';
 import { useShell } from '@ovh-ux/manager-react-shell-client';
 
-import '@ovhcloud/ods-theme-blue-jeans';
+import '@ovhcloud/ods-themes/default';
 import './global.css';
 
 import queryClient from './query.client';

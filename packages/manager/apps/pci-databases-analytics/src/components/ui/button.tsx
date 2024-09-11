@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
-
+import { OdsButton } from '@ovhcloud/ods-components/react';
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
@@ -48,17 +48,30 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, color, ...props }, ref) => {
+    const shadowClassName = className?.length > 0 ? className.split(' ').map(c => `[&::part(button)]:${c}`).join(' ') : '';
+    console.log(shadowClassName)
     const Comp = asChild ? Slot : "button"
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
+    return asChild ? <Slot
+      className={cn(buttonVariants({ variant, size, className }))}
+      ref={ref}
+      {...props}
+    /> :  (
+      // @ts-ignore
+      <OdsButton label="nope" {...props as unknown as Omit<React.HTMLAttributes<HTMLOdsButtonElement>, "style">} /*className="[&::part(button)]:bg-primary-700"*/ className={shadowClassName} />
     )
+    // return (
+    //   <Comp
+    //     className={cn(buttonVariants({ variant, size, className }))}
+    //     ref={ref}
+    //     {...props}
+    //   />
+    // )
   }
 )
 Button.displayName = "Button"
 
 export { Button, buttonVariants }
+
+
+<OdsButton className="bg-red">Hello <b>World</b></OdsButton>

@@ -284,9 +284,9 @@ const AdvancedConfigurationForm = ({
       </div>
       {/* Right Col */}
       <Accordion type="single" collapsible>
-        <AccordionItem value="json" className="border-none">
-          <AccordionTrigger className="text-base">
-            <div className="flex items-center gap-2">
+        <AccordionItem className="border-none">
+          <AccordionTrigger>
+            <div className="text-base flex items-center gap-2">
               <FileJson className="size-4" />
               <span>{t('advancedConfigurationJSONButton')}</span>
             </div>
