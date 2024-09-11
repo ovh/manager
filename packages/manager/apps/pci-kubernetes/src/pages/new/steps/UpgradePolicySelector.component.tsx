@@ -29,7 +29,7 @@ export function UpgradePolicyTileSelector({
   setPolicy,
   policy: selectPolicy,
 }: Readonly<UpgradePolicySelectorProps>) {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['add', 'service']);
   const shell = useContext(ShellContext);
   const select = (pol: UPGRADEPOLICIES) => {
     if (pol) {
@@ -45,17 +45,15 @@ export function UpgradePolicyTileSelector({
           level={ODS_TEXT_LEVEL.subheading}
           slot="label"
         >
-          {t('add:kubernetes_add_update_policy_title')}
+          {t('kubernetes_add_update_policy_title')}
         </OsdsText>
       </OsdsFormField>
       <div className="my-4">
-        <OsdsText>
-          {t('add:kube_update_policy_picker_documentation_text')}
-        </OsdsText>
+        <OsdsText>{t('kube_update_policy_picker_documentation_text')}</OsdsText>
         <OsdsLink
           href={DOCUMENTATION_LINK[shell.environment.getUser().ovhSubsidiary]}
         >
-          {t('add:kube_update_policy_picker_documentation_link')}
+          {t('kube_update_policy_picker_documentation_link')}
         </OsdsLink>
       </div>
 
