@@ -217,6 +217,7 @@ export const getSubscribedLogs = async (
 ) => {
   const { data } = await fetchIcebergV6<TSubscription>({
     route: `/cloud/project/${projectId}/kube/${kubeId}/log/subscription?kind=${kind}`,
+    disableCache: true,
   });
   return data;
 };
