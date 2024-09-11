@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { UPGRADE_POLICIES } from '@/constants';
 
 interface UpgradePolicySelectorProps {
-  onSelectPolicy: (policy) => void;
+  onSelectPolicy: (policy: string) => void;
 }
 export const tileClass =
   'cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600]';
