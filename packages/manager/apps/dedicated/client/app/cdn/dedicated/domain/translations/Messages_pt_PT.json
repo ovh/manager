@@ -46,7 +46,7 @@
   "cdn_configuration_cacherule_update_step1_question": "Deseja modificar a regra de cache {{t0}}?",
   "cdn_configuration_cacherule_update_step1_current": "Atual TTL:",
   "cdn_configuration_cacherule_update_step1_new": "Novo TTL :",
-  "cdn_configuration_cacherule_update_step1_info": "Nota: A modificação de uma regra desativa-a reativa.",
+  "cdn_configuration_cacherule_update_step1_info": "Nota: a modificação de uma regra desativada reativa-a.",
   "cdn_configuration_cacherule_update_step2_summary": "Resumo:",
   "cdn_configuration_cacherule_update_step2_old_ttl": "Antigo ttl:",
   "cdn_configuration_cacherule_update_step2_new_ttl": "Novo ttl:",
