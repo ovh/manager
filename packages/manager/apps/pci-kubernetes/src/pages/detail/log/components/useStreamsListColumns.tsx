@@ -19,7 +19,7 @@ export const useStreamsListColumns = (account: TDbaasLog) => {
     navigation
       .getURL('dedicated', `#/dbaas/logs/${account?.serviceName}/home`, {})
       .then(setAccountURL);
-  }, []);
+  }, [account]);
 
   return [
     {
