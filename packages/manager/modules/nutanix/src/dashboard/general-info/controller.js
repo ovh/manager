@@ -1,4 +1,4 @@
-import { CLUSTER_STATUS } from '../../constants';
+import { CLUSTER_STATUS, NUTANIX_AUTHORIZATION_TYPE } from '../../constants';
 import {
   GENERAL_INFO_TILE_TITLE,
   NUTANIX_PERSONAL_LICENSE_EDITION,
@@ -87,5 +87,13 @@ export default class NutanixGeneralInfoCtrl {
 
   onCancel() {
     this.showRedeployWarningModal = false;
+  }
+
+  haveServicesAuthorizations() {
+    return this.accountAuthorizations[NUTANIX_AUTHORIZATION_TYPE.SERVICES];
+  }
+
+  haveSupportAuthorizations() {
+    return this.accountAuthorizations[NUTANIX_AUTHORIZATION_TYPE.SUPPORT];
   }
 }

@@ -8,6 +8,7 @@ export default {
     serviceDetails: '<',
     serviceInfo: '<',
     getTechnicalDetails: '<',
+    nutanixClusterIamName: '@',
   },
   controller,
   template,

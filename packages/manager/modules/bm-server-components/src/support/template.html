@@ -6,7 +6,14 @@
     <!-- level -->
     <oui-tile-definition term="{{:: 'server_support_level' | translate }}">
         <oui-tile-description>
-            <span data-ng-bind=":: $ctrl.getFormatedSupportLevel()"></span>
+            <span
+                data-ng-if="!$ctrl.isHidden"
+                data-ng-bind=":: $ctrl.getFormatedSupportLevel()"
+            ></span>
+            <span
+                data-ng-if="$ctrl.isHidden"
+                data-translate="server_support_hidden"
+            ></span>
         </oui-tile-description>
     </oui-tile-definition>
     <!-- open tickets -->
@@ -14,15 +21,21 @@
         term="{{:: 'server_support_open_tickets' | translate }}"
     >
         <oui-tile-description data-ng-if="!$ctrl.isSupportExternalWithLinks">
-            <span data-ng-if="$ctrl.numberOfTickets === 0">0</span>
+            <span data-ng-if="$ctrl.numberOfTickets === 0 && !$ctrl.isHidden"
+                >0</span
+            >
             <a
                 class="oui-link_icon"
-                data-ng-if="$ctrl.numberOfTickets > 0"
+                data-ng-if="$ctrl.numberOfTickets > 0 && !$ctrl.isHidden"
                 data-ng-href="{{ $ctrl.viewTicketsUrl }}"
                 data-ng-click="$ctrl.trackClick('go-to-view-tickets')"
             >
                 <span data-ng-bind="$ctrl.numberOfTickets"></span>
             </a>
+            <span
+                data-ng-if="$ctrl.isHidden"
+                data-translate="server_support_hidden"
+            ></span>
             <div class="mt-1">
                 <a
                     class="oui-link_icon"
@@ -38,10 +51,12 @@
             </div>
         </oui-tile-description>
         <oui-tile-description data-ng-if="$ctrl.isSupportExternalWithLinks">
-            <span data-ng-if="!$ctrl.numberOfTickets">0</span>
+            <span data-ng-if="!$ctrl.numberOfTickets && !$ctrl.isHidden"
+                >0</span
+            >
             <a
                 class="oui-link_icon"
-                data-ng-if="$ctrl.numberOfTickets > 0"
+                data-ng-if="$ctrl.numberOfTickets > 0 && !$ctrl.isHidden"
                 data-ng-href="{{ $ctrl.viewTicketsUrl }}"
                 data-on-click="$ctrl.trackClick('go-to-view-tickets')"
                 target="_blank"
@@ -53,6 +68,10 @@
                     aria-hidden="true"
                 ></span>
             </a>
+            <span
+                data-ng-if="$ctrl.isHidden"
+                data-translate="server_support_hidden"
+            ></span>
             <div class="mt-1">
                 <a
                     class="oui-link_icon"
