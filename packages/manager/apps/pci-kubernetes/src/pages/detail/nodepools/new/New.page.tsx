@@ -17,11 +17,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { Translation, useTranslation } from 'react-i18next';
-import {
-  Notifications,
-  StepComponent,
-  useNotifications,
-} from '@ovhcloud/manager-components';
+import { StepComponent, useNotifications } from '@ovhcloud/manager-components';
 import { FlavorSelector } from '@ovh-ux/manager-pci-common';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -221,6 +217,7 @@ export default function NewPage(): JSX.Element {
         {tListing('kube_common_create_node_pool')}
       </OsdsText>
 
+      <div ref={store.steps.get(StepsEnum.NAME).ref}></div>
       <StepComponent
         id={StepsEnum.NAME}
         order={1}
@@ -282,6 +279,7 @@ export default function NewPage(): JSX.Element {
           />
         </OsdsFormField>
       </StepComponent>
+      <div ref={store.steps.get(StepsEnum.TYPE).ref}></div>
       <StepComponent
         id={StepsEnum.TYPE}
         title={tListing('kube_common_node_pool_title')}
@@ -331,6 +329,7 @@ export default function NewPage(): JSX.Element {
           />
         )}
       </StepComponent>
+      <div ref={store.steps.get(StepsEnum.SIZE).ref}></div>
       <StepComponent
         id={StepsEnum.SIZE}
         title={tListing('kube_common_node_pool_autoscaling_title')}
@@ -362,6 +361,7 @@ export default function NewPage(): JSX.Element {
           onChange={(auto) => store.set.autoScaling(auto)}
         />
       </StepComponent>
+      <div ref={store.steps.get(StepsEnum.BILLING).ref}></div>
       <StepComponent
         id={StepsEnum.BILLING}
         title={tAdd('kube_add_billing_anti_affinity_title')}
