@@ -21,7 +21,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { FormDocumentFieldList } from './FormDocumentFields/FormDocumentFieldList';
 import { LegalFrom } from '@/types/user.type';
 import useUser from '@/context/User/useUser';
-import { useUploadDocuments } from '@/data/hooks/useDocuments';
+import { useUploadDocuments, useUploadLinks } from '@/data/hooks/useDocuments';
 import { ConfirmModal } from './Modal/ConfirmModal';
 import { SuccessModal } from './Modal/SuccessModal';
 import { ovhHomePageHref } from './constants/form.constants';
@@ -44,20 +44,44 @@ const FormCreateRequest = () => {
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
 
-  const { mutate, isPending, isError, reset: resetUpload } = useUploadDocuments(
-    {
-      onSuccess: () => {
-        setShowSuccessModal(true);
-        setShowConfirmModal(false);
-      },
-      onError: () => {
-        setShowConfirmModal(false);
-      },
-    },
-  );
-
   const files = flatFiles(watch());
   const isAnyFileSelected = files.length > 0;
+
+  // We split the CTA action into two mutation, as once the first is done the API will start
+  // to send us errors if we retry it
+  // The following mutation cover the upload of the document as well as the finalization of the request
+  const {
+    mutate: uploadDocuments,
+    isPending: isUploadPending,
+    isError: hasUploadError,
+    reset: resetUpload,
+  } = useUploadDocuments({
+    onSuccess: () => {
+      setShowSuccessModal(true);
+      setShowConfirmModal(false);
+    },
+    onError: () => {
+      setShowConfirmModal(false);
+    },
+  });
+  // The following mutation cover the request creation by posting the number of documents to be uploaded
+  // for which the API will give us the upload links
+  const {
+    mutate: getUploadLinks,
+    isPending: areUploadLinksPending,
+    isError: hasUploadLinksError,
+    data: links,
+  } = useUploadLinks({
+    onSuccess: (uploadLinks) => {
+      uploadDocuments({ files, links: uploadLinks });
+    },
+    onError: () => {
+      setShowConfirmModal(false);
+    },
+  });
+
+  const isPending = areUploadLinksPending || isUploadPending;
+  const isError = hasUploadLinksError || hasUploadError;
 
   const handleLegalFormChange = (
     e: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>,
@@ -111,6 +135,7 @@ const FormCreateRequest = () => {
             control={control}
             legalForm={legalForm}
             subsidiary={subsidiary}
+            disabled={Boolean(links)}
           />
 
           {isError && (
@@ -135,7 +160,13 @@ const FormCreateRequest = () => {
           isPending={isPending}
           onClose={() => setShowConfirmModal(false)}
           onValidate={() => {
-            mutate({ files });
+            // Bypassing the first mutation, if it is successful, we allow the user to
+            // retry the upload process on his own
+            if (links) {
+              uploadDocuments({ files, links });
+            } else {
+              getUploadLinks(files.length);
+            }
           }}
         />
       )}

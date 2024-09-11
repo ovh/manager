@@ -21,7 +21,16 @@ export const FileInput: FunctionComponent<Props> = ({ className }) => {
       'The component <FileInput /> must be a child of FileInputContainer',
     );
   }
-  const { onChange, id, multiple, accept, value, maxFiles, maxSize } = context;
+  const {
+    onChange,
+    id,
+    multiple,
+    accept,
+    value,
+    maxFiles,
+    maxSize,
+    disabled: isInputDisabled,
+  } = context;
 
   const { t } = useTranslation('account-disable-2fa');
 
@@ -76,7 +85,7 @@ export const FileInput: FunctionComponent<Props> = ({ className }) => {
     });
     fileInputRef.current.value = '';
   };
-  const disabled = value?.length >= maxFiles && multiple;
+  const disabled = isInputDisabled || (value?.length >= maxFiles && multiple);
   return (
     <>
       <input

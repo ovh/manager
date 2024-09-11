@@ -16,7 +16,7 @@ export const FileInputList: FunctionComponent<Props> = ({ className }) => {
   }
   const { t } = useTranslation('account-disable-2fa');
 
-  const { value, multiple, onChange, accept, maxSize } = context;
+  const { value, multiple, onChange, accept, maxSize, disabled } = context;
 
   const handleDeleteFile = (
     e: MouseEvent<HTMLOsdsIconElement, globalThis.MouseEvent>,
@@ -37,6 +37,7 @@ export const FileInputList: FunctionComponent<Props> = ({ className }) => {
           maxSize={maxSize}
           file={file}
           deleteFile={handleDeleteFile}
+          disabled={disabled}
         />
       ))}
     </div>
