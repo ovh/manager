@@ -113,7 +113,7 @@ export function LogHowTo() {
           >
             {!hasAccount && t('log_button_create_account')}
             {hasAccount && !hasStream && t('log_button_create_stream')}
-            {t('log_button_transfer_stream')}
+            {hasAccount && hasStream && t('log_button_transfer_stream')}
           </OsdsButton>
         </div>
       </OsdsTile>
