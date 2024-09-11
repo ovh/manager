@@ -1,9 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import StaticLink from './StaticLink';
-import { Node } from './navigation-tree/node';
+import { Node, NodeTag } from './navigation-tree/node';
 import { StaticLinkProps } from './StaticLink';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
+import { mockShell } from './mocks/sidebarMocks';
 
 const node: Node = {
   id: 'pci-rancher',
@@ -27,11 +28,11 @@ const externalNode: Node = {
   url: 'help',
   count: false,
   isExternal: true,
-  svgIcon: OvhProductName.HELPECENTER
+  svgIcon: OvhProductName.HELPECENTER,
 };
 
-const handleClick = vi.fn();
-const handleOnEnter = vi.fn();
+const handleClick: (e: React.MouseEvent) => void = vi.fn((e) => {e.preventDefault()});
+const handleOnEnter: (node: Node, e: React.KeyboardEvent) => void = vi.fn((_, e) => {e.preventDefault()});
 
 const linkParams = { projectId: '123456789' };
 
@@ -42,32 +43,6 @@ const props: StaticLinkProps = {
   handleOnEnter: handleOnEnter,
   isShortText: false,
 };
-
-const mockPlugins = vi.hoisted(() => ({
-  environment: {
-    getEnvironment: () => {
-      return {
-        getRegion: vi.fn(() => 'EU'),
-        getUser: vi.fn(() => ({ ovhSubsidiary: 'FR' })),
-      };
-    },
-  },
-  navigation: {
-    getURL: vi.fn(
-      (app, hash) => `https://www.ovh.com/manager/#/${hash.replace('#', app)}`,
-    ),
-  },
-}));
-
-const mockShell = vi.hoisted(() => ({
-  shell: {
-    getPlugin: (plugin: string) => {
-      return plugin === 'navigation'
-        ? mockPlugins.navigation
-        : mockPlugins.environment;
-    },
-  },
-}));
 
 vi.mock('@/context', () => ({
   useShell: () => {
@@ -91,30 +66,73 @@ const renderStaticLinkComponent = (props: StaticLinkProps) => {
 
 describe('StaticLink.component', () => {
   it('Should render', () => {
-    const {queryByTestId} = renderStaticLinkComponent(props);
+    const { queryByTestId, getByText } = renderStaticLinkComponent(props);
 
     expect(queryByTestId(props.node.idAttr)).not.toBeNull();
+    expect(getByText(props.node.translation)).toBeInTheDocument();
   });
 
+  it('Static link should call callback when clicked', () => {
+    const { queryByTestId } = renderStaticLinkComponent(props);
+    const staticLink = queryByTestId(props.node.idAttr);
+
+    fireEvent.click(staticLink);
+
+    expect(handleClick).toHaveBeenCalled();
+  });
+
+  it('Static link should call callback when Enter is pressed', () => {
+    const { queryByTestId } = renderStaticLinkComponent(props);
+    const staticLink = queryByTestId(props.node.idAttr);
+
+    fireEvent.keyUp(staticLink, {key: 'Enter', code: 'Enter', keyCode: 13, charCode: 13});
+
+    expect(handleOnEnter).toHaveBeenCalled();
+  })
+
   it('Url should be formatted with link params', () => {
-    const {queryByTestId} = renderStaticLinkComponent(props);
+    const { queryByTestId } = renderStaticLinkComponent(props);
     expect(queryByTestId(props.node.idAttr)).toHaveAttribute(
       'href',
       'https://www.ovh.com/manager/#/public-cloud/pci/projects/123456789/rancher',
     );
   });
 
-  it('Static link should have its text properly translated', () => {
-    const {getByText} = renderStaticLinkComponent(props);
-    expect(getByText(props.node.translation)).toBeInTheDocument();
+  it('Static link with count should render icon', () => {
+    props.count = 1;
+    const { queryByTestId } = renderStaticLinkComponent(props);
+    expect(queryByTestId(`static-link-count-${node.id}`)).not.toBeNull();
   })
 
   it('External static link should have correct data', () => {
     props.node = externalNode;
     const { queryByTestId } = renderStaticLinkComponent(props);
 
-    expect(queryByTestId(props.node.idAttr)).toHaveAttribute('target', '_blank');
-    expect(queryByTestId(props.node.idAttr)).toHaveAttribute('rel', 'noopener noreferrer');
-    expect(queryByTestId(props.node.idAttr).getElementsByClassName('oui-icon-external-link').length).toBe(1);
+    expect(queryByTestId(props.node.idAttr)).toHaveAttribute(
+      'target',
+      '_blank',
+    );
+    expect(queryByTestId(props.node.idAttr)).toHaveAttribute(
+      'rel',
+      'noopener noreferrer',
+    );
+    expect(
+      queryByTestId(props.node.idAttr).getElementsByClassName(
+        'oui-icon-external-link',
+      ).length,
+    ).toBe(1);
+  });
+
+  it('Static link with a node with tag should display a SidebarLinkTag', () => {
+    props.node.tag = NodeTag.BETA;
+    const { queryByTestId } = renderStaticLinkComponent(props);
+    expect(queryByTestId(`static-link-tag-${props.node.id}`)).not.toBeNull();
+  });
+
+  it('Static link in reduced mode should not display count or tag', () => {
+    props.isShortText = true;
+    const { queryByTestId } = renderStaticLinkComponent(props);
+    expect(queryByTestId(`static-link-tag-${props.node.id}`)).toBeNull();
+    expect(queryByTestId(`static-link-count-${props.node.id}`)).toBeNull();
   });
 });

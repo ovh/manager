@@ -1,8 +1,9 @@
 import React from 'react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import StaticLinkTag from './SidebarLinkTag';
+import SidebarLinkTag from './SidebarLinkTag';
 import { Node, NodeTag } from './navigation-tree/node';
+import { mockShell } from './mocks/sidebarMocks';
 
 const node: Node = {
   id: 'pci-rancher',
@@ -27,19 +28,25 @@ const nodeWithoutTag: Node = {
   isExternal: true,
 };
 
-const renderStaticLinkTagComponent = (node: Node) => {
-  return render(<StaticLinkTag node={node} />);
+vi.mock('@/context', () => ({
+  useShell: () => {
+    return mockShell.shell;
+  },
+}));
+
+const renderSidebarLinkTagComponent = (node: Node) => {
+  return render(<SidebarLinkTag node={node} />);
 };
 
-describe('StaticLinkTag.component', () => {
+describe('SidebarLinkTag.component', () => {
   it('should render', async () => {
-    renderStaticLinkTagComponent(node);
+    renderSidebarLinkTagComponent(node);
 
     expect(screen.queryByTestId(`static-link-tag-${node.id}`)).not.toBeNull();
   });
 
   it('should not render', async () => {
-    renderStaticLinkTagComponent(nodeWithoutTag);
+    renderSidebarLinkTagComponent(nodeWithoutTag);
 
     expect(screen.queryByTestId(`static-link-tag-${node.id}`)).toBeNull();
   })
