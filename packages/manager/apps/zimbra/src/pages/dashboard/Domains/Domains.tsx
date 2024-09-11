@@ -26,6 +26,7 @@ import {
 import ActionButtonDomain from './ActionButtonDomain';
 import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { DiagnosticBadge } from '@/components/DiagnosticBadge';
 
 export type DomainsItem = {
   id: string;
@@ -69,6 +70,18 @@ const columns: DatagridColumn<DomainsItem>[] = [
         </OsdsText>
       ),
     label: 'zimbra_domains_datagrid_account_number',
+  },
+  {
+    id: 'diagnostic',
+    cell: () => (
+      <>
+        <DiagnosticBadge diagType="MX" status="success" />
+        <DiagnosticBadge diagType="SRV" status="error" />
+        <DiagnosticBadge diagType="SPF" status="success" />
+        <DiagnosticBadge diagType="DKIM" status="warning" />
+      </>
+    ),
+    label: 'zimbra_domains_datagrid_diagnostic_label',
   },
   {
     id: 'tooltip',
