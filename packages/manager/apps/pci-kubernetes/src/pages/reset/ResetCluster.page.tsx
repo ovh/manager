@@ -47,7 +47,6 @@ import {
   GatewaySelector,
   GatewaySelectorState,
 } from '@/components/network/GatewaySelector.component';
-import { SubnetWarning } from '@/components/network/SubnetWarning.component';
 import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
 import { LoadBalancerWarning } from '@/components/network/LoadBalancerWarning.component';
 
@@ -346,7 +345,7 @@ export default function ResetClusterPage() {
                   showSpinner
                 />
 
-                {shouldWarnSubnet && <SubnetWarning />}
+                {shouldWarnSubnet && <LoadBalancerWarning />}
               </div>
             )}
 

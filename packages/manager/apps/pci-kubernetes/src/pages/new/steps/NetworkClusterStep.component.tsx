@@ -13,7 +13,6 @@ import PrivateNetworkSelect from '@/components/create/PrivateNetworkSelect.compo
 import SubnetSelect from '@/components/create/SubnetSelect.component';
 import LoadBalancerSelect from '@/components/create/LoadBalancerSelect.component';
 import { LoadBalancerWarning } from '@/components/network/LoadBalancerWarning.component';
-import { SubnetWarning } from '@/components/network/SubnetWarning.component';
 
 export type TNetworkFormState = {
   privateNetwork?: TNetwork;
@@ -85,7 +84,7 @@ export default function NetworkClusterStep({
                   }))
                 }
               />
-              {shouldWarnSubnet && <SubnetWarning />}
+              {shouldWarnSubnet && <LoadBalancerWarning />}
             </div>
           )}
           {form.privateNetwork && form.subnet && (
