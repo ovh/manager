@@ -49,6 +49,7 @@ import {
 } from '@/components/network/GatewaySelector.component';
 import { SubnetWarning } from '@/components/network/SubnetWarning.component';
 import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
+import { SelectComponent } from '@/components/input/Select.component';
 
 export default function ResetClusterPage() {
   const { t: tReset } = useTranslation('reset');
@@ -299,7 +300,7 @@ export default function ResetClusterPage() {
               >
                 {tListing('kubernetes_add_private_network_label')}
               </OsdsText>
-              <OsdsSelect
+              <SelectComponent
                 value={formState.privateNetworkId || defaultNetwork?.id}
                 onOdsValueChange={(event) => {
                   setFormState({
@@ -321,7 +322,7 @@ export default function ResetClusterPage() {
                     {network.name}
                   </OsdsSelectOption>
                 ))}
-              </OsdsSelect>
+              </SelectComponent>
             </OsdsFormField>
 
             {formState.privateNetworkId && (

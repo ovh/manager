@@ -6,14 +6,12 @@ import {
   OsdsPopover,
   OsdsPopoverContent,
   OsdsSearchBar,
-  OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
-  ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   Datagrid,
