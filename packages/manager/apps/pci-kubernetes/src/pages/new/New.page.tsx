@@ -30,7 +30,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useClusterCreationStepper } from './useCusterCreationStepper';
 import { LocationStep } from './steps/LocationStep.component';
-import { VersionAndUpgradePolicyStep } from './steps/VersionStep.component';
+import { VersionAndUpgradePolicyStep } from './steps/VersionAndUpgradePolicyStep.component';
 import { NetworkStep } from './steps/NetworkStep.component';
 import { NodeTypeStep } from './steps/NodeTypeStep.component';
 import { NodeSizeStep } from './steps/NodeSizeStep.component';
