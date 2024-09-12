@@ -17,13 +17,12 @@
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_minor": "Installer la mise à jour mineure ({{version}} - build {{build}})",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_reschedule_update": "Modifier la date de mise à jour",
 
-  "ovhManagerPccDashboardGeneralInformation_location_term": "Localisation",
-  "ovhManagerPccDashboardGeneralInformation_commercial_range": "Nom commercial",
+  "ovhManagerPccDashboardGeneralInformation_loadLocation_error": "Une erreur est survenue lors de la récupération des données nécessaires à l'affichage des informations de localisation.",
+  "ovhManagerPccDashboardGeneralInformation_location_zone": "Zone Private Cloud",
+  "ovhManagerPccDashboardGeneralInformation_location_region_location": "Localisation",
+  "ovhManagerPccDashboardGeneralInformation_location_region": "Région",
 
-  "ovhManagerPccDashboardGeneralInformation_accessPolicy_term": "Politique d'accès",
-  "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_FILTERED": "Restreinte",
-  "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_OPEN": "Ouverte",
-  "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_NOT_CONFIGURED": "Pas encore configurée",
+  "ovhManagerPccDashboardGeneralInformation_commercial_range": "Gamme commerciale",
 
   "ovhManagerPccDashboardGeneralInformation_numberOfDatacenters_term": "Nombre de datacenters",
 

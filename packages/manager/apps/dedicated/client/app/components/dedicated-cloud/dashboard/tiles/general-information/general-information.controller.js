@@ -1,16 +1,14 @@
-import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
-import isString from 'lodash/isString';
-
 export default class {
   /* @ngInject */
-  constructor($translate) {
+  constructor($scope, $translate, DedicatedCloud, Alerter) {
+    this.$scope = $scope;
     this.$translate = $translate;
+    this.DedicatedCloud = DedicatedCloud;
+    this.Alerter = Alerter;
   }
 
   $onInit() {
     this.bindings = {
-      accessPolicy: this.buildAccessPolicy(),
       commercialRange: this.currentService.commercialRange,
       description: this.currentService.description,
       numberOfIPBlocks: {
@@ -31,6 +29,32 @@ export default class {
         this.currentService.isMajorSolutionUpdateAvailable(),
       version: this.currentService.version,
     };
+    this.isLoading = false;
+
+    return this.loadLocation();
+  }
+
+  loadLocation() {
+    this.isLoading = true;
+    return this.DedicatedCloud.getLocation(this.currentService.serviceName)
+      .then((locationInfo) => {
+        this.locationInfo = locationInfo;
+      })
+      .catch((error) => {
+        const errorMessage = error.data?.message || error.data;
+        this.Alerter.error(
+          [
+            this.$translate.instant(
+              'ovhManagerPccDashboardGeneralInformation_loadLocation_error',
+            ),
+            errorMessage ? `(${errorMessage})` : '',
+          ].join(' '),
+          'dedicatedCloud',
+        );
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
   }
 
   editDescription() {
@@ -47,28 +71,18 @@ export default class {
     });
   }
 
-  buildAccessPolicy() {
-    const policy = this.currentService.userAccessPolicy;
-    const policyIsConfigured = isString(policy) && !isEmpty(policy);
-
-    return this.$translate.instant(
-      policyIsConfigured
-        ? `ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_${policy.toUpperCase()}`
-        : 'ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_NOT_CONFIGURED',
-    );
-  }
-
   buildSoftwareSolution() {
     const solution = {
       displayName: this.$translate.instant(
         `ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_${this.currentService.solution.toUpperCase()}`,
       ),
-      displayVersionNumber: get(this.currentService.version, 'major', ''),
-      displayBuildNumber: get(this.currentService.version, 'build', ''),
+      displayMajorVersionNumber: this.currentService?.version?.major || '',
+      displayMinorVersionNumber: this.currentService?.version?.minor || '',
+      displayBuildNumber: this.currentService?.version?.build || '',
     };
 
     return solution.displayBuildNumber
-      ? `${solution.displayName} ${solution.displayVersionNumber} - build ${solution.displayBuildNumber}`.trim()
-      : `${solution.displayName} ${solution.displayVersionNumber}`.trim();
+      ? `${solution.displayName} ${solution.displayMajorVersionNumber} ${solution.displayMinorVersionNumber} (build ${solution.displayBuildNumber})`.trim()
+      : `${solution.displayName} ${solution.displayMajorVersionNumber} ${solution.displayMinorVersionNumber}`.trim();
   }
 }
