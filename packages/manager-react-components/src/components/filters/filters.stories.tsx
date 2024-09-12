@@ -56,7 +56,7 @@ const FiltersStory = () => {
           />
         </div>
 
-        <OdsPopover triggerId="popover-trigger">
+        <OdsPopover triggerId="popover-trigger" with-arrow="true">
           <FilterAdd
             columns={[
               {

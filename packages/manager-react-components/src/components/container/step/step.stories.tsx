@@ -17,7 +17,7 @@ export default {
 
 const Template: Story<any> = (args) => (
   <StepComponent {...args}>
-    <OdsText>Hello world</OdsText>
+    <OdsText preset="span">Hello world</OdsText>
   </StepComponent>
 );
 

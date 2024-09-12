@@ -38,7 +38,9 @@ const commonArgs = {
   items: allCountries,
   value: undefined,
   label: (country: TCountry) => (
-    <OdsText className="text-center w-full">{country?.name}</OdsText>
+    <OdsText preset="span" className="text-center w-full">
+      {country?.name}
+    </OdsText>
   ),
   tileClass: {
     active: 'font-bold text-red-500 bg-orange-100',
@@ -57,7 +59,10 @@ DemoStack.args = {
     by: (country: TCountry) => country.language,
     label: (language: string, countries: TCountry[]) => {
       return (
-        <OdsText className="text-center w-full">{`${language} (${countries.length})`}</OdsText>
+        <OdsText
+          preset="span"
+          className="text-center w-full"
+        >{`${language} (${countries.length})`}</OdsText>
       );
     },
     title: (language: string, countries: TCountry[]) =>
@@ -96,8 +101,8 @@ DemoGroupStack.args = {
     label: (group: string, countries: TCountry[], selected: boolean) => (
       <div
         className={clsx(
-          selected && 'font-bold',
-          'whitespace-nowrap px-2 text-lg',
+          selected && 'font-bold text-[--ods-color-text]',
+          'text-[--ods-color-primary-500] whitespace-nowrap px-2 text-lg',
         )}
       >
         <OdsText>
@@ -111,7 +116,7 @@ DemoGroupStack.args = {
     by: (country: TCountry) => country?.language,
     label: (language: string, countries: TCountry[]) => {
       return (
-        <OdsText className="text-center w-full">
+        <OdsText preset="span" className="text-center w-full">
           {`${language} (${countries?.length})`}
         </OdsText>
       );

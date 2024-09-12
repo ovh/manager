@@ -22,7 +22,6 @@ import {
 } from '@ovhcloud/ods-components';
 import { handleClick } from '../../../utils/click-utils';
 import './translations/translations';
-import './delete-modal.scss';
 
 export const defaultDeleteModalTerminateValue = 'TERMINATE';
 
@@ -70,25 +69,20 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
       isOpen={isOpen}
     >
       <div>
-        <OdsText
-          className="delete-modal-headline"
-          preset={ODS_TEXT_PRESET.heading6}
-        >
+        <span className="delete-modal-headline text-[--ods-color-heading] text-[24px] leading-[32px] font-bold">
           {headline}
-        </OdsText>
+        </span>
       </div>
       {!!error && (
         <OdsMessage color={ODS_MESSAGE_COLOR.warning}>
-          <OdsText>{t('deleteModalError', { error })}</OdsText>
+          <OdsText preset="span">{t('deleteModalError', { error })}</OdsText>
         </OdsMessage>
       )}
-      <OdsText className="delete-modal-description">{description}</OdsText>
+      <span className="delete-modal-description text-[--ods-color-text] text-[14px] leading-[18px] my-[8px]">
+        {description}
+      </span>
       <OdsFormField className="mb-8">
-        <div slot="label">
-          <OdsText className="delete-modal-input-label">
-            <b>{deleteInputLabel}</b>
-          </OdsText>
-        </div>
+        <label slot="label">{deleteInputLabel}</label>
         <OdsInput
           name=""
           aria-label="delete-input"

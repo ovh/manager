@@ -31,7 +31,9 @@ export const ManagerText = ({
     return (
       <>
         <div id="tooltip-iam" className="w-fit">
-          <OdsText {...restProps}>{t('iam_hidden_text').toUpperCase()}</OdsText>
+          <OdsText preset="span" {...restProps}>
+            {t('iam_hidden_text').toUpperCase()}
+          </OdsText>
         </div>
         <OdsTooltip triggerId="tooltip-iam" with-arrow>
           <div>{t('common_iam_actions_message')}</div>

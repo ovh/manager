@@ -13,7 +13,7 @@ import './translations/translations';
 
 const TextPriceContent: React.FC<{ children: React.ReactNode }> = ({
   children,
-}) => <OdsText className="ml-1">{children}</OdsText>;
+}) => <span className="ml-1">{children}</span>;
 
 export function Price({
   value,
@@ -72,12 +72,22 @@ export function Price({
       condition: isFrenchFormat && tax > 0,
       component: (
         <>
-          <span className="mr-1">{priceWithoutTax}</span>
-          {t('price_ht_label')}
-          <span className="ml-1">{intervalUnitText}</span>
+          <span className="mr-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {priceWithoutTax}
+          </span>
+          <span className="text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {t('price_ht_label')}
+          </span>
+          <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {intervalUnitText}
+          </span>
           <TextPriceContent>
-            ({priceWithTax}
-            <span className="ml-1">{t('price_ttc_label')})</span>
+            <span className="text-[--ods-color-neutral-500] text-[14px] leading-[18px] font-semibold">
+              ({priceWithTax}
+            </span>
+            <span className="ml-1 text-[--ods-color-neutral-500] text-[14px] leading-[18px] font-semibold">
+              {t('price_ttc_label')})
+            </span>
           </TextPriceContent>
         </>
       ),
@@ -86,9 +96,15 @@ export function Price({
       condition: isFrenchFormat && !tax,
       component: (
         <>
-          <span className="mr-1">{priceWithoutTax}</span>
-          {t('price_ht_label')}
-          <span className="ml-1">{intervalUnitText}</span>
+          <span className="mr-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {priceWithoutTax}
+          </span>
+          <span className="text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {t('price_ht_label')}
+          </span>
+          <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {intervalUnitText}
+          </span>
         </>
       ),
     },
@@ -96,8 +112,12 @@ export function Price({
       condition: isGermanFormat && tax > 0,
       component: (
         <>
-          <span className="mr-1">{priceWithTax}</span>
-          {intervalUnitText}
+          <span className="mr-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {priceWithTax}
+          </span>
+          <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {intervalUnitText}
+          </span>
         </>
       ),
     },
@@ -105,9 +125,15 @@ export function Price({
       condition: isAsiaFormat && (!tax || tax === 0),
       component: (
         <>
-          <span className="mr-1">{priceWithoutTax}</span>
-          {t('price_gst_excl_label')}
-          <span className="ml-1">{intervalUnitText}</span>
+          <span className="mr-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {priceWithoutTax}
+          </span>
+          <span className="text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {t('price_gst_excl_label')}
+          </span>
+          <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {intervalUnitText}
+          </span>
         </>
       ),
     },
@@ -115,12 +141,22 @@ export function Price({
       condition: isAsiaFormat,
       component: (
         <>
-          <span className="mr-1">{priceWithoutTax}</span>
-          {t('price_gst_excl_label')}
-          <span className="ml-1">{intervalUnitText}</span>
+          <span className="mr-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {priceWithoutTax}
+          </span>
+          <span className="text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {t('price_gst_excl_label')}
+          </span>
+          <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {intervalUnitText}
+          </span>
           <TextPriceContent>
-            ({priceWithTax}
-            <span className="ml-1">{t('price_gst_incl_label')})</span>
+            <span className="text-[--ods-color-neutral-500] text-[14px] leading-[18px] font-semibold">
+              ({priceWithTax}
+            </span>
+            <span className="ml-1 text-[--ods-color-neutral-500] text-[14px] leading-[18px] font-semibold">
+              {t('price_gst_incl_label')})
+            </span>
           </TextPriceContent>
         </>
       ),
@@ -129,8 +165,12 @@ export function Price({
       condition: isUSFormat,
       component: (
         <>
-          <span className="mr-1">{priceWithoutTax}</span>
-          {intervalUnitText}
+          <span className="mr-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {priceWithoutTax}
+          </span>
+          <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+            {intervalUnitText}
+          </span>
         </>
       ),
     },

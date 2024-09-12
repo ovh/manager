@@ -48,30 +48,34 @@ export const StepComponent = ({
   edit,
 }: TStepProps): JSX.Element => {
   return (
-    <section className="flex flex-row border-0 border-t-[1px] border-solid border-t-[#b3b3b3] pt-5 mb-5">
+    <section className="flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5">
       <div className="basis-[40px]">
         {isChecked ? (
           <OdsIcon
             name={ODS_ICON_NAME.check}
-            className={'mr-2'}
-            color={ODS_THEME_COLOR_INTENT.primary}
+            className={
+              'block p-[12px] text-[20px] text-[--ods-color-primary-500]'
+            }
           />
         ) : (
           <div
             className={clsx(
               'flex justify-center items-center font-bold border-2 border-solid rounded-full h-10 w-10',
-              isOpen ? 'border-[#0050d7]' : 'border-[grey]',
+              isOpen
+                ? 'border-[--ods-color-primary-500]'
+                : 'border-[--ods-color-neutral-500]',
             )}
           >
-            <OdsText
-              color={
+            <span
+              className={clsx(
+                'font-semibold text-[16px] leading-[20px]',
                 isOpen
-                  ? ODS_THEME_COLOR_INTENT.text
-                  : ODS_THEME_COLOR_INTENT.default
-              }
+                  ? 'text-[--ods-color-text]'
+                  : 'text-[--ods-color-neutral-500]',
+              )}
             >
               {order}
-            </OdsText>
+            </span>
           </div>
         )}
       </div>
@@ -79,10 +83,10 @@ export const StepComponent = ({
         <div className="flex flex-col md:flex-row">
           <div
             className={clsx(
-              'font-sans font-normal p-0 m-0 w-full md:w-5/6 leading-10',
+              'font-normal leading-[43px] p-0 m-0 w-full md:w-5/6',
               isOpen
-                ? 'text-[1.625rem] text-[#00185e]'
-                : 'text-[1.25rem] text-[grey]',
+                ? 'text-[26px] text-[--ods-color-text]'
+                : 'text-[20px] text-[--ods-color-neutral-500]',
             )}
           >
             {title}

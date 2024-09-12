@@ -72,24 +72,23 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
   return (
     <OdsModal isOpen={isOpen} onOdsClose={closeModal}>
       <div>
-        <OdsText
-          className="update-name-headline"
-          preset={ODS_TEXT_PRESET.heading6}
-        >
+        <span className="update-name-headline text-[--ods-color-heading] text-[24px] leading-[32px] font-bold">
           {headline}
-        </OdsText>
+        </span>
       </div>
       {!!error && (
         <OdsMessage color={ODS_MESSAGE_COLOR.danger}>
-          <OdsText>{t('updateModalError', { error })}</OdsText>
+          <OdsText preset="span">{t('updateModalError', { error })}</OdsText>
         </OdsMessage>
       )}
-      <OdsText className="update-name-description">{description}</OdsText>
+      <span className="update-name-description text-[--ods-color-text] text-[14px] leading-[18px] my-[8px]">
+        {description}
+      </span>
       <OdsFormField className="mb-8">
         <div slot="label">
-          <OdsText className="update-name-input-label">
-            <b>{inputLabel}</b>
-          </OdsText>
+          <span className="update-name-input-label text-[--ods-color-text] text-[14px] leading-[18px] font-semibold">
+            {inputLabel}
+          </span>
         </div>
         <OdsInput
           aria-label="update-input"
@@ -105,6 +104,7 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
         {patternMessage && (
           <div className="mt-5">
             <OdsText
+              preset="span"
               className={`update-name-modal-pattern-message ${
                 isPatternError && pattern ? 'error' : ''
               }`}

@@ -43,7 +43,7 @@ export const GuideButton: React.FC<GuideButtonProps> = ({ items }) => {
         />
       </div>
 
-      <OdsPopover triggerId="navigation-menu-guide-trigger">
+      <OdsPopover triggerId="navigation-menu-guide-trigger" with-arrow="true">
         {items.map((item) => (
           <div key={item.id}>
             <Links

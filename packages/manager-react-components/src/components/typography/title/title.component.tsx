@@ -1,7 +1,5 @@
 import React from 'react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import './title.scss';
 
 export const Title: React.FC<
   React.PropsWithChildren<{
@@ -9,9 +7,11 @@ export const Title: React.FC<
   }>
 > = ({ children, className }) => {
   return (
-    <OdsText className={className} preset={ODS_TEXT_PRESET.heading1}>
+    <h1
+      className={`${className} m-0 p-0 text-[--ods-color-heading] text-[36px] leading-[45px] font-bold mb-[24px]`}
+    >
       {children}
-    </OdsText>
+    </h1>
   );
 };
 
@@ -21,12 +21,11 @@ export const Subtitle: React.FC<
   }>
 > = ({ children, className }) => {
   return (
-    <OdsText
-      className={`${className} subtitle`}
-      preset={ODS_TEXT_PRESET.heading2}
+    <span
+      className={`${className} m-0 p-0 text-[--ods-color-heading] text-[24px] leading-[32px] font-bold`}
     >
       {children}
-    </OdsText>
+    </span>
   );
 };
 

@@ -59,7 +59,7 @@ export const defaultProps: TableProps = {
                 key={`${header[element]}-${header[element].firstName}`}
                 className="text-center"
               >
-                <OdsText>{header[element]}</OdsText>
+                <OdsText preset="span">{header[element]}</OdsText>
               </td>
             ))}
             <td key={`${header.firstName}-actions`} className="text-center">

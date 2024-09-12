@@ -20,7 +20,7 @@ export const Headers: React.FC<HeadersProps> = ({
       <div>
         {title && <Title>{title}</Title>}
         {subtitle && <Subtitle className="block">{subtitle}</Subtitle>}
-        {description && <OdsText>{description}</OdsText>}
+        {description && <OdsText preset="span">{description}</OdsText>}
       </div>
       {headerButton && <div>{headerButton}</div>}
     </div>
