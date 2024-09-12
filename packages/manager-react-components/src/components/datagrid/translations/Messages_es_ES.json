@@ -1,9 +1,9 @@
 {
   "common_pagination_of": "de",
   "common_pagination_results": "resultados",
-  "common_pagination_no_results": "No hay resultados.",
+  "common_pagination_no_results": "No hay resultados",
   "common_clipboard_success_label": "¡Copiado!",
-  "common_clipboard_error_label": "Error de copia.",
+  "common_clipboard_error_label": "Se ha producido un error al copiar.",
   "common_pagination_load_more": "Cargar más",
   "common_empty_text_cell": "Ninguno/a"
 }

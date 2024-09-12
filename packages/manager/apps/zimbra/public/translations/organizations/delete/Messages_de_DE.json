@@ -1,0 +1,9 @@
+{
+  "zimbra_organization_delete": "Löschen",
+  "zimbra_organization_delete_modal_title": "Organisation löschen",
+  "zimbra_organization_delete_modal_content": "Möchten Sie die Organisation wirklich löschen?",
+  "zimbra_organization_delete_modal_message_disabled_part1": "Dieser Organisation ist noch mindestens eine Domain zugeordnet.",
+  "zimbra_organization_delete_modal_message_disabled_part2": "Bitte löschen Sie die zugehörigen Domains, bevor Sie Ihre Organisation löschen.",
+  "zimbra_organization_delete_success_message": "Ihre Löschanfrage wurde registriert Sie wird in Kürze ausgeführt.",
+  "zimbra_organization_delete_error_message": "Ihre Löschanfrage ist fehlgeschlagen. {{ error }}"
+}

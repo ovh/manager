@@ -3,7 +3,7 @@
   "zimbra_domain_delete_modal_title": "Delete domain",
   "zimbra_domain_delete_modal_content": "Are you sure you want to delete the domain from the Zimbra server?",
   "zimbra_domain_delete_modal_message_disabled": "Your domain is in use. You cannot delete this domain while it is still in use.",
-  "zimbra_domain_delete_success_message": "Your deletion request has been processed. It will be executed in a few moments.",
+  "zimbra_domain_delete_success_message": "Your deletion request has been submitted. It will be executed in a few moments.",
   "zimbra_domain_delete_error_message": "Unable to submit your deletion request. {{ error }}",
   "zimbra_domain_delete_modal_message_disabled_part1": "There is at least one email account still linked to this domain name.",
   "zimbra_domain_delete_modal_message_disabled_part2": "Please delete the linked email accounts before deleting your domain name."

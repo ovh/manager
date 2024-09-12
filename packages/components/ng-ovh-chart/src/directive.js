@@ -20,7 +20,7 @@ export default /* @ngInject */ () => ({
     canvas.id = uniqueId('chartjs');
     set(controller, 'ctx', canvas.getContext('2d'));
   },
-  controller: /* @ngInject */ function directiveController($scope) {
+  controller: /* @ngInject */ function directiveController($scope, $interval) {
     Chart.register(zoomPlugin);
 
     this.createChart = function createChart(data) {
@@ -56,12 +56,27 @@ export default /* @ngInject */ () => ({
           }
         },
       };
+    };
 
-      $scope.$on('destroy', () => {
-        if (this.chartInstance) {
+    this.$onDestroy = () => {
+      if (this.chartInstance) {
+        const pluginPrometheus = this.chartInstance['datasource-prometheus'];
+        if (!pluginPrometheus) {
           this.chartInstance.destroy();
+          return;
         }
-      });
+
+        const destroyInterval = $interval(() => {
+          if (!pluginPrometheus.loading) {
+            clearInterval(
+              this.chartInstance['datasource-prometheus'].updateInterval,
+            );
+            this.chartInstance.destroy();
+            this.chartInstance = null;
+            $interval.cancel(destroyInterval);
+          }
+        }, 500);
+      }
     };
   },
 });

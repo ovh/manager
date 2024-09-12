@@ -1,4 +1,5 @@
 {
+  "telephony_alias_configuration_breadcrumb": "Configurazione",
   "telephony_alias_configuration_back_link": "Retour à la configuration du numéro",
   "telephony_alias_configuration_change_type": "Modifica il tipo di numero",
   "telephony_alias_configuration_actions_number_modification_new": "Modifica il tipo di numero",
@@ -48,10 +49,6 @@
   "telephony_alias_config_change_type_label_easyHunting": "Code di chiamata",
   "telephony_alias_config_change_type_desc_easyHunting": "Con la coda di chiamate, puoi gestire il flusso delle chiamate.<br/><br/>Imposta una suoneria di benvenuto, personalizza la musica in attesa e fai suonare le postazioni dei diversi servizi a seconda delle strategie che hai scelto, in fasce orarie predefinite. Puoi definire il numero massimo di chiamanti nella coda di chiamate e il tempo massimo di attesa. Se non riesci a rispondere, il tuo interlocutore sarà reindirizzato verso la segreteria di una linea OVHcloud.<br/><br/><b class=\"text-danger\">Ti ricordiamo che, in questa modalità, l'inoltro delle chiamate dei membri della tua coda di chiamate verrà automaticamente disattivato.</b>",
   "telephony_alias_config_change_type_label_cloudHunting": "Coda di chiamata (modalità esperto)",
-  "telephony_alias_config_change_type_label_easyPabx": "Easy PABX",
-  "telephony_alias_config_change_type_desc_easyPabx": "Con l'easyPABX non perderai più chiamate. Reindirizza il tuo numero verso una o più linee OVHcloud o numeri esterni. Distribuisci le chiamate in entrata secondo strategie da te definite. Se non puoi rispondere, il tuo interlocutore sarà reindirizzato verso la segreteria.",
-  "telephony_alias_config_change_type_label_miniPabx": "Mini PABX",
-  "telephony_alias_config_change_type_desc_miniPabx": "Con il miniPABX gestisci un flusso di chiamate verso diversi servizi o collaboratori in base alla loro disponibilità. Scegli la ripartizione delle chiamate, il numero e il tempo massimo di chiamate in coda.",
   "telephony_alias_config_change_type_label_contactCenterSolution": "Code di chiamata",
   "telephony_alias_config_change_type_desc_contactCenterSolution": "La coda di chiamate ti permette di reindirizzare una chiamata in entrata verso più linee, collegate o meno al tuo identificativo OVHcloud.",
   "telephony_alias_config_change_type_label_contactCenterSolutionExpert": "Contact Center Solution",
@@ -112,6 +109,5 @@
   "telephony_alias_config_conference_report_status_none": "Aucun rapport",
   "telephony_alias_config_conference_report_status_other": "Recevoir sur une autre adresse e-mail",
   "telephony_alias_config_conference_report_status_customer": "Recevoir sur l’adresse e-mail de mon compte",
-  "telephony_alias_config_conference_invalid_file_format": "Formato del file non supportato.",
-  "telephony_alias_configuration_breadcrumb": "Configurazione"
+  "telephony_alias_config_conference_invalid_file_format": "Formato del file non supportato."
 }

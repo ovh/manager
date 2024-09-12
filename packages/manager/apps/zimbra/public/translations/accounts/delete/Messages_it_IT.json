@@ -6,6 +6,6 @@
   "zimbra_account_delete_modal_warn_message": "Attenzione: questa azione è irreversibile e comporta la cancellazione dei dati.",
   "zimbra_account_delete_button_delete": "Eliminare",
   "zimbra_account_delete_button_cancel": "Annullare",
-  "zimbra_account_delete_success_message": "La richiesta di eliminazione è stata presa in carico correttamente",
+  "zimbra_account_delete_success_message": "La tua richiesta di eliminazione è stata presa in carico correttamente.",
   "zimbra_account_delete_error_message": "La tua richiesta di eliminazione non è andata a buon fine. {{ error }}"
 }
