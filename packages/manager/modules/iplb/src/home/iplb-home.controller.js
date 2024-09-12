@@ -1,10 +1,10 @@
+import ChartDatasourcePrometheusPlugin from 'chartjs-plugin-datasource-prometheus';
 import filter from 'lodash/filter';
 import set from 'lodash/set';
 import groupBy from 'lodash/groupBy';
 import head from 'lodash/head';
 import isArray from 'lodash/isArray';
 import map from 'lodash/map';
-import values from 'lodash/values';
 import 'moment';
 
 import IplbHomeUpdateQuotaTemplate from './updateQuota/iplb-update-quota.html';
@@ -18,6 +18,7 @@ import {
 export default class IpLoadBalancerHomeCtrl {
   /* @ngInject */
   constructor(
+    $http,
     $state,
     $stateParams,
     $translate,
@@ -40,6 +41,7 @@ export default class IpLoadBalancerHomeCtrl {
     CucVrackService,
     ovhFeatureFlipping,
   ) {
+    this.$http = $http;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
@@ -331,66 +333,86 @@ export default class IpLoadBalancerHomeCtrl {
   initGraph() {
     this.metricsList = this.IpLoadBalancerConstant.graphs;
     this.metric = head(this.metricsList);
-    this.graph = new this.ChartFactory({
-      data: {
-        datasets: [],
-        labels: [],
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-        scales: {
-          x: {
-            grid: {
-              display: false,
-            },
-          },
-          y: {
-            id: 'y-axis-1',
-            type: 'linear',
-            ticks: {
-              min: 0,
-              minStep: 1,
-              beginAtZero: true,
-            },
-          },
-        },
-        elements: {
-          line: {
-            fill: false,
-            borderColor: '#3DD1F0',
-            borderWidth: 4,
-            tension: 0.5,
-          },
-          point: {
-            radius: 0,
-          },
-        },
-      },
-    });
     this.loadGraph();
   }
 
   loadGraph() {
-    const downsampleAggregation = this.metric === 'conn' ? 'sum' : 'max';
+    const queries = {
+      conn: `sum(rate(haproxy_process_connections_total{servicename="${this.serviceName}"}[1m])) `,
+      reqm: `sum(rate(haproxy_process_requests_total{servicename="${this.serviceName}"}[1m])) `,
+    };
+    const query = queries[this.metric];
     this.loadingGraph = true;
-    this.IpLoadBalancerMetricsService.getData(this.metric, '40m-ago', null, {
-      // http://opentsdb.net/docs/build/html/user_guide/query/downsampling.html
-      downsample: `5m-${downsampleAggregation}`,
-    })
+    this.$http
+      .get(`/ipLoadbalancing/${this.serviceName}/metricsToken`)
       .then((data) => {
-        if (data.length && data[0].dps) {
-          this.data = values(data[0].dps);
-          this.graph.data.labels = [];
-          this.data.forEach((value, index) => {
-            this.graph.data.labels.unshift(`${index * 5}m`);
-          });
-          this.graph.data.datasets = [{ data: values(data[0].dps) }];
-        }
+        const { endpoint, token } = data.data;
+        const borderColor = '#3DD1F0';
+
+        this.graph = new this.ChartFactory({
+          type: 'line',
+          plugins: [ChartDatasourcePrometheusPlugin],
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+              'datasource-prometheus': {
+                borderWidth: 4,
+                findInBorderColorMap: () => borderColor,
+                tension: 0.5,
+                query: (start, end, step) => {
+                  const url = `${endpoint}/prometheus/api/v1/query_range?query=${query}&start=${start.toISOString()}&end=${end.toISOString()}&step=${this
+                    .IpLoadBalancerConstant.graphParams['1h-ago'].step ||
+                    step}`;
+
+                  const headers = {
+                    authorization: `bearer ${token}`,
+                    'content-type': 'application/x-www-form-urlencoded',
+                  };
+
+                  return fetch(url, { headers })
+                    .then((response) => {
+                      if (response.ok) {
+                        return response.json();
+                      }
+
+                      return null;
+                    })
+                    .then((response) => response.data);
+                },
+                timeRange: {
+                  type: 'relative',
+
+                  // from 1h ago to now
+                  start: this.IpLoadBalancerConstant.graphParams['1h-ago']
+                    .timeRange,
+                  end: 0,
+                },
+              },
+            },
+            scales: {
+              x: {
+                grid: {
+                  display: false,
+                },
+              },
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  min: 0,
+                  minStep: 1,
+                },
+              },
+            },
+            elements: {
+              point: {
+                radius: 0,
+              },
+            },
+          },
+        });
       })
       .finally(() => {
         this.loadingGraph = false;

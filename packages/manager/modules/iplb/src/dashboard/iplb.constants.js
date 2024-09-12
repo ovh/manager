@@ -3,31 +3,49 @@ export default {
   graphs: ['conn', 'reqm'],
   graphParams: {
     '1h-ago': {
-      downsample: '1m',
+      rateInterval: '1m',
+      step: 60,
+      timeRange: -1 * 60 * 60 * 1000,
     },
     '3h-ago': {
-      downsample: '3m',
+      rateInterval: '1m',
+      step: 60,
+      timeRange: -3 * 60 * 60 * 1000,
     },
     '6h-ago': {
-      downsample: '5m',
+      rateInterval: '1m',
+      step: 60,
+      timeRange: -6 * 60 * 60 * 1000,
     },
     '12h-ago': {
-      downsample: '10m',
+      rateInterval: '1m',
+      step: 60,
+      timeRange: -12 * 60 * 60 * 1000,
     },
     '1d-ago': {
-      downsample: '30m',
+      rateInterval: '1m',
+      step: 60,
+      timeRange: -24 * 60 * 60 * 1000,
     },
     '1w-ago': {
-      downsample: '6h',
+      rateInterval: '2m15s',
+      step: 135,
+      timeRange: -7 * 24 * 60 * 60 * 1000,
     },
     '1n-ago': {
-      downsample: '12h',
+      rateInterval: '15m15s',
+      step: 915,
+      timeRange: -1 * 30 * 24 * 60 * 60 * 1000,
     },
     '6n-ago': {
-      downsample: '3d',
+      rateInterval: '1h0m15s',
+      step: 3615,
+      timeRange: -6 * 30 * 24 * 60 * 60 * 1000,
     },
     '1y-ago': {
-      downsample: '7d',
+      rateInterval: '3h0m15s',
+      step: 10815,
+      timeRange: -365 * 24 * 60 * 60 * 1000,
     },
   },
   graphScales: {
