@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.29.0...@ovh-ux/manager-react-components@1.29.1) (2024-09-12)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 3281] ([c804e0d](https://github.com/ovh/manager/commit/c804e0da8c3139a3b7b281d071512ca1fc546c52))
+- **i18n:** add missing translations [CDS 3286] ([c27f0cb](https://github.com/ovh/manager/commit/c27f0cb0716bb64cc9ce958f11df26894d95cd7c))
+- **i18n:** add missing translations [CDS 3289] ([569a54f](https://github.com/ovh/manager/commit/569a54f5839838755816baca266df3870713e5e6))
+
 # [1.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.28.1...@ovh-ux/manager-react-components@1.29.0) (2024-09-11)
 
 ### Features

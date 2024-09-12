@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.55.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.54.0...@ovh-ux/manager-dedicated@19.55.0) (2024-09-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3281] ([c804e0d](https://github.com/ovh/manager/commit/c804e0da8c3139a3b7b281d071512ca1fc546c52))
+* **i18n:** add missing translations [CDS 3286] ([c27f0cb](https://github.com/ovh/manager/commit/c27f0cb0716bb64cc9ce958f11df26894d95cd7c))
+* **i18n:** add missing translations [CDS 3289] ([569a54f](https://github.com/ovh/manager/commit/569a54f5839838755816baca266df3870713e5e6))
+* **i18n:** add missing translations [CDS 3294] ([41ca756](https://github.com/ovh/manager/commit/41ca756d6d2185f700e6c4352fc88e776c136af8))
+* remove unused translations [CDS] ([7082704](https://github.com/ovh/manager/commit/7082704524cc729975400f25e753482e4a6c77f2))
+
+
+### Features
+
+* **iplb:** move metrics to mimir ([#12483](https://github.com/ovh/manager/issues/12483)) ([1847b8f](https://github.com/ovh/manager/commit/1847b8f570abc6d479fe352cc3a15c09f88bc822))
+
+
+
+
+
 # [19.54.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.53.1...@ovh-ux/manager-dedicated@19.54.0) (2024-09-10)
 
 
