@@ -1,0 +1,18 @@
+{
+  "title": "Listing page",
+  "nameId": "Nom/ID",
+  "status": "Statut",
+  "publicIPs": "IP publique(s)",
+  "privateIPs": "IP privée(s)",
+  "cancel": "Annuler",
+  "image": "Image",
+  "flavor": "Modèle",
+  "instancesTitle": "Instances",
+  "createInstance": "Créer une instance",
+  "region": "Localisation",
+  "filter": "Filtrer",
+  "refresh": "Rafraîchir",
+  "inconsistencyMessage": "Toutes les données n'ont pas pu être chargées. Notre équipe technique est informée et travaille à résoudre le problème.",
+  "unknownErrorMessage1": "Nous n'avons pas pu récupérer la liste de vos instances. Veuillez cliquer sur le bouton <Link>'Rafraîchir'</Link> pour essayer à nouveau.",
+  "unknownErrorMessage2": " Nos équipes techniques ont été notifiées de ce problème et travaillent à sa résolution."
+}
