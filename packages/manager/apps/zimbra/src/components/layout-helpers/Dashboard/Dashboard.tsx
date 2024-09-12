@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 import {
-  DashboardLayout,
+  BaseLayout,
   /*  GuideButton,
   GuideItem, */
 } from '@ovh-ux/manager-react-components';
@@ -85,15 +85,16 @@ export const Dashboard: React.FC = () => {
   ];
 
   return (
-    <DashboardLayout
+    <BaseLayout
       breadcrumb={<Breadcrumb />}
       header={{
         title: 'Zimbra',
         // headerButton: <GuideButton items={guideItems} />,
       }}
       tabs={<TabsPanel tabs={tabsList} />}
-      content={<Outlet />}
-    />
+    >
+      <Outlet />
+    </BaseLayout>
   );
 };
 
