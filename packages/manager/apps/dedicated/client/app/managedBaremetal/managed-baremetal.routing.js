@@ -4,8 +4,15 @@ import { getManagedBareMetalOrderUrl } from './managed-baremetal-order';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.managedBaremetal.index', {
     url: `/managedBaremetal?${ListLayoutHelper.urlQueryParams}`,
-    component: 'managerListLayout',
+    component: 'ovhManagerPccList',
     params: ListLayoutHelper.stateParams,
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('resources')
+        .then((resources) =>
+          resources.length === 0 ? 'app.managedBaremetal.onboarding' : false,
+        ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
       staticResources: () => true,
@@ -56,12 +63,5 @@ export default /* @ngInject */ ($stateProvider) => {
       }),
       hideBreadcrumb: () => true,
     },
-    redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('resources')
-        .then((resources) =>
-          resources.length === 0 ? 'app.managedBaremetal.onboarding' : false,
-        ),
   });
 };

@@ -29,5 +29,9 @@
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_minor": "Die kleine Aktualisierung installieren ({{version}} - build {{build}})",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_reschedule_update": "Datum der Aktualisierung ändern",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_move": "IP-Blöcke mit einem anderen Dienst verbinden",
-  "ovhManagerPccDashboardGeneralInformation_commercial_range": "Kommerzieller Name"
+  "ovhManagerPccDashboardGeneralInformation_commercial_range": "Kaufmännische Reihe",
+  "ovhManagerPccDashboardGeneralInformation_loadLocation_error": "Beim Abrufen der Daten, die zum Anzeigen der Standortinformationen erforderlich sind, ist ein Fehler aufgetreten.",
+  "ovhManagerPccDashboardGeneralInformation_location_zone": "Private-Cloud-Zone",
+  "ovhManagerPccDashboardGeneralInformation_location_region_location": "Standort",
+  "ovhManagerPccDashboardGeneralInformation_location_region": "Region"
 }
