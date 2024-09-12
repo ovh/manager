@@ -58,14 +58,14 @@ export type InstanceDto = DeepReadonly<{
   status: InstanceStatusDto;
 }>;
 
-export type RetrieveInstancesQueryParams = {
+export type RetrieveInstancesQueryParams = DeepReadonly<{
   limit: number;
   sort: string;
   sortOrder: 'asc' | 'desc';
   offset?: number;
   searchField?: string;
   searchValue?: string;
-};
+}>;
 
 export const retrieveInstances = (
   projectId: string,
