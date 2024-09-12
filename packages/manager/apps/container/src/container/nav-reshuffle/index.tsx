@@ -11,7 +11,6 @@ import { IFrameAppRouter } from '@/core/routing';
 import ApplicationContext from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
-import NavReshuffleFeedbackWidget from './feedback';
 import Header from './header';
 import Sidebar from './sidebar';
 import NavReshuffleOnboardingWidget from './onboarding';
@@ -110,7 +109,6 @@ function NavReshuffleContainer(): JSX.Element {
         </div>
         <Suspense fallback="">
           {!productNavReshuffle.isLoading && <NavReshuffleOnboardingWidget />}
-          <NavReshuffleFeedbackWidget />
         </Suspense>
         <Suspense fallback="">
           <EloquantSurvey />

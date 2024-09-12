@@ -9,7 +9,6 @@ export type ProductNavReshuffleContextType = {
   currentNavigationNode: Node;
   navigationTree: Node;
   isMobile: boolean;
-  getFeedbackUrl: () => string;
   openOnboarding: () => void;
   startOnboarding: () => void;
   closeOnboarding: (onboardingStatus?: string) => void;

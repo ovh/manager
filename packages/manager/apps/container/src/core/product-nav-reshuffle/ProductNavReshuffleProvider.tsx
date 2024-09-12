@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import useContainer from '@/core/container/useContainer';
 import { useShell } from '@/context/useApplicationContext';
 import ProductNavReshuffleContext from './context';
-import { FEEDBACK_URLS } from './constants';
 import useOnboarding, {
   ONBOARDING_OPENED_STATE_ENUM,
   ONBOARDING_STATUS_ENUM,
@@ -29,19 +28,6 @@ export const ProductNavReshuffleProvider = ({
   const isMobile = useMediaQuery({
     query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
   });
-
-  /**
-   * @TODO: manage links for US version
-   */
-  const getFeedbackUrl = () => {
-    let feedbackUrl = FEEDBACK_URLS[`beta${betaVersion as BetaVersion}`];
-    const [lang] = shell
-      .getPlugin('i18n')
-      .getLocale()
-      .split('_');
-    feedbackUrl = `${feedbackUrl}?lang=${lang}`;
-    return feedbackUrl;
-  };
 
   // onboarding
   const [onboardingOpenedState, setOnboardingOpenedState] = useState<string>(
@@ -120,7 +106,6 @@ export const ProductNavReshuffleProvider = ({
 
   pnrContext = {
     isLoading,
-    getFeedbackUrl,
     // onboarding
     onboardingOpenedState,
     openOnboarding,
