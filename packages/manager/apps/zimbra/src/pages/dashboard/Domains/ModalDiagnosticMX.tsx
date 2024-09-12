@@ -57,14 +57,14 @@ export default function ModalDiagnosticSRVError() {
           ? t('zimbra_domain_modal_diagnostic_mx_action_confirm')
           : t('zimbra_domain_modal_diagnostic_mx_action_test'),
         action: handleValidationClick,
-        testid: 'diagnostic-mx-error-primary-btn',
+        testid: 'diagnostic-mx-modal-primary-btn',
       }}
       secondaryButton={{
         label: isOvhDomain
           ? t('zimbra_domain_modal_diagnostic_mx_action_cancel')
           : t('zimbra_domain_modal_diagnostic_mx_action_close'),
         action: onClose,
-        testid: 'diagnostic-mx-error-secondary-btn',
+        testid: 'diagnostic-mx-modal-secondary-btn',
       }}
     >
       {domain && (

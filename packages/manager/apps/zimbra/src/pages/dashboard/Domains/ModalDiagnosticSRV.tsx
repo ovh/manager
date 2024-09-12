@@ -60,7 +60,7 @@ export default function ModalDiagnosticSRVError() {
           ? {
               label: t('zimbra_domain_modal_diagnostic_srv_action_validate'),
               action: handleValidationClick,
-              testid: 'diagnostic-srv-error-primary-btn',
+              testid: 'diagnostic-srv-modal-primary-btn',
             }
           : null
       }
@@ -69,7 +69,7 @@ export default function ModalDiagnosticSRVError() {
           ? t('zimbra_domain_modal_diagnostic_srv_action_cancel')
           : t('zimbra_domain_modal_diagnostic_srv_action_close'),
         action: onClose,
-        testid: 'diagnostic-srv-error-secondary-btn',
+        testid: 'diagnostic-srv-modal-secondary-btn',
       }}
     >
       {domain && (
