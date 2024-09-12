@@ -92,6 +92,11 @@
             >
                 <span data-translate="netapp_volumes_create_snapshot"></span>
             </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.goToRestoreSnapshot($row.id)"
+            >
+                <span data-translate="netapp_volumes_restore_snapshot"></span>
+            </oui-action-menu-item>
             <oui-action-menu-item data-on-click="$ctrl.goToSnapshots($row)">
                 <span data-translate="netapp_volumes_manage_snapshots"></span>
             </oui-action-menu-item>
