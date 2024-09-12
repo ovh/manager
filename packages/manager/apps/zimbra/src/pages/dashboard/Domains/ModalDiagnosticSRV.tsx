@@ -85,8 +85,8 @@ export default function ModalDiagnosticSRVError() {
               t={t}
               i18nKey={
                 isOvhDomain
-                  ? 'zimbra_domain_modal_diagnostic_srv_content_ovh_hosted_domain'
-                  : 'zimbra_domain_modal_diagnostic_srv_content'
+                  ? 'zimbra_domain_modal_diagnostic_srv_content_header_ovh_hosted_domain'
+                  : 'zimbra_domain_modal_diagnostic_srv_content_header'
               }
               components={{
                 guide: (

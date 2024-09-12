@@ -1,7 +1,7 @@
 {
-  "zimbra_domain_modal_diagnostic_srv_title": "Diagnostic SRV",
-  "zimbra_domain_modal_diagnostic_srv_content": "Pour faciliter la configuration des boites mails sur vos terminaux, veuillez ajouter cette configuration à votre DNS (consulter notre <guide/>)",
-  "zimbra_domain_modal_diagnostic_srv_content_ovh_hosted_domain": "La configuration SRV permet la configuration automatique de vos boites mails sur vos clients de messagerie.<br/>Votre domaine est hébergé chez OVH Cloud, Nous allons procéder à la configuration de votre champ SRV.",
+  "zimbra_domain_modal_diagnostic_srv_title": "Diagnostique SRV",
+  "zimbra_domain_modal_diagnostic_srv_content_header": "Pour faciliter la configuration des boites mails sur vos terminaux, veuillez ajouter cette configuration à votre DNS (consulter notre <guide/>)",
+  "zimbra_domain_modal_diagnostic_srv_content_header_ovh_hosted_domain": "La configuration SRV permet la configuration automatique de vos boites mails sur vos clients de messagerie.<br/>Votre domaine est hébergé chez OVH Cloud, Nous allons procéder à la configuration de votre champ SRV.",
   "zimbra_domain_modal_diagnostic_srv_guide": "guide",
   "zimbra_domain_modal_diagnostic_srv_domain": "Domaine",
   "zimbra_domain_modal_diagnostic_srv_fields": "Champs SRV",
@@ -12,5 +12,15 @@
   "zimbra_domain_modal_diagnostic_srv_field_priority": "Priorité : <strong>{{priority}}</strong>",
   "zimbra_domain_modal_diagnostic_srv_field_weight": "Poids : <strong>{{weight}}</strong>",
   "zimbra_domain_modal_diagnostic_srv_field_port": "Port : <strong>{{port}}</strong>",
-  "zimbra_domain_modal_diagnostic_srv_field_target": "Cible : <strong>{{target}}</strong>"
+  "zimbra_domain_modal_diagnostic_srv_field_target": "Cible : <strong>{{target}}</strong>",
+  "zimbra_domain_modal_diagnostic_mx_title": "Diagnostique MX",
+  "zimbra_domain_modal_diagnostic_mx_content_header": "La configuration de l'enregistrement MX permet de recevoir vos emails dans vos boites mail.<br/>Votre domaine n'étant pas géré par OVH Cloud, cette action doit être effectuée manuellement.<br/>Veuillez créer les champs MX sur ce domaine en donnant les mêmes informations que ci-dessous.",
+  "zimbra_domain_modal_diagnostic_mx_content_header_ovh_hosted_domain": "La configuration de l'enregistrement MX permet de recevoir vos emails dans vos boites mail.<br/>Votre domaine étant hébergé chez OVH Cloud, nous allons effectuer la configuration pour vous.<br/>Souhaitez vous commencer à recevoir les mails du domaine <strong>{{domain}}</strong> sur ce service ?",
+  "zimbra_domain_modal_diagnostic_mx_content_footer": "En cas de problème, consultez la documentation de votre fournisseur de domaine.",
+  "zimbra_domain_modal_diagnostic_mx_action_confirm": "Confirmer",
+  "zimbra_domain_modal_diagnostic_mx_action_test": "Tester",
+  "zimbra_domain_modal_diagnostic_mx_action_cancel": "Annuler",
+  "zimbra_domain_modal_diagnostic_mx_action_close": "Fermer",
+  "zimbra_domain_modal_diagnostic_mx_fields": "Champs MX",
+  "zimbra_domain_modal_diagnostic_mx_field": "Priorité: <strong>{{priority}}</strong> ; Cible: <strong>{{target}}</strong>"
 }

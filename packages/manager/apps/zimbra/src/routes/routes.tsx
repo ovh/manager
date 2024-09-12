@@ -81,6 +81,12 @@ export const Routes: any = [
                 ),
               },
               {
+                path: 'diagnostic_mx',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/ModalDiagnosticMX'),
+                ),
+              },
+              {
                 path: 'diagnostic_srv',
                 ...lazyRouteConfig(() =>
                   import('@/pages/dashboard/Domains/ModalDiagnosticSRV'),
