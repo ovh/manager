@@ -3,9 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { VHOSTS_TITLE } from './DatacentreCompute.constants';
-import DatagridContainer, {
-  TDatagridContainerProps,
-} from '@/components/datagrid/container/DatagridContainer.component';
+import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import IVcdCompute from '@/types/vcd-compute.interface';
 import { getVcdDatacentreComputeRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
 
@@ -52,39 +50,44 @@ export default function ComputeListingPage() {
       id: 'id',
       cell: DatagridIdCell,
       label: t('managed_vcd_vdc_compute_id'),
+      isSortable: false,
     },
     {
       id: 'vHostProfile',
       cell: DatagridVHostProfilCell,
       label: t('managed_vcd_vdc_compute_vhost_profile'),
+      isSortable: false,
     },
     {
       id: 'cpuCount',
       cell: DatagridCpuCountCell,
       label: tVdc('managed_vcd_vdc_cpu_count'),
+      isSortable: false,
     },
     {
       id: 'ramCount',
       cell: DatagridRamCountCell,
       label: tVdc('managed_vcd_vdc_ram_count'),
+      isSortable: false,
     },
     {
       id: 'billing',
       cell: DatagridBillingCell,
       label: t('managed_vcd_vdc_compute_billing'),
+      isSortable: false,
     },
   ];
 
-  const datagridProps: TDatagridContainerProps = {
-    title: VHOSTS_TITLE,
-    containerId: `compute-${id}-${vdcId}`,
-    isEmbedded: true,
-    route: {
-      api: getVcdDatacentreComputeRoute(id, vdcId),
-      onboarding: null, // TODO update with order compute page when available
-    },
-    columns,
-  };
-
-  return <DatagridContainer {...datagridProps} />;
+  return (
+    <DatagridContainer
+      title={VHOSTS_TITLE}
+      containerId={`compute-${id}-${vdcId}`}
+      columns={columns}
+      route={{
+        api: getVcdDatacentreComputeRoute(id, vdcId),
+        onboarding: null, // TODO update with order compute page when available
+      }}
+      isEmbedded
+    />
+  );
 }
