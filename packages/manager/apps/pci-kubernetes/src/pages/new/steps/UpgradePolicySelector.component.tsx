@@ -76,6 +76,8 @@ export function UpgradePolicyTileSelector({
       <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
         {UPGRADE_POLICIES.map((policy: UPGRADEPOLICIES) => (
           <OsdsTile
+            data-testid={policy}
+            role="button"
             key={policy}
             className={clsx(
               tileClass,
