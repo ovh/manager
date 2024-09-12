@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.17.3...@ovh-ux/manager-sms@8.17.4) (2024-09-12)
+
+
+### Bug Fixes
+
+* **sms:** resolve file upload issue ([#13042](https://github.com/ovh/manager/issues/13042)) ([9b809bd](https://github.com/ovh/manager/commit/9b809bdc083e1a8a81348863d8e0deea1bd3cb70))
+
+
+
+
+
 ## [8.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.17.2...@ovh-ux/manager-sms@8.17.3) (2024-08-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-sms
