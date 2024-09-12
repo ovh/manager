@@ -1,0 +1,50 @@
+{
+  "name": "@ovh-ux/manager-protected-data",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A protected-data component useful for a specific event.",
+  "keywords": [
+    "angularjs",
+    "protected-data",
+    "control panel",
+    "manager"
+  ],
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/protected-data#readme",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/modules/protected-data"
+  },
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "main": "./dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "prepare": "yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-protected-data' --include-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-protected-data' --include-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-protected-data' --include-dependencies -- yarn run dev:watch"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "@ovh-ux/component-rollup-config": "^13.0.1"
+  },
+  "peerDependencies": {
+    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.4",
+    "angular": "^1.7.8",
+    "angular-translate": "^2.18.1",
+    "ovh-api-services": "^14.0.6"
+  }
+}

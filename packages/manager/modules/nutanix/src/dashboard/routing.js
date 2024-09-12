@@ -20,16 +20,26 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceInfo: /* @ngInject */ (NutanixService, serviceName) =>
         NutanixService.getServiceInfo(serviceName),
       serviceDetails: /* @ngInject */ (NutanixService, serviceInfo) =>
-        NutanixService.getServiceDetails(serviceInfo.serviceId).catch(() => {
-          return {};
-        }),
+        NutanixService.getServiceDetails(serviceInfo.serviceId).catch(
+          (error) => {
+            if (error.status === 403) {
+              return undefined;
+            }
+            throw error;
+          },
+        ),
       isOldCluster: /* @ngInject */ (NutanixService, serviceInfo) => {
         // If the plan code is nutanix-standard or nutanix-advanced or nutanix-byol its newCluster
         return NutanixService.getServicesDetails(serviceInfo.serviceId)
           .then((data) =>
             OLD_CLUSTER_PLAN_CODE.includes(data.billing.plan.code),
           )
-          .catch(() => {});
+          .catch((error) => {
+            if (error.status === 403) {
+              return undefined;
+            }
+            throw error;
+          });
       },
       getTechnicalDetails: /* @ngInject */ (
         NutanixService,
@@ -39,17 +49,34 @@ export default /* @ngInject */ ($stateProvider) => {
         NutanixService.getClusterHardwareInfo(
           serviceInfo.serviceId,
           server.serviceId,
-        ).catch(() => {}),
+        ).catch((error) => {
+          if (error.status === 403) {
+            return undefined;
+          }
+          throw error;
+        }),
       clusterTechnicalDetails: /* ngInject */ (getTechnicalDetails) =>
-        getTechnicalDetails?.baremetalServers.nutanixCluster,
+        getTechnicalDetails?.nutanixCluster,
       technicalDetails: /* ngInject */ (getTechnicalDetails) =>
         getTechnicalDetails?.baremetalServers,
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
       userResources: /* @ngInject */ (NutanixService) =>
         NutanixService.getUserResources().then(({ data }) => data),
-      nutanixClusterIamName: /* @ngInject */ (userResources, serviceName) =>
-        userResources.find((resource) => resource.name === serviceName)
-          .displayName,
+      nutanixClusterIamName: /* @ngInject */ (
+        userResources,
+        serviceName,
+        serviceDetails,
+      ) => {
+        const resourceIam = userResources.find(
+          (resource) => resource.name === serviceName,
+        );
+
+        if (resourceIam === undefined) {
+          return serviceDetails.resource.displayName;
+        }
+
+        return resourceIam.displayName;
+      },
     },
   });
 };

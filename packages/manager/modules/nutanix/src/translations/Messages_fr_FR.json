@@ -16,6 +16,5 @@
   "nutanix_cluster_list_localisation_value": "{{dcName}} (Baie {{rackName}})",
   "nutanix_cluster_list_pack_type": "Type de pack",
   "nutanix_cluster_list_pack_type_details": "Voir le détail",
-  "nutanix_cluster_unit_gbps": "{{t0}} Gbps",
-  "nutanix_cluster_list_data_hidden": "CACHÉ"
+  "nutanix_cluster_unit_gbps": "{{t0}} Gbps"
 }

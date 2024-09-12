@@ -38,7 +38,14 @@ export default /* @ngInject */ ($stateProvider) => {
       isLegacyPack: /* @ngInject */ (packType) =>
         LEGACY_PACK_TYPES.includes(packType),
       clusterAddOns: /* @ngInject */ (NutanixService, serviceInfo) =>
-        NutanixService.getClusterOptions(serviceInfo.serviceId).catch(() => []),
+        NutanixService.getClusterOptions(serviceInfo.serviceId).catch(
+          (error) => {
+            if (error.status === 403) {
+              return [];
+            }
+            throw error;
+          },
+        ),
       goToUpgradePrivateBandwidth: /* @ngInject */ ($state) => () =>
         $state.go('nutanix.dashboard.general-info.bandwidth-private-order'),
       handleError: /* @ngInject */ (Alerter) => (error) =>
