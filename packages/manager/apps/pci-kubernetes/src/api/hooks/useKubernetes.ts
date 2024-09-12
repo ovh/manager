@@ -47,7 +47,7 @@ export const useAllKube = (projectId: string) =>
 
 export const useKubes = (
   projectId: string,
-  { pagination }: { pagination: PaginationState },
+  pagination: PaginationState,
   filters: Filter[],
 ) => {
   const { t } = useTranslation('listing');

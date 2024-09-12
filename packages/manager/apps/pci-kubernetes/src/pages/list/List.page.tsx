@@ -51,18 +51,12 @@ export default function ListPage() {
   const [searchField, setSearchField] = useState('');
   const filterPopoverRef = useRef(undefined);
 
-  const { data: allKube, isPending } = useKubes(
-    projectId,
-    {
-      pagination,
-    },
-    filters,
-  );
+  const { data: allKube, isPending } = useKubes(projectId, pagination, filters);
 
   return (
     <RedirectionGuard
       isLoading={isPending}
-      condition={allKube.rows?.length === 0}
+      condition={isPending && allKube.rows?.length === 0}
       route={`/pci/projects/${projectId}/kubernetes/onboarding`}
     >
       {project && (

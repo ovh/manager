@@ -33,10 +33,8 @@ describe('useKubes', () => {
         useKubes(
           'project1',
           {
-            pagination: {
-              pageIndex: 1,
-              pageSize: 10,
-            },
+            pageIndex: 1,
+            pageSize: 10,
           },
           [],
         ),
