@@ -176,6 +176,21 @@ export const Routes: any = [
               },
             },
           },
+          {
+            id: 'vDcCompute-order',
+            path: urls.datacentreComputeOrder,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/dashboard/datacentre/compute-order/DatacentreComputeOrder.page'
+              ),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'compute-order',
+                pageType: PageType.funnel,
+              },
+            },
+          },
         ],
       },
       {

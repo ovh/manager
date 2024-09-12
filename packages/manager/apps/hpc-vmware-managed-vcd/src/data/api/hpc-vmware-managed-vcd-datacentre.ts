@@ -26,6 +26,13 @@ export const getVcdDatacentreStorageRoute = (id: string, vdcId: string) => {
   return `${getVcdDatacentreRoute(id, vdcId)}/storage`;
 };
 
+export const getVcdDatacentreOrderableResourcesRoute = (
+  id: string,
+  vdcId: string,
+) => {
+  return `${getVcdDatacentreRoute(id, vdcId)}/orderableResource`;
+};
+
 export const getVcdDatacentre = async (
   id: string,
   vdcId: string,

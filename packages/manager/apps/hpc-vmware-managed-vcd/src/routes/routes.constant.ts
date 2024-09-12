@@ -1,6 +1,7 @@
 export const subRoutes = {
   onboarding: 'onboarding',
   dashboard: ':id',
+  order: 'order',
   editName: 'edit-name',
   editDescription: 'edit-description',
   vdcId: ':vdcId',
@@ -21,6 +22,7 @@ export const urls = {
   datacentreEditDescription: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}/${subRoutes.editDescription}`,
   datacentreStorage: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}/${subRoutes.datacentreStorage}`,
   datacentreCompute: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}/${subRoutes.datacentreCompute}`,
+  datacentreComputeOrder: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}/${subRoutes.datacentreCompute}/${subRoutes.order}`,
 };
 
 export const veeamBackupAppName = 'veeam-backup';
