@@ -1,0 +1,59 @@
+<form
+    class="oui-inline-adder__form"
+    name="addDnsForm"
+    data-ng-submit="addDnsForm.$valid && $ctrl.onFormSubmit()"
+>
+    <fieldset class="oui-inline-adder__fieldset">
+        <div class="oui-inline-adder__row">
+            <div class="oui-inline-adder__field">
+                <oui-field
+                    data-label="{{ ::'domain_dns_name' | translate }}"
+                    data-error-messages="::{
+                        hostnameRequired: ('domain_dns_add_dns_form_hostname_required_error' | translate),
+                        hostnamePattern: ('domain_dns_add_dns_form_hostname_pattern_error' | translate),
+                        hostnameExternal: ('domain_dns_add_dns_form_hostname_external_error' | translate),
+                        hostnameUnique: ('domain_dns_add_dns_form_hostname_unique_error' | translate)
+                    }"
+                >
+                    <input
+                        type="text"
+                        inputmode="url"
+                        class="oui-input"
+                        name="nameServerField"
+                        data-ng-model="$ctrl.dnsEntry.nameServer"
+                        placeholder="ns1.my-domain-is-gre.at"
+                        data-web-domain-dns-modify-hostname-validator
+                        data-ng-required="{{$ctrl.isNameServerRequired}}"
+                    />
+                </oui-field>
+            </div>
+            <div class="oui-inline-adder__field">
+                <oui-field
+                    data-label="{{ ::'domain_dns_ip' | translate }}"
+                    data-error-messages="::{
+                        ipPattern: ('domain_dns_add_dns_form_ip_pattern_error' | translate),
+                    }"
+                >
+                    <input
+                        type="text"
+                        inputmode="decimal"
+                        class="oui-input"
+                        name="ipField"
+                        data-ng-model="$ctrl.dnsEntry.ip"
+                        placeholder="198.27.92.1"
+                        data-web-domain-dns-modify-ip-validator
+                    />
+                </oui-field>
+            </div>
+        </div>
+    </fieldset>
+    <footer class="oui-inline-adder__footer">
+        <button
+            type="submit"
+            class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
+            data-ng-attr-title="{{ ::'domain_dns_add_tooltip' | translate }}"
+        >
+            <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
+        </button>
+    </footer>
+</form>

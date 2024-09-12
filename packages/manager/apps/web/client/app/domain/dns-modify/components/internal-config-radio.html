@@ -1,0 +1,60 @@
+<oui-message data-ng-if="!$ctrl.isZone" data-type="info">
+    <span
+        data-translate="domain_dns_default_config_activate_zone_message"
+    ></span>
+    <a data-ng-href="{{::$ctrl.links.zoneActivate}}">
+        <span
+            data-translate="domain_dns_config_activate_zone_message_link"
+        ></span>
+    </a>
+</oui-message>
+
+<oui-radio
+    disabled="!$ctrl.isZone"
+    name="dns_configuration_types"
+    value="::$ctrl.constants.CONFIGURATION_TYPES.INTERNAL"
+    data-model="$ctrl.selectedConfigurationType"
+    data-on-change="$ctrl.onConfigurationTypeChange()"
+>
+    <oui-radio-label>
+        <span
+            data-translate="domain_dns_use_default_ovh_name_servers_title"
+        ></span>
+        <span
+            data-ng-if="$ctrl.currentConfigurationType !== $ctrl.constants.CONFIGURATION_TYPES.INTERNAL"
+            class="oui-badge oui-badge_info oui-badge_s"
+            data-translate="domain_dns_recommended_label"
+        ></span>
+        <span
+            data-ng-if="$ctrl.currentConfigurationType === $ctrl.constants.CONFIGURATION_TYPES.INTERNAL"
+            class="oui-badge oui-badge_success oui-badge_s"
+            data-translate="domain_dns_active_label"
+        ></span>
+    </oui-radio-label>
+    <oui-radio-description>
+        <span
+            data-translate="domain_dns_use_default_ovh_name_servers_description"
+        ></span>
+        <div
+            data-ng-if="$ctrl.selectedConfigurationType === $ctrl.constants.CONFIGURATION_TYPES.INTERNAL"
+        >
+            <oui-message
+                data-ng-if="alerts.update"
+                data-type="error"
+                class="mt-3"
+            >
+                <span
+                    data-translate="{{ alerts.update.message }}"
+                    data-translate-values="alerts.update.data"
+                ></span>
+            </oui-message>
+
+            <web-domain-dns-modify-validation-buttons
+                data-ng-if="$ctrl.currentConfigurationType !== $ctrl.constants.CONFIGURATION_TYPES.INTERNAL"
+                data-can-submit="true"
+                data-open-validation-modal="$ctrl.openValidationModal()"
+                data-show-cancel-modifications-button="$ctrl.showCancelModificationsButton"
+            />
+        </div>
+    </oui-radio-description>
+</oui-radio>
