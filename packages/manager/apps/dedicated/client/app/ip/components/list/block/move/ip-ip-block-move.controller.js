@@ -92,7 +92,6 @@ export default /* @ngInject */ (
         $scope.loading.ipCanBeMovedTo = allowedVrackServices.ipv6?.includes(
           ipBlock,
         );
-        console.log(ipBlock, $scope.loading.ipCanBeMovedTo);
         $scope.hasIpv6 = !!vrackIpv6List.length;
         $scope.loading.save = false;
       })
@@ -145,7 +144,6 @@ export default /* @ngInject */ (
             );
           })
           .catch((err) => {
-            console.log(err);
             Alerter.alertFromSWS(
               $translate.instant('ip_table_manage_move_ipblock_failure', {
                 t0: $scope.data.ipBlock.ipBlock,
