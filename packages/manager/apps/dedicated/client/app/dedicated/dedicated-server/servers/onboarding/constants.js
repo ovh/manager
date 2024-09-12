@@ -17,6 +17,8 @@ export const GUIDES = [
         'https://docs.ovh.com/pl/dedicated/pierwsze-kroki-z-serwerem-dedykowanym/',
       US:
         'https://docs.ovh.com/us/en/dedicated/getting-started-dedicated-server/',
+      AU:
+         'https://docs.ovh.com/au/en/dedicated/getting-started-dedicated-server/',
       ASIA:
         'https://help.ovhcloud.com/csm/asia-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043472',
       IN:
@@ -38,6 +40,7 @@ export const GUIDES = [
       PT: 'https://docs.ovh.com/pt/dedicated/servicos-backup-storage/',
       PL: 'https://docs.ovh.com/pl/dedicated/usluga-backup-storage/',
       US: 'https://docs.ovh.com/us/en/dedicated/using-backup-storage/',
+      AU: 'https://docs.ovh.com/au/en/dedicated/using-backup-storage/',
       ASIA:
         'https://help.ovhcloud.com/csm/asia-dedicated-servers-services-backup-storage?id=kb_article_view&sysparm_article=KB0044299',
       IN:
@@ -58,6 +61,7 @@ export const GUIDES = [
       PT: 'https://docs.ovh.com/pt/dedicated/firewall-network/',
       PL: 'https://docs.ovh.com/pl/dedicated/network-firewall/',
       US: 'https://docs.ovh.com/us/en/dedicated/firewall-network/',
+      AU: 'https://docs.ovh.com/au/en/dedicated/firewall-network/',
       ASIA:
         'https://help.ovhcloud.com/csm/asia-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043444',
       IN:
