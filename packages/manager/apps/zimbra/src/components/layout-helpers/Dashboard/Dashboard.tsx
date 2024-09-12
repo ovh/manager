@@ -7,14 +7,14 @@ import {
 } from 'react-router-dom';
 
 import {
-  DashboardLayout,
+  BaseLayout,
   GuideButton,
   GuideItem,
 } from '@ovh-ux/manager-react-components';
 
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
-// import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import TabsPanel, { TabItemProps } from './TabsPanel';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { GUIDES_LIST } from '@/guides.constants';
@@ -85,15 +85,16 @@ export const Dashboard: React.FC = () => {
   ];
 
   return (
-    <DashboardLayout
+    <BaseLayout
       breadcrumb={<Breadcrumb />}
       header={{
         title: 'Zimbra',
         headerButton: <GuideButton items={guideItems} />,
       }}
       tabs={<TabsPanel tabs={tabsList} />}
-      content={<Outlet />}
-    />
+    >
+      <Outlet />
+    </BaseLayout>
   );
 };
 
