@@ -1,0 +1,8 @@
+{
+  "managed_vcd_vdc_storage_CTA": "Commander de la capacité de stockage",
+  "managed_vcd_vdc_storage_name": "Nom",
+  "managed_vcd_vdc_storage_profile": "Profil",
+  "managed_vcd_vdc_storage_type": "Type",
+  "managed_vcd_vdc_storage_capacity": "Taille",
+  "managed_vcd_vdc_storage_state": "Etat"
+}
