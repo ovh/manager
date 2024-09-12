@@ -104,11 +104,11 @@ export function KubeLogs({
   }, [logsElement.current, output]);
 
   return (
-    <div className="flex-1 font-mono bg-black text-white">
+    <div className="font-mono bg-black text-white">
       <div className="p-4 relative">
         <div className="flex">
           <OsdsSearchBar
-            className="w-[25%] min-w-[18rem]"
+            className="w-[25%] min-w-[10rem]"
             value={search}
             placeholder={t('search_placeholder')}
             onOdsValueChange={({ detail }) => {
@@ -165,20 +165,22 @@ export function KubeLogs({
           </div>
         </div>
         {output && (
-          <OsdsButton
-            className="absolute bottom-[0.5rem] right-[1.5rem]"
-            inline
-            color={ODS_THEME_COLOR_INTENT.primary}
-            variant={ODS_BUTTON_VARIANT.stroked}
-            size={ODS_BUTTON_SIZE.sm}
-            onClick={scrollToBottom}
-          >
-            <OsdsIcon
-              name={ODS_ICON_NAME.ARROW_DOWN}
+          <div className="flex py-2">
+            <OsdsButton
+              className="ml-auto"
+              inline
               color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_ICON_SIZE.xxs}
-            ></OsdsIcon>
-          </OsdsButton>
+              variant={ODS_BUTTON_VARIANT.stroked}
+              size={ODS_BUTTON_SIZE.sm}
+              onClick={scrollToBottom}
+            >
+              <OsdsIcon
+                name={ODS_ICON_NAME.ARROW_DOWN}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                size={ODS_ICON_SIZE.xxs}
+              ></OsdsIcon>
+            </OsdsButton>
+          </div>
         )}
       </div>
     </div>
