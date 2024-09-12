@@ -1,21 +1,26 @@
 import { Suspense, useContext, FC } from 'react';
 import { useRouteError, Outlet } from 'react-router-dom';
-import { ErrorBanner } from '@ovhcloud/manager-components';
+import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { mapUnknownErrorToBannerError } from '@/utils';
-import HidePreloader from '@/components/hidePreloader/HidePreloader';
-import ShellRoutingSync from '@/components/shell/ShellRoutingSync';
+import { useHidePreloader } from '@/hooks/hidePreloader/useHidePreloader';
+import { useShellRoutingSync } from '@/hooks/shellRoutingSync/useShellRoutingSync';
 
-const Layout: FC<string> = () => (
-  <div className="mx-11 mt-8">
-    <Suspense>
-      <ShellRoutingSync />
-      <Outlet />
-    </Suspense>
-  </div>
-);
+const Layout: FC = () => {
+  useHidePreloader();
+  useShellRoutingSync();
+  return (
+    <div className="mx-11 mt-8">
+      <Suspense>
+        <Outlet />
+      </Suspense>
+    </div>
+  );
+};
 
 export const ErrorBoundary = () => {
+  useHidePreloader();
+  useShellRoutingSync();
   const routerError = useRouteError();
   const errorBannerError = mapUnknownErrorToBannerError(routerError);
 
@@ -38,8 +43,6 @@ export const ErrorBoundary = () => {
         onRedirectHome={navigateToHomePage}
         error={errorBannerError}
       />
-      <ShellRoutingSync />
-      <HidePreloader />
     </Suspense>
   );
 };
