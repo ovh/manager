@@ -8,7 +8,7 @@ import { UPGRADEPOLICIES } from '@/types';
 export type TClusterCreationForm = {
   region: TLocalisation;
   version: string;
-  upgradePolicy: UPGRADEPOLICIES;
+  updatePolicy: UPGRADEPOLICIES;
   network: TNetworkFormState;
   flavor: KubeFlavor;
   scaling: AutoscalingState;
@@ -27,7 +27,7 @@ export function useClusterCreationStepper() {
   const [form, setForm] = useState<TClusterCreationForm>({
     region: null,
     version: '',
-    upgradePolicy: null,
+    updatePolicy: null,
     network: null,
     flavor: null,
     scaling: null,
@@ -81,11 +81,11 @@ export function useClusterCreationStepper() {
           clusterNameStep,
         ].forEach(stepReset);
       },
-      submit: (version: string, upgradePolicy: UPGRADEPOLICIES) => {
+      submit: (version: string, updatePolicy: UPGRADEPOLICIES) => {
         setForm((f) => ({
           ...f,
           version,
-          upgradePolicy,
+          updatePolicy,
         }));
         versionStep.check();
         versionStep.lock();
