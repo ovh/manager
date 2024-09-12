@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.35.0...@ovh-ux/manager-web@18.35.1) (2024-09-12)
+
+
+### Bug Fixes
+
+* **domain:** whois actualization problem ([#13017](https://github.com/ovh/manager/issues/13017)) ([9bb356e](https://github.com/ovh/manager/commit/9bb356e21577074260308041c5b127779536a6bd))
+
+
+
+
+
 # [18.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.34.1...@ovh-ux/manager-web@18.35.0) (2024-09-09)
 
 
