@@ -100,7 +100,9 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
             {title}
           </OdsText>
           {description && (
-            <OdsText className="onboarding-description">{description}</OdsText>
+            <OdsText preset="span" className="onboarding-description">
+              {description}
+            </OdsText>
           )}
           <OnboardingLayoutButton
             isActionDisabled={isActionDisabled}

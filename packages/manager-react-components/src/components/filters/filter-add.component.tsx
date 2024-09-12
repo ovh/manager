@@ -59,11 +59,7 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
     <>
       <div>
         <OdsFormField className="w-full">
-          <div slot="label">
-            <OdsText preset={ODS_TEXT_PRESET.label}>
-              {t('common_criteria_adder_column_label')}
-            </OdsText>
-          </div>
+          <label slot="label">{t('common_criteria_adder_column_label')}</label>
           <OdsSelect
             value={selectedId}
             name="add-filter_select_idColumn"
@@ -80,11 +76,9 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
       </div>
       <div>
         <OdsFormField className="mt-2 w-full">
-          <div slot="label">
-            <OdsText preset={ODS_TEXT_PRESET.label}>
-              {t('common_criteria_adder_operator_label')}
-            </OdsText>
-          </div>
+          <label slot="label">
+            {t('common_criteria_adder_operator_label')}
+          </label>
           <OdsSelect
             name="add-operator"
             value={selectedComparator}
@@ -102,11 +96,7 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
       </div>
       <div>
         <OdsFormField className="mt-2 w-full">
-          <div slot="label">
-            <OdsText preset={ODS_TEXT_PRESET.label}>
-              {t('common_criteria_adder_value_label')}
-            </OdsText>
-          </div>
+          <label slot="label">{t('common_criteria_adder_value_label')}</label>
           <OdsInput
             name="filter-add_value-input"
             className="border"

@@ -6,7 +6,6 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { LinkType, Links } from '../../typography';
 import './translations/translations';
-import './card.scss';
 
 export interface Badge {
   text: string;
@@ -56,8 +55,12 @@ export const Card: React.FC<CardProps> = ({
       onClick={onClick}
       {...props}
     >
-      <OdsCard className="w-full h-full p-[1rem]" data-tracking={trackingLabel}>
-        <div className="flex flex-col ">
+      <OdsCard
+        className="w-full h-full p-[1rem]"
+        color="neutral"
+        data-tracking={trackingLabel}
+      >
+        <div className="flex flex-col">
           {img?.src && (
             <img
               className="max-w-full my-3 mx-auto"
@@ -66,13 +69,8 @@ export const Card: React.FC<CardProps> = ({
             />
           )}
           <div>
-            <span>
-              <OdsText
-                className="card-category"
-                preset={ODS_TEXT_PRESET.heading5}
-              >
-                <b>{category}</b>
-              </OdsText>
+            <span className="card-category text-[--ods-color-primary-500] text-[20px] leading-[28px] font-bold">
+              {category}
             </span>
             <span className="ml-[10px] card-badges-section">
               {badges?.map((b) => (
@@ -81,11 +79,13 @@ export const Card: React.FC<CardProps> = ({
             </span>
           </div>
 
-          <OdsText className="card-title" preset={ODS_TEXT_PRESET.heading6}>
+          <span className="card-title text-[--ods-color-heading] text-[24px] leading-[32px] font-bold mb-[8px]">
             {title}
-          </OdsText>
+          </span>
           {description && (
-            <OdsText className="block mb-4">{description}</OdsText>
+            <p className="block m-0 p-0 text-[--ods-color-text] mb-4">
+              {description}
+            </p>
           )}
           <div className="section-see-more-label">
             <Links

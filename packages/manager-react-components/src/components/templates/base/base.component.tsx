@@ -34,8 +34,8 @@ export const BaseLayout = ({
   <PageLayout>
     <div>{breadcrumb}</div>
     {header && <Headers {...header} />}
-    <div>
-      {backLinkLabel && (onClickReturn || hrefPrevious) && (
+    {backLinkLabel && (onClickReturn || hrefPrevious) && (
+      <div className="mb-[24px]">
         <Links
           onClickReturn={onClickReturn}
           label={backLinkLabel}
@@ -43,12 +43,16 @@ export const BaseLayout = ({
           target={OdsHTMLAnchorElementTarget._self}
           href={hrefPrevious}
         />
-      )}
-    </div>
-    {description && <OdsText>{description}</OdsText>}
+      </div>
+    )}
+    {description && (
+      <OdsText className="mb-[24px]" preset="span">
+        {description}
+      </OdsText>
+    )}
     {message && <div className="mb-8">{message}</div>}
     {subtitle && <Subtitle className="block mb-6">{subtitle}</Subtitle>}
-    {subDescription && <OdsText>{subDescription}</OdsText>}
+    {subDescription && <OdsText preset="span">{subDescription}</OdsText>}
     <div className="mb-6">{tabs}</div>
     {children}
   </PageLayout>

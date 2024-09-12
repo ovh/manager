@@ -44,14 +44,14 @@ Demo.args = {
   ] as TContinent[],
   titleElement: (item: TContinent) => (
     <div className="py-2">
-      <OdsText>{item.name}</OdsText>
+      <OdsText preset="span">{item.name}</OdsText>
     </div>
   ),
   contentElement: (item: TContinent) => (
     <ul className="mx-5 px-5 list-disc">
       {item?.countries.map((country) => (
         <li key={country}>
-          <OdsText>{country}</OdsText>
+          <OdsText preset="span">{country}</OdsText>
         </li>
       ))}
     </ul>

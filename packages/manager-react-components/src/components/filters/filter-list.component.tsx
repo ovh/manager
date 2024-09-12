@@ -24,6 +24,7 @@ export function FilterList({
         <OdsTag
           className="m-3"
           color={ODS_TAG_COLOR.information}
+          size="lg"
           key={key}
           onOdsRemove={() => onRemoveFilter(filter)}
           data-testid="filter-list_tag_item"

@@ -2,7 +2,6 @@ import React from 'react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsDivider, OdsText, OdsCard } from '@ovhcloud/ods-components/react';
 import { TileBlock } from './tile-block.component';
-import './dashboard-tile.scss';
 
 export type DashboardTileBlockItem = {
   id: string;
@@ -19,17 +18,14 @@ export const DashboardTile: React.FC<DashboardTileProps> = ({
   title,
   items,
 }) => (
-  <OdsCard className="w-full h-full flex-col px-[1rem] py-[0.5rem]">
+  <OdsCard className="w-full h-full flex-col p-[1rem]" color="neutral">
     <div className="flex flex-col w-full">
       {title && (
         <>
-          <OdsText
-            className="dashboard-tile-title"
-            preset={ODS_TEXT_PRESET.heading5}
-          >
+          <h4 className="dashboard-tile-title m-0 text-[--ods-color-heading] text-[20px] leading-[28px] font-bold">
             {title}
-          </OdsText>
-          <OdsDivider />
+          </h4>
+          <OdsDivider spacing="24" />
         </>
       )}
       {items.map((item, index) => (
@@ -37,7 +33,7 @@ export const DashboardTile: React.FC<DashboardTileProps> = ({
           <TileBlock key={item.id} label={item.label}>
             {item.value}
           </TileBlock>
-          {index < items.length - 1 && <OdsDivider />}
+          {index < items.length - 1 && <OdsDivider spacing="24" />}
         </>
       ))}
     </div>

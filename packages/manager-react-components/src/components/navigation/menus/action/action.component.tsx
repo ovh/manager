@@ -51,7 +51,7 @@ const MenuItem = ({
     ...item,
   };
   return (
-    <div>
+    <div className="-mx-[2px]">
       {!item?.iamActions || item?.iamActions?.length === 0 ? (
         <OdsButton
           {...buttonProps}
@@ -106,7 +106,11 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
           }
         />
       </div>
-      <OdsPopover triggerId="navigation-action-trigger">
+      <OdsPopover
+        className="py-[8px] px-0 overflow-hidden"
+        triggerId="navigation-action-trigger"
+        with-arrow="true"
+      >
         {items.map(({ id, ...item }) => {
           return (
             <MenuItem id={id} key={id} item={item} isTrigger={isTrigger} />

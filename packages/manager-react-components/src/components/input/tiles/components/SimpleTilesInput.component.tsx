@@ -162,7 +162,7 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
                     is.stack.checked(key)
                       ? state.activeClass
                       : state.inactiveClass,
-                  )} w-full px-[24]`}
+                  )} w-full px-[24px] py-[16px]`}
                 >
                   {is.stack.singleton(key)
                     ? label(state.stacks.get(key)[0])
@@ -178,7 +178,7 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
                     isEqual(value, item)
                       ? state.activeClass
                       : state.inactiveClass,
-                  )} w-full px-[24]`}
+                  )} w-full px-[24px] py-[16px]`}
                 >
                   {label(item)}
                 </OdsCard>
@@ -189,12 +189,12 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
         state.stacks.get(state.selectedStack)?.length > 1 && (
           <>
             <div className="mt-6 ml-8">
-              <OdsText preset={ODS_TEXT_PRESET.heading3}>
+              <span className="text-[--ods-color-heading] leading-[22px] font-bold">
                 {stack.title(
                   state.selectedStack,
                   state.stacks.get(state.selectedStack),
                 )}
-              </OdsText>
+              </span>
             </div>
             <SimpleTilesInputComponent
               value={value}
