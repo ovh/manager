@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-overthebox-app",
-  "version": "6.3.15",
+  "version": "6.3.16",
   "private": true,
   "description": "OverTheBox standalone application.",
   "repository": {
@@ -26,7 +26,7 @@
     "@ovh-ux/manager-telecom-styles": "^4.8.2",
     "@ovh-ux/ng-at-internet": "^5.11.11",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
-    "@ovh-ux/ng-ovh-chart": "^1.1.0",
+    "@ovh-ux/ng-ovh-chart": "^1.2.0",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.1.1",
     "@ovh-ux/ng-ovh-contracts": "^4.6.0",
     "@ovh-ux/ng-ovh-http": "^5.1.1",

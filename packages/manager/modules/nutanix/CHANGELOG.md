@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.21.0...@ovh-ux/manager-nutanix@1.21.1) (2024-09-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3289] ([569a54f](https://github.com/ovh/manager/commit/569a54f5839838755816baca266df3870713e5e6))
+* remove unused translations [CDS] ([7082704](https://github.com/ovh/manager/commit/7082704524cc729975400f25e753482e4a6c77f2))
+
+
+
+
+
 # [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.20.0...@ovh-ux/manager-nutanix@1.21.0) (2024-09-03)
 
 
