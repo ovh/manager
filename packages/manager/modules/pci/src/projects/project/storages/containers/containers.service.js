@@ -722,4 +722,15 @@ export default class PciStoragesContainersService {
         return priceObj;
       });
   }
+
+  getProductAvailability(projectId, ovhSubsidiary) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
+        params: {
+          ovhSubsidiary,
+        },
+      })
+      .then(({ data }) => data);
+    //
+  }
 }

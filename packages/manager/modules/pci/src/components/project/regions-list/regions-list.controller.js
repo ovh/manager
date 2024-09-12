@@ -8,11 +8,20 @@ import uniq from 'lodash/uniq';
 
 export default class RegionsListController {
   /* @ngInject */
-  constructor($state, $translate, PciProject, ovhManagerRegionService) {
+  constructor(
+    $state,
+    $translate,
+    PciProject,
+    ovhManagerRegionService,
+    PciProjectStorageContainersService,
+    coreConfig,
+  ) {
     this.$state = $state;
     this.$translate = $translate;
     this.PciProject = PciProject;
     this.ovhManagerRegionService = ovhManagerRegionService;
+    this.PciProjectStorageContainersService = PciProjectStorageContainersService;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -23,6 +32,9 @@ export default class RegionsListController {
       this.loading = false;
     });
 
+    this.regionsByContinents = null;
+    this.regionsByDeploimentMmode = null;
+
     this.updateRegions();
   }
 
@@ -31,7 +43,14 @@ export default class RegionsListController {
       this.updateRegions();
     }
 
-    if (has(changes, 'deploimentMode')) {
+    if (
+      changes.reload?.currentValue === true &&
+      changes.reload?.previousValue !== true
+    ) {
+      this.regionsByContinents = null;
+      this.regionsByDeploimentMmode = null;
+      this.selectedRegion = null;
+      this.macroRegion = null;
       this.updateRegions();
     }
   }
@@ -53,22 +72,45 @@ export default class RegionsListController {
     );
   }
 
-  updateRegions() {
-    let regionsByDeploimentMmode = this.regions;
-
+  async updateRegions() {
     if (this.deploimentMode) {
-      regionsByDeploimentMmode = this.regions.filter(
-        (item) => item.type === this.deploimentMode,
-      );
+      await this.PciProjectStorageContainersService.getProductAvailability(
+        this.projectId,
+        this.coreConfig.getUser().ovhSubsidiary,
+      ).then((productCapabilities) => {
+        const productCapability = productCapabilities.plans
+          ?.filter((plan) => plan.code?.startsWith('storage-standard'))
+          .filter(
+            (plan, index, self) =>
+              index === self.findIndex((p) => p.name === plan.name),
+          );
+
+        const productRegionsAllowed = productCapability?.flatMap(
+          ({ regions }) => regions,
+        );
+
+        const regionsAllowedByDeploimentMmode = productRegionsAllowed.filter(
+          (item) => item.type === this.deploimentMode,
+        );
+
+        this.regionsByDeploimentMmode = regionsAllowedByDeploimentMmode;
+      });
+    } else {
+      this.regionsByDeploimentMmode = this.regions;
     }
 
-    const formattedRegions = map(regionsByDeploimentMmode, (region) => ({
-      ...this.ovhManagerRegionService.getRegion(region.name),
-      name: region.name,
-      continentCode: region.continentCode,
-      hasEnoughQuota: region.hasEnoughQuota(),
-      isLocalZone: region.isLocalZone,
-    }));
+    const formattedRegions = map(this.regionsByDeploimentMmode, (region) => {
+      return {
+        ...this.ovhManagerRegionService.getRegion(region.name),
+        name: region.name,
+        continentCode: region.continentCode,
+        hasEnoughQuota:
+          typeof region.hasEnoughQuota === 'function'
+            ? region.hasEnoughQuota()
+            : true,
+        isLocalZone: region.isLocalZone,
+      };
+    });
 
     const allContinents = this.$translate.instant(
       'pci_project_regions_list_continent_all',
@@ -110,6 +152,7 @@ export default class RegionsListController {
       );
       this.macroRegion = this.region?.macroRegion.text;
     }
+    this.loadEnd();
   }
 
   static isRegionDisabled(region) {
@@ -122,7 +165,10 @@ export default class RegionsListController {
   }
 
   onRegionChange(region) {
-    this.selectedRegion = find(this.regions, { name: region.microRegion.code });
+    this.selectedRegion = find(this.regionsByDeploimentMmode, {
+      name: region.microRegion.code,
+    });
+
     if (this.onChange) {
       this.onChange({ region: this.selectedRegion });
     }

@@ -14,6 +14,7 @@ import {
   STORAGES_CONTAINER_NAME_PATTERN,
   OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS,
   OBJECT_CONTAINER_DEPLOIMENT_MODES,
+  OBJECT_CONTAINER_OFFER_SWIFT,
 } from '../containers.constants';
 
 import { CONTAINER_USER_ASSOCIATION_MODES } from './components/associate-user-to-container/constant';
@@ -26,6 +27,7 @@ export default class PciStoragesContainersAddController {
     CucCloudMessage,
     PciProjectStorageBlockService,
     PciProjectStorageContainersService,
+    OvhApiCloudProjectRegion,
     coreConfig,
   ) {
     const { ovhSubsidiary } = coreConfig.getUser();
@@ -35,6 +37,7 @@ export default class PciStoragesContainersAddController {
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectStorageBlockService = PciProjectStorageBlockService;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
+    this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
     this.storagePricesLink =
       STORAGE_PRICES_LINK[ovhSubsidiary] || STORAGE_PRICES_LINK.DEFAULT;
 
@@ -45,6 +48,7 @@ export default class PciStoragesContainersAddController {
     this.OBJECT_CONTAINER_TYPE_OFFERS = OBJECT_CONTAINER_TYPE_OFFERS;
     this.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS = OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS;
     this.OBJECT_CONTAINER_DEPLOIMENT_MODES = OBJECT_CONTAINER_DEPLOIMENT_MODES;
+    this.OBJECT_CONTAINER_OFFER_SWIFT = OBJECT_CONTAINER_OFFER_SWIFT;
   }
 
   $onInit() {
@@ -66,6 +70,7 @@ export default class PciStoragesContainersAddController {
 
     this.container = new Container({
       archive: this.archive,
+      deploimentMode: null,
     });
     this.container.region = null;
 
@@ -136,16 +141,77 @@ export default class PciStoragesContainersAddController {
     return createMode?.user?.id || linkedMode?.selected?.id;
   }
 
+  onOfferFocus() {
+    this.displaySelectedOffer = false;
+    this.container.deploimentMode = null;
+  }
+
+  onOfferSubmit() {
+    this.displaySelectedOffer = true;
+  }
+
   onContainerSolutionChange() {
     this.container.region = null;
   }
 
   onRegionsFocus() {
     this.displaySelectedRegion = false;
+    this.container.region = null;
+
+    this.reloadRegions = true;
+  }
+
+  reloadRegionsEnd() {
+    this.reloadRegions = false;
   }
 
   onRegionChange() {
     this.displaySelectedRegion = true;
+
+    if (this.container.region.enabled === false) {
+      this.isAddingRegion = true;
+      this.addRegion();
+    }
+  }
+
+  addRegion() {
+    return this.OvhApiCloudProjectRegion.v6()
+      .addRegion(
+        { serviceName: this.projectId },
+        //
+        { region: this.container.region.name },
+      )
+      .$promise.then(() => {
+        return this.OvhApiCloudProjectRegion.AvailableRegions()
+          .v6()
+          .resetQueryCache();
+      })
+      .then(() => {
+        this.CucCloudMessage.success(
+          this.$translate.instant(
+            'pci_projects_project_storages_containers_add_add_region_success',
+            {
+              code: this.container.region.name,
+            },
+          ),
+          'pci.projects.project.storages.containers.add',
+        );
+        this.isAddingRegion = false;
+        this.isAddingRegionError = false;
+      })
+      .catch((error) => {
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_storages_containers_add_add_region_error',
+            {
+              message: get(error, 'data.message'),
+            },
+          ),
+          'pci.projects.project.storages.containers.add',
+        );
+        this.isAddingRegion = false;
+        this.isAddingRegionError = true;
+      });
   }
 
   onTypesFocus() {

@@ -13,5 +13,8 @@ export default {
     quotaUrl: '<?',
     currentRegion: '<?',
     deploimentMode: '<?',
+    projectId: '<?',
+    reload: '<?',
+    loadEnd: '&?',
   },
 };

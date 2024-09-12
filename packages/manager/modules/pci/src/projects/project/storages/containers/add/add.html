@@ -38,7 +38,7 @@
 
 <oui-stepper
     data-on-finish="$ctrl.add()"
-    data-current-index="$ctrl.currrentStep"
+    data-current-index="$ctrl.currentStep"
 >
     <!--Offers list-->
     <oui-step-form
@@ -46,8 +46,8 @@
         data-ng-if="!$ctrl.archive"
         data-header="{{:: 'pci_projects_project_storages_containers_add_offer_title' | translate }}"
         data-navigation="$ctrl.container.offer"
-        data-on-focus="$ctrl.displaySelectedOffer=false"
-        data-on-submit="$ctrl.displaySelectedOffer=true"
+        data-on-focus=" $ctrl.onOfferFocus() "
+        data-on-submit="$ctrl.onOfferSubmit()"
         data-editable="!$ctrl.isLoading"
         data-name="storage_container_add_offer"
     >
@@ -147,60 +147,43 @@
             data-ng-if="!$ctrl.displaySelectedDeploimentMode"
             class="container-fluid px-0"
         >
-            <div class="row">
-                <p>
-                    <span
-                        data-translate="pci_projects_project_storages_containers_add_deploiment_mode_sub_title"
-                    >
-                    </span>
-
-                    <a
-                        href="{{:: $ctrl.deploimentModeLink }}"
-                        class="oui-link_icon"
-                        rel="noreferrer"
-                        target="_blank"
-                    >
-                        <span
-                            data-translate="pci_projects_project_storages_containers_add_deploiment_mode_sub_title_link"
-                        ></span>
-                        <span
-                            class="oui-icon oui-icon-arrow-right"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
-                </p>
-
-                <oui-select-picker
-                    class="col-md-6 col-xl-4 my-3"
-                    data-ng-repeat="deploimentModeName in $ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES track by deploimentModeName"
-                    data-name="{{:: deploimentModeName }}_deploiment_modes"
-                    data-model="$ctrl.container.deploimentMode"
-                    data-values="[deploimentModeName]"
-                    data-variant="light"
-                    data-required
+            <p class="ml-3">
+                <span
+                    data-translate="pci_projects_project_storages_containers_add_deploiment_mode_sub_title"
                 >
-                    <oui-select-picker-label>
-                        <span
-                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName) | translate"
-                        ></span>
-                        <span
-                            class="oui-badge oui-badge_best-seller"
-                            data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].isMultiZone"
-                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName + '_label') | translate"
-                        ></span>
-                        <span
-                            class="oui-badge oui-badge_info"
-                            data-ng-if="!$ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].isMultiZone"
-                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName + '_label') | translate"
-                        ></span>
-                    </oui-select-picker-label>
-                    <oui-select-picker-section>
-                        <p
-                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName + '_description') | translate"
-                        ></p>
-                    </oui-select-picker-section>
-                </oui-select-picker>
-            </div>
+                </span>
+            </p>
+
+            <oui-select-picker
+                class="col-md-6 col-xl-4 my-3"
+                data-ng-repeat="deploimentModeName in $ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES track by deploimentModeName"
+                data-name="{{:: deploimentModeName }}_deploiment_modes"
+                data-model="$ctrl.container.deploimentMode"
+                data-values="[deploimentModeName]"
+                data-variant="light"
+                data-required
+            >
+                <oui-select-picker-label>
+                    <span
+                        data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName) | translate"
+                    ></span>
+                    <span
+                        class="oui-badge oui-badge_best-seller"
+                        data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].isMultiZone"
+                        data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName + '_label') | translate"
+                    ></span>
+                    <span
+                        class="oui-badge oui-badge_info"
+                        data-ng-if="!$ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].isMultiZone"
+                        data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName + '_label') | translate"
+                    ></span>
+                </oui-select-picker-label>
+                <oui-select-picker-section>
+                    <p
+                        data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName + '_description') | translate"
+                    ></p>
+                </oui-select-picker-section>
+            </oui-select-picker>
         </div>
         <div
             data-ng-if="$ctrl.displaySelectedDeploimentMode"
@@ -244,8 +227,8 @@
 
     <!--Regions list-->
     <oui-step-form
-        data-position="2"
-        data-ng-if="!$ctrl.archive"
+        data-position="{{!$ctrl.archive && $ctrl.isRightOffer() ? 2 : 1}}"
+        data-ng-if="$ctrl.isRightOffer() ? !$ctrl.archive && $ctrl.container.deploimentMode : !$ctrl.archive"
         data-name="storage_container_add_region"
         data-header="{{:: 'pci_projects_project_storages_containers_add_region_title' | translate }}"
         data-navigation="$ctrl.container.region"
@@ -256,17 +239,20 @@
         data-prevent-next
     >
         <pci-project-regions-list
-            data-ng-if="$ctrl.archive || $ctrl.currrentStep > 0"
+            data-ng-if="$ctrl.archive || $ctrl.currentStep > 0"
             data-regions="$ctrl.container.offer ? $ctrl.regions[$ctrl.container.offer] : $ctrl.regions"
             data-selected-region="$ctrl.container.region"
             data-display-selected-region="$ctrl.displaySelectedRegion"
             data-deploiment-mode="$ctrl.container.deploimentMode"
+            data-project-id="$ctrl.projectId"
+            data-reload="$ctrl.reloadRegions"
+            data-load-end="$ctrl.reloadRegionsEnd()"
         ></pci-project-regions-list>
     </oui-step-form>
 
     <!--Container types list-->
     <oui-step-form
-        data-position="3"
+        data-position="{{!$ctrl.archive && $ctrl.isRightOffer() ? 3 : 2}}"
         data-header="{{:: 'pci_projects_project_storages_containers_add_type_title' | translate }}"
         data-ng-if="!$ctrl.archive && $ctrl.OBJECT_CONTAINER_TYPE_OFFERS.includes($ctrl.container.offer)"
         data-on-focus="$ctrl.onTypesFocus()"
@@ -310,12 +296,17 @@
         data-name="storage_container_add_user"
     >
         <pci-project-storages-create-linked-user
+            data-ng-if="!$ctrl.isAddingRegion && !$ctrl.isAddingRegionError"
             data-project-id="$ctrl.projectId"
             data-users="$ctrl.users"
             data-user-model="$ctrl.userModel"
             data-is-discovery-project="$ctrl.isDiscoveryProject"
             data-field-secret-key-label=":: 'pci_projects_project_storages_containers_add_create_or_linked_user_success_field_secret_key' | translate"
         ></pci-project-storages-create-linked-user>
+        <oui-spinner
+            data-size="s"
+            data-ng-if="$ctrl.isAddingRegion"
+        ></oui-spinner>
     </oui-step-form>
 
     <!-- bucket versioning -->
@@ -350,7 +341,7 @@
 
     <!--Container name-->
     <oui-step-form
-        data-position="{{!$ctrl.archive && $ctrl.isRightOffer() ? 5 : 4}}"
+        data-position="{{!$ctrl.archive && $ctrl.isRightOffer() ? 6 : 3}}"
         data-ng-if="!$ctrl.archive"
         data-header="{{:: 'pci_projects_project_storages_containers_add_name_title' | translate }}"
         data-editable="!$ctrl.isLoading"
@@ -364,6 +355,7 @@
         <oui-field
             data-size="xl"
             data-help-text="{{ ::'pci_projects_project_storages_containers_add_pattern_help_storage-s3' | translate }}"
+            data-ng-if="$ctrl.isRightOffer() ? !$ctrl.archive && $ctrl.currentStep > 4 : !$ctrl.archive"
         >
             <input
                 class="oui-input"
@@ -390,7 +382,7 @@
         data-prevent-next
     >
         <pci-project-regions-list
-            data-ng-if="$ctrl.archive || $ctrl.currrentStep > 0"
+            data-ng-if="$ctrl.archive || $ctrl.currentStep > 0"
             data-regions="$ctrl.container.offer ? $ctrl.regions[$ctrl.container.offer] : $ctrl.regions"
             data-selected-region="$ctrl.container.region"
             data-display-selected-region="$ctrl.displaySelectedRegion"
