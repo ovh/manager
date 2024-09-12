@@ -259,6 +259,7 @@ export default function NewPage() {
                   name: stepper.form.clusterName,
                   region: stepper.form.region?.name,
                   version: stepper.form.version,
+                  updatePolicy: stepper.form.updatePolicy,
                   nodepool: {
                     antiAffinity: stepper.form.antiAffinity,
                     autoscale: stepper.form.scaling?.isAutoscale,

@@ -3,9 +3,16 @@ import {
   OsdsText,
   OsdsTile,
   OsdsLink,
+  OsdsIcon,
 } from '@ovhcloud/ods-components/react';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
@@ -49,11 +56,20 @@ export function UpgradePolicyTileSelector({
         </OsdsText>
       </OsdsFormField>
       <div className="my-4">
-        <OsdsText>{t('kube_update_policy_picker_documentation_text')}</OsdsText>
+        <OsdsText>{t('kube_update_policy_picker_documentation_text')}</OsdsText>{' '}
         <OsdsLink
+          color={ODS_THEME_COLOR_INTENT.primary}
           href={DOCUMENTATION_LINK[shell.environment.getUser().ovhSubsidiary]}
+          target={OdsHTMLAnchorElementTarget._blank}
         >
           {t('kube_update_policy_picker_documentation_link')}
+          <OsdsIcon
+            className="ml-3"
+            slot="end"
+            name={ODS_ICON_NAME.EXTERNAL_LINK}
+            size={ODS_ICON_SIZE.xxs}
+            color={ODS_THEME_COLOR_INTENT.primary}
+          ></OsdsIcon>
         </OsdsLink>
       </div>
 
