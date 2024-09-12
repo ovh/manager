@@ -1,8 +1,8 @@
 import { AxiosError, AxiosHeaders } from 'axios';
 import { describe, expect, test } from 'vitest';
-import { ErrorBannerProps } from '@ovhcloud/manager-components';
+import { ErrorBannerProps } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { mapUnknownErrorToBannerError } from './index';
+import { instancesQueryKey, mapUnknownErrorToBannerError } from './index';
 
 describe('Utility functions', () => {
   describe('Considering the mapUnknownErrorToBannerError function', () => {
@@ -87,6 +87,39 @@ describe('Utility functions', () => {
           )}'`, () => {
             expect(mapUnknownErrorToBannerError(rawError)).toStrictEqual(
               expectedOutputError,
+            );
+          });
+        });
+      },
+    );
+  });
+  describe('Considering the instancesQueryKey function', () => {
+    type Data = {
+      projectId: string;
+      rest?: string[];
+      expectedQueryKey?: string[];
+    };
+
+    const fakeProjectId = '5a6980507a0a40dca362eb9b22d79049';
+    const expectedQueryKey1 = ['project', fakeProjectId, 'instances'];
+
+    const expectedRestParameters = ['test', 'id', '23'];
+    const expectedQueryKey2 = [...expectedQueryKey1, ...expectedRestParameters];
+
+    describe.each`
+      projectId        | rest                      | expectedQueryKey
+      ${fakeProjectId} | ${[]}                     | ${expectedQueryKey1}
+      ${fakeProjectId} | ${[]}                     | ${expectedQueryKey1}
+      ${fakeProjectId} | ${expectedRestParameters} | ${expectedQueryKey2}
+    `(
+      'Given a projectId <$projectId> and optional rest parameters <$rest>',
+      ({ projectId, rest, expectedQueryKey }: Data) => {
+        describe('When calling instancesQueryKey()', () => {
+          test(`Then, expect the output queryKey to be '${JSON.stringify(
+            expectedQueryKey,
+          )}'`, () => {
+            expect(instancesQueryKey(projectId, rest)).toStrictEqual(
+              expectedQueryKey,
             );
           });
         });
