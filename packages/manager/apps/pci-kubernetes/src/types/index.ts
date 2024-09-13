@@ -41,8 +41,8 @@ export type TNetworkConfiguration = {
   defaultVrackGateway: string;
 };
 
-export enum UPGRADEPOLICIES {
-  NEVER_UPDATE = 'NEVER_UPDATE',
-  MINIMAL_DOWNTIME = 'MINIMAL_DOWNTIME',
-  ALWAYS_UPDATE = 'ALWAYS_UPDATE',
+export enum UpdatePolicy {
+  NeverUpdate = 'NEVER_UPDATE',
+  MinimalDowntime = 'MINIMAL_DOWNTIME',
+  AlwaysUpdate = 'ALWAYS_UPDATE',
 }
