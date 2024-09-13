@@ -121,6 +121,7 @@ export default function TerminatePage() {
               color={ODS_THEME_COLOR_INTENT.text}
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              className="break-words"
             >
               {t('kube_service_terminate_description', {
                 clusterName: kubernetesCluster?.name,
