@@ -10,7 +10,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepState } from '../useStep';
 import { VersionSelector } from '@/components/VersionSelector.component';
 import { UpdatePolicyTileSelector } from './UpdatePolicySelector.component';
-import { UPGRADEPOLICIES } from '@/types';
+import { UpdatePolicy } from '@/types';
 
 export interface VersionStepProps {
   onSubmit: (version: string, policy: string) => void;
@@ -24,7 +24,7 @@ export function VersionAndUpdatePolicyStep({
   const { t: tStepper } = useTranslation('stepper');
   const { t: tVersion } = useTranslation('versions');
   const [version, setVersion] = useState('');
-  const [policy, setPolicy] = useState(UPGRADEPOLICIES.ALWAYS_UPDATE);
+  const [policy, setPolicy] = useState(UpdatePolicy.AlwaysUpdate);
   return (
     <>
       {!step.isLocked && (

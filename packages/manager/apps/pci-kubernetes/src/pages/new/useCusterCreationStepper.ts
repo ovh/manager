@@ -3,12 +3,12 @@ import { KubeFlavor, TLocalisation } from '@ovh-ux/manager-pci-common';
 import { useStep } from './useStep';
 import { AutoscalingState } from '@/components/Autoscaling.component';
 import { TNetworkFormState } from './steps/NetworkClusterStep.component';
-import { UPGRADEPOLICIES } from '@/types';
+import { UpdatePolicy } from '@/types';
 
 export type TClusterCreationForm = {
   region: TLocalisation;
   version: string;
-  updatePolicy: UPGRADEPOLICIES;
+  updatePolicy: UpdatePolicy;
   network: TNetworkFormState;
   flavor: KubeFlavor;
   scaling: AutoscalingState;
@@ -81,7 +81,7 @@ export function useClusterCreationStepper() {
           clusterNameStep,
         ].forEach(stepReset);
       },
-      submit: (version: string, updatePolicy: UPGRADEPOLICIES) => {
+      submit: (version: string, updatePolicy: UpdatePolicy) => {
         setForm((f) => ({
           ...f,
           version,
