@@ -6,19 +6,19 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { FilterComparator } from '@ovh-ux/manager-core-api';
 import {
-  Instance,
-  InstanceStatus,
+  TInstance,
+  TInstanceStatus,
   useInstances,
-  UseInstancesQueryParams,
+  TUseInstancesQueryParams,
 } from './useInstances';
-import { InstanceDto, InstanceStatusDto } from '@/data/api/instances';
+import { TInstanceDto, TInstanceStatusDto } from '@/data/api/instances';
 import { setupInstanceServer } from '@/_mocks_/instances/node';
 
 // builders
 const instanceDtoBuilder = (
-  addresses: InstanceDto['addresses'],
-  status: InstanceStatusDto,
-): InstanceDto => ({
+  addresses: TInstanceDto['addresses'],
+  status: TInstanceStatusDto,
+): TInstanceDto => ({
   id: `fake-id`,
   name: `fake-instance-name`,
   flavorId: `fake-flavor-id`,
@@ -31,10 +31,10 @@ const instanceDtoBuilder = (
 });
 
 const instanceBuilder = (
-  instanceDto: InstanceDto,
-  addresses: Instance['addresses'],
-  status: InstanceStatus,
-): Instance => ({
+  instanceDto: TInstanceDto,
+  addresses: TInstance['addresses'],
+  status: TInstanceStatus,
+): TInstance => ({
   ...instanceDto,
   addresses,
   status,
@@ -58,34 +58,34 @@ const initQueryClient = () => {
 // test data
 type Data = {
   projectId: string;
-  queryParamaters: UseInstancesQueryParams;
-  queryPayload?: InstanceDto[];
-  expectedInstances: Instance[];
+  queryParamaters: TUseInstancesQueryParams;
+  queryPayload?: TInstanceDto[];
+  expectedInstances: TInstance[];
   expectedQueryHasNext: boolean;
-  expectedInstancesAfterRefetch: Instance[];
+  expectedInstancesAfterRefetch: TInstance[];
   expectedQueryKey: string[];
 };
 
 const fakeProjectId = 'p42b4f068f404ef3832435304a316332';
-const fakeQueryParamaters1: UseInstancesQueryParams = {
+const fakeQueryParamaters1: TUseInstancesQueryParams = {
   limit: 10,
   sort: 'name',
   sortOrder: 'asc',
   filters: [],
 };
-const fakeQueryParamaters2: UseInstancesQueryParams = {
+const fakeQueryParamaters2: TUseInstancesQueryParams = {
   limit: 1,
   sort: 'name',
   sortOrder: 'asc',
   filters: [],
 };
-const fakeQueryParamaters3: UseInstancesQueryParams = {
+const fakeQueryParamaters3: TUseInstancesQueryParams = {
   limit: 10,
   sort: 'image',
   sortOrder: 'desc',
   filters: [],
 };
-const fakeQueryParamaters4: UseInstancesQueryParams = {
+const fakeQueryParamaters4: TUseInstancesQueryParams = {
   limit: 10,
   sort: 'flavor',
   sortOrder: 'asc',
@@ -99,17 +99,17 @@ const fakeQueryParamaters4: UseInstancesQueryParams = {
   ],
 };
 
-const fakeInstanceDto1: InstanceDto = instanceDtoBuilder([], 'ACTIVE');
-const fakeInstance1: Instance = instanceBuilder(fakeInstanceDto1, new Map(), {
+const fakeInstanceDto1: TInstanceDto = instanceDtoBuilder([], 'ACTIVE');
+const fakeInstance1: TInstance = instanceBuilder(fakeInstanceDto1, new Map(), {
   state: 'ACTIVE',
   severity: 'success',
 });
 
-const fakeInstanceDto2: InstanceDto = instanceDtoBuilder(
+const fakeInstanceDto2: TInstanceDto = instanceDtoBuilder(
   [{ type: 'private', ip: '192.00.123.34', gatewayIp: '', version: 1 }],
   'ERROR',
 );
-const fakeInstance2: Instance = instanceBuilder(
+const fakeInstance2: TInstance = instanceBuilder(
   fakeInstanceDto2,
   new Map().set('private', [
     {
@@ -121,7 +121,7 @@ const fakeInstance2: Instance = instanceBuilder(
   { state: 'ERROR', severity: 'error' },
 );
 
-const fakeInstanceDto3: InstanceDto = instanceDtoBuilder(
+const fakeInstanceDto3: TInstanceDto = instanceDtoBuilder(
   [
     { type: 'private', ip: '192.00.123.34', gatewayIp: '', version: 1 },
     { type: 'public', ip: '193.02.689.00', gatewayIp: '', version: 2 },
@@ -129,7 +129,7 @@ const fakeInstanceDto3: InstanceDto = instanceDtoBuilder(
   ],
   'DELETING',
 );
-const fakeInstance3: Instance = instanceBuilder(
+const fakeInstance3: TInstance = instanceBuilder(
   fakeInstanceDto3,
   new Map()
     .set('private', [
@@ -146,14 +146,14 @@ const fakeInstance3: Instance = instanceBuilder(
   { state: 'DELETING', severity: 'info' },
 );
 
-const fakeInstanceDto4: InstanceDto = instanceDtoBuilder(
+const fakeInstanceDto4: TInstanceDto = instanceDtoBuilder(
   [
     { type: 'public', ip: '193.02.689.00', gatewayIp: '', version: 2 },
     { type: 'public', ip: '193.02.689.00', gatewayIp: '', version: 7 },
   ],
   'BUILD',
 );
-const fakeInstance4: Instance = instanceBuilder(
+const fakeInstance4: TInstance = instanceBuilder(
   fakeInstanceDto4,
   new Map().set('public', [
     {
@@ -233,7 +233,7 @@ describe('UseInstances hook', () => {
         test(`When invoking useInstances() hook', then, expect the computed instances to be '${JSON.stringify(
           expectedInstances,
         )}' and the query hasNext property to be ${expectedQueryHasNext}`, async () => {
-          server = setupInstanceServer<InstanceDto[]>(queryPayload);
+          server = setupInstanceServer<TInstanceDto[]>(queryPayload);
 
           const { wrapper, queryClient } = initQueryClient();
           const { result } = renderHook(
