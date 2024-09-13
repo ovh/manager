@@ -4,7 +4,7 @@ export type Primitive =
   | boolean
   | string
   | number
-  | (() => any);
+  | (() => unknown);
 export type DeepReadonlyMap<K, V> = ReadonlyMap<
   DeepReadonly<K>,
   DeepReadonly<V>

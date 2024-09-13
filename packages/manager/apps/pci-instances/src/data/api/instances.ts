@@ -1,19 +1,16 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { DeepReadonly } from '@/types/utils.type';
 
-type InstanceDtoId = string;
-type FlavorDtoId = string;
-type ImageDtoId = string;
-type InstanceDtoAddressType = 'public' | 'private';
+type TInstanceDtoAddressType = 'public' | 'private';
 
-type InstanceDtoAddress = {
+type TInstanceDtoAddress = {
   ip: string;
   version: number;
-  type: InstanceDtoAddressType;
+  type: TInstanceDtoAddressType;
   gatewayIp: string;
 };
 
-export type InstanceStatusDto =
+export type TInstanceStatusDto =
   | 'ACTIVE'
   | 'BUILDING'
   | 'DELETED'
@@ -46,19 +43,19 @@ export type InstanceStatusDto =
   | 'SNAPSHOTTING'
   | 'RESUMING';
 
-export type InstanceDto = DeepReadonly<{
-  addresses: InstanceDtoAddress[];
-  flavorId: FlavorDtoId;
+export type TInstanceDto = DeepReadonly<{
+  addresses: TInstanceDtoAddress[];
+  flavorId: string;
   flavorName: string;
-  id: InstanceDtoId;
-  imageId: ImageDtoId;
+  id: string;
+  imageId: string;
   imageName: string;
   name: string;
   region: string;
-  status: InstanceStatusDto;
+  status: TInstanceStatusDto;
 }>;
 
-export type RetrieveInstancesQueryParams = DeepReadonly<{
+export type TRetrieveInstancesQueryParams = DeepReadonly<{
   limit: number;
   sort: string;
   sortOrder: 'asc' | 'desc';
@@ -67,7 +64,7 @@ export type RetrieveInstancesQueryParams = DeepReadonly<{
   searchValue?: string;
 }>;
 
-export const retrieveInstances = (
+export const getInstances = (
   projectId: string,
   {
     limit,
@@ -76,8 +73,8 @@ export const retrieveInstances = (
     offset,
     searchField,
     searchValue,
-  }: RetrieveInstancesQueryParams,
-): Promise<InstanceDto[]> =>
+  }: TRetrieveInstancesQueryParams,
+): Promise<TInstanceDto[]> =>
   v6
     .get(`/cloud/project/${projectId}/aggregated/instance`, {
       params: {
