@@ -1,9 +1,7 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   InfiniteData,
   keepPreviousData,
   useInfiniteQuery,
-  UseInfiniteQueryResult,
   useQueryClient,
 } from '@tanstack/react-query';
 import { useCallback, useEffect, useMemo } from 'react';
@@ -16,18 +14,6 @@ import {
 import { instancesQueryKey } from '@/utils';
 import { DeepReadonly } from '@/types/utils.type';
 
-type UseInstancesResult = UseInfiniteQueryResult<
-  Instance[] | undefined,
-  ApiError
-> & {
-  hasInconsistency: boolean;
-};
-
-export type UseInstances = (
-  projectId: string,
-  params: UseInstancesQueryParams,
-) => UseInstancesResult;
-
 export type UseInstancesQueryParams = DeepReadonly<{
   limit: number;
   sort: string;
@@ -35,9 +21,6 @@ export type UseInstancesQueryParams = DeepReadonly<{
   filters: FilterWithLabel[];
 }>;
 
-export type InstanceId = string;
-export type FlavorId = string;
-export type ImageId = string;
 export type AddressType = 'public' | 'private';
 
 export type InstanceStatusSeverity = 'success' | 'error' | 'warning' | 'info';
@@ -54,13 +37,13 @@ export type Address = {
 };
 
 export type Instance = DeepReadonly<{
-  id: InstanceId;
+  id: string;
   name: string;
-  flavorId: FlavorId;
+  flavorId: string;
   flavorName: string;
   status: InstanceStatus;
   region: string;
-  imageId: ImageId;
+  imageId: string;
   imageName: string;
   addresses: Map<AddressType, Address[]>;
 }>;

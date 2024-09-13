@@ -1,9 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { DeepReadonly } from '@/types/utils.type';
 
-type InstanceDtoId = string;
-type FlavorDtoId = string;
-type ImageDtoId = string;
 type InstanceDtoAddressType = 'public' | 'private';
 
 type InstanceDtoAddress = {
@@ -48,10 +45,10 @@ export type InstanceStatusDto =
 
 export type InstanceDto = DeepReadonly<{
   addresses: InstanceDtoAddress[];
-  flavorId: FlavorDtoId;
+  flavorId: string;
   flavorName: string;
-  id: InstanceDtoId;
-  imageId: ImageDtoId;
+  id: string;
+  imageId: string;
   imageName: string;
   name: string;
   region: string;
