@@ -9,7 +9,7 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepState } from '../useStep';
 import { VersionSelector } from '@/components/VersionSelector.component';
-import { UpgradePolicyTileSelector } from './UpgradePolicySelector.component';
+import { UpdatePolicyTileSelector } from './UpdatePolicySelector.component';
 import { UPGRADEPOLICIES } from '@/types';
 
 export interface VersionStepProps {
@@ -17,7 +17,7 @@ export interface VersionStepProps {
   step: StepState;
 }
 
-export function VersionAndUpgradePolicyStep({
+export function VersionAndUpdatePolicyStep({
   onSubmit,
   step,
 }: Readonly<VersionStepProps>) {
@@ -31,7 +31,7 @@ export function VersionAndUpgradePolicyStep({
         <>
           <VersionSelector onSelectVersion={setVersion} />
           {version && (
-            <UpgradePolicyTileSelector policy={policy} setPolicy={setPolicy} />
+            <UpdatePolicyTileSelector policy={policy} setPolicy={setPolicy} />
           )}
         </>
       )}

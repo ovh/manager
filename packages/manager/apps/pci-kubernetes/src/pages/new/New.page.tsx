@@ -30,7 +30,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useClusterCreationStepper } from './useCusterCreationStepper';
 import { LocationStep } from './steps/LocationStep.component';
-import { VersionAndUpgradePolicyStep } from './steps/VersionAndUpgradePolicyStep.component';
+import { VersionAndUpdatePolicyStep } from './steps/VersionAndUpdatePolicyStep.component';
 import { NetworkStep } from './steps/NetworkStep.component';
 import { NodeTypeStep } from './steps/NodeTypeStep.component';
 import { NodeSizeStep } from './steps/NodeSizeStep.component';
@@ -175,7 +175,7 @@ export default function NewPage() {
             isDisabled: isCreationPending,
           }}
         >
-          <VersionAndUpgradePolicyStep
+          <VersionAndUpdatePolicyStep
             onSubmit={stepper.version.submit}
             step={stepper.version.step}
           />

@@ -22,7 +22,7 @@ import { UPGRADE_POLICIES } from '@/constants';
 import { DOCUMENTATION_LINK } from '@/pages/upgrade-policy/UpgradePolicy.constant';
 import { UPGRADEPOLICIES } from '@/types';
 
-interface UpgradePolicySelectorProps {
+interface UpdateSelectorProps {
   setPolicy: (policy: UPGRADEPOLICIES) => void;
   policy: UPGRADEPOLICIES;
 }
@@ -32,10 +32,10 @@ export const tileClass =
 export const selectedTileClass =
   'font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600]';
 
-export function UpgradePolicyTileSelector({
+export function UpdatePolicyTileSelector({
   setPolicy,
   policy: selectPolicy,
-}: Readonly<UpgradePolicySelectorProps>) {
+}: Readonly<UpdateSelectorProps>) {
   const { t } = useTranslation(['add', 'service']);
   const shell = useContext(ShellContext);
   const select = (pol: UPGRADEPOLICIES) => {
