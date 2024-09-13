@@ -112,7 +112,12 @@ export default class AgoraIpV4OrderController {
       })
       .then((results) => {
         this.user = results.user;
-        this.services = results.services;
+        this.services = results.services.map((service) => ({
+          ...service,
+          translatedType: this.$translate.instant(
+            `ip_filter_services_title_${service.type}`,
+          ),
+        }));
         this.ipFailoverPrice = this.getIpFailoverPrice();
 
         if (this.$state.params.service) {
@@ -132,8 +137,8 @@ export default class AgoraIpV4OrderController {
       });
   }
 
-  getServiceTypeLabel(type) {
-    return this.$translate.instant(`ip_filter_services_title_${type}`);
+  static getServiceTypeLabel(item) {
+    return item.translatedType;
   }
 
   createOfferDto(ipOffer) {
