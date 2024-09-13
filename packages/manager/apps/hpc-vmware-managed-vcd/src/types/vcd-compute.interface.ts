@@ -12,12 +12,3 @@ export default interface IVcdCompute {
   currentState: IVcdComputeState;
   currentTasks?: any[];
 }
-
-export interface IVcdOrderableComputeState extends IVcdComputeState {
-  vCPUSpeed: number;
-}
-
-export interface IVcdOrderableCompute
-  extends Omit<IVcdCompute, 'currentState'> {
-  currentState: IVcdOrderableComputeState;
-}
