@@ -5,9 +5,9 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import {
-  UpgradePolicyTileSelector,
+  UpdatePolicyTileSelector,
   selectedTileClass,
-} from './UpgradePolicySelector.component';
+} from './UpdatePolicySelector.component';
 
 import { UPGRADE_POLICIES } from '@/constants';
 import { UPGRADEPOLICIES } from '@/types';
@@ -35,7 +35,7 @@ describe('UpgradePolicyTileSelector', () => {
   it('renders correctly ', () => {
     const { container } = render(
       <ShellContext.Provider value={mockShellContextValue}>
-        <UpgradePolicyTileSelector
+        <UpdatePolicyTileSelector
           setPolicy={setPolicyMock}
           policy={UPGRADEPOLICIES.ALWAYS_UPDATE}
         />
@@ -48,7 +48,7 @@ describe('UpgradePolicyTileSelector', () => {
   it('displays the correct number of policy tiles', () => {
     const { getAllByRole } = render(
       <ShellContext.Provider value={mockShellContextValue}>
-        <UpgradePolicyTileSelector
+        <UpdatePolicyTileSelector
           setPolicy={setPolicyMock}
           policy={UPGRADEPOLICIES.ALWAYS_UPDATE}
         />
@@ -62,7 +62,7 @@ describe('UpgradePolicyTileSelector', () => {
   it('calls setPolicy with the correct argument when a tile is clicked', async () => {
     const { getByTestId } = render(
       <ShellContext.Provider value={mockShellContextValue}>
-        <UpgradePolicyTileSelector
+        <UpdatePolicyTileSelector
           setPolicy={setPolicyMock}
           policy={UPGRADEPOLICIES.ALWAYS_UPDATE}
         />
@@ -82,7 +82,7 @@ describe('UpgradePolicyTileSelector', () => {
   it('applies the correct class to the selected tile', () => {
     const { getByTestId } = render(
       <ShellContext.Provider value={mockShellContextValue}>
-        <UpgradePolicyTileSelector
+        <UpdatePolicyTileSelector
           setPolicy={setPolicyMock}
           policy={UPGRADEPOLICIES.ALWAYS_UPDATE}
         />
