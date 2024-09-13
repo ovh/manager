@@ -8,6 +8,7 @@ import {
   Autoscaling,
   AutoscalingState,
 } from '@/components/Autoscaling.component';
+import { NODE_RANGE } from '@/constants';
 
 export interface NodeSizeStepProps {
   isMonthlyBilling: boolean;
@@ -22,6 +23,16 @@ export function NodeSizeStep({
 }: Readonly<NodeSizeStepProps>) {
   const { t: tStepper } = useTranslation('stepper');
   const [scaling, setScaling] = useState<AutoscalingState>();
+
+  // The maxValue is NODE_RANGE.MAX cause isAntiAffinity is hardcoded to false
+  // change to ANTI_AFFINITY_MAX_NODES otherwise
+  const isNextDisabled =
+    !scaling ||
+    (!scaling.isAutoscale && scaling.quantity.desired > NODE_RANGE.MAX) ||
+    (scaling.isAutoscale &&
+      (scaling.quantity.min > NODE_RANGE.MAX ||
+        scaling.quantity.max > NODE_RANGE.MAX ||
+        scaling.quantity.min >= scaling.quantity.max));
 
   return (
     <>
@@ -38,11 +49,7 @@ export function NodeSizeStep({
           className="mt-4 w-fit"
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
-          disabled={
-            !scaling ||
-            scaling.quantity.min === scaling.quantity.max ||
-            undefined
-          }
+          {...(isNextDisabled ? { disabled: true } : {})}
           onClick={() => scaling && onSubmit(scaling)}
         >
           {tStepper('common_stepper_next_button_label')}
