@@ -10,7 +10,7 @@ import {
 } from './UpdatePolicySelector.component';
 
 import { UPGRADE_POLICIES } from '@/constants';
-import { UPGRADEPOLICIES } from '@/types';
+import { UpdatePolicy } from '@/types';
 
 // Mock translation
 vi.mock('react-i18next', () => ({
@@ -37,7 +37,7 @@ describe('UpgradePolicyTileSelector', () => {
       <ShellContext.Provider value={mockShellContextValue}>
         <UpdatePolicyTileSelector
           setPolicy={setPolicyMock}
-          policy={UPGRADEPOLICIES.ALWAYS_UPDATE}
+          policy={UpdatePolicy.AlwaysUpdate}
         />
       </ShellContext.Provider>,
     );
@@ -50,7 +50,7 @@ describe('UpgradePolicyTileSelector', () => {
       <ShellContext.Provider value={mockShellContextValue}>
         <UpdatePolicyTileSelector
           setPolicy={setPolicyMock}
-          policy={UPGRADEPOLICIES.ALWAYS_UPDATE}
+          policy={UpdatePolicy.AlwaysUpdate}
         />
       </ShellContext.Provider>,
     );
@@ -64,18 +64,16 @@ describe('UpgradePolicyTileSelector', () => {
       <ShellContext.Provider value={mockShellContextValue}>
         <UpdatePolicyTileSelector
           setPolicy={setPolicyMock}
-          policy={UPGRADEPOLICIES.ALWAYS_UPDATE}
+          policy={UpdatePolicy.AlwaysUpdate}
         />
       </ShellContext.Provider>,
     );
 
-    const tile = getByTestId(UPGRADEPOLICIES.MINIMAL_DOWNTIME);
+    const tile = getByTestId(UpdatePolicy.MinimalDowntime);
     fireEvent.click(tile);
 
     await waitFor(() => {
-      expect(setPolicyMock).toHaveBeenCalledWith(
-        UPGRADEPOLICIES.MINIMAL_DOWNTIME,
-      );
+      expect(setPolicyMock).toHaveBeenCalledWith(UpdatePolicy.MinimalDowntime);
     });
   });
 
@@ -84,12 +82,12 @@ describe('UpgradePolicyTileSelector', () => {
       <ShellContext.Provider value={mockShellContextValue}>
         <UpdatePolicyTileSelector
           setPolicy={setPolicyMock}
-          policy={UPGRADEPOLICIES.ALWAYS_UPDATE}
+          policy={UpdatePolicy.AlwaysUpdate}
         />
       </ShellContext.Provider>,
     );
 
-    const selectedTile = getByTestId(UPGRADEPOLICIES.ALWAYS_UPDATE);
+    const selectedTile = getByTestId(UpdatePolicy.AlwaysUpdate);
     expect(selectedTile).toHaveClass(selectedTileClass);
   });
 });
