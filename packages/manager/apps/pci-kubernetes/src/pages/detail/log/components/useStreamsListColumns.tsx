@@ -26,21 +26,18 @@ export const useStreamsListColumns = (account: TDbaasLog) => {
       id: 'name',
       cell: () => (
         <DataGridTextCell>
+          <OsdsLink
+            color={ODS_THEME_COLOR_INTENT.primary}
+            href={accountURL}
+            target={OdsHTMLAnchorElementTarget._blank}
+          >
+            {account.displayName || account.serviceName}
+          </OsdsLink>
           {account.displayName && (
-            <>
-              <OsdsLink
-                color={ODS_THEME_COLOR_INTENT.primary}
-                href={accountURL}
-                target={OdsHTMLAnchorElementTarget._blank}
-              >
-                {account.displayName}
-              </OsdsLink>
-              <OsdsText className="block" level={ODS_TEXT_LEVEL.caption}>
-                {account.serviceName}
-              </OsdsText>
-            </>
+            <OsdsText className="block" level={ODS_TEXT_LEVEL.caption}>
+              {account.serviceName}
+            </OsdsText>
           )}
-          {!account.displayName && account.serviceName}
         </DataGridTextCell>
       ),
       label: t('list_column_account'),
