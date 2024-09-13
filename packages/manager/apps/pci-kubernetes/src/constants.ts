@@ -1,5 +1,15 @@
 export const ANTI_AFFINITY_MAX_NODES = 5;
 
+export const NODE_RANGE = {
+  MIN: 3,
+  MAX: 100,
+};
+
+export const AUTOSCALING_LINK = {
+  DEFAULT: 'https://docs.ovh.com/gb/en/kubernetes/using-cluster-autoscaler/',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/1500009150301',
+};
+
 export const TRACKING_PREFIX =
   'PublicCloud::pci::projects::project::kubernetes';
 
