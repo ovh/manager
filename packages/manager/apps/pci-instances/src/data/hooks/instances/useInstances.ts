@@ -1,73 +1,56 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   InfiniteData,
   keepPreviousData,
   useInfiniteQuery,
-  UseInfiniteQueryResult,
   useQueryClient,
 } from '@tanstack/react-query';
 import { useCallback, useEffect, useMemo } from 'react';
 import { FilterWithLabel } from '@ovh-ux/manager-react-components/src/components/filters/interface';
 import {
-  InstanceDto,
-  retrieveInstances,
-  InstanceStatusDto,
+  TInstanceDto,
+  getInstances,
+  TInstanceStatusDto,
 } from '@/data/api/instances';
 import { instancesQueryKey } from '@/utils';
 import { DeepReadonly } from '@/types/utils.type';
 
-type UseInstancesResult = UseInfiniteQueryResult<
-  Instance[] | undefined,
-  ApiError
-> & {
-  hasInconsistency: boolean;
-};
-
-export type UseInstances = (
-  projectId: string,
-  params: UseInstancesQueryParams,
-) => UseInstancesResult;
-
-export type UseInstancesQueryParams = DeepReadonly<{
+export type TUseInstancesQueryParams = DeepReadonly<{
   limit: number;
   sort: string;
   sortOrder: 'asc' | 'desc';
   filters: FilterWithLabel[];
 }>;
 
-export type InstanceId = string;
-export type FlavorId = string;
-export type ImageId = string;
-export type AddressType = 'public' | 'private';
+export type TAddressType = 'public' | 'private';
 
-export type InstanceStatusSeverity = 'success' | 'error' | 'warning' | 'info';
-export type InstanceStatusState = InstanceStatusDto;
-export type InstanceStatus = {
-  state: InstanceStatusState;
-  severity: InstanceStatusSeverity;
+export type TInstanceStatusSeverity = 'success' | 'error' | 'warning' | 'info';
+export type TInstanceStatusState = TInstanceStatusDto;
+export type TInstanceStatus = {
+  state: TInstanceStatusState;
+  severity: TInstanceStatusSeverity;
 };
 
-export type Address = {
+export type TAddress = {
   ip: string;
   version: number;
   gatewayIp: string;
 };
 
-export type Instance = DeepReadonly<{
-  id: InstanceId;
+export type TInstance = DeepReadonly<{
+  id: string;
   name: string;
-  flavorId: FlavorId;
+  flavorId: string;
   flavorName: string;
-  status: InstanceStatus;
+  status: TInstanceStatus;
   region: string;
-  imageId: ImageId;
+  imageId: string;
   imageName: string;
-  addresses: Map<AddressType, Address[]>;
+  addresses: Map<TAddressType, TAddress[]>;
 }>;
 
 const buildInstanceStatusSeverity = (
-  status: InstanceStatusDto,
-): InstanceStatusSeverity => {
+  status: TInstanceStatusDto,
+): TInstanceStatusSeverity => {
   switch (status) {
     case 'BUILDING':
     case 'REBOOT':
@@ -104,18 +87,18 @@ const buildInstanceStatusSeverity = (
       return 'info';
   }
 };
-const getInstanceStatus = (status: InstanceStatusDto): InstanceStatus => ({
+const getInstanceStatus = (status: TInstanceStatusDto): TInstanceStatus => ({
   state: status,
   severity: buildInstanceStatusSeverity(status),
 });
 
-const getInconsistency = (data: Instance[] | undefined): boolean =>
+const getInconsistency = (data: TInstance[] | undefined): boolean =>
   !!data?.some((elt) => elt.status.state === 'UNKNOWN');
 
 export const instancesSelector = (
-  { pages }: InfiniteData<InstanceDto[], number>,
+  { pages }: InfiniteData<TInstanceDto[], number>,
   limit: number,
-): Instance[] =>
+): TInstance[] =>
   pages
     .flatMap((page) => (page.length > limit ? page.slice(0, limit) : page))
     .map((instanceDto) => ({
@@ -131,12 +114,12 @@ export const instancesSelector = (
           return acc.set(type, [...foundAddresses, rest]);
         }
         return acc.set(type, [rest]);
-      }, new Map<AddressType, Address[]>()),
+      }, new Map<TAddressType, TAddress[]>()),
     }));
 
 export const useInstances = (
   projectId: string,
-  { limit, sort, sortOrder, filters }: UseInstancesQueryParams,
+  { limit, sort, sortOrder, filters }: TUseInstancesQueryParams,
 ) => {
   const queryClient = useQueryClient();
   const filtersQueryKey = useMemo(
@@ -173,7 +156,7 @@ export const useInstances = (
   }, [projectId, queryClient]);
 
   useEffect(() => {
-    const queryData = queryClient.getQueryData<InfiniteData<Instance[]>>(
+    const queryData = queryClient.getQueryData<InfiniteData<TInstance[]>>(
       queryKey,
     );
     if (queryData?.pageParams && queryData.pageParams.length > 1) {
@@ -191,7 +174,7 @@ export const useInstances = (
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
       lastPage.length > limit ? lastPageParam + 1 : null,
     queryFn: ({ pageParam }) =>
-      retrieveInstances(projectId, {
+      getInstances(projectId, {
         limit,
         sort,
         sortOrder,
@@ -200,7 +183,7 @@ export const useInstances = (
         ...(filters.length > 0 && { searchValue: filters[0].value as string }),
       }),
     select: useCallback(
-      (rawData: InfiniteData<InstanceDto[], number>) =>
+      (rawData: InfiniteData<TInstanceDto[], number>) =>
         instancesSelector(rawData, limit),
       [limit],
     ),
