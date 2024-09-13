@@ -102,7 +102,11 @@ export default function DetailPage() {
       <div className="header mt-8">
         <Headers
           title={kubeDetail?.name}
-          headerButton={<PciGuidesHeader category="kubernetes" />}
+          headerButton={
+            <div className="min-w-[7rem]">
+              <PciGuidesHeader category="kubernetes" />
+            </div>
+          }
         />
       </div>
 
