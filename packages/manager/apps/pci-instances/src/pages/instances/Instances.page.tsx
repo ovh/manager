@@ -40,7 +40,7 @@ import {
 import { Trans, useTranslation } from 'react-i18next';
 import { FilterComparator } from '@ovh-ux/manager-core-api';
 import { Spinner } from '@/components/spinner/Spinner.component';
-import { Instance, useInstances } from '@/data/hooks/instances/useInstances';
+import { TInstance, useInstances } from '@/data/hooks/instances/useInstances';
 import StatusChip from '@/components/statusChip/StatusChip.component';
 
 const initialSort = {
@@ -82,11 +82,43 @@ const Instances: FC = () => {
     filters,
   });
 
-  const datagridColumns: DatagridColumn<Instance>[] = useMemo(
+  const textCell = useCallback(
+    (props: TInstance, key: 'flavorName' | 'region' | 'imageName') =>
+      isRefetching ? (
+        <OsdsSkeleton />
+      ) : (
+        <DataGridTextCell>{props[key]}</DataGridTextCell>
+      ),
+    [isRefetching],
+  );
+
+  const listCell = useCallback(
+    (props: TInstance, key: 'public' | 'private') =>
+      isRefetching ? (
+        <OsdsSkeleton />
+      ) : (
+        <OsdsText
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          <ul>
+            {props.addresses.get(key)?.map((item) => (
+              <li className={'w-fit'} key={item.ip}>
+                {item.ip}
+              </li>
+            ))}
+          </ul>
+        </OsdsText>
+      ),
+    [isRefetching],
+  );
+
+  const datagridColumns: DatagridColumn<TInstance>[] = useMemo(
     () => [
       {
         id: 'name',
-        cell: (props: Instance) =>
+        cell: (props) =>
           isRefetching ? (
             <OsdsSkeleton />
           ) : (
@@ -114,86 +146,37 @@ const Instances: FC = () => {
       },
       {
         id: 'region',
-        cell: (props: Instance) =>
-          isRefetching ? (
-            <OsdsSkeleton />
-          ) : (
-            <DataGridTextCell>{props.region}</DataGridTextCell>
-          ),
+        cell: (props: TInstance) => textCell(props, 'region'),
         label: t('region'),
         isSortable: false,
       },
       {
         id: 'flavor',
-        cell: (props: Instance) =>
-          isRefetching ? (
-            <OsdsSkeleton />
-          ) : (
-            <DataGridTextCell>{props.flavorName}</DataGridTextCell>
-          ),
+        cell: (props: TInstance) => textCell(props, 'flavorName'),
         label: t('flavor'),
         isSortable: true,
       },
       {
         id: 'image',
-        cell: (props: Instance) =>
-          isRefetching ? (
-            <OsdsSkeleton />
-          ) : (
-            <DataGridTextCell>{props.imageName}</DataGridTextCell>
-          ),
+        cell: (props: TInstance) => textCell(props, 'imageName'),
         label: t('image'),
         isSortable: true,
       },
       {
         id: 'publicIPs',
-        cell: (props: Instance) =>
-          isRefetching ? (
-            <OsdsSkeleton />
-          ) : (
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              <ul>
-                {props.addresses.get('public')?.map((item) => (
-                  <li className={'w-fit'} key={item.ip}>
-                    {item.ip}
-                  </li>
-                ))}
-              </ul>
-            </OsdsText>
-          ),
-        label: t('publicIPs'),
+        cell: (props: TInstance) => listCell(props, 'public'),
+        label: t('public_IPs'),
         isSortable: false,
       },
       {
         id: 'privateIPs',
-        cell: (props: Instance) =>
-          isRefetching ? (
-            <OsdsSkeleton />
-          ) : (
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              <ul>
-                {props.addresses.get('private')?.map((item) => (
-                  <li className={'w-fit'} key={item.ip}>
-                    {item.ip}
-                  </li>
-                ))}
-              </ul>
-            </OsdsText>
-          ),
-        label: t('privateIPs'),
+        cell: (props: TInstance) => listCell(props, 'private'),
+        label: t('private_IPs'),
         isSortable: false,
       },
       {
         id: 'status',
-        cell: (props: Instance) =>
+        cell: (props: TInstance) =>
           isRefetching ? (
             <OsdsSkeleton />
           ) : (
@@ -203,7 +186,7 @@ const Instances: FC = () => {
         isSortable: false,
       },
     ],
-    [isRefetching, t],
+    [isRefetching, listCell, t, textCell],
   );
 
   const filterColumns = useMemo(
@@ -242,7 +225,7 @@ const Instances: FC = () => {
       <>
         <Trans
           t={t}
-          i18nKey="unknownErrorMessage1"
+          i18nKey="unknown_error_message1"
           tOptions={{ interpolation: { escapeValue: true } }}
           shouldUnescape
           components={{
@@ -255,7 +238,7 @@ const Instances: FC = () => {
           }}
         />
         <br />
-        <Trans t={t} i18nKey="unknownErrorMessage2" />
+        <Trans t={t} i18nKey="unknown_error_message2" />
       </>
     ),
     [handleRefresh, t],
@@ -289,7 +272,7 @@ const Instances: FC = () => {
   }, [data, filters.length, isFetching, navigate, projectId]);
 
   useEffect(() => {
-    if (hasInconsistency) addWarning(t('inconsistencyMessage'), true);
+    if (hasInconsistency) addWarning(t('inconsistency_message'), true);
     return () => {
       clearNotifications();
     };
@@ -322,7 +305,7 @@ const Instances: FC = () => {
       )}
       <div className="header mb-6 mt-8">
         <div className="flex items-center justify-between">
-          <Title>{t('instancesTitle')}</Title>
+          <Title>{t('instances_title')}</Title>
           <PciGuidesHeader category="instances"></PciGuidesHeader>
         </div>
       </div>
@@ -344,7 +327,7 @@ const Instances: FC = () => {
                 color={ODS_THEME_COLOR_INTENT.primary}
                 className="mr-4"
               />
-              <span>{t('createInstance')}</span>
+              <span>{t('create_instance')}</span>
             </span>
           </OsdsButton>
           <div className="justify-between flex gap-5">
