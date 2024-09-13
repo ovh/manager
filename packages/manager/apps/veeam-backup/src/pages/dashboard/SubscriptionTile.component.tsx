@@ -19,10 +19,11 @@ import {
   Description,
   ManagerButton,
   useServiceDetails,
-} from '@ovhcloud/manager-components';
+  useFormattedDate,
+  DateFormat,
+} from '@ovh-ux/manager-react-components';
 import { VeeamBackupWithIam } from '@/data';
 import { urls } from '@/routes/routes.constant';
-import { useFormattedDate } from '@/hook/date';
 import { iamActions } from '@/veeam-backup.config';
 import { LoadingChip } from '@/components/Loading/Loading';
 
@@ -34,10 +35,14 @@ export const SubscriptionTile: React.FC<VeeamBackupWithIam> = ({
   const { t } = useTranslation('dashboard');
   const { data, isLoading } = useServiceDetails({ resourceName: iam.id });
   const navigate = useNavigate();
-  const creationDate = useFormattedDate(createdAt);
-  const nextBillingDate = useFormattedDate(
-    data?.data?.billing?.nextBillingDate,
-  );
+  const creationDate = useFormattedDate({
+    dateString: createdAt,
+    format: DateFormat.fullDisplay,
+  });
+  const nextBillingDate = useFormattedDate({
+    dateString: data?.data?.billing?.nextBillingDate,
+    format: DateFormat.fullDisplay,
+  });
 
   return (
     <DashboardTile

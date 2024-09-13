@@ -1,11 +1,11 @@
 {
   "hpc-crumb": "Hosted Private Cloud",
-  "listing-crumb": "Managed Veeam for VCD",
   "order-veeam": "Commander",
   "more_info_billing_modalities": "En savoir plus sur les modalités de facturation.",
   "update_display_name_modal_headline": "Modifier le nom de la sauvegarde {{id}}",
   "update_display_name_input_label": "Nom de la sauvegarde",
   "update_display_name_description": "",
+  "update_display_name_pattern_message": "Le nom doit contenir 32 caractères maximum",
   "update_veeam_backup_display_name_success": "Le nom a été modifié avec succès.",
   "coming_soon": "Prochainement",
   "unknown_date": "N/A"
