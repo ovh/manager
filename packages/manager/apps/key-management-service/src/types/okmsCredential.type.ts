@@ -23,3 +23,11 @@ export enum OkmsCredentialStatus {
   expired = 'EXPIRED',
   ready = 'READY',
 }
+
+export type OkmsCredentialCreation = {
+  name: string;
+  identityURNs: string[];
+  description?: string | null;
+  validity?: number;
+  csr?: string;
+};
