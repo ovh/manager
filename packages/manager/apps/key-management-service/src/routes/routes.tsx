@@ -118,6 +118,32 @@ export default [
         ...lazyRouteConfig(() =>
           import('@/pages/credential/CreateCredential.page'),
         ),
+        children: [
+          {
+            path: ROUTES_URLS.createCredentialAddUserModal,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/credential/create/CreateCredentialIdentityUserList.page'
+              ),
+            ),
+          },
+          {
+            path: ROUTES_URLS.createCredentialAddGroupsModal,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/credential/create/CreateCredentialIdentityGroupList.page'
+              ),
+            ),
+          },
+          {
+            path: ROUTES_URLS.createCredentialAddServiceAccountModal,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/credential/create/CreateCredentialIdentityServiceAccountList.page'
+              ),
+            ),
+          },
+        ],
       },
       {
         path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.credentials}/${ROUTES_URLS.credentialId}`,
