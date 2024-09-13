@@ -1,13 +1,6 @@
-import React, { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import React from 'react';
 import { OsdsTile, OsdsDivider } from '@ovhcloud/ods-components/react';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import {
-  LinkType,
-  Links,
-  ManagerText,
-  Subtitle,
-} from '@ovh-ux/manager-react-components';
+import { ManagerText, Subtitle } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { AccountStatistics } from '@/api/api.type';
 import { TileBlock } from '@/components/TileBlock';

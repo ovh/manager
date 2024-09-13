@@ -12,7 +12,7 @@ export const useDomain = (domainId: string, noCache?: boolean) => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: getZimbraPlatformDomainQueryKey(platformId, domainId),
     queryFn: () => getZimbraPlatformDomainDetail(platformId, domainId),
-    enabled: !!platformId,
+    enabled: !!platformId && !!domainId,
     gcTime: noCache ? 0 : 5000,
   });
 

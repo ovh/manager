@@ -22,5 +22,11 @@
   "zimbra_domain_modal_diagnostic_mx_action_cancel": "Annuler",
   "zimbra_domain_modal_diagnostic_mx_action_close": "Fermer",
   "zimbra_domain_modal_diagnostic_mx_fields": "Champs MX",
-  "zimbra_domain_modal_diagnostic_mx_field": "Priorité: <strong>{{priority}}</strong> ; Cible: <strong>{{target}}</strong>"
+  "zimbra_domain_modal_diagnostic_mx_field": "Priorité: <strong>{{priority}}</strong> ; Cible: <strong>{{target}}</strong>",
+  "zimbra_domain_modal_diagnostic_spf_title": "Diagnostique SPF",
+  "zimbra_domain_modal_diagnostic_spf_content": "Si le domaine n'est pas géré par le même identifiant client que le service Exchange ou si votre domaine n'est pas hébergé chez OVHcloud, la configuration automatique n'est pas possible. Veuillez créer le champ SPF sur ce domaine manuellement en donnant les mêmes informations que ci-dessous.",
+  "zimbra_domain_modal_diagnostic_spf_content_ohv_hosted_domain": "SPF permet de valider qu'OVHCloud est un émetteur légitime de mails avec votre nom de domaine.<br/>Votre domaine étant hébergé chez OVHCloud, nous pouvons procéder à la configuration automatique.<br/>Souhaitez vous effectuer la configuration ?",
+  "zimbra_domain_modal_diagnostic_spf_fields": "Champs SPF",
+  "zimbra_domain_modal_diagnostic_spf_field_subdomain": "Sous domaine : <strong>{{subdomain}}</strong>",
+  "zimbra_domain_modal_diagnostic_spf_field_target": "Cible : \"<strong>{{target}}</strong>\""
 }

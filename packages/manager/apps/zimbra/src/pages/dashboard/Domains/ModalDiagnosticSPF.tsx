@@ -14,7 +14,7 @@ import { DomainType } from '@/api/domain';
 import { GUIDES_LIST } from '@/guides.constants';
 import GuideLink from '@/components/GuideLink';
 
-export default function ModalDiagnosticSRV() {
+export default function ModalDiagnosticSPF() {
   const { t } = useTranslation('domains/diagnostic');
   const navigate = useNavigate();
   const goBackUrl = useGenerateUrl('..', 'path');
@@ -34,23 +34,20 @@ export default function ModalDiagnosticSRV() {
   // TODO: fetch these informations
   // check CRB-387 for this
   const isOvhDomain = false;
-  // this should be in data.currentState.expectedDNSConfig.srv
+  // this should be in data.currentState.expectedDNSConfig.spf
   const fields = {
     subdomain: '_autodiscover._tcp',
-    priority: '0',
-    weight: '0',
-    port: '443',
-    target: 'ex5.mail.ovh.net.',
+    target: 'v=spf1 include:mx.ovh.com ~all',
   };
 
   const handleValidationClick = () => {
-    // TODO: send the request to fix the SRV record
+    // TODO: send the request to fix the SPF record
     onClose();
   };
 
   return (
     <Modal
-      title={t('zimbra_domain_modal_diagnostic_srv_title')}
+      title={t('zimbra_domain_modal_diagnostic_spf_title')}
       color={ODS_THEME_COLOR_INTENT.info}
       onDismissible={onClose}
       dismissible={true}
@@ -58,18 +55,18 @@ export default function ModalDiagnosticSRV() {
       primaryButton={
         isOvhDomain
           ? {
-              label: t('zimbra_domain_modal_diagnostic_srv_action_validate'),
+              label: t('zimbra_domain_modal_diagnostic_spf_action_validate'),
               action: handleValidationClick,
-              testid: 'diagnostic-srv-modal-primary-btn',
+              testid: 'diagnostic-spf-modal-primary-btn',
             }
           : null
       }
       secondaryButton={{
         label: isOvhDomain
-          ? t('zimbra_domain_modal_diagnostic_srv_action_cancel')
-          : t('zimbra_domain_modal_diagnostic_srv_action_close'),
+          ? t('zimbra_domain_modal_diagnostic_spf_action_cancel')
+          : t('zimbra_domain_modal_diagnostic_spf_action_close'),
         action: onClose,
-        testid: 'diagnostic-srv-modal-secondary-btn',
+        testid: 'diagnostic-spf-modal-secondary-btn',
       }}
     >
       {domain && (
@@ -85,13 +82,13 @@ export default function ModalDiagnosticSRV() {
               t={t}
               i18nKey={
                 isOvhDomain
-                  ? 'zimbra_domain_modal_diagnostic_srv_content_header_ovh_hosted_domain'
-                  : 'zimbra_domain_modal_diagnostic_srv_content_header'
+                  ? 'zimbra_domain_modal_diagnostic_spf_content_header_ovh_hosted_domain'
+                  : 'zimbra_domain_modal_diagnostic_spf_content_header'
               }
               components={{
                 guide: (
                   <GuideLink
-                    label={t('zimbra_domain_modal_diagnostic_srv_guide')}
+                    label={t('zimbra_domain_modal_diagnostic_spf_guide')}
                     guide={GUIDES_LIST.dns_configuration_guide}
                   />
                 ),
@@ -108,7 +105,7 @@ export default function ModalDiagnosticSRV() {
                 hue={ODS_THEME_COLOR_HUE._500}
               >
                 <strong>
-                  {t('zimbra_domain_modal_diagnostic_srv_domain')}
+                  {t('zimbra_domain_modal_diagnostic_spf_domain')}
                 </strong>
               </OsdsText>
               <OsdsText
@@ -131,7 +128,7 @@ export default function ModalDiagnosticSRV() {
                   hue={ODS_THEME_COLOR_HUE._500}
                 >
                   <strong>
-                    {t('zimbra_domain_modal_diagnostic_srv_fields')}
+                    {t('zimbra_domain_modal_diagnostic_spf_fields')}
                   </strong>
                 </OsdsText>
                 <div className="flex flex-col w-2/3">
@@ -144,7 +141,7 @@ export default function ModalDiagnosticSRV() {
                     <Trans
                       t={t}
                       i18nKey={
-                        'zimbra_domain_modal_diagnostic_srv_field_subdomain'
+                        'zimbra_domain_modal_diagnostic_spf_field_subdomain'
                       }
                       values={{ subdomain: fields.subdomain }}
                     />
@@ -158,47 +155,7 @@ export default function ModalDiagnosticSRV() {
                     <Trans
                       t={t}
                       i18nKey={
-                        'zimbra_domain_modal_diagnostic_srv_field_priority'
-                      }
-                      values={{ priority: fields.priority }}
-                    />
-                  </OsdsText>
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                    hue={ODS_THEME_COLOR_HUE._500}
-                  >
-                    <Trans
-                      t={t}
-                      i18nKey={
-                        'zimbra_domain_modal_diagnostic_srv_field_weight'
-                      }
-                      values={{ weight: fields.weight }}
-                    />
-                  </OsdsText>
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                    hue={ODS_THEME_COLOR_HUE._500}
-                  >
-                    <Trans
-                      t={t}
-                      i18nKey={'zimbra_domain_modal_diagnostic_srv_field_port'}
-                      values={{ port: fields.port }}
-                    />
-                  </OsdsText>
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                    hue={ODS_THEME_COLOR_HUE._500}
-                  >
-                    <Trans
-                      t={t}
-                      i18nKey={
-                        'zimbra_domain_modal_diagnostic_srv_field_target'
+                        'zimbra_domain_modal_diagnostic_spf_field_target'
                       }
                       values={{ target: fields.target }}
                     />

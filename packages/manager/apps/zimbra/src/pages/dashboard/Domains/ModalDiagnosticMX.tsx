@@ -12,7 +12,7 @@ import { useGenerateUrl, useDomain } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import { DomainType } from '@/api/domain';
 
-export default function ModalDiagnosticSRVError() {
+export default function ModalDiagnosticMX() {
   const { t } = useTranslation('domains/diagnostic');
   const navigate = useNavigate();
   const goBackUrl = useGenerateUrl('..', 'path');

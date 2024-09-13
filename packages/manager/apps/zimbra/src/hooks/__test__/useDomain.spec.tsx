@@ -33,7 +33,6 @@ describe('Domains', () => {
     const domain = domainMock[0];
     const { result } = renderHook(() => useDomain(domain.id), { wrapper });
 
-    console.log(result);
     await waitFor(() => {
       expect(result.current.isLoading).toBe(false);
     });

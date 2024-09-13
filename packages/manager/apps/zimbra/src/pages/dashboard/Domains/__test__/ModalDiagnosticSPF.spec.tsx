@@ -3,9 +3,9 @@ import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
 import { render } from '@/utils/test.provider';
-import { platformMock, accountMock, domainMock } from '@/api/_mock_';
+import { platformMock, domainMock } from '@/api/_mock_';
 import { DomainType } from '@/api/domain';
-import ModalDiagnosticMX from '../ModalDiagnosticMX';
+import ModalDiagnosticSPF from '../ModalDiagnosticSPF';
 import domainDiagnosticTranslation from '@/public/translations/domains/diagnostic/Messages_fr_FR.json';
 
 vi.mock('@/hooks', () => {
@@ -23,7 +23,7 @@ vi.mock('@/hooks', () => {
 
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
-  MemoryRouter: vi.fn(() => <ModalDiagnosticMX />),
+  MemoryRouter: vi.fn(() => <ModalDiagnosticSPF />),
   useSearchParams: vi.fn(() => [
     new URLSearchParams({
       domainId: domainMock[0].id,
@@ -56,15 +56,15 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
-describe('Domain diagnostic mx modal', () => {
+describe('Domain diagnostic spf modal', () => {
   it('should be displayed', () => {
-    const { getByTestId } = render(<ModalDiagnosticMX />);
+    const { getByTestId } = render(<ModalDiagnosticSPF />);
     const modal = getByTestId('modal');
     expect(modal).toHaveProperty(
       'headline',
-      domainDiagnosticTranslation.zimbra_domain_modal_diagnostic_mx_title,
+      domainDiagnosticTranslation.zimbra_domain_modal_diagnostic_spf_title,
     );
-    expect(getByTestId('diagnostic-mx-modal-secondary-btn')).toBeEnabled();
+    expect(getByTestId('diagnostic-spf-modal-secondary-btn')).toBeEnabled();
   });
 
   // TODO:

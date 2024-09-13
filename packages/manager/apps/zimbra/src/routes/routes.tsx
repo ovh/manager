@@ -92,6 +92,12 @@ export const Routes: any = [
                   import('@/pages/dashboard/Domains/ModalDiagnosticSRV'),
                 ),
               },
+              {
+                path: 'diagnostic_spf',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/ModalDiagnosticSPF'),
+                ),
+              },
             ],
           },
           {
