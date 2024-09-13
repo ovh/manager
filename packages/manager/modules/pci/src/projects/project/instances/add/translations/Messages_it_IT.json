@@ -72,6 +72,7 @@
   "pci_projects_project_instances_add_automated_backup_recommended": "Consigliato",
   "pci_projects_project_instances_add_automated_backup_infos": "Questa funzionalità consente di effettuare una copia dell’istanza in modo automatico, in base alla frequenza pianificata.",
   "pci_projects_project_instances_add_billing_title": "Seleziona un periodo di fatturazione",
+  "pci_projects_project_instances_add_billing_coming_soon_message_title": "Prezzi mensili",
   "pci_projects_project_instances_add_billing_coming_soon_message_description": "I prezzi mensili saranno disponibili a breve con l'arrivo dei Saving Plans.",
   "pci_projects_project_instances_add_billing_montly_discount_message": "Riduci l'importo della tua fattura attivando il forfait mensile sulla tua istanza.",
   "pci_projects_project_instances_add_billing_montly_discount_message_link": "Visualizza i prezzi",

@@ -1050,16 +1050,13 @@ export default class PciInstancesAddController {
   }
 
   getSavingsPlanPrice() {
-    this.PciProjectsProjectInstanceService.getCommercialCatalog({
+    return this.PciProjectsProjectInstanceService.getCommercialCatalog({
       productCode: this.model.flavorGroup.name,
       nature: 'BILLING_PLAN',
       ovhSubsidiary: this.coreConfig.getUser().ovhSubsidiary,
     })
       .then((savingsPlan) => {
-        const hasSavingsPlanOnFlavor = savingsPlan.length > 0;
-        if (!this.isLocalZone() && hasSavingsPlanOnFlavor) {
-          this.hasSavingsPlan = true;
-        }
+        this.hasSavingsPlan = !this.isLocalZone() && savingsPlan.length > 0;
       })
       .catch(() => {
         this.hasSavingsPlan = false;
@@ -1068,16 +1065,19 @@ export default class PciInstancesAddController {
 
   onBillingFocus() {
     this.isLoadBillingStep = true;
-    this.getUAppUrl(
-      'public-cloud',
-      `#/pci/projects/${this.projectId}/savings-plan`,
-    ).then((url) => {
-      this.savingsPlanUrl = url;
-    });
-
-    this.getSavingsPlanPrice();
-
-    this.isLoadBillingStep = false;
+    this.$q
+      .all([
+        this.getUAppUrl(
+          'public-cloud',
+          `#/pci/projects/${this.projectId}/savings-plan`,
+        ).then((url) => {
+          this.savingsPlanUrl = url;
+        }),
+        this.getSavingsPlanPrice(),
+      ])
+      .finally(() => {
+        this.isLoadBillingStep = false;
+      });
   }
 
   onCreateFormStepperSubmit() {
