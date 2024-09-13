@@ -81,21 +81,10 @@ export const Routes: any = [
                 ),
               },
               {
-                path: 'diagnostic_mx',
+                path: 'diagnostic',
+
                 ...lazyRouteConfig(() =>
-                  import('@/pages/dashboard/Domains/ModalDiagnosticMX'),
-                ),
-              },
-              {
-                path: 'diagnostic_srv',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/dashboard/Domains/ModalDiagnosticSRV'),
-                ),
-              },
-              {
-                path: 'diagnostic_spf',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/dashboard/Domains/ModalDiagnosticSPF'),
+                  import('@/pages/dashboard/Domains/ModalDiagnosticDnsRecord'),
                 ),
               },
             ],

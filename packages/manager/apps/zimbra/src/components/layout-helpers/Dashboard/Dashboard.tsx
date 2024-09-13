@@ -70,9 +70,7 @@ export const Dashboard: React.FC = () => {
       to: `${basePath}/domains`,
       pathMatchers: computePathMatchers([
         urls.domains,
-        urls.domains_diagnostic_srv,
-        urls.domains_diagnostic_mx,
-        urls.domains_diagnostic_spf,
+        urls.domains_diagnostic,
       ]),
     },
     {

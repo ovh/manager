@@ -11,9 +11,9 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { DNS_RECORD_TYPE } from '@/utils';
+import { DnsRecordType } from '@/utils';
 
-type ServiceProps = keyof typeof DNS_RECORD_TYPE;
+type ServiceProps = keyof typeof DnsRecordType;
 type StatusProps = 'error' | 'success' | 'warning';
 type DiagnosticBadgeProps = {
   diagType: ServiceProps;
