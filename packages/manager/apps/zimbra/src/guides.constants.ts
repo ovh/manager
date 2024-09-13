@@ -69,7 +69,6 @@ export const ZIMBRA_ADMINISTRATOR_GUIDE: GuideLinks = {
   SN: `${helpRoot}`,
 };
 
-// TODO: replace link with dns guide
 export const ZIMBRA_DNS_CONFIGURATION_GUIDE: GuideLinks = {
   FR: `${helpRoot}`,
   GB: `${helpRoot}`,

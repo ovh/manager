@@ -82,7 +82,6 @@ export const Routes: any = [
               },
               {
                 path: 'diagnostic',
-
                 ...lazyRouteConfig(() =>
                   import('@/pages/dashboard/Domains/ModalDiagnosticDnsRecord'),
                 ),

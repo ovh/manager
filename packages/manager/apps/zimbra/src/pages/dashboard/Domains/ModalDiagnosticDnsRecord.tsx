@@ -13,21 +13,35 @@ import Modal from '@/components/Modals/Modal';
 import { DomainType } from '@/api/domain';
 import { GUIDES_LIST } from '@/guides.constants';
 import GuideLink from '@/components/GuideLink';
-import { DnsRecordType, getDnsRecordTypeKeyFromDnsRecordType } from '@/utils';
+import {
+  DnsRecordType,
+  DnsRecordTypeKey,
+  getDnsRecordTypeKeyFromDnsRecordType,
+} from '@/utils';
 
-export default function ModalDiagnosticDnsRecord() {
+type ModalDiagnosticDnsRecordProps = {
+  domainId?: string;
+  dnsRecordType?: DnsRecordType;
+  isOvhDomain?: boolean;
+};
+
+export default function ModalDiagnosticDnsRecord(
+  props: Readonly<ModalDiagnosticDnsRecordProps>,
+) {
   const { t } = useTranslation('domains/diagnostic');
   const navigate = useNavigate();
   const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(goBackUrl);
 
   const [searchParams] = useSearchParams();
-  const domainId = searchParams.get('domainId');
+  const domainId = searchParams.get('domainId') || props.domainId;
 
-  // TODO: fetch these informations
+  // fetch these informations
   // check CRB-387 for this
-  const isOvhDomain = searchParams.get('isOvhDomain') === 'true';
-  const dnsRecordType = searchParams.get('dnsRecordType');
+  const isOvhDomain =
+    searchParams.get('isOvhDomain') === 'true' || props.isOvhDomain;
+  const dnsRecordType =
+    searchParams.get('dnsRecordType') || props.dnsRecordType;
   const dnsRecordTypeKey = getDnsRecordTypeKeyFromDnsRecordType(
     dnsRecordType as DnsRecordType,
   );
@@ -39,7 +53,6 @@ export default function ModalDiagnosticDnsRecord() {
     setDomain(data);
   }, [isLoading]);
 
-  // TODO:
   // this should be in data.currentState.expectedDNSConfig.srv
   const srvFields = {
     subdomain: '_autodiscover._tcp',
@@ -64,13 +77,36 @@ export default function ModalDiagnosticDnsRecord() {
   };
 
   const handleValidationClick = () => {
-    // TODO: send the request to fix the record
+    // send the request to fix the record
     onClose();
   };
 
-  if (dnsRecordTypeKey === 'none') {
+  if (dnsRecordTypeKey === DnsRecordTypeKey.NONE) {
     onClose();
   }
+
+  const getPrimaryButtonProps = () => {
+    const buttonProps = {
+      label: t(
+        `zimbra_domain_modal_diagnostic_${dnsRecordTypeKey}_action_validate`,
+      ),
+      action: handleValidationClick,
+      testid: `diagnostic-${dnsRecordTypeKey}-modal-primary-btn`,
+    };
+
+    if (isOvhDomain) {
+      return buttonProps;
+    }
+
+    if (dnsRecordType === DnsRecordType.MX) {
+      return {
+        ...buttonProps,
+        label: t(`zimbra_domain_modal_diagnostic_mx_action_test`),
+      };
+    }
+
+    return null;
+  };
 
   return (
     <Modal
@@ -79,17 +115,7 @@ export default function ModalDiagnosticDnsRecord() {
       onDismissible={onClose}
       dismissible={true}
       isLoading={isLoading}
-      primaryButton={
-        isOvhDomain
-          ? {
-              label: t(
-                `zimbra_domain_modal_diagnostic_${dnsRecordTypeKey}_action_validate`,
-              ),
-              action: handleValidationClick,
-              testid: `diagnostic-${dnsRecordTypeKey}-modal-primary-btn`,
-            }
-          : null
-      }
+      primaryButton={getPrimaryButtonProps()}
       secondaryButton={{
         label: isOvhDomain
           ? t(
@@ -176,6 +202,7 @@ export default function ModalDiagnosticDnsRecord() {
                     <div className="flex flex-col">
                       {mxFields.map(({ priority, target }) => (
                         <OsdsText
+                          key={`${priority}-${target}`}
                           color={ODS_THEME_COLOR_INTENT.text}
                           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -202,6 +229,7 @@ export default function ModalDiagnosticDnsRecord() {
                           : spfFields,
                       ).map(([key, value]) => (
                         <OsdsText
+                          key={key}
                           color={ODS_THEME_COLOR_INTENT.text}
                           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}

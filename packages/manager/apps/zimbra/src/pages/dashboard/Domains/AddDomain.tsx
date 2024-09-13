@@ -60,7 +60,7 @@ import {
   postZimbraDomain,
 } from '@/api/domain';
 import { GUIDES_LIST } from '@/guides.constants';
-import { DNS_CONFIG_TYPE, DNS_RECORD_TYPE } from '@/utils';
+import { DNS_CONFIG_TYPE, DnsRecordType } from '@/utils';
 import GuideLink from '@/components/GuideLink';
 
 export default function AddDomain() {
@@ -93,19 +93,19 @@ export default function AddDomain() {
 
   const expertConfigItems = [
     {
-      name: DNS_RECORD_TYPE.SRV,
+      name: DnsRecordType.SRV,
       label: t('zimbra_domains_add_domain_configuration_expert_configure_srv'),
     },
     {
-      name: DNS_RECORD_TYPE.MX,
+      name: DnsRecordType.MX,
       label: t('zimbra_domains_add_domain_configuration_expert_configure_mx'),
     },
     {
-      name: DNS_RECORD_TYPE.SPF,
+      name: DnsRecordType.SPF,
       label: t('zimbra_domains_add_domain_configuration_expert_configure_spf'),
     },
     {
-      name: DNS_RECORD_TYPE.DKIM,
+      name: DnsRecordType.DKIM,
       label: t('zimbra_domains_add_domain_configuration_expert_configure_dkim'),
     },
   ];

@@ -9,7 +9,7 @@ interface GuideLinkProps {
   guide: Guide;
 }
 
-export default function GuideLink({ label, guide }: GuideLinkProps) {
+export default function GuideLink({ label, guide }: Readonly<GuideLinkProps>) {
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
 

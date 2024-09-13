@@ -3,11 +3,10 @@ import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
 import { render } from '@/utils/test.provider';
+import { DnsRecordType } from '@/utils';
 import { platformMock, domainMock } from '@/api/_mock_';
 import { DomainType } from '@/api/domain';
-import ModalDiagnosticSRV from '../ModalDiagnosticSRV';
-import ModalDiagnosticMX from '../ModalDiagnosticMX';
-import ModalDiagnosticSPF from '../ModalDiagnosticSPF';
+import ModalDiagnosticDnsRecord from '../ModalDiagnosticDnsRecord';
 import domainDiagnosticTranslation from '@/public/translations/domains/diagnostic/Messages_fr_FR.json';
 
 vi.mock('@/hooks', () => {
@@ -61,9 +60,11 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
-describe('Domain diagnostic modal SRV', () => {
+describe('Domain diagnostic modalc ', () => {
   it('should display diagnostic modal', () => {
-    const { getByTestId } = render(<ModalDiagnosticSRV />);
+    const { getByTestId } = render(
+      <ModalDiagnosticDnsRecord dnsRecordType={DnsRecordType.SRV} />,
+    );
     const modal = getByTestId('modal');
     expect(modal).toHaveProperty(
       'headline',
@@ -71,14 +72,13 @@ describe('Domain diagnostic modal SRV', () => {
     );
     expect(getByTestId('diagnostic-srv-modal-secondary-btn')).toBeEnabled();
   });
-
-  // TODO:
-  // check render when domain is ovh and whn it is not
 });
 
 describe('Domain diagnostic modal MX', () => {
   it('should display diagnostic modal', () => {
-    const { getByTestId } = render(<ModalDiagnosticMX />);
+    const { getByTestId } = render(
+      <ModalDiagnosticDnsRecord dnsRecordType={DnsRecordType.MX} />,
+    );
     const modal = getByTestId('modal');
     expect(modal).toHaveProperty(
       'headline',
@@ -86,14 +86,13 @@ describe('Domain diagnostic modal MX', () => {
     );
     expect(getByTestId('diagnostic-mx-modal-secondary-btn')).toBeEnabled();
   });
-
-  // TODO:
-  // check render when domain is ovh and whn it is not
 });
 
 describe('Domain diagnostic modal SPF', () => {
   it('should display diagnostic modal', () => {
-    const { getByTestId } = render(<ModalDiagnosticSPF />);
+    const { getByTestId } = render(
+      <ModalDiagnosticDnsRecord dnsRecordType={DnsRecordType.SPF} />,
+    );
     const modal = getByTestId('modal');
     expect(modal).toHaveProperty(
       'headline',
@@ -101,7 +100,4 @@ describe('Domain diagnostic modal SPF', () => {
     );
     expect(getByTestId('diagnostic-spf-modal-secondary-btn')).toBeEnabled();
   });
-
-  // TODO:
-  // check render when domain is ovh and whn it is not
 });
