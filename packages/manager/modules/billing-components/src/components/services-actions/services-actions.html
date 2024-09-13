@@ -2,7 +2,7 @@
     aria-label="{{:: 'billing_services_actions_menu_label' | translate }}"
     compact
     data-placement="end"
-    data-ng-if="!$ctrl.isLoading && ($ctrl.billingManagementAvailabilityAndHaveAutorenewLink || $ctrl.service.serviceType === $ctrl.SERVICE_TYPE.NUTANIX || $ctrl.service.canBeEngaged || $ctrl.service.hasPendingEngagement)"
+    data-ng-if="!$ctrl.isLoading && (($ctrl.billingManagementAvailabilityAndHaveAutorenewLink && $ctrl.service.serviceType !== $ctrl.SERVICE_TYPE.NUTANIX) || ($ctrl.service.serviceType === $ctrl.SERVICE_TYPE.NUTANIX && $ctrl.service.status === 'ok') || $ctrl.service.canBeEngaged || $ctrl.service.hasPendingEngagement)"
 >
     <oui-action-menu-item
         ng-if="$ctrl.autorenewLink && $ctrl.service.hasDebt() && !$ctrl.service.hasBillingRights($ctrl.user.nichandle)"
@@ -139,7 +139,7 @@
         data-ng-if="$ctrl.canResiliate() && (!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt() && !$ctrl.service.hasPendingResiliation()"
     >
         <oui-action-menu-item
-            ng-if="$ctrl.resiliateLink && ($ctrl.service.hasAdminRights($ctrl.user.auth.account) || $ctrl.service.hasAdminRights($ctrl.user.nichandle))"
+            ng-if="($ctrl.resiliateLink || $ctrl.isCustomResiliationHandle) && ($ctrl.service.hasAdminRights($ctrl.user.auth.account) || $ctrl.service.hasAdminRights($ctrl.user.nichandle))"
             href="{{:: $ctrl.isCustomResiliationHandle === true ? undefined : $ctrl.resiliateLink }}"
             on-click="$ctrl.handleClickResiliate()"
             data-navi-id="go-to-resiliate"
