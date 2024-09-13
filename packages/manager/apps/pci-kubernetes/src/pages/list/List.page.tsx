@@ -76,7 +76,11 @@ export default function ListPage() {
       <div className="header mt-8">
         <Headers
           title={t('kube_list_title')}
-          headerButton={<PciGuidesHeader category="kubernetes" />}
+          headerButton={
+            <div className="min-w-[7rem]">
+              <PciGuidesHeader category="kubernetes" />
+            </div>
+          }
         />
       </div>
 
