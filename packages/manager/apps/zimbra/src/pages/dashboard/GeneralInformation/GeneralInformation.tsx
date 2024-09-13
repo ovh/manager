@@ -125,9 +125,8 @@ function GeneralInformation() {
             <Subtitle>{t('zimbra_dashboard_tile_usefulLinks_title')}</Subtitle>
             {guideLinks({
               zimbra_dashboard_webmail: webmail,
-              /* To uncomment for adminstrator guide */
-              /* zimbra_dashboard_administrator_guide:
-                GUIDES_LIST.administrator_guide.url[ovhSubsidiary], */
+              zimbra_dashboard_administrator_guide:
+                GUIDES_LIST.administrator_guide.url[ovhSubsidiary],
               zimbra_dashboard_user_guides:
                 GUIDES_LIST.user_guide.url[ovhSubsidiary],
             })}
