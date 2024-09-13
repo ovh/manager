@@ -11,18 +11,30 @@ import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { useOKMSById } from '@/data/hooks/useOKMS';
-import CreateGeneralInformations from '@/components/credential/create/CreateGeneralInformations.component';
 import Loading from '@/components/Loading/Loading';
+import { IdentityDataProvider } from '@/hooks/credential/useIdentityData';
+import { useCreateOkmsCredential } from '@/data/hooks/useCreateOkmsCredential';
+import CreateGeneralInformations from '@/components/credential/create/CreateGeneralInformations.component';
+import CreateAddIdentities from '@/components/credential/create/CreateAddIdentities.component';
 
 const CreateCredential = () => {
   const navigate = useNavigate();
   const { okmsId } = useParams();
   const { data: okms, isLoading, error } = useOKMSById(okmsId);
   const { t } = useTranslation('key-management-service/credential');
+  const [step, setStep] = useState<number>(1);
   const [name, setName] = useState<string>('');
   const [validity, setValidity] = useState<number>(30);
   const [description, setDescription] = useState<string | null>();
   const [csr, setCsr] = useState<string | null>(null);
+  const [identityURNs, setIdentityURNs] = useState<string[]>([]);
+  const { createKmsCredential } = useCreateOkmsCredential({
+    okmsId,
+    onSuccess: () => {
+      navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
+    },
+    onError: () => {},
+  });
 
   const breadcrumbItems: BreadcrumbItem[] = [
     {
@@ -62,24 +74,45 @@ const CreateCredential = () => {
           headerButton: <KmsGuidesHeader />,
         }}
       >
-        <div className="w-full block">
-          <div className="mb-6">
-            <Notifications />
+        <IdentityDataProvider>
+          <div className="w-full block">
+            <div className="mb-6">
+              <Notifications />
+            </div>
+            {step === 1 && (
+              <CreateGeneralInformations
+                name={name}
+                setName={setName}
+                validity={validity}
+                setValidity={setValidity}
+                description={description}
+                setDescription={setDescription}
+                csr={csr}
+                setCsr={setCsr}
+                nextStep={() => setStep(2)}
+              />
+            )}
+            {step === 2 && (
+              <CreateAddIdentities
+                identityURNs={identityURNs}
+                setIdentityURNs={setIdentityURNs}
+                prevStep={() => {
+                  setStep(1);
+                }}
+                nextStep={() => {
+                  createKmsCredential({
+                    name,
+                    identityURNs,
+                    description,
+                    csr,
+                    validity,
+                  });
+                }}
+              ></CreateAddIdentities>
+            )}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            <CreateGeneralInformations
-              name={name}
-              setName={setName}
-              validity={validity}
-              setValidity={setValidity}
-              description={description}
-              setDescription={setDescription}
-              csr={csr}
-              setCsr={setCsr}
-            />
-          </div>
-        </div>
-        <Outlet />
+          <Outlet />
+        </IdentityDataProvider>
       </BaseLayout>
     </Suspense>
   );
