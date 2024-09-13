@@ -33,7 +33,7 @@ import { useCatalog } from '@/api/hooks/catalog';
 import BillingStep, {
   TBillingStepProps,
 } from '@/components/create/BillingStep.component';
-import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
+import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE } from '@/constants';
 import queryClient from '@/queryClient';
 import { useTrack } from '@/hooks/track';
 
@@ -352,7 +352,14 @@ export default function NewPage(): JSX.Element {
             : undefined,
           label: tCommon('common_stepper_next_button_label'),
           isDisabled:
-            store.autoScaling?.quantity.max === store.autoScaling?.quantity.min,
+            !store.autoScaling ||
+            (!store.autoScaling.isAutoscale &&
+              store.autoScaling.quantity.desired > NODE_RANGE.MAX) ||
+            (store.autoScaling.isAutoscale &&
+              (store.autoScaling.quantity.min > NODE_RANGE.MAX ||
+                store.autoScaling.quantity.max > NODE_RANGE.MAX ||
+                store.autoScaling.quantity.min >=
+                  store.autoScaling.quantity.max)),
         }}
         edit={{
           action: () => {

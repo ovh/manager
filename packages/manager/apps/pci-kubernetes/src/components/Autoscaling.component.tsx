@@ -22,18 +22,11 @@ import { useTranslation } from 'react-i18next';
 import { useMe } from '@ovh-ux/manager-react-components';
 import { useEffect, useState } from 'react';
 import { QuantitySelector } from '@ovh-ux/manager-pci-common';
-
-const AUTOSCALING_LINK = {
-  DEFAULT: 'https://docs.ovh.com/gb/en/kubernetes/using-cluster-autoscaler/',
-  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/1500009150301',
-};
-
-const NODE_RANGE = {
-  MIN: 3,
-  MAX: 100,
-};
-
-const ANTI_AFFINITY_MAX_NODES = 5;
+import {
+  ANTI_AFFINITY_MAX_NODES,
+  NODE_RANGE,
+  AUTOSCALING_LINK,
+} from '@/constants';
 
 export interface AutoscalingState {
   quantity: {
@@ -153,7 +146,7 @@ export function Autoscaling({
               }))
             }
             min={0}
-            max={quantity.max}
+            max={quantity.max < maxValue ? quantity.max : maxValue}
           />
           <QuantitySelector
             className="mt-8"
@@ -165,7 +158,7 @@ export function Autoscaling({
                 max,
               }))
             }
-            min={quantity.min}
+            min={quantity.min > maxValue ? maxValue : quantity.min}
             max={maxValue}
           />
           {isMonthlyBilling && isAutoscale && (
@@ -182,12 +175,12 @@ export function Autoscaling({
             className="mt-8"
             label={t('kubernetes_node_pool_autoscaling_desired_nodes_size')}
             value={quantity.desired}
-            onValueChange={(desired) =>
+            onValueChange={(desired) => {
               setQuantity((_quantity) => ({
                 ..._quantity,
                 desired,
-              }))
-            }
+              }));
+            }}
             min={0}
             max={maxValue}
           />
