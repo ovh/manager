@@ -24,10 +24,10 @@
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
+    "@ovh-ux/manager-react-components": "*",
     "@ovh-ux/manager-react-shell-client": "*",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "*",
-    "@ovhcloud/manager-components": "*",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
     "@ovhcloud/ods-components": "17.2.2",
@@ -48,12 +48,14 @@
     "@cucumber/cucumber": "^10.3.1",
     "@ovh-ux/manager-vite-config": "*",
     "@playwright/test": "^1.41.2",
-    "@testing-library/react-hooks": "^8.0.1",
     "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^1.6.0",
     "typescript": "^4.3.2",
     "vite": "^5.2.13",
-    "vitest": "^1.2.0"
+    "vitest": "^1.2.0",
+    "msw": "2.1.7",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/jest-dom": "^6.5.0"
   },
   "regions": [
     "CA",

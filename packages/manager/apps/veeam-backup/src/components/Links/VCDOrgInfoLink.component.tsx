@@ -1,6 +1,10 @@
 import React from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { LinkType, Links, OvhSubsidiary } from '@ovhcloud/manager-components';
+import {
+  LinkType,
+  Links,
+  OvhSubsidiary,
+} from '@ovh-ux/manager-react-components';
 
 const urls: Partial<{ [key in OvhSubsidiary]: string }> = {
   FR: 'https://www.ovhcloud.com/fr/lp/vmware-vcd-evolution/',

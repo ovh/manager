@@ -1,5 +1,9 @@
 import React from 'react';
-import { Datagrid, DatagridColumn, Title } from '@ovhcloud/manager-components';
+import {
+  Datagrid,
+  DatagridColumn,
+  Title,
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
