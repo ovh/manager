@@ -12,6 +12,11 @@ import {
   OsdsTabsCustomEvent,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 export type DashboardTabItemProps = {
   url: string;
@@ -25,6 +30,7 @@ export type DashboardLayoutProps = {
 
 const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
   const [activePanel, setActivePanel] = useState('');
+  const { trackClick } = useOvhTracking();
   const location = useLocation();
   const { okmsId } = useParams();
   const navigate = useNavigate();
@@ -45,6 +51,15 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
       detail: { panel },
     } = event;
     const url = `/${okmsId}/${panel}`;
+
+    const trackingTag = panel === '' ? 'general-informations' : panel;
+
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.tab,
+      actionType: 'navigation',
+      actions: [trackingTag],
+    });
 
     setActivePanel(panel);
     navigate(url);

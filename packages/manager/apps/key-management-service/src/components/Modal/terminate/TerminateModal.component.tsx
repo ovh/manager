@@ -1,5 +1,10 @@
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
@@ -29,6 +34,7 @@ export const TerminateModal: React.FC<TerminateModalProps> = ({
   isLoading,
   onConfirmTerminate,
 }) => {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('key-management-service/terminate');
   const [terminateInput, setTerminateInput] = useState('');
 
@@ -77,7 +83,15 @@ export const TerminateModal: React.FC<TerminateModalProps> = ({
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={close}
+        onClick={() => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'navigation',
+            actions: ['delete_kms', 'cancel'],
+          });
+          close();
+        }}
       >
         {t('key_management_service_terminate_cancel')}
       </OsdsButton>
@@ -88,6 +102,12 @@ export const TerminateModal: React.FC<TerminateModalProps> = ({
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'navigation',
+            actions: ['delete_kms', 'confirm'],
+          });
           setTerminateInput('');
           onConfirmTerminate();
         }}

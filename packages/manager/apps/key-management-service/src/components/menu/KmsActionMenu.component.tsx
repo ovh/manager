@@ -1,4 +1,9 @@
 import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React from 'react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
@@ -9,6 +14,7 @@ import { ROUTES_URLS } from '@/routes/routes.constants';
 
 const KmsActionMenu: React.FC<OKMS> = ({ id }) => {
   const { t } = useTranslation('key-management-service/listing');
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
   const items: ActionMenuItem[] = [
@@ -17,6 +23,12 @@ const KmsActionMenu: React.FC<OKMS> = ({ id }) => {
       label: t('key_management_service_listing_terminate'),
       color: ODS_THEME_COLOR_INTENT.error,
       onClick: () => {
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.link,
+          actionType: 'navigation',
+          actions: ['delete_kms'],
+        });
         navigate(`${ROUTES_URLS.terminateOkms}/${id}`);
       },
     },
