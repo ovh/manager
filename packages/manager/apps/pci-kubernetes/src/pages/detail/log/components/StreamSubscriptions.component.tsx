@@ -111,8 +111,8 @@ export function StreamSubscriptions({
 
   if (isPending) return <OsdsSkeleton />;
   return (
-    <>
-      {subscriptionCount > 0 && (
+    <div className="flex justify-between items-center min-w-[14rem]">
+      {subscriptionCount > 0 ? (
         <OsdsLink
           className="mr-4"
           color={ODS_THEME_COLOR_INTENT.primary}
@@ -136,6 +136,8 @@ export function StreamSubscriptions({
             />
           </span>
         </OsdsLink>
+      ) : (
+        '-'
       )}
       {currentSubscription && (
         <OsdsButton
@@ -185,6 +187,6 @@ export function StreamSubscriptions({
           )}
         </OsdsButton>
       )}
-    </>
+    </div>
   );
 }
