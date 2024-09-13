@@ -1,32 +1,31 @@
-import {vi} from 'vitest';
+import { vi } from 'vitest';
 
 const mockPlugins = vi.hoisted(() => ({
   environment: {
-    getEnvironment: () => {
-      return {
-        getRegion: vi.fn(() => 'EU'),
-        getUser: vi.fn(() => ({ ovhSubsidiary: 'FR' })),
-      };
-    },
+    getEnvironment: () => ({
+      getRegion: vi.fn(() => 'EU'),
+      getUser: vi.fn(() => ({ ovhSubsidiary: 'FR' })),
+    }),
   },
   navigation: {
     getURL: vi.fn(
       (app, hash) => `https://www.ovh.com/manager/#/${hash.replace('#', app)}`,
     ),
   },
+  tracking: {
+    trackClick: vi.fn(),
+  },
+  ux: {
+    openLiveChat: vi.fn(),
+  },
 }));
 
 const mockShell = vi.hoisted(() => ({
   shell: {
     getPlugin: (plugin: string) => {
-      return plugin === 'navigation'
-        ? mockPlugins.navigation
-        : mockPlugins.environment;
+      return mockPlugins[plugin as keyof typeof mockPlugins]
     },
   },
 }));
 
-export {
-  mockPlugins,
-  mockShell
-}
+export { mockPlugins, mockShell };

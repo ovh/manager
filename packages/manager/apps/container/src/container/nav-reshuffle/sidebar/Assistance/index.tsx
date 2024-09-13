@@ -1,14 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useURL, ContentURLS } from '@/container/common/urls-constants';
-import ApplicationContext from '@/context';
+import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import useContainer from '@/core/container';
 import { Node } from '../navigation-tree/node';
 import { AssistanceLinkItem } from './AssistanceLinkItem';
 import { ShortAssistanceLinkItem } from './ShortAssistanceLinkItem';
 
-interface AssistanceProps {
+export interface AssistanceProps {
   nodeTree?: Node;
   isShort: boolean;
   selectedNode: Node;
@@ -20,11 +20,10 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   isShort
 }): JSX.Element => {
   const { t } = useTranslation('sidebar');
-  const { shell } = useContext(ApplicationContext);
+  const shell = useShell();
   const { setChatbotReduced } = useContainer();
 
   const environment = shell
-    .getPluginManager()
     .getPlugin('environment')
     .getEnvironment();
   const urls = useURL(environment);
@@ -78,7 +77,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   };
 
   return (
-    <ul className="mt-auto pb-3" id="useful-links" role="menu">
+    <ul className="mt-auto pb-3" id="useful-links" role="menu" data-testid="assistance-sidebar">
       {!isShort &&
         <li className="assistance_header px-3 mb-3">
           <h2 className="flex justify-between">

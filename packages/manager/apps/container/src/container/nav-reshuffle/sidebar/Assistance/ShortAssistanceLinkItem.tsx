@@ -5,7 +5,7 @@ import { FunctionComponent } from 'react';
 import { useShell } from '@/context';
 import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 
-type Props = {
+export type Props = {
     node: Node;
     isSelected: boolean;
 }
@@ -28,7 +28,7 @@ export const ShortAssistanceLinkItem: FunctionComponent<Props> = ({ node, isSele
 
 
     return (
-        <li className={`flex p-1 justify-center ${isSelected ? style.sidebar_menu_items_selected : ''} ${style.sidebar_menu_items}`} role="menuitem" >
+        <li className={`flex p-1 justify-center ${isSelected ? style.sidebar_menu_items_selected : ''} ${style.sidebar_menu_items}`} role="menuitem" data-testid={`short-assistance-link-item-${node.id}`}>
             <a
                 onClick={node.onClick}
                 href={url}

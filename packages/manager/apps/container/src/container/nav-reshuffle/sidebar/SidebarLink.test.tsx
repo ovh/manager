@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import SidebarLink from './SidebarLink';
-import { Node, NodeTag } from './navigation-tree/node';
+import { Node } from './navigation-tree/node';
 import { SidebarLinkProps } from './SidebarLink';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
