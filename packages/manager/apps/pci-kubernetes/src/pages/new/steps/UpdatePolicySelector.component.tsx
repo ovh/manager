@@ -20,11 +20,11 @@ import { useContext } from 'react';
 import { UPGRADE_POLICIES } from '@/constants';
 
 import { DOCUMENTATION_LINK } from '@/pages/upgrade-policy/UpgradePolicy.constant';
-import { UPGRADEPOLICIES } from '@/types';
+import { UpdatePolicy } from '@/types';
 
 interface UpdateSelectorProps {
-  setPolicy: (policy: UPGRADEPOLICIES) => void;
-  policy: UPGRADEPOLICIES;
+  setPolicy: (policy: UpdatePolicy) => void;
+  policy: UpdatePolicy;
 }
 export const tileClass =
   'cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600]';
@@ -38,7 +38,7 @@ export function UpdatePolicyTileSelector({
 }: Readonly<UpdateSelectorProps>) {
   const { t } = useTranslation(['add', 'service']);
   const shell = useContext(ShellContext);
-  const select = (pol: UPGRADEPOLICIES) => {
+  const select = (pol: UpdatePolicy) => {
     if (pol) {
       setPolicy(pol);
     }
@@ -74,7 +74,7 @@ export function UpdatePolicyTileSelector({
       </div>
 
       <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
-        {UPGRADE_POLICIES.map((policy: UPGRADEPOLICIES) => (
+        {UPGRADE_POLICIES.map((policy: UpdatePolicy) => (
           <OsdsTile
             data-testid={policy}
             role="button"
