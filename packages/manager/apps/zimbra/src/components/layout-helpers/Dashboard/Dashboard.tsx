@@ -1,4 +1,4 @@
-import React /* useContext */ from 'react';
+import React, { useContext } from 'react';
 import {
   Outlet,
   useResolvedPath,
@@ -8,16 +8,16 @@ import {
 
 import {
   DashboardLayout,
-  /*  GuideButton,
-  GuideItem, */
+  GuideButton,
+  GuideItem,
 } from '@ovh-ux/manager-react-components';
 
-// import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import TabsPanel, { TabItemProps } from './TabsPanel';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
-// import { GUIDES_LIST } from '@/guides.constants';
+import { GUIDES_LIST } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
 
 import './Dashboard.scss';
@@ -25,12 +25,12 @@ import './Dashboard.scss';
 export const Dashboard: React.FC = () => {
   const { platformId } = useParams();
   const { t } = useTranslation('dashboard');
-  // const context = useContext(ShellContext);
-  // const { ovhSubsidiary } = context.environment.getUser();
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
   const location = useLocation();
   const basePath = useResolvedPath('').pathname;
 
-  /* const guideItems: GuideItem[] = [
+  const guideItems: GuideItem[] = [
     {
       id: 1,
       href: `${GUIDES_LIST.administrator_guide.url[ovhSubsidiary] ||
@@ -38,7 +38,7 @@ export const Dashboard: React.FC = () => {
       target: OdsHTMLAnchorElementTarget._blank,
       label: t('zimbra_dashboard_administrator_guide'),
     },
-  ]; */
+  ];
 
   const params = new URLSearchParams(location.search);
   const selectedOrganizationId = params.get('organizationId');
@@ -83,7 +83,7 @@ export const Dashboard: React.FC = () => {
       breadcrumb={<Breadcrumb />}
       header={{
         title: 'Zimbra',
-        // headerButton: <GuideButton items={guideItems} />,
+        headerButton: <GuideButton items={guideItems} />,
       }}
       tabs={<TabsPanel tabs={tabsList} />}
       content={<Outlet />}
