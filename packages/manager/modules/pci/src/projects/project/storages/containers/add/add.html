@@ -162,6 +162,7 @@
                 data-values="[deploimentModeName]"
                 data-variant="light"
                 data-required
+                data-disabled="$ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].isMultiZone"
             >
                 <oui-select-picker-label>
                     <span
@@ -176,6 +177,11 @@
                         class="oui-badge oui-badge_info"
                         data-ng-if="!$ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].isMultiZone"
                         data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName + '_label') | translate"
+                    ></span>
+                    <span
+                        class="oui-badge oui-badge_limited-edition"
+                        data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].isMultiZone"
+                        data-translate="pci_projects_project_storages_containers_add_deploiment_mode_soon"
                     ></span>
                 </oui-select-picker-label>
                 <oui-select-picker-section>
