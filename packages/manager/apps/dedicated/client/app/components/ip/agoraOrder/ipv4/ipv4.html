@@ -23,26 +23,17 @@
                     data-label="{{:: 'ip_table_header_service' | translate }}"
                     data-size="xl"
                 >
-                    <label class="oui-select">
-                        <select
-                            id="service"
-                            name="service"
-                            class="oui-select__input"
-                            data-ng-model="$ctrl.model.selectedService"
-                            data-ng-change="$ctrl.getServiceRegion()"
-                            data-ng-options="service as service.displayName group by $ctrl.getServiceTypeLabel(service.type) for service in $ctrl.services | orderBy:'displayName' track by service.serviceName"
-                        >
-                            <option
-                                data-ng-disabled="true"
-                                data-translate="global_select"
-                            >
-                            </option>
-                        </select>
-                        <span
-                            class="oui-icon oui-icon-chevron-down"
-                            aria-hidden="true"
-                        ></span>
-                    </label>
+                    <oui-select
+                        items="$ctrl.services"
+                        match="displayName"
+                        data-ng-model="$ctrl.model.selectedService"
+                        data-ng-change="$ctrl.getServiceRegion()"
+                        name="service"
+                        placeholder="{{:: 'global_select' | translate}}"
+                        group-by="$ctrl.constructor.getServiceTypeLabel"
+                        searchable
+                    >
+                    </oui-select>
                     <div class="mt-1">
                         <div
                             data-ng-if="$ctrl.model.selectedServiceRegion && !$ctrl.loadServiceRegion"
