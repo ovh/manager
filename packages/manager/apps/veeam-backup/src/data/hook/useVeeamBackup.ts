@@ -1,4 +1,4 @@
-import { useResourcesIcebergV2 } from '@ovhcloud/manager-components';
+import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import { useQuery } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { VeeamBackupWithIam } from '../vcd.type';

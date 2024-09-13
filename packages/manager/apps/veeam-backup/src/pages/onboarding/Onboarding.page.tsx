@@ -4,17 +4,20 @@ import {
   Card,
   CardProps,
   OnboardingLayout,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useGuideUtils } from './useGuideUtils';
 import onboardingImgSrc from '@/assets/veeamxOVHcloud.svg';
 import { urls } from '@/routes/routes.constant';
+import { useBillingUrl } from '@/components/Links/BillingLink.component';
+import { productFullName } from '@/veeam-backup.config';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
   const guides = useGuideUtils();
   const navigate = useNavigate();
+  const moreInfoHref = useBillingUrl();
 
   const tileList: CardProps[] = [
     {
@@ -33,11 +36,13 @@ export default function Onboarding() {
 
   return (
     <OnboardingLayout
-      title="Managed Veeam for VMware Cloud Director"
+      title={productFullName}
       img={{ src: onboardingImgSrc }}
       description={t('description')}
       orderButtonLabel={t('order_button_label')}
       onOrderButtonClick={() => navigate(urls.orderVeeam)}
+      moreInfoButtonLabel={t('more_info_button_label')}
+      moreInfoHref={moreInfoHref}
     >
       {tileList.map((tile) => (
         <Card key={tile.texts.title} {...tile} />

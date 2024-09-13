@@ -8,7 +8,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { DeleteServiceModal } from '@ovhcloud/manager-components';
+import { DeleteServiceModal } from '@ovh-ux/manager-react-components';
 import { MessagesContext } from '@/components/Messages/Messages.context';
 import { getVeeamBackupDisplayName, useVeeamBackup } from '@/data';
 import { PageName } from '@/tracking.constant';

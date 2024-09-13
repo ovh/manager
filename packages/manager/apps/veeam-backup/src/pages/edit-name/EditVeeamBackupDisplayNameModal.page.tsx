@@ -8,7 +8,7 @@ import {
   TrackingClickParams,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { UpdateIamNameModal } from '@ovhcloud/manager-components';
+import { UpdateIamNameModal } from '@ovh-ux/manager-react-components';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   veeamBackupListQueryKey,
@@ -49,6 +49,8 @@ export default function EditVeeamBackupDisplayNameModal() {
       description={t('update_display_name_description')}
       resourceName={id}
       isLoading={isLoading}
+      pattern="^(\S| ){0,32}$"
+      patternMessage={t('update_display_name_pattern_message')}
       onSuccess={() => {
         trackPage({
           pageType: PageType.bannerSuccess,
