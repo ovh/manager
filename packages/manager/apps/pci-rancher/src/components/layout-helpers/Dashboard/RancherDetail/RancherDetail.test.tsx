@@ -1,18 +1,38 @@
 import React from 'react';
-import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
-import updateTranslation from '@translation/updateSoftware/Messages_fr_FR.json';
-import { versionsMocked } from '@/_mock_/version';
-import { rancherMocked } from '@/_mock_/rancher';
-import { ResourceStatus } from '@/types/api.type';
-
-import { fireEvent, render, waitFor } from '@/utils/test/test.provider';
+import { describe, it, vi } from 'vitest';
+import { screen, waitFor, act, fireEvent } from '@testing-library/react';
+import dashboardTranslation from '../../../../../public/translations/dashboard/Messages_fr_FR.json';
+import updateTranslation from '../../../../../public/translations/updateSoftware/Messages_fr_FR.json';
+import { versionsMocked } from '../../../../_mock_/version';
+import { rancherMocked } from '../../../../_mock_/rancher';
+import { ResourceStatus } from '../../../../types/api.type';
+import { render } from '../../../../utils/test/test.provider';
 import RancherDetail, { RancherDetailProps } from './RancherDetail.component';
 
-jest.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useTracking: jest.fn(() => ({
-    trackPage: jest.fn(),
-    trackClick: jest.fn(),
+const useLocationMock: {
+  pathname: string;
+  search: string;
+  hash: string;
+  state: string | null;
+  key: string;
+} = {
+  pathname: '/00000000',
+  search: '',
+  hash: '',
+  state: null,
+  key: 'coco',
+};
+
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useTracking: vi.fn(() => ({
+    trackPage: vi.fn(),
+    trackClick: vi.fn(),
   })),
+}));
+
+vi.mock('react-router-dom', () => ({
+  useHref: () => '/edit',
+  useLocation: () => useLocationMock,
 }));
 
 const updateOfferErrorMessage = 'error message';
@@ -26,12 +46,12 @@ const defaultProps: RancherDetailProps = {
   updateSoftwareResponseType: null,
   updateOfferResponseType: null,
 };
-const setupSpecTest = async (props: RancherDetailProps = defaultProps) =>
-  waitFor(() => render(<RancherDetail {...props} />));
+const setupSpecTest = (props: RancherDetailProps = defaultProps) =>
+  render(<RancherDetail {...props} />);
 
 describe('RancherDetail', () => {
   it("Given that I'm on the dashboard, I should see 3 tiles : General information, Consumption and Security and access.", async () => {
-    const screen = await setupSpecTest();
+    setupSpecTest();
 
     const generalInfo = screen.getByText(
       dashboardTranslation.general_informations,
@@ -45,7 +65,7 @@ describe('RancherDetail', () => {
   });
 
   it('Given that the General info tab is displayed, it should contain the description and the version of the service I configured.', async () => {
-    const screen = await setupSpecTest();
+    setupSpecTest();
 
     const descriptionLabel = screen.getByText(dashboardTranslation.description);
     const rancherVersionLabel = screen.getAllByText(
@@ -64,123 +84,111 @@ describe('RancherDetail', () => {
 
   describe('Edit name', () => {
     it('Given that I can edit the name, I should be able to click on edit icon to get the right to change the name', async () => {
-      const { getAllByText } = await setupSpecTest();
-
+      setupSpecTest();
+      const { getAllByText } = screen;
       const rancherName = getAllByText(rancherMocked.currentState.name);
-      await fireEvent.click(rancherName[0]);
-
-      expect(rancherName).not.toBeNull();
-      const link = rancherName[0].closest('osds-link');
-
-      expect(link).toHaveAttribute('href', '/edit');
-      expect(link).not.toHaveAttribute('disabled');
+      act(() => {
+        fireEvent.click(rancherName[0]);
+      });
+      waitFor(() => {
+        expect(rancherName).not.toBeNull();
+        const link = rancherName[0].closest('osds-link');
+        expect(link).toHaveAttribute('href', '/edit');
+        expect(link).not.toHaveAttribute('disabled');
+      });
     });
-
     it('Given that rancher is not ready i should not be able to edit the name', async () => {
-      const { getAllByText } = await setupSpecTest({
+      setupSpecTest({
         ...defaultProps,
         rancher: {
           ...rancherMocked,
           resourceStatus: ResourceStatus.UPDATING,
         },
       });
-
+      const { getAllByText } = screen;
       const rancherName = getAllByText(rancherMocked.currentState.name);
-
       const link = rancherName[0].closest('osds-link');
       expect(link).toHaveAttribute('disabled');
     });
-  });
-
-  it('Given that the Consumption tile is displayed, it should contain the offer I configured, the nb of CPUs orchestrated and the last update date', async () => {
-    const screen = await setupSpecTest();
-
-    const descriptionLabel = screen.getByText(dashboardTranslation.consumption);
-    const vcpus = screen.getByText(
-      rancherMocked.currentState.usage?.orchestratedVcpus.toString() ?? '',
-    );
-
-    expect(descriptionLabel).not.toBeNull();
-    expect(vcpus).not.toBeNull();
-  });
-
-  it('Given that the Security and access tile is displayed, it should contain the url to access the service and the button to generate the access', async () => {
-    const screen = await setupSpecTest();
-
-    const descriptionLabel = screen.getByText(
-      dashboardTranslation.security_and_access,
-    );
-    const rancherUrlClipboard = screen.getByLabelText('clipboard');
-    const rancherButtonAccess = screen.getByText(
-      dashboardTranslation.rancher_button_acces,
-    );
-
-    expect(descriptionLabel).not.toBeNull();
-    expect(rancherUrlClipboard.getAttribute('value')).toBe(
-      rancherMocked.currentState.url,
-    );
-    expect(rancherButtonAccess).not.toBeNull();
-  });
-
-  describe('Update software', () => {
-    it('Given that the update software is displayed, it should contain the version of the software and the button to update', async () => {
-      const screen = await setupSpecTest({
-        ...defaultProps,
-      });
-
-      const updateSoftwareLabel = screen.getByText(
-        updateTranslation.updateSoftwareBannerAvailableUpdate,
+    it('Given that the Consumption tile is displayed, it should contain the offer I configured, the nb of CPUs orchestrated and the last update date', async () => {
+      setupSpecTest();
+      const descriptionLabel = screen.getByText(
+        dashboardTranslation.consumption,
       );
-
-      const updateSoftwareButton = screen.getAllByText(
-        updateTranslation.updateSoftwareAvailableUpdate,
+      const vcpus = screen.getByText(
+        rancherMocked.currentState.usage?.orchestratedVcpus.toString() ?? '',
       );
-
-      expect(updateSoftwareLabel).not.toBeNull();
-      expect(updateSoftwareButton).not.toBeNull();
+      expect(descriptionLabel).not.toBeNull();
+      expect(vcpus).not.toBeNull();
     });
-
-    it('Given there is higher version but there is current update mutation, i should not see update  software banner', async () => {
-      const screen = await setupSpecTest({
-        ...defaultProps,
-        updateSoftwareResponseType: 'pending',
-      });
-
-      const updateSoftwareLabel = screen.queryByText(
-        updateTranslation.updateSoftwareBannerAvailableUpdate.replaceAll(
-          '{{version}}',
-          versionsMocked[1].name,
-        ),
+    it('Given that the Security and access tile is displayed, it should contain the url to access the service and the button to generate the access', async () => {
+      setupSpecTest();
+      const descriptionLabel = screen.getByText(
+        dashboardTranslation.security_and_access,
       );
-      const updateSoftwareButton = screen.queryByText(
-        updateTranslation.updateSoftwareAvailableUpdate,
+      const rancherUrlClipboard = screen.getByLabelText('clipboard');
+      const rancherButtonAccess = screen.getByText(
+        dashboardTranslation.rancher_button_acces,
       );
-
-      expect(updateSoftwareLabel).toBeNull();
-      expect(updateSoftwareButton).toBeNull();
+      expect(descriptionLabel).not.toBeNull();
+      expect(rancherUrlClipboard.getAttribute('value')).toBe(
+        rancherMocked.currentState.url,
+      );
+      expect(rancherButtonAccess).not.toBeNull();
     });
-
-    it('Given there is higher version but rancher status is not status ready, i should not see update  software banner', async () => {
-      const screen = await setupSpecTest({
-        ...defaultProps,
-        rancher: {
-          ...rancherMocked,
-          resourceStatus: ResourceStatus.UPDATING,
-        },
+    describe('Update software', () => {
+      it('Given that the update software is displayed, it should contain the version of the software and the button to update', async () => {
+        setupSpecTest({
+          ...defaultProps,
+        });
+        const updateSoftwareLabel = screen.getByText(
+          updateTranslation.updateSoftwareBannerAvailableUpdate,
+        );
+        const updateSoftwareButton = screen.getAllByText(
+          updateTranslation.updateSoftwareAvailableUpdate,
+        );
+        expect(updateSoftwareLabel).not.toBeNull();
+        expect(updateSoftwareButton).not.toBeNull();
       });
 
-      const updateSoftwareLabel = screen.queryByText(
-        updateTranslation.updateSoftwareBannerAvailableUpdate.replaceAll(
-          '{{version}}',
-          versionsMocked[1].name,
-        ),
-      );
-      const updateSoftwareButton = screen.queryByText(
-        updateTranslation.updateSoftwareAvailableUpdate,
-      );
+      it('Given there is higher version but there is current update mutation, i should not see update  software banner', async () => {
+        setupSpecTest({
+          ...defaultProps,
+          updateSoftwareResponseType: 'pending',
+        });
+        const updateSoftwareLabel = screen.queryByText(
+          updateTranslation.updateSoftwareBannerAvailableUpdate.replaceAll(
+            '{{version}}',
+            versionsMocked[1].name,
+          ),
+        );
+        const updateSoftwareButton = screen.queryByText(
+          updateTranslation.updateSoftwareAvailableUpdate,
+        );
+        expect(updateSoftwareLabel).toBeNull();
+        expect(updateSoftwareButton).toBeNull();
+      });
 
-      expect(updateSoftwareLabel).toBeNull();
-      expect(updateSoftwareButton).toBeNull();
+      it('Given there is higher version but rancher status is not status ready, i should not see update  software banner', async () => {
+        setupSpecTest({
+          ...defaultProps,
+          rancher: {
+            ...rancherMocked,
+            resourceStatus: ResourceStatus.UPDATING,
+          },
+        });
+        const updateSoftwareLabel = screen.queryByText(
+          updateTranslation.updateSoftwareBannerAvailableUpdate.replaceAll(
+            '{{version}}',
+            versionsMocked[1].name,
+          ),
+        );
+        const updateSoftwareButton = screen.queryByText(
+          updateTranslation.updateSoftwareAvailableUpdate,
+        );
+        expect(updateSoftwareLabel).toBeNull();
+        expect(updateSoftwareButton).toBeNull();
+      });
     });
   });
 });

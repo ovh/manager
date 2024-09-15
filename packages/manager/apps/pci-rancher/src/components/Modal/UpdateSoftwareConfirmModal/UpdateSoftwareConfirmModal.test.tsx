@@ -1,17 +1,26 @@
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import updateTranslation from '@translation/updateSoftware/Messages_fr_FR.json';
-import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
-import { versionsMocked } from '@/_mock_/version';
-import { render, waitFor } from '@/utils/test/test.provider';
+import { describe, it, vi } from 'vitest';
+import { act, waitFor } from '@testing-library/react';
+import updateTranslation from '../../../../public/translations/updateSoftware/Messages_fr_FR.json';
+import dashboardTranslation from '../../../../public/translations/dashboard/Messages_fr_FR.json';
+import { versionsMocked } from '../../../_mock_/version';
+import { render } from '../../../utils/test/test.provider';
 import UpdateSoftwareModal from './UpdateSoftwareConfirmModal.component';
 
-const onConfirmUpdated = jest.fn();
-const onClose = jest.fn();
+const onConfirmUpdated = vi.fn();
+const onClose = vi.fn();
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
+
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useTracking: vi.fn(() => ({
+    trackPage: vi.fn(),
+    trackClick: vi.fn(),
+  })),
+}));
 
 const setupSpecTest = async () =>
   waitFor(() =>
@@ -41,18 +50,28 @@ describe('Update Software Confirm Modal', () => {
 
     const button = screen.getByText(dashboardTranslation.confirm);
 
-    await userEvent.click(button);
+    act(async () => {
+      await userEvent.click(button);
+    });
 
-    expect(onConfirmUpdated).toHaveBeenCalled();
+    waitFor(() => {
+      expect(onConfirmUpdated).toHaveBeenCalled();
+    });
   });
 
   it('The cancel button should call onClose method', async () => {
     const screen = await setupSpecTest();
 
-    const cancelButton = screen.getByText(dashboardTranslation.cancel);
+    waitFor(() => {
+      const cancelButton = screen.getByText(dashboardTranslation.cancel);
 
-    await userEvent.click(cancelButton);
+      act(async () => {
+        await userEvent.click(cancelButton);
+      });
 
-    expect(onClose).toHaveBeenCalled();
+      waitFor(() => {
+        expect(onClose).toHaveBeenCalled();
+      });
+    });
   });
 });

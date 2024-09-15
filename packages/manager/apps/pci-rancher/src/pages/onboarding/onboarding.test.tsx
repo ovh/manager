@@ -1,50 +1,48 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import onboardingTranslation from '@translation/onboarding/Messages_fr_FR.json';
+import { describe, it, vi } from 'vitest';
+import { waitFor, fireEvent, screen } from '@testing-library/react';
+import onboardingTranslation from '../../../public/translations/onboarding/Messages_fr_FR.json';
 import Onboarding from './Onboarding.page';
-import { render, waitFor } from '@/utils/test/test.provider';
-import { useGuideUtils } from '@/hooks/useGuideLink/useGuideLink';
+import { render } from '../../utils/test/test.provider';
+import { useGuideUtils } from '../../hooks/useGuideLink/useGuideLink';
 
-const mockedUsedNavigate = jest.fn();
+const mockedUsedNavigate = vi.fn();
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+vi.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
   useParams: () => ({ projectId: '123' }),
 }));
 
-jest.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigation: jest.fn(() => ({
-    getURL: jest.fn(() => Promise.resolve('123')),
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useNavigation: vi.fn(() => ({
+    getURL: vi.fn(() => Promise.resolve('123')),
     data: [],
   })),
-  useTracking: jest.fn(() => ({
-    trackPage: jest.fn(),
-    trackClick: jest.fn(),
+  useTracking: vi.fn(() => ({
+    trackPage: vi.fn(),
+    trackClick: vi.fn(),
   })),
 }));
 
-jest.mock('@/hooks/useGuideLink/useGuideLink', () => ({
-  useGuideUtils: jest.fn(() => ({
+vi.mock('@/hooks/useGuideLink/useGuideLink', () => ({
+  useGuideUtils: vi.fn(() => ({
     MANAGED_RANCHER_SERVICE_GETTING_STARTED: 'https://example.com/guide1',
   })),
 }));
 
-jest.spyOn(React, 'useEffect').mockImplementation((t) => jest.fn(t));
+vi.spyOn(React, 'useEffect').mockImplementation((t) => vi.fn(t));
 
-const setupSpecTest = async () => waitFor(() => render(<Onboarding />));
+const setupSpecTest = () => waitFor(() => render(<Onboarding />));
 
 describe('Onboarding', () => {
   it('renders without error', async () => {
-    const screen = await setupSpecTest();
-
+    setupSpecTest();
     const title = screen.getByText(onboardingTranslation.title);
-
-    expect(title).not.toBeNull();
   });
 
   it('Given click on CTA, we should redirect to create rancher page', async () => {
-    const screen = await setupSpecTest();
+    setupSpecTest();
 
     const button = screen.getByText(onboardingTranslation.orderButtonLabel);
 
@@ -56,7 +54,7 @@ describe('Onboarding', () => {
   });
 
   it('renders the guide tiles correctly', async () => {
-    const screen = await setupSpecTest();
+    setupSpecTest();
 
     const guideTitle = screen.getByText(
       onboardingTranslation.managedRancherServiceGettingStartedTitle,

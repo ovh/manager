@@ -1,64 +1,59 @@
-import userEvent from '@testing-library/user-event';
 import React from 'react';
+import userEvent from '@testing-library/user-event';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { describe, it, vi } from 'vitest';
+import { screen, waitFor, act, fireEvent } from '@testing-library/react';
 import {
   rancherPlan,
   rancherVersion,
   rancherPlansPricing,
-} from '@/_mock_/rancher-resource';
+} from '../../../_mock_/rancher-resource';
 import dashboardTranslation from '../../../../public/translations/dashboard/Messages_fr_FR.json';
 import listingTranslation from '../../../../public/translations/listing/Messages_fr_FR.json';
-import {
-  act,
-  fireEvent,
-  render,
-  waitFor,
-} from '../../../utils/test/test.provider';
+import { render } from '../../../utils/test/test.provider';
 
-import { getRanchersUrl } from '@/utils/route';
+import { getRanchersUrl } from '../../../utils/route';
 import CreateRancher, { CreateRancherProps } from './CreateRancher.component';
 
-const onCreateRancher = jest.fn();
-const mockedUsedNavigate = jest.fn();
+const onCreateRancher = vi.fn();
+const mockedUsedNavigate = vi.fn();
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
-jest.mock('react-use', () => ({
-  useMedia: jest.fn(),
+vi.mock('react-use', () => ({
+  useMedia: vi.fn(),
 }));
 
-jest.mock('@ovh-ux/manager-react-components', () => ({
-  ...jest.requireActual('@ovh-ux/manager-react-components'),
-  Subtitle: jest.fn(),
-  Title: jest.fn(),
-  PciDiscoveryBanner: jest.fn(
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  Subtitle: vi.fn(),
+  Title: vi.fn(),
+  PciDiscoveryBanner: vi.fn(
     () => 'pci_projects_project_activate_project_banner_message',
   ),
-  useCatalogPrice: jest.fn(() => ({
-    getFormattedHourlyCatalogPrice: jest.fn(() => 0.0171),
-    getFormattedMonthlyCatalogPrice: jest.fn(() => 12.312),
+  useCatalogPrice: vi.fn(() => ({
+    getFormattedHourlyCatalogPrice: vi.fn(() => 0.0171),
+    getFormattedMonthlyCatalogPrice: vi.fn(() => 12.312),
   })),
 }));
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+vi.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
-jest.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigation: jest.fn(() => ({
-    getURL: jest.fn(() => Promise.resolve('123')),
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useNavigation: vi.fn(() => ({
+    getURL: vi.fn(() => Promise.resolve('123')),
     data: [],
   })),
-  useTracking: jest.fn(() => ({
-    trackPage: jest.fn(),
-    trackClick: jest.fn(),
+  useTracking: vi.fn(() => ({
+    trackPage: vi.fn(),
+    trackClick: vi.fn(),
   })),
 }));
 
-const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
+const renderCreateRancher = (props = {}) =>
   waitFor(() =>
     render(
       <CreateRancher
@@ -76,58 +71,69 @@ const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
   );
 
 describe('CreateRancher', () => {
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
   it("Given that I don't fill the name field, I shouldn't be able to create my Managed Rancher Service (CTA disabled)", async () => {
-    const screen = await setupSpecTest();
+    renderCreateRancher();
     const button = screen.getByText(dashboardTranslation.createRancherCTA);
     userEvent.click(button);
     expect(onCreateRancher).not.toHaveBeenCalled();
   });
 
   it("Given that name don't respect regex button should be disabled", async () => {
-    const screen = await setupSpecTest();
+    await renderCreateRancher();
 
-    const input = screen.getByLabelText('rancher-name-input');
-    const button = screen.getByText(dashboardTranslation.createRancherCTA);
+    waitFor(() => {
+      const input = screen.getByLabelText('rancher-name-input');
+      const button = screen.getByText(dashboardTranslation.createRancherCTA);
 
-    await act(async () => {
       fireEvent.change(input, { target: { value: '12()34343:::' } });
-    });
-    await userEvent.click(button);
+      fireEvent.click(button);
 
-    expect(input).toHaveAttribute('color', 'error');
-    expect(onCreateRancher).not.toHaveBeenCalled();
+      waitFor(() => {
+        expect(input).toHaveAttribute('color', 'error');
+        expect(onCreateRancher).not.toHaveBeenCalled();
+      });
+    });
   });
 
   it('Given that I validate the creation of the service, i should call api with good default value', async () => {
-    const screen = await setupSpecTest();
+    await renderCreateRancher();
 
-    const input = screen.getByLabelText('rancher-name-input');
-    const confirmButton = screen.getByText(
-      dashboardTranslation.createRancherCTA,
-    );
+    waitFor(() => {
+      const input = screen.getByLabelText('rancher-name-input');
+      const confirmButton = screen.getByText(
+        dashboardTranslation.createRancherCTA,
+      );
 
-    const NEW_NAME = 'myrancher';
-    await act(async () => {
-      fireEvent.change(input, { target: { value: NEW_NAME } });
-    });
-    await userEvent.click(confirmButton);
+      const NEW_NAME = 'myrancher';
+      act(() => {
+        fireEvent.change(input, { target: { value: NEW_NAME } });
+      });
+      act(() => {
+        userEvent.click(confirmButton);
+      });
 
-    expect(onCreateRancher).toHaveBeenCalledWith({
-      name: NEW_NAME,
-      plan: 'STANDARD',
-      version: 'v2.7.6',
+      waitFor(() => {
+        expect(onCreateRancher).toHaveBeenCalledWith({
+          name: NEW_NAME,
+          plan: 'STANDARD',
+          version: 'v2.7.6',
+        });
+      });
     });
   });
 
   it("Given that I'm configuring the service, I should have the standard edition offer selected", async () => {
-    const screen = await setupSpecTest();
+    renderCreateRancher();
     const standardPlan = screen.getByText(listingTranslation.STANDARD);
 
     expect(standardPlan).not.toBeNull();
   });
 
   it("Given that I'm configuring the service, I should have the recommanded version selected by default.", async () => {
-    const screen = await setupSpecTest();
+    renderCreateRancher();
     const versionActive = screen.getByLabelText('tile-v2.7.6');
 
     expect(versionActive).not.toBeNull();
@@ -137,14 +143,14 @@ describe('CreateRancher', () => {
   });
 
   it('Given that there is an error i should see error banner.', async () => {
-    const screen = await setupSpecTest({ hasRancherCreationError: true });
+    renderCreateRancher({ hasRancherCreationError: true });
     const errorCreateBanner = screen.getByTestId('errorBanner');
 
     expect(errorCreateBanner).not.toBeNull();
   });
 
   it('Given that there is prices I should see rancher pricing', async () => {
-    const screen = await setupSpecTest();
+    renderCreateRancher();
     const rancherPricingHourly = screen.getAllByText('0.0171');
     const rancherPricingMonthly = screen.getAllByText('~ 12.312');
 
@@ -154,7 +160,7 @@ describe('CreateRancher', () => {
 
   describe('Cancel Click', () => {
     it('Given that I cancel the creation of the Rancher service and i had some rancher, I should be redirected to the listing page.', async () => {
-      const screen = await setupSpecTest({});
+      renderCreateRancher();
       const cancelButton = screen.getByText(dashboardTranslation.cancel);
 
       userEvent.click(cancelButton);
@@ -167,7 +173,7 @@ describe('CreateRancher', () => {
 
   describe('Discovery mode', () => {
     it('Given that I am in a Discovery project, I should not be able to click on the CTA to create a Rancher as it should be disable', async () => {
-      const screen = await setupSpecTest({ isProjectDiscoveryMode: true });
+      renderCreateRancher({ isProjectDiscoveryMode: true });
       const button = screen.getByText(dashboardTranslation.createRancherCTA);
 
       const input = screen.getByLabelText('rancher-name-input');
@@ -186,7 +192,7 @@ describe('CreateRancher', () => {
     });
 
     it('Given that I am in a Discovery project, I should see the yellow banner inviting me to activate my project', async () => {
-      const screen = await setupSpecTest({ isProjectDiscoveryMode: true });
+      renderCreateRancher({ isProjectDiscoveryMode: true });
       const banner = screen.getByText(
         'pci_projects_project_activate_project_banner_message',
       );
@@ -195,7 +201,7 @@ describe('CreateRancher', () => {
     });
 
     it('Given that I have the selected version null and the versions available, I should see the selected version to the available version with the highest name with the recommanded version description', async () => {
-      const screen = await setupSpecTest();
+      renderCreateRancher();
       const versionActive = screen.getByLabelText('tile-v2.7.6');
 
       expect(versionActive).not.toBeNull();
@@ -212,7 +218,7 @@ describe('CreateRancher', () => {
     });
 
     it('Given that I have the selected version null and the versions available, I should see  the available version with other names than the highest name without the recommanded version description', async () => {
-      const screen = await setupSpecTest();
+      renderCreateRancher();
       const versionNotActive = screen.getByLabelText('tile-v2.7.4');
 
       expect(versionNotActive).not.toBeNull();
@@ -230,7 +236,7 @@ describe('CreateRancher', () => {
   });
 
   it('Given that I am typing the rancher name, I should see the helper text in the correct color based on the Rancher name validity', async () => {
-    const screen = await setupSpecTest();
+    renderCreateRancher();
 
     const input = screen.getByLabelText('rancher-name-input');
     const helperText = screen.getByText(
@@ -239,17 +245,17 @@ describe('CreateRancher', () => {
 
     expect(helperText).toHaveAttribute('color', ODS_THEME_COLOR_INTENT.text);
 
-    await act(async () => {
+    act(() => {
       fireEvent.change(input, { target: { value: 'Invalid Name!' } });
     });
-    await waitFor(() => {
+    waitFor(() => {
       expect(helperText).toHaveAttribute('color', ODS_THEME_COLOR_INTENT.error);
     });
 
-    await act(async () => {
+    act(() => {
       fireEvent.change(input, { target: { value: 'valid-name' } });
     });
-    await waitFor(() => {
+    waitFor(() => {
       expect(helperText).toHaveAttribute('color', ODS_THEME_COLOR_INTENT.text);
     });
   });

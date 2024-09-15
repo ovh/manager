@@ -1,52 +1,57 @@
 import React from 'react';
-import updateTranslation from '@translation/updateSoftware/Messages_fr_FR.json';
-import { fireEvent, render, waitFor } from '@/utils/test/test.provider';
-
-import { versionsMocked } from '@/_mock_/version';
-import { rancherMocked } from '@/_mock_/rancher';
+import { describe, it, vi } from 'vitest';
+import { waitFor, fireEvent, screen } from '@testing-library/react';
+import updateTranslation from '../../../../public/translations/updateSoftware/Messages_fr_FR.json';
+import { render } from '../../../utils/test/test.provider';
+import { versionsMocked } from '../../../_mock_/version';
+import { rancherMocked } from '../../../_mock_/rancher';
 
 import UpdateSoftware, {
   UpdateSoftwareProps,
 } from './UpdateSoftware.component';
 
-const mockedUsedNavigate = jest.fn();
+const mockedUsedNavigate = vi.fn();
 
-jest.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigation: jest.fn(() => ({
-    getURL: jest.fn(() => Promise.resolve('123')),
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useNavigation: vi.fn(() => ({
+    getURL: vi.fn(() => Promise.resolve('123')),
     data: [],
   })),
-  useTracking: jest.fn(() => ({
-    trackPage: jest.fn(),
-    trackClick: jest.fn(),
+  useTracking: vi.fn(() => ({
+    trackPage: vi.fn(),
+    trackClick: vi.fn(),
   })),
 }));
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+vi.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
+  useParams: () => ({
+    projectId: 'testProject',
+    volumeId: 'testVolume',
+  }),
+  useHref: vi.fn(),
 }));
 
 const defaultProps: UpdateSoftwareProps = {
   rancher: rancherMocked,
   versions: versionsMocked,
   isUpdatePending: false,
-  onClickUpdate: jest.fn(),
+  onClickUpdate: vi.fn(),
   currentVersionDetails: versionsMocked[0],
 };
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
-const setupSpecTest = async (props: UpdateSoftwareProps = defaultProps) =>
+const setupSpecTest = (props: UpdateSoftwareProps = defaultProps) =>
   waitFor(() => render(<UpdateSoftware {...props} />));
 
 describe('UpdateSoftware', () => {
   it('should render the component', async () => {
-    const { getByText } = await setupSpecTest();
+    setupSpecTest();
     expect(
-      getByText(updateTranslation.updateSoftwareRancherDurationInfo),
+      screen.getByText(updateTranslation.updateSoftwareRancherDurationInfo),
     ).toBeInTheDocument();
   });
 

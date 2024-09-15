@@ -1,31 +1,38 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import listingTranslation from '@translation/listing/Messages_fr_FR.json';
+import { describe, it, vi } from 'vitest';
+import { screen, waitFor, act, fireEvent } from '@testing-library/react';
+import listingTranslation from '../../../../public/translations/listing/Messages_fr_FR.json';
 import EditNameModal from './EditNameModal.component';
-import { fireEvent, render, waitFor, act } from '@/utils/test/test.provider';
-import { rancherMocked } from '@/_mock_/rancher';
+import { render } from '../../../utils/test/test.provider';
+import { rancherMocked } from '../../../_mock_/rancher';
 
-const onEditMocked = jest.fn();
-const onClose = jest.fn();
+const onEditMocked = vi.fn();
+const onClose = vi.fn();
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
-const setupSpecTest = async () =>
-  waitFor(() =>
-    render(
-      <EditNameModal
-        onClose={onClose}
-        rancher={rancherMocked}
-        onEditRancher={onEditMocked}
-      />,
-    ),
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useTracking: vi.fn(() => ({
+    trackPage: vi.fn(),
+    trackClick: vi.fn(),
+  })),
+}));
+
+const setupSpecTest = () =>
+  render(
+    <EditNameModal
+      onClose={onClose}
+      rancher={rancherMocked}
+      onEditRancher={onEditMocked}
+    />,
   );
 
 describe('Edit Name Modal', () => {
   it('I should see the title, confirm button and allowed characters', async () => {
-    const screen = await setupSpecTest();
+    setupSpecTest();
 
     const title = screen.getByText(listingTranslation.editNameModalTitle);
     const confirmButton = screen.getByText(
@@ -44,7 +51,7 @@ describe('Edit Name Modal', () => {
   });
 
   it("Given that the name doesn't change, the CTA should be disabled", async () => {
-    const screen = await setupSpecTest();
+    setupSpecTest();
 
     const button = screen.getByText(listingTranslation.editNameRancherCta);
 
@@ -52,43 +59,52 @@ describe('Edit Name Modal', () => {
   });
 
   it("Given that I'm on the modale, I should be able to write another name in the box and click on the CTA to validate my change.", async () => {
-    const screen = await setupSpecTest();
+    setupSpecTest();
 
     const input = screen.getByLabelText('edit-input');
     const button = screen.getByText(listingTranslation.editNameRancherCta);
     const NEW_NAME = 'rancher1234';
 
-    await act(async () => {
+    act(async () => {
       fireEvent.change(input, { target: { value: NEW_NAME } });
     });
 
-    await userEvent.click(button);
+    act(async () => {
+      userEvent.click(button);
+    });
 
-    expect(onEditMocked).toHaveBeenCalledWith({
-      ...rancherMocked,
-      targetSpec: {
-        ...rancherMocked.targetSpec,
-        name: NEW_NAME,
-      },
+    waitFor(() => {
+      expect(onEditMocked).toHaveBeenCalledWith({
+        ...rancherMocked,
+        targetSpec: {
+          ...rancherMocked.targetSpec,
+          name: NEW_NAME,
+        },
+      });
     });
   });
 
   it("Given that the name dont respects RegeX, I shouldn't be able to validate .", async () => {
-    const screen = await setupSpecTest();
+    setupSpecTest();
 
-    const input = screen.getByLabelText('edit-input');
-    const button = screen.getByText(listingTranslation.editNameRancherCta);
+    waitFor(() => {
+      const input = screen.getByLabelText('edit-input');
+      const button = screen.getByText(listingTranslation.editNameRancherCta);
 
-    expect(input).toHaveAttribute('color', 'info');
+      expect(input).toHaveAttribute('color', 'info');
 
-    await act(async () => {
-      fireEvent.change(input, { target: { value: '12()34343:::' } });
+      act(async () => {
+        fireEvent.change(input, { target: { value: '12()34343:::' } });
+      });
+
+      act(async () => {
+        userEvent.click(button);
+      });
+
+      waitFor(() => {
+        expect(input).toHaveAttribute('color', 'error');
+        expect(onEditMocked).not.toHaveBeenCalled();
+      });
     });
-
-    await userEvent.click(button);
-
-    expect(input).toHaveAttribute('color', 'error');
-
-    expect(onEditMocked).not.toHaveBeenCalled();
   });
 });

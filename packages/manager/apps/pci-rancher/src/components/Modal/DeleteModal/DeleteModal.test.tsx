@@ -1,30 +1,48 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import listingTranslation from '@translation/listing/Messages_fr_FR.json';
+import { describe, it, vi } from 'vitest';
+import { waitFor, act, fireEvent, screen } from '@testing-library/react';
+import listingTranslation from '../../../../public/translations/listing/Messages_fr_FR.json';
 import DeleteModal, { TERMINATE_TEXT } from './DeleteModal.component';
-import { fireEvent, render, waitFor, act } from '@/utils/test/test.provider';
-import { rancherMocked } from '@/_mock_/rancher';
+import { render } from '../../../utils/test/test.provider';
+import { rancherMocked } from '../../../_mock_/rancher';
 
-const onDeleteMocked = jest.fn();
+const onDeleteMocked = vi.fn();
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
-const setupSpecTest = async () =>
-  waitFor(() =>
-    render(
-      <DeleteModal
-        selectedRancher={rancherMocked}
-        onClose={() => true}
-        onDeleteRancher={onDeleteMocked}
-      />,
-    ),
+vi.mock('react-use', () => ({
+  useMedia: vi.fn(),
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useNavigation: vi.fn(() => ({
+    getURL: vi.fn(() => Promise.resolve('123')),
+    data: [],
+  })),
+  useTracking: vi.fn(() => ({
+    trackPage: vi.fn(),
+    trackClick: vi.fn(),
+  })),
+}));
+
+const setupSpecTest = () =>
+  render(
+    <DeleteModal
+      selectedRancher={rancherMocked}
+      onClose={() => true}
+      onDeleteRancher={onDeleteMocked}
+    />,
   );
 
 describe('Delete Modal', () => {
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
   it('Page should display correctly', async () => {
-    const screen = await setupSpecTest();
+    setupSpecTest();
 
     const title = screen.getByText(listingTranslation.deleteModalTitle);
 
@@ -37,7 +55,7 @@ describe('Delete Modal', () => {
 
   describe('Delete Button', () => {
     it('Should be disable', async () => {
-      const screen = await setupSpecTest();
+      setupSpecTest();
 
       const button = screen.getByText(listingTranslation.deleteRancher);
 
@@ -45,21 +63,24 @@ describe('Delete Modal', () => {
     });
 
     it('Should be enabled when TERMINATE is typed', async () => {
-      const screen = await setupSpecTest();
+      setupSpecTest();
 
       const input = screen.getByLabelText('delete-input');
       const button = screen.getByText(listingTranslation.deleteRancher);
 
-      await act(async () => {
-        fireEvent.change(input, { target: { value: TERMINATE_TEXT } });
+      act(async () => {
+        await fireEvent.change(input, { target: { value: TERMINATE_TEXT } });
       });
 
-      await userEvent.click(button);
+      act(async () => {
+        await userEvent.click(button);
+      });
 
-      expect(input.getAttribute('value')).toBe(TERMINATE_TEXT);
-      expect(button).not.toHaveAttribute('disabled', 'false');
-
-      expect(onDeleteMocked).toHaveBeenCalledWith();
+      waitFor(() => {
+        expect(input.getAttribute('value')).toBe(TERMINATE_TEXT);
+        expect(button).not.toHaveAttribute('disabled', 'false');
+        expect(onDeleteMocked).toHaveBeenCalledWith();
+      });
     });
   });
 });
