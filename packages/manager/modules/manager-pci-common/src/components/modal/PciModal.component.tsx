@@ -34,6 +34,7 @@ export function PciModal({
   onCancel,
 }: Readonly<PciModalProps>) {
   const { t } = useTranslation('pci-common');
+
   return (
     <OsdsModal
       color={
