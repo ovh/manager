@@ -15,6 +15,11 @@ export const IAM_ACTIONS = {
     create: `${IAM_ACTIONS_PREFIX}domain/create`,
     delete: `${IAM_ACTIONS_PREFIX}domain/delete`,
   },
+  mailingList: {
+    create: `${IAM_ACTIONS_PREFIX}mailingList/create`,
+    delete: `${IAM_ACTIONS_PREFIX}mailingList/delete`,
+    edit: `${IAM_ACTIONS_PREFIX}mailingList/edit`,
+  },
   organization: {
     create: `${IAM_ACTIONS_PREFIX}organization/create`,
     delete: `${IAM_ACTIONS_PREFIX}organization/delete`,
