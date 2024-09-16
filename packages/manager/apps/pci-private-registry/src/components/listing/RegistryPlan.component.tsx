@@ -1,4 +1,4 @@
-import { DataGridTextCell } from '@ovhcloud/manager-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
 import { useParams } from 'react-router-dom';
 import { useGetRegistryPlan } from '@/api/hooks/useRegistry';

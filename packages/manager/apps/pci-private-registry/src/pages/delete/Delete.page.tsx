@@ -8,7 +8,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { DeletionModal } from '@ovh-ux/manager-pci-common/src/components/deletion-modal';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContext } from 'react';
 import {

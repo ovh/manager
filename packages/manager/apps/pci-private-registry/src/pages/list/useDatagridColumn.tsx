@@ -1,4 +1,7 @@
-import { DatagridColumn, DataGridTextCell } from '@ovhcloud/manager-components';
+import {
+  DatagridColumn,
+  DataGridTextCell,
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { TRegistry } from '@/api/data/registry';
 import ActionComponent from '@/components/listing/Action.component';

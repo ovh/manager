@@ -18,7 +18,7 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovhcloud/manager-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   useGetAllRegistries,
   useRenameRegistry,

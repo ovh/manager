@@ -1,4 +1,4 @@
-import { ActionMenu } from '@ovhcloud/manager-components';
+import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useHref, useParams } from 'react-router-dom';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
