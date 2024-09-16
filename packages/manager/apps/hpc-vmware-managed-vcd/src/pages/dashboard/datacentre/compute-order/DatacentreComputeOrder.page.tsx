@@ -3,21 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   Datagrid,
-  DataGridTextCell,
+  DatagridColumn,
   Description,
   ErrorBanner,
   Subtitle,
 } from '@ovh-ux/manager-react-components';
-import {
-  OsdsButton,
-  OsdsRadio,
-  OsdsRadioButton,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_RADIO_BUTTON_SIZE,
-} from '@ovhcloud/ods-components';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   COMPUTE_ORDER_MAX_QUANTITY,
@@ -29,6 +21,7 @@ import {
   ComputeOrderRamCell,
   ComputeOrderCpuCountCell,
   ComputeOrderPriceCell,
+  ComputeOrderSelectCell,
 } from '@/components/datagrid/compute/ComputeOrderCells.component';
 import Loading from '@/components/loading/Loading.component';
 import { QuantitySelector } from '@/components/datagrid/compute/QuantitySelector.component';
@@ -46,35 +39,36 @@ export default function ComputeOrderPage() {
   const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
 
   const orderableVhostList = data?.data?.compute;
-  const canOrderVhost = orderableVhostList && orderableVhostList.length;
   const isValidQuantity = validateComputeQuantity(selectedQuantity);
 
+  // TODO:
+  // 1. orderableVhostList: retrieve each element's price from catalog
+  // 2. add price details to each vhost & handle format in <ComputeOrderPriceCell />
+  // 3. generate expressOrderURL or orderCart & redirect on order page
+
   if (isLoading) return <Loading />;
-  if (isError || !canOrderVhost) {
+  if (isError || !orderableVhostList?.length) {
     return (
       <ErrorBanner
-        error={{ status: 500, data: { message: 'Contact support' } }}
+        error={{
+          status: 500,
+          data: {
+            message: t('managed_vcd_vdc_compute_order_vhost_unavailable'),
+          },
+        }}
       />
     );
   }
 
-  const columns = [
+  const columns: DatagridColumn<IVdcOrderableVHost>[] = [
     {
       id: 'select',
-      cell: (vhost: IVdcOrderableVHost) => (
-        <DataGridTextCell>
-          <OsdsRadio
-            checked={vhost?.name === selectedVhost}
-            id={vhost?.name}
-            value={vhost?.name}
-          >
-            <OsdsRadioButton
-              onClick={() => setSelectedVhost(vhost?.name)}
-              size={ODS_RADIO_BUTTON_SIZE.sm}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            />
-          </OsdsRadio>
-        </DataGridTextCell>
+      cell: (vhost) => (
+        <ComputeOrderSelectCell
+          vHost={vhost}
+          selectedVhost={selectedVhost}
+          setSelectedVhost={setSelectedVhost}
+        />
       ),
       label: '',
       isSortable: false,

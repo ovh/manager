@@ -27,7 +27,7 @@ export default function DatagridContainer({
   route: { api, onboarding },
   columns,
   subHeaderButton,
-}: TDatagridContainerProps) {
+}: Readonly<TDatagridContainerProps>) {
   const [flattenData, setFlattenData] = useState<Record<string, unknown>[]>([]);
   const navigate = useNavigate();
 
