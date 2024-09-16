@@ -1,5 +1,6 @@
 {
   "managed_vcd_listing_title": "Managed VCD",
+  "managed_vcd_listing_id": "Id",
   "managed_vcd_listing_name": "Nom",
   "managed_vcd_listing_location": "Région",
   "managed_vcd_listing_description": "Description",
