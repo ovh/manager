@@ -4,6 +4,6 @@
   "pci_projects_project_discovery_activate_banner_no_promotion_title": "Démarrez le déploiement de vos ressources Cloud.",
   "pci_projects_project_discovery_activate_banner_description": "Vous êtes actuellement en mode découverte. En activant votre projet, vous pourrez démarrer vos ressources cloud en quelques minutes.",
   "pci_projects_project_discovery_activate_banner_antifraud_manuel_check_message": "L'activation de votre projet est en cours de vérification par nos équipes. Vous recevrez un email de confirmation une fois la procédure terminée.",
-  "pci_projects_project_discovery_activate_banner_cta": "Activer le projet",
+  "pci_projects_project_discovery_activate_banner_cta": "Activer",
   "pci_projects_project_discovery_activate_banner_antifraud_refused_message": "Suite à une analyse des données liées à l'activation de votre projet, il nous apparaît que celles-ci ne présentent pas toutes les garanties nécessaires en termes de sécurité. Vous pouvez contacter un de nos conseillers via la rubrique aide de votre compte, pour nous fournir les éléments utiles à l'activation de votre projet. Dans le cas contraire, celle-ci ne sera pas prise en compte."
 }
