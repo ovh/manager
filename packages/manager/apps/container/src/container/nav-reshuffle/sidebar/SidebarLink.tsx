@@ -5,10 +5,7 @@ import SidebarLinkTag from './SidebarLinkTag';
 import { Node } from './navigation-tree/node';
 import StaticLink from '@/container/nav-reshuffle/sidebar/StaticLink';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-} from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 
 export type SidebarLinkProps = {
@@ -25,8 +22,8 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   count = 0,
   node = {},
   linkParams = {},
-  handleOnClick = () => { },
-  handleOnEnter = () => { },
+  handleOnClick = () => {},
+  handleOnEnter = () => {},
   id = '',
   isShortText = false,
 }: SidebarLinkProps): JSX.Element => {
@@ -44,7 +41,9 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
     />
   ) : (
     <button
-      className={style['button-as-div']}
+      className={`${style.button_as_div} ${
+        isShortText ? style.button_as_div_short : ''
+      }`}
       title={t(node.translation)}
       onKeyUp={(e) => {
         if (e.key === 'Enter') {
@@ -56,9 +55,16 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       data-testid={id}
       role="button"
     >
-      <span className='flex gap-2 align-items-center'>
-        <SvgIconWrapper name={node.svgIcon} height={32} width={32} className='p-1 fill-white block' />
-        {!isShortText && <span>{t(node.translation)}</span>}
+      <span className="flex gap-2 align-items-center justify-start">
+        <span className={style.button_as_div_icon}>
+          <SvgIconWrapper
+            name={node.svgIcon}
+            height={32}
+            width={32}
+            className="p-1 fill-white block"
+          />
+        </span>
+        <span className={style.button_as_div_text}>{t(node.translation)}</span>
       </span>
       <span className="flex justify-end align-items-center">
         {!isShortText && (count as number) > 0 && (
@@ -76,7 +82,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
         ) : null}
         {!isShortText && <SidebarLinkTag node={node} />}
       </span>
-    </button >
+    </button>
   );
 };
 
