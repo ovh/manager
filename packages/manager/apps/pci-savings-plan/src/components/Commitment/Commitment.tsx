@@ -7,6 +7,7 @@ import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { convertHourlyPriceToMonthly } from '@/utils/commercial-catalog/utils';
+import { getDiffInPercent } from './Commitment.utils';
 
 const Commitment = ({
   duration,
@@ -14,28 +15,26 @@ const Commitment = ({
   hourlyPriceWithoutCommitment,
   isActive,
   onClick,
+  quantity = 1,
 }: {
   duration: number;
   price: string;
   hourlyPriceWithoutCommitment: number;
   isActive: boolean;
   onClick: () => void;
+  quantity: number;
 }) => {
   const { t } = useTranslation('create');
 
-  const priceByMonthWithoutCommitment = convertHourlyPriceToMonthly(
-    hourlyPriceWithoutCommitment,
+  const priceByMonthWithoutCommitment =
+    convertHourlyPriceToMonthly(hourlyPriceWithoutCommitment) * quantity;
+
+  const priceNumber = Number(price) * quantity;
+
+  const diffInPercent = getDiffInPercent(
+    priceByMonthWithoutCommitment,
+    priceNumber,
   );
-
-  const priceNumber = Number(price);
-
-  const diffInPercent = priceByMonthWithoutCommitment
-    ? (
-        ((Number(priceByMonthWithoutCommitment) - priceNumber) /
-          Number(priceByMonthWithoutCommitment)) *
-        100
-      ).toFixed(0)
-    : 0;
 
   return (
     <OsdsTile
