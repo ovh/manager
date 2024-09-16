@@ -100,7 +100,7 @@
   "domain_tab_DNS_name": "Serwer DNS",
   "domain_tab_DNS_state": "Status",
   "domain_tab_DNS_state_deleting": "Trwa usuwanie",
-  "domain_tab_DNS_state_adding": "W realizacji",
+  "domain_tab_DNS_state_adding": "Trwa aktywacja",
   "domain_tab_DNS_state_activated": "Aktywny",
   "domain_tab_DNS_empty": "Nieznane serwery DNS",
   "domain_tab_DNS_error": "Z powodu błędu wewnętrznego niektóre informacje DNS nie mogły zostać pobrane.",
@@ -831,5 +831,7 @@
   "domain_dashboard_general_information_alldom_termination_warning_close": "Zamknij",
   "domain_dashboard_show_authinfo_warning_part_1": "Uwaga: jeśli domena zostanie przeniesiona do innego operatora, strefa DNS i jej zawartość zostaną usunięte. Twoja strona WWW i konto e-mail mogą przestać działać.",
   "domain_dashboard_show_authinfo_warning_part_2": "Jeśli chcesz po prostu zmienić dostawcę hostingu lub usługi poczty elektronicznej, możesz pozostawić domenę w OVHcloud i w ten sposób nadal korzystać z najlepszych stawek oraz naszych bezpłatnych usług, takich jak ochrona przed spamem, anonimizacja danych osobowych lub DNSSEC.",
-  "domain_configuration_dns_entry_add_step3_check_warning_info": "Błąd: Nie można zarejestrować konfiguracji DNS. Sprawdź, czy:"
+  "domain_configuration_dns_entry_add_step3_check_warning_info": "Błąd: Nie można zarejestrować konfiguracji DNS. Sprawdź, czy:",
+  "domain_configuration_dnsanycast_activate_button": "Zamów DNS Anycast",
+  "domain_configuration_dnsanycast_terminate_button": "Zrezygnuj z DNS Anycast"
 }

@@ -47,8 +47,10 @@ export default class FtthEligibilityCtrl {
         ? ELIGIBILITY.eligible
         : ELIGIBILITY.not_eligible;
     });
-    const eligible = this.sortList(groupBy.eligible);
-    const notEligible = this.sortList(groupBy.not_eligible);
+    const eligible = groupBy.eligible ? this.sortList(groupBy.eligible) : [];
+    const notEligible = groupBy.not_eligible
+      ? this.sortList(groupBy.not_eligible)
+      : [];
 
     const sorted = [...eligible, ...notEligible];
     return sorted;

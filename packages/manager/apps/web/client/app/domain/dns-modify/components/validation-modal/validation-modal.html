@@ -1,0 +1,39 @@
+<div class="modal d-block" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <oui-modal
+                data-loading="$ctrl.isUpdating"
+                data-heading="{{::'domain_dns_modify_validation_modal_heading' | translate }}"
+                data-primary-label="{{::'domain_dns_modify_validation_modal_validate' | translate }}"
+                data-primary-action="$ctrl.applyConfiguration()"
+                data-secondary-label="{{::'domain_dns_modify_validation_modal_cancel' | translate }}"
+                data-secondary-action="$ctrl.closeValidationModal()"
+                data-on-dismiss="$ctrl.closeValidationModal()"
+            >
+                <p
+                    class="oui-paragraph"
+                    data-translate="domain_dns_modify_validation_modal_message"
+                ></p>
+                <ul>
+                    <li data-ng-repeat="ns in $ctrl.modifiedDnsList">
+                        <ul class="list-unstyled mb-2">
+                            <li>
+                                <span
+                                    data-translate="domain_dns_modify_validation_modal_hostname"
+                                    data-translate-values="ns"
+                                ></span>
+                            </li>
+                            <li data-ng-if="ns.ip">
+                                <span
+                                    data-translate="domain_dns_modify_validation_modal_ip"
+                                    data-translate-values="ns"
+                                ></span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </oui-modal>
+        </div>
+    </div>
+</div>
+<div class="oui-modal-backdrop"></div>

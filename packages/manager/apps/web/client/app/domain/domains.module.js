@@ -1,13 +1,14 @@
-import angular from 'angular';
-import 'angular-translate';
-import '@ovh-ux/ui-kit';
-import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
-import './list/style.scss';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import '@ovh-ux/ui-kit';
+import angular from 'angular';
+import 'angular-translate';
 import routing from './domains.routing';
 import component from './list/list-domain-layout.component';
 import restoreRenew from './list/restore-renew';
+import './list/style.scss';
 
 const moduleName = 'ovhManagerDomains';
 
@@ -16,9 +17,10 @@ angular
     ngTranslateAsyncLoader,
     'oui',
     'pascalprecht.translate',
-    ListLayoutHelper.moduleName,
     restoreRenew,
     ngOvhUtils,
+    ListLayoutHelper.moduleName,
+    ApiV2ListHelper.moduleName,
   ])
   .config(routing)
   .component('managerListDomainLayout', component)
