@@ -81,7 +81,7 @@ angular.module('App').controller(
       };
 
       this.PrivateDatabase.getModels().then((models) => {
-        this.grantEnum = models['hosting.PrivateDatabase.grant.GrantEnum'].enum;
+        this.grantEnum = models['hosting.privateDatabase.grant.GrantEnum'].enum;
       });
 
       this.$scope.addBdd = () => this.addBdd();
