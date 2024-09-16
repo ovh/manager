@@ -125,7 +125,7 @@ export default class AgoraIpV4OrderController {
         });
         this.user = results.user;
         this.services = [...results.services, ...results.vrack];
-        this.services = results.services.map((service) => ({
+        this.services = this.services.map((service) => ({
           ...service,
           translatedType: this.$translate.instant(
             `ip_filter_services_title_${service.type}`,
@@ -421,6 +421,7 @@ export default class AgoraIpV4OrderController {
       const ipOffersByDatacenter = AgoraIpV4OrderController.getRegionFromDatacenter(
         this.model.selectedRegion.datacenter,
       );
+
       blockIpOfferDetails = this.filterOffer(
         ipOfferDetails,
         'productShortName',
@@ -630,7 +631,6 @@ export default class AgoraIpV4OrderController {
       productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
         organisation: this.model.params.selectedOrganisation.organisationId,
         ...commonProductProps,
-        country: DATACENTER_TO_COUNTRY[datacenter].toUpperCase(),
         productRegionName: this.model.params.selectedOffer.productRegion,
         datacenter,
       });
