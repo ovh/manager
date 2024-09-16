@@ -11,7 +11,6 @@ $sidebar-font-size: 0.875rem;
   flex-direction: row;
   width: fit-content;
   height: 100vh;
-  background-color: $p-700;
   position: relative;
   color: white;
   gap: 0.125rem;
@@ -24,6 +23,11 @@ $sidebar-font-size: 0.875rem;
     justify-content: flex-end;
     overflow-y: auto;
     scrollbar-width: none;
+    background-color: $p-700;
+
+    transition: width 0.3s ease-in, min-width 0.3s ease-in;
+    transform-origin: left;
+
     &::-webkit-scrollbar {
       display: none;
     }
@@ -37,7 +41,7 @@ $sidebar-font-size: 0.875rem;
 
   &_logo {
     display: flex;
-    
+
     img {
       height: 1.85rem;
     }
@@ -45,8 +49,8 @@ $sidebar-font-size: 0.875rem;
 
   &_short {
     width: 4.5rem;
-    min-width: unset;
-    & .sidebar_menu_items > button{
+    min-width: 0rem;
+    & .sidebar_menu_items > button {
       justify-content: center;
     }
     & .sidebar_menu ul {
@@ -78,7 +82,8 @@ $sidebar-font-size: 0.875rem;
     padding: 0.5rem;
     transition: all 0.3s ease-in-out;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background: $p-800;
     }
   }
@@ -97,31 +102,40 @@ $sidebar-font-size: 0.875rem;
     list-style-type: none;
   }
 
-  &_menu_items button, &_menu_items a {
+  &_menu_items button,
+  &_menu_items a {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
   &_menu_items {
-    a:hover, a:focus, button:hover, button:focus {
+    a:hover,
+    a:focus,
+    button:hover,
+    button:focus {
       background-color: $p-800;
     }
   }
   &_menu_items_selected {
-    a, button {
+    a,
+    button {
       background-color: $p-800;
     }
   }
 
   &_submenu_items {
-    a:hover, a:focus, button:hover, button:focus {
+    a:hover,
+    a:focus,
+    button:hover,
+    button:focus {
       background-color: darken($p-800, 5);
       text-decoration: none;
     }
   }
 
   &_submenu_items_selected {
-    a, button {
+    a,
+    button {
       background-color: darken($p-800, 5);
       text-decoration: none !important;
     }
@@ -156,7 +170,7 @@ $sidebar-font-size: 0.875rem;
   &_action {
     a {
       background-color: white;
-      display: inline-block;
+      display: flex;
       width: 100%;
       color: $p-500;
       font-weight: 600;
@@ -164,17 +178,40 @@ $sidebar-font-size: 0.875rem;
       line-height: 2.5rem;
       border-radius: 0.5rem;
       outline: none;
+      justify-content: center;
+      white-space: nowrap;
     }
 
-    a:hover, a:focus {
+    &_icon {
+      font-size: 1.5rem;
+      vertical-align: bottom !important;
+      padding-left: 1rem;
+    }
+
+    &_text {
+      display: flex;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      transition: width 0.1s ease-in 0s, height 0.1s ease-in 0s, opacity 0s ease-in 0s;
+    }
+
+    &_open &_text {
+      width: fit-content;
+      opacity: 1;
+      height: auto;
+      transition: width 0.1s ease-in 0.2s, height 0.1s ease-in 0.2s, opacity 0.1s ease-in 0.2s;
+    }
+
+    &_open &_icon {
+      padding-left: 0;
+    }
+
+    a:hover,
+    a:focus {
       text-decoration: none;
       background-color: $p-100;
     }
-  }
-
-  &_action_icon {
-    font-size: 1.5rem;
-    vertical-align: bottom !important;
   }
 
   &_chip {
@@ -267,14 +304,14 @@ $sidebar-font-size: 0.875rem;
     .sidebar::-webkit-scrollbar {
       display: none;
     }
-    
+
     &_logo {
       display: none;
     }
     &_toggle_btn {
       display: none;
     }
-    
+
     &_wrapper {
       width: 100%;
     }
@@ -288,7 +325,7 @@ $sidebar-font-size: 0.875rem;
   }
 }
 
-.button-as-div {
+.button_as_div {
   background: none;
   border: none;
   padding: 0;
@@ -298,16 +335,35 @@ $sidebar-font-size: 0.875rem;
   color: inherit;
   font-weight: 600;
   font-size: $sidebar-font-size;
+
+  &_text {
+    white-space: nowrap;
+  }
+
+  &_icon {
+    height: 0;
+  }
+
+  &_text, &_short &_icon {
+    transition: opacity 0.1s ease-in 0.2s;
+    opacity: 1;
+    width: auto;
+    height: auto;
+  }
+
+  &_short &_text, &_icon {
+    opacity: 0;
+    transition: all 0s ease-in;
+    width: 0;
+  }
 }
 
 .sidebarLinkTag {
   width: 0.8rem;
-  margin-right: .25rem;
+  margin-right: 0.25rem;
   background-color: var(--ods-color-primary-300);
 }
 
 .hidden {
   visibility: hidden;
 }
-
-
