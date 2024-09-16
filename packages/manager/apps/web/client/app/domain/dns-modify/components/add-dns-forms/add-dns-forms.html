@@ -67,7 +67,7 @@
 
     <oui-message data-ng-if="$ctrl.updateError" data-type="error">
         <span
-            data-translate="$ctrl.updateError.message"
+            data-translate="{{ $ctrl.updateError.message }}"
             data-translate-values="$ctrl.updateError.data"
         ></span>
     </oui-message>
