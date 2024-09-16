@@ -13,7 +13,7 @@ import {
   OnboardingLayout,
   RedirectionGuard,
   useProjectUrl,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { Suspense } from 'react';
 import { useGetAllRegistries } from '@/api/hooks/useRegistry';

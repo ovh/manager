@@ -1,4 +1,4 @@
-import { Clipboard } from '@ovhcloud/manager-components';
+import { Clipboard } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_THEME_COLOR_INTENT,

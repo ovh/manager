@@ -1,11 +1,11 @@
 import { renderHook, waitFor } from '@testing-library/react';
-import { IMe, useMe } from '@ovhcloud/manager-components';
+import { IMe, useMe } from '@ovh-ux/manager-react-components';
 import { describe, it, vi } from 'vitest';
 import { getCatalog, TCatalog } from '../data/catalog';
 import { useCatalog } from './useCatalog';
 import { wrapper } from '@/wrapperRenders';
 
-vi.mock('@ovhcloud/manager-components', () => ({
+vi.mock('@ovh-ux/manager-react-components', () => ({
   useMe: vi.fn(),
 }));
 
