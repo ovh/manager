@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { describe } from 'vitest';
 import { render } from '@testing-library/react';
-import { PciFreeLocalZonesBanner, URLs } from './pci-free-local-zones-banner';
+import { PciFreeLocalZonesBanner, URLs } from './PciFreeLocalZonesBanner';
 
 describe('PciFreeLocalZonesBanner tests', () => {
   it.each(['FR', 'DE'])(
