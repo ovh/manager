@@ -11,6 +11,7 @@ import organizationsDeleteTranslation from '@/public/translations/organizations/
 import domainsTranslation from '@/public/translations/domains/Messages_fr_FR.json';
 import domainsAddDomainTranslation from '@/public/translations/domains/addDomain/Messages_fr_FR.json';
 import domainsDeleteTranslation from '@/public/translations/domains/delete/Messages_fr_FR.json';
+import domainsDiagnosticTranslation from '@/public/translations/domains/diagnostic/Messages_fr_FR.json';
 import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
 import accountAddAndEditTranslation from '@/public/translations/accounts/addAndEdit/Messages_fr_FR.json';
 import accountAliasTranslation from '@/public/translations/accounts/alias/Messages_fr_FR.json';
@@ -33,6 +34,7 @@ i18n.use(initReactI18next).init({
       domains: domainsTranslation,
       'domains/addDomain': domainsAddDomainTranslation,
       'domains/delete': domainsDeleteTranslation,
+      'domains/diagnostic': domainsDiagnosticTranslation,
       accounts: accountTranslation,
       'accounts/addAndEdit': accountAddAndEditTranslation,
       'accounts/alias': accountAliasTranslation,

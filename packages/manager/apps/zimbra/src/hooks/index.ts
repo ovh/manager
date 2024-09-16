@@ -1,6 +1,7 @@
 export * from './useAccount';
 export * from './useAccountList';
 export * from './useDomains';
+export * from './useDomain';
 export * from './useGenerateUrl';
 export * from './useOrganization';
 export * from './useOrganizationsList';

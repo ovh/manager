@@ -80,6 +80,12 @@ export const Routes: any = [
                   import('@/pages/dashboard/Domains/ModalDeleteDomain'),
                 ),
               },
+              {
+                path: 'diagnostic',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/ModalDiagnosticDnsRecord'),
+                ),
+              },
             ],
           },
           {

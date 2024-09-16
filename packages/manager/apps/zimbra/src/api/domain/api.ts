@@ -21,6 +21,16 @@ export const getDomainsZoneList = async () => {
   return data;
 };
 
+export const getZimbraPlatformDomainDetail = async (
+  platformId: string,
+  domainId: string,
+) => {
+  const { data } = await v2.get<DomainType>(
+    `${getApiPath(platformId)}domain/${domainId}`,
+  );
+  return data;
+};
+
 // POST
 
 export const postZimbraDomain = async (

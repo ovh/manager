@@ -1,32 +1,22 @@
-import React, { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import React from 'react';
 import { OsdsTile, OsdsDivider } from '@ovhcloud/ods-components/react';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import {
-  LinkType,
-  Links,
-  ManagerText,
-  Subtitle,
-} from '@ovh-ux/manager-react-components';
+import { ManagerText, Subtitle } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { AccountStatistics } from '@/api/api.type';
 import { TileBlock } from '@/components/TileBlock';
 import { BadgeStatus } from '@/components/BadgeStatus';
 import { useOrganization, usePlatform } from '@/hooks';
-import { OngoingTasks } from './OngoingTasks';
-import { GUIDES_LIST } from '@/guides.constants';
+// import { OngoingTasks } from './OngoingTasks';
+import { Guide, GUIDES_LIST } from '@/guides.constants';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import GuideLink from '@/components/GuideLink';
 
 interface GuideLinks {
-  [key: string]: string | undefined;
+  [key: string]: Guide;
 }
 
 function GeneralInformation() {
   const { t } = useTranslation('dashboard');
-  const context = useContext(ShellContext);
-  const { ovhSubsidiary } = context.environment.getUser();
-  const webmail = GUIDES_LIST.webmail.url;
-
   const { data: platform, platformUrn } = usePlatform();
   const { data: organisation } = useOrganization();
 
@@ -35,12 +25,7 @@ function GeneralInformation() {
       return (
         <div key={key} className="block">
           <OsdsDivider separator />
-          <Links
-            type={LinkType.external}
-            target={OdsHTMLAnchorElementTarget._blank}
-            href={value}
-            label={t(key)}
-          />
+          <GuideLink label={t(key)} guide={value} />
         </div>
       );
     });
@@ -105,14 +90,13 @@ function GeneralInformation() {
                 >
                   {accountsStatistics?.length > 0
                     ? accountsStatistics?.map((stats) => (
-                        <span key={stats.offer}>{`${
-                          stats.configuredAccountsCount
+                      <span key={stats.offer}>{`${stats.configuredAccountsCount
                         } / ${stats.configuredAccountsCount +
-                          stats.availableAccountsCount} ${stats.offer}`}</span>
-                      ))
+                        stats.availableAccountsCount} ${stats.offer}`}</span>
+                    ))
                     : t(
-                        'zimbra_dashboard_tile_serviceConsumption_noAccountOffer',
-                      )}
+                      'zimbra_dashboard_tile_serviceConsumption_noAccountOffer',
+                    )}
                 </ManagerText>
               )}
             </TileBlock>
@@ -124,11 +108,10 @@ function GeneralInformation() {
           <div className="flex flex-col w-full">
             <Subtitle>{t('zimbra_dashboard_tile_usefulLinks_title')}</Subtitle>
             {guideLinks({
-              zimbra_dashboard_webmail: webmail,
+              zimbra_dashboard_webmail: GUIDES_LIST.webmail,
               zimbra_dashboard_administrator_guide:
-                GUIDES_LIST.administrator_guide.url[ovhSubsidiary],
-              zimbra_dashboard_user_guides:
-                GUIDES_LIST.user_guide.url[ovhSubsidiary],
+                GUIDES_LIST.administrator_guide,
+              zimbra_dashboard_user_guides: GUIDES_LIST.user_guide,
             })}
           </div>
         </OsdsTile>

@@ -1,4 +1,4 @@
-interface GuideLinks {
+export interface GuideLinks {
   [key: string]: string | undefined;
   FR?: string;
   GB: string;
@@ -13,6 +13,12 @@ interface GuideLinks {
   TN?: string;
   SN?: string;
   IN?: string;
+}
+
+export interface Guide {
+  key: string;
+  url: GuideLinks | string;
+  tracking: string;
 }
 
 const helpRoot = 'https://help.ovhcloud.com/csm/';
@@ -63,6 +69,21 @@ export const ZIMBRA_ADMINISTRATOR_GUIDE: GuideLinks = {
   SN: `${helpRoot}fr-zimbra-getting-started?id=kb_article_view&sysparm_article=KB0064591`,
 };
 
+export const ZIMBRA_DNS_CONFIGURATION_GUIDE: GuideLinks = {
+  FR: `${helpRoot}`,
+  GB: `${helpRoot}`,
+  DE: `${helpRoot}`,
+  ES: `${helpRoot}`,
+  IT: `${helpRoot}`,
+  PL: `${helpRoot}`,
+  PT: `${helpRoot}`,
+  IE: `${helpRoot}`,
+  DEFAULT: `${helpRoot}`,
+  MA: `${helpRoot}`,
+  TN: `${helpRoot}`,
+  SN: `${helpRoot}`,
+};
+
 export const GUIDES_LIST = {
   webmail: {
     key: 'zimbra_dashboard_webmail',
@@ -82,6 +103,11 @@ export const GUIDES_LIST = {
   cname_guide: {
     key: 'zimbra_cname_guide',
     url: ZIMBRA_CNAME_GUIDE,
+    tracking: '::to define',
+  },
+  dns_configuration_guide: {
+    key: 'zimbra_dns_configuration_guide',
+    url: ZIMBRA_DNS_CONFIGURATION_GUIDE,
     tracking: '::to define',
   },
 };

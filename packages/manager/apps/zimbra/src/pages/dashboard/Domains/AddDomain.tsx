@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   LinkType,
   Links,
@@ -21,8 +21,6 @@ import {
   OsdsButton,
   OsdsInput,
   OsdsMessage,
-  OsdsLink,
-  OsdsIcon,
   OsdsCheckboxButton,
   OsdsCheckbox,
 } from '@ovhcloud/ods-components/react';
@@ -34,7 +32,6 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_TYPE,
   ODS_RADIO_BUTTON_SIZE,
@@ -51,9 +48,6 @@ import {
 } from '@ovhcloud/ods-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   useOrganization,
   useOrganizationList,
@@ -70,13 +64,12 @@ import {
 import queryClient from '@/queryClient';
 import { GUIDES_LIST } from '@/guides.constants';
 import { DomainType } from '@/api/domain/type';
-import { DNS_CONFIG_TYPE, DNS_RECORD_TYPE } from '@/utils';
+import { DNS_CONFIG_TYPE, DnsRecordType } from '@/utils';
+import GuideLink from '@/components/GuideLink';
 
 export default function AddDomain() {
   const { t } = useTranslation('domains/addDomain');
   const navigate = useNavigate();
-  const context = useContext(ShellContext);
-  const { ovhSubsidiary } = context.environment.getUser();
 
   const { addError, addSuccess } = useNotifications();
 
@@ -109,19 +102,19 @@ export default function AddDomain() {
 
   const expertConfigItems = [
     {
-      name: DNS_RECORD_TYPE.SRV,
+      name: DnsRecordType.SRV,
       label: t('zimbra_domains_add_domain_configuration_expert_configure_srv'),
     },
     {
-      name: DNS_RECORD_TYPE.MX,
+      name: DnsRecordType.MX,
       label: t('zimbra_domains_add_domain_configuration_expert_configure_mx'),
     },
     {
-      name: DNS_RECORD_TYPE.SPF,
+      name: DnsRecordType.SPF,
       label: t('zimbra_domains_add_domain_configuration_expert_configure_spf'),
     },
     {
-      name: DNS_RECORD_TYPE.DKIM,
+      name: DnsRecordType.DKIM,
       label: t('zimbra_domains_add_domain_configuration_expert_configure_dkim'),
     },
   ];
@@ -532,22 +525,12 @@ export default function AddDomain() {
               {t('zimbra_domains_add_domain_configuration_part_1')}
               {t('zimbra_domains_add_domain_configuration_part_2')}
               <span className="block mt-2">
-                <OsdsLink
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  target={OdsHTMLAnchorElementTarget._blank}
-                  href={
-                    GUIDES_LIST.cname_guide.url[ovhSubsidiary] ||
-                    GUIDES_LIST.cname_guide.url.DEFAULT
-                  }
-                >
-                  <OsdsIcon
-                    name={ODS_ICON_NAME.GUIDES}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    size={ODS_ICON_SIZE.xxs}
-                    className="mr-2"
-                  />
-                  {t('zimbra_domains_add_domain_configuration_guides_referee')}
-                </OsdsLink>
+                <GuideLink
+                  guide={GUIDES_LIST.cname_guide}
+                  label={t(
+                    'zimbra_domains_add_domain_configuration_guides_referee',
+                  )}
+                />
               </span>
             </OsdsText>
           </OsdsMessage>
