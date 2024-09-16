@@ -1,9 +1,0 @@
-{
-  "pci_projects_project_storages_blocks_block_attach_title": "Volume mit einer Instanz verbinden",
-  "pci_projects_project_storages_blocks_block_attach_submit_label": "Bestätigen",
-  "pci_projects_project_storages_blocks_block_attach_cancel_label": "Abbrechen",
-  "pci_projects_project_storages_blocks_block_attach_error_no_compatible_instance": "In der Region, in der sich Ihr Volumen befindet, ist keine Instanz verfügbar.",
-  "pci_projects_project_storages_blocks_block_attach_instance_placeholder": "Suchen",
-  "pci_projects_project_storages_blocks_block_attach_success_message": "Das Volume {{ volume }} ({{ volumeId }}) vom Typ {{ type }} wurde mit der Instanz {{ instance }} ({{ instanceId }}) verbunden.",
-  "pci_projects_project_storages_blocks_block_attach_error_attach": "Bei der Aktualisierung des Volumes {{ volume }} ist ein Fehler aufgetreten: {{ message }}"
-}

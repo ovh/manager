@@ -1,9 +1,0 @@
-{
-  "pci_projects_project_storages_blocks_block_attach_title": "Associa il volume a un’istanza",
-  "pci_projects_project_storages_blocks_block_attach_submit_label": "Conferma",
-  "pci_projects_project_storages_blocks_block_attach_cancel_label": "Annulla",
-  "pci_projects_project_storages_blocks_block_attach_error_no_compatible_instance": "Nessuna istanza disponibile nella Region del tuo volume.",
-  "pci_projects_project_storages_blocks_block_attach_instance_placeholder": "Ricerca",
-  "pci_projects_project_storages_blocks_block_attach_success_message": "Il volume {{ volume }} ({{ volumeId }}) di tipo {{ type }} è stato associato all’istanza {{ instance }} ({{ instanceId }}).",
-  "pci_projects_project_storages_blocks_block_attach_error_attach": "Si è verificato un errore durante l'aggiornamento del volume {{ volume }}: {{ message }}"
-}
