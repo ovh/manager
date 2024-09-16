@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
+import { TCatalog } from '@ovh-ux/manager-pci-common';
 import { TRegion } from '@/api/data/regions';
 import { useCatalog } from '@/api/hooks/useCatalog';
-import { useProjectsAvailableVolumes } from '@//api/hooks/useProjectsAvailableVolumes';
-import { TCatalog } from '@/api/data/catalog';
+import { useProjectsAvailableVolumes } from '@/api/hooks/useProjectsAvailableVolumes';
 
 export const useConsumptionVolumesAddon = (
   projectId: string,

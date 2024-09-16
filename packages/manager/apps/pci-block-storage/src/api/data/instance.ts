@@ -35,18 +35,3 @@ export const getInstance = async (
   );
   return data;
 };
-
-export const getInstances = async (
-  projectId: string,
-  region?: string,
-): Promise<Instance[]> => {
-  const { data } = await v6.get<Instance[]>(
-    `/cloud/project/${projectId}/instance`,
-    {
-      params: {
-        region,
-      },
-    },
-  );
-  return data;
-};

@@ -51,17 +51,6 @@ export const getGateways = async (projectId: string) => {
   return data?.resources;
 };
 
-export const getGatewayCatalog = async (
-  ovhSubsidiary: string,
-  productName = 'cloud',
-) => {
-  const { data } = await v6.get(`/order/catalog/public/cloud`, {
-    params: { ovhSubsidiary, productName },
-  });
-
-  return data;
-};
-
 export const getGatewaysByRegion = async (
   projectId: string,
   regionName: string,
@@ -71,19 +60,4 @@ export const getGatewaysByRegion = async (
   );
 
   return data;
-};
-
-export const getProductAvailability = async (
-  projectId: string,
-  ovhSubsidiary: string,
-  planCode: string,
-) => {
-  const { data } = await v6.get(
-    `/cloud/project/${projectId}/capabilities/productAvailability`,
-    {
-      params: { ovhSubsidiary, planCode },
-    },
-  );
-
-  return data?.plans;
 };

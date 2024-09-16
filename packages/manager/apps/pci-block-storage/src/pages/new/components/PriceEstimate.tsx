@@ -6,7 +6,7 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
-import { TAddon } from '@/api/data/catalog';
+import { TAddon } from '@ovh-ux/manager-pci-common';
 
 export interface PriceEstimateProps {
   volumeCapacity: number;

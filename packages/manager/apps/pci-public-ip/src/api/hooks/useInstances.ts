@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getInstances, getInstancesUrl } from '@/api/data/instances';
+import { getInstances } from '@ovh-ux/manager-pci-common';
+import { getInstancesUrl } from '@/api/data/instances';
 
 export const getInstancesQuery = (projectId: string) => ({
   queryKey: [getInstancesUrl(projectId)],

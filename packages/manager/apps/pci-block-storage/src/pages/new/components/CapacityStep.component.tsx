@@ -22,12 +22,12 @@ import {
 } from '@ovhcloud/ods-components';
 
 import { useTranslation } from 'react-i18next';
+import { TAddon } from '@ovh-ux/manager-pci-common';
 import { PriceEstimate } from '@/pages/new/components/PriceEstimate';
 import { HighSpeedV2Infos } from '@/pages/new/components/HighSpeedV2Infos';
 import { TLocalisation } from '@/api/hooks/useRegions';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
-import { TAddon } from '@/api/data/catalog';
 
 export const VOLUME_MAX_SIZE = 4 * 1000; // Should be 10 * 1024 (but API is wrong;
 export const VOLUME_MIN_SIZE = 10; // 10 Gio

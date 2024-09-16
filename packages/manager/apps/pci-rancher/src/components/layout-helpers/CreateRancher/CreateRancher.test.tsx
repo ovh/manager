@@ -33,9 +33,6 @@ jest.mock('@ovh-ux/manager-react-components', () => ({
   ...jest.requireActual('@ovh-ux/manager-react-components'),
   Subtitle: jest.fn(),
   Title: jest.fn(),
-  PciDiscoveryBanner: jest.fn(
-    () => 'pci_projects_project_activate_project_banner_message',
-  ),
   useCatalogPrice: jest.fn(() => ({
     getFormattedHourlyCatalogPrice: jest.fn(() => 0.0171),
     getFormattedMonthlyCatalogPrice: jest.fn(() => 12.312),
@@ -49,7 +46,9 @@ jest.mock('react-router-dom', () => ({
 
 jest.mock('@ovh-ux/manager-pci-common', () => ({
   useProject: jest.fn(() => ({ data: {} })),
-  PciDiscoveryBanner: () => <></>,
+  PciDiscoveryBanner: jest.fn(
+    () => 'pci_projects_project_activate_project_banner_message',
+  ),
 }));
 
 jest.mock('@ovh-ux/manager-react-shell-client', () => ({
@@ -188,6 +187,15 @@ describe('CreateRancher', () => {
       expect(onCreateRancher).not.toHaveBeenCalled();
 
       expect(button).toBeDisabled();
+    });
+
+    it('Given that I am in a Discovery project, I should see the yellow banner inviting me to activate my project', async () => {
+      const screen = await setupSpecTest({ isProjectDiscoveryMode: true });
+      const banner = screen.getByText(
+        'pci_projects_project_activate_project_banner_message',
+      );
+
+      expect(banner).not.toBeNull();
     });
 
     it('Given that I have the selected version null and the versions available, I should see the selected version to the available version with the highest name with the recommanded version description', async () => {

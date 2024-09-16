@@ -13,7 +13,11 @@ export const getProductAvailabilityQuery = (
     ovhSubsidiary,
     product || 'all',
   ],
-  queryFn: () => getProductAvailability(projectId, ovhSubsidiary, product),
+  queryFn: () =>
+    getProductAvailability(projectId, {
+      ovhSubsidiary,
+      product,
+    }),
 });
 
 export const useProductAvailability = (projectId: string, product?: string) => {

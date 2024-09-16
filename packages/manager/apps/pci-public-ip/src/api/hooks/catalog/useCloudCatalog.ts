@@ -1,12 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  getCloudCatalog,
-  getCloudCatalogUrl,
-} from '@/api/data/catalog/public/cloud';
+import { getCloudCatalog } from '@/api/data/catalog/public/cloud';
 import { useMe } from '@/api/hooks/useMe';
 
 export const getCloudCatalogQuery = (ovhSubsidiary: string) => ({
-  queryKey: [getCloudCatalogUrl(ovhSubsidiary)],
+  queryKey: ['public-cloud-catalog', ovhSubsidiary],
   queryFn: () => getCloudCatalog(ovhSubsidiary),
 });
 
