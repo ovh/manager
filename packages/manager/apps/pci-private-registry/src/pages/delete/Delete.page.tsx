@@ -6,11 +6,11 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { DeletionModal } from '@ovh-ux/manager-pci-common/src/components/deletion-modal';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContext } from 'react';
+import { DeletionModal } from '@ovh-ux/manager-pci-common';
 import {
   useDeleteRegistry,
   useGetAllRegistries,

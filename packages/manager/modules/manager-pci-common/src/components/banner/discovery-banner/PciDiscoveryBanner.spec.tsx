@@ -5,7 +5,7 @@ import {
   isDiscoveryProject,
   PciDiscoveryBanner,
   PciDiscoveryBannerProps,
-} from './pci-discovery-banner';
+} from './PciDiscoveryBanner';
 import { TProject } from '@/api/data';
 
 const mockNavigateTo = vi.fn();
