@@ -2,8 +2,8 @@ import { fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import { PciModal } from './PciModal.component';
 
-describe('PciModal', () => {
-  it('renders loading spinner when isPending is true', () => {
+describe('PciModal Tests', () => {
+  it('render loading spinner when isPending is true', () => {
     const { getByTestId } = render(
       <PciModal
         type="default"
@@ -19,8 +19,10 @@ describe('PciModal', () => {
         <div>Child Content</div>
       </PciModal>,
     );
-    expect(getByTestId('pciModal-spinner')).toBeInTheDocument();
+
+    expect(getByTestId('pciModal-spinner')).toBeVisible();
   });
+
   it('renders modal with warning color', () => {
     const { getByTestId } = render(
       <PciModal
@@ -37,8 +39,10 @@ describe('PciModal', () => {
         <div>Child Content</div>
       </PciModal>,
     );
+
     expect(getByTestId('pciModal-modal')).toHaveAttribute('color', 'warning');
   });
+
   it('renders modal with default color', () => {
     const { getByTestId } = render(
       <PciModal
@@ -54,6 +58,7 @@ describe('PciModal', () => {
         <div>Child Content</div>
       </PciModal>,
     );
+
     expect(getByTestId('pciModal-modal')).toHaveAttribute('color', 'primary');
   });
 
@@ -73,7 +78,8 @@ describe('PciModal', () => {
         <div data-testid="child-content">Child Content</div>
       </PciModal>,
     );
-    expect(getByTestId('child-content')).toBeInTheDocument();
+
+    expect(getByTestId('child-content')).toBeVisible();
   });
 
   it('disables submit button when isDisabled is true', () => {
@@ -92,6 +98,7 @@ describe('PciModal', () => {
         <div>Child Content</div>
       </PciModal>,
     );
+
     expect(getByTestId('pciModal-button_submit')).toBeDisabled();
   });
 
@@ -111,6 +118,7 @@ describe('PciModal', () => {
         <div>Child Content</div>
       </PciModal>,
     );
+
     expect(getByTestId('pciModal-button_submit')).not.toBeDisabled();
   });
 
@@ -131,8 +139,10 @@ describe('PciModal', () => {
         <div>Child Content</div>
       </PciModal>,
     );
+
     fireEvent.click(getByTestId('pciModal-button_submit'));
-    expect(onConfirmMock).toHaveBeenCalled();
+
+    expect(onConfirmMock).toHaveBeenCalledTimes(1);
   });
 
   it('calls onCancel when cancel button is clicked', () => {
@@ -152,9 +162,12 @@ describe('PciModal', () => {
         <div>Child Content</div>
       </PciModal>,
     );
+
     fireEvent.click(getByTestId('pciModal-button_cancel'));
-    expect(onCancelMock).toHaveBeenCalled();
+
+    expect(onCancelMock).toHaveBeenCalledTimes(1);
   });
+
   it('renders submit button and cancel button with default text', () => {
     const { getByText } = render(
       <PciModal
@@ -169,10 +182,11 @@ describe('PciModal', () => {
         <div>Child Content</div>
       </PciModal>,
     );
-    expect(getByText('common_confirm')).toBeInTheDocument();
-    expect(getByText('common_cancel')).toBeInTheDocument();
+
+    expect(getByText('common_confirm')).toBeVisible();
+    expect(getByText('common_cancel')).toBeVisible();
   });
-  // tests when submit and cancel are provided
+
   it('renders submit button and cancel button with custom text', () => {
     const { getByText } = render(
       <PciModal
@@ -189,7 +203,8 @@ describe('PciModal', () => {
         <div>Child Content</div>
       </PciModal>,
     );
-    expect(getByText('Custom Submit')).toBeInTheDocument();
-    expect(getByText('Custom Cancel')).toBeInTheDocument();
+
+    expect(getByText('Custom Submit')).toBeVisible();
+    expect(getByText('Custom Cancel')).toBeVisible();
   });
 });
