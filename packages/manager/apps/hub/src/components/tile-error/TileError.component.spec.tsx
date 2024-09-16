@@ -7,7 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { TileError } from './TileError.component';
+import TileError from './TileError.component';
 
 describe('TileError Component', () => {
   it('renders title, message, and button correctly', () => {
