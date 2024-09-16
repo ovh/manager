@@ -4,13 +4,19 @@ import * as ApiInstanceModule from '@/api/data/instance';
 import { useInstances, useSwitchToMonthlyBilling } from '@/api/hooks/instances';
 import { wrapper } from '@/wrapperRenders';
 
+vi.mock('@ovh-ux/manager-pci-common', () => ({
+  getInstances: vi
+    .fn()
+    .mockReturnValue([{ id: 'instance1', name: 'Instance 1' }]),
+}));
+
 describe('useInstances', () => {
   it('fetches instances successfully', async () => {
-    const mockData = [{ id: 'instance1', name: 'Instance 1' }];
-    vi.spyOn(ApiInstanceModule, 'getInstances').mockResolvedValueOnce(mockData);
     const { result } = renderHook(() => useInstances('project1'), { wrapper });
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
-    expect(result.current.data).toEqual(mockData);
+    expect(result.current.data).toEqual([
+      { id: 'instance1', name: 'Instance 1' },
+    ]);
   });
 });
 

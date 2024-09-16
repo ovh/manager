@@ -16,9 +16,9 @@ import {
 import { ODS_BUTTON_SIZE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { TAddon, TCatalog } from '@ovh-ux/manager-pci-common';
 import { useTranslateBytes } from '@/pages/new/hooks/useTranslateBytes';
 import { useConsumptionVolumesAddon } from '@/api/hooks/useConsumptionVolumesAddon';
-import { TCatalog, TAddon } from '@/api/data/catalog';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { TLocalisation } from '@/api/hooks/useRegions';
 

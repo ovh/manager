@@ -1,4 +1,4 @@
-import { v6 } from '@ovh-ux/manager-core-api';
+import { getCatalog } from '@ovh-ux/manager-pci-common';
 
 export type TFormattedCatalog = {
   plans: {
@@ -7,13 +7,5 @@ export type TFormattedCatalog = {
   }[];
 };
 
-export const getIpCatalogUrl = (ovhSubsidiary: string) =>
-  `/order/catalog/formatted/ip?ovhSubsidiary=${ovhSubsidiary}&productName=ip-failover`;
-export const getIpCatalog = async (
-  ovhSubsidiary: string,
-): Promise<TFormattedCatalog> => {
-  const { data } = await v6.get<TFormattedCatalog>(
-    getIpCatalogUrl(ovhSubsidiary),
-  );
-  return data;
-};
+export const getIpCatalog = (ovhSubsidiary: string) =>
+  getCatalog(ovhSubsidiary, 'ip-failover');

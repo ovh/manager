@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import { TAddon } from '@ovh-ux/manager-pci-common';
 import { useStep } from '@/pages/new/hooks/useStep';
 import { TFormState } from '@/pages/new/form.type';
 import { TLocalisation } from '@/api/hooks/useRegions';
-import { TAddon } from '@/api/data/catalog';
 
 export const DEFAULT_FORM_STATE: TFormState = {
   region: undefined,
