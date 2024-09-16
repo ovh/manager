@@ -24,10 +24,10 @@
                     data-size="xl"
                 >
                     <oui-select
-                        items="$ctrl.services"
-                        match="displayName"
-                        data-ng-model="$ctrl.model.selectedService"
-                        data-ng-change="$ctrl.getServiceRegion()"
+                        data-items="$ctrl.services"
+                        data-match="displayName"
+                        data-model="$ctrl.model.selectedService"
+                        data-on-change="$ctrl.getServiceRegion()"
                         name="service"
                         placeholder="{{:: 'global_select' | translate}}"
                         group-by="$ctrl.constructor.getServiceTypeLabel"
