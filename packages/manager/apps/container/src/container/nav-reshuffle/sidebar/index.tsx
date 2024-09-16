@@ -19,7 +19,7 @@ import {
   findNodeByRouting,
   splitPathIntoSegmentsWithoutRouteParams,
   ServicesTypes,
-  hasService,
+  hasService
 } from './utils';
 import { Node } from './navigation-tree/node';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
@@ -216,8 +216,12 @@ const Sidebar = (): JSX.Element => {
 
   const closeSubMenu = () => {
     setShowSubTree(false);
-    setIsManuallyClosed(true);
-    if (isMobile) setSelectedNode(null);
+
+    setTimeout(() => {
+      setSelectedNode(null);
+      setSelectedSubMenu(null);
+      setIsManuallyClosed(true);
+    }, 400);
   };
 
   const menuClickHandler = (node: Node) => {
@@ -377,6 +381,7 @@ const Sidebar = (): JSX.Element => {
           handleCloseSideBar={closeSubMenu}
           handleOnSubMenuClick={selectSubMenu}
           rootNode={selectedNode}
+          open={showSubTree}
         ></SubTree>
       )}
     </div>
