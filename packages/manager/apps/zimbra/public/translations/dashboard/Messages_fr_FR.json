@@ -3,6 +3,7 @@
   "zimbra_dashboard_domains": "Domaine",
   "zimbra_dashboard_domains_add": "Ajouter un domaine",
   "zimbra_dashboard_domains_delete": "Supprimer un domaine",
+  "zimbra_dashboard_domains_diagnostic": "Diagnostique",
   "zimbra_dashboard_email_accounts": "Comptes email",
   "zimbra_dashboard_email_accounts_add": "Créer un compte email",
   "zimbra_dashboard_email_accounts_edit": "Modifier le compte",

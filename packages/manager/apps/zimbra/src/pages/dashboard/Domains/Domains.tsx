@@ -27,6 +27,7 @@ import ActionButtonDomain from './ActionButtonDomain';
 import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { DiagnosticBadge } from '@/components/DiagnosticBadge';
+import { DnsRecordType } from '@/utils';
 
 export type DomainsItem = {
   id: string;
@@ -73,14 +74,32 @@ const columns: DatagridColumn<DomainsItem>[] = [
   },
   {
     id: 'diagnostic',
-    cell: () => (
-      <>
-        <DiagnosticBadge diagType="MX" status="success" />
-        <DiagnosticBadge diagType="SRV" status="error" />
-        <DiagnosticBadge diagType="SPF" status="success" />
-        <DiagnosticBadge diagType="DKIM" status="warning" />
-      </>
-    ),
+    cell: (item) => {
+      return (
+        <>
+          <DiagnosticBadge
+            diagType={DnsRecordType.MX}
+            domainId={item.id}
+            status="error"
+          />
+          <DiagnosticBadge
+            diagType={DnsRecordType.SRV}
+            domainId={item.id}
+            status="error"
+          />
+          <DiagnosticBadge
+            diagType={DnsRecordType.SPF}
+            domainId={item.id}
+            status="error"
+          />
+          <DiagnosticBadge
+            diagType={DnsRecordType.DKIM}
+            domainId={item.id}
+            status="warning"
+          />
+        </>
+      );
+    },
     label: 'zimbra_domains_datagrid_diagnostic_label',
   },
   {
