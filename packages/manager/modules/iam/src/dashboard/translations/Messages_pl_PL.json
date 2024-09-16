@@ -4,6 +4,5 @@
   "iam_dashboard_header_tabs_item_identities": "Tożsamości",
   "iam_dashboard_header_tabs_item_policies": "Polityki",
   "iam_dashboard_header_tabs_item_resource_groups": "Grupy zasobów",
-  "iam_dashboard_header_tabs_item_applications": "Applications",
   "iam_error": "Nie masz uprawnień do wykonania tej operacji: {{details}}"
 }
