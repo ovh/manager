@@ -1,21 +1,11 @@
+import { PciModal } from '@ovh-ux/manager-pci-common';
 import { Clipboard } from '@ovh-ux/manager-react-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -41,18 +31,39 @@ export default function CredentialsPage() {
   );
 
   const onClose = () => navigate('..');
-  const onConfirm = () => setIsConfirmed(true);
+
+  const onConfirm = () => {
+    if (!isConfirmed) {
+      setIsConfirmed(true);
+    } else {
+      window.open(registry?.url, '_blank');
+    }
+  };
 
   const isFirstSectionDisplayed = !isConfirmed;
   const isSecondSectionDisplayed = isConfirmed && !isPending && credentials;
+  const isModalPending = isPending && isConfirmed;
 
   return (
-    <OsdsModal
-      onOdsModalClose={onClose}
-      headline={
+    <PciModal
+      title={
         isConfirmed
           ? t('private_registry_generate_credentials_header')
           : t('private_registry_generate_credentials')
+      }
+      onClose={onClose}
+      onCancel={onClose}
+      onConfirm={onConfirm}
+      isPending={isModalPending}
+      cancelText={
+        isConfirmed
+          ? t('private_registry_common_close')
+          : t('private_registry_common_cancel')
+      }
+      submitText={
+        isConfirmed
+          ? t('private_registry_goto_harbor')
+          : t('private_registry_common_confirm')
       }
     >
       {isFirstSectionDisplayed && (
@@ -66,14 +77,6 @@ export default function CredentialsPage() {
             registryName: registry?.name,
           })}
         </OsdsText>
-      )}
-
-      {isConfirmed && isPending && (
-        <OsdsSpinner
-          inline
-          size={ODS_SPINNER_SIZE.md}
-          className="block text-center mt-5"
-        />
       )}
 
       {isSecondSectionDisplayed && (
@@ -107,28 +110,6 @@ export default function CredentialsPage() {
           <Clipboard aria-label="clipboard" value={credentials.password} />
         </div>
       )}
-
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={onClose}
-      >
-        {isConfirmed
-          ? t('private_registry_common_close')
-          : t('private_registry_common_cancel')}
-      </OsdsButton>
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={onConfirm}
-        href={isConfirmed ? registry?.url : undefined}
-        target={OdsHTMLAnchorElementTarget._blank}
-      >
-        {isConfirmed
-          ? t('private_registry_goto_harbor')
-          : t('private_registry_common_confirm')}
-      </OsdsButton>
-    </OsdsModal>
+    </PciModal>
   );
 }
