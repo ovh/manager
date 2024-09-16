@@ -11,6 +11,20 @@ export default class SoftphoneAddDeviceController {
     this.FIELD_NAME_REGEX = FIELD_NAME_REGEX;
   }
 
+  $onInit() {
+    if (this.deviceId) {
+      this.softphoneService
+        .getSoftphoneDeviceDetail(
+          this.$stateParams.billingAccount,
+          this.$stateParams.serviceName,
+          this.deviceId,
+        )
+        .then((device) => {
+          this.model.name = device.name;
+        });
+    }
+  }
+
   createDevice() {
     return this.softphoneService
       .createDevice(
