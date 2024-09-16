@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.76.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.75.2...@ovh-ux/manager-container-app@0.76.0) (2024-09-16)
+
+
+### Features
+
+* **container:** removed old feedback button and logo for mobile ([#12942](https://github.com/ovh/manager/issues/12942)) ([31b22db](https://github.com/ovh/manager/commit/31b22db39961b611115c3c62707b99d6c010253d))
+
+
+
+
+
 ## [0.75.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.75.1...@ovh-ux/manager-container-app@0.75.2) (2024-09-12)
 
 
