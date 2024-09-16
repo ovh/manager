@@ -1,5 +1,5 @@
 import { useBytes } from '@ovh-ux/manager-pci-common';
-import { DataGridTextCell } from '@ovhcloud/manager-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';

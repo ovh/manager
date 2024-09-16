@@ -1,5 +1,5 @@
 import { renderHook, waitFor } from '@testing-library/react';
-import { IMe, useMe } from '@ovhcloud/manager-components';
+import { IMe, useMe } from '@ovh-ux/manager-react-components';
 import { vi, describe, it } from 'vitest';
 import {
   getProductAvailability,

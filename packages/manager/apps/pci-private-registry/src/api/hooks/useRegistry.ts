@@ -1,5 +1,5 @@
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { ColumnSort, PaginationState } from '@ovhcloud/manager-components';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { compareFunction, paginateResults } from '@/helpers';
