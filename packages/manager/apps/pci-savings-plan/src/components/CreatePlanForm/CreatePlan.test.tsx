@@ -16,6 +16,16 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
+const mockedUsedNavigate = vi.fn();
+
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    useNavigate: () => mockedUsedNavigate,
+  };
+});
+
 vi.mock('@ovh-ux/manager-pci-common', () => ({
   usePciUrl: vi.fn(() => '/url'),
 }));

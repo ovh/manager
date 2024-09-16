@@ -9,6 +9,8 @@ import {
 import {
   ODS_BUTTON_VARIANT,
   ODS_CHECKBOX_BUTTON_SIZE,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_TYPE,
   ODS_SPINNER_SIZE,
@@ -29,6 +31,7 @@ import {
   OsdsTabs,
   OsdsText,
   OsdsTile,
+  OsdsIcon,
 } from '@ovhcloud/ods-components/react';
 import React, { FC, useEffect, useMemo, useState } from 'react';
 
@@ -354,6 +357,12 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
                 target={OdsHTMLAnchorElementTarget._blank}
               >
                 {t('quantity_banner_instance_link')}
+                <OsdsIcon
+                  className="ml-2"
+                  name={ODS_ICON_NAME.EXTERNAL_LINK}
+                  size={ODS_ICON_SIZE.xxs}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                />
               </OsdsLink>
             )}
           </OsdsText>
@@ -373,6 +382,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
                 isActive={offerIdSelected === pricing.id}
                 duration={pricing.duration}
                 price={pricing.price?.toString()}
+                quantity={quantity}
                 hourlyPriceWithoutCommitment={activeInstance?.hourlyPrice || 0}
               />
             );

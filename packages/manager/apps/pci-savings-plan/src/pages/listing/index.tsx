@@ -122,8 +122,6 @@ const ListingTablePage: React.FC<ListingProps> = ({
     },
   );
 
-  console.log({ lastMutation, mutationSpCreate: mutationSpCreate[0]?.error });
-
   return (
     <>
       <Title>{t('title')}</Title>
