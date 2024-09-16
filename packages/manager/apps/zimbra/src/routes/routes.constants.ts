@@ -6,6 +6,7 @@ export const urls = {
   organizations: '/:serviceName/organizations',
   organizationsDelete: '/:serviceName/organizations/delete',
   domains: '/:serviceName/domains',
+  domains_diagnostic: '/:serviceName/domains/diagnostic',
   email_accounts: '/:serviceName/email_accounts',
   email_accounts_add: '/:serviceName/email_accounts/add',
   email_accounts_edit: '/:serviceName/email_accounts/settings',

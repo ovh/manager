@@ -11,27 +11,40 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { DNS_RECORD_TYPE } from '@/utils';
+import { useNavigate } from 'react-router-dom';
+import { DnsRecordType } from '@/utils';
+import { useGenerateUrl } from '@/hooks';
 
-type ServiceProps = keyof typeof DNS_RECORD_TYPE;
 type StatusProps = 'error' | 'success' | 'warning';
 type DiagnosticBadgeProps = {
-  diagType: ServiceProps;
+  diagType: DnsRecordType;
   status?: StatusProps;
-  onClick?: () => void;
+  domainId?: string;
 };
 
 export const DiagnosticBadge: React.FC<DiagnosticBadgeProps> = ({
   diagType,
   status,
-  onClick,
+  domainId,
 }) => {
   const { t } = useTranslation('domains');
   const chipColor = status as ODS_THEME_COLOR_INTENT;
+  const navigate = useNavigate();
+  const hasAction = !!(
+    (status === 'error' || status === 'warning') &&
+    domainId
+  );
+
+  const href = useGenerateUrl('./diagnostic', 'path', {
+    domainId,
+    dnsRecordType: diagType,
+    // remove when we get it from api
+    isOvhDomain: 'false',
+  });
 
   const handleChipClick = () => {
-    if (status === 'error' || status === 'warning') {
-      onClick?.();
+    if (hasAction) {
+      navigate(href);
     }
   };
 
@@ -65,7 +78,7 @@ export const DiagnosticBadge: React.FC<DiagnosticBadgeProps> = ({
       ) : (
         <OsdsChip
           color={chipColor}
-          selectable={Boolean(onClick)}
+          selectable={hasAction}
           onClick={handleChipClick}
         >
           {diagType}

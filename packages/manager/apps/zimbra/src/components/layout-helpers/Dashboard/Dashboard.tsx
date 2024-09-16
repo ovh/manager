@@ -68,7 +68,10 @@ export const Dashboard: React.FC = () => {
       name: 'domains',
       title: t('zimbra_dashboard_domains'),
       to: `${basePath}/domains`,
-      pathMatchers: computePathMatchers([urls.domains]),
+      pathMatchers: computePathMatchers([
+        urls.domains,
+        urls.domains_diagnostic,
+      ]),
     },
     {
       name: 'email_accounts',
