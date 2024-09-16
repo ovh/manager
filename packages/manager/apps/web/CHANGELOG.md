@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.35.2...@ovh-ux/manager-web@18.36.0) (2024-09-16)
+
+
+### Bug Fixes
+
+* **web.database:** rename redis to caching ([#12638](https://github.com/ovh/manager/issues/12638)) ([133be62](https://github.com/ovh/manager/commit/133be625acaf2232261296622a800fa1b6ed7e67))
+
+
+### Features
+
+* **domains:** rework the dns display page ([#12423](https://github.com/ovh/manager/issues/12423)) ([cf91ffa](https://github.com/ovh/manager/commit/cf91ffaa18b96dbd8a493cfe84dc08af50f4d81d))
+
+
+
+
+
 ## [18.35.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.35.1...@ovh-ux/manager-web@18.35.2) (2024-09-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
