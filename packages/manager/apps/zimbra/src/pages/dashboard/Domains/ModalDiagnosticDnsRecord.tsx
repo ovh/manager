@@ -25,6 +25,44 @@ type ModalDiagnosticDnsRecordProps = {
   isOvhDomain?: boolean;
 };
 
+const getContentHeaderKeys = (
+  dnsRecordTypeKey: DnsRecordTypeKey,
+  isOvhDomain: boolean,
+): string[] => {
+  switch (dnsRecordTypeKey) {
+    case DnsRecordTypeKey.MX:
+      return isOvhDomain
+        ? [
+            'zimbra_domain_modal_diagnostic_mx_content_header_ovh_hosted_domain_part1',
+            'zimbra_domain_modal_diagnostic_mx_content_header_ovh_hosted_domain_part2',
+            'zimbra_domain_modal_diagnostic_mx_content_header_ovh_hosted_domain_part3',
+          ]
+        : [
+            'zimbra_domain_modal_diagnostic_mx_content_header_part1',
+            'zimbra_domain_modal_diagnostic_mx_content_header_part2',
+            'zimbra_domain_modal_diagnostic_mx_content_header_part3',
+          ];
+    case DnsRecordTypeKey.SRV:
+      return isOvhDomain
+        ? [
+            'zimbra_domain_modal_diagnostic_srv_content_header_ovh_hosted_domain_part1',
+            'zimbra_domain_modal_diagnostic_srv_content_header_ovh_hosted_domain_part2',
+          ]
+        : ['zimbra_domain_modal_diagnostic_srv_content_header'];
+
+    case DnsRecordTypeKey.SPF:
+      return isOvhDomain
+        ? [
+            'zimbra_domain_modal_diagnostic_spf_content_header_ovh_hosted_domain_part1',
+            'zimbra_domain_modal_diagnostic_spf_content_header_ovh_hosted_domain_part2',
+            'zimbra_domain_modal_diagnostic_spf_content_header_ovh_hosted_domain_part3',
+          ]
+        : ['zimbra_domain_modal_diagnostic_spf_content_header'];
+    default:
+      return [];
+  }
+};
+
 export default function ModalDiagnosticDnsRecord(
   props: Readonly<ModalDiagnosticDnsRecordProps>,
 ) {
@@ -129,132 +167,129 @@ export default function ModalDiagnosticDnsRecord(
       }}
     >
       {domain && (
-        <>
-          <OsdsText
-            className="mt-6 whitespace-pre-line"
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            hue={ODS_THEME_COLOR_HUE._500}
-          >
-            <Trans
-              t={t}
-              i18nKey={
-                isOvhDomain
-                  ? `zimbra_domain_modal_diagnostic_${dnsRecordTypeKey}_content_header_ovh_hosted_domain`
-                  : `zimbra_domain_modal_diagnostic_${dnsRecordTypeKey}_content_header`
-              }
-              values={{ domain: domain?.currentState?.name }}
-              components={{
-                guide: (
-                  <GuideLink
-                    label={t(`zimbra_domain_modal_diagnostic_guide`)}
-                    guide={GUIDES_LIST.dns_configuration_guide}
-                  />
-                ),
-              }}
-            />
-          </OsdsText>
-          <div className="flex flex-col w-full whitespace-pre">
-            {dnsRecordType === DnsRecordType.SRV && (
-              <div className="flex gap-4 w-full mt-4">
-                <OsdsText
-                  className="w-1/3 flex justify-end"
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  hue={ODS_THEME_COLOR_HUE._500}
-                >
-                  <strong>
-                    {t(
-                      `zimbra_domain_modal_diagnostic_${dnsRecordTypeKey}_domain`,
-                    )}
-                  </strong>
-                </OsdsText>
-                <OsdsText
-                  className="w-2/3"
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  hue={ODS_THEME_COLOR_HUE._500}
-                >
-                  {domain?.currentState?.name}
-                </OsdsText>
-              </div>
-            )}
-            {!isOvhDomain && (
-              <div className="flex gap-4 w-full mt-4">
-                <OsdsText
-                  className="w-1/3 flex justify-end"
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  hue={ODS_THEME_COLOR_HUE._500}
-                >
-                  <strong>
-                    {t(`zimbra_domain_modal_diagnostic_fields`)} {dnsRecordType}
-                  </strong>
-                </OsdsText>
-                <div className="flex flex-col w-2/3">
-                  {mxFields && dnsRecordType === DnsRecordType.MX && (
-                    <div className="flex flex-col">
-                      {mxFields.map(({ priority, target }) => (
-                        <OsdsText
-                          key={`${priority}-${target}`}
-                          color={ODS_THEME_COLOR_INTENT.text}
-                          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                          hue={ODS_THEME_COLOR_HUE._500}
-                        >
-                          {t(`zimbra_domain_modal_diagnostic_field_priority`)}
-                          <strong> {priority}</strong>
-                          {' ; '}
-                          {t(`zimbra_domain_modal_diagnostic_field_target`)}
-                          <strong> {target}</strong>
-                        </OsdsText>
-                      ))}
-                    </div>
-                  )}
-                  {(dnsRecordType === DnsRecordType.SRV ||
-                    dnsRecordType === DnsRecordType.SPF) && (
-                    <div className="flex flex-col">
-                      {Object.entries(
-                        dnsRecordType === DnsRecordType.SRV
-                          ? srvFields
-                          : spfFields,
-                      ).map(([key, value]) => (
-                        <OsdsText
-                          key={key}
-                          color={ODS_THEME_COLOR_INTENT.text}
-                          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                          hue={ODS_THEME_COLOR_HUE._500}
-                        >
-                          {t(`zimbra_domain_modal_diagnostic_field_${key}`)}
-                          <strong> {value}</strong>
-                        </OsdsText>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-            {!isOvhDomain && dnsRecordType === DnsRecordType.MX ? (
+        <div className="flex flex-col w-full whitespace-pre mt-6">
+          {getContentHeaderKeys(dnsRecordTypeKey, isOvhDomain).map((key) => (
+            <OsdsText
+              className="mt-2"
+              key={key}
+              color={ODS_THEME_COLOR_INTENT.text}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+              hue={ODS_THEME_COLOR_HUE._500}
+            >
+              <Trans
+                t={t}
+                i18nKey={key}
+                values={{ domain: domain?.currentState?.name }}
+                components={{
+                  guide: (
+                    <GuideLink
+                      label={t(`zimbra_domain_modal_diagnostic_guide`)}
+                      guide={GUIDES_LIST.dns_configuration_guide}
+                    />
+                  ),
+                }}
+              />
+            </OsdsText>
+          ))}
+          {dnsRecordType === DnsRecordType.SRV && (
+            <div className="flex gap-4 w-full mt-4">
               <OsdsText
-                className="mt-6"
+                className="w-1/3 flex justify-end"
                 color={ODS_THEME_COLOR_INTENT.text}
                 size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                 hue={ODS_THEME_COLOR_HUE._500}
               >
-                <Trans
-                  t={t}
-                  i18nKey={`zimbra_domain_modal_diagnostic_${dnsRecordTypeKey}_content_footer`}
-                />
+                <strong>
+                  {t(
+                    `zimbra_domain_modal_diagnostic_${dnsRecordTypeKey}_domain`,
+                  )}
+                </strong>
               </OsdsText>
-            ) : null}
-          </div>
-        </>
+              <OsdsText
+                className="w-2/3"
+                color={ODS_THEME_COLOR_INTENT.text}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                hue={ODS_THEME_COLOR_HUE._500}
+              >
+                {domain?.currentState?.name}
+              </OsdsText>
+            </div>
+          )}
+          {!isOvhDomain && (
+            <div className="flex gap-4 w-full mt-4">
+              <OsdsText
+                className="w-1/3 flex justify-end"
+                color={ODS_THEME_COLOR_INTENT.text}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                hue={ODS_THEME_COLOR_HUE._500}
+              >
+                <strong>
+                  {t(`zimbra_domain_modal_diagnostic_fields`)} {dnsRecordType}
+                </strong>
+              </OsdsText>
+              <div className="flex flex-col w-2/3">
+                {mxFields && dnsRecordType === DnsRecordType.MX && (
+                  <div className="flex flex-col">
+                    {mxFields.map(({ priority, target }) => (
+                      <OsdsText
+                        key={`${priority}-${target}`}
+                        color={ODS_THEME_COLOR_INTENT.text}
+                        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                        hue={ODS_THEME_COLOR_HUE._500}
+                      >
+                        {t(`zimbra_domain_modal_diagnostic_field_priority`)}
+                        <strong> {priority}</strong>
+                        {' ; '}
+                        {t(`zimbra_domain_modal_diagnostic_field_target`)}
+                        <strong> {target}</strong>
+                      </OsdsText>
+                    ))}
+                  </div>
+                )}
+                {(dnsRecordType === DnsRecordType.SRV ||
+                  dnsRecordType === DnsRecordType.SPF) && (
+                  <div className="flex flex-col">
+                    {Object.entries(
+                      dnsRecordType === DnsRecordType.SRV
+                        ? srvFields
+                        : spfFields,
+                    ).map(([key, value]) => (
+                      <OsdsText
+                        key={key}
+                        color={ODS_THEME_COLOR_INTENT.text}
+                        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                        hue={ODS_THEME_COLOR_HUE._500}
+                      >
+                        {t(`zimbra_domain_modal_diagnostic_field_${key}`)}
+                        <strong> {value}</strong>
+                      </OsdsText>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+          {!isOvhDomain && dnsRecordType === DnsRecordType.MX ? (
+            <OsdsText
+              className="mt-6"
+              color={ODS_THEME_COLOR_INTENT.text}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+              hue={ODS_THEME_COLOR_HUE._500}
+            >
+              <Trans
+                t={t}
+                i18nKey={`zimbra_domain_modal_diagnostic_${dnsRecordTypeKey}_content_footer`}
+              />
+            </OsdsText>
+          ) : null}
+        </div>
       )}
     </Modal>
   );
