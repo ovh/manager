@@ -82,6 +82,14 @@ export default class SofpthoneService {
       .then(({ data }) => data);
   }
 
+  getSoftphoneDeviceDetail(billingAccount, serviceName, deviceId) {
+    return this.$http
+      .get(
+        `/telephony/${billingAccount}/line/${serviceName}/devices/${deviceId}`,
+      )
+      .then(({ data }) => data);
+  }
+
   getThemes() {
     return this.iceberg('/telephony/softphone/themes')
       .query()
