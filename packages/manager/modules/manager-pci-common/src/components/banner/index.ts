@@ -1,9 +1,9 @@
 export {
   PciDiscoveryBanner,
   isDiscoveryProject,
-} from './discovery-banner/pci-discovery-banner';
-export { PciAnnouncementBanner } from './announcement-banner/pci-announcement-banner';
+} from './discovery-banner/PciDiscoveryBanner';
+export { PciAnnouncementBanner } from './announcement-banner/PciAnnouncementBanner';
 export { useAnnouncementBanner } from './announcement-banner/useAnnouncementBanner.hook';
-export { PciFreeLocalZonesBanner } from './free-local-zones-banner/pci-free-local-zones-banner';
-export { PciTrustedZoneBanner } from './trusted-zone-banner/pci-trusted-zone-banner';
+export { PciFreeLocalZonesBanner } from './free-local-zones-banner/PciFreeLocalZonesBanner';
+export { PciTrustedZoneBanner } from './trusted-zone-banner/PciTrustedZoneBanner';
 export { useTrustedZoneBanner } from './trusted-zone-banner/useTrustedZoneBanner.hook';

@@ -1,7 +1,7 @@
 import { describe, vi } from 'vitest';
 import { act, fireEvent, render } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { PciAnnouncementBanner } from './pci-announcement-banner';
+import { PciAnnouncementBanner } from './PciAnnouncementBanner';
 import * as announcementBannerHook from './useAnnouncementBanner.hook';
 
 const mockNavigateTo = vi.fn();
