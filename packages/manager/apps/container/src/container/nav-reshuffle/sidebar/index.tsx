@@ -1,4 +1,4 @@
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect, useState, useMemo, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
 import { aapi } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
@@ -54,12 +54,15 @@ const Sidebar = (): JSX.Element => {
     setCurrentNavigationNode,
     closeNavigationSidebar,
     isMobile,
+    isAnimated,
+    setIsAnimated,
+    isNavigationSidebarOpened
   } = useProductNavReshuffle();
   const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
   const [selectedNode, setSelectedNode] = useState<Node>(null);
   const [showSubTree, setShowSubTree] = useState<boolean>(false);
   const [selectedSubMenu, setSelectedSubMenu] = useState<Node>(null);
-  const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(isNavigationSidebarOpened);
   const [assistanceTree, setAssistanceTree] = useState<Node>(null);
   const logoLink = navigationPlugin.getURL('hub', '#/');
   const savedLocationKey = 'NAVRESHUFFLE_SAVED_LOCATION';
@@ -73,6 +76,7 @@ const Sidebar = (): JSX.Element => {
     const initializeNavigationTree = async () => {
       if (currentNavigationNode) return;
       const features = initFeatureNames(navigationTree);
+      setCurrentNavigationNode(findNodeById(navigationTree, 'sidebar'));
 
       const results = await fetchFeatureAvailabilityData(features);
 
@@ -98,8 +102,8 @@ const Sidebar = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    if (isMobile) setOpen(true);
-  }, [isMobile]);
+    if (isMobile) setOpen(isNavigationSidebarOpened);
+  }, [isMobile, isNavigationSidebarOpened]);
 
   useEffect(() => {
     if (!currentNavigationNode) return;
@@ -195,6 +199,7 @@ const Sidebar = (): JSX.Element => {
   // Callbacks
 
   const toggleSidebar = () => {
+    setIsAnimated(true);
     setOpen((prevOpen) => {
       const nextOpen = !prevOpen;
       const trackingName = nextOpen
@@ -215,12 +220,23 @@ const Sidebar = (): JSX.Element => {
   };
 
   const closeSubMenu = () => {
+    setIsAnimated(true);
     setShowSubTree(false);
-    setIsManuallyClosed(true);
-    if (isMobile) setSelectedNode(null);
+
+    const close = () => {
+      setIsManuallyClosed(true);
+      setSelectedSubMenu(null);
+    };
+
+    isMobile
+      ? close()
+      : setTimeout(() => {
+          close();
+        }, 300);
   };
 
   const menuClickHandler = (node: Node) => {
+    setIsAnimated(true);
     setSelectedSubMenu(null);
     selectLvl1Node(node);
     setIsManuallyClosed(false);
@@ -256,38 +272,46 @@ const Sidebar = (): JSX.Element => {
     if (firstElement) firstElement.focus();
   };
 
+  const isLoading = useMemo<boolean>(
+    () => !currentNavigationNode,
+    [currentNavigationNode],
+  );
+
   return (
     <div
       className={`${style.sidebar} ${
-        selectedNode ? style.sidebar_selected : ''
+        (selectedNode && !isManuallyClosed) ? style.sidebar_selected : ''
       }`}
     >
       <div
-        className={`${style.sidebar_wrapper} ${!open && style.sidebar_short}`}
+        className={`${style.sidebar_wrapper} ${!open &&
+          style.sidebar_short} ${isAnimated && style.sidebar_animated}`}
       >
         <div className={style.sidebar_lvl1}>
-          {!isMobile && (
-            <a
-              role="img"
-              className={`block ${style.sidebar_logo}`}
-              aria-label="OVHcloud"
-              target="_top"
-              href={logoLink}
-            >
-              <img
-                className={`${open ? 'mx-4' : 'mx-2'} my-3`}
-                src={open ? logo : shortLogo}
-                alt="OVHcloud"
-                aria-hidden="true"
-              />
-            </a>
-          )}
+            {!isMobile && (
+              <a
+                role="img"
+                className={`block ${style.sidebar_logo}`}
+                aria-label="OVHcloud"
+                target="_top"
+                href={logoLink}
+              >
+                <img
+                  className={`${open ? 'mx-4' : 'mx-2'} my-3`}
+                  src={open ? logo : shortLogo}
+                  alt="OVHcloud"
+                  aria-hidden="true"
+                />
+              </a>
+            )}
 
           <div className={style.sidebar_menu} role="menubar">
             <ul id="menu" role="menu">
               <li className="px-3 mb-3 mt-2 h-8">
                 {open && currentNavigationNode && (
-                  <h2>{t(currentNavigationNode.translation)}</h2>
+                  <h2 className="whitespace-nowrap">
+                    {t(currentNavigationNode.translation)}
+                  </h2>
                 )}
               </li>
 
@@ -307,6 +331,7 @@ const Sidebar = (): JSX.Element => {
                     <SidebarLink
                       node={node}
                       hasService={node.hasService}
+                      isLoading={isLoading}
                       handleOnClick={() => menuClickHandler(node)}
                       handleOnEnter={(node: Node) => onEnter(node)}
                       id={node.idAttr}
@@ -321,12 +346,13 @@ const Sidebar = (): JSX.Element => {
                 variant={ODS_BUTTON_VARIANT.stroked}
                 size={ODS_BUTTON_SIZE.sm}
                 color={ODS_THEME_COLOR_INTENT.primary}
-                onClick={() =>
-                  trackingPlugin.trackClick({
+                onClick={() => {
+                  setIsAnimated(true);
+                  return trackingPlugin.trackClick({
                     name: 'navbar_v3_entry_home::cta_add_a_service',
                     type: 'action',
-                  })
-                }
+                  });
+                }}
                 href={navigationPlugin.getURL('catalog', '/')}
                 role="link"
                 title={t('sidebar_service_add')}
@@ -351,6 +377,7 @@ const Sidebar = (): JSX.Element => {
               <Assistance
                 nodeTree={assistanceTree}
                 selectedNode={selectedNode}
+                isLoading={isLoading}
                 isShort={!open}
               />
             </Suspense>
@@ -375,12 +402,13 @@ const Sidebar = (): JSX.Element => {
           </button>
         </div>
       </div>
-      {showSubTree && !isManuallyClosed && (
+      {selectedNode && !isManuallyClosed && (
         <SubTree
           selectedNode={selectedSubMenu}
           handleCloseSideBar={closeSubMenu}
           handleOnSubMenuClick={selectSubMenu}
           rootNode={selectedNode}
+          open={showSubTree}
         ></SubTree>
       )}
     </div>
