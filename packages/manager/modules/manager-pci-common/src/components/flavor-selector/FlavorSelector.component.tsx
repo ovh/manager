@@ -21,15 +21,21 @@ export type KubeFlavor = ReturnType<
 interface FlavorSelectorProps {
   projectId: string;
   region: string;
+  clusterId?: string;
   onSelect?: (flavor: KubeFlavor) => void;
 }
 
 export function FlavorSelector({
   projectId,
   region,
+  clusterId,
   onSelect,
 }: Readonly<FlavorSelectorProps>) {
-  const { mergedFlavors, isPending } = useMergedKubeFlavors(projectId, region);
+  const { mergedFlavors, isPending } = useMergedKubeFlavors({
+    projectId,
+    region,
+    clusterId,
+  });
   const [selectedFlavor, setSelectedFlavor] = useState(null);
 
   if (isPending) {

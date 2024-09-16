@@ -48,12 +48,18 @@ export type TKubeFlavor = {
   vCPUs: number;
 };
 
-export const getKubeFlavors = async (
-  projectId: string,
-  region?: string,
-): Promise<TKubeFlavor[]> => {
-  const { data } = await v6.get<TKubeFlavor[]>(
-    `/cloud/project/${projectId}/capabilities/kube/flavors?region=${region}`,
-  );
+export const getKubeFlavors = async ({
+  projectId,
+  region,
+  clusterId,
+}: {
+  projectId: string;
+  region?: string;
+  clusterId: string;
+}): Promise<TKubeFlavor[]> => {
+  const url = clusterId
+    ? `/cloud/project/${projectId}/kube/${clusterId}/flavors`
+    : `/cloud/project/${projectId}/capabilities/kube/flavors?region=${region}`;
+  const { data } = await v6.get<TKubeFlavor[]>(url);
   return data;
 };
