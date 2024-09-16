@@ -73,7 +73,7 @@ export default function ModalDiagnosticDnsRecord(
   // this should be in data.currentState.expectedDNSConfig.spf
   const spfFields = {
     subdomain: '_autodiscover._tcp',
-    target: 'v=spf1 include:mx.ovh.com ~all',
+    target: '"v=spf1 include:mx.ovh.com ~all"',
   };
 
   const handleValidationClick = () => {
@@ -131,7 +131,7 @@ export default function ModalDiagnosticDnsRecord(
       {domain && (
         <>
           <OsdsText
-            className="mt-6"
+            className="mt-6 whitespace-pre-line"
             color={ODS_THEME_COLOR_INTENT.text}
             size={ODS_THEME_TYPOGRAPHY_SIZE._400}
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -155,7 +155,7 @@ export default function ModalDiagnosticDnsRecord(
               }}
             />
           </OsdsText>
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full whitespace-pre">
             {dnsRecordType === DnsRecordType.SRV && (
               <div className="flex gap-4 w-full mt-4">
                 <OsdsText
@@ -192,9 +192,7 @@ export default function ModalDiagnosticDnsRecord(
                   hue={ODS_THEME_COLOR_HUE._500}
                 >
                   <strong>
-                    {t(
-                      `zimbra_domain_modal_diagnostic_${dnsRecordTypeKey}_fields`,
-                    )}
+                    {t(`zimbra_domain_modal_diagnostic_fields`)} {dnsRecordType}
                   </strong>
                 </OsdsText>
                 <div className="flex flex-col w-2/3">
@@ -208,14 +206,11 @@ export default function ModalDiagnosticDnsRecord(
                           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                           hue={ODS_THEME_COLOR_HUE._500}
                         >
-                          <Trans
-                            t={t}
-                            i18nKey={`zimbra_domain_modal_diagnostic_mx_field`}
-                            values={{
-                              priority,
-                              target,
-                            }}
-                          />
+                          {t(`zimbra_domain_modal_diagnostic_field_priority`)}
+                          <strong> {priority}</strong>
+                          {' ; '}
+                          {t(`zimbra_domain_modal_diagnostic_field_target`)}
+                          <strong> {target}</strong>
                         </OsdsText>
                       ))}
                     </div>
@@ -235,11 +230,8 @@ export default function ModalDiagnosticDnsRecord(
                           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                           hue={ODS_THEME_COLOR_HUE._500}
                         >
-                          <Trans
-                            t={t}
-                            i18nKey={`zimbra_domain_modal_diagnostic_${dnsRecordTypeKey}_field_${key}`}
-                            values={{ [key]: value }}
-                          />
+                          {t(`zimbra_domain_modal_diagnostic_field_${key}`)}
+                          <strong> {value}</strong>
                         </OsdsText>
                       ))}
                     </div>
