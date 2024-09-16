@@ -1,5 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import {
   Clipboard,
   DashboardTile,
@@ -9,6 +12,7 @@ import { useOutletCredential } from '@/hooks/credential/useOutletCredential';
 import { CredentialStatus } from '@/components/credential/credentialStatus/CredentialStatus.component';
 import { TileValueDate } from '@/components/dashboard/tile-value-date/tileValueDate.component';
 import CredentialCreationMethod from '@/components/credential/credentialCreationMethod/credentialCreationMethod.component';
+import { getDownloadCredentialParameters } from '@/utils/credential/credentialDownload';
 
 const dateFormat: Intl.DateTimeFormatOptions = {
   hour12: false,
@@ -23,6 +27,10 @@ const dateFormat: Intl.DateTimeFormatOptions = {
 const CredentialGeneralInformations = () => {
   const credential = useOutletCredential();
   const { t } = useTranslation('key-management-service/credential');
+
+  const { filename, href, isDisabled } = getDownloadCredentialParameters(
+    credential,
+  );
 
   const items: DashboardTileBlockItem[] = [
     {
@@ -60,6 +68,21 @@ const CredentialGeneralInformations = () => {
       label: t('key_management_service_credential_dashboard_expiration'),
       value: (
         <TileValueDate value={credential.expiredAt} options={dateFormat} />
+      ),
+    },
+    {
+      id: 'actions',
+      label: 'actions',
+      value: (
+        <OsdsButton
+          size={ODS_BUTTON_SIZE.sm}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          href={href}
+          download={filename}
+          disabled={isDisabled || undefined}
+        >
+          {t('key_management_service_credential_download')}
+        </OsdsButton>
       ),
     },
   ];
