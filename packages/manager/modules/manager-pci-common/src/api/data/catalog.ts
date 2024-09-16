@@ -59,9 +59,13 @@ export type TCatalog = {
 };
 
 export type TAddon = {
+  invoiceName: string;
   planCode: string;
   blobs: {
     tags: string[];
+    commercial?: {
+      name?: string;
+    };
     technical: {
       bandwidth?: {
         guaranteed: boolean;
@@ -130,16 +134,41 @@ export type TAddon = {
     };
   };
   pricings: {
+    commitment: number;
+    description: string;
+    interval: number;
+    intervalUnit: string;
+    mode: string;
+    phase: number;
     price: number;
+    quantity: {
+      min: number;
+      max?: number;
+    };
+    mustBeCompleted: boolean;
+    promotions: {
+      name: string;
+      description: string;
+    }[];
+    repeat: {
+      min: number;
+      max?: number;
+    };
+    strategy: string;
+    tax: number;
     type: string;
     capacities: string[];
   }[];
+  product: string;
 };
 
-export const getCatalog = async (ovhSubsidiary: string): Promise<TCatalog> => {
-  const { data } = await v6.get<TCatalog>(
-    `/order/catalog/public/cloud?ovhSubsidiary=${ovhSubsidiary}`,
-  );
+export const getCatalog = async (
+  ovhSubsidiary: string,
+  productName?: string,
+): Promise<TCatalog> => {
+  const { data } = await v6.get<TCatalog>('/order/catalog/public/cloud', {
+    params: { ovhSubsidiary, productName },
+  });
 
   return data;
 };

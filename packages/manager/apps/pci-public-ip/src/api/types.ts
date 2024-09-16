@@ -7,11 +7,11 @@ export type TIpType = {
   name: string;
   label: string;
   description: string;
-  price: string;
+  price: string | number;
 };
 
 export type TIpAddress = {
-  gatewayIp: string;
+  gatewayIp?: string;
   ip: string;
   networkId: string;
   type: string;

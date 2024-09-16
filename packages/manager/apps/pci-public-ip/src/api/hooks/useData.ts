@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { TCountry, TInstance, TIpType, TRegion } from '@/api/types';
+import { TInstance } from '@ovh-ux/manager-pci-common';
+import { TCountry, TIpType, TRegion } from '@/api/types';
 import { useIpTypes } from '@/api/hooks/useIpTypes';
 import { useFloatingRegions } from '@/api/hooks/useFloatingRegions';
 import { useCountries } from '@/api/hooks/useCountries';

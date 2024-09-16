@@ -12,16 +12,6 @@ type TRawInstance = {
   status: string;
 };
 
-export type TInstance = Pick<TRawInstance, 'id' | 'monthlyBilling'>;
-
-export const getInstances = async (projectId: string): Promise<TInstance[]> => {
-  const { data } = await v6.get<TInstance[]>(
-    `/cloud/project/${projectId}/instance`,
-  );
-
-  return data as TInstance[];
-};
-
 export const switchToMonthlyBilling = async (
   projectId: string,
   instanceId: string,
