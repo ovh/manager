@@ -19,6 +19,7 @@ import {
   AutoscalingState,
 } from '@/components/Autoscaling.component';
 import { useTrack } from '@/hooks/track';
+import { NODE_RANGE } from '@/constants';
 
 export default function ScalePage(): JSX.Element {
   const { projectId, kubeId: clusterId } = useParams();
@@ -70,17 +71,29 @@ export default function ScalePage(): JSX.Element {
       goBack();
     },
     onSuccess: async () => {
+      addSuccess(tScale('kube_node_pool_autoscaling_scale_success'));
+      goBack();
       trackClick(`details::nodepools::scale::confirm`);
       await queryClient.invalidateQueries({
         queryKey: ['project', projectId, 'kubernetes', clusterId, 'nodePools'],
       });
-      addSuccess(tScale('kube_node_pool_autoscaling_scale_success'));
-      goBack();
     },
     projectId,
     clusterId,
     poolId,
   });
+
+  const isSaveDisabled = useMemo(() => {
+    if (!state) return true;
+    return (
+      isScaling ||
+      (!state.isAutoscale && state.quantity.desired > NODE_RANGE.MAX) ||
+      (state.isAutoscale &&
+        (state.quantity.min > NODE_RANGE.MAX ||
+          state.quantity.max > NODE_RANGE.MAX ||
+          state.quantity.min >= state.quantity.max))
+    );
+  }, [isScaling, state]);
 
   return (
     <OsdsModal
@@ -133,7 +146,7 @@ export default function ScalePage(): JSX.Element {
             minNodes: state.quantity.min,
           });
         }}
-        {...(isScaling ? { disabled: true } : {})}
+        {...(isSaveDisabled ? { disabled: true } : {})}
       >
         {tListing('kube_common_save')}
       </OsdsButton>
