@@ -7,10 +7,9 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { HubSupport } from '@/components/hub-support/HubSupport.component';
+import HubSupport from '@/components/hub-support/HubSupport.component';
 import '@testing-library/jest-dom';
 import { Ticket } from '@/types/support.type';
-import { TileError } from '../tile-error/TileError.component';
 
 const { refetch } = vi.hoisted(() => {
   return { refetch: vi.fn() };
@@ -27,7 +26,7 @@ vi.mock('./hub-support-table/HubSupportTable.component', () => ({
 }));
 
 vi.mock('../tile-error/TileError.component', () => ({
-  TileError: () => <div data-testid="tile-error"></div>,
+  default: () => <div data-testid="tile-error"></div>,
 }));
 
 vi.mock('./hub-support-help/HubSupportHelp.component', () => ({
@@ -142,7 +141,7 @@ describe('HubSupport Component', () => {
   it('displays TileError when there is an error', () => {
     useFetchMockValue.error = true;
 
-    render(<TileError message="message" refetch={() => ({})} />);
+    render(<HubSupport />);
 
     const helpHubSupport = screen.getByTestId('tile-error');
     expect(helpHubSupport).toBeInTheDocument();
