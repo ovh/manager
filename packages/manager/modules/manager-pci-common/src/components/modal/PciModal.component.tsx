@@ -8,7 +8,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 
-type PciModalProps = {
+export type PciModalProps = {
   children: React.ReactNode;
   type?: 'warning' | 'default';
   title: string;
@@ -34,6 +34,7 @@ export function PciModal({
   onCancel,
 }: Readonly<PciModalProps>) {
   const { t } = useTranslation('pci-common');
+
   return (
     <OsdsModal
       color={

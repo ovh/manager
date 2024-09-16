@@ -16,15 +16,19 @@ describe('DeletePage', () => {
       data: null,
       isPending: true,
     } as UseQueryResult<TRegistry[]>);
+
     const { getByTestId } = render(<DeletePage />, { wrapper });
-    expect(getByTestId('delete-spinner')).toBeInTheDocument();
+
+    expect(getByTestId('pciModal-spinner')).toBeInTheDocument();
   });
 
   it('disables submit button when confirmation text does not match', () => {
     vi.spyOn(ApiRegistryModule, 'useGetAllRegistries').mockReturnValueOnce({
       isPending: false,
     } as UseQueryResult<TRegistry[]>);
+
     const { getByTestId } = render(<DeletePage />, { wrapper });
+
     act(() => {
       fireEvent.change(getByTestId('delete-input'), {
         target: { value: 'WRONG' },
@@ -35,14 +39,17 @@ describe('DeletePage', () => {
         value: 'WRONG',
       } as OdsInputValueChangeEventDetail);
     });
-    expect(getByTestId('delete-button_submit')).toBeDisabled();
+
+    expect(getByTestId('pciModal-button_submit')).toBeDisabled();
   });
 
   it('enables submit button when confirmation text matches', () => {
     vi.spyOn(ApiRegistryModule, 'useGetAllRegistries').mockReturnValueOnce({
       isPending: false,
     } as UseQueryResult<TRegistry[]>);
+
     const { getByTestId } = render(<DeletePage />, { wrapper });
+
     act(() => {
       fireEvent.change(getByTestId('delete-input'), {
         target: { value: 'DELETE' },
@@ -53,6 +60,7 @@ describe('DeletePage', () => {
         value: 'DELETE',
       } as OdsInputValueChangeEventDetail);
     });
-    expect(getByTestId('delete-button_submit')).not.toBeDisabled();
+
+    expect(getByTestId('pciModal-button_submit')).not.toBeDisabled();
   });
 });
