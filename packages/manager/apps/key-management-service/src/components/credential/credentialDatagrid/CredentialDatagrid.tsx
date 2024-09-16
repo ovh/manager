@@ -13,6 +13,7 @@ import {
   useOkmsCredentials,
 } from '@/data/hooks/useOkmsCredential';
 import {
+  DatagridCredentialCellActions,
   DatagridCredentialCellCreationDate,
   DatagridCredentialCellExpirationDate,
   DatagridCredentialCellId,
@@ -84,6 +85,12 @@ const CredentialDatagrid = () => {
       id: 'status',
       cell: DatagridCredentialCellStatus,
       label: t('key_management_service_credential_list_column_status'),
+      isSortable: false,
+    },
+    {
+      id: 'actions',
+      cell: DatagridCredentialCellActions,
+      label: '',
       isSortable: false,
     },
   ];

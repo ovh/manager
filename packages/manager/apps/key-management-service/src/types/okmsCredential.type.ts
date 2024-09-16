@@ -4,7 +4,7 @@
 export type OkmsCredential = {
   createdAt: string;
   id: string;
-  name?: string;
+  name: string;
   certificatePEM?: string;
   description?: string;
   expiredAt: string;
