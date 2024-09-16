@@ -13,6 +13,7 @@ export const COUNTRIES = {
   HIL: 'US',
   SGP: 'SG',
   TOR: 'CA',
+  YNM: 'IN',
 };
 
 export default { COUNTRIES };

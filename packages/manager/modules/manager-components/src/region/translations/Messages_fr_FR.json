@@ -68,6 +68,8 @@
   "manager_components_region_location_SYD": "Océanie (Australie)",
   "manager_components_region_TOR": "Toronto",
   "manager_components_region_TOR_micro": "Toronto ({{ micro }})",
+  "manager_components_region_YNM": "Mumbai",
+  "manager_components_region_YNM_micro": "Mumbai ({{ micro }})",
   "manager_components_region_continent_TOR": "Amérique du Nord",
   "manager_components_region_location_TOR": "Amérique du Nord (Canada)",
   "manager_components_region_YYZ": "Toronto",

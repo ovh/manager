@@ -277,5 +277,7 @@
   "manager_components_region_location_HIL": "North America (USA)",
   "manager_components_region_location_VIN": "North America (USA)",
   "manager_components_region_location_OR": "North America (USA)",
-  "manager_components_region_location_VA": "North America (USA)"
+  "manager_components_region_location_VA": "North America (USA)",
+  "manager_components_region_YNM": "Mumbai",
+  "manager_components_region_YNM_micro": "Mumbai ({{ micro }})"
 }
