@@ -64,6 +64,7 @@ export default class ovhManagerRegionService {
       HIL: this.$translate.instant('manager_components_region_HIL'),
       SGP: this.$translate.instant('manager_components_region_SGP'),
       TOR: this.$translate.instant('manager_components_region_TOR'),
+      YNM: this.$translate.instant('manager_components_region_YNM'),
     };
   }
 
