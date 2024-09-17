@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import 'angular-translate';
 
-import protectedData from './protectedData.component';
+import protectedData from './protectedData.component.js';
 
 const moduleName = 'ovhManagerProtectedData';
 
