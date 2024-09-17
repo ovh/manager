@@ -10,7 +10,12 @@ import usePageTracking from '@/hooks/usePageTracking';
 export default function Layout() {
   const { isSuccess } = useProject();
 
-  usePageTracking();
+  const location = useLocation();
+  const { trackCurrentPage } = useOvhTracking();
+
+  useEffect(() => {
+    trackCurrentPage();
+  }, [location]);
 
   return (
     <div className="application">
@@ -27,6 +32,7 @@ export default function Layout() {
   );
 }
 
+// TODO remove
 export const ErrorBoundary = () => {
   const error = useRouteError() as ResponseAPIError;
   const { navigation } = useContext(ShellContext).shell;

@@ -1,4 +1,5 @@
 import { getProjectQuery } from '@ovh-ux/manager-pci-common';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import queryClient from '@/queryClient';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({
@@ -12,6 +13,7 @@ const lazyRouteConfig = (importFn: CallableFunction) => ({
   },
 });
 
+// TODO remove
 export interface RouteHandle {
   tracking?: string;
 }
@@ -38,49 +40,76 @@ export default [
     ...lazyRouteConfig(() => import('@/pages/Layout')),
     children: [
       {
+        id: 'globalRegions',
         path: ROUTE_PATHS.globalRegions,
         handle: {
-          tracking: 'globalRegions',
+          tracking: {
+            pageName: 'globalRegions',
+            pageType: PageType.listing,
+          },
         },
         ...lazyRouteConfig(() => import('@/pages/list/List.page')),
         children: [
           {
+            id: 'delete-global-regions',
             path: ROUTE_PATHS.delete,
             ...lazyRouteConfig(() =>
               import('@/pages/delete/DeleteNetwork.page'),
             ),
             handle: {
-              tracking: 'delete',
+              tracking: {
+                pageName: 'delete',
+                pageType: PageType.dashboard,
+              },
             },
           },
         ],
       },
       {
+        id: 'localZone',
         path: ROUTE_PATHS.localZone,
         handle: {
-          tracking: 'localZone',
+          tracking: {
+            pageName: 'localZone',
+            pageType: PageType.listing,
+          },
         },
         ...lazyRouteConfig(() => import('@/pages/list/List.page')),
         children: [
           {
+            id: 'delete-local-zone',
             path: ROUTE_PATHS.delete,
             ...lazyRouteConfig(() =>
               import('@/pages/delete/DeleteNetwork.page'),
             ),
             handle: {
-              tracking: 'delete',
+              tracking: {
+                pageName: 'delete',
+                pageType: PageType.dashboard,
+              },
             },
           },
         ],
       },
       {
+        id: 'onboarding',
         path: ROUTE_PATHS.onboarding,
         ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
+        handle: {
+          tracking: {
+            pageName: 'onboarding',
+            pageType: PageType.onboarding,
+          },
+        },
       },
       {
+        id: 'new',
         path: ROUTE_PATHS.new,
         handle: {
-          tracking: 'new',
+          tracking: {
+            pageName: 'new',
+            pageType: PageType.dashboard,
+          },
         },
         ...lazyRouteConfig(() => import('@/pages/new/New.page')),
       },
