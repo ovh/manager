@@ -25,7 +25,7 @@ export default function DashboardPage() {
     },
   ];
 
-  const serviceName = vcdOrganisation?.data?.currentState?.description;
+  const serviceName = vcdOrganisation?.data?.currentState?.fullName;
   const hasServiceRenamed = id !== serviceName;
 
   const header = hasServiceRenamed
