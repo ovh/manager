@@ -88,6 +88,12 @@ export const Dashboard: React.FC = () => {
         urls.mailing_lists_delete,
       ]),
     },
+    {
+      name: 'redirections',
+      title: t('zimbra_dashboard_redirections'),
+      to: `${basePath}/redirections`,
+      pathMatchers: computePathMatchers([urls.redirections]),
+    },
   ];
 
   return (

@@ -153,6 +153,12 @@ export const Routes: any = [
               import('@/pages/dashboard/MailingLists/MailingLists'),
             ),
           },
+          {
+            path: 'redirections',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/Redirections/Redirections'),
+            ),
+          },
         ],
       },
       {
