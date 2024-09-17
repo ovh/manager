@@ -1,11 +1,6 @@
 import React from 'react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OdsLink, OdsIcon } from '@ovhcloud/ods-components/react';
-import {
-  OdsHTMLAnchorElementRel,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-common-core';
+import { OdsLink } from '@ovhcloud/ods-components/react';
 
 export enum LinkType {
   back = 'back',
@@ -18,8 +13,8 @@ export interface LinksProps {
   download?: string;
   label?: string;
   href?: string;
-  rel?: OdsHTMLAnchorElementRel;
-  target?: OdsHTMLAnchorElementTarget;
+  rel?: string;
+  target?: string;
   type?: LinkType;
   onClickReturn?: () => void;
 }

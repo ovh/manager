@@ -1,6 +1,5 @@
 import React from 'react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsDivider, OdsText, OdsCard } from '@ovhcloud/ods-components/react';
+import { OdsDivider, OdsCard } from '@ovhcloud/ods-components/react';
 import { TileBlock } from './tile-block.component';
 
 export type DashboardTileBlockItem = {

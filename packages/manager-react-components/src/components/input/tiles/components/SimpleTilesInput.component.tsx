@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { OdsText, OdsCard } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsCard } from '@ovhcloud/ods-components/react';
 import { clsx } from 'clsx';
 import isEqual from 'lodash.isequal';
 import { hashCode } from '../../../../utils';

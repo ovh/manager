@@ -9,7 +9,6 @@ import {
   ODS_MESSAGE_COLOR,
   ODS_MESSAGE_VARIANT,
 } from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 export type ActionBannerProps = {
   message: string;
@@ -58,7 +57,7 @@ export function ActionBanner({
             className="sm:mt-0 mt-4 sm:ml-4 ml-0"
             onClick={() => onClick && onClick()}
             href={href}
-            target={OdsHTMLAnchorElementTarget._blank}
+            target={'_blank'}
           >
             {cta}
           </OdsLink>

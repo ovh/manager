@@ -1,9 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { OdsText, OdsBadge, OdsCard } from '@ovhcloud/ods-components/react';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsBadge, OdsCard } from '@ovhcloud/ods-components/react';
 import { LinkType, Links } from '../../typography';
 import './translations/translations';
 
@@ -49,7 +47,7 @@ export const Card: React.FC<CardProps> = ({
 
   return (
     <a
-      target={OdsHTMLAnchorElementTarget._blank}
+      target={'_blank'}
       href={href}
       className="no-underline"
       onClick={onClick}

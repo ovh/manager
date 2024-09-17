@@ -1,6 +1,5 @@
 import React from 'react';
 import { OdsText, OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
   ODS_MESSAGE_COLOR,
@@ -65,7 +64,6 @@ export const ErrorBanner = ({
           <OdsButton
             data-testid="error-template-action-reload"
             className="error-template-actions w-full "
-            color={ODS_THEME_COLOR_INTENT.primary}
             onClick={onReloadPage}
             label={t('manager_error_page_action_reload_label')}
           />

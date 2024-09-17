@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OdsText,
   OdsInput,
@@ -15,7 +14,6 @@ import {
   ODS_SPINNER_SIZE,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_COLOR,
-  ODS_TEXT_PRESET,
   OdsInputChangeEventDetail,
   OdsInputCustomEvent,
 } from '@ovhcloud/ods-components';
@@ -123,14 +121,12 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
         isDisabled={isLoading}
         slot="actions"
         variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_THEME_COLOR_INTENT.primary}
         {...handleClick(closeModal)}
         label={cancelButtonLabel || t('updateModalCancelButton')}
       />
       <OdsButton
         isDisabled={isLoading || isPatternError}
         slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
         {...handleClick(() => updateDisplayName(displayName))}
         label={confirmButtonLabel || t('updateModalConfirmButton')}
       />

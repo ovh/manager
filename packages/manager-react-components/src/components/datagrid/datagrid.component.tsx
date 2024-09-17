@@ -8,7 +8,6 @@ import {
   useReactTable,
   getSortedRowModel,
 } from '@tanstack/react-table';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   OdsButton,
@@ -172,7 +171,6 @@ export const Datagrid = <T,>({
                             className={`align-middle inline-block h-4 -mt-6`}
                           >
                             <OdsIcon
-                              color={ODS_THEME_COLOR_INTENT.primary}
                               className={
                                 header.column.getIsSorted() ? '' : 'invisible'
                               }

@@ -35,6 +35,7 @@ export const DashboardLayout = ({
     <div>
       {backLinkLabel && onClickReturn && (
         <Links
+          data-testid="manager-back-link"
           className="mb-8"
           onClickReturn={onClickReturn}
           label={backLinkLabel}

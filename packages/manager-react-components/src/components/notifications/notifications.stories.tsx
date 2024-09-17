@@ -3,7 +3,6 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
 
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Notifications } from './notifications.component';
 import { useNotifications } from './useNotifications';
 

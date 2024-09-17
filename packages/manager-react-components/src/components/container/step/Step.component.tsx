@@ -1,11 +1,5 @@
 import React, { Suspense } from 'react';
-import {
-  OdsButton,
-  OdsIcon,
-  OdsSpinner,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsButton, OdsIcon, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { v4 as uuidV4 } from 'uuid';
 import {
   ODS_BUTTON_SIZE,
@@ -97,7 +91,6 @@ export const StepComponent = ({
                 label={edit.label as string}
                 data-testid="edit-cta"
                 className="float-left md:float-right"
-                color={ODS_THEME_COLOR_INTENT.primary}
                 {...(edit.isDisabled ? { disabled: true } : {})}
                 onClick={() => {
                   if (!edit.isDisabled) {
@@ -128,7 +121,6 @@ export const StepComponent = ({
                   data-testid="next-cta"
                   label={next.label as string}
                   size={ODS_BUTTON_SIZE.md}
-                  color={ODS_THEME_COLOR_INTENT.primary}
                   onClick={() => {
                     next.action(id);
                   }}

@@ -1,5 +1,4 @@
 import React from 'react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 
 export const Title: React.FC<
   React.PropsWithChildren<{
@@ -7,11 +6,11 @@ export const Title: React.FC<
   }>
 > = ({ children, className }) => {
   return (
-    <h1
+    <div
       className={`${className} m-0 p-0 text-[--ods-color-heading] text-[36px] leading-[45px] font-bold mb-[24px]`}
     >
       {children}
-    </h1>
+    </div>
   );
 };
 

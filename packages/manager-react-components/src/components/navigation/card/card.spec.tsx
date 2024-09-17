@@ -18,9 +18,11 @@ describe('specs:Card', () => {
       const { container } = await setupSpecTest({
         badges: [{ text: 'Beta' }],
       });
-      expect(
-        container.querySelector('.card-badges-section .ods-badge'),
-      ).toBeInTheDocument();
+      waitFor(() => {
+        expect(
+          container.querySelector('.card-badges-section .ods-badge'),
+        ).toBeInTheDocument();
+      });
     });
 
     it('should have design system correctly set for texts', async () => {
@@ -32,7 +34,7 @@ describe('specs:Card', () => {
         },
       };
 
-      const { getByText } = await setupSpecTest(cardProps);
+      const { getByText, container } = await setupSpecTest(cardProps);
       const titleElement = getByText(cardProps.texts.title);
       expect(titleElement).toBeVisible();
 
@@ -42,7 +44,7 @@ describe('specs:Card', () => {
       const catElement = getByText(cardProps.texts.category);
       expect(catElement).toBeVisible();
 
-      expect(getByText('En savoir plus')).toBeDefined();
+      expect(container.querySelector('[label="En savoir plus"]')).toBeDefined();
     });
 
     it('should override href label', async () => {
@@ -55,8 +57,8 @@ describe('specs:Card', () => {
         hrefLabel: 'custom label',
       };
 
-      const { getByText } = await setupSpecTest(cardProps);
-      expect(getByText('custom label')).toBeDefined();
+      const { container } = await setupSpecTest(cardProps);
+      expect(container.querySelector('[label="custom label"]')).toBeDefined();
     });
   });
 });

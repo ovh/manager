@@ -11,7 +11,6 @@ import {
   OdsInput,
 } from '@ovhcloud/ods-components/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { FilterAdd } from './filter-add.component';
 import { FilterList } from './filter-list.component';
 import { useColumnFilters } from './useColumnFilters';
@@ -49,7 +48,6 @@ const FiltersStory = () => {
           <OdsButton
             slot="popover-trigger"
             size={ODS_BUTTON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
             variant={ODS_BUTTON_VARIANT.outline}
             icon={ODS_ICON_NAME.filter}
             label="Filter"

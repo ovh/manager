@@ -4,7 +4,6 @@ import { clsx } from 'clsx';
 import { v4 as uuidV4 } from 'uuid';
 import { OdsIcon, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { hashCode } from '../../../utils';
 
 type TProps<Item> = {
@@ -131,15 +130,9 @@ export function TabsComponent<Item>({
                 </div>
                 <div className="w-fit flex items-center">
                   {!Object.is(state.selectedItem, item) ? (
-                    <OdsIcon
-                      name={ODS_ICON_NAME.chevronDown}
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                    ></OdsIcon>
+                    <OdsIcon name={ODS_ICON_NAME.chevronDown}></OdsIcon>
                   ) : (
-                    <OdsIcon
-                      name={ODS_ICON_NAME.chevronUp}
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                    ></OdsIcon>
+                    <OdsIcon name={ODS_ICON_NAME.chevronUp}></OdsIcon>
                   )}
                 </div>
               </button>

@@ -1,15 +1,10 @@
 import React from 'react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
 import { OdsPopover, OdsButton } from '@ovhcloud/ods-components/react';
-import {
-  OdsHTMLAnchorElementRel,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
 import { Links, LinkType } from '../../../typography';
 import '../translations/translation';
@@ -18,8 +13,8 @@ export interface GuideItem {
   id: number;
   href: string;
   download?: string;
-  target?: OdsHTMLAnchorElementTarget;
-  rel?: OdsHTMLAnchorElementRel;
+  target?: string;
+  rel?: string;
   label: string;
 }
 
@@ -35,7 +30,6 @@ export const GuideButton: React.FC<GuideButtonProps> = ({ items }) => {
         <OdsButton
           slot="menu-title"
           className="block mb-6"
-          color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.ghost}
           size={ODS_BUTTON_SIZE.sm}
           label={t('user_account_guides_header')}

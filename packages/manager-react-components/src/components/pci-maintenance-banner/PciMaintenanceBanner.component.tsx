@@ -1,6 +1,5 @@
 import React from 'react';
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { OdsLink, OdsMessage } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 
@@ -55,7 +54,7 @@ export function PciMaintenanceBanner({
           data-testid="pci-maintenance-banner-link"
           className="ml-4"
           href={maintenanceURL}
-          target={OdsHTMLAnchorElementTarget._blank}
+          target="_blank"
           label={t('pci_projects_maintenance_banner_info_link')}
         />
       </span>

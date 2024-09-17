@@ -12,7 +12,6 @@ import {
 import {
   OdsInputCustomEvent,
   OdsInputChangeEventDetail,
-  ODS_TEXT_PRESET,
   ODS_BUTTON_VARIANT,
   ODS_SPINNER_SIZE,
   ODS_INPUT_TYPE,
@@ -102,6 +101,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
       <OdsButton
         isDisabled={isLoading}
         slot="actions"
+        data-testid="manager-delete-modal-cancel"
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_BUTTON_COLOR.primary}
         {...handleClick(close)}
@@ -110,6 +110,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
       <OdsButton
         isDisabled={isDisabled}
         slot="actions"
+        data-testid="manager-delete-modal-confirm"
         {...handleClick(() => {
           setDeleteInput('');
           onConfirmDelete();

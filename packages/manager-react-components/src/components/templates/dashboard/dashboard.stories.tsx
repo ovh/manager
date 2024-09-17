@@ -9,7 +9,6 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { DashboardTile } from '../../content';
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { DashboardLayout, DashboardLayoutProps } from './dashboard.component';
 import GuideButton, {
   GuideItem,
@@ -21,13 +20,13 @@ const guideItems: GuideItem[] = [
   {
     id: 1,
     href: 'https://www.ovh.com',
-    target: OdsHTMLAnchorElementTarget._blank,
+    target: '_blank',
     label: 'ovh.com',
   },
   {
     id: 2,
     href: 'https://help.ovhcloud.com/csm/fr-documentation?id=kb_home',
-    target: OdsHTMLAnchorElementTarget._blank,
+    target: '_blank',
     label: 'Guides OVH',
   },
 ];

@@ -8,7 +8,6 @@ import {
   OdsTable,
   OdsBadge,
 } from '@ovhcloud/ods-components/react';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { DashboardTile } from '../../content';
 import OdsNotification from '../../notifications/ods-notification';
 import { NotificationType } from '../../notifications/useNotifications';
@@ -23,13 +22,13 @@ const guideItems: GuideItem[] = [
   {
     id: 1,
     href: 'https://www.ovh.com',
-    target: OdsHTMLAnchorElementTarget._blank,
+    target: '_blank',
     label: 'ovh.com',
   },
   {
     id: 2,
     href: 'https://help.ovhcloud.com/csm/fr-documentation?id=kb_home',
-    target: OdsHTMLAnchorElementTarget._blank,
+    target: '_blank',
     label: 'Guides OVH',
   },
 ];

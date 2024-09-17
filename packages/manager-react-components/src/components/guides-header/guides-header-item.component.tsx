@@ -1,7 +1,6 @@
 import React from 'react';
 import { OdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { Guide } from './interface';
 
 interface GuidesHeaderItemProps {
@@ -22,7 +21,7 @@ export function GuidesHeaderItem({
     <div>
       <OdsLink
         href={href}
-        target={OdsHTMLAnchorElementTarget._blank}
+        target="_blank"
         icon={ODS_ICON_NAME.externalLink}
         onClick={() => {
           if (onClick) {

@@ -5,10 +5,6 @@ import {
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsPopover } from '@ovhcloud/ods-components/react';
-import {
-  OdsHTMLAnchorElementTarget,
-  OdsHTMLAnchorElementRel,
-} from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
 import '../translations/translation';
 
@@ -16,10 +12,10 @@ import { ManagerButton } from '../../../ManagerButton/ManagerButton';
 
 export interface ActionMenuItem {
   id: number;
-  rel?: OdsHTMLAnchorElementRel;
+  rel?: string;
   download?: string;
   href?: string;
-  target?: OdsHTMLAnchorElementTarget;
+  target?: string;
   onClick?: () => void;
   label: string;
   variant?: ODS_BUTTON_VARIANT;

@@ -3,7 +3,6 @@ import { Headers, HeadersProps } from '../../content';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { LinkType, Links, Subtitle } from '../../typography';
 import { PageLayout } from '../layout/layout.component';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 export type BaseLayoutProps = React.PropsWithChildren<{
   breadcrumb?: React.ReactElement;
@@ -37,10 +36,11 @@ export const BaseLayout = ({
     {backLinkLabel && (onClickReturn || hrefPrevious) && (
       <div className="mb-[24px]">
         <Links
+          data-testid="manager-back-link"
           onClickReturn={onClickReturn}
           label={backLinkLabel}
           type={LinkType.back}
-          target={OdsHTMLAnchorElementTarget._self}
+          target="_self"
           href={hrefPrevious}
         />
       </div>

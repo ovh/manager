@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
 import { Filter, FilterComparator } from '@ovh-ux/manager-core-api';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE, ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 import './filters.scss';
 
@@ -56,7 +55,9 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
       <div>
         <OdsFormField className="w-full">
           <div slot="label">
-            <OdsText>{t('common_criteria_adder_column_label')}</OdsText>
+            <span className="text-[--ods-color-heading] leading-[22px]">
+              {t('common_criteria_adder_column_label')}
+            </span>
           </div>
           <OdsSelect
             value={selectedId}
@@ -75,7 +76,9 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
       <div>
         <OdsFormField className="mt-2 w-full">
           <div slot="label">
-            <OdsText>{t('common_criteria_adder_operator_label')}</OdsText>
+            <span className="text-[--ods-color-heading] leading-[22px]">
+              {t('common_criteria_adder_operator_label')}
+            </span>
           </div>
           <OdsSelect
             name="add-operator"
@@ -95,13 +98,14 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
       <div>
         <OdsFormField className="mt-2 w-full">
           <div slot="label">
-            <OdsText>{t('common_criteria_adder_value_label')}</OdsText>
+            <span className="text-[--ods-color-heading] leading-[22px]">
+              {t('common_criteria_adder_value_label')}
+            </span>
           </div>
           <OdsInput
             name="filter-add_value-input"
             className="border"
             type={ODS_INPUT_TYPE.text}
-            color={ODS_THEME_COLOR_INTENT.primary}
             value={value}
             data-testid="filter-add_value-input"
             onOdsChange={(e) => setValue(`${e.detail.value}`)}
@@ -116,7 +120,6 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
       <div>
         <OdsButton
           className="mt-4 w-full filter-add-button-submit"
-          color={ODS_THEME_COLOR_INTENT.primary}
           size={ODS_BUTTON_SIZE.sm}
           isDisabled={!value}
           onClick={submitAddFilter}
