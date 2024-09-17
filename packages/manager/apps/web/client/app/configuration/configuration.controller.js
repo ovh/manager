@@ -7,8 +7,10 @@ angular.module('App').controller(
     /* @ngInject */
     constructor($scope, coreConfig, constants) {
       this.constants = constants;
-      this.OVH_WEB_OFFERS_2024 = OVH_WEB_OFFERS_2024;
       $scope.user = coreConfig.getUser();
+      this.banner2024 =
+        OVH_WEB_OFFERS_2024[$scope.user.ovhSubsidiary] ||
+        OVH_WEB_OFFERS_2024.DEFAULT;
     }
 
     $onInit() {
