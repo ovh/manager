@@ -62,7 +62,7 @@ export default function DatacentreGenerationInformationTile({
         },
         {
           id: 'cpuCount',
-          label: tVdc('managed_vcd_vdc_cpu_count'),
+          label: tVdc('managed_vcd_vdc_vcpu_count'),
           value: (
             <Description>
               {vcdDatacentre?.currentState?.vCPUCount?.toString()}
