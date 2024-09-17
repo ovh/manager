@@ -32,7 +32,7 @@ function DatacentreDashboardPage() {
     },
   ];
 
-  const serviceName = vcdDatacentre?.data?.currentState?.name;
+  const serviceName = vcdDatacentre?.data?.currentState?.description ?? vdcId;
   const hasServiceRenamed = vdcId !== serviceName;
 
   const header = hasServiceRenamed
