@@ -61,7 +61,7 @@ export default function ComputeListingPage() {
     {
       id: 'cpuCount',
       cell: DatagridCpuCountCell,
-      label: tVdc('managed_vcd_vdc_cpu_count'),
+      label: tVdc('managed_vcd_vdc_vcpu_count'),
       isSortable: false,
     },
     {
