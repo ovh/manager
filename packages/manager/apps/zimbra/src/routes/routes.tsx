@@ -150,7 +150,7 @@ export const Routes: any = [
           {
             path: 'mailing_lists',
             ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/MailingList/MailingLists'),
+              import('@/pages/dashboard/MailingLists/MailingLists'),
             ),
           },
         ],
