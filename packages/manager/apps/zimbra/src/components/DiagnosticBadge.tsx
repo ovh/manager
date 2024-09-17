@@ -31,7 +31,10 @@ export const DiagnosticBadge: React.FC<DiagnosticBadgeProps> = ({
   const chipColor = status as ODS_THEME_COLOR_INTENT;
   const navigate = useNavigate();
   const hasAction = !!(
-    (status === 'error' || status === 'warning') &&
+    status === 'error' &&
+    [DnsRecordType.MX, DnsRecordType.SPF, DnsRecordType.SRV].some(
+      (diag) => diag === diagType,
+    ) &&
     domainId
   );
 
@@ -43,9 +46,7 @@ export const DiagnosticBadge: React.FC<DiagnosticBadgeProps> = ({
   });
 
   const handleChipClick = () => {
-    if (hasAction) {
-      navigate(href);
-    }
+    navigate(href);
   };
 
   return (
@@ -78,8 +79,7 @@ export const DiagnosticBadge: React.FC<DiagnosticBadgeProps> = ({
       ) : (
         <OsdsChip
           color={chipColor}
-          selectable={hasAction}
-          onClick={handleChipClick}
+          {...(hasAction ? { selectable: true, onClick: handleChipClick } : {})}
         >
           {diagType}
         </OsdsChip>

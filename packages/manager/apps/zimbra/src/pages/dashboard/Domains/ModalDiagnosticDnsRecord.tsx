@@ -167,7 +167,7 @@ export default function ModalDiagnosticDnsRecord(
       }}
     >
       {domain && (
-        <div className="flex flex-col w-full whitespace-pre mt-6">
+        <div className="flex flex-col w-full mt-6">
           {getContentHeaderKeys(dnsRecordTypeKey, isOvhDomain).map((key) => (
             <OsdsText
               className="mt-2"
@@ -277,7 +277,7 @@ export default function ModalDiagnosticDnsRecord(
           )}
           {!isOvhDomain && dnsRecordType === DnsRecordType.MX ? (
             <OsdsText
-              className="mt-6"
+              className="mt-4"
               color={ODS_THEME_COLOR_INTENT.text}
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
