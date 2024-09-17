@@ -6,13 +6,10 @@ import {
 } from '@tanstack/react-query';
 import { useCallback, useEffect, useMemo } from 'react';
 import { FilterWithLabel } from '@ovh-ux/manager-react-components/src/components/filters/interface';
-import {
-  TInstanceDto,
-  getInstances,
-  TInstanceStatusDto,
-} from '@/data/api/instances';
+import { getInstances } from '@/data/api/instances';
 import { instancesQueryKey } from '@/utils';
 import { DeepReadonly } from '@/types/utils.type';
+import { TInstanceDto, TInstanceStatusDto } from '@/types/api.types';
 
 export type TUseInstancesQueryParams = DeepReadonly<{
   limit: number;
