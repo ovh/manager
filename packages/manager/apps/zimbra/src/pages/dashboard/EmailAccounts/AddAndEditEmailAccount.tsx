@@ -35,66 +35,6 @@ export default function AddAndEditAccount() {
     return navigate(goBackUrl);
   };
 
-  type FieldType = {
-    value: string;
-    touched: boolean;
-    hasError?: boolean;
-    required?: boolean;
-  };
-
-  interface FormTypeInterface {
-    [key: string]: FieldType;
-  }
-
-  interface FormInputRegexInterface {
-    [key: string]: RegExp;
-  }
-
-  const formInputRegex: FormInputRegexInterface = {
-    account: /^(?:[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*)(?:(?:[.|+])(?:[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*))*$/,
-    password: /^(?=(.*\d))(?=.*[!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-zA-Z])(?=(.*)).{9,}$/,
-  };
-
-  const [form, setForm] = useState<FormTypeInterface>({
-    ...{
-      account: {
-        value: '',
-        touched: false,
-        hasError: false,
-        required: true,
-      },
-      domain: {
-        value: '',
-        touched: false,
-        required: true,
-      },
-      lastName: {
-        value: '',
-        touched: false,
-      },
-      firstName: {
-        value: '',
-        touched: false,
-      },
-      displayName: {
-        value: '',
-        touched: false,
-      },
-      password: {
-        value: '',
-        touched: false,
-        hasError: false,
-        required: !editEmailAccountId,
-      },
-    },
-    ...(editEmailAccountId && {
-      description: {
-        value: '',
-        touched: false,
-      },
-    }),
-  });
-
   const {
     data: editAccountDetail,
     isLoading: isLoadingEmailDetailRequest,

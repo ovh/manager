@@ -1,17 +1,20 @@
-import { MailingListType } from '../mailinglist';
-import { accountMock } from './account';
+import {
+  MailingListType,
+  ModerationChoices,
+  ReplyToChoices,
+} from '../mailinglist';
 
 export const mailingListDetailMock: MailingListType = {
   checksum: 'string',
   currentState: {
-    defaultReplyTo: 'string',
+    defaultReplyTo: ReplyToChoices.LIST,
     email: 'test@mailinglist.com',
-    language: 'string',
+    language: 'FR',
     members: ['191fa41e-46c0-4000-86f4-ce92e7b45e80'],
-    moderationOption: 'string',
+    moderationOption: ModerationChoices.ALL,
     organizationId: '191fa41e-46c0-4000-8a42-82cf2c709380',
     organizationLabel: 'testOrg',
-    owner: accountMock[0],
+    owner: '191fa41e-46c0-4000-8a42-82cf2c709370',
   },
   currentTasks: [
     {
@@ -24,14 +27,14 @@ export const mailingListDetailMock: MailingListType = {
   id: '191fa41e-46c0-4000-8904-72ce6e738f80',
   resourceStatus: 'CREATING',
   targetSpec: {
-    defaultReplyTo: 'string',
+    defaultReplyTo: ReplyToChoices.LIST,
     email: 'test@mailinglist.com',
-    language: 'string',
+    language: 'FR',
     members: ['191fa41e-46c0-4000-8d25-fca4a684e601'],
-    moderationOption: 'string',
+    moderationOption: ModerationChoices.ALL,
     organizationId: '191fa41e-46c0-4000-8ae1-ce5ad8165601',
     organizationLabel: 'testOrg',
-    owner: accountMock[0],
+    owner: '191fa41e-46c0-4000-8a42-82cf2c709370',
   },
 };
 
@@ -40,14 +43,14 @@ export const mailingListsMock: MailingListType[] = [
   {
     checksum: 'string',
     currentState: {
-      defaultReplyTo: 'string',
+      defaultReplyTo: ReplyToChoices.SENDER,
       email: 'test2@mailinglist.com',
-      language: 'string',
+      language: 'FR',
       members: ['191fa41e-46c0-4000-86f4-ce92e7b45e80'],
-      moderationOption: 'string',
+      moderationOption: ModerationChoices.SUBSONLY,
       organizationId: '191fa41e-46c0-4000-8a42-82cf2c709380',
       organizationLabel: 'testOrg2',
-      owner: accountMock[0],
+      owner: '191fa41e-46c0-4000-8a42-82cf2c709370',
     },
     currentTasks: [
       {
@@ -60,27 +63,27 @@ export const mailingListsMock: MailingListType[] = [
     id: '191fa41e-46c0-4000-8904-72ce6e738f80',
     resourceStatus: 'CREATING',
     targetSpec: {
-      defaultReplyTo: 'string',
+      defaultReplyTo: ReplyToChoices.SENDER,
       email: 'test2@mailinglist.com',
-      language: 'string',
+      language: 'FR',
       members: ['191fa41e-46c0-4000-8d25-fca4a684e601'],
-      moderationOption: 'string',
+      moderationOption: ModerationChoices.SUBSONLY,
       organizationId: '191fa41e-46c0-4000-8ae1-ce5ad8165601',
       organizationLabel: 'testOrg2',
-      owner: accountMock[0],
+      owner: '191fa41e-46c0-4000-8a42-82cf2c709370',
     },
   },
   {
     checksum: 'string',
     currentState: {
-      defaultReplyTo: 'string',
+      defaultReplyTo: ReplyToChoices.MAILBOX,
       email: 'test3@mailinglist.com',
-      language: 'string',
+      language: 'FR',
       members: ['191fa41e-46c0-4000-86f4-ce92e7b45e80'],
-      moderationOption: 'string',
+      moderationOption: ModerationChoices.NONE,
       organizationId: '191fa41e-46c0-4000-8a42-82cf2c709380',
       organizationLabel: 'testOrg3',
-      owner: accountMock[0],
+      owner: '191fa41e-46c0-4000-8a42-82cf2c709370',
     },
     currentTasks: [
       {
@@ -93,14 +96,14 @@ export const mailingListsMock: MailingListType[] = [
     id: '191fa41e-46c0-4000-8904-72ce6e738f80',
     resourceStatus: 'CREATING',
     targetSpec: {
-      defaultReplyTo: 'string',
+      defaultReplyTo: ReplyToChoices.MAILBOX,
       email: 'test3@mailinglist.com',
-      language: 'string',
+      language: 'FR',
       members: ['191fa41e-46c0-4000-8d25-fca4a684e601'],
-      moderationOption: 'string',
+      moderationOption: ModerationChoices.NONE,
       organizationId: '191fa41e-46c0-4000-8ae1-ce5ad8165601',
       organizationLabel: 'testOrg3',
-      owner: accountMock[0],
+      owner: '191fa41e-46c0-4000-8a42-82cf2c709370',
     },
   },
 ];
