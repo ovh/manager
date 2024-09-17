@@ -27,7 +27,7 @@
   "domain_dns_error_operation_ongoing": "An operation to update the DNS is already in progress for the {{domain}} domain. Please try again later.",
   "domain_dns_error_operation_ongoing_link": "View operations",
   "domain_dns_update_error_message": "Unable to update DNS for the following reason: {{detail}}",
-  "domain_dns_validation_button_apply_configuration": "Apply configuration ",
+  "domain_dns_validation_button_apply_configuration": "Apply configuration",
   "domain_dns_validation_button_apply_configuration_disabled": "The number of DNS servers entered is invalid.",
   "domain_dns_validation_button_cancel_modifications": "Cancel modifications",
   "domain_dns_add_dns_forms_delete_tooltip": "Delete this DNS",

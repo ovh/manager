@@ -102,7 +102,7 @@
   "domain_tab_DNS_name": "Servidor DNS",
   "domain_tab_DNS_state": "Estado",
   "domain_tab_DNS_state_deleting": "En proceso de eliminación",
-  "domain_tab_DNS_state_adding": "Activando",
+  "domain_tab_DNS_state_adding": "en proceso de activación",
   "domain_tab_DNS_state_activated": "Activo",
   "domain_tab_DNS_empty": "Servidores DNS desconocidos.",
   "domain_tab_DNS_error": "Algunos datos DNS no se han podido cargar debido a un error interno.",
