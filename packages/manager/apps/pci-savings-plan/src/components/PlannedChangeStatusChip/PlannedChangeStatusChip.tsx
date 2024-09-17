@@ -5,7 +5,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SavingsPlanPlanedChangeStatus } from '@/types/api.type';
 
-
 const PlannedChangeStatusChip = ({ label }: { label: string }) => {
   const { t } = useTranslation('listing');
   const colorByProductStatus: {

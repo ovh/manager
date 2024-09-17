@@ -340,7 +340,7 @@ export default class PciInstancesAddController {
   }
 
   IsSavingsPlanBannerDisplayed() {
-    return this.model.flavorGroup?.tagsBlob?.includes(TAGS_BLOB.COMING_SOON);
+    return this.hasSavingsPlan;
   }
 
   onFlavorCategorySelect(flavor, category) {
