@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { v2 } from '@ovh-ux/manager-core-api';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import React from 'react';
 import {
   formatPricingInfo,
   formatTechnicalInfo,
@@ -10,40 +12,56 @@ import {
   CommercialCatalogTechnicalType,
 } from '@/types/commercial-catalog.type';
 
-const getCatalogCommercial = async <T,>(
-  additionalParams: string,
-): Promise<T> => {
+const getCatalogCommercial = async <T,>({
+  additionalParams,
+  merchant,
+}: {
+  additionalParams: string;
+  merchant: string;
+}): Promise<T> => {
   const { data } = await v2.get<T>(
-    // TODO: Change the locale based on manager
-    `commercialCatalog/offers?merchants=FR&type=ATOMIC&${additionalParams}`,
+    `commercialCatalog/offers?merchants=${merchant}&type=ATOMIC&${additionalParams}`,
   );
   return data;
 };
 
-export const getCommercialOffers = async (
-  productCode: string,
-): Promise<CommercialCatalogPricingType[]> => {
-  return getCatalogCommercial<CommercialCatalogPricingType[]>(
-    `nature=BILLING_PLAN&productCode=${productCode}%20SP`,
-  );
+export const getCommercialOffers = async ({
+  productCode,
+  merchant,
+}: {
+  productCode: string;
+  merchant: string;
+}): Promise<CommercialCatalogPricingType[]> => {
+  return getCatalogCommercial<CommercialCatalogPricingType[]>({
+    additionalParams: `nature=BILLING_PLAN&productCode=${productCode}%20SP`,
+    merchant,
+  });
 };
 
-export const getTechnicalInfo = async (
-  productCode: string,
-): Promise<CommercialCatalogTechnicalType[]> => {
-  return getCatalogCommercial<CommercialCatalogTechnicalType[]>(
-    `nature=REGULAR&productCode=${productCode}`,
-  );
+export const getTechnicalInfo = async ({
+  productCode,
+  merchant,
+}: {
+  productCode: string;
+  merchant: string;
+}): Promise<CommercialCatalogTechnicalType[]> => {
+  return getCatalogCommercial<CommercialCatalogTechnicalType[]>({
+    additionalParams: `nature=REGULAR&productCode=${productCode}`,
+    merchant,
+  });
 };
 
 export const useTechnicalInfo = ({
   productCode,
 }: {
   productCode: InstanceTechnicalName;
-}) =>
-  useQuery({
+}) => {
+  const context = React.useContext(ShellContext);
+  const subsidiary = context.environment.getUser().ovhSubsidiary;
+
+  return useQuery({
     queryKey: ['technicalInfo', productCode],
-    queryFn: () => getTechnicalInfo(productCode),
+    queryFn: () => getTechnicalInfo({ productCode, merchant: subsidiary }),
     select: (res) =>
       res
         .map(formatTechnicalInfo)
@@ -55,17 +73,26 @@ export const useTechnicalInfo = ({
           return 1;
         }),
   });
+};
 
 export const usePricingInfo = ({
   productSizeCode,
 }: {
   productSizeCode: string;
-}) =>
-  useQuery({
+}) => {
+  const context = React.useContext(ShellContext);
+  const subsidiary = context.environment.getUser().ovhSubsidiary;
+
+  return useQuery({
     queryKey: ['pricingInfo', productSizeCode],
-    queryFn: () => getCommercialOffers(productSizeCode),
+    queryFn: () =>
+      getCommercialOffers({
+        productCode: productSizeCode,
+        merchant: subsidiary,
+      }),
     select: (res) =>
       res.map(formatPricingInfo).filter((item) => item.id !== null),
   });
+};
 
 export default useTechnicalInfo;
