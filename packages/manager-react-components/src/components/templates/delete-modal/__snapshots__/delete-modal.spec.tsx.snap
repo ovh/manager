@@ -8,32 +8,25 @@ exports[`Delete Modal component renders loading modal 1`] = `
     is-open="true"
   >
     <div>
-      <ods-text
-        class="delete-modal-headline"
-        preset="heading-6"
+      <span
+        class="delete-modal-headline text-[--ods-color-heading] text-[24px] leading-[32px] font-bold"
       >
         headline
-      </ods-text>
+      </span>
     </div>
-    <ods-text
-      class="delete-modal-description"
+    <span
+      class="delete-modal-description text-[--ods-color-text] text-[14px] leading-[18px] my-[8px]"
     >
       description
-    </ods-text>
+    </span>
     <ods-form-field
       class="mb-8"
     >
-      <div
+      <label
         slot="label"
       >
-        <ods-text
-          class="delete-modal-input-label"
-        >
-          <b>
-            deleteInputLabel
-          </b>
-        </ods-text>
-      </div>
+        deleteInputLabel
+      </label>
       <ods-input
         aria-label="delete-input"
         is-disabled="true"

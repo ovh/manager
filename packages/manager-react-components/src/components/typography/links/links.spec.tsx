@@ -10,11 +10,8 @@ describe('Links component', () => {
       href: 'https://www.example.com',
       type: LinkType.back,
     };
-
-    render(<Links {...props} />);
-
-    const linkElement = screen.getByText('Back to the list');
-
+    const { container } = render(<Links {...props} />);
+    const linkElement = container.querySelector('[label="Back to the list"]');
     expect(linkElement).toBeInTheDocument();
   });
 
@@ -24,10 +21,8 @@ describe('Links component', () => {
       href: 'https://www.example.com',
       type: LinkType.next,
     };
-
-    render(<Links {...props} />);
-    const linkElement = screen.getByText('Next Page');
-
+    const { container } = render(<Links {...props} />);
+    const linkElement = container.querySelector('[label="Next Page"]');
     expect(linkElement).toBeInTheDocument();
   });
   it('renders a external link correctly', () => {
@@ -38,8 +33,8 @@ describe('Links component', () => {
       type: LinkType.external,
     };
 
-    render(<Links {...props} />);
-    const linkElement = screen.getByText('External Page');
+    const { container } = render(<Links {...props} />);
+    const linkElement = container.querySelector('[label="External Page"]');
 
     expect(linkElement).toBeInTheDocument();
   });

@@ -6,31 +6,28 @@ exports[`Update Name Modal component renders loading modal 1`] = `
     is-open="false"
   >
     <div>
-      <ods-text
-        class="update-name-headline"
-        preset="heading-6"
+      <span
+        class="update-name-headline text-[--ods-color-heading] text-[24px] leading-[32px] font-bold"
       >
         headline
-      </ods-text>
+      </span>
     </div>
-    <ods-text
-      class="update-name-description"
+    <span
+      class="update-name-description text-[--ods-color-text] text-[14px] leading-[18px] my-[8px]"
     >
       description
-    </ods-text>
+    </span>
     <ods-form-field
       class="mb-8"
     >
       <div
         slot="label"
       >
-        <ods-text
-          class="update-name-input-label"
+        <span
+          class="update-name-input-label text-[--ods-color-text] text-[14px] leading-[18px] font-semibold"
         >
-          <b>
-            inputLabel
-          </b>
-        </ods-text>
+          inputLabel
+        </span>
       </div>
       <ods-input
         aria-label="update-input"
@@ -43,6 +40,7 @@ exports[`Update Name Modal component renders loading modal 1`] = `
       >
         <ods-text
           class="update-name-modal-pattern-message "
+          preset="span"
         >
           regex epression to respect
         </ods-text>

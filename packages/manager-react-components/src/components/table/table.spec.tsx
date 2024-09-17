@@ -1,6 +1,5 @@
 import { within } from '@testing-library/react';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { Table, TableProps } from './table.component';
 import { mockColumns, mocksData } from './table.mock';
 import { render } from '../../utils/test.provider';
@@ -12,7 +11,7 @@ const setupSpecTest = async (customProps?: Partial<TableProps>) =>
         <tr>
           {mockColumns.map((header) => (
             <th key={header.accessoryKey}>
-              <OdsText preset={ODS_TEXT_PRESET.label}>{header.header}</OdsText>
+              <OdsText>{header.header}</OdsText>
             </th>
           ))}
         </tr>

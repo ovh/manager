@@ -37,6 +37,7 @@ export const BaseLayout = ({
     {backLinkLabel && (onClickReturn || hrefPrevious) && (
       <div className="mb-[24px]">
         <Links
+          data-testid="manager-back-link"
           onClickReturn={onClickReturn}
           label={backLinkLabel}
           type={LinkType.back}

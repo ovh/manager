@@ -1,12 +1,10 @@
 import React from 'react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OdsLink, OdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsLink } from '@ovhcloud/ods-components/react';
 import {
   OdsHTMLAnchorElementRel,
   OdsHTMLAnchorElementTarget,
 } from '@ovhcloud/ods-common-core';
-import { ReactI18NextChild } from 'react-i18next';
 
 export enum LinkType {
   back = 'back',
