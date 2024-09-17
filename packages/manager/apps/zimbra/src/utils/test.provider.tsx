@@ -18,6 +18,7 @@ import accountAliasTranslation from '@/public/translations/accounts/alias/Messag
 import accountAliasAddTranslation from '@/public/translations/accounts/alias/add/Messages_fr_FR.json';
 import accountAliasDeleteTranslation from '@/public/translations/accounts/alias/delete/Messages_fr_FR.json';
 import accountDeleteTranslation from '@/public/translations/accounts/delete/Messages_fr_FR.json';
+import mailingListsTranslation from '@/public/translations/mailinglists/Messages_fr_FR.json';
 import queryClient from '@/queryClient';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
@@ -41,6 +42,7 @@ i18n.use(initReactI18next).init({
       'accounts/alias/add': accountAliasAddTranslation,
       'accounts/alias/delete': accountAliasDeleteTranslation,
       'accounts/delete': accountDeleteTranslation,
+      mailinglists: mailingListsTranslation,
     },
   },
   ns: ['dashboard'],
