@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.19.4...@ovh-ux/manager-components@1.19.5) (2024-09-17)
+
+
+### Bug Fixes
+
+* **dedicated:** add Mumbai flag and translation ([#13096](https://github.com/ovh/manager/issues/13096)) ([443367f](https://github.com/ovh/manager/commit/443367f787e077ebd8451695e32a8396572efaad))
+
+
+
+
+
 ## [1.19.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.19.3...@ovh-ux/manager-components@1.19.4) (2024-09-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-components
