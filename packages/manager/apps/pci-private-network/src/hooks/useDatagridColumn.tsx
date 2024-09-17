@@ -64,6 +64,13 @@ export const useDatagridColumn = (): DatagridColumn<TLocalZoneNetwork>[] => {
       label: t('pci_projects_project_network_private_ip_allocation'),
     },
     {
+      id: 'gatewayIp',
+      cell: (props: TLocalZoneNetwork) => (
+        <DataGridTextCell>{props.gatewayIp}</DataGridTextCell>
+      ),
+      label: t('pci_projects_project_network_private_gateway'),
+    },
+    {
       id: 'actions',
       cell: (props: TLocalZoneNetwork) => (
         <DeleteAction networkId={props.id} region={props.region} />

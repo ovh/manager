@@ -6,13 +6,14 @@ describe('useDatagridColumn', () => {
   it('should return correct columns', () => {
     const { result } = renderHook(() => useDatagridColumn());
     const columns = result.current;
-    expect(columns).toHaveLength(6);
+    expect(columns).toHaveLength(7);
     expect(columns.map((column) => column.id)).toEqual([
       'name',
       'region',
       'cidr',
       'dhcp',
       'allocatedIp',
+      'gatewayIp',
       'actions',
     ]);
   });
@@ -30,6 +31,9 @@ describe('useDatagridColumn', () => {
     expect(columns[4].label).toBe(
       'pci_projects_project_network_private_ip_allocation',
     );
-    expect(columns[5].label).toBe('');
+    expect(columns[5].label).toBe(
+      'pci_projects_project_network_private_gateway',
+    );
+    expect(columns[6].label).toBe('');
   });
 });
