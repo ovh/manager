@@ -20,8 +20,7 @@ import {
   shouldHideElement,
   findNodeByRouting,
   splitPathIntoSegmentsWithoutRouteParams,
-  IServicesCount,
-  debounce
+  IServicesCount
 } from './utils';
 import { Node } from './navigation-tree/node';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
