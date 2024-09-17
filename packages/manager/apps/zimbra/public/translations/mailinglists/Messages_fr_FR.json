@@ -1,0 +1,14 @@
+{
+  "zimbra_mailinglists_datagrid_name_label": "Nom",
+  "zimbra_mailinglists_datagrid_organization_label": "Organisation",
+  "zimbra_mailinglists_datagrid_owner_label": "Propriétaire",
+  "zimbra_mailinglists_datagrid_aliases_label": "Alias",
+  "zimbra_mailinglists_datagrid_moderators_label": "Modérateurs",
+  "zimbra_mailinglists_datagrid_subscribers_label": "Abonnés",
+  "zimbra_mailinglists_datagrid_action_edit": "Configurer la liste de diffusion",
+  "zimbra_mailinglists_datagrid_action_define_members": "Définir les membres",
+  "zimbra_mailinglists_datagrid_action_configure_delegation": "Configurer la délégation",
+  "zimbra_mailinglists_datagrid_action_delete": "Supprimer la liste de diffusion",
+  "zimbra_mailinglists_datagrid_cta": "Créer une liste de diffusion",
+  "zimbra_mailinglists_quota_label": "Quota de liste de diffusion"
+}

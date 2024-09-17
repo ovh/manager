@@ -83,7 +83,10 @@ export const Dashboard: React.FC = () => {
       name: 'mailing_lists',
       title: t('zimbra_dashboard_mailing_lists'),
       to: `${basePath}/mailing_lists`,
-      pathMatchers: computePathMatchers([urls.mailing_lists]),
+      pathMatchers: computePathMatchers([
+        urls.mailing_lists,
+        urls.mailing_lists_delete,
+      ]),
     },
   ];
 

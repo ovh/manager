@@ -2,6 +2,8 @@ export * from './useAccountList';
 export * from './useDomains';
 export * from './useDomain';
 export * from './useGenerateUrl';
+export * from './useMailingList';
+export * from './useMailingLists';
 export * from './useOrganization';
 export * from './useOrganizationsList';
 export * from './useOverridePage';
