@@ -53,5 +53,7 @@
   "server_configuration_installation_inputs_item_number_increase_tooltip": "Click here to increment this value",
   "server_configuration_installation_inputs_item_number_decrease_tooltip": "Click here to decrement this value",
   "server_configuration_installation_inputs_item_keyValue_add_tooltip": "Click here to add a key-value pair",
-  "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Click here to delete this key-value pair"
+  "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Click here to delete this key-value pair",
+  "dedicated_server_dashboard_region_unknown": "Information unavailable",
+  "dedicated_server_dashboard_zone_unknown": "Information unavailable"
 }

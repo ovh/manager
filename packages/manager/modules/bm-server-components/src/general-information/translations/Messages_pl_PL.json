@@ -53,5 +53,7 @@
   "server_configuration_installation_inputs_item_number_increase_tooltip": "Kliknij tutaj, aby zwiększyć tę wartość",
   "server_configuration_installation_inputs_item_number_decrease_tooltip": "Kliknij tutaj, aby zmniejszyć tę wartość",
   "server_configuration_installation_inputs_item_keyValue_add_tooltip": "Kliknij tutaj, aby dodać parę klucz-wartość",
-  "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Kliknij tutaj, aby usunąć parę klucz-wartość"
+  "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Kliknij tutaj, aby usunąć parę klucz-wartość",
+  "dedicated_server_dashboard_region_unknown": "Informacja niedostępna",
+  "dedicated_server_dashboard_zone_unknown": "Informacja niedostępna"
 }
