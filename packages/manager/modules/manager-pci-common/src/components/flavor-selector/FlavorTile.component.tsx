@@ -76,7 +76,9 @@ export function FlavorTile({
 }: Readonly<FlavorTileProps>) {
   const { t } = useTranslation('pci-flavors');
   const { formatBytes } = useBytes();
-  const { getTextPrice, getFormattedHourlyCatalogPrice } = useCatalogPrice(4);
+  const { getTextPrice, getFormattedHourlyCatalogPrice } = useCatalogPrice(4, {
+    exclVat: true,
+  });
   const projectHref = useProjectUrl('public-cloud');
   return (
     <OsdsTile

@@ -50,7 +50,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
   const {
     getFormattedMonthlyCatalogPrice,
     getFormattedHourlyCatalogPrice,
-  } = useCatalogPrice(4);
+  } = useCatalogPrice(4, { exclVat: true });
 
   return (
     <>
