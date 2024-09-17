@@ -32,11 +32,7 @@ export type OnboardingLayoutProps = OnboardingLayoutButtonProps &
     hideHeadingSection?: boolean;
     title: string;
     description?: React.ReactNode;
-    img?: {
-      src: string;
-      width?: number;
-      height?: number;
-    };
+    img?: React.ComponentProps<'img'>;
   }>;
 
 const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
@@ -103,24 +99,19 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   children,
   onOrderButtonClick,
   onmoreInfoButtonClick,
-  img,
+  img = {},
   isActionDisabled,
 }) => {
+  const { className: imgClassName, ...imgProps } = img;
   return (
     <div className="flex flex-col mx-auto sm:px-10">
       {!hideHeadingSection && (
-        <section className="flex flex-col items-center">
-          {(img?.src || placeholderSrc) && (
-            <div className="flex justify-center pt-8 max-h-28 w-full">
-              <img
-                className="max-h-[150px]"
-                src={img?.src ?? placeholderSrc}
-                alt=""
-                width={img?.width}
-                height={img?.height}
-              />
-            </div>
-          )}
+        <section className="flex flex-col items-center mt-8">
+          <img
+            className={`max-h-28 ${imgClassName ?? ''}`}
+            src={placeholderSrc}
+            {...imgProps}
+          />
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.primary}
             level={ODS_TEXT_LEVEL.heading}
