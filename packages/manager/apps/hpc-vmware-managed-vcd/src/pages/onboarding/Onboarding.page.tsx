@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
-import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import vmwareBroadcomOVHCloud from '@/assets/VmwareBroadcomxOVHcloud.svg';
 
 export default function Onboarding() {
@@ -54,7 +53,6 @@ export default function Onboarding() {
 
   return (
     <div className="pt-8">
-      <Breadcrumb />
       <OnboardingLayout
         title="Managed VMware Cloud Director"
         img={imgSrc}
