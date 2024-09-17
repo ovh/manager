@@ -69,7 +69,6 @@ import './module/delete/hosting-module-delete.controller';
 import './module/hosting-module.constant';
 import './module/hosting-module.controller';
 import './module/hosting-module.service';
-import './module/update-password/hosting-module-update-password.controller';
 import './multisite/add/external/hosting-multisite-add-external.controller';
 import './multisite/add/hosting-multisite-add.controller';
 import './multisite/add/ovh/hosting-multisite-add-ovh.controller';
