@@ -81,9 +81,9 @@ export default function DatacentresListing() {
 
   const columns = [
     {
-      id: 'name',
+      id: 'id',
       cell: DatagridIdCell,
-      label: t('managed_vcd_listing_name'),
+      label: t('managed_vcd_listing_id'),
     },
     {
       id: 'description',
@@ -98,7 +98,7 @@ export default function DatacentresListing() {
     {
       id: 'cpuCount',
       cell: DatagridCpuCountCell,
-      label: tVdc('managed_vcd_vdc_cpu_count'),
+      label: tVdc('managed_vcd_vdc_vcpu_count'),
     },
     {
       id: 'ramCount',

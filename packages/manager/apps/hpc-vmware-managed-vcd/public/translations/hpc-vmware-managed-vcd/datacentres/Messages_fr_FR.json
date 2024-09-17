@@ -1,7 +1,7 @@
 {
-  "managed_vcd_vdc_title": "Datacentres",
+  "managed_vcd_vdc_title": "Datacentres virtuels",
   "managed_vcd_vdc_commercial_range": "Gamme commerciale",
-  "managed_vcd_vdc_cpu_count": "Total CPU",
+  "managed_vcd_vdc_vcpu_count": "Total vCPU",
   "managed_vcd_vdc_ram_count": "Total RAM",
   "managed_vcd_vdc_quota_value": "{{quota}} Go",
   "managed_vcd_vdc_disk_space_count": "Total espace disque",
