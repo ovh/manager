@@ -60,7 +60,7 @@ export function getPciProjectMenu(
   const pciMenu: PciMenuItem[] = [];
 
   const isFeaturesAvailable = (...features: string[]): boolean =>
-    Boolean(features.find((feature: string) => featureAvailabilities[feature]));
+    features.some((feature: string) => featureAvailabilities[feature]);
 
   if (isFeaturesAvailable('instance')) {
     pciMenu.push({
