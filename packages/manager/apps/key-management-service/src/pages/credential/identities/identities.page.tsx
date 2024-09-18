@@ -1,13 +1,15 @@
 import React from 'react';
-import { useOutletCredential } from '@/hooks/credential/useOutletCredential';
 import Users from './users.component';
 import UserGroups from './userGroups.component';
 import ServiceAccounts from './serviceAccounts.component';
 import OVHAccounts from './ovhAccounts.component';
 import { filterIdentities } from '@/utils/credential/filterIdentities';
+import { useOutletCredential } from '../Credential.page';
 
 const Identities = () => {
-  const { identityURNs } = useOutletCredential();
+  const {
+    credential: { identityURNs },
+  } = useOutletCredential();
 
   const userIdentities = filterIdentities({
     identities: identityURNs,

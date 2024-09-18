@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -8,10 +8,13 @@ import {
   DataGridTextCell,
   Links,
 } from '@ovh-ux/manager-react-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OkmsCredential } from '@/types/okmsCredential.type';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { CredentialStatus } from '../credentialStatus/CredentialStatus.component';
 import { getDownloadCredentialParameters } from '@/utils/credential/credentialDownload';
+import { OkmsContext } from '@/pages/dashboard';
+import { ROUTES_URLS } from '@/routes/routes.constants';
 
 export const DatagridCredentialCellName = (credential: OkmsCredential) => {
   const navigate = useNavigate();
@@ -80,6 +83,8 @@ export const DatagridCredentialCellStatus = (credential: OkmsCredential) => {
 
 export const DatagridCredentialCellActions = (credential: OkmsCredential) => {
   const { t } = useTranslation('key-management-service/credential');
+  const okms = useContext(OkmsContext);
+  const navigate = useNavigate();
 
   const { filename, href, isDisabled } = getDownloadCredentialParameters(
     credential,
@@ -92,6 +97,15 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential) => {
       href,
       download: filename,
       disabled: isDisabled,
+    },
+    {
+      id: 2,
+      label: t('key_management_service_credential_delete'),
+      color: ODS_THEME_COLOR_INTENT.error,
+      iamActions: ['okms:apiovh:resource/credential/delete'],
+      urn: okms.iam.urn,
+      onClick: () =>
+        navigate(`${ROUTES_URLS.credentialDelete}/${credential.id}`),
     },
   ];
 
