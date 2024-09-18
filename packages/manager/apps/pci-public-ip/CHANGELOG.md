@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.4.3...@ovh-ux/manager-pci-public-ip-app@0.5.0) (2024-09-18)
+
+
+### Bug Fixes
+
+* **pci-public-ip:** formatted catalog ([0a51477](https://github.com/ovh/manager/commit/0a51477dabf21af13ad39e0cc107a2f330ce3784))
+
+
+### Features
+
+* **pci-*:** use pci-common banner instead of manager-components ([d1f00eb](https://github.com/ovh/manager/commit/d1f00ebf900f54c48c86414c84a8cb32ebba7e9c))
+* **pci-*:** use pci-common banner instead of manager-components ([95db25b](https://github.com/ovh/manager/commit/95db25b19a129b0f516f78dc9a059ff48e5ae452))
+* **pci-common:** add useProject in pci common and use it in apps ([c6fbd25](https://github.com/ovh/manager/commit/c6fbd25543f80d4acf984f4e2b26eb916589ac0e))
+* **pci-common:** add useProject in pci common and use it in apps ([9a75975](https://github.com/ovh/manager/commit/9a7597560c4872422c331bdfcdf7a4cf92d9bca9))
+
+
+
+
+
 ## [0.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.4.2...@ovh-ux/manager-pci-public-ip-app@0.4.3) (2024-09-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
