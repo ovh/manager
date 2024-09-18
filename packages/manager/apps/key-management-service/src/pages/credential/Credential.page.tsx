@@ -1,11 +1,18 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  OdsTabsChangeEventDetail,
-  OsdsTabsCustomEvent,
-} from '@ovhcloud/ods-components';
-import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { BaseLayout, ErrorBanner } from '@ovh-ux/manager-react-components';
+  NavLink,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from 'react-router-dom';
+import {
+  BaseLayout,
+  ErrorBanner,
+  Notifications,
+} from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import {
   OsdsTabBar,
@@ -22,6 +29,17 @@ import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { useOKMSById } from '@/data/hooks/useOKMS';
+import { OKMS } from '@/types/okms.type';
+import { OkmsCredential } from '@/types/okmsCredential.type';
+
+export type CredentialContextType = {
+  okms: OKMS;
+  credential: OkmsCredential;
+};
+
+export function useOutletCredential() {
+  return useOutletContext<CredentialContextType>();
+}
 
 const CredentialDashboard = () => {
   const navigate = useNavigate();
@@ -46,16 +64,6 @@ const CredentialDashboard = () => {
   useEffect(() => {
     setActivePanel(location.pathname);
   }, [location]);
-
-  const handleTabChange = (
-    event: OsdsTabsCustomEvent<OdsTabsChangeEventDetail>,
-  ) => {
-    const {
-      detail: { panel },
-    } = event;
-    setActivePanel(panel);
-    navigate(panel);
-  };
 
   if (isLoadingCredential || isLoadingKms) return <Loading />;
 
@@ -109,34 +117,44 @@ const CredentialDashboard = () => {
         backLinkLabel={t(
           'key_management_service_credential_dashboard_backlink',
         )}
+        message={<Notifications />}
         onClickReturn={() => navigate(`/${okmsId}/${ROUTES_URLS.credentials}`)}
         tabs={
-          <OsdsTabs
-            panel={activePanel}
-            onOdsTabsChanged={(event) => handleTabChange(event)}
-          >
+          <OsdsTabs panel={activePanel}>
             <OsdsTabBar slot="top">
-              <OsdsTabBarItem
-                panel={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}`}
-                role="tab"
+              <NavLink
+                to={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}`}
+                className="flex no-underline"
               >
-                {t(
-                  'key_management_service_credential_dashboard_tab_informations',
-                )}
-              </OsdsTabBarItem>
-              <OsdsTabBarItem
-                panel={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}/${ROUTES_URLS.credentialIdentities}`}
-                role="tab"
+                <OsdsTabBarItem
+                  panel={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}`}
+                  role="tab"
+                >
+                  {t(
+                    'key_management_service_credential_dashboard_tab_informations',
+                  )}
+                </OsdsTabBarItem>
+              </NavLink>
+              <NavLink
+                to={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}/${ROUTES_URLS.credentialIdentities}`}
+                className="flex no-underline"
               >
-                {t(
-                  'key_management_service_credential_dashboard_tab_identities',
-                )}
-              </OsdsTabBarItem>
+                <OsdsTabBarItem
+                  panel={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}/${ROUTES_URLS.credentialIdentities}`}
+                  role="tab"
+                >
+                  {t(
+                    'key_management_service_credential_dashboard_tab_identities',
+                  )}
+                </OsdsTabBarItem>
+              </NavLink>
             </OsdsTabBar>
           </OsdsTabs>
         }
       >
-        <Outlet context={credential} />
+        <Outlet
+          context={{ credential, okms: okms.data } as CredentialContextType}
+        />
       </BaseLayout>
     </Suspense>
   );
