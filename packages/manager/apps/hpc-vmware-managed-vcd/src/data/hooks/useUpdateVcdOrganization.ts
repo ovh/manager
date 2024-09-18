@@ -7,10 +7,10 @@ import {
 import { VCD_ORGANIZATION_ROUTE } from '../api/hpc-vmware-managed-vcd.constants';
 
 const updateVcdOrganizationDetailsQueryKey = (id: string) => [
-  `put/${VCD_ORGANIZATION_ROUTE}/${id}`,
+  `put${VCD_ORGANIZATION_ROUTE}/${id}`,
 ];
 
-const getVcdProjectListQueryKey = [`get/${VCD_ORGANIZATION_ROUTE}`];
+const getVcdProjectListQueryKey = [`get${VCD_ORGANIZATION_ROUTE}`];
 
 export const useUpdateVcdOrganizationDetails = ({
   id,
