@@ -25,6 +25,7 @@ export type TRegistry = {
   url: string;
   version: string;
   plan: TRegistryPlan;
+  search?: string;
 };
 
 export type TRegistryPlan = {
