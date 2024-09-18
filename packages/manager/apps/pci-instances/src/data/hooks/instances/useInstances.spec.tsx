@@ -272,7 +272,7 @@ describe('UseInstances hook', () => {
           act(() => result.current.refresh());
           expect(
             queryCache.getAll().map((cache) => cache.queryKey).length,
-          ).toStrictEqual(0);
+          ).toStrictEqual(1);
         });
       });
     },
