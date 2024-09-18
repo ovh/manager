@@ -1,10 +1,9 @@
 import { describe, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import React from 'react';
 import { platformMock, organizationDetailMock, domainMock } from '@/api/_mock_';
 import { useDomains } from '../useDomains';
+import { wrapper } from '@/utils/test.provider';
 
 vi.mock('@/hooks', () => {
   return {
@@ -24,14 +23,8 @@ vi.mock('@/api/domain/api', () => {
   };
 });
 
-const queryClient = new QueryClient();
-
-const wrapper = ({ children }: any) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
-
-describe('Domains', () => {
-  it('Return domain list', async () => {
+describe('useDomains', () => {
+  it('should return a domain list', async () => {
     const { result } = renderHook(() => useDomains(), { wrapper });
 
     await waitFor(() => {

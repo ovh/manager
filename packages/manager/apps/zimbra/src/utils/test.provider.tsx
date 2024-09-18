@@ -50,7 +50,17 @@ i18n.use(initReactI18next).init({
   ns: ['dashboard'],
 });
 
-const Wrappers = ({ children }: { children: React.ReactNode }) => {
+export const wrapper = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+};
+
+export const wrapperWithI18n = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   return (
     <QueryClientProvider client={queryClient}>
       <MemoryRouter>
@@ -64,7 +74,7 @@ const customRender = (
   ui: React.JSX.Element,
   options?: Omit<RenderOptions, 'queries'>,
 ): RenderResult =>
-  render(ui, { wrapper: Wrappers as ComponentType, ...options });
+  render(ui, { wrapper: wrapperWithI18n as ComponentType, ...options });
 
 export * from '@testing-library/react';
 

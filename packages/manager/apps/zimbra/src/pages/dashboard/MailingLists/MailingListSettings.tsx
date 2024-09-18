@@ -89,10 +89,10 @@ const languageList = ['FR', 'EN', 'ES'];
 export default function MailingListSettings({
   domainList = [],
   editMailingListDetail = null,
-}: {
+}: Readonly<{
   domainList: DomainType[];
   editMailingListDetail: MailingListType;
-}) {
+}>) {
   const { t } = useTranslation('mailinglists/addAndEdit');
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
