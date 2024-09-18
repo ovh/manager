@@ -5,7 +5,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_INPUT_TYPE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { StepComponent } from '@ovhcloud/manager-components';
+import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { StepEnum } from '@/pages/create/types';
 import { useStore } from '@/pages/create/store';

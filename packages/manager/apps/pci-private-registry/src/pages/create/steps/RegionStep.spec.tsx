@@ -3,7 +3,7 @@ import { Mock, vi } from 'vitest';
 import {
   StepComponent,
   TilesInputComponent,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useProjectLocalisation } from '@ovh-ux/manager-pci-common';
 import { wrapper } from '@/wrapperRenders';
 import RegionStep from '@/pages/create/steps/RegionStep';
@@ -12,7 +12,7 @@ import { useGetCapabilities } from '@/api/hooks/useCapabilities';
 const compute = () => render(<RegionStep />, { wrapper });
 
 describe('NameStep', () => {
-  vi.mock('@ovhcloud/manager-components', (importOriginal) => ({
+  vi.mock('@ovh-ux/manager-react-components', (importOriginal) => ({
     ...importOriginal,
     StepComponent: vi
       .fn()

@@ -8,7 +8,7 @@ import {
   StepComponent,
   TilesInputComponent,
   useNotifications,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
