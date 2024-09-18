@@ -62,3 +62,29 @@ export const ErrorBoundary = () => {
     </Suspense>
   );
 };
+
+export const ErrorBoundary = () => {
+  const error = useRouteError() as ApiError;
+  const nav = useContext(ShellContext).shell.navigation;
+
+  const redirectionApplication = 'public-cloud';
+
+  const navigateToHomePage = () => {
+    nav.navigateTo(redirectionApplication, '', {});
+  };
+
+  const reloadPage = () => {
+    nav.reload();
+  };
+  return (
+    <Suspense>
+      <ErrorBanner
+        onReloadPage={reloadPage}
+        onRedirectHome={navigateToHomePage}
+        error={error.response}
+      />
+      <ShellRoutingSync />
+      <HidePreloader />
+    </Suspense>
+  );
+};

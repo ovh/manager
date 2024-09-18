@@ -1,4 +1,9 @@
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+  PageLocation,
+  ButtonType,
+} from '@ovh-ux/manager-react-shell-client';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -32,6 +37,8 @@ export default function OnBoardingPage() {
   const { ovhSubsidiary } = context.environment.getUser();
   const project = useRouteLoaderData('private-networks') as TProject;
   const [urlProject, setUrlProject] = useState('');
+
+  const { trackClick } = useOvhTracking();
 
   useEffect(() => {
     navigation
@@ -102,7 +109,15 @@ export default function OnBoardingPage() {
             </>
           }
           orderButtonLabel={t('pci_projects_project_network_private_create')}
-          onOrderButtonClick={() => navigate('../new')}
+          onOrderButtonClick={() => {
+            navigate('../new');
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['add_privateNetwork'],
+            });
+          }}
         >
           {GUIDES.map((guide) => {
             const card = {
@@ -116,7 +131,21 @@ export default function OnBoardingPage() {
               },
             };
 
-            return <Card key={card.id} href={card.href} texts={card.texts} />;
+            return (
+              <Card
+                onClick={() => {
+                  trackClick({
+                    location: PageLocation.page,
+                    buttonType: ButtonType.tile,
+                    actionType: 'action',
+                    actions: ['tutorial', `go-to-${card.texts.title}`],
+                  });
+                }}
+                key={card.id}
+                href={card.href}
+                texts={card.texts}
+              />
+            );
           })}
         </OnboardingLayout>
         <Outlet />
