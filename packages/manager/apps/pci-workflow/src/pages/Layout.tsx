@@ -2,8 +2,9 @@ import { Outlet, useParams, useRouteError } from 'react-router-dom';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { Suspense, useContext } from 'react';
-import { ErrorBanner, useProject } from '@ovhcloud/manager-components';
+import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { useProject } from '@ovh-ux/manager-pci-common';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 import HidePreloader from '@/core/HidePreloader';
 

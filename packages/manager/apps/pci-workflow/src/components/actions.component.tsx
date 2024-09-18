@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
-import { ActionMenu } from '@ovhcloud/manager-components';
+import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { TWorkflow } from '@/api/hooks/workflows';
 
 type ActionsProps = {

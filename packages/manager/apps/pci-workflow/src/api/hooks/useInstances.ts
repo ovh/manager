@@ -1,7 +1,7 @@
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { useTranslatedMicroRegions } from '@ovhcloud/manager-components';
+import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
 import {
   getAllInstance,
   getFlavor,

@@ -1,5 +1,5 @@
 import { useMemo, useRef } from 'react';
-import { ColumnSort, PaginationState } from '@ovhcloud/manager-components';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { format, parseISO } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';

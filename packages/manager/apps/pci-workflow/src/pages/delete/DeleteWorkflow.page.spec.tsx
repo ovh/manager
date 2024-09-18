@@ -18,7 +18,7 @@ vi.mock('react-router-dom', () => ({
 }));
 
 const mockUseNotifications = vi.fn();
-vi.mock('@ovhcloud/manager-components', () => ({
+vi.mock('@ovh-ux/manager-react-components', () => ({
   useNotifications: () => ({
     addError: mockUseNotifications,
     addSuccess: mockUseNotifications,
