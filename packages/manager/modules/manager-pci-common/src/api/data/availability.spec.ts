@@ -2,12 +2,6 @@ import { describe, expect, it, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
 import { getProductAvailability } from './availability';
 
-vi.mock('@ovh-ux/manager-core-api', () => ({
-  v6: {
-    get: vi.fn(),
-  },
-}));
-
 describe('getProductAvailability', () => {
   it('returns product availability data successfully', async () => {
     const mockData = {
@@ -41,7 +35,9 @@ describe('getProductAvailability', () => {
       ],
     };
     vi.mocked(v6.get).mockResolvedValueOnce({ data: mockData });
-    const result = await getProductAvailability('projectId', 'subsidiary');
+    const result = await getProductAvailability('projectId', {
+      ovhSubsidiary: 'subsidiary',
+    });
     expect(result).toEqual(mockData);
   });
 
@@ -49,14 +45,16 @@ describe('getProductAvailability', () => {
     const errorMessage = 'Network Error';
     vi.mocked(v6.get).mockRejectedValueOnce(new Error(errorMessage));
     await expect(
-      getProductAvailability('projectId', 'subsidiary'),
+      getProductAvailability('projectId', { ovhSubsidiary: 'subsidiary' }),
     ).rejects.toThrow(errorMessage);
   });
 
   it('returns empty data when no plans or products are available', async () => {
     const mockData = { plans: [], products: [] };
     vi.mocked(v6.get).mockResolvedValueOnce({ data: mockData });
-    const result = await getProductAvailability('projectId', 'subsidiary');
+    const result = await getProductAvailability('projectId', {
+      ovhSubsidiary: 'subsidiary',
+    });
     expect(result).toEqual(mockData);
   });
 });

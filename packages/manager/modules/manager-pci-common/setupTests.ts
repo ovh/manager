@@ -3,9 +3,9 @@ import 'element-internals-polyfill';
 import { vi, describe, it } from 'vitest';
 
 vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
+  const module = await vi.importActual('react-router-dom');
   return {
-    ...mod,
+    ...module,
     useSearchParams: () => [new URLSearchParams({})],
     useParams: () => ({ projectId: 'project-id', kubeId: 'kube-id' }),
     useHref: vi.fn(),
@@ -17,9 +17,9 @@ vi.mock('react-router-dom', async () => {
 });
 
 vi.mock('@ovh-ux/manager-pci-common', async () => {
-  const mod = await vi.importActual('@ovh-ux/manager-pci-common');
+  const module = await vi.importActual('@ovh-ux/manager-pci-common');
   return {
-    ...mod,
+    ...module,
     useProject: vi.fn().mockResolvedValue({
       projectName: 'project-name',
       project_id: 'project-id',
@@ -28,9 +28,9 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
 });
 
 vi.mock('@ovh-ux/manager-react-components', async () => {
-  const mod = await vi.importActual('@ovh-ux/manager-react-components');
+  const module = await vi.importActual('@ovh-ux/manager-react-components');
   return {
-    ...mod,
+    ...module,
     useProjectUrl: vi.fn().mockReturnValue('mockProjectUrl'),
     useNotifications: vi.fn().mockReturnValue({
       addError: vi.fn(),
@@ -52,9 +52,9 @@ vi.mock('react-i18next', () => ({
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => {
-  const mod = await vi.importActual('@ovh-ux/manager-react-shell-client');
+  const module = await vi.importActual('@ovh-ux/manager-react-shell-client');
   return {
-    ...mod,
+    ...module,
     useTracking: vi.fn(() => ({
       trackPage: vi.fn(),
       trackClick: vi.fn(),
@@ -63,9 +63,9 @@ vi.mock('@ovh-ux/manager-react-shell-client', async () => {
 });
 
 vi.mock('@ovh-ux/manager-core-api', async () => {
-  const mod = await vi.importActual('@ovh-ux/manager-core-api');
+  const module = await vi.importActual('@ovh-ux/manager-core-api');
   return {
-    ...mod,
+    ...module,
     fetchIcebergV6: vi.fn(),
     v6: {
       get: vi.fn(),
