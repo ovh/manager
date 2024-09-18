@@ -14,8 +14,8 @@ export const usePlatform = () => {
     isLoading,
     isError,
     error,
-    platformId: data ? data[0].id : undefined,
-    platformUrn: data ? data[0].iam.urn : undefined,
-    data: data ? data[0] : null,
+    platformId: data?.length > 0 ? data[0].id : undefined,
+    platformUrn: data?.length > 0 ? data[0].iam.urn : undefined,
+    data: data?.length > 0 ? data[0] : null,
   };
 };
