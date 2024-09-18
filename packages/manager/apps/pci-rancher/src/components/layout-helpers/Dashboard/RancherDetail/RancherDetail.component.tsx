@@ -134,17 +134,13 @@ const RancherDetail = ({
   const userLocale = getDateFnsLocale(i18n.language);
 
   const displayDate = useCallback(
-    (value: string) => {
-      if (userLocale in locales) {
-        const localeId = userLocale as keyof typeof locales;
-        return format(new Date(dateUsage), value, {
-          locale: locales[localeId],
-        });
-      }
-      return format(new Date(dateUsage), value, {
-        locale: locales.fr,
-      });
-    },
+    (value: string) =>
+      format(new Date(dateUsage), value, {
+        locale:
+          userLocale in locales
+            ? locales[userLocale as keyof typeof locales]
+            : locales.fr,
+      }),
     [userLocale, locales, dateUsage],
   );
 
