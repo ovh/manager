@@ -16,6 +16,7 @@ export default defineConfig({
         'src/core/ShellRoutingSync.tsx',
         'src/main.tsx',
         'src/routes.tsx',
+        'src/_mocks_',
       ],
     },
   },
