@@ -89,5 +89,6 @@
   "key_management_service_service-keys_delete_success": "Der Schlüssel wurde erfolgreich gelöscht.",
   "key_management_service_service-keys_delete_error": "Die Löschung wurde verworfen. {{error}}",
   "key_management_service_service-keys_deactivation_success": "Der Schlüssel wurde erfolgreich deaktiviert.",
-  "key_management_service_service-keys_reactivate_success": "Der Schlüssel wurde erfolgreich reaktiviert."
+  "key_management_service_service-keys_reactivate_success": "Der Schlüssel wurde erfolgreich reaktiviert.",
+  "key_management_service_service_keys_back_link": "Zurück zur Liste der Schlüssel"
 }

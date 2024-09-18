@@ -89,5 +89,6 @@
   "key_management_service_service-keys_delete_success": "Klucz został usunięty",
   "key_management_service_service-keys_delete_error": "Usunięcie nie powiodło się. {{error}}",
   "key_management_service_service-keys_deactivation_success": "Klucz został wyłączony",
-  "key_management_service_service-keys_reactivate_success": "Klucz został ponownie włączony"
+  "key_management_service_service-keys_reactivate_success": "Klucz został ponownie włączony",
+  "key_management_service_service_keys_back_link": "Powrót do listy kluczy"
 }
