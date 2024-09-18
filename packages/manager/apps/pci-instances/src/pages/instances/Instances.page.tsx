@@ -43,7 +43,7 @@ import { Spinner } from '@/components/spinner/Spinner.component';
 import { TInstance, useInstances } from '@/data/hooks/instances/useInstances';
 import StatusChip from '@/components/statusChip/StatusChip.component';
 
-const initialSort = {
+const initialSorting = {
   id: 'name',
   desc: false,
 };
@@ -53,7 +53,7 @@ const Instances: FC = () => {
   const { projectId } = useParams() as { projectId: string }; // safe because projectId has already been handled by async route loader
   const project = useRouteLoaderData('root') as PublicCloudProject;
   const navigate = useNavigate();
-  const [sorting, setSorting] = useState(initialSort);
+  const [sorting, setSorting] = useState(initialSorting);
   const [searchField, setSearchField] = useState('');
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const {
@@ -211,9 +211,10 @@ const Instances: FC = () => {
   );
 
   const resetSortAndFilters = useCallback(() => {
-    setSorting(initialSort);
-    filters.forEach(removeFilter);
-  }, [filters]);
+    if (filters.length) filters.forEach(removeFilter);
+    if (JSON.stringify(sorting) !== JSON.stringify(initialSorting))
+      setSorting(initialSorting);
+  }, [filters, sorting]);
 
   const handleRefresh = useCallback(() => {
     refresh();
