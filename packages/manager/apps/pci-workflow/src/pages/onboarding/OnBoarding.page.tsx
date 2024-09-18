@@ -10,14 +10,12 @@ import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
-  isDiscoveryProject,
   OnboardingLayout,
-  PciDiscoveryBanner,
   RedirectionGuard,
-  useProject,
   useProjectUrl,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { Suspense } from 'react';
+import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import { useWorkflows } from '@/api/hooks/workflows';
 import { useAllInstances } from '@/api/hooks/useInstances';
 
@@ -54,11 +52,9 @@ export default function OnBoardingPage() {
     >
       {project && <OsdsBreadcrumb items={breadcrumbItems} />}
 
-      {project && isDiscoveryProject(project) && (
-        <div className="mb-8">
-          <PciDiscoveryBanner projectId={projectId} />
-        </div>
-      )}
+      <div className="mb-8">
+        <PciDiscoveryBanner project={project} />
+      </div>
       <OnboardingLayout
         title={t('pci_workflow_title')}
         description={

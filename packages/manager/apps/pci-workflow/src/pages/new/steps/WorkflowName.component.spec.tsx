@@ -1,10 +1,10 @@
 import { vi } from 'vitest';
 import { render } from '@testing-library/react';
-import { useCatalogPrice, useMe } from '@ovhcloud/manager-components';
+import { useCatalogPrice, useMe } from '@ovh-ux/manager-react-components';
 import { WorkflowName } from './WorkflowName.component';
 import { useInstanceSnapshotPricing } from '@/api/hooks/order';
 
-vi.mock('@ovhcloud/manager-components');
+vi.mock('@ovh-ux/manager-react-components');
 vi.mock('@/api/hooks/order');
 
 describe('WorkflowName', () => {

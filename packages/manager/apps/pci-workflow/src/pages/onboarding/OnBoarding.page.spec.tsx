@@ -2,8 +2,8 @@ import { describe, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Navigate } from 'react-router-dom';
 import { UseQueryResult } from '@tanstack/react-query';
-import * as managerComponentModule from '@ovhcloud/manager-components';
-import { PublicCloudProject } from '@ovhcloud/manager-components';
+import * as pciCommonModule from '@ovh-ux/manager-pci-common';
+import { TProject } from '@ovh-ux/manager-pci-common';
 import * as useInstancesModule from '@/api/hooks/useInstances';
 import OnBoardingPage from './OnBoarding.page';
 import { shellContext, wrapper } from '@/wrapperRenders';
@@ -20,12 +20,6 @@ vi.mock('react-router-dom', () => ({
 vi.mock('@/core/HidePreloader', () => ({
   default: () => <div>HidePeloader</div>,
 }));
-vi.mock('@ovhcloud/manager-components', async () => {
-  const mod = await vi.importActual('@ovhcloud/manager-components');
-  return {
-    ...mod,
-  };
-});
 
 describe('OnBoardingPage', () => {
   it('should render children with create button instance when workflow are empty', () => {
@@ -40,10 +34,10 @@ describe('OnBoardingPage', () => {
       isPending: false,
     } as { data: never[]; isPending: boolean; error: never });
 
-    vi.spyOn(managerComponentModule, 'useProject').mockReturnValue(({
+    vi.spyOn(pciCommonModule, 'useProject').mockReturnValue(({
       description: 'mocked_description',
       planCode: 'project.discovery',
-    } as unknown) as UseQueryResult<PublicCloudProject, never>);
+    } as unknown) as UseQueryResult<TProject, never>);
 
     const { container, getByText } = render(<OnBoardingPage />, {
       wrapper,
@@ -74,10 +68,10 @@ describe('OnBoardingPage', () => {
       isPending: false,
     } as { data: never[]; isPending: boolean; error: never });
 
-    vi.spyOn(managerComponentModule, 'useProject').mockReturnValue(({
+    vi.spyOn(pciCommonModule, 'useProject').mockReturnValue(({
       description: 'mocked_description',
       planCode: 'project.discovery',
-    } as unknown) as UseQueryResult<PublicCloudProject, never>);
+    } as unknown) as UseQueryResult<TProject, never>);
 
     const { container, getByText, queryByText } = render(<OnBoardingPage />, {
       wrapper,
