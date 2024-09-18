@@ -75,6 +75,16 @@ export default [
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/credentialList/CredentialList.page'),
             ),
+            children: [
+              {
+                path: `${ROUTES_URLS.credentialDelete}/${ROUTES_URLS.credentialId}`,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/credentialList/delete/DeleteCredentialModal.page'
+                  ),
+                ),
+              },
+            ],
           },
         ],
       },
@@ -125,6 +135,16 @@ export default [
                 '@/pages/credential/generalInformations/generalInformations.page'
               ),
             ),
+            children: [
+              {
+                path: ROUTES_URLS.credentialDelete,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/credential/generalInformations/delete/DeleteCredentialModal.page'
+                  ),
+                ),
+              },
+            ],
           },
           {
             path: ROUTES_URLS.credentialIdentities,

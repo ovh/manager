@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
@@ -17,12 +17,12 @@ import {
 import Loading from '@/components/Loading/Loading';
 import CredentialDatagrid from '../../../components/credential/credentialDatagrid/CredentialDatagrid';
 import { ROUTES_URLS } from '@/routes/routes.constants';
-import { useOutletKms } from '@/hooks/kms/useOutletKms';
+import { OkmsContext } from '..';
 
 const CredentialList = () => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
-  const okms = useOutletKms();
+  const okms = useContext(OkmsContext);
 
   const { isAuthorized, isLoading: isLoadingIam } = useAuthorizationIam(
     ['okms:apiovh:resource/credential/get'],
@@ -64,6 +64,7 @@ const CredentialList = () => {
           {t('key_management_service_credential_not_authorized')}
         </Description>
       )}
+      <Outlet />
     </div>
   );
 };

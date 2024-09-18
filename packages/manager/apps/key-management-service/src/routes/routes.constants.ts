@@ -7,7 +7,9 @@ export const ROUTES_URLS = {
   okmsId: ':okmsId',
   keys: 'keys',
   keyId: ':keyId',
+  createKmsServiceKey: 'create',
   serviceKeyEditName: 'edit-name',
+  serviceKeyDeactivate: 'deactivate',
   credentials: 'credentials',
   createCredential: 'create',
   createCredentialAddUserModal: 'add-users',
@@ -15,6 +17,5 @@ export const ROUTES_URLS = {
   createCredentialAddServiceAccountModal: 'add-service-account',
   credentialId: ':credentialId',
   credentialIdentities: 'identities',
-  createKmsServiceKey: 'create',
-  serviceKeyDeactivate: 'deactivate',
+  credentialDelete: 'delete',
 };

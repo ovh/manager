@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { createContext, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -18,6 +18,9 @@ import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { getOkmsResourceQueryKey } from '@/data/api/okms';
+import { OKMS } from '@/types/okms.type';
+
+export const OkmsContext = createContext<OKMS>(null);
 
 export default function DashboardPage() {
   const { t: tDashboard } = useTranslation('key-management-service/dashboard');
@@ -95,7 +98,9 @@ export default function DashboardPage() {
         message={<Notifications />}
         tabs={<Dashboard tabs={tabsList} />}
       >
-        <Outlet context={okms.data} />
+        <OkmsContext.Provider value={okms.data}>
+          <Outlet />
+        </OkmsContext.Provider>
       </BaseLayout>
     </Suspense>
   );

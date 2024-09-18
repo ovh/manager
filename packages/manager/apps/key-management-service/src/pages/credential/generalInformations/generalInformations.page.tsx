@@ -1,18 +1,21 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import {
   Clipboard,
   DashboardTile,
   DashboardTileBlockItem,
+  ManagerButton,
 } from '@ovh-ux/manager-react-components';
-import { useOutletCredential } from '@/hooks/credential/useOutletCredential';
 import { CredentialStatus } from '@/components/credential/credentialStatus/CredentialStatus.component';
 import { TileValueDate } from '@/components/dashboard/tile-value-date/tileValueDate.component';
 import CredentialCreationMethod from '@/components/credential/credentialCreationMethod/credentialCreationMethod.component';
 import { getDownloadCredentialParameters } from '@/utils/credential/credentialDownload';
+import { ROUTES_URLS } from '@/routes/routes.constants';
+import { useOutletCredential } from '../Credential.page';
 
 const dateFormat: Intl.DateTimeFormatOptions = {
   hour12: false,
@@ -25,7 +28,8 @@ const dateFormat: Intl.DateTimeFormatOptions = {
 };
 
 const CredentialGeneralInformations = () => {
-  const credential = useOutletCredential();
+  const { okms, credential } = useOutletCredential();
+  const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/credential');
 
   const { filename, href, isDisabled } = getDownloadCredentialParameters(
@@ -72,17 +76,29 @@ const CredentialGeneralInformations = () => {
     },
     {
       id: 'actions',
-      label: 'actions',
+      label: t('key_management_service_credential_dashboard_actions'),
       value: (
-        <OsdsButton
-          size={ODS_BUTTON_SIZE.sm}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          href={href}
-          download={filename}
-          disabled={isDisabled || undefined}
-        >
-          {t('key_management_service_credential_download')}
-        </OsdsButton>
+        <div className="flex gap-4">
+          <OsdsButton
+            size={ODS_BUTTON_SIZE.sm}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            href={href}
+            download={filename}
+            disabled={isDisabled || undefined}
+          >
+            {t('key_management_service_credential_download')}
+          </OsdsButton>
+          <ManagerButton
+            size={ODS_BUTTON_SIZE.sm}
+            color={ODS_THEME_COLOR_INTENT.error}
+            variant={ODS_BUTTON_VARIANT.ghost}
+            onClick={() => navigate(ROUTES_URLS.credentialDelete)}
+            iamActions={['okms:apiovh:resource/credential/delete']}
+            urn={okms.iam.urn}
+          >
+            {t('key_management_service_credential_delete')}
+          </ManagerButton>
+        </div>
       ),
     },
   ];
@@ -95,6 +111,7 @@ const CredentialGeneralInformations = () => {
         )}
         items={items}
       ></DashboardTile>
+      <Outlet />
     </div>
   );
 };
