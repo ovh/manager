@@ -28,10 +28,12 @@ export function VersionAndUpdatePolicyStep({
     <>
       {!step.isLocked && (
         <>
-          <VersionSelector onSelectVersion={setVersion} />
-          {version && (
-            <UpdatePolicySelector policy={policy} setPolicy={setPolicy} />
-          )}
+          <VersionSelector
+            key={version}
+            versionSelected={version}
+            onSelectVersion={setVersion}
+          />
+          <UpdatePolicySelector policy={policy} setPolicy={setPolicy} />
         </>
       )}
       {step.isLocked && version && (

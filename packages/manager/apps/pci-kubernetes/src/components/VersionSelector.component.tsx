@@ -1,46 +1,44 @@
-import { useState } from 'react';
-import clsx from 'clsx';
+import { useEffect } from 'react';
 import {
-  OsdsChip,
+  OsdsSelectOption,
   OsdsSpinner,
+  OsdsSelect,
+  OsdsChip,
   OsdsText,
-  OsdsTile,
+  OsdsFormField,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_CHIP_SIZE,
+  ODS_SELECT_SIZE,
   ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+} from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { useGetCloudSchema } from '@/api/hooks/useCloud';
 
-export const tileClass =
-  'cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600]';
-
-export const selectedTileClass =
-  'font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600]';
-
 export interface VersionSelectorProps {
   onSelectVersion: (version: string) => void;
+  versionSelected: string;
 }
 
 export function VersionSelector({
+  versionSelected,
   onSelectVersion,
 }: Readonly<VersionSelectorProps>) {
-  const { t } = useTranslation('versions');
+  const { t } = useTranslation();
   const { data: schema, isPending } = useGetCloudSchema();
-  const [selectedVersion, setSelectedVersion] = useState('');
   const versions = schema?.models['cloud.kube.VersionEnum'].enum || [];
   const lastVersion = [...versions].pop();
 
-  const selectVersion = (version: string) => {
-    if (version) {
-      setSelectedVersion(version);
-      onSelectVersion(version);
+  useEffect(() => {
+    // If the request for fetching last versions is not pending and no version has been selected, select the last version by default
+    if (!isPending && !versionSelected) {
+      onSelectVersion(lastVersion);
     }
-  };
+  }, [versionSelected, isPending]);
 
   if (isPending) {
     return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
@@ -48,38 +46,47 @@ export function VersionSelector({
 
   return (
     <div className="grid gap-6 list-none grid-cols-1 md:grid-cols-3">
-      {versions?.map((version) => (
-        <OsdsTile
-          key={version}
-          className={clsx(
-            tileClass,
-            version === selectedVersion && selectedTileClass,
-          )}
-          onClick={() => selectVersion(version)}
-        >
+      {versionSelected && (
+        <OsdsFormField className="mt-2">
           <OsdsText
-            className="my-3 flex flex-col items-center"
+            slot="label"
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
             color={ODS_THEME_COLOR_INTENT.text}
-            level={ODS_TEXT_LEVEL.body}
-            size={
-              version === selectedVersion
-                ? ODS_TEXT_SIZE._500
-                : ODS_TEXT_SIZE._400
-            }
           >
-            {t('pci_project_versions_list_version', { version })}
-            {version === lastVersion && (
-              <OsdsChip
-                className="mt-4"
-                color={ODS_THEME_COLOR_INTENT.success}
-                size={ODS_CHIP_SIZE.sm}
-              >
-                {t('pci_project_versions_recommended_version')}
-              </OsdsChip>
-            )}
+            {t('add:kubernetes_select_version_title')}
           </OsdsText>
-        </OsdsTile>
-      ))}
+          <OsdsSelect
+            name="version"
+            size={ODS_SELECT_SIZE.md}
+            value={versionSelected}
+            onOdsValueChange={({ detail }) => {
+              if (typeof detail.value === 'string') {
+                onSelectVersion(detail.value);
+              }
+            }}
+          >
+            {versions?.map((version) => (
+              <>
+                <OsdsSelectOption key={version} value={version}>
+                  <div className="flex gap-4 items-baseline">
+                    {`${t('versions:pci_project_versions_list_version', {
+                      version,
+                    })} `}
+                    {version === lastVersion && (
+                      <OsdsChip
+                        color={ODS_THEME_COLOR_INTENT.success}
+                        size={ODS_CHIP_SIZE.sm}
+                      >
+                        {t('versions:pci_project_versions_recommended_version')}
+                      </OsdsChip>
+                    )}
+                  </div>
+                </OsdsSelectOption>
+              </>
+            ))}
+          </OsdsSelect>
+        </OsdsFormField>
+      )}
     </div>
   );
 }
