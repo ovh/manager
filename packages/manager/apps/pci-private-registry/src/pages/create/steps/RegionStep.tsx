@@ -1,7 +1,7 @@
 import {
   StepComponent,
   TilesInputComponent,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {

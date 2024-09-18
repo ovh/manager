@@ -1,8 +1,17 @@
 import { useTranslation } from 'react-i18next';
 
-// TODO: Add this filter in UX components
-const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-const unitsKibi = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+const UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'] as const;
+const KIBI_UNITS = [
+  'B',
+  'KiB',
+  'MiB',
+  'GiB',
+  'TiB',
+  'PiB',
+  'EiB',
+  'ZiB',
+  'YiB',
+] as const;
 
 function translateUnit(unit: string): string {
   const { t } = useTranslation('bytes');
@@ -22,8 +31,11 @@ export const useTranslatedBytes = (
   let bytes = bytesParams;
   let precision = precisionParam;
   if (fromUnit) {
-    const fromKibiUnitIndex = unitsKibi.indexOf(fromUnit, 0);
-    const fromUnitIndex = units.indexOf(fromUnit, 0);
+    const fromKibiUnitIndex = KIBI_UNITS.indexOf(
+      fromUnit as typeof KIBI_UNITS[number],
+      0,
+    );
+    const fromUnitIndex = UNITS.indexOf(fromUnit as typeof UNITS[number], 0);
     if (fromKibiUnitIndex !== -1) {
       if (fromKibiUnitIndex > 0) {
         // eslint-disable-next-line no-restricted-properties
@@ -39,7 +51,7 @@ export const useTranslatedBytes = (
     }
   }
 
-  if (toRawBytes === true) {
+  if (toRawBytes) {
     return bytes;
   }
 
@@ -65,8 +77,8 @@ export const useTranslatedBytes = (
   if (/\.0+$/.test(value)) {
     value = value.replace(/\.0+$/, '');
   }
-  const translatedUnits = units.map(translateUnit);
-  const translatedUnitsKibi = unitsKibi.map(translateUnit);
+  const translatedUnits = UNITS.map(translateUnit);
+  const translatedUnitsKibi = KIBI_UNITS.map(translateUnit);
   return `${value} ${
     toKibi ? translatedUnitsKibi[number] : translatedUnits[number]
   }`;

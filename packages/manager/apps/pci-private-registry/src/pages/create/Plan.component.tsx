@@ -6,10 +6,10 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { useMemo } from 'react';
-import { useCatalogPrice } from '@ovhcloud/manager-components';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import { useCatalog } from '@ovh-ux/manager-pci-common';
 import { TCapability } from '@/api/data/capability';
 import { useTranslatedBytes } from '@/pages/create/useTranslatedBytes';
-import { useGetCatalog } from '@/api/hooks/useCatalog';
 
 export default function PlanComponent({
   plan,
@@ -18,7 +18,7 @@ export default function PlanComponent({
 }): JSX.Element {
   const { t: tUpgrade } = useTranslation('upgrade');
 
-  const { data: catalog } = useGetCatalog();
+  const { data: catalog } = useCatalog();
 
   const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(4);
 

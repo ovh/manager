@@ -1,11 +1,41 @@
 import { beforeAll, describe, vi } from 'vitest';
 import { render, RenderResult } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
+import * as useCatalogModule from '@ovh-ux/manager-pci-common';
+import { TCatalog } from '@ovh-ux/manager-pci-common';
 import PlanComponent from '@/pages/create/Plan.component';
 import { TCapability } from '@/api/data/capability';
 import { wrapper } from '@/wrapperRenders';
-import * as useCatalogModule from '@/api/hooks/useCatalog';
-import { TCatalog } from '@/api/data/catalog';
+
+const defaultPlan: TCapability['plans'][0] = {
+  id: 'planId',
+  code: 'planCode',
+  features: {
+    vulnerability: false,
+  },
+  name: 'SMALL',
+  registryLimits: {
+    imageStorage: 10,
+    parallelRequest: 50,
+  },
+};
+
+const defaultAddon = {
+  planCode: 'planCode',
+  blobs: {
+    technical: {
+      bandwidth: {
+        unlimited: false,
+      },
+    },
+  },
+  pricings: [
+    {
+      price: 1,
+      tax: 1,
+    },
+  ],
+};
 
 describe('PlanComponent', () => {
   vi.mock('react-i18next', () => ({
@@ -20,7 +50,7 @@ describe('PlanComponent', () => {
       },
     })),
   }));
-  vi.mock('@ovhcloud/manager-components', (importOriginal) => ({
+  vi.mock('@ovh-ux/manager-react-components', (importOriginal) => ({
     ...importOriginal,
     useCatalogPrice: () => ({
       getFormattedMonthlyCatalogPrice: () => 'formattedPrice',
@@ -28,35 +58,15 @@ describe('PlanComponent', () => {
     useMe: () => ({ me: { ovhSubsidiary: 'ovhSubsidiary' } }),
   }));
 
-  const defaultPlan: TCapability['plans'][0] = {
-    id: 'planId',
-    code: 'planCode',
-    features: {
-      vulnerability: false,
-    },
-    name: 'SMALL',
-    registryLimits: {
-      imageStorage: 10,
-      parallelRequest: 50,
-    },
-  };
-
-  const defaultAddon = {
-    planCode: 'planCode',
-    blobs: {
-      technical: {
-        bandwidth: {
-          unlimited: false,
-        },
+  vi.mock('@ovh-ux/manager-pci-common', (importOriginal) => ({
+    ...importOriginal,
+    useCatalog: () => ({
+      data: {
+        addons: [defaultAddon],
       },
-    },
-    pricings: [
-      {
-        price: 1,
-        tax: 1,
-      },
-    ],
-  };
+      isPending: false,
+    }),
+  }));
 
   it('should render', () => {
     const { container } = render(<PlanComponent plan={defaultPlan} />, {
@@ -182,7 +192,7 @@ describe('PlanComponent', () => {
 
   describe('Unlimited bandwidth', () => {
     it("should not show sla and traffic if addon doesn't have unlimited bandwidth", () => {
-      vi.spyOn(useCatalogModule, 'useGetCatalog').mockReturnValueOnce({
+      vi.spyOn(useCatalogModule, 'useCatalog').mockReturnValueOnce({
         data: {
           addons: [defaultAddon],
         },
@@ -210,7 +220,7 @@ describe('PlanComponent', () => {
           },
         },
       };
-      vi.spyOn(useCatalogModule, 'useGetCatalog').mockReturnValueOnce({
+      vi.spyOn(useCatalogModule, 'useCatalog').mockReturnValueOnce({
         data: {
           addons: [addon],
         },
@@ -227,7 +237,7 @@ describe('PlanComponent', () => {
   });
 
   it('should show price', () => {
-    vi.spyOn(useCatalogModule, 'useGetCatalog').mockReturnValueOnce({
+    vi.spyOn(useCatalogModule, 'useCatalog').mockReturnValueOnce({
       data: {
         addons: [defaultAddon],
       },
