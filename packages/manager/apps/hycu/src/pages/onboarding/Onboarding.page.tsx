@@ -2,8 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
-import onboardingImgSrc from './onboarding-img.png';
+import onboardingImgSrc from './hycu-x-ovhcloud.svg';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
@@ -13,27 +12,27 @@ export default function Onboarding() {
     {
       id: 1,
       texts: {
-        title: t('guide1Title'),
-        description: t('guide1Description'),
-        category: t('guideCategory'),
+        title: t('hycu_onboarding_guide1_title'),
+        description: t('hycu_onboarding_guide1_description'),
+        category: t('hycu_onboarding_category_tutorial'),
       },
       href: link?.guideLink1,
     },
     {
       id: 2,
       texts: {
-        title: t('guide2Title'),
-        description: t('guide2Description'),
-        category: t('guideCategory'),
+        title: t('hycu_onboarding_guide2_title'),
+        description: t('hycu_onboarding_guide2_description'),
+        category: t('hycu_onboarding_category_tutorial'),
       },
       href: link?.guideLink2,
     },
     {
       id: 3,
       texts: {
-        title: t('guide3Title'),
-        description: t('guide3Description'),
-        category: t('guideCategory'),
+        title: t('hycu_onboarding_guide3_title'),
+        description: t('hycu_onboarding_guide3_description'),
+        category: t('hycu_onboarding_category_tutorial'),
       },
       href: link?.guideLink3,
     },
@@ -41,13 +40,13 @@ export default function Onboarding() {
 
   const title: string = t('title');
   const description: string = t('description');
-  const imgSrc = {
+  const imgSrc: React.ComponentProps<'img'> = {
     src: onboardingImgSrc,
+    className: 'max-h-36 w-max-w-9/12',
   };
 
   return (
     <>
-      <Breadcrumb />
       <OnboardingLayout
         title={title}
         img={imgSrc}
