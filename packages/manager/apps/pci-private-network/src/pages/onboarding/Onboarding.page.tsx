@@ -136,9 +136,9 @@ export default function OnBoardingPage() {
                 onClick={() => {
                   trackClick({
                     location: PageLocation.page,
-                    buttonType: ButtonType.tile,
+                    buttonType: ButtonType.tutorial,
                     actionType: 'action',
-                    actions: ['tutorial', `go-to-${card.texts.title}`],
+                    actions: [`go-to-${card.texts.title}`],
                   });
                 }}
                 key={card.id}

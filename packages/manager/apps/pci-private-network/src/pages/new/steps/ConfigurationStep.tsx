@@ -4,7 +4,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 
 import {
   ODS_BUTTON_SIZE,
@@ -35,7 +35,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+  PageLocation,
+  ButtonType,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGatewayByRegion } from '@/api/hooks/useGateway';
 import { useAggregatedNonLocalNetworks } from '@/api/hooks/useNetwork';
 import { useProductAvailability } from '@/api/hooks/useProductAvailability';
@@ -220,6 +225,8 @@ export default function ConfigurationStep({
   const missingNameError =
     isNetworkNameInputTouched && !store.form.privateNetworkName.length;
 
+  const { trackClick } = useOvhTracking();
+
   return (
     <StepComponent
       title={t('pci_projects_project_network_private_create_configure')}
@@ -277,9 +284,18 @@ export default function ConfigurationStep({
                 name="create-public-gateway"
                 checked={store.form.createGateway}
                 disabled={!isGatewayAvailableInRegion}
-                onOdsCheckedChange={(event: CustomEvent) =>
-                  onCreateGatewayChange(event.detail.checked)
-                }
+                onOdsCheckedChange={(event: CustomEvent) => {
+                  onCreateGatewayChange(event.detail.checked);
+                  trackClick({
+                    location: PageLocation.funnel,
+                    buttonType: ButtonType.select,
+                    actionType: 'action',
+                    actions: [
+                      'add_privateNetwork',
+                      'create_gateway_connect_private_network',
+                    ],
+                  });
+                }}
               >
                 <OsdsCheckboxButton
                   interactive
@@ -305,13 +321,29 @@ export default function ConfigurationStep({
                   size={ODS_TEXT_SIZE._400}
                   className="mb-3 block"
                 >
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t(
-                        'pci_projects_project_network_private_create_public_gateway_decription_1',
-                        {
-                          guideLink: PRIVATE_NETWORK_URL,
-                        },
+                  <Trans
+                    t={t}
+                    i18nKey="pci_projects_project_network_private_create_public_gateway_decription_1"
+                    components={{
+                      link: (
+                        <a
+                          href={PRIVATE_NETWORK_URL}
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={() => {
+                            trackClick({
+                              location: PageLocation.funnel,
+                              buttonType: ButtonType.link,
+                              actionType: 'action',
+                              actions: [
+                                'add_privateNetwork',
+                                'learn_more_gateway_options',
+                              ],
+                            });
+                          }}
+                        >
+                          {tCommon('common_click_here_btn')}
+                        </a>
                       ),
                     }}
                   />
@@ -335,11 +367,29 @@ export default function ConfigurationStep({
                   level={ODS_TEXT_LEVEL.body}
                   size={ODS_TEXT_SIZE._400}
                 >
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t(
-                        'pci_projects_project_network_private_create_public_gateway_footer',
-                        { guideLink: REGION_GUIDE_URL },
+                  <Trans
+                    t={t}
+                    i18nKey="pci_projects_project_network_private_create_public_gateway_footer"
+                    components={{
+                      link: (
+                        <a
+                          href={REGION_GUIDE_URL}
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={() => {
+                            trackClick({
+                              location: PageLocation.funnel,
+                              buttonType: ButtonType.link,
+                              actionType: 'action',
+                              actions: [
+                                'add_privateNetwork',
+                                'learn_more_product_availability_by_region',
+                              ],
+                            });
+                          }}
+                        >
+                          {tCommon('common_click_here_btn')}
+                        </a>
                       ),
                     }}
                   />
@@ -363,9 +413,15 @@ export default function ConfigurationStep({
                 <OsdsCheckbox
                   checked={store.form.configureVlanId}
                   disabled={!isVlanAvailable(networks || [], DEFAULT_VLAN_ID)}
-                  onOdsCheckedChange={(event: CustomEvent) =>
-                    onSetVlanIdChange(event.detail.checked)
-                  }
+                  onOdsCheckedChange={(event: CustomEvent) => {
+                    onSetVlanIdChange(event.detail.checked);
+                    trackClick({
+                      location: PageLocation.funnel,
+                      buttonType: ButtonType.select,
+                      actionType: 'action',
+                      actions: ['add_privateNetwork', 'set_vlan_id'],
+                    });
+                  }}
                 >
                   <OsdsCheckboxButton
                     size={ODS_CHECKBOX_BUTTON_SIZE.sm}
@@ -506,6 +562,15 @@ export default function ConfigurationStep({
                 disabled={store.form.createGateway}
                 onOdsCheckedChange={(event: CustomEvent) => {
                   store.setForm({ dhcp: event.detail.checked });
+                  trackClick({
+                    location: PageLocation.funnel,
+                    buttonType: ButtonType.select,
+                    actionType: 'action',
+                    actions: [
+                      'add_privateNetwork',
+                      'activate_dhcp_private_network',
+                    ],
+                  });
                 }}
               >
                 <OsdsCheckboxButton
