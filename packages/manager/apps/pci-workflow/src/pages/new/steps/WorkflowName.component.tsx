@@ -18,7 +18,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import { useCatalogPrice, useMe } from '@ovhcloud/manager-components';
+import { useCatalogPrice, useMe } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
 import { useInstanceSnapshotPricing } from '@/api/hooks/order';
 import { StepState } from '@/pages/new/hooks/useStep';

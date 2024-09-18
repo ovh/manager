@@ -5,7 +5,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
-import { isLocalZone } from '@ovhcloud/manager-components';
+import { isLocalZone } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { ReactNode } from 'react';
 
