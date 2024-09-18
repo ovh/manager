@@ -85,14 +85,14 @@ export default [
       {
         path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.credentials}/${ROUTES_URLS.createCredential}`,
         ...lazyRouteConfig(() =>
-          import('@/pages/credential/CreateCredential.page'),
+          import('@/pages/credential/create/CreateCredential.page'),
         ),
         children: [
           {
             path: ROUTES_URLS.createCredentialAddUserModal,
             ...lazyRouteConfig(() =>
               import(
-                '@/pages/credential/create/CreateCredentialIdentityUserList.page'
+                '@/pages/credential/create/addUsers/CreateCredentialIdentityUserList.page'
               ),
             ),
           },
@@ -100,7 +100,7 @@ export default [
             path: ROUTES_URLS.createCredentialAddGroupsModal,
             ...lazyRouteConfig(() =>
               import(
-                '@/pages/credential/create/CreateCredentialIdentityGroupList.page'
+                '@/pages/credential/create/addGroups/CreateCredentialIdentityGroupList.page'
               ),
             ),
           },
@@ -108,7 +108,7 @@ export default [
             path: ROUTES_URLS.createCredentialAddServiceAccountModal,
             ...lazyRouteConfig(() =>
               import(
-                '@/pages/credential/create/CreateCredentialIdentityServiceAccountList.page'
+                '@/pages/credential/create/addServiceAccount/CreateCredentialIdentityServiceAccountList.page'
               ),
             ),
           },

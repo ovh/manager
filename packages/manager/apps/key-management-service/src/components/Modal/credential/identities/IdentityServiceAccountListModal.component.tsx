@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { IdentityOauthClient } from '@/types/identity.type';
 import { useIdentityData } from '@/hooks/credential/useIdentityData';
 import { useIdentityServiceAccountList } from '@/data/hooks/useIdentity';
-import IdentitiesServiceAccountList from '@/components/credential/create/identities/list/IdentitiesServiceAccountList.component';
+import IdentitiesServiceAccountList from '@/pages/credential/create/identities/list/IdentitiesServiceAccountList.component';
 
 type IdentityServiceAccountListModalProps = {
   closeModal: () => void;

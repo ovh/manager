@@ -11,6 +11,7 @@ export type OkmsCredential = {
   fromCSR: boolean;
   identityURNs: string[];
   status: OkmsCredentialStatus;
+  privateKeyPEM?: string;
 };
 
 /*
