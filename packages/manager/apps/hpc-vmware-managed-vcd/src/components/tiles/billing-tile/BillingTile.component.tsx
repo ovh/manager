@@ -4,10 +4,20 @@ import {
   Description,
   Links,
 } from '@ovh-ux/manager-react-components';
-import { OsdsChip, OsdsLink } from '@ovhcloud/ods-components/react';
+import {
+  OsdsChip,
+  OsdsIcon,
+  OsdsLink,
+  OsdsTooltip,
+  OsdsTooltipContent,
+} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_CHIP_SIZE,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
 import useManagedVcdService from '@/data/hooks/useManagedVcdService';
 import useCurrentUser from '@/hooks/user/useCurrentUser';
 
@@ -50,9 +60,25 @@ export default function BillingTile({ id }: TBillingTileProps) {
             label: t('managed_vcd_dashboard_password'),
             value: (
               <div className="flex-wrap">
-                <OsdsLink disabled>
-                  {t('managed_vcd_dashboard_password_renew')}
-                </OsdsLink>
+                <div className="flex items-center gap-x-2">
+                  <OsdsLink disabled>
+                    {t('managed_vcd_dashboard_password_renew')}
+                  </OsdsLink>
+                  <OsdsTooltip className="flex items-center">
+                    <OsdsIcon
+                      className="cursor-pointer"
+                      name={ODS_ICON_NAME.HELP}
+                      size={ODS_ICON_SIZE.xxs}
+                      color={ODS_THEME_COLOR_INTENT.text}
+                    />
+                    <OsdsTooltipContent
+                      slot="tooltip-content"
+                      className="break-normal"
+                    >
+                      {t('managed_vcd_dashboard_password_tooltip')}
+                    </OsdsTooltipContent>
+                  </OsdsTooltip>
+                </div>
                 <OsdsChip
                   inline
                   color={ODS_THEME_COLOR_INTENT.primary}
