@@ -1,6 +1,8 @@
 import {
   InfiniteData,
   keepPreviousData,
+  Query,
+  QueryKey,
   useInfiniteQuery,
   useQueryClient,
 } from '@tanstack/react-query';
@@ -143,26 +145,82 @@ export const useInstances = (
     [filtersQueryKey, projectId, sort, sortOrder],
   );
 
+  const invalidateQuery = useCallback(
+    (queryKeyToInvalidate: QueryKey) => {
+      queryClient.invalidateQueries({
+        queryKey: queryKeyToInvalidate,
+        exact: true,
+      });
+    },
+    [queryClient],
+  );
+
+  const resetQueryCacheData = useCallback(
+    (cacheQueryKey: QueryKey, previousData: InfiniteData<TInstance[]>) => {
+      queryClient.setQueryData<InfiniteData<TInstance[]>>(cacheQueryKey, {
+        pages: previousData.pages.slice(0, 1),
+        pageParams: [0],
+      });
+    },
+    [queryClient],
+  );
+
+  // Custom function to prevent from reloading the whole page by resetting cache only
   const refresh = useCallback(() => {
-    queryClient.removeQueries({
-      predicate: (query) =>
-        query.queryKey.includes('list') &&
-        query.queryKey !==
-          instancesQueryKey(projectId, ['list', 'sort', 'name', 'asc']),
+    const initialQueryKey = instancesQueryKey(projectId, [
+      'list',
+      'sort',
+      'name',
+      'asc',
+    ]);
+
+    const queryKeyEqualsInitialQueryKey = (
+      currentQueryKey: QueryKey,
+    ): boolean =>
+      JSON.stringify(currentQueryKey) === JSON.stringify(initialQueryKey);
+
+    const isListQuery = (query: Query) => query.queryKey.includes('list');
+
+    const listCachedQueries = queryClient.getQueriesData({
+      predicate: isListQuery,
     });
-  }, [projectId, queryClient]);
+
+    const queryData = queryClient.getQueryData<InfiniteData<TInstance[]>>(
+      initialQueryKey,
+    );
+
+    if (listCachedQueries.length > 1) {
+      queryClient.removeQueries({
+        predicate: (query) =>
+          isListQuery(query) && !queryKeyEqualsInitialQueryKey(query.queryKey),
+      });
+    }
+
+    if (queryData && queryData.pageParams.length > 1) {
+      resetQueryCacheData(initialQueryKey, queryData);
+    }
+
+    invalidateQuery(initialQueryKey);
+  }, [invalidateQuery, projectId, queryClient, resetQueryCacheData]);
 
   useEffect(() => {
     const queryData = queryClient.getQueryData<InfiniteData<TInstance[]>>(
       queryKey,
     );
     if (queryData?.pageParams && queryData.pageParams.length > 1) {
-      queryClient.resetQueries({
-        queryKey,
-        exact: true,
-      });
+      resetQueryCacheData(queryKey, queryData);
+      invalidateQuery(queryKey);
     }
-  }, [projectId, sort, sortOrder, queryClient, queryKey, filters.length]);
+  }, [
+    projectId,
+    sort,
+    sortOrder,
+    queryClient,
+    queryKey,
+    filters.length,
+    invalidateQuery,
+    resetQueryCacheData,
+  ]);
 
   const { data, ...rest } = useInfiniteQuery({
     queryKey,
