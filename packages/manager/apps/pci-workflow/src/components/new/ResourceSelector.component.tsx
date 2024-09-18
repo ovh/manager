@@ -6,7 +6,7 @@ import {
   isLocalZone,
   useColumnFilters,
   useDataGrid,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useRef, useState } from 'react';

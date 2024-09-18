@@ -1,6 +1,6 @@
 import { useMutation, useQueries, useQueryClient } from '@tanstack/react-query';
 import { format, parseISO, addMinutes } from 'date-fns';
-import { ColumnSort, PaginationState } from '@ovhcloud/manager-components';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo, useRef } from 'react';
 import * as dateFnsLocales from 'date-fns/locale';

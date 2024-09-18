@@ -9,27 +9,16 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query';
 import { describe, vi } from 'vitest';
-import * as managerComponentsModule from '@ovhcloud/manager-components';
+import * as managerComponentsModule from '@ovh-ux/manager-react-components';
+import * as pciCommonModule from '@ovh-ux/manager-pci-common';
 import * as osdsComponents from '@ovhcloud/ods-components/react';
-import { PublicCloudProject } from '@ovhcloud/manager-components';
 import { ResponseAPIError } from '@ovh-ux/manager-pci-public-ip-app/src/interface';
+import { TProject } from '@ovh-ux/manager-pci-common';
 import { DEFAULT_DATA } from '@/pages/list/data.mock';
 import * as useWorkflowsModule from '@/api/hooks/workflows';
 import ListingPage from './List.page';
 import { usePaginatedWorkflows, TWorkflow } from '@/api/hooks/workflows';
-
-const shellContext = {};
-const queryClient = new QueryClient();
-
-const wrapper = ({ children }) => (
-  <QueryClientProvider client={queryClient}>
-    <ShellContext.Provider
-      value={(shellContext as unknown) as ShellContextType}
-    >
-      {children}
-    </ShellContext.Provider>
-  </QueryClientProvider>
-);
+import { wrapper } from '@/wrapperRenders';
 
 describe('ListPage', () => {
   vi.mock('react-router-dom', async (importOriginal) => {
@@ -41,17 +30,24 @@ describe('ListPage', () => {
     };
   });
 
-  vi.mock('@ovhcloud/manager-components', async (importOriginal) => {
+  vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
     const actual = (await importOriginal()) as Record<string, unknown>;
     return {
       ...actual,
-      useProject: vi.fn().mockReturnValue({}),
       useProjectUrl: vi.fn().mockReturnValue(''),
       useDatagridSearchParams: vi.fn().mockReturnValue({}),
       PciGuidesHeader: vi.fn().mockReturnValue(<div></div>),
       Notifications: vi
         .fn()
         .mockReturnValue(<div data-testid="notifications"></div>),
+    };
+  });
+
+  vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
+    const actual = (await importOriginal()) as Record<string, unknown>;
+    return {
+      ...actual,
+      useProject: vi.fn().mockReturnValue({}),
     };
   });
 
@@ -118,12 +114,12 @@ describe('ListPage', () => {
         'RedirectionGuard',
       ).mockImplementation((props) => <>{props.children}</>);
 
-      vi.spyOn(managerComponentsModule, 'useProject').mockImplementation(
+      vi.spyOn(pciCommonModule, 'useProject').mockImplementation(
         () =>
           ({
-            data: (DEFAULT_DATA.project as unknown) as PublicCloudProject,
+            data: DEFAULT_DATA.project,
             isPending: false,
-          } as UseQueryResult<PublicCloudProject, ResponseAPIError>),
+          } as UseQueryResult<TProject, ResponseAPIError>),
       );
 
       vi.spyOn(osdsComponents, 'OsdsBreadcrumb').mockImplementation((props) => (
@@ -220,11 +216,6 @@ describe('ListPage', () => {
         ).mockImplementation((props) => (
           <div data-testid="grid">{JSON.stringify(props)}</div>
         ));
-
-        vi.spyOn(
-          managerComponentsModule,
-          'isDiscoveryProject',
-        ).mockImplementation(() => false);
 
         const { getByTestId } = render(<ListingPage />, { wrapper });
 
