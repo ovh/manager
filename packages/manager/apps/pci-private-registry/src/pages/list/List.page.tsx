@@ -66,7 +66,7 @@ export default function ListPage() {
   return (
     <RedirectionGuard
       isLoading={isPending}
-      condition={data.rows?.length === 0}
+      condition={!isPending && data.rows?.length === 0}
       route={`/pci/projects/${projectId}/private-registry/onboarding`}
     >
       {project && (
@@ -86,7 +86,11 @@ export default function ListPage() {
       <div className="header mt-8">
         <Headers
           title={t('private_registry_title')}
-          headerButton={<PciGuidesHeader category="private_registry" />}
+          headerButton={
+            <div className="min-w-[7rem]">
+              <PciGuidesHeader category="private_registry" />
+            </div>
+          }
         />
       </div>
 
@@ -135,7 +139,7 @@ export default function ListPage() {
                 pageSize: pagination.pageSize,
               });
               addFilter({
-                key: 'name',
+                key: 'search',
                 value: detail.inputValue,
                 comparator: FilterComparator.Includes,
                 label: '',
