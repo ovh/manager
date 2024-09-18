@@ -1,4 +1,4 @@
-import { DataGridTextCell } from '@ovhcloud/manager-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { TWorkflowExecution } from '@/api/data/region-workflow';
 import ExecutionStatusComponent from '@/components/execution-status.component';
