@@ -37,6 +37,11 @@ export const useGetAllRegistries = (projectId: string) =>
   useQuery({
     queryKey: getAllRegistriesQueryKey(projectId),
     queryFn: () => getAllRegistries(projectId),
+    select: (registries) =>
+      registries.map((registry) => ({
+        ...registry,
+        search: `${registry.name} ${registry.id} ${registry.region} ${registry.version}`,
+      })) as TRegistry[],
   });
 
 export const useGetRegistryPlan = (projectId: string, registryId: string) =>
