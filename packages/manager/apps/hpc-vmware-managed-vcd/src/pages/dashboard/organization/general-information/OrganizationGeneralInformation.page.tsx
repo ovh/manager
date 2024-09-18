@@ -14,12 +14,14 @@ function GeneralInformation() {
   const {
     data: vcdOrganization,
     isError,
+    isRefetchError,
     error,
     isLoading,
+    isRefetching,
   } = useManagedVcdOrganization({
     id,
     refetchOnWindowFocus: true,
-    refetchInterval: 5000,
+    refetchInterval: 60 * 1000,
   });
   const {
     data: vDatacentres,
@@ -28,11 +30,11 @@ function GeneralInformation() {
     isLoading: isLoadingvDc,
   } = useManagedVcdDatacentres(id);
 
-  if (isError || isErrorvDc) {
+  if (isError || isRefetchError || isErrorvDc) {
     return <Errors error={error?.response ?? errorVdc?.response} />;
   }
 
-  if (isLoading || isLoadingvDc) {
+  if (isLoading || isRefetching || isLoadingvDc) {
     return (
       <div>
         <Loading />
