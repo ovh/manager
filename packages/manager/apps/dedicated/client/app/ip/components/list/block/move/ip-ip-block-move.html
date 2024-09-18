@@ -116,23 +116,15 @@
 
             <div data-ng-show="!loading.save && data.ipBlock.isAdditionalIpv6">
                 <div data-ng-show="loading.ipCanBeMovedTo">
-                    <p>
-                        <span
-                            data-translate="vrack_add_ipv6_modal_description"
-                            data-translate-values="{ ipblock: '<strong>' + data.ipBlock.ipBlock + '</strong>', vrack: '<strong>' + model.serviceName.service + '</strong>', region: '<strong>' + data.ipBlock.region + '</strong>' }"
-                        ></span>
-                    </p>
-                    <p>
-                        <span
-                            data-translate="vrack_add_ipv6_modal_description1"
-                        ></span>
-                    </p>
-                    <p>
-                        <span
-                            data-translate="vrack_add_ipv6_modal_description2"
-                            data-translate-values="{ region: '<strong>' + data.ipBlock.region + '</strong>' }"
-                        ></span>
-                    </p>
+                    <p
+                        data-translate="vrack_add_ipv6_modal_description"
+                        data-translate-values="{ ipblock: '<strong>' + data.ipBlock.ipBlock + '</strong>', vrack: '<strong>' + model.serviceName.service + '</strong>', region: '<strong>' + data.ipBlock.region + '</strong>' }"
+                    ></p>
+                    <p data-translate="vrack_add_ipv6_modal_description1"></p>
+                    <p
+                        data-translate="vrack_add_ipv6_modal_description2"
+                        data-translate-values="{ region: '<strong>' + data.ipBlock.region + '</strong>' }"
+                    ></p>
                     <p>
                         <span
                             data-translate="vrack_add_ipv6_modal_description3"

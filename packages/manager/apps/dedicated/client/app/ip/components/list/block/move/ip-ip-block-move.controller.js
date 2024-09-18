@@ -3,7 +3,7 @@ import { IPV6_GUIDES_LINK } from '../../../../../../../../../modules/vrack/src/v
 
 export default /* @ngInject */ (
   $scope,
-  $timeout,
+  $interval,
   OvhApiVrack,
   $q,
   $translate,
@@ -17,6 +17,7 @@ export default /* @ngInject */ (
   $scope.data = $scope.currentActionData;
   $scope.model = { serviceName: null, nexthop: null };
   $scope.noTasksPending = false;
+  $scope.pollTimer = null;
   $scope.ADDITIONAL_IP = ADDITIONAL_IP;
   $scope.helpLink =
     IPV6_GUIDES_LINK[user.ovhSubsidiary] || IPV6_GUIDES_LINK.DEFAULT;
@@ -104,10 +105,14 @@ export default /* @ngInject */ (
   $scope.moveIpv6Action = (serviceName, ipBlock) => {
     Vrack.addIpv6(serviceName, ipBlock)
       .then(({ data }) => {
-        $scope.watingTask(data.id, serviceName, () => {
-          $scope.loading.save = false;
-          $scope.resetAction();
-        });
+        if (!$scope.pollTimer) {
+          $scope.pollTimer = $interval(() => {
+            $scope.checkTask(data.id, serviceName, () => {
+              $scope.loading.save = false;
+              $scope.resetAction();
+            });
+          }, POLLING_INTERVAL);
+        }
       })
       .catch((err) => {
         Alerter.error(err.data?.message || err.message || err);
@@ -128,20 +133,22 @@ export default /* @ngInject */ (
           $scope.data.ipBlock.ipBlock,
         )
           .then(({ data }) => {
-            $scope.watingTask(
-              data.id,
-              $scope.data.ipBlock.routedTo?.serviceName,
-              () => {
-                if ($scope.model.serviceName.serviceType !== '_PARK') {
-                  this.moveIpv6Action(
-                    $scope.model.serviceName.service,
-                    $scope.data.ipBlock.ipBlock,
-                  );
-                } else {
-                  $scope.resetAction();
-                }
-              },
-            );
+            $scope.pollTimer = $interval(() => {
+              $scope.checkTask(
+                data.id,
+                $scope.data.ipBlock.routedTo?.serviceName,
+                () => {
+                  if ($scope.model.serviceName.serviceType !== '_PARK') {
+                    this.moveIpv6Action(
+                      $scope.model.serviceName.service,
+                      $scope.data.ipBlock.ipBlock,
+                    );
+                  } else {
+                    $scope.resetAction();
+                  }
+                },
+              );
+            }, POLLING_INTERVAL);
           })
           .catch((err) => {
             Alerter.alertFromSWS(
@@ -271,21 +278,23 @@ export default /* @ngInject */ (
     return $scope.loading.save;
   };
 
-  $scope.watingTask = (taskId, serviceName, callback) => {
+  $scope.checkTask = (taskId, serviceName, callback) => {
     OvhApiVrack.v6()
       .task({
         serviceName,
         taskId,
       })
-      .$promise.then(() => {
-        $timeout(() => {
-          $scope.watingTask(taskId, serviceName, callback);
-        }, POLLING_INTERVAL);
-      })
-      .catch(() => {
+      .$promise.catch(() => {
+        $interval.cancel($scope.pollTimer);
         if (callback) callback();
       });
   };
+
+  $scope.$on('$destroy', function() {
+    if ($scope.pollTimer) {
+      $interval.cancel($scope.pollTimer);
+    }
+  });
 
   init();
 };
