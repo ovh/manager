@@ -6,7 +6,6 @@ export type TFormattedCatalog = {
     invoiceName: string;
   }[];
 };
-
 export const getIpCatalogUrl = (ovhSubsidiary: string) =>
   `/order/catalog/formatted/ip?ovhSubsidiary=${ovhSubsidiary}&productName=ip-failover`;
 export const getIpCatalog = async (

@@ -37,13 +37,20 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
       addError: vi.fn(),
       addSuccess: vi.fn(),
     }),
-    useProject: vi.fn().mockReturnValue({ data: { description: 'Project' } }),
     useProjectLocalRegions: vi.fn().mockReturnValue({ data: [] }),
     useProjectQuota: vi.fn().mockReturnValue({ data: [] }),
     useProjectUrl: vi.fn().mockReturnValue('/project-url'),
     useTranslatedMicroRegions: vi
       .fn()
       .mockReturnValue({ translateMicroRegion: vi.fn().mockReturnValue('EU') }),
+  };
+});
+
+vi.mock('@ovh-ux/manager-pci-common', async () => {
+  const mod = await vi.importActual('@ovh-ux/manager-pci-common');
+  return {
+    ...mod,
+    useProject: vi.fn().mockReturnValue({ data: { description: 'Project' } }),
   };
 });
 

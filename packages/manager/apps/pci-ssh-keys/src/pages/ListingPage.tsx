@@ -35,16 +35,18 @@ import {
   Notifications,
   Datagrid,
   useDatagridSearchParams,
-  isDiscoveryProject,
-  PciDiscoveryBanner,
   PciGuidesHeader,
 } from '@ovh-ux/manager-react-components';
+import {
+  isDiscoveryProject,
+  PciDiscoveryBanner,
+  TProject,
+} from '@ovh-ux/manager-pci-common';
 import { useSshKeys } from '@/hooks/useSsh';
 import { SshKey } from '@/interface';
 import Key from '@/components/ssh-keys/listing/Key';
 import RemoveSsh from '@/components/ssh-keys/listing/RemoveSsh';
 import { PCI_LEVEL2 } from '@/tracking.constants';
-import { Project } from '@/data/project';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -55,7 +57,7 @@ export default function ListingPage() {
   const [urlProject, setUrlProject] = useState('');
   const [searchField, setSearchField] = useState('');
   const [searchQueries, setSearchQueries] = useState<string[]>([]);
-  const project = useRouteLoaderData('ssh') as Project;
+  const project = useRouteLoaderData('ssh') as TProject;
 
   useEffect(() => {
     navigation
@@ -133,9 +135,7 @@ export default function ListingPage() {
       <OsdsDivider></OsdsDivider>
       <Notifications />
 
-      {project && isDiscoveryProject(project) && (
-        <PciDiscoveryBanner projectId={projectId} />
-      )}
+      <PciDiscoveryBanner project={project} />
 
       <div className={'flex flex-col sm:flex-row justify-between mt-4'}>
         <OsdsButton

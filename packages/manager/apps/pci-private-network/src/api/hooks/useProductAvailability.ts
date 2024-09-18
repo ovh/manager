@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getProductAvailability, getProjectRegions } from '@/api/data/regions';
+import { getProductAvailability } from '@ovh-ux/manager-pci-common';
+import { getProjectRegions } from '@/api/data/regions';
 
 export const useProjectRegions = (projectId: string) =>
   useQuery({
@@ -14,5 +15,11 @@ export const useProductAvailability = (
 ) =>
   useQuery({
     queryKey: ['project', projectId, 'availability', ovhSubsidiary, planCode],
-    queryFn: () => getProductAvailability(projectId, ovhSubsidiary, planCode),
+    queryFn: async () => {
+      const availability = await getProductAvailability(projectId, {
+        ovhSubsidiary,
+        planCode,
+      });
+      return availability?.plans;
+    },
   });

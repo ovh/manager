@@ -145,46 +145,6 @@ export type TPricing = {
   engagementConfiguration?: unknown;
 };
 
-export type TAddonFamily = {
-  addons: string[];
-  default?: string;
-  name: string;
-  exclusive: boolean;
-  mandatory: boolean;
-};
-
-export type TPlan = {
-  planCode: string;
-  invoiceName: string;
-  product: string;
-  pricingType: string;
-  consumptionConfiguration: string;
-  pricings: TPricing[];
-  addonFamilies: TAddonFamily[];
-};
-
-export type TCatalog = {
-  catalogId: string;
-  locale: {
-    currencyCode: string;
-    subsidiary: string;
-    taxRate: number;
-  };
-  plans: TPlan[];
-  addons: TAddon[];
-};
-
-export type TAddon = {
-  invoiceName: string;
-  planCode: string;
-  blobs: {
-    commercial: {
-      name: string;
-    };
-  };
-  pricings: TPricing[];
-};
-
 export type TRancherPricing = {
   name: string;
   hourlyPrice: number;

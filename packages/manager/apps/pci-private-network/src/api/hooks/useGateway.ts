@@ -1,9 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  getGateways,
-  getGatewayCatalog,
-  getGatewaysByRegion,
-} from '@/api/data/regions';
+import { getCatalog } from '@ovh-ux/manager-pci-common';
+import { getGateways, getGatewaysByRegion } from '@/api/data/regions';
 
 export const useGateways = (projectId: string) =>
   useQuery({
@@ -33,7 +30,7 @@ export const useGatewayCatalog = (
 ) =>
   useQuery({
     queryKey: ['gateway', 'catalog', ovhSubsidiary],
-    queryFn: () => getGatewayCatalog(ovhSubsidiary, productName),
+    queryFn: () => getCatalog(ovhSubsidiary, productName),
     select: (data) => {
       // pick the variants of product with least price
       const gatewayProducts = data?.addons
