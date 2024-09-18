@@ -62,6 +62,16 @@
   {
     "public": {
       "application": "public-cloud",
+      "path": "/create-savings-plan"
+    },
+    "redirect": {
+      "application": "public-cloud",
+      "path": "/pci/projects/{project}/savings-plan/new"
+    }
+  },
+  {
+    "public": {
+      "application": "public-cloud",
       "path": "/create-bare-metal-instance"
     },
     "redirect": {
