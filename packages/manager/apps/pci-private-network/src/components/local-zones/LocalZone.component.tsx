@@ -16,6 +16,11 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import {
+  useOvhTracking,
+  PageLocation,
+  ButtonType,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   OsdsButton,
   OsdsDivider,
   OsdsIcon,
@@ -72,6 +77,8 @@ export default function LocalZoneComponent({
 
   const columns = useDatagridColumn();
 
+  const { trackClick } = useOvhTracking();
+
   return (
     <div>
       <Notifications />
@@ -87,6 +94,12 @@ export default function LocalZoneComponent({
           onClick={() => {
             store.reset();
             navigate('../new');
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['add_privateNetwork'],
+            });
           }}
         >
           <OsdsIcon

@@ -16,6 +16,11 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import {
+  useOvhTracking,
+  PageLocation,
+  ButtonType,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   OsdsButton,
   OsdsDivider,
   OsdsIcon,
@@ -74,6 +79,8 @@ export default function GlobalRegionsComponent({
     filters,
   );
 
+  const { trackClick } = useOvhTracking();
+
   return (
     <div>
       <Notifications />
@@ -89,6 +96,12 @@ export default function GlobalRegionsComponent({
           onClick={() => {
             store.reset();
             navigate('./new');
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['add_privateNetwork'],
+            });
           }}
         >
           <OsdsIcon

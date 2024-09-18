@@ -2,7 +2,11 @@ import {
   StepComponent,
   TilesInputComponent,
 } from '@ovh-ux/manager-react-components';
-
+import {
+  useOvhTracking,
+  PageLocation,
+  ButtonType,
+} from '@ovh-ux/manager-react-shell-client';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
@@ -91,6 +95,8 @@ export default function LocalizationStep(): JSX.Element {
       (regionItem) => regionItem.macroName === region.macroName,
     ).length === 1;
 
+  const { trackClick } = useOvhTracking();
+
   useEffect(() => {
     if (regions?.length > 0) {
       const result = regions.map((region) => ({
@@ -135,6 +141,16 @@ export default function LocalizationStep(): JSX.Element {
                 store.updateStep.lock(StepsEnum.LOCALIZATION);
 
                 store.updateStep.open(StepsEnum.CONFIGURATION);
+                trackClick({
+                  location: PageLocation.funnel,
+                  buttonType: ButtonType.button,
+                  actionType: 'action',
+                  actions: [
+                    'add_privateNetwork',
+                    'select_localisation',
+                    `add_${store.form.region.name}`,
+                  ],
+                });
               },
               label: t('pci_projects_project_network_private_create_next'),
               isDisabled: mappedRegions.length === 0 || !store.form.region,
@@ -152,6 +168,16 @@ export default function LocalizationStep(): JSX.Element {
           store.updateStep.close(StepsEnum.SUMMARY);
 
           store.setForm({ ...store.form, createGateway: false });
+
+          trackClick({
+            location: PageLocation.funnel,
+            buttonType: ButtonType.link,
+            actionType: 'action',
+            actions: [
+              'add_privateNetwork',
+              `edit_step_localisation_${store.form.region.name}`,
+            ],
+          });
         },
         label: tCommon('common_stepper_modify_this_step'),
         isDisabled: false,
@@ -175,6 +201,16 @@ export default function LocalizationStep(): JSX.Element {
             }
             onInput={(region) => {
               store.setForm({ ...store.form, region });
+              trackClick({
+                location: PageLocation.funnel,
+                buttonType: ButtonType.tile,
+                actionType: 'action',
+                actions: [
+                  'add_privateNetwork',
+                  'select_localisation',
+                  region.name,
+                ],
+              });
             }}
             group={{
               by: (region: TMappedRegion) => region.continent,
@@ -201,8 +237,19 @@ export default function LocalizationStep(): JSX.Element {
                 </OsdsText>
               ),
               showAllTab: true,
-              onChange: (continent: string) =>
-                setState((prev) => ({ ...prev, selectedContinent: continent })),
+              onChange: (continent: string) => {
+                setState((prev) => ({ ...prev, selectedContinent: continent }));
+                trackClick({
+                  location: PageLocation.funnel,
+                  buttonType: ButtonType.tab,
+                  actionType: 'action',
+                  actions: [
+                    'add_privateNetwork',
+                    'select_localisation',
+                    continent,
+                  ],
+                });
+              },
             }}
             stack={{
               by: (region: TMappedRegion) => region?.macroName,
