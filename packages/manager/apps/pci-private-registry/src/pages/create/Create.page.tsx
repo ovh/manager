@@ -2,7 +2,7 @@ import {
   Headers,
   Notifications,
   useProjectUrl,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { useEffect } from 'react';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';

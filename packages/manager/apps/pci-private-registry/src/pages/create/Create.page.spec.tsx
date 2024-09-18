@@ -18,7 +18,7 @@ describe('CreatePage', () => {
       OsdsBreadcrumb: () => <div data-testid="breadcrumb">Breadcrumb</div>,
     };
   });
-  vi.mock('@ovhcloud/manager-components', (importOriginal) => ({
+  vi.mock('@ovh-ux/manager-react-components', (importOriginal) => ({
     ...importOriginal,
     Headers: () => <div>Headers</div>,
     Notifications: () => <div>Notifications</div>,

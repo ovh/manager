@@ -1,14 +1,7 @@
 import { TLocalisation } from '@ovh-ux/manager-pci-common';
 import { create } from 'zustand';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
 import { StepEnum, TState, TStepperState } from '@/pages/create/types';
 import { TCapability } from '@/api/data/capability';
-import { PRIVATE_REGISTRY_CREATE_PLAN } from '@/pages/create/constants';
 import { createRegistry } from '@/api/data/registry';
 
 type TStore = {
