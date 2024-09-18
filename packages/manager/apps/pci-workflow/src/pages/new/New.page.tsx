@@ -2,9 +2,8 @@ import {
   Headers,
   StepComponent,
   useNotifications,
-  useProject,
   useProjectUrl,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import {
   OsdsBreadcrumb,
   OsdsSpinner,
@@ -19,6 +18,7 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { useProject } from '@ovh-ux/manager-pci-common';
 import { useWorkflowStepper } from './hooks/useWorkflowStepper';
 import { WorkflowType } from './steps/WorkflowType.component';
 import {

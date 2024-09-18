@@ -19,17 +19,13 @@ import {
   FilterAdd,
   FilterList,
   Headers,
-  isDiscoveryProject,
   Notifications,
-  PciDiscoveryBanner,
   PciGuidesHeader,
   RedirectionGuard,
   useColumnFilters,
   useDataGrid,
-  useDatagridSearchParams,
-  useProject,
   useProjectUrl,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { Suspense, useRef, useState } from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -40,7 +36,8 @@ import {
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
-import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import { FilterCategories } from '@ovh-ux/manager-core-api';
+import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import Actions from '@/components/actions.component';
 import HidePreloader from '../../core/HidePreloader';
 import { TWorkflow, usePaginatedWorkflows } from '@/api/hooks/workflows';
@@ -167,12 +164,7 @@ export default function ListingPage() {
       <OsdsDivider data-testid="divider" />
       <Notifications />
       <div className="mb-5">
-        {project && isDiscoveryProject(project) && (
-          <PciDiscoveryBanner
-            data-testid="discoveryBanner"
-            projectId={projectId}
-          />
-        )}
+        <PciDiscoveryBanner data-testid="discoveryBanner" project={project} />
       </div>
       <div className="sm:flex items-center justify-between mt-4">
         <OsdsButton

@@ -2,13 +2,13 @@ import {
   Datagrid,
   Headers,
   useDatagridSearchParams,
-  useProject,
   useProjectUrl,
-} from '@ovhcloud/manager-components';
+} from '@ovh-ux/manager-react-components';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsBreadcrumb, OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useHref, useParams } from 'react-router-dom';
+import { useProject } from '@ovh-ux/manager-pci-common';
 import { useWorkflowExecutions } from '@/api/hooks/useExecutions';
 import { useExecutionDatagridColumns } from './useExecutionDatagridColumns';
 
