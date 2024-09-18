@@ -8,14 +8,18 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('RedirectionGuard', () => {
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
+
   it('should render children when condition is false', () => {
-    const { getByText } = render(
+    render(
       <RedirectionGuard condition={false} isLoading={false} route="/test">
         <div>Test Child</div>
       </RedirectionGuard>,
     );
 
-    expect(getByText('Test Child')).toBeInTheDocument();
+    expect(screen.getByText('Test Child')).toBeInTheDocument();
     expect(Navigate).not.toHaveBeenCalled();
   });
 
@@ -36,5 +40,21 @@ describe('RedirectionGuard', () => {
       </RedirectionGuard>,
     );
     expect(screen.getByTestId('redirectionGuard_spinner')).toBeInTheDocument();
+  });
+
+  it('should render errorComponent when isError is true', () => {
+    render(
+      <RedirectionGuard
+        condition={false}
+        isLoading={false}
+        isError
+        errorComponent={<div>Test Error</div>}
+        route="/test"
+      >
+        <div>Test Child</div>
+      </RedirectionGuard>,
+    );
+    expect(screen.getByText('Test Error')).toBeInTheDocument();
+    expect(Navigate).not.toHaveBeenCalled();
   });
 });

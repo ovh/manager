@@ -10,7 +10,8 @@ jest.mock('../../hooks/iam');
 const renderComponent = (props: ManagerTextProps) => {
   return render(<ManagerText {...props} />);
 };
-const mockedHook = useAuthorizationIam as jest.Mock<IamAuthorizationResponse>;
+const mockedHook =
+  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
 describe('ManagerText tests', () => {
   afterEach(() => {
@@ -25,8 +26,7 @@ describe('ManagerText tests', () => {
         isFetched: true,
       });
       renderComponent({
-        urn:
-          'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
+        urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
         iamActions: [
           'manager-react-components:apiovh:manager-react-components/get-display',
         ],
@@ -43,8 +43,7 @@ describe('ManagerText tests', () => {
         isFetched: true,
       });
       renderComponent({
-        urn:
-          'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
+        urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
         iamActions: [
           'manager-react-components:apiovh:manager-react-components/get-display',
         ],
