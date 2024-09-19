@@ -10,7 +10,7 @@ import { TileBlock } from './tile-block.component';
 
 export type DashboardTileBlockItem = {
   id: string;
-  label: string;
+  label?: string;
   value: React.ReactNode;
 };
 

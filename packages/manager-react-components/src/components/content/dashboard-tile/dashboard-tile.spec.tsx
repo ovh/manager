@@ -35,4 +35,13 @@ describe('Dashboard Tile component', () => {
       expect(screen.queryByText(testItem.id)).not.toBeInTheDocument();
     });
   });
+
+  it('renders correctly without label', async () => {
+    render(<DashboardTile items={[{ ...testItem, label: undefined }]} />);
+    await waitFor(() => {
+      expect(screen.getByText(testItem.value)).toBeInTheDocument();
+      expect(screen.queryByText(testItem.label)).not.toBeInTheDocument();
+      expect(screen.queryByText(testItem.id)).not.toBeInTheDocument();
+    });
+  });
 });
