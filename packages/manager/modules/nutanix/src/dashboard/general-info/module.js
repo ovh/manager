@@ -9,8 +9,7 @@ import {
   serverTechnicalDetails,
   serverBandwidthTile,
 } from '@ovh-ux/manager-bm-server-components';
-import { region } from '@ovh-ux/manager-components';
-import protectedDataName from '@ovh-ux/manager-protected-data';
+import { region, iamProtectedData } from '@ovh-ux/manager-components';
 import nutanixNetworkTile from '../component/network-tile/network-tile.module';
 import privateBandwidthUpgrade from './private-bandwidth-upgrade';
 import routing from './routing';
@@ -26,7 +25,7 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
-    protectedDataName,
+    iamProtectedData,
     ovhManagerBillingComponents,
     serverSupport,
     serverTechnicalDetails,

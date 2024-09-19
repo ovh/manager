@@ -6,9 +6,9 @@
     <!-- level -->
     <oui-tile-definition term="{{:: 'server_support_level' | translate }}">
         <oui-tile-description>
-            <protected-data is-hidden="$ctrl.isHidden">
+            <iam-protected-data is-hidden="$ctrl.isHidden">
                 <span data-ng-bind=":: $ctrl.getFormatedSupportLevel()"></span>
-            </protected-data>
+            </iam-protected-data>
         </oui-tile-description>
     </oui-tile-definition>
     <!-- open tickets -->
@@ -16,7 +16,7 @@
         term="{{:: 'server_support_open_tickets' | translate }}"
     >
         <oui-tile-description data-ng-if="!$ctrl.isSupportExternalWithLinks">
-            <protected-data is-hidden="$ctrl.isHidden">
+            <iam-protected-data is-hidden="$ctrl.isHidden">
                 <span data-ng-if="$ctrl.numberOfTickets === 0">0</span>
                 <a
                     class="oui-link_icon"
@@ -26,7 +26,7 @@
                 >
                     <span data-ng-bind="$ctrl.numberOfTickets"></span>
                 </a>
-            </protected-data>
+            </iam-protected-data>
             <div class="mt-1">
                 <a
                     class="oui-link_icon"
@@ -42,7 +42,7 @@
             </div>
         </oui-tile-description>
         <oui-tile-description data-ng-if="$ctrl.isSupportExternalWithLinks">
-            <protected-data is-hidden="$ctrl.isHidden">
+            <iam-protected-data is-hidden="$ctrl.isHidden">
                 <span data-ng-if="!$ctrl.numberOfTickets">0</span>
                 <a
                     class="oui-link_icon"
@@ -58,7 +58,7 @@
                         aria-hidden="true"
                     ></span>
                 </a>
-            </protected-data>
+            </iam-protected-data>
             <div class="mt-1">
                 <a
                     class="oui-link_icon"
