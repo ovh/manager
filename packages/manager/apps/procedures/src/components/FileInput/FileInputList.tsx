@@ -33,8 +33,6 @@ export const FileInputList: FunctionComponent<Props> = ({ className }) => {
       {value.map((file, index) => (
         <FileInputListItem
           key={index}
-          accept={accept}
-          maxSize={maxSize}
           file={file}
           deleteFile={handleDeleteFile}
           disabled={disabled}
