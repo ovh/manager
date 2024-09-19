@@ -4,19 +4,6 @@ import * as useExecutionsHook from '@/api/hooks/useExecutions';
 import { wrapper } from '@/wrapperRenders';
 import Executions from './Executions.page';
 
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const mod = await vi.importActual('@ovh-ux/manager-react-components');
-  return {
-    ...mod,
-    useDatagridSearchParams: () => ({
-      pagination: vi.fn(),
-      setPagination: vi.fn(),
-      sorting: vi.fn(),
-      setSorting: vi.fn(),
-    }),
-    useProjectUrl: () => 'project_url',
-  };
-});
 vi.mock('@ovh-ux/manager-pci-common', async () => {
   const mod = await vi.importActual('@ovh-ux/manager-pci-common');
   return {

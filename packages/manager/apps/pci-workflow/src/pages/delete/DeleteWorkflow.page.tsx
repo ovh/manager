@@ -24,8 +24,8 @@ import {
 } from '@ovhcloud/ods-components';
 import { useEffect, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { useInstance } from '@ovh-ux/manager-pci-common';
 import { useDeleteWorkflow, useWorkflows } from '@/api/hooks/workflows';
-import { useInstance } from '@/api/hooks/instance';
 
 export default function DeleteWorkflowPage() {
   const { t: tDelete } = useTranslation('delete');

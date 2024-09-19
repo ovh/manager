@@ -5,25 +5,11 @@ import {
   OdsInputValueChangeEventDetail,
   OsdsInput,
 } from '@ovhcloud/ods-components';
+import { TInstance } from '@ovh-ux/manager-pci-common';
+import * as pciCommonModule from '@ovh-ux/manager-pci-common';
 import DeleteWorkflowPage from './DeleteWorkflow.page';
 import * as workflowsModule from '@/api/hooks/workflows';
-import * as instanceModule from '@/api/hooks/instance';
-import { TInstance } from '@/type';
 import { wrapper } from '@/wrapperRenders';
-
-const mockNavigate = vi.fn();
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => mockNavigate,
-  useParams: () => ({ projectId: 'project1', workflowId: 'workflow1' }),
-}));
-
-const mockUseNotifications = vi.fn();
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useNotifications: () => ({
-    addError: mockUseNotifications,
-    addSuccess: mockUseNotifications,
-  }),
-}));
 
 type UseDeleteWorkflowReturnType = UseMutationResult<
   never,
@@ -33,7 +19,7 @@ type UseDeleteWorkflowReturnType = UseMutationResult<
 > & { deleteWorkflow: () => void };
 
 const mockDeleteWorkflow = vi.fn();
-vi.spyOn(instanceModule, 'useInstance').mockReturnValue({
+vi.spyOn(pciCommonModule, 'useInstance').mockReturnValue({
   data: { region: 'region1' },
 } as UseQueryResult<TInstance>);
 

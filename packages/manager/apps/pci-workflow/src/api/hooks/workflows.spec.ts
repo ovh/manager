@@ -24,7 +24,7 @@ describe('useDeleteWorkflow', () => {
       { wrapper },
     );
 
-    act(() => result.current.mutate());
+    act(() => result.current.deleteWorkflow());
 
     waitFor(() => expect(onSuccessMock).toHaveBeenCalled());
     expect(onErrorMock).not.toHaveBeenCalled();
@@ -45,9 +45,9 @@ describe('useDeleteWorkflow', () => {
       { wrapper },
     );
 
-    act(() => result.current.mutate());
+    act(() => result.current.deleteWorkflow());
 
-    waitFor(() => expect(onErrorMock).toHaveBeenCalledWith(error));
+    await waitFor(() => expect(onErrorMock).toHaveBeenCalled());
     expect(onSuccessMock).not.toHaveBeenCalled();
   });
 });

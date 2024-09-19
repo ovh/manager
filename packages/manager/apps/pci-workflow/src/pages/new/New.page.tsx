@@ -36,7 +36,7 @@ export default function NewPage() {
   const stepper = useWorkflowStepper();
   const { addSuccess, addError, clearNotifications } = useNotifications();
   const { projectId } = useParams();
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
   const projectUrl = useProjectUrl('public-cloud');
   const backHref = useHref('..');
   const navigate = useNavigate();
