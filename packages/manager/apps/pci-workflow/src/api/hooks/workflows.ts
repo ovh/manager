@@ -1,19 +1,18 @@
 import { useMutation, useQueries, useQueryClient } from '@tanstack/react-query';
-import { format, parseISO, addMinutes } from 'date-fns';
+import { addMinutes, format, parseISO } from 'date-fns';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo, useRef } from 'react';
 import * as dateFnsLocales from 'date-fns/locale';
 import { useTranslation } from 'react-i18next';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
-import { useRegions } from '@/api/hooks/regions';
+import { getInstance, useProjectRegions } from '@ovh-ux/manager-pci-common';
 import {
   addWorkflow,
   getRegionsWorkflows,
   TExecutionState,
   TWorkflowExecution,
 } from '@/api/data/region-workflow';
-import { getInstance } from '@/api/data/instance';
 import { deleteWorkflow } from '@/api/data/workflow';
 import { paginateResults } from '@/helpers';
 
@@ -33,7 +32,9 @@ export const useWorkflows = (projectId: string) => {
   const locales = useRef({ ...dateFnsLocales }).current;
   const userLocale = getDateFnsLocale(i18n.language);
 
-  const { data: regions, isPending: isRegionsPending } = useRegions(projectId);
+  const { data: regions, isPending: isRegionsPending } = useProjectRegions(
+    projectId,
+  );
 
   return useQueries({
     queries: (regions || [])
@@ -173,7 +174,7 @@ export const usePaginatedWorkflows = (
           ),
           pagination,
         );
-      }, [workflows, sorting, filters, searchQueries]),
+      }, [workflows, sorting, filters, searchQueries, results]),
       isPending:
         results.some((result) => result.isPending) || isWorkflowsPending,
     }),

@@ -1,58 +1,20 @@
 import { render, waitFor } from '@testing-library/react';
-import {
-  ShellContextType,
-  ShellContext,
-} from '@ovh-ux/manager-react-shell-client';
-import {
-  QueryClient,
-  QueryClientProvider,
-  UseQueryResult,
-} from '@tanstack/react-query';
+import { UseQueryResult } from '@tanstack/react-query';
 import { describe, vi } from 'vitest';
 import * as managerComponentsModule from '@ovh-ux/manager-react-components';
 import * as pciCommonModule from '@ovh-ux/manager-pci-common';
+import { TProject } from '@ovh-ux/manager-pci-common';
 import * as osdsComponents from '@ovhcloud/ods-components/react';
 import { ResponseAPIError } from '@ovh-ux/manager-pci-public-ip-app/src/interface';
-import { TProject } from '@ovh-ux/manager-pci-common';
 import { DEFAULT_DATA } from '@/pages/list/data.mock';
 import * as useWorkflowsModule from '@/api/hooks/workflows';
+import { TWorkflow, usePaginatedWorkflows } from '@/api/hooks/workflows';
 import ListingPage from './List.page';
-import { usePaginatedWorkflows, TWorkflow } from '@/api/hooks/workflows';
 import { wrapper } from '@/wrapperRenders';
 
 describe('ListPage', () => {
-  vi.mock('react-router-dom', async (importOriginal) => {
-    const actual = (await importOriginal()) as Record<string, unknown>;
-    return {
-      ...actual,
-      useHref: vi.fn().mockReturnValue(() => ''),
-      useParams: vi.fn().mockReturnValue({ projectId: 1 }),
-    };
-  });
-
-  vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-    const actual = (await importOriginal()) as Record<string, unknown>;
-    return {
-      ...actual,
-      useProjectUrl: vi.fn().mockReturnValue(''),
-      useDatagridSearchParams: vi.fn().mockReturnValue({}),
-      PciGuidesHeader: vi.fn().mockReturnValue(<div></div>),
-      Notifications: vi
-        .fn()
-        .mockReturnValue(<div data-testid="notifications"></div>),
-    };
-  });
-
-  vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
-    const actual = (await importOriginal()) as Record<string, unknown>;
-    return {
-      ...actual,
-      useProject: vi.fn().mockReturnValue({}),
-    };
-  });
-
   vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
-    const actual = (await importOriginal()) as Record<any, any>;
+    const actual = (await importOriginal()) as Record<string, unknown>;
     return {
       ...actual,
       OsdsBreadcrumb: vi
@@ -67,9 +29,6 @@ describe('ListPage', () => {
     usePaginatedWorkflows: vi
       .fn()
       .mockReturnValue(DEFAULT_DATA.emptyPaginatedWorkflows),
-  }));
-  vi.mock('../../core/HidePreloader', () => ({
-    default: () => <div data-testid="hide-preloader"></div>,
   }));
 
   describe('RedirectionGuard', () => {
@@ -149,7 +108,7 @@ describe('ListPage', () => {
         const props = JSON.parse(getByTestId('breadcrumb').textContent);
         expect(props.items).toEqual([
           {
-            href: '',
+            href: 'project_url',
           },
           {
             label: 'pci_workflow_title',

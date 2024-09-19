@@ -1,20 +1,11 @@
-import { useQueries, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
+import { getFlavor, TInstance, useInstances } from '@ovh-ux/manager-pci-common';
+import { useQueries, UseQueryResult } from '@tanstack/react-query';
 import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
-import {
-  getAllInstance,
-  getFlavor,
-  sortResults,
-  TInstanceOptions,
-} from '@/api/data/instance';
-import { TInstance } from '@/type';
+import { sortResults, TInstanceOptions } from '@/api/data/instance';
 import { paginateResults } from '@/helpers';
-
-export const getInstancesQuery = (projectId: string) => ({
-  queryKey: ['project', projectId, 'instances'],
-  queryFn: () => getAllInstance(projectId),
-});
+import { TWorkflowInstance } from '@/types';
 
 export const getStatusGroup = (status: string) => {
   if (
@@ -57,10 +48,10 @@ export const getStatusGroup = (status: string) => {
 };
 
 export const useAllInstances = (projectId: string) => {
+  const { data: instances, isPending } = useInstances(
+    projectId,
+  ) as UseQueryResult<TWorkflowInstance[]>;
   const { translateMicroRegion } = useTranslatedMicroRegions();
-  const { data: instances, isPending } = useQuery({
-    ...getInstancesQuery(projectId),
-  });
 
   return useQueries({
     queries: (instances || [])?.map((q) => ({
@@ -87,7 +78,7 @@ export const useAllInstances = (projectId: string) => {
   });
 };
 
-export const useInstances = (
+export const usePaginatedInstances = (
   projectId: string,
   { pagination, sorting }: TInstanceOptions,
   filters: Filter[] = [],
