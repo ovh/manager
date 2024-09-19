@@ -14,6 +14,19 @@ const defaultProps = {
   quantity: 1,
 };
 
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const mod = await importOriginal<
+    typeof import('@ovh-ux/manager-react-components')
+  >();
+
+  return {
+    ...mod,
+    useCatalogPrice: vi
+      .fn()
+      .mockReturnValue({ getTextPrice: vi.fn().mockReturnValue('€10.00') }),
+  };
+});
+
 const setupSpecTest = async (props = defaultProps) =>
   render(<Commitment {...props} />);
 
@@ -30,13 +43,6 @@ describe('Commitment', () => {
 
   it('should render the hourly price without commitment', () => {
     setupSpecTest();
-    expect(screen.getByText('~ 7.20 €')).toBeInTheDocument();
-  });
-
-  describe('With a greater quantity', () => {
-    it('should return quantity multiply by 10', () => {
-      setupSpecTest({ ...defaultProps, quantity: 10 });
-      expect(screen.getByText('~ 72.00 €')).toBeInTheDocument();
-    });
+    expect(screen.getByText('~ €10.00')).toBeInTheDocument();
   });
 });

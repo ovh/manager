@@ -6,8 +6,12 @@ import { ODS_TILE_SIZE, ODS_TILE_VARIANT } from '@ovhcloud/ods-components';
 import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { convertHourlyPriceToMonthly } from '@/utils/commercial-catalog/utils';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { getDiffInPercent } from './Commitment.utils';
+import {
+  CENTS_PRICE,
+  convertHourlyPriceToMonthly,
+} from '../../utils/commercial-catalog/utils';
 
 const Commitment = ({
   duration,
@@ -26,6 +30,7 @@ const Commitment = ({
 }) => {
   const { t } = useTranslation('create');
 
+  const { getTextPrice } = useCatalogPrice();
   const priceByMonthWithoutCommitment =
     convertHourlyPriceToMonthly(hourlyPriceWithoutCommitment) * quantity;
 
@@ -60,20 +65,20 @@ const Commitment = ({
       </span>
       <span slot="end" className="flex flex-col items-end justify-center">
         <div className="flex flex-row items-center justify-center">
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="line-through"
-          >
-            {priceByMonthWithoutCommitment
-              ? `~ ${priceByMonthWithoutCommitment.toFixed(2)} €`
-              : ''}
-          </OsdsText>
+          {priceByMonthWithoutCommitment && (
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              className="line-through"
+            >
+              {`~ ${getTextPrice(priceByMonthWithoutCommitment * CENTS_PRICE)}`}
+            </OsdsText>
+          )}
           <OsdsText
             size={ODS_THEME_TYPOGRAPHY_SIZE._500}
             color={ODS_THEME_COLOR_INTENT.success}
             className="ml-3"
           >
-            {priceNumber.toFixed(2)} €
+            {getTextPrice(priceNumber * CENTS_PRICE)}
           </OsdsText>
         </div>
         <OsdsText>{t('commitment_price_month')}</OsdsText>

@@ -53,39 +53,39 @@ const MenuItems = ({
 
   return (
     <>
-      {status === SavingsPlanStatus.ACTIVE && (
-        <OsdsMenuItem>
-          <OsdsButton
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            text-align="start"
-            onClick={onClickEdit}
-          >
-            <span slot="start">
-              <span>{t('edit')}</span>
-            </span>
-          </OsdsButton>
-        </OsdsMenuItem>
-      )}
-
       <OsdsMenuItem>
         <OsdsButton
           color={ODS_THEME_COLOR_INTENT.primary}
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.ghost}
           text-align="start"
-          onClick={onClickRenew}
+          onClick={onClickEdit}
         >
           <span slot="start">
-            <span>
-              {periodEndAction === SavingsPlanPlanedChangeStatus.TERMINATE
-                ? t('enableAutoRenew')
-                : t('disableAutoRenew')}
-            </span>
+            <span>{t('edit')}</span>
           </span>
         </OsdsButton>
       </OsdsMenuItem>
+
+      {status !== SavingsPlanStatus.TERMINATED && (
+        <OsdsMenuItem>
+          <OsdsButton
+            color={ODS_THEME_COLOR_INTENT.primary}
+            size={ODS_BUTTON_SIZE.sm}
+            variant={ODS_BUTTON_VARIANT.ghost}
+            text-align="start"
+            onClick={onClickRenew}
+          >
+            <span slot="start">
+              <span>
+                {periodEndAction === SavingsPlanPlanedChangeStatus.TERMINATE
+                  ? t('enableAutoRenew')
+                  : t('disableAutoRenew')}
+              </span>
+            </span>
+          </OsdsButton>
+        </OsdsMenuItem>
+      )}
 
       <OsdsMenuItem>
         <OsdsButton

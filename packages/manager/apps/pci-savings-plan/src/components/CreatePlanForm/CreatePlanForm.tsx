@@ -33,7 +33,7 @@ import {
   OsdsTile,
   OsdsIcon,
 } from '@ovhcloud/ods-components/react';
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState, Suspense } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -150,9 +150,8 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   );
   const [quantity, setQuantity] = useState<number>(1);
   const [planName, setPlanName] = useState<string>(DEFAULT_NAME);
-  const [offerIdSelected, setOfferIdSelected] = useDefaultOfferId(
-    pricingByDuration,
-  );
+  const [offerIdSelected, setOfferIdSelected] =
+    useDefaultOfferId(pricingByDuration);
   const [isLegalChecked, setIsLegalChecked] = useState<boolean>(false);
 
   const serviceId = useServiceId();
@@ -373,23 +372,27 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         <DescriptionWrapper>
           {t('select_commitment_description')}
         </DescriptionWrapper>
-        {!isPricingLoading && !isTechnicalInfoLoading ? (
-          pricingByDuration?.map((pricing) => {
-            return (
-              <Commitment
-                key={pricing.id}
-                onClick={() => setOfferIdSelected(pricing.id)}
-                isActive={offerIdSelected === pricing.id}
-                duration={pricing.duration}
-                price={pricing.price?.toString()}
-                quantity={quantity}
-                hourlyPriceWithoutCommitment={activeInstance?.hourlyPrice || 0}
-              />
-            );
-          })
-        ) : (
-          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-        )}
+        <Suspense>
+          {!isPricingLoading && !isTechnicalInfoLoading ? (
+            pricingByDuration?.map((pricing) => {
+              return (
+                <Commitment
+                  key={pricing.id}
+                  onClick={() => setOfferIdSelected(pricing.id)}
+                  isActive={offerIdSelected === pricing.id}
+                  duration={pricing.duration}
+                  price={pricing.price?.toString()}
+                  quantity={quantity}
+                  hourlyPriceWithoutCommitment={
+                    activeInstance?.hourlyPrice || 0
+                  }
+                />
+              );
+            })
+          ) : (
+            <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+          )}
+        </Suspense>
       </Block>
       <Block>
         <Subtitle>{t('choose_name')}</Subtitle>
@@ -464,26 +467,20 @@ export const CreatePlanFormContainer = ({
 }) => {
   const { t } = useTranslation('create');
 
-  const [instanceCategory, setInstanceCategory] = useState<
-    InstanceTechnicalName
-  >(InstanceTechnicalName.b3);
-  const [technicalModel, setTechnicalModel] = useState<string>(
-    DEFAULT_PRODUCT_CODE,
-  );
+  const [instanceCategory, setInstanceCategory] =
+    useState<InstanceTechnicalName>(InstanceTechnicalName.b3);
+  const [technicalModel, setTechnicalModel] =
+    useState<string>(DEFAULT_PRODUCT_CODE);
 
-  const {
-    data: technicalList = [],
-    isLoading: isTechnicalInfoLoading,
-  } = useTechnicalInfo({
-    productCode: instanceCategory,
-  });
+  const { data: technicalList = [], isLoading: isTechnicalInfoLoading } =
+    useTechnicalInfo({
+      productCode: instanceCategory,
+    });
 
-  const {
-    data: pricingByDuration = [],
-    isLoading: isPricingLoading,
-  } = usePricingInfo({
-    productSizeCode: technicalModel,
-  });
+  const { data: pricingByDuration = [], isLoading: isPricingLoading } =
+    usePricingInfo({
+      productSizeCode: technicalModel,
+    });
 
   useEffect(() => {
     if (technicalList.length > 0) {

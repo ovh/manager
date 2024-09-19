@@ -96,7 +96,7 @@ const ListingTablePage: React.FC<ListingProps> = ({
   }>({
     filters: { mutationKey: ['savings-plan', serviceId, 'edit-name'] },
   });
-  const lastMutation =
+  const lastMutationChangePeriod =
     mutationSPChangePeriod[mutationSPChangePeriod.length - 1];
 
   const mutationSpCreate = useMutationState<{
@@ -104,21 +104,18 @@ const ListingTablePage: React.FC<ListingProps> = ({
     error?: {
       code: string;
     };
+    data: SavingsPlanService;
   }>({
     filters: { mutationKey: getMutationKeyCreateSavingsPlan(serviceId) },
   });
 
-  const endDatePlan = lastMutation?.data?.periodEndDate ?? new Date();
   const renewBannerMessage = t(
-    lastMutation?.variables.periodEndAction === 'REACTIVATE'
+    lastMutationChangePeriod?.variables.periodEndAction === 'REACTIVATE'
       ? 'banner_renew_activate'
       : 'banner_renew_deactivate',
     {
-      planName: lastMutation?.data?.displayName,
-      endDate:
-        lastMutation?.variables.periodEndAction === 'REACTIVATE'
-          ? formatDate(addDays(new Date(endDatePlan), 1))
-          : formatDate(new Date(endDatePlan)),
+      planName: lastMutationChangePeriod?.data?.displayName,
+      endDate: lastMutationChangePeriod?.data?.endDate,
     },
   );
 
@@ -150,17 +147,7 @@ const ListingTablePage: React.FC<ListingProps> = ({
       {mutationSpCreate.length > 0 && !mutationSpCreate[0].error?.code && (
         <Banner
           message={t('banner_create_sp', {
-            startDate: formatDateString(
-              new Date(
-                new Date(new Date().setDate(new Date().getDate() + 1)).setHours(
-                  0,
-                  0,
-                  0,
-                  0,
-                ),
-              ).toISOString(),
-              i18next.language.replace('_', '-'),
-            ),
+            startDate: mutationSpCreate[0].data.startDate,
           })}
         />
       )}
