@@ -30,20 +30,20 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { useInstances } from '@/api/hooks/useInstances';
-import { TInstance } from '@/type';
+import { usePaginatedInstances } from '@/api/hooks/useInstances';
 import StatusComponent from '@/components/new/Status.component';
 import NotSupportedTooltipComponent from '@/components/new/NotSupportedTooltip.component';
+import { TWorkflowInstance } from '@/types';
 
 const useDatagridColumn = (
-  selectedInstance: TInstance,
-  onSelectInstance: (instance: TInstance) => void,
+  selectedInstance: TWorkflowInstance,
+  onSelectInstance: (instance: TWorkflowInstance) => void,
 ) => {
   const { t } = useTranslation('new');
   return [
     {
       id: 'actions',
-      cell: (instance: TInstance) => (
+      cell: (instance: TWorkflowInstance) => (
         <NotSupportedTooltipComponent region={instance.region}>
           <OsdsRadio
             value={instance.id}
@@ -56,6 +56,7 @@ const useDatagridColumn = (
               color={ODS_THEME_COLOR_INTENT.primary}
               size={ODS_RADIO_BUTTON_SIZE.xs}
               data-testid={`radio-button-${instance.id}`}
+              className="mx-auto"
               onClick={() => {
                 if (!isLocalZone(instance.region)) {
                   onSelectInstance(instance);
@@ -69,7 +70,7 @@ const useDatagridColumn = (
     },
     {
       id: 'name',
-      cell: (instance: TInstance) => (
+      cell: (instance: TWorkflowInstance) => (
         <NotSupportedTooltipComponent region={instance.region}>
           <DataGridTextCell
             className={isLocalZone(instance.region) ? 'opacity-50' : ''}
@@ -82,7 +83,7 @@ const useDatagridColumn = (
     },
     {
       id: 'region',
-      cell: (instance: TInstance) => (
+      cell: (instance: TWorkflowInstance) => (
         <DataGridTextCell
           className={isLocalZone(instance.region) ? 'opacity-50' : ''}
         >
@@ -93,7 +94,7 @@ const useDatagridColumn = (
     },
     {
       id: 'flavorName',
-      cell: (instance: TInstance) => (
+      cell: (instance: TWorkflowInstance) => (
         <DataGridTextCell
           className={isLocalZone(instance.region) ? 'opacity-50' : ''}
         >
@@ -104,7 +105,7 @@ const useDatagridColumn = (
     },
     {
       id: 'status',
-      cell: (instance: TInstance) => (
+      cell: (instance: TWorkflowInstance) => (
         <StatusComponent
           statusGroup={instance.statusGroup}
           className={isLocalZone(instance.region) ? 'opacity-50' : ''}
@@ -117,18 +118,20 @@ const useDatagridColumn = (
 };
 
 export type ResourceSelectorComponentProps = {
-  onSelectInstance: (instance: TInstance) => void;
+  onSelectInstance: (instance: TWorkflowInstance) => void;
 };
 export default function ResourceSelectorComponent({
   onSelectInstance,
 }: Readonly<ResourceSelectorComponentProps>) {
-  const [selectedInstance, setSelectedInstance] = useState<TInstance>(null);
+  const [selectedInstance, setSelectedInstance] = useState<TWorkflowInstance>(
+    null,
+  );
   const { t } = useTranslation('new');
   const { t: tFilter } = useTranslation('filter');
   const { projectId } = useParams();
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
   const { filters, addFilter, removeFilter } = useColumnFilters();
-  const { data: instances, isPending } = useInstances(
+  const { data: instances, isPending } = usePaginatedInstances(
     projectId,
     {
       pagination,

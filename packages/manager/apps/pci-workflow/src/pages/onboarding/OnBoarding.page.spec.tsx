@@ -3,23 +3,12 @@ import { render, screen } from '@testing-library/react';
 import { Navigate } from 'react-router-dom';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as pciCommonModule from '@ovh-ux/manager-pci-common';
-import { TProject } from '@ovh-ux/manager-pci-common';
-import * as useInstancesModule from '@/api/hooks/useInstances';
+import { TInstance, TProject } from '@ovh-ux/manager-pci-common';
 import OnBoardingPage from './OnBoarding.page';
 import { shellContext, wrapper } from '@/wrapperRenders';
 import { useWorkflows } from '@/api/hooks/workflows';
 
 vi.mock('@/api/hooks/workflows');
-vi.mock('react-router-dom', () => ({
-  Navigate: vi.fn(() => null),
-  useParams: () => ({ projectId: 'mocked_projectId' }),
-  useNavigate: () => vi.fn(),
-  useRouteLoaderData: vi.fn(),
-  Outlet: vi.fn(() => 'Test Child'),
-}));
-vi.mock('@/core/HidePreloader', () => ({
-  default: () => <div>HidePeloader</div>,
-}));
 
 describe('OnBoardingPage', () => {
   it('should render children with create button instance when workflow are empty', () => {
@@ -29,10 +18,10 @@ describe('OnBoardingPage', () => {
       data: [],
       isPending: false,
     } as UseQueryResult<never[]>);
-    vi.spyOn(useInstancesModule, 'useAllInstances').mockReturnValue({
+    vi.spyOn(pciCommonModule, 'useInstances').mockReturnValue({
       data: [],
       isPending: false,
-    } as { data: never[]; isPending: boolean; error: never });
+    } as UseQueryResult<TInstance[]>);
 
     vi.spyOn(pciCommonModule, 'useProject').mockReturnValue(({
       description: 'mocked_description',
@@ -58,7 +47,7 @@ describe('OnBoardingPage', () => {
       data: [],
       isPending: false,
     } as UseQueryResult<never[]>);
-    vi.spyOn(useInstancesModule, 'useAllInstances').mockReturnValue({
+    vi.spyOn(pciCommonModule, 'useInstances').mockReturnValue({
       data: [
         {
           id: 'mocked_instanceId',
@@ -66,7 +55,7 @@ describe('OnBoardingPage', () => {
         },
       ],
       isPending: false,
-    } as { data: never[]; isPending: boolean; error: never });
+    } as UseQueryResult<TInstance[]>);
 
     vi.spyOn(pciCommonModule, 'useProject').mockReturnValue(({
       description: 'mocked_description',

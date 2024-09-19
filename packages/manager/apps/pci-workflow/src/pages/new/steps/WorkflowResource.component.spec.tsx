@@ -1,15 +1,14 @@
 import { fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+import { TInstance } from '@ovh-ux/manager-pci-common';
 import { WorkflowResource } from './WorkflowResource.component';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { wrapper } from '@/wrapperRenders';
 import * as useInstancesModule from '@/api/hooks/useInstances';
-import { TInstance } from '@/type';
 
 describe('WorkflowResource Component', () => {
   const mockOnSubmit = vi.fn();
   const unlockedStep = { isLocked: false };
-  const lockedStep = { isLocked: true };
   const instance = { id: 'instance1', region: 'regionmock' } as TInstance;
 
   beforeEach(() => {
@@ -17,7 +16,7 @@ describe('WorkflowResource Component', () => {
   });
 
   it('renders ResourceSelectorComponent when step is unlocked', () => {
-    vi.spyOn(useInstancesModule, 'useInstances').mockReturnValue({
+    vi.spyOn(useInstancesModule, 'usePaginatedInstances').mockReturnValue({
       isPending: false,
       error: null,
       data: { rows: [instance], pageCount: 1, totalRows: 1 },

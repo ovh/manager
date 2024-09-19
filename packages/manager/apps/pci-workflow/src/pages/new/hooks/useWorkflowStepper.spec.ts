@@ -1,11 +1,11 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { describe, it } from 'vitest';
+import { TInstance } from '@ovh-ux/manager-pci-common';
 import {
   DEFAULT_FORM_STATE,
   TWorkflowScheduling,
   useWorkflowStepper,
 } from './useWorkflowStepper';
-import { TInstance } from '@/type';
 
 describe('useWorkflowStepper hook', () => {
   it('initializes with default form state', () => {

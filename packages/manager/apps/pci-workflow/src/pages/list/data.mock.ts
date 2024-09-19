@@ -53,11 +53,11 @@ export const DEFAULT_DATA = {
     },
   },
   project: {
-    project_id: 1,
+    project_id: 'mocked_projectId',
   },
   workflow: {
     name: 'test',
-    id: '1',
+    id: 'workflow1',
     instanceId: 'instanceId',
     instanceName: 'instanceName',
     cron: 'cron',
