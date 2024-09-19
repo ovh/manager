@@ -30,7 +30,7 @@ export default function RegionStep() {
 
   const store = useStore();
 
-  const { act } = store;
+  const { stepsHandle } = store;
 
   const { data: localisations } = useProjectLocalisation(projectId);
   const { data: capabilities } = useGetCapabilities(projectId);
@@ -67,17 +67,17 @@ export default function RegionStep() {
 
   return (
     <StepComponent
-      isOpen={store.stepper[StepEnum.REGION].isOpen}
-      isLocked={store.stepper[StepEnum.REGION].isLocked}
-      isChecked={store.stepper[StepEnum.REGION].isChecked}
+      isOpen={store.stepsState[StepEnum.REGION].isOpen}
+      isLocked={store.stepsState[StepEnum.REGION].isLocked}
+      isChecked={store.stepsState[StepEnum.REGION].isChecked}
       order={1}
       title={tCreate('private_registry_create_region')}
       next={{
         action: () => {
-          act.check(StepEnum.REGION);
-          act.lock(StepEnum.REGION);
+          stepsHandle.check(StepEnum.REGION);
+          stepsHandle.lock(StepEnum.REGION);
 
-          act.open(StepEnum.NAME);
+          stepsHandle.open(StepEnum.NAME);
 
           tracking?.trackClick({
             name: PRIVATE_REGISTRY_CREATE_LOCATION_NEXT,
@@ -97,16 +97,16 @@ export default function RegionStep() {
       }}
       edit={{
         action: () => {
-          act.close(StepEnum.NAME);
-          act.uncheck(StepEnum.NAME);
-          act.unlock(StepEnum.NAME);
+          stepsHandle.close(StepEnum.NAME);
+          stepsHandle.uncheck(StepEnum.NAME);
+          stepsHandle.unlock(StepEnum.NAME);
 
-          act.close(StepEnum.PLAN);
-          act.uncheck(StepEnum.PLAN);
-          act.unlock(StepEnum.PLAN);
+          stepsHandle.close(StepEnum.PLAN);
+          stepsHandle.uncheck(StepEnum.PLAN);
+          stepsHandle.unlock(StepEnum.PLAN);
 
-          act.uncheck(StepEnum.REGION);
-          act.unlock(StepEnum.REGION);
+          stepsHandle.uncheck(StepEnum.REGION);
+          stepsHandle.unlock(StepEnum.REGION);
         },
         label: tCommonField('common_stepper_modify_this_step'),
       }}
