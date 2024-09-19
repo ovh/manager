@@ -21,15 +21,23 @@ function translateUnit(unit: string): string {
   return key === translatedUnit ? unit : translatedUnit;
 }
 
-export const useTranslatedBytes = (
-  bytesParams: number,
-  precisionParam: number,
-  toKibi: boolean,
-  fromUnit: string,
-  toRawBytes: boolean,
-) => {
-  let bytes = bytesParams;
-  let precision = precisionParam;
+type TTranslatedBytesParam = {
+  bytes: number;
+  precision?: number;
+  toKibi?: boolean;
+  fromUnit?: string;
+  toRawBytes?: boolean;
+};
+
+export const useTranslatedBytes = ({
+  bytes,
+  precision = 2,
+  toKibi = false,
+  fromUnit = 'B',
+  toRawBytes = false,
+}: TTranslatedBytesParam) => {
+  let iBytes = bytes;
+  let iPrecision = precision;
   if (fromUnit) {
     const fromKibiUnitIndex = KIBI_UNITS.indexOf(
       fromUnit as typeof KIBI_UNITS[number],
@@ -39,12 +47,12 @@ export const useTranslatedBytes = (
     if (fromKibiUnitIndex !== -1) {
       if (fromKibiUnitIndex > 0) {
         // eslint-disable-next-line no-restricted-properties
-        bytes *= Math.pow(1024, fromKibiUnitIndex);
+        iBytes *= Math.pow(1024, fromKibiUnitIndex);
       }
     } else if (fromUnitIndex !== -1) {
       if (fromUnitIndex > 0) {
         // eslint-disable-next-line no-restricted-properties
-        bytes *= Math.pow(1000, fromUnitIndex);
+        iBytes *= Math.pow(1000, fromUnitIndex);
       }
     } else {
       return '?';
@@ -52,26 +60,26 @@ export const useTranslatedBytes = (
   }
 
   if (toRawBytes) {
-    return bytes;
+    return iBytes;
   }
 
-  if (bytes === 0) {
+  if (iBytes === 0) {
     return '0';
   }
 
-  if (Number.isNaN(bytes) || !Number.isFinite(bytes)) {
+  if (Number.isNaN(iBytes) || !Number.isFinite(iBytes)) {
     return '?';
   }
-  if (typeof precision === 'undefined') {
-    precision = 0;
+  if (typeof iPrecision === 'undefined') {
+    iPrecision = 0;
   }
 
   const divider = toKibi ? 1024 : 1000;
-  const number = Math.floor(Math.log(bytes) / Math.log(divider));
+  const number = Math.floor(Math.log(iBytes) / Math.log(divider));
 
   // eslint-disable-next-line no-restricted-properties
-  let value = (bytes / Math.pow(divider, Math.floor(number))).toFixed(
-    precision,
+  let value = (iBytes / Math.pow(divider, Math.floor(number))).toFixed(
+    iPrecision,
   );
 
   if (/\.0+$/.test(value)) {
