@@ -184,7 +184,8 @@ describe('Form.page', () => {
     );
 
     const fileInput = getByTestId('18');
-    // File input should be disabled after getUploadDocumentsLinks is successful
+    // File input should not be disabled if getUploadDocumentsLinks has not yet been called and
+    // at least a document has been selected
     expect(fileInput).not.toHaveAttribute('disabled');
     await act(() =>
       fireEvent.change(fileInput, {
