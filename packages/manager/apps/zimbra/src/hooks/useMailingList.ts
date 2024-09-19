@@ -7,7 +7,8 @@ import {
 
 export const useMailingList = (mailingListId: string, noCache?: boolean) => {
   const { platformId } = usePlatform();
-  const { data, isLoading, isError, error } = useQuery({
+
+  return useQuery({
     queryKey: getZimbraPlatformMailingListDetailsQueryKey(
       platformId,
       mailingListId,
@@ -17,11 +18,4 @@ export const useMailingList = (mailingListId: string, noCache?: boolean) => {
     enabled: !!mailingListId && !!platformId,
     gcTime: noCache ? 0 : 5000,
   });
-
-  return {
-    isLoading,
-    isError,
-    error,
-    data,
-  };
 };

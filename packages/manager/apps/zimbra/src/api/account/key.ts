@@ -1,4 +1,4 @@
-export const getZimbraPlatformAccountQueryKey = (
+export const getZimbraPlatformAccountsQueryKey = (
   platformId: string,
   queryParameters?: {
     organizationId?: string;

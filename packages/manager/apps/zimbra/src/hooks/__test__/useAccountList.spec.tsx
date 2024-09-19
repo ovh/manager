@@ -16,7 +16,7 @@ vi.mock('@/hooks', () => {
 vi.mock('@/api/account/api', () => {
   const apiZimbraPlatformAccount = vi.fn(() => Promise.resolve(accountMock));
   return {
-    getZimbraPlatformAccount: apiZimbraPlatformAccount,
+    getZimbraPlatformAccounts: apiZimbraPlatformAccount,
   };
 });
 

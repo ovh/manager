@@ -104,7 +104,9 @@ describe('Organizations add and edit modal', () => {
 
     act(() => {
       fireEvent.change(input1, { target: { value: 'Name' } });
-      fireEvent.change(input2, { target: { value: 'Label' } });
+      fireEvent.change(input2, {
+        target: { value: 'NoValidLabelWithMore12Digit' },
+      });
 
       // it seems we have to manually trigger the ods event
       input1.odsValueChange.emit({ name: 'name', value: 'Name' });

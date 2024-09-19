@@ -5,19 +5,13 @@ import {
   getZimbraPlatformOrganizationQueryKey,
 } from '@/api/organization';
 
-export const useOrganizationList = () => {
+export const useOrganizationList = (options = {}) => {
   const { platformId } = usePlatform();
 
-  const { data, isLoading, isError, error } = useQuery({
+  return useQuery({
+    ...options,
     queryKey: getZimbraPlatformOrganizationQueryKey(platformId),
     queryFn: () => getZimbraPlatformOrganization(platformId),
     enabled: !!platformId,
   });
-
-  return {
-    isLoading,
-    isError,
-    error,
-    data,
-  };
 };

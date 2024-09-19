@@ -20,8 +20,12 @@ import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useDomains, useGenerateUrl, usePlatform, useAccount } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
-import { postZimbraPlatformAlias } from '@/api/alias';
+import {
+  getZimbraPlatformAliasQueryKey,
+  postZimbraPlatformAlias,
+} from '@/api/alias';
 import { formInputRegex } from './account.constants';
+import queryClient from '@/queryClient';
 
 export default function ModalAddAndEditOrganization() {
   const { t } = useTranslation('accounts/alias/add');
@@ -114,6 +118,10 @@ export default function ModalAddAndEditOrganization() {
       );
     },
     onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: getZimbraPlatformAliasQueryKey(platformId),
+      });
+
       goBack();
     },
   });
