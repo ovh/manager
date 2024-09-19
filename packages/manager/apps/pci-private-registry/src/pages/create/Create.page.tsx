@@ -54,8 +54,7 @@ export default function CreatePage(): JSX.Element {
         <Headers title={tCreate('private_registry_create')} />
       </div>
       <Notifications />
-      <PciDiscoveryBanner project={project} />
-      {isDiscoveryProject(project) && <div className="mt-6"></div>}
+      <PciDiscoveryBanner project={project} className="mb-6" />
       <RegionStep />
       <NameStep />
       <PlanStep />
