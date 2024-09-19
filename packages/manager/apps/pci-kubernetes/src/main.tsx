@@ -10,6 +10,7 @@ import App from './App';
 import './index.css';
 
 import '@/vite-hmr.ts';
+import { useAppStore } from './store';
 
 const init = async (
   appName: string,
@@ -18,6 +19,8 @@ const init = async (
   const context = await initShellContext(appName);
 
   const region = context.environment.getRegion();
+  useAppStore.getState().setRegion(region);
+
   try {
     await import(`./config-${region}.js`);
   } catch (error) {
