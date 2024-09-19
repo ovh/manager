@@ -106,7 +106,6 @@
   "sidebar_vrack": "Réseau Privé vRack",
   "sidebar_cloud_connect": "OVHcloud Connect",
   "sidebar_vrack_services": "vRack Services",
-  "sidebar_all_vrack_services": "Tous les services",
   "sidebar_iplb": "Load Balancer",
   "sidebar_ip": "Adresses IP Publiques",
   "sidebar_cdn": "Content Delivery Network",
