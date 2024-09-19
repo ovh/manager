@@ -29,13 +29,13 @@ export default function PlanComponent({
     return null;
   }, [catalog, plan]);
 
-  const capacity = useTranslatedBytes(
-    plan.registryLimits.imageStorage,
-    2,
-    true,
-    'B',
-    false,
-  );
+  const capacity = useTranslatedBytes({
+    bytes: plan.registryLimits.imageStorage,
+    precision: 2,
+    toKibi: true,
+    fromUnit: 'B',
+    toRawBytes: false,
+  });
   return (
     <div className="w-full">
       <div className="border-solid border border-t-0 border-x-0 border-[--ods-color-blue-200] my-4 py-4">
