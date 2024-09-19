@@ -14,10 +14,12 @@ export const isDiscoveryProject = (project: TProject) =>
 
 export interface PciDiscoveryBannerProps {
   project: TProject;
+  className?: string;
 }
 
 export function PciDiscoveryBanner({
   project,
+  className,
 }: Readonly<PciDiscoveryBannerProps>) {
   const { t } = useTranslation('pci-discovery-banner');
 
@@ -39,6 +41,7 @@ export function PciDiscoveryBanner({
           cta={t('pci_projects_project_activate_project_banner_cta')}
           type={ODS_MESSAGE_TYPE.warning}
           onClick={activateDiscoveryProject}
+          className={className}
         />
       )}
     </>
