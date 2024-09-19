@@ -25,6 +25,8 @@
   "domain_dashboard_show_authinfo": "AUTH/INFO",
   "domain_dashboard_show_authinfo_title": "Display the AUTH/INFO code",
   "domain_dashboard_show_authinfo_description": "The AUTH/INFO code is a key. It is required by the registry for the purpose of validating the transfer of your {{t0}} domain name.",
+  "domain_dashboard_show_authinfo_warning_part_1": "Warning: Transferring your domain to another registrar will delete the DNS zone and its data. Your website and email service may no longer work.",
+  "domain_dashboard_show_authinfo_warning_part_2": "If you’re looking to switch web hosting or email providers, you can still keep your domain name with OVHcloud and enjoy the best prices, as well as free services like anti-spam, data anonymisation, and DNSSEC.",
   "domain_dashboard_authinfo_code": "AUTH/INFO code",
   "domain_dashboard_show_authinfo_error": "An error occurred retrieving the AUTH/INFO code",
   "domain_dashboard_security": "Security",
@@ -482,6 +484,7 @@
   "domain_configuration_dns_entry_add_step1_helpwizard_txt_desc": "Allows any text to be entered in the DNS zone.",
   "domain_configuration_dns_entry_add_step3_info": "You are about to add the following record to your DNS zone:",
   "domain_configuration_dns_entry_add_step3_alert": "The addition will be applied immediately on the DNS zone, but please note that the change may take up to 24 hours to propagate.",
+  "domain_configuration_dns_entry_add_step3_check_warning_info": "Error: Unable to save DNS configuration. Please check that:",
   "domain_configuration_dns_entry_add_step3_check_warning1": "Warning, one or more conflicts may occur:",
   "domain_configuration_dns_entry_add_step3_check_warning2": "The sub-domain is not already used by a CNAME record. A CNAME record cannot exist alongside other records for the same sub-domain.",
   "domain_configuration_dns_entry_add_step3_check_warning3": "The CNAME record is not added on the root domain. As a reminder, the root domain is the base domain you’ve registered.",
@@ -627,7 +630,8 @@
   "domain_configuration_zonedns_delete_all_propagation_info": "As a security measure, you will be asked to confirm this action by clicking the confirmation link you will receive via email. This is to ensure the deletion of the DNS zone is authorised by the account owner.",
   "domain_configuration_zonedns_delete_all_success": "A confirmation email has been sent to you. To finish deleting the DNS zone, please click on the confirmation link you have received via email. Once the link has been confirmed, the DNS zone will be deleted within a maximum of 24 hours.",
   "domain_configuration_zonedns_delete_all_error": "An error when deleting the DNS zone. ",
-  "domain_configuration_dnsanycast_title_button": "Order Anycast DNS",
+  "domain_configuration_dnsanycast_activate_button": "Order Anycast DNS",
+  "domain_configuration_dnsanycast_terminate_button": "Cancel Anycast DNS",
   "domain_configuration_dnsanycast_title": "Activate Anycast DNS ",
   "domain_configuration_dnsanycast_how_to_activate_1": "To enable DNS Anycast, please first",
   "domain_configuration_dnsanycast_how_to_activate_2": "Create a DNS zone",
@@ -828,10 +832,5 @@
   "domain_dashboard_general_information_domain_automatic": "Automatic renewal",
   "domain_dashboard_general_information_alldom_termination_info": "Your pack will expire on {{expirationDate}}. The non-cancelled domains included in this pack will be <strong>renewed for free until your pack expires permanently.</strong> After this date, your non-cancelled domains will be billed individually.",
   "domain_dashboard_general_information_alldom_renewal_link": "Undo pack cancellation",
-  "domain_dashboard_general_information_alldom_termination_warning_close": "Close",
-  "domain_dashboard_show_authinfo_warning_part_1": "Warning: Transferring your domain to another registrar will delete the DNS zone and its data. Your website and email service may no longer work.",
-  "domain_dashboard_show_authinfo_warning_part_2": "If you’re looking to switch web hosting or email providers, you can still keep your domain name with OVHcloud and enjoy the best prices, as well as free services like anti-spam, data anonymisation, and DNSSEC.",
-  "domain_configuration_dns_entry_add_step3_check_warning_info": "Error: Unable to save DNS configuration. Please check that:",
-  "domain_configuration_dnsanycast_activate_button": "Order Anycast DNS",
-  "domain_configuration_dnsanycast_terminate_button": "Cancel Anycast DNS"
+  "domain_dashboard_general_information_alldom_termination_warning_close": "Close"
 }

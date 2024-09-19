@@ -15,7 +15,7 @@ export default {
     currentPolicy: '<',
     applyPolicy: '<',
     trackClick: '<',
-    goToRestoreSnapshot: '<'
+    goToRestoreSnapshot: '<',
   },
   controller,
   template,

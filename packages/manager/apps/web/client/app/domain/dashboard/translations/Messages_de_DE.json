@@ -25,6 +25,8 @@
   "domain_dashboard_show_authinfo": "AuthInfo",
   "domain_dashboard_show_authinfo_title": "Den AuthInfo-Code anzeigen",
   "domain_dashboard_show_authinfo_description": "Der AuthInfo-Code ist ein Schlüssel, der für die Validierung des Transfers Ihres Domainnamens {{t0}} durch die Registry erforderlich ist.",
+  "domain_dashboard_show_authinfo_warning_part_1": "Hiermit möchten wir Sie darüber informieren, dass durch den Transfer Ihrer Domain zu einem anderen Registrar die DNS-Zone und deren Inhalt gelöscht werden. Ihre Website und Ihr E-Mail-Dienst funktionieren möglicherweise nicht mehr.",
+  "domain_dashboard_show_authinfo_warning_part_2": "Wenn Sie einfach nur den Webhoster oder den E-Mail-Dienst wechseln möchten, können Sie Ihren Domainnamen problemlos bei OVHcloud belassen und so weiterhin von den besten Preisen und von unseren kostenlosen Diensten wie Anti-Spam, Anonymisierung personenbezogener Daten oder DNSSEC profitieren.",
   "domain_dashboard_authinfo_code": "AuthInfo-Code",
   "domain_dashboard_show_authinfo_error": "Beim Abruf des AuthInfo-Codes ist ein Fehler aufgetreten",
   "domain_dashboard_security": "Sicherheit",
@@ -482,6 +484,7 @@
   "domain_configuration_dns_entry_add_step1_helpwizard_txt_desc": "Erlaubt den Eintrag zusätzlicher, frei definierbarer Informationen im Textformat in der DNS-Zone einer Domain.",
   "domain_configuration_dns_entry_add_step3_info": "Sie sind im Begriff, folgenden Eintrag zu Ihrer DNS-Zone hinzuzufügen:",
   "domain_configuration_dns_entry_add_step3_alert": "Das Hinzufügen in der DNS-Zone erfolgt sofort. Bitte berücksichtigen Sie auch die Propagationszeit von höchstens 24 Stunden.",
+  "domain_configuration_dns_entry_add_step3_check_warning_info": "Fehler: Die DNS-Konfiguration kann nicht gespeichert werden. Vergewissern Sie sich, dass:",
   "domain_configuration_dns_entry_add_step3_check_warning1": "Achtung, es können einer oder mehrere Konflikte auftreten:",
   "domain_configuration_dns_entry_add_step3_check_warning2": "die Subdomain noch nicht von einem CNAME-Eintrag verwendet wird. Ein CNAME-Eintrag kann nicht gleichzeitig mit anderen Feldern für dieselbe Subdomain bestehen.",
   "domain_configuration_dns_entry_add_step3_check_warning3": "der CNAME-Eintrag nicht der Stammdomain hinzugefügt wird. Die Stammdomain ist die von Ihnen registrierte Basisdomain.",
@@ -627,7 +630,8 @@
   "domain_configuration_zonedns_delete_all_propagation_info": "Als Sicherheitsmaßnahme bitten wir Sie, diese Aktion zu bestätigen, indem Sie auf den Bestätigungslink klicken, den Sie per E-Mail erhalten. Dadurch wird sichergestellt, dass der Kontoinhaber die Löschung der DNS-Zone genehmigt.",
   "domain_configuration_zonedns_delete_all_success": "Ihnen wurde eine Bestätigungs-E-Mail zugesandt. Um die Löschung der DNS-Zone abzuschließen, klicken Sie bitte auf den in der E-Mail enthaltenen Bestätigungslink. Nach der Bestätigung über den Link wird die DNS-Zone innerhalb von maximal 24 Stunden gelöscht.",
   "domain_configuration_zonedns_delete_all_error": "Bei der Löschung Ihrer DNS Zone ist ein Fehler aufgetreten.",
-  "domain_configuration_dnsanycast_title_button": "DNS Anycast bestellen",
+  "domain_configuration_dnsanycast_activate_button": "DNS Anycast bestellen",
+  "domain_configuration_dnsanycast_terminate_button": "DNS Anycast kündigen",
   "domain_configuration_dnsanycast_title": "DNS Anycast aktivieren",
   "domain_configuration_dnsanycast_how_to_activate_1": "Um DNS Anycast zu aktivieren, bitte zuerst ",
   "domain_configuration_dnsanycast_how_to_activate_2": "DNS Zone einrichten ",
@@ -828,10 +832,5 @@
   "domain_dashboard_general_information_domain_automatic": "Automatische Verlängerung",
   "domain_dashboard_general_information_alldom_termination_info": "Ihr Paket läuft am {{ expirationDate }} ab. Die darin enthaltenen nicht gekündigten Domains <strong>werden bis zum endgültigen Ablauf Ihres Pakets kostenlos verlängert.</strong> Nach diesem Datum werden Ihre nicht gekündigten Domains einzeln abgerechnet.",
   "domain_dashboard_general_information_alldom_renewal_link": "Kündigung des Pakets stornieren",
-  "domain_dashboard_general_information_alldom_termination_warning_close": "Schließen",
-  "domain_dashboard_show_authinfo_warning_part_1": "Hiermit möchten wir Sie darüber informieren, dass durch den Transfer Ihrer Domain zu einem anderen Registrar die DNS-Zone und deren Inhalt gelöscht werden. Ihre Website und Ihr E-Mail-Dienst funktionieren möglicherweise nicht mehr.",
-  "domain_dashboard_show_authinfo_warning_part_2": "Wenn Sie einfach nur den Webhoster oder den E-Mail-Dienst wechseln möchten, können Sie Ihren Domainnamen problemlos bei OVHcloud belassen und so weiterhin von den besten Preisen und von unseren kostenlosen Diensten wie Anti-Spam, Anonymisierung personenbezogener Daten oder DNSSEC profitieren.",
-  "domain_configuration_dns_entry_add_step3_check_warning_info": "Fehler: Die DNS-Konfiguration kann nicht gespeichert werden. Vergewissern Sie sich, dass:",
-  "domain_configuration_dnsanycast_activate_button": "DNS Anycast bestellen",
-  "domain_configuration_dnsanycast_terminate_button": "DNS Anycast kündigen"
+  "domain_dashboard_general_information_alldom_termination_warning_close": "Schließen"
 }

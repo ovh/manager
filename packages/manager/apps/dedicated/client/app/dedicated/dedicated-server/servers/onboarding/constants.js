@@ -18,7 +18,7 @@ export const GUIDES = [
       US:
         'https://docs.ovh.com/us/en/dedicated/getting-started-dedicated-server/',
       AU:
-         'https://docs.ovh.com/au/en/dedicated/getting-started-dedicated-server/',
+        'https://docs.ovh.com/au/en/dedicated/getting-started-dedicated-server/',
       ASIA:
         'https://help.ovhcloud.com/csm/asia-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043472',
       IN:

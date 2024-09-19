@@ -22,7 +22,10 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('ovhManagerNetAppVolumesDashboardSnapshotsRestoreComponent', component)
+  .component(
+    'ovhManagerNetAppVolumesDashboardSnapshotsRestoreComponent',
+    component,
+  )
   .service('NetAppRestoreVolumeService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 

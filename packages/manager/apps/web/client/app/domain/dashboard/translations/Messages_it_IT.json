@@ -25,6 +25,8 @@
   "domain_dashboard_show_authinfo": "AUTH/INFO",
   "domain_dashboard_show_authinfo_title": "Visualizza il codice AUTH/INFO",
   "domain_dashboard_show_authinfo_description": "L’AUTH/INFO è un codice necessario per la convalida da parte del Registry dell’operazione di trasferimento del dominio {0}.",
+  "domain_dashboard_show_authinfo_warning_part_1": "Attenzione: il trasferimento del tuo dominio verso un altro Registrar comporta la cancellazione della zona DNS e del suo contenuto. Il tuo sito Web e servizio email potrebbero non funzionare più correttamente.",
+  "domain_dashboard_show_authinfo_warning_part_2": "Se vuoi semplicemente cambiare hosting provider o servizio di posta, puoi conservare la gestione del tuo dominio in OVHcloud e continuare così a usufruire delle migliori tariffe e di servizi gratuiti come anti-Spam, anonimizzazione dei dati personali e DNSSEC.",
   "domain_dashboard_authinfo_code": "Codice AUTH/INFO",
   "domain_dashboard_show_authinfo_error": "Si è verificato un errore durante il recupero del codice AUTH/INFO",
   "domain_dashboard_security": "Sicurezza",
@@ -482,6 +484,7 @@
   "domain_configuration_dns_entry_add_step1_helpwizard_txt_desc": "Permette di inserire qualsiasi testo nella zona DNS.",
   "domain_configuration_dns_entry_add_step3_info": "Stai per aggiungere questo record alla tua zona DNS:",
   "domain_configuration_dns_entry_add_step3_alert": "L’aggiunta sarà immediata nella zona DNS, ma la propagazione potrebbe richiedere fino a 24 ore.",
+  "domain_configuration_dns_entry_add_step3_check_warning_info": "Errore: Impossibile salvare la configurazione DNS. Ti chiediamo di verificare che:",
   "domain_configuration_dns_entry_add_step3_check_warning1": "Attenzione, possono verificarsi alcuni conflitti:",
   "domain_configuration_dns_entry_add_step3_check_warning2": "Il sottodominio non sia già utilizzato da un record CNAME. Il record CNAME non può coesistere con altri tipi di record sullo stesso sottodominio.",
   "domain_configuration_dns_entry_add_step3_check_warning3": "Il record CNAME non è aggiunto sul dominio radice. Ti ricordiamo che il dominio radice è il dominio principale che hai registrato.",
@@ -627,7 +630,8 @@
   "domain_configuration_zonedns_delete_all_propagation_info": "Come misura di sicurezza, ti chiederemo di confermare questa azione cliccando sul link che riceverai via email. Questa operazione garantisce che l'eliminazione della zona DNS è autorizzata dal proprietario dell'account.",
   "domain_configuration_zonedns_delete_all_success": "Ti abbiamo inviato un'email di conferma. Per completare l'eliminazione della zona DNS, clicca sul link di conferma incluso nell'email. A partire dalla conferma tramite link, la zona DNS sarà eliminata entro un massimo di 24 ore.",
   "domain_configuration_zonedns_delete_all_error": "Si è verificato un errore durante l'eliminazione della zona DNS.",
-  "domain_configuration_dnsanycast_title_button": "Ordina DNS Anycast",
+  "domain_configuration_dnsanycast_activate_button": "Ordina DNS Anycast",
+  "domain_configuration_dnsanycast_terminate_button": "Disattiva DNS Anycast",
   "domain_configuration_dnsanycast_title": "Attiva DNS Anycast",
   "domain_configuration_dnsanycast_how_to_activate_1": "Per attivare DNS Anycast, è necessario",
   "domain_configuration_dnsanycast_how_to_activate_2": "creare una zona DNS",
@@ -828,10 +832,5 @@
   "domain_dashboard_general_information_domain_automatic": "Rinnovo automatico",
   "domain_dashboard_general_information_alldom_termination_info": "Il tuo pack scadrà il {{ expirationDate }}. I domini non disattivati inclusi nel pack saranno<strong> rinnovati gratuitamente fino alla scadenza definitiva del pacchetto.</strong> A partire da questa data, i domini non disattivati saranno fatturati individualmente.",
   "domain_dashboard_general_information_alldom_renewal_link": "Annulla la disattivazione del pack",
-  "domain_dashboard_general_information_alldom_termination_warning_close": "Chiudi",
-  "domain_dashboard_show_authinfo_warning_part_1": "Attenzione: il trasferimento del tuo dominio verso un altro Registrar comporta la cancellazione della zona DNS e del suo contenuto. Il tuo sito Web e servizio email potrebbero non funzionare più correttamente.",
-  "domain_dashboard_show_authinfo_warning_part_2": "Se vuoi semplicemente cambiare hosting provider o servizio di posta, puoi conservare la gestione del tuo dominio in OVHcloud e continuare così a usufruire delle migliori tariffe e di servizi gratuiti come anti-Spam, anonimizzazione dei dati personali e DNSSEC.",
-  "domain_configuration_dns_entry_add_step3_check_warning_info": "Errore: Impossibile salvare la configurazione DNS. Ti chiediamo di verificare che:",
-  "domain_configuration_dnsanycast_activate_button": "Ordina DNS Anycast",
-  "domain_configuration_dnsanycast_terminate_button": "Disattiva DNS Anycast"
+  "domain_dashboard_general_information_alldom_termination_warning_close": "Chiudi"
 }

@@ -10,10 +10,7 @@
     data-type="warning"
 >
     <div data-ng-if="!$ctrl.hasOnlySystemSnapshot">
-
-        <p
-            data-translate="netapp_volumes_snapshots_restore_description"
-        ></p>
+        <p data-translate="netapp_volumes_snapshots_restore_description"></p>
 
         <!-- Volume ID -->
         <p
@@ -27,25 +24,31 @@
             class="oui-heading_6 mb-1"
             data-translate="netapp_volumes_snapshots_restore_snapshot_label"
         ></p>
-        <p data-ng-bind="$ctrl.snapshotToRevertTo.name || $ctrl.snapshotToRevertTo.id"></p>
+        <p
+            data-ng-bind="$ctrl.snapshotToRevertTo.name || $ctrl.snapshotToRevertTo.id"
+        ></p>
 
         <!-- Confirmation -->
         <oui-message type="warning" class="mt-2 mb-1">
             <span
                 data-translate="netapp_volumes_snapshots_restore_confirm_description"
-                data-translate-values="{volume: '<b>' + $ctrl.volume.name + '</b>', date: '<b>' + $ctrl.snapshotToRevertTo.formattedCreationDate + '</b>'}"></span>
+                data-translate-values="{volume: '<b>' + $ctrl.volume.name + '</b>', date: '<b>' + $ctrl.snapshotToRevertTo.formattedCreationDate + '</b>'}"
+            ></span>
         </oui-message>
         <oui-field
-                label="{{:: 'netapp_volumes_snapshots_restore_confirm_volume_label' | translate }}"
-            >
-                <input
-                    class="oui-input"
-                    name="volumeName"
-                    type="text"
-                    data-ng-model="$ctrl.volumeName"
-                    data-ng-change="$ctrl.validateVolumeName()"
-                />
-            </oui-field>
+            label="{{:: 'netapp_volumes_snapshots_restore_confirm_volume_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="volumeName"
+                type="text"
+                data-ng-model="$ctrl.volumeName"
+                data-ng-change="$ctrl.validateVolumeName()"
+            />
+        </oui-field>
     </div>
-    <p data-ng-if="$ctrl.hasOnlySystemSnapshot" data-translate="netapp_volumes_snapshots_restore_system_message"></p>
+    <p
+        data-ng-if="$ctrl.hasOnlySystemSnapshot"
+        data-translate="netapp_volumes_snapshots_restore_system_message"
+    ></p>
 </oui-modal>
