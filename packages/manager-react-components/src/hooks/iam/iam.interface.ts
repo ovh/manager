@@ -8,3 +8,9 @@ export interface IamAuthorizationResponse {
   isLoading: boolean;
   isFetched: boolean;
 }
+
+export interface IamCheckResponse {
+  urn: string;
+  authorizedActions: string[];
+  unauthorizedActions: string[];
+}

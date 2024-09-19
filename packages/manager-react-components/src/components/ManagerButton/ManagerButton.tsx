@@ -35,24 +35,22 @@ export const ManagerButton = ({
   const { t } = useTranslation('iam');
   const { isAuthorized } = useAuthorizationIam(iamActions, urn, isIamTrigger);
 
-  if (!isAuthorized) {
-    if (!displayTooltip) {
-      return (
-        <OsdsButton {...restProps} disabled onClick={null}>
-          {children}
-        </OsdsButton>
-      );
-    }
-    return (
-      <OsdsTooltip>
-        <OsdsButton {...restProps} disabled onClick={null}>
-          {children}
-        </OsdsButton>
-        <OsdsTooltipContent slot="tooltip-content">
-          <div>{t('common_iam_actions_message')}</div>
-        </OsdsTooltipContent>
-      </OsdsTooltip>
-    );
+  if (isAuthorized) {
+    return <OsdsButton {...restProps}>{children}</OsdsButton>;
   }
-  return <OsdsButton {...restProps}>{children}</OsdsButton>;
+
+  return !displayTooltip ? (
+    <OsdsButton {...restProps} disabled onClick={null}>
+      {children}
+    </OsdsButton>
+  ) : (
+    <OsdsTooltip>
+      <OsdsButton {...restProps} disabled onClick={null}>
+        {children}
+      </OsdsButton>
+      <OsdsTooltipContent slot="tooltip-content">
+        <div>{t('common_iam_actions_message')}</div>
+      </OsdsTooltipContent>
+    </OsdsTooltip>
+  );
 };

@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
-import { IamInterface } from './iam.interface';
+import { IamCheckResponse, IamInterface } from './iam.interface';
 
 export const fetchAuthorizationsCheck = async ({
   actions,
@@ -18,7 +17,6 @@ export const fetchAuthorizationsCheck = async ({
 };
 
 export function useAuthorizationsIam({ actions, urns }: IamInterface) {
-  const [authorizedActions, setAuthorizedActions] = useState([]);
   const { data } = useQuery({
     queryKey: ['iam-authorization', urns, actions],
     queryFn: () => fetchAuthorizationsCheck({ actions, urns }),
@@ -26,19 +24,13 @@ export function useAuthorizationsIam({ actions, urns }: IamInterface) {
     placeholderData: keepPreviousData,
   });
 
-  useEffect(() => {
-    if (data) {
-      setAuthorizedActions(data);
-    }
-  }, [data]);
-
-  return authorizedActions;
+  return data || [];
 }
 
 export const fetchAuthorizationCheck = async (
   actions: string[],
   urn: string,
-) => {
+): Promise<IamCheckResponse> => {
   const { data } = await apiClient.v2.post(
     `/iam/resource/${urn}/authorization/check`,
     {
@@ -54,8 +46,7 @@ export function useAuthorizationIam(
   // `isTrigger` is by default at true, to request at the init of the hook.
   // In the case of action menu, we want to trigger it, when user click on button
 ) {
-  const [isAuthorized, setIsAuthorized] = useState(false);
-  const { data, isLoading, isFetched } = useQuery({
+  const { data, ...query } = useQuery({
     queryKey: [urn, actions],
     queryFn: () => fetchAuthorizationCheck(actions, urn),
     enabled:
@@ -63,14 +54,11 @@ export function useAuthorizationIam(
     placeholderData: keepPreviousData,
   });
 
-  useEffect(() => {
-    if (data) {
-      const { authorizedActions } = data;
-      if (authorizedActions.length === actions.length) {
-        setIsAuthorized(true);
-      }
-    }
-  }, [data]);
-
-  return { isAuthorized, isLoading, isFetched };
+  return {
+    isAuthorized:
+      !!data?.authorizedActions &&
+      actions.every((action) => data?.authorizedActions?.includes(action)),
+    data,
+    ...query,
+  };
 }
