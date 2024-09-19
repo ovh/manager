@@ -44,8 +44,8 @@
   "generateAccessModalPasswordDescription": "Copy this temporary password to log in to your Rancher. After logging in, you will be prompted to create a new password for security reasons.",
   "updateOfferModalCancelButton": "Cancel",
   "updateOfferModalValidateButton": "Confirm",
-  "updateOfferModaleTitle": "Change Offer",
-  "updateOfferModalDescription": "You are about to change your current offer to the {{availableServicePlan}} offer. You will be charged {{planPricing}} excluding tax per orchestrated vCPUs. This change will take effect immediately and will not impact your downstream clusters or the data in your managed Rancher. Please confirm if you wish to proceed.",
-  "updateOfferPending": "Your offer change has been successfully processed. Please wait, it may take a few minutes.",
-  "updateOfferError": "An error occurred: {{errorMessage}}"
+  "updateOfferModaleTitle": "Change plan",
+  "updateOfferModalDescription": "You are about to update your current solution to the {{availableServicePlan}} solution. You will be billed {{planPricing}} ex. VAT/hour per orchestrated vCPUs. The changes will take effect right away, and will have no impact on your downstream clusters or the data in your managed Rancher. Please confirm if you wish to continue.",
+  "updateOfferPending": "Your solution upgrade has been processed. Please wait... This may take a few minutes.",
+  "updateOfferError": "An error has occurred: {{errorMessage}}"
 }
