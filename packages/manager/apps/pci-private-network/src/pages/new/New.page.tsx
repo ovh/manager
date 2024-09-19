@@ -7,6 +7,7 @@ import {
   useOvhTracking,
   PageLocation,
   ButtonType,
+  PageType,
 } from '@ovh-ux/manager-react-shell-client';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -63,7 +64,7 @@ export default function NewPage(): JSX.Element {
   const backLink = useHref('..');
   const navigate = useNavigate();
 
-  const { trackClick } = useOvhTracking();
+  const { trackClick, trackPage } = useOvhTracking();
 
   const create = async () => {
     store.setForm({ isCreating: true });
@@ -93,6 +94,10 @@ export default function NewPage(): JSX.Element {
         </Translation>,
         true,
       );
+      trackPage({
+        pageName: 'addPrivateNetwork',
+        pageType: PageType.bannerSuccess,
+      });
       navigate('..');
     } catch (e) {
       addError(
@@ -112,6 +117,10 @@ export default function NewPage(): JSX.Element {
         </Translation>,
         true,
       );
+      trackPage({
+        pageName: 'addPrivateNetwork',
+        pageType: PageType.bannerError,
+      });
     } finally {
       store.setForm({ isCreating: false });
     }

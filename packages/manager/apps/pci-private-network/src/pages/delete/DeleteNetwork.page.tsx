@@ -6,6 +6,7 @@ import {
   useOvhTracking,
   PageLocation,
   ButtonType,
+  PageType,
 } from '@ovh-ux/manager-react-shell-client';
 import DeleteModal from '@/components/delete/DeleteModal.component';
 import { useDeleteNetwork } from '@/api/hooks/useNetwork';
@@ -21,7 +22,7 @@ export default function DeleteLocalZone() {
   const networkId = searchParams.get('networkId');
   const region = searchParams.get('region');
 
-  const { trackClick } = useOvhTracking();
+  const { trackClick, trackPage } = useOvhTracking();
 
   const onClose = () => navigate('..');
 
@@ -41,6 +42,10 @@ export default function DeleteLocalZone() {
         true,
       );
       onClose();
+      trackPage({
+        pageName: 'delete_PrivateNetwork',
+        pageType: PageType.bannerSuccess,
+      });
     },
     onError: (error: ApiError) => {
       onClose();
@@ -54,6 +59,10 @@ export default function DeleteLocalZone() {
         </Translation>,
         true,
       );
+      trackPage({
+        pageName: 'delete_PrivateNetwork',
+        pageType: PageType.bannerError,
+      });
     },
   });
 
