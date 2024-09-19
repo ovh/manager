@@ -1,40 +1,16 @@
-import { v6 } from '@ovh-ux/manager-core-api';
 import { ColumnSort, PaginationState } from '@tanstack/react-table';
-import { TFlavor, TInstance } from '@/type';
+import { TWorkflowInstance } from '@/types';
 
 export type TInstanceOptions = {
   pagination: PaginationState;
   sorting: ColumnSort;
 };
 
-export const getInstance = async (projectId: string, instanceId: string) => {
-  const { data } = await v6.get<TInstance>(
-    `/cloud/project/${projectId}/instance/${instanceId}`,
-  );
-  return data;
-};
-
-export const getFlavor = async (
-  projectId: string,
-  flavoid: string,
-): Promise<TFlavor> => {
-  const { data } = await v6.get<TFlavor>(
-    `/cloud/project/${projectId}/flavor/${flavoid}`,
-  );
-  return data;
-};
-
-export const getAllInstance = async (
-  projectId: string,
-): Promise<TInstance[]> => {
-  const { data } = await v6.get<TInstance[]>(
-    `/cloud/project/${projectId}/instance`,
-  );
-  return data;
-};
-
-export const sortResults = (items: TInstance[], sorting: ColumnSort) => {
-  let data: TInstance[];
+export const sortResults = (
+  items: TWorkflowInstance[],
+  sorting: ColumnSort,
+) => {
+  let data: TWorkflowInstance[];
   if (sorting?.id === 'status') {
     data = [...items].sort((a, b) => (a.statusGroup > b.statusGroup ? 1 : 0));
   } else {

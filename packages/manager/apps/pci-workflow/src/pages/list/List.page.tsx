@@ -39,9 +39,9 @@ import {
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import Actions from '@/components/actions.component';
-import HidePreloader from '../../core/HidePreloader';
 import { TWorkflow, usePaginatedWorkflows } from '@/api/hooks/workflows';
 import ExecutionStatusComponent from '@/components/execution-status.component';
+import HidePreloader from '@/core/HidePreloader';
 
 export default function ListingPage() {
   const { t } = useTranslation('listing');

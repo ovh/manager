@@ -15,19 +15,22 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { Suspense } from 'react';
-import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
+import {
+  PciDiscoveryBanner,
+  useInstances,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
 import { useWorkflows } from '@/api/hooks/workflows';
-import { useAllInstances } from '@/api/hooks/useInstances';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation('listing');
   const { t: tOnBoarding } = useTranslation('onboarding');
   const { t: tExecution } = useTranslation('executions');
   const { projectId } = useParams();
-  const { data: project } = useProject(projectId);
+  const { data: project } = useProject();
   const urlProject = useProjectUrl('public-cloud');
   const navigate = useNavigate();
-  const { data: instances, isPending: isPendingInstances } = useAllInstances(
+  const { data: instances, isPending: isPendingInstances } = useInstances(
     projectId,
   );
   const { data: workflows, isPending: isPendingWorkflows } = useWorkflows(
