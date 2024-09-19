@@ -5,6 +5,7 @@
 @import 'bootstrap4/scss/_grid.scss';
 @import 'bootstrap4/scss/_modal.scss';
 @import 'bootstrap4/scss/mixins/_breakpoints';
+@import '@ovh-ux/ui-kit/dist/scss/_tokens';
 
 .app-content {
   position: relative;
@@ -45,4 +46,8 @@
     opacity: 0;
     visibility: hidden !important;
   }
+}
+
+.mandatory-fields-star {
+  color: $ae-500;
 }
