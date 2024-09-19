@@ -1,9 +1,8 @@
 import { describe, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import React from 'react';
 import { useGenerateUrl } from '../useGenerateUrl';
+import { wrapper } from '@/utils/test.provider';
 
 vi.mock('@/hooks', () => {
   return {
@@ -22,14 +21,8 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-const queryClient = new QueryClient();
-
-const wrapper = ({ children }: any) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
-
-describe('href', () => {
-  it('Return url href', async () => {
+describe('useGenerateUrl', () => {
+  it('should return url href', async () => {
     const { result } = renderHook(() => useGenerateUrl('./add', 'href'), {
       wrapper,
     });
@@ -38,7 +31,7 @@ describe('href', () => {
     );
   });
 
-  it('Return url href with params', async () => {
+  it('should return url href with params', async () => {
     const { result } = renderHook(
       () =>
         useGenerateUrl('./delete', 'href', {
@@ -53,14 +46,14 @@ describe('href', () => {
     );
   });
 
-  it('Return url path', async () => {
+  it('should return url path', async () => {
     const { result } = renderHook(() => useGenerateUrl('./add', 'path'), {
       wrapper,
     });
     expect(result.current).toBe('./add?');
   });
 
-  it('Return url path with params', async () => {
+  it('should return url path with params', async () => {
     const { result } = renderHook(
       () =>
         useGenerateUrl('./delete', 'path', {

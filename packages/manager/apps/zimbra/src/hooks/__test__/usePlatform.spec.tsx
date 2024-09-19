@@ -1,10 +1,9 @@
 import { describe, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import React from 'react';
 import { usePlatform } from '../usePlatform';
 import { platformMock } from '@/api/_mock_';
+import { wrapper } from '@/utils/test.provider';
 
 vi.mock('@/api/platform/api', () => {
   const mock = vi.fn(() => Promise.resolve(platformMock));
@@ -13,14 +12,8 @@ vi.mock('@/api/platform/api', () => {
   };
 });
 
-const queryClient = new QueryClient();
-
-const wrapper = ({ children }: any) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
-
-describe('Platform', () => {
-  it('We have to return the firt element', async () => {
+describe('usePlatform', () => {
+  it('should return the first element of the platform list', async () => {
     const { result } = renderHook(() => usePlatform(), { wrapper });
 
     await waitFor(() => {

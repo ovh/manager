@@ -1,28 +1,38 @@
-import { AccountType } from '../account';
+export enum ReplyToChoices {
+  LIST = 'list',
+  SENDER = 'sender',
+  MAILBOX = 'another_mailbox',
+}
+
+export enum ModerationChoices {
+  ALL = 'all',
+  SUBSONLY = 'subs_only',
+  NONE = 'none',
+}
 
 export type MailingListType = {
   id: string;
   resourceStatus: string;
   checksum: string;
   targetSpec: {
-    defaultReplyTo: string;
+    defaultReplyTo: ReplyToChoices;
     email: string;
     language: string;
     members: string[];
-    moderationOption: string;
+    moderationOption: ModerationChoices;
     organizationId: string;
     organizationLabel: string;
-    owner: AccountType;
+    owner: string;
   };
   currentState: {
-    defaultReplyTo: string;
+    defaultReplyTo: ReplyToChoices;
     email: string;
     language: string;
     members: string[];
-    moderationOption: string;
+    moderationOption: ModerationChoices;
     organizationId: string;
     organizationLabel: string;
-    owner: AccountType;
+    owner: string;
   };
   currentTasks: Array<{
     id: string;
@@ -30,4 +40,14 @@ export type MailingListType = {
     status: string;
     type: string;
   }>;
+};
+
+export type MailingListBodyParamsType = {
+  defaultReplyTo?: ReplyToChoices;
+  email?: string;
+  language?: string;
+  members?: string[];
+  moderationOption?: ModerationChoices;
+  organizationId?: string;
+  owner?: string;
 };

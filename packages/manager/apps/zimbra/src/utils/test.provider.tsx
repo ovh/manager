@@ -19,6 +19,7 @@ import accountAliasAddTranslation from '@/public/translations/accounts/alias/add
 import accountAliasDeleteTranslation from '@/public/translations/accounts/alias/delete/Messages_fr_FR.json';
 import accountDeleteTranslation from '@/public/translations/accounts/delete/Messages_fr_FR.json';
 import mailingListsTranslation from '@/public/translations/mailinglists/Messages_fr_FR.json';
+import mailingListsAddAndEditTranslation from '@/public/translations/mailinglists/addAndEdit/Messages_fr_FR.json';
 import queryClient from '@/queryClient';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
@@ -43,12 +44,23 @@ i18n.use(initReactI18next).init({
       'accounts/alias/delete': accountAliasDeleteTranslation,
       'accounts/delete': accountDeleteTranslation,
       mailinglists: mailingListsTranslation,
+      'mailinglists/addAndEdit': mailingListsAddAndEditTranslation,
     },
   },
   ns: ['dashboard'],
 });
 
-const Wrappers = ({ children }: { children: React.ReactNode }) => {
+export const wrapper = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+};
+
+export const wrapperWithI18n = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   return (
     <QueryClientProvider client={queryClient}>
       <MemoryRouter>
@@ -62,7 +74,7 @@ const customRender = (
   ui: React.JSX.Element,
   options?: Omit<RenderOptions, 'queries'>,
 ): RenderResult =>
-  render(ui, { wrapper: Wrappers as ComponentType, ...options });
+  render(ui, { wrapper: wrapperWithI18n as ComponentType, ...options });
 
 export * from '@testing-library/react';
 

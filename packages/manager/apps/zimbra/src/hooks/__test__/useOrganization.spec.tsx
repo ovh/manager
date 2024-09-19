@@ -1,10 +1,9 @@
 import { describe, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import React from 'react';
 import { platformMock, organizationDetailMock } from '@/api/_mock_';
 import { useOrganization } from '../useOrganization';
+import { wrapper } from '@/utils/test.provider';
 
 const useLocationMock: {
   pathname: string;
@@ -45,14 +44,8 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-const queryClient = new QueryClient();
-
-const wrapper = ({ children }: any) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
-
-describe('Organization', () => {
-  it('Return detail of organization in params url', async () => {
+describe('useOrganization', () => {
+  it('should return detail of organization in params url', async () => {
     const { result } = renderHook(() => useOrganization(), { wrapper });
 
     await waitFor(() => {
