@@ -2,13 +2,13 @@ import angular from 'angular';
 
 import 'angular-translate';
 
-import protectedData from './protectedData.component.js';
+import iamProtectedData from './iamProtectedData.component.js';
 
-const moduleName = 'ovhManagerProtectedData';
+const moduleName = 'ovhManageriamProtectedData';
 
 angular
   .module(moduleName, ['pascalprecht.translate'])
-  .component('protectedData', protectedData)
+  .component('iamProtectedData', iamProtectedData)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

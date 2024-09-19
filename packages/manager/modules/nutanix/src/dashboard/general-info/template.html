@@ -31,7 +31,7 @@
                 term="{{:: 'nutanix_dashboard_cluster_commercial_name' | translate }}"
             >
                 <oui-tile-description>
-                    <protected-data
+                    <iam-protected-data
                         is-hidden="!$ctrl.haveServicesAuthorizations()"
                     >
                         <oui-spinner
@@ -43,7 +43,7 @@
                             data-ng-bind="$ctrl.servicesDetails.billing.plan.invoiceName"
                         >
                         </span>
-                    </protected-data>
+                    </iam-protected-data>
                 </oui-tile-description>
             </oui-tile-definition>
 
@@ -102,7 +102,7 @@
                 data-ng-if="$ctrl.isPackTypeAvailable"
             >
                 <oui-tile-description>
-                    <protected-data
+                    <iam-protected-data
                         is-hidden="!$ctrl.haveServicesAuthorizations()"
                     >
                         <a
@@ -125,7 +125,7 @@
                             data-ng-if="$ctrl.isLegacyPack"
                             data-ng-bind="$ctrl.packType"
                         ></span>
-                    </protected-data>
+                    </iam-protected-data>
                 </oui-tile-description>
             </oui-tile-definition>
 
@@ -169,12 +169,12 @@
                 term="{{:: 'nutanix_dashboard_cluster_datacenter' | translate }}"
             >
                 <oui-tile-description>
-                    <protected-data
+                    <iam-protected-data
                         is-hidden="!$ctrl.haveServicesAuthorizations()"
                     >
                         <datacenter-name datacenter="$ctrl.server.datacenter">
                         </datacenter-name>
-                    </protected-data>
+                    </iam-protected-data>
                 </oui-tile-description>
             </oui-tile-definition>
 
@@ -183,13 +183,13 @@
                 term="{{:: 'nutanix_dashboard_cluster_rack' | translate }}"
             >
                 <oui-tile-description>
-                    <protected-data
+                    <iam-protected-data
                         is-hidden="!$ctrl.haveServicesAuthorizations()"
                     >
                         <span
                             data-ng-bind=":: $ctrl.getNodeRacks() || '-'"
                         ></span>
-                    </protected-data>
+                    </iam-protected-data>
                 </oui-tile-description>
             </oui-tile-definition>
         </oui-tile>

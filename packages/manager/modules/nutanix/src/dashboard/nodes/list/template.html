@@ -6,18 +6,14 @@
         data-searchable
         data-filterable
     >
-        <a
-            data-ng-if="!$row.isHiddenNode"
-            class="oui-link"
-            data-ui-sref="{{:: $ctrl.constructor.getNodeDetailsState($row.name) }}"
-            data-ng-bind="$row.iam.displayName"
-        >
-        </a>
-        <span
-            data-ng-if="$row.isHiddenNode"
-            data-translate="nutanix_dashboard_nodes_list_data_hidden"
-        >
-        </span>
+        <iam-protected-data is-hidden="$row.isHiddenNode">
+            <a
+                class="oui-link"
+                data-ui-sref="{{:: $ctrl.constructor.getNodeDetailsState($row.name) }}"
+                data-ng-bind="$row.iam.displayName"
+            >
+            </a>
+        </iam-protected-data>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="'nutanix_dashboard_nodes_list_type_of_server' | translate"
