@@ -69,6 +69,18 @@ exports[`New > should render correctly 1`] = `
           />
         </osds-form-field>
       </div>
+      <div
+        class="flex mt-6"
+      >
+        <osds-button
+          class="w-fit"
+          color="primary"
+          data-testid="next-cta"
+          size="md"
+        >
+          common_stepper_next_button_label
+        </osds-button>
+      </div>
     </div>
   </section>
   <div />
