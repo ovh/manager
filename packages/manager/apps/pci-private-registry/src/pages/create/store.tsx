@@ -1,6 +1,6 @@
 import { TLocalisation } from '@ovh-ux/manager-pci-common';
 import { create } from 'zustand';
-import { StepEnum, TState, TStepperState } from '@/pages/create/types';
+import { StepEnum, TState, TStepsState } from '@/pages/create/types';
 import { TCapability } from '@/api/data/capability';
 import { createRegistry } from '@/api/data/registry';
 
@@ -14,8 +14,8 @@ type TStore = {
     region: (val: TLocalisation) => void;
     plan: (val: TCapability['plans'][0]) => void;
   };
-  stepper: TStepperState;
-  act: {
+  stepsState: TStepsState;
+  stepsHandle: {
     open: (step: StepEnum) => void;
     close: (step: StepEnum) => void;
     check: (step: StepEnum) => void;
@@ -26,12 +26,12 @@ type TStore = {
   reset: () => void;
   create: (
     projectId: string,
-    on: {
+    callbacks: {
       success: () => void;
       error: (e: {
-        response: { data: { message: any } };
-        error: { message: any };
-        message: any;
+        response: { data: { message: never } };
+        error: { message: never };
+        message: never;
       }) => void;
       end: () => void;
     },
@@ -89,7 +89,7 @@ export const useStore = create<TStore>((set, get) => ({
       }));
     },
   },
-  stepper: {
+  stepsState: {
     [StepEnum.REGION]: {
       isOpen: true,
       isLocked: false,
@@ -106,52 +106,52 @@ export const useStore = create<TStore>((set, get) => ({
       isChecked: false,
     },
   },
-  act: {
+  stepsHandle: {
     open: (step: StepEnum) => {
       set(() => ({
-        stepper: {
-          ...get().stepper,
-          [step]: { ...get().stepper[step], isOpen: true },
+        stepsState: {
+          ...get().stepsState,
+          [step]: { ...get().stepsState[step], isOpen: true },
         },
       }));
     },
     close: (step: StepEnum) => {
       set(() => ({
-        stepper: {
-          ...get().stepper,
-          [step]: { ...get().stepper[step], isOpen: false },
+        stepsState: {
+          ...get().stepsState,
+          [step]: { ...get().stepsState[step], isOpen: false },
         },
       }));
     },
     check: (step: StepEnum) => {
       set(() => ({
-        stepper: {
-          ...get().stepper,
-          [step]: { ...get().stepper[step], isChecked: true },
+        stepsState: {
+          ...get().stepsState,
+          [step]: { ...get().stepsState[step], isChecked: true },
         },
       }));
     },
     uncheck: (step: StepEnum) => {
       set(() => ({
-        stepper: {
-          ...get().stepper,
-          [step]: { ...get().stepper[step], isChecked: false },
+        stepsState: {
+          ...get().stepsState,
+          [step]: { ...get().stepsState[step], isChecked: false },
         },
       }));
     },
     lock: (step: StepEnum) => {
       set(() => ({
-        stepper: {
-          ...get().stepper,
-          [step]: { ...get().stepper[step], isLocked: true },
+        stepsState: {
+          ...get().stepsState,
+          [step]: { ...get().stepsState[step], isLocked: true },
         },
       }));
     },
     unlock: (step: StepEnum) => {
       set(() => ({
-        stepper: {
-          ...get().stepper,
-          [step]: { ...get().stepper[step], isLocked: false },
+        stepsState: {
+          ...get().stepsState,
+          [step]: { ...get().stepsState[step], isLocked: false },
         },
       }));
     },
@@ -187,12 +187,12 @@ export const useStore = create<TStore>((set, get) => ({
   },
   create: async (
     projectId: string,
-    on: {
+    callbacks: {
       success: () => void;
       error: (e: {
-        response: { data: { message: any } };
-        error: { message: any };
-        message: any;
+        response: { data: { message: never } };
+        error: { message: never };
+        message: never;
       }) => void;
       end: () => void;
     },
@@ -205,11 +205,11 @@ export const useStore = create<TStore>((set, get) => ({
 
     try {
       await createRegistry(projectId, payload);
-      on.success();
+      callbacks.success();
     } catch (e) {
-      on.error(e);
+      callbacks.error(e);
     } finally {
-      on.end();
+      callbacks.end();
     }
   },
 }));
