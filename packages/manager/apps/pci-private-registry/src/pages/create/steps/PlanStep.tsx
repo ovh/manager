@@ -40,7 +40,7 @@ export default function PlanStep(): JSX.Element {
 
   const { data: capabilities } = useGetCapabilities(projectId);
 
-  const on = {
+  const createCallbacks = {
     success: () => {
       addSuccess(
         <OsdsText
@@ -57,9 +57,9 @@ export default function PlanStep(): JSX.Element {
       );
     },
     error: (e: {
-      response: { data: { message: any } };
-      error: { message: any };
-      message: any;
+      response: { data: { message: never } };
+      error: { message: never };
+      message: never;
     }) => {
       addError(
         <OsdsText
@@ -89,14 +89,14 @@ export default function PlanStep(): JSX.Element {
       name: `${PRIVATE_REGISTRY_CREATE_PLAN}${store.state.plan.name[0]}`,
     });
 
-    store.create(projectId, on);
+    store.create(projectId, createCallbacks);
   };
 
   return (
     <StepComponent
-      isOpen={store.stepper[StepEnum.PLAN].isOpen}
-      isLocked={store.stepper[StepEnum.PLAN].isLocked}
-      isChecked={store.stepper[StepEnum.PLAN].isChecked}
+      isOpen={store.stepsState[StepEnum.PLAN].isOpen}
+      isLocked={store.stepsState[StepEnum.PLAN].isLocked}
+      isChecked={store.stepsState[StepEnum.PLAN].isChecked}
       order={3}
       title={tCreate('private_registry_create_choose_plan')}
     >

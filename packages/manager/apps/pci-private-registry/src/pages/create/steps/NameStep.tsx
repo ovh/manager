@@ -17,33 +17,33 @@ export default function NameStep() {
 
   const store = useStore();
 
-  const { act } = store;
+  const { stepsHandle } = store;
 
   return (
     <StepComponent
-      isOpen={store.stepper[StepEnum.NAME].isOpen}
-      isLocked={store.stepper[StepEnum.NAME].isLocked}
-      isChecked={store.stepper[StepEnum.NAME].isChecked}
+      isOpen={store.stepsState[StepEnum.NAME].isOpen}
+      isLocked={store.stepsState[StepEnum.NAME].isLocked}
+      isChecked={store.stepsState[StepEnum.NAME].isChecked}
       order={2}
       title={tCreate('private_registry_create_name_cluster')}
       next={{
         action: () => {
-          act.check(StepEnum.NAME);
-          act.lock(StepEnum.NAME);
+          stepsHandle.check(StepEnum.NAME);
+          stepsHandle.lock(StepEnum.NAME);
 
-          act.open(StepEnum.PLAN);
+          stepsHandle.open(StepEnum.PLAN);
         },
         label: tCommonField('common_stepper_next_button_label'),
         isDisabled: !store.state.name.value.length,
       }}
       edit={{
         action: () => {
-          act.close(StepEnum.PLAN);
-          act.uncheck(StepEnum.PLAN);
-          act.unlock(StepEnum.PLAN);
+          stepsHandle.close(StepEnum.PLAN);
+          stepsHandle.uncheck(StepEnum.PLAN);
+          stepsHandle.unlock(StepEnum.PLAN);
 
-          act.uncheck(StepEnum.NAME);
-          act.unlock(StepEnum.NAME);
+          stepsHandle.uncheck(StepEnum.NAME);
+          stepsHandle.unlock(StepEnum.NAME);
         },
         label: tCommonField('common_stepper_modify_this_step'),
       }}
