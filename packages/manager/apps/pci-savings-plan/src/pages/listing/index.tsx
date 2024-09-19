@@ -160,20 +160,20 @@ const ListingTablePage: React.FC<ListingProps> = ({
 const Listing: React.FC<ListingProps> = ({ refetchSavingsPlans }) => {
   const { projectId } = useParams();
   const navigate = useNavigate();
-  const { data: services, isLoading, isPending } = useSavingsPlan();
+  const { data: savingsPlan, isLoading, isPending } = useSavingsPlan();
 
   useEffect(() => {
-    if (!isLoading && !isPending && services?.length === 0) {
+    if (!isLoading && !isPending && savingsPlan?.length === 0) {
       navigate(`/pci/projects/${projectId}/savings-plan/onboarding`);
     }
-  }, [isLoading, isPending, services]);
+  }, [isLoading, isPending, savingsPlan]);
 
   return (
     <>
       <Outlet />
-      {services?.length ? (
+      {savingsPlan?.length ? (
         <ListingTablePage
-          data={services}
+          data={savingsPlan}
           refetchSavingsPlans={refetchSavingsPlans}
         />
       ) : (

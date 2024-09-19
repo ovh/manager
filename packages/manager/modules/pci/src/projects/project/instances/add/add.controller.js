@@ -343,6 +343,10 @@ export default class PciInstancesAddController {
     return this.hasSavingsPlan;
   }
 
+  IsComingSoonPricingBannerDisplayed() {
+    return this.model.flavorGroup?.tagsBlob?.includes(TAGS_BLOB.COMING_SOON);
+  }
+
   onFlavorCategorySelect(flavor, category) {
     this.selectedCategory = category;
     if (flavor.legacy) {
