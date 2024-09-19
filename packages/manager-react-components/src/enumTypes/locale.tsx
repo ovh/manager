@@ -30,6 +30,7 @@ export enum OvhSubsidiary {
 export enum CurrencyCode {
   AUD = 'AUD',
   CAD = 'CAD',
+  CZK = 'CZK',
   EUR = 'EUR',
   GBP = 'GBP',
   INR = 'INR',
@@ -39,6 +40,9 @@ export enum CurrencyCode {
   USD = 'USD',
   TND = 'TND',
   XOF = 'XOF',
+  LTL = 'LTL',
+  NA = 'N/A',
+  points = 'points',
 }
 
 export const OVH_CURRENCY_BY_SUBSIDIARY: Record<OvhSubsidiary, CurrencyCode> = {
