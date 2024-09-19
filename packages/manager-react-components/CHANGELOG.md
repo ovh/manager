@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.30.0...@ovh-ux/manager-react-components@1.31.0) (2024-09-19)
+
+### Bug Fixes
+
+- **manager-react-components:** action menu button display bug ([#12989](https://github.com/ovh/manager/issues/12989)) ([a3999c9](https://github.com/ovh/manager/commit/a3999c9ddbd167af50ebf6302efd215833e2b81d)), closes [#12988](https://github.com/ovh/manager/issues/12988)
+- **manager-react-components:** add isLoading on modals ([#12991](https://github.com/ovh/manager/issues/12991)) ([f48daaa](https://github.com/ovh/manager/commit/f48daaa22623f152dca4a6f3803d245c23267d0f)), closes [#12990](https://github.com/ovh/manager/issues/12990)
+- **manager-react-components:** fix datagrid resource fetching hooks ([#12981](https://github.com/ovh/manager/issues/12981)) ([2f9f0a0](https://github.com/ovh/manager/commit/2f9f0a09b9172a3f738b3263b9cb0a68ffd07ee6)), closes [#12980](https://github.com/ovh/manager/issues/12980)
+- **manager-react-components:** fix onboarding template image ([#12987](https://github.com/ovh/manager/issues/12987)) ([5a991f9](https://github.com/ovh/manager/commit/5a991f9c960cac232859df1ec86a4409737850d1)), closes [#12986](https://github.com/ovh/manager/issues/12986)
+
+### Features
+
+- **manager-components:** make label optional in DashboardTile items ([#12985](https://github.com/ovh/manager/issues/12985)) ([21ccc36](https://github.com/ovh/manager/commit/21ccc36b163c60b84b402d89cab8ee7903959e4f)), closes [#12984](https://github.com/ovh/manager/issues/12984)
+- **manager-react-components:** hook for service details api ([#12979](https://github.com/ovh/manager/issues/12979)) ([098f415](https://github.com/ovh/manager/commit/098f415e0fd3cb052cac20536c7876d44099bc51)), closes [#12978](https://github.com/ovh/manager/issues/12978)
+
 # [1.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.29.1...@ovh-ux/manager-react-components@1.30.0) (2024-09-18)
 
 ### Bug Fixes

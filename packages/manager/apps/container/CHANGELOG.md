@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.76.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.76.1...@ovh-ux/manager-container-app@0.76.2) (2024-09-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
 ## [0.76.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.76.0...@ovh-ux/manager-container-app@0.76.1) (2024-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
