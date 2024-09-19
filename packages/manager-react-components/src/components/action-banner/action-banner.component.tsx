@@ -18,6 +18,7 @@ export type ActionBannerProps = {
   type?: ODS_MESSAGE_TYPE;
   onClick?: () => void;
   href?: string;
+  className?: string;
 };
 
 export function ActionBanner({
@@ -26,12 +27,13 @@ export function ActionBanner({
   type = ODS_MESSAGE_TYPE.info,
   onClick,
   href,
+  className,
 }: Readonly<ActionBannerProps>) {
   return (
     <OsdsMessage
       type={type}
       color={(type as unknown) as ODS_THEME_COLOR_INTENT}
-      className="mt-3 flex-row"
+      className={`mt-3 flex-row ${className || ''}`.trim()}
       data-testid="actionBanner-message_container"
     >
       <div className="sm:flex sm:flex-row sm:justify-between sm:items-center">
