@@ -34,6 +34,11 @@ import {
 } from '@/api/account';
 import { DomainType } from '@/api/domain';
 import { formInputRegex } from './account.constants';
+import {
+  checkValidityField,
+  checkValidityForm,
+  FormTypeInterface,
+} from '@/utils';
 
 export default function EmailAccountSettings({
   domainList = [],
@@ -57,17 +62,6 @@ export default function EmailAccountSettings({
   const goBack = () => {
     return navigate(goBackUrl);
   };
-
-  type FieldType = {
-    value: string;
-    touched: boolean;
-    hasError?: boolean;
-    required?: boolean;
-  };
-
-  interface FormTypeInterface {
-    [key: string]: FieldType;
-  }
 
   const [form, setForm] = useState<FormTypeInterface>({
     ...{
@@ -130,31 +124,16 @@ export default function EmailAccountSettings({
     }
   }, []);
 
-  const checkValidityField = (name: string, value: string) => {
-    return formInputRegex[name]
-      ? formInputRegex[name].test(value) ||
-          (!form[name].required && form[name].value === '')
-      : true;
-  };
-
-  const checkValidityForm = () => {
-    const touched = Object.values(form).find((field) => field.touched);
-    const error = Object.values(form).find(
-      (field) => field.hasError || (field.required && field.value === ''),
-    );
-    return touched && !error;
-  };
-
   const handleFormChange = (name: string, value: string) => {
     const newForm: FormTypeInterface = form;
     newForm[name] = {
       value,
       touched: true,
       required: form[name].required,
-      hasError: !checkValidityField(name, value),
+      hasError: !checkValidityField(name, value, formInputRegex, form),
     };
     setForm((oldForm) => ({ ...oldForm, ...newForm }));
-    setIsFormValid(checkValidityForm);
+    setIsFormValid(checkValidityForm(form));
   };
 
   const handleDomainChange = (selectedDomain: string) => {
@@ -308,7 +287,7 @@ export default function EmailAccountSettings({
               handleFormChange(name, value);
             }}
             required
-            className="rounded-r-none border-r-0 w-1/2"
+            className="rounded-r-none w-1/2"
             data-testid="input-account"
           ></OsdsInput>
           <OsdsInput
@@ -318,12 +297,12 @@ export default function EmailAccountSettings({
             value={'@'}
             readOnly={true}
             disabled={true}
-            className="w-10 rounded-none pl-5 pr-0"
+            className="w-10 rounded-none"
           ></OsdsInput>
           <OsdsSelect
             name="domain"
             value={form.domain.value}
-            className="rounded-l-none border-l-0 w-1/2"
+            className="rounded-l-none w-1/2"
             color={
               form.domain.hasError
                 ? ODS_THEME_COLOR_INTENT.error
