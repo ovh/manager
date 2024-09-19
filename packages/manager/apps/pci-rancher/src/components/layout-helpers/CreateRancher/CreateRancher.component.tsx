@@ -195,7 +195,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
       <OsdsMessage
         color={ODS_THEME_COLOR_INTENT.info}
         type={ODS_MESSAGE_TYPE.info}
-        className="my-6  max-w-5xl"
+        className="my-6 max-w-5xl"
       >
         <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
           <Trans> {t('createRancherInfoMessage')}</Trans> <br />

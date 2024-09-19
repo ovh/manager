@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -49,7 +49,7 @@ const MenuItems = ({
 
   // We don't have a better way to check that, api return only a specific code and not an id related to scope (instance, rancher),
   // So if we have number in the flavor (b3-8, c3-16) it's an instance else it's a Rancher
-  const isInstance = /\d/.test(flavor);
+  const isInstance = useMemo(() => /\d/.test(flavor), [flavor]);
 
   return (
     <>

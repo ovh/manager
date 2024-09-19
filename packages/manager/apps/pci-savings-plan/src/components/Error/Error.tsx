@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';

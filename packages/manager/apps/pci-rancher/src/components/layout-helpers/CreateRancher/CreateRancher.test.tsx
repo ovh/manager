@@ -49,6 +49,7 @@ jest.mock('@ovh-ux/manager-pci-common', () => ({
   PciDiscoveryBanner: jest.fn(
     () => 'pci_projects_project_activate_project_banner_message',
   ),
+  usePciUrl: jest.fn(() => '/url'),
 }));
 
 jest.mock('@ovh-ux/manager-react-shell-client', () => ({
@@ -60,10 +61,6 @@ jest.mock('@ovh-ux/manager-react-shell-client', () => ({
     trackPage: jest.fn(),
     trackClick: jest.fn(),
   })),
-}));
-
-jest.mock('@ovh-ux/manager-pci-common', () => ({
-  usePciUrl: jest.fn(() => '/url'),
 }));
 
 const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
