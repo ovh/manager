@@ -8,7 +8,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
-import protectedDataName from '@ovh-ux/manager-protected-data';
+import { protectedData } from '@ovh-ux/manager-components';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
@@ -29,7 +29,7 @@ angular
     ngOvhUtils,
     ngUiRouterBreadcrumb,
     ListLayoutHelper.moduleName,
-    protectedDataName,
+    protectedData,
     datacenterName,
   ])
   .config(routing)

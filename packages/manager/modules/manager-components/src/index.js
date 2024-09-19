@@ -5,6 +5,7 @@ import timeRange from './time-range';
 import serverBandwidth from './bandwidth';
 import editServiceName from './edit-name';
 import taskTracker from './task-tracker';
+import protectedData from './protected-data';
 
 export {
   inlinePropertyEditor,
@@ -13,6 +14,7 @@ export {
   serverBandwidth,
   editServiceName,
   taskTracker,
+  protectedData,
 };
 
 export default { resourceSelector };

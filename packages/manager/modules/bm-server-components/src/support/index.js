@@ -3,7 +3,7 @@ import angular from 'angular';
 import 'angular-translate';
 import '@ovh-ux/ng-at-internet';
 import ovhManagerCore from '@ovh-ux/manager-core';
-import protectedDataName from '@ovh-ux/manager-protected-data';
+import { protectedData } from '@ovh-ux/manager-components';
 
 import component from './component';
 
@@ -15,7 +15,7 @@ angular
     'pascalprecht.translate',
     'ngAtInternet',
     ovhManagerCore,
-    protectedDataName,
+    protectedData,
   ])
   .component('serverSupport', component)
   .run(/* @ngTranslationsInject:json ./translations */);

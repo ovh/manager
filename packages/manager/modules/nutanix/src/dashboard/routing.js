@@ -23,7 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
         NutanixService.getServiceDetails(serviceInfo.serviceId).catch(
           (error) => {
             if (error.status === 403) {
-              return undefined;
+              return;
             }
             throw error;
           },
@@ -51,7 +51,7 @@ export default /* @ngInject */ ($stateProvider) => {
           server.serviceId,
         ).catch((error) => {
           if (error.status === 403) {
-            return undefined;
+            return;
           }
           throw error;
         }),
