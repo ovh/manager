@@ -1,5 +1,5 @@
 {
-  "not_created_message": "Vous n'avez pas encore créé d’instance.",
+  "not_created_message": "Vous n'avez pas encore créé d'instance.",
   "content_message_1": "Déployez des instances parmi une large gamme de modèles et profitez de la flexibilité du cloud pour croître selon vos besoins.",
   "content_message_2": "Dans notre catalogue d'instances, choisissez le modèle qui vous convient parmi la gamme Sandbox, dont les ressources sont partagées, la gamme Guaranteed Resources, aux performances constantes pour les applications exigeantes, la gamme GPU, idéale pour les calculs parallélisés, et la gamme IOPS, pour les bases de données ou le big data.",
   "advice_message": "À tout moment, vous avez la possibilité d’augmenter la capacité de vos instances selon vos besoins. Vous pouvez aussi opter pour les instances de type flex, qui permettent également de réduire cette capacité.",
