@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { TInstance } from '@ovh-ux/manager-pci-common';
 import { useStep } from '@/pages/new/hooks/useStep';
-import { TInstance } from '@/type';
 
 export type TWorkflowCreationForm = {
   type: string;
