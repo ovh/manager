@@ -140,9 +140,11 @@ export const useSavingsPlanCreate = () => {
   const { projectId } = useParams();
 
   return useMutation({
-    onSuccess: () => {
-      refetch();
-      navigate(getSavingsPlansUrl(projectId));
+    onSuccess: async () => {
+      const { data } = await refetch();
+      if (data?.length) {
+        navigate(getSavingsPlansUrl(projectId));
+      }
     },
     mutationKey: getMutationKeyCreateSavingsPlan(serviceId),
     mutationFn: ({
