@@ -33,15 +33,13 @@ import {
   Datagrid,
   PciGuidesHeader,
   DataGridTextCell,
-  isDiscoveryProject,
-  PciDiscoveryBanner,
   useColumnFilters,
   FilterList,
   FilterAdd,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
+import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import { useUsers } from '@/api/hooks/useUser';
-import useProject from '@/api/hooks/useProject';
 import { User } from '@/interface';
 import Roles from './Roles';
 import CreationDate from './CreationDate';
@@ -58,7 +56,7 @@ export default function ListingPage() {
   const { projectId } = useParams();
   const [urlProject, setUrlProject] = useState('');
   const [searchField, setSearchField] = useState('');
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const filterPopoverRef = useRef(undefined);
 
@@ -172,9 +170,9 @@ export default function ListingPage() {
       </div>
       <OsdsDivider></OsdsDivider>
       <Notifications />
-      {isDiscoveryProject(project) && (
-        <PciDiscoveryBanner projectId={projectId} />
-      )}
+
+      <PciDiscoveryBanner project={project} />
+
       <div className={'sm:flex items-center justify-between mt-4'}>
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}

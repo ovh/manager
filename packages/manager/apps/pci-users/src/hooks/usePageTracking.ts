@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation, useMatches, useRouteLoaderData } from 'react-router-dom';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
-import { Project } from '@/api/data/project';
+import { TProject } from '@ovh-ux/manager-pci-common';
 import { RouteHandle } from '@/routes';
 
 import {
@@ -12,7 +12,7 @@ import {
 
 export default function usePageTracking() {
   const location = useLocation();
-  const project = useRouteLoaderData('ssh') as Project;
+  const project = useRouteLoaderData('ssh') as TProject;
   const { setPciProjectMode, trackPage } = useTracking();
   const handle = [...useMatches()].pop()?.handle as RouteHandle;
 

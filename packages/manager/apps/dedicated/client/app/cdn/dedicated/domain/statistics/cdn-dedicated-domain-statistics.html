@@ -51,7 +51,7 @@
                                 aria-label="{{ domain.mode === 'ON' ? ('cdn_domain_configuration_bypass_title_button' | translate) : ('cdn_domain_configuration_reactive_title_button' | translate) }}"
                                 data-on-click="setAction('domain/update/cdn-dedicated-domain-domain', domain)"
                                 ><span
-                                    data-translate="cdn_domain_configuration_bypass_title_button"
+                                    data-translate="{{  domain.mode === 'ON' ? 'cdn_domain_configuration_bypass_title_button' : 'cdn_domain_configuration_reactive_title_button' }}"
                                 ></span
                             ></oui-action-menu-item>
                             <oui-action-menu-item

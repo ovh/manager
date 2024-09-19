@@ -53,15 +53,18 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
   }
   return (
     <div className="flex sm:pt-8 xs:pt-2.5 flex-row items-center space-x-4 justify-center">
-      <OsdsButton
-        inline
-        color={ODS_THEME_COLOR_INTENT.primary}
-        size={ODS_BUTTON_SIZE.md}
-        href={orderHref}
-        onClick={onOrderButtonClick}
-      >
-        {orderButtonLabel}
-      </OsdsButton>
+      {orderButtonLabel && (
+        <OsdsButton
+          inline
+          color={ODS_THEME_COLOR_INTENT.primary}
+          size={ODS_BUTTON_SIZE.md}
+          href={orderHref}
+          onClick={onOrderButtonClick}
+          disabled={(!onOrderButtonClick && !orderHref) || undefined}
+        >
+          {orderButtonLabel}
+        </OsdsButton>
+      )}
 
       {moreInfoButtonLabel && moreInfoHref && (
         <OsdsButton

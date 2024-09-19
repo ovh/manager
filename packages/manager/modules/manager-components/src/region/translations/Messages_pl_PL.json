@@ -277,5 +277,7 @@
   "manager_components_region_location_HIL": "Ameryka Północna (Stany Zjednoczone)",
   "manager_components_region_location_VIN": "Ameryka Północna (Stany Zjednoczone)",
   "manager_components_region_location_OR": "Ameryka Północna (Stany Zjednoczone)",
-  "manager_components_region_location_VA": "Ameryka Północna (Stany Zjednoczone)"
+  "manager_components_region_location_VA": "Ameryka Północna (Stany Zjednoczone)",
+  "manager_components_region_YNM": "Mumbaj",
+  "manager_components_region_YNM_micro": "Mumbaj ({{micro}})"
 }

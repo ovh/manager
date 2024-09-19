@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.8.3...@ovh-ux/manager-pci-users-app@0.9.0) (2024-09-18)
+
+
+### Features
+
+* **pci-*:** use pci-common banner instead of manager-components ([d1f00eb](https://github.com/ovh/manager/commit/d1f00ebf900f54c48c86414c84a8cb32ebba7e9c))
+* **pci-*:** use pci-common banner instead of manager-components ([95db25b](https://github.com/ovh/manager/commit/95db25b19a129b0f516f78dc9a059ff48e5ae452))
+* **pci-common:** add useProject in pci common and use it in apps ([9a75975](https://github.com/ovh/manager/commit/9a7597560c4872422c331bdfcdf7a4cf92d9bca9))
+* **pci-kubernetes:** synchronize with master ([98c38d0](https://github.com/ovh/manager/commit/98c38d01d20e58a5b1140fdc4606258dedb99305))
+
+
+
+
+
 ## [0.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.8.2...@ovh-ux/manager-pci-users-app@0.8.3) (2024-09-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-users-app

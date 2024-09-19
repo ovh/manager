@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.56.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.55.0...@ovh-ux/manager-dedicated@19.56.0) (2024-09-17)
+
+
+### Bug Fixes
+
+* **dedicated.cdn:** fix invalid activation label for a domain ([#12835](https://github.com/ovh/manager/issues/12835)) ([135ff36](https://github.com/ovh/manager/commit/135ff3600047cd28b6d36c26532d9576b0173a01))
+* **dedicated.ip:** resolve service selection issue ([62f329b](https://github.com/ovh/manager/commit/62f329bba219c07ce1b44f40a4b305a084771049))
+
+
+### Features
+
+* **dedicated-cloud:** add region in HPC & some display fixes ([#12749](https://github.com/ovh/manager/issues/12749)) ([1e57062](https://github.com/ovh/manager/commit/1e57062cfaec8b8df6e419be088cb25dc4c67e17))
+* **dedicated.ip:** better services selection on ipv4 order ([#12620](https://github.com/ovh/manager/issues/12620)) ([acf067b](https://github.com/ovh/manager/commit/acf067bf4b1e71160537807cb3a8560ecc504244))
+* **dedicated:** update au doc links ([#10272](https://github.com/ovh/manager/issues/10272)) ([a80818f](https://github.com/ovh/manager/commit/a80818fb9acef89a9c3befba41203077b9c9ff06))
+
+
+
+
+
 # [19.55.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.54.0...@ovh-ux/manager-dedicated@19.55.0) (2024-09-12)
 
 

@@ -6,20 +6,16 @@
 </section>
 <section data-ng-if="!ctrl.service.loading" class="logs-home">
     <div
-        class="oui-message oui-message_warning m-3"
+        class="oui-message oui-message_warning m-3 d-flex"
         role="alert"
         data-ng-if="ctrl.isAccountDisabled"
     >
-        <i class="oui-icon oui-icon-warning-circle" aria-hidden="true"></i>
-        <p
-            class="oui-message__body font-weight-bold"
-            data-translate="logs_home_account_disabled_title"
-        ></p>
-        <p
+        <i class="oui-icon oui-icon-warning-circle mr-1" aria-hidden="true"></i>
+        <span
             class="oui-message__body"
             data-translate="logs_home_account_disabled_message"
             data-translate-values="{ disabledDate: ctrl.lastUpdatedDate }"
-        ></p>
+        ></span>
     </div>
     <div class="row d-lg-flex mb-3">
         <div class="col-xm-12 col-md-4" data-ng-if="!ctrl.isAccountDisabled">

@@ -11,6 +11,7 @@ import component from './component';
 import routing from './routing';
 
 import addModule from './add';
+import restoreModule from './restore';
 import editModule from './edit';
 import deleteModule from './delete';
 
@@ -25,6 +26,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     addModule,
+    restoreModule,
     editModule,
     deleteModule,
     snapshotPolicies,

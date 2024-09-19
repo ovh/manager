@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
-import { PageLayout, useProject } from '@ovh-ux/manager-react-components';
+import { PageLayout } from '@ovh-ux/manager-react-components';
+import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
 import { getRancherPlan, getReferenceRancherInfo } from '@/data/api/services';
 import CreateRancher from '@/components/layout-helpers/CreateRancher/CreateRancher.component';
 import useCreateRancher from '@/data/hooks/useCreateRancher/useCreateRancher';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import { getRanchersUrl } from '@/utils/route';
-import { PciProjectPlanCode, RancherService } from '@/types/api.type';
+import { RancherService } from '@/types/api.type';
 import { ranchersQueryKey } from '@/data/hooks/useRancher/useRancher';
 import {
   useSimpleTrackingPage,
@@ -77,9 +78,7 @@ export default function Create() {
         versions={versions?.filter((v) => v.status === 'AVAILABLE')}
         plans={plans?.data}
         pricing={plansPricing}
-        isProjectDiscoveryMode={
-          project?.planCode === PciProjectPlanCode.DISCOVERY
-        }
+        isProjectDiscoveryMode={isDiscoveryProject(project)}
       />
     </PageLayout>
   );

@@ -46,6 +46,6 @@
   "updateOfferModalValidateButton": "Bestätigen",
   "updateOfferModaleTitle": "Angebot wechseln",
   "updateOfferModalDescription": "Sie sind im Begriff, Ihr aktuelles Angebot für das Angebot {{availableServicePlan}} zu ändern. Ihnen werden {{planPricing}} inkl. MwSt/Stunde pro orchestrierter vCPU abgerechnet. Dies wird sofort wirksam und hat keine Auswirkungen auf Ihre „Downstream-Cluster“ oder die Daten Ihres gemanagten Rancher. Bitte bestätigen Sie, dass Sie fortfahren möchten.",
-  "updateOfferPending": "Der Angebotswechsel wurde registriert Bitte gedulden Sie sich einen Augenblick.",
+  "updateOfferPending": "Der Angebotswechsel wurde registriert. Bitte gedulden Sie sich einen Augenblick.",
   "updateOfferError": "Es ist ein Fehler aufgetreten: {{errorMessage}}"
 }

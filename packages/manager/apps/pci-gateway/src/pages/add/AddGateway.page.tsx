@@ -14,17 +14,19 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import {
-  isDiscoveryProject,
   Notifications,
-  PciDiscoveryBanner,
   PciGuidesHeader,
   useNotifications,
-  useProject,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import {
+  isDiscoveryProject,
+  PciDiscoveryBanner,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
 import { SizeStep } from '@/pages/add/SizeStep';
 import { LocationStep } from '@/pages/add/LocationStep';
 import { NetworkStep } from '@/pages/add/NetworkStep';
@@ -39,7 +41,7 @@ export default function AddGatewayPage(): JSX.Element {
   const { t: tEdit } = useTranslation('edit');
   const { clearNotifications } = useNotifications();
   const { projectId } = useParams();
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
   const store = useNewGatewayStore();
   const projectUrl = useProjectUrl('public-cloud');
   const backHref = useHref('..');
@@ -160,11 +162,11 @@ export default function AddGatewayPage(): JSX.Element {
           />
         </OsdsLink>
       </p>
-      {store.project?.isDiscovery && (
-        <div className="mb-8">
-          <PciDiscoveryBanner projectId={projectId} />
-        </div>
-      )}
+
+      <div className="mb-8">
+        <PciDiscoveryBanner project={project} />
+      </div>
+
       <div className="grid grid-cols-1 gap-4">
         <SizeStep />
         <LocationStep />

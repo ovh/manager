@@ -6,6 +6,8 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import routing from './dedicatedClouds.routing';
+import dedicatedCloudListComponent from '../components/dedicated-cloud/list';
+import dedicatedCloudService from '../components/dedicated-cloud/dedicatedCloud.service';
 
 const moduleName = 'ovhManagerDedicatedCloud';
 
@@ -16,6 +18,8 @@ angular
     'pascalprecht.translate',
     ListLayoutHelper.moduleName,
     'ui.router',
+    dedicatedCloudService,
+    dedicatedCloudListComponent,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

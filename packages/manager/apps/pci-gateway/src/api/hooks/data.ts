@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { TCatalog } from '@ovh-ux/manager-pci-common';
 import { useCloudCatalog } from '@/api/hooks/cloud-catalog';
 import { useAvailableGatewayPlans } from '@/api/hooks/gateway-plans';
-import { TCloudCatalogResponse } from '@/api/data/cloud-catalog';
 import { TAvailableGatewayPlansResponse } from '@/api/data/gateway-plans';
 import { useInactiveRegions } from '@/api/hooks/useInactiveRegions';
 
@@ -120,11 +120,11 @@ export const useData = (projectId: string) => {
             name: string;
             hourly?: {
               plan: TAvailableGatewayPlansResponse['plans'][0];
-              addon: TCloudCatalogResponse['addons'][0];
+              addon: TCatalog['addons'][0];
             };
             monthly?: {
               plan: TAvailableGatewayPlansResponse['plans'][0];
-              addon: TCloudCatalogResponse['addons'][0];
+              addon: TCatalog['addons'][0];
             };
           }[],
         )

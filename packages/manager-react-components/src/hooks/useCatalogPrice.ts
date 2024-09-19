@@ -16,9 +16,11 @@ const FRENCH_FORMAT = [
   'PT',
   'TN',
 ];
+export const GERMAN_FORMAT = ['DE', 'FI', 'SN'];
 
 export interface CatalogPriceOptions {
   hideTaxLabel?: boolean;
+  exclVat?: boolean;
 }
 
 export const useCatalogPrice = (
@@ -28,9 +30,11 @@ export const useCatalogPrice = (
   const { i18n, t } = useTranslation('order-price');
   const { me } = useMe();
 
-  const isTaxExcl = [...ASIA_FORMAT, ...FRENCH_FORMAT].includes(
-    me?.ovhSubsidiary,
-  );
+  const isTaxExcl =
+    options?.exclVat ||
+    [...ASIA_FORMAT, ...FRENCH_FORMAT, ...GERMAN_FORMAT].includes(
+      me?.ovhSubsidiary,
+    );
 
   const getTextPrice = (priceInCents: number) => {
     const priceToFormat = priceInCents / 100000000;

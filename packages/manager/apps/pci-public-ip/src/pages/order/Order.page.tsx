@@ -1,11 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref, useParams } from 'react-router-dom';
-import {
-  isDiscoveryProject,
-  Notifications,
-  PciDiscoveryBanner,
-} from '@ovh-ux/manager-react-components';
+import { Notifications } from '@ovh-ux/manager-react-components';
 import {
   OsdsBreadcrumb,
   OsdsIcon,
@@ -18,7 +14,7 @@ import {
   ShellContext,
   useNavigation,
 } from '@ovh-ux/manager-react-shell-client';
-import useProject from '@/api/hooks/useProject';
+import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { IpTypeStep } from '@/pages/order/steps/IpTypeStep';
 import { FailoverSteps } from '@/pages/order/steps/FailoverSteps';
@@ -38,7 +34,7 @@ export default function OrderPage(): JSX.Element {
   const { t: tStepper } = useTranslation('stepper');
 
   const { form, setSteps } = useOrderStore();
-  const { data: project } = useProject(projectId);
+  const { data: project } = useProject();
 
   const [projectUrl, setProjectUrl] = useState('');
   const backLink = useHref('..');
@@ -100,9 +96,9 @@ export default function OrderPage(): JSX.Element {
       <p className="mb-3 font-sans text-base text-[#4d5592]">
         {tOrder('pci_additional_ip_create_description')}
       </p>
-      {isDiscoveryProject(project) && (
-        <PciDiscoveryBanner projectId={projectId} />
-      )}
+
+      <PciDiscoveryBanner project={project} />
+
       <div className="flex flex-col gap-y-4 mt-4">
         <IpTypeStep
           projectId={projectId}

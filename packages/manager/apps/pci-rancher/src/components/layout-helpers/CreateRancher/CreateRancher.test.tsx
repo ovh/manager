@@ -33,9 +33,6 @@ jest.mock('@ovh-ux/manager-react-components', () => ({
   ...jest.requireActual('@ovh-ux/manager-react-components'),
   Subtitle: jest.fn(),
   Title: jest.fn(),
-  PciDiscoveryBanner: jest.fn(
-    () => 'pci_projects_project_activate_project_banner_message',
-  ),
   useCatalogPrice: jest.fn(() => ({
     getFormattedHourlyCatalogPrice: jest.fn(() => 0.0171),
     getFormattedMonthlyCatalogPrice: jest.fn(() => 12.312),
@@ -45,6 +42,13 @@ jest.mock('@ovh-ux/manager-react-components', () => ({
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
+}));
+
+jest.mock('@ovh-ux/manager-pci-common', () => ({
+  useProject: jest.fn(() => ({ data: {} })),
+  PciDiscoveryBanner: jest.fn(
+    () => 'pci_projects_project_activate_project_banner_message',
+  ),
 }));
 
 jest.mock('@ovh-ux/manager-react-shell-client', () => ({

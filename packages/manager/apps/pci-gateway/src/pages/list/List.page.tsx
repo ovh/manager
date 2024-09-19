@@ -2,13 +2,10 @@ import {
   Datagrid,
   FilterAdd,
   FilterList,
-  isDiscoveryProject,
   Notifications,
-  PciDiscoveryBanner,
   PciGuidesHeader,
   useColumnFilters,
   useDataGrid,
-  useProject,
 } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -39,6 +36,7 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import { useAggregatedGateway } from '@/api/hooks/useGateway';
 import ListGuard from '@/pages/list/ListGuard';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
@@ -55,7 +53,7 @@ export default function ListingPage() {
   const { navigation, tracking } = useContext(ShellContext).shell;
   const { projectId } = useParams();
   const [searchField, setSearchField] = useState('');
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const filterPopoverRef = useRef(undefined);
 
@@ -145,9 +143,7 @@ export default function ListingPage() {
         <OsdsDivider></OsdsDivider>
         <Notifications />
         <div className="mb-5">
-          {isDiscoveryProject(project) && (
-            <PciDiscoveryBanner projectId={projectId} />
-          )}
+          <PciDiscoveryBanner project={project} />
         </div>
         <div className={'sm:flex items-center justify-between mt-4'}>
           <OsdsButton
