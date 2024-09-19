@@ -29,5 +29,9 @@
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_minor": "Install minor update ({{version}} - build {{build}})",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_reschedule_update": "Modify the update date",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_move": "Link IP blocks to another service",
-  "ovhManagerPccDashboardGeneralInformation_commercial_range": "Commercial name"
+  "ovhManagerPccDashboardGeneralInformation_commercial_range": "Commercial range",
+  "ovhManagerPccDashboardGeneralInformation_loadLocation_error": "An error has occurred retrieving the data required to display location information.",
+  "ovhManagerPccDashboardGeneralInformation_location_zone": "Private Cloud Area",
+  "ovhManagerPccDashboardGeneralInformation_location_region_location": "Location",
+  "ovhManagerPccDashboardGeneralInformation_location_region": "Region"
 }

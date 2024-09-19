@@ -6,10 +6,7 @@ import {
   FilterAdd,
   FilterList,
   Headers,
-  isDiscoveryProject,
   Notifications,
-  PciAnnouncementBanner,
-  PciDiscoveryBanner,
   PciGuidesHeader,
   PciMaintenanceBanner,
   RedirectionGuard,
@@ -17,7 +14,6 @@ import {
   useDataGrid,
   useNotifications,
   useProductMaintenance,
-  useProject,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -39,6 +35,11 @@ import {
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
+import {
+  PciAnnouncementBanner,
+  PciDiscoveryBanner,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
 import { useAnnouncementBanner } from '@/hooks/useAnnouncementBanner';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 
@@ -57,7 +58,7 @@ export default function ListingPage() {
   const { isBannerVisible } = useAnnouncementBanner();
   const columns = useDatagridColumn(projectId, projectUrl);
   const [searchField, setSearchField] = useState('');
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const { clearNotifications } = useNotifications();
   const filterPopoverRef = useRef(undefined);
@@ -114,14 +115,12 @@ export default function ListingPage() {
             ]}
           />
         )}
-
         <div className="header mb-6 mt-8">
           <Headers
             title={t('pci_projects_project_storages_blocks_title')}
             headerButton={<PciGuidesHeader category="instances" />}
           />
         </div>
-
         <OsdsDivider></OsdsDivider>
 
         {hasMaintenance && (
@@ -131,12 +130,11 @@ export default function ListingPage() {
             productName={t('pci_projects_project_storages_blocks_title')}
           />
         )}
-        {isBannerVisible && (
-          <PciAnnouncementBanner data-testid="ListPage_announcementBanner" />
-        )}
-        {isDiscoveryProject(project) && (
-          <PciDiscoveryBanner projectId={projectId} />
-        )}
+
+        <PciAnnouncementBanner data-testid="ListPage_announcementBanner" />
+
+        <PciDiscoveryBanner project={project} />
+
         <Notifications />
         <div className="sm:flex items-center justify-between mt-4">
           <OsdsButton
@@ -251,7 +249,6 @@ export default function ListingPage() {
             <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
           </div>
         )}
-
         {!isLoading && !error && (
           <div>
             <Datagrid

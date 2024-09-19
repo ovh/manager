@@ -1,10 +1,6 @@
 import {
-  isDiscoveryProject,
-  PciAnnouncementBanner,
-  PciDiscoveryBanner,
   PciGuidesHeader,
   useNotifications,
-  useProject,
 } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -23,10 +19,14 @@ import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  PciAnnouncementBanner,
+  PciDiscoveryBanner,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
 import GlobalRegionsComponent from '@/components/global-regions/GlobalRegions.component';
 import LocalZoneComponent from '@/components/local-zones/LocalZone.component';
 import { PrivateNetworkTabName } from '@/constants';
-import { useAnnouncementBanner } from '@/hooks/useAnnouncement';
 import { MaintenanceBanner } from '@/components/maintenance/MaintenanceBanner.component';
 import { useProductMaintenance } from '@/components/maintenance/useMaintenance';
 import ListGuard from './ListGuard';
@@ -47,10 +47,9 @@ export default function ListingPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { projectId } = useParams();
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
   const activeTab = getActiveTab(location.pathname);
-  const { isBannerVisible } = useAnnouncementBanner();
 
   const handlerTabChanged = (event: CustomEvent) => {
     clearNotifications();
@@ -98,12 +97,11 @@ export default function ListingPage() {
           </div>
         </div>
 
-        {isBannerVisible && <PciAnnouncementBanner projectId={projectId} />}
+        <PciAnnouncementBanner projectId={projectId} />
 
         <div className="mb-5">
-          {isDiscoveryProject(project) && (
-            <PciDiscoveryBanner projectId={projectId} />
-          )}
+          <PciDiscoveryBanner project={project} />
+
           {hasMaintenance && (
             <div className="mt-5">
               <MaintenanceBanner maintenanceURL={maintenanceURL} />

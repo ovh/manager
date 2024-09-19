@@ -9,16 +9,13 @@ const state = {
   },
   resolve: {
     previousState: /* @ngInject */ ($transition$) => $transition$.$from(),
-    goBack: /* @ngInject */ ($state, previousState) => (options = {}) => {
+    goBack: /* @ngInject */ ($state) => (options = {}) => {
       const mergedOptions = {
         nsUpdateStatus: NS_UPDATE_RESULT.EMPTY,
         ...options,
       };
 
-      return $state.go(
-        previousState.name || 'app.domain.product.dns',
-        mergedOptions,
-      );
+      return $state.go('app.domain.product.dns', mergedOptions);
     },
     breadcrumb: /* @ngInject */ ($translate) =>
       $translate.instant('domain_dns_modify'),

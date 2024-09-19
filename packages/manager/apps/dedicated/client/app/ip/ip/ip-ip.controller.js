@@ -73,14 +73,33 @@ export default /* @ngInject */
 
   function fetchServices() {
     return Ip.getServicesList().then((services) => {
-      $scope.services = services.sort(
-        ({ serviceName: a }, { serviceName: b }) => (a > b ? 1 : -1),
-      );
+      $scope.services = services
+        .sort(({ serviceName: a }, { serviceName: b }) => (a > b ? 1 : -1))
+        .map((service) => ({
+          ...service,
+          displayName:
+            service.displayName !== service.serviceName
+              ? `${service.displayName} <br><small>(${service.serviceName})</small>`
+              : `${service.serviceName}`,
+          translatedCategory: $translate.instant(
+            `ip_filter_services_title_${service.category}`,
+          ),
+        }));
+
+      $scope.services.unshift({
+        serviceName: null,
+        displayName: $translate.instant('ip_filter_services__ALL'),
+      });
+
       if ($stateParams.serviceName) {
         $scope.selection.service = { serviceName: $stateParams.serviceName };
       }
     });
   }
+
+  $scope.getServiceTypeLabel = function getServiceTypeLabel(item) {
+    return item.translatedCategory;
+  };
 
   function init() {
     $scope.loading = true;

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.14.0...@ovh-ux/manager-netapp@1.15.0) (2024-09-17)
+
+
+### Features
+
+* **dedicated.netapp:** add restore snapshot feature ([#12021](https://github.com/ovh/manager/issues/12021)) ([8810775](https://github.com/ovh/manager/commit/8810775b6099954393c4bb67830290fed9d6b633))
+
+
+
+
+
 # [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.13.0...@ovh-ux/manager-netapp@1.14.0) (2024-08-26)
 
 

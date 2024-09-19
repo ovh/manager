@@ -1,11 +1,8 @@
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   Card,
-  isDiscoveryProject,
   OnboardingLayout,
-  PciDiscoveryBanner,
   RedirectionGuard,
-  useProject,
 } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -19,6 +16,7 @@ import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';
 import { useAllVolumes } from '@/api/hooks/useVolume';
@@ -30,7 +28,7 @@ export default function OnBoardingPage() {
   const context = useContext(ShellContext);
   const { navigation } = context.shell;
   const { ovhSubsidiary } = context.environment.getUser();
-  const { data: project } = useProject(projectId);
+  const { data: project } = useProject();
   const [urlProject, setUrlProject] = useState('');
   const navigate = useNavigate();
   const { data: volumes, isPending } = useAllVolumes(projectId);
@@ -112,11 +110,10 @@ export default function OnBoardingPage() {
         <HidePreloader />
         {project && <OsdsBreadcrumb items={breadcrumbItems} />}
 
-        {project && isDiscoveryProject(project) && (
-          <div className="mb-8">
-            <PciDiscoveryBanner projectId={projectId} />
-          </div>
-        )}
+        <div className="mb-8">
+          <PciDiscoveryBanner project={project} />
+        </div>
+
         <OnboardingLayout
           title={t('pci_projects_project_storages_blocks_title')}
           description={

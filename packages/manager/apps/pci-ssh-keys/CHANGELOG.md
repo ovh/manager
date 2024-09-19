@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.5.3...@ovh-ux/manager-pci-ssh-keys-app@0.6.0) (2024-09-18)
+
+
+### Features
+
+* **pci-*:** use pci-common banner instead of manager-components ([95db25b](https://github.com/ovh/manager/commit/95db25b19a129b0f516f78dc9a059ff48e5ae452))
+* **pci-common:** add useProject in pci common and use it in apps ([9a75975](https://github.com/ovh/manager/commit/9a7597560c4872422c331bdfcdf7a4cf92d9bca9))
+
+
+
+
+
 ## [0.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.5.2...@ovh-ux/manager-pci-ssh-keys-app@0.5.3) (2024-09-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ssh-keys-app

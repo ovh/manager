@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.29.1...@ovh-ux/manager-react-components@1.30.0) (2024-09-18)
+
+### Bug Fixes
+
+- **manager-components:** onboarding order button disabled ([3fc81c5](https://github.com/ovh/manager/commit/3fc81c5c6296a13ec613a919107d1c757200279b))
+- **manager-components:** pci-header fix k8s header urls ([263e5b4](https://github.com/ovh/manager/commit/263e5b4a41e0b559a8df851f31cc68b36cbb97c7))
+- **manager-react-components:** catalog price german formatting ([75c5810](https://github.com/ovh/manager/commit/75c58108ecd4ac1b0e447bbcf08448466b036645))
+- **manager-react-components:** remove console.log ([08623db](https://github.com/ovh/manager/commit/08623dbc31e38d185ada25fe11867c2e2dd4e850))
+- **pci-kubernetes:** flavor pricing vat ([ca8ae5b](https://github.com/ovh/manager/commit/ca8ae5b0cf5e15fd39451b424420b972d248a662))
+- rebase on master ([7f91c5f](https://github.com/ovh/manager/commit/7f91c5f361ff451cbe939760b85016870ded0c9c))
+
+### Features
+
+- **manager-components:** conditional order button display ([8362af4](https://github.com/ovh/manager/commit/8362af479368694ecd12ebc79eb0ddf9d763c9a6))
+- **pci-\*:** use pci-common banner instead of manager-components ([95db25b](https://github.com/ovh/manager/commit/95db25b19a129b0f516f78dc9a059ff48e5ae452))
+- **pci-block-storage:** use banner and useProject from pci common ([c2268c8](https://github.com/ovh/manager/commit/c2268c8bc841e9c2f812de2167c21b3ed9cc5177))
+- **pci-common:** add useProject in pci common and use it in apps ([9a75975](https://github.com/ovh/manager/commit/9a7597560c4872422c331bdfcdf7a4cf92d9bca9))
+- **pci-kubernetes:** init react apps ([4acd566](https://github.com/ovh/manager/commit/4acd566cd2e1b62fcf90658e18b27135ffaad067))
+
 ## [1.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.29.0...@ovh-ux/manager-react-components@1.29.1) (2024-09-12)
 
 ### Bug Fixes

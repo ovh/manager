@@ -5,7 +5,7 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { TAddon } from '@/api/data/catalog';
+import { TAddon } from '@ovh-ux/manager-pci-common';
 
 export const HIGHSPEED_V2_PLANCODE = 'volume.high-speed-gen2.consumption';
 

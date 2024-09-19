@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.23.1...@ovh-ux/manager-dbaas-logs@1.24.0) (2024-09-17)
+
+
+### Features
+
+* **dedicated.ldp:** deactivation message display ([dcab08f](https://github.com/ovh/manager/commit/dcab08f39f0729a56ae39bdbcf5926a3c50e519a))
+
+
+
+
+
 ## [1.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.23.0...@ovh-ux/manager-dbaas-logs@1.23.1) (2024-08-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-dbaas-logs

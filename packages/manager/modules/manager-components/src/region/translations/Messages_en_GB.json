@@ -354,5 +354,7 @@
   "manager_components_region_location_IST": "Middle East (Turkey)",
   "manager_components_region_CA": "Canada",
   "manager_components_region_CA_micro": "Canada ({{ micro }})",
-  "manager_components_region_location_CA": "North America (Canada)"
+  "manager_components_region_location_CA": "North America (Canada)",
+  "manager_components_region_YNM": "Mumbai",
+  "manager_components_region_YNM_micro": "Mumbai ({{ micro }})"
 }

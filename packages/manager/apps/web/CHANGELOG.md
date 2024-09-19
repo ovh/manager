@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.36.0...@ovh-ux/manager-web@18.36.1) (2024-09-18)
+
+
+### Bug Fixes
+
+* **domains:** dns-modify handle error ([#13114](https://github.com/ovh/manager/issues/13114)) ([92b99e7](https://github.com/ovh/manager/commit/92b99e77d2054beff7ec873fcd5d5b26d3f53188))
+
+
+
+
+
 # [18.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.35.2...@ovh-ux/manager-web@18.36.0) (2024-09-16)
 
 

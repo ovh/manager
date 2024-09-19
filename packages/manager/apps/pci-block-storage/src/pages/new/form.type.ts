@@ -1,4 +1,4 @@
-import { TAddon } from '@/api/data/catalog';
+import { TAddon } from '@ovh-ux/manager-pci-common';
 import { TLocalisation } from '@/api/hooks/useRegions';
 
 export type TFormState = {

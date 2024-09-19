@@ -1,9 +1,6 @@
 import {
-  isDiscoveryProject,
   Notifications,
-  PciDiscoveryBanner,
   useNotifications,
-  useProject,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import {
@@ -21,7 +18,12 @@ import { Suspense, useEffect } from 'react';
 
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { Translation, useTranslation } from 'react-i18next';
-import { useHref, useNavigate, useParams } from 'react-router-dom';
+import { useHref, useNavigate } from 'react-router-dom';
+import {
+  isDiscoveryProject,
+  PciDiscoveryBanner,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
 import ConfigurationStep from './steps/ConfigurationStep';
 import GatewaySummaryStep from './steps/GatewaySummaryStep';
 import LocalizationStep from './steps/LocalizationStep';
@@ -37,8 +39,7 @@ export default function NewPage(): JSX.Element {
   // </editor-fold>
 
   // <editor-fold desc="project">
-  const { projectId } = useParams();
-  const { data: project } = useProject(projectId || '');
+  const { data: project } = useProject();
   const projectUrl = useProjectUrl('public-cloud');
   const backHref = useHref('..');
 
@@ -149,9 +150,7 @@ export default function NewPage(): JSX.Element {
       </div>
 
       <div className="mb-5">
-        {isDiscoveryProject(project) && (
-          <PciDiscoveryBanner projectId={projectId} />
-        )}
+        <PciDiscoveryBanner project={project} />
       </div>
 
       <div className="flex flex-col gap-4 mb-10">

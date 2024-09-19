@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-utils@0.2.0...@ovh-ux/manager-core-utils@0.3.0) (2024-09-18)
+
+
+### Features
+
+* **pci-kubernetes:** nodepools unit tests ([423955b](https://github.com/ovh/manager/commit/423955b39b357c11225377dbb2b0e6f08aef03e9))
+
+
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-utils@0.1.0...@ovh-ux/manager-core-utils@0.2.0) (2024-04-10)
 
 

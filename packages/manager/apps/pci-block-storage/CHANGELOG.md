@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.4.3...@ovh-ux/manager-pci-block-storage-app@0.5.0) (2024-09-18)
+
+
+### Bug Fixes
+
+* rebase on master ([7f91c5f](https://github.com/ovh/manager/commit/7f91c5f361ff451cbe939760b85016870ded0c9c))
+
+
+### Features
+
+* **pci-block-storage:** use banner and useProject from pci common ([c2268c8](https://github.com/ovh/manager/commit/c2268c8bc841e9c2f812de2167c21b3ed9cc5177))
+* **pci-kubernetes:** init react apps ([4acd566](https://github.com/ovh/manager/commit/4acd566cd2e1b62fcf90658e18b27135ffaad067))
+
+
+
+
+
 ## [0.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.4.2...@ovh-ux/manager-pci-block-storage-app@0.4.3) (2024-09-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app

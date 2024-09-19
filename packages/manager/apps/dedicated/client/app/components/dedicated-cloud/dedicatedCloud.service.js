@@ -1745,6 +1745,12 @@ class DedicatedCloudService {
       .get(`/dedicatedCloud/${serviceName}/tag/vcdMigration`)
       .then(({ data }) => new PCCMigrationState(data?.state));
   }
+
+  getLocation(serviceName) {
+    return this.$http
+      .get(`/dedicatedCloud/${serviceName}/location`)
+      .then(({ data }) => data);
+  }
 }
 
 angular.module(moduleName, []).service('DedicatedCloud', DedicatedCloudService);

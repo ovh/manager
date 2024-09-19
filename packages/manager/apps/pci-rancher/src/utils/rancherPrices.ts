@@ -1,9 +1,5 @@
-import {
-  RancherPlanCode,
-  RancherPlanName,
-  TAddon,
-  TCatalog,
-} from '@/types/api.type';
+import { TAddon, TCatalog } from '@ovh-ux/manager-pci-common';
+import { RancherPlanCode, RancherPlanName } from '@/types/api.type';
 
 export const findPlanByCode = (catalog: TCatalog, planCode: RancherPlanCode) =>
   catalog?.addons.find((element) => element.planCode === planCode);

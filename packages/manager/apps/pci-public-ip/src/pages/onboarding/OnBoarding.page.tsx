@@ -2,11 +2,7 @@ import {
   useEnvironment,
   useNavigation,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  Card,
-  OnboardingLayout,
-  PciAnnouncementBanner,
-} from '@ovh-ux/manager-react-components';
+import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -24,10 +20,9 @@ import {
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
-import { Project } from '@/api/data/project';
+import { PciAnnouncementBanner, TProject } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';
-import { useAnnouncementBanner } from '@/hooks/useAnnouncement';
 import OnBoardingGuard from './OnBoardingGuard';
 
 export default function OnBoardingPage() {
@@ -36,10 +31,9 @@ export default function OnBoardingPage() {
   const { projectId } = useParams();
   const navigation = useNavigation();
   const { ovhSubsidiary } = useEnvironment().getUser();
-  const project = useRouteLoaderData('public-ips') as Project;
+  const project = useRouteLoaderData('public-ips') as TProject;
   const [urlProject, setUrlProject] = useState('');
   const navigate = useNavigate();
-  const { isBannerVisible } = useAnnouncementBanner();
 
   useEffect(() => {
     navigation
@@ -107,7 +101,7 @@ export default function OnBoardingPage() {
         <HidePreloader />
         {project && <OsdsBreadcrumb items={breadcrumbItems} />}
 
-        {isBannerVisible && <PciAnnouncementBanner projectId={projectId} />}
+        <PciAnnouncementBanner projectId={projectId} />
 
         <OnboardingLayout
           title={t('pci_additional_ips_title')}

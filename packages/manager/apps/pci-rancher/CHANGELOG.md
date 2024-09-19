@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.14.1...@ovh-ux/manager-pci-rancher-app@1.15.0) (2024-09-18)
+
+
+### Bug Fixes
+
+* **pci-rancher:** remove duplicate dependency ([4631f86](https://github.com/ovh/manager/commit/4631f86df1662c9a3abf06baf18a4d924ab8a3d9))
+* **pci-rancher:** update useProject imports ([617825c](https://github.com/ovh/manager/commit/617825c9a1eab9fe782a17142cd374bacc0e8248))
+
+
+### Features
+
+* **pci-*:** use pci-common banner instead of manager-components ([95db25b](https://github.com/ovh/manager/commit/95db25b19a129b0f516f78dc9a059ff48e5ae452))
+* **pci-common:** add useProject in pci common and use it in apps ([9a75975](https://github.com/ovh/manager/commit/9a7597560c4872422c331bdfcdf7a4cf92d9bca9))
+* **pci-rancher:** remove useless tests discovery banner ([6bb9cb9](https://github.com/ovh/manager/commit/6bb9cb96d00933cac9dc5c4dd4bde17c384ab4b4))
+
+
+
+
+
 ## [1.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.14.0...@ovh-ux/manager-pci-rancher-app@1.14.1) (2024-09-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
