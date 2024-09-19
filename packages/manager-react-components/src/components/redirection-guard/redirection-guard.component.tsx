@@ -8,6 +8,8 @@ export type RedirectionGuardProps = {
   condition: boolean;
   isLoading: boolean;
   route: string;
+  isError?: boolean;
+  errorComponent?: React.ReactNode;
 };
 
 export function RedirectionGuard({
@@ -15,15 +17,21 @@ export function RedirectionGuard({
   condition,
   isLoading,
   children,
+  isError,
+  errorComponent,
 }: RedirectionGuardProps): JSX.Element {
   if (isLoading) {
     return (
       <OsdsSpinner
         data-testid="redirectionGuard_spinner"
         size={ODS_SPINNER_SIZE.md}
-        inline={true}
+        inline
       />
     );
+  }
+
+  if (isError && errorComponent) {
+    return <>{errorComponent}</>;
   }
 
   return condition ? <Navigate to={route} /> : <>{children}</>;
