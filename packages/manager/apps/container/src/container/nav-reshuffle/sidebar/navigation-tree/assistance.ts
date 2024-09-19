@@ -12,7 +12,6 @@ export const assistanceTree: Node = {
       count: false,
       isExternal: true,
       region: ['EU'],
-      svgIcon: OvhProductName.STORE
     },
     {
       id: 'help',
@@ -20,7 +19,6 @@ export const assistanceTree: Node = {
       url: 'help',
       count: false,
       isExternal: true,
-      svgIcon: OvhProductName.HELPECENTER
     },
     {
       id: 'tickets',
@@ -36,14 +34,12 @@ export const assistanceTree: Node = {
       url: 'status',
       count: false,
       isExternal: true,
-      svgIcon: OvhProductName.NETWORKSTATUS
     },
     {
       id: 'livechat',
       features: ['livechat'],
       translation: 'sidebar_assistance_live_chat',
       count: false,
-      svgIcon: OvhProductName.LIVECHAT
     },
     {
       id: 'carbon_calculator',
@@ -54,7 +50,6 @@ export const assistanceTree: Node = {
         application: 'carbon-calculator',
         hash: '#',
       },
-      svgIcon: OvhProductName.LEAF
     }
   ]
 }

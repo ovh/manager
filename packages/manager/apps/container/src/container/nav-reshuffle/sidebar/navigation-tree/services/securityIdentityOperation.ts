@@ -8,7 +8,7 @@ const sioUniverse : Node = {
   translation: 'sidebar_security_identity_operations',
   shortTranslation: 'sidebar_security_identity_operations_short',
   illustration,
-  svgIcon: OvhProductName.SECURITYIDENTITYOPERATION,
+  svgIcon: OvhProductName.SHIELDCHECK,
   routing: {
     application: 'iam',
   },
