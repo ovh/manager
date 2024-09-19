@@ -7,6 +7,7 @@ import {
   FilterAdd,
   FilterList,
   Notifications,
+  PageLayout,
   PciGuidesHeader,
   PublicCloudProject,
   Title,
@@ -19,7 +20,6 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import {
-  OsdsBreadcrumb,
   OsdsButton,
   OsdsDivider,
   OsdsIcon,
@@ -42,6 +42,7 @@ import { FilterComparator } from '@ovh-ux/manager-core-api';
 import { Spinner } from '@/components/spinner/Spinner.component';
 import { TInstance, useInstances } from '@/data/hooks/instances/useInstances';
 import StatusChip from '@/components/statusChip/StatusChip.component';
+import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 
 const initialSorting = {
   id: 'name',
@@ -49,7 +50,8 @@ const initialSorting = {
 };
 
 const Instances: FC = () => {
-  const { t } = useTranslation('list');
+  const { t: tList } = useTranslation('list');
+  const { t: tCommon } = useTranslation('common');
   const { projectId } = useParams() as { projectId: string }; // safe because projectId has already been handled by async route loader
   const project = useRouteLoaderData('root') as PublicCloudProject;
   const navigate = useNavigate();
@@ -76,7 +78,7 @@ const Instances: FC = () => {
     isRefetching,
     isError,
   } = useInstances(projectId, {
-    limit: 25,
+    limit: 10,
     sort: sorting.id,
     sortOrder: sorting.desc ? 'desc' : 'asc',
     filters,
@@ -141,37 +143,37 @@ const Instances: FC = () => {
               </OsdsText>
             </>
           ),
-        label: t('nameId'),
+        label: tList('nameId'),
         isSortable: true,
       },
       {
         id: 'region',
         cell: (props: TInstance) => textCell(props, 'region'),
-        label: t('region'),
+        label: tList('region'),
         isSortable: false,
       },
       {
         id: 'flavor',
         cell: (props: TInstance) => textCell(props, 'flavorName'),
-        label: t('flavor'),
+        label: tList('flavor'),
         isSortable: true,
       },
       {
         id: 'image',
         cell: (props: TInstance) => textCell(props, 'imageName'),
-        label: t('image'),
+        label: tList('image'),
         isSortable: true,
       },
       {
         id: 'publicIPs',
         cell: (props: TInstance) => listCell(props, 'public'),
-        label: t('public_IPs'),
+        label: tList('public_IPs'),
         isSortable: false,
       },
       {
         id: 'privateIPs',
         cell: (props: TInstance) => listCell(props, 'private'),
-        label: t('private_IPs'),
+        label: tList('private_IPs'),
         isSortable: false,
       },
       {
@@ -182,32 +184,32 @@ const Instances: FC = () => {
           ) : (
             <StatusChip status={props.status} />
           ),
-        label: t('status'),
+        label: tList('status'),
         isSortable: false,
       },
     ],
-    [isRefetching, listCell, t, textCell],
+    [isRefetching, listCell, tList, textCell],
   );
 
   const filterColumns = useMemo(
     () => [
       {
         id: 'name',
-        label: t('nameId'),
+        label: tList('nameId'),
         comparators: [FilterComparator.Includes],
       },
       {
         id: 'flavor',
-        label: t('flavor'),
+        label: tList('flavor'),
         comparators: [FilterComparator.Includes],
       },
       {
         id: 'image',
-        label: t('image'),
+        label: tList('image'),
         comparators: [FilterComparator.Includes],
       },
     ],
-    [t],
+    [tList],
   );
 
   const resetSortAndFilters = useCallback(() => {
@@ -225,7 +227,7 @@ const Instances: FC = () => {
     () => (
       <>
         <Trans
-          t={t}
+          t={tList}
           i18nKey="unknown_error_message1"
           tOptions={{ interpolation: { escapeValue: true } }}
           shouldUnescape
@@ -239,10 +241,10 @@ const Instances: FC = () => {
           }}
         />
         <br />
-        <Trans t={t} i18nKey="unknown_error_message2" />
+        <Trans t={tList} i18nKey="unknown_error_message2" />
       </>
     ),
-    [handleRefresh, t],
+    [handleRefresh, tList],
   );
 
   const handleOdsSearchSubmit = useCallback(
@@ -273,11 +275,11 @@ const Instances: FC = () => {
   }, [data, filters.length, isFetching, navigate, projectId]);
 
   useEffect(() => {
-    if (hasInconsistency) addWarning(t('inconsistency_message'), true);
+    if (hasInconsistency) addWarning(tList('inconsistency_message'), true);
     return () => {
       clearNotifications();
     };
-  }, [addWarning, hasInconsistency, t, clearNotifications]);
+  }, [addWarning, hasInconsistency, tList, clearNotifications]);
 
   useEffect(() => {
     if (isFetching && notifications.length) clearNotifications();
@@ -285,28 +287,16 @@ const Instances: FC = () => {
 
   useEffect(() => {
     if (isError) addError(errorMessage, true);
-  }, [isError, addError, t, errorMessage]);
+  }, [isError, addError, tList, errorMessage]);
 
   if (isLoading) return <Spinner />;
 
   return (
-    <>
-      {project && (
-        <OsdsBreadcrumb
-          items={[
-            {
-              href: '/',
-              label: project.description,
-            },
-            {
-              label: 'Instances',
-            },
-          ]}
-        />
-      )}
+    <PageLayout>
+      {project && <Breadcrumb projectLabel={project.description} />}
       <div className="header mb-6 mt-8">
         <div className="flex items-center justify-between">
-          <Title>{t('instances_title')}</Title>
+          <Title>{tCommon('instances_title')}</Title>
           <PciGuidesHeader category="instances"></PciGuidesHeader>
         </div>
       </div>
@@ -328,7 +318,7 @@ const Instances: FC = () => {
                 color={ODS_THEME_COLOR_INTENT.primary}
                 className="mr-4"
               />
-              <span>{t('create_instance')}</span>
+              <span>{tCommon('create_instance')}</span>
             </span>
           </OsdsButton>
           <div className="justify-between flex gap-5">
@@ -369,7 +359,7 @@ const Instances: FC = () => {
                   className={'mr-2'}
                   color={ODS_THEME_COLOR_INTENT.primary}
                 />
-                {t('filter')}
+                {tList('filter')}
               </OsdsButton>
               <OsdsPopoverContent>
                 <FilterAdd
@@ -409,7 +399,7 @@ const Instances: FC = () => {
           </div>
         )}
       </div>
-    </>
+    </PageLayout>
   );
 };
 
