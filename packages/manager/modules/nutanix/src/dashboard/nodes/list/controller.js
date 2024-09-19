@@ -32,7 +32,6 @@ export default class NutanixAllNodesCtrl {
   }
 
   mapAllNodes() {
-    console.log({ nodes: this.nodes });
     this.nodesMapped = this.nodes.map((node) =>
       node.displayName !== null
         ? node
