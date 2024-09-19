@@ -50,14 +50,16 @@ function sortColumn(type: string, a: any, b: any, desc: boolean) {
   }
 }
 
-export const getResourcesV6 = async ({ route }: IcebergFetchParamsV6) => {
-  const { data, status, totalCount } = (await fetchIcebergV6({
-    route,
-  })) as any;
-  return { data, status, totalCount };
-};
+/**
+ * @deprecated use fetchIcebergV6 from @ovh-ux/manager-core-api
+ */
+export const getResourcesV6 = fetchIcebergV6;
+// export const getResourcesV6 = async ({ route }: IcebergFetchParamsV6) => {
+//   const { data, status, totalCount } = (await fetchIcebergV6({ route })) as any;
+//   return { data, status, totalCount };
+// };
 
-export function useResourcesV6({
+export function useResourcesV6<T = unknown>({
   route,
   queryKey,
   pageSize = 10,
@@ -65,17 +67,14 @@ export function useResourcesV6({
 }: IcebergFetchParamsV6 & ResourcesV6Hook) {
   const { data, isError, isLoading, error, status } = useQuery({
     queryKey: [queryKey],
-    queryFn: () =>
-      getResourcesV6({
-        route,
-      }),
+    queryFn: () => fetchIcebergV6<T>({ route }),
     retry: false,
   });
   const [sorting, setSorting] = useState<ColumnSort>();
   const [pageIndex, setPageIndex] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
-  const [sortData, setSortData] = useState([]);
-  const [flattenData, setFlattenData] = useState([]);
+  const [sortData, setSortData] = useState<T[]>([]);
+  const [flattenData, setFlattenData] = useState<T[]>([]);
 
   useEffect(() => {
     if (data?.data && data?.data?.length > 0) {
@@ -100,7 +99,7 @@ export function useResourcesV6({
 
     if (sortData && sorting) {
       const type = columns?.find((element) => element.id === sorting.id)?.type;
-      const sortedDatas = sortData?.sort((a, b) =>
+      const sortedDatas = sortData?.sort((a: any, b: any) =>
         sortColumn(type, a?.[sorting.id], b?.[sorting.id], sorting?.desc),
       );
       setFlattenData([]);
