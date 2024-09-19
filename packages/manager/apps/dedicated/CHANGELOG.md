@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.56.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.56.0...@ovh-ux/manager-dedicated@19.56.1) (2024-09-19)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([aa132e2](https://github.com/ovh/manager/commit/aa132e2cd29d322478f62992493ba78c3c8ee2e3))
+
+
+
+
+
 # [19.56.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.55.0...@ovh-ux/manager-dedicated@19.56.0) (2024-09-17)
 
 
