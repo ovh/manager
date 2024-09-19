@@ -16,7 +16,7 @@ export type TState = {
   plan: TCapability['plans'][0];
 };
 
-export type TStepperState = {
+export type TStepsState = {
   [StepEnum.REGION]: {
     isOpen: boolean;
     isLocked: boolean;
