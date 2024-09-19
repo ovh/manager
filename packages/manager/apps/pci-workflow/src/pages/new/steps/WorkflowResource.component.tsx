@@ -3,9 +3,9 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { TInstance } from '@ovh-ux/manager-pci-common';
 import { StepState } from '@/pages/new/hooks/useStep';
 import ResourceSelectorComponent from '@/components/new/ResourceSelector.component';
-import { TInstance } from '@/type';
 import { PciTile } from '../components/PciTile.component';
 
 interface WorkflowResourceProps {

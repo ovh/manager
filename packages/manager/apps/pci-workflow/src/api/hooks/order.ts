@@ -1,17 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useProject } from '@ovh-ux/manager-pci-common';
-import { getCatalog } from '@/api/data/order';
-
-export const getCatalogQuery = (ovhSubsidiary: string) => ({
-  queryKey: ['catalog', ovhSubsidiary],
-  queryFn: () => getCatalog(ovhSubsidiary),
-});
-
-export const useCatalog = (ovhSubsidiary: string) =>
-  useQuery({
-    ...getCatalogQuery(ovhSubsidiary),
-    enabled: !!ovhSubsidiary,
-  });
+import { getCatalogQuery, useProject } from '@ovh-ux/manager-pci-common';
 
 export const useProjectAddons = (projectId: string, ovhSubsidiary: string) => {
   const { data: project } = useProject(projectId);
@@ -22,12 +10,11 @@ export const useProjectAddons = (projectId: string, ovhSubsidiary: string) => {
       const projectPlan = catalog.plans.find(
         ({ planCode }) => planCode === project.planCode,
       );
-      const projectAddons = [
+      return [
         ...new Set(projectPlan.addonFamilies.map((f) => f.addons).flat()),
       ].map((addon) =>
         catalog.addons.find(({ planCode }) => planCode === addon),
       );
-      return projectAddons;
     },
   });
 };

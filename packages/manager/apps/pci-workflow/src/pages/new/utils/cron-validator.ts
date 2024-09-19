@@ -50,12 +50,11 @@ export default class CronValidator {
     aliasName = '',
     aliasMap: Record<string, string>,
   ) {
-    const aliasNumber = aliasName
+    return aliasName
       .toLowerCase()
       .replace(/[a-z]{3}/g, (match) =>
         aliasMap[match] === undefined ? match : aliasMap[match],
       );
-    return aliasNumber;
   }
 
   isWildcard(value = '') {

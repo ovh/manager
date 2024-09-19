@@ -3,7 +3,6 @@ import { v6 } from '@ovh-ux/manager-core-api';
 import { deleteWorkflow } from './workflow';
 
 vi.mock('@ovh-ux/manager-core-api');
-const mockedAxios = vi.mocked(v6.delete);
 
 describe('deleteWorkflow', () => {
   it('successfully deletes a workflow', async () => {
