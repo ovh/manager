@@ -1,6 +1,6 @@
 import { Subsidiary } from '@/types/user.type';
 
-type CanadianPolicyLinks = {
+export type CanadianPolicyLinks = {
   fr_CA: string;
   en_CA: string;
 };

@@ -8,6 +8,7 @@ import {
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import useUser from '@/context/User/useUser';
 import { LegalPolicyLinkByLanguage } from '@/constants';
+import { CanadianPolicyLinks } from '@/types/links.type';
 
 export const LegalInformations: FunctionComponent = () => {
   const {
@@ -20,8 +21,8 @@ export const LegalInformations: FunctionComponent = () => {
 
   const legalPolicyLink: string =
     subsidiary === 'CA'
-      ? (LegalPolicyLinkByLanguage[subsidiary] as any)[language] ||
-        LegalPolicyLinkByLanguage[subsidiary].en_CA
+      ? LegalPolicyLinkByLanguage.CA[language as keyof CanadianPolicyLinks] ||
+        LegalPolicyLinkByLanguage.CA.en_CA
       : LegalPolicyLinkByLanguage[subsidiary] ||
         LegalPolicyLinkByLanguage.DEFAULT;
   return (
