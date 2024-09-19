@@ -50,8 +50,7 @@ const initialSorting = {
 };
 
 const Instances: FC = () => {
-  const { t: tList } = useTranslation('list');
-  const { t: tCommon } = useTranslation('common');
+  const { t } = useTranslation(['list', 'common']);
   const { projectId } = useParams() as { projectId: string }; // safe because projectId has already been handled by async route loader
   const project = useRouteLoaderData('root') as PublicCloudProject;
   const navigate = useNavigate();
@@ -143,37 +142,37 @@ const Instances: FC = () => {
               </OsdsText>
             </>
           ),
-        label: tList('nameId'),
+        label: t('nameId'),
         isSortable: true,
       },
       {
         id: 'region',
         cell: (props: TInstance) => textCell(props, 'region'),
-        label: tList('region'),
+        label: t('region'),
         isSortable: false,
       },
       {
         id: 'flavor',
         cell: (props: TInstance) => textCell(props, 'flavorName'),
-        label: tList('flavor'),
+        label: t('flavor'),
         isSortable: true,
       },
       {
         id: 'image',
         cell: (props: TInstance) => textCell(props, 'imageName'),
-        label: tList('image'),
+        label: t('image'),
         isSortable: true,
       },
       {
         id: 'publicIPs',
         cell: (props: TInstance) => listCell(props, 'public'),
-        label: tList('public_IPs'),
+        label: t('public_IPs'),
         isSortable: false,
       },
       {
         id: 'privateIPs',
         cell: (props: TInstance) => listCell(props, 'private'),
-        label: tList('private_IPs'),
+        label: t('private_IPs'),
         isSortable: false,
       },
       {
@@ -184,32 +183,32 @@ const Instances: FC = () => {
           ) : (
             <StatusChip status={props.status} />
           ),
-        label: tList('status'),
+        label: t('status'),
         isSortable: false,
       },
     ],
-    [isRefetching, listCell, tList, textCell],
+    [isRefetching, listCell, t, textCell],
   );
 
   const filterColumns = useMemo(
     () => [
       {
         id: 'name',
-        label: tList('nameId'),
+        label: t('nameId'),
         comparators: [FilterComparator.Includes],
       },
       {
         id: 'flavor',
-        label: tList('flavor'),
+        label: t('flavor'),
         comparators: [FilterComparator.Includes],
       },
       {
         id: 'image',
-        label: tList('image'),
+        label: t('image'),
         comparators: [FilterComparator.Includes],
       },
     ],
-    [tList],
+    [t],
   );
 
   const resetSortAndFilters = useCallback(() => {
@@ -227,7 +226,7 @@ const Instances: FC = () => {
     () => (
       <>
         <Trans
-          t={tList}
+          t={t}
           i18nKey="unknown_error_message1"
           tOptions={{ interpolation: { escapeValue: true } }}
           shouldUnescape
@@ -241,10 +240,10 @@ const Instances: FC = () => {
           }}
         />
         <br />
-        <Trans t={tList} i18nKey="unknown_error_message2" />
+        <Trans t={t} i18nKey="unknown_error_message2" />
       </>
     ),
-    [handleRefresh, tList],
+    [handleRefresh, t],
   );
 
   const handleOdsSearchSubmit = useCallback(
@@ -275,11 +274,11 @@ const Instances: FC = () => {
   }, [data, filters.length, isFetching, navigate, projectId]);
 
   useEffect(() => {
-    if (hasInconsistency) addWarning(tList('inconsistency_message'), true);
+    if (hasInconsistency) addWarning(t('inconsistency_message'), true);
     return () => {
       clearNotifications();
     };
-  }, [addWarning, hasInconsistency, tList, clearNotifications]);
+  }, [addWarning, hasInconsistency, t, clearNotifications]);
 
   useEffect(() => {
     if (isFetching && notifications.length) clearNotifications();
@@ -287,7 +286,7 @@ const Instances: FC = () => {
 
   useEffect(() => {
     if (isError) addError(errorMessage, true);
-  }, [isError, addError, tList, errorMessage]);
+  }, [isError, addError, t, errorMessage]);
 
   if (isLoading) return <Spinner />;
 
@@ -296,7 +295,7 @@ const Instances: FC = () => {
       {project && <Breadcrumb projectLabel={project.description} />}
       <div className="header mb-6 mt-8">
         <div className="flex items-center justify-between">
-          <Title>{tCommon('instances_title')}</Title>
+          <Title>{t('common:instances_title')}</Title>
           <PciGuidesHeader category="instances"></PciGuidesHeader>
         </div>
       </div>
@@ -318,7 +317,7 @@ const Instances: FC = () => {
                 color={ODS_THEME_COLOR_INTENT.primary}
                 className="mr-4"
               />
-              <span>{tCommon('create_instance')}</span>
+              <span>{t('common:create_instance')}</span>
             </span>
           </OsdsButton>
           <div className="justify-between flex gap-5">
@@ -359,7 +358,7 @@ const Instances: FC = () => {
                   className={'mr-2'}
                   color={ODS_THEME_COLOR_INTENT.primary}
                 />
-                {tList('filter')}
+                {t('filter')}
               </OsdsButton>
               <OsdsPopoverContent>
                 <FilterAdd
