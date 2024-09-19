@@ -27,49 +27,20 @@ vi.mock('@/context/User/useUser', () => ({
 }));
 
 describe('Create.page', () => {
-  it('should have the correct link for FR user', async () => {
-    const { getByTestId } = render(<Create />);
+  it.each([
+    ['FR', 'anything', LegalPolicyLinkByLanguage.FR],
+    ['CA', 'en_CA', LegalPolicyLinkByLanguage.CA.en_CA],
+    ['CA', 'fr_CA', LegalPolicyLinkByLanguage.CA.fr_CA],
+    ['unknown', 'anything', LegalPolicyLinkByLanguage.DEFAULT],
+  ])(
+    'should have the correct link for %s user speaking %s',
+    async (sub, locale, result) => {
+      user.subsidiary = sub;
+      user.language = locale;
+      const { getByTestId } = render(<Create />);
 
-    const legalInformationContent = getByTestId('legal_information_content');
-    expect(legalInformationContent).not.toBeNull();
-    expect(
-      legalInformationContent.innerHTML.includes(LegalPolicyLinkByLanguage.FR),
-    ).toBe(true);
-  });
-
-  it('should have the correct link for CA user speaking english', async () => {
-    user.subsidiary = 'CA';
-    const { getByTestId } = render(<Create />);
-
-    const legalInformationContent = getByTestId('legal_information_content');
-    expect(
-      legalInformationContent.innerHTML.includes(
-        LegalPolicyLinkByLanguage.CA.en_CA,
-      ),
-    ).toBe(true);
-  });
-
-  it('should have the correct link for CA user speaking french', async () => {
-    user.language = 'fr_CA';
-    const { getByTestId } = render(<Create />);
-
-    const legalInformationContent = getByTestId('legal_information_content');
-    expect(
-      legalInformationContent.innerHTML.includes(
-        LegalPolicyLinkByLanguage.CA.fr_CA,
-      ),
-    ).toBe(true);
-  });
-
-  it('should have the correct link for user with an unknown sub', async () => {
-    user.subsidiary = '';
-    const { getByTestId } = render(<Create />);
-
-    const legalInformationContent = getByTestId('legal_information_content');
-    expect(
-      legalInformationContent.innerHTML.includes(
-        LegalPolicyLinkByLanguage.DEFAULT,
-      ),
-    ).toBe(true);
-  });
+      const legalInformationContent = getByTestId('legal_information_content');
+      expect(legalInformationContent.innerHTML.includes(result)).toBe(true);
+    },
+  );
 });
