@@ -220,6 +220,7 @@ export default async (containerEl, shellClient) => {
       renew: config.constants.RENEW_URL,
       urls: config.constants.URLS,
       comodo: config.constants.COMODO,
+      sectigo: config.constants.SECTIGO,
       TOP_GUIDES: config.constants.TOP_GUIDES,
       swsProxyRootPath: 'apiv6/',
       aapiHeaderName: 'X-Ovh-Session',
