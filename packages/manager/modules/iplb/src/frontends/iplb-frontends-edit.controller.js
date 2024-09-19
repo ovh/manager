@@ -18,6 +18,7 @@ export default class IpLoadBalancerFrontendsEditCtrl {
     IpLoadBalancerFailoverIpService,
     IpLoadBalancerFrontendsService,
     IpLoadBalancerZoneService,
+    udpAvailability,
   ) {
     this.$q = $q;
     this.$state = $state;
@@ -29,6 +30,7 @@ export default class IpLoadBalancerFrontendsEditCtrl {
     this.IpLoadBalancerFailoverIpService = IpLoadBalancerFailoverIpService;
     this.IpLoadBalancerFrontendsService = IpLoadBalancerFrontendsService;
     this.IpLoadBalancerZoneService = IpLoadBalancerZoneService;
+    this.udpAvailability = udpAvailability;
 
     this.initLoaders();
   }
@@ -186,6 +188,10 @@ export default class IpLoadBalancerFrontendsEditCtrl {
         });
     } else {
       this.farms.load();
+    }
+
+    if (!this.udpAvailability) {
+      this.protocols = this.protocols.filter((protocol) => protocol !== 'udp');
     }
   }
 

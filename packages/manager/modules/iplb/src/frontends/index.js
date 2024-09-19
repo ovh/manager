@@ -1,3 +1,5 @@
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
+
 import IpLoadBalancerDashboardHeaderCtrl from '../header/iplb-dashboard-header.controller';
 import IpLoadBalancerFrontendsCtrl from './iplb-frontends.controller';
 import IpLoadBalancerFrontendDeleteCtrl from './delete/iplb-frontends-delete.controller';
@@ -10,9 +12,10 @@ import IplbFrontendsTemplate from './iplb-frontends.html';
 import IplbHeaderTemplate from '../header/iplb-dashboard-header.html';
 
 const moduleName = 'ovhManagerIplbFrontends';
+const LB_FRONTEND_UDP_AVAILABILITY = 'lb-frontend-udp';
 
 angular
-  .module(moduleName, ['ui.router'])
+  .module(moduleName, ['ui.router', ngOvhFeatureFlipping])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider
@@ -59,6 +62,12 @@ angular
           resolve: {
             breadcrumb: /* @ngInject */ ($translate) =>
               $translate.instant('iplb_frontends_add'),
+            udpAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+              ovhFeatureFlipping
+                .checkFeatureAvailability(LB_FRONTEND_UDP_AVAILABILITY)
+                .then((feature) =>
+                  feature.isFeatureAvailable(LB_FRONTEND_UDP_AVAILABILITY),
+                ),
           },
         })
         .state('iplb.detail.frontends.update', {
