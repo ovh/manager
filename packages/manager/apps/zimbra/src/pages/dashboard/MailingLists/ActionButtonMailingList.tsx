@@ -16,11 +16,11 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
   const { platformUrn } = usePlatform();
 
   const hrefDeleteMailingList = useGenerateUrl('./delete', 'href', {
-    mailingListId: mailingListItem.id,
+    deleteMailingListId: mailingListItem.id,
   });
 
-  const hrefEditMailingList = useGenerateUrl('./edit', 'href', {
-    mailingListId: mailingListItem.id,
+  const hrefEditMailingList = useGenerateUrl('./settings', 'href', {
+    editMailingListId: mailingListItem.id,
   });
 
   const hrefDefineMembersMailingList = useGenerateUrl(

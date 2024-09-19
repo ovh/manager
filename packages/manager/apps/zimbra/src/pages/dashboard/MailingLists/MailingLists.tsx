@@ -18,7 +18,12 @@ import {
   Notifications,
 } from '@ovh-ux/manager-react-components';
 
-import { usePlatform, useGenerateUrl, useMailingLists } from '@/hooks';
+import {
+  usePlatform,
+  useGenerateUrl,
+  useMailingLists,
+  useOverridePage,
+} from '@/hooks';
 import ActionButtonMailingList from './ActionButtonMailingList';
 import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -128,7 +133,7 @@ export const getMailingListItem = (data: MailingListType): MailingListItem => {
     name: data?.currentState?.email,
     organizationLabel: data?.currentState?.organizationLabel,
     organizationId: data?.currentState?.organizationId,
-    owner: data?.currentState?.owner?.currentState?.email,
+    owner: data?.currentState?.owner,
     aliases: 0,
     moderators: 0,
     subscribers: data?.currentState?.members?.length || 0,
@@ -146,58 +151,67 @@ export default function MailingLists() {
   const { t } = useTranslation('mailinglists');
   const { platformId, platformUrn, data: platformData } = usePlatform();
   const { data } = useMailingLists();
+  const isOverriddedPage = useOverridePage();
 
   const items: MailingListItem[] = getMailingListItems(data);
 
   const hrefAddMailingList = useGenerateUrl('./add', 'href');
 
+  // this will need to be updated
+  const quota = platformData?.currentState?.quota || 0;
+
   return (
     <div className="py-6 mt-8">
-      <Notifications />
       <Outlet />
-      <div className="flex flex-col items-start">
-        <div className="mb-8">
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            hue={ODS_TEXT_COLOR_HUE._500}
-            size={ODS_TEXT_SIZE._200}
-            className="mr-4"
-          >
-            <strong>{t('zimbra_mailinglists_quota_label')}</strong>
-            {` ${platformData?.currentState?.quota || 0}/1000`}
-          </OsdsText>
-        </div>
-        {platformUrn && (
-          <ManagerButton
-            color={ODS_THEME_COLOR_INTENT.primary}
-            inline
-            size={ODS_BUTTON_SIZE.sm}
-            href={hrefAddMailingList}
-            urn={platformUrn}
-            iamActions={[IAM_ACTIONS.mailingList.create]}
-            data-testid="add-mailinglist-btn"
-            className="mb-6"
-          >
-            <span slot="start">
-              <OsdsIcon
-                name={ODS_ICON_NAME.PLUS}
-                size={ODS_ICON_SIZE.sm}
+
+      {!isOverriddedPage && (
+        <>
+          <Notifications />
+          <div className="flex flex-col items-start">
+            <div className="mb-8">
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                hue={ODS_TEXT_COLOR_HUE._500}
+                size={ODS_TEXT_SIZE._200}
+                className="mr-4"
+              >
+                <strong>{t('zimbra_mailinglists_quota_label')}</strong>
+                {` ${quota}/1000`}
+              </OsdsText>
+            </div>
+            {platformUrn && (
+              <ManagerButton
                 color={ODS_THEME_COLOR_INTENT.primary}
-                contrasted
-              ></OsdsIcon>
-            </span>
-            <span slot="end">{t('zimbra_mailinglists_datagrid_cta')}</span>
-          </ManagerButton>
-        )}
-      </div>
-      <Datagrid
-        columns={columns.map((column) => ({
-          ...column,
-          label: t(column.label),
-        }))}
-        items={items}
-        totalItems={platformId?.length || 0}
-      />
+                inline
+                size={ODS_BUTTON_SIZE.sm}
+                href={hrefAddMailingList}
+                urn={platformUrn}
+                iamActions={[IAM_ACTIONS.mailingList.create]}
+                data-testid="add-mailinglist-btn"
+                className="mb-6"
+              >
+                <span slot="start">
+                  <OsdsIcon
+                    name={ODS_ICON_NAME.PLUS}
+                    size={ODS_ICON_SIZE.sm}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    contrasted
+                  ></OsdsIcon>
+                </span>
+                <span slot="end">{t('zimbra_mailinglists_datagrid_cta')}</span>
+              </ManagerButton>
+            )}
+          </div>
+          <Datagrid
+            columns={columns.map((column) => ({
+              ...column,
+              label: t(column.label),
+            }))}
+            items={items}
+            totalItems={platformId?.length || 0}
+          />
+        </>
+      )}
     </div>
   );
 }

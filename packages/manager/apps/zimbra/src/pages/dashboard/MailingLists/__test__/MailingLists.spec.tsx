@@ -7,6 +7,7 @@ import MailingLists from '../MailingLists';
 
 vi.mock('@/hooks', () => {
   return {
+    useOverridePage: vi.fn(() => false),
     usePlatform: vi.fn(() => ({
       platformId: platformMock[0].id,
       platformUrn: platformMock[0].iam.urn,
@@ -15,7 +16,7 @@ vi.mock('@/hooks', () => {
       data: mailingListsMock,
     })),
     useGenerateUrl: vi.fn(
-      () => '#/00000000-0000-0000-0000-000000000001/mailinglists/add?',
+      () => '#/00000000-0000-0000-0000-000000000001/mailing_lists/add',
     ),
   };
 });
@@ -34,12 +35,12 @@ afterEach(() => {
 });
 
 describe('Mailing Lists page', () => {
-  it('Page should display correctly', () => {
+  it('should display add button correctly', () => {
     const { getByTestId } = render(<MailingLists />);
     const button = getByTestId('add-mailinglist-btn');
     expect(button).toHaveAttribute(
       'href',
-      '#/00000000-0000-0000-0000-000000000001/mailinglists/add?',
+      '#/00000000-0000-0000-0000-000000000001/mailing_lists/add',
     );
     expect(button).toHaveTextContent(
       mailingListsTranslation.zimbra_mailinglists_datagrid_cta,

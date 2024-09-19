@@ -152,6 +152,26 @@ export const Routes: any = [
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/MailingLists/MailingLists'),
             ),
+            children: [
+              {
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/MailingLists/AddAndEditMailingList'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
+              {
+                path: 'settings',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/MailingLists/AddAndEditMailingList'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
+            ],
           },
           {
             path: 'redirections',

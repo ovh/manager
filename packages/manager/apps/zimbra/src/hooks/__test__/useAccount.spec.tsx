@@ -1,10 +1,9 @@
 import { describe, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import React from 'react';
 import { platformMock, accountMock } from '@/api/_mock_';
 import { useAccount } from '../useAccount';
+import { wrapper } from '@/utils/test.provider';
 
 vi.mock('@/hooks', () => {
   return {
@@ -23,14 +22,8 @@ vi.mock('@/api/account/api', () => {
   };
 });
 
-const queryClient = new QueryClient();
-
-const wrapper = ({ children }: any) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
-
-describe('Account detail', () => {
-  it('Return detail of account', async () => {
+describe('useAccount', () => {
+  it('should return the detail of an account', async () => {
     const { result } = renderHook(() => useAccount(accountMock[0].id), {
       wrapper,
     });

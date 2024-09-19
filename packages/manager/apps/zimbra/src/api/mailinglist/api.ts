@@ -1,5 +1,5 @@
 import { v2 } from '@ovh-ux/manager-core-api';
-import { MailingListType } from './type';
+import { MailingListType, MailingListBodyParamsType } from './type';
 import { getApiPath } from '../utils/apiPath';
 
 // GET
@@ -31,6 +31,30 @@ export const getZimbraPlatformMailingListDetails = async (
 
 // POST
 
+export const postZimbraPlatformMailingList = async (
+  platformId: string,
+  params: MailingListBodyParamsType,
+) => {
+  const { data } = await v2.post(`${getApiPath(platformId)}mailingList`, {
+    targetSpec: params,
+  });
+  return data;
+};
+
 // PUT
+
+export const putZimbraPlatformMailingList = async (
+  platformId: string,
+  mailingListId: string,
+  params: MailingListBodyParamsType,
+) => {
+  const { data } = await v2.put(
+    `${getApiPath(platformId)}mailingList/${mailingListId}`,
+    {
+      targetSpec: params,
+    },
+  );
+  return data;
+};
 
 // DELETE
