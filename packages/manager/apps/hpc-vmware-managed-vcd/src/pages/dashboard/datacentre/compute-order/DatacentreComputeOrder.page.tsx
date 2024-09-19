@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -26,28 +26,45 @@ import {
 import Loading from '@/components/loading/Loading.component';
 import { QuantitySelector } from '@/components/datagrid/compute/QuantitySelector.component';
 import { subRoutes } from '@/routes/routes.constant';
-import { IVdcOrderableVHost } from '@/types/vcd-vdc-orderable-resource.interface';
-import { useVdcOrderableResource } from '@/data/hooks/useManagedVcdDatacentres';
+import { IVdcOrderableVhostPriced } from '@/types/vcd-vdc-orderable-resource.interface';
 import { validateComputeQuantity } from '@/utils/formValidation';
+import { useVdcOrderableResource } from '@/data/hooks/useOrderableResource';
+import { useVcdCatalog } from '@/data/hooks/useVcdCatalog';
+import { getPricedOrderableVhostList } from '@/utils/getPricedOrderableResource';
+import useVcdOrder from '@/data/hooks/useVcdOrder';
 
 export default function ComputeOrderPage() {
   const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/compute');
   const { id, vdcId } = useParams();
   const navigate = useNavigate();
-  const { data, isLoading, isError } = useVdcOrderableResource(id, vdcId);
   const [selectedVhost, setSelectedVhost] = useState<string>(null);
   const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
+  const { data, isLoading, isError } = useVdcOrderableResource(id, vdcId);
+  const {
+    data: catalog,
+    isLoading: isLoadingCatalog,
+    isError: isCatalogError,
+  } = useVcdCatalog(id);
+  const { redirectToOrder } = useVcdOrder({
+    serviceName: id,
+    planCode: selectedVhost,
+    quantity: selectedQuantity,
+  });
 
-  const orderableVhostList = data?.data?.compute;
   const isValidQuantity = validateComputeQuantity(selectedQuantity);
+  const orderableVhostList = getPricedOrderableVhostList({
+    vhostList: data?.data?.compute,
+    catalog: catalog?.data,
+  });
 
-  // TODO:
-  // 1. orderableVhostList: retrieve each element's price from catalog
-  // 2. add price details to each vhost & handle format in <ComputeOrderPriceCell />
-  // 3. generate expressOrderURL or orderCart & redirect on order page
+  useEffect(() => {
+    if (orderableVhostList?.length && !selectedVhost) {
+      setSelectedVhost(orderableVhostList[0].profile);
+    }
+  }, [selectedVhost, orderableVhostList]);
 
-  if (isLoading) return <Loading />;
-  if (isError || !orderableVhostList?.length) {
+  if (isLoading || isLoadingCatalog) return <Loading />;
+  if (isError || isCatalogError || !orderableVhostList?.length) {
     return (
       <ErrorBanner
         error={{
@@ -60,7 +77,7 @@ export default function ComputeOrderPage() {
     );
   }
 
-  const columns: DatagridColumn<IVdcOrderableVHost>[] = [
+  const columns: DatagridColumn<IVdcOrderableVhostPriced>[] = [
     {
       id: 'select',
       cell: (vhost) => (
@@ -141,6 +158,7 @@ export default function ComputeOrderPage() {
           variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
           disabled={!isValidQuantity ? true : undefined}
+          onClick={isValidQuantity ? redirectToOrder : null}
         >
           {t('managed_vcd_vdc_compute_order_confirm_cta')}
         </OsdsButton>

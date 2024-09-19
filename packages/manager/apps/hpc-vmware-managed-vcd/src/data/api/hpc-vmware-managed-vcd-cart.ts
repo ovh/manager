@@ -1,8 +1,9 @@
 import apiClient, { ApiResponse } from '@ovh-ux/manager-core-api';
+import { TVcdCatalog } from '@/types/vcd-catalog.interface';
 
-export const getVcdCartServiceOption = async (
+export const getVcdCatalog = async (
   serviceName: string,
-): Promise<ApiResponse<unknown>> =>
+): Promise<ApiResponse<TVcdCatalog>> =>
   apiClient.v2.get(
     `/order/cartServiceOption/vmwareCloudDirector/${serviceName}`,
   );
