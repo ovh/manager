@@ -7,6 +7,7 @@ import {
   FilterAdd,
   FilterList,
   Notifications,
+  PageLayout,
   PciGuidesHeader,
   PublicCloudProject,
   Title,
@@ -19,7 +20,6 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import {
-  OsdsBreadcrumb,
   OsdsButton,
   OsdsDivider,
   OsdsIcon,
@@ -42,6 +42,7 @@ import { FilterComparator } from '@ovh-ux/manager-core-api';
 import { Spinner } from '@/components/spinner/Spinner.component';
 import { TInstance, useInstances } from '@/data/hooks/instances/useInstances';
 import StatusChip from '@/components/statusChip/StatusChip.component';
+import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 
 const initialSorting = {
   id: 'name',
@@ -49,7 +50,7 @@ const initialSorting = {
 };
 
 const Instances: FC = () => {
-  const { t } = useTranslation('list');
+  const { t } = useTranslation(['list', 'common']);
   const { projectId } = useParams() as { projectId: string }; // safe because projectId has already been handled by async route loader
   const project = useRouteLoaderData('root') as PublicCloudProject;
   const navigate = useNavigate();
@@ -76,7 +77,7 @@ const Instances: FC = () => {
     isRefetching,
     isError,
   } = useInstances(projectId, {
-    limit: 25,
+    limit: 10,
     sort: sorting.id,
     sortOrder: sorting.desc ? 'desc' : 'asc',
     filters,
@@ -290,23 +291,11 @@ const Instances: FC = () => {
   if (isLoading) return <Spinner />;
 
   return (
-    <>
-      {project && (
-        <OsdsBreadcrumb
-          items={[
-            {
-              href: '/',
-              label: project.description,
-            },
-            {
-              label: 'Instances',
-            },
-          ]}
-        />
-      )}
+    <PageLayout>
+      {project && <Breadcrumb projectLabel={project.description} />}
       <div className="header mb-6 mt-8">
         <div className="flex items-center justify-between">
-          <Title>{t('instances_title')}</Title>
+          <Title>{t('common:instances_title')}</Title>
           <PciGuidesHeader category="instances"></PciGuidesHeader>
         </div>
       </div>
@@ -328,7 +317,7 @@ const Instances: FC = () => {
                 color={ODS_THEME_COLOR_INTENT.primary}
                 className="mr-4"
               />
-              <span>{t('create_instance')}</span>
+              <span>{t('common:create_instance')}</span>
             </span>
           </OsdsButton>
           <div className="justify-between flex gap-5">
@@ -409,7 +398,7 @@ const Instances: FC = () => {
           </div>
         )}
       </div>
-    </>
+    </PageLayout>
   );
 };
 
