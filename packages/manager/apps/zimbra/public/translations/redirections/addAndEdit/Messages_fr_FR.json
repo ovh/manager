@@ -1,0 +1,10 @@
+{
+  "zimbra_redirections_edit_1": "Merci de compléter les informations pour la redirection.",
+  "zimbra_redirections_edit_2": "Les champs mentionnés avec un astérisque * sont obligatoires.",
+  "zimbra_redirections_title": "Modifier la redirection",
+  "zimbra_redirections_add_form_input_name_title_from": "De l'adresse",
+  "zimbra_redirections_add_form_input_name_title_to": "Vers l'adresse",
+  "zimbra_redirections_add_form_input_checkbox": "Conservez une copie de l'email avec le compte OVHcloud",
+  "zimbra_redirections_alias_add_btn_cancel": "Cancel",
+  "zimbra_redirections_alias_add_btn_confirm": "Confirmer"
+}
