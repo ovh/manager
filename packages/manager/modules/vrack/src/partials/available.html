@@ -1,6 +1,9 @@
 <h2 class="vrack__section-title" data-translate="vrack_your_services"></h2>
 <ul class="vrack__service-type-list">
-    <li class="vrack__section-type" data-ng-if="$ctrl.loaders.deleting">
+    <li
+        class="vrack__section-type"
+        data-ng-if="$ctrl.loaders.deleting || $ctrl.loaders.eligibleServices"
+    >
         <div class="text-center">
             <oui-spinner></oui-spinner>
         </div>
@@ -8,8 +11,8 @@
     <li
         class="vrack__service-type"
         data-ng-init="$ctrl.setAccordionState('available', 'types', $index, true)"
-        data-ng-repeat="(serviceType, services) in $ctrl.data.allowedServices track by serviceType"
-        data-ng-if="$ctrl.constructor.hasServices(services) && !$ctrl.loaders.deleting"
+        data-ng-repeat="(serviceType, services) in $ctrl.data.eligibleServices track by serviceType"
+        data-ng-if="$ctrl.constructor.hasServices(services) && !$ctrl.loaders.deleting && ![$ctrl.TYPE_SERVICE.dedicatedServerInterface, $ctrl.TYPE_SERVICE.ipv6].includes(serviceType)"
         data-ng-class="{ 'vrack__service-type_expanded': $ctrl.getAccordionState('available', 'types', $index) }"
     >
         <span
@@ -38,7 +41,7 @@
         >
             <li
                 class="vrack__service d-flex"
-                data-ng-repeat="service in services | orderBy: service.niceName track by service.id"
+                data-ng-repeat="service in services | orderBy: service.niceName track by $index"
                 data-ng-click="$ctrl.toggleAddService(service.trueServiceType, service.id, service.niceName)"
                 data-ng-class="{ vrack__service_selected: $ctrl.isSelected(service.trueServiceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
             >
