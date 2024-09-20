@@ -395,10 +395,15 @@ export default function ConfigurationStep({
                 </div>
 
                 {store.form.configureVlanId && store.form.vlanId === 0 && (
-                  <OsdsMessage className="mb-4" type={ODS_MESSAGE_TYPE.warning}>
-                    {t(
-                      'pci_projects_project_network_private_create_vlan_id_warning',
-                    )}
+                  <OsdsMessage className="my-4" type={ODS_MESSAGE_TYPE.warning}>
+                    <OsdsText
+                      color={ODS_THEME_COLOR_INTENT.text}
+                      size={ODS_TEXT_SIZE._400}
+                    >
+                      {t(
+                        'pci_projects_project_network_private_create_vlan_id_warning',
+                      )}
+                    </OsdsText>
                   </OsdsMessage>
                 )}
 
@@ -480,9 +485,14 @@ export default function ConfigurationStep({
                       className="mt-4"
                       type={ODS_MESSAGE_TYPE.warning}
                     >
-                      {t(
-                        'pci_projects_project_network_private_create_configure_vlan_taken',
-                      )}
+                      <OsdsText
+                        color={ODS_THEME_COLOR_INTENT.text}
+                        size={ODS_TEXT_SIZE._400}
+                      >
+                        {t(
+                          'pci_projects_project_network_private_create_configure_vlan_taken',
+                        )}
+                      </OsdsText>
                     </OsdsMessage>
                   )}
               </div>
