@@ -256,12 +256,12 @@
 
                                     <!-- dkim -->
                                     <button
+                                        data-ng-if="getDkimColouredChipClass(exchange, domain)"
                                         class="oui-badge"
-                                        data-ng-class="DKIM_STATUS_CLASS[domain.dkimDiag.state]"
+                                        data-ng-class="getDkimColouredChipClass(exchange, domain)"
                                         data-ng-click="setAction('emailpro/domain/dkim-autoconfig/emailpro-domain-dkim-autoconfig', {
-                                            domain,
+                                            domain
                                         })"
-                                        data-ng-if="!exchange.isMXPlan"
                                         data-translate="emailpro_tab_domain_diagnostic_dkim"
                                     ></button>
                                     <!-- end dkim -->
