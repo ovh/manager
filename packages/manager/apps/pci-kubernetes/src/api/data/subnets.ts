@@ -31,6 +31,7 @@ export const getRegionSubnets = async (
 ): Promise<TPrivateNetworkSubnet[]> => {
   const { data } = await fetchIcebergV6<TPrivateNetworkSubnet>({
     route: `/cloud/project/${projectId}/region/${regionName}/network/${networkId}/subnet`,
+    disableCache: true,
   });
   return data;
 };
