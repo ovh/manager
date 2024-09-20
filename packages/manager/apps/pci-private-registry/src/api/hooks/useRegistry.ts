@@ -10,6 +10,7 @@ import {
   renameRegistry,
   TRegistry,
   postRegistryCredentials,
+  getRegistryAvailablePlans,
 } from '../data/registry';
 import queryClient from '@/queryClient';
 
@@ -27,6 +28,11 @@ export const getRegistryPlanQueryKey = (
   projectId: string,
   registryId: string,
 ) => [...getRegistryQueryPrefix(projectId), registryId, 'plan'];
+
+export const getRegistryAvailablePlansQueryKey = (
+  projectId: string,
+  registryId: string,
+) => [...getRegistryQueryPrefix(projectId), registryId, 'available-plans'];
 
 export const getRegistryCredentialsQueryKey = (
   projectId: string,
@@ -48,6 +54,15 @@ export const useGetRegistryPlan = (projectId: string, registryId: string) =>
   useQuery({
     queryKey: getRegistryPlanQueryKey(projectId, registryId),
     queryFn: () => getRegistryPlan(projectId, registryId),
+  });
+
+export const useGetRegistryAvailablePlans = (
+  projectId: string,
+  registryId: string,
+) =>
+  useQuery({
+    queryKey: getRegistryAvailablePlansQueryKey(projectId, registryId),
+    queryFn: () => getRegistryAvailablePlans(projectId, registryId),
   });
 
 export const sortRegistries = (
