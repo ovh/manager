@@ -89,5 +89,6 @@
   "key_management_service_service-keys_delete_success": "Key deleted",
   "key_management_service_service-keys_delete_error": "Deletion pending. {{error}}",
   "key_management_service_service-keys_deactivation_success": "The key has been disabled",
-  "key_management_service_service-keys_reactivate_success": "The key has been re-enabled"
+  "key_management_service_service-keys_reactivate_success": "The key has been re-enabled",
+  "key_management_service_service_keys_back_link": "Back to the list of keys"
 }
