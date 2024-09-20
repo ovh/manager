@@ -335,7 +335,7 @@ export function getPciProjectMenu(
           id: 'data-platform',
           title: 'Data Platform',
           badge: 'beta',
-          href: 'https://eu.dataplatform.ovh.net/',
+          href: `https://eu.dataplatform.ovh.net&projectId=${projectId}`,
           external: true,
         },
         isFeaturesAvailable('logs-data-platform') && {
