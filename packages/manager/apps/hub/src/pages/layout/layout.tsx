@@ -17,9 +17,9 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-// import { useFeatureAvailability } from '@ovhcloud/manager-components';
+import { useFeatureAvailability } from '@ovhcloud/manager-components';
 import { useTranslation } from 'react-i18next';
-// import { features } from '@/pages/layout/layout.constants';
+import { features, BILLING_FEATURE } from '@/pages/layout/layout.constants';
 import { useFetchHubServices } from '@/data/hooks/services/useServices';
 import { useFetchHubLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
 
@@ -40,6 +40,9 @@ const BillingSummary = lazy(() =>
 );
 const EnterpriseBillingSummary = lazy(() =>
   import('@/pages/layout/EnterpriseBillingSummary.component'),
+);
+const PaymentStatus = lazy(() =>
+  import('@/pages/layout/PaymentStatus.component'),
 );
 
 export default function Layout() {
@@ -62,7 +65,10 @@ export default function Layout() {
     shell.ux.stopProgress();
   }, []);
 
-  // const { data: availability, isPending: isAvailabilityLoading } = useFeatureAvailability(features);
+  const {
+    data: availability,
+    isPending: isAvailabilityLoading,
+  } = useFeatureAvailability(features);
   const {
     data: services,
     isPending: areServicesLoading,
@@ -186,7 +192,11 @@ export default function Layout() {
                     )}
                     {!isLoading && (
                       <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
-                        hub-payment-status
+                        <Suspense fallback={<OsdsSkeleton />}>
+                          <PaymentStatus
+                            canManageBilling={availability[BILLING_FEATURE]}
+                          />
+                        </Suspense>
                       </div>
                     )}
                     {!isLoading && !isFreshCustomer && (

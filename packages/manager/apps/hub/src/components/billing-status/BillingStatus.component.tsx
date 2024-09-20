@@ -35,7 +35,7 @@ export default function BillingStatus({ service }: BillingStatusProps) {
           {t('manager_billing_service_status_expired')}
         </OsdsChip>
       )}
-      {service.hasDebt() && !shouldHideAutorenewStatus && (
+      {!service.hasDebt() && !shouldHideAutorenewStatus && (
         <OsdsChip
           size={ODS_CHIP_SIZE.sm}
           color={
@@ -46,13 +46,6 @@ export default function BillingStatus({ service }: BillingStatusProps) {
           {t(`manager_billing_service_status_${service.getRenew()}`)}
         </OsdsChip>
       )}
-      <button
-        type="button"
-        className="oui-popover-button"
-        data-ng-if="$ctrl.service.statusHelp"
-        data-oui-popover="{{ $ctrl.service.statusHelp }}"
-        data-oui-popover-placement="bottom"
-      ></button>
     </p>
   );
 }

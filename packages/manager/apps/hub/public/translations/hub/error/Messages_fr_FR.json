@@ -5,6 +5,7 @@
   "manager_error_page_action_reload_label": "Réessayer",
   "manager_error_page_action_home_label": "Retour à la page d'accueil",
   "manager_error_page_default": "Une erreur est survenue lors du chargement de la page.",
+  "ovh_manager_hub_payment_status_tile_error": "Impossible de récupérer les services",
   "manager_error_tile_title": "Oops …!",
   "manager_error_tile_action_reload_label": "Recharger"
 }

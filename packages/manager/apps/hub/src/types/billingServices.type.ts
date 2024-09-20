@@ -19,12 +19,14 @@ type ServiceState =
   | 'MANUAL';
 
 export type BillingServiceData = {
+  canBeEngaged?: boolean;
   canDeleteAtExpiration: boolean;
   contactAdmin: string;
   contactBilling: string;
   creation?: string;
   domain: string;
   expiration: string;
+  hasPendingEngagement?: boolean;
   id: number | string;
   renew: {
     automatic: boolean;
@@ -51,6 +53,9 @@ export type HubBillingServices = {
 };
 
 export class BillingService implements BillingServiceData {
+  // Not sent by /hub/billingServices
+  canBeEngaged?: boolean;
+
   canDeleteAtExpiration: boolean;
 
   contactAdmin: string;
@@ -60,6 +65,9 @@ export class BillingService implements BillingServiceData {
   domain: string;
 
   expiration: string;
+
+  // Not sent by /hub/billingServices
+  hasPendingEngagement?: boolean;
 
   id: number | string;
 
@@ -88,6 +96,7 @@ export class BillingService implements BillingServiceData {
   creationDate: Date;
 
   constructor({
+    canBeEngaged,
     canDeleteAtExpiration,
     contactAdmin,
     contactBilling,
@@ -95,6 +104,7 @@ export class BillingService implements BillingServiceData {
     domain,
     expiration,
     id,
+    hasPendingEngagement,
     renew,
     renewalType,
     serviceId,
@@ -102,11 +112,13 @@ export class BillingService implements BillingServiceData {
     status,
     url,
   }: BillingServiceData) {
+    this.canBeEngaged = canBeEngaged;
     this.canDeleteAtExpiration = canDeleteAtExpiration;
     this.contactAdmin = contactAdmin;
     this.contactBilling = contactBilling;
     this.domain = domain;
     this.expiration = expiration;
+    this.hasPendingEngagement = hasPendingEngagement;
     this.id = id;
     this.renew = renew;
     this.renewalType = renewalType;
@@ -119,6 +131,10 @@ export class BillingService implements BillingServiceData {
     this.expirationDate = new Date(this.expiration);
     this.creationDate = new Date(creation);
     this.formattedExpiration = new Date(this.expiration);
+  }
+
+  isBillingSuspended() {
+    return this.status === 'BILLING_SUSPENDED';
   }
 
   getRenew() {
@@ -197,5 +213,13 @@ export class BillingService implements BillingServiceData {
       !this.hasManualRenew() &&
       !this.isResiliated()
     );
+  }
+
+  hasBillingRights(nichandle) {
+    return nichandle === this.contactBilling;
+  }
+
+  hasAdminRights(nichandle) {
+    return nichandle === this.contactAdmin;
   }
 }

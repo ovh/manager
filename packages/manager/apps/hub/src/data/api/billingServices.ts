@@ -14,7 +14,7 @@ export const getBillingServices: () => Promise<
   );
   const services = data.data?.billingServices;
   // The returned value when status is 'ERROR' has changed in order to keep a standard return type
-  // for this hook, also this give a same result as previous code without the confusing part
+  // for this hook, also this give the same result as previous code without the confusing part
   return services.status === 'ERROR'
     ? {
         count: 0,
