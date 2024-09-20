@@ -471,7 +471,7 @@ pciNode.children = [
         universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_analytics_data_platform',
         count: false,
-        url: 'https://eu.dataplatform.ovh.net?projectId={projectId}',
+        url: `https://eu.dataplatform.ovh.net?projectId={projectId}`,
         features: ['data-platform'],
         tag: NodeTag.BETA,
         isExternal: true,
