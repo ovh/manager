@@ -40,7 +40,7 @@
   "sidebar_pci_volume_snapshot": "Volume Snapshot ",
   "sidebar_pci_instance_backup": "Instance Backup",
   "sidebar_pci_load_balancer": "Load Balancer",
-  "sidebar_pci_private_network": "Private network (vRack)",
+  "sidebar_pci_private_network": "Private Network",
   "sidebar_pci_failover_ip": "Failover IP",
   "sidebar_pci_rancher": "Managed Rancher Service",
   "sidebar_pci_kubernetes": "Managed Kubernetes Service",
