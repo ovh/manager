@@ -435,7 +435,7 @@
   "emailpro_tab_ACCOUNTS_partial_account": "Dieser Account wurde nicht korrekt geladen.",
   "emailpro_tab_ACCOUNTS_popover_alias": "Verwaltung der Alias",
   "emailpro_tab_ACCOUNTS_popover_delegation": "Die übertragenen Rechte verwalten",
-  "emailpro_tab_ACCOUNTS_popover_span_text": "Der Versand von E-Mails von diesem Account aus wurde aufgrund von SPAM blockiert. <br />Um den Account wieder zu entsperren, müssen Sie auf das offene Ticket antworten.<br /><br /><a href=\"{0}\" class=\"link pull-right\">Auf das Ticket antworten</a><br /> ",
+  "emailpro_tab_ACCOUNTS_popover_span_text": "Der Versand von E-Mails von diesem Account aus wurde aufgrund von SPAM blockiert. <br />Um den Account wieder zu entsperren, müssen Sie auf das offene Ticket antworten.<br /><br /><a href=\"{0}\" target=\"_top\" class=\"link pull-right\">Auf das Ticket antworten</a><br />",
   "emailpro_tab_ACCOUNTS_popover_span_title": "Account blockiert aufgrund von SPAM",
   "emailpro_tab_ACCOUNTS_pwderror": "Bestätigung stimmt nicht überein",
   "emailpro_tab_ACCOUNTS_state_CREATING": "Erstellung wird durchgeführt",
