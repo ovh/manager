@@ -197,15 +197,15 @@ export const Routes: any = [
                 ),
                 handle: { isOverridePage: true },
               },
-              /* todo for next step {
-                 path: 'delete',
-                 ...lazyRouteConfig(() =>
-                   import(
-                     '@/pages/dashboard/Redirections/ModalDeleteRedirections.page'
-                   ),
-                 ),
-                 handle: { isOverridePage: true },
-               }, */
+              {
+                path: 'delete',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/Redirections/ModalDeleteRedirections.component'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
             ],
           },
         ],
