@@ -471,7 +471,7 @@ pciNode.children = [
         universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_analytics_data_platform',
         count: false,
-        url: `https://eu.dataplatform.ovh.net?projectId={projectId}`,
+        url: 'https://hq-api.eu.dataplatform.ovh.net/iam/v4/login?authentication_provider=ovh&project={projectId}&app_id=forepaas&&response_type=token&redirect_uri=https://eu.dataplatform.ovh.net&authorize_bypass=true&token_mode=cookie&force_auth=false',
         features: ['data-platform'],
         tag: NodeTag.BETA,
         isExternal: true,
