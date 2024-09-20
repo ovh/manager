@@ -9,7 +9,10 @@ export const OPERATING_SYSTEM_ENUM = {
   NONE_32: 'none_32',
 };
 
+export const INFORMATION_UNKNOWN = 'unknown';
+
 export default {
   OPERATING_SYSTEM_ENUM,
   URLS,
+  INFORMATION_UNKNOWN,
 };
