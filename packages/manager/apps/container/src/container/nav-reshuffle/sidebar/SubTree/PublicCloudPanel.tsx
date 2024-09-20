@@ -5,7 +5,7 @@ import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
 import { Node } from '../navigation-tree/node';
-import publicCloud from '@/container/nav-reshuffle/sidebar/navigation-tree/services/publicCloud';
+import { pciNode } from '../navigation-tree/services/publicCloud';
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import { shouldHideElement } from '@/container/nav-reshuffle/sidebar/utils';
@@ -13,13 +13,13 @@ import { Location, useLocation } from 'react-router-dom';
 import style from '../style.module.scss';
 import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTree/SubTreeSection';
 
-interface PublicCloudPanelProps {
+export interface PublicCloudPanelProps {
   rootNode: Node;
   selectedNode: Node;
   handleOnSubMenuClick(node: Node): void;
 }
 
-const parseContainerURL = (
+export const parseContainerURL = (
   location: Location,
 ): { appId: string; appHash: string } => {
   const [, appId, appHash] = /^\/([^/]*)(.*)/.exec(location.pathname);
@@ -120,7 +120,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
   useEffect(() => {
     if (
       selectedPciProject &&
-      rootNode.id === publicCloud.id &&
+      rootNode.id === pciNode.id &&
       containerURL.appId != rootNode.routing?.application
     ) {
       navigationPlugin.navigateTo(
@@ -135,7 +135,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
 
   return (
     <>
-      <li className="px-3">
+      <li className="px-3" data-testid="public-cloud-panel">
         <ProjectSelector
           isLoading={!pciSuccess}
           projects={pciProjects}

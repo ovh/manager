@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import navigationRoot from '@/container/nav-reshuffle/sidebar/navigation-tree/root';
 import { useShell } from '@/context';
 
-interface SubTreeSectionProps {
+export interface SubTreeSectionProps {
   node?: Node;
   selectedPciProject?: string;
   selectedNode: Node;
@@ -53,6 +53,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
           className={`mt-3 pb-2 ${style.subtree_section}`}
           role="group"
           aria-label={t(node.translation)}
+          data-testid={`subtree-section-ul-${node.id}`}
         >
           <li className="px-3">
             <h2 className={style.subtree_section_title}>
@@ -94,6 +95,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
               ? style.subtree_submenu_items_selected
               : style.subtree_submenu_items
           }`}
+          data-testid={`subtree-section-link-${node.id}`}
         >
           <SidebarLink
             linkParams={{

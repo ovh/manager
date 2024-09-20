@@ -2,7 +2,7 @@ import { Node, NodeTag } from '../node';
 import illustration from '@/assets/images/sidebar/public-cloud.png';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
-const pciNode: Node = {
+export const pciNode: Node = {
   id: 'pci',
   idAttr: 'pci-link',
   translation: 'sidebar_pci',

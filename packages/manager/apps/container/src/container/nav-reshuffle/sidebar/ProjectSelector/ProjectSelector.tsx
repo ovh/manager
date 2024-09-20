@@ -41,7 +41,7 @@ const getProjectOption = (option: Record<string, any>): JSX.Element => {
   );
 };
 
-type Props = {
+export type Props = {
   isLoading: boolean;
   projects: PciProject[];
   selectedProject: PciProject;
