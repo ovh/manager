@@ -63,7 +63,7 @@
                         data-heading="{{::'server_configuration_tile_ipmi_heading' | translate}}"
                         data-description="{{::'server_configuration_tile_ipmi_description' | translate}}"
                     >
-                        <p data-ng-if="$ctrl.ipmiHelpUrl && $ctrl.hasSOL()">
+                        <p data-ng-if="$ctrl.ipmiHelpUrl">
                             <a
                                 data-ng-href="{{::$ctrl.ipmiHelpUrl}}"
                                 target="_blank"
@@ -289,7 +289,7 @@
                 </div>
                 <div
                     class="col-md-4"
-                    data-ng-if="$ctrl.hasSOL() && ($ctrl.ipmi.isSerialOverLanUrlSupported() || $ctrl.ipmi.isSerialOverLanUrlSupported())"
+                    data-ng-if="$ctrl.ipmi.isSerialOverLanUrlSupported() || $ctrl.ipmi.isSerialOverLanUrlSupported()"
                 >
                     <oui-tile
                         class="h-100"
@@ -297,7 +297,7 @@
                         data-description="{{::'server_configuration_tile_sol_description' | translate}}"
                     >
                         <oui-tile-definition
-                            data-ng-if="$ctrl.hasSOL() && $ctrl.ipmi.isSerialOverLanUrlSupported()"
+                            data-ng-if="$ctrl.ipmi.isSerialOverLanUrlSupported()"
                         >
                             <oui-tile-description>
                                 <button
@@ -328,7 +328,7 @@
                             </oui-tile-description>
                         </oui-tile-definition>
                         <oui-tile-definition
-                            data-ng-if="$ctrl.hasSOL() && $ctrl.ipmi.isSerialOverLanSshKeySupported()"
+                            data-ng-if="$ctrl.ipmi.isSerialOverLanSshKeySupported()"
                             data-term="{{::'server_configuration_ssh_sol_definition' | translate}}"
                         >
                             <oui-tile-description>
