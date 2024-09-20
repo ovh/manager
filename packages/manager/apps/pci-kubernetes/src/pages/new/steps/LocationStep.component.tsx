@@ -13,6 +13,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import clsx from 'clsx';
 import { KubeRegionSelector } from '@/components/region-selector/KubeRegionSelector.component';
 import { StepState } from '../useStep';
 
@@ -31,9 +32,9 @@ export function LocationStep({
   const [region, setRegion] = useState<TLocalisation>();
   return (
     <>
-      {!step.isLocked && (
+      <div className={clsx(step.isLocked && 'hidden')}>
         <KubeRegionSelector projectId={projectId} onSelectRegion={setRegion} />
-      )}
+      </div>
       {step.isLocked && region && (
         <OsdsTile color={ODS_THEME_COLOR_INTENT.primary} inline>
           <OsdsText
