@@ -1,5 +1,7 @@
 {
   "zimbra_redirections_from": "De",
   "zimbra_redirections_to": "À",
-  "zimbra_redirections_organization": "Organisation"
+  "zimbra_redirections_organization": "Organisation",
+  "zimbra_redirections_datagrid_tooltip_modification": "Modifier",
+  "zimbra_redirections_datagrid_tooltip_delete": "Supprimer"
 }
