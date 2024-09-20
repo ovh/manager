@@ -27,10 +27,10 @@ export default function Home() {
   const { t } = useTranslation('pci-ai-dashboard/home');
   const { notebooks, jobs, apps } = useDashboardData();
   const regionQuery = useGetRegions(projectId);
-  const objectStoragePath = `projects/${projectId}/storages/objects`;
-  const notebooksPath = `projects/${projectId}/ai/notebooks`;
-  const jobsPath = `projects/${projectId}/ai/jobs`;
-  const appsPath = `projects/${projectId}/ai/apps`;
+  const objectStoragePath = `/pci/projects/${projectId}/storages/objects`;
+  const notebooksPath = `/pci/projects/${projectId}/notebooks`;
+  const jobsPath = `/pci/projects/${projectId}/training/jobs`;
+  const appsPath = `/pci/projects/${projectId}/ai/apps`;
 
   const isOnbording: boolean =
     notebooks.length === 0 && jobs.length === 0 && apps.length === 0;

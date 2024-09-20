@@ -13,7 +13,7 @@ const Billing = () => {
   const [aiGlobalPrice, setAiGlobalPrice] = useState<number>(0);
   const currentUsageQuery = useGetCurrentUsage(projectId);
   useEffect(() => {
-    if (!currentUsageQuery.data) return;
+    if (!currentUsageQuery.data?.resourcesUsage) return;
     setAiGlobalPrice(
       aiGlobalPrice +
         currentUsageQuery.data?.resourcesUsage?.find(

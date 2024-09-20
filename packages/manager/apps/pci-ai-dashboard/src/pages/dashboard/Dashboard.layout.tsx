@@ -21,17 +21,18 @@ export default function DashboardLayout() {
     refetchInterval: isUserActive && POLLING.APPS,
   });
 
-  const notebooks = notebooksQuery.isSuccess && notebooksQuery.data;
-  const jobs = jobsQuery.isSuccess && jobsQuery.data;
-  const apps = appsQuery.isSuccess && appsQuery.data;
-
   if (
-    !notebooksQuery.isSuccess &&
-    !jobsQuery.isSuccess &&
+    !notebooksQuery.isSuccess ||
+    !jobsQuery.isSuccess ||
     !appsQuery.isSuccess
   ) {
     return <DashboardHeader.Skeleton />;
   }
+
+  const notebooks = notebooksQuery.data;
+  const jobs = jobsQuery.data;
+  const apps = appsQuery.data;
+
   const dashboardTabs =
     notebooksQuery.isSuccess &&
     jobsQuery.isSuccess &&
