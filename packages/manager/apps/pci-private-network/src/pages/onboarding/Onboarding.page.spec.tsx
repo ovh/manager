@@ -12,6 +12,14 @@ import OnBoardingPage from './Onboarding.page';
 
 vi.mock('react-router-dom');
 
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const actual = (await importOriginal()) as Record<string, unknown>;
+  return {
+    ...actual,
+    useOvhTracking: () => ({ trackClick: vi.fn() }),
+  };
+});
+
 const shellContext = {
   environment: {
     getUser: vi.fn(),

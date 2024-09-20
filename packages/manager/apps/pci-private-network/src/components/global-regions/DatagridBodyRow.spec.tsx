@@ -12,6 +12,14 @@ vi.mock('react-router-dom', () => ({
   useHref: vi.fn(),
 }));
 
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const actual = (await importOriginal()) as Record<string, unknown>;
+  return {
+    ...actual,
+    useOvhTracking: () => ({ trackClick: vi.fn() }),
+  };
+});
+
 describe('DataGridBodyRow', () => {
   it('should render vlanId and name for the first subnet', () => {
     const network = ({
