@@ -435,7 +435,7 @@
   "emailpro_tab_ACCOUNTS_partial_account": "Konto zostało pobrane niepoprawnie.",
   "emailpro_tab_ACCOUNTS_popover_alias": "Zarządzaj aliasami",
   "emailpro_tab_ACCOUNTS_popover_delegation": "Zarządzaj delegacjami",
-  "emailpro_tab_ACCOUNTS_popover_span_text": "Wysyłka e-maili z tego konta została zablokowana z powodu SPAM-u. <br />Jeśli chcesz odblokować to konto, odpowiedz na oczekujące zgłoszenie.<br /><br /><a href=\"{0}\" class=\"link pull-right\">Odpowiedz na zgłoszenie</a><br />",
+  "emailpro_tab_ACCOUNTS_popover_span_text": "Wysyłka e-maili z tego konta została zablokowana z powodu SPAM-u. <br />Aby odblokować konto, odpowiedz na „ticket”. <br /><br /><a href=\"{0}\" target=\"_top\" class=\"link pull-right\">Odpowiedz na ticket</a><br />",
   "emailpro_tab_ACCOUNTS_popover_span_title": "Konto zablokowane z powodu SPAM-u",
   "emailpro_tab_ACCOUNTS_pwderror": "Nieprawidłowe potwierdzenie",
   "emailpro_tab_ACCOUNTS_state_CREATING": "Trwa tworzenie...",
