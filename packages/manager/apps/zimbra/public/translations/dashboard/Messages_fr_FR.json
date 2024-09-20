@@ -22,6 +22,8 @@
   "zimbra_dashboard_organizations_edit": "Modifier l'organisation",
   "zimbra_dashboard_organizations_delete": "Supprimer l'organisation",
   "zimbra_dashboard_redirections": "Redirections",
+  "zimbra_dashboard_redirections_edit": "Modifier la redirection",
+  "zimbra_dashboard_redirections_delete": "Supprimer la redirection",
   "zimbra_dashboard_title": "Zimbra",
   "zimbra_dashboard_usefull_links": "Liens utiles",
   "zimbra_dashboard_user_guides": "Guide d'utilisateur",
