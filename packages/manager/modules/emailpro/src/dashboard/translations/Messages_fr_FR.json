@@ -435,7 +435,7 @@
   "emailpro_tab_ACCOUNTS_partial_account": "Ce compte n'a pas été chargé correctement.",
   "emailpro_tab_ACCOUNTS_popover_alias": "Configurer les alias",
   "emailpro_tab_ACCOUNTS_popover_delegation": "Configurer les délégations",
-  "emailpro_tab_ACCOUNTS_popover_span_text": "L'envoi d'e-mail à partir de ce compte a été bloqué pour cause de SPAM. <br />Afin de débloquer ce compte, il est nécessaire de répondre au ticket en attente.<br /><br /><a href=\"{0}\" class=\"link pull-right\">Répondre au ticket</a><br />",
+  "emailpro_tab_ACCOUNTS_popover_span_text": "L'envoi d'e-mail à partir de ce compte a été bloqué pour cause de SPAM. <br />Afin de débloquer ce compte, il est nécessaire de répondre au ticket en attente.<br /><br /><a href=\"{0}\" target=\"_top\" class=\"link pull-right\">Répondre au ticket</a><br />",
   "emailpro_tab_ACCOUNTS_popover_span_title": "Compte bloqué SPAM",
   "emailpro_tab_ACCOUNTS_pwderror": "Confirmation incorrecte",
   "emailpro_tab_ACCOUNTS_state_CREATING": "Création en cours",
