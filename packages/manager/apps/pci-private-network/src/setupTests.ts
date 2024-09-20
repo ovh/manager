@@ -10,3 +10,11 @@ vi.mock('react-i18next', () => ({
     },
   }),
 }));
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const actual = (await importOriginal()) as Record<string, unknown>;
+  return {
+    ...actual,
+    useOvhTracking: () => ({ trackClick: vi.fn() }),
+  };
+});
