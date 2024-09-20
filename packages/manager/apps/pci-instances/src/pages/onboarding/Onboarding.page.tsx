@@ -49,7 +49,7 @@ const Onboarding: FC = () => {
       <OnboardingLayout
         title={t('common:instances_title')}
         img={{ src: InstanceImageSrc }}
-        orderButtonLabel={t('create_instance')}
+        orderButtonLabel={t('common:create_instance')}
         description={
           <>
             <OsdsText
