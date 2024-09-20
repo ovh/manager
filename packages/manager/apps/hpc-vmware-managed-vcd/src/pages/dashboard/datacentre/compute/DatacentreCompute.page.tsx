@@ -93,7 +93,7 @@ export default function ComputeListingPage() {
         onboarding: null, // TODO update with order compute page when available
       }}
       isEmbedded
-      subHeaderButton={
+      orderButton={
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}

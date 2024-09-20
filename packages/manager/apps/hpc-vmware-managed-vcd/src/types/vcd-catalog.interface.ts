@@ -1,3 +1,5 @@
+import { Price } from '@ovh-ux/manager-module-order';
+
 enum ProductPricingCapacity {
   CONSUMPTION = 'consumption',
   DETACH = 'detach',
@@ -32,11 +34,10 @@ export interface IVcdCatalogProductPricing {
   maximumQuantity: number | null;
   minimumRepeat: number;
   maximumRepeat: number | null;
-  price: {
-    priceInUcents: number;
-    pricingMode: string;
-    pricingType: ProductPricingType;
-  };
+  price: Price;
+  priceInUcents: number;
+  pricingMode: string;
+  pricingType: ProductPricingType;
 }
 
 export interface IVcdCatalogProduct {

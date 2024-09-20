@@ -4,6 +4,9 @@ import {
 } from '@/types/vcd-vdc-orderable-resource.interface';
 import { TVcdCatalog } from '@/types/vcd-catalog.interface';
 
+export const getVhostUcentsPrice = (product: IVdcOrderableVhostPriced) =>
+  product.prices[0]?.priceInUcents;
+
 export const getPricedOrderableVhostList = ({
   vhostList,
   catalog,
@@ -14,8 +17,10 @@ export const getPricedOrderableVhostList = ({
   if (!vhostList || !catalog) {
     return [];
   }
-  return vhostList.map((vhost) => {
-    const match = catalog.find((product) => product.planCode === vhost.profile);
-    return { ...vhost, prices: match?.prices || [] };
-  });
+  return vhostList
+    .map((vhost) => {
+      const product = catalog.find((pdct) => pdct.planCode === vhost.profile);
+      return { ...vhost, prices: product?.prices || [] };
+    })
+    .sort((a, b) => getVhostUcentsPrice(a) - getVhostUcentsPrice(b));
 };

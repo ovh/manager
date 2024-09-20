@@ -17,7 +17,7 @@ export type TDatagridContainerProps = {
   isEmbedded?: boolean;
   containerId: string;
   columns: any[];
-  subHeaderButton?: React.JSX.Element;
+  orderButton?: React.JSX.Element;
 };
 
 export default function DatagridContainer({
@@ -26,7 +26,7 @@ export default function DatagridContainer({
   isEmbedded = false,
   route: { api, onboarding },
   columns,
-  subHeaderButton,
+  orderButton,
 }: Readonly<TDatagridContainerProps>) {
   const [flattenData, setFlattenData] = useState<Record<string, unknown>[]>([]);
   const navigate = useNavigate();
@@ -91,7 +91,7 @@ export default function DatagridContainer({
     <div className={layoutCss}>
       <div className="flex items-center justify-between mt-4">{header}</div>
       <OsdsDivider />
-      {subHeaderButton && <div className="w-fit mb-8">{subHeaderButton}</div>}
+      {orderButton && <div className="w-fit mb-8">{orderButton}</div>}
       <React.Suspense>
         {flattenData.length && (
           <Datagrid

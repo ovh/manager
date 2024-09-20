@@ -11,7 +11,6 @@ export const useVcdCatalog = (serviceName: string) => {
   return useQuery<ApiResponse<TVcdCatalog>, ApiError>({
     queryKey: getVcdCatalogQueryKey(serviceName),
     queryFn: () => getVcdCatalog(serviceName),
-    retry: false,
     placeholderData: keepPreviousData,
   });
 };

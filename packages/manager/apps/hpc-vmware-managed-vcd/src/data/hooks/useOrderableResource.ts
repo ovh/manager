@@ -12,7 +12,6 @@ export const useVdcOrderableResource = (id: string, vdcId: string) => {
   return useQuery<ApiResponse<IVdcOrderableResource>, ApiError>({
     queryKey: getVdcOrderableResourceQueryKey(id, vdcId),
     queryFn: () => getVdcOrderableResource(id, vdcId),
-    retry: false,
     placeholderData: keepPreviousData,
   });
 };
