@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+ import { useState, useMemo } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 
 import UserDefaultPaymentMethod from './DefaultPaymentMethod';
@@ -9,10 +9,8 @@ import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
-
-import { useReket } from '@ovh-ux/ovh-reket';
 import { UserLink } from './UserLink';
+import { useProcedureIdentity } from '@/hooks/useProcedure';
 
 type Props = {
   defaultPaymentMethod?: unknown;
@@ -30,8 +28,6 @@ const UserAccountMenu = ({
   const environment = shell.getPlugin('environment').getEnvironment();
   const region = environment.getRegion();
   const { closeAccountSidebar } = useProductNavReshuffle();
-  const [allLinks, setAllLinks] = useState<UserLink[]>(links);
-  const reketInstance = useReket();
   const [isKycDocumentsVisible, setIsDocumentsVisible] = useState<boolean>(
     false,
   );
@@ -72,20 +68,13 @@ const UserAccountMenu = ({
   const ssoLink = getUrl('iam', '#/dashboard/users');
   const supportLink = getUrl('dedicated', '#/useraccount/support/level');
 
-  const getAllLinks = useMemo(
-    () => async () => {
-      let isIdentityDocumentsAvailable = false;
-      const featureAvailability = await fetchFeatureAvailabilityData(['identity-documents', 'procedures:fraud']);
-      if (featureAvailability['identity-documents']) {
-        const { status } = await reketInstance.get(`/me/procedure/identity`);
-        isIdentityDocumentsAvailable = ['required', 'open'].includes(status);
-      }
-      if (featureAvailability['procedures:fraud']) {
-        const { status } = await reketInstance.get(`/me/procedure/fraud`);
-        setIsDocumentsVisible(['required', 'open'].includes(status));
-      }
+  const { data: identityProcedure } = useProcedureIdentity()
 
-      setAllLinks([
+  const isIdentityDocumentsAvailable = useMemo(() => {
+    return ['required', 'open'].includes(identityProcedure?.status)
+  }, [identityProcedure])
+
+  const allLinks = useMemo(() => [
         ...links,
         ...(isIdentityDocumentsAvailable
           ? [
@@ -105,14 +94,9 @@ const UserAccountMenu = ({
             },
           ]
           : []),
-      ]);
-    },
-    [],
+      ],
+    [isIdentityDocumentsAvailable, region],
   );
-
-  useEffect(() => {
-    getAllLinks();
-  }, [getAllLinks]);
 
   return (
     <div className={`${style.menuContent} oui-navbar-menu__wrapper`}>
