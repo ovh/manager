@@ -30,7 +30,7 @@ export type TRegistry = {
 
 export type TRegistryPlan = {
   id: string;
-  name: string;
+  name: 'SMALL' | 'MEDIUM' | 'LARGE';
   createdAt: string;
   updatedAt: string;
   registryLimits: {
@@ -57,6 +57,17 @@ export const getRegistryPlan = async (
 ): Promise<TRegistryPlan> => {
   const { data } = await v6.get(
     `cloud/project/${projectId}/containerRegistry/${registryId}/plan`,
+  );
+
+  return data;
+};
+
+export const getRegistryAvailablePlans = async (
+  projectId: string,
+  registryId: string,
+): Promise<TRegistryPlan[]> => {
+  const { data } = await v6.get(
+    `cloud/project/${projectId}/containerRegistry/${registryId}/capabilities/plan`,
   );
 
   return data;
