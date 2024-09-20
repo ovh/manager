@@ -65,7 +65,7 @@
             data-href="{{:: $ctrl.getTabItemUrl('ftpBackup') }}"
             active="$ctrl.getTabItemUrl('ftpBackup') === $ctrl.currentActiveLink()"
             data-disabled="server.isExpired"
-            data-ng-if="$ctrl.features.isFeatureAvailable('dedicated-server:backup')"
+            data-ng-if="$ctrl.backupStorageAvailable"
             ><span data-translate="server_tab_ftp_backup"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
