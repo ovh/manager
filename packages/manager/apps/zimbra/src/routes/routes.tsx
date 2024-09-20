@@ -178,6 +178,35 @@ export const Routes: any = [
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/Redirections/Redirections'),
             ),
+            children: [
+              {
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/Redirections/ModalAddAndEditRedirections.page'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
+              {
+                path: 'edit',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/Redirections/ModalAddAndEditRedirections.page'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
+              /* todo for next step {
+                 path: 'delete',
+                 ...lazyRouteConfig(() =>
+                   import(
+                     '@/pages/dashboard/Redirections/ModalDeleteRedirections.page'
+                   ),
+                 ),
+                 handle: { isOverridePage: true },
+               }, */
+            ],
           },
         ],
       },

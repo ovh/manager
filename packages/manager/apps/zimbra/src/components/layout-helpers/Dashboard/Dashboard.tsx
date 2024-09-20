@@ -92,7 +92,11 @@ export const Dashboard: React.FC = () => {
       name: 'redirections',
       title: t('zimbra_dashboard_redirections'),
       to: `${basePath}/redirections`,
-      pathMatchers: computePathMatchers([urls.redirections]),
+      pathMatchers: computePathMatchers([
+        urls.redirections,
+        urls.redirections_delete,
+        urls.redirections_edit,
+      ]),
     },
   ];
 

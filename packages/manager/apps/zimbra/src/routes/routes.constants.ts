@@ -21,4 +21,6 @@ export const urls = {
     '/:serviceName/mailing_lists/configure_delegation',
   mailing_lists_define_members: '/:serviceName/mailing_lists/define_members',
   redirections: '/:serviceName/redirections',
+  redirections_edit: '/:serviceName/redirections/edit',
+  redirections_delete: '/:serviceName/redirections/delete',
 };

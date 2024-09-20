@@ -1,47 +1,74 @@
 import React from 'react';
 import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
+import { Outlet } from 'react-router-dom';
+import ActionButtonRedirections from './ActionButtonRedirections.component';
 
 export type RedirectionsItem = {
+  id: any;
   from: string;
   to: string;
   organization: string;
 };
 
+const items: RedirectionsItem[] = [
+  {
+    from: 'from@example.com',
+    to: 'to@example.com',
+    organization: 'Test Organization',
+    id: 1,
+  },
+];
+
 const columns: DatagridColumn<RedirectionsItem>[] = [
   {
     id: 'from',
-    cell: () => <div>toto</div>,
+    cell: (item) => <div>{item.from}</div>,
     label: 'zimbra_redirections_from',
   },
   {
     id: 'to',
-    cell: () => <div></div>,
+    cell: (item) => <div>{item.to}</div>,
     label: 'zimbra_redirections_to',
   },
   {
     id: 'organization',
-    cell: () => <div></div>,
+    cell: (item) => <div>{item.organization}</div>,
     label: 'zimbra_redirections_organization',
   },
   {
     id: 'tooltip',
-    cell: () => <div></div>,
+    cell: () => (
+      <ActionButtonRedirections
+        data-testid="add-redirections-btn"
+        redirectionsItem={{
+          id: undefined,
+          from: '',
+          to: '',
+          organization: '',
+        }}
+      />
+    ),
     label: '',
   },
 ];
 
-export default function Redirections() {
+export function Redirections() {
   const { t } = useTranslation('redirections');
 
   return (
-    <Datagrid
-      columns={columns.map((column) => ({
-        ...column,
-        label: t(column.label),
-      }))}
-      items={[]}
-      totalItems={0}
-    />
+    <>
+      <Outlet />
+      <Datagrid
+        columns={columns.map((column) => ({
+          ...column,
+          label: t(column.label),
+        }))}
+        items={items}
+        totalItems={0}
+      />
+    </>
   );
 }
+
+export default Redirections;
