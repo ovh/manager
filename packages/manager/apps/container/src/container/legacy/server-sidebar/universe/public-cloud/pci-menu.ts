@@ -309,7 +309,7 @@ export function getPciProjectMenu(
           title: 'Data Platform',
           feature: 'data-platform',
           badge: 'beta',
-          href: `https://eu.dataplatform.ovh.net&projectId=${projectId}`,
+          href: `https://eu.dataplatform.ovh.net?projectId=${projectId}`,
           external: true,
         },
         {
