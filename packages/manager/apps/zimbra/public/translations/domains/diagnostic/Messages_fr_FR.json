@@ -20,7 +20,7 @@
   "zimbra_domain_modal_diagnostic_mx_content_header_part3": "Veuillez créer les champs MX sur ce domaine en donnant les mêmes informations que ci-dessous.",
   "zimbra_domain_modal_diagnostic_mx_content_header_ovh_hosted_domain_part1": "La configuration de l'enregistrement MX permet de recevoir vos emails dans vos boites mail.",
   "zimbra_domain_modal_diagnostic_mx_content_header_ovh_hosted_domain_part2": "Votre domaine étant hébergé chez OVH Cloud, nous allons effectuer la configuration pour vous.",
-  "zimbra_domain_modal_diagnostic_mx_content_header_ovh_hosted_domain_part3": "Souhaitez vous commencer à recevoir les mails du domaine <strong>{{domain}}</strong> sur ce service ?",
+  "zimbra_domain_modal_diagnostic_mx_content_header_ovh_hosted_domain_part3": "Souhaitez-vous commencer à recevoir les mails du domaine <strong>{{domain}}</strong> sur ce service ?",
   "zimbra_domain_modal_diagnostic_mx_content_footer": "En cas de problème, consultez la documentation de votre fournisseur de domaine.",
   "zimbra_domain_modal_diagnostic_mx_action_validate": "Confirmer",
   "zimbra_domain_modal_diagnostic_mx_action_test": "Tester",
@@ -30,7 +30,7 @@
   "zimbra_domain_modal_diagnostic_spf_content_header": "Si le domaine n'est pas géré par le même identifiant client que le service Exchange ou si votre domaine n'est pas hébergé chez OVHcloud, la configuration automatique n'est pas possible. Veuillez créer le champ SPF sur ce domaine manuellement en donnant les mêmes informations que ci-dessous.",
   "zimbra_domain_modal_diagnostic_spf_content_header_ovh_hosted_domain_part1": "SPF permet de valider qu'OVHCloud est un émetteur légitime de mails avec votre nom de domaine.",
   "zimbra_domain_modal_diagnostic_spf_content_header_ovh_hosted_domain_part2": "Votre domaine étant hébergé chez OVHCloud, nous pouvons procéder à la configuration automatique.",
-  "zimbra_domain_modal_diagnostic_spf_content_header_ovh_hosted_domain_part3": "Souhaitez vous effectuer la configuration ?",
+  "zimbra_domain_modal_diagnostic_spf_content_header_ovh_hosted_domain_part3": "Souhaitez-vous effectuer la configuration ?",
   "zimbra_domain_modal_diagnostic_spf_action_cancel": "Annuler",
   "zimbra_domain_modal_diagnostic_spf_action_close": "Fermer",
   "zimbra_domain_modal_diagnostic_spf_action_validate": "Ok"
