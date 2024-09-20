@@ -17,7 +17,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   VeeamBackupWithIam,
   getOrganizationDisplayName,
@@ -146,6 +146,7 @@ export const ActionCell = (backup: VeeamBackupWithIam): JSX.Element => {
     <ActionMenu
       icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
       isCompact
+      variant={ODS_BUTTON_VARIANT.ghost}
       items={[
         {
           id: 0,
