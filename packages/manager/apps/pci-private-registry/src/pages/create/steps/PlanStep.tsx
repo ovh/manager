@@ -6,7 +6,6 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import {
   StepComponent,
-  TilesInputComponent,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import {
@@ -18,11 +17,11 @@ import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate, useParams } from 'react-router-dom';
-import PlanComponent from '@/pages/create/Plan.component';
 import { StepEnum } from '@/pages/create/types';
 import { useStore } from '@/pages/create/store';
 import { useGetCapabilities } from '@/api/hooks/useCapabilities';
 import { PRIVATE_REGISTRY_CREATE_PLAN } from '@/pages/create/constants';
+import PlanChooser from '@/components/PlanChooser.component';
 
 export default function PlanStep(): JSX.Element {
   const { t: tCreate } = useTranslation('create');
@@ -108,17 +107,16 @@ export default function PlanStep(): JSX.Element {
         {tUpgrade('private_registry_upgrade_plan_description')}
       </OsdsText>
       {store.state.region && (
-        <TilesInputComponent
-          items={
-            capabilities.find((c) => c.regionName === store.state.region.name)
-              .plans
-          }
-          value={store.state.plan}
-          onInput={(value) => {
-            store.set.plan(value);
-          }}
-          label={(item) => <PlanComponent plan={item} />}
-        />
+        <>
+          <PlanChooser
+            plan={store.state.plan}
+            plans={
+              capabilities.find((c) => c.regionName === store.state.region.name)
+                .plans
+            }
+            onInput={(value) => store.set.plan(value)}
+          />
+        </>
       )}
 
       <OsdsText

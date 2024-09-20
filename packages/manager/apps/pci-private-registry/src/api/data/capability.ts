@@ -1,21 +1,9 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { TRegistryPlan } from '@/api/data/registry';
 
 export type TCapability = {
   regionName: string;
-  plans: [
-    {
-      id: string;
-      code: string;
-      features: {
-        vulnerability: boolean;
-      };
-      name: 'SMALL' | 'MEDIUM' | 'LARGE';
-      registryLimits: {
-        imageStorage: number;
-        parallelRequest: number;
-      };
-    },
-  ];
+  plans: TRegistryPlan[];
 };
 
 export const getCapabilities = async (
