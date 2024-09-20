@@ -7,14 +7,6 @@ vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key) => key }),
 }));
 
-vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const actual = (await importOriginal()) as Record<string, unknown>;
-  return {
-    ...actual,
-    useOvhTracking: () => ({ trackClick: vi.fn() }),
-  };
-});
-
 describe('GlobalRegionsDatagrid', () => {
   it('should render DataGridNoResults when no networks', () => {
     render(
