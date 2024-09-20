@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { find } from 'lodash-es';
+import { useQuery } from '@tanstack/react-query';
 
 export type Universe = {
   isPrimary: boolean;
@@ -7,8 +6,6 @@ export type Universe = {
   url: string;
   external?: boolean;
 };
-
-// const SECONDARY_UNIVERSES: string[] = [];
 
 export async function fetchUniverses(): Promise<Universe[]> {
   return fetch('/engine/2api/universes?version=beta', {
@@ -29,17 +26,17 @@ export async function fetchUniverses(): Promise<Universe[]> {
 }
 
 export function useUniverses() {
-  const [universes, setUniverses] = useState<Universe[]>([]);
+  const { data: universes, isLoading } = useQuery({
+    queryKey: ["universes"],
+    queryFn: fetchUniverses
+  })
 
-  useEffect(() => {
-    fetchUniverses().then(setUniverses);
-  }, []);
 
   return {
-    getUniverses: (): Universe[] => universes,
-    isLoading: () => !universes?.length,
+    getUniverses: (): Universe[] => universes ?? [],
+    isLoading: () => isLoading,
     getHubUniverse: () => {
-      return find(universes, { universe: 'hub' });
+      return universes?.find(({ universe }) => universe === 'hub');
     },
   };
 }
