@@ -61,6 +61,12 @@ export default /* @ngInject */ ($stateProvider) => {
           ...serviceInfo,
           serviceType: SERVICE_TYPE,
         })),
+      backupStorageAvailable: /* @ngInject */ (Server, serverName, features) =>
+        Server.getFtpBackup(serverName).then(
+          ({ canOrder, activated }) =>
+            features.isFeatureAvailable('dedicated-server:backup') &&
+            (canOrder || activated),
+        ),
       specifications: /* @ngInject */ (serverName, Server) =>
         Server.getBandwidth(serverName),
       user: /* @ngInject */ (currentUser) => currentUser,
