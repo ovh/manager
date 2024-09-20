@@ -1,3 +1,8 @@
+import * as app from './app/index';
+import * as flavor from './flavor/index';
+import * as job from './job/index';
+import * as notebook from './notebook/index';
+
 export * from './Features';
 export * from './Flavor';
 export * from './FlavorTypeEnum';
@@ -9,7 +14,7 @@ export * from './PresetResources';
 export * from './PresetTypeEnum';
 export * from './ProjectQuotas';
 export * from './Region';
-export * as app from './app/index';
-export * as flavor from './flavor/index';
-export * as job from './job/index';
-export * as notebook from './notebook/index';
+export { app };
+export { flavor };
+export { job };
+export { notebook };

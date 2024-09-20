@@ -63,14 +63,12 @@ DashboardHeader.Skeleton = function ServiceHeaderSkeleton() {
   return (
     <div
       data-testid="dashboard-header-skeleton"
-      className="flex gap-2 items-center mt-4 mb-6"
+      className="flex flex-col gap-2 mt-4 mb-6"
     >
-      <div>
-        <h2>{t('title')}</h2>
-        <div className="flex gap-2">
-          <Skeleton className="h-15 w-full" />
-        </div>
-      </div>
+      <h2>{t('title')}</h2>
+      <Skeleton className="w-full h-[150px]" />
+      <Skeleton className="w-full h-[150px]" />
+      <Skeleton className="w-full h-[400px]" />
     </div>
   );
 };
