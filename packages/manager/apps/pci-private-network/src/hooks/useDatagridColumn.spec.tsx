@@ -11,9 +11,9 @@ describe('useDatagridColumn', () => {
       'name',
       'region',
       'cidr',
+      'gatewayIp',
       'dhcp',
       'allocatedIp',
-      'gatewayIp',
       'actions',
     ]);
   });
@@ -27,12 +27,12 @@ describe('useDatagridColumn', () => {
       'pci_projects_project_network_private_region',
     );
     expect(columns[2].label).toBe('CIDR');
-    expect(columns[3].label).toBe('DHCP');
-    expect(columns[4].label).toBe(
-      'pci_projects_project_network_private_ip_allocation',
-    );
-    expect(columns[5].label).toBe(
+    expect(columns[3].label).toBe(
       'pci_projects_project_network_private_gateway',
+    );
+    expect(columns[4].label).toBe('DHCP');
+    expect(columns[5].label).toBe(
+      'pci_projects_project_network_private_ip_allocation',
     );
     expect(columns[6].label).toBe('');
   });
