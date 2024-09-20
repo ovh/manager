@@ -89,5 +89,6 @@
   "key_management_service_service-keys_delete_success": "A chave foi eliminada com sucesso",
   "key_management_service_service-keys_delete_error": "A eliminação não foi registada corretamente. {{error}}",
   "key_management_service_service-keys_deactivation_success": "A chave foi desativada com sucesso",
-  "key_management_service_service-keys_reactivate_success": "A chave foi reativada com sucesso"
+  "key_management_service_service-keys_reactivate_success": "A chave foi reativada com sucesso",
+  "key_management_service_service_keys_back_link": "Voltar à lista das chaves"
 }

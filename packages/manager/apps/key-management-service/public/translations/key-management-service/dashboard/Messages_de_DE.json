@@ -56,5 +56,6 @@
   "key_management_service_dashboard_dashboard_field_state_suspended": "Ausgesetzt",
   "key_management_service_dashboard_dashboard_field_state_toActivate": "Zu aktivieren",
   "key_management_service_dashboard_dashboard_field_state_toDelete": "Zu löschen",
-  "key_management_service_dashboard_dashboard_field_state_toSuspend": "Auszusetzen"
+  "key_management_service_dashboard_dashboard_field_state_toSuspend": "Auszusetzen",
+  "key_management_service_dashboard_back_link": "Zurück zur KMS-Liste"
 }

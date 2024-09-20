@@ -56,5 +56,6 @@
   "key_management_service_dashboard_dashboard_field_state_suspended": "Suspended",
   "key_management_service_dashboard_dashboard_field_state_toActivate": "Enabling required",
   "key_management_service_dashboard_dashboard_field_state_toDelete": "To be deleted",
-  "key_management_service_dashboard_dashboard_field_state_toSuspend": "To be suspended"
+  "key_management_service_dashboard_dashboard_field_state_toSuspend": "To be suspended",
+  "key_management_service_dashboard_back_link": "Back to KMS list"
 }

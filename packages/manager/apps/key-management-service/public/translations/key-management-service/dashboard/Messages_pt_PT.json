@@ -56,5 +56,6 @@
   "key_management_service_dashboard_dashboard_field_state_suspended": "Suspenso",
   "key_management_service_dashboard_dashboard_field_state_toActivate": "A ativar",
   "key_management_service_dashboard_dashboard_field_state_toDelete": "Eliminação pendente",
-  "key_management_service_dashboard_dashboard_field_state_toSuspend": "Suspensão pendente"
+  "key_management_service_dashboard_dashboard_field_state_toSuspend": "Suspensão pendente",
+  "key_management_service_dashboard_back_link": "Voltar à lista dos KMS"
 }
