@@ -7,6 +7,9 @@ import { TVcdCatalog } from '@/types/vcd-catalog.interface';
 export const getVhostUcentsPrice = (product: IVdcOrderableVhostPriced) =>
   product.prices[0]?.priceInUcents;
 
+export const getVhostPriceLabel = (product: IVdcOrderableVhostPriced) =>
+  product.prices[0]?.price.text;
+
 export const getPricedOrderableVhostList = ({
   vhostList,
   catalog,
@@ -18,9 +21,9 @@ export const getPricedOrderableVhostList = ({
     return [];
   }
   return vhostList
-    .map((vhost) => {
+    .reduce((list: IVdcOrderableVhostPriced[], vhost) => {
       const product = catalog.find((pdct) => pdct.planCode === vhost.profile);
-      return { ...vhost, prices: product?.prices || [] };
-    })
+      return product ? [...list, { ...vhost, prices: product.prices }] : list;
+    }, [])
     .sort((a, b) => getVhostUcentsPrice(a) - getVhostUcentsPrice(b));
 };
