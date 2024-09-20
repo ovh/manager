@@ -28,6 +28,7 @@ import { useTranslation } from 'react-i18next';
 
 import { MutationStatus } from '@tanstack/react-query';
 import {
+  RancherPlanName,
   RancherService,
   RancherVersion,
   ResourceStatus,
@@ -124,6 +125,8 @@ const RancherDetail = ({
     getLatestVersionAvailable(rancher, versions) &&
     isReadyStatus &&
     !updateSoftwareResponseType;
+
+  const isEligibleForUpgrade = plan === RancherPlanName.OVHCLOUD_EDITION;
 
   return (
     <div className="max-w-4xl">
@@ -256,6 +259,28 @@ const RancherDetail = ({
             </div>
           </OsdsTile>
         </div>
+        {isEligibleForUpgrade && (
+          <div className="p-3">
+            <OsdsTile
+              className="w-full flex-col bg-[--ods-color-blue-100] border-none"
+              inline
+              rounded
+            >
+              <div className="flex flex-col w-full">
+                <CommonTitle>{t('upgradePlanTitle')}</CommonTitle>
+                <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="my-5">
+                  {t('upgradePlanDescription')}
+                </OsdsText>
+                <LinkIcon
+                  iconName={ODS_ICON_NAME.ARROW_RIGHT}
+                  href={hrefUpdateOffer}
+                  text={t('upgradePlanButton')}
+                  isDisabled={!isReadyStatus}
+                />
+              </div>
+            </OsdsTile>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -47,5 +47,8 @@
   "updateOfferModaleTitle": "Changer d'offre",
   "updateOfferModalDescription": "Vous êtes sur le point de modifier votre offre actuelle pour l'offre {{availableServicePlan}}. Vous serez facturé {{planPricing}} HT / heure par vCPUs orchestrés. Cette opération prendra effet immédiatement et n'a pas d'impact sur vos « downstream clusters » ni les données de votre Rancher managé. Veuillez confirmer si vous souhaitez continuer.",
   "updateOfferPending": "Votre changement d’offre a bien été pris en compte. Merci de patienter, cela peut prendre quelques minutes",
-  "updateOfferError": "Une erreur s'est produite : {{errorMessage}}"
+  "updateOfferError": "Une erreur s'est produite : {{errorMessage}}",
+  "upgradePlanTitle": "Passez à l’offre Standard",
+  "upgradePlanDescription": "Créez ou enregistrez des « downstream clusters » avec n’importe quel cloud public supporté par Rancher ou sur un cloud privé automatisable (ex. VMware vSphere), y compris les scénarios supportés par l’offre OVHcloud Edition.",
+  "upgradePlanButton": "Améliorer mon offre"
 }

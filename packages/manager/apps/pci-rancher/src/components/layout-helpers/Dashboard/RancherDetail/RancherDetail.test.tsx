@@ -3,7 +3,7 @@ import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
 import updateTranslation from '@translation/updateSoftware/Messages_fr_FR.json';
 import { versionsMocked } from '@/_mock_/version';
 import { rancherMocked } from '@/_mock_/rancher';
-import { ResourceStatus } from '@/types/api.type';
+import { RancherPlanName, ResourceStatus } from '@/types/api.type';
 
 import { fireEvent, render, waitFor } from '@/utils/test/test.provider';
 import RancherDetail, { RancherDetailProps } from './RancherDetail.component';
@@ -181,6 +181,26 @@ describe('RancherDetail', () => {
 
       expect(updateSoftwareLabel).toBeNull();
       expect(updateSoftwareButton).toBeNull();
+    });
+    it('should render upgrade plan information when isEligibleForUpgrade is true', async () => {
+      const screen = await setupSpecTest();
+
+      const upgradePlanTitle = screen.getByText(
+        dashboardTranslation.upgradePlanTitle,
+      );
+      const upgradePlanDescription = screen.getByText(
+        dashboardTranslation.upgradePlanDescription,
+      );
+      const upgradePlanButton = screen.getByText(
+        dashboardTranslation.upgradePlanButton,
+      );
+
+      expect(upgradePlanTitle).toBeInTheDocument();
+      expect(upgradePlanDescription).toBeInTheDocument();
+      expect(upgradePlanButton).toBeInTheDocument();
+
+      const linkIcon = screen.getByText(dashboardTranslation.upgradePlanButton);
+      expect(linkIcon).not.toBeDisabled();
     });
   });
 });
