@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { waitFor, screen } from '@testing-library/react';
 import { SetupServer, setupServer } from 'msw/node';
 import { useFeatureAvailability } from './useFeatureAvailability';
@@ -42,7 +43,15 @@ const setupTest = (useCase: 'error' | 'ok') => {
   );
   server.listen({ onUnhandledRequest: 'warn' });
 
-  return render(<Example />);
+  const clientConfig = new QueryClient({
+    defaultOptions: { queries: { retry: false } },
+  });
+
+  return render(
+    <QueryClientProvider client={clientConfig}>
+      <Example />
+    </QueryClientProvider>,
+  );
 };
 
 describe('useFeatureAvailability', () => {
@@ -55,7 +64,7 @@ describe('useFeatureAvailability', () => {
     setupTest('error');
     await waitFor(
       () => expect(screen.getByText(featureAvailabilityError)).toBeVisible(),
-      { timeout: 10000 },
+      { timeout: 10_000 },
     );
   });
 
@@ -63,7 +72,7 @@ describe('useFeatureAvailability', () => {
     setupTest('ok');
     await waitFor(
       () => expect(screen.getByText('feature1 available')).toBeVisible(),
-      { timeout: 10000 },
+      { timeout: 10_000 },
     );
     expect(screen.queryByText('feature2 available')).not.toBeInTheDocument();
   });
