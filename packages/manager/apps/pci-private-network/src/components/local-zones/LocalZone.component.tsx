@@ -24,6 +24,7 @@ import {
   OsdsPopoverContent,
   OsdsSearchBar,
   OsdsSpinner,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -184,7 +185,9 @@ export default function LocalZoneComponent({
 
       {error && (
         <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
-          {tError('manager_error_page_default')}
+          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+            {tError('manager_error_page_default')}
+          </OsdsText>
         </OsdsMessage>
       )}
 
