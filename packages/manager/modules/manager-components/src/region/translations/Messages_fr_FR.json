@@ -356,5 +356,6 @@
   "manager_components_region_continent_CA": "Amérique du Nord",
   "manager_components_region_CA": "Canada",
   "manager_components_region_CA_micro": "Canada ({{ micro }})",
-  "manager_components_region_location_CA": "Amérique du Nord (Canada)"
+  "manager_components_region_location_CA": "Amérique du Nord (Canada)",
+  "manager_components_region_location_NONE": "No Region"
 }
