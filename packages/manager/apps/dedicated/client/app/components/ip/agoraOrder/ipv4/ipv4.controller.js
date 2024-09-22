@@ -222,13 +222,15 @@ export default class AgoraIpV4OrderController {
     }
 
     request.then((region) => {
-      this.model.selectedServiceRegion =
-        this.model.selectedService?.type ===
-        PRODUCT_TYPES.dedicatedServer.typeName
-          ? this.$translate.instant(`ip_region_${region}`)
-          : this.ovhManagerRegionService.getTranslatedMicroRegionLocation(
-              region.toUpperCase(),
-            );
+      if (region) {
+        this.model.selectedServiceRegion =
+          this.model.selectedService?.type ===
+          PRODUCT_TYPES.dedicatedServer.typeName
+            ? this.$translate.instant(`ip_region_${region}`)
+            : this.ovhManagerRegionService.getTranslatedMicroRegionLocation(
+                region.toUpperCase(),
+              );
+      }
       this.loadServiceRegion = false;
     });
   }
