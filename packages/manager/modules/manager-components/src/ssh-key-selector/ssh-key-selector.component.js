@@ -1,5 +1,5 @@
-import controller from './ssh-key.controller';
-import template from './ssh-key.template.html';
+import controller from './ssh-key-selector.controller';
+import template from './ssh-key-selector.template.html';
 
 export default {
   bindings: {

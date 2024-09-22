@@ -1,4 +1,4 @@
-export default class SshKeyService {
+export default class SshKeySelectorService {
   /* @ngInject */
   constructor($http) {
     this.$http = $http;

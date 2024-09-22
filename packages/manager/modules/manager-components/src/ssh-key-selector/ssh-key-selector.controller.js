@@ -1,9 +1,9 @@
-import { SSH_KEY } from './ssh-key.constants';
+import { SSH_KEY } from './ssh-key-selector.constants';
 
-export default class SshKeyController {
+export default class SshKeySelectorController {
   /* @ngInject */
-  constructor(SshKeyService) {
-    this.SshKeyService = SshKeyService;
+  constructor(SshKeySelectorService) {
+    this.SshKeySelectorService = SshKeySelectorService;
   }
 
   $onInit() {
@@ -20,7 +20,7 @@ export default class SshKeyController {
 
   loadSshKeys() {
     this.loading.sshkey = true;
-    this.SshKeyService.getSshKeys()
+    this.SshKeySelectorService.getSshKeys()
       .then(({ data }) => {
         this.userSshKeys = data.sort();
         return this.userSshKeys;
@@ -37,7 +37,7 @@ export default class SshKeyController {
 
   getSshKeyInfo() {
     this.loading.sshkey = true;
-    return this.SshKeyService.getSshKeyInfo(this.selectedSshKey)
+    return this.SshKeySelectorService.getSshKeyInfo(this.selectedSshKey)
       .then(({ data }) => {
         this.publicKey = data.key;
       })

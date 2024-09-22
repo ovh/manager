@@ -5,7 +5,7 @@ import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-at-internet';
 import ovhManagerCore from '@ovh-ux/manager-core';
-import { sshKey } from '@ovh-ux/manager-components';
+import { sshKeySelector } from '@ovh-ux/manager-components';
 import IpmiSolAddSsh from './sol/add/sol-add-ssh.module';
 
 import component from './component';
@@ -22,7 +22,7 @@ angular
     'ngAtInternet',
     ovhManagerCore,
     IpmiSolAddSsh,
-    sshKey,
+    sshKeySelector,
   ])
   .component('serverIpmi', component)
   .service('IpmiService', service)

@@ -701,10 +701,6 @@ export default class BmServerComponentsIpmiController {
       });
   }
 
-  isKeyValid() {
-    return SSH_KEY.pattern.test(this.ssh.publicKey);
-  }
-
   static getTaskPath(serviceName, taskId) {
     return `apiv6/dedicated/server/${serviceName}/task/${taskId}`;
   }

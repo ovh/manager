@@ -106,10 +106,10 @@
                     </div>
 
                     <div data-ng-if="$ctrl.currentAuthMethod === $ctrl.SSHKEY">
-                        <ssh-key
+                        <ssh-key-selector
                             data-public-key="$ctrl.ssh.publicKey"
                             data-required="true"
-                        ></ssh-key>
+                        ></ssh-key-selector>
                     </div>
 
                     <oui-field

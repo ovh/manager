@@ -25,11 +25,11 @@
             </oui-select>
         </oui-field>
 
-        <ssh-key
+        <ssh-key-selector
             data-public-key="$ctrl.vpsOptions.publicSshKey"
             data-required="false"
         >
-        </ssh-key>
+        </ssh-key-selector>
 
         <oui-field data-ng-if="$ctrl.vpsOptions.publicSshKey">
             <oui-checkbox

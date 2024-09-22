@@ -19,9 +19,12 @@
     </div>
 
     <div data-ng-if="!$ctrl.loading.sshkey">
-        <oui-field
-            data-label="{{:: 'manager_components_sshkey_input' | translate}}"
-        >
+        <oui-field>
+            <div
+                class="oui-field__label float-left"
+                data-translate="manager_components_sshkey_input"
+            ></div>
+
             <div
                 class="float-right sshkey-switch"
                 data-ng-model="model.keyIsValid"
@@ -33,7 +36,7 @@
                 class="oui-input form-control"
                 name="{{ $ctrl.name ? $ctrl.name: 'sshKey'}}"
                 id="sshKey"
-                placeholder="{{:: ($ctrl.placeholder ? $ctrl.placeholder : 'manager_components_sshkey_input_placeholder' | translate:{t0: $ctrl.ssh.inputRules.placeholder})}}"
+                placeholder="{{ ($ctrl.placeholder ? $ctrl.placeholder : 'manager_components_sshkey_input_placeholder' | translate:{t0: $ctrl.ssh.inputRules.placeholder})}}"
                 data-ng-model="$ctrl.publicKey"
                 data-ng-change="$ctrl.selectedSshKey = ''"
                 data-ng-required="$ctrl.required"
