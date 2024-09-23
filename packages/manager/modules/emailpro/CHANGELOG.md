@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.12.4...@ovh-ux/manager-emailpro@3.12.5) (2024-09-23)
+
+
+### Bug Fixes
+
+* **emailpro.account:** update new support link to snow ([#13041](https://github.com/ovh/manager/issues/13041)) ([b8d8402](https://github.com/ovh/manager/commit/b8d840290d32917d93129b87fe6c9fed435b1775))
+
+
+
+
+
 ## [3.12.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.12.3...@ovh-ux/manager-emailpro@3.12.4) (2024-08-12)
 
 

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.36.2...@ovh-ux/manager-web@18.37.0) (2024-09-23)
+
+
+### Bug Fixes
+
+* **web.database:** rename database grant enum ([0dcd356](https://github.com/ovh/manager/commit/0dcd356c4a973504e13eb529418b31d6a2678d06))
+* **web.hosting:** remove reset password for modules ([40af846](https://github.com/ovh/manager/commit/40af8466d446a767c34fe228f2e7dc2977d00dd7))
+* **web:** add all subs for offer banner ([06e5d1b](https://github.com/ovh/manager/commit/06e5d1bbdd283b32b389e05dacde73952bef5c03))
+
+
+### Features
+
+* **web:** change detail contact ssl provider ([#12604](https://github.com/ovh/manager/issues/12604)) ([790fa70](https://github.com/ovh/manager/commit/790fa704f364ffa97610c4a52c8952f4341d04c5))
+
+
+
+
+
 ## [18.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.36.1...@ovh-ux/manager-web@18.36.2) (2024-09-19)
 
 

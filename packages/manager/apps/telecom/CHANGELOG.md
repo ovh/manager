@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.21.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.21.3...@ovh-ux/manager-telecom@15.21.4) (2024-09-23)
+
+
+### Bug Fixes
+
+* **telecom:** add missing translation for accesories ([#10855](https://github.com/ovh/manager/issues/10855)) ([63b8bb2](https://github.com/ovh/manager/commit/63b8bb25aa7127cea2a05c69ce60f04144f4ca53))
+
+
+
+
+
 ## [15.21.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.21.2...@ovh-ux/manager-telecom@15.21.3) (2024-09-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
