@@ -21,6 +21,7 @@ const ROUTE_PATHS = {
   UPDATE: 'update',
   NEW: 'new',
   ON_BOARDING: 'onboarding',
+  UPGRADE_PLAN: 'upgrade-plan',
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
@@ -33,6 +34,9 @@ const DeletePage = lazy(() => import('@/pages/delete/Delete.page'));
 const UpdatePage = lazy(() => import('@/pages/update/Update.page'));
 const CreatePage = lazy(() => import('@/pages/create/Create.page'));
 const OnBoardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
+const UpgradePlanPage = lazy(() =>
+  import('@/pages/upgrade-plan/UpgradePlan.page'),
+);
 
 const RoutesComponent = () => (
   <Routes>
@@ -79,6 +83,11 @@ const RoutesComponent = () => (
         path={ROUTE_PATHS.ON_BOARDING}
         handle={{ tracking: RouteTracking.ON_BOARDING }}
         Component={OnBoardingPage}
+      />
+      <Route
+        id="upgrade-plan"
+        path={ROUTE_PATHS.UPGRADE_PLAN}
+        Component={UpgradePlanPage}
       />
     </Route>
     <Route path="" element={<>Page not found</>}></Route>

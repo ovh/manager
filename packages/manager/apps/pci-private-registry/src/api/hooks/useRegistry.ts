@@ -11,6 +11,7 @@ import {
   TRegistry,
   postRegistryCredentials,
   getRegistryAvailablePlans,
+  updatePlan,
 } from '../data/registry';
 import queryClient from '@/queryClient';
 
@@ -175,3 +176,38 @@ export const usePostRegistryCredentials = (
     queryFn: () => postRegistryCredentials(projectId, registryId),
     enabled,
   });
+
+export type TUpdatePlanParam = {
+  projectId: string;
+  registryId: string;
+  planId: string;
+  onError: (e: {
+    response: { data: { message: never } };
+    error: { message: never };
+    message: never;
+  }) => void;
+  onSuccess: () => void;
+};
+
+export const useUpdatePlan = ({
+  projectId,
+  registryId,
+  planId,
+  onError,
+  onSuccess,
+}: TUpdatePlanParam) => {
+  const mutation = useMutation({
+    mutationFn: async () => updatePlan(projectId, registryId, planId),
+    onError,
+    onSuccess: async () => {
+      queryClient.invalidateQueries({
+        queryKey: getRegistryQueryPrefix(projectId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    updatePlan: () => mutation.mutate(),
+    ...mutation,
+  };
+};

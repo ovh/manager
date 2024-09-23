@@ -3,11 +3,11 @@ import { render, RenderResult } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as useCatalogModule from '@ovh-ux/manager-pci-common';
 import { TCatalog } from '@ovh-ux/manager-pci-common';
-import PlanComponent from '@/pages/create/Plan.component';
-import { TCapability } from '@/api/data/capability';
+import PlanComponent from './Plan.component';
 import { wrapper } from '@/wrapperRenders';
+import { TRegistryPlan } from '@/api/data/registry';
 
-const defaultPlan: TCapability['plans'][0] = {
+const defaultPlan: TRegistryPlan = {
   id: 'planId',
   code: 'planCode',
   features: {
@@ -18,6 +18,8 @@ const defaultPlan: TCapability['plans'][0] = {
     imageStorage: 10,
     parallelRequest: 50,
   },
+  createdAt: '',
+  updatedAt: '',
 };
 
 const defaultAddon = {
@@ -88,7 +90,7 @@ describe('PlanComponent', () => {
       wrapper,
     });
     expect(getByTestId('capacity')).toHaveTextContent(
-      'private_registry_upgrade_plan_available_storage:10 B',
+      'private_registry_upgrade_plan_available_storage10 B',
     );
   });
 

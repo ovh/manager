@@ -18,7 +18,7 @@ export default function ActionComponent({
   const { projectId } = useParams();
   const { data: registryPlan } = useGetRegistryPlan(projectId, registry?.id);
 
-  const hrefUpgradePlan = '';
+  const hrefUpgradePlan = useHref(`./upgrade-plan?registryId=${registry.id}`);
   const hrefRename = useHref(`./update?registryId=${registry.id}`);
   const hrefHarborUI = registry?.url;
   const hrefHarborAPI = useHref(`${registry?.id}/api-url`);
