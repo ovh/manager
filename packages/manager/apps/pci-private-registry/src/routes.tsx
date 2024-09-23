@@ -1,83 +1,88 @@
-const lazyRouteConfig = (importFn: CallableFunction) => ({
-  lazy: async () => {
-    const { default: moduleDefault, ...moduleExports } = await importFn();
+import { Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
 
-    return {
-      Component: moduleDefault,
-      ...moduleExports,
-    };
-  },
-});
-
-export interface RouteHandle {
-  tracking?: string;
+enum RouteTracking {
+  LISTING = 'registries',
+  API_URL = 'api-url',
+  CREDENTIALS = 'credentials',
+  CREATE = 'create',
+  DELETE = 'delete',
+  UPDATE = 'update',
+  ON_BOARDING = 'onboarding',
 }
 
 const ROUTE_PATHS = {
-  root: '/pci/projects/:projectId/private-registry',
+  ROOT: '/pci/projects/:projectId/private-registry',
+  LISTING: '',
+  API_URL: ':registryId/api-url',
+  CREDENTIALS: ':registryId/credentials',
+  CREATE: 'create',
+  DELETE: 'delete',
+  UPDATE: 'update',
+  NEW: 'new',
+  ON_BOARDING: 'onboarding',
 };
 
-export default [
-  {
-    path: '/',
-    ...lazyRouteConfig(() => import('@/pages/Layout')),
-  },
-  {
-    id: '',
-    path: ROUTE_PATHS.root,
-    ...lazyRouteConfig(() => import('@/pages/Layout')),
-    children: [
-      {
-        path: '',
-        handle: {
-          tracking: 'registries',
-        },
-        ...lazyRouteConfig(() => import('@/pages/list/List.page')),
-        children: [
-          {
-            path: ':registryId/api-url',
-            handle: {
-              tracking: 'api-url',
-            },
-            ...lazyRouteConfig(() => import('@/pages/api-url/APIUrl.page')),
-          },
-          {
-            path: ':registryId/credentials',
-            handle: {
-              tracking: 'credentials',
-            },
-            ...lazyRouteConfig(() =>
-              import('@/pages/credentials/Credentials.page'),
-            ),
-          },
-          {
-            id: 'delete',
-            path: 'delete',
-            ...lazyRouteConfig(() => import('@/pages/delete/Delete.page')),
-          },
-          {
-            id: 'update',
-            path: 'update',
-            ...lazyRouteConfig(() => import('@/pages/update/Update.page')),
-          },
-        ],
-      },
-      {
-        path: 'create',
-        handle: {
-          // tracking: 'registries',
-        },
-        ...lazyRouteConfig(() => import('@/pages/create/Create.page')),
-      },
-      {
-        id: 'onboarding',
-        path: 'onboarding',
-        ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
-      },
-    ],
-  },
-  {
-    path: '*',
-    element: <>Not found page</>,
-  },
-];
+const LayoutPage = lazy(() => import('@/pages/Layout'));
+const ListPage = lazy(() => import('@/pages/list/List.page'));
+const ApiUrlPage = lazy(() => import('@/pages/api-url/APIUrl.page'));
+const CredentialsPage = lazy(() =>
+  import('@/pages/credentials/Credentials.page'),
+);
+const DeletePage = lazy(() => import('@/pages/delete/Delete.page'));
+const UpdatePage = lazy(() => import('@/pages/update/Update.page'));
+const CreatePage = lazy(() => import('@/pages/create/Create.page'));
+const OnBoardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
+
+const RoutesComponent = () => (
+  <Routes>
+    <Route id="root" path={ROUTE_PATHS.ROOT} Component={LayoutPage}>
+      <Route
+        id="listing"
+        path={ROUTE_PATHS.LISTING}
+        handle={{ tracking: RouteTracking.LISTING }}
+        Component={ListPage}
+      >
+        <Route
+          id="apiUrl"
+          path={ROUTE_PATHS.API_URL}
+          handle={{ tracking: RouteTracking.API_URL }}
+          Component={ApiUrlPage}
+        />
+        <Route
+          id="credentials"
+          path={ROUTE_PATHS.CREDENTIALS}
+          handle={{ tracking: RouteTracking.CREDENTIALS }}
+          Component={CredentialsPage}
+        />
+        <Route
+          id="delete"
+          path={ROUTE_PATHS.DELETE}
+          handle={{ tracking: RouteTracking.DELETE }}
+          Component={DeletePage}
+        />
+        <Route
+          id="update"
+          path={ROUTE_PATHS.UPDATE}
+          handle={{ tracking: RouteTracking.UPDATE }}
+          Component={UpdatePage}
+        />
+      </Route>
+      <Route
+        id="create"
+        path={ROUTE_PATHS.CREATE}
+        handle={{ tracking: RouteTracking.CREATE }}
+        Component={CreatePage}
+      />
+      <Route
+        id="onBoarding"
+        path={ROUTE_PATHS.ON_BOARDING}
+        handle={{ tracking: RouteTracking.ON_BOARDING }}
+        Component={OnBoardingPage}
+      />
+    </Route>
+    <Route path="" element={<>Page not found</>}></Route>
+  </Routes>
+);
+
+export default RoutesComponent;
