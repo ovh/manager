@@ -28,17 +28,17 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Await } from 'react-router-dom';
 import { useFetchHubBillingServices } from '@/data/hooks/billingServices/useBillingServices';
-import { BillingService } from '@/types/billingServices.type';
+import { BillingService } from '@/billing/types/billingServices.type';
 import useDateFormat from '@/hooks/dateFormat/useDateFormat';
 
 const TileError = lazy(() =>
   import('@/components/tile-error/TileError.component'),
 );
 const BillingStatus = lazy(() =>
-  import('@/components/billing-status/BillingStatus.component'),
+  import('@/billing/components/billing-status/BillingStatus.component'),
 );
 const ServicesActions = lazy(() =>
-  import('@/components/services-actions/ServicesActions.component'),
+  import('@/billing/components/services-actions/ServicesActions.component'),
 );
 
 type PaymentStatusProps = {
@@ -149,12 +149,12 @@ export default function PaymentStatus({
         </OsdsText>
       )}
       {(isLoading || services) && (
-        <OsdsTable className="block">
+        <OsdsTable className="block overflow-visible">
           <table className="table-auto">
             <tbody>
               {!isLoading &&
                 services.map((service: BillingService) => (
-                  <tr key={service.id}>
+                  <tr key={`billing_service_${service.id}`}>
                     <td scope="row">
                       {service.url ? (
                         <OsdsLink
@@ -236,22 +236,24 @@ export default function PaymentStatus({
                       )}
                     </td>
                     {autorenewLink && (
-                      <Suspense
-                        fallback={
-                          <OsdsSkeleton data-testid="services_actions_skeleton" />
-                        }
-                      >
-                        <Await
-                          resolve={autorenewLink}
-                          children={(link: string) => (
-                            <ServicesActions
-                              service={service}
-                              autoRenewLink={link}
-                              trackingPrefix={['activity', 'payment-status']}
-                            />
-                          )}
-                        />
-                      </Suspense>
+                      <td>
+                        <Suspense
+                          fallback={
+                            <OsdsSkeleton data-testid="services_actions_skeleton" />
+                          }
+                        >
+                          <Await
+                            resolve={autorenewLink}
+                            children={(link: string) => (
+                              <ServicesActions
+                                service={service}
+                                autoRenewLink={link}
+                                trackingPrefix={['activity', 'payment-status']}
+                              />
+                            )}
+                          />
+                        </Suspense>
+                      </td>
                     )}
                   </tr>
                 ))}

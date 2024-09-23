@@ -2,6 +2,8 @@ import { ApiAggregateEnvelope, ApiEnvelope } from '@/types/apiEnvelope.type';
 
 export const DEBT_STATUS = ['PENDING_DEBT', 'UN_PAID', 'UNPAID'];
 
+export const BYOIP_SERVICE_PREFIX = 'byoip-failover-';
+
 type ServiceState =
   // Agora API statuses
   | 'ACTIVE'
@@ -18,6 +20,26 @@ type ServiceState =
   | 'AUTO'
   | 'MANUAL';
 
+type ServiceMenuItems = {
+  manageEmailAccountsInBilling: boolean;
+  manageEmailAccountsInExchange: boolean;
+  resiliate: boolean;
+};
+
+type EngagementStrategy =
+  | 'CANCEL_SERVICE'
+  | 'REACTIVATE_ENGAGEMENT'
+  | 'STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE'
+  | 'STOP_ENGAGEMENT_KEEP_PRICE';
+
+type EngagementDetails = {
+  endDate: Date;
+  endRule: {
+    possibleStrategies: EngagementStrategy[];
+    strategy: EngagementStrategy;
+  };
+};
+
 export type BillingServiceData = {
   canBeEngaged?: boolean;
   canDeleteAtExpiration: boolean;
@@ -25,9 +47,12 @@ export type BillingServiceData = {
   contactBilling: string;
   creation?: string;
   domain: string;
+  engagedUpTo?: string | Date;
+  engagementDetails?: EngagementDetails;
   expiration: string;
   hasPendingEngagement?: boolean;
   id: number | string;
+  menuItems?: ServiceMenuItems;
   renew: {
     automatic: boolean;
     deleteAtExpiration: boolean;
@@ -66,10 +91,16 @@ export class BillingService implements BillingServiceData {
 
   expiration: string;
 
+  engagedUpTo?: Date;
+
+  engagementDetails?: EngagementDetails;
+
   // Not sent by /hub/billingServices
   hasPendingEngagement?: boolean;
 
   id: number | string;
+
+  menuItems?: ServiceMenuItems;
 
   renew: {
     automatic: boolean;
@@ -102,9 +133,12 @@ export class BillingService implements BillingServiceData {
     contactBilling,
     creation,
     domain,
+    engagedUpTo,
+    engagementDetails,
     expiration,
-    id,
     hasPendingEngagement,
+    id,
+    menuItems,
     renew,
     renewalType,
     serviceId,
@@ -117,9 +151,12 @@ export class BillingService implements BillingServiceData {
     this.contactAdmin = contactAdmin;
     this.contactBilling = contactBilling;
     this.domain = domain;
+    this.engagedUpTo = new Date(engagedUpTo);
+    this.engagementDetails = engagementDetails;
     this.expiration = expiration;
     this.hasPendingEngagement = hasPendingEngagement;
     this.id = id;
+    this.menuItems = menuItems;
     this.renew = renew;
     this.renewalType = renewalType;
     this.serviceId = serviceId;
@@ -133,11 +170,11 @@ export class BillingService implements BillingServiceData {
     this.formattedExpiration = new Date(this.expiration);
   }
 
-  isBillingSuspended() {
+  isBillingSuspended(): boolean {
     return this.status === 'BILLING_SUSPENDED';
   }
 
-  getRenew() {
+  getRenew(): string {
     if (this.isResiliated()) {
       return 'expired';
     }
@@ -161,7 +198,7 @@ export class BillingService implements BillingServiceData {
     return 'manualPayment';
   }
 
-  isResiliated() {
+  isResiliated(): boolean {
     return (
       this.isExpired() || ['TERMINATED'].includes(this.status.toUpperCase())
     );
@@ -185,29 +222,29 @@ export class BillingService implements BillingServiceData {
     return Boolean(this.renew.deleteAtExpiration);
   }
 
-  hasAutomaticRenew() {
+  hasAutomaticRenew(): boolean {
     return this.renew.automatic;
   }
 
-  hasAutomaticRenewal() {
+  hasAutomaticRenewal(): boolean {
     return this.hasForcedRenew() || this.hasAutomaticRenew();
   }
 
-  hasForcedRenew() {
+  hasForcedRenew(): boolean {
     return (
       this.renew.forced && !this.shouldDeleteAtExpiration() && !this.isExpired()
     );
   }
 
-  hasDebt() {
+  hasDebt(): boolean {
     return DEBT_STATUS.includes(this.status);
   }
 
-  isOneShot() {
+  isOneShot(): boolean {
     return this.renewalType === 'oneShot';
   }
 
-  hasPendingResiliation() {
+  hasPendingResiliation(): boolean {
     return (
       this.shouldDeleteAtExpiration() &&
       !this.hasManualRenew() &&
@@ -215,11 +252,81 @@ export class BillingService implements BillingServiceData {
     );
   }
 
-  hasBillingRights(nichandle) {
+  hasResiliationRights(nichandle: string) {
+    return this.hasBillingRights(nichandle) || nichandle === this.contactAdmin;
+  }
+
+  hasBillingRights(nichandle: string): boolean {
     return nichandle === this.contactBilling;
   }
 
-  hasAdminRights(nichandle) {
+  hasAdminRights(nichandle: string): boolean {
     return nichandle === this.contactAdmin;
+  }
+
+  isSuspended() {
+    return DEBT_STATUS.includes(this.status) || this.isResiliated();
+  }
+
+  canHandleRenew() {
+    return ![
+      'VIP',
+      'OVH_CLOUD_CONNECT',
+      'PACK_XDSL',
+      'XDSL',
+      'OKMS_RESOURCE',
+      'VRACK_SERVICES_RESOURCE',
+    ].includes(this.serviceType);
+  }
+
+  canBeDeleted() {
+    return (
+      [
+        'EMAIL_DOMAIN',
+        'ENTERPRISE_CLOUD_DATABASE',
+        'HOSTING_WEB',
+        'HOSTING_PRIVATE_DATABASE',
+        'WEBCOACH',
+      ].includes(this.serviceType) && !this.isResiliated()
+    );
+  }
+
+  hasParticularRenew() {
+    return [
+      'EXCHANGE',
+      'EMAIL_EXCHANGE',
+      'SMS',
+      'EMAIL_DOMAIN',
+      'VEEAM_ENTERPRISE',
+    ].includes(this.serviceType);
+  }
+
+  hasEngagement() {
+    return Boolean(this.engagedUpTo) && Date.now() < this.engagedUpTo.getTime();
+  }
+
+  canBeUnresiliated(nichandle: string) {
+    return (
+      this.shouldDeleteAtExpiration() &&
+      !this.hasManualRenew() &&
+      this.hasResiliationRights(nichandle)
+    );
+  }
+
+  canCancelResiliationByEndRule() {
+    return this.engagementDetails?.endRule?.possibleStrategies.includes(
+      'REACTIVATE_ENGAGEMENT',
+    );
+  }
+
+  canResiliateByEndRule() {
+    return (
+      this.engagementDetails?.endRule?.strategy === 'REACTIVATE_ENGAGEMENT' &&
+      this.engagementDetails?.endRule?.possibleStrategies?.length > 0
+    );
+  }
+
+  isByoipService() {
+    return this.domain?.startsWith(BYOIP_SERVICE_PREFIX);
   }
 }

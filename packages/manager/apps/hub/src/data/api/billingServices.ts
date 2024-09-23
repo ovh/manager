@@ -4,7 +4,7 @@ import {
   BillingService,
   BillingServicesData,
   HubBillingServices,
-} from '@/types/billingServices.type';
+} from '@/billing/types/billingServices.type';
 
 export const getBillingServices: () => Promise<
   HubBillingServices

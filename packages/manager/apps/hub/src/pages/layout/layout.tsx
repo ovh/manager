@@ -17,7 +17,7 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useFeatureAvailability } from '@ovhcloud/manager-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { features, BILLING_FEATURE } from '@/pages/layout/layout.constants';
 import { useFetchHubServices } from '@/data/hooks/services/useServices';

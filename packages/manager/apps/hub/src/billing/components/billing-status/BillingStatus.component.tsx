@@ -3,8 +3,8 @@ import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { BADGE_INTENT_BY_STATUS } from '@/components/billing-status/BillingStatus.constants';
-import { BillingService } from '@/types/billingServices.type';
+import { BADGE_INTENT_BY_STATUS } from '@/billing/components/billing-status/BillingStatus.constants';
+import { BillingService } from '@/billing/types/billingServices.type';
 
 type BillingStatusProps = {
   service: BillingService;

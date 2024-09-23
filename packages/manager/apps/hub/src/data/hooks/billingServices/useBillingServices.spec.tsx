@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { describe, it, vi } from 'vitest';
 import { useFetchHubBillingServices } from '@/data/hooks/billingServices/useBillingServices';
 import * as BillingServicesApi from '@/data/api/billingServices';
-import { HubBillingServices } from '@/types/billingServices.type';
+import { HubBillingServices } from '@/billing/types/billingServices.type';
 
 const queryClient = new QueryClient();
 
