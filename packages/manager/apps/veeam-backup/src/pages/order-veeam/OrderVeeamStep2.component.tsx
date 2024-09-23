@@ -35,6 +35,10 @@ import {
 
 const getExpressOrderLink = (orgId: string) => `${orgId}`;
 
+const isOrganizationDisabled = (
+  organization: VCDOrganizationWithBackupStatus,
+) => organization.backupStatus !== BackupStatus.none;
+
 export const OrderVeeamStep2: React.FC = () => {
   const { t } = useTranslation('order-veeam');
   const [selectedVcdOrg, setSelectedVcdOrg] = React.useState('');
@@ -58,11 +62,13 @@ export const OrderVeeamStep2: React.FC = () => {
         <OsdsRadioButton
           size={ODS_RADIO_BUTTON_SIZE.xs}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => setSelectedVcdOrg(organization?.id)}
+          onClick={() => {
+            if (!isOrganizationDisabled(organization)) {
+              setSelectedVcdOrg(organization?.id);
+            }
+          }}
           checked={organization?.id === selectedVcdOrg || undefined}
-          disabled={
-            organization.backupStatus !== BackupStatus.none || undefined
-          }
+          disabled={isOrganizationDisabled(organization) || undefined}
         />
       ),
     },
