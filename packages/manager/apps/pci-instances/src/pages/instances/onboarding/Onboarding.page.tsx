@@ -1,12 +1,16 @@
-import { FC, useContext } from 'react';
+import { FC, useCallback, useContext, useMemo } from 'react';
 import {
   Card,
   OnboardingLayout,
   OvhSubsidiary,
   PageLayout,
-  PublicCloudProject,
 } from '@ovh-ux/manager-react-components';
-import { Navigate, useParams, useRouteLoaderData } from 'react-router-dom';
+import {
+  Navigate,
+  useNavigate,
+  useParams,
+  useRouteLoaderData,
+} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
@@ -15,9 +19,10 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { TProject } from '@ovh-ux/manager-pci-common';
 import { useHidePreloader } from '@/hooks/hidePreloader/useHidePreloader';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
-import InstanceImageSrc from '../../../public/assets/instance.png';
+import InstanceImageSrc from '../../../../public/assets/instance.png';
 import { GUIDES } from './onboarding.constants';
 import { useInstances } from '@/data/hooks/instances/useInstances';
 import { Spinner } from '@/components/spinner/Spinner.component';
@@ -29,7 +34,8 @@ const Onboarding: FC = () => {
   const { ovhSubsidiary } = context.environment.getUser() as {
     ovhSubsidiary: OvhSubsidiary;
   };
-  const project = useRouteLoaderData('root') as PublicCloudProject;
+  const project = useRouteLoaderData('root') as TProject;
+  const navigate = useNavigate();
   useHidePreloader();
 
   const { data, isLoading } = useInstances(projectId, {
@@ -39,17 +45,26 @@ const Onboarding: FC = () => {
     filters: [],
   });
 
+  const rootUrl = useMemo(() => `/pci/projects/${projectId}/instances`, [
+    projectId,
+  ]);
+
+  const createInstance = useCallback(() => {
+    navigate('../new');
+  }, [navigate]);
+
   if (isLoading) return <Spinner />;
 
   return data && data.length > 0 ? (
-    <Navigate to={`/pci/projects/${projectId}/instances`} />
+    <Navigate to={rootUrl} />
   ) : (
     <PageLayout>
-      {project && <Breadcrumb projectLabel={project.description} />}
+      {project && <Breadcrumb projectLabel={project.description ?? ''} />}
       <OnboardingLayout
         title={t('common:instances_title')}
         img={{ src: InstanceImageSrc }}
         orderButtonLabel={t('common:create_instance')}
+        onOrderButtonClick={createInstance}
         description={
           <>
             <OsdsText
