@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useParams, useRouteLoaderData } from 'react-router-dom';
+import { TProject } from '@ovh-ux/manager-pci-common';
 import {
   Datagrid,
   DatagridColumn,
@@ -9,7 +10,6 @@ import {
   Notifications,
   PageLayout,
   PciGuidesHeader,
-  PublicCloudProject,
   Title,
   useColumnFilters,
   useNotifications,
@@ -52,7 +52,7 @@ const initialSorting = {
 const Instances: FC = () => {
   const { t } = useTranslation(['list', 'common']);
   const { projectId } = useParams() as { projectId: string }; // safe because projectId has already been handled by async route loader
-  const project = useRouteLoaderData('root') as PublicCloudProject;
+  const project = useRouteLoaderData('root') as TProject;
   const navigate = useNavigate();
   const [sorting, setSorting] = useState(initialSorting);
   const [searchField, setSearchField] = useState('');
@@ -268,6 +268,10 @@ const Instances: FC = () => {
     fetchNextPage();
   }, [fetchNextPage]);
 
+  const createInstance = useCallback(() => {
+    navigate('./new');
+  }, [navigate]);
+
   useEffect(() => {
     if (data && !filters.length && !data.length && !isFetching)
       navigate(`/pci/projects/${projectId}/instances/onboarding`);
@@ -292,7 +296,7 @@ const Instances: FC = () => {
 
   return (
     <PageLayout>
-      {project && <Breadcrumb projectLabel={project.description} />}
+      {project && <Breadcrumb projectLabel={project.description ?? ''} />}
       <div className="header mb-6 mt-8">
         <div className="flex items-center justify-between">
           <Title>{t('common:instances_title')}</Title>
@@ -309,6 +313,7 @@ const Instances: FC = () => {
             variant={ODS_BUTTON_VARIANT.stroked}
             color={ODS_THEME_COLOR_INTENT.primary}
             inline
+            onClick={createInstance}
           >
             <span slot="start" className="flex items-center">
               <OsdsIcon
