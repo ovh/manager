@@ -1,0 +1,6 @@
+{
+  "private_registry_upgrade_plan": "Mudar de plano",
+  "private_registry_upgrade_plan_breadcrumb": "Mudar de plano",
+  "private_registry_upgrade_plan_success": "O seu plano foi modificado",
+  "private_registry_upgrade_plan_error": "Ocorreu um erro aquando da modificação do seu plano: {{ message }}"
+}
