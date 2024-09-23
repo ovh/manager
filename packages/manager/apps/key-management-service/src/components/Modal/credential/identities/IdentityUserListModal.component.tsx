@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { IdentityUser } from '@/types/identity.type';
 import { useIdentityData } from '@/hooks/credential/useIdentityData';
 import { useIdentityUserList } from '@/data/hooks/useIdentity';
-import IdentitiesUserList from '@/components/credential/create/identities/list/IdentitiesUserList.component';
+import IdentitiesUserList from '@/pages/credential/create/identities/list/IdentitiesUserList.component';
 
 type IdentityUserListModalProps = {
   closeModal: () => void;

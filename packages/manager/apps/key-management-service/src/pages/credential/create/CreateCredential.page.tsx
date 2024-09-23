@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import {
   BaseLayout,
   ErrorBanner,
@@ -14,8 +14,10 @@ import { useOKMSById } from '@/data/hooks/useOKMS';
 import Loading from '@/components/Loading/Loading';
 import { IdentityDataProvider } from '@/hooks/credential/useIdentityData';
 import { useCreateOkmsCredential } from '@/data/hooks/useCreateOkmsCredential';
-import CreateGeneralInformations from '@/components/credential/create/CreateGeneralInformations.component';
-import CreateAddIdentities from '@/components/credential/create/CreateAddIdentities.component';
+import CreateGeneralInformations from '@/pages/credential/create/CreateGeneralInformations.component';
+import CreateAddIdentities from '@/pages/credential/create/CreateAddIdentities.component';
+import CreateCredentialConfirmation from '@/pages/credential/create/confirmation/CreateCredentialConfirmation.component';
+import { OkmsCredential } from '@/types/okmsCredential.type';
 
 const CreateCredential = () => {
   const navigate = useNavigate();
@@ -28,10 +30,11 @@ const CreateCredential = () => {
   const [description, setDescription] = useState<string | null>();
   const [csr, setCsr] = useState<string | null>(null);
   const [identityURNs, setIdentityURNs] = useState<string[]>([]);
+  const [okmsCredential, setOkmsCredential] = useState<OkmsCredential>();
   const { createKmsCredential } = useCreateOkmsCredential({
     okmsId,
-    onSuccess: () => {
-      navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
+    onSuccess: (credential) => {
+      setOkmsCredential(credential);
     },
     onError: () => {},
   });
@@ -53,6 +56,16 @@ const CreateCredential = () => {
       navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}/${ROUTES_URLS.createCredential}`,
     },
   ];
+
+  useEffect(() => {
+    if (okmsCredential) {
+      if (!okmsCredential.fromCSR) {
+        setStep(3);
+      } else {
+        navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
+      }
+    }
+  }, [okmsCredential]);
 
   if (isLoading) return <Loading />;
 
@@ -104,11 +117,14 @@ const CreateCredential = () => {
                     name,
                     identityURNs,
                     description,
-                    csr,
                     validity,
+                    ...(csr ? { csr } : {}),
                   });
                 }}
               ></CreateAddIdentities>
+            )}
+            {step === 3 && (
+              <CreateCredentialConfirmation okmsCredential={okmsCredential} />
             )}
           </div>
           <Outlet />

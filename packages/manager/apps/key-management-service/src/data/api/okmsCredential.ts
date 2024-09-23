@@ -39,7 +39,10 @@ export const createOkmsCredential = async ({
   okmsId: string;
   data: OkmsCredentialCreation;
 }) => {
-  return apiClient.v2.post(`okms/resource/${okmsId}/credential`, data);
+  return apiClient.v2.post<OkmsCredential>(
+    `okms/resource/${okmsId}/credential`,
+    data,
+  );
 };
 
 export const createOkmsCredentialQueryKey = ({
