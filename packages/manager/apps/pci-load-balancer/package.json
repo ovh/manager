@@ -1,0 +1,73 @@
+{
+  "name": "@ovh-ux/manager-pci-load-balancer-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json && vite build",
+    "coverage": "vitest run --coverage",
+    "dev": "vite",
+    "lint": "eslint ./src",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-load-balancer-app' --include-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-load-balancer-app' --include-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-load-balancer-app' --include-dependencies -- npm run dev:watch --if-present",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-config": "*",
+    "@ovh-ux/manager-core-api": "*",
+    "@ovh-ux/manager-pci-common": "^0.7.4",
+    "@ovh-ux/manager-react-components": "^1.39.1",
+    "@ovh-ux/manager-react-core-application": "*",
+    "@ovh-ux/manager-react-shell-client": "*",
+    "@ovh-ux/manager-tailwind-config": "*",
+    "@ovh-ux/shell": "*",
+    "@ovhcloud/ods-common-core": "17.2.2",
+    "@ovhcloud/ods-common-stencil": "17.2.2",
+    "@ovhcloud/ods-common-theming": "17.2.2",
+    "@ovhcloud/ods-components": "17.2.2",
+    "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
+    "@tanstack/react-query": "^5.50.1",
+    "@tanstack/react-query-devtools": "^5.50.1",
+    "@tanstack/react-table": "^8.17.3",
+    "i18next": "^23.11.5",
+    "i18next-http-backend": "^2.5.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.52.1",
+    "react-i18next": "^14.1.2",
+    "react-router-dom": "^6.24.1",
+    "react-use": "^17.5.0",
+    "zustand": "^4.5.4"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@ovh-ux/manager-vite-config": "*",
+    "@testing-library/dom": "^10.1.0",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "autoprefixer": "^10.4.19",
+    "element-internals-polyfill": "^1.3.11",
+    "eslint": "^8.57.0",
+    "postcss": "^8.4.38",
+    "rollup": "^4.18.0",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.4.5",
+    "vite": "^5.3.3",
+    "vitest": "^1.6.0"
+  },
+  "regions": [
+    "CA",
+    "EU",
+    "US"
+  ],
+  "universes": [
+    "@ovh-ux/manager-public-cloud"
+  ]
+}
