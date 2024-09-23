@@ -155,7 +155,11 @@ export default class NewAccountFormFieldController {
         }
 
         if (this.rule.regularExpression) {
-          if (this.rule.prefix && value) {
+          if (
+            this.rule.prefix &&
+            value &&
+            this.fieldName !== this.FIELD_NAME_LIST.zip
+          ) {
             value = this.rule.prefix + value;
           }
           const regex = this.rule.regularExpression.replace(/\//g, '\\/');
@@ -415,7 +419,11 @@ export default class NewAccountFormFieldController {
         return;
       }
       value = moment(value).format('YYYY-MM-DD');
-    } else if (this.rule.prefix && value) {
+    } else if (
+      this.rule.prefix &&
+      value &&
+      this.rule.fieldName !== this.FIELD_NAME_LIST.zip
+    ) {
       // only add prefix if value is defined
       value = this.rule.prefix + value;
     } else if (fieldType === 'checkbox') {
