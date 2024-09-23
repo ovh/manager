@@ -1,4 +1,4 @@
-import { FC, useCallback, useContext, useMemo } from 'react';
+import { FC, useContext, useMemo } from 'react';
 import {
   Card,
   OnboardingLayout,
@@ -7,7 +7,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import {
   Navigate,
-  useNavigate,
+  useHref,
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
@@ -35,7 +35,7 @@ const Onboarding: FC = () => {
     ovhSubsidiary: OvhSubsidiary;
   };
   const project = useRouteLoaderData('root') as TProject;
-  const navigate = useNavigate();
+  const createInstanceHref = useHref('../new');
   useHidePreloader();
 
   const { data, isLoading } = useInstances(projectId, {
@@ -49,10 +49,6 @@ const Onboarding: FC = () => {
     projectId,
   ]);
 
-  const createInstance = useCallback(() => {
-    navigate('../new');
-  }, [navigate]);
-
   if (isLoading) return <Spinner />;
 
   return data && data.length > 0 ? (
@@ -64,7 +60,7 @@ const Onboarding: FC = () => {
         title={t('common:instances_title')}
         img={{ src: InstanceImageSrc }}
         orderButtonLabel={t('common:create_instance')}
-        onOrderButtonClick={createInstance}
+        orderHref={createInstanceHref}
         description={
           <>
             <OsdsText
