@@ -74,6 +74,11 @@ export default [
         path: 'onboarding',
         ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
       },
+      {
+        id: 'upgrade-plan',
+        path: 'upgrade-plan',
+        ...lazyRouteConfig(() => import('@/pages/upgrade-plan/UpgradePlan.page')),
+      },
     ],
   },
   {

@@ -8,13 +8,14 @@ import { OsdsText } from '@ovhcloud/ods-components/react';
 import { useMemo } from 'react';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { useCatalog } from '@ovh-ux/manager-pci-common';
-import { TCapability } from '@/api/data/capability';
+import clsx from 'clsx';
 import { useTranslatedBytes } from '@/pages/create/useTranslatedBytes';
+import { TRegistryPlan } from '@/api/data/registry';
 
 export default function PlanComponent({
   plan,
 }: {
-  plan: TCapability['plans'][0];
+  plan: TRegistryPlan;
 }): JSX.Element {
   const { t: tUpgrade } = useTranslation('upgrade');
 
@@ -37,7 +38,7 @@ export default function PlanComponent({
     toRawBytes: false,
   });
   return (
-    <div className="w-full">
+    <div className="full-width">
       <div className="border-solid border border-t-0 border-x-0 border-[--ods-color-blue-200] my-4 py-4">
         <OsdsText
           data-testid="name"
@@ -55,7 +56,7 @@ export default function PlanComponent({
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           >
-            {tUpgrade('private_registry_upgrade_plan_available_storage')}:
+            {tUpgrade('private_registry_upgrade_plan_available_storage')}
           </OsdsText>
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
@@ -133,7 +134,10 @@ export default function PlanComponent({
         )}
       </ul>
       <div
-        className="border-solid border border-b-0 border-x-0 border-[--ods-color-blue-200] my-2"
+        className={clsx(
+          'border-solid border border-b-0 border-x-0 border-[--ods-color-blue-200] mb-2 pt-4',
+          clsx(plan.name[0] === 'S' ? 'mt-16' : 'mt-9'),
+        )}
         data-testid="price"
       >
         <OsdsText
