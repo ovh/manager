@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { IdentityGroup } from '@/types/identity.type';
 import { useIdentityData } from '@/hooks/credential/useIdentityData';
 import { useIdentityGroupList } from '@/data/hooks/useIdentity';
-import IdentitiesGroupList from '@/components/credential/create/identities/list/IdentitiesGroupList.component';
+import IdentitiesGroupList from '@/pages/credential/create/identities/list/IdentitiesGroupList.component';
 
 type IdentityGroupListModalProps = {
   closeModal: () => void;
