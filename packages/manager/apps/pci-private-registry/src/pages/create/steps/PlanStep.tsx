@@ -22,6 +22,8 @@ import { useStore } from '@/pages/create/store';
 import { useGetCapabilities } from '@/api/hooks/useCapabilities';
 import { PRIVATE_REGISTRY_CREATE_PLAN } from '@/pages/create/constants';
 import PlanChooser from '@/components/PlanChooser.component';
+import queryClient from '@/queryClient';
+import { getRegistryQueryPrefix } from '@/api/hooks/useRegistry';
 
 export default function PlanStep(): JSX.Element {
   const { t: tCreate } = useTranslation('create');
@@ -41,6 +43,9 @@ export default function PlanStep(): JSX.Element {
 
   const createCallbacks = {
     success: () => {
+      queryClient.invalidateQueries({
+        queryKey: getRegistryQueryPrefix(projectId),
+      });
       addSuccess(
         <OsdsText
           break-spaces="false"

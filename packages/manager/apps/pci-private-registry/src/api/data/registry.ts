@@ -127,3 +127,17 @@ export const createRegistry = async (
   );
   return data;
 };
+
+export const updatePlan = async (
+  projectId: string,
+  registryId: string,
+  planId: string,
+) => {
+  const { data } = await v6.put(
+    `/cloud/project/${projectId}/containerRegistry/${registryId}/plan`,
+    {
+      planID: planId,
+    },
+  );
+  return data;
+};
