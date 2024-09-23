@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import StaticLink from './StaticLink';
 import { Node, NodeTag } from './navigation-tree/node';
 import { StaticLinkProps } from './StaticLink';
@@ -72,11 +72,11 @@ describe('StaticLink.component', () => {
     expect(getByText(props.node.translation)).toBeInTheDocument();
   });
 
-  it('Static link should call callback when clicked', () => {
+  it('Static link should call callback when clicked', async () => {
     const { queryByTestId } = renderStaticLinkComponent(props);
     const staticLink = queryByTestId(props.node.idAttr);
 
-    fireEvent.click(staticLink);
+    await act(() => fireEvent.click(staticLink));
 
     expect(handleClick).toHaveBeenCalled();
   });

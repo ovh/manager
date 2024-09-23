@@ -1,5 +1,5 @@
 import { it, vi, describe, expect } from 'vitest';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import HamburgerMenu, {Props} from './HamburgerMenu';
 
 const handleClick = vi.fn();
@@ -18,10 +18,10 @@ describe('HamburgerMenu.component', () => {
     expect(renderHamburgerMenu(props).queryByTestId('hamburgerMenu')).not.toBeNull();
   });
 
-  it('should trigger callback', () => {
+  it('should trigger callback', async () => {
     const {queryByTestId} = renderHamburgerMenu(props);
     const button = queryByTestId('hamburgerMenu');
-    fireEvent.click(button);
+    await act(() => fireEvent.click(button));
     expect(handleClick).toHaveBeenCalled();
   });
 

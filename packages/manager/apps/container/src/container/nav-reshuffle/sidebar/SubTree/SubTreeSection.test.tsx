@@ -1,5 +1,5 @@
-import { vi, it, describe, expect, Mock } from 'vitest';
-import { render, fireEvent } from '@testing-library/react';
+import { vi, it, describe, expect } from 'vitest';
+import { render } from '@testing-library/react';
 import SubTreeSection, { SubTreeSectionProps } from './SubTreeSection';
 import { Node } from '../navigation-tree/node';
 import { mockShell } from '../mocks/sidebarMocks';
