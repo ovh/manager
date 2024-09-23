@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.77.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.76.3...@ovh-ux/manager-container-app@0.77.0) (2024-09-23)
+
+
+### Features
+
+* **key-management-service:** add services loader in sidebar ([#13040](https://github.com/ovh/manager/issues/13040)) ([7b79460](https://github.com/ovh/manager/commit/7b79460a5940d4a9a07b79c41c3d0c853f1ff197))
+* **key-management-service:** update PCI menu to manage external µapp ([#13028](https://github.com/ovh/manager/issues/13028)) ([0156c6e](https://github.com/ovh/manager/commit/0156c6ebf4212772103e1278d4506aec039ce21b))
+
+
+
+
+
 ## [0.76.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.76.2...@ovh-ux/manager-container-app@0.76.3) (2024-09-23)
 
 
