@@ -5,9 +5,13 @@ import {
   getVcdDatacentres,
 } from '../api/hpc-vmware-managed-vcd-datacentre';
 import IVcdDatacentre from '@/types/vcd-datacenter.interface';
+import { VCD_ORGANIZATION_ROUTE } from '../api/hpc-vmware-managed-vcd.constants';
 
 export const getVcdDatacentresQueryKey = (id: string) => [
-  `get/vmwareCloudDirector/organization/${id}/virtualDataCenter`,
+  `get${VCD_ORGANIZATION_ROUTE}/${id}/virtualDataCenter`,
+];
+export const getVcdDatacentreQueryKey = (id: string, vdcId: string) => [
+  `${getVcdDatacentresQueryKey(id)}/${vdcId}`,
 ];
 
 const useManagedVcdDatacentres = (id: string) => {
@@ -18,10 +22,6 @@ const useManagedVcdDatacentres = (id: string) => {
     placeholderData: keepPreviousData,
   });
 };
-
-const getVcdDatacentreQueryKey = (id: string, vdcId: string) => [
-  `get/vmwareCloudDirector/organization/${id}/virtualDataCenter/${vdcId}`,
-];
 
 export const useManagedVcdDatacentre = (id: string, vdcId: string) => {
   return useQuery<ApiResponse<IVcdDatacentre>, ApiError>({
