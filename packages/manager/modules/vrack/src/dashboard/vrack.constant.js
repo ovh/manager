@@ -54,47 +54,10 @@ export const SLAAC_VALUES = {
 export const VRACK_DASHBOARD_TRACKING_PREFIX = 'vrack::dashboard';
 export const VRACK_ACTIONS_SUFFIX = 'action';
 
-export const TYPE_SERVICE = {
-  cloudProject: 'cloudProject',
-  dedicatedCloud: 'dedicatedCloud',
-  dedicatedServer: 'dedicatedServer',
-  dedicatedServerInterface: 'dedicatedServerInterface',
-  ipLoadbalancing: 'ipLoadbalancing',
-  ip: 'ip',
-  legacyVrack: 'legacyVrack',
-  ipv6: 'ipv6',
-};
-
-export const SERVICES = [
-  'cloudProject',
-  'dedicatedCloud',
-  'dedicatedServer',
-  'dedicatedServerInterface',
-  'ipLoadbalancing',
-  'ip',
-  'legacyVrack',
-  'ipv6',
-  'ovhCloudConnect',
-];
-
-export const API_STATUS = {
-  pending: 'pending',
-  done: 'done',
-};
-
-export const DEDICATED_CLOUD_PRODUCT = {
-  epcc: 'EPCC',
-  mbm: 'MBM',
-};
-
 export default {
-  API_STATUS,
-  DEDICATED_CLOUD_PRODUCT,
   FEATURE_NAMES,
   POLLING_INTERVAL,
-  SERVICES,
   STATUS,
-  TYPE_SERVICE,
   VRACK_URLS,
   VRACK_DASHBOARD_TRACKING_PREFIX,
   VRACK_ACTIONS_SUFFIX,
