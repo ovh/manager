@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { VALIDITY_PERIOD_PRESET } from '../CreateGeneralInformations.constants';
 import { ValidityPeriodErrorsType } from '@/utils/credential/validateValidityDate';
 import {
+  addDaysToDate,
   getDaysFromDate,
   getNextMonth,
 } from '@/utils/credential/validityDateUtils';
@@ -86,6 +87,8 @@ const CreateGeneralInformationsValidity = ({
             onOdsDatepickerValueChange={(v) => {
               setValidityDatepicker(v.detail.value);
             }}
+            maxDate={addDaysToDate(365)}
+            minDate={addDaysToDate(1)}
           ></OsdsDatepicker>
           <OsdsText slot="label">
             {t(

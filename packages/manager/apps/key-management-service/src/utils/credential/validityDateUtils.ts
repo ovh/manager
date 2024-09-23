@@ -1,3 +1,9 @@
+export function addDaysToDate(days: number): Date {
+  const targetDate = new Date();
+  targetDate.setDate(targetDate.getDate() + days);
+  return targetDate;
+}
+
 export function getNextMonth(): Date {
   const today = new Date();
   today.setMonth(today.getMonth() + 1);

@@ -1,5 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { getNextMonth, getDaysFromDate } from './validityDateUtils';
+import {
+  getNextMonth,
+  getDaysFromDate,
+  addDaysToDate,
+} from './validityDateUtils';
 
 describe('getNextMonth', () => {
   it('should return a date one month from now', () => {
@@ -63,5 +67,26 @@ describe('getDaysFromDate', () => {
     );
 
     expect(diffInDays).toBe(1);
+  });
+});
+
+describe('addDaysToDate', () => {
+  it('should return the correct date when adding days', () => {
+    const today = new Date();
+    const result = addDaysToDate(5);
+
+    const expectedDate = new Date(today);
+    expectedDate.setDate(today.getDate() + 5);
+
+    expect(result.getUTCDate()).toBe(expectedDate.getUTCDate());
+    expect(result.getUTCMonth()).toBe(expectedDate.getUTCMonth());
+    expect(result.getUTCFullYear()).toBe(expectedDate.getUTCFullYear());
+  });
+
+  it('should handle leap years correctly', () => {
+    const result = addDaysToDate(365); // Ajoute 365 jours à une année bissextile
+    const expectedDate = new Date();
+    expectedDate.setFullYear(expectedDate.getFullYear() + 1);
+    expect(result.getUTCFullYear()).toBe(expectedDate.getUTCFullYear());
   });
 });
