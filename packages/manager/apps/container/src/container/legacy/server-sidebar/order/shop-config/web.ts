@@ -100,15 +100,5 @@ const webShopConfig = (
         tracking: 'web::orders::cloud-db::order',
       }
     : null,
-  features['web-paas']
-    ? {
-        label: 'order_item_web_paas',
-        icon: OdsIconWrapper({
-          name: ODS_ICON_NAME.PARTNER_PLATFORMSH_CONCEPT,
-        }),
-        url: navigation.getURL('web', '#/paas/webpaas/new'),
-        tracking: 'web::orders::web-paas::order',
-      }
-    : null,
 ];
 export default webShopConfig;

@@ -4,7 +4,6 @@ import template from './template.html';
 export default {
   bindings: {
     catalog: '<',
-    createProject: '<',
     guideUrl: '<',
     goToChangeOffer: '<',
     goToUserLicences: '<',

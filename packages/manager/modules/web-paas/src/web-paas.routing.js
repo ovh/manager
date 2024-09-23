@@ -9,8 +9,6 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
       guideUrl: /* @ngInject */ (user) => get(GUIDELINK, user.ovhSubsidiary),
-      createProject: /* @ngInject */ ($state) => () =>
-        $state.go('web-paas.add'),
       goToDetails: /* @ngInject */ ($state, atInternet) => (
         projectId,
         trackText,
