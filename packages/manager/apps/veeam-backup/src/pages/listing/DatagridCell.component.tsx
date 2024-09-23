@@ -12,6 +12,7 @@ import {
   Description,
   LinkType,
   Links,
+  Region,
   useFormattedDate,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
@@ -24,7 +25,6 @@ import {
   getOrganizationIdFromBackupId,
   useOrganization,
   ResourceStatus,
-  useRegions,
   getVeeamBackupDisplayName,
 } from '@/data';
 import { iamActions, vcdOrganizationAppName } from '@/veeam-backup.config';
@@ -113,21 +113,11 @@ export const OrganizationCell = ({
 
 export const RegionCell = ({
   currentState,
-  isDashboard,
-}: VeeamBackupWithIam & { isDashboard?: boolean }): JSX.Element => {
-  const { flattenData, isLoading } = useRegions();
-  const label = flattenData?.find((r) => r.region === currentState?.region)
-    ?.location;
-
-  if (isLoading) {
-    return <OsdsSkeleton />;
-  }
-  return isDashboard ? (
-    <Description>{label}</Description>
-  ) : (
-    <DataGridTextCell>{label}</DataGridTextCell>
-  );
-};
+}: VeeamBackupWithIam): JSX.Element => (
+  <DataGridTextCell>
+    <Region mode="region" name={currentState.region.toLowerCase()} />
+  </DataGridTextCell>
+);
 
 export const CreatedAtCell = ({
   createdAt,

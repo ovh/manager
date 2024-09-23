@@ -120,7 +120,7 @@ export const OrderVeeamStep2: React.FC = () => {
             )}
           </OsdsMessage>
         )}
-      <React.Suspense>
+      <React.Suspense fallback={<Loading />}>
         {!isLoading && flattenData?.length > 0 && (
           <div className="mb-9">
             <Datagrid

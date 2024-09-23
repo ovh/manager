@@ -23,6 +23,7 @@ export const DisplayNameWithEditButton = (
       <Description>{getVeeamBackupDisplayName(backup)}</Description>
       <ManagerButton
         className="ml-4"
+        data-testid="edit-name-button"
         iamActions={[iamActions.iamResourceEdit]}
         urn={backup?.iam?.urn}
         onClick={() =>

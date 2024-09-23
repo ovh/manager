@@ -25,6 +25,7 @@ import {
   OrganizationCell,
 } from './DatagridCell.component';
 import { productFullName } from '@/veeam-backup.config';
+import { Loading } from '@/components/Loading/Loading';
 
 export default function Listing() {
   const { t } = useTranslation('listing');
@@ -85,15 +86,13 @@ export default function Listing() {
     },
   ];
 
-  if (isError) {
-    return <ErrorBanner error={error} />;
-  }
-
   return (
     <RedirectionGuard
       isLoading={isLoading || !flattenData}
       condition={status === 'success' && data?.pages[0].data.length === 0}
       route={urls.onboarding}
+      isError={isError}
+      errorComponent={<ErrorBanner error={error} />}
     >
       <BaseLayout
         breadcrumb={<Breadcrumb />}
@@ -113,7 +112,7 @@ export default function Listing() {
             {t('order_button')}
           </OsdsButton>
         </div>
-        <React.Suspense>
+        <React.Suspense fallback={<Loading />}>
           {flattenData && (
             <Datagrid
               columns={columns}

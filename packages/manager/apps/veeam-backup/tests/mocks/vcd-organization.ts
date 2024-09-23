@@ -5,6 +5,7 @@ import organizationList from './vcd-organization.json';
 export type GetOrganizationMocksParams = {
   isOrganizationKo?: boolean;
   nbOrganization?: number;
+  allOrgsBackedUp?: boolean;
 };
 
 const findOrganiationById = (params: PathParams) =>
@@ -13,20 +14,24 @@ const findOrganiationById = (params: PathParams) =>
 export const getOrganizationMocks = ({
   isOrganizationKo,
   nbOrganization = Number.POSITIVE_INFINITY,
-}: GetOrganizationMocksParams): Handler[] => [
-  {
-    url: '/vmwareCloudDirector/organization/:id',
-    response: (_, params: PathParams) => findOrganiationById(params),
-    api: 'v2',
-  },
-  {
-    url: '/vmwareCloudDirector/organization',
-    response: isOrganizationKo
-      ? {
-          message: 'Organization error',
-        }
-      : organizationList.slice(0, nbOrganization),
-    status: isOrganizationKo ? 500 : 200,
-    api: 'v2',
-  },
-];
+  allOrgsBackedUp,
+}: GetOrganizationMocksParams): Handler[] => {
+  const nb = allOrgsBackedUp ? 1 : nbOrganization;
+  return [
+    {
+      url: '/vmwareCloudDirector/organization/:id',
+      response: (_, params: PathParams) => findOrganiationById(params),
+      api: 'v2',
+    },
+    {
+      url: '/vmwareCloudDirector/organization',
+      response: isOrganizationKo
+        ? {
+            message: 'Organization error',
+          }
+        : organizationList.slice(0, nb),
+      status: isOrganizationKo ? 500 : 200,
+      api: 'v2',
+    },
+  ];
+};

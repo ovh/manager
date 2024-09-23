@@ -3,6 +3,7 @@ import { odsSetup } from '@ovhcloud/ods-common-core';
 import { setupServer } from 'msw/node';
 import { toMswHandlers } from '../../../../playwright-helpers';
 import { getAuthenticationMocks } from '../../../../playwright-helpers/mocks/auth';
+import 'element-internals-polyfill';
 
 odsSetup();
 
