@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.76.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.76.2...@ovh-ux/manager-container-app@0.76.3) (2024-09-23)
+
+
+### Bug Fixes
+
+* **pci-private-network:** replace Network instead of network ([#12892](https://github.com/ovh/manager/issues/12892)) ([2c2a74e](https://github.com/ovh/manager/commit/2c2a74e9a313ff46d2510286a63b747502432ca2))
+
+
+
+
+
 ## [0.76.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.76.1...@ovh-ux/manager-container-app@0.76.2) (2024-09-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
