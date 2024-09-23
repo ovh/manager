@@ -335,7 +335,7 @@ export function getPciProjectMenu(
           id: 'data-platform',
           title: 'Data Platform',
           badge: 'beta',
-          href: `https%3A%2F%2Fhq-api.eu.dataplatform.ovh.net%2Fiam%2Fv4%2Flogin%3Fauthentication_provider%3Dovh%26project%3D${projectId}%26app_id%3Dforepaas%26%26response_type%3Dtoken%26redirect_uri%3Dhttps%3A%2F%2Feu.dataplatform.ovh.net%26authorize_bypass%3Dtrue%26token_mode%3Dcookie%26force_auth%3Dfalse`,
+          href: `https://hq-api.eu.dataplatform.ovh.net/iam/v4/login?authentication_provider=ovh&project=${projectId}&app_id=forepaas&&response_type=token&redirect_uri=https://eu.dataplatform.ovh.net&authorize_bypass=true&token_mode=cookie&force_auth=false`,
           external: true,
         },
         isFeaturesAvailable('logs-data-platform') && {
