@@ -12,11 +12,13 @@ import clsx from 'clsx';
 import { useTranslatedBytes } from '@/pages/create/useTranslatedBytes';
 import { TRegistryPlan } from '@/api/data/registry';
 
+export type TPlanComponentProps = {
+  plan: TRegistryPlan;
+};
+
 export default function PlanComponent({
   plan,
-}: {
-  plan: TRegistryPlan;
-}): JSX.Element {
+}: Readonly<TPlanComponentProps>): JSX.Element {
   const { t: tUpgrade } = useTranslation('upgrade');
 
   const { data: catalog } = useCatalog();
@@ -136,7 +138,7 @@ export default function PlanComponent({
       <div
         className={clsx(
           'border-solid border border-b-0 border-x-0 border-[--ods-color-blue-200] mb-2 pt-4',
-          clsx(plan.name[0] === 'S' ? 'mt-16' : 'mt-9'),
+          clsx(plan.name.startsWith('S') ? 'mt-16' : 'mt-9'),
         )}
         data-testid="price"
       >
