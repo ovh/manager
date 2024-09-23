@@ -7,7 +7,8 @@ import {
 import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useParams } from 'react-router-dom';
-import useLicenseOrder from '@/data/hooks/useLicenseOrder';
+import useVcdOrder from '@/data/hooks/useVcdOrder';
+import { WINDOWS_LICENSE_PLANCODE } from '@/utils/planCode.constants';
 
 export default function OrganizationOptionsTile({
   isLicenseActive,
@@ -16,7 +17,10 @@ export default function OrganizationOptionsTile({
 }>) {
   const { t } = useTranslation('dashboard');
   const { id } = useParams();
-  const { redirectToLicenseOrder } = useLicenseOrder(id);
+  const { redirectToOrder } = useVcdOrder({
+    serviceName: id,
+    planCode: WINDOWS_LICENSE_PLANCODE,
+  });
 
   return (
     <div className="h-fit">
@@ -42,7 +46,7 @@ export default function OrganizationOptionsTile({
                       label: t(
                         'managed_vcd_dashboard_windows_license_activate',
                       ),
-                      onClick: redirectToLicenseOrder,
+                      onClick: redirectToOrder,
                     },
                   ]}
                   isCompact
