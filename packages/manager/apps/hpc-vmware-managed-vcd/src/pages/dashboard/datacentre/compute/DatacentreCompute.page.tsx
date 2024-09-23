@@ -1,11 +1,15 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { VHOSTS_TITLE } from './DatacentreCompute.constants';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import IVcdCompute from '@/types/vcd-compute.interface';
 import { getVcdDatacentreComputeRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
+import { subRoutes } from '@/routes/routes.constant';
 
 const DatagridIdCell = (vcdCompute: IVcdCompute) => (
   <DataGridTextCell>{vcdCompute?.id}</DataGridTextCell>
@@ -44,6 +48,7 @@ export default function ComputeListingPage() {
   const { id, vdcId } = useParams();
   const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/compute');
   const { t: tVdc } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+  const navigate = useNavigate();
 
   const columns = [
     {
@@ -88,6 +93,16 @@ export default function ComputeListingPage() {
         onboarding: null, // TODO update with order compute page when available
       }}
       isEmbedded
+      orderButton={
+        <OsdsButton
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.stroked}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          onClick={() => navigate(subRoutes.order)}
+        >
+          {t('managed_vcd_vdc_compute_order_cta')}
+        </OsdsButton>
+      }
     />
   );
 }

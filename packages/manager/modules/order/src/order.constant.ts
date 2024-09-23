@@ -33,11 +33,20 @@ export const getKMSProductSettings = ({ region }: { region: string }) =>
     configuration: [{ label: 'region', value: region }].filter(Boolean),
   });
 
-export const getVcdProductSettings = (serviceName: string) =>
+export const getVcdProductSettings = ({
+  serviceName,
+  planCode,
+  quantity = 1,
+}: {
+  serviceName: string;
+  planCode: string;
+  quantity?: number;
+}) =>
   JSURL.stringify({
     serviceName,
+    planCode,
+    quantity,
     productId: 'vcd',
-    planCode: 'vcd-microsoft-license',
     duration: 'P1M',
     pricingMode: 'default',
   });

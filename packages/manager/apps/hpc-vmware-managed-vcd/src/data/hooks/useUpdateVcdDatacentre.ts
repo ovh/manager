@@ -5,12 +5,13 @@ import {
   updateVdcDetails,
 } from '../api/hpc-vmware-managed-vcd-datacentre';
 import { getVcdDatacentresQueryKey } from './useManagedVcdDatacentres';
+import { VCD_ORGANIZATION_ROUTE } from '../api/hpc-vmware-managed-vcd.constants';
 
 const updateVdcDetailsQueryKey = ({
   id,
   vdcId,
 }: Pick<UpdateVdcDetailsParams, 'id' | 'vdcId'>) => [
-  `put/vmwareCloudDirector/organization/${id}/virtualDataCenter/${vdcId}`,
+  `put${VCD_ORGANIZATION_ROUTE}/${id}/virtualDataCenter/${vdcId}`,
 ];
 
 export const useUpdateVdcDetails = ({
