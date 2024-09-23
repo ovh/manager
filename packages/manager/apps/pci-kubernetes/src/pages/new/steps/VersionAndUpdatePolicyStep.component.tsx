@@ -8,7 +8,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepState } from '../useStep';
-import { VersionSelector } from '@/components/VersionSelector.component';
+import { VersionSelector } from './VersionSelector.component';
 import { UpdatePolicySelector } from './UpdatePolicySelector.component';
 import { UpdatePolicy } from '@/types';
 
