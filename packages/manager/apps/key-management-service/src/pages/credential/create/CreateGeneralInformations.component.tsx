@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Subtitle } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
@@ -47,6 +47,12 @@ const CreateGeneralInformations = ({
   const credentialValidityError = validateValidityDate(validity);
   const credentialCreationMethodError = validateCredentialCreationMethod(csr);
   const [isCustomCsr, setIsCustomCsr] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!isCustomCsr) {
+      setCsr(null);
+    }
+  }, [isCustomCsr]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
