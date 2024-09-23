@@ -1,8 +1,8 @@
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 
 type TBreadcrumbItem = {
   label: string;
@@ -18,16 +18,9 @@ export const Breadcrumb: FC<TBreadcrumbProps> = ({
   items = [],
   projectLabel,
 }) => {
-  const { projectId } = useParams() as { projectId: string };
-  const { navigation } = useContext(ShellContext).shell;
-  const [projectUrl, setProjectUrl] = useState('');
+  const backHref = useHref('..');
+  const projectUrl = useProjectUrl('public-cloud');
   const { t } = useTranslation('common');
-
-  useEffect(() => {
-    navigation
-      .getURL('public-cloud', `#/pci/projects/${projectId}`, {})
-      .then((url: unknown) => setProjectUrl(url as string));
-  }, [navigation, projectId]);
 
   return (
     <OsdsBreadcrumb
@@ -37,7 +30,7 @@ export const Breadcrumb: FC<TBreadcrumbProps> = ({
           label: projectLabel,
         },
         {
-          href: `${projectUrl}/instances`,
+          href: backHref,
           label: t('instances_title'),
         },
         ...items,
