@@ -10,7 +10,13 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./setup-test.tsx'],
     coverage: {
-      include: ['src/utils'],
+      include: ['src'],
+      exclude: [
+        'src/App.tsx',
+        'src/index.tsx',
+        'src/tracking.constant.ts',
+        'src/vite-hmr.ts',
+      ],
     },
     testTimeout: 60000,
     fileParallelism: false,

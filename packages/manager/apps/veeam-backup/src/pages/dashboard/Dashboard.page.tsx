@@ -9,6 +9,7 @@ import {
   DashboardTile,
   Description,
   RedirectionGuard,
+  Region,
 } from '@ovh-ux/manager-react-components';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { getVeeamBackupDisplayName, useVeeamBackup } from '@/data';
@@ -16,7 +17,6 @@ import { urls } from '@/routes/routes.constant';
 import { SuccessMessages } from '@/components/Messages/SuccessMessage.component';
 import {
   StatusCell,
-  RegionCell,
   OrganizationCell,
 } from '../listing/DatagridCell.component';
 import { DisplayNameWithEditButton } from './DisplayName.component';
@@ -24,6 +24,7 @@ import { OfferProgress } from './OfferProgress.component';
 import { SubscriptionTile } from './SubscriptionTile.component';
 import { ComingSoonBadge } from '@/components/ComingSoonBadge/ComingSoonBadge';
 import { BillingLink } from '@/components/Links/BillingLink.component';
+import { Loading } from '@/components/Loading/Loading';
 
 export default function DashboardPage() {
   const { id } = useParams();
@@ -48,7 +49,7 @@ export default function DashboardPage() {
         isLoading={isLoading}
         route={urls.listing}
       >
-        <React.Suspense>
+        <React.Suspense fallback={<Loading />}>
           <DashboardGridLayout>
             <DashboardTile
               title={t('general_informations')}
@@ -77,7 +78,14 @@ export default function DashboardPage() {
                 {
                   id: 'region',
                   label: t('region'),
-                  value: <RegionCell {...data?.data} isDashboard />,
+                  value: (
+                    <Description>
+                      <Region
+                        mode="region"
+                        name={data?.data.currentState.region.toLowerCase()}
+                      />
+                    </Description>
+                  ),
                 },
               ]}
             />

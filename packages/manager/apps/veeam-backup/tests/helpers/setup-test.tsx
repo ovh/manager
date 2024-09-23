@@ -1,5 +1,4 @@
 import React from 'react';
-import { QueryClient } from '@tanstack/react-query';
 import { SetupServer } from 'msw/node';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
@@ -9,6 +8,10 @@ import {
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 import { render, waitFor, screen } from '@testing-library/react';
+import {
+  getServicesMocks,
+  GetServicesMocksParams,
+} from '@ovh-ux/manager-react-components/src/hooks/services/mocks/services.mock';
 import { toMswHandlers } from '../../../../../../playwright-helpers';
 import { getAuthenticationMocks } from '../../../../../../playwright-helpers/mocks/auth';
 import {
@@ -16,6 +19,7 @@ import {
   getOrganizationMocks,
   GetOrganizationMocksParams,
   GetVeeamBackupMocksParams,
+  getIamMocks,
 } from '../mocks';
 import { productFullName } from '../../src/veeam-backup.config';
 import { initTestI18n } from './test-i18n';
@@ -25,13 +29,17 @@ let context: ShellContextType;
 let i18n: i18n;
 
 export const setupTest = async (
-  mockParams: GetOrganizationMocksParams & GetVeeamBackupMocksParams = {},
+  mockParams: GetOrganizationMocksParams &
+    GetVeeamBackupMocksParams &
+    GetServicesMocksParams = {},
 ) => {
   (global.server as SetupServer)?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),
       ...getVeeamBackupMocks(mockParams),
       ...getOrganizationMocks(mockParams),
+      ...getIamMocks(),
+      ...getServicesMocks(mockParams),
     ]),
   );
 

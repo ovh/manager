@@ -23,7 +23,7 @@ export const DashboardTile: React.FC<DashboardTileProps> = ({
   title,
   items,
 }) => (
-  <OsdsTile className="w-full h-full flex-col" inline rounded>
+  <OsdsTile className="w-full flex-col" inline rounded>
     <div className="flex flex-col w-full">
       {title && (
         <>
