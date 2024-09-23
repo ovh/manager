@@ -12,7 +12,7 @@ import IplbFrontendsTemplate from './iplb-frontends.html';
 import IplbHeaderTemplate from '../header/iplb-dashboard-header.html';
 
 const moduleName = 'ovhManagerIplbFrontends';
-const LB_FRONTEND_UDP_AVAILABILITY = 'lb-frontend-udp';
+const LB_FRONTEND_UDP_AVAILABILITY = 'ip-load-balancer:lb-frontend-udp';
 
 angular
   .module(moduleName, ['ui.router', ngOvhFeatureFlipping])
