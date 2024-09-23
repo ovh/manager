@@ -1,13 +1,10 @@
 import { vi, it, describe, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import { Node } from '../navigation-tree/node';
-import {
-  PublicCloudPanel,
-  PublicCloudPanelProps,
-  parseContainerURL,
-} from './PublicCloudPanel';
+import { PublicCloudPanel, PublicCloudPanelProps } from './PublicCloudPanel';
 import { mockShell } from '../mocks/sidebarMocks';
-import { PciProject } from '../ProjectSelector/ProjectSelector';
+import { PciProject } from '../ProjectSelector/PciProject';
+import { pciNode } from '../navigation-tree/services/publicCloud';
 
 const node: Node = {
   id: 'pci-rancher',
@@ -26,7 +23,7 @@ const node: Node = {
 const handleOnSubMenuClick = vi.fn();
 
 const props: PublicCloudPanelProps = {
-  rootNode: node,
+  rootNode: pciNode,
   selectedNode: node,
   handleOnSubMenuClick: handleOnSubMenuClick,
 };
@@ -45,68 +42,43 @@ const pciProjects: Array<Partial<PciProject>> = [
   {
     project_id: '12345',
   },
+  {
+    project_id: '54321',
+  },
 ];
 
 vi.mock('@/context', () => ({
-  useShell: mockShell.shell,
+  useShell: () => mockShell.shell,
 }));
 
 vi.mock('@tanstack/react-query', () => ({
-  useQuery: () => ({
-    data: () => pciProjects,
-    isError: () => false,
-    isSuccess: () => true,
-    refetch: vi.fn(),
-  }),
-}));
-
-const publicCloud = vi.hoisted(() => ({
-  pciNode: {
-    id: 'pci',
-    idAttr: 'pci-link',
-    translation: 'sidebar_pci',
-    shortTranslation: 'sidebar_pci_short',
-    universe: 'pci',
-    features: ['public-cloud'],
-    forceVisibility: true,
-    routing: {
-      application: 'public-cloud',
-      hash: '#/pci/projects/{projectId}',
-    },
-    children: [
-      {
-        id: 'pci-compute',
-        idAttr: 'pci-compute-link',
-        universe: 'pci',
-        translation: 'sidebar_pci_compute',
-        features: ['instance'],
-        forceVisibility: true,
-        children: [
-          {
-            id: 'pci-instances',
-            idAttr: 'pci-instances-link',
-            universe: 'pci',
-            translation: 'sidebar_pci_instances',
-            serviceType: 'CLOUD_PROJECT_INSTANCE',
-            routing: {
-              application: 'public-cloud',
-              hash: '#/pci/projects/{projectId}/instances',
-            },
-            features: ['instance'],
-            forceVisibility: true,
-          },
-        ],
-      },
-    ],
+  useQuery: ({ queryKey }: { queryKey: Array<string> }) => {
+    return queryKey.includes('pci-projects')
+      ? {
+          data: () => pciProjects,
+          isError: () => false,
+          isSuccess: () => true,
+          refetch: () => {},
+        }
+      : {
+          data: () => pciProjects[0],
+          status: () => 'success',
+        };
   },
 }));
 
-vi.mock(
-  '../navigation-tree/services/publicCloud',
-  () => ({
-    pciNode: publicCloud.pciNode
-  }),
-);
+const location = {
+  pathname: '/pci/projects/12345/rancher',
+  search: '',
+};
+
+vi.mock('react-router-dom', () => ({
+  useLocation: () => location,
+}));
+
+vi.mock('../ProjectSelector/ProjectSelector', () => ({
+  default: () => <div data-testid="public-cloud-panel-project-selector" />,
+}));
 
 describe('PublicCloudPanel.component', () => {
   it('should render', () => {

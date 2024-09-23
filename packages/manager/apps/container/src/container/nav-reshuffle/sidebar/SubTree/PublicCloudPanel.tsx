@@ -1,11 +1,9 @@
-import ProjectSelector, {
-  PciProject,
-} from '@/container/nav-reshuffle/sidebar/ProjectSelector/ProjectSelector';
+import ProjectSelector from '../ProjectSelector/ProjectSelector';
+import { PciProject } from '../ProjectSelector/PciProject';
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
 import { Node } from '../navigation-tree/node';
-import { pciNode } from '../navigation-tree/services/publicCloud';
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import { shouldHideElement } from '@/container/nav-reshuffle/sidebar/utils';
@@ -18,13 +16,6 @@ export interface PublicCloudPanelProps {
   selectedNode: Node;
   handleOnSubMenuClick(node: Node): void;
 }
-
-export const parseContainerURL = (
-  location: Location,
-): { appId: string; appHash: string } => {
-  const [, appId, appHash] = /^\/([^/]*)(.*)/.exec(location.pathname);
-  return { appId, appHash: `${appHash}${location.search}` };
-};
 
 export const PublicCloudPanel: React.FC<ComponentProps<
   PublicCloudPanelProps
@@ -42,6 +33,14 @@ export const PublicCloudPanel: React.FC<ComponentProps<
   const navigationPlugin = shell.getPlugin('navigation');
   const trackingPlugin = shell.getPlugin('tracking');
   const location = useLocation();
+
+  const parseContainerURL = (
+    location: Location,
+  ): { appId: string; appHash: string } => {
+    const [, appId, appHash] = /^\/([^/]*)(.*)/.exec(location.pathname);
+    return { appId, appHash: `${appHash}${location.search}` };
+  };
+
   const [containerURL, setContainerURL] = useState(parseContainerURL(location));
 
   const {
@@ -120,7 +119,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
   useEffect(() => {
     if (
       selectedPciProject &&
-      rootNode.id === pciNode.id &&
+      rootNode.id === 'pci' &&
       containerURL.appId != rootNode.routing?.application
     ) {
       navigationPlugin.navigateTo(

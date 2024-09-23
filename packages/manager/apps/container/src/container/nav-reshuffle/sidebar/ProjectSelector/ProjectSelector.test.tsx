@@ -1,6 +1,7 @@
 import { vi, it, describe, expect } from 'vitest';
 import { render } from '@testing-library/react';
-import ProjectSelector, { PciProject, Props } from './ProjectSelector';
+import ProjectSelector, { Props } from './ProjectSelector';
+import { PciProject } from './PciProject';
 
 const pciProjects : Array<Partial<PciProject>> = [
   {
@@ -47,7 +48,7 @@ const renderProjectSelector = (props: Props) => {
 
 describe("ProjectSelector.component", () => {
   it("should render", () => {
-    const { queryByTestId } = renderProjectSelector(props);
-    expect(queryByTestId('project-selector')).not.toBeNull();
+    const { queryByText } = renderProjectSelector(props);
+    expect(queryByText(props.projects[0].description)).not.toBeNull();
   })
 })

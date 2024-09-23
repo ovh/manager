@@ -11,6 +11,7 @@ const mockPlugins = vi.hoisted(() => ({
     getURL: vi.fn(
       (app, hash) => `https://www.ovh.com/manager/#/${hash.replace('#', app)}`,
     ),
+    navigateTo: vi.fn((app, hash) => {})
   },
   tracking: {
     trackClick: vi.fn(),
