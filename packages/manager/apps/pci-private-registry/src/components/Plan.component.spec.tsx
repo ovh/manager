@@ -43,12 +43,9 @@ describe('PlanComponent', () => {
   vi.mock('react-i18next', () => ({
     useTranslation: vi.fn().mockImplementation(() => ({
       t(key: string, data: Record<string, unknown>) {
-        switch (key) {
-          case 'private_registry_upgrade_plan_connections':
-            return `private_registry_upgrade_plan_connections:${data.total}`;
-          default:
-            return key;
-        }
+        return key === 'private_registry_upgrade_plan_connections'
+          ? `private_registry_upgrade_plan_connections:${data.total}`
+          : key;
       },
     })),
   }));
