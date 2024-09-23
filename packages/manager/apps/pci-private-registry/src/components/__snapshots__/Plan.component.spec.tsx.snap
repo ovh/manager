@@ -3,7 +3,7 @@
 exports[`PlanComponent > should render 1`] = `
 <div>
   <div
-    class="w-full"
+    class="full-width"
   >
     <div
       class="border-solid border border-t-0 border-x-0 border-[--ods-color-blue-200] my-4 py-4"
@@ -29,7 +29,6 @@ exports[`PlanComponent > should render 1`] = `
           size="400"
         >
           private_registry_upgrade_plan_available_storage
-          :
         </osds-text>
         <osds-text
           color="text"
@@ -63,7 +62,7 @@ exports[`PlanComponent > should render 1`] = `
       </li>
     </ul>
     <div
-      class="border-solid border border-b-0 border-x-0 border-[--ods-color-blue-200] my-2"
+      class="border-solid border border-b-0 border-x-0 border-[--ods-color-blue-200] mb-2 pt-4 mt-16"
       data-testid="price"
     >
       <osds-text
