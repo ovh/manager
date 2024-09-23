@@ -5,7 +5,7 @@
   "overthebox_migration_current_offer": "Offerta attuale: {{offerName}}",
   "overthebox_migration_monthly_subscription": "Abbonamento mensile",
   "overthebox_migration_hardware": "Casella",
-  "overthebox_migration_hardware_yes": "Scegli una nuova soluzione ({{ price }} +IVA)",
+  "overthebox_migration_hardware_yes": "Vorrei un nuovo chassis {{ deviceName }} ({{ price }} +IVA) *",
   "overthebox_migration_hardware_no": "Non voglio l'alloggiamento",
   "overthebox_migration_choose_offer_action": "Seleziona",
   "overthebox_migration_contact_title": "Consegna",
@@ -21,7 +21,7 @@
   "overthebox_migration_summary_table_quantity": "Quantità",
   "overthebox_migration_summary_table_price_per_month": "Prezzo +IVA/mese",
   "overthebox_migration_summary_table_offer": "Offerta {{offerName}}",
-  "overthebox_migration_summary_table_hardware": "Casella",
+  "overthebox_migration_summary_table_hardware": "Enclosure {{ deviceName }}",
   "overthebox_migration_summary_contracts_title": "Contratti",
   "overthebox_migration_summary_price_explain": "Il nuovo abbonamento mensile ammonta a {{price}} +IVA/mese, applicabile a partire dalla consegna del nuovo servizio. Riceverai una notifica via email.",
   "overthebox_migration_summary_hardware_price": "Il prezzo del materiale include le spese di consegna.",
@@ -33,5 +33,6 @@
   "overthebox_migration_summary_command_order_explain": "Per completare la migrazione della tua offerta, è necessario pagare <a href=\"{{orderUrl}}\" target=\"_blank\" title=\" il buono d&apos;ordine: {{orderId}}\">  il buono d'ordine.<span class=\"oui-icon oui-icon-external-link ml-2\" aria-hidden=\"true\"> </span> </a> ",
   "overthebox_migration_summary_command_order_help": "Per saperne di più sul pagamento di un buono d'ordine.",
   "overthebox_migration_summary_launch_migration_error": "Si è verificato un errore durante la migrazione dell'offerta. {{errorMsg}}",
-  "overthebox_migration_offers_title": "Scelta del piano"
+  "overthebox_migration_offers_title": "Scelta del piano",
+  "overthebox_migration_about": "* OverTheBox - per saperne di più sulla descrizione del servizio e del case."
 }
