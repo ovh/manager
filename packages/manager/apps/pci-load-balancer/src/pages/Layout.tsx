@@ -13,7 +13,9 @@ import usePageTracking from '@/hooks/usePageTracking';
 export default function Layout() {
   const { projectId } = useParams();
   const { isSuccess } = useProject(projectId || '', { retry: false });
+
   usePageTracking();
+
   return (
     <div className="application">
       <Suspense>
@@ -42,6 +44,7 @@ export const ErrorBoundary = () => {
   const reloadPage = () => {
     nav.reload();
   };
+
   return (
     <Suspense>
       <ErrorBanner

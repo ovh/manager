@@ -1,35 +1,18 @@
-const lazyRouteConfig = (importFn: CallableFunction) => ({
-  lazy: async () => {
-    const { default: moduleDefault, ...moduleExports } = await importFn();
-
-    return {
-      Component: moduleDefault,
-      ...moduleExports,
-    };
-  },
-});
-
-export interface RouteHandle {
-  tracking?: string;
-}
+import { lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 const ROUTE_PATHS = {
-  root: '',
+  ROOT: '/pci/projects/:projectId/octavia-load-balancer',
+  LISTING: 'load-balancer',
 };
 
-export default [
-  {
-    path: '/',
-    ...lazyRouteConfig(() => import('@/pages/Layout')),
-  },
-  {
-    id: '',
-    path: ROUTE_PATHS.root,
-    ...lazyRouteConfig(() => import('@/pages/Layout')),
-    children: [],
-  },
-  {
-    path: '*',
-    element: <>Not found page</>,
-  },
-];
+const LayoutPage = lazy(() => import('@/pages/Layout'));
+
+const RoutesComponent = () => (
+  <Routes>
+    <Route id="root" path={ROUTE_PATHS.ROOT} Component={LayoutPage}></Route>
+    <Route path="" element={<>Page not found</>}></Route>
+  </Routes>
+);
+
+export default RoutesComponent;
