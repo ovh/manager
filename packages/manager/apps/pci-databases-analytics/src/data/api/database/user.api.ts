@@ -29,6 +29,7 @@ export const getUsers = async ({
     case database.EngineEnum.kafka:
     case database.EngineEnum.cassandra:
     case database.EngineEnum.kafkaConnect:
+    case database.EngineEnum.grafana:
       userReturnType = response.data as database.service.User[];
       break;
     case database.EngineEnum.mongodb:
