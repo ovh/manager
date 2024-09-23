@@ -81,11 +81,11 @@ describe('StaticLink.component', () => {
     expect(handleClick).toHaveBeenCalled();
   });
 
-  it('Static link should call callback when Enter is pressed', () => {
+  it('Static link should call callback when Enter is pressed', async () => {
     const { queryByTestId } = renderStaticLinkComponent(props);
     const staticLink = queryByTestId(props.node.idAttr);
 
-    fireEvent.keyUp(staticLink, {key: 'Enter', code: 'Enter', keyCode: 13, charCode: 13});
+    await act(() => fireEvent.keyUp(staticLink, {key: 'Enter', code: 'Enter', keyCode: 13, charCode: 13}));
 
     expect(handleOnEnter).toHaveBeenCalled();
   })
