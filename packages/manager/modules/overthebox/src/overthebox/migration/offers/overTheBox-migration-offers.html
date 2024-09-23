@@ -90,7 +90,7 @@
                                 >
                                     <select
                                         class="oui-select__input"
-                                        data-ng-model="offer.selectedHardware"
+                                        data-ng-model="offer.selectedHardwareName"
                                         name="selectedHardware"
                                     >
                                         <option
@@ -130,6 +130,19 @@
                     </tfoot>
                 </table>
             </div>
+        </div>
+        <div>
+            <a
+                data-ng-href="{{$ctrl.ABOUT_OTB_SERVICE}}"
+                data-target="_blank"
+                data-title="{{::'overthebox_migration_about' | translate}}"
+            >
+                <span data-translate="overthebox_migration_about"></span>
+                <span
+                    class="oui-icon oui-icon-external-link ml-2"
+                    aria-hidden="true"
+                ></span>
+            </a>
         </div>
     </div>
 </div>

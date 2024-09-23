@@ -1,3 +1,5 @@
+import { ABOUT_OTB_SERVICE } from '../overTheBox-migration.constant';
+
 export default class OverTheBoxMigrationOffersCtrl {
   /* @ngInject */
   constructor($q, $scope, $translate, TucToast, OverTheBoxMigrationService) {
@@ -15,6 +17,8 @@ export default class OverTheBoxMigrationOffersCtrl {
     this.$q.all([this.getCurrentOffer(), this.getOffers()]).finally(() => {
       this.loading = false;
     });
+
+    this.ABOUT_OTB_SERVICE = ABOUT_OTB_SERVICE;
   }
 
   getCurrentOffer() {
@@ -41,25 +45,31 @@ export default class OverTheBoxMigrationOffersCtrl {
         // Build hardware options list
         this.offers = this.offers.map((offer) => {
           const updateOffer = offer;
-          const hardwareOptions = [];
 
-          // Set hardware option return by API
-          let optionLabel = this.$translate.instant(
-            'overthebox_migration_hardware_yes',
-            { price: offer.hardwarePrice ? offer.hardwarePrice.text : '' },
-          );
-          let option = {
-            name: offer.hardwareName,
-            price: offer.hardwarePrice,
-            label: optionLabel,
-          };
-          hardwareOptions.push(option);
+          const hardwareOptions = offer.hardwares.map((hardware) => {
+            // Set hardware option return by API
+            const optionLabel = this.$translate.instant(
+              'overthebox_migration_hardware_yes',
+              {
+                deviceName: hardware.hardwareDisplayName,
+                price: hardware.hardwarePrice
+                  ? hardware.hardwarePrice.text
+                  : '',
+              },
+            );
+            return {
+              name: hardware.hardwareName,
+              price: hardware.hardwarePrice,
+              deviceName: hardware.hardwareDisplayName,
+              label: optionLabel,
+            };
+          });
 
           // Set no hardware option choice
-          optionLabel = this.$translate.instant(
+          const optionLabel = this.$translate.instant(
             'overthebox_migration_hardware_no',
           );
-          option = {
+          const option = {
             name: 'no',
             price: null,
             label: optionLabel,
@@ -67,7 +77,7 @@ export default class OverTheBoxMigrationOffersCtrl {
           hardwareOptions.push(option);
 
           updateOffer.hardwareOptions = hardwareOptions;
-          updateOffer.selectedHardware = hardwareOptions[0].name;
+          updateOffer.selectedHardwareName = hardwareOptions[0].name;
           return updateOffer;
         });
       })
@@ -89,9 +99,16 @@ export default class OverTheBoxMigrationOffersCtrl {
     const updateOffer = offer;
     updateOffer.currentOffer = this.currentOffer;
     updateOffer.offerQuantity = 1;
-    if (offer.selectedHardware) {
+    if (offer.selectedHardwareName) {
       updateOffer.selectedHardwareQuantity = 1;
+
+      // Retrieve price for selected hardware
+      const selectedHardware = offer.hardwares.filter(
+        (hardware) => hardware.hardwareName === offer.selectedHardwareName,
+      )[0];
+      updateOffer.selectedHardware = selectedHardware;
     }
+
     this.$scope.$emit('selectedOffer', updateOffer);
   }
 }
