@@ -12,17 +12,15 @@ export default function PlanChooser({
   plan,
   plans,
   onInput,
-}: TPlanChooserProps): JSX.Element {
+}: Readonly<TPlanChooserProps>): JSX.Element {
   return (
-    <>
-      <TilesInputComponent<TRegistryPlan>
-        items={plans || []}
-        value={plan}
-        onInput={(v) => {
-          onInput(v);
-        }}
-        label={(item) => <PlanComponent plan={item} />}
-      />
-    </>
+    <TilesInputComponent<TRegistryPlan>
+      items={plans || []}
+      value={plan}
+      onInput={(v) => {
+        onInput(v);
+      }}
+      label={(item) => <PlanComponent plan={item} />}
+    />
   );
 }
