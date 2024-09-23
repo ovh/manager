@@ -1,5 +1,5 @@
 import { RouteObject } from 'react-router-dom';
-import { getProjectQuery } from '@ovh-ux/manager-react-components';
+import { getProjectQuery } from '@ovh-ux/manager-pci-common';
 import queryClient from '@/queryClient';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({
@@ -16,6 +16,7 @@ const lazyRouteConfig = (importFn: CallableFunction) => ({
 export const ROOT_PATH = '/pci/projects/:projectId/instances';
 export const SUB_PATHS = {
   onboarding: 'onboarding',
+  new: 'new',
 };
 
 const routes: RouteObject[] = [
@@ -36,7 +37,15 @@ const routes: RouteObject[] = [
       },
       {
         path: SUB_PATHS.onboarding,
-        ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
+        ...lazyRouteConfig(() =>
+          import('@/pages/instances/onboarding/Onboarding.page'),
+        ),
+      },
+      {
+        path: SUB_PATHS.new,
+        ...lazyRouteConfig(() =>
+          import('@/pages/instances/create/CreateInstance.page'),
+        ),
       },
     ],
   },
