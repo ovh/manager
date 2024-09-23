@@ -17,11 +17,13 @@ export default class OverTheBoxMigrationContactCtrl {
     this.NO_HARDWARE = NO_HARDWARE;
     this.HELP_BILLING_URL = HELP_BILLING_URL;
 
-    if (this.offer.selectedHardware !== NO_HARDWARE) {
+    if (this.offer.selectedHardwareName !== NO_HARDWARE) {
       this.hardwarePrice = {
         value: '0',
-        currencyCode: this.offer.hardwarePrice.currencyCode,
-        text: `0.00 ${this.offer.hardwarePrice.text.slice(-1)}`,
+        currencyCode: this.offer.selectedHardware.hardwarePrice.currencyCode,
+        text: `0.00 ${this.offer.selectedHardware.hardwarePrice.text.slice(
+          -1,
+        )}`,
       };
     }
 
@@ -31,10 +33,10 @@ export default class OverTheBoxMigrationContactCtrl {
   }
 
   getFirstMonthPrice() {
-    if (this.offer.selectedHardware !== NO_HARDWARE) {
+    if (this.offer.selectedHardwareName !== NO_HARDWARE) {
       const value =
         parseFloat(this.offer.price.value) +
-        parseFloat(this.offer.hardwarePrice.value);
+        parseFloat(this.offer.selectedHardware.hardwarePrice.value);
       this.firstMensuality = {
         value,
         currencyCode: this.offer.price.currencyCode,
@@ -46,7 +48,7 @@ export default class OverTheBoxMigrationContactCtrl {
   }
 
   getOfferTargetDetail() {
-    const isSelectedHardware = this.offer.selectedHardware !== NO_HARDWARE;
+    const isSelectedHardware = this.offer.selectedHardwareName !== NO_HARDWARE;
     return this.OverTheBoxMigrationSummaryService.getOfferTargetDetail(
       this.serviceName,
       this.offer.offer,
@@ -75,14 +77,14 @@ export default class OverTheBoxMigrationContactCtrl {
 
   launchMigration() {
     this.loading = true;
-    const selectedHardware =
-      this.offer.selectedHardware !== NO_HARDWARE
-        ? this.offer.selectedHardware
+    const selectedHardwareName =
+      this.offer.selectedHardwareName !== NO_HARDWARE
+        ? this.offer.selectedHardwareName
         : '';
     return this.OverTheBoxMigrationSummaryService.migrateOffer(
       this.serviceName,
       this.offer.offer,
-      selectedHardware,
+      selectedHardwareName,
       this.contact?.address.id,
     )
       .then(({ data }) => {
