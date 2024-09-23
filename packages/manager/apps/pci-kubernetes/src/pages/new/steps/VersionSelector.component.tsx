@@ -31,9 +31,13 @@ export function VersionSelector({
   const { t } = useTranslation();
   const { data: schema, isPending } = useGetCloudSchema();
   const versions = schema?.models['cloud.kube.VersionEnum'].enum || [];
-  const lastVersion = [...versions].pop();
+
+  const reverseVersion = [...versions].reverse();
+  const [lastVersion] = reverseVersion;
 
   useEffect(() => {
+    console.log('isPending', isPending);
+
     // If the request for fetching last versions is not pending and no version has been selected, select the last version by default
     if (!isPending && !versionSelected) {
       onSelectVersion(lastVersion);
@@ -41,7 +45,13 @@ export function VersionSelector({
   }, [versionSelected, isPending]);
 
   if (isPending) {
-    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
+    return (
+      <OsdsSpinner
+        data-testid="version-selector-spinner"
+        inline
+        size={ODS_SPINNER_SIZE.md}
+      />
+    );
   }
 
   return (
@@ -56,6 +66,9 @@ export function VersionSelector({
             {t('add:kubernetes_select_version_title')}
           </OsdsText>
           <OsdsSelect
+            data-testid="version-selector-select"
+            aria-label={t('add:kubernetes_select_version_title')}
+            id="select-version"
             name="version"
             size={ODS_SELECT_SIZE.md}
             value={versionSelected}
@@ -65,24 +78,22 @@ export function VersionSelector({
               }
             }}
           >
-            {versions?.map((version) => (
-              <>
-                <OsdsSelectOption key={version} value={version}>
-                  <div className="flex gap-4 items-baseline">
-                    {`${t('versions:pci_project_versions_list_version', {
-                      version,
-                    })} `}
-                    {version === lastVersion && (
-                      <OsdsChip
-                        color={ODS_THEME_COLOR_INTENT.success}
-                        size={ODS_CHIP_SIZE.sm}
-                      >
-                        {t('versions:pci_project_versions_recommended_version')}
-                      </OsdsChip>
-                    )}
-                  </div>
-                </OsdsSelectOption>
-              </>
+            {reverseVersion.map((version) => (
+              <OsdsSelectOption key={version} value={version}>
+                <div className="flex gap-4 items-baseline">
+                  {`${t('versions:pci_project_versions_list_version', {
+                    version,
+                  })} `}
+                  {version === lastVersion && (
+                    <OsdsChip
+                      color={ODS_THEME_COLOR_INTENT.success}
+                      size={ODS_CHIP_SIZE.sm}
+                    >
+                      {t('versions:pci_project_versions_recommended_version')}
+                    </OsdsChip>
+                  )}
+                </div>
+              </OsdsSelectOption>
             ))}
           </OsdsSelect>
         </OsdsFormField>
