@@ -21,7 +21,7 @@ import {
   useCatalogPrice,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { useBytes } from '../../hooks';
+import { useBytes, useNumberFormat } from '../../hooks';
 import { FlavorLocalzoneChip } from './FlavorLocalzoneChip';
 
 export interface FlavorDiskType {
@@ -76,6 +76,7 @@ export function FlavorTile({
 }: Readonly<FlavorTileProps>) {
   const { t } = useTranslation('pci-flavors');
   const { formatBytes } = useBytes();
+  const { formatNumber } = useNumberFormat();
   const { getTextPrice, getFormattedHourlyCatalogPrice } = useCatalogPrice(4, {
     exclVat: true,
   });
@@ -168,7 +169,7 @@ export function FlavorTile({
           color={ODS_THEME_COLOR_INTENT.text}
         >
           {t('pci_project_flavors_spec_bandwidth_detail', {
-            bandwidth: flavorSpecs.bandwidth,
+            bandwidth: formatNumber(flavorSpecs.bandwidth),
           })}
         </OsdsText>
         <OsdsText
