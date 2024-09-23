@@ -3,12 +3,7 @@ import {
   OsdsButton,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  useHref,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import {
@@ -22,12 +17,13 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import PlanChooser from '@/components/PlanChooser.component';
 import {
   useGetRegistryAvailablePlans,
@@ -46,6 +42,7 @@ export default function UpgradePlanPage(): JSX.Element {
   const backHref = useProjectUrl('..');
   const { addSuccess, addError } = useNotifications();
   const navigate = useNavigate();
+  const { tracking } = useContext(ShellContext)?.shell || {};
 
   const [selectedPlan, setSelectedPlan] = useState<TRegistryPlan>(null);
 
@@ -109,6 +106,21 @@ export default function UpgradePlanPage(): JSX.Element {
     setSelectedPlan(availablePlans?.[0]);
   }, [availablePlans]);
 
+  const update = () => {
+    tracking?.trackClick({
+      name: `PCI_PROJECTS_PRIVATEREGISTRY_CHANGEPLAN_CONFIRM_${selectedPlan.name}`,
+    });
+
+    updatePlan();
+  };
+
+  const cancel = () => {
+    tracking?.trackClick({
+      name: `PCI_PROJECTS_PRIVATEREGISTRY_CHANGEPLAN_CANCEL`,
+    });
+    navigate('..');
+  };
+
   return (
     <>
       {project && (
@@ -167,7 +179,7 @@ export default function UpgradePlanPage(): JSX.Element {
           size={ODS_BUTTON_SIZE.md}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => navigate('..')}
+          onClick={cancel}
         >
           {t('private_registry_common_cancel')}
         </OsdsButton>
@@ -176,7 +188,7 @@ export default function UpgradePlanPage(): JSX.Element {
           size={ODS_BUTTON_SIZE.md}
           variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={updatePlan}
+          onClick={update}
           {...(isUpdatingPlan ? { disabled: true } : {})}
         >
           {t('private_registry_upgrade_plan')}

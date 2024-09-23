@@ -112,16 +112,14 @@ export default function PlanStep(): JSX.Element {
         {tUpgrade('private_registry_upgrade_plan_description')}
       </OsdsText>
       {store.state.region && (
-        <>
-          <PlanChooser
-            plan={store.state.plan}
-            plans={
-              capabilities.find((c) => c.regionName === store.state.region.name)
-                .plans
-            }
-            onInput={(value) => store.set.plan(value)}
-          />
-        </>
+        <PlanChooser
+          plan={store.state.plan}
+          plans={
+            capabilities.find((c) => c.regionName === store.state.region.name)
+              .plans
+          }
+          onInput={(value) => store.set.plan(value)}
+        />
       )}
 
       <OsdsText
