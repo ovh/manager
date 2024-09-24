@@ -3,7 +3,12 @@ import {
   OsdsButton,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import {
+  useHref,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import {
@@ -39,7 +44,7 @@ export default function UpgradePlanPage(): JSX.Element {
   const { t: tUpgrade } = useTranslation('upgrade');
   const { t: tUpgradePlan } = useTranslation('upgrade-plan');
   const projectHref = useProjectUrl('public-cloud');
-  const backHref = useProjectUrl('..');
+  const backHref = useHref('..');
   const { addSuccess, addError } = useNotifications();
   const navigate = useNavigate();
   const { tracking } = useContext(ShellContext)?.shell || {};
