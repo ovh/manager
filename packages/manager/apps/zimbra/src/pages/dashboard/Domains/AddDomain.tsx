@@ -22,8 +22,9 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
+import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   useOrganization,
   useOrganizationList,
@@ -31,10 +32,13 @@ import {
   useGenerateUrl,
 } from '@/hooks';
 import {
+  DomainBodyParamsType,
   getDomainsZoneList,
   getDomainsZoneListQueryKey,
+  getZimbraPlatformDomainsQueryKey,
   postZimbraDomain,
 } from '@/api/domain';
+import queryClient from '@/queryClient';
 
 export default function AddDomain() {
   const { t } = useTranslation('domains/addDomain');
@@ -48,7 +52,6 @@ export default function AddDomain() {
   const [selectedOrganization, setSelectedOrganization] = useState(
     organization?.id || '',
   );
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(goBackUrl);
 
@@ -59,42 +62,52 @@ export default function AddDomain() {
 
   const [selectedDomainName, setSelectedDomainName] = useState('');
 
+  const { mutate: addDomain, isPending: isSending } = useMutation({
+    mutationFn: (params: DomainBodyParamsType) => {
+      return postZimbraDomain(platformId, params);
+    },
+    onSuccess: () => {
+      addSuccess(
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_TEXT_SIZE._100}
+          level={ODS_TEXT_LEVEL.body}
+        >
+          {t('zimbra_domains_add_domain_success_message')}
+        </OsdsText>,
+        true,
+      );
+    },
+    onError: (error: ApiError) => {
+      addError(
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_TEXT_SIZE._100}
+          level={ODS_TEXT_LEVEL.body}
+        >
+          {t('zimbra_domains_add_domain_error_message', {
+            error: error?.response?.data?.message,
+          })}
+        </OsdsText>,
+        true,
+      );
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: getZimbraPlatformDomainsQueryKey(platformId),
+      });
+
+      onClose();
+    },
+  });
+
   const handleAddDomainClick = () => {
     const formData = {
       organizationId: selectedOrganization,
       name: selectedDomainName,
       autoConfigureMX: true,
     };
-    setIsSubmitting(true);
-    postZimbraDomain(platformId, formData)
-      .then(() => {
-        onClose();
-        addSuccess(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_TEXT_SIZE._100}
-            level={ODS_TEXT_LEVEL.body}
-          >
-            {t('zimbra_domains_add_domain_success_message')}
-          </OsdsText>,
-          true,
-        );
-      })
-      .catch(({ response }) => {
-        onClose();
-        addError(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_TEXT_SIZE._100}
-            level={ODS_TEXT_LEVEL.body}
-          >
-            {t('zimbra_domains_add_domain_error_message', {
-              error: response.data.message,
-            })}
-          </OsdsText>,
-          true,
-        );
-      });
+    addDomain(formData);
   };
 
   useEffect(() => {
@@ -217,12 +230,12 @@ export default function AddDomain() {
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={handleAddDomainClick}
           className="mt-8 w-1/2"
-          {...(!selectedOrganization || !selectedDomainName || isSubmitting
+          {...(!selectedOrganization || !selectedDomainName || isSending
             ? { disabled: true }
             : {})}
         >
           <span slot="start">
-            {isSubmitting && (
+            {isSending && (
               <OsdsSpinner
                 inline
                 contrasted

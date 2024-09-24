@@ -24,6 +24,7 @@ import IdLink from './IdLink';
 import LabelChip from '@/components/LabelChip';
 import { BadgeStatus } from '@/components/BadgeStatus';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 
 export type OrganizationItem = {
   id: string;
@@ -79,7 +80,10 @@ const columns: DatagridColumn<OrganizationItem>[] = [
 export default function Organizations() {
   const { t } = useTranslation('organizations');
   const { platformId, platformUrn } = usePlatform();
-  const { data } = useOrganizationList();
+  const { data } = useOrganizationList({
+    refetchInterval: DATAGRID_REFRESH_INTERVAL,
+    refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
+  });
 
   const items: OrganizationItem[] =
     data?.map((item) => ({

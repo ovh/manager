@@ -1,3 +1,4 @@
+export * from './useAccount';
 export * from './useAccountList';
 export * from './useDomains';
 export * from './useGenerateUrl';

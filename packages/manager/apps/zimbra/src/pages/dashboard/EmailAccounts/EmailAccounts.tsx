@@ -30,7 +30,11 @@ import {
 import LabelChip from '@/components/LabelChip';
 import guidesConstants from '@/guides.constants';
 import ActionButtonEmail from './ActionButtonEmail';
-import { convertOctets } from '@/utils';
+import {
+  convertOctets,
+  DATAGRID_REFRESH_INTERVAL,
+  DATAGRID_REFRESH_ON_MOUNT,
+} from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 export type EmailsItem = {
@@ -102,7 +106,10 @@ const columns: DatagridColumn<EmailsItem>[] = [
 export default function EmailAccounts() {
   const { t } = useTranslation('accounts');
   const { platformUrn } = usePlatform();
-  const { data } = useAccountList();
+  const { data } = useAccountList({
+    refetchInterval: DATAGRID_REFRESH_INTERVAL,
+    refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
+  });
   const isOverriddedPage = useOverridePage();
 
   const items: EmailsItem[] =
