@@ -14,16 +14,17 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useQuery } from '@tanstack/react-query';
-import { useGenerateUrl, usePlatform } from '@/hooks';
+import { useMutation } from '@tanstack/react-query';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useAccount, useGenerateUrl, usePlatform } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {
-  getZimbraPlatformAccountDetail,
   deleteZimbraPlatformAccount,
-  getZimbraPlatformAccountDetailQueryKey,
+  getZimbraPlatformAccountsQueryKey,
 } from '@/api/account';
+import queryClient from '@/queryClient';
 
-export default function ModalDeleteOrganization() {
+export default function ModalDeleteEmailAccount() {
   const [searchParams] = useSearchParams();
   const deleteEmailAccountId = searchParams.get('deleteEmailAccountId');
   const { t } = useTranslation('accounts/delete');
@@ -35,48 +36,51 @@ export default function ModalDeleteOrganization() {
   const onClose = () => navigate(goBackUrl);
 
   const [step, setStep] = useState(1);
-  const { data, isLoading } = useQuery({
-    queryKey: getZimbraPlatformAccountDetailQueryKey(
-      platformId,
-      deleteEmailAccountId,
-    ),
-    queryFn: () =>
-      getZimbraPlatformAccountDetail(platformId, deleteEmailAccountId),
-    enabled: !!platformId,
+  const { data, isLoading } = useAccount(deleteEmailAccountId);
+
+  const { mutate: deleteEmailAccount, isPending: isSending } = useMutation({
+    mutationFn: (emailAccountId: string) => {
+      return deleteZimbraPlatformAccount(platformId, emailAccountId);
+    },
+    onSuccess: () => {
+      addSuccess(
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          hue={ODS_THEME_COLOR_HUE._500}
+        >
+          {t('zimbra_account_delete_success_message')}
+        </OsdsText>,
+        true,
+      );
+    },
+    onError: (error: ApiError) => {
+      addError(
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          hue={ODS_THEME_COLOR_HUE._500}
+        >
+          {t('zimbra_account_delete_error_message', {
+            error: error?.response?.data?.message,
+          })}
+        </OsdsText>,
+        true,
+      );
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: getZimbraPlatformAccountsQueryKey(platformId),
+      });
+
+      onClose();
+    },
   });
 
   const handleDeleteClick = () => {
-    deleteZimbraPlatformAccount(platformId, deleteEmailAccountId)
-      .then(() => {
-        onClose();
-        addSuccess(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            hue={ODS_THEME_COLOR_HUE._500}
-          >
-            {t('zimbra_account_delete_success_message')}
-          </OsdsText>,
-          true,
-        );
-      })
-      .catch(({ response }) => {
-        onClose();
-        addError(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            hue={ODS_THEME_COLOR_HUE._500}
-          >
-            {t('zimbra_account_delete_error_message', {
-              error: response.data.message,
-            })}
-          </OsdsText>,
-          true,
-        );
-      });
+    deleteEmailAccount(deleteEmailAccountId);
   };
 
   return (
@@ -93,6 +97,7 @@ export default function ModalDeleteOrganization() {
       primaryButton={{
         label: t('zimbra_account_delete_button_delete'),
         action: step === 1 ? () => setStep(2) : handleDeleteClick,
+        disabled: step === 1 ? false : isSending,
         testid: 'primary-btn',
       }}
     >

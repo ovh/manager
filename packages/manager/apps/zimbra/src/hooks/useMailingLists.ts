@@ -1,15 +1,26 @@
-import { useQuery } from '@tanstack/react-query';
+import {
+  useQuery,
+  UseQueryOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import { usePlatform } from '@/hooks';
 import {
   getZimbraPlatformMailingLists,
   getZimbraPlatformMailingListsQueryKey,
+  MailingListType,
 } from '@/api/mailinglist';
 
-export const useMailingLists = (
-  organizationId?: string,
-  organizationLabel?: string,
-) => {
+type UseMailingListsParams = Omit<
+  UseQueryOptions,
+  'queryKey' | 'queryFn' | 'select' | 'enabled'
+> & {
+  organizationId?: string;
+  organizationLabel?: string;
+};
+
+export const useMailingLists = (props: UseMailingListsParams = {}) => {
+  const { organizationId, organizationLabel, ...options } = props;
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
   const selectedOrganizationId =
@@ -24,19 +35,13 @@ export const useMailingLists = (
     }),
   };
 
-  const { data, isLoading, isError, error } = useQuery({
+  return useQuery({
     queryKey: getZimbraPlatformMailingListsQueryKey(
       platformId,
       queryParameters,
     ),
     queryFn: () => getZimbraPlatformMailingLists(platformId, queryParameters),
     enabled: !!platformId,
-  });
-
-  return {
-    isLoading,
-    isError,
-    error,
-    data,
-  };
+    ...options,
+  }) as UseQueryResult<MailingListType[]>;
 };

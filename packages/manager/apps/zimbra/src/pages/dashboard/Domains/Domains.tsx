@@ -27,7 +27,7 @@ import ActionButtonDomain from './ActionButtonDomain';
 import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { DiagnosticBadge } from '@/components/DiagnosticBadge';
-import { DnsRecordType } from '@/utils';
+import { DnsRecordType, LIST_REFRESH_INTERVAL } from '@/utils';
 
 export type DomainsItem = {
   id: string;
@@ -113,7 +113,11 @@ export default function Domains() {
   const { t } = useTranslation('domains');
   const { platformUrn } = usePlatform();
 
-  const { data } = useDomains();
+  const { data } = useDomains({
+    refetchInterval: LIST_REFRESH_INTERVAL,
+    refetchOnMount: 'always',
+  });
+
   const isOverriddedPage = useOverridePage();
 
   const hrefAddDomain = useGenerateUrl('./add', 'href');

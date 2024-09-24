@@ -46,8 +46,9 @@ import {
   OsdsRadioGroupCustomEvent,
   OsdsSelectCustomEvent,
 } from '@ovhcloud/ods-components';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
+import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   useOrganization,
   useOrganizationList,
@@ -55,13 +56,16 @@ import {
   useGenerateUrl,
 } from '@/hooks';
 import {
+  DomainBodyParamsType,
   getDomainsZoneList,
   getDomainsZoneListQueryKey,
+  getZimbraPlatformDomainsQueryKey,
   postZimbraDomain,
 } from '@/api/domain';
 import { GUIDES_LIST } from '@/guides.constants';
 import { DNS_CONFIG_TYPE, DnsRecordType } from '@/utils';
 import GuideLink from '@/components/GuideLink';
+import queryClient from '@/queryClient';
 
 export default function AddDomain() {
   const { t } = useTranslation('domains/addDomain');
@@ -79,7 +83,6 @@ export default function AddDomain() {
     queryKey: getDomainsZoneListQueryKey,
     queryFn: () => getDomainsZoneList(),
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedRadioDomain, setSelectedRadioDomain] = useState('');
   const [selectedDomainName, setSelectedDomainName] = useState('');
   const [cnameToCheck, setCnameToCheck] = useState('');
@@ -171,48 +174,54 @@ export default function AddDomain() {
     [expertConfigItemsState],
   );
 
+  const { mutate: addDomain, isPending: isSending } = useMutation({
+    mutationFn: (params: DomainBodyParamsType) => {
+      return postZimbraDomain(platformId, params);
+    },
+    onSuccess: () => {
+      if (domains?.currentState?.expectedDNSConfig?.ownership?.cname) {
+        setCnameToCheck(domains.currentState.expectedDNSConfig.ownership.cname);
+      }
+      addSuccess(
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_TEXT_SIZE._100}
+          level={ODS_TEXT_LEVEL.body}
+        >
+          {t('zimbra_domains_add_domain_success_message')}
+        </OsdsText>,
+        true,
+      );
+    },
+    onError: (error: ApiError) => {
+      addError(
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_TEXT_SIZE._100}
+          level={ODS_TEXT_LEVEL.body}
+        >
+          {t('zimbra_domains_add_domain_error_message', {
+            error: error?.response?.data?.message,
+          })}
+        </OsdsText>,
+        true,
+      );
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: getZimbraPlatformDomainsQueryKey(platformId),
+      });
+
+      onClose();
+    },
+  });
   const handleAddDomainClick = () => {
     const formData = {
       organizationId: selectedOrganization,
       name: selectedDomainName,
       autoConfigureMX: selectedRadioDomain !== 'externalDomain',
     };
-    setIsSubmitting(true);
-    postZimbraDomain(platformId, formData)
-      .then((domain) => {
-        if (!domain.currentState.expectedDNSConfig.ownership.cname) {
-          onClose();
-        } else {
-          setCnameToCheck(
-            domain.currentState.expectedDNSConfig.ownership.cname,
-          );
-        }
-        addSuccess(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_TEXT_SIZE._100}
-            level={ODS_TEXT_LEVEL.body}
-          >
-            {t('zimbra_domains_add_domain_success_message')}
-          </OsdsText>,
-          true,
-        );
-      })
-      .catch(({ response }) => {
-        onClose();
-        addError(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_TEXT_SIZE._100}
-            level={ODS_TEXT_LEVEL.body}
-          >
-            {t('zimbra_domains_add_domain_error_message', {
-              error: response.data.message,
-            })}
-          </OsdsText>,
-          true,
-        );
-      });
+    addDomain(formData);
   };
 
   const handleInputChange = (event: OdsInputValueChangeEvent) => {
@@ -539,11 +548,11 @@ export default function AddDomain() {
             {...(!selectedOrganization ||
             !selectedDomainName ||
             (!selectedRadioConfigurationType && ovhDomain) ||
-            isSubmitting
+            isSending
               ? { disabled: true }
               : {})}
           >
-            {isSubmitting && (
+            {isSending && (
               <OsdsSpinner
                 inline
                 contrasted

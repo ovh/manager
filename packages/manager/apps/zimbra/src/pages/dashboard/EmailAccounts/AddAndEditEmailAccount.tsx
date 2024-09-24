@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  LinkType,
-  Links,
-  Subtitle,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { LinkType, Links, Subtitle } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import {
   useLocation,
@@ -40,10 +35,9 @@ export default function AddAndEditAccount() {
     isLoading: isLoadingEmailDetailRequest,
   } = useAccount(editEmailAccountId);
 
-  const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains(
-    null,
-    true,
-  );
+  const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains({
+    noCache: true,
+  });
 
   function activatedTabs(pathMatchers: RegExp[]) {
     return pathMatchers?.some((pathMatcher) =>

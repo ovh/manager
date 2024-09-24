@@ -29,6 +29,7 @@ import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
 import { MailingListType } from '@/api/mailinglist';
+import { LIST_REFRESH_INTERVAL } from '@/utils';
 
 export type MailingListItem = {
   id: string;
@@ -150,7 +151,10 @@ export const getMailingListItems = (
 export default function MailingLists() {
   const { t } = useTranslation('mailinglists');
   const { platformId, platformUrn, data: platformData } = usePlatform();
-  const { data } = useMailingLists();
+  const { data } = useMailingLists({
+    refetchInterval: LIST_REFRESH_INTERVAL,
+    refetchOnMount: 'always',
+  });
   const isOverriddedPage = useOverridePage();
 
   const items: MailingListItem[] = getMailingListItems(data);

@@ -30,10 +30,9 @@ export default function AddAndEditMailingList() {
     isLoading: isLoadingMailingListDetailRequest,
   } = useMailingList(editMailingListId);
 
-  const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains(
-    null,
-    true,
-  );
+  const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains({
+    noCache: true,
+  });
 
   useEffect(() => {
     if (

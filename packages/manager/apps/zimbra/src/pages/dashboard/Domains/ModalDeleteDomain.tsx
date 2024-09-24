@@ -10,9 +10,15 @@ import {
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useMutation } from '@tanstack/react-query';
 import { useAccountList, useGenerateUrl, usePlatform } from '@/hooks';
-import { deleteZimbraPlatformDomain } from '@/api/domain';
+import {
+  deleteZimbraPlatformDomain,
+  getZimbraPlatformDomainsQueryKey,
+} from '@/api/domain';
 import Modal from '@/components/Modals/Modal';
+import queryClient from '@/queryClient';
 
 export default function ModalDeleteDomain() {
   const { t } = useTranslation('domains/delete');
@@ -37,38 +43,49 @@ export default function ModalDeleteDomain() {
     setHasEmailAccount(data?.length > 0);
   }, [isLoading]);
 
-  const handleDeleteClick = () => {
-    deleteZimbraPlatformDomain(platformId, deleteDomainId)
-      .then(() => {
-        onClose();
-        addSuccess(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            hue={ODS_THEME_COLOR_HUE._500}
-          >
-            {t('zimbra_domain_delete_success_message')}
-          </OsdsText>,
-          true,
-        );
-      })
-      .catch(({ response }) => {
-        onClose();
-        addError(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            hue={ODS_THEME_COLOR_HUE._500}
-          >
-            {t('zimbra_domain_delete_error_message', {
-              error: response.data.message,
-            })}
-          </OsdsText>,
-          true,
-        );
+  const { mutate: deleteDomain, isPending: isSending } = useMutation({
+    mutationFn: (domainId: string) => {
+      return deleteZimbraPlatformDomain(platformId, domainId);
+    },
+    onSuccess: () => {
+      addSuccess(
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          hue={ODS_THEME_COLOR_HUE._500}
+        >
+          {t('zimbra_domain_delete_success_message')}
+        </OsdsText>,
+        true,
+      );
+    },
+    onError: (error: ApiError) => {
+      addError(
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          hue={ODS_THEME_COLOR_HUE._500}
+        >
+          {t('zimbra_domain_delete_error_message', {
+            error: error?.response?.data?.message,
+          })}
+        </OsdsText>,
+        true,
+      );
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: getZimbraPlatformDomainsQueryKey(platformId),
       });
+
+      onClose();
+    },
+  });
+
+  const handleDeleteClick = () => {
+    deleteDomain(deleteDomainId);
   };
 
   return (
@@ -81,7 +98,7 @@ export default function ModalDeleteDomain() {
       primaryButton={{
         label: t('zimbra_domain_delete'),
         action: handleDeleteClick,
-        disabled: hasEmailAccount,
+        disabled: hasEmailAccount || isSending,
         testid: 'delete-btn',
       }}
     >

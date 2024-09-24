@@ -1,17 +1,32 @@
-import { useQuery } from '@tanstack/react-query';
+import {
+  useQuery,
+  UseQueryOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import { usePlatform, useOrganization } from '@/hooks';
 
 import {
+  DomainType,
   getZimbraPlatformDomains,
   getZimbraPlatformDomainsQueryKey,
 } from '@/api/domain';
 
-export const useDomains = (organizationId?: string, noCache?: boolean) => {
+type UseDomainsParams = Omit<
+  UseQueryOptions,
+  'queryKey' | 'queryFn' | 'select' | 'enabled' | 'gcTime'
+> & {
+  organizationId?: string;
+  noCache?: boolean;
+};
+
+export const useDomains = (props: UseDomainsParams = {}) => {
+  const { organizationId, noCache, ...options } = props;
   const { platformId } = usePlatform();
   const { data: organization } = useOrganization();
   const selectedOrganizationId = organization?.id;
 
-  const { data, isLoading, isError, error } = useQuery({
+  return useQuery({
+    ...options,
     queryKey: getZimbraPlatformDomainsQueryKey(
       platformId,
       organizationId || selectedOrganizationId,
@@ -23,12 +38,5 @@ export const useDomains = (organizationId?: string, noCache?: boolean) => {
       ),
     enabled: !!platformId,
     gcTime: noCache ? 0 : 5000,
-  });
-
-  return {
-    isLoading,
-    isError,
-    error,
-    data,
-  };
+  }) as UseQueryResult<DomainType[]>;
 };
