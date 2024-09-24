@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.14.0...@ovh-ux/manager-iplb@1.14.1) (2024-09-24)
+
+
+### Bug Fixes
+
+* **dedicated:** add featureAvailibility to upd protocol on lb frontend ([#13187](https://github.com/ovh/manager/issues/13187)) ([14e478e](https://github.com/ovh/manager/commit/14e478e7d374cf49edc83bd295b41f0a5220c734))
+* **dedicated:** fix featureAvailibility flag name ([#13214](https://github.com/ovh/manager/issues/13214)) ([6df400b](https://github.com/ovh/manager/commit/6df400b30f0d9738ac07db410308a677835b1074))
+
+
+
+
+
 # [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.13.2...@ovh-ux/manager-iplb@1.14.0) (2024-09-12)
 
 

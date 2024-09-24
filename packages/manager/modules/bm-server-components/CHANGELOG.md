@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.33.1...@ovh-ux/manager-bm-server-components@1.34.0) (2024-09-24)
+
+
+### Bug Fixes
+
+* **dedicated:** modify information for unknown regions ([#12478](https://github.com/ovh/manager/issues/12478)) ([96fa49a](https://github.com/ovh/manager/commit/96fa49a7854d9e0140164d136b042fc486322930))
+
+
+### Features
+
+* **dedicated.server:** vmac banner available on ADV GEN3([#12809](https://github.com/ovh/manager/issues/12809)) ([13b1bd1](https://github.com/ovh/manager/commit/13b1bd187ca89789c550922380f7c2512cdd8d8c))
+* **dedicated:** hide backup storage when not available ([#12665](https://github.com/ovh/manager/issues/12665)) ([d4678af](https://github.com/ovh/manager/commit/d4678afc2961a32b3b14bc0b00edcffd0730e593))
+* **dedicated:** open ipmi sol on us region ([#13064](https://github.com/ovh/manager/issues/13064)) ([6b963ad](https://github.com/ovh/manager/commit/6b963ad8e43404326450081a864b1a2d2b0faefb))
+
+
+
+
+
 ## [1.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.33.0...@ovh-ux/manager-bm-server-components@1.33.1) (2024-09-12)
 
 
