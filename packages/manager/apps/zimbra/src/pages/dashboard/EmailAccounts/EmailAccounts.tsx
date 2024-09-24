@@ -1,7 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsText,
+  OsdsTooltip,
+  OsdsTooltipContent,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_BUTTON_SIZE,
@@ -26,6 +36,7 @@ import {
   useGenerateUrl,
   useAccountList,
   usePlatform,
+  useDomains,
 } from '@/hooks';
 import LabelChip from '@/components/LabelChip';
 import guidesConstants from '@/guides.constants';
@@ -114,6 +125,10 @@ export default function EmailAccounts() {
     enabled: !isOverridedPage,
   });
 
+  const { data: dataDomains } = useDomains({
+    enabled: !isLoading && data?.length === 0,
+  });
+
   const items: EmailsItem[] =
     data?.map((item: AccountType) => ({
       id: item.id,
@@ -151,26 +166,57 @@ export default function EmailAccounts() {
               target={OdsHTMLAnchorElementTarget._blank}
             ></Links>
           </div>
-          <ManagerButton
-            color={ODS_THEME_COLOR_INTENT.primary}
-            inline
-            size={ODS_BUTTON_SIZE.sm}
-            urn={platformUrn}
-            iamActions={[IAM_ACTIONS.account.create]}
-            href={hrefAddEmailAccount}
-            data-testid="add-account-btn"
-            className="mb-6"
-          >
-            <span slot="start">
-              <OsdsIcon
-                name={ODS_ICON_NAME.PLUS}
-                size={ODS_ICON_SIZE.sm}
+          {(data?.length > 0 || dataDomains?.length > 0) && (
+            <ManagerButton
+              color={ODS_THEME_COLOR_INTENT.primary}
+              inline
+              size={ODS_BUTTON_SIZE.sm}
+              urn={platformUrn}
+              iamActions={[IAM_ACTIONS.account.create]}
+              href={hrefAddEmailAccount}
+              data-testid="add-account-btn"
+              className="mb-6"
+            >
+              <span slot="start">
+                <OsdsIcon
+                  name={ODS_ICON_NAME.PLUS}
+                  size={ODS_ICON_SIZE.sm}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  contrasted
+                ></OsdsIcon>
+              </span>
+              <span slot="end">{t('zimbra_account_account_add')}</span>
+            </ManagerButton>
+          )}
+          {!dataDomains?.length && (
+            <OsdsTooltip className="mb-6">
+              <OsdsButton
                 color={ODS_THEME_COLOR_INTENT.primary}
-                contrasted
-              ></OsdsIcon>
-            </span>
-            <span slot="end">{t('zimbra_account_account_add')}</span>
-          </ManagerButton>
+                inline
+                size={ODS_BUTTON_SIZE.sm}
+                disabled
+              >
+                <span slot="start">
+                  <OsdsIcon
+                    name={ODS_ICON_NAME.PLUS}
+                    size={ODS_ICON_SIZE.sm}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    contrasted
+                  ></OsdsIcon>
+                </span>
+                <span slot="end">{t('zimbra_account_account_add')}</span>
+              </OsdsButton>
+              <OsdsTooltipContent slot="tooltip-content">
+                <OsdsText
+                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+                >
+                  {t('zimbra_domains_tooltip_need_domain')}
+                </OsdsText>
+              </OsdsTooltipContent>
+            </OsdsTooltip>
+          )}
           {isLoading ? (
             <Loading />
           ) : (

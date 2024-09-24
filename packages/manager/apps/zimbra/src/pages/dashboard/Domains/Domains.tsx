@@ -1,7 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsText,
+  OsdsTooltip,
+  OsdsTooltipContent,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
@@ -22,6 +32,7 @@ import {
   useDomains,
   useGenerateUrl,
   usePlatform,
+  useOrganizationList,
 } from '@/hooks';
 import ActionButtonDomain from './ActionButtonDomain';
 import LabelChip from '@/components/LabelChip';
@@ -91,6 +102,10 @@ export default function Domains() {
     enabled: !isOverridedPage,
   });
 
+  const { data: dataOrganizations } = useOrganizationList({
+    enabled: !isLoading && data?.length === 0,
+  });
+
   const hrefAddDomain = useGenerateUrl('./add', 'href');
 
   const items: DomainsItem[] =
@@ -112,26 +127,57 @@ export default function Domains() {
       {platformUrn && !isOverridedPage && (
         <>
           <div className="flex items-center justify-between">
-            <ManagerButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              inline
-              size={ODS_BUTTON_SIZE.sm}
-              href={hrefAddDomain}
-              urn={platformUrn}
-              iamActions={[IAM_ACTIONS.domain.create]}
-              data-testid="add-domain-btn"
-              className="mb-6"
-            >
-              <span slot="start">
-                <OsdsIcon
-                  name={ODS_ICON_NAME.PLUS}
-                  size={ODS_ICON_SIZE.sm}
+            {(data?.length > 0 || dataOrganizations?.length > 0) && (
+              <ManagerButton
+                color={ODS_THEME_COLOR_INTENT.primary}
+                inline
+                size={ODS_BUTTON_SIZE.sm}
+                href={hrefAddDomain}
+                urn={platformUrn}
+                iamActions={[IAM_ACTIONS.domain.create]}
+                data-testid="add-domain-btn"
+                className="mb-6"
+              >
+                <span slot="start">
+                  <OsdsIcon
+                    name={ODS_ICON_NAME.PLUS}
+                    size={ODS_ICON_SIZE.sm}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    contrasted
+                  ></OsdsIcon>
+                </span>
+                <span slot="end">{t('zimbra_domains_add_domain_title')}</span>
+              </ManagerButton>
+            )}
+            {!dataOrganizations?.length && (
+              <OsdsTooltip className="mb-6">
+                <OsdsButton
                   color={ODS_THEME_COLOR_INTENT.primary}
-                  contrasted
-                ></OsdsIcon>
-              </span>
-              <span slot="end">{t('zimbra_domains_add_domain_title')}</span>
-            </ManagerButton>
+                  inline
+                  size={ODS_BUTTON_SIZE.sm}
+                  disabled
+                >
+                  <span slot="start">
+                    <OsdsIcon
+                      name={ODS_ICON_NAME.PLUS}
+                      size={ODS_ICON_SIZE.sm}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                      contrasted
+                    ></OsdsIcon>
+                  </span>
+                  <span slot="end">{t('zimbra_domains_add_domain_title')}</span>
+                </OsdsButton>
+                <OsdsTooltipContent slot="tooltip-content">
+                  <OsdsText
+                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                    size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+                  >
+                    {t('zimbra_domains_tooltip_need_organization')}
+                  </OsdsText>
+                </OsdsTooltipContent>
+              </OsdsTooltip>
+            )}
           </div>
           {isLoading ? (
             <Loading />
