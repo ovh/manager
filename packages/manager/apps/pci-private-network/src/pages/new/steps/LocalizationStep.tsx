@@ -47,26 +47,19 @@ export default function LocalizationStep(): JSX.Element {
   });
 
   const getMacroRegion = (regionName: string) => {
-    const localZonePattern = /^lz/i;
-    let macro: RegExpExecArray;
-    if (
-      localZonePattern.test(
-        regionName
-          .split('-')
-          ?.slice(2)
-          ?.join('-'),
-      )
-    ) {
-      macro = /\D{2,3}/.exec(
-        regionName
-          .split('-')
-          ?.slice(3)
-          ?.join('-'),
-      );
-    } else {
-      macro = /\D{2,3}/.exec(regionName);
-    }
-    return macro ? macro[0].replace('-', '').toUpperCase() : '';
+    const regionSubStrings = regionName.split('-');
+
+    const macroRegionMap = {
+      1: regionSubStrings[0].split(/(\d)/)[0],
+      2: regionSubStrings[0],
+      3: regionSubStrings[2],
+      4:
+        regionSubStrings[2] === 'LZ'
+          ? regionSubStrings[3]
+          : regionSubStrings[2],
+      5: regionSubStrings[3],
+    };
+    return macroRegionMap[regionSubStrings.length] || 'Unknown_Macro_Region';
   };
 
   const getTranslatedMacroRegion = ({ name }: TRegion) => {

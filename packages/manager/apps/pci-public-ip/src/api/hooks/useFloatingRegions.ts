@@ -4,29 +4,16 @@ import { useAvailabilities } from '@/api/hooks/useAvailabilities';
 import { TRegion } from '@/api/types';
 
 const getMacroRegion = (region: string) => {
-  const localZonePattern = /^lz/i;
-  let macro;
-  if (
-    localZonePattern.test(
-      region
-        .split('-')
-        ?.slice(2)
-        ?.join('-'),
-    )
-  ) {
-    // The pattern for local zone is <geo_location>-LZ-<datacenter>-<letter>
-    // geo_location is EU-WEST, EU-SOUTH, maybe ASIA-WEST in the future
-    // datacenter: MAD, BRU
-    macro = /\D{2,3}/.exec(
-      region
-        .split('-')
-        ?.slice(3)
-        ?.join('-'),
-    );
-  } else {
-    macro = /\D{2,3}/.exec(region);
-  }
-  return macro ? macro[0].replace('-', '').toUpperCase() : '';
+  const regionSubStrings = region.split('-');
+
+  const macroRegionMap = {
+    1: regionSubStrings[0].split(/(\d)/)[0],
+    2: regionSubStrings[0],
+    3: regionSubStrings[2],
+    4: regionSubStrings[2] === 'LZ' ? regionSubStrings[3] : regionSubStrings[2],
+    5: regionSubStrings[3],
+  };
+  return macroRegionMap[regionSubStrings.length] || 'Unknown_Macro_Region';
 };
 
 export const useFloatingRegions = (projectId: string) => {
