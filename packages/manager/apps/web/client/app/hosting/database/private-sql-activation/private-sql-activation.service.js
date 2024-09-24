@@ -53,28 +53,30 @@ export default class PrivateSql {
   }
 
   static getPrivateSqlCategory(catalog) {
-    return catalog.addons.reduce((acc, current) => {
-      const { planCode } = current;
-      if (planCode.startsWith(PRIVATE_SQL_PLAN_CODE_PREFIX)) {
-        const dbOffer = {
-          ...current,
-          productSize: current.product.split('-')[2],
-          tracking: DB_OFFERS.PRIVATE.TRACKING,
-        };
-        const dbms = dbOffer.configurations
-          .find(({ name }) => name === 'engine')
-          .values.map((db) => {
-            const [dbName, dbVersion] = db.split('_');
-            return { db, dbName, dbVersion };
-          });
-        const groupedDbms = groupBy(dbms, 'dbName');
-        dbOffer.engines = Object.keys(groupedDbms).map((dbGroup) => ({
-          dbGroup,
-          versions: groupedDbms[dbGroup],
-        }));
-        acc.push(dbOffer);
-      }
-      return acc;
-    }, []);
+    return catalog.addons
+      .reduce((acc, current) => {
+        const { planCode } = current;
+        if (planCode.startsWith(PRIVATE_SQL_PLAN_CODE_PREFIX)) {
+          const dbOffer = {
+            ...current,
+            productSize: current.product.split('-')[2],
+            tracking: DB_OFFERS.PRIVATE.TRACKING,
+          };
+          const dbms = dbOffer.configurations
+            .find(({ name }) => name === 'engine')
+            .values.map((db) => {
+              const [dbName, dbVersion] = db.split('_');
+              return { db, dbName, dbVersion };
+            });
+          const groupedDbms = groupBy(dbms, 'dbName');
+          dbOffer.engines = Object.keys(groupedDbms).map((dbGroup) => ({
+            dbGroup,
+            versions: groupedDbms[dbGroup],
+          }));
+          acc.push(dbOffer);
+        }
+        return acc;
+      }, [])
+      .sort((a, b) => a.productSize - b.productSize);
   }
 }
