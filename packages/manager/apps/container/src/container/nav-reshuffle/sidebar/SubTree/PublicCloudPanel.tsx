@@ -10,6 +10,7 @@ import { shouldHideElement } from '@/container/nav-reshuffle/sidebar/utils';
 import { Location, useLocation } from 'react-router-dom';
 import style from '../style.module.scss';
 import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTree/SubTreeSection';
+import { PUBLICCLOUD_UNIVERSE_ID } from '../navigation-tree/services/publicCloud';
 
 export interface PublicCloudPanelProps {
   rootNode: Node;
@@ -72,7 +73,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
       select: (response) => {
         return response?.data?.length ? (response.data[0] as PciProject) : null;
       },
-      enabled: rootNode.id === 'pci' && !selectedPciProject,
+      enabled: rootNode.id === PUBLICCLOUD_UNIVERSE_ID && !selectedPciProject,
       retry: false,
     },
   );
@@ -119,7 +120,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
   useEffect(() => {
     if (
       selectedPciProject &&
-      rootNode.id === 'pci' &&
+      rootNode.id === PUBLICCLOUD_UNIVERSE_ID &&
       containerURL.appId != rootNode.routing?.application
     ) {
       navigationPlugin.navigateTo(
