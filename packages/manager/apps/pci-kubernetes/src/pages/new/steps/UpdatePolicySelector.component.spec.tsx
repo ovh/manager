@@ -12,12 +12,6 @@ import {
 import { UPGRADE_POLICIES } from '@/constants';
 import { UpdatePolicy } from '@/types';
 
-// Mock translation
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (str: string) => str,
-  }),
-}));
 let setPolicyMock: Mock;
 
 describe('UpgradePolicyTileSelector', () => {
@@ -55,7 +49,7 @@ describe('UpgradePolicyTileSelector', () => {
       </ShellContext.Provider>,
     );
 
-    const tiles = getAllByRole('button'); // Assuming OsdsTile renders a button element
+    const tiles = getAllByRole('button');
     expect(tiles.length).toBe(UPGRADE_POLICIES.length);
   });
 
