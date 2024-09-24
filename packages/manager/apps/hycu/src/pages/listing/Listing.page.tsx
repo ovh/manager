@@ -57,9 +57,11 @@ export default function Listing() {
         .map((element) => ({
           id: element,
           label: element,
-          type: dataType(flattenData[0][element]),
-          cell: (props: any) => {
-            const label = props[element] as string;
+          type: dataType(
+            (flattenData[0] as { [key: string]: string })[element],
+          ),
+          cell: (props: { [key: string]: string }) => {
+            const label = props[element];
             if (typeof label === 'string' || typeof label === 'number') {
               if (serviceKey === element)
                 return (
