@@ -31,6 +31,7 @@ import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 export type DomainsItem = {
   id: string;
   name: string;
+  organizationId: string;
   organizationLabel: string;
   account: number;
 };
@@ -53,7 +54,7 @@ const columns: DatagridColumn<DomainsItem>[] = [
     id: 'organization',
     cell: (item) =>
       item.organizationLabel && (
-        <LabelChip id={item.id}>{item.organizationLabel}</LabelChip>
+        <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
       ),
     label: 'zimbra_domains_datagrid_organization_label',
   },
@@ -95,6 +96,7 @@ export default function Domains() {
     data?.map((item) => ({
       name: item.currentState.name,
       id: item.id,
+      organizationId: item.currentState.organizationId,
       organizationLabel: item.currentState.organizationLabel,
       account: item.currentState.accountsStatistics.reduce(
         (acc, current) => acc + current.configuredAccountsCount,
