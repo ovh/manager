@@ -6,11 +6,11 @@ import { RancherService } from '@/types/api.type';
 import '../Table.scss';
 
 interface DisplayCellInterface {
-  cell: Cell<RancherService, unknown>;
+  cell: Cell<RancherService, number>;
 }
 
 function DisplayCellNumber({ cell }: Readonly<DisplayCellInterface>) {
-  const number = cell.renderValue() as number;
+  const number = cell.renderValue();
   return <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{number}</OsdsText>;
 }
 
