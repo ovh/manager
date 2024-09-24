@@ -23,7 +23,7 @@ export function VersionAndUpdatePolicyStep({
 }: Readonly<VersionStepProps>) {
   const { t: tStepper } = useTranslation('stepper');
   const { t: tVersion } = useTranslation('versions');
-  const [version, setVersion] = useState('');
+  const [version, setVersion] = useState<string | null>(null);
   const [policy, setPolicy] = useState(UpdatePolicy.AlwaysUpdate);
   return (
     <>
