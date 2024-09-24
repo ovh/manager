@@ -121,610 +121,643 @@
             </div>
         </div>
     </div>
-    <table class="table table-hover" id="module-ip-table" aria-label="ips">
-        <thead>
-            <tr>
-                <th scope="col"></th>
+    <div class="table-list">
+        <table class="table table-hover" id="module-ip-table" aria-label="ips">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
 
-                <th scope="col">
-                    <span data-translate="ip_table_header_ip_address"></span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover="{{:: 'ip_table_header_ip_address_help' | translate }}"
-                        data-oui-popover-placement="top"
-                        data-oui-popover-open="headerPopover.ip_address"
-                        data-ng-click="headerPopover = { ip_address: true }"
-                    ></button>
-                </th>
-                <th scope="col">
-                    <span data-translate="ip_table_header_region"></span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover="{{:: 'ip_table_header_region_help' | translate }}"
-                        data-oui-popover-placement="top"
-                        data-oui-popover-open="headerPopover.campus"
-                        data-ng-click="headerPopover = { campus : true }"
-                    ></button>
-                </th>
-                <th scope="col">
-                    <span data-translate="ip_table_header_country"></span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover="{{:: 'ip_table_header_country_help' | translate }}"
-                        data-oui-popover-placement="top"
-                        data-oui-popover-open="headerPopover.country"
-                        data-ng-click="headerPopover = { country : true }"
-                    ></button>
-                </th>
-                <th scope="col">
-                    <span data-translate="ip_table_header_service"></span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover="{{:: 'ip_table_header_service_help' | translate }}"
-                        data-oui-popover-placement="top"
-                        data-oui-popover-open="headerPopover.service"
-                        data-ng-click="headerPopover = { service : true }"
-                    ></button>
-                </th>
-                <th scope="col">
-                    <span data-translate="ip_table_header_reverse"></span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover="{{:: 'ip_table_header_reverse_help' | translate }}"
-                        data-oui-popover-placement="top"
-                        data-oui-popover-open="headerPopover.reverse"
-                        data-ng-click="headerPopover = { reverse : true }"
-                    ></button>
-                </th>
-                <th scope="col" data-ng-if="advancedModeFilter">
-                    <span data-translate="ip_table_header_virtual_mac"></span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover="{{:: 'ip_table_header_virtual_mac_help' | translate }}"
-                        data-oui-popover-placement="top"
-                        data-oui-popover-open="$parent.headerPopover.virtual_mac"
-                        data-ng-click="$parent.headerPopover = { virtual_mac : true }"
-                    ></button>
-                </th>
-                <th scope="col" data-ng-if="advancedModeFilter">
-                    <span data-translate="ip_table_header_mitigation"></span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover="{{:: 'ip_table_header_mitigation_help' | translate }}"
-                        data-oui-popover-placement="top"
-                        data-oui-popover-open="$parent.headerPopover.mitigation"
-                        data-ng-click="$parent.headerPopover = { mitigation : true }"
-                    ></button>
-                </th>
-                <th scope="col" data-ng-if="advancedModeFilter">
-                    <script type="text/ng-template" id="ip_firewall_help.html">
-                        <span data-translate="ip_table_header_security_help"></span>
-                        (<a
-                            data-ng-href="{{:: $ctrl.securityUrl }}"
-                            target="_blank"
-                            rel="noopener"
-                        ><span data-ng-bind="$ctrl.securityUrl"></span></a>)
-                    </script>
-                    <span data-translate="ip_table_header_security"></span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover
-                        data-oui-popover-scope="$ctrl"
-                        data-oui-popover-template="ip_firewall_help.html"
-                        data-oui-popover-placement="top"
-                        data-oui-popover-open="$parent.headerPopover.security"
-                        data-ng-click="$parent.headerPopover = { security : true }"
-                    ></button>
-                </th>
-                <th scope="col" data-ng-if="advancedModeFilter">
-                    <span
-                        data-translate="ip_table_header_game_mitigation"
-                    ></span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover="{{:: 'ip_table_header_game_mitigation_help' | translate }}"
-                        data-oui-popover-placement="top"
-                        data-oui-popover-open="$parent.headerPopover.game_mitigation"
-                        data-ng-click="$parent.headerPopover = { game_mitigation : true }"
-                    ></button>
-                </th>
-                <th scope="col">
-                    <script type="text/ng-template" id="ip_alerts_help.html">
-                        <div
-                            class="text-right"
-                            data-ng-if="$ctrl.hasSpamAlerts"
-                        >
-                            <strong data-translate="ip_alerts_spam_noun"></strong>
-                            <span data-translate="ip_alerts_spam_help"></span>
-                        </div>
-                        <div
-                            class="text-right"
-                            data-ng-if="$ctrl.hasAntihackAlerts"
-                        >
-                            <strong data-translate="ip_alerts_antihack_noun"></strong>
-                            <span data-translate="ip_alerts_antihack_help"></span>
-                        </div>
-                        <div
-                            class="text-right"
-                            data-ng-if="$ctrl.hasMitigationAlerts"
-                        >
-                            <strong data-translate="ip_alerts_mitigation_noun"></strong>
-                            <span data-translate="ip_alerts_mitigation_help"></span>
-                        </div>
-                    </script>
-                    <span data-translate="ip_table_header_alerts"></span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover="{{:: 'ip_table_header_alerts_help' | translate }}"
-                        data-oui-popover-placement="top"
-                        data-oui-popover-open="headerPopover.alerts"
-                        data-ng-click="headerPopover = { alerts : true }"
-                    ></button>
-                </th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-
-        <tbody
-            data-ng-if="ipsList.length"
-            data-ng-repeat="ipBlock in ipsList track by $index"
-        >
-            <tr data-ng-show="ipBlock.refreshing">
-                <td class="text-center">
-                    <oui-spinner size="s"></oui-spinner>
-                </td>
-                <td colspan="42">
-                    <span
-                        data-ng-bind="'ip_table_ipblock_refresh' | translate:{ t0: ipBlock.ipBlock }"
-                    ></span>
-                </td>
-            </tr>
-
-            <!-- It's an IPBLOCK -->
-            <tr data-ng-if="!ipBlock.refreshing && !ipBlock.isUniq">
-                <!-- + -->
-                <th scope="row">
-                    <button
-                        type="button"
-                        class="btn btn-link pl-0"
-                        data-ng-click="toggleIp(ipBlock)"
-                    >
+                    <th scope="col">
                         <span
-                            data-ng-if="!ipBlock.loading"
-                            class="fa"
-                            data-ng-class="{
-                                  'fa-angle-right': ipBlock.collapsed,
-                                  'fa-angle-down': !ipBlock.collapsed
-                               }"
-                        >
-                        </span>
-                        <span data-ng-if="ipBlock.loading" class="text-center">
-                            <oui-spinner size="s"></oui-spinner>
-                        </span>
-                    </button>
-                </th>
-
-                <!-- IP -->
-                <td>
-                    <span data-ng-bind="ipBlock.ipBlock"></span>
-                    <span
-                        data-ng-if="showBYOIPBadge && ipBlock.bringYourOwnIp"
-                        data-ng-bind="'BYOIP'"
-                        class="oui-badge oui-badge_info"
-                    ></span>
-                    <span
-                        data-ng-if="showFOBadge && ipBlock.isAdditionalIp"
-                        data-ng-bind=":: ADDITIONAL_IP"
-                        class="oui-badge oui-badge_info"
-                    ></span>
-                    <small
-                        class="ip-description d-block text-truncate"
-                        data-ng-if="ipBlock.description"
-                        data-ng-bind="ipBlock.description"
-                        data-ng-attr-title="{{ ipBlock.description }}"
-                    >
-                    </small>
-                </td>
-
-                <!-- Region -->
-                <td class="text-center">
-                    <span
-                        class="d-block"
-                        data-ng-repeat="region in ipBlock.regions track by $index"
-                        data-ng-bind="region"
-                    ></span>
-                    <span
-                        data-ng-if="!ipBlock.regions"
-                        data-ng-bind="'-'"
-                    ></span>
-                </td>
-
-                <!-- Country -->
-                <td
-                    class="text-center"
-                    data-ng-bind="ipBlock.country ? ipBlock.country.toUpperCase() : '-'"
-                ></td>
-
-                <!-- Server -->
-                <td>
-                    <a
-                        data-ng-if="ipBlock.service.url"
-                        data-ng-href="{{ ipBlock.service.url }}"
-                    >
-                        <span data-ng-bind="ipBlock.service.serviceName"></span>
-                    </a>
-                    <span
-                        data-ng-if="!ipBlock.service.url && ipBlock.routedTo.serviceName"
-                        data-ng-bind="ipBlock.routedTo.serviceName"
-                    ></span>
-                    <span data-ng-if="!ipBlock.routedTo.serviceName">-</span>
-                </td>
-
-                <!-- Reverse -->
-                <td>
-                    <div data-ng-if="ipBlock.fetchingData" class="text-center">
-                        <oui-skeleton size="m"></oui-skeleton>
-                    </div>
-                    <div data-ng-if="!ipBlock.fetchingData">
-                        <span
-                            class="label label-info"
-                            title="{{ 'ip_table_manage_delegation_ipv6block_delegation_reverse_dns' | translate }}"
-                            data-ng-if="ipBlock.delegation && ipBlock.delegation.length > 0"
-                            >NS</span
-                        >
-                        <ul
-                            class="list-unstyled"
-                            data-ng-show="ipBlock.delegation"
-                        >
-                            <li data-ng-repeat="reverse in ipBlock.delegation">
-                                <span data-ng-bind="reverse"></span>
-                                <button
-                                    class="btn btn-link"
-                                    type="button"
-                                    data-ng-click="setAction('ip/reverse/delete/ip-ip-reverse-delete', {ipBlock: ipBlock, reverse:reverse})"
-                                    title="{{:: 'common_delete' | translate }}"
-                                >
-                                    <span
-                                        class="fa fa-trash"
-                                        aria-label="{{:: 'common_delete' | translate }}"
-                                        aria-hidden="true"
-                                    >
-                                    </span>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                </td>
-
-                <!-- Virtual MAC -->
-                <td data-ng-if="advancedModeFilter"></td>
-
-                <!-- Mitigation -->
-                <td data-ng-if="advancedModeFilter"></td>
-
-                <!-- Firewall -->
-                <td data-ng-if="advancedModeFilter"></td>
-
-                <!-- Game mitigation -->
-                <td data-ng-if="advancedModeFilter"></td>
-
-                <!-- Alerts -->
-                <td>
-                    <div
-                        class="d-flex justify-content-center align-items-center ip-components-list__alerts"
-                        data-ng-if="ipBlock.hasSpamAlerts || ipBlock.hasAntihackAlerts || ipBlock.hasMitigationAlerts"
-                    >
-                        <span
-                            class="fa fa-warning text-danger lead mb-0"
-                            aria-hidden="true"
-                            data-oui-popover
-                            data-oui-popover-template="ip_alerts_help.html"
-                            data-oui-popover-placement="left"
-                            data-oui-popover-scope="ipBlock"
-                            data-oui-popover-open="popover[ipBlock.ipBlock]"
-                            data-ng-mouseover="popover[ipBlock.ipBlock] = true"
-                            data-ng-mouseleave="popover[ipBlock.ipBlock] = false"
+                            data-translate="ip_table_header_ip_address"
                         ></span>
-                    </div>
-                </td>
-
-                <!-- Actions -->
-                <td>
-                    <div
-                        data-ng-if="ipBlock.isAdditionalIpv6"
-                        data-ng-include="'ip/popover/additional-ipv6.html'"
-                    ></div>
-                    <div
-                        data-ng-if="!ipBlock.isAdditionalIpv6"
-                        data-ng-include="'ip/popover/ipBlock.html'"
-                    ></div>
-                </td>
-            </tr>
-
-            <!-- Its an IP -->
-            <tr
-                data-ng-if="!ipBlock.refreshing && !ipBlock.collapsed"
-                data-ng-repeat="ip in ipBlock.ips track by ip.ip"
-            >
-                <th scope="row"></th>
-
-                <!-- IP -->
-                <td>
-                    <span
-                        data-ng-class="{
-                              'pl-5': ip.block || ipBlock.isAdditionalIpv6
-                          }"
-                        data-ng-bind="ip.ip"
-                    ></span>
-                    <span
-                        data-ng-if="showBYOIPBadge && ipBlock.bringYourOwnIp"
-                        data-ng-bind="'BYOIP'"
-                        class="oui-badge oui-badge_info"
-                    ></span>
-                    <span
-                        data-ng-if="showFOBadge && ipBlock.isUniq && ipBlock.type == FAILOVER"
-                        data-ng-bind=":: ADDITIONAL_IP"
-                        class="oui-badge oui-badge_info"
-                    ></span>
-                    <small
-                        class="ip-description d-block text-truncate"
-                        data-ng-class="{
-                            'pl-5': ip.block || ipBlock.isAdditionalIpv6
-                        }"
-                        data-ng-if="ipBlock.description"
-                        data-ng-bind="ipBlock.description"
-                        data-ng-attr-title="{{ ipBlock.description }}"
-                    >
-                    </small>
-                </td>
-
-                <!-- Region -->
-                <td class="text-center">
-                    <span
-                        class="d-block"
-                        data-ng-repeat="region in ipBlock.regions track by $index"
-                        data-ng-bind="region"
-                    ></span>
-                    <span
-                        data-ng-if="!ipBlock.regions"
-                        data-ng-bind="'-'"
-                    ></span>
-                </td>
-
-                <!-- Country -->
-                <td
-                    class="text-center"
-                    data-ng-bind="ipBlock.country ? ipBlock.country.toUpperCase() : '-'"
-                ></td>
-
-                <!-- Server -->
-                <td>
-                    <a
-                        data-ng-if="ipBlock.service.url"
-                        data-ng-href="{{ ipBlock.service.url }}"
-                    >
-                        <span data-ng-bind="ipBlock.service.serviceName"></span>
-                    </a>
-                    <span
-                        data-ng-if="!ipBlock.service.url && ipBlock.routedTo.serviceName"
-                        data-ng-bind="ipBlock.routedTo.serviceName"
-                    ></span>
-                    <span data-ng-if="!ipBlock.routedTo.serviceName">-</span>
-                </td>
-
-                <!-- Reverse -->
-                <td>
-                    <div
-                        data-ng-if="ipBlock.fetchingData && ip.type !== SUB_RANGE"
-                        class="text-center"
-                    >
-                        <oui-skeleton size="m"></oui-skeleton>
-                    </div>
-                    <div
-                        data-ng-if="!ipBlock.fetchingData && ip.type !== SUB_RANGE"
-                    >
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover="{{:: 'ip_table_header_ip_address_help' | translate }}"
+                            data-oui-popover-placement="top"
+                            data-oui-popover-open="headerPopover.ip_address"
+                            data-ng-click="headerPopover = { ip_address: true }"
+                        ></button>
+                    </th>
+                    <th scope="col">
+                        <span data-translate="ip_table_header_region"></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover="{{:: 'ip_table_header_region_help' | translate }}"
+                            data-oui-popover-placement="top"
+                            data-oui-popover-open="headerPopover.campus"
+                            data-ng-click="headerPopover = { campus : true }"
+                        ></button>
+                    </th>
+                    <th scope="col">
+                        <span data-translate="ip_table_header_country"></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover="{{:: 'ip_table_header_country_help' | translate }}"
+                            data-oui-popover-placement="top"
+                            data-oui-popover-open="headerPopover.country"
+                            data-ng-click="headerPopover = { country : true }"
+                        ></button>
+                    </th>
+                    <th scope="col">
+                        <span data-translate="ip_table_header_service"></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover="{{:: 'ip_table_header_service_help' | translate }}"
+                            data-oui-popover-placement="top"
+                            data-oui-popover-open="headerPopover.service"
+                            data-ng-click="headerPopover = { service : true }"
+                        ></button>
+                    </th>
+                    <th scope="col">
+                        <span data-translate="ip_table_header_reverse"></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover="{{:: 'ip_table_header_reverse_help' | translate }}"
+                            data-oui-popover-placement="top"
+                            data-oui-popover-open="headerPopover.reverse"
+                            data-ng-click="headerPopover = { reverse : true }"
+                        ></button>
+                    </th>
+                    <th scope="col" data-ng-if="advancedModeFilter">
                         <span
-                            data-ng-if="!ip.reverseEdit"
-                            data-ng-bind="ip.reverse ? (ip.reverse | ipPunycode:true) : '-'"
+                            data-translate="ip_table_header_virtual_mac"
+                        ></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover="{{:: 'ip_table_header_virtual_mac_help' | translate }}"
+                            data-oui-popover-placement="top"
+                            data-oui-popover-open="$parent.headerPopover.virtual_mac"
+                            data-ng-click="$parent.headerPopover = { virtual_mac : true }"
+                        ></button>
+                    </th>
+                    <th scope="col" data-ng-if="advancedModeFilter">
+                        <span
+                            data-translate="ip_table_header_mitigation"
+                        ></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover="{{:: 'ip_table_header_mitigation_help' | translate }}"
+                            data-oui-popover-placement="top"
+                            data-oui-popover-open="$parent.headerPopover.mitigation"
+                            data-ng-click="$parent.headerPopover = { mitigation : true }"
+                        ></button>
+                    </th>
+                    <th scope="col" data-ng-if="advancedModeFilter">
+                        <script
+                            type="text/ng-template"
+                            id="ip_firewall_help.html"
+                        >
+                            <span data-translate="ip_table_header_security_help"></span>
+                            (<a
+                                data-ng-href="{{:: $ctrl.securityUrl }}"
+                                target="_blank"
+                                rel="noopener"
+                            ><span data-ng-bind="$ctrl.securityUrl"></span></a>)
+                        </script>
+                        <span data-translate="ip_table_header_security"></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover
+                            data-oui-popover-scope="$ctrl"
+                            data-oui-popover-template="ip_firewall_help.html"
+                            data-oui-popover-placement="top"
+                            data-oui-popover-open="$parent.headerPopover.security"
+                            data-ng-click="$parent.headerPopover = { security : true }"
+                        ></button>
+                    </th>
+                    <th scope="col" data-ng-if="advancedModeFilter">
+                        <span
+                            data-translate="ip_table_header_game_mitigation"
+                        ></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover="{{:: 'ip_table_header_game_mitigation_help' | translate }}"
+                            data-oui-popover-placement="top"
+                            data-oui-popover-open="$parent.headerPopover.game_mitigation"
+                            data-ng-click="$parent.headerPopover = { game_mitigation : true }"
+                        ></button>
+                    </th>
+                    <th scope="col">
+                        <script
+                            type="text/ng-template"
+                            id="ip_alerts_help.html"
+                        >
+                            <div
+                                class="text-right"
+                                data-ng-if="$ctrl.hasSpamAlerts"
+                            >
+                                <strong data-translate="ip_alerts_spam_noun"></strong>
+                                <span data-translate="ip_alerts_spam_help"></span>
+                            </div>
+                            <div
+                                class="text-right"
+                                data-ng-if="$ctrl.hasAntihackAlerts"
+                            >
+                                <strong data-translate="ip_alerts_antihack_noun"></strong>
+                                <span data-translate="ip_alerts_antihack_help"></span>
+                            </div>
+                            <div
+                                class="text-right"
+                                data-ng-if="$ctrl.hasMitigationAlerts"
+                            >
+                                <strong data-translate="ip_alerts_mitigation_noun"></strong>
+                                <span data-translate="ip_alerts_mitigation_help"></span>
+                            </div>
+                        </script>
+                        <span data-translate="ip_table_header_alerts"></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover="{{:: 'ip_table_header_alerts_help' | translate }}"
+                            data-oui-popover-placement="top"
+                            data-oui-popover-open="headerPopover.alerts"
+                            data-ng-click="headerPopover = { alerts : true }"
+                        ></button>
+                    </th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+
+            <tbody
+                data-ng-if="ipsList.length"
+                data-ng-repeat="ipBlock in ipsList track by $index"
+            >
+                <tr data-ng-show="ipBlock.refreshing">
+                    <td class="text-center">
+                        <oui-spinner size="s"></oui-spinner>
+                    </td>
+                    <td colspan="42">
+                        <span
+                            data-ng-bind="'ip_table_ipblock_refresh' | translate:{ t0: ipBlock.ipBlock }"
+                        ></span>
+                    </td>
+                </tr>
+
+                <!-- It's an IPBLOCK -->
+                <tr data-ng-if="!ipBlock.refreshing && !ipBlock.isUniq">
+                    <!-- + -->
+                    <th scope="row">
+                        <button
+                            type="button"
+                            class="btn btn-link pl-0"
+                            data-ng-click="toggleIp(ipBlock)"
+                        >
+                            <span
+                                data-ng-if="!ipBlock.loading"
+                                class="fa"
+                                data-ng-class="{
+                                      'fa-angle-right': ipBlock.collapsed,
+                                      'fa-angle-down': !ipBlock.collapsed
+                                   }"
+                            >
+                            </span>
+                            <span
+                                data-ng-if="ipBlock.loading"
+                                class="text-center"
+                            >
+                                <oui-spinner size="s"></oui-spinner>
+                            </span>
+                        </button>
+                    </th>
+
+                    <!-- IP -->
+                    <td>
+                        <span data-ng-bind="ipBlock.ipBlock"></span>
+                        <span
+                            data-ng-if="showBYOIPBadge && ipBlock.bringYourOwnIp"
+                            data-ng-bind="'BYOIP'"
+                            class="oui-badge oui-badge_info"
+                        ></span>
+                        <span
+                            data-ng-if="showFOBadge && ipBlock.isAdditionalIp"
+                            data-ng-bind=":: ADDITIONAL_IP"
+                            class="oui-badge oui-badge_info"
+                        ></span>
+                        <small
+                            class="ip-description d-block text-truncate"
+                            data-ng-if="ipBlock.description"
+                            data-ng-bind="ipBlock.description"
+                            data-ng-attr-title="{{ ipBlock.description }}"
+                        >
+                        </small>
+                    </td>
+
+                    <!-- Region -->
+                    <td class="text-center">
+                        <span
+                            class="d-block"
+                            data-ng-repeat="region in ipBlock.regions track by $index"
+                            data-ng-bind="region"
+                        ></span>
+                        <span
+                            data-ng-if="!ipBlock.regions"
+                            data-ng-bind="'-'"
+                        ></span>
+                    </td>
+
+                    <!-- Country -->
+                    <td
+                        class="text-center"
+                        data-ng-bind="ipBlock.country ? ipBlock.country.toUpperCase() : '-'"
+                    ></td>
+
+                    <!-- Server -->
+                    <td>
+                        <a
+                            data-ng-if="ipBlock.service.url"
+                            data-ng-href="{{ ipBlock.service.url }}"
+                        >
+                            <span
+                                data-ng-bind="ipBlock.service.serviceName"
+                            ></span>
+                        </a>
+                        <span
+                            data-ng-if="!ipBlock.service.url && ipBlock.routedTo.serviceName"
+                            data-ng-bind="ipBlock.routedTo.serviceName"
+                        ></span>
+                        <span data-ng-if="!ipBlock.routedTo.serviceName"
+                            >-</span
+                        >
+                    </td>
+
+                    <!-- Reverse -->
+                    <td>
+                        <div
+                            data-ng-if="ipBlock.fetchingData"
+                            class="text-center"
+                        >
+                            <oui-skeleton size="m"></oui-skeleton>
+                        </div>
+                        <div data-ng-if="!ipBlock.fetchingData">
+                            <span
+                                class="label label-info"
+                                title="{{ 'ip_table_manage_delegation_ipv6block_delegation_reverse_dns' | translate }}"
+                                data-ng-if="ipBlock.delegation && ipBlock.delegation.length > 0"
+                                >NS</span
+                            >
+                            <ul
+                                class="list-unstyled"
+                                data-ng-show="ipBlock.delegation"
+                            >
+                                <li
+                                    data-ng-repeat="reverse in ipBlock.delegation"
+                                >
+                                    <span data-ng-bind="reverse"></span>
+                                    <button
+                                        class="btn btn-link"
+                                        type="button"
+                                        data-ng-click="setAction('ip/reverse/delete/ip-ip-reverse-delete', {ipBlock: ipBlock, reverse:reverse})"
+                                        title="{{:: 'common_delete' | translate }}"
+                                    >
+                                        <span
+                                            class="fa fa-trash"
+                                            aria-label="{{:: 'common_delete' | translate }}"
+                                            aria-hidden="true"
+                                        >
+                                        </span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+
+                    <!-- Virtual MAC -->
+                    <td data-ng-if="advancedModeFilter"></td>
+
+                    <!-- Mitigation -->
+                    <td data-ng-if="advancedModeFilter"></td>
+
+                    <!-- Firewall -->
+                    <td data-ng-if="advancedModeFilter"></td>
+
+                    <!-- Game mitigation -->
+                    <td data-ng-if="advancedModeFilter"></td>
+
+                    <!-- Alerts -->
+                    <td>
+                        <div
+                            class="d-flex justify-content-center align-items-center ip-components-list__alerts"
+                            data-ng-if="ipBlock.hasSpamAlerts || ipBlock.hasAntihackAlerts || ipBlock.hasMitigationAlerts"
+                        >
+                            <span
+                                class="fa fa-warning text-danger lead mb-0"
+                                aria-hidden="true"
+                                data-oui-popover
+                                data-oui-popover-template="ip_alerts_help.html"
+                                data-oui-popover-placement="left"
+                                data-oui-popover-scope="ipBlock"
+                                data-oui-popover-open="popover[ipBlock.ipBlock]"
+                                data-ng-mouseover="popover[ipBlock.ipBlock] = true"
+                                data-ng-mouseleave="popover[ipBlock.ipBlock] = false"
+                            ></span>
+                        </div>
+                    </td>
+
+                    <!-- Actions -->
+                    <td>
+                        <div
+                            data-ng-if="ipBlock.isAdditionalIpv6"
+                            data-ng-include="'ip/popover/additional-ipv6.html'"
+                        ></div>
+                        <div
+                            data-ng-if="!ipBlock.isAdditionalIpv6"
+                            data-ng-include="'ip/popover/ipBlock.html'"
+                        ></div>
+                    </td>
+                </tr>
+
+                <!-- Its an IP -->
+                <tr
+                    data-ng-if="!ipBlock.refreshing && !ipBlock.collapsed"
+                    data-ng-repeat="ip in ipBlock.ips track by ip.ip"
+                >
+                    <th scope="row"></th>
+
+                    <!-- IP -->
+                    <td>
+                        <span
+                            data-ng-class="{
+                                  'pl-5': ip.block || ipBlock.isAdditionalIpv6
+                              }"
+                            data-ng-bind="ip.ip"
+                        ></span>
+                        <span
+                            data-ng-if="showBYOIPBadge && ipBlock.bringYourOwnIp"
+                            data-ng-bind="'BYOIP'"
+                            class="oui-badge oui-badge_info"
+                        ></span>
+                        <span
+                            data-ng-if="showFOBadge && ipBlock.isUniq && ipBlock.type == FAILOVER"
+                            data-ng-bind=":: ADDITIONAL_IP"
+                            class="oui-badge oui-badge_info"
+                        ></span>
+                        <small
+                            class="ip-description d-block text-truncate"
+                            data-ng-class="{
+                                'pl-5': ip.block || ipBlock.isAdditionalIpv6
+                            }"
+                            data-ng-if="ipBlock.description"
+                            data-ng-bind="ipBlock.description"
+                            data-ng-attr-title="{{ ipBlock.description }}"
+                        >
+                        </small>
+                    </td>
+
+                    <!-- Region -->
+                    <td class="text-center">
+                        <span
+                            class="d-block"
+                            data-ng-repeat="region in ipBlock.regions track by $index"
+                            data-ng-bind="region"
+                        ></span>
+                        <span
+                            data-ng-if="!ipBlock.regions"
+                            data-ng-bind="'-'"
+                        ></span>
+                    </td>
+
+                    <!-- Country -->
+                    <td
+                        class="text-center"
+                        data-ng-bind="ipBlock.country ? ipBlock.country.toUpperCase() : '-'"
+                    ></td>
+
+                    <!-- Server -->
+                    <td>
+                        <a
+                            data-ng-if="ipBlock.service.url"
+                            data-ng-href="{{ ipBlock.service.url }}"
+                        >
+                            <span
+                                data-ng-bind="ipBlock.service.serviceName"
+                            ></span>
+                        </a>
+                        <span
+                            data-ng-if="!ipBlock.service.url && ipBlock.routedTo.serviceName"
+                            data-ng-bind="ipBlock.routedTo.serviceName"
+                        ></span>
+                        <span data-ng-if="!ipBlock.routedTo.serviceName"
+                            >-</span
+                        >
+                    </td>
+
+                    <!-- Reverse -->
+                    <td>
+                        <div
+                            data-ng-if="ipBlock.fetchingData && ip.type !== SUB_RANGE"
+                            class="text-center"
+                        >
+                            <oui-skeleton size="m"></oui-skeleton>
+                        </div>
+                        <div
+                            data-ng-if="!ipBlock.fetchingData && ip.type !== SUB_RANGE"
+                        >
+                            <span
+                                data-ng-if="!ip.reverseEdit"
+                                data-ng-bind="ip.reverse ? (ip.reverse | ipPunycode:true) : '-'"
+                            >
+                            </span>
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                title="{{:: 'common_change' | translate }}"
+                                data-ng-if="!ip.reverseEdit"
+                                data-ng-click="editReverseInline(ipBlock, ip)"
+                            >
+                                <span
+                                    class="fa fa-edit"
+                                    aria-hidden="true"
+                                    aria-label="{{:: 'common_change' | translate }}"
+                                >
+                                </span>
+                            </button>
+                            <div
+                                class="input-group"
+                                data-ng-if="ip.reverseEdit"
+                            >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    data-ng-model="ip.reverseEditValue"
+                                />
+                                <span class="input-group-btn">
+                                    <button
+                                        class="btn btn-primary"
+                                        data-ng-click="editReverseInlineApply(ipBlock, ip, $event)"
+                                        data-ng-disabled="!reverseIsValid(ip.reverseEditValue)"
+                                        title="{{:: 'common_confirm' | translate }}"
+                                    >
+                                        <span
+                                            class="fa fa-check"
+                                            aria-label="{{:: 'common_confirm' | translate }}"
+                                            aria-hidden="true"
+                                        >
+                                        </span>
+                                    </button>
+                                    <button
+                                        class="btn btn-default"
+                                        data-ng-click="editReverseInlineCancel(ipBlock, ip, $event)"
+                                        title="{{:: 'common_cancel' | translate }}"
+                                    >
+                                        <span
+                                            class="fa fa-times"
+                                            aria-label="{{:: 'common_confirm' | translate }}"
+                                            aria-hidden="true"
+                                        >
+                                        </span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <!-- VMAC -->
+                    <td data-ng-if="advancedModeFilter">
+                        <span
+                            data-ng-if="ipBlock.virtualMac.status === 'OK'"
+                            data-ng-bind="ipBlock.virtualMac.virtualMacs[ip.ip] || '-'"
+                        >
+                        </span>
+                        <span
+                            class="oui-badge"
+                            data-ng-if="ipBlock.virtualMac.status === 'PENDING'"
+                            data-translate="ip_taskpending_label"
+                            data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
+                            data-oui-tooltip-placement="top"
+                        >
+                        </span>
+                    </td>
+                    <!-- Mitigation -->
+                    <td data-ng-if="advancedModeFilter">
+                        <span
+                            data-ng-if="ipBlock.version === IP_TYPE.V4"
+                            data-ng-class="{
+                                  'text-muted': !ip.mitigation || ip.mitigation === 'DEFAULT',
+                                  'badge': ip.mitigation === 'CREATION_PENDING' || ip.mitigation === 'REMOVAL_PENDING',
+                                  'font-weight-bold': ip.hasMitigationAlerts
+                              }"
+                            data-ng-bind="'ip_mitigation_' + (ip.mitigation || 'DEFAULT') | translate"
                         >
                         </span>
                         <button
                             type="button"
-                            class="btn btn-link"
-                            title="{{:: 'common_change' | translate }}"
-                            data-ng-if="!ip.reverseEdit"
-                            data-ng-click="editReverseInline(ipBlock, ip)"
+                            class="oui-popover-button"
+                            data-ng-if="ipBlock.version === IP_TYPE.V4"
+                            data-oui-popover="{{ 'ip_mitigation_' + (ip.mitigation || 'DEFAULT') + '_help' | translate }}"
+                            data-oui-popover-placement="left"
+                        ></button>
+                    </td>
+
+                    <!-- Firewall -->
+                    <td data-ng-if="advancedModeFilter">
+                        <span
+                            data-ng-if="ip.firewall && ip.firewall != 'NOT_CONFIGURED'"
+                            data-ng-class="{
+                                  'badge': ip.firewall === 'ENABLE_PENDING' || ip.firewall === 'DISABLE_PENDING',
+                                  'font-weight-bold': ip.firewall === 'ACTIVATED'
+                              }"
+                            data-ng-bind="'ip_firewall_' + (ip.firewall || 'NOT_CONFIGURED') | translate"
+                        >
+                        </span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-ng-if="ip.firewall && ip.firewall != 'NOT_CONFIGURED'"
+                            data-oui-popover="{{ 'ip_firewall_' + (ip.firewall || 'NOT_CONFIGURED') + '_help' | translate }}"
+                            data-oui-popover-placement="left"
+                        ></button>
+                    </td>
+
+                    <!-- Game mitigation -->
+                    <td data-ng-if="advancedModeFilter">
+                        <span
+                            data-ng-if="ip.gameMitigation && ipBlock.type!='CLOUD'"
+                            data-translate="ip_game_mitigation_ACTIVATED"
+                        >
+                        </span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-ng-if="ip.gameMitigation && ipBlock.type!='CLOUD'"
+                            data-oui-popover="{{:: 'ip_game_mitigation_ACTIVATED_help' | translate }}"
+                            data-oui-popover-placement="left"
+                        ></button>
+                    </td>
+                    <!-- Alerts -->
+                    <td>
+                        <div
+                            class="d-flex justify-content-center align-items-center ip-components-list__alerts"
+                            data-ng-if="ip.hasSpamAlerts || ip.hasAntihackAlerts || ip.hasMitigationAlerts"
                         >
                             <span
-                                class="fa fa-edit"
+                                class="fa fa-warning text-danger lead mb-0"
                                 aria-hidden="true"
-                                aria-label="{{:: 'common_change' | translate }}"
-                            >
-                            </span>
-                        </button>
-                        <div class="input-group" data-ng-if="ip.reverseEdit">
-                            <input
-                                type="text"
-                                class="form-control"
-                                data-ng-model="ip.reverseEditValue"
-                            />
-                            <span class="input-group-btn">
-                                <button
-                                    class="btn btn-primary"
-                                    data-ng-click="editReverseInlineApply(ipBlock, ip, $event)"
-                                    data-ng-disabled="!reverseIsValid(ip.reverseEditValue)"
-                                    title="{{:: 'common_confirm' | translate }}"
-                                >
-                                    <span
-                                        class="fa fa-check"
-                                        aria-label="{{:: 'common_confirm' | translate }}"
-                                        aria-hidden="true"
-                                    >
-                                    </span>
-                                </button>
-                                <button
-                                    class="btn btn-default"
-                                    data-ng-click="editReverseInlineCancel(ipBlock, ip, $event)"
-                                    title="{{:: 'common_cancel' | translate }}"
-                                >
-                                    <span
-                                        class="fa fa-times"
-                                        aria-label="{{:: 'common_confirm' | translate }}"
-                                        aria-hidden="true"
-                                    >
-                                    </span>
-                                </button>
-                            </span>
+                                data-oui-popover
+                                data-oui-popover-template="ip_alerts_help.html"
+                                data-oui-popover-placement="left"
+                                data-oui-popover-scope="ip"
+                                data-oui-popover-open="popover[ip.ip]"
+                                data-ng-mouseover="popover[ip.ip] = true"
+                                data-ng-mouseleave="popover[ip.ip] = false"
+                            ></span>
                         </div>
-                    </div>
-                </td>
-                <!-- VMAC -->
-                <td data-ng-if="advancedModeFilter">
-                    <span
-                        data-ng-if="ipBlock.virtualMac.status === 'OK'"
-                        data-ng-bind="ipBlock.virtualMac.virtualMacs[ip.ip] || '-'"
-                    >
-                    </span>
-                    <span
-                        class="oui-badge"
-                        data-ng-if="ipBlock.virtualMac.status === 'PENDING'"
-                        data-translate="ip_taskpending_label"
-                        data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
-                        data-oui-tooltip-placement="top"
-                    >
-                    </span>
-                </td>
-                <!-- Mitigation -->
-                <td data-ng-if="advancedModeFilter">
-                    <span
-                        data-ng-if="ipBlock.version === IP_TYPE.V4"
-                        data-ng-class="{
-                              'text-muted': !ip.mitigation || ip.mitigation === 'DEFAULT',
-                              'badge': ip.mitigation === 'CREATION_PENDING' || ip.mitigation === 'REMOVAL_PENDING',
-                              'font-weight-bold': ip.hasMitigationAlerts
-                          }"
-                        data-ng-bind="'ip_mitigation_' + (ip.mitigation || 'DEFAULT') | translate"
-                    >
-                    </span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-ng-if="ipBlock.version === IP_TYPE.V4"
-                        data-oui-popover="{{ 'ip_mitigation_' + (ip.mitigation || 'DEFAULT') + '_help' | translate }}"
-                        data-oui-popover-placement="left"
-                    ></button>
-                </td>
+                    </td>
 
-                <!-- Firewall -->
-                <td data-ng-if="advancedModeFilter">
-                    <span
-                        data-ng-if="ip.firewall && ip.firewall != 'NOT_CONFIGURED'"
-                        data-ng-class="{
-                              'badge': ip.firewall === 'ENABLE_PENDING' || ip.firewall === 'DISABLE_PENDING',
-                              'font-weight-bold': ip.firewall === 'ACTIVATED'
-                          }"
-                        data-ng-bind="'ip_firewall_' + (ip.firewall || 'NOT_CONFIGURED') | translate"
-                    >
-                    </span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-ng-if="ip.firewall && ip.firewall != 'NOT_CONFIGURED'"
-                        data-oui-popover="{{ 'ip_firewall_' + (ip.firewall || 'NOT_CONFIGURED') + '_help' | translate }}"
-                        data-oui-popover-placement="left"
-                    ></button>
-                </td>
+                    <!-- Actions -->
+                    <td>
+                        <div
+                            data-ng-if="ip.type !== SUB_RANGE"
+                            data-ng-include="'ip/popover/ip.html'"
+                        ></div>
+                    </td>
+                </tr>
 
-                <!-- Game mitigation -->
-                <td data-ng-if="advancedModeFilter">
-                    <span
-                        data-ng-if="ip.gameMitigation && ipBlock.type!='CLOUD'"
-                        data-translate="ip_game_mitigation_ACTIVATED"
-                    >
-                    </span>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-ng-if="ip.gameMitigation && ipBlock.type!='CLOUD'"
-                        data-oui-popover="{{:: 'ip_game_mitigation_ACTIVATED_help' | translate }}"
-                        data-oui-popover-placement="left"
-                    ></button>
-                </td>
-                <!-- Alerts -->
-                <td>
-                    <div
-                        class="d-flex justify-content-center align-items-center ip-components-list__alerts"
-                        data-ng-if="ip.hasSpamAlerts || ip.hasAntihackAlerts || ip.hasMitigationAlerts"
-                    >
-                        <span
-                            class="fa fa-warning text-danger lead mb-0"
-                            aria-hidden="true"
-                            data-oui-popover
-                            data-oui-popover-template="ip_alerts_help.html"
-                            data-oui-popover-placement="left"
-                            data-oui-popover-scope="ip"
-                            data-oui-popover-open="popover[ip.ip]"
-                            data-ng-mouseover="popover[ip.ip] = true"
-                            data-ng-mouseleave="popover[ip.ip] = false"
-                        ></span>
-                    </div>
-                </td>
+                <tr
+                    data-ng-if="ipBlock.version === IP_TYPE.V6 && !ipBlock.isUniq && !ipBlock.collapsed && ipBlock.type !== VRACK"
+                >
+                    <td class="text-center" colspan="42">
+                        <button
+                            type="button"
+                            class="btn btn-default"
+                            data-ng-click="setAction('ip/reverse/add/ip-ip-reverse-add', { ipBlock: ipBlock })"
+                            data-translate="ip_table_manage_select_ipv6block"
+                        ></button>
+                    </td>
+                </tr>
+                <!-- Its an additional IPv6 -->
+                <tr data-ng-if="!loading && ipsListEmpty">
+                    <td
+                        class="text-center"
+                        colspan="42"
+                        data-translate="ip_table_empty"
+                    ></td>
+                </tr>
+            </tbody>
 
-                <!-- Actions -->
-                <td>
-                    <div
-                        data-ng-if="ip.type !== SUB_RANGE"
-                        data-ng-include="'ip/popover/ip.html'"
-                    ></div>
-                </td>
-            </tr>
+            <tbody data-ng-if="!loading.table && !ipsList.length">
+                <tr>
+                    <td colspan="42" data-translate="ip_table_empty"></td>
+                </tr>
+            </tbody>
 
-            <tr
-                data-ng-if="ipBlock.version === IP_TYPE.V6 && !ipBlock.isUniq && !ipBlock.collapsed && ipBlock.type !== VRACK"
-            >
-                <td class="text-center" colspan="42">
-                    <button
-                        type="button"
-                        class="btn btn-default"
-                        data-ng-click="setAction('ip/reverse/add/ip-ip-reverse-add', { ipBlock: ipBlock })"
-                        data-translate="ip_table_manage_select_ipv6block"
-                    ></button>
-                </td>
-            </tr>
-            <!-- Its an additional IPv6 -->
-            <tr data-ng-if="!loading && ipsListEmpty">
-                <td
-                    class="text-center"
-                    colspan="42"
-                    data-translate="ip_table_empty"
-                ></td>
-            </tr>
-        </tbody>
-
-        <tbody data-ng-if="!loading.table && !ipsList.length">
-            <tr>
-                <td colspan="42" data-translate="ip_table_empty"></td>
-            </tr>
-        </tbody>
-
-        <tbody data-ng-if="loading.table">
-            <tr>
-                <td colspan="42" class="text-center">
-                    <oui-spinner size="s"></oui-spinner>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            <tbody data-ng-if="loading.table">
+                <tr>
+                    <td colspan="42" class="text-center">
+                        <oui-spinner size="s"></oui-spinner>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <oui-pagination
         data-ng-if="!loading.table && ipsCount > 0"
