@@ -18,8 +18,18 @@ export const OBJECT_CONTAINER_OFFERS = [
   OBJECT_CONTAINER_OFFER_SWIFT,
 ];
 export const OBJECT_CONTAINER_OFFERS_LABELS = {
-  [OBJECT_CONTAINER_OFFER_SWIFT]: { beta: false, new: false },
-  [OBJECT_CONTAINER_OFFER_STORAGE_STANDARD]: { beta: false, new: true },
+  [OBJECT_CONTAINER_OFFER_SWIFT]: {
+    beta: false,
+    new: false,
+    recommanded: false,
+    price: null,
+  },
+  [OBJECT_CONTAINER_OFFER_STORAGE_STANDARD]: {
+    beta: false,
+    new: false,
+    recommanded: true,
+    price: null,
+  },
 };
 
 export const OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS = {
@@ -27,11 +37,13 @@ export const OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS = {
     beta: false,
     new: false,
     isMultiZone: true,
+    price: null,
   },
   [OBJECT_CONTAINER_MODE_MONO_ZONE]: {
     beta: false,
     new: false,
     isMultiZone: false,
+    price: null,
   },
 };
 

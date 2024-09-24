@@ -9,6 +9,12 @@
         data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.isLoading"
     >
+        <oui-message
+            data-type="info"
+            data-ng-if="!$ctrl.showStorageClass()"
+            data-translate="pci_projects_project_storages_containers_container_object_add_storage_class_info_banner"
+        >
+        </oui-message>
         <p data-ng-if="$ctrl.container.s3StorageType">
             <span
                 data-translate="pci_projects_project_storages_containers_container_object_add_storage_class_label_description"

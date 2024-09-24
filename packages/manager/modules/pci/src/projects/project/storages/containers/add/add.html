@@ -81,10 +81,19 @@
                             data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].new"
                             data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_label') | translate"
                         ></span>
+                        <span
+                            class="oui-badge oui-badge_best-seller"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].recommanded"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_recommanded') | translate"
+                        ></span>
                     </oui-select-picker-label>
                     <oui-select-picker-section>
                         <p
                             data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_description') | translate"
+                        ></p>
+                        <p
+                            data-translate="pci_projects_project_storages_containers_add_offers_estimated_price"
+                            data-translate-values="{price: $ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].price || '?'}"
                         ></p>
                     </oui-select-picker-section>
                 </oui-select-picker>
@@ -118,11 +127,21 @@
                             data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[$ctrl.container.offer].new"
                             data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_label') | translate"
                         ></span>
+                        <span
+                            class="oui-badge oui-badge_best-seller"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].recommanded"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_recommanded') | translate"
+                        ></span>
                     </oui-select-picker-label>
                     <oui-select-picker-section>
                         <p
                             class="text-justify"
                             data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_description') | translate"
+                        ></p>
+
+                        <p
+                            data-translate="pci_projects_project_storages_containers_add_offers_estimated_price"
+                            data-translate-values="{price: $ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].price || '?'}"
                         ></p>
                     </oui-select-picker-section>
                 </oui-select-picker>
@@ -147,49 +166,56 @@
             data-ng-if="!$ctrl.displaySelectedDeploimentMode"
             class="container-fluid px-0"
         >
-            <p class="ml-3">
-                <span
+            <div class="row d-inline-block">
+                <p
+                    class="ml-3"
                     data-translate="pci_projects_project_storages_containers_add_deploiment_mode_sub_title"
-                >
-                </span>
-            </p>
+                ></p>
 
-            <oui-select-picker
-                class="col-md-6 col-xl-4 my-3"
-                data-ng-repeat="deploimentModeName in $ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES track by deploimentModeName"
-                data-name="{{:: deploimentModeName }}_deploiment_modes"
-                data-model="$ctrl.container.deploimentMode"
-                data-values="[deploimentModeName]"
-                data-variant="light"
-                data-required
-                data-disabled="$ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].isMultiZone"
-            >
-                <oui-select-picker-label>
-                    <span
-                        data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName) | translate"
-                    ></span>
-                    <span
-                        class="oui-badge oui-badge_best-seller"
-                        data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].isMultiZone"
-                        data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName + '_label') | translate"
-                    ></span>
-                    <span
-                        class="oui-badge oui-badge_info"
-                        data-ng-if="!$ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].isMultiZone"
-                        data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName + '_label') | translate"
-                    ></span>
-                    <span
-                        class="oui-badge oui-badge_limited-edition"
-                        data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].isMultiZone"
-                        data-translate="pci_projects_project_storages_containers_add_deploiment_mode_soon"
-                    ></span>
-                </oui-select-picker-label>
-                <oui-select-picker-section>
-                    <p
-                        data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName + '_description') | translate"
-                    ></p>
-                </oui-select-picker-section>
-            </oui-select-picker>
+                <oui-select-picker
+                    class="col-md-6 col-xl-4 my-3"
+                    data-ng-repeat="deploimentModeName in $ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES track by deploimentModeName"
+                    data-name="{{:: deploimentModeName }}_deploiment_modes"
+                    data-model="$ctrl.container.deploimentMode"
+                    data-values="[deploimentModeName]"
+                    data-variant="light"
+                    data-required
+                >
+                    <!-- data-disabled="$ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].isMultiZone" -->
+                    <oui-select-picker-label>
+                        <span
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName) | translate"
+                        ></span>
+                        <span
+                            class="oui-badge oui-badge_best-seller"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].isMultiZone"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName + '_label') | translate"
+                        ></span>
+                        <span
+                            class="oui-badge oui-badge_info"
+                            data-ng-if="!$ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].isMultiZone"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName + '_label') | translate"
+                        ></span>
+                        <span
+                            class="oui-badge oui-badge_limited-edition"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].isMultiZone"
+                            data-translate="pci_projects_project_storages_containers_add_deploiment_mode_soon"
+                        ></span>
+                    </oui-select-picker-label>
+                    <oui-select-picker-section>
+                        <p
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + deploimentModeName + '_description') | translate"
+                        ></p>
+                        <p
+                            data-translate="pci_projects_project_storages_containers_add_deploiment_mode_price"
+                            data-translate-values="{price: $ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].price || '?'}"
+                        ></p>
+                    </oui-select-picker-section>
+                </oui-select-picker>
+            </div>
+            <p
+                data-translate="pci_projects_project_storages_containers_add_deploiment_mode_price_explanation"
+            ></p>
         </div>
         <div
             data-ng-if="$ctrl.displaySelectedDeploimentMode"
@@ -224,6 +250,10 @@
                         <p
                             class="text-justify"
                             data-ng-bind=":: ('pci_projects_project_storages_containers_add_deploiment_mode_' + $ctrl.container.deploimentMode + '_description') | translate"
+                        ></p>
+                        <p
+                            data-translate="pci_projects_project_storages_containers_add_deploiment_mode_price"
+                            data-translate-values="{price: $ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS[deploimentModeName].price || '?'}"
                         ></p>
                     </oui-select-picker-section>
                 </oui-select-picker>
@@ -348,7 +378,7 @@
     <!--Container name-->
     <oui-step-form
         data-position="{{!$ctrl.archive && $ctrl.isRightOffer() ? 6 : 3}}"
-        data-ng-if="!$ctrl.archive"
+        data-ng-if="!$ctrl.archive && $ctrl.currentStep > 0"
         data-header="{{:: 'pci_projects_project_storages_containers_add_name_title' | translate }}"
         data-editable="!$ctrl.isLoading"
         data-on-cancel="$ctrl.cancel()"

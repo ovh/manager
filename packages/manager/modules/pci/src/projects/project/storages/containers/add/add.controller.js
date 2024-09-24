@@ -120,6 +120,9 @@ export default class PciStoragesContainersAddController {
   setUsersForContainerCreation() {
     this.users = this.allUserList.filter((user) => user.status === 'ok');
   }
+  // setOffersPrices() {
+  //   OBJECT_CONTAINER_OFFERS_LABELS[offerName]
+  // }
 
   isRightOffer() {
     return OBJECT_CONTAINER_OFFER_STORAGE_STANDARD === this.container.offer;
@@ -178,7 +181,6 @@ export default class PciStoragesContainersAddController {
     return this.OvhApiCloudProjectRegion.v6()
       .addRegion(
         { serviceName: this.projectId },
-        //
         { region: this.container.region.name },
       )
       .$promise.then(() => {
