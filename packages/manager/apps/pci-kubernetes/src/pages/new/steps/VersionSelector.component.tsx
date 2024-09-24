@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import {
   OsdsSelectOption,
   OsdsSpinner,
@@ -32,12 +32,10 @@ export function VersionSelector({
   const { data: schema, isPending } = useGetCloudSchema();
   const versions = schema?.models['cloud.kube.VersionEnum'].enum || [];
 
-  const reverseVersion = [...versions].reverse();
+  const reverseVersion = useMemo(() => [...versions].reverse(), [versions]);
   const [lastVersion] = reverseVersion;
 
   useEffect(() => {
-    console.log('isPending', isPending);
-
     // If the request for fetching last versions is not pending and no version has been selected, select the last version by default
     if (!isPending && !versionSelected) {
       onSelectVersion(lastVersion);
