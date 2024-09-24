@@ -26,6 +26,7 @@ import {
 import ActionButtonDomain from './ActionButtonDomain';
 import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 
 export type DomainsItem = {
   id: string;
@@ -81,7 +82,11 @@ export default function Domains() {
   const { t } = useTranslation('domains');
   const { platformUrn } = usePlatform();
 
-  const { data } = useDomains();
+  const { data } = useDomains({
+    refetchInterval: DATAGRID_REFRESH_INTERVAL,
+    refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
+  });
+
   const isOverriddedPage = useOverridePage();
 
   const hrefAddDomain = useGenerateUrl('./add', 'href');
