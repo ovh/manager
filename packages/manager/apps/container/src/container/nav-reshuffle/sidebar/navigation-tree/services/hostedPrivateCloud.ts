@@ -1,5 +1,5 @@
 import illustration from '@/assets/images/sidebar/hosted-private-cloud.png';
-import { Node } from '../node';
+import { NodeTag, Node } from '../node';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 const hostedPrivateCloudUniverse: Node = {
@@ -24,13 +24,25 @@ hostedPrivateCloudUniverse.children = [
         id: 'vm-ware',
         idAttr: 'vm-ware-link',
         universe: hostedPrivateCloudUniverse.id,
-        translation: 'sidebar_vmware',
+        translation: 'sidebar_vmware_vsphere',
         serviceType: 'DEDICATEDCLOUD_VMWARE',
         routing: {
           application: 'dedicated',
           hash: '#/dedicated_cloud',
         },
         features: ['dedicated-cloud'],
+      },
+      {
+        id: 'hpc-managed-vcd',
+        universe: hostedPrivateCloudUniverse.id,
+        translation: 'sidebar_vmware_vcd',
+        serviceType: 'MANAGED_VCD',
+        tag: NodeTag.NEW,
+        routing: {
+          application: 'hpc-vmware-managed-vcd',
+          hash: '#/',
+        },
+        features: ['hpc-vmware-managed-vcd'],
       },
       {
         id: 'nutanix',
