@@ -20,11 +20,11 @@ export const Subtitle: React.FC<
   }>
 > = ({ children, className }) => {
   return (
-    <span
+    <div
       className={`${className} m-0 p-0 text-[--ods-color-heading] text-[24px] leading-[32px] font-bold`}
     >
       {children}
-    </span>
+    </div>
   );
 };
 

@@ -8,7 +8,6 @@ import {
   OdsFormField,
   OdsInput,
   OdsSelect,
-  OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import './translations';
