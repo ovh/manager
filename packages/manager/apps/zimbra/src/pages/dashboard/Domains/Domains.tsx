@@ -27,6 +27,7 @@ import ActionButtonDomain from './ActionButtonDomain';
 import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+import Loading from '@/components/Loading/Loading';
 
 export type DomainsItem = {
   id: string;
@@ -81,13 +82,13 @@ const columns: DatagridColumn<DomainsItem>[] = [
 export default function Domains() {
   const { t } = useTranslation('domains');
   const { platformUrn } = usePlatform();
+  const isOverridedPage = useOverridePage();
 
-  const { data } = useDomains({
+  const { data, isLoading } = useDomains({
     refetchInterval: DATAGRID_REFRESH_INTERVAL,
     refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
+    enabled: !isOverridedPage,
   });
-
-  const isOverriddedPage = useOverridePage();
 
   const hrefAddDomain = useGenerateUrl('./add', 'href');
 
@@ -103,45 +104,47 @@ export default function Domains() {
     })) ?? [];
 
   return (
-    <>
-      {!isOverriddedPage && (
-        <div className="py-6 mt-8">
-          <Notifications />
-          <div className="flex items-center justify-between">
-            {platformUrn && (
-              <ManagerButton
-                color={ODS_THEME_COLOR_INTENT.primary}
-                inline
-                size={ODS_BUTTON_SIZE.sm}
-                href={hrefAddDomain}
-                urn={platformUrn}
-                iamActions={[IAM_ACTIONS.domain.create]}
-                data-testid="add-domain-btn"
-                className="mb-6"
-              >
-                <span slot="start">
-                  <OsdsIcon
-                    name={ODS_ICON_NAME.PLUS}
-                    size={ODS_ICON_SIZE.sm}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    contrasted
-                  ></OsdsIcon>
-                </span>
-                <span slot="end">{t('zimbra_domains_add_domain_title')}</span>
-              </ManagerButton>
-            )}
-          </div>
-          <Datagrid
-            columns={columns.map((column) => ({
-              ...column,
-              label: t(column.label),
-            }))}
-            items={items}
-            totalItems={items.length}
-          />
-        </div>
-      )}
+    <div className="py-6 mt-8">
+      <Notifications />
       <Outlet />
-    </>
+      {platformUrn && !isOverridedPage && (
+        <>
+          <div className="flex items-center justify-between">
+            <ManagerButton
+              color={ODS_THEME_COLOR_INTENT.primary}
+              inline
+              size={ODS_BUTTON_SIZE.sm}
+              href={hrefAddDomain}
+              urn={platformUrn}
+              iamActions={[IAM_ACTIONS.domain.create]}
+              data-testid="add-domain-btn"
+              className="mb-6"
+            >
+              <span slot="start">
+                <OsdsIcon
+                  name={ODS_ICON_NAME.PLUS}
+                  size={ODS_ICON_SIZE.sm}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  contrasted
+                ></OsdsIcon>
+              </span>
+              <span slot="end">{t('zimbra_domains_add_domain_title')}</span>
+            </ManagerButton>
+          </div>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <Datagrid
+              columns={columns.map((column) => ({
+                ...column,
+                label: t(column.label),
+              }))}
+              items={items}
+              totalItems={items.length}
+            />
+          )}
+        </>
+      )}
+    </div>
   );
 }

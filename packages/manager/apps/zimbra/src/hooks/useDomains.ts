@@ -13,14 +13,13 @@ import {
 
 type UseDomainsParams = Omit<
   UseQueryOptions,
-  'queryKey' | 'queryFn' | 'select' | 'enabled' | 'gcTime'
+  'queryKey' | 'queryFn' | 'select'
 > & {
   organizationId?: string;
-  noCache?: boolean;
 };
 
 export const useDomains = (props: UseDomainsParams = {}) => {
-  const { organizationId, noCache, ...options } = props;
+  const { organizationId, ...options } = props;
   const { platformId } = usePlatform();
   const { data: organization } = useOrganization();
   const selectedOrganizationId = organization?.id;
@@ -36,7 +35,8 @@ export const useDomains = (props: UseDomainsParams = {}) => {
         platformId,
         organizationId || selectedOrganizationId,
       ),
-    enabled: !!platformId,
-    gcTime: noCache ? 0 : 5000,
+    enabled:
+      (typeof options.enabled !== 'undefined' ? options.enabled : true) &&
+      !!platformId,
   }) as UseQueryResult<DomainType[]>;
 };

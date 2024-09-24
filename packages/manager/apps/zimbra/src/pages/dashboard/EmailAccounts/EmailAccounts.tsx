@@ -36,6 +36,7 @@ import {
   DATAGRID_REFRESH_ON_MOUNT,
 } from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import Loading from '@/components/Loading/Loading';
 
 export type EmailsItem = {
   id: string;
@@ -106,11 +107,12 @@ const columns: DatagridColumn<EmailsItem>[] = [
 export default function EmailAccounts() {
   const { t } = useTranslation('accounts');
   const { platformUrn } = usePlatform();
-  const { data } = useAccountList({
+  const isOverridedPage = useOverridePage();
+  const { data, isLoading } = useAccountList({
     refetchInterval: DATAGRID_REFRESH_INTERVAL,
     refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
+    enabled: !isOverridedPage,
   });
-  const isOverriddedPage = useOverridePage();
 
   const items: EmailsItem[] =
     data?.map((item: AccountType) => ({
@@ -128,50 +130,50 @@ export default function EmailAccounts() {
   const hrefAddEmailAccount = useGenerateUrl('./add', 'href');
 
   return (
-    <>
+    <div className="py-6 mt-8">
+      <Notifications />
       <Outlet />
-      <div className="py-6 mt-8">
-        <Notifications />
-        {!isOverriddedPage && (
-          <>
-            <div className="mb-8">
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.text}
-                hue={ODS_TEXT_COLOR_HUE._500}
-                size={ODS_TEXT_SIZE._200}
-                className="font-bold mr-4"
-              >
-                {t('zimbra_account_datagrid_webmail_label')}
-              </OsdsText>
-              <Links
-                href={webmailUrl}
-                type={LinkType.external}
-                label={webmailUrl}
-                target={OdsHTMLAnchorElementTarget._blank}
-              ></Links>
-            </div>
-            {platformUrn && (
-              <ManagerButton
+      {platformUrn && !isOverridedPage && (
+        <>
+          <div className="mb-8">
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              hue={ODS_TEXT_COLOR_HUE._500}
+              size={ODS_TEXT_SIZE._200}
+              className="font-bold mr-4"
+            >
+              {t('zimbra_account_datagrid_webmail_label')}
+            </OsdsText>
+            <Links
+              href={webmailUrl}
+              type={LinkType.external}
+              label={webmailUrl}
+              target={OdsHTMLAnchorElementTarget._blank}
+            ></Links>
+          </div>
+          <ManagerButton
+            color={ODS_THEME_COLOR_INTENT.primary}
+            inline
+            size={ODS_BUTTON_SIZE.sm}
+            urn={platformUrn}
+            iamActions={[IAM_ACTIONS.account.create]}
+            href={hrefAddEmailAccount}
+            data-testid="add-account-btn"
+            className="mb-6"
+          >
+            <span slot="start">
+              <OsdsIcon
+                name={ODS_ICON_NAME.PLUS}
+                size={ODS_ICON_SIZE.sm}
                 color={ODS_THEME_COLOR_INTENT.primary}
-                inline
-                size={ODS_BUTTON_SIZE.sm}
-                urn={platformUrn}
-                iamActions={[IAM_ACTIONS.account.create]}
-                href={hrefAddEmailAccount}
-                data-testid="add-account-btn"
-                className="mb-6"
-              >
-                <span slot="start">
-                  <OsdsIcon
-                    name={ODS_ICON_NAME.PLUS}
-                    size={ODS_ICON_SIZE.sm}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    contrasted
-                  ></OsdsIcon>
-                </span>
-                <span slot="end">{t('zimbra_account_account_add')}</span>
-              </ManagerButton>
-            )}
+                contrasted
+              ></OsdsIcon>
+            </span>
+            <span slot="end">{t('zimbra_account_account_add')}</span>
+          </ManagerButton>
+          {isLoading ? (
+            <Loading />
+          ) : (
             <Datagrid
               columns={columns.map((column) => ({
                 ...column,
@@ -180,9 +182,9 @@ export default function EmailAccounts() {
               items={items}
               totalItems={items.length}
             />
-          </>
-        )}
-      </div>
-    </>
+          )}
+        </>
+      )}
+    </div>
   );
 }

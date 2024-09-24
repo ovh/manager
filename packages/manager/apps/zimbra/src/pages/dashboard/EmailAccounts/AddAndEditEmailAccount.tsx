@@ -136,9 +136,7 @@ export default function AddAndEditAccount() {
     enabled: !!platformId && !!editEmailAccountId,
   });
 
-  const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains({
-    noCache: true,
-  });
+  const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains();
 
   useEffect(() => {
     if (!isLoadingEmailDetailRequest && !isLoadingDomainRequest) {

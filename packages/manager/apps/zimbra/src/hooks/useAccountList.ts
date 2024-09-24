@@ -13,7 +13,7 @@ import {
 
 type UseAccountListParams = Omit<
   UseQueryOptions,
-  'queryKey' | 'queryFn' | 'select' | 'enabled'
+  'queryKey' | 'queryFn' | 'select'
 > & {
   domainId?: string;
   organizationId?: string;
@@ -37,6 +37,8 @@ export const useAccountList = (props: UseAccountListParams = {}) => {
     ...options,
     queryKey: getZimbraPlatformAccountsQueryKey(platformId, queryParameters),
     queryFn: () => getZimbraPlatformAccounts(platformId, queryParameters),
-    enabled: !!platformId,
+    enabled:
+      (typeof options.enabled !== 'undefined' ? options.enabled : true) &&
+      !!platformId,
   }) as UseQueryResult<AccountType[]>;
 };
