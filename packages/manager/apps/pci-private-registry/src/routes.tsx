@@ -13,18 +13,14 @@ export interface RouteHandle {
   tracking?: string;
 }
 
-const ROUTE_PATHS = {
-  root: '/pci/projects/:projectId/private-registry',
-};
-
 export default [
   {
     path: '/',
     ...lazyRouteConfig(() => import('@/pages/Layout')),
   },
   {
-    id: '',
-    path: ROUTE_PATHS.root,
+    id: 'root',
+    path: '/pci/projects/:projectId/private-registry',
     ...lazyRouteConfig(() => import('@/pages/Layout')),
     children: [
       {
@@ -77,7 +73,9 @@ export default [
       {
         id: 'upgrade-plan',
         path: 'upgrade-plan',
-        ...lazyRouteConfig(() => import('@/pages/upgrade-plan/UpgradePlan.page')),
+        ...lazyRouteConfig(() =>
+          import('@/pages/upgrade-plan/UpgradePlan.page'),
+        ),
       },
     ],
   },
