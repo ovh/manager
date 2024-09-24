@@ -11,7 +11,7 @@ vi.mock('react-router-dom', async () => {
     useHref: vi.fn(),
     useLocation: vi.fn(),
     useNavigate: vi.fn(),
-    Navigate: () => null,
+    Navigate: vi.fn(({ to }) => `Redirected to ${to}`),
     Outlet: vi.fn(() => 'Outlet'),
   };
 });
@@ -76,6 +76,7 @@ vi.mock('@ovh-ux/manager-core-api', async () => {
   return {
     ...mod,
     fetchIcebergV6: vi.fn(),
+    applyFilters: vi.fn(),
     v6: {
       get: vi.fn(),
       post: vi.fn(),
