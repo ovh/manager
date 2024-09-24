@@ -166,7 +166,7 @@ export const Routes: any = [
             path: urls.datacentreStorageOrder,
             ...lazyRouteConfig(() =>
               import(
-                '@/pages/dashboard/datacentre/storage/storage-order/DatacentreStorageOrder.page'
+                '@/pages/dashboard/datacentre/storage-order/DatacentreStorageOrder.page'
               ),
             ),
             handle: {

@@ -1,43 +1,56 @@
-import {
-  Subtitle,
-  Description,
-  ErrorBanner,
-  Datagrid,
-  DatagridColumn,
-} from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import {
+  Datagrid,
+  DatagridColumn,
+  Description,
+  ErrorBanner,
+  Subtitle,
+} from '@ovh-ux/manager-react-components';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { subRoutes } from '@/routes/routes.constant';
-import { QuantitySelector } from '@/components/form/QuantitySelector.component';
-import {
-  STORAGE_ORDER_MAX_QUANTITY,
-  STORAGE_ORDER_MIN_QUANTITY,
-} from './DatacentreStorageOrder.constants';
-import {
-  DatacentreOrderProvider,
-  useDatacentreOrderContext,
-} from '@/context/DatacentreOrder.context';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { QuantitySelector } from './QuantitySelector.component';
+import { useDatacentreOrderContext } from '@/context/DatacentreOrder.context';
 import { useVdcOrderableResource } from '@/data/hooks/useOrderableResource';
 import { useVcdCatalog } from '@/data/hooks/useVcdCatalog';
 import useVcdOrder from '@/data/hooks/useVcdOrder';
-import { validateStorageQuantity } from '@/utils/formValidation';
-import Loading from '@/components/loading/Loading.component';
+import { validateQuantity } from '@/utils/formValidation';
 import { getPricedVdcResourceList } from '@/utils/getPricedOrderableResource';
-import { IVdcOrderableStoragePriced } from '@/types/vcd-vdc-orderable-resource.interface';
+import Loading from '../loading/Loading.component';
 import {
-  StorageOrderPriceCell,
-  StorageOrderSelectCell,
-  StorageOrderTypeCell,
-} from '@/components/datagrid/storage/StorageOrderCells.component';
+  IVdcOrderableStoragePriced,
+  IVdcOrderableVhostPriced,
+} from '@/types/vcd-vdc-orderable-resource.interface';
 
-const StorageOrder = () => {
+type OrderType = 'compute' | 'storage';
+type OrderColumns<T extends OrderType> = T extends 'compute'
+  ? DatagridColumn<IVdcOrderableVhostPriced>[]
+  : DatagridColumn<IVdcOrderableStoragePriced>[];
+
+interface DatacentreOrderProps<T extends OrderType> {
+  orderType: T;
+  columns: OrderColumns<T>;
+  title: string;
+  subtitle: string;
+  backLink: string;
+  minQuantity?: number;
+  maxQuantity?: number;
+}
+
+export const DatacentreOrder = <T extends OrderType>({
+  orderType,
+  columns,
+  title,
+  subtitle,
+  backLink,
+  minQuantity = 1,
+  maxQuantity = 100,
+}: DatacentreOrderProps<T>) => {
   const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/order');
-  const { id, vdcId } = useParams();
   const navigate = useNavigate();
+  const { id, vdcId } = useParams();
   const {
     selectedResource,
     setSelectedResource,
@@ -60,20 +73,27 @@ const StorageOrder = () => {
     quantity: selectedQuantity,
   });
 
-  const isValidQuantity = validateStorageQuantity(selectedQuantity);
-  const orderableStorageList = getPricedVdcResourceList({
-    resourceList: orderableResource?.data?.storage,
+  const isValidQuantity = validateQuantity({
+    quantity: selectedQuantity,
+    min: minQuantity,
+    max: maxQuantity,
+  });
+  const pricedResourceList = getPricedVdcResourceList({
     catalog: catalog?.data,
+    resourceList:
+      orderType === 'compute'
+        ? orderableResource?.data?.compute
+        : orderableResource?.data?.storage,
   });
 
   useEffect(() => {
-    if (orderableStorageList?.length && !selectedResource) {
-      setSelectedResource(orderableStorageList[0].profile);
+    if (pricedResourceList?.length && !selectedResource) {
+      setSelectedResource(pricedResourceList[0].profile);
     }
-  }, [selectedResource, orderableStorageList]);
+  }, [selectedResource, pricedResourceList]);
 
   if (isLoadingResource || isLoadingCatalog) return <Loading />;
-  if (isResourceError || isCatalogError || !orderableStorageList?.length) {
+  if (isResourceError || isCatalogError || !pricedResourceList?.length) {
     return (
       <ErrorBanner
         error={{
@@ -86,37 +106,15 @@ const StorageOrder = () => {
     );
   }
 
-  const columns: DatagridColumn<IVdcOrderableStoragePriced>[] = [
-    {
-      id: 'select',
-      cell: StorageOrderSelectCell,
-      label: '',
-      isSortable: false,
-    },
-    {
-      id: 'storage',
-      cell: StorageOrderTypeCell,
-      label: t('managed_vcd_vdc_order_type'),
-      isSortable: false,
-    },
-    {
-      id: 'price',
-      cell: StorageOrderPriceCell,
-      label: t('managed_vcd_vdc_order_price'),
-      isSortable: false,
-    },
-  ];
-
   return (
     <div className="px-10 my-4 flex flex-col">
-      <Subtitle>{t('managed_vcd_vdc_order_storage_title')}</Subtitle>
-      <Description className="my-6">
-        {t('managed_vcd_vdc_order_storage_subtitle')}
-      </Description>
+      <Subtitle>{title}</Subtitle>
+      <Description className="my-6">{subtitle}</Description>
       <Datagrid
         columns={columns}
-        items={orderableStorageList}
-        totalItems={orderableStorageList.length}
+        items={pricedResourceList}
+        totalItems={pricedResourceList.length}
+        contentAlignLeft
       />
       <div className="mt-10">
         <QuantitySelector
@@ -125,8 +123,8 @@ const StorageOrder = () => {
           isValid={isValidQuantity}
           title={t('managed_vcd_vdc_order_quantity_title')}
           label={t('managed_vcd_vdc_order_quantity_label')}
-          min={STORAGE_ORDER_MIN_QUANTITY}
-          max={STORAGE_ORDER_MAX_QUANTITY}
+          min={minQuantity}
+          max={minQuantity}
         />
       </div>
       <div className="flex items-center gap-x-4 mt-10">
@@ -134,7 +132,7 @@ const StorageOrder = () => {
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.ghost}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => navigate(`../${subRoutes.datacentreStorage}`)}
+          onClick={() => navigate(backLink)}
         >
           {t('managed_vcd_vdc_order_cancel_cta')}
         </OsdsButton>
@@ -151,11 +149,3 @@ const StorageOrder = () => {
     </div>
   );
 };
-
-export default function StorageOrderPage() {
-  return (
-    <DatacentreOrderProvider>
-      <StorageOrder />
-    </DatacentreOrderProvider>
-  );
-}
