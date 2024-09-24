@@ -61,8 +61,8 @@ export default function ModalAddAndEditOrganization() {
   const onClose = () => navigate(goBackUrl);
 
   const formInputRegex: FormInputRegexInterface = {
-    name: /^[a-zA-Z0-9]+$/,
-    label: /^[a-zA-Z0-9]{1,12}$/,
+    name: /^.+$/,
+    label: /^.{1,12}$/,
   };
 
   const [form, setForm] = useState<FormTypeInterface>({
