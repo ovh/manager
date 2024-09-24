@@ -127,6 +127,4 @@ describe('VersionSelector', () => {
       screen.queryByTestId('version-selector-select'),
     ).not.toBeInTheDocument();
   });
-
-  // Add more test cases based on your component's functionality
 });
