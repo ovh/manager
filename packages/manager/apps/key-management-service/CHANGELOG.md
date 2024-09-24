@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.6.5...@ovh-ux/manager-key-management-service-app@0.7.0) (2024-09-24)
+
+
+### Features
+
+* **kms:** add kms and service key back links ([#13024](https://github.com/ovh/manager/issues/13024)) ([bf69b0a](https://github.com/ovh/manager/commit/bf69b0aa6411c62261d73f6b72a9836f46aa5b50))
+
+
+
+
+
 ## [0.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.6.4...@ovh-ux/manager-key-management-service-app@0.6.5) (2024-09-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
