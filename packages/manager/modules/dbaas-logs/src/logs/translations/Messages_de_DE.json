@@ -794,5 +794,6 @@
   "streams_subscriptions_resource_products_webhosting": "Webhosting",
   "streams_subscriptions_resource_products_account-api": "OVHcloud Kundencenter und OVHcloud API",
   "streams_subscriptions_resource_products_account-audit": "OVHcloud Audit-Logs",
-  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service"
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
+  "streams_subscriptions_kind_label": "Typ (Kind)"
 }
