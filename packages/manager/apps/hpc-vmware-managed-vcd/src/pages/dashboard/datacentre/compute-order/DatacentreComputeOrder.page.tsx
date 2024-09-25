@@ -20,6 +20,9 @@ import { subRoutes } from '@/routes/routes.constant';
 
 export default function ComputeOrderPage() {
   const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/order');
+  const { t: tCompute } = useTranslation(
+    'hpc-vmware-managed-vcd/datacentres/compute',
+  );
   const columns: DatagridColumn<IVdcOrderableVhostPriced>[] = [
     {
       id: 'select',
@@ -63,7 +66,7 @@ export default function ComputeOrderPage() {
       <DatacentreOrder
         orderType={'compute'}
         columns={columns}
-        title={t('managed_vcd_vdc_order_compute_title')}
+        title={tCompute('managed_vcd_vdc_compute_order_cta')}
         subtitle={t('managed_vcd_vdc_order_compute_subtitle')}
         backLink={`../${subRoutes.datacentreCompute}`}
         minQuantity={COMPUTE_ORDER_MIN_QUANTITY}
