@@ -3,6 +3,7 @@
   "zimbra_account_add_title": "Créer un compte email",
   "zimbra_account_edit_title": "Modifier le compte {{ account }}",
   "zimbra_account_edit_tabs_settings": "Paramètres du compte",
+  "zimbra_account_edit_tabs_redirections": "Redirections",
   "zimbra_account_edit_tabs_alias": "Alias",
   "zimbra_account_add_input_email_label": "Compte email",
   "zimbra_account_add_input_email_placeholder": "Nom du compte",

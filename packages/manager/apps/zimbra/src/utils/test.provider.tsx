@@ -20,6 +20,9 @@ import accountAliasDeleteTranslation from '@/public/translations/accounts/alias/
 import accountDeleteTranslation from '@/public/translations/accounts/delete/Messages_fr_FR.json';
 import mailingListsTranslation from '@/public/translations/mailinglists/Messages_fr_FR.json';
 import mailingListsAddAndEditTranslation from '@/public/translations/mailinglists/addAndEdit/Messages_fr_FR.json';
+import redirectionsTranslation from '@/public/translations/redirections/Messages_fr_FR.json';
+import redirectionsAddAndEditTranslation from '@/public/translations/redirections/addAndEdit/Messages_fr_FR.json';
+import redirectionsDeleteTranslation from '@/public/translations/redirections/delete/Messages_fr_FR.json';
 import queryClient from '@/queryClient';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
@@ -45,6 +48,9 @@ i18n.use(initReactI18next).init({
       'accounts/delete': accountDeleteTranslation,
       mailinglists: mailingListsTranslation,
       'mailinglists/addAndEdit': mailingListsAddAndEditTranslation,
+      redirections: redirectionsTranslation,
+      'redirections/addAndEdit': redirectionsAddAndEditTranslation,
+      'redirections/delete': redirectionsDeleteTranslation,
     },
   },
   ns: ['dashboard'],

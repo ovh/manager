@@ -8,16 +8,10 @@ import { aliasMock, accountMock, domainMock, platformMock } from '@/api/_mock_';
 import AddAndEditEmailAccount from '../AddAndEditEmailAccount.page';
 import emailAccountAddAndEditTranslation from '@/public/translations/accounts/addAndEdit/Messages_fr_FR.json';
 import emailAccountAliasTranslation from '@/public/translations/accounts/alias/Messages_fr_FR.json';
+import redirectionsTranslation from '@/public/translations/redirections/Messages_fr_FR.json';
 
 const { useSearchParamsMock } = vi.hoisted(() => ({
   useSearchParamsMock: vi.fn(() => [new URLSearchParams()]),
-}));
-
-const { useQueryMock } = vi.hoisted(() => ({
-  useQueryMock: vi.fn(() => ({
-    data: null,
-    isLoading: false,
-  })),
 }));
 
 const { useLocationMock } = vi.hoisted(() => ({
@@ -38,6 +32,7 @@ vi.mock('@/hooks', () => {
   return {
     usePlatform: vi.fn(() => ({
       platformId: platformMock[0].id,
+      platformUrn: platformMock[0].iam.urn,
     })),
     useGenerateUrl: vi.fn(),
     useDomains: vi.fn(() => ({
@@ -72,14 +67,6 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
       addSuccess: () => vi.fn(),
     })),
     Datagrid: vi.fn().mockReturnValue(<div>Datagrid</div>),
-  };
-});
-
-vi.mock('@tanstack/react-query', async (importOriginal) => {
-  const actual: any = await importOriginal();
-  return {
-    ...actual,
-    useQuery: useQueryMock,
   };
 });
 
@@ -145,14 +132,33 @@ describe('email account add and edit page', () => {
         search: '',
       })),
     );
-    useQueryMock.mockImplementation(
+    const { getByText } = render(<AddAndEditEmailAccount />);
+
+    expect(
+      getByText(emailAccountAliasTranslation.zimbra_account_alias_title),
+    ).toBeInTheDocument();
+  });
+
+  it('should display redirection tab page', () => {
+    useSearchParamsMock.mockImplementation(
+      vi.fn(() => [
+        new URLSearchParams({
+          editEmailAccountId: '19097ad4-2880-4000-8b03-9d110f0b8f80',
+        }),
+      ]),
+    );
+    useLocationMock.mockImplementation(
       vi.fn(() => ({
-        data: aliasMock,
-        isLoading: false,
+        pathname:
+          '/00000000-0000-0000-0000-000000000001/email_accounts/redirections',
+        search: '',
       })),
     );
-    render(<AddAndEditEmailAccount />);
-    screen.getByText(emailAccountAliasTranslation.zimbra_account_alias_title);
+    const { getByText } = render(<AddAndEditEmailAccount />);
+
+    expect(
+      getByText(redirectionsTranslation.zimbra_redirections_account_title),
+    ).toBeInTheDocument();
   });
 
   it('check validity form', () => {

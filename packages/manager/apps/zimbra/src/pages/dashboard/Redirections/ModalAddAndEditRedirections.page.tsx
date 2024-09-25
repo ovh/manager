@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -30,10 +30,17 @@ import { EMAIL_REGEX } from './Redirections.constants';
 export default function ModalAddAndEditRedirections() {
   const { t } = useTranslation('redirections/addAndEdit');
   const navigate = useNavigate();
-  const goBackUrl = useGenerateUrl('..', 'path');
-  const goBack = () => navigate(goBackUrl);
-  const { addError, addSuccess } = useNotifications();
 
+  const [searchParams] = useSearchParams();
+  const editEmailAccountId = searchParams.get('editEmailAccountId');
+  const editRedirectionId = searchParams.get('editRedirectionId');
+  const params = Object.fromEntries(searchParams.entries());
+  delete params.editRedirectionId;
+
+  const goBackUrl = useGenerateUrl('..', 'path', params);
+  const goBack = () => navigate(goBackUrl);
+
+  const { addError, addSuccess } = useNotifications();
   const [isFormValid, setIsFormValid] = useState(false);
 
   const formInputRegex: FormInputRegexInterface = {
@@ -86,7 +93,11 @@ export default function ModalAddAndEditRedirections() {
     <Modal
       color={ODS_THEME_COLOR_INTENT.primary}
       dismissible
-      title={t('zimbra_redirections_title')}
+      title={t(
+        editRedirectionId
+          ? 'zimbra_redirections_title_edit'
+          : 'zimbra_redirections_title_add',
+      )}
       onDismissible={goBack}
       secondaryButton={{
         testid: 'cancel-btn',
@@ -136,6 +147,9 @@ export default function ModalAddAndEditRedirections() {
               handleFormChange(name, value)
             }
             required
+            {...(editEmailAccountId || editRedirectionId
+              ? { disabled: true }
+              : {})}
           />
         </OsdsFormField>
 
