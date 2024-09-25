@@ -35,37 +35,33 @@ export const ManagerButton = ({
   const { t } = useTranslation('iam');
   const { isAuthorized } = useAuthorizationIam(iamActions, urn, isIamTrigger);
 
-  if (!isAuthorized) {
-    if (!displayTooltip) {
-      return (
-        <OdsButton
-          {...restProps}
-          data-testid="manager-button-without-tooltip"
-          isDisabled={true}
-          onClick={null}
-          label={label}
-        />
-      );
-    }
+  if (isAuthorized) {
     return (
-      <>
-        <div id={id} className="w-fit">
-          <OdsButton
-            {...restProps}
-            data-testid="manager-button-tooltip"
-            isDisabled={true}
-            label={label}
-            content="true"
-            onClick={null}
-          />
-        </div>
-        <OdsTooltip triggerId={id} with-arrow>
-          <div>{t('common_iam_actions_message')}</div>
-        </OdsTooltip>
-      </>
+      <OdsButton data-testid="manager-button" {...restProps} label={label} />
     );
   }
-  return (
-    <OdsButton data-testid="manager-button" {...restProps} label={label} />
+  return displayTooltip ? (
+    <>
+      <div id={id} className="w-fit">
+        <OdsButton
+          {...restProps}
+          data-testid="manager-button-tooltip"
+          isDisabled={true}
+          label={label}
+          onClick={null}
+        />
+      </div>
+      <OdsTooltip triggerId={id} with-arrow>
+        <div>{t('common_iam_actions_message')}</div>
+      </OdsTooltip>
+    </>
+  ) : (
+    <OdsButton
+      {...restProps}
+      data-testid="manager-button-without-tooltip"
+      isDisabled={true}
+      onClick={null}
+      label={label}
+    />
   );
 };

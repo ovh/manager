@@ -22,7 +22,6 @@ const FiltersStory = () => {
   return (
     <>
       <div className="flex justify-center">
-        <span></span>
         <OdsInput
           name="ods-input-username"
           className="w-[30%] mr-2"
@@ -54,7 +53,7 @@ const FiltersStory = () => {
           />
         </div>
 
-        <OdsPopover triggerId="popover-trigger" with-arrow="true">
+        <OdsPopover triggerId="popover-trigger" with-arrow>
           <FilterAdd
             columns={[
               {
