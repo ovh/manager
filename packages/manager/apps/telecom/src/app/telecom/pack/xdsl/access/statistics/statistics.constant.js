@@ -1,6 +1,3 @@
-import get from 'lodash/get';
-import head from 'lodash/head';
-
 export const PACK_XDSL_STATISTICS = {
   chart: {
     type: 'line',
@@ -26,12 +23,6 @@ export const PACK_XDSL_STATISTICS = {
         tooltip: {
           mode: 'index',
           intersect: false,
-          callbacks: {
-            title(data) {
-              const timestamp = moment(get(head(data), 'xLabel'));
-              return timestamp.fromNow();
-            },
-          },
         },
       },
       scales: {
