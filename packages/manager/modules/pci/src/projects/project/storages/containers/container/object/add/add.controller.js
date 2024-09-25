@@ -34,8 +34,8 @@ export default class PciBlockStorageContainersContainerObjectAddController {
 
   showStorageClass() {
     return (
-      this.container.regionDetails.services.length > 1 &&
-      this.container.regionDetails.services.some(
+      this.container.regionDetails?.services?.length > 1 &&
+      this.container.regionDetails?.services?.some(
         (item) =>
           item.name === OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE &&
           item.status === 'UP',

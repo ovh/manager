@@ -166,12 +166,10 @@
             data-ng-if="!$ctrl.displaySelectedDeploimentMode"
             class="container-fluid px-0"
         >
-            <div class="row d-inline-block">
-                <p
-                    class="ml-3"
-                    data-translate="pci_projects_project_storages_containers_add_deploiment_mode_sub_title"
-                ></p>
-
+            <p
+                data-translate="pci_projects_project_storages_containers_add_deploiment_mode_sub_title"
+            ></p>
+            <div class="row">
                 <oui-select-picker
                     class="col-md-6 col-xl-4 my-3"
                     data-ng-repeat="deploimentModeName in $ctrl.OBJECT_CONTAINER_DEPLOIMENT_MODES track by deploimentModeName"
@@ -213,9 +211,22 @@
                     </oui-select-picker-section>
                 </oui-select-picker>
             </div>
-            <p
-                data-translate="pci_projects_project_storages_containers_add_deploiment_mode_price_explanation"
-            ></p>
+            <p>
+                <span
+                    data-translate="pci_projects_project_storages_containers_add_deploiment_mode_price_explanation"
+                >
+                </span>
+                <a
+                    href="{{:: $ctrl.storagePricesLink }}"
+                    class="oui-link_icon"
+                    rel="noreferrer"
+                    target="_blank"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_containers_add_deploiment_mode_price_explanation_link"
+                    ></span>
+                </a>
+            </p>
         </div>
         <div
             data-ng-if="$ctrl.displaySelectedDeploimentMode"
