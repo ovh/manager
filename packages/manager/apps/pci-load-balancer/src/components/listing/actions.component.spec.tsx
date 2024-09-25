@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import ActionsComponent from './actions.component';
-import { TLoadBalancer } from '@/types';
+import ActionsComponent from './Actions.component';
+import { TLoadBalancer } from '@/api/data/load-balancer';
 
 describe('ActionsComponent', () => {
   const loadBalancer = {
