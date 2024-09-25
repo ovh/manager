@@ -312,7 +312,7 @@ const Sidebar = (): JSX.Element => {
                 <li
                   key={node.id}
                   id={node.id}
-                  className={`${style.sidebar_menu_items} ${
+                  className={`py-1 ${style.sidebar_menu_items} ${
                     node.id === selectedNode?.id
                     ? style.sidebar_menu_items_selected
                     : ''

@@ -86,13 +86,13 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   };
 
   if (isShort) return (
-    <OsdsPopover className='w-full fixed z-[1000] left-[0.3rem] bottom-[3rem]' id="useful-links" role="menu">
+    <OsdsPopover className='w-full fixed z-[1000] left-[0.3rem] bottom-[4rem]' id="useful-links" role="menu">
       <OsdsButton
         slot="popover-trigger"
         className='w-[4rem]'
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
-        size={ODS_BUTTON_SIZE.sm}
+        size={ODS_BUTTON_SIZE.md}
         title={t('sidebar_assistance_title')}
         contrasted
       >
@@ -110,14 +110,13 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   )
 
   return (
-    <ul className="mt-auto pb-3 flex-none" id="useful-links2" role="menu">
+    <ul className="mt-auto pb-3 flex-none" id="useful-links" role="menu">
       <li className="assistance_header px-3 mb-3">
         <h2 className="flex justify-between">
           <span>{t('sidebar_assistance_title')}</span>
         </h2>
       </li>
       {nodeTree.children.map((node: Node) => (
-
         <AssistanceLinkItem
           key={`assistance_${node.id}`}
           node={node}

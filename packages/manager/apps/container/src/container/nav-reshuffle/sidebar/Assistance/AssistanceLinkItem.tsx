@@ -10,7 +10,7 @@ type Props = {
 
 export const AssistanceLinkItem: FunctionComponent<Props> = ({ node, isSelected }) => {
     return (
-        <li className={`flex px-3 align-items-center ${isSelected ? style.sidebar_menu_items_selected : ''} ${style.sidebar_menu_items}`} role="menuitem" >
+        <li className={`flex align-items-center ${isSelected ? style.sidebar_menu_items_selected : ''} ${style.sidebar_menu_items}`} role="menuitem" >
             <SidebarLink
                 handleOnClick={node.onClick}
                 node={node}

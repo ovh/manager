@@ -1,5 +1,4 @@
 import { Node } from "./node";
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 export const assistanceTree: Node = {
   id: 'assistance',
@@ -26,7 +25,6 @@ export const assistanceTree: Node = {
       isExternal: true,
       url: 'support',
       count: false,
-      svgIcon: OvhProductName.EMAIL
     },
     {
       id: 'assistance_status',
