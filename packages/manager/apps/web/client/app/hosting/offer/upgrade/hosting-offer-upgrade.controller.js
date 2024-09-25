@@ -23,6 +23,7 @@ angular.module('App').controller(
       Hosting,
       WucUser,
       ovhManagerProductOffersActionService,
+      $anchorScroll,
     ) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;
@@ -37,6 +38,7 @@ angular.module('App').controller(
       this.Hosting = Hosting;
       this.WucUser = WucUser;
       this.ovhManagerProductOffersActionService = ovhManagerProductOffersActionService;
+      this.$anchorScroll = $anchorScroll;
     }
 
     $onInit() {
@@ -223,6 +225,7 @@ angular.module('App').controller(
             this.apiTranslator.translate(err),
             this.$scope.alerts.page,
           );
+          this.$anchorScroll('topWebUniverse');
           this.$state.go('^');
         })
         .finally(() => {
