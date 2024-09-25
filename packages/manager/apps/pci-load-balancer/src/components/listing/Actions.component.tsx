@@ -15,7 +15,9 @@ export default function ActionsComponent({
   const loadBalancerDetailHref = useHref(
     `../${loadBalancer.region}/${loadBalancer.id}`,
   );
-  const deleteHref = useHref(`./${loadBalancer.id}/delete`);
+  const deleteHref = useHref(
+    `./${loadBalancer.region}/${loadBalancer.id}/delete`,
+  );
 
   const items = [
     {

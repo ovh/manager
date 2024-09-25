@@ -48,7 +48,6 @@ export default function ListingPage() {
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const filterPopoverRef = useRef(undefined);
 
-
   const {
     paginatedLoadBalancer,
     allLoadBalancer,

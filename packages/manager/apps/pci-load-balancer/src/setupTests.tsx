@@ -7,7 +7,7 @@ vi.mock('react-router-dom', async () => {
   return {
     ...mod,
     useSearchParams: () => [new URLSearchParams({})],
-    useParams: () => ({ projectId: 'project-id', kubeId: 'kube-id' }),
+    useParams: () => ({ projectId: 'project-id', loadBalancerId: 'lb1' }),
     useHref: vi.fn(),
     useLocation: vi.fn(),
     useNavigate: vi.fn(),
@@ -61,6 +61,7 @@ vi.mock('react-i18next', () => ({
     },
   }),
   Trans: ({ children }: { children: string }) => children,
+  Translation: ({ children }: { children: string }) => children,
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => {

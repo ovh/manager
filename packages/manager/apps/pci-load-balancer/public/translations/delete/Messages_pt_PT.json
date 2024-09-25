@@ -1,0 +1,6 @@
+{
+  "octavia_load_balancer_delete_title": "Eliminar um Load Balancer",
+  "octavia_load_balancer_delete_description": "Deseja realmente eliminar o load balancer \"{{loadbalancer}}\"?",
+  "octavia_load_balancer_delete_cancel": "Anular",
+  "octavia_load_balancer_delete_confirm": "Eliminar"
+}
