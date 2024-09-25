@@ -8,8 +8,6 @@ import '@ovhcloud/ods-themes/default';
 import i18n from './i18n';
 import './storybook.css';
 
-import '@ovhcloud/ods-theme-blue-jeans';
-
 const mockQueryClient = new QueryClient({
   defaultOptions: {
     queries: {

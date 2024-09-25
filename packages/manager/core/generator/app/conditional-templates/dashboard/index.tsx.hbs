@@ -9,9 +9,8 @@ import {
   useResolvedPath,
 } from 'react-router-dom';
 import {
-  OsdsTabs,
-  OsdsTabBar,
-  OsdsTabBarItem,
+  OdsTabs,
+  OdsTab,
 } from '@ovhcloud/ods-components/react';
 
 import { BaseLayout } from '@ovh-ux/manager-react-components';
@@ -68,20 +67,17 @@ export default function DashboardPage() {
       header={header}
       description="Description du {{appName}}"
       tabs={
-        <OsdsTabs panel={panel}>
-          <OsdsTabBar slot="top">
-            {tabsList.map((tab: DashboardTabItemProps) => (
+        <OdsTabs>
+          {tabsList.map((tab: DashboardTabItemProps) => (
+            <OdsTab
+              key={`osds-tab-bar-item-${tab.name}`}
+            >
               <NavLink to={tab.to} className="no-underline">
-                <OsdsTabBarItem
-                  key={`osds-tab-bar-item-${tab.name}`}
-                  panel={tab.name}
-                >
-                  {tab.title}
-                </OsdsTabBarItem>
+                {tab.title}
               </NavLink>
-            ))}
-          </OsdsTabBar>
-        </OsdsTabs>
+            </OdsTab>
+          ))}
+        </OdsTabs>
       }
     >
       <Outlet />

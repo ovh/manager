@@ -32,7 +32,11 @@ export const BaseLayout = ({
 }: BaseLayoutProps) => (
   <PageLayout>
     <div>{breadcrumb}</div>
-    {header && <Headers {...header} />}
+    {header && (
+      <div className="mt-[24px]">
+        <Headers {...header} />
+      </div>
+    )}
     {backLinkLabel && (onClickReturn || hrefPrevious) && (
       <div className="mb-[24px]">
         <Links
