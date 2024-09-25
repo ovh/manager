@@ -48,13 +48,14 @@ export const getStorageRegions = async (
 export const getMacroRegion = (region: string): string => {
   const regionSubStrings = region.split('-');
 
-  const macroRegionMap = {
-    1: regionSubStrings[0].split(/(\d)/)[0],
-    2: regionSubStrings[0],
-    3: regionSubStrings[2],
-    4: regionSubStrings[2] === 'LZ' ? regionSubStrings[3] : regionSubStrings[2],
-    5: regionSubStrings[3],
-  };
+  const macroRegionMap = [
+    null,
+    regionSubStrings[0].split(/(\d)/)[0],
+    regionSubStrings[0],
+    regionSubStrings[2],
+    regionSubStrings[2] === 'LZ' ? regionSubStrings[3] : regionSubStrings[2],
+    regionSubStrings[3],
+  ];
   return macroRegionMap[regionSubStrings.length] || 'Unknown_Macro_Region';
 };
 
