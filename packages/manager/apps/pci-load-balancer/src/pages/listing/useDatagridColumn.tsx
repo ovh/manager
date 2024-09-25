@@ -1,22 +1,19 @@
 import {
   DatagridColumn,
   DataGridTextCell,
-  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
-import ActionsComponent from '@/components/listing/actions.component';
-import { TLoadBalancer } from '@/types';
-import CreationDate from '@/components/listing/CreationDate.component';
-import { ROUTE_PATHS } from '@/routes';
+import { TLoadBalancer } from '@/api/data/load-balancer';
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
+import ActionsComponent from '@/components/listing/Actions.component';
+import CreationDate from '@/components/listing/CreationDate.component';
 
 export const useDatagridColumn = () => {
-  const { t } = useTranslation('');
-  const projectUrl = useProjectUrl('public-cloud');
+  const { t } = useTranslation('octavia-load-balancer');
 
   const columns: DatagridColumn<TLoadBalancer>[] = [
     {
@@ -25,7 +22,7 @@ export const useDatagridColumn = () => {
         <DataGridTextCell>
           <OsdsLink
             color={ODS_THEME_COLOR_INTENT.primary}
-            href={`${projectUrl}/octavia-load-balancer/${props.id}`}
+            href={useHref(`../${props.region}/${props.id}`)}
           >
             {props.name}
           </OsdsLink>
@@ -56,7 +53,8 @@ export const useDatagridColumn = () => {
       id: 'provisioningStatus',
       cell: (props: TLoadBalancer) => (
         <ProvisioningStatusComponent
-          provisioningStatus={props.provisioningStatus}
+          status={props.provisioningStatus}
+          className="w-fit flex mx-auto"
         />
       ),
       label: t('octavia_load_balancer_provisioning_status'),
@@ -64,7 +62,10 @@ export const useDatagridColumn = () => {
     {
       id: 'operatingStatus',
       cell: (props: TLoadBalancer) => (
-        <OperatingStatusComponent operatingStatus={props.operatingStatus} />
+        <OperatingStatusComponent
+          status={props.operatingStatus}
+          className="w-fit flex mx-auto"
+        />
       ),
       label: t('octavia_load_balancer_operating_status'),
     },

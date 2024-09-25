@@ -3,16 +3,17 @@ import { UseQueryResult } from '@tanstack/react-query';
 import { applyFilters } from '@ovh-ux/manager-core-api';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { ColumnSort, PaginationState } from '@tanstack/react-table';
-import { useAllLoadBalancers, useLoadBalancers } from './useLoadBalancer';
+import { useAllLoadBalancers, useLoadBalancers } from '../hook/useLoadBalancer';
 import { paginateResults, sortResults } from '@/helpers';
-import { TLoadBalancer } from '@/types';
 import { wrapper } from '@/wrapperRenders';
 import { mockLoadBalancers } from '@/mocks';
+import { TLoadBalancer } from '../data/load-balancer';
 
 vi.mock('@/helpers', () => ({
   paginateResults: vi.fn(),
   sortResults: vi.fn(),
 }));
+
 vi.mock('./useLoadBalancer', async () => {
   const mod = await vi.importActual('./useLoadBalancer');
   return {
@@ -51,12 +52,12 @@ describe('useLoadBalancers', () => {
       { wrapper },
     );
 
-    await waitFor(() =>
-      expect(result.current.data).toEqual({
+    await waitFor(() => {
+      expect(result.current.paginatedLoadBalancer).toEqual({
         rows: mockLoadBalancers,
         totalRows: 1,
         pageCount: 1,
-      }),
-    );
+      });
+    });
   });
 });

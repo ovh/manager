@@ -1,4 +1,4 @@
-import { TLoadBalancer } from '@/types';
+import { TLoadBalancer } from '@/api/data/load-balancer';
 
 export const mockLoadBalancers = [
   {

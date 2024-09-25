@@ -1,7 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { describe, it, vi } from 'vitest';
-import { getLoadBalancers } from './load-balancer';
-import { TLoadBalancerResponse } from '@/types';
+import { getLoadBalancers, TLoadBalancerResponse } from './load-balancer';
 import { mockLoadBalancers } from '@/mocks';
 
 describe('getLoadBalancers', () => {

@@ -1,0 +1,23 @@
+{
+  "octavia_load_balancer_overview_info_title": "Informações",
+  "octavia_load_balancer_overview_info_name": "Nome",
+  "octavia_load_balancer_overview_info_region": "Região",
+  "octavia_load_balancer_overview_info_creation_date": "Data de criação",
+  "octavia_load_balancer_overview_info_id": "ID",
+  "octavia_load_balancer_overview_config_title": "Configuração",
+  "octavia_load_balancer_overview_config_provisioning_status": "Estado de <i>provisioning</i>",
+  "octavia_load_balancer_overview_config_provisioning_status_active": "ativo",
+  "octavia_load_balancer_overview_config_provisioning_status_creating": "criação em curso",
+  "octavia_load_balancer_overview_config_provisioning_status_deleted": "eliminado",
+  "octavia_load_balancer_overview_config_provisioning_status_deleting": "eliminação em curso",
+  "octavia_load_balancer_overview_config_provisioning_status_error": "erro",
+  "octavia_load_balancer_overview_config_provisioning_status_updating": "atualização em curso",
+  "octavia_load_balancer_overview_config_size": "Dimensão",
+  "octavia_load_balancer_overview_config_size_small": "S",
+  "octavia_load_balancer_overview_config_size_medium": "M",
+  "octavia_load_balancer_overview_config_size_large": "L",
+  "octavia_load_balancer_overview_config_private_network": "Rede privada",
+  "octavia_load_balancer_overview_config_subnet": "Subrede",
+  "octavia_load_balancer_overview_config_private_ip": "Endereço IP privado",
+  "octavia_load_balancer_edit_name_success": "O nome do seu Load Balancer foi alterado com êxito."
+}

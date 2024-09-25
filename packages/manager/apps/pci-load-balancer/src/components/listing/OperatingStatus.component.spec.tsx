@@ -3,11 +3,14 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { describe, expect, it } from 'vitest';
 import OperatingStatusComponent from './OperatingStatus.component';
 import { wrapper } from '@/wrapperRenders';
+import { LoadBalancerOperatingStatusEnum } from '@/api/data/load-balancer';
 
 describe('OperatingStatusComponent', () => {
   it('renders with success color for online status', () => {
     const { getByTestId } = render(
-      <OperatingStatusComponent operatingStatus="online" />,
+      <OperatingStatusComponent
+        status={LoadBalancerOperatingStatusEnum.ONLINE}
+      />,
       {
         wrapper,
       },
@@ -21,7 +24,9 @@ describe('OperatingStatusComponent', () => {
 
   it('renders with warning color for offline status', () => {
     const { getByTestId } = render(
-      <OperatingStatusComponent operatingStatus="offline" />,
+      <OperatingStatusComponent
+        status={LoadBalancerOperatingStatusEnum.OFFLINE}
+      />,
       {
         wrapper,
       },
@@ -35,7 +40,9 @@ describe('OperatingStatusComponent', () => {
 
   it('renders with warning color for degraded status', () => {
     const { getByTestId } = render(
-      <OperatingStatusComponent operatingStatus="degraded" />,
+      <OperatingStatusComponent
+        status={LoadBalancerOperatingStatusEnum.DEGRADED}
+      />,
       {
         wrapper,
       },
@@ -49,7 +56,9 @@ describe('OperatingStatusComponent', () => {
 
   it('renders with warning color for draining status', () => {
     const { getByTestId } = render(
-      <OperatingStatusComponent operatingStatus="draining" />,
+      <OperatingStatusComponent
+        status={LoadBalancerOperatingStatusEnum.DRAINING}
+      />,
       {
         wrapper,
       },
@@ -63,7 +72,9 @@ describe('OperatingStatusComponent', () => {
 
   it('renders with warning color for noMonitor status', () => {
     const { getByTestId } = render(
-      <OperatingStatusComponent operatingStatus="noMonitor" />,
+      <OperatingStatusComponent
+        status={LoadBalancerOperatingStatusEnum.NO_MONITOR}
+      />,
       {
         wrapper,
       },
@@ -77,7 +88,9 @@ describe('OperatingStatusComponent', () => {
 
   it('renders with error color for error status', () => {
     const { getByTestId } = render(
-      <OperatingStatusComponent operatingStatus="error" />,
+      <OperatingStatusComponent
+        status={LoadBalancerOperatingStatusEnum.ERROR}
+      />,
       {
         wrapper,
       },

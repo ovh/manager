@@ -1,4 +1,12 @@
 {
+  "octavia_load_balancer_info_tab_title": "Podgląd",
+  "octavia_load_balancer_listeners_tab_title": "Listeners",
+  "octavia_load_balancer_pools_tab_title": "Poole",
+  "octavia_load_balancer_statistics_tab_title": "Statystyki",
+  "octavia_load_balancer_certificates_tab_title": "Certyfikaty",
+  "octavia_load_balancer_guides_header": "Przewodniki",
+  "octavia_load_balancer_logs_tab_title": "Logi",
+  "octavia_load_balancer_logs_tab_title_beta_status": "Wersja beta",
   "octavia_load_balancer": "Load Balancer",
   "octavia_load_balancers": "Load Balancery",
   "octavia_load_balancer_global_error": "Wystąpił następujący błąd: <br> {{message}}<br> request_id: {{requestId}}",

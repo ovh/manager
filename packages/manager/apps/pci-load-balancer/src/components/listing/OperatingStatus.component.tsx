@@ -1,27 +1,31 @@
 import { useTranslation } from 'react-i18next';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { useMemo } from 'react';
-import { OdsChipAttribute } from '@ovhcloud/ods-components';
+import { ODS_CHIP_SIZE, OdsChipAttribute } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { LoadBalancerOperatingStatusEnum } from '@/api/data/load-balancer';
 
 type OperatingStatusComponentProps = {
-  operatingStatus: string;
+  status: LoadBalancerOperatingStatusEnum;
+  className?: string;
 };
 
 export default function OperatingStatusComponent({
-  operatingStatus,
+  status,
+  className,
 }: Readonly<OperatingStatusComponentProps>) {
-  const { t } = useTranslation('');
+  const { t } = useTranslation('octavia-load-balancer');
+
   const chipAttribute: OdsChipAttribute = useMemo(() => {
-    switch (operatingStatus) {
-      case 'offline':
-      case 'degraded':
-      case 'draining':
-      case 'noMonitor':
+    switch (status) {
+      case LoadBalancerOperatingStatusEnum.OFFLINE:
+      case LoadBalancerOperatingStatusEnum.DEGRADED:
+      case LoadBalancerOperatingStatusEnum.DRAINING:
+      case LoadBalancerOperatingStatusEnum.NO_MONITOR:
         return {
           color: ODS_THEME_COLOR_INTENT.warning,
         };
-      case 'error':
+      case LoadBalancerOperatingStatusEnum.ERROR:
         return {
           color: ODS_THEME_COLOR_INTENT.error,
         };
@@ -30,15 +34,16 @@ export default function OperatingStatusComponent({
           color: ODS_THEME_COLOR_INTENT.success,
         };
     }
-  }, [operatingStatus]);
+  }, [status]);
 
   return (
     <OsdsChip
-      className="w-fit flex mx-auto"
-      {...chipAttribute}
+      className={className}
       data-testid="OperatingStatus_chip"
+      size={ODS_CHIP_SIZE.sm}
+      {...chipAttribute}
     >
-      {t(`octavia_load_balancer_operating_status_${operatingStatus}`)}
+      <b>{t(`octavia_load_balancer_operating_status_${status}`)}</b>
     </OsdsChip>
   );
 }

@@ -32,53 +32,48 @@ import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
-import {
-  useAllLoadBalancers,
-  useLoadBalancers,
-} from '@/api/hooks/useLoadBalancer';
+import { useLoadBalancers } from '@/api/hook/useLoadBalancer';
 
 export default function ListingPage() {
-  const { t } = useTranslation('');
+  const { t } = useTranslation('octavia-load-balancer');
   const { t: tFilter } = useTranslation('filter');
 
   const { projectId } = useParams();
   const { data: project } = useProject();
   const hrefProject = useProjectUrl('public-cloud');
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
-  const columns = useDatagridColumn();
+
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const filterPopoverRef = useRef(undefined);
 
-  const { data: allLoadBalancers } = useAllLoadBalancers(projectId);
 
-  const { data: loadBalancers, isPending } = useLoadBalancers(
-    projectId,
-    pagination,
-    sorting,
-    filters,
-  );
+  const {
+    paginatedLoadBalancer,
+    allLoadBalancer,
+    isPending,
+  } = useLoadBalancers(projectId, pagination, sorting, filters);
+
+  const columns = useDatagridColumn();
 
   return (
     <RedirectionGuard
       isLoading={isPending}
-      condition={!isPending && allLoadBalancers.length === 0}
+      condition={!isPending && allLoadBalancer?.length === 0}
       route={`/pci/projects/${projectId}/octavia-load-balancer/onboarding`}
     >
-      {project && (
-        <OsdsBreadcrumb
-          items={[
-            {
-              href: hrefProject,
-              label: project.description,
-            },
-            {
-              label: t('octavia_load_balancers'),
-            },
-          ]}
-        />
-      )}
+      <OsdsBreadcrumb
+        items={[
+          {
+            href: hrefProject,
+            label: project.description,
+          },
+          {
+            label: t('octavia_load_balancers'),
+          },
+        ]}
+      />
 
       <div className="header mt-8">
         <Headers title={t('octavia_load_balancers')} />
@@ -161,8 +156,8 @@ export default function ListingPage() {
       ) : (
         <Datagrid
           columns={columns}
-          items={loadBalancers?.rows || []}
-          totalItems={loadBalancers?.totalRows || 0}
+          items={paginatedLoadBalancer?.rows || []}
+          totalItems={paginatedLoadBalancer?.totalRows || 0}
           pagination={pagination}
           onPaginationChange={setPagination}
           sorting={sorting}
