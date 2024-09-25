@@ -114,11 +114,11 @@
         <div
             data-ng-if="$ctrl.template.value && ($ctrl.template.language || $ctrl.template.value.availableLanguage.length === 0) && !$ctrl.constructor.isWindows($ctrl.template.value)"
         >
-            <ssh-key-selector
+            <ovh-manager-ssh-key-selector
                 data-public-key="$ctrl.template.publicSshKey"
                 data-required="false"
             >
-            </ssh-key-selector>
+            </ovh-manager-ssh-key-selector>
         </div>
 
         <!-- send password -->

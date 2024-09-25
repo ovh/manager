@@ -91,13 +91,13 @@
         </textarea>
         <!-- sshPubKey -->
         <div data-ng-switch-when="sshPubKey">
-            <ssh-key-selector
+            <ovh-manager-ssh-key-selector
                 data-public-key="$ctrl.installation.input[input.name]"
                 data-required="input.mandatory"
                 data-rows="$ctrl.inputRules.sshPubKey.maxsize"
                 data-name="input.name"
                 data-placeholder="{{:: 'server_configuration_installation_inputs_item_placeholder' | translate:{ t0: 'sshPubKey' } }}. {{:: 'server_configuration_installation_inputs_item_placeholder_example' | translate:{ t0: $ctrl.inputRules.sshPubKey.placeholder } }}"
-            ></ssh-key-selector>
+            ></ovh-manager-ssh-key-selector>
         </div>
         <!-- keyValue -->
         <!-- custom validation error messages not implemented -->
