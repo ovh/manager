@@ -127,6 +127,7 @@ const CreateGeneralInformationsCreationMethod = ({
               value={csr}
               error={!!credentialCreationMethodError || undefined}
               placeholder={CSR_PLACEHOLDER}
+              rows={10}
               onOdsValueChange={(
                 e: OsdsTextareaCustomEvent<OdsTextAreaValueChangeEvent>,
               ) => {
