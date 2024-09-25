@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { paginateResults, sortResults } from './index';
-import { TLoadBalancer } from '@/types';
+import { TLoadBalancer } from '@/api/data/load-balancer';
 
 describe('paginateResults', () => {
   it('returns correct pagination data for given items and pagination state', () => {

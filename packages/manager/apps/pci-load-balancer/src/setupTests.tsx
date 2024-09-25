@@ -20,9 +20,12 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
   const mod = await vi.importActual('@ovh-ux/manager-pci-common');
   return {
     ...mod,
-    useProject: vi.fn().mockResolvedValue({
-      projectName: 'project-name',
-      project_id: 'project-id',
+    useProject: vi.fn().mockReturnValue({
+      data: {
+        projectName: 'project-name',
+        project_id: 'project-id',
+        description: 'project-description',
+      },
     }),
   };
 });
