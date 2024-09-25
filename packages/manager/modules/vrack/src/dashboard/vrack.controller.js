@@ -36,6 +36,7 @@ import {
   VRACK_DASHBOARD_TRACKING_PREFIX,
   VRACK_ACTIONS_SUFFIX,
   VRACK_URLS,
+  ELIGIBLE_POLLING_INTERVAL,
 } from './vrack.constant';
 
 import { IPV6_GUIDES_LINK } from '../vrack-associated-services/ipv6/ipv6.constant';
@@ -84,6 +85,7 @@ export default class VrackMoveDialogCtrl {
 
   $onInit() {
     this.poller = null;
+    this.pollerEligible = null;
     this.serviceName = null;
     this.name = null;
     this.description = null;
@@ -239,6 +241,9 @@ export default class VrackMoveDialogCtrl {
       if (this.poller) {
         this.$timeout.cancel(this.poller);
       }
+      if (this.pollerEligible) {
+        this.$timeout.cancel(this.pollerEligible);
+      }
     });
   }
 
@@ -289,8 +294,8 @@ export default class VrackMoveDialogCtrl {
             });
         }),
       )
-      .then((cloudProject) => {
-        this.data.eligibleServices.cloudProject = cloudProject;
+      .then((cloudProjects) => {
+        this.data.eligibleServices.cloudProject = cloudProjects;
       });
   }
 
@@ -310,13 +315,11 @@ export default class VrackMoveDialogCtrl {
         }),
       )
       .then((dedicatedCloud) => {
-        this.data.eligibleServices.dedicatedCloud = dedicatedCloud;
-
-        const dedicated = this.data.eligibleServices.dedicatedCloud.filter(
+        const dedicated = dedicatedCloud.filter(
           (service) =>
             service.productReference === DEDICATED_CLOUD_PRODUCT.epcc,
         );
-        const managedBareMetal = this.data.eligibleServices.dedicatedCloud.filter(
+        const managedBareMetal = dedicatedCloud.filter(
           (service) => service.productReference === DEDICATED_CLOUD_PRODUCT.mbm,
         );
         this.data.eligibleServices.dedicatedCloud = dedicated;
@@ -339,8 +342,8 @@ export default class VrackMoveDialogCtrl {
             });
         }),
       )
-      .then((dedicatedServer) => {
-        this.data.eligibleServices.dedicatedServer = dedicatedServer;
+      .then((dedicatedServers) => {
+        this.data.eligibleServices.dedicatedServer = dedicatedServers;
       });
   }
 
@@ -349,7 +352,7 @@ export default class VrackMoveDialogCtrl {
       .all(
         this.data.eligibleServices.dedicatedServerInterface.map((service) => {
           return this.vrackService
-            .getDedicatedServerInterface(service)
+            .getDedicatedServer(service.dedicatedServer)
             .then((response) => {
               let dedicatedServerInterfaceUpdate = service;
               dedicatedServerInterfaceUpdate.dedicatedServer = response.data;
@@ -360,20 +363,14 @@ export default class VrackMoveDialogCtrl {
             });
         }),
       )
-      .then((dedicatedServerInterface) => {
-        this.data.eligibleServices.dedicatedServerInterface = dedicatedServerInterface;
-
+      .then((dedicatedServerInterfaces) => {
         // We need to append dedicatedServerInterfaces list to dedicatedServers list.
-        if (this.data.eligibleServices?.dedicatedServerInterface.length > 0) {
-          const dedicatedServer = [];
-          angular.forEach(
-            this.data.eligibleServices.dedicatedServerInterface,
-            (serverInterface) => {
-              dedicatedServer.push(serverInterface);
-            },
-          );
+        if (dedicatedServerInterfaces.length > 0) {
+          this.data.eligibleServices.dedicatedServer = [];
           this.data.eligibleServices.dedicatedServerInterface = [];
-          this.data.eligibleServices.dedicatedServer = dedicatedServer;
+          this.data.eligibleServices.dedicatedServer = this.data.eligibleServices.dedicatedServer.concat(
+            dedicatedServerInterfaces,
+          );
         }
       });
   }
@@ -437,35 +434,107 @@ export default class VrackMoveDialogCtrl {
     this.data.eligibleServices.legacyVrack = legacyVrackUpdated;
   }
 
-  updateEligibleServices(result) {
+  updateEligibleServices(services) {
     SERVICES.forEach((service) => {
-      if (result[service]) {
+      if (services[service]) {
         switch (service) {
           case TYPE_SERVICE.cloudProject:
-            this.updateCloudProject(result.cloudProject);
+            // Update cloud project
+            if (
+              !this.data.eligibleServices?.cloudProject?.length !==
+              services.cloudProject.length
+            ) {
+              this.data.eligibleServices.cloudProject = services.cloudProject;
+
+              // Update cloud project data
+              this.updateCloudProjectServiceInfo();
+            }
             break;
           case TYPE_SERVICE.dedicatedCloud:
-            this.updateDedicatedCloud(result.dedicatedCloud);
+            // Update dedicated cloud
+            if (
+              !this.data.eligibleServices?.dedicatedCloud?.length !==
+              services.dedicatedCloud.length
+            ) {
+              this.data.eligibleServices.dedicatedCloud =
+                services.dedicatedCloud;
+
+              // Update dedicated cloud data
+              this.updateDedicatedCloudServiceInfo();
+            }
             break;
           case TYPE_SERVICE.dedicatedServer:
-            this.updateDedicatedServer(result.dedicatedServer);
+            // Update dedicated server
+            if (
+              !this.data.eligibleServices?.dedicatedServer?.length !==
+              services.dedicatedServer.length
+            ) {
+              this.data.eligibleServices.dedicatedServer =
+                services.dedicatedServer;
+
+              // Update dedicated server data
+              this.updateDedicatedServerServiceInfo();
+            }
             break;
           case TYPE_SERVICE.dedicatedServerInterface:
-            this.updateDedicatedServerInterface(
-              result.dedicatedServerInterface,
-            );
+            // Update dedicated server interface
+            if (
+              !this.data.eligibleServices?.dedicatedServerInterface?.length !==
+              services.dedicatedServerInterface.length
+            ) {
+              this.data.eligibleServices.dedicatedServerInterface =
+                services.dedicatedServerInterface;
+
+              // Update dedicated server interface
+              this.updateDedicatedServerInterfaceServiceInfo();
+            }
             break;
           case TYPE_SERVICE.ip:
-            this.updateIp(result.ip);
+            // Update ip
+            if (
+              !this.data.eligibleServices?.ip?.length !== services.ip.length
+            ) {
+              this.data.eligibleServices.ip = services.ip;
+
+              // Update IP service
+              this.updateIpServiceInfo();
+            }
             break;
           case TYPE_SERVICE.ipv6:
-            this.updateIpv6(result.ipv6);
+            // Update ipv6
+            if (
+              !this.data.eligibleServices?.ipv6?.length !== services.ipv6.length
+            ) {
+              this.data.eligibleServices.ipv6 = services.ipv6;
+
+              // Update IPv6
+              this.updateIpv6ServiceInfo();
+            }
             break;
           case TYPE_SERVICE.ipLoadbalancing:
-            this.updateIpLoadbalancing(result.ipLoadbalancing);
+            // Update load balancing
+            if (
+              !this.data.eligibleServices?.ipLoadbalancing?.length !==
+              services.ipLoadbalancing.length
+            ) {
+              this.data.eligibleServices.ipLoadbalancing =
+                services.ipLoadbalancing;
+
+              // Update IP Loadbalancing data
+              this.updateIpLoadbalancingServiceInfo();
+            }
             break;
           case TYPE_SERVICE.legacyVrack:
-            this.updateLegacyVrack(result.legacyVrack);
+            // Update legacy vRack
+            if (
+              !this.data.eligibleServices?.legacyVrack?.length !==
+              services.legacyVrack.length
+            ) {
+              this.data.eligibleServices.legacyVrack = services.legacyVrack;
+
+              // Update legacy vRack
+              this.updateLegacyVrackServiceInfo();
+            }
             break;
           default:
             this.updateOvhCloudConnect();
@@ -477,143 +546,11 @@ export default class VrackMoveDialogCtrl {
 
   updateIpAndIpv6() {
     if (this.data.eligibleServices?.ip?.length > 0) {
-      const ipv6List = this.data.eligibleServices.ip.filter((ip) =>
-        this.constructor.isIPv6(ip),
-      );
-      ipv6List.forEach((ipv6) => {
-        this.loadIpRegion(ipv6.id);
+      this.data.eligibleServices.ip.forEach((ip) => {
+        if (this.constructor.isIPv6(ip)) {
+          this.loadIpRegion(ip.id);
+        }
       });
-    }
-  }
-
-  updateCloudProject(cloudProject) {
-    if (cloudProject) {
-      // Update cloud project
-      if (
-        !this.data.eligibleServices?.cloudProject?.length !==
-        cloudProject.length
-      ) {
-        this.data.eligibleServices.cloudProject = cloudProject;
-
-        // Update cloud project data
-        this.updateCloudProjectServiceInfo();
-      }
-    } else if (this.data.eligibleServices?.cloudProject?.length > 0) {
-      this.updateCloudProjectServiceInfo();
-    }
-  }
-
-  updateDedicatedCloud(dedicatedCloud) {
-    if (dedicatedCloud) {
-      // Update dedicated cloud
-      if (
-        !this.data.eligibleServices?.dedicatedCloud?.length !==
-        dedicatedCloud.length
-      ) {
-        this.data.eligibleServices.dedicatedCloud = dedicatedCloud;
-
-        // Update dedicated cloud data
-        this.updateDedicatedCloudServiceInfo();
-      }
-    } else if (this.data.eligibleServices?.dedicatedCloud?.length > 0) {
-      this.updateDedicatedCloudServiceInfo();
-    }
-  }
-
-  updateDedicatedServer(dedicatedServer) {
-    if (dedicatedServer) {
-      // Update dedicated server
-      if (
-        !this.data.eligibleServices?.dedicatedServer?.length !==
-        dedicatedServer.length
-      ) {
-        this.data.eligibleServices.dedicatedServer = dedicatedServer;
-
-        // Update dedicated server data
-        this.updateDedicatedServerServiceInfo();
-      }
-    } else if (this.data.eligibleServices?.dedicatedServer?.length > 0) {
-      this.updateDedicatedServerServiceInfo();
-    }
-  }
-
-  updateDedicatedServerInterface(dedicatedServerInterface) {
-    if (dedicatedServerInterface) {
-      // Update dedicated server interface
-      if (
-        !this.data.eligibleServices?.dedicatedServerInterface?.length !==
-        dedicatedServerInterface.length
-      ) {
-        this.data.eligibleServices.dedicatedServerInterface = dedicatedServerInterface;
-
-        // Update dedicated server interface
-        this.updateDedicatedServerInterfaceServiceInfo();
-      }
-    } else if (
-      this.data.eligibleServices?.dedicatedServerInterface?.length > 0
-    ) {
-      this.updateDedicatedServerInterfaceServiceInfo();
-    }
-  }
-
-  updateIp(ip) {
-    if (ip) {
-      // Update ip
-      if (!this.data.eligibleServices?.ip?.length !== ip.length) {
-        this.data.eligibleServices.ip = ip;
-
-        // Update IP service
-        this.updateIpServiceInfo();
-      }
-    } else if (this.data.eligibleServices?.ip?.length > 0) {
-      this.updateIpServiceInfo();
-    }
-  }
-
-  updateIpv6(ipv6) {
-    if (ipv6) {
-      // Update ipv6
-      if (!this.data.eligibleServices?.ipv6?.length !== ipv6.length) {
-        this.data.eligibleServices.ipv6 = ipv6;
-
-        // Update IPv6
-        this.updateIpv6ServiceInfo();
-      }
-    } else if (this.data.eligibleServices?.ipv6?.length > 0) {
-      this.updateIpv6ServiceInfo();
-    }
-  }
-
-  updateLegacyVrack(legacyVrack) {
-    if (legacyVrack) {
-      // Update legacy vRack
-      if (
-        !this.data.eligibleServices?.legacyVrack?.length !== legacyVrack.length
-      ) {
-        this.data.eligibleServices.legacyVrack = legacyVrack;
-
-        // Update legacy vRack
-        this.updateLegacyVrackServiceInfo();
-      }
-    } else if (this.data.eligibleServices?.legacyVrack?.length > 0) {
-      this.updateLegacyVrackServiceInfo();
-    }
-  }
-
-  updateIpLoadbalancing(ipLoadbalancing) {
-    if (ipLoadbalancing) {
-      // Update load balancing
-      if (
-        !this.data.eligibleServices?.ipLoadbalancing?.length !==
-        ipLoadbalancing.length
-      ) {
-        this.data.eligibleServices.ipLoadbalancing = ipLoadbalancing;
-
-        // Update IP Loadbalancing data
-        this.updateIpLoadbalancingServiceInfo();
-      }
-    } else if (this.data.eligibleServices?.ipLoadbalancing?.length > 0) {
-      this.updateIpLoadbalancingServiceInfo();
     }
   }
 
@@ -634,28 +571,47 @@ export default class VrackMoveDialogCtrl {
             if (this.data.eligibleServices[service]) {
               switch (service) {
                 case TYPE_SERVICE.cloudProject:
-                  this.updateCloudProject();
+                  if (this.data.eligibleServices?.cloudProject?.length > 0) {
+                    this.updateCloudProjectServiceInfo();
+                  }
                   break;
                 case TYPE_SERVICE.dedicatedCloud:
-                  this.updateDedicatedCloud();
+                  if (this.data.eligibleServices?.dedicatedCloud?.length > 0) {
+                    this.updateDedicatedCloudServiceInfo();
+                  }
                   break;
                 case TYPE_SERVICE.dedicatedServer:
-                  this.updateDedicatedServer();
+                  if (this.data.eligibleServices?.dedicatedServer?.length > 0) {
+                    this.updateDedicatedServerServiceInfo();
+                  }
                   break;
                 case TYPE_SERVICE.dedicatedServerInterface:
-                  this.updateDedicatedServerInterface();
+                  if (
+                    this.data.eligibleServices?.dedicatedServerInterface
+                      ?.length > 0
+                  ) {
+                    this.updateDedicatedServerInterfaceServiceInfo();
+                  }
                   break;
                 case TYPE_SERVICE.ip:
-                  this.updateIp();
+                  if (this.data.eligibleServices?.ip?.length > 0) {
+                    this.updateIpServiceInfo();
+                  }
                   break;
                 case TYPE_SERVICE.ipv6:
-                  this.updateIpv6();
+                  if (this.data.eligibleServices?.ipv6?.length > 0) {
+                    this.updateIpv6ServiceInfo();
+                  }
                   break;
                 case TYPE_SERVICE.legacyVrack:
-                  this.updateLegacyVrack();
+                  if (this.data.eligibleServices?.legacyVrack?.length > 0) {
+                    this.updateLegacyVrackServiceInfo();
+                  }
                   break;
                 case TYPE_SERVICE.ipLoadbalancing:
-                  this.updateIpLoadbalancing();
+                  if (this.data.eligibleServices?.ipLoadbalancing?.length > 0) {
+                    this.updateIpLoadbalancingServiceInfo();
+                  }
                   break;
                 default:
                   this.updateOvhCloudConnect();
@@ -668,9 +624,9 @@ export default class VrackMoveDialogCtrl {
           this.updateEligibleServices(data.result);
         }
         if (data.status === API_STATUS.pending) {
-          this.$timeout(() => {
+          this.pollerEligible = this.$timeout(() => {
             this.getEligibleServices();
-          }, POLLING_INTERVAL);
+          }, ELIGIBLE_POLLING_INTERVAL);
         } else {
           // Update IP and IPv6
           this.updateIpAndIpv6();
@@ -1559,5 +1515,12 @@ export default class VrackMoveDialogCtrl {
         }
         this.changeOwnerUrl = VRACK_URLS.changeOwner[user.ovhSubsidiary];
       });
+  }
+
+  isServiceToDisplay(serviceType) {
+    return ![
+      this.TYPE_SERVICE.dedicatedServerInterface,
+      this.TYPE_SERVICE.ipv6,
+    ].includes(serviceType);
   }
 }

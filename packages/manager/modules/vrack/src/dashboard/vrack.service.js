@@ -30,12 +30,6 @@ export default class Vrack {
     return this.$http.get(`/dedicated/server/${serviceName}`);
   }
 
-  getDedicatedServerInterface(dedicatedServerInterface) {
-    return this.$http.get(
-      `/dedicated/server/${dedicatedServerInterface.dedicatedServer}`,
-    );
-  }
-
   getDedicatedCloud(serviceName) {
     return this.$http.get(`/dedicatedCloud/${serviceName}`);
   }

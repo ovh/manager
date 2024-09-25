@@ -12,7 +12,7 @@
         class="vrack__service-type"
         data-ng-init="$ctrl.setAccordionState('available', 'types', $index, true)"
         data-ng-repeat="(serviceType, services) in $ctrl.data.eligibleServices track by serviceType"
-        data-ng-if="$ctrl.constructor.hasServices(services) && !$ctrl.loaders.deleting && ![$ctrl.TYPE_SERVICE.dedicatedServerInterface, $ctrl.TYPE_SERVICE.ipv6].includes(serviceType)"
+        data-ng-if="$ctrl.constructor.hasServices(services) && !$ctrl.loaders.deleting && $ctrl.isServiceToDisplay(serviceType)"
         data-ng-class="{ 'vrack__service-type_expanded': $ctrl.getAccordionState('available', 'types', $index) }"
     >
         <span
@@ -45,7 +45,15 @@
                 data-ng-click="$ctrl.toggleAddService(service.trueServiceType, service.id, service.niceName)"
                 data-ng-class="{ vrack__service_selected: $ctrl.isSelected(service.trueServiceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
             >
-                <span data-ng-bind="service.niceName"></span>
+                <!-- For IP display, some IPs are replaced by IPv6 values -->
+                <span
+                    data-ng-bind="service.niceName"
+                    data-ng-if="serviceType === $ctrl.TYPE_SERVICE.ip"
+                ></span>
+                <span
+                    data-ng-bind="::service.niceName"
+                    data-ng-if="serviceType != $ctrl.TYPE_SERVICE.ip"
+                ></span>
                 <oui-spinner
                     data-size="s"
                     data-ng-if="$ctrl.isPending(service.id)"

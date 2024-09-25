@@ -40,6 +40,7 @@ export const FEATURE_NAMES = {
 };
 
 export const POLLING_INTERVAL = 500;
+export const ELIGIBLE_POLLING_INTERVAL = 1000;
 
 export const STATUS = {
   ok: 'ok',
@@ -98,4 +99,5 @@ export default {
   VRACK_URLS,
   VRACK_DASHBOARD_TRACKING_PREFIX,
   VRACK_ACTIONS_SUFFIX,
+  ELIGIBLE_POLLING_INTERVAL,
 };
