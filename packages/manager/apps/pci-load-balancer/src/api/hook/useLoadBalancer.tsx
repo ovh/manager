@@ -1,14 +1,21 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { paginateResults, sortResults } from '@/helpers';
 import {
+  deleteLoadBalancer,
   getLoadBalancer,
   getLoadBalancerFlavor,
   getLoadBalancers,
   TLoadBalancer,
 } from '../data/load-balancer';
+import queryClient from '@/queryClient';
+
+export const getAllLoadBalancersQueryKey = (projectId: string) => [
+  'load-balancers',
+  projectId,
+];
 
 export const useAllLoadBalancers = (projectId: string) =>
   useQuery({
@@ -82,3 +89,31 @@ export const useLoadBalancerFlavor = ({
     enabled: !!flavorId,
     throwOnError: true,
   });
+
+type DeleteLoadBalancerProps = {
+  projectId: string;
+  loadBalancer: TLoadBalancer;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+export const useDeleteLoadBalancer = ({
+  projectId,
+  loadBalancer,
+  onError,
+  onSuccess,
+}: DeleteLoadBalancerProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => deleteLoadBalancer(projectId, loadBalancer),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getAllLoadBalancersQueryKey(projectId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    deleteLoadBalancer: () => mutation.mutate(),
+    ...mutation,
+  };
+};
