@@ -4,10 +4,12 @@ import {
   OsdsTile,
   OsdsLink,
   OsdsIcon,
+  OsdsChip,
 } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
+  ODS_CHIP_SIZE,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_TEXT_LEVEL,
@@ -83,17 +85,27 @@ export function UpdatePolicySelector({
             onClick={() => setPolicy(policy)}
           >
             <div slot="end" className="align-bottom inline-block">
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.text}
-                size={ODS_TEXT_SIZE._600}
-                className={`block ${
-                  selectPolicy === policy ? 'font-bold' : 'font-normal'
-                }`}
-              >
-                {t(`kube_service_upgrade_policy_${policy}`, {
-                  ns: 'service',
-                })}
-              </OsdsText>
+              <div className="flex gap-x-4 gap-y-2 flex-wrap">
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  size={ODS_TEXT_SIZE._600}
+                  className={`block ${
+                    selectPolicy === policy ? 'font-bold' : 'font-normal'
+                  }`}
+                >
+                  {t(`service:kube_service_upgrade_policy_${policy}`)}
+                  {/**  add chip if update policy  equal last version */}
+                </OsdsText>
+                {policy === UpdatePolicy.AlwaysUpdate && (
+                  <OsdsChip
+                    color={ODS_THEME_COLOR_INTENT.success}
+                    size={ODS_CHIP_SIZE.sm}
+                  >
+                    {t('versions:pci_project_versions_recommended_version')}
+                  </OsdsChip>
+                )}
+              </div>
+
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
                 size={ODS_TEXT_SIZE._400}
