@@ -3,11 +3,14 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { describe, expect, it } from 'vitest';
 import ProvisioningStatusComponent from './ProvisioningStatus.component';
 import { wrapper } from '@/wrapperRenders';
+import { LoadBalancerProvisioningStatusEnum } from '@/api/data/load-balancer';
 
 describe('ProvisioningStatusComponent', () => {
   it('renders with success color for default status', () => {
     const { getByTestId } = render(
-      <ProvisioningStatusComponent provisioningStatus="active" />,
+      <ProvisioningStatusComponent
+        status={LoadBalancerProvisioningStatusEnum.ACTIVE}
+      />,
       {
         wrapper,
       },
@@ -21,7 +24,9 @@ describe('ProvisioningStatusComponent', () => {
 
   it('renders with warning color for creating status', () => {
     const { getByTestId } = render(
-      <ProvisioningStatusComponent provisioningStatus="creating" />,
+      <ProvisioningStatusComponent
+        status={LoadBalancerProvisioningStatusEnum.CREATING}
+      />,
       {
         wrapper,
       },
@@ -35,7 +40,9 @@ describe('ProvisioningStatusComponent', () => {
 
   it('renders with warning color for deleting status', () => {
     const { getByTestId } = render(
-      <ProvisioningStatusComponent provisioningStatus="deleting" />,
+      <ProvisioningStatusComponent
+        status={LoadBalancerProvisioningStatusEnum.DELETING}
+      />,
     );
     const chip = getByTestId('ProvisioningStatus_chip');
     expect(chip).toHaveAttribute('color', ODS_THEME_COLOR_INTENT.warning);
@@ -46,7 +53,9 @@ describe('ProvisioningStatusComponent', () => {
 
   it('renders with warning color for updating status', () => {
     const { getByTestId } = render(
-      <ProvisioningStatusComponent provisioningStatus="updating" />,
+      <ProvisioningStatusComponent
+        status={LoadBalancerProvisioningStatusEnum.UPDATING}
+      />,
     );
     const chip = getByTestId('ProvisioningStatus_chip');
     expect(chip).toHaveAttribute('color', ODS_THEME_COLOR_INTENT.warning);
@@ -57,7 +66,9 @@ describe('ProvisioningStatusComponent', () => {
 
   it('renders with error color for error status', () => {
     const { getByTestId } = render(
-      <ProvisioningStatusComponent provisioningStatus="error" />,
+      <ProvisioningStatusComponent
+        status={LoadBalancerProvisioningStatusEnum.ERROR}
+      />,
     );
     const chip = getByTestId('ProvisioningStatus_chip');
     expect(chip).toHaveAttribute('color', ODS_THEME_COLOR_INTENT.error);
