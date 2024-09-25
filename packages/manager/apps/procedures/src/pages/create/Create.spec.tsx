@@ -29,8 +29,10 @@ vi.mock('@/context/User/useUser', () => ({
 describe('Create.page', () => {
   it.each([
     ['FR', 'anything', LegalPolicyLinkByLanguage.FR],
-    ['CA', 'en_CA', LegalPolicyLinkByLanguage.CA.en_CA],
-    ['CA', 'fr_CA', LegalPolicyLinkByLanguage.CA.fr_CA],
+    ['CA', 'en_CA', LegalPolicyLinkByLanguage.CA.en],
+    ['CA', 'fr_CA', LegalPolicyLinkByLanguage.CA.fr],
+    ['CA', 'fr_FR', LegalPolicyLinkByLanguage.CA.fr],
+    ['CA', 'en_IN', LegalPolicyLinkByLanguage.CA.en],
     ['unknown', 'anything', LegalPolicyLinkByLanguage.DEFAULT],
   ])(
     'should have the correct link for %s user speaking %s',

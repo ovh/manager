@@ -18,11 +18,12 @@ export const LegalInformations: FunctionComponent = () => {
   const {
     user: { subsidiary },
   } = useUser();
+  const [baseLocale] = language.split('_');
 
   const legalPolicyLink: string =
     subsidiary === 'CA'
-      ? LegalPolicyLinkByLanguage.CA[language as keyof CanadianPolicyLinks] ||
-        LegalPolicyLinkByLanguage.CA.en_CA
+      ? LegalPolicyLinkByLanguage.CA[baseLocale as keyof CanadianPolicyLinks] ||
+        LegalPolicyLinkByLanguage.CA.en
       : LegalPolicyLinkByLanguage[subsidiary] ||
         LegalPolicyLinkByLanguage.DEFAULT;
   return (
