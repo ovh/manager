@@ -28,6 +28,10 @@
   "region_SYD_micro": "Sydney ({{ micro }})",
   "region_US": "États-Unis",
   "region_US_micro": "États-Unis ({{ micro }})",
+  "region_US-EAST-VA": "Virginie",
+  "region_US-EAST-VA_micro": "Virginie ({{ micro }})",
+  "region_US-WEST-OR": "Oregon",
+  "region_US-WEST-OR_micro": "Oregon ({{ micro }})",
   "region_GS": "GS",
   "region_MAD": "Madrid",
   "region_BRU": "Bruxelles",
@@ -66,6 +70,8 @@
   "region_continent_MUM": "Asie Pacifique",
   "region_continent_SYD": "Océanie",
   "region_continent_US": "États-Unis",
+  "region_continent_US-EAST-VA": "Amérique du Nord",
+  "region_continent_US-WEST-OR": "Amérique du Nord",
   "region_continent_SHA": "Europe de l'Ouest",
   "region_continent_all": "Toutes les localisations"
 }
