@@ -3,19 +3,5 @@
   "managed_vcd_vdc_compute_billing": "Facturation",
   "managed_vcd_vdc_compute_billing_MONTHLY": "Au mois",
   "managed_vcd_vdc_compute_id": "ID",
-  "managed_vcd_vdc_compute_order_cta": "Commander un vHost",
-  "managed_vcd_vdc_compute_order_title": "Commander un Virtual Host",
-  "managed_vcd_vdc_compute_order_subtitle": "Vous pouvez personnaliser votre Virtual Datacenter en ajoutant des Virtual Hosts. Vous serez ensuite redirigé vers un nouvel onglet pour finaliser votre commande. Sélectionner un type de Virtual Host.",
-  "managed_vcd_vdc_compute_order_vhost_unavailable": "Veuillez contacter le support OVHcloud",
-  "managed_vcd_vdc_compute_order_vhost": "vHost",
-  "managed_vcd_vdc_compute_order_cpu_speed": "CPU (GHz)",
-  "managed_vcd_vdc_compute_order_ram": "RAM",
-  "managed_vcd_vdc_compute_order_ram_value": "{{ram}} GB",
-  "managed_vcd_vdc_compute_order_vcpu_count": "Nombre de vCPU",
-  "managed_vcd_vdc_compute_order_price": "Prix",
-  "managed_vcd_vdc_compute_order_price_detail": "Location pour 1 mois",
-  "managed_vcd_vdc_compute_order_quantity_title": "Choisir une quantité",
-  "managed_vcd_vdc_compute_order_quantity_label": "Quantité",
-  "managed_vcd_vdc_compute_order_cancel_cta": "Annuler",
-  "managed_vcd_vdc_compute_order_confirm_cta": "Commander"
+  "managed_vcd_vdc_compute_order_cta": "Commander un Virtual Host"
 }

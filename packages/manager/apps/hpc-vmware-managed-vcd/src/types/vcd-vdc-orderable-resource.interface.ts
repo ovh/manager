@@ -11,8 +11,16 @@ export interface IVdcOrderableVhostPriced extends IVdcOrderableVHost {
 }
 
 export type IVdcOrderableStorage = Omit<IVcdStorageState, 'billingType'>;
+export interface IVdcOrderableStoragePriced extends IVdcOrderableStorage {
+  prices: IVcdCatalogProductPricing[];
+}
 
-export interface IVdcOrderableResource {
+export type IVdcOrderableResource = IVdcOrderableVHost | IVdcOrderableStorage;
+export type IVdcOrderableResourcePriced =
+  | IVdcOrderableVhostPriced
+  | IVdcOrderableStoragePriced;
+
+export interface IVdcOrderableResourceData {
   compute: IVdcOrderableVHost[];
   storage: IVdcOrderableStorage[];
 }

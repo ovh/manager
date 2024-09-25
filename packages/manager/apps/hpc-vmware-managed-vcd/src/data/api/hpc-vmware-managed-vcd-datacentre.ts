@@ -3,7 +3,7 @@ import IVcdDatacentre, {
   IVcdDatacentreState,
 } from '@/types/vcd-datacenter.interface';
 import { VCD_ORGANIZATION_ROUTE } from './hpc-vmware-managed-vcd.constants';
-import { IVdcOrderableResource } from '@/types/vcd-vdc-orderable-resource.interface';
+import { IVdcOrderableResourceData } from '@/types/vcd-vdc-orderable-resource.interface';
 
 export type UpdateVdcDetailsParams = {
   id: string;
@@ -54,5 +54,5 @@ export const updateVdcDetails = async ({
 export const getVdcOrderableResource = async (
   id: string,
   vdcId: string,
-): Promise<ApiResponse<IVdcOrderableResource>> =>
+): Promise<ApiResponse<IVdcOrderableResourceData>> =>
   apiClient.v2.get(getVdcOrderableResourceRoute(id, vdcId));

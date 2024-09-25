@@ -162,6 +162,21 @@ export const Routes: any = [
             },
           },
           {
+            id: 'vDcStorage-order',
+            path: urls.datacentreStorageOrder,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/dashboard/datacentre/storage-order/DatacentreStorageOrder.page'
+              ),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'storage-order',
+                pageType: PageType.funnel,
+              },
+            },
+          },
+          {
             id: 'vDcCompute',
             path: urls.datacentreCompute,
             ...lazyRouteConfig(() =>
