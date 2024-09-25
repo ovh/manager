@@ -33,7 +33,7 @@ export function VersionAndUpdatePolicyStep({
             versionSelected={version}
             onSelectVersion={setVersion}
           />
-          <UpdatePolicySelector policy={policy} setPolicy={setPolicy} />
+          <UpdatePolicySelector policy={policy} onPolicyChange={setPolicy} />
         </>
       )}
       {step.isLocked && version && (

@@ -30,7 +30,7 @@ describe('UpgradePolicyTileSelector', () => {
     const { container } = render(
       <ShellContext.Provider value={mockShellContextValue}>
         <UpdatePolicySelector
-          setPolicy={setPolicyMock}
+          onPolicyChange={setPolicyMock}
           policy={UpdatePolicy.AlwaysUpdate}
         />
       </ShellContext.Provider>,
@@ -43,7 +43,7 @@ describe('UpgradePolicyTileSelector', () => {
     const { getAllByRole } = render(
       <ShellContext.Provider value={mockShellContextValue}>
         <UpdatePolicySelector
-          setPolicy={setPolicyMock}
+          onPolicyChange={setPolicyMock}
           policy={UpdatePolicy.AlwaysUpdate}
         />
       </ShellContext.Provider>,
@@ -57,7 +57,7 @@ describe('UpgradePolicyTileSelector', () => {
     const { getByTestId } = render(
       <ShellContext.Provider value={mockShellContextValue}>
         <UpdatePolicySelector
-          setPolicy={setPolicyMock}
+          onPolicyChange={setPolicyMock}
           policy={UpdatePolicy.AlwaysUpdate}
         />
       </ShellContext.Provider>,
@@ -75,7 +75,7 @@ describe('UpgradePolicyTileSelector', () => {
     const { getByTestId } = render(
       <ShellContext.Provider value={mockShellContextValue}>
         <UpdatePolicySelector
-          setPolicy={setPolicyMock}
+          onPolicyChange={setPolicyMock}
           policy={UpdatePolicy.AlwaysUpdate}
         />
       </ShellContext.Provider>,

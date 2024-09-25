@@ -4,7 +4,7 @@ import {
   QueryObserverBaseResult,
   QueryObserverSuccessResult,
 } from '@tanstack/react-query';
-import { describe, it, vi, expect, beforeEach } from 'vitest';
+import { describe, it, vi, expect, beforeEach, Mock } from 'vitest';
 import { useEffect, useState } from 'react';
 import {
   OdsSelectValueChangeEventDetail,
@@ -34,7 +34,7 @@ vi.mock('@/api/hooks/useCloud', () => ({
   useGetCloudSchema: vi.fn(),
 }));
 
-const mockUseGetCloudSchema = useGetCloudSchema as any;
+const mockUseGetCloudSchema = (useGetCloudSchema as unknown) as Mock;
 
 const initQuery = {
   data: {
@@ -68,7 +68,7 @@ describe('VersionSelector', () => {
     //
   });
   it('renders without errors and selects last version by default', async () => {
-    const { getByText } = render(<TestComponent />);
+    render(<TestComponent />);
     expect(screen.getByTestId('version-selector-select')).toBeInTheDocument();
     const select = screen.getByTestId('version-selector-select');
     expect(select).toHaveValue('v1.23.0');

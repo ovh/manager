@@ -25,7 +25,7 @@ import { DOCUMENTATION_LINK } from '@/pages/upgrade-policy/UpgradePolicy.constan
 import { UpdatePolicy } from '@/types';
 
 interface UpdateSelectorProps {
-  setPolicy: (policy: UpdatePolicy) => void;
+  onPolicyChange: (policy: UpdatePolicy) => void;
   policy: UpdatePolicy;
 }
 export const tileClass =
@@ -35,7 +35,7 @@ export const selectedTileClass =
   'font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600]';
 
 export function UpdatePolicySelector({
-  setPolicy,
+  onPolicyChange,
   policy: selectPolicy,
 }: Readonly<UpdateSelectorProps>) {
   const { t } = useTranslation(['add', 'service']);
@@ -82,7 +82,7 @@ export function UpdatePolicySelector({
               tileClass,
               policy === selectPolicy ? selectedTileClass : null,
             )}
-            onClick={() => setPolicy(policy)}
+            onClick={() => onPolicyChange(policy)}
           >
             <div slot="end" className="align-bottom inline-block">
               <div className="flex gap-x-4 gap-y-2 flex-wrap">
