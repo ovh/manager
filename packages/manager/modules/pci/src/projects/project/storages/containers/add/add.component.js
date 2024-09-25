@@ -21,5 +21,6 @@ export default {
     encryptionAvailable: '<',
     encryptionAlgorithms: '<',
     trackEncryptionAction: '<',
+    catalog: '<',
   },
 };

@@ -3,7 +3,7 @@ export const OBJECT_CONTAINER_OFFER_STORAGE_STANDARD = 'storage-s3-standard';
 export const OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE = 'storage-s3-high-perf';
 export const OBJECT_CONTAINER_S3_STATIC_URL_INFO = 'Virtual Hosted-Style :';
 
-export const OBJECT_CONTAINER_MODE_MULTI_ZONES = 'region-multizones';
+export const OBJECT_CONTAINER_MODE_MULTI_ZONES = 'region-3-az';
 export const OBJECT_CONTAINER_MODE_MONO_ZONE = 'region';
 export const OBJECT_CONTAINER_OFFERS_TYPES = {
   SWIFT: 'swift',
@@ -53,7 +53,7 @@ export const OBJECT_CONTAINER_DEPLOIMENT_MODES = [
 ];
 
 export const OBJECT_CONTAINER_DEPLOIMENT_MODE_TYPES = {
-  MULTI_ZONES: 'region-multizones',
+  MULTI_ZONES: 'region-3-az',
   MONO_ZONE: 'region',
 };
 

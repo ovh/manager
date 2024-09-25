@@ -49,6 +49,7 @@ export default class PciStoragesContainersAddController {
     this.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS = OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS;
     this.OBJECT_CONTAINER_DEPLOIMENT_MODES = OBJECT_CONTAINER_DEPLOIMENT_MODES;
     this.OBJECT_CONTAINER_OFFER_SWIFT = OBJECT_CONTAINER_OFFER_SWIFT;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -90,6 +91,17 @@ export default class PciStoragesContainersAddController {
     };
     if (!this.archive) this.setUsersForContainerCreation();
     this.preselectStepItem();
+    this.PriceFormatter = new Intl.NumberFormat(
+      this.coreConfig.getUserLocale().replace('_', '-'),
+      {
+        style: 'currency',
+        currency: this.coreConfig.getUser().currency.code,
+        maximumFractionDigits: 2,
+      },
+    );
+
+    console.log('herre', this.catalog);
+    this.setOffersPrices();
   }
 
   /**
@@ -120,8 +132,31 @@ export default class PciStoragesContainersAddController {
   setUsersForContainerCreation() {
     this.users = this.allUserList.filter((user) => user.status === 'ok');
   }
-  // setOffersPrices() {
-  //   OBJECT_CONTAINER_OFFERS_LABELS[offerName]
+
+  calculatePrice(planCode) {
+    const hourlyPrice = this.catalog.addons
+      .filter((addon) => addon.planCode === planCode)
+      .map((addon) => addon.pricings[0].price)[0];
+
+    return hourlyPrice * 720 * 1024 * 0.00000001;
+  }
+
+  setOffersPrices() {
+    this.OBJECT_CONTAINER_OFFERS_LABELS[
+      OBJECT_CONTAINER_OFFER_STORAGE_STANDARD
+    ].price = this.PriceFormatter.format(
+      this.calculatePrice('storage-standard.consumption'),
+    );
+
+    this.OBJECT_CONTAINER_OFFERS_LABELS[
+      OBJECT_CONTAINER_OFFER_SWIFT
+    ].price = this.PriceFormatter.format(
+      this.calculatePrice('storage.consumption'),
+    );
+  }
+
+  // setDeploimentModePrices() {
+  //   console.log('catalog', this.catalog);
   // }
 
   isRightOffer() {

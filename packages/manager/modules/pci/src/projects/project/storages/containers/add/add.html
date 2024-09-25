@@ -129,8 +129,8 @@
                         ></span>
                         <span
                             class="oui-badge oui-badge_best-seller"
-                            data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].recommanded"
-                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_recommanded') | translate"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[$ctrl.container.offer].recommanded"
+                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_recommanded') | translate"
                         ></span>
                     </oui-select-picker-label>
                     <oui-select-picker-section>
@@ -141,7 +141,7 @@
 
                         <p
                             data-translate="pci_projects_project_storages_containers_add_offers_estimated_price"
-                            data-translate-values="{price: $ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].price || '?'}"
+                            data-translate-values="{price: $ctrl.OBJECT_CONTAINER_OFFERS_LABELS[$ctrl.container.offer].price || '?'}"
                         ></p>
                     </oui-select-picker-section>
                 </oui-select-picker>

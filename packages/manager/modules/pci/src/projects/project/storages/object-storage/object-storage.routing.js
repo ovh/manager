@@ -56,6 +56,17 @@ export default /* @ngInject */ ($stateProvider) => {
           }, {});
         }),
 
+      catalog: /* @ngInject */ ($http, coreConfig) => {
+        return $http
+          .get('/order/catalog/public/cloud', {
+            params: {
+              productName: 'cloud',
+              ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
+            },
+          })
+          .then(({ data: catalog }) => catalog);
+      },
+
       containersLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.storages.object-storage.objects', {
           projectId,
