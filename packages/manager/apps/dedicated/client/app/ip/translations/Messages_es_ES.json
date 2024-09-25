@@ -769,5 +769,6 @@
   "ip_table_manage_subnets": "Gestionar subredes IPv6 en el vRack",
   "ip_table_header_region": "Región",
   "ip_byoip_delete_block_title": "Eliminar el bloque",
-  "ip_byoip_delete_block_description": "Este bloque de IP forma parte de un bloque BYOIP más grande. Por favor, acceda a <a href='{{ link }}'>Mis servicios</a> para cancelar su servicio BYOIP."
+  "ip_byoip_delete_block_description": "Este bloque de IP forma parte de un bloque BYOIP más grande. Por favor, acceda a <a href='{{ link }}'>Mis servicios</a> para cancelar su servicio BYOIP.",
+  "ip_table_manage_modify_ipv6block_reverse": "Cambiar el registro inverso"
 }
