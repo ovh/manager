@@ -5,7 +5,7 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import {
-  UpdatePolicyTileSelector,
+  UpdatePolicySelector,
   selectedTileClass,
 } from './UpdatePolicySelector.component';
 
@@ -29,7 +29,7 @@ describe('UpgradePolicyTileSelector', () => {
   it('renders correctly ', () => {
     const { container } = render(
       <ShellContext.Provider value={mockShellContextValue}>
-        <UpdatePolicyTileSelector
+        <UpdatePolicySelector
           setPolicy={setPolicyMock}
           policy={UpdatePolicy.AlwaysUpdate}
         />
@@ -42,7 +42,7 @@ describe('UpgradePolicyTileSelector', () => {
   it('displays the correct number of policy tiles', () => {
     const { getAllByRole } = render(
       <ShellContext.Provider value={mockShellContextValue}>
-        <UpdatePolicyTileSelector
+        <UpdatePolicySelector
           setPolicy={setPolicyMock}
           policy={UpdatePolicy.AlwaysUpdate}
         />
@@ -56,7 +56,7 @@ describe('UpgradePolicyTileSelector', () => {
   it('calls setPolicy with the correct argument when a tile is clicked', async () => {
     const { getByTestId } = render(
       <ShellContext.Provider value={mockShellContextValue}>
-        <UpdatePolicyTileSelector
+        <UpdatePolicySelector
           setPolicy={setPolicyMock}
           policy={UpdatePolicy.AlwaysUpdate}
         />
@@ -74,7 +74,7 @@ describe('UpgradePolicyTileSelector', () => {
   it('applies the correct class to the selected tile', () => {
     const { getByTestId } = render(
       <ShellContext.Provider value={mockShellContextValue}>
-        <UpdatePolicyTileSelector
+        <UpdatePolicySelector
           setPolicy={setPolicyMock}
           policy={UpdatePolicy.AlwaysUpdate}
         />
