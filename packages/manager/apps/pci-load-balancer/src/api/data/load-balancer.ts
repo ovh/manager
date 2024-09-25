@@ -77,3 +77,13 @@ export const getLoadBalancerFlavor = async (
 
   return data;
 };
+
+export const deleteLoadBalancer = async (
+  projectId: string,
+  loadBalancer: TLoadBalancer,
+): Promise<void> => {
+  const { data } = await v6.delete(
+    `/cloud/project/${projectId}/region/${loadBalancer.region}/loadbalancing/loadbalancer/${loadBalancer.id}`,
+  );
+  return data;
+};
