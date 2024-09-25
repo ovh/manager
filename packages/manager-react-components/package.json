@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "version": "1.38.0",
+  "version": "2.0.0",
   "main": "src/lib.ts",
   "repository": {
     "type": "git",
@@ -47,7 +47,6 @@
   "devDependencies": {
     "@babel/core": "7.22.10",
     "@mdx-js/react": "^3.0.1",
-    "@ovh-ux/manager-tailwind-config": "^0.2.0",
     "@ovh-ux/manager-vite-config": "^0.8.0",
     "@storybook/addon-a11y": "8.0.4",
     "@storybook/test": "8.0.4",

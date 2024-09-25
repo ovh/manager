@@ -47,7 +47,7 @@ export const Card: React.FC<CardProps> = ({
 
   return (
     <a
-      target={'_blank'}
+      target="_blank"
       href={href}
       className="no-underline"
       onClick={onClick}
