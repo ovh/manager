@@ -111,7 +111,12 @@ export default function OrganizationGenerationInformationTile({
         {
           id: 'apiUrl',
           label: t('managed_vcd_dashboard_api_url'),
-          value: <Clipboard value={vcdOrganization.currentState?.apiUrl} />,
+          value: (
+            <Clipboard
+              value={vcdOrganization.currentState?.apiUrl}
+              data-testid="clipboard-vdc-apiUrl"
+            />
+          ),
         },
       ]}
     />

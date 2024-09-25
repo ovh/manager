@@ -116,12 +116,22 @@ export default function DatacentreGenerationInformationTile({
         {
           id: 'apiUrl',
           label: t('managed_vcd_dashboard_api_url'),
-          value: <Clipboard value={vcdOrganization?.currentState?.apiUrl} />,
+          value: (
+            <Clipboard
+              value={vcdOrganization?.currentState?.apiUrl}
+              data-testid="clipboard-vdc-apiUrl"
+            />
+          ),
         },
         {
           id: 'vdcId',
           label: tVdc('managed_vcd_vdc_id'),
-          value: <Clipboard value={vcdDatacentre?.id} />,
+          value: (
+            <Clipboard
+              value={vcdDatacentre?.id}
+              data-testid="clipboard-vdc-Id"
+            />
+          ),
         },
       ]}
     />
