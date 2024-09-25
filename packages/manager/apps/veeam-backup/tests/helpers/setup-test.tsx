@@ -20,7 +20,7 @@ import {
   GetOrganizationMocksParams,
   GetVeeamBackupMocksParams,
   getIamMocks,
-} from '../mocks';
+} from '../../mocks';
 import { productFullName } from '../../src/veeam-backup.config';
 import { initTestI18n } from './test-i18n';
 import { TestApp } from './TestApp';

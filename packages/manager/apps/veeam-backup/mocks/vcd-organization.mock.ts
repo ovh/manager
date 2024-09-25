@@ -1,5 +1,5 @@
 import { PathParams } from 'msw';
-import { Handler } from '../../../../../../playwright-helpers';
+import { Handler } from '../../../../../playwright-helpers';
 import organizationList from './vcd-organization.json';
 
 export type GetOrganizationMocksParams = {
@@ -20,7 +20,7 @@ export const getOrganizationMocks = ({
   return [
     {
       url: '/vmwareCloudDirector/organization/:id',
-      response: (_, params: PathParams) => findOrganiationById(params),
+      response: (_: unknown, params: PathParams) => findOrganiationById(params),
       api: 'v2',
     },
     {

@@ -90,7 +90,7 @@ describe('order', () => {
     await waitFor(
       () =>
         expect(
-          screen.getByText(labels.orderVeeam.no_organization_message),
+          screen.getByText(labels.common.no_organization_message),
         ).toBeInTheDocument(),
       { timeout: 30000 },
     );

@@ -22,16 +22,16 @@ import { urls } from '@/routes/routes.constant';
 import {
   BackupStatus,
   VCDOrganizationWithBackupStatus,
-  useOrganizationList,
+  useOrganizationWithBackupStatusList,
 } from '@/data';
 import { Loading } from '@/components/Loading/Loading';
-import { VCDOrgInfoLink } from '@/components/Links/VCDOrgInfoLink.component';
 import {
   BackupStatusCell,
   DescriptionCell,
   NameCell,
   RegionCell,
 } from './VCDOrganiationDatagridCell.component';
+import { NoOrganizationMessage } from '@/components/NoOrganizationMessage/NoOrganizationMessage.component';
 
 const getExpressOrderLink = (orgId: string) => `${orgId}`;
 
@@ -47,7 +47,7 @@ export const OrderVeeamStep2: React.FC = () => {
     isError,
     isLoading,
     error,
-  } = useOrganizationList({ pageSize: 10 });
+  } = useOrganizationWithBackupStatusList({ pageSize: 10 });
 
   const columns: DatagridColumn<VCDOrganizationWithBackupStatus>[] = [
     {
@@ -96,11 +96,8 @@ export const OrderVeeamStep2: React.FC = () => {
     <>
       <Title className="block mb-9">{t('choose_org_title')}</Title>
       {isLoading && <Loading className="mb-5" />}
-      {!isLoading && data?.pages[0].data.length === 0 && (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.warning}>
-          {t('no_organization_message')}
-          <VCDOrgInfoLink label={t('no_organization_link')} />
-        </OsdsMessage>
+      {!isLoading && !isError && (
+        <NoOrganizationMessage organizationList={data?.pages[0].data} />
       )}
       {isError && (
         <OsdsMessage className="mb-9" type={ODS_MESSAGE_TYPE.error}>
