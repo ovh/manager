@@ -32,17 +32,12 @@ export const tileClass =
 export const selectedTileClass =
   'font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600]';
 
-export function UpdatePolicyTileSelector({
+export function UpdatePolicySelector({
   setPolicy,
   policy: selectPolicy,
 }: Readonly<UpdateSelectorProps>) {
   const { t } = useTranslation(['add', 'service']);
   const shell = useContext(ShellContext);
-  const select = (pol: UpdatePolicy) => {
-    if (pol) {
-      setPolicy(pol);
-    }
-  };
 
   return (
     <>
@@ -52,17 +47,19 @@ export function UpdatePolicyTileSelector({
           level={ODS_TEXT_LEVEL.subheading}
           slot="label"
         >
-          {t('kubernetes_add_update_policy_title')}
+          {t('kubernetes_add_update_policy_title', { ns: 'add' })}
         </OsdsText>
       </OsdsFormField>
       <div className="my-4">
-        <OsdsText>{t('kube_update_policy_picker_documentation_text')}</OsdsText>{' '}
+        <OsdsText>
+          {t('kube_update_policy_picker_documentation_text', { ns: 'add' })}
+        </OsdsText>
         <OsdsLink
           color={ODS_THEME_COLOR_INTENT.primary}
           href={DOCUMENTATION_LINK[shell.environment.getUser().ovhSubsidiary]}
           target={OdsHTMLAnchorElementTarget._blank}
         >
-          {t('kube_update_policy_picker_documentation_link')}
+          {t('kube_update_policy_picker_documentation_link', { ns: 'add' })}
           <OsdsIcon
             className="ml-3"
             slot="end"
@@ -83,7 +80,7 @@ export function UpdatePolicyTileSelector({
               tileClass,
               policy === selectPolicy ? selectedTileClass : null,
             )}
-            onClick={() => select(policy)}
+            onClick={() => setPolicy(policy)}
           >
             <div slot="end" className="align-bottom inline-block">
               <OsdsText
@@ -93,14 +90,18 @@ export function UpdatePolicyTileSelector({
                   selectPolicy === policy ? 'font-bold' : 'font-normal'
                 }`}
               >
-                {t(`service:kube_service_upgrade_policy_${policy}`)}
+                {t(`kube_service_upgrade_policy_${policy}`, {
+                  ns: 'service',
+                })}
               </OsdsText>
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
                 size={ODS_TEXT_SIZE._400}
                 className="mt-2 block"
               >
-                {t(`service:kube_service_upgrade_policy_description_${policy}`)}
+                {t(`kube_service_upgrade_policy_description_${policy}`, {
+                  ns: 'service',
+                })}
               </OsdsText>
             </div>
           </OsdsTile>
