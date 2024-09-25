@@ -9,7 +9,7 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepState } from '../useStep';
 import { VersionSelector } from '@/components/VersionSelector.component';
-import { UpdatePolicyTileSelector } from './UpdatePolicySelector.component';
+import { UpdatePolicySelector } from './UpdatePolicySelector.component';
 import { UpdatePolicy } from '@/types';
 
 export interface VersionStepProps {
@@ -21,8 +21,7 @@ export function VersionAndUpdatePolicyStep({
   onSubmit,
   step,
 }: Readonly<VersionStepProps>) {
-  const { t: tStepper } = useTranslation('stepper');
-  const { t: tVersion } = useTranslation('versions');
+  const { t } = useTranslation(['stepper', 'versions', 'service']);
   const [version, setVersion] = useState<string | null>(null);
   const [policy, setPolicy] = useState(UpdatePolicy.AlwaysUpdate);
   return (
@@ -31,11 +30,11 @@ export function VersionAndUpdatePolicyStep({
         <>
           <VersionSelector onSelectVersion={setVersion} />
           {version && (
-            <UpdatePolicyTileSelector policy={policy} setPolicy={setPolicy} />
+            <UpdatePolicySelector policy={policy} setPolicy={setPolicy} />
           )}
         </>
       )}
-      {step.isLocked && version && policy && (
+      {step.isLocked && version && (
         <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
           <OsdsTile color={ODS_THEME_COLOR_INTENT.primary} inline>
             <OsdsText
@@ -44,7 +43,10 @@ export function VersionAndUpdatePolicyStep({
               size={ODS_TEXT_SIZE._200}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {tVersion('pci_project_versions_list_version', { version })}
+              {t('pci_project_versions_list_version', {
+                version,
+                ns: 'versions',
+              })}
             </OsdsText>
           </OsdsTile>
           <OsdsTile color={ODS_THEME_COLOR_INTENT.primary} inline>
@@ -54,7 +56,9 @@ export function VersionAndUpdatePolicyStep({
               size={ODS_TEXT_SIZE._200}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {tVersion(`service:kube_service_upgrade_policy_${policy}`)}
+              {t(`kube_service_upgrade_policy_${policy}`, {
+                ns: 'service',
+              })}
             </OsdsText>
           </OsdsTile>
         </div>
@@ -64,10 +68,10 @@ export function VersionAndUpdatePolicyStep({
           className="mt-4 w-fit"
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
-          disabled={version && policy ? undefined : true}
+          disabled={version ? undefined : true}
           onClick={() => version && onSubmit(version, policy)}
         >
-          {tStepper('common_stepper_next_button_label')}
+          {t('common_stepper_next_button_label', { ns: 'stepper' })}
         </OsdsButton>
       )}
     </>
