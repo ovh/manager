@@ -13,6 +13,7 @@ export function useGetCatalog(
   const queryKey = ['order/catalog/public/cloud', subsidiary, product];
   return useQueryImmediateRefetch({
     queryKey,
+    enabled: !!user?.ovhSubsidiary,
     queryFn: () => catalogApi.getCatalog(subsidiary, product),
     ...options,
   }) as UseQueryResult<order.publicOrder.Catalog, Error>;
