@@ -25,6 +25,15 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
+jest.mock('@ovh-ux/manager-react-shell-client', () => ({
+  PageLocation: {
+    popup: 'popup',
+  },
+  ButtonType: {
+    button: 'link',
+  },
+}));
+
 const setupSpecTest = async (props: GenerateAccessModalProps = defaultProps) =>
   waitFor(() => render(<GenerateAccessModal {...props} />));
 

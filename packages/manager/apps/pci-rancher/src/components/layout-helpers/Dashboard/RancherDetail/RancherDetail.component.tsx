@@ -28,6 +28,11 @@ import { useTranslation } from 'react-i18next';
 
 import { MutationStatus } from '@tanstack/react-query';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   RancherService,
   RancherVersion,
   ResourceStatus,
@@ -35,7 +40,6 @@ import {
 import LinkIcon from '@/components/LinkIcon/LinkIcon.component';
 import StatusChip from '@/components/StatusChip/StatusChip.component';
 import UpdateVersionBanner from '@/components/UpdateRancherVersionBanner/UpdateVersionBanner.component';
-import { useTrackingAction } from '@/hooks/useTrackingPage/useTrackingPage';
 import { getLatestVersionAvailable } from '@/utils/rancher';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
@@ -59,7 +63,7 @@ const RancherDetail = ({
   versions,
 }: RancherDetailProps) => {
   const { t } = useTranslation(['dashboard', 'updateSoftware', 'listing']);
-  const trackAction = useTrackingAction();
+
   const hrefEdit = useHref('./edit');
   const hrefUpdateSoftware = useHref('./update-software');
   const hrefGenerateAccess = useHref('./generate-access');
@@ -69,6 +73,7 @@ const RancherDetail = ({
   const [hasTaskPending, setHasTaskPending] = useState(false);
   const { resourceStatus, currentState, currentTasks } = rancher;
   const { addError, addInfo, clearNotifications } = useNotifications();
+  const { trackClick } = useOvhTracking();
 
   useEffect(() => {
     if (updateOfferErrorMessage) {
@@ -118,7 +123,12 @@ const RancherDetail = ({
     : null;
 
   const onAccessRancherUrl = () =>
-    trackAction(TrackingPageView.DetailRancher, TrackingEvent.accessUi);
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.link,
+      actionType: 'navigation',
+      actions: [TrackingPageView.DetailRancher, TrackingEvent.accessUi],
+    });
 
   const shouldDisplayUpdateSoftware =
     getLatestVersionAvailable(rancher, versions) &&

@@ -18,10 +18,9 @@ jest.mock('@ovh-ux/manager-react-shell-client', () => ({
     getURL: jest.fn(() => Promise.resolve('123')),
     data: [],
   })),
-  useTracking: jest.fn(() => ({
-    trackPage: jest.fn(),
-    trackClick: jest.fn(),
-  })),
+
+  PageLocation: {},
+  ButtonType: {},
 }));
 
 jest.mock('@/hooks/useGuideLink/useGuideLink', () => ({

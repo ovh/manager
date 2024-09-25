@@ -24,16 +24,17 @@ import { useMedia } from 'react-use';
 
 import clsx from 'clsx';
 
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { getRancherPlanDescription, isValidRancherName } from '@/utils/rancher';
 import { getRanchersUrl } from '@/utils/route';
-import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+import { TrackingEvent } from '@/utils/tracking';
 
 import RancherPlanTile from '@/components/Pricing/RancherPlanTile';
 import Block from '@/components/Block/Block.component';
-import {
-  useTrackingAction,
-  useSimpleTrackingAction,
-} from '@/hooks/useTrackingPage/useTrackingPage';
 import {
   RancherPlan,
   RancherVersion,
@@ -118,6 +119,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const [rancherName, setRancherName] = useState(null);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [selectedVersion, setSelectedVersion] = useState(null);
+  const { trackClick } = useOvhTracking();
 
   const navigate = useNavigate();
   const { data: project } = useProject();
@@ -127,8 +129,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const isCreateRancherAllowed = isValidName && !isProjectDiscoveryMode;
 
   const { t } = useTranslation(['order-price', 'dashboard', 'listing']);
-  const trackAction = useTrackingAction();
-  const simpleTrackAction = useSimpleTrackingAction();
+
   const isDesktop: boolean = useMedia(`(min-width: 760px)`);
   const formattedPrices = useFormattedRancherPrices(plans, pricing);
 
@@ -158,16 +159,26 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   }, [versions, plans]);
 
   const onCreateClick = (rancherPayload: CreateRancherPayload) => {
-    trackAction(TrackingPageView.CreateRancher, TrackingEvent.confirm);
-    simpleTrackAction(
-      `rancher-creation::${rancherPayload.plan}::${rancherPayload.version}`,
-    );
-
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [
+        `rancher-creation::${rancherPayload.plan}::${rancherPayload.version}`,
+        TrackingEvent.confirm,
+      ],
+    });
     onCreateRancher(rancherPayload);
   };
 
   const onCancelClick = () => {
-    trackAction(TrackingPageView.CreateRancher, TrackingEvent.cancel);
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [TrackingEvent.cancel],
+    });
+
     navigate(getRanchersUrl(projectId));
   };
 

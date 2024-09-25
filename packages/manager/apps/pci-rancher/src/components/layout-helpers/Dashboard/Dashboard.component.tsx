@@ -1,10 +1,11 @@
 import { ODS_MESSAGE_TYPE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { Title } from '@ovh-ux/manager-react-components';
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   patchRancherServiceQueryKey,
   postRancherServiceQueryKey,
@@ -14,13 +15,12 @@ import {
   EditAction,
   EditMutationVariables,
 } from '@/data/hooks/useEditRancher/useEditRancher';
-import { useTrackingPage } from '@/hooks/useTrackingPage/useTrackingPage';
 import { COMMON_PATH } from '@/routes/routes';
-import { TrackingPageView } from '@/utils/tracking';
 import RancherDetail from './RancherDetail/RancherDetail.component';
 import TabBar from './TabBar/TabBar.component';
 import LinkIcon from '@/components/LinkIcon/LinkIcon.component';
 import useVersions from '@/data/hooks/useVersions/useVersions';
+import { TrackingPageView } from '@/utils/tracking';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -51,7 +51,6 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   const { projectId, rancherId } = useParams();
   const { data: versions } = useVersions();
   const { t } = useTranslation('dashboard');
-  useTrackingPage(TrackingPageView.DetailRancher);
   const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
 
   const mutationEditRancherState = useMutationState<{
