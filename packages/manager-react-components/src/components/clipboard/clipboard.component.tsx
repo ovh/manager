@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import './translations';
 
 interface IClipboardAttibutes extends OdsClipboardAttribute {
-  'data-testid': string;
+  'data-testid'?: string;
 }
 
 export const Clipboard: React.FC<IClipboardAttibutes> = ({
