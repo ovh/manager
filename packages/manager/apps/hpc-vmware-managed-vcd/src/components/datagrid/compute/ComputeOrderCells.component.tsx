@@ -8,20 +8,20 @@ import { OsdsRadio, OsdsRadioButton } from '@ovhcloud/ods-components/react';
 import { ODS_RADIO_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { IVdcOrderableVhostPriced } from '@/types/vcd-vdc-orderable-resource.interface';
-import { getVhostPriceLabel } from '@/utils/getPricedOrderableResource';
-import { useComputeOrderContext } from '@/context/ComputeOrder.context';
+import { getVdcResourcePriceLabel } from '@/utils/getPricedOrderableResource';
+import { useDatacentreOrderContext } from '@/context/DatacentreOrder.context';
 
 export const ComputeOrderSelectCell = (vHost: IVdcOrderableVhostPriced) => {
-  const { selectedVhost, setSelectedVhost } = useComputeOrderContext();
+  const { selectedResource, setSelectedResource } = useDatacentreOrderContext();
   return (
     <DataGridTextCell>
       <OsdsRadio
-        checked={vHost.profile === selectedVhost}
+        checked={vHost.profile === selectedResource}
         id={vHost.profile}
         value={vHost.profile}
       >
         <OsdsRadioButton
-          onClick={() => setSelectedVhost(vHost.profile)}
+          onClick={() => setSelectedResource(vHost.profile)}
           size={ODS_RADIO_BUTTON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}
         />
@@ -44,10 +44,10 @@ export const ComputeOrderCpuSpeedCell = (vHost: IVdcOrderableVhostPriced) => {
 };
 
 export const ComputeOrderRamCell = (vHost: IVdcOrderableVhostPriced) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/compute');
+  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/order');
   return (
     <DataGridTextCell>
-      {t('managed_vcd_vdc_compute_order_ram_value', {
+      {t('managed_vcd_vdc_order_ram_value', {
         ram: vHost.memoryQuota,
       })}
     </DataGridTextCell>
@@ -59,15 +59,13 @@ export const ComputeOrderCpuCountCell = (vHost: IVdcOrderableVhostPriced) => (
 );
 
 export const ComputeOrderPriceCell = (vHost: IVdcOrderableVhostPriced) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/compute');
+  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/order');
   return (
     <DataGridTextCell>
       <Description className="font-semibold">
-        {getVhostPriceLabel(vHost)}
+        {getVdcResourcePriceLabel(vHost)}
       </Description>
-      <Description>
-        {t('managed_vcd_vdc_compute_order_price_detail')}
-      </Description>
+      <Description>{t('managed_vcd_vdc_order_price_detail')}</Description>
     </DataGridTextCell>
   );
 };

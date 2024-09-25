@@ -1,6 +1,6 @@
 import { ApiResponse, ApiError } from '@ovh-ux/manager-core-api';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
-import { IVdcOrderableResource } from '@/types/vcd-vdc-orderable-resource.interface';
+import { IVdcOrderableResourceData } from '@/types/vcd-vdc-orderable-resource.interface';
 import { getVdcOrderableResource } from '../api/hpc-vmware-managed-vcd-datacentre';
 import { getVcdDatacentreQueryKey } from './useManagedVcdDatacentres';
 
@@ -9,7 +9,7 @@ const getVdcOrderableResourceQueryKey = (id: string, vdcId: string) => [
 ];
 
 export const useVdcOrderableResource = (id: string, vdcId: string) => {
-  return useQuery<ApiResponse<IVdcOrderableResource>, ApiError>({
+  return useQuery<ApiResponse<IVdcOrderableResourceData>, ApiError>({
     queryKey: getVdcOrderableResourceQueryKey(id, vdcId),
     queryFn: () => getVdcOrderableResource(id, vdcId),
     placeholderData: keepPreviousData,
