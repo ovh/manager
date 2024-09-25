@@ -53,7 +53,7 @@ export function UpdatePolicySelector({
       <div className="my-4">
         <OsdsText>
           {t('kube_update_policy_picker_documentation_text', { ns: 'add' })}
-        </OsdsText>
+        </OsdsText>{' '}
         <OsdsLink
           color={ODS_THEME_COLOR_INTENT.primary}
           href={DOCUMENTATION_LINK[shell.environment.getUser().ovhSubsidiary]}
