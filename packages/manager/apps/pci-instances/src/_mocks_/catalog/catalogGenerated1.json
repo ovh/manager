@@ -1,0 +1,222 @@
+{
+  "projectId": "8c8c4fd6d4414aa29fc952b00005198664",
+  "models": [
+    {
+      "category": "compute",
+      "name": "c2-7",
+      "isNew": false,
+      "compatibleLocalzone": false,
+      "compatibleRegion": true,
+      "pricings": [
+        {
+          "regions": ["BHS1.PREPROD", "GRA1.PREPROD"],
+          "price": 9780000,
+          "interval": "hour",
+          "osType": "linux"
+        },
+        {
+          "regions": ["BHS1.PREPROD", "GRA1.PREPROD"],
+          "price": 3520000000,
+          "interval": "month",
+          "osType": "linux"
+        },
+        {
+          "regions": ["BHS1.PREPROD", "GRA1.PREPROD"],
+          "price": 6520000000,
+          "interval": "month",
+          "osType": "windows"
+        },
+        {
+          "regions": ["BHS1.PREPROD", "GRA1.PREPROD"],
+          "price": 18300000,
+          "interval": "hour",
+          "osType": "windows"
+        }
+      ],
+      "specifications": {
+        "bandwidth": {
+          "guaranteed": true,
+          "level": 250,
+          "unlimited": false
+        },
+        "cpu": {
+          "cores": 2,
+          "frequency": 3,
+          "model": "vCore",
+          "type": "vCore"
+        },
+        "gpu": {
+          "memory": {
+            "interface": "",
+            "size": 0
+          },
+          "model": "",
+          "number": 0
+        },
+        "memory": {
+          "size": 7
+        },
+        "storage": {
+          "disks": [
+            {
+              "capacity": 50,
+              "number": 0,
+              "technology": "SSD"
+            }
+          ],
+          "raid": "local"
+        },
+        "vrack": {
+          "guaranteed": false,
+          "level": 300,
+          "unlimited": false
+        }
+      },
+      "banners": []
+    },
+    {
+      "category": "baremetal",
+      "name": "bm-m1",
+      "isNew": false,
+      "compatibleLocalzone": false,
+      "compatibleRegion": true,
+      "pricings": [
+        {
+          "regions": ["BHS1.PREPROD"],
+          "price": 30000000000,
+          "interval": "month",
+          "osType": "linux"
+        },
+        {
+          "regions": ["BHS1.PREPROD"],
+          "price": 85000000,
+          "interval": "hour",
+          "osType": "linux"
+        }
+      ],
+      "specifications": {
+        "bandwidth": {
+          "guaranteed": true,
+          "level": 1000,
+          "unlimited": false
+        },
+        "cpu": {
+          "cores": 8,
+          "frequency": 3.7,
+          "model": "Xeon-E 2288G",
+          "type": "core"
+        },
+        "gpu": {
+          "memory": {
+            "interface": "",
+            "size": 0
+          },
+          "model": "",
+          "number": 0
+        },
+        "memory": {
+          "size": 64
+        },
+        "storage": {
+          "disks": [
+            {
+              "capacity": 960,
+              "number": 2,
+              "technology": "SSD"
+            }
+          ],
+          "raid": ""
+        },
+        "vrack": {
+          "guaranteed": true,
+          "level": 2000,
+          "unlimited": false
+        }
+      },
+      "banners": []
+    }
+  ],
+  "categories": [
+    {
+      "name": "compute",
+      "isNew": false,
+      "isDefault": false
+    },
+    {
+      "name": "balanced",
+      "isNew": false,
+      "isDefault": true
+    },
+    {
+      "name": "ram",
+      "isNew": false,
+      "isDefault": false
+    },
+    {
+      "name": "accelerated",
+      "isNew": false,
+      "isDefault": false
+    },
+    {
+      "name": "vps",
+      "isNew": false,
+      "isDefault": false
+    },
+    {
+      "name": "discovery",
+      "isNew": true,
+      "isDefault": false
+    },
+    {
+      "name": "iops",
+      "isNew": false,
+      "isDefault": false
+    },
+    {
+      "name": "baremetal",
+      "isNew": false,
+      "isDefault": false
+    }
+  ],
+  "regions": [
+    {
+      "name": "GRA1.PREPROD",
+      "country": "fr",
+      "isLocalzone": false,
+      "isInMaintenance": false,
+      "isActivated": true,
+      "datacenter": "GRA",
+      "category": {
+        "name": "eu",
+        "isNew": true,
+        "isDefault": true
+      }
+    },
+    {
+      "name": "GS1",
+      "country": "",
+      "isLocalzone": true,
+      "isInMaintenance": false,
+      "isActivated": false,
+      "datacenter": "GS",
+      "category": {
+        "name": "eu",
+        "isNew": true,
+        "isDefault": true
+      }
+    },
+    {
+      "name": "BHS1.PREPROD",
+      "country": "",
+      "isLocalzone": false,
+      "isInMaintenance": false,
+      "isActivated": true,
+      "datacenter": "BHS",
+      "category": {
+        "name": "na",
+        "isNew": false,
+        "isDefault": false
+      }
+    }
+  ]
+}
