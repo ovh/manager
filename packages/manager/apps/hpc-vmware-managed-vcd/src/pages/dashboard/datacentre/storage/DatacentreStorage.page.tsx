@@ -1,11 +1,15 @@
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import IVcdStorage from '@/types/vcd-storage.interface';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { STORAGE_TITLE } from '../DatacentreDashboard.constant';
 import { getVcdDatacentreStorageRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
+import { subRoutes } from '@/routes/routes.constant';
 
 const DatagridIdCell = (vcdStorage: IVcdStorage) => (
   <DataGridTextCell>{vcdStorage?.id}</DataGridTextCell>
@@ -43,6 +47,7 @@ export default function StorageListingPage() {
   const { t: tCompute } = useTranslation(
     'hpc-vmware-managed-vcd/datacentres/compute',
   );
+  const navigate = useNavigate();
 
   const columns = [
     {
@@ -99,6 +104,16 @@ export default function StorageListingPage() {
         onboarding: null, // TODO update with order storage page when available
       }}
       isEmbedded
+      orderButton={
+        <OsdsButton
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.stroked}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          onClick={() => navigate(subRoutes.order)}
+        >
+          {t('managed_vcd_vdc_storage_order_cta')}
+        </OsdsButton>
+      }
     />
   );
 }
