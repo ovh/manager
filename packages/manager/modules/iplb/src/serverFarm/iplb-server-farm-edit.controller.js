@@ -18,6 +18,7 @@ export default class IpLoadBalancerServerFarmEditCtrl {
     IpLoadBalancerServerFarmService,
     IpLoadBalancerVrackService,
     IpLoadBalancerZoneService,
+    udpAvailability,
   ) {
     this.$q = $q;
     this.$state = $state;
@@ -28,6 +29,7 @@ export default class IpLoadBalancerServerFarmEditCtrl {
     this.IpLoadBalancerServerFarmService = IpLoadBalancerServerFarmService;
     this.IpLoadBalancerVrackService = IpLoadBalancerVrackService;
     this.IpLoadBalancerZoneService = IpLoadBalancerZoneService;
+    this.udpAvailability = udpAvailability;
 
     this.initLoaders();
   }
@@ -91,6 +93,10 @@ export default class IpLoadBalancerServerFarmEditCtrl {
     if (this.$stateParams.farmId) {
       this.edition = true;
       this.apiFarm.load();
+    }
+
+    if (!this.udpAvailability) {
+      this.protocols = this.protocols.filter((protocol) => protocol !== 'udp');
     }
   }
 
