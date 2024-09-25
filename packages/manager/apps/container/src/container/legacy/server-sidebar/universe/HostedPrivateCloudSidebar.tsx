@@ -12,6 +12,8 @@ import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import infinityCLoud from '@/assets/images/sidebar/infinity-cloud.png';
+import hycuLogo from '@/assets/images/sidebar/hycu-logo.svg';
 
 const features = [
   'dedicated-cloud',
@@ -33,6 +35,7 @@ const features = [
   'dedicated-nasha',
   'veeam-cloud-connect:order',
   'veeam-enterprise:order',
+  'hycu',
   'vrack:bare-metal-cloud',
   'vrack:order',
   'vrack-services',
@@ -236,6 +239,43 @@ export default function HostedPrivateCloudSidebar() {
         ],
       });
     }
+    if (feature['hycu']) {
+      menu.push({
+        id: 'hpc-storage-backup',
+        label: t('sidebar_storage_backup'),
+        icon: <img className="mb-1 mr-1 w-6 aspect-square" alt="" src={infinityCLoud} />,
+        pathMatcher: new RegExp('^/hycu'),
+        badge: 'new',
+        ignoreSearch: true,
+        subItems: [
+          (feature['hycu']) && {
+            id: 'hpc-hycu',
+            label: t('sidebar_hycu'),
+            icon: <img alt="" src={hycuLogo} className="mb-1 w-6 aspect-square" />,
+            pathMatcher: new RegExp('^/hycu'),
+            badge: "new",
+            async loader() {
+              const appId = 'hycu';
+              const items = await loadServices('/license/hycu');
+
+              return [
+                {
+                  id: 'hycu-all',
+                  label: t('sidebar_all_hycu'),
+                  href: navigation.getURL(appId, '#/'),
+                  ignoreSearch: true,
+                },
+                ...items.map((service) => ({
+                  ...service,
+                  href: navigation.getURL(appId, `#/${service.serviceName}`),
+                }))
+              ];
+            },
+          }
+        ]
+      })
+    }
+
     if (feature['key-management-service']) {
       const keyIcon = <OsdsIcon name={ODS_ICON_NAME.KEY_CONCEPT} size={ODS_ICON_SIZE.xxs} color={ODS_THEME_COLOR_INTENT.text}/>
       menu.push({
