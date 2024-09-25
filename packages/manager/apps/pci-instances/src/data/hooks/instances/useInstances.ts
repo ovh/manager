@@ -11,7 +11,7 @@ import { FilterWithLabel } from '@ovh-ux/manager-react-components/src/components
 import { getInstances } from '@/data/api/instances';
 import { instancesQueryKey } from '@/utils';
 import { DeepReadonly } from '@/types/utils.type';
-import { TInstanceDto, TInstanceStatusDto } from '@/types/api.types';
+import { TInstanceDto, TInstanceStatusDto } from '@/types/instances/api.types';
 
 export type TUseInstancesQueryParams = DeepReadonly<{
   limit: number;
