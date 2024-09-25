@@ -1,5 +1,8 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { TInstanceDto, TRetrieveInstancesQueryParams } from '@/types/api.types';
+import {
+  TInstanceDto,
+  TRetrieveInstancesQueryParams,
+} from '@/types/instances/api.types';
 
 export const getInstances = (
   projectId: string,

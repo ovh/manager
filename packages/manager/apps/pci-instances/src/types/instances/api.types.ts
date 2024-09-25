@@ -1,4 +1,4 @@
-import { DeepReadonly } from './utils.type';
+import { DeepReadonly } from '../utils.type';
 
 export type TInstanceDtoAddressType = 'public' | 'private';
 
