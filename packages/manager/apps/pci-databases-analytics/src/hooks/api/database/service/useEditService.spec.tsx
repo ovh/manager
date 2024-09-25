@@ -38,11 +38,7 @@ describe('useEditService', () => {
 
     await waitFor(() => {
       expect(databaseAPI.editService).toHaveBeenCalledWith(editServiceProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedService,
-        editServiceProps,
-        undefined,
-      );
+      expect(onSuccess).toHaveBeenCalledWith(mockedService);
     });
   });
 });
