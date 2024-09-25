@@ -9,9 +9,6 @@ import { mockedPattern } from '@/__tests__/helpers/mocks/patterns';
 
 vi.mock('@/data/api/database/pattern.api', () => ({
   getPatterns: vi.fn(),
-  addPattern: vi.fn(),
-  editPattern: vi.fn(),
-  deletePattern: vi.fn(),
 }));
 
 describe('useGetPatterns', () => {

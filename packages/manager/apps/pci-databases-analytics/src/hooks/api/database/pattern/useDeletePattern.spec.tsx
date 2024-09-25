@@ -7,9 +7,6 @@ import * as database from '@/types/cloud/project/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 
 vi.mock('@/data/api/database/pattern.api', () => ({
-  getPatterns: vi.fn(),
-  addPattern: vi.fn(),
-  editPattern: vi.fn(),
   deletePattern: vi.fn(),
 }));
 

@@ -7,9 +7,6 @@ import * as database from '@/types/cloud/project/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 
 vi.mock('@/data/api/database/indexes.api', () => ({
-  getIndexes: vi.fn(),
-  addIndex: vi.fn(),
-  editIndex: vi.fn(),
   deleteIndex: vi.fn(),
 }));
 

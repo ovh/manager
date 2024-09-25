@@ -9,9 +9,6 @@ import { mockedIndex } from '@/__tests__/helpers/mocks/indexes';
 
 vi.mock('@/data/api/database/indexes.api', () => ({
   getIndexes: vi.fn(),
-  addIndex: vi.fn(),
-  editIndex: vi.fn(),
-  deleteIndex: vi.fn(),
 }));
 
 describe('useGetIndexes', () => {
