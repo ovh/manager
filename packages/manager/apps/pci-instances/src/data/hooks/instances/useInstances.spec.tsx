@@ -12,7 +12,7 @@ import {
   TUseInstancesQueryParams,
 } from './useInstances';
 import { setupInstanceServer } from '@/_mocks_/instances/node';
-import { TInstanceDto, TInstanceStatusDto } from '@/types/api.types';
+import { TInstanceDto, TInstanceStatusDto } from '@/types/instances/api.types';
 
 // builders
 const instanceDtoBuilder = (
