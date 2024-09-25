@@ -1,7 +1,10 @@
 import React from 'react';
 import { OsdsText, OsdsDivider } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_COLOR_HUE,
+} from '@ovhcloud/ods-common-theming';
 
 export type TileBlockProps = React.PropsWithChildren<{
   label?: string;
@@ -14,7 +17,8 @@ export const TileBlock: React.FC<TileBlockProps> = ({ label, children }) => (
         className="mb-2"
         size={ODS_TEXT_SIZE._200}
         level={ODS_TEXT_LEVEL.heading}
-        color={ODS_THEME_COLOR_INTENT.text}
+        color={ODS_THEME_COLOR_INTENT.primary}
+        hue={ODS_THEME_COLOR_HUE._800}
       >
         {label}
       </OsdsText>
