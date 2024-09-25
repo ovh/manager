@@ -12,6 +12,7 @@ export const ROUTE_PATHS = {
   STATISTICS: 'statistics',
   CERTIFICATES: 'certificates',
   LOGS: 'logs',
+  DELETE: ':region/:loadBalancerId/delete',
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
@@ -31,6 +32,7 @@ const CertificatesPage = lazy(() =>
   import('@/pages/detail/certificates/Certificates.page'),
 );
 const LogsPage = lazy(() => import('@/pages/detail/log/Log.page'));
+const DeletePage = lazy(() => import('@/pages/delete/Delete.page'));
 
 const Routes = (
   <Route
@@ -40,7 +42,9 @@ const Routes = (
     errorElement={<ErrorBoundary />}
   >
     <Route path="" element={<Navigate to={ROUTE_PATHS.LISTING} replace />} />
-    <Route id="listing" path={ROUTE_PATHS.LISTING} Component={ListingPage} />
+    <Route path={ROUTE_PATHS.LISTING} Component={ListingPage}>
+      <Route path={ROUTE_PATHS.DELETE} Component={DeletePage} />
+    </Route>
     <Route id="detail" path={ROUTE_PATHS.DETAIL} Component={DetailPage}>
       <Route
         path=""
