@@ -1,6 +1,5 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { useTranslation } from 'react-i18next';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import { format } from 'date-fns';
 import * as dateFnsLocales from 'date-fns/locale';
