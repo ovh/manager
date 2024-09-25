@@ -38,7 +38,7 @@ export const mockedUser: User = {
   nationalIdentificationNumber: 0,
   organisation: '',
   ovhCompany: '',
-  ovhSubsidiary: '',
+  ovhSubsidiary: 'FR',
   phone: '',
   phoneCountry: '',
   sex: '',
