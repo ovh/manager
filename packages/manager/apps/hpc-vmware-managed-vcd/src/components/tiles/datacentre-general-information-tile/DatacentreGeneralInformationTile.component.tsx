@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import IVcdDatacentre from '@/types/vcd-datacenter.interface';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import { subRoutes } from '@/routes/routes.constant';
@@ -110,6 +111,7 @@ export default function DatacentreGenerationInformationTile({
               type={LinkType.external}
               href={vcdOrganization?.currentState?.webInterfaceUrl}
               label={t('managed_vcd_dashboard_management_interface_access')}
+              target={OdsHTMLAnchorElementTarget._blank}
             />
           ),
         },

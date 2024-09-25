@@ -8,6 +8,7 @@ import {
   LinkType,
   Region,
 } from '@ovh-ux/manager-react-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 import DatagridContainer, {
   TDatagridContainerProps,
@@ -45,6 +46,7 @@ const DatagridWebInterfaceCell = (vdcOrg: IVcdOrganization) => (
       href={vdcOrg.currentState?.webInterfaceUrl}
       type={LinkType.external}
       label={vdcOrg.currentState?.webInterfaceUrl}
+      target={OdsHTMLAnchorElementTarget._blank}
     />
   </DataGridTextCell>
 );
