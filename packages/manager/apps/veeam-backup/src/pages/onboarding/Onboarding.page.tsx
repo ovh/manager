@@ -32,6 +32,26 @@ export default function Onboarding() {
       href: guides?.guideLink1,
       isExternalHref: true,
     },
+    {
+      texts: {
+        title: t('guide2_title'),
+        description: t('guide2_description'),
+        category: t('guide_category'),
+      },
+      href: guides?.guideLink2,
+      hrefLabel: t('guide2_link_label'),
+      isExternalHref: true,
+    },
+    {
+      texts: {
+        title: t('guide3_title'),
+        description: t('guide3_description'),
+        category: t('guide_category'),
+      },
+      href: guides?.guideLink3,
+      hrefLabel: t('guide3_link_label'),
+      isExternalHref: true,
+    },
   ];
 
   return (
