@@ -3,6 +3,25 @@ import { describe, it, vi } from 'vitest';
 import OrderPrice from '@/components/order/price/OrderPrice.component';
 
 describe('OrderPrice component', () => {
+  beforeEach(() => {
+    vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => {
+      return {
+        useGetCatalog: vi.fn(() => ({
+          isSuccess: true,
+          data: {
+            locale: {
+              currencyCode: 'EUR',
+            },
+          },
+        })),
+      };
+    });
+    vi.mock('@/hooks/useLocale', () => {
+      return {
+        useLocale: vi.fn(() => 'fr_FR'),
+      };
+    });
+  });
   afterEach(() => {
     vi.clearAllMocks();
   });
