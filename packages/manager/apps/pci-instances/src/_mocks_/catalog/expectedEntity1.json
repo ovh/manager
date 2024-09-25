@@ -1,0 +1,124 @@
+{
+  "models": {
+    "categories": [
+      {
+        "name": "compute",
+        "isNew": false,
+        "isDefault": false
+      },
+      {
+        "name": "balanced",
+        "isNew": false,
+        "isDefault": true
+      },
+      {
+        "name": "ram",
+        "isNew": false,
+        "isDefault": false
+      },
+      {
+        "name": "accelerated",
+        "isNew": false,
+        "isDefault": false
+      },
+      {
+        "name": "vps",
+        "isNew": false,
+        "isDefault": false
+      },
+      {
+        "name": "discovery",
+        "isNew": true,
+        "isDefault": false
+      },
+      {
+        "name": "iops",
+        "isNew": false,
+        "isDefault": false
+      },
+      {
+        "name": "baremetal",
+        "isNew": false,
+        "isDefault": false
+      }
+    ],
+    "data": [
+      {
+        "category": "compute",
+        "name": "c2-7",
+        "isNew": false,
+        "compatibleLocalzone": false,
+        "compatibleRegion": true,
+        "pricings": [
+          {
+            "price": 0.0978,
+            "interval": "hour"
+          },
+          {
+            "price": 35.2,
+            "interval": "month"
+          }
+        ],
+        "specifications": {
+          "bandwidth": 250,
+          "cpu": {
+            "cores": 2,
+            "frequency": 3,
+            "model": "vCore"
+          },
+          "memory": {
+            "size": 7,
+            "unit": "Go"
+          },
+          "storage": [
+            {
+              "capacity": 50,
+              "number": 0,
+              "technology": "SSD",
+              "unit": "Go"
+            }
+          ]
+        },
+        "banners": []
+      },
+      {
+        "category": "baremetal",
+        "name": "bm-m1",
+        "isNew": false,
+        "compatibleLocalzone": false,
+        "compatibleRegion": true,
+        "pricings": [
+          {
+            "price": 300,
+            "interval": "month"
+          },
+          {
+            "price": 0.85,
+            "interval": "hour"
+          }
+        ],
+        "specifications": {
+          "bandwidth": 1000,
+          "cpu": {
+            "cores": 8,
+            "frequency": 3.7,
+            "model": "Xeon-E 2288G"
+          },
+          "memory": {
+            "size": 64,
+            "unit": "Go"
+          },
+          "storage": [
+            {
+              "capacity": 960,
+              "number": 2,
+              "technology": "SSD",
+              "unit": "Go"
+            }
+          ]
+        },
+        "banners": []
+      }
+    ]
+  }
+}
