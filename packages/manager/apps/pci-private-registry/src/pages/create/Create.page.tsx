@@ -7,7 +7,11 @@ import { useEffect } from 'react';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
-import { useProject, PciDiscoveryBanner } from '@ovh-ux/manager-pci-common';
+import {
+  isDiscoveryProject,
+  useProject,
+  PciDiscoveryBanner,
+} from '@ovh-ux/manager-pci-common';
 import RegionStep from '@/pages/create/steps/RegionStep';
 import NameStep from '@/pages/create/steps/NameStep';
 import PlanStep from '@/pages/create/steps/PlanStep';
@@ -54,6 +58,7 @@ export default function CreatePage(): JSX.Element {
         <PciDiscoveryBanner project={project} className="mb-6" />
       </div>
       <RegionStep />
+      <RegionStep isLocked={isDiscoveryProject(project)} />
       <NameStep />
       <PlanStep />
     </>
