@@ -21,6 +21,7 @@ export const urls = {
   datacentreDashboard: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}`,
   datacentreEditDescription: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}/${subRoutes.editDescription}`,
   datacentreStorage: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}/${subRoutes.datacentreStorage}`,
+  datacentreStorageOrder: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}/${subRoutes.datacentreStorage}/${subRoutes.order}`,
   datacentreCompute: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}/${subRoutes.datacentreCompute}`,
   datacentreComputeOrder: `/${subRoutes.dashboard}/${subRoutes.datacentres}/${subRoutes.vdcId}/${subRoutes.datacentreCompute}/${subRoutes.order}`,
 };
