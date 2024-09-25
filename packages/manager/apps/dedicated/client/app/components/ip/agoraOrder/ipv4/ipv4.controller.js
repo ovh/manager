@@ -261,6 +261,17 @@ export default class AgoraIpV4OrderController {
     )?.labels;
   }
 
+  static getCountriesFromDatacenter(selectedServiceDatacenter, ipOffers) {
+    const ipOffer = ipOffers.find((offer) => {
+      return offer.details.product.configurations
+        .find((config) => config.name === 'datacenter')
+        ?.values?.includes(selectedServiceDatacenter);
+    });
+    return ipOffer.details.product.configurations.find(
+      (config) => config.name === 'country',
+    )?.values;
+  }
+
   loadPrivateCloudIpOffers(serviceName) {
     const countries = this.orderableIpCountries.map((code) => {
       return {
@@ -392,9 +403,15 @@ export default class AgoraIpV4OrderController {
         get(this.model, 'selectedService.serviceName'),
       );
     } else if (this.isParkingIp) {
-      const countries = [
+      // Country for Single IP selection in parking
+      const country = [
         DATACENTER_TO_COUNTRY[this.model.selectedRegion.datacenter],
       ];
+      // Multiple countries are available for block IP selection in parking and vrack
+      const countries = AgoraIpV4OrderController.getCountriesFromDatacenter(
+        this.model.selectedRegion.datacenter,
+        this.parkingIpOffers,
+      ).map((value) => value.toLowerCase());
       const ipOfferDetails = this.parkingIpOffers.map(
         this.createOfferDto.bind(this),
       );
@@ -414,7 +431,7 @@ export default class AgoraIpV4OrderController {
       this.failoverIpOffers = this.getOfferDetails(
         failoverIpOfferDetails,
         ipOffersByDatacenter,
-        countries,
+        country,
       );
       this.blockIpOffers = this.getOfferDetails(
         blockIpOfferDetails,
