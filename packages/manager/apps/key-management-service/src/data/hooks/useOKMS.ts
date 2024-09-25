@@ -36,7 +36,6 @@ export const useOKMSById = (okmsId: string) => {
     ...{
       keepPreviousData: true,
     },
-    refetchInterval: 5000,
   });
 };
 
