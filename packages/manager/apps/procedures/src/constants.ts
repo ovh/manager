@@ -6,10 +6,8 @@ export const LegalPolicyLinkByLanguage: PolicyLinks = {
   ASIA: 'https://www.ovhcloud.com/en-ca/terms-and-conditions/privacy-policy/',
   AU: 'https://www.ovhcloud.com/en-ca/terms-and-conditions/privacy-policy/',
   CA: {
-    en_CA:
-      'https://www.ovhcloud.com/en-ca/terms-and-conditions/privacy-policy/',
-    fr_CA:
-      'https://www.ovhcloud.com/fr-ca/terms-and-conditions/privacy-policy/',
+    en: 'https://www.ovhcloud.com/en-ca/terms-and-conditions/privacy-policy/',
+    fr: 'https://www.ovhcloud.com/fr-ca/terms-and-conditions/privacy-policy/',
   },
   CZ: 'https://www.ovhcloud.com/en-ie/terms-and-conditions/privacy-policy/',
   DE: 'https://www.ovhcloud.com/de/terms-and-conditions/privacy-policy/',

@@ -1,8 +1,8 @@
 import { Subsidiary } from '@/types/user.type';
 
 export type CanadianPolicyLinks = {
-  fr_CA: string;
-  en_CA: string;
+  fr: string;
+  en: string;
 };
 
 export type PolicyLinks = {
