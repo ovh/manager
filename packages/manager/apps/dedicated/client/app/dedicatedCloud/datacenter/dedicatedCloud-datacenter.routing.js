@@ -58,7 +58,7 @@ export default /* @ngInject */ ($stateProvider) => {
           'dedicatedCloudDatacenterAlert',
         );
       },
-      breadcrumb: /* @ngInject */ (datacenterId) => datacenterId,
+      breadcrumb: /* @ngInject */ (datacenter) => datacenter.model.name,
     },
   });
 };
