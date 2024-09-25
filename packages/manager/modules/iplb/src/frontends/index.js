@@ -83,6 +83,12 @@ angular
             frontendId: /* @ngInject */ ($transition$) =>
               $transition$.params().frontendId,
             breadcrumb: /* @ngInject */ (frontendId) => frontendId,
+            udpAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+              ovhFeatureFlipping
+                .checkFeatureAvailability(LB_FRONTEND_UDP_AVAILABILITY)
+                .then((feature) =>
+                  feature.isFeatureAvailable(LB_FRONTEND_UDP_AVAILABILITY),
+                ),
           },
         });
     },
