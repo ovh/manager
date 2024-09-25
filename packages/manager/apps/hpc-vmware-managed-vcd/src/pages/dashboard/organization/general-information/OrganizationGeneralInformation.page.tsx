@@ -17,7 +17,6 @@ function GeneralInformation() {
     isRefetchError,
     error,
     isLoading,
-    isRefetching,
   } = useManagedVcdOrganization({
     id,
     refetchOnWindowFocus: true,
@@ -34,7 +33,7 @@ function GeneralInformation() {
     return <Errors error={error?.response ?? errorVdc?.response} />;
   }
 
-  if (isLoading || isRefetching || isLoadingvDc) {
+  if (isLoading || isLoadingvDc) {
     return (
       <div>
         <Loading />
