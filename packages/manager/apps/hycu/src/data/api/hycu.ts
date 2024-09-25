@@ -12,11 +12,11 @@ export const getlicenseHycuListQueryKey = ['get/license/hycu'];
  */
 export const getlicenseHycuList = async (
   params: GetlicenseHycuListParams,
-): Promise<any> => apiClient.v6.get('/license/hycu', { data: params });
+): Promise<unknown> => apiClient.v6.get('/license/hycu', { data: params });
 
 export type GetlicenseHycuServiceParams = {
   /** Service name */
-  serviceName?: any;
+  serviceName?: string;
 };
 
 export const getlicenseHycuServiceQueryKey = (
