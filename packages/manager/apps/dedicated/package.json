@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "19.57.0",
+  "version": "19.57.1",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -38,7 +38,7 @@
     "@ovh-ux/manager-error-page": "^2.4.1",
     "@ovh-ux/manager-exchange": "^4.8.0",
     "@ovh-ux/manager-filters": "^1.1.1",
-    "@ovh-ux/manager-iplb": "^1.14.1",
+    "@ovh-ux/manager-iplb": "^1.14.2",
     "@ovh-ux/manager-metrics": "^1.6.1",
     "@ovh-ux/manager-models": "^1.14.13",
     "@ovh-ux/manager-nasha": "^2.16.3",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.14.1...@ovh-ux/manager-iplb@1.14.2) (2024-09-25)
+
+
+### Bug Fixes
+
+* **iplb:** fix frontends edit controller ([#13259](https://github.com/ovh/manager/issues/13259)) ([c1fbe40](https://github.com/ovh/manager/commit/c1fbe4047f134c390bdb034e3e9ca9e10dec19be))
+
+
+
+
+
 ## [1.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.14.0...@ovh-ux/manager-iplb@1.14.1) (2024-09-24)
 
 
