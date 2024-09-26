@@ -1,6 +1,5 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "private": true,
   "version": "1.30.0",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
