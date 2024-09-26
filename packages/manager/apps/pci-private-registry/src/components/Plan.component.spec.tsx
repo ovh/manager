@@ -9,7 +9,7 @@ import { TRegistryPlan } from '@/api/data/registry';
 
 const defaultPlan: TRegistryPlan = {
   id: 'planId',
-  code: 'planCode',
+  code: 'planCode.hour.consumption',
   features: {
     vulnerability: false,
   },
@@ -23,7 +23,7 @@ const defaultPlan: TRegistryPlan = {
 };
 
 const defaultAddon = {
-  planCode: 'planCode',
+  planCode: 'planCode.hour.consumption',
   blobs: {
     technical: {
       bandwidth: {
@@ -33,7 +33,7 @@ const defaultAddon = {
   },
   pricings: [
     {
-      price: 1,
+      price: 42,
       tax: 1,
     },
   ],
@@ -51,10 +51,14 @@ describe('PlanComponent', () => {
   }));
 
   vi.mock('@ovh-ux/manager-react-components', async () => ({
-    useCatalogPrice: () => ({
-      getFormattedMonthlyCatalogPrice: () => 'formattedPrice',
+    useMe: () => ({
+      me: {
+        ovhSubsidiary: 'ovhSubsidiary',
+        currency: {
+          code: 'USD',
+        },
+      },
     }),
-    useMe: () => ({ me: { ovhSubsidiary: 'ovhSubsidiary' } }),
   }));
 
   vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
@@ -69,6 +73,9 @@ describe('PlanComponent', () => {
         },
         isPending: false,
       }),
+      Pricing: ({ pricing }: { pricing: useCatalogModule.TPricing }) => (
+        <div>{pricing.price}</div>
+      ),
     };
   });
 
@@ -252,6 +259,6 @@ describe('PlanComponent', () => {
       wrapper,
     });
 
-    expect(getByTestId('price').textContent).toBe('formattedPrice');
+    expect(getByTestId('price').textContent).toBe('42');
   });
 });

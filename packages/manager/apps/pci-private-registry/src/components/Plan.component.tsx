@@ -6,8 +6,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { OsdsSkeleton, OsdsText } from '@ovhcloud/ods-components/react';
 import { useMemo } from 'react';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
-import { useBytes, useCatalog } from '@ovh-ux/manager-pci-common';
+import { useBytes, useCatalog, Pricing } from '@ovh-ux/manager-pci-common';
 import clsx from 'clsx';
 import { TRegistryPlan } from '@/api/data/registry';
 
@@ -22,14 +21,25 @@ export default function PlanComponent({
 
   const { data: catalog, isPending } = useCatalog();
 
-  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(4);
-
   const addon = useMemo(() => {
     if (catalog) {
       return catalog.addons.find((a) => a.planCode === plan.code);
     }
     return null;
   }, [catalog, plan]);
+
+  const pricing = addon?.pricings[0];
+
+  // @TODO remove pricingInterval when catalog API is fixed
+  // In the case of private registry the API is incorrectly returning 'none' instead of 'hour' as pricingInterval
+  // In order to display the correct pricing interval we use planCode parsing
+  const hourlyPricing = /hour\.consumption/.test(addon?.planCode)
+    ? 'hour'
+    : false;
+  const monthlyPricing = /month\.consumption/.test(addon?.planCode)
+    ? 'month'
+    : false;
+  const pricingInterval = hourlyPricing || monthlyPricing || 'none';
 
   const { formatBytes } = useBytes();
 
@@ -151,7 +161,13 @@ export default function PlanComponent({
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
         >
-          {getFormattedMonthlyCatalogPrice(addon?.pricings[0].price)}
+          <Pricing
+            pricing={pricing}
+            options={{
+              decimals: 4,
+              intervalUnit: pricingInterval,
+            }}
+          />
         </OsdsText>
       </div>
     </div>
