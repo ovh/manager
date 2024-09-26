@@ -39,6 +39,7 @@
   "ip_byoip_region_RBX_HZ": "Roubaix (RBXHZ) - France",
   "ip_byoip_region_GSW": "(GSW) - France",
   "ip_byoip_region_YNM": "Mumbai (YNM{{number}}) - Inde",
+  "ip_byoip_region_YYZ": "Toronto (YYZ{{number}}) - Canada",
   "ip_byoip_cancel_text": "Annuler",
   "ip_byoip_restriction_warning_message": "Le service Bring Your Own IP est disponible en accès restreint pour le moment. Pour plus d'informations, veuillez contacter votre commercial OVHcloud."
 }

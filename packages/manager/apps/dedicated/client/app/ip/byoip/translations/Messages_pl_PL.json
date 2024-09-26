@@ -40,5 +40,6 @@
   "ip_byoip_region_GSW": "(GSW) - Francja",
   "ip_byoip_cancel_text": "Anuluj",
   "ip_byoip_restriction_warning_message": "Aktualnie dostęp do usługi Bring Your Own IP jest ograniczony. Aby uzyskać więcej informacji, skontaktuj się z pracownikiem Działu Sprzedaży OVHcloud.",
-  "ip_byoip_region_YNM": "Bombaj (YNM {{number}}) - Indie"
+  "ip_byoip_region_YNM": "Bombaj (YNM {{number}}) - Indie",
+  "ip_byoip_region_YYZ": "Toronto (YYZ {{number}}) - Kanada"
 }
