@@ -1,6 +1,6 @@
 import React from 'react';
 import { vi, describe, expect } from 'vitest';
-import ActionButtonEmail from '../ActionButtonEmail';
+import ActionButtonEmail from '../ActionButtonEmail.component';
 import { render } from '@/utils/test.provider';
 import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
 import { accountMock, platformMock } from '@/api/_mock_';

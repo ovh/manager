@@ -5,7 +5,7 @@ import { vi, describe, expect } from 'vitest';
 import { act } from 'react-dom/test-utils';
 import { fireEvent, render, screen } from '@/utils/test.provider';
 import { accountMock, domainMock, platformMock } from '@/api/_mock_';
-import ModalAddAlias from '../ModalAddAlias';
+import ModalAddAlias from '../ModalAddAlias.component';
 import emailAccountAliasAddTranslation from '@/public/translations/accounts/alias/add/Messages_fr_FR.json';
 
 vi.mock('@/hooks', () => {

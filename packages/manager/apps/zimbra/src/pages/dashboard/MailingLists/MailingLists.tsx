@@ -24,7 +24,7 @@ import {
   useMailingLists,
   useOverridePage,
 } from '@/hooks';
-import ActionButtonMailingList from './ActionButtonMailingList';
+import ActionButtonMailingList from './ActionButtonMailingList.component';
 import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';

@@ -29,7 +29,7 @@ import {
 } from '@/hooks';
 import LabelChip from '@/components/LabelChip';
 import guidesConstants from '@/guides.constants';
-import ActionButtonEmail from './ActionButtonEmail';
+import ActionButtonEmail from './ActionButtonEmail.component';
 import { convertOctets } from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 

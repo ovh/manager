@@ -1,6 +1,6 @@
 import React from 'react';
 import { vi, describe, expect } from 'vitest';
-import ActionButtonDomain from '../ActionButtonDomain';
+import ActionButtonDomain from '../ActionButtonDomain.component';
 import { render } from '@/utils/test.provider';
 import domainTranslation from '@/public/translations/domains/Messages_fr_FR.json';
 import { domainMock, platformMock } from '@/api/_mock_';

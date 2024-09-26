@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useSearchParams } from 'react-router-dom';
-import { AliasItem } from './EmailAccountsAlias';
+import { AliasItem } from './EmailAccountsAlias.page';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 

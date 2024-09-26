@@ -6,7 +6,7 @@ import { render } from '@/utils/test.provider';
 import { DnsRecordType } from '@/utils';
 import { platformMock, domainMock } from '@/api/_mock_';
 import { DomainType } from '@/api/domain';
-import ModalDiagnosticDnsRecord from '../ModalDiagnosticDnsRecord';
+import ModalDiagnosticDnsRecord from '../ModalDiagnosticDnsRecord.component';
 import domainDiagnosticTranslation from '@/public/translations/domains/diagnostic/Messages_fr_FR.json';
 
 vi.mock('@/hooks', () => {

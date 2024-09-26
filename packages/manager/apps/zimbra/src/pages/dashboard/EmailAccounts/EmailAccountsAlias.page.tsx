@@ -24,7 +24,7 @@ import {
   getZimbraPlatformAliasQueryKey,
 } from '@/api/alias';
 import { useGenerateUrl, usePlatform } from '@/hooks';
-import ActionButtonAlias from './ActionButtonAlias';
+import ActionButtonAlias from './ActionButtonAlias.component';
 import { BadgeStatus } from '@/components/BadgeStatus';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
