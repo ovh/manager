@@ -103,6 +103,12 @@ angular
           resolve: {
             breadcrumb: /* @ngInject */ ($translate) =>
               $translate.instant('iplb_farm_update_title'),
+            udpAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+              ovhFeatureFlipping
+                .checkFeatureAvailability(LB_FRONTEND_UDP_AVAILABILITY)
+                .then((feature) =>
+                  feature.isFeatureAvailable(LB_FRONTEND_UDP_AVAILABILITY),
+                ),
           },
         })
         .state('iplb.detail.server-farm.dashboard.server', {
