@@ -84,7 +84,9 @@ export function LogHowTo() {
           </OsdsText>
           {t('log_tile_empty_state_description')}
           {!hasAccount && <p>{t('log_tile_desc_create_account')}</p>}
-          {!hasStream && <p>{t('log_tile_desc_create_stream')}</p>}
+          {hasAccount && !hasStream && (
+            <p>{t('log_tile_desc_create_stream')}</p>
+          )}
           <OsdsLink
             className="mt-4"
             color={ODS_THEME_COLOR_INTENT.primary}
