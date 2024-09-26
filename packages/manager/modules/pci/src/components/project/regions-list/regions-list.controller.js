@@ -6,6 +6,8 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import uniq from 'lodash/uniq';
 
+import { STORAGE_STANDARD_REGION_PLANCODE } from '../../../projects/project/storages/containers/containers.constants';
+
 export default class RegionsListController {
   /* @ngInject */
   constructor(
@@ -73,13 +75,15 @@ export default class RegionsListController {
   }
 
   async updateRegions() {
-    if (this.deploimentMode) {
+    if (this.deploymentMode) {
       await this.PciProjectStorageContainersService.getProductAvailability(
         this.projectId,
         this.coreConfig.getUser().ovhSubsidiary,
       ).then((productCapabilities) => {
         const productCapability = productCapabilities.plans
-          ?.filter((plan) => plan.code?.startsWith('storage-standard'))
+          ?.filter((plan) =>
+            plan.code?.startsWith(STORAGE_STANDARD_REGION_PLANCODE),
+          )
           .filter(
             (plan, index, self) =>
               index === self.findIndex((p) => p.name === plan.name),
@@ -90,7 +94,7 @@ export default class RegionsListController {
         );
 
         const regionsAllowedByDeploimentMmode = productRegionsAllowed.filter(
-          (item) => item.type === this.deploimentMode,
+          (item) => item.type === this.deploymentMode,
         );
 
         this.regionsByDeploimentMmode = regionsAllowedByDeploimentMmode;

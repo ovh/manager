@@ -12,9 +12,13 @@ import {
   OBJECT_CONTAINER_TYPES,
   STORAGE_PRICES_LINK,
   STORAGES_CONTAINER_NAME_PATTERN,
-  OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS,
-  OBJECT_CONTAINER_DEPLOIMENT_MODES,
+  OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS,
+  OBJECT_CONTAINER_DEPLOYMENT_MODES,
   OBJECT_CONTAINER_OFFER_SWIFT,
+  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  OBJECT_CONTAINER_MODE_MONO_ZONE,
+  STORAGE_STANDARD_PLANCODE,
+  SWIFT_PLANCODE,
 } from '../containers.constants';
 
 import { CONTAINER_USER_ASSOCIATION_MODES } from './components/associate-user-to-container/constant';
@@ -46,8 +50,8 @@ export default class PciStoragesContainersAddController {
     this.OBJECT_CONTAINER_OFFERS = OBJECT_CONTAINER_OFFERS;
     this.OBJECT_CONTAINER_OFFERS_LABELS = OBJECT_CONTAINER_OFFERS_LABELS;
     this.OBJECT_CONTAINER_TYPE_OFFERS = OBJECT_CONTAINER_TYPE_OFFERS;
-    this.OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS = OBJECT_CONTAINER_DEPLOIMENT_MODES_LABELS;
-    this.OBJECT_CONTAINER_DEPLOIMENT_MODES = OBJECT_CONTAINER_DEPLOIMENT_MODES;
+    this.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS = OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS;
+    this.OBJECT_CONTAINER_DEPLOYMENT_MODES = OBJECT_CONTAINER_DEPLOYMENT_MODES;
     this.OBJECT_CONTAINER_OFFER_SWIFT = OBJECT_CONTAINER_OFFER_SWIFT;
     this.coreConfig = coreConfig;
   }
@@ -71,7 +75,7 @@ export default class PciStoragesContainersAddController {
 
     this.container = new Container({
       archive: this.archive,
-      deploimentMode: null,
+      deploymentMode: null,
     });
     this.container.region = null;
 
@@ -100,8 +104,8 @@ export default class PciStoragesContainersAddController {
       },
     );
 
-    console.log('herre', this.catalog);
     this.setOffersPrices();
+    this.setDeploymentModePrices();
   }
 
   /**
@@ -145,19 +149,70 @@ export default class PciStoragesContainersAddController {
     this.OBJECT_CONTAINER_OFFERS_LABELS[
       OBJECT_CONTAINER_OFFER_STORAGE_STANDARD
     ].price = this.PriceFormatter.format(
-      this.calculatePrice('storage-standard.consumption'),
+      this.calculatePrice(STORAGE_STANDARD_PLANCODE),
     );
 
     this.OBJECT_CONTAINER_OFFERS_LABELS[
       OBJECT_CONTAINER_OFFER_SWIFT
-    ].price = this.PriceFormatter.format(
-      this.calculatePrice('storage.consumption'),
-    );
+    ].price = this.PriceFormatter.format(this.calculatePrice(SWIFT_PLANCODE));
   }
 
-  // setDeploimentModePrices() {
-  //   console.log('catalog', this.catalog);
-  // }
+  getLowestPriceAddon(productCapability, regionType) {
+    const codesList = productCapability
+      .filter((item) =>
+        item.regions.some((region) => region.type === regionType),
+      )
+      .map((item) => item.code);
+
+    let lowestPrice = null;
+
+    codesList.forEach((code) => {
+      const catalogElement = this.catalog.addons.find(
+        (addon) => addon.planCode === code,
+      );
+
+      if (catalogElement) {
+        const [{ price }] = catalogElement.pricings;
+
+        if (price > 0) {
+          if (!lowestPrice || price < lowestPrice) {
+            lowestPrice = price * 720 * 1024 * 0.00000001;
+          }
+        }
+      }
+    });
+
+    return lowestPrice;
+  }
+
+  async setDeploymentModePrices() {
+    await this.PciProjectStorageContainersService.getProductAvailability(
+      this.projectId,
+      this.coreConfig.getUser().ovhSubsidiary,
+    ).then((productCapabilities) => {
+      const productCapability = productCapabilities.plans?.filter((plan) =>
+        plan.code?.startsWith(STORAGE_STANDARD_PLANCODE),
+      );
+
+      this.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[
+        OBJECT_CONTAINER_MODE_MULTI_ZONES
+      ].price = this.PriceFormatter.format(
+        this.getLowestPriceAddon(
+          productCapability,
+          OBJECT_CONTAINER_MODE_MULTI_ZONES,
+        ),
+      );
+
+      this.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[
+        OBJECT_CONTAINER_MODE_MONO_ZONE
+      ].price = this.PriceFormatter.format(
+        this.getLowestPriceAddon(
+          productCapability,
+          OBJECT_CONTAINER_MODE_MONO_ZONE,
+        ),
+      );
+    });
+  }
 
   isRightOffer() {
     return OBJECT_CONTAINER_OFFER_STORAGE_STANDARD === this.container.offer;
@@ -181,7 +236,7 @@ export default class PciStoragesContainersAddController {
 
   onOfferFocus() {
     this.displaySelectedOffer = false;
-    this.container.deploimentMode = null;
+    this.container.deploymentMode = null;
   }
 
   onOfferSubmit() {

@@ -731,6 +731,5 @@ export default class PciStoragesContainersService {
         },
       })
       .then(({ data }) => data);
-    //
   }
 }

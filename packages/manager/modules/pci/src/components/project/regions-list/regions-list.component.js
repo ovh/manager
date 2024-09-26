@@ -12,7 +12,7 @@ export default {
     displaySelectedRegion: '<',
     quotaUrl: '<?',
     currentRegion: '<?',
-    deploimentMode: '<?',
+    deploymentMode: '<?',
     projectId: '<?',
     reload: '<?',
     loadEnd: '&?',

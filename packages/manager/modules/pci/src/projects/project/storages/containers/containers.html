@@ -74,22 +74,22 @@
                 data-filterable
             ></oui-datagrid-column>
             <oui-datagrid-column
-                data-title=":: 'pci_projects_project_storages_containers_deploiment_mode_label' | translate"
-                data-property="deploimentMode"
+                data-title=":: 'pci_projects_project_storages_containers_deployment_mode_label' | translate"
+                data-property="deploymentMode"
                 data-type="options"
-                data-type-options="$ctrl.deploimentModeOptions"
+                data-type-options="$ctrl.deploymentModeOptions"
                 data-sortable
                 data-filterable
             >
                 <span
                     class="oui-badge oui-badge_best-seller oui-3az"
-                    data-ng-if="$row.deploimentMode === $ctrl.OBJECT_CONTAINER_MODE_MULTI_ZONES"
-                    data-ng-bind=":: ('pci_projects_project_storages_containers_deploiment_mode_region-3-az') | translate"
+                    data-ng-if="$row.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MULTI_ZONES"
+                    data-ng-bind=":: ('pci_projects_project_storages_containers_deployment_mode_region-3-az') | translate"
                 ></span>
                 <span
                     class="oui-badge oui-badge_info"
-                    data-ng-if="$row.deploimentMode === $ctrl.OBJECT_CONTAINER_MODE_MONO_ZONE"
-                    data-ng-bind=":: ('pci_projects_project_storages_containers_deploiment_mode_region') | translate"
+                    data-ng-if="$row.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MONO_ZONE"
+                    data-ng-bind=":: ('pci_projects_project_storages_containers_deployment_mode_region') | translate"
                 ></span>
             </oui-datagrid-column>
             <oui-datagrid-column

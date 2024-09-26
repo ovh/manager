@@ -27,7 +27,7 @@ export default class Container {
     storageGateway,
     encryption,
     versioning,
-    deploimentMode,
+    deploymentMode,
   }) {
     Object.assign(this, {
       name,
@@ -48,7 +48,7 @@ export default class Container {
       ...(regionDetails && { regionDetails }),
       ...(virtualHost && { virtualHost }),
       ...(versioning && { versioning }),
-      deploimentMode,
+      deploymentMode,
       state,
       storageGateway,
       encryption,

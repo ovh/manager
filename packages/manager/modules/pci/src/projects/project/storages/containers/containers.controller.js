@@ -5,7 +5,7 @@ import {
   OBJECT_CONTAINER_OFFERS_TYPES,
   OBJECT_CONTAINER_MODE_MONO_ZONE,
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
-  OBJECT_CONTAINER_DEPLOIMENT_MODE_TYPES,
+  OBJECT_CONTAINER_DEPLOYMENT_MODE_TYPES,
 } from './containers.constants';
 
 export default class PciStoragesContainersController {
@@ -49,8 +49,8 @@ export default class PciStoragesContainersController {
     }
     this.setContainerLoadingErrors();
 
-    this.setDeploimentModeOptions();
-    this.addDeploimentMode();
+    this.setDeploymentModeOptions();
+    this.addDeploymentMode();
   }
 
   setSolutionTypeOptions() {
@@ -64,22 +64,22 @@ export default class PciStoragesContainersController {
     });
   }
 
-  setDeploimentModeOptions() {
-    this.deploimentModeOptions = {
+  setDeploymentModeOptions() {
+    this.deploymentModeOptions = {
       values: {},
     };
-    Object.values(OBJECT_CONTAINER_DEPLOIMENT_MODE_TYPES).forEach((type) => {
-      this.deploimentModeOptions.values[type] = this.$translate.instant(
-        `pci_projects_project_storages_containers_deploiment_mode_${type}`,
+    Object.values(OBJECT_CONTAINER_DEPLOYMENT_MODE_TYPES).forEach((type) => {
+      this.deploymentModeOptions.values[type] = this.$translate.instant(
+        `pci_projects_project_storages_containers_deployment_mode_${type}`,
       );
     });
   }
 
-  addDeploimentMode() {
+  addDeploymentMode() {
     this.containers = this.containers.reduce((acc, container) => {
       acc.push({
         ...container,
-        deploimentMode: this.regions[container.region].type,
+        deploymentMode: this.regions[container.region].type,
       });
       return acc;
     }, []);
