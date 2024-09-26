@@ -1,4 +1,4 @@
-import { Context, useContext } from 'react';
+import { useContext } from 'react';
 import {
   ShellContext,
   ShellContextType,
@@ -7,7 +7,6 @@ import { BillingService } from '@/billing/types/billingServices.type';
 import { ServiceLinks } from '@/billing/types/service-links.type';
 import { RENEW_URL, SERVICE_TYPE } from '@/billing.constants';
 
-// FIXME: should not be async and manage a state to update async values
 export const useServiceLinks = async (
   service: BillingService,
   autoRenewLink?: string,

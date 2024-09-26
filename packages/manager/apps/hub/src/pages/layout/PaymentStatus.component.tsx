@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useContext } from 'react';
+import { lazy, Suspense, useContext } from 'react';
 import {
   OsdsChip,
   OsdsIcon,
@@ -76,56 +76,62 @@ export default function PaymentStatus({
   };
 
   const services = data?.services;
-  const count = data?.count;
+  const count = data?.count || 0;
 
   return (
-    <OsdsTile className="w-full block p-4" inline data-testid="payment-status">
-      <div className="flex mb-2 gap-4 items-center">
+    <OsdsTile
+      className="w-full flex flex-col p-6"
+      inline
+      data-testid="payment_status"
+    >
+      <div className="flex mb-2 gap-4 items-start">
         <OsdsText
-          color={ODS_THEME_COLOR_INTENT.primary}
+          className="block flex-1 mb-6"
           level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-          className="block"
           size={ODS_TEXT_SIZE._400}
+          color={ODS_THEME_COLOR_INTENT.text}
+          data-testid="payment_status_title"
         >
           {t('ovh_manager_hub_payment_status_tile_title')}
+          <OsdsChip
+            className="ml-4"
+            color={ODS_THEME_COLOR_INTENT.primary}
+            inline={true}
+            size={ODS_CHIP_SIZE.sm}
+            data-testid="payment_status_badge"
+          >
+            {count}
+          </OsdsChip>
         </OsdsText>
-        <OsdsChip
-          color={ODS_THEME_COLOR_INTENT.primary}
-          size={ODS_CHIP_SIZE.sm}
-        >
-          {count}
-        </OsdsChip>
-        <div className="ml-auto flex items-center gap-4">
-          {autorenewLink && (
-            <Suspense
-              fallback={
-                <OsdsSkeleton data-testid="my_services_link_skeleton" />
-              }
-            >
-              <Await
-                resolve={autorenewLink}
-                children={(link: string) => (
-                  <OsdsLink
-                    href={link}
-                    target={OdsHTMLAnchorElementTarget._top}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    className="font-bold text-right"
-                  >
-                    {tCommon('manager_hub_see_all')}
-                    <span slot="end">
-                      <OsdsIcon
-                        hoverable
-                        name={ODS_ICON_NAME.ARROW_RIGHT}
-                        size={ODS_ICON_SIZE.xs}
-                        color={ODS_THEME_COLOR_INTENT.primary}
-                      />
-                    </span>
-                  </OsdsLink>
-                )}
-              />
-            </Suspense>
-          )}
-        </div>
+        {autorenewLink && (
+          <Suspense
+            fallback={<OsdsSkeleton data-testid="my_services_link_skeleton" />}
+          >
+            <Await
+              resolve={autorenewLink}
+              children={(link: string) => (
+                <OsdsLink
+                  slot="actions"
+                  href={link}
+                  target={OdsHTMLAnchorElementTarget._top}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  className="font-bold text-right"
+                  data-testid="my_services_link"
+                >
+                  {tCommon('manager_hub_see_all')}
+                  <span slot="end">
+                    <OsdsIcon
+                      hoverable
+                      name={ODS_ICON_NAME.ARROW_RIGHT}
+                      size={ODS_ICON_SIZE.xs}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    />
+                  </span>
+                </OsdsLink>
+              )}
+            />
+          </Suspense>
+        )}
       </div>
       {!isLoading && !services && (
         <Suspense
@@ -138,7 +144,7 @@ export default function PaymentStatus({
           />
         </Suspense>
       )}
-      {!isLoading && !services.length && (
+      {!isLoading && services?.length === 0 && (
         <OsdsText
           className="text-center mt-8"
           level={ODS_TEXT_LEVEL.subheading}
@@ -149,15 +155,22 @@ export default function PaymentStatus({
         </OsdsText>
       )}
       {(isLoading || services) && (
-        <OsdsTable className="block overflow-visible">
+        <OsdsTable
+          className="block overflow-visible"
+          data-testid="payment_status_table"
+        >
           <table className="table-auto">
             <tbody>
               {!isLoading &&
                 services.map((service: BillingService) => (
-                  <tr key={`billing_service_${service.id}`}>
-                    <td scope="row">
+                  <tr
+                    key={`billing_service_${service.id}`}
+                    data-testid="billing_service"
+                  >
+                    <td scope="row" className="!p-4">
                       {service.url ? (
                         <OsdsLink
+                          className="block mb-3"
                           href={service.url}
                           onClick={trackServiceAccess}
                           target={OdsHTMLAnchorElementTarget._top}
@@ -167,7 +180,6 @@ export default function PaymentStatus({
                         </OsdsLink>
                       ) : (
                         <OsdsText
-                          className="text-center mt-8"
                           level={ODS_TEXT_LEVEL.body}
                           size={ODS_TEXT_SIZE._400}
                           color={ODS_THEME_COLOR_INTENT.text}
@@ -176,7 +188,7 @@ export default function PaymentStatus({
                         </OsdsText>
                       )}
                       <OsdsText
-                        className="text-center mt-8"
+                        className="mb-0"
                         level={ODS_TEXT_LEVEL.caption}
                         size={ODS_TEXT_SIZE._200}
                         color={ODS_THEME_COLOR_INTENT.text}
@@ -186,21 +198,32 @@ export default function PaymentStatus({
                         )}
                       </OsdsText>
                     </td>
-                    <td scope="row">
+                    <td scope="row" className="!p-4">
                       <div className="lg:inline mb-1">
-                        <Suspense fallback={<OsdsSkeleton />}>
+                        <Suspense
+                          fallback={
+                            <OsdsSkeleton data-testid="billing_status_skeleton" />
+                          }
+                        >
                           <BillingStatus service={service} />
                         </Suspense>
                       </div>
                       {!service.isBillingSuspended() && (
-                        <div className="d-lg-inline mb-1">
+                        <div
+                          className="d-lg-inline mb-1"
+                          data-testid="service_expiration_date_message"
+                        >
                           {service.isOneShot() &&
                             !service.isResiliated() &&
-                            !service.hasPendingResiliation() && <span>-</span>}
+                            !service.hasPendingResiliation() && (
+                              <span data-testid="service_without_expiration_date">
+                                -
+                              </span>
+                            )}
                           {service.hasManualRenew() &&
                             !service.isResiliated() &&
                             !service.hasDebt() && (
-                              <span>
+                              <span data-testid="service_valid_until_date">
                                 {t(
                                   'ovh_manager_hub_payment_status_tile_before',
                                   {
@@ -209,26 +232,25 @@ export default function PaymentStatus({
                                 )}
                               </span>
                             )}
-                          {service.isResiliated() ||
-                            (service.hasPendingResiliation() && (
-                              <span>
-                                {t(
-                                  'ovh_manager_hub_payment_status_tile_renew',
-                                  {
-                                    date: format(service.formattedExpiration),
-                                  },
-                                )}
-                              </span>
-                            ))}
+                          {(service.isResiliated() ||
+                            service.hasPendingResiliation()) && (
+                            <span data-testid="service_with_termination_date">
+                              {t('ovh_manager_hub_payment_status_tile_renew', {
+                                date: format(service.formattedExpiration),
+                              })}
+                            </span>
+                          )}
                           {service.hasAutomaticRenewal() &&
                             !service.isOneShot() &&
                             !service.hasDebt() &&
                             !service.isResiliated() &&
                             !service.hasPendingResiliation() && (
-                              <span>{format(service.formattedExpiration)}</span>
+                              <span data-testid="service_with_expiration_date">
+                                {format(service.formattedExpiration)}
+                              </span>
                             )}
                           {service.hasDebt() && (
-                            <span>
+                            <span data-testid="service_with_debt">
                               {t('ovh_manager_hub_payment_status_tile_now')}
                             </span>
                           )}
@@ -259,7 +281,10 @@ export default function PaymentStatus({
                 ))}
               {isLoading &&
                 [1, 2, 3, 4].map((index) => (
-                  <tr key={`payment_status_skeleton_line_${index}`}>
+                  <tr
+                    key={`payment_status_skeleton_line_${index}`}
+                    data-testid="payment_status_skeleton_line"
+                  >
                     <td>
                       <OsdsSkeleton
                         inline

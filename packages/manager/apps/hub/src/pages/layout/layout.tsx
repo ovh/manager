@@ -17,20 +17,21 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { features, BILLING_FEATURE } from '@/pages/layout/layout.constants';
 import { useFetchHubServices } from '@/data/hooks/services/useServices';
 import { useFetchHubLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
+// Components used in Suspense's fallback cannot be lazy loaded (break testing)
+import TileGridSkeleton from '@/components/tile-grid-skeleton/TileGridSkeleton.component';
+import TileSkeleton from '@/components/tile-grid-skeleton/tile-skeleton/TileSkeleton.component';
 
 const Welcome = lazy(() => import('@/components/welcome/Welcome.component'));
 const Banner = lazy(() => import('@/components/banner/Banner.component'));
 const Products = lazy(() => import('@/components/products/Products.component'));
 const OrderTracking = lazy(() =>
   import('@/components/hub-order-tracking/HubOrderTracking.component'),
-);
-const TileGridSkeleton = lazy(() =>
-  import('@/components/tile-grid-skeleton/TileGridSkeleton.component'),
 );
 const HubSupport = lazy(() =>
   import('@/components/hub-support/HubSupport.component'),
@@ -61,6 +62,7 @@ export default function Layout() {
   }, [location]);
 
   useEffect(() => {
+    defineCurrentPage(`app.dashboard`);
     shell.ux.hidePreloader();
     shell.ux.stopProgress();
   }, []);
@@ -182,32 +184,20 @@ export default function Layout() {
                     {t('manager_hub_dashboard_overview')}
                   </OsdsText>
                   <div className="flex flex-wrap -mx-6">
-                    {isLoading && (
-                      <>
-                        <OsdsSkeleton />
-                        <OsdsSkeleton />
-                        <OsdsSkeleton />
-                        <OsdsSkeleton />
-                      </>
-                    )}
-                    {!isLoading && (
-                      <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
-                        <Suspense fallback={<OsdsSkeleton />}>
-                          <PaymentStatus
-                            canManageBilling={availability[BILLING_FEATURE]}
-                          />
-                        </Suspense>
-                      </div>
-                    )}
+                    {isLoading && <TileSkeleton />}
                     {!isLoading && !isFreshCustomer && (
                       <>
+                        <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
+                          <Suspense fallback={<TileSkeleton />}>
+                            <PaymentStatus
+                              canManageBilling={availability[BILLING_FEATURE]}
+                            />
+                          </Suspense>
+                        </div>
                         <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
                           <Suspense
                             fallback={
-                              <OsdsSkeleton
-                                data-testid="billing_summary_skeleton"
-                                inline
-                              />
+                              <TileSkeleton data-testid="billing_summary_skeleton" />
                             }
                           >
                             {user.enterprise ? (
@@ -220,10 +210,7 @@ export default function Layout() {
                         <div className="md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 px-6 box-border">
                           <Suspense
                             fallback={
-                              <OsdsSkeleton
-                                data-testid="support_skeleton"
-                                inline
-                              />
+                              <TileSkeleton data-testid="support_skeleton" />
                             }
                           >
                             <HubSupport />
@@ -232,10 +219,7 @@ export default function Layout() {
                         <div className="md:w-4/12 order-4 px-6 box-border">
                           <Suspense
                             fallback={
-                              <OsdsSkeleton
-                                data-testid="order_tracking_skeleton"
-                                inline
-                              />
+                              <TileSkeleton data-testid="order_tracking_skeleton" />
                             }
                           >
                             <OrderTracking />
@@ -245,18 +229,7 @@ export default function Layout() {
                     )}
                   </div>
                   <div className="hub-dashboard-product">
-                    {isLoading && (
-                      <Suspense
-                        fallback={
-                          <OsdsSkeleton
-                            data-testid="tile_grid_skeleton_skeleton"
-                            inline
-                          />
-                        }
-                      >
-                        <TileGridSkeleton />
-                      </Suspense>
-                    )}
+                    {isLoading && <TileGridSkeleton />}
                     {!isLoading && !isFreshCustomer && (
                       <Suspense fallback={<TileGridSkeleton />}>
                         <Products services={services}></Products>
