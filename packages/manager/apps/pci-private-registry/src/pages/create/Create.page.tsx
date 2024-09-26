@@ -50,7 +50,9 @@ export default function CreatePage(): JSX.Element {
         <Headers title={tCreate('private_registry_create')} />
       </div>
       <Notifications />
-      <PciDiscoveryBanner project={project} className="mb-6" />
+      <div className="mb-5 sticky top-0 z-50">
+        <PciDiscoveryBanner project={project} className="mb-6" />
+      </div>
       <RegionStep />
       <NameStep />
       <PlanStep />
