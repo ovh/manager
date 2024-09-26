@@ -33,6 +33,7 @@ export type DomainsItem = {
   id: string;
   name: string;
   organizationLabel: string;
+  organizationId: string;
   account: number;
 };
 
@@ -54,7 +55,7 @@ const columns: DatagridColumn<DomainsItem>[] = [
     id: 'organization',
     cell: (item) =>
       item.organizationLabel && (
-        <LabelChip id={item.id}>{item.organizationLabel}</LabelChip>
+        <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
       ),
     label: 'zimbra_domains_datagrid_organization_label',
   },
@@ -123,6 +124,7 @@ export default function Domains() {
       name: item.currentState.name,
       id: item.id,
       organizationLabel: item.currentState.organizationLabel,
+      organizationId: item.currentState.organizationId,
       account: item.currentState.accountsStatistics.reduce(
         (acc, current) => acc + current.configuredAccountsCount,
         0,
