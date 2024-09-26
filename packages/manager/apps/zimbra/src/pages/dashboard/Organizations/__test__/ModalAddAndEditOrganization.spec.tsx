@@ -5,7 +5,7 @@ import { vi, describe, expect } from 'vitest';
 import { act } from 'react-dom/test-utils';
 import { fireEvent, render } from '@/utils/test.provider';
 import { platformMock } from '@/api/_mock_';
-import ModalAddAndEditOrganization from '../ModalAddAndEditOrganization';
+import ModalAddAndEditOrganization from '../ModalAddAndEditOrganization.page';
 import organizationsAddAndEditTranslation from '@/public/translations/organizations/addAndEdit/Messages_fr_FR.json';
 
 const { useSearchParamsMock } = vi.hoisted(() => ({

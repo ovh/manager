@@ -34,7 +34,7 @@ import {
   usePlatform,
   useOrganizationList,
 } from '@/hooks';
-import ActionButtonDomain from './ActionButtonDomain';
+import ActionButtonDomain from './ActionButtonDomain.component';
 import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import {

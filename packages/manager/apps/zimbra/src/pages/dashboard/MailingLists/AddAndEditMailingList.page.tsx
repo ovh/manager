@@ -9,7 +9,7 @@ import {
   useMailingList,
 } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
-import MailingListSettings from './MailingListSettings';
+import MailingListSettings from './MailingListSettings.page';
 
 export default function AddAndEditMailingList() {
   const { t } = useTranslation('mailinglists/addAndEdit');

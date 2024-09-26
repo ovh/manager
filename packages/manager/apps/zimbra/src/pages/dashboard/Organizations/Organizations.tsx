@@ -19,7 +19,7 @@ import {
 import { ResourceStatus } from '@/api/api.type';
 
 import { useOrganizationList, usePlatform, useGenerateUrl } from '@/hooks';
-import ActionButtonOrganization from './ActionButtonOrganization';
+import ActionButtonOrganization from './ActionButtonOrganization.component';
 import IdLink from './IdLink';
 import LabelChip from '@/components/LabelChip';
 import { BadgeStatus } from '@/components/BadgeStatus';

@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
 import { render } from '@/utils/test.provider';
 import { platformMock, aliasMock, accountMock } from '@/api/_mock_';
-import ModalDeleteAlias from '../ModalDeleteAlias';
+import ModalDeleteAlias from '../ModalDeleteAlias.component';
 import accountAliasDeleteTranslation from '@/public/translations/accounts/alias/delete/Messages_fr_FR.json';
 
 vi.mock('@/hooks', () => {
