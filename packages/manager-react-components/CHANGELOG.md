@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.32.0...@ovh-ux/manager-react-components@1.32.1) (2024-09-26)
+
+### Bug Fixes
+
+- **react-manager-components:** update vite config ([404e1cc](https://github.com/ovh/manager/commit/404e1cc13d79dc44e46c7d6a535792f665249baa))
+
 # [1.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.31.0...@ovh-ux/manager-react-components@1.32.0) (2024-09-26)
 
 ### Bug Fixes
