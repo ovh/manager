@@ -12,6 +12,7 @@ import {
   postRegistryCredentials,
   getRegistryAvailablePlans,
   updatePlan,
+  TRegistryCredentials,
 } from '../data/registry';
 import queryClient from '@/queryClient';
 
@@ -166,16 +167,29 @@ export const useRenameRegistry = ({
   };
 };
 
-export const usePostRegistryCredentials = (
-  projectId: string,
-  registryId: string,
-  enabled: boolean,
-) =>
-  useQuery({
-    queryKey: getRegistryCredentialsQueryKey(projectId, registryId),
-    queryFn: () => postRegistryCredentials(projectId, registryId),
-    enabled,
+interface PostRegistryCredentialsParams {
+  projectId: string;
+  registryId: string;
+  onSuccess?: (credentials: TRegistryCredentials) => void;
+  onError?: (cause: Error) => void;
+}
+
+export const usePostRegistryCredentials = ({
+  projectId,
+  registryId,
+  onSuccess,
+  onError,
+}: Readonly<PostRegistryCredentialsParams>) => {
+  const mutation = useMutation({
+    mutationFn: async () => postRegistryCredentials(projectId, registryId),
+    onError,
+    onSuccess,
   });
+  return {
+    generateCredentials: () => mutation.mutate(),
+    ...mutation,
+  };
+};
 
 export type TUpdatePlanParam = {
   projectId: string;
