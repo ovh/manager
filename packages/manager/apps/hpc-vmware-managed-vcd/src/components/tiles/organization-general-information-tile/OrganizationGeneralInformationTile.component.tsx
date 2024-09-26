@@ -12,14 +12,14 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import { subRoutes } from '@/routes/routes.constant';
+import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
 
 type TTileProps = {
   vcdOrganization: IVcdOrganization;
@@ -41,38 +41,20 @@ export default function OrganizationGenerationInformationTile({
           id: 'name',
           label: t('managed_vcd_dashboard_name'),
           value: (
-            <div className="flex justify-between items-center">
-              <Description>
-                {vcdOrganization?.currentState?.fullName}
-              </Description>
-              <OsdsIcon
-                aria-label="edit"
-                className="mx-6 cursor-pointer"
-                name={ODS_ICON_NAME.PEN}
-                size={ODS_ICON_SIZE.xxs}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                onClick={() => navigate(subRoutes.editName)}
-              />
-            </div>
+            <EditableTileItem
+              label={vcdOrganization?.currentState?.fullName}
+              onClickEdit={() => navigate(subRoutes.editName)}
+            />
           ),
         },
         {
           id: 'description',
           label: t('managed_vcd_dashboard_description'),
           value: (
-            <div className="flex justify-between items-center">
-              <Description>
-                {vcdOrganization?.currentState?.description}
-              </Description>
-              <OsdsIcon
-                aria-label="edit"
-                className="mx-6 cursor-pointer"
-                name={ODS_ICON_NAME.PEN}
-                size={ODS_ICON_SIZE.xxs}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                onClick={() => navigate(subRoutes.editDescription)}
-              />
-            </div>
+            <EditableTileItem
+              label={vcdOrganization?.currentState?.description}
+              onClickEdit={() => navigate(subRoutes.editDescription)}
+            />
           ),
         },
         {

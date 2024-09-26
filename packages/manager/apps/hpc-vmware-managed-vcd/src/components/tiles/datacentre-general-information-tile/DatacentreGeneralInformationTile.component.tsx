@@ -8,13 +8,11 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import IVcdDatacentre from '@/types/vcd-datacenter.interface';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import { subRoutes } from '@/routes/routes.constant';
+import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
 
 type TTileProps = {
   vcdDatacentre: IVcdDatacentre;
@@ -37,19 +35,10 @@ export default function DatacentreGenerationInformationTile({
           id: 'description',
           label: t('managed_vcd_dashboard_description'),
           value: (
-            <div className="flex justify-between items-center">
-              <Description>
-                {vcdDatacentre?.currentState?.description}
-              </Description>
-              <OsdsIcon
-                aria-label="edit"
-                className="mx-6 cursor-pointer"
-                name={ODS_ICON_NAME.PEN}
-                size={ODS_ICON_SIZE.xxs}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                onClick={() => navigate(subRoutes.editDescription)}
-              />
-            </div>
+            <EditableTileItem
+              label={vcdDatacentre?.currentState?.description}
+              onClickEdit={() => navigate(subRoutes.editDescription)}
+            />
           ),
         },
         {
