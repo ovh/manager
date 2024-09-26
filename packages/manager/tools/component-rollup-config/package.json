@@ -39,7 +39,7 @@
     "lodash": "^4.17.15",
     "magic-string": "^0.25.4",
     "regenerator-runtime": "^0.13.7",
-    "rollup": "^1.20.0",
+    "rollup": "^3.29.5",
     "rollup-plugin-html": "^0.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.2",
     "rollup-plugin-sass": "^1.12.16",

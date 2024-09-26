@@ -85,7 +85,7 @@
     "express": "^4.17.1",
     "http-proxy-middleware": "^1.0.4",
     "msw": "^0.38.0",
-    "rollup": "^2.7.8",
+    "rollup": "^3.29.5",
     "vite": "^5.2.13"
   },
   "regions": [
