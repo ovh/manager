@@ -7,7 +7,7 @@ Given('User has {int} elements in the Listing page', function(
   this: ICustomWorld<ConfigParams>,
   nb: number,
 ) {
-  this.handlersConfig.nb = nb;
+  this.handlersConfig.nbBackup = nb;
 });
 
 When('User navigates to Listing page', async function(

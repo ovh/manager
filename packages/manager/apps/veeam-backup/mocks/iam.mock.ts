@@ -1,5 +1,5 @@
 import { PathParams } from 'msw';
-import { Handler } from '../../../../../../playwright-helpers';
+import { Handler } from '../../../../../playwright-helpers';
 import resourceList from './iam.json';
 
 const findResourceByUrn = (params: PathParams) =>
@@ -8,7 +8,7 @@ const findResourceByUrn = (params: PathParams) =>
 export const getIamMocks = (): Handler[] => [
   {
     url: '/iam/resource/:urn/authorization/check',
-    response: (_, params: PathParams) => findResourceByUrn(params),
+    response: (_: unknown, params: PathParams) => findResourceByUrn(params),
     api: 'v2',
     method: 'post',
   },
