@@ -31,11 +31,12 @@ import { ReactComponent as Leaf } from './container/leaf.svg';
 import { ReactComponent as LiveChat } from './container/live_chat.svg';
 import { ReactComponent as NetworkStatus } from './container/network_status.svg';
 import { ReactComponent as Store } from './container/store.svg';
+import { ReactComponent as Email } from './container/email.svg';
 
 export { Hosting, Office365, Sharepoint, Exchange };
 export { TelecomEthernet, Telephony, Headset };
 
-export { Helpe, Leaf, LiveChat, NetworkStatus, Store };
+export { Helpe, Leaf, LiveChat, NetworkStatus, Store, Email };
 export {
   BareMetalCloud,
   HostedPrivateCloud,
