@@ -11,5 +11,6 @@
   "zimbra_account_datagrid_quota_to": "TB",
   "zimbra_account_datagrid_tooltip_modification": "Ändern",
   "zimbra_account_datagrid_tooltip_delete": "Löschen",
-  "zimbra_account_account_add": "Account erstellen"
+  "zimbra_account_account_add": "Account erstellen",
+  "zimbra_domains_tooltip_need_domain": "Bitte richten Sie zuerst eine Domain ein"
 }

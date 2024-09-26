@@ -1,23 +1,26 @@
-import { useQuery } from '@tanstack/react-query';
+import {
+  useQuery,
+  UseQueryOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import { usePlatform } from '@/hooks';
 import {
   getZimbraPlatformOrganization,
   getZimbraPlatformOrganizationQueryKey,
+  OrganizationType,
 } from '@/api/organization';
 
-export const useOrganizationList = () => {
+export const useOrganizationList = (
+  options: Omit<UseQueryOptions, 'queryKey' | 'queryFn' | 'select'> = {},
+) => {
   const { platformId } = usePlatform();
 
-  const { data, isLoading, isError, error } = useQuery({
+  return useQuery({
+    ...options,
     queryKey: getZimbraPlatformOrganizationQueryKey(platformId),
     queryFn: () => getZimbraPlatformOrganization(platformId),
-    enabled: !!platformId,
-  });
-
-  return {
-    isLoading,
-    isError,
-    error,
-    data,
-  };
+    enabled:
+      (typeof options.enabled !== 'undefined' ? options.enabled : true) &&
+      !!platformId,
+  }) as UseQueryResult<OrganizationType[]>;
 };

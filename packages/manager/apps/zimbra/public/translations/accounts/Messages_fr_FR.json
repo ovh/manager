@@ -11,5 +11,6 @@
   "zimbra_account_datagrid_quota_to": "To",
   "zimbra_account_datagrid_tooltip_modification": "Modifier",
   "zimbra_account_datagrid_tooltip_delete": "Supprimer",
-  "zimbra_account_account_add": "Créer un compte"
+  "zimbra_account_account_add": "Créer un compte",
+  "zimbra_domains_tooltip_need_domain": "Veuillez d'abord configurer un domaine"
 }

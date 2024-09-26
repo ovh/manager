@@ -5,5 +5,6 @@
   "zimbra_domains_datagrid_domain_label": "Domain",
   "zimbra_domains_datagrid_organization_label": "Organisation",
   "zimbra_domains_datagrid_account_number": "Anzahl der Accounts",
-  "zimbra_domains_tooltip_delete": "Löschen"
+  "zimbra_domains_tooltip_delete": "Löschen",
+  "zimbra_domains_tooltip_need_organization": "Bitte richten Sie zuerst eine Organisation ein"
 }
