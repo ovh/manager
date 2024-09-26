@@ -19,6 +19,7 @@ import IplbServerFormEditTemplate from './iplb-server-farm-edit.html';
 import IplbServerFormTemplate from './iplb-server-farm.html';
 
 const moduleName = 'ovhManagerIplbServerForm';
+const LB_FRONTEND_UDP_AVAILABILITY = 'ip-load-balancer:lb-frontend-udp';
 
 angular
   .module(moduleName, ['ui.router'])
@@ -72,6 +73,12 @@ angular
           resolve: {
             breadcrumb: /* @ngInject */ ($translate) =>
               $translate.instant('iplb_farm_add'),
+            udpAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+              ovhFeatureFlipping
+                .checkFeatureAvailability(LB_FRONTEND_UDP_AVAILABILITY)
+                .then((feature) =>
+                  feature.isFeatureAvailable(LB_FRONTEND_UDP_AVAILABILITY),
+                ),
           },
         })
         .state('iplb.detail.server-farm.dashboard', {
@@ -96,6 +103,12 @@ angular
           resolve: {
             breadcrumb: /* @ngInject */ ($translate) =>
               $translate.instant('iplb_farm_update_title'),
+            udpAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+              ovhFeatureFlipping
+                .checkFeatureAvailability(LB_FRONTEND_UDP_AVAILABILITY)
+                .then((feature) =>
+                  feature.isFeatureAvailable(LB_FRONTEND_UDP_AVAILABILITY),
+                ),
           },
         })
         .state('iplb.detail.server-farm.dashboard.server', {
