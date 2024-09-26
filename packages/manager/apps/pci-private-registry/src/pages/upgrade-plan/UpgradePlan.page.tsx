@@ -10,7 +10,7 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import { useProject } from '@ovh-ux/manager-pci-common';
-import { useTranslation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 import {
   Headers,
   Notifications,
@@ -69,14 +69,18 @@ export default function UpgradePlanPage(): JSX.Element {
     planId: selectedPlan?.id,
     onSuccess: () => {
       addSuccess(
-        <OsdsText
-          break-spaces="false"
-          size={ODS_TEXT_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        >
-          {tUpgradePlan('private_registry_upgrade_plan_success')}
-        </OsdsText>,
+        <Translation ns="upgrade-plan">
+          {(_t) => (
+            <OsdsText
+              break-spaces="false"
+              size={ODS_TEXT_SIZE._400}
+              color={ODS_THEME_COLOR_INTENT.text}
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            >
+              {_t('private_registry_upgrade_plan_success')}
+            </OsdsText>
+          )}
+        </Translation>,
         true,
       );
 
@@ -88,20 +92,24 @@ export default function UpgradePlanPage(): JSX.Element {
       message: never;
     }) => {
       addError(
-        <OsdsText
-          break-spaces="false"
-          size={ODS_TEXT_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        >
-          {tUpgradePlan('private_registry_upgrade_plan_error', {
-            message:
-              e?.response?.data.message ||
-              e?.error?.message ||
-              e?.message ||
-              '',
-          })}
-        </OsdsText>,
+        <Translation ns="upgrade-plan">
+          {(_t) => (
+            <OsdsText
+              break-spaces="false"
+              size={ODS_TEXT_SIZE._400}
+              color={ODS_THEME_COLOR_INTENT.text}
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            >
+              {tUpgradePlan('private_registry_upgrade_plan_error', {
+                message:
+                  e?.response?.data.message ||
+                  e?.error?.message ||
+                  e?.message ||
+                  '',
+              })}
+            </OsdsText>
+          )}
+        </Translation>,
         false,
       );
     },

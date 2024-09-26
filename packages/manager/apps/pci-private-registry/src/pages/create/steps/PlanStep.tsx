@@ -17,7 +17,7 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Translation } from 'react-i18next';
 import { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -51,16 +51,20 @@ export default function PlanStep(): JSX.Element {
         queryKey: getRegistryQueryPrefix(projectId),
       });
       addSuccess(
-        <OsdsText
-          break-spaces="false"
-          size={ODS_TEXT_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        >
-          {tCommon('private_registry_onboarding_success', {
-            registryName: store.state.name.value,
-          })}
-        </OsdsText>,
+        <Translation ns="common">
+          {(_t) => (
+            <OsdsText
+              break-spaces="false"
+              size={ODS_TEXT_SIZE._400}
+              color={ODS_THEME_COLOR_INTENT.text}
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            >
+              {_t('private_registry_onboarding_success', {
+                registryName: store.state.name.value,
+              })}
+            </OsdsText>
+          )}
+        </Translation>,
         true,
       );
     },
@@ -70,20 +74,24 @@ export default function PlanStep(): JSX.Element {
       message: never;
     }) => {
       addError(
-        <OsdsText
-          break-spaces="false"
-          size={ODS_TEXT_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        >
-          {tCommon('private_registry_onboarding_error', {
-            message:
-              e?.response?.data.message ||
-              e?.error?.message ||
-              e?.message ||
-              '',
-          })}
-        </OsdsText>,
+        <Translation ns="common">
+          {(_t) => (
+            <OsdsText
+              break-spaces="false"
+              size={ODS_TEXT_SIZE._400}
+              color={ODS_THEME_COLOR_INTENT.text}
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            >
+              {_t('private_registry_onboarding_error', {
+                message:
+                  e?.response?.data.message ||
+                  e?.error?.message ||
+                  e?.message ||
+                  '',
+              })}
+            </OsdsText>
+          )}
+        </Translation>,
         false,
       );
     },
