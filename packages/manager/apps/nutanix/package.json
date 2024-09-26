@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nutanix-app",
-  "version": "2.2.40",
+  "version": "2.2.42",
   "private": true,
   "description": "OVHcloud Nutanix app",
   "repository": {
@@ -19,8 +19,8 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-nutanix-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-bm-server-components": "^1.33.1",
-    "@ovh-ux/manager-components": "^1.19.5",
+    "@ovh-ux/manager-bm-server-components": "^1.34.0",
+    "@ovh-ux/manager-components": "^1.19.6",
     "@ovh-ux/manager-config": "^7.3.3",
     "@ovh-ux/manager-core": "^12.17.0",
     "@ovh-ux/manager-error-page": "^2.4.1",

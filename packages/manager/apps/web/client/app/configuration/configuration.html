@@ -4,10 +4,10 @@
             data-ng-if="$ctrl.isOffersBannerActive"
             target="_blank"
             rel="noopener"
-            href="{{:: $ctrl.OVH_WEB_OFFERS_2024 }}"
+            href="{{ :: $ctrl.banner2024.url }}"
         >
             <img
-                src="assets/images/banner/banner_offers.png"
+                src="{{ :: $ctrl.banner2024.banner }}"
                 alt="{{'common_offers_banner_alt' | translate}}"
                 class="img-responsive"
             />

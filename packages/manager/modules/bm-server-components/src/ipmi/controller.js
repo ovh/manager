@@ -706,10 +706,6 @@ export default class BmServerComponentsIpmiController {
     return SSH_KEY.pattern.test(this.ssh.publicKey);
   }
 
-  hasSOL() {
-    return this.coreConfig.getRegion() !== 'US';
-  }
-
   static getTaskPath(serviceName, taskId) {
     return `apiv6/dedicated/server/${serviceName}/task/${taskId}`;
   }

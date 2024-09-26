@@ -1,5 +1,5 @@
 {
-  "pci_projects_project_network_private": "Private network",
+  "pci_projects_project_network_private": "Private Network",
   "pci_projects_project_network_private_vrack_empty": "You have not yet created a private network.",
   "pci_projects_project_network_private_vrack_deploy": "Deploy private networks supported by the OVHcloud vRack to connect your instances across the globe.",
   "pci_projects_project_network_private_vrack_explanation_1": "You can instantly create private networks on demand. They guarantee level 2 isolation and are compatible with DHCP service to automatically deliver IP addressing to your instances. Each private network can be deployed in a single location or it can connect all of your project regions together. ",
