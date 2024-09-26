@@ -30,7 +30,7 @@ const StatisticsPage = lazy(() =>
 const CertificatesPage = lazy(() =>
   import('@/pages/detail/certificates/Certificates.page'),
 );
-const LogsPage = lazy(() => import('@/pages/detail/logs/Logs.page'));
+const LogsPage = lazy(() => import('@/pages/detail/log/Log.page'));
 
 const Routes = (
   <Route
