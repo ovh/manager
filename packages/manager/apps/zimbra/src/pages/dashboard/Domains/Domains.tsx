@@ -39,6 +39,7 @@ import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 import Loading from '@/components/Loading/Loading';
+import { ResourceStatus } from '@/api/api.type';
 
 export type DomainsItem = {
   id: string;
@@ -46,6 +47,7 @@ export type DomainsItem = {
   organizationId: string;
   organizationLabel: string;
   account: number;
+  status: ResourceStatus;
 };
 
 const columns: DatagridColumn<DomainsItem>[] = [
@@ -118,6 +120,7 @@ export default function Domains() {
         (acc, current) => acc + current.configuredAccountsCount,
         0,
       ),
+      status: item.resourceStatus,
     })) ?? [];
 
   return (

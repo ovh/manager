@@ -4,6 +4,7 @@ import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { OrganizationItem } from './Organizations';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { ResourceStatus } from '@/api/api.type';
 
 interface ActionButtonOrganizationProps {
   organizationItem: OrganizationItem;
@@ -39,7 +40,13 @@ const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
     },
   ];
 
-  return <ActionMenu items={actionItems} isCompact />;
+  return (
+    <ActionMenu
+      disabled={organizationItem.status !== ResourceStatus.READY}
+      items={actionItems}
+      isCompact
+    />
+  );
 };
 
 export default ActionButtonOrganization;
