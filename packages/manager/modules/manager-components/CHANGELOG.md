@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.19.6...@ovh-ux/manager-components@1.20.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3323] ([b3c3659](https://github.com/ovh/manager/commit/b3c365965b4a4b5b50be45d806927382f4c1867c))
+
+
+### Features
+
+* **pci.project:** display correctly the new MUM location ([#12966](https://github.com/ovh/manager/issues/12966)) ([234edc4](https://github.com/ovh/manager/commit/234edc42841ad77db40047b9489eff3fdbba9f8a))
+
+
+
+
+
 ## [1.19.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.19.5...@ovh-ux/manager-components@1.19.6) (2024-09-19)
 
 

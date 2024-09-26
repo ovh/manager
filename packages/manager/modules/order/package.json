@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-module-order",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
   "description": "OVHcloud manager module order.",
   "repository": {
@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.8.0",
-    "@ovh-ux/manager-react-shell-client": "^0.7.0",
+    "@ovh-ux/manager-react-shell-client": "^0.7.1",
     "jsurl": "^0.1.5"
   },
   "devDependencies": {

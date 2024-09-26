@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.3.0...@ovh-ux/manager-pci-common@0.4.0) (2024-09-26)
+
+
+### Features
+
+* **manager-react-components:** build and publish library ([ba689bd](https://github.com/ovh/manager/commit/ba689bdd23d04e0f52564ef9cb30d6427b639df4))
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.2.0...@ovh-ux/manager-pci-common@0.3.0) (2024-09-18)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.5.1...@ovh-ux/manager-pci-public-ip-app@0.6.0) (2024-09-26)
+
+
+### Features
+
+* **pci.project:** display correctly the new MUM location ([#12966](https://github.com/ovh/manager/issues/12966)) ([234edc4](https://github.com/ovh/manager/commit/234edc42841ad77db40047b9489eff3fdbba9f8a))
+
+
+
+
+
 ## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.5.0...@ovh-ux/manager-pci-public-ip-app@0.5.1) (2024-09-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app

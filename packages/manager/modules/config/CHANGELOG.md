@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@7.3.3...@ovh-ux/manager-config@7.4.0) (2024-09-26)
+
+
+### Features
+
+* **config:** add method to siwtch default language ([#13255](https://github.com/ovh/manager/issues/13255)) ([4ee1e7d](https://github.com/ovh/manager/commit/4ee1e7da113056953051b07fb11f8565125a6557))
+* **config:** updated user auth interface to include latest updates ([#13212](https://github.com/ovh/manager/issues/13212)) ([6e4395e](https://github.com/ovh/manager/commit/6e4395e6426cfc8855cc9cbdcaae22f000cc6f9e))
+
+
+
+
+
 ## [7.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@7.3.2...@ovh-ux/manager-config@7.3.3) (2024-08-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-config

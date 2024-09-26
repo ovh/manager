@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-procedures-app",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "Procedures application",
   "repository": {
@@ -21,7 +21,7 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^7.3.3",
+    "@ovh-ux/manager-config": "^7.4.0",
     "@ovh-ux/manager-core-api": "^0.8.0",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
     "@ovhcloud/ods-common-core": "17.2.1",

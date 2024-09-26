@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-app",
-  "version": "2.2.10",
+  "version": "2.2.11",
   "private": true,
   "description": "vRack standalone application.",
   "repository": {
@@ -19,13 +19,13 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-vrack-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-cloud-styles": "^1.8.2",
-    "@ovh-ux/manager-config": "^7.3.3",
-    "@ovh-ux/manager-core": "^12.17.0",
+    "@ovh-ux/manager-cloud-styles": "^1.8.3",
+    "@ovh-ux/manager-config": "^7.4.0",
+    "@ovh-ux/manager-core": "^12.17.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
     "@ovh-ux/manager-vrack": "^1.11.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.14.1",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.14.2",
     "@ovh-ux/ng-ovh-contracts": "^4.6.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.2",
     "@ovh-ux/ng-ovh-http": "^5.1.1",

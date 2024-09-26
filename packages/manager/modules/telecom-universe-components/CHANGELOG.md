@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.28.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.28.3...@ovh-ux/ng-ovh-telecom-universe-components@7.28.4) (2024-09-26)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-telecom-universe-components
+
+
+
+
+
 ## [7.28.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.28.2...@ovh-ux/ng-ovh-telecom-universe-components@7.28.3) (2024-09-03)
 
 
