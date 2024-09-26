@@ -8,8 +8,6 @@
   "offer_price": "9€ HT/VM/mois + consommation de OVHcloud Object storage",
   "next_step": "Suivant",
   "choose_org_title": "Choisissez une organisation VMware Cloud Director",
-  "no_organization_message": "Vous n'avez pas de service VMware Cloud Director actuellement. Si vous voulez en savoir plus sur notre produit Managed VMware Cloud Director, vous pouvez consulter notre page",
-  "no_organization_link": "Consultez la page",
   "all_organization_backed_up_message_fetch_next_page": "Toutes les organisations VCD sont déjà associées au service Managed VEEAM for VCD. Veuillez charger plus d'organisations.",
   "all_organization_backed_up_message": "Toutes vos organisations VCD sont déjà associées au service Managed VEEAM for VCD. Rendez-vous sur la liste de vos services.",
   "name_cell": "Nom",

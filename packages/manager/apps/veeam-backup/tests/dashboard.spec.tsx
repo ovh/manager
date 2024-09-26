@@ -2,7 +2,7 @@ import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { setupTest, labels } from './helpers';
 import '@testing-library/jest-dom';
-import backupList from './mocks/veeam-backup.json';
+import backupList from '../mocks/veeam-backup.json';
 
 const goToDashboard = async (name: string) => {
   await act(() => {

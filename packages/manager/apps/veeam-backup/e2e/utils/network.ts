@@ -1,5 +1,9 @@
 import { BrowserContext } from '@playwright/test';
 import {
+  getServicesMocks,
+  GetServicesMocksParams,
+} from '@ovh-ux/manager-react-components/src/hooks/services/mocks/services.mock';
+import {
   ICustomWorld,
   toPlaywrightMockHandler,
   Handler,
@@ -8,14 +12,27 @@ import {
   GetAuthenticationMocks,
   getAuthenticationMocks,
 } from '../../../../../../playwright-helpers/mocks/auth';
-import { getExampleMocks, GetExampleMocksParams } from '../../mocks';
+import {
+  getIamMocks,
+  getOrganizationMocks,
+  GetOrganizationMocksParams,
+  getVeeamBackupMocks,
+  GetVeeamBackupMocksParams,
+} from '../../mocks';
 
-export type ConfigParams = GetAuthenticationMocks & GetExampleMocksParams;
+export type ConfigParams = GetAuthenticationMocks &
+  GetVeeamBackupMocksParams &
+  GetOrganizationMocksParams &
+  GetServicesMocksParams;
 
 export const getConfig = (params: ConfigParams): Handler[] =>
-  [getAuthenticationMocks, getExampleMocks].flatMap((getMocks) =>
-    getMocks(params),
-  );
+  [
+    getAuthenticationMocks,
+    getIamMocks,
+    getOrganizationMocks,
+    getVeeamBackupMocks,
+    getServicesMocks,
+  ].flatMap((getMocks) => getMocks(params));
 
 export const setupNetwork = async (world: ICustomWorld) =>
   Promise.all(
