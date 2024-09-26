@@ -25,9 +25,9 @@ export const ProductNavReshuffleProvider = ({
   const [isLoading, setIsLoading] = useState(true);
   const { betaVersion } = useContainer();
   const shell = useShell();
-  const isMobile = useMediaQuery({
+  const [isMobile, setIsMobile] = useState(useMediaQuery({
     query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
-  });
+  }));
 
   // onboarding
   const [onboardingOpenedState, setOnboardingOpenedState] = useState<string>(
@@ -102,6 +102,19 @@ export const ProductNavReshuffleProvider = ({
       .finally(() => {
         setIsLoading(false);
       });
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      window.innerWidth <= MOBILE_WIDTH_RESOLUTION ?
+        setIsMobile(true) : setIsMobile(false);
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    }
   }, []);
 
   pnrContext = {
