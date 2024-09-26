@@ -1,7 +1,7 @@
 import {
-  useQuery,
-  UseQueryOptions,
-  UseQueryResult,
+  useInfiniteQuery,
+  UseInfiniteQueryOptions,
+  UseInfiniteQueryResult,
 } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import { usePlatform } from '@/hooks';
@@ -12,8 +12,8 @@ import {
 } from '@/api/account';
 
 type UseAccountListParams = Omit<
-  UseQueryOptions,
-  'queryKey' | 'queryFn' | 'select'
+  UseInfiniteQueryOptions,
+  'queryKey' | 'queryFn' | 'select' | 'getNextPageParam' | 'initialPageParam'
 > & {
   domainId?: string;
   organizationId?: string;
@@ -33,12 +33,24 @@ export const useAccountList = (props: UseAccountListParams = {}) => {
     ...(selectedDomainId && { domainId: selectedDomainId }),
   };
 
-  return useQuery({
+  return useInfiniteQuery({
     ...options,
+    initialPageParam: null,
     queryKey: getZimbraPlatformAccountsQueryKey(platformId, queryParameters),
-    queryFn: () => getZimbraPlatformAccounts(platformId, queryParameters),
+    queryFn: ({ pageParam }) =>
+      getZimbraPlatformAccounts({
+        platformId,
+        queryParameters,
+        pageParam,
+      }),
     enabled:
       (typeof options.enabled !== 'undefined' ? options.enabled : true) &&
       !!platformId,
-  }) as UseQueryResult<AccountType[]>;
+    getNextPageParam: (lastPage: { cursorNext?: string }) =>
+      lastPage.cursorNext,
+    select: (data) =>
+      data?.pages.flatMap(
+        (page: UseInfiniteQueryResult<AccountType[]>) => page.data,
+      ),
+  });
 };
