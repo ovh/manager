@@ -34,7 +34,7 @@ export default function NameStep() {
           stepsHandle.open(StepEnum.PLAN);
         },
         label: tCommonField('common_stepper_next_button_label'),
-        isDisabled: !store.state.name.value.length,
+        isDisabled: !store.state.name.value.trim().length,
       }}
       edit={{
         action: () => {
@@ -52,7 +52,7 @@ export default function NameStep() {
         className="mt-4"
         inline
         error={
-          store.state.name.touched && !store.state.name.value.length
+          store.state.name.touched && !store.state.name.value.trim().length
             ? tCommonField('common_field_error_required')
             : ''
         }
@@ -60,7 +60,7 @@ export default function NameStep() {
         <OsdsText
           slot="label"
           color={
-            store.state.name.touched && !store.state.name.value.length
+            store.state.name.touched && !store.state.name.value.trim().length
               ? ODS_THEME_COLOR_INTENT.error
               : ODS_THEME_COLOR_INTENT.text
           }
