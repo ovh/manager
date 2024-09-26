@@ -16,7 +16,6 @@ $sidebar-font-size: 0.875rem;
   color: white;
   
   &_wrapper {
-    display: flex;
     height: 100%;
     width: 20rem;
     min-width: 20rem;
@@ -27,6 +26,12 @@ $sidebar-font-size: 0.875rem;
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+
+  &_lvl1 {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   &_logo {
@@ -275,7 +280,6 @@ $sidebar-font-size: 0.875rem;
     
     &_wrapper {
       width: 100%;
-      min-height: stretch;
     }
 
     &_selected {
