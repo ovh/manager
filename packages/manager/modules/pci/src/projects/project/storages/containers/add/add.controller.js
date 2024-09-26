@@ -78,6 +78,7 @@ export default class PciStoragesContainersAddController {
       deploymentMode: null,
     });
     this.container.region = null;
+    this.container.offer = OBJECT_CONTAINER_OFFER_STORAGE_STANDARD;
 
     this.userModel = {
       linkedMode: {
