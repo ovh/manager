@@ -51,15 +51,7 @@ export const getRegionSubsnetsQueryKey = (
   projectId: string,
   regionName: string,
   networkId: string,
-) => [
-  'project',
-  projectId,
-  'region',
-  regionName,
-  'network',
-  networkId,
-  'subnet',
-];
+) => ['region-subnets', projectId, 'region', regionName, 'network', networkId];
 
 export const useRegionSubnets = (
   projectId: string,
