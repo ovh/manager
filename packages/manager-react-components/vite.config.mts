@@ -34,6 +34,7 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
+        '@ovh-ux/request-tagger',
         '@ovh-ux/manager-core-api',
         '@ovh-ux/manager-react-shell-client',
         '@tanstack/react-query',
