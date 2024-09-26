@@ -49,23 +49,34 @@ describe('PlanComponent', () => {
       },
     })),
   }));
-  vi.mock('@ovh-ux/manager-react-components', (importOriginal) => ({
-    ...importOriginal,
-    useCatalogPrice: () => ({
-      getFormattedMonthlyCatalogPrice: () => 'formattedPrice',
-    }),
-    useMe: () => ({ me: { ovhSubsidiary: 'ovhSubsidiary' } }),
-  }));
 
-  vi.mock('@ovh-ux/manager-pci-common', (importOriginal) => ({
-    ...importOriginal,
-    useCatalog: () => ({
-      data: {
-        addons: [defaultAddon],
-      },
-      isPending: false,
-    }),
-  }));
+  vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+    const actual = await importOriginal<
+      typeof import('@ovh-ux/manager-react-components')
+    >();
+    return {
+      ...actual,
+      useCatalogPrice: () => ({
+        getFormattedMonthlyCatalogPrice: () => 'formattedPrice',
+      }),
+      useMe: () => ({ me: { ovhSubsidiary: 'ovhSubsidiary' } }),
+    };
+  });
+
+  vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
+    const actual = await importOriginal<
+      typeof import('@ovh-ux/manager-pci-common')
+    >();
+    return {
+      ...actual,
+      useCatalog: () => ({
+        data: {
+          addons: [defaultAddon],
+        },
+        isPending: false,
+      }),
+    };
+  });
 
   it('should render', () => {
     const { container } = render(<PlanComponent plan={defaultPlan} />, {
@@ -87,7 +98,7 @@ describe('PlanComponent', () => {
       wrapper,
     });
     expect(getByTestId('capacity')).toHaveTextContent(
-      'private_registry_upgrade_plan_available_storage10 B',
+      'private_registry_upgrade_plan_available_storage10 unit_size_B',
     );
   });
 
