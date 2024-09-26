@@ -172,6 +172,7 @@
   "ip_table_manage_add_ipv6block_question": "Insérez une IPv6 valide contenue dans ce block, et cliquez sur \"Valider\".",
   "ip_table_manage_add_ipv6block_failure": "Une erreur est survenue lors de l'ajout d'une IPv6.",
   "ip_table_manage_add_ipv6block_reverse": "Configurer le reverse d'une IPv6",
+  "ip_table_manage_modify_ipv6block_reverse": "Modifier le reverse",
   "ip_table_manage_select_ipv6block": "Vous pouvez sélectionner une IPv6 contenue dans ce block en cliquant ici.",
   "ip_table_manage_delegate_ipv6block": "Délégation de reverse",
   "ip_table_manage_view_iporganisation_details": "Details de l'organisation",
