@@ -35,7 +35,7 @@ export default class RegionsListController {
     });
 
     this.regionsByContinents = null;
-    this.regionsByDeploimentMmode = null;
+    this.regionsByDeploymentMode = null;
 
     this.updateRegions();
   }
@@ -50,7 +50,7 @@ export default class RegionsListController {
       changes.reload?.previousValue !== true
     ) {
       this.regionsByContinents = null;
-      this.regionsByDeploimentMmode = null;
+      this.regionsByDeploymentMode = null;
       this.selectedRegion = null;
       this.macroRegion = null;
       this.updateRegions();
@@ -93,17 +93,17 @@ export default class RegionsListController {
           ({ regions }) => regions,
         );
 
-        const regionsAllowedByDeploimentMmode = productRegionsAllowed.filter(
+        const regionsAllowedByDeploymentMode = productRegionsAllowed.filter(
           (item) => item.type === this.deploymentMode,
         );
 
-        this.regionsByDeploimentMmode = regionsAllowedByDeploimentMmode;
+        this.regionsByDeploymentMode = regionsAllowedByDeploymentMode;
       });
     } else {
-      this.regionsByDeploimentMmode = this.regions;
+      this.regionsByDeploymentMode = this.regions;
     }
 
-    const formattedRegions = map(this.regionsByDeploimentMmode, (region) => {
+    const formattedRegions = map(this.regionsByDeploymentMode, (region) => {
       return {
         ...this.ovhManagerRegionService.getRegion(region.name),
         name: region.name,
@@ -169,7 +169,7 @@ export default class RegionsListController {
   }
 
   onRegionChange(region) {
-    this.selectedRegion = find(this.regionsByDeploimentMmode, {
+    this.selectedRegion = find(this.regionsByDeploymentMode, {
       name: region.microRegion.code,
     });
 

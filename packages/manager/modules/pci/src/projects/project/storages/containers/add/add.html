@@ -151,7 +151,7 @@
         </div>
     </oui-step-form>
 
-    <!--Deploiment  Mode-->
+    <!--Deployment  Mode-->
     <oui-step-form
         data-position="1"
         data-ng-if="!$ctrl.archive && $ctrl.isRightOffer()"
@@ -382,6 +382,7 @@
     <!-- Data encryption -->
     <oui-step-form
         data-position="{{!$ctrl.archive && $ctrl.isRightOffer() ? 5 : 4}}"
+        data-on-focus="$ctrl.container.encryption=null"
         data-ng-if="!$ctrl.archive && $ctrl.encryptionAvailable && $ctrl.isRightOffer()"
         data-header="{{:: 'pci_projects_project_storages_containers_data_encryption_title' | translate }}"
         data-editable="!$ctrl.isLoading"

@@ -1,6 +1,6 @@
 <oui-tabs
     class="mb-4"
-    data-ng-if="!$ctrl.displaySelectedRegion && $ctrl.regionsByDeploimentMmode"
+    data-ng-if="!$ctrl.displaySelectedRegion && $ctrl.regionsByDeploymentMode"
 >
     <oui-tabs-item
         data-heading="{{ continent }}"
@@ -180,7 +180,7 @@
 </oui-tabs>
 <oui-spinner
     data-size="s"
-    data-ng-if="!$ctrl.regionsByDeploimentMmode"
+    data-ng-if="!$ctrl.regionsByDeploymentMode"
 ></oui-spinner>
 <div data-ng-if="$ctrl.displaySelectedRegion" class="container-fluid px-0">
     <div class="row">
