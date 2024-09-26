@@ -7,6 +7,7 @@ export const ROUTE_PATHS = {
   LISTING: 'load-balancers',
   DETAIL: ':region/:loadBalancerId',
   GENERAL_INFORMATION: 'general-information',
+  EDIT_NAME_LOAD_BALANCER: 'edit-name',
   LISTENERS: 'listeners',
   POOLS: 'pools',
   STATISTICS: 'statistics',
@@ -33,6 +34,9 @@ const CertificatesPage = lazy(() =>
 );
 const LogsPage = lazy(() => import('@/pages/detail/log/Log.page'));
 const DeletePage = lazy(() => import('@/pages/delete/Delete.page'));
+const EditLoadBalancerNamePage = lazy(() =>
+  import('@/pages/detail/edit/Edit.page'),
+);
 
 const Routes = (
   <Route
@@ -54,7 +58,12 @@ const Routes = (
         id="detail-general-information"
         path={ROUTE_PATHS.GENERAL_INFORMATION}
         Component={OverviewPage}
-      />
+      >
+        <Route
+          path={ROUTE_PATHS.EDIT_NAME_LOAD_BALANCER}
+          Component={EditLoadBalancerNamePage}
+        />
+      </Route>
       <Route
         id="detail-listeners"
         path={ROUTE_PATHS.LISTENERS}

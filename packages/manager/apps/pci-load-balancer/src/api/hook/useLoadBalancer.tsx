@@ -9,6 +9,7 @@ import {
   getLoadBalancerFlavor,
   getLoadBalancers,
   TLoadBalancer,
+  updateLoadBalancerName,
 } from '../data/load-balancer';
 import queryClient from '@/queryClient';
 
@@ -114,6 +115,44 @@ export const useDeleteLoadBalancer = ({
   });
   return {
     deleteLoadBalancer: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type RenameLoadBalancerProps = {
+  projectId: string;
+  loadBalancer: TLoadBalancer;
+  name: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+export const useRenameLoadBalancer = ({
+  projectId,
+  loadBalancer,
+  name,
+  onError,
+  onSuccess,
+}: RenameLoadBalancerProps) => {
+  const mutation = useMutation({
+    mutationFn: async () =>
+      updateLoadBalancerName(projectId, loadBalancer, name),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: [
+          'project',
+          projectId,
+          'region',
+          loadBalancer.region,
+          'loadBalancer',
+          loadBalancer.id,
+        ],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    renameLoadBalancer: () => mutation.mutate(),
     ...mutation,
   };
 };
