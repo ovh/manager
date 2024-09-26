@@ -24,6 +24,8 @@ import IdLink from './IdLink';
 import LabelChip from '@/components/LabelChip';
 import { BadgeStatus } from '@/components/BadgeStatus';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+import Loading from '@/components/Loading/Loading';
 
 export type OrganizationItem = {
   id: string;
@@ -78,8 +80,11 @@ const columns: DatagridColumn<OrganizationItem>[] = [
 
 export default function Organizations() {
   const { t } = useTranslation('organizations');
-  const { platformId, platformUrn } = usePlatform();
-  const { data } = useOrganizationList();
+  const { platformUrn } = usePlatform();
+  const { data, isLoading } = useOrganizationList({
+    refetchInterval: DATAGRID_REFRESH_INTERVAL,
+    refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
+  });
 
   const items: OrganizationItem[] =
     data?.map((item) => ({
@@ -94,42 +99,49 @@ export default function Organizations() {
     })) ?? [];
 
   const hrefAddOrganization = useGenerateUrl('./add', 'href');
+
   return (
     <div className="py-6 mt-8">
       <Notifications />
       <Outlet />
-      <div className="flex items-center justify-between">
-        {platformUrn && (
-          <ManagerButton
-            color={ODS_THEME_COLOR_INTENT.primary}
-            inline
-            size={ODS_BUTTON_SIZE.sm}
-            href={hrefAddOrganization}
-            urn={platformUrn}
-            iamActions={[IAM_ACTIONS.organization.create]}
-            data-testid="add-organization-btn"
-            className="mb-6"
-          >
-            <span slot="start">
-              <OsdsIcon
-                name={ODS_ICON_NAME.PLUS}
-                size={ODS_ICON_SIZE.sm}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                contrasted
-              ></OsdsIcon>
-            </span>
-            <span slot="end">{t('zimbra_organization_cta')}</span>
-          </ManagerButton>
-        )}
-      </div>
-      <Datagrid
-        columns={columns.map((column) => ({
-          ...column,
-          label: t(column.label),
-        }))}
-        items={items}
-        totalItems={platformId?.length || 0}
-      />
+      {platformUrn && (
+        <>
+          <div className="flex items-center justify-between">
+            <ManagerButton
+              color={ODS_THEME_COLOR_INTENT.primary}
+              inline
+              size={ODS_BUTTON_SIZE.sm}
+              href={hrefAddOrganization}
+              urn={platformUrn}
+              iamActions={[IAM_ACTIONS.organization.create]}
+              data-testid="add-organization-btn"
+              className="mb-6"
+            >
+              <span slot="start">
+                <OsdsIcon
+                  name={ODS_ICON_NAME.PLUS}
+                  size={ODS_ICON_SIZE.sm}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  contrasted
+                ></OsdsIcon>
+              </span>
+              <span slot="end">{t('zimbra_organization_cta')}</span>
+            </ManagerButton>
+          </div>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <Datagrid
+              columns={columns.map((column) => ({
+                ...column,
+                label: t(column.label),
+              }))}
+              items={items}
+              totalItems={items.length}
+            />
+          )}
+        </>
+      )}
     </div>
   );
 }

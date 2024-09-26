@@ -11,7 +11,7 @@ export const useOrganization = (organizationId?: string, noCache?: boolean) => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const selectedOrganizationId = params.get('organizationId');
-  const { data, isLoading, isError, error } = useQuery({
+  return useQuery({
     queryKey: getZimbraPlatformOrganizationDetailsQueryKey(
       platformId,
       organizationId || selectedOrganizationId,
@@ -24,11 +24,4 @@ export const useOrganization = (organizationId?: string, noCache?: boolean) => {
     enabled: (!!organizationId || !!selectedOrganizationId) && !!platformId,
     gcTime: noCache ? 0 : 5000,
   });
-
-  return {
-    isLoading,
-    isError,
-    error,
-    data,
-  };
 };

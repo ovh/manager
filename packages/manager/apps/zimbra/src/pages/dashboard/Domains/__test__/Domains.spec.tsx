@@ -3,7 +3,7 @@ import { vi, describe, expect } from 'vitest';
 import Domains from '../Domains';
 import { render } from '@/utils/test.provider';
 import domainTranslation from '@/public/translations/domains/Messages_fr_FR.json';
-import { domainMock, platformMock } from '@/api/_mock_';
+import { domainMock, platformMock, organizationListMock } from '@/api/_mock_';
 
 vi.mock('@/hooks', () => {
   return {
@@ -13,6 +13,10 @@ vi.mock('@/hooks', () => {
     })),
     useDomains: vi.fn(() => ({
       data: domainMock,
+    })),
+    useOrganizationList: vi.fn(() => ({
+      data: organizationListMock,
+      isLoading: false,
     })),
     useGenerateUrl: vi.fn(
       () => '#/00000000-0000-0000-0000-000000000001/domains/add?',

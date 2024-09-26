@@ -1,7 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsText,
+  OsdsTooltip,
+  OsdsTooltipContent,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_BUTTON_SIZE,
@@ -26,12 +36,18 @@ import {
   useGenerateUrl,
   useAccountList,
   usePlatform,
+  useDomains,
 } from '@/hooks';
 import LabelChip from '@/components/LabelChip';
 import guidesConstants from '@/guides.constants';
 import ActionButtonEmail from './ActionButtonEmail';
-import { convertOctets } from '@/utils';
+import {
+  convertOctets,
+  DATAGRID_REFRESH_INTERVAL,
+  DATAGRID_REFRESH_ON_MOUNT,
+} from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import Loading from '@/components/Loading/Loading';
 
 export type EmailsItem = {
   id: string;
@@ -102,8 +118,16 @@ const columns: DatagridColumn<EmailsItem>[] = [
 export default function EmailAccounts() {
   const { t } = useTranslation('accounts');
   const { platformUrn } = usePlatform();
-  const { data } = useAccountList();
-  const isOverriddedPage = useOverridePage();
+  const isOverridedPage = useOverridePage();
+  const { data, isLoading } = useAccountList({
+    refetchInterval: DATAGRID_REFRESH_INTERVAL,
+    refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
+    enabled: !isOverridedPage,
+  });
+
+  const { data: dataDomains } = useDomains({
+    enabled: !isLoading && data?.length === 0,
+  });
 
   const items: EmailsItem[] =
     data?.map((item: AccountType) => ({
@@ -121,38 +145,56 @@ export default function EmailAccounts() {
   const hrefAddEmailAccount = useGenerateUrl('./add', 'href');
 
   return (
-    <>
+    <div className="py-6 mt-8">
+      <Notifications />
       <Outlet />
-      <div className="py-6 mt-8">
-        <Notifications />
-        {!isOverriddedPage && (
-          <>
-            <div className="mb-8">
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.text}
-                hue={ODS_TEXT_COLOR_HUE._500}
-                size={ODS_TEXT_SIZE._200}
-                className="font-bold mr-4"
-              >
-                {t('zimbra_account_datagrid_webmail_label')}
-              </OsdsText>
-              <Links
-                href={webmailUrl}
-                type={LinkType.external}
-                label={webmailUrl}
-                target={OdsHTMLAnchorElementTarget._blank}
-              ></Links>
-            </div>
-            {platformUrn && (
-              <ManagerButton
+      {platformUrn && !isOverridedPage && (
+        <>
+          <div className="mb-8">
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              hue={ODS_TEXT_COLOR_HUE._500}
+              size={ODS_TEXT_SIZE._200}
+              className="font-bold mr-4"
+            >
+              {t('zimbra_account_datagrid_webmail_label')}
+            </OsdsText>
+            <Links
+              href={webmailUrl}
+              type={LinkType.external}
+              label={webmailUrl}
+              target={OdsHTMLAnchorElementTarget._blank}
+            ></Links>
+          </div>
+          {(data?.length > 0 || dataDomains?.length > 0) && (
+            <ManagerButton
+              color={ODS_THEME_COLOR_INTENT.primary}
+              inline
+              size={ODS_BUTTON_SIZE.sm}
+              urn={platformUrn}
+              iamActions={[IAM_ACTIONS.account.create]}
+              href={hrefAddEmailAccount}
+              data-testid="add-account-btn"
+              className="mb-6"
+            >
+              <span slot="start">
+                <OsdsIcon
+                  name={ODS_ICON_NAME.PLUS}
+                  size={ODS_ICON_SIZE.sm}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  contrasted
+                ></OsdsIcon>
+              </span>
+              <span slot="end">{t('zimbra_account_account_add')}</span>
+            </ManagerButton>
+          )}
+          {dataDomains?.length === 0 && (
+            <OsdsTooltip className="mb-6">
+              <OsdsButton
                 color={ODS_THEME_COLOR_INTENT.primary}
                 inline
                 size={ODS_BUTTON_SIZE.sm}
-                urn={platformUrn}
-                iamActions={[IAM_ACTIONS.account.create]}
-                href={hrefAddEmailAccount}
-                data-testid="add-account-btn"
-                className="mb-6"
+                disabled
               >
                 <span slot="start">
                   <OsdsIcon
@@ -163,8 +205,21 @@ export default function EmailAccounts() {
                   ></OsdsIcon>
                 </span>
                 <span slot="end">{t('zimbra_account_account_add')}</span>
-              </ManagerButton>
-            )}
+              </OsdsButton>
+              <OsdsTooltipContent slot="tooltip-content">
+                <OsdsText
+                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+                >
+                  {t('zimbra_domains_tooltip_need_domain')}
+                </OsdsText>
+              </OsdsTooltipContent>
+            </OsdsTooltip>
+          )}
+          {isLoading ? (
+            <Loading />
+          ) : (
             <Datagrid
               columns={columns.map((column) => ({
                 ...column,
@@ -173,9 +228,9 @@ export default function EmailAccounts() {
               items={items}
               totalItems={items.length}
             />
-          </>
-        )}
-      </div>
-    </>
+          )}
+        </>
+      )}
+    </div>
   );
 }

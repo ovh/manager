@@ -13,6 +13,10 @@ vi.mock('@/hooks', () => {
       platformId: platformMock[0].id,
     })),
     useGenerateUrl: vi.fn(),
+    useAccount: vi.fn(() => ({
+      data: accountMock[0],
+      isLoading: false,
+    })),
   };
 });
 
@@ -31,17 +35,6 @@ vi.mock('@ovh-ux/manager-react-components', () => {
     useNotifications: vi.fn(() => ({
       addError: () => vi.fn(),
       addSuccess: () => vi.fn(),
-    })),
-  };
-});
-
-vi.mock('@tanstack/react-query', async (importOriginal) => {
-  const actual: any = await importOriginal();
-  return {
-    ...actual,
-    useQuery: vi.fn(() => ({
-      data: accountMock[0],
-      isLoading: false,
     })),
   };
 });

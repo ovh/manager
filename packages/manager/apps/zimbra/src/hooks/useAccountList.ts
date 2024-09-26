@@ -1,18 +1,26 @@
-import { useQuery } from '@tanstack/react-query';
+import {
+  useQuery,
+  UseQueryOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import { usePlatform } from '@/hooks';
 import {
-  getZimbraPlatformAccount,
-  getZimbraPlatformAccountQueryKey,
+  AccountType,
+  getZimbraPlatformAccounts,
+  getZimbraPlatformAccountsQueryKey,
 } from '@/api/account';
 
-interface UseAccountListParams {
+type UseAccountListParams = Omit<
+  UseQueryOptions,
+  'queryKey' | 'queryFn' | 'select'
+> & {
   domainId?: string;
   organizationId?: string;
-}
+};
 
 export const useAccountList = (props: UseAccountListParams = {}) => {
-  const { domainId, organizationId } = props;
+  const { domainId, organizationId, ...options } = props;
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
 
@@ -25,16 +33,12 @@ export const useAccountList = (props: UseAccountListParams = {}) => {
     ...(selectedDomainId && { domainId: selectedDomainId }),
   };
 
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: getZimbraPlatformAccountQueryKey(platformId, queryParameters),
-    queryFn: () => getZimbraPlatformAccount(platformId, queryParameters),
-    enabled: !!platformId,
-  });
-
-  return {
-    isLoading,
-    isError,
-    error,
-    data,
-  };
+  return useQuery({
+    ...options,
+    queryKey: getZimbraPlatformAccountsQueryKey(platformId, queryParameters),
+    queryFn: () => getZimbraPlatformAccounts(platformId, queryParameters),
+    enabled:
+      (typeof options.enabled !== 'undefined' ? options.enabled : true) &&
+      !!platformId,
+  }) as UseQueryResult<AccountType[]>;
 };
