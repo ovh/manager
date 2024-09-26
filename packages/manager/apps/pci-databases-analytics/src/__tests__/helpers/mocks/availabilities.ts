@@ -1,5 +1,5 @@
-import { FullCapabilities } from '@/hooks/api/availabilities.api.hooks';
-import { database } from '@/models/database';
+import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
+import * as database from '@/types/cloud/project/database';
 
 export const mockedAvailabilities: database.Availability = {
   backup: database.BackupTypeEnum.automatic,
@@ -8,7 +8,7 @@ export const mockedAvailabilities: database.Availability = {
     available: true,
     retentionDays: 2,
   },
-  category: database.CategoryEnum.all,
+  category: database.engine.CategoryEnum.all,
   default: false,
   engine: database.EngineEnum.mongodb,
   flavor: 'flavor',
@@ -51,7 +51,7 @@ export const mockedAvailabilities: database.Availability = {
   stepDiskSize: 10,
 };
 
-export const mockedSuggestions: database.Suggestion = {
+export const mockedSuggestions: database.availability.Suggestion = {
   default: true,
   engine: database.EngineEnum.mongodb,
   flavor: 'flavor',
@@ -61,7 +61,7 @@ export const mockedSuggestions: database.Suggestion = {
 };
 
 export const mockedEngine: database.capabilities.Engine = {
-  category: database.CategoryEnum.operational,
+  category: database.engine.CategoryEnum.operational,
   defaultVersion: 'defaultVersion',
   description: 'description',
   name: database.EngineEnum.mongodb,
@@ -91,7 +91,7 @@ export const mockedFlavor: database.capabilities.Flavor = {
     },
   },
   storage: 250,
-  tags: [database.capabilities.Tags.current],
+  tags: [database.capabilities.TagEnum.current],
 };
 
 export const mockedOption: database.capabilities.Option = {
@@ -108,7 +108,7 @@ export const mockedPlan: database.capabilities.Plan = {
   },
   name: 'plan',
   order: 3,
-  tags: [database.capabilities.Tags.current],
+  tags: [database.capabilities.TagEnum.current],
 };
 
 export const mockedCapabilities: database.Capabilities = {
@@ -120,8 +120,8 @@ export const mockedCapabilities: database.Capabilities = {
   regions: ['Region1', 'Region2'],
 };
 
-export const mockedEngineCapabilities: database.EngineCapabilities = {
-  category: database.CategoryEnum.operational,
+export const mockedEngineCapabilities: database.capabilities.EngineCapabilities = {
+  category: database.engine.CategoryEnum.operational,
   description: 'description',
   lifecycle: {
     startDate: 'startDate',
@@ -131,7 +131,7 @@ export const mockedEngineCapabilities: database.EngineCapabilities = {
   order: 1,
   sslModes: ['sslModes'],
   storage: database.capabilities.engine.storage.StrategyEnum.distributed,
-  tags: [database.capabilities.Tags.current],
+  tags: [database.capabilities.TagEnum.current],
   versions: [
     {
       default: true,
@@ -140,19 +140,19 @@ export const mockedEngineCapabilities: database.EngineCapabilities = {
         status: database.availability.StatusEnum.STABLE,
       },
       name: 'version',
-      tags: [database.capabilities.Tags.current],
+      tags: [database.capabilities.TagEnum.current],
     },
   ],
 };
 
-export const mockedRegionCapabilities: database.RegionCapabilities = {
+export const mockedRegionCapabilities: database.capabilities.RegionCapabilities = {
   lifecycle: {
     startDate: 'startDate',
     status: database.availability.StatusEnum.STABLE,
   },
   name: 'region',
   order: 1,
-  tags: [database.capabilities.Tags.current],
+  tags: [database.capabilities.TagEnum.current],
 };
 
 export const mockedFullCapabilities: FullCapabilities = {
@@ -171,7 +171,7 @@ export const mockedAvailabilitiesUpdate: database.Availability = {
     available: true,
     retentionDays: 2,
   },
-  category: database.CategoryEnum.all,
+  category: database.engine.CategoryEnum.all,
   default: false,
   engine: database.EngineEnum.mongodb,
   flavor: 'flavor',

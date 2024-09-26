@@ -1,6 +1,6 @@
-import { database } from '@/models/database';
+import * as database from '@/types/cloud/project/database';
 import { mockedNode } from './nodes';
-import { ServiceCreationWithEngine } from '@/hooks/api/services.api.hooks';
+import { ServiceCreationWithEngine } from '@/hooks/api/database/service/useAddService.hook';
 
 export const mockedService: database.Service = {
   backupTime: '16:00:00',
@@ -40,7 +40,7 @@ export const mockedService: database.Service = {
       update: database.service.capability.StateEnum.enabled,
     },
   },
-  category: database.CategoryEnum.all,
+  category: database.engine.CategoryEnum.all,
   createdAt: '12/12/2022',
   description: 'serviceDescription',
   disk: {
@@ -96,6 +96,7 @@ export const mockedService: database.Service = {
 
 export const mockedServiceInte: database.Service = {
   backupTime: 'backupTime',
+  backups: null,
   capabilities: {
     [database.service.CapabilityEnum.backups]: {
       create: database.service.capability.StateEnum.enabled,
@@ -125,7 +126,7 @@ export const mockedServiceInte: database.Service = {
       create: database.service.capability.StateEnum.enabled,
     },
   },
-  category: database.CategoryEnum.all,
+  category: database.engine.CategoryEnum.all,
   createdAt: 'createdAt',
   description: 'description',
   disk: {
@@ -201,6 +202,7 @@ export const mockedServiceCreationWithEngine: ServiceCreationWithEngine = {
 
 /// / Used for Add integration test
 export const mockedServiceInteBase: database.Service = {
+  backups: null,
   backupTime: 'backupTime',
   capabilities: {
     [database.service.CapabilityEnum.integrations]: {
@@ -210,7 +212,7 @@ export const mockedServiceInteBase: database.Service = {
       read: database.service.capability.StateEnum.enabled,
     },
   },
-  category: database.CategoryEnum.all,
+  category: database.engine.CategoryEnum.all,
   createdAt: 'createdAt',
   description: 'description',
   disk: {
