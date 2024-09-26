@@ -1,0 +1,22 @@
+{
+  "octavia_load_balancer_listeners_title": "Listeners",
+  "octavia_load_balancer_listeners_description_part_1": "Chaque Load Balancer reçoit du traffic sur un ou plusieurs listeners. Chaque listener est caractérisé par un couple port / protocole unique.",
+  "octavia_load_balancer_listeners_description_part_2": "Cette interface propose les options les plus utilisées. Des options supplémentaires sont disponibles via Horizon.",
+  "octavia_load_balancer_listeners_description_part_2_link": "Découvrez les options",
+  "octavia_load_balancer_listeners_add_button": "Ajouter un listener",
+  "octavia_load_balancer_listeners_name": "Nom",
+  "octavia_load_balancer_listeners_default_pool": "Pool par défaut",
+  "octavia_load_balancer_listeners_default_pool_helper": "Le pool par défaut est utilisé pour l'équilibrage de charge L3/L4.",
+  "octavia_load_balancer_listeners_protocol": "Protocole",
+  "octavia_load_balancer_listeners_protocol_helper": "Protocole pour lequel le front end écoute les connexions.",
+  "octavia_load_balancer_listeners_certificate": "Certificat",
+  "octavia_load_balancer_listeners_port": "Port",
+  "octavia_load_balancer_listeners_port_helper": "Port sur lequel le front end écoute. Doit être un entier compris entre 1 et 65535.",
+  "octavia_load_balancer_listeners_actions_detail": "Editer",
+  "octavia_load_balancer_listeners_actions_policies": "Voir les L7 policies",
+  "octavia_load_balancer_listeners_policies_unavailable": "La gestion des L7 policies n'est disponible que pour les listeners utilisant les protocoles 'HTTP' et 'TERMINATED HTTPS'",
+  "octavia_load_balancer_listeners_actions_delete": "Supprimer",
+  "octavia_load_balancer_listeners_create_success": "Le nouveau listener {{ listener }} a été créé avec succès !",
+  "octavia_load_balancer_listeners_edit_success": "Le listener {{ listener }} a été mis à jour avec succès !",
+  "octavia_load_balancer_listener_delete_success": "Votre listener {{ listener }} a été supprimé avec succès."
+}
