@@ -41,7 +41,7 @@ export default function PlanComponent({
   });
   return (
     <div className="w-full">
-      <div className="border-solid border border-t-0 border-x-0 border-[--ods-color-blue-200] my-4 py-4">
+      <div className="border-solid border border-t-0 border-x-0 border-[--ods-color-blue-200] my-4 py-4 mx-8">
         <OsdsText
           data-testid="name"
           color={ODS_THEME_COLOR_INTENT.text}
@@ -52,7 +52,7 @@ export default function PlanComponent({
         </OsdsText>
       </div>
       {isPending && (
-        <div className="min-h-[10rem]">
+        <div className="min-h-[10rem] mx-6">
           <OsdsSkeleton />
           <OsdsSkeleton />
           <OsdsSkeleton />
@@ -61,7 +61,7 @@ export default function PlanComponent({
         </div>
       )}
       {!isPending && (
-        <ul className="list-none p-0 m-0 min-h-[8rem]">
+        <ul className="list-none p-0 m-0 min-h-[8rem] mx-8">
           <li data-testid="capacity">
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
@@ -148,7 +148,7 @@ export default function PlanComponent({
       )}
       <div
         className={clsx(
-          'border-solid border border-b-0 border-x-0 border-[--ods-color-blue-200] mb-2 pt-4 mt-9',
+          'border-solid border border-b-0 border-x-0 border-[--ods-color-blue-200] mb-2 pt-4 mt-9 text-center py-4',
         )}
         data-testid="price"
       >
