@@ -18,7 +18,7 @@ export default function EditableTileItem({
 
   return (
     <div className="flex justify-between items-center">
-      <Description>{label}</Description>
+      <Description className="break-all">{label}</Description>
       <div>
         <OsdsIcon
           aria-label={t('managed_vcd_dashboard_edit_modal_cta_edit')}
