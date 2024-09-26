@@ -18,6 +18,9 @@ exports[`CreatePage > should render 1`] = `
     Notifications
   </div>
   <div
+    class="mb-5 sticky top-0 z-50"
+  />
+  <div
     data-testid="region-step"
   >
     RegionStep
