@@ -7,9 +7,8 @@ import {
 import { OsdsSkeleton, OsdsText } from '@ovhcloud/ods-components/react';
 import { useMemo } from 'react';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
-import { useCatalog } from '@ovh-ux/manager-pci-common';
+import { useBytes, useCatalog } from '@ovh-ux/manager-pci-common';
 import clsx from 'clsx';
-import { useTranslatedBytes } from '@/pages/create/useTranslatedBytes';
 import { TRegistryPlan } from '@/api/data/registry';
 
 export type TPlanComponentProps = {
@@ -32,13 +31,8 @@ export default function PlanComponent({
     return null;
   }, [catalog, plan]);
 
-  const capacity = useTranslatedBytes({
-    bytes: plan.registryLimits.imageStorage,
-    precision: 2,
-    toKibi: true,
-    fromUnit: 'B',
-    toRawBytes: false,
-  });
+  const { formatBytes } = useBytes();
+
   return (
     <div className="w-full">
       <div className="border-solid border border-t-0 border-x-0 border-[--ods-color-blue-200] my-4 py-4 mx-8">
@@ -75,7 +69,7 @@ export default function PlanComponent({
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
             >
-              {capacity}
+              {formatBytes(plan.registryLimits.imageStorage, 2, 1024)}
             </OsdsText>
           </li>
           <li data-testid="connections">
