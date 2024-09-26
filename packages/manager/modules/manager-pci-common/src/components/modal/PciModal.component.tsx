@@ -51,7 +51,7 @@ export function PciModal({
           <OsdsSpinner
             inline
             size={ODS_SPINNER_SIZE.md}
-            className="block text-center"
+            className="block text-center mt-6"
             data-testid="pciModal-spinner"
           />
         ) : (

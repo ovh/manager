@@ -24,16 +24,23 @@ export default function CredentialsPage() {
   const { data: registries } = useGetAllRegistries(projectId);
   const registry = registries?.find((r) => r.id === registryId);
 
-  const { data: credentials, isPending } = usePostRegistryCredentials(
+  const {
+    data: credentials,
+    isPending,
+    generateCredentials,
+  } = usePostRegistryCredentials({
     projectId,
     registryId,
-    isConfirmed,
-  );
+    onError: (error) => {
+      throw error;
+    },
+  });
 
   const onClose = () => navigate('..');
 
   const onConfirm = () => {
     if (!isConfirmed) {
+      generateCredentials();
       setIsConfirmed(true);
     } else {
       window.open(registry?.url, '_blank');
