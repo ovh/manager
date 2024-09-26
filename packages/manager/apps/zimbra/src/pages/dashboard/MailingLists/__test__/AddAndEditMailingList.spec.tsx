@@ -5,7 +5,7 @@ import { vi, describe, expect } from 'vitest';
 import { act } from 'react-dom/test-utils';
 import { render } from '@/utils/test.provider';
 import { mailingListsMock, domainMock, platformMock } from '@/api/_mock_';
-import AddAndEditMailingList from '../AddAndEditMailingList';
+import AddAndEditMailingList from '../AddAndEditMailingList.page';
 import mailingListsAddAndEditTranslation from '@/public/translations/mailinglists/addAndEdit/Messages_fr_FR.json';
 import { ModerationChoices, ReplyToChoices } from '@/api/mailinglist';
 

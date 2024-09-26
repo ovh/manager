@@ -1,6 +1,6 @@
 import React from 'react';
 import { describe, expect } from 'vitest';
-import ActionButtonMailingList from '../ActionButtonMailingList';
+import ActionButtonMailingList from '../ActionButtonMailingList.component';
 import { render } from '@/utils/test.provider';
 import mailingListsTranslation from '@/public/translations/mailinglists/Messages_fr_FR.json';
 import { mailingListsMock } from '@/api/_mock_';

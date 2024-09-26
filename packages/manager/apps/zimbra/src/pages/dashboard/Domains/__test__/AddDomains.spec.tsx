@@ -2,7 +2,7 @@ import React from 'react';
 import { vi, describe, expect, it, afterEach } from 'vitest';
 import { act } from 'react-dom/test-utils';
 import { render, fireEvent, screen, waitFor } from '@/utils/test.provider';
-import AddDomain from '../AddDomain';
+import AddDomain from '../AddDomain.page';
 import addDomainTranslation from '@/public/translations/domains/addDomain/Messages_fr_FR.json';
 import { platformMock, organizationListMock, domainZone } from '@/api/_mock_';
 import '@testing-library/jest-dom';

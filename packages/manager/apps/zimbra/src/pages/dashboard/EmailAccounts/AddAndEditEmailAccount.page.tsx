@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  LinkType,
-  Links,
-  Subtitle,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { LinkType, Links, Subtitle } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import {
   useLocation,
@@ -14,10 +9,10 @@ import {
 } from 'react-router-dom';
 import { useDomains, useGenerateUrl, usePlatform, useAccount } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
-import { TabItemProps, AccountTabsPanel } from './AccountTabsPanel';
+import { TabItemProps, AccountTabsPanel } from './AccountTabsPanel.component';
 import { urls } from '@/routes/routes.constants';
-import EmailAccountSettings from './EmailAccountSettings';
-import EmailAccountsAlias from './EmailAccountsAlias';
+import EmailAccountSettings from './EmailAccountSettings.page';
+import EmailAccountsAlias from './EmailAccountsAlias.page';
 
 export default function AddAndEditAccount() {
   const { t } = useTranslation('accounts/addAndEdit');
