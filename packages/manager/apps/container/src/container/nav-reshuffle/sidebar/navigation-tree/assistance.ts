@@ -23,6 +23,14 @@ export const assistanceTree: Node = {
       svgIcon: OvhProductName.HELPECENTER
     },
     {
+      id: 'tickets',
+      translation: 'sidebar_assistance_tickets',
+      isExternal: true,
+      url: 'support',
+      count: false,
+      svgIcon: OvhProductName.EMAIL
+    },
+    {
       id: 'assistance_status',
       translation: 'sidebar_assistance_status',
       url: 'status',
