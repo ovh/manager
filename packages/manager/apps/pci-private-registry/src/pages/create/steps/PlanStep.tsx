@@ -1,4 +1,8 @@
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  OsdsButton,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -39,7 +43,7 @@ export default function PlanStep(): JSX.Element {
 
   const { addSuccess, addError } = useNotifications();
 
-  const { data: capabilities } = useGetCapabilities(projectId);
+  const { data: capabilities, isPending } = useGetCapabilities(projectId);
 
   const createCallbacks = {
     success: () => {
@@ -111,7 +115,12 @@ export default function PlanStep(): JSX.Element {
       >
         {tUpgrade('private_registry_upgrade_plan_description')}
       </OsdsText>
-      {store.state.region && (
+      {isPending && (
+        <div className="mt-5">
+          <OsdsSpinner inline />
+        </div>
+      )}
+      {!isPending && store.state.region && (
         <PlanChooser
           plan={store.state.plan}
           plans={
