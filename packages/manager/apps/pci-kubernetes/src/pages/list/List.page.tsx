@@ -56,7 +56,7 @@ export default function ListPage() {
   return (
     <RedirectionGuard
       isLoading={isPending}
-      condition={!isPending && allKube.rows?.length === 0}
+      condition={!isPending && allKube.rows?.length === 0 && !filters?.length}
       route={`/pci/projects/${projectId}/kubernetes/onboarding`}
     >
       {project && (
