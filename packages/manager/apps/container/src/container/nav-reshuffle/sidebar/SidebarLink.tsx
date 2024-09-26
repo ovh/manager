@@ -11,7 +11,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 
-type SidebarLinkProps = {
+export type SidebarLinkProps = {
   count?: number | boolean;
   node?: Node;
   linkParams?: Record<string, string>;
@@ -53,6 +53,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       }}
       onClick={handleOnClick}
       id={id}
+      data-testid={id}
       role="button"
     >
       <span className='flex gap-2 align-items-center'>

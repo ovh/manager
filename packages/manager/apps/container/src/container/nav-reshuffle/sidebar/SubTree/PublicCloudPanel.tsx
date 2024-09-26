@@ -1,30 +1,22 @@
-import ProjectSelector, {
-  PciProject,
-} from '@/container/nav-reshuffle/sidebar/ProjectSelector/ProjectSelector';
+import ProjectSelector from '../ProjectSelector/ProjectSelector';
+import { PciProject } from '../ProjectSelector/PciProject';
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
 import { Node } from '../navigation-tree/node';
-import publicCloud from '@/container/nav-reshuffle/sidebar/navigation-tree/services/publicCloud';
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import { shouldHideElement } from '@/container/nav-reshuffle/sidebar/utils';
 import { Location, useLocation } from 'react-router-dom';
 import style from '../style.module.scss';
 import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTree/SubTreeSection';
+import { PUBLICCLOUD_UNIVERSE_ID } from '../navigation-tree/services/publicCloud';
 
-interface PublicCloudPanelProps {
+export interface PublicCloudPanelProps {
   rootNode: Node;
   selectedNode: Node;
   handleOnSubMenuClick(node: Node): void;
 }
-
-const parseContainerURL = (
-  location: Location,
-): { appId: string; appHash: string } => {
-  const [, appId, appHash] = /^\/([^/]*)(.*)/.exec(location.pathname);
-  return { appId, appHash: `${appHash}${location.search}` };
-};
 
 export const PublicCloudPanel: React.FC<ComponentProps<
   PublicCloudPanelProps
@@ -42,6 +34,14 @@ export const PublicCloudPanel: React.FC<ComponentProps<
   const navigationPlugin = shell.getPlugin('navigation');
   const trackingPlugin = shell.getPlugin('tracking');
   const location = useLocation();
+
+  const parseContainerURL = (
+    location: Location,
+  ): { appId: string; appHash: string } => {
+    const [, appId, appHash] = /^\/([^/]*)(.*)/.exec(location.pathname);
+    return { appId, appHash: `${appHash}${location.search}` };
+  };
+
   const [containerURL, setContainerURL] = useState(parseContainerURL(location));
 
   const {
@@ -73,7 +73,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
       select: (response) => {
         return response?.data?.length ? (response.data[0] as PciProject) : null;
       },
-      enabled: rootNode.id === 'pci' && !selectedPciProject,
+      enabled: rootNode.id === PUBLICCLOUD_UNIVERSE_ID && !selectedPciProject,
       retry: false,
     },
   );
@@ -120,7 +120,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
   useEffect(() => {
     if (
       selectedPciProject &&
-      rootNode.id === publicCloud.id &&
+      rootNode.id === PUBLICCLOUD_UNIVERSE_ID &&
       containerURL.appId != rootNode.routing?.application
     ) {
       navigationPlugin.navigateTo(
@@ -135,7 +135,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
 
   return (
     <>
-      <li className="px-3">
+      <li className="px-3" data-testid="public-cloud-panel">
         <ProjectSelector
           isLoading={!pciSuccess}
           projects={pciProjects}
