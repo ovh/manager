@@ -5,6 +5,7 @@
   "general_informations": "Informations générales",
   "encrypted_keys": "Clés de chiffrement",
   "access_certificates": "Certificats d'accès",
+  "key_management_service_dashboard_back_link": "Retour à la liste des KMS",
   "key_management_service_dashboard_tab_comming_soon": "prochainement",
   "key_management_service_dashboard_field_label_name": "Nom du KMS",
   "key_management_service_dashboard_field_label_id": "ID",

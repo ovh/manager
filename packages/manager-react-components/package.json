@@ -1,15 +1,8 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "version": "1.30.0",
-  "license": "BSD-3-Clause",
-  "author": "OVH SAS",
-  "types": "dist/types/packages/manager-react-components/src/index.d.ts",
-  "main": "dist/manager-react-components-lib.es.ts",
-  "browser": "dist/manager-react-components-lib.es.ts",
-  "homepage": "https://github.com/ovh/manager/blob/master/packages/manager-react-components/README.md",
-  "bugs": {
-    "url": "https://github.com/ovh/manager/issues"
-  },
+  "private": true,
+  "version": "1.31.0",
+  "main": "src/lib.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

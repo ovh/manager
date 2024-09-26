@@ -435,7 +435,7 @@
   "emailpro_tab_ACCOUNTS_partial_account": "This account did not load correctly.",
   "emailpro_tab_ACCOUNTS_popover_alias": "Manage aliases",
   "emailpro_tab_ACCOUNTS_popover_delegation": "Manage delegations",
-  "emailpro_tab_ACCOUNTS_popover_span_text": "This account was sending spam, and it is therefore temporarily blocked. <br />In order to unlock the account, you must reply to the pending ticket.<br /><br /><a href=\"{0}\" class=\"link pull-right\">Reply to the ticket</a><br />",
+  "emailpro_tab_ACCOUNTS_popover_span_text": "Account blocked from sending emails due to SPAM. <br />To unblock this account, you will need to respond to the pending ticket.<br /><br /><a href=\"{0}\" target=\"_top\" class=\"link pull-right\">Respond to ticket</a><br />",
   "emailpro_tab_ACCOUNTS_popover_span_title": "SPAM blocked account",
   "emailpro_tab_ACCOUNTS_pwderror": "Confirmation incorrect",
   "emailpro_tab_ACCOUNTS_state_CREATING": "Creating...",

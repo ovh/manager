@@ -11,6 +11,7 @@ import {
   STATE_TASK_ERROR,
   ACCOUNT_TYPES,
   FILTER_TYPE,
+  SUPPORT_URL_VIEW_TICKETS,
 } from './emailpro-constants';
 
 export default class {
@@ -25,6 +26,7 @@ export default class {
     goToAliases,
     EmailPro,
     WucConverterService,
+    coreConfig,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -35,6 +37,7 @@ export default class {
     this.goToAliases = goToAliases;
     this.EmailPro = EmailPro;
     this.WucConverterService = WucConverterService;
+    this.coreConfig = coreConfig;
 
     this.$scope.stateCreating = EmailPro.stateCreating;
     this.$scope.stateDeleting = EmailPro.stateDeleting;
@@ -65,6 +68,7 @@ export default class {
   }
 
   $onInit() {
+    this.$scope.user = this.coreConfig.getUser();
     this.$scope.loading = false;
     this.$scope.accounts = null;
     this.$scope.loadingNewConfiguredAccount = false;
@@ -77,13 +81,7 @@ export default class {
     this.$scope.spamTooltipContent = this.$translate.instant(
       'emailpro_tab_ACCOUNTS_popover_span_text',
       {
-        t0: this.coreURLBuilder.buildURL('dedicated', '#/support/tickets', {
-          filters: JSON.stringify({
-            property: 'serviceName.value',
-            operator: 'contains',
-            value: this.$stateParams.productId,
-          }),
-        }),
+        t0: SUPPORT_URL_VIEW_TICKETS + this.$scope.user.ovhSubsidiary,
       },
     );
 

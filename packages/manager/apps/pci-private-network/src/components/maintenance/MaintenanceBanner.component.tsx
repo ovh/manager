@@ -1,7 +1,11 @@
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsLink, OsdsMessage } from '@ovhcloud/ods-components/react';
+import {
+  OsdsLink,
+  OsdsMessage,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 
 interface MaintenanceProps {
@@ -15,11 +19,11 @@ export function MaintenanceBanner({
 
   return (
     <OsdsMessage type={ODS_MESSAGE_TYPE.warning}>
-      <span>
+      <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
         {t('pci_projects_maintenance_banner_info_list_page', {
           productName: t('pci_projects_project_network_private'),
         })}
-      </span>
+      </OsdsText>
       <p>
         <OsdsLink
           color={ODS_THEME_COLOR_INTENT.primary}

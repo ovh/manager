@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.57.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.57.0...@ovh-ux/manager-dedicated@19.57.1) (2024-09-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [19.57.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.56.1...@ovh-ux/manager-dedicated@19.57.0) (2024-09-24)
+
+
+### Features
+
+* **dedicated.server:** vmac banner available on ADV GEN3([#12809](https://github.com/ovh/manager/issues/12809)) ([13b1bd1](https://github.com/ovh/manager/commit/13b1bd187ca89789c550922380f7c2512cdd8d8c))
+* **dedicated:** add vcd terms link for subs ([#13014](https://github.com/ovh/manager/issues/13014)) ([cb302ca](https://github.com/ovh/manager/commit/cb302ca120e96db3a718c6511a120a4ab211f750))
+* **dedicated:** hide backup storage when not available ([#12665](https://github.com/ovh/manager/issues/12665)) ([d4678af](https://github.com/ovh/manager/commit/d4678afc2961a32b3b14bc0b00edcffd0730e593))
+
+
+
+
+
+## [19.56.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.56.0...@ovh-ux/manager-dedicated@19.56.1) (2024-09-19)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([aa132e2](https://github.com/ovh/manager/commit/aa132e2cd29d322478f62992493ba78c3c8ee2e3))
+
+
+
+
+
 # [19.56.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.55.0...@ovh-ux/manager-dedicated@19.56.0) (2024-09-17)
 
 

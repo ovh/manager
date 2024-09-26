@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.5.1...@ovh-ux/manager-pci-private-network-app@0.5.2) (2024-09-23)
+
+
+### Bug Fixes
+
+* correct font on banners ([#12886](https://github.com/ovh/manager/issues/12886)) ([bd712b5](https://github.com/ovh/manager/commit/bd712b5564207ef1874966d19d9a761f13cb39d9))
+* **pci-private-network:** replace Network instead of network ([#12892](https://github.com/ovh/manager/issues/12892)) ([2c2a74e](https://github.com/ovh/manager/commit/2c2a74e9a313ff46d2510286a63b747502432ca2))
+
+
+
+
+
+## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.5.0...@ovh-ux/manager-pci-private-network-app@0.5.1) (2024-09-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app
+
+
+
+
+
 # [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.4.3...@ovh-ux/manager-pci-private-network-app@0.5.0) (2024-09-18)
 
 

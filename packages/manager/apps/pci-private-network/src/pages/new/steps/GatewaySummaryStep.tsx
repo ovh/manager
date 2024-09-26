@@ -174,10 +174,12 @@ export default function GatewaySummaryStep({
         {store.form.gateway && !store.form.gateway.externalInformation && (
           <div data-ng-if="$ctrl.gateway && !$ctrl.gateway.externalInformation">
             <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.warning}>
-              {t(
-                'pci_projects_project_network_private_create_summary_step_gateway_with_snat_disabled',
-                { gateway: store.form.gateway?.name },
-              )}
+              <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                {t(
+                  'pci_projects_project_network_private_create_summary_step_gateway_with_snat_disabled',
+                  { gateway: store.form.gateway?.name },
+                )}
+              </OsdsText>
             </OsdsMessage>
 
             <OsdsCheckbox
@@ -212,10 +214,12 @@ export default function GatewaySummaryStep({
 
         {store.form.gateway?.externalInformation && (
           <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.info}>
-            {t(
-              'pci_projects_project_network_private_create_summary_step_gateway_available',
-              { gateway: store.form.gateway?.name },
-            )}
+            <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+              {t(
+                'pci_projects_project_network_private_create_summary_step_gateway_available',
+                { gateway: store.form.gateway?.name },
+              )}
+            </OsdsText>
           </OsdsMessage>
         )}
 
