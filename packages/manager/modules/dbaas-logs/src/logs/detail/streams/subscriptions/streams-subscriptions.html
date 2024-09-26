@@ -24,7 +24,7 @@
             data-title="::'streams_subscriptions_resource_name_label' | translate"
             data-property="resource.name"
             data-type="string"
-            data-sortable
+            data-sortable="asc"
             data-searchable
             data-filterable
         ></oui-datagrid-column>
@@ -32,11 +32,20 @@
             data-title="::'streams_subscriptions_resource_type_label' | translate"
             data-property="resource.type"
             data-type="string"
-            data-sortable="asc"
+            data-sortable
             data-searchable
             data-filterable
         >
             <span data-ng-bind=":: $ctrl.getResourceName($row)"> </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'streams_subscriptions_kind_label' | translate"
+            data-property="kind"
+            data-type="string"
+            data-sortable
+            data-searchable
+            data-filterable
+        >
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title="::'logs_col_last_modified' | translate"
