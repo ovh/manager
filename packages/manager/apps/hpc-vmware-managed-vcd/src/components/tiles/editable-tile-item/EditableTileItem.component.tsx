@@ -10,10 +10,10 @@ type EditableTileItemProps = {
   onClickEdit: () => void;
 };
 
-export const EditableTileItem = ({
+export default function EditableTileItem({
   label,
   onClickEdit,
-}: EditableTileItemProps) => {
+}: EditableTileItemProps) {
   const { t } = useTranslation('dashboard');
 
   return (
@@ -32,4 +32,4 @@ export const EditableTileItem = ({
       </div>
     </div>
   );
-};
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { describe, it } from 'vitest';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { EditableTileItem } from './EditableTileItem.component';
+import EditableTileItem from './EditableTileItem.component';
 
 describe('EditableTileItem component unit test suite', () => {
   it('should display a label and the correct icon', () => {

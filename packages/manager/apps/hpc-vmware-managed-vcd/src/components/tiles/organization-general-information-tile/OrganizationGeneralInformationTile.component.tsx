@@ -19,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import { subRoutes } from '@/routes/routes.constant';
-import { EditableTileItem } from '../editable-tile-item/EditableTileItem.component';
+import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
 
 type TTileProps = {
   vcdOrganization: IVcdOrganization;
