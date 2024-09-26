@@ -17,6 +17,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import { subRoutes } from '@/routes/routes.constant';
 
@@ -105,6 +106,7 @@ export default function OrganizationGenerationInformationTile({
               type={LinkType.external}
               href={vcdOrganization?.currentState?.webInterfaceUrl}
               label={t('managed_vcd_dashboard_management_interface_access')}
+              target={OdsHTMLAnchorElementTarget._blank}
             />
           ),
         },
