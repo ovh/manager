@@ -21,3 +21,6 @@ export const TRACKING_CHAPTER_1 = 'PublicCloud';
 
 export const TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX =
   'pci::projects::project::octavia-loadbalancer';
+
+export const DISCOVER_LINK =
+  'https://horizon.cloud.ovh.net/project/load_balancer';

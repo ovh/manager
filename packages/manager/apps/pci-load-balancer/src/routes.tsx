@@ -9,6 +9,7 @@ export const ROUTE_PATHS = {
   GENERAL_INFORMATION: 'general-information',
   EDIT_NAME_LOAD_BALANCER: 'edit-name',
   LISTENERS: 'listeners',
+  LISTENERS_LIST: 'list',
   POOLS: 'pools',
   STATISTICS: 'statistics',
   CERTIFICATES: 'certificates',
@@ -24,6 +25,9 @@ const OverviewPage = lazy(() =>
 );
 const ListenersPage = lazy(() =>
   import('@/pages/detail/listeners/Listeners.page'),
+);
+const ListenersListPage = lazy(() =>
+  import('@/pages/detail/listeners/list/List.page'),
 );
 const PoolsPage = lazy(() => import('@/pages/detail/pools/Pools.page'));
 const StatisticsPage = lazy(() =>
@@ -68,7 +72,14 @@ const Routes = (
         id="detail-listeners"
         path={ROUTE_PATHS.LISTENERS}
         Component={ListenersPage}
-      />
+      >
+        <Route path="" element={<Navigate to={ROUTE_PATHS.LISTENERS_LIST} />} />
+        <Route
+          id="listeners-list"
+          path={ROUTE_PATHS.LISTENERS_LIST}
+          Component={ListenersListPage}
+        ></Route>
+      </Route>
       <Route id="detail-pools" path={ROUTE_PATHS.POOLS} Component={PoolsPage} />
       <Route
         id="detail-statistics"

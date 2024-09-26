@@ -19,22 +19,25 @@ export const paginateResults = <T>(
   totalRows: items.length,
 });
 
-export const sortResults = (items: TLoadBalancer[], sorting: ColumnSort) => {
-  let data: TLoadBalancer[];
-  switch (sorting?.id) {
-    default:
-      data = [...items].sort((a, b) =>
-        a[sorting?.id] > b[sorting?.id] ? 1 : 0,
-      );
-      break;
-  }
+export const compareFunction = <T>(key: keyof T) => (a: T, b: T) => {
+  const aValue = a[key] || '';
+  const bValue = b[key] || '';
+
+  return aValue.toString().localeCompare(bValue.toString());
+};
+
+export const sortResults = <T>(items: T[], sorting: ColumnSort): T[] => {
+  const data = [...items];
+
   if (sorting) {
-    const { desc } = sorting;
+    const { id: sortKey, desc } = sorting;
+    data.sort(compareFunction<T>(sortKey as keyof T));
 
     if (desc) {
       data.reverse();
     }
   }
+
   return data;
 };
 

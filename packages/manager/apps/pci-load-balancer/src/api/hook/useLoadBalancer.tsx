@@ -7,9 +7,11 @@ import {
   deleteLoadBalancer,
   getLoadBalancer,
   getLoadBalancerFlavor,
+  getLoadBalancerListeners,
   getLoadBalancers,
   TLoadBalancer,
   updateLoadBalancerName,
+  TLoadBalancerListener,
 } from '../data/load-balancer';
 import queryClient from '@/queryClient';
 
@@ -97,6 +99,7 @@ type DeleteLoadBalancerProps = {
   onError: (cause: Error) => void;
   onSuccess: () => void;
 };
+
 export const useDeleteLoadBalancer = ({
   projectId,
   loadBalancer,
@@ -126,6 +129,7 @@ type RenameLoadBalancerProps = {
   onError: (cause: Error) => void;
   onSuccess: () => void;
 };
+
 export const useRenameLoadBalancer = ({
   projectId,
   loadBalancer,
@@ -155,4 +159,72 @@ export const useRenameLoadBalancer = ({
     renameLoadBalancer: () => mutation.mutate(),
     ...mutation,
   };
+};
+
+export const useAllLoadBalancerListeners = ({
+  projectId,
+  region,
+  loadBalancerId,
+}: {
+  projectId: string;
+  region: string;
+  loadBalancerId: string;
+}) =>
+  useQuery({
+    queryKey: [
+      'project',
+      projectId,
+      'region',
+      region,
+      'loadbalancer',
+      loadBalancerId,
+    ],
+    queryFn: () => getLoadBalancerListeners(projectId, region, loadBalancerId),
+    enabled: !!region && !!loadBalancerId,
+    select: (data) =>
+      data.map((listener) => ({
+        ...listener,
+        search: `${listener.name} ${listener.defaultPoolId} ${listener.protocol} ${listener.port}`,
+      })),
+    throwOnError: true,
+  });
+
+export const useLoadBalancerListeners = (
+  projectId: string,
+  region: string,
+  loadBalancerId: string,
+  pagination: PaginationState,
+  sorting: ColumnSort,
+  filters: Filter[],
+) => {
+  const {
+    data: loadBalancerListeners,
+    error,
+    isLoading,
+    isPending,
+  } = useAllLoadBalancerListeners({ projectId, region, loadBalancerId });
+
+  return useMemo(
+    () => ({
+      isLoading,
+      isPending,
+      data: paginateResults<TLoadBalancerListener>(
+        sortResults<TLoadBalancerListener>(
+          applyFilters(loadBalancerListeners || [], filters),
+          sorting,
+        ),
+        pagination,
+      ),
+      error,
+    }),
+    [
+      loadBalancerListeners,
+      error,
+      isLoading,
+      isPending,
+      pagination,
+      sorting,
+      filters,
+    ],
+  );
 };

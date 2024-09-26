@@ -30,7 +30,7 @@ describe('sortResults', () => {
 
   it('sorts items by given column in ascending order', () => {
     const sorting = { id: 'id', desc: false };
-    const result = sortResults(items, sorting);
+    const result = sortResults<TLoadBalancer>(items, sorting);
     expect(result[0].id).toBe('lb1');
     expect(result[1].id).toBe('lb2');
   });
