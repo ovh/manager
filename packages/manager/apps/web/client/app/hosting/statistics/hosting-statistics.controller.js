@@ -1,6 +1,4 @@
-import difference from 'lodash/difference';
-import find from 'lodash/find';
-import map from 'lodash/map';
+import ChartDatasourcePrometheusPlugin from 'chartjs-plugin-datasource-prometheus';
 import remove from 'lodash/remove';
 import { formatDistanceToNow } from 'date-fns';
 
@@ -21,95 +19,13 @@ angular
       DATEFNS_LOCALE,
     ) => {
       $scope.STATUS_OVHCLOUD_URL = STATUS_OVHCLOUD_URL;
-
-      const HOSTING_STATISTICS = {
-        type: 'line',
-        data: {
-          datasets: [],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          elements: {
-            point: {
-              radius: 0,
-            },
-          },
-          plugins: {
-            legend: {
-              position: 'bottom',
-              display: true,
-            },
-            tooltip: {
-              mode: 'index',
-              intersect: false,
-              callbacks: {
-                title(data) {
-                  return formatDistanceToNow(new Date(data[0].parsed.x), {
-                    addSuffix: true,
-                    locale: DATEFNS_LOCALE,
-                  });
-                },
-              },
-            },
-            zoom: {
-              zoom: {
-                wheel: { enabled: true },
-                pinch: { enabled: true },
-                mode: 'xy',
-                limits: {
-                  max: 10,
-                  min: 0.5,
-                },
-              },
-            },
-          },
-          scales: {
-            y: {
-              type: 'linear',
-              display: true,
-              position: 'left',
-              title: {
-                display: true,
-              },
-              grid: {
-                drawBorder: true,
-                display: true,
-              },
-            },
-            x: {
-              type: 'time',
-              position: 'bottom',
-              adapters: {
-                date: { locale: DATEFNS_LOCALE },
-              },
-              grid: {
-                drawBorder: true,
-                display: false,
-              },
-              time: {
-                displayFormats: {
-                  hour: 'H:mm a',
-                },
-              },
-            },
-          },
-        },
-      };
+      $scope.loadingGraph = true;
 
       $scope.selected = {
         period: null,
         type: null,
-        db: null,
         aggregateMode: null,
         httpMeanResponseTime: false,
-        haveDataToDisplay: false,
-        typeIsDb() {
-          const condition = (v) => $scope.selected.type === v;
-          return (
-            $scope.model.db && !!find($scope.model.constants.dbTypes, condition)
-          );
-        },
       };
 
       $scope.model = {
@@ -117,156 +33,223 @@ angular
         data: null,
         db: null,
         yUnit: null,
-        seriesColors: {
-          '5xx': '#DA3B3A',
-          500: '#EF4339',
-          501: '#B3245A',
-          502: '#820233',
-          503: '#CA293E',
-          '4xx': '#F4BA4D',
-          400: '#F4BA4D',
-          401: '#DD923B',
-          403: '#FA8A42',
-          404: '#DDB53B',
-          '2xx/3xx': '#00748E',
-          200: '#00748E',
-          206: '#00A9CE',
-          301: '#006A82',
-          302: '#00758F',
-          mitigation: '#000000',
-          'mitigation.blacklist': '#000000',
-          'mitigation.replay': '#666666',
-        },
       };
 
-      $scope.stats = {};
+      $scope.initChart = () => {
+        $scope.loadingGraph = true;
+        return HostingStatistics.getMetricsToken($stateParams.productId).then(
+          ({ endpoint, token }) => {
+            const query = `${$scope.selected.type.query}{service_name="${$stateParams.productId}"}`;
+            const queryMeanResponseTime = `aggregator_stats_in_httpMeanResponseTime_value{service_name="${$stateParams.productId}"}`;
 
-      function refreshChart() {
-        $scope.stats.chart = new ChartFactory(angular.copy(HOSTING_STATISTICS));
-        if ($scope.model.datas && $scope.model.datas.length > 0) {
-          angular.forEach($scope.model.datas, (data) => {
-            if (
-              data &&
-              data.state === 'OK' &&
-              data.series &&
-              data.series.length > 0
-            ) {
-              $scope.selected.haveDataToDisplay = true;
-              $scope.stats.chart.setYLabel(data.series[0].unit);
-              angular.forEach(data.series, (serie) => {
-                $scope.stats.chart.addSerie(
-                  $translate.instant(
-                    `hosting_tab_STATISTICS_series_${serie.serieName}`,
-                  ) === `hosting_tab_STATISTICS_series_${serie.serieName}`
-                    ? serie.serieName
-                    : $translate.instant(
-                        `hosting_tab_STATISTICS_series_${serie.serieName}`,
-                      ),
-                  map(serie.points, (point) => ({
-                    x: parseFloat(point.x.toFixed(2)),
-                    y: parseFloat(point.y.toFixed(2)),
-                  })),
-                  {
-                    dataset: {
-                      fill: true,
-                      borderWidth: 1,
-                    },
-                  },
-                );
+            const promQueries = [
+              (start, end) => {
+                let url = `${endpoint}/prometheus/api/v1/query_range?query=${query}&start=${start.toISOString()}&end=${end.toISOString()}&step=1m`;
+                if (
+                  $scope.selected.type.label === 'IN_HTTP_HITS' &&
+                  $scope.selected.aggregateMode === 'ALL'
+                ) {
+                  url = `${endpoint}/prometheus/api/v1/query_range?query=sum by(service_name)(aggregator_stats_in_httpHits_value{service_name="${
+                    $stateParams.productId
+                  }"})&start=${start.toISOString()}&end=${end.toISOString()}&step=1m`;
+                }
+                const headers = {
+                  authorization: `bearer ${token}`,
+                  'content-type': 'application/x-www-form-urlencoded',
+                };
+
+                return fetch(url, { headers })
+                  .then((response) => {
+                    if (response.ok) {
+                      return response.json();
+                    }
+
+                    return null;
+                  })
+                  .then((response) => response.data);
+              },
+            ];
+
+            if ($scope.selected.httpMeanResponseTime) {
+              promQueries.push((start, end) => {
+                const url = `${endpoint}/prometheus/api/v1/query_range?query=${queryMeanResponseTime}&start=${start.toISOString()}&end=${end.toISOString()}&step=1m`;
+
+                const headers = {
+                  authorization: `bearer ${token}`,
+                  'content-type': 'application/x-www-form-urlencoded',
+                };
+
+                return fetch(url, { headers })
+                  .then((response) => {
+                    if (response.ok) {
+                      return response.json();
+                    }
+
+                    return null;
+                  })
+                  .then((response) => response.data);
               });
             }
-          });
-        }
-      }
 
-      $scope.getStatistics = () => {
-        const getStatsPromises = [];
-        $scope.model.datas = null;
-        $scope.selected.haveDataToDisplay = false;
+            $scope.chart = new ChartFactory({
+              type: 'line',
+              plugins: [ChartDatasourcePrometheusPlugin],
+              options: {
+                animation: {
+                  duration: 0,
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: {
+                    display: true,
+                    position: 'bottom',
+                  },
+                  tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    callbacks: {
+                      title(data) {
+                        return formatDistanceToNow(new Date(data[0].parsed.x), {
+                          addSuffix: true,
+                          locale: DATEFNS_LOCALE,
+                        });
+                      },
+                    },
+                  },
+                  zoom: {
+                    zoom: {
+                      wheel: { enabled: true },
+                      pinch: { enabled: true },
+                      mode: 'xy',
+                      limits: {
+                        max: 10,
+                        min: 0.5,
+                      },
+                    },
+                  },
+                  'datasource-prometheus': {
+                    borderWidth: 1,
+                    errorMsg: {
+                      message: $translate.instant(
+                        'hosting_tab_STATISTICS_none',
+                      ),
+                    },
+                    noDataMsg: {
+                      message: $translate.instant(
+                        'hosting_tab_STATISTICS_none',
+                      ),
+                    },
+                    fill: true,
+                    findInBorderColorMap: ({ labels }) => {
+                      if (labels.resourceType) {
+                        return $scope.model.constants.colors[
+                          labels.resourceType
+                        ]?.border;
+                      }
+                      if (labels.statusCode) {
+                        return $scope.model.constants.colors[labels.statusCode]
+                          ?.border;
+                      }
 
-        if (!$scope.selected.typeIsDb()) {
-          getStatsPromises.push(
-            HostingStatistics.getStatistics(
-              $stateParams.productId,
-              $scope.selected.period,
-              $scope.selected.type,
-              $scope.selected.aggregateMode,
-            ),
-          );
+                      return $scope.model.constants.colors.base.border;
+                    },
+                    findInBackgroundColorMap: ({ labels }) => {
+                      if (labels.resourceType) {
+                        return $scope.model.constants.colors[
+                          labels.resourceType
+                        ]?.bg;
+                      }
+                      if (labels.statusCode) {
+                        return $scope.model.constants.colors[labels.statusCode]
+                          ?.bg;
+                      }
 
-          if ($scope.selected.httpMeanResponseTime) {
-            getStatsPromises.push(
-              HostingStatistics.getStatistics(
-                $stateParams.productId,
-                $scope.selected.period,
-                'IN_HTTP_MEAN_RESPONSE_TIME',
-                $scope.selected.aggregateMode,
-              ),
-            );
-          }
-        } else if ($scope.selected.db) {
-          getStatsPromises.push(
-            HostingDatabase.databaseStatistics(
-              $stateParams.productId,
-              $scope.selected.db,
-              $scope.selected.period,
-              $scope.selected.type,
-              $scope.selected.aggregateMode,
-            ),
-          );
-        }
+                      return $scope.model.constants.colors.base.bg;
+                    },
+                    findInLabelMap: ({ labels }) => {
+                      if (labels.resourceType) {
+                        return labels.resourceType;
+                      }
 
-        $scope.migration = false;
+                      if (labels.statusCode) {
+                        return labels.statusCode;
+                      }
 
-        $q.all(getStatsPromises)
-          .then((results) => {
-            $scope.model.datas = results;
-            refreshChart();
-          })
-          .catch((error) => {
-            if (error.status >= 500) {
-              $scope.migration = true;
-            }
-            throw error;
-          });
+                      return $translate.instant(
+                        'hosting_tab_STATISTICS_aggregate_ALL',
+                      );
+                    },
+                    tension: 0.5,
+                    query: promQueries,
+                    timeRange: {
+                      type: 'relative',
+                      start: $scope.selected.period.timeRange,
+                      end: 0,
+                    },
+                  },
+                },
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    title: {
+                      display: true,
+                      text: $scope.selected.type.unit,
+                    },
+                    grid: {
+                      drawBorder: true,
+                      display: true,
+                    },
+                  },
+                  x: {
+                    type: 'time',
+                    position: 'bottom',
+                    adapters: {
+                      date: { locale: DATEFNS_LOCALE },
+                    },
+                    grid: {
+                      drawBorder: true,
+                      display: false,
+                    },
+                    time: {
+                      displayFormats: {
+                        hour: 'H:mm a',
+                      },
+                    },
+                  },
+                },
+                elements: {
+                  point: {
+                    radius: 0,
+                  },
+                },
+              },
+            });
+            $scope.loadingGraph = false;
+          },
+        );
       };
 
-      function removeSqlStatistics() {
-        $scope.model.constants.types = difference(
-          $scope.model.constants.types,
-          $scope.model.constants.dbTypes,
-        );
-      }
-
-      function getDbList() {
-        HostingDatabase.databaseList($stateParams.productId).then((data) => {
-          $scope.model.db = data;
-          if ($scope.model.db && $scope.model.db.length > 0) {
-            [$scope.selected.db] = $scope.model.db;
-          } else {
-            removeSqlStatistics();
-          }
-        }, removeSqlStatistics);
-      }
-
       function init() {
-        HostingStatistics.getStatisticsConstants().then((data) => {
+        return HostingStatistics.getStatisticsConstants().then((data) => {
           $scope.model.constants = data;
-          $scope.model.constants.types = $scope.model.constants.types.concat(
-            $scope.model.constants.dbTypes,
-          );
+
           remove(
             $scope.model.constants.types,
-            (value) => value === 'IN_HTTP_MEAN_RESPONSE_TIME',
+            (value) => value.label === 'IN_HTTP_MEAN_RESPONSE_TIME',
           );
-          $scope.selected.type = data.defaultType;
-          $scope.selected.period = data.defaultPeriod;
+          $scope.selected.type = data.types.find(
+            ({ isDefault }) => isDefault === true,
+          );
+          $scope.selected.period = data.periods.find(
+            ({ isDefault }) => isDefault === true,
+          );
           $scope.selected.aggregateMode = data.defaultAggregateMode;
-          $scope.getStatistics();
-          getDbList();
-          setTimeout(() => {
-            $(window).resize();
-          }, 1000);
+
+          return $scope.initChart();
         });
       }
 

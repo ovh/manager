@@ -10,7 +10,7 @@
             >
                 <div>
                     <label
-                        class="oui-label d-inline-block align-middle mr-2"
+                        class="oui-label d-inline-block mr-2"
                         for="hostingStatisticsType"
                     >
                         <span
@@ -23,9 +23,9 @@
                             class="oui-select__input"
                             id="hostingStatisticsType"
                             name="type"
-                            data-ng-change="getStatistics()"
+                            data-ng-change="initChart()"
                             data-ng-model="selected.type"
-                            data-ng-options="('hosting_tab_STATISTICS_type_' + option | translate) for option in model.constants.types track by option"
+                            data-ng-options="option as ('hosting_tab_STATISTICS_type_' + option.label | translate) for option in model.constants.types track by option.label"
                         >
                         </select>
                         <span
@@ -34,33 +34,9 @@
                         ></span>
                     </div>
                 </div>
-                <div data-ng-if="selected.typeIsDb()">
+                <div>
                     <label
-                        class="oui-label d-inline-block align-middle mr-2"
-                        for="hostingStatisticsDb"
-                    >
-                        <span data-translate="hosting_tab_STATISTICS_db"></span
-                        >&nbsp;:
-                    </label>
-                    <div class="oui-select mb-0 oui-select_inline align-middle">
-                        <select
-                            class="oui-select__input"
-                            id="hostingStatisticsDb"
-                            name="db"
-                            data-ng-change="getStatistics()"
-                            data-ng-model="selected.db"
-                            data-ng-options="db for db in model.db track by db"
-                        >
-                        </select>
-                        <span
-                            class="oui-icon oui-icon-chevron-down"
-                            aria-hidden="true"
-                        ></span>
-                    </div>
-                </div>
-                <div data-ng-if="!selected.typeIsDb()">
-                    <label
-                        class="oui-label d-inline-block align-middle mr-2"
+                        class="oui-label d-inline-block mr-2"
                         for="hostingStatisticsResponseTime"
                     >
                         <span
@@ -75,7 +51,7 @@
                             type="checkbox"
                             class="oui-checkbox__input"
                             id="hostingStatisticsResponseTime"
-                            data-ng-change="getStatistics()"
+                            data-ng-change="initChart()"
                             data-ng-model="selected.httpMeanResponseTime"
                         />
                         <label
@@ -90,7 +66,7 @@
                 </div>
                 <div>
                     <label
-                        class="oui-label d-inline-block align-middle mr-2"
+                        class="oui-label d-inline-block mr-2"
                         for="hostingStatisticsPeriod"
                     >
                         <span
@@ -103,9 +79,9 @@
                             class="oui-select__input"
                             id="hostingStatisticsPeriod"
                             name="period"
-                            data-ng-change="getStatistics()"
+                            data-ng-change="initChart()"
                             data-ng-model="selected.period"
-                            data-ng-options="('hosting_tab_STATISTICS_period_' + option | translate) for option in model.constants.periods track by option"
+                            data-ng-options="option as ('hosting_tab_STATISTICS_period_' + option.label | translate) for option in model.constants.periods track by option.label"
                         >
                         </select>
                         <span
@@ -124,10 +100,10 @@
             >
             </span>
         </oui-message>
-        <div data-ng-if="!migration">
+        <div>
             <div
                 class="my-5 text-center"
-                data-ng-if="selected.type === 'IN_HTTP_HITS'"
+                data-ng-if="selected.type.label === 'IN_HTTP_HITS'"
             >
                 <span
                     class="oui-label d-inline-block mr-2"
@@ -142,7 +118,7 @@
                         class="oui-radio__input"
                         id="aggregateModes-{{$index}}"
                         name="aggregationModel"
-                        data-ng-change="getStatistics()"
+                        data-ng-change="initChart()"
                         data-ng-model="selected.aggregateMode"
                         data-ng-value="option"
                     />
@@ -160,27 +136,13 @@
                     </label>
                 </div>
             </div>
-
             <div
-                class="text-center mt-5"
-                data-ng-if="!hosting.isCloudWeb && !model.datas"
-            >
-                <oui-spinner data-size="l"></oui-spinner>
-            </div>
-            <div
-                class="chart-container"
-                style="height: 320px;"
-                data-ng-if="selected.haveDataToDisplay"
+                data-ng-if="!loadingGraph"
+                style="height: 350px"
+                class="chart-container mt-5"
                 data-chart
-                data-chartjs="stats.chart"
+                data-chartjs="chart"
                 data-auto-reload="true"
-            ></div>
-
-            <div
-                class="alert alert-info my-5"
-                role="alert"
-                data-translate="hosting_tab_STATISTICS_none"
-                data-ng-if="hosting.isCloudWeb || (model.datas && !selected.haveDataToDisplay)"
             ></div>
         </div>
     </div>
