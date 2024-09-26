@@ -66,7 +66,7 @@ export default function ListPage() {
   return (
     <RedirectionGuard
       isLoading={isPending}
-      condition={!isPending && data.rows?.length === 0}
+      condition={!isPending && data.rows?.length === 0 && filters?.length === 0}
       route={`/pci/projects/${projectId}/private-registry/onboarding`}
     >
       {project && (
