@@ -19,12 +19,19 @@ export const getBackupIdFromOrganizationId = (organizationId: string) =>
 
 export const organizationListQueryKey = ['/vmwareCloudDirector/organization'];
 
-export const useOrganizationList = ({ pageSize }: { pageSize?: number }) => {
-  const { flattenData, isLoading, ...result } = useResourcesIcebergV2<
-    VCDOrganization
-  >({
+export const useOrganizationList = ({ pageSize }: { pageSize?: number }) =>
+  useResourcesIcebergV2<VCDOrganization>({
     route: '/vmwareCloudDirector/organization',
     queryKey: organizationListQueryKey,
+    pageSize,
+  });
+
+export const useOrganizationWithBackupStatusList = ({
+  pageSize,
+}: {
+  pageSize?: number;
+}) => {
+  const { flattenData, isLoading, ...result } = useOrganizationList({
     pageSize,
   });
 
