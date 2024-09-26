@@ -14,6 +14,7 @@ export default class PciProjectStorageDataEncryptionController {
         changes.containerRegion?.previousValue
     ) {
       this.setEncryptionOptions();
+      this.encryption.sseAlgorithm = this.options[0].value;
     }
   }
 
