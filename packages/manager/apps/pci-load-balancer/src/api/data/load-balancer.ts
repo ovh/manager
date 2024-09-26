@@ -87,3 +87,17 @@ export const deleteLoadBalancer = async (
   );
   return data;
 };
+
+export const updateLoadBalancerName = async (
+  projectId: string,
+  loadBalancer: TLoadBalancer,
+  name: string,
+) => {
+  const { data } = await v6.put(
+    `/cloud/project/${projectId}/region/${loadBalancer.region}/loadbalancing/loadbalancer/${loadBalancer.id}`,
+    {
+      name,
+    },
+  );
+  return data;
+};
