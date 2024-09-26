@@ -14,6 +14,20 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
+jest.mock('@ovh-ux/manager-react-shell-client', () => {
+  return {
+    useOvhTracking: () => ({
+      trackClick: jest.fn(),
+    }),
+    PageLocation: {
+      page: 'page',
+    },
+    ButtonType: {
+      button: 'button',
+    },
+  };
+});
+
 const defaultProps: GenerateAccessModalProps = {
   onClose: jest.fn(),
   rancher: rancherMocked,
@@ -24,15 +38,6 @@ const defaultProps: GenerateAccessModalProps = {
 afterEach(() => {
   jest.clearAllMocks();
 });
-
-jest.mock('@ovh-ux/manager-react-shell-client', () => ({
-  PageLocation: {
-    popup: 'popup',
-  },
-  ButtonType: {
-    button: 'link',
-  },
-}));
 
 const setupSpecTest = async (props: GenerateAccessModalProps = defaultProps) =>
   waitFor(() => render(<GenerateAccessModal {...props} />));

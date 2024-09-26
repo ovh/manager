@@ -39,14 +39,12 @@ export default function Create() {
         (old: RancherService[]) => [...old, data.data],
       );
       trackPage({
-        pageType: PageType.dashboard,
         pageName: `${TRACKING_PATH}::${TrackingEvent.add}-success`,
       });
       navigate(getRanchersUrl(projectId));
     },
     onError: (error) => {
       trackPage({
-        pageType: PageType.dashboard,
         pageName: `${TRACKING_PATH}::${TrackingEvent.add}-error`,
       });
       setHasRancherCreationError(true);

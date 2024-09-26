@@ -13,14 +13,20 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-jest.mock('@ovh-ux/manager-react-shell-client', () => ({
-  PageLocation: {
-    popup: 'popup',
-  },
-  ButtonType: {
-    button: 'link',
-  },
-}));
+jest.mock('@ovh-ux/manager-react-shell-client', () => {
+  return {
+    useOvhTracking: () => ({
+      trackClick: jest.fn(),
+    }),
+    PageLocation: {
+      page: 'page',
+      popup: 'popup',
+    },
+    ButtonType: {
+      button: 'button',
+    },
+  };
+});
 
 const setupSpecTest = async () =>
   waitFor(() =>

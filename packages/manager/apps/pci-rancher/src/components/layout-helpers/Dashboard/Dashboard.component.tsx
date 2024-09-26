@@ -1,11 +1,10 @@
 import { ODS_MESSAGE_TYPE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { Title } from '@ovh-ux/manager-react-components';
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
-import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   patchRancherServiceQueryKey,
   postRancherServiceQueryKey,
@@ -20,7 +19,6 @@ import RancherDetail from './RancherDetail/RancherDetail.component';
 import TabBar from './TabBar/TabBar.component';
 import LinkIcon from '@/components/LinkIcon/LinkIcon.component';
 import useVersions from '@/data/hooks/useVersions/useVersions';
-import { TrackingPageView } from '@/utils/tracking';
 
 export type DashboardTabItemProps = {
   name: string;
