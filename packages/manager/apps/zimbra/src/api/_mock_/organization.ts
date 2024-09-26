@@ -1,4 +1,5 @@
 import { OrganizationType } from '@/api/organization';
+import { ResourceStatus } from '../api.type';
 
 export const organizationDetailMock: OrganizationType = {
   checksum: 'string',
@@ -26,7 +27,7 @@ export const organizationDetailMock: OrganizationType = {
     },
   ],
   id: '1903b491-4d10-4000-8b70-f474d1abe601',
-  resourceStatus: 'CREATING',
+  resourceStatus: ResourceStatus.CREATING,
   targetSpec: {
     description: 'description',
     label: 'label',
@@ -61,7 +62,7 @@ export const organizationListMock: OrganizationType[] = [
       },
     ],
     id: '1903b491-4d10-4000-8b70-f474d1abe601',
-    resourceStatus: 'CREATING',
+    resourceStatus: ResourceStatus.CREATING,
     targetSpec: {
       description: 'description',
       label: 'label',
@@ -87,7 +88,7 @@ export const organizationListMock: OrganizationType[] = [
     },
     currentTasks: [],
     id: '1903b491-4d10-4000-8b70-f474d1abe602',
-    resourceStatus: 'READY',
+    resourceStatus: ResourceStatus.READY,
     targetSpec: {
       description: 'description2',
       label: 'label2',
