@@ -35,6 +35,13 @@ export const useDatagridColumn = (): DatagridColumn<TLocalZoneNetwork>[] => {
       label: PRIVATE_NETWORK_LIST.CIDR,
     },
     {
+      id: 'gatewayIp',
+      cell: (props: TLocalZoneNetwork) => (
+        <DataGridTextCell>{props.gatewayIp}</DataGridTextCell>
+      ),
+      label: t('pci_projects_project_network_private_gateway'),
+    },
+    {
       id: 'dhcp',
       cell: (props: TLocalZoneNetwork) =>
         props.dhcpEnabled ? (
