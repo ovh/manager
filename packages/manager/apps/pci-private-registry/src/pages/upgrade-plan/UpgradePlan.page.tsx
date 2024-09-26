@@ -161,7 +161,7 @@ export default function UpgradePlanPage(): JSX.Element {
       </OsdsText>
       {plan && availablePlans && (
         <PlanChooser
-          plan={availablePlans[0]}
+          plan={selectedPlan}
           plans={availablePlans}
           onInput={(p) => {
             setSelectedPlan(p);

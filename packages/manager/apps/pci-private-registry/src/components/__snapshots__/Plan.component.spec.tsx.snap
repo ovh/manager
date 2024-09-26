@@ -6,7 +6,7 @@ exports[`PlanComponent > should render 1`] = `
     class="w-full"
   >
     <div
-      class="border-solid border border-t-0 border-x-0 border-[--ods-color-blue-200] my-4 py-4"
+      class="border-solid border border-t-0 border-x-0 border-[--ods-color-blue-200] my-4 py-4 mx-8"
     >
       <osds-text
         color="text"
@@ -18,7 +18,7 @@ exports[`PlanComponent > should render 1`] = `
       </osds-text>
     </div>
     <ul
-      class="list-none p-0 m-0 min-h-[8rem]"
+      class="list-none p-0 m-0 min-h-[8rem] mx-8"
     >
       <li
         data-testid="capacity"
@@ -62,7 +62,7 @@ exports[`PlanComponent > should render 1`] = `
       </li>
     </ul>
     <div
-      class="border-solid border border-b-0 border-x-0 border-[--ods-color-blue-200] mb-2 pt-4 mt-9"
+      class="border-solid border border-b-0 border-x-0 border-[--ods-color-blue-200] mb-2 pt-4 mt-9 text-center py-4"
       data-testid="price"
     >
       <osds-text
