@@ -376,6 +376,9 @@ export const useResetCluster = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
+        queryKey: ['region-subnets', projectId],
+      });
+      await queryClient.invalidateQueries({
         queryKey: getKubernetesClusterQuery(projectId, kubeId),
       });
       await queryClient.invalidateQueries({
