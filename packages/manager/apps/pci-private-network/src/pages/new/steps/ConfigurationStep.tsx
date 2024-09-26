@@ -4,7 +4,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 
 import {
   ODS_BUTTON_SIZE,
@@ -111,6 +111,9 @@ export default function ConfigurationStep({
   const REGION_GUIDE_URL =
     GUIDE_LINKS.REGION_AVAILABILITY[ovhSubsidiary] ||
     GUIDE_LINKS.REGION_AVAILABILITY.DEFAULT;
+
+  const VLAN_GUIDE_URL =
+    GUIDE_LINKS.VLAN[ovhSubsidiary] || GUIDE_LINKS.VLAN.DEFAULT;
 
   // To check isGatewayAvailableInRegion
   const { data: productAvailability } = useProductAvailability(
@@ -409,9 +412,21 @@ export default function ConfigurationStep({
                     level={ODS_TEXT_LEVEL.body}
                     size={ODS_TEXT_SIZE._400}
                   >
-                    {t(
-                      'new:pci_projects_project_network_private_create_vlan_tip',
-                    )}
+                    <Trans
+                      t={t}
+                      i18nKey="pci_projects_project_network_private_create_vlan_tip"
+                      components={{
+                        link: (
+                          <a
+                            href={VLAN_GUIDE_URL}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {tCommon('common_find_out_more_here')}
+                          </a>
+                        ),
+                      }}
+                    />
                   </OsdsText>
                 </div>
 
