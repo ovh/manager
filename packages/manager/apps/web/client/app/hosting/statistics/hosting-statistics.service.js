@@ -25,32 +25,94 @@ angular.module('services').service(
         .then(({ data: ownLog }) => ownLog);
     }
 
+    getMetricsToken(serviceName) {
+      return this.$http
+        .get(`/hosting/web/${serviceName}/metricsToken`)
+        .then((data) => data.data);
+    }
+
     getStatisticsConstants() {
       return this.$q.when({
         types: [
-          'IN_FTP_COMMANDS',
-          'IN_HTTP_HITS',
-          'IN_HTTP_MEAN_RESPONSE_TIME',
-          'OUT_TCP_CONN',
-          'SYS_CPU_USAGE',
-          'SYS_WORKER_SPAWN_OVERLOAD',
+          {
+            label: 'IN_FTP_COMMANDS',
+            query: 'aggregator_stats_in_ftpComm_value',
+          },
+          {
+            label: 'IN_HTTP_HITS',
+            query: 'aggregator_stats_in_httpHits_value',
+            isDefault: true,
+            unit: 'hits',
+          },
+          {
+            label: 'IN_HTTP_MEAN_RESPONSE_TIME',
+            query: 'aggregator_stats_in_httpMeanResponseTime_value',
+            unit: 'ms',
+          },
+          {
+            label: 'OUT_TCP_CONN',
+            query: 'aggregator_stats_out_tcpConn_value',
+          },
+          {
+            label: 'SYS_CPU_USAGE',
+            query: 'aggregator_stats_cgroupCpuUsage_value',
+          },
+          {
+            label: 'SYS_WORKER_SPAWN_OVERLOAD',
+            query: 'aggregator_stats_workerSpawnOverload_value',
+          },
         ],
-        dbTypes: ['STATEMENT', 'STATEMENT_MEAN_TIME'],
-        defaultType: 'IN_HTTP_HITS',
-        periods: ['DAILY', 'WEEKLY', 'MONTHLY', 'YEARLY'],
-        defaultPeriod: 'WEEKLY',
-        aggregateModes: ['ALL', 'HTTP_CODE', 'NONE'],
+        dbTypes: [{ label: 'STATEMENT' }, { label: 'STATEMENT_MEAN_TIME' }],
+        periods: [
+          { label: 'DAILY', value: '1d', timeRange: -24 * 60 * 60 * 1000 },
+          {
+            label: 'WEEKLY',
+            value: '7d',
+            timeRange: -7 * 24 * 60 * 60 * 1000,
+            isDefault: true,
+          },
+          {
+            label: 'MONTHLY',
+            value: '30d',
+            timeRange: -1 * 30 * 24 * 60 * 60 * 1000,
+          },
+          {
+            label: 'YEARLY',
+            value: '365d',
+            timeRange: -365 * 24 * 60 * 60 * 1000,
+          },
+        ],
+        aggregateModes: ['ALL', 'HTTP_CODE'],
         defaultAggregateMode: 'HTTP_CODE',
-      });
-    }
-
-    getStatistics(serviceName, period, type, aggregation) {
-      return this.OvhHttp.get(`/sws/hosting/web/${serviceName}/statistics`, {
-        rootPath: '2api',
-        params: {
-          period,
-          type,
-          aggregation,
+        colors: {
+          200: {
+            bg: '#EAECF4',
+            border: '#848CBC',
+          },
+          300: {
+            bg: '#FFF3E6',
+            border: '#FDB259',
+          },
+          400: {
+            bg: '#EAF7FF',
+            border: '#B6E1FF',
+          },
+          500: {
+            bg: '#EF4339',
+            border: '#D1190F',
+          },
+          base: {
+            bg: '#EAF7FF',
+            border: '#A2D9FF',
+          },
+          dynamic: {
+            bg: '#F8E9EF',
+            border: '#B92463',
+          },
+          static: {
+            bg: '#E9F8F4',
+            border: '#24B994',
+          },
         },
       });
     }
