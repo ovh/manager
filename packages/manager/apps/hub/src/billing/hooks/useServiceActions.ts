@@ -217,7 +217,7 @@ export const useServiceActions = (
       }
       setActions(items);
     });
-  }, []);
+  }, [getLinksPromise]);
 
   return actions;
 };
