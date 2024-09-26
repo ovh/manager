@@ -62,17 +62,6 @@ const DatagridCommercialRange = (vcdDatacentre: IVcdDatacentre) => (
   </DataGridTextCell>
 );
 
-const DatagridDiskSpaceCell = (vcdDatacentre: IVcdDatacentre) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
-  return (
-    <DataGridTextCell>
-      {t('managed_vcd_vdc_quota_value', {
-        quota: vcdDatacentre.currentState?.storageQuota,
-      })}
-    </DataGridTextCell>
-  );
-};
-
 /* ======= listing page ======== */
 export default function DatacentresListing() {
   const { t } = useTranslation('listing');
@@ -104,11 +93,6 @@ export default function DatacentresListing() {
       id: 'ramCount',
       cell: DatagridRamCountCell,
       label: tVdc('managed_vcd_vdc_ram_count'),
-    },
-    {
-      id: 'diskSpace',
-      cell: DatagridDiskSpaceCell,
-      label: tVdc('managed_vcd_vdc_disk_space_count'),
     },
     {
       id: 'vCpuSpeed',

@@ -71,17 +71,6 @@ export default function DatacentreGenerationInformationTile({
           ),
         },
         {
-          id: 'diskSpace',
-          label: tVdc('managed_vcd_vdc_disk_space_count'),
-          value: (
-            <Description>
-              {tVdc('managed_vcd_vdc_quota_value', {
-                quota: vcdDatacentre?.currentState?.storageQuota,
-              })}
-            </Description>
-          ),
-        },
-        {
           id: 'vcpuSpeed',
           label: tVdc('managed_vcd_vdc_vcpu_speed'),
           value: (
