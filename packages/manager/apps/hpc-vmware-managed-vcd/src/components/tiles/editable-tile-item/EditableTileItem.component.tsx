@@ -27,6 +27,7 @@ export const EditableTileItem = ({
           size={ODS_ICON_SIZE.xxs}
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={onClickEdit}
+          data-testid="editIcon"
         />
       </div>
     </div>
