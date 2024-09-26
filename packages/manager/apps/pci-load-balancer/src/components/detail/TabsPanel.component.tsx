@@ -26,7 +26,7 @@ export default function TabsPanel({ tabs }: TabsProps) {
   const { tracking } = useContext(ShellContext)?.shell || {};
 
   useEffect(() => {
-    const activeTab = tabs.find((tab) => location.pathname.endsWith(tab.to));
+    const activeTab = tabs.find((tab) => location.pathname.includes(tab.to));
     if (activeTab) {
       if (activeTab.name !== panel) {
         clearNotifications();
