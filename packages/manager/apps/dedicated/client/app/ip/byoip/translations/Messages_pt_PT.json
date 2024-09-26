@@ -40,5 +40,6 @@
   "ip_byoip_region_GSW": "(GSW) - França",
   "ip_byoip_cancel_text": "Anular",
   "ip_byoip_restriction_warning_message": "O serviço Bring Your Own IP está atualmente disponível em acesso restrito. Para obter mais informações, contacte a equipa comercial da OVHcloud.",
-  "ip_byoip_region_YNM": "Mumbai (YNM{{number}}) - Índia"
+  "ip_byoip_region_YNM": "Mumbai (YNM{{number}}) - Índia",
+  "ip_byoip_region_YYZ": "Toronto (YYZ{{number}}) - Canadá"
 }
