@@ -166,7 +166,7 @@ export const useStore = create<TStore>((set, get) => ({
         region: null,
         plan: undefined,
       },
-      stepper: {
+      stepsState: {
         [StepEnum.REGION]: {
           isOpen: true,
           isLocked: false,
