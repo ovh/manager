@@ -85,6 +85,29 @@ export const deleteLoadBalancer = async (
   const { data } = await v6.delete(
     `/cloud/project/${projectId}/region/${loadBalancer.region}/loadbalancing/loadbalancer/${loadBalancer.id}`,
   );
+
+  return data;
+};
+export type TLoadBalancerListener = {
+  id: string;
+  name: string;
+  description: string;
+  operatingStatus: LoadBalancerOperatingStatusEnum;
+  provisioningStatus: LoadBalancerProvisioningStatusEnum;
+  port: string;
+  protocol: string;
+  defaultPoolId: string;
+};
+
+export const getLoadBalancerListeners = async (
+  projectId: string,
+  region: string,
+  loadBalancerId: string,
+): Promise<TLoadBalancerListener[]> => {
+  const { data } = await v6.get<TLoadBalancerListener[]>(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/listener?loadbalancerId=${loadBalancerId}`,
+  );
+
   return data;
 };
 
