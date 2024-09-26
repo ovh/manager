@@ -13,6 +13,7 @@ export type TabItemProps = {
   title: string | JSX.Element;
   to: string;
   tracking: string;
+  isHidden?: boolean;
 };
 
 export type TabsProps = {
@@ -39,16 +40,18 @@ export default function TabsPanel({ tabs }: TabsProps) {
   return (
     <OsdsTabs panel={panel}>
       <OsdsTabBar slot="top">
-        {tabs.map((tab: TabItemProps) => (
-          <NavLink
-            key={`osds-tab-bar-item-${tab.name}`}
-            to={tab.to}
-            onClick={() => tracking?.trackClick({ name: tab.tracking })}
-            className="no-underline"
-          >
-            <OsdsTabBarItem panel={tab.name}>{tab.title}</OsdsTabBarItem>
-          </NavLink>
-        ))}
+        {tabs
+          .filter(({ isHidden }) => !isHidden)
+          .map((tab: TabItemProps) => (
+            <NavLink
+              key={`osds-tab-bar-item-${tab.name}`}
+              to={tab.to}
+              onClick={() => tracking?.trackClick({ name: tab.tracking })}
+              className="no-underline"
+            >
+              <OsdsTabBarItem panel={tab.name}>{tab.title}</OsdsTabBarItem>
+            </NavLink>
+          ))}
       </OsdsTabBar>
     </OsdsTabs>
   );
