@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-overthebox-app",
-  "version": "6.3.16",
+  "version": "6.3.17",
   "private": true,
   "description": "OverTheBox standalone application.",
   "repository": {
@@ -19,12 +19,12 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-overthebox-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^7.3.3",
-    "@ovh-ux/manager-core": "^12.17.0",
+    "@ovh-ux/manager-config": "^7.4.0",
+    "@ovh-ux/manager-core": "^12.17.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
     "@ovh-ux/manager-overthebox": "^6.18.2",
-    "@ovh-ux/manager-telecom-styles": "^4.8.2",
-    "@ovh-ux/ng-at-internet": "^5.11.11",
+    "@ovh-ux/manager-telecom-styles": "^4.8.3",
+    "@ovh-ux/ng-at-internet": "^5.11.12",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-chart": "^1.2.0",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.1.1",
@@ -33,7 +33,7 @@
     "@ovh-ux/ng-ovh-request-tagger": "^1.2.3",
     "@ovh-ux/ng-ovh-sso-auth": "^4.8.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.1",
-    "@ovh-ux/ng-ovh-telecom-universe-components": "^7.28.3",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^7.28.4",
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.1.1",
     "@ovh-ux/ng-tail-logs": "^2.1.1",
     "@ovh-ux/ng-translate-async-loader": "^2.2.1",

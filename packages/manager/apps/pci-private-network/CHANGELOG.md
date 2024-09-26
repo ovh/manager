@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.5.2...@ovh-ux/manager-pci-private-network-app@0.6.0) (2024-09-26)
+
+
+### Features
+
+* **pci.project:** display correctly the new MUM location ([#12966](https://github.com/ovh/manager/issues/12966)) ([234edc4](https://github.com/ovh/manager/commit/234edc42841ad77db40047b9489eff3fdbba9f8a))
+
+
+
+
+
 ## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.5.1...@ovh-ux/manager-pci-private-network-app@0.5.2) (2024-09-23)
 
 

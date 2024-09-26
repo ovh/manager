@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-pci-universe-components",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "private": true,
   "description": "OVHCloud common PCI components",
   "repository": {
@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/manager-components": "^1.19.6",
+    "@ovh-ux/manager-components": "^1.20.0",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.15",
     "ovh-api-services": "^15.0.0"

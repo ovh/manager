@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-kubernetes-app",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,15 +15,15 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "*",
+    "@ovh-ux/manager-config": "^7.4.0",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "^0.3.0",
-    "@ovh-ux/manager-pci-common": "^0.3.0",
-    "@ovh-ux/manager-react-components": "^1.31.0",
-    "@ovh-ux/manager-react-core-application": "*",
-    "@ovh-ux/manager-react-shell-client": "*",
+    "@ovh-ux/manager-pci-common": "^0.4.0",
+    "@ovh-ux/manager-react-components": "^1.32.0",
+    "@ovh-ux/manager-react-core-application": "^0.10.1",
+    "@ovh-ux/manager-react-shell-client": "^0.7.1",
     "@ovh-ux/manager-tailwind-config": "*",
-    "@ovh-ux/shell": "*",
+    "@ovh-ux/shell": "^3.7.1",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-stencil": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",

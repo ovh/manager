@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.31.0...@ovh-ux/manager-react-components@1.32.0) (2024-09-26)
+
+### Bug Fixes
+
+- **manager-components:** fix DashboardLayoutGrid ([#13169](https://github.com/ovh/manager/issues/13169)) ([167ccde](https://github.com/ovh/manager/commit/167ccdea91aee61fbde4478e1e88dbaeb9332fa8))
+- **manager-components:** fix useOvhIam hook ([#13175](https://github.com/ovh/manager/issues/13175)) ([289c29d](https://github.com/ovh/manager/commit/289c29d49ffa8f0e25391e8888da4fe0b484ad68))
+- **manager-react-components:** make data-testid optional on clipboard ([fd77747](https://github.com/ovh/manager/commit/fd77747bd0c6a4e0ca0c0a437b0ce23cb63e765c))
+- **manager-react-components:** update header color in datagrid ([#13248](https://github.com/ovh/manager/issues/13248)) ([b155253](https://github.com/ovh/manager/commit/b155253c29189bd2bf5f3ec33508e12d34b8d637))
+- **manager-react-components:** update title and heading in Dashboard ([#13251](https://github.com/ovh/manager/issues/13251)) ([5685a67](https://github.com/ovh/manager/commit/5685a67a12bc28afbb58cc6fc0978b5cdbb24ba9))
+
+### Features
+
+- **manager-component:** add button variant prop to ActionMenu ([#13203](https://github.com/ovh/manager/issues/13203)) ([430457d](https://github.com/ovh/manager/commit/430457df74701a91b204fd301ab0ff4b83d28820))
+- **manager-components:** add error handling to RedirectionGuard ([#13186](https://github.com/ovh/manager/issues/13186)) ([7fa4b69](https://github.com/ovh/manager/commit/7fa4b695ac6f94c9244646288964050e3dcd861d))
+- **manager-react-components:** build and publish library ([ba689bd](https://github.com/ovh/manager/commit/ba689bdd23d04e0f52564ef9cb30d6427b639df4))
+- **manager-react-components:** delete private package json ([099bd82](https://github.com/ovh/manager/commit/099bd820118a9afe837badbc7f6687d7a3c4c2ed))
+- **onboarding:** improve onboarding template component ([#13134](https://github.com/ovh/manager/issues/13134)) ([6e835fb](https://github.com/ovh/manager/commit/6e835fbb9dbe74707fc0be038b6490f2f90fb526))
+- **pci.project:** display correctly the new MUM location ([#12966](https://github.com/ovh/manager/issues/12966)) ([234edc4](https://github.com/ovh/manager/commit/234edc42841ad77db40047b9489eff3fdbba9f8a))
+
 # [1.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.30.0...@ovh-ux/manager-react-components@1.31.0) (2024-09-19)
 
 ### Bug Fixes
