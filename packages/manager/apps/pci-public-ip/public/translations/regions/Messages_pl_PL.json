@@ -36,7 +36,7 @@
   "manager_components_region_location_RBX": "Europa Zachodnia (Francja)",
   "manager_components_region_location_DE": "Europa Środkowa (Niemcy)",
   "manager_components_region_location_UK": "Europa Zachodnia (Wielka Brytania)",
-  "manager_components_region_location_SGP": "Azja Południowo-Wschodnia (Singapur)",
+  "manager_components_region_location_SGP": "Azja-Pacyfik (Singapur)",
   "manager_components_region_location_SYD": "Oceania (Australia)",
   "manager_components_region_location_US": "Stany Zjednoczone",
   "manager_components_region_continent_SBG": "Europa Środkowa",
@@ -46,7 +46,7 @@
   "manager_components_region_continent_RBX": "Europa Zachodnia",
   "manager_components_region_continent_DE": "Europa Środkowa",
   "manager_components_region_continent_UK": "Europa Zachodnia",
-  "manager_components_region_continent_SGP": "Azja Południowo-Wschodnia",
+  "manager_components_region_continent_SGP": "Azja-Pacyfik ",
   "manager_components_region_continent_SYD": "Oceania",
   "manager_components_region_continent_US": "Stany Zjednoczone",
   "manager_components_region_SHA_micro": "Gravelines (SHADOW-EU-1)",
@@ -67,5 +67,9 @@
   "pci_project_regions_list_empty": "Żadna z lokalizacji nie jest dostępna",
   "pci_project_regions_list_add": "Włącz najnowsze lokalizacje każdej strefy w sekcji <a href=\"{{url}}\" class=\"oui-link\">Lokalizacje</a>",
   "pci_project_regions_list_region": "Lokalizacja",
-  "pci_project_regions_list_quota": "Zwiększ limit"
+  "pci_project_regions_list_quota": "Zwiększ limit",
+  "manager_components_region_MUM": "Mumbaj",
+  "manager_components_region_MUM_micro": "Mumbaj ({{micro}})",
+  "manager_components_region_location_MUM": "Azja-Pacyfik (Mumbaj)",
+  "manager_components_region_continent_MUM": "Azja-Pacyfik "
 }

@@ -14,8 +14,8 @@ packages/manager/modules/ @ovh/team-manager-dev-angularjs
 *.tsx @ovh/team-manager-dev-reactjs @ovh/su-digital-tools-core-stack
 /playwright-helpers/ @ovh/team-manager-dev-reactjs
 
-# Manager-components
-/packages/manager-components @ovh/team-manager-control-tower
+# Manager-React-Components
+/packages/manager-react-components @ovh/team-manager-control-tower
 
 # Continuous Integration and scripts
 .github/workflows @ovh/su-digital-tools-core-service-delivery

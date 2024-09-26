@@ -46,29 +46,17 @@ export const getStorageRegions = async (
 };
 
 export const getMacroRegion = (region: string): string => {
-  const localZonePattern = /^lz/i;
-  let macro: RegExpExecArray | null;
-  if (
-    localZonePattern.test(
-      region
-        .split('-')
-        ?.slice(2)
-        ?.join('-'),
-    )
-  ) {
-    // The pattern for local zone is <geo_location>-LZ-<datacenter>-<letter>
-    // geo_location is EU-WEST, EU-SOUTH, maybe ASIA-WEST in the future
-    // datacenter: MAD, BRU
-    macro = /[\D]{2,3}/.exec(
-      region
-        .split('-')
-        ?.slice(3)
-        ?.join('-'),
-    );
-  } else {
-    macro = /[\D]{2,3}/.exec(region);
-  }
-  return macro ? macro[0].replace('-', '').toUpperCase() : '';
+  const regionSubStrings = region.split('-');
+
+  const macroRegionMap = [
+    null,
+    regionSubStrings[0].split(/(\d)/)[0],
+    regionSubStrings[0],
+    regionSubStrings[2],
+    regionSubStrings[2] === 'LZ' ? regionSubStrings[3] : regionSubStrings[2],
+    regionSubStrings[3],
+  ];
+  return macroRegionMap[regionSubStrings.length] || 'Unknown_Macro_Region';
 };
 
 export const getOpenRcApiVersion = (regions: Region[], region: string) => {

@@ -36,7 +36,7 @@
   "manager_components_region_location_RBX": "Europa Ocidental (França)",
   "manager_components_region_location_DE": "Europa Central (Alemanha)",
   "manager_components_region_location_UK": "Europa Ocidental (Reino Unido)",
-  "manager_components_region_location_SGP": "Sudeste Asiático (Singapura)",
+  "manager_components_region_location_SGP": "Ásia-Pacífico (Singapura)",
   "manager_components_region_location_SYD": "Oceânia (Austrália)",
   "manager_components_region_location_US": "Estados Unidos",
   "manager_components_region_continent_SBG": "Europa Central",
@@ -46,7 +46,7 @@
   "manager_components_region_continent_RBX": "Europa Ocidental",
   "manager_components_region_continent_DE": "Europa Central",
   "manager_components_region_continent_UK": "Europa Ocidental",
-  "manager_components_region_continent_SGP": "Sudeste Asiático",
+  "manager_components_region_continent_SGP": "Ásia-Pacífico",
   "manager_components_region_continent_SYD": "Oceânia",
   "manager_components_region_continent_US": "Estados Unidos",
   "manager_components_region_SHA_micro": "Gravelines (SHADOW-EU-1)",
@@ -268,5 +268,9 @@
   "manager_components_region_continent_IST": "Médio Oriente",
   "manager_components_region_TOR": "Toronto",
   "manager_components_region_TOR_micro": "Toronto ({{ micro }})",
-  "manager_components_region_continent_TOR": "América do Norte"
+  "manager_components_region_continent_TOR": "América do Norte",
+  "manager_components_region_MUM": "Mumbai",
+  "manager_components_region_MUM_micro": "Mumbai ({{ micro }})",
+  "manager_components_region_location_MUM": "Ásia-Pacífico (Mumbai)",
+  "manager_components_region_continent_MUM": "Ásia-Pacífico"
 }

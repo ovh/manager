@@ -9,10 +9,16 @@ export interface SupportLevel {
 }
 
 export interface Auth {
-  roles: string[];
-  description: string;
+  account: string;
+  allowedRoutes: {
+    method: 'GET' | 'PUT' | 'POST' | 'DELETE';
+    path: string;
+  }[];
+  description?: string;
+  identities: string[];
   method: string;
-  user: string;
+  roles: string[];
+  user?: string;
 }
 
 export interface User {

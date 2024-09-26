@@ -5,15 +5,22 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import './translations';
 
-export const Clipboard: React.FC<OdsClipboardAttribute> = (props) => {
+interface IClipboardAttibutes extends OdsClipboardAttribute {
+  'data-testid'?: string;
+}
+
+export const Clipboard: React.FC<IClipboardAttibutes> = ({
+  'data-testid': testId = 'clipboard',
+  ...props
+}) => {
   const { t } = useTranslation('clipboard');
 
   return (
-    <OsdsClipboard {...props} data-testid="clipboard">
+    <OsdsClipboard {...props} data-testid={testId}>
       <span slot="success-message">
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.success}
-          data-testid="clipboard-success"
+          data-testid={`${testId}-success`}
         >
           {t('clipboard_copy_success')}
         </OsdsText>
@@ -21,7 +28,7 @@ export const Clipboard: React.FC<OdsClipboardAttribute> = (props) => {
       <span slot="error-message">
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.error}
-          data-testid="clipboard-error"
+          data-testid={`${testId}-error`}
         >
           {t('clipboard_copy_error')}
         </OsdsText>

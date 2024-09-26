@@ -1,8 +1,15 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "private": true,
   "version": "1.31.0",
-  "main": "src/lib.ts",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "types": "dist/types/packages/manager-react-components/src/index.d.ts",
+  "main": "dist/manager-react-components-lib.es.ts",
+  "browser": "dist/manager-react-components-lib.es.ts",
+  "homepage": "https://github.com/ovh/manager/blob/master/packages/manager-react-components/README.md",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
@@ -12,9 +19,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "echo build",
+    "build": "vite build && tsc",
+    "dev": "vite build && tsc",
     "build:storybook": "storybook build",
-    "dev": "tsc",
+    "prepare": "vite build && tsc",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "start": "storybook dev -p 6006",
     "test": "jest --coverage -u",
@@ -28,7 +36,6 @@
     ]
   },
   "dependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@ovh-ux/manager-core-api": "^0.8.0",
     "@ovh-ux/manager-react-shell-client": "^0.7.0",
     "@ovhcloud/ods-common-core": "17.2.2",
@@ -39,18 +46,24 @@
     "@tanstack/react-table": "^8.20.1",
     "@types/lodash.isdate": "^4.0.9",
     "@types/lodash.isequal": "^4.5.0",
-    "babel-preset-react-app": "^10.0.1",
     "clsx": "^2.1.1",
+    "i18next": "^23.8.2",
     "lodash.isdate": "^4.0.1",
     "lodash.isequal": "^4.5.0",
     "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-i18next": "^11.18.1",
+    "react-router-dom": "^6.3.0",
     "react-use": "^17.5.0",
     "sass": "1.71.0",
     "tailwindcss": "^3.4.4",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
     "@babel/core": "7.22.10",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "babel-preset-react-app": "^10.0.1",
     "@mdx-js/react": "^3.0.1",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
     "@ovh-ux/manager-vite-config": "^0.8.0",
@@ -93,10 +106,6 @@
     "postcss": "8.4.31",
     "prettier": "3.0.1",
     "prop-types": "15.8.1",
-    "react-dom": "18.2.0",
-    "react-i18next": "^14.0.5",
-    "react-router-dom": "^6.3.0",
-    "react-use": "^17.5.0",
     "storybook": "7.5.3",
     "storybook-addon-react-router-v6": "^2.0.10",
     "ts-jest": "^29.1.1",
@@ -104,15 +113,6 @@
     "undici": "5.28.4",
     "vite": "^5.2.13",
     "vite-plugin-dts": "3.5.1",
-    "vitest": "^1.2.0",
-    "zustand": "^4.5.0"
-  },
-  "optionalDependencies": {
-    "i18next": "^23.8.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-i18next": "^11.18.1",
-    "react-router-dom": "^6.3.0",
-    "zustand": "^4.5.0"
+    "vitest": "^1.2.0"
   }
 }

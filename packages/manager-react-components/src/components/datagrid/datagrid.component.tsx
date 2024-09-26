@@ -173,9 +173,9 @@ export const Datagrid = <T,>({
                           <span>
                             <OsdsText
                               size={ODS_TEXT_SIZE._500}
-                              color={ODS_THEME_COLOR_INTENT.text}
+                              color={ODS_THEME_COLOR_INTENT.primary}
                               level={ODS_TEXT_LEVEL.body}
-                              hue={ODS_THEME_COLOR_HUE._500}
+                              hue={ODS_THEME_COLOR_HUE._800}
                             >
                               <>
                                 {flexRender(

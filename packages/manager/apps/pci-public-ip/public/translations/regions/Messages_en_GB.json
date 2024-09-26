@@ -36,7 +36,7 @@
   "manager_components_region_location_RBX": "Western Europe (France)",
   "manager_components_region_location_DE": "Central Europe (Germany)",
   "manager_components_region_location_UK": "Western Europe (United Kingdom)",
-  "manager_components_region_location_SGP": "South-East Asia (Singapore)",
+  "manager_components_region_location_SGP": "Asia Pacific (Singapore)",
   "manager_components_region_location_SYD": "Oceania (Australia)",
   "manager_components_region_location_US": "United States of America",
   "manager_components_region_continent_SBG": "Central Europe",
@@ -46,7 +46,7 @@
   "manager_components_region_continent_RBX": "Western Europe",
   "manager_components_region_continent_DE": "Central Europe",
   "manager_components_region_continent_UK": "Western Europe",
-  "manager_components_region_continent_SGP": "South-East Asia",
+  "manager_components_region_continent_SGP": "Asia Pacific ",
   "manager_components_region_continent_SYD": "Oceania",
   "manager_components_region_continent_US": "United States of America",
   "manager_components_region_SHA_micro": "Gravelines (SHADOW-EU-1)",
@@ -67,5 +67,9 @@
   "pci_project_regions_list_empty": "No locations are available",
   "pci_project_regions_list_add": "Please activate the latest locations in each zone in the <a href=\"{{url}}\" class=\"oui-link\">Locations</a> section",
   "pci_project_regions_list_region": "Location",
-  "pci_project_regions_list_quota": "Increase your quota"
+  "pci_project_regions_list_quota": "Increase your quota",
+  "manager_components_region_MUM": "Mumbai",
+  "manager_components_region_MUM_micro": "Mumbai ({{ micro }})",
+  "manager_components_region_location_MUM": "Asia Pacific (Mumbai)",
+  "manager_components_region_continent_MUM": "Asia Pacific "
 }

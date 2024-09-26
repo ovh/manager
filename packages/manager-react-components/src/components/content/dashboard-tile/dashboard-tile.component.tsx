@@ -1,6 +1,9 @@
 import React from 'react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_COLOR_HUE,
+} from '@ovhcloud/ods-common-theming';
 import {
   OsdsDivider,
   OsdsText,
@@ -23,14 +26,15 @@ export const DashboardTile: React.FC<DashboardTileProps> = ({
   title,
   items,
 }) => (
-  <OsdsTile className="w-full h-full flex-col" inline rounded>
+  <OsdsTile className="w-full flex-col" inline rounded>
     <div className="flex flex-col w-full">
       {title && (
         <>
           <OsdsText
             size={ODS_TEXT_SIZE._400}
             level={ODS_TEXT_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            hue={ODS_THEME_COLOR_HUE._800}
           >
             {title}
           </OsdsText>

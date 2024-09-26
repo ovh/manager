@@ -41,6 +41,7 @@ export interface ActionMenuProps {
   items: ActionMenuItem[];
   isCompact?: boolean;
   icon?: ODS_ICON_NAME;
+  variant?: ODS_BUTTON_VARIANT;
   disabled?: boolean;
 }
 
@@ -108,6 +109,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   items,
   isCompact,
   icon,
+  variant = ODS_BUTTON_VARIANT.stroked,
   disabled,
 }) => {
   const { t } = useTranslation('buttons');
@@ -120,7 +122,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         className="min-w-9"
         slot="menu-title"
         color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
+        variant={variant}
         type={ODS_BUTTON_TYPE.button}
         size={ODS_BUTTON_SIZE.sm}
         inline

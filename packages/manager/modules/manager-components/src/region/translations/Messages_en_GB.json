@@ -255,7 +255,7 @@
   "manager_components_region_location_RBX": "Western Europe (France)",
   "manager_components_region_location_DE": "Central Europe (Germany)",
   "manager_components_region_location_UK": "Western Europe (United Kingdom)",
-  "manager_components_region_location_SGP": "South-East Asia (Singapore)",
+  "manager_components_region_location_SGP": "Asia Pacific (Singapore)",
   "manager_components_region_location_SYD": "Oceania (Australia)",
   "manager_components_region_location_US": "North America (USA)",
   "manager_components_region_location_DAL": "North America (USA)",
@@ -269,7 +269,7 @@
   "manager_components_region_continent_BRU": "Western Europe",
   "manager_components_region_continent_DE": "Central Europe",
   "manager_components_region_continent_UK": "Western Europe",
-  "manager_components_region_continent_SGP": "South-East Asia",
+  "manager_components_region_continent_SGP": "Asia Pacific",
   "manager_components_region_continent_SYD": "Oceania",
   "manager_components_region_continent_SHA": "Western Europe",
   "manager_components_region_continent_CA": "North America",
@@ -356,5 +356,9 @@
   "manager_components_region_CA_micro": "Canada ({{ micro }})",
   "manager_components_region_location_CA": "North America (Canada)",
   "manager_components_region_YNM": "Mumbai",
-  "manager_components_region_YNM_micro": "Mumbai ({{ micro }})"
+  "manager_components_region_YNM_micro": "Mumbai ({{ micro }})",
+  "manager_components_region_MUM": "Mumbai",
+  "manager_components_region_MUM_micro": "Mumbai ({{ micro }})",
+  "manager_components_region_location_MUM": "Asia Pacific (Mumbai)",
+  "manager_components_region_continent_MUM": "Asia Pacific"
 }

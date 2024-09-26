@@ -66,7 +66,7 @@ const Sidebar = (): JSX.Element => {
   // Memoized calls
 
   /** Initialize navigation tree */
-  const memoizedNavigationTree = useMemo(() => {
+  useEffect(() => {
     const initializeNavigationTree = async () => {
       if (currentNavigationNode) return;
       const features = initFeatureNames(navigationTree);
@@ -85,10 +85,10 @@ const Sidebar = (): JSX.Element => {
 
       return tree;
     };
-    return initializeNavigationTree();
+    initializeNavigationTree();
   }, []);
 
-  const memoizedServiceCount = useMemo(() => {
+  useEffect(() => {
     const fetchServiceCount = async () => {
       const result = await reketInstance.get('/services/count', {
         requestType: 'aapi',
@@ -96,24 +96,8 @@ const Sidebar = (): JSX.Element => {
       setServicesCount(result);
       return result;
     };
-    return fetchServiceCount();
+    fetchServiceCount();
   }, []);
-
-  // useEffects
-
-  useEffect(() => {
-    const init = async () => {
-      await memoizedNavigationTree;
-    };
-    init();
-  }, [memoizedNavigationTree]);
-
-  useEffect(() => {
-    const init = async () => {
-      await memoizedServiceCount;
-    };
-    init();
-  }, [memoizedServiceCount]);
 
   useEffect(() => {
     if (!currentNavigationNode) return;

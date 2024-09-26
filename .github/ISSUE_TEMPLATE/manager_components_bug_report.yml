@@ -1,8 +1,8 @@
 name: Bug Report on  Manager Components (Internal)
 description: File a bug report on Manager components
-title: '[manager-components]: <TITLE>'
-labels: ['manager-components', 'bug']
-projects: ["ovh/22"]
+title: '[manager-react-components]: <TITLE>'
+labels: ['manager-react-components', 'bug']
+projects: ['ovh/22']
 body:
   - type: markdown
     attributes:
@@ -32,19 +32,19 @@ body:
       description: The browser(s) this issue occurred with.
     validations:
       required: false
-  - type: "checkboxes"
-    id: "operating-system"
+  - type: 'checkboxes'
+    id: 'operating-system'
     attributes:
-      label: "Operating System"
-      description: "The operating system(s) this issue occurred with."
+      label: 'Operating System'
+      description: 'The operating system(s) this issue occurred with.'
       options:
-        - label: "macOS"
-        - label: "Windows"
-        - label: "Linux"
-  - type: "textarea"
-    id: "additional-information"
+        - label: 'macOS'
+        - label: 'Windows'
+        - label: 'Linux'
+  - type: 'textarea'
+    id: 'additional-information'
     attributes:
-      label: "Additional Information"
+      label: 'Additional Information'
       description: |
         Use this section to provide any additional information you might have
         like screenshots, notes, or links to ideas.

@@ -46,7 +46,7 @@
   "region_location_RBX": "Europa Zachodnia (Francja)",
   "region_location_DE": "Europa Środkowa (Niemcy)",
   "region_location_UK": "Europa Zachodnia (Wielka Brytania)",
-  "region_location_SGP": "Azja Południowo-Wschodnia (Singapur)",
+  "region_location_SGP": "Azja-Pacyfik (Singapur)",
   "region_location_SYD": "Oceania (Australia)",
   "region_location_US": "Stany Zjednoczone",
   "region_continent_SBG": "Europa Środkowa",
@@ -59,9 +59,13 @@
   "region_continent_BRU": "Europa Zachodnia",
   "region_continent_DE": "Europa Środkowa",
   "region_continent_UK": "Europa Zachodnia",
-  "region_continent_SGP": "Azja Południowo-Wschodnia",
+  "region_continent_SGP": "Azja-Pacyfik ",
   "region_continent_SYD": "Oceania",
   "region_continent_US": "Stany Zjednoczone",
   "region_continent_SHA": "Europa Zachodnia",
-  "region_continent_all": "Wszystkie lokalizacje"
+  "region_continent_all": "Wszystkie lokalizacje",
+  "region_MUM": "Mumbaj",
+  "region_MUM_micro": "Mumbaj ({{micro}})",
+  "region_location_MUM": "Azja-Pacyfik (Mumbaj)",
+  "region_continent_MUM": "Azja-Pacyfik "
 }

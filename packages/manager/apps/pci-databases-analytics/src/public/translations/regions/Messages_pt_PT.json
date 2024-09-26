@@ -46,7 +46,7 @@
   "region_location_RBX": "Europa Ocidental (França)",
   "region_location_DE": "Europa Central (Alemanha)",
   "region_location_UK": "Europa Ocidental (Reino Unido)",
-  "region_location_SGP": "Sudeste Asiático (Singapura)",
+  "region_location_SGP": "Ásia-Pacífico (Singapura)",
   "region_location_SYD": "Oceânia (Austrália)",
   "region_location_US": "Estados Unidos",
   "region_continent_SBG": "Europa Central",
@@ -59,9 +59,13 @@
   "region_continent_BRU": "Western Europe",
   "region_continent_DE": "Europa Central",
   "region_continent_UK": "Europa Ocidental",
-  "region_continent_SGP": "Sudeste Asiático",
+  "region_continent_SGP": "Ásia-Pacífico ",
   "region_continent_SYD": "Oceânia",
   "region_continent_US": "Estados Unidos",
   "region_continent_SHA": "Europa Ocidental",
-  "region_continent_all": "Todas as localizações"
+  "region_continent_all": "Todas as localizações",
+  "region_MUM": "Mumbai",
+  "region_MUM_micro": "Mumbai ({{ micro }})",
+  "region_location_MUM": "Ásia-Pacífico (Mumbai)",
+  "region_continent_MUM": "Ásia-Pacífico "
 }
