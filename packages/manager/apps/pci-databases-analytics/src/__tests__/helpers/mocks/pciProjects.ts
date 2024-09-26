@@ -1,12 +1,15 @@
-import { PciProject, PciProjectPlanCode } from '@/models/project';
+import { AccessTypeEnum } from '@/types/cloud/AccessTypeEnum';
+import { PlanCode, Project } from '@/types/cloud/Project';
+import { ProjectStatusEnum } from '@/types/cloud/project/ProjectStatusEnum';
 
-export const mockedPciProject: PciProject = {
-  access: 'access',
+export const mockedPciProject: Project = {
+  access: AccessTypeEnum.full,
   creationDate: 'creationDate',
   description: 'description',
   projectName: 'projectName',
   project_id: 'projectId',
-  status: 'status',
+  status: ProjectStatusEnum.ok,
   unleash: true,
-  planCode: PciProjectPlanCode.STANDARD,
+  planCode: PlanCode.STANDARD,
+  manualQuota: false,
 };

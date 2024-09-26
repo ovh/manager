@@ -1,8 +1,8 @@
 import { BadgeProps } from '@/components/ui/badge';
-import { database } from '@/models/database';
+import * as database from '@/types/cloud/project/database';
 
 export const getTagVariant = (
-  tag: database.capabilities.Tags,
+  tag: database.capabilities.TagEnum,
 ): BadgeProps['variant'] => {
   switch (tag) {
     case 'new':
@@ -23,17 +23,17 @@ export const updateTags = (
         default: boolean;
         lifecycle: database.availability.Lifecycle;
         name: string;
-        tags: database.capabilities.Tags[];
+        tags: database.capabilities.TagEnum[];
       }[]
-    | database.RegionCapabilities[],
+    | database.capabilities.RegionCapabilities[],
   serviceValue: string,
 ) =>
   items.map((item) =>
     item.name === serviceValue &&
-    !item.tags.includes(database.capabilities.Tags.current)
+    !item.tags.includes(database.capabilities.TagEnum.current)
       ? {
           ...item,
-          tags: [...item.tags, database.capabilities.Tags.current],
+          tags: [...item.tags, database.capabilities.TagEnum.current],
         }
       : item,
   );
