@@ -143,7 +143,7 @@ export default function NewPage() {
       </div>
       <Notifications />
 
-      <div className="mb-5">
+      <div className="mb-5 sticky top-0 z-50">
         <PciDiscoveryBanner project={project} />
       </div>
 
