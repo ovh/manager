@@ -130,7 +130,6 @@ export default function PlanStep(): JSX.Element {
           onInput={(value) => store.set.plan(value)}
         />
       )}
-
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
