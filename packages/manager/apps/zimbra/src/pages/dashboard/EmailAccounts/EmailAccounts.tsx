@@ -188,7 +188,7 @@ export default function EmailAccounts() {
               <span slot="end">{t('zimbra_account_account_add')}</span>
             </ManagerButton>
           )}
-          {!dataDomains?.length && (
+          {dataDomains?.length === 0 && (
             <OsdsTooltip className="mb-6">
               <OsdsButton
                 color={ODS_THEME_COLOR_INTENT.primary}

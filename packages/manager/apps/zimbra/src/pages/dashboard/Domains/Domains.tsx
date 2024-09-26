@@ -149,7 +149,7 @@ export default function Domains() {
                 <span slot="end">{t('zimbra_domains_add_domain_title')}</span>
               </ManagerButton>
             )}
-            {!dataOrganizations?.length && (
+            {dataOrganizations?.length === 0 && (
               <OsdsTooltip className="mb-6">
                 <OsdsButton
                   color={ODS_THEME_COLOR_INTENT.primary}
