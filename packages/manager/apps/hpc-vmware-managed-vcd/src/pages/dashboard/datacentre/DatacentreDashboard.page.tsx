@@ -45,7 +45,7 @@ function DatacentreDashboardPage() {
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id,
-      label: vcdOrganization?.data?.currentState?.description,
+      label: vcdOrganization?.data?.currentState?.fullName,
       onClick: () => navigate(`/${id}`),
     },
     {
