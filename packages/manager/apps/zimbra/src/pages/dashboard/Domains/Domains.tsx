@@ -98,7 +98,13 @@ export default function Domains() {
   const { platformUrn } = usePlatform();
   const isOverridedPage = useOverridePage();
 
-  const { data, isLoading } = useDomains({
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isLoading,
+    isFetchingNextPage,
+  } = useDomains({
     refetchInterval: DATAGRID_REFRESH_INTERVAL,
     refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
     enabled: !isOverridedPage,
@@ -185,14 +191,19 @@ export default function Domains() {
           {isLoading ? (
             <Loading />
           ) : (
-            <Datagrid
-              columns={columns.map((column) => ({
-                ...column,
-                label: t(column.label),
-              }))}
-              items={items}
-              totalItems={items.length}
-            />
+            <>
+              <Datagrid
+                columns={columns.map((column) => ({
+                  ...column,
+                  label: t(column.label),
+                }))}
+                items={items}
+                totalItems={items.length}
+                hasNextPage={!isFetchingNextPage && hasNextPage}
+                onFetchNextPage={fetchNextPage}
+              />
+              {isFetchingNextPage && <Loading />}
+            </>
           )}
         </>
       )}
