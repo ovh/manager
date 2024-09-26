@@ -70,7 +70,9 @@ exports[`PlanComponent > should render 1`] = `
         level="body"
         size="400"
       >
-        formattedPrice
+        <div>
+          42
+        </div>
       </osds-text>
     </div>
   </div>

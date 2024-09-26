@@ -45,6 +45,7 @@ vi.mock('react-i18next', () => ({
     i18n: {
       changeLanguage: () => new Promise(() => {}),
       exists: () => true,
+      language: 'fr_FR',
     },
   }),
   Trans: ({ children }: { children: string }) => children,
