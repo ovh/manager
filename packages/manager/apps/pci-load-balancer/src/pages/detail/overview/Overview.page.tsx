@@ -1,4 +1,5 @@
 import { Outlet, useParams } from 'react-router-dom';
+import { Suspense } from 'react';
 import {
   useLoadBalancer,
   useLoadBalancerFlavor,
@@ -54,7 +55,9 @@ export default function Overview() {
         subnetCidr={subnet?.cidr}
         loadBalancerVipAddress={loadBalancer?.vipAddress}
       />
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }
