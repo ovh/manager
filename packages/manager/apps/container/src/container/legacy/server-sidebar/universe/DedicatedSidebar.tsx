@@ -364,23 +364,6 @@ export default function DedicatedSidebar() {
       });
     }
 
-    if (feature['exchange:dedicated-dashboard']) {
-      menu.push({
-        id: 'exchange',
-        label: t('sidebar_microsoft_exchange'),
-        icon: getIcon('ms-Icon ms-Icon--ExchangeLogo'),
-        routeMatcher: new RegExp('/exchange'),
-        async loader() {
-          const services = await loadServices('/email/exchange');
-          return services.map((service) => ({
-            ...service,
-            icon: getIcon('ms-Icon ms-Icon--ExchangeLogo'),
-            routeMatcher: new RegExp(`/exchange/${service.serviceName}`),
-          }));
-        },
-      });
-    }
-
     if (feature.license) {
       menu.push({
         id: 'dedicated-licences',
