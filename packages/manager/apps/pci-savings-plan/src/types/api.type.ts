@@ -37,6 +37,11 @@ export interface SavingsPlanTask {
   type: SavingsPlanTaskType;
 }
 
+export interface SavingsPlanContract {
+  name: string;
+  content: string;
+  url: string;
+}
 export interface SavingsPlanService {
   id: string;
   model: string;

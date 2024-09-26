@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { formatPricingInfo } from '@/utils/formatter/formatter';
 
 export type PricingByDurationType = ReturnType<typeof formatPricingInfo>;

@@ -1,4 +1,4 @@
-import { v2, v6 } from '@ovh-ux/manager-core-api';
+import { v6 } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 
 export const getServices = async (projectId: string): Promise<number[]> => {
