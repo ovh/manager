@@ -91,7 +91,6 @@ export const CTAS = {
   FR: 'https://www.ovhcloud.com/fr/network/load-balancer/',
   WE: 'https://www.ovhcloud.com/en-ie/network/load-balancer/',
   WS: 'https://www.ovhcloud.com/es/network/load-balancer/',
-  US: 'https://us.ovhcloud.com/network/load-balancer/',
 };
 
 export default {
