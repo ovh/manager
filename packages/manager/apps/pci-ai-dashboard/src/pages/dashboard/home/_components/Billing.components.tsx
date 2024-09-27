@@ -15,24 +15,19 @@ const Billing = () => {
   useEffect(() => {
     if (!currentUsageQuery.data?.resourcesUsage) return;
     setAiGlobalPrice(
-      aiGlobalPrice +
-        currentUsageQuery.data?.resourcesUsage?.find(
-          (res: billingView.TypedResources) =>
-            res.type === 'ai-notebook-workspace',
-        ).totalPrice ||
-        0 +
-          currentUsageQuery.data?.resourcesUsage?.find(
-            (res: billingView.TypedResources) => res.type === 'ai-training',
-          ).totalPrice ||
-        0 +
-          currentUsageQuery.data?.resourcesUsage?.find(
-            (res: billingView.TypedResources) => res.type === 'ai-notebook',
-          ).totalPrice ||
-        0 +
-          currentUsageQuery.data?.resourcesUsage?.find(
-            (res: billingView.TypedResources) => res.type === 'ai-app',
-          ).totalPrice ||
-        0,
+      (currentUsageQuery.data?.resourcesUsage?.find(
+        (res: billingView.TypedResources) =>
+          res.type === 'ai-notebook-workspace',
+      )?.totalPrice ?? 0) +
+        (currentUsageQuery.data?.resourcesUsage?.find(
+          (res: billingView.TypedResources) => res.type === 'ai-training',
+        )?.totalPrice ?? 0) +
+        (currentUsageQuery.data?.resourcesUsage?.find(
+          (res: billingView.TypedResources) => res.type === 'ai-notebook',
+        )?.totalPrice ?? 0) +
+        (currentUsageQuery.data?.resourcesUsage?.find(
+          (res: billingView.TypedResources) => res.type === 'ai-app',
+        )?.totalPrice ?? 0),
     );
   }, [currentUsageQuery.isSuccess]);
 
