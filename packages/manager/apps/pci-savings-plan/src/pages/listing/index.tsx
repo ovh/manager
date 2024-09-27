@@ -71,6 +71,19 @@ export interface ListingProps {
   refetchSavingsPlans: () => void;
 }
 
+type MutationInfo<Data = void> = {
+  submittedAt: number;
+  error?: {
+    code: string;
+  };
+  status: MutationStatus;
+  data?: Data;
+};
+
+const getMutationFilters = (filters: (string | number)[]) => ({
+  filters: { mutationKey: filters },
+});
+
 const ListingTablePage: React.FC<ListingProps> = ({
   data,
   refetchSavingsPlans,
@@ -79,33 +92,27 @@ const ListingTablePage: React.FC<ListingProps> = ({
 
   const hrefDashboard = useHref('');
   const serviceId = useServiceId();
-  const mutationSPChangePeriod = useMutationState<{
-    status: MutationStatus;
-    variables: {
-      periodEndAction: 'REACTIVATE' | 'ACTIVATE';
-    };
-    data: SavingsPlanService;
-  }>({
-    filters: { mutationKey: ['savings-plan', serviceId, 'change-period'] },
-  });
+  const mutationSPChangePeriod = useMutationState<
+    MutationInfo<SavingsPlanService> & {
+      variables: {
+        periodEndAction: 'REACTIVATE' | 'ACTIVATE';
+      };
+    }
+  >(getMutationFilters(['savings-plan', serviceId, 'change-period']));
 
-  const mutationSPEditName = useMutationState<{
-    status: MutationStatus;
-  }>({
-    filters: { mutationKey: ['savings-plan', serviceId, 'edit-name'] },
-  });
+  const mutationSPEditName = useMutationState<MutationInfo>(
+    getMutationFilters(['savings-plan', serviceId, 'edit-name']),
+  );
+
+  const mutationSpCreate = useMutationState<MutationInfo<SavingsPlanService>>(
+    getMutationFilters(getMutationKeyCreateSavingsPlan(serviceId)),
+  );
+
+  const lastMutationEditName =
+    mutationSPEditName[mutationSPEditName.length - 1];
   const lastMutationChangePeriod =
     mutationSPChangePeriod[mutationSPChangePeriod.length - 1];
-
-  const mutationSpCreate = useMutationState<{
-    status: MutationStatus;
-    error?: {
-      code: string;
-    };
-    data: SavingsPlanService;
-  }>({
-    filters: { mutationKey: getMutationKeyCreateSavingsPlan(serviceId) },
-  });
+  const lastMutationSpCreate = mutationSpCreate[mutationSpCreate.length - 1];
 
   const renewBannerMessage = t(
     lastMutationChangePeriod?.variables.periodEndAction === 'REACTIVATE'
@@ -140,17 +147,24 @@ const ListingTablePage: React.FC<ListingProps> = ({
         </OsdsButton>
       </div>
       {mutationSPChangePeriod.length > 0 && (
-        <Banner message={renewBannerMessage} />
+        <Banner
+          message={renewBannerMessage}
+          key={lastMutationChangePeriod.submittedAt}
+        />
       )}
-      {mutationSpCreate.length > 0 && !mutationSpCreate[0].error?.code && (
+      {mutationSpCreate.length > 0 && !lastMutationSpCreate.error?.code && (
         <Banner
           message={t('banner_create_sp', {
-            startDate: mutationSpCreate[0].data.startDate,
+            startDate: lastMutationSpCreate.data.startDate,
           })}
+          key={lastMutationSpCreate.submittedAt}
         />
       )}
       {mutationSPEditName.length > 0 && (
-        <Banner message={t('banner_edit_name')} />
+        <Banner
+          message={t('banner_edit_name')}
+          key={lastMutationEditName.submittedAt}
+        />
       )}
       <TableContainer data={data} refetchSavingsPlans={refetchSavingsPlans} />
     </>
