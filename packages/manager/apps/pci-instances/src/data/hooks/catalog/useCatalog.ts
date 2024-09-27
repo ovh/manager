@@ -6,6 +6,7 @@ import {
   TCatalogDto,
   TCpuDto,
   TDiskDto,
+  TGpuDto,
   TMemoryDto,
   TModelDto,
   TPricingDto,
@@ -13,6 +14,7 @@ import {
 } from '@/types/catalog/api.types';
 import {
   TCpu,
+  TGpu,
   TMemory,
   TModel,
   TModelEntity,
@@ -36,12 +38,17 @@ const mapModelMemory = (memory: TMemoryDto): TMemory => ({
   unit: getSizeUnit(memory.size),
 });
 
+const mapModelGpu = ({ model, number }: TGpuDto): TGpu => ({
+  model,
+  number,
+});
+
 const mapModelStorages = (
   storages: DeepReadonly<TDiskDto[]>,
 ): DeepReadonly<TStorage[]> =>
   storages.map((storage) => ({
     ...storage,
-    unit: getSizeUnit(storage.capacity),
+    sizeUnit: getSizeUnit(storage.capacity),
   }));
 
 const mapModelSpecifications = (
@@ -52,6 +59,7 @@ const mapModelSpecifications = (
     cpu: mapModelCpu(specifications.cpu),
     bandwidth: specifications.bandwidth.level,
     storage: mapModelStorages(specifications.storage.disks),
+    gpu: mapModelGpu(specifications.gpu),
   },
 });
 
@@ -76,10 +84,7 @@ const mapModelPricings = (
       },
       [] as TPricingDto[],
     )
-    .map(({ regions, osType, price, ...rest }) => ({
-      price: price / 100000000,
-      ...rest,
-    })),
+    .map(({ regions, osType, ...rest }) => rest),
 });
 
 const mapModelsData = (
@@ -107,10 +112,25 @@ const mapModelsData = (
     }),
   );
 
+const sortModels = (models: DeepReadonly<TModel[]>) =>
+  models
+    .slice()
+    .sort((a, b) => {
+      const aGroup = Number((a.name.match(/[0-9]+/) || [])[0]);
+      const bGroup = Number((b.name.match(/[0-9]+/) || [])[0]);
+      const aRank = Number((a.name.match(/-([^-]+)$/) || [])[1]);
+      const bRank = Number((b.name.match(/-([^-]+)$/) || [])[1]);
+      return aGroup === bGroup ? aRank - bRank : bGroup - aGroup;
+    })
+    .sort(
+      (a, b) => Number(b.compatibleLocalzone) - Number(a.compatibleLocalzone),
+    )
+    .sort((a, b) => Number(b.isNew) - Number(a.isNew));
+
 export const modelSelector: TModelSelector = (rawData) => ({
   models: {
     categories: rawData.categories,
-    data: mapModelsData(rawData.models),
+    data: sortModels(mapModelsData(rawData.models)),
   },
 });
 
@@ -123,6 +143,9 @@ export const useCatalog = (projectId: string, select: TModelSelector) => {
   return useQuery({
     queryKey,
     retry: false,
+    staleTime: Infinity,
+    gcTime: Infinity,
+    refetchOnWindowFocus: false,
     queryFn: fetchCatalog,
     placeholderData: keepPreviousData,
     select: useCallback(select, [select]),

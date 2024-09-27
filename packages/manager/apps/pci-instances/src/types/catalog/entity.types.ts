@@ -19,6 +19,11 @@ export type TCpu = {
   model: string;
 };
 
+export type TGpu = {
+  number: number;
+  model: string;
+};
+
 export type TMemory = {
   size: number;
   unit: string;
@@ -28,7 +33,7 @@ export type TStorage = {
   capacity: number;
   number: number;
   technology: string;
-  unit: string;
+  sizeUnit: string;
 };
 
 export type TModelSpecification = {
@@ -36,6 +41,7 @@ export type TModelSpecification = {
   cpu: TCpu;
   storage: TStorage[];
   bandwidth: number;
+  gpu: TGpu;
 };
 
 export type TModel = {
