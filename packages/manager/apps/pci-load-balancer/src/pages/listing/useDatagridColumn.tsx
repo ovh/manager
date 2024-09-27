@@ -77,6 +77,7 @@ export const useDatagridColumn = () => {
         </div>
       ),
       label: '',
+      isSortable: false,
     },
   ];
 

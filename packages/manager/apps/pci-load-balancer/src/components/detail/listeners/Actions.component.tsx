@@ -5,19 +5,20 @@ import { useHref } from 'react-router-dom';
 export type ActionsComponentProps = {
   listenerId: string;
 };
+
 export default function ActionsComponent({
   listenerId,
 }: ActionsComponentProps) {
   const { t } = useTranslation('octavia-load-balancer-listeners');
 
-  const listenerDetail = useHref('');
+  const listenerEdit = useHref(`../${listenerId}/edit`);
   const policiesHref = useHref('');
   const deleteHref = useHref(`${listenerId}/delete`);
 
   const items = [
     {
       id: 0,
-      href: listenerDetail,
+      href: listenerEdit,
       label: t('octavia_load_balancer_listeners_actions_detail'),
     },
     {

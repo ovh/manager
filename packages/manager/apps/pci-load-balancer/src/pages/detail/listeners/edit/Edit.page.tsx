@@ -2,15 +2,16 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Translation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import ListenerForm from '@/components/detail/listeners/ListenerForm.page';
 import {
-  useCreateListener,
+  useEditLoadBalancer,
   useLoadBalancerPools,
 } from '@/api/hook/useLoadBalancer';
-import ListenerForm from '@/components/detail/listeners/ListenerForm.page';
+import { useListener } from '@/api/hook/useListener';
 
-export default function CreateListener() {
+export default function EditListener() {
   const navigate = useNavigate();
-  const { projectId, region, loadBalancerId } = useParams();
+  const { projectId, region, loadBalancerId, listenerId } = useParams();
   const { addSuccess, addError } = useNotifications();
 
   const { data: pools } = useLoadBalancerPools({
@@ -19,10 +20,17 @@ export default function CreateListener() {
     loadBalancerId,
   });
 
-  const { createListener, isPending: isCreationPending } = useCreateListener({
+  const { data: listener, isPending: isListenerPending } = useListener({
     projectId,
     region,
     loadBalancerId,
+    listenerId,
+  });
+
+  const { editListener, isPending: isEditionPending } = useEditLoadBalancer({
+    projectId,
+    region,
+    listenerId,
     onError(error: ApiError) {
       addError(
         <Translation ns="octavia-load-balancer">
@@ -41,7 +49,7 @@ export default function CreateListener() {
       addSuccess(
         <Translation ns="octavia-load-balancer-listeners">
           {(_t) =>
-            _t('octavia_load_balancer_listeners_create_success', {
+            _t('octavia_load_balancer_listeners_edit_success', {
               listener: '??',
             })
           }
@@ -54,15 +62,18 @@ export default function CreateListener() {
 
   return (
     <ListenerForm
+      listener={listener}
+      isEditing
       pools={pools}
-      isPending={isCreationPending}
+      isPending={isEditionPending || isListenerPending}
       onCancel={() => navigate('..')}
       onSubmit={(state) =>
-        createListener({
-          name: state.name,
-          port: state.port,
-          protocol: state.protocol,
-          defaultPoolId: state.pool?.id,
+        editListener({
+          name: state.name !== listener.name ? state.name : undefined,
+          defaultPoolId:
+            state.pool?.id !== listener.defaultPoolId
+              ? state.pool?.id
+              : undefined,
         })
       }
     />

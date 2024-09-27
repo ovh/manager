@@ -25,13 +25,7 @@ export const TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX =
 export const DISCOVER_LINK =
   'https://horizon.cloud.ovh.net/project/load_balancer';
 
-export const PROTOCOLS = {
-  HTTP: 'http',
-  HTTPS: 'https',
-  TCP: 'tcp',
-  UDP: 'udp',
-  PROMETHEUS: 'prometheus',
-};
+export const PROTOCOLS = ['http', 'https', 'tcp', 'udp', 'prometheus'] as const;
 
 export const PROTOCOLS_PORT = { http: 80, https: 443 };
 

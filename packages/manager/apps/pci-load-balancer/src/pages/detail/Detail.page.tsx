@@ -52,11 +52,13 @@ export default function DetailPage() {
       name: 'octavia_load_balancer_statistics_tab_title',
       title: t('octavia_load_balancer_statistics_tab_title'),
       to: useResolvedPath(ROUTE_PATHS.STATISTICS).pathname,
+      isDisabled: true,
     },
     {
       name: 'octavia_load_balancer_certificates_tab_title',
       title: t('octavia_load_balancer_certificates_tab_title'),
       to: useResolvedPath(ROUTE_PATHS.CERTIFICATES).pathname,
+      isDisabled: true,
     },
     {
       name: 'octavia_load_balancer_logs_tab_title',
