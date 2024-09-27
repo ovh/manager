@@ -19,7 +19,7 @@
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
     "@ovh-ux/manager-pci-common": "*",
-    "@ovh-ux/manager-react-components": "^1.28.1",
+    "@ovh-ux/manager-react-components": "^1.32.1",
     "@ovh-ux/manager-react-core-application": "*",
     "@ovh-ux/manager-react-shell-client": "*",
     "@ovh-ux/manager-tailwind-config": "*",

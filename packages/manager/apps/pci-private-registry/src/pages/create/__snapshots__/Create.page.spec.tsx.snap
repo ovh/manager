@@ -26,11 +26,6 @@ exports[`CreatePage > should render 1`] = `
     RegionStep
   </div>
   <div
-    data-testid="region-step"
-  >
-    RegionStep
-  </div>
-  <div
     data-testid="name-step"
   >
     NameStep
