@@ -9,16 +9,17 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     coverage: {
-      include: ['src'],
       exclude: [
-        'src/vite-*.ts',
-        'src/App.tsx',
-        'src/core/ShellRoutingSync.tsx',
-        'src/main.tsx',
-        'src/routes.tsx',
-        'src/_mocks_',
+        'vite-*.ts',
+        'App.tsx',
+        'core/ShellRoutingSync.tsx',
+        'main.tsx',
+        'routes.tsx',
+        '__mocks__',
+        'queryClient.ts',
       ],
     },
+    setupFiles: ['./setup.vitest.ts'],
   },
   resolve: {
     alias: {
@@ -26,4 +27,5 @@ export default defineConfig({
     },
     mainFields: ['module'],
   },
+  root: './src',
 });
