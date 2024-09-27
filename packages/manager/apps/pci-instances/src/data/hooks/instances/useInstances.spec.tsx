@@ -11,7 +11,7 @@ import {
   useInstances,
   TUseInstancesQueryParams,
 } from './useInstances';
-import { setupInstanceServer } from '@/_mocks_/instances/node';
+import { setupInstanceServer } from '@/__mocks__/instances/node';
 import { TInstanceDto, TInstanceStatusDto } from '@/types/instances/api.types';
 
 // builders
