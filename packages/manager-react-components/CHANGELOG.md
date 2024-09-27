@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.32.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.32.1...@ovh-ux/manager-react-components@1.32.2) (2024-09-27)
+
+### Bug Fixes
+
+- **manager-react-components:** use latest available version ([93484a0](https://github.com/ovh/manager/commit/93484a0f86abe809e17727d19bb6116a95d61cc8))
+
+### Reverts
+
+- "build(manager-react-components): publish package" ([39a5da7](https://github.com/ovh/manager/commit/39a5da7fec2654aaf9af31ca6361b1083df11138))
+- "feat(manager-react-components): build and publish library" ([af8fa73](https://github.com/ovh/manager/commit/af8fa73fd19fefe7b9d7301ddadb8aedd2c15d99))
+- "feat(manager-react-components): delete private package json" ([74df558](https://github.com/ovh/manager/commit/74df558efe9231eb7b1c03ea0dd8664760aba053))
+- "fix(react-manager-components): update vite config" ([c1c155c](https://github.com/ovh/manager/commit/c1c155c61a9a3d20ad2260bed75bc3ac41de1e7d))
+
 ## [1.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.32.0...@ovh-ux/manager-react-components@1.32.1) (2024-09-26)
 
 ### Bug Fixes

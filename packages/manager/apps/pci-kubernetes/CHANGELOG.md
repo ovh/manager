@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.2.1...@ovh-ux/manager-pci-kubernetes-app@0.2.2) (2024-09-27)
+
+
+### Reverts
+
+* "feat(manager-react-components): build and publish library" ([af8fa73](https://github.com/ovh/manager/commit/af8fa73fd19fefe7b9d7301ddadb8aedd2c15d99))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.2.0...@ovh-ux/manager-pci-kubernetes-app@0.2.1) (2024-09-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
