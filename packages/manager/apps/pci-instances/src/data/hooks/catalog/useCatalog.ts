@@ -116,10 +116,10 @@ const sortModels = (models: DeepReadonly<TModel[]>) =>
   models
     .slice()
     .sort((a, b) => {
-      const aGroup = Number((a.name.match(/[0-9]+/) || [])[0]);
-      const bGroup = Number((b.name.match(/[0-9]+/) || [])[0]);
-      const aRank = Number((a.name.match(/-([^-]+)$/) || [])[1]);
-      const bRank = Number((b.name.match(/-([^-]+)$/) || [])[1]);
+      const aGroup = Number((/\d+/.exec(a.name) || [])[0]);
+      const bGroup = Number((/\d+/.exec(b.name) || [])[0]);
+      const aRank = Number((/-([^-]+)$/.exec(a.name) || [])[1]);
+      const bRank = Number((/-([^-]+)$/.exec(b.name) || [])[1]);
       return aGroup === bGroup ? aRank - bRank : bGroup - aGroup;
     })
     .sort(

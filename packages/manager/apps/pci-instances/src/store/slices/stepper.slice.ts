@@ -1,7 +1,4 @@
 import { StateCreator } from 'zustand';
-import { enableMapSet } from 'immer';
-
-enableMapSet();
 
 export type TStepId = 'model';
 
@@ -22,7 +19,7 @@ export type TState = {
  * If used with a parameter, currification enables reactivity for getters.
  */
 export type TQuery = {
-  stepState: () => (stepId: TStepId) => TStep | undefined;
+  stepStateById: () => (stepId: TStepId) => TStep | undefined;
 };
 
 // Handlers
@@ -47,7 +44,7 @@ export const createStepperSlice: StateCreator<
   TStepperSlice
 > = (set, get) => ({
   steps: initialSteps,
-  stepState: () => (stepId) => get().steps.get(stepId),
+  stepStateById: () => (stepId) => get().steps.get(stepId),
   updateStep: (stepId, step) =>
     set((state) => {
       const newSteps = new Map(state.steps);
