@@ -7,7 +7,7 @@ import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from '@ovhcloud/o
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 
-type Props = {
+export type Props = {
     node: Node;
 }
 
@@ -38,6 +38,7 @@ export const ShortAssistanceLinkItem: FunctionComponent<Props> = ({ node }) => {
             id={node.id}
             role="link"
             className='block p-2'
+            data-testid={`short-assistance-link-item-${node.id}`}
         >
             {t(node.translation)}
             {node.isExternal && (

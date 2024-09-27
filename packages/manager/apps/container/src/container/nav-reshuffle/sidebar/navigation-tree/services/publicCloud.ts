@@ -2,13 +2,15 @@ import { Node, NodeTag } from '../node';
 import illustration from '@/assets/images/sidebar/public-cloud.png';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
-const pciNode: Node = {
-  id: 'pci',
+export const PUBLICCLOUD_UNIVERSE_ID = 'pci';
+
+export const pciNode: Node = {
+  id: PUBLICCLOUD_UNIVERSE_ID,
   idAttr: 'pci-link',
   translation: 'sidebar_pci',
   shortTranslation: 'sidebar_pci_short',
   illustration,
-  universe: 'pci',
+  universe: PUBLICCLOUD_UNIVERSE_ID,
   svgIcon: OvhProductName.GLOBE,
   features: ['public-cloud'],
   forceVisibility: true,
@@ -20,9 +22,9 @@ const pciNode: Node = {
 
 pciNode.children = [
   {
-    id: 'pci',
+    id: PUBLICCLOUD_UNIVERSE_ID,
     idAttr: 'pci-link',
-    universe: pciNode.universe,
+    universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci',
     shortTranslation: 'sidebar_pci_short',
     illustration,
@@ -34,9 +36,9 @@ pciNode.children = [
     },
   },
   {
-    id: 'pci',
+    id: PUBLICCLOUD_UNIVERSE_ID,
     idAttr: 'pci-link',
-    universe: pciNode.universe,
+    universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci',
     shortTranslation: 'sidebar_pci_short',
     illustration,
@@ -50,7 +52,7 @@ pciNode.children = [
   {
     id: 'pci-compute',
     idAttr: 'pci-compute-link',
-    universe: pciNode.id,
+    universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_compute',
     features: ['instance'],
     forceVisibility: true,
@@ -58,7 +60,7 @@ pciNode.children = [
       {
         id: 'pci-instances',
         idAttr: 'pci-instances-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_instances',
         serviceType: 'CLOUD_PROJECT_INSTANCE',
         routing: {
@@ -73,7 +75,7 @@ pciNode.children = [
   {
     id: 'pci-storage',
     idAttr: 'pci-storage-link',
-    universe: pciNode.id,
+    universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_storage',
     features: [
       'block-storage',
@@ -89,7 +91,7 @@ pciNode.children = [
       {
         id: 'pci-block-storage',
         idAttr: 'pci-block-storage-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_block_storage',
         serviceType: 'CLOUD_PROJECT_VOLUME',
         routing: {
@@ -102,7 +104,7 @@ pciNode.children = [
       {
         id: 'pci-object-storage',
         idAttr: 'pci-object-storage-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_object_storage',
         serviceType: 'CLOUD_PROJECT_STORAGE_OBJECTS',
         routing: {
@@ -115,7 +117,7 @@ pciNode.children = [
       {
         id: 'pci-cloud-archive',
         idAttr: 'pci-cloud-archive-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_cloud_archive',
         serviceType: 'CLOUD_PROJECT_STORAGE_ARCHIVES',
         routing: {
@@ -128,7 +130,7 @@ pciNode.children = [
       {
         id: 'pci-cold-archive',
         idAttr: 'pci-cold-archive-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_cold_archive',
         serviceType: 'CLOUD_PROJECT_STORAGE_COLD_ARCHIVES',
         routing: {
@@ -142,7 +144,7 @@ pciNode.children = [
       {
         id: 'pci-volume-snapshot',
         idAttr: 'pci-volume-snapshot-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_volume_snapshot',
         serviceType: 'CLOUD_PROJECT_VOLUME_SNAPSHOT',
         routing: {
@@ -155,7 +157,7 @@ pciNode.children = [
       {
         id: 'pci-volume-backup',
         idAttr: 'pci-volume-backup-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_volume_backup',
         serviceType: 'CLOUD_PROJECT_VOLUME_BACKUP',
         routing: {
@@ -169,7 +171,7 @@ pciNode.children = [
       {
         id: 'pci-instance-backup',
         idAttr: 'pci-instance-backup-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_instance_backup',
         serviceType: 'CLOUD_PROJECT_SNAPSHOT',
         routing: {
@@ -182,7 +184,7 @@ pciNode.children = [
       {
         id: 'pci-workflow',
         idAttr: 'pci-workflow-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_workflow',
         serviceType: 'CLOUD_PROJECT_WORKFLOW_BACKUP',
         routing: {
@@ -197,7 +199,7 @@ pciNode.children = [
   {
     id: 'pci-network',
     idAttr: 'pci-network-link',
-    universe: pciNode.id,
+    universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_network',
     features: [
       'private-network',
@@ -210,7 +212,7 @@ pciNode.children = [
       {
         id: 'pci-private-network',
         idAttr: 'pci-private-network-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_private_network',
         serviceType: 'CLOUD_PROJECT_PRIVATE_NETWORK',
         routing: {
@@ -223,7 +225,7 @@ pciNode.children = [
       {
         id: 'pci-octavia-load-balancer',
         idAttr: 'pci-octavia-load-balancer-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_octavia_load_balancer',
         serviceType: 'CLOUD_PROJECT_OCTAVIA_LOAD_BALANCER',
         routing: {
@@ -237,7 +239,7 @@ pciNode.children = [
       {
         id: 'pci-additional-ips',
         idAttr: 'pci-additional-ips-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_additional_ips',
         serviceType: 'CLOUD_PROJECT_ADDITIONAL_IP',
         routing: {
@@ -250,7 +252,7 @@ pciNode.children = [
       {
         id: 'pci-public-gateways',
         idAttr: 'pci-public-gateways-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_public_gateways',
         serviceType: 'CLOUD_PROJECT_PUBLIC_GATEWAYS',
         routing: {
@@ -265,7 +267,7 @@ pciNode.children = [
   {
     id: 'pci-containers',
     idAttr: 'pci-containers-link',
-    universe: pciNode.id,
+    universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_containers',
     features: [
       'pci-rancher',
@@ -279,7 +281,7 @@ pciNode.children = [
       {
         id: 'pci-rancher',
         idAttr: 'pci-rancher-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_rancher',
         serviceType: 'CLOUD_PROJECT_KUBE',
         routing: {
@@ -293,7 +295,7 @@ pciNode.children = [
       {
         id: 'pci-kubernetes',
         idAttr: 'pci-kubernetes-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_kubernetes',
         serviceType: 'CLOUD_PROJECT_KUBE',
         routing: {
@@ -306,7 +308,7 @@ pciNode.children = [
       {
         id: 'pci-private-registry',
         idAttr: 'pci-private-registry-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_private_registry',
         serviceType: 'CLOUD_PROJECT_CONTAINER_REGISTRY',
         routing: {
@@ -319,7 +321,7 @@ pciNode.children = [
       {
         id: 'pci-kubernetes-load-balancer',
         idAttr: 'pci-kubernetes-load-balancer-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_kubernetes_load_balancer',
         serviceType: 'CLOUD_PROJECT_LOADBALANCER',
         routing: {
@@ -333,7 +335,7 @@ pciNode.children = [
       {
         id: 'pci-kubernetes-load-balancer',
         idAttr: 'pci-kubernetes-load-balancer-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_load_balancer',
         serviceType: 'CLOUD_PROJECT_LOADBALANCER',
         routing: {
@@ -349,7 +351,7 @@ pciNode.children = [
   {
     id: 'pci-analytics',
     idAttr: 'pci-analytics-link',
-    universe: pciNode.id,
+    universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_analytics',
     features: [
       'data-processing',
@@ -367,7 +369,7 @@ pciNode.children = [
       {
         id: 'pci-databases-operational',
         idAttr: 'pci-databases-operational',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_analytics_databases',
         serviceType: 'CLOUD_PROJECT_DATABASE',
         routing: {
@@ -382,7 +384,7 @@ pciNode.children = [
       {
         id: 'pci-databases-analytics-operational',
         idAttr: 'pci-databases-analytics-operational',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_analytics_databases',
         serviceType: 'CLOUD_PROJECT_DATABASE',
         routing: {
@@ -397,7 +399,7 @@ pciNode.children = [
       {
         id: 'pci-databases-streaming',
         idAttr: 'pci-databases-streaming',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_analytics_data_streaming',
         serviceType: 'CLOUD_PROJECT_DATABASE',
         routing: {
@@ -424,7 +426,7 @@ pciNode.children = [
       {
         id: 'pci-data-processing',
         idAttr: 'pci-data-processing-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_data_processing',
         serviceType: 'CLOUD_PROJECT_DATAPROCESSING_JOBS',
         routing: {
@@ -438,7 +440,7 @@ pciNode.children = [
       {
         id: 'pci-databases-analysis',
         idAttr: 'pci-databases-analysis-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_analytics_data_analysis',
         serviceType: 'CLOUD_PROJECT_DATABASE',
         routing: {
@@ -466,7 +468,7 @@ pciNode.children = [
       {
         id: 'pci-analytics-data-platform',
         idAttr: 'pci-analytics-data-platform-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_analytics_data_platform',
         count: false,
         url: 'https://eu.dataplatform.ovh.net/',
@@ -477,7 +479,7 @@ pciNode.children = [
       {
         id: 'pci-logs-data-platform',
         idAttr: 'pci-logs-data-platform-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_logs_data_platform',
         serviceType: 'DBAAS_LOGS',
         routing: {
@@ -492,7 +494,7 @@ pciNode.children = [
   {
     id: 'pci-ai',
     idAttr: 'pci-ai-link',
-    universe: pciNode.id,
+    universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_ai',
     features: ['notebooks', 'ai-apps', 'training', 'ai-dashboard'],
     forceVisibility: true,
@@ -513,7 +515,7 @@ pciNode.children = [
       {
         id: 'pci-ai-notebooks',
         idAttr: 'pci-ai-notebooks-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_ai_notebooks',
         serviceType: 'CLOUD_PROJECT_AI_NOTEBOOK',
         routing: {
@@ -526,7 +528,7 @@ pciNode.children = [
       {
         id: 'pci-ai-training',
         idAttr: 'pci-ai-training-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_ai_training',
         serviceType: 'CLOUD_PROJECT_AI_JOB',
         routing: {
@@ -539,7 +541,7 @@ pciNode.children = [
       {
         id: 'pci-ai-app',
         idAttr: 'pci-ai-app-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_ai_app',
         serviceType: 'CLOUD_PROJECT_AI_APP',
         routing: {
@@ -552,7 +554,7 @@ pciNode.children = [
       {
         id: 'pci-ai-endpoints',
         idAttr: 'pci-ai-endpoints-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_ai_endpoints',
         count: false,
         url: 'https://endpoints.ai.cloud.ovh.net/',
@@ -565,7 +567,7 @@ pciNode.children = [
   {
     id: 'pci-management-interface',
     idAttr: 'pci-management-interface-link',
-    universe: pciNode.id,
+    universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_management',
     features: ['horizon'],
     count: false,
@@ -573,7 +575,7 @@ pciNode.children = [
       {
         id: 'pci-horizon',
         idAttr: 'pci-horizon-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_horizon',
         count: false,
         url: {
@@ -592,7 +594,7 @@ pciNode.children = [
   {
     id: 'pci-settings',
     idAttr: 'pci-settings-link',
-    universe: pciNode.id,
+    universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_settings',
     count: false,
     features: [
@@ -608,7 +610,7 @@ pciNode.children = [
       {
         id: 'pci-users-roles',
         idAttr: 'pci-users-roles-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_users_roles',
         routing: {
           application: 'public-cloud',
@@ -620,7 +622,7 @@ pciNode.children = [
       {
         id: 'pci-quota-region',
         idAttr: 'pci-quota-region-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_quota_regions',
         routing: {
           application: 'public-cloud',
@@ -632,7 +634,7 @@ pciNode.children = [
       {
         id: 'pci-ssh-keys',
         idAttr: 'pci-ssh-keys-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_ssh_keys',
         routing: {
           application: 'public-cloud',
@@ -644,7 +646,7 @@ pciNode.children = [
       {
         id: 'pci-billing',
         idAttr: 'pci-billing-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_billing',
         routing: {
           application: 'public-cloud',
@@ -656,7 +658,7 @@ pciNode.children = [
       {
         id: 'pci-credits-vouchers',
         idAttr: 'pci-credits-vouchers-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_credits_vouchers',
         serviceType: 'CLOUD_PROJECT_CREDIT',
         routing: {
@@ -669,7 +671,7 @@ pciNode.children = [
       {
         id: 'pci-contacts-rights',
         idAttr: 'pci-contacts-rights-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_contacts_rights',
         routing: {
           application: 'public-cloud',
@@ -681,7 +683,7 @@ pciNode.children = [
       {
         id: 'pci-project-settings',
         idAttr: 'pci-project-settings-link',
-        universe: pciNode.id,
+        universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_project_settings',
         routing: {
           application: 'public-cloud',
