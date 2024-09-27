@@ -91,11 +91,16 @@
                         <p
                             data-ng-bind=":: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_description') | translate"
                         ></p>
+
                         <p
                             data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].price"
-                            data-translate="pci_projects_project_storages_containers_add_offers_estimated_price"
-                            data-translate-values="{price: $ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].price || '?'}"
-                        ></p>
+                        >
+                            <strong
+                                data-translate="pci_projects_project_storages_containers_add_offers_estimated_price"
+                                data-translate-values="{price: $ctrl.OBJECT_CONTAINER_OFFERS_LABELS[offerName].price || '?'}"
+                            >
+                            </strong>
+                        </p>
                     </oui-select-picker-section>
                 </oui-select-picker>
             </div>
@@ -142,9 +147,13 @@
 
                         <p
                             data-ng-if="$ctrl.OBJECT_CONTAINER_OFFERS_LABELS[$ctrl.container.offer].price"
-                            data-translate="pci_projects_project_storages_containers_add_offers_estimated_price"
-                            data-translate-values="{price: $ctrl.OBJECT_CONTAINER_OFFERS_LABELS[$ctrl.container.offer].price || '?'}"
-                        ></p>
+                        >
+                            <strong
+                                data-translate="pci_projects_project_storages_containers_add_offers_estimated_price"
+                                data-translate-values="{price: $ctrl.OBJECT_CONTAINER_OFFERS_LABELS[$ctrl.container.offer].price || '?'}"
+                            >
+                            </strong>
+                        </p>
                     </oui-select-picker-section>
                 </oui-select-picker>
             </div>
@@ -208,9 +217,14 @@
                         ></p>
                         <p
                             data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[deploymentModeName].price"
-                            data-translate="pci_projects_project_storages_containers_add_deployment_mode_price"
-                            data-translate-values="{price: $ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[deploymentModeName].price || '?'}"
-                        ></p>
+                        >
+                            <strong
+                                data-translate="{{ !$ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[deploymentModeName].isMultiZone
+                                    ? 'pci_projects_project_storages_containers_add_offers_estimated_price' : 'pci_projects_project_storages_containers_add_deployment_mode_price' }}"
+                                data-translate-values="{price: $ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[deploymentModeName].price || '?'}"
+                            >
+                            </strong>
+                        </p>
                     </oui-select-picker-section>
                 </oui-select-picker>
             </div>
@@ -271,9 +285,14 @@
                         ></p>
                         <p
                             data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[$ctrl.container.deploymentMode].price"
-                            data-translate="pci_projects_project_storages_containers_add_deployment_mode_price"
-                            data-translate-values="{price: $ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[$ctrl.container.deploymentMode].price || '?'}"
-                        ></p>
+                        >
+                            <strong
+                                data-translate="{{ !$ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[$ctrl.container.deploymentMode].isMultiZone
+                                ? 'pci_projects_project_storages_containers_add_offers_estimated_price' : 'pci_projects_project_storages_containers_add_deployment_mode_price' }}"
+                                data-translate-values="{price: $ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[$ctrl.container.deploymentMode].price || '?'}"
+                            >
+                            </strong>
+                        </p>
                     </oui-select-picker-section>
                 </oui-select-picker>
             </div>

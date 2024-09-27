@@ -197,21 +197,31 @@ export default class PciStoragesContainersAddController {
 
       this.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[
         OBJECT_CONTAINER_MODE_MULTI_ZONES
-      ].price = this.PriceFormatter.format(
+      ].price =
         this.getLowestPriceAddon(
           productCapability,
           OBJECT_CONTAINER_MODE_MULTI_ZONES,
-        ),
-      );
+        ) &&
+        this.PriceFormatter.format(
+          this.getLowestPriceAddon(
+            productCapability,
+            OBJECT_CONTAINER_MODE_MULTI_ZONES,
+          ),
+        );
 
       this.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[
         OBJECT_CONTAINER_MODE_MONO_ZONE
-      ].price = this.PriceFormatter.format(
+      ].price =
         this.getLowestPriceAddon(
           productCapability,
           OBJECT_CONTAINER_MODE_MONO_ZONE,
-        ),
-      );
+        ) &&
+        this.PriceFormatter.format(
+          this.getLowestPriceAddon(
+            productCapability,
+            OBJECT_CONTAINER_MODE_MONO_ZONE,
+          ),
+        );
     });
   }
 
