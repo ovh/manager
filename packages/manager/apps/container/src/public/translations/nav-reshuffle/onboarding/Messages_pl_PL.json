@@ -15,5 +15,8 @@
   "onboarding_walkme_popover_step4_title": "Chcesz pójść o krok dalej?",
   "onboarding_walkme_popover_step4_content": "Przejrzyj listę naszych partnerów na Marketplace, sprawdź status usług w czasie rzeczywistym i oszacuj ślad węglowy. Potrzebujesz pomocy? Sprawdź przewodniki techniczne i inne zasoby, dzięki którym uzyskasz wsparcie. Połącz się z nami na czacie, aby uzyskać rozwiązania, dodatkowe zasoby i odpowiedzi na pytania.",
   "onboarding_walkme_popover_step5_title": "Faktury",
-  "onboarding_walkme_popover_step5_content": "W tej sekcji znajdziesz wszystkie faktury, płatności w toku i zwroty."
+  "onboarding_walkme_popover_step5_content": "W tej sekcji znajdziesz wszystkie faktury, płatności w toku i zwroty.",
+  "onboarding_popover_later_hide_button": "Może później",
+  "onboarding_popover_do_not_show_again_button": "Nie wyświetlaj więcej tego komunikatu.",
+  "onboarding_popover_done_button": "Zakończ wizytę"
 }
