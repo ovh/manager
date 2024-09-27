@@ -30,7 +30,7 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useDatagridColumn } from '@/pages/detail/listeners/list/useDatagridColumn';
 import { useLoadBalancerListeners } from '@/api/hook/useLoadBalancer';
 
-export default function Listeners() {
+export default function ListenerList() {
   const { t } = useTranslation('octavia-load-balancer-listeners');
   const { t: tFilter } = useTranslation('filter');
 
@@ -74,7 +74,7 @@ export default function Listeners() {
           className="xs:mb-0.5 sm:mb-0"
           onClick={() => {
             clearNotifications();
-            navigate('./create');
+            navigate('../create');
           }}
         >
           <OsdsIcon
