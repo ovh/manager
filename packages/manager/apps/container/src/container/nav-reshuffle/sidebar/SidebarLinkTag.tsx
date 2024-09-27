@@ -10,6 +10,7 @@ export default function SidebarLinkTag({ node }: { node: Node }): JSX.Element {
     <>
       {node.tag && (
         <span
+          data-testid={`static-link-tag-${node.id}`}
           className={`oui-badge oui-badge_s oui-badge_new ml-1 ${style.sidebar_tag}`}
         >
           {t(`sidebar_tag_${node.tag}`)}
