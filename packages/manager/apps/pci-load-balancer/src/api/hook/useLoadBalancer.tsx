@@ -178,6 +178,7 @@ export const useAllLoadBalancerListeners = ({
       region,
       'loadbalancer',
       loadBalancerId,
+      'listeners',
     ],
     queryFn: () => getLoadBalancerListeners(projectId, region, loadBalancerId),
     enabled: !!region && !!loadBalancerId,

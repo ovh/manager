@@ -10,6 +10,7 @@ export const ROUTE_PATHS = {
   EDIT_NAME_LOAD_BALANCER: 'edit-name',
   LISTENERS: 'listeners',
   LISTENERS_LIST: 'list',
+  LISTENER_DELETE: ':listenerId/delete',
   POOLS: 'pools',
   STATISTICS: 'statistics',
   CERTIFICATES: 'certificates',
@@ -28,6 +29,9 @@ const ListenersPage = lazy(() =>
 );
 const ListenersListPage = lazy(() =>
   import('@/pages/detail/listeners/list/List.page'),
+);
+const DeleteListenerPage = lazy(() =>
+  import('@/pages/detail/listeners/delete/DeleteListener.page'),
 );
 const PoolsPage = lazy(() => import('@/pages/detail/pools/Pools.page'));
 const StatisticsPage = lazy(() =>
@@ -78,7 +82,12 @@ const Routes = (
           id="listeners-list"
           path={ROUTE_PATHS.LISTENERS_LIST}
           Component={ListenersListPage}
-        ></Route>
+        >
+          <Route
+            path={ROUTE_PATHS.LISTENER_DELETE}
+            Component={DeleteListenerPage}
+          />
+        </Route>
       </Route>
       <Route id="detail-pools" path={ROUTE_PATHS.POOLS} Component={PoolsPage} />
       <Route
