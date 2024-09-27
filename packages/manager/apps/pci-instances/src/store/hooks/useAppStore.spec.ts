@@ -89,14 +89,14 @@ describe('Considering the useAppStore hook', () => {
             const { result } = renderHook(() => useAppStore());
             expect(result.current).toHaveProperty('steps');
             expect(result.current.steps).toBeInstanceOf(Map);
-            expect(result.current.stepState()(stepId)).toStrictEqual(
+            expect(result.current.stepStateById()(stepId)).toStrictEqual(
               expectedStep,
             );
             if (updatedStep && updatedStepId) {
               act(() => {
                 result.current.updateStep(updatedStepId, updatedStep);
               });
-              expect(result.current.stepState()(stepId)).toStrictEqual(
+              expect(result.current.stepStateById()(stepId)).toStrictEqual(
                 expectedUpdatedStep,
               );
             }
