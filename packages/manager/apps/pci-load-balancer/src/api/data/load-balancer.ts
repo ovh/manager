@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { PROTOCOLS } from '@/constants';
 
 export enum LoadBalancerOperatingStatusEnum {
   ONLINE = 'online',
@@ -95,8 +96,8 @@ export type TLoadBalancerListener = {
   description: string;
   operatingStatus: LoadBalancerOperatingStatusEnum;
   provisioningStatus: LoadBalancerProvisioningStatusEnum;
-  port: string;
-  protocol: string;
+  port: number;
+  protocol: TProtocol;
   defaultPoolId: string;
 };
 
@@ -130,7 +131,7 @@ export const updateLoadBalancerName = async (
 export type TLoadBalancerPool = {
   id: string;
   name: string;
-  protocol: string;
+  protocol: TProtocol;
   algorithm: string;
   operatingStatus: string;
   provisioningStatus: string;
@@ -154,12 +155,14 @@ export const getLoadBalancerPools = async (
   return data;
 };
 
+export type TProtocol = typeof PROTOCOLS[number];
+
 interface CreateListenerProps {
   projectId: string;
   region: string;
   loadBalancerId: string;
   name: string;
-  protocol: string;
+  protocol: TProtocol;
   port: number;
   defaultPoolId?: string;
 }
@@ -173,7 +176,6 @@ export const createListener = async ({
   port,
   defaultPoolId,
 }: CreateListenerProps) => {
-  console.log('tata');
   const { data } = await v6.post(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/listener`,
     {
@@ -181,6 +183,32 @@ export const createListener = async ({
       name,
       protocol,
       port,
+      defaultPoolId,
+    },
+  );
+
+  return data;
+};
+
+interface EditListenerProps {
+  projectId: string;
+  region: string;
+  listenerId: string;
+  name?: string;
+  defaultPoolId?: string;
+}
+
+export const editListener = async ({
+  projectId,
+  region,
+  listenerId,
+  name,
+  defaultPoolId,
+}: EditListenerProps) => {
+  const { data } = await v6.put(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/listener/${listenerId}`,
+    {
+      name,
       defaultPoolId,
     },
   );
