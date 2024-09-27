@@ -21,7 +21,10 @@ export const useDatagridColumn = () => {
       id: 'name',
       cell: (props: TLoadBalancerListener) => (
         <DataGridTextCell>
-          <OsdsLink color={ODS_THEME_COLOR_INTENT.primary} href={useHref('')}>
+          <OsdsLink
+            color={ODS_THEME_COLOR_INTENT.primary}
+            href={useHref(`../${props.id}/edit`)}
+          >
             {props.name}
           </OsdsLink>
         </DataGridTextCell>
@@ -32,7 +35,10 @@ export const useDatagridColumn = () => {
       id: 'defaultPoolId',
       cell: (props: TLoadBalancerListener) => (
         <DataGridTextCell>
-          <OsdsLink color={ODS_THEME_COLOR_INTENT.primary} href={useHref('')}>
+          <OsdsLink
+            color={ODS_THEME_COLOR_INTENT.primary}
+            href={useHref(`../../pools/${props.defaultPoolId}`)}
+          >
             {props.defaultPoolId}
           </OsdsLink>
         </DataGridTextCell>
@@ -72,6 +78,7 @@ export const useDatagridColumn = () => {
         />
       ),
       label: t('octavia_load_balancer_operating_status'),
+      isSortable: false,
     },
     {
       id: 'actions',
@@ -81,6 +88,7 @@ export const useDatagridColumn = () => {
         </div>
       ),
       label: '',
+      isSortable: false,
     },
   ];
 
