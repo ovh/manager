@@ -1,5 +1,6 @@
-import React from 'react';
-import { ApiError, ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+import React, { useContext } from 'react';
+import { ApiError, ApiResponse } from '../../useCoreApiClient';
+import { ManagerReactComponentContext } from '../../../context/ManagerReactContext';
 import { useQuery } from '@tanstack/react-query';
 
 export type UseTaskParams = {
@@ -28,6 +29,8 @@ export const useTask = ({
   onFinish,
   refetchIntervalTime = 2000,
 }: UseTaskParams) => {
+  const context = useContext(ManagerReactComponentContext);
+  const { apiClient } = context;
   const [isSuccess, setIsSuccess] = React.useState(false);
   const [isPending, setIsPending] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
@@ -48,6 +51,8 @@ export const useTask = ({
       try {
         setIsPending(true);
         const result = await apiClient[apiVersion].get(url);
+
+        console.info('result ALEX  : ', result);
         if (apiVersion === 'v2') {
           if (result.data?.status === 'DONE') {
             setIsPending(false);

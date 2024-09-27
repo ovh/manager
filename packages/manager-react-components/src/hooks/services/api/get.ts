@@ -1,4 +1,5 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import React, { useContext } from 'react';
+import { ManagerReactComponentContext } from '../../../context/ManagerReactContext';
 import { ServiceDetails } from '../services.type';
 
 export type GetResourceServiceIdParams = {
@@ -15,10 +16,16 @@ export const getResourceServiceIdQueryKey = ({
  */
 export const getResourceServiceId = async ({
   resourceName,
-}: GetResourceServiceIdParams) =>
-  apiClient.v6.get<number[]>(
+}: GetResourceServiceIdParams) => {
+  const context = useContext(ManagerReactComponentContext);
+  const { apiClient } = context;
+  return apiClient.v6.get<number[]>(
     `/services${resourceName ? `?resourceName=${resourceName}` : ''}`,
   );
+};
 
-export const getServiceDetails = async (serviceId: number | string) =>
-  apiClient.v6.get<ServiceDetails>(`/services/${serviceId}`);
+export const getServiceDetails = async (serviceId: number | string) => {
+  const context = useContext(ManagerReactComponentContext);
+  const { apiClient } = context;
+  return apiClient.v6.get<ServiceDetails>(`/services/${serviceId}`);
+};

@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
-import { v6 } from '@ovh-ux/manager-core-api';
+import { useContext } from 'react';
+import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
 import { useQuery } from '@tanstack/react-query';
 import { Region } from './useProjectRegions';
 
@@ -23,7 +24,9 @@ export interface AggregatedNetwork {
 export const getAggregatedNetwork = async (
   projectId: string,
 ): Promise<AggregatedNetwork> => {
-  const { data } = await v6.get<AggregatedNetwork>(
+  const context = useContext(ManagerReactComponentContext);
+  const { apiClient } = context;
+  const { data } = await apiClient.v6.get<AggregatedNetwork>(
     `/cloud/project/${projectId}/aggregated/network`,
   );
   return data;

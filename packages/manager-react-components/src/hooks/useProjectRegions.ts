@@ -1,4 +1,5 @@
-import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { useContext } from 'react';
+import { ManagerReactComponentContext } from '../context/ManagerReactContext';
 import { useQuery } from '@tanstack/react-query';
 
 type TRegionService = {
@@ -20,7 +21,9 @@ export type TRegion = {
 export const getProjectRegions = async (
   projectId: string,
 ): Promise<TRegion[]> => {
-  const { data } = await fetchIcebergV6<TRegion>({
+  const context = useContext(ManagerReactComponentContext);
+  const { iceberg } = context;
+  const { data } = await iceberg.fetchIcebergV6<TRegion>({
     route: `/cloud/project/${projectId}/region`,
   });
   return data;

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { IcebergFetchParamsV2, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
+import { useContext } from 'react';
+import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
+import { IcebergFetchParamsV2 } from '../useCoreApiClient';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { ColumnSort } from '../../components';
 
@@ -13,7 +15,11 @@ export const defaultPageSize = 10;
 /**
  * @deprecated use fetchIcebergV2 from @ovh-ux/manager-core-api
  */
-export const getResourcesIcebergV2 = fetchIcebergV2;
+export const getResourcesIcebergV2 = () => {
+  const context = useContext(ManagerReactComponentContext);
+  const { iceberg } = context;
+  return iceberg.fetchIcebergV2;
+};
 
 export function useResourcesIcebergV2<T = unknown>({
   route,
@@ -21,6 +27,8 @@ export function useResourcesIcebergV2<T = unknown>({
   queryKey,
   defaultSorting = undefined,
 }: IcebergFetchParamsV2 & IcebergV2Hook) {
+  const context = useContext(ManagerReactComponentContext);
+  const { iceberg } = context;
   const [flattenData, setFlattenData] = useState<T[]>([]);
   const [sorting, setSorting] = useState<ColumnSort>(defaultSorting);
   const {
@@ -35,7 +43,7 @@ export function useResourcesIcebergV2<T = unknown>({
     initialPageParam: null,
     queryKey,
     queryFn: ({ pageParam }) =>
-      fetchIcebergV2<T>({ route, pageSize, cursor: pageParam }),
+      iceberg.fetchIcebergV2<T>({ route, pageSize, cursor: pageParam }),
     staleTime: Infinity,
     retry: false,
     getNextPageParam: (lastPage) => lastPage.cursorNext,

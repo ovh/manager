@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import isDate from 'lodash.isdate';
-import { IcebergFetchParamsV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
+import { IcebergFetchParamsV6 } from '../useCoreApiClient';
+import { useContext } from 'react';
+import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
 import { ColumnSort } from '../../components';
 
 export interface ColumnDatagrid {
@@ -53,7 +55,10 @@ function sortColumn(type: string, a: any, b: any, desc: boolean) {
 /**
  * @deprecated use fetchIcebergV6 from @ovh-ux/manager-core-api
  */
-export const getResourcesV6 = fetchIcebergV6;
+export const getResourcesV6 = () => {
+  const context = useContext(ManagerReactComponentContext);
+  return context.iceberg.fetchIcebergV6;
+};
 // export const getResourcesV6 = async ({ route }: IcebergFetchParamsV6) => {
 //   const { data, status, totalCount } = (await fetchIcebergV6({ route })) as any;
 //   return { data, status, totalCount };
@@ -65,9 +70,11 @@ export function useResourcesV6<T = unknown>({
   pageSize = 10,
   columns = [],
 }: IcebergFetchParamsV6 & ResourcesV6Hook) {
+  const context = useContext(ManagerReactComponentContext);
+  const { iceberg } = context;
   const { data, isError, isLoading, error, status } = useQuery({
     queryKey: [queryKey],
-    queryFn: () => fetchIcebergV6<T>({ route }),
+    queryFn: () => iceberg.fetchIcebergV6<T>({ route }),
     retry: false,
   });
   const [sorting, setSorting] = useState<ColumnSort>();

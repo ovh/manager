@@ -1,4 +1,4 @@
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { ApiError, ApiResponse } from '../../useCoreApiClient';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   getResourceServiceId,

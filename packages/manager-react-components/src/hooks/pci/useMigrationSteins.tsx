@@ -1,4 +1,5 @@
-import { v6 } from '@ovh-ux/manager-core-api';
+import { useContext } from 'react';
+import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
 import { useQuery } from '@tanstack/react-query';
 
 export interface Stein {
@@ -8,7 +9,9 @@ export interface Stein {
 }
 
 export const getMigrationSteins = async (): Promise<Stein[]> => {
-  const { data } = await v6.get<Stein[]>('/cloud/migrationStein');
+  const context = useContext(ManagerReactComponentContext);
+  const { apiClient } = context;
+  const { data } = await apiClient.v6.get<Stein[]>('/cloud/migrationStein');
   return data;
 };
 

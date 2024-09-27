@@ -1,4 +1,5 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import { useContext } from 'react';
+import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { IamCheckResponse, IamInterface } from './iam.interface';
 
@@ -9,6 +10,8 @@ export const fetchAuthorizationsCheck = async ({
   actions: string[];
   urns: string[];
 }) => {
+  const context = useContext(ManagerReactComponentContext);
+  const { apiClient } = context;
   const { data } = await apiClient.v2.post(`/iam/authorization/check`, {
     actions,
     resourceURNs: urns,
@@ -31,6 +34,8 @@ export const fetchAuthorizationCheck = async (
   actions: string[],
   urn: string,
 ): Promise<IamCheckResponse> => {
+  const context = useContext(ManagerReactComponentContext);
+  const { apiClient } = context;
   const { data } = await apiClient.v2.post(
     `/iam/resource/${urn}/authorization/check`,
     {

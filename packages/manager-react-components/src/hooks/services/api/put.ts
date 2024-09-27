@@ -1,4 +1,5 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import { useContext } from 'react';
+import { ManagerReactComponentContext } from '../../../context/ManagerReactContext';
 
 export type UpdateServiceNameParams = {
   /** Service id */
@@ -13,7 +14,10 @@ export type UpdateServiceNameParams = {
 export const updateServiceName = async ({
   serviceId,
   displayName,
-}: UpdateServiceNameParams) =>
-  apiClient.v6.put(`/services/${serviceId}`, {
+}: UpdateServiceNameParams) => {
+  const context = useContext(ManagerReactComponentContext);
+  const { apiClient } = context;
+  return apiClient.v6.put(`/services/${serviceId}`, {
     displayName,
   });
+};

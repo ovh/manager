@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { IcebergFetchParamsV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { useContext } from 'react';
+import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
+import { IcebergFetchParamsV6 } from '../useCoreApiClient';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { ColumnSort } from '../../components';
 
@@ -16,7 +18,10 @@ interface QueryParams {
 /**
  * @deprecated use fetchIcebergV6 from @ovh-ux/manager-core-api
  */
-export const getResourcesIcebergV6 = fetchIcebergV6;
+export const getResourcesIcebergV6 = () => {
+  const context = useContext(ManagerReactComponentContext);
+  return context.iceberg.fetchIcebergV6;
+};
 
 export function useResourcesIcebergV6<T = unknown>({
   route,
@@ -24,6 +29,8 @@ export function useResourcesIcebergV6<T = unknown>({
   queryKey,
   defaultSorting = undefined,
 }: IcebergFetchParamsV6 & IcebergV6Hook) {
+  const context = useContext(ManagerReactComponentContext);
+  const { iceberg } = context;
   const [totalCount, setTotalCount] = useState(0);
   const [flattenData, setFlattenData] = useState<T[]>([]);
   const [queryParams, setQueryParams] = useState<QueryParams>({
@@ -32,28 +39,22 @@ export function useResourcesIcebergV6<T = unknown>({
   });
   const [sorting, setSorting] = useState<ColumnSort>(defaultSorting);
 
-  const {
-    data,
-    fetchNextPage,
-    isError,
-    isLoading,
-    error,
-    status,
-  } = useInfiniteQuery({
-    initialPageParam: null,
-    queryKey: [...queryKey, sorting],
-    queryFn: ({ pageParam }) =>
-      fetchIcebergV6<T>({
-        route,
-        pageSize,
-        page: pageParam,
-        sortBy: sorting?.id || null,
-        sortReverse: sorting?.desc,
-      }),
-    staleTime: Infinity,
-    retry: false,
-    getNextPageParam: () => queryParams.pageIndex,
-  });
+  const { data, fetchNextPage, isError, isLoading, error, status } =
+    useInfiniteQuery({
+      initialPageParam: null,
+      queryKey: [...queryKey, sorting],
+      queryFn: ({ pageParam }) =>
+        iceberg.fetchIcebergV6<T>({
+          route,
+          pageSize,
+          page: pageParam,
+          sortBy: sorting?.id || null,
+          sortReverse: sorting?.desc,
+        }),
+      staleTime: Infinity,
+      retry: false,
+      getNextPageParam: () => queryParams.pageIndex,
+    });
 
   useEffect(() => {
     const flatten = data?.pages.map((page) => page.data).flat();

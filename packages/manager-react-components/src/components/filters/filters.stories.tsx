@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import {
+  FilterComparator,
+  FilterCategories,
+} from '../../hooks/useCoreApiClient';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,

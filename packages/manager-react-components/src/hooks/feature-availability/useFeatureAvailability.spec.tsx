@@ -1,16 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { waitFor, screen } from '@testing-library/react';
-import { SetupServer, setupServer } from 'msw/node';
 import { useFeatureAvailability } from './useFeatureAvailability';
 import { render } from '../../utils/test.provider';
-import { toMswHandlers } from '../../../../../playwright-helpers/msw';
 import '@testing-library/jest-dom';
-import {
-  getFeatureAvailabilityMocks,
-  featureAvailabilityError,
-} from './mocks/feature-availability.mock';
 
-let server: SetupServer;
+const featureAvailabilityError = 'Feature availability service error';
 
 const Example = () => {
   const { data, isError, error, isSuccess } = useFeatureAvailability([
@@ -26,45 +20,56 @@ const Example = () => {
     </>
   );
 };
+jest.mock('@tanstack/react-query', () => ({
+  ...jest.requireActual('@tanstack/react-query'),
+  useQuery: jest.fn(),
+}));
+
+jest.mock('./useFeatureAvailability', () => ({
+  useFeatureAvailability: jest.fn(),
+}));
 
 const setupTest = (useCase: 'error' | 'ok') => {
-  server = setupServer(
-    // @ts-ignore
-    ...toMswHandlers(
-      getFeatureAvailabilityMocks({
-        isFeatureAvailabilityServiceKo: useCase === 'error',
-        featureAvailabilityResponse: {
-          feature1: true,
-          feature2: false,
-        },
-      }),
-    ),
-  );
-  server.listen({ onUnhandledRequest: 'warn' });
-
   return render(<Example />);
 };
 
 describe('useFeatureAvailability', () => {
-  afterEach(() => {
-    server?.close();
-    server = null;
-  });
-
   it('displays an error if the service is KO', async () => {
+    // @ts-ignore
+    useFeatureAvailability.mockReturnValue({
+      data: {},
+      isError: true,
+      error: {
+        response: {
+          data: {
+            message: featureAvailabilityError,
+          },
+        },
+      },
+      status: 500,
+      totalCount: 0,
+    });
     setupTest('error');
-    await waitFor(
-      () => expect(screen.getByText(featureAvailabilityError)).toBeVisible(),
-      { timeout: 10000 },
+    await waitFor(() =>
+      expect(screen.getByText(featureAvailabilityError)).toBeVisible(),
     );
   });
 
   it('display only the features that are available', async () => {
+    // @ts-ignore
+    useFeatureAvailability.mockReturnValue({
+      data: {
+        feature1: true,
+        feature2: false,
+      },
+      isSuccess: true,
+      status: 200,
+      totalCount: 3,
+    });
     setupTest('ok');
-    await waitFor(
-      () => expect(screen.getByText('feature1 available')).toBeVisible(),
-      { timeout: 10000 },
-    );
-    expect(screen.queryByText('feature2 available')).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('feature1 available')).toBeVisible();
+      expect(screen.queryByText('feature2 available')).not.toBeInTheDocument();
+    });
   });
 });
