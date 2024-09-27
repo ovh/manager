@@ -14,8 +14,10 @@ import {
   TLoadBalancer,
   updateLoadBalancerName,
   TLoadBalancerListener,
+  editListener,
 } from '../data/load-balancer';
 import queryClient from '@/queryClient';
+import { PROTOCOLS } from '@/constants';
 
 export const getAllLoadBalancersQueryKey = (projectId: string) => [
   'load-balancers',
@@ -165,7 +167,7 @@ export const useRenameLoadBalancer = ({
 
 export interface ListenerInfoProps {
   name: string;
-  protocol: string;
+  protocol: typeof PROTOCOLS[number];
   port: number;
   defaultPoolId?: string;
 }
@@ -178,7 +180,7 @@ export interface CreateListenerProps {
   onSuccess: () => void;
 }
 
-export const useCreateLoadBalancer = ({
+export const useCreateListener = ({
   projectId,
   region,
   loadBalancerId,
@@ -196,14 +198,7 @@ export const useCreateLoadBalancer = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: [
-          'project',
-          projectId,
-          'region',
-          region,
-          'loadbalancer',
-          loadBalancerId,
-        ],
+        queryKey: ['listeners'],
       });
       onSuccess();
     },
@@ -211,6 +206,60 @@ export const useCreateLoadBalancer = ({
   return {
     createListener: (listenerInfo: ListenerInfoProps) =>
       mutation.mutate(listenerInfo),
+    ...mutation,
+  };
+};
+
+export interface EditListenerProps {
+  projectId: string;
+  region: string;
+  listenerId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+}
+
+export const useEditLoadBalancer = ({
+  projectId,
+  region,
+  listenerId,
+  onError,
+  onSuccess,
+}: EditListenerProps) => {
+  const mutation = useMutation({
+    mutationFn: ({
+      name,
+      defaultPoolId,
+    }: {
+      name: string;
+      defaultPoolId?: string;
+    }) =>
+      editListener({
+        projectId,
+        region,
+        listenerId,
+        name,
+        defaultPoolId,
+      }),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['listeners'],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    editListener: ({
+      name,
+      defaultPoolId,
+    }: {
+      name: string;
+      defaultPoolId?: string;
+    }) =>
+      mutation.mutate({
+        name,
+        defaultPoolId,
+      }),
     ...mutation,
   };
 };
@@ -226,7 +275,7 @@ export const useAllLoadBalancerListeners = ({
 }) =>
   useQuery({
     queryKey: [
-      'project',
+      'listeners',
       projectId,
       'region',
       region,
