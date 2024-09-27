@@ -133,10 +133,17 @@ const MetricChart = ({
             },
             title: {
               display: true,
-              text: t(
-                `metricName-${metricQuery.data.name}`,
-                `${metricQuery.data.name} (${metricQuery.data.units})`,
-              ),
+              text: t(`metricName-${metricQuery.data.name}`, {
+                interpolation: { escapeValue: false },
+                defaultValue: `${metricQuery.data.name} (${t(
+                  `metricUnit-${metricQuery.data.units}`,
+                  {
+                    defaultValue: metricQuery.data.units,
+                    interpolation: { escapeValue: false },
+                  },
+                )})`,
+                unit: t(`metricUnit-${metricQuery.data.units}`),
+              }),
             },
             tooltip: {
               mode: 'index',
