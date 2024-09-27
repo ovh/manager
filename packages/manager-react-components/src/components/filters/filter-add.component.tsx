@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Filter, FilterComparator } from '@ovh-ux/manager-core-api';
+import { FilterComparator, Filter } from '../../hooks/useCoreApiClient';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,

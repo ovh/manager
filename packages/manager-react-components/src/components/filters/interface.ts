@@ -1,3 +1,3 @@
-import { Filter } from '@ovh-ux/manager-core-api';
+import { Filter } from '../../hooks/useCoreApiClient';
 
 export type FilterWithLabel = Filter & { label: string };

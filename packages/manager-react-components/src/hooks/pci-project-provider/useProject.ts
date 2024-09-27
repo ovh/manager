@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-
-import { v6 } from '@ovh-ux/manager-core-api';
+import { useContext } from 'react';
+import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
 
 export type TProjectQuota = {
   region: string;
@@ -47,7 +47,9 @@ export type TProjectQuota = {
 };
 
 export const getProjectQuota = async (projectId: string) => {
-  const { data } = await v6.get<TProjectQuota[]>(
+  const context = useContext(ManagerReactComponentContext);
+  const { apiClient } = context;
+  const { data } = await apiClient.v6.get<TProjectQuota[]>(
     `/cloud/project/${projectId}/quota`,
   );
 
