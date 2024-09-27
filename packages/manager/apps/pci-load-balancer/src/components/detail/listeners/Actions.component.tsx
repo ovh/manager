@@ -2,12 +2,17 @@ import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 
-export default function ActionsComponent() {
+export type ActionsComponentProps = {
+  listenerId: string;
+};
+export default function ActionsComponent({
+  listenerId,
+}: ActionsComponentProps) {
   const { t } = useTranslation('octavia-load-balancer-listeners');
 
   const listenerDetail = useHref('');
   const policiesHref = useHref('');
-  const deleteHref = useHref('');
+  const deleteHref = useHref(`${listenerId}/delete`);
 
   const items = [
     {
