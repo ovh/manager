@@ -70,8 +70,8 @@ enabler:
   - packages/manager/apps/carbon-calculator/**
   - packages/manager/apps/iam/**
   - packages/manager/apps/key-management-service/**
-manager-react-components:
-  - packages/manager-react-components/src/**
+manager-components:
+  - packages/manager-components/src/**
 common:
   - packages/components/**
   - packages/manager/core/**
@@ -104,6 +104,6 @@ common:
   - packages/manager/modules/trusted-nic/**
   - packages/manager/modules/web-universe-components/**
   - packages/manager/tools/**
-  - packages/manager-react-components/**
+  - packages/manager-components/**
   - playwright-helpers/**
   - scripts/**
