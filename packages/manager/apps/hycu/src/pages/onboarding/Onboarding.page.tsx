@@ -46,20 +46,18 @@ export default function Onboarding() {
   };
 
   return (
-    <>
-      <OnboardingLayout
-        title={title}
-        img={imgSrc}
-        description={description}
-        orderButtonLabel={t('orderButtonLabel')}
-        orderHref={t('orderButtonLink')}
-        moreInfoButtonLabel={t('moreInfoButtonLabel')}
-        moreInfoHref={t('moreInfoButtonLink')}
-      >
-        {tileList.map((tile) => (
-          <Card key={tile.id} href={tile.href} texts={tile.texts} />
-        ))}
-      </OnboardingLayout>
-    </>
+    <OnboardingLayout
+      title={title}
+      img={imgSrc}
+      description={description}
+      orderButtonLabel={t('orderButtonLabel')}
+      orderHref={t('orderButtonLink')}
+      moreInfoButtonLabel={t('moreInfoButtonLabel')}
+      moreInfoHref={link?.main}
+    >
+      {tileList.map((tile) => (
+        <Card key={tile.id} href={tile.href} texts={tile.texts} />
+      ))}
+    </OnboardingLayout>
   );
 }
