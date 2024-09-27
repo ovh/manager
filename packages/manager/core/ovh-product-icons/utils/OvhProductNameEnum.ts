@@ -30,6 +30,15 @@ enum OvhProductName {
   NETWORKSTATUS = 'NetworkStatus',
   STORE = 'Store',
   EMAIL = 'Email',
+  GLOBE = 'Globe',
+  LOCKCLOSE = 'LockClose',
+  MONITOR = 'Monitor',
+  NETWORKV2 = 'Networkv2',
+  PHONE = 'Phone',
+  SERVERV2 = 'ServerV2',
+  SHIELDCHECK = 'ShieldCheck',
+  SHOPPINGCARTPLUS = 'ShoppingCartPlus',
+  STAR = 'Star',
 }
 
 export default OvhProductName;

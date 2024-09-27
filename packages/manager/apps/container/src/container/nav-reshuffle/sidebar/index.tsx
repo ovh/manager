@@ -25,6 +25,11 @@ import {
 import { Node } from './navigation-tree/node';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
+import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 
 interface ServicesCountError {
   url: string;
@@ -54,6 +59,7 @@ const Sidebar = (): JSX.Element => {
   } = useProductNavReshuffle();
   const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
   const [selectedNode, setSelectedNode] = useState<Node>(null);
+  const [showSubTree, setShowSubTree] = useState<boolean>(false);
   const [selectedSubMenu, setSelectedSubMenu] = useState<Node>(null);
   const [open, setOpen] = useState<boolean>(true);
   const [assistanceTree, setAssistanceTree] = useState<Node>(null);
@@ -145,6 +151,8 @@ const Sidebar = (): JSX.Element => {
         ) {
           selectSubMenu(currentNode);
           setSelectedNode(universe);
+          setShowSubTree(Boolean(universe));
+
           return;
         } else {
           selectedNode ? setSelectedNode(null) : setSavedNode(null);
@@ -160,6 +168,7 @@ const Sidebar = (): JSX.Element => {
     if (foundNode) {
       selectSubMenu(foundNode.node);
       setSelectedNode(foundNode.universe);
+      setShowSubTree(Boolean(foundNode.universe));
     }
   }, [currentNavigationNode, location]);
 
@@ -223,13 +232,13 @@ const Sidebar = (): JSX.Element => {
   };
 
   const closeSubMenu = () => {
-    setSelectedNode(null);
-    setSelectedSubMenu(null);
+    setShowSubTree(false);
   };
 
   const menuClickHandler = (node: Node) => {
     setSelectedNode(node);
     setSelectedSubMenu(null);
+    setShowSubTree(true);
 
     let trackingIdComplement = 'navbar_v3_entry_home::';
     const history = findPathToNode(
@@ -286,27 +295,27 @@ const Sidebar = (): JSX.Element => {
         )}
 
         <div
-          className={`${style.sidebar_menu} ${
-            !open ? style.sidebar_menu_short : ''
-            }`}
+          className={style.sidebar_menu}
           role="menubar"
         >
           <ul id="menu" role="menu">
-            {open && currentNavigationNode && (
-              <li className="px-3 mb-3 mt-2">
+
+          <li className="px-3 mb-3 mt-2 h-8">
+              {open && currentNavigationNode && (
                 <h2>{t(currentNavigationNode.translation)}</h2>
-              </li>
-            )}
+              )}
+          </li>
+
             {currentNavigationNode?.children
               ?.filter((node) => !shouldHideElement(node, node.count))
               .map((node: Node) => (
                 <li
                   key={node.id}
                   id={node.id}
-                  className={`${style.sidebar_menu_items} ${
+                  className={`py-1 ${style.sidebar_menu_items} ${
                     node.id === selectedNode?.id
-                      ? style.sidebar_menu_items_selected
-                      : ''
+                    ? style.sidebar_menu_items_selected
+                    : ''
                     }`}
                   role="menuitem"
                 >
@@ -322,8 +331,11 @@ const Sidebar = (): JSX.Element => {
                 </li>
               ))}
           </ul>
-          <div className={`m-3 ${style.sidebar_action}`}>
-            <a
+          <div className={`m-2.5 mt-10`}>
+            <OsdsButton
+              variant={ODS_BUTTON_VARIANT.stroked}
+              size={ODS_BUTTON_SIZE.sm}
+              color={ODS_THEME_COLOR_INTENT.primary}
               onClick={() =>
                 trackingPlugin.trackClick({
                   name: 'navbar_v3_entry_home::cta_add_a_service',
@@ -334,12 +346,11 @@ const Sidebar = (): JSX.Element => {
               role="link"
               title={t('sidebar_service_add')}
             >
-              <span
-                className={`oui-icon oui-icon-cart ${style.sidebar_action_icon}`}
-                aria-hidden="true"
-              ></span>
-              {open && <span className="ml-3">{t('sidebar_service_add')}</span>}
-            </a>
+              <div className='flex justify-center align-middle p-0 m-0'>
+                <SvgIconWrapper name={OvhProductName.SHOPPINGCARTPLUS} height={24} width={24} className='fill-[var(--ods-color-primary-500)]' />
+                {open && <span className="ml-3">{t('sidebar_service_add')}</span>}
+              </div>
+            </OsdsButton>
           </div>
         </div>
 
@@ -368,7 +379,7 @@ const Sidebar = (): JSX.Element => {
         </button>
         </div>
       </div>
-      {selectedNode !== null && (
+      {showSubTree && (
         <SubTree
           handleBackNavigation={() => {
             if (isMobile) setSelectedNode(null);

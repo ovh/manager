@@ -33,6 +33,16 @@ import { ReactComponent as NetworkStatus } from './container/network_status.svg'
 import { ReactComponent as Store } from './container/store.svg';
 import { ReactComponent as Email } from './container/email.svg';
 
+import { ReactComponent as Globe } from './container/globe.svg';
+import { ReactComponent as LockClose } from './container/lock-close.svg';
+import { ReactComponent as Monitor } from './container/monitor.svg';
+import { ReactComponent as Networkv2 } from './container/networkv2.svg';
+import { ReactComponent as Phone } from './container/phone.svg';
+import { ReactComponent as ServerV2 } from './container/server.svg';
+import { ReactComponent as ShieldCheck } from './container/shield-check.svg';
+import { ReactComponent as ShoppingCartPlus } from './container/shopping-cart-plus.svg';
+import { ReactComponent as Star } from './container/star.svg';
+
 export { Hosting, Office365, Sharepoint, Exchange };
 export { TelecomEthernet, Telephony, Headset };
 
@@ -46,6 +56,18 @@ export {
   Sunrise,
   Telecom,
   Webcloud,
+};
+
+export {
+  Globe,
+  LockClose,
+  Monitor,
+  Networkv2,
+  Phone,
+  ServerV2,
+  ShieldCheck,
+  ShoppingCartPlus,
+  Star,
 };
 
 export {

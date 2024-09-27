@@ -55,8 +55,10 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       id={id}
       role="button"
     >
-      {isShortText ? <SvgIconWrapper name={node.svgIcon} height={42} width={42} className='p-1 fill-white block' />
-        : <span>{t(node.translation)}</span>}
+      <span className='flex gap-2 align-items-center'>
+        <SvgIconWrapper name={node.svgIcon} height={32} width={32} className='p-1 fill-white block' />
+        {!isShortText && <span>{t(node.translation)}</span>}
+      </span>
       <span className="flex justify-end align-items-center">
         {!isShortText && (count as number) > 0 && (
           <OsdsIcon

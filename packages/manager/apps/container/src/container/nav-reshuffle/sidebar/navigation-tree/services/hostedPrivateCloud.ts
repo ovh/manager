@@ -8,7 +8,7 @@ const hostedPrivateCloudUniverse: Node = {
   translation: 'sidebar_hpc',
   shortTranslation: 'sidebar_hpc_short',
   illustration,
-  svgIcon: OvhProductName.HOSTEDPRIVATECLOUD,
+  svgIcon: OvhProductName.LOCKCLOSE,
   features: ['hosted-private-cloud'],
 };
 
