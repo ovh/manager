@@ -13,6 +13,7 @@ export type TabItemProps = {
   title: string | JSX.Element;
   to: string;
   tracking?: string;
+  isDisabled?: boolean;
 };
 
 export type TabsProps = {
@@ -48,7 +49,12 @@ export default function TabsPanel({ tabs }: TabsProps) {
             onClick={() => tracking?.trackClick({ name: tab.tracking })}
             className="no-underline"
           >
-            <OsdsTabBarItem panel={tab.name}>{tab.title}</OsdsTabBarItem>
+            <OsdsTabBarItem
+              panel={tab.name}
+              disabled={tab.isDisabled || undefined}
+            >
+              {tab.title}
+            </OsdsTabBarItem>
           </NavLink>
         ))}
       </OsdsTabBar>
