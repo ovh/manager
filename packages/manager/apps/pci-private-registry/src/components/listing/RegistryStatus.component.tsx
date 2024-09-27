@@ -4,7 +4,6 @@ import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PRIVATE_REGISTRY_STATUS } from '@/constants';
-import { TRegistryStatus } from '@/api/data/registry';
 
 export default function RegistryStatus({
   status,
@@ -56,7 +55,9 @@ export default function RegistryStatus({
       className="w-fit"
       data-testid="registryStatus_chip"
     >
-      {getStatusLabel(status) || status}
+      <span className="whitespace-nowrap">
+        {getStatusLabel(status) || status}
+      </span>
     </OsdsChip>
   );
 }
