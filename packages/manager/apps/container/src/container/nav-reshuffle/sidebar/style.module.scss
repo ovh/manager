@@ -14,6 +14,7 @@ $sidebar-font-size: 0.875rem;
   background-color: $p-700;
   position: relative;
   color: white;
+  gap: 0.125rem;
   
   &_wrapper {
     height: 100%;
@@ -88,10 +89,6 @@ $sidebar-font-size: 0.875rem;
 
   &_menu {
     flex: 1;
-
-    &_short {
-      padding-top: 1rem;
-    }
   }
 
   ul {

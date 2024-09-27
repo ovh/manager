@@ -8,7 +8,7 @@ const networkUniverse: Node = {
   translation: 'sidebar_network',
   shortTranslation: 'sidebar_network_short',
   illustration,
-  svgIcon: OvhProductName.NETWORK,
+  svgIcon: OvhProductName.NETWORKV2,
   features: [
     'vrack:bare-metal-cloud',
     'ip',

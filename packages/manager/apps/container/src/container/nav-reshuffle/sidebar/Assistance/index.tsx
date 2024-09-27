@@ -7,6 +7,9 @@ import useContainer from '@/core/container';
 import { Node } from '../navigation-tree/node';
 import { AssistanceLinkItem } from './AssistanceLinkItem';
 import { ShortAssistanceLinkItem } from './ShortAssistanceLinkItem';
+import { OsdsButton, OsdsIcon, OsdsMenuItem, OsdsPopover, OsdsPopoverContent } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 interface AssistanceProps {
   nodeTree?: Node;
@@ -82,27 +85,45 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
     trackingPlugin.trackClick({ name: `navbar_v3_entry_home::${id}`, type: 'navigation' });
   };
 
+  if (isShort) return (
+    <OsdsPopover className='w-full fixed z-[1000] left-[0.3rem] bottom-[4rem]' id="useful-links" role="menu">
+      <OsdsButton
+        slot="popover-trigger"
+        className='w-[4rem]'
+        color={ODS_THEME_COLOR_INTENT.primary}
+        variant={ODS_BUTTON_VARIANT.ghost}
+        size={ODS_BUTTON_SIZE.md}
+        title={t('sidebar_assistance_title')}
+        contrasted
+      >
+        <OsdsIcon
+          name={ODS_ICON_NAME.ELLIPSIS}
+          contrasted
+        />
+      </OsdsButton>
+      <OsdsPopoverContent>
+        {nodeTree.children.map((node: Node) => (
+          <ShortAssistanceLinkItem key={node.id} node={node} />
+        ))}
+      </OsdsPopoverContent>
+    </OsdsPopover>
+  )
+
   return (
-    <ul className="mt-auto pb-3" id="useful-links" role="menu">
-      {!isShort &&
-        <li className="assistance_header px-3 mb-3">
-          <h2 className="flex justify-between">
-            <span>{t('sidebar_assistance_title')}</span>
-          </h2>
-        </li>}
-      {nodeTree.children.map((node: Node) => (isShort ?
-        <ShortAssistanceLinkItem
-          key={`assistance_${node.id}`}
-          node={node}
-          isSelected={node.id === selectedNode?.id}
-        /> :
+    <ul className="mt-auto pb-3 flex-none" id="useful-links" role="menu">
+      <li className="assistance_header px-3 mb-3">
+        <h2 className="flex justify-between">
+          <span>{t('sidebar_assistance_title')}</span>
+        </h2>
+      </li>
+      {nodeTree.children.map((node: Node) => (
         <AssistanceLinkItem
           key={`assistance_${node.id}`}
           node={node}
           isSelected={node.id === selectedNode?.id}
-        />))}
-    </ul>
-  );
+        />
+      ))}
+    </ul>);
 };
 
 export default AssistanceSidebar;
