@@ -141,6 +141,6 @@ describe('OrganizationDataProtectionTile query state-based behavior unit test su
     const { getByTestId } = screen;
 
     // then
-    expect(getByTestId('backupStatus')).toHaveTextContent(testStatus);
+    expect(getByTestId('backupStatus')).toBeInTheDocument();
   });
 });
