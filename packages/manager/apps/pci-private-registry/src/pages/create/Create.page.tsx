@@ -57,7 +57,6 @@ export default function CreatePage(): JSX.Element {
       <div className="mb-5 sticky top-0 z-50">
         <PciDiscoveryBanner project={project} className="mb-6" />
       </div>
-      <RegionStep />
       <RegionStep isLocked={isDiscoveryProject(project)} />
       <NameStep />
       <PlanStep />

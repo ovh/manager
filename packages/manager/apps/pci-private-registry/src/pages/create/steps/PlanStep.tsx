@@ -110,6 +110,7 @@ export default function PlanStep(): JSX.Element {
 
   return (
     <StepComponent
+      id="plan"
       isOpen={store.stepsState[StepEnum.PLAN].isOpen}
       isLocked={store.stepsState[StepEnum.PLAN].isLocked}
       isChecked={store.stepsState[StepEnum.PLAN].isChecked}
