@@ -70,7 +70,7 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
       role="link"
       className='d-flex items-center'
     >
-      {node.translation}
+      {t(node.translation)}
       {node.isExternal && (
         <OsdsIcon
           name={ODS_ICON_NAME.EXTERNAL_LINK}
