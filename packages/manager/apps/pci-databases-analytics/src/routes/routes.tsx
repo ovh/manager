@@ -106,6 +106,16 @@ export default [
             ),
           },
           {
+            path: 'indexPatterns',
+            id: 'service.indexPatterns',
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/services/[serviceId]/indexPatterns/IndexPatterns.page'
+              ),
+            ),
+          },
+
+          {
             path: 'integrations',
             id: 'service.integrations',
             ...lazyRouteConfig(() =>

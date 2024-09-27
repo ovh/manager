@@ -11,6 +11,7 @@ import { useGetConnectionPools } from '@/hooks/api/database/connectionPool/useGe
 import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
 import { useGetNamespaces } from '@/hooks/api/database/namespace/useGetNamespaces.hook';
 import { useGetCurrentQueries } from '@/hooks/api/database/query/useGetCurrentQueries.hook';
+import { useGetPatterns } from '@/hooks/api/database/pattern/useGetPatterns.hook';
 
 interface ServiceTabsProps {
   service: database.Service;
@@ -78,6 +79,15 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
       enabled: !!service.capabilities.currentQueries?.read,
     },
   );
+  const { data: patterns } = useGetPatterns(
+    projectId,
+    service.engine,
+    service.id,
+    {
+      refetchInterval: isUserActive && POLLING.PATTERNS,
+      enabled: !!service.capabilities.patterns?.read,
+    },
+  );
 
   const tabs = [
     { href: '', label: t('DashboardTab'), end: true },
@@ -122,6 +132,12 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
       label: t('IntegrationsTab'),
       count: integrations?.length,
       disabled: !service.capabilities.integrations.read,
+    },
+    service.capabilities.patterns && {
+      href: 'indexPatterns',
+      label: t('IndexPatternsTab'),
+      count: patterns?.length,
+      disabled: !service.capabilities.patterns.read,
     },
     { href: 'metrics', label: t('MetricsTab') },
     { href: 'logs', label: t('LogsTab') },

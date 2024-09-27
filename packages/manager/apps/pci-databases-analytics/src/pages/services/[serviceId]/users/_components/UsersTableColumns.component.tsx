@@ -9,6 +9,7 @@ import UserActions from './UsersTableActions.component';
 
 interface UserListColumnsProps {
   displayGroupCol: boolean;
+  displayACLSCol: boolean;
   displayRolesCol: boolean;
   displayKeysCols: boolean;
   displayCategoriesCol: boolean;
@@ -21,6 +22,7 @@ interface UserListColumnsProps {
 
 export const getColumns = ({
   displayGroupCol = false,
+  displayACLSCol = false,
   displayRolesCol = false,
   displayKeysCols = false,
   displayCategoriesCol = false,
@@ -46,6 +48,13 @@ export const getColumns = ({
       <SortableHeader column={column}>{t('tableHeadGroup')}</SortableHeader>
     ),
     accessorFn: (row) => ('group' in row ? row.group : ''),
+  };
+  const aclColumn: ColumnDef<GenericUser> = {
+    id: 'acls',
+    header: ({ column }) => (
+      <SortableHeader column={column}>{t('tableHeadACLs')}</SortableHeader>
+    ),
+    accessorFn: (row) => ('acls' in row ? row.acls.length : 0),
   };
   const rolesColumn: ColumnDef<GenericUser> = {
     id: 'roles',
@@ -182,6 +191,7 @@ export const getColumns = ({
   };
   return [
     userNameColumn,
+    ...(displayACLSCol ? [aclColumn] : []),
     ...(displayGroupCol ? [groupColumn] : []),
     ...(displayRolesCol ? [rolesColumn] : []),
     ...(displayKeysCols ? [keysColumn] : []),
