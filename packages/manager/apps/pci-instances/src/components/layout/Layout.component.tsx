@@ -10,7 +10,7 @@ const Layout: FC = () => {
   useHidePreloader();
   useShellRoutingSync();
   return (
-    <div className="mx-11 mt-8">
+    <div>
       <Suspense>
         <Outlet />
       </Suspense>
