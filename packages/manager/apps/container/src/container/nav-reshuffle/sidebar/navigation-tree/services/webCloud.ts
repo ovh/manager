@@ -8,7 +8,7 @@ const webCloudUniverse : Node = {
   translation: 'sidebar_web_cloud',
   shortTranslation: 'sidebar_web_cloud_short',
   illustration,
-  svgIcon: OvhProductName.WEBCLOUD,
+  svgIcon: OvhProductName.MONITOR,
   routing: {
     application: 'web',
     hash: '#/',

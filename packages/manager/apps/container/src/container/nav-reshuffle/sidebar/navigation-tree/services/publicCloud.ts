@@ -9,7 +9,7 @@ const pciNode: Node = {
   shortTranslation: 'sidebar_pci_short',
   illustration,
   universe: 'pci',
-  svgIcon: OvhProductName.PUBLICCLOUD,
+  svgIcon: OvhProductName.GLOBE,
   features: ['public-cloud'],
   forceVisibility: true,
   routing: {

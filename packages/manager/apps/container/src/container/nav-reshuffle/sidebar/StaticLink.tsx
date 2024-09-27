@@ -80,10 +80,13 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
       )}
       {t(isShortText ? node.shortTranslation : node.translation)}
       {node.isExternal && (
-        <span
-          aria-hidden="true"
-          className={`${style.sidebar_external} oui-icon oui-icon-external-link`}
-        ></span>
+        <OsdsIcon
+          name={ODS_ICON_NAME.EXTERNAL_LINK}
+          className='ml-1'
+          contrasted
+          size={ODS_ICON_SIZE.xxs}
+          color={ODS_THEME_COLOR_INTENT.primary}
+        />
       )}
       {!isShortText && <SidebarLinkTag node={node} />}
       {!isShortText && (count as number) > 0 && (
