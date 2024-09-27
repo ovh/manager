@@ -51,11 +51,11 @@
         "compatibleRegion": true,
         "pricings": [
           {
-            "price": 0.0678,
+            "price": 9780000,
             "interval": "hour"
           },
           {
-            "price": 25.2,
+            "price": 3520000000,
             "interval": "month"
           }
         ],
@@ -75,9 +75,13 @@
               "capacity": 50,
               "number": 0,
               "technology": "SSD",
-              "unit": "Go"
+              "sizeUnit": "Go"
             }
-          ]
+          ],
+          "gpu": {
+            "model": "Tesla V100S",
+            "number": 4
+          }
         },
         "banners": []
       },
@@ -89,11 +93,11 @@
         "compatibleRegion": true,
         "pricings": [
           {
-            "price": 300,
+            "price": 30000000000,
             "interval": "month"
           },
           {
-            "price": 0.85,
+            "price": 85000000,
             "interval": "hour"
           }
         ],
@@ -105,17 +109,21 @@
             "model": "Xeon-E 2288G"
           },
           "memory": {
-            "size": 1000,
-            "unit": "To"
+            "size": 64,
+            "unit": "Go"
           },
           "storage": [
             {
-              "capacity": 2000,
+              "capacity": 960,
               "number": 2,
               "technology": "SSD",
-              "unit": "To"
+              "sizeUnit": "Go"
             }
-          ]
+          ],
+          "gpu": {
+            "model": "",
+            "number": 0
+          }
         },
         "banners": []
       }
