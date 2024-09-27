@@ -1,5 +1,4 @@
-import { http, HttpResponse, JsonBodyType, RequestHandler, delay } from 'msw';
-import mockedCatalog from './fullCatalogGenerated.json';
+import { http, HttpResponse, JsonBodyType, RequestHandler } from 'msw';
 
 export const catalogHandlers = <T extends JsonBodyType>(
   mockedResponsePayload?: T,
@@ -8,12 +7,5 @@ export const catalogHandlers = <T extends JsonBodyType>(
     return !mockedResponsePayload
       ? new HttpResponse(null, { status: 500 })
       : HttpResponse.json(mockedResponsePayload);
-  }),
-];
-
-export const browserHandlers: RequestHandler[] = [
-  http.get('*/cloud/project/:projectId/catalog/instance', async () => {
-    await delay(2000);
-    return HttpResponse.json(mockedCatalog);
   }),
 ];

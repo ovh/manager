@@ -7,7 +7,7 @@ import { vi } from 'vitest';
  * These lines allow to:
  * - run tests that use 'createStore' curried function
  * - clear stores after each test
- * Warning: to work with vitest, this file must be under __mocks__ folder in the root project (.)
+ * Warning: to work with vitest, this file must be under __mocks__ folder in the vitest config's root project (./src)
  * */
 const {
   create: actualCreate,
