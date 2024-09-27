@@ -167,7 +167,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     setChatbotReduced,
     application,
     setApplication,
-    universe: universe || application?.universe,
+    universe,
     setUniverse(universe: string) {
       shell.getPlugin('environment').setUniverse(universe);
     },
