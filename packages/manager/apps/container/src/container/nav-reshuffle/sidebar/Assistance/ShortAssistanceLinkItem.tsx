@@ -38,6 +38,7 @@ export const ShortAssistanceLinkItem: FunctionComponent<Props> = ({ node }) => {
             id={node.id}
             role="link"
             className='block p-2'
+            data-testid={`short-assistance-link-item-${node.id}`}
         >
             {t(node.translation)}
             {node.isExternal && (

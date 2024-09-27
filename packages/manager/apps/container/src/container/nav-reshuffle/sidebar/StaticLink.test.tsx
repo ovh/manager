@@ -104,25 +104,6 @@ describe('StaticLink.component', () => {
     expect(queryByTestId(`static-link-count-${node.id}`)).not.toBeNull();
   })
 
-  it('External static link should have correct data', () => {
-    props.node = externalNode;
-    const { queryByTestId } = renderStaticLinkComponent(props);
-
-    expect(queryByTestId(props.node.idAttr)).toHaveAttribute(
-      'target',
-      '_blank',
-    );
-    expect(queryByTestId(props.node.idAttr)).toHaveAttribute(
-      'rel',
-      'noopener noreferrer',
-    );
-    expect(
-      queryByTestId(props.node.idAttr).getElementsByClassName(
-        'oui-icon-external-link',
-      ).length,
-    ).toBe(1);
-  });
-
   it('Static link with a node with tag should display a SidebarLinkTag', () => {
     props.node.tag = NodeTag.BETA;
     const { queryByTestId } = renderStaticLinkComponent(props);

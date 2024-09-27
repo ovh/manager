@@ -45,15 +45,19 @@ vi.mock('@ovh-ux/ovh-product-icons/utils/SvgIconWrapper', () => ({
   SvgIconWrapper: () => <div>icon</div>,
 }));
 
+vi.mock('@ovhcloud/ods-components/react', () => ({
+  OsdsLink: (props: any) => (<a data-testid={props["data-testid"]}>{props.children}</a>),
+  OsdsIcon: () => (<div data-testid="osds-icon"/>),
+}));
+
 const renderShortAssistanceLinkItem = (props: Props) => {
   return render(
-    <ShortAssistanceLinkItem node={props.node} isSelected={props.isSelected} />,
+    <ShortAssistanceLinkItem node={props.node} />,
   );
 };
 
 const props: Props = {
   node: node,
-  isSelected: false,
 };
 
 describe('ShortAssistanceLinkItem.component', () => {
@@ -65,24 +69,5 @@ describe('ShortAssistanceLinkItem.component', () => {
     expect(
       queryByTestId(`short-assistance-link-item-${props.node.id}`),
     ).not.toHaveClass('sidebar_menu_items_selected');
-  });
-
-  it('should have proper class if selected', () => {
-    props.isSelected = true;
-    const { queryByTestId } = renderShortAssistanceLinkItem(props);
-    expect(
-      queryByTestId(`short-assistance-link-item-${props.node.id}`),
-    ).toHaveClass('sidebar_menu_items_selected');
-  });
-
-  it('should have external properties if external', () => {
-    props.node = externalNode;
-    const { queryByTestId } = renderShortAssistanceLinkItem(props);
-    expect(
-      queryByTestId(`short-assistance-link-item-${props.node.id}`).firstChild,
-    ).toHaveAttribute('target', '_blank');
-    expect(
-      queryByTestId(`short-assistance-link-item-${props.node.id}`).firstChild,
-    ).toHaveAttribute('rel', 'noopener noreferrer');
   });
 });

@@ -7,6 +7,7 @@ import SidebarLinkTag from './SidebarLinkTag';
 import { Node } from './navigation-tree/node';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 export interface StaticLinkProps {
   count?: number | boolean;
