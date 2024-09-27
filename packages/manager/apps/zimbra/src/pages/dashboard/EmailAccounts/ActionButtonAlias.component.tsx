@@ -5,6 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import { AliasItem } from './EmailAccountsAlias.page';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { ResourceStatus } from '@/api/api.type';
 
 interface ActionButtonAliasAccountProps {
   aliasItem: AliasItem;
@@ -31,7 +32,13 @@ const ActionButtonAlias: React.FC<ActionButtonAliasAccountProps> = ({
       label: t('zimbra_account_alias_datagrid_tooltip_delete'),
     },
   ];
-  return <ActionMenu items={actionItems} isCompact />;
+  return (
+    <ActionMenu
+      disabled={aliasItem.status !== ResourceStatus.READY}
+      items={actionItems}
+      isCompact
+    />
+  );
 };
 
 export default ActionButtonAlias;

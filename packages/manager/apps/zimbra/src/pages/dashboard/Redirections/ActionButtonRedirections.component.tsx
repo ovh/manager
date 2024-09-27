@@ -5,6 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import { RedirectionsItem } from './Redirections';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { ResourceStatus } from '@/api/api.type';
 
 interface ActionButtonRedirectionsAccountProps {
   redirectionsItem: RedirectionsItem;
@@ -45,7 +46,13 @@ const ActionButtonRedirections: React.FC<ActionButtonRedirectionsAccountProps> =
       label: t('zimbra_redirections_datagrid_tooltip_delete'),
     },
   ];
-  return <ActionMenu items={actionItems} isCompact />;
+  return (
+    <ActionMenu
+      disabled={redirectionsItem.status !== ResourceStatus.READY}
+      items={actionItems}
+      isCompact
+    />
+  );
 };
 
 export default ActionButtonRedirections;

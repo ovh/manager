@@ -28,12 +28,14 @@ import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { DiagnosticBadge } from '@/components/DiagnosticBadge';
 import { DnsRecordType } from '@/utils';
+import { AccountStatistics, ResourceStatus } from '@/api/api.type';
 
 export type DomainsItem = {
   id: string;
   name: string;
   organizationLabel: string;
   account: number;
+  status: ResourceStatus;
 };
 
 const columns: DatagridColumn<DomainsItem>[] = [
@@ -124,9 +126,11 @@ export default function Domains() {
       id: item.id,
       organizationLabel: item.currentState.organizationLabel,
       account: item.currentState.accountsStatistics.reduce(
-        (acc, current) => acc + current.configuredAccountsCount,
+        (acc: number, current: AccountStatistics) =>
+          acc + current.configuredAccountsCount,
         0,
       ),
+      status: item.resourceStatus,
     })) ?? [];
 
   return (

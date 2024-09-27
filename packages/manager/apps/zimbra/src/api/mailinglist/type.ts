@@ -1,3 +1,5 @@
+import { ResourceStatus } from '../api.type';
+
 export enum ReplyToChoices {
   LIST = 'list',
   SENDER = 'sender',
@@ -12,7 +14,7 @@ export enum ModerationChoices {
 
 export type MailingListType = {
   id: string;
-  resourceStatus: string;
+  resourceStatus: ResourceStatus;
   checksum: string;
   targetSpec: {
     defaultReplyTo: ReplyToChoices;

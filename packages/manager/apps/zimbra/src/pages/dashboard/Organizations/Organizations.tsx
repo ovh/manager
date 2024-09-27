@@ -30,7 +30,7 @@ export type OrganizationItem = {
   name: string;
   label: string;
   account: number;
-  status: string;
+  status: ResourceStatus;
 };
 
 const columns: DatagridColumn<OrganizationItem>[] = [
@@ -67,11 +67,9 @@ const columns: DatagridColumn<OrganizationItem>[] = [
   },
   {
     id: 'tooltip',
-    cell: (item: OrganizationItem) =>
-      (item.status === ResourceStatus.READY ||
-        item.status === ResourceStatus.ERROR) && (
-        <ActionButtonOrganization organizationItem={item} />
-      ),
+    cell: (item: OrganizationItem) => (
+      <ActionButtonOrganization organizationItem={item} />
+    ),
     label: '',
   },
 ];
@@ -90,7 +88,7 @@ export default function Organizations() {
         (acc, current) => acc + current.configuredAccountsCount,
         0,
       ),
-      status: item.resourceStatus || '',
+      status: item.resourceStatus,
     })) ?? [];
 
   const hrefAddOrganization = useGenerateUrl('./add', 'href');

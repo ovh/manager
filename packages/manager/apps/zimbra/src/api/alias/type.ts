@@ -15,7 +15,7 @@ export type AliasType = {
     type: string;
   }[];
   id: string;
-  resourceStatus: keyof typeof ResourceStatus;
+  resourceStatus: ResourceStatus;
   targetSpec: {
     alias: string;
     aliasTarget: string;

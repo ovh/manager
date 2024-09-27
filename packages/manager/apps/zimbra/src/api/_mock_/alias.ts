@@ -1,9 +1,10 @@
 import { AliasType } from '@/api/alias';
+import { ResourceStatus } from '../api.type';
 
 export const aliasMock: AliasType[] = [
   {
     id: 'bf333af7-585d-4fb3-b81c-06be10df4828',
-    resourceStatus: 'READY',
+    resourceStatus: ResourceStatus.READY,
     checksum: '',
     targetSpec: {
       aliasTarget: '1bb958c9-cc20-465b-bf35-04b7f0d91276',

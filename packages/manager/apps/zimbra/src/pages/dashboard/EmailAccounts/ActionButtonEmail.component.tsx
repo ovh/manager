@@ -4,6 +4,7 @@ import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { EmailsItem } from './EmailAccounts';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { ResourceStatus } from '@/api/api.type';
 
 interface ActionButtonEmailAccountProps {
   emailsItem: EmailsItem;
@@ -38,7 +39,13 @@ const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
       label: t('zimbra_account_datagrid_tooltip_delete'),
     },
   ];
-  return <ActionMenu items={actionItems} isCompact />;
+  return (
+    <ActionMenu
+      disabled={emailsItem.status !== ResourceStatus.READY}
+      items={actionItems}
+      isCompact
+    />
+  );
 };
 
 export default ActionButtonEmail;

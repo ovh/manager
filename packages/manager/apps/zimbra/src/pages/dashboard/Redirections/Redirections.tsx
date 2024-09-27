@@ -18,20 +18,30 @@ import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import ActionButtonRedirections from './ActionButtonRedirections.component';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { ResourceStatus } from '@/api/api.type';
 
 export type RedirectionsItem = {
   id: string;
   from: string;
   to: string;
   organization: string;
+  status: ResourceStatus;
 };
 
 const items: RedirectionsItem[] = [
   {
+    status: ResourceStatus.ERROR,
     from: 'from@example.com',
     to: 'to@example.com',
     organization: 'Test Organization',
-    id: '123-123',
+    id: '1',
+  },
+  {
+    status: ResourceStatus.READY,
+    from: 'from@example.com',
+    to: 'to2@example.com',
+    organization: 'Test Organization',
+    id: '2',
   },
 ];
 
@@ -55,7 +65,7 @@ const columns: DatagridColumn<RedirectionsItem>[] = [
     id: 'tooltip',
     cell: (item) => (
       <ActionButtonRedirections
-        data-testid="redirection-action-btn"
+        data-testid="add-redirection-btn"
         redirectionsItem={item}
       />
     ),
