@@ -41,11 +41,13 @@ export default function RegionStep({
 
   const regions = useMemo(() => {
     if (Array.isArray(localisations?.regions)) {
-      return localisations.regions.filter((region) =>
-        (capabilities || [])
-          .map((capacity) => capacity.regionName)
-          .includes(region.name),
-      );
+      return localisations.regions
+        .filter((region) =>
+          (capabilities || [])
+            .map((capacity) => capacity.regionName)
+            .includes(region.name),
+        )
+        .reverse();
     }
     return [];
   }, [localisations, capabilities]);
