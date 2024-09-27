@@ -50,8 +50,8 @@
             "interface": "",
             "size": 0
           },
-          "model": "",
-          "number": 0
+          "model": "Tesla V100S",
+          "number": 4
         },
         "memory": {
           "size": 7

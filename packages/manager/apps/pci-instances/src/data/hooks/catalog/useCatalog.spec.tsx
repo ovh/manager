@@ -6,13 +6,13 @@ import { SetupServer } from 'msw/lib/node';
 import { AxiosError } from 'axios';
 import { modelSelector, TModelSelector, useCatalog } from './useCatalog';
 import { TModelEntity } from '@/types/catalog/entity.types';
-import { setupCatalogServer } from '@/_mocks_/catalog/node';
+import { setupCatalogServer } from '@/__mocks__/catalog/node';
 import { instancesQueryKey } from '@/utils';
-import mockedCatalog1 from '@/_mocks_/catalog/catalogGenerated1.json';
-import mockedCatalog2 from '@/_mocks_/catalog/catalogGenerated2.json';
+import mockedCatalog1 from '@/__mocks__/catalog/catalogGenerated1.json';
+import mockedCatalog2 from '@/__mocks__/catalog/catalogGenerated2.json';
 import { TCatalogDto } from '@/types/catalog/api.types';
-import expectedEntity1 from '@/_mocks_/catalog/expectedEntity1.json';
-import expectedEntity2 from '@/_mocks_/catalog/expectedEntity2.json';
+import expectedEntity1 from '@/__mocks__/catalog/expectedEntity1.json';
+import expectedEntity2 from '@/__mocks__/catalog/expectedEntity2.json';
 
 // initializers
 const initQueryClient = () => {
