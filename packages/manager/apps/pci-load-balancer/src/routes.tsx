@@ -11,6 +11,7 @@ export const ROUTE_PATHS = {
   LISTENERS: 'listeners',
   LISTENERS_LIST: 'list',
   LISTENER_DELETE: ':listenerId/delete',
+  LISTENERS_CREATE: 'create',
   POOLS: 'pools',
   STATISTICS: 'statistics',
   CERTIFICATES: 'certificates',
@@ -32,6 +33,9 @@ const ListenersListPage = lazy(() =>
 );
 const DeleteListenerPage = lazy(() =>
   import('@/pages/detail/listeners/delete/DeleteListener.page'),
+);
+const ListenersCreatePage = lazy(() =>
+  import('@/pages/detail/listeners/create/Create.page'),
 );
 const PoolsPage = lazy(() => import('@/pages/detail/pools/Pools.page'));
 const StatisticsPage = lazy(() =>
@@ -86,6 +90,11 @@ const Routes = (
           <Route
             path={ROUTE_PATHS.LISTENER_DELETE}
             Component={DeleteListenerPage}
+          />
+          <Route
+            id="listeners-create"
+            path={ROUTE_PATHS.LISTENERS_CREATE}
+            Component={ListenersCreatePage}
           />
         </Route>
       </Route>

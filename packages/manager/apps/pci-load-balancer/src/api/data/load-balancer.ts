@@ -88,6 +88,7 @@ export const deleteLoadBalancer = async (
 
   return data;
 };
+
 export type TLoadBalancerListener = {
   id: string;
   name: string;
@@ -122,5 +123,67 @@ export const updateLoadBalancerName = async (
       name,
     },
   );
+
+  return data;
+};
+
+export type TLoadBalancerPool = {
+  id: string;
+  name: string;
+  protocol: string;
+  algorithm: string;
+  operatingStatus: string;
+  provisioningStatus: string;
+  sessionPersistence: {
+    type: string;
+    cookieName: string;
+  };
+  loadbalancerId: string;
+  listenerId: string;
+};
+
+export const getLoadBalancerPools = async (
+  projectId: string,
+  region: string,
+  loadBalancerId: string,
+): Promise<TLoadBalancerPool[]> => {
+  const { data } = await v6.get<TLoadBalancerPool[]>(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/pool?loadbalancerId=${loadBalancerId}`,
+  );
+
+  return data;
+};
+
+interface CreateListenerProps {
+  projectId: string;
+  region: string;
+  loadBalancerId: string;
+  name: string;
+  protocol: string;
+  port: number;
+  defaultPoolId?: string;
+}
+
+export const createListener = async ({
+  projectId,
+  region,
+  loadBalancerId,
+  name,
+  protocol,
+  port,
+  defaultPoolId,
+}: CreateListenerProps) => {
+  console.log('tata');
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/listener`,
+    {
+      loadbalancerId: loadBalancerId,
+      name,
+      protocol,
+      port,
+      defaultPoolId,
+    },
+  );
+
   return data;
 };

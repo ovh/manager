@@ -4,10 +4,12 @@ import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { paginateResults, sortResults } from '@/helpers';
 import {
+  createListener,
   deleteLoadBalancer,
   getLoadBalancer,
   getLoadBalancerFlavor,
   getLoadBalancerListeners,
+  getLoadBalancerPools,
   getLoadBalancers,
   TLoadBalancer,
   updateLoadBalancerName,
@@ -161,6 +163,58 @@ export const useRenameLoadBalancer = ({
   };
 };
 
+export interface ListenerInfoProps {
+  name: string;
+  protocol: string;
+  port: number;
+  defaultPoolId?: string;
+}
+
+export interface CreateListenerProps {
+  projectId: string;
+  region: string;
+  loadBalancerId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+}
+
+export const useCreateLoadBalancer = ({
+  projectId,
+  region,
+  loadBalancerId,
+  onError,
+  onSuccess,
+}: CreateListenerProps) => {
+  const mutation = useMutation({
+    mutationFn: (listenerInfo: ListenerInfoProps) =>
+      createListener({
+        projectId,
+        region,
+        loadBalancerId,
+        ...listenerInfo,
+      }),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: [
+          'project',
+          projectId,
+          'region',
+          region,
+          'loadbalancer',
+          loadBalancerId,
+        ],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    createListener: (listenerInfo: ListenerInfoProps) =>
+      mutation.mutate(listenerInfo),
+    ...mutation,
+  };
+};
+
 export const useAllLoadBalancerListeners = ({
   projectId,
   region,
@@ -229,3 +283,19 @@ export const useLoadBalancerListeners = (
     ],
   );
 };
+
+export const useLoadBalancerPools = ({
+  projectId,
+  region,
+  loadBalancerId,
+}: {
+  projectId: string;
+  region: string;
+  loadBalancerId: string;
+}) =>
+  useQuery({
+    queryKey: ['project', projectId, 'region', region, 'pool', loadBalancerId],
+    queryFn: () => getLoadBalancerPools(projectId, region, loadBalancerId),
+    enabled: !!region && !!loadBalancerId,
+    throwOnError: true,
+  });
