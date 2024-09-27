@@ -36,7 +36,6 @@ export function VersionSelector({
   const [lastVersion] = reverseVersion;
 
   useEffect(() => {
-    // If the request for fetching last versions is not pending and no version has been selected, select the last version by default
     if (!isPending && !versionSelected) {
       onSelectVersion(lastVersion);
     }
