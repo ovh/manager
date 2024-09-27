@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.77.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.77.2...@ovh-ux/manager-container-app@0.77.3) (2024-09-27)
+
+
+### Bug Fixes
+
+* **container:** fix reset universe for containerContext ([#13189](https://github.com/ovh/manager/issues/13189)) ([d59b57d](https://github.com/ovh/manager/commit/d59b57d2e3935425647f9692cc856e5793546165))
+
+
+
+
+
 ## [0.77.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.77.1...@ovh-ux/manager-container-app@0.77.2) (2024-09-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
