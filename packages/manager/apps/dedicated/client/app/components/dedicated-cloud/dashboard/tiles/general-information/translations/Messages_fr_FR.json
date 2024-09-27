@@ -1,8 +1,8 @@
 {
   "ovhManagerPccDashboardGeneralInformation_heading": "Informations générales",
 
-  "ovhManagerPccDashboardGeneralInformation_description_term": "Description",
-  "ovhManagerPccDashboardGeneralInformation_description_actionMenu_update": "Modifier la description",
+  "ovhManagerPccDashboardGeneralInformation_description_term": "Nom",
+  "ovhManagerPccDashboardGeneralInformation_description_actionMenu_update": "Modifier le nom",
 
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_term": "Solution logicielle",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_available": "Mise à jour disponible",
