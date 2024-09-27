@@ -4,6 +4,6 @@ import { TVcdCatalog } from '@/types/vcd-catalog.interface';
 export const getVcdCatalog = async (
   serviceName: string,
 ): Promise<ApiResponse<TVcdCatalog>> =>
-  apiClient.v2.get(
+  apiClient.v6.get(
     `/order/cartServiceOption/vmwareCloudDirector/${serviceName}`,
   );
