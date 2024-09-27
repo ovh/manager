@@ -47,6 +47,6 @@
   "pci_projects_project_storages_containers_add_deployment_mode_soon": "Coming soon",
   "pci_projects_project_storages_containers_add_offers_estimated_price": "À partir de {{price}} HT/mois/To",
   "pci_projects_project_storages_containers_add_deployment_mode_price": "{{price}} HT/mois/To*",
-  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "*Le prix indiqué correspond au prix publique d'1 To de stockage pendant 30 jours. Pour plus d'informations ",
+  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "*Le prix indiqué correspond au prix publique d'1 To de stockage pendant 30 jours. Pour plus d'informations, ",
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "consulter la page des prix."
 }
