@@ -75,9 +75,9 @@ export const useDatagridColumn = () => {
     },
     {
       id: 'actions',
-      cell: () => (
+      cell: (props: TLoadBalancerListener) => (
         <div className="min-w-16">
-          <ActionsComponent />
+          <ActionsComponent listenerId={props.id} />
         </div>
       ),
       label: '',

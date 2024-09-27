@@ -5,7 +5,6 @@ import * as dateFnsLocales from 'date-fns/locale';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
-import { TLoadBalancer } from '@/api/data/load-balancer';
 
 export const paginateResults = <T>(
   items: T[],
