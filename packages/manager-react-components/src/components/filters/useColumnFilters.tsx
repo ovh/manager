@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import { Filter } from '../../hooks/useCoreApiClient';
 
-import { useState } from 'react';
 import { FilterWithLabel } from './interface';
 import './translations';
 

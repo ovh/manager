@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { ManagerReactComponentContext } from '../context/ManagerReactComponentsContext';
 
 export interface IMe {
   ovhSubsidiary: string;
@@ -9,7 +9,9 @@ export interface IMe {
 }
 
 export const useMe = () => {
-  const context = useContext(ShellContext);
+  const mrcContext = useContext(ManagerReactComponentContext);
+  const { shellContext } = mrcContext;
+  const context = useContext(shellContext);
   const [me, setMe] = useState<IMe>(null);
 
   useEffect(() => {

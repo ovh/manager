@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { ApiError, ApiResponse } from '../../useCoreApiClient';
-import { ManagerReactComponentContext } from '../../../context/ManagerReactContext';
 import { useQuery } from '@tanstack/react-query';
+import { ApiError, ApiResponse } from '../../useCoreApiClient';
+import { ManagerReactComponentContext } from '../../../context/ManagerReactComponentsContext';
 
 export type UseTaskParams = {
   resourceUrl: string;
@@ -51,8 +51,6 @@ export const useTask = ({
       try {
         setIsPending(true);
         const result = await apiClient[apiVersion].get(url);
-
-        console.info('result ALEX  : ', result);
         if (apiVersion === 'v2') {
           if (result.data?.status === 'DONE') {
             setIsPending(false);

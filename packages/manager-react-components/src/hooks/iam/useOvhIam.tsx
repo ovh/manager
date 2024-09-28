@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
+import { ManagerReactComponentContext } from '../../context/ManagerReactComponentsContext';
 import { IamCheckResponse, IamInterface } from './iam.interface';
 
 export const fetchAuthorizationsCheck = async ({

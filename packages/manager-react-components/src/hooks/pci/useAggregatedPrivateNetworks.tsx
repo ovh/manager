@@ -1,7 +1,6 @@
-import { useMemo } from 'react';
-import { useContext } from 'react';
-import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
+import { useMemo, useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { ManagerReactComponentContext } from '../../context/ManagerReactComponentsContext';
 import { Region } from './useProjectRegions';
 
 export interface Subnet {

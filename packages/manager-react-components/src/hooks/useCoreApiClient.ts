@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import axios, { AxiosResponse, AxiosError } from 'axios';
-import { ManagerReactComponentContext } from '../context/ManagerReactContext';
+import { AxiosResponse, AxiosError } from 'axios';
+import { ManagerReactComponentContext } from '../context/ManagerReactComponentsContext';
 
 export type ApiResponse<T> = AxiosResponse<T>;
 export type ApiError = AxiosError<{ message: string }>;

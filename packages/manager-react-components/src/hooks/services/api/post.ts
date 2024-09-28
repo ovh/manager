@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { ManagerReactComponentContext } from '../../../context/ManagerReactContext';
+import { useContext } from 'react';
+import { ManagerReactComponentContext } from '../../../context/ManagerReactComponentsContext';
 
 export type DeleteServiceParams = {
   serviceId: number;

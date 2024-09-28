@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
-import { ApiError } from '../useCoreApiClient';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { ManagerReactComponentContext } from '../../context/ManagerReactComponentsContext';
+import { ApiError } from '../useCoreApiClient';
 
 export type UseFeatureAvailabilityResult<T = Record<string, boolean>> =
   UseQueryResult<T, ApiError>;

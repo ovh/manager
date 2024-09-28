@@ -35,8 +35,6 @@ export default defineConfig({
     rollupOptions: {
       external: [
         'axios',
-        '@ovh-ux/request-tagger',
-        '@ovh-ux/manager-react-shell-client',
         '@tanstack/react-query',
         'i18next',
         'i18next-http-backend',
@@ -49,7 +47,6 @@ export default defineConfig({
       output: {
         globals: {
           axios: 'axios',
-          '@ovh-ux/manager-react-shell-client': 'ManagerReactShellClient',
           '@tanstack/react-query': 'ReactQuery',
           i18next: 'i18next',
           'i18next-http-backend': 'i18nextHttpBackend',

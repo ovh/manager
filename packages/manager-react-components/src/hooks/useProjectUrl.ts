@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { ManagerReactComponentContext } from '../context/ManagerReactComponentsContext';
 
 export const useProjectUrl = (appName: string) => {
   const { projectId } = useParams();
-  const { navigation } = useContext(ShellContext).shell;
+  const context = useContext(ManagerReactComponentContext);
+  const { shellContext } = context;
+  const { navigation } = useContext(shellContext).shell;
 
   const [url, setUrl] = useState('public-cloud');
 

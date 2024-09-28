@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { ManagerReactComponentContext } from '../context/ManagerReactContext';
 import { useQuery } from '@tanstack/react-query';
+import { ManagerReactComponentContext } from '../context/ManagerReactComponentsContext';
 
 type TRegionService = {
   endpoint: string;

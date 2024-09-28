@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useContext } from 'react';
-import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
+import { ManagerReactComponentContext } from '../../context/ManagerReactComponentsContext';
 
 export interface Region {
   continentCode: string;

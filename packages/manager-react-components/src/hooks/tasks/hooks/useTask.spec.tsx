@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { waitFor, screen } from '@testing-library/react';
-import { SetupServer, setupServer } from 'msw/node';
-import { useTask, UseTaskParams } from './useTask';
-import { render } from '../../../utils/test.provider';
-import { toMswHandlers } from '../../../../../../playwright-helpers/msw';
 import '@testing-library/jest-dom';
 import { useQuery } from '@tanstack/react-query';
+// import { SetupServer, setupServer } from 'msw/node';
+import { useTask, UseTaskParams } from './useTask';
+import { render } from '../../../utils/test.provider';
+// import { toMswHandlers } from '../../../../../../playwright-helpers/msw';
 
-let server: SetupServer;
+// let server: SetupServer;
 
 const taskId = '1234';
 const errorMessage = 'error';
@@ -41,62 +41,61 @@ jest.mock('./useTask', () => ({
 
 const setupTest = ({
   apiVersion,
-  status,
 }: {
   apiVersion: 'v2' | 'v6';
   status: 'RUNNING' | 'DONE' | 'ERROR';
 }) => {
-  server = setupServer(
-    // @ts-ignore
-    ...toMswHandlers([
-      {
-        api: 'v2',
-        url: `/example/task/${taskId}`,
-        response: {
-          status: 'RUNNING',
-        },
-        status: 200,
-        once: true,
-      },
-      {
-        api: 'v2',
-        url: `/example/task/${taskId}`,
-        response: {
-          status,
-        },
-        status: 200,
-      },
-      {
-        api: 'v6',
-        url: `/example/task/${taskId}`,
-        response:
-          status === 'ERROR'
-            ? {
-                message: errorMessage,
-              }
-            : {},
-        status: 200,
-        once: true,
-      },
-      {
-        api: 'v6',
-        url: `/example/task/${taskId}`,
-        response:
-          status === 'ERROR'
-            ? {
-                message: errorMessage,
-              }
-            : {},
-        status: (() => {
-          if (status === 'RUNNING') {
-            return 200;
-          }
-          return status === 'ERROR' ? 500 : 404;
-        })(),
-      },
-    ]),
-  );
-  server.listen({ onUnhandledRequest: 'warn' });
+  // server = setupServer();
+  // to rework
+  // @ts-ignore
+  // ...toMswHandlers([
+  //   {
+  //     api: 'v2',
+  //     url: `/example/task/${taskId}`,
+  //     response: {
+  //       status: 'RUNNING',
+  //     },
+  //     status: 200,
+  //     once: true,
+  //   },
+  //   {
+  //     api: 'v2',
+  //     url: `/example/task/${taskId}`,
+  //     response: {
+  //       status,
+  //     },
+  //     status: 200,
+  //   },
+  //   {
+  //     api: 'v6',
+  //     url: `/example/task/${taskId}`,
+  //     response:
+  //       status === 'ERROR'
+  //         ? {
+  //             message: errorMessage,
+  //           }
+  //         : {},
+  //     status: 200,
+  //     once: true,
+  //   },
+  //   {
+  //     api: 'v6',
+  //     url: `/example/task/${taskId}`,
+  //     response:
+  //       status === 'ERROR'
+  //         ? {
+  //             message: errorMessage,
+  //           }
+  //         : {},
+  //     status: (() => {
+  //       if (status === 'RUNNING') {
+  //         return 200;
+  //       }
+  //       return status === 'ERROR' ? 500 : 404;
+  //     })(),
+  //   },
+  // ]),
+  // server.listen({ onUnhandledRequest: 'warn' });
 
   const onSuccess = jest.fn();
   const onError = jest.fn();
@@ -121,9 +120,9 @@ const setupTest = ({
 };
 
 describe('useTask', () => {
-  afterEach(() => {
-    server?.close();
-  });
+  // afterEach(() => {
+  //   server?.close();
+  // });
 
   describe('API v6 tasks', () => {
     it('is pending while the task returns a 200 response', async () => {

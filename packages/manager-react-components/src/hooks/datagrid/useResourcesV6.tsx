@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import isDate from 'lodash.isdate';
 import { useQuery } from '@tanstack/react-query';
 import { IcebergFetchParamsV6 } from '../useCoreApiClient';
-import { useContext } from 'react';
-import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
+import { ManagerReactComponentContext } from '../../context/ManagerReactComponentsContext';
 import { ColumnSort } from '../../components';
 
 export interface ColumnDatagrid {

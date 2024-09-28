@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ManagerReactComponentContext } from '../../../context/ManagerReactContext';
+import { ManagerReactComponentContext } from '../../../context/ManagerReactComponentsContext';
 
 export type UpdateServiceNameParams = {
   /** Service id */

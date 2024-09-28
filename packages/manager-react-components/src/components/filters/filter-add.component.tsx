@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from 'react';
-import { FilterComparator, Filter } from '../../hooks/useCoreApiClient';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -15,6 +14,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { FilterComparator, Filter } from '../../hooks/useCoreApiClient';
 import './translations';
 
 type ColumnFilter = {

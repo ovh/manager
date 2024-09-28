@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useContext } from 'react';
-import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
-import { IcebergFetchParamsV2 } from '../useCoreApiClient';
+import { useEffect, useState, useContext } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { ManagerReactComponentContext } from '../../context/ManagerReactComponentsContext';
+import { IcebergFetchParamsV2 } from '../useCoreApiClient';
 import { ColumnSort } from '../../components';
 
 interface IcebergV2Hook {

@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { ManagerReactComponentContext } from '../../../context/ManagerReactContext';
+import { useContext } from 'react';
+import { ManagerReactComponentContext } from '../../../context/ManagerReactComponentsContext';
 import { ServiceDetails } from '../services.type';
 
 export type GetResourceServiceIdParams = {

@@ -29,7 +29,7 @@ jest.mock('./useFeatureAvailability', () => ({
   useFeatureAvailability: jest.fn(),
 }));
 
-const setupTest = (useCase: 'error' | 'ok') => {
+const setupTest = () => {
   return render(<Example />);
 };
 
@@ -49,7 +49,7 @@ describe('useFeatureAvailability', () => {
       status: 500,
       totalCount: 0,
     });
-    setupTest('error');
+    setupTest();
     await waitFor(() =>
       expect(screen.getByText(featureAvailabilityError)).toBeVisible(),
     );
@@ -66,7 +66,7 @@ describe('useFeatureAvailability', () => {
       status: 200,
       totalCount: 3,
     });
-    setupTest('ok');
+    setupTest();
     await waitFor(() => {
       expect(screen.getByText('feature1 available')).toBeVisible();
       expect(screen.queryByText('feature2 available')).not.toBeInTheDocument();

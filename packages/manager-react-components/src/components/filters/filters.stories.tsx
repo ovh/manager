@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import {
-  FilterComparator,
-  FilterCategories,
-} from '../../hooks/useCoreApiClient';
-import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
@@ -18,6 +14,10 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  FilterComparator,
+  FilterCategories,
+} from '../../hooks/useCoreApiClient';
 import { FilterAdd } from './filter-add.component';
 import { FilterList } from './filter-list.component';
 import { useColumnFilters } from './useColumnFilters';
