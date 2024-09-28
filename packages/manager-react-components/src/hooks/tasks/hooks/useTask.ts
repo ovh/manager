@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ApiError, ApiResponse } from '../../useCoreApiClient';
-import { ManagerReactComponentContext } from '../../../context/ManagerReactContext';
+import { ManagerReactComponentContext } from '../../../context/ManagerReactComponentsContext';
 import { useQuery } from '@tanstack/react-query';
 
 export type UseTaskParams = {

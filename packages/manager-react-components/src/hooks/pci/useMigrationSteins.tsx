@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
+import { ManagerReactComponentContext } from '../../context/ManagerReactComponentsContext';
 import { useQuery } from '@tanstack/react-query';
 
 export interface Stein {

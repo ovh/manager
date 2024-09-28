@@ -1,8 +1,5 @@
-import React from 'react';
-import {
-  useEnvironment,
-  useTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import React, { useContext } from 'react';
+import { ManagerReactComponentContext } from '../../../context/ManagerReactComponentsContext';
 import { useTranslation } from 'react-i18next';
 import { GuidesHeader } from '../guides-header.component';
 import { GUIDES_LIST } from './pci-guides-header.constants';
@@ -14,8 +11,10 @@ interface PciGuidesHeaderProps {
 }
 
 export function PciGuidesHeader({ category }: PciGuidesHeaderProps) {
-  const { ovhSubsidiary } = useEnvironment().getUser();
-  const { trackClick } = useTracking();
+  const context = useContext(ManagerReactComponentContext);
+  const { ShellContext } = context;
+  const managerContext = useContext(ShellContext);
+  const { ovhSubsidiary } = managerContext?.environment?.getUser();
   const [t] = useTranslation('pci-guides-header');
   return (
     <GuidesHeader
@@ -26,7 +25,7 @@ export function PciGuidesHeader({ category }: PciGuidesHeaderProps) {
         t(`pci_project_guides_header_${guide.key}`)
       }
       onGuideClick={(guide: Guide) => {
-        trackClick({
+        managerContext?.shell?.tracking?.trackClick({
           name: `public-cloud_credit_and_vouchers${guide.tracking}`,
           type: 'action',
         });

@@ -8,7 +8,7 @@ import {
   servicesMockErrors,
   GetServicesMocksParams,
 } from '../../../hooks/services/mocks/services.mock';
-import { toMswHandlers } from '../../../../../../playwright-helpers/msw';
+// import { toMswHandlers } from '../../../../../../playwright-helpers/msw';
 import { SetupServer, setupServer } from 'msw/node';
 import '@testing-library/jest-dom';
 
@@ -16,8 +16,8 @@ let server: SetupServer;
 
 const setupTest = (params: GetServicesMocksParams) => {
   // @ts-ignore
-  server = setupServer(...toMswHandlers(getServicesMocks(params)));
-  server.listen({ onUnhandledRequest: 'bypass' });
+  // server = setupServer(...toMswHandlers(getServicesMocks(params)));
+  // server.listen({ onUnhandledRequest: 'bypass' });
 
   const onConfirm = jest.fn();
   render(

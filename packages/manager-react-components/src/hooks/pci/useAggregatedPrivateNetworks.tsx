@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useContext } from 'react';
-import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
+import { ManagerReactComponentContext } from '../../context/ManagerReactComponentsContext';
 import { useQuery } from '@tanstack/react-query';
 import { Region } from './useProjectRegions';
 

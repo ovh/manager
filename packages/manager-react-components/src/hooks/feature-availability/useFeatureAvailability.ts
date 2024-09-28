@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
+import { ManagerReactComponentContext } from '../../context/ManagerReactComponentsContext';
 import { ApiError } from '../useCoreApiClient';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 

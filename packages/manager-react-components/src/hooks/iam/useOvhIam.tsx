@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
+import { ManagerReactComponentContext } from '../../context/ManagerReactComponentsContext';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { IamCheckResponse, IamInterface } from './iam.interface';
 

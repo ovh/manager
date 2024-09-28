@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useContext } from 'react';
-import { ManagerReactComponentContext } from '../../context/ManagerReactContext';
+import { ManagerReactComponentContext } from '../../context/ManagerReactComponentsContext';
 import { IcebergFetchParamsV2 } from '../useCoreApiClient';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { ColumnSort } from '../../components';
