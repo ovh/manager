@@ -1,4 +1,4 @@
-import { createContext, Context } from 'react';
+import React, { createContext, Context, useMemo } from 'react';
 import axios, { AxiosInstance } from 'axios';
 import { Region } from './environment';
 import { Environment } from './environment/environment';
@@ -83,11 +83,21 @@ export const ManagerReactComponentsProvider = ({
   apiClient,
   iceberg,
   shellContext,
+}: {
+  children: JSX.Element;
+  apiClient: Record<string, AxiosInstance>;
+  iceberg: IcebergType;
+  shellContext: Context<ShellContextType>;
 }) => {
+  const value = useMemo(() => {
+    return {
+      apiClient,
+      iceberg,
+      shellContext,
+    };
+  }, [apiClient, iceberg, shellContext]);
   return (
-    <ManagerReactComponentContext.Provider
-      value={{ apiClient, iceberg, shellContext }}
-    >
+    <ManagerReactComponentContext.Provider value={value}>
       {children}
     </ManagerReactComponentContext.Provider>
   );

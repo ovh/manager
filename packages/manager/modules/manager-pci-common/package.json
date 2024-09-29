@@ -44,7 +44,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-config": "^7.3.2",
     "@ovh-ux/manager-core-api": "^0.7.1",
-    "@ovh-ux/manager-react-components": "^1.26.0",
+    "@ovh-ux/manager-react-components": "^1.32.2",
     "@ovh-ux/manager-react-shell-client": "^0.6.1",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
     "@ovh-ux/shell": "^3.6.1",

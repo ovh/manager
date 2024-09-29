@@ -16,7 +16,7 @@ export const getProjectRegionsQueryKey = (projectId: string) => [
   'regions',
 ];
 
-export const getProjectRegions = async (
+export const GetProjectRegions = async (
   projectId: string,
 ): Promise<Region[]> => {
   const context = useContext(ManagerReactComponentContext);
@@ -31,5 +31,5 @@ export const getProjectRegions = async (
 export const useProjectRegions = (projectId: string) =>
   useQuery({
     queryKey: getProjectRegionsQueryKey(projectId),
-    queryFn: () => getProjectRegions(projectId),
+    queryFn: () => GetProjectRegions(projectId),
   });

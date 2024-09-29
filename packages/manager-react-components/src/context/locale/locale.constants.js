@@ -1,4 +1,3 @@
-import { CountryCode } from '../locale/country-code.enum';
 export const LANGUAGES = {
   available: [
     {
@@ -38,17 +37,16 @@ export const LANGUAGES = {
   fallback: 'fr_FR',
   preferred: {
     en: {
-      US: CountryCode.GB,
-      CA: CountryCode.GB,
-      EU: CountryCode.GB,
+      US: 'GB',
+      CA: 'GB',
+      EU: 'GB',
     },
     fr: {
-      US: CountryCode.CA,
-      CA: CountryCode.CA,
-      EU: CountryCode.FR,
+      US: 'CA',
+      CA: 'CA',
+      EU: 'FR',
     },
   },
 };
 export const localeStorageKey = 'univers-selected-language';
 export const localeRegex = /^([a-zA-Z]+)(?:[_-]([a-zA-Z]+))?$/;
-//# sourceMappingURL=locale.constants.js.map

@@ -18,7 +18,7 @@ export type TRegion = {
   services: TRegionService[];
 };
 
-export const getProjectRegions = async (
+export const GetProjectRegions = async (
   projectId: string,
 ): Promise<TRegion[]> => {
   const context = useContext(ManagerReactComponentContext);
@@ -32,13 +32,13 @@ export const getProjectRegions = async (
 export const useProjectRegions = (projectId: string) =>
   useQuery({
     queryKey: ['project', projectId, 'regions'],
-    queryFn: () => getProjectRegions(projectId),
+    queryFn: () => GetProjectRegions(projectId),
   });
 
 export const useProjectLocalRegions = (projectId: string) =>
   useQuery({
     queryKey: ['project', projectId, 'regions', 'local'],
-    queryFn: () => getProjectRegions(projectId),
+    queryFn: () => GetProjectRegions(projectId),
     select: (regions) =>
       regions.filter(({ type = [] }) => type === 'localzone'),
   });
@@ -46,7 +46,7 @@ export const useProjectLocalRegions = (projectId: string) =>
 export const useProjectNonLocalRegions = (projectId: string) =>
   useQuery({
     queryKey: ['project', projectId, 'regions', 'non-local'],
-    queryFn: () => getProjectRegions(projectId),
+    queryFn: () => GetProjectRegions(projectId),
     select: (regions) =>
       regions.filter(({ type = [] }) => type !== 'localzone'),
   });

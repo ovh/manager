@@ -14,14 +14,6 @@ interface QueryParams {
   sorting?: ColumnSort;
 }
 
-/**
- * @deprecated use fetchIcebergV6 from @ovh-ux/manager-core-api
- */
-export const getResourcesIcebergV6 = () => {
-  const context = useContext(ManagerReactComponentContext);
-  return context.iceberg.fetchIcebergV6;
-};
-
 export function useResourcesIcebergV6<T = unknown>({
   route,
   pageSize = 10,

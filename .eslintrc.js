@@ -24,6 +24,7 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-cycle': 'off',
     'import/prefer-default-export': 'off',
+    'no-useless-constructor': 'off',
   },
   ignorePatterns: [
     '**/vendor/**',

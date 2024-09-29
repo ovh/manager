@@ -5,6 +5,12 @@ import {
   initShellContext,
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
+import { ManagerReactComponentsProvider } from '@ovh-ux/manager-react-components';
+import {
+  apiClient,
+  fetchIcebergV6,
+  fetchIcebergV2,
+} from '@ovh-ux/manager-core-api';
 import { setupMocks } from '../mocks/setup';
 import { App } from './App';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
@@ -37,7 +43,13 @@ const init = async ({
   root.render(
     <React.StrictMode>
       <ShellContext.Provider value={context}>
-        <App />
+        <ManagerReactComponentsProvider
+          shellContext={ShellContext}
+          apiClient={apiClient}
+          iceberg={{ fetchIcebergV2, fetchIcebergV6 }}
+        >
+          <App />
+        </ManagerReactComponentsProvider>
       </ShellContext.Provider>
     </React.StrictMode>,
   );

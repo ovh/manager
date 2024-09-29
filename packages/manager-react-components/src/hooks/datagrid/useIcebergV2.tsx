@@ -11,15 +11,6 @@ interface IcebergV2Hook {
 
 export const defaultPageSize = 10;
 
-/**
- * @deprecated use fetchIcebergV2 from @ovh-ux/manager-core-api
- */
-export const getResourcesIcebergV2 = () => {
-  const context = useContext(ManagerReactComponentContext);
-  const { iceberg } = context;
-  return iceberg.fetchIcebergV2;
-};
-
 export function useResourcesIcebergV2<T = unknown>({
   route,
   pageSize = defaultPageSize,

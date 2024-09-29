@@ -3,7 +3,14 @@ import ReactDOM from 'react-dom/client';
 import {
   ShellProvider,
   initShellContext,
+  ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+import { ManagerReactComponentsProvider } from '@ovh-ux/manager-react-components';
+import {
+  apiClient,
+  fetchIcebergV6,
+  fetchIcebergV2,
+} from '@ovh-ux/manager-core-api';
 import App from './App';
 import initI18n from './i18n';
 
@@ -42,7 +49,13 @@ const init = async (
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <ShellProvider client={context}>
-        <App />
+        <ManagerReactComponentsProvider
+          shellContext={ShellContext}
+          apiClient={apiClient}
+          iceberg={{ fetchIcebergV2, fetchIcebergV6 }}
+        >
+          <App />
+        </ManagerReactComponentsProvider>
       </ShellProvider>
     </React.StrictMode>,
   );

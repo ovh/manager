@@ -5,6 +5,12 @@ import {
   initShellContext,
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
+import { ManagerReactComponentsProvider } from '@ovh-ux/manager-react-components';
+import {
+  apiClient,
+  fetchIcebergV2,
+  fetchIcebergV6,
+} from '@ovh-ux/manager-core-api';
 import App from './App';
 import './global.css';
 import '@/vite-hmr';
@@ -31,7 +37,16 @@ const init = async (appName: string) => {
   root.render(
     <React.StrictMode>
       <ShellContext.Provider value={context}>
-        <App />
+        <ManagerReactComponentsProvider
+          shellContext={ShellContext}
+          apiClient={apiClient}
+          iceberg={{
+            fetchIcebergV2,
+            fetchIcebergV6,
+          }}
+        >
+          <App />
+        </ManagerReactComponentsProvider>
       </ShellContext.Provider>
     </React.StrictMode>,
   );
