@@ -23,9 +23,16 @@ const DatagridProfileCell = (vcdStorage: IVcdStorage) => (
 const DatagridTypeCell = (vcdStorage: IVcdStorage) => (
   <DataGridTextCell>{vcdStorage?.currentState?.type}</DataGridTextCell>
 );
-const DatagridCapacityCell = (vcdStorage: IVcdStorage) => (
-  <DataGridTextCell>{vcdStorage?.currentState.capacity}</DataGridTextCell>
-);
+const DatagridCapacityCell = (vcdStorage: IVcdStorage) => {
+  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+  return (
+    <DataGridTextCell>
+      {t('managed_vcd_vdc_quota_value', {
+        quota: vcdStorage?.currentState.capacity,
+      })}
+    </DataGridTextCell>
+  );
+};
 const DatagridBillingCell = (vcdStorage: IVcdStorage) => {
   const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/compute');
   return (
@@ -36,9 +43,6 @@ const DatagridBillingCell = (vcdStorage: IVcdStorage) => {
     </DataGridTextCell>
   );
 };
-const DatagridStateCell = (vcdStorage: IVcdStorage) => (
-  <DataGridTextCell>{vcdStorage?.resourceStatus}</DataGridTextCell>
-);
 
 export default function StorageListingPage() {
   const { id, vdcId } = useParams();
@@ -84,12 +88,6 @@ export default function StorageListingPage() {
       id: 'billing',
       cell: DatagridBillingCell,
       label: tCompute('managed_vcd_vdc_compute_billing'),
-      isSortable: false,
-    },
-    {
-      id: 'state',
-      cell: DatagridStateCell,
-      label: t('managed_vcd_vdc_storage_state'),
       isSortable: false,
     },
   ];
