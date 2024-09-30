@@ -7,6 +7,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import clsx from 'clsx';
 import { StepState } from '../useStep';
 import { VersionSelector } from '@/components/VersionSelector.component';
 
@@ -21,7 +22,9 @@ export function VersionStep({ onSubmit, step }: Readonly<VersionStepProps>) {
   const [version, setVersion] = useState('');
   return (
     <>
-      {!step.isLocked && <VersionSelector onSelectVersion={setVersion} />}
+      <div className={clsx(step.isLocked && 'hidden')}>
+        <VersionSelector onSelectVersion={setVersion} />
+      </div>
       {step.isLocked && version && (
         <OsdsTile color={ODS_THEME_COLOR_INTENT.primary} inline>
           <OsdsText

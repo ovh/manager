@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 import { FlavorSelector, KubeFlavor } from '@ovh-ux/manager-pci-common';
 import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import {
@@ -37,13 +38,13 @@ export function NodeTypeStep({
           {tNodePool('kubernetes_add_node_pool_description')}
         </OsdsText>
       </p>
-      {!step.isLocked && (
+      <div className={clsx(step.isLocked && 'hidden')}>
         <FlavorSelector
           projectId={projectId}
           region={region}
           onSelect={setFlavor}
         />
-      )}
+      </div>
       {!step.isLocked && (
         <OsdsButton
           className="mt-4 w-fit"

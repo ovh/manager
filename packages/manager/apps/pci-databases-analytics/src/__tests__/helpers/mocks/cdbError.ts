@@ -1,4 +1,4 @@
-import { CdbError } from '@/api/databases';
+import { CdbError } from '@/data/api/database';
 
 export const apiErrorMock = new CdbError(
   'test',
