@@ -1,151 +1,122 @@
-<div data-uib-dropdown>
-    <button
-        type="button"
-        class="btn btn-link dropdown-toggle"
-        title="{{:: 'common_actions' | translate }}"
-        data-uib-dropdown-toggle
+<!-- ACTIONS FOR UNIQ IPV4 AND UNIQ IPV6 -->
+<oui-action-menu
+    compact
+    aria-label="{{:: 'common_actions' | translate }}"
+    data-placement="bottom-end"
+>
+    <!-- DESCRIPTION -->
+    <oui-action-menu-item data-on-click="goToEditDescription(ipBlock)">
+        <span
+            data-ng-bind="ipBlock.description && ('ip_description_edit_title' | translate) || ('ip_description_new_title' | translate)"
+        ></span>
+    </oui-action-menu-item>
+
+    <!-- Edit or Association -->
+    <oui-action-menu-item
+        data-ng-if="!ipBlock.bringYourOwnIp"
+        data-on-click="goToEditOrAssociate(ipBlock)"
+    >
+        <span data-translate="ip_edit_or_assosiate_title"></span>
+    </oui-action-menu-item>
+
+    <!-- MOVE TO ANOTHER SERVICE -->
+    <oui-action-menu-item
+        data-ng-if="ipBlock.version === IP_TYPE.V4"
+        data-on-click="gotToAssociateIpBlock(ipBlock)"
+    >
+        <span data-translate="ip_description_edit_move"></span>
+    </oui-action-menu-item>
+
+    <!-- REVERSE:: only for ipv6block -->
+    <oui-action-menu-item
+        data-ng-if="ipBlock.version === IP_TYPE.V6 && !ipBlock.isUniq"
+        data-on-click="setAction('ip/reverse/add/ip-ip-reverse-add', { ipBlock: ipBlock })"
+    >
+        <span data-translate="ip_table_manage_add_ipv6block"></span>
+    </oui-action-menu-item>
+
+    <!-- DELEGATION REVERSE:: only for ipv6block -->
+    <oui-action-menu-item
+        data-ng-if="canReverseDelegations(ipBlock)"
+        data-on-click="setAction('ip/reverse/ip-ip-reverse', { ipBlock: ipBlock })"
+    >
+        <span data-translate="ip_table_manage_delegate_ipv6block"></span>
+    </oui-action-menu-item>
+
+    <oui-action-menu-divider
+        data-ng-if="ipBlock.type === FAILOVER"
+    ></oui-action-menu-divider>
+
+    <!-- ORGANISATION -->
+    <div data-ng-if="ipBlock.type === FAILOVER && ipBlock.organizationId">
+        <oui-action-menu-item
+            data-on-click="setAction('ip/organisation/view/ip-ip-organisation-view', { ipBlock: ipBlock })"
+        >
+            <span
+                data-translate="ip_table_manage_view_iporganisation_details"
+            ></span>
+        </oui-action-menu-item>
+
+        <oui-action-menu-item
+            data-on-click="setAction('ip/organisation/change/ip-ip-organisation-change', { ipBlock: ipBlock })"
+        >
+            <span
+                data-translate="ip_table_manage_view_iporganisation_change"
+            ></span>
+        </oui-action-menu-item>
+    </div>
+
+    <!-- IPMOVE -->
+    <oui-action-menu-item
+        data-ng-if="ipBlock.type === FAILOVER"
+        data-on-click="setAction('ip/block/move/ip-ip-block-move', { ipBlock: ipBlock })"
     >
         <span
-            class="ovh-font ovh-font-dots align-top"
-            aria-label="{{:: 'common_actions' | translate }}"
-            aria-hidden="true"
-        >
-        </span>
-    </button>
+            data-ng-bind=":: ('ip_table_manage_move_ipblock' | translate) + ADDITIONAL_IP"
+        ></span>
+    </oui-action-menu-item>
 
-    <ul class="dropdown-menu-right" data-uib-dropdown-menu>
-        <!-- DESCRIPTION -->
-        <li>
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="goToEditDescription(ipBlock)"
-                data-ng-bind="ipBlock.description && ('ip_description_edit_title' | translate) || ('ip_description_new_title' | translate)"
-            ></button>
-        </li>
-        <!-- Edit or Association -->
-        <li data-ng-if="!ipBlock.bringYourOwnIp">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="goToEditOrAssociate(ipBlock)"
-                data-translate="ip_edit_or_assosiate_title"
-            ></button>
-        </li>
+    <!-- Additional IP / PCC / VRACK DELETE-->
+    <oui-action-menu-item
+        data-ng-if="!ipBlock.bringYourOwnIp && (ipBlock.type === FAILOVER || ipBlock.type === PCC || ipBlock.type === VRACK)"
+        data-on-click="setAction('ip/block/delete/ip-ip-block-delete', { ipBlock: ipBlock })"
+        data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
+        data-oui-tooltip-placement="left"
+        data-disabled="!ipBlock.canBeTerminated"
+    >
+        <span
+            data-ng-bind=":: ('ip_table_manage_delete_ipblock' | translate) + ADDITIONAL_IP"
+        ></span>
+    </oui-action-menu-item>
 
-        <!-- MOVE TO ANOTHER SERVICE -->
-        <li data-ng-if="ipBlock.version === IP_TYPE.V4">
-            <a
-                data-ui-sref="app.ip.associate-ip-bloc({
-                    ips: [ipBlock.ipBlock]
-                })"
-                data-translate="ip_description_edit_move"
-            ></a>
-        </li>
-
-        <!-- REVERSE:: only for ipv6block -->
-        <li data-ng-if="ipBlock.version === IP_TYPE.V6 && !ipBlock.isUniq">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/reverse/add/ip-ip-reverse-add', { ipBlock: ipBlock })"
-                data-translate="ip_table_manage_add_ipv6block"
-            ></button>
-        </li>
-        <!-- DELEGATION REVERSE:: only for ipv6block -->
-        <li data-ng-if="canReverseDelegations(ipBlock)">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/reverse/ip-ip-reverse', { ipBlock: ipBlock })"
-                data-translate="ip_table_manage_delegate_ipv6block"
-            ></button>
-        </li>
-
-        <li
-            class="divider"
-            data-ng-if="ipBlock.type === FAILOVER"
-            role="separator"
-        ></li>
-
-        <!-- ORGANISATION -->
-        <li data-ng-if="ipBlock.type === FAILOVER && ipBlock.organizationId">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/organisation/view/ip-ip-organisation-view', { ipBlock: ipBlock })"
-                data-translate="ip_table_manage_view_iporganisation_details"
-            ></button>
-        </li>
-
-        <li data-ng-if="ipBlock.type === FAILOVER && ipBlock.organizationId">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/organisation/change/ip-ip-organisation-change', { ipBlock: ipBlock })"
-                data-translate="ip_table_manage_view_iporganisation_change"
-            ></button>
-        </li>
-
-        <!-- IPMOVE -->
-        <li data-ng-if="ipBlock.type === FAILOVER">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/block/move/ip-ip-block-move', { ipBlock: ipBlock })"
-                data-ng-bind=":: ('ip_table_manage_move_ipblock' | translate) + ADDITIONAL_IP"
-            ></button>
-        </li>
-
-        <!-- Additional IP / PCC / VRACK DELETE-->
-        <li
-            data-ng-if="!ipBlock.bringYourOwnIp && (ipBlock.type === FAILOVER || ipBlock.type === PCC || ipBlock.type === VRACK)"
-        >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/block/delete/ip-ip-block-delete', { ipBlock: ipBlock })"
-                data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
-                data-oui-tooltip-placement="left"
-                data-ng-disabled="!ipBlock.canBeTerminated"
-                data-ng-bind=":: ('ip_table_manage_delete_ipblock' | translate) + ADDITIONAL_IP"
-            ></button>
-        </li>
-
+    <!-- BYOIP SECTION -->
+    <div data-ng-if="ipBlock.bringYourOwnIp">
         <!-- BYOIP DELETE-->
-        <li data-ng-if="ipBlock.bringYourOwnIp && isAdmin">
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/byoip/delete/ip-ip-byoip-delete', { ipBlock: ipBlock }, 'info')"
-                data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
-                data-oui-tooltip-placement="left"
+        <oui-action-menu-item
+            data-ng-if="isAdmin"
+            data-on-click="setAction('ip/byoip/delete/ip-ip-byoip-delete', { ipBlock: ipBlock }, 'info')"
+            data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
+            data-oui-tooltip-placement="left"
+        >
+            <span
                 data-ng-bind=":: ('ip_table_manage_delete_ipblock' | translate) + ADDITIONAL_IP"
-            ></button>
-        </li>
+            ></span>
+        </oui-action-menu-item>
 
         <!-- BYOIP Slice -->
-        <li
-            data-ng-if="ipBlock.bringYourOwnIp && !ipBlock.ipBlock.endsWith('/32')"
+        <oui-action-menu-item
+            data-ng-if="!ipBlock.ipBlock.endsWith('/32')"
+            data-on-click="setAction('ip/byoip/slice/ip-ip-byoip-slice', { ipBlock: ipBlock })"
         >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/byoip/slice/ip-ip-byoip-slice', { ipBlock: ipBlock })"
-                data-translate="ip_table_manage_byoip_slice"
-            ></button>
-        </li>
+            <span data-translate="ip_table_manage_byoip_slice"></span>
+        </oui-action-menu-item>
 
         <!-- BYOIP Aggregate -->
-        <li
-            data-ng-if="ipBlock.bringYourOwnIp && !ipBlock.ipBlock.endsWith('/24')"
+        <oui-action-menu-item
+            data-ng-if="!ipBlock.ipBlock.endsWith('/24')"
+            data-on-click="setAction('ip/byoip/aggregate/ip-ip-byoip-aggregate', { ipBlock: ipBlock })"
         >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/byoip/aggregate/ip-ip-byoip-aggregate', { ipBlock: ipBlock })"
-                data-translate="ip_table_manage_byoip_aggregate"
-            ></button>
-        </li>
-    </ul>
-</div>
+            <span data-translate="ip_table_manage_byoip_aggregate"></span>
+        </oui-action-menu-item>
+    </div>
+</oui-action-menu>

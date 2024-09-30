@@ -34,6 +34,7 @@ export default class IpListController {
     $q,
     $rootScope,
     $scope,
+    $state,
     $timeout,
     $translate,
     Alerter,
@@ -54,6 +55,7 @@ export default class IpListController {
     this.$q = $q;
     this.$rootScope = $rootScope;
     this.$scope = $scope;
+    this.$state = $state;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.Alerter = Alerter;
@@ -372,6 +374,12 @@ export default class IpListController {
       $location.search('page', $scope.pageNumber);
       $location.search('pageSize', $scope.pageSize);
       refreshTable();
+    };
+
+    $scope.gotToAssociateIpBlock = function gotToAssociateIpBlock(ipBlock) {
+      this.$state.go('app.ip.associate-ip-bloc', {
+        ips: [ipBlock.ipBlock],
+      });
     };
 
     // Return a promise !
