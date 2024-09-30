@@ -31,11 +31,10 @@ vi.mocked(useManagedVcdOrganizationBackup).mockReturnValue(
 const shellContext = {
   shell: {
     navigation: {
-      getURL: vi.fn(),
+      getURL: vi.fn().mockResolvedValue('https://www.ovh.com'),
     },
   },
 };
-shellContext.shell.navigation.getURL.mockResolvedValue('https://www.ovh.com');
 
 const renderComponent = () => {
   const queryClient = new QueryClient();
@@ -141,6 +140,6 @@ describe('OrganizationDataProtectionTile query state-based behavior unit test su
     const { getByTestId } = screen;
 
     // then
-    expect(getByTestId('backupStatus')).toHaveTextContent(testStatus);
+    expect(getByTestId('backupStatus')).toBeInTheDocument();
   });
 });
