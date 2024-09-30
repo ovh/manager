@@ -1,9 +1,10 @@
 import { DomainType } from '@/api/domain';
+import { ResourceStatus } from '@/api/api.type';
 
 export const domainMock: DomainType[] = [
   {
     id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-    resourceStatus: 'READY',
+    resourceStatus: ResourceStatus.READY,
     checksum: 'string',
     targetSpec: {
       organizationId: '00000000-0000-0000-0000-000000000000',
@@ -40,7 +41,7 @@ export const domainMock: DomainType[] = [
   },
   {
     id: '3fa91f64-0000-4562-b3fc-000000000000',
-    resourceStatus: 'READY',
+    resourceStatus: ResourceStatus.READY,
     checksum: 'string',
     targetSpec: {
       organizationId: '00000000-0000-0000-0000-000000000000',
@@ -77,7 +78,7 @@ export const domainMock: DomainType[] = [
   },
   {
     id: '3fa91f64-0000-4562-b2fc-000000000000',
-    resourceStatus: 'READY',
+    resourceStatus: ResourceStatus.READY,
     checksum: 'string',
     targetSpec: {
       organizationId: '00000000-0000-0000-0000-000000000001',

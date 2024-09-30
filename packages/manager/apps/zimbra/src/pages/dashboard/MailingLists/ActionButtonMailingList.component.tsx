@@ -4,6 +4,7 @@ import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { MailingListItem } from './MailingLists';
+import { ResourceStatus } from '@/api/api.type';
 
 interface ActionButtonMailingListProps {
   mailingListItem: MailingListItem;
@@ -70,7 +71,13 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
     },
   ];
 
-  return <ActionMenu items={actionItems} isCompact />;
+  return (
+    <ActionMenu
+      disabled={mailingListItem.status !== ResourceStatus.READY}
+      items={actionItems}
+      isCompact
+    />
+  );
 };
 
 export default ActionButtonMailingList;

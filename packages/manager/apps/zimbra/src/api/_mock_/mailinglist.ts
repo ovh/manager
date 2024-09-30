@@ -1,3 +1,4 @@
+import { ResourceStatus } from '@/api/api.type';
 import {
   MailingListType,
   ModerationChoices,
@@ -25,7 +26,7 @@ export const mailingListDetailMock: MailingListType = {
     },
   ],
   id: '191fa41e-46c0-4000-8904-72ce6e738f80',
-  resourceStatus: 'CREATING',
+  resourceStatus: ResourceStatus.CREATING,
   targetSpec: {
     defaultReplyTo: ReplyToChoices.LIST,
     email: 'test@mailinglist.com',
@@ -61,7 +62,7 @@ export const mailingListsMock: MailingListType[] = [
       },
     ],
     id: '191fa41e-46c0-4000-8904-72ce6e738f80',
-    resourceStatus: 'CREATING',
+    resourceStatus: ResourceStatus.CREATING,
     targetSpec: {
       defaultReplyTo: ReplyToChoices.SENDER,
       email: 'test2@mailinglist.com',
@@ -94,7 +95,7 @@ export const mailingListsMock: MailingListType[] = [
       },
     ],
     id: '191fa41e-46c0-4000-8904-72ce6e738f80',
-    resourceStatus: 'CREATING',
+    resourceStatus: ResourceStatus.CREATING,
     targetSpec: {
       defaultReplyTo: ReplyToChoices.MAILBOX,
       email: 'test3@mailinglist.com',

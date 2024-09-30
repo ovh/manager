@@ -45,6 +45,8 @@ import {
 import Loading from '@/components/Loading/Loading';
 import { DiagnosticBadge } from '@/components/DiagnosticBadge';
 import { DomainType } from '@/api/domain/type';
+import { DnsRecordType } from '@/utils';
+import { AccountStatistics, ResourceStatus } from '@/api/api.type';
 
 export type DomainsItem = {
   id: string;
@@ -52,6 +54,7 @@ export type DomainsItem = {
   organizationId: string;
   organizationLabel: string;
   account: number;
+  status: ResourceStatus;
 };
 
 const columns: DatagridColumn<DomainsItem>[] = [
@@ -149,9 +152,11 @@ export default function Domains() {
       organizationId: item.currentState.organizationId,
       organizationLabel: item.currentState.organizationLabel,
       account: item.currentState.accountsStatistics.reduce(
-        (acc, current) => acc + current.configuredAccountsCount,
+        (acc: number, current: AccountStatistics) =>
+          acc + current.configuredAccountsCount,
         0,
       ),
+      status: item.resourceStatus,
     })) ?? [];
 
   return (

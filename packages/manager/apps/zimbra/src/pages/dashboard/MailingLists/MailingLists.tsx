@@ -118,11 +118,7 @@ const columns: DatagridColumn<MailingListItem>[] = [
   },
   {
     id: 'tooltip',
-    cell: (item) =>
-      (item.status === ResourceStatus.READY ||
-        item.status === ResourceStatus.ERROR) && (
-        <ActionButtonMailingList mailingListItem={item} />
-      ),
+    cell: (item) => <ActionButtonMailingList mailingListItem={item} />,
     label: '',
   },
 ];

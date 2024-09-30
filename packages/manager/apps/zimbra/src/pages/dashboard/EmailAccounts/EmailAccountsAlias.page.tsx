@@ -27,11 +27,12 @@ import { useGenerateUrl, usePlatform } from '@/hooks';
 import ActionButtonAlias from './ActionButtonAlias.component';
 import { BadgeStatus } from '@/components/BadgeStatus';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { ResourceStatus } from '@/api/api.type';
 
 export type AliasItem = {
   id: string;
   alias: string;
-  status: string;
+  status: ResourceStatus;
 };
 
 export default function EmailAccountsAlias() {
