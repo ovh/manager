@@ -31,11 +31,10 @@ vi.mocked(useManagedVcdOrganizationBackup).mockReturnValue(
 const shellContext = {
   shell: {
     navigation: {
-      getURL: vi.fn(),
+      getURL: vi.fn().mockResolvedValue('https://www.ovh.com'),
     },
   },
 };
-shellContext.shell.navigation.getURL.mockResolvedValue('https://www.ovh.com');
 
 const renderComponent = () => {
   const queryClient = new QueryClient();

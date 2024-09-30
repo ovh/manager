@@ -8,7 +8,7 @@ import {
   DATA_PROTECTION_BACKUP_TITLE,
   DATA_PROTECTION_RECOVERY_TITLE,
 } from '@/pages/dashboard/organization/OrganizationDashboard.constants';
-import BackupTileItem from '../backup-tile-item/BackupTileItem.component';
+import BackupTileItem from './backup-tile-item/BackupTileItem.component';
 
 export default function DataProtectionTile() {
   const { t } = useTranslation('dashboard');
