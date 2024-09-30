@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.14.2...@ovh-ux/manager-iplb@1.15.0) (2024-09-30)
+
+
+### Bug Fixes
+
+* **dedicated:** hide upd protocol when add server cluster on US ([#13246](https://github.com/ovh/manager/issues/13246)) ([7f9d066](https://github.com/ovh/manager/commit/7f9d066313c8498c72594570fa1bf9129dcc2d2a))
+
+
+### Features
+
+* **dedicated:** add iplb cta for us region ([#12829](https://github.com/ovh/manager/issues/12829)) ([093f9ba](https://github.com/ovh/manager/commit/093f9ba8cce5eed36cdc8c9d5522db34bb8cc4a6))
+
+
+### Reverts
+
+* **dedicated:** add iplb cta for us region ([#13324](https://github.com/ovh/manager/issues/13324)) ([cb5c7ee](https://github.com/ovh/manager/commit/cb5c7ee29738628cd5f1c73b293a9715befc80ea))
+
+
+
+
+
 ## [1.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.14.1...@ovh-ux/manager-iplb@1.14.2) (2024-09-25)
 
 

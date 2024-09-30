@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.57.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.57.2...@ovh-ux/manager-dedicated@19.57.3) (2024-09-30)
+
+
+### Bug Fixes
+
+* **account:** avoid to insert prefix on zipcode ([#13207](https://github.com/ovh/manager/issues/13207)) ([88f561f](https://github.com/ovh/manager/commit/88f561f717b5da73ab3577d6a859a8ce546da2cb))
+* **dedicated:** add missing translation key for byoip ([#13227](https://github.com/ovh/manager/issues/13227)) ([9462e20](https://github.com/ovh/manager/commit/9462e20058ad7b75a4aabaf5f05aa992757d6632))
+* **dedicated:** fix iplist horizontal scroll ([#12828](https://github.com/ovh/manager/issues/12828)) ([580def3](https://github.com/ovh/manager/commit/580def35414039e85713af5d3f6e9ea3167e6363))
+* **dedicated:** rename reverse menu for ipv6 ([#12571](https://github.com/ovh/manager/issues/12571)) ([b747c06](https://github.com/ovh/manager/commit/b747c066ce70706d9110da72cc134dc44d7e5b80))
+* **dedicated:** reset page number on ip listing page ([#13066](https://github.com/ovh/manager/issues/13066)) ([df2052c](https://github.com/ovh/manager/commit/df2052c07f53b3af88b03705a0f73c400a769d0a))
+
+
+
+
+
 ## [19.57.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.57.1...@ovh-ux/manager-dedicated@19.57.2) (2024-09-26)
 
 
