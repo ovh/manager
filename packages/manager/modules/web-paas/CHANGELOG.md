@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.10.2...@ovh-ux/manager-web-paas@1.10.3) (2024-09-30)
+
+
+### Bug Fixes
+
+* **web:** remove order button for webpaas ([7c1466d](https://github.com/ovh/manager/commit/7c1466d6e580a9e9db4f674de63e69a856d90470))
+
+
+
+
+
 ## [1.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.10.1...@ovh-ux/manager-web-paas@1.10.2) (2024-08-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-paas

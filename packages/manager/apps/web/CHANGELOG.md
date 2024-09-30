@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.37.1...@ovh-ux/manager-web@18.38.0) (2024-09-30)
+
+
+### Bug Fixes
+
+* **web:** sort dbcategory by product size for db activation ([0b94f08](https://github.com/ovh/manager/commit/0b94f08ba3c91c627e00aaba91df71c7d24a8a42))
+
+
+### Features
+
+* **web.hosting:** have to scroll up to see error ([b58b961](https://github.com/ovh/manager/commit/b58b96180d658d4800ab12ced41f8394effa0d3d))
+
+
+
+
+
 ## [18.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.37.0...@ovh-ux/manager-web@18.37.1) (2024-09-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
