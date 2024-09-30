@@ -8,11 +8,10 @@ export type ActionsComponentProps = {
 
 export default function ActionsComponent({
   listenerId,
-}: ActionsComponentProps) {
+}: Readonly<ActionsComponentProps>) {
   const { t } = useTranslation('octavia-load-balancer-listeners');
-
   const listenerEdit = useHref(`../${listenerId}/edit`);
-  const policiesHref = useHref('');
+  const policiesHref = useHref(`../${listenerId}/l7/list`);
   const deleteHref = useHref(`${listenerId}/delete`);
 
   const items = [
