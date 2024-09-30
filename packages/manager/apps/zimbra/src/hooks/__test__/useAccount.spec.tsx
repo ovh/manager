@@ -1,5 +1,4 @@
 import { describe, expect, vi } from 'vitest';
-import React from 'react';
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
 import { platformMock, accountMock } from '@/api/_mock_';
@@ -25,9 +24,12 @@ vi.mock('@/api/account/api', () => {
 
 describe('useAccount', () => {
   it('should return the detail of an account', async () => {
-    const { result } = renderHook(() => useAccount(accountMock[0].id), {
-      wrapper,
-    });
+    const { result } = renderHook(
+      () => useAccount({ accountId: accountMock[0].id }),
+      {
+        wrapper,
+      },
+    );
 
     await waitFor(() => {
       expect(result.current.isLoading).toBe(false);
