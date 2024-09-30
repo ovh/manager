@@ -63,7 +63,7 @@ export default function ModalAddAndEditOrganization() {
   const {
     data: editAccountDetail,
     isLoading: isLoadingEmailDetail,
-  } = useAccount(editEmailAccountId);
+  } = useAccount({ accountId: editEmailAccountId });
 
   useEffect(() => {
     if (!isLoadingDomain && !isLoadingEmailDetail && platformId) {

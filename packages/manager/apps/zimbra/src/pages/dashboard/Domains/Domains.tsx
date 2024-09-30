@@ -26,7 +26,6 @@ import {
   Notifications,
 } from '@ovh-ux/manager-react-components';
 import { Outlet } from 'react-router-dom';
-
 import {
   useOverridePage,
   useDomains,
@@ -45,7 +44,6 @@ import {
 import Loading from '@/components/Loading/Loading';
 import { DiagnosticBadge } from '@/components/DiagnosticBadge';
 import { DomainType } from '@/api/domain/type';
-import { DnsRecordType } from '@/utils';
 import { AccountStatistics, ResourceStatus } from '@/api/api.type';
 
 export type DomainsItem = {

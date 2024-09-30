@@ -8,7 +8,6 @@ import { TabItemProps, AccountTabsPanel } from './AccountTabsPanel.component';
 import { urls } from '@/routes/routes.constants';
 import EmailAccountSettings from './EmailAccountSettings.page';
 import EmailAccountsAlias from './EmailAccountsAlias.page';
-import { useAccount } from '@/hooks/useAccount';
 import Redirections from '../Redirections/Redirections';
 
 export default function AddAndEditAccount() {
@@ -31,7 +30,10 @@ export default function AddAndEditAccount() {
   const {
     data: editAccountDetail,
     isLoading: isLoadingEmailDetailRequest,
-  } = useAccount(editEmailAccountId);
+  } = useAccount({
+    accountId: editEmailAccountId,
+    enabled: !!editEmailAccountId,
+  });
 
   const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains();
 

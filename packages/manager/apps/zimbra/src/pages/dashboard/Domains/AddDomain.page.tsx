@@ -539,23 +539,21 @@ export default function AddDomain() {
           </OsdsButton>
         </>
       )}
-      <OsdsFormField className="w-full">
-        <OsdsSpinner
-          mode={ODS_SPINNER_MODE.indeterminate}
-          size={ODS_SPINNER_SIZE.sm}
-          inline
-          contrasted
-        ></OsdsSpinner>
-        <OsdsButton
-          data-testid="add-domain-submit-btn"
-          color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={handleAddDomainClick}
-          className="mt-8 w-1/2"
-          {...(!selectedOrganization || !selectedDomainName || isSending
-            ? { disabled: true }
-            : {})}
-        >
-          <span slot="start">
+      {!cnameToCheck && (
+        <OsdsFormField>
+          <OsdsButton
+            data-testid="add-domain-submit-btn"
+            color={ODS_THEME_COLOR_INTENT.primary}
+            onClick={handleAddDomainClick}
+            inline
+            className="mt-8"
+            {...(!selectedOrganization ||
+            !selectedDomainName ||
+            (!selectedRadioConfigurationType && ovhDomain) ||
+            isSending
+              ? { disabled: true }
+              : {})}
+          >
             {isSending && (
               <OsdsSpinner
                 inline
@@ -565,9 +563,9 @@ export default function AddDomain() {
               />
             )}
             {t('zimbra_domains_add_domain_cta_confirm')}
-          </span>
-        </OsdsButton>
-      </OsdsFormField>
+          </OsdsButton>
+        </OsdsFormField>
+      )}
     </div>
   );
 }

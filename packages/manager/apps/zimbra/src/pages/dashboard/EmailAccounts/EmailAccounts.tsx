@@ -40,7 +40,7 @@ import {
 } from '@/hooks';
 import LabelChip from '@/components/LabelChip';
 import guidesConstants from '@/guides.constants';
-import ActionButtonEmail from './ActionButtonEmail';
+import ActionButtonEmail from './ActionButtonEmail.component';
 import {
   convertOctets,
   DATAGRID_REFRESH_INTERVAL,
