@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.2.2...@ovh-ux/manager-pci-kubernetes-app@0.2.3) (2024-09-30)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** cluster creation edition ([#13192](https://github.com/ovh/manager/issues/13192)) ([339326a](https://github.com/ovh/manager/commit/339326a73e24e29262aec6aa3703a6005c3468a8))
+* **pci-kubernetes:** disable logs for US region ([#13173](https://github.com/ovh/manager/issues/13173)) ([0b98c17](https://github.com/ovh/manager/commit/0b98c17af4986a008b3fe6a310b94d474bf38349))
+* **pci-kubernetes:** listing filters ([#13177](https://github.com/ovh/manager/issues/13177)) ([00fdad9](https://github.com/ovh/manager/commit/00fdad9bba5a1f16f5c97722bca52942b3466529))
+* **pci-kubernetes:** log stream help ([#13217](https://github.com/ovh/manager/issues/13217)) ([3689e2a](https://github.com/ovh/manager/commit/3689e2a1aaabd63624528f54082e818d44484923))
+* **pci-kubernetes:** sticky dicovery banner ([#13180](https://github.com/ovh/manager/issues/13180)) ([769faf7](https://github.com/ovh/manager/commit/769faf7679aca93cbe5cda8cce1e2985db90b3ad))
+* **pci-kubernetes:** subnet cache & cluster reset ([#13195](https://github.com/ovh/manager/issues/13195)) ([8cf7fe5](https://github.com/ovh/manager/commit/8cf7fe526219395001245a0dea7d849808826840))
+
+
+
+
+
 ## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.2.1...@ovh-ux/manager-pci-kubernetes-app@0.2.2) (2024-09-27)
 
 
