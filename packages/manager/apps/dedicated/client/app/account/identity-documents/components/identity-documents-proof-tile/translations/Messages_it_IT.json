@@ -1,0 +1,18 @@
+{
+  "user_account_identity_documents_proof_tile_easiest": "Il più semplice",
+  "user_account_identity_documents_proof_tile_heading_aadhaar_card": "Hai una carta Aadhaar?",
+  "user_account_identity_documents_proof_tile_text_particular_aadhaar_card": "Invia un solo documento per la tua prova di identità e di indirizzo",
+  "user_account_identity_documents_proof_tile_heading_identity": "Prova di identità",
+  "user_account_identity_documents_proof_tile_heading_address": "Prova di indirizzo",
+  "user_account_identity_documents_proof_tile_heading_vat": "Prova di partita IVA",
+  "user_account_identity_documents_proof_tile_heading_authority_declaration": "Dichiarazione sull'onore",
+  "user_account_identity_documents_proof_tile_text_particular_identity": "Carta Aadhaar, carta di identità, passaporto, patente di guida, tessera elettorale indiana.",
+  "user_account_identity_documents_proof_tile_text_particular_address": "Carta Aadhaar, certificato GST, bolletta di utenza (elettricità, gas, acqua, Internet o telefono), estratto conto bancario.",
+  "user_account_identity_documents_proof_tile_text_non_individual_identity": "Carta Aadhaar, carta di identità, passaporto, patente di guida, tessera elettorale indiana.",
+  "user_account_identity_documents_proof_tile_text_non_individual_address": "Certificato GST, bolletta di utenza (elettricità, gas, acqua, Internet o telefono), estratto conto bancario.",
+  "user_account_identity_documents_proof_tile_text_non_individual_vat": "Certificato GST (imposta su prodotti e servizi)",
+  "user_account_identity_documents_proof_tile_text_non_individual_authority_declaration": "Documento che ti autorizza ad agire a nome della società",
+  "user_account_identity_documents_proof_tile_extended_identity": "Documento del rappresentante legale, direttore operativo o altro contatto menzionato nel certificato GST.",
+  "user_account_identity_documents_proof_tile_extended_authority_declaration": "Solo se non sei il \"rappresentante legale\".",
+  "user_account_identity_documents_proof_tile_button": "Aggiungere"
+}
