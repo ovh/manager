@@ -1,0 +1,18 @@
+{
+  "user_account_identity_documents_proof_tile_easiest": "Lo más sencillo",
+  "user_account_identity_documents_proof_tile_heading_aadhaar_card": "¿Tiene una tarjeta Aadhaar?",
+  "user_account_identity_documents_proof_tile_text_particular_aadhaar_card": "Envíe un solo documento para su justificante de identidad y de dirección",
+  "user_account_identity_documents_proof_tile_heading_identity": "Justificante de identidad",
+  "user_account_identity_documents_proof_tile_heading_address": "Justificante de dirección",
+  "user_account_identity_documents_proof_tile_heading_vat": "Justificante de IVA",
+  "user_account_identity_documents_proof_tile_heading_authority_declaration": "Declaración jurada",
+  "user_account_identity_documents_proof_tile_text_particular_identity": "Tarjeta Aadhaar, DNI, pasaporte, permiso de conducir, tarjeta de votante india.",
+  "user_account_identity_documents_proof_tile_text_particular_address": "Tarjeta Aadhaar, certificado GST, factura (electricidad, gas, agua, internet o teléfono), extracto bancario.",
+  "user_account_identity_documents_proof_tile_text_non_individual_identity": "Tarjeta Aadhaar, DNI, pasaporte, permiso de conducir, tarjeta de votante india.",
+  "user_account_identity_documents_proof_tile_text_non_individual_address": "Certificado GST, factura (electricidad, gas, agua, internet o teléfono), extracto bancario.",
+  "user_account_identity_documents_proof_tile_text_non_individual_vat": "Certificado GST (impuesto sobre los productos y servicios).",
+  "user_account_identity_documents_proof_tile_text_non_individual_authority_declaration": "Autorización para actuar en nombre de la empresa,",
+  "user_account_identity_documents_proof_tile_extended_identity": "Documento del representante legal, del director de operaciones o de cualquier otro contacto mencionado en el certificado GST.",
+  "user_account_identity_documents_proof_tile_extended_authority_declaration": "Solo si usted no es el «representante legal».",
+  "user_account_identity_documents_proof_tile_button": "Añadir"
+}
