@@ -81,7 +81,7 @@ export default function ServerSidebarVirtual({
             {vItems.map((virtualRow) => (
               <li
                 key={virtualRow.key}
-                role="menuitem"
+                role="presentation"
                 style={{
                   position: 'absolute',
                   top: 0,

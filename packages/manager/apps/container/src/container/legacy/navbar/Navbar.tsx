@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { TRANSLATE_NAMESPACE } from './constants';
 
 import Account from './Account';
-import Brand from './Brand';
 import Hamburger from './HamburgerMenu';
 import style from './navbar.module.scss';
 import Search from './Search';
@@ -75,10 +74,9 @@ function Navbar({ environment }: Props): JSX.Element {
         aria-label={t('navbar_menu_name')}
       >
         <Hamburger universe={universe} universes={getUniverses()} />
-        <Brand
-          targetURL={getHubUniverse()?.url || '#'}
-          onClick={brandClickHandler}
-        />
+        <div className="oui-navbar__brand">
+          <span className="oui-icon oui-icon-ovh" aria-hidden="true"></span>
+        </div>
         <Universes
           universe={universe}
           universes={getUniverses()}

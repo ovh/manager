@@ -12,9 +12,9 @@ type Props = {
 
 const Notification = ({ children = null }: Props): JSX.Element => {
   return (
-    <div className={`${style.notification} position-relative d-flex`}>
+    <li className={`${style.notification} position-relative d-flex`}>
       {children}
-    </div>
+    </li>
   );
 };
 
