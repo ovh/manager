@@ -5,7 +5,6 @@ import {
   OsdsTabBar,
   OsdsTabBarItem,
 } from '@ovhcloud/ods-components/react';
-import { useOrganization } from '@/hooks';
 
 export type TabItemProps = {
   name: string;
@@ -23,7 +22,6 @@ export const AccountTabsPanel: React.FC<TabsProps> = ({ tabs }) => {
   const [activePanel, setActivePanel] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
-  const { data } = useOrganization();
 
   useEffect(() => {
     if (!location.pathname) {
@@ -49,7 +47,7 @@ export const AccountTabsPanel: React.FC<TabsProps> = ({ tabs }) => {
         {tabs.map((tab: TabItemProps) => (
           <NavLink
             key={`osds-tab-bar-item-${tab.name}`}
-            to={data?.id ? `${tab.to}?organizationId=${data?.id}` : tab.to}
+            to={tab.to}
             className="no-underline"
           >
             <OsdsTabBarItem panel={tab.name}>{tab.title}</OsdsTabBarItem>

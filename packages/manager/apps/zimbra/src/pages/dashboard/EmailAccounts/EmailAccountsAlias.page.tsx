@@ -86,40 +86,43 @@ export default function EmailAccountsAlias() {
     <div className="py-6 mt-8">
       <Outlet />
       <Notifications />
-      <div className="mb-8">
-        <Subtitle>{t('zimbra_account_alias_title')}</Subtitle>
-      </div>
-      <div className="flex items-center justify-between">
-        {platformUrn && (
-          <ManagerButton
-            color={ODS_THEME_COLOR_INTENT.primary}
-            inline
-            size={ODS_BUTTON_SIZE.sm}
-            href={hrefAddAlias}
-            urn={platformUrn}
-            iamActions={[IAM_ACTIONS.alias.create]}
-            data-testid="add-alias-btn"
-          >
-            <span slot="start">
-              <OsdsIcon
-                name={ODS_ICON_NAME.PLUS}
-                size={ODS_ICON_SIZE.sm}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                contrasted
-              ></OsdsIcon>
-            </span>
-            <span slot="end">{t('zimbra_account_alias_cta')}</span>
-          </ManagerButton>
-        )}
-      </div>
-      <Datagrid
-        columns={columns.map((column) => ({
-          ...column,
-          label: t(column.label),
-        }))}
-        items={items}
-        totalItems={items.length}
-      />
+      {platformUrn && (
+        <>
+          <div className="mb-8">
+            <Subtitle>{t('zimbra_account_alias_title')}</Subtitle>
+          </div>
+          <div className="flex items-center justify-between">
+            <ManagerButton
+              className="mb-6"
+              color={ODS_THEME_COLOR_INTENT.primary}
+              inline
+              size={ODS_BUTTON_SIZE.sm}
+              href={hrefAddAlias}
+              urn={platformUrn}
+              iamActions={[IAM_ACTIONS.alias.create]}
+              data-testid="add-alias-btn"
+            >
+              <span slot="start">
+                <OsdsIcon
+                  name={ODS_ICON_NAME.PLUS}
+                  size={ODS_ICON_SIZE.sm}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  contrasted
+                ></OsdsIcon>
+              </span>
+              <span slot="end">{t('zimbra_account_alias_cta')}</span>
+            </ManagerButton>
+          </div>
+          <Datagrid
+            columns={columns.map((column) => ({
+              ...column,
+              label: t(column.label),
+            }))}
+            items={items}
+            totalItems={items.length}
+          />
+        </>
+      )}
     </div>
   );
 }

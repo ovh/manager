@@ -3,6 +3,7 @@ import { vi, describe, expect } from 'vitest';
 import Redirections from '../Redirections';
 import { render } from '@/utils/test.provider';
 import { platformMock } from '@/api/_mock_';
+import redirectionsTranslation from '@/public/translations/redirections/Messages_fr_FR.json';
 
 vi.mock('@/hooks', async (importOriginal) => {
   const actual: any = await importOriginal();
@@ -12,7 +13,7 @@ vi.mock('@/hooks', async (importOriginal) => {
       platformUrn: platformMock[0].iam.urn,
     })),
     useGenerateUrl: vi.fn(
-      () => '#/00000000-0000-0000-0000-000000000001/redirections/delete?',
+      () => '#/00000000-0000-0000-0000-000000000001/redirections',
     ),
   };
 });
@@ -22,10 +23,12 @@ afterEach(() => {
 });
 
 describe('Redirections page', () => {
-  it('Page should display correctly', () => {
+  it('should display page correctly', () => {
     const { getByTestId } = render(<Redirections />);
-    const button = getByTestId('header-from');
+    const button = getByTestId('add-redirection-btn');
 
-    expect(button).toHaveTextContent('zimbra_redirections_from');
+    expect(button).toHaveTextContent(
+      redirectionsTranslation.zimbra_redirections_cta,
+    );
   });
 });

@@ -25,6 +25,11 @@ export const IAM_ACTIONS = {
     delete: `${IAM_ACTIONS_PREFIX}organization/delete`,
     edit: `${IAM_ACTIONS_PREFIX}organization/edit`,
   },
+  redirection: {
+    create: `${IAM_ACTIONS_PREFIX}redirection/create`,
+    delete: `${IAM_ACTIONS_PREFIX}redirection/delete`,
+    edit: `${IAM_ACTIONS_PREFIX}redirection/edit`,
+  },
   platform: {
     get: `${IAM_ACTIONS_PREFIX}get`,
   },
