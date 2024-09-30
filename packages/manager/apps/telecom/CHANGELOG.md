@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.21.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.21.5...@ovh-ux/manager-telecom@15.21.6) (2024-09-30)
+
+
+### Bug Fixes
+
+* **telecom:** change type extension by application ([#13310](https://github.com/ovh/manager/issues/13310)) ([dd2baaf](https://github.com/ovh/manager/commit/dd2baaf439143e1695c8a1e13c24fb30d65ad398))
+* **xdsl.statistics:** remove get date into tooltip tile ([ee894db](https://github.com/ovh/manager/commit/ee894dbb9344581a3f0cd075448a96cceb18d124))
+
+
+
+
+
 ## [15.21.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.21.4...@ovh-ux/manager-telecom@15.21.5) (2024-09-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

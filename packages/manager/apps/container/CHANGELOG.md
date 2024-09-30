@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.77.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.77.4...@ovh-ux/manager-container-app@0.77.5) (2024-09-30)
+
+
+### Bug Fixes
+
+* **web:** remove order button for webpaas ([7c1466d](https://github.com/ovh/manager/commit/7c1466d6e580a9e9db4f674de63e69a856d90470))
+
+
+
+
+
 ## [0.77.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.77.3...@ovh-ux/manager-container-app@0.77.4) (2024-09-27)
 
 
