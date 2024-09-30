@@ -1,9 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { PaginationState as TanstackPaginationState } from '@tanstack/react-table';
-// import { PaginationState } from '@ovh-ux/manager-react-components';
+import { PaginationState } from '@ovh-ux/manager-react-components';
 import { Gateway, GatewayResponse } from '@/interface';
-
-type PaginationState = TanstackPaginationState;
 
 export type GatewayOptions = {
   pagination: PaginationState;

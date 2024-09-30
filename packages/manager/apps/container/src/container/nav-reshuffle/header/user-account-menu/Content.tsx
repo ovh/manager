@@ -10,6 +10,7 @@ import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
+import { apiClient } from '@ovh-ux/manager-core-api';
 
 import { useReket } from '@ovh-ux/ovh-reket';
 import { UserLink } from './UserLink';
@@ -75,7 +76,7 @@ const UserAccountMenu = ({
   const getAllLinks = useMemo(
     () => async () => {
       let isIdentityDocumentsAvailable = false;
-      const featureAvailability = await fetchFeatureAvailabilityData(['identity-documents', 'procedures:fraud']);
+      const featureAvailability = await fetchFeatureAvailabilityData(['identity-documents', 'procedures:fraud'], apiClient);
       if (featureAvailability['identity-documents']) {
         const { status } = await reketInstance.get(`/me/procedure/identity`);
         isIdentityDocumentsAvailable = ['required', 'open'].includes(status);

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { Application } from '@ovh-ux/manager-config';
+import { apiClient } from '@ovh-ux/manager-core-api';
 import {fetchFeatureAvailabilityData} from '@ovh-ux/manager-react-components'
 import {
   getBetaAvailabilityFromLocalStorage,
@@ -46,7 +47,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       return null;
     };
 
-    return fetchFeatureAvailabilityData(['livechat', 'pnr'])
+    return fetchFeatureAvailabilityData(['livechat', 'pnr'], apiClient)
       .then((value) => ({
         version: getBetaVersion(value),
         livechat: !!value.livechat,

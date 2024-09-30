@@ -10,6 +10,15 @@ import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  ShellContext,
+} from '@ovh-ux/manager-react-shell-client';
+import { ManagerReactComponentsProvider } from '@ovh-ux/manager-react-components';
+import {
+  apiClient,
+  fetchIcebergV6,
+  fetchIcebergV2,
+} from '@ovh-ux/manager-core-api';
 import { Environment } from '@ovh-ux/manager-config';
 import { defineApplicationVersion } from '@ovh-ux/request-tagger';
 
@@ -79,9 +88,15 @@ initShell().then((shell) => {
           <QueryClientProvider client={queryClient}>
             <ApplicationProvider environment={environment} shell={shell}>
               <ContainerProvider>
+              <ManagerReactComponentsProvider
+                shellContext={ShellContext}
+                apiClient={apiClient}
+                iceberg={{ fetchIcebergV2, fetchIcebergV6 }}
+              >
                 <HashRouter>
                   <Container />
                 </HashRouter>
+              </ManagerReactComponentsProvider>
               </ContainerProvider>
             </ApplicationProvider>
           </QueryClientProvider>

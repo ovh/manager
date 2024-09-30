@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, Suspense } from 'react';
-
+import { apiClient } from '@ovh-ux/manager-core-api';
 import { useLocation } from 'react-router-dom';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
@@ -71,7 +71,7 @@ const Sidebar = (): JSX.Element => {
       if (currentNavigationNode) return;
       const features = initFeatureNames(navigationTree);
 
-      const results = await fetchFeatureAvailabilityData(features);
+      const results = await fetchFeatureAvailabilityData(features, apiClient);
 
       const region = environmentPlugin.getEnvironment().getRegion();
       const [tree] = initTree([navigationTree], results, region);
