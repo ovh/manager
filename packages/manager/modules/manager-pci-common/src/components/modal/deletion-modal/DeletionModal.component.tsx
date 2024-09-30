@@ -20,6 +20,7 @@ import { PciModal, PciModalProps } from '../PciModal.component';
 export type DeletionModalProps = PciModalProps & {
   confirmationText?: string;
   confirmationLabel?: string;
+  inputErrorMessage?: string;
 };
 
 export function DeletionModal({
@@ -34,6 +35,7 @@ export function DeletionModal({
   onCancel,
   confirmationText,
   confirmationLabel,
+  inputErrorMessage,
 }: Readonly<DeletionModalProps>) {
   const { t } = useTranslation('pci-common');
 
@@ -62,6 +64,8 @@ export function DeletionModal({
     isPending ||
     (confirmationText && formState.deleteInput !== confirmationText);
 
+  const errorMessage = inputErrorMessage || t('common_field_error_required');
+
   return (
     <PciModal
       title={title}
@@ -79,7 +83,7 @@ export function DeletionModal({
         <OsdsFormField
           class="mt-6"
           data-testid="delete-formField"
-          error={formState.hasError ? t('common_field_error_required') : ''}
+          error={formState.hasError ? errorMessage : ''}
         >
           <OsdsText
             slot="label"
