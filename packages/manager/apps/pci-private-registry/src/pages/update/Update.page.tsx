@@ -49,7 +49,7 @@ export default function UpdatePage() {
   useEffect(() => {
     setFormState({
       ...formState,
-      hasError: formState.isTouched && formState.renameInput === '',
+      hasError: formState.isTouched && formState.renameInput?.trim() === '',
     });
   }, [formState.renameInput, formState.isTouched]);
 
@@ -114,7 +114,7 @@ export default function UpdatePage() {
   };
 
   const isPending = isPendingAllRegisters || isPendingRename;
-  const isDisabled = isPending || formState.renameInput === '';
+  const isDisabled = isPending || formState.renameInput?.trim() === '';
   return (
     <PciModal
       title={t('private_registry_update_modal_title')}
