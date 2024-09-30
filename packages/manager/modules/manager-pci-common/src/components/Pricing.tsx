@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import clsx from 'clsx';
 import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
 import { TPricing } from '../api/data';
