@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useHref, useParams } from 'react-router-dom';
@@ -17,6 +19,7 @@ export default function ActionComponent({
 
   const { projectId } = useParams();
   const { data: registryPlan } = useGetRegistryPlan(projectId, registry?.id);
+  const { tracking } = useContext(ShellContext)?.shell || {};
 
   const hrefUpgradePlan = useHref(`./upgrade-plan?registryId=${registry.id}`);
   const hrefRename = useHref(`./update?registryId=${registry.id}`);
@@ -34,6 +37,10 @@ export default function ActionComponent({
         registryPlan?.name?.charAt(0) === 'L' ||
         registry?.status === PRIVATE_REGISTRY_STATUS.SCALING_UP ||
         registry?.status === PRIVATE_REGISTRY_STATUS.INSTALLING,
+      onClick: () =>
+        tracking?.trackClick({
+          name: 'PCI_PROJECTS_PRIVATEREGISTRY_CHANGEPLAN',
+        }),
     },
     {
       id: 1,
@@ -41,23 +48,39 @@ export default function ActionComponent({
       href: hrefHarborUI,
       disabled: registry.status !== PRIVATE_REGISTRY_STATUS.READY,
       target: OdsHTMLAnchorElementTarget._blank,
+      onClick: () =>
+        tracking?.trackClick({
+          name: 'PCI_PROJECTS_PRIVATEREGISTRY_HARBOR-UI',
+        }),
     },
     {
       id: 2,
       label: t('private_registry_harbor_api'),
       href: hrefHarborAPI,
       disabled: registry.status !== PRIVATE_REGISTRY_STATUS.READY,
+      onClick: () =>
+        tracking?.trackClick({
+          name: 'PCI_PROJECTS_PRIVATEREGISTRY_API-URL',
+        }),
     },
     {
       id: 3,
       label: t('private_registry_regenerate_creds'),
       href: hrefRegenerateCredentials,
       disabled: registry.status !== PRIVATE_REGISTRY_STATUS.READY,
+      onClick: () =>
+        tracking?.trackClick({
+          name: 'PCI_PROJECTS_PRIVATEREGISTRY_CREDENTIALS',
+        }),
     },
     {
       id: 4,
       label: t('private_registry_rename'),
       href: hrefRename,
+      onClick: () =>
+        tracking?.trackClick({
+          name: 'PCI_PROJECTS_PRIVATEREGISTRY_UPDATE',
+        }),
     },
     {
       id: 5,
@@ -66,6 +89,10 @@ export default function ActionComponent({
       disabled:
         registry.status !== PRIVATE_REGISTRY_STATUS.READY &&
         registry.status !== PRIVATE_REGISTRY_STATUS.ERROR,
+      onClick: () =>
+        tracking?.trackClick({
+          name: 'PCI_PROJECTS_PRIVATEREGISTRY_DELETE',
+        }),
     },
   ];
 
