@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.78.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.77.5...@ovh-ux/manager-container-app@0.78.0) (2024-09-30)
+
+
+### Bug Fixes
+
+* **container:** use-translation is missing on a key ([#13339](https://github.com/ovh/manager/issues/13339)) ([9b4f017](https://github.com/ovh/manager/commit/9b4f0176f16102f83ac3a23ecd9265d7324d33a6))
+* **exchange:** relocate exchange in webcloud for ca ([#11943](https://github.com/ovh/manager/issues/11943)) ([e7e4076](https://github.com/ovh/manager/commit/e7e407632457b47332384d77e599c4698a60f6f3))
+
+
+### Features
+
+* **container:** add resize hook and fix mobile ([#12921](https://github.com/ovh/manager/issues/12921)) ([0969728](https://github.com/ovh/manager/commit/09697281ca8a9cd5d6562e508cfbab4cec5b1cc0))
+* **container:** redirect help centre to correct links for us and eu/ca ([#12959](https://github.com/ovh/manager/issues/12959)) ([c3d936d](https://github.com/ovh/manager/commit/c3d936d3f0889a060a5488ffd75be29058156ecd))
+* **container:** updated icons pnrv2, useful links behavior in panel ([#13228](https://github.com/ovh/manager/issues/13228)) ([245fa3a](https://github.com/ovh/manager/commit/245fa3afb8cefb8e4f32a15bf4dad882fb4c9001))
+
+
+
+
+
 ## [0.77.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.77.4...@ovh-ux/manager-container-app@0.77.5) (2024-09-30)
 
 
