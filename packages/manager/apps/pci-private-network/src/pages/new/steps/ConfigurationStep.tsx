@@ -33,7 +33,7 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useGatewayByRegion } from '@/api/hooks/useGateway';
@@ -219,19 +219,27 @@ export default function ConfigurationStep({
   const missingNameError =
     isNetworkNameInputTouched && !store.form.privateNetworkName.length;
 
-  const isCidrIpAddressValid = isValidIpAddress(store.form.address);
-  const isCidrMaskValid = isValidCidrMask(store.form.cidr);
+  const isIpValid = useMemo(() => isValidIpAddress(store.form.address), [
+    store.form.address,
+  ]);
+  const isMaskValid = useMemo(() => isValidCidrMask(store.form.cidr), [
+    store.form.cidr,
+  ]);
 
-  const privateNetworkIsEmpty = () => !store.form.privateNetworkName;
-  const createGatewayIsCheckAndProjectIsDiscovery = () =>
-    !store.form.createGateway && store.project.isDiscovery;
-  const dhcpIsCheckAndCidrNotValid = () =>
-    store.form.dhcp && (!isCidrIpAddressValid || !isCidrMaskValid);
-
-  const hadToDisabledCreateButton =
-    privateNetworkIsEmpty() ||
-    createGatewayIsCheckAndProjectIsDiscovery() ||
-    dhcpIsCheckAndCidrNotValid();
+  const isCreateBtnDisabled = useMemo(
+    () =>
+      !store.form.privateNetworkName ||
+      (!store.form.createGateway && store.project.isDiscovery) ||
+      (store.form.dhcp && (!isIpValid || !isMaskValid)),
+    [
+      store.form.privateNetworkName,
+      store.form.createGateway,
+      store.form.dhcp,
+      store.project.isDiscovery,
+      isIpValid,
+      isMaskValid,
+    ],
+  );
 
   return (
     <StepComponent
@@ -562,7 +570,7 @@ export default function ConfigurationStep({
                     <OsdsInput
                       type={ODS_INPUT_TYPE.text}
                       color={
-                        isCidrIpAddressValid
+                        isIpValid
                           ? ODS_THEME_COLOR_INTENT.primary
                           : ODS_THEME_COLOR_INTENT.error
                       }
@@ -582,7 +590,7 @@ export default function ConfigurationStep({
                     <OsdsInput
                       type={ODS_INPUT_TYPE.number}
                       color={
-                        isCidrMaskValid
+                        isMaskValid
                           ? ODS_THEME_COLOR_INTENT.primary
                           : ODS_THEME_COLOR_INTENT.error
                       }
@@ -615,7 +623,7 @@ export default function ConfigurationStep({
                   </OsdsPopover>
                 </div>
 
-                {(!isCidrIpAddressValid || !isCidrMaskValid) && (
+                {(!isIpValid || !isMaskValid) && (
                   <OsdsText
                     color={ODS_THEME_COLOR_INTENT.error}
                     className="ml-9"
@@ -687,7 +695,7 @@ export default function ConfigurationStep({
                   }
                 }}
                 className="w-fit"
-                disabled={hadToDisabledCreateButton || undefined}
+                disabled={isCreateBtnDisabled || undefined}
               >
                 {t(
                   store.form.createGateway
