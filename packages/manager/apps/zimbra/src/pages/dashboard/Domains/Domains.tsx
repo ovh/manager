@@ -1,7 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsText,
+  OsdsTooltip,
+  OsdsTooltipContent,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
@@ -22,14 +32,18 @@ import {
   useDomains,
   useGenerateUrl,
   usePlatform,
+  useOrganizationList,
 } from '@/hooks';
 import ActionButtonDomain from './ActionButtonDomain';
 import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+import Loading from '@/components/Loading/Loading';
 
 export type DomainsItem = {
   id: string;
   name: string;
+  organizationId: string;
   organizationLabel: string;
   account: number;
 };
@@ -52,7 +66,7 @@ const columns: DatagridColumn<DomainsItem>[] = [
     id: 'organization',
     cell: (item) =>
       item.organizationLabel && (
-        <LabelChip id={item.id}>{item.organizationLabel}</LabelChip>
+        <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
       ),
     label: 'zimbra_domains_datagrid_organization_label',
   },
@@ -80,9 +94,17 @@ const columns: DatagridColumn<DomainsItem>[] = [
 export default function Domains() {
   const { t } = useTranslation('domains');
   const { platformUrn } = usePlatform();
+  const isOverridedPage = useOverridePage();
 
-  const { data } = useDomains();
-  const isOverriddedPage = useOverridePage();
+  const { data, isLoading } = useDomains({
+    refetchInterval: DATAGRID_REFRESH_INTERVAL,
+    refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
+    enabled: !isOverridedPage,
+  });
+
+  const { data: dataOrganizations } = useOrganizationList({
+    enabled: !isLoading && data?.length === 0,
+  });
 
   const hrefAddDomain = useGenerateUrl('./add', 'href');
 
@@ -90,6 +112,7 @@ export default function Domains() {
     data?.map((item) => ({
       name: item.currentState.name,
       id: item.id,
+      organizationId: item.currentState.organizationId,
       organizationLabel: item.currentState.organizationLabel,
       account: item.currentState.accountsStatistics.reduce(
         (acc, current) => acc + current.configuredAccountsCount,
@@ -98,12 +121,13 @@ export default function Domains() {
     })) ?? [];
 
   return (
-    <>
-      {!isOverriddedPage && (
-        <div className="py-6 mt-8">
-          <Notifications />
+    <div className="py-6 mt-8">
+      <Notifications />
+      <Outlet />
+      {platformUrn && !isOverridedPage && (
+        <>
           <div className="flex items-center justify-between">
-            {platformUrn && (
+            {(data?.length > 0 || dataOrganizations?.length > 0) && (
               <ManagerButton
                 color={ODS_THEME_COLOR_INTENT.primary}
                 inline
@@ -125,18 +149,50 @@ export default function Domains() {
                 <span slot="end">{t('zimbra_domains_add_domain_title')}</span>
               </ManagerButton>
             )}
+            {dataOrganizations?.length === 0 && (
+              <OsdsTooltip className="mb-6">
+                <OsdsButton
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  inline
+                  size={ODS_BUTTON_SIZE.sm}
+                  disabled
+                >
+                  <span slot="start">
+                    <OsdsIcon
+                      name={ODS_ICON_NAME.PLUS}
+                      size={ODS_ICON_SIZE.sm}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                      contrasted
+                    ></OsdsIcon>
+                  </span>
+                  <span slot="end">{t('zimbra_domains_add_domain_title')}</span>
+                </OsdsButton>
+                <OsdsTooltipContent slot="tooltip-content">
+                  <OsdsText
+                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                    size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+                  >
+                    {t('zimbra_domains_tooltip_need_organization')}
+                  </OsdsText>
+                </OsdsTooltipContent>
+              </OsdsTooltip>
+            )}
           </div>
-          <Datagrid
-            columns={columns.map((column) => ({
-              ...column,
-              label: t(column.label),
-            }))}
-            items={items}
-            totalItems={items.length}
-          />
-        </div>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <Datagrid
+              columns={columns.map((column) => ({
+                ...column,
+                label: t(column.label),
+              }))}
+              items={items}
+              totalItems={items.length}
+            />
+          )}
+        </>
       )}
-      <Outlet />
-    </>
+    </div>
   );
 }

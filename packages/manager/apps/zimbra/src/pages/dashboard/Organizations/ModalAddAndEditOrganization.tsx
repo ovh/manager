@@ -23,15 +23,21 @@ import {
   ODS_TOOLTIP_VARIANT,
 } from '@ovhcloud/ods-components';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useMutation } from '@tanstack/react-query';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { useGenerateUrl, useOrganization, usePlatform } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {
+  getZimbraPlatformOrganizationQueryKey,
+  OrganizationBodyParamsType,
   postZimbraPlatformOrganization,
   putZimbraPlatformOrganization,
 } from '@/api/organization';
+import queryClient from '@/queryClient';
 
 type FieldType = {
   value: string;
+  required: boolean;
   touched: boolean;
   hasError: boolean;
 };
@@ -55,8 +61,8 @@ export default function ModalAddAndEditOrganization() {
   const onClose = () => navigate(goBackUrl);
 
   const formInputRegex: FormInputRegexInterface = {
-    name: /^[a-zA-Z0-9]+$/,
-    label: /^[a-zA-Z0-9]{1,12}$/,
+    name: /^.+$/,
+    label: /^.{1,12}$/,
   };
 
   const [form, setForm] = useState<FormTypeInterface>({
@@ -64,11 +70,13 @@ export default function ModalAddAndEditOrganization() {
       value: '',
       touched: false,
       hasError: false,
+      required: true,
     },
     label: {
       value: '',
       touched: false,
       hasError: false,
+      required: true,
     },
   });
 
@@ -80,93 +88,76 @@ export default function ModalAddAndEditOrganization() {
     isLoading: isLoadingRequest,
   } = useOrganization(editOrganizationId, true);
 
-  const handleNewOrganizationClick = () => {
-    const {
-      name: { value: name },
-      label: { value: label },
-    } = form;
-    postZimbraPlatformOrganization(platformId, { name, label })
-      .then(() => {
-        onClose();
-        addSuccess(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            hue={ODS_THEME_COLOR_HUE._500}
-          >
-            {t('zimbra_organization_add_success_message')}
-          </OsdsText>,
-          true,
-        );
-      })
-      .catch(({ response }) => {
-        onClose();
-        addError(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            hue={ODS_THEME_COLOR_HUE._500}
-          >
-            {t('zimbra_organization_add_error_message', {
-              error: response.data.message,
-            })}
-          </OsdsText>,
-          true,
-        );
+  const { mutate: addOrEditOrganization, isPending: isSending } = useMutation({
+    mutationFn: (params: OrganizationBodyParamsType) => {
+      return editOrganizationId
+        ? putZimbraPlatformOrganization(platformId, editOrganizationId, params)
+        : postZimbraPlatformOrganization(platformId, params);
+    },
+    onSuccess: () => {
+      addSuccess(
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          hue={ODS_THEME_COLOR_HUE._500}
+        >
+          {t(
+            editOrganizationId
+              ? 'zimbra_organization_edit_success_message'
+              : 'zimbra_organization_add_success_message',
+          )}
+        </OsdsText>,
+        true,
+      );
+    },
+    onError: (error: ApiError) => {
+      addError(
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          hue={ODS_THEME_COLOR_HUE._500}
+        >
+          {t(
+            editOrganizationId
+              ? 'zimbra_organization_add_error_message'
+              : 'zimbra_organization_edit_error_message',
+            {
+              error: error.response?.data?.message,
+            },
+          )}
+        </OsdsText>,
+        true,
+      );
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: getZimbraPlatformOrganizationQueryKey(platformId),
       });
-  };
+      onClose();
+    },
+  });
 
-  const handleModifyOrganizationClick = () => {
+  const handleSaveClick = () => {
     const {
       name: { value: name },
       label: { value: label },
     } = form;
-    putZimbraPlatformOrganization(platformId, editOrganizationId, {
-      name,
-      label,
-    })
-      .then(() => {
-        onClose();
-        addSuccess(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            hue={ODS_THEME_COLOR_HUE._500}
-          >
-            {t('zimbra_organization_edit_success_message')}
-          </OsdsText>,
-          true,
-        );
-      })
-      .catch(({ response }) => {
-        onClose();
-        addError(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            hue={ODS_THEME_COLOR_HUE._500}
-          >
-            {t('zimbra_organization_edit_error_message', {
-              error: response.data.message,
-            })}
-          </OsdsText>,
-          true,
-        );
-      });
+    addOrEditOrganization({ name, label });
   };
 
   const checkValidityField = (name: string, value: string) => {
-    return formInputRegex[name].test(value);
+    return formInputRegex[name]
+      ? formInputRegex[name].test(value) ||
+          (!form[name].required && form[name].value === '')
+      : true;
   };
 
   const checkValidityForm = () => {
     const touched = Object.values(form).find((field) => field.touched);
     const error = Object.values(form).find(
-      (field) => field.hasError || field.value === '',
+      (field) => field.hasError || (field.required && field.value === ''),
     );
     return touched && !error;
   };
@@ -174,6 +165,7 @@ export default function ModalAddAndEditOrganization() {
   const handleFormChange = (name: string, value: string) => {
     const newForm: FormTypeInterface = form;
     newForm[name] = {
+      ...form[name],
       value,
       touched: true,
       hasError: !checkValidityField(name, value),
@@ -208,10 +200,8 @@ export default function ModalAddAndEditOrganization() {
         testid: 'confirm-btn',
         color: ODS_THEME_COLOR_INTENT.primary,
         label: t('zimbra_organization_add'),
-        disabled: isLoading || !isFormValid,
-        action: editOrganizationId
-          ? handleModifyOrganizationClick
-          : handleNewOrganizationClick,
+        disabled: isLoading || !isFormValid || isSending,
+        action: handleSaveClick,
       }}
     >
       <>

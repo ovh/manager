@@ -10,7 +10,11 @@ export default function Onboarding() {
   const description: string = t('description');
 
   const onOrderButtonClick = () => {
-    window.open('https://labs.ovhcloud.com/en/', '_blank', 'noopener');
+    window.open(
+      'https://labs.ovhcloud.com/en/zimbra-beta/',
+      '_blank',
+      'noopener',
+    );
   };
 
   return (

@@ -4,7 +4,7 @@ import { getApiPath } from '../utils/apiPath';
 
 // GET
 
-export const getZimbraPlatformAccount = async (
+export const getZimbraPlatformAccounts = async (
   platformId: string,
   queryParameters?: {
     organizationId?: string;

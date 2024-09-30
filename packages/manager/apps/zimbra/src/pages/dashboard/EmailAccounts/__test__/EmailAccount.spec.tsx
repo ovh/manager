@@ -3,7 +3,7 @@ import { vi, describe, expect } from 'vitest';
 import EmailAccounts from '../EmailAccounts';
 import { render } from '@/utils/test.provider';
 import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
-import { accountMock, platformMock } from '@/api/_mock_';
+import { accountMock, platformMock, domainMock } from '@/api/_mock_';
 
 vi.mock('@/hooks', () => {
   return {
@@ -13,6 +13,10 @@ vi.mock('@/hooks', () => {
     })),
     useAccountList: vi.fn(() => ({
       data: accountMock,
+      isLoading: false,
+    })),
+    useDomains: vi.fn(() => ({
+      data: domainMock,
       isLoading: false,
     })),
     useGenerateUrl: vi.fn(
