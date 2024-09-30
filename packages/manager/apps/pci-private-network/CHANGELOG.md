@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.6.2...@ovh-ux/manager-pci-private-network-app@0.7.0) (2024-09-30)
+
+
+### Features
+
+* **pci.private-network:** display the gateway column in the LZ datagrid ([#13129](https://github.com/ovh/manager/issues/13129)) ([c23ce44](https://github.com/ovh/manager/commit/c23ce44cef6dcbba5b2845cf9b02784c68d0cf0d))
+
+
+
+
+
 ## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.6.1...@ovh-ux/manager-pci-private-network-app@0.6.2) (2024-09-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app
