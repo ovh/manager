@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.24.1...@ovh-ux/manager-dbaas-logs@1.25.0) (2024-09-30)
+
+
+### Features
+
+* **dedicated.ldp:** add kind in subscription datagrid ([#13010](https://github.com/ovh/manager/issues/13010)) ([8e20f6c](https://github.com/ovh/manager/commit/8e20f6c63c554d1009c3bfb4798a3a12e5ba39f5))
+
+
+
+
+
 ## [1.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.24.0...@ovh-ux/manager-dbaas-logs@1.24.1) (2024-09-26)
 
 
