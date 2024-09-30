@@ -1,0 +1,16 @@
+{
+  "octavia_load_balancer_list_l7_policies_title": "L7 Policies",
+  "octavia_load_balancer_list_l7_policies_description": "The L7 Policies describe the actions taken by the Load Balancer if all the rules in the Policy return the value “True”. The logic of layer-7 load balancing (application) is therefore applied.",
+  "octavia_load_balancer_list_l7_policies_add_button": "Add an L7 policy",
+  "octavia_load_balancer_list_l7_policies_position": "Position",
+  "octavia_load_balancer_list_l7_policies_name": "Name",
+  "octavia_load_balancer_list_l7_policies_action": "Action",
+  "octavia_load_balancer_list_l7_policies_attribute": "Attribute",
+  "octavia_load_balancer_list_l7_policies_redirect_code": "Redirect code",
+  "octavia_load_balancer_list_l7_policies_actions_edit": "Edit",
+  "octavia_load_balancer_list_l7_policies_actions_manage_rules": "Manage L7 Rules",
+  "octavia_load_balancer_list_l7_policies_actions_delete": "Delete",
+  "octavia_load_balancer_create_l7_policy_success": "Your L7 policy {{ policy }} has been created. You can now create an <a href=\"{{ link }}\">L7 Rule</a>.",
+  "octavia_load_balancer_edit_l7_policy_success": "Your L7 policy {{ policy }} has been modified.",
+  "octavia_load_balancer_list_l7_policies_delete_success": "Your L7 policy {{policy}} has been deleted!"
+}

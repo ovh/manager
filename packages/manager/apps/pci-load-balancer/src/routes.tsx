@@ -13,6 +13,8 @@ export const ROUTE_PATHS = {
   LISTENER_DELETE: ':listenerId/delete',
   LISTENER_CREATE: 'create',
   LISTENER_EDIT: ':listenerId/edit',
+  L7: `:region/:loadBalancerId/listeners/:listenerId/l7`,
+  L7_LIST: 'list',
   POOLS: 'pools',
   POOL_LIST: 'list',
   STATISTICS: 'statistics',
@@ -33,6 +35,10 @@ const ListenersPage = lazy(() =>
 const ListenersListPage = lazy(() =>
   import('@/pages/detail/listeners/list/List.page'),
 );
+const L7PoliciesListPage = lazy(() =>
+  import('@/pages/detail/listeners/l7/list/List.page'),
+);
+const L7Page = lazy(() => import('@/pages/detail/listeners/l7/L7.page'));
 const DeleteListenerPage = lazy(() =>
   import('@/pages/detail/listeners/delete/DeleteListener.page'),
 );
@@ -66,6 +72,10 @@ const Routes = (
     <Route path="" element={<Navigate to={ROUTE_PATHS.LISTING} replace />} />
     <Route path={ROUTE_PATHS.LISTING} Component={ListingPage}>
       <Route path={ROUTE_PATHS.DELETE} Component={DeletePage} />
+    </Route>
+    <Route path={ROUTE_PATHS.L7} Component={L7Page}>
+      <Route path="" element={<Navigate to={ROUTE_PATHS.L7_LIST} />} />
+      <Route path={ROUTE_PATHS.L7_LIST} Component={L7PoliciesListPage} />
     </Route>
     <Route id="detail" path={ROUTE_PATHS.DETAIL} Component={DetailPage}>
       <Route
