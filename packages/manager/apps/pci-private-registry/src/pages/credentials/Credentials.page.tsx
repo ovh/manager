@@ -1,3 +1,4 @@
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { PciModal } from '@ovh-ux/manager-pci-common';
 import { Clipboard } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
@@ -6,7 +7,7 @@ import {
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -18,6 +19,7 @@ export default function CredentialsPage() {
   const { t } = useTranslation();
 
   const navigate = useNavigate();
+  const { tracking } = useContext(ShellContext)?.shell || {};
   const { projectId, registryId } = useParams();
   const [isConfirmed, setIsConfirmed] = useState(false);
 
@@ -42,6 +44,9 @@ export default function CredentialsPage() {
     if (!isConfirmed) {
       generateCredentials();
       setIsConfirmed(true);
+      tracking?.trackClick({
+        name: 'PCI_PROJECTS_PRIVATEREGISTRY_CREDENTIALS_CONFIRM',
+      });
     } else {
       window.open(registry?.url, '_blank');
     }
