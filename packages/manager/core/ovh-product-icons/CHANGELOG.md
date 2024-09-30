@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.5.0...@ovh-ux/ovh-product-icons@0.6.0) (2024-09-30)
+
+
+### Features
+
+* **container:** redirect help centre to correct links for us and eu/ca ([#12959](https://github.com/ovh/manager/issues/12959)) ([c3d936d](https://github.com/ovh/manager/commit/c3d936d3f0889a060a5488ffd75be29058156ecd))
+* **container:** updated icons pnrv2, useful links behavior in panel ([#13228](https://github.com/ovh/manager/issues/13228)) ([245fa3a](https://github.com/ovh/manager/commit/245fa3afb8cefb8e4f32a15bf4dad882fb4c9001))
+
+
+
+
+
 # [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.4.0...@ovh-ux/ovh-product-icons@0.5.0) (2024-08-26)
 
 
