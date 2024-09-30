@@ -14,9 +14,9 @@ $sidebar-font-size: 0.875rem;
   background-color: $p-700;
   position: relative;
   color: white;
+  gap: 0.125rem;
   
   &_wrapper {
-    display: flex;
     height: 100%;
     width: 20rem;
     min-width: 20rem;
@@ -27,6 +27,12 @@ $sidebar-font-size: 0.875rem;
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+
+  &_lvl1 {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   &_logo {
@@ -83,10 +89,6 @@ $sidebar-font-size: 0.875rem;
 
   &_menu {
     flex: 1;
-
-    &_short {
-      padding-top: 1rem;
-    }
   }
 
   ul {
@@ -275,7 +277,6 @@ $sidebar-font-size: 0.875rem;
     
     &_wrapper {
       width: 100%;
-      min-height: stretch;
     }
 
     &_selected {

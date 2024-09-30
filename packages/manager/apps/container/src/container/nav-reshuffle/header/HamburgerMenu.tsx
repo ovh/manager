@@ -1,6 +1,6 @@
 import React from 'react';
 
-type Props = {
+export type Props = {
   isOpen?: boolean;
   onClick?(): void;
 };
@@ -17,6 +17,7 @@ function HamburgerMenu({
         className="oui-navbar-toggler oui-navbar-toggler_button"
         onClick={onClick}
         aria-expanded={isOpen}
+        data-testid="hamburgerMenu"
       >
         <span className="oui-navbar-toggler__hamburger">
           <span></span>

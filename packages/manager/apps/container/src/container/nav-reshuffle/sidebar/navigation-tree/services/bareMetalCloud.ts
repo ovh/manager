@@ -8,7 +8,7 @@ const baremetalUniverse: Node = {
   translation: 'sidebar_bare_metal_cloud',
   shortTranslation: 'sidebar_bare_metal_cloud_short',
   illustration,
-  svgIcon: OvhProductName.BAREMETALCLOUD,
+  svgIcon: OvhProductName.SERVERV2,
   features: ['bare-metal-cloud'],
   routing: {
     application: 'dedicated',

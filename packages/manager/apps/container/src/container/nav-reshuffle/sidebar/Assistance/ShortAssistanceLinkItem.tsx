@@ -1,16 +1,17 @@
 import { useTranslation } from 'react-i18next';
 import { Node } from '../navigation-tree/node';
-import style from '../style.module.scss';
 import { FunctionComponent } from 'react';
 import { useShell } from '@/context';
-import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
+import { OsdsLink, OsdsIcon } from '@ovhcloud/ods-components/react';
+import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 
-type Props = {
+export type Props = {
     node: Node;
-    isSelected: boolean;
 }
 
-export const ShortAssistanceLinkItem: FunctionComponent<Props> = ({ node, isSelected }) => {
+export const ShortAssistanceLinkItem: FunctionComponent<Props> = ({ node }) => {
     const { t } = useTranslation('sidebar');
     const shell = useShell();
     const navigation = shell.getPlugin('navigation');
@@ -28,19 +29,28 @@ export const ShortAssistanceLinkItem: FunctionComponent<Props> = ({ node, isSele
 
 
     return (
-        <li className={`flex p-1 justify-center ${isSelected ? style.sidebar_menu_items_selected : ''} ${style.sidebar_menu_items}`} role="menuitem" >
-            <a
-                onClick={node.onClick}
-                href={url}
-                target={node.isExternal ? '_blank' : '_top'}
-                rel={node.isExternal ? 'noopener noreferrer' : ''}
-                title={t(node.translation)}
-                id={node.id}
-                role="link"
-                className='d-flex items-center justify-center'
-            >
-                <SvgIconWrapper name={node.svgIcon} height={24} width={24} className='fill-white block' />
-            </a>
-        </li>
+        <OsdsLink
+            onClick={node.onClick}
+            href={url}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            target={node.isExternal ? OdsHTMLAnchorElementTarget._blank : OdsHTMLAnchorElementTarget._top}
+            rel={node.isExternal ? OdsHTMLAnchorElementRel.noopener : undefined}
+            id={node.id}
+            role="link"
+            className='block p-2'
+            data-testid={`short-assistance-link-item-${node.id}`}
+        >
+            {t(node.translation)}
+            {node.isExternal && (
+                <span slot='end'>
+                    <OsdsIcon
+                        name={ODS_ICON_NAME.EXTERNAL_LINK}
+                        className='ml-1'
+                        size={ODS_ICON_SIZE.xxs}
+                        color={ODS_THEME_COLOR_INTENT.primary}
+                    />
+                </span>
+            )}
+        </OsdsLink>
     )
 }

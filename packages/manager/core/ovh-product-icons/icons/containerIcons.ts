@@ -12,6 +12,16 @@ import {
   LiveChat,
   NetworkStatus,
   Store,
+  Email,
+  Globe,
+  LockClose,
+  Monitor,
+  Networkv2,
+  Phone,
+  ServerV2,
+  ShieldCheck,
+  ShoppingCartPlus,
+  Star,
 } from '../assets-icon-svg/icons';
 
 const containerIcons = {
@@ -28,6 +38,16 @@ const containerIcons = {
   LiveChat,
   NetworkStatus,
   Store,
+  Email,
+  Globe,
+  LockClose,
+  Monitor,
+  Networkv2,
+  Phone,
+  ServerV2,
+  ShieldCheck,
+  ShoppingCartPlus,
+  Star,
 };
 
 export default containerIcons;

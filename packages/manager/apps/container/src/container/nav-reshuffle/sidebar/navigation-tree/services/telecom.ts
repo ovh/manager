@@ -8,7 +8,7 @@ const telecomUniverse: Node = {
   translation: 'sidebar_telecom',
   shortTranslation: 'sidebar_telecom_short',
   illustration,
-  svgIcon: OvhProductName.TELECOM,
+  svgIcon: OvhProductName.PHONE,
   features: ['telecom'],
   routing: {
     application: 'telecom',
