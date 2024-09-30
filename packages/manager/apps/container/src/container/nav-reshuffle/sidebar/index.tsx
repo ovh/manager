@@ -62,6 +62,7 @@ const Sidebar = (): JSX.Element => {
   const [savedNodeID, setSavedNodeID] = useState<string>(
     window.localStorage.getItem(savedLocationKey),
   );
+  const [isManuallyClosed, setIsManuallyClosed] = useState<boolean>(false);
 
   // Memoized calls
 
@@ -219,13 +220,14 @@ const Sidebar = (): JSX.Element => {
   };
 
   const closeSubMenu = () => {
-    setSelectedNode(null);
     setSelectedSubMenu(null);
+    setIsManuallyClosed(true);
   };
 
   const menuClickHandler = (node: Node) => {
     setSelectedNode(node);
     setSelectedSubMenu(null);
+    setIsManuallyClosed(false);
 
     let trackingIdComplement = 'navbar_v3_entry_home::';
     const history = findPathToNode(
@@ -362,7 +364,7 @@ const Sidebar = (): JSX.Element => {
           ></span>
         </button>
       </div>
-      {selectedNode !== null && (
+      {selectedNode !== null && !isManuallyClosed && (
         <SubTree
           handleBackNavigation={() => {
             if (isMobile) setSelectedNode(null);
