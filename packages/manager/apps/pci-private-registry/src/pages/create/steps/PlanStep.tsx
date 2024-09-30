@@ -29,7 +29,11 @@ import PlanChooser from '@/components/PlanChooser.component';
 import queryClient from '@/queryClient';
 import { getRegistryQueryPrefix } from '@/api/hooks/useRegistry';
 
-export default function PlanStep(): JSX.Element {
+export default function PlanStep({
+  isCreationDisabled,
+}: {
+  isCreationDisabled?: boolean;
+}): JSX.Element {
   const { t: tCreate } = useTranslation('create');
   const { t: tCommon } = useTranslation('common');
   const { t: tUpgrade } = useTranslation('upgrade');
@@ -151,7 +155,10 @@ export default function PlanStep(): JSX.Element {
           data-testid="next-cta"
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={create}
+          onClick={() => {
+            if (!isCreationDisabled) create();
+          }}
+          disabled={isCreationDisabled || undefined}
           className="w-fit"
         >
           {tCommon('private_registry_common_create')}
