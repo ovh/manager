@@ -5,7 +5,6 @@ import '@ovh-ux/ui-kit';
 
 import component from './regions-list.component';
 import service from './regions.service';
-import './regions.less';
 
 const moduleName = 'ovhManagerPciRegionsList';
 
