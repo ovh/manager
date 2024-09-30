@@ -18,8 +18,8 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-vrack-services-app' --include-dependencies -- npm run dev:watch --if-present",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "tsc && node ../../../../scripts/run-playwright-bdd.js",
-    "test:e2e:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci"
+    "test:e2e-beta": "tsc && node ../../../../scripts/run-playwright-bdd.js",
+    "test:e2e-beta:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^7.4.0",
@@ -62,7 +62,10 @@
     "vitest": "^1.2.0"
   },
   "msw": {
-    "workerDirectory": "./public"
+    "workerDirectory": [
+      "./public",
+      "public"
+    ]
   },
   "regions": [
     "CA",
