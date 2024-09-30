@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { Clipboard } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -21,9 +23,15 @@ import { useGetAllRegistries } from '@/api/hooks/useRegistry';
 
 export default function ApiUrlPage() {
   const { t } = useTranslation();
+  const { tracking } = useContext(ShellContext)?.shell || {};
 
   const navigate = useNavigate();
-  const onClose = () => navigate('..');
+  const onClose = () => {
+    tracking?.trackClick({
+      name: 'PCI_PROJECTS_PRIVATEREGISTRY_API-URL_CLOSE',
+    });
+    navigate('..');
+  };
 
   const { projectId, registryId } = useParams();
   const { data: registries, isPending } = useGetAllRegistries(projectId);
