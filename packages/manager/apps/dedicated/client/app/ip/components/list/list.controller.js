@@ -688,6 +688,7 @@ export default class IpListController {
 
     $scope.getIpsOnFilter = function getIpsOnFilter(version) {
       $location.search('ipTypeFilter', version);
+      $location.search('page', 1);
       $scope.version = version;
       atInternet.trackClick({
         name:

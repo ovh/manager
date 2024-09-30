@@ -769,5 +769,6 @@
   "ip_table_manage_subnets": "Zarządzanie podsieciami IPv6 w sieci vRack",
   "ip_table_header_region": "Region",
   "ip_byoip_delete_block_title": "Usuń blok",
-  "ip_byoip_delete_block_description": "Ten blok IP jest częścią większego bloku BYOIP. Przejdź do sekcji <a href='{{ link }}'>Moje usługi</a> i wybierz opcję „Rezygnacja”, jeśli chcesz anulować usługę BYOIP."
+  "ip_byoip_delete_block_description": "Ten blok IP jest częścią większego bloku BYOIP. Przejdź do sekcji <a href='{{ link }}'>Moje usługi</a> i wybierz opcję „Rezygnacja”, jeśli chcesz anulować usługę BYOIP.",
+  "ip_table_manage_modify_ipv6block_reverse": "Zmień rewers"
 }

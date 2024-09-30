@@ -785,6 +785,7 @@
   "streams_subscriptions_current_title": "Gestion de vos abonnements pour le flux '{{ name }}'",
   "streams_subscriptions_intro_text": "Ces abonnements vous permettent de récupérer les logs de vos produits OVHcloud dans vos propres flux de données.",
   "streams_subscriptions_resource_type_label": "Service",
+  "streams_subscriptions_kind_label": "Type (Kind)",
   "streams_subscriptions_resource_name_label": "Nom du service",
   "streams_subscriptions_delete_modal_title": "Supprimer l'abonnement",
   "streams_subscriptions_delete_modal_content": "Êtes-vous sûr de vouloir supprimer l'abonnement à la ressource {{resourceName}} ?",
