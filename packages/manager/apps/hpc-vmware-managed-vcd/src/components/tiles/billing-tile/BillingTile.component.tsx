@@ -47,12 +47,25 @@ export default function BillingTile({ id }: TBillingTileProps) {
             id: 'serviceRenew',
             label: t('managed_vcd_dashboard_service_renew'),
             value: nextBillingDate ? (
-              <Links
-                onClickReturn={() => {}}
-                label={dateTimeFormat?.format(new Date(nextBillingDate))}
-              />
+              <Description>
+                {dateTimeFormat?.format(new Date(nextBillingDate))}
+              </Description>
             ) : (
               <span>-</span>
+            ),
+          },
+          {
+            id: 'cancellation',
+            label: t('managed_vcd_dashboard_service_cancellation'),
+            value: (
+              <OsdsChip
+                inline
+                color={ODS_THEME_COLOR_INTENT.primary}
+                className="ml-3"
+                size={ODS_CHIP_SIZE.sm}
+              >
+                {t('managed_vcd_dashboard_coming_soon')}
+              </OsdsChip>
             ),
           },
           {

@@ -52,8 +52,9 @@ describe('BillingTile component unit test suite', () => {
     // and
     const mailingTitle = getByText('managed_vcd_dashboard_mailing_list');
     const renewTitle = getByText('managed_vcd_dashboard_service_renew');
+    const cancelTitle = getByText('managed_vcd_dashboard_service_cancellation');
     const pwdTitle = getByText('managed_vcd_dashboard_password');
-    const subtitles = [mailingTitle, renewTitle, pwdTitle];
+    const subtitles = [mailingTitle, renewTitle, cancelTitle, pwdTitle];
 
     subtitles.forEach((title: HTMLElement) => {
       expect(title).toHaveAttribute('size', ODS_THEME_TYPOGRAPHY_SIZE._200);
