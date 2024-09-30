@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_TEXT_COLOR_HUE,
@@ -14,8 +14,12 @@ import { useGenerateUrl } from '@/hooks';
 export default function ModalDeleteRedirections() {
   const { t } = useTranslation('redirections/delete');
   const navigate = useNavigate();
-  const goBackUrl = useGenerateUrl('..', 'path');
 
+  const [searchParams] = useSearchParams();
+  const params = Object.fromEntries(searchParams.entries());
+  delete params.deleteRedirectionId;
+
+  const goBackUrl = useGenerateUrl('..', 'path', params);
   const goBack = () => navigate(goBackUrl);
 
   const buttonProps = {

@@ -144,6 +144,41 @@ export const Routes: any = [
                 ],
               },
               {
+                path: 'redirections',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount.page'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+                children: [
+                  {
+                    path: 'add',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/Redirections/ModalAddAndEditRedirections.page'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'edit',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/Redirections/ModalAddAndEditRedirections.page'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/Redirections/ModalDeleteRedirections.component'
+                      ),
+                    ),
+                  },
+                ],
+              },
+              {
                 path: 'delete',
                 ...lazyRouteConfig(() =>
                   import(
