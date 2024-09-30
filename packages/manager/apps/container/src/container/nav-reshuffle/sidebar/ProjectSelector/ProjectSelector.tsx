@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import Select from 'react-select';
+import { NEW_PROJECT_ITEM_ID, SEE_ALL_PROJECTS_ITEM_ID } from './ProjectSelector.constants';
+import { OsdsSelect, OsdsSelectOption, OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import React, { useMemo } from 'react';
 
 export type PciProject = {
   access: string;
@@ -15,32 +18,6 @@ export type PciProject = {
   unleash: boolean;
 };
 
-const getProjectOption = (option: Record<string, any>): JSX.Element => {
-  return (
-    <div style={{ alignItems: 'center', display: 'flex' }}>
-      {option.new && (
-        <>
-          <span
-            className="oui-icon oui-icon-plus mr-2"
-            aria-hidden="true"
-          ></span>
-          <span>{option.label}</span>
-        </>
-      )}
-      {option.seeAll && (
-        <>
-          <span>{option.label}</span>
-          <span
-            className="oui-icon oui-icon-arrow-right ml-2"
-            aria-hidden="true"
-          ></span>
-        </>
-      )}
-      {option.id && <span>{option.label}</span>}
-    </div>
-  );
-};
-
 type Props = {
   isLoading: boolean;
   projects: PciProject[];
@@ -48,11 +25,11 @@ type Props = {
   onProjectChange: CallableFunction;
   onProjectCreate: CallableFunction;
   onSeeAllProjects: CallableFunction;
-  onMenuOpen?: CallableFunction;
   createLabel: string;
   seeAllButton: boolean;
   seeAllLabel: string;
 };
+
 const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   isLoading,
   projects,
@@ -60,116 +37,63 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   onProjectChange,
   onProjectCreate,
   onSeeAllProjects,
-  onMenuOpen,
   createLabel,
   seeAllButton,
   seeAllLabel,
 }: Props): JSX.Element => {
-  // Important note :
-  // The any types in this bloc are there because the react select
-  // should expose its own types, it's not for us to define
-  // This should be updated once the lib is updated to expose the necessary typings
-  // Also, i don't want to disable the option "noImplicitAny"
-  // Because this is done under unique circumstances and should not impact the rest of the codebase
-  const selectStyles = {
-    option: (provided: any, { isFocused }: { isFocused: boolean }) => ({
-      ...provided,
-      backgroundColor: isFocused
-        ? 'var(--ods-color-primary-075)'
-        : 'var(--ods-color-default-000)',
-      color: isFocused
-        ? 'var(--ods-color-primary-700)'
-        : 'var(--ods-color-primary-800)',
-      cursor: 'pointer',
-      ':active': {
-        ...provided[':active'],
-        backgroundColor: 'var(--ods-color-primary-100)',
-        color: 'var(--ods-color-primary-700',
-      },
-    }),
-    control: (provided: any, { isFocused }: { isFocused: boolean }) => ({
-      ...provided,
-      cursor: 'pointer',
-      backgroundColor: isFocused
-        ? 'var(--ods-color-primary-075)'
-        : 'var(--ods-color-default-000)',
-      color: isFocused
-        ? 'var(--ods-color-primary-700)'
-        : 'var(--ods-color-primary-800)',
-    }),
-  };
-  const [options, setOptions] = useState([]);
-  const [value, setValue] = useState(null);
-  const [createProjectOption, setCreateProjectOption] = useState(null);
-  const [seeAllProjectsOption, setSeeAllProjectsOption] = useState(null);
 
-  useEffect(() => {
-    setCreateProjectOption({
-      new: true,
-      label: createLabel,
-    });
-  }, [createLabel]);
+  const options = useMemo<{ id: string, label: string }[]>(() => {
+    const result = [];
 
-  useEffect(() => {
-    setSeeAllProjectsOption(
-      seeAllButton
-        ? {
-            seeAll: true,
-            label: seeAllLabel,
-          }
-        : null,
-    );
-  }, [seeAllButton, seeAllLabel]);
-
-  useEffect(() => {
-    setOptions([
-      ...(seeAllProjectsOption ? [seeAllProjectsOption] : []),
-      ...(createProjectOption ? [createProjectOption] : []),
-      ...(projects
-        ? projects.map(({ project_id: projectId, description }) => ({
-            id: projectId,
-            label: description || projectId,
-          }))
-        : [])
-    ]);
-  }, [projects, createProjectOption]);
-
-  useEffect(() => {
-    if (selectedProject) {
-      setValue({
-        id: selectedProject.project_id,
-        label: selectedProject.description || selectedProject.project_id,
-      });
-    } else if (createProjectOption) {
-      setValue(createProjectOption);
+    if (seeAllButton) {
+      result.push({ id: SEE_ALL_PROJECTS_ITEM_ID, label: seeAllLabel });
     }
-  }, [selectedProject, options, createProjectOption]);
+
+    if (createLabel) {
+      result.push({ id: NEW_PROJECT_ITEM_ID, label: createLabel });
+    }
+    if (projects) {
+      result.push(...projects.map(project => ({
+        id: project.project_id,
+        label: project.description || project.project_id
+      })));
+    }
+
+    return result;
+  }, [seeAllButton, seeAllLabel, createLabel, projects,]);
+
+  const handleSelectChange = (event: any) => {
+    const projectId = event.detail.value;
+    if (projectId === NEW_PROJECT_ITEM_ID) {
+      onProjectCreate();
+    } else if (projectId === SEE_ALL_PROJECTS_ITEM_ID) {
+      onSeeAllProjects();
+    } else {
+      onProjectChange(
+        projects.find(({ project_id }) => project_id === projectId),
+      );
+    }
+  }
 
   return (
     <>
-      <Select
-        styles={selectStyles}
-        isLoading={isLoading}
-        isSearchable={false}
-        formatOptionLabel={getProjectOption}
-        options={options}
-        menuPosition={'absolute'}
-        onMenuOpen={() => onMenuOpen && onMenuOpen()}
-        value={value}
-        onChange={(option) => {
-          if (option.new) {
-            onProjectCreate();
-          } else if (option.seeAll) {
-            onSeeAllProjects();
-          } else {
-            onProjectChange(
-              projects.find(
-                ({ project_id: projectId }) => projectId === option.id,
-              ),
-            );
-          }
-        }}
-      />
+      <OsdsSelect
+        value={selectedProject?.project_id}
+        onOdsValueChange={handleSelectChange}
+      >
+        {isLoading && <span slot="placeholder">....</span>}
+        {options.map(option => (
+          <OsdsSelectOption
+            key={option.id}
+            value={option.id}>
+            <div className='flex items-center gap-2 flex-wrap'>
+              {option.id === NEW_PROJECT_ITEM_ID && <OsdsIcon name={ODS_ICON_NAME.ADD} size={ODS_ICON_SIZE.xxs} color={ODS_THEME_COLOR_INTENT.primary} />}
+              <span>{option.label}</span>
+              {option.id === SEE_ALL_PROJECTS_ITEM_ID && <OsdsIcon name={ODS_ICON_NAME.ARROW_RIGHT} size={ODS_ICON_SIZE.xxs} color={ODS_THEME_COLOR_INTENT.primary} />}
+            </div>
+          </OsdsSelectOption>
+        ))}
+      </OsdsSelect>
     </>
   );
 };
