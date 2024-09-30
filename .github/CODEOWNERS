@@ -18,9 +18,6 @@ packages/manager/modules/ @ovh/team-manager-dev-angularjs
 /packages/manager-components @ovh/team-manager-control-tower
 
 # Continuous Integration and scripts
-.github/workflows @ovh/su-digital-tools-core-service-delivery
-.nvmrc @ovh/su-digital-tools-core-service-delivery
-/scripts/ @ovh/su-digital-tools-core-service-delivery
 /scripts/start-application.js @ovh/team-manager-dev-angularjs @ovh/team-manager-dev-reactjs
 /scripts/run-playwright.js @ovh/team-manager-dev-reactjs
 /scripts/run-playwright-bdd.js @ovh/team-manager-dev-reactjs
