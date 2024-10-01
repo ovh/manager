@@ -1,4 +1,5 @@
 import { AccountType } from '@/api/account';
+import { ResourceStatus } from '@/api/api.type';
 
 export const accountMock: AccountType[] = [
   {
@@ -51,7 +52,7 @@ export const accountMock: AccountType[] = [
       },
     ],
     id: '19097ad4-2880-4000-8b03-9d110f0b8f80',
-    resourceStatus: 'CREATING',
+    resourceStatus: ResourceStatus.CREATING,
     targetSpec: {
       contactInformation: {
         city: 'string',

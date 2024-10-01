@@ -48,6 +48,8 @@ import {
 } from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import Loading from '@/components/Loading/Loading';
+import { BadgeStatus } from '@/components/BadgeStatus';
+import { ResourceStatus } from '@/api/api.type';
 
 export type EmailsItem = {
   id: string;
@@ -57,6 +59,7 @@ export type EmailsItem = {
   organizationLabel: string;
   used: number;
   available: number;
+  status: ResourceStatus;
 };
 
 const columns: DatagridColumn<EmailsItem>[] = [
@@ -94,6 +97,11 @@ const columns: DatagridColumn<EmailsItem>[] = [
         </OsdsText>
       ),
     label: 'zimbra_account_datagrid_offer_label',
+  },
+  {
+    id: 'status',
+    cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
+    label: 'zimbra_account_datagrid_status_label',
   },
   {
     id: 'quota',
@@ -138,6 +146,7 @@ export default function EmailAccounts() {
       organizationLabel: item.currentState.organizationLabel,
       used: item.currentState.quota.used,
       available: item.currentState.quota.available,
+      status: item.resourceStatus,
     })) ?? [];
 
   const webmailUrl = guidesConstants.GUIDES_LIST.webmail.url;
