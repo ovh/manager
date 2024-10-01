@@ -271,13 +271,19 @@ export const LEGAL_LINK3 = {
 
 export const MAX_SIZE = 10000000;
 
-export const TRACKING_PREFIX = 'dedicated::account::identity-files';
+export const TRACKING_PREFIX = 'Hub::account::identity-files';
 
 export const TRACKING_TASK_TAG = {
-  upload: `${TRACKING_PREFIX}::upload`,
-  uploadSuccess: `${TRACKING_PREFIX}::upload-success`,
-  uploadError: `${TRACKING_PREFIX}::upload-error`,
-  goToHub: `${TRACKING_PREFIX}::goto-hub`,
+  dashboard: `${TRACKING_PREFIX}::identity-files::dashboard`,
+  openDetailView: `${TRACKING_PREFIX}::tile::button::{{name_click}}_identity-files::{{identity-file}}`,
+  clickSendMyDocuments: `${TRACKING_PREFIX}::page::button::submit_identity-files`,
+  displayPopUpSendMyDocuments: `${TRACKING_PREFIX}::identity-files::pop-up::identity-files-sent`,
+  confirmSendMyDocuments: `${TRACKING_PREFIX}::identity-files::pop-up::button::identity-files-sent::confirm`,
+};
+
+export const TRACKING_VARIABLES = {
+  TO_ADD: 'to_add',
+  MODIFY: 'modify',
 };
 
 export const KYC_STATUS = {
