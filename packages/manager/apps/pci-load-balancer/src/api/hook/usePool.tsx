@@ -1,4 +1,4 @@
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
+import { ApiError, applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
@@ -6,6 +6,7 @@ import queryClient from '@/queryClient';
 import { paginateResults, sortResults } from '@/helpers';
 
 import {
+  createPool,
   deletePool,
   getLoadBalancerPools,
   TLoadBalancerPool,
@@ -97,6 +98,57 @@ export const useDeletePool = ({
   });
   return {
     deletePool: (poolId: string) => mutation.mutate(poolId),
+    ...mutation,
+  };
+};
+
+export type TCreatePool = {
+  projectId: string;
+  region: string;
+  loadbalancerId: string;
+  name: string;
+  algorithm: string;
+  protocol: string;
+  sessionPersistenceType?: string;
+  cookieName?: string;
+  onError: (cause: ApiError) => void;
+  onSuccess: () => void;
+};
+
+export const useCreatePool = ({
+  projectId,
+  region,
+  loadbalancerId,
+  name,
+  algorithm,
+  protocol,
+  sessionPersistenceType,
+  cookieName = '',
+  onError,
+  onSuccess,
+}: TCreatePool) => {
+  const mutation = useMutation({
+    mutationFn: async () =>
+      createPool({
+        projectId,
+        region,
+        loadbalancerId,
+        name,
+        algorithm,
+        protocol,
+        sessionPersistenceType,
+        cookieName,
+      }),
+    onError: (cause: ApiError) => {
+      onError(cause);
+    },
+    onSuccess: async () => {
+      onSuccess();
+    },
+  });
+
+  return {
+    createPool: () => mutation.mutate(),
     ...mutation,
   };
 };

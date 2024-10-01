@@ -1,0 +1,23 @@
+{
+  "octavia_load_balancer_pools_create_name": "Nom du pool",
+  "octavia_load_balancer_pools_create_options": "Options du pool",
+  "octavia_load_balancer_pools_create_algorithm": "Algorithme",
+  "octavia_load_balancer_pools_create_algorithm_tooltip": "L’algorithme du Load Balancer qui répartit le trafic entre les membres du pool.",
+  "octavia_load_balancer_pools_create_algorithm_roundRobin": "Fait pivoter les requêtes uniformément entre plusieurs instances.",
+  "octavia_load_balancer_pools_create_algorithm_leastConnections": "Alloue les requêtes à l'instance avec le moins de connexions actives.",
+  "octavia_load_balancer_pools_create_algorithm_sourceIP": "Les requêtes provenant d'une adresse IP source unique sont dirigées de manière cohérente vers la même instance.",
+  "octavia_load_balancer_pools_create_algorithm_sourceIPPort": "Les requêtes provenant d'une adresse IP source Port source unique sont dirigées de manière cohérente vers la même instance.",
+  "octavia_load_balancer_pools_create_protocol": "Protocole",
+  "octavia_load_balancer_pools_create_protocol_tooltip": "Protocole pour lequel ce pool et ses membres écoutent.",
+  "octavia_load_balancer_pools_create_protocol_default": "Sélectionner un protocole",
+  "octavia_load_balancer_pools_create_session": "Session permanente",
+  "octavia_load_balancer_pools_create_session_tooltip": "Type de session permanente pour la distribution du trafic aux membres du pool.",
+  "octavia_load_balancer_pools_create_persistent_session": "Sélectionner une session permanente",
+  "octavia_load_balancer_pools_create_persistent_session_sourceIP": "Persistance de session basée sur l'adresse IP source.",
+  "octavia_load_balancer_pools_create_persistent_session_httpCookie": "Persistance de session basée sur le cookie http.",
+  "octavia_load_balancer_pools_create_persistent_session_appCookie": "Persistance de session basée sur le cookie d'application.",
+  "octavia_load_balancer_pools_create_persistent_session_cookie_name": "Nom du cookie",
+  "octavia_load_balancer_pools_create_cancel": "Annuler",
+  "octavia_load_balancer_pools_create_submit": "Ajouter",
+  "octavia_load_balancer_pools_create_submit_edition": "Editer"
+}
