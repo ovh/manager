@@ -4,6 +4,6 @@
   "pci_projects_project_discovery_activate_banner_no_promotion_title": "Rozpocznij wdrażanie zasobów cloud.",
   "pci_projects_project_discovery_activate_banner_description": "Aktualnie jesteś w trybie Discovery. Po włączeniu projektu uruchomisz zasoby cloud w ciągu kilku minut.",
   "pci_projects_project_discovery_activate_banner_antifraud_manuel_check_message": "Nasz zespół weryfikuje proces włączania Twojego projektu.  Po zakończeniu procedury otrzymasz e-mail z potwierdzeniem.",
-  "pci_projects_project_discovery_activate_banner_cta": "Aktywuj projekt",
+  "pci_projects_project_discovery_activate_banner_cta": "Włącz",
   "pci_projects_project_discovery_activate_banner_antifraud_refused_message": "Po przeanalizowaniu danych powiązanych z aktywacją Twojego projektu stwierdzamy, że nie spełniają one wszystkich warunków niezbędnych do zapewnienia bezpieczeństwa. Skontaktuj się z konsultantem, przechodząc do rubryki „Pomoc” na Twoim koncie i dostarcz informacje potrzebne do aktywacji Twojego projektu. W przeciwnym razie transakcja nie zostanie zrealizowana."
 }

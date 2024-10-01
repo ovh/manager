@@ -67,6 +67,10 @@
                     data-heading="{{:: continent }}"
                 >
                     <div class="container-fluid px-0">
+                        <span
+                            ng-if="'ENABLE_AFTER_PROD' === true"
+                            data-translate="pci_project_instances_instance_add_region_savings_plan_info"
+                        ></span>
                         <div class="row">
                             <oui-select-picker
                                 class="d-inline-block col-md-6 col-xl-3 my-3"
@@ -977,6 +981,7 @@
         data-on-cancel="$ctrl.cancel()"
         data-editable="!$ctrl.isLoading"
         name="instances_add_billing"
+        data-on-focus="$ctrl.onBillingFocus()"
         data-on-submit="$ctrl.onCreateFormStepperSubmit()"
         data-navigation="!$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError && (!$ctrl.isPrivateMode() || (!$ctrl.isLoadBillingStep && $ctrl.isPrivateMode()))"
     >
