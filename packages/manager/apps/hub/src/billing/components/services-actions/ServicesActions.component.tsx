@@ -77,7 +77,6 @@ export default function ServicesActions({
           }
         >
           {items.map((item, index) => {
-            // FIXME: Can't perform a React state update on a component that hasn't mounted yet
             const { disabled, external, ...link } = item;
             return (
               <div key={`service_action_${service.domain}_${index}`}>
