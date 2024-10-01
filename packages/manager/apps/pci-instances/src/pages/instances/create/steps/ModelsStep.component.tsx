@@ -1,15 +1,25 @@
-import { StepComponent, TabsComponent } from '@ovh-ux/manager-react-components';
+import {
+  Notifications,
+  StepComponent,
+  TabsComponent,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import clsx from 'clsx';
 import { TFunction } from 'i18next';
-import { FC, useCallback, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { FC, useCallback, useEffect, useMemo } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { OsdsChip, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  OsdsChip,
+  OsdsDivider,
+  OsdsText,
+  OsdsLink,
+} from '@ovhcloud/ods-components/react';
 import { FlavorTile } from '@ovh-ux/manager-pci-common/src/components/flavor-selector/FlavorTile.component';
 import {
   ODS_CHIP_SIZE,
@@ -172,7 +182,11 @@ const TabTitle: FC<TTabTitleProps> = ({ t, category, isSelected }) => (
 export const ModelsStep: FC = () => {
   const { projectId } = useParams() as { projectId: string };
   const { t } = useTranslation(['create', 'stepper']);
-  const { data, isLoading } = useCatalog(projectId, modelSelector);
+  const { data, isLoading, isError, refetch } = useCatalog(
+    projectId,
+    modelSelector,
+  );
+  const { clearNotifications, addError } = useNotifications();
   const { stepStateById, modelName, setModelName, updateStep } = useAppStore(
     useShallow((state) => ({
       stepStateById: state.stepStateById(),
@@ -180,6 +194,35 @@ export const ModelsStep: FC = () => {
       setModelName: state.setModelName,
       updateStep: state.updateStep,
     })),
+  );
+
+  const handleRefetch = useCallback(() => {
+    clearNotifications();
+    refetch();
+  }, [clearNotifications, refetch]);
+
+  const errorMessage = useMemo(
+    () => (
+      <>
+        <Trans
+          t={t}
+          i18nKey="stepper:unknown_error_message1"
+          tOptions={{ interpolation: { escapeValue: true } }}
+          shouldUnescape
+          components={{
+            Link: (
+              <OsdsLink
+                color={ODS_THEME_COLOR_INTENT.error}
+                onClick={handleRefetch}
+              />
+            ),
+          }}
+        />
+        <br />
+        <Trans t={t} i18nKey="stepper:unknown_error_message2" />
+      </>
+    ),
+    [t, handleRefetch],
   );
 
   const handleNextStep = useCallback(
@@ -220,6 +263,11 @@ export const ModelsStep: FC = () => {
     [data, modelName, setModelName, t],
   );
 
+  useEffect(() => {
+    if (isError) addError(errorMessage);
+    return () => clearNotifications();
+  }, [isError, addError, errorMessage, clearNotifications]);
+
   return (
     <div>
       <StepComponent
@@ -244,6 +292,9 @@ export const ModelsStep: FC = () => {
       >
         <>
           {isLoading && <Spinner />}
+          <OsdsDivider />
+          <Notifications />
+          <OsdsDivider />
           {data && (
             <TabsComponent<DeepReadonly<TModelCategory>>
               items={data.models.categories as TModelCategory[]}
