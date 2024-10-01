@@ -42,3 +42,38 @@ export const deletePool = async (
   );
   return data;
 };
+
+export const createPool = async ({
+  projectId,
+  region,
+  loadbalancerId,
+  name,
+  algorithm,
+  protocol,
+  sessionPersistenceType,
+  cookieName = '',
+}: {
+  projectId: string;
+  region: string;
+  loadbalancerId: string;
+  name: string;
+  algorithm: string;
+  protocol: string;
+  sessionPersistenceType?: string;
+  cookieName?: string;
+}) => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/pool`,
+    {
+      loadbalancerId,
+      name,
+      algorithm,
+      protocol,
+      sessionPersistence: sessionPersistenceType
+        ? { type: sessionPersistenceType, cookieName }
+        : null,
+    },
+  );
+
+  return data;
+};
