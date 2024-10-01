@@ -52,6 +52,7 @@ const CreateGeneralInformationsValidity = ({
     if (validityPresetPeriod !== -1) {
       setValidity(validityPresetPeriod);
     } else {
+      if (!validityDatepicker) return;
       setValidity(getDaysFromDate(validityDatepicker));
     }
   }, [validityPresetPeriod, validityDatepicker]);
