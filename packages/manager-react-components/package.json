@@ -1,6 +1,5 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "private": true,
   "version": "1.34.0",
   "main": "src/lib.ts",
   "repository": {
@@ -8,9 +7,6 @@
     "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager-react-components"
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "echo build",
     "build:storybook": "storybook build",
