@@ -11,6 +11,7 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { clsx } from 'clsx';
 
 export type ActionBannerProps = {
   message: string;
@@ -33,7 +34,7 @@ export function ActionBanner({
     <OsdsMessage
       type={type}
       color={(type as unknown) as ODS_THEME_COLOR_INTENT}
-      className={`mt-3 flex-row ${className || ''}`.trim()}
+      className={clsx('mt-3 flex-row', className)}
       data-testid="actionBanner-message_container"
     >
       <div className="sm:flex sm:flex-row sm:justify-between sm:items-center">

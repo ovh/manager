@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
-import { vi, describe, it } from 'vitest';
+import { vi } from 'vitest';
 
 vi.mock('react-router-dom', async () => {
   const module = await vi.importActual('react-router-dom');
@@ -13,17 +13,6 @@ vi.mock('react-router-dom', async () => {
     useNavigate: vi.fn(),
     Navigate: () => null,
     Outlet: vi.fn(() => 'Outlet'),
-  };
-});
-
-vi.mock('@ovh-ux/manager-pci-common', async () => {
-  const module = await vi.importActual('@ovh-ux/manager-pci-common');
-  return {
-    ...module,
-    useProject: vi.fn().mockResolvedValue({
-      projectName: 'project-name',
-      project_id: 'project-id',
-    }),
   };
 });
 
