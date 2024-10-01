@@ -82,7 +82,7 @@ export function Redirections() {
 
   return (
     <div className="py-6 mt-8">
-      <Notifications />
+      {!editEmailAccountId && <Notifications />}
       <Outlet />
       {platformUrn && (
         <>
