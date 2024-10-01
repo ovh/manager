@@ -987,14 +987,14 @@
     >
         <oui-message
             data-type="info"
-            if="$ctrl.IsComingSoonPricingBannerDisplayed() && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
+            data-ng-if="$ctrl.IsComingSoonPricingBannerDisplayed() && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
         >
-        <h6
-            data-translate="pci_projects_project_instances_add_billing_coming_soon_message_title"
+            <h6
+                data-translate="pci_projects_project_instances_add_billing_coming_soon_message_title"
             ></h6>
-         <p
-            data-translate="pci_projects_project_instances_add_billing_coming_soon_message_description"
-        ></p>
+            <p
+                data-translate="pci_projects_project_instances_add_billing_coming_soon_message_description"
+            ></p>
         </oui-message>
 
         <p
