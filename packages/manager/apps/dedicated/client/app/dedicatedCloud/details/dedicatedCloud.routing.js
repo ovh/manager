@@ -299,7 +299,7 @@ export default /* @ngInject */ ($stateProvider) => {
               : null,
           ),
       breadcrumb: /* @ngInject */ (serviceName, dedicatedCloudDescription) =>
-        dedicatedCloudDescription.description || serviceName, // Si jamais le champ description (le nom) n'est pas rempli
+        dedicatedCloudDescription.description || serviceName,
     },
     component: 'ovhManagerPcc',
     reloadOnSearch: false,
