@@ -28,24 +28,85 @@ import {
 } from '@/_mock_/billingServices';
 import SiretBanner from '@/pages/layout/SiretBanner.component';
 import SiretModal from '@/pages/layout/SiretModal.component';
+import KycIndiaBanner from '@/pages/layout/KycIndiaBanner.component';
+import KycFraudBanner from '@/pages/layout/KycFraudBanner.component';
+import { KycStatus } from '@/types/kyc.type';
 
 const queryClient = new QueryClient();
 
+const trackClickMock = vi.fn();
+const trackPageMock = vi.fn();
+const trackImpressionMock = vi.fn();
+const trackClickImpressionMock = vi.fn();
+const mocks = vi.hoisted(() => ({
+  bills: {
+    data: {
+      currency: {
+        code: 'EUR',
+        format: '{{price}} €',
+        symbol: '€',
+      },
+      period: { from: '2024-08-01', to: '2024-08-31' },
+      total: 0,
+    },
+    isPending: true,
+    error: null,
+    refetch: vi.fn(() => ({})),
+  },
+  debt: {
+    data: {
+      unmaturedAmount: {
+        currencyCode: 'EUR',
+        value: 0,
+        text: '0.00 €',
+      },
+      active: false,
+      dueAmount: {
+        currencyCode: 'EUR',
+        text: '0.00 €',
+        value: 0,
+      },
+      pendingAmount: {
+        currencyCode: 'EUR',
+        text: '0.00 €',
+        value: 0,
+      },
+      todoAmount: {
+        text: '0.00 €',
+        value: 0,
+        currencyCode: 'EUR',
+      },
+    },
+    isPending: false,
+    refetch: vi.fn(() => ({})),
+  },
+  featureAvailability: {
+    'billing:management': false,
+    'hub:banner-hub-invite-customer-siret': true,
+    'hub:popup-hub-invite-customer-siret': true,
+    'identity-documents': true,
+    'procedures:fraud': true,
+  },
+  isLastOrderLoading: true,
+  isAccountSidebarVisible: false,
+  lastOrder: {
+    data: null,
+    status: 'OK',
+  } as LastOrder,
+  locale: 'fr_FR',
+  kycStatus: {
+    status: 'required',
+  } as KycStatus,
+  region: 'EU',
+  services: {
+    data: { count: 0, data: {} },
+    status: 'OK',
+  },
+}));
 const services: ApiEnvelope<ProductList> = {
   data: { count: 0, data: {} },
   status: 'OK',
 };
-const lastOrder: LastOrder = { data: null, status: 'OK' };
-const featuresAvailability = {
-  'billing:management': true,
-  'hub:banner-hub-invite-customer-siret': true,
-  'hub:popup-hub-invite-customer-siret': true,
-};
-const trackClickMock = vi.fn();
-const trackPageMock = vi.fn();
-let isLastOrderLoading = true;
-let isAccountSidebarVisible = false;
-const mockedLocale = 'fr_FR';
 
 const shellContext = {
   environment: {
@@ -60,13 +121,14 @@ const shellContext = {
         code: 'USD',
       },
     })),
-    getUserLocale: vi.fn(() => mockedLocale),
+    getUserLocale: vi.fn(() => mocks.locale),
+    getRegion: vi.fn(() => mocks.region),
   },
   shell: {
     ux: {
       hidePreloader: vi.fn(),
       stopProgress: vi.fn(),
-      isAccountSidebarVisible: () => isAccountSidebarVisible,
+      isAccountSidebarVisible: () => mocks.isAccountSidebarVisible,
     },
     navigation: {
       getURL: vi.fn(
@@ -75,6 +137,10 @@ const shellContext = {
             setTimeout(() => resolve('https://fake-link.com'), 50),
           ),
       ),
+      tracking: {
+        trackImpression: trackImpressionMock,
+        trackClickImpression: trackClickImpressionMock,
+      },
     },
   },
 };
@@ -173,63 +239,33 @@ vi.mock('@/data/hooks/services/useServices', () => ({
   useFetchHubServices: (): {
     data: ApiEnvelope<ProductList>;
     isPending: boolean;
-  } => ({ data: services, isPending: false }),
+  } => ({ data: mocks.services, isPending: false }),
 }));
 
 vi.mock('@/data/hooks/lastOrder/useLastOrder', () => ({
   useFetchHubLastOrder: (): { data: LastOrder; isPending: boolean } => ({
-    data: lastOrder,
-    isPending: isLastOrderLoading,
+    data: mocks.lastOrder,
+    isPending: mocks.isLastOrderLoading,
   }),
 }));
 
-const useBillsMockValue: any = {
-  data: {
-    currency: {
-      code: 'EUR',
-      format: '{{price}} €',
-      symbol: '€',
-    },
-    period: { from: '2024-08-01', to: '2024-08-31' },
-    total: 0,
-  },
-  isPending: true,
-  error: null,
-  refetch: vi.fn(() => ({})),
-};
-const useFetchHubBillsSpy = vi
-  .spyOn(UseBillsHook, 'useFetchHubBills')
-  .mockReturnValue(useBillsMockValue);
-
-const useDebtMockValue: any = {
-  data: {
-    unmaturedAmount: {
-      currencyCode: 'EUR',
-      value: 0,
-      text: '0.00 €',
-    },
-    active: false,
-    dueAmount: {
-      currencyCode: 'EUR',
-      text: '0.00 €',
-      value: 0,
-    },
-    pendingAmount: {
-      currencyCode: 'EUR',
-      text: '0.00 €',
-      value: 0,
-    },
-    todoAmount: {
-      text: '0.00 €',
-      value: 0,
-      currencyCode: 'EUR',
-    },
-  },
-  isPending: false,
-  refetch: vi.fn(() => ({})),
-};
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  useFeatureAvailability: (): { data: any; isPending: boolean } => ({
+    data: mocks.featureAvailability,
+    isPending: false,
+  }),
+}));
+vi.mock('@/data/hooks/bills/useBills', () => ({
+  useFetchHubBills: vi.fn(() => mocks.bills),
+}));
 vi.mock('@/data/hooks/debt/useDebt', () => ({
-  useFetchHubDebt: vi.fn(() => useDebtMockValue),
+  useFetchHubDebt: vi.fn(() => mocks.debt),
+}));
+
+vi.mock('@/data/hooks/kyc/useKyc', () => ({
+  useKyc: () => ({
+    useKycStatus: () => ({ data: mocks.kycStatus }),
+  }),
 }));
 
 const useBillingServicesMockValue: any = {
@@ -260,11 +296,12 @@ describe('Layout.page', () => {
   });
 
   it('should render correct components for "fresh" customers', async () => {
-    isLastOrderLoading = false;
+    mocks.isLastOrderLoading = false;
     const {
       getByText,
       queryByText,
       findByText,
+      findByTestId,
       queryByTestId,
     } = renderComponent(<Layout />);
 
@@ -275,17 +312,20 @@ describe('Layout.page', () => {
     expect(queryByText('ovh-manager-hub-carousel')).not.toBeInTheDocument();
     expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
     expect(queryByTestId('siret_modal')).not.toBeInTheDocument();
-    expect(getByText('oui-message.kycIndia')).not.toBeNull();
-    expect(getByText('oui-message.kycFraud')).not.toBeNull();
     expect(queryByText('Payment Status')).not.toBeInTheDocument();
     expect(queryByText('Support')).not.toBeInTheDocument();
     expect(queryByText('Order Tracking')).not.toBeInTheDocument();
     expect(queryByText('Products')).not.toBeInTheDocument();
     expect(getByText('hub-catalog-items')).not.toBeNull();
+
+    const kycIndiaBanner = await findByTestId('kyc_india_banner');
+    const kycFraudBanner = await findByTestId('kyc_fraud_banner');
+    expect(kycIndiaBanner).not.toBeNull();
+    expect(kycFraudBanner).not.toBeNull();
   });
 
   it('should render correct components for customers with services or order', async () => {
-    lastOrder.data = {
+    mocks.lastOrder.data = {
       date: '2024-08-22T12:24:08+02:00',
       expirationDate: '2024-09-05T23:29:59+02:00',
       orderId: 99999999999,
@@ -329,8 +369,8 @@ describe('Layout.page', () => {
     expect(getByText('ovh-manager-hub-carousel')).not.toBeNull();
     expect(getByTestId('siret_banner')).not.toBeNull();
     expect(getByTestId('siret_modal')).not.toBeNull();
-    expect(getByText('oui-message.kycIndia')).not.toBeNull();
-    expect(getByText('oui-message.kycFraud')).not.toBeNull();
+    expect(getByTestId('kyc_india_banner')).not.toBeNull();
+    expect(getByTestId('kyc_fraud_banner')).not.toBeNull();
     expect(getByText('Support')).not.toBeNull();
     expect(getByText('Order Tracking')).not.toBeNull();
     expect(getByText('Products')).not.toBeNull();
@@ -356,7 +396,7 @@ describe('Layout.page', () => {
   });
 
   it('should have correct css class if account sidebard is open', async () => {
-    isAccountSidebarVisible = true;
+    mocks.isAccountSidebarVisible = true;
     const { getByTestId } = renderComponent(<Layout />);
 
     expect(getByTestId('hub_main_div')).toHaveAttribute(
@@ -401,10 +441,8 @@ describe('Layout.page', () => {
     });
 
     it('should display correct wording when customer has no bills', async () => {
-      useBillsMockValue.isPending = false;
-      const { findByTestId, getByTestId, getByText } = renderComponent(
-        <BillingSummary />,
-      );
+      mocks.bills.isPending = false;
+      const { findByTestId, getByText, getByTestId } = renderComponent(<BillingSummary />);
 
       expect(getByText('hub_billing_summary_debt_no_bills')).not.toBeNull();
       expect(getByTestId('bills_link_skeleton')).not.toBeNull();
@@ -413,7 +451,7 @@ describe('Layout.page', () => {
     });
 
     it('should display correct wording when customer has bills but no debt', async () => {
-      useBillsMockValue.data.total = 15034.94;
+      mocks.bills.data.total = 15034.94;
       const expectedAmount = '15\u202f034';
       const { getByText, getByTestId, getAllByTestId } = renderComponent(
         <BillingSummary />,
@@ -428,12 +466,13 @@ describe('Layout.page', () => {
       await waitFor(() => {
         expect(intlSpy).toHaveBeenCalledWith('fr-FR', {
           style: 'currency',
-          currency: useBillsMockValue.data.currency.code,
+          currency: mocks.bills.data.currency.code,
         });
       });
     });
 
     it('should update bills amount when period is changed', async () => {
+      const useFetchHubBillsSpy = vi.spyOn(UseBillsHook, 'useFetchHubBills');
       const { getByTestId } = renderComponent(<BillingSummary />);
       const periodSelector = (getByTestId(
         'bills_period_selector',
@@ -464,7 +503,7 @@ describe('Layout.page', () => {
     });
 
     it('should display debt information if customer has debt', async () => {
-      useDebtMockValue.data.dueAmount.value = 964.23;
+      mocks.debt.data.dueAmount.value = 964.23;
       const { getByTestId, findByTestId } = renderComponent(<BillingSummary />);
       expect(getByTestId('debt_amount')).not.toBeNull();
 
@@ -473,7 +512,7 @@ describe('Layout.page', () => {
     });
 
     it('should display error tile', async () => {
-      useBillsMockValue.error = new Error();
+      mocks.bills.error = new Error();
       const { findByText } = renderComponent(<BillingSummary />);
       const tileError = await findByText('manager_error_tile_title');
       expect(tileError).not.toBeNull();
@@ -828,6 +867,97 @@ describe('Layout.page', () => {
       shellContext.environment.user.companyNationalIdentificationNumber = 99999;
       const { queryByTestId } = renderComponent(<SiretModal />);
       expect(queryByTestId('siret_modal')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('KycIndiaBanner component', () => {
+    it('should render the banner if user is required to validated his KYC', async () => {
+      trackClickMock.mockReset();
+      const { getByTestId, queryByTestId } = renderComponent(
+        <KycIndiaBanner />,
+      );
+      expect(getByTestId('kyc_india_banner')).not.toBeNull();
+
+      expect(trackPageMock).toHaveBeenCalledWith({
+        pageType: 'banner-info',
+        pageName: 'kyc-india',
+      });
+      const link = await queryByTestId('kyc_india_link');
+      expect(link).not.toBeNull();
+
+      await act(() => fireEvent.click(link));
+
+      expect(trackClickMock).toHaveBeenCalledWith({
+        actionType: 'action',
+        actions: ['kyc-india', 'verify-identity'],
+      });
+    });
+
+    it('should render the banner and track display if user has started his KYC validation', async () => {
+      mocks.kycStatus.ticketId = 'CS0013982';
+      const { getByTestId } = renderComponent(<KycIndiaBanner />);
+      expect(getByTestId('kyc_india_banner')).not.toBeNull();
+    });
+
+    it('should render nothing if user already validated his KYC', async () => {
+      mocks.kycStatus.status = 'ok';
+      const { queryByTestId } = renderComponent(<KycIndiaBanner />);
+      expect(queryByTestId('kyc_india_banner')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('KycFraudBanner component', () => {
+    it('should render the banner if user is required to validated his KYC', async () => {
+      mocks.kycStatus.status = 'required';
+      delete mocks.kycStatus.ticketId;
+      const { getByTestId, queryByTestId } = renderComponent(
+        <KycFraudBanner />,
+      );
+      expect(getByTestId('kyc_fraud_banner')).not.toBeNull();
+
+      expect(trackImpressionMock).toHaveBeenCalledWith({
+        campaignId: 'kyc-fraud',
+        creation: 'notification',
+        format: 'banner',
+        generalPlacement: 'manager-hub',
+        variant: 'required',
+      });
+      const link = await queryByTestId('kyc_fraud_link');
+      expect(link).not.toBeNull();
+
+      await act(() => fireEvent.click(link));
+
+      expect(trackClickImpressionMock).toHaveBeenCalledWith({
+        click: {
+          campaignId: 'kyc-fraud',
+          creation: 'notification',
+          format: 'banner',
+          generalPlacement: 'manager-hub',
+          variant: 'required',
+        },
+      });
+    });
+
+    it('should render the banner and track display if user has started his KYC validation', async () => {
+      trackImpressionMock.mockReset();
+      mocks.kycStatus.status = 'open';
+      mocks.kycStatus.ticketId = 'CS0013982';
+      const { getByTestId } = renderComponent(<KycFraudBanner />);
+      expect(getByTestId('kyc_fraud_banner')).not.toBeNull();
+
+      expect(trackImpressionMock).toHaveBeenCalledWith({
+        campaignId: 'kyc-fraud',
+        creation: 'notification',
+        format: 'banner',
+        generalPlacement: 'manager-hub',
+        variant: 'open',
+      });
+    });
+
+    it('should render nothing if user already validated his KYC', async () => {
+      mocks.kycStatus.status = 'ok';
+      const { queryByTestId } = renderComponent(<KycFraudBanner />);
+      expect(queryByTestId('kyc_fraud_banner')).not.toBeInTheDocument();
     });
   });
 });
