@@ -122,6 +122,7 @@ export default function UpgradePlanPage(): JSX.Element {
   const update = () => {
     tracking?.trackClick({
       name: `PCI_PROJECTS_PRIVATEREGISTRY_CHANGEPLAN_CONFIRM_${selectedPlan.name}`,
+      type: 'action',
     });
 
     updatePlan();
@@ -130,6 +131,7 @@ export default function UpgradePlanPage(): JSX.Element {
   const cancel = () => {
     tracking?.trackClick({
       name: `PCI_PROJECTS_PRIVATEREGISTRY_CHANGEPLAN_CANCEL`,
+      type: 'action',
     });
     navigate('..');
   };

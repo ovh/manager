@@ -56,6 +56,7 @@ export default function UpdatePage() {
   const onClose = () => {
     tracking?.trackClick({
       name: `PCI_PROJECTS_PRIVATEREGISTRY_UPDATE_CLOSE`,
+      type: 'action',
     });
     navigate('..');
   };
@@ -102,6 +103,7 @@ export default function UpdatePage() {
   const onConfirm = () => {
     tracking?.trackClick({
       name: `PCI_PROJECTS_PRIVATEREGISTRY_UPDATE_CONFIRM`,
+      type: 'action',
     });
     renameRegistry(formState.renameInput);
   };
@@ -109,6 +111,7 @@ export default function UpdatePage() {
   const onCancel = () => {
     tracking?.trackClick({
       name: `PCI_PROJECTS_PRIVATEREGISTRY_UPDATE_CANCEL`,
+      type: 'action',
     });
     navigate('..');
   };

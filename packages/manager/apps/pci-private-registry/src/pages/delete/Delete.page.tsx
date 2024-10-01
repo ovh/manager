@@ -36,6 +36,7 @@ export default function DeletePage() {
   const onClose = () => {
     tracking?.trackClick({
       name: `PCI_PROJECTS_PRIVATEREGISTRY_DELETE_CLOSE`,
+      type: 'action',
     });
     navigate('..');
   };
@@ -74,6 +75,7 @@ export default function DeletePage() {
   const onConfirm = () => {
     tracking?.trackClick({
       name: `PCI_PROJECTS_PRIVATEREGISTRY_DELETE_CONFIRM`,
+      type: 'action',
     });
     deleteRegistry();
   };
@@ -81,6 +83,7 @@ export default function DeletePage() {
   const onCancel = () => {
     tracking?.trackClick({
       name: `PCI_PROJECTS_PRIVATEREGISTRY_DELETE_CANCEL`,
+      type: 'action',
     });
     navigate('..');
   };

@@ -40,6 +40,7 @@ export default function ActionComponent({
       onClick: () =>
         tracking?.trackClick({
           name: 'PCI_PROJECTS_PRIVATEREGISTRY_CHANGEPLAN',
+          type: 'action',
         }),
     },
     {
@@ -51,6 +52,7 @@ export default function ActionComponent({
       onClick: () =>
         tracking?.trackClick({
           name: 'PCI_PROJECTS_PRIVATEREGISTRY_HARBOR-UI',
+          type: 'action',
         }),
     },
     {
@@ -61,6 +63,7 @@ export default function ActionComponent({
       onClick: () =>
         tracking?.trackClick({
           name: 'PCI_PROJECTS_PRIVATEREGISTRY_API-URL',
+          type: 'action',
         }),
     },
     {
@@ -71,6 +74,7 @@ export default function ActionComponent({
       onClick: () =>
         tracking?.trackClick({
           name: 'PCI_PROJECTS_PRIVATEREGISTRY_CREDENTIALS',
+          type: 'action',
         }),
     },
     {
@@ -80,6 +84,7 @@ export default function ActionComponent({
       onClick: () =>
         tracking?.trackClick({
           name: 'PCI_PROJECTS_PRIVATEREGISTRY_UPDATE',
+          type: 'action',
         }),
     },
     {
@@ -92,6 +97,7 @@ export default function ActionComponent({
       onClick: () =>
         tracking?.trackClick({
           name: 'PCI_PROJECTS_PRIVATEREGISTRY_DELETE',
+          type: 'action',
         }),
     },
   ];

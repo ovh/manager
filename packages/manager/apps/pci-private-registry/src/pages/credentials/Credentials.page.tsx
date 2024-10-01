@@ -46,6 +46,7 @@ export default function CredentialsPage() {
       setIsConfirmed(true);
       tracking?.trackClick({
         name: 'PCI_PROJECTS_PRIVATEREGISTRY_CREDENTIALS_CONFIRM',
+        type: 'action',
       });
     } else {
       window.open(registry?.url, '_blank');

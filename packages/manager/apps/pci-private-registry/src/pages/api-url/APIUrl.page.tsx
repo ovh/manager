@@ -29,6 +29,7 @@ export default function ApiUrlPage() {
   const onClose = () => {
     tracking?.trackClick({
       name: 'PCI_PROJECTS_PRIVATEREGISTRY_API-URL_CLOSE',
+      type: 'action',
     });
     navigate('..');
   };
