@@ -87,6 +87,7 @@ export default function RegionStep({
 
           tracking?.trackClick({
             name: PRIVATE_REGISTRY_CREATE_LOCATION_NEXT,
+            type: 'action',
           });
         },
         label: tCommonField('common_stepper_next_button_label'),
@@ -96,6 +97,7 @@ export default function RegionStep({
         action: () => {
           tracking?.trackClick({
             name: 'PCI_PROJECTS_PRIVATEREGISTRY_CREATE_VERSION_NEXT',
+            type: 'action',
           });
           navigate('..');
         },

@@ -107,6 +107,7 @@ export default function PlanStep({
   const create = () => {
     tracking?.trackClick({
       name: `${PRIVATE_REGISTRY_CREATE_PLAN}${store.state.plan.name[0]}`,
+      type: 'action',
     });
 
     store.create(projectId, createCallbacks);
@@ -170,6 +171,7 @@ export default function PlanStep({
           onClick={() => {
             tracking?.trackClick({
               name: 'PRIVATEREGISTRY_CREATE_PLAN_CANCEL',
+              type: 'action',
             });
             navigate('..');
           }}

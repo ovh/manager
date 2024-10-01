@@ -26,7 +26,7 @@ export default function usePageTracking() {
 
   useEffect(() => {
     const pageId = location.pathname.split('/').pop();
-    const pageKey = pageId === 'root' ? '' : `::${pageId}`;
+    const pageKey = pageId === 'private-registry' ? '' : `::${pageId}`;
     trackPage({
       name: `${PAGE_PREFIX}::private-registry${pageKey}`,
       level2: PCI_LEVEL2,
