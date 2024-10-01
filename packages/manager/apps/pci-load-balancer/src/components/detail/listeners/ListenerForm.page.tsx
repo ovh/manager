@@ -24,12 +24,9 @@ import {
   PROTOCOLS,
   PROTOCOLS_PORT,
 } from '@/constants';
-import {
-  TLoadBalancerListener,
-  TLoadBalancerPool,
-  TProtocol,
-} from '@/api/data/load-balancer';
+import { TLoadBalancerListener, TProtocol } from '@/api/data/load-balancer';
 import Popover from './Popover';
+import { TLoadBalancerPool } from '@/api/data/pool';
 
 export type TFormState = {
   name: string;
