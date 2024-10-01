@@ -38,7 +38,7 @@
   "pci_projects_project_documentation_block_storage_term": "Block Storage",
   "pci_projects_project_documentation_block_storage_description": "Crear un dispositivo de almacenamiento externo",
   "pci_projects_project_label_discovery": "Modo Discovery",
-  "pci_projects_project_activateDiscovery_activate": "Activar el proyecto",
+  "pci_projects_project_activateDiscovery_activate": "Activar",
   "pci_projects_project_activateDiscovery_close": "Pasar a la nueva interfaz en otro momento",
   "pci_projects_project_activateDiscovery_heading": "Activar un proyecto",
   "pci_projects_project_activateDiscovery_info": "Antes de crear un nuevo proyecto, deberá activarlo. ¿Todavía no está listo/a? Puede seguir explorando el universo Public Cloud en modo Discovery.",

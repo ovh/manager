@@ -38,7 +38,7 @@
   "pci_projects_project_documentation_block_storage_term": "Block Storage",
   "pci_projects_project_documentation_block_storage_description": "Utwórz zewnętrzne urządzenie do przechowywania danych",
   "pci_projects_project_label_discovery": "Tryb Discovery",
-  "pci_projects_project_activateDiscovery_activate": "Aktywuj projekt",
+  "pci_projects_project_activateDiscovery_activate": "Włącz",
   "pci_projects_project_activateDiscovery_close": "Może później",
   "pci_projects_project_activateDiscovery_heading": "Aktywuj projekt",
   "pci_projects_project_activateDiscovery_info": "Przed utworzeniem nowego projektu aktywuj ten projekt. Nie jesteś jeszcze gotowy? Możesz nadal korzystać z usług Public Cloud w trybie Discovery.",

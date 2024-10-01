@@ -38,7 +38,7 @@
   "pci_projects_project_documentation_block_storage_term": "Block Storage",
   "pci_projects_project_documentation_block_storage_description": "Creare una periferica di storage esterna",
   "pci_projects_project_label_discovery": "Modalità Discovery",
-  "pci_projects_project_activateDiscovery_activate": "Attivare il progetto",
+  "pci_projects_project_activateDiscovery_activate": "Attivare",
   "pci_projects_project_activateDiscovery_close": "Forse più tardi",
   "pci_projects_project_activateDiscovery_heading": "Attivare un progetto",
   "pci_projects_project_activateDiscovery_info": "Prima di creare un nuovo progetto, è necessario attivarlo. Non sei ancora pronto? Puoi continuare a esplorare l'universo Public Cloud in modalità \"Discovery\".",
