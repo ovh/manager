@@ -35,8 +35,10 @@
   "managed_vcd_dashboard_edit_modal_cta_edit": "Modifier",
   "managed_vcd_dashboard_edit_name_modal_title": "Modifier le nom",
   "managed_vcd_dashboard_edit_name_modal_label": "Nom",
+  "managed_vcd_dashboard_edit_name_modal_success": "Le nom a été modifié avec succès.",
   "managed_vcd_dashboard_edit_name_modal_helper_error": "Veuillez saisir un nom dont la longueur est comprise entre 1 et 128 caractères.",
   "managed_vcd_dashboard_edit_description_modal_title": "Modifier la description",
   "managed_vcd_dashboard_edit_description_modal_label": "Description",
+  "managed_vcd_dashboard_edit_description_modal_success": "La description a été modifiée avec succès.",
   "managed_vcd_dashboard_edit_description_modal_helper_error": "Veuillez saisir une description dont la longueur est comprise entre 1 et 256 caractères."
 }
