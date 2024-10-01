@@ -41,5 +41,6 @@
   "zimbra_dashboard_tile_serviceConsumption_title": "Statistiques",
   "zimbra_dashboard_tile_serviceConsumption_accountOffer": "Compte par offre",
   "zimbra_dashboard_tile_serviceConsumption_noAccountOffer": "Vous ne possedez actuellement aucune boite email.",
-  "zimbra_dashboard_tile_usefulLinks_title": "Liens utiles"
+  "zimbra_dashboard_tile_usefulLinks_title": "Liens utiles",
+  "zimbra_dashboard_auto_replies": "Répondeurs"
 }

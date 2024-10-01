@@ -98,6 +98,12 @@ export const Dashboard: React.FC = () => {
         urls.redirections_edit,
       ]),
     },
+    {
+      name: 'auto_replies',
+      title: t('zimbra_dashboard_auto_replies'),
+      to: `${basePath}/auto_replies`,
+      pathMatchers: computePathMatchers([urls.auto_replies]),
+    },
   ];
 
   return (

@@ -31,4 +31,5 @@ export const urls = {
   redirections_add: '/:serviceName/redirections/add',
   redirections_edit: '/:serviceName/redirections/edit',
   redirections_delete: '/:serviceName/redirections/delete',
+  auto_replies: '/:serviceName/auto_replies',
 };
