@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { HeadersProps, BaseLayout } from '@ovh-ux/manager-react-components';
+import {
+  HeadersProps,
+  BaseLayout,
+  Notifications,
+} from '@ovh-ux/manager-react-components';
 import {
   OsdsTabBar,
   OsdsTabBarItem,
@@ -66,6 +70,7 @@ export default function VcdDashboardLayout({
           </OsdsTabs>
         }
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
+        message={<Notifications />}
       />
       <Outlet />
     </div>
