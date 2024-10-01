@@ -25,13 +25,11 @@ const MOCK_CONTRACTS: SavingsPlanContract[] = [
 
 const server = setupServer(
   http.get('/engine/apiv6/services?resourceName=undefined', ({ request }) => {
-    console.log('called  engine api v6 ', request.url);
     return HttpResponse.json([123]);
   }),
   http.get(
     '/engine/apiv6/services/123/savingsPlans/contracts',
     ({ request }) => {
-      console.log('called notiffications', request.url);
       return HttpResponse.json(MOCK_CONTRACTS);
     },
   ),
