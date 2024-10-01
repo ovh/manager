@@ -27,11 +27,8 @@ import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import {
-  useLoadBalancerListeners,
-  useLoadBalancerPools,
-} from '@/api/hook/useLoadBalancer';
 import { useDatagridColumn } from './useDatagridColumn';
+import { useLoadBalancerPools } from '@/api/hook/usePool';
 
 export default function PoolList() {
   const { t } = useTranslation('octavia-load-balancer-pools');
