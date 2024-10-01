@@ -4,7 +4,7 @@ import { Translation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   useCreateListener,
-  useLoadBalancerPools,
+  useAllLoadBalancerPools,
 } from '@/api/hook/useLoadBalancer';
 import ListenerForm from '@/components/detail/listeners/ListenerForm.page';
 
@@ -13,7 +13,7 @@ export default function CreateListener() {
   const { projectId, region, loadBalancerId } = useParams();
   const { addSuccess, addError } = useNotifications();
 
-  const { data: pools } = useLoadBalancerPools({
+  const { data: pools } = useAllLoadBalancerPools({
     projectId,
     region,
     loadBalancerId,
