@@ -133,8 +133,8 @@ export type TLoadBalancerPool = {
   name: string;
   protocol: TProtocol;
   algorithm: string;
-  operatingStatus: string;
-  provisioningStatus: string;
+  operatingStatus: LoadBalancerOperatingStatusEnum;
+  provisioningStatus: LoadBalancerProvisioningStatusEnum;
   sessionPersistence: {
     type: string;
     cookieName: string;
