@@ -60,17 +60,18 @@ export default class AccountUserIdentityDocumentsUploadDetailController {
       this.currentDocument
     ].mandatory;
     this.isFileExtensionsValid(this.files.flatMap((fileSlot) => fileSlot));
-    let isMandatoryOk = true;
+    let validMandatorySlots = 0;
     this.isValid =
       this.files.reduce((acc, fileSlot, index) => {
-        isMandatoryOk = index < numberOfMandatoryDocuments && isMandatoryOk;
         const isNotMandatory = numberOfMandatoryDocuments <= index;
         const isSingle = fileSlot?.length === 1;
         const isNotInError = fileSlot[0]?.errors === undefined;
-        return (isSingle || isNotMandatory) && isNotInError && acc;
+        const isFileSlotValid = (isSingle || isNotMandatory) && isNotInError;
+        if (isFileSlotValid) validMandatorySlots += 1;
+        return isFileSlotValid && acc;
       }, true) &&
       this.fileExtensionsValid &&
-      isMandatoryOk;
+      validMandatorySlots >= numberOfMandatoryDocuments;
   }
 
   isFileExtensionsValid(files) {
