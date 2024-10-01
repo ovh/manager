@@ -5,5 +5,7 @@
   "pci_projects_project_edit_remove_cancel": "Abbrechen",
   "pci_projects_project_edit_remove_error": "Beim Löschen des Projekts ist ein Fehler aufgetreten: {{ error }}",
   "pci_projects_project_edit_remove_success": "Ihnen wird eine E-Mail zur Bestätigung des Löschvorgangs zugesandt.",
-  "pci_projects_project_discovery_edit_remove_please_note": "Beachten Sie, dass das Löschen Ihres Projekts nicht rückgängig gemacht werden kann. Sie müssen dann ein neues Projekt erstellen, um das Public-Cloud-Universum wieder nutzen zu können."
+  "pci_projects_project_discovery_edit_remove_please_note": "Beachten Sie, dass das Löschen Ihres Projekts nicht rückgängig gemacht werden kann. Sie müssen dann ein neues Projekt erstellen, um das Public-Cloud-Universum wieder nutzen zu können.",
+  "pci_projects_project_discovery_edit_savings_plan": "Sie haben einen aktuellen Savings Plan für dieses Projekt. Eine Löschung ist nicht möglich. Bitte wenden Sie sich an den Kundendienst, um weitere Informationen zum Löschvorgang zu erhalten.",
+  "pci_projects_project_edit_remove_submit_client_service": "Den Kundendienst kontaktieren"
 }

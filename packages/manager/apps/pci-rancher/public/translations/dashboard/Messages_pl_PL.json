@@ -47,5 +47,7 @@
   "updateOfferModaleTitle": "Zmień ofertę",
   "updateOfferModalDescription": "Chcesz zmienić aktualną ofertę na ofertę {{availableServicePlan}}. Usługa będzie rozliczana według stawki {{planPricing}} netto / godz. / orkiestrowane vCPU. Zmiana zostanie wdrożona natychmiast i nie będzie miała wpływu na „downstream clusters” ani na dane w Twoim zarządzanym klastrze Rancher. Potwierdź, jeśli chcesz kontynuować.",
   "updateOfferPending": "Dyspozycja zmiany oferty została przyjęta. Aktualizacja może potrwać kilka minut.",
-  "updateOfferError": "Wystąpił błąd: {{errorMessage}}"
+  "updateOfferError": "Wystąpił błąd: {{errorMessage}}",
+  "savingsPlanMessage": "Dzięki Savings Plan zyskujesz korzystne opłaty miesięczne, a jednocześnie zachowujesz możliwość płatności za instancje w trybie za godzinę.",
+  "savingsPlanCTA": "Skonfiguruj Savings Plans"
 }

@@ -1,0 +1,8 @@
+{
+  "title": "Zmień automatyczne odnowienie",
+  "message_activate": "Savings Plan zostanie odnowiony na taki sam okres czasu.",
+  "message_deactivate": "Savings Plan nie zostanie automatycznie odnowiony.",
+  "buttons_cancel": "Anuluj",
+  "buttons_activate": "Włącz",
+  "buttons_deactivate": "Wyłącz"
+}

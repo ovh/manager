@@ -4,6 +4,6 @@
   "pci_projects_project_discovery_activate_banner_no_promotion_title": "Lance el despliegue de sus recursos cloud.",
   "pci_projects_project_discovery_activate_banner_description": "Actualmente está en modo Discovery. Al activar su proyecto, podrá lanzar sus recursos cloud en cuestión de minutos.",
   "pci_projects_project_discovery_activate_banner_antifraud_manuel_check_message": "Nuestro equipo está verificando la activación de su proyecto. Una vez finalizado el proceso, recibirá un email de confirmación.",
-  "pci_projects_project_discovery_activate_banner_cta": "Activar el proyecto",
+  "pci_projects_project_discovery_activate_banner_cta": "Activar",
   "pci_projects_project_discovery_activate_banner_antifraud_refused_message": "Tras haber analizado los datos asociados a la activación de su proyecto, consideramos que estos no ofrecen todas las garantías necesarias en términos de seguridad. Puede ponerse en contacto con uno de nuestros asesores en el «Centro de ayuda» de su área de cliente para enviar los elementos necesarios para activar su proyecto. En caso contrario, no podremos completar la activación."
 }

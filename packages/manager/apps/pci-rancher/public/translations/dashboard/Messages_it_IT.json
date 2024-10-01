@@ -47,5 +47,7 @@
   "updateOfferModaleTitle": "Modificare soluzione",
   "updateOfferModalDescription": "Stai per modificare il tuo servizio attuale alla soluzione {{availableServicePlan}}. La fatturazione sarà di {{planPricing}} +IVA/ora per vCPU orchestrata. Questa operazione avrà effetto immediato e non avrà alcun impatto sui tuoi \"downstream cluster\" e sui dati del tuo Rancher gestito. Conferma per continuare.",
   "updateOfferPending": "La tua richiesta di cambio di offerta è stata presa in carico. Ti chiediamo di attendere, l'operazione potrebbe richiedere alcuni minuti.",
-  "updateOfferError": "Si è verificato un errore: {{errorMessage}}"
+  "updateOfferError": "Si è verificato un errore: {{errorMessage}}",
+  "savingsPlanMessage": "Usufruisci di tariffe mensili vantaggiose grazie ai Savings Plan, conservando la flessibilità delle istanze all’ora.",
+  "savingsPlanCTA": "Configura i tuoi Savings Plan"
 }

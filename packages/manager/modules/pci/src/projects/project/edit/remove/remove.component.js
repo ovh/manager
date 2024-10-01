@@ -10,6 +10,7 @@ export default {
     trackClick: '<',
     trackPage: '<',
     isDiscoveryProject: '<',
+    projectId: '<',
   },
   controller,
   template,

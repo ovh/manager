@@ -693,6 +693,19 @@ export default class PciProjectInstanceService {
     return null;
   }
 
+  getCommercialCatalog({ productCode, nature, ovhSubsidiary }) {
+    return this.$http({
+      url: '/engine/api/v2/commercialCatalog/offers',
+      serviceType: 'apiv2',
+      params: {
+        merchants: ovhSubsidiary,
+        type: 'ATOMIC',
+        nature,
+        productCode,
+      },
+    }).then(({ data: catalog }) => catalog);
+  }
+
   getCatalog(endpoint, user) {
     return this.$http
       .get(endpoint, {

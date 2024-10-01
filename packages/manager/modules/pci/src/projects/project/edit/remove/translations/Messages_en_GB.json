@@ -5,5 +5,7 @@
   "pci_projects_project_edit_remove_cancel": "Cancel",
   "pci_projects_project_edit_remove_error": "An error has occurred deleting the project: {{ error }}.",
   "pci_projects_project_edit_remove_success": "You have been sent an email confirming the deletion.",
-  "pci_projects_project_discovery_edit_remove_please_note": "Please note that deleting your project cannot be undone. To use the Public Cloud solutions again, you’ll need to recreate one from scratch."
+  "pci_projects_project_discovery_edit_remove_please_note": "Please note that deleting your project cannot be undone. To use the Public Cloud solutions again, you’ll need to recreate one from scratch.",
+  "pci_projects_project_discovery_edit_savings_plan": "You already have a Savings Plan for this project. You cannot delete it. To delete this Savings plan, please reach out to Customer Support.",
+  "pci_projects_project_edit_remove_submit_client_service": "Contact Customer Support"
 }
