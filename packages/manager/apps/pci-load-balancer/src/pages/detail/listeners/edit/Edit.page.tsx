@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ListenerForm from '@/components/detail/listeners/ListenerForm.page';
 import {
   useEditLoadBalancer,
-  useLoadBalancerPools,
+  useAllLoadBalancerPools,
 } from '@/api/hook/useLoadBalancer';
 import { useListener } from '@/api/hook/useListener';
 
@@ -14,7 +14,7 @@ export default function EditListener() {
   const { projectId, region, loadBalancerId, listenerId } = useParams();
   const { addSuccess, addError } = useNotifications();
 
-  const { data: pools } = useLoadBalancerPools({
+  const { data: pools } = useAllLoadBalancerPools({
     projectId,
     region,
     loadBalancerId,
