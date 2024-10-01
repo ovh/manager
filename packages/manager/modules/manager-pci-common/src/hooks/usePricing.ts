@@ -115,13 +115,13 @@ export function usePricing() {
 
     if (isGerman) {
       return {
-        primary: `${formatPrice(price + tax, { decimals })}${intervalLabel}`,
+        primary: formatPrice(price + tax, { decimals }),
         interval: intervalLabel,
       };
     }
 
     return {
-      primary: `${formatPrice(price, { decimals })}${intervalLabel}`,
+      primary: formatPrice(price, { decimals }),
       interval: intervalLabel,
     };
   };
