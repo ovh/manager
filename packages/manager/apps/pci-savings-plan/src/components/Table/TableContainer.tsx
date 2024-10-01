@@ -50,8 +50,12 @@ export default function TableContainer({
   const { t } = useTranslation('listing');
 
   const navigate = useNavigate();
-  const { pagination, setPagination, sorting, setSorting } =
-    useDatagridSearchParams();
+  const {
+    pagination,
+    setPagination,
+    sorting,
+    setSorting,
+  } = useDatagridSearchParams();
   const [searchParams] = useSearchParams();
 
   const paginatedData = useMemo(() => {

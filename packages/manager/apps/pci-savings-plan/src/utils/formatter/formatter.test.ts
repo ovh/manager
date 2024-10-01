@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { formatTechnicalInfo, formatPricingInfo } from './formatter';
 import { createPricing } from '@/_mock_/commercial-catalog/pricing';
 import { createTechnicalInfo } from '@/_mock_/commercial-catalog/technical';

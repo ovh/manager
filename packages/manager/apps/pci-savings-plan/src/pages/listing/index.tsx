@@ -27,7 +27,6 @@ import {
   useServiceId,
 } from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
-import { formatDate } from '../../utils/formatter/date';
 
 export const formatDateString = (dateString: string, locale?: string) => {
   const date = new Date(dateString);

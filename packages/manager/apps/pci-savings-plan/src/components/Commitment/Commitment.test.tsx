@@ -1,8 +1,9 @@
 import React from 'react';
 import { vi, describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import Commitment from './Commitment';
+import '@testing-library/jest-dom';
+
 import { render } from '@/utils/testProvider';
 
 const defaultProps = {

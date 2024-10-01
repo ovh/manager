@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useServices } from './useService';
 import {
+  SavingsPlanContract,
   SavingsPlanPlanedChangeStatus,
   SavingsPlanService,
 } from '@/types/api.type';
@@ -41,6 +42,15 @@ export const putSubscribedSavingsPlanEditName = async (
     {
       displayName,
     },
+  );
+  return data;
+};
+
+export const getSavingsPlanContracts = async (
+  serviceId: number,
+): Promise<SavingsPlanContract[]> => {
+  const { data } = await v6.get<SavingsPlanContract[]>(
+    `/services/${serviceId}/savingsPlans/contracts`,
   );
   return data;
 };
@@ -156,5 +166,14 @@ export const useSavingsPlanCreate = () => {
       offerId: string;
       size: number;
     }) => postSavingsPlan({ serviceId, offerId, displayName, size }),
+  });
+};
+
+export const useSavingsPlanContract = () => {
+  const serviceId = useServiceId();
+
+  return useQuery({
+    queryKey: ['contracts', serviceId],
+    queryFn: () => getSavingsPlanContracts(serviceId),
   });
 };
