@@ -1,4 +1,6 @@
 {
   "next_button_label": "Suivant",
-  "edit_step_label": "Modifier cette étape"
+  "edit_step_label": "Modifier cette étape",
+  "unknown_error_message1": "Nous sommes désolés, une erreur est survenue et la requête n'a pas pu être traitée. Vous pouvez réessayer de <Link>Rafraîchir</Link> la requête.",
+  "unknown_error_message2": "Si le problème persiste, merci de contacter le support technique."
 }
