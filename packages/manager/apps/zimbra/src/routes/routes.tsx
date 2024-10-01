@@ -249,8 +249,15 @@ export const Routes: any = [
               },
             ],
           },
+          {
+            path: 'auto_replies',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/AutoReplies/AutoReplies'),
+            ),
+          },
         ],
       },
+
       {
         path: 'onboarding',
         ...lazyRouteConfig(() => import('@/pages/onboarding')),
