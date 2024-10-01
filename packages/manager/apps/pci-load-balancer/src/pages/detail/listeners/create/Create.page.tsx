@@ -2,11 +2,9 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Translation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import {
-  useCreateListener,
-  useAllLoadBalancerPools,
-} from '@/api/hook/useLoadBalancer';
+import { useCreateListener } from '@/api/hook/useLoadBalancer';
 import ListenerForm from '@/components/detail/listeners/ListenerForm.page';
+import { useAllLoadBalancerPools } from '@/api/hook/usePool';
 
 export default function CreateListener() {
   const navigate = useNavigate();

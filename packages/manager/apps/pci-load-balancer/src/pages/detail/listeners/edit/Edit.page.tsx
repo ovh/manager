@@ -3,11 +3,9 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Translation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import ListenerForm from '@/components/detail/listeners/ListenerForm.page';
-import {
-  useEditLoadBalancer,
-  useAllLoadBalancerPools,
-} from '@/api/hook/useLoadBalancer';
+import { useEditLoadBalancer } from '@/api/hook/useLoadBalancer';
 import { useListener } from '@/api/hook/useListener';
+import { useAllLoadBalancerPools } from '@/api/hook/usePool';
 
 export default function EditListener() {
   const navigate = useNavigate();

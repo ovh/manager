@@ -9,13 +9,11 @@ import {
   getLoadBalancer,
   getLoadBalancerFlavor,
   getLoadBalancerListeners,
-  getLoadBalancerPools,
   getLoadBalancers,
   TLoadBalancer,
   updateLoadBalancerName,
   TLoadBalancerListener,
   editListener,
-  TLoadBalancerPool,
 } from '../data/load-balancer';
 import queryClient from '@/queryClient';
 import { PROTOCOLS } from '@/constants';
@@ -324,67 +322,6 @@ export const useLoadBalancerListeners = (
     }),
     [
       loadBalancerListeners,
-      error,
-      isLoading,
-      isPending,
-      pagination,
-      sorting,
-      filters,
-    ],
-  );
-};
-
-export const useAllLoadBalancerPools = ({
-  projectId,
-  region,
-  loadBalancerId,
-}: {
-  projectId: string;
-  region: string;
-  loadBalancerId: string;
-}) =>
-  useQuery({
-    queryKey: ['pools', projectId, region, loadBalancerId],
-    queryFn: () => getLoadBalancerPools(projectId, region, loadBalancerId),
-    enabled: !!region && !!loadBalancerId,
-    select: (data) =>
-      data.map((pool) => ({
-        ...pool,
-        search: `${pool.name} ${pool.algorithm} ${pool.protocol}`,
-      })),
-    throwOnError: true,
-  });
-
-export const useLoadBalancerPools = (
-  projectId: string,
-  region: string,
-  loadBalancerId: string,
-  pagination: PaginationState,
-  sorting: ColumnSort,
-  filters: Filter[],
-) => {
-  const {
-    data: loadBalancerPools,
-    error,
-    isLoading,
-    isPending,
-  } = useAllLoadBalancerPools({ projectId, region, loadBalancerId });
-
-  return useMemo(
-    () => ({
-      isLoading,
-      isPending,
-      data: paginateResults<TLoadBalancerPool>(
-        sortResults<TLoadBalancerPool>(
-          applyFilters(loadBalancerPools || [], filters),
-          sorting,
-        ),
-        pagination,
-      ),
-      error,
-    }),
-    [
-      loadBalancerPools,
       error,
       isLoading,
       isPending,

@@ -7,10 +7,10 @@ import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 
-import { TLoadBalancerPool } from '@/api/data/load-balancer';
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
 import ActionsComponent from './Actions.component';
+import { TLoadBalancerPool } from '@/api/data/pool';
 
 export const useDatagridColumn = () => {
   const { t } = useTranslation('octavia-load-balancer');
@@ -69,9 +69,9 @@ export const useDatagridColumn = () => {
     },
     {
       id: 'actions',
-      cell: () => (
+      cell: (props: TLoadBalancerPool) => (
         <div className="min-w-16">
-          <ActionsComponent />
+          <ActionsComponent pool={props} />
         </div>
       ),
       label: '',

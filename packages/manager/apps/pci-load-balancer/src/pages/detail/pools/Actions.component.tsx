@@ -1,13 +1,20 @@
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
+import { TLoadBalancerPool } from '@/api/data/pool';
 
-export default function ActionsComponent() {
+type ActionsComponentProps = {
+  pool: TLoadBalancerPool;
+};
+
+export default function ActionsComponent({ pool }: ActionsComponentProps) {
   const { t } = useTranslation('octavia-load-balancer-pools');
 
   const poolEditHref = useHref(``);
   const membersHref = useHref(``);
-  const deleteHref = useHref(``);
+  const deleteHref = useHref(
+    `delete?poolId=${pool?.id}&poolName=${pool?.name}`,
+  );
 
   const items = [
     {

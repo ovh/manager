@@ -128,33 +128,6 @@ export const updateLoadBalancerName = async (
   return data;
 };
 
-export type TLoadBalancerPool = {
-  id: string;
-  name: string;
-  protocol: TProtocol;
-  algorithm: string;
-  operatingStatus: LoadBalancerOperatingStatusEnum;
-  provisioningStatus: LoadBalancerProvisioningStatusEnum;
-  sessionPersistence: {
-    type: string;
-    cookieName: string;
-  };
-  loadbalancerId: string;
-  listenerId: string;
-};
-
-export const getLoadBalancerPools = async (
-  projectId: string,
-  region: string,
-  loadBalancerId: string,
-): Promise<TLoadBalancerPool[]> => {
-  const { data } = await v6.get<TLoadBalancerPool[]>(
-    `/cloud/project/${projectId}/region/${region}/loadbalancing/pool?loadbalancerId=${loadBalancerId}`,
-  );
-
-  return data;
-};
-
 export type TProtocol = typeof PROTOCOLS[number];
 
 interface CreateListenerProps {

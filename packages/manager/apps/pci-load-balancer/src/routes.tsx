@@ -18,6 +18,7 @@ export const ROUTE_PATHS = {
   L7_DELETE: ':policyId/delete',
   POOLS: 'pools',
   POOL_LIST: 'list',
+  POOL_DELETE: 'delete',
   STATISTICS: 'statistics',
   CERTIFICATES: 'certificates',
   LOGS: 'logs',
@@ -54,6 +55,9 @@ const ListenersEditPage = lazy(() =>
 );
 const PoolsPage = lazy(() => import('@/pages/detail/pools/Pools.page'));
 const PoolListPage = lazy(() => import('@/pages/detail/pools/List.page'));
+const PoolDeletePage = lazy(() =>
+  import('@/pages/detail/pools/delete/DeletePool.page'),
+);
 const StatisticsPage = lazy(() =>
   import('@/pages/detail/statistics/Statistics.page'),
 );
@@ -132,7 +136,13 @@ const Routes = (
           id="pool-list"
           path={ROUTE_PATHS.POOL_LIST}
           Component={PoolListPage}
-        />
+        >
+          <Route
+            id="pool-delete"
+            path={ROUTE_PATHS.POOL_DELETE}
+            Component={PoolDeletePage}
+          ></Route>
+        </Route>
       </Route>
       <Route
         id="detail-statistics"
