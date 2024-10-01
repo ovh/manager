@@ -189,8 +189,8 @@
                     data-values="[deploymentModeName]"
                     data-variant="light"
                     data-required
+                    data-disabled="$ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[deploymentModeName].isMultiZone"
                 >
-                    <!-- data-disabled="$ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[deploymentModeName].isMultiZone" -->
                     <oui-select-picker-label>
                         <span
                             data-ng-bind=":: ('pci_projects_project_storages_containers_add_deployment_mode_' + deploymentModeName) | translate"
