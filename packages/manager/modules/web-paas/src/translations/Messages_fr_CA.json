@@ -10,7 +10,6 @@
   "web_paas_open_in_web_paas_console": "Accéder à Web PaaS",
   "web_paas_goto_dashbboard": "Voir le tableau de bord",
   "web_paas_cancel_project": "Supprimer le projet",
-  "web_paas_create_project": "Nouveau projet",
   "web_paas_project_status_ACTIVE": "Activé",
   "web_paas_project_status_ERROR": "Erreur",
   "web_paas_project_status_PENDING": "En cours",
