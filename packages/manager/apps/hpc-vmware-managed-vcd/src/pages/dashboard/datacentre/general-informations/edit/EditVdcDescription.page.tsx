@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useManagedVcdDatacentre } from '@/data/hooks/useManagedVcdDatacentres';
 import { useUpdateVdcDetails } from '@/data/hooks/useUpdateVcdDatacentre';
 import { validateDescription } from '@/utils/formValidation';
@@ -10,13 +11,20 @@ import { EditDetailModal } from '@/components/modal/EditDetailModal';
 export default function EditVdcDescription() {
   const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
+  const { addSuccess } = useNotifications();
   const closeModal = () => navigate('..');
   const { id, vdcId } = useParams();
   const { data: vcdDatacentre } = useManagedVcdDatacentre(id, vdcId);
   const { updateDetails, error, isError } = useUpdateVdcDetails({
     id,
     vdcId,
-    onSuccess: closeModal,
+    onSuccess: () => {
+      addSuccess(
+        t('managed_vcd_dashboard_edit_description_modal_success'),
+        true,
+      );
+      closeModal();
+    },
   });
 
   const currentVdcDetails: IVcdDatacentreState = vcdDatacentre.data.targetSpec;

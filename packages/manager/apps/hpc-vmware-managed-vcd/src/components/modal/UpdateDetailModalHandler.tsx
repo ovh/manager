@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import { useUpdateVcdOrganizationDetails } from '@/data/hooks/useUpdateVcdOrganization';
 import { IVcdOrganizationState } from '@/types/vcd-organization.interface';
@@ -25,12 +26,19 @@ export const UpdateDetailModalHandler = ({
 }) => {
   const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
+  const { addSuccess } = useNotifications();
   const closeModal = () => navigate('..');
   const { id } = useParams();
   const { data: vcdOrganization } = useManagedVcdOrganization({ id });
   const { updateDetails, error, isError } = useUpdateVcdOrganizationDetails({
     id,
-    onSuccess: closeModal,
+    onSuccess: () => {
+      addSuccess(
+        t(`managed_vcd_dashboard_edit_${detailName}_modal_success`),
+        true,
+      );
+      closeModal();
+    },
   });
   const currentDetails: IVcdOrganizationState = vcdOrganization.data.targetSpec;
 
