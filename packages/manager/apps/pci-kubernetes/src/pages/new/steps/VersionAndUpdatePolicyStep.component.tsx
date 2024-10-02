@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 import { OsdsButton, OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
@@ -26,16 +27,15 @@ export function VersionAndUpdatePolicyStep({
   const [policy, setPolicy] = useState(UpdatePolicy.AlwaysUpdate);
   return (
     <>
-      {!step.isLocked && (
-        <>
-          <VersionSelector
-            key={version}
-            versionSelected={version}
-            onSelectVersion={setVersion}
-          />
-          <UpdatePolicySelector policy={policy} onPolicyChange={setPolicy} />
-        </>
-      )}
+      <div className={clsx(step.isLocked && 'hidden')}>
+        <VersionSelector
+          key={version}
+          versionSelected={version}
+          onSelectVersion={setVersion}
+        />
+        <UpdatePolicySelector policy={policy} onPolicyChange={setPolicy} />
+      </div>
+
       {step.isLocked && version && (
         <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
           <OsdsTile color={ODS_THEME_COLOR_INTENT.primary} inline>
