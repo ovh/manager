@@ -33,6 +33,7 @@ vi.mock('react-router-dom', () => ({
       ipId: '1234THU9',
     };
   },
+  useSearchParams: () => [new URLSearchParams()],
 }));
 
 const renderEditInstancePage = () => {
