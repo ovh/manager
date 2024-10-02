@@ -80,7 +80,7 @@ export default function AddAndEditAccount() {
 
   const formInputRegex: FormInputRegexInterface = {
     account: /^(?:[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*)(?:(?:[.|+])(?:[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*))*$/,
-    password: /^(?=(.*\d))(?=.*[!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-zA-Z])(?=(.*)).{9,}$/,
+    password: /^(?=.*[\d!@#$€%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[A-Z])(?=(.*)).{10,64}$/,
   };
 
   const [form, setForm] = useState<FormTypeInterface>({
@@ -548,7 +548,11 @@ export default function AddAndEditAccount() {
                   </OsdsText>
                 </div>
                 <OsdsPassword
-                  color={ODS_THEME_COLOR_INTENT.default}
+                  color={
+                    form.password.hasError
+                      ? ODS_THEME_COLOR_INTENT.error
+                      : ODS_THEME_COLOR_INTENT.default
+                  }
                   masked={true}
                   name="password"
                   size={ODS_INPUT_SIZE.md}

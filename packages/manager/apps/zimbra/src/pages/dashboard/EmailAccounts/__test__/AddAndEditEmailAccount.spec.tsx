@@ -104,9 +104,11 @@ describe('email account add and edit page', () => {
 
     act(() => {
       inputAccount.odsInputBlur.emit({ name: 'account', value: '' });
+      inputPassword.odsBlur.emit({ name: 'password', value: '' });
     });
 
     expect(inputAccount).toHaveAttribute('color', 'error');
+    expect(inputPassword).toHaveAttribute('color', 'error');
 
     act(() => {
       fireEvent.change(inputAccount, { target: { value: 'account' } });
@@ -124,18 +126,51 @@ describe('email account add and edit page', () => {
     });
 
     expect(inputAccount).toHaveAttribute('color', 'default');
+    expect(inputPassword).toHaveAttribute('color', 'default');
     expect(button).toBeEnabled();
 
     act(() => {
-      fireEvent.change(inputPassword, {
-        target: { value: 'PasswordWithGoodPattern1&' },
-      });
-      // it seems we have to manually trigger the ods event
+      // Uppercased + digit + 10 characters total
       inputPassword.odsValueChange.emit({
         name: 'password',
-        value: 'PasswordWithoutGoodPattern',
+        value: 'Aaaaaaaaa1',
       });
     });
+
+    expect(inputPassword).toHaveAttribute('color', 'default');
+    expect(button).toBeEnabled();
+
+    act(() => {
+      // No uppercased + digit or special + 10 characters total
+      inputPassword.odsValueChange.emit({
+        name: 'password',
+        value: 'aaaaaaaaa1',
+      });
+    });
+
+    expect(inputPassword).toHaveAttribute('color', 'error');
+    expect(button).not.toBeEnabled();
+
+    act(() => {
+      // Uppercased + special + 10 characters total
+      inputPassword.odsValueChange.emit({
+        name: 'password',
+        value: 'Aaaaaaaaa#',
+      });
+    });
+
+    expect(inputPassword).toHaveAttribute('color', 'default');
+    expect(button).toBeEnabled();
+
+    act(() => {
+      // Uppercased + digit or special but 9 characters total
+      inputPassword.odsValueChange.emit({
+        name: 'password',
+        value: 'Aaaaaaaa1',
+      });
+    });
+
+    expect(inputPassword).toHaveAttribute('color', 'error');
     expect(button).not.toBeEnabled();
   });
 });
