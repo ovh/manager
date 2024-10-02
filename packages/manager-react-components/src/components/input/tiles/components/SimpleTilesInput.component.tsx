@@ -157,6 +157,7 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
               <li className="w-full px-1" key={hashCode(key)}>
                 <OsdsTile
                   checked={is.stack.checked(key)}
+                  is={'button'}
                   onClick={() =>
                     is.stack.singleton(key)
                       ? set.value(state.stacks.get(key)[0])

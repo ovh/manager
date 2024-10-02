@@ -16,5 +16,6 @@ export {
   getMacroRegion,
   useTranslatedMicroRegions,
 } from './region/useTranslatedMicroRegions';
+export * from './region/continent';
 
 export type TRegion = Region;

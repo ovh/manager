@@ -12,12 +12,15 @@ import {
   regionTileSelected,
 } from './style.constants';
 import './style.scss';
+import { useTranslatedMicroRegions } from '../../../../../../manager-react-components';
 
 export interface RegionSummaryProps {
   region: TLocalisation;
 }
 
 export function RegionSummary({ region }: Readonly<RegionSummaryProps>) {
+  const { translateMacroRegion } = useTranslatedMicroRegions();
+
   return (
     <div className={regionContainer}>
       <OsdsTile className={`${regionTile} ${regionTileSelected}`} checked>
@@ -29,7 +32,7 @@ export function RegionSummary({ region }: Readonly<RegionSummaryProps>) {
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {region.macroLabel}
+              {translateMacroRegion(region.name)}
             </OsdsText>
           </div>
           <div className="mt-6">
@@ -38,7 +41,7 @@ export function RegionSummary({ region }: Readonly<RegionSummaryProps>) {
               size={ODS_THEME_TYPOGRAPHY_SIZE._200}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {region.microLabel}
+              {translateMacroRegion(region.name)}
             </OsdsText>
           </div>
         </div>
