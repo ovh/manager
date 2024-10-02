@@ -19,7 +19,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { Translation, useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useAllFloatingIP, useUpdateInstance } from '@/api/hooks/useFloatingIP';
@@ -89,8 +89,17 @@ export default function EditInstancePage() {
     );
   };
 
+  const [searchParams] = useSearchParams();
+  const search = useMemo(() => {
+    const page = searchParams.get('page');
+    return page ? `?page=${page}` : '';
+  }, [searchParams]);
+
   const onClose = () => {
-    navigate('..');
+    navigate({
+      pathname: '..',
+      search,
+    });
   };
 
   const { attach, isPending: isPendingUpdateInstance } = useUpdateInstance({

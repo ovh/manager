@@ -1,4 +1,5 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useMemo } from 'react';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Translation } from 'react-i18next';
 import {
@@ -14,7 +15,19 @@ export default function TerminateFloatingIPPage() {
   const { projectId, ipId } = useParams();
   const { data: floatingIPs, isPending } = useAllFloatingIP(projectId);
   const floatingIP = floatingIPs?.find((row) => row.id === ipId) || undefined;
-  const onClose = () => navigate('..');
+
+  const [searchParams] = useSearchParams();
+  const search = useMemo(() => {
+    const page = searchParams.get('page');
+    return page ? `?page=${page}` : '';
+  }, [searchParams]);
+
+  const onClose = () => {
+    navigate({
+      pathname: '..',
+      search,
+    });
+  };
 
   const { terminate, isPending: isPendingTerminate } = useTerminateFloatingIP({
     projectId,

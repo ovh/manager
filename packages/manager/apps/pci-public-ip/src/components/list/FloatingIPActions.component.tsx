@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -17,7 +18,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
+import { useHref, useSearchParams } from 'react-router-dom';
 import { ActionProps } from '@/interface';
 import { NetworkSecurityAction } from './NetworkSecurityAction.component';
 
@@ -27,8 +28,15 @@ export default function FloatingIPActions({
 }: Readonly<ActionProps>) {
   const { t } = useTranslation();
 
-  const hrefRemove = useHref(`./${ipId}/terminate`);
-  const hrefEdit = useHref(`./${ipId}/edit`);
+  const [searchParams] = useSearchParams();
+
+  const queryParams = useMemo(() => {
+    const page = searchParams.get('page');
+    return page ? `?page=${page}` : '';
+  }, [searchParams]);
+
+  const hrefRemove = useHref(`./${ipId}/terminate${queryParams}`);
+  const hrefEdit = useHref(`./${ipId}/edit${queryParams}`);
 
   return (
     <OsdsMenu>
