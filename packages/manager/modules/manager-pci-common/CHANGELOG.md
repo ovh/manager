@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.4.1...@ovh-ux/manager-pci-common@0.5.0) (2024-10-02)
+
+
+### Features
+
+* **pci.savings-plan:** savings plan ([#12172](https://github.com/ovh/manager/issues/12172)) ([6744853](https://github.com/ovh/manager/commit/67448534cdde94927ccab308e002b8894f966367))
+
+
+
+
+
 ## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.4.0...@ovh-ux/manager-pci-common@0.4.1) (2024-09-27)
 
 

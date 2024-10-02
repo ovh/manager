@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.9.22...@ovh-ux/manager-public-cloud@6.10.0) (2024-10-02)
+
+
+### Features
+
+* **pci.savings-plan:** savings plan ([#12172](https://github.com/ovh/manager/issues/12172)) ([6744853](https://github.com/ovh/manager/commit/67448534cdde94927ccab308e002b8894f966367))
+
+
+
+
+
 ## [6.9.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.9.21...@ovh-ux/manager-public-cloud@6.9.22) (2024-09-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud
