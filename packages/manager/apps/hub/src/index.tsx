@@ -45,6 +45,9 @@ const init = async (appName: string) => {
       `${appName}/order`,
       `${appName}/billing`,
       `${appName}/error`,
+      `${appName}/payment-status`,
+      `billing/actions`,
+      `billing/status`,
     ],
   });
 
