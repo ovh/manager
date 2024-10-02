@@ -6,6 +6,8 @@ import {
   OsdsSelectOption,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VALIDITY_PERIOD_PRESET } from '../CreateGeneralInformations.constants';
@@ -90,9 +92,18 @@ const CreateGeneralInformationsValidity = ({
             maxDate={addDaysToDate(365)}
             minDate={addDaysToDate(1)}
           ></OsdsDatepicker>
-          <OsdsText slot="label">
+          <OsdsText slot="label" color={ODS_THEME_COLOR_INTENT.text}>
             {t(
               'key_management_service_credential_create_validity_custom_date_label',
+            )}
+          </OsdsText>
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            color={ODS_THEME_COLOR_INTENT.text}
+            slot="helper"
+          >
+            {t(
+              'key_management_service_credential_update_validity_error_max_period',
             )}
           </OsdsText>
         </OsdsFormField>
