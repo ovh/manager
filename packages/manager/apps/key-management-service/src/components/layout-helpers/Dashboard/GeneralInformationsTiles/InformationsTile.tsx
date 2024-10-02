@@ -22,6 +22,7 @@ import { Tile } from '@/components/dashboard/tile/tile.component';
 import { TileSeparator } from '@/components/dashboard/tile-separator/tileSeparator';
 import { TileValue } from '@/components/dashboard/tile-value/tileValue.component';
 import { TileItem } from '@/components/dashboard/tile-item/tileItem.component';
+import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
 
 type InformationTileProps = {
   okmsData?: OKMS;
@@ -48,8 +49,13 @@ export const Clipboard = ({ value }: { value: string }) => {
 
 const InformationsTile = ({ okmsData }: InformationTileProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
+  const { data: okmsServiceInfos } = useKMSServiceInfos(okmsData);
   const [editModalDisplayed, setEditModalDisplayed] = useState(false);
-  const { updateKmsName } = useUpdateOkmsName({});
+  const { updateKmsName } = useUpdateOkmsName({
+    okmsId: okmsData.id,
+    onSuccess: () => {},
+    onError: () => {},
+  });
 
   return (
     <Tile title={t('general_informations')}>
@@ -65,7 +71,7 @@ const InformationsTile = ({ okmsData }: InformationTileProps) => {
       <TileSeparator />
       <TileItem title={t('key_management_service_dashboard_field_label_name')}>
         <div className="flex justify-between items-center">
-          <TileValue value={okmsData?.iam.displayName} />
+          <TileValue value={okmsServiceInfos?.data.resource.displayName} />
           <OsdsButton
             circle
             variant={ODS_BUTTON_VARIANT.stroked}
