@@ -11,6 +11,7 @@ export * from './datagrid/useIcebergV6';
 export * from './datagrid/useResourcesV6';
 export * from './services';
 export * from './tasks';
+export * from './iam';
 export { useProductMaintenance } from './pci/useMaintenance';
 export {
   getMacroRegion,

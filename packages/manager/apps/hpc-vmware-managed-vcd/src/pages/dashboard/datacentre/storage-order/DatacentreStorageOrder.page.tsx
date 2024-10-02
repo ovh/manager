@@ -42,7 +42,7 @@ export default function StorageOrderPage() {
   return (
     <DatacentreOrderProvider>
       <DatacentreOrder
-        orderType={'storage'}
+        orderType="storage"
         columns={columns}
         title={t('managed_vcd_vdc_order_storage_title')}
         subtitle={t('managed_vcd_vdc_order_storage_subtitle')}
