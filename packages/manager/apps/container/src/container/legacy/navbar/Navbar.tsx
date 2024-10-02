@@ -110,7 +110,7 @@ function Navbar({ environment }: Props): JSX.Element {
           <div className="oui-navbar-list__item">
             <Notifications />
           </div>
-          <Account user={environment.getUser()} />
+          <Account />
         </div>
       </div>
       {isSmallDevice &&
