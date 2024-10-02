@@ -9,6 +9,8 @@ export const STORAGE_STANDARD_PLANCODE = 'storage-standard.consumption';
 export const SWIFT_PLANCODE = 'storage.consumption';
 export const STORAGE_STANDARD_REGION_PLANCODE = 'storage-standard';
 
+export const STATUS_UP = 'UP';
+
 export const OBJECT_CONTAINER_OFFERS_TYPES = {
   SWIFT: 'swift',
   S3: 's3',

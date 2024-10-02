@@ -302,7 +302,7 @@
     <!--Regions list-->
     <oui-step-form
         data-position="{{!$ctrl.archive && $ctrl.isRightOffer() ? 2 : 1}}"
-        data-ng-if="$ctrl.isRightOffer() ? !$ctrl.archive && $ctrl.container.deploymentMode : !$ctrl.archive"
+        ata-ng-if="!$ctrl.archive && (!$ctrl.isRightOffer() || $ctrl.container.deploymentMode)"
         data-name="storage_container_add_region"
         data-header="{{:: 'pci_projects_project_storages_containers_add_region_title' | translate }}"
         data-navigation="$ctrl.container.region"

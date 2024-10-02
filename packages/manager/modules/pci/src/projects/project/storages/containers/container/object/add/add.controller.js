@@ -3,6 +3,7 @@ import {
   STORAGE_PRICES_LINK,
   OBJECT_CONTAINER_STORAGE_CLASS,
   OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE,
+  STATUS_UP,
 } from '../../../containers.constants';
 
 export default class PciBlockStorageContainersContainerObjectAddController {
@@ -38,7 +39,7 @@ export default class PciBlockStorageContainersContainerObjectAddController {
       this.container.regionDetails?.services?.some(
         (item) =>
           item.name === OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE &&
-          item.status === 'UP',
+          item.status === STATUS_UP,
       )
     );
   }

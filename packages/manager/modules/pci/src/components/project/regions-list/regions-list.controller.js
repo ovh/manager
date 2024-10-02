@@ -74,89 +74,155 @@ export default class RegionsListController {
     );
   }
 
-  async updateRegions() {
+  updateRegions() {
     if (this.deploymentMode) {
-      await this.PciProjectStorageContainersService.getProductAvailability(
+      this.PciProjectStorageContainersService.getProductAvailability(
         this.projectId,
         this.coreConfig.getUser().ovhSubsidiary,
-      ).then((productCapabilities) => {
-        const productCapability = productCapabilities.plans
-          ?.filter((plan) =>
-            plan.code?.startsWith(STORAGE_STANDARD_REGION_PLANCODE),
-          )
-          .filter(
-            (plan, index, self) =>
-              index === self.findIndex((p) => p.name === plan.name),
+      )
+        .then((productCapabilities) => {
+          const productCapability = productCapabilities.plans
+            ?.filter((plan) =>
+              plan.code?.startsWith(STORAGE_STANDARD_REGION_PLANCODE),
+            )
+            .filter(
+              (plan, index, self) =>
+                index === self.findIndex((p) => p.name === plan.name),
+            );
+
+          const productRegionsAllowed = productCapability?.flatMap(
+            ({ regions }) => regions,
           );
 
-        const productRegionsAllowed = productCapability?.flatMap(
-          ({ regions }) => regions,
-        );
+          const regionsAllowedByDeploymentMode = productRegionsAllowed.filter(
+            (item) => item.type === this.deploymentMode,
+          );
 
-        const regionsAllowedByDeploymentMode = productRegionsAllowed.filter(
-          (item) => item.type === this.deploymentMode,
-        );
+          this.regionsByDeploymentMode = regionsAllowedByDeploymentMode;
+        })
+        .then(() => {
+          const formattedRegions = this.regionsByDeploymentMode.map(
+            (region) => {
+              return {
+                ...this.ovhManagerRegionService.getRegion(region.name),
+                name: region.name,
+                continentCode: region.continentCode,
+                hasEnoughQuota:
+                  typeof region.hasEnoughQuota === 'function'
+                    ? region.hasEnoughQuota()
+                    : true,
+                isLocalZone: region.isLocalZone,
+              };
+            },
+          );
 
-        this.regionsByDeploymentMode = regionsAllowedByDeploymentMode;
-      });
+          const allContinents = this.$translate.instant(
+            'pci_project_regions_list_continent_all',
+          );
+          this.continents = [
+            allContinents,
+            ...uniq(map(formattedRegions, 'continent')),
+          ];
+
+          this.regionsByContinents = reduce(
+            this.continents,
+            (result, continent) => {
+              let continentRegions;
+              if (continent === allContinents) {
+                continentRegions = formattedRegions;
+              } else {
+                continentRegions = filter(formattedRegions, { continent });
+              }
+
+              const groupedRegions = groupBy(
+                continentRegions,
+                'macroRegion.text',
+              );
+              Object.keys(groupedRegions).forEach((key) => {
+                groupedRegions[
+                  key
+                ] = RegionsListController.sortRegionsOnMicroCode(
+                  groupedRegions[key],
+                );
+              });
+
+              return {
+                ...result,
+                [continent]: groupedRegions,
+              };
+            },
+            {},
+          );
+
+          if (this.selectedRegion) {
+            this.region = find(
+              formattedRegions,
+              (region) => region.microRegion.code === this.selectedRegion.name,
+            );
+            this.macroRegion = this.region?.macroRegion.text;
+          }
+        })
+        .finally(() => {
+          this.loadEnd();
+        });
     } else {
       this.regionsByDeploymentMode = this.regions;
-    }
 
-    const formattedRegions = map(this.regionsByDeploymentMode, (region) => {
-      return {
-        ...this.ovhManagerRegionService.getRegion(region.name),
-        name: region.name,
-        continentCode: region.continentCode,
-        hasEnoughQuota:
-          typeof region.hasEnoughQuota === 'function'
-            ? region.hasEnoughQuota()
-            : true,
-        isLocalZone: region.isLocalZone,
-      };
-    });
-
-    const allContinents = this.$translate.instant(
-      'pci_project_regions_list_continent_all',
-    );
-    this.continents = [
-      allContinents,
-      ...uniq(map(formattedRegions, 'continent')),
-    ];
-
-    this.regionsByContinents = reduce(
-      this.continents,
-      (result, continent) => {
-        let continentRegions;
-        if (continent === allContinents) {
-          continentRegions = formattedRegions;
-        } else {
-          continentRegions = filter(formattedRegions, { continent });
-        }
-
-        const groupedRegions = groupBy(continentRegions, 'macroRegion.text');
-        Object.keys(groupedRegions).forEach((key) => {
-          groupedRegions[key] = RegionsListController.sortRegionsOnMicroCode(
-            groupedRegions[key],
-          );
-        });
-
+      const formattedRegions = this.regionsByDeploymentMode.map((region) => {
         return {
-          ...result,
-          [continent]: groupedRegions,
+          ...this.ovhManagerRegionService.getRegion(region.name),
+          name: region.name,
+          continentCode: region.continentCode,
+          hasEnoughQuota:
+            typeof region.hasEnoughQuota === 'function'
+              ? region.hasEnoughQuota()
+              : true,
+          isLocalZone: region.isLocalZone,
         };
-      },
-      {},
-    );
+      });
 
-    if (this.selectedRegion) {
-      this.region = find(
-        formattedRegions,
-        (region) => region.microRegion.code === this.selectedRegion.name,
+      const allContinents = this.$translate.instant(
+        'pci_project_regions_list_continent_all',
       );
-      this.macroRegion = this.region?.macroRegion.text;
+      this.continents = [
+        allContinents,
+        ...uniq(map(formattedRegions, 'continent')),
+      ];
+
+      this.regionsByContinents = reduce(
+        this.continents,
+        (result, continent) => {
+          let continentRegions;
+          if (continent === allContinents) {
+            continentRegions = formattedRegions;
+          } else {
+            continentRegions = filter(formattedRegions, { continent });
+          }
+
+          const groupedRegions = groupBy(continentRegions, 'macroRegion.text');
+          Object.keys(groupedRegions).forEach((key) => {
+            groupedRegions[key] = RegionsListController.sortRegionsOnMicroCode(
+              groupedRegions[key],
+            );
+          });
+
+          return {
+            ...result,
+            [continent]: groupedRegions,
+          };
+        },
+        {},
+      );
+
+      if (this.selectedRegion) {
+        this.region = find(
+          formattedRegions,
+          (region) => region.microRegion.code === this.selectedRegion.name,
+        );
+        this.macroRegion = this.region?.macroRegion.text;
+      }
+      this.loadEnd();
     }
-    this.loadEnd();
   }
 
   static isRegionDisabled(region) {
