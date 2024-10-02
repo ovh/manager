@@ -38,7 +38,7 @@ export default function L7PoliciesList() {
   const { t } = useTranslation('octavia-load-balancer-l7');
   const { t: tFilter } = useTranslation('filter');
 
-  const { projectId, loadBalancerId, region, listenerId } = useParams();
+  const { projectId, region, listenerId } = useParams();
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
 
   const navigate = useNavigate();
@@ -77,7 +77,7 @@ export default function L7PoliciesList() {
           className="xs:mb-0.5 sm:mb-0"
           onClick={() => {
             clearNotifications();
-            navigate('./create');
+            navigate('../create');
           }}
         >
           <OsdsIcon

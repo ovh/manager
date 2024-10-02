@@ -3,6 +3,7 @@ import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
 import {
+  createPolicy,
   deletePolicy,
   getL7Policies,
   getPolicy,
@@ -68,7 +69,10 @@ export const useL7Policies = (
       paginatedL7Policies: paginateResults<TL7Policy>(
         sortResults<TL7Policy>(
           applyFilters(allL7Policies || [], filters),
-          sorting,
+          sorting || {
+            id: 'position',
+            desc: false,
+          },
         ),
         pagination,
       ),
@@ -115,6 +119,39 @@ export const useDeletePolicy = ({
   });
   return {
     deletePolicy: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type CreatePolicyProps = {
+  projectId: string;
+  listenerId: string;
+  region: string;
+  policy: TL7Policy;
+  onError: (cause: Error) => void;
+  onSuccess: (newPolicy: TL7Policy) => void;
+};
+
+export const useCreatePolicy = ({
+  projectId,
+  listenerId,
+  policy,
+  region,
+  onError,
+  onSuccess,
+}: CreatePolicyProps) => {
+  const mutation = useMutation<TL7Policy>({
+    mutationFn: async () => createPolicy(projectId, region, listenerId, policy),
+    onError,
+    onSuccess: async (newPolicy) => {
+      await queryClient.invalidateQueries({
+        queryKey: ['l7Policies'],
+      });
+      onSuccess(newPolicy);
+    },
+  });
+  return {
+    createPolicy: () => mutation.mutate(),
     ...mutation,
   };
 };

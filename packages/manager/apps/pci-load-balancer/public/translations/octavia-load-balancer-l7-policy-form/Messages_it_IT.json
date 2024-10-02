@@ -1,0 +1,19 @@
+{
+  "octavia_load_balancer_create_l7_policy_name": "Nome",
+  "octavia_load_balancer_create_l7_policy_position": "Posizione",
+  "octavia_load_balancer_create_l7_policy_position_description": "La posizione di questa L7 policy. Le posizioni iniziano da 1.",
+  "octavia_load_balancer_create_l7_policy_action": "Azione",
+  "octavia_load_balancer_create_l7_policy_action_default": "Selezionare un'azione",
+  "octavia_load_balancer_create_l7_policy_action_redirectToURL": "URL di reindirizzamento: Le richieste corrispondenti a questa L7 policy saranno reindirizzate verso questo URL. Valido solo se l'azione è REDIRECT_TO_URL",
+  "octavia_load_balancer_create_l7_policy_action_redirectToPool": "La richiesta viene trasferita al pool principale associato alla L7 policy",
+  "octavia_load_balancer_create_l7_policy_action_redirectPrefix": "Il Load Balancer restituisce il codice \"redirect http code\" e, tramite l’header \"Location\", l’url di reindirizzamento, cioè l’url ricevuto nella richiesta prefissando il valore del campo \"redirect prefix\".",
+  "octavia_load_balancer_create_l7_policy_action_reject": "È stato restituito il codice HTTP 403 (forbidden)",
+  "octavia_load_balancer_create_l7_policy_url": "URL",
+  "octavia_load_balancer_create_l7_policy_prefix": "Prefisso",
+  "octavia_load_balancer_create_l7_policy_http_code": "Codice di risposta HTTP",
+  "octavia_load_balancer_create_l7_policy_http_code_description": "Le richieste che corrispondono a questa policy saranno reindirizzate con questo codice di ritorno HTTP. Il valore del codice di ritorno è 302",
+  "octavia_load_balancer_create_l7_policy_pool": "Pool",
+  "octavia_load_balancer_create_l7_policy_pool_default": "Seleziona un pool",
+  "octavia_load_balancer_create_l7_policy_submit": "Modifica",
+  "octavia_load_balancer_create_l7_policy_cancel": "Annullare"
+}
