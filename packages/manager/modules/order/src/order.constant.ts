@@ -46,7 +46,7 @@ export const getVcdProductSettings = ({
     serviceName,
     planCode,
     quantity,
-    productId: 'vcd',
+    productId: 'vmwareCloudDirector',
     duration: 'P1M',
     pricingMode: 'default',
   });

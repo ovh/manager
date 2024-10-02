@@ -22,7 +22,7 @@ export const StorageOrderSelectCell = (storage: IVdcOrderableStoragePriced) => {
       >
         <OsdsRadioButton
           onClick={() => setSelectedResource(storage.profile)}
-          size={ODS_RADIO_BUTTON_SIZE.sm}
+          size={ODS_RADIO_BUTTON_SIZE.xs}
           color={ODS_THEME_COLOR_INTENT.primary}
         />
       </OsdsRadio>
@@ -31,7 +31,7 @@ export const StorageOrderSelectCell = (storage: IVdcOrderableStoragePriced) => {
 };
 
 export const StorageOrderTypeCell = (storage: IVdcOrderableStoragePriced) => (
-  <DataGridTextCell>{storage.type}</DataGridTextCell>
+  <DataGridTextCell>{storage.name}</DataGridTextCell>
 );
 
 export const StorageOrderPriceCell = (storage: IVdcOrderableStoragePriced) => {

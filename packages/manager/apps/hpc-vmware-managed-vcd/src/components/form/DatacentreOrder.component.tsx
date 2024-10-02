@@ -17,7 +17,7 @@ import { useVdcOrderableResource } from '@/data/hooks/useOrderableResource';
 import { useVcdCatalog } from '@/data/hooks/useVcdCatalog';
 import useVcdOrder from '@/data/hooks/useVcdOrder';
 import { validateQuantity } from '@/utils/formValidation';
-import { getPricedVdcResourceList } from '@/utils/getPricedOrderableResource';
+import { getPricedVdcResources } from '@/utils/getPricedOrderableResource';
 import Loading from '../loading/Loading.component';
 import {
   IVdcOrderableStoragePriced,
@@ -78,22 +78,22 @@ export const DatacentreOrder = <T extends OrderType>({
     min: minQuantity,
     max: maxQuantity,
   });
-  const pricedResourceList = getPricedVdcResourceList({
+  const pricedResources = getPricedVdcResources({
     catalog: catalog?.data,
-    resourceList:
+    resources:
       orderType === 'compute'
         ? orderableResource?.data?.compute
         : orderableResource?.data?.storage,
   });
 
   useEffect(() => {
-    if (pricedResourceList?.length && !selectedResource) {
-      setSelectedResource(pricedResourceList[0].profile);
+    if (pricedResources?.length && !selectedResource) {
+      setSelectedResource(pricedResources[0].profile);
     }
-  }, [selectedResource, pricedResourceList]);
+  }, [selectedResource, pricedResources]);
 
   if (isLoadingResource || isLoadingCatalog) return <Loading />;
-  if (isResourceError || isCatalogError || !pricedResourceList?.length) {
+  if (isResourceError || isCatalogError || !pricedResources?.length) {
     return (
       <ErrorBanner
         error={{
@@ -112,8 +112,8 @@ export const DatacentreOrder = <T extends OrderType>({
       <Description className="my-6">{subtitle}</Description>
       <Datagrid
         columns={columns}
-        items={pricedResourceList}
-        totalItems={pricedResourceList.length}
+        items={pricedResources}
+        totalItems={pricedResources.length}
         contentAlignLeft
       />
       <div className="mt-10">
