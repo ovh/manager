@@ -1,0 +1,4 @@
+{
+  "octavia_load_balancer_edit_l7_policy_title": "L7 Policy",
+  "octavia_load_balancer_edit_l7_policy_description": "Uma L7 policy é a associação entre uma ou várias L7 rules e um listener. O seu atributo principal é a ação que é executada quando todas as regras L7 associadas são verdadeiras."
+}

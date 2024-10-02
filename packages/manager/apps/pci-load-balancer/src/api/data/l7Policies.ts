@@ -53,3 +53,19 @@ export const deletePolicy = async (
   );
   return data;
 };
+
+export const createPolicy = async (
+  projectId: string,
+  region: string,
+  listenerId: string,
+  policy: TL7Policy,
+) => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy`,
+    {
+      listenerId,
+      ...policy,
+    },
+  );
+  return data;
+};
