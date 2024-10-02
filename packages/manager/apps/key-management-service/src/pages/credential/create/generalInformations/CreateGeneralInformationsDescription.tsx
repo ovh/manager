@@ -7,9 +7,11 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import {
+  ODS_TEXT_LEVEL,
   OdsTextAreaValueChangeEvent,
   OsdsTextareaCustomEvent,
 } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   CredentialDescriptionErrorsType,
   CredentialDescriptionMaxCharacters,
@@ -65,7 +67,12 @@ const CreateGeneralInformationsDescription = ({
             return setDescription(e.detail.value);
           }}
         ></OsdsTextarea>
-        <OsdsText slot="helper">
+        <OsdsText
+          slot="helper"
+          color={ODS_THEME_COLOR_INTENT.text}
+          level={ODS_TEXT_LEVEL.body}
+          className="text-right"
+        >
           {description?.length || 0}/{CredentialDescriptionMaxCharacters}
         </OsdsText>
       </OsdsFormField>
