@@ -23,7 +23,7 @@ export default function ActionsComponent({
     },
     {
       id: 2,
-      href: '',
+      href: useHref(`./${l7PoliciesId}/delete`),
       label: t('octavia_load_balancer_list_l7_policies_actions_delete'),
     },
   ];

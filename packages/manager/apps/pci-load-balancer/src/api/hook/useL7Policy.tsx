@@ -1,10 +1,16 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
-import { getL7Policies, TL7Policy } from '@/api/data/l7Policies';
+import {
+  deletePolicy,
+  getL7Policies,
+  getPolicy,
+  TL7Policy,
+} from '@/api/data/l7Policies';
 import { paginateResults, sortResults } from '@/helpers';
 import { ACTION_LABELS, ACTIONS } from '@/constants';
+import queryClient from '@/queryClient';
 
 const getAttribute = (policy: TL7Policy) => {
   switch (policy.action) {
@@ -25,8 +31,8 @@ export const useGetAllL7Policies = (
   region: string,
 ) =>
   useQuery({
-    queryKey: ['l7Policies', projectId, listenerId, region],
-    queryFn: () => getL7Policies(projectId, region, listenerId),
+    queryKey: ['l7Policies', projectId, 'listeners', listenerId, region],
+    queryFn: () => getL7Policies(projectId, listenerId, region),
     select: (l7Policies) =>
       l7Policies.map((l7Policy) => {
         const action = ACTION_LABELS[l7Policy.action];
@@ -53,7 +59,7 @@ export const useL7Policies = (
     error,
     isLoading,
     isPending,
-  } = useGetAllL7Policies(projectId, region, listenerId);
+  } = useGetAllL7Policies(projectId, listenerId, region);
   return useMemo(
     () => ({
       isLoading,
@@ -70,4 +76,45 @@ export const useL7Policies = (
     }),
     [allL7Policies, error, isLoading, isPending, pagination, sorting, filters],
   );
+};
+
+export const useGetPolicy = (
+  projectId: string,
+  policyId: string,
+  region: string,
+) =>
+  useQuery({
+    queryKey: ['l7Policies', projectId, policyId, region],
+    queryFn: () => getPolicy(projectId, region, policyId),
+  });
+
+type DeletePolicyProps = {
+  projectId: string;
+  policyId: string;
+  region: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useDeletePolicy = ({
+  projectId,
+  policyId,
+  region,
+  onError,
+  onSuccess,
+}: DeletePolicyProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => deletePolicy(projectId, region, policyId),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['l7Policies'],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    deletePolicy: () => mutation.mutate(),
+    ...mutation,
+  };
 };

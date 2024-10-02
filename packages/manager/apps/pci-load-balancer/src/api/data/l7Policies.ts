@@ -31,3 +31,25 @@ export const getL7Policies = async (
   );
   return data;
 };
+
+export const getPolicy = async (
+  projectId: string,
+  region: string,
+  policyId: string,
+): Promise<TL7Policy> => {
+  const { data } = await v6.get<TL7Policy>(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy/${policyId}`,
+  );
+  return data;
+};
+
+export const deletePolicy = async (
+  projectId: string,
+  region: string,
+  policyId: string,
+) => {
+  const { data } = await v6.delete(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy/${policyId}`,
+  );
+  return data;
+};

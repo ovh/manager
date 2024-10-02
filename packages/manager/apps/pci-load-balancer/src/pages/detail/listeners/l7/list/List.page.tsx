@@ -31,7 +31,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { useL7Policies } from '@/api/hook/useL7Policies';
+import { useL7Policies } from '@/api/hook/useL7Policy';
 import { useL7PoliciesDatagridColumn } from '@/pages/detail/listeners/l7/list/useL7PoliciesDatagridColumn';
 
 export default function L7PoliciesList() {
