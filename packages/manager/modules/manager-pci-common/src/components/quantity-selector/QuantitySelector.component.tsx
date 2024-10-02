@@ -24,6 +24,7 @@ import '../../translations/quantity-selector';
 
 export interface QuantitySelectorProps {
   label?: string;
+  description?: string;
   value: number;
   onValueChange: (value: number) => void;
   min?: number;
@@ -33,6 +34,7 @@ export interface QuantitySelectorProps {
 
 export function QuantitySelector({
   label,
+  description,
   value,
   onValueChange,
   min,
@@ -61,6 +63,15 @@ export function QuantitySelector({
           slot="label"
         >
           {label}
+        </OsdsText>
+      )}
+      {description && (
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+          className="mb-6"
+        >
+          {description}
         </OsdsText>
       )}
       <OsdsQuantity>
