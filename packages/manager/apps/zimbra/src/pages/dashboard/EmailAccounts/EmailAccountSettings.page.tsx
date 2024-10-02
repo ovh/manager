@@ -26,9 +26,13 @@ import {
   ODS_MESSAGE_TYPE,
   ODS_TEXTAREA_SIZE,
 } from '@ovhcloud/ods-components';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useMutation } from '@tanstack/react-query';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import {
+  AccountBodyParamsType,
   AccountType,
+  getZimbraPlatformAccountsQueryKey,
   postZimbraPlatformAccount,
   putZimbraPlatformAccount,
 } from '@/api/account';
@@ -39,6 +43,7 @@ import {
   checkValidityForm,
   FormTypeInterface,
 } from '@/utils';
+import queryClient from '@/queryClient';
 
 export default function EmailAccountSettings({
   domainList = [],
@@ -127,9 +132,9 @@ export default function EmailAccountSettings({
   const handleFormChange = (name: string, value: string) => {
     const newForm: FormTypeInterface = form;
     newForm[name] = {
+      ...form[name],
       value,
       touched: true,
-      required: form[name].required,
       hasError: !checkValidityField(name, value, formInputRegex, form),
     };
     setForm((oldForm) => ({ ...oldForm, ...newForm }));
@@ -144,107 +149,78 @@ export default function EmailAccountSettings({
     setSelectedDomainOrganization(organizationLabel);
   };
 
-  const handleNewAccountClick = () => {
-    const {
-      account: { value: account },
-      domain: { value: domain },
-    } = form;
-
-    let dataBody = {
-      email: `${account}@${domain}`,
-    };
-
-    Object.entries(form).forEach(([key, { value }]) => {
-      if (!['account', 'domain'].includes(key)) {
-        dataBody = { ...dataBody, [key]: value };
-      }
-    });
-
-    postZimbraPlatformAccount(platformId, dataBody)
-      .then(() => {
-        goBack();
-        addSuccess(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            hue={ODS_THEME_COLOR_HUE._500}
-          >
-            {t('zimbra_account_add_success_message')}
-          </OsdsText>,
-          true,
-        );
-      })
-      .catch(({ response }) => {
-        goBack();
-        addError(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            hue={ODS_THEME_COLOR_HUE._500}
-          >
-            {t('zimbra_account_add_error_message', {
-              error: response.data.message,
-            })}
-          </OsdsText>,
-          true,
-        );
+  const { mutate: addOrEditEmailAccount, isPending: isSending } = useMutation({
+    mutationFn: (params: AccountBodyParamsType) => {
+      return editEmailAccountId
+        ? putZimbraPlatformAccount(platformId, editEmailAccountId, params)
+        : postZimbraPlatformAccount(platformId, params);
+    },
+    onSuccess: () => {
+      addSuccess(
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          hue={ODS_THEME_COLOR_HUE._500}
+        >
+          {t(
+            editEmailAccountId
+              ? 'zimbra_account_edit_success_message'
+              : 'zimbra_account_add_success_message',
+          )}
+        </OsdsText>,
+        true,
+      );
+    },
+    onError: (error: ApiError) => {
+      addError(
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          hue={ODS_THEME_COLOR_HUE._500}
+        >
+          {t(
+            editEmailAccountId
+              ? 'zimbra_account_edit_error_message'
+              : 'zimbra_account_add_error_message',
+            {
+              error: error?.response?.data?.message,
+            },
+          )}
+        </OsdsText>,
+        true,
+      );
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: getZimbraPlatformAccountsQueryKey(platformId),
       });
-  };
+      goBack();
+    },
+  });
 
-  const handleModifyAccountClick = () => {
+  const handleSaveClick = () => {
     const {
       account: { value: account },
       domain: { value: domain },
     } = form;
-
     let dataBody = {
       email: `${account}@${domain}`,
     };
-
     Object.entries(form).forEach(([key, { value }]) => {
       if (
         ![
-          ...['account', 'domain'],
-          ...[form.password.value === '' ? 'password' : ''],
+          'account',
+          'domain',
+          editEmailAccountId && form.password.value === '' ? 'password' : '',
         ].includes(key)
       ) {
         dataBody = { ...dataBody, [key]: value };
       }
     });
 
-    putZimbraPlatformAccount(platformId, editEmailAccountId, dataBody)
-      .then(() => {
-        goBack();
-        addSuccess(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            hue={ODS_THEME_COLOR_HUE._500}
-          >
-            {t('zimbra_account_edit_success_message')}
-          </OsdsText>,
-          true,
-        );
-      })
-      .catch(({ response }) => {
-        goBack();
-        addError(
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            hue={ODS_THEME_COLOR_HUE._500}
-          >
-            {t('zimbra_account_edit_error_message', {
-              error: response.data.message,
-            })}
-          </OsdsText>,
-          true,
-        );
-      });
+    addOrEditEmailAccount(dataBody);
   };
 
   return (
@@ -528,10 +504,8 @@ export default function EmailAccountSettings({
           inline
           color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.flat}
-          {...(!isFormValid ? { disabled: true } : {})}
-          onClick={
-            editAccountDetail ? handleModifyAccountClick : handleNewAccountClick
-          }
+          {...(!isFormValid || isSending ? { disabled: true } : {})}
+          onClick={handleSaveClick}
           data-testid="confirm-btn"
         >
           {!editAccountDetail

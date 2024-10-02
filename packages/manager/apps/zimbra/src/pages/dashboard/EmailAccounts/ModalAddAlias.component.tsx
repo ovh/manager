@@ -20,8 +20,17 @@ import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useDomains, useGenerateUrl, usePlatform, useAccount } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
-import { postZimbraPlatformAlias } from '@/api/alias';
+import {
+  getZimbraPlatformAliasQueryKey,
+  postZimbraPlatformAlias,
+} from '@/api/alias';
 import { formInputRegex } from './account.constants';
+import {
+  checkValidityField,
+  checkValidityForm,
+  FormTypeInterface,
+} from '@/utils';
+import queryClient from '@/queryClient';
 
 export default function ModalAddAndEditOrganization() {
   const { t } = useTranslation('accounts/alias/add');
@@ -34,25 +43,18 @@ export default function ModalAddAndEditOrganization() {
   const goBackUrl = useGenerateUrl('..', 'path', { editEmailAccountId });
   const goBack = () => navigate(goBackUrl);
 
-  type FieldType = {
-    value: string;
-    hasError?: boolean;
-    required?: boolean;
-  };
-
-  interface FormTypeInterface {
-    [key: string]: FieldType;
-  }
-
   const [form, setForm] = useState<FormTypeInterface>({
     alias: {
       value: '',
       hasError: false,
       required: true,
+      touched: false,
     },
     domain: {
       value: '',
+      hasError: false,
       required: true,
+      touched: false,
     },
   });
 
@@ -114,33 +116,23 @@ export default function ModalAddAndEditOrganization() {
       );
     },
     onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: getZimbraPlatformAliasQueryKey(platformId),
+      });
       goBack();
     },
   });
 
-  const checkValidityField = (name: string, value: string) => {
-    return formInputRegex[name]
-      ? formInputRegex[name].test(value) ||
-          (!form[name].required && form[name].value === '')
-      : true;
-  };
-
-  const checkValidityForm = () => {
-    const error = Object.values(form).find(
-      (field) => field.hasError || (field.required && field.value === ''),
-    );
-    return !error;
-  };
-
   const handleFormChange = (name: string, value: string) => {
     const newForm: FormTypeInterface = form;
     newForm[name] = {
+      ...form[name],
       value,
-      required: form[name].required,
-      hasError: !checkValidityField(name, value),
+      touched: true,
+      hasError: !checkValidityField(name, value, formInputRegex, form),
     };
     setForm((oldForm) => ({ ...oldForm, ...newForm }));
-    setIsFormValid(checkValidityForm);
+    setIsFormValid(checkValidityForm(form));
   };
 
   return (

@@ -29,6 +29,8 @@ import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
 import { MailingListType } from '@/api/mailinglist';
+import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+import Loading from '@/components/Loading/Loading';
 
 export type MailingListItem = {
   id: string;
@@ -145,9 +147,12 @@ export const getMailingListItems = (
 
 export default function MailingLists() {
   const { t } = useTranslation('mailinglists');
-  const { platformId, platformUrn, data: platformData } = usePlatform();
-  const { data } = useMailingLists();
-  const isOverriddedPage = useOverridePage();
+  const { platformUrn, data: platformData } = usePlatform();
+  const { data, isLoading } = useMailingLists({
+    refetchInterval: DATAGRID_REFRESH_INTERVAL,
+    refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
+  });
+  const isOverridedPage = useOverridePage();
 
   const items: MailingListItem[] = getMailingListItems(data);
 
@@ -158,11 +163,10 @@ export default function MailingLists() {
 
   return (
     <div className="py-6 mt-8">
+      <Notifications />
       <Outlet />
-
-      {!isOverriddedPage && (
+      {platformUrn && !isOverridedPage && (
         <>
-          <Notifications />
           <div className="flex flex-col items-start">
             <div className="mb-8">
               <OsdsText
@@ -175,37 +179,39 @@ export default function MailingLists() {
                 {` ${quota}/1000`}
               </OsdsText>
             </div>
-            {platformUrn && (
-              <ManagerButton
-                color={ODS_THEME_COLOR_INTENT.primary}
-                inline
-                size={ODS_BUTTON_SIZE.sm}
-                href={hrefAddMailingList}
-                urn={platformUrn}
-                iamActions={[IAM_ACTIONS.mailingList.create]}
-                data-testid="add-mailinglist-btn"
-                className="mb-6"
-              >
-                <span slot="start">
-                  <OsdsIcon
-                    name={ODS_ICON_NAME.PLUS}
-                    size={ODS_ICON_SIZE.sm}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    contrasted
-                  ></OsdsIcon>
-                </span>
-                <span slot="end">{t('zimbra_mailinglists_datagrid_cta')}</span>
-              </ManagerButton>
-            )}
+            <ManagerButton
+              color={ODS_THEME_COLOR_INTENT.primary}
+              inline
+              size={ODS_BUTTON_SIZE.sm}
+              href={hrefAddMailingList}
+              urn={platformUrn}
+              iamActions={[IAM_ACTIONS.mailingList.create]}
+              data-testid="add-mailinglist-btn"
+              className="mb-6"
+            >
+              <span slot="start">
+                <OsdsIcon
+                  name={ODS_ICON_NAME.PLUS}
+                  size={ODS_ICON_SIZE.sm}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  contrasted
+                ></OsdsIcon>
+              </span>
+              <span slot="end">{t('zimbra_mailinglists_datagrid_cta')}</span>
+            </ManagerButton>
           </div>
-          <Datagrid
-            columns={columns.map((column) => ({
-              ...column,
-              label: t(column.label),
-            }))}
-            items={items}
-            totalItems={platformId?.length || 0}
-          />
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <Datagrid
+              columns={columns.map((column) => ({
+                ...column,
+                label: t(column.label),
+              }))}
+              items={items}
+              totalItems={items.length}
+            />
+          )}
         </>
       )}
     </div>

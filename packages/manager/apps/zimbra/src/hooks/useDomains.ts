@@ -35,8 +35,10 @@ export const useDomains = (props: UseDomainsParams = {}) => {
         platformId,
         organizationId || selectedOrganizationId,
       ),
-    enabled:
-      (typeof options.enabled !== 'undefined' ? options.enabled : true) &&
+    enabled: (query) =>
+      (typeof options.enabled === 'function'
+        ? options.enabled(query)
+        : typeof options.enabled === 'undefined' || options.enabled) &&
       !!platformId,
   }) as UseQueryResult<DomainType[]>;
 };
