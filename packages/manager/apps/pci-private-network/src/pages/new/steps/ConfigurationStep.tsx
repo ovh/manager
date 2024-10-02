@@ -112,7 +112,6 @@ export default function ConfigurationStep({
     GUIDE_LINKS.REGION_AVAILABILITY[ovhSubsidiary] ||
     GUIDE_LINKS.REGION_AVAILABILITY.DEFAULT;
 
-  // TODO: verify rerender
   const VLAN_GUIDE_URL =
     GUIDE_LINKS.VLAN[ovhSubsidiary] || GUIDE_LINKS.VLAN.DEFAULT;
 
