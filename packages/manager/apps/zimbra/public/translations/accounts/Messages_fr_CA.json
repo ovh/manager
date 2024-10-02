@@ -3,6 +3,7 @@
   "zimbra_account_datagrid_organization_label": "Organisation",
   "zimbra_account_datagrid_offer_label": "Offre",
   "zimbra_account_datagrid_webmail_label": "Webmail :",
+  "zimbra_account_datagrid_status_label": "Informations",
   "zimbra_account_datagrid_quota": "Taille",
   "zimbra_account_datagrid_quota_octets": "Octets",
   "zimbra_account_datagrid_quota_ko": "Ko",
