@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import * as dateFnsLocales from 'date-fns/locale';
+import * as locales from 'date-fns/locale';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 
 import {
@@ -24,7 +24,7 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useHref } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -130,7 +130,7 @@ const RancherDetail = ({
     getLatestVersionAvailable(rancher, versions) &&
     isReadyStatus &&
     !updateSoftwareResponseType;
-  const locales = useRef({ ...dateFnsLocales }).current;
+
   const userLocale = getDateFnsLocale(i18n.language);
 
   const displayDate = useCallback(
