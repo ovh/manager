@@ -1,9 +1,15 @@
+export const BILLING_FEATURE = 'billing:management';
+export const SIRET_BANNER_FEATURE = 'hub:banner-hub-invite-customer-siret';
+export const SIRET_MODAL_FEATURE = 'hub:popup-hub-invite-customer-siret';
+export const KYC_INDIA_FEATURE = 'identity-documents';
+export const KYC_FRAUD_FEATURE = 'procedures:fraud';
+
 export const features = [
-  'billing:management',
-  'hub:banner-hub-invite-customer-siret',
-  'hub:popup-hub-invite-customer-siret',
-  'identity-documents',
-  'procedures:fraud',
+  BILLING_FEATURE,
+  SIRET_BANNER_FEATURE,
+  SIRET_MODAL_FEATURE,
+  KYC_INDIA_FEATURE,
+  KYC_FRAUD_FEATURE,
 ];
 
 export const BILLING_SUMMARY_PERIODS_IN_MONTHS = [1, 3, 6];
