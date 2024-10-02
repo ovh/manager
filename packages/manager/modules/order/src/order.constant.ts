@@ -33,6 +33,24 @@ export const getKMSProductSettings = ({ region }: { region: string }) =>
     configuration: [{ label: 'region', value: region }].filter(Boolean),
   });
 
+export const getVcdProductSettings = ({
+  serviceName,
+  planCode,
+  quantity = 1,
+}: {
+  serviceName: string;
+  planCode: string;
+  quantity?: number;
+}) =>
+  JSURL.stringify({
+    serviceName,
+    planCode,
+    quantity,
+    productId: 'vcd',
+    duration: 'P1M',
+    pricingMode: 'default',
+  });
+
 export const ORDER_URLS = {
   EU: {
     DEDICATED: {
