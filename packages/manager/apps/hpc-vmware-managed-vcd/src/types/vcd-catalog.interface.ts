@@ -1,6 +1,6 @@
 import { Price } from '@ovh-ux/manager-module-order';
 
-enum ProductPricingCapacity {
+export enum ProductPricingCapacity {
   CONSUMPTION = 'consumption',
   DETACH = 'detach',
   DOWNGRADE = 'downgrade',

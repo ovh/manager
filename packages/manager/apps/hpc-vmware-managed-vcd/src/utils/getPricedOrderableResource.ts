@@ -2,31 +2,37 @@ import {
   IVdcOrderableResource,
   IVdcOrderableResourcePriced,
 } from '@/types/vcd-vdc-orderable-resource.interface';
-import { TVcdCatalog } from '@/types/vcd-catalog.interface';
+import {
+  ProductPricingCapacity,
+  TVcdCatalog,
+} from '@/types/vcd-catalog.interface';
 
-export const getVdcResourcePrice = (product: IVdcOrderableResourcePriced) =>
-  product.prices[0]?.priceInUcents;
+export const getVdcResourcePrice = (resource: IVdcOrderableResourcePriced) =>
+  resource.pricing?.priceInUcents;
 
 export const getVdcResourcePriceLabel = (
-  product: IVdcOrderableResourcePriced,
-) => product.prices[0]?.price.text;
+  resource: IVdcOrderableResourcePriced,
+) => resource.pricing.price.text;
 
-export const getPricedVdcResourceList = ({
-  resourceList,
+export const getPricedVdcResources = ({
+  resources,
   catalog,
 }: {
-  resourceList: IVdcOrderableResource[];
+  resources: IVdcOrderableResource[];
   catalog: TVcdCatalog;
 }): IVdcOrderableResourcePriced[] => {
-  if (!resourceList || !catalog) {
+  if (!resources || !catalog) {
     return [];
   }
-  return resourceList
+  return resources
     .reduce((list: IVdcOrderableResourcePriced[], resource) => {
-      const product = catalog.find((pdt) => pdt.planCode === resource.profile);
-      return product
-        ? [...list, { ...resource, prices: product.prices }]
-        : list;
+      const prices = catalog.find(
+        ({ planCode }) => planCode === resource.profile,
+      )?.prices;
+      const pricing = prices?.find(({ capacities }) =>
+        capacities.includes(ProductPricingCapacity.RENEW),
+      );
+      return pricing ? [...list, { ...resource, pricing }] : list;
     }, [])
     .sort((a, b) => getVdcResourcePrice(a) - getVdcResourcePrice(b));
 };

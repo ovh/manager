@@ -7,12 +7,12 @@ export interface IVdcOrderableVHost
   vCPUSpeed: number;
 }
 export interface IVdcOrderableVhostPriced extends IVdcOrderableVHost {
-  prices: IVcdCatalogProductPricing[];
+  pricing: IVcdCatalogProductPricing;
 }
 
 export type IVdcOrderableStorage = Omit<IVcdStorageState, 'billingType'>;
 export interface IVdcOrderableStoragePriced extends IVdcOrderableStorage {
-  prices: IVcdCatalogProductPricing[];
+  pricing: IVcdCatalogProductPricing;
 }
 
 export type IVdcOrderableResource = IVdcOrderableVHost | IVdcOrderableStorage;
