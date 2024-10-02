@@ -1,4 +1,4 @@
-import { Environment, ApplicationId } from '@ovh-ux/manager-config';
+import { Environment, ApplicationId, User } from '@ovh-ux/manager-config';
 import ShellClient from './shell-client';
 import { clientAuth } from '../plugin/auth';
 import { clientNavigation } from '../plugin/navigation';
@@ -42,6 +42,12 @@ export default function exposeApi(shellClient: ShellClient) {
           plugin: 'environment',
           method: 'setApplication',
           args: [applicationId],
+        }),
+      setUser: (user: User) =>
+        shellClient.invokePluginMethod({
+          plugin: 'environment',
+          method: 'setUser',
+          args: [user],
         }),
     },
     i18n: {
