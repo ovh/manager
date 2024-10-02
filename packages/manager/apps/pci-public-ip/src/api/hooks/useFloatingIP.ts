@@ -2,19 +2,13 @@ import { PaginationState } from '@ovh-ux/manager-react-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
-import {
-  FloatingIP,
-  Instance,
-  TerminateIPProps,
-  UpdateInstanceProps,
-} from '@/interface';
+import { FloatingIP, TerminateIPProps, UpdateInstanceProps } from '@/interface';
 import {
   getAllAssociatedInstances,
   getAllFloatingIP,
   terminateFloatingIP,
   updateInstanceForFloatingIP,
 } from '@/api/data/floating-ip';
-import { useAllInstance } from './useInstance';
 import queryClient from '@/queryClient';
 import { paginateResults } from '@/api/utils/pagination';
 
@@ -22,25 +16,12 @@ export type FloatingIPOptions = {
   pagination: PaginationState;
 };
 
-const aggregateFloatingIPs = (
-  floatingIPs: FloatingIP[],
-  instanceData: Instance[],
-) => {
+const aggregateFloatingIPs = (floatingIPs: FloatingIP[]) => {
   const aggregatedData = floatingIPs.map((floatingIP) => {
     const floatingIPResult = { ...floatingIP };
-    if (
-      floatingIP.associatedEntity &&
-      floatingIP.associatedEntity?.type === 'instance'
-    ) {
-      const instance: Instance = instanceData.find(
-        ({ id }) => id === floatingIP.associatedEntity.id,
-      );
-
-      floatingIPResult.associatedEntity.name = instance ? instance.name : '';
-    }
     floatingIPResult.associatedEntityId = floatingIP.associatedEntity?.id;
-    floatingIPResult.associatedEntityName =
-      floatingIPResult.associatedEntity?.name;
+    floatingIPResult.associatedEntityType =
+      floatingIPResult.associatedEntity?.type;
 
     return { ...floatingIPResult };
   });
@@ -76,43 +57,20 @@ export const useFloatingIPs = (
   { pagination }: FloatingIPOptions,
   filters: Filter[] = [],
 ) => {
-  const {
-    data: floatingIPData,
-    error: floatingIPError,
-    isLoading: floatingIPLoading,
-  } = useAllFloatingIP(projectId);
-
-  const {
-    data: instanceData,
-    error: instanceError,
-    isLoading: instanceLoading,
-  } = useAllInstance(projectId);
-
-  const error = floatingIPError || instanceError;
-  const isLoading = floatingIPLoading || instanceLoading;
+  const { data: floatingIPData, error, isLoading } = useAllFloatingIP(
+    projectId,
+  );
 
   return useMemo(() => {
     return {
       isLoading,
       error,
       data: paginateResults(
-        applyFilters(
-          aggregateFloatingIPs(floatingIPData || [], instanceData || []),
-          filters,
-        ),
+        applyFilters(aggregateFloatingIPs(floatingIPData || []), filters),
         pagination,
       ),
     };
-  }, [
-    floatingIPData,
-    floatingIPError,
-    floatingIPLoading,
-    instanceData,
-    instanceError,
-    instanceLoading,
-    pagination,
-    filters,
-  ]);
+  }, [floatingIPData, error, isLoading, pagination, filters]);
 };
 
 export const useTerminateFloatingIP = ({

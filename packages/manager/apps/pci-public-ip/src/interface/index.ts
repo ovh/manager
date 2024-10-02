@@ -37,7 +37,7 @@ export interface FloatingIP {
   region: string;
   status: string;
   associatedEntityId: string;
-  associatedEntityName: string;
+  associatedEntityType: string;
   search?: string;
 }
 

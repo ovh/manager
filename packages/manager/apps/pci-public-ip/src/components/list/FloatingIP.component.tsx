@@ -7,7 +7,6 @@ import {
   Notifications,
   useColumnFilters,
   useDatagridSearchParams,
-  useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -30,7 +29,7 @@ import {
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PciAnnouncementBanner } from '@ovh-ux/manager-pci-common';
 import { FloatingIP } from '@/interface';
@@ -58,7 +57,14 @@ export default function FloatingIPComponent({
     filters,
   );
 
-  const goToInstanceHref = (id: string) => `${projectUrl}/instances/${id}`;
+  const goToEntity = useCallback(
+    ({ associatedEntity, region }: FloatingIP) =>
+      associatedEntity.type === 'instance'
+        ? `${projectUrl}/instances/${associatedEntity.id}`
+        : `${projectUrl}/octavia-load-balancer/${region}/${associatedEntity.id}/general-information`,
+    [],
+  );
+
   const [searchField, setSearchField] = useState('');
   const filterPopoverRef = useRef(undefined);
 
@@ -77,25 +83,26 @@ export default function FloatingIPComponent({
       ),
       label: t('pci_additional_ips_floating_ip_grid_region'),
     },
-
     {
       id: 'associated-service',
       cell: (props: FloatingIP) => (
-        <DataGridTextCell>{props.associatedEntity?.id}</DataGridTextCell>
+        <DataGridTextCell>
+          {props.associatedEntity?.id && (
+            <OsdsLink
+              color={ODS_THEME_COLOR_INTENT.primary}
+              href={goToEntity(props)}
+            >
+              {props.associatedEntity.id}
+            </OsdsLink>
+          )}
+        </DataGridTextCell>
       ),
       label: t('pci_additional_ips_floating_ip_grid_associated_service'),
     },
     {
-      id: 'associated-endpoint',
+      id: 'associated-service-type',
       cell: (props: FloatingIP) => (
-        <DataGridTextCell>
-          <OsdsLink
-            color={ODS_THEME_COLOR_INTENT.primary}
-            href={goToInstanceHref(props.associatedEntity?.id)}
-          >
-            {props.associatedEntity?.name}
-          </OsdsLink>
-        </DataGridTextCell>
+        <DataGridTextCell>{props.associatedEntity?.type}</DataGridTextCell>
       ),
       label: t('pci_additional_ips_floating_ip_grid_assocated_endpoint'),
     },
@@ -187,7 +194,7 @@ export default function FloatingIPComponent({
                     comparators: FilterCategories.String,
                   },
                   {
-                    id: 'associatedEntityName',
+                    id: 'associatedEntityType',
                     label: t(
                       'pci_additional_ips_floating_ip_grid_assocated_endpoint',
                     ),
