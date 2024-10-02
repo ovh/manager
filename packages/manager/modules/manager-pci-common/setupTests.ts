@@ -6,6 +6,7 @@ vi.mock('react-i18next', () => ({
     t: (translationKey: string) => translationKey,
     i18n: {
       changeLanguage: () => new Promise(() => {}),
+      exists: () => true,
     },
   }),
 }));

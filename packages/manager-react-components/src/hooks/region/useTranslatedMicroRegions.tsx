@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import './translations';
+import { useCallback } from 'react';
+import { Continent } from './continent';
 
 export const isLocalZone = (region: string) => {
   const localZonePattern = /^lz/i;
@@ -25,29 +27,58 @@ export const getMacroRegion = (region: string): string => {
 };
 
 export const useTranslatedMicroRegions = () => {
-  const { i18n, t } = useTranslation('region');
+  const { t, i18n } = useTranslation('region');
 
-  return {
-    translateMicroRegion: (region: string) => {
-      const macro = getMacroRegion(region);
-      if (i18n.exists(`region:manager_components_region_${macro}_micro`)) {
-        return t(`manager_components_region_${macro}_micro`, { micro: region });
-      }
-      return '';
-    },
-    translateMacroRegion: (region: string) => {
-      const macro = getMacroRegion(region);
-      if (i18n.exists(`region:manager_components_region_${macro}`)) {
-        return t(`manager_components_region_${macro}`);
-      }
-      return '';
-    },
-    translateContinentRegion: (region: string) => {
+  const translateContinentRegion = useCallback(
+    (region: string) => {
       const macro = getMacroRegion(region);
       if (i18n.exists(`region:manager_components_region_continent_${macro}`)) {
         return t(`manager_components_region_continent_${macro}`);
       }
       return '';
     },
+    [i18n, t],
+  );
+
+  const translateContinent = useCallback(
+    (continent: Continent) => {
+      if (i18n.exists(`region:manager_components_continent_${continent}`)) {
+        return t(`manager_components_continent_${continent}`);
+      }
+      return '';
+    },
+    [i18n, t],
+  );
+
+  const translateMacroRegion = useCallback(
+    (region: string) => {
+      const macro = getMacroRegion(region);
+      if (i18n.exists(`region:manager_components_region_${macro}`)) {
+        return t(`manager_components_region_${macro}`);
+      }
+      return '';
+    },
+    [i18n, t],
+  );
+
+  const translateMicroRegion = useCallback(
+    (region: string) => {
+      const macro = getMacroRegion(region);
+      if (i18n.exists(`region:manager_components_region_${macro}_micro`)) {
+        return t(`manager_components_region_${macro}_micro`, { micro: region });
+      }
+      if (i18n.exists(`region:manager_components_region_${macro}`)) {
+        return `${translateMacroRegion(region)} (${region})`;
+      }
+      return '';
+    },
+    [i18n, t, translateMacroRegion],
+  );
+
+  return {
+    translateContinentRegion,
+    translateContinent,
+    translateMacroRegion,
+    translateMicroRegion,
   };
 };

@@ -1,7 +1,8 @@
 import React, { useMemo, useState } from 'react';
-import { useProjectLocalisation, TLocalisation } from './useRegions';
+// import { useProjectLocalisation, TLocalisation } from './useRegions';
 
-interface RegionSelectorProps {
+export const x = null;
+/* interface RegionSelectorProps {
   projectId: string;
   onSelectRegion: (region: TLocalisation) => void;
   regionFilter?: (region: TLocalisation) => boolean;
@@ -98,4 +99,4 @@ export function useRegionSelector({
     selectedMacroRegion,
     selectedMicroRegion,
   };
-}
+} */

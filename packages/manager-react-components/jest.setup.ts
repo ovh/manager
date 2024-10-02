@@ -1,6 +1,6 @@
-import React from 'react';
 import { TextEncoder, TextDecoder } from 'util';
 import { Blob, File } from 'buffer';
+import React from 'react';
 
 import 'element-internals-polyfill';
 
@@ -22,3 +22,13 @@ Object.assign(global, {
   Request,
   Response,
 });
+
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (translationKey: string) => translationKey,
+    i18n: {
+      changeLanguage: () => new Promise(() => {}),
+      exists: () => true,
+    },
+  }),
+}));

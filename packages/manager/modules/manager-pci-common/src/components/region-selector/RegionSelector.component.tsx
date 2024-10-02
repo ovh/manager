@@ -1,60 +1,136 @@
-import React from 'react';
-import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
+import React, { useCallback, useMemo, useState } from 'react';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { TabsComponent } from '@ovh-ux/manager-react-components';
+import {
+  getMacroRegion,
+  getZoneFromMacro,
+  TabsComponent,
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 import { TLocalisation } from './useRegions';
-import { useRegionSelector } from './useRegionSelector';
 import { RegionTile } from './RegionTile';
 import { RegionList } from './RegionList.component';
 
 import './style.scss';
 import './translations';
+import { TRegion } from '@/api/data';
 
-export interface RegionSelectorProps {
-  projectId: string;
-  onSelectRegion: (region?: TLocalisation) => void;
-  regionFilter?: (region: TLocalisation) => boolean;
-  compactMode?: boolean;
-}
+type TMappedRegion = TLocalisation & { zone: string };
+
+export const splitRegions = (
+  data: TRegion[],
+): { regions: TMappedRegion[]; zones: string[] } => {
+  const regions = data.map((region) => {
+    const macro = getMacroRegion(region.name);
+    return {
+      ...region,
+      isMacro: region.name === macro,
+      macro,
+      isLocalZone: region.type === 'localzone',
+      zone: getZoneFromMacro(macro),
+    };
+  });
+
+  return {
+    regions,
+    zones: ['WORLD', ...new Set(regions.map((r) => r.zone))],
+  };
+};
 
 export function RegionSelector({
-  projectId,
-  onSelectRegion,
-  regionFilter,
   compactMode,
-}: Readonly<RegionSelectorProps>): JSX.Element {
-  const { t } = useTranslation('pci-region-selector');
+  regions: unformattedRegions,
+  onSelectRegion,
+}: {
+  compactMode?: boolean;
+  regions: TRegion[];
+  onSelectRegion: (region?: TLocalisation) => void;
+}): JSX.Element {
+  const { t } = useTranslation(['pci-region-selector', 'localisation']);
 
-  const {
-    continents,
-    macroRegions,
-    microRegions,
-    selectContinent: setSelectedContinent,
-    selectMacroRegion,
-    selectMicroRegion,
+  const [selectedZone, setSelectedZone] = useState<string | null>(null);
+  const [
     selectedMacroRegion,
+    setSelectedMacroRegion,
+  ] = useState<TMappedRegion | null>(null);
+  const [
     selectedMicroRegion,
-    isPending,
-  } = useRegionSelector({ projectId, onSelectRegion, regionFilter });
+    setSelectedMicroRegion,
+  ] = useState<TMappedRegion | null>(null);
 
-  if (isPending) {
-    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
-  }
+  const { regions, zones } = useMemo(() => splitRegions(unformattedRegions), [
+    unformattedRegions,
+  ]);
+
+  const currentRegions = useMemo(
+    () =>
+      (selectedZone === 'WORLD'
+        ? regions
+        : regions?.filter((r) => r.zone === selectedZone)) || [],
+    [selectedZone, regions],
+  );
+
+  const selectMacroRegion = useCallback(
+    (region: TMappedRegion) => {
+      const micros = currentRegions.filter(
+        (r) => r.macro === region.macro && !r.isMacro && r !== region,
+      );
+      setSelectedMacroRegion(region);
+      setSelectedMicroRegion(null);
+      console.log(currentRegions);
+      onSelectRegion(micros.length === 0 ? region : null);
+    },
+    [currentRegions, onSelectRegion],
+  );
+
+  const selectMicroRegion = useCallback(
+    (region: TMappedRegion) => {
+      setSelectedMicroRegion(region);
+      onSelectRegion(region);
+    },
+    [onSelectRegion],
+  );
+
+  // list of displayed macro regions
+  const macroRegions = useMemo(
+    () =>
+      currentRegions.filter((region) => {
+        const children = currentRegions.filter(
+          (r) => r.macro === region.macro && r.isMacro === false,
+        );
+        // only display macro regions with one or more micro regions
+        // otherwise only display the micro region
+        if (region.isMacro) {
+          return children.length > 1;
+        }
+        return children.length === 1;
+      }),
+    [currentRegions],
+  );
+
+  // list of displayed micro regions
+  const microRegions = useMemo(
+    () =>
+      (macroRegions.indexOf(selectedMacroRegion) >= 0 &&
+        currentRegions.filter(
+          (r) =>
+            r.macro === selectedMacroRegion.macro &&
+            r.isMacro === false &&
+            r !== selectedMacroRegion,
+        )) ||
+      [],
+    [macroRegions, selectedMacroRegion],
+  );
 
   return (
     <TabsComponent
-      items={continents}
-      itemKey={(i) => i.id}
+      items={zones}
+      itemKey={(i) => i}
       contentElement={() => (
         <>
           <RegionList
@@ -92,7 +168,7 @@ export function RegionSelector({
           )}
         </>
       )}
-      titleElement={(continent, isSelected) => (
+      titleElement={(zone, isSelected) => (
         <OsdsText
           breakSpaces={false}
           size={ODS_THEME_TYPOGRAPHY_SIZE._600}
@@ -108,11 +184,11 @@ export function RegionSelector({
               'whitespace-nowrap px-2 text-lg',
             )}
           >
-            {continent.name}
+            {t(`region:manager_components_zone_${zone}`)}
           </div>
         </OsdsText>
       )}
-      onChange={setSelectedContinent}
+      onChange={(c) => setSelectedZone(c)}
     />
   );
 }
