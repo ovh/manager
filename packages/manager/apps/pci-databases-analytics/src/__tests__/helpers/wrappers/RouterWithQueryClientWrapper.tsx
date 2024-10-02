@@ -77,6 +77,7 @@ export const RouterWithQueryClientWrapper = ({
         getEnvironment: vi.fn(),
         setUniverse: vi.fn(),
         setApplication: vi.fn(),
+        setUser: vi.fn(),
       },
       i18n: {
         getLocale: vi.fn(),
