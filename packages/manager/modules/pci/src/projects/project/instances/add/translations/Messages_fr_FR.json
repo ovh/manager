@@ -16,6 +16,7 @@
   "pci_project_instances_instance_add_region_unavailable": "Ces localisations sont disponibles sur d'autre modèles.",
   "pci_project_instances_instance_add_choose_model": "Changer de modèle",
   "pci_project_instances_instance_add_region_bandwidth_extra": "Le trafic réseau public sortant des instances est inclus pour toutes les localisations, à l’exception de celles en région Asie-Pacifique (Singapour et Sydney). Dans ces deux régions, 1 To/mois de trafic public sortant est inclus avec chaque projet Public Cloud. Au-delà de ce quota, chaque Go de trafic supplémentaire est facturé {{ price }}. Quant au trafic réseau public entrant, celui-ci est inclus dans tous les cas et pour toutes les régions.",
+  "pci_project_instances_instance_add_region_savings_plan_info": "Les Locales Zones ne sont pas éligibles aux Savings Plans.",
 
   "pci_projects_project_instances_add_image_title": "Sélectionnez une image",
   "pci_projects_project_instances_add_image_not_available": "Ces images sont disponibles sur d'autre modèles.",
@@ -86,6 +87,8 @@
   "pci_projects_project_instances_add_billing_short_period_message": "Pour une utilisation sur de courtes périodes, il est recommandé de choisir la facturation à l'heure et de basculer au forfait mensuel par la suite.",
   "pci_projects_project_instances_add_billing_monthly_label": "Mensuel",
   "pci_projects_project_instances_add_billing_hourly_label": "Horaire",
+  "pci_projects_project_instances_add_billing_savings_plan_banner": "Bénéficiez de tarifs mensuels avantageux grâce aux Savings Plans, tout en gardant la flexibilité des instances à l'heure.",
+  "pci_projects_project_instances_add_billing_savings_plan_cta": "Configurez vos Savings Plans",
 
   "pci_projects_project_instances_add_billing_gateway_info": "Nous avons détecté des composants manquants : <strong>Gateway</strong>",
   "pci_projects_project_instances_add_billing_gateway_detail": "La flavor sélectionnée est :",

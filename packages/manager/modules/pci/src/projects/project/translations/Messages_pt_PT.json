@@ -38,7 +38,7 @@
   "pci_projects_project_keystone_upgrade_more": "Saber mais",
   "pci_projects_project_quota_warning_message": "Por razões de segurança, o seu projeto foi sujeito a um limite. Se pretender aumentar esta quota, aceda à página <a data-ui-sref=\"{{ quotaUrl }}\">Limites e localizações</a>.",
   "pci_projects_project_quota_threshold_warning_message": "Os seus níveis de quotas estão a atingir o seu máximo. <a href=\"{{ quotaUrl }}\">Clique aqui para gerir as suas quotas</a>.",
-  "pci_projects_project_activateDiscovery_activate": "Ativar o projeto",
+  "pci_projects_project_activateDiscovery_activate": "Ativar",
   "pci_projects_project_activateDiscovery_close": "Talvez mais tarde",
   "pci_projects_project_activateDiscovery_heading": "Ativar um projeto",
   "pci_projects_project_activateDiscovery_info": "Antes de criar um novo projeto, deve ativar este projeto. Ainda não se sente pronto? Pode continuar a explorar o universo Public Cloud no modo Descoberta.",

@@ -1,0 +1,8 @@
+{
+  "title": "Automatische Verlängerung ändern",
+  "message_activate": "Ihr Savings Plan wird für den gleichen Zeitraum verlängert.",
+  "message_deactivate": "Ihr Savings Plan wird nicht automatisch verlängert.",
+  "buttons_cancel": "Abbrechen",
+  "buttons_activate": "Aktivieren",
+  "buttons_deactivate": "Deaktivieren"
+}

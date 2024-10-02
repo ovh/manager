@@ -4,6 +4,6 @@
   "pci_projects_project_discovery_activate_banner_no_promotion_title": "Starten Sie das Deployment Ihrer Cloud-Ressourcen.",
   "pci_projects_project_discovery_activate_banner_description": "Sie befinden sich derzeit im Discovery-Modus. Wenn Sie Ihr Projekt aktivieren, können Sie Ihre Cloud-Ressourcen in wenigen Minuten starten.",
   "pci_projects_project_discovery_activate_banner_antifraud_manuel_check_message": "Die Aktivierung Ihres Projekts wird derzeit von unseren Teams überprüft. Sie erhalten eine Bestätigungs-E-Mail, sobald der Vorgang abgeschlossen ist.",
-  "pci_projects_project_discovery_activate_banner_cta": "Projekt aktivieren",
+  "pci_projects_project_discovery_activate_banner_cta": "Aktivieren",
   "pci_projects_project_discovery_activate_banner_antifraud_refused_message": "Eine Analyse der Daten zur Aktivierung Ihres Projekts hat ergeben, dass nicht alle notwendigen Sicherheitsgarantien gegeben sind. Sie können einen unserer Berater über die Rubrik „Hilfe“ Ihres Accounts kontaktieren, um uns die für die Aktivierung Ihres Projekts notwendigen Informationen bereitzustellen Erfolgt dies nicht, wird diese Transaktion nicht anerkannt."
 }

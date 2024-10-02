@@ -1,4 +1,4 @@
-import { apiClient, fetchIcebergV2, v6 } from '@ovh-ux/manager-core-api';
+import { apiClient, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
 import { getCatalog } from '@ovh-ux/manager-pci-common';
 import {
   CreateRancherPayload,

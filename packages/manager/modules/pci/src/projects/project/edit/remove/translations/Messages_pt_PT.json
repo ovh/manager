@@ -5,5 +5,7 @@
   "pci_projects_project_edit_remove_cancel": "Cancelar",
   "pci_projects_project_edit_remove_error": "Ocorreu um erro ao eliminar o projeto: {{ error }}",
   "pci_projects_project_edit_remove_success": "Uma confirmação da eliminação foi enviada para o seu e-mail.",
-  "pci_projects_project_discovery_edit_remove_please_note": "Tenha em conta que a eliminação do seu projeto é irreversível. Deverá recriar um para usufruir novamente do universo Public Cloud."
+  "pci_projects_project_discovery_edit_remove_please_note": "Tenha em conta que a eliminação do seu projeto é irreversível. Deverá recriar um para usufruir novamente do universo Public Cloud.",
+  "pci_projects_project_discovery_edit_savings_plan": "Tem um Savings Plan ativado neste projeto. Não pode eliminá-lo. Contacte o Apoio ao Cliente para obter informações sobre o procedimento de eliminação.",
+  "pci_projects_project_edit_remove_submit_client_service": "Contactar o Apoio ao Cliente"
 }

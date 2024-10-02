@@ -47,5 +47,7 @@
   "updateOfferModaleTitle": "Cambiar de plan",
   "updateOfferModalDescription": "Va a sustituir su plan actual por el servicio {{availableServicePlan}}. La facturación será de {{planPricing}}/hora + IVA por vCPU orquestadas. Esta operación será efectiva de manera inmediata y no afectará a sus «downstream clusters» ni a los datos de su Rancher administrado. Por favor, confirme si desea continuar.",
   "updateOfferPending": "Su solicitud de cambio de solución se ha enviado. Por favor, espere. Esta operación puede tardar algunos minutos.",
-  "updateOfferError": "Se ha producido un error: {{errorMessage}}"
+  "updateOfferError": "Se ha producido un error: {{errorMessage}}",
+  "savingsPlanMessage": "Disfrute de tarifas mensuales más económicas gracias a los Savings Plans, manteniendo la flexibilidad de las instancias por horas.",
+  "savingsPlanCTA": "Configure sus Savings Plans"
 }

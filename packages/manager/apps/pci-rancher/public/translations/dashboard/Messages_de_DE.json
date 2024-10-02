@@ -47,5 +47,7 @@
   "updateOfferModaleTitle": "Angebot wechseln",
   "updateOfferModalDescription": "Sie sind im Begriff, Ihr aktuelles Angebot für das Angebot {{availableServicePlan}} zu ändern. Ihnen werden {{planPricing}} inkl. MwSt/Stunde pro orchestrierter vCPU abgerechnet. Dies wird sofort wirksam und hat keine Auswirkungen auf Ihre „Downstream-Cluster“ oder die Daten Ihres gemanagten Rancher. Bitte bestätigen Sie, dass Sie fortfahren möchten.",
   "updateOfferPending": "Der Angebotswechsel wurde registriert. Bitte gedulden Sie sich einen Augenblick.",
-  "updateOfferError": "Es ist ein Fehler aufgetreten: {{errorMessage}}"
+  "updateOfferError": "Es ist ein Fehler aufgetreten: {{errorMessage}}",
+  "savingsPlanMessage": "Profitieren Sie von günstigen monatlichen Preisen mit den Savings Plans und behalten Sie die Flexibilität der Instanzen auf Stundenbasis bei.",
+  "savingsPlanCTA": "Ihre Savings Plans konfigurieren"
 }
