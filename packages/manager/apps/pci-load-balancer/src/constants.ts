@@ -86,3 +86,30 @@ export const LOAD_BALANCER_LOGS_SERVICE_GUIDE_LINK = {
   ASIA:
     'https://help.ovhcloud.com/csm/asia-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062938',
 };
+
+export const ACTIONS_LIST = [
+  {
+    value: ACTIONS.REDIRECT_TO_URL,
+    label: ACTION_LABELS[ACTIONS.REDIRECT_TO_URL],
+  },
+  {
+    value: ACTIONS.REDIRECT_TO_POOL,
+    label: ACTION_LABELS[ACTIONS.REDIRECT_TO_POOL],
+  },
+  {
+    value: ACTIONS.REDIRECT_PREFIX,
+    label: ACTION_LABELS[ACTIONS.REDIRECT_PREFIX],
+  },
+  {
+    value: ACTIONS.REJECT,
+    label: ACTION_LABELS[ACTIONS.REJECT],
+  },
+];
+
+export const REDIRECT_HTTP_CODES = [301, 302, 303, 307, 308];
+
+export const UNAVAILABLE_POOL_PROTOCOLS = ['tcp', 'udp', 'sctp'];
+
+export const URL_PATTERN = /^(http(s)?:\/\/)[\w.-]+[\w\-._~:/?#[\]@!$&'()*+,;=%]+$/;
+
+export const URL_PLACEHOLDER = 'https://example.com';
