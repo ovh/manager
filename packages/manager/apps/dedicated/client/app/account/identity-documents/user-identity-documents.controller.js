@@ -13,10 +13,9 @@ import {
 const replaceTrackingParams = (hit, params) => {
   if (!params) return hit;
   let formatted = hit;
-  params.forEach((param) => {
-    const { key, value } = Object.entries(param);
-    const replaced = hit.replace(`{{${key}}}`, value);
-    if (replaced) formatted = replaced;
+  const entries = Object.entries(params);
+  entries.forEach((entry) => {
+    formatted = formatted.replace(`{{${entry[0]}}}`, entry[1]);
   });
   return formatted;
 };
