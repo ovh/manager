@@ -24,6 +24,7 @@ import {
   TRACKING_OPTIONS,
   ADMIN_ROLE,
   IP_LISTING_ID,
+  POLLING_INTERVAL,
 } from './list.constant';
 
 export default class IpListController {
@@ -405,7 +406,10 @@ export default class IpListController {
       }
       return ipsService
         .then((data) => {
-          set(ipBlock, 'ips', data);
+          const temporalIps = ipBlock.ips.filter(
+            (item) => item.isTemporaryEntry,
+          );
+          set(ipBlock, 'ips', data.concat(temporalIps));
           checkIps(ipBlock);
           set(ipBlock, 'collapsed', false);
           set(ipBlock, 'loaded', true);
@@ -702,5 +706,78 @@ export default class IpListController {
     };
 
     refreshTable();
+
+    $scope.refreshIpList = (removedIps, createdIps, parentIpBlock) => {
+      const parentIpBlockRow =
+        parentIpBlock &&
+        $scope.ipsList.find((item) => item.ipBlock === parentIpBlock.ipBlock);
+
+      removedIps.forEach((ip) => {
+        const row = $scope.ipsList.find((item) => item.ipBlock === ip.ipBlock);
+        row.tobeRemoved = true;
+      });
+
+      const targetList = parentIpBlock ? parentIpBlockRow.ips : $scope.ipsList;
+      createdIps.forEach((ip) => {
+        targetList.push({
+          ...ip,
+          ip: ip.ipBlock,
+          block: ip.ipBlock,
+          isTemporaryEntry: true,
+        });
+      });
+
+      $scope.refreshQueue(removedIps, createdIps, parentIpBlockRow);
+    };
+
+    $scope.refreshQueue = (removedIps, createdIps, parentIpBlockRow) => {
+      const task = [];
+      createdIps.forEach((ip) => {
+        if (!ip.done) {
+          task.push(
+            this.Ip.getIpDetails(ip.ipBlock)
+              .then((data) => {
+                if (parentIpBlockRow) {
+                  // remove from parent tobe deleted and push to root list
+                  const row = parentIpBlockRow.ips.findIndex(
+                    (item) => item.ipBlock === ip.ipBlock,
+                  );
+                  parentIpBlockRow.ips.splice(row, 1);
+
+                  $scope.ipsList.push({ ...data, ipBlock: data.ip });
+                } else {
+                  const row = $scope.ipsList.findIndex(
+                    (item) => item.ipBlock === ip.ipBlock,
+                  );
+                  $scope.ipsList[row] = { ...data, ipBlock: data.ip };
+                }
+                // eslint-disable-next-line no-param-reassign
+                ip.done = true;
+              })
+              .catch((err) => {
+                if (err.message !== 'This service does not exist') {
+                  // eslint-disable-next-line no-param-reassign
+                  ip.done = true;
+                }
+              }),
+          );
+        }
+      });
+
+      return this.$q.all(task).then(() => {
+        if (createdIps.find((ip) => !ip.done)) {
+          this.$timeout(() => {
+            $scope.refreshQueue(removedIps, createdIps);
+          }, POLLING_INTERVAL);
+        } else {
+          removedIps.forEach((ip) => {
+            const row = $scope.ipsList.findIndex(
+              (item) => item.ipBlock === ip.ipBlock,
+            );
+            $scope.ipsList.splice(row, 1);
+          });
+        }
+      });
+    };
   }
 }
