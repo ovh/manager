@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-gateway-app",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,8 +16,8 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^7.4.0",
     "@ovh-ux/manager-core-api": "^0.8.0",
-    "@ovh-ux/manager-pci-common": "^0.4.1",
-    "@ovh-ux/manager-react-components": "^1.32.2",
+    "@ovh-ux/manager-pci-common": "^0.5.0",
+    "@ovh-ux/manager-react-components": "^1.33.0",
     "@ovh-ux/manager-react-core-application": "^0.10.1",
     "@ovh-ux/manager-react-shell-client": "^0.7.1",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",

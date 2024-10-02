@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.60.1...@ovh-ux/manager-pci@6.61.0) (2024-10-02)
+
+
+### Bug Fixes
+
+* **pci.savings-plan:** revert key for hidden prod ([#13399](https://github.com/ovh/manager/issues/13399)) ([564c315](https://github.com/ovh/manager/commit/564c315dc8ce0111e92baceeb2090d2961ba77aa))
+
+
+### Features
+
+* **pci.savings-plan:** savings plan ([#12172](https://github.com/ovh/manager/issues/12172)) ([6744853](https://github.com/ovh/manager/commit/67448534cdde94927ccab308e002b8894f966367))
+
+
+
+
+
 ## [6.60.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.60.0...@ovh-ux/manager-pci@6.60.1) (2024-09-05)
 
 
