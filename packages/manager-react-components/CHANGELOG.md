@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.34.0...@ovh-ux/manager-react-components@1.35.0) (2024-10-03)
+
+### Features
+
+- **manager-react-components:** publish manager react components ([db7b216](https://github.com/ovh/manager/commit/db7b216e8ab66b67b3d459bc7775f432d9bab83a))
+
 # [1.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.33.0...@ovh-ux/manager-react-components@1.34.0) (2024-10-03)
 
 ### Bug Fixes

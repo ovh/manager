@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.6.4...@ovh-ux/manager-pci-public-ip-app@0.6.5) (2024-10-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3364] ([e032ee5](https://github.com/ovh/manager/commit/e032ee53d3c3b79b8322927f59904223b8c37f71))
+
+
+
+
+
 ## [0.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.6.3...@ovh-ux/manager-pci-public-ip-app@0.6.4) (2024-10-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app

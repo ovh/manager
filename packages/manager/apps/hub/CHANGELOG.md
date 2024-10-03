@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.10.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.10.13...@ovh-ux/manager-hub-app@5.10.14) (2024-10-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
 ## [5.10.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.10.12...@ovh-ux/manager-hub-app@5.10.13) (2024-09-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

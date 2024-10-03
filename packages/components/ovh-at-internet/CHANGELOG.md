@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.13.3...@ovh-ux/ovh-at-internet@0.14.0) (2024-10-03)
+
+
+### Features
+
+* updated tracking functions declaration ([#13386](https://github.com/ovh/manager/issues/13386)) ([ffd35b6](https://github.com/ovh/manager/commit/ffd35b64cde87a96390fb551fff9c9a233ab7543))
+
+
+
+
+
 ## [0.13.3](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.13.2...@ovh-ux/ovh-at-internet@0.13.3) (2024-09-26)
 
 **Note:** Version bump only for package @ovh-ux/ovh-at-internet

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.2.1...@ovh-ux/ng-ovh-contact@5.2.2) (2024-10-03)
+
+
+### Bug Fixes
+
+* **ng-ovh-contact:** fix the search field ([#13327](https://github.com/ovh/manager/issues/13327)) ([8efff22](https://github.com/ovh/manager/commit/8efff221981f608cf0deb8e96de31b005bb30bef))
+
+
+
+
+
 ## [5.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.2.0...@ovh-ux/ng-ovh-contact@5.2.1) (2023-12-05)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-contact
