@@ -84,6 +84,13 @@ export default function FloatingIPComponent({
       label: t('pci_additional_ips_floating_ip_grid_region'),
     },
     {
+      id: 'associated-service-type',
+      cell: (props: FloatingIP) => (
+        <DataGridTextCell>{props.associatedEntity?.type}</DataGridTextCell>
+      ),
+      label: t('pci_additional_ips_floating_ip_grid_assocated_endpoint'),
+    },
+    {
       id: 'associated-service',
       cell: (props: FloatingIP) => (
         <DataGridTextCell>
@@ -98,13 +105,6 @@ export default function FloatingIPComponent({
         </DataGridTextCell>
       ),
       label: t('pci_additional_ips_floating_ip_grid_associated_service'),
-    },
-    {
-      id: 'associated-service-type',
-      cell: (props: FloatingIP) => (
-        <DataGridTextCell>{props.associatedEntity?.type}</DataGridTextCell>
-      ),
-      label: t('pci_additional_ips_floating_ip_grid_assocated_endpoint'),
     },
     {
       id: 'actions',

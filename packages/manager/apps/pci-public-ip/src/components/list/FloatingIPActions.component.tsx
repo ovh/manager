@@ -18,8 +18,9 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useHref, useSearchParams } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 import { ActionProps } from '@/interface';
+import usePageQuery from '@/hooks/usePageQuery';
 import { NetworkSecurityAction } from './NetworkSecurityAction.component';
 
 export default function FloatingIPActions({
@@ -28,12 +29,7 @@ export default function FloatingIPActions({
 }: Readonly<ActionProps>) {
   const { t } = useTranslation();
 
-  const [searchParams] = useSearchParams();
-
-  const queryParams = useMemo(() => {
-    const page = searchParams.get('page');
-    return page ? `?page=${page}` : '';
-  }, [searchParams]);
+  const queryParams = usePageQuery();
 
   const hrefRemove = useHref(`./${ipId}/terminate${queryParams}`);
   const hrefEdit = useHref(`./${ipId}/edit${queryParams}`);

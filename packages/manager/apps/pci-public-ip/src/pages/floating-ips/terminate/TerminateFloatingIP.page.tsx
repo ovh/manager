@@ -1,5 +1,4 @@
-import { useMemo } from 'react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Translation } from 'react-i18next';
 import {
@@ -8,6 +7,7 @@ import {
 } from '@/api/hooks/useFloatingIP';
 import TerminateModal from '@/components/terminate/Terminate.component';
 import { ResponseAPIError } from '@/interface';
+import usePageQuery from '@/hooks/usePageQuery';
 
 export default function TerminateFloatingIPPage() {
   const navigate = useNavigate();
@@ -16,11 +16,7 @@ export default function TerminateFloatingIPPage() {
   const { data: floatingIPs, isPending } = useAllFloatingIP(projectId);
   const floatingIP = floatingIPs?.find((row) => row.id === ipId) || undefined;
 
-  const [searchParams] = useSearchParams();
-  const search = useMemo(() => {
-    const page = searchParams.get('page');
-    return page ? `?page=${page}` : '';
-  }, [searchParams]);
+  const search = usePageQuery();
 
   const onClose = () => {
     navigate({
