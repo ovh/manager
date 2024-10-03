@@ -1,13 +1,13 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
-import { SshKey } from '@/interface';
+import { TSshKey } from '@/interface';
 
 export type SshKeysOptions = {
   pagination: PaginationState;
   sorting: ColumnSort;
 };
 
-export const getAllSshKeys = async (projectId: string): Promise<SshKey[]> => {
+export const getAllSshKeys = async (projectId: string): Promise<TSshKey[]> => {
   const { data } = await v6.get(`/cloud/project/${projectId}/sshkey`);
 
   return data;
@@ -16,31 +16,29 @@ export const getAllSshKeys = async (projectId: string): Promise<SshKey[]> => {
 export const getSshKey = async (
   projectId: string,
   sshId: string,
-): Promise<SshKey> => {
+): Promise<TSshKey> => {
   const { data } = await v6.get(`/cloud/project/${projectId}/sshkey/${sshId}`);
 
   return data;
 };
 
 export const paginateResults = (
-  items: SshKey[],
+  items: TSshKey[],
   pagination: PaginationState,
-) => {
-  return {
-    rows: items.slice(
-      pagination.pageIndex * pagination.pageSize,
-      (pagination.pageIndex + 1) * pagination.pageSize,
-    ),
-    pageCount: Math.ceil(items.length / pagination.pageSize),
-    totalRows: items.length,
-  };
-};
+) => ({
+  rows: items.slice(
+    pagination.pageIndex * pagination.pageSize,
+    (pagination.pageIndex + 1) * pagination.pageSize,
+  ),
+  pageCount: Math.ceil(items.length / pagination.pageSize),
+  totalRows: items.length,
+});
 
 export const filterSshKeys = (
-  sshKeys: SshKey[],
+  sshKeys: TSshKey[],
   sorting: ColumnSort,
   searchQueries?: string[],
-): SshKey[] => {
+): TSshKey[] => {
   const data = [...sshKeys];
 
   if (sorting) {
@@ -77,7 +75,7 @@ export const removeSshKey = async (projectId: string, sshId: string) => {
 
 export const addSshKey = async (
   projectId: string,
-  { name, publicKey }: SshKey,
+  { name, publicKey }: TSshKey,
 ) => {
   try {
     return await v6.post(`/cloud/project/${projectId}/sshkey`, {

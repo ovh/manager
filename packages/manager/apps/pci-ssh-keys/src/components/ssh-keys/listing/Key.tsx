@@ -9,10 +9,11 @@ export default function Key({ publicKey }: { publicKey: string }) {
     <OsdsClipboard
       value={publicKey}
       color={ODS_THEME_COLOR_INTENT.primary}
-      className={'mr-8'}
+      data-testid="Key-clipboard"
+      className="mr-8"
     >
-      <span slot={'success-message'}>{t('common_clipboard_copied')}</span>
-      <span slot={'error-message'}>Error</span>
+      <span slot="success-message">{t('common_clipboard_copied')}</span>
+      <span slot="error-message">Error</span>
     </OsdsClipboard>
   );
 }

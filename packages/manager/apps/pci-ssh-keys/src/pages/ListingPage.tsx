@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   Outlet,
   useNavigate,
@@ -20,7 +20,7 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useNavigation, useTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_BUTTON_SIZE,
@@ -31,19 +31,20 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import {
+  Datagrid,
   DataGridTextCell,
   Notifications,
-  Datagrid,
-  useDatagridSearchParams,
   PciGuidesHeader,
+  useDatagridSearchParams,
+  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import {
   isDiscoveryProject,
   PciDiscoveryBanner,
   TProject,
 } from '@ovh-ux/manager-pci-common';
-import { useSshKeys } from '@/hooks/useSsh';
-import { SshKey } from '@/interface';
+import { TSshKey } from '@/interface';
+import { useSshKeys } from '@/api/hooks/useSsh';
 import Key from '@/components/ssh-keys/listing/Key';
 import RemoveSsh from '@/components/ssh-keys/listing/RemoveSsh';
 import { PCI_LEVEL2 } from '@/tracking.constants';
@@ -51,42 +52,29 @@ import { PCI_LEVEL2 } from '@/tracking.constants';
 export default function ListingPage() {
   const { t } = useTranslation('common');
   const navigate = useNavigate();
-  const navigation = useNavigation();
-  const { trackClick } = useTracking();
+  const { trackClick } = useContext(ShellContext).shell.tracking;
   const { projectId } = useParams();
-  const [urlProject, setUrlProject] = useState('');
+  const projectUrl = useProjectUrl('public-cloud');
   const [searchField, setSearchField] = useState('');
   const [searchQueries, setSearchQueries] = useState<string[]>([]);
   const project = useRouteLoaderData('ssh') as TProject;
 
-  useEffect(() => {
-    navigation
-      .getURL('public-cloud', `#/pci/projects/${projectId}`, {})
-      .then((data) => {
-        setUrlProject(data as string);
-      });
-  }, [projectId, navigation]);
-
   const columns = [
     {
       id: 'name',
-      cell: (props: SshKey) => {
-        return <DataGridTextCell>{props.name}</DataGridTextCell>;
-      },
+      cell: (props: TSshKey) => (
+        <DataGridTextCell>{props.name}</DataGridTextCell>
+      ),
       label: t('pci_projects_project_sshKeys_name'),
     },
     {
       id: 'publicKey',
-      cell: (props: SshKey) => {
-        return <Key publicKey={props.publicKey} />;
-      },
+      cell: (props: TSshKey) => <Key publicKey={props.publicKey} />,
       label: t('pci_projects_project_sshKeys_public'),
     },
     {
       id: 'actions',
-      cell: (props: SshKey) => {
-        return <RemoveSsh sshId={`${props.id}`} />;
-      },
+      cell: (props: TSshKey) => <RemoveSsh sshId={`${props.id}`} />,
       label: '',
     },
   ];
@@ -113,7 +101,7 @@ export default function ListingPage() {
         <OsdsBreadcrumb
           items={[
             {
-              href: urlProject,
+              href: projectUrl,
               label: project.description,
             },
             {
@@ -122,7 +110,7 @@ export default function ListingPage() {
           ]}
         ></OsdsBreadcrumb>
       )}
-      <div className={'flex items-center justify-between mt-4'}>
+      <div className="flex items-center justify-between mt-4">
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
           size={ODS_THEME_TYPOGRAPHY_SIZE._600}
@@ -137,7 +125,7 @@ export default function ListingPage() {
 
       <PciDiscoveryBanner project={project} />
 
-      <div className={'flex flex-col sm:flex-row justify-between mt-4'}>
+      <div className="flex flex-col sm:flex-row justify-between mt-4">
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
@@ -158,14 +146,14 @@ export default function ListingPage() {
           <OsdsIcon
             size={ODS_ICON_SIZE.xs}
             name={ODS_ICON_NAME.PLUS}
-            className={'mr-2'}
+            className="mr-2"
             color={ODS_THEME_COLOR_INTENT.primary}
           />
           {t('pci_projects_project_sshKeys_add')}
         </OsdsButton>
         {/* onOdsValueChange={({ detail }) => setSearchField(`${detail.value}`)} */}
         <OsdsSearchBar
-          className={'sm:w-[15rem] xs:mt-4'}
+          className="sm:w-[15rem] xs:mt-4"
           value={searchField}
           onOdsSearchSubmit={({ detail }) => {
             const { inputValue } = detail;
@@ -192,7 +180,7 @@ export default function ListingPage() {
             className="mr-2"
             color={ODS_THEME_COLOR_INTENT.primary}
             variant={ODS_CHIP_VARIANT.flat}
-            removable={true}
+            removable
             onOdsChipRemoval={() => {
               setSearchQueries(searchQueries.filter((_, i) => i !== index));
             }}
@@ -204,7 +192,11 @@ export default function ListingPage() {
 
       {isLoading && (
         <div className="text-center">
-          <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />
+          <OsdsSpinner
+            inline
+            size={ODS_SPINNER_SIZE.md}
+            data-testid="ListingPage-spinner"
+          />
         </div>
       )}
 
@@ -218,7 +210,7 @@ export default function ListingPage() {
             onPaginationChange={setPagination}
             sorting={sorting}
             onSortChange={setSorting}
-            className={'overflow-x-hidden px-0'}
+            className="overflow-x-hidden px-0"
           />
         </div>
       )}

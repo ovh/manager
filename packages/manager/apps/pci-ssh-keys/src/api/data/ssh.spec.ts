@@ -1,25 +1,19 @@
 import { describe, expect, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
 import {
+  addSshKey,
+  filterSshKeys,
   getAllSshKeys,
   getSshKey,
-  removeSshKey,
-  addSshKey,
   paginateResults,
-  filterSshKeys,
-} from '@/data/ssh';
-import { SshKey } from '@/interface';
+  removeSshKey,
+} from '@/api/data/ssh';
+import { TSshKey } from '@/interface';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: {} });
-  });
-  const deleteFn = vi.fn(() => {
-    return Promise.resolve({ data: {} });
-  });
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: {} });
-  });
+  const get = vi.fn(() => Promise.resolve({ data: {} }));
+  const deleteFn = vi.fn(() => Promise.resolve({ data: {} }));
+  const post = vi.fn(() => Promise.resolve({ data: {} }));
   return {
     v6: {
       get,
@@ -71,7 +65,7 @@ describe('ssh keys data', () => {
     );
   });
   it('should paginate ssh keys', () => {
-    const sshKeys: SshKey[] = [];
+    const sshKeys: TSshKey[] = [];
     for (let i = 0; i < 50; i += 1)
       sshKeys.push({
         name: `ssh-key-name-${i}`,
@@ -112,9 +106,9 @@ describe('ssh keys data', () => {
     const foo = { name: 'foo', publicKey: 'foo' };
     const bar = { name: 'bar', publicKey: 'bar' };
     const baz = { name: 'baz', publicKey: 'baz' };
-    expect(filterSshKeys([foo, bar, baz], [], ['foo'])).toEqual([foo]);
-    expect(filterSshKeys([foo, bar, baz], [], ['ba'])).toEqual([bar, baz]);
-    expect(filterSshKeys([foo, bar, baz], [], ['bar'])).toEqual([bar]);
-    expect(filterSshKeys([foo, bar, baz], [], ['bar', 'foo'])).toEqual([]);
+    expect(filterSshKeys([foo, bar, baz], null, ['foo'])).toEqual([foo]);
+    expect(filterSshKeys([foo, bar, baz], null, ['ba'])).toEqual([bar, baz]);
+    expect(filterSshKeys([foo, bar, baz], null, ['bar'])).toEqual([bar]);
+    expect(filterSshKeys([foo, bar, baz], null, ['bar', 'foo'])).toEqual([]);
   });
 });
