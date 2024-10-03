@@ -46,7 +46,7 @@
   "manager_components_region_continent_RBX": "Westeuropa",
   "manager_components_region_continent_DE": "Mitteleuropa",
   "manager_components_region_continent_UK": "Westeuropa",
-  "manager_components_region_continent_SGP": "Asiatisch-pazifischer Raum ",
+  "manager_components_region_continent_SGP": "Asiatisch-pazifischer Raum",
   "manager_components_region_continent_SYD": "Ozeanien",
   "manager_components_region_continent_US": "USA",
   "manager_components_region_SHA_micro": "Gravelines (SHADOW-EU-1)",
@@ -71,5 +71,5 @@
   "manager_components_region_MUM": "Mumbai",
   "manager_components_region_MUM_micro": "Mumbai ({{ micro }})",
   "manager_components_region_location_MUM": "Asiatisch-pazifischer Raum (Mumbai)",
-  "manager_components_region_continent_MUM": "Asiatisch-pazifischer Raum "
+  "manager_components_region_continent_MUM": "Asiatisch-pazifischer Raum"
 }
