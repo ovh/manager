@@ -1,9 +1,0 @@
-{
-  "pci_projects_project_public_gateways_onboarding": "Gateway",
-  "pci_projects_project_public_gateways_onboarding_content1": "W pełni dedykowana instancja zainstalowana w prywatnej sieci może wymagać dostępu do zasobów Internetu. Gateway to bezpieczny sposób połączenia, bez bezpośredniego udostępnienia instancji w Internecie.",
-  "pci_projects_project_public_gateways_onboarding_content2": "Aplikacja udostępniona w Internecie musi posiadać adres IP. Najlepszym rozwiązaniem jest Floating IP. Jest to elastyczny adres IP, który może być przenoszony między różnymi usługami Public Cloud. W takim przypadku adres musi być skonfigurowany na Gateway i połączony bezpośrednio z prywatną instancją lub Load Balancerem. Dzięki temu zwiększa się skalowalność usługi.",
-  "pci_projects_project_public_gateways_onboarding_action_label": "Utwórz Gateway",
-  "pci_projects_project_public_gateways_onboarding_guides_create_private_network_with_gateway_title": "Utwórz prywatną sieć z Gateway w Panelu klienta OVHcloud",
-  "pci_projects_project_public_gateways_onboarding_guides_attach_pci_floating_ip_to_instance_title": "Przypisz adres Floating IP Public Cloud do instancji",
-  "pci_projects_project_public_gateways_onboarding_guides_start_load_balancer_service_title": "Utwórz Load Balancera HTTP/HTTPS w Panelu klienta OVHcloud"
-}
