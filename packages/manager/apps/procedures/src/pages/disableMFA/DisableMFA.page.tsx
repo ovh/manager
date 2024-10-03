@@ -8,22 +8,23 @@ import {
   createRoutePath,
   seeRoutePath,
   errorRoutePath,
-} from '@/routes/home.constants';
-import { rootRoute } from '@/routes/routes';
-import Loading from '@/components/Loading/Loading';
+} from '@/routes/mfa.constants';
+import { accountDisable2faRoute } from '@/routes/routes';
 import { SkeletonLoading } from '@/components/Loading/SkeletonLoading';
+import { SessionModals } from '@/context/User/modals/SessionModals';
+import { PageLayout } from '@/components/PageLayout/PageLayout.component';
 
 const redirectStrategies: Record<Status2fa['status'] | 'error', string> = {
-  open: `${rootRoute}/${seeRoutePath}`,
-  creationAuthorized: `${rootRoute}/${createRoutePath}`,
-  error: `${rootRoute}/${errorRoutePath}`,
+  open: `${accountDisable2faRoute}/${seeRoutePath}`,
+  creationAuthorized: `${accountDisable2faRoute}/${createRoutePath}`,
+  error: `${accountDisable2faRoute}/${errorRoutePath}`,
 };
 
 const checkIfCreationIsAllowed = (error: AxiosError<any>) =>
   error?.response?.status === 404 &&
   error?.response?.data?.class === 'Client::ErrNotFound::ErrNotFound';
 
-export default function Home() {
+export default function DisableMFA() {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -50,17 +51,9 @@ export default function Home() {
   }, [isFetched]);
 
   return (
-    <div className="sm:container mx-auto px-6">
-      <div className="md:py-12 p-6">
-        <div className="inline-block pb-6 md:pb-12">
-          <img src={ovhCloudLogo} alt="ovh-cloud-logo" className="app-logo" />
-        </div>
-        <div className="flex justify-center app-content lg:w-8/12 mx-auto min-h-[500px] sm:shadow sm:shadow-[0_0_6px_0_rgba(40,89,192,0.2)] sm:border-none border-t-[1px] border-gray-300 px-6">
-          <div className="md:p-8 w-full">
-            {isLoading ? <SkeletonLoading /> : <Outlet />}
-          </div>
-        </div>
-      </div>
-    </div>
+    <>
+      <PageLayout>{isLoading ? <SkeletonLoading /> : <Outlet />}</PageLayout>
+      <SessionModals />
+    </>
   );
 }

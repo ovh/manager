@@ -5,7 +5,11 @@ import { odsSetup } from '@ovhcloud/ods-common-core';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import '@ovhcloud/ods-theme-blue-jeans';
 import queryClient from './query.client';
-import { Routes } from './routes/routes';
+import {
+  accountDisable2faRoute,
+  exercisingYourRightsRoute,
+  Routes,
+} from './routes/routes';
 import { decodeToken, extractToken } from '@/utils/token';
 import initI18n from './i18n';
 import initAuthenticationInterceptor from '@/data/authentication.interceptor';
@@ -19,6 +23,7 @@ function getSubsidiary(subsidiary: string, locale: string) {
   return subsidiary;
 }
 
+const activateAuthenticationInterceptorForPath = [accountDisable2faRoute];
 const token = extractToken();
 const user = decodeToken(token);
 const { language: locale, subsidiary } = user || {};
@@ -26,12 +31,18 @@ const { language: locale, subsidiary } = user || {};
 if (!user) {
   const redirectUrl = getRedirectLoginUrl(user);
   window.location.assign(redirectUrl);
-} else {
-  initI18n(locale || 'en_GB', getSubsidiary(subsidiary, locale));
-  initAuthenticationInterceptor(token);
-  initInterceptor();
+}
 
-  odsSetup();
+initI18n(locale || 'en_GB', getSubsidiary(subsidiary, locale));
+odsSetup();
+initInterceptor();
+
+if (
+  activateAuthenticationInterceptorForPath.some((path) =>
+    window.location.href.includes(path),
+  )
+) {
+  initAuthenticationInterceptor(token);
 }
 
 const router = createHashRouter(Routes);
