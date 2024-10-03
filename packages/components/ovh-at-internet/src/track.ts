@@ -21,6 +21,21 @@ export interface PciProjectModeParams {
   projectId?: string;
 }
 
+export interface TrackImpressionData {
+  campaignId: string;
+  creation: string;
+  format?: string;
+  generalPlacement?: string;
+  detailedPlacement?: string;
+  variant?: string;
+  advertiserId?: string;
+  url?: string;
+}
+
+export interface TrackClickImpressionData {
+  click: TrackImpressionData;
+}
+
 export interface GenericTrackingData {
   country: string;
   website?: string;
