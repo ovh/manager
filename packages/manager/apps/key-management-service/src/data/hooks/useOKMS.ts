@@ -21,9 +21,6 @@ export const useAllOKMS = () => {
     queryKey: getOkmsServicesResourceListQueryKey,
     queryFn: () => getListingIceberg(),
     retry: false,
-    ...{
-      keepPreviousData: true,
-    },
     refetchInterval: 5000,
   });
 };

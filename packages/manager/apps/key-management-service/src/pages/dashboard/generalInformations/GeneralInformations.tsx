@@ -14,7 +14,7 @@ function GeneralInformationsTab() {
   const {
     data: okmsService,
     isLoading: isOkmsServiceLoading,
-  } = useKMSServiceInfos(okms?.data);
+  } = useKMSServiceInfos(okms?.data.id);
 
   const navigate = useNavigate();
 

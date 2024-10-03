@@ -5,16 +5,19 @@ import {
   Notifications,
   BaseLayout,
   HeadersProps,
+  ErrorBanner,
 } from '@ovh-ux/manager-react-components';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import Dashboard, {
   DashboardTabItemProps,
 } from '@/components/layout-helpers/Dashboard/Dashboard';
 import Loading from '@/components/Loading/Loading';
-import { useOKMSById } from '@/data/hooks/useOKMS';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
+import { getOkmsResourceQueryKey } from '@/data/api/okms';
+import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
 
 export default function DashboardPage() {
   const { t: tDashboard } = useTranslation('key-management-service/dashboard');
@@ -22,9 +25,29 @@ export default function DashboardPage() {
     'key-management-service/serviceKeys',
   );
   const { okmsId } = useParams();
-  const { data: okms } = useOKMSById(okmsId);
-  const displayName = okms?.data?.iam?.displayName;
   const navigate = useNavigate();
+  const {
+    data: okmsServiceInfos,
+    isLoading: isOkmsServiceInfosLoading,
+    isError: isOkmsServiceInfosError,
+    error: OkmsServiceInfoError,
+  } = useKMSServiceInfos(okmsId);
+  const displayName = okmsServiceInfos?.data?.resource.displayName;
+
+  if (isOkmsServiceInfosLoading) return <Loading />;
+
+  if (isOkmsServiceInfosError)
+    return (
+      <ErrorBanner
+        error={OkmsServiceInfoError.response}
+        onRedirectHome={() => navigate(ROUTES_URLS.listing)}
+        onReloadPage={() =>
+          queryClient.refetchQueries({
+            queryKey: getOkmsResourceQueryKey(okmsId),
+          })
+        }
+      />
+    );
 
   const tabsList: DashboardTabItemProps[] = [
     {
@@ -52,6 +75,11 @@ export default function DashboardPage() {
       id: ROUTES_URLS.keys,
       label: tServiceKeys('key_management_service_service_keys'),
       navigateTo: `/${okmsId}/${ROUTES_URLS.keys}`,
+    },
+    {
+      id: ROUTES_URLS.okmsUpdateName,
+      label: tDashboard('key_management_service_update_name'),
+      navigateTo: `/${okmsId}/${ROUTES_URLS.okmsUpdateName}`,
     },
   ];
 
