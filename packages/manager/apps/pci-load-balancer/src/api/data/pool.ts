@@ -50,8 +50,7 @@ export const createPool = async ({
   name,
   algorithm,
   protocol,
-  sessionPersistenceType,
-  cookieName = '',
+  permanentSession,
 }: {
   projectId: string;
   region: string;
@@ -59,18 +58,24 @@ export const createPool = async ({
   name: string;
   algorithm: string;
   protocol: string;
-  sessionPersistenceType?: string;
-  cookieName?: string;
-}) => {
-  const { data } = await v6.post(
+  permanentSession: {
+    isEnabled: boolean;
+    type?: string;
+    cookieName?: string;
+  };
+}): Promise<TLoadBalancerPool> => {
+  const { data } = await v6.post<TLoadBalancerPool>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/pool`,
     {
       loadbalancerId,
       name,
       algorithm,
       protocol,
-      sessionPersistence: sessionPersistenceType
-        ? { type: sessionPersistenceType, cookieName }
+      sessionPersistence: permanentSession.isEnabled
+        ? {
+            type: permanentSession.type,
+            cookieName: permanentSession.cookieName,
+          }
         : null,
     },
   );

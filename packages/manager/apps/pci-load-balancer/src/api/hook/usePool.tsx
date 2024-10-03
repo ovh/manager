@@ -106,29 +106,33 @@ export type TCreatePool = {
   projectId: string;
   region: string;
   loadbalancerId: string;
-  name: string;
-  algorithm: string;
-  protocol: string;
-  sessionPersistenceType?: string;
-  cookieName?: string;
   onError: (cause: ApiError) => void;
-  onSuccess: () => void;
+  onSuccess: (pool: TLoadBalancerPool) => void;
 };
 
 export const useCreatePool = ({
   projectId,
   region,
   loadbalancerId,
-  name,
-  algorithm,
-  protocol,
-  sessionPersistenceType,
-  cookieName = '',
   onError,
   onSuccess,
 }: TCreatePool) => {
   const mutation = useMutation({
-    mutationFn: async () =>
+    mutationFn: async ({
+      name,
+      algorithm,
+      protocol,
+      permanentSession,
+    }: {
+      name: string;
+      algorithm: string;
+      protocol: string;
+      permanentSession: {
+        isEnabled: boolean;
+        type?: string;
+        cookieName?: string;
+      };
+    }) =>
       createPool({
         projectId,
         region,
@@ -136,19 +140,18 @@ export const useCreatePool = ({
         name,
         algorithm,
         protocol,
-        sessionPersistenceType,
-        cookieName,
+        permanentSession,
       }),
     onError: (cause: ApiError) => {
       onError(cause);
     },
-    onSuccess: async () => {
-      onSuccess();
+    onSuccess: async (pool: TLoadBalancerPool) => {
+      onSuccess(pool);
     },
   });
 
   return {
-    createPool: () => mutation.mutate(),
+    createPool: mutation.mutate,
     ...mutation,
   };
 };
