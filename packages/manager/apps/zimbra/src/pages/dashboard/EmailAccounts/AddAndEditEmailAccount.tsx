@@ -10,6 +10,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   OsdsButton,
   OsdsFormField,
+  OsdsIcon,
   OsdsInput,
   OsdsMessage,
   OsdsPassword,
@@ -17,6 +18,8 @@ import {
   OsdsSelectOption,
   OsdsText,
   OsdsTextarea,
+  OsdsTooltip,
+  OsdsTooltipContent,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_HUE,
@@ -26,10 +29,13 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
   ODS_INPUT_SIZE,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_TYPE,
   ODS_TEXTAREA_SIZE,
+  ODS_TOOLTIP_VARIANT,
 } from '@ovhcloud/ods-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -183,14 +189,32 @@ export default function AddAndEditAccount() {
     return touched && !error;
   };
 
-  const handleFormChange = (name: string, value: string) => {
+  const handleFormChange = (
+    name: string,
+    value: string,
+    untouched?: boolean,
+  ) => {
     const newForm: FormTypeInterface = form;
     newForm[name] = {
       value,
-      touched: true,
+      touched: !untouched,
       required: form[name].required,
       hasError: !checkValidityField(name, value),
     };
+
+    if (
+      ['firstName', 'lastName'].includes(name) &&
+      value &&
+      !newForm.displayName.touched
+    ) {
+      newForm.displayName = {
+        ...newForm.displayName,
+        value: [newForm.lastName.value, newForm.firstName.value]
+          .filter((x) => x)
+          .join(' '),
+      };
+    }
+
     setForm((oldForm) => ({ ...oldForm, ...newForm }));
     setIsFormValid(checkValidityForm);
   };
@@ -482,6 +506,28 @@ export default function AddAndEditAccount() {
                     size={ODS_THEME_TYPOGRAPHY_SIZE._100}
                   >
                     {t('zimbra_account_add_input_displayName_label')}
+
+                    <OsdsTooltip
+                      role="tooltip"
+                      variant={ODS_TOOLTIP_VARIANT.standard}
+                    >
+                      <OsdsTooltipContent slot="tooltip-content">
+                        <OsdsText
+                          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                          color={ODS_THEME_COLOR_INTENT.text}
+                          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+                          hue={ODS_THEME_COLOR_HUE._500}
+                        >
+                          {t('zimbra_account_add_input_displayName_tooltip')}
+                        </OsdsText>
+                      </OsdsTooltipContent>
+                      <OsdsIcon
+                        className="ml-3"
+                        name={ODS_ICON_NAME.HELP_CIRCLE}
+                        size={ODS_ICON_SIZE.xxs}
+                        color={ODS_THEME_COLOR_INTENT.primary}
+                      ></OsdsIcon>
+                    </OsdsTooltip>
                   </OsdsText>
                 </div>
                 <OsdsInput
@@ -496,8 +542,15 @@ export default function AddAndEditAccount() {
                   onOdsInputBlur={({ target: { name, value } }) =>
                     handleFormChange(name, value.toString())
                   }
-                  onOdsValueChange={({ detail: { name, value } }) => {
-                    handleFormChange(name, value);
+                  onOdsValueChange={(e) => {
+                    const {
+                      detail: { name, value },
+                    } = e;
+                    handleFormChange(
+                      name,
+                      value,
+                      e.target !== document.activeElement,
+                    );
                   }}
                 ></OsdsInput>
               </OsdsFormField>
