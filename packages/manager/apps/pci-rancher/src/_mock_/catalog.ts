@@ -1,7 +1,7 @@
 import { TCatalog } from '@ovh-ux/manager-pci-common';
 import { RancherPlanCode } from '@/types/api.type';
 
-export const mockCatalog: TCatalog = {
+export const mockCatalog: TCatalog = ({
   addons: [
     {
       planCode: RancherPlanCode.OVHCLOUD_EDITION,
@@ -79,4 +79,4 @@ export const mockCatalog: TCatalog = {
     taxRate: 0,
   },
   plans: [],
-} as TCatalog;
+} as unknown) as TCatalog;
