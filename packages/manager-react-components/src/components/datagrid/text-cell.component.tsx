@@ -3,7 +3,6 @@ import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 
@@ -16,11 +15,6 @@ export function DataGridTextCell({
   return (
     <OsdsText
       level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-      size={
-        children
-          ? ODS_THEME_TYPOGRAPHY_SIZE._600
-          : ODS_THEME_TYPOGRAPHY_SIZE._300
-      }
       color={ODS_THEME_COLOR_INTENT.text}
       className={className}
     >
