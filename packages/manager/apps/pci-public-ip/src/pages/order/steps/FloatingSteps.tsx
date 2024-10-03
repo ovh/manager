@@ -182,7 +182,10 @@ export const FloatingSteps = ({
         key={StepIdsEnum.FLOATING_SUMMARY}
         {...steps.get(StepIdsEnum.FLOATING_SUMMARY)}
         title={tOrder('pci_additional_ip_create_step_summary')}
-        next={{ action: On.next }}
+        next={{
+          action: On.next,
+          label: tOrder('pci_additional_ip_creating_floating_ip'),
+        }}
         order={4}
       >
         <FloatingIpSummary
