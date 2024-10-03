@@ -2,15 +2,24 @@ import {
   USER_TYPE,
   PROOF_TYPE,
   TRACKING_TASK_TAG,
+  TRACKING_VARIABLES,
   LEGAL_LINK1,
   LEGAL_LINK2,
   LEGAL_LINK3,
   KYC_STATUS,
-  KYC_ALLOWED_FILE_EXTENSIONS,
   DELAY_BETWEEN_RETRY,
   MAX_RETRIES,
   DOCUMENTS_MATRIX,
 } from './user-identity-documents.constant';
+
+const replaceTrackingParams = (hit, params) => {
+  if (!params) return hit;
+  let formatted = hit;
+  Object.entries(params).forEach(([key, value]) => {
+    formatted = formatted.replace(`{{${key}}}`, value);
+  });
+  return formatted;
+};
 
 export default class AccountUserIdentityDocumentsController {
   /* @ngInject */
@@ -49,6 +58,7 @@ export default class AccountUserIdentityDocumentsController {
 
     this.proofs = this.DOCUMENTS_MATRIX[this.user_type]?.proofs;
     this.selectProofType(null);
+    this.trackPage(TRACKING_TASK_TAG.dashboard);
   }
 
   selectProofType(proof) {
@@ -58,6 +68,13 @@ export default class AccountUserIdentityDocumentsController {
       this.currentDocumentType = this.getDocumentType(proof);
       this.currentDocumentFiles = this.getDocumentFiles(proof);
       this.isListView = false;
+      this.trackClick(TRACKING_TASK_TAG.openDetailView, {
+        name_click:
+          this.currentDocumentFiles.length === 0
+            ? TRACKING_VARIABLES.TO_ADD
+            : TRACKING_VARIABLES.MODIFY,
+        'identity-files': proof,
+      });
     } else {
       this.currentProofType = null;
       this.currentProof = null;
@@ -71,8 +88,7 @@ export default class AccountUserIdentityDocumentsController {
     this.handleUploadConfirmModal(false);
     this.loading = true;
     this.displayError = false;
-    this.trackClick(TRACKING_TASK_TAG.upload);
-    // We should mutualize this, as we should have the same behavior for KYC Fraud: MANAGER-15202
+    this.trackClick(TRACKING_TASK_TAG.confirmSendMyDocuments);
     if (this.isValid) {
       const promise = this.links
         ? // We cannot re call getUploadDocumentsLinks if it answered successfully, so if we already
@@ -91,7 +107,6 @@ export default class AccountUserIdentityDocumentsController {
           this.showUploadOption = false;
           this.loading = false;
           this.kycStatus.status = KYC_STATUS.OPEN;
-          this.trackPage(TRACKING_TASK_TAG.uploadSuccess);
           this.handleInformationModal(true);
         })
         // In case of any error, we display a banner to the user to inform them
@@ -106,6 +121,8 @@ export default class AccountUserIdentityDocumentsController {
 
   handleUploadConfirmModal(open) {
     this.isOpenModal = open;
+    this.trackClick(TRACKING_TASK_TAG.clickSendMyDocuments);
+    this.trackPage(TRACKING_TASK_TAG.displayPopUpSendMyDocuments);
   }
 
   handleInformationModal(open) {
@@ -206,19 +223,20 @@ export default class AccountUserIdentityDocumentsController {
   displayErrorBanner() {
     this.loading = false;
     this.displayError = true;
-    this.trackPage(TRACKING_TASK_TAG.uploadError);
   }
 
-  trackClick(hit, type = 'action') {
+  trackClick(hit, params, type = 'action') {
+    const formatted = replaceTrackingParams(hit, params);
     this.atInternet.trackClick({
-      name: hit,
+      name: formatted,
       type,
     });
   }
 
-  trackPage(hit) {
+  trackPage(hit, params) {
+    const formatted = replaceTrackingParams(hit, params);
     this.atInternet.trackPage({
-      name: hit,
+      name: formatted,
     });
   }
 }
