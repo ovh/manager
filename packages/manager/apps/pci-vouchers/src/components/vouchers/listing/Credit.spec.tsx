@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import '@testing-library/jest-dom';
 
 import CreditCell from '@/components/vouchers/listing/Credit';
-import { Credit } from '@/interface';
+import { TCredit } from '@/interface';
 
 vi.mock('@ovh-ux/manager-react-components', async () => ({
   DataGridTextCell: ({ children }: { children: ReactNode }) => <>{children}</>,
@@ -12,7 +12,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => ({
 
 describe('AvailableCredit component display Voucher available Credit', () => {
   it('render available credit', async () => {
-    const availableCredit: Credit = {
+    const availableCredit: TCredit = {
       text: '9,99€',
       value: 9.99,
       currencyCode: '€',
