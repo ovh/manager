@@ -3,14 +3,14 @@ import { useQuery } from '@tanstack/react-query';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { Voucher } from '@/interface';
-import { getBill } from '@/data/bill';
+import { TVoucher } from '@/interface';
+import { getBill } from '@/api/data/bill';
 import style from '@/components/common.module.css';
 
 export default function DisplayName({
   voucher,
 }: {
-  voucher: Pick<Voucher, 'bill' | 'description'>;
+  voucher: Pick<TVoucher, 'bill' | 'description'>;
 }) {
   const { t } = useTranslation('common');
   if (voucher.bill) {

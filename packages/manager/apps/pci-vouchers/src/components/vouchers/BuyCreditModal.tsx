@@ -17,10 +17,10 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
-import { useBuyCredit } from '@/hooks/useVouchers';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useBuyCredit } from '@/api/hooks/useVouchers';
 
 interface BuyCreditModalProps {
   projectId: string;
@@ -36,7 +36,7 @@ export default function BuyCreditModal({
   onError,
 }: BuyCreditModalProps) {
   const { t } = useTranslation('common');
-  const env = useEnvironment();
+  const user = useContext(ShellContext).environment.getUser();
   const [amount, setAmount] = useState(10);
   const { buy, isPending } = useBuyCredit({
     projectId: `${projectId}`,
@@ -68,6 +68,7 @@ export default function BuyCreditModal({
   return (
     <>
       <OsdsModal
+        data-testid="BuyCreditPage-modal"
         headline={t('cpb_vouchers_add_credit_title')}
         onOdsModalClose={onClose}
       >
@@ -75,14 +76,14 @@ export default function BuyCreditModal({
           {!isPending && (
             <>
               <span>{t('cpb_vouchers_add_credit_info')}</span>
-              <OsdsFormField className={'pt-4'}>
+              <OsdsFormField className="pt-4">
                 <OsdsText
                   slot="label"
                   level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
                   color={ODS_THEME_COLOR_INTENT.text}
                 >
                   {t('cpb_vouchers_add_credit_amount', {
-                    currency: env.user?.currency?.symbol,
+                    currency: user.currency.symbol,
                   })}
                 </OsdsText>
                 <OsdsInput
@@ -106,10 +107,7 @@ export default function BuyCreditModal({
                 />
 
                 {!isMinimalAmount && (
-                  <OsdsText
-                    slot={'helper'}
-                    color={ODS_THEME_COLOR_INTENT.error}
-                  >
+                  <OsdsText slot="helper" color={ODS_THEME_COLOR_INTENT.error}>
                     {t('common_field_error_min', {
                       min: 1,
                     })}
@@ -117,10 +115,7 @@ export default function BuyCreditModal({
                 )}
 
                 {!isValidInputAmount && (
-                  <OsdsText
-                    slot={'helper'}
-                    color={ODS_THEME_COLOR_INTENT.error}
-                  >
+                  <OsdsText slot="helper" color={ODS_THEME_COLOR_INTENT.error}>
                     {t('common_field_error_number')}
                   </OsdsText>
                 )}

@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { addVoucher, buyCredit, BuyCreditResult } from '@/data/voucher';
+import { addVoucher, buyCredit, BuyCreditResult } from '@/api/data/voucher';
 import {
   filterVouchers,
   getAllVouchers,
   paginateResults,
   VouchersOptions,
-} from '@/data/vouchers';
+} from '@/api/data/vouchers';
 import queryClient from '@/queryClient';
 
 type AddVoucherProps = {
@@ -21,9 +21,7 @@ export function useAddVoucher({
   onSuccess,
 }: AddVoucherProps) {
   const mutation = useMutation({
-    mutationFn: (code: string) => {
-      return addVoucher(`${projectId}`, code);
-    },
+    mutationFn: (code: string) => addVoucher(`${projectId}`, code),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
@@ -34,17 +32,15 @@ export function useAddVoucher({
   });
 
   return {
-    add: (code: string) => {
-      return mutation.mutate(code);
-    },
+    add: (code: string) => mutation.mutate(code),
     ...mutation,
   };
 }
 
 // const VOUCHERS_POLLING_INTERVAL = 5000;
 
-export const useAllVouchers = (projectId: string) => {
-  return useQuery({
+export const useAllVouchers = (projectId: string) =>
+  useQuery({
     queryKey: ['project', projectId, 'vouchers'],
     queryFn: () => getAllVouchers(projectId),
     retry: false,
@@ -52,7 +48,6 @@ export const useAllVouchers = (projectId: string) => {
       keepPreviousData: true,
     },
   });
-};
 
 export const useVouchers = (
   projectId: string,
@@ -65,16 +60,17 @@ export const useVouchers = (
     isLoading: allVouchersLoading,
   } = useAllVouchers(projectId);
 
-  return useMemo(() => {
-    return {
+  return useMemo(
+    () => ({
       isLoading: allVouchersLoading,
       error: allVouchersError,
       data: paginateResults(
         filterVouchers(vouchers || [], sorting),
         pagination,
       ),
-    };
-  }, [vouchers, sorting, pagination]);
+    }),
+    [vouchers, sorting, pagination],
+  );
 };
 
 export type BuyCreditProps = {
@@ -89,17 +85,13 @@ export function useBuyCredit({
   onSuccess,
 }: BuyCreditProps) {
   const mutation = useMutation({
-    mutationFn: (amount: number) => {
-      return buyCredit(`${projectId}`, amount);
-    },
+    mutationFn: (amount: number) => buyCredit(`${projectId}`, amount),
     onError,
     onSuccess,
   });
 
   return {
-    buy: (amount: number) => {
-      return mutation.mutate(amount);
-    },
+    buy: (amount: number) => mutation.mutate(amount),
     ...mutation,
   };
 }
