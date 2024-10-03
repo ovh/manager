@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
+import { useParams, useResolvedPath } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import VcdDashboardLayout from '@/components/dashboard/layout/VcdDashboardLayout.component';
@@ -9,7 +9,6 @@ import { COMPUTE_TITLE, STORAGE_TITLE } from './DatacentreDashboard.constant';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
-  const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
   const { data: vcdDatacentre } = useManagedVcdDatacentre(id, vdcId);
   const { data: vcdOrganization } = useManagedVcdOrganization({ id });
@@ -46,12 +45,10 @@ function DatacentreDashboardPage() {
     {
       id,
       label: vcdOrganization?.data?.currentState?.fullName,
-      onClick: () => navigate(`/${id}`),
     },
     {
       id: 'datacentres',
       label: t('managed_vcd_dashboard_datacentres_label'),
-      onClick: () => navigate(`/${id}/datacentres`),
     },
     {
       id: vdcId,

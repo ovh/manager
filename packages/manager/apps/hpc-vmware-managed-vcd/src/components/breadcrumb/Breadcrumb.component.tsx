@@ -17,7 +17,6 @@ function Breadcrumb({ customRootLabel, items }: BreadcrumbProps): JSX.Element {
 
   const breadcrumbItems = useBreadcrumb({
     rootLabel: label,
-    appName: 'hpc-vmware-managed-vcd',
     items,
   });
   return <OsdsBreadcrumb items={breadcrumbItems} />;
