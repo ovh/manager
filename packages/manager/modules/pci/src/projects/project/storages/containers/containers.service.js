@@ -281,7 +281,7 @@ export default class PciStoragesContainersService {
           angular.merge(
             {
               method: 'GET',
-              url: url.url ? url.url : url,
+              url: url.url ?? url,
               headers: {
                 [X_AUTH_TOKEN]: accessToken.token,
               },
