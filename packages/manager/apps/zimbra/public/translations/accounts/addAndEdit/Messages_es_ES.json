@@ -14,8 +14,8 @@
   "zimbra_account_add_input_lastName_placeholder": "Apellido",
   "zimbra_account_add_input_firstName_label": "Nombre",
   "zimbra_account_add_input_firstName_placeholder": "Nombre",
-  "zimbra_account_add_input_displayName_label": "Nombre completo",
-  "zimbra_account_add_input_displayName_placeholder": "Nombre completo",
+  "zimbra_account_add_input_displayName_label": "Nombre a mostrar",
+  "zimbra_account_add_input_displayName_placeholder": "Nombre a mostrar",
   "zimbra_account_add_input_initials_label": "Iniciales",
   "zimbra_account_add_input_initials_placeholder": "Iniciales",
   "zimbra_account_add_input_description_label": "Descripción",
@@ -32,5 +32,6 @@
   "zimbra_account_add_success_message": "La solicitud de creación de la cuenta de correo se ha enviado. Será tratada en unos instantes.",
   "zimbra_account_add_error_message": "Se ha producido un error al enviar la solicitud de creación de cuenta de correo: {{ error }}",
   "zimbra_account_edit_success_message": "La solicitud de modificación de la cuenta de correo se ha enviado. Será tratada en unos instantes.",
-  "zimbra_account_edit_error_message": "Se ha producido un error al enviar la solicitud de modificación de cuenta de correo: {{ error }}"
+  "zimbra_account_edit_error_message": "Se ha producido un error al enviar la solicitud de modificación de cuenta de correo: {{ error }}",
+  "zimbra_account_add_input_displayName_tooltip": "Nombre utilizado en el directorio y mostrado a los destinatarios del correo"
 }

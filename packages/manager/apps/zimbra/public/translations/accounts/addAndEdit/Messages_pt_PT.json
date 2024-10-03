@@ -14,8 +14,8 @@
   "zimbra_account_add_input_lastName_placeholder": "Nome",
   "zimbra_account_add_input_firstName_label": "Nome",
   "zimbra_account_add_input_firstName_placeholder": "Nome",
-  "zimbra_account_add_input_displayName_label": "Nome completo",
-  "zimbra_account_add_input_displayName_placeholder": "Nome completo",
+  "zimbra_account_add_input_displayName_label": "Nome a apresentar",
+  "zimbra_account_add_input_displayName_placeholder": "Nome a apresentar",
   "zimbra_account_add_input_initials_label": "Iniciais",
   "zimbra_account_add_input_initials_placeholder": "Iniciais",
   "zimbra_account_add_input_description_label": "Descrição",
@@ -32,5 +32,6 @@
   "zimbra_account_add_success_message": "O seu pedido de criação de uma conta de e-mail foi registado. Será tratado dentro de alguns instantes.",
   "zimbra_account_add_error_message": "O seu pedido de criação de uma conta de e-mail não foi bem-sucedido. {{ error }}",
   "zimbra_account_edit_success_message": "O seu pedido de alteração de uma conta de e-mail foi registado. Será tratado dentro de alguns instantes.",
-  "zimbra_account_edit_error_message": "O seu pedido de alteração de uma conta de e-mail não foi bem-sucedido. {{ error }}"
+  "zimbra_account_edit_error_message": "O seu pedido de alteração de uma conta de e-mail não foi bem-sucedido. {{ error }}",
+  "zimbra_account_add_input_displayName_tooltip": "Nome utilizado no diretório e apresentado aos destinatários dos e-mails"
 }

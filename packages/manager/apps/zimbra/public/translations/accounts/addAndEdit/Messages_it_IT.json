@@ -14,8 +14,8 @@
   "zimbra_account_add_input_lastName_placeholder": "Cognome",
   "zimbra_account_add_input_firstName_label": "Nome",
   "zimbra_account_add_input_firstName_placeholder": "Nome",
-  "zimbra_account_add_input_displayName_label": "Nome completo",
-  "zimbra_account_add_input_displayName_placeholder": "Nome completo",
+  "zimbra_account_add_input_displayName_label": "Nome da visualizzare",
+  "zimbra_account_add_input_displayName_placeholder": "Nome da visualizzare",
   "zimbra_account_add_input_initials_label": "Iniziali",
   "zimbra_account_add_input_initials_placeholder": "Iniziali",
   "zimbra_account_add_input_description_label": "Descrizione",
@@ -32,5 +32,6 @@
   "zimbra_account_add_success_message": "La tua richiesta di creazione dell’account email è stata presa in carico. Sarà elaborata entro pochi minuti.",
   "zimbra_account_add_error_message": "La tua richiesta di creazione dell'account email non è andata a buon fine: {{ error }}",
   "zimbra_account_edit_success_message": "La tua richiesta di modifica dell'account email è stata presa in carico. Sarà elaborata entro pochi minuti.",
-  "zimbra_account_edit_error_message": "La tua richiesta di modifica dell'account email non è andata a buon fine: {{ error }}"
+  "zimbra_account_edit_error_message": "La tua richiesta di modifica dell'account email non è andata a buon fine: {{ error }}",
+  "zimbra_account_add_input_displayName_tooltip": "Nome utilizzato nell'elenco e visualizzato ai destinatari delle email"
 }

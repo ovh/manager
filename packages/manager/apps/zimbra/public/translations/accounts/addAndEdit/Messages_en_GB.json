@@ -14,8 +14,8 @@
   "zimbra_account_add_input_lastName_placeholder": "Name",
   "zimbra_account_add_input_firstName_label": "First name",
   "zimbra_account_add_input_firstName_placeholder": "First name",
-  "zimbra_account_add_input_displayName_label": "Full name",
-  "zimbra_account_add_input_displayName_placeholder": "Full name",
+  "zimbra_account_add_input_displayName_label": "Display name",
+  "zimbra_account_add_input_displayName_placeholder": "Display name",
   "zimbra_account_add_input_initials_label": "Initials",
   "zimbra_account_add_input_initials_placeholder": "Initials",
   "zimbra_account_add_input_description_label": "Description",
@@ -32,5 +32,6 @@
   "zimbra_account_add_success_message": "Your email account creation request has been submitted. It will be processed in a few moments.",
   "zimbra_account_add_error_message": "Unable to submit your email account creation request. {{ error }}",
   "zimbra_account_edit_success_message": "Your request to edit your email account has been submitted. It will be processed in a few moments.",
-  "zimbra_account_edit_error_message": "Unable to submit the request to edit your email account. {{ error }}"
+  "zimbra_account_edit_error_message": "Unable to submit the request to edit your email account. {{ error }}",
+  "zimbra_account_add_input_displayName_tooltip": "Name used in the directory and displayed to email recipients"
 }
