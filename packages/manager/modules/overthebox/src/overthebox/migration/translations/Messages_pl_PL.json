@@ -5,7 +5,7 @@
   "overthebox_migration_current_offer": "Aktualna oferta: {{offerName}}",
   "overthebox_migration_monthly_subscription": "Abonament miesięczny",
   "overthebox_migration_hardware": "Obudowa",
-  "overthebox_migration_hardware_yes": "Chcę wziąć nową obudowę ({{ price }} netto)",
+  "overthebox_migration_hardware_yes": "Chcę zamówić nową obudowę {{ deviceName }} ({{ price }} netto) *",
   "overthebox_migration_hardware_no": "Nie chcę obudowy",
   "overthebox_migration_choose_offer_action": "Wybierz",
   "overthebox_migration_contact_title": "Dostawa",
@@ -21,7 +21,7 @@
   "overthebox_migration_summary_table_quantity": "Ilość",
   "overthebox_migration_summary_table_price_per_month": "Cena netto/m-c",
   "overthebox_migration_summary_table_offer": "Oferta {{offerName}}",
-  "overthebox_migration_summary_table_hardware": "Obudowa",
+  "overthebox_migration_summary_table_hardware": "Obudowa {{ deviceName }}",
   "overthebox_migration_summary_contracts_title": "Regulaminy",
   "overthebox_migration_summary_price_explain": "Nowy abonament miesięczny to: {{price}} netto/m-c. Obowiązuje od momentu uruchomienia nowej usługi. Otrzymasz e-mail.",
   "overthebox_migration_summary_hardware_price": "Cena sprzętu obejmuje koszty jego dostawy.",
@@ -33,5 +33,6 @@
   "overthebox_migration_summary_command_order_explain": "Aby dokończyć migrację oferty, należy <a href=\"{{orderUrl}}\" target=\"_blank\" title=\" opłacić Zamówienie: {{orderId}}\">  Zamówienie.<span class=\"oui-icon oui-icon-external-link ml-2\" aria-hidden=\"true\"> </span> </a> ",
   "overthebox_migration_summary_command_order_help": "Dowiedz się więcej o opłacaniu zamówienia.",
   "overthebox_migration_summary_launch_migration_error": "Wystąpił błąd podczas migracji oferty. {{errorMsg}}",
-  "overthebox_migration_offers_title": "Wybór usługi"
+  "overthebox_migration_offers_title": "Wybór usługi",
+  "overthebox_migration_about": "* OverTheBox - więcej informacji na temat usługi i obudowy."
 }
