@@ -87,6 +87,7 @@ export const Dashboard: React.FC = () => {
         urls.mailing_lists,
         urls.mailing_lists_delete,
       ]),
+      hidden: true,
     },
     {
       name: 'redirections',
@@ -103,6 +104,7 @@ export const Dashboard: React.FC = () => {
       title: t('zimbra_dashboard_auto_replies'),
       to: `${basePath}/auto_replies`,
       pathMatchers: computePathMatchers([urls.auto_replies]),
+      hidden: true,
     },
   ];
 
