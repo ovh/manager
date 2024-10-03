@@ -68,7 +68,6 @@
                 >
                     <div class="container-fluid px-0">
                         <span
-                            ng-if="'ENABLE_AFTER_PROD' === true"
                             data-translate="pci_project_instances_instance_add_region_savings_plan_info"
                         ></span>
                         <div class="row">
@@ -987,14 +986,24 @@
     >
         <oui-message
             data-type="info"
-            data-ng-if="$ctrl.IsComingSoonPricingBannerDisplayed() && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
+            data-ng-if="$ctrl.IsSavingsPlanBannerDisplayed() && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
         >
-            <h6
-                data-translate="pci_projects_project_instances_add_billing_coming_soon_message_title"
-            ></h6>
             <p
-                data-translate="pci_projects_project_instances_add_billing_coming_soon_message_description"
+                data-translate="pci_projects_project_instances_add_billing_savings_plan_banner"
             ></p>
+            <a
+                class="oui-link oui-link_icon"
+                data-ng-href="{{:: $ctrl.savingsPlanUrl }}"
+                target="_blank"
+            >
+                <span
+                    data-translate="pci_projects_project_instances_add_billing_savings_plan_cta"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-arrow-right"
+                    aria-hidden="true"
+                ></span>
+            </a>
         </oui-message>
 
         <p
