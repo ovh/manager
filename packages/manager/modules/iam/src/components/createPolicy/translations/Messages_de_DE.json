@@ -30,5 +30,7 @@
   "iam_create_policy_success_create": "Die Richtlinie {{ name }} wurde erfolgreich erstellt",
   "iam_create_policy_success_edit": "Die Richtlinie {{ name }} wurde erfolgreich bearbeitet",
   "iam_create_policy_form_description_error_pattern": "Der Richtlinienname darf nur alphanumerische Zeichen, Leerzeichen und „-“, „/“, „_“, „+“ enthalten.",
-  "iam_create_policy_form_description_heading": "Beschreibung der Richtlinie"
+  "iam_create_policy_form_description_heading": "Beschreibung der Richtlinie",
+  "iam_create_policy_form_resource_groups_description": "Ressourcengruppen hinzufügen",
+  "iam_create_policy_form_resources_action": "Definieren Sie einen Produkttyp, um Ressourcen auszuwählen."
 }
