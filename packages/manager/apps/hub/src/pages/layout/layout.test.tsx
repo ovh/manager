@@ -442,7 +442,9 @@ describe('Layout.page', () => {
 
     it('should display correct wording when customer has no bills', async () => {
       mocks.bills.isPending = false;
-      const { findByTestId, getByText, getByTestId } = renderComponent(<BillingSummary />);
+      const { findByTestId, getByText, getByTestId } = renderComponent(
+        <BillingSummary />,
+      );
 
       expect(getByText('hub_billing_summary_debt_no_bills')).not.toBeNull();
       expect(getByTestId('bills_link_skeleton')).not.toBeNull();
@@ -873,16 +875,15 @@ describe('Layout.page', () => {
   describe('KycIndiaBanner component', () => {
     it('should render the banner if user is required to validated his KYC', async () => {
       trackClickMock.mockReset();
-      const { getByTestId, queryByTestId } = renderComponent(
-        <KycIndiaBanner />,
-      );
+      const { findByTestId, getByTestId } = renderComponent(<KycIndiaBanner />);
       expect(getByTestId('kyc_india_banner')).not.toBeNull();
 
       expect(trackPageMock).toHaveBeenCalledWith({
         pageType: 'banner-info',
         pageName: 'kyc-india',
       });
-      const link = await queryByTestId('kyc_india_link');
+      expect(getByTestId('kyc_india_banner_link_skeleton')).not.toBeNull();
+      const link = await findByTestId('kyc_india_link');
       expect(link).not.toBeNull();
 
       await act(() => fireEvent.click(link));
@@ -910,9 +911,7 @@ describe('Layout.page', () => {
     it('should render the banner if user is required to validated his KYC', async () => {
       mocks.kycStatus.status = 'required';
       delete mocks.kycStatus.ticketId;
-      const { getByTestId, queryByTestId } = renderComponent(
-        <KycFraudBanner />,
-      );
+      const { findByTestId, getByTestId } = renderComponent(<KycFraudBanner />);
       expect(getByTestId('kyc_fraud_banner')).not.toBeNull();
 
       expect(trackImpressionMock).toHaveBeenCalledWith({
@@ -922,7 +921,7 @@ describe('Layout.page', () => {
         generalPlacement: 'manager-hub',
         variant: 'required',
       });
-      const link = await queryByTestId('kyc_fraud_link');
+      const link = await findByTestId('kyc_fraud_link');
       expect(link).not.toBeNull();
 
       await act(() => fireEvent.click(link));
