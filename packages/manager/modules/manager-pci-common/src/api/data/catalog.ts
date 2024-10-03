@@ -6,14 +6,10 @@ export type TPricing = {
   phase: number;
   commitment: number;
   description: string;
-  price: {
-    currencyCode: string;
-    text: string;
-    value: number;
-  };
+  price: number;
   tax: number;
   interval: number;
-  intervalUnit: string;
+  intervalUnit: 'day' | 'hour' | 'month' | 'none';
   quantity: {
     max?: number;
     min?: number;
@@ -137,7 +133,7 @@ export type TAddon = {
     commitment: number;
     description: string;
     interval: number;
-    intervalUnit: string;
+    intervalUnit: 'day' | 'hour' | 'month' | 'none';
     mode: string;
     phase: number;
     price: number;

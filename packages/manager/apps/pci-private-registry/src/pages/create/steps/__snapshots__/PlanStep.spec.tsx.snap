@@ -1,0 +1,38 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PlanStep > should render 1`] = `
+<div>
+  <section
+    class="flex flex-row border-0 border-t-[1px] border-solid border-t-[#b3b3b3] pt-5 mb-5"
+  >
+    <div
+      class="basis-[40px]"
+    >
+      <div
+        class="flex justify-center items-center font-bold border-2 border-solid rounded-full h-10 w-10 border-[grey]"
+      >
+        <osds-text
+          color="default"
+          level="body"
+          size="500"
+        >
+          3
+        </osds-text>
+      </div>
+    </div>
+    <div
+      class="basis-full px-5"
+    >
+      <div
+        class="flex flex-col md:flex-row"
+      >
+        <div
+          class="font-sans font-normal p-0 m-0 w-full md:w-5/6 leading-10 text-[1.25rem] text-[grey]"
+        >
+          private_registry_create_choose_plan
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+`;
