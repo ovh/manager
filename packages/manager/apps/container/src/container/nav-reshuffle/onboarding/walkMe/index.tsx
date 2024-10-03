@@ -146,6 +146,15 @@ export const OnboardingWalkMe = () => {
     }
   };
 
+  const resizeObserver = new ResizeObserver((entries) => {
+    const currentStepID = steps[currentStepIndex]?.selector.replace('#', '');
+    const el: HTMLElement = stepElement.current;
+    const entry: ResizeObserverEntry = entries.find((entry) => entry.target.id === currentStepID);
+    if (entry?.borderBoxSize[0]?.blockSize) {
+      el.style.height = `${entry.borderBoxSize[0].blockSize + ELEMENT_OFFSET}px`;
+    }
+  })
+
   const onNextBtnClick = () => {
     const currentStep = steps[currentStepIndex];
     if(!isLastStep){
@@ -197,6 +206,7 @@ export const OnboardingWalkMe = () => {
     } else {
       const targetElement = document.querySelector(currentStep.selector);
       targetPos = targetElement.getBoundingClientRect();
+      resizeObserver.observe(targetElement);
       updatePos(targetPos);
     }
   }, [currentStepIndex, isMobile]);
