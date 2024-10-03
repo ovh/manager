@@ -186,8 +186,6 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
     b.name.localeCompare(a.name),
   );
 
-  const ENABLE_AFTER_PROD = false;
-
   return (
     <div>
       <Title>{t('createRancherTitle')}</Title>
@@ -264,34 +262,32 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             <Trans>{t('createRancherServiceLevelDescription')}</Trans>
           </OsdsText>
         </div>
-        {ENABLE_AFTER_PROD && (
-          <OsdsMessage
-            color={ODS_THEME_COLOR_INTENT.info}
-            type={ODS_MESSAGE_TYPE.info}
-            className="my-6 flex items-center max-w-5xl"
+        <OsdsMessage
+          color={ODS_THEME_COLOR_INTENT.info}
+          type={ODS_MESSAGE_TYPE.info}
+          className="my-6 flex items-center max-w-5xl"
+        >
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            className="flex items-center"
           >
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              className="flex items-center"
-            >
-              <Trans>{t('savingsPlanMessage')}</Trans>
-            </OsdsText>
-            <OsdsLink
-              className="sm:mt-0 mt-4 sm:ml-4 ml-0"
-              color={ODS_THEME_COLOR_INTENT.primary}
-              href={`${url}/savings-plan`}
-              target={OdsHTMLAnchorElementTarget._blank}
-            >
-              {t('savingsPlanCTA')}
-            </OsdsLink>
-            <OsdsIcon
-              className="ml-3"
-              name={ODS_ICON_NAME.ARROW_RIGHT}
-              size={ODS_ICON_SIZE.sm}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            />
-          </OsdsMessage>
-        )}
+            <Trans>{t('savingsPlanMessage')}</Trans>
+          </OsdsText>
+          <OsdsLink
+            className="sm:mt-0 mt-4 sm:ml-4 ml-0"
+            color={ODS_THEME_COLOR_INTENT.primary}
+            href={`${url}/savings-plan`}
+            target={OdsHTMLAnchorElementTarget._blank}
+          >
+            {t('savingsPlanCTA')}
+          </OsdsLink>
+          <OsdsIcon
+            className="ml-3"
+            name={ODS_ICON_NAME.ARROW_RIGHT}
+            size={ODS_ICON_SIZE.sm}
+            color={ODS_THEME_COLOR_INTENT.primary}
+          />
+        </OsdsMessage>
         <div className="flex my-5">
           <ul
             className={clsx(
