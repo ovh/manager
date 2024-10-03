@@ -7,14 +7,21 @@ interface IVcdOrder {
   serviceName: string;
   planCode: string;
   quantity?: number;
+  vdcOrgId?: string;
 }
 
-const useVcdOrder = ({ serviceName, planCode, quantity }: IVcdOrder) => {
+const useVcdOrder = ({
+  serviceName,
+  planCode,
+  quantity,
+  vdcOrgId,
+}: IVcdOrder) => {
   const orderBaseUrl = useOrderURL('express_review_base');
   const vcdProductSettings = getVcdProductSettings({
     serviceName,
     planCode,
     quantity,
+    vdcOrgId,
   });
   const orderLink = `${orderBaseUrl}?products=~(${vcdProductSettings})`;
   const redirectToOrder = () => {
