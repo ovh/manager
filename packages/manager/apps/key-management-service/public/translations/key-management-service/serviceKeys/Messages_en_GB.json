@@ -52,7 +52,7 @@
   "key_management_service_service-keys_create_crypto_field_type_title": "Key type",
   "key_management_service_service-keys_create_crypto_field_type_subtitle": "Specify the type of algorithm used for the encryption key.",
   "key_management_service_service-keys_create_crypto_field_type_description_rsa": "Asymmetric key for signature and verification.",
-  "key_management_service_service-keys_create_crypto_field_type_description_oct": "Symmetric key for encryption/decryption and encapsulation.",
+  "key_management_service_service-keys_create_crypto_field_type_description_oct": "Symmetric key for encryption/decryption and wrapping.",
   "key_management_service_service-keys_create_crypto_field_type_description_ec": "Elliptical asymmetric key for signature and verification.",
   "key_management_service_service-keys_create_crypto_field_size_title": "Key size (algorithm)",
   "key_management_service_service-keys_create_crypto_field_size_subtitle": "Select the encryption key size.",
