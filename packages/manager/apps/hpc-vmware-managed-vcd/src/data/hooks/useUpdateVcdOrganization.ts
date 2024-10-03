@@ -5,12 +5,13 @@ import {
   UpdateVcdOrganizationDetailsParams,
 } from '../api/hpc-vmware-managed-vcd';
 import { VCD_ORGANIZATION_ROUTE } from '../api/hpc-vmware-managed-vcd.constants';
+import { getVcdOrganizationQueryKey } from './useManagedVcdOrganization';
+import { icebergListingQueryKey } from '@/components/datagrid/container/DatagridContainer.constants';
+import { organizationListingContainerId } from '@/pages/listing/organizations/Organizations.constants';
 
 const updateVcdOrganizationDetailsQueryKey = (id: string) => [
   `put${VCD_ORGANIZATION_ROUTE}/${id}`,
 ];
-
-const getVcdProjectListQueryKey = [`get${VCD_ORGANIZATION_ROUTE}`];
 
 export const useUpdateVcdOrganizationDetails = ({
   id,
@@ -29,7 +30,11 @@ export const useUpdateVcdOrganizationDetails = ({
       updateVcdOrganizationDetails({ id, details }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: getVcdProjectListQueryKey,
+        queryKey: getVcdOrganizationQueryKey(id),
+      });
+      queryClient.invalidateQueries({
+        queryKey: [icebergListingQueryKey, organizationListingContainerId],
+        exact: true,
       });
       onSuccess?.();
     },

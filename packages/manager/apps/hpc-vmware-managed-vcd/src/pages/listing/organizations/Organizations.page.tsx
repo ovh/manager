@@ -16,8 +16,7 @@ import DatagridContainer, {
 import { urls } from '@/routes/routes.constant';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import { VCD_ORGANIZATION_ROUTE } from '@/data/api/hpc-vmware-managed-vcd.constants';
-
-export const organizationListingContainerId = 'organizations';
+import { organizationListingContainerId } from './Organizations.constants';
 
 /* ========= datagrid cells ========== */
 const DatagridIdCell = (vdcOrg: IVcdOrganization) => {

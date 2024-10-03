@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loading from '@/components/loading/Loading.component';
 import TDatagridRoute from '@/types/datagrid-route.type';
+import { icebergListingQueryKey } from './DatagridContainer.constants';
 
 export type TDatagridContainerProps = {
   route: TDatagridRoute;
@@ -19,8 +20,6 @@ export type TDatagridContainerProps = {
   columns: any[];
   orderButton?: React.JSX.Element;
 };
-
-export const icebergListingQueryKey = 'servicesListingIceberg';
 
 export default function DatagridContainer({
   title,

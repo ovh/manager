@@ -2,10 +2,7 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useQueryClient } from '@tanstack/react-query';
-import useManagedVcdOrganization, {
-  getVcdOrganizationQueryKey,
-} from '@/data/hooks/useManagedVcdOrganization';
+import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import { useUpdateVcdOrganizationDetails } from '@/data/hooks/useUpdateVcdOrganization';
 import { IVcdOrganizationState } from '@/types/vcd-organization.interface';
 import {
@@ -13,8 +10,6 @@ import {
   validateOrganizationName,
 } from '@/utils/formValidation';
 import { EditDetailModal } from './EditDetailModal';
-import { icebergListingQueryKey } from '../datagrid/container/DatagridContainer.component';
-import { organizationListingContainerId } from '@/pages/listing/organizations/Organizations.page';
 
 type OrganizationDetailName = 'name' | 'description';
 type TValidationFunctions = {
@@ -33,7 +28,6 @@ export const UpdateDetailModalHandler = ({
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
   const { addSuccess } = useNotifications();
-  const queryClient = useQueryClient();
   const { id } = useParams();
   const { data: vcdOrganization } = useManagedVcdOrganization({ id });
   const { updateDetails, error, isError } = useUpdateVcdOrganizationDetails({
@@ -43,12 +37,6 @@ export const UpdateDetailModalHandler = ({
         t(`managed_vcd_dashboard_edit_${detailName}_modal_success`),
         true,
       );
-      queryClient.invalidateQueries({
-        queryKey: getVcdOrganizationQueryKey(id),
-      });
-      queryClient.invalidateQueries({
-        queryKey: [icebergListingQueryKey, organizationListingContainerId],
-      });
       closeModal();
     },
   });
