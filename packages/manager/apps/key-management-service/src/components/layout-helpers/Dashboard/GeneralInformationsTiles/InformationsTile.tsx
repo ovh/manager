@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   OsdsButton,
   OsdsClipboard,
@@ -15,9 +15,8 @@ import {
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { OKMS } from '@/types/okms.type';
-import EditNameModal from '@/components/Modal/EditNameModal';
-import { useUpdateOkmsName } from '@/data/hooks/useUpdateOkmsName';
 import { Tile } from '@/components/dashboard/tile/tile.component';
 import { TileSeparator } from '@/components/dashboard/tile-separator/tileSeparator';
 import { TileValue } from '@/components/dashboard/tile-value/tileValue.component';
@@ -49,25 +48,11 @@ export const Clipboard = ({ value }: { value: string }) => {
 
 const InformationsTile = ({ okmsData }: InformationTileProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
-  const { data: okmsServiceInfos } = useKMSServiceInfos(okmsData);
-  const [editModalDisplayed, setEditModalDisplayed] = useState(false);
-  const { updateKmsName } = useUpdateOkmsName({
-    okmsId: okmsData.id,
-    onSuccess: () => {},
-    onError: () => {},
-  });
+  const navigate = useNavigate();
+  const { data: okmsServiceInfos } = useKMSServiceInfos(okmsData.id);
 
   return (
     <Tile title={t('general_informations')}>
-      {editModalDisplayed && (
-        <EditNameModal
-          okms={okmsData}
-          toggleModal={setEditModalDisplayed}
-          onEditName={(okms: OKMS) =>
-            updateKmsName({ okms: okms.id, displayName: okms.iam.displayName })
-          }
-        />
-      )}
       <TileSeparator />
       <TileItem title={t('key_management_service_dashboard_field_label_name')}>
         <div className="flex justify-between items-center">
@@ -76,11 +61,10 @@ const InformationsTile = ({ okmsData }: InformationTileProps) => {
             circle
             variant={ODS_BUTTON_VARIANT.stroked}
             color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => setEditModalDisplayed(true)}
+            onClick={() => navigate('update-name')}
           >
             <OsdsIcon
               aria-label="edit"
-              onClick={() => setEditModalDisplayed(true)}
               name={ODS_ICON_NAME.PEN}
               size={ODS_ICON_SIZE.xs}
               color={ODS_THEME_COLOR_INTENT.primary}
@@ -129,6 +113,7 @@ const InformationsTile = ({ okmsData }: InformationTileProps) => {
           {okmsData?.swaggerEndpoint}
         </OsdsLink>
       </TileItem>
+      <Outlet />
     </Tile>
   );
 };

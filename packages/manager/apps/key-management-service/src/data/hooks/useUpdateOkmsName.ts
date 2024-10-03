@@ -1,6 +1,8 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   getOkmsResourceQueryKey,
   getOkmsServicesResourceListQueryKey,
@@ -33,8 +35,9 @@ export const useUpdateOkmsName = ({
   onSuccess,
   onError,
 }: UpdateOkmsParams) => {
-  const [isErrorVisible, setIsErrorVisible] = React.useState(false);
   const queryClient = useQueryClient();
+  const { t } = useTranslation('key-management-service/dashboard');
+  const { addError, addSuccess, clearNotifications } = useNotifications();
 
   const {
     mutate: updateKmsName,
@@ -61,10 +64,18 @@ export const useUpdateOkmsName = ({
       await queryClient.invalidateQueries({
         queryKey: getOkmsResourceQueryKey(okmsId),
       });
+      clearNotifications();
+      addSuccess(t('key_management_service_update_name_success_banner'), true);
       onSuccess?.();
     },
     onError: (result: ApiError) => {
-      setIsErrorVisible(true);
+      clearNotifications();
+      addError(
+        t('key_management_service_update_name_error_banner', {
+          error: result.message,
+        }),
+        true,
+      );
       onError?.(result);
     },
   });
@@ -72,8 +83,6 @@ export const useUpdateOkmsName = ({
   return {
     updateKmsName,
     isPending,
-    isErrorVisible: updateNameError && isErrorVisible,
     error: updateNameError,
-    hideError: () => setIsErrorVisible(false),
   };
 };

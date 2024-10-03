@@ -54,5 +54,9 @@
   "key_management_service_dashboard_dashboard_field_state_suspended": "Suspendu",
   "key_management_service_dashboard_dashboard_field_state_toActivate": "À activer",
   "key_management_service_dashboard_dashboard_field_state_toDelete": "À supprimer",
-  "key_management_service_dashboard_dashboard_field_state_toSuspend": "À suspendre"
+  "key_management_service_dashboard_dashboard_field_state_toSuspend": "À suspendre",
+  "key_management_service_update_name_success_banner": "Le nom a été modifié avec succès.",
+  "key_management_service_update_name_error_banner": "La modification n'a pas été prise en compte.",
+  "key_management_service_dashboard_modal_input_label": "Nouveau nom d'affichage",
+  "key_management_service_update_name": ""
 }

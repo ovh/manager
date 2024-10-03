@@ -53,6 +53,16 @@ export default [
                 '@/pages/dashboard/generalInformations/GeneralInformations'
               ),
             ),
+            children: [
+              {
+                path: ROUTES_URLS.okmsUpdateName,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/generalInformations/updateName/OkmsNameUpdateModal'
+                  ),
+                ),
+              },
+            ],
           },
           {
             path: ROUTES_URLS.keys,
