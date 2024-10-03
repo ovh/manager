@@ -48,6 +48,7 @@
   "updateOfferModalDescription": "You are about to update your current solution to the {{availableServicePlan}} solution. You will be billed {{planPricing}} ex. VAT/hour per orchestrated vCPUs. The changes will take effect right away, and will have no impact on your downstream clusters or the data in your managed Rancher. Please confirm if you wish to continue.",
   "updateOfferPending": "Your solution upgrade has been processed. Please wait... This may take a few minutes.",
   "updateOfferError": "An error has occurred: {{errorMessage}}",
-  "savingsPlanMessage": "Take advantage of low monthly rates with Savings Plans — save money without sacrificing the flexibility to use instances whenever you need them.",
-  "savingsPlanCTA": "Set up your Savings Plan"
+  "upgradePlanTitle": "Upgrade to Standard",
+  "upgradePlanDescription": "Create or register downstream clusters on any Rancher-supported public cloud, or on an automatable private cloud (e.g., VMware vSphere), including scenarios supported by the OVHcloud Edition solution.",
+  "upgradePlanButton": "Upgrade my plan"
 }
