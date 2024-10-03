@@ -32,7 +32,6 @@ import KycIndiaBanner from '@/pages/layout/KycIndiaBanner.component';
 import KycFraudBanner from '@/pages/layout/KycFraudBanner.component';
 import { KycStatus } from '@/types/kyc.type';
 import NotificationsCarousel from '@/pages/layout/NotificationsCarousel.component';
-import { useFetchHubNotifications } from '@/data/hooks/notifications/useNotifications';
 import { Notification, NotificationType } from '@/types/notifications.type';
 
 const queryClient = new QueryClient();
