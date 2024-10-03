@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-exchange-app",
-  "version": "0.11.12",
+  "version": "0.11.13",
   "private": true,
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
     "@ovh-ux/manager-core": "^12.17.1",
     "@ovh-ux/manager-exchange": "^4.8.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
-    "@ovh-ux/ng-at-internet": "^5.11.12",
+    "@ovh-ux/ng-at-internet": "^5.11.13",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-chart": "^1.2.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.1.1",
