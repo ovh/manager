@@ -1,10 +1,12 @@
 import {
   StepComponent,
   useNotifications,
+  Links,
+  LinkType,
 } from '@ovh-ux/manager-react-components';
-
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import {
   ODS_BUTTON_SIZE,
@@ -412,20 +414,12 @@ export default function ConfigurationStep({
                     level={ODS_TEXT_LEVEL.body}
                     size={ODS_TEXT_SIZE._400}
                   >
-                    <Trans
-                      t={t}
-                      i18nKey="pci_projects_project_network_private_create_vlan_tip"
-                      components={{
-                        link: (
-                          <a
-                            href={VLAN_GUIDE_URL}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            {tCommon('common_find_out_more_here')}
-                          </a>
-                        ),
-                      }}
+                    {t('pci_projects_project_network_private_create_vlan_tip')}
+                    <Links
+                      label={tCommon('common_find_out_more_here')}
+                      href={VLAN_GUIDE_URL}
+                      target={OdsHTMLAnchorElementTarget._blank}
+                      type={LinkType.external}
                     />
                   </OsdsText>
                 </div>
