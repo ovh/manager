@@ -71,6 +71,7 @@ export const DatacentreOrder = <T extends OrderType>({
     serviceName: id,
     planCode: selectedResource,
     quantity: selectedQuantity,
+    vdcOrgId: vdcId,
   });
 
   const isValidQuantity = validateQuantity({
