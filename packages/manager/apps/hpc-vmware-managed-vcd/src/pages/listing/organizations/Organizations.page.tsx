@@ -17,6 +17,8 @@ import { urls } from '@/routes/routes.constant';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import { VCD_ORGANIZATION_ROUTE } from '@/data/api/hpc-vmware-managed-vcd.constants';
 
+export const organizationListingContainerId = 'organizations';
+
 /* ========= datagrid cells ========== */
 const DatagridIdCell = (vdcOrg: IVcdOrganization) => {
   const navigate = useNavigate();
@@ -80,7 +82,7 @@ export default function Listing() {
 
   const datagridProps: TDatagridContainerProps = {
     title: t('managed_vcd_listing_title'),
-    containerId: 'organizations',
+    containerId: organizationListingContainerId,
     route: {
       api: VCD_ORGANIZATION_ROUTE,
       onboarding: urls.onboarding,

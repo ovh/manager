@@ -20,6 +20,8 @@ export type TDatagridContainerProps = {
   orderButton?: React.JSX.Element;
 };
 
+export const icebergListingQueryKey = 'servicesListingIceberg';
+
 export default function DatagridContainer({
   title,
   containerId,
@@ -43,7 +45,7 @@ export default function DatagridContainer({
     setSorting,
   } = useResourcesIcebergV2({
     route: api,
-    queryKey: ['servicesListingIceberg', containerId],
+    queryKey: [icebergListingQueryKey, containerId],
   });
 
   useEffect(() => {

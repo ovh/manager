@@ -2,17 +2,24 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useManagedVcdDatacentre } from '@/data/hooks/useManagedVcdDatacentres';
+import { useQueryClient } from '@tanstack/react-query';
+import {
+  getVcdDatacentreQueryKey,
+  useManagedVcdDatacentre,
+} from '@/data/hooks/useManagedVcdDatacentres';
 import { useUpdateVdcDetails } from '@/data/hooks/useUpdateVcdDatacentre';
 import { validateDescription } from '@/utils/formValidation';
 import { IVcdDatacentreState } from '@/types/vcd-datacenter.interface';
 import { EditDetailModal } from '@/components/modal/EditDetailModal';
+import { icebergListingQueryKey } from '@/components/datagrid/container/DatagridContainer.component';
+import { getVdcListingContainerId } from '@/pages/listing/datacentres/datacentres.page';
 
 export default function EditVdcDescription() {
   const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
-  const { addSuccess } = useNotifications();
   const closeModal = () => navigate('..');
+  const { addSuccess } = useNotifications();
+  const queryClient = useQueryClient();
   const { id, vdcId } = useParams();
   const { data: vcdDatacentre } = useManagedVcdDatacentre(id, vdcId);
   const { updateDetails, error, isError } = useUpdateVdcDetails({
@@ -23,6 +30,13 @@ export default function EditVdcDescription() {
         t('managed_vcd_dashboard_edit_description_modal_success'),
         true,
       );
+      queryClient.invalidateQueries({
+        queryKey: getVcdDatacentreQueryKey(id, vdcId),
+      });
+      queryClient.invalidateQueries({
+        queryKey: [icebergListingQueryKey, getVdcListingContainerId(id)],
+        exact: true,
+      });
       closeModal();
     },
   });
