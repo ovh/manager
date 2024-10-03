@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
+import { useParams, useResolvedPath } from 'react-router-dom';
 
 import VcdDashboardLayout from '@/components/dashboard/layout/VcdDashboardLayout.component';
 import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
@@ -8,7 +8,6 @@ import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 
 export default function DashboardPage() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
   const { data: vcdOrganisation } = useManagedVcdOrganization({ id });
 
@@ -39,7 +38,6 @@ export default function DashboardPage() {
     {
       id,
       label: serviceName,
-      onClick: () => navigate(`/${id}`),
     },
   ];
 
