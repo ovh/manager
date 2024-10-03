@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.5.0...@ovh-ux/manager-pci-common@0.6.0) (2024-10-03)
+
+
+### Bug Fixes
+
+* **pci-common:** fix availability.spec.ts failed tests ([9fca71f](https://github.com/ovh/manager/commit/9fca71f537fd2591634d81b35163077e846f9acb))
+* **pci-common:** usePricing format ([b1d26aa](https://github.com/ovh/manager/commit/b1d26aa654d652e3924856046c4db2467827895c))
+* **pci-private-registry:** catalog pricing ([c8f4375](https://github.com/ovh/manager/commit/c8f43752200d9674157f334d9d24354d62f30a71))
+* **pci-private-registry:** credentials generation ([91423b0](https://github.com/ovh/manager/commit/91423b0f11d345507f9539801e9894c96645d058))
+* **pci-private-registry:** dependencies ([e2cb66b](https://github.com/ovh/manager/commit/e2cb66b7d5f8fd802f06e02ed3efd8f9e783a212))
+* **pci-private-registry:** fix sonar duplication issues ([57d7e94](https://github.com/ovh/manager/commit/57d7e945420344f91875ea75afc5be36ed93661f))
+* **pci-private-registry:** minor code review changes ([622ead4](https://github.com/ovh/manager/commit/622ead4857e1cc2a9c81e5ecfc0654e0ae55c6e1))
+* **pci-private-registry:** rebase on master ([a0c9580](https://github.com/ovh/manager/commit/a0c958076d77312822a9ac619e447cac006a70cd))
+* **pci-registry:** error message on delete modal error ([31490e9](https://github.com/ovh/manager/commit/31490e9c152cebf063afeae5e1bd3478d6906536))
+
+
+### Features
+
+* **manager-pci-common:** bump dependencies ([65ff9c1](https://github.com/ovh/manager/commit/65ff9c17be0a95ef6df97d99a74c72a421484b89))
+* **manager-pci-common:** refactor modal and rename banners components ([ead087f](https://github.com/ovh/manager/commit/ead087f326c9529035c1585d4841dbaf2dd091bd))
+* **pci-common:** className support in banners ([02ff4c7](https://github.com/ovh/manager/commit/02ff4c79b2c3679042280b65614aad02f6ac0fee))
+* **pci-private-registry:** ad rename modal and generic modal ([05e7ed6](https://github.com/ovh/manager/commit/05e7ed654562ac7956ed7f284539e73560201d01))
+* **pci-private-registry:** add list page ([dc29ae8](https://github.com/ovh/manager/commit/dc29ae8a548d132326c1f6e148d785ba6dadda49))
+* **pci-private-registry:** create registry ([5cb2043](https://github.com/ovh/manager/commit/5cb20432c9279a8874125ab7a3d1d378a318cf45))
+* **pci-private-registry:** delete modal and translations pci-common ([318d66a](https://github.com/ovh/manager/commit/318d66a80e31ab2ed0805312be0d948ba1263b27))
+* **pci-private-registry:** rename to manager react component ([c0bb67c](https://github.com/ovh/manager/commit/c0bb67cedc0fe5d7132b44dbeacf1d5a509a5236))
+
+
+
+
+
 # [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.4.1...@ovh-ux/manager-pci-common@0.5.0) (2024-10-02)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-private-registry-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -18,8 +18,8 @@
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
-    "@ovh-ux/manager-pci-common": "*",
-    "@ovh-ux/manager-react-components": "^1.32.1",
+    "@ovh-ux/manager-pci-common": "^0.6.0",
+    "@ovh-ux/manager-react-components": "^1.34.0",
     "@ovh-ux/manager-react-core-application": "*",
     "@ovh-ux/manager-react-shell-client": "*",
     "@ovh-ux/manager-tailwind-config": "*",
