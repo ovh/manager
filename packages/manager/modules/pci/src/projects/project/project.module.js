@@ -40,7 +40,6 @@ import projectComponent from './project.component';
 import service from './project.service';
 import pciProjectNew from '../new/service';
 import orderCart from '../order-cart.service';
-import gateways from './gateways';
 
 import './project.less';
 
@@ -80,7 +79,6 @@ angular
     pciAnnouncementBanner,
     pciMaintenanceBanner,
     pciFreeLocalZonesBanner,
-    gateways,
     aiDashboard,
   ])
   .config(routing)
