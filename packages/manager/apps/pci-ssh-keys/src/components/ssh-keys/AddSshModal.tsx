@@ -21,7 +21,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { useCallback, useState } from 'react';
-import { useAddSsh } from '@/hooks/useSsh';
+import { useAddSsh } from '@/api/hooks/useSsh';
 
 interface AddSshModalProps {
   projectId: string;
@@ -79,13 +79,14 @@ export default function AddSshModal({
   return (
     <OsdsModal
       headline={t('pci_projects_project_sshKeys_add_title')}
+      data-testid="addSshModal-modal"
       onOdsModalClose={onClose}
     >
       <slot name="content">
         {!isPending && (
           <>
             <OsdsFormField
-              className={'mb-8'}
+              className="mb-8"
               color={
                 formErrors.missingName
                   ? ODS_THEME_COLOR_INTENT.error
@@ -110,7 +111,7 @@ export default function AddSshModal({
                     : ODS_THEME_COLOR_INTENT.primary
                 }
                 {...{ error: formErrors.missingName ? true : undefined }}
-                required={true}
+                required
                 onOdsValueChange={handleInputNameChange}
                 onOdsInputFocus={() => {
                   setFormErrors((errors) => ({
@@ -151,7 +152,7 @@ export default function AddSshModal({
               </OsdsText>
               <OsdsTextarea
                 {...{ error: formErrors.missingKey ? true : undefined }}
-                required={true}
+                required
                 onOdsValueChange={handleInputPublicKeyChange}
                 onOdsBlur={() =>
                   setFormErrors((errors) => ({
