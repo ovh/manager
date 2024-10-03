@@ -10,14 +10,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_RADIO_BUTTON_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import useOnboarding from '@/core/onboarding';
 
 function NavReshuffleSwitchBack(): JSX.Element {
   const { t } = useTranslation('beta-modal');
   const { updateBetaChoice, betaVersion, useBeta } = useContainer();
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
-  const onboarding = useOnboarding();
 
   if (!betaVersion) {
     return <></>;
@@ -30,8 +28,6 @@ function NavReshuffleSwitchBack(): JSX.Element {
       type: 'navigation',
     });
     updateBetaChoice(value === 'beta');
-    // Onboarding forced only for PNR V2 alpha; to remove for the beta.
-    if (value === 'beta') onboarding.forceOnboardingDisplayed(true);
   };
 
   return (

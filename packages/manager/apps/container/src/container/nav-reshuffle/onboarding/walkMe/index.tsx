@@ -122,7 +122,7 @@ export const OnboardingWalkMe = () => {
     }
   }, [currentStepIndex]);
 
-  const onHideBtnClick = (onboardingStatus?: string) => {
+  const onHideBtnClick = (isDone?: boolean) => {
     const currentStep = steps[currentStepIndex];
     if(!isLastStep){
       trackingPlugin.trackClick({
@@ -139,12 +139,21 @@ export const OnboardingWalkMe = () => {
         generalPlacement: '[hide]',
       },
     });
-    closeOnboarding(onboardingStatus);
+    closeOnboarding(isDone);
     closeAccountSidebar();
     if (isMobile) {
       closeNavigationSidebar();
     }
   };
+
+  const resizeObserver = new ResizeObserver((entries) => {
+    const currentStepID = steps[currentStepIndex]?.selector.replace('#', '');
+    const el: HTMLElement = stepElement.current;
+    const entry: ResizeObserverEntry = entries.find((entry) => entry.target.id === currentStepID);
+    if (entry?.borderBoxSize[0]?.blockSize) {
+      el.style.height = `${entry.borderBoxSize[0].blockSize + ELEMENT_OFFSET}px`;
+    }
+  })
 
   const onNextBtnClick = () => {
     const currentStep = steps[currentStepIndex];
@@ -168,7 +177,7 @@ export const OnboardingWalkMe = () => {
       setCurrentStepIndex(currentStepIndex + 1);
     } else {
       setCurrentNavigationNode(currentUserNode);
-      onHideBtnClick(ONBOARDING_STATUS_ENUM.DONE);
+      onHideBtnClick(true);
     }
   };
 
@@ -197,6 +206,7 @@ export const OnboardingWalkMe = () => {
     } else {
       const targetElement = document.querySelector(currentStep.selector);
       targetPos = targetElement.getBoundingClientRect();
+      resizeObserver.observe(targetElement);
       updatePos(targetPos);
     }
   }, [currentStepIndex, isMobile]);
@@ -296,21 +306,31 @@ export const OnboardingWalkMe = () => {
             {steps[currentStepIndex].content}
           </div>
           <div className="d-flex flex-row-reverse justify-content-between">
-            <button
-              className="oui-button oui-button_primary"
-              onClick={onNextBtnClick}
-            >
-              {t('onboarding_walkme_popover_next_step', {
-                current: currentStepIndex + 1,
-                total: steps.length,
-              })}
-            </button>
-            <button
-              className="oui-button oui-button_ghost"
-              onClick={() => onHideBtnClick()}
-            >
-              {t('onboarding_popover_hide_button')}
-            </button>
+            {currentStepIndex + 1 < steps.length ?
+              <>
+                <button
+                  className="oui-button oui-button_primary"
+                  onClick={onNextBtnClick}
+                >
+                  {t('onboarding_walkme_popover_next_step', {
+                    current: currentStepIndex + 1,
+                    total: steps.length,
+                  })}
+                </button>
+                <button
+                  className="oui-button oui-button_ghost"
+                  onClick={() => onHideBtnClick()}
+                >
+                  {t('onboarding_popover_hide_button')}
+                </button>
+              </> :
+              <button
+                className="oui-button oui-button_primary"
+                onClick={onNextBtnClick}
+              >
+                {t('onboarding_popover_done_button')}
+              </button>
+            }
           </div>
         </div>
         <div
