@@ -16,7 +16,7 @@ import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
+import { useProject } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';
 import { useAllVolumes } from '@/api/hooks/useVolume';
@@ -109,10 +109,6 @@ export default function OnBoardingPage() {
       <>
         <HidePreloader />
         {project && <OsdsBreadcrumb items={breadcrumbItems} />}
-
-        <div className="mb-8">
-          <PciDiscoveryBanner project={project} />
-        </div>
 
         <OnboardingLayout
           title={t('pci_projects_project_storages_blocks_title')}
