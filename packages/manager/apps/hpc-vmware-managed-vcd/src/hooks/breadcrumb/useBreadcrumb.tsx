@@ -5,23 +5,23 @@ import { urls } from '@/routes/routes.constant';
 export type BreadcrumbItem = {
   id: string;
   label: string | undefined;
-  href?: string;
-  onClick?: () => void;
+};
+
+type BreadcrumbEvent = Event & {
+  target: { isCollapsed?: boolean; isLast?: boolean };
+};
+
+type BreadcrumbNavigationItem = BreadcrumbItem & {
+  onClick?: (event?: BreadcrumbEvent) => void;
 };
 
 export interface BreadcrumbProps {
   rootLabel?: string;
-  appName?: string;
-  projectId?: string;
   items?: BreadcrumbItem[];
 }
 
-export const useBreadcrumb = ({
-  rootLabel,
-  appName,
-  items,
-}: BreadcrumbProps) => {
-  const [paths, setPaths] = useState<BreadcrumbItem[]>([]);
+export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
+  const [paths, setPaths] = useState<BreadcrumbNavigationItem[]>([]);
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
   const navigate = useNavigate();
@@ -33,14 +33,20 @@ export const useBreadcrumb = ({
   };
 
   useEffect(() => {
-    const pathsTab = pathnames.map(
-      (value) =>
-        items?.find(({ id }) => id === value) ?? {
-          id: value,
-          label: value,
-          href: `/#/${appName}/${value}`,
+    const pathsTab = pathnames.map((value, index) => {
+      const item = items?.find(({ id }) => id === value);
+
+      return {
+        id: item?.id ?? value,
+        label: item?.label ?? value,
+        onClick: (event: BreadcrumbEvent) => {
+          const { isCollapsed, isLast } = event.target;
+          if (!isCollapsed && !isLast) {
+            navigate(`/${pathnames.slice(0, index + 1).join('/')}`);
+          }
         },
-    );
+      };
+    });
     setPaths(pathsTab);
   }, [location, items]);
 

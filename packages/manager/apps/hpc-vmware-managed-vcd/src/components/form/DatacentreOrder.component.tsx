@@ -124,7 +124,7 @@ export const DatacentreOrder = <T extends OrderType>({
           title={t('managed_vcd_vdc_order_quantity_title')}
           label={t('managed_vcd_vdc_order_quantity_label')}
           min={minQuantity}
-          max={minQuantity}
+          max={maxQuantity}
         />
       </div>
       <div className="flex items-center gap-x-4 mt-10">
