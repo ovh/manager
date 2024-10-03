@@ -2,7 +2,8 @@ import { getCriteria } from '../../project.utils';
 
 export default class PciInstanceBackupsController {
   /* @ngInject */
-  constructor(CucCloudMessage, ovhManagerRegionService) {
+  constructor($state, CucCloudMessage, ovhManagerRegionService) {
+    this.$state = $state;
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
   }
@@ -23,5 +24,10 @@ export default class PciInstanceBackupsController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  refreshList() {
+    const { name } = this.$state.current;
+    return this.$state.go(name, {}, { reload: name });
   }
 }
