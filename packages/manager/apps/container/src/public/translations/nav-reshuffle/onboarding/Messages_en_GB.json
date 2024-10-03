@@ -15,5 +15,8 @@
   "onboarding_walkme_popover_step4_title": "Want to go further?",
   "onboarding_walkme_popover_step4_content": "Find partner sellers on our Marketplace, stay updated on the real-time status of our services, and calculate your carbon footprint. Need help? Access our how-to guides and help resources. Chat with us to get solutions, additional resources and answers to your queries.",
   "onboarding_walkme_popover_step5_title": "My bills",
-  "onboarding_walkme_popover_step5_content": "You can find all of your bills, payments in progress and credit notes in this section."
+  "onboarding_walkme_popover_step5_content": "You can find all of your bills, payments in progress and credit notes in this section.",
+  "onboarding_popover_later_hide_button": "Maybe later",
+  "onboarding_popover_do_not_show_again_button": "Don’t display this message again",
+  "onboarding_popover_done_button": "End the visit"
 }

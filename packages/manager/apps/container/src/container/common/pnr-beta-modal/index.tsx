@@ -9,7 +9,6 @@ import backgroundImage from '@/assets/images/pnr/background.png';
 import previewImage from '@/assets/images/pnr/preview.png';
 import { useShell } from '@/context';
 
-import useOnboarding from '@/core/onboarding';
 
 function NavReshuffleBetaAccessModal(): JSX.Element {
   const { t } = useTranslation('beta-modal');
@@ -17,7 +16,6 @@ function NavReshuffleBetaAccessModal(): JSX.Element {
   const trackingPlugin = shell.getPlugin('tracking');
   const { askBeta, createBetaChoice } = useContainer();
   const [submitting, setSubmitting] = useState(false);
-  const onboarding = useOnboarding();
 
   async function onAccept() {
     setSubmitting(true);
@@ -25,7 +23,6 @@ function NavReshuffleBetaAccessModal(): JSX.Element {
       name: 'switch_versionpopin_V3::product-navigation-reshuffle::go_to_new_version',
       type: 'action',
     });
-    onboarding.forceOnboardingDisplayed(true);
     return createBetaChoice(true).then(() => window.location.reload());
   }
 
