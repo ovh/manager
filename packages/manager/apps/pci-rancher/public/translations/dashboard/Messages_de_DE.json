@@ -32,9 +32,9 @@
   "createRancherDescription": "Innerhalb dieses Dienstes können Sie mehrere „Downstream-Cluster“ verwalten.",
   "createRancherPlaceholder": "mein_rancher",
   "createRancherServiceLevel": "Wahl des Angebots",
-  "createRancherServiceLevelDescription": "Mit beiden Angeboten stehen sämtliche Funktionen von Rancher zur Verfügung. Das Angebot OVHcloud Edition erlaubt nur die Erstellung von <br> „Downstream-Clustern“ in der OVHcloud Public Cloud. Die selbstverwalteten Nodes werden einzeln hinzugefügt. Das Standard Angebot ist ideal für Anwendungen wie Private Cloud, Multicloud oder Edge. Sie können jederzeit zum Standard Angebot migrieren. <strong>Control-Plane-Nodes werden nicht abgerechnet.</strong>",
+  "createRancherServiceLevelDescription": "Mit beiden Angeboten stehen sämtliche Funktionen von Rancher zur Verfügung. Das Angebot OVHcloud Edition erlaubt nur die Erstellung von „Downstream-Clustern“ in der OVHcloud Public Cloud. Die selbstverwalteten Nodes werden einzeln hinzugefügt.<br> Das Standard Angebot ist ideal für Anwendungen wie Private Cloud, Multicloud oder Edge. Sie können jederzeit zum Standard Angebot migrieren.<br> Ihre Nutzung wird stundengenau abgerechnet, abhängig von der Gesamtzahl der vCPUs der einzelnen Worker-Nodes Ihrer „Downstream Clusters“ Rancher. <strong>Control-Plane-Nodes werden nicht abgerechnet.</strong>",
   "createRancherVersion": "Rancher-Version",
-  "createRancherVersionDescription": "Dieser Dienst stützt sich auf SUSE Rancher. OVHcloud unterstützt die neuesten Rancher-Versionen. Wir empfehlen Ihnen, die aktuellste Version zu verwenden. Wir wenden regelmäßig Sicherheitspatches an und stellen neue Versionen gemäß unseren Richtlinien für den Software-Lebenszyklus bereit.",
+  "createRancherVersionDescription": "Dieser Dienst stützt sich auf SUSE Rancher. OVHcloud unterstützt die neuesten Rancher-Versionen. Wir empfehlen Ihnen, die aktuellste Version zu verwenden.<br> Wir wenden regelmäßig Sicherheitspatches an und stellen neue Versionen gemäß unseren Richtlinien für den Software-Lebenszyklus bereit.",
   "createRancherCTA": "Managed Rancher Service erstellen",
   "createRancherError": "Bei der Erstellung Ihres Managed Rancher Service ist ein Fehler aufgetreten. {{rancherCreationErrorMessage}}.",
   "createRancherRecomendedVersion": "Empfohlene Version",
@@ -50,5 +50,8 @@
   "updateOfferError": "Es ist ein Fehler aufgetreten: {{errorMessage}}",
   "upgradePlanTitle": "Zum Standard Angebot wechseln",
   "upgradePlanDescription": "Erstellen oder registrieren Sie „Downstream-Cluster“ mit jeder von Rancher unterstützten Public Cloud oder einer automatisierbaren Private Cloud (z. B. VMware vSphere), einschließlich der vom OVHcloud Edition Angebot unterstützten Szenarien.",
-  "upgradePlanButton": "Mein Angebot verbessern"
+  "upgradePlanButton": "Mein Angebot verbessern",
+  "savingsPlanMessage": "Profitieren Sie von günstigen monatlichen Preisen mit den Savings Plans und behalten Sie die Flexibilität der Instanzen auf Stundenbasis bei.",
+  "savingsPlanCTA": "Ihre Savings Plans konfigurieren",
+  "createRancherOfferDescription": "Mit mindestens 20 vCPUs pro Rancher"
 }
