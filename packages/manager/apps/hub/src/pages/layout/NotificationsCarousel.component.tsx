@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   OsdsIcon,
   OsdsMessage,
@@ -114,19 +113,21 @@ export default function NotificationsCarousel() {
                 className="absolute block w-full text-center right-0 left-0 bottom-1"
                 data-testid="notification-navigation"
               >
-                {notifications.map((val: Notification, index: number) => (
-                  <OsdsIcon
-                    key={`notification_selector_${index}`}
-                    className={`inline-block cursor-pointer ${
-                      index > 0 ? 'ml-2' : ''
-                    }`}
-                    name={ODS_ICON_NAME.SHAPE_DOT}
-                    size={ODS_ICON_SIZE.xxs}
-                    color={getTextColor(notifications[currentIndex].level)}
-                    contrasted={currentIndex === index || undefined}
-                    onClick={() => setCurrentIndex((previousIndex) => index)}
-                  />
-                ))}
+                {notifications.map(
+                  (notification: Notification, index: number) => (
+                    <OsdsIcon
+                      key={`notification_selector_${notification.id}`}
+                      className={`inline-block cursor-pointer ${
+                        index > 0 ? 'ml-2' : ''
+                      }`}
+                      name={ODS_ICON_NAME.SHAPE_DOT}
+                      size={ODS_ICON_SIZE.xxs}
+                      color={getTextColor(notification.level)}
+                      contrasted={currentIndex === index || undefined}
+                      onClick={() => setCurrentIndex((previousIndex) => index)}
+                    />
+                  ),
+                )}
               </div>
             </>
           )}
