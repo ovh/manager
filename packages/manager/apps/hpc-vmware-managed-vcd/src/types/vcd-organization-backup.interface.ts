@@ -1,3 +1,5 @@
+import { IamObject } from '@ovh-ux/manager-react-components/src/hooks/iam';
+
 export enum BackupResourceStatus {
   CREATING = 'CREATING',
   DISABLED = 'DISABLED',
@@ -33,4 +35,5 @@ export default interface IVcdOrganizationBackup {
   currentTasks?: IVcdOrganizationBackupTask[];
   createdAt?: string;
   updatedAt?: string;
+  iam: IamObject;
 }

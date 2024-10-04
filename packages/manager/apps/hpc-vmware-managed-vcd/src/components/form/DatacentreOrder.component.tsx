@@ -141,7 +141,7 @@ export const DatacentreOrder = <T extends OrderType>({
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
-          disabled={!isValidQuantity ? true : undefined}
+          disabled={!isValidQuantity || undefined}
           onClick={isValidQuantity ? redirectToOrder : null}
         >
           {t('managed_vcd_vdc_order_confirm_cta')}

@@ -64,7 +64,7 @@ export default function ComputeOrderPage() {
   return (
     <DatacentreOrderProvider>
       <DatacentreOrder
-        orderType={'compute'}
+        orderType="compute"
         columns={columns}
         title={tCompute('managed_vcd_vdc_compute_order_cta')}
         subtitle={t('managed_vcd_vdc_order_compute_subtitle')}

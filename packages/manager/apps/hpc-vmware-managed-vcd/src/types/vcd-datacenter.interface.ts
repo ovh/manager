@@ -1,3 +1,5 @@
+import { IamObject } from '@ovh-ux/manager-react-components';
+
 export interface IVcdDatacentreState {
   vCPUSpeed: number;
   description: string;
@@ -19,4 +21,5 @@ export default interface IVcdDatacentre {
   currentState: IVcdDatacentreCurrentState;
   targetSpec: IVcdDatacentreState;
   currentTasks?: any[];
+  iam: IamObject;
 }
