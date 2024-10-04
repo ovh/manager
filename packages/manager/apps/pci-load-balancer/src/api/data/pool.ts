@@ -20,6 +20,18 @@ export type TLoadBalancerPool = {
   listenerId: string;
 };
 
+export type TPoolParam = {
+  projectId: string;
+  region: string;
+  name: string;
+  algorithm: string;
+  permanentSession: {
+    isEnabled: boolean;
+    type?: string;
+    cookieName?: string;
+  };
+};
+
 export const getLoadBalancerPools = async (
   projectId: string,
   region: string,
@@ -27,6 +39,18 @@ export const getLoadBalancerPools = async (
 ): Promise<TLoadBalancerPool[]> => {
   const { data } = await v6.get<TLoadBalancerPool[]>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/pool?loadbalancerId=${loadBalancerId}`,
+  );
+
+  return data;
+};
+
+export const getPool = async (
+  projectId: string,
+  region: string,
+  poolId: string,
+): Promise<TLoadBalancerPool> => {
+  const { data } = await v6.get<TLoadBalancerPool>(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}`,
   );
 
   return data;
@@ -43,6 +67,10 @@ export const deletePool = async (
   return data;
 };
 
+export type TCreatePoolParam = TPoolParam & {
+  loadbalancerId: string;
+  protocol: string;
+};
 export const createPool = async ({
   projectId,
   region,
@@ -51,19 +79,7 @@ export const createPool = async ({
   algorithm,
   protocol,
   permanentSession,
-}: {
-  projectId: string;
-  region: string;
-  loadbalancerId: string;
-  name: string;
-  algorithm: string;
-  protocol: string;
-  permanentSession: {
-    isEnabled: boolean;
-    type?: string;
-    cookieName?: string;
-  };
-}): Promise<TLoadBalancerPool> => {
+}: TCreatePoolParam): Promise<TLoadBalancerPool> => {
   const { data } = await v6.post<TLoadBalancerPool>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/pool`,
     {
@@ -80,5 +96,33 @@ export const createPool = async ({
     },
   );
 
+  return data;
+};
+
+export type TUpdatePoolParam = TPoolParam & {
+  poolId: string;
+};
+
+export const updatePool = async ({
+  projectId,
+  region,
+  poolId,
+  name,
+  algorithm,
+  permanentSession,
+}: TUpdatePoolParam) => {
+  const { data } = await v6.put<TLoadBalancerPool>(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}`,
+    {
+      name,
+      algorithm,
+      sessionPersistence: permanentSession.isEnabled
+        ? {
+            type: permanentSession.type,
+            cookieName: permanentSession.cookieName,
+          }
+        : { type: 'disabled' },
+    },
+  );
   return data;
 };
