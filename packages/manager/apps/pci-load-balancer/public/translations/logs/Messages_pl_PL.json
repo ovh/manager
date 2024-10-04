@@ -1,0 +1,6 @@
+{
+  "see_more_label": "Dowiedz się więcej",
+  "octavia_load_balancer_logs_breadcrumb_label": "Logi",
+  "octavia_load_balancer_logs_main_description": "Poniżej znajdziesz logi Load Balancera dla nasłuchów TCP, HTTP, HTTPS i TERMINATED_HTTPS (UDP nie jest obsługiwany). Logi te są generowane przez komponent OpenSource HAProxy.",
+  "octavia_load_balancer_data_streams_description_haproxy": "Po tym, jak zasubskrybujesz logi haproxy Load Balancera, zostaną one przeniesione do Logs Data Platform. Będziesz mógł je scentralizować z innymi logami, uruchamiać zaawansowane wyszukiwanie, zarządzać retencją, definiować alerty oraz dashboardy umożliwiające obserwację aplikacji korzystających z Load Balancerów."
+}

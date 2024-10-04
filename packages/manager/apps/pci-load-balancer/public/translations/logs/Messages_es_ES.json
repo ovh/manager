@@ -1,0 +1,6 @@
+{
+  "see_more_label": "Más información",
+  "octavia_load_balancer_logs_breadcrumb_label": "Logs",
+  "octavia_load_balancer_logs_main_description": "A continuación encontrará los logs de su Load Balancer para los «listeners» de tipo TCP, HTTP, HTTPS y TERMINATED_HTTPS (UDP no es compatible). Estos son los logs generados por el componente open source HAProxy.",
+  "octavia_load_balancer_data_streams_description_haproxy": "Al suscribirse a los logs HAProxy de su Load Balancer, estos registros se transferirán a Logs Data Platform, desde donde podrá gestionarlos de forma centralizada junto con el resto de sus logs. Además, podrá realizar búsquedas más avanzadas, gestionar sus retenciones, definir alertas y «dashboards» para monitorizar sus aplicaciones que utilizan Load Balancers."
+}
