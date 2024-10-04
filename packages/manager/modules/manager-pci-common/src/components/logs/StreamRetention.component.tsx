@@ -1,10 +1,10 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatDuration } from 'date-fns';
 import * as dateFnsLocales from 'date-fns/locale';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
-import { useRetention } from '@/api/hooks/useDbaasLogs';
+import { useRetention } from '../../api/hook/useDbaasLogs';
 
 export interface StreamRetentionProps {
   serviceName: string;
@@ -31,7 +31,7 @@ export function StreamRetention({
   clusterId,
   retentionId,
 }: StreamRetentionProps) {
-  const { i18n } = useTranslation('common');
+  const { i18n } = useTranslation();
   const locales = useRef({ ...dateFnsLocales }).current;
   const userLocale = getDateFnsLocale(i18n.language);
   const { data: retention, isPending } = useRetention(
@@ -46,7 +46,7 @@ export function StreamRetention({
       {!isPending &&
         retention?.duration &&
         formatDuration(parseRetentionDuration(retention?.duration), {
-          locale: locales[userLocale],
+          locale: locales[userLocale as keyof typeof locales],
         })}
     </>
   );

@@ -1,3 +1,4 @@
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { OsdsButton, OsdsSpinner } from '@ovhcloud/ods-components/react';
@@ -7,27 +8,27 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useRemoveSubscription } from '@/api/hooks/useKubernetes';
+import { useRemoveSubscription } from '../../api/hook/useLogs';
+import { LogContext } from './LogProvider.component';
+
+import '../../translations/logs';
 
 export interface LogTileUnsubscribeActionProps {
-  projectId: string;
-  kubeId: string;
   subscriptionId: string;
   onSuccess: () => void;
   onError: (err: ApiError) => void;
 }
 
 export function LogTileUnsubscribeAction({
-  projectId,
-  kubeId,
   subscriptionId,
   onSuccess,
   onError,
 }: Readonly<LogTileUnsubscribeActionProps>) {
-  const { t } = useTranslation('logs');
+  const { t } = useTranslation('pci-logs');
+  const { logsApiURL } = useContext(LogContext);
   const { remove, isPending: isRemovePending } = useRemoveSubscription({
-    projectId,
-    kubeId,
+    logsApiURL,
+    subscriptionId,
     onSuccess,
     onError,
   });
@@ -45,7 +46,7 @@ export function LogTileUnsubscribeAction({
           color={ODS_THEME_COLOR_INTENT.primary}
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.ghost}
-          onClick={() => remove(subscriptionId)}
+          onClick={remove}
         >
           {t('list_button_unsubscribe')}
         </OsdsButton>

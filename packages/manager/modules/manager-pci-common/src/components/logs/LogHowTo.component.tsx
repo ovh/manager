@@ -1,6 +1,5 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useMe } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -21,45 +20,52 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { DATA_PLATFORM_GUIDE, LOG_TRACKING_HITS } from '../constants';
-import { useLogs, useAllStreamIds } from '@/api/hooks/useDbaasLogs';
+import { useAllStreamIds, useDbaasLogs } from '../../api/hook/useLogs';
+import { LogContext } from './LogProvider.component';
 
-export function LogHowTo() {
-  const { t } = useTranslation('logs');
-  const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
-  const { navigation } = useContext(ShellContext).shell;
-  const { tracking } = useContext(ShellContext).shell;
-  const navigate = useNavigate();
-  const { data: dbaasLogs } = useLogs();
+import '../../translations/logs';
+
+export interface LogHowToProps {
+  onGotoStreams: () => void;
+}
+
+export function LogHowTo({ onGotoStreams }: Readonly<LogHowToProps>) {
+  const { t } = useTranslation('pci-logs');
+  const { navigation, tracking } = useContext(ShellContext).shell;
+  const { logsGuideURL, logsTracking } = useContext(LogContext);
+  const { data: dbaasLogs } = useDbaasLogs();
   const { data: streams } = useAllStreamIds();
-  const guideLink =
-    DATA_PLATFORM_GUIDE[ovhSubsidiary] || DATA_PLATFORM_GUIDE.DEFAULT;
   const hasAccount = dbaasLogs?.length > 0;
   const hasStream = streams?.length > 0;
 
   const onCreate = () => {
     if (!hasAccount) {
-      tracking.trackClick({
-        name: LOG_TRACKING_HITS.CREATE_ACCOUNT,
-      });
+      if (logsTracking?.createAccount) {
+        tracking.trackClick({
+          name: logsTracking?.createAccount,
+        });
+      }
       navigation
         .getURL('dedicated', `#/dbaas/logs/order`, {})
         .then((url: string) => {
           window.location.href = url;
         });
     } else if (!hasStream) {
-      tracking.trackClick({
-        name: LOG_TRACKING_HITS.CREATE_DATA_STREAM,
-      });
+      if (logsTracking?.createDataStream) {
+        tracking.trackClick({
+          name: logsTracking?.createDataStream,
+        });
+      }
       navigation.getURL('dedicated', `#/dbaas/logs`, {}).then((url: string) => {
         window.location.href = url;
       });
     } else {
-      tracking.trackClick({
-        name: LOG_TRACKING_HITS.TRANSFER,
-      });
-      navigate('./streams');
+      if (logsTracking?.transfer) {
+        tracking.trackClick({
+          name: logsTracking?.transfer,
+        });
+      }
+      onGotoStreams();
     }
   };
 
@@ -87,24 +93,26 @@ export function LogHowTo() {
           {hasAccount && !hasStream && (
             <p>{t('log_tile_desc_create_stream')}</p>
           )}
-          <OsdsLink
-            className="mt-4"
-            color={ODS_THEME_COLOR_INTENT.primary}
-            href={guideLink}
-            target={OdsHTMLAnchorElementTarget._blank}
-          >
-            {t('log_data_platform_guide_link')}
-            <span slot="end">
-              <OsdsIcon
-                aria-hidden="true"
-                className="ml-4"
-                name={ODS_ICON_NAME.EXTERNAL_LINK}
-                hoverable
-                size={ODS_ICON_SIZE.xxs}
-                color={ODS_THEME_COLOR_INTENT.primary}
-              />
-            </span>
-          </OsdsLink>
+          {logsGuideURL && (
+            <OsdsLink
+              className="mt-4"
+              color={ODS_THEME_COLOR_INTENT.primary}
+              href={logsGuideURL}
+              target={OdsHTMLAnchorElementTarget._blank}
+            >
+              {t('log_data_platform_guide_link')}
+              <span slot="end">
+                <OsdsIcon
+                  aria-hidden="true"
+                  className="ml-4"
+                  name={ODS_ICON_NAME.EXTERNAL_LINK}
+                  hoverable
+                  size={ODS_ICON_SIZE.xxs}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                />
+              </span>
+            </OsdsLink>
+          )}
           <OsdsButton
             className="mt-8"
             inline
