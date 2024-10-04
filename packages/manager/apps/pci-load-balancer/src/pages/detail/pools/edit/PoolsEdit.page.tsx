@@ -1,38 +1,43 @@
+import { useNavigate, useParams } from 'react-router-dom';
+import { useGetApiSchema } from '@ovh-ux/manager-pci-common';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { useContext } from 'react';
 import { Translation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useGetApiSchema } from '@ovh-ux/manager-pci-common';
-import { useCreatePool } from '@/api/hook/usePool';
+import { useGetPool, useUpdatePool } from '@/api/hook/usePool';
 import {
   PoolFormComponent,
   TPoolFormData,
 } from '@/components/form/PoolForm.component';
 import { TLoadBalancerPool } from '@/api/data/pool';
 
-const TRACKING_HIT_PREFIX = 'add';
+const TRACKING_HIT_PREFIX = 'edit';
 
-export default function PoolsCreatePage() {
+export default function PoolsEditPage(): JSX.Element {
   const { tracking } = useContext(ShellContext).shell;
 
   const { addSuccess, addError } = useNotifications();
 
-  const { projectId, region, loadBalancerId } = useParams();
+  const { projectId, region, poolId } = useParams();
 
   const navigate = useNavigate();
-
   const goBack = () => navigate('../list');
+
+  const { data: pool, isPending: isPoolPending } = useGetPool({
+    projectId,
+    region,
+    poolId,
+  });
 
   const { data: schema, isPending: isSpecsPending } = useGetApiSchema();
 
-  const { doCreatePool, isPending: isCreating } = useCreatePool({
+  const { doUpdatePool, isPending: isUpdating } = useUpdatePool({
     projectId,
     region,
-    loadbalancerId: loadBalancerId,
+    poolId,
     onSuccess: (updatedPool: TLoadBalancerPool) => {
       tracking.trackClick({
         name: `${TRACKING_HIT_PREFIX}-success`,
@@ -43,7 +48,7 @@ export default function PoolsCreatePage() {
       addSuccess(
         <Translation ns="pools">
           {(_t) =>
-            _t('octavia_load_balancer_pools_create_success', {
+            _t('octavia_load_balancer_pools_edit_success', {
               pool: updatedPool.name,
             })
           }
@@ -76,19 +81,6 @@ export default function PoolsCreatePage() {
     },
   });
 
-  const create = ({
-    name,
-    algorithm,
-    protocol,
-    permanentSession,
-  }: TPoolFormData) => {
-    tracking.trackClick({
-      name: `${TRACKING_HIT_PREFIX}::confirm`,
-      type: 'action',
-    });
-    doCreatePool({ name, algorithm, protocol, permanentSession });
-  };
-
   const cancel = () => {
     tracking.trackClick({
       name: `${TRACKING_HIT_PREFIX}::cancel`,
@@ -97,7 +89,15 @@ export default function PoolsCreatePage() {
     goBack();
   };
 
-  if (isSpecsPending || isCreating)
+  const edit = ({ name, algorithm, permanentSession }: TPoolFormData) => {
+    tracking.trackClick({
+      name: `${TRACKING_HIT_PREFIX}::confirm`,
+      type: 'action',
+    });
+    doUpdatePool({ name, algorithm, permanentSession });
+  };
+
+  if (isSpecsPending || isPoolPending || isUpdating)
     return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} className="center" />;
 
   return (
@@ -112,8 +112,17 @@ export default function PoolsCreatePage() {
         schema?.models?.['cloud.loadbalancing.PoolSessionPersistenceTypeEnum']
           ?.enum || []
       ).filter((sessionType) => sessionType !== 'disabled')}
-      onSubmit={create}
+      name={pool.name}
+      algorithm={pool.algorithm}
+      protocol={pool.protocol}
+      permanentSession={{
+        isEnabled: pool.sessionPersistence.type !== 'disabled',
+        cookieName: pool.sessionPersistence.cookieName,
+        type: pool.sessionPersistence.type,
+      }}
+      onSubmit={edit}
       onCancel={cancel}
+      isEditMode
     />
   );
 }

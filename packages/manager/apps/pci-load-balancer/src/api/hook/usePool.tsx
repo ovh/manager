@@ -9,8 +9,18 @@ import {
   createPool,
   deletePool,
   getLoadBalancerPools,
+  getPool,
   TLoadBalancerPool,
+  TUpdatePoolParam,
+  updatePool,
 } from '@/api/data/pool';
+
+export type TUsePoolParam = {
+  projectId: string;
+  region: string;
+  onError: (cause: ApiError) => void;
+  onSuccess: (pool: TLoadBalancerPool) => void;
+};
 
 export const useAllLoadBalancerPools = ({
   projectId,
@@ -73,6 +83,22 @@ export const useLoadBalancerPools = (
   );
 };
 
+export const useGetPool = ({
+  projectId,
+  region,
+  poolId,
+}: {
+  projectId: string;
+  region: string;
+  poolId: string;
+}) =>
+  useQuery({
+    queryKey: ['pool', projectId, region, poolId],
+    queryFn: () => getPool(projectId, region, poolId),
+    enabled: !!projectId && !!region && !!poolId,
+    throwOnError: true,
+  });
+
 type DeletePoolProps = {
   projectId: string;
   region: string;
@@ -102,21 +128,13 @@ export const useDeletePool = ({
   };
 };
 
-export type TCreatePool = {
-  projectId: string;
-  region: string;
-  loadbalancerId: string;
-  onError: (cause: ApiError) => void;
-  onSuccess: (pool: TLoadBalancerPool) => void;
-};
-
 export const useCreatePool = ({
   projectId,
   region,
   loadbalancerId,
   onError,
   onSuccess,
-}: TCreatePool) => {
+}: TUsePoolParam & { loadbalancerId: string }) => {
   const mutation = useMutation({
     mutationFn: async ({
       name,
@@ -147,11 +165,52 @@ export const useCreatePool = ({
     },
     onSuccess: async (pool: TLoadBalancerPool) => {
       onSuccess(pool);
+      await queryClient.invalidateQueries({
+        queryKey: ['pools', projectId, region],
+      });
     },
   });
 
   return {
-    createPool: mutation.mutate,
+    doCreatePool: mutation.mutate,
+    ...mutation,
+  };
+};
+
+export const useUpdatePool = ({
+  projectId,
+  region,
+  poolId,
+  onError,
+  onSuccess,
+}: TUsePoolParam & { poolId: string }) => {
+  const mutation = useMutation({
+    mutationFn: async ({
+      name,
+      algorithm,
+      permanentSession,
+    }: Pick<TUpdatePoolParam, 'name' | 'algorithm' | 'permanentSession'>) =>
+      updatePool({
+        projectId,
+        region,
+        poolId,
+        name,
+        algorithm,
+        permanentSession,
+      }),
+    onError: (cause: ApiError) => {
+      onError(cause);
+    },
+    onSuccess: async (pool: TLoadBalancerPool) => {
+      onSuccess(pool);
+      await queryClient.invalidateQueries({
+        queryKey: ['pools', projectId, region],
+      });
+    },
+  });
+
+  return {
+    doUpdatePool: mutation.mutate,
     ...mutation,
   };
 };
