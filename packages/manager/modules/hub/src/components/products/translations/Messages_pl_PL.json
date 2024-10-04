@@ -66,5 +66,6 @@
   "manager_hub_products_NETAPP": "NetApp",
   "manager_hub_products_EMAIL_EXCHANGE": "Microsoft Exchange",
   "manager_hub_products_VEEAM_ENTERPRISE": "Veeam Enterprise",
-  "manager_hub_products_VRACK_SERVICES": "vRack Services"
+  "manager_hub_products_VRACK_SERVICES": "vRack Services",
+  "manager_hub_products_KEY_MANAGEMENT_SERVICE": "Key Management Service"
 }
