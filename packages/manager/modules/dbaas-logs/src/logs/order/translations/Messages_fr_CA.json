@@ -1,3 +1,4 @@
 {
-  "dbaas_logs_order": "Créer un compte"
+  "dbaas_logs_order": "Créer un compte",
+  "dbaas_logs_note_availability_us": "Remarque : Logs Data Platform n'est actuellement pas disponible dans les régions des États-Unis. Les régions disponibles sont listées ci-dessous."
 }
