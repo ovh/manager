@@ -11,8 +11,8 @@ import { EditDetailModal } from '@/components/modal/EditDetailModal';
 export default function EditVdcDescription() {
   const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
-  const { addSuccess } = useNotifications();
   const closeModal = () => navigate('..');
+  const { addSuccess } = useNotifications();
   const { id, vdcId } = useParams();
   const { data: vcdDatacentre } = useManagedVcdDatacentre(id, vdcId);
   const { updateDetails, error, isError } = useUpdateVdcDetails({
