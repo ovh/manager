@@ -5,6 +5,7 @@ import {
   BaseLayout,
   ErrorBanner,
   Notifications,
+  Clipboard,
 } from '@ovh-ux/manager-react-components';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -24,7 +25,6 @@ import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import { useOkmsServiceKeyById } from '@/data/hooks/useOkmsServiceKeys';
 import Loading from '@/components/Loading/Loading';
-import { Clipboard } from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/InformationsTile';
 import { TileItem } from '@/components/dashboard/tile-item/tileItem.component';
 import { Tile } from '@/components/dashboard/tile/tile.component';
 import { TileValue } from '@/components/dashboard/tile-value/tileValue.component';
@@ -151,7 +151,6 @@ export default function Key() {
                 'key_management_service_service-keys_dashboard_field_id',
               )}
             >
-              {/* TODO: use manager-component clipboard */}
               <Clipboard value={kmsKey.id} />
             </TileItem>
             <TileSeparator />
