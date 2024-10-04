@@ -30,5 +30,7 @@
   "iam_create_policy_success_create": "A política {{ name }} foi criada com êxito",
   "iam_create_policy_success_edit": "A política {{ name }} foi alterada com êxito",
   "iam_create_policy_form_description_error_pattern": "O nome da política só pode conter caracteres alfanuméricos, espaços e \"-\", \"/\", \"_\", \"+\"",
-  "iam_create_policy_form_description_heading": "Descrição da política"
+  "iam_create_policy_form_description_heading": "Descrição da política",
+  "iam_create_policy_form_resource_groups_description": "Adicione grupos de recursos",
+  "iam_create_policy_form_resources_action": "Defina um tipo de produto para selecionar recursos"
 }
