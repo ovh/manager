@@ -1,3 +1,4 @@
 {
-  "dbaas_logs_order": "Załóż konto"
+  "dbaas_logs_order": "Załóż konto",
+  "dbaas_logs_note_availability_us": "Uwaga: Usługa Logs Data Platform nie jest aktualnie dostępna w regionach w USA. Dostępne regiony są wymienione poniżej."
 }
