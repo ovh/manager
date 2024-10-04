@@ -50,6 +50,7 @@ export type TPoolFormProps = {
   availableSessionTypes: string[];
   onSubmit: (data: TPoolFormData) => void;
   onCancel: () => void;
+  isEditMode?: boolean;
 };
 
 type TState = {
@@ -91,10 +92,21 @@ export const PoolFormComponent = ({
   availableSessionTypes,
   onSubmit,
   onCancel,
+  isEditMode = false,
 }: Readonly<TPoolFormProps>): JSX.Element => {
   const { t } = useTranslation('pools-form');
   const { t: tCommon } = useTranslation('pci-common');
   const { t: tPools } = useTranslation('pools');
+
+  const sessionTypes = !protocol
+    ? availableSessionTypes
+    : availableSessionTypes.filter(
+        (sType) =>
+          protocol ||
+          PROTOCOL_SESSION_PERSISTENCE_TYPE_COMBINATION[protocol].includes(
+            sType,
+          ),
+      );
 
   const [state, setState] = useState<TState>({
     name: { value: name, isTouched: false },
@@ -110,7 +122,9 @@ export const PoolFormComponent = ({
     permanentSession: {
       isEnabled: permanentSession.isEnabled,
       type: {
-        value: permanentSession.type || DEFAULT_SESSION_PERSISTENCE_TYPE,
+        value: sessionTypes.includes(permanentSession.type)
+          ? permanentSession.type
+          : DEFAULT_SESSION_PERSISTENCE_TYPE,
         isTouched: false,
       },
       cookieName: {
@@ -120,15 +134,7 @@ export const PoolFormComponent = ({
     },
     algorithms: availableAlgorithms,
     protocols: availableProtocols,
-    sessionTypes: !protocol
-      ? availableSessionTypes
-      : availableSessionTypes.filter(
-          (sType) =>
-            protocol ||
-            PROTOCOL_SESSION_PERSISTENCE_TYPE_COMBINATION[protocol].includes(
-              sType,
-            ),
-        ),
+    sessionTypes,
   });
 
   //
@@ -325,6 +331,7 @@ export const PoolFormComponent = ({
               },
             }));
           }}
+          {...(!isEditMode ? {} : { disabled: true })}
           inline
         >
           <OsdsText
@@ -503,7 +510,11 @@ export const PoolFormComponent = ({
             })
           }
         >
-          {t('octavia_load_balancer_pools_create_submit')}
+          {t(
+            `octavia_load_balancer_pools_create_submit${
+              isEditMode ? '_edition' : ''
+            }`,
+          )}
         </OsdsButton>
       </div>
     </>
