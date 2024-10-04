@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   ActionMenu,
-  DataGridClipboardCell,
+  Clipboard,
   DataGridTextCell,
   Links,
 } from '@ovh-ux/manager-react-components';
@@ -26,7 +26,7 @@ import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
 import { OkmsServiceState } from '../layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
 
 export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
-  return <DataGridClipboardCell text={props.id} />;
+  return <Clipboard value={props.id} />;
 };
 
 export const DatagridCellName = (props: OKMS) => {
@@ -97,7 +97,7 @@ export const DatagridServiceKeyCellName = (props: OkmsAllServiceKeys) => {
 };
 
 export const DatagridServiceKeyCellId = (props: OkmsAllServiceKeys) => {
-  return <DataGridClipboardCell text={props.id} />;
+  return <Clipboard value={props.id} />;
 };
 
 export const DatagridCellType = (props: OkmsAllServiceKeys) => {
