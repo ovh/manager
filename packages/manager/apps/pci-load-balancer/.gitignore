@@ -1,5 +1,4 @@
 # Logs
-src/pages/detail/log
 *.log
 npm-debug.log*
 yarn-debug.log*
