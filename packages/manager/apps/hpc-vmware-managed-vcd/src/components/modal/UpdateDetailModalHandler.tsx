@@ -26,8 +26,8 @@ export const UpdateDetailModalHandler = ({
 }) => {
   const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
-  const { addSuccess } = useNotifications();
   const closeModal = () => navigate('..');
+  const { addSuccess } = useNotifications();
   const { id } = useParams();
   const { data: vcdOrganization } = useManagedVcdOrganization({ id });
   const { updateDetails, error, isError } = useUpdateVcdOrganizationDetails({

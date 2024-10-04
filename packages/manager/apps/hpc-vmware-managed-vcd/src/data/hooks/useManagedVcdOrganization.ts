@@ -17,7 +17,7 @@ interface IUseManagedVcdOrganization
   id: string;
 }
 
-const getVcdOrganizationQueryKey = (id: string) => [
+export const getVcdOrganizationQueryKey = (id: string) => [
   `get${VCD_ORGANIZATION_ROUTE}/${id}`,
 ];
 
