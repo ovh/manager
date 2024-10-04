@@ -1,4 +1,6 @@
+import React from 'react';
 import { renderHook, waitFor } from '@testing-library/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { describe, it, vi } from 'vitest';
 import * as ApiDbaasLogsModule from '@/api/data/dbaas-logs';
 import {
@@ -16,8 +18,12 @@ import {
   useStreams,
   useStreamURL,
   useSubscriptions,
-} from '@/api/hooks/useDbaasLogs';
-import { wrapper } from '@/wrapperRenders';
+} from './useDbaasLogs';
+
+const queryClient = new QueryClient();
+const wrapper = ({ children }) => (
+  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+);
 
 describe('useLogs', () => {
   it('fetches logs successfully', async () => {
