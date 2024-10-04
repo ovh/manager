@@ -189,18 +189,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   return (
     <div>
       <Title>{t('createRancherTitle')}</Title>
-
       <PciDiscoveryBanner project={project} />
-
-      <OsdsMessage
-        color={ODS_THEME_COLOR_INTENT.info}
-        type={ODS_MESSAGE_TYPE.info}
-        className="my-6 max-w-5xl"
-      >
-        <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-          <Trans> {t('createRancherInfoMessage')}</Trans> <br />
-        </OsdsText>
-      </OsdsMessage>
       {hasRancherCreationError && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.error}
@@ -257,7 +246,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         <div className="my-3">
           <Subtitle>{t('createRancherServiceLevel')}</Subtitle>
         </div>
-        <div className="max-w-3xl">
+        <div className="max-w">
           <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
             <Trans>{t('createRancherServiceLevelDescription')}</Trans>
           </OsdsText>
@@ -317,9 +306,9 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         </Block>
 
         <Block>
-          <div className="max-w-3xl">
+          <div className="max-w">
             <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-              {t('createRancherVersionDescription')}
+              <Trans>{t('createRancherVersionDescription')}</Trans>
             </OsdsText>
           </div>
         </Block>

@@ -3,6 +3,7 @@ import React from 'react';
 import { OsdsTile, OsdsText } from '@ovhcloud/ods-components/react';
 import clsx from 'clsx';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useTranslation } from 'react-i18next';
 import { RancherPlan } from '@/types/api.type';
 
 export interface RancherPlanTileProps {
@@ -26,6 +27,7 @@ const RancherPlanTile: React.FC<RancherPlanTileProps> = ({
   formattedMonthlyPrice,
   isPricing,
 }) => {
+  const { t } = useTranslation(['dashboard']);
   return (
     <li key={plan.name}>
       <OsdsTile
@@ -70,6 +72,9 @@ const RancherPlanTile: React.FC<RancherPlanTileProps> = ({
               </OsdsText>
               <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="block">
                 ~ {formattedMonthlyPrice}
+              </OsdsText>
+              <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                {t('createRancherOfferDescription')}
               </OsdsText>
               <div></div>
             </div>
