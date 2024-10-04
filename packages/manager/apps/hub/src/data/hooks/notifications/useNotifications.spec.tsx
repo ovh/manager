@@ -26,7 +26,7 @@ describe('useFetchHubNotifications', () => {
     };
     const getNotifications = vi
       .spyOn(Api, 'get')
-      .mockReturnValue(new Promise((resolve) => resolve(notifications)));
+      .mockReturnValue(Promise.resolve(notifications));
 
     const { result } = renderHook(() => useFetchHubNotifications(), {
       wrapper,

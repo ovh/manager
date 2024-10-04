@@ -257,6 +257,27 @@ vi.mock('@/data/hooks/kyc/useKyc', () => ({
   }),
 }));
 
+vi.mock('@/data/hooks/notifications/useNotifications', () => ({
+  useFetchHubNotifications: (): {
+    data: Notification[];
+    isPending: boolean;
+  } => ({
+    data: [
+      {
+        data: {},
+        date: '2022-02-08',
+        description:
+          'Fraudulent emails circulate and direct to scam websites claiming to be OVHcloud. <a href="https://docs.ovh.com/us/en/customer/scams-fraud-phishing" target="_blank">Find out more</a>',
+        level: 'error' as NotificationType,
+        id: 'GLOBAL_COMMUNICATION_PHISHING',
+        status: 'acknowledged',
+        subject: 'General information',
+      },
+    ],
+    isPending: false,
+  }),
+}));
+
 const useBillingServicesMockValue: any = {
   data: null,
   isLoading: true,
@@ -952,26 +973,6 @@ describe('Layout.page', () => {
 
   describe('NotificationsCarousel component', () => {
     it('should render a single notification without "navigation"', async () => {
-      vi.mock('@/data/hooks/notifications/useNotifications', () => ({
-        useFetchHubNotifications: (): {
-          data: Notification[];
-          isPending: boolean;
-        } => ({
-          data: [
-            {
-              data: {},
-              date: '2022-02-08',
-              description:
-                'Fraudulent emails circulate and direct to scam websites claiming to be OVHcloud. <a href="https://docs.ovh.com/us/en/customer/scams-fraud-phishing" target="_blank">Find out more</a>',
-              level: 'error' as NotificationType,
-              id: 'GLOBAL_COMMUNICATION_PHISHING',
-              status: 'acknowledged',
-              subject: 'General information',
-            },
-          ],
-          isPending: false,
-        }),
-      }));
       const { getByTestId, queryByTestId } = renderComponent(
         <NotificationsCarousel />,
       );

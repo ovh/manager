@@ -64,13 +64,14 @@ const getTextColor = (type: NotificationType) => {
 };
 
 export default function NotificationsCarousel() {
-  const { t } = useTranslation();
   const { trackClick } = useOvhTracking();
   const { data: notifications } = useFetchHubNotifications();
-  const [currentIndex, setIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const showNextNotification = () => {
-    setIndex((previousIndex) => (previousIndex + 1) % notifications.length);
+    setCurrentIndex(
+      (previousIndex) => (previousIndex + 1) % notifications.length,
+    );
     trackClick({
       actionType: 'action',
       actions: ['hub', 'dashboard', 'alert', 'action'],
@@ -115,6 +116,7 @@ export default function NotificationsCarousel() {
               >
                 {notifications.map((val: Notification, index: number) => (
                   <OsdsIcon
+                    key={`notification_selector_${index}`}
                     className={`inline-block cursor-pointer ${
                       index > 0 ? 'ml-2' : ''
                     }`}
@@ -122,7 +124,7 @@ export default function NotificationsCarousel() {
                     size={ODS_ICON_SIZE.xxs}
                     color={getTextColor(notifications[currentIndex].level)}
                     contrasted={currentIndex === index || undefined}
-                    onClick={() => setIndex((previousIndex) => index)}
+                    onClick={() => setCurrentIndex((previousIndex) => index)}
                   />
                 ))}
               </div>
