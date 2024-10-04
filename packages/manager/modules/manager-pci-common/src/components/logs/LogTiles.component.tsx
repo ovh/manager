@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
@@ -21,25 +21,25 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { Translation, useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { useKubeLogs } from '@/api/hooks/useLogs';
+import { LogTileUnsubscribeAction } from './LogTileUnsubscribeAction.component';
+import { LogContext } from './LogProvider.component';
 import { LogHowTo } from './LogHowTo.component';
-import { LogTileUnsubscribeAction } from './LogTileUnsubscribeAction';
-import { LOG_TRACKING_HITS } from '../constants';
+import { useLogsDetails } from '../../api/hook/useLogs';
+
+import '../../translations/logs';
 
 export interface LogTilesProps {
-  projectId: string;
-  kubeId: string;
+  onGotoStreams: () => void;
 }
 
-export function LogTiles({ projectId, kubeId }: Readonly<LogTilesProps>) {
-  const { t } = useTranslation('logs');
+export function LogTiles({ onGotoStreams }: Readonly<LogTilesProps>) {
+  const { t } = useTranslation('pci-logs');
   const { tracking } = useContext(ShellContext).shell;
-  const navigate = useNavigate();
+  const { logsApiURL, logsKind, logsTracking } = useContext(LogContext);
   const { addError, addSuccess, clearNotifications } = useNotifications();
-  const { data: logs, isPending: isLogsPending } = useKubeLogs(
-    projectId,
-    kubeId,
+  const { data: logs, isPending: isLogsPending } = useLogsDetails(
+    logsApiURL,
+    logsKind,
   );
 
   if (isLogsPending) {
@@ -48,7 +48,7 @@ export function LogTiles({ projectId, kubeId }: Readonly<LogTilesProps>) {
 
   return (
     <>
-      {logs?.length === 0 && <LogHowTo />}
+      {logs?.length === 0 && <LogHowTo onGotoStreams={onGotoStreams} />}
       {logs?.length > 0 && (
         <>
           <OsdsText
@@ -65,7 +65,7 @@ export function LogTiles({ projectId, kubeId }: Readonly<LogTilesProps>) {
             variant={ODS_BUTTON_VARIANT.stroked}
             onClick={() => {
               clearNotifications();
-              navigate('./streams');
+              onGotoStreams();
             }}
           >
             <span slot="start">
@@ -133,11 +133,13 @@ export function LogTiles({ projectId, kubeId }: Readonly<LogTilesProps>) {
               size={ODS_BUTTON_SIZE.sm}
               variant={ODS_BUTTON_VARIANT.stroked}
               href={streamURL?.address}
-              onClick={() =>
-                tracking.trackClick({
-                  name: LOG_TRACKING_HITS.GRAYLOG_WATCH,
-                })
-              }
+              onClick={() => {
+                if (logsTracking?.graylogWatch) {
+                  tracking.trackClick({
+                    name: logsTracking?.graylogWatch,
+                  });
+                }
+              }}
               target={OdsHTMLAnchorElementTarget._blank}
               disabled={streamURL?.address ? undefined : true}
             >
@@ -154,12 +156,10 @@ export function LogTiles({ projectId, kubeId }: Readonly<LogTilesProps>) {
               </span>
             </OsdsButton>
             <LogTileUnsubscribeAction
-              projectId={projectId}
-              kubeId={kubeId}
               subscriptionId={log.subscriptionId}
               onSuccess={() =>
                 addSuccess(
-                  <Translation ns="logs">
+                  <Translation ns="pci-logs">
                     {(_t) => _t('logs_list_unsubscription_success')}
                   </Translation>,
                   true,
@@ -167,7 +167,7 @@ export function LogTiles({ projectId, kubeId }: Readonly<LogTilesProps>) {
               }
               onError={(err) =>
                 addError(
-                  <Translation ns="logs">
+                  <Translation ns="pci-logs">
                     {(_t) =>
                       _t('error_message', {
                         message:

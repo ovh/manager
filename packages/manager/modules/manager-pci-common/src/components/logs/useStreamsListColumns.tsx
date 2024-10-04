@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
@@ -6,12 +6,22 @@ import { useTranslation } from 'react-i18next';
 import { OsdsChip, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { TDbaasLog, TDbaasStream } from '@/api/data/dbaas-logs';
+import { TDbaasLog, TDbaasStream } from '../../api/data/dbaas-logs';
 import { StreamRetention } from './StreamRetention.component';
 import { StreamSubscriptions } from './StreamSubscriptions.component';
 
-export const useStreamsListColumns = (account: TDbaasLog) => {
-  const { t } = useTranslation('logs');
+import '../../translations/logs';
+
+export interface UseStreamsListColumnsProps {
+  account: TDbaasLog;
+  serviceName: string;
+}
+
+export const useStreamsListColumns = ({
+  account,
+  serviceName,
+}: Readonly<UseStreamsListColumnsProps>) => {
+  const { t } = useTranslation('pci-logs');
   const { navigation } = useContext(ShellContext).shell;
   const [accountURL, setAccountURL] = useState('');
 
@@ -92,7 +102,8 @@ export const useStreamsListColumns = (account: TDbaasLog) => {
       cell: (stream: TDbaasStream) => (
         <DataGridTextCell>
           <StreamSubscriptions
-            serviceName={account.serviceName}
+            account={account.serviceName}
+            serviceName={serviceName}
             streamId={stream.streamId}
             subscriptionCount={stream.nbSubscription}
           />
