@@ -123,5 +123,6 @@
   "pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description2": "Wählen Sie eine kompatible Region aus, um ein privates Netzwerk über mehrere Regionen hinweg einzurichten.",
   "pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description3": "Ort ändern",
   "pci_projects_project_instances_add_attch_floating_ip_checkbox_label_tooltip": "Diese Option ist nicht verfügbar, wenn mehrere Instanzen konfiguriert werden. Gehen Sie zu „Public IPs“, um Ihren Instanzen eine Floating-IP zuzuweisen.",
-  "pci_project_instances_instance_add_region_savings_plan_info": "Die Local Zones kommen für Savings Plans nicht infrage."
+  "pci_project_instances_instance_add_region_savings_plan_info": "Die Local Zones kommen für Savings Plans nicht infrage.",
+  "pci_projects_project_instances_add_billing_savings_plan_banner": "Profitieren Sie von günstigen monatlichen Preisen mit den Savings Plans und behalten Sie die Flexibilität der Instanzen auf Stundenbasis bei."
 }

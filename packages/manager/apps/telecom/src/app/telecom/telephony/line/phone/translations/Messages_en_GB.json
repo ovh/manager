@@ -15,5 +15,6 @@
   "telephony_group_line_phone_section_back_link_target": "Telephone management",
   "telephony_line_phone_actions_line_phone_order_attach": "Attach line to current device",
   "telephony_line_phone_actions_line_phone_order_detach": "Detach a telephone line",
-  "telephony_line_phone_actions_line_details_softphone_breadcrumb": "Softphone"
+  "telephony_line_phone_actions_line_details_softphone_breadcrumb": "Softphone",
+  "telephony_line_phone_actions_line_order_accessories": "Order accessories"
 }

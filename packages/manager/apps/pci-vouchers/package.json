@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-vouchers-app",
-  "version": "0.8.5",
+  "version": "0.8.7",
   "private": true,
   "type": "module",
   "scripts": {
@@ -17,12 +17,12 @@
     "@ovh-ux/manager-config": "^7.4.0",
     "@ovh-ux/manager-core-api": "^0.8.0",
     "@ovh-ux/manager-core-utils": "^0.3.0",
-    "@ovh-ux/manager-pci-common": "^0.5.0",
-    "@ovh-ux/manager-react-components": "^1.33.0",
-    "@ovh-ux/manager-react-core-application": "^0.10.1",
-    "@ovh-ux/manager-react-shell-client": "^0.7.1",
+    "@ovh-ux/manager-pci-common": "^0.6.1",
+    "@ovh-ux/manager-react-components": "^1.35.0",
+    "@ovh-ux/manager-react-core-application": "^0.10.2",
+    "@ovh-ux/manager-react-shell-client": "^0.7.2",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
-    "@ovh-ux/shell": "^3.7.1",
+    "@ovh-ux/shell": "^3.8.0",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
     "@ovhcloud/ods-components": "17.2.2",
@@ -53,16 +53,20 @@
     "@types/react-dom": "^18.2.18",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.2.0",
-    "autoprefixer": "^10.4.16",
+    "autoprefixer": "^10.4.17",
     "eslint": "^8.56.0",
-    "postcss": "^8.4.32",
-    "rollup": "^4.4.0",
-    "tailwindcss": "^3.4.4",
+    "postcss": "^8.4.35",
+    "rollup": "^4.9.6",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.3.3",
     "vite": "^5.2.13",
-    "vitest": "^1.2.0"
+    "vitest": "^1.6.0"
   },
   "regions": [
     "CA",
     "EU"
+  ],
+  "universes": [
+    "@ovh-ux/manager-public-cloud"
   ]
 }

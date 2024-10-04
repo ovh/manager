@@ -11,7 +11,13 @@ export default defineConfig({
     setupFiles: './setupTests.ts',
     coverage: {
       include: ['src'],
-      exclude: ['src/**/*.type.ts', 'src/**/translations/index.ts'],
+      exclude: [
+        'src/**/*.type.ts',
+        'src/**/translations/index.ts',
+        'src/**/index.ts',
+        'src/constants/*',
+        'src/**/*constants.ts',
+      ],
     },
   },
   resolve: {

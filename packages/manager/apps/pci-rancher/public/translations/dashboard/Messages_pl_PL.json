@@ -32,9 +32,9 @@
   "createRancherDescription": "W ramach tej usługi będziesz mógł zarządzać kilkoma „downstream clusters”.",
   "createRancherPlaceholder": "moj_rancher",
   "createRancherServiceLevel": "Wybór usługi",
-  "createRancherServiceLevelDescription": "Obydwie oferty zapewniają wszystkie funkcjonalności Ranchera. Oferta OVHcloud Edition umożliwia jedynie tworzenie <br> „downstream clusters” w chmurze publicznej OVHcloud składających się z samodzielnie zarządzanych węzłów, dodawanych jeden po drugim. Usługa Standard jest idealna do zastosowań typu prywatna chmura, multicloud lub Edge. W każdej chwili możesz zmienić usługę na Standard. <strong>Węzły typu control-plane nie są fakturowane.</strong>",
+  "createRancherServiceLevelDescription": "Obydwie oferty zapewniają wszystkie funkcjonalności Ranchera. Usługa OVHcloud Edition umożliwia jedynie tworzenie „downstream clusters” w chmurze publicznej OVHcloud, przy czym „samozarządzające się” węzły są dodawane pojedynczo.<br> Usługa Standard jest idealna do zastosowań typu prywatna chmura, multicloud lub Edge. W każdej chwili możesz zmienić usługę na Standard.<br> Twoje zużycie będzie rozliczane w modelu godzinowym, w zależności od całkowitej liczby vCPU dla każdego z węzłów roboczych \"downstream clusters\" Rancher. <strong>Węzły typu control-plane nie są fakturowane.</strong>",
   "createRancherVersion": "Wersja Ranchera",
-  "createRancherVersionDescription": "Usługa oparta jest na SUSE Rancher. OVHcloud wspiera najnowsze wersje Ranchera. Zalecamy użycie najnowszej wersji. Regularnie wdrażamy łatki bezpieczeństwa i dostarczamy nowe wersje, zgodnie z naszą polityką cyklu życia oprogramowania.",
+  "createRancherVersionDescription": "Usługa oparta jest na SUSE Rancher. OVHcloud wspiera najnowsze wersje Ranchera. Zalecamy użycie najnowszej wersji.<br> Regularnie wdrażamy łatki bezpieczeństwa i dostarczamy nowe wersje, zgodnie z naszą polityką cyklu życia oprogramowania.",
   "createRancherCTA": "Utwórz usługę Managed Rancher",
   "createRancherError": "Wystąpił błąd podczas tworzenia Managed Rancher Service. {{rancherCreationErrorMessage}}.",
   "createRancherRecomendedVersion": "Zalecana wersja",
@@ -52,5 +52,6 @@
   "upgradePlanDescription": "Twórz lub rejestruj „downstream clusters” w dowolnej chmurze publicznej wspieranej przez Rancher lub w zautomatyzowanej chmurze prywatnej (np. VMware vSphere), w tym scenariusze obsługiwane w usłudze OVHcloud Edition.",
   "upgradePlanButton": "Zmień ofertę na wyższą",
   "savingsPlanMessage": "Dzięki Savings Plan zyskujesz korzystne opłaty miesięczne, a jednocześnie zachowujesz możliwość płatności za instancje w trybie za godzinę.",
-  "savingsPlanCTA": "Skonfiguruj Savings Plans"
+  "savingsPlanCTA": "Skonfiguruj Savings Plans",
+  "createRancherOfferDescription": "Przy minimum 20 vCPU na Rancher"
 }

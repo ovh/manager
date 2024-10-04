@@ -80,6 +80,7 @@
   "pci_projects_project_instances_add_automated_backup_infos": "Cette fonctionnalité vous permet de sauvegarder votre instance de manière automatique selon l'ordonnancement de votre choix.",
 
   "pci_projects_project_instances_add_billing_title": "Sélectionnez une période de facturation",
+  "pci_projects_project_instances_add_billing_coming_soon_message_title": "Prix mensuels",
   "pci_projects_project_instances_add_billing_coming_soon_message_description": "Les tarifications mensuelles seront prochainement disponibles avec l'arrivée des Saving Plans.",
   "pci_projects_project_instances_add_billing_montly_discount_message": "Réduisez le montant de votre facture en passant votre instance au forfait mensuel.",
   "pci_projects_project_instances_add_billing_montly_discount_message_link": "Voir les prix",

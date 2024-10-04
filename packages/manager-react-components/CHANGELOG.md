@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.34.0...@ovh-ux/manager-react-components@1.35.0) (2024-10-03)
+
+### Features
+
+- **manager-react-components:** publish manager react components ([db7b216](https://github.com/ovh/manager/commit/db7b216e8ab66b67b3d459bc7775f432d9bab83a))
+
+# [1.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.33.0...@ovh-ux/manager-react-components@1.34.0) (2024-10-03)
+
+### Bug Fixes
+
+- **pci-private-registry:** minor code review changes ([622ead4](https://github.com/ovh/manager/commit/622ead4857e1cc2a9c81e5ecfc0654e0ae55c6e1))
+
+### Features
+
+- **pci-common:** className support in banners ([02ff4c7](https://github.com/ovh/manager/commit/02ff4c79b2c3679042280b65614aad02f6ac0fee))
+- **pci-private-registry:** correct build & tests ([e111506](https://github.com/ovh/manager/commit/e1115061287bce49836122b3d3d5d1035f559551))
+- **pci-private-registry:** create registry ([5cb2043](https://github.com/ovh/manager/commit/5cb20432c9279a8874125ab7a3d1d378a318cf45))
+
 # [1.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.32.2...@ovh-ux/manager-react-components@1.33.0) (2024-10-02)
 
 ### Features

@@ -1,16 +1,12 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "private": true,
-  "version": "1.33.0",
+  "version": "1.35.0",
   "main": "src/lib.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager-react-components"
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "echo build",
     "build:storybook": "storybook build",
@@ -30,7 +26,7 @@
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@ovh-ux/manager-core-api": "^0.8.0",
-    "@ovh-ux/manager-react-shell-client": "^0.7.1",
+    "@ovh-ux/manager-react-shell-client": "^0.7.2",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
     "@ovhcloud/ods-components": "17.2.2",

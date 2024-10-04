@@ -45,7 +45,7 @@ export const useCatalogPrice = (
     };
     return me
       ? new Intl.NumberFormat(
-          i18n.language.replace('_', '-'),
+          i18n.language?.replace('_', '-'),
           numberFormatOptions as Parameters<typeof Intl.NumberFormat>[1],
         ).format(priceToFormat)
       : '';

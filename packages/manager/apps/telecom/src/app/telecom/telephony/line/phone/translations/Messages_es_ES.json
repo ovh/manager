@@ -14,5 +14,6 @@
   "telephony_group_line_phone_section_back_link": "Volver a la gestión del teléfono",
   "telephony_line_phone_actions_line_phone_order_attach": "Asociar la línea a un dispositivo actual",
   "telephony_line_phone_actions_line_phone_order_detach": "Desvincular la línea de un teléfono",
-  "telephony_line_phone_actions_line_details_softphone_breadcrumb": "Softphone"
+  "telephony_line_phone_actions_line_details_softphone_breadcrumb": "Softphone",
+  "telephony_line_phone_actions_line_order_accessories": "Contratar accesorios"
 }
