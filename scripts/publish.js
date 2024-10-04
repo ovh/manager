@@ -35,7 +35,7 @@ execa('lerna', ['ls', '-pl', '--json', '--toposort'])
                     'exec',
                     '--scope',
                     pkg.name,
-                    '--include-dependencies',
+                    pkg.ignoreDependencies ? '' : '--include-dependencies',
                     '--',
                     'npm',
                     'run',

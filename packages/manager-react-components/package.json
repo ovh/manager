@@ -7,6 +7,7 @@
     "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager-react-components"
   },
+  "ignoreDependencies": true,
   "scripts": {
     "build": "echo build",
     "build:storybook": "storybook build",
