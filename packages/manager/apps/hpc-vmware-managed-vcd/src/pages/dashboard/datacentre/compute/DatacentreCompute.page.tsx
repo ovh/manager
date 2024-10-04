@@ -86,7 +86,7 @@ export default function ComputeListingPage() {
   return (
     <DatagridContainer
       title={VHOSTS_TITLE}
-      containerId={`compute-${id}-${vdcId}`}
+      queryKey={[`compute-${id}-${vdcId}`]}
       columns={columns}
       route={{
         api: getVcdDatacentreComputeRoute(id, vdcId),

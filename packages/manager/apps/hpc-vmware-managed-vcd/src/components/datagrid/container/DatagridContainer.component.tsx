@@ -11,19 +11,24 @@ import { useNavigate } from 'react-router-dom';
 import Loading from '@/components/loading/Loading.component';
 import TDatagridRoute from '@/types/datagrid-route.type';
 import { icebergListingQueryKey } from './DatagridContainer.constants';
+import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
+import {
+  hasResourceUpdatingTargetSpec,
+  UpdatableResource,
+} from '@/utils/getRefetchConditions';
 
 export type TDatagridContainerProps = {
   route: TDatagridRoute;
   title: string;
   isEmbedded?: boolean;
-  containerId: string;
+  queryKey: string[];
   columns: any[];
   orderButton?: React.JSX.Element;
 };
 
 export default function DatagridContainer({
   title,
-  containerId,
+  queryKey,
   isEmbedded = false,
   route: { api, onboarding },
   columns,
@@ -31,6 +36,7 @@ export default function DatagridContainer({
 }: Readonly<TDatagridContainerProps>) {
   const [flattenData, setFlattenData] = useState<Record<string, unknown>[]>([]);
   const navigate = useNavigate();
+  const listingQueryKey = [...queryKey, icebergListingQueryKey];
 
   const {
     data,
@@ -44,7 +50,15 @@ export default function DatagridContainer({
     setSorting,
   } = useResourcesIcebergV2({
     route: api,
-    queryKey: [icebergListingQueryKey, containerId],
+    queryKey: listingQueryKey,
+  });
+
+  useAutoRefetch({
+    queryKeys: listingQueryKey,
+    condition: hasResourceUpdatingTargetSpec(
+      (flattenData as unknown) as UpdatableResource[],
+    ),
+    interval: 4000,
   });
 
   useEffect(() => {

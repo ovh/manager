@@ -95,7 +95,7 @@ export default function StorageListingPage() {
   return (
     <DatagridContainer
       title={STORAGE_TITLE}
-      containerId={`storage-${id}-${vdcId}`}
+      queryKey={[`storage-${id}-${vdcId}`]}
       columns={columns}
       route={{
         api: getVcdDatacentreStorageRoute(id, vdcId),

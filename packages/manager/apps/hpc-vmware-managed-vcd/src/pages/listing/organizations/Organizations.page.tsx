@@ -81,7 +81,7 @@ export default function Listing() {
 
   const datagridProps: TDatagridContainerProps = {
     title: t('managed_vcd_listing_title'),
-    containerId: organizationListingContainerId,
+    queryKey: [organizationListingContainerId],
     route: {
       api: VCD_ORGANIZATION_ROUTE,
       onboarding: urls.onboarding,

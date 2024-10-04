@@ -33,7 +33,7 @@ export const useUpdateVcdOrganizationDetails = ({
         queryKey: getVcdOrganizationQueryKey(id),
       });
       queryClient.invalidateQueries({
-        queryKey: [icebergListingQueryKey, organizationListingContainerId],
+        queryKey: [organizationListingContainerId, icebergListingQueryKey],
         exact: true,
       });
       onSuccess?.();

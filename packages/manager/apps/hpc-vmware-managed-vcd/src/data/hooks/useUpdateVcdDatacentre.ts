@@ -5,9 +5,11 @@ import {
   updateVdcDetails,
 } from '../api/hpc-vmware-managed-vcd-datacentre';
 import { VCD_ORGANIZATION_ROUTE } from '../api/hpc-vmware-managed-vcd.constants';
-import { getVcdDatacentreQueryKey } from './useManagedVcdDatacentres';
+import {
+  getVcdDatacentreQueryKey,
+  getVcdDatacentresQueryKey,
+} from './useManagedVcdDatacentres';
 import { icebergListingQueryKey } from '@/components/datagrid/container/DatagridContainer.constants';
-import { getVdcListingContainerId } from '@/pages/listing/datacentres/datacentres.page';
 
 const updateVdcDetailsQueryKey = ({
   id,
@@ -38,7 +40,7 @@ export const useUpdateVdcDetails = ({
         queryKey: getVcdDatacentreQueryKey(id, vdcId),
       });
       queryClient.invalidateQueries({
-        queryKey: [icebergListingQueryKey, getVdcListingContainerId(id)],
+        queryKey: [...getVcdDatacentresQueryKey(id), icebergListingQueryKey],
         exact: true,
       });
       onSuccess?.();
