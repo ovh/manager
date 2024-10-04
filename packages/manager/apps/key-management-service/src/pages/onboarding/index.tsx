@@ -1,6 +1,11 @@
 import { OnboardingLayout } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
   ODS_TEXT_COLOR_INTENT,
@@ -16,6 +21,7 @@ export default function Onboarding() {
   const { t } = useTranslation('key-management-service/onboarding');
   const navigate = useNavigate();
   const guideLinks = useGuideUtils();
+  const { trackClick } = useOvhTracking();
   const descriptionsKeys = ['description', 'description_secondary'];
 
   return (
@@ -34,9 +40,15 @@ export default function Onboarding() {
         </OsdsText>
       ))}
       orderButtonLabel={t('orderButtonLabel')}
-      onOrderButtonClick={() =>
-        navigate(`/${ROUTES_URLS.createKeyManagementService}`)
-      }
+      onOrderButtonClick={() => {
+        trackClick({
+          location: PageLocation.page,
+          buttonType: ButtonType.button,
+          actionType: 'navigation',
+          actions: ['create_kms'],
+        });
+        navigate(`/${ROUTES_URLS.createKeyManagementService}`);
+      }}
       moreInfoButtonLabel={t('moreInfoButtonLabel')}
       moreInfoHref={guideLinks?.quickStart}
     ></OnboardingLayout>
