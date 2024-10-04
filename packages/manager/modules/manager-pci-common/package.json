@@ -42,8 +42,9 @@
     "vitest": "^1.6.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^7.3.2",
-    "@ovh-ux/manager-core-api": "^0.7.1",
+    "@ovh-ux/manager-config": "*",
+    "@ovh-ux/manager-core-api": "*",
+    "@ovh-ux/manager-core-utils": "*",
     "@ovh-ux/manager-react-components": "^1.26.0",
     "@ovh-ux/manager-react-shell-client": "^0.6.1",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",

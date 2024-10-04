@@ -13,7 +13,7 @@ import {
   getStreamsIds,
   getStreamURL,
   getSubscriptions,
-} from '@/api/data/dbaas-logs';
+} from './dbaas-logs';
 
 describe('dbaas-logs', () => {
   it('fetches logs successfully', async () => {

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import {
   OsdsButton,
   OsdsIcon,
@@ -12,9 +12,11 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { useKubeTailLogs } from '@/api/hooks/useLogs';
-import { KUBERNETES_LOG_KINDS_KEYS } from '../constants';
+import { useTailLogs } from '../../api/hook/useLogs';
 import { BlinkingCursor } from './BlinkingCursor.component';
+import { LogContext } from './LogProvider.component';
+
+import '../../translations/logs';
 
 const highlightSearch = (text: string, search: string) => {
   if (!search) return text;
@@ -29,31 +31,26 @@ const highlightSearch = (text: string, search: string) => {
   }
 };
 
-export interface KubeLogsProps {
-  projectId: string;
-  kubeId: string;
+export interface TailLogsProps {
   isFullscreen?: boolean;
   onToggleFullscreen: () => void;
 }
 
-export function KubeLogs({
-  projectId,
-  kubeId,
+export function TailLogs({
   isFullscreen,
   onToggleFullscreen,
-}: Readonly<KubeLogsProps>) {
-  const { t } = useTranslation('logs');
+}: Readonly<TailLogsProps>) {
+  const { t } = useTranslation('pci-logs');
   const logsElement = useRef(undefined);
   const logsContainer = useRef(undefined);
+  const { logsApiURL, logsKeys, logsKind } = useContext(LogContext);
   const [search, setSearch] = useState('');
 
-  const {
-    messages,
-    clearLogs,
-    isPolling,
-    setIsPolling,
-    isError,
-  } = useKubeTailLogs(projectId, kubeId);
+  const { messages, clearLogs, isPolling, setIsPolling, isError } = useTailLogs(
+    logsApiURL,
+    logsKind,
+    logsKeys,
+  );
 
   useEffect(() => {
     setIsPolling(true);
@@ -76,7 +73,7 @@ export function KubeLogs({
           message.level,
           search,
         )?.padStart(6, '')}</span> |`;
-        KUBERNETES_LOG_KINDS_KEYS.audit.forEach((key) => {
+        logsKeys.forEach((key) => {
           result += highlightSearch(` ${message[key]}`, search);
         });
         result += '<br />';
