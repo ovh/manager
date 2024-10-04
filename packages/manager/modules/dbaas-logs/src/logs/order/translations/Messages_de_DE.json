@@ -1,3 +1,4 @@
 {
-  "dbaas_logs_order": "Account erstellen"
+  "dbaas_logs_order": "Account erstellen",
+  "dbaas_logs_note_availability_us": "Hinweis: Logs Data Platform ist derzeit in den USA nicht verfügbar. Die verfügbaren Regionen sind unten aufgeführt."
 }
