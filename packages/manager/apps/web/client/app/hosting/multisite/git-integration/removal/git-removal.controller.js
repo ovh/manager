@@ -1,8 +1,16 @@
+import { TRACKING_MULTISITE_PREFIX } from '../git-integration.constants';
+
 export default class HostingMultisiteGitDeploymentController {
   /* @ngInject */
-  constructor($translate, HostingDomain, HostingMultisiteGitRemovalService) {
+  constructor(
+    $translate,
+    atInternet,
+    HostingDomain,
+    HostingMultisiteGitRemovalService,
+  ) {
     this.isConfirmationStep = false;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.HostingMultisiteGitRemovalService = HostingMultisiteGitRemovalService;
     this.HostingDomain = HostingDomain;
   }
@@ -22,6 +30,10 @@ export default class HostingMultisiteGitDeploymentController {
   }
 
   deleteGitAssociation(deleteFiles) {
+    this.atInternet.trackClick({
+      name: `${TRACKING_MULTISITE_PREFIX}::git-removal::confirm`,
+      type: 'action',
+    });
     this.isDeleting = true;
     this.HostingDomain.getWebsitesAssociated(this.serviceName, this.path)
       .then(([websiteId]) => {
