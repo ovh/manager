@@ -48,6 +48,9 @@
   "updateOfferModalDescription": "Está prestes a alterar a sua oferta atual para a oferta {{availableServicePlan}}. Ser-lhe-á faturado o valor de {{planPricing}} + IVA/hora por vCPU orquestrados. Esta operação terá efeito imediato e não terá qualquer impacto nos seus “downstream clusters” nem nos dados do seu Rancher gerido. Confirme se pretende continuar.",
   "updateOfferPending": "A alteração da oferta foi registada. Por favor, aguarde. Esta operação pode demorar alguns minutos.",
   "updateOfferError": "Ocorreu um erro: {{errorMessage}}",
+  "upgradePlanTitle": "Passe para a oferta Standard",
+  "upgradePlanDescription": "Crie ou registe «downstream clusters» com qualquer Public Cloud suportado pelo Rancher, ou num Private Cloud automatizável (por exemplo, VMware vSphere), incluindo cenários suportados pela oferta OVHcloud Edition.",
+  "upgradePlanButton": "Melhorar a minha oferta",
   "savingsPlanMessage": "Graças aos Savings Plans, beneficie de preços mensais vantajosos, enquanto conserva a flexibilidade das instâncias à hora.",
   "savingsPlanCTA": "Configure os seus Savings Plans"
 }

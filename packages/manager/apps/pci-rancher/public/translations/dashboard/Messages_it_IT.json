@@ -45,9 +45,12 @@
   "updateOfferModalCancelButton": "Annullare",
   "updateOfferModalValidateButton": "Confermare",
   "updateOfferModaleTitle": "Modificare soluzione",
-  "updateOfferModalDescription": "Stai per modificare il tuo servizio attuale alla soluzione {{availableServicePlan}}. La fatturazione sarà di {{planPricing}} +IVA/ora per vCPU orchestrata. Questa operazione avrà effetto immediato e non avrà alcun impatto sui tuoi \"downstream cluster\" e sui dati del tuo Rancher gestito. Conferma per continuare.",
+  "updateOfferModalDescription": "Stai per modificare la tua soluzione attuale con il servizio {{availableServicePlan}}. La fatturazione sarà di {{planPricing}} +IVA/ora per vCPU orchestrata. Questa operazione avrà effetto immediato e non avrà alcun impatto sui tuoi \"downstream clusters\" e sui dati del tuo Rancher gestito. Conferma per continuare.",
   "updateOfferPending": "La tua richiesta di cambio di offerta è stata presa in carico. Ti chiediamo di attendere, l'operazione potrebbe richiedere alcuni minuti.",
   "updateOfferError": "Si è verificato un errore: {{errorMessage}}",
+  "upgradePlanTitle": "Passa al piano Standard",
+  "upgradePlanDescription": "Crea o registra \"downstream clusters\" con qualsiasi Cloud pubblico supportato da Rancher o su un Cloud privato automatizzabile (per es. VMware vSphere), inclusi gli scenari compatibili con il piano OVHcloud Edition.",
+  "upgradePlanButton": "Migliorare la tua soluzione",
   "savingsPlanMessage": "Usufruisci di tariffe mensili vantaggiose grazie ai Savings Plan, conservando la flessibilità delle istanze all’ora.",
   "savingsPlanCTA": "Configura i tuoi Savings Plan"
 }
