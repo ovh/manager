@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation, Translation } from 'react-i18next';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -16,51 +16,54 @@ import {
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
-import { useContext, useEffect, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useSubscriptions } from '@/api/hooks/useDbaasLogs';
 import {
+  useSubscriptions,
   useCreateSubscription,
   useRemoveSubscription,
-} from '@/api/hooks/useKubernetes';
-import { LOG_LIST_TRACKING_HITS } from '../constants';
+} from '../../api/hook/useDbaasLogs';
+import { LogContext } from './LogProvider.component';
+
+import '../../translations/logs';
 
 export interface StreamSubscriptionsProps {
+  account: string;
   serviceName: string;
   streamId: string;
   subscriptionCount: number;
 }
 
 export function StreamSubscriptions({
+  account,
   serviceName,
   streamId,
   subscriptionCount,
 }: Readonly<StreamSubscriptionsProps>) {
-  const { t } = useTranslation('logs');
-  const { projectId, kubeId } = useParams();
+  const { t } = useTranslation('pci-logs');
   const { tracking } = useContext(ShellContext).shell;
-  const { data, isPending } = useSubscriptions(serviceName, streamId);
-  const subscriptions = data?.filter(({ kind }) => kind === 'audit');
+  const { logsApiURL, logsKind, logsTracking } = useContext(LogContext);
+  const { data, isPending } = useSubscriptions(account, streamId);
+  const subscriptions = data?.filter(({ kind }) => kind === logsKind);
   const { navigation } = useContext(ShellContext).shell;
   const [subscriptionsURL, setSubscriptionsURL] = useState('');
   const { addError, addSuccess } = useNotifications();
 
   const { create, isPending: isCreationPending } = useCreateSubscription({
-    projectId,
-    kubeId,
+    logsApiURL,
+    logsKind,
     streamId,
     onSuccess: () =>
       addSuccess(
-        <Translation ns="logs">
+        <Translation ns="pci-logs">
           {(_t) => _t('logs_list_subscription_success')}
         </Translation>,
         true,
       ),
     onError: (err: ApiError) =>
       addError(
-        <Translation ns="logs">
+        <Translation ns="pci-logs">
           {(_t) =>
             _t('error_message', {
               message: err?.response?.data?.message || err?.message || null,
@@ -72,18 +75,17 @@ export function StreamSubscriptions({
   });
 
   const { remove, isPending: isRemovePending } = useRemoveSubscription({
-    projectId,
-    kubeId,
+    logsApiURL,
     onSuccess: () =>
       addSuccess(
-        <Translation ns="logs">
+        <Translation ns="pci-logs">
           {(_t) => _t('logs_list_unsubscription_success')}
         </Translation>,
         true,
       ),
     onError: (err: ApiError) =>
       addError(
-        <Translation ns="logs">
+        <Translation ns="pci-logs">
           {(_t) =>
             _t('error_message', {
               message: err?.response?.data?.message || err?.message || null,
@@ -95,8 +97,7 @@ export function StreamSubscriptions({
   });
 
   const currentSubscription = subscriptions?.find(
-    ({ resource }) =>
-      resource.type === 'cloud-project-kube' && resource.name === kubeId,
+    ({ resource }) => resource.name === serviceName,
   );
 
   useEffect(() => {
@@ -117,11 +118,13 @@ export function StreamSubscriptions({
           className="mr-4"
           color={ODS_THEME_COLOR_INTENT.primary}
           href={subscriptionsURL}
-          onClick={() =>
-            tracking.trackClick({
-              name: LOG_LIST_TRACKING_HITS.LDP_DETAIL,
-            })
-          }
+          onClick={() => {
+            if (logsTracking?.ldpDetails) {
+              tracking.trackClick({
+                name: logsTracking?.ldpDetails,
+              });
+            }
+          }}
           target={OdsHTMLAnchorElementTarget._blank}
         >
           {subscriptionCount}
@@ -147,9 +150,11 @@ export function StreamSubscriptions({
           onClick={() => {
             if (!isRemovePending) {
               remove(currentSubscription.subscriptionId);
-              tracking.trackClick({
-                name: LOG_LIST_TRACKING_HITS.UNSUBSCRIBE,
-              });
+              if (logsTracking?.unsubscribe) {
+                tracking.trackClick({
+                  name: logsTracking?.unsubscribe,
+                });
+              }
             }
           }}
           disabled={isRemovePending ? true : undefined}
@@ -171,9 +176,11 @@ export function StreamSubscriptions({
           onClick={() => {
             if (!isCreationPending) {
               create();
-              tracking.trackClick({
-                name: LOG_LIST_TRACKING_HITS.SUBSCRIBE,
-              });
+              if (logsTracking?.subscribe) {
+                tracking.trackClick({
+                  name: logsTracking?.subscribe,
+                });
+              }
             }
           }}
           disabled={isCreationPending ? true : undefined}
