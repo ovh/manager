@@ -1,5 +1,4 @@
 import {
-  Description,
   LinkType,
   Links,
   Clipboard,
@@ -19,16 +18,16 @@ import { useNavigate } from 'react-router-dom';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import { subRoutes } from '@/routes/routes.constant';
+import { iamActions } from '@/utils/iam.constants';
 import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
+import DatacentresCount from './DatacentresCount.component';
 
 type TTileProps = {
   vcdOrganization: IVcdOrganization;
-  datacenterCount?: number;
 };
 
 export default function OrganizationGenerationInformationTile({
   vcdOrganization,
-  datacenterCount = 0,
 }: TTileProps) {
   const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
@@ -43,6 +42,10 @@ export default function OrganizationGenerationInformationTile({
           value: (
             <EditableTileItem
               label={vcdOrganization?.currentState?.fullName}
+              urn={vcdOrganization?.iam?.urn}
+              iamActions={[
+                iamActions.vmwareCloudDirectorApiovhOrganizationEdit,
+              ]}
               onClickEdit={() => navigate(subRoutes.editName)}
             />
           ),
@@ -53,6 +56,10 @@ export default function OrganizationGenerationInformationTile({
           value: (
             <EditableTileItem
               label={vcdOrganization?.currentState?.description}
+              urn={vcdOrganization?.iam.urn}
+              iamActions={[
+                iamActions.vmwareCloudDirectorApiovhOrganizationEdit,
+              ]}
               onClickEdit={() => navigate(subRoutes.editDescription)}
             />
           ),
@@ -78,7 +85,7 @@ export default function OrganizationGenerationInformationTile({
         {
           id: 'datacentresCount',
           label: t('managed_vcd_dashboard_datacentres_count'),
-          value: <Description>{datacenterCount.toString()}</Description>,
+          value: <DatacentresCount />,
         },
         {
           id: 'interface',

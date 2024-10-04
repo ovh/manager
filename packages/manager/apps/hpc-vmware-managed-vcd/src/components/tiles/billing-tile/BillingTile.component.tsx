@@ -2,12 +2,13 @@ import React from 'react';
 import {
   DashboardTile,
   Description,
-  Links,
+  useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import {
   OsdsChip,
   OsdsIcon,
   OsdsLink,
+  OsdsSkeleton,
   OsdsTooltip,
   OsdsTooltipContent,
 } from '@ovhcloud/ods-components/react';
@@ -18,20 +19,36 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
-import useManagedVcdService from '@/data/hooks/useManagedVcdService';
 import useCurrentUser from '@/hooks/user/useCurrentUser';
 
 type TBillingTileProps = {
   id: string;
 };
 
-export default function BillingTile({ id }: TBillingTileProps) {
-  const { t } = useTranslation('dashboard');
-
-  const { user, dateTimeFormat } = useCurrentUser();
-  const { data: billingService } = useManagedVcdService(id);
+function ServiceRenew({ id }: TBillingTileProps) {
+  const { data: billingService, isLoading } = useServiceDetails({
+    resourceName: id,
+  });
+  const { dateTimeFormat } = useCurrentUser();
 
   const nextBillingDate = billingService?.data?.billing?.nextBillingDate;
+
+  if (isLoading) {
+    return <OsdsSkeleton />;
+  }
+
+  return nextBillingDate ? (
+    <Description>
+      {dateTimeFormat?.format(new Date(nextBillingDate))}
+    </Description>
+  ) : (
+    <span>-</span>
+  );
+}
+
+export default function BillingTile({ id }: TBillingTileProps) {
+  const { t } = useTranslation('dashboard');
+  const { user } = useCurrentUser();
 
   return (
     <div className="h-fit">
@@ -46,13 +63,7 @@ export default function BillingTile({ id }: TBillingTileProps) {
           {
             id: 'serviceRenew',
             label: t('managed_vcd_dashboard_service_renew'),
-            value: nextBillingDate ? (
-              <Description>
-                {dateTimeFormat?.format(new Date(nextBillingDate))}
-              </Description>
-            ) : (
-              <span>-</span>
-            ),
+            value: <ServiceRenew id={id} />,
           },
           {
             id: 'cancellation',

@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import DatagridContainer, {
   TDatagridContainerProps,
 } from '@/components/datagrid/container/DatagridContainer.component';
-import { urls } from '@/routes/routes.constant';
+import { subRoutes, urls } from '@/routes/routes.constant';
 import IVcdDatacentre from '@/types/vcd-datacenter.interface';
 import { getVcdDatacentresRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
 
@@ -19,7 +19,13 @@ const DatagridIdCell = (vcdDatacentre: IVcdDatacentre) => {
   return (
     <DataGridTextCell>
       <Links
-        onClickReturn={() => navigate(`/${id}/datacentres/${vcdDatacentre.id}`)}
+        onClickReturn={() =>
+          navigate(
+            urls.datacentreDashboard
+              .replace(subRoutes.dashboard, id)
+              .replace(subRoutes.vdcId, vcdDatacentre.id),
+          )
+        }
         label={vcdDatacentre.currentState.name}
       ></Links>
     </DataGridTextCell>

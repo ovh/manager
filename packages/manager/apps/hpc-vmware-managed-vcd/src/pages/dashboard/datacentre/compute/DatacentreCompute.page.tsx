@@ -9,7 +9,7 @@ import { VHOSTS_TITLE } from './DatacentreCompute.constants';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import IVcdCompute from '@/types/vcd-compute.interface';
 import { getVcdDatacentreComputeRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
-import { subRoutes } from '@/routes/routes.constant';
+import { subRoutes, urls } from '@/routes/routes.constant';
 
 const DatagridIdCell = (vcdCompute: IVcdCompute) => (
   <DataGridTextCell>{vcdCompute?.id}</DataGridTextCell>
@@ -90,7 +90,9 @@ export default function ComputeListingPage() {
       columns={columns}
       route={{
         api: getVcdDatacentreComputeRoute(id, vdcId),
-        onboarding: null, // TODO update with order compute page when available
+        onboarding: urls.datacentreComputeOrder
+          .replace(subRoutes.dashboard, id)
+          .replace(subRoutes.vdcId, vdcId),
       }}
       isEmbedded
       orderButton={
