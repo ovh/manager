@@ -10,7 +10,7 @@ type ActionsComponentProps = {
 export default function ActionsComponent({ pool }: ActionsComponentProps) {
   const { t } = useTranslation('octavia-load-balancer-pools');
 
-  const poolEditHref = useHref(``);
+  const poolEditHref = useHref(`../${pool.id}/edit`);
   const membersHref = useHref(``);
   const deleteHref = useHref(
     `delete?poolId=${pool?.id}&poolName=${pool?.name}`,
