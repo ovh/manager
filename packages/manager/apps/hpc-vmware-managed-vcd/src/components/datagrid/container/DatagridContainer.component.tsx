@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loading from '@/components/loading/Loading.component';
 import TDatagridRoute from '@/types/datagrid-route.type';
+import { icebergListingQueryKey } from './DatagridContainer.constants';
 
 export type TDatagridContainerProps = {
   route: TDatagridRoute;
@@ -43,7 +44,7 @@ export default function DatagridContainer({
     setSorting,
   } = useResourcesIcebergV2({
     route: api,
-    queryKey: ['servicesListingIceberg', containerId],
+    queryKey: [icebergListingQueryKey, containerId],
   });
 
   useEffect(() => {
