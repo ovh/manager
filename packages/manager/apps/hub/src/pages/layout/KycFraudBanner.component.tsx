@@ -23,7 +23,7 @@ import { SUPPORT_URLS } from '@/components/hub-support/HubSupport.constants';
 import { KYC_FRAUD_TRACK_IMPRESSION } from '@/pages/layout/layout.constants';
 
 export default function KycFraudBanner() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('hub/kyc');
   const {
     environment,
     shell: { navigation, tracking },
@@ -56,9 +56,7 @@ export default function KycFraudBanner() {
     }
     return isEUOrCA
       ? Promise.resolve(`${SUPPORT_URLS.allTickets}${user.ovhSubsidiary}`)
-      : navigation.getURL('dedicated', '#/useraccount/infos', {
-          fieldToFocus: 'siretForm',
-        });
+      : navigation.getURL('dedicated', '#/support/tickets', {});
   }, [data]);
 
   const trackLink = () => {
@@ -86,14 +84,12 @@ export default function KycFraudBanner() {
       removable={true}
       data-testid="kyc_fraud_banner"
     >
-      <div>
-        <OsdsText
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-          className="block mb-5"
-        >
-          {t(`kyc_fraud_${data.status}_banner_text`)}
-        </OsdsText>
+      <OsdsText
+        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+        color={ODS_THEME_COLOR_INTENT.text}
+        className="block"
+      >
+        {t(`kyc_fraud_${data.status}_banner_text`)}
         {link && (
           <Suspense
             fallback={
@@ -104,6 +100,7 @@ export default function KycFraudBanner() {
               resolve={link}
               children={(href: string) => (
                 <OsdsLink
+                  className="ml-2"
                   color={ODS_THEME_COLOR_INTENT.primary}
                   href={href}
                   target={OdsHTMLAnchorElementTarget._top}
@@ -117,7 +114,7 @@ export default function KycFraudBanner() {
             />
           </Suspense>
         )}
-      </div>
+      </OsdsText>
     </OsdsMessage>
   ) : null;
 }

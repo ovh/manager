@@ -226,15 +226,6 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useFeatureAvailability: (
-    features: string[],
-  ): {
-    data: typeof featuresAvailability;
-    isPending: boolean;
-  } => ({ data: featuresAvailability, isPending: false }),
-}));
-
 vi.mock('@/data/hooks/services/useServices', () => ({
   useFetchHubServices: (): {
     data: ApiEnvelope<ProductList>;

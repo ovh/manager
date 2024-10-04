@@ -25,7 +25,7 @@ import { useKyc } from '@/data/hooks/kyc/useKyc';
 import { KycProcedures, KycStatuses } from '@/types/kyc.type';
 
 export default function KycIndiaBanner() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('hub/kyc');
   const {
     shell: { navigation },
   } = useContext(ShellContext);
@@ -64,24 +64,22 @@ export default function KycIndiaBanner() {
 
   return shouldBeDisplayed ? (
     <OsdsMessage
-      className="flex rounded"
+      className="flex rounded pr-8"
       type={ODS_MESSAGE_TYPE.info}
       color={ODS_THEME_COLOR_INTENT.info}
       removable={true}
       data-testid="kyc_india_banner"
     >
-      <div>
-        <OsdsText
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-          className="block mb-5"
-        >
-          {t(
-            `manager_hub_dashboard_kyc_banner_description${
-              data.ticketId ? '_waiting' : ''
-            }`,
-          )}
-        </OsdsText>
+      <OsdsText
+        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+        color={ODS_THEME_COLOR_INTENT.text}
+        className="block"
+      >
+        {t(
+          `manager_hub_dashboard_kyc_banner_description${
+            data.ticketId ? '_waiting' : ''
+          }`,
+        )}
         {link && (
           <Suspense
             fallback={
@@ -92,6 +90,7 @@ export default function KycIndiaBanner() {
               resolve={link}
               children={(href: string) => (
                 <OsdsLink
+                  className="ml-2"
                   color={ODS_THEME_COLOR_INTENT.primary}
                   href={href}
                   target={OdsHTMLAnchorElementTarget._top}
@@ -105,7 +104,7 @@ export default function KycIndiaBanner() {
             />
           </Suspense>
         )}
-      </div>
+      </OsdsText>
     </OsdsMessage>
   ) : null;
 }
