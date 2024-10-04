@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import {
@@ -23,16 +23,22 @@ import {
   OsdsPopoverContent,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { useStreams } from '@/api/hooks/useDbaasLogs';
-import { TDbaasLog } from '@/api/data/dbaas-logs';
+import { useStreams } from '../../api/hook/useDbaasLogs';
+import { TDbaasLog } from '../../api/data/dbaas-logs';
 import { useStreamsListColumns } from './useStreamsListColumns';
+
+import '../../translations/logs';
 
 export interface StreamListProps {
   account: TDbaasLog;
+  serviceName: string;
 }
 
-export function StreamsList({ account }: Readonly<StreamListProps>) {
-  const { t } = useTranslation('logs');
+export function StreamsList({
+  account,
+  serviceName,
+}: Readonly<StreamListProps>) {
+  const { t } = useTranslation('pci-logs');
   const { t: tFilter } = useTranslation('filter');
   const { pagination, setPagination } = useDataGrid();
   const { filters, addFilter, removeFilter } = useColumnFilters();
@@ -41,7 +47,10 @@ export function StreamsList({ account }: Readonly<StreamListProps>) {
     pagination,
     filters,
   );
-  const columns = useStreamsListColumns(account);
+  const columns = useStreamsListColumns({
+    account,
+    serviceName,
+  });
   const filterPopoverRef = useRef(undefined);
 
   if (isPending)
