@@ -9,7 +9,7 @@ import IVcdStorage from '@/types/vcd-storage.interface';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { STORAGE_TITLE } from '../DatacentreDashboard.constant';
 import { getVcdDatacentreStorageRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
-import { subRoutes } from '@/routes/routes.constant';
+import { subRoutes, urls } from '@/routes/routes.constant';
 
 const DatagridIdCell = (vcdStorage: IVcdStorage) => (
   <DataGridTextCell>{vcdStorage?.id}</DataGridTextCell>
@@ -99,7 +99,9 @@ export default function StorageListingPage() {
       columns={columns}
       route={{
         api: getVcdDatacentreStorageRoute(id, vdcId),
-        onboarding: null, // TODO update with order storage page when available
+        onboarding: urls.datacentreStorageOrder
+          .replace(subRoutes.dashboard, id)
+          .replace(subRoutes.vdcId, vdcId),
       }}
       isEmbedded
       orderButton={

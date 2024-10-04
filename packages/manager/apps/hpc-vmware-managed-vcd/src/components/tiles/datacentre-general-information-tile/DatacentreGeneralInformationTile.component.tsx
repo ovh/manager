@@ -12,6 +12,7 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import IVcdDatacentre from '@/types/vcd-datacenter.interface';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import { subRoutes } from '@/routes/routes.constant';
+import { iamActions } from '@/utils/iam.constants';
 import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
 
 type TTileProps = {
@@ -37,6 +38,10 @@ export default function DatacentreGenerationInformationTile({
           value: (
             <EditableTileItem
               label={vcdDatacentre?.currentState?.description}
+              iamActions={[
+                iamActions.vmwareCloudDirectorApiovhOrganizationVirtualDataCenterEdit,
+              ]}
+              urn={vcdDatacentre?.iam?.urn}
               onClickEdit={() => navigate(subRoutes.editDescription)}
             />
           ),
