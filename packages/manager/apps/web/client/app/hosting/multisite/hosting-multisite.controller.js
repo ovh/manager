@@ -20,6 +20,7 @@ import {
   HOSTING_TAB_DOMAINS,
   RECORD_TYPE_TO_IP_TYPE,
 } from './hosting-multisite.constants';
+import { TRACKING_MULTISITE_PREFIX } from './git-integration/git-integration.constants';
 
 const CDN_STATISTICS_PERIOD = {
   DAY: 'day',
@@ -444,26 +445,42 @@ angular
         $scope.setAction('multisite/update/hosting-multisite-update', domain);
       };
 
-      $scope.goToRemoveRepository = (domain) =>
+      $scope.goToRemoveRepository = (domain) => {
+        sendTrackClick(`${TRACKING_MULTISITE_PREFIX}::git-removal`);
         $scope.$resolve.goToRemoveRepository(
           $scope.hosting.serviceName,
           domain.path,
         );
+      };
 
-      $scope.goToAssociateRepository = (domain) =>
+      $scope.goToAssociateRepository = (domain) => {
+        sendTrackClick(`${TRACKING_MULTISITE_PREFIX}::add-git`);
         $scope.$resolve.goToAssociateRepository(
           $scope.hosting.serviceName,
           domain,
         );
+      };
 
       $scope.goToConfigureGit = (domain) =>
         $scope.$resolve.goToConfigureGit($scope.hosting.serviceName, domain);
 
-      $scope.goToDeployWebSite = (domain) =>
-        $scope.$resolve.goToDeployWebSite($scope.hosting.serviceName, domain);
+      $scope.goToDeployWebSite = (domain) => {
+        sendTrackClick(`${TRACKING_MULTISITE_PREFIX}::git-deployment`);
+        return $scope.$resolve.goToDeployWebSite(
+          $scope.hosting.serviceName,
+          domain,
+        );
+      };
 
-      $scope.goToViewLastDeploy = (domain) =>
-        $scope.$resolve.goToViewLastDeploy($scope.hosting.serviceName, domain);
+      $scope.goToViewLastDeploy = (domain) => {
+        sendTrackClick(
+          `${TRACKING_MULTISITE_PREFIX}::git-view-last-deployment`,
+        );
+        return $scope.$resolve.goToViewLastDeploy(
+          $scope.hosting.serviceName,
+          domain,
+        );
+      };
 
       $scope.restartDomain = (domain) =>
         HostingDomain.restartVirtualHostOfAttachedDomain(
