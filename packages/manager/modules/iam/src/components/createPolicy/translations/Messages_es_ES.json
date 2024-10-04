@@ -30,5 +30,7 @@
   "iam_create_policy_success_create": "La política {{ name }} se ha creado correctamente",
   "iam_create_policy_success_edit": "La política {{ name }} se ha modificado correctamente",
   "iam_create_policy_form_description_error_pattern": "El nombre de la política solo puede contener caracteres alfanuméricos, espacios y los siguientes símbolos: guiones («-»), barras («/»), guiones bajos («_») y símbolo de más («+»). ",
-  "iam_create_policy_form_description_heading": "Descripción de la política"
+  "iam_create_policy_form_description_heading": "Descripción de la política",
+  "iam_create_policy_form_resource_groups_description": "Agregar grupos de recursos",
+  "iam_create_policy_form_resources_action": "Defina un tipo de producto para seleccionar recursos"
 }
