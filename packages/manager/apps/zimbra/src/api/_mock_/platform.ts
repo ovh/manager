@@ -5,7 +5,18 @@ export const platformMock: ZimbraPlatformType[] = [
   {
     checksum: 'c6022a95d9ce258d6d534ec355bec6c9',
     currentState: {
-      accountsStatistics: [],
+      accountsStatistics: [
+        {
+          availableAccountsCount: 1,
+          configuredAccountsCount: 5,
+          offer: 'BUSINESS',
+        },
+        {
+          availableAccountsCount: 2,
+          configuredAccountsCount: 5,
+          offer: 'STARTER',
+        },
+      ],
       description: 'some description',
       name: 'Manager Team platform',
       numberOfOrganizations: 0,
