@@ -27,5 +27,8 @@
   "pci_projects_project_storages_containers_switch_to_private_label": "Przejdź do trybu prywatnego",
   "pci_projects_project_storages_containers_switch_to_public_label": "Przejdź do trybu publicznego",
   "pci_projects_project_storages_containers_swift_containers_load_error": "Wystąpił błąd na jednym lub kilku kontenerach Swift. Spróbuj ponownie później.",
-  "pci_projects_project_storages_containers_s3_containers_load_error": "Wystąpił błąd na jednym lub kilku kontenerach S3 w regionie {{regions}}. Spróbuj ponownie później."
+  "pci_projects_project_storages_containers_s3_containers_load_error": "Wystąpił błąd na jednym lub kilku kontenerach S3 w regionie {{regions}}. Spróbuj ponownie później.",
+  "pci_projects_project_storages_containers_deployment_mode_label": "Tryb wdrażania",
+  "pci_projects_project_storages_containers_deployment_mode_region": "Region 1-AZ",
+  "pci_projects_project_storages_containers_deployment_mode_region-3-az": "Region 3-AZ"
 }

@@ -13,5 +13,6 @@
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description": "Weitere Informationen über Speicherklassen und Preise ",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link": "Preise anzeigen",
   "pci_projects_project_storages_containers_container_object_add_storage_class_standard": "Standard",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance"
+  "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Für Objekte eines Containers, der mit diesem Bereitstellungsmodus erstellt wurde, ist nur die Standardspeicherklasse verfügbar."
 }
