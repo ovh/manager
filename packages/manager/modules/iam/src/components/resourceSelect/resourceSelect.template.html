@@ -41,7 +41,7 @@
             data-label="{{:: $ctrl.resourcesLabel }}"
             data-error-messages="{
                 required: $ctrl.resourcesRequiredMessage || ('iam_resource_select_resources_error_required' | translate),
-                limit: $ctrl.resourcesLimitMessage || ('iam_resource_select_resources_error_limit' | translate),
+                limit: ('iam_resource_select_resources_error_limit' | translate:{'max':$ctrl.maxLength}),
             }"
         >
             <oui-select
