@@ -8,6 +8,7 @@ import {
   GIT_ASSOCIATION_GUIDE_LINK,
   GIT_WEBHOOK_GUIDE_LINK,
 } from './git-association.constants';
+import { TRACKING_MULTISITE_PREFIX } from '../git-integration.constants';
 
 export default class HostingMultisiteGitAssociationController {
   /* @ngInject */
@@ -15,6 +16,7 @@ export default class HostingMultisiteGitAssociationController {
     HostingMultisiteGitAssociationService,
     coreURLBuilder,
     coreConfig,
+    atInternet,
     $translate,
   ) {
     this.REPOSITORY_PLACEHOLDER = REPOSITORY_PLACEHOLDER;
@@ -26,6 +28,7 @@ export default class HostingMultisiteGitAssociationController {
     this.HostingMultisiteGitAssociationService = HostingMultisiteGitAssociationService;
     this.coreURLBuilder = coreURLBuilder;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     const { ovhSubsidiary } = coreConfig.getUser();
     this.GIT_ASSOCIATION_GUIDE_LINK =
       GIT_ASSOCIATION_GUIDE_LINK[ovhSubsidiary] ||
@@ -56,6 +59,10 @@ export default class HostingMultisiteGitAssociationController {
   }
 
   applyConfiguration() {
+    this.atInternet.trackClick({
+      name: `${TRACKING_MULTISITE_PREFIX}::git-association::confirm`,
+      type: 'action',
+    });
     const promise = this.isConfiguration
       ? this.HostingMultisiteGitAssociationService.putWebsiteAssociated(
           this.serviceName,
