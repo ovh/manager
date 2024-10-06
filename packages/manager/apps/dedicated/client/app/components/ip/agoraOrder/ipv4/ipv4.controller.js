@@ -30,6 +30,8 @@ import {
   DATACENTER_TO_REGION,
   IP_LOCATION_GROUPS_BASED_ON_DATACENTER,
   REGION_TO_DATACENTER,
+  SERVER_REGION,
+  ORGANISATION_GROUP,
 } from './ipv4.constant';
 
 export default class AgoraIpV4OrderController {
@@ -253,13 +255,13 @@ export default class AgoraIpV4OrderController {
   static getRegionFromServiceName(serviceName) {
     const serviceExt = last(serviceName.split('.'));
     if (['eu', 'net'].includes(serviceExt)) {
-      return 'EUROPE';
+      return SERVER_REGION.EUROP;
     }
     if (serviceExt === 'ca') {
-      return 'CANADA - ASIA';
+      return SERVER_REGION.CANADA;
     }
 
-    return 'USA';
+    return SERVER_REGION.USA;
   }
 
   static getRegionFromDatacenter(datacenter) {
@@ -470,6 +472,10 @@ export default class AgoraIpV4OrderController {
     let failoverIpOfferDetails;
     let blockIpOfferDetails;
 
+    const REGION = AgoraIpV4OrderController.getRegionFromServiceName(
+      this.model.selectedService.serviceName,
+    );
+
     this.isPrivateCloudOffer =
       this.model?.selectedService?.type === PRODUCT_TYPES.privateCloud.typeName;
 
@@ -552,9 +558,6 @@ export default class AgoraIpV4OrderController {
           .then((data) => {
             let countries = data;
             if (data.length === 0) {
-              const REGION = AgoraIpV4OrderController.getRegionFromServiceName(
-                this.model.selectedService.serviceName,
-              );
               countries = IP_LOCATION_GROUPS.find((group) =>
                 group.labels.includes(REGION),
               )?.countries;
@@ -584,7 +587,29 @@ export default class AgoraIpV4OrderController {
 
     const ipOrganisationPromise = this.IpOrganisation.getIpOrganisation().then(
       (organisations) => {
-        this.organisations = organisations;
+        if (
+          this.model.selectedService?.type ===
+          PRODUCT_TYPES.dedicatedServer.typeName
+        ) {
+          let registry = null;
+
+          switch (REGION) {
+            case SERVER_REGION.EUROP:
+              registry = ORGANISATION_GROUP.RIPE;
+              break;
+            case SERVER_REGION.USA:
+            case SERVER_REGION.CANADA:
+              registry = ORGANISATION_GROUP.ARIN;
+              break;
+            default:
+              registry = null;
+          }
+          this.organisations = registry
+            ? organisations.filter((org) => org.registry === registry)
+            : organisations;
+        } else {
+          this.organisations = organisations;
+        }
       },
     );
 
