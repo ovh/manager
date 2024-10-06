@@ -322,22 +322,18 @@ export default class PciProjectInstanceService {
   }
 
   getSnapshotMonthlyPrice(projectId, instance, catalogEndpoint) {
-    return this.CucPriceHelper.getPrices(
-      projectId,
-      catalogEndpoint,
-    ).then((catalog) =>
-      instance.isLocalZone
-        ? catalog[`snapshot.consumption.${instance.region}`] ??
-          catalog['snapshot.consumption.LZ']
-        : get(
+    return this.CucPriceHelper.getPrices(projectId, catalogEndpoint).then(
+      (catalog) => {
+        return get(
+          catalog,
+          `snapshot.monthly.postpaid.${instance.region}`,
+          get(
             catalog,
-            `snapshot.monthly.postpaid.${instance.region}`,
-            get(
-              catalog,
-              'snapshot.monthly.postpaid',
-              get(catalog, 'snapshot.monthly', false),
-            ),
+            'snapshot.monthly.postpaid',
+            get(catalog, 'snapshot.monthly', false),
           ),
+        );
+      },
     );
   }
 
