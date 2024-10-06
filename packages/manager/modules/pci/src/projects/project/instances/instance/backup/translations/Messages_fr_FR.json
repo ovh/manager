@@ -6,7 +6,7 @@
   "pci_projects_project_instances_instance_backup_price": "Prix : {{ price }} HT/mois/Go",
   "pci_projects_project_instances_instance_backup_submit_label": "Confirmer",
   "pci_projects_project_instances_instance_backup_cancel_label": "Annuler",
-  "pci_projects_project_instances_instance_backup_success_message": "Le backup {{ backup }} est en cours de création. Pour visualiser son statut et les détails de l'opération, veuillez vous rendre sur la page 'Instance Backup'. Si le backup ne s'affiche pas immédiatement, n'hésitez pas à rafraîchir votre page pour mettre à jour la liste.",
+  "pci_projects_project_instances_instance_backup_success_message": "Le backup {{ backup }} est en cours de création",
   "pci_projects_project_instances_instance_backup_error_backup": "Une erreur est survenue lors de la création du backup {{ backup }} : {{ message }}",
   "pci_projects_project_instances_instance_backup_warning_iops_message": "La sauvegarde ne concerne que votre disque racine (système d'exploitation). Aucune donnée ne sera sauvegardée à partir de périphériques NVMe. Veuillez utiliser vos propres outils pour cela.",
   "pci_projects_project_instances_instance_backup_trusted_zone_extra_amount_charge_message": "Le prix affiché correspond au prix du service. La majoration liée à la zone de confiance est ajoutée à la facturation mensuelle globale."

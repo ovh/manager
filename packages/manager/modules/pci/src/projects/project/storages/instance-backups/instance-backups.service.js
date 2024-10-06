@@ -1,20 +1,26 @@
 import filter from 'lodash/filter';
+import map from 'lodash/map';
 import InstanceBackup from './instance-backup.class';
 
 export default class PciProjectStorageInstanceBackupService {
   /* @ngInject */
-  constructor($q, $http, OvhApiCloudProject, OvhApiCloudProjectInstance) {
+  constructor($q, OvhApiCloudProject, OvhApiCloudProjectInstance) {
     this.$q = $q;
-    this.$http = $http;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
   }
 
   getAll(projectId) {
-    return this.$http
-      .get(`/cloud/project/${projectId}/snapshot`)
-      .then(({ data: instances }) =>
-        instances.map((instance) => new InstanceBackup(instance)),
+    return this.OvhApiCloudProject.Snapshot()
+      .v6()
+      .query({
+        serviceName: projectId,
+      })
+      .$promise.then((instanceBackups) =>
+        map(
+          instanceBackups,
+          (instanceBackup) => new InstanceBackup(instanceBackup),
+        ),
       );
   }
 

@@ -5,7 +5,7 @@
   "pci_projects_project_instances_instance_backup_price": "Preis: {{ price }} ohne MWSt./Monat/GB",
   "pci_projects_project_instances_instance_backup_submit_label": "Bestätigen",
   "pci_projects_project_instances_instance_backup_cancel_label": "Abbrechen",
-  "pci_projects_project_instances_instance_backup_success_message": "Das Backup {{ backup }} wird erstellt. Um sich den Status und die Details des Vorgangs anzusehen, gehen Sie bitte auf die Seite „Instance Backup“. Wenn das Backup nicht sofort angezeigt wird, können Sie Ihre Seite aktualisieren, damit auch die Liste aktualisiert wird.",
+  "pci_projects_project_instances_instance_backup_success_message": "Das Backup {{ backup }} wird erstellt",
   "pci_projects_project_instances_instance_backup_error_backup": "Bei der Erstellung des Backups {{ backup }} ist ein Fehler aufgetreten: {{message}}",
   "pci_projects_project_instances_instance_backup_warning_iops_message": "Das Backup betrifft nur Ihre Root-Festplatte (Betriebssystem). Für Daten auf NVMe-Geräten wird kein Backup erstellt. Bitte verwenden Sie hierfür Ihre eigenen Tools.",
   "pci_projects_project_instances_instance_backup_trusted_zone_extra_amount_charge_message": "Der angezeigte Preis entspricht dem Preis der Dienstleistung. Der Aufpreis für die Trusted Zone wird der monatlichen Gesamtabrechnung hinzugefügt.",

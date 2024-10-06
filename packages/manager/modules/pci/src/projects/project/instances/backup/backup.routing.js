@@ -14,13 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectsProjectInstanceService,
         projectId,
         instanceId,
-        customerRegions,
-      ) =>
-        PciProjectsProjectInstanceService.get(
-          projectId,
-          instanceId,
-          customerRegions,
-        ),
+      ) => PciProjectsProjectInstanceService.get(projectId, instanceId),
       monthlyPrice: /* @ngInject */ (
         PciProjectsProjectInstanceService,
         projectId,
