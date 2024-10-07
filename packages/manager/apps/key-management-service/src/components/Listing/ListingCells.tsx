@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   ActionMenu,
   Clipboard,
@@ -10,7 +10,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
@@ -24,6 +24,7 @@ import { useOkmsServiceKeyById } from '@/data/hooks/useOkmsServiceKeys';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
 import { OkmsServiceState } from '../layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
+import { OkmsContext } from '@/pages/dashboard';
 
 export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
   return <Clipboard value={props.id} />;
@@ -129,12 +130,12 @@ export const DatagridStatus = (props: OkmsAllServiceKeys) => {
 };
 
 export const DatagridServiceKeyActionMenu = (props: OkmsAllServiceKeys) => {
-  const { okmsId } = useParams();
+  const okms = useContext(OkmsContext);
   const { data: serviceKey, isPending } = useOkmsServiceKeyById({
-    okmsId,
+    okmsId: okms.id,
     keyId: props.id,
   });
-  const actionList = useServiceKeyActionsList(okmsId, serviceKey?.data, true);
+  const actionList = useServiceKeyActionsList(okms, serviceKey?.data, true);
 
   if (isPending) {
     return <></>;

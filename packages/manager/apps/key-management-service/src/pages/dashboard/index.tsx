@@ -33,7 +33,12 @@ export default function DashboardPage() {
     'key-management-service/credential',
   );
   const { okmsId } = useParams();
-  const { data: okms, isLoading: isOkmsLoading, isError: isOkmsError, error: okmsError } = useOKMSById(okmsId);
+  const {
+    data: okms,
+    isLoading: isOkmsLoading,
+    isError: isOkmsError,
+    error: okmsError,
+  } = useOKMSById(okmsId);
 
   const {
     data: okmsServiceInfos,
@@ -93,7 +98,7 @@ export default function DashboardPage() {
       id: ROUTES_URLS.okmsUpdateName,
       label: tDashboard('key_management_service_update_name'),
       navigateTo: `/${okmsId}/${ROUTES_URLS.okmsUpdateName}`,
-    }
+    },
   ];
 
   const headerProps: HeadersProps = {
