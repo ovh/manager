@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { GuidesHeader, GuidesHeaderProps } from './guides-header.component';
 import { render } from '../../utils/test.provider';
 
