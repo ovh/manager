@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.38.1...@ovh-ux/manager-web@18.39.0) (2024-10-07)
+
+
+### Features
+
+* **hosting:** attachedDomain actions done through apiv6 ([4404da2](https://github.com/ovh/manager/commit/4404da247bcddd5bb93c9e81eed4e4e318b9e66e))
+
+
+
+
+
 ## [18.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.38.0...@ovh-ux/manager-web@18.38.1) (2024-10-03)
 
 
