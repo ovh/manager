@@ -35,12 +35,7 @@ import {
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
-import {
-  PciAnnouncementBanner,
-  PciDiscoveryBanner,
-  useProject,
-} from '@ovh-ux/manager-pci-common';
-import { useAnnouncementBanner } from '@/hooks/useAnnouncementBanner';
+import { PciAnnouncementBanner, useProject } from '@ovh-ux/manager-pci-common';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 
 import HidePreloader from '@/core/HidePreloader';
@@ -55,7 +50,6 @@ export default function ListingPage() {
   const navigate = useNavigate();
   const { projectId } = useParams();
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
-  const { isBannerVisible } = useAnnouncementBanner();
   const columns = useDatagridColumn(projectId, projectUrl);
   const [searchField, setSearchField] = useState('');
   const { data: project } = useProject();
@@ -132,8 +126,6 @@ export default function ListingPage() {
         )}
 
         <PciAnnouncementBanner data-testid="ListPage_announcementBanner" />
-
-        <PciDiscoveryBanner project={project} />
 
         <Notifications />
         <div className="sm:flex items-center justify-between mt-4">
