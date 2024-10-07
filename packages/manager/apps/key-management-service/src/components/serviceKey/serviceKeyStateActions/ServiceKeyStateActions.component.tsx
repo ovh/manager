@@ -1,5 +1,6 @@
-import { OsdsIcon, OsdsButton } from '@ovhcloud/ods-components/react';
 import React from 'react';
+import { OsdsIcon, OsdsButton } from '@ovhcloud/ods-components/react';
+import { ManagerButton } from '@ovh-ux/manager-react-components';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TEXT_ALIGN,
@@ -9,9 +10,10 @@ import {
 } from '@ovhcloud/ods-components';
 import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
 import useServiceKeyActionsList from '@/hooks/serviceKey/useServiceKeyActionsList';
+import { OKMS } from '@/types/okms.type';
 
 type ServiceKeyStateActionsProps = {
-  okmsId: string;
+  okms: OKMS;
   okmsKey: OkmsAllServiceKeys;
 };
 
@@ -23,38 +25,62 @@ const ActionsIcons = [
 ];
 
 const ServiceKeyStateActions = ({
-  okmsId,
+  okms,
   okmsKey,
 }: ServiceKeyStateActionsProps) => {
-  const actionList = useServiceKeyActionsList(okmsId, okmsKey);
+  const actionList = useServiceKeyActionsList(okms, okmsKey);
 
   const getActionIcon = (id: number) => {
     return ActionsIcons.find((actionIcon) => actionIcon.id === id)?.icon;
   };
   return (
     <>
-      {actionList.map((action) => (
-        <OsdsButton
-          key={action.id}
-          color={action.color}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          size={ODS_BUTTON_SIZE.sm}
-          textAlign={ODS_BUTTON_TEXT_ALIGN.start}
-          onClick={action.onClick}
-          disabled={action.disabled || undefined}
-          href={action.href}
-          download={action.download}
-        >
-          <span slot="start">{action.label}</span>
-          <span slot="end">
-            <OsdsIcon
-              name={getActionIcon(action.id)}
-              size={ODS_ICON_SIZE.xxs}
-              color={action.color}
-            />
-          </span>
-        </OsdsButton>
-      ))}
+      {actionList.map((action) => {
+        return action.iamActions ? (
+          <ManagerButton
+            key={action.id}
+            color={action.color}
+            variant={ODS_BUTTON_VARIANT.ghost}
+            size={ODS_BUTTON_SIZE.sm}
+            textAlign={ODS_BUTTON_TEXT_ALIGN.start}
+            onClick={action.onClick}
+            disabled={action.disabled || undefined}
+            href={action.href}
+            download={action.download}
+            urn={action.urn}
+            iamActions={action.iamActions}
+          >
+            <span slot="start">{action.label}</span>
+            <span slot="end">
+              <OsdsIcon
+                name={getActionIcon(action.id)}
+                size={ODS_ICON_SIZE.xxs}
+                color={action.color}
+              />
+            </span>
+          </ManagerButton>
+        ) : (
+          <OsdsButton
+            key={action.id}
+            variant={ODS_BUTTON_VARIANT.ghost}
+            size={ODS_BUTTON_SIZE.sm}
+            color={action.color}
+            href={action.href}
+            download={action.download}
+            disabled={action.disabled || undefined}
+            onClick={action.onClick}
+          >
+            <span slot="start">{action.label}</span>
+            <span slot="end">
+              <OsdsIcon
+                name={getActionIcon(action.id)}
+                size={ODS_ICON_SIZE.xxs}
+                color={action.color}
+              />
+            </span>
+          </OsdsButton>
+        );
+      })}
     </>
   );
 };
