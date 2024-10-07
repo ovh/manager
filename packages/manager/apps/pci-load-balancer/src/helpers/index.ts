@@ -41,7 +41,7 @@ export const sortResults = <T>(items: T[], sorting: ColumnSort): T[] => {
 };
 
 export const getFormattedDate = (date: string | null, formatStr = 'PPpp') => {
-  const { i18n } = useTranslation('common');
+  const { i18n } = useTranslation();
 
   const locales = useRef({ ...dateFnsLocales }).current;
 

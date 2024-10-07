@@ -2,5 +2,7 @@
   "see_more_label": "Mehr erfahren",
   "octavia_load_balancer_logs_breadcrumb_label": "Logs",
   "octavia_load_balancer_logs_main_description": "Im Folgenden finden Sie die Logs Ihres Loadbalancers für TCP-, HTTP-, HTTPS- und TERMINATED_HTTPS-Listener (UDP wird nicht unterstützt). Diese Logs werden von der Open-Source-Komponente HAProxy generiert.",
-  "octavia_load_balancer_data_streams_description_haproxy": "Wenn Sie die HAProxy-Logs Ihres Loadbalancers abonnieren, werden sie auf die Logs Data Platform übertragen. Sie können sie mit Ihren anderen Logs zentralisieren, erweiterte Suchvorgänge durchführen, ihre Aufbewahrung verwalten, Alarme definieren und Dashboards erstellen, um Ihre Anwendungen mit Loadbalancer zu überwachen."
+  "octavia_load_balancer_data_streams_description_haproxy": "Wenn Sie die HAProxy-Logs Ihres Loadbalancers abonnieren, werden sie auf die Logs Data Platform übertragen. Sie können sie mit Ihren anderen Logs zentralisieren, erweiterte Suchvorgänge durchführen, ihre Aufbewahrung verwalten, Alarme definieren und Dashboards erstellen, um Ihre Anwendungen mit Loadbalancer zu überwachen.",
+  "logs_list_add_data_stream_button": "Stream hinzufügen",
+  "logs_list_title": "Streams"
 }

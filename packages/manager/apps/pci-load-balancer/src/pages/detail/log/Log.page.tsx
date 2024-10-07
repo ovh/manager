@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { clsx } from 'clsx';
+import { useNavigate, useParams } from 'react-router-dom';
 import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -11,20 +10,25 @@ import {
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { Notifications, useMe } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-// import { useParams } from 'react-router-dom';
+import { LogsView } from '@ovh-ux/manager-pci-common';
 import { LOAD_BALANCER_LOGS_SERVICE_GUIDE_LINK } from '@/constants';
+import { LoadBalancerLogsProvider } from './LoadBalancerLogsProvider';
 
 export default function LogsPage() {
   const { t } = useTranslation('logs');
-  // const { projectId, region, loadBalancerId } = useParams();
-  const [isFullscreen /* setIsFullscreen */] = useState(false);
+  const { projectId, loadBalancerId, region } = useParams();
+  const navigate = useNavigate();
   const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
   const infoLink =
     LOAD_BALANCER_LOGS_SERVICE_GUIDE_LINK[ovhSubsidiary] ||
     LOAD_BALANCER_LOGS_SERVICE_GUIDE_LINK.DEFAULT;
 
   return (
-    <>
+    <LoadBalancerLogsProvider
+      loadBalancerId={loadBalancerId}
+      projectId={projectId}
+      region={region}
+    >
       <Notifications />
       <OsdsText
         size={ODS_TEXT_SIZE._400}
@@ -50,22 +54,7 @@ export default function LogsPage() {
           />
         </span>
       </OsdsLink>
-      <div
-        className={clsx(
-          'flex mt-4 md:h-[600px]',
-          isFullscreen ? 'flex-col' : 'flex-col md:flex-row',
-        )}
-      >
-        <div className={clsx(isFullscreen || 'w-full md:w-[68%] h-full')}></div>
-
-        <div
-          className={clsx(
-            isFullscreen ||
-              'w-full md:w-[32%] h-full overflow-y-auto mt-4 md:mt-0 ml-0 md:ml-4',
-            'min-h-0',
-          )}
-        ></div>
-      </div>
-    </>
+      <LogsView onGotoStreams={() => navigate('./streams')} />
+    </LoadBalancerLogsProvider>
   );
 }
