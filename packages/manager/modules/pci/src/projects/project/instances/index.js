@@ -2,6 +2,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+// TODO : build instances app for staging
+
 const moduleName = 'ovhManagerPciInstancesLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(

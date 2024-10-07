@@ -3,6 +3,8 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 import '@ovh-ux/manager-core';
 
+// TODO: build load balancer staging
+
 const moduleName = 'ovhManagerPciProjectLoadBalancerLazyloading';
 
 angular
