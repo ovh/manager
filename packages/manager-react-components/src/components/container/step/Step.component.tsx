@@ -3,7 +3,6 @@ import { OdsButton, OdsIcon, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { v4 as uuidV4 } from 'uuid';
 import {
   ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
