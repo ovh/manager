@@ -13,7 +13,7 @@ const Restricted = (): JSX.Element => (
   <div className="restricted d-flex flex-column h-100">
     <Navbar />
     <Sidebar />
-    <div className="restricted-main d-flex flex-column mx-auto px-5">
+    <div className="restricted-main d-flex flex-column px-5">
       <ErrorJumbotron />
       <div className="restricted-guides mb-4 d-flex flex-column flex-md-row">
         {GUIDES.map((guide) => (
