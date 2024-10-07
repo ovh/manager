@@ -59,9 +59,8 @@ export default function GeneralInformation({
           <TileLine
             title={tOverview('octavia_load_balancer_overview_info_name')}
             value={
-              <div className="flex mb-4">
+              <div className="flex items-center gap-2">
                 <OsdsText
-                  className="flex items-center"
                   size={ODS_TEXT_SIZE._400}
                   level={ODS_TEXT_LEVEL.body}
                   color={ODS_THEME_COLOR_INTENT.text}
@@ -73,7 +72,6 @@ export default function GeneralInformation({
                   size={ODS_BUTTON_SIZE.sm}
                   variant={ODS_BUTTON_VARIANT.ghost}
                   href={editNameHref}
-                  className="items-center"
                 >
                   <OsdsIcon
                     size={ODS_ICON_SIZE.xxs}
@@ -83,7 +81,6 @@ export default function GeneralInformation({
                 </OsdsButton>
               </div>
             }
-            /* value={loadBalancerName} */
           />
 
           <TileLine
