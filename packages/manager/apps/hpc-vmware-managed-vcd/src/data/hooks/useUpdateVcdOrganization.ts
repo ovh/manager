@@ -4,14 +4,12 @@ import {
   updateVcdOrganizationDetails,
   UpdateVcdOrganizationDetailsParams,
 } from '../api/hpc-vmware-managed-vcd';
-import { VCD_ORGANIZATION_ROUTE } from '../api/hpc-vmware-managed-vcd.constants';
-import { getVcdOrganizationQueryKey } from './useManagedVcdOrganization';
-import { icebergListingQueryKey } from '@/components/datagrid/container/DatagridContainer.constants';
-import { organizationListingContainerId } from '@/pages/listing/organizations/Organizations.constants';
-
-const updateVcdOrganizationDetailsMutationKey = (id: string) => [
-  `put${VCD_ORGANIZATION_ROUTE}/${id}`,
-];
+import {
+  getVcdOrganizationsQueryKey,
+  getVcdOrganizationQueryKey,
+  icebergListingQueryKey,
+  updateVcdOrganizationDetailsMutationKey,
+} from '@/utils/getQueryKeys';
 
 export const useUpdateVcdOrganizationDetails = ({
   id,
@@ -31,9 +29,10 @@ export const useUpdateVcdOrganizationDetails = ({
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: getVcdOrganizationQueryKey(id),
+        exact: true,
       });
       queryClient.invalidateQueries({
-        queryKey: [organizationListingContainerId, icebergListingQueryKey],
+        queryKey: [...getVcdOrganizationsQueryKey(), icebergListingQueryKey],
         exact: true,
       });
       onSuccess?.();

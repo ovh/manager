@@ -10,7 +10,7 @@ import DatagridContainer from '@/components/datagrid/container/DatagridContainer
 import IVcdCompute from '@/types/vcd-compute.interface';
 import { getVcdDatacentreComputeRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
 import { subRoutes, urls } from '@/routes/routes.constant';
-import { getVdcComputeQueryKey } from '@/data/hooks/useManagedVcdDatacentres';
+import { getVdcComputeQueryKey } from '@/utils/getQueryKeys';
 
 const DatagridIdCell = (vcdCompute: IVcdCompute) => (
   <DataGridTextCell>{vcdCompute?.id}</DataGridTextCell>
@@ -87,7 +87,7 @@ export default function ComputeListingPage() {
   return (
     <DatagridContainer
       title={VHOSTS_TITLE}
-      queryKey={getVdcComputeQueryKey(id, vdcId)}
+      queryKey={getVdcComputeQueryKey(vdcId)}
       columns={columns}
       route={{
         api: getVcdDatacentreComputeRoute(id, vdcId),

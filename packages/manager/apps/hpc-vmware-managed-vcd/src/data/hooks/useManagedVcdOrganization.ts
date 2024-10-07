@@ -9,21 +9,16 @@ import {
   getVcdOrganizationBackup,
 } from '../api/hpc-vmware-managed-vcd';
 import IVcdOrganization from '@/types/vcd-organization.interface';
-import { VCD_ORGANIZATION_ROUTE } from '../api/hpc-vmware-managed-vcd.constants';
 import IVcdOrganizationBackup from '@/types/vcd-organization-backup.interface';
+import {
+  getVcdOrganizationQueryKey,
+  getVcdOrganizationBackupQueryKey,
+} from '@/utils/getQueryKeys';
 
 interface IUseManagedVcdOrganization
   extends Pick<UseQueryOptions, 'refetchOnWindowFocus' | 'refetchInterval'> {
   id: string;
 }
-
-export const getVcdOrganizationQueryKey = (id: string) => [
-  `get${VCD_ORGANIZATION_ROUTE}/${id}`,
-];
-
-const getVcdOrganizationBackupQueryKey = (id: string) => [
-  `${getVcdOrganizationQueryKey(id)}/backup`,
-];
 
 const useManagedVcdOrganization = ({
   id,

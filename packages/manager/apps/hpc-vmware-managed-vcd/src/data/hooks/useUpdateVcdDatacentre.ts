@@ -4,19 +4,10 @@ import {
   UpdateVdcDetailsParams,
   updateVdcDetails,
 } from '../api/hpc-vmware-managed-vcd-datacentre';
-import { VCD_ORGANIZATION_ROUTE } from '../api/hpc-vmware-managed-vcd.constants';
 import {
-  getVcdDatacentreQueryKey,
   getVcdDatacentresQueryKey,
-} from './useManagedVcdDatacentres';
-import { icebergListingQueryKey } from '@/components/datagrid/container/DatagridContainer.constants';
-
-const updateVdcDetailsMutationKey = ({
-  id,
-  vdcId,
-}: Pick<UpdateVdcDetailsParams, 'id' | 'vdcId'>) => [
-  `put${VCD_ORGANIZATION_ROUTE}/${id}/virtualDataCenter/${vdcId}`,
-];
+  updateVdcDetailsMutationKey,
+} from '@/utils/getQueryKeys';
 
 export const useUpdateVdcDetails = ({
   id,
@@ -32,16 +23,12 @@ export const useUpdateVdcDetails = ({
   const queryClient = useQueryClient();
 
   const { mutateAsync: updateDetails, error, isError } = useMutation({
-    mutationKey: updateVdcDetailsMutationKey({ id, vdcId }),
+    mutationKey: updateVdcDetailsMutationKey(vdcId),
     mutationFn: ({ details }: UpdateVdcDetailsParams) =>
       updateVdcDetails({ id, vdcId, details }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: getVcdDatacentreQueryKey(id, vdcId),
-      });
-      queryClient.invalidateQueries({
-        queryKey: [...getVcdDatacentresQueryKey(id), icebergListingQueryKey],
-        exact: true,
+        queryKey: getVcdDatacentresQueryKey(id),
       });
       onSuccess?.();
     },

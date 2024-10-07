@@ -10,12 +10,12 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loading from '@/components/loading/Loading.component';
 import TDatagridRoute from '@/types/datagrid-route.type';
-import { icebergListingQueryKey } from './DatagridContainer.constants';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import {
   hasResourceUpdatingTargetSpec,
   UpdatableResource,
 } from '@/utils/getRefetchConditions';
+import { icebergListingQueryKey } from '@/utils/getQueryKeys';
 
 export type TDatagridContainerProps = {
   route: TDatagridRoute;
@@ -54,7 +54,7 @@ export default function DatagridContainer({
   });
 
   useAutoRefetch({
-    queryKeys: listingQueryKey,
+    queryKey: listingQueryKey,
     condition: hasResourceUpdatingTargetSpec(
       (flattenData as unknown) as UpdatableResource[],
     ),

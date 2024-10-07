@@ -8,7 +8,7 @@ import DatagridContainer, {
 import { subRoutes, urls } from '@/routes/routes.constant';
 import IVcdDatacentre from '@/types/vcd-datacenter.interface';
 import { getVcdDatacentresRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
-import { getVcdDatacentresQueryKey } from '@/data/hooks/useManagedVcdDatacentres';
+import { getVcdDatacentresQueryKey } from '@/utils/getQueryKeys';
 
 /* ========= datagrid cells ========= */
 const DatagridIdCell = (vcdDatacentre: IVcdDatacentre) => {

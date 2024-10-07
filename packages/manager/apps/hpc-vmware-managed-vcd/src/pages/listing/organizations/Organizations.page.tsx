@@ -16,7 +16,7 @@ import DatagridContainer, {
 import { urls } from '@/routes/routes.constant';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import { VCD_ORGANIZATION_ROUTE } from '@/data/api/hpc-vmware-managed-vcd.constants';
-import { organizationListingContainerId } from './Organizations.constants';
+import { getVcdOrganizationsQueryKey } from '@/utils/getQueryKeys';
 
 /* ========= datagrid cells ========== */
 const DatagridIdCell = (vdcOrg: IVcdOrganization) => {
@@ -81,7 +81,7 @@ export default function Listing() {
 
   const datagridProps: TDatagridContainerProps = {
     title: t('managed_vcd_listing_title'),
-    queryKey: [organizationListingContainerId],
+    queryKey: getVcdOrganizationsQueryKey(),
     route: {
       api: VCD_ORGANIZATION_ROUTE,
       onboarding: urls.onboarding,

@@ -3,17 +3,13 @@ import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import VcdDashboardLayout from '@/components/dashboard/layout/VcdDashboardLayout.component';
-import {
-  getVcdDatacentreQueryKey,
-  getVcdDatacentresQueryKey,
-  useManagedVcdDatacentre,
-} from '@/data/hooks/useManagedVcdDatacentres';
+import { useManagedVcdDatacentre } from '@/data/hooks/useManagedVcdDatacentres';
 import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import { COMPUTE_TITLE, STORAGE_TITLE } from './DatacentreDashboard.constant';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import { isUpdatingTargetSpec } from '@/utils/getRefetchConditions';
-import { icebergListingQueryKey } from '@/components/datagrid/container/DatagridContainer.constants';
+import { getVcdDatacentresQueryKey } from '@/utils/getQueryKeys';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
@@ -22,10 +18,7 @@ function DatacentreDashboardPage() {
   const { data: vcdOrganization } = useManagedVcdOrganization({ id });
   const navigate = useNavigate();
   useAutoRefetch({
-    queryKeys: [
-      getVcdDatacentreQueryKey(id, vdcId),
-      [...getVcdDatacentresQueryKey(id), icebergListingQueryKey],
-    ],
+    queryKey: getVcdDatacentresQueryKey(id),
     condition: isUpdatingTargetSpec(vcdDatacentre?.data),
     interval: 4000,
   });
