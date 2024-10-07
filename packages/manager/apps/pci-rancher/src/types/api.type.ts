@@ -50,13 +50,13 @@ export interface RancherService {
   updatedAt: string;
   targetSpec: {
     name: string;
-    plan: string;
+    plan: RancherPlan['name'];
     version: string;
     ipRestrictions: [
       {
         cidrBlock: string;
         description: string;
-      },
+      }?,
     ];
   };
   currentState: {
@@ -73,7 +73,7 @@ export interface RancherService {
       {
         cidrBlock: string;
         description: string;
-      },
+      }?,
     ];
   };
   currentTasks: Array<RancherTask>;
@@ -83,7 +83,7 @@ export interface RancherService {
 export interface CreateRancherPayload {
   name: string;
   version: string;
-  plan: string;
+  plan: RancherPlanName;
 }
 
 export enum ResourceStatus {
@@ -98,7 +98,7 @@ export enum ResourceStatus {
 export type RancherReferenceStatus = 'AVAILABLE' | 'UNAVAILABLE';
 
 export interface RancherPlan {
-  name: 'OVHCLOUD_EDITION' | 'STANDARD';
+  name: RancherPlanName;
   status: RancherReferenceStatus;
 }
 
