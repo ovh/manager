@@ -7,6 +7,9 @@ import { useManagedVcdDatacentre } from '@/data/hooks/useManagedVcdDatacentres';
 import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import { COMPUTE_TITLE, STORAGE_TITLE } from './DatacentreDashboard.constant';
 import { subRoutes, urls } from '@/routes/routes.constant';
+import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
+import { isUpdatingTargetSpec } from '@/utils/refetchConditions';
+import { getVcdDatacentresQueryKey } from '@/utils/queryKeys';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
@@ -14,6 +17,11 @@ function DatacentreDashboardPage() {
   const { data: vcdDatacentre } = useManagedVcdDatacentre(id, vdcId);
   const { data: vcdOrganization } = useManagedVcdOrganization({ id });
   const navigate = useNavigate();
+  useAutoRefetch({
+    queryKey: getVcdDatacentresQueryKey(id),
+    enabled: isUpdatingTargetSpec(vcdDatacentre?.data),
+    interval: 4000,
+  });
 
   const tabsList = [
     {
