@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.5.9...@ovh-ux/manager-pci-block-storage-app@0.5.10) (2024-10-07)
+
+
+### Bug Fixes
+
+* **pci.block-storage:** remove unwanted discovery banner ([#13236](https://github.com/ovh/manager/issues/13236)) ([9a2d181](https://github.com/ovh/manager/commit/9a2d181ced9492e7f1926ddc4a1bcb45fab0d394))
+
+
+
+
+
 ## [0.5.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.5.8...@ovh-ux/manager-pci-block-storage-app@0.5.9) (2024-10-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
