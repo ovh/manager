@@ -57,7 +57,7 @@ export const OnboardingWalkMe = () => {
   const steps = [
     {
       selector: '#header-user-menu-button',
-      placement: 'bottom-start',
+      placement: 'bottom-end',
       title: t('onboarding_walkme_popover_step1_title'),
       content: t('onboarding_walkme_popover_step1_content'),
       trackingVariant: 'my_account',
@@ -85,7 +85,7 @@ export const OnboardingWalkMe = () => {
     {
       selector: 'services',
       placement: 'left-start',
-      mobilePlacement: 'bottom-start',
+      mobilePlacement: 'right-start',
       title: t('onboarding_walkme_popover_step3_title'),
       content: t('onboarding_walkme_popover_step3_content'),
       trackingVariant: 'my_services',
@@ -295,7 +295,13 @@ export const OnboardingWalkMe = () => {
           <div className={`${popoverStyle['popover-body']} mb-3`}>
             {steps[currentStepIndex].content}
           </div>
-          <div className="d-flex flex-row-reverse justify-content-between">
+          <div className={style['onboarding-walkme_popover_footer']}>
+          <button
+              className="oui-button oui-button_ghost"
+              onClick={() => onHideBtnClick()}
+            >
+              {t('onboarding_popover_hide_button')}
+            </button>
             <button
               className="oui-button oui-button_primary"
               onClick={onNextBtnClick}
@@ -304,12 +310,6 @@ export const OnboardingWalkMe = () => {
                 current: currentStepIndex + 1,
                 total: steps.length,
               })}
-            </button>
-            <button
-              className="oui-button oui-button_ghost"
-              onClick={() => onHideBtnClick()}
-            >
-              {t('onboarding_popover_hide_button')}
             </button>
           </div>
         </div>

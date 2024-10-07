@@ -106,16 +106,23 @@ export const OnboardingIntroduction = () => {
             className={`${style.welcomePopover} ${popoverStyle.popover} oui-popover`}
             ref={ref}
           >
-            <div className="oui-popover__content">
-              <h2 className={popoverStyle['popover-header']}>
-                {t('onboarding_introduction_popover_title', {
-                  userName: user.firstname,
-                })}
-              </h2>
-              <div className={popoverStyle['popover-body']}>
-                <p>{t('onboarding_introduction_popover_content')}</p>
+              <div className={style.welcomePopoverBody}>
+                <h2 className={popoverStyle['popover-header']}>
+                  {t('onboarding_introduction_popover_title', {
+                    userName: user.firstname,
+                  })}
+                </h2>
+                <div className={popoverStyle['popover-body']}>
+                  <p>{t('onboarding_introduction_popover_content')}</p>
+                </div>
               </div>
-              <div className="d-flex flex-row-reverse justify-content-between">
+              <div className={style.welcomePopoverFooter}>
+              <button
+                  className="oui-button oui-button_ghost"
+                  onClick={() => closeOnboarding()}
+                >
+                  {t('onboarding_popover_hide_button')}
+                </button>
                 <button
                   className="oui-button oui-button_primary"
                   onClick={() => startOnboarding()}
@@ -123,15 +130,7 @@ export const OnboardingIntroduction = () => {
                 >
                   {t('onboarding_popover_follow_guide_button')}
                 </button>
-                <button
-                  className="oui-button oui-button_ghost"
-                  onClick={() => closeOnboarding()}
-                >
-                  {t('onboarding_popover_hide_button')}
-                </button>
               </div>
-            </div>
-            <div className="oui-popover__arrow" aria-hidden="true"></div>
           </div>
         </>
       )}
