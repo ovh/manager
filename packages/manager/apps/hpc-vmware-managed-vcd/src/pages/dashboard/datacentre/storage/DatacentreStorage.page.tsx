@@ -11,6 +11,7 @@ import { STORAGE_TITLE } from '../DatacentreDashboard.constant';
 import { getVcdDatacentreStorageRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { getVdcStorageQueryKey } from '@/utils/queryKeys';
+import { capitalize } from '@/utils/capitalize';
 
 const DatagridIdCell = (vcdStorage: IVcdStorage) => (
   <DataGridTextCell>{vcdStorage?.id}</DataGridTextCell>
@@ -22,7 +23,9 @@ const DatagridProfileCell = (vcdStorage: IVcdStorage) => (
   <DataGridTextCell>{vcdStorage?.currentState?.profile}</DataGridTextCell>
 );
 const DatagridTypeCell = (vcdStorage: IVcdStorage) => (
-  <DataGridTextCell>{vcdStorage?.currentState?.type}</DataGridTextCell>
+  <DataGridTextCell>
+    {capitalize(vcdStorage?.currentState?.type)}
+  </DataGridTextCell>
 );
 const DatagridCapacityCell = (vcdStorage: IVcdStorage) => {
   const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');

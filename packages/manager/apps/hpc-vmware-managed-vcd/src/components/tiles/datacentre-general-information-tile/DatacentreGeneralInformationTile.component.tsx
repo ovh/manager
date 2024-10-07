@@ -14,6 +14,7 @@ import IVcdOrganization from '@/types/vcd-organization.interface';
 import { subRoutes } from '@/routes/routes.constant';
 import { iamActions } from '@/utils/iam.constants';
 import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
+import { capitalize } from '@/utils/capitalize';
 
 type TTileProps = {
   vcdDatacentre: IVcdDatacentre;
@@ -51,7 +52,7 @@ export default function DatacentreGenerationInformationTile({
           label: tVdc('managed_vcd_vdc_commercial_range'),
           value: (
             <Description>
-              {vcdDatacentre?.currentState?.commercialRange}
+              {capitalize(vcdDatacentre?.currentState?.commercialRange)}
             </Description>
           ),
         },
