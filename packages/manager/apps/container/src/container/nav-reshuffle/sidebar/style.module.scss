@@ -340,10 +340,6 @@ $sidebar-font-size: 0.875rem;
     white-space: nowrap;
   }
 
-  &_icon {
-    height: 0;
-  }
-
   &_text, &_short &_icon {
     transition: opacity 0.1s ease-in 0.2s;
     opacity: 1;
