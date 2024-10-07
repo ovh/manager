@@ -140,13 +140,13 @@ const dashboardTemplateProps = {
     title: 'Vrack Services',
     headerButton: <GuideButton items={guideItems} />,
   },
-  subtitle: 'Lorem ipsum',
+  // subtitle: 'Lorem ipsum',
   backLinkLabel: 'Retour à la XXX',
   onClickReturn: () => {
     console.log('back link click');
   },
-  subdescription:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia rutrum interdum. Nullam tempor, mi eu imperdiet scelerisque, lorem nisl blandit ligula, eget sodales erat nulla a odio. Donec efficitur posuere quam. Maecenas metus sem, venenatis id mattis eget, sollicitudin sit amet nulla. Sed ac erat fermentum, porta ligula ac,',
+  // subdescription:
+  //   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia rutrum interdum. Nullam tempor, mi eu imperdiet scelerisque, lorem nisl blandit ligula, eget sodales erat nulla a odio. Donec efficitur posuere quam. Maecenas metus sem, venenatis id mattis eget, sollicitudin sit amet nulla. Sed ac erat fermentum, porta ligula ac,',
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   message: (

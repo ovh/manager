@@ -35,7 +35,7 @@ export const BaseLayout = ({
     {header && <Headers {...header} />}
     {backLinkLabel && (onClickReturn || hrefPrevious) && (
       <Links
-        className="mb-8"
+        className="mb-6"
         onClickReturn={onClickReturn}
         label={backLinkLabel}
         type={LinkType.back}
@@ -43,8 +43,8 @@ export const BaseLayout = ({
         href={hrefPrevious}
       />
     )}
-    {description && <Description className="mb-8">{description}</Description>}
-    {message && <div className="mb-8">{message}</div>}
+    {description && <Description className="mb-6">{description}</Description>}
+    {message && <div className="mb-8 max-w-[800px]">{message}</div>}
     {subtitle && <Subtitle className="block mb-6">{subtitle}</Subtitle>}
     {subDescription && (
       <Description className="mb-8">{subDescription}</Description>

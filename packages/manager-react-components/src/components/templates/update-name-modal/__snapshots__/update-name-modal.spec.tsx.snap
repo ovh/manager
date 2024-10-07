@@ -32,6 +32,7 @@ exports[`Update Name Modal component renders loading modal 1`] = `
         aria-disabled="true"
         aria-label="update-input"
         disabled="true"
+        error="true"
         internals-disabled=""
         type="text"
       />
@@ -40,7 +41,7 @@ exports[`Update Name Modal component renders loading modal 1`] = `
       >
         <osds-text
           class="block"
-          color="text"
+          color="error"
           level="body"
           size="100"
         >
