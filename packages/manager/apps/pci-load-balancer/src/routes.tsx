@@ -24,6 +24,7 @@ export const ROUTE_PATHS = {
   STATISTICS: 'statistics',
   CERTIFICATES: 'certificates',
   LOGS: 'logs',
+  STREAMS: 'logs/streams',
   DELETE: ':region/:loadBalancerId/delete',
 };
 
@@ -75,6 +76,7 @@ const CertificatesPage = lazy(() =>
   import('@/pages/detail/certificates/Certificates.page'),
 );
 const LogsPage = lazy(() => import('@/pages/detail/log/Log.page'));
+const StreamsPage = lazy(() => import('@/pages/detail/log/Streams.page'));
 const DeletePage = lazy(() => import('@/pages/delete/Delete.page'));
 const EditLoadBalancerNamePage = lazy(() =>
   import('@/pages/detail/edit/Edit.page'),
@@ -176,6 +178,7 @@ const Routes = (
         Component={CertificatesPage}
       />
       <Route id="detail-logs" path={ROUTE_PATHS.LOGS} Component={LogsPage} />
+      <Route id="streams" path={ROUTE_PATHS.STREAMS} Component={StreamsPage} />
     </Route>
     <Route path="" element={<>Page not found</>}></Route>
   </Route>
