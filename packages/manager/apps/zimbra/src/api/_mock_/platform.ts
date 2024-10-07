@@ -1,4 +1,5 @@
 import { ZimbraPlatformType } from '@/api/platform';
+import { ResourceStatus } from '../api.type';
 
 export const platformMock: ZimbraPlatformType[] = [
   {
@@ -12,7 +13,7 @@ export const platformMock: ZimbraPlatformType[] = [
     },
     currentTasks: [],
     id: '00000000-0000-0000-0000-000000000001',
-    resourceStatus: 'READY',
+    resourceStatus: ResourceStatus.READY,
     targetSpec: {
       description: 'some description',
       name: 'Manager Team platform',

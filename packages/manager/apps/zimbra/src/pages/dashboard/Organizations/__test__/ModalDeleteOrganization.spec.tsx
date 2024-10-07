@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
 import { render } from '@/utils/test.provider';
 import { platformMock, domainMock } from '@/api/_mock_';
-import ModalDeleteOrganization from '../ModalDeleteOrganization';
+import ModalDeleteOrganization from '../ModalDeleteOrganization.component';
 import organizationsDeleteTranslation from '@/public/translations/organizations/delete/Messages_fr_FR.json';
 
 const { useDomainsMock } = vi.hoisted(() => ({

@@ -4,6 +4,7 @@ import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { DomainsItem } from './Domains';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { ResourceStatus } from '@/api/api.type';
 
 interface ActionButtonDomainProps {
   domainItem: DomainsItem;
@@ -25,7 +26,13 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
       iamActions: [IAM_ACTIONS.domain.delete],
     },
   ];
-  return <ActionMenu items={actionItems} isCompact />;
+  return (
+    <ActionMenu
+      disabled={domainItem.status !== ResourceStatus.READY}
+      items={actionItems}
+      isCompact
+    />
+  );
 };
 
 export default ActionButtonDomain;

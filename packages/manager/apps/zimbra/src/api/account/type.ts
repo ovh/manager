@@ -46,7 +46,7 @@ export type AccountType = {
     type: string;
   }[];
   id: string;
-  resourceStatus: keyof typeof ResourceStatus;
+  resourceStatus: ResourceStatus;
   targetSpec: {
     contactInformation: {
       city: string;

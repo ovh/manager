@@ -11,9 +11,18 @@ import organizationsDeleteTranslation from '@/public/translations/organizations/
 import domainsTranslation from '@/public/translations/domains/Messages_fr_FR.json';
 import domainsAddDomainTranslation from '@/public/translations/domains/addDomain/Messages_fr_FR.json';
 import domainsDeleteTranslation from '@/public/translations/domains/delete/Messages_fr_FR.json';
+import domainsDiagnosticTranslation from '@/public/translations/domains/diagnostic/Messages_fr_FR.json';
 import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
 import accountAddAndEditTranslation from '@/public/translations/accounts/addAndEdit/Messages_fr_FR.json';
+import accountAliasTranslation from '@/public/translations/accounts/alias/Messages_fr_FR.json';
+import accountAliasAddTranslation from '@/public/translations/accounts/alias/add/Messages_fr_FR.json';
+import accountAliasDeleteTranslation from '@/public/translations/accounts/alias/delete/Messages_fr_FR.json';
 import accountDeleteTranslation from '@/public/translations/accounts/delete/Messages_fr_FR.json';
+import mailingListsTranslation from '@/public/translations/mailinglists/Messages_fr_FR.json';
+import mailingListsAddAndEditTranslation from '@/public/translations/mailinglists/addAndEdit/Messages_fr_FR.json';
+import redirectionsTranslation from '@/public/translations/redirections/Messages_fr_FR.json';
+import redirectionsAddAndEditTranslation from '@/public/translations/redirections/addAndEdit/Messages_fr_FR.json';
+import redirectionsDeleteTranslation from '@/public/translations/redirections/delete/Messages_fr_FR.json';
 import queryClient from '@/queryClient';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
@@ -30,15 +39,34 @@ i18n.use(initReactI18next).init({
       domains: domainsTranslation,
       'domains/addDomain': domainsAddDomainTranslation,
       'domains/delete': domainsDeleteTranslation,
+      'domains/diagnostic': domainsDiagnosticTranslation,
       accounts: accountTranslation,
       'accounts/addAndEdit': accountAddAndEditTranslation,
+      'accounts/alias': accountAliasTranslation,
+      'accounts/alias/add': accountAliasAddTranslation,
+      'accounts/alias/delete': accountAliasDeleteTranslation,
       'accounts/delete': accountDeleteTranslation,
+      mailinglists: mailingListsTranslation,
+      'mailinglists/addAndEdit': mailingListsAddAndEditTranslation,
+      redirections: redirectionsTranslation,
+      'redirections/addAndEdit': redirectionsAddAndEditTranslation,
+      'redirections/delete': redirectionsDeleteTranslation,
     },
   },
   ns: ['dashboard'],
 });
 
-const Wrappers = ({ children }: { children: React.ReactNode }) => {
+export const wrapper = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+};
+
+export const wrapperWithI18n = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   return (
     <QueryClientProvider client={queryClient}>
       <MemoryRouter>
@@ -52,7 +80,7 @@ const customRender = (
   ui: React.JSX.Element,
   options?: Omit<RenderOptions, 'queries'>,
 ): RenderResult =>
-  render(ui, { wrapper: Wrappers as ComponentType, ...options });
+  render(ui, { wrapper: wrapperWithI18n as ComponentType, ...options });
 
 export * from '@testing-library/react';
 

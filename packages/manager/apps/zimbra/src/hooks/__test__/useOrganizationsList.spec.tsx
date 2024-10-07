@@ -1,10 +1,9 @@
 import { describe, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import React from 'react';
 import { platformMock, organizationListMock } from '@/api/_mock_';
 import { useOrganizationList } from '../useOrganizationsList';
+import { wrapper } from '@/utils/test.provider';
 
 vi.mock('@/hooks', () => {
   return {
@@ -21,14 +20,8 @@ vi.mock('@/api/organization/api', () => {
   };
 });
 
-const queryClient = new QueryClient();
-
-const wrapper = ({ children }: any) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
-
-describe('OrganizationList', () => {
-  it('Return list of organization', async () => {
+describe('useOrganizationsList', () => {
+  it('should return a list of organization', async () => {
     const { result } = renderHook(() => useOrganizationList(), { wrapper });
 
     await waitFor(() => {

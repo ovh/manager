@@ -13,18 +13,27 @@ export type DomainType = {
     name: string;
     organizationId: string;
     organizationLabel: string;
-    status: keyof typeof ResourceStatus;
+    status: string;
     updatedAt: string;
     accountsStatistics: AccountStatistics[];
+    expectedDNSConfig: {
+      mx: Array<{
+        priority: number;
+        target: string;
+      }>;
+      ownership: {
+        cname: string | null;
+      };
+    };
   };
   currentTasks: Array<{
     id: string;
     link: string;
-    status?: keyof typeof ResourceStatus;
+    status?: ResourceStatus;
     type: string;
   }>;
   id: string;
-  resourceStatus: keyof typeof ResourceStatus;
+  resourceStatus: ResourceStatus;
   targetSpec: {
     organizationId: string;
   };

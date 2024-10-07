@@ -1,8 +1,8 @@
-import { AccountStatistics } from '../api.type';
+import { AccountStatistics, ResourceStatus } from '../api.type';
 
 export type OrganizationType = {
   id: string;
-  resourceStatus: string;
+  resourceStatus: ResourceStatus;
   checksum: string;
   targetSpec: {
     name: string;

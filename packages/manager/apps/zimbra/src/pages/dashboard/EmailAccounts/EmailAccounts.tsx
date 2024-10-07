@@ -40,7 +40,7 @@ import {
 } from '@/hooks';
 import LabelChip from '@/components/LabelChip';
 import guidesConstants from '@/guides.constants';
-import ActionButtonEmail from './ActionButtonEmail';
+import ActionButtonEmail from './ActionButtonEmail.component';
 import {
   convertOctets,
   DATAGRID_REFRESH_INTERVAL,
@@ -48,6 +48,7 @@ import {
 } from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import Loading from '@/components/Loading/Loading';
+import { ResourceStatus } from '@/api/api.type';
 
 export type EmailsItem = {
   id: string;
@@ -57,6 +58,7 @@ export type EmailsItem = {
   organizationLabel: string;
   used: number;
   available: number;
+  status: ResourceStatus;
 };
 
 const columns: DatagridColumn<EmailsItem>[] = [
@@ -75,24 +77,22 @@ const columns: DatagridColumn<EmailsItem>[] = [
   },
   {
     id: 'organization',
-    cell: (item) =>
-      item.organizationLabel && (
-        <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
-      ),
+    cell: (item) => (
+      <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
+    ),
     label: 'zimbra_account_datagrid_organization_label',
   },
   {
     id: 'offer',
-    cell: (item) =>
-      item.offer && (
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_TEXT_SIZE._100}
-          level={ODS_TEXT_LEVEL.body}
-        >
-          {item.offer}
-        </OsdsText>
-      ),
+    cell: (item) => (
+      <OsdsText
+        color={ODS_THEME_COLOR_INTENT.text}
+        size={ODS_TEXT_SIZE._100}
+        level={ODS_TEXT_LEVEL.body}
+      >
+        {item.offer}
+      </OsdsText>
+    ),
     label: 'zimbra_account_datagrid_offer_label',
   },
   {
@@ -138,6 +138,7 @@ export default function EmailAccounts() {
       organizationLabel: item.currentState.organizationLabel,
       used: item.currentState.quota.used,
       available: item.currentState.quota.available,
+      status: item.resourceStatus,
     })) ?? [];
 
   const webmailUrl = guidesConstants.GUIDES_LIST.webmail.url;

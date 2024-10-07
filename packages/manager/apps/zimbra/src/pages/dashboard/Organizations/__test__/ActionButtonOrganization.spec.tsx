@@ -1,6 +1,6 @@
 import React from 'react';
 import { vi, describe, expect } from 'vitest';
-import ActionButtonOrganization from '../ActionButtonOrganization';
+import ActionButtonOrganization from '../ActionButtonOrganization.component';
 import { render } from '@/utils/test.provider';
 import organizationsTranslation from '@/public/translations/organizations/Messages_fr_FR.json';
 import { organizationListMock, platformMock } from '@/api/_mock_';
