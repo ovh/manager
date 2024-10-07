@@ -35,7 +35,7 @@ export const ManagerText = ({
       <OsdsTooltip>
         <OsdsText {...restProps}>{t('iam_hidden_text').toUpperCase()}</OsdsText>
         <OsdsTooltipContent slot="tooltip-content">
-          <div>{t('common_iam_actions_message')}</div>
+          <div>{t('common_iam_get_message')}</div>
         </OsdsTooltipContent>
       </OsdsTooltip>
     );
