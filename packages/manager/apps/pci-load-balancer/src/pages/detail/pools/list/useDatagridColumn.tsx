@@ -21,7 +21,10 @@ export const useDatagridColumn = () => {
       id: 'name',
       cell: (props: TLoadBalancerPool) => (
         <DataGridTextCell>
-          <OsdsLink color={ODS_THEME_COLOR_INTENT.primary} href={useHref(``)}>
+          <OsdsLink
+            color={ODS_THEME_COLOR_INTENT.primary}
+            href={useHref(`../${props.id}`)}
+          >
             {props.name}
           </OsdsLink>
         </DataGridTextCell>
