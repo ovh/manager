@@ -43,6 +43,19 @@ export const postZimbraDomain = async (
   return data;
 };
 
+// PUT
+
+export const putZimbraDomain = async (
+  platformId: string,
+  domainId: string,
+  params: DomainBodyParamsType,
+) => {
+  const { data } = await v2.put(`${getApiPath(platformId)}domain/${domainId}`, {
+    targetSpec: params,
+  });
+  return data;
+};
+
 // DELETE
 
 export const deleteZimbraPlatformDomain = async (

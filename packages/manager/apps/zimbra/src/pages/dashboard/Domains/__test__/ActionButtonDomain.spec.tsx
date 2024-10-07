@@ -21,9 +21,13 @@ describe('Domains datagrid action menu', () => {
       <ActionButtonDomain domainItem={domainMock[0]} />,
     );
 
-    expect(container.querySelectorAll('osds-menu-item').length).toBe(1);
+    expect(container.querySelectorAll('osds-menu-item').length).toBe(2);
 
     expect(container.querySelectorAll('osds-menu-item')[0]).toHaveTextContent(
+      domainTranslation.zimbra_domains_tooltip_configure,
+    );
+
+    expect(container.querySelectorAll('osds-menu-item')[1]).toHaveTextContent(
       domainTranslation.zimbra_domains_tooltip_delete,
     );
   });
