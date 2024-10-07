@@ -1,15 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useResolvedPath } from 'react-router-dom';
+import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 
 import VcdDashboardLayout from '@/components/dashboard/layout/VcdDashboardLayout.component';
 import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
+import { urls } from '@/routes/routes.constant';
 
 export default function DashboardPage() {
   const { id } = useParams();
   const { t } = useTranslation('dashboard');
   const { data: vcdOrganisation } = useManagedVcdOrganization({ id });
+  const navigate = useNavigate();
 
   const tabsList = [
     {
@@ -46,6 +48,8 @@ export default function DashboardPage() {
       tabs={tabsList}
       breadcrumbItems={breadcrumbItems}
       header={header}
+      backLinkLabel={t('managed_vcd_dashboard_back_link')}
+      onClickReturn={() => navigate(urls.listing)}
     />
   );
 }

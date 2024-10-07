@@ -23,12 +23,16 @@ export type TDashboardLayoutProps = {
   tabs: DashboardTabItemProps[];
   breadcrumbItems: BreadcrumbItem[];
   header: HeadersProps;
+  backLinkLabel?: string;
+  onClickReturn?: () => void;
 };
 
 export default function VcdDashboardLayout({
   tabs,
   breadcrumbItems,
   header,
+  backLinkLabel,
+  onClickReturn,
 }: TDashboardLayoutProps) {
   const [panel, setActivePanel] = useState('');
   const { pathname: path } = useLocation();
@@ -71,6 +75,8 @@ export default function VcdDashboardLayout({
         }
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         message={<Notifications />}
+        backLinkLabel={backLinkLabel}
+        onClickReturn={onClickReturn}
       />
       <Outlet />
     </div>
