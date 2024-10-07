@@ -1,6 +1,6 @@
 import { useHref } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ActionMenu, useProjectUrl } from '@ovh-ux/manager-react-components';
+import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { TLoadBalancer } from '@/api/data/load-balancer';
 
 type ActionsComponentProps = {

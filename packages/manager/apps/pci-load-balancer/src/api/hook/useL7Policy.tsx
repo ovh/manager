@@ -8,6 +8,7 @@ import {
   getL7Policies,
   getPolicy,
   TL7Policy,
+  updatePolicy,
 } from '@/api/data/l7Policies';
 import { paginateResults, sortResults } from '@/helpers';
 import { ACTION_LABELS, ACTIONS } from '@/constants';
@@ -112,7 +113,7 @@ export const useDeletePolicy = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['l7Policies'],
+        queryKey: ['l7Policies', projectId],
       });
       onSuccess();
     },
@@ -127,7 +128,6 @@ type CreatePolicyProps = {
   projectId: string;
   listenerId: string;
   region: string;
-  policy: TL7Policy;
   onError: (cause: Error) => void;
   onSuccess: (newPolicy: TL7Policy) => void;
 };
@@ -135,23 +135,53 @@ type CreatePolicyProps = {
 export const useCreatePolicy = ({
   projectId,
   listenerId,
-  policy,
   region,
   onError,
   onSuccess,
 }: CreatePolicyProps) => {
-  const mutation = useMutation<TL7Policy>({
-    mutationFn: async () => createPolicy(projectId, region, listenerId, policy),
+  const mutation = useMutation({
+    mutationFn: async (policy: TL7Policy) =>
+      createPolicy(projectId, region, listenerId, policy),
     onError,
     onSuccess: async (newPolicy) => {
       await queryClient.invalidateQueries({
-        queryKey: ['l7Policies'],
+        queryKey: ['l7Policies', projectId],
       });
       onSuccess(newPolicy);
     },
   });
   return {
-    createPolicy: () => mutation.mutate(),
+    createPolicy: (policy: TL7Policy) => mutation.mutate(policy),
+    ...mutation,
+  };
+};
+
+type UpdatePolicyProps = {
+  projectId: string;
+  region: string;
+  onError: (cause: Error) => void;
+  onSuccess: (policy: TL7Policy) => void;
+};
+
+export const useUpdatePolicy = ({
+  projectId,
+  region,
+  onError,
+  onSuccess,
+}: UpdatePolicyProps) => {
+  const mutation = useMutation({
+    mutationFn: async (policy: TL7Policy) =>
+      updatePolicy(projectId, region, policy),
+    onError,
+    onSuccess: async (policy: TL7Policy) => {
+      await queryClient.invalidateQueries({
+        queryKey: ['l7Policies', projectId],
+      });
+      onSuccess(policy);
+    },
+  });
+  return {
+    updatePolicy: (policy: TL7Policy) => mutation.mutate(policy),
     ...mutation,
   };
 };
