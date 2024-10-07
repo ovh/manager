@@ -28,6 +28,7 @@ import ActionButtonAlias from './ActionButtonAlias.component';
 import { BadgeStatus } from '@/components/BadgeStatus';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
+import Loading from '@/components/Loading/Loading';
 
 export type AliasItem = {
   id: string;
@@ -40,7 +41,7 @@ export default function EmailAccountsAlias() {
   const [searchParams] = useSearchParams();
   const editEmailAccountId = searchParams.get('editEmailAccountId');
   const { platformId, platformUrn } = usePlatform();
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: getZimbraPlatformAliasQueryKey(platformId),
     queryFn: () => getZimbraPlatformAlias(platformId),
     enabled: !!platformId,
@@ -114,14 +115,18 @@ export default function EmailAccountsAlias() {
               <span slot="end">{t('zimbra_account_alias_cta')}</span>
             </ManagerButton>
           </div>
-          <Datagrid
-            columns={columns.map((column) => ({
-              ...column,
-              label: t(column.label),
-            }))}
-            items={items}
-            totalItems={items.length}
-          />
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <Datagrid
+              columns={columns.map((column) => ({
+                ...column,
+                label: t(column.label),
+              }))}
+              items={items}
+              totalItems={items.length}
+            />
+          )}
         </>
       )}
     </div>

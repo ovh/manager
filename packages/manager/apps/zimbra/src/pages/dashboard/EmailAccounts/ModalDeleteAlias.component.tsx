@@ -13,7 +13,11 @@ import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
-import { deleteZimbraPlatformAlias } from '@/api/alias';
+import {
+  deleteZimbraPlatformAlias,
+  getZimbraPlatformAliasQueryKey,
+} from '@/api/alias';
+import queryClient from '@/queryClient';
 
 export default function ModalDeleteDomain() {
   const { t } = useTranslation('accounts/alias/delete');
@@ -61,6 +65,9 @@ export default function ModalDeleteDomain() {
       );
     },
     onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: getZimbraPlatformAliasQueryKey(platformId),
+      });
       goBack();
     },
   });

@@ -24,9 +24,12 @@ vi.mock('@/api/mailinglist/api', () => {
 describe('useMailingList', () => {
   it('should return a mailinglist detail', async () => {
     const mailingList = mailingListsMock[0];
-    const { result } = renderHook(() => useMailingList(mailingList.id), {
-      wrapper,
-    });
+    const { result } = renderHook(
+      () => useMailingList({ mailingListId: mailingList.id }),
+      {
+        wrapper,
+      },
+    );
 
     await waitFor(() => {
       expect(result.current.isLoading).toBe(false);

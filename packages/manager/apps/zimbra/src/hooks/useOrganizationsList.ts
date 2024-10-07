@@ -19,8 +19,10 @@ export const useOrganizationList = (
     ...options,
     queryKey: getZimbraPlatformOrganizationQueryKey(platformId),
     queryFn: () => getZimbraPlatformOrganization(platformId),
-    enabled:
-      (typeof options.enabled !== 'undefined' ? options.enabled : true) &&
+    enabled: (query) =>
+      (typeof options.enabled === 'function'
+        ? options.enabled(query)
+        : typeof options.enabled !== 'boolean' || options.enabled) &&
       !!platformId,
   }) as UseQueryResult<OrganizationType[]>;
 };

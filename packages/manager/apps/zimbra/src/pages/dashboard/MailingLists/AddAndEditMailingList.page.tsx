@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import * as managerReactComponents from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { Links, LinkType, Subtitle } from '@ovh-ux/manager-react-components';
 import {
   useDomains,
   useGenerateUrl,
@@ -28,7 +28,7 @@ export default function AddAndEditMailingList() {
   const {
     data: editMailingListDetail,
     isLoading: isLoadingMailingListDetailRequest,
-  } = useMailingList(editMailingListId);
+  } = useMailingList({ mailingListId: editMailingListId });
 
   const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains();
 
@@ -55,16 +55,16 @@ export default function AddAndEditMailingList() {
             className="flex flex-col items-start space-y-4 mb-5"
             data-testid="page-title"
           >
-            <managerReactComponents.Links
-              type={managerReactComponents.LinkType.back}
+            <Links
+              type={LinkType.back}
               onClickReturn={goBack}
               label={t('zimbra_mailinglist_add_cta_back')}
             />
-            <managerReactComponents.Subtitle>
+            <Subtitle>
               {!editMailingListDetail
                 ? t('zimbra_mailinglist_add_title')
                 : t('zimbra_mailinglist_edit_title')}
-            </managerReactComponents.Subtitle>
+            </Subtitle>
           </div>
           <MailingListSettings
             domainList={domainList}

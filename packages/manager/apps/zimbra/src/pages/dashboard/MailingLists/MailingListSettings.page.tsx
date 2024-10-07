@@ -36,6 +36,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { useMutation } from '@tanstack/react-query';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import {
   postZimbraPlatformMailingList,
@@ -44,6 +45,7 @@ import {
   MailingListBodyParamsType,
   ReplyToChoices,
   ModerationChoices,
+  getZimbraPlatformMailingListsQueryKey,
 } from '@/api/mailinglist';
 import { DomainType } from '@/api/domain';
 import { formInputRegex } from './mailingList.constants';
@@ -52,6 +54,7 @@ import {
   checkValidityForm,
   FormTypeInterface,
 } from '@/utils';
+import queryClient from '@/queryClient';
 
 const replyToChoices = [
   {
@@ -196,9 +199,9 @@ export default function MailingListSettings({
   const handleFormChange = (name: string, value: string) => {
     const newForm: FormTypeInterface = form;
     newForm[name] = {
+      ...form[name],
       value,
       touched: true,
-      required: form[name].required,
       hasError: !checkValidityField(name, value, formInputRegex, form),
     };
     setForm((oldForm) => ({ ...oldForm, ...newForm }));
@@ -213,59 +216,59 @@ export default function MailingListSettings({
     setSelectedDomainOrganization(organizationLabel);
   };
 
-  const handleSuccess = () => {
-    goBack();
-    addSuccess(
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        hue={ODS_THEME_COLOR_HUE._500}
-      >
-        {t('zimbra_mailinglist_add_success_message')}
-      </OsdsText>,
-      true,
-    );
-  };
+  const { mutate: addOrEditMailingList, isPending: isSending } = useMutation({
+    mutationFn: (params: MailingListBodyParamsType) => {
+      return editMailingListId
+        ? putZimbraPlatformMailingList(platformId, editMailingListId, params)
+        : postZimbraPlatformMailingList(platformId, params);
+    },
+    onSuccess: () => {
+      addSuccess(
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          hue={ODS_THEME_COLOR_HUE._500}
+        >
+          {t(
+            editMailingListId
+              ? 'zimbra_mailinglist_edit_success_message'
+              : 'zimbra_mailinglist_add_success_message',
+          )}
+        </OsdsText>,
+        true,
+      );
+    },
+    onError: (error: ApiError) => {
+      addError(
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          hue={ODS_THEME_COLOR_HUE._500}
+        >
+          {t(
+            editMailingListId
+              ? 'zimbra_mailinglist_edit_error_message'
+              : 'zimbra_mailinglist_add_error_message',
+            {
+              error: error.response?.data?.message,
+            },
+          )}
+        </OsdsText>,
+        true,
+      );
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: getZimbraPlatformMailingListsQueryKey(platformId),
+      });
+      goBack();
+    },
+  });
 
-  const handleError = ({ response }: ApiError) => {
-    goBack();
-    addError(
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        hue={ODS_THEME_COLOR_HUE._500}
-      >
-        {t('zimbra_mailinglist_add_error_message', {
-          error: response.data.message,
-        })}
-      </OsdsText>,
-      true,
-    );
-  };
-
-  const handleNewMailingListClick = () => {
-    const dataBody = getDataBody(form);
-
-    postZimbraPlatformMailingList(
-      platformId,
-      dataBody as MailingListBodyParamsType,
-    )
-      .then(handleSuccess)
-      .catch(handleError);
-  };
-
-  const handleModifyMailingListClick = () => {
-    const dataBody = getDataBody(form);
-
-    putZimbraPlatformMailingList(
-      platformId,
-      editMailingListId,
-      dataBody as MailingListBodyParamsType,
-    )
-      .then(handleSuccess)
-      .catch(handleError);
+  const handleSavelick = () => {
+    addOrEditMailingList(getDataBody(form));
   };
 
   return (
@@ -575,12 +578,8 @@ export default function MailingListSettings({
           inline
           color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.flat}
-          {...(!isFormValid ? { disabled: true } : {})}
-          onClick={
-            editMailingListId
-              ? handleModifyMailingListClick
-              : handleNewMailingListClick
-          }
+          {...(!isFormValid || isSending ? { disabled: true } : {})}
+          onClick={handleSavelick}
           data-testid="confirm-btn"
         >
           {t('zimbra_mailinglist_add_button_confirm')}

@@ -19,6 +19,7 @@ import ActionButtonRedirections from './ActionButtonRedirections.component';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
+import Loading from '@/components/Loading/Loading';
 
 export type RedirectionsItem = {
   id: string;
@@ -79,6 +80,8 @@ export function Redirections() {
   const [searchParams] = useSearchParams();
   const editEmailAccountId = searchParams.get('editEmailAccountId');
   const hrefAddRedirection = useGenerateUrl('./add', 'href');
+  // to update
+  const isLoading = false;
 
   return (
     <div className="py-6 mt-8">
@@ -113,14 +116,18 @@ export function Redirections() {
               <span slot="end">{t('zimbra_redirections_cta')}</span>
             </ManagerButton>
           </div>
-          <Datagrid
-            columns={columns.map((column) => ({
-              ...column,
-              label: t(column.label),
-            }))}
-            items={items}
-            totalItems={items.length}
-          />
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <Datagrid
+              columns={columns.map((column) => ({
+                ...column,
+                label: t(column.label),
+              }))}
+              items={items}
+              totalItems={items.length}
+            />
+          )}
         </>
       )}
     </div>
