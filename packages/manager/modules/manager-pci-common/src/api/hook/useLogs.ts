@@ -148,7 +148,13 @@ export const useLogsDetails = (logsApiURL: string, logsKind: string) => {
   return useQueries({
     queries:
       subscribedLogs?.map(({ serviceName, streamId }) => ({
-        queryKey: ['dbaas-logs-details', logsApiURL, logsKind],
+        queryKey: [
+          'dbaas-logs-details',
+          logsApiURL,
+          logsKind,
+          serviceName,
+          streamId,
+        ],
         queryFn: async () => {
           const stream = await getStream(serviceName, streamId);
           const streamURL = await getStreamURL(serviceName, streamId);
