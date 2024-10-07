@@ -1,4 +1,4 @@
-import { Handler } from '../../../../../../playwright-helpers';
+import { Handler } from '../../../enumTypes/playwright';
 
 export type GetServicesMocksParams = {
   getServicesKo?: boolean;
