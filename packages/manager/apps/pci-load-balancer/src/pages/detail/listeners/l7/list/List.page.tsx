@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   Datagrid,
   FilterAdd,
@@ -10,11 +9,9 @@ import {
   useColumnFilters,
   useDataGrid,
   useNotifications,
-  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { Suspense, useRef, useState } from 'react';
 import {
-  OsdsBreadcrumb,
   OsdsButton,
   OsdsIcon,
   OsdsPopover,
