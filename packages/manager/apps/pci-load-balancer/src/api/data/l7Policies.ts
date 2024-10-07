@@ -69,3 +69,23 @@ export const createPolicy = async (
   );
   return data;
 };
+
+export const updatePolicy = async (
+  projectId: string,
+  region: string,
+  policy: TL7Policy,
+) => {
+  const { data } = await v6.put(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy/${policy.id}`,
+    {
+      name: policy.name,
+      position: policy.position,
+      action: policy.action,
+      redirectHttpCode: policy.redirectHttpCode,
+      redirectPoolId: policy.redirectPoolId,
+      redirectPrefix: policy.redirectPrefix,
+      redirectUrl: policy.redirectUrl,
+    },
+  );
+  return data;
+};
