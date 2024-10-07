@@ -1,44 +1,46 @@
 import { DomainType } from '@/api/domain';
 import { ResourceStatus } from '@/api/api.type';
 
-export const domainMock: DomainType[] = [
-  {
-    id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-    resourceStatus: ResourceStatus.READY,
-    checksum: 'string',
-    targetSpec: {
-      organizationId: '00000000-0000-0000-0000-000000000000',
-    },
-    currentState: {
-      organizationId: '00000000-0000-0000-0000-000000000000',
-      name: 'NormalDomain',
-      status: 'READY',
-      createdAt: '2024-04-12T12:27:47.213Z',
-      updatedAt: '2024-04-12T12:27:47.213Z',
-      organizationLabel: 'ToyStory',
-      cnameToCheck: '',
-      accountsStatistics: [
-        {
-          offer: 'STARTER',
-          configuredAccountsCount: 0,
-          availableAccountsCount: 4,
-        },
-      ],
-      expectedDNSConfig: {
-        mx: [],
-        ownership: {
-          cname: null,
-        },
-      },
-    },
-    currentTasks: [
+export const domainDetailMock: DomainType = {
+  id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+  resourceStatus: ResourceStatus.READY,
+  checksum: 'string',
+  targetSpec: {
+    organizationId: '00000000-0000-0000-0000-000000000000',
+  },
+  currentState: {
+    organizationId: '00000000-0000-0000-0000-000000000000',
+    name: 'NormalDomain',
+    status: 'READY',
+    createdAt: '2024-04-12T12:27:47.213Z',
+    updatedAt: '2024-04-12T12:27:47.213Z',
+    organizationLabel: 'ToyStory',
+    cnameToCheck: '',
+    accountsStatistics: [
       {
-        id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-        type: 'string',
-        link: 'string',
+        offer: 'STARTER',
+        configuredAccountsCount: 0,
+        availableAccountsCount: 4,
       },
     ],
+    expectedDNSConfig: {
+      mx: [],
+      ownership: {
+        cname: null,
+      },
+    },
   },
+  currentTasks: [
+    {
+      id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+      type: 'string',
+      link: 'string',
+    },
+  ],
+};
+
+export const domainsMock: DomainType[] = [
+  domainDetailMock,
   {
     id: '3fa91f64-0000-4562-b3fc-000000000000',
     resourceStatus: ResourceStatus.READY,

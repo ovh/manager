@@ -1,24 +1,14 @@
 import React from 'react';
-import { vi, describe, expect } from 'vitest';
+import { describe, expect } from 'vitest';
 import ActionButtonEmail from '../ActionButtonEmail.component';
 import { render } from '@/utils/test.provider';
 import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
-import { accountMock, platformMock } from '@/api/_mock_';
-
-vi.mock('@/hooks', async (importOriginal) => {
-  const actual: any = await importOriginal();
-  return {
-    ...actual,
-    usePlatform: vi.fn(() => ({
-      platformUrn: platformMock[0].iam.urn,
-    })),
-  };
-});
+import { accountsMock } from '@/api/_mock_';
 
 describe('EmailAccounts datagrid action menu', () => {
   it('we have good number of item with good content', () => {
     const { container } = render(
-      <ActionButtonEmail emailsItem={accountMock[0]} />,
+      <ActionButtonEmail emailsItem={accountsMock[0]} />,
     );
 
     expect(container.querySelectorAll('osds-menu-item').length).toBe(2);

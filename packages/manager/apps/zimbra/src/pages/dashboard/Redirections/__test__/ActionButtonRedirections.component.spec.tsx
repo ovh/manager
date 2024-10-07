@@ -1,22 +1,12 @@
 import React from 'react';
-import { vi, describe, expect } from 'vitest';
+import { describe, expect } from 'vitest';
 import ActionButtonRedirections from '../ActionButtonRedirections.component';
 import { render } from '@/utils/test.provider';
-import { platformMock } from '@/api/_mock_';
 import redirectionsTranslation from '@/public/translations/redirections/Messages_fr_FR.json';
-
-vi.mock('@/hooks', async (importOriginal) => {
-  const actual: any = await importOriginal();
-  return {
-    ...actual,
-    usePlatform: vi.fn(() => ({
-      platformUrn: platformMock[0].iam.urn,
-    })),
-  };
-});
+import { ResourceStatus } from '@/api/api.type';
 
 describe('Redirections datagrid action menu', () => {
-  it('we have good number of item with good content', () => {
+  it('renders with menu enabled and 2 items', () => {
     const { container } = render(
       <ActionButtonRedirections
         redirectionsItem={{
@@ -24,6 +14,7 @@ describe('Redirections datagrid action menu', () => {
           from: 'testFrom',
           to: 'testTo',
           organization: 'TestOrganization',
+          status: ResourceStatus.READY,
         }}
       />,
     );

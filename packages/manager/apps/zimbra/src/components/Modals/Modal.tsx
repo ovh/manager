@@ -1,11 +1,8 @@
 import React from 'react';
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsModal } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_VARIANT, ODS_SPINNER_MODE } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import Loading from '@/components/Loading/Loading';
 
 export interface ButtonType {
   testid?: string;
@@ -47,14 +44,7 @@ const Modal: React.FC<ModalProps> = ({
       onOdsModalClose={onDismissible}
     >
       {!isLoading && <div className="flex flex-col text-left">{children}</div>}
-      {isLoading && (
-        <div className="flex flex-col text-left">
-          <OsdsSpinner
-            mode={ODS_SPINNER_MODE.indeterminate}
-            inline
-          ></OsdsSpinner>
-        </div>
-      )}
+      {isLoading && <Loading />}
 
       {secondaryButton && (
         <OsdsButton

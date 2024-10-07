@@ -1,36 +1,13 @@
 import React from 'react';
-import { vi, describe, expect, it, afterEach } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { act } from 'react-dom/test-utils';
 import ModalAddAndEditRedirections from '../ModalAddAndEditRedirections.page';
-import { render, fireEvent, screen } from '@/utils/test.provider';
-
-vi.mock('@/hooks', async (importOriginal) => {
-  const actual: any = await importOriginal();
-  return {
-    ...actual,
-    useGenerateUrl: vi.fn(() => '#/redirections'),
-  };
-});
-
-afterEach(() => {
-  vi.clearAllMocks();
-});
+import { render, fireEvent } from '@/utils/test.provider';
 
 describe('ModalAddAndEditRedirections Component', () => {
-  it('should render correctly', () => {
-    render(<ModalAddAndEditRedirections />);
-
-    expect(screen.getByTestId('field-from')).toBeInTheDocument();
-    expect(screen.getByTestId('field-to')).toBeInTheDocument();
-    expect(screen.getByTestId('field-checkbox')).toBeInTheDocument();
-
-    const confirmButton = screen.getByTestId('confirm-btn');
-    expect(confirmButton).toBeInTheDocument();
-    expect(confirmButton).toBeDisabled();
-  });
-
-  it('should enable the confirm button when form is valid', () => {
+  it('should render and enable the confirm button when form is valid', async () => {
     const { getByTestId } = render(<ModalAddAndEditRedirections />);
+
     const confirmButton = getByTestId('confirm-btn');
     const checkbox = getByTestId('field-checkbox');
     const inputAccount = getByTestId('input-account');
