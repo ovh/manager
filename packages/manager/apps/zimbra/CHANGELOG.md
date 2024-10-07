@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.5.8...@ovh-ux/manager-zimbra-app@0.6.0) (2024-10-07)
+
+
+### Bug Fixes
+
+* **zimbra:** allow actions on ready resourceStatus ([ba43244](https://github.com/ovh/manager/commit/ba4324497eb47e0977ac88e80f92b0f50cadb5e9))
+* **zimbra:** update email account password rules ([61d89a3](https://github.com/ovh/manager/commit/61d89a33d7a355169ef7b4406284493b28891753))
+
+
+### Features
+
+* **zimbra-beta:** add status column to accounts ([94c7045](https://github.com/ovh/manager/commit/94c704549f11024cd8d710b7a639fdd8c03b7b86))
+* **zimbra:** add autocomplete account displayName ([62bc6c4](https://github.com/ovh/manager/commit/62bc6c44ce2b3e30474973b528908df1fcf9c623))
+
+
+
+
+
 ## [0.5.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.5.7...@ovh-ux/manager-zimbra-app@0.5.8) (2024-10-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

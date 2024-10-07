@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.18.2...@ovh-ux/manager-overthebox@6.19.0) (2024-10-07)
+
+
+### Features
+
+* **overthebox:** rework on migration offer device ([1c0e846](https://github.com/ovh/manager/commit/1c0e846cb6c35b9a2851470056a1728806764f36))
+
+
+
+
+
 ## [6.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.18.1...@ovh-ux/manager-overthebox@6.18.2) (2024-08-12)
 
 
