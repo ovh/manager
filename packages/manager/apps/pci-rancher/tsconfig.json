@@ -24,5 +24,12 @@
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "types", "src/__tests__"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "types",
+    "src/__tests__",
+    "*.spec.ts",
+    "*.test.ts"
+  ]
 }

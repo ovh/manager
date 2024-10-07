@@ -13,8 +13,15 @@ import '@/vite-hmr';
 
 const init = async (
   appName: string,
-  { reloadOnLocaleChange } = { reloadOnLocaleChange: false },
+  { reloadOnLocaleChange, mockNetwork } = {
+    reloadOnLocaleChange: false,
+    mockNetwork: false,
+  },
 ) => {
+  if (mockNetwork) {
+    const { setupMocks } = await import('../mocks/setup');
+    await setupMocks();
+  }
   const context = await initShellContext(appName);
 
   const region = context.environment.getRegion();
@@ -48,4 +55,9 @@ const init = async (
   );
 };
 
-init('pci-rancher', { reloadOnLocaleChange: true });
+init('pci-rancher', {
+  reloadOnLocaleChange: true,
+  mockNetwork:
+    process.env.NODE_ENV === 'development' &&
+    import.meta.env.VITE_TEST_BDD === 'true',
+});
