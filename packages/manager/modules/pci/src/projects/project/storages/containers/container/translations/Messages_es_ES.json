@@ -43,5 +43,6 @@
   "pci_projects_project_storages_containers_container_storage_class_label": "Tipo de almacenamiento",
   "pci_projects_project_storages_containers_container_storage_class_STANDARD": "Standard",
   "pci_projects_project_storages_containers_container_storage_class_HIGH_PERF": "High Performance",
-  "pci_projects_project_storages_containers_container_maintenance_message": "Estamos realizando una operación de mantenimiento para fusionar los endpoints S3. No es posible añadir objetos de manera temporal."
+  "pci_projects_project_storages_containers_container_maintenance_message": "Estamos realizando una operación de mantenimiento para fusionar los endpoints S3. No es posible añadir objetos de manera temporal.",
+  "pci_projects_project_storages_containers_container_region": "Localización: {{ region }}"
 }

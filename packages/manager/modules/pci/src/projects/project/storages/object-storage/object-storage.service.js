@@ -3,11 +3,12 @@ import 'moment';
 
 export default class PciStoragesObjectStorageService {
   /* @ngInject */
-  constructor($http, $q, Poller, OvhApiCloudProjectUser) {
+  constructor($http, $q, Poller, OvhApiCloudProjectUser, coreConfig) {
     this.$http = $http;
     this.$q = $q;
     this.Poller = Poller;
     this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
+    this.coreConfig = coreConfig;
   }
 
   getUserDetails(projectId, userId) {
@@ -150,5 +151,16 @@ export default class PciStoragesObjectStorageService {
         successRule: (user) => user.status === status,
       },
     );
+  }
+
+  getCatalog() {
+    return this.$http
+      .get('/order/catalog/public/cloud', {
+        params: {
+          productName: 'cloud',
+          ovhSubsidiary: this.coreConfig.getUser().ovhSubsidiary,
+        },
+      })
+      .then(({ data: catalog }) => catalog);
   }
 }

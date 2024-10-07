@@ -27,5 +27,8 @@
   "pci_projects_project_storages_containers_switch_to_private_label": "Switch to Private",
   "pci_projects_project_storages_containers_switch_to_public_label": "Switch to Public",
   "pci_projects_project_storages_containers_swift_containers_load_error": "An error has occurred on one or more of your Swift containers. Please try again later.",
-  "pci_projects_project_storages_containers_s3_containers_load_error": "An error has occurred on one or more of your S3 containers in the {{regions}} region. Please try again later."
+  "pci_projects_project_storages_containers_s3_containers_load_error": "An error has occurred on one or more of your S3 containers in the {{regions}} region. Please try again later.",
+  "pci_projects_project_storages_containers_deployment_mode_label": "Deployment mode",
+  "pci_projects_project_storages_containers_deployment_mode_region": "1-AZ Region",
+  "pci_projects_project_storages_containers_deployment_mode_region-3-az": "3-AZ Region"
 }

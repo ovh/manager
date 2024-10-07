@@ -13,5 +13,6 @@
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description": "Learn more about storage classes and pricing. ",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link": "View prices",
   "pci_projects_project_storages_containers_container_object_add_storage_class_standard": "Standard",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance"
+  "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Only the standard storage class is available for container objects created with this deployment mode."
 }
