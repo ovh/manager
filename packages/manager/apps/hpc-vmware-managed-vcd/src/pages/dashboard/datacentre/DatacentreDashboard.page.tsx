@@ -8,8 +8,8 @@ import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import { COMPUTE_TITLE, STORAGE_TITLE } from './DatacentreDashboard.constant';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
-import { isUpdatingTargetSpec } from '@/utils/getRefetchConditions';
-import { getVcdDatacentresQueryKey } from '@/utils/getQueryKeys';
+import { isUpdatingTargetSpec } from '@/utils/refetchConditions';
+import { getVcdDatacentresQueryKey } from '@/utils/queryKeys';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();

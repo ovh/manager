@@ -13,7 +13,7 @@ import IVcdOrganizationBackup from '@/types/vcd-organization-backup.interface';
 import {
   getVcdOrganizationQueryKey,
   getVcdOrganizationBackupQueryKey,
-} from '@/utils/getQueryKeys';
+} from '@/utils/queryKeys';
 
 interface IUseManagedVcdOrganization
   extends Pick<UseQueryOptions, 'refetchOnWindowFocus' | 'refetchInterval'> {

@@ -8,7 +8,7 @@ import IVcdDatacentre from '@/types/vcd-datacenter.interface';
 import {
   getVcdDatacentresQueryKey,
   getVcdDatacentreQueryKey,
-} from '@/utils/getQueryKeys';
+} from '@/utils/queryKeys';
 
 const useManagedVcdDatacentres = (id: string) => {
   return useQuery<ApiResponse<IVcdDatacentre[]>, ApiError>({

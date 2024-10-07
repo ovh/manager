@@ -10,7 +10,7 @@ import DatagridContainer from '@/components/datagrid/container/DatagridContainer
 import IVcdCompute from '@/types/vcd-compute.interface';
 import { getVcdDatacentreComputeRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
 import { subRoutes, urls } from '@/routes/routes.constant';
-import { getVdcComputeQueryKey } from '@/utils/getQueryKeys';
+import { getVdcComputeQueryKey } from '@/utils/queryKeys';
 
 const DatagridIdCell = (vcdCompute: IVcdCompute) => (
   <DataGridTextCell>{vcdCompute?.id}</DataGridTextCell>

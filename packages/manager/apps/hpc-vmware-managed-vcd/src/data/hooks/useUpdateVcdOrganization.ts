@@ -9,7 +9,7 @@ import {
   getVcdOrganizationQueryKey,
   icebergListingQueryKey,
   updateVcdOrganizationDetailsMutationKey,
-} from '@/utils/getQueryKeys';
+} from '@/utils/queryKeys';
 
 export const useUpdateVcdOrganizationDetails = ({
   id,

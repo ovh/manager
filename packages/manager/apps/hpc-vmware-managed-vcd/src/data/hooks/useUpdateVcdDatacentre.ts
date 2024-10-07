@@ -7,7 +7,7 @@ import {
 import {
   getVcdDatacentresQueryKey,
   updateVdcDetailsMutationKey,
-} from '@/utils/getQueryKeys';
+} from '@/utils/queryKeys';
 
 export const useUpdateVdcDetails = ({
   id,

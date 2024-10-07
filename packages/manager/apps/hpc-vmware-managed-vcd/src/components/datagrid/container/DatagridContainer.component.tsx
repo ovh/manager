@@ -14,8 +14,8 @@ import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import {
   hasResourceUpdatingTargetSpec,
   UpdatableResource,
-} from '@/utils/getRefetchConditions';
-import { icebergListingQueryKey } from '@/utils/getQueryKeys';
+} from '@/utils/refetchConditions';
+import { icebergListingQueryKey } from '@/utils/queryKeys';
 
 export type TDatagridContainerProps = {
   route: TDatagridRoute;
