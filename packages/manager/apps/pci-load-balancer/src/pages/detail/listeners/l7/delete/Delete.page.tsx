@@ -16,7 +16,7 @@ export default function DeletePage() {
   const onClose = () => {
     navigate('..');
   };
-  const { data: policy, isPending: isPendingLoadBalancer } = useGetPolicy(
+  const { data: policy, isPending: isPendingPolicy } = useGetPolicy(
     projectId,
     policyId,
     region,
@@ -63,7 +63,7 @@ export default function DeletePage() {
     navigate('..');
   };
 
-  const isPending = isPendingLoadBalancer || isPendingDelete;
+  const isPending = isPendingPolicy || isPendingDelete;
 
   return (
     <DeletionModal

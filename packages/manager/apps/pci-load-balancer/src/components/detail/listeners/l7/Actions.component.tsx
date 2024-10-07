@@ -13,7 +13,7 @@ export default function ActionsComponent({
   const items = [
     {
       id: 0,
-      href: '',
+      href: useHref(`../${l7PoliciesId}/edit`),
       label: t('octavia_load_balancer_list_l7_policies_actions_edit'),
     },
     {

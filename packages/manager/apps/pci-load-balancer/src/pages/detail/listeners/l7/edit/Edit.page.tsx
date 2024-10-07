@@ -1,25 +1,30 @@
-import {
-  Headers,
-  useNotifications,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
+import { Headers, useNotifications } from '@ovh-ux/manager-react-components';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+import { useGetPolicy, useUpdatePolicy } from '@/api/hook/useL7Policy';
 import PolicyForm from '@/components/detail/listeners/l7/PolicyForm.component';
-import { useCreatePolicy } from '@/api/hook/useL7Policy';
 import { useListener } from '@/api/hook/useListener';
 import { useAllLoadBalancerPools } from '@/api/hook/usePool';
 
-export default function CreatePage() {
+export default function EditPage() {
   const { addSuccess, addError } = useNotifications();
-  const { t } = useTranslation('octavia-load-balancer-l7-create');
-  const projectUrl = useProjectUrl('public-cloud');
-  const { listenerId, projectId, region, loadBalancerId } = useParams();
+  const { t } = useTranslation('octavia-load-balancer-l7-edit');
+  const {
+    listenerId,
+    projectId,
+    region,
+    loadBalancerId,
+    policyId,
+  } = useParams();
   const navigate = useNavigate();
-
+  const { data: policy, isPending: isPendingPolicy } = useGetPolicy(
+    projectId,
+    policyId,
+    region,
+  );
   const { data: listener, isPending: isPendingListener } = useListener({
     projectId,
     region,
@@ -33,9 +38,8 @@ export default function CreatePage() {
     loadBalancerId,
   });
 
-  const { createPolicy, isPending: isPendingCreate } = useCreatePolicy({
+  const { updatePolicy, isPending: isPendingCreate } = useUpdatePolicy({
     projectId,
-    listenerId,
     region,
     onError(error: ApiError) {
       addError(
@@ -50,16 +54,14 @@ export default function CreatePage() {
         true,
       );
     },
-    onSuccess(newPolicy) {
-      const l7RulesCreationLink = `${projectUrl}/octavia-load-balancer/${region}/${loadBalancerId}/listeners/${listenerId}/l7/${newPolicy?.id}/rules/create`;
+    onSuccess(updatedPolicy) {
       addSuccess(
         <Translation ns="octavia-load-balancer-l7">
           {(_t) => (
             <span
               dangerouslySetInnerHTML={{
-                __html: _t('octavia_load_balancer_create_l7_policy_success', {
-                  policy: newPolicy?.name,
-                  link: l7RulesCreationLink,
+                __html: _t('octavia_load_balancer_edit_l7_policy_success', {
+                  policy: updatedPolicy?.name,
                 }),
               }}
             ></span>
@@ -70,27 +72,25 @@ export default function CreatePage() {
       navigate('..');
     },
   });
-  const isPending = isPendingListener || isPendingPools || isPendingCreate;
+  const isPending =
+    isPendingListener || isPendingPools || isPendingCreate || isPendingPolicy;
   return (
     <div>
       <div className=" mt-8">
         <Headers
-          description={t('octavia_load_balancer_create_l7_policy_description')}
-          title={t('octavia_load_balancer_create_l7_policy_title')}
+          description={t('octavia_load_balancer_edit_l7_policy_description')}
+          title={t('octavia_load_balancer_edit_l7_policy_title')}
         />
       </div>
       {isPending ? (
         <OsdsSpinner size={ODS_SPINNER_SIZE.md} inline />
       ) : (
         <PolicyForm
-          policy={null}
-          onCancel={() => navigate('..')}
-          onSubmit={createPolicy}
+          policy={policy}
           listener={listener}
           pools={pools}
-          submitButtonText={t(
-            'octavia_load_balancer_create_l7_policy_create_submit',
-          )}
+          onCancel={() => navigate('..')}
+          onSubmit={updatePolicy}
         />
       )}
     </div>
