@@ -1,11 +1,13 @@
-import React, { Suspense } from 'react';
+import React, { createContext, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
   Notifications,
   BaseLayout,
   HeadersProps,
+  ErrorBanner,
 } from '@ovh-ux/manager-react-components';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import Dashboard, {
   DashboardTabItemProps,
@@ -15,16 +17,36 @@ import { useOKMSById } from '@/data/hooks/useOKMS';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
+import { OKMS } from '@/types/okms.type';
+import { getOkmsResourceQueryKey } from '@/data/api/okms';
+
+export const OkmsContext = createContext<OKMS>(null);
 
 export default function DashboardPage() {
   const { t: tDashboard } = useTranslation('key-management-service/dashboard');
+  const navigate = useNavigate();
   const { t: tServiceKeys } = useTranslation(
     'key-management-service/serviceKeys',
   );
   const { okmsId } = useParams();
-  const { data: okms } = useOKMSById(okmsId);
-  const displayName = okms?.data?.iam?.displayName;
-  const navigate = useNavigate();
+  const { data: okmsData, isLoading, error } = useOKMSById(okmsId);
+
+  if (isLoading) return <Loading />;
+
+  if (error)
+    return (
+      <ErrorBanner
+        error={error.response}
+        onRedirectHome={() => navigate(ROUTES_URLS.listing)}
+        onReloadPage={() =>
+          queryClient.refetchQueries({
+            queryKey: getOkmsResourceQueryKey(okmsId),
+          })
+        }
+      />
+    );
+
+  const okms = okmsData.data;
 
   const tabsList: DashboardTabItemProps[] = [
     {
@@ -45,7 +67,7 @@ export default function DashboardPage() {
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
-      label: displayName,
+      label: okms.iam.displayName,
       navigateTo: `/${okmsId}`,
     },
     {
@@ -56,24 +78,26 @@ export default function DashboardPage() {
   ];
 
   const headerProps: HeadersProps = {
-    title: displayName,
+    title: okms.iam.displayName,
     headerButton: <KmsGuidesHeader />,
   };
 
   return (
-    <BaseLayout
-      header={headerProps}
-      onClickReturn={() => {
-        navigate(ROUTES_URLS.root);
-      }}
-      backLinkLabel={tDashboard('key_management_service_dashboard_back_link')}
-      breadcrumb={<Breadcrumb items={breadcrumbItems} />}
-      message={<Notifications />}
-      tabs={<Dashboard tabs={tabsList} />}
-    >
-      <Suspense fallback={<Loading />}>
-        <Outlet></Outlet>
-      </Suspense>
-    </BaseLayout>
+    <Suspense fallback={<Loading />}>
+      <BaseLayout
+        header={headerProps}
+        onClickReturn={() => {
+          navigate(ROUTES_URLS.root);
+        }}
+        backLinkLabel={tDashboard('key_management_service_dashboard_back_link')}
+        breadcrumb={<Breadcrumb items={breadcrumbItems} />}
+        message={<Notifications />}
+        tabs={<Dashboard tabs={tabsList} />}
+      >
+        <OkmsContext.Provider value={okms}>
+          <Outlet />
+        </OkmsContext.Provider>
+      </BaseLayout>
+    </Suspense>
   );
 }

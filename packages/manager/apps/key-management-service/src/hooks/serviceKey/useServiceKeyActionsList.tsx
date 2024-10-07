@@ -13,9 +13,10 @@ import {
   OkmsKeyTypes,
   OkmsServiceKeyState,
 } from '@/types/okmsServiceKey.type';
+import { OKMS } from '@/types/okms.type';
 
 const useServiceKeyActionsList = (
-  okmsId: string,
+  okms: OKMS,
   okmsKey?: OkmsAllServiceKeys,
   isListMode?: boolean,
 ) => {
@@ -26,10 +27,10 @@ const useServiceKeyActionsList = (
     deleteKmsServiceKey,
     isPending: deleteIsPending,
   } = useDeleteOkmsServiceKey({
-    okmsId,
+    okmsId: okms.id,
     keyId: okmsKey?.id,
     onSuccess: () => {
-      navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
+      navigate(`/${okms.id}/${ROUTES_URLS.keys}`);
     },
     onError: () => {},
   });
@@ -38,7 +39,7 @@ const useServiceKeyActionsList = (
     updateKmsServiceKey,
     isPending: updateIsPending,
   } = useUpdateOkmsServiceKey({
-    okmsId,
+    okmsId: okms.id,
     keyId: okmsKey?.id,
     onSuccess: () => {
       addSuccess(
@@ -72,9 +73,11 @@ const useServiceKeyActionsList = (
         return isListMode
           ? navigate(`${ROUTES_URLS.serviceKeyDeactivate}/${okmsKey?.id}`)
           : navigate(
-              `/${okmsId}/${ROUTES_URLS.keys}/${okmsKey?.id}/${ROUTES_URLS.serviceKeyDeactivate}`,
+              `/${okms.id}/${ROUTES_URLS.keys}/${okmsKey?.id}/${ROUTES_URLS.serviceKeyDeactivate}`,
             );
       },
+      iamActions: ['okms:apiovh:resource/serviceKey/deactivate'],
+      urn: okms.iam.urn,
     });
   }
   if (
@@ -87,6 +90,8 @@ const useServiceKeyActionsList = (
       color: ODS_THEME_COLOR_INTENT.primary,
       disabled: updateIsPending,
       onClick: () => updateKmsServiceKey({ state: OkmsServiceKeyState.active }),
+      iamActions: ['okms:apiovh:resource/serviceKey/activate'],
+      urn: okms.iam.urn,
     });
   }
   if (
@@ -100,6 +105,8 @@ const useServiceKeyActionsList = (
       disabled:
         okmsKey?.state === OkmsServiceKeyState.active || deleteIsPending,
       onClick: () => deleteKmsServiceKey(),
+      iamActions: ['okms:apiovh:resource/serviceKey/delete'],
+      urn: okms.iam.urn,
     });
   }
   return items;
