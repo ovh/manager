@@ -5,8 +5,9 @@ export type UpdatableResource = IVcdOrganization | IVcdDatacentre;
 
 const targetSpecKey = 'configure-target-spec';
 
-export const isUpdatingTargetSpec = (resource: UpdatableResource) =>
+export const isUpdatingTargetSpec = (resource: UpdatableResource | undefined) =>
   resource?.currentTasks?.some((task) => task.type === targetSpecKey);
 
-export const hasResourceUpdatingTargetSpec = (resources: UpdatableResource[]) =>
-  resources?.some((resource) => isUpdatingTargetSpec(resource));
+export const hasResourceUpdatingTargetSpec = (
+  resources: UpdatableResource[] | undefined,
+) => resources?.some((resource) => isUpdatingTargetSpec(resource));

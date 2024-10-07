@@ -48,9 +48,9 @@ export const getVdcOrderableResourceQueryKey = (vdcId: string) => [
 // Mutation keys
 export const updateVcdOrganizationDetailsMutationKey = (id: string) => [
   'put',
-  getVcdOrganizationQueryKey(id),
+  ...getVcdOrganizationQueryKey(id),
 ];
 export const updateVdcDetailsMutationKey = (vdcId: string) => [
   'put',
-  getVdcQueryKey(vdcId),
+  ...getVdcQueryKey(vdcId),
 ];

@@ -3,19 +3,19 @@ import { useEffect } from 'react';
 
 type AutoRefetchProps = {
   queryKey: string[];
-  condition: boolean;
+  enabled: boolean;
   interval?: number;
 };
 
 export const useAutoRefetch = ({
   queryKey,
-  condition,
+  enabled,
   interval = 10_000,
 }: AutoRefetchProps) => {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (!condition) return;
+    if (!enabled) return;
 
     const refetchQueries = () => {
       queryClient.invalidateQueries({ queryKey });
@@ -25,5 +25,5 @@ export const useAutoRefetch = ({
 
     // eslint-disable-next-line consistent-return
     return () => clearInterval(refetchInterval);
-  }, [condition, interval, queryKey, queryClient]);
+  }, [enabled, interval, queryKey, queryClient]);
 };

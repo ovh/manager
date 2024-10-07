@@ -55,7 +55,7 @@ export default function DatagridContainer({
 
   useAutoRefetch({
     queryKey: listingQueryKey,
-    condition: hasResourceUpdatingTargetSpec(
+    enabled: hasResourceUpdatingTargetSpec(
       (flattenData as unknown) as UpdatableResource[],
     ),
     interval: 4000,

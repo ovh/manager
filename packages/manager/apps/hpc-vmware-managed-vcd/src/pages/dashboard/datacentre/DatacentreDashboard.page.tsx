@@ -19,7 +19,7 @@ function DatacentreDashboardPage() {
   const navigate = useNavigate();
   useAutoRefetch({
     queryKey: getVcdDatacentresQueryKey(id),
-    condition: isUpdatingTargetSpec(vcdDatacentre?.data),
+    enabled: isUpdatingTargetSpec(vcdDatacentre?.data),
     interval: 4000,
   });
 
