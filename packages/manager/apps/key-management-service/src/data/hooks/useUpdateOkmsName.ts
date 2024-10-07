@@ -1,6 +1,5 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
@@ -36,7 +35,7 @@ export const useUpdateOkmsName = ({
   onError,
 }: UpdateOkmsParams) => {
   const queryClient = useQueryClient();
-  const { t } = useTranslation('key-management-service/dashboard');
+  const { t } = useTranslation('key-management-service/serviceKeys');
   const { addError, addSuccess, clearNotifications } = useNotifications();
 
   const {
@@ -65,13 +64,16 @@ export const useUpdateOkmsName = ({
         queryKey: getOkmsResourceQueryKey(okmsId),
       });
       clearNotifications();
-      addSuccess(t('key_management_service_update_name_success_banner'), true);
+      addSuccess(
+        t('key_management_service_service-keys_update_name_success'),
+        true,
+      );
       onSuccess?.();
     },
     onError: (result: ApiError) => {
       clearNotifications();
       addError(
-        t('key_management_service_update_name_error_banner', {
+        t('key_management_service_service-keys_update_error', {
           error: result.message,
         }),
         true,

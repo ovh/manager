@@ -6,7 +6,10 @@ import { useUpdateOkmsName } from '@/data/hooks/useUpdateOkmsName';
 import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
 
 const OkmsNameUpdateModal = () => {
-  const { t } = useTranslation('key-management-service/dashboard');
+  const { t: tDashboard } = useTranslation('key-management-service/dashboard');
+  const { t: tCredential } = useTranslation(
+    'key-management-service/credential',
+  );
   const { okmsId } = useParams();
   const { data: okmsServiceInfos, isLoading } = useKMSServiceInfos(okmsId);
   const navigate = useNavigate();
@@ -19,8 +22,10 @@ const OkmsNameUpdateModal = () => {
 
   return (
     <UpdateNameModal
-      headline={t('key_management_service_dashboard_modal_title')}
-      inputLabel={t('key_management_service_dashboard_modal_input_label')}
+      headline={tDashboard('key_management_service_dashboard_modal_title')}
+      inputLabel={tCredential(
+        'key_management_service_credential_dashboard_name',
+      )}
       defaultValue={okmsServiceInfos?.data.resource.displayName}
       isLoading={isLoading || isPending}
       error={error?.message}
