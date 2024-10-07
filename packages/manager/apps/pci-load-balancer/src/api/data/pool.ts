@@ -44,18 +44,6 @@ export const getLoadBalancerPools = async (
   return data;
 };
 
-export const getPool = async (
-  projectId: string,
-  region: string,
-  poolId: string,
-): Promise<TLoadBalancerPool> => {
-  const { data } = await v6.get<TLoadBalancerPool>(
-    `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}`,
-  );
-
-  return data;
-};
-
 export const deletePool = async (
   projectId: string,
   region: string,
@@ -123,6 +111,18 @@ export const updatePool = async ({
           }
         : { type: 'disabled' },
     },
+  );
+
+  return data;
+};
+
+export const getPool = async (
+  projectId: string,
+  region: string,
+  poolId: string,
+): Promise<TLoadBalancerPool> => {
+  const { data } = await v6.get<TLoadBalancerPool>(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}`,
   );
   return data;
 };
