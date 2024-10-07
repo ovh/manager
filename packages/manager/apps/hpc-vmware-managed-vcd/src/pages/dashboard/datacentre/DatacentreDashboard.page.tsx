@@ -1,17 +1,19 @@
 import React from 'react';
-import { useParams, useResolvedPath } from 'react-router-dom';
+import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import VcdDashboardLayout from '@/components/dashboard/layout/VcdDashboardLayout.component';
 import { useManagedVcdDatacentre } from '@/data/hooks/useManagedVcdDatacentres';
 import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import { COMPUTE_TITLE, STORAGE_TITLE } from './DatacentreDashboard.constant';
+import { subRoutes, urls } from '@/routes/routes.constant';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
   const { t } = useTranslation('dashboard');
   const { data: vcdDatacentre } = useManagedVcdDatacentre(id, vdcId);
   const { data: vcdOrganization } = useManagedVcdOrganization({ id });
+  const navigate = useNavigate();
 
   const tabsList = [
     {
@@ -61,6 +63,10 @@ function DatacentreDashboardPage() {
       tabs={tabsList}
       breadcrumbItems={breadcrumbItems}
       header={header}
+      backLinkLabel={t('managed_vcd_dashboard_back_link')}
+      onClickReturn={() =>
+        navigate(urls.datacentres.replace(subRoutes.dashboard, id))
+      }
     />
   );
 }
