@@ -75,6 +75,12 @@ export const Routes: any = [
                 handle: { isOverridePage: true },
               },
               {
+                path: 'edit',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/ModalEditDomain.component'),
+                ),
+              },
+              {
                 path: 'delete',
                 ...lazyRouteConfig(() =>
                   import(
