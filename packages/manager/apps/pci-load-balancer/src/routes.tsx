@@ -22,6 +22,7 @@ export const ROUTE_PATHS = {
   POOLS_EDIT: ':poolId/edit',
   POOL_LIST: 'list',
   POOL_DELETE: 'delete',
+  POOL_DETAIL: ':region/:loadBalancerId/pools/:poolId',
   STATISTICS: 'statistics',
   CERTIFICATES: 'certificates',
   LOGS: 'logs',
@@ -67,9 +68,15 @@ const PoolsCreatePage = lazy(() =>
 const PoolsEditPage = lazy(() =>
   import('@/pages/detail/pools/edit/PoolsEdit.page'),
 );
-const PoolListPage = lazy(() => import('@/pages/detail/pools/List.page'));
+const PoolListPage = lazy(() => import('@/pages/detail/pools/list/List.page'));
 const PoolDeletePage = lazy(() =>
   import('@/pages/detail/pools/delete/DeletePool.page'),
+);
+const PoolDetailPage = lazy(() =>
+  import('@/pages/detail/pools/detail/Detail.page'),
+);
+const PoolOverviewPage = lazy(() =>
+  import('@/pages/detail/pools/detail/overview/PoolOverview'),
 );
 
 const StatisticsPage = lazy(() =>
@@ -100,6 +107,27 @@ const Routes = (
       <Route path={ROUTE_PATHS.L7_CREATE} Component={L7PoliciesCreatePage} />
       <Route path={ROUTE_PATHS.L7_LIST} Component={L7PoliciesListPage}>
         <Route path={ROUTE_PATHS.L7_DELETE} Component={L7PoliciesDeletePage} />
+      </Route>
+    </Route>
+    <Route
+      id="pools-detail"
+      path={ROUTE_PATHS.POOL_DETAIL}
+      Component={PoolDetailPage}
+    >
+      <Route
+        path=""
+        element={<Navigate to={ROUTE_PATHS.GENERAL_INFORMATION} />}
+      />
+      <Route
+        id="pools-detail-general-information"
+        path={ROUTE_PATHS.GENERAL_INFORMATION}
+        Component={PoolOverviewPage}
+      >
+        <Route
+          id="pool-detail-delete"
+          path={ROUTE_PATHS.POOL_DELETE}
+          Component={PoolDeletePage}
+        />
       </Route>
     </Route>
     <Route id="detail" path={ROUTE_PATHS.DETAIL} Component={DetailPage}>
@@ -156,7 +184,7 @@ const Routes = (
             id="pool-delete"
             path={ROUTE_PATHS.POOL_DELETE}
             Component={PoolDeletePage}
-          ></Route>
+          />
         </Route>
         <Route
           id="pools-create"

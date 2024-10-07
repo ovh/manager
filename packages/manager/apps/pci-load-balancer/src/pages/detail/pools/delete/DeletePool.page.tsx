@@ -14,11 +14,13 @@ export default function DeletePoolPage() {
   const navigate = useNavigate();
   const { addSuccess, addError } = useNotifications();
 
-  const { projectId, region } = useParams();
+  const { projectId, region, loadBalancerId } = useParams();
   const [searchParams] = useSearchParams();
 
   const poolId = searchParams.get('poolId');
   const poolName = searchParams.get('poolName');
+
+  const poolsListUrl = `/pci/projects/${projectId}/octavia-load-balancer/${region}/${loadBalancerId}/pools`;
 
   const onClose = () => {
     navigate('..');
@@ -52,7 +54,7 @@ export default function DeletePoolPage() {
         </Translation>,
         true,
       );
-      onClose();
+      navigate(poolsListUrl);
     },
   });
 
