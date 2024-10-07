@@ -66,16 +66,17 @@
                             ></td>
                         </tr>
                         <tr
-                            data-ng-if="$ctrl.offer.selectedHardware !== $ctrl.NO_HARDWARE"
+                            data-ng-if="$ctrl.offer.selectedHardwareName !== $ctrl.NO_HARDWARE"
                         >
                             <th
                                 scope="row"
                                 data-translate="overthebox_migration_summary_table_hardware"
+                                data-translate-values="{ 'deviceName': $ctrl.offer.selectedHardware.hardwareDisplayName }"
                                 data-title="{{ 'overthebox_migration_summary_table_title' | translate }}"
                             ></th>
                             <td
                                 class="text-price text-right"
-                                data-ng-bind="$ctrl.offer.hardwarePrice.text"
+                                data-ng-bind="$ctrl.offer.selectedHardware.hardwarePrice.text"
                                 data-title="{{ 'overthebox_migration_summary_table_unit_price' | translate }}"
                             ></td>
                             <td

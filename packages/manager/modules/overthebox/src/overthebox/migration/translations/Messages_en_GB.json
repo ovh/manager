@@ -5,7 +5,7 @@
   "overthebox_migration_current_offer": "Current solution: {{offerName}}",
   "overthebox_migration_monthly_subscription": "Monthly subscription",
   "overthebox_migration_hardware": "Enclosure",
-  "overthebox_migration_hardware_yes": "I want to take a new box ({{ price }} ex. VAT)",
+  "overthebox_migration_hardware_yes": "I want to take a new {{ deviceName }} box ({{ price }} ex. VAT) *",
   "overthebox_migration_hardware_no": "I don't want a box",
   "overthebox_migration_choose_offer_action": "Select",
   "overthebox_migration_contact_title": "Delivery",
@@ -21,7 +21,7 @@
   "overthebox_migration_summary_table_quantity": "Quantity",
   "overthebox_migration_summary_table_price_per_month": "Price ex. VAT/month",
   "overthebox_migration_summary_table_offer": "Offer {{offerName}}",
-  "overthebox_migration_summary_table_hardware": "Enclosure",
+  "overthebox_migration_summary_table_hardware": "Enclosure {{ deviceName }}",
   "overthebox_migration_summary_contracts_title": "Contracts",
   "overthebox_migration_summary_price_explain": "Your new monthly subscription is: {{price}} ex. VAT/month, applicable as soon as your new service is delivered. You will receive confirmation via email.",
   "overthebox_migration_summary_hardware_price": "The price of the hardware includes the delivery costs.",
@@ -33,5 +33,6 @@
   "overthebox_migration_summary_command_order_explain": "To finish migrating your solution, you will need to pay <a href=\"{{orderUrl}}\" target=\"_blank\" title=\" Purchase order: {{orderId}}\">  for the purchase order.<span class=\"oui-icon oui-icon-external-link ml-2\" aria-hidden=\"true\"> </span> </a> ",
   "overthebox_migration_summary_command_order_help": "Find out more about paying for a purchase order.",
   "overthebox_migration_summary_launch_migration_error": "An error has occurred migrating the solution. {{errorMsg}}",
-  "overthebox_migration_offers_title": "Choose plan"
+  "overthebox_migration_offers_title": "Choose plan",
+  "overthebox_migration_about": "* OverTheBox - Learn more about the service and enclosure description."
 }
