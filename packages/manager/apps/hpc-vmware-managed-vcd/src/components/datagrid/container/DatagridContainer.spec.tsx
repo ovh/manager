@@ -2,6 +2,7 @@ import React from 'react';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { render } from '@testing-library/react';
 import { describe, vi } from 'vitest';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import DatagridContainer, {
   TDatagridContainerProps,
 } from './DatagridContainer.component';
@@ -40,7 +41,12 @@ vi.mock('@ovh-ux/manager-react-components', async (managerComonents) => {
 });
 
 const renderComponent = (props: TDatagridContainerProps) => {
-  return render(<DatagridContainer {...props} />);
+  const queryClient = new QueryClient();
+  return render(
+    <QueryClientProvider client={queryClient}>
+      <DatagridContainer {...props} />
+    </QueryClientProvider>,
+  );
 };
 
 describe('DatagridContainer component unit test suite', () => {
@@ -56,7 +62,7 @@ describe('DatagridContainer component unit test suite', () => {
           api: 'stubapi',
           onboarding: 'onboarding',
         },
-        containerId: 'containerId',
+        queryKey: ['queryKey'],
         columns: [
           {
             id: 'id',

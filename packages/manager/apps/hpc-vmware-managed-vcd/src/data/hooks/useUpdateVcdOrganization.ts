@@ -4,14 +4,12 @@ import {
   updateVcdOrganizationDetails,
   UpdateVcdOrganizationDetailsParams,
 } from '../api/hpc-vmware-managed-vcd';
-import { VCD_ORGANIZATION_ROUTE } from '../api/hpc-vmware-managed-vcd.constants';
-import { getVcdOrganizationQueryKey } from './useManagedVcdOrganization';
-import { icebergListingQueryKey } from '@/components/datagrid/container/DatagridContainer.constants';
-import { organizationListingContainerId } from '@/pages/listing/organizations/Organizations.constants';
-
-const updateVcdOrganizationDetailsQueryKey = (id: string) => [
-  `put${VCD_ORGANIZATION_ROUTE}/${id}`,
-];
+import {
+  getVcdOrganizationsQueryKey,
+  getVcdOrganizationQueryKey,
+  icebergListingQueryKey,
+  updateVcdOrganizationDetailsMutationKey,
+} from '@/utils/queryKeys';
 
 export const useUpdateVcdOrganizationDetails = ({
   id,
@@ -25,15 +23,16 @@ export const useUpdateVcdOrganizationDetails = ({
   const queryClient = useQueryClient();
 
   const { mutateAsync: updateDetails, error, isError } = useMutation({
-    mutationKey: updateVcdOrganizationDetailsQueryKey(id),
+    mutationKey: updateVcdOrganizationDetailsMutationKey(id),
     mutationFn: ({ details }: UpdateVcdOrganizationDetailsParams) =>
       updateVcdOrganizationDetails({ id, details }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: getVcdOrganizationQueryKey(id),
+        exact: true,
       });
       queryClient.invalidateQueries({
-        queryKey: [icebergListingQueryKey, organizationListingContainerId],
+        queryKey: [...getVcdOrganizationsQueryKey(), icebergListingQueryKey],
         exact: true,
       });
       onSuccess?.();
