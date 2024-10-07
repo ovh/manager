@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.6.6...@ovh-ux/manager-pci-public-ip-app@0.6.7) (2024-10-07)
+
+
+### Bug Fixes
+
+* **pci.public-ip:** changing the cta label for creation ([#13354](https://github.com/ovh/manager/issues/13354)) ([5d36769](https://github.com/ovh/manager/commit/5d3676999dd6adb0b7ea49a122c57e662b3b28c5))
+
+
+
+
+
 ## [0.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.6.5...@ovh-ux/manager-pci-public-ip-app@0.6.6) (2024-10-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app

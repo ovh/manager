@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.17.3...@ovh-ux/manager-pci-rancher-app@1.18.0) (2024-10-07)
+
+
+### Bug Fixes
+
+* **pci-rancher:** missing saving plan translation ([#13449](https://github.com/ovh/manager/issues/13449)) ([0fd0074](https://github.com/ovh/manager/commit/0fd0074bfabc7d716581e7e969182396a8f792bb))
+
+
+### Features
+
+* **pci-rancher:** add descriptions ([#13280](https://github.com/ovh/manager/issues/13280)) ([47ebf37](https://github.com/ovh/manager/commit/47ebf378265c2d0ca68b59de5f4b585a71566481))
+* **pci-rancher:** add upgrade tile ([#13178](https://github.com/ovh/manager/issues/13178)) ([6064ac9](https://github.com/ovh/manager/commit/6064ac99306492bf70027771f9f241eff3c82a41))
+* **savings-plan:** display banner for Prod Day ([#13405](https://github.com/ovh/manager/issues/13405)) ([9b87a3b](https://github.com/ovh/manager/commit/9b87a3b866b7df5eec9d853750aed53ae8bc3560))
+
+
+
+
+
 ## [1.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.17.2...@ovh-ux/manager-pci-rancher-app@1.17.3) (2024-10-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app

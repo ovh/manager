@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.62.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.61.0...@ovh-ux/manager-pci@6.62.0) (2024-10-07)
+
+
+### Features
+
+* **pci.instance:** open backup creation for LZ regions ([#13250](https://github.com/ovh/manager/issues/13250)) ([eeb2614](https://github.com/ovh/manager/commit/eeb261440b7c79fbbf0e507549006078d5412d35))
+* **savings-plan:** display banner for Prod Day ([#13405](https://github.com/ovh/manager/issues/13405)) ([9b87a3b](https://github.com/ovh/manager/commit/9b87a3b866b7df5eec9d853750aed53ae8bc3560))
+
+
+### Reverts
+
+* Revert "feat(pci.instance): open backup creation for LZ regions (#13250)" ([aaa5460](https://github.com/ovh/manager/commit/aaa546091bddd537b0668c17b2c5c887376f6887)), closes [#13250](https://github.com/ovh/manager/issues/13250)
+
+
+
+
+
 # [6.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.60.1...@ovh-ux/manager-pci@6.61.0) (2024-10-02)
 
 
