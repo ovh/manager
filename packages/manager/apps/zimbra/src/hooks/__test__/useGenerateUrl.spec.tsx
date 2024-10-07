@@ -4,16 +4,9 @@ import { renderHook } from '@testing-library/react';
 import { useGenerateUrl } from '../useGenerateUrl';
 import { wrapper } from '@/utils/test.provider';
 
-vi.mock('@/hooks', () => {
-  return {
-    useOrganization: vi.fn(() => ({ data: undefined })),
-  };
-});
-
 vi.mock('react-router-dom', async (importOriginal) => {
-  const actual: any = await importOriginal();
   return {
-    ...actual,
+    ...(await importOriginal<typeof import('react-router-dom')>()),
     useHref: vi.fn(
       (text) =>
         `#/00000000-0000-0000-0000-000000000001/organizations/${text.slice(2)}`,

@@ -1,53 +1,9 @@
 import React from 'react';
-import { vi, describe, expect, it, afterEach } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { act } from 'react-dom/test-utils';
 import { render, fireEvent, screen, waitFor } from '@/utils/test.provider';
 import AddDomain from '../AddDomain.page';
 import addDomainTranslation from '@/public/translations/domains/addDomain/Messages_fr_FR.json';
-import { platformMock, organizationListMock, domainZone } from '@/api/_mock_';
-import '@testing-library/jest-dom';
-import 'element-internals-polyfill';
-
-vi.mock('@/hooks', () => ({
-  usePlatform: vi.fn(() => ({
-    platformId: platformMock[0].id,
-  })),
-  useOrganization: vi.fn(() => ({
-    data: null,
-    isLoading: false,
-  })),
-  useOrganizationList: vi.fn(() => ({
-    data: organizationListMock,
-    isLoading: false,
-  })),
-  useOverridePage: vi.fn(() => true),
-  useGenerateUrl: vi.fn(() => null),
-}));
-
-vi.mock('@tanstack/react-query', async (importOriginal) => {
-  const actual: any = await importOriginal();
-  return {
-    ...actual,
-    useQuery: vi.fn(() => ({
-      data: domainZone,
-      isLoading: false,
-    })),
-  };
-});
-
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  ShellContext: React.createContext({
-    environment: {
-      getUser: () => ({
-        ovhSubsidiary: 'FR',
-      }),
-    },
-  }),
-}));
-
-afterEach(() => {
-  vi.restoreAllMocks();
-});
 
 describe('Add Domain page', () => {
   const clickSelectOrganization = async (selectOrganization) => {

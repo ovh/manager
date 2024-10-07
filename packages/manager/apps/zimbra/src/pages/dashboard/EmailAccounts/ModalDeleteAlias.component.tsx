@@ -86,6 +86,7 @@ export default function ModalDeleteDomain() {
         label: t('zimbra_account_alias_delete_modal_delete_btn'),
         action: handleDeleteClick,
         disabled: isDeleting,
+        testid: 'delete-btn',
       }}
     >
       <>

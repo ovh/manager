@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -26,15 +26,13 @@ export default function ModalDeleteOrganization() {
   const { t } = useTranslation('organizations/delete');
   const { platformId } = usePlatform();
   const { addError, addSuccess } = useNotifications();
-  const [hasDomain, setHasDomain] = useState(false);
   const navigate = useNavigate();
 
   const onClose = () => navigate('..');
 
   const { mutate: deleteOrganization, isPending: isSending } = useMutation({
-    mutationFn: (organizationId: string) => {
-      return deleteZimbraPlatformOrganization(platformId, organizationId);
-    },
+    mutationFn: (organizationId: string) =>
+      deleteZimbraPlatformOrganization(platformId, organizationId),
     onSuccess: () => {
       addSuccess(
         <OsdsText
@@ -77,13 +75,9 @@ export default function ModalDeleteOrganization() {
     deleteOrganization(deleteOrganizationId);
   };
 
-  const { data, isLoading } = useDomains({
+  const { data: domains, isLoading } = useDomains({
     organizationId: deleteOrganizationId,
   });
-
-  useEffect(() => {
-    setHasDomain(data?.length > 0);
-  }, [isLoading]);
 
   return (
     <Modal
@@ -97,7 +91,11 @@ export default function ModalDeleteOrganization() {
         color: ODS_THEME_COLOR_INTENT.primary,
         label: t('zimbra_organization_delete'),
         action: handleDeleteClick,
-        disabled: hasDomain || isSending || isLoading,
+        disabled:
+          domains?.length > 0 ||
+          isSending ||
+          isLoading ||
+          !deleteOrganizationId,
       }}
     >
       <>
@@ -110,7 +108,7 @@ export default function ModalDeleteOrganization() {
           {t('zimbra_organization_delete_modal_content')}
         </OsdsText>
 
-        {hasDomain && (
+        {domains?.length > 0 && (
           <OsdsMessage
             color={ODS_THEME_COLOR_INTENT.error}
             icon={ODS_ICON_NAME.WARNING_CIRCLE}

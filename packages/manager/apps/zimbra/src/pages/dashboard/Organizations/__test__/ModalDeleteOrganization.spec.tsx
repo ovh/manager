@@ -2,53 +2,23 @@ import React from 'react';
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
-import { render } from '@/utils/test.provider';
-import { platformMock, domainMock } from '@/api/_mock_';
+import { useSearchParams } from 'react-router-dom';
+import { render, waitFor, fireEvent, act } from '@/utils/test.provider';
 import ModalDeleteOrganization from '../ModalDeleteOrganization.component';
 import organizationsDeleteTranslation from '@/public/translations/organizations/delete/Messages_fr_FR.json';
+import { organizationDetailMock } from '@/api/_mock_';
+import { getZimbraPlatformDomains } from '@/api/domain';
+import { deleteZimbraPlatformOrganization } from '@/api/organization';
 
-const { useDomainsMock } = vi.hoisted(() => ({
-  useDomainsMock: vi.fn(() => ({
-    data: domainMock,
-    isLoading: false,
-  })),
-}));
-
-vi.mock('@/hooks', () => {
-  return {
-    usePlatform: vi.fn(() => ({
-      platformId: platformMock[0].id,
-    })),
-    useGenerateUrl: vi.fn(),
-    useDomains: useDomainsMock,
-  };
-});
-
-vi.mock('react-router-dom', () => ({
-  useNavigate: vi.fn(),
-  MemoryRouter: vi.fn(() => <ModalDeleteOrganization />),
-  useSearchParams: vi.fn(() => [
-    new URLSearchParams({
-      deleteOrganizationId: '1903b491-4d10-4000-8b70-f474d1abe601',
-    }),
-  ]),
-}));
-
-vi.mock('@ovh-ux/manager-react-components', () => {
-  return {
-    useNotifications: vi.fn(() => ({
-      addError: () => vi.fn(),
-      addSuccess: () => vi.fn(),
-    })),
-  };
-});
-
-afterEach(() => {
-  vi.restoreAllMocks();
-});
+vi.mocked(useSearchParams).mockReturnValue([
+  new URLSearchParams({
+    deleteOrganizationId: organizationDetailMock.id,
+  }),
+  vi.fn(),
+]);
 
 describe('Organizations delete modal', () => {
-  it('check if it is displayed', () => {
+  it('should render modal', () => {
     const { getByTestId } = render(<ModalDeleteOrganization />);
     const modal = getByTestId('modal');
     expect(modal).toHaveProperty(
@@ -57,21 +27,33 @@ describe('Organizations delete modal', () => {
     );
   });
 
-  it('if there is domain in organization', () => {
-    const { getByTestId } = render(<ModalDeleteOrganization />);
+  it('should have button disabled if domains', async () => {
+    const { getByTestId, queryByTestId } = render(<ModalDeleteOrganization />);
+
+    await waitFor(() => {
+      expect(queryByTestId('spinner')).toBeNull();
+    });
+
     expect(getByTestId('banner-message')).toBeVisible();
     expect(getByTestId('delete-btn')).toBeDisabled();
   });
 
-  it('if there is not domain in organization', () => {
-    useDomainsMock.mockImplementation(
-      vi.fn(() => ({
-        data: [],
-        isLoading: false,
-      })),
-    );
+  it('should delete org if no domains and clicked', async () => {
+    vi.mocked(getZimbraPlatformDomains).mockResolvedValue([]);
+
     const { getByTestId, queryByTestId } = render(<ModalDeleteOrganization />);
+
+    await waitFor(() => {
+      expect(queryByTestId('spinner')).toBeNull();
+    });
+
     expect(queryByTestId('banner-message')).toBeNull();
     expect(getByTestId('delete-btn')).not.toBeDisabled();
+
+    await act(() => {
+      fireEvent.click(getByTestId('delete-btn'));
+    });
+
+    expect(deleteZimbraPlatformOrganization).toHaveBeenCalledOnce();
   });
 });

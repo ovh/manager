@@ -85,7 +85,7 @@ export function AutoReplies() {
   const { t } = useTranslation('autoReplies');
 
   return (
-    <div className="py-6 mt-8">
+    <div data-testid="autoreplies" className="py-6 mt-8">
       <Notifications />
       <Outlet />
       <Datagrid

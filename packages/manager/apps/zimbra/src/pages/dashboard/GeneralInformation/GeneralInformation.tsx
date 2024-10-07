@@ -43,6 +43,7 @@ function GeneralInformation() {
             <Subtitle>{t('zimbra_dashboard_tile_status_title')}</Subtitle>
             {organisation && (
               <TileBlock
+                testid="tileblock-orga"
                 label={t('zimbra_dashboard_tile_status_serviceStatus')}
               >
                 <BadgeStatus itemStatus={organisation?.resourceStatus} />
@@ -85,6 +86,7 @@ function GeneralInformation() {
             >
               {platformUrn && (
                 <ManagerText
+                  data-testid="platform-accounts"
                   urn={platformUrn}
                   iamActions={[IAM_ACTIONS.account.get]}
                 >

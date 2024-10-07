@@ -2,50 +2,20 @@ import React from 'react';
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
-import { render } from '@/utils/test.provider';
-import { platformMock, accountMock } from '@/api/_mock_';
+import { useSearchParams } from 'react-router-dom';
+import { render, waitFor, act, fireEvent } from '@/utils/test.provider';
 import ModalDeleteDomain from '../ModalDeleteDomain.component';
 import domainsDeleteTranslation from '@/public/translations/domains/delete/Messages_fr_FR.json';
+import { getZimbraPlatformAccounts } from '@/api/account';
+import { deleteZimbraPlatformDomain } from '@/api/domain';
+import { domainDetailMock } from '@/api/_mock_';
 
-const { useAccountListMock } = vi.hoisted(() => ({
-  useAccountListMock: vi.fn(() => ({
-    data: accountMock,
-    isLoading: false,
-  })),
-}));
-
-vi.mock('@/hooks', () => {
-  return {
-    usePlatform: vi.fn(() => ({
-      platformId: platformMock[0].id,
-    })),
-    useGenerateUrl: vi.fn(),
-    useAccountList: useAccountListMock,
-  };
-});
-
-vi.mock('react-router-dom', () => ({
-  useNavigate: vi.fn(),
-  MemoryRouter: vi.fn(() => <ModalDeleteDomain />),
-  useSearchParams: vi.fn(() => [
-    new URLSearchParams({
-      deleteDomainId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-    }),
-  ]),
-}));
-
-vi.mock('@ovh-ux/manager-react-components', () => {
-  return {
-    useNotifications: vi.fn(() => ({
-      addError: () => vi.fn(),
-      addSuccess: () => vi.fn(),
-    })),
-  };
-});
-
-afterEach(() => {
-  vi.restoreAllMocks();
-});
+vi.mocked(useSearchParams).mockReturnValue([
+  new URLSearchParams({
+    deleteDomainId: domainDetailMock.id,
+  }),
+  vi.fn(),
+]);
 
 describe('Domains delete modal', () => {
   it('check if it is displayed', () => {
@@ -57,21 +27,34 @@ describe('Domains delete modal', () => {
     );
   });
 
-  it('if have email use the domain', () => {
-    const { getByTestId } = render(<ModalDeleteDomain />);
+  it('if have email use the domain', async () => {
+    const { getByTestId, queryByTestId } = render(<ModalDeleteDomain />);
+
+    await waitFor(() => {
+      expect(queryByTestId('spinner')).toBeNull();
+    });
+
     expect(getByTestId('banner-message')).toBeVisible();
     expect(getByTestId('delete-btn')).toBeDisabled();
   });
 
-  it('if there is not email use the domain', () => {
-    useAccountListMock.mockImplementation(
-      vi.fn(() => ({
-        data: [],
-        isLoading: false,
-      })),
-    );
+  it('if there is not email use the domain', async () => {
+    vi.mocked(getZimbraPlatformAccounts).mockReturnValue([]);
     const { getByTestId, queryByTestId } = render(<ModalDeleteDomain />);
+
+    await waitFor(() => {
+      expect(queryByTestId('spinner')).toBeNull();
+    });
+
+    const btn = getByTestId('delete-btn');
+
     expect(queryByTestId('banner-message')).toBeNull();
-    expect(getByTestId('delete-btn')).not.toBeDisabled();
+    expect(btn).toBeEnabled();
+
+    await act(() => {
+      fireEvent.click(btn);
+    });
+
+    expect(deleteZimbraPlatformDomain).toHaveBeenCalledOnce();
   });
 });

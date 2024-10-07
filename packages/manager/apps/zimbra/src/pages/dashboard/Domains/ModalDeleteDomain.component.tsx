@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -28,20 +28,14 @@ export default function ModalDeleteDomain() {
   const deleteDomainId = searchParams.get('deleteDomainId');
 
   const { platformId } = usePlatform();
-  const { data, isLoading } = useAccountList({
+  const { data: accounts, isLoading } = useAccountList({
     domainId: deleteDomainId,
   });
 
   const { addError, addSuccess } = useNotifications();
 
-  const [hasEmailAccount, setHasEmailAccount] = useState(false);
-
   const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(goBackUrl);
-
-  useEffect(() => {
-    setHasEmailAccount(data?.length > 0);
-  }, [isLoading]);
 
   const { mutate: deleteDomain, isPending: isSending } = useMutation({
     mutationFn: (domainId: string) => {
@@ -85,7 +79,7 @@ export default function ModalDeleteDomain() {
   });
 
   const handleDeleteClick = () => {
-    deleteDomain(deleteDomainId);
+    deleteDomain(deleteDomainId as string);
   };
 
   return (
@@ -98,7 +92,7 @@ export default function ModalDeleteDomain() {
       primaryButton={{
         label: t('zimbra_domain_delete'),
         action: handleDeleteClick,
-        disabled: hasEmailAccount || isSending,
+        disabled: accounts?.length > 0 || isSending || !deleteDomainId,
         testid: 'delete-btn',
       }}
     >
@@ -111,7 +105,7 @@ export default function ModalDeleteDomain() {
         >
           {t('zimbra_domain_delete_modal_content')}
         </OsdsText>
-        {hasEmailAccount && (
+        {accounts?.length > 0 && (
           <OsdsMessage
             color={ODS_THEME_COLOR_INTENT.error}
             icon={ODS_ICON_NAME.WARNING_CIRCLE}

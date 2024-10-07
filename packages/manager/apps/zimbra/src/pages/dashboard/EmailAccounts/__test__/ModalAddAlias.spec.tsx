@@ -3,78 +3,47 @@ import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
 import { act } from 'react-dom/test-utils';
-import { fireEvent, render, screen } from '@/utils/test.provider';
-import { accountMock, domainMock, platformMock } from '@/api/_mock_';
+import { useResolvedPath, useSearchParams } from 'react-router-dom';
+import { fireEvent, render, screen, waitFor } from '@/utils/test.provider';
+import { accountDetailMock } from '@/api/_mock_';
 import ModalAddAlias from '../ModalAddAlias.component';
 import emailAccountAliasAddTranslation from '@/public/translations/accounts/alias/add/Messages_fr_FR.json';
 
-vi.mock('@/hooks', () => {
-  return {
-    usePlatform: vi.fn(() => ({
-      platformId: platformMock[0].id,
-    })),
-    useGenerateUrl: vi.fn(),
-    useDomains: vi.fn(() => ({
-      data: domainMock,
-      isLoading: false,
-    })),
-    useOrganization: vi.fn(() => ({
-      data: null,
-      isLoading: false,
-    })),
-    useAccount: vi.fn(() => ({
-      data: accountMock[0],
-      isLoading: false,
-    })),
-  };
+vi.mocked(useResolvedPath).mockReturnValue({
+  pathname: '/:serviceName/email_accounts/alias/add',
+  search: '',
+  hash: '',
 });
 
-vi.mock('react-router-dom', async (importOriginal) => {
-  const actual: any = await importOriginal();
-  return {
-    ...actual,
-    useNavigate: vi.fn(),
-    useLocation: vi.fn(() => ({
-      pathname: `/00000000-0000-0000-0000-000000000001/email_accounts/alias/add?editEmailAccountId=${accountMock[0].id}`,
-      search: '',
-    })),
-    useResolvedPath: vi.fn(() => '/:serviceName/email_accounts/alias/add'),
-    useSearchParams: vi.fn(() => [
-      new URLSearchParams({
-        editEmailAccountId: '19097ad4-2880-4000-8b03-9d110f0b8f80',
-      }),
-    ]),
-  };
-});
-
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual: any = await importOriginal();
-  return {
-    ...actual,
-    useNotifications: vi.fn(() => ({
-      addError: () => vi.fn(),
-      addSuccess: () => vi.fn(),
-    })),
-  };
-});
-
-afterEach(() => {
-  vi.restoreAllMocks();
-});
+vi.mocked(useSearchParams).mockReturnValue([
+  new URLSearchParams({
+    editEmailAccountId: accountDetailMock.id,
+  }),
+  vi.fn(),
+]);
 
 describe('add alias modal', () => {
-  it('if modal are displayed', () => {
-    render(<ModalAddAlias />);
+  it('if modal are displayed', async () => {
+    const { queryByTestId } = render(<ModalAddAlias />);
+
+    await waitFor(() => {
+      expect(queryByTestId('spinner')).toBeNull();
+    });
+
     screen.getByText(
       emailAccountAliasAddTranslation.zimbra_account_alias_add_description.replace(
         '{{ account }}',
-        accountMock[0].currentState?.email,
+        accountDetailMock.currentState?.email,
       ),
     );
   });
 
-  it('check validity form', () => {
-    const { getByTestId } = render(<ModalAddAlias />);
+  it('check validity form', async () => {
+    const { getByTestId, queryByTestId } = render(<ModalAddAlias />);
+
+    await waitFor(() => {
+      expect(queryByTestId('spinner')).toBeNull();
+    });
 
     const button = getByTestId('confirm-btn');
     const inputAccount = getByTestId('input-alias');

@@ -3,14 +3,14 @@ import { describe, expect } from 'vitest';
 import ActionButtonMailingList from '../ActionButtonMailingList.component';
 import { render } from '@/utils/test.provider';
 import mailingListsTranslation from '@/public/translations/mailinglists/Messages_fr_FR.json';
-import { mailingListsMock } from '@/api/_mock_';
+import { mailingListDetailMock } from '@/api/_mock_';
 import { getMailingListItem } from '../MailingLists';
 
 describe('MailingLists datagrid action menu', () => {
   it('should display 4 actions buttons', () => {
     const { container } = render(
       <ActionButtonMailingList
-        mailingListItem={getMailingListItem(mailingListsMock[0])}
+        mailingListItem={getMailingListItem(mailingListDetailMock)}
       />,
     );
 

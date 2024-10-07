@@ -3,115 +3,35 @@ import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
 import { act } from 'react-dom/test-utils';
-import { render } from '@/utils/test.provider';
-import { mailingListsMock, domainMock, platformMock } from '@/api/_mock_';
+import { useSearchParams } from 'react-router-dom';
+import { render, waitFor, fireEvent } from '@/utils/test.provider';
+import { mailingListsMock } from '@/api/_mock_';
 import AddAndEditMailingList from '../AddAndEditMailingList.page';
 import mailingListsAddAndEditTranslation from '@/public/translations/mailinglists/addAndEdit/Messages_fr_FR.json';
 import { ModerationChoices, ReplyToChoices } from '@/api/mailinglist';
-
-const { useSearchParamsMock } = vi.hoisted(() => ({
-  useSearchParamsMock: vi.fn(() => [new URLSearchParams()]),
-}));
-
-const { useQueryMock } = vi.hoisted(() => ({
-  useQueryMock: vi.fn(() => ({
-    data: null,
-    isLoading: false,
-  })),
-}));
-
-const { useLocationMock } = vi.hoisted(() => ({
-  useLocationMock: vi.fn(() => ({
-    pathname: '/00000000-0000-0000-0000-000000000001/mailing_lists/add',
-    search: '',
-  })),
-}));
-
-const { useMailingListMock } = vi.hoisted(() => ({
-  useMailingListMock: vi.fn(() => ({
-    data: null,
-    isLoading: false,
-  })),
-}));
-
-vi.mock('@/hooks', () => {
-  return {
-    usePlatform: vi.fn(() => ({
-      platformId: platformMock[0].id,
-    })),
-    useGenerateUrl: vi.fn(),
-    useDomains: vi.fn(() => ({
-      data: domainMock,
-      isLoading: false,
-    })),
-    useOrganization: vi.fn(() => ({
-      data: null,
-      isLoading: false,
-    })),
-    useMailingList: useMailingListMock,
-  };
-});
-
-vi.mock('react-router-dom', async (importOriginal) => {
-  const actual: any = await importOriginal();
-  return {
-    ...actual,
-    useNavigate: vi.fn(),
-    useLocation: useLocationMock,
-    useResolvedPath: vi.fn(() => '/:serviceName/mailing_lists'),
-    useSearchParams: useSearchParamsMock,
-  };
-});
-
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual: any = await importOriginal();
-  return {
-    ...actual,
-    useNotifications: vi.fn(() => ({
-      addError: () => vi.fn(),
-      addSuccess: () => vi.fn(),
-    })),
-    Datagrid: vi.fn().mockReturnValue(<div>Datagrid</div>),
-  };
-});
-
-vi.mock('@tanstack/react-query', async (importOriginal) => {
-  const actual: any = await importOriginal();
-  return {
-    ...actual,
-    useQuery: useQueryMock,
-  };
-});
-
-afterEach(() => {
-  vi.restoreAllMocks();
-});
+import { navigate } from '@/utils/test.setup';
 
 describe('mailing lists add and edit page', () => {
   const editMailingListId = mailingListsMock[0].id;
 
-  it('should be in add mode if no editMailingListId param', () => {
-    useMailingListMock.mockImplementation(
-      vi.fn(() => ({
-        data: null,
-        isLoading: false,
-      })),
-    );
-    const { getByTestId } = render(<AddAndEditMailingList />);
+  it('should be in add mode if no editMailingListId param', async () => {
+    const { getByTestId, queryByTestId } = render(<AddAndEditMailingList />);
+
+    await waitFor(() => {
+      expect(queryByTestId('spinner')).toBeNull();
+    });
+
     expect(getByTestId('page-title')).toHaveTextContent(
       mailingListsAddAndEditTranslation.zimbra_mailinglist_add_title,
     );
   });
 
-  it('should be add page and enable/disable button based on form validity', () => {
-    useLocationMock.mockImplementation(
-      vi.fn(() => ({
-        pathname: `/00000000-0000-0000-0000-000000000001/mailing_lists/add`,
-        search: '',
-      })),
-    );
+  it('should be add page and enable/disable button based on form validity', async () => {
+    const { getByTestId, queryByTestId } = render(<AddAndEditMailingList />);
 
-    const { getByTestId } = render(<AddAndEditMailingList />);
+    await waitFor(() => {
+      expect(queryByTestId('spinner')).toBeNull();
+    });
 
     const button = getByTestId('confirm-btn');
     const inputAccount = getByTestId('input-account');
@@ -164,30 +84,36 @@ describe('mailing lists add and edit page', () => {
     expect(button).not.toBeEnabled();
   });
 
-  it('should be in edit mode if editMailingListId param is present', () => {
-    useMailingListMock.mockImplementation(
-      vi.fn(() => ({
-        data: mailingListsMock[0],
-        isLoading: false,
-      })),
-    );
+  it('should be in edit mode if editMailingListId param is present', async () => {
+    vi.mocked(useSearchParams).mockReturnValue([
+      new URLSearchParams({
+        editMailingListId,
+      }),
+      vi.fn(),
+    ]);
 
-    useLocationMock.mockImplementation(
-      vi.fn(() => ({
-        pathname: `/00000000-0000-0000-0000-000000000001/mailing_lists/settings?editMailingListId=${editMailingListId}`,
-        search: '',
-      })),
-    );
-    useSearchParamsMock.mockImplementation(
-      vi.fn(() => [
-        new URLSearchParams({
-          editMailingListId,
-        }),
-      ]),
-    );
-    const { getByTestId } = render(<AddAndEditMailingList />);
+    const { getByTestId, queryByTestId } = render(<AddAndEditMailingList />);
+
+    await waitFor(() => {
+      expect(queryByTestId('spinner')).toBeNull();
+    });
+
     expect(getByTestId('page-title')).toHaveTextContent(
       mailingListsAddAndEditTranslation.zimbra_mailinglist_edit_title,
     );
+  });
+
+  it('should go back when back button pressed', async () => {
+    const { getByTestId, queryByTestId } = render(<AddAndEditMailingList />);
+
+    await waitFor(() => {
+      expect(queryByTestId('spinner')).toBeNull();
+    });
+
+    act(() => {
+      fireEvent.click(getByTestId('back-btn'));
+    });
+
+    expect(navigate).toHaveBeenCalledOnce();
   });
 });
