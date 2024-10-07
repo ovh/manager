@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.15.0...@ovh-ux/manager-iplb@1.16.0) (2024-10-07)
+
+
+### Features
+
+* **dedicated:** add iplb cta link for us region ([#13417](https://github.com/ovh/manager/issues/13417)) ([4d253d6](https://github.com/ovh/manager/commit/4d253d606b25cfe2618cb37aa1052efe50412073))
+
+
+
+
+
 # [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.14.2...@ovh-ux/manager-iplb@1.15.0) (2024-09-30)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.11.0...@ovh-ux/manager-vrack@1.12.0) (2024-10-07)
+
+
+### Features
+
+* **dedicated.vrack:** add new eligibility services for vrack ([#13215](https://github.com/ovh/manager/issues/13215)) ([5148f42](https://github.com/ovh/manager/commit/5148f429939c1ef2c1f5b36ec86fe7285bab9a66))
+
+
+
+
+
 # [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.10.1...@ovh-ux/manager-vrack@1.11.0) (2024-08-13)
 
 
