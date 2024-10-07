@@ -13,6 +13,14 @@ export const getVcdDatacentresQueryKey = (id: string) => [
 export const getVcdDatacentreQueryKey = (id: string, vdcId: string) => [
   `${getVcdDatacentresQueryKey(id)}/${vdcId}`,
 ];
+export const getVdcComputeQueryKey = (id: string, vdcId: string) => [
+  ...getVcdDatacentreQueryKey(id, vdcId),
+  'compute',
+];
+export const getVdcStorageQueryKey = (id: string, vdcId: string) => [
+  ...getVcdDatacentreQueryKey(id, vdcId),
+  'storage',
+];
 
 const useManagedVcdDatacentres = (id: string) => {
   return useQuery<ApiResponse<IVcdDatacentre[]>, ApiError>({

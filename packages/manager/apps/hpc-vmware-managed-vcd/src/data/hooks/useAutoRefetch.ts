@@ -32,8 +32,6 @@ export const useAutoRefetch = ({
     const refetchInterval = setInterval(() => refetchQueries(), interval);
 
     // eslint-disable-next-line consistent-return
-    return () => {
-      clearInterval(refetchInterval);
-    };
+    return () => clearInterval(refetchInterval);
   }, [condition, interval, queryKeys, queryClient]);
 };

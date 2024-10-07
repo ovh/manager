@@ -62,7 +62,7 @@ describe('DatagridContainer component unit test suite', () => {
           api: 'stubapi',
           onboarding: 'onboarding',
         },
-        queryKey: ['containerId'],
+        queryKey: ['queryKey'],
         columns: [
           {
             id: 'id',

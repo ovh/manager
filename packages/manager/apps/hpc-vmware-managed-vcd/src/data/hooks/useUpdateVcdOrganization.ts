@@ -9,7 +9,7 @@ import { getVcdOrganizationQueryKey } from './useManagedVcdOrganization';
 import { icebergListingQueryKey } from '@/components/datagrid/container/DatagridContainer.constants';
 import { organizationListingContainerId } from '@/pages/listing/organizations/Organizations.constants';
 
-const updateVcdOrganizationDetailsQueryKey = (id: string) => [
+const updateVcdOrganizationDetailsMutationKey = (id: string) => [
   `put${VCD_ORGANIZATION_ROUTE}/${id}`,
 ];
 
@@ -25,7 +25,7 @@ export const useUpdateVcdOrganizationDetails = ({
   const queryClient = useQueryClient();
 
   const { mutateAsync: updateDetails, error, isError } = useMutation({
-    mutationKey: updateVcdOrganizationDetailsQueryKey(id),
+    mutationKey: updateVcdOrganizationDetailsMutationKey(id),
     mutationFn: ({ details }: UpdateVcdOrganizationDetailsParams) =>
       updateVcdOrganizationDetails({ id, details }),
     onSuccess: () => {

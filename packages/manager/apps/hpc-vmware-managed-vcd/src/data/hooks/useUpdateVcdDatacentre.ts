@@ -11,7 +11,7 @@ import {
 } from './useManagedVcdDatacentres';
 import { icebergListingQueryKey } from '@/components/datagrid/container/DatagridContainer.constants';
 
-const updateVdcDetailsQueryKey = ({
+const updateVdcDetailsMutationKey = ({
   id,
   vdcId,
 }: Pick<UpdateVdcDetailsParams, 'id' | 'vdcId'>) => [
@@ -32,7 +32,7 @@ export const useUpdateVdcDetails = ({
   const queryClient = useQueryClient();
 
   const { mutateAsync: updateDetails, error, isError } = useMutation({
-    mutationKey: updateVdcDetailsQueryKey({ id, vdcId }),
+    mutationKey: updateVdcDetailsMutationKey({ id, vdcId }),
     mutationFn: ({ details }: UpdateVdcDetailsParams) =>
       updateVdcDetails({ id, vdcId, details }),
     onSuccess: () => {
