@@ -123,7 +123,7 @@ const dashboardTemplateProps = {
     title: 'Vrack Services',
     headerButton: <GuideButton items={guideItems} />,
   },
-  subtitle: 'Lorem ipsum',
+  // subtitle: 'Lorem ipsum',
   backLinkLabel: 'Retour à la XXX',
   onClickReturn: () => {
     console.log('back link click');
