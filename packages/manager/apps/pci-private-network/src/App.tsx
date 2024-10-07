@@ -8,6 +8,8 @@ import queryClient from './queryClient';
 
 import '@ovhcloud/ods-theme-blue-jeans';
 
+// TODO: build 3µapp
+
 odsSetup();
 
 const router = createHashRouter(appRoutes);

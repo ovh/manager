@@ -10,8 +10,6 @@ import { initShellClient } from '@ovh-ux/shell';
 
 defineApplicationVersion(__VERSION__);
 
-// TODO: build load balancer for staging
-
 initShellClient('octavia-load-balancer').then((shellClient) => {
   if (!isTopLevelApplication()) {
     shellClient.ux.startProgress();
