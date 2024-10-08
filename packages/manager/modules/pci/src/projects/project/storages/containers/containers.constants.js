@@ -2,6 +2,15 @@ export const OBJECT_CONTAINER_OFFER_SWIFT = 'storage';
 export const OBJECT_CONTAINER_OFFER_STORAGE_STANDARD = 'storage-s3-standard';
 export const OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE = 'storage-s3-high-perf';
 export const OBJECT_CONTAINER_S3_STATIC_URL_INFO = 'Virtual Hosted-Style :';
+
+export const OBJECT_CONTAINER_MODE_MULTI_ZONES = 'region-3-az';
+export const OBJECT_CONTAINER_MODE_MONO_ZONE = 'region';
+export const STORAGE_STANDARD_PLANCODE = 'storage-standard.consumption';
+export const SWIFT_PLANCODE = 'storage.consumption';
+export const STORAGE_STANDARD_REGION_PLANCODE = 'storage-standard';
+
+export const STATUS_UP = 'UP';
+
 export const OBJECT_CONTAINER_OFFERS_TYPES = {
   SWIFT: 'swift',
   S3: 's3',
@@ -15,8 +24,43 @@ export const OBJECT_CONTAINER_OFFERS = [
   OBJECT_CONTAINER_OFFER_SWIFT,
 ];
 export const OBJECT_CONTAINER_OFFERS_LABELS = {
-  [OBJECT_CONTAINER_OFFER_SWIFT]: { beta: false, new: false },
-  [OBJECT_CONTAINER_OFFER_STORAGE_STANDARD]: { beta: false, new: true },
+  [OBJECT_CONTAINER_OFFER_SWIFT]: {
+    beta: false,
+    new: false,
+    recommanded: false,
+    price: null,
+  },
+  [OBJECT_CONTAINER_OFFER_STORAGE_STANDARD]: {
+    beta: false,
+    new: false,
+    recommanded: true,
+    price: null,
+  },
+};
+
+export const OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS = {
+  [OBJECT_CONTAINER_MODE_MULTI_ZONES]: {
+    beta: false,
+    new: false,
+    isMultiZone: true,
+    price: null,
+  },
+  [OBJECT_CONTAINER_MODE_MONO_ZONE]: {
+    beta: false,
+    new: false,
+    isMultiZone: false,
+    price: null,
+  },
+};
+
+export const OBJECT_CONTAINER_DEPLOYMENT_MODES = [
+  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  OBJECT_CONTAINER_MODE_MONO_ZONE,
+];
+
+export const OBJECT_CONTAINER_DEPLOYMENT_MODE_TYPES = {
+  MULTI_ZONES: 'region-3-az',
+  MONO_ZONE: 'region',
 };
 
 export const OBJECT_CONTAINER_TYPE_OFFERS = [OBJECT_CONTAINER_OFFER_SWIFT];
@@ -74,26 +118,29 @@ export const STORAGE_GATEWAY = {
 };
 
 export const STORAGE_PRICES_LINK = {
-  DEFAULT: 'https://www.ovhcloud.com/en/public-cloud/prices/#storage',
-  DE: 'https://www.ovhcloud.com/de/public-cloud/prices/#storage',
-  AU: 'https://www.ovhcloud.com/en-au/public-cloud/prices/#storage',
-  CA: 'https://www.ovhcloud.com/en-ca/public-cloud/prices/#storage',
-  GB: 'https://www.ovhcloud.com/en-gb/public-cloud/prices/#storage',
-  IE: 'https://www.ovhcloud.com/en-ie/public-cloud/prices/#storage',
-  SG: 'https://www.ovhcloud.com/en-sg/public-cloud/prices/#storage',
-  ES: 'https://www.ovhcloud.com/es-es/public-cloud/prices/#storage',
-  QC: 'https://www.ovhcloud.com/fr-ca/public-cloud/prices/#storage',
-  FR: 'https://www.ovhcloud.com/fr/public-cloud/prices/#storage',
-  MA: 'https://www.ovhcloud.com/fr-ma/public-cloud/prices/#storage',
-  SN: 'https://www.ovhcloud.com/fr-sn/public-cloud/prices/#storage',
-  TN: 'https://www.ovhcloud.com/fr-tn/public-cloud/prices/#storage',
-  IT: 'https://www.ovhcloud.com/it/public-cloud/prices/#storage',
-  NL: 'https://www.ovhcloud.com/nl/public-cloud/prices/#storage',
-  PL: 'https://www.ovhcloud.com/pl/public-cloud/prices/#storage',
-  PT: 'https://www.ovhcloud.com/pt/public-cloud/prices/#armazenamento',
-  WS: 'https://www.ovhcloud.com/es/public-cloud/prices/#storage',
-  WE: 'https://www.ovhcloud.com/en/public-cloud/prices/#storage',
+  DEFAULT: 'https://www.ovhcloud.com/en/public-cloud/prices/#439',
+  ASIA: 'https://www.ovhcloud.com/asia/public-cloud/prices/#439',
+  AU: 'https://www.ovhcloud.com/en-au/public-cloud/prices/#439',
+  CA: 'https://www.ovhcloud.com/en-ca/public-cloud/prices/#439',
+  DE: 'https://www.ovhcloud.com/de/public-cloud/prices/#439',
+  ES: 'https://www.ovhcloud.com/es-es/public-cloud/prices/#439',
+  EU: 'https://www.ovhcloud.com/en-ie/public-cloud/prices/#439',
+  FR: 'https://www.ovhcloud.com/fr/public-cloud/prices/#439',
+  GB: 'https://www.ovhcloud.com/en-gb/public-cloud/prices/#439',
+  IE: 'https://www.ovhcloud.com/en-ie/public-cloud/prices/#439',
+  IN: 'https://www.ovhcloud.com/en-in/public-cloud/prices/#439',
+  IT: 'https://www.ovhcloud.com/it/public-cloud/prices/#439',
+  MA: 'https://www.ovhcloud.com/fr/public-cloud/prices/#439',
+  NL: 'https://www.ovhcloud.com/nl/public-cloud/prices/#439',
+  PL: 'https://www.ovhcloud.com/pl/public-cloud/prices/#439',
+  PT: 'https://www.ovhcloud.com/pt/public-cloud/prices/#439',
+  QC: 'https://www.ovhcloud.com/fr-ca/public-cloud/prices/#439',
+  SG: 'https://www.ovhcloud.com/en-sg/public-cloud/prices/#439',
+  SN: 'https://www.ovhcloud.com/fr/public-cloud/prices/#439',
+  TN: 'https://www.ovhcloud.com/fr/public-cloud/prices/#439',
   US: 'https://us.ovhcloud.com/public-cloud/prices/#439',
+  WE: 'https://www.ovhcloud.com/en/public-cloud/prices/#439',
+  WS: 'https://www.ovhcloud.com/es/public-cloud/prices/#439',
 };
 
 export const X_CONTAINER_HEADERS_REGEX = /^(X-Container|X-Storage)/i;
@@ -186,6 +233,10 @@ export default {
   OBJECT_CONTAINER_OFFER_SWIFT,
   OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE,
   OBJECT_CONTAINER_OFFERS,
+  OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS,
+  OBJECT_CONTAINER_DEPLOYMENT_MODES,
+  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  OBJECT_CONTAINER_MODE_MONO_ZONE,
   OBJECT_CONTAINER_TYPE_OFFERS,
   OBJECT_CONTAINER_STORAGE_CLASS,
 

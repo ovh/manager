@@ -9,6 +9,7 @@
         <oui-radio
             data-ng-repeat="option in $ctrl.options track by $index"
             data-value=":: option.value"
+            data-disabled="option.disabled"
             ><span data-translate="{{:: option.label}}"></span>
             <button
                 data-ng-if="option.tooltip"
