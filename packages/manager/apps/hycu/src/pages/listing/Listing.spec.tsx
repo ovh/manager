@@ -1,8 +1,10 @@
-import { describe, it } from 'vitest';
-import { setupTest } from '@/utils/tests/setup-test';
+import { screen } from '@testing-library/react';
+import { renderTestApp } from '@/utils/tests/renderTestApp';
+import '@testing-library/jest-dom';
+import { labels } from '@/utils/tests/init.i18n';
 
-describe('HYCU listing test suite', () => {
-  it('should redirect to the onboarding page when the license list is empty', async () => {
-    await setupTest();
+describe('KMS listing test suite', () => {
+  it('should redirect to the onboarding page when the kms list is empty', async () => {
+    await renderTestApp({ nbLicenseHycu: 0 });
   });
 });

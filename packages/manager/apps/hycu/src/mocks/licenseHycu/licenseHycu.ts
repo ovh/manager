@@ -1,14 +1,14 @@
 import { Handler } from '../../../../../../../playwright-helpers';
-import backupList from './licenseHycu-data.json';
+import { licenseHycu } from './licenseHycu.data';
 
 export type GetLicenseHycuMocksParams = {
   isBackupKo?: boolean;
-  nbBackup?: number;
+  nbLicenseHycu?: number;
 };
 
 export const getLicenseHycuMocks = ({
   isBackupKo,
-  nbBackup = Number.POSITIVE_INFINITY,
+  nbLicenseHycu = Number.POSITIVE_INFINITY,
 }: GetLicenseHycuMocksParams): Handler[] => {
   return [
     {
@@ -17,7 +17,7 @@ export const getLicenseHycuMocks = ({
         ? {
             message: 'Backup error',
           }
-        : backupList.slice(0, nbBackup),
+        : licenseHycu.slice(0, nbLicenseHycu),
       status: isBackupKo ? 500 : 200,
       api: 'v6',
     },
