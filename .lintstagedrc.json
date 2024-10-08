@@ -3,12 +3,7 @@
     "htmlhint --ignore \"**/dist/**,**/www/**,**/screenshot/**,**/docs-api/**,**/coverage/**,**/storybook-static/**,**/playwright-report/**, **/cucumber-results-report.html\" \"packages/**/*.html\"",
     "prettier --write"
   ],
-  "*.{tsx,ts}": [
-    "eslint --fix \"packages/manager/apps/**/*.{tsx,ts,md}\"",
-    "eslint --fix \"packages/manager-react-components/**/*.{tsx,ts}\"",
-    "prettier --write \"packages/manager/apps/**/*.{tsx,ts}\"",
-    "prettier --write \"packages/manager-react-components/**/*.{tsx,ts}\""
-  ],
+  "*.{tsx,ts}": ["eslint --fix", "prettier --write"],
   "*.js": ["eslint --fix"],
   "*.{css,less,scss}": ["stylelint --fix"],
   "!(*CHANGELOG).md": ["remark -qf .", "eslint --ext .md --fix"],
