@@ -45,7 +45,7 @@ import {
 import { Trans, useTranslation } from 'react-i18next';
 import { FilterComparator } from '@ovh-ux/manager-core-api';
 import { Spinner } from '@/components/spinner/Spinner.component';
-import { TInstance, useInstances } from '@/data/hooks/instances/useInstances';
+import { TInstance, useInstances } from '@/data/hooks/instance/useInstances';
 import StatusChip from '@/components/statusChip/StatusChip.component';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 

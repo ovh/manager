@@ -24,7 +24,7 @@ import { useHidePreloader } from '@/hooks/hidePreloader/useHidePreloader';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import InstanceImageSrc from '../../../../public/assets/instance.png';
 import { GUIDES } from './onboarding.constants';
-import { useInstances } from '@/data/hooks/instances/useInstances';
+import { useInstances } from '@/data/hooks/instance/useInstances';
 import { Spinner } from '@/components/spinner/Spinner.component';
 
 const Onboarding: FC = () => {

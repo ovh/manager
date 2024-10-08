@@ -8,10 +8,10 @@ import {
 } from '@tanstack/react-query';
 import { useCallback, useEffect, useMemo } from 'react';
 import { FilterWithLabel } from '@ovh-ux/manager-react-components/src/components/filters/interface';
-import { getInstances } from '@/data/api/instances';
+import { getInstances } from '@/data/api/instance';
 import { instancesQueryKey } from '@/utils';
 import { DeepReadonly } from '@/types/utils.type';
-import { TInstanceDto, TInstanceStatusDto } from '@/types/instances/api.types';
+import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.types';
 
 export type TUseInstancesQueryParams = DeepReadonly<{
   limit: number;
