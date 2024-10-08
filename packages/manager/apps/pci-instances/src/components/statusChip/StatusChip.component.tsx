@@ -1,7 +1,7 @@
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { TInstanceStatus } from '@/data/hooks/instances/useInstances';
+import { TInstanceStatus } from '@/data/hooks/instance/useInstances';
 
 const colorBySeverityStatus = {
   success: ODS_THEME_COLOR_INTENT.success,
