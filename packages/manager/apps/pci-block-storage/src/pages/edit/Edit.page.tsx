@@ -5,7 +5,6 @@ import {
   useCatalogPrice,
   useNotifications,
   useProjectLocalRegions,
-  useProjectQuota,
   useProjectUrl,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
@@ -48,6 +47,7 @@ import {
 } from '@/api/hooks/useVolume';
 import HidePreloader from '@/core/HidePreloader';
 import { useVolumeMaxSize } from '@/api/data/quota';
+import { useRegionsQuota } from '@/api/hooks/useQuota';
 
 type TFormState = {
   name: string;
@@ -151,15 +151,13 @@ export default function EditPage() {
     },
   });
 
-  const { data: projectQuota, isPending: isPendingQuota } = useProjectQuota(
+  const { data: regionQuota, isPending: isPendingQuota } = useRegionsQuota(
     projectId,
+    volume?.region,
   );
 
   const getMaxSize = (_volume: TVolume) => {
-    if (projectQuota?.length > 0) {
-      const regionQuota = projectQuota.find(
-        ({ region }) => region === _volume.region,
-      );
+    if (regionQuota) {
       if (
         regionQuota.volume &&
         regionQuota.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA
@@ -193,7 +191,7 @@ export default function EditPage() {
     isPendingQuota;
 
   useEffect(() => {
-    if (volume && projectQuota) {
+    if (volume && regionQuota) {
       setFormState({
         name: volume.name,
         size: {
@@ -205,7 +203,7 @@ export default function EditPage() {
         isInitialized: true,
       });
     }
-  }, [volume, projectQuota]);
+  }, [volume, regionQuota]);
 
   useEffect(() => {
     const { min, max, value } = formState.size;

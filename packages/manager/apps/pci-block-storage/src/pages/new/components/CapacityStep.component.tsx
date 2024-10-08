@@ -56,7 +56,7 @@ export function CapacityStep({
   const {
     data: regionQuotas,
     isLoading: isRegionQuotaLoading,
-  } = useRegionsQuota(projectId);
+  } = useRegionsQuota(projectId, region.name);
   const isCapacityValid =
     volumeCapacity >= VOLUME_MIN_SIZE && volumeCapacity <= maxSize;
 
@@ -68,15 +68,14 @@ export function CapacityStep({
 
   useEffect(() => {
     if (!isLoading) {
-      const quota = regionQuotas?.find(({ region: r }) => r === region?.name);
       let availableGigabytes = volumeMaxSize;
       if (
-        quota?.volume &&
-        quota.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA
+        regionQuotas?.volume &&
+        regionQuotas.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA
       ) {
         availableGigabytes = Math.min(
           volumeMaxSize,
-          quota.volume.maxGigabytes - quota.volume.usedGigabytes,
+          regionQuotas.volume.maxGigabytes - regionQuotas.volume.usedGigabytes,
         );
       }
       setMaxSize(availableGigabytes);
