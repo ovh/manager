@@ -67,5 +67,9 @@
   "region_MUM": "Mumbai",
   "region_MUM_micro": "Mumbai ({{ micro }})",
   "region_location_MUM": "Asia-Pacífico (Mumbai)",
-  "region_continent_MUM": "Asia-Pacífico "
+  "region_continent_MUM": "Asia-Pacífico ",
+  "manager_components_region_PAR": "París",
+  "manager_components_region_PAR_micro": "París ({{ micro }})",
+  "manager_components_region_location_PAR": "Europa occidental (Francia)",
+  "manager_components_region_continent_PAR": "Europa occidental"
 }
