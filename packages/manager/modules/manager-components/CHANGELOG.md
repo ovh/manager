@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.20.1...@ovh-ux/manager-components@1.21.0) (2024-10-08)
+
+
+### Features
+
+* **pci-object-storage:** storage 3az ([1ed7551](https://github.com/ovh/manager/commit/1ed7551152ad155fd43484bca27217ae9cf80540))
+
+
+
+
+
 ## [1.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.20.0...@ovh-ux/manager-components@1.20.1) (2024-10-03)
 
 

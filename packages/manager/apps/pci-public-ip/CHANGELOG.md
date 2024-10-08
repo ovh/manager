@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.6.7...@ovh-ux/manager-pci-public-ip-app@0.7.0) (2024-10-08)
+
+
+### Features
+
+* **pci-object-storage:** storage 3az ([1ed7551](https://github.com/ovh/manager/commit/1ed7551152ad155fd43484bca27217ae9cf80540))
+
+
+
+
+
 ## [0.6.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.6.6...@ovh-ux/manager-pci-public-ip-app@0.6.7) (2024-10-07)
 
 

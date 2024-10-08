@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-octavia-load-balancer-app",
-  "version": "0.6.13",
+  "version": "0.6.14",
   "private": true,
   "description": "OVHcloud OctaviaLoadBalancer app",
   "repository": {
@@ -32,7 +32,7 @@
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.2",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
-    "@ovh-ux/ng-ovh-pci-universe-components": "^1.1.22",
+    "@ovh-ux/ng-ovh-pci-universe-components": "^1.1.23",
     "@ovh-ux/ng-ovh-request-tagger": "^1.2.3",
     "@ovh-ux/ng-ovh-sso-auth": "^4.8.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.1",

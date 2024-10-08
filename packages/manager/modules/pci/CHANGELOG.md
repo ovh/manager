@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.63.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.62.0...@ovh-ux/manager-pci@6.63.0) (2024-10-08)
+
+
+### Features
+
+* **pci-object-storage:** storage 3az ([1ed7551](https://github.com/ovh/manager/commit/1ed7551152ad155fd43484bca27217ae9cf80540))
+
+
+
+
+
 # [6.62.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.61.0...@ovh-ux/manager-pci@6.62.0) (2024-10-07)
 
 

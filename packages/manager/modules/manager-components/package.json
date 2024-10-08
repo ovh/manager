@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-components",
-  "version": "1.20.1",
+  "version": "1.21.0",
   "private": true,
   "description": "A set of reusable UI components, to be used across the OVH Manager",
   "repository": {
