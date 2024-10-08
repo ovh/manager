@@ -16,7 +16,8 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     GB: 'https://www.ovhcloud.com/en-gb/lp/vmware-vcd-evolution/',
     CA: 'https://www.ovhcloud.com/en-ca/lp/vmware-vcd-evolution/',
     QC: 'https://www.ovhcloud.com/fr/lp/vmware-vcd-evolution/',
-    US: 'https://us.ovhcloud.com/lp/vmware-vcd-evolution/',
+    US:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/28330641929491-VMware-Cloud-Director-How-to-Use-the-vCD-User-Interface',
   },
   guideLink2: {
     DE:
@@ -39,6 +40,8 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
       'https://help.ovhcloud.com/csm/en-ca-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
     QC:
       'https://help.ovhcloud.com/csm/fr-ca-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    US:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/28330367397139-VMware-Cloud-Director-The-Fundamentals-of-VCD',
   },
   guideLink3: {
     DE:
@@ -61,6 +64,8 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
       'https://help.ovhcloud.com/csm/en-ca-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062603',
     QC:
       'https://help.ovhcloud.com/csm/fr-ca-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062601',
+    US:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/28329887272467-VMware-Cloud-Director-FAQ',
   },
 };
 
