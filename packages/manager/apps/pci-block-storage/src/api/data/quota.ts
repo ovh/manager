@@ -14,9 +14,10 @@ export interface RegionQuota {
 
 export const getRegionsQuota = async (
   projectId: string,
-): Promise<RegionQuota[]> => {
-  const { data } = await v6.get<RegionQuota[]>(
-    `/cloud/project/${projectId}/quota`,
+  region?: string,
+): Promise<RegionQuota> => {
+  const { data } = await v6.get<RegionQuota>(
+    `/cloud/project/${projectId}/region/${region}/quota`,
   );
   return data;
 };
