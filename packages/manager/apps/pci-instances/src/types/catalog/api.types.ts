@@ -8,12 +8,17 @@ export type TCategoryDto = {
 
 export type TRegionDto = {
   name: string;
-  country: string;
+  country: string | null;
   datacenter: string;
   isLocalzone: boolean;
   isInMaintenance: boolean;
   isActivated: boolean;
-  category: TCategoryDto;
+  category: string;
+};
+
+export type TRegionCategoryDto = {
+  name: string;
+  isNew: boolean;
 };
 
 export type TPriceIntervalDto = 'hour' | 'month';
@@ -95,4 +100,5 @@ export type TCatalogDto = DeepReadonly<{
   models: TModelDto[];
   categories: TCategoryDto[];
   regions: TRegionDto[];
+  regionCategories: TRegionCategoryDto[];
 }>;
