@@ -67,5 +67,9 @@
   "region_continent_SYD": "Océanie",
   "region_continent_US": "États-Unis",
   "region_continent_SHA": "Europe de l'Ouest",
-  "region_continent_all": "Toutes les localisations"
+  "region_continent_all": "Toutes les localisations",
+  "manager_components_region_PAR": "Paris",
+  "manager_components_region_PAR_micro": "Paris  ({{ micro }})",
+  "region_location_PAR": "Europe de l'Ouest (France)",
+  "region_continent_PAR": "Europe de l'Ouest"
 }
