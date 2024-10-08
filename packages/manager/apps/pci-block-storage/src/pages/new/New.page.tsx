@@ -22,6 +22,7 @@ import { ValidationStep } from './components/ValidationStep.component';
 import { LocationStep } from './components/LocationStep.component';
 import { useVolumeStepper } from './hooks/useVolumeStepper';
 import { useAddVolume } from '@/api/hooks/useVolume';
+import { ExtenBannerBeta } from '@/components/exten-banner-beta/ExtenBannerBeta';
 
 export default function NewPage(): JSX.Element {
   const { t } = useTranslation('common');
@@ -100,6 +101,10 @@ export default function NewPage(): JSX.Element {
 
       <div className="mb-5">
         <PciDiscoveryBanner project={project} />
+      </div>
+
+      <div className="mb-5">
+        <ExtenBannerBeta />
       </div>
 
       <div className="mt-8">
