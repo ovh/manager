@@ -1,5 +1,8 @@
 import { DeepReadonly } from '../utils.type';
 
+/**
+ * Model types
+ */
 export type TModelCategory = {
   name: string;
   isNew: boolean;
@@ -59,5 +62,39 @@ export type TModelEntity = DeepReadonly<{
   models: {
     data: TModel[];
     categories: TModelCategory[];
+  };
+}>;
+
+/**
+ * Region types
+ */
+
+export type TRegionAvailability = 'available' | 'unavailable';
+
+export type TRegionCategory = {
+  name: string;
+  isNew: boolean;
+};
+
+export type TRegion = {
+  name: string;
+  category: string;
+  datacenter: string;
+  isLocalzone: boolean;
+  isInMaintenance: boolean;
+  isActivated: boolean;
+  country: string | null;
+};
+
+export type TRegionsData = {
+  allAvailableRegions: TRegion[];
+  availableMacroRegions: TRegion[];
+  availableMicroRegions: TRegion[];
+  unavailableRegions: TRegion[];
+};
+export type TRegionEntity = DeepReadonly<{
+  regions: {
+    data: TRegionsData;
+    categories: TRegionCategory[];
   };
 }>;
