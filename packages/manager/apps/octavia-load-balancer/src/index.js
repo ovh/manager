@@ -8,8 +8,6 @@ import { defineApplicationVersion } from '@ovh-ux/request-tagger';
 
 import { initShellClient } from '@ovh-ux/shell';
 
-// TODO build load balancer
-
 defineApplicationVersion(__VERSION__);
 
 initShellClient('octavia-load-balancer').then((shellClient) => {
