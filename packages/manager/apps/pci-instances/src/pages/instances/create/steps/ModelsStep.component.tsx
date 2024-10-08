@@ -16,7 +16,7 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { modelSelector, useCatalog } from '@/data/hooks/catalog/useCatalog';
+import { useCatalog } from '@/data/hooks/catalog/useCatalog';
 import { Spinner } from '@/components/spinner/Spinner.component';
 import {
   TModelCategory,
@@ -26,7 +26,6 @@ import {
   TStorage,
 } from '@/types/catalog/entity.types';
 import { DeepReadonly } from '@/types/utils.type';
-import '@ovh-ux/manager-pci-common/src/components/flavor-selector/translations/index';
 import { useAppStore } from '@/store/hooks/useAppStore';
 import { TStep, TStepId } from '@/store/slices/stepper.slice';
 
@@ -34,10 +33,12 @@ const modelStepId: TStepId = 'model';
 const validatedModelStepState: Partial<TStep> = {
   isChecked: true,
   isLocked: true,
+  isOpen: false,
 };
 const editedModelStepState: Partial<TStep> = {
   isChecked: false,
   isLocked: false,
+  isOpen: true,
 };
 
 type TTabProps = {
@@ -172,7 +173,9 @@ const TabTitle: FC<TTabTitleProps> = ({ t, category, isSelected }) => (
 export const ModelsStep: FC = () => {
   const { projectId } = useParams() as { projectId: string };
   const { t } = useTranslation(['create', 'stepper']);
-  const { data, isLoading } = useCatalog(projectId, modelSelector);
+  const { data, isLoading } = useCatalog<'modelSelector'>(projectId, {
+    selector: 'modelSelector',
+  });
   const { stepStateById, modelName, setModelName, updateStep } = useAppStore(
     useShallow((state) => ({
       stepStateById: state.stepStateById(),
