@@ -1,10 +1,5 @@
-export type Primitive =
-  | undefined
-  | null
-  | boolean
-  | string
-  | number
-  | (() => unknown);
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type Primitive = undefined | null | boolean | string | number | Function;
 export type DeepReadonlyMap<K, V> = ReadonlyMap<
   DeepReadonly<K>,
   DeepReadonly<V>
