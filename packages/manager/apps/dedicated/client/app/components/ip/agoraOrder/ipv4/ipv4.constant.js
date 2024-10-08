@@ -24,6 +24,10 @@ export const PRODUCT_TYPES = {
     apiTypeName: 'parking',
     typeName: 'parking',
   },
+  vrack: {
+    apiTypeName: 'VRACK',
+    typeName: 'VRACK',
+  },
 };
 
 export const IP_AGORA = {
