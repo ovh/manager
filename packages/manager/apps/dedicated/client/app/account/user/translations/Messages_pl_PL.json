@@ -608,5 +608,6 @@
   "user_account_ssh_keys_title": "Moje klucze SSH",
   "user_account_advanced_title": "Zaawansowane parametry",
   "user_account_guides_header": "Przewodniki",
-  "user_account_guides_header_account_informations_guides": "Informacje o koncie"
+  "user_account_guides_header_account_informations_guides": "Informacje o koncie",
+  "user_account_security_double_auth_sso_info": "Weryfikacja dwuetapowa nie jest dostępna, gdy używasz logowania Single Sign-On, które samo w sobie zapewnia zwiększony poziom bezpieczeństwa."
 }
