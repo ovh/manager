@@ -1,5 +1,3 @@
-import { Handler } from '../../../../../../playwright-helpers';
-
 export type GetFeatureAvailabilityMocksParams = {
   isFeatureAvailabilityServiceKo?: boolean;
   featureAvailabilityResponse?: Record<string, boolean>;
@@ -10,7 +8,7 @@ export const featureAvailabilityError = 'Feature availability service error';
 export const getFeatureAvailabilityMocks = ({
   isFeatureAvailabilityServiceKo,
   featureAvailabilityResponse,
-}: GetFeatureAvailabilityMocksParams): Handler[] => [
+}: GetFeatureAvailabilityMocksParams): any[] => [
   {
     url: `/feature/${Object.keys(featureAvailabilityResponse).join(
       ',',
