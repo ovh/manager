@@ -25,6 +25,7 @@
   "noMaintenanceLink": "Plannifier mes futures maintenances",
   "maintenanceLink": "Gérer et plannifier mes maintenances",
   "networkTitle": "Réseau utilisé",
+  "networkPublicTitle": "Réseau public (internet)",
   "networkLink": "Réseau privée: vRack n°{{vrack}}",
   "priceBillingTitle": "Support & Facturation",
   "serviceIdLabel": "Id du service",
