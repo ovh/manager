@@ -140,6 +140,11 @@ const Routes = (
     <Route path={ROUTE_PATHS.LISTING} Component={ListingPage}>
       <Route path={ROUTE_PATHS.DELETE} Component={DeletePage} />
     </Route>
+    <Route
+      path="create"
+      Component={lazy(() => import('@/pages/create/Create.page'))}
+    />
+    <Route path="" element={<Navigate to={ROUTE_PATHS.LISTING} replace />} />
     <Route path={ROUTE_PATHS.L7} Component={L7Page}>
       <Route path="" element={<Navigate to={ROUTE_PATHS.L7_LIST} />} />
       <Route path={ROUTE_PATHS.L7_CREATE} Component={L7PoliciesCreatePage} />
