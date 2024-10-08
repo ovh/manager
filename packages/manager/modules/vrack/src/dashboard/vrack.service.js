@@ -41,4 +41,18 @@ export default class Vrack {
   getIpLoadbalancing(serviceName) {
     return this.$http.get(`/ipLoadbalancing/${serviceName}`);
   }
+
+  getVrackStatus(vrackId) {
+    return this.$http
+      .get(`/services?resourceName=${vrackId}`)
+      .then(({ data }) => {
+        const [serviceId] = data;
+        return this.$http.get(`/services/${serviceId}`);
+      })
+      .then(({ data }) => data?.resource?.state);
+  }
+
+  terminateVrack(serviceName) {
+    return this.$http.post(`/vrack/${serviceName}/terminate`);
+  }
 }
