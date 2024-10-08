@@ -8,9 +8,9 @@ import { TUseCatalogSelector, useCatalog } from './useCatalog';
 import { TModelEntity, TRegionEntity } from '@/types/catalog/entity.types';
 import { setupCatalogServer } from '@/__mocks__/catalog/node';
 import { instancesQueryKey } from '@/utils';
-import mockedCatalog1 from '@/__mocks__/catalog/catalogGenerated1.json';
-import mockedCatalog2 from '@/__mocks__/catalog/catalogGenerated2.json';
-import mockedCatalog3 from '@/__mocks__/catalog/catalogGenerated3.json';
+import mockedCatalogWithMultipleModelPrices from '@/__mocks__/catalog/catalogGenerated1.json';
+import mockedCatalogWithGPUModel from '@/__mocks__/catalog/catalogGenerated2.json';
+import mockedCatalogWithMultipleRegions from '@/__mocks__/catalog/catalogGenerated3.json';
 import { TCatalogDto } from '@/types/catalog/api.types';
 import expectedEntity1 from '@/__mocks__/catalog/expectedEntity1.json';
 import expectedEntity2 from '@/__mocks__/catalog/expectedEntity2.json';
@@ -62,10 +62,10 @@ describe('Considering the useCatalog() hook', () => {
       enabled: boolean;
     };
     describe.each`
-      projectId        | queryPayload      | expectedRawData   | enabled
-      ${fakeProjectId} | ${undefined}      | ${undefined}      | ${true}
-      ${fakeProjectId} | ${mockedCatalog3} | ${mockedCatalog3} | ${true}
-      ${fakeProjectId} | ${mockedCatalog3} | ${undefined}      | ${false}
+      projectId        | queryPayload                        | expectedRawData                     | enabled
+      ${fakeProjectId} | ${undefined}                        | ${undefined}                        | ${true}
+      ${fakeProjectId} | ${mockedCatalogWithMultipleRegions} | ${mockedCatalogWithMultipleRegions} | ${true}
+      ${fakeProjectId} | ${mockedCatalogWithMultipleRegions} | ${undefined}                        | ${false}
     `(
       'Given a projectId <$projectId> and a enabled option parameter <$enabled>',
       ({ projectId, queryPayload, expectedRawData, enabled }: Data) => {
@@ -93,7 +93,7 @@ describe('Considering the useCatalog() hook', () => {
             expect(result.current.error).toHaveProperty('response.status', 500);
             expect(result.current.error).instanceOf(AxiosError);
           } else {
-            expectStrictEqual(result, expectedRawData);
+            await expectStrictEqual(result, expectedRawData);
             expect(
               queryCache.getAll().map((cache) => cache.queryKey)[0],
             ).toStrictEqual(instancesQueryKey(projectId, ['catalog']));
@@ -108,7 +108,7 @@ describe('Considering the useCatalog() hook', () => {
       server?.close();
     });
     test('When invoking useCatalog() hook, then, expect to receive raw data', async () => {
-      server = setupCatalogServer(mockedCatalog1);
+      server = setupCatalogServer(mockedCatalogWithMultipleModelPrices);
 
       const { wrapper } = initQueryClient();
       const { result } = renderHook(
@@ -120,7 +120,7 @@ describe('Considering the useCatalog() hook', () => {
           wrapper,
         },
       );
-      await expectStrictEqual(result, mockedCatalog1);
+      await expectStrictEqual(result, mockedCatalogWithMultipleModelPrices);
     });
   });
 
@@ -132,10 +132,10 @@ describe('Considering the useCatalog() hook', () => {
       expectedModelEntity: TModelEntity;
     };
     describe.each`
-      projectId        | queryPayload      | expectedModelEntity
-      ${fakeProjectId} | ${emptyCatalog}   | ${{ models: { data: [], categories: [] } }}
-      ${fakeProjectId} | ${mockedCatalog1} | ${expectedEntity1}
-      ${fakeProjectId} | ${mockedCatalog2} | ${expectedEntity2}
+      projectId        | queryPayload                            | expectedModelEntity
+      ${fakeProjectId} | ${emptyCatalog}                         | ${{ models: { data: [], categories: [] } }}
+      ${fakeProjectId} | ${mockedCatalogWithMultipleModelPrices} | ${expectedEntity1}
+      ${fakeProjectId} | ${mockedCatalogWithGPUModel}            | ${expectedEntity2}
     `(
       'Given a projectId <$projectId>',
       ({ projectId, queryPayload, expectedModelEntity }: Data) => {
@@ -170,12 +170,12 @@ describe('Considering the useCatalog() hook', () => {
       expectedRegionEntity: TRegionEntity;
     };
     describe.each`
-      projectId        | modelName    | queryPayload      | expectedRegionEntity
-      ${fakeProjectId} | ${undefined} | ${emptyCatalog}   | ${undefined}
-      ${fakeProjectId} | ${'b3-8'}    | ${emptyCatalog}   | ${undefined}
-      ${fakeProjectId} | ${undefined} | ${mockedCatalog3} | ${undefined}
-      ${fakeProjectId} | ${'b3-8'}    | ${mockedCatalog3} | ${expectedEntity3}
-      ${fakeProjectId} | ${'b2-30'}   | ${mockedCatalog3} | ${expectedEntity4}
+      projectId        | modelName    | queryPayload                        | expectedRegionEntity
+      ${fakeProjectId} | ${undefined} | ${emptyCatalog}                     | ${undefined}
+      ${fakeProjectId} | ${'b3-8'}    | ${emptyCatalog}                     | ${undefined}
+      ${fakeProjectId} | ${undefined} | ${mockedCatalogWithMultipleRegions} | ${undefined}
+      ${fakeProjectId} | ${'b3-8'}    | ${mockedCatalogWithMultipleRegions} | ${expectedEntity3}
+      ${fakeProjectId} | ${'b2-30'}   | ${mockedCatalogWithMultipleRegions} | ${expectedEntity4}
     `(
       'Given a projectId <$projectId> and a modelName <$modelName>',
       ({ projectId, queryPayload, expectedRegionEntity, modelName }: Data) => {
