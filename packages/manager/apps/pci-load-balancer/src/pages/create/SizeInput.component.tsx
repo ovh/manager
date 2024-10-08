@@ -7,15 +7,9 @@ import { OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { TPlan } from '@/pages/create/store';
 
 const SIZE_FLAVOUR_REGEX = /octavia-loadbalancer.loadbalancer-([sml]).hour.consumption/;
-
-export type TPlan = {
-  code: string;
-  price: number;
-  label: string;
-  technicalName: string;
-};
 
 const LabelComponent = ({
   item,
