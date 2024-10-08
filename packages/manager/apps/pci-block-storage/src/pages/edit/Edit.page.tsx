@@ -38,11 +38,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useProject } from '@ovh-ux/manager-pci-common';
-import {
-  VOLUME_MAX_SIZE,
-  VOLUME_MIN_SIZE,
-  VOLUME_UNLIMITED_QUOTA,
-} from '@/constants';
+import { VOLUME_MIN_SIZE, VOLUME_UNLIMITED_QUOTA } from '@/constants';
 import ChipRegion from '@/components/edit/ChipRegion.component';
 import { TVolume } from '@/api/data/volume';
 import {
@@ -51,6 +47,7 @@ import {
   useVolume,
 } from '@/api/hooks/useVolume';
 import HidePreloader from '@/core/HidePreloader';
+import { useVolumeMaxSize } from '@/api/data/quota';
 
 type TFormState = {
   name: string;
@@ -95,6 +92,8 @@ export default function EditPage() {
     isPending: isPendingVolume,
   } = useVolume(projectId, volumeId);
 
+  const { volumeMaxSize } = useVolumeMaxSize(volume?.region);
+
   const {
     data: localRegions,
     isPending: isPendingLocal,
@@ -106,7 +105,7 @@ export default function EditPage() {
     size: {
       value: volume?.size || VOLUME_MIN_SIZE,
       min: VOLUME_MIN_SIZE,
-      max: VOLUME_MAX_SIZE,
+      max: volumeMaxSize,
     },
     bootable: volume?.bootable || false,
     isInitialized: false,
@@ -167,10 +166,10 @@ export default function EditPage() {
       ) {
         const availableGigabytes =
           regionQuota.volume.maxGigabytes - regionQuota.volume.usedGigabytes;
-        return Math.min(_volume.size + availableGigabytes, VOLUME_MAX_SIZE);
+        return Math.min(_volume.size + availableGigabytes, volumeMaxSize);
       }
     }
-    return VOLUME_MAX_SIZE;
+    return volumeMaxSize;
   };
 
   const getVolumePriceEstimationFromCatalog = (
