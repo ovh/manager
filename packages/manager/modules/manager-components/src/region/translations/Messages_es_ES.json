@@ -279,5 +279,6 @@
   "manager_components_region_location_OR": "Norteamérica (Estados Unidos)",
   "manager_components_region_location_VA": "Norteamérica (Estados Unidos)",
   "manager_components_region_YNM": "Mumbai",
-  "manager_components_region_YNM_micro": "Mumbai ({{ micro }})"
+  "manager_components_region_YNM_micro": "Mumbai ({{ micro }})",
+  "manager_components_region_location_CA": "Norteamérica (Canadá)"
 }
