@@ -9,6 +9,7 @@ import { subRoutes, urls } from '@/routes/routes.constant';
 import IVcdDatacentre from '@/types/vcd-datacenter.interface';
 import { getVcdDatacentresRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
 import { getVcdDatacentresQueryKey } from '@/utils/queryKeys';
+import { capitalize } from '@/utils/capitalize';
 
 /* ========= datagrid cells ========= */
 const DatagridIdCell = (vcdDatacentre: IVcdDatacentre) => {
@@ -65,7 +66,7 @@ const DatagridRamCountCell = (vcdDatacentre: IVcdDatacentre) => {
 
 const DatagridCommercialRange = (vcdDatacentre: IVcdDatacentre) => (
   <DataGridTextCell>
-    {vcdDatacentre.currentState?.commercialRange}
+    {capitalize(vcdDatacentre.currentState?.commercialRange)}
   </DataGridTextCell>
 );
 
