@@ -1,3 +1,7 @@
 {
-  "rgdp-title": "Comment exercer vos droits ou contacter le DPO"
+  "rgdp_introduction_title": "Comment exercer vos droits ou contacter le DPO",
+  "rgdp_introduction_content_purpose": "Ce formulaire a pour but de faciliter l'exercice de vos droits sur les données à caractère personnel vous concernant traitées par OVHcloud et ses sociétés affiliées.",
+  "rgdp_introduction_content_identity_verification": "Dans l'hypothèse d'une incertitude relative à l'identité du demandeur, OVHcloud pourra vous demander des informations complémentaires relatives à votre identité ou copie d'une pièce d'identité.",
+  "rgdp_introduction_content_client_area": "Vous pouvez également exercer vos droits directement via votre espace client.",
+  "rgdp_introduction_please_note": "<strong>Attention</strong>, ce formulaire ne concerne pas les traitements réalisés par des tiers utilisant des services d'OVHcloud (ex. un site internet hébergé par OVHcloud). Dans ce cas, il convient de prendre contact directement auprès du tiers. Vous pouvez également utiliser le formulaire de contact « Abuse » d'OVHcloud."
 }
