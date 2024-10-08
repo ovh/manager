@@ -5,7 +5,7 @@
   "overthebox_migration_current_offer": "Oferta atual: {{offerName}}",
   "overthebox_migration_monthly_subscription": "Preço mensal",
   "overthebox_migration_hardware": "Chassis",
-  "overthebox_migration_hardware_yes": "Pretendo adquirir uma nova caixa {{ deviceName }} ({{ price }} + IVA) *",
+  "overthebox_migration_hardware_yes": "Je souhaite prendre un nouveau boîtier {{ deviceName }} ({{ price }} HT) *",
   "overthebox_migration_hardware_no": "Não quero uma caixa",
   "overthebox_migration_choose_offer_action": "Selecionar",
   "overthebox_migration_contact_title": "Entrega",
@@ -21,7 +21,7 @@
   "overthebox_migration_summary_table_quantity": "Quantidade",
   "overthebox_migration_summary_table_price_per_month": "Preço /mês + IVA",
   "overthebox_migration_summary_table_offer": "Oferta {{offerName}}",
-  "overthebox_migration_summary_table_hardware": "Recetáculo {{ deviceName }}",
+  "overthebox_migration_summary_table_hardware": "Boîtier {{ deviceName }}",
   "overthebox_migration_summary_contracts_title": "Contratos",
   "overthebox_migration_summary_price_explain": "A sua nova subscrição mensal ascende a: {{price}}/mês + IVA, aplicável a partir da entrega do novo serviço. Receberá uma notificação por e-mail.",
   "overthebox_migration_summary_hardware_price": "O preço do hardware inclui o custo de entrega do mesmo.",
@@ -34,5 +34,5 @@
   "overthebox_migration_summary_command_order_help": "Saber mais sobre o pagamento de uma nota de encomenda.",
   "overthebox_migration_summary_launch_migration_error": "Ocorreu um erro durante a migração da oferta. {{errorMsg}}",
   "overthebox_migration_offers_title": "Escolha da oferta",
-  "overthebox_migration_about": "* OverTheBox - saiba mais sobre a descrição do serviço e da caixa."
+  "overthebox_migration_about": "* OverTheBox - en savoir plus sur la description du service et du boîtier."
 }

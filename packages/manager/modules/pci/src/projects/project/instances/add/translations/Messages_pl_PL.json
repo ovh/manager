@@ -123,5 +123,7 @@
   "pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description2": "Aby uruchomić prywatną sieć obejmującą kilka regionów, wybierz kompatybilny region.",
   "pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description3": "Zmień lokalizację",
   "pci_projects_project_instances_add_attch_floating_ip_checkbox_label_tooltip": "Opcja niedostępna podczas konfiguracji wielu instancji. Przejdź do adresów Public IP, aby przypisać floating IP do instancji.",
-  "pci_project_instances_instance_add_region_savings_plan_info": "W przypadku Local Zones Savings Plans nie ma zastosowania."
+  "pci_project_instances_instance_add_region_savings_plan_info": "W przypadku Local Zones Savings Plans nie ma zastosowania.",
+  "pci_projects_project_instances_add_billing_savings_plan_banner": "Dzięki Savings Plan zyskujesz korzystne opłaty miesięczne, a jednocześnie zachowujesz możliwość płatności za instancje w trybie za godzinę.",
+  "pci_projects_project_instances_add_billing_savings_plan_cta": "Skonfiguruj Savings Plans"
 }
