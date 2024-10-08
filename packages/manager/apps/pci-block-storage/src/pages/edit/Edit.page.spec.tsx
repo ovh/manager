@@ -23,6 +23,10 @@ vi.mock('@/core/HidePreloader', () => ({
   default: () => <div>HidePeloader</div>,
 }));
 
+vi.mock('@/api/hooks/useQuota', () => ({
+  useRegionsQuota: vi.fn().mockReturnValue({ data: [] }),
+}));
+
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const mod = await importOriginal<
     typeof import('@ovh-ux/manager-react-components')
@@ -38,7 +42,6 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
       addSuccess: vi.fn(),
     }),
     useProjectLocalRegions: vi.fn().mockReturnValue({ data: [] }),
-    useProjectQuota: vi.fn().mockReturnValue({ data: [] }),
     useProjectUrl: vi.fn().mockReturnValue('/project-url'),
     useTranslatedMicroRegions: vi
       .fn()
