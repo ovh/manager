@@ -9,10 +9,10 @@ export const defaultAvailableLocales = [defaultLocale];
 
 function addTranslations() {
   i18next
-    .addResources(defaultLocale, 'hycu/common', common)
-    .addResources(defaultLocale, 'hycu/dashboard', dashboard)
-    .addResources(defaultLocale, 'hycu/listing', listing)
-    .addResources(defaultLocale, 'hycu/onboarding', onboarding)
+    .addResources(defaultLocale, 'common', common)
+    .addResources(defaultLocale, 'dashboard', dashboard)
+    .addResources(defaultLocale, 'listing', listing)
+    .addResources(defaultLocale, 'onboarding', onboarding)
     .use({
       type: 'postProcessor',
       name: 'normalize',
