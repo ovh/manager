@@ -1,11 +1,19 @@
 import { useEffect, useState } from 'react';
-import { IcebergFetchParamsV2, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import {
+  IcebergFetchParamsV2,
+  IcebergFetchResultV2,
+  fetchIcebergV2,
+} from '@ovh-ux/manager-core-api';
+import { Query, useInfiniteQuery } from '@tanstack/react-query';
 import { ColumnSort } from '../../components';
 
 interface IcebergV2Hook {
   queryKey: string[];
   defaultSorting?: ColumnSort;
+  refetchInterval?:
+    | number
+    | false
+    | ((query: Query) => number | false | undefined);
 }
 
 export const defaultPageSize = 10;
@@ -20,6 +28,7 @@ export function useResourcesIcebergV2<T = unknown>({
   pageSize = defaultPageSize,
   queryKey,
   defaultSorting = undefined,
+  refetchInterval = false,
 }: IcebergFetchParamsV2 & IcebergV2Hook) {
   const [flattenData, setFlattenData] = useState<T[]>([]);
   const [sorting, setSorting] = useState<ColumnSort>(defaultSorting);
@@ -37,12 +46,16 @@ export function useResourcesIcebergV2<T = unknown>({
     queryFn: ({ pageParam }) =>
       fetchIcebergV2<T>({ route, pageSize, cursor: pageParam }),
     staleTime: Infinity,
+    refetchInterval,
     retry: false,
-    getNextPageParam: (lastPage) => lastPage.cursorNext,
+    getNextPageParam: (lastPage: IcebergFetchResultV2<T>) =>
+      lastPage.cursorNext,
   });
 
   useEffect(() => {
-    const flatten = data?.pages.map((page) => page.data).flat();
+    const flatten = data?.pages
+      .map((page: IcebergFetchResultV2<T>) => page.data)
+      .flat();
     setFlattenData(flatten);
   }, [data]);
 
