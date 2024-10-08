@@ -150,15 +150,14 @@ const Sidebar = (): JSX.Element => {
           )
         ) {
           selectSubMenu(currentNode);
-          setSelectedNode(universe);
-          setShowSubTree(Boolean(universe));
+          selectLvl1Node(universe)
 
           return;
         } else {
-          selectedNode ? setSelectedNode(null) : setSavedNode(null);
+          selectedNode ? selectLvl1Node(null) : setSavedNode(null);
         }
       } else {
-        selectedNode ? setSelectedNode(null) : setSavedNode(null);
+        selectedNode ? selectLvl1Node(null) : setSavedNode(null);
       }
     }
 
@@ -167,8 +166,7 @@ const Sidebar = (): JSX.Element => {
     const foundNode = findNodeByRouting(currentNavigationNode, pathname);
     if (foundNode) {
       selectSubMenu(foundNode.node);
-      setSelectedNode(foundNode.universe);
-      setShowSubTree(Boolean(foundNode.universe));
+      selectLvl1Node(foundNode.universe)
     }
   }, [currentNavigationNode, location]);
 
@@ -209,6 +207,11 @@ const Sidebar = (): JSX.Element => {
     }
   };
 
+  const selectLvl1Node = (node: Node | null) => {
+    setSelectedNode(node);
+    setShowSubTree(!!node);
+  }
+
   // Callbacks
 
   const toggleSidebar = () => {
@@ -236,9 +239,8 @@ const Sidebar = (): JSX.Element => {
   };
 
   const menuClickHandler = (node: Node) => {
-    setSelectedNode(node);
     setSelectedSubMenu(null);
-    setShowSubTree(true);
+    selectLvl1Node(node)
 
     let trackingIdComplement = 'navbar_v3_entry_home::';
     const history = findPathToNode(
