@@ -1,0 +1,10 @@
+{
+  "vrack_terminate": "Supprimer",
+  "vrack_terminate_title": "Supprimer mon Vrack",
+  "vrack_terminate_description": "Afin de supprimer votre Vrack vous devez au préalable deconnecter tous les services qui y sont ratachés",
+  "vrack_terminate_modal_description": "Veuillez entrer le mot « TERMINATE » pour confirmer la suppression de votre Vrack",
+  "vrack_terminate_modal_cancel": "Annuler",
+  "vrack_terminate_modal_confirm": "Résilier",
+  "vrack_terminate_modal_success_banner": "Votre Vrack a été supprimé avec succès.",
+  "vrack_terminate_modal_error_banner": "La suppression de votre Vrack à échoué, veuillez vérifier si votre Vrack est vide."
+}

@@ -46,6 +46,8 @@
   "vrack_service_type_cloudproject": "Projet Cloud",
   "vrack_service_type_iploadbalancing": "Load Balancer",
   "vrack_select_dialog_modal_description": "Veuillez noter que les blocks IPv6 additionnels ne peuvent être ajoutés/supprimés qu'un seul à la fois.",
+  "vrack_terminate_modal_success_banner": "Votre Vrack a été supprimé avec succès.",
+  "vrack_terminate_modal_error_banner": "La suppression de votre Vrack à échoué, veuillez vérifier si votre Vrack est vide.",
   "vrack_add_dialog_modal_title": "Ajouter un ou plusieurs services",
   "vrack_add_dialog_modal_description": "Etes-vous sûr(e) de vouloir ajouter {{ services }} de votre vRack ?",
   "vrack_delete_dialog_modal_title": "Retirer un ou plusieurs services",
