@@ -1,0 +1,102 @@
+@tailwind components;
+@tailwind utilities;
+
+h1,
+h2 {
+  margin-top: 1rem;
+}
+
+$ovh-sidebar-width: 18.75rem;
+$device-breakpoint-medium-max-width: 1279px;
+
+$hub-brand-color: #001191;
+
+$hub-subtitle-color: #001758;
+
+$hub-text-color: #4d5592;
+$hub-text-weight: 400;
+
+$hub-button-bg-color: #3046d1;
+$hub-button-fg-color: white;
+
+$hub-tile-border-radius: 0.5rem;
+$hub-tile-padding: 1rem 0 1rem 0;
+
+$hub-border-radius-default: 6pt;
+
+@mixin hub-pill {
+  background-color: #bef1ff;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  color: #0050d7;
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.5rem;
+}
+
+ovh-manager-banner-text .notification-banner {
+  padding-right: $ovh-sidebar-width !important;
+}
+
+@media screen and (min-width: $device-breakpoint-medium-max-width) {
+  .hub-main-view_sidebar_expanded {
+    margin-right: $ovh-sidebar-width;
+    max-width: calc(100% - $ovh-sidebar-width);
+  }
+}
+
+@media screen and (max-width: $device-breakpoint-medium-max-width) {
+  .hub-main-view {
+    margin-right: 0;
+  }
+  ovh-manager-banner-text .notification-banner {
+    padding-right: 0 !important;
+  }
+}
+
+#root {
+  height: inherit;
+
+  .hub-main-view {
+    .minw-0 {
+      min-width: 0;
+    }
+
+    &_container {
+      max-width: 80rem; // 1280px with 16px font size
+      margin: auto;
+    }
+  }
+
+  .skipnav osds-button {
+    width: 1px;
+    height: 1px;
+    position: fixed;
+    left: -100%;
+    top: auto;
+    overflow: hidden;
+    z-index: -1;
+
+    &:focus,
+    &:active {
+      width: auto;
+      height: auto;
+      left: 0.625rem;
+      top: 0.625rem;
+      overflow: auto;
+      outline-width: 1px !important;
+      outline-style: dotted !important;
+      outline-color: initial !important;
+      outline-offset: -2px !important;
+      background-color: #fff;
+      z-index: 1100;
+    }
+  }
+
+  .skiptarget {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    float: right;
+    position: absolute;
+  }
+}
