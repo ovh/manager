@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { TRegion } from '@/api/hook/usePlans';
 
 export type TPlan = {
   code: string;
@@ -20,9 +21,11 @@ export enum StepsEnum {
 
 export type TFormStore = {
   size: TPlan;
+  region: TRegion;
   steps: Map<StepsEnum, TStep>;
   set: {
     size: (val: TPlan) => void;
+    region: (val: TRegion) => void;
   };
   open: (step: StepsEnum) => void;
   close: (step: StepsEnum) => void;
@@ -60,11 +63,17 @@ const initialSteps = () =>
 
 export const useNewLoadBalancerStore = create<TFormStore>()((set, get) => ({
   size: null,
+  region: null,
   steps: initialSteps(),
   set: {
     size: (val: TPlan) => {
       set({
         size: val,
+      });
+    },
+    region: (val: TRegion) => {
+      set({
+        region: val,
       });
     },
   },
