@@ -17,7 +17,7 @@
   "pci_projects_project_network_private_create_public_gateway_decription_2": "Allow instances of this private network to access the internet securely. Selecting this option will use the existing Gateway instance, or create one if required. Please note that this may incur an additional cost (details will be available below in the summary page).",
   "pci_projects_project_network_private_create_public_gateway_footer": "This option may not be available in the selected region. To learn more about product availability by region, <a href=\"{{ guideLink }}\" target=\"_blank\" data-track-on=\"click\" data-track-type=\"action\" data-track-name=\" {{ trackLabel }} \">click here</a>.",
   "pci_projects_project_network_private_create_layer_2_options": "Layer 2 network options:",
-  "pci_projects_project_network_private_create_vlan_tip": "Tip: You may need to use the same VLAN ID on your dedicated server or Hosted Private Cloud for your hybrid cloud usage. Find out more here.",
+  "pci_projects_project_network_private_create_vlan_tip": "Tip: You may need to use the same VLAN ID on your dedicated server or Hosted Private Cloud for your hybrid cloud usage. ",
   "pci_projects_project_network_private_create_dhcp_address_distribution_options": "DHCP address distribution options:",
   "pci_projects_project_network_private_create_enable_dhcp": "Enable DHCP for this private network",
   "pci_projects_project_network_private_create_announce_first_address": "Declare the first address of a CIDR given as the default gateway (DHCP option 3)",
