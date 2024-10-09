@@ -21,6 +21,14 @@ interface IVcdOrganizationBackupState {
   region: string;
 }
 
+interface IVcdOrganizationBackupSpecs {
+  offers: {
+    name: string;
+    quotaInTB: number;
+    status: string;
+  }[];
+}
+
 interface IVcdOrganizationBackupTask {
   id: string;
   link: string;
@@ -32,6 +40,7 @@ export default interface IVcdOrganizationBackup {
   id: string;
   resourceStatus: BackupResourceStatus;
   currentState: IVcdOrganizationBackupState;
+  targetSpec: IVcdOrganizationBackupSpecs;
   currentTasks?: IVcdOrganizationBackupTask[];
   createdAt?: string;
   updatedAt?: string;
