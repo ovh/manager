@@ -213,7 +213,7 @@ export const getLastElement = (root: Node) => {
     return getLast(node.children[node.children.length - 1]);
   };
 
-  return getLast(root);
+  return root ? getLast(root) : null;
 };
 
 /* this function is used to parse a path with the pattern /some/thing/{id}/other/thing
