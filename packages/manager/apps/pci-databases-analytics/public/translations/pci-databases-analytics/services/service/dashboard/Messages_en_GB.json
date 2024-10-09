@@ -30,5 +30,8 @@
   "serviceIdLabel": "Service ID",
   "serviceIdCopyToast": "The service ID has been copied",
   "billingLink": "Manage billing",
-  "supportLink": "Contact support"
+  "supportLink": "Contact support",
+  "connectionDetailsCertificateLabel": "Certificate",
+  "connectionDetailsCertificateCopyToast": "The CA certificate has been copied to your clipboard",
+  "connectionDetailsCertificateDownloadToast": "The CA certificate has been uploaded"
 }
