@@ -1,0 +1,18 @@
+{
+  "octavia_load_balancer_add_listener": "Add a listener",
+  "octavia_load_balancer_instances_table_listener": "Listener",
+  "octavia_load_balancer_instances_table_pools": "Pools/Instances",
+  "octavia_load_balancer_instances_table_protocol_label": "Select a protocol",
+  "octavia_load_balancer_instances_table_protocol_tooltip": "The protocol on which the front end listens.",
+  "octavia_load_balancer_instances_table_listener_delete": "Delete listener",
+  "octavia_load_balancer_instances_table_port_label": "Port",
+  "octavia_load_balancer_instances_table_port_tooltip": "The port on which the front end listens must be between 1 and 65535.",
+  "octavia_load_balancer_instances_table_health_monitor_label": "Select a health monitor",
+  "octavia_load_balancer_instances_table_health_monitor_tooltip": "How the Load Balancer checks the status of your back-end service.",
+  "octavia_load_balancer_instances_table_health_monitor_delete": "Delete health monitor",
+  "octavia_load_balancer_instances_table_health_monitor_empty": "No health monitoring",
+  "octavia_load_balancer_instances_table_pools_tooltip": "The traffic is redirected to the pools and the instances connected to them.",
+  "octavia_load_balancer_instances_table_pools_search_instance": "Search for an instance",
+  "octavia_load_balancer_instances_table_instance_add": "Add an instance",
+  "octavia_load_balancer_instances_table_instance_delete": "Delete the instance"
+}
