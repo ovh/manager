@@ -12,6 +12,7 @@ export interface TrackingAPI {
   onUserConsentFromModal(consent: boolean): PromiseLike<void>;
   trackClick(data: LegacyTrackingData): PromiseLike<void>;
   trackPage(data: LegacyTrackingData): PromiseLike<void>;
+  trackMixCommanderS3(data: LegacyTrackingData): void;
   trackEvent(data: LegacyTrackingData): PromiseLike<void>;
   trackImpression(data: LegacyTrackingData): PromiseLike<void>;
   trackClickImpression(data: LegacyTrackingData): PromiseLike<void>;
@@ -51,6 +52,12 @@ export function exposeTrackingAPI(shellClient: ShellClient): TrackingAPI {
       shellClient.invokePluginMethod<void>({
         plugin: 'tracking',
         method: 'trackPage',
+        args: [data],
+      }),
+    trackMixCommanderS3: (data: LegacyTrackingData) =>
+      shellClient.invokePluginMethod<void>({
+        plugin: 'tracking',
+        method: 'trackMixCommanderS3',
         args: [data],
       }),
     trackEvent: (data: LegacyTrackingData) =>

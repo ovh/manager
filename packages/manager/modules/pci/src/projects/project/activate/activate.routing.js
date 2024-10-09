@@ -49,6 +49,7 @@ export default /* @ngInject */ ($stateProvider) => {
         goToLoadingUpgradePage,
         displayErrorMessage,
         globalLoading,
+        ovhShell,
       ) => ({ simulate = true, autoPay = true } = {}) => {
         const voucherPayload = {
           code: activationVoucherCode,
@@ -88,6 +89,17 @@ export default /* @ngInject */ ($stateProvider) => {
             projectService
               .activateDiscoveryProject(serviceId, autoPay)
               .then(({ data: { order } }) => {
+                ovhShell.tracking.trackMixCommanderS3({
+                  name: 'PCI project creation',
+                  tc_additional_params: {
+                    pcat: 'publiccloud',
+                    ot: 'pci_project_creation',
+                    conversion_date: new Date().toISOString(),
+                    pci_mode: 'discovery',
+                    pci_voucher: activationVoucherCode,
+                  },
+                });
+
                 if (!autoPay && order.url) {
                   window.top.location.href = order.url;
                   return null;

@@ -4,7 +4,8 @@ export type TrackType =
   | 'trackEvent'
   | 'trackImpression'
   | 'trackClickImpression'
-  | 'trackMVTest';
+  | 'trackMVTest'
+  | 'trackMixCommanderS3';
 
 export interface LegacyTrackingData {
   name: string;
