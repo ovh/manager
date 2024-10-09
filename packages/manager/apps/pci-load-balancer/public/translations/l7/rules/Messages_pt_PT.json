@@ -1,0 +1,4 @@
+{
+  "octavia_load_balancer_list_l7_rules_title": "L7 Rules",
+  "octavia_load_balancer_list_l7_rules_description": "Uma L7 rule é um teste lógico e único que devolve os estados «True» ou «False». Todas as regras devem ter o valor de «True» para que a L7 Policy desencadeie a sua ação."
+}
