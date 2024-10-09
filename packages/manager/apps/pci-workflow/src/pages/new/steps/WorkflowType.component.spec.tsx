@@ -18,9 +18,11 @@ describe('WorkflowType Component', () => {
       />,
     );
     expect(
-      getByText(/pci_workflow_create_type_description/i),
+      getByText(/pci_workflow_create_type_instance_backup_description/i),
     ).toBeInTheDocument();
-    expect(getByText(/pci_workflow_create_type_title/i)).toBeInTheDocument();
+    expect(
+      getByText(/pci_workflow_type_instance_backup_title/i),
+    ).toBeInTheDocument();
   });
 
   it('calls onSubmit with "instance_backup" when next button is clicked', () => {

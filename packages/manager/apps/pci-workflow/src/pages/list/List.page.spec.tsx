@@ -54,7 +54,8 @@ describe('ListPage', () => {
       await waitFor(() => {
         const props = JSON.parse(getByTestId('guard').textContent);
         expect(props.condition).toBe(
-          DEFAULT_DATA.emptyPaginatedWorkflows.data.totalRows === 0,
+          DEFAULT_DATA.emptyPaginatedWorkflows.data.totalRows === 0 &&
+            !DEFAULT_DATA.emptyPaginatedWorkflows.isPending,
         );
         expect(props.isLoading).toBe(
           DEFAULT_DATA.emptyPaginatedWorkflows.isPending,
