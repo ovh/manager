@@ -153,6 +153,7 @@ export default /* @ngInject */ ($stateProvider) => {
       datacentersState: () => 'app.dedicatedCloud.details.datacenter',
       pccDashboardState: () => 'app.dedicatedCloud.details.dashboard',
       licenseState: () => 'app.dedicatedCloud.details.license',
+      logsState: () => 'app.dedicatedCloud.details.logs',
       operationState: () => 'app.dedicatedCloud.details.operation',
       securityState: () => 'app.dedicatedCloud.details.security',
       usersState: () => 'app.dedicatedCloud.details.users',
