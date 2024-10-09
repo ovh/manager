@@ -1,0 +1,4 @@
+{
+  "octavia_load_balancer_list_l7_rules_title": "L7 Rules",
+  "octavia_load_balancer_list_l7_rules_description": "L7 rule to logiczny i unikalny test odsyłający statusy „True” lub „False”. Wszystkie reguły muszą powrócić ze statusem „True”, aby L7 Policy mogła zostać uruchomiona."
+}
