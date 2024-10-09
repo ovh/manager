@@ -32,7 +32,12 @@ export function MonthHelper() {
         >
           <ul>
             <li>{t('pci_workflow_create_cron_month_helper_1')}</li>
-            <li>{t('pci_workflow_create_cron_month_helper_2')}</li>
+            <li>
+              {t('pci_workflow_create_cron_month_helper_2', {
+                monthNameExample:
+                  'jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, or dec',
+              })}
+            </li>
           </ul>
         </OsdsText>
       </OsdsPopoverContent>

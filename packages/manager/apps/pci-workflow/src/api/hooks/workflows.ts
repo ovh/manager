@@ -122,12 +122,7 @@ export const sortWorkflows = (
 
   if (searchQueries.length) {
     type WorkflowKeys = keyof Omit<TWorkflow, 'executions'>;
-    const keys: WorkflowKeys[] = [
-      'name',
-      'instanceName',
-      'id',
-      'lastExecutionStatus',
-    ];
+    const keys: WorkflowKeys[] = ['name', 'instanceName', 'cron'];
     return data.filter((workflow) =>
       keys.some((key) =>
         searchQueries.some(
