@@ -14,6 +14,20 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
+jest.mock('@ovh-ux/manager-react-shell-client', () => {
+  return {
+    useOvhTracking: () => ({
+      trackClick: jest.fn(),
+    }),
+    PageLocation: {
+      page: 'page',
+    },
+    ButtonType: {
+      button: 'button',
+    },
+  };
+});
+
 const defaultProps: GenerateAccessModalProps = {
   onClose: jest.fn(),
   rancher: rancherMocked,

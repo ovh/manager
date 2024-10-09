@@ -5,8 +5,9 @@ import React from 'react';
 global.React = React;
 
 jest.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useTracking: jest.fn(() => ({
-    trackPage: jest.fn(),
+  useOvhTracking: jest.fn(() => ({
+    trackCurrentPage: jest.fn(),
     trackClick: jest.fn(),
+    trackPage: jest.fn(),
   })),
 }));

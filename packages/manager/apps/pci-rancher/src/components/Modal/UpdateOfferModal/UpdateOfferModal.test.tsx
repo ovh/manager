@@ -2,7 +2,6 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
 import { render, waitFor } from '@/utils/test/test.provider';
-import { rancherMocked } from '@/_mock_/rancher';
 import UpdateOfferModal, {
   UpdateOfferModalProps,
 } from './UpdateOfferModal.component';
@@ -12,6 +11,15 @@ const mockedUsedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
+}));
+
+jest.mock('@ovh-ux/manager-react-shell-client', () => ({
+  PageLocation: {
+    popup: 'popup',
+  },
+  ButtonType: {
+    button: 'link',
+  },
 }));
 
 const mockPlanInfo: PlanInfo = {

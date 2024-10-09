@@ -11,6 +11,15 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
+jest.mock('@ovh-ux/manager-react-shell-client', () => ({
+  PageLocation: {
+    popup: 'popup',
+  },
+  ButtonType: {
+    button: 'button',
+  },
+}));
+
 const setupSpecTest = async () =>
   waitFor(() =>
     render(

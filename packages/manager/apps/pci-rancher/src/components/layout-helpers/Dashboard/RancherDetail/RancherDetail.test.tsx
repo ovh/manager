@@ -8,13 +8,6 @@ import { ResourceStatus } from '@/types/api.type';
 import { fireEvent, render, waitFor } from '@/utils/test/test.provider';
 import RancherDetail, { RancherDetailProps } from './RancherDetail.component';
 
-jest.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useTracking: jest.fn(() => ({
-    trackPage: jest.fn(),
-    trackClick: jest.fn(),
-  })),
-}));
-
 const updateOfferErrorMessage = 'error message';
 
 const defaultProps: RancherDetailProps = {

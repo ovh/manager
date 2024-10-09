@@ -18,13 +18,14 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React, { FC } from 'react';
 
 import { useTranslation } from 'react-i18next';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { AccessDetail } from '@/data/hooks/useGenerateAccessDetail/useGenerateAccessDetail';
 import { RancherService } from '@/types/api.type';
 import Modal from '../Modal.component';
-import {
-  useTrackingAction,
-  useTrackingPage,
-} from '@/hooks/useTrackingPage/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 export interface GenerateAccessModalProps {
@@ -41,8 +42,7 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
   accessDetail,
 }) => {
   const { t } = useTranslation('dashboard');
-  const trackAction = useTrackingAction();
-  useTrackingPage(TrackingPageView.GenerateAccessModal);
+  const { trackClick } = useOvhTracking();
   const hasValidAccess = !!accessDetail?.username && !!accessDetail?.password;
 
   return (
@@ -119,18 +119,28 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
               target: OdsHTMLAnchorElementTarget._blank,
               href: rancher.currentState.url,
               onClick: () => {
-                trackAction(
-                  TrackingPageView.GenerateAccessModal,
-                  TrackingEvent.accessUi,
-                );
+                trackClick({
+                  location: PageLocation.page,
+                  buttonType: ButtonType.link,
+                  actionType: 'navigation',
+                  actions: [
+                    TrackingPageView.GenerateAccessModal,
+                    TrackingEvent.accessUi,
+                  ],
+                });
               },
             }
           : {
               onClick: () => {
-                trackAction(
-                  TrackingPageView.GenerateAccessModal,
-                  TrackingEvent.confirm,
-                );
+                trackClick({
+                  location: PageLocation.page,
+                  buttonType: ButtonType.button,
+                  actionType: 'action',
+                  actions: [
+                    TrackingPageView.GenerateAccessModal,
+                    TrackingEvent.confirm,
+                  ],
+                });
                 onGenerateAccess();
               },
             })}
