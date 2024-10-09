@@ -68,6 +68,7 @@ export function CronInput({ scheduling, onInput }: Readonly<CronInputProps>) {
               color={ODS_THEME_COLOR_INTENT[errors[field] ? 'error' : 'text']}
               className="mt-4"
             >
+              {errors[field] && `${t('pci_workflow_create_cron_invalid')} `}
               {t(`pci_workflow_create_cron_${field}`)}
               {field === 'month' && <MonthHelper />}
               {field === 'dow' && <DowHelper />}
