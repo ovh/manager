@@ -22,5 +22,6 @@ export default {
     encryptionAlgorithms: '<',
     trackEncryptionAction: '<',
     catalog: '<',
+    is3azAvailable: '<',
   },
 };

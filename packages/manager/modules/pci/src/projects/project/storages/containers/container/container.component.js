@@ -26,5 +26,6 @@ export default {
     trackEncryptionAction: '<',
     encryptionAvailable: '<',
     enableVersioning: '<',
+    is3azAvailable: '<',
   },
 };

@@ -107,6 +107,7 @@ export default class PciStoragesContainersAddController {
 
     this.setOffersPrices();
     this.setDeploymentModePrices();
+    this.featurefleap3azUsa();
   }
 
   /**
@@ -132,6 +133,18 @@ export default class PciStoragesContainersAddController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  featurefleap3azUsa() {
+    if (!this.is3azAvailable) {
+      const index = OBJECT_CONTAINER_DEPLOYMENT_MODES.indexOf(
+        OBJECT_CONTAINER_MODE_MULTI_ZONES,
+      );
+
+      if (index > -1) {
+        OBJECT_CONTAINER_DEPLOYMENT_MODES.splice(index, 1);
+      }
+    }
   }
 
   setUsersForContainerCreation() {
