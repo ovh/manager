@@ -15,5 +15,8 @@
   "onboarding_walkme_popover_step4_title": "¿Quiere ir un paso más allá?",
   "onboarding_walkme_popover_step4_content": "Conozca a los vendedores asociados de nuestro Marketplace, consulte el estado de nuestros servicios en tiempo real y calcule su huella de carbono. ¿Necesita ayuda? Descubra nuestros recursos de ayuda y guías prácticas. Utilice nuestro chat para obtener soluciones, recursos adicionales y respuestas a sus preguntas.",
   "onboarding_walkme_popover_step5_title": "Mis facturas",
-  "onboarding_walkme_popover_step5_content": "Consulte todas las facturas, pagos pendientes y devoluciones en este apartado."
+  "onboarding_walkme_popover_step5_content": "Consulte todas las facturas, pagos pendientes y devoluciones en este apartado.",
+  "onboarding_popover_later_hide_button": "Pasar a la nueva interfaz en otro momento",
+  "onboarding_popover_do_not_show_again_button": "No volver a mostrar",
+  "onboarding_popover_done_button": "Finalizar la visita"
 }

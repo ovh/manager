@@ -7,17 +7,27 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import useUser from '@/context/User/useUser';
-import { LegalPolicyLinkByLanguage } from './create.constants';
+import { LegalPolicyLinkByLanguage } from '@/constants';
+import { CanadianPolicyLinks } from '@/types/links.type';
 
 export const LegalInformations: FunctionComponent = () => {
-  const { t } = useTranslation('account-disable-2fa');
-  const { user } = useUser();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation('account-disable-2fa');
+  const {
+    user: { subsidiary },
+  } = useUser();
+  const [baseLocale] = language.split('_');
 
-  const legalPolicyLink =
-    (LegalPolicyLinkByLanguage as any)[user.language] ||
-    LegalPolicyLinkByLanguage.DEFAULT;
+  const legalPolicyLink: string =
+    subsidiary === 'CA'
+      ? LegalPolicyLinkByLanguage.CA[baseLocale as keyof CanadianPolicyLinks] ||
+        LegalPolicyLinkByLanguage.CA.en
+      : LegalPolicyLinkByLanguage[subsidiary] ||
+        LegalPolicyLinkByLanguage.DEFAULT;
   return (
-    <div className="pt-6">
+    <div className="pt-6" data-testid="legal_information">
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -34,6 +44,7 @@ export const LegalInformations: FunctionComponent = () => {
         size={ODS_TEXT_SIZE._100}
       >
         <span
+          data-testid="legal_information_content"
           dangerouslySetInnerHTML={{
             __html: t('account-disable-2fa-create-form-legal-info-policy', {
               legalPolicyLink,

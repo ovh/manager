@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-procedures-app",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "description": "Procedures application",
   "repository": {

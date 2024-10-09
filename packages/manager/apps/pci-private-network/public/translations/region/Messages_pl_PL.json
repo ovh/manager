@@ -272,5 +272,9 @@
   "manager_components_region_MUM": "Mumbaj",
   "manager_components_region_MUM_micro": "Mumbaj ({{micro}})",
   "manager_components_region_location_MUM": "Azja-Pacyfik (Mumbaj)",
-  "manager_components_region_continent_MUM": "Azja-Pacyfik"
+  "manager_components_region_continent_MUM": "Azja-Pacyfik",
+  "manager_components_region_PAR": "Paryż",
+  "manager_components_region_PAR_micro": "Paryż ({{micro}})",
+  "manager_components_region_location_PAR": "Europa Zachodnia (Francja)",
+  "manager_components_region_continent_PAR": "Europa Zachodnia"
 }

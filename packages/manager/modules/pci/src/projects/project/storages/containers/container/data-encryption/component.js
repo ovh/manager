@@ -6,6 +6,7 @@ const component = {
     encryption: '=',
     encryptionAlgorithms: '<',
     trackEncryptionAction: '<',
+    containerRegion: '<?',
   },
   template,
   controller,

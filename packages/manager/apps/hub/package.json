@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub-app",
-  "version": "5.10.14",
+  "version": "5.10.15",
   "private": true,
   "description": "OVHcloud Dashboard control panel.",
   "repository": {
@@ -25,7 +25,7 @@
     "@ovh-ux/manager-config": "^7.4.0",
     "@ovh-ux/manager-core": "^12.17.1",
     "@ovh-ux/manager-error-page": "^2.4.1",
-    "@ovh-ux/manager-hub": "^3.17.1",
+    "@ovh-ux/manager-hub": "^3.17.2",
     "@ovh-ux/manager-models": "^1.14.14",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
     "@ovh-ux/manager-trusted-nic": "^1.2.1",

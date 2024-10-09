@@ -1,6 +1,6 @@
 {
   "pci_projects_project_storages_containers_add_title": "Create an object container ",
-  "pci_projects_project_storages_containers_add_description": "Host your data catalogue in our Object Storage solution. You can manage this data from your application using the S3 APIs.",
+  "pci_projects_project_storages_containers_add_description": "Develop your S3/Swift APIs with our Object Storage solution — a simple solution for managing your data.",
   "pci_projects_project_storages_containers_add_description_link": "View prices",
   "pci_projects_project_storages_containers_add_archive_title": "Create an archive container",
   "pci_projects_project_storages_containers_add_offer_title": "Select your solution",
@@ -29,5 +29,23 @@
   "pci_projects_project_storages_containers_add_success_message": "The {{container}} container has been added. ",
   "pci_projects_project_storages_containers_add_success_message_with_user_creation": "The {{container}} container has been created. The S3 user {{userName}} is the administrator of this container.",
   "pci_projects_project_storages_containers_add_error_post": "There was an error when adding the {{ container }} container: {{ message }}.",
-  "pci_projects_project_storages_containers_add_type_price": "{{ price }} ex. VAT/month/GB"
+  "pci_projects_project_storages_containers_add_type_price": "{{ price }} ex. VAT/month/GB",
+  "pci_projects_project_storages_containers_add_offer_storage-s3-standard_recommanded": "Recommended",
+  "pci_projects_project_storages_containers_deployment_mode_title": "Select a deployment mode",
+  "pci_projects_project_storages_containers_add_deployment_mode_region-3-az": "3-AZ Region",
+  "pci_projects_project_storages_containers_add_deployment_mode_region": "1-AZ Region",
+  "pci_projects_project_storages_containers_add_deployment_mode_region-3-az_description": "Highly resilient deployment, accessible in 3 different availability zones.",
+  "pci_projects_project_storages_containers_add_deployment_mode_region_description": "Resilient and low cost deployment in 1 availability zone.",
+  "pci_projects_project_storages_containers_add_deployment_mode_region-3-az_label": "3-AZ",
+  "pci_projects_project_storages_containers_add_deployment_mode_region_label": "1-AZ",
+  "pci_projects_project_storages_containers_add_deployment_mode_sub_title": "Pick the optimal configuration to ensure your data is always accessible, reliable, and has the right latency based on your use cases.",
+  "pci_projects_project_storages_containers_add_deployment_mode_sub_title_link": "Read our document here",
+  "pci_projects_project_storages_containers_add_add_region_success": "The {{ code }} storage location has been added to your Public Cloud project.",
+  "pci_projects_project_storages_containers_add_add_region_error": "An error has occurred adding the location: {{message}}",
+  "pci_projects_project_storages_containers_add_add_region_activate": "The selected storage location is not enabled. Click ‘Next’ to add it to your Public Cloud project and continue creating your container.",
+  "pci_projects_project_storages_containers_add_deployment_mode_soon": "Coming soon",
+  "pci_projects_project_storages_containers_add_offers_estimated_price": "From {{price}} ex. VAT/month/TB",
+  "pci_projects_project_storages_containers_add_deployment_mode_price": "{{price}} ex. VAT/month/TB*",
+  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "*The price displayed is the advertised price of 1 TB of storage for 30 days. For more information, ",
+  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "see the prices page."
 }

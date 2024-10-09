@@ -14,6 +14,7 @@ import imagesList from '../../../../components/project/images-list';
 import sshKeys from '../../../../components/project/instance/ssh-keys';
 import trustedZoneBanner from '../../../../components/trusted-zone-banner';
 import PciProjectAdditionalIpService from '../../additional-ips/service';
+import PciPublicGatewaysService from '../../gateways/service';
 
 import component from './add.component';
 import routing from './add.routing';
@@ -34,6 +35,7 @@ angular
     sshKeys,
     trustedZoneBanner,
     PciProjectAdditionalIpService,
+    PciPublicGatewaysService,
   ])
   .config(routing)
   .component('ovhManagerPciInstancesAdd', component)

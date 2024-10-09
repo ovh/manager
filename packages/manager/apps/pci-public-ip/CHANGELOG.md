@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.6.7...@ovh-ux/manager-pci-public-ip-app@0.7.0) (2024-10-08)
+
+
+### Features
+
+* **pci-object-storage:** storage 3az ([1ed7551](https://github.com/ovh/manager/commit/1ed7551152ad155fd43484bca27217ae9cf80540))
+
+
+
+
+
+## [0.6.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.6.6...@ovh-ux/manager-pci-public-ip-app@0.6.7) (2024-10-07)
+
+
+### Bug Fixes
+
+* **pci.public-ip:** changing the cta label for creation ([#13354](https://github.com/ovh/manager/issues/13354)) ([5d36769](https://github.com/ovh/manager/commit/5d3676999dd6adb0b7ea49a122c57e662b3b28c5))
+
+
+
+
+
 ## [0.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.6.5...@ovh-ux/manager-pci-public-ip-app@0.6.6) (2024-10-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app

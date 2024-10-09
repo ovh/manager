@@ -8,7 +8,13 @@ import {
 import { OsdsChip, OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { OKMS } from '@/types/okms.type';
 import { useTerminateOKms } from '@/data/hooks/useTerminateOKms';
 import { TerminateModal } from '@/components/Modal/terminate/TerminateModal.component';
@@ -30,6 +36,7 @@ const BillingInformationsTile = ({
   okmsService,
 }: BillingInformationsTileProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
+  const { trackClick, trackPage } = useOvhTracking();
   const [contactUrl, setContactUrl] = useState('');
   const [showTerminationModal, setShowTerminationModal] = useState(false);
   const {
@@ -41,8 +48,20 @@ const BillingInformationsTile = ({
 
   const { terminateKms, isPending } = useTerminateOKms({
     okmsId: okmsData.id,
-    onSuccess: closeTerminateModal,
-    onError: closeTerminateModal,
+    onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'delete_kms_success',
+      });
+      closeTerminateModal();
+    },
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'delete_kms_error',
+      });
+      closeTerminateModal();
+    },
   });
 
   const dateFormat: Intl.DateTimeFormatOptions = {
@@ -57,6 +76,12 @@ const BillingInformationsTile = ({
       label: t('key_management_service_dashboard_action_billing_terminate'),
       color: ODS_THEME_COLOR_INTENT.error,
       onClick: () => {
+        trackClick({
+          location: PageLocation.page,
+          buttonType: ButtonType.link,
+          actionType: 'navigation',
+          actions: ['delete_kms'],
+        });
         setShowTerminationModal(true);
       },
     },
@@ -150,7 +175,18 @@ const BillingInformationsTile = ({
             );
           })}
           <div className="flex flex-row items-center">
-            <OsdsLink href={contactUrl} color={ODS_THEME_COLOR_INTENT.primary}>
+            <OsdsLink
+              href={contactUrl}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              onClick={() =>
+                trackClick({
+                  location: PageLocation.page,
+                  buttonType: ButtonType.externalLink,
+                  actionType: 'navigation',
+                  actions: ['contact_support'],
+                })
+              }
+            >
               {t(
                 'key_management_service_dashboard_field_label_manage_contacts',
               )}

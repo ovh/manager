@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.25.0...@ovh-ux/manager-dbaas-logs@1.26.0) (2024-10-07)
+
+
+### Features
+
+* **dedicated.ldp:** add region us note ([#12950](https://github.com/ovh/manager/issues/12950)) ([5f5e2f9](https://github.com/ovh/manager/commit/5f5e2f91c27a8362697094366f8576de6c78648e))
+
+
+
+
+
 # [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.24.1...@ovh-ux/manager-dbaas-logs@1.25.0) (2024-09-30)
 
 

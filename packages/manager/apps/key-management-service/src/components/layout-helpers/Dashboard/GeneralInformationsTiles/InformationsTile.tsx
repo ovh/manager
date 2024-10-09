@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import {
-  OsdsButton,
-  OsdsClipboard,
-  OsdsIcon,
-  OsdsLink,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
+import { Clipboard } from '@ovh-ux/manager-react-components';
 import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_LINK_REFERRER_POLICY,
 } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
@@ -27,27 +27,9 @@ type InformationTileProps = {
   okmsData?: OKMS;
 };
 
-// TODO: use manager-component clipboard
-export const Clipboard = ({ value }: { value: string }) => {
-  const { t } = useTranslation('key-management-service/common');
-  return (
-    <OsdsClipboard className="mb-2" value={value}>
-      <span slot="success-message">
-        <OsdsText color={ODS_THEME_COLOR_INTENT.success}>
-          {t('clipboard_copy_success')}
-        </OsdsText>
-      </span>
-      <span slot="error-message">
-        <OsdsText color={ODS_THEME_COLOR_INTENT.error}>
-          {t('clipboard_copy_error')}
-        </OsdsText>
-      </span>
-    </OsdsClipboard>
-  );
-};
-
 const InformationsTile = ({ okmsData }: InformationTileProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
+  const { trackClick } = useOvhTracking();
   const [editModalDisplayed, setEditModalDisplayed] = useState(false);
   const { updateKmsName } = useUpdateOkmsName({});
 
@@ -119,6 +101,14 @@ const InformationsTile = ({ okmsData }: InformationTileProps) => {
           color={ODS_THEME_COLOR_INTENT.primary}
           target={OdsHTMLAnchorElementTarget._blank}
           referrerpolicy={ODS_LINK_REFERRER_POLICY.strictOriginWhenCrossOrigin}
+          onClick={() =>
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.externalLink,
+              actionType: 'navigation',
+              actions: ['swagger-ui'],
+            })
+          }
         >
           {okmsData?.swaggerEndpoint}
         </OsdsLink>

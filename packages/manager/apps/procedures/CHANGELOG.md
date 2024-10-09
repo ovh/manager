@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.2.1...@ovh-ux/manager-procedures-app@0.3.0) (2024-10-07)
+
+
+### Features
+
+* **procedures:** adjusted privacy policy link ([#13154](https://github.com/ovh/manager/issues/13154)) ([e87e9a8](https://github.com/ovh/manager/commit/e87e9a8b54fd81c639bd065e48dce67de23f7784))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.2.0...@ovh-ux/manager-procedures-app@0.2.1) (2024-09-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-procedures-app

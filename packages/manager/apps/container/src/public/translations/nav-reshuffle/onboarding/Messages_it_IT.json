@@ -15,5 +15,8 @@
   "onboarding_walkme_popover_step4_title": "Vuoi ancora di più?",
   "onboarding_walkme_popover_step4_content": "Scopri i venditori partner nel nostro Marketplace, monitora lo stato dei nostri servizi in tempo reale e calcola la tua impronta di carbonio. Hai bisogno di aiuto? Accedi alle nostre guide pratiche e alle risorse di supporto. Utilizza la nostra chat per ottenere soluzioni, risorse aggiuntive e trovare una risposta alle tue domande.",
   "onboarding_walkme_popover_step5_title": "Le mie fatture",
-  "onboarding_walkme_popover_step5_content": "Consulta tutte le fatture, i pagamenti in corso e il credito disponibile in questa sezione."
+  "onboarding_walkme_popover_step5_content": "Consulta tutte le fatture, i pagamenti in corso e il credito disponibile in questa sezione.",
+  "onboarding_popover_later_hide_button": "Forse più tardi",
+  "onboarding_popover_do_not_show_again_button": "Non mostrare più",
+  "onboarding_popover_done_button": "Termina la visita"
 }

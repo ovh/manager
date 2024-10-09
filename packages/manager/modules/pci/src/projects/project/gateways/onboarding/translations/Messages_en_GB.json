@@ -1,9 +1,0 @@
-{
-  "pci_projects_project_public_gateways_onboarding": "Gateway",
-  "pci_projects_project_public_gateways_onboarding_content1": "A fully dedicated instance set up in a private network may require access to internet resources. Gateway is a secure connection method, with no direct internet exposure for the instance.",
-  "pci_projects_project_public_gateways_onboarding_content2": "A web application exposed to the internet must have an IP address. For this, a Floating IP is the best solution. It is a flexible, agnostic IP that can be moved between Public Cloud services. To be used like this, it must be configured on a Gateway, and directly linked to a private instance or the Load Balancer. This is to ensure better scalability for the service.",
-  "pci_projects_project_public_gateways_onboarding_action_label": "Create a Gateway",
-  "pci_projects_project_public_gateways_onboarding_guides_create_private_network_with_gateway_title": "Creating a private network with Gateway via the OVHcloud Control Panel",
-  "pci_projects_project_public_gateways_onboarding_guides_attach_pci_floating_ip_to_instance_title": "Attach a Public Cloud Floating IP to an instance",
-  "pci_projects_project_public_gateways_onboarding_guides_start_load_balancer_service_title": "Creating a HTTP/HTTPS Load Balancer via the OVHcloud Control Panel"
-}

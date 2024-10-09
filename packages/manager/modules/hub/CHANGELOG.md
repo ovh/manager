@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.17.1...@ovh-ux/manager-hub@3.17.2) (2024-10-07)
+
+
+### Bug Fixes
+
+* **hub:** add kms title in product list ([#13421](https://github.com/ovh/manager/issues/13421)) ([44f74c4](https://github.com/ovh/manager/commit/44f74c4d234d28738f3b631429f203f5f89efced))
+
+
+
+
+
 ## [3.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.17.0...@ovh-ux/manager-hub@3.17.1) (2024-09-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub

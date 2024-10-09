@@ -23,7 +23,12 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import { useOrderCatalogOKMS } from '@/data/hooks/useOrderCatalogOKMS';
@@ -41,6 +46,7 @@ const RegionSelector = ({
   selectedRegion,
 }: RegionSelectorProps) => {
   const { t } = useTranslation('key-management-service/create');
+  const { trackClick } = useOvhTracking();
   const { environment } = useContext(ShellContext);
   const {
     data: orderCatalogOKMS,
@@ -86,7 +92,16 @@ const RegionSelector = ({
               inline
               size={ODS_SELECT_SIZE.md}
               onOdsValueChange={(v) => {
-                selectRegion(v.detail.value.toString());
+                const value = v.detail.value.toString();
+
+                trackClick({
+                  location: PageLocation.funnel,
+                  buttonType: ButtonType.select,
+                  actionType: 'action',
+                  actions: ['select_location', value],
+                });
+
+                selectRegion(value);
               }}
             >
               <span slot="placeholder">
@@ -114,6 +129,12 @@ const RegionSelector = ({
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => {
+            trackClick({
+              location: PageLocation.funnel,
+              buttonType: ButtonType.link,
+              actionType: 'navigation',
+              actions: ['create_kms', 'cancel', selectedRegion],
+            });
             navigate(ROUTES_URLS.root);
           }}
         >
@@ -126,6 +147,12 @@ const RegionSelector = ({
           color={ODS_THEME_COLOR_INTENT.primary}
           disabled={selectedRegion ? undefined : true}
           onClick={() => {
+            trackClick({
+              location: PageLocation.funnel,
+              buttonType: ButtonType.link,
+              actionType: 'navigation',
+              actions: ['create_kms', 'confirm', selectedRegion],
+            });
             setOrderInitiated();
           }}
         >

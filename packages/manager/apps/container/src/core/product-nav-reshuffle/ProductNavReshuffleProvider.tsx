@@ -1,15 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import useContainer from '@/core/container/useContainer';
 import { useShell } from '@/context/useApplicationContext';
 import ProductNavReshuffleContext from './context';
-import useOnboarding, {
-  ONBOARDING_OPENED_STATE_ENUM,
-  ONBOARDING_STATUS_ENUM,
-} from '../onboarding';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
-import { BetaVersion } from '../container/context';
 import { MOBILE_WIDTH_RESOLUTION } from '@/container/common/constants';
 import { useMediaQuery } from 'react-responsive';
+import useOnboarding, { ONBOARDING_OPENED_STATE_ENUM } from '../onboarding';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -19,48 +15,37 @@ export const ProductNavReshuffleProvider = ({
   children = null,
 }: Props): JSX.Element => {
   let pnrContext = useContext(ProductNavReshuffleContext);
-  const onboardingHelper = useOnboarding();
+
   const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>(null);
   const [navigationTree, setNavigationTree] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
   const { betaVersion } = useContainer();
   const shell = useShell();
   const [isMobile, setIsMobile] = useState(useMediaQuery({
     query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
   }));
 
+  const onboarding = useOnboarding();
+
   // onboarding
   const [onboardingOpenedState, setOnboardingOpenedState] = useState<string>(
     ONBOARDING_OPENED_STATE_ENUM.CLOSED,
   );
 
-  const openOnboarding = () => {
-    const nextOpenedState = onboardingHelper.getNextOpenedState(
-      onboardingOpenedState,
-    );
+  const startOnboarding = () => {
+    setOnboardingOpenedState(ONBOARDING_OPENED_STATE_ENUM.WALKME);
+  };
 
-    setOnboardingOpenedState(nextOpenedState);
-    if (
-      nextOpenedState === ONBOARDING_OPENED_STATE_ENUM.WELCOME &&
-      !shell.getPlugin('ux').isChatbotReduced()
-    ) {
+  const openOnboarding = () => {
+    setOnboardingOpenedState(ONBOARDING_OPENED_STATE_ENUM.WELCOME);
+    if (!shell.getPlugin('ux').isChatbotReduced()) {
       // reduce chatbot if welcome popover is displayed
       shell.getPlugin('ux').reduceChatbot();
     }
   };
 
-  const startOnboarding = () => {
-    setOnboardingOpenedState(ONBOARDING_OPENED_STATE_ENUM.WALKME);
-  };
-
-  const closeOnboarding = (onboardingStatus: string) => {
+  const closeOnboarding = (isDone: boolean) => {
+    onboarding.updatePreference(isDone);
     setOnboardingOpenedState(ONBOARDING_OPENED_STATE_ENUM.CLOSED);
-    // Onboarding forced only for PNR V2 alpha; to remove for the beta.
-    onboardingHelper.forceOnboardingDisplayed(false);
-
-    return onboardingHelper.updatePreference({
-      status: onboardingStatus || ONBOARDING_STATUS_ENUM.CLOSED,
-    });
   };
 
   const reduceOnboarding = () => {
@@ -92,19 +77,6 @@ export const ProductNavReshuffleProvider = ({
   };
 
   useEffect(() => {
-    onboardingHelper
-      .init()
-      .then((status: string) => {
-        setOnboardingOpenedState(
-          onboardingHelper.getOpenedStateFromStatus(status),
-        );
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
-
-  useEffect(() => {
     const handleResize = () => {
       window.innerWidth <= MOBILE_WIDTH_RESOLUTION ?
         setIsMobile(true) : setIsMobile(false);
@@ -118,7 +90,6 @@ export const ProductNavReshuffleProvider = ({
   }, []);
 
   pnrContext = {
-    isLoading,
     // onboarding
     onboardingOpenedState,
     openOnboarding,

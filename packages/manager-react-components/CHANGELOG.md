@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.35.1...@ovh-ux/manager-react-components@1.36.0) (2024-10-08)
+
+### Features
+
+- **pci-object-storage:** storage 3az ([1ed7551](https://github.com/ovh/manager/commit/1ed7551152ad155fd43484bca27217ae9cf80540))
+
 ## [1.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.35.0...@ovh-ux/manager-react-components@1.35.1) (2024-10-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-components
