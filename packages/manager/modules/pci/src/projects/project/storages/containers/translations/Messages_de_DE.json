@@ -27,5 +27,8 @@
   "pci_projects_project_storages_containers_switch_to_private_label": "Zu „Private“ wechseln",
   "pci_projects_project_storages_containers_switch_to_public_label": "Zu „Public“ wechseln",
   "pci_projects_project_storages_containers_swift_containers_load_error": "Bei einem oder mehreren Ihrer Swift-Container ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal.",
-  "pci_projects_project_storages_containers_s3_containers_load_error": "Bei einem oder mehreren Ihrer S3-Container in der Region {{ regions }} ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."
+  "pci_projects_project_storages_containers_s3_containers_load_error": "Bei einem oder mehreren Ihrer S3-Container in der Region {{ regions }} ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal.",
+  "pci_projects_project_storages_containers_deployment_mode_label": "Bereitstellungsmodus",
+  "pci_projects_project_storages_containers_deployment_mode_region": "1-AZ Region",
+  "pci_projects_project_storages_containers_deployment_mode_region-3-az": "3-AZ Region"
 }

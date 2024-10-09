@@ -12,6 +12,13 @@ import {
   OBJECT_CONTAINER_TYPES,
   STORAGE_PRICES_LINK,
   STORAGES_CONTAINER_NAME_PATTERN,
+  OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS,
+  OBJECT_CONTAINER_DEPLOYMENT_MODES,
+  OBJECT_CONTAINER_OFFER_SWIFT,
+  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  OBJECT_CONTAINER_MODE_MONO_ZONE,
+  STORAGE_STANDARD_PLANCODE,
+  SWIFT_PLANCODE,
 } from '../containers.constants';
 
 import { CONTAINER_USER_ASSOCIATION_MODES } from './components/associate-user-to-container/constant';
@@ -24,6 +31,7 @@ export default class PciStoragesContainersAddController {
     CucCloudMessage,
     PciProjectStorageBlockService,
     PciProjectStorageContainersService,
+    OvhApiCloudProjectRegion,
     coreConfig,
   ) {
     const { ovhSubsidiary } = coreConfig.getUser();
@@ -33,6 +41,7 @@ export default class PciStoragesContainersAddController {
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectStorageBlockService = PciProjectStorageBlockService;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
+    this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
     this.storagePricesLink =
       STORAGE_PRICES_LINK[ovhSubsidiary] || STORAGE_PRICES_LINK.DEFAULT;
 
@@ -41,6 +50,10 @@ export default class PciStoragesContainersAddController {
     this.OBJECT_CONTAINER_OFFERS = OBJECT_CONTAINER_OFFERS;
     this.OBJECT_CONTAINER_OFFERS_LABELS = OBJECT_CONTAINER_OFFERS_LABELS;
     this.OBJECT_CONTAINER_TYPE_OFFERS = OBJECT_CONTAINER_TYPE_OFFERS;
+    this.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS = OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS;
+    this.OBJECT_CONTAINER_DEPLOYMENT_MODES = OBJECT_CONTAINER_DEPLOYMENT_MODES;
+    this.OBJECT_CONTAINER_OFFER_SWIFT = OBJECT_CONTAINER_OFFER_SWIFT;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -62,8 +75,10 @@ export default class PciStoragesContainersAddController {
 
     this.container = new Container({
       archive: this.archive,
+      deploymentMode: null,
     });
     this.container.region = null;
+    this.container.offer = OBJECT_CONTAINER_OFFER_STORAGE_STANDARD;
 
     this.userModel = {
       linkedMode: {
@@ -81,6 +96,17 @@ export default class PciStoragesContainersAddController {
     };
     if (!this.archive) this.setUsersForContainerCreation();
     this.preselectStepItem();
+    this.PriceFormatter = new Intl.NumberFormat(
+      this.coreConfig.getUserLocale().replace('_', '-'),
+      {
+        style: 'currency',
+        currency: this.coreConfig.getUser().currency.code,
+        maximumFractionDigits: 2,
+      },
+    );
+
+    this.setOffersPrices();
+    this.setDeploymentModePrices();
   }
 
   /**
@@ -112,6 +138,93 @@ export default class PciStoragesContainersAddController {
     this.users = this.allUserList.filter((user) => user.status === 'ok');
   }
 
+  calculatePrice(planCode) {
+    const hourlyPrice = this.catalog.addons
+      .filter((addon) => addon.planCode === planCode)
+      .map((addon) => addon.pricings[0].price)[0];
+
+    return hourlyPrice * 720 * 1024 * 0.00000001;
+  }
+
+  setOffersPrices() {
+    this.OBJECT_CONTAINER_OFFERS_LABELS[
+      OBJECT_CONTAINER_OFFER_STORAGE_STANDARD
+    ].price = this.PriceFormatter.format(
+      this.calculatePrice(STORAGE_STANDARD_PLANCODE),
+    );
+
+    this.OBJECT_CONTAINER_OFFERS_LABELS[
+      OBJECT_CONTAINER_OFFER_SWIFT
+    ].price = this.PriceFormatter.format(this.calculatePrice(SWIFT_PLANCODE));
+  }
+
+  getLowestPriceAddon(productCapability, regionType) {
+    const codesList = productCapability
+      .filter((item) =>
+        item.regions.some((region) => region.type === regionType),
+      )
+      .map((item) => item.code);
+
+    let lowestPrice = null;
+
+    codesList.forEach((code) => {
+      const catalogElement = this.catalog.addons.find(
+        (addon) => addon.planCode === code,
+      );
+
+      if (catalogElement) {
+        const [{ price }] = catalogElement.pricings;
+
+        if (price > 0) {
+          if (!lowestPrice || price < lowestPrice) {
+            lowestPrice = price * 720 * 1024 * 0.00000001;
+          }
+        }
+      }
+    });
+
+    return lowestPrice;
+  }
+
+  async setDeploymentModePrices() {
+    await this.PciProjectStorageContainersService.getProductAvailability(
+      this.projectId,
+      this.coreConfig.getUser().ovhSubsidiary,
+    ).then((productCapabilities) => {
+      const productCapability = productCapabilities.plans?.filter((plan) =>
+        plan.code?.startsWith(STORAGE_STANDARD_PLANCODE),
+      );
+
+      this.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[
+        OBJECT_CONTAINER_MODE_MULTI_ZONES
+      ].price =
+        this.getLowestPriceAddon(
+          productCapability,
+          OBJECT_CONTAINER_MODE_MULTI_ZONES,
+        ) &&
+        this.PriceFormatter.format(
+          this.getLowestPriceAddon(
+            productCapability,
+            OBJECT_CONTAINER_MODE_MULTI_ZONES,
+          ),
+        );
+
+      this.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[
+        OBJECT_CONTAINER_MODE_MONO_ZONE
+      ].price =
+        this.getLowestPriceAddon(
+          productCapability,
+          OBJECT_CONTAINER_MODE_MONO_ZONE,
+        ) &&
+        this.PriceFormatter.format(
+          this.getLowestPriceAddon(
+            productCapability,
+            OBJECT_CONTAINER_MODE_MONO_ZONE,
+          ),
+        );
+    });
+  }
+
   isRightOffer() {
     return OBJECT_CONTAINER_OFFER_STORAGE_STANDARD === this.container.offer;
   }
@@ -132,16 +245,76 @@ export default class PciStoragesContainersAddController {
     return createMode?.user?.id || linkedMode?.selected?.id;
   }
 
+  onOfferFocus() {
+    this.displaySelectedOffer = false;
+    this.container.deploymentMode = null;
+  }
+
+  onOfferSubmit() {
+    this.displaySelectedOffer = true;
+  }
+
   onContainerSolutionChange() {
     this.container.region = null;
   }
 
   onRegionsFocus() {
     this.displaySelectedRegion = false;
+    this.container.region = null;
+
+    this.reloadRegions = true;
+  }
+
+  reloadRegionsEnd() {
+    this.reloadRegions = false;
   }
 
   onRegionChange() {
     this.displaySelectedRegion = true;
+
+    if (this.container.region.enabled === false) {
+      this.isAddingRegion = true;
+      this.addRegion();
+    }
+  }
+
+  addRegion() {
+    return this.OvhApiCloudProjectRegion.v6()
+      .addRegion(
+        { serviceName: this.projectId },
+        { region: this.container.region.name },
+      )
+      .$promise.then(() => {
+        return this.OvhApiCloudProjectRegion.AvailableRegions()
+          .v6()
+          .resetQueryCache();
+      })
+      .then(() => {
+        this.CucCloudMessage.success(
+          this.$translate.instant(
+            'pci_projects_project_storages_containers_add_add_region_success',
+            {
+              code: this.container.region.name,
+            },
+          ),
+          'pci.projects.project.storages.containers.add',
+        );
+        this.isAddingRegion = false;
+        this.isAddingRegionError = false;
+      })
+      .catch((error) => {
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_storages_containers_add_add_region_error',
+            {
+              message: get(error, 'data.message'),
+            },
+          ),
+          'pci.projects.project.storages.containers.add',
+        );
+        this.isAddingRegion = false;
+        this.isAddingRegionError = true;
+      });
   }
 
   onTypesFocus() {

@@ -14,5 +14,6 @@
   "pci_projects_project_storages_containers_container_object_add_archive_success_message": "Les archives ont été importées.",
   "pci_projects_project_storages_containers_container_object_add_object_success_message": "Les objets ont été importés.",
   "pci_projects_project_storages_containers_container_object_add_archive_error_delete": "Une erreur est survenue lors de l'import des archives : {{ message }}.",
-  "pci_projects_project_storages_containers_container_object_add_object_error_delete": "Une erreur est survenue lors de l'import des objets {{ object }} : {{ message }}."
+  "pci_projects_project_storages_containers_container_object_add_object_error_delete": "Une erreur est survenue lors de l'import des objets {{ object }} : {{ message }}.",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Seule la classe de stockage standard est disponible pour les objets d’un conteneur créé avec ce mode de déploiement."
 }

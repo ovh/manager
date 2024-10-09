@@ -2,16 +2,15 @@ import { createContext } from 'react';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 
 export type ProductNavReshuffleContextType = {
-  isLoading: boolean;
   isAccountSidebarOpened: boolean;
   onboardingOpenedState: string;
   isNavigationSidebarOpened: boolean;
   currentNavigationNode: Node;
   navigationTree: Node;
   isMobile: boolean;
-  openOnboarding: () => void;
   startOnboarding: () => void;
-  closeOnboarding: (onboardingStatus?: string) => void;
+  openOnboarding: () => void;
+  closeOnboarding: (isDone?: boolean) => void;
   reduceOnboarding: () => void;
   openAccountSidebar: () => void;
   closeAccountSidebar: () => void;

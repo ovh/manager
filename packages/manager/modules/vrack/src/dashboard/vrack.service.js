@@ -17,4 +17,28 @@ export default class Vrack {
   getIpInfo(ip) {
     return this.$http.get(`/ip/${encodeURIComponent(ip)}`);
   }
+
+  getEligibleServices(serviceName) {
+    return this.$http.get(`/vrack/${serviceName}/eligibleServices`);
+  }
+
+  getServiceInformation(url, serviceName) {
+    return this.$http.get(`${url}/${serviceName}/serviceInfos`);
+  }
+
+  getDedicatedServer(serviceName) {
+    return this.$http.get(`/dedicated/server/${serviceName}`);
+  }
+
+  getDedicatedCloud(serviceName) {
+    return this.$http.get(`/dedicatedCloud/${serviceName}`);
+  }
+
+  getCloudProject(serviceName) {
+    return this.$http.get(`/cloud/project/${serviceName}`);
+  }
+
+  getIpLoadbalancing(serviceName) {
+    return this.$http.get(`/ipLoadbalancing/${serviceName}`);
+  }
 }

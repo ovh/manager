@@ -25,7 +25,7 @@ export default function RemoveSsh({ sshId }: { sshId: string }) {
   return (
     <OsdsMenu>
       <OsdsButton
-        slot={'menu-title'}
+        slot="menu-title"
         circle
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.stroked}
@@ -41,13 +41,14 @@ export default function RemoveSsh({ sshId }: { sshId: string }) {
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.ghost}
           color={ODS_THEME_COLOR_INTENT.primary}
+          data-testid="RemoveSsh-href"
           href={hrefRemove}
         >
           <OsdsText
             size={ODS_THEME_TYPOGRAPHY_SIZE._500}
             level={ODS_TEXT_LEVEL.button}
             color={ODS_THEME_COLOR_INTENT.primary}
-            slot={'start'}
+            slot="start"
           >
             {t('pci_projects_project_sshKeys_remove')}
           </OsdsText>

@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useOrderURL } from '@ovh-ux/manager-module-order';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   OsdsText,
   OsdsButton,
   OsdsLink,
@@ -31,6 +36,7 @@ type OrderConfirmationProps = {
 
 const OrderConfirmation = ({ region }: OrderConfirmationProps) => {
   const { t } = useTranslation('key-management-service/create');
+  const { trackClick } = useOvhTracking();
   const [orderLink, setOrderLink] = useState(null);
   const orderBaseUrl = useOrderURL('express_review_base');
   const navigate = useNavigate();
@@ -75,6 +81,14 @@ const OrderConfirmation = ({ region }: OrderConfirmationProps) => {
                 ODS_LINK_REFERRER_POLICY.strictOriginWhenCrossOrigin
               }
               href={orderLink}
+              onClick={() =>
+                trackClick({
+                  location: PageLocation.funnel,
+                  buttonType: ButtonType.externalLink,
+                  actionType: 'navigation',
+                  actions: ['go-back-order'],
+                })
+              }
             >
               {orderLink}
               <span slot="end">
@@ -102,6 +116,12 @@ const OrderConfirmation = ({ region }: OrderConfirmationProps) => {
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => {
+          trackClick({
+            location: PageLocation.funnel,
+            buttonType: ButtonType.link,
+            actionType: 'navigation',
+            actions: ['finish'],
+          });
           navigate(ROUTES_URLS.root);
         }}
       >

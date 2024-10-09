@@ -15,5 +15,8 @@
   "onboarding_walkme_popover_step4_title": "Sie möchten noch weiter gehen?",
   "onboarding_walkme_popover_step4_content": "Entdecken Sie unsere Partner-Verkäufer auf unserem Marketplace, bleiben Sie über den Status unserer Dienste in Echtzeit informiert und machen Sie sich ein Bild von Ihrem CO2-Fußabdruck. Sie brauchen Hilfe? Sehen Sie sich unsere Guides und Hilferessourcen an. Tauschen Sie sich in unserem Chat aus, um Lösungen, zusätzliche Ressourcen und Antworten auf Ihre Fragen zu erhalten.",
   "onboarding_walkme_popover_step5_title": "Meine Rechnungen",
-  "onboarding_walkme_popover_step5_content": "Hier finden Sie alle Ihre Rechnungen, ausstehenden Zahlungen und Guthaben."
+  "onboarding_walkme_popover_step5_content": "Hier finden Sie alle Ihre Rechnungen, ausstehenden Zahlungen und Guthaben.",
+  "onboarding_popover_later_hide_button": "Vielleicht später",
+  "onboarding_popover_do_not_show_again_button": "Nicht mehr anzeigen",
+  "onboarding_popover_done_button": "Besuch beenden"
 }

@@ -13,5 +13,6 @@
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description": "Saber mais sobre as classes de armazenamento e os preços. ",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link": "Ver os preços",
   "pci_projects_project_storages_containers_container_object_add_storage_class_standard": "Standard",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance"
+  "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Apenas a classe de armazenamento standard está disponível para os objetos de um container criado com este modo de implementação."
 }

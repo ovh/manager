@@ -1,4 +1,7 @@
-<oui-tabs class="mb-4" data-ng-if="!$ctrl.displaySelectedRegion">
+<oui-tabs
+    class="mb-4"
+    data-ng-if="!$ctrl.displaySelectedRegion && $ctrl.regionsByDeploymentMode"
+>
     <oui-tabs-item
         data-heading="{{ continent }}"
         data-ng-repeat="continent in $ctrl.continents track by continent"
@@ -164,8 +167,23 @@
                 </div>
             </div>
         </div>
+        <div
+            data-ng-if="$ctrl.selectedRegion.enabled === false"
+            class="regions-list"
+        >
+            <p class="oui-color-ae-500">
+                <strong
+                    data-translate="pci_projects_project_storages_containers_add_add_region_activate"
+                >
+                </strong>
+            </p>
+        </div>
     </oui-tabs-item>
 </oui-tabs>
+<oui-spinner
+    data-size="s"
+    data-ng-if="!$ctrl.regionsByDeploymentMode"
+></oui-spinner>
 <div data-ng-if="$ctrl.displaySelectedRegion" class="container-fluid px-0">
     <div class="row">
         <oui-select-picker

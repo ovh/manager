@@ -12,22 +12,21 @@ export default function AddVoucherPage() {
     navigate('..');
   };
   return (
-    <>
-      <AddVoucherModal
-        projectId={projectId}
-        onClose={onClose}
-        onSuccess={() => {
-          addSuccess(t('cpb_vouchers_add_success'));
-        }}
-        onError={(error: Error) => {
-          addError(
-            <>
-              {t('cpb_vouchers_add_error')}
-              {error && ` (${error.message})`}
-            </>,
-          );
-        }}
-      />
-    </>
+    <AddVoucherModal
+      data-testid="AddVoucherPage-modal"
+      projectId={projectId}
+      onClose={onClose}
+      onSuccess={() => {
+        addSuccess(t('cpb_vouchers_add_success'));
+      }}
+      onError={(error: Error) => {
+        addError(
+          <>
+            {t('cpb_vouchers_add_error')}
+            {error && ` (${error.message})`}
+          </>,
+        );
+      }}
+    />
   );
 }

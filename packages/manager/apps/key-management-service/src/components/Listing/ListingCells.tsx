@@ -5,6 +5,11 @@ import {
   DataGridTextCell,
   Links,
 } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
@@ -25,12 +30,19 @@ export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
 };
 
 export const DatagridCellName = (props: OKMS) => {
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
   return (
     <div>
       <Links
         onClickReturn={() => {
+          trackClick({
+            location: PageLocation.datagrid,
+            buttonType: ButtonType.link,
+            actionType: 'navigation',
+            actions: ['go-to-kms'],
+          });
           navigate(`/${props?.id}`);
         }}
         label={props?.iam.displayName}

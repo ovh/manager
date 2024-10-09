@@ -10,7 +10,7 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { useRemoveSsh, useSshKey } from '@/hooks/useSsh';
+import { useRemoveSsh, useSshKey } from '@/api/hooks/useSsh';
 
 interface RemoveSshModalProps {
   projectId: string;
@@ -45,6 +45,7 @@ export default function RemoveSshModal({
   return (
     <OsdsModal
       headline={t('pci_projects_project_sshKeys_remove')}
+      data-testid="RemoveSshModal-modal"
       onOdsModalClose={onClose}
     >
       <slot name="content">

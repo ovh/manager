@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-ssh-keys-app",
-  "version": "0.6.8",
+  "version": "0.6.10",
   "private": true,
   "type": "module",
   "scripts": {
@@ -17,7 +17,7 @@
     "@ovh-ux/manager-config": "^7.4.0",
     "@ovh-ux/manager-core-api": "^0.8.0",
     "@ovh-ux/manager-pci-common": "^0.6.1",
-    "@ovh-ux/manager-react-components": "^1.35.1",
+    "@ovh-ux/manager-react-components": "^1.36.0",
     "@ovh-ux/manager-react-core-application": "^0.10.2",
     "@ovh-ux/manager-react-shell-client": "^0.7.2",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
@@ -52,13 +52,14 @@
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.2.2",
-    "autoprefixer": "^10.4.17",
+    "autoprefixer": "^10.4.19",
     "eslint": "^8.56.0",
     "postcss": "^8.4.35",
     "rollup": "^4.9.6",
     "tailwindcss": "^3.4.4",
-    "vite": "^5.2.13",
-    "vitest": "^1.2.0"
+    "typescript": "^5.3.3",
+    "vite": "^5.3.3",
+    "vitest": "^1.6.0"
   },
   "regions": [
     "CA",

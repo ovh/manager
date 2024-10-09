@@ -13,5 +13,6 @@
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description": "Dowiedz się więcej o klasach przestrzeni dyskowej i sprawdź cennik. ",
   "pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link": "Sprawdź ceny",
   "pci_projects_project_storages_containers_container_object_add_storage_class_standard": "Standard",
-  "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance"
+  "pci_projects_project_storages_containers_container_object_add_storage_class_high_perf": "High Performance",
+  "pci_projects_project_storages_containers_container_object_add_storage_class_info_banner": "Tylko standardowa klasa przestrzeni dyskowej jest dostępna dla obiektów w kontenerze utworzonym przy użyciu tego trybu wdrażania."
 }

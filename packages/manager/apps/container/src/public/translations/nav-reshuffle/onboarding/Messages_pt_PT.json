@@ -15,5 +15,8 @@
   "onboarding_walkme_popover_step4_title": "Quer ir mais longe?",
   "onboarding_walkme_popover_step4_content": "Descubra os nossos vendedores parceiros no nosso Marketplace, mantenha-se informado do estado dos nossos serviços em tempo real, avalie a sua pegada de carbono. Necessita de ajuda? Aceda aos nossos guias práticos e recursos de ajuda. Troque informações através do nosso chat para obter soluções, recursos adicionais e respostas às suas dúvidas.",
   "onboarding_walkme_popover_step5_title": "As minhas faturas",
-  "onboarding_walkme_popover_step5_content": "Encontre todas as suas faturas, pagamentos em curso e notas de crédito nesta secção."
+  "onboarding_walkme_popover_step5_content": "Encontre todas as suas faturas, pagamentos em curso e notas de crédito nesta secção.",
+  "onboarding_popover_later_hide_button": "Talvez mais tarde",
+  "onboarding_popover_do_not_show_again_button": "Não mostrar mais",
+  "onboarding_popover_done_button": "Concluir a visita"
 }

@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.80.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.80.0...@ovh-ux/manager-container-app@0.80.1) (2024-10-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.80.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.79.3...@ovh-ux/manager-container-app@0.80.0) (2024-10-07)
+
+
+### Bug Fixes
+
+* **container:** fix reset universe for containerContext ([#13413](https://github.com/ovh/manager/issues/13413)) ([5400401](https://github.com/ovh/manager/commit/54004016b15d07419e9ab576fb160133c3507cd7))
+* **public-cloud:** fix menu css ([#13281](https://github.com/ovh/manager/issues/13281)) ([9a75171](https://github.com/ovh/manager/commit/9a751712213b70fa8509f7e16a747975a740e012))
+
+
+### Features
+
+* **container:** onboarding with bff api ([#12816](https://github.com/ovh/manager/issues/12816)) ([e1b0830](https://github.com/ovh/manager/commit/e1b0830eb29ff2383f130ded19b29c8049d63980))
+
+
+
+
+
 ## [0.79.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.79.2...@ovh-ux/manager-container-app@0.79.3) (2024-10-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

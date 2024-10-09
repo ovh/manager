@@ -1,10 +1,10 @@
-export interface Credit {
+export interface TCredit {
   text: string;
   value: number;
   currencyCode: string;
 }
 
-export type Voucher = {
+export type TVoucher = {
   id: number;
   bill: string | null;
   products: string | null;
@@ -14,7 +14,7 @@ export type Voucher = {
     from: string | null;
     to: string | null;
   };
-  total_credit: Credit;
-  available_credit: Credit;
-  used_credit: Credit;
+  total_credit: TCredit;
+  available_credit: TCredit;
+  used_credit: TCredit;
 };

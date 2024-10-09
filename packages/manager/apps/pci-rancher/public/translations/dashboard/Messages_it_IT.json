@@ -32,9 +32,9 @@
   "createRancherDescription": "Potrai gestire diversi \"downstream cluster\" all'interno di questo servizio.",
   "createRancherPlaceholder": "mio_rancher",
   "createRancherServiceLevel": "Scelta del piano",
-  "createRancherServiceLevelDescription": "Entrambi i piani offrono tutte le funzionalità di Rancher. Il piano OVHcloud Edition permette esclusivamente la creazione di <br> \"downstream cluster\" sul cloud pubblico di OVHcloud, con nodi autogestiti aggiunti uno per uno. Il piano Standard è ideale per utilizzi di tipo Cloud privato, multicloud o Edge. È possibile migrare al piano Standard in qualsiasi momento. <strong>I nodi di tipo “controle-plane” non vengono fatturati.</strong>",
+  "createRancherServiceLevelDescription": "Entrambi i piani offrono tutte le funzionalità di Rancher. Il piano OVHcloud Edition permette esclusivamente la creazione di \"downstream cluster\" sul Cloud pubblico di OVHcloud, con nodi autogestiti aggiunti uno per uno.<br> Il piano Standard è ideale per utilizzi di tipo Cloud privato, multicloud o Edge. È possibile migrare al piano Standard in qualsiasi momento.<br> L’utilizzo verrà fatturato su base oraria, in base al numero totale di vCPU di ogni nodo di lavoro dei \"downstream clusters\" Rancher. <strong>I nodi di tipo “controle-plane” non vengono fatturati.</strong>",
   "createRancherVersion": "Versione di Rancher",
-  "createRancherVersionDescription": "Questo servizio si basa su SUSE Rancher. OVHcloud supporta le ultime versioni di Rancher. Consigliamo di utilizzare la più recente. Applichiamo regolarmente patch di sicurezza e forniamo nuove versioni, in conformità con la nostra politica del ciclo di vita del software.",
+  "createRancherVersionDescription": "Questo servizio si basa su SUSE Rancher. OVHcloud supporta le ultime versioni di Rancher. Consigliamo di utilizzare la più recente.<br> Applichiamo regolarmente patch di sicurezza e forniamo nuove versioni, in conformità con la nostra politica del ciclo di vita del software.",
   "createRancherCTA": "Creare un Managed Rancher Service",
   "createRancherError": "Si è verificato un errore durante la creazione di Managed Rancher Service: {{rancherCreationErrorMessage}}.",
   "createRancherRecomendedVersion": "Versione consigliata",
@@ -45,9 +45,13 @@
   "updateOfferModalCancelButton": "Annullare",
   "updateOfferModalValidateButton": "Confermare",
   "updateOfferModaleTitle": "Modificare soluzione",
-  "updateOfferModalDescription": "Stai per modificare il tuo servizio attuale alla soluzione {{availableServicePlan}}. La fatturazione sarà di {{planPricing}} +IVA/ora per vCPU orchestrata. Questa operazione avrà effetto immediato e non avrà alcun impatto sui tuoi \"downstream cluster\" e sui dati del tuo Rancher gestito. Conferma per continuare.",
+  "updateOfferModalDescription": "Stai per modificare la tua soluzione attuale con il servizio {{availableServicePlan}}. La fatturazione sarà di {{planPricing}} +IVA/ora per vCPU orchestrata. Questa operazione avrà effetto immediato e non avrà alcun impatto sui tuoi \"downstream clusters\" e sui dati del tuo Rancher gestito. Conferma per continuare.",
   "updateOfferPending": "La tua richiesta di cambio di offerta è stata presa in carico. Ti chiediamo di attendere, l'operazione potrebbe richiedere alcuni minuti.",
   "updateOfferError": "Si è verificato un errore: {{errorMessage}}",
-  "savingsPlanMessage": "Usufruisci di tariffe mensili vantaggiose grazie ai Savings Plan, conservando la flessibilità della tariffazione oraria.",
-  "savingsPlanCTA": "Configura i tuoi Savings Plan"
+  "upgradePlanTitle": "Passa al piano Standard",
+  "upgradePlanDescription": "Crea o registra \"downstream clusters\" con qualsiasi Cloud pubblico supportato da Rancher o su un Cloud privato automatizzabile (per es. VMware vSphere), inclusi gli scenari compatibili con il piano OVHcloud Edition.",
+  "upgradePlanButton": "Migliorare la tua soluzione",
+  "savingsPlanMessage": "Usufruisci di tariffe mensili vantaggiose grazie ai Savings Plan, conservando la flessibilità delle istanze all’ora.",
+  "savingsPlanCTA": "Configura i tuoi Savings Plan",
+  "createRancherOfferDescription": "Con un minimo di 20 vCPU fatturate da Rancher"
 }

@@ -2,6 +2,8 @@
   "manager_components_region_SBG1": "Strasbourg (SBG1)",
   "manager_components_region_MRS": "Marseille",
   "manager_components_region_MRS_micro": "Marseille ({{ micro }})",
+  "manager_components_region_PAR": "Paris",
+  "manager_components_region_PAR_micro": "Paris  ({{ micro }})",
   "manager_components_region_BHS1": "Beauharnois (BHS1)",
   "manager_components_region_GRA1": "Gravelines (GRA1)",
   "manager_components_region_SBG": "Strasbourg",
@@ -237,6 +239,7 @@
   "manager_components_region_location_BHS": "Amérique du Nord (Canada)",
   "manager_components_region_location_ERI": "Europe de l'Ouest (Grande-Bretagne)",
   "manager_components_region_location_GRA": "Europe de l'Ouest (France)",
+  "manager_components_region_location_PAR": "Europe de l'Ouest (France)",
   "manager_components_region_location_GS": "Western Europe",
   "manager_components_region_location_MAD": "Western Europe",
   "manager_components_region_location_BRU": "Western Europe",
@@ -264,5 +267,6 @@
   "manager_components_region_continent_SYD": "Océanie",
   "manager_components_region_continent_US": "États-Unis",
   "manager_components_region_continent_SHA": "Europe de l'Ouest",
-  "manager_components_region_continent_MRS": "Europe de l'Ouest"
+  "manager_components_region_continent_MRS": "Europe de l'Ouest",
+  "manager_components_region_continent_PAR": "Europe de l'Ouest"
 }
