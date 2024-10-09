@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.1.4...@ovh-ux/manager-pci-savings-plan-app@1.1.5) (2024-10-09)
+
+
+### Bug Fixes
+
+* **pci-savings-plan:** monthly price compute ([#13471](https://github.com/ovh/manager/issues/13471)) ([26d05b0](https://github.com/ovh/manager/commit/26d05b0532b77101ab553008dd5802877e4eaf7a))
+
+
+
+
+
 ## [1.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.1.3...@ovh-ux/manager-pci-savings-plan-app@1.1.4) (2024-10-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app

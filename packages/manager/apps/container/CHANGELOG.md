@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.80.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.80.1...@ovh-ux/manager-container-app@0.80.2) (2024-10-09)
+
+
+### Bug Fixes
+
+* **container:** prevent subtree to be opened without selected node ([#13500](https://github.com/ovh/manager/issues/13500)) ([994b0ab](https://github.com/ovh/manager/commit/994b0ab9ca238b1eeb84766df37b2ac9e4b6d8b0))
+* **container:** remove w-full on the osds popover ([#13507](https://github.com/ovh/manager/issues/13507)) ([5182df5](https://github.com/ovh/manager/commit/5182df58bef10206d54b2a4ff0452d1986ad2084))
+* **container:** update cta link for iplb ([#13508](https://github.com/ovh/manager/issues/13508)) ([63469e2](https://github.com/ovh/manager/commit/63469e26dab426b183443157bcd632539dbd0c0a))
+
+
+
+
+
 ## [0.80.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.80.0...@ovh-ux/manager-container-app@0.80.1) (2024-10-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
