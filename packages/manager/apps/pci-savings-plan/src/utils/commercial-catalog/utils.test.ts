@@ -4,6 +4,7 @@ import {
   convertToPrice,
   convertHourlyPriceToMonthly,
   convertToDuration,
+  HOUR_IN_MONTH,
 } from './utils';
 
 describe('Utils', () => {
@@ -16,8 +17,8 @@ describe('Utils', () => {
 
   describe('convertHourlyPriceToMonthly', () => {
     it('should convert hourly price to monthly price', () => {
-      expect(convertHourlyPriceToMonthly(1)).toBe(720);
-      expect(convertHourlyPriceToMonthly(0.5)).toBe(360);
+      expect(convertHourlyPriceToMonthly(1)).toBe(HOUR_IN_MONTH);
+      expect(convertHourlyPriceToMonthly(0.5)).toBe(365);
     });
   });
 

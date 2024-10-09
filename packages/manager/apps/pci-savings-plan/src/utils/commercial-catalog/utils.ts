@@ -1,5 +1,5 @@
 const MONTH_IN_YEAR = 12;
-const HOUR_IN_MONTH = 720;
+export const HOUR_IN_MONTH = 730;
 export const CENTS_PRICE = 100000000;
 
 export const convertToPrice = (price: number) =>
