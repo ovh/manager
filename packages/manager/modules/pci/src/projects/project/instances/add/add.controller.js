@@ -200,6 +200,12 @@ export default class PciInstancesAddController {
     return this.model.datacenter?.type === 'localzone';
   }
 
+  get isSavingsPlanAvailable() {
+    return this.pciFeatures.isFeatureAvailable(
+      PCI_FEATURES.PRODUCTS.SAVINGS_PLAN,
+    );
+  }
+
   updateLocation(location) {
     this.model.location = location;
     this.selectedMode = this.isLocalZone() ? this.modes[2] : this.modes[0];
