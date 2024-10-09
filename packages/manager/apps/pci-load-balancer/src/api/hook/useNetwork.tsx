@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import {
   getPrivateNetworkByRegion,
+  getPrivateNetworks,
   getSubnetByNetworkAndRegion,
 } from '../data/network';
 
@@ -45,5 +46,12 @@ export const useSubnetByNetworkAndRegion = ({
     queryFn: () =>
       getSubnetByNetworkAndRegion(projectId, region, networkId, subnetId),
     enabled: !!networkId && !!subnetId,
+    throwOnError: true,
+  });
+
+export const useGetPrivateNetworks = (projectId: string) =>
+  useQuery({
+    queryKey: ['project', projectId, 'private-networks'],
+    queryFn: () => getPrivateNetworks(projectId),
     throwOnError: true,
   });
