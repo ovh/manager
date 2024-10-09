@@ -1,0 +1,11 @@
+{
+  "octavia_load_balancer_list_l7_rules_add_button": "Add an L7 rule",
+  "octavia_load_balancer_list_l7_rules_type": "Type",
+  "octavia_load_balancer_list_l7_rules_comparison_type": "Comparison type",
+  "octavia_load_balancer_list_l7_rules_key": "Key",
+  "octavia_load_balancer_list_l7_rules_value": "Value",
+  "octavia_load_balancer_list_l7_rules_invert": "Reverse",
+  "octavia_load_balancer_list_l7_rules_actions_edit": "Edit",
+  "octavia_load_balancer_list_l7_rules_actions_delete": "Delete",
+  "octavia_load_balancer_create_l7_rule_success": "Your L7 rule has been created."
+}
