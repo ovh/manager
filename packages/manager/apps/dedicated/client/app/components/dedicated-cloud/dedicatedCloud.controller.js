@@ -23,8 +23,6 @@ export default class {
         'dedicatedCloud_dashboard_nameModifying_success',
       ),
       value,
-    }).result.then((newDescription) => {
-      this.dedicatedCloud.description = newDescription;
-    });
+    }).result;
   }
 }

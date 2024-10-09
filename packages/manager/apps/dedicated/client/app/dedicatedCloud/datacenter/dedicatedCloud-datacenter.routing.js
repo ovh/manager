@@ -13,7 +13,6 @@ export default /* @ngInject */ ($stateProvider) => {
         DedicatedCloud.getDatacenterInformations(
           serviceName,
           datacenterId,
-          true,
         ).then((datacenter) => ({
           model: {
             ...datacenter,
