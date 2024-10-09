@@ -1,0 +1,18 @@
+{
+  "octavia_load_balancer_add_listener": "Listener hinzufügen",
+  "octavia_load_balancer_instances_table_listener": "Listener",
+  "octavia_load_balancer_instances_table_pools": "Pools/Instanzen",
+  "octavia_load_balancer_instances_table_protocol_label": "Protokoll auswählen",
+  "octavia_load_balancer_instances_table_protocol_tooltip": "Protokoll, für das das Frontend überwacht.",
+  "octavia_load_balancer_instances_table_listener_delete": "Listener löschen",
+  "octavia_load_balancer_instances_table_port_label": "Port",
+  "octavia_load_balancer_instances_table_port_tooltip": "Der Port, auf dem das Frontend überwacht, muss zwischen 1 und 65535 liegen.",
+  "octavia_load_balancer_instances_table_health_monitor_label": "Einen Health Monitor auswählen",
+  "octavia_load_balancer_instances_table_health_monitor_tooltip": "Wie der Loadbalancer den Status Ihres Backend-Dienstes überprüft.",
+  "octavia_load_balancer_instances_table_health_monitor_delete": "Den Health Monitor löschen",
+  "octavia_load_balancer_instances_table_health_monitor_empty": "Kein Health Monitoring",
+  "octavia_load_balancer_instances_table_pools_tooltip": "Die Pools und die zugehörigen Instanzen, zu denen der Traffic umgeleitet wird.",
+  "octavia_load_balancer_instances_table_pools_search_instance": "Instanz suchen",
+  "octavia_load_balancer_instances_table_instance_add": "eine Instanz hinzufügen",
+  "octavia_load_balancer_instances_table_instance_delete": "Die Instanz löschen"
+}
