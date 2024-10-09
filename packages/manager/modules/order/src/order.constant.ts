@@ -574,7 +574,7 @@ export const ORDER_URLS = {
       US: `https://us.ovhcloud.com/order/express/#/express/review?products=~(~${vrackProductSettings})`,
     },
     load_balancer: {
-      US: 'https://us.ovhcloud.com/solutions/ip-load-balancing/',
+      US: 'https://us.ovhcloud.com/network/load-balancer/',
     },
     dedicatedOrder: {
       US: 'https://us.ovhcloud.com/bare-metal/prices/',
