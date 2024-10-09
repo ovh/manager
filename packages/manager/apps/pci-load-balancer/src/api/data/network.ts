@@ -37,3 +37,23 @@ export const getSubnetByNetworkAndRegion = async (
 
   return data;
 };
+
+export type TPrivateNetwork = {
+  id: string;
+  name: string;
+  status: string;
+  type: string;
+  vlanId: number;
+  regions: {
+    openstackId: string;
+    region: string;
+    status: string;
+  }[];
+};
+
+export const getPrivateNetworks = async (projectId: string) => {
+  const { data } = await v6.get<TPrivateNetwork[]>(
+    `/cloud/project/${projectId}/network/private`,
+  );
+  return data;
+};
