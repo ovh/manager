@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-public-ip-app",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -17,7 +17,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^7.4.0",
     "@ovh-ux/manager-core-api": "^0.8.0",
-    "@ovh-ux/manager-module-order": "^0.5.2",
+    "@ovh-ux/manager-module-order": "^0.5.3",
     "@ovh-ux/manager-pci-common": "^0.6.1",
     "@ovh-ux/manager-react-components": "^1.36.0",
     "@ovh-ux/manager-react-core-application": "^0.10.2",

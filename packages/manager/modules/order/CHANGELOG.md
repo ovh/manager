@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.5.2...@ovh-ux/manager-module-order@0.5.3) (2024-10-09)
+
+
+### Bug Fixes
+
+* **container:** update cta link for iplb ([#13508](https://github.com/ovh/manager/issues/13508)) ([63469e2](https://github.com/ovh/manager/commit/63469e26dab426b183443157bcd632539dbd0c0a))
+
+
+
+
+
 ## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.5.1...@ovh-ux/manager-module-order@0.5.2) (2024-10-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-module-order
