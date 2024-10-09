@@ -9,6 +9,7 @@ import { urls } from '@/routes/routes.constants';
 import EmailAccountSettings from './EmailAccountSettings.page';
 import EmailAccountsAlias from './EmailAccountsAlias.page';
 import Redirections from '../Redirections/Redirections';
+import { FEATURE_FLAGS } from '@/utils';
 
 export default function AddAndEditAccount() {
   const { t } = useTranslation('accounts/addAndEdit');
@@ -93,12 +94,14 @@ export default function AddAndEditAccount() {
       title: t('zimbra_account_edit_tabs_alias'),
       to: hrefAlias,
       pathMatchers: pathMatcherAliasTabs,
+      hidden: !FEATURE_FLAGS.ALIAS,
     },
     {
       name: 'redirections',
       title: t('zimbra_account_edit_tabs_redirections'),
       to: hrefRedirections,
       pathMatchers: pathMatcherRedirectionsTabs,
+      hidden: !FEATURE_FLAGS.REDIRECTIONS,
     },
   ];
 
