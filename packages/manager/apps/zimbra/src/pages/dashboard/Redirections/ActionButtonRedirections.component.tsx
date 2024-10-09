@@ -6,6 +6,7 @@ import { RedirectionsItem } from './Redirections';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
+import { FEATURE_FLAGS } from '@/utils';
 
 interface ActionButtonRedirectionsAccountProps {
   redirectionsItem: RedirectionsItem;
@@ -37,6 +38,7 @@ const ActionButtonRedirections: React.FC<ActionButtonRedirectionsAccountProps> =
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.redirection.edit],
       label: t('zimbra_redirections_datagrid_tooltip_modification'),
+      hidden: !FEATURE_FLAGS.REDIRECTIONS_EDIT,
     },
     {
       id: 2,
@@ -49,7 +51,7 @@ const ActionButtonRedirections: React.FC<ActionButtonRedirectionsAccountProps> =
   return (
     <ActionMenu
       disabled={redirectionsItem.status !== ResourceStatus.READY}
-      items={actionItems}
+      items={actionItems.filter((i) => !i.hidden)}
       isCompact
     />
   );

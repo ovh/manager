@@ -135,7 +135,8 @@ describe('Add Domain page', () => {
     expect(submitButton).toBeDisabled();
   });
 
-  it('Button should not be enabled when only organization and domain name are provided if domain is ovh', async () => {
+  // TODO: Remove skip when FEATURE_FLAGS.DOMAIN_DNS_CONFIGURATION && FEATURE_FLAGS.DOMAIN_NOT_OVH are removed
+  it.skip('Button should not be enabled when only organization and domain name are provided if domain is ovh', async () => {
     const { getByTestId } = render(<AddDomain />);
 
     const selectOrganization = getByTestId('select-organization');
@@ -157,7 +158,8 @@ describe('Add Domain page', () => {
     });
   });
 
-  it('Button should be enabled when organization, domain name and configuration type standard are provided if domain name is ovh', async () => {
+  // TODO: Remove skip when FEATURE_FLAGS.DOMAIN_DNS_CONFIGURATION && FEATURE_FLAGS.DOMAIN_NOT_OVH are removed
+  it.skip('Button should be enabled when organization, domain name and configuration type standard are provided if domain name is ovh', async () => {
     const { getByTestId } = render(<AddDomain />);
 
     const selectOrganization = getByTestId('select-organization');
@@ -185,7 +187,8 @@ describe('Add Domain page', () => {
     });
   });
 
-  it('Button should be enabled when organization, domain name and configuration type expert are provided if domain name is ovh', async () => {
+  // TODO: Remove skip when FEATURE_FLAGS.DOMAIN_DNS_CONFIGURATION && FEATURE_FLAGS.DOMAIN_NOT_OVH are removed
+  it.skip('Button should be enabled when organization, domain name and configuration type expert are provided if domain name is ovh', async () => {
     const { getByTestId } = render(<AddDomain />);
 
     const selectOrganization = getByTestId('select-organization');
@@ -210,7 +213,8 @@ describe('Add Domain page', () => {
     });
   });
 
-  it('Button should be enabled when an external domain name is provided', async () => {
+  // TODO: Remove skip when FEATURE_FLAGS.DOMAIN_DNS_CONFIGURATION && FEATURE_FLAGS.DOMAIN_NOT_OVH are removed
+  it.skip('Button should be enabled when an external domain name is provided', async () => {
     const { getByTestId } = render(<AddDomain />);
 
     const selectOrganization = getByTestId('select-organization');

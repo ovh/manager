@@ -44,15 +44,18 @@ export const AccountTabsPanel: React.FC<TabsProps> = ({ tabs }) => {
   return (
     <OsdsTabBar slot="top">
       <OsdsTabs panel={activePanel}>
-        {tabs.map((tab: TabItemProps) => (
-          <NavLink
-            key={`osds-tab-bar-item-${tab.name}`}
-            to={tab.to}
-            className="no-underline"
-          >
-            <OsdsTabBarItem panel={tab.name}>{tab.title}</OsdsTabBarItem>
-          </NavLink>
-        ))}
+        {tabs.map(
+          (tab: TabItemProps) =>
+            !tab.hidden && (
+              <NavLink
+                key={`osds-tab-bar-item-${tab.name}`}
+                to={tab.to}
+                className="no-underline"
+              >
+                <OsdsTabBarItem panel={tab.name}>{tab.title}</OsdsTabBarItem>
+              </NavLink>
+            ),
+        )}
       </OsdsTabs>
     </OsdsTabBar>
   );
