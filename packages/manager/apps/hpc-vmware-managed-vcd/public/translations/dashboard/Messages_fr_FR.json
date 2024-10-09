@@ -41,5 +41,5 @@
   "managed_vcd_dashboard_edit_description_modal_title": "Modifier la description",
   "managed_vcd_dashboard_edit_description_modal_label": "Description",
   "managed_vcd_dashboard_edit_description_modal_success": "La description a été modifiée avec succès.",
-  "managed_vcd_dashboard_edit_description_modal_helper_error": "Veuillez saisir une description dont la longueur est comprise entre 1 et 256 caractères."
+  "managed_vcd_dashboard_edit_description_modal_helper_error": "Veuillez saisir une description dont la longueur est comprise entre 1 et 255 caractères."
 }
