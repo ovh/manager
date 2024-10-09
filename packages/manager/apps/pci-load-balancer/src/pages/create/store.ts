@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { TRegion } from '@/api/hook/usePlans';
+import { TFloatingIp } from '@/api/data/region';
 
 export type TPlan = {
   code: string;
@@ -17,15 +18,18 @@ type TStep = {
 export enum StepsEnum {
   SIZE = 'SIZE',
   REGION = 'REGION',
+  PUBLIC_IP = 'PUBLIC_IP',
 }
 
 export type TFormStore = {
   size: TPlan;
   region: TRegion;
+  publicIp: TFloatingIp;
   steps: Map<StepsEnum, TStep>;
   set: {
     size: (val: TPlan) => void;
     region: (val: TRegion) => void;
+    publicIp: (val: TFloatingIp) => void;
   };
   open: (step: StepsEnum) => void;
   close: (step: StepsEnum) => void;
@@ -59,11 +63,20 @@ const initialSteps = () =>
         isChecked: false,
       },
     ],
+    [
+      StepsEnum.PUBLIC_IP,
+      {
+        isOpen: false,
+        isLocked: false,
+        isChecked: false,
+      },
+    ],
   ]);
 
 export const useNewLoadBalancerStore = create<TFormStore>()((set, get) => ({
   size: null,
   region: null,
+  publicIp: null,
   steps: initialSteps(),
   set: {
     size: (val: TPlan) => {
@@ -74,6 +87,11 @@ export const useNewLoadBalancerStore = create<TFormStore>()((set, get) => ({
     region: (val: TRegion) => {
       set({
         region: val,
+      });
+    },
+    publicIp: (val: TFloatingIp) => {
+      set({
+        publicIp: val,
       });
     },
   },
