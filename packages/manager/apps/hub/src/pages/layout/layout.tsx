@@ -190,7 +190,7 @@ export default function Layout() {
                         <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
                           <Suspense fallback={<TileSkeleton />}>
                             <PaymentStatus
-                              canManageBilling={availability[BILLING_FEATURE]}
+                              canManageBilling={availability?.[BILLING_FEATURE]}
                             />
                           </Suspense>
                         </div>

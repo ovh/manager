@@ -1,0 +1,9 @@
+{
+  "ovh_manager_hub_payment_status_tile_title": "Ultimi stati di pagamento dei servizi",
+  "ovh_manager_hub_payment_status_tile_see_all": "Visualizza tutto",
+  "ovh_manager_hub_payment_status_tile_now": "Immediatamente",
+  "ovh_manager_hub_payment_status_tile_before": "Prima del {{ date }}",
+  "ovh_manager_hub_payment_status_tile_renew": "dal {{ date }}",
+  "ovh_manager_hub_payment_status_tile_error": "Impossibile recuperare i servizi",
+  "ovh_manager_hub_payment_status_tile_no_services": "Nessun servizio"
+}

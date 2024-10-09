@@ -463,7 +463,7 @@ describe('Layout.page', () => {
     it('should display error tile', async () => {
       useBillsMockValue.error = new Error();
       const { findByText } = renderComponent(<BillingSummary />);
-      const tileError = await findByText('manager_error_tile_title');
+      const tileError = await findByText('manager_hub_error_tile_oops');
       expect(tileError).not.toBeNull();
     });
   });
@@ -521,7 +521,7 @@ describe('Layout.page', () => {
         <PaymentStatus canManageBilling={true} />,
       );
 
-      const tileError = await findByText('manager_error_tile_title');
+      const tileError = await findByText('manager_hub_error_tile_oops');
       expect(tileError).not.toBeNull();
     });
 
