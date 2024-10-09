@@ -15,11 +15,7 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { Suspense } from 'react';
-import {
-  PciDiscoveryBanner,
-  useInstances,
-  useProject,
-} from '@ovh-ux/manager-pci-common';
+import { useInstances, useProject } from '@ovh-ux/manager-pci-common';
 import { useWorkflows } from '@/api/hooks/workflows';
 
 export default function OnBoardingPage() {
@@ -28,24 +24,34 @@ export default function OnBoardingPage() {
   const { t: tExecution } = useTranslation('executions');
   const { projectId } = useParams();
   const { data: project } = useProject();
-  const urlProject = useProjectUrl('public-cloud');
   const navigate = useNavigate();
+  const projectUrl = useProjectUrl('public-cloud');
+
   const { data: instances, isPending: isPendingInstances } = useInstances(
     projectId,
   );
+
   const { data: workflows, isPending: isPendingWorkflows } = useWorkflows(
     projectId,
   );
 
   const breadcrumbItems: OdsBreadcrumbAttributeItem[] = [
     {
-      href: urlProject,
+      href: projectUrl,
       label: project?.description,
     },
     {
       label: t('pci_workflow_title'),
     },
   ];
+
+  const handleOrderBtnClick = () => {
+    if (instances?.length > 0) {
+      navigate(`../new`);
+    } else {
+      window.location.href = `${projectUrl}/instances/new`;
+    }
+  };
 
   return (
     <RedirectionGuard
@@ -55,9 +61,6 @@ export default function OnBoardingPage() {
     >
       {project && <OsdsBreadcrumb items={breadcrumbItems} />}
 
-      <div className="mb-8">
-        <PciDiscoveryBanner project={project} />
-      </div>
       <OnboardingLayout
         title={t('pci_workflow_title')}
         description={
@@ -119,11 +122,7 @@ export default function OnBoardingPage() {
             ? tExecution('pci_workflow_add')
             : tOnBoarding('pci_workflow_onboarding_create_instance')
         }
-        onOrderButtonClick={() =>
-          instances?.length > 0
-            ? navigate(`../new`)
-            : navigate(`/pci/projects/${projectId}/instances/new`)
-        }
+        onOrderButtonClick={handleOrderBtnClick}
       />
       <Suspense>
         <Outlet />
