@@ -14,8 +14,11 @@ interface WorkflowTypeProps {
   onSubmit: (workflowType: string) => void;
 }
 
+const INSTANCE_BACKUP = 'instance_backup';
+
 export function WorkflowType({ step, onSubmit }: Readonly<WorkflowTypeProps>) {
   const { t } = useTranslation('workflow-add');
+  const { t: tListing } = useTranslation('listing');
   const { t: tCommon } = useTranslation('common');
   return (
     <>
@@ -28,10 +31,10 @@ export function WorkflowType({ step, onSubmit }: Readonly<WorkflowTypeProps>) {
       </OsdsText>
       <div className="grid grid-cols-1 md:grid-cols-3 mt-8">
         <PciTile
-          title={t('pci_workflow_create_type_title')}
+          title={tListing(`pci_workflow_type_${INSTANCE_BACKUP}_title`)}
           isChecked
           description={t(
-            'pci_workflow_create_type_instance_backup_description',
+            `pci_workflow_create_type_${INSTANCE_BACKUP}_description`,
           )}
         ></PciTile>
       </div>
@@ -40,7 +43,7 @@ export function WorkflowType({ step, onSubmit }: Readonly<WorkflowTypeProps>) {
           className="w-fit mt-6"
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => onSubmit('instance_backup')}
+          onClick={() => onSubmit(INSTANCE_BACKUP)}
         >
           {tCommon('common_stepper_next_button_label')}
         </OsdsButton>

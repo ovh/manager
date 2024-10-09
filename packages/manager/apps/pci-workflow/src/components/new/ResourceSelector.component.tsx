@@ -108,11 +108,14 @@ const useDatagridColumn = (
       cell: (instance: TWorkflowInstance) => (
         <StatusComponent
           statusGroup={instance.statusGroup}
-          className={isLocalZone(instance.region) ? 'opacity-50' : ''}
+          className={
+            isLocalZone(instance.region) ? 'opacity-50 mx-auto' : 'mx-auto'
+          }
           status={instance.status}
         />
       ),
       label: t('pci_projects_project_workflow_instance_status_label'),
+      isSortable: false,
     },
   ];
 };

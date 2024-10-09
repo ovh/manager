@@ -138,7 +138,7 @@ export function WorkflowName({
             onClick={() => !hasError && onSubmit()}
             {...(isValid ? {} : { disabled: true })}
           >
-            {tCommon('common_stepper_next_button_label')}
+            {t('pci_workflow_create')}
           </OsdsButton>
           <OsdsButton
             className="mt-6 w-fit"

@@ -32,7 +32,11 @@ export function DowHelper() {
         >
           <ul>
             <li>{t('pci_workflow_create_cron_dow_helper_1')}</li>
-            <li>{t('pci_workflow_create_cron_dow_helper_2')}</li>
+            <li>
+              {t('pci_workflow_create_cron_dow_helper_2', {
+                weekNameExample: 'mon, tue, wed, thu, fri, sat, or sun',
+              })}
+            </li>
           </ul>
         </OsdsText>
       </OsdsPopoverContent>

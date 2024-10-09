@@ -78,6 +78,7 @@ export default function ListingPage() {
         <DataGridTextCell>{workflow.id}</DataGridTextCell>
       ),
       label: t('pci_workflow_id'),
+      isSortable: false,
     },
     {
       id: 'type',
@@ -121,6 +122,7 @@ export default function ListingPage() {
           <ExecutionStatusComponent status={workflow.lastExecutionStatus} />
         ) : null,
       label: t('pci_workflow_last_execution_status'),
+      isSortable: false,
     },
     {
       id: 'actions',
@@ -130,14 +132,17 @@ export default function ListingPage() {
         </div>
       ),
       label: '',
+      isSortable: false,
     },
   ];
 
   return (
     <RedirectionGuard
       isLoading={isPending}
+      condition={
+        !isPending && workflows.rows?.length === 0 && searchQueries.length === 0
+      }
       route={`/pci/projects/${projectId}/workflow/onboarding`}
-      condition={workflows.totalRows === 0}
     >
       <HidePreloader />
       {project && (
