@@ -22,3 +22,10 @@ export function getDaysFromDate(date: Date): number {
     );
   return Math.floor(diffInTime / oneDay);
 }
+
+export function getDateFromDays(days: number): Date {
+  const referenceDate = new Date();
+  const oneDay = 24 * 60 * 60 * 1000;
+  const futureDate = new Date(referenceDate.getTime() + days * oneDay);
+  return futureDate;
+}
