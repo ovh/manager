@@ -77,11 +77,8 @@ const AddDatabase = ({
       .min(3, {
         message: t('addDatabaseErrorMinLength', { min: 1 }),
       })
-      .max(30, {
-        message: t('addDatabaseErrorMaxLength', { max: 30 }),
-      })
-      .regex(/^[A-Za-z0-9]+$/, {
-        message: t('addDatabaseErrorFormat'),
+      .max(100, {
+        message: t('addDatabaseErrorMaxLength', { max: 100 }),
       }),
   });
   // generate a form controller
