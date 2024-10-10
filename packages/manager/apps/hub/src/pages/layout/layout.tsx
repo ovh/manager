@@ -20,7 +20,12 @@ import {
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { features, BILLING_FEATURE } from '@/pages/layout/layout.constants';
+import {
+  features,
+  BILLING_FEATURE,
+  SIRET_BANNER_FEATURE,
+  SIRET_MODAL_FEATURE,
+} from '@/pages/layout/layout.constants';
 import { useFetchHubServices } from '@/data/hooks/services/useServices';
 import { useFetchHubLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
 // Components used in Suspense's fallback cannot be lazy loaded (break testing)
@@ -45,6 +50,8 @@ const EnterpriseBillingSummary = lazy(() =>
 const PaymentStatus = lazy(() =>
   import('@/pages/layout/PaymentStatus.component'),
 );
+const SiretBanner = lazy(() => import('@/pages/layout/SiretBanner.component'));
+const SiretModal = lazy(() => import('@/pages/layout/SiretModal.component'));
 
 export default function Layout() {
   const location = useLocation();
@@ -165,8 +172,24 @@ export default function Layout() {
                   )}
                   {!isLoading && !isFreshCustomer && (
                     <>
-                      <div>oui-message.siret</div>
-                      <div>oui-modal.siret</div>
+                      {availability?.[SIRET_BANNER_FEATURE] && (
+                        <Suspense
+                          fallback={
+                            <OsdsSkeleton data-testid="siret-banner-skeleton" />
+                          }
+                        >
+                          <SiretBanner />
+                        </Suspense>
+                      )}
+                      {availability?.[SIRET_MODAL_FEATURE] && (
+                        <Suspense
+                          fallback={
+                            <OsdsSkeleton data-testid="siret-banner-skeleton" />
+                          }
+                        >
+                          <SiretModal />
+                        </Suspense>
+                      )}
                     </>
                   )}
                   {!isLoading && (
@@ -190,7 +213,7 @@ export default function Layout() {
                         <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
                           <Suspense fallback={<TileSkeleton />}>
                             <PaymentStatus
-                              canManageBilling={availability[BILLING_FEATURE]}
+                              canManageBilling={availability?.[BILLING_FEATURE]}
                             />
                           </Suspense>
                         </div>
