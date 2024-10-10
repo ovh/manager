@@ -3,46 +3,11 @@ import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
 import { act } from 'react-dom/test-utils';
+import { useSearchParams } from 'react-router-dom';
 import { fireEvent, render } from '@/utils/test.provider';
-import { platformMock } from '@/api/_mock_';
 import ModalAddAndEditOrganization from '../ModalAddAndEditOrganization.page';
 import organizationsAddAndEditTranslation from '@/public/translations/organizations/addAndEdit/Messages_fr_FR.json';
-
-const { useSearchParamsMock } = vi.hoisted(() => ({
-  useSearchParamsMock: vi.fn(() => [new URLSearchParams()]),
-}));
-
-vi.mock('@/hooks', () => {
-  return {
-    usePlatform: vi.fn(() => ({
-      platformId: platformMock[0].id,
-    })),
-    useGenerateUrl: vi.fn(),
-    useOrganization: vi.fn(() => ({
-      data: null,
-      isLoading: false,
-    })),
-  };
-});
-
-vi.mock('react-router-dom', () => ({
-  useNavigate: vi.fn(),
-  MemoryRouter: vi.fn(() => <ModalAddAndEditOrganization />),
-  useSearchParams: useSearchParamsMock,
-}));
-
-vi.mock('@ovh-ux/manager-react-components', () => {
-  return {
-    useNotifications: vi.fn(() => ({
-      addError: () => vi.fn(),
-      addSuccess: () => vi.fn(),
-    })),
-  };
-});
-
-afterEach(() => {
-  vi.restoreAllMocks();
-});
+import { organizationDetailMock } from '@/api/_mock_';
 
 describe('Organizations add and edit modal', () => {
   it('if i have not editOrganizationId params', () => {
@@ -55,13 +20,13 @@ describe('Organizations add and edit modal', () => {
   });
 
   it('if i have editOrganizationId params', () => {
-    useSearchParamsMock.mockImplementation(
-      vi.fn(() => [
-        new URLSearchParams({
-          editOrganizationId: '1903b491-4d10-4000-8b70-f474d1abe601',
-        }),
-      ]),
-    );
+    vi.mocked(useSearchParams).mockReturnValue([
+      new URLSearchParams({
+        editOrganizationId: organizationDetailMock.id,
+      }),
+      vi.fn(),
+    ]);
+
     const { getByTestId } = render(<ModalAddAndEditOrganization />);
     const modal = getByTestId('modal');
     expect(modal).toHaveProperty(
@@ -80,7 +45,8 @@ describe('Organizations add and edit modal', () => {
     expect(getByTestId('confirm-btn')).not.toBeEnabled();
 
     act(() => {
-      input1.odsInputBlur.emit({ name: 'name', value: '' });
+      fireEvent.change(input1, { target: { value: '' } });
+      input1.odsValueChange.emit({ name: 'name', value: '' });
     });
 
     expect(input1).toHaveAttribute('color', 'error');
