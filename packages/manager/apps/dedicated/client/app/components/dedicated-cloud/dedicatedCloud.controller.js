@@ -9,6 +9,7 @@ export default class {
   }
 
   $onInit() {
+    this.isTabsHidden = this.hasVCDMigration;
     if (this.dedicatedCloud.isExpired) {
       this.setMessage(this.$translate.instant('common_expired'), 'danger');
     }

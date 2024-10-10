@@ -5,6 +5,9 @@ export default {
   bindings: {
     serviceName: '<',
     trackingPrefix: '<',
+    pccMigrationState: '<',
+    vcdMigrationState: '<',
+    hasVcdMigration: '<',
   },
   controller,
   template,

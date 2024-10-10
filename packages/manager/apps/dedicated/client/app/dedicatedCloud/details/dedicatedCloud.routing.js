@@ -26,7 +26,18 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         };
       }
-      return 'app.dedicatedCloud.details.dashboard';
+
+      return transition
+        .injector()
+        .getAsync('hasVCDMigration')
+        .then((hasVCDMigration) => {
+          if (hasVCDMigration) {
+            return 'app.dedicatedCloud.details.dashboard.light';
+          }
+
+          return 'app.dedicatedCloud.details.dashboard';
+        })
+        .catch(() => 'app.dedicatedCloud.details.dashboard');
     },
     resolve: {
       currentService: /* @ngInject */ (DedicatedCloud, productId) =>
@@ -99,7 +110,6 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((featureAvailability) =>
             featureAvailability.isFeatureAvailable('hpc-vmware-managed-vcd'),
           ),
-
       dedicatedCloudServiceInfos: /* @ngInject */ (
         $stateParams,
         OvhApiDedicatedCloud,
@@ -107,7 +117,35 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiDedicatedCloud.v6().getServiceInfos({
           serviceName: $stateParams.productId,
         }),
-
+      dedicatedCloudVCDMigrationState: /* @ngInject */ (
+        DedicatedCloud,
+        $stateParams,
+        managedVCDAvailability,
+      ) => {
+        if (!managedVCDAvailability) return null;
+        return DedicatedCloud.getManagedVCDMigrationState(
+          $stateParams.productId,
+        ).catch(() => null);
+      },
+      dedicatedCloudPCCMigrationState: /* @ngInject */ (
+        DedicatedCloud,
+        $stateParams,
+        managedVCDAvailability,
+      ) => {
+        if (!managedVCDAvailability) return null;
+        return DedicatedCloud.getPCCMigrationState(
+          $stateParams.productId,
+        ).catch(() => null);
+      },
+      hasVCDMigration: /* @ngInject */ (
+        dedicatedCloudVCDMigrationState,
+        dedicatedCloudPCCMigrationState,
+      ) => {
+        return !!(
+          dedicatedCloudVCDMigrationState?.isDone ||
+          dedicatedCloudPCCMigrationState?.isEnabling
+        );
+      },
       drpAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
           .checkFeatureAvailability('dedicated-cloud:drp')
@@ -284,7 +322,6 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => {
         Alerter.set(`alert-${type}`, message, null, 'dedicatedCloud');
       },
-      trackingPrefix: () => 'dedicated::dedicatedClouds',
       usesLegacyOrder: /* @ngInject */ (currentService) =>
         currentService.usesLegacyOrder,
       newProductUrl: /* @ngInject */ (ovhFeatureFlipping, coreConfig) =>
