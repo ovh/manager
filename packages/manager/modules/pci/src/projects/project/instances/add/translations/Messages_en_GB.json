@@ -124,5 +124,6 @@
   "pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description3": "Select another location",
   "pci_projects_project_instances_add_attch_floating_ip_checkbox_label_tooltip": "Option not available when configuring multiple instances. Please go to Public IPs to link a Floating IP to your instances.",
   "pci_project_instances_instance_add_region_savings_plan_info": "Local Zones are not eligible for Savings Plans.",
-  "pci_projects_project_instances_add_billing_savings_plan_banner": "Get low monthly rates with Savings Plans, while keeping the flexibility of instances on time."
+  "pci_projects_project_instances_add_billing_savings_plan_banner": "Take advantage of low monthly rates with Savings Plans — save money without sacrificing the flexibility to use instances whenever you need them.",
+  "pci_projects_project_instances_add_billing_savings_plan_cta": "Set up your Savings Plan"
 }

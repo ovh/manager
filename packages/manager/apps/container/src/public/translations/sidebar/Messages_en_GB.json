@@ -198,5 +198,6 @@
   "sidebar_pci_ai_dashboard": "AI Dashboard",
   "sidebar_security_operations": "Operations",
   "sidebar_security_identity": "Identity and Security",
-  "sidebar_reduce": "Minimise"
+  "sidebar_reduce": "Minimise",
+  "sidebar_pci_savings_plan": "Savings Plan"
 }

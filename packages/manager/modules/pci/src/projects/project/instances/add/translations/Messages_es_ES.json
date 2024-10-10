@@ -123,6 +123,7 @@
   "pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description2": "Para crear una red privada extensa entre varias regiones, seleccione una región compatible.",
   "pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description3": "Cambiar la localización",
   "pci_projects_project_instances_add_attch_floating_ip_checkbox_label_tooltip": "Opción no disponible durante la configuración de varias instancias. Acceda a «Public IP» para asociar una Floating IP a sus instancias.",
-  "pci_project_instances_instance_add_region_savings_plan_info": "Las Locals Zones no son compatibles con los Savings Plans.",
-  "pci_projects_project_instances_add_billing_savings_plan_banner": "Disfrute de tarifas mensuales más bajas gracias a los Savings Plans, conservando la flexibilidad de las instancias por horas."
+  "pci_project_instances_instance_add_region_savings_plan_info": "Las Local Zones no son compatibles con los Savings Plans.",
+  "pci_projects_project_instances_add_billing_savings_plan_banner": "Disfrute de tarifas mensuales más económicas gracias a los Savings Plans, manteniendo la flexibilidad de las instancias por horas.",
+  "pci_projects_project_instances_add_billing_savings_plan_cta": "Configure sus Savings Plans"
 }

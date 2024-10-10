@@ -30,7 +30,7 @@
   "resource_tabs_cpu": "Compute Optimized",
   "resource_tabs_ram": "Memory Optimized",
   "resource_model_characteristics_gb": "{{value}} GB RAM",
-  "resource_model_characteristics_cpu": "{{cores}} vCORES ({{ghz}} GHz)",
+  "resource_model_characteristics_cpu": "{{cores}} vCores ({{ghz}} GHz)",
   "resource_model_characteristics_disk": "{{value}} GB NVMe",
   "resource_model_characteristics_mbits": "{{value}} MB/S",
   "savings_plan_name_input_placeholder": "MySavingsPlan",
