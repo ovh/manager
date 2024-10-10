@@ -89,5 +89,6 @@
   "common_dual_list_target_move_all": "Elimina tutto",
   "common_dual_list_target_search": "Cerca nel contenuto di destinazione",
   "common_file_dropAreaSingle": "Trascina e rilascia un file o",
-  "common_file_notSingleError": "Puoi aggiungere un solo file"
+  "common_file_notSingleError": "Puoi aggiungere un solo file",
+  "common_find_out_more_here": "Per maggiori informazioni, clicca qui."
 }
