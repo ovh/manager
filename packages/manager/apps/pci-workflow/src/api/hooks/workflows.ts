@@ -28,7 +28,7 @@ export type TWorkflow = {
 };
 
 export const useWorkflows = (projectId: string) => {
-  const { i18n } = useTranslation('common');
+  const { i18n } = useTranslation('pci-common');
   const locales = useRef({ ...dateFnsLocales }).current;
   const userLocale = getDateFnsLocale(i18n.language);
 

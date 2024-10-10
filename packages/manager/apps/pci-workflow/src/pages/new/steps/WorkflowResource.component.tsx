@@ -17,7 +17,7 @@ export function WorkflowResource({
   onSubmit,
   step,
 }: Readonly<WorkflowResourceProps>) {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('pci-common');
   const [instance, setInstance] = useState<TInstance>(null);
   return (
     <>

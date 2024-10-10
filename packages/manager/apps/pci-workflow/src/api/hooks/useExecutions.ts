@@ -41,7 +41,7 @@ export const useWorkflowExecutions = (
   workflowId: string,
   { pagination, sorting }: { pagination: PaginationState; sorting: ColumnSort },
 ) => {
-  const { i18n } = useTranslation('common');
+  const { i18n } = useTranslation('pci-common');
   const locales = useRef({ ...dateFnsLocales }).current;
   const userLocale = getDateFnsLocale(i18n.language);
 
