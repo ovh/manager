@@ -54,7 +54,7 @@ export default class FlavorsList {
     serviceName,
     currentRegion,
     catalogEndpoint = DEFAULT_CATALOG_ENDPOINT,
-    noCache
+    noCache,
   ) {
     if (noCache) {
       this.OvhApiCloudProjectFlavor.v6().resetQueryCache();
@@ -187,10 +187,10 @@ export default class FlavorsList {
         isNew,
         flavors: [
           ...filteredAndRearrangedFlavors.filter((flavor) =>
-            flavor?.tagsBlob.includes(TAGS_BLOB.IS_NEW),
+            flavor?.tagsBlob?.includes(TAGS_BLOB.IS_NEW),
           ),
           ...filteredAndRearrangedFlavors.filter(
-            (flavor) => !flavor?.tagsBlob.includes(TAGS_BLOB.IS_NEW),
+            (flavor) => !flavor?.tagsBlob?.includes(TAGS_BLOB.IS_NEW),
           ),
         ],
       };
