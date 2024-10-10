@@ -51,7 +51,7 @@ const IpsRestrictionsUpdate = ({
         description: getCdbApiErrorMessage(err),
       });
     },
-    onSuccess: (updatedService) => {
+    onEditSuccess: (updatedService) => {
       toast.toast({
         title: t('ipsUpdateSuccessTitle'),
         description: t('ipsUpdateSuccessDescription'),

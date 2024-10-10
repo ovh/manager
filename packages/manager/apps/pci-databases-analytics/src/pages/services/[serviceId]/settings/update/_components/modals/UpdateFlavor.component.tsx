@@ -79,7 +79,7 @@ const UpdateFlavorContent = ({
         onError(err);
       }
     },
-    onSuccess: (updatedService) => {
+    onEditSuccess: (updatedService) => {
       toast.toast({
         title: t('updateFlavorToastSuccessTitle'),
         description: hasStorage

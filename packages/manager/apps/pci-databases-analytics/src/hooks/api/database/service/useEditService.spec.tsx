@@ -19,12 +19,12 @@ describe('useEditService', () => {
     const projectId = 'projectId';
     const engine = database.EngineEnum.mysql;
     const serviceId = 'serviceId';
-    const onSuccess = vi.fn();
+    const onEditSuccess = vi.fn();
     const onError = vi.fn();
 
     vi.mocked(databaseAPI.editService).mockResolvedValue(mockedService);
     const { result } = renderHook(
-      () => useEditService({ onError, onSuccess }),
+      () => useEditService({ onError, onEditSuccess }),
       { wrapper: QueryClientWrapper },
     );
 
@@ -38,7 +38,7 @@ describe('useEditService', () => {
 
     await waitFor(() => {
       expect(databaseAPI.editService).toHaveBeenCalledWith(editServiceProps);
-      expect(onSuccess).toHaveBeenCalledWith(mockedService);
+      expect(onEditSuccess).toHaveBeenCalledWith(mockedService);
     });
   });
 });

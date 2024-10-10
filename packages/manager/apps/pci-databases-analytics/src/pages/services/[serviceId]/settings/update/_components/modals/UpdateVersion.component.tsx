@@ -67,7 +67,7 @@ const UpdateVersionContent = ({
         onError(err);
       }
     },
-    onSuccess: (updatedService) => {
+    onEditSuccess: (updatedService) => {
       toast.toast({
         title: t('updateVersionToastSuccessTitle'),
         description: t('updateVersionToastSuccessDescription', {
