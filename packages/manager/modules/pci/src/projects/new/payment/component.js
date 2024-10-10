@@ -15,6 +15,7 @@ export default {
     step1Link: '<',
     getPaymentMethod: '<',
     eligibility: '<',
+    freeTrialEligibility: '<',
     model: '<',
     defaultPaymentMethod: '<',
     hasComponentRedirectCallback: '<',
