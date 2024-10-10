@@ -122,7 +122,7 @@ export default class {
         } else {
           monthlyDetails = find(periodDetails, (detail) =>
             moment
-              .utc(detail.period.from)
+              .utc(detail.period.to)
               .isSame(this.data.monthBilling, 'month'),
           );
         }
