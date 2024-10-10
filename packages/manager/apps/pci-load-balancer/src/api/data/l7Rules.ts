@@ -26,3 +26,15 @@ export const getL7Rules = async (
   );
   return data;
 };
+
+export const deleteL7Rule = async (
+  projectId: string,
+  region: string,
+  policyId: string,
+  ruleId: string,
+) => {
+  const { data } = await v6.delete(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy/${policyId}/l7Rule/${ruleId}`,
+  );
+  return data;
+};
