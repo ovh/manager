@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
-import Create from '@/pages/create/Create.page';
+import Create from '@/pages/disableMFA/create/Create.page';
 import { LegalPolicyLinkByLanguage } from '@/constants';
 
 const user = {
