@@ -79,15 +79,15 @@ export default function Listing() {
     },
   ];
 
-  const datagridProps: TDatagridContainerProps = {
-    title: t('managed_vcd_listing_title'),
-    queryKey: getVcdOrganizationsQueryKey(),
-    route: {
-      api: VCD_ORGANIZATION_ROUTE,
-      onboarding: urls.onboarding,
-    },
-    columns,
-  };
-
-  return <DatagridContainer {...datagridProps} />;
+  return (
+    <DatagridContainer
+      title={t('managed_vcd_listing_title')}
+      queryKey={getVcdOrganizationsQueryKey()}
+      route={{
+        api: VCD_ORGANIZATION_ROUTE,
+        onboarding: urls.onboarding,
+      }}
+      columns={columns}
+    />
+  );
 }
