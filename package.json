@@ -117,7 +117,7 @@
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.18.0",
     "turbo": "^1.4.3",
-    "vite": "^5.2.13",
+    "vite": "^4.5.5",
     "whatwg-fetch": "^3.6.2"
   },
   "engines": {
