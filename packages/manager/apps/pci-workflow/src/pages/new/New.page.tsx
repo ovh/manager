@@ -31,7 +31,7 @@ import { useAddWorkflow } from '@/api/hooks/workflows';
 
 export default function NewPage() {
   const { t } = useTranslation('workflow-add');
-  const { t: tCommon } = useTranslation('common');
+  const { t: tCommon } = useTranslation('pci-common');
   const { t: tListing } = useTranslation('listing');
   const stepper = useWorkflowStepper();
   const { addSuccess, addError, clearNotifications } = useNotifications();
