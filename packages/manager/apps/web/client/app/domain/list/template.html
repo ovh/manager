@@ -27,18 +27,25 @@
         <oui-datagrid-topbar data-ng-if="$ctrl.topbarOptions">
             <topbar-cta data-options="$ctrl.topbarOptions"></topbar-cta>
             <div class="d-inline" data-ng-if="$ctrl.resources.data.length">
-                <oui-button
-                    data-variant="secondary"
-                    data-disabled="!$ctrl.selectedRows.length"
+                <button
+                    class="oui-button oui-button_secondary"
+                    type="button"
+                    data-ng-disabled="!$ctrl.selectedRows.length"
                     data-ng-click="$ctrl.goToRestoreRenew($ctrl.selectedRows)"
+                    data-track-on="click"
+                    data-track-type="action"
+                    data-track-name="{{$ctrl.DOMAIN_PREFIX_PAGE_BUTTON_RENEW_RESTORE_DOMAIN}}"
                 >
                     <span data-translate="domains_action_restore_renew"></span>
-                </oui-button>
-
-                <oui-button
-                    data-variant="secondary"
+                </button>
+                <button
+                    class="oui-button oui-button_secondary"
+                    type="button"
                     data-ng-click="$ctrl.setActionMultiple('export-csv/domains-export-to-csv')"
                     data-ng-disabled="$ctrl.loading.domainsExportCsv"
+                    data-track-on="click"
+                    data-track-type="action"
+                    data-track-name="{{$ctrl.DOMAIN_PREFIX_PAGE_BUTTON_EXPORT_CSV_DOMAIN}}"
                 >
                     <span
                         data-translate="domains_dashboard_button_export"
@@ -48,7 +55,7 @@
                         data-translate="domains_dashboard_tooltip_export_csv_creation_doing"
                         data-ng-if="$ctrl.loading.domainsExportCsv"
                     ></span>
-                </oui-button>
+                </button>
             </div>
         </oui-datagrid-topbar>
         <oui-datagrid-column
@@ -62,6 +69,7 @@
             <a
                 data-ng-href="{{:: $ctrl.getServiceNameLink($row) }}"
                 data-ng-bind="$ctrl.constructor.convertToPunycode($value)"
+                data-ng-click="$ctrl.trackDomainLinkClick('domain_name')"
             ></a>
             <button
                 data-ng-if="$ctrl.isIdn($value)"
@@ -161,6 +169,7 @@
                     class="oui-link_icon"
                     data-ng-href="{{:: $ctrl.linkToOwnerPage($row.contactOwner.id, $row.domain)}}"
                     target="_top"
+                    data-ng-click="$ctrl.trackDomainLinkClick('contact-owner')"
                 >
                     <span data-ng-bind=":: $row.contactOwner.id"></span>
                 </a>
@@ -194,6 +203,7 @@
                 data-ng-if="$row.contactAdmin.id === $ctrl.user.auth.account"
                 data-ng-href="{{:: $ctrl.USER_ACCOUNT_INFOS_LINK }}"
                 target="_top"
+                data-ng-click="$ctrl.trackDomainLinkClick('contact-admin')"
             >
                 <span data-ng-bind=":: $row.contactAdmin.id"></span>
                 <span
@@ -219,6 +229,7 @@
                 data-ng-if="$row.contactBilling.id === $ctrl.user.auth.account"
                 data-ng-href="{{:: $ctrl.USER_ACCOUNT_INFOS_LINK }}"
                 target="_top"
+                data-ng-click="$ctrl.trackDomainLinkClick('contact-billing')"
             >
                 <span data-ng-bind=":: $row.contactBilling.id"></span>
                 <span
@@ -244,6 +255,7 @@
                 data-ng-if="$row.contactTech.id === $ctrl.user.auth.account"
                 data-ng-href="{{:: $ctrl.USER_ACCOUNT_INFOS_LINK }}"
                 target="_top"
+                data-ng-click="$ctrl.trackDomainLinkClick('contact-technical')"
             >
                 <span data-ng-bind=":: $row.contactTech.id"></span>
                 <span
@@ -285,6 +297,7 @@
                 data-href="{{:: $ctrl.getServiceNameLink($row)}}"
                 aria-label="{{:: 'domains_action_per_line_detail' | translate }}"
                 data-ng-if="![$ctrl.DOMAIN_STATUS.PENDING_INCOMING_TRANSFER, $ctrl.DOMAIN_STATUS.PENDING_CREATE].includes($row.state)"
+                data-ng-click="$ctrl.trackDomainButtonClick('domain-name-details')"
             >
                 <span data-translate="domains_action_per_line_detail"></span>
             </oui-action-menu-item>
@@ -292,6 +305,7 @@
                 data-on-click="$ctrl.goToRestoreRenew($row)"
                 aria-label="{{:: $row.state === $ctrl.DOMAIN_STATUS.RESTORABLE ? 'domains_action_per_line_restore' : 'domains_action_per_line_renew' | translate }}"
                 data-ng-if="$ctrl.constructor.isDomainRenewableOrRestorable($row)"
+                data-ng-click="$ctrl.trackDomainButtonClick('renew')"
             >
                 <span
                     data-translate="{{ $row.state === $ctrl.DOMAIN_STATUS.RESTORABLE ? 'domains_action_per_line_restore' : 'domains_action_per_line_renew' }}"
@@ -301,6 +315,7 @@
                 data-href="{{:: $ctrl.CANCEL_LINK + $row.domain }}"
                 aria-label="{{:: 'domains_action_per_line_cancellation' | translate }}"
                 data-ng-if="$ctrl.constructor.isDomainCancellable($row)"
+                data-ng-click="$ctrl.trackDomainButtonClick('terminate')"
                 top
             >
                 <span
@@ -311,6 +326,7 @@
                 data-on-click="$ctrl.goToResiliateCancelation($row)"
                 aria-label="{{:: 'domains_action_per_line_resiliation_cancellation' | translate }}"
                 data-ng-if="$row.contactAdmin.id === $ctrl.user.auth.account && $row.renewalState === $ctrl.DOMAIN_RENEWABLE_STATE.CANCELLATION_REQUESTED"
+                data-ng-click="$ctrl.trackDomainButtonClick('cancel-terminate')"
                 top
             >
                 <span
@@ -321,6 +337,7 @@
                 data-on-click="$ctrl.goToRenewManagementEnable($row)"
                 aria-label="{{:: 'domains_action_per_line_autorenew_activate' | translate }}"
                 data-ng-if="$row.renewalState === $ctrl.DOMAIN_RENEWABLE_STATE.MANUAL_RENEW"
+                data-ng-click="$ctrl.trackDomainButtonClick('enable-automatic-renewal')"
             >
                 <span
                     data-translate="domains_action_per_line_autorenew_activate"
@@ -330,6 +347,7 @@
                 data-on-click="$ctrl.goToRenewManagementDisable($row)"
                 aria-label="{{:: 'domains_action_per_line_autorenew_deactivate' | translate }}"
                 data-ng-if="$row.renewalState === $ctrl.DOMAIN_RENEWABLE_STATE.AUTOMATIC_RENEW"
+                data-ng-click="$ctrl.trackDomainButtonClick('disable-automatic-renewal')"
             >
                 <span
                     data-translate="domains_action_per_line_autorenew_deactivate"
@@ -337,6 +355,7 @@
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-on-click="$ctrl.goToContactManagementEdit($row.domain)"
+                data-ng-click="$ctrl.trackDomainButtonClick('manage-contact')"
                 aria-label="{{:: 'common_manage_contacts' | translate }}"
             >
                 <span data-translate="common_manage_contacts"></span>
