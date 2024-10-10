@@ -103,10 +103,6 @@ const mocks = vi.hoisted(() => ({
     status: 'OK',
   },
 }));
-const services: ApiEnvelope<ProductList> = {
-  data: { count: 0, data: {} },
-  status: 'OK',
-};
 
 const shellContext = {
   environment: {
@@ -137,10 +133,10 @@ const shellContext = {
             setTimeout(() => resolve('https://fake-link.com'), 50),
           ),
       ),
-      tracking: {
-        trackImpression: trackImpressionMock,
-        trackClickImpression: trackClickImpressionMock,
-      },
+    },
+    tracking: {
+      trackImpression: trackImpressionMock,
+      trackClickImpression: trackClickImpressionMock,
     },
   },
 };
