@@ -90,7 +90,7 @@ export const Datagrid = <T,>({
   className,
   onPaginationChange,
   onSortChange,
-  contentAlignLeft,
+  contentAlignLeft = true,
   hasNextPage,
   onFetchNextPage,
   manualSorting = true,

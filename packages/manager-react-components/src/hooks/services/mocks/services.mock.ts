@@ -1,5 +1,3 @@
-import { Handler } from '../../../../../../playwright-helpers';
-
 export type GetServicesMocksParams = {
   getServicesKo?: boolean;
   getDetailsServicesKo?: boolean;
@@ -19,7 +17,7 @@ export const getServicesMocks = ({
   getDetailsServicesKo,
   updateServicesKo,
   deleteServicesKo,
-}: GetServicesMocksParams): Handler[] => [
+}: GetServicesMocksParams): any[] => [
   {
     url: '/services/:id/terminate',
     response: () =>
