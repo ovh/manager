@@ -27,10 +27,11 @@
             data-service-name="{{:: $ctrl.projectId }}"
             data-selected-flavor="$ctrl.model.flavorGroup"
             data-display-selected-flavor="$ctrl.displaySelectedFlavor"
-            data-selected-category="{{:: $ctrl.selectedCategory }}"
+            data-selected-category="$ctrl.selectedCategory"
             data-include-categories="$ctrl.includeCategories"
             data-exclude-categories="$ctrl.excludeCategories"
             data-on-change="$ctrl.onFlavorCategorySelect(flavor, category)"
+            data-on-tab-change="$ctrl.onFlavorTabChange(category)"
             data-catalog-endpoint="$ctrl.catalogEndpoint"
             data-reload="$ctrl.reloadFlavorList"
             data-load-end="$ctrl.onFlavorListLoadEnd()"
@@ -65,6 +66,7 @@
                 <oui-tabs-item
                     data-ng-repeat="(continent, datacentersLocation) in $ctrl.availableRegions track by continent"
                     data-heading="{{:: continent }}"
+                    data-on-active="$ctrl.onContinentChange(continent)"
                 >
                     <div class="container-fluid px-0">
                         <span
@@ -161,6 +163,7 @@
                         <oui-checkbox
                             data-ng-if="$ctrl.constructor.hasRegions($ctrl.unavailableRegions[continent])"
                             data-model="$ctrl.showNonAvailableRegions"
+                            data-on-change="$ctrl.onNonAvailableRegionsCheck(modelValue)"
                         >
                             <span
                                 data-translate="pci_projects_project_instances_add_region_display_nonavailable"
@@ -224,6 +227,8 @@
                                     type="button"
                                     class="oui-button oui-button_ghost"
                                     data-ng-click="$ctrl.currentStep = 0"
+                                    data-track-on="click"
+                                    data-track-name="PublicCloud::compute::instances::funnel::link::add_instance::change_flavor"
                                 >
                                     <span
                                         data-translate="pci_project_instances_instance_add_choose_model"
@@ -297,6 +302,8 @@
             data-service-name="{{:: $ctrl.projectId }}"
             data-selected-image="$ctrl.model.image"
             data-is-image-compatible="$ctrl.model.isImageCompatible"
+            data-on-tab-change="$ctrl.onImageTabChange(type)"
+            data-on-change="$ctrl.onImageSelect(image)"
         >
             <div class="d-flex justify-content-between">
                 <span
@@ -346,6 +353,7 @@
                 data-min="1"
                 data-max="$ctrl.quota.getMaxNumberOfInstances($ctrl.flavor)"
                 data-model="$ctrl.model.number"
+                data-on-change="$ctrl.onModelNumberChange(modelValue)"
             >
             </oui-numeric>
 
@@ -564,7 +572,7 @@
                     type="button"
                     class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                     data-track-on="click"
-                    data-track-name="PublicCloud::pci::projects::project::instances::add::guide-attaching-pci-floating-ip-to-instance"
+                    data-track-name="PublicCloud::compute::instances::funnel::link::add_instance::configure_network::change_localisation"
                     data-ng-click="$ctrl.currentStep = 1"
                 >
                     <span
@@ -652,7 +660,7 @@
         >
             <oui-radio-group
                 data-model="$ctrl.isCreatingNewPrivateNetwork"
-                data-on-change="$ctrl.handleisCreatingNewPrivateNetworkChange()"
+                data-on-change="$ctrl.handleisCreatingNewPrivateNetworkChange(modelValue)"
                 class="mb-3"
             >
                 <oui-radio
@@ -978,6 +986,7 @@
         data-submit-text="{{ :: 'pci_projects_project_instances_add_submit_label' | translate }}"
         data-cancel-text="{{ :: 'pci_projects_project_instances_add_cancel_label' | translate }}"
         data-on-cancel="$ctrl.cancel()"
+        data-on-focus="$ctrl.onBillingFocus()"
         data-editable="!$ctrl.isLoading"
         name="instances_add_billing"
         data-on-focus="$ctrl.onBillingFocus()"
@@ -1082,6 +1091,7 @@
             data-monthly-billing="$ctrl.instance.monthlyBilling"
             data-addons="$ctrl.addons"
             data-disabled="false"
+            data-on-billing-type-change="$ctrl.onBillingTypeChange(billing)"
         >
         </pci-project-flavor-billing>
 
