@@ -25,6 +25,8 @@ type CreateGeneralInformationsProps = {
   setDescription: Dispatch<SetStateAction<string | null>>;
   csr: string | null;
   setCsr: Dispatch<SetStateAction<string | null>>;
+  isCustomCsr: boolean;
+  setIsCustomCsr: Dispatch<SetStateAction<boolean>>;
   nextStep: () => void;
 };
 
@@ -37,6 +39,8 @@ const CreateGeneralInformations = ({
   setDescription,
   csr,
   setCsr,
+  isCustomCsr,
+  setIsCustomCsr,
   nextStep,
 }: CreateGeneralInformationsProps) => {
   const { t } = useTranslation('key-management-service/credential');
@@ -46,7 +50,6 @@ const CreateGeneralInformations = ({
   const credentialDescriptionError = validateCredentialDescription(description);
   const credentialValidityError = validateValidityDate(validity);
   const credentialCreationMethodError = validateCredentialCreationMethod(csr);
-  const [isCustomCsr, setIsCustomCsr] = useState<boolean>(false);
 
   useEffect(() => {
     if (!isCustomCsr) {
