@@ -1,7 +1,7 @@
 {
   "key_management_service_service_keys": "Clés de chiffrement",
   "key_management_service_service_keys_back_link": "Retour à la liste des clés",
-  "key_management_service_service-keys_headline": "Créez, importez et gérez vos clés de chiffrements CMK (Customer Managed Keys).",
+  "key_management_service_service-keys_headline": "Créez et gérez vos clés de chiffrements CMK (Customer Managed Keys).",
   "key_management_service_service-keys_column_name": "Nom",
   "key_management_service_service-keys_column_id": "ID",
   "key_management_service_service-keys_column_type": "Type",
