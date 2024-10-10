@@ -9,7 +9,7 @@
         class="form-control"
         id="version"
         name="version"
-        data-ng-options="(('license_designation_PLESK_version_'+optionVersion.value) | translate) for optionVersion in getOptionVersions()"
+        data-ng-options="(('license_designation_PLESK_version_'+optionVersion.planCode) | translate) for optionVersion in getOptionVersions()"
         data-ng-model="selected.options['PLESK'].version"
     >
         <option value="" data-translate="license_upgrade_common_no_change">

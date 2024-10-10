@@ -1,14 +1,8 @@
-import filter from 'lodash/filter';
-import find from 'lodash/find';
-import head from 'lodash/head';
-
 export default /* @ngInject */ (
   $scope,
   $translate,
   License,
-  $q,
   Alerter,
-  $filter,
   $stateParams,
 ) => {
   $scope.alerts = {
@@ -21,6 +15,7 @@ export default /* @ngInject */ (
     durations: false,
     prices: false,
     bc: false,
+    loadedContract: false,
   };
 
   $scope.license = null;
@@ -60,11 +55,13 @@ export default /* @ngInject */ (
     const opts = {
       licenseType: $scope.license.type,
       id: $scope.license.id,
+      serviceId: $scope.serviceInfo.serviceId,
       options: $scope.selected.options[$scope.license.type],
     };
     switch ($scope.license.type) {
       case 'SQLSERVER':
       case 'WINDOWS':
+      case 'CPANEL':
       case 'WORKLIGHT':
         if ($scope.selected.options[$scope.license.type].version !== null) {
           opts.version =
@@ -77,60 +74,37 @@ export default /* @ngInject */ (
     return opts;
   }
 
-  function loadPrices(durations) {
-    const queue = [];
-    $scope.loaders.prices = true;
-
-    angular.forEach(durations, (duration) => {
-      const opt = getWhatToSendFromSelected();
-      angular.extend(opt, { duration });
-      queue.push(
-        License.getLicenseUpgradeForDuration(opt).then((details) => {
-          $scope.durations.details[duration] = details;
-          return $scope.durations.details[duration];
-        }),
-      );
-    });
-
-    $q.all(queue).then(() => {
-      if (durations && durations.length === 1) {
-        $scope.selected.duration = head(durations);
-      }
-
-      $scope.loaders.prices = false;
-    });
-  }
-
-  const getOrderableVersion = () => {
+  const getUpgradeVersion = () => {
     $scope.loaders.orderableVersion = true;
-    License.orderableVersion($scope.license.ip).then((data) => {
-      $scope.types = data;
-
-      if ($scope.types[$scope.license.type]) {
-        if ($scope.types[$scope.license.type].options.length > 0) {
-          $scope.selected.version = find(
-            $scope.types[$scope.license.type].options[0].options,
-            (elem) => $scope.license.version === elem.value,
-          );
-
-          $scope.selected.options = getResetedOptions();
+    License.getServiceId($scope.license)
+      .then((data) => {
+        $scope.serviceInfo = data;
+        return License.getUpgradeVersion($scope.serviceInfo.serviceId);
+      })
+      .then((data) => {
+        $scope.types = data;
+        if ($scope.types) {
+          if ($scope.types.length > 0) {
+            $scope.selected.version = $scope.types.find((type) => {
+              return $scope.license.version === type.productName;
+            });
+            $scope.selected.options = getResetedOptions();
+          } else {
+            Alerter.alertFromSWS(
+              $translate.instant('license_upgrade_common_no_upgrade'),
+              'ERROR',
+              $scope.alerts.upgrade,
+            );
+          }
         } else {
           Alerter.alertFromSWS(
-            $translate.instant('license_upgrade_common_no_upgrade'),
+            $translate.instant('license_order_loading_error'),
             'ERROR',
             $scope.alerts.upgrade,
           );
         }
-      } else {
-        Alerter.alertFromSWS(
-          $translate.instant('license_order_loading_error'),
-          'ERROR',
-          $scope.alerts.upgrade,
-        );
-      }
-
-      $scope.loaders.orderableVersion = false;
-    });
+        $scope.loaders.orderableVersion = false;
+      });
   };
 
   function init() {
@@ -142,7 +116,7 @@ export default /* @ngInject */ (
         $scope.license = license;
       })
       .then(() => {
-        getOrderableVersion();
+        getUpgradeVersion();
       })
       .finally(() => {
         $scope.loaders.init = false;
@@ -216,9 +190,8 @@ export default /* @ngInject */ (
   };
 
   $scope.getOptionVersions = function getOptionVersions() {
-    return filter(
-      $scope.types[$scope.license.type].options[0].options,
-      (version) => $scope.license.version.value !== version.value,
+    return $scope.types.filter(
+      (version) => version.productName !== $scope.license.version,
     );
   };
 
@@ -239,6 +212,7 @@ export default /* @ngInject */ (
     () => {
       $scope.loaders.bc = false;
       $scope.order = null;
+      $scope.loaders.loadedContract = false;
     },
     true,
   );
@@ -248,15 +222,22 @@ export default /* @ngInject */ (
   $scope.getDuration = function getDuration() {
     if (!$scope.loaders.durations && $scope.isSelectionValid()) {
       $scope.loaders.durations = true;
+      $scope.loaders.prices = true;
       const asking = getWhatToSendFromSelected();
       return License.upgradeDuration(asking).then(
         (durations) => {
+          const renewPrice = durations.prices?.find((price) =>
+            price.capacities.includes('renew'),
+          );
           if (angular.equals(asking, getWhatToSendFromSelected())) {
-            $scope.durations.available = durations;
-            loadPrices(durations);
+            $scope.durations.available = '01';
+            $scope.durations.details[$scope.durations.available] = {
+              ...renewPrice,
+            };
           }
 
           $scope.loaders.durations = false;
+          $scope.loaders.prices = false;
         },
 
         (data) => {
@@ -272,6 +253,15 @@ export default /* @ngInject */ (
     return null;
   };
 
+  $scope.simulateUpgrade = function simulateUpgrade() {
+    $scope.loaders.loadedContract = false;
+    const asking = getWhatToSendFromSelected();
+    License.simulateLicenseUpgrade(asking).then(({ order }) => {
+      $scope.orderDetails = order;
+      $scope.loaders.loadedContract = true;
+    });
+  };
+
   $scope.contractsValidated = {
     value: null,
   };
@@ -280,15 +270,17 @@ export default /* @ngInject */ (
     $scope.contractsValidated = {
       value: null,
     };
+    $scope.simulateUpgrade();
   };
 
   $scope.generateBc = function generateBc() {
     $scope.loaders.bc = true;
     const opt = getWhatToSendFromSelected();
-    angular.extend(opt, { duration: $scope.selected.duration });
+    opt.duration = $scope.selected.duration;
+    opt.upgradePrice = $scope.orderDetails?.details[0].totalPrice.value;
     License.upgradeLicenseOrderForDuration(opt).then(
-      (details) => {
-        $scope.order = details;
+      ({ order }) => {
+        $scope.order = order;
         $scope.loaders.bc = false;
       },
       (data) => {
