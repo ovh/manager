@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.37.0...@ovh-ux/manager-react-components@1.38.0) (2024-10-10)
+
+### Features
+
+- **manager-react-components:** correcting content for iam manager text ([#13469](https://github.com/ovh/manager/issues/13469)) ([6edb862](https://github.com/ovh/manager/commit/6edb862bfc21b867a38657242816e7b9623bc5f2))
+- **manager-react-components:** useFormattedDate hook ([#12983](https://github.com/ovh/manager/issues/12983)) ([66217b4](https://github.com/ovh/manager/commit/66217b45f1241e7e6adc474f2a55cbf0c9b2c667))
+
 # [1.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.36.0...@ovh-ux/manager-react-components@1.37.0) (2024-10-10)
 
 ### Bug Fixes
