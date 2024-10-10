@@ -15,13 +15,13 @@ export default class ServicesActionsCtrl {
 
     this.SERVICE_TYPE = SERVICE_TYPE;
     this.isLoading = true;
+    this.billingManagementAvailabilityAndHaveAutorenewLink = false;
   }
 
   $onInit() {
     const fetchAutoRenewLink = this.$q.defer();
-    if (!this.billingManagementAvailability) {
-      fetchAutoRenewLink.resolve(null);
-    } else if (this.$injector.has('shellClient')) {
+
+    if (this.$injector.has('shellClient')) {
       this.$injector
         .get('shellClient')
         .navigation.getURL('dedicated', '#/billing/autorenew')
@@ -36,6 +36,8 @@ export default class ServicesActionsCtrl {
     }
     return fetchAutoRenewLink.promise.then((link) => {
       this.autorenewLink = link;
+      this.billingManagementAvailabilityAndHaveAutorenewLink =
+        this.billingManagementAvailability && !!this.autorenewLink;
       this.isLoading = false;
       this.initLinks();
     });
@@ -119,7 +121,7 @@ export default class ServicesActionsCtrl {
       default:
         this.resiliateLink = this.service.canResiliateByEndRule()
           ? resiliationByEndRuleLink
-          : this.autorenewLink &&
+          : this.billingManagementAvailabilityAndHaveAutorenewLink &&
             `${this.autorenewLink}/delete?serviceId=${this.service.serviceId}${serviceTypeParam}`;
         break;
     }
@@ -148,6 +150,14 @@ export default class ServicesActionsCtrl {
         : `${this.trackingPrefix}::${action}`;
 
       this.atInternet.trackClick({ name, type: 'action' });
+    }
+  }
+
+  handleClickResiliate() {
+    this.trackAction('go-to-resiliate');
+
+    if (this.handleGoToResiliation) {
+      this.handleGoToResiliation();
     }
   }
 }
