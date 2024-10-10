@@ -27,8 +27,8 @@ const init = async (
   await initI18n({
     context,
     reloadOnLocaleChange,
-    ns: ['common'],
-    defaultNS: 'common',
+    ns: ['pci-common'],
+    defaultNS: 'pci-common',
   });
 
   ReactDOM.createRoot(document.getElementById('root')).render(
