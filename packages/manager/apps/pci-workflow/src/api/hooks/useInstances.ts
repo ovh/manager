@@ -89,10 +89,7 @@ export const usePaginatedInstances = (
       isPending,
       error,
       data: paginateResults<TInstance>(
-        sortResults(
-          applyFilters(((instances as unknown) as TInstance[]) || [], filters),
-          sorting,
-        ),
+        sortResults(applyFilters(instances || [], filters), sorting),
         pagination,
       ),
     }),
