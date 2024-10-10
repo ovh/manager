@@ -33,7 +33,7 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useGatewayByRegion } from '@/api/hooks/useGateway';
@@ -54,6 +54,7 @@ import {
   StepsEnum,
   useNewNetworkStore,
 } from '@/pages/new/store';
+import { isValidCidrMask, isValidIpAddress } from '@/api/utils/utils';
 
 const isVlanAvailable = (
   networks: TAggregatedNetwork[],
@@ -86,9 +87,7 @@ export default function ConfigurationStep({
   const store = useNewNetworkStore();
   const { clearNotifications } = useNotifications();
 
-  const { t } = useTranslation('new');
-  const { t: tCommon } = useTranslation('common');
-  const { t: tNew } = useTranslation('new');
+  const { t } = useTranslation(['common', 'new']);
 
   const {
     data: regions,
@@ -220,9 +219,31 @@ export default function ConfigurationStep({
   const missingNameError =
     isNetworkNameInputTouched && !store.form.privateNetworkName.length;
 
+  const isIpValid = useMemo(() => isValidIpAddress(store.form.address), [
+    store.form.address,
+  ]);
+  const isMaskValid = useMemo(() => isValidCidrMask(store.form.cidr), [
+    store.form.cidr,
+  ]);
+
+  const isCreateBtnDisabled = useMemo(
+    () =>
+      !store.form.privateNetworkName ||
+      (!store.form.createGateway && store.project.isDiscovery) ||
+      (store.form.dhcp && (!isIpValid || !isMaskValid)),
+    [
+      store.form.privateNetworkName,
+      store.form.createGateway,
+      store.form.dhcp,
+      store.project.isDiscovery,
+      isIpValid,
+      isMaskValid,
+    ],
+  );
+
   return (
     <StepComponent
-      title={t('pci_projects_project_network_private_create_configure')}
+      title={t('new:pci_projects_project_network_private_create_configure')}
       edit={{
         action: () => {
           store.updateStep.unCheck(StepsEnum.CONFIGURATION);
@@ -230,7 +251,7 @@ export default function ConfigurationStep({
 
           store.updateStep.close(StepsEnum.SUMMARY);
         },
-        label: tCommon('common_stepper_modify_this_step'),
+        label: t('common_stepper_modify_this_step'),
         isDisabled: false,
       }}
       order={2}
@@ -241,12 +262,10 @@ export default function ConfigurationStep({
       {!isNetworkLoading ? (
         <div className="my-8">
           <OsdsFormField
-            error={
-              missingNameError ? tCommon('common_field_error_required') : ''
-            }
+            error={missingNameError ? t('common_field_error_required') : ''}
           >
             <OsdsText color={ODS_THEME_COLOR_INTENT.text} slot="label">
-              {t('pci_projects_project_network_private_create_name')}
+              {t('new:pci_projects_project_network_private_create_name')}
             </OsdsText>
 
             <OsdsInput
@@ -293,7 +312,7 @@ export default function ConfigurationStep({
                     slot="end"
                   >
                     {t(
-                      'pci_projects_project_network_private_create_public_gateway',
+                      'new:pci_projects_project_network_private_create_public_gateway',
                     )}
                   </OsdsText>
                 </OsdsCheckboxButton>
@@ -308,7 +327,7 @@ export default function ConfigurationStep({
                   <span
                     dangerouslySetInnerHTML={{
                       __html: t(
-                        'pci_projects_project_network_private_create_public_gateway_decription_1',
+                        'new:pci_projects_project_network_private_create_public_gateway_decription_1',
                         {
                           guideLink: PRIVATE_NETWORK_URL,
                         },
@@ -325,7 +344,7 @@ export default function ConfigurationStep({
                   <span
                     dangerouslySetInnerHTML={{
                       __html: t(
-                        'pci_projects_project_network_private_create_public_gateway_decription_2',
+                        'new:pci_projects_project_network_private_create_public_gateway_decription_2',
                       ),
                     }}
                   />
@@ -338,7 +357,7 @@ export default function ConfigurationStep({
                   <span
                     dangerouslySetInnerHTML={{
                       __html: t(
-                        'pci_projects_project_network_private_create_public_gateway_footer',
+                        'new:pci_projects_project_network_private_create_public_gateway_footer',
                         { guideLink: REGION_GUIDE_URL },
                       ),
                     }}
@@ -356,7 +375,7 @@ export default function ConfigurationStep({
                 size={ODS_TEXT_SIZE._500}
               >
                 {t(
-                  'pci_projects_project_network_private_create_layer_2_options',
+                  'new:pci_projects_project_network_private_create_layer_2_options',
                 )}
               </OsdsText>
               <div className="mt-6">
@@ -378,7 +397,7 @@ export default function ConfigurationStep({
                         size={ODS_TEXT_SIZE._500}
                       >
                         {t(
-                          'pci_projects_project_network_private_create_configure_choose_vlan',
+                          'new:pci_projects_project_network_private_create_configure_choose_vlan',
                         )}
                       </OsdsText>
                     </span>
@@ -390,7 +409,9 @@ export default function ConfigurationStep({
                     level={ODS_TEXT_LEVEL.body}
                     size={ODS_TEXT_SIZE._400}
                   >
-                    {t('pci_projects_project_network_private_create_vlan_tip')}
+                    {t(
+                      'new:pci_projects_project_network_private_create_vlan_tip',
+                    )}
                   </OsdsText>
                 </div>
 
@@ -401,7 +422,7 @@ export default function ConfigurationStep({
                       size={ODS_TEXT_SIZE._400}
                     >
                       {t(
-                        'pci_projects_project_network_private_create_vlan_id_warning',
+                        'new:pci_projects_project_network_private_create_vlan_id_warning',
                       )}
                     </OsdsText>
                   </OsdsMessage>
@@ -418,7 +439,7 @@ export default function ConfigurationStep({
                         slot="label"
                       >
                         {t(
-                          'pci_projects_project_network_private_create_configure_vlan',
+                          'new:pci_projects_project_network_private_create_configure_vlan',
                         )}
                       </OsdsText>
 
@@ -472,7 +493,7 @@ export default function ConfigurationStep({
                         slot="helper"
                       >
                         {t(
-                          'pci_projects_project_network_private_create_configure_vlan_limits',
+                          'new:pci_projects_project_network_private_create_configure_vlan_limits',
                         )}
                       </OsdsText>
                     </OsdsFormField>
@@ -490,7 +511,7 @@ export default function ConfigurationStep({
                         size={ODS_TEXT_SIZE._400}
                       >
                         {t(
-                          'pci_projects_project_network_private_create_configure_vlan_taken',
+                          'new:pci_projects_project_network_private_create_configure_vlan_taken',
                         )}
                       </OsdsText>
                     </OsdsMessage>
@@ -507,7 +528,7 @@ export default function ConfigurationStep({
               className="mb-6"
             >
               {t(
-                'pci_projects_project_network_private_create_dhcp_address_distribution_options',
+                'new:pci_projects_project_network_private_create_dhcp_address_distribution_options',
               )}
             </OsdsText>
             <div className="mt-6">
@@ -529,7 +550,7 @@ export default function ConfigurationStep({
                       size={ODS_TEXT_SIZE._500}
                     >
                       {t(
-                        'pci_projects_project_network_private_create_enable_dhcp',
+                        'new:pci_projects_project_network_private_create_enable_dhcp',
                       )}
                     </OsdsText>
                   </span>
@@ -543,29 +564,41 @@ export default function ConfigurationStep({
                   <OsdsFormField>
                     <OsdsText color={ODS_THEME_COLOR_INTENT.text} slot="label">
                       {t(
-                        'pci_projects_project_network_private_create_configure_address',
+                        'new:pci_projects_project_network_private_create_configure_address',
                       )}
                     </OsdsText>
                     <OsdsInput
                       type={ODS_INPUT_TYPE.text}
-                      color={ODS_THEME_COLOR_INTENT.primary}
+                      color={
+                        isIpValid
+                          ? ODS_THEME_COLOR_INTENT.primary
+                          : ODS_THEME_COLOR_INTENT.error
+                      }
                       value={store.form.address}
+                      onOdsValueChange={({ target }) => {
+                        store.setForm({ address: target.value as string });
+                      }}
                       inline
-                      disabled
                     />
                   </OsdsFormField>
                   <OsdsFormField>
                     <OsdsText color={ODS_THEME_COLOR_INTENT.text} slot="label">
                       {t(
-                        'pci_projects_project_network_private_create_configure_mask',
+                        'new:pci_projects_project_network_private_create_configure_mask',
                       )}
                     </OsdsText>
                     <OsdsInput
                       type={ODS_INPUT_TYPE.number}
-                      color={ODS_THEME_COLOR_INTENT.primary}
+                      color={
+                        isMaskValid
+                          ? ODS_THEME_COLOR_INTENT.primary
+                          : ODS_THEME_COLOR_INTENT.error
+                      }
                       value={store.form.cidr}
+                      onOdsValueChange={({ target }) => {
+                        store.setForm({ cidr: +target.value });
+                      }}
                       inline
-                      disabled
                     />
                   </OsdsFormField>
                   <OsdsPopover>
@@ -583,12 +616,21 @@ export default function ConfigurationStep({
                         level={ODS_TEXT_LEVEL.body}
                       >
                         {t(
-                          'pci_projects_project_network_private_create_configure_api',
+                          'new:pci_projects_project_network_private_create_configure_api',
                         )}
                       </OsdsText>
                     </OsdsPopoverContent>
                   </OsdsPopover>
                 </div>
+
+                {(!isIpValid || !isMaskValid) && (
+                  <OsdsText
+                    color={ODS_THEME_COLOR_INTENT.error}
+                    className="ml-9"
+                  >
+                    {t('new:pci_projects_network_cidr')}
+                  </OsdsText>
+                )}
 
                 {store.form.dhcp && (
                   <div className="mt-8 ml-8">
@@ -612,7 +654,7 @@ export default function ConfigurationStep({
                           slot="end"
                         >
                           {t(
-                            'pci_projects_project_network_private_create_announce_first_address',
+                            'new:pci_projects_project_network_private_create_announce_first_address',
                           )}
                         </OsdsText>
                       </OsdsCheckboxButton>
@@ -631,7 +673,7 @@ export default function ConfigurationStep({
                 level={ODS_TEXT_LEVEL.body}
                 size={ODS_TEXT_SIZE._500}
               >
-                {t('pci_projects_project_network_private_create_loading')}
+                {t('new:pci_projects_project_network_private_create_loading')}
               </OsdsText>
             </div>
           )}
@@ -653,15 +695,12 @@ export default function ConfigurationStep({
                   }
                 }}
                 className="w-fit"
-                {...(!store.form.privateNetworkName ||
-                (!store.form.createGateway && store.project.isDiscovery)
-                  ? { disabled: true }
-                  : {})}
+                disabled={isCreateBtnDisabled || undefined}
               >
                 {t(
                   store.form.createGateway
-                    ? 'pci_projects_project_network_private_create_next'
-                    : 'pci_projects_project_network_private_create_submit',
+                    ? 'new:pci_projects_project_network_private_create_next'
+                    : 'new:pci_projects_project_network_private_create_submit',
                 )}
               </OsdsButton>
             )}
@@ -669,7 +708,7 @@ export default function ConfigurationStep({
               <div>
                 <OsdsSpinner size={ODS_SPINNER_SIZE.sm} inline={true} />
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="ml-6">
-                  {tNew('pci_projects_project_network_private_create_loading')}
+                  {t('new:pci_projects_project_network_private_create_loading')}
                 </OsdsText>
               </div>
             )}
