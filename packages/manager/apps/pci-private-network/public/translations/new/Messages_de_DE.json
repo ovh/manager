@@ -17,7 +17,7 @@
   "pci_projects_project_network_private_create_public_gateway_decription_2": "Erlauben Sie den Instanzen dieses privaten Netzwerks, gesichert auf das Internet zuzugreifen. Wenn diese Option gewählt wird, verwendet sie die bestehende oder erstellt eine Gateway-Instanz. Bitte beachten Sie, dass hierfür zusätzliche Kosten anfallen können. Die Details hierzu finden Sie unten auf der Seite mit der Zusammenfassung.",
   "pci_projects_project_network_private_create_public_gateway_footer": "Möglicherweise ist diese Option nicht in der ausgewählten Region verfügbar. Mehr Informationen zur Verfügbarkeit der Produkte pro Region <a href=\"{{ guideLink }}\" target=\"_blank\" data-track-on=\"click\" data-track-type=\"action\" data-track-name=\" {{ trackLabel }} \">finden Sie hier</a>.",
   "pci_projects_project_network_private_create_layer_2_options": "Netzwerk-Optionen von Layer 2:",
-  "pci_projects_project_network_private_create_vlan_tip": "Tipp: Eventuell muss für Ihre Hybrid Cloud dieselbe VLAN-Kennung verwendet werden, wie für Ihren Dedicated Server oder Ihre Hosted Private Cloud. Erfahren Sie hier mehr.",
+  "pci_projects_project_network_private_create_vlan_tip": "Tipp: Eventuell muss für Ihre Hybrid Cloud dieselbe VLAN-Kennung verwendet werden, wie für Ihren Dedicated Server oder Ihre Hosted Private Cloud. ",
   "pci_projects_project_network_private_create_dhcp_address_distribution_options": "Verteilungsoptionen für DHCP-Adressen:",
   "pci_projects_project_network_private_create_enable_dhcp": "DHCP für dieses private Netzwerk aktivieren",
   "pci_projects_project_network_private_create_announce_first_address": "Die erste Adresse eines CIDR als Standard-Gateway anzeigen (DHCP-Option 3)",
@@ -36,5 +36,6 @@
   "pci_projects_project_network_private_create_loading": "Das private Netzwerk wird erstellt. Dies kann einige Minuten dauern",
   "pci_projects_project_network_private_create_success": "Das private Netzwerk wurde erstellt",
   "pci_projects_project_network_private_create_error": "Bei der Erstellung des privaten Netzwerks ist ein Fehler aufgetreten: {{ message }}",
-  "pci_projects_project_network_private_create_vlan_id_warning": "Die VLAN-ID 0 wird standardmäßig für andere Produkte verwendet, auch außerhalb des Public-Cloud-Universums. Private IPs müssen mit Bedacht verwaltet werden."
+  "pci_projects_project_network_private_create_vlan_id_warning": "Die VLAN-ID 0 wird standardmäßig für andere Produkte verwendet, auch außerhalb des Public-Cloud-Universums. Private IPs müssen mit Bedacht verwaltet werden.",
+  "pci_projects_network_cidr": "Gültige IP-Adresse angeben"
 }

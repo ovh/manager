@@ -5,7 +5,7 @@
   "pci_projects_project_instances_instance_backup_price": "Price: {{ price }} ex. VAT/month/GB",
   "pci_projects_project_instances_instance_backup_submit_label": "Confirm",
   "pci_projects_project_instances_instance_backup_cancel_label": "Cancel",
-  "pci_projects_project_instances_instance_backup_success_message": "Creating the {{ backup }} backup",
+  "pci_projects_project_instances_instance_backup_success_message": "Creating the {{ backup }} backup... To view the status and details of the operation, go to the ‘Instance Backup’ page. If the backup doesn’t appear right away, please refresh the page to update list.",
   "pci_projects_project_instances_instance_backup_error_backup": "An error has occurred creating the {{ backup }} backup: {{ message }}",
   "pci_projects_project_instances_instance_backup_warning_iops_message": "The backup only includes your root disk (operating system). None of the data stored on your NVMe devices will be backed up. Please use your own tools for this.",
   "pci_projects_project_instances_instance_backup_trusted_zone_extra_amount_charge_message": "The price displayed corresponds to the price of the service. The trust zone surcharge is added to the overall monthly bill.",

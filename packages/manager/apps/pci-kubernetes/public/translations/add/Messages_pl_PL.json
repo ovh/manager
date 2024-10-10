@@ -38,5 +38,10 @@
   "kube_add_billing_auto_scaling_monthly_warning": "Uwaga: aktywujesz jednocześnie autoskalowanie i abonament miesięczny dla tej puli węzłów. Za każdym razem gdy węzeł zostanie utworzony przez autoskalowanie, zostanie natychmiast zafakturowany proporcjonalnie do czasu pozostałego w bieżącym miesiącu. Radzimy unikać tej kombinacji, jeśli przewidujesz, że rozmiar puli węzłów będzie często zmniejszany.",
   "kube_add_node_pool_name_input_pattern_validation_error": "Nazwa musi składać się z co najmniej dwóch znaków, zaczynać się od litery, kończyć się znakiem alfanumerycznym, przy czym jedynymi dozwolonymi znakami specjalnymi są myślniki i podkreślenia.",
   "kube_add_billing_anti_affinity_coming_soon_message_title": "Ceny miesięczne",
-  "kube_add_billing_anti_affinity_coming_soon_message_description": "Ceny miesięczne będą dostępne wkrótce, wraz z uruchomieniem Saving Plans."
+  "kube_add_billing_anti_affinity_coming_soon_message_description": "Ceny miesięczne będą dostępne wkrótce, wraz z uruchomieniem Saving Plans.",
+  "kubernetes_add_version_and_upgrade_policy_title": "Wybierz pomocniczą wersję Kubernetesa i wybraną politykę bezpieczeństwa",
+  "kube_update_policy_picker_documentation_text": "Dowiedz się więcej o zasadach bezpieczeństwa Managed Kubernetes Service.",
+  "kube_update_policy_picker_documentation_link": "Zapoznaj się z dokumentacją",
+  "kubernetes_add_update_policy_title": "Wybierz politykę bezpieczeństwa",
+  "kubernetes_select_version_title": "Wybierz wersję"
 }

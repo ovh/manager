@@ -7,7 +7,7 @@
   "description": "Name",
   "rancher_version": "Rancher-Version",
   "consumption": "Verbrauch",
-  "service_level": "Dienst",
+  "service_level": "Angebot",
   "count_cpu_orchestrated": "Anzahl der orchestrierten vCPU",
   "security_and_access": "Zugang und Sicherheit",
   "rancher_ui_access": "Zugriff auf das Rancher-Interface",

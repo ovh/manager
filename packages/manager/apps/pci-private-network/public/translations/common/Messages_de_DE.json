@@ -89,5 +89,6 @@
   "common_dual_list_target_move_all": "Alles löschen",
   "common_dual_list_target_search": "In den Zieldaten suchen",
   "common_file_dropAreaSingle": "Eine Datei per Drag and Drop ablegen oder",
-  "common_file_notSingleError": "Es kann nur eine Datei hinzugefügt werden"
+  "common_file_notSingleError": "Es kann nur eine Datei hinzugefügt werden",
+  "common_find_out_more_here": "Weitere Informationen hier"
 }

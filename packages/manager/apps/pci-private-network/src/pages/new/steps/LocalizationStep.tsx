@@ -33,7 +33,7 @@ export default function LocalizationStep(): JSX.Element {
   const { t } = useTranslation('new');
   const { t: tCommon } = useTranslation('common');
   const { t: tRegion } = useTranslation('region');
-  const { t: tRegions } = useTranslation('regions');
+  const { t: tRegions, i18n } = useTranslation('regions');
 
   const {
     data: regions,
@@ -41,7 +41,6 @@ export default function LocalizationStep(): JSX.Element {
   } = useProjectAvailableRegions(store.project?.id);
 
   const [mappedRegions, setMappedRegions] = useState<TMappedRegion[]>([]);
-
   const [state, setState] = useState<{ selectedContinent: string }>({
     selectedContinent: undefined,
   });
@@ -112,7 +111,7 @@ export default function LocalizationStep(): JSX.Element {
 
       setMappedRegions(result);
     }
-  }, [regions]);
+  }, [regions, i18n.language]);
 
   return (
     <StepComponent

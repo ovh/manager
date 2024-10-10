@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Files } from 'lucide-react';
+import { Download, Files } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import {
@@ -12,12 +12,28 @@ import {
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import * as database from '@/types/cloud/project/database';
 import { useToast } from '@/components/ui/use-toast';
+import { useServiceData } from '../../Service.context';
+import { useGetCertificate } from '@/hooks/api/database/certificate/useGetCertificate.hook';
+import useDownload from '@/hooks/useDownload';
 
 interface ConnectionDetailsProps {
   endpoints: database.service.Endpoint[];
 }
 
 const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
+  const { service, projectId } = useServiceData();
+
+  const certificateQuery = useGetCertificate(
+    projectId,
+    service.engine,
+    service.id,
+    {
+      enabled:
+        service.capabilities.certificates?.read ===
+        database.service.capability.StateEnum.enabled,
+    },
+  );
+
   const [selectedEndpoint, setSelectedEndpoint] = useState<
     database.service.Endpoint
   >(endpoints[0]);
@@ -25,6 +41,7 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
     'pci-databases-analytics/services/service/dashboard',
   );
   const toast = useToast();
+  const { download } = useDownload();
   return (
     <div data-testid="connection-details-container">
       {endpoints.length > 1 && (
@@ -60,13 +77,13 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
               </TableCell>
               <TableCell>
                 <p
-                  className="flex-1 truncate h-6 max-w-[300px] m-0"
+                  className="flex-1 truncate h-6 max-w-[250px] m-0"
                   title={selectedEndpoint.domain}
                 >
                   {selectedEndpoint.domain}
                 </p>
               </TableCell>
-              <TableCell>
+              <TableCell className="justify-items-center">
                 <Button
                   data-testid="dashboard-connection-detail-domain-button"
                   type="button"
@@ -84,7 +101,7 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
               </TableCell>
             </TableRow>
           )}
-          {selectedEndpoint?.port && (
+          {selectedEndpoint?.port > 0 && (
             <TableRow>
               <TableCell className="font-semibold">
                 {t('connectionDetailsTableHeaderPort')}
@@ -115,7 +132,7 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
               </TableCell>
               <TableCell>
                 <p
-                  className="flex-1 truncate h-6 max-w-[300px]"
+                  className="flex-1 truncate h-6 max-w-[250px]"
                   title={selectedEndpoint.uri}
                 >
                   {selectedEndpoint.uri}
@@ -136,6 +153,53 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
                 >
                   <Files className="w-4 h-4" />
                 </Button>
+              </TableCell>
+            </TableRow>
+          )}
+          {certificateQuery.isSuccess && certificateQuery?.data?.ca && (
+            <TableRow>
+              <TableCell className="font-semibold">
+                {t('connectionDetailsCertificateLabel')}
+              </TableCell>
+              <TableCell>
+                <p
+                  className="flex-1 truncate h-6 max-w-[250px]"
+                  title={certificateQuery.data.ca}
+                >
+                  {certificateQuery.data.ca}
+                </p>
+              </TableCell>
+              <TableCell>
+                <div className="flex flex-row gap-1">
+                  <Button
+                    data-testid="connection-details-copy-certificate-action"
+                    type="button"
+                    size="table"
+                    variant="table"
+                    onClick={() => {
+                      navigator.clipboard.writeText(certificateQuery.data.ca);
+                      toast.toast({
+                        title: t('connectionDetailsCertificateCopyToast'),
+                      });
+                    }}
+                  >
+                    <Files className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    data-testid="connection-details-download-ca-action"
+                    type="button"
+                    size="table"
+                    variant="table"
+                    onClick={() => {
+                      download(certificateQuery.data.ca, 'ca.pem');
+                      toast.toast({
+                        title: t('connectionDetailsCertificateDownloadToast'),
+                      });
+                    }}
+                  >
+                    <Download className="w-4 h-4" />
+                  </Button>
+                </div>
               </TableCell>
             </TableRow>
           )}

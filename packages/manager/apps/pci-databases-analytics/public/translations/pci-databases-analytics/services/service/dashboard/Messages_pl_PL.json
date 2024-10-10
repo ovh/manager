@@ -30,5 +30,8 @@
   "serviceIdLabel": "Identyfikator usługi",
   "serviceIdCopyToast": "Identyfikator usługi został skopiowany",
   "billingLink": "Zarządzaj płatnościami",
-  "supportLink": "Skontaktuj się z pomocą techniczną"
+  "supportLink": "Skontaktuj się z pomocą techniczną",
+  "connectionDetailsCertificateLabel": "Certyfikat",
+  "connectionDetailsCertificateCopyToast": "Certyfikat CA został skopiowany do schowka",
+  "connectionDetailsCertificateDownloadToast": "Certyfikat CA został pobrany"
 }

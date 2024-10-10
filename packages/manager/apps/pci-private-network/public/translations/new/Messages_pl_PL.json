@@ -17,7 +17,7 @@
   "pci_projects_project_network_private_create_public_gateway_decription_2": "Zezwól instancjom tej prywatnej sieci na bezpieczny dostęp do Internetu. Wybranie tej opcji spowoduje użycie istniejącej instancji Gateway lub utworzenie instancji, jeśli zajdzie taka potrzeba. Pamiętaj, że może się to wiązać z dodatkowymi kosztami (szczegółowe informacje będą dostępne poniżej, na stronie z podsumowaniem).",
   "pci_projects_project_network_private_create_public_gateway_footer": "Ta opcja może nie być dostępna w wybranym regionie. Aby uzyskać więcej informacji na temat dostępności produktów dla każdego regionu, <a href=\"{{ guideLink }}\" target=\"_blank\" data-track-on=\"click\" data-track-type=\"action\" data-track-name=\" {{ trackLabel }} \">kliknij tutaj</a>.",
   "pci_projects_project_network_private_create_layer_2_options": "Opcje sieciowe warstwy 2:",
-  "pci_projects_project_network_private_create_vlan_tip": "Wskazówka: w przypadku korzystania z chmury hybrydowej może być konieczne użycie tego samego identyfikatora VLAN na serwerze dedykowanym lub Hosted Private Cloud. Więcej informacji znajdziesz tutaj.",
+  "pci_projects_project_network_private_create_vlan_tip": "Wskazówka: w przypadku korzystania z chmury hybrydowej może być konieczne użycie tego samego identyfikatora VLAN na serwerze dedykowanym lub Hosted Private Cloud. ",
   "pci_projects_project_network_private_create_dhcp_address_distribution_options": "Opcje dystrybucji adresów DHCP:",
   "pci_projects_project_network_private_create_enable_dhcp": "Włącz DHCP dla tej prywatnej sieci",
   "pci_projects_project_network_private_create_announce_first_address": "Ustaw pierwszy adres danego CIDR jako bramę domyślną (DHCP opcja 3)",
@@ -36,5 +36,6 @@
   "pci_projects_project_network_private_create_loading": "Trwa tworzenie prywatnej sieci. Może to zająć kilka minut.",
   "pci_projects_project_network_private_create_success": "Prywatna sieć została utworzona.",
   "pci_projects_project_network_private_create_error": "Wystąpił błąd podczas tworzenia sieci prywatnej: {{ message }}",
-  "pci_projects_project_network_private_create_vlan_id_warning": "Identyfikator VLAN 0 jest domyślnie używany w innych produktach, w tym także tych spoza środowiska Public Cloud. Prywatnymi adresami IP należy zarządzać ostrożnie."
+  "pci_projects_project_network_private_create_vlan_id_warning": "Identyfikator VLAN 0 jest domyślnie używany w innych produktach, w tym także tych spoza środowiska Public Cloud. Prywatnymi adresami IP należy zarządzać ostrożnie.",
+  "pci_projects_network_cidr": "Wprowadź poprawny adres IP"
 }

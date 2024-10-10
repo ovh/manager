@@ -22,6 +22,7 @@ import DisplayCellText from '../TextCell/TextCell.component';
 import '../Table.scss';
 import { deleteRancherServiceQueryKey } from '@/data/api/services';
 import StatusChip from '../../StatusChip/StatusChip.component';
+import DisplayCellNumber from '../NumberCell/NumberCell.component';
 
 export default function TableContainer({
   data,
@@ -71,7 +72,7 @@ export default function TableContainer({
         id: 'numberOfCpu',
         header: t('numberOfCpu'),
         accessorFn: (row) => row.currentState.usage?.orchestratedVcpus,
-        cell: DisplayCellText,
+        cell: DisplayCellNumber,
       },
       {
         id: 'status',

@@ -89,5 +89,6 @@
   "common_dual_list_target_move_all": "Delete all",
   "common_dual_list_target_search": "Search target content",
   "common_file_dropAreaSingle": "Drag and drop a file or",
-  "common_file_notSingleError": "You can only add one file"
+  "common_file_notSingleError": "You can only add one file",
+  "common_find_out_more_here": "Find out more here."
 }
