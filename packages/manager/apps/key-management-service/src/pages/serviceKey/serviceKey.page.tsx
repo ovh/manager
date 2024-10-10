@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   BaseLayout,
-  ErrorBanner,
-  Notifications,
   Clipboard,
+  ErrorBanner,
+  ManagerButton,
+  Notifications,
 } from '@ovh-ux/manager-react-components';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
-  OsdsButton,
   OsdsIcon,
   OsdsTabBar,
   OsdsTabBarItem,
@@ -38,36 +38,48 @@ import { getOkmsServiceKeyResourceQueryKey } from '@/data/api/okmsServiceKey';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { useOKMSById } from '@/data/hooks/useOKMS';
 import ServiceKeyStateActions from '@/components/serviceKey/serviceKeyStateActions/ServiceKeyStateActions.component';
+import { getOkmsResourceQueryKey } from '@/data/api/okms';
 
 export default function Key() {
   const { okmsId, keyId } = useParams();
-  const { data: okms } = useOKMSById(okmsId);
-  const { data: serviceKey, error, isLoading } = useOkmsServiceKeyById({
+  const { t } = useTranslation('key-management-service/serviceKeys');
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  const {
+    data: okms,
+    isLoading: isLoadingOkms,
+    error: okmsError,
+  } = useOKMSById(okmsId);
+
+  const {
+    data: serviceKey,
+    error: serviceKeyError,
+    isLoading: isLoadingServiceKey,
+  } = useOkmsServiceKeyById({
     okmsId,
     keyId,
   });
-  const { t } = useTranslation('key-management-service/serviceKeys');
-  const queryClient = useQueryClient();
 
-  const navigate = useNavigate();
+  if (isLoadingServiceKey || isLoadingOkms) return <Loading />;
 
-  const kms = okms?.data;
-  const kmsKey = serviceKey?.data;
-
-  if (isLoading) return <Loading />;
-
-  if (error)
+  if (okmsError || serviceKeyError)
     return (
       <ErrorBanner
-        error={error.response}
+        error={okmsError ? okmsError.response : serviceKeyError.response}
         onRedirectHome={() => navigate(ROUTES_URLS.listing)}
         onReloadPage={() =>
           queryClient.refetchQueries({
-            queryKey: getOkmsServiceKeyResourceQueryKey({ okmsId, keyId }),
+            queryKey: okmsError
+              ? getOkmsResourceQueryKey(okmsId)
+              : getOkmsServiceKeyResourceQueryKey({ okmsId, keyId }),
           })
         }
       />
     );
+
+  const kms = okms.data;
+  const kmsKey = serviceKey.data;
 
   const breadcrumbItems: BreadcrumbItem[] = [
     {
@@ -131,18 +143,20 @@ export default function Key() {
             >
               <div className="flex justify-between items-center">
                 <TileValue value={kmsKey.name} />
-                <OsdsButton
+                <ManagerButton
                   circle
                   variant={ODS_BUTTON_VARIANT.stroked}
                   color={ODS_THEME_COLOR_INTENT.primary}
                   onClick={() => navigate(ROUTES_URLS.serviceKeyEditName)}
+                  urn={kms.iam.urn}
+                  iamActions={['okms:apiovh:resource/serviceKey/update']}
                 >
                   <OsdsIcon
                     name={ODS_ICON_NAME.PEN}
                     size={ODS_ICON_SIZE.xs}
                     color={ODS_THEME_COLOR_INTENT.primary}
                   />
-                </OsdsButton>
+                </ManagerButton>
               </div>
             </TileItem>
             <TileSeparator />
@@ -161,7 +175,7 @@ export default function Key() {
               titleStatus={<ServiceKeyStatus state={kmsKey.state} />}
             >
               <div className="flex flex-col max-w-fit justify-start">
-                <ServiceKeyStateActions okmsId={okmsId} okmsKey={kmsKey} />
+                <ServiceKeyStateActions okms={kms} okmsKey={kmsKey} />
               </div>
             </TileItem>
             <TileSeparator />
