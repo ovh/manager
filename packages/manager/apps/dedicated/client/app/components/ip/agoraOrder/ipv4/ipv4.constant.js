@@ -67,6 +67,17 @@ export const BLOCK_ADDITIONAL_IP = 'Block Additional IP';
 
 export { TRACKING_PREFIX, ADDITIONAL_IP, ALERT_ID, IP_FAILOVER_PLANCODE };
 
+export const SERVER_REGION = {
+  USA: 'USA',
+  CANADA: 'CANADA - ASIA',
+  EUROPE: 'EUROPE',
+};
+
+export const ORGANISATION_GROUP = {
+  RIPE: 'RIPE',
+  ARIN: 'ARIN',
+};
+
 export default {
   FETCH_PRICE_MAX_TRIES,
   IP_LOCATION_GROUPS,
@@ -77,4 +88,6 @@ export default {
   IP_FAILOVER_PLANCODE,
   BLOCK_ADDITIONAL_IP,
   ALERT_ID,
+  SERVER_REGION,
+  ORGANISATION_GROUP,
 };
