@@ -1,5 +1,5 @@
 import illustration from '@/assets/images/sidebar/hosted-private-cloud.png';
-import { Node } from '../node';
+import { Node, NodeTag } from '../node';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 const hostedPrivateCloudUniverse: Node = {
@@ -88,6 +88,19 @@ hostedPrivateCloudUniverse.children = [
           hash: '#/veeam',
         },
         features: ['veeam-cloud-connect'],
+      },
+      {
+        id: 'hycu',
+        idAttr: 'hycu-link',
+        universe: hostedPrivateCloudUniverse.id,
+        translation: 'sidebar_hycu',
+        serviceType: 'HYCU',
+        tag: NodeTag.NEW,
+        routing: {
+          application: 'dedicated',
+          hash: '#/hycu',
+        },
+        features: ['hycu'],
       },
     ],
   },
