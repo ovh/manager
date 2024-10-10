@@ -33,6 +33,7 @@ export default function initI18n(locale = 'fr_FR', sub: string) {
         'account-disable-2fa/error',
         'account-disable-2fa-sub',
         'account-disable-2fa-documents',
+        'rgdp',
       ], // namespaces to load by default
       backend: {
         loadPath: (lngs: string[], namespaces: string[], ...d: []) => {
