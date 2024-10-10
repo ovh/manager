@@ -31,6 +31,7 @@ import TileError from '../tile-error/TileError.component';
 
 export default function HubSupport() {
   const { t } = useTranslation('hub/support');
+  const { t: tCommon } = useTranslation('hub');
   const { data, refetch, isLoading, error } = useFetchHubSupport();
   const context = useContext(ShellContext);
   const { navigation } = context.shell;
@@ -63,7 +64,7 @@ export default function HubSupport() {
           {error && (
             <TileError
               className="block p-4"
-              message={t('hub_support_error_message')}
+              message={t('hub_support_error')}
               refetch={handlerRefetch}
             />
           )}
@@ -108,7 +109,7 @@ export default function HubSupport() {
                     color={ODS_THEME_COLOR_INTENT.primary}
                     className="font-bold text-right"
                   >
-                    {t('hub_support_see_all')}
+                    {tCommon('hub_support_see_more')}
                     <span slot="end">
                       <OsdsIcon
                         hoverable

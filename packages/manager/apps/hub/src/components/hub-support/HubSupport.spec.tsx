@@ -75,7 +75,7 @@ describe('HubSupport Component', () => {
 
     render(<HubSupport />);
 
-    const seeMoreLink = screen.getByText('hub_support_see_all');
+    const seeMoreLink = screen.getByText('hub_support_see_more');
     expect(seeMoreLink).toBeInTheDocument();
 
     const osdsLinkElement = seeMoreLink.closest('osds-link');
@@ -96,7 +96,7 @@ describe('HubSupport Component', () => {
     render(<HubSupport />);
 
     await waitFor(() => {
-      const seeMoreLink = screen.getByText('hub_support_see_all');
+      const seeMoreLink = screen.getByText('hub_support_see_more');
       expect(seeMoreLink).toBeInTheDocument();
 
       const osdsLinkElement = seeMoreLink.closest('osds-link');

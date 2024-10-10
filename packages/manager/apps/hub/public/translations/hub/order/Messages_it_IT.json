@@ -1,0 +1,21 @@
+{
+  "hub_order_tracking_title": "Ultimo ordine",
+  "hub_order_tracking_see_all": "Visualizza i tuoi ordini",
+  "hub_order_tracking_error": "Impossibile recuperare lo stato dell’ordine",
+  "hub_order_tracking_order_id": "N° {{orderId}}",
+  "order_tracking_history_DELIVERY": "Ordine in corso di preparazione",
+  "order_tracking_history_FRAUD_CHECK": "Ordine in corso di convalida",
+  "order_tracking_history_FRAUD_DOCS_REQUESTED": "In attesa dei documenti giustificativi",
+  "order_tracking_history_FRAUD_MANUAL_REVIEW": "Verifica dell'ordine",
+  "order_tracking_history_FRAUD_REFUSED": "Ordine rifiutato",
+  "order_tracking_history_INVOICE_IN_PROGRESS": "Il tuo ordine è disponibile",
+  "order_tracking_history_INVOICE_SENT": "La tua fattura è disponibile",
+  "order_tracking_history_ORDER_ACCEPTED": "Ordine accettato",
+  "order_tracking_history_ORDER_STARTED": "Presa in carico dell’ordine...",
+  "order_tracking_history_PAYMENT_CONFIRMED": "Pagamento convalidato",
+  "order_tracking_history_PAYMENT_INITIATED": "Pagamento in corso di convalida",
+  "order_tracking_history_PAYMENT_RECEIVED": "Pagamento ricevuto",
+  "order_tracking_history_REGISTERED_PAYMENT_INITIATED": "Pagamento in corso di convalida",
+  "order_tracking_history_custom_payment_waiting": "Pagamento non ricevuto",
+  "order_tracking_history_custom_creation": "Creazione dell’ordine"
+}

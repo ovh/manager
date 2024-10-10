@@ -76,7 +76,7 @@ export default function Products({ services }: ProductsProps) {
           color={ODS_THEME_COLOR_INTENT.text}
           data-testid="products_title"
         >
-          {t('manager_hub_products_title')}
+          {t('manager_hub_dashboard_services')}
         </OsdsText>
       )}
       <div
@@ -130,7 +130,7 @@ export default function Products({ services }: ProductsProps) {
                               className="text-right"
                               data-testid="product_link"
                             >
-                              {tCommon('manager_hub_see_all')}
+                              {tCommon('hub_support_see_more')}
                               <span slot="end">
                                 <OsdsIcon
                                   name={ODS_ICON_NAME.ARROW_RIGHT}

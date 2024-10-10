@@ -15,10 +15,10 @@ describe('TileError Component', () => {
 
     render(<TileError message="Error message details" refetch={refetchMock} />);
 
-    expect(screen.getByText('manager_error_tile_title')).toBeInTheDocument();
+    expect(screen.getByText('manager_hub_error_tile_oops')).toBeInTheDocument();
     expect(screen.getByText('Error message details')).toBeInTheDocument();
     expect(
-      screen.getByText('manager_error_tile_action_reload_label'),
+      screen.getByText('manager_hub_error_tile_retry'),
     ).toBeInTheDocument();
   });
 
@@ -27,7 +27,7 @@ describe('TileError Component', () => {
 
     render(<TileError message="Error message details" refetch={refetchMock} />);
 
-    const button = screen.getByText('manager_error_tile_action_reload_label');
+    const button = screen.getByText('manager_hub_error_tile_retry');
     await act(() => fireEvent.click(button));
     await waitFor(() => {
       expect(refetchMock).toHaveBeenCalledTimes(1);

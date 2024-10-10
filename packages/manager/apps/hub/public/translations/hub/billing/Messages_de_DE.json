@@ -1,0 +1,15 @@
+{
+  "hub_billing_summary_title": "Gesamtbetrag der Rechnungen",
+  "hub_billing_summary_period_1": "Im letzten Monat",
+  "hub_billing_summary_period_3": "In den letzten 3 Monaten",
+  "hub_billing_summary_period_6": "In den letzten 6 Monaten",
+  "hub_billing_summary_debt": "Es sind noch {{ debt }} zu begleichen.",
+  "hub_billing_summary_debt_pay": "Ausstehende Zahlungen tätigen",
+  "hub_billing_summary_debt_null": "Bezahlt",
+  "hub_billing_summary_debt_no_bills": "Für diesen Zeitraum existiert keine Rechnung.",
+  "hub_billing_summary_display_bills": "Die Rechnungen anzeigen",
+  "hub_billing_summary_display_bills_error": "Gesamtbetrag nicht verfügbar",
+  "hub_enterprise_billing_summary_title": "Meine Rechnungen",
+  "hub_enterprise_billing_summary_description": "Um Ihre Rechnungen einzusehen, verbinden Sie sich bitte über Ihr dediziertes Interface.",
+  "hub_enterprise_billing_summary_goto": "Anmelden"
+}

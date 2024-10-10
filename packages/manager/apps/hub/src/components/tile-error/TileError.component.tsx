@@ -37,7 +37,7 @@ export default function TileError({
         className="block mb-6"
         size={ODS_TEXT_SIZE._600}
       >
-        {t('manager_error_tile_title')}
+        {t('manager_hub_error_tile_oops')}
       </OsdsText>
       <OsdsText
         {...(contrasted
@@ -58,7 +58,7 @@ export default function TileError({
         variant={ODS_BUTTON_VARIANT.ghost}
         inline
       >
-        {t('manager_error_tile_action_reload_label')}
+        {t('manager_hub_error_tile_retry')}
         <span slot="end">
           <OsdsIcon
             hoverable

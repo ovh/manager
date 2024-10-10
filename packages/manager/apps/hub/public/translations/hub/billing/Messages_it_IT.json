@@ -1,0 +1,15 @@
+{
+  "hub_billing_summary_title": "Importo totale delle fatture",
+  "hub_billing_summary_period_1": "Mese scorso",
+  "hub_billing_summary_period_3": "Ultimi 3 mesi",
+  "hub_billing_summary_period_6": "Ultimi 6 mesi",
+  "hub_billing_summary_debt": "Restano ancora {{ debt }} da pagare",
+  "hub_billing_summary_debt_pay": "Salda il debito",
+  "hub_billing_summary_debt_null": "Pagato",
+  "hub_billing_summary_debt_no_bills": "Nessuna fattura per questo periodo",
+  "hub_billing_summary_display_bills": "Visualizza le fatture",
+  "hub_billing_summary_display_bills_error": "Impossibile recuperare l’importo totale",
+  "hub_enterprise_billing_summary_title": "Le tue fatture",
+  "hub_enterprise_billing_summary_description": "Per consultare le tue fatture, accedi all’interfaccia dedicata.",
+  "hub_enterprise_billing_summary_goto": "Accedi"
+}
