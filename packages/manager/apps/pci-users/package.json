@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-users-app",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -17,7 +17,7 @@
     "@ovh-ux/manager-core-api": "^0.8.0",
     "@ovh-ux/manager-core-utils": "^0.3.0",
     "@ovh-ux/manager-pci-common": "^0.6.1",
-    "@ovh-ux/manager-react-components": "^1.36.0",
+    "@ovh-ux/manager-react-components": "^1.37.0",
     "@ovh-ux/manager-react-core-application": "^0.10.2",
     "@ovh-ux/manager-react-shell-client": "^0.7.2",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",

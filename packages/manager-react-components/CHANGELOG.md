@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.36.0...@ovh-ux/manager-react-components@1.37.0) (2024-10-10)
+
+### Bug Fixes
+
+- **manager-react-components:** tests e2e to rework ([a1a6c20](https://github.com/ovh/manager/commit/a1a6c204e4042151bd8073a24d6572e13ce7ad7c))
+- **manager-react-components:** update datagrid style ([391f719](https://github.com/ovh/manager/commit/391f719c9ef436a156a1628c93f996af3547100d))
+- **manager-react-components:** update template base component ([2b35620](https://github.com/ovh/manager/commit/2b35620543c881a8ac379cb08199828b7434818e))
+
+### Features
+
+- **manager-react-components:** datagrid component update text ([856e07e](https://github.com/ovh/manager/commit/856e07e9308f3cf7c69ad49280e78eca45b9b809))
+
 # [1.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.35.1...@ovh-ux/manager-react-components@1.36.0) (2024-10-08)
 
 ### Features
