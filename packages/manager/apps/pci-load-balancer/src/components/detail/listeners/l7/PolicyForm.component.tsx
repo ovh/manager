@@ -150,7 +150,7 @@ export default function PolicyForm({
     }
   }, [policy]);
   return (
-    <>
+    <div className="w-[20rem]">
       <OsdsFormField
         error={hasErrorName ? tPciCommon('common_field_error_required') : ''}
       >
@@ -385,6 +385,6 @@ export default function PolicyForm({
             t('octavia_load_balancer_create_l7_policy_submit')}
         </OsdsButton>
       </div>
-    </>
+    </div>
   );
 }
