@@ -15,7 +15,8 @@ import '@ovhcloud/ods-theme-blue-jeans';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 300000,
+      retry: import.meta.env.VITE_TEST_BDD ? false : 3,
+      staleTime: 300_000,
     },
   },
 });
