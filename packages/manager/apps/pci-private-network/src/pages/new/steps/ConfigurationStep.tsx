@@ -416,7 +416,7 @@ export default function ConfigurationStep({
                   >
                     {t('pci_projects_project_network_private_create_vlan_tip')}
                     <Links
-                      label={tCommon('common_find_out_more_here')}
+                      label={t('common_find_out_more_here')}
                       href={VLAN_GUIDE_URL}
                       target={OdsHTMLAnchorElementTarget._blank}
                       type={LinkType.external}
