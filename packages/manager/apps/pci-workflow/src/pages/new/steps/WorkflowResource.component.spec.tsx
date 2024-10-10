@@ -28,7 +28,7 @@ describe('WorkflowResource Component', () => {
       />,
       { wrapper },
     );
-    expect(getByTestId('radio-instance1')).toBeInTheDocument();
+    expect(getByTestId('radio-button-instance1')).toBeInTheDocument();
   });
 
   it('disables next button when no instance is selected', () => {
