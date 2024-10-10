@@ -30,5 +30,8 @@
   "serviceIdLabel": "ID del servicio",
   "serviceIdCopyToast": "Se ha copiado el ID del servicio",
   "billingLink": "Gestionar la facturación",
-  "supportLink": "Contactar con el soporte"
+  "supportLink": "Contactar con el soporte",
+  "connectionDetailsCertificateLabel": "Certificado",
+  "connectionDetailsCertificateCopyToast": "El certificado CA se ha copiado en el portapapeles.",
+  "connectionDetailsCertificateDownloadToast": "Se ha cargado el certificado CA."
 }

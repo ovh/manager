@@ -30,5 +30,8 @@
   "serviceIdLabel": "Dienst-ID",
   "serviceIdCopyToast": "Die Dienst-ID wurde kopiert.",
   "billingLink": "Abrechnung verwalten",
-  "supportLink": "Support kontaktieren"
+  "supportLink": "Support kontaktieren",
+  "connectionDetailsCertificateLabel": "Zertifikat",
+  "connectionDetailsCertificateCopyToast": "Das CA-Zertifikat wurde in die Zwischenablage kopiert.",
+  "connectionDetailsCertificateDownloadToast": "Das CA-Zertifikat wurde hochgeladen."
 }
