@@ -47,6 +47,7 @@ const init = async (appName: string) => {
       `${appName}/error`,
       `${appName}/payment-status`,
       `${appName}/siret`,
+      `${appName}/kyc`,
       `billing/actions`,
       `billing/status`,
     ],
