@@ -20,6 +20,7 @@ export const useExecutionDatagridColumns = () => {
         <DataGridTextCell>{props.executedAtTime}</DataGridTextCell>
       ),
       label: tExecution('pci_workflow_executions_ececution_time'),
+      isSortable: false,
     },
     {
       id: 'state',
