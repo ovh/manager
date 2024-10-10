@@ -1,15 +1,7 @@
 import { PciModal } from '@ovh-ux/manager-pci-common';
 import { Translation, useTranslation } from 'react-i18next';
-import {
-  OsdsFormField,
-  OsdsInput,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { OsdsFormField, OsdsInput } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
@@ -19,6 +11,7 @@ import {
   useLoadBalancer,
   useRenameLoadBalancer,
 } from '@/api/hook/useLoadBalancer';
+import LabelComponent from '@/components/form/Label.component';
 
 export default function Edit() {
   const { addSuccess, addError } = useNotifications();
@@ -87,14 +80,9 @@ export default function Edit() {
       cancelText={tEditName('octavia_load_balancer_edit_name_cancel')}
     >
       <OsdsFormField>
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-          slot="label"
-        >
-          {tEditName('octavia_load_balancer_edit_name_label')}
-        </OsdsText>
+        <LabelComponent
+          text={tEditName('octavia_load_balancer_edit_name_label')}
+        />
         <OsdsInput
           value={loadBalancerName}
           onOdsValueChange={(event) => setLoadBalancerName(event.detail.value)}
