@@ -31,6 +31,8 @@ import SiretModal from '@/pages/layout/SiretModal.component';
 import KycIndiaBanner from '@/pages/layout/KycIndiaBanner.component';
 import KycFraudBanner from '@/pages/layout/KycFraudBanner.component';
 import { KycStatus } from '@/types/kyc.type';
+import NotificationsCarousel from '@/pages/layout/NotificationsCarousel.component';
+import { Notification, NotificationType } from '@/types/notifications.type';
 
 const queryClient = new QueryClient();
 
@@ -255,6 +257,27 @@ vi.mock('@/data/hooks/kyc/useKyc', () => ({
   }),
 }));
 
+vi.mock('@/data/hooks/notifications/useNotifications', () => ({
+  useFetchHubNotifications: (): {
+    data: Notification[];
+    isPending: boolean;
+  } => ({
+    data: [
+      {
+        data: {},
+        date: '2022-02-08',
+        description:
+          'Fraudulent emails circulate and direct to scam websites claiming to be OVHcloud. <a href="https://docs.ovh.com/us/en/customer/scams-fraud-phishing" target="_blank">Find out more</a>',
+        level: 'error' as NotificationType,
+        id: 'GLOBAL_COMMUNICATION_PHISHING',
+        status: 'acknowledged',
+        subject: 'General information',
+      },
+    ],
+    isPending: false,
+  }),
+}));
+
 const useBillingServicesMockValue: any = {
   data: null,
   isLoading: true,
@@ -296,7 +319,7 @@ describe('Layout.page', () => {
 
     expect(welcome).not.toBeNull();
     expect(queryByText('Banner')).not.toBeInTheDocument();
-    expect(queryByText('ovh-manager-hub-carousel')).not.toBeInTheDocument();
+    expect(queryByTestId('notifications_carousel')).not.toBeInTheDocument();
     expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
     expect(queryByTestId('siret_modal')).not.toBeInTheDocument();
     expect(queryByText('Payment Status')).not.toBeInTheDocument();
@@ -344,6 +367,7 @@ describe('Layout.page', () => {
       queryByText,
       findByText,
       findByTestId,
+      queryByTestId,
     } = renderComponent(<Layout />);
 
     expect(getByTestId('banner_skeleton')).not.toBeNull();
@@ -353,7 +377,7 @@ describe('Layout.page', () => {
 
     expect(welcome).not.toBeNull();
     expect(banner).not.toBeNull();
-    expect(getByText('ovh-manager-hub-carousel')).not.toBeNull();
+    expect(queryByTestId('notifications_carousel')).not.toBeNull();
     expect(getByTestId('siret_banner')).not.toBeNull();
     expect(getByTestId('siret_modal')).not.toBeNull();
     expect(getByTestId('kyc_india_banner')).not.toBeNull();
@@ -944,6 +968,18 @@ describe('Layout.page', () => {
       mocks.kycStatus.status = 'ok';
       const { queryByTestId } = renderComponent(<KycFraudBanner />);
       expect(queryByTestId('kyc_fraud_banner')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('NotificationsCarousel component', () => {
+    it('should render a single notification without "navigation"', async () => {
+      const { getByTestId, queryByTestId } = renderComponent(
+        <NotificationsCarousel />,
+      );
+
+      expect(getByTestId('notification_content')).not.toBeNull();
+      expect(queryByTestId('next-notification-button')).not.toBeInTheDocument();
+      expect(queryByTestId('notification-navigation')).not.toBeInTheDocument();
     });
   });
 });
