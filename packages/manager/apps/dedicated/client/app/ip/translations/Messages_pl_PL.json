@@ -767,5 +767,7 @@
   "ip_byoip_aggregate_slicing_not_available_error_message": "Brak dostępnej konfiguracji segmentacji/agregacji. Więcej informacji znajdziesz w przewodniku: <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">tutaj</a>",
   "ip_byoip_aggregate_ip_doesnt_exist_error_message": "Dla tego adresu IP wykonano inną operację segmentacji lub agregacji.",
   "ip_table_manage_subnets": "Zarządzanie podsieciami IPv6 w sieci vRack",
-  "ip_table_header_region": "Region"
+  "ip_table_header_region": "Region",
+  "ip_virtualmac_not_available_failure": "Wirtualny adres MAC będzie dostępny na tym serwerze od grudnia 2024",
+  "ip_virtualmac_not_available_failure_details": "Aby uzyskać więcej informacji na temat zarządzania wirtualnymi adresami IP i MAC w OVHcloud, zapoznaj się z przewodnikami konfiguracji sieci: {{proxmoxLink}} i {{windowsServerLink}}. Dokument ten wyjaśnia, jak skonfigurować serwery OVHcloud w celu zoptymalizowania wydajności sieci w środowiskach zwirtualizowanych przy użyciu Proxmox VE, za pomocą technik, takich jak routing dodatkowych adresów IP przez vRack."
 }
