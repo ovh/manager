@@ -19,7 +19,7 @@ export default function ListGuard({
   if (isPending || isFetching) {
     return (
       <OsdsSpinner
-        inline={true}
+        inline
         size={ODS_SPINNER_SIZE.md}
         data-testid="listGuard-spinner"
       />
