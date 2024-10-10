@@ -24,28 +24,29 @@ export default function LabelComponent({
   text,
   helpText,
   hasError,
-  slot,
+  slot = 'label',
   className = '',
 }: Readonly<TLabelProps>): JSX.Element {
   return (
-    <div slot={slot} className={`border border-black ${className}`.trim()}>
+    <div slot={slot} className={`flex gap-2 items-center ${className}`.trim()}>
       <OsdsText
         color={
           hasError ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.text
         }
-        className="align-super"
+        className="font-bold"
         size={ODS_TEXT_SIZE._100}
-        level={ODS_TEXT_LEVEL.subheading}
+        level={ODS_TEXT_LEVEL.caption}
       >
         {text}
       </OsdsText>
+
       {helpText && (
-        <OsdsPopover>
+        <OsdsPopover className="w-4 h-4">
           <span slot="popover-trigger">
             <OsdsIcon
               name={ODS_ICON_NAME.HELP}
-              size={ODS_ICON_SIZE.xs}
-              className="cursor-help ml-3 mt-3 w-7"
+              size={ODS_ICON_SIZE.xxs}
+              className="cursor-help"
               color={ODS_THEME_COLOR_INTENT.text}
             ></OsdsIcon>
           </span>
