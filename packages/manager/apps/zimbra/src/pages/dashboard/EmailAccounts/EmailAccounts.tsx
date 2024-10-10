@@ -27,6 +27,7 @@ import {
   Links,
   LinkType,
   ManagerButton,
+  ManagerText,
   Notifications,
 } from '@ovh-ux/manager-react-components';
 import { Outlet } from 'react-router-dom';
@@ -36,6 +37,7 @@ import {
   useGenerateUrl,
   useAccountList,
   usePlatform,
+  useOrganization,
   useDomains,
 } from '@/hooks';
 import LabelChip from '@/components/LabelChip';
@@ -49,7 +51,7 @@ import {
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import Loading from '@/components/Loading/Loading';
 import { BadgeStatus } from '@/components/BadgeStatus';
-import { ResourceStatus } from '@/api/api.type';
+import { ResourceStatus, AccountStatistics } from '@/api/api.type';
 
 export type EmailsItem = {
   id: string;
@@ -124,10 +126,17 @@ const columns: DatagridColumn<EmailsItem>[] = [
 ];
 
 export default function EmailAccounts() {
-  const { t } = useTranslation('accounts');
-  const { platformUrn } = usePlatform();
+  const { t } = useTranslation(['accounts', 'dashboard']);
+  const { data: platform, platformUrn } = usePlatform();
+  const { data: organisation } = useOrganization();
   const isOverridedPage = useOverridePage();
-  const { data, isLoading } = useAccountList({
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isLoading,
+    isFetchingNextPage,
+  } = useAccountList({
     refetchInterval: DATAGRID_REFRESH_INTERVAL,
     refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
     enabled: !isOverridedPage,
@@ -149,6 +158,10 @@ export default function EmailAccounts() {
       status: item.resourceStatus,
     })) ?? [];
 
+  const accountsStatistics: AccountStatistics[] = organisation
+    ? organisation.currentState.accountsStatistics
+    : platform?.currentState?.accountsStatistics;
+
   const webmailUrl = guidesConstants.GUIDES_LIST.webmail.url;
 
   const hrefAddEmailAccount = useGenerateUrl('./add', 'href');
@@ -159,21 +172,52 @@ export default function EmailAccounts() {
       <Outlet />
       {platformUrn && !isOverridedPage && (
         <>
-          <div className="mb-8">
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              hue={ODS_TEXT_COLOR_HUE._500}
-              size={ODS_TEXT_SIZE._200}
-              className="font-bold mr-4"
-            >
-              {t('zimbra_account_datagrid_webmail_label')}
-            </OsdsText>
-            <Links
-              href={webmailUrl}
-              type={LinkType.external}
-              label={webmailUrl}
-              target={OdsHTMLAnchorElementTarget._blank}
-            ></Links>
+          <div className="mb-8 flex gap-8">
+            <div>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                hue={ODS_TEXT_COLOR_HUE._500}
+                size={ODS_TEXT_SIZE._200}
+                className="font-bold mr-4"
+              >
+                {t('zimbra_account_datagrid_webmail_label')}
+              </OsdsText>
+              <Links
+                href={webmailUrl}
+                type={LinkType.external}
+                label={webmailUrl}
+                target={OdsHTMLAnchorElementTarget._blank}
+              ></Links>
+            </div>
+            <div>
+              <ManagerText
+                className="flex gap-8"
+                urn={platformUrn}
+                iamActions={[IAM_ACTIONS.account.get]}
+              >
+                {accountsStatistics?.length > 0
+                  ? accountsStatistics?.map((stats: AccountStatistics) => (
+                      <div key={stats.offer}>
+                        <OsdsText
+                          color={ODS_THEME_COLOR_INTENT.text}
+                          hue={ODS_TEXT_COLOR_HUE._500}
+                          size={ODS_TEXT_SIZE._200}
+                          className="font-bold mr-4"
+                        >
+                          {`Zimbra ${stats.offer.toLowerCase()} :`}
+                        </OsdsText>
+                        <span>{`${
+                          stats.configuredAccountsCount
+                        } / ${stats.configuredAccountsCount +
+                          stats.availableAccountsCount}`}</span>
+                      </div>
+                    ))
+                  : t(
+                      'zimbra_dashboard_tile_serviceConsumption_noAccountOffer',
+                      { ns: 'dashboard' },
+                    )}
+              </ManagerText>
+            </div>
           </div>
           {(data?.length > 0 || dataDomains?.length > 0) && (
             <ManagerButton
@@ -229,14 +273,19 @@ export default function EmailAccounts() {
           {isLoading ? (
             <Loading />
           ) : (
-            <Datagrid
-              columns={columns.map((column) => ({
-                ...column,
-                label: t(column.label),
-              }))}
-              items={items}
-              totalItems={items.length}
-            />
+            <>
+              <Datagrid
+                columns={columns.map((column) => ({
+                  ...column,
+                  label: t(column.label),
+                }))}
+                items={items}
+                totalItems={items.length}
+                hasNextPage={!isFetchingNextPage && hasNextPage}
+                onFetchNextPage={fetchNextPage}
+              />
+              {isFetchingNextPage && <Loading />}
+            </>
           )}
         </>
       )}

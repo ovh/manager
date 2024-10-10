@@ -1,4 +1,6 @@
 {
   "web_paas_general_info": "General information",
-  "web_paas_manage_users": "Users"
+  "web_paas_manage_users": "Users",
+  "web_paas_banner_eol_part_1": "We are writing to confirm the end of marketing of your Web PaaS powered by Platform.sh solution, as mentioned in a previous email.",
+  "web_paas_banner_eol_part_2": "From 31 January 2025, this service will be officially shut down. This means you won’t be able to use the service or access any associated data via your Control Panel. Remember to back up your project (files and databases) before the closure of your services."
 }

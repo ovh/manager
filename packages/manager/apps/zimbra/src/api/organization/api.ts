@@ -1,15 +1,21 @@
-import { v2 } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV2, v2 } from '@ovh-ux/manager-core-api';
 import { OrganizationBodyParamsType, OrganizationType } from './type';
 import { getApiPath } from '../utils/apiPath';
 
 // GET
 
-export const getZimbraPlatformOrganization = async (platformId: string) => {
-  const { data } = await v2.get<OrganizationType[]>(
-    `${getApiPath(platformId)}organization`,
-  );
-  return data;
-};
+export const getZimbraPlatformOrganization = ({
+  platformId,
+  pageParam,
+}: {
+  platformId: string;
+  pageParam?: unknown;
+}) =>
+  fetchIcebergV2<OrganizationType[]>({
+    route: `${getApiPath(platformId)}organization`,
+    pageSize: 25,
+    cursor: pageParam as string,
+  });
 
 export const getZimbraPlatformOrganizationDetails = async (
   platformId: string,

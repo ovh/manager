@@ -18,7 +18,7 @@ vi.mock('@/hooks', () => {
 });
 
 vi.mock('@/api/domain/api', () => {
-  const apiGetDomains = vi.fn(() => Promise.resolve(domainMock));
+  const apiGetDomains = vi.fn(() => Promise.resolve({ data: domainMock }));
   return {
     getZimbraPlatformDomains: apiGetDomains,
   };

@@ -1,7 +1,7 @@
 import {
-  useQuery,
-  UseQueryOptions,
-  UseQueryResult,
+  useInfiniteQuery,
+  UseInfiniteQueryOptions,
+  UseInfiniteQueryResult,
 } from '@tanstack/react-query';
 import { usePlatform } from '@/hooks';
 import {
@@ -11,16 +11,27 @@ import {
 } from '@/api/organization';
 
 export const useOrganizationList = (
-  options: Omit<UseQueryOptions, 'queryKey' | 'queryFn' | 'select'> = {},
+  options: Omit<
+    UseInfiniteQueryOptions,
+    'queryKey' | 'queryFn' | 'select' | 'getNextPageParam' | 'initialPageParam'
+  > = {},
 ) => {
   const { platformId } = usePlatform();
 
-  return useQuery({
+  return useInfiniteQuery({
     ...options,
+    initialPageParam: null,
     queryKey: getZimbraPlatformOrganizationQueryKey(platformId),
-    queryFn: () => getZimbraPlatformOrganization(platformId),
+    queryFn: ({ pageParam }) =>
+      getZimbraPlatformOrganization({ platformId, pageParam }),
     enabled:
       (typeof options.enabled !== 'undefined' ? options.enabled : true) &&
       !!platformId,
-  }) as UseQueryResult<OrganizationType[]>;
+    getNextPageParam: (lastPage: { cursorNext?: string }) =>
+      lastPage.cursorNext,
+    select: (data) =>
+      data?.pages.flatMap(
+        (page: UseInfiniteQueryResult<OrganizationType[]>) => page.data,
+      ),
+  });
 };

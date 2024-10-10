@@ -1,7 +1,7 @@
 import {
-  useQuery,
-  UseQueryOptions,
-  UseQueryResult,
+  useInfiniteQuery,
+  UseInfiniteQueryOptions,
+  UseInfiniteQueryResult,
 } from '@tanstack/react-query';
 import { usePlatform, useOrganization } from '@/hooks';
 
@@ -12,8 +12,8 @@ import {
 } from '@/api/domain';
 
 type UseDomainsParams = Omit<
-  UseQueryOptions,
-  'queryKey' | 'queryFn' | 'select'
+  UseInfiniteQueryOptions,
+  'queryKey' | 'queryFn' | 'select' | 'getNextPageParam' | 'initialPageParam'
 > & {
   organizationId?: string;
 };
@@ -24,19 +24,28 @@ export const useDomains = (props: UseDomainsParams = {}) => {
   const { data: organization } = useOrganization();
   const selectedOrganizationId = organization?.id;
 
-  return useQuery({
+  return useInfiniteQuery({
     ...options,
+    initialPageParam: null,
     queryKey: getZimbraPlatformDomainsQueryKey(
       platformId,
       organizationId || selectedOrganizationId,
     ),
-    queryFn: () =>
-      getZimbraPlatformDomains(
+    queryFn: ({ pageParam }) =>
+      getZimbraPlatformDomains({
         platformId,
-        organizationId || selectedOrganizationId,
-      ),
+        organizationId: organizationId || selectedOrganizationId,
+        pageParam,
+      }),
     enabled:
       (typeof options.enabled !== 'undefined' ? options.enabled : true) &&
       !!platformId,
-  }) as UseQueryResult<DomainType[]>;
+    staleTime: Infinity,
+    getNextPageParam: (lastPage: { cursorNext?: string }) =>
+      lastPage.cursorNext,
+    select: (data) =>
+      data?.pages.flatMap(
+        (page: UseInfiniteQueryResult<DomainType[]>) => page.data,
+      ),
+  });
 };

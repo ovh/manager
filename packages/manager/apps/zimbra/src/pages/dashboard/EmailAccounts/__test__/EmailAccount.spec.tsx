@@ -3,13 +3,22 @@ import { vi, describe, expect } from 'vitest';
 import EmailAccounts from '../EmailAccounts';
 import { render } from '@/utils/test.provider';
 import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
-import { accountMock, platformMock, domainMock } from '@/api/_mock_';
+import {
+  accountMock,
+  platformMock,
+  domainMock,
+  organizationDetailMock,
+} from '@/api/_mock_';
 
 vi.mock('@/hooks', () => {
   return {
     usePlatform: vi.fn(() => ({
       platformId: platformMock[0].id,
       platformUrn: platformMock[0].iam.urn,
+    })),
+    useOrganization: vi.fn(() => ({
+      data: organizationDetailMock,
+      isLoading: false,
     })),
     useAccountList: vi.fn(() => ({
       data: accountMock,

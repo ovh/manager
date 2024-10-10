@@ -12,7 +12,6 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       hideBreadcrumb: () => true,
       projects: /* @ngInject */ (WebPaas) => WebPaas.getProjects(),
-      ctaURL: /* @ngInject */ ($state) => $state.href('web-paas.add'),
     },
   });
 };

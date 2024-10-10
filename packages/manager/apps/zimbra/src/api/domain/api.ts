@@ -1,20 +1,25 @@
-import { v2, v6 } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV2, v2, v6 } from '@ovh-ux/manager-core-api';
 import { DomainBodyParamsType, DomainType } from './type';
 import { getApiPath } from '../utils/apiPath';
 
 // GET
 
-export const getZimbraPlatformDomains = async (
-  platformId: string,
-  organizationId?: string,
-) => {
-  const { data } = await v2.get<DomainType[]>(
-    `${getApiPath(platformId)}domain${
+export const getZimbraPlatformDomains = ({
+  platformId,
+  organizationId,
+  pageParam,
+}: {
+  platformId: string;
+  organizationId?: string;
+  pageParam?: unknown;
+}) =>
+  fetchIcebergV2<DomainType[]>({
+    route: `${getApiPath(platformId)}domain${
       organizationId ? `?organizationId=${organizationId}` : ''
     }`,
-  );
-  return data;
-};
+    pageSize: 25,
+    cursor: pageParam as string,
+  });
 
 export const getDomainsZoneList = async () => {
   const { data } = await v6.get('/domain/zone');

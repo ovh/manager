@@ -15,7 +15,9 @@ vi.mock('@/hooks', () => {
 });
 
 vi.mock('@/api/organization/api', () => {
-  const apiOrganization = vi.fn(() => Promise.resolve(organizationListMock));
+  const apiOrganization = vi.fn(() =>
+    Promise.resolve({ data: organizationListMock }),
+  );
   return {
     getZimbraPlatformOrganization: apiOrganization,
   };

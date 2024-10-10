@@ -90,13 +90,17 @@ export default class XdslAccessListCtrl {
       ) {
         return this.XdslAccessListService.getFiberEligibilityList(
           service.accessName,
-        ).then((data) =>
-          this.createService(
-            service,
-            data[0].status,
-            data[0].copperGridClosureTrajectory,
-          ),
-        );
+        )
+          .then((data) =>
+            this.createService(
+              service,
+              data[0].status,
+              data[0].copperGridClosureTrajectory,
+            ),
+          )
+          .catch(() =>
+            this.createService(service, this.ELIGIBILITY.not_concerned),
+          );
       }
       return this.createService(service, this.ELIGIBILITY.not_concerned);
     });

@@ -1,4 +1,6 @@
 {
   "web_paas_general_info": "Informations générales",
-  "web_paas_manage_users": "Utilisateurs"
+  "web_paas_manage_users": "Utilisateurs",
+  "web_paas_banner_eol_part_1": "Comme annoncé précédemment par email, nous vous confirmons la fin de commercialisation de votre offre Web PaaS Powered by Platform.sh.",
+  "web_paas_banner_eol_part_2": "À compter du 31/01/2025, votre service ne sera plus opérationnel. Il ne sera plus accessible depuis votre espace client et vous ne pourrez plus accéder à vos données. Pensez à sauvegarder votre projet (fichiers et bases de données) avant de clôturer vos services."
 }
