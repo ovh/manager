@@ -6,10 +6,13 @@ import { CdbError, ServiceData } from '@/data/api/database';
 
 interface UseDeleteService {
   onError: (cause: CdbError) => void;
-  onSuccess: () => void;
+  onDeleteSuccess: () => void;
 }
 
-export function useDeleteService({ onError, onSuccess }: UseDeleteService) {
+export function useDeleteService({
+  onError,
+  onDeleteSuccess,
+}: UseDeleteService) {
   const queryClient = useQueryClient();
   const { projectId } = useParams();
   const mutation = useMutation({
@@ -18,7 +21,7 @@ export function useDeleteService({ onError, onSuccess }: UseDeleteService) {
     },
     onError,
     onSuccess: () => {
-      onSuccess();
+      onDeleteSuccess();
       // Invalidate service list query to get the latest data
       queryClient.invalidateQueries({
         queryKey: [projectId, 'database/service'],

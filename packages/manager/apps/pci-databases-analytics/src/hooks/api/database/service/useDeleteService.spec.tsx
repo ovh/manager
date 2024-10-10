@@ -14,13 +14,13 @@ describe('useDeleteService', () => {
     const projectId = 'projectId';
     const engine = database.EngineEnum.mysql;
     const serviceId = 'serviceId';
-    const onSuccess = vi.fn();
+    const onDeleteSuccess = vi.fn();
     const onError = vi.fn();
 
     vi.mocked(databaseAPI.deleteService).mockResolvedValue(undefined);
 
     const { result } = renderHook(
-      () => useDeleteService({ onError, onSuccess }),
+      () => useDeleteService({ onError, onDeleteSuccess }),
       { wrapper: QueryClientWrapper },
     );
 
@@ -35,7 +35,7 @@ describe('useDeleteService', () => {
       expect(databaseAPI.deleteService).toHaveBeenCalledWith(
         deleteServiceProps,
       );
-      expect(onSuccess).toHaveBeenCalledWith();
+      expect(onDeleteSuccess).toHaveBeenCalledWith();
     });
   });
 });

@@ -6,16 +6,16 @@ import { CdbError } from '@/data/api/database';
 
 interface UseEditService {
   onError: (cause: CdbError) => void;
-  onSuccess: (service: database.Service) => void;
+  onEditSuccess: (service: database.Service) => void;
 }
-export function useEditService({ onError, onSuccess }: UseEditService) {
+export function useEditService({ onError, onEditSuccess }: UseEditService) {
   const queryClient = useQueryClient();
   const { projectId } = useParams();
   const mutation = useMutation({
     mutationFn: (serviceUpdate: EditService) => editService(serviceUpdate),
     onError,
     onSuccess: (data: database.Service) => {
-      onSuccess(data);
+      onEditSuccess(data);
       // Invalidate service list query to get the latest data
       queryClient.invalidateQueries({
         queryKey: [projectId, 'database/service'],

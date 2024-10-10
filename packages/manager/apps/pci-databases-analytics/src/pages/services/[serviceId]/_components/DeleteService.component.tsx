@@ -93,7 +93,7 @@ const DeleteService = ({
         onError(err);
       }
     },
-    onSuccess: () => {
+    onDeleteSuccess: () => {
       track(
         TRACKING.deleteService.success(service.engine, service.nodes[0].region),
       );
