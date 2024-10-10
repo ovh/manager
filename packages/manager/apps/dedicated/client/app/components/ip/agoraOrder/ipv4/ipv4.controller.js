@@ -255,7 +255,7 @@ export default class AgoraIpV4OrderController {
   static getRegionFromServiceName(serviceName) {
     const serviceExt = last(serviceName.split('.'));
     if (['eu', 'net'].includes(serviceExt)) {
-      return SERVER_REGION.EUROP;
+      return SERVER_REGION.EUROPE;
     }
     if (serviceExt === 'ca') {
       return SERVER_REGION.CANADA;
@@ -587,29 +587,22 @@ export default class AgoraIpV4OrderController {
 
     const ipOrganisationPromise = this.IpOrganisation.getIpOrganisation().then(
       (organisations) => {
-        if (
-          this.model.selectedService?.type ===
-          PRODUCT_TYPES.dedicatedServer.typeName
-        ) {
-          let registry = null;
+        let registry = null;
 
-          switch (REGION) {
-            case SERVER_REGION.EUROP:
-              registry = ORGANISATION_GROUP.RIPE;
-              break;
-            case SERVER_REGION.USA:
-            case SERVER_REGION.CANADA:
-              registry = ORGANISATION_GROUP.ARIN;
-              break;
-            default:
-              registry = null;
-          }
-          this.organisations = registry
-            ? organisations.filter((org) => org.registry === registry)
-            : organisations;
-        } else {
-          this.organisations = organisations;
+        switch (REGION) {
+          case SERVER_REGION.EUROPE:
+            registry = ORGANISATION_GROUP.RIPE;
+            break;
+          case SERVER_REGION.USA:
+          case SERVER_REGION.CANADA:
+            registry = ORGANISATION_GROUP.ARIN;
+            break;
+          default:
+            registry = null;
         }
+        this.organisations = registry
+          ? organisations.filter((org) => org.registry === registry)
+          : organisations;
       },
     );
 

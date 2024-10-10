@@ -148,7 +148,7 @@ export const REGION_TO_DATACENTER = {
 export const SERVER_REGION = {
   USA: 'USA',
   CANADA: 'CANADA - ASIA',
-  EUROP: 'EUROPE',
+  EUROPE: 'EUROPE',
 };
 
 export const ORGANISATION_GROUP = {
