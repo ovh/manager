@@ -36,5 +36,6 @@
   "pci_projects_project_network_private_create_loading": "A criação da rede privada está em curso. Esta operação poderá demorar alguns minutos",
   "pci_projects_project_network_private_create_success": "A rede privada foi criada com êxito",
   "pci_projects_project_network_private_create_error": "Ocorreu um erro ao criar a rede privada: {{ message }}",
-  "pci_projects_project_network_private_create_vlan_id_warning": "O VLAN id 0 é utilizado por predefinição noutros produtos, mesmo fora do universo Public Cloud. Os IP privados devem ser geridos com atenção"
+  "pci_projects_project_network_private_create_vlan_id_warning": "O VLAN id 0 é utilizado por predefinição noutros produtos, mesmo fora do universo Public Cloud. Os IP privados devem ser geridos com atenção",
+  "pci_projects_network_cidr": "Introduza um endereço IP válido"
 }

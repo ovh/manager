@@ -36,5 +36,6 @@
   "pci_projects_project_network_private_create_loading": "Das private Netzwerk wird erstellt. Dies kann einige Minuten dauern",
   "pci_projects_project_network_private_create_success": "Das private Netzwerk wurde erstellt",
   "pci_projects_project_network_private_create_error": "Bei der Erstellung des privaten Netzwerks ist ein Fehler aufgetreten: {{ message }}",
-  "pci_projects_project_network_private_create_vlan_id_warning": "Die VLAN-ID 0 wird standardmäßig für andere Produkte verwendet, auch außerhalb des Public-Cloud-Universums. Private IPs müssen mit Bedacht verwaltet werden."
+  "pci_projects_project_network_private_create_vlan_id_warning": "Die VLAN-ID 0 wird standardmäßig für andere Produkte verwendet, auch außerhalb des Public-Cloud-Universums. Private IPs müssen mit Bedacht verwaltet werden.",
+  "pci_projects_network_cidr": "Gültige IP-Adresse angeben"
 }

@@ -36,5 +36,6 @@
   "pci_projects_project_network_private_create_loading": "Trwa tworzenie prywatnej sieci. Może to zająć kilka minut.",
   "pci_projects_project_network_private_create_success": "Prywatna sieć została utworzona.",
   "pci_projects_project_network_private_create_error": "Wystąpił błąd podczas tworzenia sieci prywatnej: {{ message }}",
-  "pci_projects_project_network_private_create_vlan_id_warning": "Identyfikator VLAN 0 jest domyślnie używany w innych produktach, w tym także tych spoza środowiska Public Cloud. Prywatnymi adresami IP należy zarządzać ostrożnie."
+  "pci_projects_project_network_private_create_vlan_id_warning": "Identyfikator VLAN 0 jest domyślnie używany w innych produktach, w tym także tych spoza środowiska Public Cloud. Prywatnymi adresami IP należy zarządzać ostrożnie.",
+  "pci_projects_network_cidr": "Wprowadź poprawny adres IP"
 }
