@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useRef, Suspense, lazy } from 'react';
+import { useEffect, useContext, useRef, Suspense, lazy } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   useOvhTracking,
@@ -52,6 +52,12 @@ const PaymentStatus = lazy(() =>
 );
 const SiretBanner = lazy(() => import('@/pages/layout/SiretBanner.component'));
 const SiretModal = lazy(() => import('@/pages/layout/SiretModal.component'));
+const KycIndiaBanner = lazy(() =>
+  import('@/pages/layout/KycIndiaBanner.component'),
+);
+const KycFraudBanner = lazy(() =>
+  import('@/pages/layout/KycFraudBanner.component'),
+);
 
 export default function Layout() {
   const location = useLocation();
@@ -194,8 +200,24 @@ export default function Layout() {
                   )}
                   {!isLoading && (
                     <>
-                      <div>oui-message.kycIndia</div>
-                      <div>oui-message.kycFraud</div>
+                      {availability?.['identity-documents'] && (
+                        <Suspense
+                          fallback={
+                            <OsdsSkeleton data-testid="kyc_india_banner_skeleton" />
+                          }
+                        >
+                          <KycIndiaBanner />
+                        </Suspense>
+                      )}
+                      {availability?.['procedures:fraud'] && (
+                        <Suspense
+                          fallback={
+                            <OsdsSkeleton data-testid="kyc_fraud_banner_skeleton" />
+                          }
+                        >
+                          <KycFraudBanner />
+                        </Suspense>
+                      )}
                     </>
                   )}
                   <OsdsText
@@ -230,6 +252,10 @@ export default function Layout() {
                             )}
                           </Suspense>
                         </div>
+                      </>
+                    )}
+                    {!isLoading && (
+                      <>
                         <div className="md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 px-6 box-border">
                           <Suspense
                             fallback={
@@ -239,15 +265,20 @@ export default function Layout() {
                             <HubSupport />
                           </Suspense>
                         </div>
-                        <div className="md:w-4/12 order-4 px-6 box-border">
-                          <Suspense
-                            fallback={
-                              <TileSkeleton data-testid="order_tracking_skeleton" />
-                            }
-                          >
-                            <OrderTracking />
-                          </Suspense>
-                        </div>
+                        {!isFreshCustomer && (
+                          <div className="md:w-4/12 order-4 px-6 box-border">
+                            <Suspense
+                              fallback={
+                                <OsdsSkeleton
+                                  data-testid="order_tracking_skeleton"
+                                  inline
+                                />
+                              }
+                            >
+                              <OrderTracking />
+                            </Suspense>
+                          </div>
+                        )}
                       </>
                     )}
                   </div>

@@ -16,6 +16,13 @@ export const BILLING_SUMMARY_PERIODS_IN_MONTHS = [1, 3, 6];
 
 export const LINK = 'https://billing.us.ovhcloud.com/login';
 
+export const KYC_FRAUD_TRACK_IMPRESSION = {
+  campaignId: 'kyc-fraud',
+  creation: 'notification',
+  format: 'banner',
+  generalPlacement: 'manager-hub',
+};
+
 export default {
   features,
   BILLING_SUMMARY_PERIODS_IN_MONTHS,
