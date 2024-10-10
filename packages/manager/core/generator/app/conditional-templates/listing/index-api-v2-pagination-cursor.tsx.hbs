@@ -2,8 +2,9 @@ import React, { useState, useEffect, } from 'react';
 import { useTranslation } from 'react-i18next';
 import { {{#if isPCI }}useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
 
-import { OsdsLink } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+
 import {
   BaseLayout,
   Datagrid,
@@ -65,12 +66,11 @@ export default function Listing() {
               if (serviceKey === element)
                 return (
                   <DataGridTextCell>
-                    <OsdsLink
-                      color={ODS_THEME_COLOR_INTENT.primary}
+                    <OdsButton
+                      variant={ODS_BUTTON_VARIANT.ghost}
                       onClick={() => navigateToDashboard(label)}
-                    >
-                      {label}
-                    </OsdsLink>
+                      label={label}
+                    />
                   </DataGridTextCell>
                 );
               return <DataGridTextCell>{label}</DataGridTextCell>;

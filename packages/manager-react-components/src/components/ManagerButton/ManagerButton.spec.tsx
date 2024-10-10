@@ -27,13 +27,14 @@ describe('ManagerButton tests', () => {
         isFetched: true,
       });
       renderComponent({
+        id: 'test-manager-button',
         urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
         iamActions: [
           'manager-react-components:apiovh:manager-react-components/attach-action',
         ],
-        children: <div>foo-manager-button</div>,
+        label: 'foo-manager-button',
       });
-      expect(screen.getAllByText('foo-manager-button')).not.toBeNull();
+      expect(screen.getByTestId('manager-button')).not.toBeNull();
     });
 
     it('with false value for useAuthorizationIam', () => {
@@ -43,16 +44,18 @@ describe('ManagerButton tests', () => {
         isFetched: true,
       });
       renderComponent({
+        id: 'test-manager-button',
         urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
         iamActions: [
           'manager-react-components:apiovh:manager-react-components/attach',
         ],
-        children: <div>foo-manager-button</div>,
+        label: 'fo manager button',
       });
-      expect(screen.getAllByText('foo-manager-button')).not.toBeNull();
-      expect(
-        screen.getByText('foo-manager-button').parentElement,
-      ).toBeDisabled();
+      expect(screen.getByTestId('manager-button-tooltip')).not.toBeNull();
+      expect(screen.getByTestId('manager-button-tooltip')).toHaveAttribute(
+        'is-disabled',
+        'true',
+      );
     });
   });
 
@@ -64,17 +67,19 @@ describe('ManagerButton tests', () => {
         isFetched: true,
       });
       renderComponent({
+        id: 'manager-button',
         urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
         iamActions: [
           'manager-react-components:apiovh:manager-react-components/attach-action',
         ],
-        children: <div>foo-manager-button</div>,
+        label: 'foo-manager-button',
       });
-      expect(screen.getAllByText('foo-manager-button')).not.toBeNull();
-      expect(
-        screen.getByText('foo-manager-button').parentElement,
-      ).toBeDisabled();
-      const button = screen.getByText('foo-manager-button');
+      expect(screen.getByTestId('manager-button-tooltip')).not.toBeNull();
+      expect(screen.getByTestId('manager-button-tooltip')).toHaveAttribute(
+        'is-disabled',
+        'true',
+      );
+      const button = screen.getByTestId('manager-button-tooltip');
       fireEvent.mouseOver(button);
       expect(
         screen.getAllByText(fr_FR.common_iam_actions_message),
