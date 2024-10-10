@@ -135,6 +135,14 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     );
   }
 
+  shouldUseMixCommander() {
+    if (isTrackingDebug()) {
+      return true;
+    }
+
+    return !!window.tC && window.location?.hostname !== 'localhost';
+  }
+
   initTag(withConsent: boolean): Promise<void> {
     // check if the tag is not already initialized
     if (this.tag) {
@@ -255,7 +263,14 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
 
   sendEvent(type: string, data: any) {
     debug('tracking send', type, data);
-    if (this.shouldUsePianoAnalytics()) {
+    if (type.startsWith('mix-commander') && this.shouldUseMixCommander()) {
+      window.tC.trackPage(
+        data.user_id,
+        data.country,
+        data.page,
+        data.tc_additional_params,
+      );
+    } else if (this.shouldUsePianoAnalytics()) {
       const trackingData = { ...filterTrackingData(data) };
       window.pa.setUser(trackingData.user_id, trackingData.user_category);
       delete trackingData.user_id;
@@ -310,6 +325,29 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     } else {
       this.trackQueue.push({
         type: 'trackPage',
+        data,
+      });
+    }
+  }
+
+  trackMixCommanderS3(data: LegacyTrackingData): void {
+    if (this.canTrack()) {
+      const tracking = {
+        ...this.getGenericTrackingData(data),
+        ...getPageTrackingData(data),
+        tc_additional_params: data.tc_additional_params,
+      };
+      if (tracking.page) {
+        this.sendEvent('mix-commander.display', filterTrackingData(tracking));
+      } else {
+        console.error(
+          'tC.trackPage invalid data: missing name attribute',
+          data,
+        );
+      }
+    } else {
+      this.trackQueue.push({
+        type: 'trackMixCommanderS3',
         data,
       });
     }
