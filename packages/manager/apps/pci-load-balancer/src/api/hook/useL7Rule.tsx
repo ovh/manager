@@ -1,9 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
 import { paginateResults, sortResults } from '@/helpers';
-import { getL7Rules, TL7Rule } from '@/api/data/l7Rules';
+import { deleteL7Rule, getL7Rules, TL7Rule } from '@/api/data/l7Rules';
+import queryClient from '@/queryClient';
 
 export const useGetAllL7Rules = (
   projectId: string,
@@ -46,4 +47,37 @@ export const useL7Rules = (
     }),
     [allL7Rules, error, isLoading, isPending, pagination, sorting, filters],
   );
+};
+
+type DeleteRulesProps = {
+  projectId: string;
+  policyId: string;
+  ruleId: string;
+  region: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useDeleteL7Rule = ({
+  projectId,
+  policyId,
+  ruleId,
+  region,
+  onError,
+  onSuccess,
+}: DeleteRulesProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => deleteL7Rule(projectId, region, policyId, ruleId),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['l7Rules', projectId],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    deleteL7Rule: () => mutation.mutate(),
+    ...mutation,
+  };
 };
