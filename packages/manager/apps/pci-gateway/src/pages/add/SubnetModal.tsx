@@ -67,7 +67,7 @@ export const SubnetModal = ({
             placeholder={tAdd(
               'pci_projects_project_public_gateways_add_modal_add_private_network_field_placeholder',
             )}
-            inline={true}
+            inline
             onOdsValueChange={(event) => {
               store.updateForm.newNetwork(
                 event.detail.value,
@@ -104,7 +104,7 @@ export const SubnetModal = ({
           </OsdsText>
           <OsdsSelect
             value={store.form.newNetwork.subnet}
-            inline={true}
+            inline
             onOdsValueChange={(event) => {
               store.updateForm.newNetwork(
                 store.form.newNetwork.name,
