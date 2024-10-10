@@ -15,7 +15,6 @@ import {
   OsdsIcon,
   OsdsPopover,
   OsdsPopoverContent,
-  OsdsRadio,
   OsdsRadioButton,
   OsdsSearchBar,
   OsdsSpinner,
@@ -45,25 +44,19 @@ const useDatagridColumn = (
       id: 'actions',
       cell: (instance: TWorkflowInstance) => (
         <NotSupportedTooltipComponent region={instance.region}>
-          <OsdsRadio
-            value={instance.id}
-            name="instance"
-            disabled={isLocalZone(instance.region)}
-            {...(selectedInstance === instance && { checked: true })}
-            data-testid={`radio-${instance.id}`}
-          >
-            <OsdsRadioButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_RADIO_BUTTON_SIZE.xs}
-              data-testid={`radio-button-${instance.id}`}
-              className="mx-auto"
-              onClick={() => {
-                if (!isLocalZone(instance.region)) {
-                  onSelectInstance(instance);
-                }
-              }}
-            />
-          </OsdsRadio>
+          <OsdsRadioButton
+            checked={selectedInstance?.id === instance?.id || undefined}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            size={ODS_RADIO_BUTTON_SIZE.xs}
+            data-testid={`radio-button-${instance.id}`}
+            disabled={isLocalZone(instance.region) || undefined}
+            className="mx-auto"
+            onClick={() => {
+              if (!isLocalZone(instance.region)) {
+                onSelectInstance(instance);
+              }
+            }}
+          />
         </NotSupportedTooltipComponent>
       ),
       label: '',
