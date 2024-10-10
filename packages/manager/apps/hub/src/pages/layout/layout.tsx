@@ -58,6 +58,9 @@ const KycIndiaBanner = lazy(() =>
 const KycFraudBanner = lazy(() =>
   import('@/pages/layout/KycFraudBanner.component'),
 );
+const NotificationsCarousel = lazy(() =>
+  import('@/pages/layout/NotificationsCarousel.component'),
+);
 
 export default function Layout() {
   const location = useLocation();
@@ -164,7 +167,16 @@ export default function Layout() {
                         >
                           <Banner />
                         </Suspense>
-                        <div className="w-full">ovh-manager-hub-carousel</div>
+                        <Suspense
+                          fallback={
+                            <OsdsSkeleton
+                              data-testid="notifications_carousel_skeleton"
+                              inline
+                            />
+                          }
+                        >
+                          <NotificationsCarousel />
+                        </Suspense>
                       </>
                     )}
                   </div>
