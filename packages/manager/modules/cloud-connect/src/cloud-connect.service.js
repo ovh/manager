@@ -559,4 +559,12 @@ export default class CloudConnectService {
       `cloud_connect_common_${array[array.length - 1]}`,
     )}`;
   }
+
+  getNotifications(cloudConnectId) {
+    return this.iceberg(`/ovhCloudConnect/${cloudConnectId}/incident`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute(null, true)
+      .$promise.then(({ data }) => data);
+  }
 }
