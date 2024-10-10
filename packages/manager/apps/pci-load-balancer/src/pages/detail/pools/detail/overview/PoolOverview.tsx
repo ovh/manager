@@ -45,14 +45,15 @@ export default function PoolOverview() {
   const hrefDeletePool = useHref(
     `./delete?poolId=${pool?.id}&poolName=${pool?.name}`,
   );
+  const hrefEditPool = useHref(`../edit`);
 
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
         <OsdsTile
-          className="flex-col w-full shadow-lg"
+          className="flex-col w-full shadow-custom-tile"
           rounded
-          variant={ODS_TILE_VARIANT.ghost}
+          variant={ODS_TILE_VARIANT.flat}
         >
           <div className="flex flex-col w-full">
             <OsdsText
@@ -71,7 +72,7 @@ export default function PoolOverview() {
               title={tPoolOverview(
                 'octavia_load_balancer_pools_detail_overview_management_edit',
               )}
-              href=""
+              href={hrefEditPool}
               dataTestId="clusterManagement-edit"
             />
             <TileButton
@@ -96,7 +97,7 @@ export default function PoolOverview() {
         </OsdsTile>
 
         <OsdsTile
-          className="flex-col w-full shadow-lg"
+          className="flex-col w-full shadow-custom-tile"
           inline
           rounded
           variant={ODS_TILE_VARIANT.ghost}
@@ -197,7 +198,7 @@ export default function PoolOverview() {
         </OsdsTile>
 
         <OsdsTile
-          className="flex-col w-full shadow-lg"
+          className="flex-col w-full shadow-custom-tile"
           inline
           rounded
           variant={ODS_TILE_VARIANT.ghost}
