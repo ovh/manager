@@ -1,9 +1,0 @@
-{
-  "pci_projects_project_storages_blocks_block_attach_title": "Asociar el volumen a una instancia",
-  "pci_projects_project_storages_blocks_block_attach_submit_label": "Confirmar",
-  "pci_projects_project_storages_blocks_block_attach_cancel_label": "Cancelar",
-  "pci_projects_project_storages_blocks_block_attach_error_no_compatible_instance": "No hay ninguna instancia disponible en la región de su volumen.",
-  "pci_projects_project_storages_blocks_block_attach_instance_placeholder": "Buscar",
-  "pci_projects_project_storages_blocks_block_attach_success_message": "Se ha asociado el volumen {{ volume }} ({{ volumeId }}) de tipo {{ type }} a la instancia {{ instance }} ({{ instanceId }}).",
-  "pci_projects_project_storages_blocks_block_attach_error_attach": "Se ha producido un error al actualizar el volumen {{ volume }}: {{ message }}"
-}
