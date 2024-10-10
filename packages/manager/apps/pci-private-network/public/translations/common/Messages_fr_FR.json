@@ -89,5 +89,6 @@
   "common_password_bad_password": "Mot de passe incorrect.",
   "common_password_weak_password": "Mot de passe faible.",
   "common_password_good_password": "Mot de passe correct.",
-  "common_password_strong_password": "Mot de passe fort."
+  "common_password_strong_password": "Mot de passe fort.",
+  "common_find_out_more_here": "En savoir plus ici"
 }

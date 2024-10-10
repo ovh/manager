@@ -95,6 +95,38 @@ export const GUIDE_LINKS = {
     WS: `${HELP_ROOT}es${REGION_AVAILABILITY_URL}`,
     WE: `${HELP_ROOT}en${REGION_AVAILABILITY_URL}`,
   },
+  VLAN: {
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-dedicated-servers-multiple-vlans?id=kb_article_view&sysparm_article=KB0043360',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-dedicated-servers-multiple-vlans?id=kb_article_view&sysparm_article=KB0043715',
+    DEFAULT:
+      'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-multiple-vlans?id=kb_article_view&sysparm_article=KB0043720',
+    DE:
+      'https://help.ovhcloud.com/csm/de-dedicated-servers-multiple-vlans?id=kb_article_view&sysparm_article=KB0043362',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-dedicated-servers-multiple-vlans?id=kb_article_view&sysparm_article=KB0043367',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-dedicated-servers-multiple-vlans?id=kb_article_view&sysparm_article=KB0043366',
+    FR:
+      'https://help.ovhcloud.com/csm/fr-dedicated-servers-multiple-vlans?id=kb_article_view&sysparm_article=KB0043369',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-multiple-vlans?id=kb_article_view&sysparm_article=KB0030378',
+    IT:
+      'https://help.ovhcloud.com/csm/it-dedicated-servers-multiple-vlans?id=kb_article_view&sysparm_article=KB0043371',
+    PT:
+      'https://help.ovhcloud.com/csm/pt-dedicated-servers-multiple-vlans?id=kb_article_view&sysparm_article=KB0043374',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-dedicated-servers-multiple-vlans?id=kb_article_view&sysparm_article=KB0043372',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-multiple-vlans?id=kb_article_view&sysparm_article=KB0043370',
+    SG:
+      'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-multiple-vlans?id=kb_article_view&sysparm_article=KB0043365',
+    WS:
+      'https://help.ovhcloud.com/csm/en-dedicated-servers-multiple-vlans?id=kb_article_view&sysparm_article=KB0043368',
+    US:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/25276312027027-Creating-Multiple-vLANs-in-a-vRack',
+  },
 };
 
 export const LOCAL_ZONE_INFO_URL = {

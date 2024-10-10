@@ -17,7 +17,7 @@
   "pci_projects_project_network_private_create_public_gateway_decription_2": "Autorize as instâncias desta rede privada a aceder à Internet de forma segura. A escolha desta opção utilizará a instância Gateway existente ou criará uma se necessário. Tenha em conta que isto pode implicar custos adicionais (estarão disponíveis mais pormenores na página de resumo).",
   "pci_projects_project_network_private_create_public_gateway_footer": "Esta opção pode não estar disponível na região selecionada. Para saber mais sobre a disponibilidade dos produtos por região, <a href=\"{{ guideLink }}\" target=\"_blank\" data-track-on=\"click\" data-track-type=\"action\" data-track-name=\" {{ trackLabel }} \">clique aqui</a>.",
   "pci_projects_project_network_private_create_layer_2_options": "Opções de rede do layer 2:",
-  "pci_projects_project_network_private_create_vlan_tip": "Dica: para as utilizações de cloud híbrida, poderá ter de utilizar o mesmo identificador de VLAN no seu servidor dedicado ou no seu Hosted Private Cloud. Saiba mais aqui.",
+  "pci_projects_project_network_private_create_vlan_tip": "Dica: para as utilizações de cloud híbrida, poderá ter de utilizar o mesmo identificador de VLAN no seu servidor dedicado ou no seu Hosted Private Cloud. ",
   "pci_projects_project_network_private_create_dhcp_address_distribution_options": "Opções de distribuição dos endereços DHCP:",
   "pci_projects_project_network_private_create_enable_dhcp": "Ativar DHCP para esta rede privada",
   "pci_projects_project_network_private_create_announce_first_address": "Anunciar o primeiro endereço de um CIDR dado como gateway predefinido (DHCP opção 3)",
