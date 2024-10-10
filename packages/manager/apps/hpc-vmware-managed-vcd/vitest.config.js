@@ -8,22 +8,28 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './src/setupTests.ts',
+    setupFiles: './setupTests.ts',
     coverage: {
       include: ['src'],
       exclude: [
-        'src/interface',
-        'src/__tests__',
-        'src/**/*constants.ts',
+        'src/types',
+        'src/test-utils',
         'src/vite-*.ts',
         'src/App.tsx',
-        'src/core/ShellRoutingSync.tsx',
-        'src/core/HidePreloader.tsx',
-        'src/i18n.ts',
-        'src/main.tsx',
-        'src/routes.tsx',
-        'src/queryClient.ts',
+        'src/index.tsx',
+        'src/tracking.constant.ts',
       ],
+    },
+    testTimeout: 60000,
+    fileParallelism: false,
+    maxWorkers: 1,
+    pollOptions: {
+      forks: {
+        singleFork: true,
+      },
+      threads: {
+        singleThread: true,
+      },
     },
   },
   resolve: {

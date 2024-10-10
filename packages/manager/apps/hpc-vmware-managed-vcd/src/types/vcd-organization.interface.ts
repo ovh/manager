@@ -10,6 +10,7 @@ export interface IVcdOrganizationCurrentState extends IVcdOrganizationState {
   region: string;
   name: string;
   spla: boolean;
+  billingType: 'DEMO' | 'MONTHLY';
   webInterfaceUrl: string;
 }
 
@@ -20,4 +21,5 @@ export default interface IVcdOrganization {
   targetSpec: IVcdOrganizationState;
   currentTasks?: any[];
   iam: IamObject;
+  updatedAt: string;
 }
