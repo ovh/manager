@@ -1,0 +1,7 @@
+{
+  "octavia_load_balancer_list_l7_rules_delete_title": "Delete an L7 rule",
+  "octavia_load_balancer_list_l7_rules_delete_description": "Are you sure you want to delete your L7 rule?",
+  "octavia_load_balancer_list_l7_rules_delete_cancel": "Cancel",
+  "octavia_load_balancer_list_l7_rules_delete_confirm": "Delete",
+  "octavia_load_balancer_list_l7_rules_delete_success": "Your L7 rule has been deleted."
+}
