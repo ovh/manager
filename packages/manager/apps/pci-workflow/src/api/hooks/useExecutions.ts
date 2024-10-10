@@ -57,12 +57,22 @@ export const useWorkflowExecutions = (
     if (Array.isArray(executions) && executions.length > 0) {
       mappedExecution = executions.map((exec) => ({
         ...exec,
-        executedAtDate: format(parseISO(exec.executedAt), "dd MMMM'.' yyyy", {
-          locale: locales[userLocale],
-        }),
-        executedAtTime: format(parseISO(exec.executedAt), 'hh:mm:ss', {
-          locale: locales[userLocale],
-        }),
+        executedAtDate: format(
+          // remove Z timezone to treat as UTC date
+          parseISO(exec.executedAt?.replace(/Z$/, '')),
+          "dd MMMM'.' yyyy",
+          {
+            locale: locales[userLocale],
+          },
+        ),
+        executedAtTime: format(
+          // remove Z timezone to treat as UTC date
+          parseISO(exec.executedAt?.replace(/Z$/, '')),
+          'hh:mm:ss',
+          {
+            locale: locales[userLocale],
+          },
+        ),
       }));
     }
 
