@@ -442,6 +442,7 @@
   "user_account_security_password_title": "Mot de passe",
   "user_account_security_double_auth_title": "Double authentification",
   "user_account_security_double_auth_info": "Activez cette fonction pour sécuriser votre compte.",
+  "user_account_security_double_auth_sso_info": "La double authentification n'est pas disponible avec une connexion Single Sign-On, ce qui assure déjà une sécurité renforcée.",
   "user_account_security_double_auth_status_activate": "Activé",
   "user_account_security_double_auth_action_activate": "Activer la double authentification",
   "user_account_security_double_auth_error": "Oups ! Une erreur est survenue lors de la récupération des comptes liés à la double authentification.",

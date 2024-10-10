@@ -13,6 +13,7 @@ export default [
   'UserAccount.services.doubleAuth.u2f',
   'UserAccount.services.doubleAuth.backupCode',
   'Alerter',
+  'coreConfig',
   function UserAccountDoubleAuthController(
     $scope,
     $q,
@@ -22,13 +23,18 @@ export default [
     DoubleAuthU2fService,
     DoubleAuthBackupCodeService,
     Alerter,
+    coreConfig,
   ) {
+    const {
+      auth: { method: authMethod },
+    } = coreConfig.getUser();
     $scope.doubleAuth = {
       sms: 'disabled',
       totp: 'disabled',
       u2f: 'disabled',
       backupCode: 'disabled',
       isLoading: false,
+      isConnectionSSO: authMethod === 'provider',
     };
 
     /* ===============================
