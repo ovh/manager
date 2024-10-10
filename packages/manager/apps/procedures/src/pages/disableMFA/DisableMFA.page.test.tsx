@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import Home from './Home.page';
+import Home from './DisableMFA.page';
 
 const mockedUsedNavigate = vi.fn();
 const mockedUsedLocation = vi.fn();
@@ -20,6 +20,10 @@ vi.mock('react-router-dom', () => ({
   Outlet: () => <p>TestOutlet</p>,
 }));
 
+vi.mock('@/context/User/modals/SessionModals', () => ({
+  SessionModals: () => <div>SessionModals</div>,
+}));
+
 vi.mock('@/components/Loading/Loading', () => ({
   default: () => <p>TestLoading</p>,
 }));
@@ -28,7 +32,7 @@ vi.mock('@/data/hooks/useStatus', () => ({
   useFetch2faStatus: () => fetch2faStatusFakeResponse,
 }));
 
-describe('Home.page', () => {
+describe('DisableMFA.page', () => {
   it('should navigate to see page when status is open', async () => {
     fetch2faStatusFakeResponse.isFetched = true;
     fetch2faStatusFakeResponse.isSuccess = true;
