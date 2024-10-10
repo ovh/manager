@@ -19,12 +19,6 @@ export const getPrivateNetworkByRegion = async (
   return data;
 };
 
-export type TSubnet = {
-  cidr: string;
-  gatewayIp: string;
-  id: string;
-};
-
 export const getSubnetByNetworkAndRegion = async (
   projectId: string,
   region: string,
@@ -44,6 +38,7 @@ export type TPrivateNetwork = {
   status: string;
   type: string;
   vlanId: number;
+  visibility: string;
   regions: {
     openstackId: string;
     region: string;
@@ -51,9 +46,35 @@ export type TPrivateNetwork = {
   }[];
 };
 
+export type TSubnet = {
+  id: string;
+  name: string;
+  cidr: string;
+  ipVersion: number;
+  dhcpEnabled: boolean;
+  gatewayIp: string;
+  allocationPools: {
+    start: string;
+    end: string;
+  }[];
+  hostRoutes: string[];
+  dnsNameServers: string[];
+};
+
 export const getPrivateNetworks = async (projectId: string) => {
   const { data } = await v6.get<TPrivateNetwork[]>(
     `/cloud/project/${projectId}/network/private`,
+  );
+  return data;
+};
+
+export const getPrivateNetworkSubnets = async (
+  projectId: string,
+  region: string,
+  networkId: string,
+): Promise<TSubnet[]> => {
+  const { data } = await v6.get<TSubnet[]>(
+    `/cloud/project/${projectId}/region/${region}/network/${networkId}/subnet`,
   );
   return data;
 };
