@@ -4,6 +4,12 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import {
+  useOvhTracking,
+  PageLocation,
+  ButtonType,
+  PageType,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -58,8 +64,20 @@ export default function NewPage(): JSX.Element {
   const backLink = useHref('..');
   const navigate = useNavigate();
 
+  const { trackClick, trackPage } = useOvhTracking();
+
   const create = async () => {
     store.setForm({ isCreating: true });
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [
+        'add_privateNetwork',
+        'confirm',
+        `privateNetwork_added_${store.form.region.name}_${store.form.privateNetworkName}`,
+      ],
+    });
     try {
       await store.create();
       addSuccess(
@@ -76,6 +94,10 @@ export default function NewPage(): JSX.Element {
         </Translation>,
         true,
       );
+      trackPage({
+        pageName: 'addPrivateNetwork',
+        pageType: PageType.bannerSuccess,
+      });
       navigate('..');
     } catch (e) {
       addError(
@@ -95,6 +117,10 @@ export default function NewPage(): JSX.Element {
         </Translation>,
         true,
       );
+      trackPage({
+        pageName: 'addPrivateNetwork',
+        pageType: PageType.bannerError,
+      });
     } finally {
       store.setForm({ isCreating: false });
     }
