@@ -29,16 +29,22 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { clsx } from 'clsx';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import SizeInputComponent from '@/pages/create/SizeInput.component';
 import {
   AGORA_FLOATING_IP_REGEX,
+  FLOATING_IP_TYPE,
+  NETWORK_PRIVATE_VISIBILITY,
   PRODUCT_LINK,
   REGION_AVAILABILITY_LINK,
 } from '@/constants';
 import { StepsEnum, useNewLoadBalancerStore } from '@/pages/create/store';
 import { TRegion, useGetRegions } from '@/api/hook/usePlans';
-import { useGetFloatingIps } from '@/api/hook/useRegion';
+import { useGetFloatingIps, useGetRegionNetworks } from '@/api/hook/useRegion';
+import {
+  useGetPrivateNetworks,
+  useGetPrivateNetworkSubnets,
+} from '@/api/hook/useNetwork';
 
 type TState = {
   selectedContinent: string | undefined;
@@ -46,54 +52,88 @@ type TState = {
 
 export default function CreatePage(): JSX.Element {
   const projectHref = useProjectUrl('public-cloud');
+
   const backHref = useHref('..');
+
   const { projectId } = useParams();
+
   const { t } = useTranslation('octavia-load-balancer');
   const { t: tCreate } = useTranslation('create');
   const { t: tCommon } = useTranslation('pci-common');
   const { t: tRegionsList } = useTranslation('regions-list');
-  const { data: project } = useProject();
-  const { me } = useMe();
-  const store = useNewLoadBalancerStore();
-  const { data: catalog } = useCatalog();
+
   const { getFormattedHourlyCatalogPrice } = useCatalogPrice(5);
+
+  const store = useNewLoadBalancerStore();
 
   const [state, setState] = useState<TState>({
     selectedContinent: undefined,
   });
+
+  const { me } = useMe();
+
+  const { data: project } = useProject();
+  const { data: catalog } = useCatalog();
+  const { data: privateNetworks } = useGetRegionNetworks(
+    projectId,
+    store.region?.name,
+  );
   const { data: floatingIps } = useGetFloatingIps(
     projectId,
     store.region?.name,
   );
-
-  const productPageLink =
-    PRODUCT_LINK[me?.ovhSubsidiary] || PRODUCT_LINK.DEFAULT;
-  const regionPageLink =
-    REGION_AVAILABILITY_LINK[me?.ovhSubsidiary] ||
-    REGION_AVAILABILITY_LINK.DEFAULT;
+  const { data: subnets } = useGetPrivateNetworkSubnets(
+    projectId,
+    store.region?.name,
+    store.privateNetwork?.id,
+  );
 
   const regions = useGetRegions(projectId);
 
-  const floatingIpsList = [
-    {
-      associatedEntity: '',
-      id: 'create',
-      ip: tCreate(
-        'octavia_load_balancer_create_floating_ip_field_new_floating_ip',
-      ),
-      networkId: '',
-      status: '',
-    },
-    {
-      associatedEntity: '',
-      id: 'none',
-      ip: tCreate(
-        'octavia_load_balancer_create_floating_ip_field_no_floating_ip',
-      ),
-      networkId: '',
-      status: '',
-    },
-    ...(floatingIps || []),
+  const [floatingIpsList, privateNetworksList] = [
+    [
+      {
+        associatedEntity: '',
+        id: 'create',
+        ip: tCreate(
+          'octavia_load_balancer_create_floating_ip_field_new_floating_ip',
+        ),
+        networkId: '',
+        status: '',
+        type: '',
+      },
+      {
+        associatedEntity: '',
+        id: 'none',
+        ip: tCreate(
+          'octavia_load_balancer_create_floating_ip_field_no_floating_ip',
+        ),
+        networkId: '',
+        status: '',
+        type: '',
+      },
+      ...(floatingIps || []),
+    ],
+    (privateNetworks || []).filter(
+      (network) => network.visibility === NETWORK_PRIVATE_VISIBILITY,
+    ),
+  ];
+
+  const subnetsList = useMemo(() => {
+    console.log('hna', subnets);
+    if (!subnets) {
+      return [];
+    }
+    return store.publicIp?.type !== FLOATING_IP_TYPE.NO_IP
+      ? subnets.filter((subnet) => subnet.gatewayIp)
+      : subnets;
+  }, [subnets, store.publicIp]);
+
+  const [productPageLink, regionPageLink] = [
+    PRODUCT_LINK[me?.ovhSubsidiary] || PRODUCT_LINK.DEFAULT,
+
+    REGION_AVAILABILITY_LINK[me?.ovhSubsidiary] ||
+      REGION_AVAILABILITY_LINK.DEFAULT,
   ];
 
   return (
@@ -246,7 +286,7 @@ export default function CreatePage(): JSX.Element {
               store.check(StepsEnum.PUBLIC_IP);
               store.lock(StepsEnum.PUBLIC_IP);
 
-              store.open(StepsEnum.PUBLIC_IP);
+              store.open(StepsEnum.PRIVATE_NETWORK);
             },
             label: tCommon('common_stepper_next_button_label'),
             isDisabled: store.publicIp === null,
@@ -354,6 +394,110 @@ export default function CreatePage(): JSX.Element {
               </OsdsText>
             </OsdsMessage>
           )}
+        </StepComponent>
+        <StepComponent
+          title={tCreate('octavia_load_balancer_create_private_network_title')}
+          isOpen={store.steps.get(StepsEnum.PRIVATE_NETWORK).isOpen}
+          isChecked={store.steps.get(StepsEnum.PRIVATE_NETWORK).isChecked}
+          isLocked={store.steps.get(StepsEnum.PRIVATE_NETWORK).isLocked}
+          order={4}
+          next={{
+            action: () => {
+              store.check(StepsEnum.PRIVATE_NETWORK);
+              store.lock(StepsEnum.PRIVATE_NETWORK);
+
+              store.open(StepsEnum.PRIVATE_NETWORK);
+            },
+            label: tCommon('common_stepper_next_button_label'),
+            isDisabled:
+              subnetsList.length === 0 &&
+              store.publicIp?.type !== FLOATING_IP_TYPE.NO_IP,
+          }}
+        >
+          <OsdsText
+            size={ODS_TEXT_SIZE._400}
+            level={ODS_TEXT_LEVEL.body}
+            color={ODS_THEME_COLOR_INTENT.text}
+            className="mb-4"
+          >
+            {tCreate('octavia_load_balancer_create_private_network_intro')}
+          </OsdsText>
+          <OsdsFormField className="mt-8" inline error="">
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              size={ODS_TEXT_SIZE._100}
+              level={ODS_TEXT_LEVEL.subheading}
+              slot="label"
+            >
+              {tCreate('octavia_load_balancer_create_private_network_field')}
+            </OsdsText>
+
+            <OsdsSelect
+              className="w-[20rem]"
+              value={store.privateNetwork?.id}
+              error={false}
+              onOdsValueChange={(event) => {
+                const targetNetwork = (privateNetworks || []).find(
+                  (ip) => ip.id === event.target.value,
+                );
+                store.set.privateNetwork(targetNetwork);
+              }}
+              inline
+            >
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                size={ODS_TEXT_SIZE._200}
+                slot="placeholder"
+              >
+                {tCreate('octavia_load_balancer_create_private_network_field')}
+              </OsdsText>
+              {privateNetworksList.map((network) => (
+                <OsdsSelectOption value={network.id} key={network.id}>
+                  {network.name}
+                </OsdsSelectOption>
+              ))}
+            </OsdsSelect>
+          </OsdsFormField>
+          <OsdsFormField className="mt-8" inline error="">
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              size={ODS_TEXT_SIZE._100}
+              level={ODS_TEXT_LEVEL.subheading}
+              slot="label"
+            >
+              {tCreate(
+                'octavia_load_balancer_create_private_network_field_subnet',
+              )}
+            </OsdsText>
+
+            <OsdsSelect
+              className="w-[20rem]"
+              value={store.subnet?.id}
+              error={false}
+              onOdsValueChange={(event) => {
+                const targetSubnet = subnetsList.find(
+                  (sub) => sub.id === event.target.value,
+                );
+                store.set.subnet(targetSubnet);
+              }}
+              inline
+            >
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.text}
+                size={ODS_TEXT_SIZE._200}
+                slot="placeholder"
+              >
+                {tCreate(
+                  'octavia_load_balancer_create_private_network_field_subnet',
+                )}
+              </OsdsText>
+              {subnetsList.map((subnet) => (
+                <OsdsSelectOption value={subnet.id} key={subnet.id}>
+                  {subnet.cidr}
+                </OsdsSelectOption>
+              ))}
+            </OsdsSelect>
+          </OsdsFormField>
         </StepComponent>
       </div>
     </>
