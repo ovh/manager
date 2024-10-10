@@ -38,5 +38,10 @@
   "kube_add_billing_auto_scaling_monthly_warning": "Atención: Puede activar simultáneamente el autoscaling y la tarificación mensual para este pool de nodos. Al crear un nodo a través de la funcionalidad de autoscaling, este se facturará de forma inmediata teniendo en cuenta la parte proporcional correspondiente al tiempo restante del mes en curso. Le recomendamos que evite esta combinación si prevé que el tamaño de su pool de nodos se reduzca con frecuencia.",
   "kube_add_node_pool_name_input_pattern_validation_error": "El nombre debe contener al menos dos caracteres, comenzar por un carácter alfabético y terminar por un carácter alfanumérico. Los únicos caracteres especiales permitidos son el guion y la barra baja.",
   "kube_add_billing_anti_affinity_coming_soon_message_title": "Precios mensuales",
-  "kube_add_billing_anti_affinity_coming_soon_message_description": "Los precios mensuales estarán disponibles próximamente con la llegada de los Saving Plans."
+  "kube_add_billing_anti_affinity_coming_soon_message_description": "Los precios mensuales estarán disponibles próximamente con la llegada de los Saving Plans.",
+  "kubernetes_add_version_and_upgrade_policy_title": "Seleccione la versión menor de Kubernetes y la política de seguridad deseada",
+  "kube_update_policy_picker_documentation_text": "Más información sobre las políticas de seguridad del servicio Managed Kubernetes.",
+  "kube_update_policy_picker_documentation_link": "Consulte la documentación",
+  "kubernetes_add_update_policy_title": "Seleccione la política de seguridad",
+  "kubernetes_select_version_title": "Seleccione una versión"
 }

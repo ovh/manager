@@ -30,7 +30,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useClusterCreationStepper } from './useCusterCreationStepper';
 import { LocationStep } from './steps/LocationStep.component';
-import { VersionStep } from './steps/VersionStep.component';
+import { VersionAndUpdatePolicyStep } from './steps/VersionAndUpdatePolicyStep.component';
 import { NetworkStep } from './steps/NetworkStep.component';
 import { NodeTypeStep } from './steps/NodeTypeStep.component';
 import { NodeSizeStep } from './steps/NodeSizeStep.component';
@@ -168,14 +168,14 @@ export default function NewPage() {
         <StepComponent
           order={2}
           {...stepper.version.step}
-          title={t('kubernetes_add_version_title')}
+          title={t('kubernetes_add_version_and_upgrade_policy_title')}
           edit={{
             action: stepper.version.edit,
             label: tStepper('common_stepper_modify_this_step'),
             isDisabled: isCreationPending,
           }}
         >
-          <VersionStep
+          <VersionAndUpdatePolicyStep
             onSubmit={stepper.version.submit}
             step={stepper.version.step}
           />
@@ -259,6 +259,7 @@ export default function NewPage() {
                   name: stepper.form.clusterName,
                   region: stepper.form.region?.name,
                   version: stepper.form.version,
+                  updatePolicy: stepper.form.updatePolicy,
                   nodepool: {
                     antiAffinity: stepper.form.antiAffinity,
                     autoscale: stepper.form.scaling?.isAutoscale,

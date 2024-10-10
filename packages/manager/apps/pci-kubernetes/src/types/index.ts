@@ -40,3 +40,9 @@ export type TNetworkConfiguration = {
   privateNetworkRoutingAsDefault: boolean;
   defaultVrackGateway: string;
 };
+
+export enum UpdatePolicy {
+  NeverUpdate = 'NEVER_UPDATE',
+  MinimalDowntime = 'MINIMAL_DOWNTIME',
+  AlwaysUpdate = 'ALWAYS_UPDATE',
+}
