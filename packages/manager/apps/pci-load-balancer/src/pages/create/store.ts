@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { TRegion } from '@/api/hook/usePlans';
 import { TFloatingIp } from '@/api/data/region';
+import { TPrivateNetwork, TSubnet } from '@/api/data/network';
 
 export type TPlan = {
   code: string;
@@ -19,17 +20,22 @@ export enum StepsEnum {
   SIZE = 'SIZE',
   REGION = 'REGION',
   PUBLIC_IP = 'PUBLIC_IP',
+  PRIVATE_NETWORK = 'PRIVATE_NETWORK',
 }
 
 export type TFormStore = {
   size: TPlan;
   region: TRegion;
   publicIp: TFloatingIp;
+  privateNetwork: TPrivateNetwork;
+  subnet: TSubnet;
   steps: Map<StepsEnum, TStep>;
   set: {
     size: (val: TPlan) => void;
     region: (val: TRegion) => void;
     publicIp: (val: TFloatingIp) => void;
+    privateNetwork: (val: TPrivateNetwork) => void;
+    subnet: (val: TSubnet) => void;
   };
   open: (step: StepsEnum) => void;
   close: (step: StepsEnum) => void;
@@ -71,12 +77,22 @@ const initialSteps = () =>
         isChecked: false,
       },
     ],
+    [
+      StepsEnum.PRIVATE_NETWORK,
+      {
+        isOpen: false,
+        isLocked: false,
+        isChecked: false,
+      },
+    ],
   ]);
 
 export const useNewLoadBalancerStore = create<TFormStore>()((set, get) => ({
   size: null,
   region: null,
   publicIp: null,
+  privateNetwork: null,
+  subnet: null,
   steps: initialSteps(),
   set: {
     size: (val: TPlan) => {
@@ -92,6 +108,16 @@ export const useNewLoadBalancerStore = create<TFormStore>()((set, get) => ({
     publicIp: (val: TFloatingIp) => {
       set({
         publicIp: val,
+      });
+    },
+    privateNetwork: (val: TPrivateNetwork) => {
+      set({
+        privateNetwork: val,
+      });
+    },
+    subnet: (val: TSubnet) => {
+      set({
+        subnet: val,
       });
     },
   },
