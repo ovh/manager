@@ -140,7 +140,10 @@ export default function ListingPage() {
     <RedirectionGuard
       isLoading={isPending}
       condition={
-        !isPending && workflows.rows?.length === 0 && searchQueries.length === 0
+        !isPending &&
+        workflows.rows?.length === 0 &&
+        searchQueries.length === 0 &&
+        filters?.length === 0
       }
       route={`/pci/projects/${projectId}/workflow/onboarding`}
     >
