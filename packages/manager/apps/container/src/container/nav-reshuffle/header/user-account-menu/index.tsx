@@ -17,6 +17,9 @@ import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { tracking } from './constants';
+import { LEGAL_FORMS } from '@/container/common/constants';
+import { Environment } from '@ovh-ux/manager-config';
+import useUser from '@/hooks/user/useUser';
 
 type Props = {
   onToggle(show: boolean): void;
@@ -28,8 +31,9 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
   const trackingPlugin = shell.getPlugin('tracking');
   const { setIsNotificationsSidebarVisible } = useHeader();
 
-  const environment = shell.getPlugin('environment').getEnvironment();
-  const user = environment.getUser();
+  const pluginEnvironement = shell.getPlugin('environment');
+  const environment: Environment = pluginEnvironement.getEnvironment();
+  const user = useUser();
   const region = environment.getRegion();
 
   const {
@@ -100,7 +104,8 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
         </span>
         <span
           className={style.userInfos}
-        >{`${user.firstname} ${user.name}`}</span>
+        >{user.legalform === LEGAL_FORMS.CORPORATION ?
+          user.organisation : `${user.firstname} ${user.name}`}</span>
       </UserAccountMenuButton>
       <UserAccountMenuContent
         defaultPaymentMethod={defaultPaymentMethod}
