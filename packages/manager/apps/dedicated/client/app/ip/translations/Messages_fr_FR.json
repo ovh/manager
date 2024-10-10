@@ -111,6 +111,7 @@
   "ip_filter_services_title_MAIL": "Serveurs de Mails",
   "ip_filter_services_title_CLOUD": "Public Cloud",
   "ip_filter_services_title_IP_LOAD_BALANCING": "OVHcloud Load Balancer",
+  "ip_filter_services_title_parking": "Parking",
   "ip_filter_services_CDN": "Uniquement les CDN",
   "ip_filter_services_DEDICATED": "Uniquement les Serveurs Dédiés",
   "ip_filter_services_HOSTED_SSL": "Uniquement les Hosted SSL",
