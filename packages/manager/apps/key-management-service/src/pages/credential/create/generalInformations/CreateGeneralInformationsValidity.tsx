@@ -14,8 +14,8 @@ import { VALIDITY_PERIOD_PRESET } from '../CreateGeneralInformations.constants';
 import { ValidityPeriodErrorsType } from '@/utils/credential/validateValidityDate';
 import {
   addDaysToDate,
+  getDateFromDays,
   getDaysFromDate,
-  getNextMonth,
 } from '@/utils/credential/validityDateUtils';
 
 type CreateGeneralInformationsValidityProps = {
@@ -30,9 +30,15 @@ const CreateGeneralInformationsValidity = ({
   credentialValidityError,
 }: CreateGeneralInformationsValidityProps) => {
   const { t } = useTranslation('key-management-service/credential');
-  const [validityPresetPeriod, setValidityPresetPeriod] = useState(validity);
+
+  const getPresetForDays = (days: number): number =>
+    VALIDITY_PERIOD_PRESET.find((preset) => preset.days === days)?.days ?? -1;
+
+  const [validityPresetPeriod, setValidityPresetPeriod] = useState(
+    getPresetForDays(validity),
+  );
   const [validityDatepicker, setValidityDatepicker] = useState<Date>(
-    getNextMonth(),
+    getDateFromDays(validity),
   );
 
   const getValidityErrorMessage = (error: ValidityPeriodErrorsType) => {
@@ -50,6 +56,7 @@ const CreateGeneralInformationsValidity = ({
         return null;
     }
   };
+
   useEffect(() => {
     if (validityPresetPeriod !== -1) {
       setValidity(validityPresetPeriod);
@@ -58,6 +65,7 @@ const CreateGeneralInformationsValidity = ({
       setValidity(getDaysFromDate(validityDatepicker));
     }
   }, [validityPresetPeriod, validityDatepicker]);
+
   return (
     <div className="flex flex-col gap-5 md:gap-6">
       <CommonTitle>

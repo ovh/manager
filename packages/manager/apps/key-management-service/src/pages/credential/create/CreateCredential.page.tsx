@@ -31,6 +31,7 @@ const CreateCredential = () => {
   const [csr, setCsr] = useState<string | null>(null);
   const [identityURNs, setIdentityURNs] = useState<string[]>([]);
   const [okmsCredential, setOkmsCredential] = useState<OkmsCredential>();
+  const [isCustomCsr, setIsCustomCsr] = useState<boolean>(false);
   const { createKmsCredential } = useCreateOkmsCredential({
     okmsId,
     onSuccess: (credential) => {
@@ -102,6 +103,8 @@ const CreateCredential = () => {
                 setDescription={setDescription}
                 csr={csr}
                 setCsr={setCsr}
+                isCustomCsr={isCustomCsr}
+                setIsCustomCsr={setIsCustomCsr}
                 nextStep={() => setStep(2)}
               />
             )}
