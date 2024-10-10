@@ -1454,4 +1454,12 @@ export default class PciInstancesAddController {
     }
     this.selectedPrivateNetwork = this.defaultPrivateNetwork;
   }
+
+  formatAutomatedBackupPrice() {
+    return this.automatedBackup.price?.price
+      ? this.PciProjectsProjectInstanceService.formatHourlyToMonthlyPrice(
+          this.automatedBackup.price.price,
+        )
+      : '';
+  }
 }

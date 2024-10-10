@@ -3,18 +3,13 @@ import map from 'lodash/map';
 import find from 'lodash/find';
 import RegistryPlan from './RegistryPlan.class';
 
-import {
-  CONNECTION_CONSTANT,
-  HOURLYTOMONTHLY,
-  PLAN_CONSTANT,
-} from './constants';
+import { CONNECTION_CONSTANT, PLAN_CONSTANT } from './constants';
 
 export default class {
   /* @ngInject */
   constructor(OvhApiOrderCatalogPublic) {
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
     this.CONNECTION_CONSTANT = CONNECTION_CONSTANT;
-    this.HOURLYTOMONTHLY = HOURLYTOMONTHLY;
     this.PLAN_CONSTANT = PLAN_CONSTANT;
   }
 
@@ -32,7 +27,7 @@ export default class {
             (plan) =>
               new RegistryPlan({
                 ...plan,
-                ...find(addons, { planCode: this.HOURLYTOMONTHLY[plan.code] }),
+                ...find(addons, { planCode: plan.code }),
               }),
           ),
           'registryLimits.imageStorage',

@@ -326,15 +326,23 @@ export default class PciProjectInstanceService {
       (catalog) => {
         return get(
           catalog,
-          `snapshot.monthly.postpaid.${instance.region}`,
-          get(
-            catalog,
-            'snapshot.monthly.postpaid',
-            get(catalog, 'snapshot.monthly', false),
-          ),
+          `snapshot.consumption.${instance.region}`,
+          get(catalog, 'snapshot.consumption'),
         );
       },
     );
+  }
+
+  formatHourlyToMonthlyPrice(price) {
+    const { value, currencyCode } = price;
+    return new Intl.NumberFormat(
+      this.coreConfig.getUser().language.replace('_', '-'),
+      {
+        style: 'currency',
+        currency: currencyCode,
+        maximumFractionDigits: 2,
+      },
+    ).format(value * 720);
   }
 
   createBackup(projectId, { id: instanceId }, { name: snapshotName }) {
