@@ -30,9 +30,6 @@ export default class DashboardController {
     this.availableSiretPopup = false;
     this.showKycBanner = false;
     this.showKycBannerWaiting = false;
-    this.displayRbx1EolBanner = {
-      rbx1Eol: false,
-    };
     this.$http
       .get(`/feature/identity-documents/availability`, {
         serviceType: 'aapi',
@@ -84,9 +81,6 @@ export default class DashboardController {
             type: 'navigation',
           });
         }
-        this.displayRbx1EolBanner.rbx1Eol = data?.isFeatureAvailable(
-          'hub:banner-rbx1-eol',
-        );
       });
 
     this.ACCOUNT_DASHBOARD_URL = this.coreURLBuilder.buildURL(
