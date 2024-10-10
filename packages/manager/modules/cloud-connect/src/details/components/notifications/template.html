@@ -1,0 +1,20 @@
+<div id="ovh-cloud-connect-notifications">
+    <oui-message data-type="warning" data-ng-if="$ctrl.incident" class="mb-2">
+        <span
+            data-translate="cloud_connect_notifications_incident"
+            data-translate-values="{startDate: $ctrl.incident.startDateFormatted}"
+        ></span>
+    </oui-message>
+
+    <oui-message
+        data-type="info"
+        data-ng-if="$ctrl.maintenances.length !== 0"
+        data-ng-repeat="maintenance in $ctrl.maintenances"
+        class="mb-2"
+    >
+        <span
+            data-translate="cloud_connect_notifications_maintenance"
+            data-translate-values="{startDate: maintenance.startDateFormatted, endDate: maintenance.endDateFormatted}"
+        ></span>
+    </oui-message>
+</div>
