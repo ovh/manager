@@ -86,7 +86,7 @@ export default function PoolsEditPage(): JSX.Element {
       name: `${TRACKING_HIT_PREFIX}::cancel`,
       type: 'action',
     });
-    goBack();
+    navigate(`../${poolId}`);
   };
 
   const edit = ({ name, algorithm, permanentSession }: TPoolFormData) => {

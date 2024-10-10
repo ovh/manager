@@ -70,6 +70,7 @@ export const useL7PoliciesDatagridColumn = () => {
         <DataGridTextCell>{props.attribute}</DataGridTextCell>
       ),
       label: tL7Policies('octavia_load_balancer_list_l7_policies_attribute'),
+      isSortable: false,
     },
     {
       id: 'redirectHttpCode',
@@ -79,6 +80,7 @@ export const useL7PoliciesDatagridColumn = () => {
       label: tL7Policies(
         'octavia_load_balancer_list_l7_policies_redirect_code',
       ),
+      isSortable: false,
     },
     {
       id: 'provisioningStatus',
@@ -89,6 +91,7 @@ export const useL7PoliciesDatagridColumn = () => {
         />
       ),
       label: tLoadBalancer('octavia_load_balancer_provisioning_status'),
+      isSortable: false,
     },
     {
       id: 'operatingStatus',
@@ -99,6 +102,7 @@ export const useL7PoliciesDatagridColumn = () => {
         />
       ),
       label: tLoadBalancer('octavia_load_balancer_operating_status'),
+      isSortable: false,
     },
     {
       id: 'actions',
@@ -108,6 +112,7 @@ export const useL7PoliciesDatagridColumn = () => {
         </div>
       ),
       label: '',
+      isSortable: false,
     },
   ];
 
