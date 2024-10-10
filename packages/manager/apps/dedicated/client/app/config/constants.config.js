@@ -1082,6 +1082,12 @@ const constants = {
       pcc: {
         fr_FR: [
           {
+            title: 'core_pcc_top_guide_13_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-13',
+            url:
+              'https://help.ovhcloud.com/csm/fr-vmware-authorise-ip-addresses-vcenter?id=kb_article_view&sysparm_article=KB0045333',
+          },
+          {
             title: 'core_pcc_top_guide_12_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-12',
             url:
@@ -1140,6 +1146,12 @@ const constants = {
         ],
         de_DE: [
           {
+            title: 'core_pcc_top_guide_13_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-13',
+            url:
+              'https://help.ovhcloud.com/csm/de-vmware-authorise-ip-addresses-vcenter?id=kb_article_view&sysparm_article=KB0045323',
+          },
+          {
             title: 'core_pcc_top_guide_12_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-12',
             url:
@@ -1192,6 +1204,12 @@ const constants = {
           },
         ],
         en_GB: [
+          {
+            title: 'core_pcc_top_guide_13_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-13',
+            url:
+              'https://help.ovhcloud.com/csm/en-gb-vmware-authorise-ip-addresses-vcenter?id=kb_article_view&sysparm_article=KB0045321',
+          },
           {
             title: 'core_pcc_top_guide_12_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-12',
@@ -1752,6 +1770,12 @@ const constants = {
       pcc: {
         fr_FR: [
           {
+            title: 'core_pcc_top_guide_13_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-13',
+            url:
+              'https://help.ovhcloud.com/csm/fr-vmware-authorise-ip-addresses-vcenter?id=kb_article_view&sysparm_article=KB0045333',
+          },
+          {
             title: 'core_pcc_top_guide_12_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-12',
             url:
@@ -1810,6 +1834,12 @@ const constants = {
         ],
         de_DE: [
           {
+            title: 'core_pcc_top_guide_13_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-13',
+            url:
+              'https://help.ovhcloud.com/csm/de-vmware-authorise-ip-addresses-vcenter?id=kb_article_view&sysparm_article=KB0045323',
+          },
+          {
             title: 'core_pcc_top_guide_12_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-12',
             url:
@@ -1862,6 +1892,12 @@ const constants = {
           },
         ],
         en_GB: [
+          {
+            title: 'core_pcc_top_guide_13_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-13',
+            url:
+              'https://help.ovhcloud.com/csm/en-gb-vmware-authorise-ip-addresses-vcenter?id=kb_article_view&sysparm_article=KB0045321',
+          },
           {
             title: 'core_pcc_top_guide_12_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-12',

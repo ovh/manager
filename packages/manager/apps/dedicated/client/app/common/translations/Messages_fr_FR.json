@@ -487,6 +487,7 @@
   "core_pcc_top_guide_10_title": "Documentation officielle de NSX",
   "core_pcc_top_guide_11_title": "Documentation officielle de Nutanix",
   "core_pcc_top_guide_12_title": "Documentation officielle de SAP HANA on Private Cloud",
+  "core_pcc_top_guide_13_title": "Autoriser des IP à se connecter au vCenter",
   "sso_modal_title": "OVH - Authentification",
   "sso_modal_loading": "Chargement...",
   "sso_modal_user_title": "Vous étiez connecté en tant que :",

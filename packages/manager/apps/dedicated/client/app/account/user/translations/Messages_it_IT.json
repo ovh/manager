@@ -608,5 +608,6 @@
   "user_account_ssh_keys_title": "Le mie chiavi SSH",
   "user_account_advanced_title": "Impostazioni avanzate",
   "user_account_guides_header": "Guide",
-  "user_account_guides_header_account_informations_guides": "Informazioni dell'account"
+  "user_account_guides_header_account_informations_guides": "Informazioni dell'account",
+  "user_account_security_double_auth_sso_info": "L'autenticazione a due fattori non è disponibile con una connessione Single Sign-On, che garantisce già una sicurezza rafforzata."
 }

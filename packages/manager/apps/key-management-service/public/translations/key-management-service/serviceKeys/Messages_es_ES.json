@@ -1,6 +1,6 @@
 {
   "key_management_service_service_keys": "Claves de cifrado",
-  "key_management_service_service-keys_headline": "Cree, importe y gestione sus claves de cifrado CMK (Customer Managed Keys).",
+  "key_management_service_service-keys_headline": "Cree y gestione sus claves de cifrado CMK (Customer Managed Keys).",
   "key_management_service_service-keys_column_name": "Apellido",
   "key_management_service_service-keys_column_id": "ID",
   "key_management_service_service-keys_column_type": "Tipo",

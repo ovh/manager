@@ -66,7 +66,7 @@
                     data-server="$row"
                     tabindex="0"
                     role="button"
-                    data-ng-click="ctrl.seeServerStatus($row)"
+                    data-ng-click="$row.serverState.length !== 0 && ctrl.seeServerStatus($row)"
                 ></iplb-server-status>
             </oui-datagrid-column>
             <oui-action-menu data-compact data-placement="end">

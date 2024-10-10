@@ -1,6 +1,6 @@
 {
   "key_management_service_service_keys": "Encryption keys",
-  "key_management_service_service-keys_headline": "Create, import and manage your Customer Managed Keys (CMK) encryption keys.",
+  "key_management_service_service-keys_headline": "Create and manage your Customer Managed Keys (CMK).",
   "key_management_service_service-keys_column_name": "Name",
   "key_management_service_service-keys_column_id": "ID",
   "key_management_service_service-keys_column_type": "Type",

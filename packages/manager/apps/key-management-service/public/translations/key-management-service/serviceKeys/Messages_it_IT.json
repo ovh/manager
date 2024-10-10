@@ -1,6 +1,6 @@
 {
   "key_management_service_service_keys": "Chiavi di crittografia",
-  "key_management_service_service-keys_headline": "Crea, importa e gestisci le tue chiavi di cifratura CMK (Customer Managed Keys).",
+  "key_management_service_service-keys_headline": "Crea e gestisci le tue chiavi di crittografia CMK (Customer Managed Keys).",
   "key_management_service_service-keys_column_name": "Cognome",
   "key_management_service_service-keys_column_id": "ID",
   "key_management_service_service-keys_column_type": "Tipo",
