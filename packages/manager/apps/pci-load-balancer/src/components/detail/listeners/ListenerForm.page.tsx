@@ -27,6 +27,7 @@ import {
 import { TLoadBalancerListener, TProtocol } from '@/api/data/load-balancer';
 import Popover from './Popover';
 import { TLoadBalancerPool } from '@/api/data/pool';
+import LabelComponent from '@/components/form/Label.component';
 
 export type TFormState = {
   name: string;
@@ -158,19 +159,11 @@ export default function ListenerForm({
         className="my-8"
         error={isNameRequired ? tCommon('common_field_error_required') : ''}
       >
-        <OsdsText
-          level={ODS_TEXT_LEVEL.caption}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          color={
-            isNameRequired
-              ? ODS_THEME_COLOR_INTENT.error
-              : ODS_THEME_COLOR_INTENT.text
-          }
-          className="font-bold"
-          slot="label"
-        >
-          {t('octavia_load_balancer_listeners_create_name')}
-        </OsdsText>
+        <LabelComponent
+          text={t('octavia_load_balancer_listeners_create_name')}
+          hasError={isNameRequired}
+        />
+
         <OsdsInput
           type={ODS_INPUT_TYPE.text}
           value={formState.name}
@@ -188,16 +181,9 @@ export default function ListenerForm({
 
       <OsdsFormField className="my-8">
         <div slot="label" className="flex items-center gap-3">
-          <OsdsText
-            level={ODS_TEXT_LEVEL.caption}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="font-bold"
-          >
-            {t('octavia_load_balancer_listeners_create_protocol')}
-          </OsdsText>
-          <Popover
-            content={tListeners(
+          <LabelComponent
+            text={t('octavia_load_balancer_listeners_create_protocol')}
+            helpText={tListeners(
               'octavia_load_balancer_listeners_protocol_helper',
             )}
           />
@@ -221,19 +207,10 @@ export default function ListenerForm({
       </OsdsFormField>
 
       <OsdsFormField className="my-8" error={portError}>
-        <OsdsText
-          level={ODS_TEXT_LEVEL.caption}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          color={
-            portError
-              ? ODS_THEME_COLOR_INTENT.error
-              : ODS_THEME_COLOR_INTENT.text
-          }
-          className="font-bold"
-          slot="label"
-        >
-          {t('octavia_load_balancer_listeners_create_port')}
-        </OsdsText>
+        <LabelComponent
+          text={t('octavia_load_balancer_listeners_create_port')}
+          hasError={!!portError}
+        />
 
         <OsdsInput
           type={ODS_INPUT_TYPE.number}
@@ -254,15 +231,9 @@ export default function ListenerForm({
       </OsdsFormField>
 
       <OsdsFormField className="my-8">
-        <OsdsText
-          level={ODS_TEXT_LEVEL.caption}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          color={ODS_THEME_COLOR_INTENT.text}
-          className="font-bold"
-          slot="label"
-        >
-          {t('octavia_load_balancer_listeners_create_pool')}
-        </OsdsText>
+        <LabelComponent
+          text={t('octavia_load_balancer_listeners_create_pool')}
+        />
 
         <OsdsSelect
           value={formState.pool?.id}

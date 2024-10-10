@@ -43,7 +43,7 @@ export default function Configuration({
   return (
     <div>
       <OsdsTile
-        className="flex-col w-full shadow-lg"
+        className="flex-col w-full shadow-custom-tile"
         inline
         rounded
         variant={ODS_TILE_VARIANT.ghost}
