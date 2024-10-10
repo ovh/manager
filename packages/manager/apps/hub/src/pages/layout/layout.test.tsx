@@ -1,12 +1,6 @@
-import React, { LazyExoticComponent, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as reactShellClientModule from '@ovh-ux/manager-react-shell-client';
 import {
@@ -17,6 +11,7 @@ import {
   OdsSelectValueChangeEventDetail,
   OsdsSelect,
 } from '@ovhcloud/ods-components';
+import { User } from '@ovh-ux/manager-config';
 import Layout from '@/pages/layout/layout';
 import { ApiEnvelope } from '@/types/apiEnvelope.type';
 import { ProductList } from '@/types/services.type';
@@ -31,6 +26,8 @@ import {
   NoServices,
   TwoServices,
 } from '@/_mock_/billingServices';
+import SiretBanner from '@/pages/layout/SiretBanner.component';
+import SiretModal from '@/pages/layout/SiretModal.component';
 
 const queryClient = new QueryClient();
 
@@ -41,8 +38,11 @@ const services: ApiEnvelope<ProductList> = {
 const lastOrder: LastOrder = { data: null, status: 'OK' };
 const featuresAvailability = {
   'billing:management': true,
+  'hub:banner-hub-invite-customer-siret': true,
+  'hub:popup-hub-invite-customer-siret': true,
 };
 const trackClickMock = vi.fn();
+const trackPageMock = vi.fn();
 let isLastOrderLoading = true;
 let isAccountSidebarVisible = false;
 const mockedLocale = 'fr_FR';
@@ -51,7 +51,10 @@ const shellContext = {
   environment: {
     user: {
       enterprise: false,
-    },
+      companyNationalIdentificationNumber: null,
+      legalform: 'corporation',
+      country: 'FR',
+    } as User,
     getUser: vi.fn(() => ({
       currency: {
         code: 'USD',
@@ -148,7 +151,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   return {
     ...original,
     useOvhTracking: vi.fn(() => ({
-      trackPage: vi.fn(),
+      trackPage: trackPageMock,
       trackClick: trackClickMock,
       trackCurrentPage: vi.fn(),
       usePageTracking: vi.fn(),
@@ -258,15 +261,20 @@ describe('Layout.page', () => {
 
   it('should render correct components for "fresh" customers', async () => {
     isLastOrderLoading = false;
-    const { getByText, queryByText, findByText } = renderComponent(<Layout />);
+    const {
+      getByText,
+      queryByText,
+      findByText,
+      queryByTestId,
+    } = renderComponent(<Layout />);
 
     const welcome = await findByText('Welcome');
 
     expect(welcome).not.toBeNull();
     expect(queryByText('Banner')).not.toBeInTheDocument();
     expect(queryByText('ovh-manager-hub-carousel')).not.toBeInTheDocument();
-    expect(queryByText('oui-message.siret')).not.toBeInTheDocument();
-    expect(queryByText('oui-modal.siret')).not.toBeInTheDocument();
+    expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
+    expect(queryByTestId('siret_modal')).not.toBeInTheDocument();
     expect(getByText('oui-message.kycIndia')).not.toBeNull();
     expect(getByText('oui-message.kycFraud')).not.toBeNull();
     expect(queryByText('Payment Status')).not.toBeInTheDocument();
@@ -319,8 +327,8 @@ describe('Layout.page', () => {
     expect(welcome).not.toBeNull();
     expect(banner).not.toBeNull();
     expect(getByText('ovh-manager-hub-carousel')).not.toBeNull();
-    expect(getByText('oui-message.siret')).not.toBeNull();
-    expect(getByText('oui-modal.siret')).not.toBeNull();
+    expect(getByTestId('siret_banner')).not.toBeNull();
+    expect(getByTestId('siret_modal')).not.toBeNull();
     expect(getByText('oui-message.kycIndia')).not.toBeNull();
     expect(getByText('oui-message.kycFraud')).not.toBeNull();
     expect(getByText('Support')).not.toBeNull();
@@ -330,8 +338,12 @@ describe('Layout.page', () => {
 
     const billingSummary = await findByTestId('billing_summary');
     const paymentStatus = await findByTestId('payment_status');
+    const siretBanner = await findByTestId('siret_banner');
+    const siretModal = await findByTestId('siret_modal');
     expect(billingSummary).not.toBeNull();
     expect(paymentStatus).not.toBeNull();
+    expect(siretBanner).not.toBeNull();
+    expect(siretModal).not.toBeNull();
   });
 
   it('should have correct css class if account sidebard is closed', async () => {
@@ -683,6 +695,139 @@ describe('Layout.page', () => {
         ).not.toBeInTheDocument();
         expect(queryAllByTestId('services_actions_skeleton').length).toBe(0);
       });
+    });
+  });
+
+  describe('SiretBanner component', () => {
+    it('should render for french company without national company identification number', async () => {
+      const { getByText, findByText } = renderComponent(<SiretBanner />);
+      expect(getByText('manager_hub_dashboard_banner_siret')).not.toBeNull();
+      const link = await findByText('manager_hub_dashboard_banner_siret_link');
+      expect(link).not.toBeNull();
+    });
+
+    it('should send tracking hit when displayed', async () => {
+      trackPageMock.mockReset();
+      renderComponent(<SiretBanner />);
+
+      expect(trackPageMock).toHaveBeenCalledWith({
+        pageType: 'banner-info',
+        pageName: 'siret',
+      });
+    });
+
+    it('should send tracking hit when clicking on the link', async () => {
+      trackClickMock.mockReset();
+      const { findByText } = renderComponent(<SiretBanner />);
+      const link = await findByText('manager_hub_dashboard_banner_siret_link');
+      expect(link).not.toBeNull();
+      await act(() => fireEvent.click(link));
+
+      expect(trackClickMock).toHaveBeenCalledWith({
+        actionType: 'action',
+        actions: ['hub', 'add-siret-banner', 'goto-edit-profile'],
+      });
+    });
+
+    it('should not be displayed for non company customer', async () => {
+      shellContext.environment.user.legalform = 'individual';
+      const { queryByTestId } = renderComponent(<SiretBanner />);
+      expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
+    });
+
+    it('should not be displayed for customer not residing in France', async () => {
+      shellContext.environment.user.legalform = 'corporation';
+      shellContext.environment.user.country = 'GB';
+      const { queryByTestId } = renderComponent(<SiretBanner />);
+      expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
+    });
+
+    it('should not be displayed for french company with national company identification number', async () => {
+      shellContext.environment.user.country = 'FR';
+      shellContext.environment.user.companyNationalIdentificationNumber = 99999;
+      const { queryByTestId } = renderComponent(<SiretBanner />);
+      expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('SiretModal component', () => {
+    it('should render for french company without national company identification number', async () => {
+      shellContext.environment.user.companyNationalIdentificationNumber = null;
+      const { getByTestId, getByText } = renderComponent(<SiretModal />);
+      expect(getByTestId('siret_modal')).not.toBeNull();
+      expect(
+        getByText('manager_hub_dashboard_modal_siret_part_1'),
+      ).not.toBeNull();
+      expect(
+        getByText('manager_hub_dashboard_modal_siret_part_2'),
+      ).not.toBeNull();
+      expect(
+        getByText('manager_hub_dashboard_modal_siret_cancel'),
+      ).not.toBeNull();
+      expect(
+        getByText('manager_hub_dashboard_modal_siret_link'),
+      ).not.toBeNull();
+    });
+
+    it('should send tracking hit when displayed', async () => {
+      trackPageMock.mockReset();
+      renderComponent(<SiretModal />);
+
+      expect(trackPageMock).toHaveBeenCalledWith({
+        pageType: 'pop-up',
+        pageName: 'siret',
+      });
+    });
+
+    it('should send tracking hit when clicking on confirmation button', async () => {
+      trackClickMock.mockReset();
+      const { findByText } = renderComponent(<SiretModal />);
+      const confirmLink = await findByText(
+        'manager_hub_dashboard_modal_siret_link',
+      );
+      expect(confirmLink).not.toBeNull();
+      await act(() => fireEvent.click(confirmLink));
+
+      expect(trackClickMock).toHaveBeenCalledWith({
+        actionType: 'action',
+        actions: ['hub', 'add-siret-popup', 'confirm'],
+      });
+    });
+
+    it('should send tracking hit when clicking and close modal on cancellation button', async () => {
+      trackClickMock.mockReset();
+      const { findByText, queryByTestId } = renderComponent(<SiretModal />);
+      const cancelLink = await findByText(
+        'manager_hub_dashboard_modal_siret_cancel',
+      );
+      expect(cancelLink).not.toBeNull();
+      await act(() => fireEvent.click(cancelLink));
+
+      expect(trackClickMock).toHaveBeenCalledWith({
+        actionType: 'action',
+        actions: ['hub', 'add-siret-popup', 'cancel'],
+      });
+      expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
+    });
+
+    it('should not be displayed for non company customer', async () => {
+      shellContext.environment.user.legalform = 'individual';
+      const { queryByTestId } = renderComponent(<SiretModal />);
+      expect(queryByTestId('siret_modal')).not.toBeInTheDocument();
+    });
+
+    it('should not be displayed for customer not residing in France', async () => {
+      shellContext.environment.user.legalform = 'corporation';
+      shellContext.environment.user.country = 'GB';
+      const { queryByTestId } = renderComponent(<SiretModal />);
+      expect(queryByTestId('siret_modal')).not.toBeInTheDocument();
+    });
+
+    it('should not be displayed for french company with national company identification number', async () => {
+      shellContext.environment.user.country = 'FR';
+      shellContext.environment.user.companyNationalIdentificationNumber = 99999;
+      const { queryByTestId } = renderComponent(<SiretModal />);
+      expect(queryByTestId('siret_modal')).not.toBeInTheDocument();
     });
   });
 });
