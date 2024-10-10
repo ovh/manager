@@ -46,6 +46,16 @@
             ></button>
         </li>
 
+        <!-- Additional IP Attach to DELETE-->
+        <li>
+            <button
+                type="button"
+                class="btn btn-link"
+                data-ng-click="setAction('ip/block/move/ip-ip-block-move', { ipBlock: ipBlock })"
+                data-ng-bind=":: ('ip_table_manage_move_ipblock' | translate) + ADDITIONAL_IP"
+            ></button>
+        </li>
+
         <!-- SUBNETS:: only for ipv6block -->
         <li>
             <button

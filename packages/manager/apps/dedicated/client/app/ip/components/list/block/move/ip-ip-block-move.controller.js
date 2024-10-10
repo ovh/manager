@@ -1,20 +1,26 @@
-import { ADDITIONAL_IP } from '../ip-ip-block.constant';
+import { ADDITIONAL_IP, POLLING_INTERVAL } from '../ip-ip-block.constant';
+import { IPV6_GUIDES_LINK } from '../../../../../../../../../modules/vrack/src/vrack-associated-services/ipv6/ipv6.constant';
 
 export default /* @ngInject */ (
   $scope,
+  $interval,
+  OvhApiVrack,
   $q,
   $translate,
   Ip,
+  Vrack,
   Alerter,
   atInternet,
+  coreConfig,
 ) => {
+  const user = coreConfig.getUser();
   $scope.data = $scope.currentActionData;
   $scope.model = { serviceName: null, nexthop: null };
   $scope.noTasksPending = false;
-  $scope.ipCanBeMovedTo = false;
-  $scope.ipCanBeMovedToError = '';
+  $scope.pollTimer = null;
   $scope.ADDITIONAL_IP = ADDITIONAL_IP;
-
+  $scope.helpLink =
+    IPV6_GUIDES_LINK[user.ovhSubsidiary] || IPV6_GUIDES_LINK.DEFAULT;
   $scope.loading = {
     init: true,
     ipCanBeMovedTo: true,
@@ -34,47 +40,84 @@ export default /* @ngInject */ (
         $scope.noTasksPending = !(tasks && tasks.length);
       }),
     );
-    queue.push(
-      Ip.getIpMove($scope.data.ipBlock.ipBlock).then((result) => {
-        $scope.ipDestinations = result;
-        $scope.ipDestinations.push({
-          service: $translate.instant('ip_servicetype__PARK'),
-          serviceType: '_PARK',
-          nexthop: [],
-        });
-      }),
-    );
+
+    if ($scope.data.ipBlock.isAdditionalIpv6) {
+      queue.push(
+        Vrack.getIpInfo($scope.data.ipBlock.ipBlock).then(({ data }) => {
+          $scope.data.ipBlock = {
+            ...$scope.data.ipBlock,
+            ...data,
+            region: data.regions[0],
+          };
+        }),
+      );
+
+      queue.push(
+        Vrack.getVrackService().then((result) => {
+          $scope.ipDestinations = [
+            ...result,
+            {
+              service: $translate.instant('ip_servicetype__PARK'),
+              serviceType: '_PARK',
+              nexthop: [],
+            },
+          ];
+        }),
+      );
+    } else {
+      queue.push(
+        Ip.getIpMove($scope.data.ipBlock.ipBlock).then((result) => {
+          $scope.ipDestinations = [
+            ...result,
+            {
+              service: $translate.instant('ip_servicetype__PARK'),
+              serviceType: '_PARK',
+              nexthop: [],
+            },
+          ];
+        }),
+      );
+    }
+
     return $q.all(queue).finally(() => {
       $scope.loading.init = false;
     });
   }
 
-  $scope.checkIfIpCanBeMovedTo = function checkIfIpCanBeMovedTo() {
-    if ($scope.model.serviceName !== '_PARK') {
-      $scope.ipCanBeMovedToError = '';
-      $scope.loading.ipCanBeMovedTo = true;
-      Ip.checkIfIpCanBeMovedTo(
-        $scope.model.serviceName,
-        $scope.data.ipBlock.ipBlock,
-      )
-        .then(
-          () => {
-            $scope.ipCanBeMovedTo = true;
-          },
-          (data) => {
-            if (data && data.message) {
-              $scope.ipCanBeMovedToError = data.message;
-            }
-            $scope.ipCanBeMovedTo = false;
-          },
-        )
-        .finally(() => {
-          $scope.loading.ipCanBeMovedTo = false;
-        });
-    } else {
-      $scope.ipCanBeMovedTo = true;
-      $scope.loading.ipCanBeMovedTo = false;
-    }
+  $scope.checkIfIpCanBeMovedTo = (serviceName, ipBlock) => {
+    $q.all({
+      allowedVrackServices: Vrack.getAllowedVrackServices(serviceName),
+      vrackIpv6List: Vrack.getVrackIpv6List(serviceName),
+    })
+      .then(({ allowedVrackServices, vrackIpv6List }) => {
+        $scope.loading.ipCanBeMovedTo = allowedVrackServices.ipv6?.includes(
+          ipBlock,
+        );
+        $scope.hasIpv6 = !!vrackIpv6List.length;
+        $scope.loading.save = false;
+      })
+      .catch(() => {
+        $scope.loading.ipCanBeMovedTo = false;
+        $scope.loading.save = false;
+      });
+  };
+
+  $scope.moveIpv6Action = (serviceName, ipBlock) => {
+    Vrack.addIpv6(serviceName, ipBlock)
+      .then(({ data }) => {
+        if (!$scope.pollTimer) {
+          $scope.pollTimer = $interval(() => {
+            $scope.checkTask(data.id, serviceName, () => {
+              $scope.loading.save = false;
+              $scope.resetAction();
+            });
+          }, POLLING_INTERVAL);
+        }
+      })
+      .catch((err) => {
+        Alerter.error(err.data?.message || err.message || err);
+        $scope.resetAction();
+      });
   };
 
   $scope.moveIpBlock = function moveIpBlock() {
@@ -83,7 +126,47 @@ export default /* @ngInject */ (
       type: 'action',
     });
     $scope.loading.save = true;
-    if ($scope.model.serviceName.serviceType === '_PARK') {
+    if ($scope.data.ipBlock.isAdditionalIpv6) {
+      if ($scope.data.ipBlock.routedTo?.serviceName) {
+        Vrack.deleteIpv6(
+          $scope.data.ipBlock.routedTo?.serviceName,
+          $scope.data.ipBlock.ipBlock,
+        )
+          .then(({ data }) => {
+            $scope.pollTimer = $interval(() => {
+              $scope.checkTask(
+                data.id,
+                $scope.data.ipBlock.routedTo?.serviceName,
+                () => {
+                  if ($scope.model.serviceName.serviceType !== '_PARK') {
+                    this.moveIpv6Action(
+                      $scope.model.serviceName.service,
+                      $scope.data.ipBlock.ipBlock,
+                    );
+                  } else {
+                    $scope.resetAction();
+                  }
+                },
+              );
+            }, POLLING_INTERVAL);
+          })
+          .catch((err) => {
+            Alerter.alertFromSWS(
+              $translate.instant('ip_table_manage_move_ipblock_failure', {
+                t0: $scope.data.ipBlock.ipBlock,
+                t1: $scope.model.serviceName.service,
+              }),
+              err,
+            );
+            $scope.resetAction();
+          });
+      } else {
+        this.moveIpv6Action(
+          $scope.model.serviceName.service,
+          $scope.data.ipBlock.ipBlock,
+        );
+      }
+    } else if ($scope.model.serviceName.serviceType === '_PARK') {
       Ip.moveIpBlockToPark($scope.data.ipBlock.ipBlock)
         .then(
           () => {
@@ -171,6 +254,14 @@ export default /* @ngInject */ (
       name: `${$scope.data?.tracking}::next`,
       type: 'action',
     });
+
+    if ($scope.data.ipBlock.isAdditionalIpv6) {
+      $scope.loading.save = true;
+      $scope.checkIfIpCanBeMovedTo(
+        $scope.model.serviceName.service,
+        $scope.data.ipBlock.ipBlock,
+      );
+    }
   };
 
   $scope.onPreviousAction = function() {
@@ -186,6 +277,24 @@ export default /* @ngInject */ (
     });
     return $scope.loading.save;
   };
+
+  $scope.checkTask = (taskId, serviceName, callback) => {
+    OvhApiVrack.v6()
+      .task({
+        serviceName,
+        taskId,
+      })
+      .$promise.catch(() => {
+        $interval.cancel($scope.pollTimer);
+        if (callback) callback();
+      });
+  };
+
+  $scope.$on('$destroy', function() {
+    if ($scope.pollTimer) {
+      $interval.cancel($scope.pollTimer);
+    }
+  });
 
   init();
 };

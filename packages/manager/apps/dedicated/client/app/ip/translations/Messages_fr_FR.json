@@ -771,5 +771,12 @@
   "ip_repricing_banner_list_item_2": "A partir du 1er décembre 2022, pour vos adresses existantes (commandées avant le 6 octobre 2022).",
   "ip_repricing_banner_link": "Plus d'informations",
   "ip_unused_banner_text": "Vous avez des adresses IP non utilisées. Les adresses IPv4 étant une ressource qui se raréfie, si vous n'en avez pas besoin, nous vous invitons à les relâcher.",
-  "ip_unused_banner_link": "Voir mes IP non utilisées."
+  "ip_unused_banner_link": "Voir mes IP non utilisées.",
+  "vrack_add_ipv6_modal_description": "Vous allez ajouter un bloc IP : {{ ipblock }} (situé dans {{ region }}) dans votre vRack : {{ vrack }}",
+  "vrack_add_ipv6_modal_description1": "Cette action permettra d'atteindre les machines situées dans ce vRack depuis l'internet public.",
+  "vrack_add_ipv6_modal_description2": "Le trafic public sera routé à travers la région {{ region }}",
+  "vrack_add_ipv6_modal_description3": "Pour plus d'information, veuillez consulter",
+  "vrack_add_ipv6_modal_help_link": "notre documentation",
+  "vrack_add_ipv6_modal_alert_msg": "Nous avons détecté qu'il y a déjà un bloc IPv6 public dans votre vrack, mais vous ajoutez un nouveau bloc. Veuillez vous assurer que l'option SLAAC est désactivée sur TOUS vos blocs IPv6, sinon le résultat ne sera pas celui escompté.",
+  "vrack_cannot_add_ipv6_alert_msg": "Le Block {{t0}} n’est pas éligible au vRack {{t1}}"
 }
