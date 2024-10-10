@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.37.0...@ovh-ux/manager-react-components@1.38.0) (2024-10-10)
+
+### Features
+
+- **manager-react-components:** correcting content for iam manager text ([#13469](https://github.com/ovh/manager/issues/13469)) ([6edb862](https://github.com/ovh/manager/commit/6edb862bfc21b867a38657242816e7b9623bc5f2))
+- **manager-react-components:** useFormattedDate hook ([#12983](https://github.com/ovh/manager/issues/12983)) ([66217b4](https://github.com/ovh/manager/commit/66217b45f1241e7e6adc474f2a55cbf0c9b2c667))
+
+# [1.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.36.0...@ovh-ux/manager-react-components@1.37.0) (2024-10-10)
+
+### Bug Fixes
+
+- **manager-react-components:** tests e2e to rework ([a1a6c20](https://github.com/ovh/manager/commit/a1a6c204e4042151bd8073a24d6572e13ce7ad7c))
+- **manager-react-components:** update datagrid style ([391f719](https://github.com/ovh/manager/commit/391f719c9ef436a156a1628c93f996af3547100d))
+- **manager-react-components:** update template base component ([2b35620](https://github.com/ovh/manager/commit/2b35620543c881a8ac379cb08199828b7434818e))
+
+### Features
+
+- **manager-react-components:** datagrid component update text ([856e07e](https://github.com/ovh/manager/commit/856e07e9308f3cf7c69ad49280e78eca45b9b809))
+
 # [1.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.35.1...@ovh-ux/manager-react-components@1.36.0) (2024-10-08)
 
 ### Features
