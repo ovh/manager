@@ -7,6 +7,13 @@ module.exports = {
     './src/**/*.{js,jsx,ts,tsx}',
     '../../../manager-react-components/src/**/*.{js,jsx,ts,tsx}',
   ],
+  theme: {
+    extend: {
+      boxShadow: {
+        'custom-tile': '0 0 6px 0 rgba(0,14,156,.2)',
+      },
+    },
+  },
   corePlugins: {
     preflight: false,
   },
