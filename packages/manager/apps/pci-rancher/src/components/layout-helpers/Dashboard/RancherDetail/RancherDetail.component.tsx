@@ -172,7 +172,12 @@ const RancherDetail = ({
                   isDisabled={!isReadyStatus}
                 />
               </TileBlock>
-
+              <TileBlock label={'ID'}>
+                <OsdsClipboard aria-label="clipboard-id" value={rancher.id}>
+                  <span slot="success-message">{t('copy')}</span>
+                  <span slot="error-message">{t('error')}</span>
+                </OsdsClipboard>
+              </TileBlock>
               <TileBlock label={t('rancher_version')}>
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
                   {version}
