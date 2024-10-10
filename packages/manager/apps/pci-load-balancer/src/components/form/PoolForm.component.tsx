@@ -221,7 +221,6 @@ export const PoolFormComponent = ({
         <LabelComponent
           text={t('octavia_load_balancer_pools_create_name')}
           hasError={state.name.isTouched && state.name.value === ''}
-          slot="label"
         />
         <OsdsInput
           value={state.name.value}
@@ -241,7 +240,7 @@ export const PoolFormComponent = ({
           }
           type={ODS_INPUT_TYPE.text}
           error={state.name.isTouched && state.name.value === ''}
-          className="border"
+          className="border w-[20rem]"
         />
       </OsdsFormField>
 
@@ -264,10 +263,8 @@ export const PoolFormComponent = ({
           text={t('octavia_load_balancer_pools_create_algorithm')}
           helpText={t('octavia_load_balancer_pools_create_algorithm_tooltip')}
           hasError={error.algorithm}
-          slot="label"
-        ></LabelComponent>
+        />
         <OsdsSelect
-          className="w-[20rem]"
           value={state.algorithm.value}
           error={error.algorithm}
           onOdsBlur={() => {
@@ -289,6 +286,7 @@ export const PoolFormComponent = ({
             }));
           }}
           inline
+          className="w-[20rem]"
         >
           {state.algorithms.map((alg) => (
             <OsdsSelectOption value={alg} key={alg}>
@@ -306,11 +304,9 @@ export const PoolFormComponent = ({
         <LabelComponent
           text={t('octavia_load_balancer_pools_create_protocol')}
           helpText={t('octavia_load_balancer_pools_create_protocol_tooltip')}
-          slot="label"
           hasError={error.protocol}
         />
         <OsdsSelect
-          className="w-[20rem] ml-4"
           value={state.protocol.value}
           error={error.protocol}
           onOdsBlur={() => {
@@ -333,6 +329,7 @@ export const PoolFormComponent = ({
           }}
           {...(!isEditMode ? {} : { disabled: true })}
           inline
+          className="w-[20rem]"
         >
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
@@ -370,6 +367,7 @@ export const PoolFormComponent = ({
           className="mr-6"
         />
       </OsdsToggle>
+
       {state.permanentSession.isEnabled && (
         <>
           <OsdsFormField
@@ -379,12 +377,12 @@ export const PoolFormComponent = ({
           >
             <LabelComponent
               text={t('octavia_load_balancer_pools_create_persistent_session')}
-              slot="label"
               hasError={error.sessionType}
             />
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_TEXT_SIZE._200}
+              size={ODS_TEXT_SIZE._100}
+              level={ODS_TEXT_LEVEL.caption}
               slot="helper"
             >
               {t(
@@ -392,7 +390,6 @@ export const PoolFormComponent = ({
               )}
             </OsdsText>
             <OsdsSelect
-              className="w-[20rem]"
               value={state.permanentSession.type.value}
               error={error.algorithm}
               onOdsBlur={() =>
@@ -420,6 +417,7 @@ export const PoolFormComponent = ({
                 }))
               }
               inline
+              className="w-[20rem]"
             >
               {state.sessionTypes.map((sType) => (
                 <OsdsSelectOption value={sType} key={sType}>
@@ -441,7 +439,6 @@ export const PoolFormComponent = ({
                 text={t(
                   'octavia_load_balancer_pools_create_persistent_session_cookie_name',
                 )}
-                slot="label"
                 hasError={error.cookieName}
               />
               <OsdsInput
@@ -474,7 +471,7 @@ export const PoolFormComponent = ({
                 )}
                 type={ODS_INPUT_TYPE.text}
                 error={error.cookieName}
-                className="border"
+                className="border w-[20rem]"
               />
             </OsdsFormField>
           )}
