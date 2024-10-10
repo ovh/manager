@@ -15,7 +15,7 @@ export default class VpsReinstallCtrl {
 
     this.loaders = {
       save: false,
-      sshKeys: false,
+      publicSshKey: false,
       summary: false,
       template: false,
       packages: false,
@@ -26,7 +26,7 @@ export default class VpsReinstallCtrl {
       value: null,
       language: null,
       softwares: [],
-      sshKeys: [],
+      publicSshKey: null,
       sendPassword: true,
     };
     this.templates = [];
@@ -41,7 +41,6 @@ export default class VpsReinstallCtrl {
       .finally(() => {
         this.loaders.init = false;
       });
-    this.loadSshKeys();
     this.loadSummary();
   }
 
@@ -66,25 +65,6 @@ export default class VpsReinstallCtrl {
           this.loaders.template = false;
         });
     }
-  }
-
-  loadSshKeys() {
-    this.loaders.sshKeys = true;
-    this.VpsReinstallService.getSshKeys()
-      .then((data) => {
-        this.userSshKeys = data;
-        return this.userSshKeys;
-      })
-      .catch(() =>
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'vps_configuration_reinstall_loading_sshKeys_error',
-          ),
-        ),
-      )
-      .finally(() => {
-        this.loaders.sshKeys = false;
-      });
   }
 
   loadSummary() {
@@ -177,7 +157,7 @@ export default class VpsReinstallCtrl {
       this.template.value.idTemplate,
       this.getSelectedLanguage(),
       softIds,
-      this.template.sshKeys,
+      this.template.publicSshKey,
       this.template.sendPassword ? 0 : 1,
     )
       .then(() => this.goBack(false, 'success', {}, { reload: true }))
