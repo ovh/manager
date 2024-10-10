@@ -17,6 +17,8 @@
 
         <ovh-contact-edit
             data-ng-if="$ctrl.onlyCreate || $ctrl.contact.inEdition"
+            data-ovh-contact-choice-options="$ctrl.choiceOptions.options"
+            data-ovh-contact-choice-custom-list="$ctrl.choiceOptions.customList"
         >
         </ovh-contact-edit>
     </div>

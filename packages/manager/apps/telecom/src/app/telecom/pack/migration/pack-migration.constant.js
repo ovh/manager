@@ -34,6 +34,27 @@ export const CONTEXT = {
   voipline: 'voipLine',
 };
 
+export const CUSTOM_FIELD_FORM = [
+  'firstName',
+  'lastName',
+  'address',
+  'cityName',
+  'zipCode',
+];
+
+export const CUSTOM_SORT_FIELD_FORM = {
+  generalInformations: ['firstName', 'lastName'],
+  profile: ['address', 'cityName', 'zipCode'],
+};
+
+export const CUSTOM_FIELD_FORM_RULES = {
+  firstName: { canBeNull: false },
+  lastName: { canBeNull: false },
+  address: { canBeNull: false },
+  cityName: { canBeNull: false },
+  zipCode: { canBeNull: false },
+};
+
 export default {
   PROMO_DISPLAY,
   PROCESS_STEP,
@@ -45,4 +66,7 @@ export default {
   OFFER_FIBER,
   GRT,
   CONTEXT,
+  CUSTOM_FIELD_FORM,
+  CUSTOM_SORT_FIELD_FORM,
+  CUSTOM_FIELD_FORM_RULES,
 };
