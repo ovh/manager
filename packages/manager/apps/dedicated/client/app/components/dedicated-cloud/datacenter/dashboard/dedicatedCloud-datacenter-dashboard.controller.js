@@ -88,12 +88,6 @@ export default class {
       datacenterId: this.datacenter.model.id,
       destinationId,
       value,
-    }).result.then((newValue) => {
-      if (contextTitle === 'dedicatedCloud_datacenter_name') {
-        this.datacenter.model.name = newValue;
-      } else {
-        this.datacenter.model.description = newValue;
-      }
     });
   }
 }
