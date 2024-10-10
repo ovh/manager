@@ -13,6 +13,10 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     PL: 'https://www.ovhcloud.com/pl/lp/vmware-vcd-evolution/',
     PT: 'https://www.ovhcloud.com/pt/lp/vmware-vcd-evolution/',
     FR: 'https://www.ovhcloud.com/fr/lp/vmware-vcd-evolution/',
+    MA: 'https://www.ovhcloud.com/fr/lp/vmware-vcd-evolution/',
+    SN: 'https://www.ovhcloud.com/fr/lp/vmware-vcd-evolution/',
+    TN: 'https://www.ovhcloud.com/fr/lp/vmware-vcd-evolution/',
+    NL: 'https://www.ovhcloud.com/nl/lp/vmware-vcd-evolution/',
     GB: 'https://www.ovhcloud.com/en-gb/lp/vmware-vcd-evolution/',
     CA: 'https://www.ovhcloud.com/en-ca/lp/vmware-vcd-evolution/',
     QC: 'https://www.ovhcloud.com/fr/lp/vmware-vcd-evolution/',
@@ -34,6 +38,12 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
       'https://help.ovhcloud.com/csm/pt-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
     FR:
       'https://help.ovhcloud.com/csm/fr-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad&spa=1',
+    MA:
+      'https://help.ovhcloud.com/csm/fr-ma-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    SN:
+      'https://help.ovhcloud.com/csm/fr-sn-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    TN:
+      'https://help.ovhcloud.com/csm/fr-tn-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
     GB:
       'https://help.ovhcloud.com/csm/en-gb-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
     CA:
@@ -57,6 +67,12 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     PT:
       'https://help.ovhcloud.com/csm/pt-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062562',
     FR:
+      'https://help.ovhcloud.com/csm/fr-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062602',
+    MA:
+      'https://help.ovhcloud.com/csm/fr-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062602',
+    SN:
+      'https://help.ovhcloud.com/csm/fr-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062602',
+    TN:
       'https://help.ovhcloud.com/csm/fr-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062602',
     GB:
       'https://help.ovhcloud.com/csm/en-gb-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062557',
