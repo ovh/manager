@@ -20,6 +20,7 @@ export const ROUTE_PATHS = {
   L7_EDIT: ':policyId/edit',
   L7_RULES: ':region/:loadBalancerId/listeners/:listenerId/l7/:policyId/rules',
   L7_RULES_LIST: 'list',
+  L7_RULES_DELETE: ':ruleId/delete',
   POOLS: 'pools',
   POOLS_CREATE: 'create',
   POOLS_EDIT: ':poolId/edit',
@@ -53,6 +54,9 @@ const L7PRulesListPage = lazy(() =>
 );
 const L7PoliciesDeletePage = lazy(() =>
   import('@/pages/detail/listeners/l7/delete/Delete.page'),
+);
+const L7RulesDeletePage = lazy(() =>
+  import('@/pages/detail/listeners/l7/rules/delete/Delete.page'),
 );
 const L7PoliciesEditPage = lazy(() =>
   import('@/pages/detail/listeners/l7/edit/Edit.page'),
@@ -126,10 +130,12 @@ const Routes = (
     </Route>
     <Route path={ROUTE_PATHS.L7_RULES} Component={L7RulesPage}>
       <Route path="" element={<Navigate to={ROUTE_PATHS.L7_RULES_LIST} />} />
-      <Route
-        path={ROUTE_PATHS.L7_RULES_LIST}
-        Component={L7PRulesListPage}
-      ></Route>
+      <Route path={ROUTE_PATHS.L7_RULES_LIST} Component={L7PRulesListPage}>
+        <Route
+          path={ROUTE_PATHS.L7_RULES_DELETE}
+          Component={L7RulesDeletePage}
+        />
+      </Route>
     </Route>
     <Route
       id="pools-detail"
