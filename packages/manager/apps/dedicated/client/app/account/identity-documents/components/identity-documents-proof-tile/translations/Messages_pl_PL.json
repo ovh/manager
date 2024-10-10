@@ -1,0 +1,18 @@
+{
+  "user_account_identity_documents_proof_tile_easiest": "Najprostszy sposób potwierdzenia",
+  "user_account_identity_documents_proof_tile_heading_aadhaar_card": "Czy masz kartę Aadhaar?",
+  "user_account_identity_documents_proof_tile_text_particular_aadhaar_card": "Prześlij tylko jeden dokument dla potwierdzenia tożsamości i adresu",
+  "user_account_identity_documents_proof_tile_heading_identity": "Potwierdzenie tożsamości",
+  "user_account_identity_documents_proof_tile_heading_address": "Potwierdzenie adresu",
+  "user_account_identity_documents_proof_tile_heading_vat": "Dokument potwierdzający status podatnika VAT",
+  "user_account_identity_documents_proof_tile_heading_authority_declaration": "Oświadczenie",
+  "user_account_identity_documents_proof_tile_text_particular_identity": "Karta Aadhaar, dowód osobisty, paszport, prawo jazdy, indyjska karta wyborcza.",
+  "user_account_identity_documents_proof_tile_text_particular_address": "Karta Aadhaar, certyfikat GST, faktura (za prąd, gaz, wodę, Internet lub telefon), wyciąg bankowy.",
+  "user_account_identity_documents_proof_tile_text_non_individual_identity": "Karta Aadhaar, dowód osobisty, paszport, prawo jazdy, indyjska karta wyborcza.",
+  "user_account_identity_documents_proof_tile_text_non_individual_address": "Certyfikat GST, faktura (za prąd, gaz, wodę, Internet lub telefon), wyciąg bankowy.",
+  "user_account_identity_documents_proof_tile_text_non_individual_vat": "Certyfikat GST (podatek od towarów i usług).",
+  "user_account_identity_documents_proof_tile_text_non_individual_authority_declaration": "Dokument uprawniający do reprezentowania firmy.",
+  "user_account_identity_documents_proof_tile_extended_identity": "Dokument potwierdzający tożsamość pełnomocnika, dyrektora operacyjnego lub innego kontaktu wymienionego w certyfikacie GST.",
+  "user_account_identity_documents_proof_tile_extended_authority_declaration": "Tylko jeśli nie jesteś „pełnomocnikiem”.",
+  "user_account_identity_documents_proof_tile_button": "Dodaj"
+}

@@ -2,7 +2,7 @@
   "user_account_identity_documents": "Moje dokumenty tożsamości",
   "user_account_identity_documents_title": "Niezbędna jest weryfikacja dokumentów",
   "user_account_identity_documents_sub_title": "Prześlij dokumenty",
-  "user_account_identity_documents_intro": "Założyłeś konto. Złożenie zamówienie na naszej stronie WWW podlega weryfikacji zgodnie z prawem indyjskim.",
+  "user_account_identity_documents_intro": "W ciągu 24 godzin* otrzymasz odpowiedź od naszego lokalnego zespołu pomocy",
   "user_account_identity_documents_upload": "Pobierz dokumenty",
   "user_account_identity_documents_intro_others": "Jeśli jesteś osobą fizyczną, wystarczy dowód tożsamości i potwierdzenie adresu. W takim przypadku nie jest konieczne złożenie oświadczenia ani potwierdzenia VAT.",
   "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png. Maksymalny rozmiar pliku dla każdego dokumentu to 10 MB.",
@@ -17,5 +17,6 @@
   "user_account_identity_documents_legal_info3": "Dokumenty będą przechowywane przez okres 5 lat od zakończenia umowy.",
   "user_account_identity_documents_verification_in_progress_info": "Twoje dokumenty są obecnie przetwarzane przez nasz zespół.",
   "user_account_identity_documents_verification_waiting_info": "Twój wniosek został przeanalizowany, ale wymaga dodatkowych dokumentów. Sprawdź Twoje zgłoszenie pomocy.",
-  "user_account_identity_documents_legal_info4": "Czas odpowiedzi w godzinach pracy: 9:00-18:00 IST (India Standard Time), od poniedziałku do piątku, z wyłączeniem dni wolnych od pracy."
+  "user_account_identity_documents_legal_info4": "Czas odpowiedzi w godzinach pracy: 9:00-18:00 IST (India Standard Time), od poniedziałku do piątku, z wyłączeniem dni wolnych od pracy.",
+  "user_account_identity_documents_default_intro": "Jeśli jesteś osobą prywatną, wystarczy dostarczyć potwierdzenie tożsamości i adresu. Nie musisz dostarczać dokumentu potwierdzającego status podatnika VAT  ani oświadczenia."
 }
