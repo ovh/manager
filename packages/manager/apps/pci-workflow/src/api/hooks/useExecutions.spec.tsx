@@ -55,14 +55,14 @@ describe('useExecutions tests', () => {
         state: 'SUCCESS',
         executedAt: '2024-07-18T01:05:29Z',
         executedAtDate: '18 juillet. 2024',
-        executedAtTime: format(parseISO('2024-07-18T01:05:29Z'), 'hh:mm:ss'),
+        executedAtTime: format(parseISO('2024-07-18T01:05:29'), 'hh:mm:ss'),
       },
       {
         id: 'project_id_2',
         state: 'SUCCESS',
         executedAt: '2024-07-17T01:05:24Z',
         executedAtDate: '17 juillet. 2024',
-        executedAtTime: format(parseISO('2024-07-17T01:05:24Z'), 'hh:mm:ss'),
+        executedAtTime: format(parseISO('2024-07-17T01:05:24'), 'hh:mm:ss'),
       },
     ]);
   });
