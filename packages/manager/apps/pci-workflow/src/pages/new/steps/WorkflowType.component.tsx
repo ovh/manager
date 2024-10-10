@@ -19,7 +19,7 @@ const INSTANCE_BACKUP = 'instance_backup';
 export function WorkflowType({ step, onSubmit }: Readonly<WorkflowTypeProps>) {
   const { t } = useTranslation('workflow-add');
   const { t: tListing } = useTranslation('listing');
-  const { t: tCommon } = useTranslation('common');
+  const { t: tCommon } = useTranslation('pci-common');
   return (
     <>
       <OsdsText

@@ -43,7 +43,7 @@ export function WorkflowName({
   onCancel,
 }: Readonly<WorkflowNameProps>) {
   const { t } = useTranslation('workflow-add');
-  const { t: tCommon } = useTranslation('common');
+  const { t: tCommon } = useTranslation('pci-common');
   const { projectId } = useParams();
   const [workflowName, setWorkflowName] = useState(name);
   const [hasError, setHasError] = useState(false);

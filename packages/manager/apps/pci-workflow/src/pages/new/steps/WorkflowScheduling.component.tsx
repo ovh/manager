@@ -52,7 +52,7 @@ export function WorkflowScheduling({
   onSubmit,
 }: Readonly<SchedulingProps>) {
   const { t } = useTranslation('workflow-add');
-  const { t: tCommon } = useTranslation('common');
+  const { t: tCommon } = useTranslation('pci-common');
   const [schedule, setSchedule] = useState<TWorkflowScheduling>(ROTATE_7);
   const isCustom = [ROTATE_7, ROTATE_14].indexOf(schedule) < 0;
   return (
