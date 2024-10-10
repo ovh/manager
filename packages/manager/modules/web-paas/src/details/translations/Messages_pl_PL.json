@@ -1,4 +1,6 @@
 {
   "web_paas_general_info": "Informacje ogólne",
-  "web_paas_manage_users": "Użytkownicy"
+  "web_paas_manage_users": "Użytkownicy",
+  "web_paas_banner_eol_part_1": "W nawiązaniu do poprzedniej korespondencji mailowej potwierdzamy zakończenie świadczenia usługi Web PaaS Powered by Platform.sh.",
+  "web_paas_banner_eol_part_2": "Począwszy od 31/01/2025 usługa nie będzie już działać, nie będzie dostępna w Panelu klienta i nie będziesz mógł uzyskać dostępu do danych. Pamiętaj, aby wykonać kopię zapasową projektu (plików i baz danych) przed zamknięciem usług."
 }
