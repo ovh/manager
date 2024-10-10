@@ -38,5 +38,10 @@
   "kube_add_billing_auto_scaling_monthly_warning": "Warning: You can enable auto-scaling and monthly billing at the same time for this node pool. Each time you create a node via auto-scaling, you will be billed for one node immediately on a pro rata basis for the remaining time in the current month. We recommend avoiding this combination if you anticipate that your node pool will be reduced frequently.",
   "kube_add_node_pool_name_input_pattern_validation_error": "The name must be at least two characters, start with an alphabetical character, end with an alphanumeric character, and the only special characters allowed are dashes and underscores.",
   "kube_add_billing_anti_affinity_coming_soon_message_title": "Monthly prices",
-  "kube_add_billing_anti_affinity_coming_soon_message_description": "With the launch of Saving Plans, we will soon be able to bill you monthly."
+  "kube_add_billing_anti_affinity_coming_soon_message_description": "With the launch of Saving Plans, we will soon be able to bill you monthly.",
+  "kubernetes_add_version_and_upgrade_policy_title": "Select the minor version of Kubernetes and the security policy you want",
+  "kube_update_policy_picker_documentation_text": "Learn more about Managed Kubernetes Service security policies.",
+  "kube_update_policy_picker_documentation_link": "Consult the documentation",
+  "kubernetes_add_update_policy_title": "Select the security policy",
+  "kubernetes_select_version_title": "Select a version"
 }
