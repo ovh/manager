@@ -545,5 +545,6 @@
   "common_unavailable_information": "Information unavailable",
   "common_resiliate_contact_support": "To cancel this service, please call our support team on: <strong>0333 370 0425</strong>. Thank you for choosing OVH.",
   "core_pcc_top_guide_11_title": "Nutanix official documentation",
-  "core_pcc_top_guide_12_title": "SAP HANA on Private Cloud official documentation"
+  "core_pcc_top_guide_12_title": "SAP HANA on Private Cloud official documentation",
+  "core_pcc_top_guide_13_title": "Authorise IPs to connect to vCenter"
 }
