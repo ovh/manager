@@ -60,7 +60,7 @@ export const useWorkflowExecutions = (
         executedAtDate: format(
           // remove Z timezone to treat as UTC date
           parseISO(exec.executedAt?.replace(/Z$/, '')),
-          "dd MMMM'.' yyyy",
+          'dd MMM yyyy',
           {
             locale: locales[userLocale],
           },
