@@ -413,7 +413,6 @@ export default class AgoraIpV4OrderController {
           case SERVER_REGION.EUROPE:
             registry = ORGANISATION_GROUP.RIPE;
             break;
-          case SERVER_REGION.USA:
           case SERVER_REGION.CANADA:
             registry = ORGANISATION_GROUP.ARIN;
             break;
