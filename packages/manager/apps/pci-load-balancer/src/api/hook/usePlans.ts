@@ -79,7 +79,6 @@ export const useGetRegions = (projectId: string): Map<string, TRegion[]> => {
         }
       });
     }
-    console.log(regions);
     return regions;
   }, [response, networks]);
 };
