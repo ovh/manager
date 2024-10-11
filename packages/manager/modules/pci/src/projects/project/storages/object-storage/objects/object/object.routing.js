@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.storages.object-storage.objects.object',
     {
-      url: '/{containerId}',
+      url: '/{containerId}?region',
       views: {
         'objectStorageView@pci.projects.project.storages.object-storage': {
           component: 'pciProjectStorageContainersContainer',
@@ -18,13 +18,19 @@ export default /* @ngInject */ ($stateProvider) => {
           $transition$.params().containerId,
         defaultCriteria: /* @ngInject */ ($transition$) =>
           $transition$.params().defaultCriteria,
+        region: /* @ngInject */ ($transition$) => $transition$.params().region,
         container: /* @ngInject */ (
           PciProjectStorageContainersService,
           projectId,
           containerId,
           containers,
+          region,
         ) => {
-          const container = find(containers, { id: containerId });
+          const container = find(containers, {
+            id: containerId,
+            region,
+          });
+
           return PciProjectStorageContainersService.getContainer(
             projectId,
             containerId,
@@ -34,6 +40,7 @@ export default /* @ngInject */ ($stateProvider) => {
           );
         },
 
+        //
         enableVersioning: /* @ngInject */ (
           $state,
           projectId,

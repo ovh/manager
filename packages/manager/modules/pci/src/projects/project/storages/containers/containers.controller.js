@@ -6,6 +6,7 @@ import {
   OBJECT_CONTAINER_MODE_MONO_ZONE,
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
   OBJECT_CONTAINER_DEPLOYMENT_MODE_TYPES,
+  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
 } from './containers.constants';
 
 export default class PciStoragesContainersController {
@@ -24,6 +25,7 @@ export default class PciStoragesContainersController {
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
     this.OBJECT_CONTAINER_MODE_MONO_ZONE = OBJECT_CONTAINER_MODE_MONO_ZONE;
     this.OBJECT_CONTAINER_MODE_MULTI_ZONES = OBJECT_CONTAINER_MODE_MULTI_ZONES;
+    this.OBJECT_CONTAINER_MODE_LOCAL_ZONE = OBJECT_CONTAINER_MODE_LOCAL_ZONE;
   }
 
   $onInit() {

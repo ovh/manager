@@ -19,6 +19,7 @@ import {
   OBJECT_CONTAINER_MODE_MONO_ZONE,
   STORAGE_STANDARD_PLANCODE,
   SWIFT_PLANCODE,
+  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
 } from '../containers.constants';
 
 import { CONTAINER_USER_ASSOCIATION_MODES } from './components/associate-user-to-container/constant';
@@ -237,7 +238,25 @@ export default class PciStoragesContainersAddController {
             OBJECT_CONTAINER_MODE_MONO_ZONE,
           ),
         );
+
+      this.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[
+        OBJECT_CONTAINER_MODE_LOCAL_ZONE
+      ].price =
+        this.getLowestPriceAddon(
+          productCapability,
+          OBJECT_CONTAINER_MODE_LOCAL_ZONE,
+        ) &&
+        this.PriceFormatter.format(
+          this.getLowestPriceAddon(
+            productCapability,
+            OBJECT_CONTAINER_MODE_LOCAL_ZONE,
+          ),
+        );
     });
+  }
+
+  isLocalZone() {
+    return this.container.deploymentMode === OBJECT_CONTAINER_MODE_LOCAL_ZONE;
   }
 
   isRightOffer() {

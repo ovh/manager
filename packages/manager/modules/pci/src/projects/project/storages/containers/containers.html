@@ -91,6 +91,12 @@
                     data-ng-if="$row.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MONO_ZONE"
                     data-ng-bind=":: ('pci_projects_project_storages_containers_deployment_mode_region') | translate"
                 ></span>
+
+                <span
+                    class="oui-badge oui-badge_promotion"
+                    data-ng-if="$row.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_LOCAL_ZONE"
+                    data-ng-bind=":: ('pci_projects_project_storages_containers_deployment_mode_localzone') | translate"
+                ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_offer_label' | translate"
@@ -140,7 +146,7 @@
             <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
                     data-on-click="$ctrl.goToAddUserContainer($row)"
-                    data-ng-if="$row.s3StorageType"
+                    data-ng-if="$row.s3StorageType && (!$row.deploymentMode || $row.deploymentMode !== $ctrl.OBJECT_CONTAINER_MODE_LOCAL_ZONE)"
                 >
                     <span
                         data-translate="pci_projects_project_storages_containers_view_add_user_label"
