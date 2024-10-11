@@ -2,7 +2,7 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_TYPE } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_TYPE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import React, { FunctionComponent, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -14,9 +14,13 @@ import { TextAreaField } from './TextAreaField/TextAreaField.component';
 import {
   EmailRegex,
   GDPRSubjectValues,
+  MaxFileSize,
+  OtherDocumentsMaxFiles,
+  RGDPAcceptFile,
   TextInputRegex,
 } from './RGDPForm.constants';
 import './RGDPForm.style.css';
+import { FileField } from './FileField/FileField.component';
 
 export const RGDPForm: FunctionComponent = () => {
   const { t } = useTranslation('rgdp');
@@ -133,7 +137,82 @@ export const RGDPForm: FunctionComponent = () => {
           control={control}
         />
       </div>
+      <div>
+        <div className="mb-6 flex flex-col gap-4">
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.info}
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+            className="block mb-6"
+            size={ODS_TEXT_SIZE._500}
+          >
+            {t('rgdp_form_upload_documents_title')}
+          </OsdsText>
 
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_TEXT_SIZE._500}
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          >
+            {t('rgdp_form_upload_documents_notice')}
+          </OsdsText>
+
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_TEXT_SIZE._500}
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          >
+            {t('rgdp_form_upload_documents_notice_readable_doc')}
+          </OsdsText>
+
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_TEXT_SIZE._500}
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          >
+            {t('rgdp_form_upload_documents_notice_no_valid_doc')}
+          </OsdsText>
+
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_TEXT_SIZE._500}
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            className="font-bold"
+          >
+            {t('rgdp_form_upload_documents_notice_file_format')}
+          </OsdsText>
+        </div>
+
+        <FileField
+          label={t('rgdp_form_field_label_id_front')}
+          name="idDocumentFront"
+          control={control}
+          accept={RGDPAcceptFile}
+          maxFiles={1}
+          maxSize={MaxFileSize}
+          helper={t('rgdp_form_field_helper_id')}
+        />
+
+        <FileField
+          label={t('rgdp_form_field_label_id_back')}
+          name="idDocumentBack"
+          control={control}
+          accept={RGDPAcceptFile}
+          maxFiles={1}
+          maxSize={MaxFileSize}
+          helper={t('rgdp_form_field_helper_id')}
+        />
+
+        <FileField
+          label={t('rgdp_form_field_label_other_documents')}
+          name="otherDocuments"
+          control={control}
+          accept={RGDPAcceptFile}
+          maxFiles={OtherDocumentsMaxFiles}
+          multiple
+          maxSize={MaxFileSize}
+          helper={t('rgdp_form_field_helper_other_documents', { maxFiles: 8 })}
+        />
+      </div>
       <OsdsButton
         type={ODS_BUTTON_TYPE.submit}
         color={ODS_THEME_COLOR_INTENT.primary}
