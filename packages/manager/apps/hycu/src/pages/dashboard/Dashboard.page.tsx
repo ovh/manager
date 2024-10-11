@@ -30,7 +30,6 @@ export type DashboardLayoutProps = {
 
 export default function DashboardPage() {
   const [panel, setActivePanel] = useState('');
-  const { serviceName } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
