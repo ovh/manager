@@ -6,7 +6,8 @@ import onboardingImgSrc from './hycu-x-ovhcloud.svg';
 import HYCU_CONFIG from '@/hycu.config';
 
 export default function Onboarding() {
-  const { t } = useTranslation('onboarding');
+  const { t } = useTranslation('hycu/onboarding');
+  const { t: tCommon } = useTranslation('hycu');
   const link = useGuideUtils();
 
   const tileList = [
@@ -40,7 +41,7 @@ export default function Onboarding() {
   ];
 
   const title: string = HYCU_CONFIG.rootLabel;
-  const description: string = t('description');
+  const description: string = tCommon('hycu_description');
   const imgSrc: React.ComponentProps<'img'> = {
     src: onboardingImgSrc,
     className: 'max-h-36 w-max-w-9/12',

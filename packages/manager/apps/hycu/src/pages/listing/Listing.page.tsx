@@ -69,7 +69,7 @@ const DatagridControllerIdCell = (hycuDetail: IHycuDetails) => {
 };
 
 const DatagridStatusCell = (hycuDetail: IHycuDetails) => {
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation('hycu/listing');
 
   return (
     <DataGridTextCell>
@@ -127,8 +127,9 @@ const DatagridActionCell = (hycuDetail: IHycuDetails) => {
 };
 
 export default function Listing() {
-  const { t } = useTranslation('listing');
-  const { t: tError } = useTranslation('error');
+  const { t } = useTranslation('hycu/listing');
+  const { t: tCommon } = useTranslation('hycu');
+  const { t: tError } = useTranslation('hycu/error');
   const {
     flattenData,
     isError,
@@ -181,7 +182,7 @@ export default function Listing() {
 
   const header = {
     title: HYCU_CONFIG.rootLabel,
-    description: t('description'),
+    description: tCommon('hycu_description'),
   };
 
   return (

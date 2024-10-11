@@ -1,11 +1,9 @@
 {
-  "description": "Simplifiez vos sauvegardes, plans de reprise après sinistre et migrations de votre infrastructure Nutanix. Ce service vous propose différents packs de licences HYCU Hybrid Cloud pour protéger vos charges de travail Nutanix.",
-  "listing_resultats": "résultats",
   "hycu_status_activated": "Active",
   "hycu_status_toActivate": "À activer",
   "hycu_status_pending": "En cours d'activation",
   "hycu_status_error": "Erreur d'activation",
-  "hycu-cloud-vm-pack-unknown": "Pack inconnu",
+  "hycu_cloud_vm_pack_unknown": "Pack inconnu",
   "hycu_name": "Nom",
   "hycu_controller_id": "Controller ID",
   "hycu_status": "Statut",
