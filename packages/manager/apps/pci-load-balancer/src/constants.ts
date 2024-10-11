@@ -174,6 +174,44 @@ export const URL_PATTERN = /^(http(s)?:\/\/)[\w.-]+[\w\-._~:/?#[\]@!$&'()*+,;=%]
 
 export const URL_PLACEHOLDER = 'https://example.com';
 
+export const GETTING_STARTED_LINK = {
+  FR:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050200',
+  DE:
+    'https://help.ovhcloud.com/csm/de-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0037842',
+  ES:
+    'https://help.ovhcloud.com/csm/es-es-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050208',
+  IE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050193',
+  IT:
+    'https://help.ovhcloud.com/csm/it-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050199',
+  PL:
+    'https://help.ovhcloud.com/csm/pl-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050201',
+  PT:
+    'https://help.ovhcloud.com/csm/pt-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050202',
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050203',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050188',
+  QC:
+    'https://help.ovhcloud.com/csm/fr-ca-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050196',
+  WS:
+    'https://help.ovhcloud.com/csm/es-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050197',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050198',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050206',
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050195',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/18610207964051-Getting-Started-with-Load-Balancer-on-Public-Cloud',
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050193',
+};
+
+export const MAX_LISTENER = 5;
+export const MAX_INSTANCES_BY_LISTENER = 5;
+
 export const RULE_TYPES = {
   COOKIE: 'cookie',
   FILE_TYPE: 'fileType',
