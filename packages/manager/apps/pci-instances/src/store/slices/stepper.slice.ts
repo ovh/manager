@@ -1,6 +1,6 @@
 import { StateCreator } from 'zustand';
 
-export type TStepId = 'model';
+export type TStepId = 'model' | 'region';
 
 export type TStep = {
   isOpen: boolean;
@@ -35,7 +35,10 @@ const initStep = (isOpen: boolean): TStep => ({
   isLocked: false,
 });
 
-const initialSteps = new Map<TStepId, TStep>([['model', initStep(true)]]);
+const initialSteps = new Map<TStepId, TStep>([
+  ['model', initStep(true)],
+  ['region', initStep(false)],
+]);
 
 export const createStepperSlice: StateCreator<
   TStepperSlice,
