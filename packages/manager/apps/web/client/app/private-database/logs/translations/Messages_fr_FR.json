@@ -1,3 +1,5 @@
 {
-  "private_database_logs": "Logs"
+  "private_database_logs": "Logs",
+  "private_database_logs_description_dbms": "[TBD] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras porttitor metus justo, ut fringilla velit fermentum a. Proin consequat, ante quis pharetra rhoncus, mi lacus venenatis nisl, vel aliquet lorem nunc et dolor. Donec interdum porta lacus nec fringilla.",
+  "private_database_data_streams_description_dbms": "[TBD] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras porttitor metus justo, ut fringilla velit fermentum a. Proin consequat, ante quis pharetra rhoncus, mi lacus venenatis nisl, vel aliquet lorem nunc et dolor. Donec interdum porta lacus nec fringilla."
 }
