@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_network_private_delete": "Eliminare la rete privata",
-  "pci_projects_project_network_private_delete_confirm": "Confermare",
-  "pci_projects_project_network_private_delete_cancel": "Annullare",
-  "pci_projects_project_network_private_delete_confirmation": "Vuoi davvero eliminare la rete privata {{name}}?",
-  "pci_projects_project_network_private_delete_success": "Eliminazione della rete privata {{ name }} in corso...",
-  "pci_projects_project_network_private_delete_error": "Si è verificato un errore durante l'eliminazione della rete privata: {{message}}"
-}
