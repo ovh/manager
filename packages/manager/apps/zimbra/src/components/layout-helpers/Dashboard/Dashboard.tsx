@@ -21,6 +21,7 @@ import { GUIDES_LIST } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
 
 import './Dashboard.scss';
+import { FEATURE_FLAGS } from '@/utils';
 
 export const Dashboard: React.FC = () => {
   const { platformId } = useParams();
@@ -89,7 +90,7 @@ export const Dashboard: React.FC = () => {
         urls.mailing_lists,
         urls.mailing_lists_delete,
       ]),
-      hidden: true,
+      hidden: !FEATURE_FLAGS.MAILINGLISTS,
     },
     {
       name: 'redirections',
@@ -100,13 +101,14 @@ export const Dashboard: React.FC = () => {
         urls.redirections_delete,
         urls.redirections_edit,
       ]),
+      hidden: !FEATURE_FLAGS.REDIRECTIONS,
     },
     {
       name: 'auto_replies',
       title: t('zimbra_dashboard_auto_replies'),
       to: `${basePath}/auto_replies`,
       pathMatchers: computePathMatchers([urls.auto_replies]),
-      hidden: true,
+      hidden: !FEATURE_FLAGS.AUTOREPLIES,
     },
   ];
 

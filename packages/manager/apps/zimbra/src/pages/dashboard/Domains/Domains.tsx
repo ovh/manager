@@ -40,6 +40,7 @@ import {
   DATAGRID_REFRESH_INTERVAL,
   DATAGRID_REFRESH_ON_MOUNT,
   DnsRecordType,
+  FEATURE_FLAGS,
 } from '@/utils';
 import Loading from '@/components/Loading/Loading';
 import { DiagnosticBadge } from '@/components/DiagnosticBadge';
@@ -220,10 +221,17 @@ export default function Domains() {
             <Loading />
           ) : (
             <Datagrid
-              columns={columns.map((column) => ({
-                ...column,
-                label: t(column.label),
-              }))}
+              columns={columns
+                .filter(
+                  (c) =>
+                    !(
+                      !FEATURE_FLAGS.DOMAIN_DIAGNOSTICS && c.id === 'diagnostic'
+                    ),
+                )
+                .map((column) => ({
+                  ...column,
+                  label: t(column.label),
+                }))}
               items={items}
               totalItems={items.length}
             />
