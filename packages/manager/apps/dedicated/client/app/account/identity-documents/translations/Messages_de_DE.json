@@ -17,5 +17,6 @@
   "user_account_identity_documents_legal_info3": "Die Dokumente werden nach Vertragsende noch 5 Jahre aufbewahrt.",
   "user_account_identity_documents_verification_in_progress_info": "Die Verarbeitung Ihrer Dokumente wird derzeit von unserem Team analysiert.",
   "user_account_identity_documents_verification_waiting_info": "Ihre Anfrage wurde analysiert, es werden jedoch weitere Dokumente benötigt. Bitte sehen Sie sich Ihr Support-Ticket an.",
-  "user_account_identity_documents_default_intro": "Wenn Sie eine Privatperson sind, reichen Identitäts- und Adressnachweise aus. Sie brauchen keinen Mehrwertsteuernachweis und keine eidesstattliche Erklärung vorzulegen."
+  "user_account_identity_documents_default_intro": "Wenn Sie eine Privatperson sind, reichen Identitäts- und Adressnachweise aus. Sie brauchen keinen Mehrwertsteuernachweis und keine eidesstattliche Erklärung vorzulegen.",
+  "user_account_identity_documents_legal_info4": "Reaktionszeit während der Arbeitszeiten: Montag bis Freitag von 9:00 Uhr bis 18:00 Uhr IST (Indische Normalzeit), Feiertage ausgenommen."
 }

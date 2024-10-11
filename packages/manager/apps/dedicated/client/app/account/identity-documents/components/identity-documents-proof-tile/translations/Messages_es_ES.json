@@ -14,5 +14,6 @@
   "user_account_identity_documents_proof_tile_text_non_individual_authority_declaration": "Autorización para actuar en nombre de la empresa,",
   "user_account_identity_documents_proof_tile_extended_identity": "Documento del representante legal, del director de operaciones o de cualquier otro contacto mencionado en el certificado GST.",
   "user_account_identity_documents_proof_tile_extended_authority_declaration": "Solo si usted no es el «representante legal».",
-  "user_account_identity_documents_proof_tile_button": "Añadir"
+  "user_account_identity_documents_proof_tile_button": "Añadir",
+  "user_account_identity_documents_proof_tile_button_update": "Modificar"
 }

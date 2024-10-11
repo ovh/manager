@@ -14,5 +14,6 @@
   "user_account_identity_documents_proof_tile_text_non_individual_authority_declaration": "Dokument, das Ihnen die Berechtigung erteilt, im Namen des Unternehmens zu handeln.",
   "user_account_identity_documents_proof_tile_extended_identity": "Dokument des gesetzlichen Vertreters, des Betriebsleiters oder eines anderen im GST-Zertifikat genannten Kontakts.",
   "user_account_identity_documents_proof_tile_extended_authority_declaration": "Nur, wenn Sie nicht der „gesetzliche Vertreter“ sind.",
-  "user_account_identity_documents_proof_tile_button": "Hinzufügen"
+  "user_account_identity_documents_proof_tile_button": "Hinzufügen",
+  "user_account_identity_documents_proof_tile_button_update": "Ändern"
 }
