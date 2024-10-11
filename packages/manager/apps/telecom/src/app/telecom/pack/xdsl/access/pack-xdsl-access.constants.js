@@ -34,6 +34,21 @@ export const ACCESS_TYPE = {
   ftth: 'ftth',
 };
 
+export const MAIL_SENDING_STATUS = {
+  noStatus: 'noStatus',
+  enabled: 'enabled',
+  disabled: 'disabled',
+  blockedForSpam: 'blockedForSpam',
+};
+
+// Need a long interval before making call again
+export const POLLING_INTERVAL = 60000;
+
+export const MAIL_SENDING_HELP =
+  'https://help.ovhcloud.com/csm?id=csm_get_help';
+export const MAIL_SENDING_GUIDE_URL =
+  'https://help.ovhcloud.com/csm/fr-internet-access-enable-smtp?id=kb_article_view&sysparm_article=KB0064947';
+
 export default {
   XDSL_NO_INCIDENT_CODE,
   XDSL_EXCHANGE_MODEM,
@@ -42,4 +57,8 @@ export default {
   PROVIDER,
   PROVIDER_INFRA,
   ACCESS_TYPE,
+  MAIL_SENDING_STATUS,
+  POLLING_INTERVAL,
+  MAIL_SENDING_HELP,
+  MAIL_SENDING_GUIDE_URL,
 };
