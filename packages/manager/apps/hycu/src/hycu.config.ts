@@ -4,5 +4,5 @@ export default {
       serviceKey: 'hycu',
     },
   },
-  rootLabel: 'hycu',
+  rootLabel: 'HYCU for OVHcloud',
 };

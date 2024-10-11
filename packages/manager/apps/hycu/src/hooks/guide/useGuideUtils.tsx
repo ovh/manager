@@ -19,6 +19,13 @@ const GUIDE_LIST: { [guideName: string]: Partial<TGuideLinks> } = {
     CA: 'https://www.ovhcloud.com/en-ca/storage-solutions/hycu/',
     QC: 'https://www.ovhcloud.com/fr-ca/storage-solutions/hycu/',
     US: 'https://www.ovhcloud.com/en/storage-solutions/hycu/',
+    AU: 'https://www.ovhcloud.com/en-au/storage-solutions/hycu/',
+    SG: 'https://www.ovhcloud.com/en-sg/storage-solutions/hycu/',
+    MA: 'https://www.ovhcloud.com/fr-ma/storage-solutions/hycu/',
+    SN: 'https://www.ovhcloud.com/fr-sn/storage-solutions/hycu/',
+    TN: 'https://www.ovhcloud.com/fr-tn/storage-solutions/hycu/',
+    NL: 'https://www.ovhcloud.com/nl/storage-solutions/hycu/',
+    IN: 'https://www.ovhcloud.com/en-in/storage-solutions/hycu/',
   },
   guideLink1: {
     DE:

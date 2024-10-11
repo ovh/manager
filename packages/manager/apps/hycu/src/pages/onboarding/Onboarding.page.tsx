@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import onboardingImgSrc from './hycu-x-ovhcloud.svg';
+import HYCU_CONFIG from '@/hycu.config';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
@@ -38,7 +39,7 @@ export default function Onboarding() {
     },
   ];
 
-  const title: string = t('title');
+  const title: string = HYCU_CONFIG.rootLabel;
   const description: string = t('description');
   const imgSrc: React.ComponentProps<'img'> = {
     src: onboardingImgSrc,

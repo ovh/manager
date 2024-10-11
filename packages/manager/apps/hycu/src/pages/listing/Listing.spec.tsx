@@ -4,23 +4,29 @@ import { renderTestApp } from '@/utils/tests/renderTestApp';
 import '@testing-library/jest-dom';
 import { labels } from '@/utils/tests/init.i18n';
 import { licensesHycu } from '@/mocks/licenseHycu/licenseHycu.data';
+import HYCU_CONFIG from '@/hycu.config';
 
 describe('License Hycu listing test suite', () => {
   it('should redirect to the onboarding page when the license hycu list is empty', async () => {
     await renderTestApp({ nbLicenseHycu: 0 });
 
-    expect(screen.getByText(labels.onboarding.title)).toBeVisible();
+    expect(screen.getByText(HYCU_CONFIG.rootLabel)).toBeVisible();
+    expect(
+      screen.getByText(labels.onboarding.hycu_onboarding_guide1_title),
+    ).toBeInTheDocument();
 
-    expect(screen.queryByText(labels.listing.title)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(labels.listing.hycu_name),
+    ).not.toBeInTheDocument();
   });
 
   it('should display the hycu listing page', async () => {
     await renderTestApp();
 
-    expect(screen.getByText(labels.listing.title)).toBeVisible();
+    expect(screen.getByText(labels.listing.hycu_order)).toBeVisible();
 
     expect(
-      screen.queryByText(labels.onboarding.description),
+      screen.queryByText(labels.onboarding.hycu_onboarding_guide1_title),
     ).not.toBeInTheDocument();
   });
 
