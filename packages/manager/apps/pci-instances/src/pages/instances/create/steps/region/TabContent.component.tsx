@@ -45,22 +45,20 @@ export const TabContent: FC<TTabContentProps> = ({ category, data }) => {
     [category.name],
   );
 
-  const allAvailableRegionsByCategory = useMemo(
-    () => groupRegionsByCategory(allAvailableRegions),
-    [groupRegionsByCategory, allAvailableRegions],
+  const allAvailableRegionsByCategory = groupRegionsByCategory(
+    allAvailableRegions,
   );
 
-  const availableMacroRegionsByCategory = useMemo(
-    () => groupRegionsByCategory(availableMacroRegions),
-    [groupRegionsByCategory, availableMacroRegions],
+  const availableMacroRegionsByCategory = groupRegionsByCategory(
+    availableMacroRegions,
   );
-  const availableMicroRegionsByCategory = useMemo(
-    () => groupRegionsByCategory(availableMicroRegions),
-    [groupRegionsByCategory, availableMicroRegions],
+
+  const availableMicroRegionsByCategory = groupRegionsByCategory(
+    availableMicroRegions,
   );
-  const unavailableRegionsByCategory = useMemo(
-    () => groupRegionsByCategory(unavailableRegions),
-    [groupRegionsByCategory, unavailableRegions],
+
+  const unavailableRegionsByCategory = groupRegionsByCategory(
+    unavailableRegions,
   );
 
   const selectedRegionIsMicroRegion = useMemo(
