@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.0.0...@ovh-ux/manager-react-components@2.0.0) (2024-10-11)
+
+### Features
+
+- **manager-react-components:** update version package ([dee5bb1](https://github.com/ovh/manager/commit/dee5bb1de6010e92153582105381518dc8fc425f))
+
+### BREAKING CHANGES
+
+- **manager-react-components:** update manager react version
+
+Signed-off-by: Alex Boungnaseng <alex.boungnaseng.ext@corp.ovh.com>
+
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.0.0...@ovh-ux/manager-react-components@3.0.0) (2024-10-11)
 
 ### Bug Fixes
