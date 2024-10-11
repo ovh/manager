@@ -31,7 +31,7 @@ export default function Create() {
   const [
     rancherCreationErrorMessage,
     setRancherCreationErrorMessage,
-  ] = useState<string | null>(null);
+  ] = useState<{ class: string; message: string } | null>(null);
   useTrackingPage(TrackingPageView.CreateRancher);
   const trackingPage = useSimpleTrackingPage();
 
@@ -53,8 +53,8 @@ export default function Create() {
     onError: (error) => {
       trackingPage(`${TRACKING_PATH}::${TrackingEvent.add}-error`);
       setHasRancherCreationError(true);
-      if (error?.response?.data?.message) {
-        setRancherCreationErrorMessage(error.response.data.message);
+      if (error?.response?.data) {
+        setRancherCreationErrorMessage(error?.response?.data);
       }
     },
   });
