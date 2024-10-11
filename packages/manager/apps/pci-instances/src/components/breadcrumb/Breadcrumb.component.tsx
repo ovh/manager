@@ -31,7 +31,7 @@ export const Breadcrumb: FC<TBreadcrumbProps> = ({
         },
         {
           href: backHref,
-          label: t('instances_title'),
+          label: t('pci_instances_common_instances_title'),
         },
         ...items,
       ]}
