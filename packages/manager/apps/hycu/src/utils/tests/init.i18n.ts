@@ -1,18 +1,18 @@
 import i18next, { i18n } from 'i18next';
-import common from '../../../public/translations/common/Messages_fr_FR.json';
+import common from '../../../public/translations/hycu/Messages_fr_FR.json';
 import dashboard from '../../../public/translations/dashboard/Messages_fr_FR.json';
-import listing from '../../../public/translations/listing/Messages_fr_FR.json';
-import onboarding from '../../../public/translations/onboarding/Messages_fr_FR.json';
+import listing from '../../../public/translations/hycu/listing/Messages_fr_FR.json';
+import onboarding from '../../../public/translations/hycu/onboarding/Messages_fr_FR.json';
 
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
 
 function addTranslations() {
   i18next
-    .addResources(defaultLocale, 'common', common)
+    .addResources(defaultLocale, 'hycu', common)
     .addResources(defaultLocale, 'dashboard', dashboard)
-    .addResources(defaultLocale, 'listing', listing)
-    .addResources(defaultLocale, 'onboarding', onboarding)
+    .addResources(defaultLocale, 'hycu/listing', listing)
+    .addResources(defaultLocale, 'hycu/onboarding', onboarding)
     .use({
       type: 'postProcessor',
       name: 'normalize',

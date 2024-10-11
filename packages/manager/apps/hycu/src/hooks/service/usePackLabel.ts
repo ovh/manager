@@ -6,6 +6,6 @@ export const usePackTypeLabel = (packType: string) => {
 
   return (
     packTypeLabel[packType as keyof typeof packTypeLabel] ??
-    t('hycu-cloud-vm-pack-unknown')
+    t('hycu_cloud_vm_pack_unknown')
   );
 };
