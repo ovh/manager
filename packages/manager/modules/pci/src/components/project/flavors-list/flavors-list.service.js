@@ -175,6 +175,10 @@ export default class FlavorsList {
     return groupBy(flavors, 'groupName');
   }
 
+  static getIsNewTagsBlob(flavor) {
+    return flavor?.tagsBlob?.includes(TAGS_BLOB.IS_NEW);
+  }
+
   static groupByCategory(flavors) {
     return CATEGORIES.map(({ category, title, pattern, isNew }) => {
       const filteredAndRearrangedFlavors = filter(flavors, (flavor) =>
@@ -187,10 +191,10 @@ export default class FlavorsList {
         isNew,
         flavors: [
           ...filteredAndRearrangedFlavors.filter((flavor) =>
-            flavor?.tagsBlob?.includes(TAGS_BLOB.IS_NEW),
+            this.getIsNewTagsBlob(flavor),
           ),
           ...filteredAndRearrangedFlavors.filter(
-            (flavor) => !flavor?.tagsBlob?.includes(TAGS_BLOB.IS_NEW),
+            (flavor) => !this.getIsNewTagsBlob(flavor),
           ),
         ],
       };
