@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_network_private_delete": "Usuń prywatną sieć",
-  "pci_projects_project_network_private_delete_confirm": "Zatwierdź",
-  "pci_projects_project_network_private_delete_cancel": "Anuluj",
-  "pci_projects_project_network_private_delete_confirmation": "Czy na pewno chcesz usunąć prywatną sieć  {{name}}?",
-  "pci_projects_project_network_private_delete_success": "Trwa usuwanie prywatnej sieci {{name}}.",
-  "pci_projects_project_network_private_delete_error": "Wystąpił błąd podczas usuwania prywatnej sieci: {{message}}."
-}

@@ -324,10 +324,8 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           instanceId: instance.id,
         }),
-      vrackLink: /* @ngInject */ ($state, projectId) => () =>
-        $state.href('pci.projects.project.privateNetwork.vrack.new', {
-          projectId,
-        }),
+      vrackLink: /* @ngInject */ (getUAppUrl) => () =>
+        getUAppUrl('dedicated', `#/vrack`),
       scheduleAutoBackup: /* @ngInject */ (
         $state,
         projectId,
@@ -339,8 +337,14 @@ export default /* @ngInject */ ($stateProvider) => {
           selectedInstance: instance,
         });
       },
-      vrack: /* @ngInject */ (PciPrivateNetworks, projectId) =>
-        PciPrivateNetworks.getVrack(projectId),
+      vrack: /* @ngInject */ (OvhApiCloudProject, projectId) =>
+        OvhApiCloudProject.v6()
+          .vrack({
+            serviceName: projectId,
+          })
+          .$promise.catch((error) =>
+            error.status === 404 ? {} : Promise.reject(error),
+          ),
       goToInstances: /* @ngInject */ (CucCloudMessage, $state, projectId) => (
         message = false,
         type = 'success',

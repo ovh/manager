@@ -185,14 +185,19 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           instanceId: instance.id,
         }),
-      gotToNetworks: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.privateNetwork', {
-          projectId,
-        }),
-      gotToLocalPrivateNetworks: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.privateNetwork.localZone', {
-          projectId,
-        }),
+      gotToNetworks: /* @ngInject */ (getUAppUrl, projectId) => () =>
+        getUAppUrl(
+          'public-cloud',
+          `#/pci/projects/${projectId}/private-networks`,
+        ),
+      gotToLocalPrivateNetworks: /* @ngInject */ (
+        getUAppUrl,
+        projectId,
+      ) => () =>
+        getUAppUrl(
+          'public-cloud',
+          `#/pci/projects/${projectId}/private-networks/localZone`,
+        ),
       attachPrivateNetwork: /* @ngInject */ (
         $state,
         instance,
