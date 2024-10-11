@@ -8,7 +8,7 @@ import { IHycuDetails } from '@/type/hycu.details.interface';
 const HycuActionMenu = ({
   serviceName: _serviceName,
 }: Pick<IHycuDetails, 'serviceName'>) => {
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation('hycu/listing');
 
   const items: ActionMenuItem[] = [
     {
