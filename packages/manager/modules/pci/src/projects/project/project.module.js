@@ -22,7 +22,6 @@ import kubernetes from './kubernetes';
 import loadBalancer from './load-balancer';
 import notebooks from './notebooks';
 import ai from './ai';
-import privateNetworks from './private-networks';
 import quota from './quota';
 import quotaExceedError from './quota-exceed-error';
 import privateRegistry from './private-registry';
@@ -62,7 +61,6 @@ angular
     notebooks,
     ai,
     kubernetes,
-    privateNetworks,
     quota,
     quotaExceedError,
     regions,
