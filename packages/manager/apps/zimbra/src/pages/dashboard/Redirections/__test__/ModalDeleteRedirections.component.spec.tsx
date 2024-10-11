@@ -1,18 +1,7 @@
 import React from 'react';
-import { vi, describe, expect, it, afterEach } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import ModalDeleteRedirections from '../ModalDeleteRedirections.component';
 import { render, fireEvent, screen } from '@/utils/test.provider';
-
-vi.mock('@/hooks', async (importOriginal) => {
-  const actual: any = await importOriginal();
-  return {
-    ...actual,
-  };
-});
-
-afterEach(() => {
-  vi.clearAllMocks();
-});
 
 describe('ModalDeleteRedirections Component', () => {
   it('should render correctly', () => {

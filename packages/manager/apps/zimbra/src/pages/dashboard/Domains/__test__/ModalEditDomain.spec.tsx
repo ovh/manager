@@ -2,51 +2,19 @@ import React from 'react';
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
-import { act } from 'react-dom/test-utils';
-import { fireEvent, render } from '@/utils/test.provider';
-import { platformMock, domainMock, organizationListMock } from '@/api/_mock_';
+import { useSearchParams } from 'react-router-dom';
+import { fireEvent, render, waitFor, act } from '@/utils/test.provider';
+import { domainDetailMock } from '@/api/_mock_';
 import ModalEditDomain from '../ModalEditDomain.component';
 import domainsEditTranslation from '@/public/translations/domains/edit/Messages_fr_FR.json';
+import { putZimbraDomain } from '@/api/domain';
 
-vi.mock('@/hooks', () => {
-  return {
-    usePlatform: vi.fn(() => ({
-      platformId: platformMock[0].id,
-    })),
-    useGenerateUrl: vi.fn(),
-    useDomain: vi.fn(() => ({
-      data: domainMock[0],
-      isLoading: false,
-    })),
-    useOrganizationList: vi.fn(() => ({
-      data: organizationListMock,
-      isLoading: false,
-    })),
-  };
-});
-
-vi.mock('react-router-dom', () => ({
-  useNavigate: vi.fn(),
-  MemoryRouter: vi.fn(() => <ModalEditDomain />),
-  useSearchParams: vi.fn(() => [
-    new URLSearchParams({
-      editDomainId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-    }),
-  ]),
-}));
-
-vi.mock('@ovh-ux/manager-react-components', () => {
-  return {
-    useNotifications: vi.fn(() => ({
-      addError: () => vi.fn(),
-      addSuccess: () => vi.fn(),
-    })),
-  };
-});
-
-afterEach(() => {
-  vi.restoreAllMocks();
-});
+vi.mocked(useSearchParams).mockReturnValue([
+  new URLSearchParams({
+    editDomainId: domainDetailMock.id,
+  }),
+  vi.fn(),
+]);
 
 describe('Domains edit modal', () => {
   it('check if it is displayed', () => {
@@ -58,19 +26,26 @@ describe('Domains edit modal', () => {
     );
   });
 
-  it('check if disabled input have the domain name', () => {
+  it('check if disabled input have the domain name', async () => {
     const { getByTestId } = render(<ModalEditDomain />);
-    const modal = getByTestId('input-domain');
-    expect(modal).toHaveProperty('value', domainMock[0].currentState.name);
+
+    await waitFor(() => {
+      expect(getByTestId('input-domain')).toBeInTheDocument();
+    });
+
+    expect(getByTestId('input-domain')).toHaveProperty(
+      'value',
+      domainDetailMock.currentState.name,
+    );
   });
 
-  it('check the status of confirm cta', () => {
+  it('check the status of confirm cta', async () => {
     const { getByTestId } = render(<ModalEditDomain />);
     const confirmCta = getByTestId('edit-btn');
     const selectOrganization = getByTestId('select-organization');
     expect(confirmCta).toBeDisabled();
 
-    act(() => {
+    await act(() => {
       fireEvent.change(selectOrganization, {
         target: { value: '1903b491-4d10-4000-8b70-f474d1abe601' },
       });
@@ -82,5 +57,11 @@ describe('Domains edit modal', () => {
     });
 
     expect(confirmCta).toBeEnabled();
+
+    await act(() => {
+      fireEvent.click(confirmCta);
+    });
+
+    expect(putZimbraDomain).toHaveBeenCalledOnce();
   });
 });

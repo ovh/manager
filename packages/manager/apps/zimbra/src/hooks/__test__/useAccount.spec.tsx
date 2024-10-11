@@ -1,40 +1,23 @@
-import { describe, expect, vi } from 'vitest';
+import { describe, expect } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
-import { platformMock, accountMock } from '@/api/_mock_';
-import { useAccount } from '../useAccount';
+import { accountDetailMock } from '@/api/_mock_';
+import { useAccount } from '@/hooks';
 import { wrapper } from '@/utils/test.provider';
-
-vi.mock('@/hooks', () => {
-  return {
-    usePlatform: vi.fn(() => ({
-      platformId: platformMock[0].id,
-    })),
-  };
-});
-
-vi.mock('@/api/account/api', () => {
-  const apiZimbraPlatformAccountDetail = vi.fn(() =>
-    Promise.resolve(accountMock[0]),
-  );
-  return {
-    getZimbraPlatformAccountDetail: apiZimbraPlatformAccountDetail,
-  };
-});
 
 describe('useAccount', () => {
   it('should return the detail of an account', async () => {
     const { result } = renderHook(
-      () => useAccount({ accountId: accountMock[0].id }),
+      () => useAccount({ accountId: accountDetailMock.id }),
       {
         wrapper,
       },
     );
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBe(false);
+      expect(result.current.isSuccess).toBe(true);
     });
 
-    expect(result.current.data).toEqual(accountMock[0]);
+    expect(result.current.data).toEqual(accountDetailMock);
   });
 });

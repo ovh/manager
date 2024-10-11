@@ -56,6 +56,7 @@ export default function AddAndEditMailingList() {
             data-testid="page-title"
           >
             <Links
+              data-testid="back-btn"
               type={LinkType.back}
               onClickReturn={goBack}
               label={t('zimbra_mailinglist_add_cta_back')}
