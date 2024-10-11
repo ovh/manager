@@ -1,9 +1,11 @@
 import { rancherMocked } from '@/_mock_/rancher';
 import {
+  extractDriversAndPlanFromSwitchPlanError,
   getLatestVersionAvailable,
   getLatestVersions,
   getVersion,
   isValidRancherName,
+  rancherErrorManagement,
 } from './rancher';
 import { versionsMocked } from '@/_mock_/version';
 
@@ -116,5 +118,75 @@ describe('Rancher version', () => {
         status: 'AVAILABLE',
       },
     ]);
+  });
+});
+
+describe('extractDriversFromSwitchPlanError', () => {
+  it.each([
+    [
+      'Unable to switch to plan OVHCLOUD_EDITION [driver1, driver2]',
+      { drivers: ['driver1', ' driver2'], plan: 'OVHCLOUD_EDITION' },
+    ],
+    [
+      'Unable to switch to plan STANDARD [driver3, driver4]',
+      { drivers: ['driver3', ' driver4'], plan: 'STANDARD' },
+    ],
+    [
+      'Unable to switch to plan OVHCLOUD_EDITION [ driver5 , driver6 ]',
+      { drivers: ['driver5 ', ' driver6'], plan: 'OVHCLOUD_EDITION' },
+    ],
+    [
+      'Unable to switch to plan STANDARD [ driver7 , driver8 ]',
+      { drivers: ['driver7 ', ' driver8'], plan: 'STANDARD' },
+    ],
+    ['Invalid input string', null],
+    ['Unable to switch to plan [driver9, driver10]', null],
+    ['Unable to switch to plan OVHCLOUD_EDITION []', null],
+  ])('should return %s', (inputString, expected) => {
+    expect(extractDriversAndPlanFromSwitchPlanError(inputString)).toEqual(
+      expected,
+    );
+  });
+});
+
+describe('rancherErrorManagement', () => {
+  it.each([
+    [
+      {
+        message: 'Internal Server Error',
+        class: 'Server::InternalServerError',
+      },
+      ['createRancherErrorInternalServerError'],
+    ],
+    [
+      {
+        message: 'Unable to switch to plan OVHCLOUD_EDITION [driver1, driver2]',
+        class: 'Client::BadRequest',
+      },
+      [
+        'createRancherErrorInternalServerBadRequestChangePlan',
+        { plan: 'OVHCLOUD_EDITION', drivers: '[driver1, driver2]' },
+      ],
+    ],
+    [
+      {
+        message: 'Unable to switch to plan STANDARD [driver3, driver4]',
+        class: 'Client::BadRequest',
+      },
+      [
+        'createRancherErrorInternalServerBadRequestChangePlan',
+        { plan: 'STANDARD', drivers: '[driver3, driver4]' },
+      ],
+    ],
+    [
+      { message: 'Invalid input string', class: 'Client::BadRequest' },
+      [
+        'createRancherError',
+        { rancherCreationErrorMessage: 'Invalid input string' },
+      ],
+    ],
+    [{ message: 'Unknown error', class: 'UnknownError' }, ['']],
+  ])('should return %s', (error, expected) => {
+    expect(rancherErrorManagement(error)).toEqual(expected);
   });
 });
