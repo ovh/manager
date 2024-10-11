@@ -76,13 +76,13 @@ export const Routes: any = [
         },
       },
       {
-        id: 'configuration',
-        path: urls.configuration,
+        id: 'order',
+        path: urls.order,
         ...lazyRouteConfig(() => import('@/pages/order/Order.page')),
         handle: {
           tracking: {
-            pageName: 'configuration',
-            pageType: PageType.onboarding,
+            pageName: 'order',
+            pageType: PageType.dashboard,
           },
         },
       },

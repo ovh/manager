@@ -9,5 +9,5 @@ export const urls = {
   listing: '/',
   dashboard: `/${subRoutes.serviceName}`,
   tab2: 'Tab2',
-  configuration: '/configuration',
+  order: '/order',
 } as const;

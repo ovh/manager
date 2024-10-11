@@ -33,6 +33,21 @@ export const getKMSProductSettings = ({ region }: { region: string }) =>
     configuration: [{ label: 'region', value: region }].filter(Boolean),
   });
 
+export const getHYCUProductSettings = ({
+  planCode,
+  region,
+}: {
+  planCode: string;
+  region: string;
+}) =>
+  JSURL.stringify({
+    productId: 'licenseHycu',
+    planCode,
+    duration: 'P1M',
+    pricingMode: 'default',
+    configuration: [{ label: 'region', value: region }].filter(Boolean),
+  });
+
 export const ORDER_URLS = {
   EU: {
     DEDICATED: {
