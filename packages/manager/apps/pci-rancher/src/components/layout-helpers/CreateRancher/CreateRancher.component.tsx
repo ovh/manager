@@ -34,7 +34,11 @@ import { useMedia } from 'react-use';
 
 import clsx from 'clsx';
 
-import { getRancherPlanDescription, isValidRancherName } from '@/utils/rancher';
+import {
+  getRancherPlanDescription,
+  isValidRancherName,
+  rancherErrorManagement,
+} from '@/utils/rancher';
 import { getRanchersUrl } from '@/utils/route';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
@@ -107,7 +111,7 @@ export interface CreateRancherProps {
   plans: RancherPlan[];
   versions: RancherVersion[];
   hasRancherCreationError: boolean;
-  rancherCreationErrorMessage?: string | null;
+  rancherCreationErrorMessage?: { message: string; class: string } | null;
   onCreateRancher: (payload: CreateRancherPayload) => void;
   isProjectDiscoveryMode?: boolean;
   isCreateRancherLoading: boolean;
@@ -200,9 +204,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             color={ODS_THEME_COLOR_INTENT.text}
             data-testid="errorBanner"
           >
-            {t('createRancherError', {
-              rancherCreationErrorMessage,
-            })}
+            {t(...rancherErrorManagement(rancherCreationErrorMessage))}
             <br />
           </OsdsText>
         </OsdsMessage>
