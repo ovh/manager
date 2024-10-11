@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.14.0...@ovh-ux/manager-generator@0.15.0) (2024-10-11)
+
+
+### Bug Fixes
+
+* **manager-react-components:** fix bump ods 18 issues ([ea1dd83](https://github.com/ovh/manager/commit/ea1dd83d2b85d5a6ab5b0bbb91dbf6350286cde8))
+
+
+### Features
+
+* **manager-react-components:** update generator ([f6b3540](https://github.com/ovh/manager/commit/f6b3540cdd3deadf7a1bdbb743728edd0d0e4b78))
+
+
+
+
+
 # [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.13.0...@ovh-ux/manager-generator@0.14.0) (2024-09-18)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.80.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.80.4...@ovh-ux/manager-container-app@0.80.5) (2024-10-11)
+
+
+### Bug Fixes
+
+* **manager-react-components:** fix bump ods 18 issues ([ea1dd83](https://github.com/ovh/manager/commit/ea1dd83d2b85d5a6ab5b0bbb91dbf6350286cde8))
+
+
+
+
+
 ## [0.80.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.80.3...@ovh-ux/manager-container-app@0.80.4) (2024-10-10)
 
 

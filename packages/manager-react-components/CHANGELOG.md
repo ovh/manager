@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.0.0...@ovh-ux/manager-react-components@3.0.0) (2024-10-11)
+
+### Bug Fixes
+
+- **manager-react-components:** fix bump ods 18 issues ([ea1dd83](https://github.com/ovh/manager/commit/ea1dd83d2b85d5a6ab5b0bbb91dbf6350286cde8))
+
+### Features
+
+- **manager-react-components:** update generator ([f6b3540](https://github.com/ovh/manager/commit/f6b3540cdd3deadf7a1bdbb743728edd0d0e4b78))
+- **manager-react-components:** upgrade ods version 18 ([3f1b963](https://github.com/ovh/manager/commit/3f1b9639f44cead589b99e2eda4a214cbc63ea14))
+
+### BREAKING CHANGES
+
+- **manager-react-components:** bump ods version in manager react components lib
+
+Signed-off-by: Alex Boungnaseng <alex.boungnaseng.ext@corp.ovh.com>
+
 # [1.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.37.0...@ovh-ux/manager-react-components@1.38.0) (2024-10-10)
 
 ### Features
