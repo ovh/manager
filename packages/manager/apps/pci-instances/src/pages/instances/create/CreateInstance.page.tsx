@@ -15,16 +15,17 @@ import {
   TBreadcrumbProps,
 } from '@/components/breadcrumb/Breadcrumb.component';
 import { useHidePreloader } from '@/hooks/hidePreloader/useHidePreloader';
-import { ModelsStep } from './steps/ModelsStep.component';
+import { ModelStep } from './steps/model/ModelStep.component';
+import { RegionStep } from './steps/region/RegionStep.component';
 
 const CreateInstance: FC = () => {
   const project = useRouteLoaderData('root') as TProject;
   const backHref = useHref('..');
-  const { t } = useTranslation(['create', 'common']);
+  const { t } = useTranslation('common');
   const breadcrumbItems = useMemo<TBreadcrumbProps['items']>(
     () => [
       {
-        label: t('common:create_instance'),
+        label: t('pci_instances_common_create_instance'),
       },
     ],
     [t],
@@ -52,14 +53,15 @@ const CreateInstance: FC = () => {
           color={ODS_THEME_COLOR_INTENT.primary}
           slot="start"
         />
-        {t('go_back')}
+        {t('pci_instances_common_go_back')}
       </OsdsLink>
       <div className="header mb-6 mt-8">
-        <Title>{t('common:create_instance')}</Title>
+        <Title>{t('pci_instances_common_create_instance')}</Title>
       </div>
       <OsdsDivider />
       <div className="grid grid-cols-1 gap-4">
-        <ModelsStep />
+        <ModelStep />
+        <RegionStep />
       </div>
     </PageLayout>
   );
