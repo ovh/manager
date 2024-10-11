@@ -2,6 +2,7 @@ import { describe, test } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useAppStore } from './useAppStore';
 import { TStep, TStepId } from '../slices/stepper.slice';
+import { TRegionItem } from '../slices/form.slice';
 
 describe('Considering the useAppStore hook', () => {
   describe("Considering the 'FormSlice'", () => {
@@ -9,31 +10,50 @@ describe('Considering the useAppStore hook', () => {
     type Data = {
       modelName: string;
       expectedModelName: string;
+      region: TRegionItem;
+      expectedRegion: TRegionItem;
     };
     const fakeModelName1 = 'b3-8';
     const fakeModelName2 = 'b2-7';
 
+    const fakeRegion1: TRegionItem = {
+      name: 'GRA7',
+      datacenter: 'GRA',
+    };
+
     const expectedModelName1 = fakeModelName1;
     const expectedModelName2 = fakeModelName2;
 
+    const expectedRegion1 = fakeRegion1;
+
     describe.each`
-      modelName         | expectedModelName
-      ${fakeModelName1} | ${expectedModelName1}
-      ${fakeModelName2} | ${expectedModelName2}
+      modelName         | expectedModelName     | region         | expectedRegion
+      ${fakeModelName1} | ${expectedModelName1} | ${fakeRegion1} | ${expectedRegion1}
+      ${fakeModelName2} | ${expectedModelName2} | ${null}        | ${null}
     `(
-      'Given a modelName <$modelName>',
-      ({ modelName, expectedModelName }: Data) => {
+      'Given a modelName <$modelName> and a region <$region>',
+      ({ modelName, expectedModelName, region, expectedRegion }: Data) => {
         describe(`When invoking useAppStore hook,`, () => {
+          const { result } = renderHook(() => useAppStore());
           test(`Then, expect model name to be ${JSON.stringify(
             expectedModelName,
           )}`, () => {
-            const { result } = renderHook(() => useAppStore());
             expect(result.current).toHaveProperty('form');
             expect(result.current.modelName()).toBeNull();
             act(() => {
               result.current.setModelName(modelName);
             });
             expect(result.current.modelName()).toStrictEqual(expectedModelName);
+          });
+
+          test(`Then, expect region to be ${JSON.stringify(
+            expectedRegion,
+          )}`, () => {
+            expect(result.current.region()).toBeNull();
+            act(() => {
+              result.current.setRegion(region);
+            });
+            expect(result.current.region()).toStrictEqual(expectedRegion);
           });
         });
       },
