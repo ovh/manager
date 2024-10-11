@@ -15,13 +15,13 @@ import { useAppStore } from '@/store/hooks/useAppStore';
 type TStepContentProps = {
   data?: TRegionEntity;
   isSelectedRegionActivated: boolean;
-  isActivateRegionMutationLoading: boolean;
+  isPending: boolean;
 };
 
 export const StepContent: FC<TStepContentProps> = ({
   data,
   isSelectedRegionActivated,
-  isActivateRegionMutationLoading,
+  isPending,
 }) => {
   const { t } = useTranslation('regions');
   const { selectedRegion } = useAppStore(
@@ -62,8 +62,8 @@ export const StepContent: FC<TStepContentProps> = ({
       <OsdsDivider />
       <Notifications />
       <OsdsDivider />
-      {isActivateRegionMutationLoading && <Spinner />}
-      {data && !isActivateRegionMutationLoading && (
+      {isPending && <Spinner />}
+      {data && !isPending && (
         <>
           <TabsComponent<DeepReadonly<TRegionCategory>>
             items={data.regions.categories as TRegionCategory[]}
