@@ -42,6 +42,6 @@ describe('get service key type translation ', () => {
     const result = usePackTypeLabel(type);
 
     // then
-    expect(result).toBe('hycu-cloud-vm-pack-unknown_translated');
+    expect(result).toBe('hycu_cloud_vm_pack_unknown_translated');
   });
 });
