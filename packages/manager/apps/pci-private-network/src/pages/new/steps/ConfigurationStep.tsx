@@ -414,7 +414,9 @@ export default function ConfigurationStep({
                     level={ODS_TEXT_LEVEL.body}
                     size={ODS_TEXT_SIZE._400}
                   >
-                    {t('pci_projects_project_network_private_create_vlan_tip')}
+                    {t(
+                      'new:pci_projects_project_network_private_create_vlan_tip',
+                    )}
                     <Links
                       label={t('common_find_out_more_here')}
                       href={VLAN_GUIDE_URL}
