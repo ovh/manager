@@ -4,6 +4,7 @@ import {
   CONTAINER_DEFAULT_USER,
   CONTAINER_GUIDES,
   OBJECT_CONTAINER_S3_STATIC_URL_INFO,
+  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
 } from '../containers.constants';
 
 export default class PciStoragesContainersContainerController {
@@ -63,6 +64,12 @@ export default class PciStoragesContainersContainerController {
       !this.archive;
     this.loadMessages();
     this.checkFileUploadState();
+  }
+
+  isLocalZone() {
+    return (
+      this.container?.regionDetails?.type === OBJECT_CONTAINER_MODE_LOCAL_ZONE
+    );
   }
 
   translateStorageClass() {
