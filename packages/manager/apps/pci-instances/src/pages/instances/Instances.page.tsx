@@ -301,7 +301,7 @@ const Instances: FC = () => {
       {project && <Breadcrumb projectLabel={project.description ?? ''} />}
       <div className="header mb-6 mt-8">
         <div className="flex items-center justify-between">
-          <Title>{t('common:instances_title')}</Title>
+          <Title>{t('common:pci_instances_common_instances_title')}</Title>
           <PciGuidesHeader category="instances"></PciGuidesHeader>
         </div>
       </div>
@@ -324,7 +324,7 @@ const Instances: FC = () => {
                 color={ODS_THEME_COLOR_INTENT.primary}
                 className="mr-4"
               />
-              <span>{t('common:create_instance')}</span>
+              <span>{t('common:pci_instances_common_create_instance')}</span>
             </span>
           </OsdsButton>
           <div className="justify-between flex gap-5">
