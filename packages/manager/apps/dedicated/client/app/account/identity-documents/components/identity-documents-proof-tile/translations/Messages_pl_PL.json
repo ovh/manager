@@ -14,5 +14,6 @@
   "user_account_identity_documents_proof_tile_text_non_individual_authority_declaration": "Dokument uprawniający do reprezentowania firmy.",
   "user_account_identity_documents_proof_tile_extended_identity": "Dokument potwierdzający tożsamość pełnomocnika, dyrektora operacyjnego lub innego kontaktu wymienionego w certyfikacie GST.",
   "user_account_identity_documents_proof_tile_extended_authority_declaration": "Tylko jeśli nie jesteś „pełnomocnikiem”.",
-  "user_account_identity_documents_proof_tile_button": "Dodaj"
+  "user_account_identity_documents_proof_tile_button": "Dodaj",
+  "user_account_identity_documents_proof_tile_button_update": "Zmień"
 }
