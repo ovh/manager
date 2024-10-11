@@ -1,19 +1,15 @@
-angular.module('services').service(
-  'PrivateDatabaseLogsService',
-  class PrivateDatabaseLogsService {
-    /* @ngInject */
-    constructor($http) {
-      this.$http = $http;
+export default class PrivateDatabaseLogsService {
+  /* @ngInject */
+  constructor($http, iceberg) {
+    this.$http = $http;
+    this.iceberg = iceberg;
+  }
 
-      this.apiVersion = 'apiv6';
-    }
-
-    getLogs(serviceName) {
-      return this.$http
-        .post(
-          `${this.apiVersion}/hosting/privateDatabase/${serviceName}/generateTemporaryLogsLink`,
-        )
-        .then((res) => res.data);
-    }
-  },
-);
+  getLogKinds(serviceName) {
+    return this.iceberg(`/hosting/privateDatabase/${serviceName}/log/kind`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) => data);
+  }
+}
