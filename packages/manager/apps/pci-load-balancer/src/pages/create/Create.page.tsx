@@ -18,7 +18,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useHref, useParams } from 'react-router-dom';
 import { useCatalog, useProject } from '@ovh-ux/manager-pci-common';
-import { useTranslation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 import {
   ODS_MESSAGE_TYPE,
   ODS_TEXT_LEVEL,
@@ -34,6 +34,9 @@ import SizeInputComponent from '@/pages/create/SizeInput.component';
 import {
   AGORA_FLOATING_IP_REGEX,
   FLOATING_IP_TYPE,
+  GETTING_STARTED_LINK,
+  MAX_INSTANCES_BY_LISTENER,
+  MAX_LISTENER,
   NETWORK_PRIVATE_VISIBILITY,
   PRODUCT_LINK,
   REGION_AVAILABILITY_LINK,
@@ -41,10 +44,8 @@ import {
 import { StepsEnum, useNewLoadBalancerStore } from '@/pages/create/store';
 import { TRegion, useGetRegions } from '@/api/hook/usePlans';
 import { useGetFloatingIps, useGetRegionNetworks } from '@/api/hook/useRegion';
-import {
-  useGetPrivateNetworks,
-  useGetPrivateNetworkSubnets,
-} from '@/api/hook/useNetwork';
+import { useGetPrivateNetworkSubnets } from '@/api/hook/useNetwork';
+import { InstanceTable } from '@/components/create/InstanceTable.component';
 
 type TState = {
   selectedContinent: string | undefined;
@@ -120,7 +121,6 @@ export default function CreatePage(): JSX.Element {
   ];
 
   const subnetsList = useMemo(() => {
-    console.log('hna', subnets);
     if (!subnets) {
       return [];
     }
@@ -129,11 +129,11 @@ export default function CreatePage(): JSX.Element {
       : subnets;
   }, [subnets, store.publicIp]);
 
-  const [productPageLink, regionPageLink] = [
+  const [productPageLink, regionPageLink, gettingStartedLink] = [
     PRODUCT_LINK[me?.ovhSubsidiary] || PRODUCT_LINK.DEFAULT,
-
     REGION_AVAILABILITY_LINK[me?.ovhSubsidiary] ||
       REGION_AVAILABILITY_LINK.DEFAULT,
+    GETTING_STARTED_LINK[me?.ovhSubsidiary] || GETTING_STARTED_LINK.DEFAULT,
   ];
 
   return (
@@ -406,7 +406,7 @@ export default function CreatePage(): JSX.Element {
               store.check(StepsEnum.PRIVATE_NETWORK);
               store.lock(StepsEnum.PRIVATE_NETWORK);
 
-              store.open(StepsEnum.PRIVATE_NETWORK);
+              store.open(StepsEnum.INSTANCE);
             },
             label: tCommon('common_stepper_next_button_label'),
             isDisabled:
@@ -498,6 +498,97 @@ export default function CreatePage(): JSX.Element {
               ))}
             </OsdsSelect>
           </OsdsFormField>
+        </StepComponent>
+        <StepComponent
+          title={tCreate('octavia_load_balancer_create_instance_title')}
+          isOpen={store.steps.get(StepsEnum.INSTANCE).isOpen}
+          isChecked={store.steps.get(StepsEnum.INSTANCE).isChecked}
+          isLocked={store.steps.get(StepsEnum.INSTANCE).isLocked}
+          order={5}
+          next={{
+            action: () => {
+              store.check(StepsEnum.INSTANCE);
+              store.lock(StepsEnum.INSTANCE);
+
+              store.open(StepsEnum.INSTANCE);
+            },
+            label: tCommon('common_stepper_next_button_label'),
+          }}
+        >
+          <Translation ns="create">
+            {(_t) => (
+              <OsdsText
+                size={ODS_TEXT_SIZE._400}
+                level={ODS_TEXT_LEVEL.body}
+                color={ODS_THEME_COLOR_INTENT.text}
+                className="mb-4"
+              >
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: _t('octavia_load_balancer_create_instance_intro', {
+                      linkUrl: gettingStartedLink,
+                      // TODO track
+                    }),
+                  }}
+                ></span>
+              </OsdsText>
+            )}
+          </Translation>
+          <OsdsMessage
+            className="mt-8"
+            type={ODS_MESSAGE_TYPE.info}
+            color={ODS_THEME_COLOR_INTENT.info}
+          >
+            <div className="grid grid-cols-1 gap-1">
+              <p>
+                <OsdsText
+                  size={ODS_TEXT_SIZE._400}
+                  level={ODS_TEXT_LEVEL.body}
+                  color={ODS_THEME_COLOR_INTENT.text}
+                >
+                  {tCreate(
+                    'octavia_load_balancer_create_instance_banner_text',
+                    {
+                      maxListeners: MAX_LISTENER,
+                      maxInstances: MAX_INSTANCES_BY_LISTENER,
+                    },
+                  )}
+                </OsdsText>
+              </p>
+              <p>
+                <OsdsText
+                  size={ODS_TEXT_SIZE._400}
+                  level={ODS_TEXT_LEVEL.body}
+                  color={ODS_THEME_COLOR_INTENT.text}
+                >
+                  <b>
+                    {tCreate(
+                      'octavia_load_balancer_create_instance_banner_text_bold',
+                    )}
+                  </b>
+                </OsdsText>
+              </p>
+              <p>
+                <OsdsText
+                  size={ODS_TEXT_SIZE._400}
+                  level={ODS_TEXT_LEVEL.body}
+                  color={ODS_THEME_COLOR_INTENT.text}
+                >
+                  {tCreate(
+                    'octavia_load_balancer_create_instance_banner_health_monitor_text',
+                  )}
+                </OsdsText>
+              </p>
+            </div>
+          </OsdsMessage>
+          <InstanceTable
+            className="mt-4"
+            projectId={projectId}
+            region={store.region?.name}
+            onChange={(config) => {
+              store.set.listeners(config);
+            }}
+          />
         </StepComponent>
       </div>
     </>
