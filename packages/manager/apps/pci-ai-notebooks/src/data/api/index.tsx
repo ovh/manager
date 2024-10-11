@@ -1,8 +1,5 @@
-export interface PCIAI {
+export interface PCIAi {
   projectId: string;
-}
-export interface DashboardData extends PCIAI {
-  serviceId: string;
 }
 
 export class AIError extends Error {
