@@ -9,10 +9,11 @@ export default /* @ngInject */ ($stateProvider) => {
     url: `/new?${query}`,
     component: 'pciProjectStoragesDatabasesAdd',
     resolve: {
-      addPrivateNetworksLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.privateNetwork', {
-          projectId,
-        }),
+      addPrivateNetworksLink: /* @ngInject */ (getUAppUrl, projectId) =>
+        getUAppUrl(
+          'public-cloud',
+          `#/pci/projects/${projectId}/private-networks`,
+        ),
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_database_add_title'),

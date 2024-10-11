@@ -22,7 +22,6 @@ import stop from './stop';
 import unrescue from './unrescue';
 import unshelve from './unshelve';
 import createPrivateNetworkWarning from './create-private-network-warning';
-import privateNetwork from '../private-networks';
 
 import component from './instances.component';
 import routing from './instances.routing';
@@ -42,7 +41,6 @@ angular
     instance,
     instancesDelete,
     onboarding,
-    privateNetwork,
     reinstall,
     rescue,
     resume,
@@ -61,12 +59,6 @@ angular
   .config(routing)
   .component('pciProjectsProjectInstances', component)
   .service('PciProjectsProjectInstanceService', service)
-  .run(($injector) => {
-    const $ocLazyLoad = $injector.get('$ocLazyLoad');
-    return import('../private-networks/private-networks.module').then((mod) =>
-      $ocLazyLoad.inject(mod.default || mod),
-    );
-  })
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

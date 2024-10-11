@@ -11,7 +11,6 @@ import sshKeys from '../../../../../components/project/instance/ssh-keys';
 import trustedZoneBanner from '../../../../../components/trusted-zone-banner';
 
 import instances from '../../../instances/instances.module';
-import privateNetworks from '../../../private-networks/private-networks.module';
 
 import component from './add.component';
 import routing from './add.routing';
@@ -29,7 +28,6 @@ angular
     flavorBilling,
     flavorsList,
     sshKeys,
-    privateNetworks,
     trustedZoneBanner,
   ])
   .config(routing)

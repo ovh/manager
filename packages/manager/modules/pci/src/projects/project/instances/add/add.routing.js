@@ -50,14 +50,16 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.activate', {
           projectId,
         }),
-      addPrivateNetworksLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.privateNetwork', {
-          projectId,
-        }),
-      addLocalPrivateNetworksLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.privateNetwork.add', {
-          projectId,
-        }),
+      addPrivateNetworksLink: /* @ngInject */ (getUAppUrl, projectId) =>
+        getUAppUrl(
+          'public-cloud',
+          `#/pci/projects/${projectId}/private-networks`,
+        ),
+      addLocalPrivateNetworksLink: /* @ngInject */ (getUAppUrl, projectId) =>
+        getUAppUrl(
+          'public-cloud',
+          `#/pci/projects/${projectId}/private-networks/add`,
+        ),
       goBack: /* @ngInject */ (goToInstances) => goToInstances,
 
       prices: /* @ngInject */ (
