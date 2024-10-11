@@ -1,0 +1,21 @@
+{
+  "pci_instances_models_select_template": "Sélectionnez un modèle",
+  "pci_instances_models_category_balanced_title": "General Purpose",
+  "pci_instances_models_category_compute_title": "Compute Optimized",
+  "pci_instances_models_category_ram_title": "Memory Optimized",
+  "pci_instances_models_category_accelerated_title": "GPU",
+  "pci_instances_models_category_discovery_title": "Discovery",
+  "pci_instances_models_category_iops_title": "Storage Optimized",
+  "pci_instances_models_category_baremetal_title": "Metal",
+  "pci_instances_models_category_balanced_description": "Les instances à usage général offrent un équilibre entre RAM et performances.",
+  "pci_instances_models_category_compute_description": "Les instances de calcul optimisé sont idéales pour les applications nécessitant des fréquences de calculs importantes ou de la parallélisation de tâches.",
+  "pci_instances_models_category_ram_description": "Les instances à mémoire optimisée sont recommandées pour vos bases de données, analyses et calculs en mémoire, ainsi que d'autres applicatifs gourmands en RAM.",
+  "pci_instances_models_category_accelerated_description": "Les instances de calcul accéléré (GPU, FPGA) sont jusqu'à 1 000 fois plus rapides qu'un CPU sur certaines applications (rendering, transcodage vidéo, bio-informatique, Big Data, deep learning, etc.)",
+  "pci_instances_models_category_discovery_description": "Les instances à ressources partagées (Discovery) sont adaptées aux tests, recettes et environnements de développement. Leurs performances peuvent légèrement varier au cours du temps.",
+  "pci_instances_models_category_iops_description": "Les instances IOPS livrent les transactions disque les plus rapides de la gamme Public Cloud.",
+  "pci_instances_models_category_baremetal_description": "Les instances metal proposent des serveurs physiques à la demande, livrés en quelques minutes et facturés à l'heure ou au mois.",
+  "pci_instances_models_chosen_model_message": "Modèle choisi : {{ model }}",
+  "pci_instances_models_monthly_price_excl_vat": "à partir de {{ price }} HT/mois",
+  "pci_instances_models_error_message1": "Nous sommes désolés, une erreur est survenue et la requête n'a pas pu être traitée. Vous pouvez réessayer de <Link>Rafraîchir</Link> la requête.",
+  "pci_instances_models_error_message2": "Si le problème persiste, merci de contacter le support technique."
+}
