@@ -1,4 +1,5 @@
 {
+  "ip_agora_table_header_region": "Sélectionnez une région pour votre nouvelle Additional IP",
   "ip_agora_table_header_offer": "Choisissez votre offre",
   "ip_agora_table_header_quantity": "Quantité",
   "ip_agora_table_header_country": "Localisée(s) en",
@@ -6,6 +7,8 @@
   "ip_agora_select_quantity_title": "Choisissez votre quantité",
   "ip_agora_ip_localisation_title": "Localisation de l'adresse IP",
   "ip_agora_ip_localisation_description": "Veuillez choisir l'un des emplacements disponibles pour votre nouveau bloc d'adresses {{ ipType }} supplémentaire.",
+  "ip_agora_ipv4_localisation_title": "Géolocalisation de l'adresse IP",
+  "ip_agora_ipv4_localisation_description": "Pour modifier la géolocalisation de votre adresse IP, merci de choisir un pays dans la liste déroulante.",
   "ipv4_select_placeholder": "Selectionner une taille",
   "license_dashboard_title": "Commander une IP",
   "ipv4Block_description": "Bloc d'adresse IPv4. Les tailles de bloc disponibles varient en fonction du service associé.",
@@ -15,6 +18,7 @@
   "ipv4Block_organization_info_banner": "Le nom de l'organisation associée à votre bloc d'adresse IP ainsi que les informations de contact correspondantes figureront dans la base de données publique Whois",
   "ip_agora_table_submit_text": "Continuer ma commande",
   "ip_agora_table_cancel_text": "Retour",
+  "ip_agora_table_next_text": "Suivant",
   "ip_agora_title": "Sélectionner la version de l'adresse IP",
   "ip_agora_description": "Pour un certain nombre de cas, vous aurez peut-être besoin d'une IPv4 standard, la plus utilisée, ou d'une nouvelle version du protocole - l'IPv6. Veuillez noter que la liste des produits compatibles peut varier.",
   "ip_agora_ipv4_description": "Standard Internet (à partir d'aujourd'hui). Protocole d'adressage le plus couramment utilisé sur Internet, donc le plus couramment pris en charge.",
