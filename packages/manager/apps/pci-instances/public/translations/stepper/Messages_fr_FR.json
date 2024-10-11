@@ -1,4 +1,4 @@
 {
-  "next_button_label": "Suivant",
-  "edit_step_label": "Modifier cette étape"
+  "pci_instances_stepper_next_button_label": "Suivant",
+  "pci_instances_stepper_edit_step_label": "Modifier cette étape"
 }
