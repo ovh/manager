@@ -200,7 +200,7 @@ export const RegionStep: FC = () => {
         <StepContent
           data={data}
           isSelectedRegionActivated={isSelectedRegionActivated}
-          isActivateRegionMutationLoading={isPending}
+          isPending={isPending}
         />
       </StepComponent>
     </div>
