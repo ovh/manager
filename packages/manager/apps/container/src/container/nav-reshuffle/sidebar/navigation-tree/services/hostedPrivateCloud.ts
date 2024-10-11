@@ -97,8 +97,8 @@ hostedPrivateCloudUniverse.children = [
         serviceType: 'HYCU',
         tag: NodeTag.NEW,
         routing: {
-          application: 'dedicated',
-          hash: '#/hycu',
+          application: 'hycu',
+          hash: '',
         },
         features: ['hycu'],
       },
