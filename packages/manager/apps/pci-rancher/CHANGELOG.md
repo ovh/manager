@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.18.4...@ovh-ux/manager-pci-rancher-app@1.19.0) (2024-10-14)
+
+
+### Bug Fixes
+
+* **pci-rancher:** fix dash and date ([#13026](https://github.com/ovh/manager/issues/13026)) ([18a13e6](https://github.com/ovh/manager/commit/18a13e6db04ea2ab2095771d7283cf485b380f68))
+
+
+### Features
+
+* **pci-rancher:** add aria-label ([#13257](https://github.com/ovh/manager/issues/13257)) ([ef4c197](https://github.com/ovh/manager/commit/ef4c197a34aee28df8876b09f363ae49a26a228d))
+* **pci-rancher:** add Id  ([#13369](https://github.com/ovh/manager/issues/13369)) ([c6006f4](https://github.com/ovh/manager/commit/c6006f49a9b9c1983d148c0effa0d3e0768b666d))
+
+
+
+
+
 ## [1.18.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.18.3...@ovh-ux/manager-pci-rancher-app@1.18.4) (2024-10-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
