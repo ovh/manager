@@ -70,6 +70,7 @@ export function IFrameAppRouter({
   const defaultRoute = useMemo(() => makeDefaultRoute({ configuration }), [
     configuration,
   ]);
+  delete configuration['pci-private-network'];
   const routes = useMemo(
     () =>
       Object.entries(configuration).map(([id, appConfig]) =>
