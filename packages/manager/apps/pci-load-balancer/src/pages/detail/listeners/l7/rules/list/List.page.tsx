@@ -2,7 +2,6 @@ import {
   Datagrid,
   FilterAdd,
   FilterList,
-  Notifications,
   useColumnFilters,
   useDataGrid,
   useNotifications,
@@ -56,8 +55,6 @@ export default function L7RulesList() {
 
   return (
     <>
-      <Notifications />
-
       <div className="sm:flex items-center justify-between mt-4">
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}

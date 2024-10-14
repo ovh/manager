@@ -3,8 +3,14 @@ import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
 import { paginateResults, sortResults } from '@/helpers';
-import { deleteL7Rule, getL7Rules, TL7Rule } from '@/api/data/l7Rules';
+import {
+  createRule,
+  deleteL7Rule,
+  getL7Rules,
+  TL7Rule,
+} from '@/api/data/l7Rules';
 import queryClient from '@/queryClient';
+import { createPolicy, TL7Policy } from '@/api/data/l7Policies';
 
 export const useGetAllL7Rules = (
   projectId: string,
@@ -78,6 +84,38 @@ export const useDeleteL7Rule = ({
   });
   return {
     deleteL7Rule: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type CreateRuleProps = {
+  projectId: string;
+  policyId: string;
+  region: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useCreateRule = ({
+  projectId,
+  policyId,
+  region,
+  onError,
+  onSuccess,
+}: CreateRuleProps) => {
+  const mutation = useMutation({
+    mutationFn: async (rule: TL7Rule) =>
+      createRule(projectId, region, policyId, rule),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['l7Rules', projectId],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    createRule: (rule: TL7Rule) => mutation.mutate(rule),
     ...mutation,
   };
 };

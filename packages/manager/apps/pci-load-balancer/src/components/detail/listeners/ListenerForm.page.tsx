@@ -1,12 +1,8 @@
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
   ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
@@ -15,7 +11,6 @@ import {
   OsdsSelect,
   OsdsSelectOption,
   OsdsSpinner,
-  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -25,7 +20,6 @@ import {
   PROTOCOLS_PORT,
 } from '@/constants';
 import { TLoadBalancerListener, TProtocol } from '@/api/data/load-balancer';
-import Popover from './Popover';
 import { TLoadBalancerPool } from '@/api/data/pool';
 import LabelComponent from '@/components/form/Label.component';
 

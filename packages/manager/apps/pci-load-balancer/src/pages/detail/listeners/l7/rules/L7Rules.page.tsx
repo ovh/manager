@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useHref, useParams } from 'react-router-dom';
 import {
   OsdsBreadcrumb,
   OsdsIcon,
@@ -15,8 +15,13 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useProject } from '@ovh-ux/manager-pci-common';
-import { Headers, useProjectUrl } from '@ovh-ux/manager-react-components';
+import {
+  Headers,
+  Notifications,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
 import { useListener } from '@/api/hook/useListener';
+import { ROUTE_PATHS } from '@/routes';
 
 export default function L7RulesPage() {
   const { t: tPciCommon } = useTranslation('pci-common');
@@ -33,6 +38,16 @@ export default function L7RulesPage() {
     loadBalancerId,
     listenerId,
   });
+  const hrefLoadBalancers = useHref('..');
+  const hrefLoadBalancerDetail = useHref(
+    `../${region}/${loadBalancerId}/${ROUTE_PATHS.GENERAL_INFORMATION}`,
+  );
+  const hrefListeners = useHref(
+    `../${region}/${loadBalancerId}/${ROUTE_PATHS.LISTENERS}`,
+  );
+  const hrefL7Policies = useHref(
+    `../${region}/${loadBalancerId}/${ROUTE_PATHS.LISTENERS}/${listenerId}/l7`,
+  );
   return (
     <>
       <OsdsBreadcrumb
@@ -42,19 +57,19 @@ export default function L7RulesPage() {
             label: project.description,
           },
           {
-            href: `${hrefProject}/octavia-load-balancer`,
+            href: hrefLoadBalancers,
             label: tLoadBalancer('octavia_load_balancers'),
           },
           {
-            href: `${hrefProject}/octavia-load-balancer/${region}/${loadBalancerId}`,
+            href: hrefLoadBalancerDetail,
             label: loadBalancerId,
           },
           {
-            href: `${hrefProject}/octavia-load-balancer/${region}/${loadBalancerId}/listeners`,
+            href: hrefListeners,
             label: tListener('octavia_load_balancer_listeners_title'),
           },
           {
-            href: `${hrefProject}/octavia-load-balancer/${region}/${loadBalancerId}/listeners/${listenerId}/l7`,
+            href: `${hrefL7Policies}`,
             label: tL7Policies('octavia_load_balancer_list_l7_policies_title'),
           },
           {
@@ -73,7 +88,7 @@ export default function L7RulesPage() {
       <OsdsLink
         className="mt-8"
         color={ODS_TEXT_COLOR_INTENT.primary}
-        href={`${hrefProject}/octavia-load-balancer/${region}/${loadBalancerId}/listeners/list`}
+        href={useHref(`../${region}/${loadBalancerId}/listeners/list`)}
       >
         <OsdsIcon
           name={ODS_ICON_NAME.ARROW_LEFT}
@@ -89,6 +104,7 @@ export default function L7RulesPage() {
           title={t('octavia_load_balancer_list_l7_rules_title')}
         />
       </div>
+      <Notifications />
       <Suspense>
         <Outlet />
       </Suspense>
