@@ -7,11 +7,7 @@ import { CatalogData, CatalogItem } from '@/types/catalog';
 export const getCatalog: () => Promise<
   Record<string, CatalogItem[]>
 > = async () => {
-  const {
-    data: {
-      data: { catalog },
-    },
-  }: AxiosResponse<ApiEnvelope<CatalogData>> = await aapi.get<
+  const { data }: AxiosResponse<ApiEnvelope<CatalogData>> = await aapi.get<
     ApiEnvelope<CatalogData>
   >('/hub/catalog', {
     headers: {
@@ -19,7 +15,7 @@ export const getCatalog: () => Promise<
     },
   });
   // Grouping items by universe while filtering non highlighted elements (as we don't want to display them)
-  return catalog.data.reduce(
+  return (data?.data?.catalog.data || []).reduce(
     (
       groupedCatalogItems: Record<string, CatalogItem[]>,
       item: CatalogItem,

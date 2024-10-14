@@ -38,6 +38,7 @@ export default function Catalog() {
         size={ODS_TEXT_SIZE._500}
         hue={ODS_THEME_COLOR_HUE._800}
         color={ODS_THEME_COLOR_INTENT.primary}
+        data-testid="catalog_title"
       >
         {t('manager_hub_catalog_title')}
       </OsdsText>
@@ -55,7 +56,10 @@ export default function Catalog() {
           {Object.keys(catalog).map((category) => {
             const items = catalog[category];
             return (
-              <div key={`${category}_products_list`}>
+              <div
+                key={`${category}_products_list`}
+                data-testid="catalog_products_list"
+              >
                 <OsdsText
                   className="block mb-4 mt-6"
                   level={ODS_TEXT_LEVEL.subheading}
@@ -69,6 +73,7 @@ export default function Catalog() {
                   {items.map((item: CatalogItem) => (
                     <Card
                       key={`${item.productName}-${item.universe}`}
+                      data-testid="catalog_product_item"
                       texts={{
                         title: item.name,
                         category: item.category,
@@ -79,7 +84,6 @@ export default function Catalog() {
                       onClick={() =>
                         trackProductOrder(category, item.productName)
                       }
-                      trackingLabel={`manager_product_cards::more_info::${item.productName}`}
                     />
                   ))}
                 </div>

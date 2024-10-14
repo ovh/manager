@@ -5,7 +5,8 @@ import { CatalogItem } from '@/types/catalog';
 
 export const useFetchHubCatalog = () =>
   useQuery<Record<string, CatalogItem[]>, AxiosError>({
-    queryKey: ['catalog'],
+    queryKey: ['getHubCatalog'],
     queryFn: getCatalog,
     retry: 0,
+    refetchOnWindowFocus: false,
   });
