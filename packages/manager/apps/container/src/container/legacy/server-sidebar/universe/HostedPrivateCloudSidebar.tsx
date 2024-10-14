@@ -246,7 +246,6 @@ export default function HostedPrivateCloudSidebar() {
         icon: <img className="mb-1 mr-1 w-6 aspect-square" alt="" src={infinityCLoud} />,
         pathMatcher: new RegExp('^/hycu'),
         badge: 'new',
-        ignoreSearch: true,
         subItems: [
           (feature['hycu']) && {
             id: 'hpc-hycu',
