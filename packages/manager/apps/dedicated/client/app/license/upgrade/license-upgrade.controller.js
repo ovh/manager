@@ -190,9 +190,9 @@ export default /* @ngInject */ (
   };
 
   $scope.getOptionVersions = function getOptionVersions() {
-    return $scope.types.filter(
-      (version) => version.productName !== $scope.license.version,
-    );
+    return $scope.types
+      .filter((version) => version.productName !== $scope.license.version)
+      .sort(({ productName: a }, { productName: b }) => (a > b ? 1 : -1));
   };
 
   $scope.$watch(
