@@ -36,14 +36,24 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
         enabled: Boolean(availability && availability[kycIndiaFeature] && !storage)
     });
 
+    const trackingPlugin = shell.getPlugin("tracking");
+
     const onCancel = () => {
         setShowModal(false);
         setStorage(true);
+        trackingPlugin.trackClick({
+          name: "pop-up::link::kyc::cancel",
+          type: "action"
+        })
     }
 
     const onConfirm = () => {
         setShowModal(false);
         setStorage(true);
+        trackingPlugin.trackClick({
+          name: "pop-up::button::kyc::start-verification",
+          type: "action"
+        })
         navigationPlugin.navigateTo(
             'dedicated',
             `#/identity-documents`,
@@ -55,6 +65,13 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
             setShowModal(true);
         }
     }, [statusDataResponse?.data?.status])
+
+    useEffect(() => {
+      trackingPlugin.trackClick({
+        name: "pop-up::kyc",
+        type: "action"
+      })
+    }, [])
 
     return showModal && (
         <OsdsModal
@@ -111,6 +128,10 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
                     className="cursor-pointer underline"
                     hue={ODS_THEME_COLOR_HUE._800}
                     onClick={() => {
+                        trackingPlugin.trackClick({
+                          name: "pop-up::link::kyc::go-to-more-information",
+                          type: "action"
+                        })
                         legalInformationRef.current.opened = !legalInformationRef?.current?.opened;
                     }}
                 >
