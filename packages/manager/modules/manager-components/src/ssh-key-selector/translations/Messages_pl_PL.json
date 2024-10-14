@@ -1,0 +1,7 @@
+{
+  "manager_components_select_ssh_key": "Klucz(e) SSH do pre-instalowania:",
+  "manager_components_select_ssh_key_help": "Dodaj klucz w sekcji Moje konto",
+  "manager_components_sshkey_input": "Publiczny klucz SSH:",
+  "manager_components_sshkey_input_placeholder": "Wprowadź publiczny klucz SSH. <u>Przykład:</u> {{t0}}",
+  "manager_components_loading_sshKeys_error": "Wystąpił błąd podczas pobierania kluczy SSH."
+}

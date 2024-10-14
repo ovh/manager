@@ -1,0 +1,7 @@
+{
+  "manager_components_select_ssh_key": "Vorzuinstallierende(r) SSH-Schlüssel:",
+  "manager_components_select_ssh_key_help": "Fügen Sie einen Schlüssel im Bereich „Mein Account\" hinzu",
+  "manager_components_sshkey_input": "Ihr öffentlicher SSH-Schlüssel:",
+  "manager_components_sshkey_input_placeholder": "Fügen Sie einen öffentlichen SSH-Schlüssel ein. Beispiel: {{t0}}",
+  "manager_components_loading_sshKeys_error": "Beim Laden Ihrer SSH-Schlüssel ist ein Fehler aufgetreten."
+}
