@@ -11,7 +11,7 @@ export type TTabContentWrapperProps = DeepReadonly<{
 export const TabContentWrapper: FC<PropsWithChildren<
   TTabContentWrapperProps
 >> = ({ description, children }) => (
-  <div className="p-6 pt-8">
+  <div className="p-6 pt-8" data-testid="tab-content-wrapper">
     {description && (
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}

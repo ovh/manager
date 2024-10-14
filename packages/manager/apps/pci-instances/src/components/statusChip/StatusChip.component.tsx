@@ -14,7 +14,11 @@ const StatusChip = ({ status }: { status: TInstanceStatus }) => {
   const { t } = useTranslation('status');
 
   return (
-    <OsdsChip inline color={colorBySeverityStatus[status.severity]}>
+    <OsdsChip
+      inline
+      color={colorBySeverityStatus[status.severity]}
+      data-testid="status-chip"
+    >
       {t(status.state.toLowerCase())}
     </OsdsChip>
   );
