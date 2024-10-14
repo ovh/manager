@@ -26,6 +26,7 @@ const GUIDE_LIST: { [guideName: string]: Partial<TGuideLinks> } = {
     TN: 'https://www.ovhcloud.com/fr-tn/storage-solutions/hycu/',
     NL: 'https://www.ovhcloud.com/nl/storage-solutions/hycu/',
     IN: 'https://www.ovhcloud.com/en-in/storage-solutions/hycu/',
+    WE: 'https://www.ovhcloud.com/en/storage-solutions/hycu/',
   },
   guideLink1: {
     DE:
@@ -57,16 +58,63 @@ const GUIDE_LIST: { [guideName: string]: Partial<TGuideLinks> } = {
   },
   guideLink2: {
     FR: 'https://www.ovhcloud.com/fr/hosted-private-cloud/nutanix/',
-    GB: 'https://www.ovhcloud.com/en/hosted-private-cloud/nutanix/',
     US: 'https://us.ovhcloud.com/hosted-private-cloud/nutanix/',
+    DE: 'https://www.ovhcloud.com/de/hosted-private-cloud/nutanix/',
+    ES: 'https://www.ovhcloud.com/es-es/hosted-private-cloud/nutanix/',
+    GB: 'https://www.ovhcloud.com/en-gb/hosted-private-cloud/nutanix/',
+    IE: 'https://www.ovhcloud.com/en-ie/hosted-private-cloud/nutanix/',
+    IT: 'https://www.ovhcloud.com/it/hosted-private-cloud/nutanix/',
+    MA: 'https://www.ovhcloud.com/fr-ma/hosted-private-cloud/nutanix/',
+    NL: 'https://www.ovhcloud.com/nl/hosted-private-cloud/nutanix/',
+    PL: 'https://www.ovhcloud.com/pl/hosted-private-cloud/nutanix/',
+    PT: 'https://www.ovhcloud.com/pt/hosted-private-cloud/nutanix/',
+    SN: 'https://www.ovhcloud.com/fr-sn/hosted-private-cloud/nutanix/',
+    TN: 'https://www.ovhcloud.com/fr-tn/hosted-private-cloud/nutanix/',
+    CA: 'https://www.ovhcloud.com/en-ca/hosted-private-cloud/nutanix/',
+    QC: 'https://www.ovhcloud.com/fr-ca/hosted-private-cloud/nutanix/',
+    ASIA: 'https://www.ovhcloud.com/asia/hosted-private-cloud/nutanix/',
+    AU: 'https://www.ovhcloud.com/en-au/hosted-private-cloud/nutanix/',
+    SG: 'https://www.ovhcloud.com/en-sg/hosted-private-cloud/nutanix/',
+    WS: 'https://www.ovhcloud.com/es/hosted-private-cloud/nutanix/',
   },
   guideLink3: {
     FR:
       'https://www.ovhcloud.com/fr/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
     GB:
-      'https://www.ovhcloud.com/en/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+      'https://www.ovhcloud.com/en-gb/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
     US:
       'https://us.ovhcloud.com/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+    DE:
+      'https://www.ovhcloud.com/de/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+    ES:
+      'https://www.ovhcloud.com/es-es/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+    IE:
+      'https://www.ovhcloud.com/en-ie/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+    IT:
+      'https://www.ovhcloud.com/it/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+    MA:
+      'https://www.ovhcloud.com/fr-ma/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+    NL:
+      'https://www.ovhcloud.com/nl/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+    PL:
+      'https://www.ovhcloud.com/pl/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+    PT:
+      'https://www.ovhcloud.com/pt/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+    SN: 'https://www.ovhcloud.com/fr-sn/hosted-private-cloud/nutanix/',
+    TN:
+      'https://www.ovhcloud.com/fr-tn/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+    CA:
+      'https://www.ovhcloud.com/en-ca/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+    QC:
+      'https://www.ovhcloud.com/fr-ca/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+    ASIA:
+      'https://www.ovhcloud.com/asia/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+    AU:
+      'https://www.ovhcloud.com/en-au/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+    SG:
+      'https://www.ovhcloud.com/en-sg/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
+    WS:
+      'https://www.ovhcloud.com/es/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
   },
 };
 
