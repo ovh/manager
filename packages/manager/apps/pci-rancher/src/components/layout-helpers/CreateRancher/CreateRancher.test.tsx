@@ -142,10 +142,19 @@ describe('CreateRancher', () => {
   });
 
   it('Given that there is an error i should see error banner.', async () => {
-    const screen = await setupSpecTest({ hasRancherCreationError: true });
+    const screen = await setupSpecTest({
+      hasRancherCreationError: true,
+      rancherCreationErrorMessage: {
+        class: 'Client::BadRequest',
+        message:
+          'Unable to switch to plan OVHCLOUD_EDITION: You are currently using drivers that are not supported in plan OVHCLOUD_EDITION: [myDriver1, myDriver2]',
+      },
+    });
     const errorCreateBanner = screen.getByTestId('errorBanner');
-
-    expect(errorCreateBanner).not.toBeNull();
+    screen.debug();
+    expect(errorCreateBanner).toHaveTextContent(
+      "Une erreur est survenue lors du changement d'offre de votre Managed Rancher Service. Vous utilisez actuellement des pilotes qui ne sont pas pris en charge dans l'offre OVHCLOUD_EDITION: [myDriver1, myDriver2]",
+    );
   });
 
   it('Given that there is prices I should see rancher pricing', async () => {
