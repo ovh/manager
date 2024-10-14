@@ -28,7 +28,7 @@ import {
   useProject,
   usePciUrl,
 } from '@ovh-ux/manager-pci-common';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMedia } from 'react-use';
 
@@ -190,11 +190,18 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
     b.name.localeCompare(a.name),
   );
 
+  const rancherErrorBanner = useMemo(() => {
+    if (hasRancherCreationError && rancherCreationErrorMessage) {
+      return t(...rancherErrorManagement(rancherCreationErrorMessage));
+    }
+    return null;
+  }, [rancherCreationErrorMessage, hasRancherCreationError]);
+
   return (
     <div>
       <Title>{t('createRancherTitle')}</Title>
       <PciDiscoveryBanner project={project} />
-      {hasRancherCreationError && (
+      {rancherErrorBanner && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.error}
           type={ODS_MESSAGE_TYPE.error}
@@ -204,7 +211,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             color={ODS_THEME_COLOR_INTENT.text}
             data-testid="errorBanner"
           >
-            {t(...rancherErrorManagement(rancherCreationErrorMessage))}
+            {rancherErrorBanner}
             <br />
           </OsdsText>
         </OsdsMessage>

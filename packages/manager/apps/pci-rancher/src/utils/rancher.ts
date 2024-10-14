@@ -80,36 +80,31 @@ export const getRancherPlanDescription = (rancherPlan: RancherPlan['name']) => {
 export function extractDriversAndPlanFromSwitchPlanError(
   inputString: string,
 ): null | { drivers: string[]; plan: string } {
-  try {
-    const openBracketIndex = inputString.indexOf('[');
-    const closeBracketIndex = inputString.indexOf(']');
-    const textBeforeBracket = inputString.substring(0, openBracketIndex).trim();
-    const beginPhrase = 'Unable to switch to plan';
-    if (textBeforeBracket.startsWith(beginPhrase)) {
-      const [plan] =
-        textBeforeBracket.match(/OVHCLOUD_EDITION/) ??
-        textBeforeBracket.match(/STANDARD/);
-      if (!plan) {
-        return null;
-      }
-      const contentInsideBrackets = inputString
-        .substring(openBracketIndex + 1, closeBracketIndex)
-        .trim();
-      if (contentInsideBrackets) {
-        const drivers = contentInsideBrackets.split(',');
-
-        // Create the final array with the text before the bracket and the elements inside the brackets
-        if (drivers.length) {
-          return { drivers, plan };
-        }
-      }
-
+  const openBracketIndex = inputString.indexOf('[');
+  const closeBracketIndex = inputString.indexOf(']');
+  const textBeforeBracket = inputString.substring(0, openBracketIndex).trim();
+  const beginPhrase = 'Unable to switch to plan';
+  if (textBeforeBracket.startsWith(beginPhrase)) {
+    const [plan] =
+      textBeforeBracket.match(/OVHCLOUD_EDITION/) ??
+      textBeforeBracket.match(/STANDARD/) ??
+      [];
+    if (!plan) {
       return null;
     }
-    return null;
-  } catch (err) {
-    return null;
+    const contentInsideBrackets = inputString
+      .substring(openBracketIndex + 1, closeBracketIndex)
+      .trim();
+    if (contentInsideBrackets) {
+      const drivers = contentInsideBrackets.split(',');
+
+      // Create the final array with the text before the bracket and the elements inside the brackets
+      if (drivers.length) {
+        return { drivers, plan };
+      }
+    }
   }
+  return null;
 }
 
 /**
@@ -123,27 +118,23 @@ export function extractDriversAndPlanFromSwitchPlanError(
 export const rancherErrorManagement = (error: {
   message: string;
   class: string;
-}): [string, TOptions?] => {
-  try {
-    if (error.class === 'Server::InternalServerError') {
-      return ['createRancherErrorInternalServerError'];
-    }
-    if (error.class === 'Client::BadRequest') {
-      const content = extractDriversAndPlanFromSwitchPlanError(error.message);
-      if (content) {
-        const { plan, drivers } = content;
-        return [
-          'createRancherErrorInternalServerBadRequestChangePlan',
-          { plan, drivers: `[${drivers}]` },
-        ];
-      }
+}): [string, TOptions?] | null => {
+  if (error?.class === 'Server::InternalServerError') {
+    return ['createRancherErrorInternalServerError'];
+  }
+  if (error?.class === 'Client::BadRequest') {
+    const content = extractDriversAndPlanFromSwitchPlanError(error.message);
+    if (content) {
+      const { plan, drivers } = content;
       return [
-        'createRancherError',
-        { rancherCreationErrorMessage: error.message },
+        'createRancherErrorInternalServerBadRequestChangePlan',
+        { plan, drivers: `[${drivers}]` },
       ];
     }
-    return [''];
-  } catch (err) {
-    return [''];
+    return [
+      'createRancherError',
+      { rancherCreationErrorMessage: error.message },
+    ];
   }
+  return null;
 };
