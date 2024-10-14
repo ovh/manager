@@ -1,6 +1,14 @@
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+} from '@ovhcloud/ods-common-theming';
+import {
+  OsdsFormField,
+  OsdsText,
+  OsdsTextarea,
+} from '@ovhcloud/ods-components/react';
 import { Control, Controller, Validate, ValidationRule } from 'react-hook-form';
 import React, { FunctionComponent } from 'react';
-import { TextArea } from '@/components/TextArea/TextArea.component';
 import { GDPRFormValues } from '@/types/gdpr.type';
 
 type Props = {
@@ -23,6 +31,8 @@ export const TextAreaField: FunctionComponent<Props> = ({
   pattern,
   validate,
 }) => {
+  const id = `field_id_${name}`;
+
   return (
     <div className="mb-8">
       <Controller
@@ -37,16 +47,28 @@ export const TextAreaField: FunctionComponent<Props> = ({
           field: { onChange, onBlur, value, name: _name },
           fieldState: { error },
         }) => (
-          <TextArea
-            label={label}
-            name={_name}
-            required={Boolean(required)}
-            id={`field_id_${_name}`}
-            onBlur={onBlur}
-            onChange={onChange}
-            value={value}
-            error={error?.message}
-          />
+          <OsdsFormField error={error?.message}>
+            {label && (
+              <label htmlFor={id} slot="label">
+                <OsdsText
+                  level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                >
+                  {label}:
+                </OsdsText>
+              </label>
+            )}
+            <OsdsTextarea
+              onOdsValueChange={onChange}
+              required={Boolean(required)}
+              name={name}
+              onOdsBlur={onBlur}
+              error={Boolean(error) || undefined}
+              id={id}
+              value={value}
+              color={ODS_THEME_COLOR_INTENT.primary}
+            />
+          </OsdsFormField>
         )}
       />
     </div>

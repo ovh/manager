@@ -1,6 +1,15 @@
-import React, { FunctionComponent } from 'react';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+} from '@ovhcloud/ods-common-theming';
+import {
+  OsdsFormField,
+  OsdsInput,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import { Control, Controller, Validate, ValidationRule } from 'react-hook-form';
-import { TextInput } from '@/components/TextInput/TextInput.component';
+import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
+import React, { FunctionComponent } from 'react';
 import { GDPRFormValues } from '@/types/gdpr.type';
 
 type Props = {
@@ -24,6 +33,8 @@ export const TextField: FunctionComponent<Props> = ({
   validate,
   helper,
 }) => {
+  const id = `field_id_${name}`;
+
   return (
     <div className="mb-8">
       <Controller
@@ -38,17 +49,30 @@ export const TextField: FunctionComponent<Props> = ({
           field: { onChange, onBlur, value, name: _name },
           fieldState: { error },
         }) => (
-          <TextInput
-            label={label}
-            name={_name}
-            required={Boolean(required)}
-            id={`field_id_${_name}`}
-            onBlur={onBlur}
-            onChange={onChange}
-            value={value}
-            error={error?.message}
-            helper={helper}
-          />
+          <OsdsFormField error={error?.message}>
+            {label && (
+              <label htmlFor={id} slot="label">
+                <OsdsText
+                  level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                >
+                  {label}:
+                </OsdsText>
+              </label>
+            )}
+            <OsdsInput
+              onOdsValueChange={onChange}
+              required={Boolean(required)}
+              error={Boolean(error) || undefined}
+              name={name}
+              onOdsInputBlur={onBlur}
+              id={id}
+              value={value}
+              type={ODS_INPUT_TYPE.text}
+              color={ODS_THEME_COLOR_INTENT.primary}
+            />
+            {helper && <OsdsText slot="helper">{helper}</OsdsText>}
+          </OsdsFormField>
         )}
       />
     </div>

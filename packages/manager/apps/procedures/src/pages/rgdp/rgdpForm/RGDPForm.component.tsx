@@ -16,6 +16,7 @@ import {
   GDPRSubjectValues,
   TextInputRegex,
 } from './RGDPForm.constants';
+import './RGDPForm.style.css';
 
 export const RGDPForm: FunctionComponent = () => {
   const { t } = useTranslation('rgdp');
@@ -40,7 +41,6 @@ export const RGDPForm: FunctionComponent = () => {
     }
   }, [email]);
 
-  console.log(isSubmitting);
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <div className="my-10">

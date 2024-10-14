@@ -4,7 +4,4 @@ import config from '@ovh-ux/manager-tailwind-config';
 module.exports = {
   ...config,
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
-  corePlugins: {
-    preflight: false,
-  },
 };

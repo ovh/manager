@@ -9,12 +9,6 @@ import { GDPRFormValues } from '@/types/gdpr.type';
 const getOsdsElementByFormName = <T,>(fieldName: keyof GDPRFormValues) =>
   (screen.queryByTestId(`field_id_${fieldName}`) as unknown) as T;
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
-
 vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   const module: typeof OdsComponentModule = await importOriginal();
   return {
