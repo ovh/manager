@@ -124,22 +124,26 @@ export const rancherErrorManagement = (error: {
   message: string;
   class: string;
 }): [string, TOptions?] => {
-  if (error.class === 'Server::InternalServerError') {
-    return ['createRancherErrorInternalServerError'];
-  }
-  if (error.class === 'Client::BadRequest') {
-    const content = extractDriversAndPlanFromSwitchPlanError(error.message);
-    if (content) {
-      const { plan, drivers } = content;
+  try {
+    if (error.class === 'Server::InternalServerError') {
+      return ['createRancherErrorInternalServerError'];
+    }
+    if (error.class === 'Client::BadRequest') {
+      const content = extractDriversAndPlanFromSwitchPlanError(error.message);
+      if (content) {
+        const { plan, drivers } = content;
+        return [
+          'createRancherErrorInternalServerBadRequestChangePlan',
+          { plan, drivers: `[${drivers}]` },
+        ];
+      }
       return [
-        'createRancherErrorInternalServerBadRequestChangePlan',
-        { plan, drivers: `[${drivers}]` },
+        'createRancherError',
+        { rancherCreationErrorMessage: error.message },
       ];
     }
-    return [
-      'createRancherError',
-      { rancherCreationErrorMessage: error.message },
-    ];
+    return [''];
+  } catch (err) {
+    return [''];
   }
-  return [''];
 };
