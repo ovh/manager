@@ -48,11 +48,11 @@ const GUIDE_LIST: { [guideName: string]: Partial<TGuideLinks> } = {
     GB:
       'https://help.ovhcloud.com/csm/en-gb-nutanix-hycu-backup?id=kb_article_view&sysparm_article=KB0045103',
     CA:
-      'https://help.ovhcloud.com/csm/en-gb-nutanix-hycu-backup?id=kb_article_view&sysparm_article=KB0045103',
+      'https://help.ovhcloud.com/csm/en-ca-nutanix-hycu-backup?id=kb_article_view&sysparm_article=KB0045101',
     QC:
       'https://help.ovhcloud.com/csm/fr-ca-nutanix-hycu-backup?id=kb_article_view&sysparm_article=KB0045109',
     WE:
-      'https://help.ovhcloud.com/csm/pl-nutanix-hycu-backup?id=kb_article_view&sysparm_article=KB0045111',
+      'https://help.ovhcloud.com/csm/en-nutanix-hycu-backup?id=kb_article_view&sysparm_article=KB0032260',
     US:
       'https://support.us.ovhcloud.com/hc/en-us/articles/18912619822099-How-to-Configure-HYCU-Backup-on-Nutanix',
   },
@@ -100,7 +100,8 @@ const GUIDE_LIST: { [guideName: string]: Partial<TGuideLinks> } = {
       'https://www.ovhcloud.com/pl/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
     PT:
       'https://www.ovhcloud.com/pt/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
-    SN: 'https://www.ovhcloud.com/fr-sn/hosted-private-cloud/nutanix/',
+    SN:
+      'https://www.ovhcloud.com/fr-sn/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
     TN:
       'https://www.ovhcloud.com/fr-tn/hosted-private-cloud/nutanix/uc-disaster-recovery-plan/',
     CA:
