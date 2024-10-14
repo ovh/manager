@@ -4,13 +4,14 @@ import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
 import { paginateResults, sortResults } from '@/helpers';
 import {
-  createRule,
+  createL7Rule,
   deleteL7Rule,
+  getL7Rule,
   getL7Rules,
   TL7Rule,
+  updateL7Rule,
 } from '@/api/data/l7Rules';
 import queryClient from '@/queryClient';
-import { createPolicy, TL7Policy } from '@/api/data/l7Policies';
 
 export const useGetAllL7Rules = (
   projectId: string,
@@ -96,7 +97,7 @@ type CreateRuleProps = {
   onSuccess: () => void;
 };
 
-export const useCreateRule = ({
+export const useCreateL7Rule = ({
   projectId,
   policyId,
   region,
@@ -105,7 +106,7 @@ export const useCreateRule = ({
 }: CreateRuleProps) => {
   const mutation = useMutation({
     mutationFn: async (rule: TL7Rule) =>
-      createRule(projectId, region, policyId, rule),
+      createL7Rule(projectId, region, policyId, rule),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
@@ -115,7 +116,49 @@ export const useCreateRule = ({
     },
   });
   return {
-    createRule: (rule: TL7Rule) => mutation.mutate(rule),
+    createL7Rule: (rule: TL7Rule) => mutation.mutate(rule),
     ...mutation,
   };
 };
+
+type UpdateRuleProps = {
+  projectId: string;
+  policyId: string;
+  region: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useUpdateL7Rule = ({
+  projectId,
+  policyId,
+  region,
+  onError,
+  onSuccess,
+}: UpdateRuleProps) => {
+  const mutation = useMutation({
+    mutationFn: async (rule: TL7Rule) =>
+      updateL7Rule(projectId, region, policyId, rule),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['l7Rules', projectId],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    updateL7Rule: (rule: TL7Rule) => mutation.mutate(rule),
+    ...mutation,
+  };
+};
+export const useGetL7Rule = (
+  projectId: string,
+  policyId: string,
+  region: string,
+  ruleId: string,
+) =>
+  useQuery({
+    queryKey: ['l7Rules', projectId, policyId, region, ruleId],
+    queryFn: () => getL7Rule(projectId, region, policyId, ruleId),
+  });
