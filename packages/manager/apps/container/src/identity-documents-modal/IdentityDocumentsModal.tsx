@@ -1,4 +1,4 @@
-import { kycIndiaModalLocalStorageKey, kycIndiaFeature, requiredStatusKey } from "./constants";
+import { kycIndiaModalLocalStorageKey, kycIndiaFeature, requiredStatusKey, trackingContext, trackingPrefix } from "./constants";
 import { useIdentityDocumentsStatus } from "@/hooks/useIdentityDocumentsStatus";
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { FunctionComponent, useEffect, useRef, useState } from "react";
@@ -41,9 +41,9 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
     const onCancel = () => {
         setShowModal(false);
         setStorage(true);
-        trackingPlugin.trackClick({
-          name: "pop-up::link::kyc::cancel",
-          type: "action"
+        trackingPlugin.trackPage({
+          name: `${trackingPrefix}::pop-up::link::kyc::cancel`,
+          ...trackingContext
         })
     }
 
@@ -51,8 +51,9 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
         setShowModal(false);
         setStorage(true);
         trackingPlugin.trackClick({
-          name: "pop-up::button::kyc::start-verification",
-          type: "action"
+          name: `${trackingPrefix}::pop-up::button::kyc::start-verification`,
+          type: "action",
+          ...trackingContext
         })
         navigationPlugin.navigateTo(
             'dedicated',
@@ -68,8 +69,9 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
 
     useEffect(() => {
       trackingPlugin.trackClick({
-        name: "pop-up::kyc",
-        type: "action"
+        name: `${trackingPrefix}::pop-up::kyc`,
+        type: "action",
+        ...trackingContext
       })
     }, [])
 
@@ -129,8 +131,9 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
                     hue={ODS_THEME_COLOR_HUE._800}
                     onClick={() => {
                         trackingPlugin.trackClick({
-                          name: "pop-up::link::kyc::go-to-more-information",
-                          type: "action"
+                          name: `${trackingPrefix}::pop-up::link::kyc::go-to-more-information`,
+                          type: "action",
+                          ...trackingContext
                         })
                         legalInformationRef.current.opened = !legalInformationRef?.current?.opened;
                     }}
