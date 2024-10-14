@@ -1,18 +1,17 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { Translation, useTranslation } from 'react-i18next';
+import { Translation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import RuleForm from '@/components/detail/listeners/l7/rules/RuleForm.component';
-import { useCreateL7Rule } from '@/api/hook/useL7Rule';
+import { useGetL7Rule, useUpdateL7Rule } from '@/api/hook/useL7Rule';
 
-export default function CreatePage() {
+export default function UpdatePage() {
   const { addSuccess, addError } = useNotifications();
   const navigate = useNavigate();
-  const { t } = useTranslation('l7/rules/create');
-  const { projectId, policyId, region } = useParams();
-  const { createL7Rule, isPending: isPendingCreate } = useCreateL7Rule({
+  const { projectId, policyId, region, ruleId } = useParams();
+  const { updateL7Rule, isPending: isPendingUpdate } = useUpdateL7Rule({
     projectId,
     policyId,
     region,
@@ -31,26 +30,30 @@ export default function CreatePage() {
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="l7/rules/list">
-          {(_t) => _t('octavia_load_balancer_create_l7_rule_success')}
+        <Translation ns="l7/rules/edit">
+          {(_t) => _t('octavia_load_balancer_edit_l7_rule_success')}
         </Translation>,
         true,
       );
       navigate('..');
     },
   });
+  const { data: rule, isPending: isPendingGetRule } = useGetL7Rule(
+    projectId,
+    policyId,
+    region,
+    ruleId,
+  );
+  const isPending = isPendingGetRule || isPendingUpdate;
   return (
     <>
-      {isPendingCreate ? (
+      {isPending ? (
         <OsdsSpinner size={ODS_SPINNER_SIZE.md} inline />
       ) : (
         <RuleForm
-          rule={null}
+          rule={rule}
           onCancel={() => navigate('..')}
-          onSubmit={createL7Rule}
-          submitButtonText={t(
-            'octavia_load_balancer_create_l7_rule_submit_creation',
-          )}
+          onSubmit={updateL7Rule}
         />
       )}
     </>
