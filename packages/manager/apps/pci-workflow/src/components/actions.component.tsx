@@ -9,7 +9,7 @@ type ActionsProps = {
 export default function Actions({ workflow }: Readonly<ActionsProps>) {
   const { t } = useTranslation('listing');
   const hrefExecutions = useHref(`./${workflow.id}/executions`);
-  const hrefDelete = useHref(`./delete?workflowId=${workflow.id}`);
+  const hrefDelete = useHref(`./delete/${workflow.id}`);
 
   let items = [
     {
