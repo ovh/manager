@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-pci-workflow-app",
   "version": "0.0.0",
   "private": true,
+  "description": "PCI Workflow react app",
   "type": "module",
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",
