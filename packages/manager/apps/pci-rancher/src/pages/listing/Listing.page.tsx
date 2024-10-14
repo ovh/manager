@@ -15,12 +15,13 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { Title } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { RancherService } from '@/types/api.type';
 import TableContainer from '@/components/Table/TableContainer/TableContainer.component';
-import {
-  useTrackingAction,
-  useTrackingPage,
-} from '@/hooks/useTrackingPage/useTrackingPage';
 import { getOnboardingUrl } from '@/utils/route';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import RancherTaskMessage from './RancherTaskMessage.component';
@@ -35,15 +36,17 @@ const ListingTablePage: React.FC<ListingProps> = ({
   refetchRanchers,
 }) => {
   const { t } = useTranslation('listing');
+  const { trackClick } = useOvhTracking();
   const hrefDashboard = useHref('');
-  const trackAction = useTrackingAction();
-  const trackClick = () =>
-    trackAction(TrackingPageView.ListingPage, TrackingEvent.add);
-
-  useTrackingPage();
-
   const tasks = data.map((rancher) => rancher.currentTasks).flat();
-
+  const onTrackClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [TrackingPageView.ListingPage, TrackingEvent.add],
+    });
+  };
   return (
     <>
       <Title>{t('rancherTitle')}</Title>
@@ -53,7 +56,7 @@ const ListingTablePage: React.FC<ListingProps> = ({
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
           inline
-          onClick={trackClick}
+          onClick={onTrackClick}
           href={`${hrefDashboard}/new`}
         >
           <span slot="start" className="flex justify-center items-center">

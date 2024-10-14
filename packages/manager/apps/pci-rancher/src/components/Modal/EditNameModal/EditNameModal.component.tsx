@@ -16,13 +16,14 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { RancherService } from '@/types/api.type';
 import { isValidRancherName } from '@/utils/rancher';
 import Modal from '../Modal.component';
-import {
-  useTrackingAction,
-  useTrackingPage,
-} from '@/hooks/useTrackingPage/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 interface DeleteModalProps {
@@ -37,15 +38,19 @@ const EditNameModal = ({
   onClose,
 }: DeleteModalProps) => {
   const { t } = useTranslation('listing');
-  const trackAction = useTrackingAction();
-  useTrackingPage(TrackingPageView.EditNameModal);
+  const { trackClick } = useOvhTracking();
   const [newName, setNewName] = useState(rancher.currentState?.name || '');
   const isValidName = isValidRancherName(newName);
   const isButtonValid = rancher.currentState?.name !== newName && isValidName;
 
   const onEdit = () => {
     if (isButtonValid) {
-      trackAction(TrackingPageView.EditNameModal, TrackingEvent.confirm);
+      trackClick({
+        location: PageLocation.popup,
+        buttonType: ButtonType.button,
+        actionType: 'action',
+        actions: [TrackingPageView.EditNameModal, TrackingEvent.confirm],
+      });
       onEditRancher({
         ...rancher,
         targetSpec: {
@@ -101,7 +106,12 @@ const EditNameModal = ({
         variant={ODS_BUTTON_VARIANT.stroked}
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => {
-          trackAction(TrackingPageView.EditNameModal, TrackingEvent.cancel);
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: [TrackingPageView.EditNameModal, TrackingEvent.cancel],
+          });
           onClose();
         }}
       >

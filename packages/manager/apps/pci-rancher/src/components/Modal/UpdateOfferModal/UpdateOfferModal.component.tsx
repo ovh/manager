@@ -14,11 +14,12 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React, { FC } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import Modal from '../Modal.component';
 import {
-  useTrackingAction,
-  useTrackingPage,
-} from '@/hooks/useTrackingPage/useTrackingPage';
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import Modal from '../Modal.component';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 export interface PlanInfo {
@@ -40,17 +41,26 @@ const UpdateOfferModal: FC<UpdateOfferModalProps> = ({
   planInfo,
 }) => {
   const { t } = useTranslation(['dashboard']);
-  const trackAction = useTrackingAction();
-  useTrackingPage(TrackingPageView.UpdateOfferModal);
+  const { trackClick } = useOvhTracking();
 
   const onUpdate = () => {
-    trackAction(TrackingPageView.UpdateOfferModal, TrackingEvent.confirm);
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [TrackingPageView.UpdateOfferModal, TrackingEvent.confirm],
+    });
     onClickUpdate();
     onClose();
   };
 
   const onCloseModal = () => {
-    trackAction(TrackingPageView.UpdateOfferModal, TrackingEvent.cancel);
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [TrackingPageView.UpdateOfferModal, TrackingEvent.cancel],
+    });
     onClose();
   };
 

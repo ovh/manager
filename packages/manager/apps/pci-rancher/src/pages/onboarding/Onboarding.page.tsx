@@ -6,27 +6,32 @@ import {
   PageLayout,
 } from '@ovh-ux/manager-react-components';
 import { useNavigate, useParams } from 'react-router-dom';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import { getCreateRancherUrl } from '@/utils/route';
-import {
-  useTrackingAction,
-  useTrackingPage,
-} from '@/hooks/useTrackingPage/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import { useGuideUtils } from '@/hooks/useGuideLink/useGuideLink';
 
 export default function Onboarding() {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('onboarding');
   const link = useGuideUtils();
   const navigate = useNavigate();
   const { projectId } = useParams();
   const title: string = t('title');
   const description: string = t('description');
-  useTrackingPage(TrackingPageView.Onboarding);
-  const trackAction = useTrackingAction();
   const onOrderButtonClick = () => {
-    trackAction(TrackingPageView.Onboarding, TrackingEvent.add);
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.link,
+      actionType: 'navigation',
+      actions: [TrackingPageView.Onboarding, TrackingEvent.add],
+    });
     navigate(getCreateRancherUrl(projectId));
   };
 
