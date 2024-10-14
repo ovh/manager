@@ -41,5 +41,5 @@
   "ip_byoip_cancel_text": "Abbrechen",
   "ip_byoip_restriction_warning_message": "Der Dienst „Bring Your Own IP“ ist derzeit eingeschränkt verfügbar. Für weitere Informationen kontaktieren Sie bitte Ihren Vertriebsmitarbeiter von OVHcloud.",
   "ip_byoip_region_YNM": "Mumbai (YNM {{number}}) - Indien",
-  "ip_byoip_region_YYZ": "Toronto (YYZ{{number}}) - Kanada"
+  "ip_byoip_region_YYZ": "Toronto (YYZ{{number}}) – Kanada"
 }

@@ -48,7 +48,7 @@
   "common_pagination_of": "z",
   "common_pagination_ofnresults": "z TOTAL_ITEMS wyników",
   "common_pagination_currentpageofpagecount": "Strona CURRENT_PAGE z PAGE_COUNT",
-  "common_pagination_results": "wyniki",
+  "common_pagination_results": "Wyniki",
   "common_pagination_next": "Następna strona",
   "common_pagination_previous": "Poprzednia strona",
   "common_choose": "Wybierz",
@@ -89,5 +89,5 @@
   "common_dual_list_target_move_all": "Usuń wszystko",
   "common_dual_list_target_search": "Szukaj w treści docelowej",
   "common_cancel": "Anuluj",
-  "common_confirm": "Potwierdź"
+  "common_confirm": "Zatwierdź"
 }
