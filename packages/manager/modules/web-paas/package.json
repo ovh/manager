@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-paas",
-  "version": "1.10.4",
+  "version": "1.10.5",
   "private": true,
   "description": "OVHcloud Web PaaS powered by Platform.sh",
   "repository": {

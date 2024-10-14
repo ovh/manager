@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.21.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.21.9...@ovh-ux/manager-telecom@15.21.10) (2024-10-14)
+
+
+### Bug Fixes
+
+* **telecom.xdsl:** catch error if service expired on xdsl migration list ([#13537](https://github.com/ovh/manager/issues/13537)) ([2aff278](https://github.com/ovh/manager/commit/2aff2780631f25e97510eb1e726ca32ac723e238))
+
+
+
+
+
 ## [15.21.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.21.8...@ovh-ux/manager-telecom@15.21.9) (2024-10-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

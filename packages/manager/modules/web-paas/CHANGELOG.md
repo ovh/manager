@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.10.4...@ovh-ux/manager-web-paas@1.10.5) (2024-10-14)
+
+
+### Bug Fixes
+
+* **web:** add banner eol webpass ([#13198](https://github.com/ovh/manager/issues/13198)) ([0d973d9](https://github.com/ovh/manager/commit/0d973d988fc88e445389d0b3b235477dcb9e399b))
+
+
+
+
+
 ## [1.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.10.3...@ovh-ux/manager-web-paas@1.10.4) (2024-10-03)
 
 
