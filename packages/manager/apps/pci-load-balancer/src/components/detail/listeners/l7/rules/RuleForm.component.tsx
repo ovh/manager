@@ -47,14 +47,19 @@ export default function RuleForm({
 
   useEffect(() => {
     if (rule) {
-      setFormState(() => rule);
+      setFormState((state) => ({
+        ...state,
+        ...rule,
+      }));
     }
   }, [rule]);
+
   const isDisabled =
     !formState.ruleType ||
     !formState.value ||
     !formState.key ||
     !formState.compareType;
+
   const [isTouched, setIsTouched] = useState({
     ruleType: false,
     compareType: false,
@@ -122,6 +127,14 @@ export default function RuleForm({
     formState.ruleType,
     formState.compareType,
   ]);
+
+  const listCompareType = useMemo(() => {
+    if (formState.ruleType) {
+      return COMPARE_TYPES_AVAILABILITY_BY_TYPE[formState.ruleType];
+    }
+    return [];
+  }, [formState.ruleType]);
+
   return (
     <div className="w-[20rem]">
       <OsdsFormField
@@ -188,6 +201,7 @@ export default function RuleForm({
         <OsdsSelect
           value={formState.compareType}
           inline
+          key={formState.ruleType}
           error={isTouched.compareType && !formState.compareType}
           onOdsBlur={() => {
             setIsTouched((state) => ({
@@ -205,16 +219,11 @@ export default function RuleForm({
           <span slot="placeholder">
             {t('octavia_load_balancer_create_l7_rule_compare_type_default')}
           </span>
-          {(COMPARE_TYPES_AVAILABILITY_BY_TYPE[formState?.ruleType] || []).map(
-            (compareType) => (
-              <OsdsSelectOption
-                key={compareType.value}
-                value={compareType.value}
-              >
-                {compareType.label}
-              </OsdsSelectOption>
-            ),
-          )}
+          {listCompareType.map((compareType) => (
+            <OsdsSelectOption key={compareType.value} value={compareType.value}>
+              {compareType.label}
+            </OsdsSelectOption>
+          ))}
         </OsdsSelect>
         {formState.compareType && (
           <OsdsText slot="helper" color={ODS_THEME_COLOR_INTENT.text}>
@@ -328,8 +337,7 @@ export default function RuleForm({
           disabled={isDisabled || undefined}
           onClick={() => onSubmit(formState)}
         >
-          {submitButtonText ||
-            t('octavia_load_balancer_create_l7_policy_submit')}
+          {submitButtonText || t('octavia_load_balancer_create_l7_rule_submit')}
         </OsdsButton>
       </div>
     </div>
