@@ -83,9 +83,9 @@ const CreateAddIdentities = ({
                   )}
                 </OsdsText>
               </div>
-              <IdentitiesSelectedUsersList />
-              <IdentitiesSelectedGroups />
-              <IdentitiesSelectedServiceAccounts />
+              <IdentitiesSelectedUsersList identityURNs={identityURNs} />
+              <IdentitiesSelectedGroups identityURNs={identityURNs} />
+              <IdentitiesSelectedServiceAccounts identityURNs={identityURNs} />
             </>
           )}
         </div>

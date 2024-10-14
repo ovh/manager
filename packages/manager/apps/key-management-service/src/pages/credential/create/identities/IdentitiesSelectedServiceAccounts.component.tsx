@@ -10,7 +10,13 @@ import IdentityServiceAccountDescriptionCell from './cell/service-account/Identi
 import IdentityServiceAccountNameCell from './cell/service-account/IdentityServiceAccountNameCell.component';
 import IdentityServiceAccountDeleteActionCell from './cell/service-account/IdentityServiceAccountDeleteActionCell';
 
-const IdentitiesSelectedServiceAccounts = () => {
+type IdentitiesSelectedServiceAccountsProps = {
+  identityURNs: string[];
+};
+
+const IdentitiesSelectedServiceAccounts = ({
+  identityURNs,
+}: IdentitiesSelectedServiceAccountsProps) => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
   const { serviceAccountList, setServiceAccountList } = useIdentityData();
@@ -51,6 +57,7 @@ const IdentitiesSelectedServiceAccounts = () => {
       deleteCallback={() => setServiceAccountList([])}
       datagridColumns={columns}
       items={serviceAccountList}
+      identityURNs={identityURNs}
     ></IdentitiesSelectedBase>
   );
 };

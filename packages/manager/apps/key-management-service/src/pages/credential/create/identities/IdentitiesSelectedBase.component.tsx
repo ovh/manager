@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 type IdentitiesSelectedBaseProps = {
   title: string;
+  identityURNs: string[];
   addCallback: () => void;
   addButtonLabel: string;
   deleteCallback: () => void;
@@ -20,6 +21,7 @@ type IdentitiesSelectedBaseProps = {
 
 const IdentitiesSelectedBase = ({
   title,
+  identityURNs,
   addCallback,
   addButtonLabel,
   deleteCallback,
@@ -36,6 +38,7 @@ const IdentitiesSelectedBase = ({
           variant={ODS_BUTTON_VARIANT.stroked}
           size={ODS_BUTTON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}
+          disabled={identityURNs.length > 25 || undefined}
           onClick={addCallback}
         >
           {addButtonLabel}
