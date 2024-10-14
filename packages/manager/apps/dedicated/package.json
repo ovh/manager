@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "19.57.7",
+  "version": "19.58.0",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -26,7 +26,7 @@
     "@ovh-ux/manager-beta-preference": "^1.0.0",
     "@ovh-ux/manager-billing": "^0.20.0-alpha.45",
     "@ovh-ux/manager-billing-components": "^3.21.1",
-    "@ovh-ux/manager-bm-server-components": "^1.34.1",
+    "@ovh-ux/manager-bm-server-components": "^1.35.0",
     "@ovh-ux/manager-catalog-price": "^1.8.0",
     "@ovh-ux/manager-cda": "^1.9.1",
     "@ovh-ux/manager-cloud-connect": "^1.15.0",
@@ -38,7 +38,7 @@
     "@ovh-ux/manager-error-page": "^2.4.1",
     "@ovh-ux/manager-exchange": "^4.8.0",
     "@ovh-ux/manager-filters": "^1.1.1",
-    "@ovh-ux/manager-iplb": "^1.16.0",
+    "@ovh-ux/manager-iplb": "^1.17.0",
     "@ovh-ux/manager-metrics": "^1.6.1",
     "@ovh-ux/manager-models": "^1.14.14",
     "@ovh-ux/manager-nasha": "^2.16.3",

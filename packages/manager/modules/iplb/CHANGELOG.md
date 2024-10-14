@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.16.0...@ovh-ux/manager-iplb@1.17.0) (2024-10-14)
+
+
+### Features
+
+* **dedicated.iplb:** modify the status display value ([#13457](https://github.com/ovh/manager/issues/13457)) ([0a7dbbd](https://github.com/ovh/manager/commit/0a7dbbd6e5576cc1d2fbbf6143ae3486fb13d556))
+
+
+
+
+
 # [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.15.0...@ovh-ux/manager-iplb@1.16.0) (2024-10-07)
 
 
