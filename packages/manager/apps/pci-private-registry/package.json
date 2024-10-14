@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-pci-private-registry-app",
   "version": "0.1.3",
   "private": true,
+  "description": "PCI Private registry react app",
   "type": "module",
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",

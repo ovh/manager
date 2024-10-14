@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-pci-kubernetes-app",
   "version": "0.3.3",
   "private": true,
+  "description": "PCI Kubernetes react app",
   "type": "module",
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",
