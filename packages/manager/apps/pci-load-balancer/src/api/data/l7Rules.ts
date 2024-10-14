@@ -39,7 +39,7 @@ export const deleteL7Rule = async (
   return data;
 };
 
-export const createRule = async (
+export const createL7Rule = async (
   projectId: string,
   region: string,
   policyId: string,
@@ -48,6 +48,37 @@ export const createRule = async (
   const { data } = await v6.post(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy/${policyId}/l7Rule`,
     rule,
+  );
+  return data;
+};
+
+export const updateL7Rule = async (
+  projectId: string,
+  region: string,
+  policyId: string,
+  rule: TL7Rule,
+) => {
+  const { data } = await v6.put(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy/${policyId}/l7Rule/${rule.id}`,
+    {
+      ruleType: rule.ruleType,
+      compareType: rule.compareType,
+      key: rule.key,
+      value: rule.value,
+      invert: rule.invert,
+    },
+  );
+  return data;
+};
+
+export const getL7Rule = async (
+  projectId: string,
+  region: string,
+  policyId: string,
+  ruleId: string,
+): Promise<TL7Rule> => {
+  const { data } = await v6.get<TL7Rule>(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy/${policyId}/l7Rule/${ruleId}`,
   );
   return data;
 };
