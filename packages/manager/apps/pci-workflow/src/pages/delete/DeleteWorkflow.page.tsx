@@ -75,7 +75,6 @@ export default function DeleteWorkflowPage() {
       title={t('pci_workflow_delete_title')}
       confirmationText="DELETE"
       confirmationLabel={tDelete('pci_workflow_delete_enter')}
-      inputErrorMessage={tCommon('common_field_error_pattern')}
       isPending={isPending || isPendingWorkflows}
       onConfirm={deleteWorkflow}
       onCancel={onClose}
