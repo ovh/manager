@@ -1,6 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
-import { getRegions, getFlavor } from './capabilities.api';
+import { getFramework } from './framework.api';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -15,18 +15,18 @@ vi.mock('@ovh-ux/manager-core-api', () => {
   };
 });
 
-describe('Capabilities functions', () => {
+describe('notebook framework functions', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
 
-  it('should call getRegions', async () => {
+  it('should call getFramework', async () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
-    await getRegions({
+    await getFramework({
       projectId: 'projectId',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/ai/capabilities/region',
+      '/cloud/project/projectId/ai/notebook/capabilities/framework',
       {
         headers: {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
@@ -34,23 +34,6 @@ describe('Capabilities functions', () => {
           Pragma: 'no-cache',
         },
       },
-    );
-  });
-});
-
-describe('Capabilities Flavor functions', () => {
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('should call getFlavor', async () => {
-    expect(apiClient.v6.get).not.toHaveBeenCalled();
-    await getFlavor({
-      projectId: 'projectId',
-      region: 'regionId',
-    });
-    expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/ai/capabilities/region/regionId/flavor',
     );
   });
 });
