@@ -185,7 +185,7 @@ describe('rancherErrorManagement', () => {
         { rancherCreationErrorMessage: 'Invalid input string' },
       ],
     ],
-    [{ message: 'Unknown error', class: 'UnknownError' }, ['']],
+    [{ message: 'Unknown error', class: 'UnknownError' }, null],
   ])('should return %s', (error, expected) => {
     expect(rancherErrorManagement(error)).toEqual(expected);
   });

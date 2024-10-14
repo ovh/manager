@@ -54,7 +54,7 @@ export default function Create() {
       trackingPage(`${TRACKING_PATH}::${TrackingEvent.add}-error`);
       setHasRancherCreationError(true);
       if (error?.response?.data) {
-        setRancherCreationErrorMessage(error?.response?.data);
+        setRancherCreationErrorMessage(error.response.data);
       }
     },
   });
