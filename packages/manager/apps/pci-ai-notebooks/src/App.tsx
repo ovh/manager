@@ -21,7 +21,6 @@ function App() {
     shell.ux.hidePreloader();
   }, []);
 
-  console.log('in apppppp');
   return (
     <QueryClientProvider client={queryClient}>
       {loading && <ProgressLoader />}

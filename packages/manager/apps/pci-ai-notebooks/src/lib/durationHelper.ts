@@ -63,3 +63,26 @@ export function durationToISODurationString(durationTime: Duration) {
 export function convertDurationStringToISODuration(durationTime: string) {
   return durationToISODurationString(durationStringToDuration(durationTime));
 }
+
+export function convertSecondsToTimeString(seconds: number) {
+  if (seconds === 0) return '0s';
+  if (seconds < 60) return `${seconds}s`;
+  const days = Math.floor(seconds / 86400);
+  const leftoverSeconds = seconds % 86400;
+  const hours = Math.floor(leftoverSeconds / 3600);
+  const leftoverMinutes = leftoverSeconds % 3600;
+  const minutes = Math.floor(leftoverMinutes / 60);
+
+  const timeStringParts = [];
+  if (days > 0) {
+    timeStringParts.push(`${days}d`);
+  }
+  if (hours > 0) {
+    timeStringParts.push(`${hours}h`);
+  }
+  if (minutes > 0) {
+    timeStringParts.push(`${minutes}m`);
+  }
+
+  return timeStringParts.join(' ');
+}

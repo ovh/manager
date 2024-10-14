@@ -1,10 +1,4 @@
-import {
-  Outlet,
-  redirect,
-  useLocation,
-  useMatches,
-  useParams,
-} from 'react-router-dom';
+import { Outlet, redirect, useLocation, useParams } from 'react-router-dom';
 import { useRouting, useShell } from '@ovh-ux/manager-react-shell-client';
 
 import { useEffect } from 'react';
@@ -24,10 +18,7 @@ import { useGetAuthorization } from '@/hooks/api/ai/authorization/useGetAuthoriz
 
 export function breadcrumb() {
   return (
-    <BreadcrumbItem
-      translationKey={`AI Notebooks`}
-      namespace="pci-ai-notebooks"
-    />
+    <BreadcrumbItem translationKey="Notebooks" namespace="pci-ai-notebooks" />
   );
 }
 
@@ -52,12 +43,10 @@ export const Loader = async ({ params }: NotebooksLayoutProps) => {
 };
 
 function RoutingSynchronisation() {
-  console.log('In Root.Layout');
   const { setLoading } = useLoadingIndicatorContext();
   const location = useLocation();
   const routing = useRouting();
   const shell = useShell();
-  const matches = useMatches();
 
   useEffect(() => {
     routing.stopListenForHashChange();
@@ -71,14 +60,12 @@ function RoutingSynchronisation() {
 }
 
 export function useNotebooksData() {
-  console.log('inUseNotebooksData');
   const { projectId } = useParams();
   return { projectId };
 }
 
 export default function Layout() {
   const { projectId } = useParams();
-  console.log('In Root.Layout');
   const authorizationQuery = useGetAuthorization(projectId);
   if (authorizationQuery.isSuccess && authorizationQuery.data.authorized) {
     return (

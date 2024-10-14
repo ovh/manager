@@ -15,7 +15,6 @@ const init = async (
   { reloadOnLocaleChange } = { reloadOnLocaleChange: false },
 ) => {
   const context = await initShellContext(appName);
-  console.log('tessssssstttttt');
   const region = context.environment.getRegion();
   try {
     await import(`./config-${region}.js`);

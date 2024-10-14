@@ -20,7 +20,7 @@ export default function initI18n(
       debug: false,
       fallbackLng: 'fr_FR',
       supportedLngs: availablesLocales,
-      ns: ['pci-ai-notebooks', 'bytes'], // namespaces to load by default
+      ns: ['pci-ai-notebooks', 'error'], // namespaces to load by default
       backend: {
         loadPath: (lngs: string[], namespaces: string[]) =>
           `${import.meta.env.BASE_URL}translations/${namespaces[0]}/Messages_${
