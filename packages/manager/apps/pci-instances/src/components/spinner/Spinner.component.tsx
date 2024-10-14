@@ -3,7 +3,7 @@ import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { FC } from 'react';
 
 export const Spinner: FC = () => (
-  <div className="text-center">
+  <div className="text-center" data-testid="spinner">
     <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />
   </div>
 );
