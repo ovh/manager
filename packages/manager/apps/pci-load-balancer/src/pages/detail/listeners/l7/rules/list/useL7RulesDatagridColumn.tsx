@@ -3,6 +3,9 @@ import {
   DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
 import ActionsComponent from '@/components/detail/listeners/l7/rules/Actions.component';
@@ -43,7 +46,17 @@ export const useL7RulesDatagridColumn = () => {
     {
       id: 'invert',
       cell: (props: TL7Rule) => (
-        <DataGridTextCell>{props.invert || '-'}</DataGridTextCell>
+        <DataGridTextCell>
+          {props.invert ? (
+            <OsdsIcon
+              name={ODS_ICON_NAME.CHECK}
+              color={ODS_THEME_COLOR_INTENT.text}
+              size={ODS_ICON_SIZE.xxs}
+            />
+          ) : (
+            '-'
+          )}
+        </DataGridTextCell>
       ),
       label: tL7Policies('octavia_load_balancer_list_l7_rules_invert'),
     },
