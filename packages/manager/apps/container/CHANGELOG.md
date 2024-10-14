@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.81.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.80.5...@ovh-ux/manager-container-app@0.81.0) (2024-10-14)
+
+
+### Features
+
+* **container:** rename "Zimbra" to "Zimbra Mail" ([#13438](https://github.com/ovh/manager/issues/13438)) ([6a1840a](https://github.com/ovh/manager/commit/6a1840a63a06e97c19a28ef69460475b71764937))
+
+
+
+
+
 ## [0.80.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.80.4...@ovh-ux/manager-container-app@0.80.5) (2024-10-11)
 
 
