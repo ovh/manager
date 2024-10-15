@@ -1,0 +1,12 @@
+{
+  "manager_billing_service_status": "Status",
+  "manager_billing_service_status_auto": "Automatic renewal",
+  "manager_billing_service_status_automatic": "Automatic renewal",
+  "manager_billing_service_status_manual": "Manual renewal",
+  "manager_billing_service_status_manualPayment": "Manual renewal",
+  "manager_billing_service_status_pending_debt": "Bill to pay",
+  "manager_billing_service_status_delete_at_expiration": "Cancellation requested",
+  "manager_billing_service_status_expired": "Cancelled",
+  "manager_billing_service_status_billing_suspended": "Deferred billing",
+  "manager_billing_service_status_forced_manual": "Manual renewal"
+}

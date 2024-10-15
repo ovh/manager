@@ -178,7 +178,7 @@ export default function HubOrderTracking() {
                 color={ODS_THEME_COLOR_INTENT.text}
                 className="block mr-1"
               >
-                {t(`hub_order_tracking_history_${currentStatus.label}`)}
+                {t(`order_tracking_history_${currentStatus.label}`)}
               </OsdsText>
               <OsdsIcon
                 size={ODS_ICON_SIZE.xxs}

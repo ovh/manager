@@ -118,7 +118,7 @@ export default function PaymentStatus({
                   className="font-bold text-right"
                   data-testid="my_services_link"
                 >
-                  {tCommon('manager_hub_see_all')}
+                  {tCommon('hub_support_see_more')}
                   <span slot="end">
                     <OsdsIcon
                       hoverable
