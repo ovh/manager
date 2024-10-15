@@ -1,9 +1,15 @@
 import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import { TPoolMember, getPoolMembers } from '@/api/data/pool-member';
+import {
+  TPoolMember,
+  deletePoolMember,
+  getPoolMember,
+  getPoolMembers,
+} from '@/api/data/pool-member';
 import { paginateResults, sortResults } from '@/helpers';
+import queryClient from '@/queryClient';
 
 export const useGetAllPoolMembers = (
   projectId: string,
@@ -51,3 +57,48 @@ export const usePoolMembers = (
     [allPoolMembers, error, isLoading, isPending, pagination, sorting, filters],
   );
 };
+
+type DeletePoolMemberProps = {
+  projectId: string;
+  poolId: string;
+  memberId: string;
+  region: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useDeletePoolMember = ({
+  projectId,
+  poolId,
+  memberId,
+  region,
+  onError,
+  onSuccess,
+}: DeletePoolMemberProps) => {
+  const mutation = useMutation({
+    mutationFn: async () =>
+      deletePoolMember(projectId, region, poolId, memberId),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['poolMembers', projectId],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    deletePoolMember: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+export const useGetPoolMember = (
+  projectId: string,
+  poolId: string,
+  region: string,
+  memberId: string,
+) =>
+  useQuery({
+    queryKey: ['poolMembers', projectId, poolId, region, memberId],
+    queryFn: () => getPoolMember(projectId, region, poolId, memberId),
+  });
