@@ -21,11 +21,11 @@ import {
 } from '@ovhcloud/ods-components';
 import useCurrentUser from '@/hooks/user/useCurrentUser';
 
-type TBillingTileProps = {
+type TServiceTileProps = {
   id: string;
 };
 
-function ServiceRenew({ id }: TBillingTileProps) {
+function ServiceRenew({ id }: TServiceTileProps) {
   const { data: billingService, isLoading } = useServiceDetails({
     resourceName: id,
   });
@@ -46,7 +46,9 @@ function ServiceRenew({ id }: TBillingTileProps) {
   );
 }
 
-export default function BillingTile({ id }: TBillingTileProps) {
+export default function OrganizationServiceManagementTile({
+  id,
+}: TServiceTileProps) {
   const { t } = useTranslation('dashboard');
   const { user } = useCurrentUser();
 
@@ -56,9 +58,29 @@ export default function BillingTile({ id }: TBillingTileProps) {
         title={t('managed_vcd_dashboard_service_management')}
         items={[
           {
-            id: 'mailingList',
-            label: t('managed_vcd_dashboard_mailing_list'),
-            value: <Description>{user?.email}</Description>,
+            id: 'contactList',
+            label: t('managed_vcd_dashboard_contact_list'),
+            value: !user ? (
+              <OsdsSkeleton />
+            ) : (
+              <>
+                <Description>
+                  {t('managed_vcd_dashboard_contact_list_admin', {
+                    contact: user.nichandle,
+                  })}
+                </Description>
+                <Description>
+                  {t('managed_vcd_dashboard_contact_list_billing', {
+                    contact: user.nichandle,
+                  })}
+                </Description>
+                <Description>
+                  {t('managed_vcd_dashboard_contact_list_technical', {
+                    contact: user.nichandle,
+                  })}
+                </Description>
+              </>
+            ),
           },
           {
             id: 'serviceRenew',
