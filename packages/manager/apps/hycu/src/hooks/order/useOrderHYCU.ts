@@ -2,11 +2,12 @@ import {
   useOrderURL,
   getHYCUProductSettings,
 } from '@ovh-ux/manager-module-order';
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { useEffect, useState } from 'react';
 
 interface HYCUOrder {
   planCode: string;
-  region: string;
+  region: OvhSubsidiary;
 }
 
 const useOrderHYCU = ({ planCode, region }: HYCUOrder) => {

@@ -45,7 +45,7 @@ export const getHYCUProductSettings = ({
     planCode,
     duration: 'P1M',
     pricingMode: 'default',
-    configuration: [{ label: 'region', value: region }].filter(Boolean),
+    configuration: [{ label: 'region', value: region }],
   });
 
 export const ORDER_URLS = {

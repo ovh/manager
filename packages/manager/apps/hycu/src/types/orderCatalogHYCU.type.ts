@@ -11,7 +11,7 @@ type HYCUCatalogPlanPricing = {
   tax: number;
 };
 
-type HYCUCatalogPlan = {
+export type HYCUCatalogPlan = {
   configurations: HYCUCatalogPlanConfiguration[];
   invoiceName: string;
   planCode: string;
