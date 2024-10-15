@@ -186,6 +186,8 @@ describe('rancherErrorManagement', () => {
       ],
     ],
     [{ message: 'Unknown error', class: 'UnknownError' }, null],
+    [{}, null],
+    ['unknown', null],
   ])('should return %s', (error, expected) => {
     expect(rancherErrorManagement(error)).toEqual(expected);
   });

@@ -107,34 +107,45 @@ export function extractDriversAndPlanFromSwitchPlanError(
   return null;
 }
 
+type OVHError = {
+  class: string;
+  message: string;
+};
+
 /**
  * Manages Rancher errors and returns appropriate error messages for internationalization.
  *
- * @param {Object} error - The error object containing the message and class.
- * @param {string} error.message - The error message.
- * @param {string} error.class - The error class.
- * @returns {[string, TOptions?]} - An array containing the error message key and optional options for internationalization.
+ * @param {unknown} error - The error object containing the message and class.
+ * @returns {[string, TOptions?] | null} - An array containing the error message key and optional options for internationalization, or null if the error is not recognized.
  */
-export const rancherErrorManagement = (error: {
-  message: string;
-  class: string;
-}): [string, TOptions?] | null => {
-  if (error?.class === 'Server::InternalServerError') {
-    return ['createRancherErrorInternalServerError'];
+export const rancherErrorManagement = (
+  error: unknown,
+): [string, TOptions?] | null => {
+  if (typeof error === 'string' || !error) {
+    return null;
   }
-  if (error?.class === 'Client::BadRequest') {
-    const content = extractDriversAndPlanFromSwitchPlanError(error.message);
-    if (content) {
-      const { plan, drivers } = content;
+  if (typeof error === 'object') {
+    const ovhError = error as OVHError;
+    if (ovhError.class === 'Server::InternalServerError') {
+      return ['createRancherErrorInternalServerError'];
+    }
+    if (ovhError.class === 'Client::BadRequest') {
+      const content = extractDriversAndPlanFromSwitchPlanError(
+        (error as OVHError).message,
+      );
+      if (content) {
+        const { plan, drivers } = content;
+        return [
+          'createRancherErrorInternalServerBadRequestChangePlan',
+          { plan, drivers: `[${drivers}]` },
+        ];
+      }
       return [
-        'createRancherErrorInternalServerBadRequestChangePlan',
-        { plan, drivers: `[${drivers}]` },
+        'createRancherError',
+        { rancherCreationErrorMessage: ovhError.message },
       ];
     }
-    return [
-      'createRancherError',
-      { rancherCreationErrorMessage: error.message },
-    ];
   }
+
   return null;
 };
