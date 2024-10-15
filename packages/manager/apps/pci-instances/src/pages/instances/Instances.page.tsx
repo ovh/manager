@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
+  Navigate,
   useHref,
-  useNavigate,
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
@@ -58,7 +58,6 @@ const Instances: FC = () => {
   const { t } = useTranslation(['list', 'common']);
   const { projectId } = useParams() as { projectId: string }; // safe because projectId has already been handled by async route loader
   const project = useRouteLoaderData('root') as TProject;
-  const navigate = useNavigate();
   const createInstanceHref = useHref('./new');
   const [sorting, setSorting] = useState(initialSorting);
   const [searchField, setSearchField] = useState('');
@@ -89,6 +88,11 @@ const Instances: FC = () => {
     filters,
   });
 
+  const onboardingUrl = useMemo(
+    () => `/pci/projects/${projectId}/instances/onboarding`,
+    [projectId],
+  );
+
   const textCell = useCallback(
     (props: TInstance, key: 'flavorName' | 'region' | 'imageName') =>
       isRefetching ? (
@@ -104,11 +108,7 @@ const Instances: FC = () => {
       isRefetching ? (
         <OsdsSkeleton />
       ) : (
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
+        <DataGridTextCell>
           <ul>
             {props.addresses.get(key)?.map((item) => (
               <li className={'w-fit'} key={item.ip}>
@@ -116,7 +116,7 @@ const Instances: FC = () => {
               </li>
             ))}
           </ul>
-        </OsdsText>
+        </DataGridTextCell>
       ),
     [isRefetching],
   );
@@ -275,11 +275,6 @@ const Instances: FC = () => {
   }, [fetchNextPage]);
 
   useEffect(() => {
-    if (data && !filters.length && !data.length && !isFetching)
-      navigate(`/pci/projects/${projectId}/instances/onboarding`);
-  }, [data, filters.length, isFetching, navigate, projectId]);
-
-  useEffect(() => {
     if (hasInconsistency) addWarning(t('inconsistency_message'), true);
     return () => {
       clearNotifications();
@@ -295,6 +290,9 @@ const Instances: FC = () => {
   }, [isError, addError, t, errorMessage]);
 
   if (isLoading) return <Spinner />;
+
+  if (data && !data.length && !filters.length && !isFetching)
+    return <Navigate to={onboardingUrl} />;
 
   return (
     <PageLayout>
@@ -357,7 +355,9 @@ const Instances: FC = () => {
                 size={ODS_BUTTON_SIZE.sm}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 variant={ODS_BUTTON_VARIANT.stroked}
-                {...((filters.length > 0 || isFetching) && { disabled: true })}
+                {...((filters.length > 0 || isFetching) && {
+                  disabled: true,
+                })}
               >
                 <OsdsIcon
                   name={ODS_ICON_NAME.FILTER}
