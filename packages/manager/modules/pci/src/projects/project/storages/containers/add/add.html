@@ -197,7 +197,7 @@
                         ></span>
                         <span
                             class="oui-badge oui-badge_best-seller"
-                            data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[deploymentModeName]?.isMultiZone"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[deploymentModeName].isMultiZone"
                             data-ng-bind=":: ('pci_projects_project_storages_containers_add_deployment_mode_' + deploymentModeName + '_label') | translate"
                         ></span>
                         <span
@@ -315,7 +315,7 @@
         data-ng-if="!$ctrl.archive && (!$ctrl.isRightOffer() || $ctrl.container.deploymentMode)"
         data-name="storage_container_add_region"
         data-header="{{:: 'pci_projects_project_storages_containers_add_region_title' | translate }}"
-        data-navigation="$ctrl.container.region"
+        data-navigation="$ctrl.container.region && !$ctrl.isDiscoveryProject"
         data-on-focus="$ctrl.onRegionsFocus()"
         data-on-submit="$ctrl.onRegionChange()"
         data-editable="!$ctrl.isLoading"
@@ -331,6 +331,8 @@
             data-project-id="$ctrl.projectId"
             data-reload="$ctrl.reloadRegions"
             data-load-end="$ctrl.reloadRegionsEnd()"
+            data-is-discovery-project="$ctrl.isDiscoveryProject"
+            data-project-activation-page-href="$ctrl.projectActivationPageHref"
         ></pci-project-regions-list>
     </oui-step-form>
 
@@ -434,13 +436,13 @@
         data-cancel-text="{{:: 'pci_projects_project_storages_containers_add_cancel_label' | translate }}"
         data-submit-text="{{:: 'pci_projects_project_storages_containers_add_submit_label' | translate }}"
         name="storage_container_add_name"
-        data-valid="!$ctrl.isDiscoveryProject"
+        data-valid="!$ctrl.isDiscoveryProject && !$ctrl.isAddingRegion && !$ctrl.isAddingRegionError"
         data-prevent-next
     >
         <oui-field
             data-size="xl"
             data-help-text="{{ ::'pci_projects_project_storages_containers_add_pattern_help_storage-s3' | translate }}"
-            data-ng-if="$ctrl.isRightOffer() && !$ctrl.isLocalZone() ? !$ctrl.archive && $ctrl.currentStep > 4 : !$ctrl.archive"
+            data-ng-if="$ctrl.isRightOffer() && !$ctrl.isLocalZone() ? !$ctrl.archive && $ctrl.currentStep > 4 : !$ctrl.archive && !$ctrl.isAddingRegion && !$ctrl.isAddingRegionError"
         >
             <input
                 class="oui-input"
@@ -451,6 +453,10 @@
                 data-ng-required="true"
             />
         </oui-field>
+        <oui-spinner
+            data-size="s"
+            data-ng-if="$ctrl.isAddingRegion"
+        ></oui-spinner>
     </oui-step-form>
 
     <!--Archive container steps-->

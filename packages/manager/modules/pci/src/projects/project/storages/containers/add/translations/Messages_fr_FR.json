@@ -49,7 +49,7 @@
   "pci_projects_project_storages_containers_add_deployment_mode_price": "{{price}} HT/mois/To*",
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "*Le prix indiqué correspond au prix publique d'1 To de stockage pendant 30 jours. Pour plus d'informations, ",
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "consulter la page des prix.",
-  "pci_projects_project_storages_containers_add_deployment_mode_localzone": "LocalZones",
-  "pci_projects_project_storages_containers_add_deployment_mode_localzone_description": "Localzone Descsription",
-  "pci_projects_project_storages_containers_add_deployment_mode_localzone_label": "LocalZone"
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone": "Local Zones",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_description": "Faible latence avec le meilleur rapport prix/performance pour vos charges de travail de données sensibles.",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_label": "Local Zone"
 }
