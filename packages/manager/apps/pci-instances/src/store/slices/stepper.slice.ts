@@ -2,10 +2,14 @@ import { StateCreator } from 'zustand';
 
 export type TStepId = 'model' | 'region';
 
-export type TStep = {
+export type TStepState = {
   isOpen: boolean;
   isChecked: boolean;
   isLocked: boolean;
+};
+
+export type TStep = TStepState & {
+  order: number;
 };
 
 export type TSteps = Map<TStepId, TStep>;
@@ -19,25 +23,37 @@ export type TState = {
  * If used with a parameter, currification enables reactivity for getters.
  */
 export type TQuery = {
-  stepStateById: () => (stepId: TStepId) => TStep | undefined;
+  stepById: () => (stepId: TStepId) => TStep | undefined;
 };
 
 // Handlers
 export type TCommand = {
-  updateStep: (stepId: TStepId, step: Partial<TStep>) => void;
+  editStep: (stepId: TStepId) => void;
+  validateStep: (stepId: TStepId) => void;
 };
 
 export type TStepperSlice = TQuery & TState & TCommand;
 
-const initStep = (isOpen: boolean): TStep => ({
-  isOpen,
+const inactiveStepState: TStepState = {
+  isOpen: false,
   isChecked: false,
   isLocked: false,
-});
+};
+
+const editStepState: TStepState = {
+  ...inactiveStepState,
+  isOpen: true,
+};
+
+const validateStepState: TStepState = {
+  ...inactiveStepState,
+  isChecked: true,
+  isLocked: true,
+};
 
 const initialSteps = new Map<TStepId, TStep>([
-  ['model', initStep(true)],
-  ['region', initStep(false)],
+  ['model', { ...editStepState, order: 1 }],
+  ['region', { ...inactiveStepState, order: 2 }],
 ]);
 
 export const createStepperSlice: StateCreator<
@@ -47,19 +63,50 @@ export const createStepperSlice: StateCreator<
   TStepperSlice
 > = (set, get) => ({
   steps: initialSteps,
-  stepStateById: () => (stepId) => get().steps.get(stepId),
-  updateStep: (stepId, step) =>
+  stepById: () => (stepId) => get().steps.get(stepId),
+  editStep: (stepId) =>
+    set((state) => {
+      const newSteps = new Map<TStepId, TStep>();
+      const activeStep = state.steps.get(stepId);
+      if (activeStep) {
+        state.steps.forEach((value, key) => {
+          if (key === stepId) {
+            newSteps.set(stepId, {
+              ...activeStep,
+              ...editStepState,
+            });
+          } else if (value.order > activeStep.order) {
+            newSteps.set(key, {
+              ...value,
+              ...inactiveStepState,
+            });
+          } else {
+            newSteps.set(key, { ...value, isOpen: false });
+          }
+        });
+      }
+      return { steps: newSteps };
+    }),
+  validateStep: (stepId) =>
     set((state) => {
       const newSteps = new Map(state.steps);
       const activeStep = newSteps.get(stepId);
+
       if (activeStep) {
-        const updatedSteps = newSteps.set(stepId, {
+        const nextStep = [...newSteps].find(
+          (elt) => elt[1].order === activeStep.order + 1,
+        );
+        newSteps.set(stepId, {
           ...activeStep,
-          ...(step.isOpen !== undefined && { isOpen: step.isOpen }),
-          ...(step.isChecked !== undefined && { isChecked: step.isChecked }),
-          ...(step.isLocked !== undefined && { isLocked: step.isLocked }),
+          ...validateStepState,
         });
-        return { steps: updatedSteps };
+        if (nextStep) {
+          const [key, value] = nextStep;
+          newSteps.set(key, {
+            ...value,
+            ...editStepState,
+          });
+        }
       }
       return { steps: newSteps };
     }),

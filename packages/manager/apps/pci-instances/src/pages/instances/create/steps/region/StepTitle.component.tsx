@@ -12,12 +12,12 @@ import { TStep } from '@/store/slices/stepper.slice';
 
 type TStepTitleProps = DeepReadonly<{
   isNotificationOpen: boolean;
-  regionStepState?: TStep;
+  regionStep?: TStep;
 }>;
 
 export const StepTitle: FC<TStepTitleProps> = ({
   isNotificationOpen,
-  regionStepState,
+  regionStep,
 }) => {
   const { t } = useTranslation('regions');
   const { translateMacroRegion } = useTranslatedMicroRegions();
@@ -30,12 +30,12 @@ export const StepTitle: FC<TStepTitleProps> = ({
 
   const regionStepTitle = useMemo(
     () =>
-      selectedRegion && !regionStepState?.isOpen
+      selectedRegion && !regionStep?.isOpen && regionStep?.isChecked
         ? t('pci_instances_regions_chosen_region_message', {
             region: translateMacroRegion(selectedRegion.name),
           })
         : t('pci_instances_regions_select_localization'),
-    [regionStepState?.isOpen, selectedRegion, t, translateMacroRegion],
+    [regionStep, selectedRegion, t, translateMacroRegion],
   );
 
   return (
