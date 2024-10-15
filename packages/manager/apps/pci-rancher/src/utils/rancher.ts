@@ -113,14 +113,31 @@ export function extractDriversAndPlanFromSwitchPlanError(
 type OVHError = ErrorResponse['response']['data'];
 
 /**
+ * Type guard to check if the error is an OVHError.
+ *
+ * @param {unknown} error - The error object to check.
+ * @returns {error is OVHError} - True if the error is an OVHError, false otherwise.
+ */
+function isOVHError(error: unknown): error is OVHError {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    'class' in error &&
+    typeof (error as OVHError).class === 'string' &&
+    'message' in error &&
+    typeof (error as OVHError).message === 'string'
+  );
+}
+
+/**
  * Manages Rancher errors and returns appropriate error messages for internationalization.
  *
  * @param {unknown} error - The error object containing the message and class.
  * @returns {[string, TOptions?]} - An array containing the error message key and optional options for internationalization, or null if the error is not recognized.
  */
 export const rancherErrorManagement = (error: unknown): [string, TOptions?] => {
-  if (typeof error === 'object' && 'class' in error && 'message' in error) {
-    const ovhError = error as OVHError;
+  if (isOVHError(error)) {
+    const ovhError = error;
     if (ovhError.class === 'Server::InternalServerError') {
       return ['createRancherErrorInternalServerError'];
     }
