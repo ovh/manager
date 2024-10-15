@@ -17,7 +17,6 @@ import {
 } from '@ovhcloud/ods-components/react';
 import {
   Description,
-  IntervalUnitType,
   OvhSubsidiary,
   Price,
   Subtitle,
@@ -27,6 +26,7 @@ import Loading from '@/components/Loading/Loading.component';
 import { useOrderCatalogHYCU } from '@/hooks/order/useOrderCatalogHYCU';
 import { urls } from '@/routes/routes.constant';
 import { sortPacksByPrice } from '@/utils/sortPacks';
+import { getRenewPrice } from '@/utils/getRenewPrice';
 
 type PackSelectionProps = {
   selectPack: Dispatch<SetStateAction<string>>;
@@ -90,12 +90,10 @@ const PackSelection = ({
                 </OsdsText>
                 <Price
                   locale={subsidiary}
-                  ovhSubsidiary={subsidiary as OvhSubsidiary}
-                  intervalUnit={
-                    product.pricings[2].intervalUnit as IntervalUnitType
-                  }
-                  tax={product.pricings[2].tax}
-                  value={product.pricings[2].price}
+                  ovhSubsidiary={subsidiary}
+                  intervalUnit={getRenewPrice(product.pricings).intervalUnit}
+                  tax={getRenewPrice(product.pricings).tax}
+                  value={getRenewPrice(product.pricings).price}
                 ></Price>
               </div>
             </OsdsTile>
