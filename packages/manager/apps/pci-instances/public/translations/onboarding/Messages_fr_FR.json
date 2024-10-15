@@ -1,15 +1,15 @@
 {
-  "not_created_message": "Vous n'avez pas encore créé d'instance.",
-  "content_message_1": "Déployez des instances parmi une large gamme de modèles et profitez de la flexibilité du cloud pour croître selon vos besoins.",
-  "content_message_2": "Dans notre catalogue d'instances, choisissez le modèle qui vous convient parmi la gamme Sandbox, dont les ressources sont partagées, la gamme Guaranteed Resources, aux performances constantes pour les applications exigeantes, la gamme GPU, idéale pour les calculs parallélisés, et la gamme IOPS, pour les bases de données ou le big data.",
-  "advice_message": "À tout moment, vous avez la possibilité d’augmenter la capacité de vos instances selon vos besoins. Vous pouvez aussi opter pour les instances de type flex, qui permettent également de réduire cette capacité.",
-  "guide_title": "Tutoriel",
-  "create_instance_title": "Créer une instance depuis l’espace client",
-  "post_install_script_title": "Lancer un script lors de la creation d’un instance",
-  "back_up_instance_title": "Sauvegarder une instance",
-  "instance_introduction_title": "Introduction aux instances et autres notions cloud",
-  "create_instance_description": "Ce guide vous montre comment créer une instance sur Public Cloud",
-  "post_install_script_description": "",
-  "back_up_instance_description": "Découvrez comment sauvegarder une instance Public Cloud en quelques clics",
-  "instance_introduction_description": ""
+  "pci_instances_onboarding_not_created_message": "Vous n'avez pas encore créé d'instance.",
+  "pci_instances_onboarding_content_message_1": "Déployez des instances parmi une large gamme de modèles et profitez de la flexibilité du cloud pour croître selon vos besoins.",
+  "pci_instances_onboarding_content_message_2": "Dans notre catalogue d'instances, choisissez le modèle qui vous convient parmi la gamme Sandbox, dont les ressources sont partagées, la gamme Guaranteed Resources, aux performances constantes pour les applications exigeantes, la gamme GPU, idéale pour les calculs parallélisés, et la gamme IOPS, pour les bases de données ou le big data.",
+  "pci_instances_onboarding_advice_message": "À tout moment, vous avez la possibilité d’augmenter la capacité de vos instances selon vos besoins. Vous pouvez aussi opter pour les instances de type flex, qui permettent également de réduire cette capacité.",
+  "pci_instances_onboarding_guide_title": "Tutoriel",
+  "pci_instances_onboarding_create_instance_title": "Créer une instance depuis l’espace client",
+  "pci_instances_onboarding_post_install_script_title": "Lancer un script lors de la creation d’un instance",
+  "pci_instances_onboarding_back_up_instance_title": "Sauvegarder une instance",
+  "pci_instances_onboarding_instance_introduction_title": "Introduction aux instances et autres notions cloud",
+  "pci_instances_onboarding_create_instance_description": "Ce guide vous montre comment créer une instance sur Public Cloud",
+  "pci_instances_onboarding_post_install_script_description": "",
+  "pci_instances_onboarding_back_up_instance_description": "Découvrez comment sauvegarder une instance Public Cloud en quelques clics",
+  "pci_instances_onboarding_instance_introduction_description": ""
 }
