@@ -1,0 +1,10 @@
+{
+  "octavia_load_balancer_pools_detail_members_go_back": "Anterior",
+  "octavia_load_balancer_pools_detail_members_info_title": "Miembros",
+  "octavia_load_balancer_pools_detail_members_description_part_1": "Los miembros son las direcciones IP back-end reales que recibirán el tráfico del Load Balancer.",
+  "octavia_load_balancer_pools_detail_members_create_success": "Creando el miembro... Volver a cargar la página para verlo en la lista.",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_create_success": "Creando los miembros... Volver a cargar la página para verlos en la lista.",
+  "octavia_load_balancer_pools_detail_members_delete_success": "Su miembro {{ membre }} se ha eliminado correctamente.",
+  "octavia_load_balancer_pools_detail_members_edit_name_success": "Su miembro {{ membre }} se ha modificado correctamente.",
+  "octavia_load_balancer_pools_detail_members_protocol_port_tooltip": "El puerto utilizado para enviar el tráfico al miembro"
+}
