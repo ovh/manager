@@ -25,3 +25,27 @@ export const getPoolMembers = async (
   );
   return data;
 };
+
+export const deletePoolMember = async (
+  projectId: string,
+  region: string,
+  poolId: string,
+  memberId: string,
+) => {
+  const { data } = await v6.delete(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}/member/${memberId}`,
+  );
+  return data;
+};
+
+export const getPoolMember = async (
+  projectId: string,
+  region: string,
+  poolId: string,
+  memberId: string,
+): Promise<TPoolMember> => {
+  const { data } = await v6.get<TPoolMember>(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}/member/${memberId}`,
+  );
+  return data;
+};
