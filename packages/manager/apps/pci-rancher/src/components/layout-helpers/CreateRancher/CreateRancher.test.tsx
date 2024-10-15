@@ -151,7 +151,6 @@ describe('CreateRancher', () => {
       },
     });
     const errorCreateBanner = screen.getByTestId('errorBanner');
-    screen.debug();
     expect(errorCreateBanner).toHaveTextContent(
       "Une erreur est survenue lors du changement d'offre de votre Managed Rancher Service. Vous utilisez actuellement des pilotes qui ne sont pas pris en charge dans l'offre OVHCLOUD_EDITION: [myDriver1, myDriver2]",
     );
