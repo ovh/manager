@@ -38,6 +38,10 @@ export default /* @ngInject */ ($stateProvider) => {
             {},
           );
         }),
+      projectActivationPageHref: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.activate', {
+          projectId,
+        }),
       goBack: /* @ngInject */ (goToStorageContainers) => goToStorageContainers,
       encryptionAlgorithms: /* @ngInject */ ($http, encryptionAvailable) =>
         encryptionAvailable
