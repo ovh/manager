@@ -102,8 +102,6 @@ export function extractDriversAndPlanFromSwitchPlanError(
       .trim();
     if (contentInsideBrackets) {
       const drivers = contentInsideBrackets.split(',');
-
-      // Create the final array with the text before the bracket and the elements inside the brackets
       if (drivers.length) {
         return { drivers, plan };
       }
@@ -118,19 +116,17 @@ type OVHError = ErrorResponse['response']['data'];
  * Manages Rancher errors and returns appropriate error messages for internationalization.
  *
  * @param {unknown} error - The error object containing the message and class.
- * @returns {[string, TOptions?] | null} - An array containing the error message key and optional options for internationalization, or null if the error is not recognized.
+ * @returns {[string, TOptions?]} - An array containing the error message key and optional options for internationalization, or null if the error is not recognized.
  */
-export const rancherErrorManagement = (
-  error: unknown,
-): [string, TOptions?] | null => {
-  if (typeof error === 'object') {
+export const rancherErrorManagement = (error: unknown): [string, TOptions?] => {
+  if (typeof error === 'object' && 'class' in error && 'message' in error) {
     const ovhError = error as OVHError;
     if (ovhError.class === 'Server::InternalServerError') {
       return ['createRancherErrorInternalServerError'];
     }
     if (ovhError.class === 'Client::BadRequest') {
       const content = extractDriversAndPlanFromSwitchPlanError(
-        (error as OVHError).message,
+        ovhError.message,
       );
       if (content) {
         const { plan, drivers } = content;
@@ -145,5 +141,5 @@ export const rancherErrorManagement = (
       ];
     }
   }
-  return null;
+  return ['createRancherError', { rancherCreationErrorMessage: '' }];
 };
