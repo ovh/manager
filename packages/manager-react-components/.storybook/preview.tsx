@@ -1,14 +1,15 @@
 import React, { Suspense, useEffect } from 'react';
 import { I18nextProvider } from 'react-i18next';
+import { odsSetup } from '@ovhcloud/ods-common-core';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import '../src/lib.scss';
+
 import { Preview } from '@storybook/react';
 import '../src/tailwind/theme.css';
-import '@ovhcloud/ods-themes/default';
 import i18n from './i18n';
-import './storybook.css';
 
 import '@ovhcloud/ods-theme-blue-jeans';
+
+odsSetup();
 
 const mockQueryClient = new QueryClient({
   defaultOptions: {
@@ -21,16 +22,6 @@ const mockQueryClient = new QueryClient({
 
 const preview: Preview = {
   parameters: {
-    docs: {
-      toc: {
-        contentsSelector: '.sbdocs-content',
-        headingSelector: 'h2, h3',
-        disable: false,
-      },
-      source: {
-        excludeDecorators: true,
-      },
-    },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {

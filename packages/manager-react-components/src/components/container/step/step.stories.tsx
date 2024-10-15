@@ -1,6 +1,5 @@
-import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
 import StepComponent from './Step.component';
 
 export default {
@@ -16,9 +15,7 @@ export default {
 } as Meta;
 
 const Template: Story<any> = (args) => (
-  <StepComponent {...args}>
-    <OdsText preset="span">Hello world</OdsText>
-  </StepComponent>
+  <StepComponent {...args}>Hello world</StepComponent>
 );
 
 export const Demo = Template.bind({});

@@ -1,11 +1,12 @@
 import { Meta } from '@storybook/react';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ActionMenu, ActionMenuProps } from './action.component';
 
 const actionItems = [
   {
     id: 1,
     href: 'https://ovhcloud.com',
-    target: '_blank',
+    target: OdsHTMLAnchorElementTarget._blank,
     label: 'Action 1',
     urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
     iamActions: ['vrackServices:apiovh:iam/resource/tag/remove'],

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import Headers, { HeadersProps } from './headers.component';
 import ActionMenu from '../../navigation/menus/action/action.component';
 import GuideButton from '../../navigation/menus/guide/guide.component';
@@ -17,13 +18,13 @@ const actionItems = [
   {
     id: 1,
     href: 'https://www.ovh.com',
-    target: '_blank',
+    target: OdsHTMLAnchorElementTarget._blank,
     label: 'Action 1',
   },
   {
     id: 2,
     href: 'https://help.ovhcloud.com/csm/fr-documentation?id=kb_home',
-    target: '_blank',
+    target: OdsHTMLAnchorElementTarget._blank,
     label: 'Action 2',
   },
 ];
@@ -32,13 +33,13 @@ const guideItems = [
   {
     id: 1,
     href: 'https://www.ovh.com',
-    target: '_blank',
+    target: OdsHTMLAnchorElementTarget._blank,
     label: 'ovh.com',
   },
   {
     id: 2,
     href: 'https://help.ovhcloud.com/csm/fr-documentation?id=kb_home',
-    target: '_blank',
+    target: OdsHTMLAnchorElementTarget._blank,
     label: 'Guides OVH',
   },
 ];

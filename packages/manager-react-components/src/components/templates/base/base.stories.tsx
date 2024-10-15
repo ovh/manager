@@ -1,14 +1,19 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import {
-  OdsBreadcrumb,
-  OdsBreadcrumbItem,
-  OdsTab,
-  OdsTabs,
-  OdsTable,
-  OdsBadge,
+  OsdsBreadcrumb,
+  OsdsTile,
+  OsdsDivider,
+  OsdsTabBar,
+  OsdsTabBarItem,
+  OsdsTabs,
+  OsdsTable,
+  OsdsChip,
 } from '@ovhcloud/ods-components/react';
-import { DashboardTile } from '../../content';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_DIVIDER_SIZE, ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
+import { Headers } from '../../content';
 import OdsNotification from '../../notifications/ods-notification';
 import { NotificationType } from '../../notifications/useNotifications';
 import { BaseLayout } from './base.component';
@@ -22,13 +27,13 @@ const guideItems: GuideItem[] = [
   {
     id: 1,
     href: 'https://www.ovh.com',
-    target: '_blank',
+    target: OdsHTMLAnchorElementTarget._blank,
     label: 'ovh.com',
   },
   {
     id: 2,
     href: 'https://help.ovhcloud.com/csm/fr-documentation?id=kb_home',
-    target: '_blank',
+    target: OdsHTMLAnchorElementTarget._blank,
     label: 'Guides OVH',
   },
 ];
@@ -57,7 +62,7 @@ const rows = [
 ];
 
 const Tabs = () => (
-  <OdsTable>
+  <OsdsTable>
     <table>
       <thead>
         <tr>
@@ -72,21 +77,30 @@ const Tabs = () => (
             <td scope="row">{element.name}</td>
             <td scope="row">{element.description}</td>
             <td scope="row">
-              <OdsBadge label="Ready" />
+              <OsdsChip
+                size={ODS_CHIP_SIZE.sm}
+                color={ODS_THEME_COLOR_INTENT.info}
+                inline
+              >
+                READY
+              </OsdsChip>
             </td>
           </tr>
         ))}
       </tbody>
     </table>
-  </OdsTable>
+  </OsdsTable>
 );
 
 export const listingTemplateProps = {
   breadcrumb: (
-    <OdsBreadcrumb>
-      <OdsBreadcrumbItem href="/vrack-services" label="Vrack Services" />
-      <OdsBreadcrumbItem href="/vrs-abc-def-ghi" label="vrs-abc-def-ghi" />
-    </OdsBreadcrumb>
+    <OsdsBreadcrumb
+      className="flex-start"
+      items={[
+        { label: 'vRack Services', href: '/vrack-services' },
+        { label: 'vrs-abc-def-ghi', href: '/vrs-abc-def-ghi' },
+      ]}
+    />
   ),
   header: {
     title: 'Vrack Services',
@@ -114,10 +128,13 @@ export const listingTemplateProps = {
 
 const dashboardTemplateProps = {
   breadcrumb: (
-    <OdsBreadcrumb>
-      <OdsBreadcrumbItem href="/vrack-services" label="Vrack Services" />
-      <OdsBreadcrumbItem href="/vrs-abc-def-ghi" label="vrs-abc-def-ghi" />
-    </OdsBreadcrumb>
+    <OsdsBreadcrumb
+      className="flex-start"
+      items={[
+        { label: 'vRack Services', href: '/vrack-services' },
+        { label: 'vrs-abc-def-ghi', href: '/vrs-abc-def-ghi' },
+      ]}
+    />
   ),
   header: {
     title: 'Vrack Services',
@@ -141,40 +158,37 @@ const dashboardTemplateProps = {
     />
   ),
   tabs: (
-    <OdsTabs>
-      <OdsTab is-selected="true" id="tab1">
-        Informations générales
-      </OdsTab>
-      <OdsTab id="tab2">Tabs 2</OdsTab>
-    </OdsTabs>
+    <>
+      <OsdsTabs>
+        <OsdsTabBar slot="top">
+          <OsdsTabBarItem panel="tab1" role="tab">
+            Informations générales
+          </OsdsTabBarItem>
+          <OsdsTabBarItem panel="tab2" role="tab">
+            Tabs 2
+          </OsdsTabBarItem>
+        </OsdsTabBar>
+      </OsdsTabs>
+      <OsdsDivider separator size={ODS_DIVIDER_SIZE.zero} />
+    </>
   ),
   children: (
     <DashboardGridLayout>
-      <DashboardTile
-        key={1}
-        title="General info"
-        items={[
-          { id: '1', label: 'Name', value: 'name 1' },
-          { id: '2', label: 'Service ID', value: 'xxxx-128875' },
-          { id: '3', label: 'Datacentre location', value: 'Paris Roubaix' },
-        ]}
-      />
-      <DashboardTile
-        key={2}
-        title="Configuration"
-        items={[
-          { id: '1', label: 'Quota', value: <div>Quota description</div> },
-        ]}
-      />
-      <DashboardTile
-        key={3}
-        title="Billing"
-        items={[
-          { id: '1', label: 'Creation date', value: '15 July 2022' },
-          { id: '2', label: 'Next payment', value: '1 February 2023' },
-          { id: '3', label: 'Contact', value: 'Manager contact' },
-        ]}
-      />
+      <OsdsTile rounded>
+        <span slot="start">
+          <Headers subtitle="Tile 1" />
+        </span>
+      </OsdsTile>
+      <OsdsTile rounded>
+        <span slot="start">
+          <Headers subtitle="Tile 2" />
+        </span>
+      </OsdsTile>
+      <OsdsTile rounded>
+        <span slot="start">
+          <Headers subtitle="Tile 3" />
+        </span>
+      </OsdsTile>
     </DashboardGridLayout>
   ),
 };

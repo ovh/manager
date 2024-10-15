@@ -4,13 +4,17 @@ import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
+  ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import {
-  OdsButton,
-  OdsPopover,
-  OdsInput,
+  OsdsButton,
+  OsdsIcon,
+  OsdsPopoverContent,
+  OsdsSearchBar,
+  OsdsPopover,
 } from '@ovhcloud/ods-components/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { FilterAdd } from './filter-add.component';
 import { FilterList } from './filter-list.component';
 import { useColumnFilters } from './useColumnFilters';
@@ -22,55 +26,52 @@ const FiltersStory = () => {
   return (
     <>
       <div className="flex justify-center">
-        <span></span>
-        <OdsInput
-          name="ods-input-username"
-          className="w-[30%] mr-2"
+        <OsdsSearchBar
+          className="w-[30%] mr-5"
           value={searchField}
-          onOdsChange={({ detail }) => setSearchField(detail.value as string)}
-        />
-        <OdsButton
-          label=""
-          icon={ODS_ICON_NAME.magnifyingGlass}
-          className="mr-5"
-          size={ODS_BUTTON_SIZE.sm}
-          onClick={() => {
+          onOdsSearchSubmit={({ detail }) => {
             addFilter({
               key: 'username',
-              value: searchField,
+              value: detail.inputValue,
               comparator: FilterComparator.Includes,
               label: 'Username',
             });
             setSearchField('');
           }}
         />
-        <div id="popover-trigger">
-          <OdsButton
+        <OsdsPopover>
+          <OsdsButton
             slot="popover-trigger"
             size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.outline}
-            icon={ODS_ICON_NAME.filter}
-            label="Filter"
-          />
-        </div>
-
-        <OdsPopover triggerId="popover-trigger" with-arrow="true">
-          <FilterAdd
-            columns={[
-              {
-                id: 'username',
-                label: 'Username',
-                comparators: FilterCategories.String,
-              },
-            ]}
-            onAddFilter={(addedFilter, column) => {
-              addFilter({
-                ...addedFilter,
-                label: column.label,
-              });
-            }}
-          />
-        </OdsPopover>
+            color={ODS_THEME_COLOR_INTENT.primary}
+            variant={ODS_BUTTON_VARIANT.stroked}
+          >
+            <OsdsIcon
+              name={ODS_ICON_NAME.FILTER}
+              size={ODS_ICON_SIZE.xs}
+              className="mr-2"
+              color={ODS_THEME_COLOR_INTENT.primary}
+            />
+            Filter
+          </OsdsButton>
+          <OsdsPopoverContent>
+            <FilterAdd
+              columns={[
+                {
+                  id: 'username',
+                  label: 'Username',
+                  comparators: FilterCategories.String,
+                },
+              ]}
+              onAddFilter={(addedFilter, column) => {
+                addFilter({
+                  ...addedFilter,
+                  label: column.label,
+                });
+              }}
+            />
+          </OsdsPopoverContent>
+        </OsdsPopover>
       </div>
       <div className="my-5">
         <FilterList filters={filters} onRemoveFilter={removeFilter} />

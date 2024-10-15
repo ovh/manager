@@ -1,3 +1,5 @@
+import { screen } from '@testing-library/react';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { Links, LinkType } from './links.component';
 import { render } from '../../../utils/test.provider';
 
@@ -8,8 +10,11 @@ describe('Links component', () => {
       href: 'https://www.example.com',
       type: LinkType.back,
     };
-    const { container } = render(<Links {...props} />);
-    const linkElement = container.querySelector('[label="Back to the list"]');
+
+    render(<Links {...props} />);
+
+    const linkElement = screen.getByText('Back to the list');
+
     expect(linkElement).toBeInTheDocument();
   });
 
@@ -19,20 +24,22 @@ describe('Links component', () => {
       href: 'https://www.example.com',
       type: LinkType.next,
     };
-    const { container } = render(<Links {...props} />);
-    const linkElement = container.querySelector('[label="Next Page"]');
+
+    render(<Links {...props} />);
+    const linkElement = screen.getByText('Next Page');
+
     expect(linkElement).toBeInTheDocument();
   });
   it('renders a external link correctly', () => {
     const props = {
       href: 'https://www.ovhcloud.com/',
-      target: '_blank',
+      target: OdsHTMLAnchorElementTarget._blank,
       label: 'External Page',
       type: LinkType.external,
     };
 
-    const { container } = render(<Links {...props} />);
-    const linkElement = container.querySelector('[label="External Page"]');
+    render(<Links {...props} />);
+    const linkElement = screen.getByText('External Page');
 
     expect(linkElement).toBeInTheDocument();
   });
