@@ -20,25 +20,6 @@
 <p data-translate="hosting_multisite_git_association_configure_description"></p>
 
 <form class="form-inline" name="$ctrl.gitAssociationForm">
-    <div
-        data-ng-if="$ctrl.model.repositoryUrl && !$ctrl.model.repositoryUrl.startsWith('https://')"
-    >
-        <h3 data-translate="hosting_multisite_git_association_ssh_key"></h3>
-        <p
-            data-translate="hosting_multisite_git_association_ssh_key_description"
-        ></p>
-        <div class="row">
-            <oui-field
-                class="col-md-4"
-                data-label="{{ ::'hosting_multisite_git_association_ssh_key' | translate }}"
-            >
-                <oui-clipboard
-                    name="sshKey"
-                    data-model=":: $ctrl.sshKey"
-                ></oui-clipboard>
-            </oui-field>
-        </div>
-    </div>
     <h3 data-translate="hosting_multisite_git_association_configure"></h3>
 
     <oui-message type="info">
@@ -127,6 +108,26 @@
                 ></small>
             </div>
         </oui-field>
+    </div>
+
+    <div
+        data-ng-if="$ctrl.model.repositoryUrl && !$ctrl.model.repositoryUrl.startsWith('https://')"
+    >
+        <h3 data-translate="hosting_multisite_git_association_ssh_key"></h3>
+        <p
+            data-translate="hosting_multisite_git_association_ssh_key_description"
+        ></p>
+        <div class="row">
+            <oui-field
+                class="col-md-4"
+                data-label="{{ ::'hosting_multisite_git_association_ssh_key' | translate }}"
+            >
+                <oui-clipboard
+                    name="sshKey"
+                    data-model=":: $ctrl.sshKey"
+                ></oui-clipboard>
+            </oui-field>
+        </div>
     </div>
 
     <h3 data-translate="hosting_multisite_git_association_configure_auto"></h3>
