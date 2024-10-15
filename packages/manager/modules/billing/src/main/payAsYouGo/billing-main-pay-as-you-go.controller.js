@@ -1,4 +1,3 @@
-import find from 'lodash/find';
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import map from 'lodash/map';
@@ -6,20 +5,13 @@ import set from 'lodash/set';
 
 export default class BillingMainPayAsYouGoCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    Alerter,
-    OvhApiMe,
-    OvhApiServices,
-    ServicesHelper,
-  ) {
+  constructor($q, $translate, Alerter, OvhApiMe, iceberg, ServicesHelper) {
     // injections
     this.$q = $q;
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.OvhApiMe = OvhApiMe;
-    this.OvhApiServices = OvhApiServices;
+    this.iceberg = iceberg;
     this.ServicesHelper = ServicesHelper;
 
     // other attributes
@@ -56,14 +48,17 @@ export default class BillingMainPayAsYouGoCtrl {
     return this.$q
       .all({
         consumptions: this.OvhApiMe.v6().consumption().$promise,
-        services: this.OvhApiServices.v6().query().$promise,
+        services: this.iceberg('/services')
+          .query()
+          .expand('CachedObjectList-Pages')
+          .execute().$promise,
       })
-      .then(({ consumptions, services }) => {
-        const projectPromises = map(consumptions, (consumption) => {
+      .then(({ consumptions, services: { data: services } }) => {
+        const projectPromises = consumptions.map((consumption) => {
           const associatedService =
-            find(services, {
-              serviceId: consumption.serviceId,
-            }) || {};
+            (services || []).find(
+              (service) => service.serviceId === consumption.serviceId,
+            ) || {};
 
           return this.ServicesHelper.getServiceDetails(associatedService).then(
             (details) => {
