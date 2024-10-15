@@ -6,21 +6,30 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useDeleteL7Rule } from '@/api/hook/useL7Rule';
+import {
+  useDeletePoolMember,
+  useGetPoolMember,
+} from '@/api/hook/usePoolMember';
 
 export default function DeletePage() {
   const { addSuccess, addError } = useNotifications();
-  const { t: tDelete } = useTranslation('l7/rules/delete');
+  const { t: tDelete } = useTranslation('pools/members/delete');
   const navigate = useNavigate();
-  const { projectId, policyId, region, ruleId } = useParams();
+  const { projectId, poolId, region, memberId } = useParams();
   const onClose = () => {
     navigate('..');
   };
-  const { deleteL7Rule, isPending: isPendingDelete } = useDeleteL7Rule({
+  const { data: poolMember, isPending: isPendingPoolMember } = useGetPoolMember(
+    projectId,
+    poolId,
+    region,
+    memberId,
+  );
+  const { deletePoolMember, isPending: isPendingDelete } = useDeletePoolMember({
     projectId,
     region,
-    policyId,
-    ruleId,
+    poolId,
+    memberId,
     onError(error: ApiError) {
       addError(
         <Translation ns="octavia-load-balancer">
@@ -37,8 +46,12 @@ export default function DeletePage() {
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="l7/rules/delete">
-          {(_t) => _t('octavia_load_balancer_list_l7_rules_delete_success')}
+        <Translation ns="pools/members">
+          {(_t) =>
+            _t('octavia_load_balancer_pools_detail_members_delete_success', {
+              member: poolMember?.name,
+            })
+          }
         </Translation>,
         true,
       );
@@ -47,7 +60,7 @@ export default function DeletePage() {
   });
 
   const onConfirm = () => {
-    deleteL7Rule();
+    deletePoolMember();
   };
 
   const onCancel = () => {
@@ -56,21 +69,23 @@ export default function DeletePage() {
 
   return (
     <DeletionModal
-      title={tDelete('octavia_load_balancer_list_l7_rules_delete_title')}
+      title={tDelete('octavia_load_balancer_pools_members_delete_title')}
       onConfirm={onConfirm}
       onClose={onClose}
       onCancel={onCancel}
-      isPending={isPendingDelete}
+      isPending={isPendingDelete || isPendingPoolMember}
       type="warning"
-      submitText={tDelete('octavia_load_balancer_list_l7_rules_delete_confirm')}
-      cancelText={tDelete('octavia_load_balancer_list_l7_rules_delete_cancel')}
+      submitText={tDelete('octavia_load_balancer_pools_members_delete_confirm')}
+      cancelText={tDelete('octavia_load_balancer_pools_members_delete_cancel')}
     >
       <OsdsText
         level={ODS_TEXT_LEVEL.body}
         color={ODS_THEME_COLOR_INTENT.text}
         size={ODS_TEXT_SIZE._400}
       >
-        {tDelete('octavia_load_balancer_list_l7_rules_delete_description')}
+        {tDelete('octavia_load_balancer_pools_members_delete_description', {
+          member: poolMember?.name,
+        })}
       </OsdsText>
     </DeletionModal>
   );

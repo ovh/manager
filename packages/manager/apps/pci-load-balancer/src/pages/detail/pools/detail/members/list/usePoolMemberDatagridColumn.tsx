@@ -5,8 +5,8 @@ import {
 import { useTranslation } from 'react-i18next';
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
-import ActionsComponent from '@/components/detail/listeners/l7/rules/Actions.component';
 import { TPoolMember } from '@/api/data/pool-member';
+import ActionsComponent from '@/components/detail/pools/members/Actions.component';
 
 export const usePoolMemberDatagridColumn = () => {
   const { t: tLoadBalancer } = useTranslation('octavia-load-balancer');
@@ -59,7 +59,7 @@ export const usePoolMemberDatagridColumn = () => {
       id: 'actions',
       cell: (props: TPoolMember) => (
         <div className="min-w-16">
-          <ActionsComponent l7RulesId={props.id} />
+          <ActionsComponent memberId={props.id} />
         </div>
       ),
       label: '',
