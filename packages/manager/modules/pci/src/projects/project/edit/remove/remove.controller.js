@@ -57,7 +57,9 @@ export default class {
         .then(({ data }) => {
           this.isLoading = false;
           if (data.length) {
-            const activePlan = data.some((p) => p.status === 'ACTIVE');
+            const activePlan = data.some(
+              (p) => p.status === 'ACTIVE' || p.status === 'PENDING',
+            );
             if (activePlan) {
               this.canDeleteProject = false;
             }
