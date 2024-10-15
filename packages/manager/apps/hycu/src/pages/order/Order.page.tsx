@@ -37,6 +37,7 @@ export default function Order() {
     >
       {!isOrderInitiated ? (
         <PackSelection
+          orderLink={orderLink}
           subsidiary={subsidiary}
           selectPack={(pack) => setSelectedPack(pack)}
           selectedPack={selectedPack}
