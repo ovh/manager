@@ -29,6 +29,8 @@ export const ROUTE_PATHS = {
   POOL_LIST: 'list',
   POOL_DELETE: 'delete',
   POOL_DETAIL: ':region/:loadBalancerId/pools/:poolId',
+  POOL_MEMBERS: 'members',
+  POOL_MEMBERS_LIST: 'list',
   STATISTICS: 'statistics',
   CERTIFICATES: 'certificates',
   LOGS: 'logs',
@@ -87,6 +89,12 @@ const ListenersEditPage = lazy(() =>
 );
 
 const PoolsPage = lazy(() => import('@/pages/detail/pools/Pools.page'));
+const PoolsMembersListPage = lazy(() =>
+  import('@/pages/detail/pools/detail/members/list/List.page'),
+);
+const PoolsMembersPage = lazy(() =>
+  import('@/pages/detail/pools/detail/members/Member.page'),
+);
 const PoolsCreatePage = lazy(() =>
   import('@/pages/detail/pools/create/PoolsCreate.page'),
 );
@@ -138,6 +146,7 @@ const Routes = (
     </Route>
     <Route path={ROUTE_PATHS.L7_RULES} Component={L7RulesPage}>
       <Route path="" element={<Navigate to={ROUTE_PATHS.L7_RULES_LIST} />} />
+      <Route path={ROUTE_PATHS.L7_RULES_CREATE} Component={L7RulesCreatePage} />
       <Route path={ROUTE_PATHS.L7_RULES_EDIT} Component={L7RulesEditPage} />
       <Route path={ROUTE_PATHS.L7_RULES_LIST} Component={L7PRulesListPage}>
         <Route
@@ -155,6 +164,16 @@ const Routes = (
         path=""
         element={<Navigate to={ROUTE_PATHS.GENERAL_INFORMATION} />}
       />
+      <Route path={ROUTE_PATHS.POOL_MEMBERS} Component={PoolsMembersPage}>
+        <Route
+          path=""
+          element={<Navigate to={ROUTE_PATHS.POOL_MEMBERS_LIST} />}
+        />
+        <Route
+          path={ROUTE_PATHS.POOL_MEMBERS_LIST}
+          Component={PoolsMembersListPage}
+        ></Route>
+      </Route>
       <Route
         id="pools-detail-general-information"
         path={ROUTE_PATHS.GENERAL_INFORMATION}
