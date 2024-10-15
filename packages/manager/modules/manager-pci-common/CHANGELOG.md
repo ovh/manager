@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.7.0...@ovh-ux/manager-pci-common@0.7.1) (2024-10-15)
+
+
+### Reverts
+
+* Revert "feat(manager-react-components): update generator" ([f82658c](https://github.com/ovh/manager/commit/f82658c229a7880b01fcdcdab93e73f60ff7ad89))
+* Revert "fix(manager-react-components): fix bump ods 18 issues" ([fb0e56d](https://github.com/ovh/manager/commit/fb0e56d4e7f64d0ebe8f6ae8036384403cd678b7))
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.6.2...@ovh-ux/manager-pci-common@0.7.0) (2024-10-11)
 
 

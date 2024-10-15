@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "version": "1.38.0",
+  "version": "1.38.1",
   "main": "src/lib.ts",
   "repository": {
     "type": "git",

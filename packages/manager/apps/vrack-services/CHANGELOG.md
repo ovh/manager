@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.8.17...@ovh-ux/manager-vrack-services-app@0.8.18) (2024-10-15)
+
+
+### Reverts
+
+* Revert "fix(manager-react-components): fix bump ods 18 issues" ([fb0e56d](https://github.com/ovh/manager/commit/fb0e56d4e7f64d0ebe8f6ae8036384403cd678b7))
+
+
+
+
+
 ## [0.8.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.8.16...@ovh-ux/manager-vrack-services-app@0.8.17) (2024-10-11)
 
 
