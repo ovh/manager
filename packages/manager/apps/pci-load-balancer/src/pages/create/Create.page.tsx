@@ -1,6 +1,8 @@
 import {
   OsdsBreadcrumb,
+  OsdsButton,
   OsdsFormField,
+  OsdsInput,
   OsdsLink,
   OsdsMessage,
   OsdsSelect,
@@ -14,12 +16,15 @@ import {
   TilesInputComponent,
   useCatalogPrice,
   useMe,
+  useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { useHref, useParams } from 'react-router-dom';
+import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { useCatalog, useProject } from '@ovh-ux/manager-pci-common';
 import { Translation, useTranslation } from 'react-i18next';
 import {
+  ODS_BUTTON_VARIANT,
+  ODS_INPUT_TYPE,
   ODS_MESSAGE_TYPE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
@@ -29,29 +34,40 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { clsx } from 'clsx';
-import { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import SizeInputComponent from '@/pages/create/SizeInput.component';
 import {
   AGORA_FLOATING_IP_REGEX,
   FLOATING_IP_TYPE,
   GETTING_STARTED_LINK,
+  LOAD_BALANCER_NAME_REGEX,
   MAX_INSTANCES_BY_LISTENER,
   MAX_LISTENER,
   NETWORK_PRIVATE_VISIBILITY,
   PRODUCT_LINK,
   REGION_AVAILABILITY_LINK,
 } from '@/constants';
-import { StepsEnum, useNewLoadBalancerStore } from '@/pages/create/store';
+import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { TRegion, useGetRegions } from '@/api/hook/usePlans';
-import { useGetFloatingIps, useGetRegionNetworks } from '@/api/hook/useRegion';
-import { useGetPrivateNetworkSubnets } from '@/api/hook/useNetwork';
+import {
+  useGetPrivateNetworkSubnets,
+  useGetRegionPrivateNetworks,
+} from '@/api/hook/useNetwork';
 import { InstanceTable } from '@/components/create/InstanceTable.component';
+import { useGetFloatingIps } from '@/api/hook/useFloatingIps';
+import { useGetSubnetGateways } from '@/api/hook/gateways';
+import { useGetFlavor } from '@/api/hook/flavors';
 
 type TState = {
   selectedContinent: string | undefined;
+  isNameTouched: boolean;
 };
 
 export default function CreatePage(): JSX.Element {
+  const navigate = useNavigate();
+  const { addSuccess, addError } = useNotifications();
+
   const projectHref = useProjectUrl('public-cloud');
 
   const backHref = useHref('..');
@@ -65,17 +81,18 @@ export default function CreatePage(): JSX.Element {
 
   const { getFormattedHourlyCatalogPrice } = useCatalogPrice(5);
 
-  const store = useNewLoadBalancerStore();
+  const store = useCreateStore();
 
   const [state, setState] = useState<TState>({
     selectedContinent: undefined,
+    isNameTouched: false,
   });
 
   const { me } = useMe();
 
   const { data: project } = useProject();
   const { data: catalog } = useCatalog();
-  const { data: privateNetworks } = useGetRegionNetworks(
+  const { data: privateNetworks } = useGetRegionPrivateNetworks(
     projectId,
     store.region?.name,
   );
@@ -89,45 +106,67 @@ export default function CreatePage(): JSX.Element {
     store.privateNetwork?.id,
   );
 
+  const {
+    data: subnetGateways,
+    isPending: isSubnetGatewaysPending,
+  } = useGetSubnetGateways(projectId, store.region?.name, store.subnet?.id);
+
   const regions = useGetRegions(projectId);
 
-  const [floatingIpsList, privateNetworksList] = [
-    [
-      {
-        associatedEntity: '',
-        id: 'create',
-        ip: tCreate(
-          'octavia_load_balancer_create_floating_ip_field_new_floating_ip',
-        ),
-        networkId: '',
-        status: '',
-        type: '',
-      },
-      {
-        associatedEntity: '',
-        id: 'none',
-        ip: tCreate(
-          'octavia_load_balancer_create_floating_ip_field_no_floating_ip',
-        ),
-        networkId: '',
-        status: '',
-        type: '',
-      },
-      ...(floatingIps || []),
-    ],
-    (privateNetworks || []).filter(
-      (network) => network.visibility === NETWORK_PRIVATE_VISIBILITY,
-    ),
-  ];
+  const { data: flavor } = useGetFlavor(
+    projectId,
+    store.region?.name,
+    store.size,
+  );
 
-  const subnetsList = useMemo(() => {
-    if (!subnets) {
-      return [];
-    }
-    return store.publicIp?.type !== FLOATING_IP_TYPE.NO_IP
-      ? subnets.filter((subnet) => subnet.gatewayIp)
-      : subnets;
-  }, [subnets, store.publicIp]);
+  const [floatingIpsList, privateNetworksList, subnetsList] = [
+    useMemo(
+      () => [
+        {
+          associatedEntity: null,
+          id: 'create',
+          ip: tCreate(
+            'octavia_load_balancer_create_floating_ip_field_new_floating_ip',
+          ),
+          networkId: '',
+          status: '',
+          type: FLOATING_IP_TYPE.CREATE,
+        },
+        {
+          associatedEntity: null,
+          id: 'none',
+          ip: tCreate(
+            'octavia_load_balancer_create_floating_ip_field_no_floating_ip',
+          ),
+          networkId: '',
+          status: '',
+          type: FLOATING_IP_TYPE.NO_IP,
+        },
+        ...(floatingIps || [])
+          .filter((ip) => !ip.associatedEntity)
+          .map((ip) => ({
+            ...ip,
+            type: FLOATING_IP_TYPE.IP,
+          })),
+      ],
+      [floatingIps],
+    ),
+    useMemo(
+      () =>
+        (privateNetworks || []).filter(
+          (network) => network.visibility === NETWORK_PRIVATE_VISIBILITY,
+        ),
+      [privateNetworks],
+    ),
+    useMemo(() => {
+      if (!subnets) {
+        return [];
+      }
+      return store.publicIp?.type !== FLOATING_IP_TYPE.NO_IP
+        ? subnets.filter((subnet) => subnet.gatewayIp)
+        : subnets;
+    }, [subnets, store.publicIp]),
+  ];
 
   const [productPageLink, regionPageLink, gettingStartedLink] = [
     PRODUCT_LINK[me?.ovhSubsidiary] || PRODUCT_LINK.DEFAULT,
@@ -135,6 +174,62 @@ export default function CreatePage(): JSX.Element {
       REGION_AVAILABILITY_LINK.DEFAULT,
     GETTING_STARTED_LINK[me?.ovhSubsidiary] || GETTING_STARTED_LINK.DEFAULT,
   ];
+
+  useEffect(() => {
+    store.set.projectId(projectId);
+  }, []);
+
+  useEffect(() => {
+    if (floatingIpsList.length > 0) {
+      store.set.publicIp(floatingIpsList[0]);
+    }
+  }, [floatingIpsList]);
+
+  useEffect(() => {
+    if (privateNetworksList.length > 0) {
+      store.set.privateNetwork(privateNetworksList[0]);
+    }
+  }, [privateNetworksList]);
+
+  useEffect(() => {
+    if (subnetsList.length > 0) {
+      store.set.subnet(subnetsList[0]);
+    }
+  }, [subnetsList]);
+
+  useEffect(() => {
+    store.set.gateways(subnetGateways || []);
+  }, [subnetGateways]);
+
+  const create = async () => {
+    await store.create(
+      flavor,
+      () => {
+        addSuccess(
+          <Translation ns="pools">
+            {(_t) => _t('octavia_load_balancer_create_banner')}
+          </Translation>,
+          false,
+        );
+        navigate('..');
+      },
+      (error: ApiError) => {
+        console.log(error);
+
+        addError(
+          <Translation ns="create">
+            {(_t) =>
+              _t('octavia_load_balancer_global_error', {
+                // message: error.data.message,
+                // requestId: error.headers('X-Ovh-Queryid'),
+              })
+            }
+          </Translation>,
+          false,
+        );
+      },
+    );
+  };
 
   return (
     <>
@@ -510,7 +605,7 @@ export default function CreatePage(): JSX.Element {
               store.check(StepsEnum.INSTANCE);
               store.lock(StepsEnum.INSTANCE);
 
-              store.open(StepsEnum.INSTANCE);
+              store.open(StepsEnum.NAME);
             },
             label: tCommon('common_stepper_next_button_label'),
           }}
@@ -585,10 +680,82 @@ export default function CreatePage(): JSX.Element {
             className="mt-4"
             projectId={projectId}
             region={store.region?.name}
-            onChange={(config) => {
-              store.set.listeners(config);
+            onChange={(listeners) => {
+              store.set.listeners(listeners);
             }}
           />
+        </StepComponent>
+        <StepComponent
+          title={tCreate('octavia_load_balancer_create_name_field_label')}
+          isOpen={store.steps.get(StepsEnum.NAME).isOpen}
+          isChecked={store.steps.get(StepsEnum.NAME).isChecked}
+          isLocked={store.steps.get(StepsEnum.NAME).isLocked}
+          order={6}
+        >
+          <OsdsFormField
+            className="mt-8"
+            inline
+            error={
+              state.isNameTouched &&
+              (!store.name.match(LOAD_BALANCER_NAME_REGEX) ||
+                store.name.length > 70)
+                ? tCommon('common_field_error_pattern')
+                : ''
+            }
+          >
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              size={ODS_TEXT_SIZE._100}
+              level={ODS_TEXT_LEVEL.subheading}
+              slot="label"
+            >
+              {tCreate('octavia_load_balancer_create_name_field_label')}
+            </OsdsText>
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              size={ODS_TEXT_SIZE._100}
+              level={ODS_TEXT_LEVEL.subheading}
+              slot="helper"
+            >
+              {tCreate('octavia_load_balancer_create_name_field_help')}
+            </OsdsText>
+            <OsdsInput
+              value={store.name}
+              type={ODS_INPUT_TYPE.text}
+              onOdsValueChange={(event) =>
+                store.set.name(event.target.value as string)
+              }
+              className={
+                state.isNameTouched &&
+                (!store.name.match(LOAD_BALANCER_NAME_REGEX) ||
+                  store.name.length > 70)
+                  ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
+                  : 'border-color-[var(--ods-color-default-200)] bg-white'
+              }
+              onOdsInputBlur={() => {
+                setState({
+                  ...state,
+                  isNameTouched: true,
+                });
+              }}
+            />
+          </OsdsFormField>
+          <div className="mt-8">
+            <OsdsButton
+              inline
+              color={ODS_THEME_COLOR_INTENT.info}
+              onClick={create}
+            >
+              {tCreate('octavia_load_balancer_create_title')}
+            </OsdsButton>
+            <OsdsButton
+              inline
+              variant={ODS_BUTTON_VARIANT.ghost}
+              color={ODS_THEME_COLOR_INTENT.info}
+            >
+              {tCommon('common_cancel')}
+            </OsdsButton>
+          </div>
         </StepComponent>
       </div>
     </>
