@@ -10,7 +10,7 @@ import {
 } from '@/pages/dashboard/organization/OrganizationDashboard.constants';
 import BackupTileItem from './backup-tile-item/BackupTileItem.component';
 
-export default function DataProtectionTile() {
+export default function OrganizationDataProtectionTile() {
   const { t } = useTranslation('dashboard');
 
   return (
