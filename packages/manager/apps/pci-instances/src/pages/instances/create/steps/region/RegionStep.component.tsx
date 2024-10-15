@@ -11,7 +11,7 @@ import {
   useCatalog,
 } from '@/data/hooks/catalog/useCatalog';
 import { useAppStore } from '@/store/hooks/useAppStore';
-import { TStep, TStepId } from '@/store/slices/stepper.slice';
+import { TStepId } from '@/store/slices/stepper.slice';
 import { useActivateRegion } from '@/data/hooks/region/useActivateRegion';
 import queryClient from '@/queryClient';
 import { StepTitle } from './StepTitle.component';
@@ -20,16 +20,6 @@ import { StepContent } from './StepContent.component';
 type TgetRegionActivatedStatus = 'loading' | 'success' | 'error';
 
 const regionStepId: TStepId = 'region';
-const validatedRegionStepState: Partial<TStep> = {
-  isChecked: true,
-  isLocked: true,
-  isOpen: false,
-};
-const editedRegionStepState: Partial<TStep> = {
-  isChecked: false,
-  isLocked: false,
-  isOpen: true,
-};
 
 export const RegionStep: FC = () => {
   const { t } = useTranslation(['regions', 'stepper']);
@@ -44,17 +34,19 @@ export const RegionStep: FC = () => {
 
   const {
     modelName,
-    stepStateById,
+    stepById,
     selectedRegion,
     setRegion,
-    updateStep,
+    editStep,
+    validateStep,
   } = useAppStore(
     useShallow((state) => ({
       modelName: state.modelName(),
-      stepStateById: state.stepStateById(),
-      updateStep: state.updateStep,
+      stepById: state.stepById(),
       selectedRegion: state.region(),
       setRegion: state.setRegion,
+      editStep: state.editStep,
+      validateStep: state.validateStep,
     })),
   );
   const { data } = useCatalog<'regionSelector'>(projectId, {
@@ -74,15 +66,15 @@ export const RegionStep: FC = () => {
     (regionName: string) => {
       clearNotifications();
       updateCatalogQueryData(queryClient, projectId, regionName);
-      addSuccess(getRegionActivationdMessage('success'));
-      updateStep(regionStepId, validatedRegionStepState);
+      addSuccess(getRegionActivationdMessage('success'), true);
+      validateStep(regionStepId);
     },
     [
       addSuccess,
       clearNotifications,
       getRegionActivationdMessage,
       projectId,
-      updateStep,
+      validateStep,
     ],
   );
 
@@ -103,9 +95,7 @@ export const RegionStep: FC = () => {
     if (isPending) addInfo(getRegionActivationdMessage('loading'));
   }, [addInfo, getRegionActivationdMessage, isPending]);
 
-  const regionStepState = useMemo(() => stepStateById(regionStepId), [
-    stepStateById,
-  ]);
+  const regionStep = useMemo(() => stepById(regionStepId), [stepById]);
 
   const isSelectedRegionActivated = useMemo(
     (): boolean =>
@@ -135,7 +125,7 @@ export const RegionStep: FC = () => {
       if (!isSelectedRegionActivated) {
         activateRegion(selectedRegion.name);
       } else {
-        updateStep(regionStepId, validatedRegionStepState);
+        validateStep(regionStepId);
       }
     }
   }, [
@@ -143,15 +133,14 @@ export const RegionStep: FC = () => {
     clearNotifications,
     isSelectedRegionActivated,
     selectedRegion,
-    updateStep,
+    validateStep,
   ]);
 
   const handleEditStep = useCallback(
     (id: string) => {
-      clearNotifications();
-      updateStep(id as TStepId, editedRegionStepState);
+      editStep(id as TStepId);
     },
-    [clearNotifications, updateStep],
+    [editStep],
   );
 
   useEffect(() => {
@@ -168,18 +157,24 @@ export const RegionStep: FC = () => {
     handleRegionActivationLoading,
   ]);
 
+  useEffect(() => {
+    if (regionStep?.isOpen) {
+      clearNotifications();
+    }
+  }, [regionStep?.isOpen, clearNotifications]);
+
   return (
     <div>
       <StepComponent
         id={regionStepId}
-        isOpen={!!regionStepState?.isOpen}
-        isChecked={!!regionStepState?.isChecked}
-        isLocked={!!regionStepState?.isLocked}
-        order={2}
+        isOpen={!!regionStep?.isOpen}
+        isChecked={!!regionStep?.isChecked}
+        isLocked={!!regionStep?.isLocked}
+        order={regionStep?.order ?? 2}
         title={
           <StepTitle
             isNotificationOpen={!!(isSuccess && notifications.length)}
-            regionStepState={regionStepState}
+            regionStep={regionStep}
           />
         }
         {...(!isPending && {
@@ -189,7 +184,7 @@ export const RegionStep: FC = () => {
             isDisabled: !selectedRegion,
           },
         })}
-        {...(regionStepState?.isChecked && {
+        {...(regionStep?.isChecked && {
           edit: {
             action: handleEditStep,
             label: t('stepper:pci_instances_stepper_edit_step_label'),

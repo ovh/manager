@@ -13,26 +13,11 @@ import { useCatalog } from '@/data/hooks/catalog/useCatalog';
 import { TModelPricing, TPriceInterval } from '@/types/catalog/entity.types';
 import { DeepReadonly } from '@/types/utils.type';
 import { useAppStore } from '@/store/hooks/useAppStore';
-import { TStep, TStepId } from '@/store/slices/stepper.slice';
+import { TStepId } from '@/store/slices/stepper.slice';
 import { StepTitle } from './StepTitle.component';
 import { StepContent } from './StepContent.component';
 
 const modelStepId: TStepId = 'model';
-const validatedModelStepState: Partial<TStep> = {
-  isChecked: true,
-  isLocked: true,
-  isOpen: false,
-};
-const editedModelStepState: Partial<TStep> = {
-  isChecked: false,
-  isLocked: false,
-  isOpen: true,
-};
-const regionStepOpen: Partial<TStep> = {
-  isOpen: true,
-  isLocked: false,
-  isChecked: false,
-};
 
 const getModelPriceByInterval = (
   pricings: DeepReadonly<TModelPricing[]>,
@@ -55,11 +40,12 @@ export const ModelStep: FC = () => {
     },
   );
 
-  const { stepStateById, modelName, updateStep } = useAppStore(
+  const { stepById, modelName, editStep, validateStep } = useAppStore(
     useShallow((state) => ({
-      stepStateById: state.stepStateById(),
+      stepById: state.stepById(),
       modelName: state.modelName(),
-      updateStep: state.updateStep,
+      editStep: state.editStep,
+      validateStep: state.validateStep,
     })),
   );
 
@@ -105,24 +91,20 @@ export const ModelStep: FC = () => {
     [handleRefetch, t],
   );
 
-  const modelStepState = useMemo(() => stepStateById(modelStepId), [
-    stepStateById,
-  ]);
+  const modelStep = useMemo(() => stepById(modelStepId), [stepById]);
 
   const handleNextStep = useCallback(
     (id: string) => {
-      updateStep(id as TStepId, validatedModelStepState);
-      updateStep('region', regionStepOpen);
+      validateStep(id as TStepId);
     },
-    [updateStep],
+    [validateStep],
   );
 
   const handleEditStep = useCallback(
     (id: string) => {
-      updateStep(id as TStepId, editedModelStepState);
-      updateStep('region', { isOpen: false });
+      editStep(id as TStepId);
     },
-    [updateStep],
+    [editStep],
   );
 
   const handleError = useCallback(() => {
@@ -138,13 +120,13 @@ export const ModelStep: FC = () => {
     <div>
       <StepComponent
         id={modelStepId}
-        isOpen={!!modelStepState?.isOpen}
-        isChecked={!!modelStepState?.isChecked}
-        isLocked={!!modelStepState?.isLocked}
-        order={1}
+        isOpen={!!modelStep?.isOpen}
+        isChecked={!!modelStep?.isChecked}
+        isLocked={!!modelStep?.isLocked}
+        order={modelStep?.order ?? 1}
         title={
           <StepTitle
-            modelStepState={modelStepState}
+            modelStep={modelStep}
             modelMonthlyPrice={getSelectedModelMonthlyPrice()}
           />
         }
