@@ -3,5 +3,8 @@
   "billing_autorenew_service_update_manual_non_automatic": "Dans ce mode de renouvellement, votre service n'est pas automatiquement reconduit lorsqu'il arrive à échéance.",
   "billing_autorenew_service_update_manual_expiration": "Plusieurs notifications vous seront envoyées par mails durant les semaines/jours précédant son terme, afin de vous prévenir de son expiration le {{ expiration }}.",
   "billing_autorenew_service_update_manual_renew": "Il vous suffira de renouveler votre service si vous souhaitez le conserver.",
-  "billing_autorenew_service_update_manual_warning": "Attention, une fois le service expiré, il sera immédiatement suspendu, il ne sera plus accessible, et les données liées à ce service seront définitivement supprimées au bout de quelques jours sans règlement de votre part."
+  "billing_autorenew_service_update_manual_warning": "Attention, une fois le service expiré, il sera immédiatement suspendu, il ne sera plus accessible, et les données liées à ce service seront définitivement supprimées au bout de quelques jours sans règlement de votre part.",
+  "billing_autorenew_service_update_manual_warning_banner_hosting_impact": "Attention, la désactivation du renouvellement automatique aura aussi un impact sur les produits liés à votre hébergement mutualisé.",
+  "billing_autorenew_service_update_manual_warning_banner_email_instructions": "Si vous souhaitez conserver les mails, je vous invite à dissocier ces mails dès maintenants :",
+  "billing_autorenew_service_update_manual_warning_banner_guide_link": "Lien vers guide"
 }
