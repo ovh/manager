@@ -35,6 +35,7 @@ import TileSkeleton from '@/components/tile-grid-skeleton/tile-skeleton/TileSkel
 const Welcome = lazy(() => import('@/components/welcome/Welcome.component'));
 const Banner = lazy(() => import('@/components/banner/Banner.component'));
 const Products = lazy(() => import('@/components/products/Products.component'));
+const Catalog = lazy(() => import('@/pages/layout/Catalog.component'));
 const OrderTracking = lazy(() =>
   import('@/components/hub-order-tracking/HubOrderTracking.component'),
 );
@@ -232,14 +233,16 @@ export default function Layout() {
                       )}
                     </>
                   )}
-                  <OsdsText
-                    className="inline-block my-6"
-                    level={ODS_TEXT_LEVEL.heading}
-                    size={ODS_TEXT_SIZE._700}
-                    color={ODS_THEME_COLOR_INTENT.text}
-                  >
-                    {t('manager_hub_dashboard_overview')}
-                  </OsdsText>
+                  {!isFreshCustomer && (
+                    <OsdsText
+                      className="inline-block my-6"
+                      level={ODS_TEXT_LEVEL.heading}
+                      size={ODS_TEXT_SIZE._700}
+                      color={ODS_THEME_COLOR_INTENT.text}
+                    >
+                      {t('manager_hub_dashboard_overview')}
+                    </OsdsText>
+                  )}
                   <div className="flex flex-wrap -mx-6">
                     {isLoading && <TileSkeleton />}
                     {!isLoading && !isFreshCustomer && (
@@ -302,26 +305,9 @@ export default function Layout() {
                       </Suspense>
                     )}
                     {!isLoading && isFreshCustomer && (
-                      <>
-                        {/* TODO: move these titles in the dedicated "Catalog" component */}
-                        <OsdsText
-                          className="inline-block my-6"
-                          level={ODS_TEXT_LEVEL.heading}
-                          size={ODS_TEXT_SIZE._700}
-                          color={ODS_THEME_COLOR_INTENT.text}
-                        >
-                          {t('manager_hub_catalog_title')}
-                        </OsdsText>
-                        <OsdsText
-                          className="inline-block my-6"
-                          level={ODS_TEXT_LEVEL.subheading}
-                          size={ODS_TEXT_SIZE._400}
-                          color={ODS_THEME_COLOR_INTENT.text}
-                        >
-                          {t('manager_hub_catalog_description')}
-                        </OsdsText>
-                        <div>hub-catalog-items</div>
-                      </>
+                      <Suspense fallback={<TileGridSkeleton />}>
+                        <Catalog />
+                      </Suspense>
                     )}
                   </div>
                 </div>
