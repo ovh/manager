@@ -1,0 +1,6 @@
+{
+  "octavia_load_balancer_pools_members_delete_title": "Mitglied löschen",
+  "octavia_load_balancer_pools_members_delete_description": "Möchten Sie {{ member }} wirklich löschen?",
+  "octavia_load_balancer_pools_members_delete_cancel": "Abbrechen",
+  "octavia_load_balancer_pools_members_delete_confirm": "Löschen"
+}
