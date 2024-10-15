@@ -74,9 +74,9 @@ export const UnavailableRegions: FC<TUnavailableRegionsProps> = ({
   const [checked, setChecked] = useState(false);
   const { t } = useTranslation('regions');
 
-  const { updateStep } = useAppStore(
+  const { editStep } = useAppStore(
     useShallow((state) => ({
-      updateStep: state.updateStep,
+      editStep: state.editStep,
     })),
   );
 
@@ -86,12 +86,8 @@ export const UnavailableRegions: FC<TUnavailableRegionsProps> = ({
   );
 
   const handleChangeModelClick = useCallback(() => {
-    updateStep('region', {
-      isOpen: false,
-      isLocked: true,
-    });
-    updateStep('model', { isOpen: true, isLocked: false, isChecked: false });
-  }, [updateStep]);
+    editStep('model');
+  }, [editStep]);
 
   return (
     <>
