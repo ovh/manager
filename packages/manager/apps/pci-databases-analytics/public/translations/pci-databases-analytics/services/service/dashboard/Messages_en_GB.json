@@ -26,6 +26,7 @@
   "maintenanceLink": "Manage and schedule my maintenance tasks",
   "networkTitle": "Network used",
   "networkLink": "Private network: vRack no. {{vrack}}",
+  "networkPublicTitle": "Public network (internet)",
   "priceBillingTitle": "Support &amp; Billing",
   "serviceIdLabel": "Service ID",
   "serviceIdCopyToast": "The service ID has been copied",

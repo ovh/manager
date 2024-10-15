@@ -17,7 +17,7 @@
   "actionRestore": "Restaurar",
   "restoreBackupToastErrorTitle": "Ocorreu um erro aquando do restauro do seu serviço",
   "restoreBackupToastSuccessTitle": "Êxito",
-  "restoreBackupToastSuccessDescription": "O restauro do seu serviço foi efetuado com êxito",
+  "restoreBackupToastSuccessDescription": "O restauro do serviço foi tido em conta e começará em breve.",
   "errorSourceTypeFieldInvalid": "Este tipo de ponto de restauro não está disponível para este serviço",
   "errorSourcePITFieldInvalidDate": "A data escolhida não é válida",
   "errorSourceBackupFieldEmpty": "Escolha um backup",

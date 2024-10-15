@@ -17,7 +17,7 @@
   "actionRestore": "Restore",
   "restoreBackupToastErrorTitle": "An error occurred while restoring your service",
   "restoreBackupToastSuccessTitle": "Success",
-  "restoreBackupToastSuccessDescription": "Your service has been successfully restored",
+  "restoreBackupToastSuccessDescription": "Service restoration has been processed and will begin shortly.",
   "errorSourceTypeFieldInvalid": "This restore point type is not available for this service",
   "errorSourcePITFieldInvalidDate": "The date chosen is not valid",
   "errorSourceBackupFieldEmpty": "Please choose a backup",
