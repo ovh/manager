@@ -3,6 +3,7 @@ import {
   getPrivateNetworkByRegion,
   getPrivateNetworks,
   getPrivateNetworkSubnets,
+  getRegionPrivateNetworks,
   getSubnetByNetworkAndRegion,
 } from '../data/network';
 
@@ -74,5 +75,16 @@ export const useGetPrivateNetworkSubnets = (
     ],
     queryFn: () => getPrivateNetworkSubnets(projectId, region, networkId),
     enabled: !!projectId && !!region && !!networkId,
+    throwOnError: true,
+  });
+
+export const useGetRegionPrivateNetworks = (
+  projectId: string,
+  region: string,
+) =>
+  useQuery({
+    queryKey: ['project', projectId, 'region', region, 'networks'],
+    queryFn: () => getRegionPrivateNetworks(projectId, region),
+    enabled: !!projectId && !!region,
     throwOnError: true,
   });
