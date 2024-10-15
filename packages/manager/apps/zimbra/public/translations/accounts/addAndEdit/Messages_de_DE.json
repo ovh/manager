@@ -21,10 +21,10 @@
   "zimbra_account_add_input_description_label": "Beschreibung",
   "zimbra_account_add_input_description_placeholder": "Beschreibung",
   "zimbra_account_add_input_password_label": "Passwort",
-  "zimbra_account_add_input_password_helper": "Ihr Passwort muss mindestens enthalten:",
-  "zimbra_account_add_input_password_helper_rule_1": "10 Zeichen",
-  "zimbra_account_add_input_password_helper_rule_2": "1 Ziffer oder Sonderzeichen (€,!, &amp;,...)",
-  "zimbra_account_add_input_password_helper_rule_3": "1 Großbuchstabe",
+  "zimbra_account_add_input_password_helper": "Ihr Passwort muss mindestens Folgendes enthalten:",
+  "zimbra_account_add_input_password_helper_rule_1": "10 Zeichen",
+  "zimbra_account_add_input_password_helper_rule_2": "1 Ziffer oder Sonderzeichen (€,!, &amp; …)",
+  "zimbra_account_add_input_password_helper_rule_3": "1 Großbuchstabe",
   "zimbra_account_add_input_mandatory": "Die mit einem Stern * gekennzeichneten Felder sind Pflichtfelder.",
   "zimbra_account_add_button_save": "Speichern",
   "zimbra_account_add_button_cancel": "Abbrechen",
@@ -33,5 +33,5 @@
   "zimbra_account_add_error_message": "Ihre Anfrage zur Erstellung einer Account-E-Mail-Adresse ist fehlgeschlagen. {{ error }}",
   "zimbra_account_edit_success_message": "Ihre Anfrage zur Änderung eines E-Mail Accounts wurde registriert. Sie wird in Kürze bearbeitet.",
   "zimbra_account_edit_error_message": "Ihre Anfrage zur Änderung der Account-E-Mail-Adresse ist fehlgeschlagen. {{ error }}",
-  "zimbra_account_add_input_displayName_tooltip": "Name, der im Verzeichnis verwendet und den E-Mail-Empfängern angezeigt wird"
+  "zimbra_account_add_input_displayName_tooltip": "Name, der im Verzeichnis verwendet und den E-Mail-Empfänger:innen angezeigt wird"
 }

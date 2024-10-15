@@ -5,7 +5,7 @@
   "overthebox_migration_current_offer": "Derzeitiges Angebot: {{offerName}}",
   "overthebox_migration_monthly_subscription": "Monatliches Abonnement",
   "overthebox_migration_hardware": "Gehäuse",
-  "overthebox_migration_hardware_yes": "Ich möchte ein neues {{ deviceName }}-Gehäuse ({{ price }} HT) *",
+  "overthebox_migration_hardware_yes": "Ich möchte ein neues {{ deviceName }}-Gerät ({{ price }} inkl. MwSt.)*",
   "overthebox_migration_hardware_no": "Ich möchte kein Gehäuse",
   "overthebox_migration_choose_offer_action": "Mehr erfahren",
   "overthebox_migration_contact_title": "Lieferung",
@@ -21,7 +21,7 @@
   "overthebox_migration_summary_table_quantity": "Menge",
   "overthebox_migration_summary_table_price_per_month": "Preis zzgl. MwSt. / Monat",
   "overthebox_migration_summary_table_offer": "Angebot {{offerName}}",
-  "overthebox_migration_summary_table_hardware": "Gehäuse {{ deviceName }}",
+  "overthebox_migration_summary_table_hardware": "{{ deviceName }}-Gerät",
   "overthebox_migration_summary_contracts_title": "Verträge",
   "overthebox_migration_summary_price_explain": "Ihr neues monatliches Abo beträgt: {{price}} inkl. MwSt / Monat. Gilt ab Lieferung Ihres neuen Dienstes. Sie werden per E-Mail darüber informiert.",
   "overthebox_migration_summary_hardware_price": "Der Preis der Hardware inklusive der Lieferkosten.",
@@ -34,5 +34,5 @@
   "overthebox_migration_summary_command_order_help": "Mehr Informationen zur Bezahlung eines Bestellscheins.",
   "overthebox_migration_summary_launch_migration_error": "Bei der Migration des Angebots ist ein Fehler aufgetreten. {{errorMsg}}",
   "overthebox_migration_offers_title": "Wahl des Angebots",
-  "overthebox_migration_about": "* OverTheBox - Erfahren Sie mehr über die Beschreibung des Dienstes und des Gehäuses."
+  "overthebox_migration_about": "* OverTheBox – mehr über die Beschreibung des Dienstes und Geräts erfahren"
 }

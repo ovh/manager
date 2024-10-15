@@ -11,7 +11,7 @@
   "private_registry_harbor_version": "Harbor version ",
   "private_registry_status": "State",
   "private_registry_upgrade_plan": "Change plan",
-  "private_registry_consumption": "Space used / Total space",
+  "private_registry_consumption": "Space used / Available space",
   "private_registry_consumption_display": "{{ used }} / {{ limit }}",
   "private_registry_harbor_ui": "Harbor user interface",
   "private_registry_harbor_api": "Harbor API",
@@ -71,7 +71,7 @@
   "private_registry_guide_creating_and_using_a_private_image": "Creating and using private images",
   "private_registry_guide_using_private_registry_with_kubernetes": "Using OVHcloud Managed Private Registry with OVHcloud Managed Kubernetes",
   "private_registry_guide_using_the_helm_chart_museum": "Using Helm ChartMuseum",
-  "private_registry_common_cancel": "Exit",
+  "private_registry_common_cancel": "Cancel",
   "private_registry_region": "Region",
   "common_clipboard_copied": "Copied"
 }
