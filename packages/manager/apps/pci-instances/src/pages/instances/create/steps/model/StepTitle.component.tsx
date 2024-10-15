@@ -6,12 +6,12 @@ import { useAppStore } from '@/store/hooks/useAppStore';
 import { TStep } from '@/store/slices/stepper.slice';
 
 type TStepTitleProps = DeepReadonly<{
-  modelStepState?: TStep;
+  modelStep?: TStep;
   modelMonthlyPrice?: string;
 }>;
 
 export const StepTitle: FC<TStepTitleProps> = ({
-  modelStepState,
+  modelStep,
   modelMonthlyPrice,
 }) => {
   const { t } = useTranslation('models');
@@ -24,12 +24,12 @@ export const StepTitle: FC<TStepTitleProps> = ({
 
   const modelStepTitle = useMemo(
     () =>
-      modelName && !modelStepState?.isOpen
+      modelName && !modelStep?.isOpen
         ? `${t('pci_instances_models_chosen_model_message', {
             model: modelName.toUpperCase(),
           })} ${modelMonthlyPrice || ''}`
         : t('pci_instances_models_select_template'),
-    [modelName, modelStepState?.isOpen, t, modelMonthlyPrice],
+    [modelName, modelStep?.isOpen, t, modelMonthlyPrice],
   );
 
   return modelStepTitle;
