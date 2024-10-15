@@ -1,7 +1,9 @@
 import React from 'react';
 import {
   useEnvironment,
-  useTracking,
+  useOvhTracking,
+  PageLocation,
+  ButtonType,
 } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { GuidesHeader } from '../guides-header.component';
@@ -15,7 +17,7 @@ interface PciGuidesHeaderProps {
 
 export function PciGuidesHeader({ category }: PciGuidesHeaderProps) {
   const { ovhSubsidiary } = useEnvironment().getUser();
-  const { trackClick } = useTracking();
+  const { trackClick } = useOvhTracking();
   const [t] = useTranslation('pci-guides-header');
   return (
     <GuidesHeader
@@ -27,8 +29,10 @@ export function PciGuidesHeader({ category }: PciGuidesHeaderProps) {
       }
       onGuideClick={(guide: Guide) => {
         trackClick({
-          name: `public-cloud_credit_and_vouchers${guide.tracking}`,
-          type: 'action',
+          location: PageLocation.page,
+          buttonType: ButtonType.tutorial,
+          actionType: 'action',
+          actions: [`go-to-${guide.tracking}`],
         });
       }}
     />
