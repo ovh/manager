@@ -5,7 +5,7 @@ import {
   IdentityType,
 } from '@/types/identity.type';
 
-const urnIdentityRegExp = /^urn:v([0-9]):(eu|ca|us|labeu):([a-z]+):([a-z]+):([a-z]{2}[0-9]{1,6}-ovh)\/?(.+?)?$/;
+const urnIdentityRegExp = /^urn:v(\d):(eu|ca|us|labeu):([a-z]+):([a-z]+):([a-z]{2}\d{1,6}-ovh)\/?(.+?)?$/;
 
 export const decodeIdentity = (identityUrn: string): IdentityObject => {
   const [match, version, region, entity, type, account, id] =

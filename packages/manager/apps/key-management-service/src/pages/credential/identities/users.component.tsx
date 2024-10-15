@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import {
   Datagrid,
   DatagridColumn,
-  DataGridTextCell,
   Subtitle,
 } from '@ovh-ux/manager-react-components';
 import { IdentityObject } from '@/types/identity.type';
+import { IdentityIdCell, IdentityUrnCell } from './cell/identityCell.component';
 
 interface IUsers {
   identities: IdentityObject[];
@@ -19,12 +19,12 @@ const Users = ({ identities }: IUsers) => {
     {
       id: 'id',
       label: t('key_management_service_credential_identities_user_column_id'),
-      cell: (identity) => <DataGridTextCell>{identity.id}</DataGridTextCell>,
+      cell: IdentityIdCell,
     },
     {
       id: 'urn',
       label: t('key_management_service_credential_identities_column_urn'),
-      cell: (identity) => <DataGridTextCell>{identity.urn}</DataGridTextCell>,
+      cell: IdentityUrnCell,
     },
   ];
 

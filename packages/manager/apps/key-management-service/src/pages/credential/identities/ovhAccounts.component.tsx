@@ -3,10 +3,13 @@ import { useTranslation } from 'react-i18next';
 import {
   Datagrid,
   DatagridColumn,
-  DataGridTextCell,
   Subtitle,
 } from '@ovh-ux/manager-react-components';
 import { IdentityObject } from '@/types/identity.type';
+import {
+  IdentityAccountCell,
+  IdentityUrnCell,
+} from './cell/identityCell.component';
 
 interface IOVHAccounts {
   identities: IdentityObject[];
@@ -21,14 +24,12 @@ const OVHAccounts = ({ identities }: IOVHAccounts) => {
       label: t(
         'key_management_service_credential_identities_account_column_account',
       ),
-      cell: (identity) => (
-        <DataGridTextCell>{identity.account}</DataGridTextCell>
-      ),
+      cell: IdentityAccountCell,
     },
     {
       id: 'urn',
       label: t('key_management_service_credential_identities_column_urn'),
-      cell: (identity) => <DataGridTextCell>{identity.urn}</DataGridTextCell>,
+      cell: IdentityUrnCell,
     },
   ];
 
