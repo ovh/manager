@@ -1,7 +1,7 @@
 import { describe, test } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useAppStore } from './useAppStore';
-import { TStep, TStepId } from '../slices/stepper.slice';
+import { TStep, TStepId, TSteps } from '../slices/stepper.slice';
 import { TRegionItem } from '../slices/form.slice';
 
 describe('Considering the useAppStore hook', () => {
@@ -60,68 +60,125 @@ describe('Considering the useAppStore hook', () => {
     );
   });
 
-  describe("Considering the 'StepperSlice'", () => {
-    // test data
-    type Data = {
+  describe('Considering the Stepper slice', () => {
+    type Data1 = {
       stepId: TStepId;
-      updatedStep?: TStep;
-      updatedStepId?: TStepId;
-      expectedStep: TStep;
-      expectedUpdatedStep?: TStep;
+      expectedStepById: TStep;
     };
-    const stepId1: TStepId = 'model';
-    const updatedStepId1: TStepId = stepId1;
-    const updatedStepId2 = 'foo';
+
+    type Data2 = {
+      validateStepId?: TStepId;
+      expectedValidatedStepById?: TStep;
+      editStepId: TStepId;
+      expectedEditedStepById: TStep;
+    };
+
+    const initialSteps: TSteps = new Map<TStepId, TStep>([
+      [
+        'model',
+        {
+          isOpen: true,
+          isChecked: false,
+          isLocked: false,
+          order: 1,
+        },
+      ],
+      [
+        'region',
+        {
+          isOpen: false,
+          isChecked: false,
+          isLocked: false,
+          order: 2,
+        },
+      ],
+    ]);
 
     const expectedStep1: TStep = {
+      order: 1,
       isChecked: false,
       isLocked: false,
       isOpen: true,
     };
 
-    const updatedStep1: TStep = {
+    const expectedStep2: TStep = {
+      order: 2,
+      isChecked: false,
+      isLocked: false,
+      isOpen: false,
+    };
+
+    const expectedValidatedStep1: TStep = {
+      order: 1,
       isChecked: true,
       isLocked: true,
       isOpen: false,
     };
 
-    const expectedUpdatedStep1 = updatedStep1;
+    const expectedEditedStep1: TStep = {
+      order: 2,
+      isChecked: false,
+      isLocked: false,
+      isOpen: true,
+    };
 
-    describe.each`
-      stepId       | expectedStep     | updatedStepId     | updatedStep     | expectedUpdatedStep
-      ${undefined} | ${undefined}     | ${undefined}      | ${undefined}    | ${undefined}
-      ${stepId1}   | ${expectedStep1} | ${undefined}      | ${undefined}    | ${undefined}
-      ${stepId1}   | ${expectedStep1} | ${updatedStepId1} | ${updatedStep1} | ${expectedUpdatedStep1}
-      ${stepId1}   | ${expectedStep1} | ${updatedStepId2} | ${updatedStep1} | ${expectedStep1}
+    const expectedEditedStep2: TStep = {
+      order: 1,
+      isChecked: false,
+      isLocked: false,
+      isOpen: true,
+    };
+
+    test('Should create the steppe slice with initial steps', () => {
+      const { result } = renderHook(() => useAppStore());
+      expect(result.current).toHaveProperty('steps');
+      expect(result.current.steps).toBeInstanceOf(Map);
+      expect(result.current.steps).toStrictEqual(initialSteps);
+    });
+
+    test.each`
+      stepId       | expectedStepById
+      ${undefined} | ${undefined}
+      ${'model'}   | ${expectedStep1}
+      ${'region'}  | ${expectedStep2}
     `(
-      'Given a stepId <$stepId>',
+      'Given a stepId parameter <$stepId>, expect stepById() query function to return <$expectedStepById>',
+      ({ stepId, expectedStepById }: Data1) => {
+        const { result } = renderHook(() => useAppStore());
+        expect(result.current.stepById()(stepId)).toStrictEqual(
+          expectedStepById,
+        );
+      },
+    );
+
+    test.each`
+      validateStepId | expectedValidatedStepById | editStepId   | expectedEditedStepById
+      ${undefined}   | ${undefined}              | ${undefined} | ${undefined}
+      ${'model'}     | ${expectedValidatedStep1} | ${'region'}  | ${expectedEditedStep1}
+      ${undefined}   | ${undefined}              | ${'model'}   | ${expectedEditedStep2}
+    `(
+      `Given a validateStepId parameter <$validateStepId> to validate a editStepId parameter <$editStepId> to edit, 
+      expect stepById() query function to return the validated step <$expectedValidatedStepById> and the edited step <$expectedEditedStepById>`,
       ({
-        stepId,
-        expectedStep,
-        updatedStep,
-        expectedUpdatedStep,
-        updatedStepId,
-      }: Data) => {
-        describe(`When invoking useAppStore hook`, () => {
-          test(`Then, expect step to be ${JSON.stringify(
-            expectedStep,
-          )}`, () => {
-            const { result } = renderHook(() => useAppStore());
-            expect(result.current).toHaveProperty('steps');
-            expect(result.current.steps).toBeInstanceOf(Map);
-            expect(result.current.stepStateById()(stepId)).toStrictEqual(
-              expectedStep,
-            );
-            if (updatedStep && updatedStepId) {
-              act(() => {
-                result.current.updateStep(updatedStepId, updatedStep);
-              });
-              expect(result.current.stepStateById()(stepId)).toStrictEqual(
-                expectedUpdatedStep,
-              );
-            }
-          });
-        });
+        validateStepId,
+        expectedValidatedStepById,
+        editStepId,
+        expectedEditedStepById,
+      }: Data2) => {
+        const { result } = renderHook(() => useAppStore());
+        if (validateStepId) {
+          act(() => result.current.validateStep(validateStepId));
+          expect(result.current.stepById()(validateStepId)).toStrictEqual(
+            expectedValidatedStepById,
+          );
+          expect(result.current.stepById()(editStepId)).toStrictEqual(
+            expectedEditedStepById,
+          );
+        }
+        act(() => result.current.editStep(editStepId));
+        expect(result.current.stepById()(editStepId)).toStrictEqual(
+          expectedEditedStepById,
+        );
       },
     );
   });
