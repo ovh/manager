@@ -59,7 +59,6 @@ export default function RuleForm({
     !formState.value ||
     !formState.key ||
     !formState.compareType;
-
   const [isTouched, setIsTouched] = useState({
     ruleType: false,
     compareType: false,
