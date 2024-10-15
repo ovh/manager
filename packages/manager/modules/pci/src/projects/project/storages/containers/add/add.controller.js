@@ -144,7 +144,7 @@ export default class PciStoragesContainersAddController {
       .filter((addon) => addon.planCode === planCode)
       .map((addon) => addon.pricings[0].price)[0];
 
-    return hourlyPrice * 720 * 1024 * 0.00000001;
+    return hourlyPrice * 730 * 1024 * 0.00000001;
   }
 
   setOffersPrices() {
@@ -178,7 +178,7 @@ export default class PciStoragesContainersAddController {
 
         if (price > 0) {
           if (!lowestPrice || price < lowestPrice) {
-            lowestPrice = price * 720 * 1024 * 0.00000001;
+            lowestPrice = price * 730 * 1024 * 0.00000001;
           }
         }
       }
