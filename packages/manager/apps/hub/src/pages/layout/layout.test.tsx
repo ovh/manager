@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as reactShellClientModule from '@ovh-ux/manager-react-shell-client';
+import * as ReactComponentsModule from '@ovh-ux/manager-react-components';
 import {
   ShellContext,
   ShellContextType,
@@ -12,27 +13,34 @@ import {
   OsdsSelect,
 } from '@ovhcloud/ods-components';
 import { User } from '@ovh-ux/manager-config';
+
 import Layout from '@/pages/layout/layout';
-import { ApiEnvelope } from '@/types/apiEnvelope.type';
-import { ProductList } from '@/types/services.type';
-import { LastOrder } from '@/types/lastOrder.type';
 import BillingSummary from '@/pages/layout/BillingSummary.component';
-import * as UseBillsHook from '@/data/hooks/bills/useBills';
-import * as UseBillingServicesHook from '@/data/hooks/billingServices/useBillingServices';
 import EnterpriseBillingSummary from '@/pages/layout/EnterpriseBillingSummary.component';
 import PaymentStatus from '@/pages/layout/PaymentStatus.component';
+import Catalog from '@/pages/layout/Catalog.component';
+import SiretBanner from '@/pages/layout/SiretBanner.component';
+import SiretModal from '@/pages/layout/SiretModal.component';
+import KycIndiaBanner from '@/pages/layout/KycIndiaBanner.component';
+import KycFraudBanner from '@/pages/layout/KycFraudBanner.component';
+import NotificationsCarousel from '@/pages/layout/NotificationsCarousel.component';
+
+import * as UseBillsHook from '@/data/hooks/bills/useBills';
+import * as UseBillingServicesHook from '@/data/hooks/billingServices/useBillingServices';
+
+import { Notification, NotificationType } from '@/types/notifications.type';
+import { CatalogItem } from '@/types/catalog';
+import { ApiEnvelope } from '@/types/apiEnvelope.type';
+import { KycStatus } from '@/types/kyc.type';
+import { LastOrder } from '@/types/lastOrder.type';
+import { ProductList } from '@/types/services.type';
+
 import {
   FourServices,
   NoServices,
   TwoServices,
 } from '@/_mock_/billingServices';
-import SiretBanner from '@/pages/layout/SiretBanner.component';
-import SiretModal from '@/pages/layout/SiretModal.component';
-import KycIndiaBanner from '@/pages/layout/KycIndiaBanner.component';
-import KycFraudBanner from '@/pages/layout/KycFraudBanner.component';
-import { KycStatus } from '@/types/kyc.type';
-import NotificationsCarousel from '@/pages/layout/NotificationsCarousel.component';
-import { Notification, NotificationType } from '@/types/notifications.type';
+import { catalogData } from '@/_mock_/catalog';
 
 const queryClient = new QueryClient();
 
@@ -54,6 +62,13 @@ const mocks = vi.hoisted(() => ({
     isPending: true,
     error: null,
     refetch: vi.fn(() => ({})),
+  },
+  catalog: {
+    data: {},
+    isLoading: true,
+  } as {
+    data: Record<string, CatalogItem[]>;
+    isLoading: boolean;
   },
   debt: {
     data: {
@@ -238,12 +253,16 @@ vi.mock('@/data/hooks/lastOrder/useLastOrder', () => ({
   }),
 }));
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useFeatureAvailability: (): { data: any; isPending: boolean } => ({
-    data: mocks.featureAvailability,
-    isPending: false,
-  }),
-}));
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const module: typeof ReactComponentsModule = await importOriginal();
+  return {
+    ...module,
+    useFeatureAvailability: (): { data: any; isPending: boolean } => ({
+      data: mocks.featureAvailability,
+      isPending: false,
+    }),
+  };
+});
 vi.mock('@/data/hooks/bills/useBills', () => ({
   useFetchHubBills: vi.fn(() => mocks.bills),
 }));
@@ -278,6 +297,13 @@ vi.mock('@/data/hooks/notifications/useNotifications', () => ({
   }),
 }));
 
+vi.mock('@/data/hooks/catalog/useCatalog', () => ({
+  useFetchHubCatalog: (): {
+    data: Record<string, CatalogItem[]>;
+    isLoading: boolean;
+  } => mocks.catalog,
+}));
+
 const useBillingServicesMockValue: any = {
   data: null,
   isLoading: true,
@@ -308,7 +334,6 @@ describe('Layout.page', () => {
   it('should render correct components for "fresh" customers', async () => {
     mocks.isLastOrderLoading = false;
     const {
-      getByText,
       queryByText,
       findByText,
       findByTestId,
@@ -326,12 +351,13 @@ describe('Layout.page', () => {
     expect(queryByText('Support')).not.toBeInTheDocument();
     expect(queryByText('Order Tracking')).not.toBeInTheDocument();
     expect(queryByText('Products')).not.toBeInTheDocument();
-    expect(getByText('hub-catalog-items')).not.toBeNull();
 
     const kycIndiaBanner = await findByTestId('kyc_india_banner');
     const kycFraudBanner = await findByTestId('kyc_fraud_banner');
+    const catalog = await findByTestId('catalog_title');
     expect(kycIndiaBanner).not.toBeNull();
     expect(kycFraudBanner).not.toBeNull();
+    expect(catalog).not.toBeNull();
   });
 
   it('should render correct components for customers with services or order', async () => {
@@ -364,7 +390,6 @@ describe('Layout.page', () => {
     const {
       getByText,
       getByTestId,
-      queryByText,
       findByText,
       findByTestId,
       queryByTestId,
@@ -385,7 +410,7 @@ describe('Layout.page', () => {
     expect(getByText('Support')).not.toBeNull();
     expect(getByText('Order Tracking')).not.toBeNull();
     expect(getByText('Products')).not.toBeNull();
-    expect(queryByText('hub-catalog-items')).not.toBeInTheDocument();
+    expect(queryByTestId('catalog_title')).not.toBeInTheDocument();
 
     const billingSummary = await findByTestId('billing_summary');
     const paymentStatus = await findByTestId('payment_status');
@@ -980,6 +1005,50 @@ describe('Layout.page', () => {
       expect(getByTestId('notification_content')).not.toBeNull();
       expect(queryByTestId('next-notification-button')).not.toBeInTheDocument();
       expect(queryByTestId('notification-navigation')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('Catalog component', () => {
+    mocks.catalog.data = catalogData as Record<string, CatalogItem[]>;
+    it('should display a title and a description', async () => {
+      const { getByText } = renderComponent(<Catalog />);
+
+      expect(getByText('manager_hub_catalog_title')).not.toBeNull();
+      expect(getByText('manager_hub_catalog_description')).not.toBeNull();
+    });
+
+    it('should display skeletons', async () => {
+      const { findByTestId } = renderComponent(<Catalog />);
+
+      const tileGridTitleSkeleton = await findByTestId(
+        'tile_grid_title_skeleton',
+      );
+      const tileGridContentSkeleton = await findByTestId(
+        'tile_grid_content_skeletons',
+      );
+      expect(tileGridTitleSkeleton).not.toBeNull();
+      expect(tileGridContentSkeleton).not.toBeNull();
+    });
+
+    it('should display skeletons', async () => {
+      const { findByTestId } = renderComponent(<Catalog />);
+
+      const tileGridTitleSkeleton = await findByTestId(
+        'tile_grid_title_skeleton',
+      );
+      const tileGridContentSkeleton = await findByTestId(
+        'tile_grid_content_skeletons',
+      );
+      expect(tileGridTitleSkeleton).not.toBeNull();
+      expect(tileGridContentSkeleton).not.toBeNull();
+    });
+
+    it('should display correct amount of elements', async () => {
+      mocks.catalog.isLoading = false;
+      const { getAllByTestId } = renderComponent(<Catalog />);
+
+      expect(getAllByTestId('catalog_products_list').length).toBe(2);
+      expect(getAllByTestId('catalog_product_item').length).toBe(6);
     });
   });
 });
