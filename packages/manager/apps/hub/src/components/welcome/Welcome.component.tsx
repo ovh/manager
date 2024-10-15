@@ -45,7 +45,7 @@ export default function Welcome() {
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {t('manager_hub_trusted_nic_badge_label')}
+            {t('ovh_trusted_nic_label')}
           </OsdsText>
         </OsdsChip>
       )}
