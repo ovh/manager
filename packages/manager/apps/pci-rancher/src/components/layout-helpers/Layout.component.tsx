@@ -1,4 +1,8 @@
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+  useRouteSynchro,
+} from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import React, { useContext, useEffect } from 'react';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
@@ -19,6 +23,8 @@ interface Match {
 function RoutingSynchronisation() {
   const location = useLocation();
   const { shell } = useContext(ShellContext);
+  const { trackCurrentPage } = useOvhTracking();
+  useRouteSynchro();
 
   const matches = useMatches();
 
@@ -31,15 +37,12 @@ function RoutingSynchronisation() {
   useEffect(() => {
     // Need to also hide the preloader here due to firefox still display it when cache is disabled
     // Need to investigate why preloader is not hidden
-    shell.ux.hidePreloader();
-  }, []);
+    trackCurrentPage();
+  }, [location]);
 
   useEffect(() => {
-    shell.routing.stopListenForHashChange();
+    shell.ux.hidePreloader();
   }, []);
-  useEffect(() => {
-    shell.routing.onHashChange();
-  }, [location]);
   return <></>;
 }
 

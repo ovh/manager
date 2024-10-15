@@ -14,9 +14,7 @@ import {
   EditAction,
   EditMutationVariables,
 } from '@/data/hooks/useEditRancher/useEditRancher';
-import { useTrackingPage } from '@/hooks/useTrackingPage/useTrackingPage';
 import { COMMON_PATH } from '@/routes/routes';
-import { TrackingPageView } from '@/utils/tracking';
 import RancherDetail from './RancherDetail/RancherDetail.component';
 import TabBar from './TabBar/TabBar.component';
 import LinkIcon from '@/components/LinkIcon/LinkIcon.component';
@@ -51,7 +49,6 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   const { projectId, rancherId } = useParams();
   const { data: versions } = useVersions();
   const { t } = useTranslation('dashboard');
-  useTrackingPage(TrackingPageView.DetailRancher);
   const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
 
   const mutationEditRancherState = useMutationState<{

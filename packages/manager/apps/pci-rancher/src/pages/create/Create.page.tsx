@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PageLayout } from '@ovh-ux/manager-react-components';
 import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { getRancherPlan, getReferenceRancherInfo } from '@/data/api/services';
 import CreateRancher from '@/components/layout-helpers/CreateRancher/CreateRancher.component';
 import useCreateRancher from '@/data/hooks/useCreateRancher/useCreateRancher';
@@ -10,15 +11,7 @@ import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import { getRanchersUrl } from '@/utils/route';
 import { RancherService } from '@/types/api.type';
 import { ranchersQueryKey } from '@/data/hooks/useRancher/useRancher';
-import {
-  useSimpleTrackingPage,
-  useTrackingPage,
-} from '@/hooks/useTrackingPage/useTrackingPage';
-import {
-  TRACKING_PATH,
-  TrackingEvent,
-  TrackingPageView,
-} from '../../utils/tracking';
+import { TRACKING_PATH, TrackingEvent } from '../../utils/tracking';
 
 import { useRancherPrices } from '@/hooks/useRancherPrices';
 import queryClient from '@/queryClient';
@@ -32,9 +25,7 @@ export default function Create() {
     rancherCreationErrorMessage,
     setRancherCreationErrorMessage,
   ] = useState<string | null>(null);
-  useTrackingPage(TrackingPageView.CreateRancher);
-  const trackingPage = useSimpleTrackingPage();
-
+  const { trackPage } = useOvhTracking();
   const { data: project } = useProject();
 
   const ranchersQueryKeyValue = ranchersQueryKey(projectId);
@@ -47,11 +38,15 @@ export default function Create() {
         ranchersQueryKeyValue,
         (old: RancherService[]) => [...old, data.data],
       );
-      trackingPage(`${TRACKING_PATH}::${TrackingEvent.add}-success`);
+      trackPage({
+        pageName: `${TRACKING_PATH}::${TrackingEvent.add}-success`,
+      });
       navigate(getRanchersUrl(projectId));
     },
     onError: (error) => {
-      trackingPage(`${TRACKING_PATH}::${TrackingEvent.add}-error`);
+      trackPage({
+        pageName: `${TRACKING_PATH}::${TrackingEvent.add}-error`,
+      });
       setHasRancherCreationError(true);
       if (error?.response?.data?.message) {
         setRancherCreationErrorMessage(error.response.data.message);

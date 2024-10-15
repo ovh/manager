@@ -16,11 +16,12 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useRancherVersionsCapabilities } from '@/data/hooks/useRancher/useRancher';
 import {
-  useTrackingAction,
-  useTrackingPage,
-} from '@/hooks/useTrackingPage/useTrackingPage';
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { useRancherVersionsCapabilities } from '@/data/hooks/useRancher/useRancher';
 import { getVersionInfoByName } from '@/utils/rancher';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import LinkIcon from '../../LinkIcon/LinkIcon.component';
@@ -43,17 +44,25 @@ const UpdateSoftwareModal = ({
 
   const selectedVersionInfo = getVersionInfoByName(selectedVersion, data);
   const { t } = useTranslation('updateSoftware');
-  useTrackingPage(TrackingPageView.UpdateSoftware);
-  const trackAction = useTrackingAction();
-
+  const { trackClick } = useOvhTracking();
   const onUpdate = () => {
-    trackAction(TrackingPageView.UpdateSoftware, TrackingEvent.confirm);
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [TrackingPageView.UpdateSoftware, TrackingEvent.confirm],
+    });
     onConfirmUpdated();
     onClose();
   };
 
   const onCloseModal = () => {
-    trackAction(TrackingPageView.UpdateSoftware, TrackingEvent.cancel);
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [TrackingPageView.UpdateSoftware, TrackingEvent.cancel],
+    });
     onClose();
   };
 

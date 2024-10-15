@@ -2,7 +2,6 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
 import { render, waitFor } from '@/utils/test/test.provider';
-import { rancherMocked } from '@/_mock_/rancher';
 import UpdateOfferModal, {
   UpdateOfferModalProps,
 } from './UpdateOfferModal.component';

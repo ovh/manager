@@ -13,21 +13,29 @@ jest.mock('react-router-dom', () => ({
   useParams: () => ({ projectId: '123' }),
 }));
 
-jest.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigation: jest.fn(() => ({
-    getURL: jest.fn(() => Promise.resolve('123')),
-    data: [],
-  })),
-  useTracking: jest.fn(() => ({
-    trackPage: jest.fn(),
-    trackClick: jest.fn(),
-  })),
-}));
-
 jest.mock('@/hooks/useGuideLink/useGuideLink', () => ({
   useGuideUtils: jest.fn(() => ({
     MANAGED_RANCHER_SERVICE_GETTING_STARTED: 'https://example.com/guide1',
   })),
+}));
+
+jest.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useOvhTracking: () => ({
+    trackCurrentPage: jest.fn(),
+    trackClick: jest.fn(),
+    trackPage: jest.fn(),
+  }),
+  useNavigation: jest.fn(() => ({
+    getURL: jest.fn(() => Promise.resolve('123')),
+    data: [],
+  })),
+  PageLocation: {
+    page: 'page',
+  },
+  ButtonType: {
+    button: 'button',
+    link: 'link',
+  },
 }));
 
 jest.spyOn(React, 'useEffect').mockImplementation((t) => jest.fn(t));

@@ -11,11 +11,22 @@ import './index.scss';
 
 import '@/vite-hmr';
 
+import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from '../tracking.constant';
+
+const trackingContext = {
+  chapter1: UNIVERSE,
+  chapter2: SUB_UNIVERSE,
+  chapter3: APP_NAME,
+  appName: APP_NAME,
+  level2Config: LEVEL2,
+  pageTheme: UNIVERSE,
+};
+
 const init = async (
   appName: string,
   { reloadOnLocaleChange } = { reloadOnLocaleChange: false },
 ) => {
-  const context = await initShellContext(appName);
+  const context = await initShellContext(appName, trackingContext);
 
   const region = context.environment.getRegion();
   try {

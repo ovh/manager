@@ -18,11 +18,12 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { RancherService } from '@/types/api.type';
 import {
-  useTrackingAction,
-  useTrackingPage,
-} from '@/hooks/useTrackingPage/useTrackingPage';
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { RancherService } from '@/types/api.type';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import Modal from '../Modal.component';
 
@@ -40,12 +41,16 @@ const DeleteModal = ({
 }: DeleteModalProps) => {
   const { t } = useTranslation('listing');
   const [terminateText, setTerminateText] = useState('');
-  useTrackingPage(TrackingPageView.DeleteRancherModal);
-  const trackAction = useTrackingAction();
+  const { trackClick } = useOvhTracking();
   const isButtonDisabled = TERMINATE_TEXT !== terminateText;
 
   const onDelete = () => {
-    trackAction(TrackingPageView.DeleteRancherModal, TrackingEvent.confirm);
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [TrackingPageView.DeleteRancherModal, TrackingEvent.confirm],
+    });
     onDeleteRancher();
     onClose();
   };
@@ -95,10 +100,15 @@ const DeleteModal = ({
         variant={ODS_BUTTON_VARIANT.stroked}
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => {
-          trackAction(
-            TrackingPageView.DeleteRancherModal,
-            TrackingEvent.cancel,
-          );
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: [
+              TrackingPageView.DeleteRancherModal,
+              TrackingEvent.cancel,
+            ],
+          });
           onClose();
         }}
       >
