@@ -57,9 +57,9 @@ const Onboarding: FC = () => {
     <PageLayout>
       {project && <Breadcrumb projectLabel={project.description ?? ''} />}
       <OnboardingLayout
-        title={t('common:instances_title')}
+        title={t('common:pci_instances_common_instances_title')}
         img={{ src: InstanceImageSrc }}
-        orderButtonLabel={t('common:create_instance')}
+        orderButtonLabel={t('common:pci_instances_common_create_instance')}
         orderHref={createInstanceHref}
         description={
           <>
@@ -69,7 +69,7 @@ const Onboarding: FC = () => {
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
               className="mt-8 block"
             >
-              {t('not_created_message')}
+              {t('pci_instances_onboarding_not_created_message')}
             </OsdsText>
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
@@ -77,7 +77,7 @@ const Onboarding: FC = () => {
               size={ODS_THEME_TYPOGRAPHY_SIZE._500}
               className="mt-8 block"
             >
-              {t('content_message_1')}
+              {t('pci_instances_onboarding_content_message_1')}
             </OsdsText>
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
@@ -85,7 +85,7 @@ const Onboarding: FC = () => {
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
               className="mt-4 block"
             >
-              {t('content_message_2')}
+              {t('pci_instances_onboarding_content_message_2')}
             </OsdsText>
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
@@ -93,7 +93,7 @@ const Onboarding: FC = () => {
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
               className="mt-8 block"
             >
-              {t('advice_message')}
+              {t('pci_instances_onboarding_advice_message')}
             </OsdsText>
           </>
         }
@@ -103,9 +103,11 @@ const Onboarding: FC = () => {
             key={guide.id}
             href={guide.links[ovhSubsidiary] ?? (guide.links.DEFAULT as string)}
             texts={{
-              title: t(`${guide.id}_title`),
-              description: t(`${guide.id}_description`),
-              category: t('guide_title'),
+              title: t(`pci_instances_onboarding_${guide.id}_title`),
+              description: t(
+                `pci_instances_onboarding_${guide.id}_description`,
+              ),
+              category: t('pci_instances_onboarding_guide_title'),
             }}
           />
         ))}
