@@ -4,12 +4,14 @@ import {
   OdsText,
   OdsInput,
   OdsMessage,
+  OdsSpinner,
   OdsModal,
   OdsButton,
   OdsFormField,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_VARIANT,
+  ODS_SPINNER_SIZE,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_COLOR,
   OdsInputChangeEventDetail,
@@ -108,6 +110,11 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
           </div>
         )}
       </OdsFormField>
+      {isLoading && (
+        <div className="flex justify-center">
+          <OdsSpinner size={ODS_SPINNER_SIZE.md} />
+        </div>
+      )}
       <OdsButton
         isDisabled={isLoading}
         slot="actions"
@@ -116,9 +123,8 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
         label={cancelButtonLabel || t('updateModalCancelButton')}
       />
       <OdsButton
-        isDisabled={isPatternError}
+        isDisabled={isLoading || isPatternError}
         slot="actions"
-        isLoading={isLoading}
         {...handleClick(() => updateDisplayName(displayName))}
         label={confirmButtonLabel || t('updateModalConfirmButton')}
       />

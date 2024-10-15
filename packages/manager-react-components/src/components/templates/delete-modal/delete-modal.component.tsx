@@ -4,6 +4,7 @@ import {
   OdsText,
   OdsInput,
   OdsMessage,
+  OdsSpinner,
   OdsModal,
   OdsButton,
   OdsFormField,
@@ -12,6 +13,7 @@ import {
   OdsInputCustomEvent,
   OdsInputChangeEventDetail,
   ODS_BUTTON_VARIANT,
+  ODS_SPINNER_SIZE,
   ODS_INPUT_TYPE,
   ODS_BUTTON_COLOR,
   ODS_MESSAGE_COLOR,
@@ -91,6 +93,11 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
           }
         />
       </OdsFormField>
+      {isLoading && (
+        <div className="flex justify-center">
+          <OdsSpinner size={ODS_SPINNER_SIZE.md} />
+        </div>
+      )}
       <OdsButton
         isDisabled={isLoading}
         slot="actions"
@@ -103,7 +110,6 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
       <OdsButton
         isDisabled={isDisabled}
         slot="actions"
-        isLoading={isLoading}
         data-testid="manager-delete-modal-confirm"
         {...handleClick(() => {
           setDeleteInput('');
