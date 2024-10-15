@@ -67,7 +67,7 @@
     >
         <pci-projects-project-workflow-general-info
             data-workflow-name="$ctrl.workflow.name"
-            data-price="$ctrl.price"
+            data-price="{{ $ctrl.formatPrice() }}"
         >
         </pci-projects-project-workflow-general-info>
         <div data-ng-if="$ctrl.isAdding" class="d-flex align-items-center">

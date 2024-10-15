@@ -140,4 +140,12 @@ export default class {
   onScheduleSubmit() {
     this.isEditingSchedule = false;
   }
+
+  formatPrice() {
+    return this.price?.price
+      ? this.PciProjectsProjectInstanceService.formatHourlyToMonthlyPrice(
+          this.price.price,
+        )
+      : '';
+  }
 }

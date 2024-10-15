@@ -5,15 +5,17 @@ export const VOLUME_OPTION_BACKUP = 'BACKUP';
 export const VOLUMES_OPTIONS = [
   {
     id: 'volume_snapshot',
-    planCode: 'volume.snapshot.monthly.postpaid',
+    planCode: 'volume.snapshot.consumption',
     type: VOLUME_OPTION_SNAPSHOT,
   },
   {
     id: 'volume_backup',
-    planCode: 'storage.monthly.postpaid',
+    planCode: 'storage.consumption',
     type: VOLUME_OPTION_BACKUP,
   },
 ];
+
+export const PRICE_DECIMAL = 3;
 
 export const BACKUP_NAME_PREFIX = {
   [VOLUME_OPTION_SNAPSHOT]: 'snapshot',
@@ -25,4 +27,5 @@ export default {
   VOLUME_OPTION_BACKUP,
   VOLUMES_OPTIONS,
   BACKUP_NAME_PREFIX,
+  PRICE_DECIMAL,
 };
