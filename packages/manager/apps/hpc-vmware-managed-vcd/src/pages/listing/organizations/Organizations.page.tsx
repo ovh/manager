@@ -10,9 +10,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
-import DatagridContainer, {
-  TDatagridContainerProps,
-} from '@/components/datagrid/container/DatagridContainer.component';
+import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { urls } from '@/routes/routes.constant';
 import IVcdOrganization from '@/types/vcd-organization.interface';
 import { VCD_ORGANIZATION_ROUTE } from '@/data/api/hpc-vmware-managed-vcd.constants';
@@ -31,9 +29,15 @@ const DatagridIdCell = (vdcOrg: IVcdOrganization) => {
   );
 };
 
-const DatagridRegionCell = (vdcOrg: IVcdOrganization) => (
+const DatagridLocationCell = (vdcOrg: IVcdOrganization) => (
   <DataGridTextCell>
     <Region name={vdcOrg.currentState?.region?.toLowerCase()} mode="region" />
+  </DataGridTextCell>
+);
+
+const DatagridRegionCell = (vdcOrg: IVcdOrganization) => (
+  <DataGridTextCell>
+    {vdcOrg.currentState?.region?.toLowerCase()}
   </DataGridTextCell>
 );
 
@@ -64,8 +68,13 @@ export default function Listing() {
     },
     {
       id: 'location',
-      cell: DatagridRegionCell,
+      cell: DatagridLocationCell,
       label: t('managed_vcd_listing_location'),
+    },
+    {
+      id: 'region',
+      cell: DatagridRegionCell,
+      label: t('managed_vcd_listing_region'),
     },
     {
       id: 'description',
