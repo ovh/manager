@@ -8,7 +8,7 @@ import {
   useReactTable,
   getSortedRowModel,
 } from '@tanstack/react-table';
-import { ODS_ICON_NAME, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   OdsButton,
   OdsIcon,
@@ -270,7 +270,6 @@ export const Datagrid = <T,>({
       {hasNextPage && (
         <div className="grid justify-items-center my-5">
           <OdsButton
-            variant={ODS_BUTTON_VARIANT.outline}
             label={t('common_pagination_load_more')}
             onClick={onFetchNextPage}
           />

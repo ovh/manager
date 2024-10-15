@@ -17,7 +17,7 @@ export const DashboardTile: React.FC<DashboardTileProps> = ({
   title,
   items,
 }) => (
-  <OdsCard className="w-full flex-col p-[1rem]" color="neutral">
+  <OdsCard className="w-full h-full flex-col p-[1rem]" color="neutral">
     <div className="flex flex-col w-full">
       {title && (
         <>
@@ -28,12 +28,12 @@ export const DashboardTile: React.FC<DashboardTileProps> = ({
         </>
       )}
       {items.map((item, index) => (
-        <React.Fragment key={item.id}>
+        <>
           <TileBlock key={item.id} label={item.label}>
             {item.value}
           </TileBlock>
           {index < items.length - 1 && <OdsDivider spacing="24" />}
-        </React.Fragment>
+        </>
       ))}
     </div>
   </OdsCard>

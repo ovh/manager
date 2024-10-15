@@ -23,11 +23,10 @@ export const Links: React.FC<LinksProps> = ({
   label,
   onClickReturn,
   type,
-  href,
   ...props
 }: LinksProps) => (
   <OdsLink
-    href={href}
+    href="#"
     onClick={onClickReturn}
     {...props}
     {...(type === LinkType.next && { icon: ODS_ICON_NAME.arrowRight })}

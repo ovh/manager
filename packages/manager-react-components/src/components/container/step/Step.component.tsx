@@ -54,7 +54,9 @@ export const StepComponent = ({
         {isChecked ? (
           <OdsIcon
             name={ODS_ICON_NAME.check}
-            className="block p-[12px] text-[20px] text-[--ods-color-primary-500]"
+            className={
+              'block p-[12px] text-[20px] text-[--ods-color-primary-500]'
+            }
           />
         ) : (
           <div
@@ -96,7 +98,7 @@ export const StepComponent = ({
                 label={edit.label as string}
                 data-testid="edit-cta"
                 className="float-left md:float-right"
-                isDisabled={edit.isDisabled || undefined}
+                {...(edit.isDisabled ? { disabled: true } : {})}
                 onClick={() => {
                   if (!edit.isDisabled) {
                     edit.action(id);
@@ -130,7 +132,7 @@ export const StepComponent = ({
                     next.action(id);
                   }}
                   className="w-fit"
-                  isDisabled={next.isDisabled || undefined}
+                  {...(next.isDisabled ? { disabled: true } : {})}
                 />
               </div>
             )}
