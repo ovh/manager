@@ -78,3 +78,14 @@ export const getPrivateNetworkSubnets = async (
   );
   return data;
 };
+
+export const getRegionPrivateNetworks = async (
+  projectId: string,
+  region: string,
+) => {
+  const { data } = await v6.get<TPrivateNetwork[]>(
+    `/cloud/project/${projectId}/region/${region}/network`,
+  );
+
+  return data;
+};

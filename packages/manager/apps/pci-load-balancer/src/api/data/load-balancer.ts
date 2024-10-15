@@ -1,5 +1,14 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { PROTOCOLS } from '@/constants';
+import { TInstance } from '@ovh-ux/manager-pci-common';
+import {
+  FLOATING_IP_CREATE_DESCRIPTION,
+  FLOATING_IP_TYPE,
+  PROTOCOLS,
+} from '@/constants';
+import { TRegion } from '@/api/hook/usePlans';
+import { TPrivateNetwork, TSubnet } from '@/api/data/network';
+import { ListenerConfiguration } from '@/components/create/InstanceTable.component';
+import { TFloatingIp } from '@/api/data/floating-ips';
 
 export enum LoadBalancerOperatingStatusEnum {
   ONLINE = 'online',
@@ -183,6 +192,157 @@ export const editListener = async ({
     {
       name,
       defaultPoolId,
+    },
+  );
+
+  return data;
+};
+
+export type TCreateLoadBalancerParam = {
+  projectId: string;
+  flavor: TFlavor;
+  region: TRegion;
+  floatingIp: TFloatingIp;
+  privateNetwork: TPrivateNetwork;
+  subnet: TSubnet;
+  gateways: { id: string }[];
+  listeners: ListenerConfiguration[];
+  name: string;
+};
+
+export const createLoadBalancer = async ({
+  projectId,
+  flavor,
+  region,
+  floatingIp,
+  privateNetwork,
+  subnet,
+  gateways,
+  listeners,
+  name,
+}: Readonly<TCreateLoadBalancerParam>) => {
+  type TNetworkParam = {
+    private: {
+      network: {
+        id: string;
+        subnetId: string;
+      };
+      floatingIpCreate?: {
+        description: string;
+      };
+      floatingIp?: {
+        id: string;
+      };
+      gatewayCreate?: {
+        model: string;
+        name: string;
+      };
+      gateway?: {
+        id: string;
+      };
+    };
+  };
+
+  const network: TNetworkParam = {
+    private: {
+      network: {
+        id: privateNetwork.id,
+        subnetId: subnet.id,
+      },
+    },
+  };
+
+  if (floatingIp.type === FLOATING_IP_TYPE.CREATE) {
+    network.private.floatingIpCreate = {
+      description: `${FLOATING_IP_CREATE_DESCRIPTION} ${name}`,
+    };
+  }
+
+  if (
+    ![FLOATING_IP_TYPE.CREATE, FLOATING_IP_TYPE.NO_IP].includes(floatingIp.type)
+  ) {
+    network.private.floatingIp = {
+      id: floatingIp.id,
+    };
+  }
+
+  if (network.private.floatingIp || network.private.floatingIpCreate) {
+    if (!gateways?.length) {
+      network.private.gatewayCreate = {
+        model: 's',
+        name: `gateway-${region.name}`,
+      };
+    } else {
+      network.private.gateway = {
+        id: gateways[0].id,
+      };
+    }
+  }
+
+  const formattedListeners =
+    listeners?.map((listener) => {
+      const pool: {
+        algorithm: string;
+        protocol: string;
+        healthMonitor?: {
+          name: string;
+          monitorType: string;
+          maxRetries: number;
+          delay: number;
+          timeout: number;
+          httpConfiguration: {
+            httpMethod: string;
+            urlPath: string;
+          };
+        };
+        members?: TInstance[];
+      } = {
+        algorithm: 'roundRobin',
+        protocol: listener.protocol,
+      };
+
+      const instances = listener.instances?.reduce((filtered, instance) => {
+        if (Object.keys(instance).length > 0) {
+          filtered.push({
+            address: instance.instance.ipAddresses[0].ip,
+            protocolPort: instance.port,
+          });
+        }
+        return filtered;
+      }, []);
+
+      if (listener.healthMonitor) {
+        pool.healthMonitor = {
+          name: `health-monitor-${listener.healthMonitor}`,
+          monitorType: listener.healthMonitor,
+          maxRetries: 4,
+          delay: 5,
+          timeout: 4,
+          httpConfiguration: {
+            httpMethod: 'GET',
+            urlPath: '/',
+          },
+        };
+      }
+
+      if (instances.length) {
+        pool.members = instances;
+      }
+
+      return {
+        port: listener.port,
+        protocol: listener.protocol,
+        pool,
+      };
+    }) || [];
+
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/region/${region.name}/loadbalancing/loadbalancer`,
+    {
+      flavorId: flavor.id,
+      network,
+      name,
+      listeners: formattedListeners,
     },
   );
 
