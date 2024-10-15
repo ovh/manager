@@ -53,6 +53,7 @@ import {
   RancherVersion,
   CreateRancherPayload,
   TRancherPricing,
+  ErrorResponse,
 } from '@/types/api.type';
 import { useFormattedRancherPrices } from '@/data/hooks/useFormattedPrices/useFormattedPrices';
 
@@ -111,7 +112,7 @@ export interface CreateRancherProps {
   plans: RancherPlan[];
   versions: RancherVersion[];
   hasRancherCreationError: boolean;
-  rancherCreationErrorMessage?: { message: string; class: string } | null;
+  rancherCreationErrorMessage?: ErrorResponse['response']['data'] | null;
   onCreateRancher: (payload: CreateRancherPayload) => void;
   isProjectDiscoveryMode?: boolean;
   isCreateRancherLoading: boolean;

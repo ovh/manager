@@ -1,5 +1,10 @@
 import { TOptions } from 'i18next';
-import { RancherPlan, RancherService, RancherVersion } from '@/types/api.type';
+import {
+  ErrorResponse,
+  RancherPlan,
+  RancherService,
+  RancherVersion,
+} from '@/types/api.type';
 
 export const isValidRancherName = (name: string) =>
   /^[a-z0-9][-_.A-Za-z0-9]{1,61}[a-z0-9]$/.test(name);
@@ -107,10 +112,7 @@ export function extractDriversAndPlanFromSwitchPlanError(
   return null;
 }
 
-type OVHError = {
-  class: string;
-  message: string;
-};
+type OVHError = ErrorResponse['response']['data'];
 
 /**
  * Manages Rancher errors and returns appropriate error messages for internationalization.
@@ -121,9 +123,6 @@ type OVHError = {
 export const rancherErrorManagement = (
   error: unknown,
 ): [string, TOptions?] | null => {
-  if (typeof error === 'string' || !error) {
-    return null;
-  }
   if (typeof error === 'object') {
     const ovhError = error as OVHError;
     if (ovhError.class === 'Server::InternalServerError') {
@@ -146,6 +145,5 @@ export const rancherErrorManagement = (
       ];
     }
   }
-
   return null;
 };
