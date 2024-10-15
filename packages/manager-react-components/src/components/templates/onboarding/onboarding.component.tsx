@@ -82,7 +82,6 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
           {(img?.src || placeholderSrc) && (
             <div className="flex justify-center pt-8 max-h-28 w-full">
               <img
-                {...imgProps}
                 className="max-h-[150px]"
                 src={img?.src ?? placeholderSrc}
                 alt=""
