@@ -1,7 +1,6 @@
 import { waitFor } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import { ErrorBanner } from './error.component';
-import userEvent from '@testing-library/user-event';
 import tradFr from './translations/Messages_fr_FR.json';
 import { ErrorObject, ErrorBannerProps } from './error.types';
 import { defaultProps } from './error.stories';
@@ -48,23 +47,27 @@ describe('specs:error.component', () => {
 
     it('calls onRedirectHome when home button is clicked', async () => {
       const onRedirectHomeMock = jest.fn();
-      const { getByTestId } = await setupSpecTest({
+      const screen = await setupSpecTest({
         onRedirectHome: onRedirectHomeMock,
       });
 
-      const homeButton = getByTestId('error-template-action-home');
-      await userEvent.click(homeButton);
+      const homeButton = screen.queryByText(
+        tradFr.manager_error_page_action_home_label,
+      );
+      homeButton.click();
+
       expect(onRedirectHomeMock).toHaveBeenCalled();
     });
 
     it('calls onReloadPage when reload button is clicked', async () => {
       const onReloadPageMock = jest.fn();
-      const { getByTestId } = await setupSpecTest({
-        onReloadPage: onReloadPageMock,
-      });
+      const screen = await setupSpecTest({ onReloadPage: onReloadPageMock });
 
-      const reloadButton = getByTestId('error-template-action-reload');
-      await userEvent.click(reloadButton);
+      const reloadButton = screen.getByText(
+        tradFr.manager_error_page_action_reload_label,
+      );
+      reloadButton.click();
+
       expect(onReloadPageMock).toHaveBeenCalled();
     });
   });

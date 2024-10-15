@@ -1,6 +1,6 @@
 import React from 'react';
-import { OdsTag } from '@ovhcloud/ods-components/react';
-import { ODS_TAG_COLOR } from '@ovhcloud/ods-components';
+import { OsdsChip } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { FilterWithLabel } from './interface';
 import './translations';
@@ -21,18 +21,18 @@ export function FilterList({
   return (
     <>
       {filters?.map((filter, key) => (
-        <OdsTag
+        <OsdsChip
           className="m-3"
-          color={ODS_TAG_COLOR.information}
-          size="lg"
+          color={ODS_THEME_COLOR_INTENT.primary}
           key={key}
-          onOdsRemove={() => onRemoveFilter(filter)}
-          data-testid="filter-list_tag_item"
-          label={`${
-            filter.label ? `${filter.label} ${tComp(filter.comparator)} ` : ''
-          }
-          ${filter.value}`}
-        />
+          inline={true}
+          removable={true}
+          onOdsChipRemoval={() => onRemoveFilter(filter)}
+          data-testid="filter-list_chip_item"
+        >
+          {filter.label ? `${filter.label} ${tComp(filter.comparator)} ` : ''}
+          {filter.value}
+        </OsdsChip>
       ))}
     </>
   );

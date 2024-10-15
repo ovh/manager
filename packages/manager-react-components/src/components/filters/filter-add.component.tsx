@@ -1,13 +1,18 @@
 import React, { useMemo, useState } from 'react';
 import { Filter, FilterComparator } from '@ovh-ux/manager-core-api';
-import { ODS_BUTTON_SIZE, ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
-import './filters.scss';
-
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  OdsButton,
-  OdsFormField,
-  OdsInput,
-  OdsSelect,
+  ODS_BUTTON_SIZE,
+  ODS_INPUT_TYPE,
+  ODS_TEXT_LEVEL,
+} from '@ovhcloud/ods-components';
+import {
+  OsdsButton,
+  OsdsFormField,
+  OsdsInput,
+  OsdsSelect,
+  OsdsSelectOption,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import './translations';
@@ -51,81 +56,85 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
 
   return (
     <>
-      <div>
-        <OdsFormField className="w-full">
-          <div slot="label">
-            <span className="text-[--ods-color-heading] leading-[22px]">
-              {t('common_criteria_adder_column_label')}
-            </span>
-          </div>
-          <OdsSelect
-            value={selectedId}
-            name="add-filter_select_idColumn"
-            data-testid="add-filter_select_idColumn"
-            onOdsChange={(event) => setSelectedId(event.detail.value as string)}
+      <OsdsFormField>
+        <div slot="label">
+          <OsdsText
+            level={ODS_TEXT_LEVEL.heading}
+            color={ODS_THEME_COLOR_INTENT.text}
           >
-            {columns.map(({ id, label }) => (
-              <option key={id} value={id}>
-                {label}
-              </option>
-            ))}
-          </OdsSelect>
-        </OdsFormField>
-      </div>
-      <div>
-        <OdsFormField className="mt-2 w-full">
-          <div slot="label">
-            <span className="text-[--ods-color-heading] leading-[22px]">
-              {t('common_criteria_adder_operator_label')}
-            </span>
-          </div>
-          <OdsSelect
-            name="add-operator"
-            value={selectedComparator}
-            onOdsChange={(event) => {
-              setSelectedComparator(event.detail.value as FilterComparator);
-            }}
+            {t('common_criteria_adder_column_label')}
+          </OsdsText>
+        </div>
+        <OsdsSelect
+          value={selectedId}
+          data-testid="add-filter_select_idColumn"
+          onOdsValueChange={(event) =>
+            setSelectedId(event.detail.value as string)
+          }
+        >
+          {columns.map(({ id, label }) => (
+            <OsdsSelectOption key={id} value={id}>
+              {label}
+            </OsdsSelectOption>
+          ))}
+        </OsdsSelect>
+      </OsdsFormField>
+      <OsdsFormField className="mt-2">
+        <div slot="label">
+          <OsdsText
+            level={ODS_TEXT_LEVEL.heading}
+            color={ODS_THEME_COLOR_INTENT.text}
           >
-            {selectedColumn?.comparators?.map((comp) => (
-              <option key={comp} value={comp}>
-                {t(`${'common_criteria_adder_operator_'}${comp}`)}
-              </option>
-            ))}
-          </OdsSelect>
-        </OdsFormField>
-      </div>
-      <div>
-        <OdsFormField className="mt-2 w-full">
-          <div slot="label">
-            <span className="text-[--ods-color-heading] leading-[22px]">
-              {t('common_criteria_adder_value_label')}
-            </span>
-          </div>
-          <OdsInput
-            name="filter-add_value-input"
-            className="border"
-            type={ODS_INPUT_TYPE.text}
-            value={value}
-            data-testid="filter-add_value-input"
-            onOdsChange={(e) => setValue(`${e.detail.value}`)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                submitAddFilter();
-              }
-            }}
-          />
-        </OdsFormField>
-      </div>
-      <div>
-        <OdsButton
-          className="mt-4 w-full filter-add-button-submit"
-          size={ODS_BUTTON_SIZE.sm}
-          isDisabled={!value}
-          onClick={submitAddFilter}
-          data-testid="filter-add_submit"
-          label={t('common_criteria_adder_submit_label')}
+            {t('common_criteria_adder_operator_label')}
+          </OsdsText>
+        </div>
+        <OsdsSelect
+          value={selectedComparator}
+          onOdsValueChange={(event) => {
+            setSelectedComparator(event.detail.value as FilterComparator);
+          }}
+        >
+          {selectedColumn?.comparators?.map((comp) => (
+            <OsdsSelectOption key={comp} value={comp}>
+              {t(`${'common_criteria_adder_operator_'}${comp}`)}
+            </OsdsSelectOption>
+          ))}
+        </OsdsSelect>
+      </OsdsFormField>
+      <OsdsFormField className="mt-2">
+        <div slot="label">
+          <OsdsText
+            level={ODS_TEXT_LEVEL.heading}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('common_criteria_adder_value_label')}
+          </OsdsText>
+        </div>
+
+        <OsdsInput
+          className="border"
+          type={ODS_INPUT_TYPE.text}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          value={value}
+          data-testid="filter-add_value-input"
+          onOdsValueChange={(e) => setValue(`${e.detail.value}`)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              submitAddFilter();
+            }
+          }}
         />
-      </div>
+      </OsdsFormField>
+      <OsdsButton
+        className="mt-4"
+        color={ODS_THEME_COLOR_INTENT.primary}
+        size={ODS_BUTTON_SIZE.sm}
+        disabled={value ? undefined : true}
+        onClick={submitAddFilter}
+        data-testid="filter-add_submit"
+      >
+        {t('common_criteria_adder_submit_label')}
+      </OsdsButton>
     </>
   );
 }

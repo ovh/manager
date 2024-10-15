@@ -28,7 +28,8 @@ describe('FilterAdd tests', () => {
     const { getByTestId } = renderComponent(props);
 
     const addFilterButton = getByTestId('filter-add_submit');
-    expect(addFilterButton).toHaveAttribute('is-disabled', 'true');
+
+    expect(addFilterButton).toHaveProperty('disabled');
   });
 
   it('should set the id of first columns items as value of the id select', () => {

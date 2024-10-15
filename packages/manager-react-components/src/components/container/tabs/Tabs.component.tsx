@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useMedia } from 'react-use';
 import { clsx } from 'clsx';
 import { v4 as uuidV4 } from 'uuid';
-import { OdsIcon, OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { hashCode } from '../../../utils';
 
 type TProps<Item> = {
@@ -73,7 +74,7 @@ export function TabsComponent<Item>({
     <>
       {isDesktop ? (
         <section
-          className={clsx('rounded-sm flex flex-col', className)}
+          className={clsx('rounded-sm', className)}
           data-testid="desktop"
         >
           <ul
@@ -84,9 +85,9 @@ export function TabsComponent<Item>({
               <li
                 key={`tabs-${id}title-${uniqKey(item)}`}
                 className={clsx(
-                  'px-4 py-4 cursor-pointer border border-solid border-[--ods-color-primary-100] rounded-t-lg',
+                  'px-4 py-4 cursor-pointer border border-solid border-[#bef1ff] rounded-t-lg',
                   item === state.selectedItem
-                    ? 'border-b-0 bg-[--ods-color-primary-050]'
+                    ? 'border-b-0 bg-[#F5FEFF]'
                     : 'border-b bg-white',
                 )}
               >
@@ -101,10 +102,10 @@ export function TabsComponent<Item>({
             ))}
             <li
               key={'none'}
-              className="border-0 border-b border-solid border-b-[--ods-color-primary-100] w-full"
+              className="border-0 border-b border-solid border-b-[#bef1ff] w-full"
             ></li>
           </ul>
-          <div className="bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0">
+          <div className="bg-[#F5FEFF] border border-solid border-[#bef1ff] border-t-0">
             {contentElement(state.selectedItem)}
           </div>
         </section>
@@ -116,7 +117,7 @@ export function TabsComponent<Item>({
           {state.items.map((item) => (
             <div
               key={`tabs-${id}title-${uniqKey(item)}`}
-              className="px-2 bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] rounded-lg"
+              className="px-2 bg-[#F5FEFF] border border-solid border-[#bef1ff] rounded-lg"
             >
               <button
                 className="flex cursor-pointer px-4 py-4 w-full border-0 bg-transparent"
@@ -124,15 +125,23 @@ export function TabsComponent<Item>({
                 onKeyDown={() => setSelectedItem(item)}
               >
                 <div className="w-full">
-                  <OdsText>
-                    {titleElement(item, item === state.selectedItem)}
-                  </OdsText>
+                  {titleElement(item, item === state.selectedItem)}
                 </div>
                 <div className="w-fit flex items-center">
                   {!Object.is(state.selectedItem, item) ? (
-                    <OdsIcon name={ODS_ICON_NAME.chevronDown}></OdsIcon>
+                    <OsdsIcon
+                      className=""
+                      name={ODS_ICON_NAME.CHEVRON_DOWN}
+                      size={ODS_ICON_SIZE.sm}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    ></OsdsIcon>
                   ) : (
-                    <OdsIcon name={ODS_ICON_NAME.chevronUp}></OdsIcon>
+                    <OsdsIcon
+                      className=""
+                      name={ODS_ICON_NAME.CHEVRON_UP}
+                      size={ODS_ICON_SIZE.sm}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    ></OsdsIcon>
                   )}
                 </div>
               </button>

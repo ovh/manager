@@ -28,7 +28,7 @@ describe('DashboardLayout component', () => {
       />,
     );
 
-    fireEvent.click(screen.getByTestId('manager-back-link'));
+    fireEvent.click(screen.getByText(backLinkLabel));
 
     await waitFor(() => expect(spy).toHaveBeenCalled());
   });

@@ -1,8 +1,8 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
-
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Notifications } from './notifications.component';
 import { useNotifications } from './useNotifications';
 
@@ -13,32 +13,38 @@ const NotificationsStory = () => {
   return (
     <>
       <div className="flex">
-        <OdsButton
+        <OsdsButton
           className="mr-2"
           size={ODS_BUTTON_SIZE.md}
+          color={ODS_THEME_COLOR_INTENT.success}
           onClick={() => addSuccess('success message')}
-          label="Add success"
-        />
-        <OdsButton
+        >
+          Add success
+        </OsdsButton>
+        <OsdsButton
           className="mr-2"
           size={ODS_BUTTON_SIZE.md}
-          color={ODS_BUTTON_COLOR.critical}
+          color={ODS_THEME_COLOR_INTENT.warning}
           onClick={() => addWarning('warning message')}
-          label="Add warning"
-        />
-        <OdsButton
+        >
+          Add warning
+        </OsdsButton>
+        <OsdsButton
           className="mr-2"
           size={ODS_BUTTON_SIZE.md}
-          color={ODS_BUTTON_COLOR.critical}
+          color={ODS_THEME_COLOR_INTENT.error}
           onClick={() => addError('error message')}
-          label="Add error"
-        />
-        <OdsButton
+        >
+          Add error
+        </OsdsButton>
+        <OsdsButton
           className="mr-2"
           size={ODS_BUTTON_SIZE.md}
+          color={ODS_THEME_COLOR_INTENT.primary}
           onClick={clearNotifications}
-          label="Clear"
-        />
+        >
+          Clear
+        </OsdsButton>
       </div>
       <div className="mt-4">
         <Notifications />
