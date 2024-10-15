@@ -52,12 +52,12 @@ export default function PoolDetailPage() {
       title: tPoolsDetail(
         'load_balancer_pools_detail_health_monitor_tab_title',
       ),
-      to: '',
+      to: null,
     },
     {
       name: 'load_balancer_pools_detail_members_tab_title',
       title: tPoolsDetail('load_balancer_pools_detail_members_tab_title'),
-      to: '',
+      to: useResolvedPath(ROUTE_PATHS.POOL_MEMBERS).pathname,
     },
   ];
 
