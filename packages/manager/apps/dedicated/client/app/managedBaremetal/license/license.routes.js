@@ -4,6 +4,16 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       pccView: 'ovhManagerPccLicense',
     },
+    redirectTo: (transition) => {
+      return transition
+        .injector()
+        .getAsync('hasVCDMigration')
+        .then((hasVCDMigration) =>
+          hasVCDMigration
+            ? 'app.managedBaremetal.details.dashboard-light'
+            : false,
+        );
+    },
     resolve: {
       goToEnableLicense: /* @ngInject */ ($state) => () =>
         $state.go('app.managedBaremetal.details.license.enable'),
