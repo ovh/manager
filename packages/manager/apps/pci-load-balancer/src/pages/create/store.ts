@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { TRegion } from '@/api/hook/usePlans';
 import { TPrivateNetwork, TSubnet } from '@/api/data/network';
 import { ListenerConfiguration } from '@/components/create/InstanceTable.component';
 import { TSubnetGateway } from '@/api/data/gateways';
 import { TFloatingIp } from '@/api/data/floating-ips';
 import { createLoadBalancer, TFlavor } from '@/api/data/load-balancer';
+import { TRegion } from '@/api/hook/useRegions';
 
-export type TPlan = {
+export type TAddon = {
   code: string;
   price: number;
   label: string;
@@ -31,7 +31,7 @@ export enum StepsEnum {
 
 export type TCreateStore = {
   projectId: string;
-  size: TPlan;
+  addon: TAddon;
   region: TRegion;
   publicIp: TFloatingIp;
   privateNetwork: TPrivateNetwork;
@@ -42,7 +42,7 @@ export type TCreateStore = {
   steps: Map<StepsEnum, TStep>;
   set: {
     projectId: (val: string) => void;
-    size: (val: TPlan) => void;
+    addon: (val: TAddon) => void;
     region: (val: TRegion) => void;
     publicIp: (val: TFloatingIp) => void;
     privateNetwork: (val: TPrivateNetwork) => void;
@@ -62,7 +62,7 @@ export type TCreateStore = {
 
   edit: (step: StepsEnum) => void;
 
-  reset: () => void;
+  reset: (...param: StepsEnum[]) => void;
 
   create: (
     flavor: TFlavor,
@@ -125,7 +125,7 @@ const initialSteps = () =>
 
 export const useCreateStore = create<TCreateStore>()((set, get) => ({
   projectId: '',
-  size: null,
+  addon: null,
   region: null,
   publicIp: null,
   privateNetwork: null,
@@ -140,9 +140,9 @@ export const useCreateStore = create<TCreateStore>()((set, get) => ({
         projectId: val,
       });
     },
-    size: (val: TPlan) => {
+    addon: (val: TAddon) => {
       set({
-        size: val,
+        addon: val,
       });
     },
     region: (val: TRegion) => {
@@ -249,12 +249,49 @@ export const useCreateStore = create<TCreateStore>()((set, get) => ({
       default:
     }
   },
-  reset() {
-    set(() => ({
-      ...get(),
-      size: null,
-      steps: initialSteps(),
-    }));
+  reset(...steps: StepsEnum[]) {
+    if (!steps.length) {
+      set(() => ({
+        ...get(),
+        addon: null,
+        region: null,
+        publicIp: null,
+        privateNetwork: null,
+        subnet: null,
+        gateways: [],
+        listeners: [],
+        name: '',
+        steps: initialSteps(),
+      }));
+    } else {
+      steps.forEach((step) => {
+        get().close(step);
+        get().unlock(step);
+        get().uncheck(step);
+        switch (step) {
+          case StepsEnum.SIZE:
+            break;
+          case StepsEnum.REGION:
+            get().set.region(null);
+            break;
+          case StepsEnum.PUBLIC_IP:
+            get().set.publicIp(null);
+            break;
+          case StepsEnum.PRIVATE_NETWORK:
+            get().set.privateNetwork(null);
+            get().set.subnet(null);
+            get().set.gateways([]);
+            break;
+          case StepsEnum.INSTANCE:
+            get().set.listeners([]);
+            break;
+          case StepsEnum.NAME:
+            get().set.name('');
+            break;
+          default:
+        }
+      });
+    }
   },
   create: async (flavor: TFlavor, onSuccess, onError) => {
     try {
