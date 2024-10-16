@@ -15,7 +15,7 @@ const LabelComponent = ({
   item: TAddon;
   isSelected: boolean;
 }>) => {
-  const { t: tCreate } = useTranslation('create');
+  const { t: tCreate } = useTranslation('load-balancer/create');
 
   const { getFormattedHourlyCatalogPrice } = useCatalogPrice();
 

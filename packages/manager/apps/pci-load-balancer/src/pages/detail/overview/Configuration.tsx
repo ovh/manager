@@ -37,8 +37,8 @@ export default function Configuration({
   subnetCidr,
   loadBalancerVipAddress,
 }: ConfigurationProps) {
-  const { t: tOverview } = useTranslation('octavia_load_balancer_overview');
-  const { t } = useTranslation('octavia-load-balancer');
+  const { t: tOverview } = useTranslation('load-balancer/overview');
+  const { t } = useTranslation('load-balancer');
 
   return (
     <div>

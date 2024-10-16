@@ -13,8 +13,8 @@ import ActionsComponent from './Actions.component';
 import { TLoadBalancerPool } from '@/api/data/pool';
 
 export const useDatagridColumn = () => {
-  const { t } = useTranslation('octavia-load-balancer');
-  const { t: tPools } = useTranslation('octavia-load-balancer-pools');
+  const { t } = useTranslation('load-balancer');
+  const { t: tPools } = useTranslation('pools');
 
   const columns: DatagridColumn<TLoadBalancerPool>[] = [
     {

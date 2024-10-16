@@ -1,4 +1,12 @@
 {
+  "octavia_load_balancer_pools_name": "Name",
+  "octavia_load_balancer_pools_protocol": "Protokoll",
+  "octavia_load_balancer_pools_protocol_helper": "Das Protokoll, für das dieser Pool und seine Mitglieder überwachen.",
+  "octavia_load_balancer_pools_algorithm": "Algorithmus des Loadbalancers",
+  "octavia_load_balancer_pools_algorithm_helper": "Der Loadbalancer-Algorithmus, der den Traffic auf die Mitglieder des Pools verteilt.",
+  "octavia_load_balancer_pools_actions_edit": "Bearbeiten",
+  "octavia_load_balancer_pools_actions_manage_members": "Mitglieder verwalten",
+  "octavia_load_balancer_pools_actions_delete": "Löschen",
   "octavia_load_balancer_pools_title": "Pools",
   "octavia_load_balancer_pools_description_part_1": "Ein Pool steht für eine Gruppe von Mitgliedern, die für das Backend zuständig sind und eine gemeinsame Konfiguration haben, z. B. im Hinblick auf den Loadbalancer-Algorithmus, den Test oder die Konfiguration persistenter Sitzungen.",
   "octavia_load_balancer_pools_description_part_2": "Entdecken Sie weitere Optionen über Horizon.",

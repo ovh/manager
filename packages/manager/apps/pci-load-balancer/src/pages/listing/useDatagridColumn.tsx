@@ -13,7 +13,7 @@ import ActionsComponent from '@/components/listing/Actions.component';
 import CreationDate from '@/components/listing/CreationDate.component';
 
 export const useDatagridColumn = () => {
-  const { t } = useTranslation('octavia-load-balancer');
+  const { t } = useTranslation('load-balancer');
 
   const columns: DatagridColumn<TLoadBalancer>[] = [
     {

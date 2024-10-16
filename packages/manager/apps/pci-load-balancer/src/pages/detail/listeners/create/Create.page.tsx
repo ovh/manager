@@ -1,15 +1,26 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useState } from 'react';
 import { Translation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useCreateListener } from '@/api/hook/useLoadBalancer';
-import ListenerForm from '@/components/detail/listeners/ListenerForm.page';
+import ListenerForm, {
+  TListenerFormState,
+} from '@/components/form/ListenerForm.page';
 import { useAllLoadBalancerPools } from '@/api/hook/usePool';
+import { useCreateListener } from '@/api/hook/useLoadBalancer';
+import { TProtocol } from '@/api/data/load-balancer';
 
 export default function CreateListener() {
   const navigate = useNavigate();
   const { projectId, region, loadBalancerId } = useParams();
   const { addSuccess, addError } = useNotifications();
+
+  const [formState, setFormState] = useState<TListenerFormState>({
+    name: '',
+    protocol: '' as TProtocol,
+    port: 1,
+    pool: null,
+  });
 
   const { data: pools } = useAllLoadBalancerPools({
     projectId,
@@ -23,7 +34,7 @@ export default function CreateListener() {
     loadBalancerId,
     onError(error: ApiError) {
       addError(
-        <Translation ns="octavia-load-balancer">
+        <Translation ns="load-balancer">
           {(_t) =>
             _t('octavia_load_balancer_global_error', {
               message: error?.response?.data?.message || error?.message || null,
@@ -31,16 +42,17 @@ export default function CreateListener() {
             })
           }
         </Translation>,
+
         true,
       );
       navigate('..');
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="octavia-load-balancer-listeners">
+        <Translation ns="listeners">
           {(_t) =>
             _t('octavia_load_balancer_listeners_create_success', {
-              listener: '??',
+              listener: formState?.name,
             })
           }
         </Translation>,
@@ -52,6 +64,8 @@ export default function CreateListener() {
 
   return (
     <ListenerForm
+      formState={formState}
+      onChange={setFormState}
       pools={pools}
       isPending={isCreationPending}
       onCancel={() => navigate('..')}

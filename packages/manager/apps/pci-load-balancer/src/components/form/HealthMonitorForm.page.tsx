@@ -16,13 +16,12 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { QuantitySelector } from '@ovh-ux/manager-pci-common';
 import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import {
-  THealthMonitor,
   THealthMonitorFormState,
   THealthMonitorType,
 } from '@/api/data/health-monitor';
@@ -68,7 +67,7 @@ export default function HealthMonitorForm({
   submitLabel,
 }: HealthMonitorFormProps) {
   const { t: tCommon } = useTranslation('pci-common');
-  const { t } = useTranslation('octavia-load-balancer-health-monitor-form');
+  const { t } = useTranslation('health-monitor/form');
 
   const displayHttpSpecificFields = useMemo(
     () => formState?.type && isTypeHttpOrHttps(formState?.type),

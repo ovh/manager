@@ -12,18 +12,18 @@ import {
   OsdsSelectOption,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   LISTENER_POOL_PROTOCOL_COMBINATION,
   PROTOCOLS,
   PROTOCOLS_PORT,
 } from '@/constants';
-import { TLoadBalancerListener, TProtocol } from '@/api/data/load-balancer';
-import { TLoadBalancerPool } from '@/api/data/pool';
 import LabelComponent from '@/components/form/Label.component';
+import { TLoadBalancerPool } from '@/api/data/pool';
+import { TProtocol } from '@/api/data/load-balancer';
 
-export type TFormState = {
+export type TListenerFormState = {
   name: string;
   protocol: TProtocol;
   port: number;
@@ -31,35 +31,30 @@ export type TFormState = {
 };
 
 export type ListenerFormProps = {
-  listener?: TLoadBalancerListener | null;
+  formState: TListenerFormState;
   pools: TLoadBalancerPool[];
   isPending: boolean;
   isEditing?: boolean;
-  onSubmit: (state: TFormState) => void;
+  onSubmit: (state: TListenerFormState) => void;
+  onChange: (state) => void;
   onCancel: () => void;
 };
 
 export default function ListenerForm({
-  listener = null,
+  formState,
+  onChange,
   isEditing = false,
   pools,
   isPending,
   onCancel,
   onSubmit,
-}: ListenerFormProps) {
+}: Readonly<ListenerFormProps>) {
   const { t: tCommon } = useTranslation('pci-common');
-  const { t } = useTranslation('octavia-load-balancer-listeners-create');
-  const { t: tListeners } = useTranslation('octavia-load-balancer-listeners');
+  const { t } = useTranslation('listeners/create');
+  const { t: tListeners } = useTranslation('listeners');
 
   const PORT_MIN_VALUE = 1;
   const PORT_MAX_VALUE = 65535;
-
-  const [formState, setFormState] = useState<TFormState>({
-    name: '',
-    protocol: '' as TProtocol,
-    port: 1,
-    pool: null,
-  });
 
   const [isTouched, setIsTouched] = useState({ name: false, port: false });
 
@@ -75,22 +70,11 @@ export default function ListenerForm({
     [pools, formState.protocol],
   );
 
-  useEffect(() => {
-    if (isEditing && listener && pools?.length) {
-      setFormState({
-        name: listener.name,
-        protocol: listener.protocol,
-        port: listener.port,
-        pool: pools.find((pool) => pool.id === listener.defaultPoolId) ?? null,
-      });
-    }
-  }, [listener, isEditing, pools]);
-
   const handle = {
     protocolChange: (event) => {
       const selectedProtocol = event.detail.value as TProtocol;
 
-      setFormState((prev) => ({
+      onChange((prev) => ({
         ...prev,
         protocol: selectedProtocol,
         port: PROTOCOLS_PORT[selectedProtocol] || 1,
@@ -101,14 +85,14 @@ export default function ListenerForm({
           !filteredPools.find(({ id }) => id === formState.pool.id)) ||
         selectedProtocol === 'prometheus'
       ) {
-        setFormState((prev) => ({
+        onChange((prev) => ({
           ...prev,
           pool: null,
         }));
       }
     },
     change: (key: string, value: string | number | TLoadBalancerPool) => {
-      setFormState((prev) => ({
+      onChange((prev) => ({
         ...prev,
         [key]: value,
       }));
@@ -134,21 +118,15 @@ export default function ListenerForm({
     return '';
   }, [isTouched.port, formState.port]);
 
-  const isNameRequired = isTouched.name && !formState.name;
+  const isNameRequired = isTouched.name && !formState.name.trim();
   const isFormValid = formState.name && formState.protocol && !portError;
 
   if (isPending) {
-    return (
-      <OsdsSpinner
-        inline
-        size={ODS_SPINNER_SIZE.md}
-        data-testid="List-spinner"
-      />
-    );
+    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
   }
 
   return (
-    <div className="w-1/4">
+    <div className="min-w-[20rem] md:w-1/4 sm:w-1">
       <OsdsFormField
         className="my-8"
         error={isNameRequired ? tCommon('common_field_error_required') : ''}
@@ -161,11 +139,7 @@ export default function ListenerForm({
         <OsdsInput
           type={ODS_INPUT_TYPE.text}
           value={formState.name}
-          color={
-            isNameRequired
-              ? ODS_THEME_COLOR_INTENT.error
-              : ODS_THEME_COLOR_INTENT.primary
-          }
+          error={isNameRequired}
           onOdsValueChange={(event) =>
             handle.change('name', event.detail.value)
           }
@@ -174,14 +148,12 @@ export default function ListenerForm({
       </OsdsFormField>
 
       <OsdsFormField className="my-8">
-        <div slot="label" className="flex items-center gap-3">
-          <LabelComponent
-            text={t('octavia_load_balancer_listeners_create_protocol')}
-            helpText={tListeners(
-              'octavia_load_balancer_listeners_protocol_helper',
-            )}
-          />
-        </div>
+        <LabelComponent
+          text={t('octavia_load_balancer_listeners_create_protocol')}
+          helpText={tListeners(
+            'octavia_load_balancer_listeners_protocol_helper',
+          )}
+        />
 
         <OsdsSelect
           value={formState.protocol}
@@ -211,11 +183,7 @@ export default function ListenerForm({
           min={PORT_MIN_VALUE}
           max={PORT_MAX_VALUE}
           value={formState.port}
-          color={
-            portError
-              ? ODS_THEME_COLOR_INTENT.error
-              : ODS_THEME_COLOR_INTENT.primary
-          }
+          error={!!portError}
           onOdsValueChange={(event) =>
             handle.change('port', Number(event.detail.value))
           }

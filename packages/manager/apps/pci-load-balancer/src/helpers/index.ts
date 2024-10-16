@@ -5,7 +5,7 @@ import * as dateFnsLocales from 'date-fns/locale';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
-import { THealthMonitor, THealthMonitorType } from '@/api/data/health-monitor';
+import { THealthMonitorType } from '@/api/data/health-monitor';
 import { HEALTH_MONITOR_TYPE } from '@/constants';
 
 export const paginateResults = <T>(

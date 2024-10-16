@@ -14,7 +14,7 @@ export interface Notification {
   content: ReactNode;
   type: NotificationType;
   dismissable?: boolean;
-  creationTimestamp: number;
+  creationTimestamp?: number;
 }
 
 export interface NotificationState {

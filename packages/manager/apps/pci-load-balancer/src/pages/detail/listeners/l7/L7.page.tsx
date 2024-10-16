@@ -14,9 +14,9 @@ import { useListener } from '@/api/hook/useListener';
 
 export default function L7Page() {
   const { t: tPciCommon } = useTranslation('pci-common');
-  const { t } = useTranslation('octavia-load-balancer-l7');
-  const { t: tLoadBalancer } = useTranslation('octavia-load-balancer');
-  const { t: tListener } = useTranslation('octavia-load-balancer-listeners');
+  const { t } = useTranslation('l7');
+  const { t: tLoadBalancer } = useTranslation('load-balancer');
+  const { t: tListener } = useTranslation('listeners');
 
   const { projectId, loadBalancerId, region, listenerId } = useParams();
   const { data: project } = useProject();

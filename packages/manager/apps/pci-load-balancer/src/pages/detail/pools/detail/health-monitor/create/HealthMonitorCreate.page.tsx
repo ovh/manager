@@ -15,7 +15,7 @@ import {
 import { THealthMonitorFormState } from '@/api/data/health-monitor';
 
 export default function HealthMonitorCreatePage() {
-  const { t } = useTranslation('octavia-load-balancer-health-monitor-create');
+  const { t } = useTranslation('health-monitor/create');
 
   const navigate = useNavigate();
   const { addSuccess, addError } = useNotifications();
@@ -55,7 +55,7 @@ export default function HealthMonitorCreatePage() {
       addError(
         <Trans
           i18nKey="octavia_load_balancer_global_error"
-          ns="octavia-load-balancer"
+          ns="load-balancer"
           values={{
             message: error?.response?.data?.message || error?.message || null,
             requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
@@ -69,7 +69,7 @@ export default function HealthMonitorCreatePage() {
       addSuccess(
         <Trans
           i18nKey="octavia_load_balancer_health_monitor_create_success"
-          ns="octavia-load-balancer-health-monitor-create"
+          ns="health-monitor/create"
           values={{ name: healthMonitor?.name }}
         />,
         true,

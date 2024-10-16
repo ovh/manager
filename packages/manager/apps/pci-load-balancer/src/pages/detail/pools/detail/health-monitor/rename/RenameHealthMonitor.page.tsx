@@ -19,12 +19,8 @@ import {
 } from '@/api/hook/useHealthMonitor';
 
 export default function RenameHealthMonitorPage() {
-  const { t } = useTranslation(
-    'octavia-load-balancer-health-monitor-edit-name',
-  );
-  const { t: tForm } = useTranslation(
-    'octavia-load-balancer-health-monitor-form',
-  );
+  const { t } = useTranslation('health-monitor/edit-name');
+  const { t: tForm } = useTranslation('health-monitor/form');
   const { t: tCommon } = useTranslation('pci-common');
 
   const navigate = useNavigate();
@@ -55,7 +51,7 @@ export default function RenameHealthMonitorPage() {
       addError(
         <Trans
           i18nKey="octavia_load_balancer_global_error"
-          ns="octavia-load-balancer"
+          ns="load-balancer"
           values={{
             message: error?.response?.data?.message || error?.message || null,
             requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
@@ -69,7 +65,7 @@ export default function RenameHealthMonitorPage() {
       addSuccess(
         <Trans
           i18nKey="octavia_load_balancer_health_monitor_detail_overview_edit_name_success"
-          ns="octavia-load-balancer-health-monitor"
+          ns="health-monitor"
         />,
         true,
       );

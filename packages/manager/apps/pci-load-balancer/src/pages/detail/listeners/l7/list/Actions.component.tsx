@@ -8,7 +8,7 @@ export type ActionsComponentProps = {
 export default function ActionsComponent({
   l7PoliciesId,
 }: Readonly<ActionsComponentProps>) {
-  const { t } = useTranslation('octavia-load-balancer-l7');
+  const { t } = useTranslation('l7');
 
   const items = [
     {

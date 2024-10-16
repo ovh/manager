@@ -63,7 +63,7 @@ export default function PoolsEditPage(): JSX.Element {
       });
 
       addError(
-        <Translation ns="octavia-load-balancer">
+        <Translation ns="load-balancer">
           {(_t) => (
             <span
               dangerouslySetInnerHTML={{
