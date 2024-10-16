@@ -10,6 +10,7 @@ const test = [
   ['status', 'kube:kube_service_cluster_status'],
   ['actions', ''],
 ];
+const columnCount = test.length;
 
 describe('useDatagridColumn', () => {
   it.each(test)('should return the correct column for %s', (id, label) => {
@@ -21,10 +22,10 @@ describe('useDatagridColumn', () => {
     expect(column.label).toBe(label);
   });
 
-  it('should return 7 columns', () => {
+  it(`should return ${columnCount} columns`, () => {
     const { result } = renderHook(() => useDatagridColumn());
     const columns = result.current;
 
-    expect(columns).toHaveLength(test.length);
+    expect(columns).toHaveLength(columnCount);
   });
 });
