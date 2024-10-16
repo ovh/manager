@@ -85,7 +85,7 @@ export const getRancherPlanDescription = (rancherPlan: RancherPlan['name']) => {
 export function extractDriversAndPlanFromSwitchPlanError(
   inputString: string,
 ): null | { drivers: string[]; plan: string } {
-  const bracketMatch = inputString.match(/\[(.*?)\]/);
+  const bracketMatch = inputString.match(/\[([^\]]*)\]/);
   if (!bracketMatch) {
     return null;
   }
