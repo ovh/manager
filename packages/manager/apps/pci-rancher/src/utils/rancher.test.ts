@@ -5,7 +5,7 @@ import {
   getLatestVersions,
   getVersion,
   isValidRancherName,
-  rancherErrorManagement,
+  getI18nextRancherError,
 } from './rancher';
 import { versionsMocked } from '@/_mock_/version';
 
@@ -192,6 +192,6 @@ describe('rancherErrorManagement', () => {
     [{}, ['createRancherError', { rancherCreationErrorMessage: '' }]],
     ['unknown', ['createRancherError', { rancherCreationErrorMessage: '' }]],
   ])('should return %s', (error, expected) => {
-    expect(rancherErrorManagement(error)).toEqual(expected);
+    expect(getI18nextRancherError(error)).toEqual(expected);
   });
 });
