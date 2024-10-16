@@ -3,6 +3,8 @@ import {
   OsdsFormField,
   OsdsIcon,
   OsdsInput,
+  OsdsPopover,
+  OsdsPopoverContent,
   OsdsQuantity,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
@@ -24,6 +26,7 @@ import '../../translations/quantity-selector';
 
 export interface QuantitySelectorProps {
   label?: string;
+  labelHelpText?: string;
   description?: string;
   value: number;
   onValueChange: (value: number) => void;
@@ -34,6 +37,7 @@ export interface QuantitySelectorProps {
 
 export function QuantitySelector({
   label,
+  labelHelpText,
   description,
   value,
   onValueChange,
@@ -56,15 +60,29 @@ export function QuantitySelector({
 
   return (
     <OsdsFormField className={className} inline>
-      {label && (
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-          slot="label"
-        >
-          {label}
-        </OsdsText>
-      )}
+      <div slot="label" className="flex gap-2">
+        {label && (
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+          >
+            {label}
+          </OsdsText>
+        )}
+        {labelHelpText && (
+          <OsdsPopover className="w-4 h-4">
+            <OsdsIcon
+              slot="popover-trigger"
+              name={ODS_ICON_NAME.HELP}
+              size={ODS_ICON_SIZE.xxs}
+              className="cursor-help"
+              color={ODS_THEME_COLOR_INTENT.text}
+            />
+            <OsdsPopoverContent>{labelHelpText}</OsdsPopoverContent>
+          </OsdsPopover>
+        )}
+      </div>
+
       {description && (
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
@@ -87,7 +105,7 @@ export function QuantitySelector({
           <OsdsIcon
             name={ODS_ICON_NAME.MINUS}
             size={ODS_ICON_SIZE.sm}
-            className="mr-2 bg-white"
+            className="bg-white"
           />
         </OsdsButton>
         <OsdsInput
@@ -116,12 +134,13 @@ export function QuantitySelector({
           disabled={max !== undefined && value + 1 > max ? true : undefined}
         >
           <OsdsIcon
-            className="mr-2 bg-white"
+            className="bg-white"
             name={ODS_ICON_NAME.PLUS}
             size={ODS_ICON_SIZE.xs}
           />
         </OsdsButton>
       </OsdsQuantity>
+
       {error.min && (
         <OsdsText color={ODS_THEME_COLOR_INTENT.error} slot="helper">
           {t('common_field_error_min', { min })}

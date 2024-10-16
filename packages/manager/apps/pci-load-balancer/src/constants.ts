@@ -377,3 +377,94 @@ export const KEY_REGEX = "^[a-zA-Z0-9!#$%&'*+-.^_`|~]+$";
 export const REGEX = {
   ip: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
 };
+
+export const LABELS = {
+  MAX_RETRIES_DOWN: 'Max Retries Down',
+  MAX_RETRIES: 'Max Retries',
+  DELAY: 'Delay',
+  TIMEOUT: 'Timeout',
+  URL_PATH: 'URL Path',
+};
+
+export const HEALTH_MONITOR_TYPE = {
+  HTTP: 'http',
+  HTTPS: 'https',
+  PING: 'ping',
+  SCTP: 'sctp',
+  TCP: 'tcp',
+  TLS_HELLO: 'tls-hello',
+  UDP_CONNECT: 'udp-connect',
+};
+
+export const BOUNDS = {
+  MAX_RETRIES_DOWN: {
+    MIN: 1,
+    MAX: 10,
+  },
+  MAX_RETRIES: {
+    MIN: 1,
+    MAX: 10,
+  },
+  DELAY: {
+    MIN: 1,
+  },
+  TIMEOUT: {
+    MIN: 0,
+  },
+};
+
+export const HEALTH_MONITOR_NAME_REGEX = /^[A-Za-z0-9_.-]+$/;
+export const EXPECTED_STATUS_CODE_REGEX = /^([1-5][0-9]{2}(\s*,\s*[1-5][0-9]{2})*)$|^([1-5][0-9]{2}-[1-5][0-9]{2})$/;
+
+export const POOL_HEALTH_MONITOR_TYPE = {
+  http: [
+    HEALTH_MONITOR_TYPE.HTTP,
+    HEALTH_MONITOR_TYPE.HTTPS,
+    HEALTH_MONITOR_TYPE.PING,
+    HEALTH_MONITOR_TYPE.TCP,
+    HEALTH_MONITOR_TYPE.TLS_HELLO,
+  ],
+  https: [
+    HEALTH_MONITOR_TYPE.HTTP,
+    HEALTH_MONITOR_TYPE.HTTPS,
+    HEALTH_MONITOR_TYPE.PING,
+    HEALTH_MONITOR_TYPE.TCP,
+    HEALTH_MONITOR_TYPE.TLS_HELLO,
+  ],
+  proxy: [
+    HEALTH_MONITOR_TYPE.HTTP,
+    HEALTH_MONITOR_TYPE.HTTPS,
+    HEALTH_MONITOR_TYPE.PING,
+    HEALTH_MONITOR_TYPE.TCP,
+    HEALTH_MONITOR_TYPE.TLS_HELLO,
+  ],
+  proxyV2: [
+    HEALTH_MONITOR_TYPE.HTTP,
+    HEALTH_MONITOR_TYPE.HTTPS,
+    HEALTH_MONITOR_TYPE.PING,
+    HEALTH_MONITOR_TYPE.TCP,
+    HEALTH_MONITOR_TYPE.TLS_HELLO,
+  ],
+  sctp: [
+    HEALTH_MONITOR_TYPE.HTTP,
+    HEALTH_MONITOR_TYPE.SCTP,
+    HEALTH_MONITOR_TYPE.TCP,
+    HEALTH_MONITOR_TYPE.UDP_CONNECT,
+  ],
+  tcp: [
+    HEALTH_MONITOR_TYPE.HTTP,
+    HEALTH_MONITOR_TYPE.HTTPS,
+    HEALTH_MONITOR_TYPE.PING,
+    HEALTH_MONITOR_TYPE.TCP,
+    HEALTH_MONITOR_TYPE.TLS_HELLO,
+  ],
+  udp: [
+    HEALTH_MONITOR_TYPE.HTTP,
+    HEALTH_MONITOR_TYPE.SCTP,
+    HEALTH_MONITOR_TYPE.TCP,
+    HEALTH_MONITOR_TYPE.UDP_CONNECT,
+  ],
+};
+
+export const HORIZON_LINK =
+  'https://horizon.cloud.ovh.net/project/load_balancer';
