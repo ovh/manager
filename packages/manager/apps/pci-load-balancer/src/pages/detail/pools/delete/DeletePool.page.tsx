@@ -9,7 +9,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useDeletePool } from '@/api/hook/usePool';
 
 export default function DeletePoolPage() {
-  const { t } = useTranslation('octavia-load-balancer-pools-delete');
+  const { t } = useTranslation('pools/delete');
 
   const navigate = useNavigate();
   const { addSuccess, addError } = useNotifications();
@@ -31,7 +31,7 @@ export default function DeletePoolPage() {
     region,
     onError(error: ApiError) {
       addError(
-        <Translation ns="octavia-load-balancer">
+        <Translation ns="load-balancer">
           {(_t) =>
             _t('octavia_load_balancer_global_error', {
               message: error?.response?.data?.message || error?.message || null,
@@ -45,7 +45,7 @@ export default function DeletePoolPage() {
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="octavia-load-balancer-pools-delete">
+        <Translation ns="pools/delete">
           {(_t) =>
             _t('octavia_load_balancer_pools_components_delete_success', {
               pool: poolName,

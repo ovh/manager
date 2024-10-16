@@ -10,7 +10,7 @@ type ActionsComponentProps = {
 export default function ActionsComponent({
   loadBalancer,
 }: Readonly<ActionsComponentProps>) {
-  const { t } = useTranslation('octavia-load-balancer');
+  const { t } = useTranslation('load-balancer');
 
   const loadBalancerDetailHref = useHref(
     `../${loadBalancer.region}/${loadBalancer.id}`,

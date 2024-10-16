@@ -30,7 +30,7 @@ export default function DeleteListenerPage() {
     region,
     onError(error: ApiError) {
       addError(
-        <Translation ns="octavia-load-balancer">
+        <Translation ns="load-balancer">
           {(_t) =>
             _t('octavia_load_balancer_global_error', {
               message: error?.response?.data?.message || error?.message || null,
@@ -44,7 +44,7 @@ export default function DeleteListenerPage() {
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="octavia-load-balancer-listeners">
+        <Translation ns="listeners">
           {(_t) =>
             _t('octavia_load_balancer_listener_delete_success', {
               listener: listener?.name,

@@ -1,7 +1,4 @@
-import {
-  Notifications,
-  RedirectionGuard,
-} from '@ovh-ux/manager-react-components';
+import { RedirectionGuard } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -32,10 +29,7 @@ import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus
 import { HEALTH_MONITOR_TYPE, LABELS } from '@/constants';
 
 export default function HealthMonitor() {
-  const { t } = useTranslation([
-    'octavia-load-balancer-health-monitor',
-    'octavia-load-balancer',
-  ]);
+  const { t } = useTranslation(['health-monitor', 'load-balancer']);
 
   const { projectId, region, poolId } = useParams();
 

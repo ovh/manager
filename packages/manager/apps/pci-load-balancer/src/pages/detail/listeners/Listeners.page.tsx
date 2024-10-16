@@ -10,7 +10,7 @@ import { Outlet } from 'react-router-dom';
 import { DISCOVER_LINK } from '@/constants';
 
 export default function Listeners() {
-  const { t } = useTranslation('octavia-load-balancer-listeners');
+  const { t } = useTranslation('listeners');
 
   return (
     <div>

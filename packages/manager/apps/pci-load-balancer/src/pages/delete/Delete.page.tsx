@@ -13,7 +13,7 @@ import {
 
 export default function DeletePage() {
   const { addSuccess, addError } = useNotifications();
-  const { t: tDelete } = useTranslation('delete');
+  const { t: tDelete } = useTranslation('load-balancer/delete');
   const navigate = useNavigate();
   const { projectId, loadBalancerId, region } = useParams();
   const onClose = () => {
@@ -36,7 +36,7 @@ export default function DeletePage() {
     loadBalancer,
     onError(error: ApiError) {
       addError(
-        <Translation ns="octavia-load-balancer">
+        <Translation ns="load-balancer">
           {(_t) =>
             _t('octavia_load_balancer_global_error', {
               message: error?.response?.data?.message || error?.message || null,
@@ -50,7 +50,7 @@ export default function DeletePage() {
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="octavia-load-balancer">
+        <Translation ns="load-balancer">
           {(_t) => _t('octavia_load_balancer_delete_success')}
         </Translation>,
         true,

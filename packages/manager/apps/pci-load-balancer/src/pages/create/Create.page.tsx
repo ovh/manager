@@ -94,8 +94,8 @@ export default function CreatePage(): JSX.Element {
 
   const { projectId } = useParams();
 
-  const { t } = useTranslation('octavia-load-balancer');
-  const { t: tCreate } = useTranslation('create');
+  const { t } = useTranslation('load-balancer');
+  const { t: tCreate } = useTranslation('load-balancer/create');
   const { t: tCommon } = useTranslation('pci-common');
   const { t: tRegionsList } = useTranslation('regions-list');
 
@@ -257,7 +257,7 @@ export default function CreatePage(): JSX.Element {
           type: 'navigation',
         });
         addSuccess(
-          <Translation ns="create">
+          <Translation ns="load-balancer/create">
             {(_t) => _t('octavia_load_balancer_create_banner')}
           </Translation>,
           false,
@@ -270,7 +270,7 @@ export default function CreatePage(): JSX.Element {
           type: 'navigation',
         });
         addError(
-          <Translation ns="octavia-load-balancer">
+          <Translation ns="load-balancer">
             {(_t) => (
               <span
                 dangerouslySetInnerHTML={{
@@ -886,7 +886,7 @@ export default function CreatePage(): JSX.Element {
             hint: `${tCommon('common_stepper_optional_label')}`,
           }}
         >
-          <Translation ns="create">
+          <Translation ns="load-balancer/create">
             {(_t) => (
               <OsdsText
                 size={ODS_TEXT_SIZE._400}

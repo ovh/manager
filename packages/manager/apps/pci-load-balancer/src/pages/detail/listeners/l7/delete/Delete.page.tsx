@@ -10,7 +10,7 @@ import { useDeletePolicy, useGetPolicy } from '@/api/hook/useL7Policy';
 
 export default function DeletePage() {
   const { addSuccess, addError } = useNotifications();
-  const { t: tDelete } = useTranslation('octavia-load-balancer-l7-delete');
+  const { t: tDelete } = useTranslation('l7/delete');
   const navigate = useNavigate();
   const { projectId, policyId, region } = useParams();
   const onClose = () => {
@@ -28,7 +28,7 @@ export default function DeletePage() {
     policyId,
     onError(error: ApiError) {
       addError(
-        <Translation ns="octavia-load-balancer">
+        <Translation ns="load-balancer">
           {(_t) =>
             _t('octavia_load_balancer_global_error', {
               message: error?.response?.data?.message || error?.message || null,
@@ -42,7 +42,7 @@ export default function DeletePage() {
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="octavia-load-balancer-l7">
+        <Translation ns="l7">
           {(_t) =>
             _t('octavia_load_balancer_list_l7_policies_delete_success', {
               policy: policy?.name,

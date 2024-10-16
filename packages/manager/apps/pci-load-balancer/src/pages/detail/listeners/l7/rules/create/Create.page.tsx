@@ -4,7 +4,7 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
-import RuleForm from '@/components/detail/listeners/l7/rules/RuleForm.component';
+import RuleForm from '@/components/form/RuleForm.component';
 import { useCreateL7Rule } from '@/api/hook/useL7Rule';
 
 export default function CreatePage() {
@@ -18,7 +18,7 @@ export default function CreatePage() {
     region,
     onError(error: ApiError) {
       addError(
-        <Translation ns="octavia-load-balancer">
+        <Translation ns="load-balancer">
           {(_t) =>
             _t('octavia_load_balancer_global_error', {
               message: error?.response?.data?.message || error?.message || null,

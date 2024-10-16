@@ -8,11 +8,11 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
-import ActionsComponent from '@/components/detail/listeners/l7/rules/Actions.component';
+import ActionsComponent from '@/pages/detail/listeners/l7/rules/list/Actions.component';
 import { TL7Rule } from '@/api/data/l7Rules';
 
 export const useL7RulesDatagridColumn = () => {
-  const { t: tLoadBalancer } = useTranslation('octavia-load-balancer');
+  const { t: tLoadBalancer } = useTranslation('load-balancer');
   const { t: tL7Policies } = useTranslation('l7/rules/list');
   const columns: DatagridColumn<TL7Rule>[] = [
     {
@@ -88,6 +88,7 @@ export const useL7RulesDatagridColumn = () => {
         </div>
       ),
       label: '',
+      isSortable: false,
     },
   ];
 

@@ -58,7 +58,7 @@ export default function PoolsCreatePage() {
       });
 
       addError(
-        <Translation ns="octavia-load-balancer">
+        <Translation ns="load-balancer">
           {(_t) => (
             <span
               dangerouslySetInnerHTML={{
