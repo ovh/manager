@@ -1,0 +1,8 @@
+{
+  "zimbra_redirections_delete_modal_title": "Delete redirection",
+  "zimbra_redirections_delete_modal_content": "Do you want to delete the redirection?",
+  "zimbra_redirections_delete_button_delete": "Delete",
+  "zimbra_redirections_delete_button_cancel": "Cancel",
+  "zimbra_redirections_delete_modal_from": "From:",
+  "zimbra_redirections_delete_modal_to": "To:"
+}

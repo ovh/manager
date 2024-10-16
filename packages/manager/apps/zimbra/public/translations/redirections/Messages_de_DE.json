@@ -1,0 +1,9 @@
+{
+  "zimbra_redirections_cta": "Weiterleitung erstellen",
+  "zimbra_redirections_from": "von",
+  "zimbra_redirections_to": "Ab",
+  "zimbra_redirections_organization": "Organisation",
+  "zimbra_redirections_datagrid_tooltip_modification": "Ändern",
+  "zimbra_redirections_datagrid_tooltip_delete": "Löschen",
+  "zimbra_redirections_account_title": "Verwaltung der Weiterleitungen"
+}

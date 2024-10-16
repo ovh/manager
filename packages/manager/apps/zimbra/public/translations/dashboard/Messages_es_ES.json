@@ -34,5 +34,22 @@
   "zimbra_dashboard_tile_serviceConsumption_title": "Estadísticas",
   "zimbra_dashboard_tile_serviceConsumption_accountOffer": "Cuenta por servicio",
   "zimbra_dashboard_tile_serviceConsumption_noAccountOffer": "Actualmente no tiene ninguna cuenta de correo.",
-  "zimbra_dashboard_tile_usefulLinks_title": "Enlaces útiles"
+  "zimbra_dashboard_tile_usefulLinks_title": "Enlaces útiles",
+  "zimbra_dashboard_domains_edit": "Configuración del dominio",
+  "zimbra_dashboard_domains_diagnostic": "Diagnóstico",
+  "zimbra_dashboard_email_accounts_settings": "Configuración de la cuenta",
+  "zimbra_dashboard_email_accounts_alias": "Alias",
+  "zimbra_dashboard_email_accounts_alias_add": "Crear un alias",
+  "zimbra_dashboard_email_accounts_alias_delete": "Eliminar un alias",
+  "zimbra_dashboard_email_accounts_redirections": "Redirecciones",
+  "zimbra_dashboard_email_accounts_redirections_add": "Crear una redirección",
+  "zimbra_dashboard_email_accounts_redirections_edit": "Modificar una redirección",
+  "zimbra_dashboard_email_accounts_redirections_delete": "Eliminar una redirección",
+  "zimbra_dashboard_mailing_lists_add": "Crear una lista de difusión",
+  "zimbra_dashboard_mailing_lists_settings": "Editar lista de difusión",
+  "zimbra_dashboard_mailing_lists": "Listas de difusión",
+  "zimbra_dashboard_redirections": "Redirecciones",
+  "zimbra_dashboard_redirections_edit": "Modificar la redirección",
+  "zimbra_dashboard_redirections_delete": "Eliminar la redirección",
+  "zimbra_dashboard_auto_replies": "Respuesta automática"
 }
