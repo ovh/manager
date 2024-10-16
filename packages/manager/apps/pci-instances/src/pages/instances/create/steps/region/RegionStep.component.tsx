@@ -49,6 +49,9 @@ export const RegionStep: FC = () => {
       validateStep: state.validateStep,
     })),
   );
+
+  const regionStep = stepById(regionStepId);
+
   const { data } = useCatalog<'regionSelector'>(projectId, {
     selector: 'regionSelector',
     enabled: modelName !== null,
@@ -95,8 +98,6 @@ export const RegionStep: FC = () => {
     if (isPending) addInfo(getRegionActivationdMessage('loading'));
   }, [addInfo, getRegionActivationdMessage, isPending]);
 
-  const regionStep = useMemo(() => stepById(regionStepId), [stepById]);
-
   const isSelectedRegionActivated = useMemo(
     (): boolean =>
       !!selectedRegion &&
@@ -136,12 +137,9 @@ export const RegionStep: FC = () => {
     validateStep,
   ]);
 
-  const handleEditStep = useCallback(
-    (id: string) => {
-      editStep(id as TStepId);
-    },
-    [editStep],
-  );
+  const handleEditStep = (id: string) => {
+    editStep(id as TStepId);
+  };
 
   useEffect(() => {
     handleSelectedRegion();
