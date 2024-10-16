@@ -214,6 +214,7 @@ export const MAX_INSTANCES_BY_LISTENER = 5;
 export const LOAD_BALANCER_NAME_REGEX = /^[A-Za-z0-9_.-]+$/;
 export const FLOATING_IP_CREATE_DESCRIPTION =
   'FIP created by OVHCloud Control Panel (Manager) for Load Balancer';
+export const AGORA_GATEWAY_REGEX = /gateway.s.hour.consumption/;
 
 export const RULE_TYPES = {
   COOKIE: 'cookie',

@@ -1,4 +1,3 @@
-import { useCatalog } from '@ovh-ux/manager-pci-common';
 import {
   TilesInputComponent,
   useCatalogPrice,
@@ -7,15 +6,13 @@ import { OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { TPlan } from '@/pages/create/store';
-
-const SIZE_FLAVOUR_REGEX = /octavia-loadbalancer.loadbalancer-([sml]).hour.consumption/;
+import { TAddon } from '@/pages/create/store';
 
 const LabelComponent = ({
   item,
   isSelected,
 }: Readonly<{
-  item: TPlan;
+  item: TAddon;
   isSelected: boolean;
 }>) => {
   const { t: tCreate } = useTranslation('create');
@@ -61,30 +58,17 @@ const LabelComponent = ({
 };
 
 export default function SizeInputComponent({
+  addons,
   value = null,
   onInput,
-}: Readonly<{ value?: TPlan; onInput: (item: TPlan) => void }>): JSX.Element {
-  const { data: catalog, isPending: isCatalogPending } = useCatalog();
-
-  const plans = (catalog?.addons
-    ? catalog.addons.reduce((filtered: TPlan[], addon) => {
-        const found = addon.planCode.match(SIZE_FLAVOUR_REGEX);
-        if (found) {
-          filtered.push({
-            code: found[1],
-            price: addon.pricings[0].price,
-            label: found[1].toUpperCase(),
-            technicalName: addon.blobs.technical.name,
-          });
-        }
-        return filtered;
-      }, [])
-    : []
-  ).sort((a, b) => a.price - b.price);
-
+}: Readonly<{
+  addons: TAddon[];
+  value?: TAddon;
+  onInput: (item: TAddon) => void;
+}>): JSX.Element {
   return (
-    <TilesInputComponent<TPlan>
-      items={plans}
+    <TilesInputComponent<TAddon>
+      items={addons}
       value={value}
       onInput={onInput}
       label={(item) => (
