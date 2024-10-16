@@ -30,13 +30,11 @@ export default /* @ngInject */ ($stateProvider) => {
       return transition
         .injector()
         .getAsync('hasVCDMigration')
-        .then((hasVCDMigration) => {
-          if (hasVCDMigration) {
-            return 'app.dedicatedCloud.details.dashboard.light';
-          }
-
-          return 'app.dedicatedCloud.details.dashboard';
-        })
+        .then((hasVCDMigration) =>
+          hasVCDMigration
+            ? 'app.dedicatedCloud.details.dashboard-light'
+            : 'app.dedicatedCloud.details.dashboard',
+        )
         .catch(() => 'app.dedicatedCloud.details.dashboard');
     },
     resolve: {
@@ -324,6 +322,8 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => {
         Alerter.set(`alert-${type}`, message, null, 'dedicatedCloud');
       },
+      trackingPrefix: () => 'dedicated::dedicatedClouds',
+      vcdTrackingPrefix: () => 'Enterprise::PrivateCloud::',
       usesLegacyOrder: /* @ngInject */ (currentService) =>
         currentService.usesLegacyOrder,
       newProductUrl: /* @ngInject */ (ovhFeatureFlipping, coreConfig) =>
