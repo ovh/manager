@@ -85,9 +85,12 @@ export const getRancherPlanDescription = (rancherPlan: RancherPlan['name']) => {
 export function extractDriversAndPlanFromSwitchPlanError(
   inputString: string,
 ): null | { drivers: string[]; plan: string } {
-  const openBracketIndex = inputString.indexOf('[');
-  const closeBracketIndex = inputString.indexOf(']');
-  const textBeforeBracket = inputString.substring(0, openBracketIndex).trim();
+  const bracketMatch = inputString.match(/\[(.*?)\]/);
+  if (!bracketMatch) {
+    return null;
+  }
+  const contentInsideBrackets = bracketMatch[1].trim();
+  const textBeforeBracket = inputString.substring(0, bracketMatch.index).trim();
   const beginPhrase = 'Unable to switch to plan';
   if (textBeforeBracket.startsWith(beginPhrase)) {
     const [plan] =
@@ -97,9 +100,7 @@ export function extractDriversAndPlanFromSwitchPlanError(
     if (!plan) {
       return null;
     }
-    const contentInsideBrackets = inputString
-      .substring(openBracketIndex + 1, closeBracketIndex)
-      .trim();
+
     if (contentInsideBrackets) {
       const drivers = contentInsideBrackets.split(',');
       if (drivers.length) {
@@ -135,7 +136,7 @@ function isOVHError(error: unknown): error is OVHError {
  * @param {unknown} error - The error object containing the message and class.
  * @returns {[string, TOptions?]} - An array containing the error message key and optional options for internationalization, or null if the error is not recognized.
  */
-export const rancherErrorManagement = (error: unknown): [string, TOptions?] => {
+export const getI18nextRancherError = (error: unknown): [string, TOptions?] => {
   if (isOVHError(error)) {
     const ovhError = error;
     if (ovhError.class === 'Server::InternalServerError') {
