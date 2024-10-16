@@ -83,5 +83,7 @@
   "ip_region_ap-south-mum": "Ásia-Pacífico (Índia - Mumbai)",
   "ip_region_labeu-west-1-preprod": "LABEU (França - Croix) (PREPROD)",
   "ip_region_labeu-west-1-dev-1": "LABEU (França - Croix) (DEV-1)",
-  "ip_region_labeu-west-1-dev-2": "LABEU (França - Croix) (DEV-2)"
+  "ip_region_labeu-west-1-dev-2": "LABEU (França - Croix) (DEV-2)",
+  "ip_agora_ipv6_no_services": " Os endereços IPV6 só podem ser associados a uma rede privada vRack. Pode criar uma aqui: ",
+  "ip_agora_ipv6_no_services_link": " Criar uma vRack"
 }
