@@ -31,8 +31,9 @@ const actionItems: ActionMenuProps = {
 const setupSpecTest = async (customProps?: Partial<ActionMenuProps>) =>
   waitFor(() => render(<ActionMenu {...actionItems} {...customProps} />));
 
-const mockedHook =
-  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedHook = (useAuthorizationIam as unknown) as jest.Mock<
+  IamAuthorizationResponse
+>;
 
 describe('ActionMenu', () => {
   it('renders menu actions correctly', async () => {
