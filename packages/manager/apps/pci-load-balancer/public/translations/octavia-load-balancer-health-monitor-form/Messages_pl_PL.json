@@ -1,0 +1,18 @@
+{
+  "octavia_load_balancer_health_monitor_form_description_1": "Health monitor służy do określania kondycji członków puli. Kontrole kondycji są regularnie wykonywane w odniesieniu do każdego członka puli, a wyniki kontroli pozwalają określić, czy członek otrzymuje nowe połączenia. Dla każdej puli można zdefiniować tylko jeden health monitor.",
+  "octavia_load_balancer_health_monitor_form_description_2": "Odkryj dodatkowe opcje w interfejsie Horizon.",
+  "octavia_load_balancer_health_monitor_form_description_link": "Sprawdź opcje",
+  "octavia_load_balancer_health_monitor_form_name": "Nazwa",
+  "octavia_load_balancer_health_monitor_form_name_help": "Może zawierać jedynie cyfry, litery, podkreślenia, myślniki lub kropki.",
+  "octavia_load_balancer_health_monitor_form_type": "Typ",
+  "octavia_load_balancer_health_monitor_form_type_default": "Wybierz typ",
+  "octavia_load_balancer_health_monitor_form_expected_code": "Oczekiwanie na kod",
+  "octavia_load_balancer_health_monitor_form_expected_code_help": "Kod HTTP uznany za pozytywny",
+  "octavia_load_balancer_health_monitor_form_expected_code_tooltip": "Kody statusu HTTP oczekiwane w przypadku pozytywnego wyniku health check. Musi to być pojedyncza cyfra, lista cyfr rozdzielonych przecinkami lub zakres cyfr (dwie cyfry oddzielone myślnikiem).",
+  "octavia_load_balancer_health_monitor_form_max_retries_down_tooltip": "Dozwolona liczba błędów połączenia przed oznaczeniem członka jako błędu. Liczba musi się mieścić w przedziale 1 - 10. Domyślna wartość to 3. ",
+  "octavia_load_balancer_health_monitor_form_delay_tooltip": "Odstęp między 2 testami health monitor. Musi być większy niż timeout.",
+  "octavia_load_balancer_health_monitor_form_max_retries_tooltip": "Dozwolona liczba błędów połączenia przed oznaczeniem członka jako nieaktywnego. Liczba musi się mieścić w przedziale 1 - 10.",
+  "octavia_load_balancer_health_monitor_form_timeout_tooltip": "Czas, po którym health check zostaje zatrzymany. Musi być liczbą większą lub równą 0 i mniejszą niż okresowość",
+  "octavia_load_balancer_health_monitor_form_cancel": "Anuluj",
+  "octavia_load_balancer_health_monitor_form_submit": "Edytuj"
+}

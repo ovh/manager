@@ -1,0 +1,11 @@
+{
+  "octavia_load_balancer_health_monitor_overview_management_title": "Gestion",
+  "octavia_load_balancer_health_monitor_overview_management_edit": "Editer",
+  "octavia_load_balancer_health_monitor_overview_management_delete": "Supprimer",
+  "octavia_load_balancer_health_monitor_overview_info_title": "Informations",
+  "octavia_load_balancer_health_monitor_detail_overview_info_name": "Nom",
+  "octavia_load_balancer_health_monitor_detail_overview_info_type": "Type",
+  "octavia_load_balancer_health_monitor_detail_overview_info_url_path": "URL Path",
+  "octavia_load_balancer_health_monitor_detail_overview_info_expected_code": "Code attendu",
+  "octavia_load_balancer_health_monitor_detail_overview_edit_name_success": "Le nom de votre Health Monitor a bien été modifié."
+}

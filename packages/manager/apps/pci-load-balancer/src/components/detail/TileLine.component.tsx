@@ -33,7 +33,7 @@ export default function TileLine({
       case 'text':
         return (
           <OsdsText
-            className="mb-4"
+            className="mb-2"
             size={ODS_TEXT_SIZE._400}
             level={ODS_TEXT_LEVEL.body}
             color={ODS_THEME_COLOR_INTENT.text}
@@ -49,7 +49,7 @@ export default function TileLine({
   return (
     <>
       <OsdsText
-        className="mb-4 block"
+        className="mb-2 block"
         size={ODS_TEXT_SIZE._200}
         level={ODS_TEXT_LEVEL.heading}
         color={ODS_THEME_COLOR_INTENT.text}
