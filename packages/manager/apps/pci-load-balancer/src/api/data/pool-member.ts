@@ -65,3 +65,18 @@ export const updatePoolMemberName = async (
   );
   return data;
 };
+
+export const createPoolMembers = async (
+  projectId: string,
+  region: string,
+  poolId: string,
+  members: TPoolMember[],
+) => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}/member`,
+    {
+      members,
+    },
+  );
+  return data;
+};
