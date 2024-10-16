@@ -37,6 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
           {
             projectId,
             containerId: container.id,
+            region: container.region,
           },
         );
       },
