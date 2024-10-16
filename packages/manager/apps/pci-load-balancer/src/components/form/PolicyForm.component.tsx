@@ -47,7 +47,7 @@ export default function PolicyForm({
   submitButtonText,
   onCancel,
 }: Readonly<PolicyFormProps>) {
-  const { t } = useTranslation('octavia-load-balancer-l7-policy-form');
+  const { t } = useTranslation('l7/policy-form');
   const { t: tPciCommon } = useTranslation('pci-common');
   const { listenerId } = useParams();
   const [policyState, setPolicyState] = useState<TL7Policy>({
@@ -149,6 +149,7 @@ export default function PolicyForm({
       setPolicyState(() => policy);
     }
   }, [policy]);
+
   return (
     <div className="w-[20rem]">
       <OsdsFormField
@@ -157,16 +158,11 @@ export default function PolicyForm({
         <LabelComponent
           text={t('octavia_load_balancer_create_l7_policy_name')}
           hasError={hasErrorName}
-          slot="label"
         />
         <OsdsInput
           value={policyState.name}
           type={ODS_INPUT_TYPE.text}
-          className={
-            hasErrorName
-              ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
-              : 'border-color-[var(--ods-color-default-200)] bg-white'
-          }
+          error={hasErrorName}
           onOdsValueChange={(event) => {
             setPolicyState((state) => ({
               ...state,
@@ -178,6 +174,7 @@ export default function PolicyForm({
           }}
         />
       </OsdsFormField>
+
       <QuantitySelector
         value={policyState.position}
         className="mt-8"
@@ -193,10 +190,10 @@ export default function PolicyForm({
           }));
         }}
       />
+
       <OsdsFormField className="mt-8">
         <LabelComponent
           text={t('octavia_load_balancer_create_l7_policy_action')}
-          slot="label"
         />
         <OsdsSelect
           onOdsValueChange={onActionChange}
@@ -232,7 +229,6 @@ export default function PolicyForm({
           >
             <LabelComponent
               text={t('octavia_load_balancer_create_l7_policy_url')}
-              slot="label"
               hasError={
                 isTouchedURL &&
                 (!policyState.redirectUrl ||
@@ -243,12 +239,10 @@ export default function PolicyForm({
               value={policyState?.redirectUrl}
               type={ODS_INPUT_TYPE.text}
               placeholder={URL_PLACEHOLDER}
-              className={
+              error={
                 isTouchedURL &&
                 (!policyState.redirectUrl ||
                   !RegExp(URL_PATTERN).test(policyState.redirectUrl))
-                  ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
-                  : 'border-color-[var(--ods-color-default-200)] bg-white'
               }
               onOdsValueChange={(event) => {
                 setPolicyState((state) => ({
@@ -261,10 +255,10 @@ export default function PolicyForm({
               }}
             />
           </OsdsFormField>
+
           <OsdsFormField className="mt-8">
             <LabelComponent
               text={t('octavia_load_balancer_create_l7_policy_http_code')}
-              slot="label"
             />
             <OsdsSelect
               value={policyState?.redirectHttpCode}
@@ -284,12 +278,12 @@ export default function PolicyForm({
           </OsdsFormField>
         </>
       )}
+
       {policyState.action === ACTIONS.REDIRECT_PREFIX && (
         <>
           <OsdsFormField className="mt-8" error={prefixError}>
             <LabelComponent
               text={t('octavia_load_balancer_create_l7_policy_prefix')}
-              slot="label"
               hasError={
                 isTouchedPrefix &&
                 (!policyState.redirectPrefix ||
@@ -300,12 +294,10 @@ export default function PolicyForm({
               value={policyState?.redirectPrefix}
               type={ODS_INPUT_TYPE.text}
               placeholder={URL_PLACEHOLDER}
-              className={
+              error={
                 isTouchedPrefix &&
                 (!policyState.redirectPrefix ||
                   !RegExp(URL_PATTERN).test(policyState.redirectPrefix))
-                  ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
-                  : 'border-color-[var(--ods-color-default-200)] bg-white'
               }
               onOdsValueChange={(event) => {
                 setPolicyState((state) => ({
@@ -318,10 +310,10 @@ export default function PolicyForm({
               }}
             />
           </OsdsFormField>
+
           <OsdsFormField className="mt-8">
             <LabelComponent
               text={t('octavia_load_balancer_create_l7_policy_http_code')}
-              slot="label"
             />
             <OsdsSelect
               value={policyState?.redirectHttpCode}
@@ -341,11 +333,11 @@ export default function PolicyForm({
           </OsdsFormField>
         </>
       )}
+
       {policyState.action === ACTIONS.REDIRECT_TO_POOL && (
         <OsdsFormField className="mt-8">
           <LabelComponent
             text={t('octavia_load_balancer_create_l7_policy_pool')}
-            slot="label"
           />
           <OsdsSelect
             value={policyState?.redirectPoolId}
@@ -367,6 +359,7 @@ export default function PolicyForm({
           </OsdsSelect>
         </OsdsFormField>
       )}
+
       <div className="flex mt-8">
         <OsdsButton
           className="mr-4"
