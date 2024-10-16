@@ -15,11 +15,11 @@ import {
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
 import { TL7Policy } from '@/api/data/l7Policies';
-import ActionsComponent from '@/components/detail/listeners/l7/Actions.component';
+import ActionsComponent from '@/pages/detail/listeners/l7/list/Actions.component';
 
 export const useL7PoliciesDatagridColumn = () => {
-  const { t: tLoadBalancer } = useTranslation('octavia-load-balancer');
-  const { t: tL7Policies } = useTranslation('octavia-load-balancer-l7');
+  const { t: tLoadBalancer } = useTranslation('load-balancer');
+  const { t: tL7Policies } = useTranslation('l7');
   const navigate = useNavigate();
 
   const columns: DatagridColumn<TL7Policy>[] = [

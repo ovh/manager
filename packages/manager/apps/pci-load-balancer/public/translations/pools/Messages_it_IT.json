@@ -1,4 +1,12 @@
 {
+  "octavia_load_balancer_pools_name": "Nome",
+  "octavia_load_balancer_pools_protocol": "Protocollo",
+  "octavia_load_balancer_pools_protocol_helper": "Il protocollo per cui questo pool e i suoi membri ascoltano.",
+  "octavia_load_balancer_pools_algorithm": "Algoritmo del Load Balancer",
+  "octavia_load_balancer_pools_algorithm_helper": "L’algoritmo del Load Balancer che ripartisce il traffico tra i membri del pool.",
+  "octavia_load_balancer_pools_actions_edit": "Modifica",
+  "octavia_load_balancer_pools_actions_manage_members": "Gestisci i membri",
+  "octavia_load_balancer_pools_actions_delete": "Elimina",
   "octavia_load_balancer_pools_title": "Pool",
   "octavia_load_balancer_pools_description_part_1": "Un pool rappresenta un gruppo di membri responsabili del backend che condividono una configurazione comune, ad esempio l'algoritmo del Load Balancer, la sonda o la configurazione delle sessioni permanenti.",
   "octavia_load_balancer_pools_description_part_2": "Scopri le opzioni aggiuntive tramite Horizon.",

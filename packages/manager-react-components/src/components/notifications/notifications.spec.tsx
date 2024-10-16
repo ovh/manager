@@ -1,6 +1,6 @@
 import { vitest } from 'vitest';
 import React, { useEffect } from 'react';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { useNotifications, NotificationType } from './useNotifications';
 import { Notifications } from './notifications.component';
 
@@ -38,11 +38,28 @@ describe('notifications component', () => {
     expect(container.children[0].children[0].innerHTML).toBe('Notification-1');
     expect(container.children[1].children[0].innerHTML).toBe('Notification-2');
   });
-  it('should clear notifications', async () => {
+
+  it('should not clear notifications created within the last 1000ms', async () => {
     let { container } = render(<Notifications />);
-    expect(container.children.length).not.toBe(0);
+    expect(container.children.length).toBe(2);
+
     render(<ClearNotifications />);
     container = render(<Notifications />).container;
-    expect(container.children.length).toBe(0);
+
+    expect(container.children.length).toBe(2);
+  });
+
+  it('should clear notifications older than 1000ms', async () => {
+    let { container } = render(<Notifications />);
+    expect(container.children.length).toBe(2);
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    render(<ClearNotifications />);
+    container = render(<Notifications />).container;
+
+    await waitFor(() => {
+      expect(container.children.length).toBe(0);
+    });
   });
 });

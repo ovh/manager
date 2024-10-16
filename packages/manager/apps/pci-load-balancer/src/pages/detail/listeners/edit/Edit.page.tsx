@@ -1,16 +1,27 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useEffect, useState } from 'react';
 import { Translation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import ListenerForm from '@/components/detail/listeners/ListenerForm.page';
-import { useEditLoadBalancer } from '@/api/hook/useLoadBalancer';
+import { TProtocol } from '@/api/data/load-balancer';
 import { useListener } from '@/api/hook/useListener';
+import { useEditLoadBalancer } from '@/api/hook/useLoadBalancer';
 import { useAllLoadBalancerPools } from '@/api/hook/usePool';
+import ListenerForm, {
+  TListenerFormState,
+} from '@/components/form/ListenerForm.page';
 
 export default function EditListener() {
   const navigate = useNavigate();
   const { projectId, region, loadBalancerId, listenerId } = useParams();
   const { addSuccess, addError } = useNotifications();
+
+  const [formState, setFormState] = useState<TListenerFormState>({
+    name: '',
+    protocol: '' as TProtocol,
+    port: 1,
+    pool: null,
+  });
 
   const { data: pools } = useAllLoadBalancerPools({
     projectId,
@@ -31,7 +42,7 @@ export default function EditListener() {
     listenerId,
     onError(error: ApiError) {
       addError(
-        <Translation ns="octavia-load-balancer">
+        <Translation ns="load-balancer">
           {(_t) =>
             _t('octavia_load_balancer_global_error', {
               message: error?.response?.data?.message || error?.message || null,
@@ -45,10 +56,10 @@ export default function EditListener() {
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="octavia-load-balancer-listeners">
+        <Translation ns="listeners">
           {(_t) =>
             _t('octavia_load_balancer_listeners_edit_success', {
-              listener: '??',
+              listener: formState?.name,
             })
           }
         </Translation>,
@@ -58,9 +69,21 @@ export default function EditListener() {
     },
   });
 
+  useEffect(() => {
+    if (listener && pools?.length) {
+      setFormState({
+        name: listener.name,
+        protocol: listener.protocol,
+        port: listener.port,
+        pool: pools.find((pool) => pool.id === listener.defaultPoolId) ?? null,
+      });
+    }
+  }, [listener, pools]);
+
   return (
     <ListenerForm
-      listener={listener}
+      formState={formState}
+      onChange={setFormState}
       isEditing
       pools={pools}
       isPending={isEditionPending || isListenerPending}

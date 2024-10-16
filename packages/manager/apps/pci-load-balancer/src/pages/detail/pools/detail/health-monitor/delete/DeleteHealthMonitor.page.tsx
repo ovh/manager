@@ -13,7 +13,7 @@ import {
 } from '@/api/hook/useHealthMonitor';
 
 export default function DeleteHealthMonitorPage() {
-  const { t } = useTranslation('octavia-load-balancer-health-monitor-delete');
+  const { t } = useTranslation('health-monitor/delete');
 
   const navigate = useNavigate();
   const { addSuccess, addError } = useNotifications();
@@ -46,7 +46,7 @@ export default function DeleteHealthMonitorPage() {
       addError(
         <Trans
           i18nKey="octavia_load_balancer_global_error"
-          ns="octavia-load-balancer"
+          ns="load-balancer"
           values={{
             message: error?.response?.data?.message || error?.message || null,
             requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
@@ -60,7 +60,7 @@ export default function DeleteHealthMonitorPage() {
       addSuccess(
         <Trans
           i18nKey="octavia_load_balancer_health_monitor_detail_overview_delete_success"
-          ns="octavia-load-balancer-health-monitor-delete"
+          ns="health-monitor/delete"
           values={{ healthMonitor: healthMonitor?.name, pool: pool?.name }}
         />,
         true,
@@ -94,7 +94,7 @@ export default function DeleteHealthMonitorPage() {
       >
         <Trans
           i18nKey="octavia_load_balancer_health_monitor_detail_overview_delete_description"
-          ns="octavia-load-balancer-health-monitor-delete"
+          ns="health-monitor/delete"
           values={{ healthMonitor: healthMonitor?.name, pool: pool?.name }}
         />
       </OsdsText>

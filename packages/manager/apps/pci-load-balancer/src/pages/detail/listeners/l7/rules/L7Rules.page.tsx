@@ -25,11 +25,11 @@ import { ROUTE_PATHS } from '@/routes';
 
 export default function L7RulesPage() {
   const { t: tPciCommon } = useTranslation('pci-common');
-  const { t: tL7Policies } = useTranslation('octavia-load-balancer-l7');
+  const { t: tL7Policies } = useTranslation('l7');
   const { t } = useTranslation('l7/rules');
   const hrefProject = useProjectUrl('public-cloud');
-  const { t: tLoadBalancer } = useTranslation('octavia-load-balancer');
-  const { t: tListener } = useTranslation('octavia-load-balancer-listeners');
+  const { t: tLoadBalancer } = useTranslation('load-balancer');
+  const { t: tListener } = useTranslation('listeners');
   const { projectId, loadBalancerId, region, listenerId } = useParams();
   const { data: project } = useProject();
   const { data: listener } = useListener({

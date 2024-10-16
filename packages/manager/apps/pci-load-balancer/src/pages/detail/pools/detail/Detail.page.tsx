@@ -23,9 +23,9 @@ import { useGetPool } from '@/api/hook/usePool';
 
 export default function PoolDetailPage() {
   const { t: tCommon } = useTranslation('pci-common');
-  const { t: tLoadBalancer } = useTranslation('octavia-load-balancer');
-  const { t: tPools } = useTranslation('octavia-load-balancer-pools');
-  const { t: tPoolsDetail } = useTranslation('load-balancer-pools-detail');
+  const { t: tLoadBalancer } = useTranslation('load-balancer');
+  const { t: tPools } = useTranslation('pools');
+  const { t: tPoolsDetail } = useTranslation('pools/detail');
 
   const [activePanelTranslation, setActivePanelTranslation] = useState(null);
 

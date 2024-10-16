@@ -31,7 +31,7 @@ import { useDatagridColumn } from './useDatagridColumn';
 import { useLoadBalancerPools } from '@/api/hook/usePool';
 
 export default function PoolList() {
-  const { t } = useTranslation('octavia-load-balancer-pools');
+  const { t } = useTranslation('pools');
   const { t: tFilter } = useTranslation('filter');
 
   const { projectId, region, loadBalancerId } = useParams();
