@@ -1,4 +1,6 @@
 import { format } from 'date-fns';
+import * as locales from 'date-fns/locale';
+import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 
 import {
   CommonTitle,
@@ -22,7 +24,7 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useHref } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -59,7 +61,11 @@ const RancherDetail = ({
   updateOfferErrorMessage,
   versions,
 }: RancherDetailProps) => {
-  const { t } = useTranslation(['dashboard', 'updateSoftware', 'listing']);
+  const { t, i18n } = useTranslation([
+    'dashboard',
+    'updateSoftware',
+    'listing',
+  ]);
   const trackAction = useTrackingAction();
   const hrefEdit = useHref('./edit');
   const hrefUpdateSoftware = useHref('./update-software');
@@ -120,11 +126,23 @@ const RancherDetail = ({
 
   const onAccessRancherUrl = () =>
     trackAction(TrackingPageView.DetailRancher, TrackingEvent.accessUi);
-
   const shouldDisplayUpdateSoftware =
     getLatestVersionAvailable(rancher, versions) &&
     isReadyStatus &&
     !updateSoftwareResponseType;
+
+  const userLocale = getDateFnsLocale(i18n.language);
+
+  const displayDate = useCallback(
+    (value: string) =>
+      format(new Date(dateUsage), value, {
+        locale:
+          userLocale in locales
+            ? locales[userLocale as keyof typeof locales]
+            : locales.fr,
+      }),
+    [userLocale, locales, dateUsage],
+  );
 
   const isEligibleForUpgrade = plan === RancherPlanName.OVHCLOUD_EDITION;
 
@@ -172,7 +190,12 @@ const RancherDetail = ({
                   isDisabled={!isReadyStatus}
                 />
               </TileBlock>
-
+              <TileBlock label={'ID'}>
+                <OsdsClipboard aria-label="clipboard-id" value={rancher.id}>
+                  <span slot="success-message">{t('copy')}</span>
+                  <span slot="error-message">{t('error')}</span>
+                </OsdsClipboard>
+              </TileBlock>
               <TileBlock label={t('rancher_version')}>
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
                   {version}
@@ -243,14 +266,14 @@ const RancherDetail = ({
               </TileBlock>
               <TileBlock label={t('count_cpu_orchestrated')}>
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                  {rancher.currentState.usage?.orchestratedVcpus || '-'}
+                  {rancher.currentState.usage?.orchestratedVcpus}
                 </OsdsText>
-                {dateUsage && (
+                {displayDate && (
                   <div className="mt-3">
                     <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
                       {t('last_update_date', {
-                        date: format(dateUsage, 'yyyy_MM_dd'),
-                        hour: format(dateUsage, 'HH:mm:ss'),
+                        date: displayDate('PPPP'),
+                        hour: displayDate('HH:mm:ss'),
                       })}
                     </OsdsText>
                   </div>

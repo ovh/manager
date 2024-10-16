@@ -1,22 +1,28 @@
-import { v2 } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV2, v2 } from '@ovh-ux/manager-core-api';
 import { AccountBodyParamsType, AccountType } from './type';
 import { getApiPath } from '../utils/apiPath';
 
 // GET
 
-export const getZimbraPlatformAccounts = async (
-  platformId: string,
+export const getZimbraPlatformAccounts = ({
+  platformId,
+  queryParameters,
+  pageParam,
+}: {
+  platformId: string;
   queryParameters?: {
     organizationId?: string;
     domainId?: string;
-  },
-) => {
+  };
+  pageParam?: unknown;
+}) => {
   const params = new URLSearchParams(queryParameters).toString();
   const queryString = params ? `?${params}` : '';
-  const { data } = await v2.get<AccountType[]>(
-    `${getApiPath(platformId)}account${queryString}`,
-  );
-  return data;
+  return fetchIcebergV2<AccountType[]>({
+    route: `${getApiPath(platformId)}account${queryString}`,
+    pageSize: 25,
+    cursor: pageParam as string,
+  });
 };
 
 export const getZimbraPlatformAccountDetail = async (

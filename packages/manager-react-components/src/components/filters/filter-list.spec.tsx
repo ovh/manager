@@ -87,9 +87,9 @@ describe('FilterList tests', () => {
 
     const { getByTestId } = renderComponent(propsWithOneFiltersItem);
 
-    const filterChipItem = (getByTestId(
+    const filterChipItem = getByTestId(
       'filter-list_chip_item',
-    ) as unknown) as OsdsChip;
+    ) as unknown as OsdsChip;
 
     act(() => {
       filterChipItem.odsChipRemoval.emit();

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "version": "1.36.0",
+  "version": "1.38.1",
   "main": "src/lib.ts",
   "repository": {
     "type": "git",
@@ -60,7 +60,10 @@
     "@storybook/client-api": "7.5.3",
     "@storybook/react": "7.5.3",
     "@storybook/react-vite": "7.5.3",
+    "@storybook/test": "8.0.4",
     "@storybook/testing-library": "0.2.0",
+    "@storybook/web-components": "8.0.4",
+    "@storybook/web-components-vite": "8.0.4",
     "@testing-library/jest-dom": "6.4.2",
     "@testing-library/react": "14.0.0",
     "@types/jest": "^29.5.5",

@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.81.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.81.0...@ovh-ux/manager-container-app@0.81.1) (2024-10-15)
+
+
+### Reverts
+
+* Revert "fix(manager-react-components): fix bump ods 18 issues" ([fb0e56d](https://github.com/ovh/manager/commit/fb0e56d4e7f64d0ebe8f6ae8036384403cd678b7))
+
+
+
+
+
+# [0.81.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.80.5...@ovh-ux/manager-container-app@0.81.0) (2024-10-14)
+
+
+### Features
+
+* **container:** rename "Zimbra" to "Zimbra Mail" ([#13438](https://github.com/ovh/manager/issues/13438)) ([6a1840a](https://github.com/ovh/manager/commit/6a1840a63a06e97c19a28ef69460475b71764937))
+
+
+
+
+
+## [0.80.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.80.4...@ovh-ux/manager-container-app@0.80.5) (2024-10-11)
+
+
+### Bug Fixes
+
+* **manager-react-components:** fix bump ods 18 issues ([ea1dd83](https://github.com/ovh/manager/commit/ea1dd83d2b85d5a6ab5b0bbb91dbf6350286cde8))
+
+
+
+
+
+## [0.80.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.80.3...@ovh-ux/manager-container-app@0.80.4) (2024-10-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3367] ([4948ec3](https://github.com/ovh/manager/commit/4948ec394b51e52df7310de27edd323c7237cd26))
+* **i18n:** add missing translations [CDS 3370] ([8de108f](https://github.com/ovh/manager/commit/8de108f9010ccf2ac06501a07537f94fbfb06020))
+* **i18n:** add missing translations [CDS 3376] ([5809574](https://github.com/ovh/manager/commit/5809574046d50e242bb02e165c1091270cf6683f))
+
+
+
+
+
+## [0.80.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.80.2...@ovh-ux/manager-container-app@0.80.3) (2024-10-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
 ## [0.80.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.80.1...@ovh-ux/manager-container-app@0.80.2) (2024-10-09)
 
 

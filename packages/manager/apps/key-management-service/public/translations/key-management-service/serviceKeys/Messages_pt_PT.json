@@ -1,6 +1,6 @@
 {
   "key_management_service_service_keys": "Chaves de encriptação",
-  "key_management_service_service-keys_headline": "Crie, importe e faça a gestão das suas chaves de encriptação CMK (Customer Managed Keys).",
+  "key_management_service_service-keys_headline": "Crie e faça a gestão das suas chaves de encriptação CMK (Customer Managed Keys).",
   "key_management_service_service-keys_column_name": "Nome",
   "key_management_service_service-keys_column_id": "ID",
   "key_management_service_service-keys_column_type": "Tipo",

@@ -116,7 +116,7 @@ export default function DeleteGateway() {
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             color={ODS_THEME_COLOR_INTENT.text}
             size={ODS_TEXT_SIZE._400}
-            className={'block mt-6'}
+            className="block mt-6"
           >
             {tDelete(
               'pci_projects_project_public_gateway_delete_confirmation',

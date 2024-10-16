@@ -69,7 +69,7 @@ type IState<T, S> = {
 
 export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
   T,
-  S
+  S,
 >({
   items,
   value,
@@ -102,9 +102,10 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
             : isEqual(state.stacks.get(s)[0], value),
         [state.stacks, state.selectedStack, value],
       ),
-      singleton: useCallback((s: S) => state.stacks.get(s)?.length === 1, [
-        state.stacks,
-      ]),
+      singleton: useCallback(
+        (s: S) => state.stacks.get(s)?.length === 1,
+        [state.stacks],
+      ),
     },
   };
 

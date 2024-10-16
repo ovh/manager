@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.7.0...@ovh-ux/manager-pci-common@0.7.1) (2024-10-15)
+
+
+### Reverts
+
+* Revert "feat(manager-react-components): update generator" ([f82658c](https://github.com/ovh/manager/commit/f82658c229a7880b01fcdcdab93e73f60ff7ad89))
+* Revert "fix(manager-react-components): fix bump ods 18 issues" ([fb0e56d](https://github.com/ovh/manager/commit/fb0e56d4e7f64d0ebe8f6ae8036384403cd678b7))
+
+
+
+
+
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.6.2...@ovh-ux/manager-pci-common@0.7.0) (2024-10-11)
+
+
+### Bug Fixes
+
+* **manager-react-components:** fix bump ods 18 issues ([ea1dd83](https://github.com/ovh/manager/commit/ea1dd83d2b85d5a6ab5b0bbb91dbf6350286cde8))
+
+
+### Features
+
+* **manager-react-components:** update generator ([f6b3540](https://github.com/ovh/manager/commit/f6b3540cdd3deadf7a1bdbb743728edd0d0e4b78))
+
+
+
+
+
+## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.6.1...@ovh-ux/manager-pci-common@0.6.2) (2024-10-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3367] ([4948ec3](https://github.com/ovh/manager/commit/4948ec394b51e52df7310de27edd323c7237cd26))
+* **i18n:** add missing translations [CDS 3370] ([8de108f](https://github.com/ovh/manager/commit/8de108f9010ccf2ac06501a07537f94fbfb06020))
+* **i18n:** add missing translations [CDS 3376] ([5809574](https://github.com/ovh/manager/commit/5809574046d50e242bb02e165c1091270cf6683f))
+* **i18n:** add missing translations [CDS 3384] ([f5b0918](https://github.com/ovh/manager/commit/f5b09180a88bfce3b8080ddf76dcca9fef69bbba))
+
+
+
+
+
 ## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.6.0...@ovh-ux/manager-pci-common@0.6.1) (2024-10-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common

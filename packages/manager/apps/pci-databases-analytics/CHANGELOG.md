@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.5.0...@ovh-ux/manager-pci-databases-analytics-app@1.5.1) (2024-10-14)
+
+
+### Bug Fixes
+
+* **pci-databases-analytics:** add missing certificate in dashboard ([#13512](https://github.com/ovh/manager/issues/13512)) ([aa04cc7](https://github.com/ovh/manager/commit/aa04cc72bbdb14a597781e894f02d158cba18720))
+
+
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.4.1...@ovh-ux/manager-pci-databases-analytics-app@1.5.0) (2024-10-08)
 
 

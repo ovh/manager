@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-common",
-  "version": "0.6.1",
+  "version": "0.7.1",
   "private": true,
   "sideEffects": true,
   "type": "module",

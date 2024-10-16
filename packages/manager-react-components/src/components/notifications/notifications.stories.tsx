@@ -7,12 +7,8 @@ import { Notifications } from './notifications.component';
 import { useNotifications } from './useNotifications';
 
 const NotificationsStory = () => {
-  const {
-    addSuccess,
-    addWarning,
-    addError,
-    clearNotifications,
-  } = useNotifications();
+  const { addSuccess, addWarning, addError, clearNotifications } =
+    useNotifications();
 
   return (
     <>

@@ -83,5 +83,9 @@
   "ip_region_ap-south-mum": "Ásia-Pacífico (Índia - Mumbai)",
   "ip_region_labeu-west-1-preprod": "LABEU (França - Croix) (PREPROD)",
   "ip_region_labeu-west-1-dev-1": "LABEU (França - Croix) (DEV-1)",
-  "ip_region_labeu-west-1-dev-2": "LABEU (França - Croix) (DEV-2)"
+  "ip_region_labeu-west-1-dev-2": "LABEU (França - Croix) (DEV-2)",
+  "ip_agora_table_header_region": "Selecione uma região para o seu novo Additional IP",
+  "ip_agora_ipv4_localisation_title": "Geolocalização do endereço IP",
+  "ip_agora_ipv4_localisation_description": "Para alterar a geolocalização do seu endereço IP, escolha um país na lista pendente.",
+  "ip_agora_table_next_text": "Seguinte"
 }

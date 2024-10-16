@@ -608,5 +608,6 @@
   "user_account_ssh_keys_title": "Mis claves SSH",
   "user_account_advanced_title": "Configuración avanzada",
   "user_account_guides_header": "Guías",
-  "user_account_guides_header_account_informations_guides": "Información de la cuenta"
+  "user_account_guides_header_account_informations_guides": "Información de la cuenta",
+  "user_account_security_double_auth_sso_info": "La doble autenticación no está disponible con una conexión Single Sign-On, que ya garantiza una seguridad reforzada."
 }

@@ -82,22 +82,36 @@
                     ></h4>
 
                     <div class="clearfix" data-ng-if="!has2faEnabled()">
-                        <p
-                            class="text-warning"
-                            data-translate="user_account_security_double_auth_info"
-                        ></p>
+                        <div data-ng-if="!doubleAuth.isConnectionSSO">
+                            <p
+                                data-translate="user_account_security_double_auth_info"
+                            ></p>
 
-                        <a
-                            data-ui-sref="app.account.user.security.mfa"
-                            class="oui-button oui-button_primary float-right"
-                            data-track-on="click"
-                            data-track-name="account::security::authentication::double_authentication"
-                            data-track-type="action"
-                        >
-                            <span
-                                data-translate="user_account_security_double_auth_action_activate"
-                            ></span>
-                        </a>
+                            <a
+                                data-ui-sref="app.account.user.security.mfa"
+                                class="oui-button oui-button_primary float-right"
+                                data-track-on="click"
+                                data-track-name="account::security::authentication::double_authentication"
+                                data-track-type="action"
+                            >
+                                <span
+                                    data-translate="user_account_security_double_auth_action_activate"
+                                ></span>
+                            </a>
+                        </div>
+                        <div data-ng-if="doubleAuth.isConnectionSSO">
+                            <p
+                                data-translate="user_account_security_double_auth_sso_info"
+                            ></p>
+                            <oui-button
+                                class="float-right"
+                                data-disabled="true"
+                            >
+                                <span
+                                    data-translate="user_account_security_double_auth_action_activate"
+                                ></span>
+                            </oui-button>
+                        </div>
                     </div>
 
                     <div

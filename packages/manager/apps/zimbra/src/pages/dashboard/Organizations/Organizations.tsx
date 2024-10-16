@@ -79,7 +79,13 @@ const columns: DatagridColumn<OrganizationItem>[] = [
 export default function Organizations() {
   const { t } = useTranslation('organizations');
   const { platformUrn } = usePlatform();
-  const { data, isLoading } = useOrganizationList({
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isLoading,
+    isFetchingNextPage,
+  } = useOrganizationList({
     refetchInterval: DATAGRID_REFRESH_INTERVAL,
     refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
   });
@@ -129,14 +135,19 @@ export default function Organizations() {
           {isLoading ? (
             <Loading />
           ) : (
-            <Datagrid
-              columns={columns.map((column) => ({
-                ...column,
-                label: t(column.label),
-              }))}
-              items={items}
-              totalItems={items.length}
-            />
+            <>
+              <Datagrid
+                columns={columns.map((column) => ({
+                  ...column,
+                  label: t(column.label),
+                }))}
+                items={items}
+                totalItems={items.length}
+                hasNextPage={!isFetchingNextPage && hasNextPage}
+                onFetchNextPage={fetchNextPage}
+              />
+              {isFetchingNextPage && <Loading />}
+            </>
           )}
         </>
       )}

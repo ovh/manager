@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.63.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.63.1...@ovh-ux/manager-pci@6.63.2) (2024-10-14)
+
+
+### Reverts
+
+* Revert "Revert "feat(pci.instance): open backup creation for LZ regions (#13250)"" (#13524) ([16c8c61](https://github.com/ovh/manager/commit/16c8c61df6c38feedddb39afaa1baa5865a78cd0)), closes [#13250](https://github.com/ovh/manager/issues/13250) [#13524](https://github.com/ovh/manager/issues/13524)
+
+
+
+
+
+## [6.63.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.63.0...@ovh-ux/manager-pci@6.63.1) (2024-10-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3367] ([4948ec3](https://github.com/ovh/manager/commit/4948ec394b51e52df7310de27edd323c7237cd26))
+* **i18n:** add missing translations [CDS 3370] ([8de108f](https://github.com/ovh/manager/commit/8de108f9010ccf2ac06501a07537f94fbfb06020))
+* **i18n:** add missing translations [CDS 3376] ([5809574](https://github.com/ovh/manager/commit/5809574046d50e242bb02e165c1091270cf6683f))
+
+
+
+
+
 # [6.63.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.62.0...@ovh-ux/manager-pci@6.63.0) (2024-10-08)
 
 

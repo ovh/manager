@@ -31,6 +31,7 @@ const RancherPlanTile: React.FC<RancherPlanTileProps> = ({
   return (
     <li key={plan.name}>
       <OsdsTile
+        aria-label={`tile-${name}`}
         onClick={() => setSelectedPlan(plan)}
         className={clsx(
           'cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-075] hover:border-[--ods-color-blue-600]',

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.58.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.57.7...@ovh-ux/manager-dedicated@19.58.0) (2024-10-14)
+
+
+### Features
+
+* **dedicated:**  add link in hpc home page ([#12856](https://github.com/ovh/manager/issues/12856)) ([d1a07ff](https://github.com/ovh/manager/commit/d1a07ff537802b978f97daaff572156e91ad91ab))
+* **dedicated.account:** disable 2FA for SSO connection ([#13162](https://github.com/ovh/manager/issues/13162)) ([024586b](https://github.com/ovh/manager/commit/024586b3d3cb59695ec1a3958cd1cda605731174))
+* **dedicated.ip:** allow parking ip as destination ([#12509](https://github.com/ovh/manager/issues/12509)) ([b713a6e](https://github.com/ovh/manager/commit/b713a6e1bfd94e587d60b1abb40187e02290d3fc))
+
+
+
+
+
+## [19.57.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.57.6...@ovh-ux/manager-dedicated@19.57.7) (2024-10-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3367] ([4948ec3](https://github.com/ovh/manager/commit/4948ec394b51e52df7310de27edd323c7237cd26))
+
+
+
+
+
 ## [19.57.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.57.5...@ovh-ux/manager-dedicated@19.57.6) (2024-10-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
