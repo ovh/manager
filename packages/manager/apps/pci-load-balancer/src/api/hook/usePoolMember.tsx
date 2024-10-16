@@ -4,6 +4,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import {
   TPoolMember,
+  createPoolMembers,
   deletePoolMember,
   getPoolMember,
   getPoolMembers,
@@ -136,6 +137,38 @@ export const useUpdatePoolMember = ({
   });
   return {
     updatePoolMemberName: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type CreatePoolMembersProps = {
+  projectId: string;
+  poolId: string;
+  region: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useCreatePoolMembers = ({
+  projectId,
+  poolId,
+  region,
+  onError,
+  onSuccess,
+}: CreatePoolMembersProps) => {
+  const mutation = useMutation({
+    mutationFn: async (members: TPoolMember[]) =>
+      createPoolMembers(projectId, region, poolId, members),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['poolMembers', projectId],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    createPoolMembers: (members: TPoolMember[]) => mutation.mutate(members),
     ...mutation,
   };
 };
