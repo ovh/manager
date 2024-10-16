@@ -37,7 +37,7 @@ import clsx from 'clsx';
 import {
   getRancherPlanDescription,
   isValidRancherName,
-  rancherErrorManagement,
+  getI18nextRancherError,
 } from '@/utils/rancher';
 import { getRanchersUrl } from '@/utils/route';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
@@ -193,7 +193,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
 
   const rancherErrorBanner = useMemo(() => {
     if (hasRancherCreationError && rancherCreationErrorMessage) {
-      return t(...rancherErrorManagement(rancherCreationErrorMessage));
+      return t(...getI18nextRancherError(rancherCreationErrorMessage));
     }
     return null;
   }, [rancherCreationErrorMessage, hasRancherCreationError]);
