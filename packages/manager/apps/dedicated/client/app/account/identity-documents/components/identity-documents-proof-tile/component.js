@@ -10,7 +10,6 @@ export default {
     extended: '<',
     isLoaded: '<',
     kycStatus: '<',
-    isValid: '<',
     onClick: '&',
   },
 };

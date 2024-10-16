@@ -6,7 +6,7 @@
             data-proof="$ctrl.currentProof"
             data-proof-type="$ctrl.currentProofType"
             data-go-back="$ctrl.selectProofType(null)"
-            data-add-documents="$ctrl.addDocuments(proofType, documentType, files, isReset)"
+            data-add-documents="$ctrl.addDocuments(proofType, documentType, files)"
             data-document-files="$ctrl.currentDocumentFiles"
             data-document="$ctrl.currentDocumentType"
         >
@@ -60,7 +60,6 @@
                     data-on-click="$ctrl.selectProofType(proof)"
                     data-is-loaded="$ctrl.files[proof] && $ctrl.files[proof].length !== 0"
                     data-kyc-status="$ctrl.kycStatus"
-                    data-is-valid="$ctrl.isValid"
                 ></account-upload-identity-documents-proof-tile>
             </div>
         </div>
