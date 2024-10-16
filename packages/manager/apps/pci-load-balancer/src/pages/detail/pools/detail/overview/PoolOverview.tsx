@@ -27,12 +27,10 @@ import OperatingStatusComponent from '@/components/listing/OperatingStatus.compo
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
 
 export default function PoolOverview() {
-  const { t } = useTranslation('octavia-load-balancer');
-  const { t: tPools } = useTranslation('octavia-load-balancer-pools');
-  const { t: tPoolDetail } = useTranslation('load-balancer-pools-detail');
-  const { t: tPoolOverview } = useTranslation(
-    'octavia-load-balancer-pools-detail-overview',
-  );
+  const { t } = useTranslation('load-balancer');
+  const { t: tPools } = useTranslation('pools');
+  const { t: tPoolDetail } = useTranslation('pools/detail');
+  const { t: tPoolOverview } = useTranslation('pools/overview');
 
   const { projectId, region, poolId } = useParams();
 

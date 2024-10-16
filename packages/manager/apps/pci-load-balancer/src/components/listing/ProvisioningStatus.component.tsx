@@ -14,7 +14,7 @@ export default function ProvisioningStatusComponent({
   status,
   className,
 }: Readonly<ProvisioningStatusComponentProps>) {
-  const { t } = useTranslation('octavia-load-balancer');
+  const { t } = useTranslation('load-balancer');
 
   const chipAttribute: OdsChipAttribute = useMemo(() => {
     switch (status) {

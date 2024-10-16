@@ -8,14 +8,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
-import PolicyForm from '@/components/detail/listeners/l7/PolicyForm.component';
+import PolicyForm from '@/components/form/PolicyForm.component';
 import { useCreatePolicy } from '@/api/hook/useL7Policy';
 import { useListener } from '@/api/hook/useListener';
 import { useAllLoadBalancerPools } from '@/api/hook/usePool';
 
 export default function CreatePage() {
   const { addSuccess, addError } = useNotifications();
-  const { t } = useTranslation('octavia-load-balancer-l7-create');
+  const { t } = useTranslation('l7/create');
   const projectUrl = useProjectUrl('public-cloud');
   const { listenerId, projectId, region, loadBalancerId } = useParams();
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ export default function CreatePage() {
     region,
     onError(error: ApiError) {
       addError(
-        <Translation ns="octavia-load-balancer">
+        <Translation ns="load-balancer">
           {(_t) =>
             _t('octavia_load_balancer_global_error', {
               message: error?.response?.data?.message || error?.message || null,
@@ -53,7 +53,7 @@ export default function CreatePage() {
     onSuccess(newPolicy) {
       const l7RulesCreationLink = `${projectUrl}/octavia-load-balancer/${region}/${loadBalancerId}/listeners/${listenerId}/l7/${newPolicy?.id}/rules/create`;
       addSuccess(
-        <Translation ns="octavia-load-balancer-l7">
+        <Translation ns="l7">
           {(_t) => (
             <span
               dangerouslySetInnerHTML={{
