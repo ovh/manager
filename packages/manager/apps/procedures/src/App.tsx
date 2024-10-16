@@ -15,7 +15,10 @@ import initI18n from './i18n';
 import initAuthenticationInterceptor from '@/data/authentication.interceptor';
 import initInterceptor from './data/invisible-challenge.interceptor';
 import UserProvider from '@/context/User/provider';
-import { getRedirectLoginUrl } from '@/utils/url-builder';
+import {
+  getRedirectLoginUrl,
+  getWebSiteRedirectUrl,
+} from '@/utils/url-builder';
 
 function getSubsidiary(subsidiary: string, locale: string) {
   if (subsidiary?.trim()?.length === 0)
@@ -24,13 +27,24 @@ function getSubsidiary(subsidiary: string, locale: string) {
 }
 
 const activateAuthenticationInterceptorForPath = [accountDisable2faRoute];
+const routeRedirectMap: Record<string, string> = {
+  [accountDisable2faRoute]: getRedirectLoginUrl(undefined),
+  [exercisingYourRightsRoute]: getWebSiteRedirectUrl(),
+};
+
 const token = extractToken();
 const user = decodeToken(token);
 const { language: locale, subsidiary } = user || {};
 
 if (!user) {
-  const redirectUrl = getRedirectLoginUrl(user);
-  window.location.assign(redirectUrl);
+  const redirectRoute = Object.keys(routeRedirectMap).find((route) =>
+    window.location.href.includes(route),
+  );
+
+  if (redirectRoute) {
+    const redirectUrl = routeRedirectMap[redirectRoute];
+    window.location.assign(redirectUrl);
+  }
 }
 
 initI18n(locale || 'en_GB', getSubsidiary(subsidiary, locale));
