@@ -1,0 +1,8 @@
+{
+  "identity_documents_modal_title": "We need to verify your identity",
+  "identity_documents_modal_description": "To comply with Indian law, you need to complete this verification process before placing an order.",
+  "identity_documents_modal_button_start": "Start",
+  "identity_documents_modal_button_later": "Skip",
+  "identity_documents_modal_more_info": "More information",
+  "identity_documents_modal_legal_information": "OVHcloud is obligated to perform Know Your Customer (KYC) checks on all its customers, pursuant to local regulations in force: Directions No. 20(3)/2022-CERT-In. __ <br>OVHcloud follows a process to collect supporting documents in order to verify the identity and address of its customers. OVHcloud cannot provide you with its services if you don’t submit the required documents."
+}
