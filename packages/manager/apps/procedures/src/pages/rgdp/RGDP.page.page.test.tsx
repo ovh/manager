@@ -11,14 +11,20 @@ vi.mock('./rgdpForm/RGDPForm.component', () => ({
   RGDPForm: () => <div>RGDPForm</div>,
 }));
 
+vi.mock('@/components/legalInformations/LegalInformations.component', () => ({
+  LegalInformations: () => <div>RGDPLegalInformations</div>,
+}));
+
 describe('RGDP Component', () => {
   it('renders the component correctly', () => {
     render(<RGDP />);
 
     const introductionElement = screen.getByText('RGDPIntroduction');
     const formElement = screen.getByText('RGDPForm');
+    const legalElement = screen.getByText('RGDPLegalInformations');
 
-    expect(introductionElement).toBeInTheDocument();
     expect(formElement).toBeInTheDocument();
+    expect(introductionElement).toBeInTheDocument();
+    expect(legalElement).toBeInTheDocument();
   });
 });
