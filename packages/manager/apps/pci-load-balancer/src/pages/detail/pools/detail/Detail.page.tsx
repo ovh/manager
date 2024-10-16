@@ -3,6 +3,7 @@ import {
   Headers,
   Links,
   LinkType,
+  Notifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
@@ -52,7 +53,7 @@ export default function PoolDetailPage() {
       title: tPoolsDetail(
         'load_balancer_pools_detail_health_monitor_tab_title',
       ),
-      to: null,
+      to: useResolvedPath(ROUTE_PATHS.POOL_HEALTH_MONITOR).pathname,
     },
     {
       name: 'load_balancer_pools_detail_members_tab_title',
@@ -102,7 +103,7 @@ export default function PoolDetailPage() {
         ]}
       />
 
-      <div className="header mt-8 mb-4">
+      <div className="header mt-8">
         <Headers title={poolDetail?.name} />
       </div>
 
@@ -111,11 +112,14 @@ export default function PoolDetailPage() {
           'load_balancer_pools_detail_previous_page_label',
         )}"`}
         type={LinkType.back}
-        className="mb-10"
         href={hrefPools}
       />
 
-      <div className="mb-8">
+      <div className="my-5">
+        <Notifications />
+      </div>
+
+      <div className="my-10">
         <TabsPanel tabs={tabs} />
       </div>
 

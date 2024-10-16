@@ -42,14 +42,13 @@ export default function LabelComponent({
 
       {helpText && (
         <OsdsPopover className="w-4 h-4">
-          <span slot="popover-trigger">
-            <OsdsIcon
-              name={ODS_ICON_NAME.HELP}
-              size={ODS_ICON_SIZE.xxs}
-              className="cursor-help"
-              color={ODS_THEME_COLOR_INTENT.text}
-            ></OsdsIcon>
-          </span>
+          <OsdsIcon
+            slot="popover-trigger"
+            name={ODS_ICON_NAME.HELP}
+            size={ODS_ICON_SIZE.xxs}
+            className="cursor-help"
+            color={ODS_THEME_COLOR_INTENT.text}
+          />
           <OsdsPopoverContent>{helpText}</OsdsPopoverContent>
         </OsdsPopover>
       )}
