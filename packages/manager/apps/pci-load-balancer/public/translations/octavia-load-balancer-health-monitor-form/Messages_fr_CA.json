@@ -1,0 +1,18 @@
+{
+  "octavia_load_balancer_health_monitor_form_description_1": "Le health monitor est utilisé pour déterminer l'intégrité des membres de votre pool. Des contrôles d'intégrité sont exécutés régulièrement sur chaque membre du pool et le résultat de ces contrôles est utilisé pour déterminer si le membre reçoit de nouvelles connexions. Un seul health monitor peut être défini pour chaque pool.",
+  "octavia_load_balancer_health_monitor_form_description_2": "Découvrez des options additionnelles via Horizon.",
+  "octavia_load_balancer_health_monitor_form_description_link": "Découvrir des options",
+  "octavia_load_balancer_health_monitor_form_name": "Nom",
+  "octavia_load_balancer_health_monitor_form_name_help": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points.",
+  "octavia_load_balancer_health_monitor_form_type": "Type",
+  "octavia_load_balancer_health_monitor_form_type_default": "Choisissez un type",
+  "octavia_load_balancer_health_monitor_form_expected_code": "Code attendu",
+  "octavia_load_balancer_health_monitor_form_expected_code_help": "Le code HTTP considéré comme un succès",
+  "octavia_load_balancer_health_monitor_form_expected_code_tooltip": "Les codes d'état HTTP attendus en cas de réussite du health check. Il doit s'agir d'un seul chiffre, d'une liste de chiffres séparés par des virgules ou d'un intervalle (deux chiffres séparés par un trait d'union).",
+  "octavia_load_balancer_health_monitor_form_max_retries_down_tooltip": "Le nombre d'échecs de connexion autorisé avant de marquer le membre comme erreur. Doit être un nombre compris entre 1 et 10. La valeur par défaut est 3. ",
+  "octavia_load_balancer_health_monitor_form_delay_tooltip": "Intervalle entre 2 tests du Health Monitor. Doit être supérieur au timeout.",
+  "octavia_load_balancer_health_monitor_form_max_retries_tooltip": "Le nombre d'échecs de connexion autorisés avant de marquer le membre comme inactif. Doit être un nombre compris entre 1 et 10.",
+  "octavia_load_balancer_health_monitor_form_timeout_tooltip": "Le temps après lequel un health check s'arrête. Doit être un nombre supérieur ou égal à 0 et inférieur à la périodicité",
+  "octavia_load_balancer_health_monitor_form_cancel": "Annuler",
+  "octavia_load_balancer_health_monitor_form_submit": "Editer"
+}
