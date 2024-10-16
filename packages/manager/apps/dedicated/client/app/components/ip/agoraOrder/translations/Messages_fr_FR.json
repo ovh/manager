@@ -88,6 +88,6 @@
   "ip_region_labeu-west-1-preprod": "LABEU (France - Croix) (PREPROD)",
   "ip_region_labeu-west-1-dev-1": "LABEU (France - Croix) (DEV-1)",
   "ip_region_labeu-west-1-dev-2": "LABEU (France - Croix) (DEV-2)",
-  "ip_agora_ipv6_no_services": " Les adresses IPV6 ne peuvent etre attachées qu'à un réseau privé vRack. Vous pouvez en créer un ici: ",
+  "ip_agora_ipv6_no_services": " Les adresses Additional IPv6 ne peuvent être attachées qu'à un réseau privé vRack. Vous pouvez en créer un ici: ",
   "ip_agora_ipv6_no_services_link": " Créer un vRack"
 }
