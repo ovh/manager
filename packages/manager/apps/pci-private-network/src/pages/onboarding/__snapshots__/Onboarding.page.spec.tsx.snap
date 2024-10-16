@@ -1,0 +1,1119 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`OnBoardingPage > displays private network creation button if vrack exists on project 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="flex flex-col mx-auto sm:px-10"
+      >
+        <section
+          class="flex flex-col items-center mt-8"
+        >
+          <img
+            class="max-h-28 "
+            src="../../../manager-react-components/src/components/templates/onboarding/assets/placeholder.png"
+          />
+          <osds-text
+            class="block text-center sm:pt-8 xs:pt-2.5"
+            color="primary"
+            hue="800"
+            level="heading"
+            size="700"
+          >
+            pci_projects_project_network_private
+          </osds-text>
+          <osds-text
+            class="block text-center xs:pt-2.5 sm:pt-8 max-w-4xl"
+            color="text"
+            level="body"
+            size="400"
+          >
+            <osds-text
+              color="text"
+              level="body"
+              size="400"
+            >
+              pci_projects_project_network_private_vrack_empty
+            </osds-text>
+            <osds-text
+              class="mt-6 block"
+              color="text"
+              level="body"
+              size="500"
+            >
+              pci_projects_project_network_private_vrack_deploy
+            </osds-text>
+            <osds-text
+              class="mt-4 block"
+              color="text"
+              level="body"
+              size="400"
+            >
+              pci_projects_project_network_private_vrack_explanation_1
+            </osds-text>
+            <osds-text
+              class="mt-6 block"
+              color="text"
+              level="body"
+              size="400"
+            >
+              pci_projects_project_network_private_vrack_explanation_2
+            </osds-text>
+          </osds-text>
+          <div
+            class="flex sm:pt-8 xs:pt-2.5 flex-row items-center space-x-4 justify-center"
+          >
+            <osds-button
+              color="primary"
+              inline="true"
+              size="md"
+            >
+              pci_projects_project_network_private_create
+            </osds-button>
+          </div>
+        </section>
+        <aside
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20"
+        >
+          <a
+            class="no-underline"
+            href="https://docs.ovh.com/gb/en/publiccloud/network-services/creating-private-network-with-gateway/"
+            target="_blank"
+          >
+            <osds-tile
+              class="w-full h-full"
+              color="primary"
+              inline="true"
+              rounded="true"
+              variant="stroked"
+            >
+              <div
+                class="flex flex-col "
+              >
+                <osds-text
+                  class="block"
+                  color="primary"
+                  hue="500"
+                  level="heading"
+                  size="400"
+                >
+                  onboarding_guide_title
+                  <span />
+                </osds-text>
+                <osds-text
+                  class="block mb-4"
+                  color="primary"
+                  hue="800"
+                  level="heading"
+                  size="500"
+                >
+                  pci_projects_project_network_private_vrack_guides_create_private_network_with_gateway_title
+                </osds-text>
+                <osds-link
+                  color="primary"
+                  tab-index="-1"
+                >
+                  <span
+                    slot="start"
+                  />
+                  see_more_label
+                  <span
+                    slot="end"
+                  >
+                    <osds-icon
+                      aria-hidden="true"
+                      class="ml-4"
+                      color="primary"
+                      hoverable="true"
+                      name="arrow-right"
+                      size="xxs"
+                    />
+                  </span>
+                </osds-link>
+              </div>
+            </osds-tile>
+          </a>
+          <a
+            class="no-underline"
+            href="https://docs.ovh.com/gb/en/public-cloud/attaching-pci-floating-ip-to-instance/"
+            target="_blank"
+          >
+            <osds-tile
+              class="w-full h-full"
+              color="primary"
+              inline="true"
+              rounded="true"
+              variant="stroked"
+            >
+              <div
+                class="flex flex-col "
+              >
+                <osds-text
+                  class="block"
+                  color="primary"
+                  hue="500"
+                  level="heading"
+                  size="400"
+                >
+                  onboarding_guide_title
+                  <span />
+                </osds-text>
+                <osds-text
+                  class="block mb-4"
+                  color="primary"
+                  hue="800"
+                  level="heading"
+                  size="500"
+                >
+                  pci_projects_project_network_private_vrack_guides_attach_pci_floating_ip_to_instance_title
+                </osds-text>
+                <osds-link
+                  color="primary"
+                  tab-index="-1"
+                >
+                  <span
+                    slot="start"
+                  />
+                  see_more_label
+                  <span
+                    slot="end"
+                  >
+                    <osds-icon
+                      aria-hidden="true"
+                      class="ml-4"
+                      color="primary"
+                      hoverable="true"
+                      name="arrow-right"
+                      size="xxs"
+                    />
+                  </span>
+                </osds-link>
+              </div>
+            </osds-tile>
+          </a>
+          <a
+            class="no-underline"
+            href="https://www.ovhcloud.com/en-gb/public-cloud/private-network"
+            target="_blank"
+          >
+            <osds-tile
+              class="w-full h-full"
+              color="primary"
+              inline="true"
+              rounded="true"
+              variant="stroked"
+            >
+              <div
+                class="flex flex-col "
+              >
+                <osds-text
+                  class="block"
+                  color="primary"
+                  hue="500"
+                  level="heading"
+                  size="400"
+                >
+                  onboarding_guide_title
+                  <span />
+                </osds-text>
+                <osds-text
+                  class="block mb-4"
+                  color="primary"
+                  hue="800"
+                  level="heading"
+                  size="500"
+                >
+                  pci_projects_project_network_private_vrack_guides_private_networks_title
+                </osds-text>
+                <osds-link
+                  color="primary"
+                  tab-index="-1"
+                >
+                  <span
+                    slot="start"
+                  />
+                  see_more_label
+                  <span
+                    slot="end"
+                  >
+                    <osds-icon
+                      aria-hidden="true"
+                      class="ml-4"
+                      color="primary"
+                      hoverable="true"
+                      name="arrow-right"
+                      size="xxs"
+                    />
+                  </span>
+                </osds-link>
+              </div>
+            </osds-tile>
+          </a>
+        </aside>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="flex flex-col mx-auto sm:px-10"
+    >
+      <section
+        class="flex flex-col items-center mt-8"
+      >
+        <img
+          class="max-h-28 "
+          src="../../../manager-react-components/src/components/templates/onboarding/assets/placeholder.png"
+        />
+        <osds-text
+          class="block text-center sm:pt-8 xs:pt-2.5"
+          color="primary"
+          hue="800"
+          level="heading"
+          size="700"
+        >
+          pci_projects_project_network_private
+        </osds-text>
+        <osds-text
+          class="block text-center xs:pt-2.5 sm:pt-8 max-w-4xl"
+          color="text"
+          level="body"
+          size="400"
+        >
+          <osds-text
+            color="text"
+            level="body"
+            size="400"
+          >
+            pci_projects_project_network_private_vrack_empty
+          </osds-text>
+          <osds-text
+            class="mt-6 block"
+            color="text"
+            level="body"
+            size="500"
+          >
+            pci_projects_project_network_private_vrack_deploy
+          </osds-text>
+          <osds-text
+            class="mt-4 block"
+            color="text"
+            level="body"
+            size="400"
+          >
+            pci_projects_project_network_private_vrack_explanation_1
+          </osds-text>
+          <osds-text
+            class="mt-6 block"
+            color="text"
+            level="body"
+            size="400"
+          >
+            pci_projects_project_network_private_vrack_explanation_2
+          </osds-text>
+        </osds-text>
+        <div
+          class="flex sm:pt-8 xs:pt-2.5 flex-row items-center space-x-4 justify-center"
+        >
+          <osds-button
+            color="primary"
+            inline="true"
+            size="md"
+          >
+            pci_projects_project_network_private_create
+          </osds-button>
+        </div>
+      </section>
+      <aside
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20"
+      >
+        <a
+          class="no-underline"
+          href="https://docs.ovh.com/gb/en/publiccloud/network-services/creating-private-network-with-gateway/"
+          target="_blank"
+        >
+          <osds-tile
+            class="w-full h-full"
+            color="primary"
+            inline="true"
+            rounded="true"
+            variant="stroked"
+          >
+            <div
+              class="flex flex-col "
+            >
+              <osds-text
+                class="block"
+                color="primary"
+                hue="500"
+                level="heading"
+                size="400"
+              >
+                onboarding_guide_title
+                <span />
+              </osds-text>
+              <osds-text
+                class="block mb-4"
+                color="primary"
+                hue="800"
+                level="heading"
+                size="500"
+              >
+                pci_projects_project_network_private_vrack_guides_create_private_network_with_gateway_title
+              </osds-text>
+              <osds-link
+                color="primary"
+                tab-index="-1"
+              >
+                <span
+                  slot="start"
+                />
+                see_more_label
+                <span
+                  slot="end"
+                >
+                  <osds-icon
+                    aria-hidden="true"
+                    class="ml-4"
+                    color="primary"
+                    hoverable="true"
+                    name="arrow-right"
+                    size="xxs"
+                  />
+                </span>
+              </osds-link>
+            </div>
+          </osds-tile>
+        </a>
+        <a
+          class="no-underline"
+          href="https://docs.ovh.com/gb/en/public-cloud/attaching-pci-floating-ip-to-instance/"
+          target="_blank"
+        >
+          <osds-tile
+            class="w-full h-full"
+            color="primary"
+            inline="true"
+            rounded="true"
+            variant="stroked"
+          >
+            <div
+              class="flex flex-col "
+            >
+              <osds-text
+                class="block"
+                color="primary"
+                hue="500"
+                level="heading"
+                size="400"
+              >
+                onboarding_guide_title
+                <span />
+              </osds-text>
+              <osds-text
+                class="block mb-4"
+                color="primary"
+                hue="800"
+                level="heading"
+                size="500"
+              >
+                pci_projects_project_network_private_vrack_guides_attach_pci_floating_ip_to_instance_title
+              </osds-text>
+              <osds-link
+                color="primary"
+                tab-index="-1"
+              >
+                <span
+                  slot="start"
+                />
+                see_more_label
+                <span
+                  slot="end"
+                >
+                  <osds-icon
+                    aria-hidden="true"
+                    class="ml-4"
+                    color="primary"
+                    hoverable="true"
+                    name="arrow-right"
+                    size="xxs"
+                  />
+                </span>
+              </osds-link>
+            </div>
+          </osds-tile>
+        </a>
+        <a
+          class="no-underline"
+          href="https://www.ovhcloud.com/en-gb/public-cloud/private-network"
+          target="_blank"
+        >
+          <osds-tile
+            class="w-full h-full"
+            color="primary"
+            inline="true"
+            rounded="true"
+            variant="stroked"
+          >
+            <div
+              class="flex flex-col "
+            >
+              <osds-text
+                class="block"
+                color="primary"
+                hue="500"
+                level="heading"
+                size="400"
+              >
+                onboarding_guide_title
+                <span />
+              </osds-text>
+              <osds-text
+                class="block mb-4"
+                color="primary"
+                hue="800"
+                level="heading"
+                size="500"
+              >
+                pci_projects_project_network_private_vrack_guides_private_networks_title
+              </osds-text>
+              <osds-link
+                color="primary"
+                tab-index="-1"
+              >
+                <span
+                  slot="start"
+                />
+                see_more_label
+                <span
+                  slot="end"
+                >
+                  <osds-icon
+                    aria-hidden="true"
+                    class="ml-4"
+                    color="primary"
+                    hoverable="true"
+                    name="arrow-right"
+                    size="xxs"
+                  />
+                </span>
+              </osds-link>
+            </div>
+          </osds-tile>
+        </a>
+      </aside>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`OnBoardingPage > displays private vrack creation button if missing vrack on project 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="flex flex-col mx-auto sm:px-10"
+      >
+        <section
+          class="flex flex-col items-center mt-8"
+        >
+          <img
+            class="max-h-28 "
+            src="../../../manager-react-components/src/components/templates/onboarding/assets/placeholder.png"
+          />
+          <osds-text
+            class="block text-center sm:pt-8 xs:pt-2.5"
+            color="primary"
+            hue="800"
+            level="heading"
+            size="700"
+          >
+            pci_projects_project_network_private
+          </osds-text>
+          <osds-text
+            class="block text-center xs:pt-2.5 sm:pt-8 max-w-4xl"
+            color="text"
+            level="body"
+            size="400"
+          >
+            <osds-text
+              color="text"
+              level="body"
+              size="400"
+            >
+              pci_projects_project_network_private_vrack_empty
+            </osds-text>
+            <osds-text
+              class="mt-6 block"
+              color="text"
+              level="body"
+              size="500"
+            >
+              pci_projects_project_network_private_vrack_deploy
+            </osds-text>
+            <osds-text
+              class="mt-4 block"
+              color="text"
+              level="body"
+              size="400"
+            >
+              pci_projects_project_network_private_vrack_explanation_1
+            </osds-text>
+            <osds-text
+              class="mt-6 block"
+              color="text"
+              level="body"
+              size="400"
+            >
+              pci_projects_project_network_private_vrack_explanation_2
+            </osds-text>
+          </osds-text>
+          <div
+            class="flex sm:pt-8 xs:pt-2.5 flex-row items-center space-x-4 justify-center"
+          >
+            <osds-button
+              color="primary"
+              inline="true"
+              size="md"
+            >
+              pci_projects_project_network_private_vrack_create_heading
+            </osds-button>
+          </div>
+        </section>
+        <aside
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20"
+        >
+          <a
+            class="no-underline"
+            href="https://docs.ovh.com/gb/en/publiccloud/network-services/creating-private-network-with-gateway/"
+            target="_blank"
+          >
+            <osds-tile
+              class="w-full h-full"
+              color="primary"
+              inline="true"
+              rounded="true"
+              variant="stroked"
+            >
+              <div
+                class="flex flex-col "
+              >
+                <osds-text
+                  class="block"
+                  color="primary"
+                  hue="500"
+                  level="heading"
+                  size="400"
+                >
+                  onboarding_guide_title
+                  <span />
+                </osds-text>
+                <osds-text
+                  class="block mb-4"
+                  color="primary"
+                  hue="800"
+                  level="heading"
+                  size="500"
+                >
+                  pci_projects_project_network_private_vrack_guides_create_private_network_with_gateway_title
+                </osds-text>
+                <osds-link
+                  color="primary"
+                  tab-index="-1"
+                >
+                  <span
+                    slot="start"
+                  />
+                  see_more_label
+                  <span
+                    slot="end"
+                  >
+                    <osds-icon
+                      aria-hidden="true"
+                      class="ml-4"
+                      color="primary"
+                      hoverable="true"
+                      name="arrow-right"
+                      size="xxs"
+                    />
+                  </span>
+                </osds-link>
+              </div>
+            </osds-tile>
+          </a>
+          <a
+            class="no-underline"
+            href="https://docs.ovh.com/gb/en/public-cloud/attaching-pci-floating-ip-to-instance/"
+            target="_blank"
+          >
+            <osds-tile
+              class="w-full h-full"
+              color="primary"
+              inline="true"
+              rounded="true"
+              variant="stroked"
+            >
+              <div
+                class="flex flex-col "
+              >
+                <osds-text
+                  class="block"
+                  color="primary"
+                  hue="500"
+                  level="heading"
+                  size="400"
+                >
+                  onboarding_guide_title
+                  <span />
+                </osds-text>
+                <osds-text
+                  class="block mb-4"
+                  color="primary"
+                  hue="800"
+                  level="heading"
+                  size="500"
+                >
+                  pci_projects_project_network_private_vrack_guides_attach_pci_floating_ip_to_instance_title
+                </osds-text>
+                <osds-link
+                  color="primary"
+                  tab-index="-1"
+                >
+                  <span
+                    slot="start"
+                  />
+                  see_more_label
+                  <span
+                    slot="end"
+                  >
+                    <osds-icon
+                      aria-hidden="true"
+                      class="ml-4"
+                      color="primary"
+                      hoverable="true"
+                      name="arrow-right"
+                      size="xxs"
+                    />
+                  </span>
+                </osds-link>
+              </div>
+            </osds-tile>
+          </a>
+          <a
+            class="no-underline"
+            href="https://www.ovhcloud.com/en-gb/public-cloud/private-network"
+            target="_blank"
+          >
+            <osds-tile
+              class="w-full h-full"
+              color="primary"
+              inline="true"
+              rounded="true"
+              variant="stroked"
+            >
+              <div
+                class="flex flex-col "
+              >
+                <osds-text
+                  class="block"
+                  color="primary"
+                  hue="500"
+                  level="heading"
+                  size="400"
+                >
+                  onboarding_guide_title
+                  <span />
+                </osds-text>
+                <osds-text
+                  class="block mb-4"
+                  color="primary"
+                  hue="800"
+                  level="heading"
+                  size="500"
+                >
+                  pci_projects_project_network_private_vrack_guides_private_networks_title
+                </osds-text>
+                <osds-link
+                  color="primary"
+                  tab-index="-1"
+                >
+                  <span
+                    slot="start"
+                  />
+                  see_more_label
+                  <span
+                    slot="end"
+                  >
+                    <osds-icon
+                      aria-hidden="true"
+                      class="ml-4"
+                      color="primary"
+                      hoverable="true"
+                      name="arrow-right"
+                      size="xxs"
+                    />
+                  </span>
+                </osds-link>
+              </div>
+            </osds-tile>
+          </a>
+        </aside>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="flex flex-col mx-auto sm:px-10"
+    >
+      <section
+        class="flex flex-col items-center mt-8"
+      >
+        <img
+          class="max-h-28 "
+          src="../../../manager-react-components/src/components/templates/onboarding/assets/placeholder.png"
+        />
+        <osds-text
+          class="block text-center sm:pt-8 xs:pt-2.5"
+          color="primary"
+          hue="800"
+          level="heading"
+          size="700"
+        >
+          pci_projects_project_network_private
+        </osds-text>
+        <osds-text
+          class="block text-center xs:pt-2.5 sm:pt-8 max-w-4xl"
+          color="text"
+          level="body"
+          size="400"
+        >
+          <osds-text
+            color="text"
+            level="body"
+            size="400"
+          >
+            pci_projects_project_network_private_vrack_empty
+          </osds-text>
+          <osds-text
+            class="mt-6 block"
+            color="text"
+            level="body"
+            size="500"
+          >
+            pci_projects_project_network_private_vrack_deploy
+          </osds-text>
+          <osds-text
+            class="mt-4 block"
+            color="text"
+            level="body"
+            size="400"
+          >
+            pci_projects_project_network_private_vrack_explanation_1
+          </osds-text>
+          <osds-text
+            class="mt-6 block"
+            color="text"
+            level="body"
+            size="400"
+          >
+            pci_projects_project_network_private_vrack_explanation_2
+          </osds-text>
+        </osds-text>
+        <div
+          class="flex sm:pt-8 xs:pt-2.5 flex-row items-center space-x-4 justify-center"
+        >
+          <osds-button
+            color="primary"
+            inline="true"
+            size="md"
+          >
+            pci_projects_project_network_private_vrack_create_heading
+          </osds-button>
+        </div>
+      </section>
+      <aside
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20"
+      >
+        <a
+          class="no-underline"
+          href="https://docs.ovh.com/gb/en/publiccloud/network-services/creating-private-network-with-gateway/"
+          target="_blank"
+        >
+          <osds-tile
+            class="w-full h-full"
+            color="primary"
+            inline="true"
+            rounded="true"
+            variant="stroked"
+          >
+            <div
+              class="flex flex-col "
+            >
+              <osds-text
+                class="block"
+                color="primary"
+                hue="500"
+                level="heading"
+                size="400"
+              >
+                onboarding_guide_title
+                <span />
+              </osds-text>
+              <osds-text
+                class="block mb-4"
+                color="primary"
+                hue="800"
+                level="heading"
+                size="500"
+              >
+                pci_projects_project_network_private_vrack_guides_create_private_network_with_gateway_title
+              </osds-text>
+              <osds-link
+                color="primary"
+                tab-index="-1"
+              >
+                <span
+                  slot="start"
+                />
+                see_more_label
+                <span
+                  slot="end"
+                >
+                  <osds-icon
+                    aria-hidden="true"
+                    class="ml-4"
+                    color="primary"
+                    hoverable="true"
+                    name="arrow-right"
+                    size="xxs"
+                  />
+                </span>
+              </osds-link>
+            </div>
+          </osds-tile>
+        </a>
+        <a
+          class="no-underline"
+          href="https://docs.ovh.com/gb/en/public-cloud/attaching-pci-floating-ip-to-instance/"
+          target="_blank"
+        >
+          <osds-tile
+            class="w-full h-full"
+            color="primary"
+            inline="true"
+            rounded="true"
+            variant="stroked"
+          >
+            <div
+              class="flex flex-col "
+            >
+              <osds-text
+                class="block"
+                color="primary"
+                hue="500"
+                level="heading"
+                size="400"
+              >
+                onboarding_guide_title
+                <span />
+              </osds-text>
+              <osds-text
+                class="block mb-4"
+                color="primary"
+                hue="800"
+                level="heading"
+                size="500"
+              >
+                pci_projects_project_network_private_vrack_guides_attach_pci_floating_ip_to_instance_title
+              </osds-text>
+              <osds-link
+                color="primary"
+                tab-index="-1"
+              >
+                <span
+                  slot="start"
+                />
+                see_more_label
+                <span
+                  slot="end"
+                >
+                  <osds-icon
+                    aria-hidden="true"
+                    class="ml-4"
+                    color="primary"
+                    hoverable="true"
+                    name="arrow-right"
+                    size="xxs"
+                  />
+                </span>
+              </osds-link>
+            </div>
+          </osds-tile>
+        </a>
+        <a
+          class="no-underline"
+          href="https://www.ovhcloud.com/en-gb/public-cloud/private-network"
+          target="_blank"
+        >
+          <osds-tile
+            class="w-full h-full"
+            color="primary"
+            inline="true"
+            rounded="true"
+            variant="stroked"
+          >
+            <div
+              class="flex flex-col "
+            >
+              <osds-text
+                class="block"
+                color="primary"
+                hue="500"
+                level="heading"
+                size="400"
+              >
+                onboarding_guide_title
+                <span />
+              </osds-text>
+              <osds-text
+                class="block mb-4"
+                color="primary"
+                hue="800"
+                level="heading"
+                size="500"
+              >
+                pci_projects_project_network_private_vrack_guides_private_networks_title
+              </osds-text>
+              <osds-link
+                color="primary"
+                tab-index="-1"
+              >
+                <span
+                  slot="start"
+                />
+                see_more_label
+                <span
+                  slot="end"
+                >
+                  <osds-icon
+                    aria-hidden="true"
+                    class="ml-4"
+                    color="primary"
+                    hoverable="true"
+                    name="arrow-right"
+                    size="xxs"
+                  />
+                </span>
+              </osds-link>
+            </div>
+          </osds-tile>
+        </a>
+      </aside>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

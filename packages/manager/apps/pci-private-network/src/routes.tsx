@@ -76,6 +76,14 @@ export default [
       {
         path: ROUTE_PATHS.onboarding,
         ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
+        children: [
+          {
+            path: 'new',
+            ...lazyRouteConfig(() =>
+              import('@/pages/onboarding/new/VrackCreation.page'),
+            ),
+          },
+        ],
       },
       {
         path: ROUTE_PATHS.new,
