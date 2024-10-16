@@ -25,11 +25,13 @@
     </div>
 
     <oui-tile-definition
+        data-ng-if="!$ctrl.hasVcdMigration"
         data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_commercial_range' | translate }}"
         data-description="{{:: $ctrl.bindings.commercialRange }}"
     ></oui-tile-definition>
 
     <oui-tile-definition
+        data-ng-if="!$ctrl.hasVcdMigration"
         data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_softwareSolution_term' | translate }}"
     >
         <oui-tile-description>
@@ -118,6 +120,7 @@
     ></oui-tile-definition>
 
     <oui-tile-definition
+        data-ng-if="!$ctrl.hasVcdMigration"
         data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_numberOfDatacenters_term' | translate }}"
         data-description="{{:: $ctrl.bindings.numberOfDatacenters }}"
     ></oui-tile-definition>
@@ -194,6 +197,13 @@
     </oui-tile-definition>
 
     <oui-tile-definition
+        data-ng-if="$ctrl.hasVcdMigration"
+        data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_vcd_name' | translate }}"
+        data-description="{{:: $ctrl.bindings.vcdName || '-' }}"
+    ></oui-tile-definition>
+
+    <oui-tile-definition
+        data-ng-if="!$ctrl.hasVcdMigration"
         data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_managementInterfaces_term' | translate }}"
     >
         <oui-tile-description>
