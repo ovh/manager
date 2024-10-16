@@ -9,9 +9,10 @@ import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import ActionsComponent from '@/components/listing/actions.component';
 import { TKube } from '@/types';
+import ClusterStatus from '@/components/service/ClusterStatus.component';
 
 export const useDatagridColumn = () => {
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation(['listing', 'kube']);
 
   const columns: DatagridColumn<TKube>[] = [
     {
@@ -57,6 +58,15 @@ export const useDatagridColumn = () => {
         <DataGridTextCell>{props.version}</DataGridTextCell>
       ),
       label: t('kube_list_version'),
+    },
+    {
+      id: 'status',
+      cell: (props: TKube) => (
+        <DataGridTextCell>
+          <ClusterStatus status={props.status} />
+        </DataGridTextCell>
+      ),
+      label: t('kube:kube_service_cluster_status'),
     },
     {
       id: 'actions',
