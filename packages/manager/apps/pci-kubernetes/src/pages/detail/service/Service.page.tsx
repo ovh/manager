@@ -102,17 +102,15 @@ export default function ServicePage() {
           </OsdsText>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
-            <div>
+            <div className="grid gap-7">
               <ClusterManagement kubeDetail={kubeDetail} />
+              <ClusterNetwork projectId={projectId} kubeDetail={kubeDetail} />
             </div>
-            <div>
+            <div className="grid gap-7">
               <ClusterInformation kubeDetail={kubeDetail} />
             </div>
-            <div>
+            <div className="grid gap-7">
               <ClusterAccessAndSecurity kubeDetail={kubeDetail} />
-            </div>
-            <div className="md:col-start-2">
-              <ClusterNetwork projectId={projectId} kubeDetail={kubeDetail} />
             </div>
           </div>
 
