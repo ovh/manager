@@ -4,7 +4,6 @@ import {
   COMMERCIAL_RANGE_NAME_EOL,
   VDC_MIRGRATION_GUIDE_LINK,
   TRACKING_NEW_PRODUCT_BANNER,
-  TRACKING_PREFIX,
 } from './dedicatedCloud-datacenter.constants';
 
 export default class {
@@ -15,7 +14,6 @@ export default class {
     this.ovhManagerPccDatacenterService = ovhManagerPccDatacenterService;
     this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
     this.TRACKING_NEW_PRODUCT_BANNER = TRACKING_NEW_PRODUCT_BANNER;
-    this.TRACKING_PREFIX = TRACKING_PREFIX;
   }
 
   $onInit() {
