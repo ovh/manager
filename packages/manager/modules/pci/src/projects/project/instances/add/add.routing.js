@@ -1,12 +1,22 @@
-import { FLAVORS_FEATURES_FLIPPING_MAP } from '../instances.constants';
-import { URL_MODEL } from './add.constants';
+import {
+  FLAVORS_FEATURES_FLIPPING_MAP,
+  INSTANCES_TRACKING_PREFIXES,
+} from '../instances.constants';
+import { URL_MODEL, ADD_INSTANCE_TRACKING_PREFIX } from './add.constants';
 import { useURLModel } from '../../project.utils';
+
+const TRACKING_PREFIXES = INSTANCES_TRACKING_PREFIXES.concat(
+  ADD_INSTANCE_TRACKING_PREFIX,
+);
 
 export default /* @ngInject */ ($stateProvider) => {
   const { query } = useURLModel(URL_MODEL);
   $stateProvider.state('pci.projects.project.instances.add', {
     url: `/new?${query}`,
     component: 'ovhManagerPciInstancesAdd',
+    atInternet: {
+      rename: [...TRACKING_PREFIXES, 'add_instance'].join('::'),
+    },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_instances_add_title'),
@@ -105,16 +115,14 @@ export default /* @ngInject */ ($stateProvider) => {
             pricePerHour: hourlyPriceObj.price,
           };
         }),
-      addInstanceTrackPrefix: /* @ngInject */ () =>
-        `PublicCloud::pci::projects::project::instances::`,
-      trackAddInstance: /* @ngInject */ (
-        addInstanceTrackPrefix,
-        trackClick,
-        trackPage,
-      ) => (complement, type = 'action', prefix = true) => {
-        const name = `${
-          prefix ? `${addInstanceTrackPrefix}` : ''
-        }${complement}`;
+      trackAddInstance: /* @ngInject */ (trackClick, trackPage) => (
+        chapters,
+        type = 'action',
+        prefix = true,
+      ) => {
+        const name = [...(prefix ? TRACKING_PREFIXES : []), ...chapters].join(
+          '::',
+        );
         return type === 'page' ? trackPage(name) : trackClick(name, type);
       },
       trackClick: /* @ngInject */ (atInternet) => (hit, type = 'action') => {

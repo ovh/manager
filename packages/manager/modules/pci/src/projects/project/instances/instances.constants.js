@@ -98,6 +98,12 @@ export const FLAVORS_FEATURES_FLIPPING_MAP = {
 
 export const DEFAULT_IP = '10.{vlanId}.0.0';
 
+export const INSTANCES_TRACKING_PREFIXES = [
+  'PublicCloud',
+  'compute',
+  'instances',
+];
+
 export default {
   BANDWIDTH_CONSUMPTION,
   BANDWIDTH_LIMIT,
@@ -115,4 +121,5 @@ export default {
   INSTANCE_PRICING_LINKS,
   OPENSTACK_INSTANCE_STATUS,
   DEFAULT_IP,
+  INSTANCES_TRACKING_PREFIXES,
 };

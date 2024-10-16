@@ -159,6 +159,15 @@ export default class FlavorsListController {
     }
   }
 
+  onFlavorCategoryChange() {
+    if (!this.selectedCategory) {
+      return;
+    }
+    if (this.onCategoryChange) {
+      this.onCategoryChange({ category: this.selectedCategory });
+    }
+  }
+
   hasEnoughDisk(flavor) {
     if (this.defaultFlavor) {
       return flavor.disk >= this.defaultFlavor.disk;
