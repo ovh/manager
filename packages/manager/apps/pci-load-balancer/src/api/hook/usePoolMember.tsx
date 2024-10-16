@@ -7,6 +7,7 @@ import {
   deletePoolMember,
   getPoolMember,
   getPoolMembers,
+  updatePoolMemberName,
 } from '@/api/data/pool-member';
 import { paginateResults, sortResults } from '@/helpers';
 import queryClient from '@/queryClient';
@@ -102,3 +103,39 @@ export const useGetPoolMember = (
     queryKey: ['poolMembers', projectId, poolId, region, memberId],
     queryFn: () => getPoolMember(projectId, region, poolId, memberId),
   });
+
+type UpdatePoolMemberProps = {
+  projectId: string;
+  poolId: string;
+  memberId: string;
+  region: string;
+  name: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useUpdatePoolMember = ({
+  projectId,
+  poolId,
+  memberId,
+  region,
+  name,
+  onError,
+  onSuccess,
+}: UpdatePoolMemberProps) => {
+  const mutation = useMutation({
+    mutationFn: async () =>
+      updatePoolMemberName(projectId, region, poolId, memberId, name),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['poolMembers', projectId],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    updatePoolMemberName: () => mutation.mutate(),
+    ...mutation,
+  };
+};
