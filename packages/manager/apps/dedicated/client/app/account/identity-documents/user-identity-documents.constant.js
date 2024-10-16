@@ -119,7 +119,7 @@ const DOCUMENT_INDIVIDUAL_MATRIX = {
         ],
       },
       gst_certificate: {
-        quantity: 1,
+        quantity: 3,
         mandatory: 1,
         acceptance_criteria: [
           DOCUMENT_ACCEPTANCE_CRITERIA.names_address_account,
@@ -131,13 +131,6 @@ const DOCUMENT_INDIVIDUAL_MATRIX = {
         acceptance_criteria: [
           DOCUMENT_ACCEPTANCE_CRITERIA.names_address_account,
           DOCUMENT_ACCEPTANCE_CRITERIA.less_than_three,
-        ],
-      },
-      bank_statement: {
-        quantity: 1,
-        mandatory: 1,
-        acceptance_criteria: [
-          DOCUMENT_ACCEPTANCE_CRITERIA.names_address_account,
         ],
       },
     },
@@ -194,7 +187,7 @@ const DOCUMENT_NON_INDIVIDUAL_MATRIX = {
     extended: false,
     documents: {
       gst_certificate: {
-        quantity: 1,
+        quantity: 3,
         mandatory: 1,
         acceptance_criteria: [
           DOCUMENT_ACCEPTANCE_CRITERIA.address_gst,
@@ -208,13 +201,6 @@ const DOCUMENT_NON_INDIVIDUAL_MATRIX = {
           DOCUMENT_ACCEPTANCE_CRITERIA.address_gst,
           DOCUMENT_ACCEPTANCE_CRITERIA.address_account,
           DOCUMENT_ACCEPTANCE_CRITERIA.less_than_three,
-        ],
-      },
-      bank_statement: {
-        quantity: 1,
-        mandatory: 1,
-        acceptance_criteria: [
-          DOCUMENT_ACCEPTANCE_CRITERIA.names_address_account,
         ],
       },
     },

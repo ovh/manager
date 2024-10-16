@@ -1,7 +1,6 @@
 import {
   USER_TYPE,
   PROOF_TYPE,
-  DOCUMENT_TYPE,
   TRACKING_TASK_TAG,
   TRACKING_VARIABLES,
   LEGAL_LINK1,
@@ -39,10 +38,8 @@ export default class AccountUserIdentityDocumentsController {
     this.TRACKING_TASK_TAG = TRACKING_TASK_TAG;
     this.USER_TYPE = USER_TYPE;
     this.PROOF_TYPE = PROOF_TYPE;
-    this.DOCUMENT_TYPE = DOCUMENT_TYPE;
     this.DOCUMENTS_MATRIX = DOCUMENTS_MATRIX;
     this.isValid = false;
-    this.hasAadhaarCard = false;
   }
 
   $onInit() {
@@ -132,36 +129,20 @@ export default class AccountUserIdentityDocumentsController {
     this.isOpenInformationModal = open;
   }
 
-  addDocuments(proofType, documentType, files, isReset) {
-    if (isReset) {
-      delete this.files[proofType];
-    } else {
-      this.files[proofType] = {
-        document: documentType,
-        files,
-      };
-    }
+  addDocuments(proofType, documentType, files) {
+    this.files[proofType] = {
+      document: documentType,
+      files,
+    };
     this.checkValidity();
-  }
-
-  checkInvidualValidity() {
-    this.hasAadhaarCard =
-      !!this.files[this.PROOF_TYPE.aadhaar_card] ||
-      !!Object.entries(this.files).find(
-        ([, value]) => value.document === this.DOCUMENT_TYPE.aadhaar_card,
-      );
-
-    const isComplete =
-      !!this.files[this.PROOF_TYPE.identity] &&
-      !!this.files[this.PROOF_TYPE.address];
-
-    return this.hasAadhaarCard || isComplete;
   }
 
   checkValidity() {
     this.isValid =
       this.user_type === this.USER_TYPE.individual
-        ? this.checkInvidualValidity()
+        ? this.files[this.PROOF_TYPE.aadhaar_card] ||
+          (this.files[this.PROOF_TYPE.identity] &&
+            this.files[this.PROOF_TYPE.address])
         : Object.keys(this.proofs).reduce(
             (acc, proofType) =>
               (acc &&
