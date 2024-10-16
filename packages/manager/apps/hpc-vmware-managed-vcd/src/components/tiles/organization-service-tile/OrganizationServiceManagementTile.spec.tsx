@@ -27,13 +27,13 @@ const renderComponent = () => {
       <ShellContext.Provider
         value={(shellContext as unknown) as ShellContextType}
       >
-        <OrganizationServiceManagementTile id="testId" />
+        <OrganizationServiceManagementTile />
       </ShellContext.Provider>
     </QueryClientProvider>,
   );
 };
 
-describe.skip('ServiceManagementTile component unit test suite', () => {
+describe('ServiceManagementTile component unit test suite', () => {
   it('should define all sections with correct typo', () => {
     // when
     const { getByText } = renderComponent();

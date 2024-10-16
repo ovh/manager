@@ -46,7 +46,7 @@ function GeneralInformation() {
         <OrganizationDataProtectionTile />
       </div>
       <div>
-        <OrganizationServiceManagementTile id={id} />
+        <OrganizationServiceManagementTile />
       </div>
       <Outlet />
     </div>
