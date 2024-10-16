@@ -23,7 +23,6 @@ import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
 
 import '../../translations/quantity-selector';
-import { clsx } from 'clsx';
 
 export interface QuantitySelectorProps {
   label?: string;

@@ -5,13 +5,13 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { useGetPolicy, useUpdatePolicy } from '@/api/hook/useL7Policy';
-import PolicyForm from '@/components/detail/listeners/l7/PolicyForm.component';
+import PolicyForm from '@/components/form/PolicyForm.component';
 import { useListener } from '@/api/hook/useListener';
 import { useAllLoadBalancerPools } from '@/api/hook/usePool';
 
 export default function EditPage() {
   const { addSuccess, addError } = useNotifications();
-  const { t } = useTranslation('octavia-load-balancer-l7-edit');
+  const { t } = useTranslation('l7/edit');
   const {
     listenerId,
     projectId,
@@ -43,7 +43,7 @@ export default function EditPage() {
     region,
     onError(error: ApiError) {
       addError(
-        <Translation ns="octavia-load-balancer">
+        <Translation ns="load-balancer">
           {(_t) =>
             _t('octavia_load_balancer_global_error', {
               message: error?.response?.data?.message || error?.message || null,
@@ -56,7 +56,7 @@ export default function EditPage() {
     },
     onSuccess(updatedPolicy) {
       addSuccess(
-        <Translation ns="octavia-load-balancer-l7">
+        <Translation ns="l7">
           {(_t) => (
             <span
               dangerouslySetInnerHTML={{

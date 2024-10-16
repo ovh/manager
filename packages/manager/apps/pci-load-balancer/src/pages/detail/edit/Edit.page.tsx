@@ -15,7 +15,7 @@ import LabelComponent from '@/components/form/Label.component';
 
 export default function Edit() {
   const { addSuccess, addError } = useNotifications();
-  const { t: tEditName } = useTranslation('edit-name');
+  const { t: tEditName } = useTranslation('load-balancer/edit-name');
   const { projectId, region, loadBalancerId } = useParams();
   const navigate = useNavigate();
   const onClose = () => {
@@ -39,7 +39,7 @@ export default function Edit() {
     name: loadBalancerName,
     onError(error: ApiError) {
       addError(
-        <Translation ns="octavia-load-balancer">
+        <Translation ns="load-balancer">
           {(_t) =>
             _t('octavia_load_balancer_global_error', {
               message: error?.response?.data?.message || error?.message || null,

@@ -31,7 +31,7 @@ import { useDatagridColumn } from '@/pages/detail/listeners/list/useDatagridColu
 import { useLoadBalancerListeners } from '@/api/hook/useLoadBalancer';
 
 export default function ListenerList() {
-  const { t } = useTranslation('octavia-load-balancer-listeners');
+  const { t } = useTranslation('listeners');
   const { t: tFilter } = useTranslation('filter');
 
   const { projectId, region, loadBalancerId } = useParams();

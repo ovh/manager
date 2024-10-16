@@ -31,7 +31,7 @@ import { usePoolMemberDatagridColumn } from './usePoolMemberDatagridColumn';
 
 export default function PoolMemberList() {
   const { t } = useTranslation('pools/members/list');
-  const { t: tPoolDetail } = useTranslation('load-balancer-pools-detail');
+  const { t: tPoolDetail } = useTranslation('pools/detail');
   const { t: tFilter } = useTranslation('filter');
 
   const { projectId, region, poolId } = useParams();
