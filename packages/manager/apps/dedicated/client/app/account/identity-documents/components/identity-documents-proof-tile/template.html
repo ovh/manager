@@ -22,13 +22,17 @@
         ></p>
     </div>
     <div class="d-flex flex-shrink-1 flex-end align-items-center mt-3">
-        <oui-button variant="primary" data-ng-click="$ctrl.onClick()">
+        <oui-button
+            variant="primary"
+            data-ng-click="$ctrl.onClick()"
+            data-ng-if="$ctrl.kycStatus.status !== $ctrl.KYC_STATUS.OPEN && ($ctrl.isLoaded || (!$ctrl.isLoaded && !($ctrl.userTypeKey === $ctrl.USER_TYPE.individual && $ctrl.isValid)))"
+        >
             <span
-                data-ng-if="$ctrl.kycStatus.status !== $ctrl.KYC_STATUS.OPEN && !$ctrl.isLoaded"
+                data-ng-if="!$ctrl.isLoaded"
                 data-translate="user_account_identity_documents_proof_tile_button"
             ></span>
             <span
-                data-ng-if="$ctrl.kycStatus.status !== $ctrl.KYC_STATUS.OPEN && $ctrl.isLoaded"
+                data-ng-if="$ctrl.isLoaded"
                 data-translate="user_account_identity_documents_proof_tile_button_update"
             ></span>
         </oui-button>
