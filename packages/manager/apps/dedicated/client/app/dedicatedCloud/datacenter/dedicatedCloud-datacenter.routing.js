@@ -5,7 +5,16 @@ export default /* @ngInject */ ($stateProvider) => {
       'dedicatedCloudView@app.dedicatedCloud.details':
         'ovhManagerDedicatedCloudDatacenter',
     },
-    redirectTo: 'app.dedicatedCloud.details.datacenter.details.dashboard',
+    redirectTo: (transition) => {
+      return transition
+        .injector()
+        .getAsync('hasVCDMigration')
+        .then((hasVCDMigration) =>
+          hasVCDMigration
+            ? 'app.dedicatedCloud.details.dashboard-light'
+            : 'app.dedicatedCloud.details.datacenter.details.dashboard',
+        );
+    },
     resolve: {
       datacenterId: /* @ngInject */ ($transition$) =>
         $transition$.params().datacenterId,
