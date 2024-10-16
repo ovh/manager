@@ -62,7 +62,7 @@ export const DatagridCellRegion = (props: OKMS) => {
 
 export const DatagridCellStatus = (props: OKMS) => {
   const { data: OkmsServiceInfos, isLoading, isError } = useKMSServiceInfos(
-    props,
+    props.id,
   );
   if (isLoading) {
     return <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />;

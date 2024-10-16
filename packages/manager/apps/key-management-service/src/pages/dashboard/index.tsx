@@ -4,8 +4,8 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
   Notifications,
   BaseLayout,
-  ErrorBanner,
   HeadersProps,
+  ErrorBanner,
 } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
@@ -13,12 +13,13 @@ import Dashboard, {
   DashboardTabItemProps,
 } from '@/components/layout-helpers/Dashboard/Dashboard';
 import Loading from '@/components/Loading/Loading';
-import { useOKMSById } from '@/data/hooks/useOKMS';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { getOkmsResourceQueryKey } from '@/data/api/okms';
 import { OKMS } from '@/types/okms.type';
+import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
+import { useOKMSById } from '@/data/hooks/useOKMS';
 
 export const OkmsContext = createContext<OKMS>(null);
 
@@ -32,14 +33,22 @@ export default function DashboardPage() {
     'key-management-service/credential',
   );
   const { okmsId } = useParams();
-  const { data: okms, isLoading, error } = useOKMSById(okmsId);
+  const { data: okms, isLoading: isOkmsLoading, isError: isOkmsError, error: okmsError } = useOKMSById(okmsId);
 
-  if (isLoading) return <Loading />;
+  const {
+    data: okmsServiceInfos,
+    isLoading: isOkmsServiceInfosLoading,
+    isError: isOkmsServiceInfosError,
+    error: okmsServiceInfoError,
+  } = useKMSServiceInfos(okmsId);
+  const displayName = okmsServiceInfos?.data?.resource.displayName;
 
-  if (error)
+  if (isOkmsServiceInfosLoading || isOkmsLoading) return <Loading />;
+
+  if (isOkmsServiceInfosError || isOkmsError)
     return (
       <ErrorBanner
-        error={error.response}
+        error={okmsServiceInfoError.response || okmsError.response}
         onRedirectHome={() => navigate(ROUTES_URLS.listing)}
         onReloadPage={() =>
           queryClient.refetchQueries({
@@ -67,7 +76,7 @@ export default function DashboardPage() {
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
-      label: okms.data.iam.displayName,
+      label: displayName,
       navigateTo: `/${okmsId}`,
     },
     {
@@ -80,10 +89,15 @@ export default function DashboardPage() {
       label: tCredentials('key_management_service_credential'),
       navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}`,
     },
+    {
+      id: ROUTES_URLS.okmsUpdateName,
+      label: tDashboard('key_management_service_update_name'),
+      navigateTo: `/${okmsId}/${ROUTES_URLS.okmsUpdateName}`,
+    }
   ];
 
   const headerProps: HeadersProps = {
-    title: okms.data.iam.displayName,
+    title: displayName,
     headerButton: <KmsGuidesHeader />,
   };
 
