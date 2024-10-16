@@ -49,3 +49,19 @@ export const getPoolMember = async (
   );
   return data;
 };
+
+export const updatePoolMemberName = async (
+  projectId: string,
+  region: string,
+  poolId: string,
+  memberId: string,
+  name: string,
+) => {
+  const { data } = await v6.put(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}/member/${memberId}`,
+    {
+      name,
+    },
+  );
+  return data;
+};
