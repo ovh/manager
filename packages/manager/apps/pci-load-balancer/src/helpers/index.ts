@@ -5,6 +5,8 @@ import * as dateFnsLocales from 'date-fns/locale';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
+import { THealthMonitor, THealthMonitorType } from '@/api/data/health-monitor';
+import { HEALTH_MONITOR_TYPE } from '@/constants';
 
 export const paginateResults = <T>(
   items: T[],
@@ -64,3 +66,6 @@ export const getFormattedDate = (date: string | null, formatStr = 'PPpp') => {
 
   return displayDate;
 };
+
+export const isTypeHttpOrHttps = (type: THealthMonitorType) =>
+  [HEALTH_MONITOR_TYPE.HTTP, HEALTH_MONITOR_TYPE.HTTPS].includes(type);
