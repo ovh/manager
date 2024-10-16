@@ -49,7 +49,7 @@
                             class="form-control"
                             data-ng-model="model.serviceName"
                             data-ng-change="model.nexthop = null"
-                            data-ng-options="service as service.service group by (('ip_servicetype_' + service.serviceType) | ducTranslateAlt: service.serviceType) for service in ipDestinations"
+                            data-ng-options="service as service.service group by (('ip_servicetype_' + service.serviceType) | ducTranslateAlt: (service.serviceType === '_PARK' ? IP_SERVICETYPE__PARK : service.serviceType)) for service in ipDestinations"
                         >
                         </select>
                     </div>
