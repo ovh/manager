@@ -13,8 +13,9 @@ const renderComponent = (props: ManagerButtonProps) => {
   return render(<ManagerButton {...props} />);
 };
 
-const mockedHook =
-  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedHook = (useAuthorizationIam as unknown) as jest.Mock<
+  IamAuthorizationResponse
+>;
 
 describe('ManagerButton tests', () => {
   afterEach(() => {
@@ -29,7 +30,8 @@ describe('ManagerButton tests', () => {
         isFetched: true,
       });
       renderComponent({
-        urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
+        urn:
+          'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
         iamActions: [
           'manager-react-components:apiovh:manager-react-components/attach-action',
         ],
@@ -45,7 +47,8 @@ describe('ManagerButton tests', () => {
         isFetched: true,
       });
       renderComponent({
-        urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
+        urn:
+          'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
         iamActions: [
           'manager-react-components:apiovh:manager-react-components/attach',
         ],
@@ -66,7 +69,8 @@ describe('ManagerButton tests', () => {
         isFetched: true,
       });
       renderComponent({
-        urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
+        urn:
+          'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
         iamActions: [
           'manager-react-components:apiovh:manager-react-components/attach-action',
         ],
