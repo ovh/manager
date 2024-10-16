@@ -10,7 +10,7 @@ import { Outlet } from 'react-router-dom';
 import { DISCOVER_LINK } from '@/constants';
 
 export default function Pools() {
-  const { t } = useTranslation('octavia-load-balancer-pools');
+  const { t } = useTranslation('pools');
 
   return (
     <div>

@@ -9,12 +9,12 @@ import { useHref } from 'react-router-dom';
 
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
-import ActionsComponent from '@/components/detail/listeners/Actions.component';
+import ActionsComponent from '@/pages/detail/listeners/list/Actions.component';
 import { TLoadBalancerListener } from '@/api/data/load-balancer';
 
 export const useDatagridColumn = () => {
-  const { t } = useTranslation('octavia-load-balancer');
-  const { t: tListeners } = useTranslation('octavia-load-balancer-listeners');
+  const { t } = useTranslation('load-balancer');
+  const { t: tListeners } = useTranslation('listeners');
 
   const columns: DatagridColumn<TLoadBalancerListener>[] = [
     {
@@ -84,7 +84,7 @@ export const useDatagridColumn = () => {
       id: 'actions',
       cell: (props: TLoadBalancerListener) => (
         <div className="min-w-16">
-          <ActionsComponent listenerId={props.id} />
+          <ActionsComponent listener={props} />
         </div>
       ),
       label: '',

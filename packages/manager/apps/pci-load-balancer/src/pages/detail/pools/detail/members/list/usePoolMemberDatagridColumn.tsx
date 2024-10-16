@@ -9,7 +9,7 @@ import { TPoolMember } from '@/api/data/pool-member';
 import ActionsComponent from '@/components/detail/pools/members/Actions.component';
 
 export const usePoolMemberDatagridColumn = () => {
-  const { t: tLoadBalancer } = useTranslation('octavia-load-balancer');
+  const { t: tLoadBalancer } = useTranslation('load-balancer');
   const { t: tPoolMembers } = useTranslation('pools/members/list');
   const columns: DatagridColumn<TPoolMember>[] = [
     {

@@ -32,7 +32,7 @@ import { useL7Policies } from '@/api/hook/useL7Policy';
 import { useL7PoliciesDatagridColumn } from '@/pages/detail/listeners/l7/list/useL7PoliciesDatagridColumn';
 
 export default function L7PoliciesList() {
-  const { t } = useTranslation('octavia-load-balancer-l7');
+  const { t } = useTranslation('l7');
   const { t: tFilter } = useTranslation('filter');
 
   const { projectId, region, listenerId } = useParams();

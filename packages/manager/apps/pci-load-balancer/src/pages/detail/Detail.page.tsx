@@ -21,7 +21,7 @@ import { useLoadBalancer } from '@/api/hook/useLoadBalancer';
 import TabsPanel from '@/components/detail/TabsPanel.component';
 
 export default function DetailPage() {
-  const { t } = useTranslation('octavia-load-balancer');
+  const { t } = useTranslation('load-balancer');
   const [activePanelTranslation, setActivePanelTranslation] = useState(null);
 
   const location = useLocation();
@@ -51,13 +51,11 @@ export default function DetailPage() {
     {
       name: 'octavia_load_balancer_statistics_tab_title',
       title: t('octavia_load_balancer_statistics_tab_title'),
-      to: useResolvedPath(ROUTE_PATHS.STATISTICS).pathname,
       isDisabled: true,
     },
     {
       name: 'octavia_load_balancer_certificates_tab_title',
       title: t('octavia_load_balancer_certificates_tab_title'),
-      to: useResolvedPath(ROUTE_PATHS.CERTIFICATES).pathname,
       isDisabled: true,
     },
     {

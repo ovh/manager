@@ -35,7 +35,7 @@ import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
 import { useLoadBalancers } from '@/api/hook/useLoadBalancer';
 
 export default function ListingPage() {
-  const { t } = useTranslation('octavia-load-balancer');
+  const { t } = useTranslation('load-balancer');
   const { t: tFilter } = useTranslation('filter');
 
   const { projectId } = useParams();
