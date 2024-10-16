@@ -20,7 +20,7 @@ export const useCreateOkmsServiceKey = ({
   onError,
 }: CreateOkmsServiceKeyParams) => {
   const queryClient = useQueryClient();
-  const { addError, addSuccess } = useNotifications();
+  const { addError, addSuccess, clearNotifications } = useNotifications();
 
   const { t } = useTranslation('key-management-service/serviceKeys');
 
@@ -32,10 +32,12 @@ export const useCreateOkmsServiceKey = ({
       await queryClient.invalidateQueries({
         queryKey: getOkmsServiceKeyResourceListQueryKey(okmsId),
       });
+      clearNotifications();
       addSuccess(t('key_management_service_service-keys_create_success'), true);
       onSuccess?.();
     },
     onError: (result: ApiError) => {
+      clearNotifications();
       addError(
         t('key_management_service_service-keys_create_error', {
           error: result.message,

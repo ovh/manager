@@ -21,7 +21,7 @@ export const useCreateOkmsCredential = ({
   onError,
 }: CreateOkmsCredentialParams) => {
   const queryClient = useQueryClient();
-  const { addError, addSuccess } = useNotifications();
+  const { addError, addSuccess, clearNotifications } = useNotifications();
 
   const { t } = useTranslation('key-management-service/credential');
 
@@ -34,10 +34,12 @@ export const useCreateOkmsCredential = ({
       await queryClient.invalidateQueries({
         queryKey: getOkmsCredentialsQueryKey(okmsId),
       });
+      clearNotifications();
       addSuccess(t('key_management_service_credential_create_success'), true);
       onSuccess?.(credential);
     },
     onError: (result: ApiError) => {
+      clearNotifications();
       addError(
         t('key_management_service_credential_create_error', {
           error: result.message,
