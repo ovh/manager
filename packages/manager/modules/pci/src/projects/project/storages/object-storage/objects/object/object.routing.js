@@ -40,7 +40,6 @@ export default /* @ngInject */ ($stateProvider) => {
           );
         },
 
-        //
         enableVersioning: /* @ngInject */ (
           $state,
           projectId,
