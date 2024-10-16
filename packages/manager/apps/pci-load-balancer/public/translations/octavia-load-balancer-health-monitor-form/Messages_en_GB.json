@@ -1,0 +1,18 @@
+{
+  "octavia_load_balancer_health_monitor_form_description_1": "The health monitor is used to assess the health of your pool members. Regular health checks are performed on each pool member to decide if they can receive new connections. Only one health monitor can be assigned to each pool.",
+  "octavia_load_balancer_health_monitor_form_description_2": "Explore additional options via Horizon.",
+  "octavia_load_balancer_health_monitor_form_description_link": "Explore options",
+  "octavia_load_balancer_health_monitor_form_name": "Name",
+  "octavia_load_balancer_health_monitor_form_name_help": "May contain numbers, letters, underscores, dashes and full stops only.",
+  "octavia_load_balancer_health_monitor_form_type": "Type",
+  "octavia_load_balancer_health_monitor_form_type_default": "Select a type",
+  "octavia_load_balancer_health_monitor_form_expected_code": "Expected code",
+  "octavia_load_balancer_health_monitor_form_expected_code_help": "The HTTP code that indicates a successful status",
+  "octavia_load_balancer_health_monitor_form_expected_code_tooltip": "The HTTP status codes that indicate the health check is successful. It must be either a single number, a list of numbers separated by commas, or an interval (two numbers separated by a hyphen).",
+  "octavia_load_balancer_health_monitor_form_max_retries_down_tooltip": "Once the connection failures exceed the set limit, the member is flagged as an error. Must be a number between 1 and 10. The default value is 3. ",
+  "octavia_load_balancer_health_monitor_form_delay_tooltip": "Interval between 2 Health Monitor tests. Must be greater than timeout.",
+  "octavia_load_balancer_health_monitor_form_max_retries_tooltip": "The limit of connection failures to consider a member as inactive. Must be a number between 1 and 10.",
+  "octavia_load_balancer_health_monitor_form_timeout_tooltip": "The time at which a health check ends. Number must be greater than or equal to 0 and less than the recurrence limit.",
+  "octavia_load_balancer_health_monitor_form_cancel": "Cancel",
+  "octavia_load_balancer_health_monitor_form_submit": "Edit"
+}
