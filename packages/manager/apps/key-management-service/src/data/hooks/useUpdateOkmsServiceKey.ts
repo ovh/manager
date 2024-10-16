@@ -24,7 +24,7 @@ export const useUpdateOkmsServiceKey = ({
   onError,
 }: UpdateOkmsServiceKeyParams) => {
   const queryClient = useQueryClient();
-  const { addError } = useNotifications();
+  const { addError, clearNotifications } = useNotifications();
 
   const { t } = useTranslation('key-management-service/serviceKeys');
 
@@ -43,6 +43,7 @@ export const useUpdateOkmsServiceKey = ({
       onSuccess();
     },
     onError: (result: ApiError) => {
+      clearNotifications();
       addError(
         t('key_management_service_service-keys_update_error', {
           error: result.message,
