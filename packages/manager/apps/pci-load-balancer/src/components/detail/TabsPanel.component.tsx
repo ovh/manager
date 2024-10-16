@@ -5,13 +5,13 @@ import {
   OsdsTabBarItem,
   OsdsTabs,
 } from '@ovhcloud/ods-components/react';
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 export type TabItemProps = {
   name: string;
   title: string | JSX.Element;
-  to: string;
+  to?: string;
   tracking?: string;
   isDisabled?: boolean;
 };
@@ -43,19 +43,31 @@ export default function TabsPanel({ tabs }: TabsProps) {
     <OsdsTabs panel={panel}>
       <OsdsTabBar slot="top">
         {tabs.map((tab: TabItemProps) => (
-          <NavLink
-            key={`osds-tab-bar-item-${tab.name}`}
-            to={tab.to}
-            onClick={() => tracking?.trackClick({ name: tab.tracking })}
-            className="no-underline"
-          >
-            <OsdsTabBarItem
-              panel={tab.name}
-              disabled={tab.isDisabled || undefined}
-            >
-              {tab.title}
-            </OsdsTabBarItem>
-          </NavLink>
+          <React.Fragment key={`osds-tab-bar-item-${tab.name}`}>
+            {tab.isDisabled ? (
+              <div>
+                <OsdsTabBarItem
+                  panel={tab.name}
+                  disabled={tab.isDisabled || undefined}
+                >
+                  {tab.title}
+                </OsdsTabBarItem>
+              </div>
+            ) : (
+              <NavLink
+                to={tab.to}
+                onClick={() => tracking?.trackClick({ name: tab.tracking })}
+                className="no-underline"
+              >
+                <OsdsTabBarItem
+                  panel={tab.name}
+                  disabled={tab.isDisabled || undefined}
+                >
+                  {tab.title}
+                </OsdsTabBarItem>
+              </NavLink>
+            )}
+          </React.Fragment>
         ))}
       </OsdsTabBar>
     </OsdsTabs>

@@ -29,12 +29,13 @@ export type RuleFormProps = {
   submitButtonText?: string;
   onCancel: () => void;
 };
+
 export default function RuleForm({
   rule,
   onSubmit,
   submitButtonText,
   onCancel,
-}: RuleFormProps) {
+}: Readonly<RuleFormProps>) {
   const { t } = useTranslation('l7/rules/rules-form');
   const { t: tPciCommon } = useTranslation('pci-common');
   const [formState, setFormState] = useState<TL7Rule>({
@@ -145,7 +146,6 @@ export default function RuleForm({
       >
         <LabelComponent
           text={t('octavia_load_balancer_create_l7_rule_type')}
-          slot="label"
           hasError={isTouched.ruleType && !formState.ruleType}
         />
         <OsdsSelect
@@ -194,7 +194,6 @@ export default function RuleForm({
       >
         <LabelComponent
           text={t('octavia_load_balancer_create_l7_rule_compare_type')}
-          slot="label"
           hasError={isTouched.ruleType && !formState.ruleType}
         />
         <OsdsSelect
@@ -236,7 +235,6 @@ export default function RuleForm({
         <LabelComponent
           text={t('octavia_load_balancer_create_l7_rule_key')}
           helpText={t('octavia_load_balancer_create_l7_rule_key_tooltip')}
-          slot="label"
           hasError={
             isTouched.key &&
             (!formState.key || !RegExp(KEY_REGEX).test(formState.key))
@@ -248,11 +246,9 @@ export default function RuleForm({
             !RULE_TYPES_WITH_KEY.includes(formState.ruleType) || undefined
           }
           type={ODS_INPUT_TYPE.text}
-          className={
+          error={
             isTouched.key &&
             (!formState.key || !RegExp(KEY_REGEX).test(formState.key))
-              ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
-              : 'border-color-[var(--ods-color-default-200)] bg-white'
           }
           onOdsValueChange={(event) => {
             setFormState((state) => ({
@@ -277,7 +273,6 @@ export default function RuleForm({
         <LabelComponent
           text={t('octavia_load_balancer_create_l7_rule_value')}
           helpText={t('octavia_load_balancer_create_l7_rule_value_tooltip')}
-          slot="label"
           hasError={isTouched.value && !validateValuePattern}
         />
         <OsdsInput
@@ -286,11 +281,7 @@ export default function RuleForm({
             formState.ruleType === RULE_TYPES.SSL_CONN_HAS_CERT || undefined
           }
           type={ODS_INPUT_TYPE.text}
-          className={
-            isTouched.value && !validateValuePattern
-              ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
-              : 'border-color-[var(--ods-color-default-200)] bg-white'
-          }
+          error={isTouched.value && !validateValuePattern}
           onOdsValueChange={(event) => {
             setFormState((state) => ({
               ...state,

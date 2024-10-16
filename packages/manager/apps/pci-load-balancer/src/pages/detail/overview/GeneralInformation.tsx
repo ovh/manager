@@ -33,7 +33,7 @@ export default function GeneralInformation({
   loadBalancerCreationDate,
   loadBalancerId,
 }: GeneralInformationProps) {
-  const { t: tOverview } = useTranslation('octavia_load_balancer_overview');
+  const { t } = useTranslation('load-balancer/overview');
 
   const editNameHref = useHref('./edit-name');
 
@@ -51,13 +51,13 @@ export default function GeneralInformation({
             level={ODS_TEXT_LEVEL.heading}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {tOverview('octavia_load_balancer_overview_info_title')}
+            {t('octavia_load_balancer_overview_info_title')}
           </OsdsText>
 
           <OsdsDivider separator />
 
           <TileLine
-            title={tOverview('octavia_load_balancer_overview_info_name')}
+            title={t('octavia_load_balancer_overview_info_name')}
             value={
               <div className="flex items-center gap-2">
                 <OsdsText
@@ -67,36 +67,36 @@ export default function GeneralInformation({
                 >
                   {loadBalancerName}
                 </OsdsText>
-                <OsdsButton
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  size={ODS_BUTTON_SIZE.sm}
-                  variant={ODS_BUTTON_VARIANT.ghost}
-                  href={editNameHref}
-                >
-                  <OsdsIcon
-                    size={ODS_ICON_SIZE.xxs}
-                    name={ODS_ICON_NAME.PEN}
+                <div className="min-w-12">
+                  <OsdsButton
                     color={ODS_THEME_COLOR_INTENT.primary}
-                  />
-                </OsdsButton>
+                    size={ODS_BUTTON_SIZE.sm}
+                    variant={ODS_BUTTON_VARIANT.ghost}
+                    href={editNameHref}
+                  >
+                    <OsdsIcon
+                      size={ODS_ICON_SIZE.xxs}
+                      name={ODS_ICON_NAME.PEN}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    />
+                  </OsdsButton>
+                </div>
               </div>
             }
           />
 
           <TileLine
-            title={tOverview('octavia_load_balancer_overview_info_region')}
+            title={t('octavia_load_balancer_overview_info_region')}
             value={loadBalancerRegion}
           />
 
           <TileLine
-            title={tOverview(
-              'octavia_load_balancer_overview_info_creation_date',
-            )}
+            title={t('octavia_load_balancer_overview_info_creation_date')}
             value={getFormattedDate(loadBalancerCreationDate, 'PP')}
           />
 
           <TileLine
-            title={tOverview('octavia_load_balancer_overview_info_id')}
+            title={t('octavia_load_balancer_overview_info_id')}
             value={loadBalancerId}
             type="clipboard"
           />

@@ -39,7 +39,7 @@ export default function CreatePage() {
     poolId,
     onError(error: ApiError) {
       addError(
-        <Translation ns="octavia-load-balancer">
+        <Translation ns="load-balancer">
           {(_t) =>
             _t('octavia_load_balancer_global_error', {
               message: error?.response?.data?.message || error?.message || null,

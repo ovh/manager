@@ -1,4 +1,12 @@
 {
+  "octavia_load_balancer_pools_name": "Nazwa",
+  "octavia_load_balancer_pools_protocol": "Protokół",
+  "octavia_load_balancer_pools_protocol_helper": "Protokół, dla którego ten pool i jego użytkownicy nasłuchują.",
+  "octavia_load_balancer_pools_algorithm": "Algorytm Load Balancera",
+  "octavia_load_balancer_pools_algorithm_helper": "Algorytm Load Balancera, który rozdziela ruch pomiędzy użytkownikami poola.",
+  "octavia_load_balancer_pools_actions_edit": "Edytuj",
+  "octavia_load_balancer_pools_actions_manage_members": "Zarządzaj użytkownikami",
+  "octavia_load_balancer_pools_actions_delete": "Usuń",
   "octavia_load_balancer_pools_title": "Poole",
   "octavia_load_balancer_pools_description_part_1": "Pool to grupa uczestników odpowiedzialnych za back-end, którzy dzielą wspólną konfigurację, m.in. algorytm Load Balancera, sondę lub konfigurację sesji stałych.",
   "octavia_load_balancer_pools_description_part_2": "Odkryj dodatkowe opcje w interfejsie Horizon.",
