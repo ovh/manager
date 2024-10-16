@@ -1,0 +1,9 @@
+{
+  "octavia_load_balancer_pools_detail_members_create_title": "Dodaj ręcznie",
+  "octavia_load_balancer_pools_detail_members_create_description": "Jeśli użytkownika nie ma w tabeli dostępnych instancji, dodaj go ręcznie.",
+  "octavia_load_balancer_pools_detail_members_create_cancel": "Anuluj",
+  "octavia_load_balancer_pools_detail_members_create_confirm": "Dodaj",
+  "octavia_load_balancer_pools_detail_members_create_name_label": "Nazwa (opcjonalnie)",
+  "octavia_load_balancer_pools_detail_members_create_address_ip_label": "Adres IP",
+  "octavia_load_balancer_pools_detail_members_create_port_label": "Port"
+}
