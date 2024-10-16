@@ -13,7 +13,7 @@ export default function ActionsComponent({
   const items = [
     {
       id: 0,
-      href: useHref(`../${memberId}/edit`),
+      href: useHref(`./${memberId}/edit`),
       label: t('octavia_load_balancer_pools_detail_members_edit'),
     },
     {
