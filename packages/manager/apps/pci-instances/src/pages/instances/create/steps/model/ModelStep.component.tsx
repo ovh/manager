@@ -49,6 +49,8 @@ export const ModelStep: FC = () => {
     })),
   );
 
+  const modelStep = stepById(modelStepId);
+
   const getSelectedModelMonthlyPrice = useCallback((): string | undefined => {
     const selectedModelMonthlyPrice = getModelPriceByInterval(
       data?.models.data.find((model) => model.name === modelName)?.pricings ??
@@ -91,21 +93,13 @@ export const ModelStep: FC = () => {
     [handleRefetch, t],
   );
 
-  const modelStep = useMemo(() => stepById(modelStepId), [stepById]);
+  const handleNextStep = (id: string) => {
+    validateStep(id as TStepId);
+  };
 
-  const handleNextStep = useCallback(
-    (id: string) => {
-      validateStep(id as TStepId);
-    },
-    [validateStep],
-  );
-
-  const handleEditStep = useCallback(
-    (id: string) => {
-      editStep(id as TStepId);
-    },
-    [editStep],
-  );
+  const handleEditStep = (id: string) => {
+    editStep(id as TStepId);
+  };
 
   const handleError = useCallback(() => {
     if (isError) addError(errorMessage);

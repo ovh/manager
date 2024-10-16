@@ -54,6 +54,9 @@ const initialSorting = {
   desc: false,
 };
 
+const getOnboardingUrl = (projectId: string) =>
+  `/pci/projects/${projectId}/instances/onboarding`;
+
 const Instances: FC = () => {
   const { t } = useTranslation(['list', 'common']);
   const { projectId } = useParams() as { projectId: string }; // safe because projectId has already been handled by async route loader
@@ -87,11 +90,6 @@ const Instances: FC = () => {
     sortOrder: sorting.desc ? 'desc' : 'asc',
     filters,
   });
-
-  const onboardingUrl = useMemo(
-    () => `/pci/projects/${projectId}/instances/onboarding`,
-    [projectId],
-  );
 
   const textCell = useCallback(
     (props: TInstance, key: 'flavorName' | 'region' | 'imageName') =>
@@ -292,7 +290,7 @@ const Instances: FC = () => {
   if (isLoading) return <Spinner />;
 
   if (data && !data.length && !filters.length && !isFetching)
-    return <Navigate to={onboardingUrl} />;
+    return <Navigate to={getOnboardingUrl(projectId)} />;
 
   return (
     <PageLayout>
