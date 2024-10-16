@@ -19,7 +19,7 @@ export const getDownloadCredentialParameters = (credential: OkmsCredential) => {
           credential.certificatePEM.replace(/\n/g, '\r\n'),
         )}`
       : undefined,
-    filename: `${credential.name}.pem`,
+    filename: `${credential.id}_privatekey.pem`,
     isDisabled: isDownloadCredentialDisabled(credential.status),
   };
 };
