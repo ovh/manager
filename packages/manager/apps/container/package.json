@@ -88,7 +88,7 @@
     "http-proxy-middleware": "^1.0.4",
     "msw": "^0.38.0",
     "rollup": "^2.7.8",
-    "vite": "^5.2.13"
+    "vite": "^4.5.5"
   },
   "regions": [
     "CA",
