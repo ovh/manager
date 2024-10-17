@@ -78,5 +78,26 @@ export default /* @ngInject */ () => ({
         }, 500);
       }
     };
+
+    this.$onDestroy = () => {
+      if (this.chartInstance) {
+        const pluginPrometheus = this.chartInstance['datasource-prometheus'];
+        if (!pluginPrometheus) {
+          this.chartInstance.destroy();
+          return;
+        }
+
+        const destroyInterval = $interval(() => {
+          if (!pluginPrometheus.loading) {
+            clearInterval(
+              this.chartInstance['datasource-prometheus'].updateInterval,
+            );
+            this.chartInstance.destroy();
+            this.chartInstance = null;
+            $interval.cancel(destroyInterval);
+          }
+        }, 500);
+      }
+    };
   },
 });
