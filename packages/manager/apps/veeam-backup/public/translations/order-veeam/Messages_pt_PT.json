@@ -1,0 +1,21 @@
+{
+  "description": "Os nossos serviços baseiam-se na solução Veeam Data Platform e no plugin Veeam para VMware Cloud Diretor (para backups). As nossas soluções são implementadas ao nível da infraestrutura VMware Cloud Foundation e controlam diretamente os vCenter de forma a realizar as operações através da snapshot VMware (se possível com um acesso direto ao armazenamento). A solução fornecida de forma standard é partilhada para o conjunto dos clientes da plataforma. A solução funciona sem agente nas máquinas virtuais.",
+  "select_offer_title": "Selecionar a sua oferta",
+  "select_offer_description": "Adicione o serviço Veeam Data Platform à sua infraestrutura VMware Cloud Diretor. A seleção da organização VMware Cloud Diretor será feita na próxima etapa. Saber mais sobre as modalidades de faturação.",
+  "offer_title": "Ativar {{productName}}",
+  "offer_content_part1": "O serviço Veeam Data Platform dispõe de um plugin VCD para salvaguardar as VMs e os vApps a partir de qualquer Virtual Data Center (VDC) da organização.",
+  "offer_content_part2": "Está disponível ao nível da organização para todo o utilizador de VMware Cloud Diretor que tenha o papel de administrador da organização.",
+  "offer_price": "9€/IVA/mês + consumo da OVHcloud Object Storage",
+  "next_step": "Seguinte",
+  "choose_org_title": "Escolha uma organização VMware Cloud Diretor",
+  "all_organization_backed_up_message_fetch_next_page": "Todas as organizações VCD já estão associadas ao serviço Managed VEEAM for VCD. Faça o upload de mais organizações.",
+  "all_organization_backed_up_message": "Todas as suas organizações VCD já estão associadas ao serviço Managed VEEAM for VCD. Aceda à lista dos seus serviços.",
+  "name_cell": "Nome",
+  "region_cell": "Localização",
+  "description_cell": "Descrição",
+  "active_status": "Ativado",
+  "none_status": "Nenhuma",
+  "error_status": "Erro",
+  "cancel_button": "Anular",
+  "order_button": "Encomendar"
+}

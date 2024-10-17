@@ -1,0 +1,13 @@
+{
+  "description": "Gérer les sauvegardes de vos organisations VMware Cloud Director",
+  "order_button": "Commander",
+  "name_cell": "Nom",
+  "status_cell": "Statut",
+  "ovhref_cell": "Référence",
+  "vcdorg_cell": "Organisation VCD",
+  "region_cell": "Région",
+  "createdat_cell": "Date de création",
+  "edit_name_action": "Modifier le nom",
+  "delete_action": "Résilier",
+  "load_more_button": "Charger les sauvegardes suivantes"
+}
