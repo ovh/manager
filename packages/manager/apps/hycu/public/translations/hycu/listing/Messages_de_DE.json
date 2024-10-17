@@ -1,0 +1,14 @@
+{
+  "hycu_status_activated": "Aktiv",
+  "hycu_status_toActivate": "Zu aktivieren",
+  "hycu_status_pending": "Wird aktiviert",
+  "hycu_status_error": "Aktivierungsfehler",
+  "hycu_cloud_vm_pack_unknown": "Unbekanntes Paket",
+  "hycu_name": "Name",
+  "hycu_controller_id": "Controller-ID",
+  "hycu_status": "Status",
+  "hycu_commercial_name": "Pakettyp",
+  "hycu_subscribed_date": "Anmeldungsdatum",
+  "hycu_order": "Bestellen",
+  "hycu_service_listing_terminate": "kündigen"
+}

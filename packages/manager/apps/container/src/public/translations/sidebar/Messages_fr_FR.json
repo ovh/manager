@@ -37,6 +37,8 @@
   "sidebar_platforms": "Plateformes",
   "sidebar_platforms_services": "Plateformes et services",
   "sidebar_veeam_enterprise": "Veeam Enterprise",
+  "sidebar_hycu": "HYCU",
+  "sidebar_all_hycu": "Toutes mes licenses",
   "sidebar_pci": "Public Cloud",
   "sidebar_pci_short": "PCP",
   "sidebar_pci_new": "Créer un projet",

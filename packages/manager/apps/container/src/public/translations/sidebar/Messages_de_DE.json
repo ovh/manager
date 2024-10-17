@@ -199,5 +199,7 @@
   "sidebar_security_operations": "Abläufe",
   "sidebar_security_identity": "Identität und Sicherheit",
   "sidebar_zimbra": "Zimbra Mail",
-  "sidebar_pci_savings_plan": "Savings Plans"
+  "sidebar_pci_savings_plan": "Savings Plans",
+  "sidebar_hycu": "HYCU",
+  "sidebar_all_hycu": "Alle meine Lizenzen"
 }

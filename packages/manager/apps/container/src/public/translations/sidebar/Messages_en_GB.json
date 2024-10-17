@@ -199,5 +199,7 @@
   "sidebar_security_operations": "Operations",
   "sidebar_security_identity": "Identity and Security",
   "sidebar_reduce": "Minimise",
-  "sidebar_pci_savings_plan": "Savings Plan"
+  "sidebar_pci_savings_plan": "Savings Plan",
+  "sidebar_hycu": "HYCU",
+  "sidebar_all_hycu": "All my licenses"
 }

@@ -73,7 +73,7 @@ export default function ServerSidebarVirtual({
           style={{
             height: `${rowVirtualizer.getTotalSize()}px`,
             width: '100%',
-            position: 'relative',
+            position: 'relative'
           }}
           aria-label={t('sidebar_description')}
         >
