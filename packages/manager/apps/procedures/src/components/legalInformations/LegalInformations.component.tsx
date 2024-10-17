@@ -1,20 +1,31 @@
-import React, { FunctionComponent } from 'react';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+import React, { FunctionComponent } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
+import { CanadianPolicyLinks } from '@/types/links.type';
 import useUser from '@/context/User/useUser';
 import { LegalPolicyLinkByLanguage } from '@/constants';
-import { CanadianPolicyLinks } from '@/types/links.type';
 
-export const LegalInformations: FunctionComponent = () => {
+type Props = {
+  translationNamespace: string;
+  informationTranslationKey: string;
+  policyTanslationKey: string;
+};
+
+export const LegalInformations: FunctionComponent<Props> = ({
+  translationNamespace,
+  informationTranslationKey,
+  policyTanslationKey,
+}) => {
   const {
     t,
     i18n: { language },
-  } = useTranslation('account-disable-2fa');
+  } = useTranslation(translationNamespace);
+
   const {
     user: { subsidiary },
   } = useUser();
@@ -26,27 +37,28 @@ export const LegalInformations: FunctionComponent = () => {
         LegalPolicyLinkByLanguage.CA.en
       : LegalPolicyLinkByLanguage[subsidiary] ||
         LegalPolicyLinkByLanguage.DEFAULT;
+
   return (
-    <div className="pt-6" data-testid="legal_information">
+    <div className="pt-6">
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
         className="block"
         size={ODS_TEXT_SIZE._100}
       >
-        {t('account-disable-2fa-create-form-legal-info')}
+        {t(informationTranslationKey)}
       </OsdsText>
 
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        className="block"
+        className="block mt-3"
         size={ODS_TEXT_SIZE._100}
       >
         <span
-          data-testid="legal_information_content"
+          data-testid="legal_information_policy_content"
           dangerouslySetInnerHTML={{
-            __html: t('account-disable-2fa-create-form-legal-info-policy', {
+            __html: t(policyTanslationKey, {
               legalPolicyLink,
             }),
           }}

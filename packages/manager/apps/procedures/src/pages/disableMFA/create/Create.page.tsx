@@ -8,7 +8,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import useUser from '@/context/User/useUser';
-import { LegalInformations } from './LegalInformations';
+import { LegalInformations } from '@/components/legalInformations/LegalInformations.component';
 
 export default function CreateRequest() {
   const { t } = useTranslation('account-disable-2fa');
@@ -68,7 +68,11 @@ export default function CreateRequest() {
 
       <Outlet />
 
-      <LegalInformations />
+      <LegalInformations
+        translationNamespace="account-disable-2fa"
+        informationTranslationKey="account-disable-2fa-create-form-legal-info"
+        policyTanslationKey="account-disable-2fa-create-form-legal-info-policy"
+      />
     </div>
   );
 }
