@@ -1,0 +1,179 @@
+{
+  "regions": {
+    "data": {
+      "allAvailableRegions": [
+        {
+          "name": "SYD1",
+          "country": "au",
+          "isLocalzone": false,
+          "isInMaintenance": false,
+          "isActivated": false,
+          "datacenter": "SYD",
+          "category": "oceania"
+        },
+        {
+          "name": "BHS5",
+          "country": "ca",
+          "isLocalzone": false,
+          "isInMaintenance": false,
+          "isActivated": true,
+          "datacenter": "BHS",
+          "category": "north_america"
+        },
+        {
+          "name": "GRA7",
+          "country": "fr",
+          "isLocalzone": false,
+          "isInMaintenance": false,
+          "isActivated": false,
+          "datacenter": "GRA",
+          "category": "western_europe"
+        },
+        {
+          "name": "SBG7",
+          "country": "fr",
+          "isLocalzone": false,
+          "isInMaintenance": false,
+          "isActivated": true,
+          "datacenter": "SBG",
+          "category": "central_europe"
+        },
+        {
+          "name": "GRA9",
+          "country": "fr",
+          "isLocalzone": false,
+          "isInMaintenance": false,
+          "isActivated": false,
+          "datacenter": "GRA",
+          "category": "western_europe"
+        }
+      ],
+      "availableMacroRegions": [
+        {
+          "name": "SYD1",
+          "country": "au",
+          "isLocalzone": false,
+          "isInMaintenance": false,
+          "isActivated": false,
+          "datacenter": "SYD",
+          "category": "oceania"
+        },
+        {
+          "name": "BHS5",
+          "country": "ca",
+          "isLocalzone": false,
+          "isInMaintenance": false,
+          "isActivated": true,
+          "datacenter": "BHS",
+          "category": "north_america"
+        },
+        {
+          "name": "GRA7",
+          "country": "fr",
+          "isLocalzone": false,
+          "isInMaintenance": false,
+          "isActivated": false,
+          "datacenter": "GRA",
+          "category": "western_europe"
+        },
+        {
+          "name": "SBG7",
+          "country": "fr",
+          "isLocalzone": false,
+          "isInMaintenance": false,
+          "isActivated": true,
+          "datacenter": "SBG",
+          "category": "central_europe"
+        }
+      ],
+      "availableMicroRegions": [
+        {
+          "name": "GRA7",
+          "country": "fr",
+          "isLocalzone": false,
+          "isInMaintenance": false,
+          "isActivated": false,
+          "datacenter": "GRA",
+          "category": "western_europe"
+        },
+        {
+          "name": "GRA9",
+          "country": "fr",
+          "isLocalzone": false,
+          "isInMaintenance": false,
+          "isActivated": false,
+          "datacenter": "GRA",
+          "category": "western_europe"
+        }
+      ],
+      "unavailableRegions": [
+        {
+          "name": "EU-WEST-LZ-BRU-A",
+          "country": null,
+          "isLocalzone": true,
+          "isInMaintenance": false,
+          "isActivated": false,
+          "datacenter": "BRU",
+          "category": "western_europe"
+        },
+        {
+          "name": "AP-SOUTH-MUM-1",
+          "country": "in",
+          "isLocalzone": false,
+          "isInMaintenance": false,
+          "isActivated": false,
+          "datacenter": "YNM",
+          "category": "south_east_asia"
+        },
+        {
+          "name": "EU-CENTRAL-LZ-PRG-A",
+          "country": null,
+          "isLocalzone": true,
+          "isInMaintenance": false,
+          "isActivated": false,
+          "datacenter": "PRG",
+          "category": "central_europe"
+        },
+        {
+          "name": "EU-SOUTH-LZ-MIL-A",
+          "country": null,
+          "isLocalzone": true,
+          "isInMaintenance": false,
+          "isActivated": false,
+          "datacenter": "MIL",
+          "category": "south_europe"
+        }
+      ]
+    },
+    "categories": [
+      {
+        "name": "all",
+        "isNew": false
+      },
+      {
+        "name": "north_america",
+        "isNew": false
+      },
+      {
+        "name": "western_europe",
+        "isNew": false
+      },
+      {
+        "name": "central_europe",
+        "isNew": false
+      },
+      {
+        "name": "south_europe",
+        "isNew": false
+      },
+      {
+        "name": "south_east_asia",
+        "isNew": false
+      },
+      {
+        "name": "oceania",
+        "isNew": false
+      }
+    ]
+  }
+}
