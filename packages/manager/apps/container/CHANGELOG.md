@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.82.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.81.1...@ovh-ux/manager-container-app@0.82.0) (2024-10-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3402] ([b007251](https://github.com/ovh/manager/commit/b007251ae796eb0ad9d1edbc2b588ce3a4a8b88f))
+
+
+### Features
+
+* **container:** updated user widget and support dynamic updates ([fb64b9e](https://github.com/ovh/manager/commit/fb64b9eca4c10c868e656eb62f286ae971746de3))
+
+
+
+
+
 ## [0.81.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.81.0...@ovh-ux/manager-container-app@0.81.1) (2024-10-15)
 
 
