@@ -9,5 +9,6 @@
   "sign_up_form_global_information": "To continue with your order, the information below is required.",
   "sign_up_form_global_information_kyc_reminder": "You need to provide this information to place your order. Please follow the instructions below:",
   "sign_up_form_global_information_kyc_reminder_fill_address": "Enter <strong>your full address</strong> ",
-  "sign_up_form_global_information_kyc_reminder_match_address": "The address must <strong>match the one on the proof of address</strong> for identity verification."
+  "sign_up_form_global_information_kyc_reminder_match_address": "The address must <strong>match the one on the proof of address</strong> for identity verification.",
+  "sign_up_form_mandatory_fields": "obligatory fields"
 }
