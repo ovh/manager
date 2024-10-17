@@ -32,6 +32,7 @@ export const ROUTE_PATHS = {
   POOL_MEMBERS: 'members',
   POOL_MEMBERS_LIST: 'list',
   POOL_MEMBERS_DELETE: ':memberId/delete',
+  POOL_MEMBERS_EDIT: ':memberId/edit',
   STATISTICS: 'statistics',
   CERTIFICATES: 'certificates',
   LOGS: 'logs',
@@ -95,6 +96,9 @@ const PoolsMembersListPage = lazy(() =>
 );
 const PoolsMembersDeletePage = lazy(() =>
   import('@/pages/detail/pools/detail/members/delete/Delete.page'),
+);
+const PoolsMembersEditPage = lazy(() =>
+  import('@/pages/detail/pools/detail/members/edit/Edit.page'),
 );
 const PoolsMembersPage = lazy(() =>
   import('@/pages/detail/pools/detail/members/Member.page'),
@@ -180,6 +184,11 @@ const Routes = (
           <Route
             path={ROUTE_PATHS.POOL_MEMBERS_DELETE}
             Component={PoolsMembersDeletePage}
+          />
+
+          <Route
+            path={ROUTE_PATHS.POOL_MEMBERS_EDIT}
+            Component={PoolsMembersEditPage}
           />
         </Route>
       </Route>
