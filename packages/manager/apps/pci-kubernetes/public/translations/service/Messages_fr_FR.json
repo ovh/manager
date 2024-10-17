@@ -29,8 +29,10 @@
   "kube_service_cluster_admission_plugins_mutation": "Activer/désactiver les plugins",
   "kube_service_cluster_admission_plugins_activated": "Activé",
   "kube_service_cluster_admission_plugins_desactivated": "Désactivé",
-  "": "Activer",
+  "kube_service_cluster_admission_plugins_to_activate": "Activer",
+  "kube_service_cluster_admission_plugins_info_restrictions": "Pour des raisons de sécurité, il n'est pas possible de désactiver le plugin Node Restriction.",
   "kube_service_cluster_admission_plugins_to_desactivate": "Désactiver",
+  "kube_service_cluster_admission_plugins_error": "Une erreur est survenue lors de la réinitialisation de votre cluster : {{ message }}",
   "kube_service_cluster_version": "Version mineure de Kubernetes",
   "kube_service_cluster_update_available": "Une nouvelle mise à jour touchant à la sécurité (<i>patch version</i>) est disponible",
   "kube_service_cluster_minor_update_available": "Une mise à jour mineure est disponible",
@@ -87,6 +89,6 @@
   "kube_service_cluster_network_vrack_default_gateway": "Passerelle par défaut du vRACK (DHCP)",
   "kube_service_cluster_network_vrack_customer_gateway": "Passerelle : {{ vRackGatewayIp }}",
   "kubernetes_add_private_network": "Configurer un réseau",
-  "kube_service_cluster_network_vrack_customer_gateway": "Passerelle : {{ vRackGatewayIp }}",
+
   "kube_service_network_edit": "Modifier les paramètres du réseau"
 }
