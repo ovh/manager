@@ -1,0 +1,26 @@
+/* TODO:
+It is not clean to apply CSS for ODS components. It was added because Tailwind CSS overrides the border of ODS inputs.
+The best solution is to configure Tailwind CSS with this option: corePlugins: {
+    preflight: false,
+},
+
+However,
+
+some components on the MFA page are not in ODS. Consider converting these components to ODS in the future.
+*/
+
+osds-input[size='md'] {
+  border-width: var(--ods-size-input-md-border-width);
+}
+
+osds-input[color='primary'] {
+  border-color: var(--ods-color-primary-200);
+}
+
+osds-input[color='error'] {
+  border-color: var(--ods-color-error-500);
+}
+
+.ods-error {
+  border-color: var(--ods-color-error-500) !important;
+}
