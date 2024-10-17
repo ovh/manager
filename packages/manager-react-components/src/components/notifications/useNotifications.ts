@@ -14,6 +14,7 @@ export interface Notification {
   content: ReactNode;
   type: NotificationType;
   dismissable?: boolean;
+  creationTimestamp: number;
 }
 
 export interface NotificationState {
@@ -44,7 +45,13 @@ export const useNotifications = create<NotificationState>((set, get) => ({
       uid: state.uid + 1,
       notifications: [
         ...state.notifications,
-        { uid: state.uid, content, type, dismissable },
+        {
+          uid: state.uid,
+          content,
+          type,
+          dismissable,
+          creationTimestamp: Date.now(),
+        },
       ],
     })),
   addSuccess: (content: ReactNode, dismissable = false) =>
@@ -61,7 +68,12 @@ export const useNotifications = create<NotificationState>((set, get) => ({
         ({ uid }) => uid !== toRemoveUid,
       ),
     })),
-  clearNotifications: () => set(() => ({ notifications: [] })),
+  clearNotifications: () =>
+    set((state) => ({
+      notifications: state.notifications.filter(
+        (notification) => Date.now() - notification.creationTimestamp < 1000,
+      ),
+    })),
 }));
 
 export default useNotifications;
