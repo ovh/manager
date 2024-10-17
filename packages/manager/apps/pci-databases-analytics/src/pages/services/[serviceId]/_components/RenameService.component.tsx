@@ -61,7 +61,7 @@ const RenameService = ({
         onError(err);
       }
     },
-    onSuccess: (renamedService) => {
+    onEditSuccess: (renamedService) => {
       toast.toast({
         title: t('renameServiceToastSuccessTitle'),
         description: t('renameServiceToastSuccessDescription', {

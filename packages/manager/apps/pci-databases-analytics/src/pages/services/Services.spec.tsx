@@ -13,6 +13,7 @@ import * as serviceApi from '@/data/api/database/service.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
+import { TERMINATE_CONFIRMATION } from '@/configuration/polling.constants';
 
 describe('Services List page', () => {
   beforeEach(() => {
@@ -183,8 +184,19 @@ describe('Open modals', () => {
     await openButtonInMenu('service-action-delete-button');
     await waitFor(() => {
       expect(screen.getByTestId('delete-service-modal')).toBeInTheDocument();
+      expect(
+        screen.getByTestId('delete-service-confirmation-input'),
+      ).toBeInTheDocument();
     });
     act(() => {
+      fireEvent.change(
+        screen.getByTestId('delete-service-confirmation-input'),
+        {
+          target: {
+            value: TERMINATE_CONFIRMATION,
+          },
+        },
+      );
       fireEvent.click(screen.getByTestId('delete-service-submit-button'));
     });
     await waitFor(() => {
