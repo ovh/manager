@@ -1,0 +1,8 @@
+{
+  "keyFieldLabel": "Clé",
+  "valueFieldLabel": "Valeur",
+  "existingKeyError": "Cette clé existe déjà",
+  "numberOfConfiguredLabels_zero": "{{count}} labels configurés",
+  "numberOfConfiguredLabels_one": "{{count}} label configuré sur 10",
+  "numberOfConfiguredLabels_other": "{{count}} labels configurées sur 10"
+}

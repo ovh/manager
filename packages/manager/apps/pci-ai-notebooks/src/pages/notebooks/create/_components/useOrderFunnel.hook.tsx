@@ -10,6 +10,9 @@ import { createFlavorPricingList } from '@/lib/priceFlavorHelper';
 import { order } from '@/types/catalog';
 import * as ai from '@/types/cloud/project/ai';
 import { Flavor } from '@/types/orderFunnel';
+import { useGetDatastore } from '@/hooks/api/ai/datastore/useGetDatastore.hook';
+import { useGetDatastores } from '@/hooks/api/ai/datastore/useGetDatastores.hook';
+import { useGetDatastoreContainer } from '@/hooks/api/ai/datastore/useGetDatastoreContainer.hook';
 
 export function useOrderFunnel(
   regions: ai.capabilities.Region[],
@@ -30,9 +33,17 @@ export function useOrderFunnel(
       version: z.string(),
     }),
     editor: z.string(),
+    notebookName: z.string().min(1),
+    httpsAccess: z.string(),
+    labels: z.array(
+      z.object({
+        key: z.string(),
+        value: z.string(),
+      }),
+    ),
     /*
         name: z.string(),
-        httpsAccess: z.boolean(),
+        ,
         //sshKey: z.string(),
         //volume
         */
@@ -45,10 +56,13 @@ export function useOrderFunnel(
       flavorWithQuantity: { flavor: '', quantity: 1 },
       frameworkWithVersion: { framework: '', version: '' },
       editor: '',
+      notebookName: generateName(),
+      privacy: 'private',
+      labels: [],
       /*
             
             name: generateName(),
-            httpsAccess: false,
+            ,
             //sshkey:
             //volume:
             */
@@ -59,14 +73,29 @@ export function useOrderFunnel(
   const flavorWithQuantity = form.watch('flavorWithQuantity');
   const frameworkWithversion = form.watch('frameworkWithVersion');
   const editor = form.watch('editor');
+  const notebookName = form.watch('notebookName');
+  const unsecureHttp = form.watch('privacy');
+  const labels = form.watch('labels');
   /*
   
     
     const name = form.watch('name');
-    const httpsAccess = form.watch('httpsAccess');
+    ;
     */
 
   const flavorData = useGetFlavor(projectId, region);
+
+  /*
+  const datastoreData = useGetDatastores(projectId, region);
+  datastoreData.isSuccess && console.log(datastoreData.data);
+  console.log('myFirstS3');
+  const containerData = useGetDatastoreContainer(projectId, region, 'myFirstS3');
+  containerData.isSuccess && console.log(containerData.data); 
+
+  console.log('tests3ab');
+  const containerDataBis = useGetDatastoreContainer(projectId, region, "tests3ab");
+  containerData.isSuccess && console.log(containerData.data); 
+  */
 
   const listFlavor: Flavor[] = useMemo(() => {
     if (flavorData.isLoading) return [];
@@ -102,6 +131,9 @@ export function useOrderFunnel(
     editor,
   ]);
 
+  const unsecureHttpObject: boolean = useMemo(() => unsecureHttp === 'public', [
+    unsecureHttp,
+  ]);
   return {
     form,
     lists: {
@@ -117,6 +149,9 @@ export function useOrderFunnel(
       framework: frameworkObject,
       version: versionObject,
       editor: editorObject,
+      notebookName,
+      unsecureHttp: unsecureHttpObject,
+      labels,
     },
   };
 }

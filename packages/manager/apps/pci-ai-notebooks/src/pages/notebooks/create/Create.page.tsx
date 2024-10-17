@@ -7,6 +7,7 @@ import OrderFunnel from './_components/OrderFunnel.component';
 import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
 import { useGetFramework } from '@/hooks/api/ai/notebook/capabilities/useGetFramework.hook';
 import { useGetEditor } from '@/hooks/api/ai/notebook/capabilities/useGetEditor.hook';
+import { useGetDatastoresWithRegions } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
 
 export function breadcrumb() {
   return (
