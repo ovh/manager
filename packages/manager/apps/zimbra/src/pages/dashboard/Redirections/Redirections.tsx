@@ -8,13 +8,11 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useSearchParams } from 'react-router-dom';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import ActionButtonRedirections from './ActionButtonRedirections.component';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -80,12 +78,15 @@ export function Redirections() {
   const [searchParams] = useSearchParams();
   const editEmailAccountId = searchParams.get('editEmailAccountId');
   const hrefAddRedirection = useGenerateUrl('./add', 'href');
+
+  const handleAddEmailRedirectionClick = () => {
+    window.location.href = hrefAddRedirection;
+  };
   // to update
   const isLoading = false;
 
   return (
     <div className="py-6 mt-8">
-      {!editEmailAccountId && <Notifications />}
       <Outlet />
       {platformUrn && (
         <>
@@ -96,25 +97,18 @@ export function Redirections() {
           )}
           <div className="flex items-center justify-between">
             <ManagerButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              inline
+              color={ODS_BUTTON_COLOR.primary}
+              inline-block
               size={ODS_BUTTON_SIZE.sm}
-              href={hrefAddRedirection}
+              onClick={handleAddEmailRedirectionClick}
               urn={platformUrn}
               iamActions={[IAM_ACTIONS.redirection.create]}
               data-testid="add-redirection-btn"
+              id="add-redirection-btn"
               className="mb-6"
-            >
-              <span slot="start">
-                <OsdsIcon
-                  name={ODS_ICON_NAME.PLUS}
-                  size={ODS_ICON_SIZE.sm}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  contrasted
-                ></OsdsIcon>
-              </span>
-              <span slot="end">{t('zimbra_redirections_cta')}</span>
-            </ManagerButton>
+              icon={ODS_ICON_NAME.plus}
+              label={t('zimbra_redirections_cta')}
+            />
           </div>
           {isLoading ? (
             <Loading />

@@ -46,7 +46,7 @@ const guideItems = [
 const HeadingWithActionButton: HeadersProps = {
   title: 'Example for header with actions ',
   description: 'description for header',
-  headerButton: <ActionMenu items={actionItems} />,
+  headerButton: <ActionMenu id="1" items={actionItems} />,
 };
 const HeadingWithGuideButton: HeadersProps = {
   title: 'Example for header with guides',

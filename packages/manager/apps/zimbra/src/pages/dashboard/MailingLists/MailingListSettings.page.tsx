@@ -3,37 +3,24 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
-  OsdsButton,
-  OsdsFormField,
-  OsdsInput,
-  OsdsMessage,
-  OsdsRadio,
-  OsdsRadioButton,
-  OsdsRadioGroup,
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsText,
-  OsdsToggle,
-  OsdsTooltipContent,
-  OsdsIcon,
-  OsdsTooltip,
+  OdsButton,
+  OdsFormField,
+  OdsInput,
+  OdsMessage,
+  OdsRadio,
+  OdsSelect,
+  OdsText,
+  OdsToggle,
+  OdsIcon,
+  OdsTooltip,
 } from '@ovhcloud/ods-components/react';
 import {
-  ODS_THEME_COLOR_HUE,
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_INPUT_SIZE,
   ODS_INPUT_TYPE,
-  ODS_MESSAGE_TYPE,
-  ODS_RADIO_BUTTON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  ODS_MESSAGE_COLOR,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
@@ -224,29 +211,19 @@ export default function MailingListSettings({
     },
     onSuccess: () => {
       addSuccess(
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
             editMailingListId
               ? 'zimbra_mailinglist_edit_success_message'
               : 'zimbra_mailinglist_add_success_message',
           )}
-        </OsdsText>,
+        </OdsText>,
         true,
       );
     },
     onError: (error: ApiError) => {
       addError(
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
             editMailingListId
               ? 'zimbra_mailinglist_edit_error_message'
@@ -255,7 +232,7 @@ export default function MailingListSettings({
               error: error.response?.data?.message,
             },
           )}
-        </OsdsText>,
+        </OdsText>,
         true,
       );
     },
@@ -273,253 +250,166 @@ export default function MailingListSettings({
 
   return (
     <div className="w-full md:w-3/4 flex flex-col space-y-5">
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-      >
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         {!editMailingListId
           ? t('zimbra_mailinglist_add_header')
           : t('zimbra_mailinglist_edit_header')}
-      </OsdsText>
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-      >
+      </OdsText>
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         {t('zimbra_mailinglist_mandatory_fields')}
-      </OsdsText>
-      <OsdsFormField>
-        <div slot="label">
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          >
-            {t('zimbra_mailinglist_add_input_email_label')} *
-          </OsdsText>
-        </div>
+      </OdsText>
+      <OdsFormField>
+        <label slot="label">
+          {t('zimbra_mailinglist_add_input_email_label')} *
+        </label>
         <div className="flex">
-          <OsdsInput
+          <OdsInput
             type={ODS_INPUT_TYPE.text}
             name="account"
             placeholder={t('zimbra_mailinglist_add_input_email_placeholder')}
-            color={
-              form.account.hasError
-                ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.default
-            }
-            size={ODS_INPUT_SIZE.md}
+            hasError={form.account.hasError}
             value={form.account.value}
-            required
+            isRequired
             className="rounded-r-none w-1/2"
             data-testid="input-account"
-            onOdsInputBlur={({ target: { name, value } }) =>
+            onOdsBlur={({ target: { name, value } }) =>
               handleFormChange(name, value.toString())
             }
-            onOdsValueChange={({ detail: { name, value } }) => {
-              handleFormChange(name, value);
+            onOdsChange={({ detail: { name, value } }) => {
+              handleFormChange(name, String(value));
             }}
-          ></OsdsInput>
-          <OsdsInput
+          ></OdsInput>
+          <OdsInput
             type={ODS_INPUT_TYPE.text}
-            color={ODS_THEME_COLOR_INTENT.default}
-            size={ODS_INPUT_SIZE.md}
+            name={'@'}
             value={'@'}
-            readOnly={true}
-            disabled={true}
+            isReadonly
+            isDisabled
             className="w-10 rounded-none"
-          ></OsdsInput>
-          <OsdsSelect
+          ></OdsInput>
+          <OdsSelect
             name="domain"
             value={form.domain.value}
             className="rounded-l-none w-1/2"
-            color={
-              form.domain.hasError
-                ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.default
-            }
-            required
-            onOdsValueChange={(e) =>
-              handleDomainChange(e.detail.value as string)
-            }
+            hasError={form.domain.hasError}
+            isRequired
+            onOdsChange={(e) => handleDomainChange(e.detail.value)}
             data-testid="select-domain"
           >
             <span slot="placeholder">
               {t('zimbra_mailinglist_add_select_domain_placeholder')}
             </span>
             {domainList?.map(({ currentState: domain }) => (
-              <OsdsSelectOption key={domain.name} value={domain.name}>
+              <option key={domain.name} value={domain.name}>
                 {domain.name}
-              </OsdsSelectOption>
+              </option>
             ))}
-          </OsdsSelect>
+          </OdsSelect>
         </div>
-      </OsdsFormField>
+      </OdsFormField>
       {selectedDomainOrganization && !organizationIdParam && (
-        <OsdsMessage
-          color={ODS_THEME_COLOR_INTENT.primary}
-          type={ODS_MESSAGE_TYPE.info}
-        >
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          >
+        <OdsMessage color={ODS_MESSAGE_COLOR.information}>
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             {t('zimbra_mailinglist_add_message_organization', {
               organization: selectedDomainOrganization,
             })}
-          </OsdsText>
-        </OsdsMessage>
+          </OdsText>
+        </OdsMessage>
       )}
-      <OsdsFormField>
-        <div slot="label">
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          >
-            {t('zimbra_mailinglist_add_input_owner_label')} *
-          </OsdsText>
-        </div>
+      <OdsFormField>
+        <label slot="label">
+          {t('zimbra_mailinglist_add_input_owner_label')} *
+        </label>
         <div className="flex">
-          <OsdsInput
+          <OdsInput
             type={ODS_INPUT_TYPE.text}
             name="owner"
             placeholder={t('zimbra_mailinglist_add_input_owner_placeholder')}
-            color={
-              form.owner.hasError
-                ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.default
-            }
-            size={ODS_INPUT_SIZE.md}
+            hasError={form.owner.hasError}
             value={form.owner.value}
-            required
+            isRequired
             className="rounded-r-none w-1/2"
             data-testid="input-owner"
-            onOdsInputBlur={({ target: { name, value } }) =>
+            onOdsBlur={({ target: { name, value } }) =>
               handleFormChange(name, value.toString())
             }
-            onOdsValueChange={({ detail: { name, value } }) => {
-              handleFormChange(name, value);
+            onOdsChange={({ detail: { name, value } }) => {
+              handleFormChange(name, String(value));
             }}
-          ></OsdsInput>
+          ></OdsInput>
         </div>
-      </OsdsFormField>
-      <OsdsFormField>
-        <div slot="label">
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          >
-            {t('zimbra_mailinglist_add_reply_to_label')} *
-          </OsdsText>
-        </div>
+      </OdsFormField>
+      <OdsFormField>
+        <label slot="label">
+          {t('zimbra_mailinglist_add_reply_to_label')} *
+        </label>
         <div className="flex">
-          <OsdsRadioGroup
-            value={form.defaultReplyTo.value}
-            data-testid="radio-group-reply-to"
-            onOdsValueChange={(event) =>
-              handleFormChange('defaultReplyTo', event.detail.newValue)
-            }
-          >
-            {replyToChoices.map(({ value, key }) => (
-              <OsdsRadio key={value} value={value}>
-                <OsdsRadioButton
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  size={ODS_RADIO_BUTTON_SIZE.sm}
-                >
-                  <span slot="end">
-                    <OsdsText
-                      color={ODS_THEME_COLOR_INTENT.text}
-                      size={ODS_TEXT_SIZE._400}
-                      level={ODS_TEXT_LEVEL.body}
-                    >
-                      {t(key)}
-                    </OsdsText>
-                  </span>
-                </OsdsRadioButton>
-              </OsdsRadio>
-            ))}
-          </OsdsRadioGroup>
+          {replyToChoices.map(({ value, key }) => (
+            <OdsRadio
+              className="space-y-5"
+              key={value}
+              name="replyTo"
+              value={form.defaultReplyTo.value}
+              isChecked={form.defaultReplyTo.value === value}
+              onOdsChange={(event) =>
+                handleFormChange('defaultReplyTo', event.detail.value)
+              }
+              data-testid="radio-replyTo"
+            >
+              <div slot="end" className="flex flex-col">
+                <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t(key)}</OdsText>
+              </div>
+            </OdsRadio>
+          ))}
         </div>
-      </OsdsFormField>
-      <OsdsFormField>
-        <div slot="label">
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          >
-            {t('zimbra_mailinglist_add_language_label')} *
-          </OsdsText>
-        </div>
+      </OdsFormField>
+
+      <OdsFormField>
+        <label slot="label">
+          {t('zimbra_mailinglist_add_language_label')} *
+        </label>
         <div className="flex">
-          <OsdsSelect
+          <OdsSelect
             name="language"
             value={form.language.value}
             className="rounded-l-none w-1/2"
-            color={
-              form.language.hasError
-                ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.default
-            }
-            required
+            hasError={form.language.hasError}
+            isRequired
             data-testid="select-language"
-            onOdsValueChange={(e) =>
-              handleFormChange(e.detail.name, e.detail.value as string)
-            }
+            onOdsChange={(e) => handleFormChange(e.detail.name, e.detail.value)}
           >
             <span slot="placeholder">
               {t('zimbra_mailinglist_add_select_language_placeholder')}
             </span>
             {languageList?.map((lang) => (
-              <OsdsSelectOption key={lang} value={lang}>
+              <option key={lang} value={lang}>
                 {lang}
-              </OsdsSelectOption>
+              </option>
             ))}
-          </OsdsSelect>
+          </OdsSelect>
         </div>
-      </OsdsFormField>
-      <OsdsFormField>
-        <div slot="label">
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          >
-            {t('zimbra_mailinglist_add_moderation_choice_label')}
-          </OsdsText>
-        </div>
+      </OdsFormField>
+      <OdsFormField>
+        <label slot="label">
+          {t('zimbra_mailinglist_add_moderation_choice_label')}
+        </label>
         <div>
-          <OsdsRadioGroup
-            value={form.moderationOption.value}
-            data-testid="radio-group-moderation-option"
-            onOdsValueChange={(event) =>
-              handleFormChange('moderationOption', event.detail.newValue)
-            }
-          >
-            {moderationChoices.map(({ value, key }) => (
-              <OsdsRadio key={value} value={value}>
-                <OsdsRadioButton
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  size={ODS_RADIO_BUTTON_SIZE.sm}
-                >
-                  <span slot="end">
-                    <OsdsText
-                      color={ODS_THEME_COLOR_INTENT.text}
-                      size={ODS_TEXT_SIZE._400}
-                      level={ODS_TEXT_LEVEL.body}
-                    >
-                      {t(key)}
-                    </OsdsText>
-                  </span>
-                </OsdsRadioButton>
-              </OsdsRadio>
-            ))}
-          </OsdsRadioGroup>
-          <OsdsToggle
+          {moderationChoices.map(({ value, key }) => (
+            <OdsRadio
+              key={value}
+              name="moderationOption"
+              value={value}
+              onOdsChange={(event) =>
+                handleFormChange('moderationOption', event.detail.value)
+              }
+              data-testid="radio-group-moderation-option"
+            >
+              <div slot="end" className="flex flex-col">
+                <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t(key)}</OdsText>
+              </div>
+            </OdsRadio>
+          ))}
+          <OdsToggle
             className="mt-4"
             data-testid="toggle-subscriber-moderation"
             onClick={() =>
@@ -529,71 +419,56 @@ export default function MailingListSettings({
               )
             }
             {...(form.subscriberModeration.value === 'true'
-              ? { checked: true }
+              ? { isChecked: true }
               : {})}
+            name="toggle-subscriber-moderation"
           >
             <div slot="end" className="flex flex-col ml-4">
-              <OsdsText
-                className="flex"
-                color={ODS_THEME_COLOR_INTENT.text}
-                size={ODS_TEXT_SIZE._400}
-                level={ODS_TEXT_LEVEL.body}
-              >
+              <OdsText preset={ODS_TEXT_PRESET.paragraph} className="flex">
                 {t('zimbra_mailinglist_add_subscriber_moderation')}
-                <OsdsTooltip className="ml-4 flex items-center">
-                  <OsdsIcon
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    size={ODS_ICON_SIZE.xxs}
-                    name={ODS_ICON_NAME.HELP_CIRCLE}
-                  />
-                  <OsdsTooltipContent slot="tooltip-content">
-                    <OsdsText
-                      level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                      color={ODS_THEME_COLOR_INTENT.text}
-                      size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-                    >
+                <OdsTooltip
+                  className="ml-4 flex items-center"
+                  triggerId="tooltip-trigger"
+                >
+                  <OdsIcon name={ODS_ICON_NAME.circleInfo} />
+                  <div id="tooltip-trigger">
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                       {t(
                         'zimbra_mailinglist_add_subscriber_moderation_tooltip',
                       )}
-                    </OsdsText>
-                  </OsdsTooltipContent>
-                </OsdsTooltip>
-              </OsdsText>
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.text}
-                size={ODS_TEXT_SIZE._100}
-                level={ODS_TEXT_LEVEL.body}
-              >
+                    </OdsText>
+                  </div>
+                </OdsTooltip>
+              </OdsText>
+              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                 {t('zimbra_mailinglist_add_subscriber_moderation_info', {
                   max: 250,
                 })}
-              </OsdsText>
+              </OdsText>
             </div>
-          </OsdsToggle>
+          </OdsToggle>
         </div>
-      </OsdsFormField>
+      </OdsFormField>
       <div className="flex space-x-5">
-        <OsdsButton
+        <OdsButton
           slot="actions"
-          inline
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.flat}
+          inline-block
+          color={ODS_BUTTON_COLOR.primary}
+          variant={ODS_BUTTON_VARIANT.default}
           {...(!isFormValid || isSending ? { disabled: true } : {})}
           onClick={handleSavelick}
           data-testid="confirm-btn"
-        >
-          {t('zimbra_mailinglist_add_button_confirm')}
-        </OsdsButton>
+          label={t('zimbra_mailinglist_add_button_confirm')}
+        />
         {editMailingListId && (
-          <OsdsButton
+          <OdsButton
             slot="actions"
-            inline
+            inline-block
             onClick={goBack}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            variant={ODS_BUTTON_VARIANT.stroked}
-          >
-            {t('zimbra_mailinglist_add_button_cancel')}
-          </OsdsButton>
+            color={ODS_BUTTON_COLOR.primary}
+            variant={ODS_BUTTON_VARIANT.outline}
+            label={t('zimbra_mailinglist_add_button_cancel')}
+          />
         )}
       </div>
     </div>

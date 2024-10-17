@@ -19,21 +19,28 @@ const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
   const hrefEditEmailAccount = useGenerateUrl('./settings', 'href', {
     editEmailAccountId: emailsItem.id,
   });
+  const handleEditEmailClick = () => {
+    window.location.href = hrefEditEmailAccount;
+  };
 
   const hrefDeleteEmailAccount = useGenerateUrl('./delete', 'href', {
     deleteEmailAccountId: emailsItem.id,
   });
+
+  const handleDeleteEmailClick = () => {
+    window.location.href = hrefDeleteEmailAccount;
+  };
   const actionItems = [
     {
       id: 1,
-      href: hrefEditEmailAccount,
+      onClick: handleEditEmailClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.edit],
       label: t('zimbra_account_datagrid_tooltip_modification'),
     },
     {
       id: 2,
-      href: hrefDeleteEmailAccount,
+      onClick: handleDeleteEmailClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.delete],
       label: t('zimbra_account_datagrid_tooltip_delete'),
@@ -41,7 +48,8 @@ const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
   ];
   return (
     <ActionMenu
-      disabled={emailsItem.status !== ResourceStatus.READY}
+      id={emailsItem.id}
+      isDisabled={emailsItem.status !== ResourceStatus.READY}
       items={actionItems}
       isCompact
     />

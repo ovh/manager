@@ -14,12 +14,11 @@ export interface ActionMenuItem {
   id: number;
   rel?: string;
   download?: string;
-  href?: string;
   target?: string;
   onClick?: () => void;
   label: string;
   variant?: ODS_BUTTON_VARIANT;
-  disabled?: boolean;
+  isDisabled?: boolean;
   iamActions?: string[];
   urn?: string;
 }
@@ -29,7 +28,8 @@ export interface ActionMenuProps {
   isCompact?: boolean;
   icon?: ODS_ICON_NAME;
   variant?: ODS_BUTTON_VARIANT;
-  disabled?: boolean;
+  isDisabled?: boolean;
+  id: string;
 }
 
 const MenuItem = ({
@@ -52,7 +52,7 @@ const MenuItem = ({
       {!item?.iamActions || item?.iamActions?.length === 0 ? (
         <OdsButton
           {...buttonProps}
-          isDisabled={buttonProps.disabled}
+          isDisabled={buttonProps.isDisabled}
           label={item.label}
         >
           <span slot="start">
@@ -66,7 +66,7 @@ const MenuItem = ({
           iamActions={item.iamActions}
           urn={item.urn}
           {...buttonProps}
-          isDisabled={buttonProps.disabled || undefined}
+          isDisabled={buttonProps.isDisabled || undefined}
         >
           <span slot="start">
             <span>{item.label}</span>
@@ -82,19 +82,21 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   isCompact,
   icon,
   variant = ODS_BUTTON_VARIANT.outline,
-  disabled,
+  isDisabled,
+  id,
 }) => {
   const { t } = useTranslation('buttons');
   const [isTrigger, setIsTrigger] = React.useState(false);
 
   return (
     <>
-      <div id="navigation-action-trigger">
+      <div key={id} id={`navigation-action-trigger-${id}`}>
         <OdsButton
           data-testid="navigation-action-trigger-action"
           slot="menu-title"
+          id={id}
           variant={variant}
-          isDisabled={disabled}
+          isDisabled={isDisabled}
           size={ODS_BUTTON_SIZE.sm}
           onClick={() => setIsTrigger(true)}
           {...(!isCompact && { label: t('common_actions') })}
@@ -107,12 +109,17 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
       </div>
       <OdsPopover
         className="py-[8px] px-0 overflow-hidden"
-        triggerId="navigation-action-trigger"
+        triggerId={`navigation-action-trigger-${id}`}
         with-arrow
       >
-        {items.map(({ id, ...item }) => {
+        {items.map(({ id: itemId, ...item }) => {
           return (
-            <MenuItem id={id} key={id} item={item} isTrigger={isTrigger} />
+            <MenuItem
+              id={itemId}
+              key={itemId}
+              item={item}
+              isTrigger={isTrigger}
+            />
           );
         })}
       </OdsPopover>

@@ -26,15 +26,21 @@ const ActionButtonRedirections: React.FC<ActionButtonRedirectionsAccountProps> =
     ...params,
   });
 
+  const handleEditRedirectionsClick = () => {
+    window.location.href = hrefEditRedirections;
+  };
+
   const hrefDeleteRedirections = useGenerateUrl('./delete', 'href', {
     deleteRedirectionId: redirectionsItem.id,
     ...params,
   });
-
+  const handleDeleteRedirectionsClick = () => {
+    window.location.href = hrefDeleteRedirections;
+  };
   const actionItems = [
     {
       id: 1,
-      href: hrefEditRedirections,
+      onClick: handleEditRedirectionsClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.redirection.edit],
       label: t('zimbra_redirections_datagrid_tooltip_modification'),
@@ -42,7 +48,7 @@ const ActionButtonRedirections: React.FC<ActionButtonRedirectionsAccountProps> =
     },
     {
       id: 2,
-      href: hrefDeleteRedirections,
+      onClick: handleDeleteRedirectionsClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.redirection.delete],
       label: t('zimbra_redirections_datagrid_tooltip_delete'),
@@ -50,7 +56,8 @@ const ActionButtonRedirections: React.FC<ActionButtonRedirectionsAccountProps> =
   ];
   return (
     <ActionMenu
-      disabled={redirectionsItem.status !== ResourceStatus.READY}
+      id={redirectionsItem.id}
+      isDisabled={redirectionsItem.status !== ResourceStatus.READY}
       items={actionItems.filter((i) => !i.hidden)}
       isCompact
     />

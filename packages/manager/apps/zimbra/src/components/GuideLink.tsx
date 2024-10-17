@@ -1,7 +1,11 @@
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import React, { useContext } from 'react';
-import { Links, LinkType } from '@ovh-ux/manager-react-components';
+import {
+  IconLinkAlignmentType,
+  Links,
+  LinkType,
+} from '@ovh-ux/manager-react-components';
+import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
 import { Guide } from '@/guides.constants';
 
 interface GuideLinkProps {
@@ -16,7 +20,9 @@ export default function GuideLink({ label, guide }: Readonly<GuideLinkProps>) {
   return (
     <Links
       type={LinkType.external}
-      target={OdsHTMLAnchorElementTarget._blank}
+      color={ODS_LINK_COLOR.primary}
+      iconAlignment={IconLinkAlignmentType.right}
+      target="_blank"
       href={
         typeof guide.url === 'string'
           ? guide.url

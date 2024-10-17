@@ -2,25 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_COLOR_HUE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  OsdsFormField,
-  OsdsIcon,
-  OsdsInput,
-  OsdsText,
-  OsdsTooltip,
-  OsdsTooltipContent,
+  OdsFormField,
+  OdsIcon,
+  OdsInput,
+  OdsText,
+  OdsTooltip,
 } from '@ovhcloud/ods-components/react';
 import {
+  ODS_BUTTON_COLOR,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_INPUT_SIZE,
   ODS_INPUT_TYPE,
-  ODS_TOOLTIP_VARIANT,
+  ODS_MODAL_COLOR,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
@@ -87,29 +80,19 @@ export default function ModalAddAndEditOrganization() {
     },
     onSuccess: () => {
       addSuccess(
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
             editOrganizationId
               ? 'zimbra_organization_edit_success_message'
               : 'zimbra_organization_add_success_message',
           )}
-        </OsdsText>,
+        </OdsText>,
         true,
       );
     },
     onError: (error: ApiError) => {
       addError(
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
             editOrganizationId
               ? 'zimbra_organization_add_error_message'
@@ -118,7 +101,7 @@ export default function ModalAddAndEditOrganization() {
               error: error.response?.data?.message,
             },
           )}
-        </OsdsText>,
+        </OdsText>,
         true,
       );
     },
@@ -163,18 +146,19 @@ export default function ModalAddAndEditOrganization() {
 
   return (
     <Modal
+      isOpen
       title={
         editOrganizationId
           ? t('zimbra_organization_edit_modal_title')
           : t('zimbra_organization_add_modal_title')
       }
-      color={ODS_THEME_COLOR_INTENT.info}
+      color={ODS_MODAL_COLOR.information}
       onDismissible={onClose}
-      dismissible={true}
+      isDismissible
       isLoading={isLoading}
       primaryButton={{
         testid: 'confirm-btn',
-        color: ODS_THEME_COLOR_INTENT.primary,
+        color: ODS_BUTTON_COLOR.primary,
         label: t('zimbra_organization_add'),
         disabled: isLoading || !isFormValid || isSending,
         action: handleSaveClick,
@@ -183,34 +167,19 @@ export default function ModalAddAndEditOrganization() {
       <>
         {!editOrganizationId && (
           <>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              hue={ODS_THEME_COLOR_HUE._500}
-            >
+            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
               {t('zimbra_organization_add_modal_content_part1')}
-            </OsdsText>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              hue={ODS_THEME_COLOR_HUE._500}
-            >
+            </OdsText>
+            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
               {t('zimbra_organization_add_modal_content_part2')}
-            </OsdsText>
+            </OdsText>
           </>
         )}
-        <OsdsText
-          className="mt-5"
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
+
+        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mt-5">
           {t('zimbra_organization_add_form_input_mandatory')}
-        </OsdsText>
-        <OsdsFormField
+        </OdsText>
+        <OdsFormField
           data-testid="field-name"
           error={
             form.name.hasError
@@ -219,41 +188,29 @@ export default function ModalAddAndEditOrganization() {
           }
           className="mt-5"
         >
-          <div slot="label">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-              hue={ODS_THEME_COLOR_HUE._500}
-            >
-              {t('zimbra_organization_add_form_input_name_title')} *
-            </OsdsText>
-          </div>
+          <label slot="label">
+            {t('zimbra_organization_add_form_input_name_title')} *
+          </label>
 
-          <OsdsInput
+          <OdsInput
             type={ODS_INPUT_TYPE.text}
             name="name"
             data-testid="input-name"
             placeholder={t(
               'zimbra_organization_add_form_input_name_placeholder',
             )}
-            color={
-              form.name.hasError
-                ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.default
-            }
-            size={ODS_INPUT_SIZE.md}
+            hasError={form.name.hasError}
             value={form.name.value}
-            onOdsInputBlur={({ target: { name, value } }) =>
+            onOdsBlur={({ target: { name, value } }) =>
               handleFormChange(name, value.toString())
             }
-            onOdsValueChange={({ detail: { name, value } }) => {
-              handleFormChange(name, value);
+            onOdsChange={({ detail: { name, value } }) => {
+              handleFormChange(name, String(value));
             }}
-            required
-          ></OsdsInput>
-        </OsdsFormField>
-        <OsdsFormField
+            isRequired
+          ></OdsInput>
+        </OdsFormField>
+        <OdsFormField
           data-testid="field-label"
           error={
             form.label.hasError
@@ -264,73 +221,47 @@ export default function ModalAddAndEditOrganization() {
           }
           className="mt-5"
         >
-          <div slot="label">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-              hue={ODS_THEME_COLOR_HUE._500}
-            >
-              {t('zimbra_organization_add_form_input_label_title')} *
-              {
-                <OsdsTooltip
-                  role="tooltip"
-                  variant={ODS_TOOLTIP_VARIANT.standard}
-                >
-                  <OsdsTooltipContent slot="tooltip-content">
-                    <OsdsText
-                      level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                      color={ODS_THEME_COLOR_INTENT.text}
-                      size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-                      hue={ODS_THEME_COLOR_HUE._500}
-                    >
-                      {t('zimbra_organization_add_form_input_label_tooltip')}
-                    </OsdsText>
-                  </OsdsTooltipContent>
-                  <OsdsIcon
-                    className="ml-2"
-                    name={ODS_ICON_NAME.HELP_CIRCLE}
-                    size={ODS_ICON_SIZE.xxs}
-                  ></OsdsIcon>
-                </OsdsTooltip>
-              }
-            </OsdsText>
-          </div>
-          <OsdsInput
+          <label slot="label">
+            {t('zimbra_organization_add_form_input_label_title')} *
+            {
+              <OdsTooltip role="tooltip" triggerId="tooltip-trigger">
+                <div id="tooltip-trigger">
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    {t('zimbra_organization_add_form_input_label_tooltip')}
+                  </OdsText>
+                </div>
+                <OdsIcon
+                  className="ml-2"
+                  name={ODS_ICON_NAME.circleQuestion}
+                ></OdsIcon>
+              </OdsTooltip>
+            }
+          </label>
+          <OdsInput
             type={ODS_INPUT_TYPE.text}
             data-testid="input-label"
             name="label"
             placeholder={t(
               'zimbra_organization_add_form_input_label_placeholder',
             )}
-            color={
-              form.label.hasError
-                ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.default
-            }
-            size={ODS_INPUT_SIZE.md}
+            hasError={form.label.hasError}
             value={form.label.value}
-            onOdsInputBlur={({ target: { name, value } }) =>
+            onOdsBlur={({ target: { name, value } }) =>
               handleFormChange(name, value.toString())
             }
-            onOdsValueChange={({ detail: { name, value } }) =>
-              handleFormChange(name, value)
+            onOdsChange={({ detail: { name, value } }) =>
+              handleFormChange(name, String(value))
             }
-            required
-          ></OsdsInput>
+            isRequired
+          ></OdsInput>
           <div slot="helper">
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.default}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              hue={ODS_THEME_COLOR_HUE._500}
-            >
+            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
               {t('zimbra_organization_add_form_input_label_helper', {
                 value: 12,
               })}
-            </OsdsText>
+            </OdsText>
           </div>
-        </OsdsFormField>
+        </OdsFormField>
       </>
     </Modal>
   );

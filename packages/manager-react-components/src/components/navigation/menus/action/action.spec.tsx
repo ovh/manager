@@ -8,6 +8,7 @@ import { IamAuthorizationResponse } from '../../../../hooks/iam/iam.interface';
 jest.mock('../../../../hooks/iam');
 
 const actionItems: ActionMenuProps = {
+  id: 'action-menu-test-id',
   items: [
     {
       id: 1,

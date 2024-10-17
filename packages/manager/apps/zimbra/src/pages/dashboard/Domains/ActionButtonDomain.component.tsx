@@ -13,24 +13,32 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
   domainItem,
 }) => {
   const { t } = useTranslation('domains');
+
   const hrefDeleteDomain = useGenerateUrl('./delete', 'href', {
     deleteDomainId: domainItem.id,
   });
+  const handleDeleteDomainClick = () => {
+    window.location.href = hrefDeleteDomain;
+  };
   const hrefEditDomain = useGenerateUrl('./edit', 'href', {
     editDomainId: domainItem.id,
   });
+
+  const handleEditDomainClick = () => {
+    window.location.href = hrefEditDomain;
+  };
   const { platformUrn } = usePlatform();
   const actionItems = [
     {
       id: 1,
-      href: hrefEditDomain,
+      onclick: handleEditDomainClick,
       label: t('zimbra_domains_tooltip_configure'),
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.domain.edit],
     },
     {
       id: 2,
-      href: hrefDeleteDomain,
+      onclick: handleDeleteDomainClick,
       label: t('zimbra_domains_tooltip_delete'),
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.domain.delete],
@@ -38,7 +46,8 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
   ];
   return (
     <ActionMenu
-      disabled={domainItem.status !== ResourceStatus.READY}
+      id={domainItem.id}
+      isDisabled={domainItem.status !== ResourceStatus.READY}
       items={actionItems}
       isCompact
     />
