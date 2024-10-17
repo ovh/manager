@@ -2,7 +2,7 @@
   "user_account_identity_documents": "I miei documenti d'identità",
   "user_account_identity_documents_title": "Verifica dei documenti necessaria",
   "user_account_identity_documents_sub_title": "Inserisci i tuoi documenti",
-  "user_account_identity_documents_intro": "Hai creato un account. Per effettuare un ordine sul nostro sito Web, sono necessari alcuni controlli in conformità con la legislazione indiana.",
+  "user_account_identity_documents_intro": "Riceverai una risposta entro 24 ore* dal nostro team di supporto locale",
   "user_account_identity_documents_upload": "Carica i tuoi documenti",
   "user_account_identity_documents_intro_others": "Se sei un privato, le prove d’identità e di indirizzo qui sotto sono sufficienti. In questo caso, non è necessario fornire la dichiarazione sull'onore e la prova di partita IVA.",
   "user_account_identity_documents_selection_file_format": "Formato: jpg, jpeg, pdf, png. La dimensione massima del file per ogni documento è 10 MB.",
@@ -17,5 +17,6 @@
   "user_account_identity_documents_legal_info3": "I documenti saranno conservati per cinque anni dalla fine del contratto.",
   "user_account_identity_documents_verification_in_progress_info": "Il trattamento dei documenti è attualmente in fase di analisi da parte dei nostri team.",
   "user_account_identity_documents_verification_waiting_info": "La tua richiesta è stata analizzata ma necessita di ulteriori documenti. Consulta il ticket di supporto.",
-  "user_account_identity_documents_legal_info4": "Risposta durante l'orario lavorativo: 9:00-18:00 IST (ora standard dell'India) dal lunedì al venerdì, esclusi i giorni festivi."
+  "user_account_identity_documents_legal_info4": "Risposta durante l'orario lavorativo: 9:00-18:00 IST (ora standard dell'India) dal lunedì al venerdì, esclusi i giorni festivi.",
+  "user_account_identity_documents_default_intro": "Se sei un privato, sono sufficienti le prove d’identità e di indirizzo. Non è necessario fornire la prova di partita IVA e la dichiarazione sull'onore."
 }

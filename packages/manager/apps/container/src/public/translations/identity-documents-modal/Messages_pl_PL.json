@@ -1,0 +1,8 @@
+{
+  "identity_documents_modal_title": "Musimy zweryfikować Twoją tożsamość",
+  "identity_documents_modal_description": "Zgodnie z prawem indyjskim weryfikacja jest obowiązkowa przed złożeniem zamówienia.",
+  "identity_documents_modal_button_start": "Wyślij teraz",
+  "identity_documents_modal_button_later": "Wyślij później",
+  "identity_documents_modal_more_info": "Więcej informacji",
+  "identity_documents_modal_legal_information": "OVHcloud ma obowiązek realizować procedurę KYC („Know Your Customer”) wobec wszystkich swoich klientów zgodnie z przepisami prawa, takimi jak lokalne regulacje: Directions No. 20(3)/2022-CERT-In. __ <br>Jest to proces, w którym OVHcloud gromadzi dokumenty potwierdzające tożsamość i adres klientów. Niedostarczenie dokumentów wymaganych w ramach procedury KYC uniemożliwi OVHcloud realizację Twoich usług."
+}

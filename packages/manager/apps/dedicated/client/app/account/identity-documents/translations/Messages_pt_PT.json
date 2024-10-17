@@ -2,7 +2,7 @@
   "user_account_identity_documents": "Documentos de identificação",
   "user_account_identity_documents_title": "Verificação de documentos necessária",
   "user_account_identity_documents_sub_title": "Apresente os seus documentos",
-  "user_account_identity_documents_intro": "Criou uma conta. Para fazer uma encomenda no nosso website, são necessárias verificações em conformidade com a legislação indiana.",
+  "user_account_identity_documents_intro": "A nossa equipa de assistência local responderá dentro de 24 horas*",
   "user_account_identity_documents_upload": "Faça download dos seus documentos",
   "user_account_identity_documents_intro_others": "Se for um particular, os comprovativos de identidade e de endereço abaixo são suficientes. Neste caso, não é necessário apresentar o atestado sob compromisso de honra nem o comprovativo de IVA.",
   "user_account_identity_documents_selection_file_format": "Formato: jpg, jpeg, pdf, png. O tamanho máximo do ficheiro para cada documento é de 10 MB.",
@@ -17,5 +17,6 @@
   "user_account_identity_documents_legal_info3": "Os documentos serão conservados durante cinco anos após o termo do contrato.",
   "user_account_identity_documents_verification_in_progress_info": "O tratamento dos seus documentos está a ser analisado pela nossa equipa.",
   "user_account_identity_documents_verification_waiting_info": "O seu pedido foi analisado, mas necessita de documentos complementares. Consulte o seu ticket de assistência.",
-  "user_account_identity_documents_legal_info4": "Tempo de resposta em dias úteis: 9h às 18h IST (India Standard Time), de segunda a sexta-feira, excluindo feriados."
+  "user_account_identity_documents_legal_info4": "Tempo de resposta em dias úteis: 9h às 18h IST (India Standard Time), de segunda a sexta-feira, excluindo feriados.",
+  "user_account_identity_documents_default_intro": "Se for um particular, os comprovativos de identidade e de morada são suficientes. Não precisa de fornecer o comprovativo de IVA nem a declaração sob compromisso de honra."
 }
