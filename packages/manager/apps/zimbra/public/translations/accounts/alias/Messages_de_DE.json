@@ -1,0 +1,7 @@
+{
+  "zimbra_account_alias_title": "Verwaltung der Alias",
+  "zimbra_account_alias_cta": "Alias hinzufügen",
+  "zimbra_account_alias_datagrid_alias_label": "Alias",
+  "zimbra_account_alias_datagrid_status_label": "Status",
+  "zimbra_account_alias_datagrid_tooltip_delete": "Löschen"
+}

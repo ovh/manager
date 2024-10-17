@@ -1,0 +1,11 @@
+{
+  "zimbra_domain_edit_modal_title": "Konfiguration der Domain",
+  "zimbra_domain_edit_modal_content": "Sind Sie sicher, dass Sie die Domain vom Zimbra Server löschen möchten?",
+  "zimbra_domain_edit_modal_message_disabled": "Ihre Domain wird verwendet. Diese Domäne kann nicht gelöscht werden, solange sie vorhanden ist.",
+  "zimbra_domain_edit_success_message": "Die Konfiguration Ihrer Domain wurde erfolgreich durchgeführt. Sie wird in einigen Augenblicken aktiv sein.",
+  "zimbra_domain_edit_error_message": "Die Konfiguration Ihrer Domain konnte nicht abgeschlossen werden. {{ error }}",
+  "zimbra_domain_edit_domain_label": "Domain",
+  "zimbra_domain_edit_organization_label": "Organisation",
+  "zimbra_domain_edit_confirm": "Bestätigen",
+  "zimbra_domain_edit_cancel": "Abbrechen"
+}

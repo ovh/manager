@@ -7,14 +7,29 @@ export const IAM_ACTIONS = {
     edit: `${IAM_ACTIONS_PREFIX}account/edit`,
     get: `${IAM_ACTIONS_PREFIX}account/get`,
   },
+  alias: {
+    create: `${IAM_ACTIONS_PREFIX}alias/create`,
+    delete: `${IAM_ACTIONS_PREFIX}alias/delete`,
+  },
   domain: {
     create: `${IAM_ACTIONS_PREFIX}domain/create`,
     delete: `${IAM_ACTIONS_PREFIX}domain/delete`,
+    edit: `${IAM_ACTIONS_PREFIX}domain/edit`,
+  },
+  mailingList: {
+    create: `${IAM_ACTIONS_PREFIX}mailingList/create`,
+    delete: `${IAM_ACTIONS_PREFIX}mailingList/delete`,
+    edit: `${IAM_ACTIONS_PREFIX}mailingList/edit`,
   },
   organization: {
     create: `${IAM_ACTIONS_PREFIX}organization/create`,
     delete: `${IAM_ACTIONS_PREFIX}organization/delete`,
     edit: `${IAM_ACTIONS_PREFIX}organization/edit`,
+  },
+  redirection: {
+    create: `${IAM_ACTIONS_PREFIX}redirection/create`,
+    delete: `${IAM_ACTIONS_PREFIX}redirection/delete`,
+    edit: `${IAM_ACTIONS_PREFIX}redirection/edit`,
   },
   platform: {
     get: `${IAM_ACTIONS_PREFIX}get`,

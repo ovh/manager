@@ -1,0 +1,8 @@
+{
+  "zimbra_account_alias_delete_modal_title": "Eliminar el alias",
+  "zimbra_account_alias_delete_modal_description": "¿Seguro que quiere eliminarlo?",
+  "zimbra_account_alias_delete_modal_cancel_btn": "Cancelar",
+  "zimbra_account_alias_delete_modal_delete_btn": "Eliminar",
+  "zimbra_account_alias_delete_success_message": "La solicitud de eliminación se ha enviado. Va a ejecutarse.",
+  "zimbra_account_alias_delete_error_message": "No se ha podido completar la solicitud de eliminación. {{ error }}"
+}

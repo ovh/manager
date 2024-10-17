@@ -1,0 +1,8 @@
+{
+  "zimbra_account_alias_delete_modal_title": "Alias löschen",
+  "zimbra_account_alias_delete_modal_description": "Sind Sie sicher, dass Sie es löschen möchten?",
+  "zimbra_account_alias_delete_modal_cancel_btn": "Abbrechen",
+  "zimbra_account_alias_delete_modal_delete_btn": "Löschen",
+  "zimbra_account_alias_delete_success_message": "Ihre Anfrage zur Löschung wurde registriert. Sie wird in einigen Augenblicken ausgeführt.",
+  "zimbra_account_alias_delete_error_message": "Ihre Anfrage zum Löschen konnte nicht abgeschlossen werden. {{ error }}"
+}

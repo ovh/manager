@@ -1,0 +1,13 @@
+{
+  "zimbra_account_alias_add_modal_title": "Create an alias",
+  "zimbra_account_alias_add_description": "Create an alias for the {{ account }} account",
+  "zimbra_account_alias_add_input_email_placeholder": "Alias",
+  "zimbra_account_alias_add_input_email_helper": "The local part of your alias (the text preceding the '@') must follow the following guidelines:",
+  "zimbra_account_alias_add_input_email_helper_rule_1": "It must end with a letter or number",
+  "zimbra_account_alias_add_input_email_helper_rule_2": "Allowed special characters are \".\", \"+\", \"-\" and \"_\"",
+  "zimbra_account_alias_add_input_email_helper_rule_3": "Special characters cannot be placed side by side",
+  "zimbra_account_alias_add_select_domain_placeholder": "Select a domain name",
+  "zimbra_account_alias_add_btn_confirm": "Confirm",
+  "zimbra_account_alias_add_success_message": "Your request to create an alias has been processed. It will be processed in a few moments.",
+  "zimbra_account_alias_add_error_message": "Your request to create an alias could not be completed. {{ error }}"
+}

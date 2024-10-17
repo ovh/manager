@@ -26,6 +26,16 @@ export const getDomainsZoneList = async () => {
   return data;
 };
 
+export const getZimbraPlatformDomainDetail = async (
+  platformId: string,
+  domainId: string,
+) => {
+  const { data } = await v2.get<DomainType>(
+    `${getApiPath(platformId)}domain/${domainId}`,
+  );
+  return data;
+};
+
 // POST
 
 export const postZimbraDomain = async (
@@ -33,6 +43,19 @@ export const postZimbraDomain = async (
   params: DomainBodyParamsType,
 ) => {
   const { data } = await v2.post(`${getApiPath(platformId)}domain`, {
+    targetSpec: params,
+  });
+  return data;
+};
+
+// PUT
+
+export const putZimbraDomain = async (
+  platformId: string,
+  domainId: string,
+  params: DomainBodyParamsType,
+) => {
+  const { data } = await v2.put(`${getApiPath(platformId)}domain/${domainId}`, {
     targetSpec: params,
   });
   return data;

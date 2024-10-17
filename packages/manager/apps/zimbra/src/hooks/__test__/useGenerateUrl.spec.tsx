@@ -1,20 +1,12 @@
 import { describe, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import React from 'react';
 import { useGenerateUrl } from '../useGenerateUrl';
-
-vi.mock('@/hooks', () => {
-  return {
-    useOrganization: vi.fn(() => ({ data: undefined })),
-  };
-});
+import { wrapper } from '@/utils/test.provider';
 
 vi.mock('react-router-dom', async (importOriginal) => {
-  const actual: any = await importOriginal();
   return {
-    ...actual,
+    ...(await importOriginal<typeof import('react-router-dom')>()),
     useHref: vi.fn(
       (text) =>
         `#/00000000-0000-0000-0000-000000000001/organizations/${text.slice(2)}`,
@@ -22,14 +14,8 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-const queryClient = new QueryClient();
-
-const wrapper = ({ children }: any) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
-
-describe('href', () => {
-  it('Return url href', async () => {
+describe('useGenerateUrl', () => {
+  it('should return url href', async () => {
     const { result } = renderHook(() => useGenerateUrl('./add', 'href'), {
       wrapper,
     });
@@ -38,7 +24,7 @@ describe('href', () => {
     );
   });
 
-  it('Return url href with params', async () => {
+  it('should return url href with params', async () => {
     const { result } = renderHook(
       () =>
         useGenerateUrl('./delete', 'href', {
@@ -53,14 +39,14 @@ describe('href', () => {
     );
   });
 
-  it('Return url path', async () => {
+  it('should return url path', async () => {
     const { result } = renderHook(() => useGenerateUrl('./add', 'path'), {
       wrapper,
     });
     expect(result.current).toBe('./add?');
   });
 
-  it('Return url path with params', async () => {
+  it('should return url path with params', async () => {
     const { result } = renderHook(
       () =>
         useGenerateUrl('./delete', 'path', {
