@@ -17,7 +17,16 @@ import {
 } from '@/api/data/ssh';
 import { TSshKey } from '@/interface';
 
-vi.mock('@/api/data/ssh');
+vi.mock('@/api/data/ssh', async (importOriginal) => {
+  const actual: any = await importOriginal();
+  return {
+    ...actual,
+    addSshKey: vi.fn(),
+    getAllSshKeys: vi.fn(),
+    getSshKey: vi.fn(),
+    removeSshKey: vi.fn(),
+  };
+});
 
 const sshKeysMock = ([
   {
@@ -189,7 +198,7 @@ describe('useSshKeys', () => {
         useSshKeys(
           'project1',
           {
-            pagination: { pageIndex: 1, pageSize: 10 },
+            pagination: { pageIndex: 0, pageSize: 10 },
             sorting: { id: 'name', desc: false },
           },
           [] as string[],
@@ -199,7 +208,7 @@ describe('useSshKeys', () => {
       },
     );
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(getAllSshKeys).toHaveBeenCalledWith('project1');
       expect(result.current.data).toBeDefined();
       expect(result.current.data.rows.length).toBeGreaterThan(0);

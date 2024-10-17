@@ -42,31 +42,31 @@ describe('AttachStorage', () => {
     const { getByTestId } = render(<AttachStorage />);
     expect(getByTestId('attach-storage-spinner')).toBeInTheDocument();
   });
-  it('renders NoInstanceWarningMessage when no instances are available and not pending', () => {
+  it('renders NoInstanceWarningMessage when no instances are available and not pending', async () => {
     vi.spyOn(useInstanceModule, 'useInstances').mockReturnValue({
       data: [],
       isPending: false,
     } as UseQueryResult<Instance[]>);
 
     const { getByTestId } = render(<AttachStorage />);
-    waitFor(() =>
+    await waitFor(() =>
       expect(
         getByTestId('AttachStorage-NoInstanceWarningMessage'),
       ).toBeDefined(),
     );
   });
 
-  it('does not render NoInstanceWarningMessage when instances are available', () => {
+  it('does not render NoInstanceWarningMessage when instances are available', async () => {
     vi.spyOn(useInstanceModule, 'useInstances').mockReturnValue({
       data: [{ id: '1', name: 'Instance 1' }],
       isPending: false,
     } as UseQueryResult<Instance[]>);
 
-    const { getByTestId } = render(<AttachStorage />);
-    waitFor(() =>
+    const { queryByTestId } = render(<AttachStorage />);
+    await waitFor(() =>
       expect(
-        getByTestId('AttachStorage-NoInstanceWarningMessage'),
-      ).not.toBeDefined(),
+        queryByTestId('AttachStorage-NoInstanceWarningMessage'),
+      ).toBeNull(),
     );
   });
 

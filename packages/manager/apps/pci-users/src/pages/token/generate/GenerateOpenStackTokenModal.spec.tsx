@@ -1,3 +1,7 @@
+import {
+  OdsInputValueChangeEventDetail,
+  OsdsPassword,
+} from '@ovhcloud/ods-components';
 import { QueryClientProvider, UseQueryResult } from '@tanstack/react-query';
 import '@testing-library/jest-dom/vitest';
 import {
@@ -29,6 +33,11 @@ function renderModal() {
   );
 }
 
+vi.mock('@/api/hooks/useUser', () => ({
+  useGenerateOpenStackToken: vi.fn(() => ({ data: [], isPending: false })),
+  useUser: vi.fn(() => ({ data: [], isPending: false })),
+}));
+
 describe('GenerateOpenStackTokenModal tests.', () => {
   afterEach(() => {
     vi.clearAllMocks();
@@ -48,7 +57,7 @@ describe('GenerateOpenStackTokenModal tests.', () => {
     expect(submitButton).toHaveAttribute('disabled');
   });
 
-  it('should call useGenerateOpenStackToken generate function when the confirmation Button is clicked', () => {
+  it('should call useGenerateOpenStackToken generate function when the confirmation Button is clicked', async () => {
     const mockGenerate = vi.fn();
     vi.spyOn(_useUserHook, 'useGenerateOpenStackToken').mockReturnValue(({
       isPending: false,
@@ -58,12 +67,22 @@ describe('GenerateOpenStackTokenModal tests.', () => {
     renderModal();
 
     const confirmButton = screen.getByTestId('submitButton');
+    const passwordInput = screen.getByTestId('open-stack-token_password');
+
+    act(() => {
+      fireEvent.change(passwordInput, {
+        target: { value: 'PASSWORD' },
+      });
+      ((passwordInput as unknown) as OsdsPassword).odsValueChange.emit({
+        value: 'PASSWORD',
+      } as OdsInputValueChangeEventDetail);
+    });
 
     act(() => {
       fireEvent.click(confirmButton);
     });
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(mockGenerate).toHaveBeenCalled();
     });
   });
