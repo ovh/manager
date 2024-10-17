@@ -11,6 +11,7 @@ export const URL = {
   RESOURCE_GROUP: '/engine/api/v2/iam/resourceGroup',
   RESOURCE_TYPE: '/engine/api/v2/iam/reference/resource/type',
   PERMISSIONS_GROUPS: '/engine/api/v2/iam/permissionsGroup',
+  APPLICATIONS: '/me/api/application',
 };
 
 export default class IAMService {
@@ -488,5 +489,39 @@ export default class IAMService {
       url: `${URL.RESOURCE_GROUP}/${id}`,
       data,
     }).then(({ data: resourceGroup }) => resourceGroup);
+  }
+
+  /**
+   * Retrieves a list of all applications.
+   * @returns {Promise<Object[]>} A Promise that resolves to an array of application objects, or null if an application fetch fails.
+   */
+  getApplications() {
+    return this.$http
+      .get(URL.APPLICATIONS)
+      .then(({ data }) =>
+        this.$q.all(
+          data
+            .map((id) => this.getApplication(id).catch(() => null))
+            .filter((application) => application !== null),
+        ),
+      );
+  }
+
+  /**
+   * Retrieves the details of a specific application.
+   * @param {string} id The unique identifier of the application.
+   * @returns {Promise<Object>} A Promise that resolves to the application object.
+   */
+  getApplication(id) {
+    return this.$http.get(`${URL.APPLICATIONS}/${id}`).then(({ data }) => data);
+  }
+
+  /**
+   * Deletes an application.
+   * @param {string} id The unique identifier of the application to be deleted.
+   * @returns {Promise} A Promise that resolves when the deletion is complete.
+   */
+  deleteApplication(id) {
+    return this.$http.delete(`${URL.APPLICATIONS}/${id}`);
   }
 }
