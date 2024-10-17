@@ -42,7 +42,5 @@
   "server_configuration_netboot_invalid": "Invalide",
   "server_configuration_netboot_auth_method": "Méthode d'authentification :",
   "server_configuration_netboot_auth_method_sshkey": "Authentification par clé SSH",
-  "server_configuration_netboot_auth_method_password": "Authentification par mot de passe",
-  "server_configuration_netboot_sshkey_input": "Votre clé SSH Publique :",
-  "server_configuration_netboot_sshkey_input_placeholder": "Insérez une valeur de type sshPubKey. Exemple : {{t0}}"
+  "server_configuration_netboot_auth_method_password": "Authentification par mot de passe"
 }

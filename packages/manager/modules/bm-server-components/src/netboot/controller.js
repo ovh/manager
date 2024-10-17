@@ -1,11 +1,7 @@
 import forEach from 'lodash/forEach';
 import isFunction from 'lodash/isFunction';
 
-import {
-  getNetbootGuideUrl,
-  UNSUPPORTED_SSH_KEY_RESCUES,
-  SSH_KEY,
-} from './constants';
+import { getNetbootGuideUrl, UNSUPPORTED_SSH_KEY_RESCUES } from './constants';
 
 export default class BmServerComponentsNetbootCtrl {
   /* @ngInject */
@@ -53,7 +49,6 @@ export default class BmServerComponentsNetbootCtrl {
     this.currentNetboot = {}; // current netboot option
     this.ssh = {
       publicKey: '',
-      inputRules: SSH_KEY,
     };
     this.rootDevice = {
       root: null,

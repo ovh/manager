@@ -1,0 +1,7 @@
+{
+  "manager_components_select_ssh_key": "Chiavi SSH da preinstallare:",
+  "manager_components_select_ssh_key_help": "Aggiungi una chiave nella sezione \"Il tuo account\"",
+  "manager_components_sshkey_input": "La tua chiave SSH pubblica:",
+  "manager_components_sshkey_input_placeholder": "Inserisci una chiave SSH pubblica. Esempio: {{t0}}",
+  "manager_components_loading_sshKeys_error": "Si è verificato un errore durante il caricamento delle tue chiavi SSH"
+}
