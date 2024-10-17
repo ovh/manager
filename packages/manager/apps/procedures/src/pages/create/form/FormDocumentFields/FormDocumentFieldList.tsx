@@ -15,6 +15,7 @@ type Props = {
   legalForm: LegalFrom | 'default';
   subsidiary: Subsidiary | 'DEFAULT';
   control: Control<FieldValues>;
+  disabled?: boolean;
 };
 
 type FieldDefinition = {
@@ -36,6 +37,7 @@ export const FormDocumentFieldList: FunctionComponent<Props> = ({
   control,
   legalForm,
   subsidiary,
+  disabled = false,
 }) => {
   const rules = documentsFieldRules as DocumentsFieldRules;
 
@@ -83,6 +85,7 @@ export const FormDocumentFieldList: FunctionComponent<Props> = ({
               tooltips={field.tooltips.map((tooltip) =>
                 tdoc(tooltip, { maxFiles }),
               )}
+              disabled={disabled}
             />
           )}
           name={field.field.replace('.', '')}
