@@ -3,10 +3,6 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import DeleteModal from './DeleteModal.component';
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (key) => key }),
-}));
-
 describe('DeleteModal', () => {
   const mockOnClose = vi.fn();
   const mockOnConfirm = vi.fn();
