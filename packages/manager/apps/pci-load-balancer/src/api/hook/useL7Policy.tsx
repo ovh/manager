@@ -14,7 +14,7 @@ import { paginateResults, sortResults } from '@/helpers';
 import { ACTION_LABELS, ACTIONS } from '@/constants';
 import queryClient from '@/queryClient';
 
-const getAttribute = (policy: TL7Policy) => {
+export const getAttribute = (policy: TL7Policy) => {
   switch (policy.action) {
     case ACTIONS.REDIRECT_TO_URL:
       return policy.redirectUrl;
@@ -27,6 +27,18 @@ const getAttribute = (policy: TL7Policy) => {
   }
 };
 
+export const setSearchPolicy = (l7Policies: TL7Policy[]): TL7Policy[] =>
+  l7Policies.map((l7Policy) => {
+    const action = ACTION_LABELS[l7Policy.action];
+    const attribute = getAttribute(l7Policy);
+    return {
+      ...l7Policy,
+      attribute,
+      action,
+      search: `${l7Policy.position} ${l7Policy.name} ${action} ${attribute} ${l7Policy.redirectHttpCode} ${l7Policy.provisioningStatus} ${l7Policy.operatingStatus} ${l7Policy.redirectUrl} ${l7Policy.redirectPrefix} ${l7Policy.redirectPoolId}`,
+    };
+  });
+
 export const useGetAllL7Policies = (
   projectId: string,
   listenerId: string,
@@ -35,17 +47,7 @@ export const useGetAllL7Policies = (
   useQuery({
     queryKey: ['l7Policies', projectId, 'listeners', listenerId, region],
     queryFn: () => getL7Policies(projectId, listenerId, region),
-    select: (l7Policies) =>
-      l7Policies.map((l7Policy) => {
-        const action = ACTION_LABELS[l7Policy.action];
-        const attribute = getAttribute(l7Policy);
-        return {
-          ...l7Policy,
-          attribute,
-          action,
-          search: `${l7Policy.position} ${l7Policy.name} ${action} ${attribute} ${l7Policy.redirectHttpCode} ${l7Policy.provisioningStatus} ${l7Policy.operatingStatus} ${l7Policy.redirectUrl} ${l7Policy.redirectPrefix} ${l7Policy.redirectPoolId}`,
-        };
-      }),
+    select: (l7Policies) => setSearchPolicy(l7Policies),
   });
 
 export const useL7Policies = (
