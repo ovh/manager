@@ -91,7 +91,7 @@ export default function HealthMonitorCreatePage() {
         associatedPool={pool}
         formState={formState}
         isPending={isPoolPending || isCreationPending}
-        onCancel={() => navigate('../health-monitor')}
+        onCancel={() => navigate('../general-information')}
         onChange={setFormState}
         onSubmit={createHealthMonitor}
         submitLabel={t(
