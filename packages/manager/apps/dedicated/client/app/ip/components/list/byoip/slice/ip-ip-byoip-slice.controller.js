@@ -17,6 +17,7 @@ export default class IpByoipSliceController {
     this.$scope = $scope;
     this.IpByoipService = IpByoipService;
     this.ip = $scope.currentActionData.ipBlock;
+    this.refreshIpList = $scope.currentActionData.refreshIpList;
     this.ipSizes = [];
     this.selectedSize = {};
     this.isLoaded = false;
@@ -77,6 +78,15 @@ export default class IpByoipSliceController {
       this.selectedSize.slicingSize,
     )
       .then(() => {
+        this.refreshIpList(
+          [this.ip],
+          this.selectedSize.childrenIps.map((ip) => {
+            return {
+              ipBlock: ip,
+              isTemporaryEntry: true,
+            };
+          }),
+        );
         this.Alerter.success(
           this.$translate.instant('ip_table_manage_byoip_slice_success'),
         );
