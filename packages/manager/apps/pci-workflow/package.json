@@ -67,8 +67,7 @@
   },
   "regions": [
     "CA",
-    "EU",
-    "US"
+    "EU"
   ],
   "universes": [
     "@ovh-ux/manager-public-cloud"

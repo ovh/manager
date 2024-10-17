@@ -89,5 +89,6 @@
   "common_dual_list_target_move_all": "Delete all",
   "common_dual_list_target_search": "Search target content",
   "common_cancel": "Cancel",
-  "common_confirm": "Confirm"
+  "common_confirm": "Confirm",
+  "common_not_supported": "Not supported"
 }
