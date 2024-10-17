@@ -89,5 +89,6 @@
   "common_password_good_password": "Mot de passe correct.",
   "common_password_strong_password": "Mot de passe fort.",
   "common_cancel": "Annuler",
-  "common_confirm": "Confirmer"
+  "common_confirm": "Confirmer",
+  "common_not_supported": "Non supporté"
 }

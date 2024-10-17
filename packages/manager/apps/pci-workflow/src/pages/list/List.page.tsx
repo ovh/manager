@@ -277,25 +277,33 @@ export default function ListingPage() {
           </OsdsPopover>
         </div>
       </div>
-      <div className="flex mt-4">
-        {searchQueries.map((query, index) => (
-          <OsdsChip
-            key={index}
-            className="mr-2"
-            color={ODS_THEME_COLOR_INTENT.primary}
-            variant={ODS_CHIP_VARIANT.flat}
-            removable
-            onOdsChipRemoval={() => {
-              setSearchQueries(searchQueries.filter((_, i) => i !== index));
-            }}
-          >
-            {query}
-          </OsdsChip>
-        ))}
-      </div>
-      <div className="my-5">
-        <FilterList filters={filters} onRemoveFilter={removeFilter} />
-      </div>
+
+      {searchQueries?.length > 0 && (
+        <div className="flex mt-8">
+          {searchQueries.map((query, index) => (
+            <OsdsChip
+              key={index}
+              className="mr-2"
+              color={ODS_THEME_COLOR_INTENT.primary}
+              variant={ODS_CHIP_VARIANT.flat}
+              removable
+              onOdsChipRemoval={() => {
+                setSearchQueries(searchQueries.filter((_, i) => i !== index));
+              }}
+            >
+              {query}
+            </OsdsChip>
+          ))}
+        </div>
+      )}
+
+      {filters?.length > 0 && (
+        <div className="mt-8">
+          <FilterList filters={filters} onRemoveFilter={removeFilter} />
+        </div>
+      )}
+
+      <div className="mt-8" aria-hidden="true"></div>
 
       {isPending ? (
         <div className="text-center">
