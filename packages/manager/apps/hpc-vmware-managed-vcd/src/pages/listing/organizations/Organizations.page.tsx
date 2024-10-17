@@ -29,9 +29,15 @@ const DatagridIdCell = (vdcOrg: IVcdOrganization) => {
   );
 };
 
-const DatagridRegionCell = (vdcOrg: IVcdOrganization) => (
+const DatagridLocationCell = (vdcOrg: IVcdOrganization) => (
   <DataGridTextCell>
     <Region name={vdcOrg.currentState?.region?.toLowerCase()} mode="region" />
+  </DataGridTextCell>
+);
+
+const DatagridRegionCell = (vdcOrg: IVcdOrganization) => (
+  <DataGridTextCell>
+    {vdcOrg.currentState?.region?.toLowerCase()}
   </DataGridTextCell>
 );
 
@@ -62,8 +68,13 @@ export default function Listing() {
     },
     {
       id: 'location',
-      cell: DatagridRegionCell,
+      cell: DatagridLocationCell,
       label: t('managed_vcd_listing_location'),
+    },
+    {
+      id: 'region',
+      cell: DatagridRegionCell,
+      label: t('managed_vcd_listing_region'),
     },
     {
       id: 'description',
