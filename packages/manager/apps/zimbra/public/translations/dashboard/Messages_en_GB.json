@@ -34,5 +34,22 @@
   "zimbra_dashboard_tile_serviceConsumption_title": "Statistics",
   "zimbra_dashboard_tile_serviceConsumption_accountOffer": "Account per solution",
   "zimbra_dashboard_tile_serviceConsumption_noAccountOffer": "You currently do not have any mailboxes.",
-  "zimbra_dashboard_tile_usefulLinks_title": "Useful links"
+  "zimbra_dashboard_tile_usefulLinks_title": "Useful links",
+  "zimbra_dashboard_domains_edit": "Domain configuration",
+  "zimbra_dashboard_domains_diagnostic": "Diagnostic",
+  "zimbra_dashboard_email_accounts_settings": "Account settings",
+  "zimbra_dashboard_email_accounts_alias": "Alias",
+  "zimbra_dashboard_email_accounts_alias_add": "Create an alias",
+  "zimbra_dashboard_email_accounts_alias_delete": "Delete an alias",
+  "zimbra_dashboard_email_accounts_redirections": "Redirections",
+  "zimbra_dashboard_email_accounts_redirections_add": "Create a redirection",
+  "zimbra_dashboard_email_accounts_redirections_edit": "Modify a redirection",
+  "zimbra_dashboard_email_accounts_redirections_delete": "Delete a redirection",
+  "zimbra_dashboard_mailing_lists_add": "Create mailing list",
+  "zimbra_dashboard_mailing_lists_settings": "Edit mailing list",
+  "zimbra_dashboard_mailing_lists": "Mailing lists",
+  "zimbra_dashboard_redirections": "Redirections",
+  "zimbra_dashboard_redirections_edit": "Modify the redirection",
+  "zimbra_dashboard_redirections_delete": "Delete redirection",
+  "zimbra_dashboard_auto_replies": "Auto-replies"
 }

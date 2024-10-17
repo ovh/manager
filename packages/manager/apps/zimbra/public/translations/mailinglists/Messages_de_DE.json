@@ -1,0 +1,14 @@
+{
+  "zimbra_mailinglists_datagrid_name_label": "Name",
+  "zimbra_mailinglists_datagrid_organization_label": "Organisation",
+  "zimbra_mailinglists_datagrid_owner_label": "Inhaber",
+  "zimbra_mailinglists_datagrid_aliases_label": "Alias",
+  "zimbra_mailinglists_datagrid_moderators_label": "Moderatoren",
+  "zimbra_mailinglists_datagrid_subscribers_label": "Abonnenten",
+  "zimbra_mailinglists_datagrid_action_edit": "Mailingliste konfigurieren",
+  "zimbra_mailinglists_datagrid_action_define_members": "Mitglieder definieren",
+  "zimbra_mailinglists_datagrid_action_configure_delegation": "Delegierung konfigurieren",
+  "zimbra_mailinglists_datagrid_action_delete": "Mailingliste löschen",
+  "zimbra_mailinglists_datagrid_cta": "Mailingliste erstellen",
+  "zimbra_mailinglists_quota_label": "Mailinglistenkontingent"
+}

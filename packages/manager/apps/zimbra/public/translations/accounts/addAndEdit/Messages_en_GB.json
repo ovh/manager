@@ -33,5 +33,8 @@
   "zimbra_account_add_error_message": "Unable to submit your email account creation request. {{ error }}",
   "zimbra_account_edit_success_message": "Your request to edit your email account has been submitted. It will be processed in a few moments.",
   "zimbra_account_edit_error_message": "Unable to submit the request to edit your email account. {{ error }}",
-  "zimbra_account_add_input_displayName_tooltip": "Name displayed in the directory and to email recipients."
+  "zimbra_account_add_input_displayName_tooltip": "Name displayed in the directory and to email recipients.",
+  "zimbra_account_edit_tabs_settings": "Account settings",
+  "zimbra_account_edit_tabs_redirections": "Redirections",
+  "zimbra_account_edit_tabs_alias": "Alias"
 }

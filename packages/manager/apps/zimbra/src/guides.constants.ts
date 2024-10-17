@@ -1,4 +1,4 @@
-interface GuideLinks {
+export interface GuideLinks {
   [key: string]: string | undefined;
   FR?: string;
   GB: string;
@@ -13,6 +13,12 @@ interface GuideLinks {
   TN?: string;
   SN?: string;
   IN?: string;
+}
+
+export interface Guide {
+  key: string;
+  url: GuideLinks | string;
+  tracking: string;
 }
 
 const helpRoot = 'https://help.ovhcloud.com/csm/';
@@ -33,6 +39,21 @@ export const ZIMBRA_USER_GUIDE: GuideLinks = {
   SN: `${helpRoot}fr-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061410`,
 };
 
+export const ZIMBRA_CNAME_GUIDE: GuideLinks = {
+  FR: `${helpRoot}fr-email-cname-record?id=kb_article_view&sysparm_article=KB0053252`,
+  GB: `${helpRoot}en-gb-email-cname-record?id=kb_article_view&sysparm_article=KB0053251`,
+  DE: `${helpRoot}de-email-cname-record?id=kb_article_view&sysparm_article=KB0041310`,
+  ES: `${helpRoot}es-es-email-cname-record?id=kb_article_view&sysparm_article=KB0053242`,
+  IT: `${helpRoot}it-email-cname-record?id=kb_article_view&sysparm_article=KB0053256`,
+  PL: `${helpRoot}pl-email-cname-record?id=kb_article_view&sysparm_article=KB0053259`,
+  PT: `${helpRoot}pt-email-cname-record?id=kb_article_view&sysparm_article=KB0053255`,
+  IE: `${helpRoot}en-ie-email-cname-record?id=kb_article_view&sysparm_article=KB0053245`,
+  DEFAULT: `${helpRoot}fr-email-cname-record?id=kb_article_view&sysparm_article=KB0053252`,
+  MA: `${helpRoot}en-gb-email-cname-record?id=kb_article_view&sysparm_article=KB0053251`,
+  TN: `${helpRoot}fr-email-cname-record?id=kb_article_view&sysparm_article=KB0053252`,
+  SN: `${helpRoot}fr-email-cname-record?id=kb_article_view&sysparm_article=KB0053252`,
+};
+
 export const ZIMBRA_ADMINISTRATOR_GUIDE: GuideLinks = {
   FR: `${helpRoot}fr-zimbra-getting-started?id=kb_article_view&sysparm_article=KB0064591`,
   GB: `${helpRoot}en-gb-zimbra-getting-started?id=kb_article_view&sysparm_article=KB0064594`,
@@ -46,6 +67,21 @@ export const ZIMBRA_ADMINISTRATOR_GUIDE: GuideLinks = {
   MA: `${helpRoot}fr-zimbra-getting-started?id=kb_article_view&sysparm_article=KB0064591`,
   TN: `${helpRoot}fr-zimbra-getting-started?id=kb_article_view&sysparm_article=KB0064591`,
   SN: `${helpRoot}fr-zimbra-getting-started?id=kb_article_view&sysparm_article=KB0064591`,
+};
+
+export const ZIMBRA_DNS_CONFIGURATION_GUIDE: GuideLinks = {
+  FR: `${helpRoot}`,
+  GB: `${helpRoot}`,
+  DE: `${helpRoot}`,
+  ES: `${helpRoot}`,
+  IT: `${helpRoot}`,
+  PL: `${helpRoot}`,
+  PT: `${helpRoot}`,
+  IE: `${helpRoot}`,
+  DEFAULT: `${helpRoot}`,
+  MA: `${helpRoot}`,
+  TN: `${helpRoot}`,
+  SN: `${helpRoot}`,
 };
 
 export const GUIDES_LIST = {
@@ -62,6 +98,16 @@ export const GUIDES_LIST = {
   user_guide: {
     key: 'zimbra_dashboard_user_guides',
     url: ZIMBRA_USER_GUIDE,
+    tracking: '::to define',
+  },
+  cname_guide: {
+    key: 'zimbra_cname_guide',
+    url: ZIMBRA_CNAME_GUIDE,
+    tracking: '::to define',
+  },
+  dns_configuration_guide: {
+    key: 'zimbra_dns_configuration_guide',
+    url: ZIMBRA_DNS_CONFIGURATION_GUIDE,
     tracking: '::to define',
   },
 };

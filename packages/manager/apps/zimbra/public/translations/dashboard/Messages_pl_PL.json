@@ -34,5 +34,22 @@
   "zimbra_dashboard_tile_serviceConsumption_title": "Statystyki",
   "zimbra_dashboard_tile_serviceConsumption_accountOffer": "Konto wg oferty",
   "zimbra_dashboard_tile_serviceConsumption_noAccountOffer": "Aktualnie nie posiadasz żadnej skrzynki e-mail.",
-  "zimbra_dashboard_tile_usefulLinks_title": "Przydatne linki"
+  "zimbra_dashboard_tile_usefulLinks_title": "Przydatne linki",
+  "zimbra_dashboard_domains_edit": "Konfiguracja domeny",
+  "zimbra_dashboard_domains_diagnostic": "Diagnostyka",
+  "zimbra_dashboard_email_accounts_settings": "Parametry konta",
+  "zimbra_dashboard_email_accounts_alias": "Alias",
+  "zimbra_dashboard_email_accounts_alias_add": "Utwórz alias",
+  "zimbra_dashboard_email_accounts_alias_delete": "Usuń alias",
+  "zimbra_dashboard_email_accounts_redirections": "Przekierowania",
+  "zimbra_dashboard_email_accounts_redirections_add": "Utwórz przekierowanie",
+  "zimbra_dashboard_email_accounts_redirections_edit": "Edytuj przekierowanie",
+  "zimbra_dashboard_email_accounts_redirections_delete": "Usuń przekierowanie",
+  "zimbra_dashboard_mailing_lists_add": "Utwórz listę mailingową",
+  "zimbra_dashboard_mailing_lists_settings": "Edytuj listę mailingową",
+  "zimbra_dashboard_mailing_lists": "Listy mailingowe",
+  "zimbra_dashboard_redirections": "Przekierowania",
+  "zimbra_dashboard_redirections_edit": "Edytuj przekierowanie",
+  "zimbra_dashboard_redirections_delete": "Usuń przekierowanie",
+  "zimbra_dashboard_auto_replies": "Autorespondery"
 }

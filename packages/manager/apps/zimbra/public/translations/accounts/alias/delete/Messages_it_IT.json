@@ -1,0 +1,8 @@
+{
+  "zimbra_account_alias_delete_modal_title": "Elimina l'alias",
+  "zimbra_account_alias_delete_modal_description": "Vuoi davvero eliminarlo?",
+  "zimbra_account_alias_delete_modal_cancel_btn": "Annulla",
+  "zimbra_account_alias_delete_modal_delete_btn": "Eliminare",
+  "zimbra_account_alias_delete_success_message": "La richiesta di eliminazione è stata presa in carico. Sarà eseguita entro pochi minuti.",
+  "zimbra_account_alias_delete_error_message": "Impossibile completare la richiesta di eliminazione. {{ error }}"
+}

@@ -1,0 +1,8 @@
+{
+  "zimbra_redirections_delete_modal_title": "Usuń przekierowanie",
+  "zimbra_redirections_delete_modal_content": "Czy chcesz usunąć przekierowanie?",
+  "zimbra_redirections_delete_button_delete": "Usuń",
+  "zimbra_redirections_delete_button_cancel": "Anuluj",
+  "zimbra_redirections_delete_modal_from": "Od:",
+  "zimbra_redirections_delete_modal_to": "Na:"
+}
