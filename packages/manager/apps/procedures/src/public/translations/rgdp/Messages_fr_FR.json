@@ -26,5 +26,7 @@
   "rgdp_form_subject_limitation_right": "Droit à la limitation du traitement",
   "rgdp_form_subject_portability_right": "Droit à la portabilité des données",
   "rgdp_form_subject_payment_method_remove": "Suppression des informations de paiement",
-  "rgdp_form_subject_other_request": "Autre demande"
+  "rgdp_form_subject_other_request": "Autre demande",
+  "rgdp_legal_information": "Les données collectées ci-dessus sont nécessaires au traitement de votre demande. Elles seront conservées pour une durée de 5 ans. Dans l'hypothèse où une copie de votre pièce d'identité viendrait à vous être demandé, celle-ci sera conservée pour une durée maximale de 15 jours.",
+  "rgdp_legal_information_policy": "Pour en savoir plus, sur le traitement de vos données personnelles et connaître vos droits, vous pouvez consulter notre <a style='color:#2563eb; font-weight: 700;' href='{{legalPolicyLink}}' target='_blank'>Politique d'utilisation de données à caractère personnel OVHcloud.</a>"
 }
