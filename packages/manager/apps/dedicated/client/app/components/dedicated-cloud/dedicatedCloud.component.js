@@ -7,6 +7,7 @@ export default {
     dedicatedCloud: '<',
     editDetails: '<',
     licenseState: '<',
+    logsState: '<',
     operationState: '<',
     pccDashboardState: '<',
     productId: '<',
