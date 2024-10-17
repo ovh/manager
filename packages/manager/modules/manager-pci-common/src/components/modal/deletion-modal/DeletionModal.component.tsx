@@ -20,8 +20,13 @@ import { PciModal, PciModalProps } from '../PciModal.component';
 export type DeletionModalProps = PciModalProps & {
   confirmationText?: string;
   confirmationLabel?: string;
-  inputErrorMessage?: string;
 };
+
+enum FormErrorEnum {
+  NONE,
+  REQUIRED,
+  INVALID,
+}
 
 export function DeletionModal({
   children,
@@ -35,13 +40,12 @@ export function DeletionModal({
   onCancel,
   confirmationText,
   confirmationLabel,
-  inputErrorMessage,
 }: Readonly<DeletionModalProps>) {
   const { t } = useTranslation('pci-common');
 
   const [formState, setFormState] = useState({
     deleteInput: '',
-    hasError: false,
+    error: FormErrorEnum.NONE,
     isTouched: false,
   });
 
@@ -53,10 +57,20 @@ export function DeletionModal({
   };
 
   useEffect(() => {
+    let error = null;
+    if (formState.isTouched && !formState.deleteInput?.trim()) {
+      error = FormErrorEnum.REQUIRED;
+    } else if (
+      formState.isTouched &&
+      formState.deleteInput !== confirmationText
+    ) {
+      error = FormErrorEnum.INVALID;
+    } else {
+      error = FormErrorEnum.NONE;
+    }
     setFormState({
       ...formState,
-      hasError:
-        formState.isTouched && formState.deleteInput !== confirmationText,
+      error,
     });
   }, [formState.deleteInput, formState.isTouched]);
 
@@ -64,7 +78,11 @@ export function DeletionModal({
     isPending ||
     (confirmationText && formState.deleteInput !== confirmationText);
 
-  const errorMessage = inputErrorMessage || t('common_field_error_required');
+  const errorMessage = {
+    [FormErrorEnum.REQUIRED]: t('common_field_error_required'),
+    [FormErrorEnum.INVALID]: t('common_field_error_pattern'),
+    [FormErrorEnum.NONE]: '',
+  }[formState.error];
 
   return (
     <PciModal
@@ -83,7 +101,7 @@ export function DeletionModal({
         <OsdsFormField
           class="mt-6"
           data-testid="delete-formField"
-          error={formState.hasError ? errorMessage : ''}
+          error={errorMessage}
         >
           <OsdsText
             slot="label"
@@ -99,7 +117,7 @@ export function DeletionModal({
             data-testid="delete-input"
             onOdsValueChange={handleInputDeleteChange}
             className={
-              formState.hasError
+              errorMessage
                 ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
                 : 'border-color-[var(--ods-color-default-200)] bg-white'
             }

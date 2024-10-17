@@ -102,7 +102,6 @@ export default function DeletePage() {
       cancelText={t('private_registry_common_cancel')}
       submitText={t('private_registry_common_delete')}
       type="warning"
-      inputErrorMessage={tField('common_field_error_pattern')}
     >
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}

@@ -29,6 +29,16 @@ export type TFlavor = {
   };
 };
 
+export const getFlavor = async (
+  projectId: string,
+  flavorId: string,
+): Promise<TFlavor> => {
+  const { data } = await v6.get<TFlavor>(
+    `/cloud/project/${projectId}/flavor/${flavorId}`,
+  );
+  return data;
+};
+
 export const getFlavors = async (
   projectId: string,
   region: string,
