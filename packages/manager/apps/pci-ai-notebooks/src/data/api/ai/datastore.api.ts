@@ -81,3 +81,14 @@ export const getDatastoreAuth = async ({
       `/cloud/project/${projectId}/ai/data/region/${region}/alias/${alias}/auth`,
     )
     .then((res) => res.data as ai.DataStoreAuth);
+
+export const getDatastoreContainer = async ({
+  projectId,
+  region,
+  alias,
+}: DatastoreProps) =>
+  apiClient.v6
+    .get(
+      `/cloud/project/${projectId}/ai/data/region/${region}/alias/${alias}/containers`,
+    )
+    .then((res) => res.data);

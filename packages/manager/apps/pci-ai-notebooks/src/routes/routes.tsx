@@ -30,6 +30,13 @@ export default [
         id: 'notebooks',
         ...lazyRouteConfig(() => import('@/pages/Root.page')),
       },
+      {
+        path: 'new',
+        id: 'create',
+        ...lazyRouteConfig(() =>
+          import('@/pages/notebooks/create/Create.page'),
+        ),
+      },
     ],
   },
   {
