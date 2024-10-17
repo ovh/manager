@@ -3,6 +3,7 @@ import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import * as OdsComponentModule from '@ovhcloud/ods-components/react';
 import { OsdsInput, OsdsTextArea } from '@ovhcloud/ods-components';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RGDPForm } from './RGDPForm.component';
 import { GDPRFormValues } from '@/types/gdpr.type';
 
@@ -33,7 +34,14 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
 });
 
 describe('RGDPForm', () => {
-  const renderForm = () => render(<RGDPForm />);
+  const renderForm = () => {
+    const queryClient = new QueryClient();
+    return render(
+      <QueryClientProvider client={queryClient}>
+        <RGDPForm />
+      </QueryClientProvider>,
+    );
+  };
 
   it('Should render the form fields correctly when the form is displayed', async () => {
     const { getByText } = renderForm();
