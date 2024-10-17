@@ -1,4 +1,12 @@
-import { Cpu, Globe, HardDrive, Hash, MemoryStick } from 'lucide-react';
+import {
+  Cpu,
+  Globe,
+  HardDrive,
+  Hash,
+  MemoryStick,
+  ShieldAlert,
+  ShieldCheck,
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -14,6 +22,9 @@ interface OrderSummaryProps {
     framework: ai.capabilities.notebook.Framework;
     version: string;
     editor: ai.capabilities.notebook.Editor;
+    notebookName: string;
+    unsecureHttp: boolean;
+    labels: ai.Label[];
   };
   onSectionClicked?: (target: string) => void;
 }
@@ -69,7 +80,8 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
             <Cpu className="size-4" />
             <span>
               {t('summaryFieldFlavorCores', {
-                count: order.flavor.resourcesPerUnit.cpu,
+                count:
+                  order.resourcesQuantity * order.flavor.resourcesPerUnit.cpu,
               })}
             </span>
           </div>
@@ -190,6 +202,80 @@ const EditorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   );
 };
 
+const NameDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <Button
+          variant={'link'}
+          size={'link'}
+          type="button"
+          onClick={() => onSectionClicked('options')}
+          className="font-bold"
+        >
+          {t('summaryFieldNameLabel')}
+        </Button>
+        <span>{order.notebookName}</span>
+      </div>
+    </div>
+  );
+};
+
+const PrivacyDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <Button
+          variant={'link'}
+          size={'link'}
+          type="button"
+          onClick={() => onSectionClicked('options')}
+          className="font-bold"
+        >
+          {t('summaryFieldPrivacyLabel')}
+        </Button>
+        {order.unsecureHttp ? (
+          <div className="flex flex-row gap-2 items-center">
+            <span>{t('summaryFieldPublicLabel')}</span>
+            <ShieldAlert className="size-4 text-amber-400" />
+          </div>
+        ) : (
+          <div className="flex flex-row gap-2 items-center">
+            <span>{t('summaryFieldPrivateLabel')}</span>
+            <ShieldCheck className="size-4 text-green-500" />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const LabelsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  return (
+    <div className="flex items-center gap-2">
+      <Button
+        data-testid="labels-section-button"
+        variant={'link'}
+        size={'link'}
+        type="button"
+        onClick={() => onSectionClicked('options')}
+        className="font-bold"
+      >
+        {t('summaryFieldLabelsLabel')}
+      </Button>
+      <span>
+        {t(`summaryFieldLabels`, {
+          count: order.labels.length,
+          context: `${order.labels.length}`,
+        })}
+      </span>
+    </div>
+  );
+};
+
 const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="grid grid-cols-1 gap-2">
@@ -197,6 +283,9 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <FlavorDetails order={order} onSectionClicked={onSectionClicked} />
       <FrameworkDetails order={order} onSectionClicked={onSectionClicked} />
       <EditorDetails order={order} onSectionClicked={onSectionClicked} />
+      <NameDetails order={order} onSectionClicked={onSectionClicked} />
+      <PrivacyDetails order={order} onSectionClicked={onSectionClicked} />
+      <LabelsDetails order={order} onSectionClicked={onSectionClicked} />
     </div>
   );
 };

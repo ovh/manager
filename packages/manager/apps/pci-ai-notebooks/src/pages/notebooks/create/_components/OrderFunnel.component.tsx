@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { AlertCircle, HelpCircle } from 'lucide-react';
 import * as ai from '@/types/cloud/project/ai';
 import { order } from '@/types/catalog';
 import { useOrderFunnel } from './useOrderFunnel.hook';
@@ -25,6 +26,14 @@ import { Input } from '@/components/ui/input';
 import OrderPrice from '@/components/order/price/OrderPrice.component';
 import FrameworksSelect from '@/components/order/framework/FrameworkSelect.component';
 import EditorsSelect from '@/components/order/editor/EditorSelect.component';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { Label } from '@/components/ui/label';
+import LabelsForm from '@/components/order/configuration/LabelsForm.component';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
@@ -83,6 +92,7 @@ const OrderFunnel = ({
             data-testid="order-funnel-container"
             className="col-span-1 md:col-span-3 divide-y-[1rem] divide-transparent"
           >
+            <h4>{t('fieldDimensionLabel')}</h4>
             <section id="region">
               <FormField
                 control={model.form.control}
@@ -171,6 +181,7 @@ const OrderFunnel = ({
                 )}
               />
             </section>
+            <h4>{t('fieldCaracteristicLabel')}</h4>
             <section id="framework">
               <FormField
                 control={model.form.control}
@@ -214,6 +225,102 @@ const OrderFunnel = ({
                         value={field.value}
                         onChange={(newEditor) =>
                           model.form.setValue('editor', newEditor)
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </section>
+
+            <section
+              id="options"
+              className="divide-y-[1rem] divide-transparent"
+            >
+              <h4>{t('fieldConfigurationLabel')}</h4>
+              <FormField
+                control={model.form.control}
+                name="notebookName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className={classNameLabel}>
+                      {t('fieldConfigurationNameLabel')}
+                    </FormLabel>
+                    <FormControl>
+                      <Input placeholder={field.value} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={model.form.control}
+                name="privacy"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col gap-1">
+                    <FormLabel className={classNameLabel}>
+                      {t('fieldConfigurationPrivacyLabel')}
+                    </FormLabel>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroup
+                        className="mb-2"
+                        name="access-type"
+                        value={field.value}
+                        onValueChange={(newPrivacyValue) =>
+                          model.form.setValue('privacy', newPrivacyValue)
+                        }
+                      >
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem
+                            value={'private'}
+                            id="private-access-radio"
+                          />
+
+                          <Label>{t('privateAccess')}</Label>
+                          <Popover>
+                            <PopoverTrigger>
+                              <HelpCircle className="size-4" />
+                            </PopoverTrigger>
+                            <PopoverContent>
+                              <p>{t('privateAccessDescription')}</p>
+                            </PopoverContent>
+                          </Popover>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value={'public'} id="public-access" />
+                          <Label>{t('publicAccess')}</Label>
+                          <Popover>
+                            <PopoverTrigger>
+                              <HelpCircle className="size-4" />
+                            </PopoverTrigger>
+                            <PopoverContent className="text-sm">
+                              <p>{t('publicAccessDescription1')}</p>
+                              <p className="text-red-600">
+                                {t('publicAccessDescription2')}
+                              </p>
+                            </PopoverContent>
+                          </Popover>
+                        </div>
+                      </RadioGroup>
+                    </div>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={model.form.control}
+                name="labels"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className={classNameLabel}>
+                      {t('fieldConfigurationLabelsLabel')}
+                    </FormLabel>
+                    <FormControl>
+                      <LabelsForm
+                        {...field}
+                        labelValue={field.value}
+                        onChange={(newLabel) =>
+                          model.form.setValue('labels', newLabel)
                         }
                       />
                     </FormControl>
