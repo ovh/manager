@@ -89,5 +89,6 @@
   "common_dual_list_target_move_all": "Eliminar todo",
   "common_dual_list_target_search": "Buscar en el contenido de destino",
   "common_cancel": "Cancelar",
-  "common_confirm": "Confirmar"
+  "common_confirm": "Confirmar",
+  "common_not_supported": "No compatible"
 }

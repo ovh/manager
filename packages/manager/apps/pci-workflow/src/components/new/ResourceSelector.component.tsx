@@ -65,11 +65,7 @@ const useDatagridColumn = (
       id: 'name',
       cell: (instance: TWorkflowInstance) => (
         <NotSupportedTooltipComponent region={instance.region}>
-          <DataGridTextCell
-            className={isLocalZone(instance.region) ? 'opacity-50' : ''}
-          >
-            {instance.name}
-          </DataGridTextCell>
+          <DataGridTextCell>{instance.name}</DataGridTextCell>
         </NotSupportedTooltipComponent>
       ),
       label: t('pci_projects_project_workflow_instance_name_label'),
@@ -77,22 +73,14 @@ const useDatagridColumn = (
     {
       id: 'region',
       cell: (instance: TWorkflowInstance) => (
-        <DataGridTextCell
-          className={isLocalZone(instance.region) ? 'opacity-50' : ''}
-        >
-          {instance.regionName}
-        </DataGridTextCell>
+        <DataGridTextCell>{instance.regionName}</DataGridTextCell>
       ),
       label: t('pci_projects_project_workflow_instance_region_label'),
     },
     {
       id: 'flavorName',
       cell: (instance: TWorkflowInstance) => (
-        <DataGridTextCell
-          className={isLocalZone(instance.region) ? 'opacity-50' : ''}
-        >
-          {instance?.flavorName}
-        </DataGridTextCell>
+        <DataGridTextCell>{instance?.flavorName}</DataGridTextCell>
       ),
       label: t('pci_projects_project_workflow_instance_flavor_label'),
     },
@@ -101,9 +89,7 @@ const useDatagridColumn = (
       cell: (instance: TWorkflowInstance) => (
         <StatusComponent
           statusGroup={instance.statusGroup}
-          className={
-            isLocalZone(instance.region) ? 'opacity-50 mx-auto' : 'mx-auto'
-          }
+          className="mx-auto"
           status={instance.status}
         />
       ),
