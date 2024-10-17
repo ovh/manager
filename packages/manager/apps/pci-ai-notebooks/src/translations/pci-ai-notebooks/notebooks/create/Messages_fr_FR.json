@@ -1,4 +1,22 @@
 {
   "title": "Créer un notebook",
-  "breadcrumb": "Créer un notebook"
+  "breadcrumb": "Créer un notebook",
+  "summaryTitle": "Votre commande",
+  "summaryFieldRegionLabel": "Région:",
+  "fieldRegionLabel": "Localisation",
+  "fieldFlavorLabel": "Ressources",
+  "fieldFlavorDescription": "Séléctionner le type de ressources",
+  "fieldFlavorQuantityDescription": "Sélectionner la quantité de ressources",
+  "fieldFlavorQuantityInformation": "Quantité maximale pour",
+  "summaryFieldFlavorLabel": "Ressources:",
+  "summaryFieldFlavorCores_one": "{{count}} vCore",
+  "summaryFieldFlavorCores_other": "{{count}} vCores",
+  "summaryFieldFlavorMemory": "{{memory}} RAM",
+  "summaryFieldStorage": "{{disk}} SSD",
+  "summaryFieldNetwork": "{{network}}/s",
+  "fieldFrameworkLabel": "Frameworks",
+  "summaryFieldFrameworkLabel": "Framework:",
+  "fieldEditorLabel": "Editors",
+  "summaryFieldEditorLabel": "Editor:",
+  "orderButton": "Commander"
 }
