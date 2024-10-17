@@ -117,3 +117,14 @@ export const editHealthMonitor = (
     body,
   );
 };
+
+export const renameHealthMonitor = (
+  projectId: string,
+  region: string,
+  healthMonitorId: string,
+  name: string,
+) =>
+  v6.put(
+    `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor/${healthMonitorId}`,
+    { name },
+  );
