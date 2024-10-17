@@ -1,0 +1,10 @@
+{
+  "managed_vcd_vdc_title": "Datacentres virtuels",
+  "managed_vcd_vdc_commercial_range": "Gamme commerciale",
+  "managed_vcd_vdc_vcpu_count": "Total vCPU",
+  "managed_vcd_vdc_ram_count": "Total RAM",
+  "managed_vcd_vdc_quota_value": "{{quota}} Go",
+  "managed_vcd_vdc_vcpu_speed": "Vitesse vCPU",
+  "managed_vcd_vdc_vcpu_value": "{{speed}} GHz",
+  "managed_vcd_vdc_id": "ID"
+}

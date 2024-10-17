@@ -33,6 +33,29 @@ export const getKMSProductSettings = ({ region }: { region: string }) =>
     configuration: [{ label: 'region', value: region }].filter(Boolean),
   });
 
+export const getVcdProductSettings = ({
+  serviceName,
+  planCode,
+  quantity = 1,
+  vdcOrgId,
+}: {
+  serviceName: string;
+  planCode: string;
+  quantity?: number;
+  vdcOrgId?: string;
+}) =>
+  JSURL.stringify({
+    serviceName,
+    planCode,
+    quantity,
+    productId: 'vmwareCloudDirector',
+    duration: 'P1M',
+    pricingMode: 'default',
+    configuration: vdcOrgId
+      ? [{ label: 'vdc-org-id', value: vdcOrgId }]
+      : undefined,
+  });
+
 export const ORDER_URLS = {
   EU: {
     DEDICATED: {

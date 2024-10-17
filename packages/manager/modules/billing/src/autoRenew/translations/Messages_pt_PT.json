@@ -69,7 +69,7 @@
   "billing_autorenew_service_type_DEDICATED_SERVER": "Servidor dedicado",
   "billing_autorenew_service_type_dedicated_server": "Servidor dedicado",
   "billing_autorenew_service_type_DEDICATED_HOUSING": "Servidor housing",
-  "billing_autorenew_service_type_DEDICATED_CLOUD": "VMware",
+  "billing_autorenew_service_type_DEDICATED_CLOUD": "Managed VMware vSphere",
   "billing_autorenew_service_type_ESSENTIALS": "Managed Bare Metal",
   "billing_autorenew_service_type_DOMAIN": "Domínio",
   "billing_autorenew_service_type_ENTERPRISE_CLOUD_DATABASE": "Enterprise Cloud Databases",
@@ -153,5 +153,6 @@
   "billing_autorenew_service_activate_alert_renew2016": "Esta mensagem não diz respeito aos serviços Bare Metal e VPS.",
   "billing_autorenew_service_type_DEDICATED_CLUSTER": "Região 3-AZ",
   "billing_autorenew_service_type_OKMS_RESOURCE": "OVHcloud KMS",
-  "billing_autorenew_service_type_VRACK_SERVICES_RESOURCE": "vRack Services"
+  "billing_autorenew_service_type_VRACK_SERVICES_RESOURCE": "vRack Services",
+  "billing_autorenew_service_type_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Managed VCD"
 }

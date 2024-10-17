@@ -546,5 +546,6 @@
   "common_resiliate_contact_support": "Aby zrezygnować z tej usługi, skontaktuj się z Pomocą techniczną. Zadzwoń na numer: <strong>71 750 02 00</strong> i <strong>wybierz 3.</strong> Dziękujemy za wyrozumiałość.",
   "core_pcc_top_guide_11_title": "Oficjalna dokumentacja Nutanix",
   "core_pcc_top_guide_12_title": "Oficjalna dokumentacja SAP HANA on Private Cloud",
-  "core_pcc_top_guide_13_title": "Autoryzacja adresów IP, które mogą łączyć się z vCenter"
+  "core_pcc_top_guide_13_title": "Autoryzacja adresów IP, które mogą łączyć się z vCenter",
+  "core_pcc_top_guide_14_title": "VMware on OVHcloud - VMware Cloud Director"
 }
