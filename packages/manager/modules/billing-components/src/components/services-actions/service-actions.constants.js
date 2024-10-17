@@ -12,6 +12,7 @@ export const SERVICE_TYPE = {
   ALL_DOM: 'ALL_DOM',
   OKMS: 'OKMS_RESOURCE',
   VRACK_SERVICES: 'VRACK_SERVICES_RESOURCE',
+  VRACK: 'VRACK',
 };
 
 export const RENEW_URL = {
