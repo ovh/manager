@@ -5,6 +5,7 @@ export const ROUTES_URLS = {
   terminateOkms: '/terminate',
   createKeyManagementService: 'create',
   okmsId: ':okmsId',
+  okmsUpdateName: 'update-name',
   keys: 'keys',
   keyId: ':keyId',
   createKmsServiceKey: 'create',

@@ -16,24 +16,20 @@ export const updateOkmsName = async ({
     displayName,
   });
 
-export type GetOkmsServiceIdParams = {
-  /** Filter on a specific service family */
-  okms: string;
-};
-
-export const getOkmsServiceIdQueryKey = ({
-  okms = '',
-}: GetOkmsServiceIdParams) => [`get/services${okms}`];
+export const getOkmsServiceIdQueryKey = (okmsId: string) => [
+  `get/okms/services`,
+  okmsId,
+];
 /**
  * allowedServices operations : List all services allowed in this kms
  */
-export const getOkmsServiceId = async ({ okms }: GetOkmsServiceIdParams) => {
-  const resourceName = okms ? `?resourceName=${okms}` : '';
+export const getOkmsServiceId = async (okmsId: string) => {
+  const resourceName = okmsId ? `?resourceName=${okmsId}` : '';
   return apiClient.v6.get<number[]>(`/services${resourceName}`);
 };
 
-export const getServiceInfos = async ({ okms }: GetOkmsServiceIdParams) => {
-  const serviceId = await getOkmsServiceId({ okms });
+export const getServiceInfos = async (okmsId: string) => {
+  const serviceId = await getOkmsServiceId(okmsId);
   return apiClient.v6.get<KMSServiceInfos>(`/services/${serviceId.data[0]}`);
 };
 

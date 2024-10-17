@@ -92,20 +92,6 @@ export const getListingIcebergV2 = async ({
   }
 };
 
-/**
- *  Get okms listing with iceberg V2
- */
-export const getListingIceberg = async () => {
-  try {
-    const List = await fetchIcebergV2({
-      route: '/okms/resource',
-    });
-    return List.data as OKMS[];
-  } catch (error) {
-    return null;
-  }
-};
-
 export const getOkmsResourceQueryKey = (okmsId: string) => [
   `get/okms/resource/${okmsId}`,
 ];
