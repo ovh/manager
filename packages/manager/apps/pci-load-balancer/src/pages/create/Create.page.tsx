@@ -13,12 +13,12 @@ import {
 import {
   Headers,
   Notifications,
-  StepComponent,
   TilesInputComponent,
   useCatalogPrice,
   useMe,
   useNotifications,
   useProjectUrl,
+  StepComponent,
 } from '@ovh-ux/manager-react-components';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { useCatalog, useProject } from '@ovh-ux/manager-pci-common';
@@ -35,14 +35,16 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { clsx } from 'clsx';
-import React, { useEffect, useMemo, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import SizeInputComponent from '@/pages/create/SizeInput.component';
 import {
   AGORA_FLOATING_IP_REGEX,
   AGORA_GATEWAY_REGEX,
   FLOATING_IP_TYPE,
   GETTING_STARTED_LINK,
+  LOAD_BALANCER_CREATION_TRACKING,
   LOAD_BALANCER_NAME_REGEX,
   MAX_INSTANCES_BY_LISTENER,
   MAX_LISTENER,
@@ -61,6 +63,7 @@ import { useGetFloatingIps } from '@/api/hook/useFloatingIps';
 import { useGetSubnetGateways } from '@/api/hook/useGateways';
 import { useGetFlavor } from '@/api/hook/useFlavors';
 import { useGetAddons } from '@/api/hook/useAddons';
+import { useTranslatedLinkReference } from '@/hooks/useTranslatedLinkReference';
 
 type TState = {
   selectedContinent: string | undefined;
@@ -68,6 +71,20 @@ type TState = {
 };
 
 export default function CreatePage(): JSX.Element {
+  const { tracking } = useContext(ShellContext).shell;
+  const instanceTrack = useTranslatedLinkReference();
+  const networkTrack = useTranslatedLinkReference();
+
+  const trackStep = useCallback(
+    (step: number) => {
+      tracking.trackClick({
+        name: LOAD_BALANCER_CREATION_TRACKING[`FINISH_STEP_${step}`],
+        type: 'action',
+      });
+    },
+    [tracking],
+  );
+
   const navigate = useNavigate();
   const { addSuccess, addError } = useNotifications();
 
@@ -177,13 +194,6 @@ export default function CreatePage(): JSX.Element {
     }, [subnets, store.publicIp]),
   ];
 
-  const [productPageLink, regionPageLink, gettingStartedLink] = [
-    PRODUCT_LINK[me?.ovhSubsidiary] || PRODUCT_LINK.DEFAULT,
-    REGION_AVAILABILITY_LINK[me?.ovhSubsidiary] ||
-      REGION_AVAILABILITY_LINK.DEFAULT,
-    GETTING_STARTED_LINK[me?.ovhSubsidiary] || GETTING_STARTED_LINK.DEFAULT,
-  ];
-
   useEffect(() => {
     store.reset();
     store.set.projectId(projectId);
@@ -211,11 +221,41 @@ export default function CreatePage(): JSX.Element {
     store.set.gateways(subnetGateways || []);
   }, [subnetGateways]);
 
-  // TODO gateways messages
+  useEffect(() => {
+    if (store.region) {
+      const date = new Date();
+      const maxRandomNumber = 9999;
+
+      store.set.name(
+        `LB_${store.addon.code.toUpperCase()}_${
+          store.region.name
+        }-${date.getDate()}${date.getMonth() + 1}-${(Math.floor(
+          Math.random() * maxRandomNumber,
+        ) *
+          new Date().getMilliseconds()) %
+          maxRandomNumber}`,
+      );
+    }
+  }, [store.region]);
+
   const create = async () => {
+    tracking.trackClick({
+      name: LOAD_BALANCER_CREATION_TRACKING.SUBMIT,
+      type: 'action',
+    });
+
+    tracking.trackClick({
+      name: `${LOAD_BALANCER_CREATION_TRACKING.CONFIRM}::${store.addon.code}::${store.region.name}`,
+      type: 'action',
+    });
+
     await store.create(
       flavor,
       () => {
+        tracking.trackPage({
+          name: LOAD_BALANCER_CREATION_TRACKING.SUCCESS,
+          type: 'navigation',
+        });
         addSuccess(
           <Translation ns="create">
             {(_t) => _t('octavia_load_balancer_create_banner')}
@@ -225,7 +265,10 @@ export default function CreatePage(): JSX.Element {
         navigate('..');
       },
       (error: ApiError) => {
-        console.log('error', error);
+        tracking.trackPage({
+          name: LOAD_BALANCER_CREATION_TRACKING.ERROR,
+          type: 'navigation',
+        });
         addError(
           <Translation ns="octavia-load-balancer">
             {(_t) => (
@@ -247,6 +290,15 @@ export default function CreatePage(): JSX.Element {
         );
       },
     );
+  };
+
+  const cancel = () => {
+    tracking.trackClick({
+      name: LOAD_BALANCER_CREATION_TRACKING.CANCEL,
+      type: 'action',
+    });
+    store.reset();
+    navigate('..');
   };
 
   return (
@@ -290,6 +342,8 @@ export default function CreatePage(): JSX.Element {
           order={1}
           next={{
             action: () => {
+              trackStep(1);
+
               store.check(StepsEnum.SIZE);
               store.lock(StepsEnum.SIZE);
 
@@ -321,7 +375,7 @@ export default function CreatePage(): JSX.Element {
           >
             {tCreate('octavia_load_balancer_create_size_intro')}{' '}
             <OsdsLink
-              href={productPageLink}
+              href={PRODUCT_LINK[me?.ovhSubsidiary] || PRODUCT_LINK.DEFAULT}
               color={ODS_THEME_COLOR_INTENT.primary}
             >
               {tCreate('octavia_load_balancer_create_size_intro_link')}
@@ -347,6 +401,8 @@ export default function CreatePage(): JSX.Element {
           order={2}
           next={{
             action: () => {
+              trackStep(2);
+
               store.check(StepsEnum.REGION);
               store.lock(StepsEnum.REGION);
 
@@ -378,7 +434,10 @@ export default function CreatePage(): JSX.Element {
             >
               {tCreate('octavia_load_balancer_create_region_intro')}{' '}
               <OsdsLink
-                href={regionPageLink}
+                href={
+                  REGION_AVAILABILITY_LINK[me?.ovhSubsidiary] ||
+                  REGION_AVAILABILITY_LINK.DEFAULT
+                }
                 color={ODS_THEME_COLOR_INTENT.primary}
               >
                 {tCreate('octavia_load_balancer_create_region_link')}
@@ -442,6 +501,8 @@ export default function CreatePage(): JSX.Element {
           order={3}
           next={{
             action: () => {
+              trackStep(3);
+
               store.check(StepsEnum.PUBLIC_IP);
               store.lock(StepsEnum.PUBLIC_IP);
 
@@ -497,6 +558,7 @@ export default function CreatePage(): JSX.Element {
                   store.set.publicIp(targetIp);
                 }}
                 inline
+                {...(floatingIpsList.length === 0 ? { disabled: true } : {})}
               >
                 <OsdsText
                   color={ODS_THEME_COLOR_INTENT.text}
@@ -579,6 +641,8 @@ export default function CreatePage(): JSX.Element {
           order={4}
           next={{
             action: () => {
+              trackStep(4);
+
               store.check(StepsEnum.PRIVATE_NETWORK);
               store.lock(StepsEnum.PRIVATE_NETWORK);
 
@@ -621,9 +685,6 @@ export default function CreatePage(): JSX.Element {
               >
                 {tCreate('octavia_load_balancer_create_private_network_field')}
               </OsdsText>
-              {
-                // TODO disable selects if no data
-              }
               <OsdsSelect
                 className="w-[20rem]"
                 value={store.privateNetwork?.id}
@@ -682,6 +743,7 @@ export default function CreatePage(): JSX.Element {
                     store.set.subnet(targetSubnet);
                   }}
                   inline
+                  {...(subnetsList.length === 0 ? { disabled: true } : {})}
                 >
                   <OsdsText
                     color={ODS_THEME_COLOR_INTENT.text}
@@ -714,14 +776,14 @@ export default function CreatePage(): JSX.Element {
                           color={ODS_THEME_COLOR_INTENT.error}
                         >
                           <span
+                            ref={networkTrack}
                             dangerouslySetInnerHTML={{
                               __html: tCreate(
                                 'octavia_load_balancer_create_private_network_no_subnet_text',
                                 {
-                                  // TODO links
-                                  createPrivateNetworkLink:
-                                    'privateNetworkCreationLink',
-                                  trackLabel: 'trackingPrivateNetworkCreation',
+                                  createPrivateNetworkLink: `${projectHref}/private-networks/new`,
+                                  trackLabel:
+                                    LOAD_BALANCER_CREATION_TRACKING.CREATE_PRIVATE_NETWORK,
                                 },
                               ),
                             }}
@@ -789,6 +851,8 @@ export default function CreatePage(): JSX.Element {
           order={5}
           next={{
             action: () => {
+              trackStep(5);
+
               store.check(StepsEnum.INSTANCE);
               store.lock(StepsEnum.INSTANCE);
 
@@ -805,6 +869,22 @@ export default function CreatePage(): JSX.Element {
             },
             label: tCommon('common_stepper_modify_this_step'),
           }}
+          skip={{
+            action: () => {
+              tracking.trackClick({
+                name: LOAD_BALANCER_CREATION_TRACKING.SKIP_STEP_5,
+                type: 'action',
+              });
+              store.set.listeners([]);
+
+              store.check(StepsEnum.INSTANCE);
+              store.lock(StepsEnum.INSTANCE);
+
+              store.open(StepsEnum.NAME);
+            },
+            label: tCommon('common_stepper_skip_this_step'),
+            hint: `${tCommon('common_stepper_optional_label')}`,
+          }}
         >
           <Translation ns="create">
             {(_t) => (
@@ -815,10 +895,14 @@ export default function CreatePage(): JSX.Element {
                 className="mb-4"
               >
                 <span
+                  ref={instanceTrack}
                   dangerouslySetInnerHTML={{
                     __html: _t('octavia_load_balancer_create_instance_intro', {
-                      linkUrl: gettingStartedLink,
-                      // TODO track
+                      linkUrl:
+                        GETTING_STARTED_LINK[me?.ovhSubsidiary] ||
+                        GETTING_STARTED_LINK.DEFAULT,
+                      trackLabel:
+                        LOAD_BALANCER_CREATION_TRACKING.GO_TO_INSTANCE_DOCUMENTATION,
                     }),
                   }}
                 ></span>
@@ -948,6 +1032,7 @@ export default function CreatePage(): JSX.Element {
               inline
               variant={ODS_BUTTON_VARIANT.ghost}
               color={ODS_THEME_COLOR_INTENT.info}
+              onClick={cancel}
             >
               {tCommon('common_cancel')}
             </OsdsButton>
