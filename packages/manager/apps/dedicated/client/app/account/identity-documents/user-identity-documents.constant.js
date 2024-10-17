@@ -277,13 +277,20 @@ export const TRACKING_TASK_TAG = {
   dashboard: `${TRACKING_PREFIX}::identity-files::dashboard`,
   openDetailView: `${TRACKING_PREFIX}::tile::button::{{name_click}}_identity-files::{{identity-files}}`,
   clickSendMyDocuments: `${TRACKING_PREFIX}::page::button::submit_identity-files`,
-  displayPopUpSendMyDocuments: `${TRACKING_PREFIX}::identity-files::pop-up::identity-files-sent`,
-  confirmSendMyDocuments: `${TRACKING_PREFIX}::identity-files::pop-up::button::identity-files-sent::confirm`,
+  displayPopUpSendMyDocuments: `${TRACKING_PREFIX}::pop-up::identity-files-sent`,
+  confirmSendMyDocuments: `${TRACKING_PREFIX}::pop-up::button::identity-files-sent::confirm`,
 };
 
 export const TRACKING_VARIABLES = {
   TO_ADD: 'to_add',
   MODIFY: 'modify',
+};
+
+export const TRACKING_CONTEXT = {
+  chapter1: 'Hub',
+  chapter2: 'account',
+  chapter3: 'identity-files',
+  level2: '88',
 };
 
 export const KYC_STATUS = {
