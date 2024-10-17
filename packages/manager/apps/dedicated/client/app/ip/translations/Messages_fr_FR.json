@@ -111,7 +111,6 @@
   "ip_filter_services_title_MAIL": "Serveurs de Mails",
   "ip_filter_services_title_CLOUD": "Public Cloud",
   "ip_filter_services_title_IP_LOAD_BALANCING": "OVHcloud Load Balancer",
-  "ip_filter_services_title_parking": "Parking",
   "ip_filter_services_CDN": "Uniquement les CDN",
   "ip_filter_services_DEDICATED": "Uniquement les Serveurs Dédiés",
   "ip_filter_services_HOSTED_SSL": "Uniquement les Hosted SSL",
@@ -516,7 +515,7 @@
   "ip_servicetype_ipLoadbalancing": "IP Load Balancing",
   "ip_servicetype_cloudProject": "Projet Cloud",
   "ip_servicetype_vRack": "VRACK",
-  "ip_servicetype__PARK": "Parking",
+
   "ip_order_quota_full": "Le quota maximal d'IPs a été atteint pour ce serveur.",
   "ip_order_noservices": "Vous n'avez aucun service disponible à la commande.",
   "ip_order_step1_question": "Sélectionnez le service pour lequel vous désirez acheter des ",
