@@ -41,10 +41,10 @@ function makeRoute({
 function makeDefaultRoute({
   configuration,
 }: {
-  configuration: Record<string, Application>;
+  configuration: [string, Application][];
 }) {
   const [, defaultApp] =
-    Object.entries(configuration).find(
+    configuration.find(
       ([, appConfig]) => appConfig.container.isDefault,
     ) || [];
   if (!defaultApp) {
@@ -67,15 +67,21 @@ export function IFrameAppRouter({
   configuration,
   iframeRef,
 }: IFrameAppRouterProps): JSX.Element {
-  const defaultRoute = useMemo(() => makeDefaultRoute({ configuration }), [
-    configuration,
+  // We order applications configurations by hash size, as a configuration with a hash means we want a route to be
+  // redirected to this application. As a result we need to have them first, so they take priority over routes from
+  // which we want to be redirected
+  const sortedConfiguration = useMemo(() => Object.entries(configuration).sort(([, appAConfig], [, appBConfig]) =>
+    (appBConfig.container.hash || "").length - (appAConfig.container.hash || "").length
+  ), [configuration])
+  const defaultRoute = useMemo(() => makeDefaultRoute({ configuration: sortedConfiguration }), [
+    sortedConfiguration,
   ]);
   const routes = useMemo(
     () =>
-      Object.entries(configuration).map(([id, appConfig]) =>
+      sortedConfiguration.map(([id, appConfig]) =>
         makeRoute({ appConfig, iframeRef, id }),
       ),
-    [configuration],
+    [sortedConfiguration],
   );
   const redirections = useMemo(() => Redirections(), []);
   return (
