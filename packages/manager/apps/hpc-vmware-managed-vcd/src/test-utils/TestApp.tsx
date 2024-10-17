@@ -3,9 +3,9 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { Routes } from '../routes/routes';
 
-export function TestApp() {
+export function TestApp({ initialRoute = '/' }) {
   const router = createMemoryRouter(Routes, {
-    initialEntries: ['/'],
+    initialEntries: [initialRoute],
     initialIndex: 0,
   });
 
