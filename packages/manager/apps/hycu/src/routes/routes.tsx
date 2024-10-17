@@ -75,6 +75,17 @@ export const Routes: any = [
           },
         },
       },
+      {
+        id: 'order',
+        path: urls.order,
+        ...lazyRouteConfig(() => import('@/pages/order/Order.page')),
+        handle: {
+          tracking: {
+            pageName: 'order',
+            pageType: PageType.dashboard,
+          },
+        },
+      },
     ],
   },
   {
