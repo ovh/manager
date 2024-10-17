@@ -162,10 +162,9 @@ export default class ResourceSelectController {
    * @param {Object} value
    */
   onResourcesChanged(value) {
-    // #MANAGER-11336: As backend only allow 10 resources, we limit it
     this.form[this.resourcesName].$setValidity(
       'limit',
-      this.model.selection.length <= 10,
+      this.model.selection.length <= Number(this.maxLength),
     );
     if (this.onChange) {
       this.onModelChanged();
