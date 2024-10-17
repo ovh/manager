@@ -1,13 +1,14 @@
-import { useCallback } from 'react';
 import {
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import { useNavigate } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsChip, OsdsText, OsdsLink } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { TKube } from '@/types';
+import usePluginState from '@/hooks/usePluginState';
 
 export const plugins = [
   {
@@ -29,24 +30,8 @@ const AdmissionPlugins = ({
 }: TKube['customization']['apiServer']['admissionPlugins']) => {
   const { t } = useTranslation(['service']);
 
-  const getChipContent = useCallback(
-    (pluginName) => {
-      if (enabled.includes(pluginName)) {
-        return {
-          label: t('kube_service_cluster_admission_plugins_activated'),
-          color: ODS_THEME_COLOR_INTENT.success,
-        };
-      }
-      if (disabled.includes(pluginName)) {
-        return {
-          label: t('kube_service_cluster_admission_plugins_desactivated'),
-          color: ODS_THEME_COLOR_INTENT.warning,
-        };
-      }
-      return null;
-    },
-    [disabled, enabled, t],
-  );
+  const pluginsState = usePluginState(enabled, disabled);
+  const navigate = useNavigate();
 
   return (
     <div className="mb-4 flex flex-wrap justify-between gap-4">
@@ -64,14 +49,22 @@ const AdmissionPlugins = ({
             {plugin.label}
           </OsdsText>
           <OsdsChip
-            color={getChipContent(plugin.name)?.color}
+            color={
+              pluginsState(plugin.name) === 'enabled'
+                ? ODS_THEME_COLOR_INTENT.success
+                : ODS_THEME_COLOR_INTENT.warning
+            }
             data-testid={`admission-plugin-chip ${plugin.name}`}
           >
-            {getChipContent(plugin.name)?.label}
+            {pluginsState(plugin.name) === 'enabled' &&
+              t('kube_service_cluster_admission_plugins_activated')}
+            {pluginsState(plugin.name) === 'disabled' &&
+              t('kube_service_cluster_admission_plugins_desactivated')}
           </OsdsChip>
         </div>
       ))}
       <OsdsLink
+        onClick={() => navigate('./admission-plugin')}
         color={ODS_THEME_COLOR_INTENT.primary}
         className="flex font-bold"
       >

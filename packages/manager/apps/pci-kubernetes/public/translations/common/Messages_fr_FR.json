@@ -70,6 +70,7 @@
   "common_stepper_skip_this_step": "Ignorer cette étape",
   "common_stepper_next_button_label": "Suivant",
   "common_stepper_submit_button_label": "Envoyer",
+  "common_save_button_label": "Enregistrer",
   "common_stepper_cancel_button_label": "Annuler",
   "common_file_attachmentsHeading": "Fichier(s) joint(s)",
   "common_file_dropArea": "Glissez/déposez des fichiers ou",
