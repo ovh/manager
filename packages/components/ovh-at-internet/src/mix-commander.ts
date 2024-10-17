@@ -1,5 +1,18 @@
 import { GenericTrackingData } from './track';
 
+declare global {
+  interface Window {
+    tC: {
+      trackPage(
+        user_id: string,
+        cty: string,
+        page_name: string,
+        additional_params: Record<string, unknown>,
+      ): void;
+    };
+  }
+}
+
 const getMixCommanderScript = (clientId: string, region: string) => `
 window.tC = window.tC || {};
 
@@ -280,46 +293,101 @@ tC.detectDevice = tC.detectDevice || function() {
     : 'Mobile';
 }
 
-if (typeof tC.msr !== "object") {
-    tC.msr = [];
-}
-tC.msr.dns = tC.getClientCollectDns() || tC.getClientCampaignDns();
-tC.msr.id_site = "3810";
-tC.msr.page_name = "";
-tC.msr.page_type = "Manager";
-tC.msr.sbrand = [];
-tC.msr.sbrand[0] = "";
-tC.msr.sbrand[1] = "";
-tC.msr.sbrand[2] = "";
-tC.msr.sbrand[3] = "";
-tC.msr.user_id = "${clientId}";
-tC.msr.provided_excluded_referrer = "ovh.com,eu.ovh.com,ca.ovh.com,us.ovh.com,www.ovh.com,ovhcloud.com,www.ovhcloud.com,ovh.co.uk,www.ovh.co.uk,www.ovh.com.au,www.ovh.cz,ovh.de,www.ovh.de,ovh.es,www.ovh.es,ovh.ie,www.ovh.ie,ovh.it,www.ovh.it,ovh.nl,www.ovh.nl,www.ovh.lt,ovh.pl,www.ovh.pl,www.ovh.pt,ovh.sn,www.ovh.sn,www.ovh-hosting.fi,help.ovhcloud.com,partner.ovhcloud.com,opentrustedcloud.ovhcloud.com,ovh.slgnt.eu,news.ovhcloud.com,ovhh.pl,open-solidarity.com".split(','); // has to be a string of referrers (domains or subdomains) with a "," as a separator
-var tc_search_engine = "ecosia|q,com.google.android.gm|q,com.google.android.googlequicksearchbox|q,qwant|q"; // has to be a string: search_engine|key in query string, search_engine|key (google|q,qwant|q)
-if (tc_search_engine !== '') {
-    var tc_search_engine_fs = tc_search_engine.split(",")
-    tC.msr.provided_search_engines = (function() {
-        var pl = [];
-        for (var i = 0; i < tc_search_engine_fs.length; ++i) {
-            pl.push(tc_search_engine_fs[i].split('|'));
-        }
-        return pl;
-    })()
-}
-tC.msr.provided_social_networks = "".split(',');
-tC.msr.provided_brand_urls = "".split(',');
-tC.msr.internal_subdmomains = "ovhtelecom.fr,www.ovhtelecom.fr,www.kimsufi.com,hubic.com,api.hubic.com,us.ovhcloud.com,docs.ovh.com,ca.soyoustart.com,eu.soyoustart.com,www.soyoustart.com,community.ovh.com,blog.ovh.com,labs.ovh.com,omm.ovh.net,forum.ovh.com,weathermap.ovh.net,www.nic.ovh".split(',') // has to be a string separated by , - can be domains only or domains and subdomains or everything between protocal and ? or "
-tC.msr.additional_params = "&user_id=" + "${clientId}";
-tC.msr.additional_params += "&dev=" + tC.detectDevice();
-tC.msr.additional_params += "&cty=" + "${region}";
-tC.msr.additional_params += "&site_domain=www.ovh.com/manager/";
-tC.msr.scriptElt1 = document.createElement("script");
-tC.msr.scriptElt1.id = "tc_script_msr_1";
-tC.msr.scriptElt1.src = "//analytics.ovh.com/measure/measure.js";
-tC.msr.scriptElt1.async = true;
-tC.msr.scriptElt1.defer = 'defer';
-tC.msr.tmp = tC.getParamURL("tmp");
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] || document.getElementsByTagName('script')[0].parentNode).insertBefore(tC.msr.scriptElt1, null);
-`;
+tC.scriptCount = (tC.scriptCount || 0) + 1;
+tC.trackPage = function(user_id, cty, page_name, additional_params) {
+  if (typeof tC.msr !== "object") {
+      tC.msr = [];
+  }
+  tC.msr.dns = tC.getClientCollectDns() || tC.getClientCampaignDns();
+  tC.msr.id_site = "3810";
+  tC.msr.page_name = page_name;
+  tC.msr.page_type = "Manager";
+  tC.msr.sbrand = [];
+  tC.msr.sbrand[0] = "";
+  tC.msr.sbrand[1] = "";
+  tC.msr.sbrand[2] = "";
+  tC.msr.sbrand[3] = "";
+  tC.msr.user_id = user_id;
+  tC.msr.provided_excluded_referrer = "ovh.com,eu.ovh.com,ca.ovh.com,us.ovh.com,www.ovh.com,ovhcloud.com,www.ovhcloud.com,ovh.co.uk,www.ovh.co.uk,www.ovh.com.au,www.ovh.cz,ovh.de,www.ovh.de,ovh.es,www.ovh.es,ovh.ie,www.ovh.ie,ovh.it,www.ovh.it,ovh.nl,www.ovh.nl,www.ovh.lt,ovh.pl,www.ovh.pl,www.ovh.pt,ovh.sn,www.ovh.sn,www.ovh-hosting.fi,help.ovhcloud.com,partner.ovhcloud.com,opentrustedcloud.ovhcloud.com,ovh.slgnt.eu,news.ovhcloud.com,ovhh.pl,open-solidarity.com".split(','); // has to be a string of referrers (domains or subdomains) with a "," as a separator
+  var tc_search_engine = "ecosia|q,com.google.android.gm|q,com.google.android.googlequicksearchbox|q,qwant|q"; // has to be a string: search_engine|key in query string, search_engine|key (google|q,qwant|q)
+  if (tc_search_engine !== '') {
+      var tc_search_engine_fs = tc_search_engine.split(",")
+      tC.msr.provided_search_engines = (function() {
+          var pl = [];
+          for (var i = 0; i < tc_search_engine_fs.length; ++i) {
+              pl.push(tc_search_engine_fs[i].split('|'));
+          }
+          return pl;
+      })()
+  }
+  tC.msr.provided_social_networks = "".split(',');
+  tC.msr.provided_brand_urls = "".split(',');
+  tC.msr.internal_subdmomains = "ovhtelecom.fr,www.ovhtelecom.fr,www.kimsufi.com,hubic.com,api.hubic.com,us.ovhcloud.com,docs.ovh.com,ca.soyoustart.com,eu.soyoustart.com,www.soyoustart.com,community.ovh.com,blog.ovh.com,labs.ovh.com,omm.ovh.net,forum.ovh.com,weathermap.ovh.net,www.nic.ovh".split(',') // has to be a string separated by , - can be domains only or domains and subdomains or everything between protocal and ? or "
+  tC.msr.additional_params = "&user_id=" + user_id;
+  tC.msr.additional_params += "&dev=" + tC.detectDevice();
+  tC.msr.additional_params += "&cty=" + cty;
+  tC.msr.additional_params += "&site_domain=www.ovh.com/manager/";
+  Object.entries(additional_params ?? {}).forEach(([param, value]) => {
+    tC.msr.additional_params += "&" + param + "=" + encodeURIComponent(value);
+  })
+  tC.msr['scriptElt' + tC.scriptCount] = document.createElement("script");
+  tC.msr['scriptElt' + tC.scriptCount].id = "tc_script_msr_" + tC.scriptCount;
+  tC.msr['scriptElt' + tC.scriptCount].src = "//analytics.ovh.com/measure/measure.js";
+  tC.msr['scriptElt' + tC.scriptCount].async = true;
+  tC.msr['scriptElt' + tC.scriptCount].defer = 'defer';
+  tC.msr.tmp = tC.getParamURL("tmp");
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] || document.getElementsByTagName('script')[0].parentNode).insertBefore(tC.msr['scriptElt' + tC.scriptCount], null);
+  tC.scriptCount += 1;
+};
+
+if(tC.getParamURL("mix_redirect") === "true"){
+  tC.setCookie("mix_redirect","true",(1/24/2))
+  if (typeof tC.msr !== "object") {
+      tC.msr = [];
+  }
+  tC.msr.dns = tC.getClientCollectDns() || tC.getClientCampaignDns();
+  tC.msr.id_site = "3810";
+  tC.msr.page_name = "";
+  tC.msr.page_type = "Manager";
+  tC.msr.rand = Math.random();
+  tC.msr.additional_params = "&user_id=" + "${clientId}";
+  tC.msr.additional_params += "&dev=" + tC.detectDevice();
+  tC.msr.additional_params += "&cty=" + "${region}";
+  tC.msr.additional_params += "&site_domain=www.ovh.com/manager/";
+  tC.msr.px = new Image();
+  tC.msr.px.id = "tc_img__1";
+  tC.msr.src = '';
+  tC.msr.alt = 'MixCo Site Tracking Only V4.0';
+  if (typeof tC.msr.page_name !== 'undefined' && tC.msr.page_name != null && tC.msr.page_name != '') {
+      tC.msr.src += '&p=' + tC.msr.page_name;
+  }
+  if (typeof tC.msr.page_type !== 'undefined' && tC.msr.page_type != null && tC.msr.page_type != '') {
+      tC.msr.src += '&pt=' + tC.msr.page_type;
+  }
+  if (typeof tC.msr.additional_params !== 'undefined' && tC.msr.additional_params != null && tC.msr.additional_params != '') {
+      tC.msr.src += tC.msr.additional_params;
+  }
+  tC.msr.hdoc = '';
+  try {
+      if (typeof top != 'undefined' && typeof top.document != 'undefined') {
+          tC.msr.hdoc = top.document;
+      }
+  } catch (e) {}
+  if (tC.msr.hdoc === '') {
+      tC.msr.hdoc = document;
+  };
+  if (typeof tC.msr.hdoc.referrer !== 'undefined' && tC.msr.hdoc.referrer != null && tC.msr.hdoc.referrer != '') {
+      if (tC.msr.hdoc.referrer.indexOf("?") != -1) {
+          tC.msr.src += '&ref=' + tC.msr.hdoc.referrer.substr(0, tC.msr.hdoc.referrer.indexOf("?"));
+      } else {
+          tC.msr.src += '&ref=' + tC.msr.hdoc.referrer;
+      }
+  }
+  tC.msr.px.src = 'https://' + tC.msr.dns + '/mix/s3/?tcs=' + tC.msr.id_site + '&rand=' + tC.msr.rand + tC.msr.src;
+  (document.getElementsByTagName('body')[0] || document.getElementsByTagName('head')[0]).appendChild(tC.msr.px);
+} else {
+  tC.trackPage("${clientId}", "${region}");
+}`;
 
 const initMixCommander = ({
   user_id: userId,
