@@ -1,9 +1,0 @@
-{
-  "pci_projects_project_storages_blocks_block_attach_title": "Przypisz wolumen do instancji",
-  "pci_projects_project_storages_blocks_block_attach_submit_label": "Potwierdź",
-  "pci_projects_project_storages_blocks_block_attach_cancel_label": "Anuluj",
-  "pci_projects_project_storages_blocks_block_attach_error_no_compatible_instance": "Brak instancji dostępnych w regionie, w którym hostowany jest Twój wolumen",
-  "pci_projects_project_storages_blocks_block_attach_instance_placeholder": "Szukaj",
-  "pci_projects_project_storages_blocks_block_attach_success_message": "Wolumen {{volume}} ({{volumeId}}) typu {{type}} został przypisany do instancji {{instance}} ({{instanceId}}).",
-  "pci_projects_project_storages_blocks_block_attach_error_attach": "Wystąpił błąd podczas aktualizacji wolumenu {{volume}}: {{message}}."
-}
