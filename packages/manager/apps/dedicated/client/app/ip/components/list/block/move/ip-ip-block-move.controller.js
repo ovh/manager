@@ -85,21 +85,35 @@ export default /* @ngInject */ (
   }
 
   $scope.checkIfIpCanBeMovedTo = (serviceName, ipBlock) => {
-    $q.all({
-      allowedVrackServices: Vrack.getAllowedVrackServices(serviceName),
-      vrackIpv6List: Vrack.getVrackIpv6List(serviceName),
-    })
-      .then(({ allowedVrackServices, vrackIpv6List }) => {
-        $scope.loading.ipCanBeMovedTo = allowedVrackServices.ipv6?.includes(
-          ipBlock,
-        );
-        $scope.hasIpv6 = !!vrackIpv6List.length;
-        $scope.loading.save = false;
+    if (
+      $scope.model.serviceName.serviceType !== '_PARK' &&
+      !$scope.data.ipBlock.routedTo?.serviceName
+    ) {
+      $q.all({
+        allowedVrackServices: Vrack.getAllowedVrackServices(serviceName),
+        vrackIpv6List: Vrack.getVrackIpv6List(serviceName),
       })
-      .catch(() => {
-        $scope.loading.ipCanBeMovedTo = false;
-        $scope.loading.save = false;
-      });
+        .then(({ allowedVrackServices, vrackIpv6List }) => {
+          $scope.loading.ipCanBeMovedTo = allowedVrackServices.ipv6?.includes(
+            ipBlock,
+          );
+          $scope.hasIpv6 = !!vrackIpv6List.length;
+          $scope.loading.save = false;
+        })
+        .catch(() => {
+          $scope.loading.ipCanBeMovedTo = false;
+          $scope.loading.save = false;
+        });
+    } else if (
+      $scope.model.serviceName.serviceType === '_PARK' &&
+      !$scope.data.ipBlock.routedTo?.serviceName
+    ) {
+      $scope.loading.ipCanBeMovedTo = false;
+      $scope.loading.save = false;
+    } else {
+      $scope.loading.ipCanBeMovedTo = true;
+      $scope.loading.save = false;
+    }
   };
 
   $scope.moveIpv6Action = (serviceName, ipBlock) => {
@@ -225,6 +239,13 @@ export default /* @ngInject */ (
           $scope.resetAction();
         });
     }
+  };
+
+  $scope.toParking = () => {
+    return (
+      $scope.model.serviceName?.serviceType === '_PARK' &&
+      $scope.data.ipBlock.routedTo?.serviceName
+    );
   };
 
   $scope.canMove = () => {

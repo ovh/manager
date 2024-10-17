@@ -117,8 +117,8 @@
             <div data-ng-show="!loading.save && data.ipBlock.isAdditionalIpv6">
                 <div data-ng-show="loading.ipCanBeMovedTo">
                     <p
-                        data-translate="vrack_add_ipv6_modal_description"
-                        data-translate-values="{ ipblock: '<strong>' + data.ipBlock.ipBlock + '</strong>', vrack: '<strong>' + model.serviceName.service + '</strong>', region: '<strong>' + data.ipBlock.region + '</strong>' }"
+                        data-translate="{{ toParking() ? 'vrack_add_ipv6_modal_parking_description' : 'vrack_add_ipv6_modal_description' }}"
+                        data-translate-values="{ ipblock: '<strong>' + data.ipBlock.ipBlock + '</strong>', source: '<strong>' + data.ipBlock.routedTo.serviceName + '</strong>'  ,vrack: '<strong>' + model.serviceName.service + '</strong>', region: '<strong>' + data.ipBlock.region + '</strong>' }"
                     ></p>
                     <p data-translate="vrack_add_ipv6_modal_description1"></p>
                     <p

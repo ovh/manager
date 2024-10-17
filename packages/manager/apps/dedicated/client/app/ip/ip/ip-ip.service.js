@@ -400,19 +400,6 @@ export default /* @ngInject */ function Ip(
     );
   };
 
-  this.checkIfIpCanBeMovedTo = function checkIfIpCanBeMovedTo(serviceName, ip) {
-    return $http
-      .get(
-        `${swsProxypassPath}/dedicated/server/${serviceName}/ipCanBeMovedTo?ip=${window.encodeURIComponent(
-          ip,
-        )}`,
-      )
-      .then(
-        (data) => data.data,
-        (http) => $q.reject(http.data),
-      );
-  };
-
   this.moveIpBlock = function moveIpBlock(serviceName, block, nexthop) {
     return $http
       .post(`${swsProxypassPath}/ip/${window.encodeURIComponent(block)}/move`, {
