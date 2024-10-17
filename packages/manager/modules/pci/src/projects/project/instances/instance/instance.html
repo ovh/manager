@@ -61,7 +61,11 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.createBackupInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+                    data-ng-if="
+                        $ctrl.instance.statusGroup === 'ACTIVE'
+                            ? ($ctrl.instance.isLocalZone ? $ctrl.isInstanceLocalZoneBackupAvailable : true)
+                            : false
+                    "
                     data-disabled="!$ctrl.instance.canCreateOrScheduleBackup()"
                 >
                     <span
