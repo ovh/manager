@@ -1,0 +1,6 @@
+{
+  "globals": {
+    "__VERSION__": true,
+    "__NG_APP_INJECTIONS__": true
+  }
+}
