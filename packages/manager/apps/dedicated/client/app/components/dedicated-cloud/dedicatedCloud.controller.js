@@ -1,14 +1,12 @@
-import { TRACKING_PREFIX } from './dedicatedCloud.constant';
-
 export default class {
   /* @ngInject */
   constructor($scope, $translate) {
     this.$scope = $scope;
     this.$translate = $translate;
-    this.TRACKING_PREFIX = TRACKING_PREFIX;
   }
 
   $onInit() {
+    this.isTabsHidden = this.hasVCDMigration;
     if (this.dedicatedCloud.isExpired) {
       this.setMessage(this.$translate.instant('common_expired'), 'danger');
     }

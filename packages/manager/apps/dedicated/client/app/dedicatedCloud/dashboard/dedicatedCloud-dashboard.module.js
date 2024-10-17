@@ -13,6 +13,7 @@ import update from './update';
 import vmwareOptionDisable from './vmware-option/disable';
 import vmwareOptionOrder from './vmware-option/order';
 import vcdOrder from './vmware-cloud-director/order';
+import dedicatedCloudDashboardLightModule from '../dashboard-light';
 
 const moduleName = 'dedicatedCloudDashboardModule';
 
@@ -30,6 +31,7 @@ angular
     vmwareOptionDisable,
     vmwareOptionOrder,
     vcdOrder,
+    dedicatedCloudDashboardLightModule,
   ])
   .config(routing);
 
