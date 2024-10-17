@@ -1,5 +1,5 @@
 import illustration from '@/assets/images/sidebar/hosted-private-cloud.png';
-import { Node } from '../node';
+import { NodeTag, Node } from '../node';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 const hostedPrivateCloudUniverse: Node = {
@@ -89,6 +89,17 @@ hostedPrivateCloudUniverse.children = [
         },
         features: ['veeam-cloud-connect'],
       },
+        {
+          id: 'veeam-backup',
+          translation: 'sidebar_veeam_backup',
+          serviceType: 'VEEAMBACKUP',
+          tag: NodeTag.NEW,
+          routing: {
+            application: 'veeam-backup',
+            hash: '#/',
+          },
+          features: ['veeam-backup'],
+        },
     ],
   },
 ];

@@ -1,0 +1,21 @@
+{
+  "description": "Nasze usługi są oparte na rozwiązaniu Veeam Data Platform i wtyczce Veeam dla VMware Cloud Director (do tworzenia kopii zapasowych). Nasze rozwiązania są implementowane na poziomie infrastruktury VMware Cloud Foundation i zarządzają bezpośrednio vCenter w celu realizowania operacji za pomocą snapshota VMware (jeśli to możliwe z bezpośrednim dostępem do przestrzeni dyskowej). Dostarczone w standardzie rozwiązanie jest współdzielone przez wszystkich klientów platformy. Rozwiązanie działa bez agentów w maszynach wirtualnych.",
+  "select_offer_title": "Wybierz ofertę",
+  "select_offer_description": "Dodaj usługę Veeam Data Platform do infrastruktury VMware Cloud Director. Organizacja VMware Cloud Director zostanie wybrana w kolejnym etapie. Dowiedz się więcej o metodach fakturowania.",
+  "offer_title": "Włącz {{productName}}",
+  "offer_content_part1": "Usługa Veeam Data Platform zawiera wtyczkę VCD do tworzenia kopii zapasowych wirtualnych maszyn i vApps z dowolnego Virtual Data Center (VDC) w organizacji.",
+  "offer_content_part2": "Jest on dostępny dla wszystkich użytkowników VMware Cloud Director z rolą administratora organizacji na poziomie organizacji.",
+  "offer_price": "9€ netto/VM/m-c + zużycie OVHcloud Object storage",
+  "next_step": "Dalej",
+  "choose_org_title": "Wybierz organizację VMware Cloud Director",
+  "all_organization_backed_up_message_fetch_next_page": "Wszystkie organizacje VCD są już powiązane z usługą Managed VEEAM for VCD. Załaduj więcej organizacji.",
+  "all_organization_backed_up_message": "Wszystkie Twoje organizacje VCD są już powiązane z usługą Managed VEEAM for VCD. Przejdź do listy usług.",
+  "name_cell": "Nazwisko",
+  "region_cell": "Lokalizacja",
+  "description_cell": "Opis",
+  "active_status": "Włączone",
+  "none_status": "Brak",
+  "error_status": "Błąd",
+  "cancel_button": "Anuluj",
+  "order_button": "Zamów"
+}
