@@ -2,6 +2,7 @@ import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 import legacy from '@vitejs/plugin-legacy';
+import { compression } from 'vite-plugin-compression2';
 import svgr from 'vite-plugin-svgr';
 import yn from 'yn';
 
@@ -60,6 +61,10 @@ const getBaseConfig = (config) => {
     },
     plugins: [
       react(),
+      compression({
+        algorithm: 'brotliCompress',
+        deleteOriginalAssets: true,
+      }),
       legacy({
         targets: ['defaults'],
       }),
