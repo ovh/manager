@@ -1,0 +1,204 @@
+import { Cpu, Globe, HardDrive, Hash, MemoryStick } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
+import { bytesConverter } from '@/lib/bytesHelper';
+import { humanizeFramework } from '@/lib/frameworkNameHelper';
+import * as ai from '@/types/cloud/project/ai';
+
+interface OrderSummaryProps {
+  order: {
+    region: ai.capabilities.Region;
+    flavor: ai.capabilities.Flavor;
+    resourcesQuantity: number;
+    framework: ai.capabilities.notebook.Framework;
+    version: string;
+    editor: ai.capabilities.notebook.Editor;
+  };
+  onSectionClicked?: (target: string) => void;
+}
+
+const RegionDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  const { t: tRegions } = useTranslation('regions');
+  return (
+    <div className="flex items-center gap-2">
+      <Button
+        data-testid="region-section-button"
+        variant={'link'}
+        size={'link'}
+        type="button"
+        onClick={() => onSectionClicked('region')}
+        className="font-bold"
+      >
+        {t('summaryFieldRegionLabel')}
+      </Button>
+      {order.region ? (
+        <span>{tRegions(`region_${order.region.id}`)}</span>
+      ) : (
+        <Skeleton className="h-4 w-20" />
+      )}
+    </div>
+  );
+};
+
+const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <Button
+          data-testid="flavor-section-button"
+          variant={'link'}
+          size={'link'}
+          type="button"
+          onClick={() => onSectionClicked('flavor')}
+          className="font-bold"
+        >
+          {t('summaryFieldFlavorLabel')}
+        </Button>
+        {order.flavor && order.resourcesQuantity ? (
+          <span className="capitalize">{`${order.resourcesQuantity} ${order.flavor.id}`}</span>
+        ) : (
+          <Skeleton className="h-4 w-20" />
+        )}
+      </div>
+      {order.flavor && order.resourcesQuantity && (
+        <div>
+          <div className="flex items-center pl-4 gap-2">
+            <Cpu className="size-4" />
+            <span>
+              {t('summaryFieldFlavorCores', {
+                count: order.flavor.resourcesPerUnit.cpu,
+              })}
+            </span>
+          </div>
+          <div className="flex items-center pl-4 gap-2">
+            <MemoryStick className="size-4" />
+            <span>
+              {t('summaryFieldFlavorMemory', {
+                memory: bytesConverter(
+                  order.resourcesQuantity *
+                    order.flavor.resourcesPerUnit.memory,
+                  false,
+                  0,
+                ),
+              })}
+            </span>
+          </div>
+          <div className="flex items-center pl-4 gap-2">
+            <HardDrive className="size-4" />
+            <span>
+              {t('summaryFieldStorage', {
+                disk: bytesConverter(
+                  order.resourcesQuantity *
+                    order.flavor.resourcesPerUnit.ephemeralStorage,
+                  false,
+                  0,
+                ),
+              })}
+            </span>
+          </div>
+          <div className="flex items-center pl-4 gap-2">
+            <Globe className="size-4" />
+            <span>
+              {t('summaryFieldNetwork', {
+                network: bytesConverter(
+                  order.resourcesQuantity *
+                    order.flavor.resourcesPerUnit.publicNetwork,
+                  true,
+                  2,
+                ),
+              })}
+            </span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const FrameworkDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <Button
+          variant={'link'}
+          size={'link'}
+          type="button"
+          onClick={() => onSectionClicked('framework')}
+          className="font-bold"
+        >
+          {t('summaryFieldFrameworkLabel')}
+        </Button>
+        {order.framework && (
+          <>
+            <span>{humanizeFramework(order.framework)}</span>
+            {/* 
+            {order.framework.logoUrl && (
+              <img
+                className="block w-9 h-6"
+                src={order.framework.logoUrl}
+                alt={order.framework.name}
+              />
+            )}
+            */}
+          </>
+        )}
+      </div>
+      <div className="flex items-center pl-4 gap-2">
+        <Hash className="size-4" />
+        {order.version ? (
+          <span>{order.version}</span>
+        ) : (
+          <Skeleton className="h-4 w-16" />
+        )}
+      </div>
+    </div>
+  );
+};
+
+const EditorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <Button
+          variant={'link'}
+          size={'link'}
+          type="button"
+          onClick={() => onSectionClicked('editor')}
+          className="font-bold"
+        >
+          {t('summaryFieldEditorLabel')}
+        </Button>
+        {order.editor && (
+          <>
+            <span>{order.editor.name}</span>
+            {order.editor.logoUrl && (
+              <img
+                className="block w-6 h-6"
+                src={order.editor.logoUrl}
+                alt={order.editor.name}
+              />
+            )}
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  return (
+    <div className="grid grid-cols-1 gap-2">
+      <RegionDetails order={order} onSectionClicked={onSectionClicked} />
+      <FlavorDetails order={order} onSectionClicked={onSectionClicked} />
+      <FrameworkDetails order={order} onSectionClicked={onSectionClicked} />
+      <EditorDetails order={order} onSectionClicked={onSectionClicked} />
+    </div>
+  );
+};
+
+export default OrderSummary;
