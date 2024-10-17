@@ -19,6 +19,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import { ActionProps } from '@/interface';
+import usePageQuery from '@/hooks/usePageQuery';
 import { NetworkSecurityAction } from './NetworkSecurityAction.component';
 
 export default function FloatingIPActions({
@@ -27,8 +28,10 @@ export default function FloatingIPActions({
 }: Readonly<ActionProps>) {
   const { t } = useTranslation();
 
-  const hrefRemove = useHref(`./${ipId}/terminate`);
-  const hrefEdit = useHref(`./${ipId}/edit`);
+  const queryParams = usePageQuery();
+
+  const hrefRemove = useHref(`./${ipId}/terminate${queryParams}`);
+  const hrefEdit = useHref(`./${ipId}/edit${queryParams}`);
 
   return (
     <OsdsMenu>
