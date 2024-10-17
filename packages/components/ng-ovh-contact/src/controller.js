@@ -11,7 +11,9 @@ export default /* @ngInject */ function($q, $timeout, ovhContact, OvhContact) {
 
   self.startContactCreation = function startContactCreation() {
     tmpContact = self.contact;
-    self.contact = new OvhContact();
+    const { customContactObject } = self.choiceOptions.options;
+    self.contact = customContactObject || new OvhContact();
+
     return self.contact;
   };
 
