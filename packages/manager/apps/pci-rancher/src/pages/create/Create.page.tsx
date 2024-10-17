@@ -8,7 +8,7 @@ import CreateRancher from '@/components/layout-helpers/CreateRancher/CreateRanch
 import useCreateRancher from '@/data/hooks/useCreateRancher/useCreateRancher';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import { getRanchersUrl } from '@/utils/route';
-import { RancherService } from '@/types/api.type';
+import { ErrorResponse, RancherService } from '@/types/api.type';
 import { ranchersQueryKey } from '@/data/hooks/useRancher/useRancher';
 import {
   useSimpleTrackingPage,
@@ -31,7 +31,7 @@ export default function Create() {
   const [
     rancherCreationErrorMessage,
     setRancherCreationErrorMessage,
-  ] = useState<string | null>(null);
+  ] = useState<ErrorResponse['response']['data'] | null>(null);
   useTrackingPage(TrackingPageView.CreateRancher);
   const trackingPage = useSimpleTrackingPage();
 
@@ -53,8 +53,8 @@ export default function Create() {
     onError: (error) => {
       trackingPage(`${TRACKING_PATH}::${TrackingEvent.add}-error`);
       setHasRancherCreationError(true);
-      if (error?.response?.data?.message) {
-        setRancherCreationErrorMessage(error.response.data.message);
+      if (error.response.data) {
+        setRancherCreationErrorMessage(error.response.data);
       }
     },
   });
