@@ -18,15 +18,15 @@ import style from './navbar.module.scss';
 
 import { useShell } from '@/context';
 import { useHeader } from '@/context/header';
+import { LEGAL_FORMS } from '@/container/common/constants';
+import useUser from '@/hooks/user/useUser';
 
-type Props = {
-  user: User;
-};
-
-function NavbarAccount({ user }: Props): JSX.Element {
+function NavbarAccount(): JSX.Element {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const shell = useShell();
   const uxPlugin = shell.getPlugin('ux');
+  const user = useUser();
+
   const firstName = capitalize(user.firstname).replace(/-[a-z]/g, (match) =>
     match.toUpperCase(),
   );
@@ -70,7 +70,8 @@ function NavbarAccount({ user }: Props): JSX.Element {
           level={ODS_TEXT_LEVEL.button}
           size={ODS_TEXT_SIZE._200}
         >
-          {`${firstName} ${lastName}`}
+          {user.legalform === LEGAL_FORMS.CORPORATION ?
+            user.organisation : `${user.firstname} ${user.name}`}
         </OsdsText>
       </span>
     </button>

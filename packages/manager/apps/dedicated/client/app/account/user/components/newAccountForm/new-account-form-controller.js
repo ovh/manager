@@ -3,7 +3,6 @@ import find from 'lodash/find';
 import flatten from 'lodash/flatten';
 import pick from 'lodash/pick';
 import values from 'lodash/values';
-
 import { LANGUAGES } from '@ovh-ux/manager-config';
 
 import {
@@ -36,6 +35,7 @@ export default class NewAccountFormController {
     $anchorScroll,
     $scope,
     ovhFeatureFlipping,
+    shellClient,
   ) {
     this.$q = $q;
     this.$http = $http;
@@ -58,6 +58,7 @@ export default class NewAccountFormController {
     this.$scope = $scope;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.SECTIONS = SECTIONS;
+    this.shell = shellClient;
   }
 
   $onInit() {
@@ -337,6 +338,7 @@ export default class NewAccountFormController {
           return this.$q.reject(result);
         }
         this.coreConfig.updateUser(model);
+        this.shell.environment.setUser(model);
         return result;
       })
       .catch((error) => {

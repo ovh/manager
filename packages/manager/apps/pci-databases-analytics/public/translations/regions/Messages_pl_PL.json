@@ -71,5 +71,9 @@
   "manager_components_region_PAR": "Paryż",
   "manager_components_region_PAR_micro": "Paryż ({{micro}})",
   "manager_components_region_location_PAR": "Europa Zachodnia (Francja)",
-  "manager_components_region_continent_PAR": "Europa Zachodnia"
+  "manager_components_region_continent_PAR": "Europa Zachodnia",
+  "region_PAR": "Paryż",
+  "region_PAR_micro": "Paryż ({{micro}})",
+  "region_location_PAR": "Europa Zachodnia (Francja)",
+  "region_continent_PAR": "Europa Zachodnia"
 }

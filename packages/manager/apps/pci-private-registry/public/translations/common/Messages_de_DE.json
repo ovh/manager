@@ -34,7 +34,7 @@
   "private_registry_common_status_DELETING": "Wird gelöscht",
   "private_registry_common_status_DONE": "Beendet",
   "private_registry_common_status_SCALING_UP": "Änderung des Angebots",
-  "private_registry_guide_main": "Anleitungen",
+  "private_registry_guide_main": "Guides",
   "private_registry_header_guides": "Anleitung zum Private Registry",
   "private_registry_generate_credentials": "Neue Login-Daten generieren",
   "private_registry_generate_credentials_confirm": "Sind Sie sicher, dass Sie die Login-Daten des Private Registry {{ registryName }} neu generieren möchten?",

@@ -21,9 +21,9 @@
   "zimbra_account_add_input_description_label": "Descrizione",
   "zimbra_account_add_input_description_placeholder": "Descrizione",
   "zimbra_account_add_input_password_label": "Password",
-  "zimbra_account_add_input_password_helper": "La password deve contenere almeno:",
+  "zimbra_account_add_input_password_helper": "La tua password deve contenere almeno:",
   "zimbra_account_add_input_password_helper_rule_1": "10 caratteri",
-  "zimbra_account_add_input_password_helper_rule_2": "1 cifra o carattere speciale (€,!, &amp;,...)",
+  "zimbra_account_add_input_password_helper_rule_2": "1 cifra o carattere speciale (€, !, &amp;,…)",
   "zimbra_account_add_input_password_helper_rule_3": "1 lettera maiuscola",
   "zimbra_account_add_input_mandatory": "I campi contrassegnati con un asterisco * sono obbligatori",
   "zimbra_account_add_button_save": "Registra",
@@ -33,5 +33,5 @@
   "zimbra_account_add_error_message": "La tua richiesta di creazione dell'account email non è andata a buon fine: {{ error }}",
   "zimbra_account_edit_success_message": "La tua richiesta di modifica dell'account email è stata presa in carico. Sarà elaborata entro pochi minuti.",
   "zimbra_account_edit_error_message": "La tua richiesta di modifica dell'account email non è andata a buon fine: {{ error }}",
-  "zimbra_account_add_input_displayName_tooltip": "Nome utilizzato nell'elenco e visualizzato ai destinatari delle email"
+  "zimbra_account_add_input_displayName_tooltip": "Nome utilizzato nell'elenco e visualizzato dai destinatari delle email"
 }

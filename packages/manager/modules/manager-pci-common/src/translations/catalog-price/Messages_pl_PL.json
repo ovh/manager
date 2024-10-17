@@ -1,5 +1,5 @@
 {
-  "order_catalog_price_free": "W ofercie",
+  "order_catalog_price_free": "Zawarte w cenie",
   "order_catalog_price_tax_excl_label": "{{price}} netto",
   "order_catalog_price_tax_incl_label": "{{price}} brutto",
   "order_catalog_price_gst_excl_label": "{{price}} netto",

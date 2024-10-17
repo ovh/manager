@@ -8,7 +8,7 @@
   "order_catalog_price_interval_month": "Monat",
   "order_catalog_price_interval_year": "Jahr",
   "order_catalog_price_from": "Von",
-  "order_catalog_price_to": "bis",
+  "order_catalog_price_to": "um",
   "order_catalog_price_interval_hour": "Stunde",
   "order_catalog_price_beta_free": "Während der Beta-Phase kostenlos"
 }

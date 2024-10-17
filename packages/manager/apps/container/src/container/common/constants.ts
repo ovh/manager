@@ -5,3 +5,12 @@ export default {
 };
 
 export const MOBILE_WIDTH_RESOLUTION = 1024;
+
+export const LEGAL_FORMS = {
+  INDIVIDUAL: 'individual',
+  ADMINISTRATION: 'administration',
+  CORPORATION: 'corporation',
+  PERSONALCORPORATION: 'personalcorporation',
+  ASSOCIATION: 'association',
+  OTHER: 'other',
+};

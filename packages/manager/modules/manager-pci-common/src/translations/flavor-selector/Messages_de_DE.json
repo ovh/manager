@@ -1,9 +1,9 @@
 {
-  "pci_project_flavors_category_definition_balanced": "Instanzen zur allgemeinen Nutzung bieten Ihnen ein ausgewogenes Verhältnis zwischen RAM und Performance.",
+  "pci_project_flavors_category_definition_balanced": "Instanzen für allgemeine Einsatzzwecke bieten Ihnen ein ausgewogenes Verhältnis zwischen RAM und Leistung.",
   "pci_project_flavors_category_definition_baremetal": "Die Metal-Instanzen bieten physische Server on demand. Sie werden binnen weniger Minuten bereitgestellt und stündlich oder monatlich abgerechnet.",
-  "pci_project_flavors_category_definition_cpu": "Instanzen mit optimierter Rechenleistung sind ideal für parallele Rechenoperationen und Anwendungen, die eine deutlich höhere CPU-Frequenz benötigen.",
+  "pci_project_flavors_category_definition_cpu": "Instanzen mit Rechenoptimierung sind ideal für Anwendungen mit hohen Anforderungen in puncto Rechenleistung sowie für die Ausführung paralleler Workloads.",
   "pci_project_flavors_category_definition_ram": "Instanzen mit optimiertem Arbeitsspeicher sind perfekt für Ihre Datenbanken, Analysen und Berechnungen im Arbeitsspeicher sowie andere RAM-intensive Anwendungen.",
-  "pci_project_flavors_category_definition_accelerated": "Instanzen mit beschleunigter Rechenleistung (GPU, FPGA) sind bis zu 1000 mal schneller als herkömmliche CPU bei bestimmten Anwendungen (Rendering, Video-Transkodierung, Bioinformatik, Big Data, Deep Learning etc.).",
+  "pci_project_flavors_category_definition_accelerated": "Die Instanzen für beschleunigtes Computing (GPU, FPGA) sind bei bestimmten Anwendungen (Rendering, Video-Transcodierung, Bioinformatik, Big Data, Deep Learning usw.) bis zu 1.000-mal schneller als eine CPU.",
   "pci_project_flavors_category_definition_iops": "IOPS Instanzen liefern die schnellsten Festplattentransaktionen der Public Cloud Reihe.",
   "pci_project_flavors_category_definition_none": "Es sind keine Modelle in dieser Kategorie verfügbar.",
   "pci_project_flavors_disk_size": "Der Speicherplatz ist geringer als der des aktuellen Modells.",
@@ -27,5 +27,5 @@
   "pci_project_flavors_zone_localzone_tooltip": "Local Zones sind eine neue Art der Lokalisierung, die einen Teil unseres Public-Cloud-Produktportfolios unterstützt. In den nächsten Jahren werden wir die Gesamtzahl der Local Zones weltweit schrittweise erhöhen.",
   "pci_project_flavors_zone_globalregions_tooltip": "Die Regionen stützen sich auf ein oder mehrere Rechenzentren, die von OVHcloud verwaltet werden. Jede Region bietet eine oder mehrere Availability Zones mit dem vollständigen OVHcloud Dienstportfolio.",
   "pci_project_flavors_zone_tooltip_link": "Mehr erfahren",
-  "pci_project_flavors_price_hourly_from": "Ab {{price}} / Stunde (zzgl. MwSt.)"
+  "pci_project_flavors_price_hourly_from": "Ab {{price}} zzgl. MwSt./Stunde"
 }
