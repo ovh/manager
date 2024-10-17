@@ -176,8 +176,14 @@ export default class ImagesListController {
     }
   }
 
-  changeImageType() {
+  changeImageType(imageType) {
     this.imagesFromDistribution = [];
+
+    this.onTabChange({ type: imageType });
+  }
+
+  changeApps(type) {
+    this.onTabChange({ type });
   }
 
   onImageChange(image, distribution) {

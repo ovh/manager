@@ -72,6 +72,8 @@
                 data-ng-if="!$row.isDeleting()"
                 data-ng-href="{{:: $ctrl.instanceLink($row) }}"
                 data-ng-bind="$value"
+                data-track-on="click"
+                data-track-name="PublicCloud::compute::instances::datagrid::button::details_instances::{{$row.flavor.name}}_{{$row.region}}"
             ></a>
             <span data-ng-if="$row.isDeleting()" data-ng-bind="$value"></span>
             <p data-ng-bind="$row.id"></p>
