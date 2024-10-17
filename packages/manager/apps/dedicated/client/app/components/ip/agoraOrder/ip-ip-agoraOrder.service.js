@@ -40,6 +40,7 @@ export default class IpAgoraOrder {
     planCode,
     productId = 'ip',
     pricingMode = 'default',
+    productRegionName,
     quantity = 1,
     serviceName,
     datacenter,
@@ -73,6 +74,14 @@ export default class IpAgoraOrder {
       productToOrder.configuration.push({
         label: 'ip_region',
         value: regionId,
+      });
+    }
+
+    if (productRegionName) {
+      const [region] = productRegionName?.split('-') || [];
+      productToOrder.configuration.push({
+        label: 'region',
+        value: region?.trim()?.toLowerCase(),
       });
     }
 
