@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.39.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.39.1...@ovh-ux/manager-web@18.39.2) (2024-10-17)
+
+
+### Bug Fixes
+
+* remove ovh-banner from universes ([#13496](https://github.com/ovh/manager/issues/13496)) ([bd91395](https://github.com/ovh/manager/commit/bd91395193ae97dc5cb7ea1dc6c32b69547e3fde))
+
+
+
+
+
 ## [18.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.39.0...@ovh-ux/manager-web@18.39.1) (2024-10-14)
 
 

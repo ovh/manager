@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-carbon-calculator-app",
-  "version": "0.4.10",
+  "version": "0.4.11",
   "private": true,
   "description": "OVHcloud CarbonCalculator app",
   "repository": {
@@ -37,7 +37,7 @@
     "@ovh-ux/ng-translate-async-loader": "^2.2.1",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.3.1",
     "@ovh-ux/request-tagger": "^0.3.0",
-    "@ovh-ux/shell": "^3.8.0",
+    "@ovh-ux/shell": "^3.9.0",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
