@@ -39,5 +39,17 @@
   "rgdp_form_field_label_id_back": "Pièce d'identité (verso)",
   "rgdp_form_field_label_other_documents": "Autre document nécessaire pour la demande",
   "rgdp_form_field_helper_id": "Carte nationale d'identité, passeport, carte de séjour ou permis de conduire.",
-  "rgdp_form_field_helper_other_documents": "Le nombre maximal de documents supporté est de {{maxFiles}}."
+  "rgdp_form_field_helper_other_documents": "Le nombre maximal de documents supporté est de {{maxFiles}}.",
+
+  "rgpd_confirm_modal_yes": "Oui",
+  "rgpd_confirm_modal_no": "Non",
+  "rgpd_confirm_modal_title": "Envoyer mes documents",
+  "rgpd_confirm_modal_description_insure": "Veuillez vous assurer que tous vos documents sont corrects et lisibles avant envoi. En cas de documents non valides, cette procédure sera annulée et vous devrez en effectuer une nouvelle.",
+  "rgpd_confirm_modal_description_confirm": "Confirmez-vous avoir ajouté l'ensemble des éléments nécessaires ?",
+
+  "rgpd_confirm_success_modal_title": "Merci, nous avons bien reçu tous vos documents !",
+  "rgpd_confirm_success_modal_description": "Ils vont être soumis à notre équipe pour validation. Notre équipe support vous répond dans les 72 heures ! Vous serez notifié de leur validation par email, ou vous serez contacté si nous avons besoin de plus d'informations.",
+  "rgpd_confirm_success_modal_back_home": "Retour à la page d'accueil",
+
+  "rgdp_form_error_message_submit": "Vos documents n'ont pas été correctement envoyés. Veuillez relancer l'envoi de vos documents."
 }
