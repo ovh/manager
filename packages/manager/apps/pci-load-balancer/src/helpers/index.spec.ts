@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { paginateResults, sortResults } from './index';
 import { TLoadBalancer } from '@/api/data/load-balancer';
 
@@ -23,6 +23,7 @@ describe('paginateResults', () => {
 });
 
 describe('sortResults', () => {
+  vi.resetAllMocks();
   const items: TLoadBalancer[] = [
     { id: 'lb1', region: 'region1' },
     { id: 'lb2', region: 'region2' },

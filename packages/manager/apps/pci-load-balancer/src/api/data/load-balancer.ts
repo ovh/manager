@@ -130,7 +130,7 @@ export const updateLoadBalancerName = async (
 
 export type TProtocol = typeof PROTOCOLS[number];
 
-interface CreateListenerProps {
+export interface CreateListenerProps {
   projectId: string;
   region: string;
   loadBalancerId: string;
@@ -163,7 +163,7 @@ export const createListener = async ({
   return data;
 };
 
-interface EditListenerProps {
+export interface EditListenerProps {
   projectId: string;
   region: string;
   listenerId: string;
