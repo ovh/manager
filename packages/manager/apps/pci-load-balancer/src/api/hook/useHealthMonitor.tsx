@@ -4,6 +4,7 @@ import {
   deleteHealthMonitor,
   editHealthMonitor,
   getHealthMonitor,
+  renameHealthMonitor,
   THealthMonitorFormState,
 } from '../data/health-monitor';
 import queryClient from '@/queryClient';
@@ -117,6 +118,32 @@ export const useEditHealthMonitor = ({
   return {
     editHealthMonitor: (model: THealthMonitorFormState) =>
       mutation.mutate(model),
+    ...mutation,
+  };
+};
+
+type RenameHealthMonitorProps = EditHealthMonitorProps;
+
+export const useRenameHealthMonitor = ({
+  projectId,
+  region,
+  healthMonitorId,
+  onError,
+  onSuccess,
+}: RenameHealthMonitorProps) => {
+  const mutation = useMutation({
+    mutationFn: async (name: string) =>
+      renameHealthMonitor(projectId, region, healthMonitorId, name),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['health-monitor'],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    renameHealthMonitor: (name: string) => mutation.mutate(name),
     ...mutation,
   };
 };

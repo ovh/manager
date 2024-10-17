@@ -84,7 +84,7 @@ export default function HealthMonitorForm({
 
   const [isNameTouched, setIsNameTouched] = useState(false);
 
-  const validateField = (name: keyof THealthMonitorFormState, value: any) => {
+  const validateField = (name: keyof THealthMonitorFormState, value) => {
     const newErrors: THealthMonitorFormErrors = { ...errors };
 
     if (name === 'name' && isNameTouched) {
@@ -210,7 +210,7 @@ export default function HealthMonitorForm({
       </section>
 
       <div className="min-w-[20rem] md:w-1/4 sm:w-1">
-        <OsdsFormField className="my-8" error={errors.name}>
+        <OsdsFormField className="my-8">
           <LabelComponent
             text={t('octavia_load_balancer_health_monitor_form_name')}
             hasError={!!errors.name}
@@ -227,9 +227,20 @@ export default function HealthMonitorForm({
             onKeyDown={() => handle.keyDown('name')}
           />
 
-          <OsdsText slot="helper" color={ODS_THEME_COLOR_INTENT.text}>
-            {t('octavia_load_balancer_health_monitor_form_name_help')}
-          </OsdsText>
+          <div slot="helper">
+            <OsdsText className="block" color={ODS_THEME_COLOR_INTENT.error}>
+              {errors.name}
+            </OsdsText>
+            <OsdsText
+              color={
+                errors.name
+                  ? ODS_THEME_COLOR_INTENT.error
+                  : ODS_THEME_COLOR_INTENT.text
+              }
+            >
+              {t('octavia_load_balancer_health_monitor_form_name_help')}
+            </OsdsText>
+          </div>
         </OsdsFormField>
 
         <OsdsFormField className="my-8">
@@ -297,18 +308,34 @@ export default function HealthMonitorForm({
                   handle.change('expectedCode', event.detail.value)
                 }
               />
-              <OsdsText slot="helper" color={ODS_THEME_COLOR_INTENT.text}>
-                {t(
-                  'octavia_load_balancer_health_monitor_form_expected_code_help',
-                )}
-              </OsdsText>
+
+              <div slot="helper">
+                <OsdsText
+                  className="block"
+                  color={ODS_THEME_COLOR_INTENT.error}
+                >
+                  {errors.expectedCode}
+                </OsdsText>
+                <OsdsText
+                  color={
+                    errors.expectedCode
+                      ? ODS_THEME_COLOR_INTENT.error
+                      : ODS_THEME_COLOR_INTENT.text
+                  }
+                >
+                  {t(
+                    'octavia_load_balancer_health_monitor_form_expected_code_help',
+                  )}
+                </OsdsText>
+              </div>
             </OsdsFormField>
           </div>
         )}
 
         <div>
           <QuantitySelector
-            className="flex flex-row w-[100%] my-8"
+            className="w-[100%] my-8"
+            contentClassName="flex justify-between items-center"
             label={LABELS.MAX_RETRIES_DOWN}
             value={formState?.maxRetriesDown}
             min={BOUNDS.MAX_RETRIES_DOWN.MIN}
@@ -320,7 +347,8 @@ export default function HealthMonitorForm({
           />
 
           <QuantitySelector
-            className="flex flex-row w-[100%] my-8"
+            className="w-[100%] my-8"
+            contentClassName="flex justify-between items-center"
             label={LABELS.DELAY}
             value={formState?.delay}
             min={BOUNDS.DELAY.MIN}
@@ -331,7 +359,8 @@ export default function HealthMonitorForm({
           />
 
           <QuantitySelector
-            className="flex flex-row w-[100%] my-8"
+            className="w-[100%] my-8"
+            contentClassName="flex justify-between items-center"
             label={LABELS.MAX_RETRIES}
             labelHelpText={t(
               'octavia_load_balancer_health_monitor_form_max_retries_tooltip',
@@ -343,7 +372,8 @@ export default function HealthMonitorForm({
           />
 
           <QuantitySelector
-            className="flex flex-row w-[100%] my-8"
+            className="w-[100%] my-8"
+            contentClassName="flex justify-between items-center"
             label={LABELS.TIMEOUT}
             labelHelpText={t(
               'octavia_load_balancer_health_monitor_form_timeout_tooltip',

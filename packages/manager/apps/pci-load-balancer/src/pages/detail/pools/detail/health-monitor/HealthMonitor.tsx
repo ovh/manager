@@ -119,7 +119,7 @@ export default function HealthMonitor() {
                     color={ODS_THEME_COLOR_INTENT.primary}
                     size={ODS_BUTTON_SIZE.sm}
                     variant={ODS_BUTTON_VARIANT.ghost}
-                    href=""
+                    href={useHref('edit-name')}
                   >
                     <OsdsIcon
                       size={ODS_ICON_SIZE.xxs}
@@ -135,7 +135,7 @@ export default function HealthMonitor() {
               title={t(
                 'octavia_load_balancer_health_monitor_detail_overview_info_type',
               )}
-              value={healthMonitor?.monitorType}
+              value={healthMonitor?.monitorType.toUpperCase()}
             />
 
             {[HEALTH_MONITOR_TYPE.HTTP, HEALTH_MONITOR_TYPE.HTTPS].includes(
