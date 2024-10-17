@@ -1,5 +1,3 @@
-import { TRACKING_PREFIX } from './user-identity-documents.constant';
-
 export default /* @ngInject */ ($stateProvider) => {
   const name = 'app.account.identity-documents';
 
@@ -18,9 +16,6 @@ export default /* @ngInject */ ($stateProvider) => {
         return false;
       },
       breadcrumb: /* @ngInject */ () => null,
-    },
-    atInternet: {
-      rename: TRACKING_PREFIX,
     },
     redirectTo: (transition) =>
       transition
