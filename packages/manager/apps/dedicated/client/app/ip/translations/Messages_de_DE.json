@@ -771,5 +771,7 @@
   "ip_byoip_delete_block_title": "Block löschen",
   "ip_byoip_delete_block_description": "Dieser IP-Block ist Teil eines größeren BYOIP-Blocks. Wenn Sie Ihren BYOIP-Dienst kündigen möchten, öffnen Sie <a href='{{ link }}'>Meine Dienste</a> und wählen Sie die Option zum Kündigen aus.",
   "ip_table_manage_modify_ipv6block_reverse": "Reverse ändern",
-  "ip_filter_services_title_parking": "Parking"
+  "ip_filter_services_title_parking": "Parking",
+  "ip_virtualmac_not_available_failure": "Die virtuelle MAC wird ab Dezember 2024 auf diesem Server verfügbar sein.",
+  "ip_virtualmac_not_available_failure_details": "Weitere Informationen zur Verwaltung von IPs und virtuellen MACs mit OVHcloud finden Sie in den Guides zur Netzwerkkonfiguration unter {{proxmoxLink}} und {{windowsServerLink}}. In diesem Dokument wird erläutert, wie Sie Ihre OVHcloud Server für die Optimierung der Netzwerkleistung in virtualisierten Umgebungen mit Proxmox VE konfigurieren und dabei Techniken wie das Routing zusätzlicher IP-Adressen über das vRack verwenden​."
 }
