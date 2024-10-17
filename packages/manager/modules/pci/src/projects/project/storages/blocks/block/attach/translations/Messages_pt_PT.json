@@ -1,9 +1,0 @@
-{
-  "pci_projects_project_storages_blocks_block_attach_title": "Associar o volume a uma instância",
-  "pci_projects_project_storages_blocks_block_attach_submit_label": "Confirmar",
-  "pci_projects_project_storages_blocks_block_attach_cancel_label": "Anular",
-  "pci_projects_project_storages_blocks_block_attach_error_no_compatible_instance": "Nenhuma instância disponível na região do seu volume.",
-  "pci_projects_project_storages_blocks_block_attach_instance_placeholder": "Pesquisar",
-  "pci_projects_project_storages_blocks_block_attach_success_message": "O volume {{ volume }} ({{ volumeId }}) de tipo {{ type }} foi associado à instância {{ instance }} ({{ instanceId }}).",
-  "pci_projects_project_storages_blocks_block_attach_error_attach": "Ocorreu um erro ao atualizar o volume {{ volume }}: {{ message }}"
-}

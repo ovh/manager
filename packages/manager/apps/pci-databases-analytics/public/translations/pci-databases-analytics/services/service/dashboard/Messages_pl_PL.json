@@ -26,6 +26,7 @@
   "maintenanceLink": "Zarządzaj i planuj prace konserwacyjne",
   "networkTitle": "Wykorzystana sieć",
   "networkLink": "Sieć prywatna: vRack nr {{vrack}}",
+  "networkPublicTitle": "Sieć publiczna (Internet)",
   "priceBillingTitle": "Pomoc i Płatności",
   "serviceIdLabel": "Identyfikator usługi",
   "serviceIdCopyToast": "Identyfikator usługi został skopiowany",

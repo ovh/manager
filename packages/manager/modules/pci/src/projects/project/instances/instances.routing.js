@@ -463,6 +463,11 @@ export default /* @ngInject */ ($stateProvider) => {
           'public-cloud',
           `#/pci/projects/${projectId}/public-ips/floating-ips`,
         ),
+      isInstanceLocalZoneBackupAvailable: /* @ngInject */ (pciFeatures) => {
+        return pciFeatures.isFeatureAvailable(
+          PCI_FEATURES.ACTIONS.INSTANCE_LOCALZONE_BACKUP,
+        );
+      },
     },
   });
 };

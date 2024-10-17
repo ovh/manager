@@ -11,6 +11,25 @@ import { mockedBasicOrderFunnelFlavor } from '@/__tests__/helpers/mocks/order-fu
 import { Flavor } from '@/types/orderFunnel';
 
 describe('FlavorsSelect component', () => {
+  beforeEach(() => {
+    vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => {
+      return {
+        useGetCatalog: vi.fn(() => ({
+          isSuccess: true,
+          data: {
+            locale: {
+              currencyCode: 'EUR',
+            },
+          },
+        })),
+      };
+    });
+    vi.mock('@/hooks/useLocale', () => {
+      return {
+        useLocale: vi.fn(() => 'fr_FR'),
+      };
+    });
+  });
   afterEach(() => {
     vi.clearAllMocks();
   });

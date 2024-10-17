@@ -34,7 +34,7 @@ const ServiceConfiguration = () => {
         description: getCdbApiErrorMessage(err),
       });
     },
-    onSuccess: () => {
+    onEditSuccess: () => {
       toast.toast({
         title: t('serviceConfigurationUpdateToastSuccessTitle'),
         description: t('serviceConfigurationUpdateToastSuccessDescription'),
