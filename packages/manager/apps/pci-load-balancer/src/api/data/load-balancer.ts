@@ -5,10 +5,10 @@ import {
   FLOATING_IP_TYPE,
   PROTOCOLS,
 } from '@/constants';
-import { TRegion } from '@/api/hook/usePlans';
 import { TPrivateNetwork, TSubnet } from '@/api/data/network';
 import { ListenerConfiguration } from '@/components/create/InstanceTable.component';
 import { TFloatingIp } from '@/api/data/floating-ips';
+import { TRegion } from '@/api/hook/useRegions';
 
 export enum LoadBalancerOperatingStatusEnum {
   ONLINE = 'online',
