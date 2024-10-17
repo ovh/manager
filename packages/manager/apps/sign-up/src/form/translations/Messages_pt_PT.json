@@ -9,5 +9,6 @@
   "sign_up_form_global_information": "Para prosseguir com a sua encomenda, são necessárias as informações abaixo.",
   "sign_up_form_global_information_kyc_reminder": "Estas informações são obrigatórias para encomendar. Por favor, respeite as seguintes instruções:",
   "sign_up_form_global_information_kyc_reminder_fill_address": "Introduza a <strong>sua morada completa</strong> ",
-  "sign_up_form_global_information_kyc_reminder_match_address": "A morada deve <strong>corresponder ao que figura no comprovativo</strong> de morada que lhe será pedido para verificar a sua identidade."
+  "sign_up_form_global_information_kyc_reminder_match_address": "A morada deve <strong>corresponder ao que figura no comprovativo</strong> de morada que lhe será pedido para verificar a sua identidade.",
+  "sign_up_form_mandatory_fields": "campos obrigatórios"
 }
