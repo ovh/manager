@@ -10,7 +10,6 @@ import isUndefined from 'lodash/isUndefined';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
 import some from 'lodash/some';
-import toNumber from 'lodash/toNumber';
 
 import {
   DEDICATED_CLOUD_CONSTANTS,
@@ -344,59 +343,18 @@ class DedicatedCloudService {
     );
   }
 
-  getDatacenterInformations(serviceName, datacenterId, forceRefresh) {
-    return this.OvhHttp.get(
-      '/sws/dedicatedCloud/{serviceName}/datacenters/{datacenterId}',
-      {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
-          datacenterId,
-        },
-        cache: 'SUB_DATACENTERS',
-        clearCache: forceRefresh,
-      },
-    );
+  getDatacenterInformations(serviceName, datacenterId) {
+    return this.$http
+      .get(`/sws/dedicatedCloud/${serviceName}/datacenters/${datacenterId}`, {
+        serviceType: 'aapi',
+      })
+      .then(({ data }) => data);
   }
 
-  updateDatacenterName(serviceName, datacenterId, name) {
-    return this.OvhHttp.put(
-      '/dedicatedCloud/{serviceName}/datacenter/{datacenterId}',
-      {
-        rootPath: 'apiv6',
-        urlParams: {
-          serviceName,
-          datacenterId,
-        },
-        data: {
-          name,
-        },
-      },
-    );
-  }
-
-  updateDatacenterDescription(serviceName, datacenterId, description) {
-    return this.OvhHttp.put(
-      '/dedicatedCloud/{serviceName}/datacenter/{datacenterId}',
-      {
-        rootPath: 'apiv6',
-        urlParams: {
-          serviceName,
-          datacenterId,
-        },
-        data: {
-          description,
-        },
-        broadcast: 'global_display_name_change',
-        broadcastParam: {
-          stateParams: {
-            productId: serviceName,
-            datacenterId: toNumber(datacenterId),
-          },
-          displayName: description,
-        },
-      },
-    );
+  updateDatacenterData(serviceName, datacenterId, data) {
+    return this.$http
+      .put(`/dedicatedCloud/${serviceName}/datacenter/${datacenterId}`, data)
+      .then(({ data: result }) => result);
   }
 
   /* ------- SUB DATACENTER HOSTS -------*/

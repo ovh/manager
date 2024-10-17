@@ -2,7 +2,7 @@
     <form name="updateNameForm" novalidate>
         <oui-modal
             data-primary-label="{{ :: 'common_change' | translate }}"
-            data-primary-disabled="updateNameForm.$invalid"
+            data-primary-disabled="updateNameForm.$invalid || $ctrl.newValue === $ctrl.data.value"
             data-primary-action="$ctrl.updateDescription()"
             data-secondary-label="{{ :: 'common_cancel' | translate }}"
             data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
