@@ -219,7 +219,6 @@ const OrderFunnel = ({
                 )}
               />
             </section>
-
             <section id="flavor">
               <FormField
                 control={model.form.control}
