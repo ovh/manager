@@ -31,6 +31,7 @@ export const ROUTE_PATHS = {
   POOL_DETAIL: ':region/:loadBalancerId/pools/:poolId',
   POOL_MEMBERS: 'members',
   POOL_MEMBERS_LIST: 'list',
+  POOL_MEMBERS_CREATE: 'create',
   POOL_MEMBERS_DELETE: ':memberId/delete',
   POOL_MEMBERS_EDIT: ':memberId/edit',
   STATISTICS: 'statistics',
@@ -99,6 +100,9 @@ const PoolsMembersDeletePage = lazy(() =>
 );
 const PoolsMembersEditPage = lazy(() =>
   import('@/pages/detail/pools/detail/members/edit/Edit.page'),
+);
+const PoolsMembersCreatePage = lazy(() =>
+  import('@/pages/detail/pools/detail/members/create/Create.page'),
 );
 const PoolsMembersPage = lazy(() =>
   import('@/pages/detail/pools/detail/members/Member.page'),
@@ -189,6 +193,10 @@ const Routes = (
           <Route
             path={ROUTE_PATHS.POOL_MEMBERS_EDIT}
             Component={PoolsMembersEditPage}
+          />
+          <Route
+            path={ROUTE_PATHS.POOL_MEMBERS_CREATE}
+            Component={PoolsMembersCreatePage}
           />
         </Route>
       </Route>

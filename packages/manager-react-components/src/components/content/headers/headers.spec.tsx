@@ -11,8 +11,9 @@ import { useAuthorizationIam } from '../../../hooks/iam';
 
 jest.mock('../../../hooks/iam');
 
-const mockedHook =
-  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedHook = (useAuthorizationIam as unknown) as jest.Mock<
+  IamAuthorizationResponse
+>;
 
 describe('Headers component', () => {
   beforeEach(() => {

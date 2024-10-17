@@ -1,0 +1,9 @@
+{
+  "octavia_load_balancer_pools_detail_members_create_title": "Manuell hinzufügen",
+  "octavia_load_balancer_pools_detail_members_create_description": "Fügen Sie ein Mitglied manuell hinzu, wenn es nicht in der Tabelle der verfügbaren Instanzen aufgeführt ist.",
+  "octavia_load_balancer_pools_detail_members_create_cancel": "Abbrechen",
+  "octavia_load_balancer_pools_detail_members_create_confirm": "Hinzufügen",
+  "octavia_load_balancer_pools_detail_members_create_name_label": "Name (optional)",
+  "octavia_load_balancer_pools_detail_members_create_address_ip_label": "IP-Adresse",
+  "octavia_load_balancer_pools_detail_members_create_port_label": "Port"
+}
