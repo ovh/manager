@@ -16,7 +16,12 @@ export const getVeeamBackupMocks = ({
 }: GetVeeamBackupMocksParams): Handler[] => [
   {
     url: '/vmwareCloudDirector/backup/:id',
-    response: (_: unknown, params: PathParams) => findBackupById(params),
+    response: (_: unknown, params: PathParams) =>
+      isBackupKo
+        ? {
+            message: 'Backup error',
+          }
+        : findBackupById(params),
     status: isBackupKo ? 500 : 200,
     api: 'v2',
   },

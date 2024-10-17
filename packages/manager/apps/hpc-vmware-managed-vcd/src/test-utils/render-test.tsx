@@ -29,11 +29,14 @@ import { APP_NAME } from '@/tracking.constant';
 let context: ShellContextType;
 let i18nState: i18n;
 
-export const renderTest = async (
-  mockParams: GetOrganizationMocksParams &
-    GetVeeamBackupMocksParams &
-    GetServicesMocksParams = {},
-) => {
+export const renderTest = async ({
+  initialRoute,
+  ...mockParams
+}: {
+  initialRoute?: string;
+} & GetOrganizationMocksParams &
+  GetVeeamBackupMocksParams &
+  GetServicesMocksParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),
@@ -55,20 +58,22 @@ export const renderTest = async (
   const result = render(
     <I18nextProvider i18n={i18nState}>
       <ShellContext.Provider value={context}>
-        <TestApp />
+        <TestApp initialRoute={initialRoute} />
       </ShellContext.Provider>
     </I18nextProvider>,
   );
 
-  await waitFor(
-    () =>
-      expect(
-        screen.getAllByText(labels.listing.managed_vcd_listing_title, {
-          exact: false,
-        }).length,
-      ).toBeGreaterThan(0),
-    { timeout: 30000 },
-  );
+  if (!initialRoute || initialRoute === '/') {
+    await waitFor(
+      () =>
+        expect(
+          screen.getAllByText(labels.listing.managed_vcd_listing_title, {
+            exact: false,
+          }).length,
+        ).toBeGreaterThan(0),
+      { timeout: 30000 },
+    );
+  }
 
   return result;
 };
