@@ -1,3 +1,5 @@
+import { US_API_CONSOLE_LINK } from '../constants';
+
 export default class IpByoipDeleteController {
   /* @ngInject */
   constructor($scope, coreURLBuilder) {
@@ -11,6 +13,7 @@ export default class IpByoipDeleteController {
       'dedicated',
       '#/billing/autorenew',
     );
+    this.apiConsoleUrl = US_API_CONSOLE_LINK;
     this.cancelAction = () => {
       this.$scope.resetAction();
     };
