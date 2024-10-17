@@ -79,7 +79,7 @@ export default class PciStoragesContainersController {
     this.containers = this.containers.reduce((acc, container) => {
       acc.push({
         ...container,
-        deploymentMode: this.regions[container.region].type,
+        deploymentMode: this.regions?.[container.region].type || null,
       });
       return acc;
     }, []);

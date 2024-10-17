@@ -105,6 +105,17 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant(
           'pci_projects_project_storages_containers_archive_title',
         ),
+
+      regions: /* @ngInject */ (PciProjectRegions, projectId) =>
+        PciProjectRegions.getAvailableRegions(projectId).then((regions) => {
+          return regions.reduce((acc, region) => {
+            acc[region.name] = region;
+            return acc;
+          }, {});
+        }),
+
+      catalog: /* @ngInject */ (PciStoragesObjectStorageService) =>
+        PciStoragesObjectStorageService.getCatalog(),
     },
   });
 };
