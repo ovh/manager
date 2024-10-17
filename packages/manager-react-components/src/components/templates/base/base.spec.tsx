@@ -6,11 +6,11 @@ import { listingTemplateProps } from './base.stories';
 describe('BaseLayout component', () => {
   it('renders base component correctly', async () => {
     render(<BaseLayout {...listingTemplateProps} />);
-    waitFor(() => {
+    await waitFor(() => {
       expect(screen.getByText('Vrack Services')).toBeInTheDocument();
       expect(
         screen.getByText(
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+          'Description de la listing, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         ),
       ).toBeInTheDocument();
     });
