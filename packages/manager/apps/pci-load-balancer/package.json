@@ -12,7 +12,10 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-load-balancer-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-load-balancer-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-load-balancer-app' --include-dependencies -- npm run dev:watch --if-present",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest",
+    "test:watch:coverage": "vitest --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "*",
