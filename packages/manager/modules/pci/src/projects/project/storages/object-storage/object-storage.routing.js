@@ -168,6 +168,13 @@ export default /* @ngInject */ ($stateProvider) => {
           });
         }
       },
+      is3azAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('public-cloud:object-storage:3az')
+          .then((feature) =>
+            feature.isFeatureAvailable('public-cloud:object-storage:3az'),
+          ),
+
       encryptionAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
           .checkFeatureAvailability('public-cloud:object-storage:encryption')
