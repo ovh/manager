@@ -1,0 +1,7 @@
+{
+  "managed_vcd_vdc_storage_name": "Name",
+  "managed_vcd_vdc_storage_profile": "Profil",
+  "managed_vcd_vdc_storage_type": "Typ",
+  "managed_vcd_vdc_storage_capacity": "Grösse",
+  "managed_vcd_vdc_storage_order_cta": "Storage bestellen"
+}
