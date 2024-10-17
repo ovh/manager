@@ -1,0 +1,17 @@
+{
+  "zimbra_redirections_edit_1": "Inserisci le informazioni relative al reindirizzamento.",
+  "zimbra_redirections_edit_2": "I campi contrassegnati con un asterisco * sono obbligatori.",
+  "zimbra_redirections_title_add": "Crea un reindirizzamento",
+  "zimbra_redirections_title_edit": "Modifica il reindirizzamento",
+  "zimbra_redirections_add_form_input_name_title_from": "Dall'indirizzo",
+  "zimbra_redirections_add_form_input_name_title_to": "All'indirizzo",
+  "zimbra_redirections_add_form_input_checkbox": "Conserva una copia dell'email in OVHcloud",
+  "zimbra_redirections_add_input_email_placeholder": "Nome dell'account",
+  "zimbra_redirections_add_select_domain_placeholder": "Seleziona un dominio",
+  "zimbra_redirections_add_btn_cancel": "Annulla",
+  "zimbra_redirections_add_btn_confirm": "Conferma",
+  "zimbra_redirections_add_success": "La richiesta di creazione del reindirizzamento è stata presa in carico. Sarà elaborata entro pochi minuti.",
+  "zimbra_redirections_edit_success": "La richiesta di modifica del reindirizzamento è stata presa in carico. Sarà elaborata entro pochi minuti.",
+  "zimbra_redirections_add_error": "La richiesta di creazione del reindirizzamento non è andata a buon fine. {{ error }}",
+  "zimbra_redirections_edit_error": "La richiesta di modifica del reindirizzamento non è andata a buon fine. {{ error }}"
+}

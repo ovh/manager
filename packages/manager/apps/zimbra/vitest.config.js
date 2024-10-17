@@ -1,5 +1,5 @@
 import path from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig, coverageConfigDefaults } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
@@ -14,18 +14,18 @@ export default defineConfig({
         'src/configInterface.ts',
         'src/api',
         'src/zimbra.config.ts',
-        'src/__tests__',
         'src/vite-*.ts',
         'src/App.tsx',
-        'src/hooks/__tests__',
         'src/hooks/index.ts',
         'src/hooks/types.ts',
         'src/index.tsx',
         'src/routes/routes.tsx',
         'src/utils/index.ts',
         'src/**/*constants.ts',
+        ...coverageConfigDefaults.exclude,
       ],
     },
+    setupFiles: ['src/utils/test.setup.tsx'],
   },
   resolve: {
     alias: {

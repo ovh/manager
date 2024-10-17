@@ -1,0 +1,11 @@
+{
+  "zimbra_domain_edit_modal_title": "Domain configuration",
+  "zimbra_domain_edit_modal_content": "Are you sure you want to delete the domain from the Zimbra server?",
+  "zimbra_domain_edit_modal_message_disabled": "Your domain is in use. You cannot delete this domain while it is in this case.",
+  "zimbra_domain_edit_success_message": "Your domain configuration has been processed. It will be active in a few moments.",
+  "zimbra_domain_edit_error_message": "Your domain configuration could not be completed. {{ error }}",
+  "zimbra_domain_edit_domain_label": "Domain",
+  "zimbra_domain_edit_organization_label": "Organisation ",
+  "zimbra_domain_edit_confirm": "Confirm",
+  "zimbra_domain_edit_cancel": "Cancel"
+}
