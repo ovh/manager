@@ -22,4 +22,5 @@ export default interface IVcdDatacentre {
   targetSpec: IVcdDatacentreState;
   currentTasks?: any[];
   iam: IamObject;
+  updatedAt: string;
 }

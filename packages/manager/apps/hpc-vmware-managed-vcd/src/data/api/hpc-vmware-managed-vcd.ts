@@ -30,7 +30,7 @@ export const getVcdOrganizationBackup = async (
   organizationId: string,
 ): Promise<ApiResponse<IVcdOrganizationBackup>> =>
   apiClient.v2.get(
-    `${VCD_ORGANIZATION_ROUTE}/backup/${organizationId}-veeam-backup`,
+    `/vmwareCloudDirector/backup/${organizationId}-veeam-backup`,
   );
 
 /**
