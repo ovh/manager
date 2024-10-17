@@ -217,7 +217,7 @@ export default function RuleForm({
           <span slot="placeholder">
             {t('octavia_load_balancer_create_l7_rule_compare_type_default')}
           </span>
-          {listCompareType.map((compareType) => (
+          {listCompareType?.map((compareType) => (
             <OsdsSelectOption key={compareType.value} value={compareType.value}>
               {compareType.label}
             </OsdsSelectOption>
@@ -326,6 +326,7 @@ export default function RuleForm({
           color={ODS_THEME_COLOR_INTENT.primary}
           disabled={isDisabled || undefined}
           onClick={() => onSubmit(formState)}
+          data-testid="ruleForm-submit_button"
         >
           {submitButtonText || t('octavia_load_balancer_create_l7_rule_submit')}
         </OsdsButton>

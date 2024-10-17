@@ -21,7 +21,7 @@ export const useGetAllL7Rules = (
   useQuery({
     queryKey: ['l7Rules', projectId, 'policy', policyId, region],
     queryFn: () => getL7Rules(projectId, region, policyId),
-    select: (l7Rules) =>
+    select: (l7Rules): TL7Rule[] =>
       l7Rules.map((l7Rule) => ({
         ...l7Rule,
         search: `${l7Rule.key} ${l7Rule.value} ${l7Rule.invert} ${l7Rule.ruleType} ${l7Rule.compareType} ${l7Rule.provisioningStatus} ${l7Rule.operatingStatus}`,
@@ -45,7 +45,7 @@ export const useL7Rules = (
     () => ({
       isLoading,
       isPending,
-      allL7Policies: allL7Rules,
+      allL7Rules,
       paginatedL7Rules: paginateResults<TL7Rule>(
         sortResults<TL7Rule>(applyFilters(allL7Rules || [], filters), sorting),
         pagination,

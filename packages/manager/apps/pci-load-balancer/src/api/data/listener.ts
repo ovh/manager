@@ -28,7 +28,7 @@ export const getLoadBalancerListeners = async (
   return data;
 };
 
-interface CreateListenerProps {
+export interface CreateListenerProps {
   projectId: string;
   region: string;
   loadBalancerId: string;
@@ -61,7 +61,7 @@ export const createListener = async ({
   return data;
 };
 
-interface EditListenerProps {
+export interface EditListenerProps {
   projectId: string;
   region: string;
   listenerId: string;

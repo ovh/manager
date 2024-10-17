@@ -21,7 +21,7 @@ export const useGetAllPoolMembers = (
   useQuery({
     queryKey: ['poolMembers', projectId, 'pool', poolId, region],
     queryFn: () => getPoolMembers(projectId, region, poolId),
-    select: (poolMembers: TPoolMember[]) =>
+    select: (poolMembers: TPoolMember[]): TPoolMember[] =>
       poolMembers.map((member) => ({
         ...member,
         search: `${member.name} ${member.address} ${member.protocolPort}`,

@@ -20,7 +20,7 @@ import {
   ODS_INPUT_TYPE,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import '../../translations/quantity-selector';
 
@@ -101,6 +101,7 @@ export function QuantitySelector({
             variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_BUTTON_SIZE.sm}
+            data-testid="quantity-button-minus"
             text-align="center"
             disabled={min !== undefined && value - 1 < min ? true : undefined}
           >
@@ -130,6 +131,7 @@ export function QuantitySelector({
             variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_BUTTON_SIZE.sm}
+            data-testid="quantity-button-plus"
             text-align="center"
             disabled={max !== undefined && value + 1 > max ? true : undefined}
           >
