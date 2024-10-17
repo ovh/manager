@@ -17,6 +17,7 @@ export type TLoadBalancerPool = {
     cookieName: string;
   };
   loadbalancerId: string;
+  search?: string;
   listenerId: string;
 };
 

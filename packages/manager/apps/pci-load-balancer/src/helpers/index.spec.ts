@@ -1,6 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { paginateResults, sortResults } from './index';
 import { TLoadBalancer } from '@/api/data/load-balancer';
+
+vi.unmock('@/helpers');
 
 describe('paginateResults', () => {
   it('returns correct pagination data for given items and pagination state', () => {
