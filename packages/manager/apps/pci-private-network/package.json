@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-pci-private-network-app",
   "version": "0.9.1",
   "private": true,
+  "description": "PCI Private network react app",
   "type": "module",
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",

@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-pci-gateway-app",
   "version": "0.9.5",
   "private": true,
+  "description": "PCI Gateway react app",
   "type": "module",
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",
