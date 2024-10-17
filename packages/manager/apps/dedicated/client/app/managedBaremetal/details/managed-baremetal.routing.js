@@ -93,9 +93,11 @@ export default /* @ngInject */ ($stateProvider) => {
 
       managedVCDAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
-          .checkFeatureAvailability('hpc-vmware-managed-vcd')
+          .checkFeatureAvailability('hpc-vmware-managed-vcd:pcc-migration')
           .then((featureAvailability) =>
-            featureAvailability.isFeatureAvailable('hpc-vmware-managed-vcd'),
+            featureAvailability.isFeatureAvailable(
+              'hpc-vmware-managed-vcd:pcc-migration',
+            ),
           ),
 
       dedicatedCloudServiceInfos: /* @ngInject */ (
