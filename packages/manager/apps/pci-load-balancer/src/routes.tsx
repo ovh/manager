@@ -32,6 +32,9 @@ export const ROUTE_PATHS = {
   POOL_MEMBERS: 'members',
   POOL_MEMBERS_LIST: 'list',
   POOL_MEMBERS_DELETE: ':memberId/delete',
+  POOL_HEALTH_MONITOR: 'health-monitor',
+  POOL_HEALTH_MONITOR_CREATE: 'health-monitor/create',
+  POOL_HEALTH_MONITOR_EDIT: 'health-monitor/edit',
   STATISTICS: 'statistics',
   CERTIFICATES: 'certificates',
   LOGS: 'logs',
@@ -115,6 +118,24 @@ const PoolDetailPage = lazy(() =>
 const PoolOverviewPage = lazy(() =>
   import('@/pages/detail/pools/detail/overview/PoolOverview'),
 );
+const PoolHealthMonitorPage = lazy(() =>
+  import('@/pages/detail/pools/detail/health-monitor/HealthMonitor'),
+);
+const HealthMonitorDeletePage = lazy(() =>
+  import(
+    '@/pages/detail/pools/detail/health-monitor/delete/DeleteHealthMonitor.page'
+  ),
+);
+const HealthMonitorCreatePage = lazy(() =>
+  import(
+    '@/pages/detail/pools/detail/health-monitor/create/HealthMonitorCreate.page'
+  ),
+);
+const HealthMonitorEditPage = lazy(() =>
+  import(
+    '@/pages/detail/pools/detail/health-monitor/edit/HealthMonitorEdit.page'
+  ),
+);
 
 const StatisticsPage = lazy(() =>
   import('@/pages/detail/statistics/Statistics.page'),
@@ -194,6 +215,27 @@ const Routes = (
           Component={PoolDeletePage}
         />
       </Route>
+      <Route
+        id="pools-detail-health-monitor"
+        path={ROUTE_PATHS.POOL_HEALTH_MONITOR}
+        Component={PoolHealthMonitorPage}
+      >
+        <Route
+          id="health-monitor-delete"
+          path={ROUTE_PATHS.POOL_DELETE}
+          Component={HealthMonitorDeletePage}
+        />
+      </Route>
+      <Route
+        id="health-monitor-create"
+        path={ROUTE_PATHS.POOL_HEALTH_MONITOR_CREATE}
+        Component={HealthMonitorCreatePage}
+      />
+      <Route
+        id="health-monitor-edit"
+        path={ROUTE_PATHS.POOL_HEALTH_MONITOR_EDIT}
+        Component={HealthMonitorEditPage}
+      />
     </Route>
     <Route id="detail" path={ROUTE_PATHS.DETAIL} Component={DetailPage}>
       <Route

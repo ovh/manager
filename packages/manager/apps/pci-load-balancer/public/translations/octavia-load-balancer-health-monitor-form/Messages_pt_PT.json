@@ -1,0 +1,18 @@
+{
+  "octavia_load_balancer_health_monitor_form_description_1": "O health monitor é utilizado para determinar a integridade dos membros do seu pool. São efetuadas verificações de integridade de forma regular em cada membro do pool, e o resultado dessas verificações é usado para determinar se o membro recebe novas conexões. Só pode ser definido um health monitor para cada pool.",
+  "octavia_load_balancer_health_monitor_form_description_2": "Descubra opções adicionais através do Horizon.",
+  "octavia_load_balancer_health_monitor_form_description_link": "Descobrir opções",
+  "octavia_load_balancer_health_monitor_form_name": "Nome",
+  "octavia_load_balancer_health_monitor_form_name_help": "Deve apenas conter algarismos, letras, underscores, traços ou pontos.",
+  "octavia_load_balancer_health_monitor_form_type": "Tipo",
+  "octavia_load_balancer_health_monitor_form_type_default": "Escolha um tipo",
+  "octavia_load_balancer_health_monitor_form_expected_code": "Código esperado",
+  "octavia_load_balancer_health_monitor_form_expected_code_help": "O código HTTP considerado um sucesso",
+  "octavia_load_balancer_health_monitor_form_expected_code_tooltip": "Os códigos de estado HTTP esperados em caso de sucesso do health check. Deve ser um único algarismo, uma lista de algarismos separados por vírgula ou um intervalo (dois dígitos separados por um hífen).",
+  "octavia_load_balancer_health_monitor_form_max_retries_down_tooltip": "O número de falhas de ligação permitido antes de marcar o membro como erro. Deve ser um número entre 1 e 10. O valor padrão é 3. ",
+  "octavia_load_balancer_health_monitor_form_delay_tooltip": "Intervalo entre 2 testes do Health Monitor. Deve ser superior ao timeout.",
+  "octavia_load_balancer_health_monitor_form_max_retries_tooltip": "O número de falhas de ligação permitido antes de marcar o membro como inativo. Deve ser um número entre 1 e 10.",
+  "octavia_load_balancer_health_monitor_form_timeout_tooltip": "O tempo após o qual um health check termina. Deve ser um número igual ou superior a 0 e inferior à periodicidade",
+  "octavia_load_balancer_health_monitor_form_cancel": "Anular",
+  "octavia_load_balancer_health_monitor_form_submit": "Editar"
+}

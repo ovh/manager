@@ -60,7 +60,7 @@ export default function ListingPage() {
     <RedirectionGuard
       isLoading={isPending}
       condition={!isPending && allLoadBalancer?.length === 0}
-      route={`/pci/projects/${projectId}/octavia-load-balancer/onboarding`}
+      route="../onboarding"
     >
       <OsdsBreadcrumb
         items={[
