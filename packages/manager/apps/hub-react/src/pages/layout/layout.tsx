@@ -1,4 +1,4 @@
-import { useEffect, useContext, useRef, Suspense, lazy } from 'react';
+import { useEffect, useContext, useRef, Suspense, lazy, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   useOvhTracking,
@@ -14,6 +14,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
+  ODS_TEXT_COLOR_HUE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -72,6 +73,7 @@ export default function Layout() {
   const { trackCurrentPage } = useOvhTracking();
   const { t } = useTranslation();
   const mainContentRef = useRef<HTMLAnchorElement>(null);
+  const [isAccountSidebarVisible, setIsAccountSidebarVisible] = useState(false);
   useRouteSynchro();
 
   useEffect(() => {
@@ -79,9 +81,14 @@ export default function Layout() {
   }, [location]);
 
   useEffect(() => {
+    const getIsAccountSidebarVisible = async () => {
+      const newValueIsAccountSidebarVisible = (await shell.ux.isAccountSidebarVisible()) as boolean;
+      setIsAccountSidebarVisible(() => newValueIsAccountSidebarVisible);
+    };
     defineCurrentPage(`app.dashboard`);
     shell.ux.hidePreloader();
     shell.ux.stopProgress();
+    getIsAccountSidebarVisible();
   }, []);
 
   const {
@@ -124,9 +131,7 @@ export default function Layout() {
       <div className="relative w-full h-full overflow-auto">
         <div
           className={`absolute hub-main w-full h-full ${
-            shell.ux.isAccountSidebarVisible()
-              ? 'hub-main-view_sidebar_expanded'
-              : ''
+            isAccountSidebarVisible ? 'hub-main-view_sidebar_expanded' : ''
           }`}
           data-testid="hub_main_div"
         >
@@ -143,7 +148,7 @@ export default function Layout() {
             </div>
             {/* /Skip content target */}
             <div className="pt-8">
-              <div className="hub-main-view_container px-6">
+              <div className="hub-main-view_container px-6 box-border">
                 <div className="pb-12">
                   <Suspense
                     fallback={
@@ -237,13 +242,14 @@ export default function Layout() {
                     <OsdsText
                       className="inline-block my-6"
                       level={ODS_TEXT_LEVEL.heading}
-                      size={ODS_TEXT_SIZE._700}
-                      color={ODS_THEME_COLOR_INTENT.text}
+                      size={ODS_TEXT_SIZE._500}
+                      hue={ODS_TEXT_COLOR_HUE._800}
+                      color={ODS_THEME_COLOR_INTENT.primary}
                     >
                       {t('manager_hub_dashboard_overview')}
                     </OsdsText>
                   )}
-                  <div className="flex flex-wrap -mx-6">
+                  <div className={`flex flex-wrap ${isLoading ? '' : '-mx-6'}`}>
                     {isLoading && <TileSkeleton />}
                     {!isLoading && !isFreshCustomer && (
                       <>

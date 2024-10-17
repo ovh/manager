@@ -64,7 +64,7 @@ export default function KycIndiaBanner() {
 
   return shouldBeDisplayed ? (
     <OsdsMessage
-      className="flex rounded pr-8"
+      className="flex rounded pr-8 mb-4"
       type={ODS_MESSAGE_TYPE.info}
       color={ODS_THEME_COLOR_INTENT.info}
       removable={true}

@@ -51,12 +51,8 @@ export default function HubSupport() {
     })();
   }, []);
 
-  const handlerRefetch = () => {
-    refetch();
-  };
-
   return (
-    <OsdsTile className="w-full block p-4" inline>
+    <OsdsTile className="w-full block p-6" inline>
       {isLoading ? (
         <Skeletons />
       ) : (
@@ -65,7 +61,7 @@ export default function HubSupport() {
             <TileError
               className="block p-4"
               message={t('hub_support_error')}
-              refetch={handlerRefetch}
+              refetch={refetch}
             />
           )}
           {!error && data.count <= 0 && <HubSupportHelp />}
@@ -91,7 +87,7 @@ export default function HubSupport() {
                     hoverable
                     data-testid="refresh-icon"
                     className="cursor-pointer"
-                    onClick={handlerRefetch}
+                    onClick={() => refetch()}
                     name={ODS_ICON_NAME.REFRESH}
                     size={ODS_ICON_SIZE.xs}
                     color={ODS_THEME_COLOR_INTENT.primary}
@@ -113,7 +109,7 @@ export default function HubSupport() {
                     <span slot="end">
                       <OsdsIcon
                         hoverable
-                        name={ODS_ICON_NAME.ARROW_RIGHT}
+                        name={ODS_ICON_NAME.EXTERNAL_LINK}
                         size={ODS_ICON_SIZE.xs}
                         color={ODS_THEME_COLOR_INTENT.primary}
                       />
