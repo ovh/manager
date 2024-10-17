@@ -5,8 +5,13 @@ import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_HUE,
   ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_TEXT_COLOR_HUE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import React from 'react';
 import TileGridSkeleton from '@/components/tile-grid-skeleton/TileGridSkeleton.component';
 import { useFetchHubCatalog } from '@/data/hooks/catalog/useCatalog';
@@ -34,9 +39,9 @@ export default function Catalog() {
     <>
       <OsdsText
         className="block my-6"
-        level={ODS_TEXT_LEVEL.heading}
+        level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
         size={ODS_TEXT_SIZE._500}
-        hue={ODS_THEME_COLOR_HUE._800}
+        hue={ODS_TEXT_COLOR_HUE._800}
         color={ODS_THEME_COLOR_INTENT.primary}
         data-testid="catalog_title"
       >

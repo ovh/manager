@@ -1,3 +1,5 @@
+import { ApiEnvelope } from '@/types/apiEnvelope.type';
+
 export type Ticket = {
   serviceName: string;
   state: string;
@@ -8,4 +10,8 @@ export type Ticket = {
 export type SupportDataResponse = {
   count: number;
   data: Ticket[];
+};
+
+export type SupportResponse = {
+  support: ApiEnvelope<SupportDataResponse>;
 };
