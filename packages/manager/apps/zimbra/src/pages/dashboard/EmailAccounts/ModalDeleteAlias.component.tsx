@@ -1,16 +1,16 @@
 import React from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_COLOR_HUE,
-} from '@ovhcloud/ods-common-theming';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_MODAL_COLOR,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {
@@ -38,29 +38,19 @@ export default function ModalDeleteDomain() {
     mutationFn: () => deleteZimbraPlatformAlias(platformId, deleteAliasId),
     onSuccess: () => {
       addSuccess(
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_account_alias_delete_success_message')}
-        </OsdsText>,
+        </OdsText>,
         true,
       );
     },
     onError: (error: ApiError) => {
       addError(
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_account_alias_delete_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OsdsText>,
+        </OdsText>,
         true,
       );
     },
@@ -75,9 +65,10 @@ export default function ModalDeleteDomain() {
   return (
     <Modal
       title={t('zimbra_account_alias_delete_modal_title')}
-      color={ODS_THEME_COLOR_INTENT.warning}
+      color={ODS_MODAL_COLOR.warning}
       onDismissible={goBack}
-      dismissible={true}
+      isOpen
+      isDismissible
       secondaryButton={{
         label: t('zimbra_account_alias_delete_modal_cancel_btn'),
         action: goBack,
@@ -85,20 +76,14 @@ export default function ModalDeleteDomain() {
       primaryButton={{
         label: t('zimbra_account_alias_delete_modal_delete_btn'),
         action: handleDeleteClick,
+        variant: ODS_BUTTON_VARIANT.default,
         disabled: isDeleting,
         testid: 'delete-btn',
       }}
     >
-      <>
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
-          {t('zimbra_account_alias_delete_modal_description')}
-        </OsdsText>
-      </>
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        {t('zimbra_account_alias_delete_modal_description')}
+      </OdsText>
     </Modal>
   );
 }

@@ -20,9 +20,17 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
     deleteMailingListId: mailingListItem.id,
   });
 
+  const handleDeleteMailingListClick = () => {
+    window.location.href = hrefDeleteMailingList;
+  };
+
   const hrefEditMailingList = useGenerateUrl('./settings', 'href', {
     editMailingListId: mailingListItem.id,
   });
+
+  const handleEditMailingListClick = () => {
+    window.location.href = hrefEditMailingList;
+  };
 
   const hrefDefineMembersMailingList = useGenerateUrl(
     './define_members',
@@ -31,7 +39,9 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
       mailingListId: mailingListItem.id,
     },
   );
-
+  const handleDefineMembersMailingListClick = () => {
+    window.location.href = hrefDefineMembersMailingList;
+  };
   const hrefConfigureDelegationMailingList = useGenerateUrl(
     './configure_delegation',
     'href',
@@ -40,31 +50,34 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
     },
   );
 
+  const handleDefineConfigureDelegationMailingList = () => {
+    window.location.href = hrefConfigureDelegationMailingList;
+  };
   const actionItems = [
     {
       id: 1,
-      href: hrefEditMailingList,
+      onClick: handleEditMailingListClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.mailingList.edit],
       label: t('zimbra_mailinglists_datagrid_action_edit'),
     },
     {
       id: 2,
-      href: hrefDefineMembersMailingList,
+      onClick: handleDefineMembersMailingListClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.mailingList.edit],
       label: t('zimbra_mailinglists_datagrid_action_define_members'),
     },
     {
       id: 3,
-      href: hrefConfigureDelegationMailingList,
+      onClick: handleDefineConfigureDelegationMailingList,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.mailingList.edit],
       label: t('zimbra_mailinglists_datagrid_action_configure_delegation'),
     },
     {
       id: 4,
-      href: hrefDeleteMailingList,
+      onClick: handleDeleteMailingListClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.mailingList.delete],
       label: t('zimbra_mailinglists_datagrid_action_delete'),
@@ -73,7 +86,7 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
 
   return (
     <ActionMenu
-      disabled={mailingListItem.status !== ResourceStatus.READY}
+      isDisabled={mailingListItem.status !== ResourceStatus.READY}
       items={actionItems}
       isCompact
     />

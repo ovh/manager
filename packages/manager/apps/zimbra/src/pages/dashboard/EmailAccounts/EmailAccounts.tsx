@@ -1,29 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { OdsButton, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+
 import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsText,
-  OsdsTooltip,
-  OsdsTooltipContent,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_COLOR_HUE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import {
   Datagrid,
   DatagridColumn,
+  IconLinkAlignmentType,
   Links,
   LinkType,
   ManagerButton,
@@ -68,13 +56,7 @@ const columns: DatagridColumn<EmailsItem>[] = [
   {
     id: 'email account',
     cell: (item) => (
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._100}
-        level={ODS_TEXT_LEVEL.body}
-      >
-        {item.email}
-      </OsdsText>
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.email}</OdsText>
     ),
     label: 'zimbra_account_datagrid_email_label',
   },
@@ -88,13 +70,7 @@ const columns: DatagridColumn<EmailsItem>[] = [
   {
     id: 'offer',
     cell: (item) => (
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._100}
-        level={ODS_TEXT_LEVEL.body}
-      >
-        {item.offer}
-      </OsdsText>
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.offer}</OdsText>
     ),
     label: 'zimbra_account_datagrid_offer_label',
   },
@@ -106,13 +82,9 @@ const columns: DatagridColumn<EmailsItem>[] = [
   {
     id: 'quota',
     cell: (item) => (
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._100}
-        level={ODS_TEXT_LEVEL.body}
-      >
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         {convertOctets(item.used)} / {convertOctets(item.available)}
-      </OsdsText>
+      </OdsText>
     ),
     label: 'zimbra_account_datagrid_quota',
   },
@@ -164,27 +136,28 @@ export default function EmailAccounts() {
 
   const hrefAddEmailAccount = useGenerateUrl('./add', 'href');
 
+  const handleAddEmailAccountClick = () => {
+    window.location.href = hrefAddEmailAccount;
+  };
   return (
     <div className="py-6 mt-8">
-      <Notifications />
       <Outlet />
       {platformUrn && !isOverridedPage && (
         <>
           <div className="mb-8 flex gap-8">
             <div>
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.text}
-                hue={ODS_TEXT_COLOR_HUE._500}
-                size={ODS_TEXT_SIZE._200}
+              <OdsText
+                preset={ODS_TEXT_PRESET.heading6}
                 className="font-bold mr-4"
               >
                 {t('zimbra_account_datagrid_webmail_label')}
-              </OsdsText>
+              </OdsText>
               <Links
+                iconAlignment={IconLinkAlignmentType.right}
                 href={webmailUrl}
                 type={LinkType.external}
                 label={webmailUrl}
-                target={OdsHTMLAnchorElementTarget._blank}
+                target="_blank"
               ></Links>
             </div>
             <div>
@@ -196,14 +169,12 @@ export default function EmailAccounts() {
                 {accountsStatistics?.length > 0
                   ? accountsStatistics?.map((stats: AccountStatistics) => (
                       <div key={stats.offer}>
-                        <OsdsText
-                          color={ODS_THEME_COLOR_INTENT.text}
-                          hue={ODS_TEXT_COLOR_HUE._500}
-                          size={ODS_TEXT_SIZE._200}
-                          className="font-bold mr-4"
+                        <OdsText
+                          preset={ODS_TEXT_PRESET.heading6}
+                          className=" mr-4"
                         >
                           {`Zimbra ${stats.offer.toLowerCase()} :`}
-                        </OsdsText>
+                        </OdsText>
                         <span>{`${
                           stats.configuredAccountsCount
                         } / ${stats.configuredAccountsCount +
@@ -219,54 +190,33 @@ export default function EmailAccounts() {
           </div>
           {(data?.length > 0 || dataDomains?.length > 0) && (
             <ManagerButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              inline
+              id="add-account-btn"
+              color={ODS_BUTTON_COLOR.primary}
               size={ODS_BUTTON_SIZE.sm}
               urn={platformUrn}
               iamActions={[IAM_ACTIONS.account.create]}
-              href={hrefAddEmailAccount}
+              onClick={handleAddEmailAccountClick}
               data-testid="add-account-btn"
               className="mb-6"
-            >
-              <span slot="start">
-                <OsdsIcon
-                  name={ODS_ICON_NAME.PLUS}
-                  size={ODS_ICON_SIZE.sm}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  contrasted
-                ></OsdsIcon>
-              </span>
-              <span slot="end">{t('zimbra_account_account_add')}</span>
-            </ManagerButton>
+              icon={ODS_ICON_NAME.plus}
+              label={t('zimbra_account_account_add')}
+            />
           )}
           {dataDomains?.length === 0 && (
-            <OsdsTooltip className="mb-6">
-              <OsdsButton
-                color={ODS_THEME_COLOR_INTENT.primary}
-                inline
+            <OdsTooltip className="mb-6" triggerId="tooltip-trigger">
+              <OdsButton
+                color={ODS_BUTTON_COLOR.primary}
                 size={ODS_BUTTON_SIZE.sm}
-                disabled
-              >
-                <span slot="start">
-                  <OsdsIcon
-                    name={ODS_ICON_NAME.PLUS}
-                    size={ODS_ICON_SIZE.sm}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    contrasted
-                  ></OsdsIcon>
-                </span>
-                <span slot="end">{t('zimbra_account_account_add')}</span>
-              </OsdsButton>
-              <OsdsTooltipContent slot="tooltip-content">
-                <OsdsText
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-                >
+                isDisabled
+                icon={ODS_ICON_NAME.plus}
+                label={t('zimbra_account_account_add')}
+              ></OdsButton>
+              <div id="tooltip-trigger">
+                <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                   {t('zimbra_domains_tooltip_need_domain')}
-                </OsdsText>
-              </OsdsTooltipContent>
-            </OsdsTooltip>
+                </OdsText>
+              </div>
+            </OdsTooltip>
           )}
           {isLoading ? (
             <Loading />

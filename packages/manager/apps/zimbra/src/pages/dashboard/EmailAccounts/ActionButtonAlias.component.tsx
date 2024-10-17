@@ -23,10 +23,14 @@ const ActionButtonAlias: React.FC<ActionButtonAliasAccountProps> = ({
     deleteAliasId: aliasItem.id,
     editEmailAccountId,
   });
+
+  const handleDeleteAliasClick = () => {
+    window.location.href = hrefDeleteAlias;
+  };
   const actionItems = [
     {
       id: 1,
-      href: hrefDeleteAlias,
+      onClick: handleDeleteAliasClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.alias.delete],
       label: t('zimbra_account_alias_datagrid_tooltip_delete'),
@@ -34,7 +38,7 @@ const ActionButtonAlias: React.FC<ActionButtonAliasAccountProps> = ({
   ];
   return (
     <ActionMenu
-      disabled={aliasItem.status !== ResourceStatus.READY}
+      isDisabled={aliasItem.status !== ResourceStatus.READY}
       items={actionItems}
       isCompact
     />

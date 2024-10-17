@@ -1,29 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { OdsText, OdsTooltip, OdsButton } from '@ovhcloud/ods-components/react';
+
 import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsText,
-  OsdsTooltip,
-  OsdsTooltipContent,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import {
   Datagrid,
   DatagridColumn,
   ManagerButton,
-  Notifications,
 } from '@ovh-ux/manager-react-components';
 import { Outlet } from 'react-router-dom';
 import {
@@ -60,13 +48,7 @@ const columns: DatagridColumn<DomainsItem>[] = [
   {
     id: 'domains',
     cell: (item) => (
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._100}
-        level={ODS_TEXT_LEVEL.body}
-      >
-        {item.name}
-      </OsdsText>
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>
     ),
     label: 'zimbra_domains_datagrid_domain_label',
   },
@@ -80,13 +62,7 @@ const columns: DatagridColumn<DomainsItem>[] = [
   {
     id: 'account',
     cell: (item) => (
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._100}
-        level={ODS_TEXT_LEVEL.body}
-      >
-        {item.account}
-      </OsdsText>
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.account}</OdsText>
     ),
     label: 'zimbra_domains_datagrid_account_number',
   },
@@ -98,17 +74,17 @@ const columns: DatagridColumn<DomainsItem>[] = [
           <DiagnosticBadge
             diagType={DnsRecordType.MX}
             domainId={item.id}
-            status="error"
+            status="critical"
           />
           <DiagnosticBadge
             diagType={DnsRecordType.SRV}
             domainId={item.id}
-            status="error"
+            status="critical"
           />
           <DiagnosticBadge
             diagType={DnsRecordType.SPF}
             domainId={item.id}
-            status="error"
+            status="critical"
           />
           <DiagnosticBadge
             diagType={DnsRecordType.DKIM}
@@ -150,6 +126,10 @@ export default function Domains() {
 
   const hrefAddDomain = useGenerateUrl('./add', 'href');
 
+  const handleAddDomainClick = () => {
+    window.location.href = hrefAddDomain;
+  };
+
   const items: DomainsItem[] =
     data?.map((item: DomainType) => ({
       name: item.currentState.name,
@@ -166,61 +146,39 @@ export default function Domains() {
 
   return (
     <div className="py-6 mt-8">
-      <Notifications />
       <Outlet />
       {platformUrn && !isOverridedPage && (
         <>
           <div className="flex items-center justify-between">
             {(data?.length > 0 || dataOrganizations?.length > 0) && (
               <ManagerButton
-                color={ODS_THEME_COLOR_INTENT.primary}
-                inline
+                id="add-domain-btn"
+                color={ODS_BUTTON_COLOR.primary}
                 size={ODS_BUTTON_SIZE.sm}
-                href={hrefAddDomain}
+                onClick={handleAddDomainClick}
                 urn={platformUrn}
                 iamActions={[IAM_ACTIONS.domain.create]}
                 data-testid="add-domain-btn"
                 className="mb-6"
-              >
-                <span slot="start">
-                  <OsdsIcon
-                    name={ODS_ICON_NAME.PLUS}
-                    size={ODS_ICON_SIZE.sm}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    contrasted
-                  ></OsdsIcon>
-                </span>
-                <span slot="end">{t('zimbra_domains_add_domain_title')}</span>
-              </ManagerButton>
+                icon={ODS_ICON_NAME.plus}
+                label={t('zimbra_domains_add_domain_title')}
+              />
             )}
             {dataOrganizations?.length === 0 && (
-              <OsdsTooltip className="mb-6">
-                <OsdsButton
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  inline
+              <OdsTooltip className="mb-6" triggerId="tooltip-trigger">
+                <OdsButton
+                  color={ODS_BUTTON_COLOR.primary}
                   size={ODS_BUTTON_SIZE.sm}
-                  disabled
-                >
-                  <span slot="start">
-                    <OsdsIcon
-                      name={ODS_ICON_NAME.PLUS}
-                      size={ODS_ICON_SIZE.sm}
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                      contrasted
-                    ></OsdsIcon>
-                  </span>
-                  <span slot="end">{t('zimbra_domains_add_domain_title')}</span>
-                </OsdsButton>
-                <OsdsTooltipContent slot="tooltip-content">
-                  <OsdsText
-                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-                  >
+                  isDisabled
+                  icon={ODS_ICON_NAME.plus}
+                  label={t('zimbra_domains_add_domain_title')}
+                ></OdsButton>
+                <div id="tooltip-trigger">
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                     {t('zimbra_domains_tooltip_need_organization')}
-                  </OsdsText>
-                </OsdsTooltipContent>
-              </OsdsTooltip>
+                  </OdsText>
+                </div>
+              </OdsTooltip>
             )}
           </div>
           {isLoading ? (

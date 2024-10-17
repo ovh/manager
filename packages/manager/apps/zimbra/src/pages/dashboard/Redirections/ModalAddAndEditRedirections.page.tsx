@@ -1,23 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  OsdsCheckboxButton,
-  OsdsFormField,
-  OsdsInput,
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsText,
+  OdsCheckbox,
+  OdsFormField,
+  OdsInput,
+  OdsSelect,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import {
-  ODS_CHECKBOX_BUTTON_SIZE,
-  ODS_INPUT_SIZE,
+  ODS_BUTTON_COLOR,
   ODS_INPUT_TYPE,
+  ODS_MODAL_COLOR,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import Modal from '@/components/Modals/Modal';
@@ -151,8 +146,9 @@ export default function ModalAddAndEditRedirections() {
 
   return (
     <Modal
-      color={ODS_THEME_COLOR_INTENT.primary}
-      dismissible
+      isOpen
+      color={ODS_MODAL_COLOR.information}
+      isDismissible
       title={t(
         editRedirectionId
           ? 'zimbra_redirections_title_edit'
@@ -161,13 +157,13 @@ export default function ModalAddAndEditRedirections() {
       onDismissible={onClose}
       secondaryButton={{
         testid: 'cancel-btn',
-        color: ODS_THEME_COLOR_INTENT.primary,
+        color: ODS_BUTTON_COLOR.primary,
         label: t('zimbra_redirections_add_btn_cancel'),
         action: onClose,
       }}
       primaryButton={{
         testid: 'confirm-btn',
-        color: ODS_THEME_COLOR_INTENT.primary,
+        color: ODS_BUTTON_COLOR.primary,
         label: t('zimbra_redirections_add_btn_confirm'),
         action: handleClickConfirm,
         disabled: !isFormValid,
@@ -175,102 +171,76 @@ export default function ModalAddAndEditRedirections() {
       isLoading={isLoadingDomain || isLoadingAccount}
     >
       <>
-        <OsdsText
-          className="mt-5"
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           <div>{t('zimbra_redirections_edit_1')}</div>
-        </OsdsText>
-        <OsdsText
-          className="my-5"
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        >
+        </OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="my-5">
           <div>{t('zimbra_redirections_edit_2')}</div>
-        </OsdsText>
+        </OdsText>
 
-        <OsdsFormField data-testid="field-from" className="mt-5">
-          <div slot="label">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            >
-              {t('zimbra_redirections_add_form_input_name_title_from')} *
-            </OsdsText>
-          </div>
+        <OdsFormField data-testid="field-from" className="mt-5">
+          <label slot="label">
+            {t('zimbra_redirections_add_form_input_name_title_from')} *
+          </label>
           {editEmailAccountId || editRedirectionId ? (
-            <OsdsInput
+            <OdsInput
               type={ODS_INPUT_TYPE.email}
               data-testid="input-from"
               name="from"
               value={accountDetail?.currentState?.email}
-              disabled={true}
-              readOnly={true}
+              isDisabled
+              isReadonly
             />
           ) : (
             <>
               <div className="flex">
-                <OsdsInput
+                <OdsInput
                   type={ODS_INPUT_TYPE.text}
                   name="account"
                   placeholder={t(
                     'zimbra_redirections_add_input_email_placeholder',
                   )}
-                  color={
-                    form.account.hasError
-                      ? ODS_THEME_COLOR_INTENT.error
-                      : ODS_THEME_COLOR_INTENT.default
-                  }
-                  size={ODS_INPUT_SIZE.md}
+                  hasError={form.account.hasError}
                   value={form.account.value}
-                  onOdsInputBlur={({ target: { name, value } }) =>
+                  onOdsBlur={({ target: { name, value } }) =>
                     handleFormChange(name, value.toString())
                   }
-                  onOdsValueChange={({ detail: { name, value } }) => {
-                    handleFormChange(name, value);
+                  onOdsChange={({ detail: { name, value } }) => {
+                    handleFormChange(name, String(value));
                   }}
-                  required
+                  isRequired
                   className="rounded-r-none border-r-0 w-1/2"
                   data-testid="input-account"
-                ></OsdsInput>
-                <OsdsInput
+                ></OdsInput>
+                <OdsInput
                   type={ODS_INPUT_TYPE.text}
-                  color={ODS_THEME_COLOR_INTENT.default}
-                  size={ODS_INPUT_SIZE.md}
                   value={'@'}
-                  readOnly={true}
-                  disabled={true}
+                  name={'@'}
+                  isReadonly
+                  isDisabled
                   className="w-10 rounded-none pl-5 pr-0"
-                ></OsdsInput>
-                <OsdsSelect
+                ></OdsInput>
+                <OdsSelect
                   name="domain"
                   value={form.domain.value}
                   className="rounded-l-none border-l-0 w-1/2"
-                  color={
-                    form.domain.hasError
-                      ? ODS_THEME_COLOR_INTENT.error
-                      : ODS_THEME_COLOR_INTENT.default
-                  }
-                  required
+                  hasError={form.domain.hasError}
+                  isRequired
                   data-testid="select-domain"
                   {...(isLoadingDomain && { disabled: true })}
-                  onOdsValueChange={({ detail: { name, value } }) =>
-                    handleFormChange(name, value as string)
+                  onOdsChange={({ detail: { name, value } }) =>
+                    handleFormChange(name, value)
                   }
                 >
                   <span slot="placeholder">
                     {t('zimbra_redirections_add_select_domain_placeholder')}
                   </span>
                   {domainList?.map(({ currentState: domain }) => (
-                    <OsdsSelectOption key={domain.name} value={domain.name}>
+                    <option key={domain.name} value={domain.name}>
                       {domain.name}
-                    </OsdsSelectOption>
+                    </option>
                   ))}
-                </OsdsSelect>
+                </OdsSelect>
               </div>
               {isLoadingDomain && (
                 <div slot="helper">
@@ -279,60 +249,41 @@ export default function ModalAddAndEditRedirections() {
               )}
             </>
           )}
-        </OsdsFormField>
-        <OsdsFormField data-testid="field-to" className="mt-5">
-          <div slot="label">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            >
-              {t('zimbra_redirections_add_form_input_name_title_to')} *
-            </OsdsText>
-          </div>
-          <OsdsInput
+        </OdsFormField>
+        <OdsFormField data-testid="field-to" className="mt-5">
+          <label slot="label">
+            {t('zimbra_redirections_add_form_input_name_title_to')} *
+          </label>
+          <OdsInput
             type={ODS_INPUT_TYPE.email}
             data-testid="input-to"
             name="to"
             value={form.to.value}
-            error={form.to.hasError}
-            color={
-              form.to.hasError
-                ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.default
-            }
-            onOdsInputBlur={({ target: { name, value } }) =>
+            hasError={form.to.hasError}
+            onOdsBlur={({ target: { name, value } }) =>
               handleFormChange(name, value.toString())
             }
-            onOdsValueChange={({ detail: { name, value } }) =>
-              handleFormChange(name, value)
+            onOdsChange={({ detail: { name, value } }) =>
+              handleFormChange(name, String(value))
             }
-            required
+            isRequired
           />
-        </OsdsFormField>
+        </OdsFormField>
 
-        <OsdsFormField data-testid="field-checkbox" className="mt-5">
-          <OsdsCheckboxButton
-            size={ODS_CHECKBOX_BUTTON_SIZE.sm}
-            checked={form.checked.value === 'checked'}
+        <OdsFormField data-testid="field-checkbox" className="mt-5">
+          <OdsCheckbox
+            isChecked={form.checked.value === 'checked'}
             onClick={() =>
               handleFormChange(
                 'checked',
                 form.checked.value === 'checked' ? '' : 'checked',
               )
             }
+            name="checkbox-button-redirection"
           >
-            <span slot="end">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                color={ODS_THEME_COLOR_INTENT.text}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-              >
-                {t('zimbra_redirections_add_form_input_checkbox')}
-              </OsdsText>
-            </span>
-          </OsdsCheckboxButton>
-        </OsdsFormField>
+            {t('zimbra_redirections_add_form_input_checkbox')}
+          </OdsCheckbox>
+        </OdsFormField>
       </>
     </Modal>
   );

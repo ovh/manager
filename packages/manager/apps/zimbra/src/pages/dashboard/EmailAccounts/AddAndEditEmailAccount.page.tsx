@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { LinkType, Links, Subtitle } from '@ovh-ux/manager-react-components';
+import {
+  IconLinkAlignmentType,
+  LinkType,
+  Links,
+  Subtitle,
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useDomains, useGenerateUrl, usePlatform, useAccount } from '@/hooks';
@@ -115,6 +120,7 @@ export default function AddAndEditAccount() {
             data-testid="page-title"
           >
             <Links
+              iconAlignment={IconLinkAlignmentType.left}
               type={LinkType.back}
               onClickReturn={goBack}
               label={t('zimbra_account_add_cta_back')}

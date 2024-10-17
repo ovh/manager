@@ -1,6 +1,6 @@
 import React from 'react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 interface LabelChipProps {
@@ -26,14 +26,13 @@ const LabelChip: React.FC<LabelChipProps> = ({ id, children }) => {
   };
 
   return (
-    <OsdsChip
-      inline
-      color={ODS_THEME_COLOR_INTENT.primary}
-      selectable
+    <OdsButton
+      color={ODS_BUTTON_COLOR.primary}
+      inline-block
+      variant={ODS_BUTTON_VARIANT.outline}
       onClick={handleLinkClick}
-    >
-      {children}
-    </OsdsChip>
+      label={children}
+    />
   );
 };
 

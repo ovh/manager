@@ -1,6 +1,9 @@
 import React from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import { useParams, useLocation } from 'react-router-dom';
+import {
+  OdsBreadcrumb,
+  OdsBreadcrumbItem,
+} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { urls } from '@/routes/routes.constants';
 import { useGenerateUrl, useOrganization } from '@/hooks';
@@ -16,7 +19,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 }) => {
   const { serviceName } = useParams();
   const { t } = useTranslation('dashboard');
-  const navigate = useNavigate();
   const location = useLocation();
   const { data: organization, isLoading } = useOrganization();
 
@@ -30,13 +32,13 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   const breadcrumbItems = [
     {
       label: t('zimbra_dashboard_title'),
-      onClick: () => navigate(urls.root),
+      href: urls.root,
     },
     ...(organization && !isLoading
       ? [
           {
             label: organization?.currentState.name,
-            onClick: () => navigate(overviewUrlValue),
+            href: overviewUrlValue,
           },
         ]
       : []),
@@ -49,18 +51,22 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
       );
       return {
         label,
-        onClick: () => navigate(url),
+        href: url,
       };
     }),
     ...items,
   ].filter(Boolean);
 
   return (
-    <OsdsBreadcrumb
-      data-testid="breadcrumb"
-      className="mb-4"
-      items={breadcrumbItems}
-    />
+    <OdsBreadcrumb data-testid="breadcrumb" className="mb-4">
+      {breadcrumbItems.map((item) => (
+        <OdsBreadcrumbItem
+          key={item.href}
+          href={item.href}
+          label={item.label}
+        />
+      ))}
+    </OdsBreadcrumb>
   );
 };
 

@@ -20,20 +20,29 @@ const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
     deleteOrganizationId: organizationItem.id,
   });
 
+  const handleDeleteOrganizationClick = () => {
+    window.location.href = hrefDeleteOrganization;
+  };
+
   const hrefEditOrganization = useGenerateUrl('./edit', 'href', {
     editOrganizationId: organizationItem.id,
   });
+
+  const handleEditOrganizationClick = () => {
+    window.location.href = hrefEditOrganization;
+  };
+
   const actionItems = [
     {
       id: 1,
-      href: hrefEditOrganization,
+      onClick: handleEditOrganizationClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.organization.edit],
       label: t('zimbra_organization_edit'),
     },
     {
       id: 2,
-      href: hrefDeleteOrganization,
+      onClick: handleDeleteOrganizationClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.organization.delete],
       label: t('zimbra_organization_delete'),
@@ -42,7 +51,8 @@ const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
 
   return (
     <ActionMenu
-      disabled={organizationItem.status !== ResourceStatus.READY}
+      id={organizationItem.id}
+      isDisabled={organizationItem.status !== ResourceStatus.READY}
       items={actionItems}
       isCompact
     />
