@@ -1,0 +1,13 @@
+{
+  "description": "Verwaltung der Backups Ihrer VMware Cloud Director Organisationen",
+  "order_button": "Bestellen",
+  "name_cell": "Name",
+  "status_cell": "Status",
+  "ovhref_cell": "Referenz",
+  "vcdorg_cell": "VCD-Organisation",
+  "region_cell": "Region",
+  "createdat_cell": "Erstellungsdatum",
+  "edit_name_action": "Namen ändern",
+  "delete_action": "kündigen",
+  "load_more_button": "Folgende Sicherungen laden"
+}
