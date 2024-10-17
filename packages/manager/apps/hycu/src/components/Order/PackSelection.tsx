@@ -16,17 +16,19 @@ import {
   OsdsLink,
 } from '@ovhcloud/ods-components/react';
 import {
-  Description,
   OvhSubsidiary,
   Price,
   Subtitle,
 } from '@ovh-ux/manager-react-components';
 
+import CustomDescription from '@/components/Description/Description.component';
+import Error from '@/components/Error/Error';
 import Loading from '@/components/Loading/Loading.component';
 import { useOrderCatalogHYCU } from '@/hooks/order/useOrderCatalogHYCU';
 import { urls } from '@/routes/routes.constant';
 import { sortPacksByPrice } from '@/utils/sortPacks';
 import { getRenewPrice } from '@/utils/getRenewPrice';
+import { CONTACT_URL_BY_SUBSIDIARY } from '@/utils/contactList';
 
 type PackSelectionProps = {
   selectPack: Dispatch<SetStateAction<string>>;
@@ -46,12 +48,16 @@ const PackSelection = ({
   const { t } = useTranslation('order');
   const navigate = useNavigate();
 
-  const { data: orderCatalogHYCU, isLoading } = useOrderCatalogHYCU(subsidiary);
+  const { data: orderCatalogHYCU, isLoading, error } = useOrderCatalogHYCU(
+    subsidiary,
+  );
+
+  if (!isLoading && error) return <Error error={error} />;
 
   return (
     <>
       <Subtitle className="block mb-6">{t('hycu_order_subtitle')}</Subtitle>
-      <Description className="mb-8">
+      <CustomDescription className="mb-8">
         <Trans
           t={t}
           i18nKey="hycu_order_subtitle_description"
@@ -59,13 +65,13 @@ const PackSelection = ({
             contact: (
               <OsdsLink
                 color={ODS_THEME_COLOR_INTENT.primary}
-                href={'https://www.ovhcloud.com/fr/contact/'}
+                href={CONTACT_URL_BY_SUBSIDIARY[subsidiary as string]}
                 target={OdsHTMLAnchorElementTarget._blank}
               ></OsdsLink>
             ),
           }}
         ></Trans>
-      </Description>
+      </CustomDescription>
       {isLoading && <Loading />}
       {orderCatalogHYCU && !isLoading && (
         <div className="grid gap-8 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 mb-8">
