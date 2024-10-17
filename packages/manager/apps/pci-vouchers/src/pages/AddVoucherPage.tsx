@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import AddVoucherModal from '@/components/vouchers/AddVoucherModal';
 
@@ -17,14 +17,23 @@ export default function AddVoucherPage() {
       projectId={projectId}
       onClose={onClose}
       onSuccess={() => {
-        addSuccess(t('cpb_vouchers_add_success'));
+        addSuccess(
+          <Translation ns="add">
+            {(_t) => _t('cpb_vouchers_add_success')}
+          </Translation>,
+          true,
+        );
       }}
       onError={(error: Error) => {
         addError(
-          <>
-            {t('cpb_vouchers_add_error')}
-            {error && ` (${error.message})`}
-          </>,
+          <Translation ns="add">
+            {(_t) =>
+              _t('cpb_vouchers_add_error', {
+                message: error?.message || null,
+              })
+            }
+          </Translation>,
+          true,
         );
       }}
     />
