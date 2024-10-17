@@ -120,12 +120,11 @@ export default function ListingPage() {
         {hasMaintenance && (
           <PciMaintenanceBanner
             maintenanceURL={maintenanceURL}
-            data-testid="ListPage_maintenance-banner"
             productName={t('pci_projects_project_storages_blocks_title')}
           />
         )}
 
-        <PciAnnouncementBanner data-testid="ListPage_announcementBanner" />
+        <PciAnnouncementBanner />
 
         <Notifications />
         <div className="sm:flex items-center justify-between mt-4">
