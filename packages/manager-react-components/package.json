@@ -103,7 +103,7 @@
     "ts-jest": "^29.1.1",
     "typescript": "^4.3.2",
     "undici": "5.28.4",
-    "vite": "^5.2.13",
+    "vite": "^4.5.5",
     "vite-plugin-dts": "3.5.1",
     "vitest": "^1.2.0",
     "zustand": "^4.5.0"
