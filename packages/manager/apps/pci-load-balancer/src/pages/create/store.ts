@@ -60,8 +60,6 @@ export type TCreateStore = {
   check: (step: StepsEnum) => void;
   uncheck: (step: StepsEnum) => void;
 
-  edit: (step: StepsEnum) => void;
-
   reset: (...param: StepsEnum[]) => void;
 
   create: (
@@ -71,8 +69,8 @@ export type TCreateStore = {
   ) => Promise<void>;
 };
 
-const initialSteps = () =>
-  new Map<StepsEnum, TStep>([
+const initialSteps = () => {
+  const entries: [[StepsEnum, TStep]] = [
     [
       StepsEnum.SIZE,
       {
@@ -81,47 +79,24 @@ const initialSteps = () =>
         isChecked: false,
       },
     ],
-    [
+    ...[
       StepsEnum.REGION,
-      {
-        isOpen: false,
-        isLocked: false,
-        isChecked: false,
-      },
-    ],
-    [
       StepsEnum.PUBLIC_IP,
-      {
-        isOpen: false,
-        isLocked: false,
-        isChecked: false,
-      },
-    ],
-    [
       StepsEnum.PRIVATE_NETWORK,
-      {
-        isOpen: false,
-        isLocked: false,
-        isChecked: false,
-      },
-    ],
-    [
       StepsEnum.INSTANCE,
-      {
-        isOpen: false,
-        isLocked: false,
-        isChecked: false,
-      },
-    ],
-    [
       StepsEnum.NAME,
+    ].map((step: StepsEnum) => [
+      step,
       {
         isOpen: false,
         isLocked: false,
         isChecked: false,
-      },
-    ],
-  ]);
+      } as TStep,
+    ]),
+  ] as [[StepsEnum, TStep]];
+
+  return new Map<StepsEnum, TStep>(entries);
+};
 
 export const useCreateStore = create<TCreateStore>()((set, get) => ({
   projectId: '',
@@ -240,14 +215,6 @@ export const useCreateStore = create<TCreateStore>()((set, get) => ({
         steps,
       };
     });
-  },
-  edit: (id: StepsEnum) => {
-    switch (id) {
-      case StepsEnum.SIZE:
-        break;
-
-      default:
-    }
   },
   reset(...steps: StepsEnum[]) {
     if (!steps.length) {

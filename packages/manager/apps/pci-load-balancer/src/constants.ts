@@ -216,6 +216,28 @@ export const FLOATING_IP_CREATE_DESCRIPTION =
   'FIP created by OVHCloud Control Panel (Manager) for Load Balancer';
 export const AGORA_GATEWAY_REGEX = /gateway.s.hour.consumption/;
 
+export const TRACKING_NAME =
+  'pci::projects::project::octavia-loadbalancer::add';
+const TRACKING_ROOT = `PublicCloud::${TRACKING_NAME}`;
+export const LOAD_BALANCER_CREATION_TRACKING = {
+  ROOT: TRACKING_ROOT,
+  GO_TO_PRODUCT_PAGE: `${TRACKING_ROOT}::goto-product-page`,
+  GO_TO_REGION_AVAILABILITY: `${TRACKING_ROOT}::goto-region-availability`,
+  CREATE_PRIVATE_NETWORK: `${TRACKING_ROOT}::create-private-network`,
+  GO_TO_INSTANCE_DOCUMENTATION: `${TRACKING_ROOT}::goto-documentation`,
+  CANCEL: `${TRACKING_ROOT}::cancel`,
+  SUBMIT: `${TRACKING_ROOT}::confirm`,
+  CONFIRM: `octavia-loadbalancer::confirm-creation`,
+  ERROR: `${TRACKING_ROOT}-error`,
+  SUCCESS: `${TRACKING_ROOT}-success`,
+  FINISH_STEP_1: 'loadbalancer_octavia_add_size',
+  FINISH_STEP_2: 'loadbalancer_octavia_add_region',
+  FINISH_STEP_3: 'loadbalancer_octavia_add_ip',
+  FINISH_STEP_4: 'loadbalancer_octavia_add_network',
+  FINISH_STEP_5: 'loadbalancer_octavia_add_instances',
+  SKIP_STEP_5: 'loadbalancer_octavia_add_instances_skip',
+};
+
 export const RULE_TYPES = {
   COOKIE: 'cookie',
   FILE_TYPE: 'fileType',
