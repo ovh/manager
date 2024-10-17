@@ -67,7 +67,7 @@ export const TextField: FunctionComponent<Props> = ({
               name={name}
               onOdsInputBlur={onBlur}
               id={id}
-              value={value}
+              value={value as string}
               type={ODS_INPUT_TYPE.text}
               color={ODS_THEME_COLOR_INTENT.primary}
             />

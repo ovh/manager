@@ -65,7 +65,7 @@ export const TextAreaField: FunctionComponent<Props> = ({
               onOdsBlur={onBlur}
               error={Boolean(error) || undefined}
               id={id}
-              value={value}
+              value={value as string}
               color={ODS_THEME_COLOR_INTENT.primary}
             />
           </OsdsFormField>
