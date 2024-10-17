@@ -29,6 +29,7 @@ import { mockedMaintenance } from '@/__tests__/helpers/mocks/maintenances';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import { Locale } from '@/hooks/useLocale';
 import { mockedIntegrations } from '@/__tests__/helpers/mocks/integrations';
+import { TERMINATE_CONFIRMATION } from '@/configuration/polling.constants';
 
 // Override mock to add capabilities
 const mockedService = {
@@ -321,8 +322,19 @@ describe('Open modals', () => {
     });
     await waitFor(() => {
       expect(screen.getByTestId('delete-service-modal')).toBeInTheDocument();
+      expect(
+        screen.getByTestId('delete-service-confirmation-input'),
+      ).toBeInTheDocument();
     });
     act(() => {
+      fireEvent.change(
+        screen.getByTestId('delete-service-confirmation-input'),
+        {
+          target: {
+            value: TERMINATE_CONFIRMATION,
+          },
+        },
+      );
       fireEvent.click(screen.getByTestId('delete-service-submit-button'));
     });
     await waitFor(() => {

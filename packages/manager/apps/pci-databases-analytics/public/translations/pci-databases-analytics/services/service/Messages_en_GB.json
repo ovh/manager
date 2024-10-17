@@ -28,5 +28,6 @@
   "deleteServiceButtonCancel": "Cancel",
   "deleteServiceButtonConfirm": "Delete",
   "deleteServiceIntegrationDescription": "Deleting this service will delete the following integration association:",
-  "deleteServiceIntegrationsDescription": "Deleting this service will delete the following integration associations:"
+  "deleteServiceIntegrationsDescription": "Deleting this service will delete the following integration associations:",
+  "deleteServiceConfirmation": "Enter “TERMINATE” to confirm your choice."
 }

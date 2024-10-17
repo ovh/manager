@@ -25,6 +25,7 @@
   "deleteServiceToastSuccessDescription": "Le service a été supprimé",
   "deleteServiceTitle": "Supprimer le service",
   "deleteServiceDescription": "Etes-vous sur de vouloir supprimer le service {{name}}?",
+  "deleteServiceConfirmation": "Entrez « TERMINATE » pour confirmer votre choix.",
   "deleteServiceButtonCancel": "Annuler",
   "deleteServiceButtonConfirm": "Supprimer",
   "deleteServiceIntegrationDescription": "Supprimer ce service entrainera la suppression de l'association d'intégration suivante :",

@@ -13,15 +13,9 @@ vi.mock('@/data/api/catalog/catalog.api', () => ({
   },
 }));
 
-vi.mock('@ovh-ux/manager-react-shell-client', () => {
+vi.mock('@/hooks/useUser', () => {
   return {
-    useShell: vi.fn(() => ({
-      environment: {
-        getEnvironment: vi.fn(() => ({
-          getUser: vi.fn(() => mockedUser),
-        })),
-      },
-    })),
+    useUser: vi.fn(() => mockedUser),
   };
 });
 

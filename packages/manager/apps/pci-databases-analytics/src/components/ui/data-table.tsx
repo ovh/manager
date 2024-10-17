@@ -25,14 +25,21 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 
 interface DataTablePaginationProps<TData> {
   table: TanStackTable<TData>
+  itemNumber?: number
 }
 export function DataTablePagination<TData>({
   table,
+  itemNumber,
 }: DataTablePaginationProps<TData>) {
   return (
     <div className="flex justify-end mt-4">
       <div className="flex items-center">
         <div className="flex items-center space-x-2">
+        {itemNumber > 0 && (
+          <div className="flex px-4 items-center justify-center text-sm font-medium">
+            <span>{itemNumber} Results</span>
+          </div>
+        )}
           <Select
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value) => {
@@ -102,12 +109,14 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   pageSize?: number;
+  itemNumber?: number;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   pageSize,
+  itemNumber,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const table = useReactTable({
@@ -178,7 +187,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <DataTablePagination table={table} />
+      <DataTablePagination table={table} itemNumber={itemNumber} />
     </>
   );
 }
