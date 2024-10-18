@@ -1,0 +1,5 @@
+{
+  "headline": "Meine Dienstleistung kündigen",
+  "delete_input_label": "Bitte geben Sie das Wort „TERMINATE“ ein, um die Kündigung Ihrer Dienstleistung zu bestätigen.",
+  "terminate_veeam_backup_success": "Ihre Kündigungsanfrage für {{name}} wurde registriert. Sie erhalten in Kürze eine E-Mail mit weiteren Informationen"
+}
