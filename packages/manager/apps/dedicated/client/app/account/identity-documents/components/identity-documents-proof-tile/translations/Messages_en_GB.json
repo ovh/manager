@@ -1,3 +1,19 @@
 {
-  "user_account_identity_documents_proof_tile_button_update": "Edit"
+  "user_account_identity_documents_proof_tile_button_update": "Edit",
+  "user_account_identity_documents_proof_tile_easiest": "The easiest way",
+  "user_account_identity_documents_proof_tile_heading_aadhaar_card": "Do you have an Aadhaar card?",
+  "user_account_identity_documents_proof_tile_text_particular_aadhaar_card": "Send a single document as a proof of identity and proof of address",
+  "user_account_identity_documents_proof_tile_heading_identity": "Proof of identity",
+  "user_account_identity_documents_proof_tile_heading_address": "Proof of address",
+  "user_account_identity_documents_proof_tile_heading_vat": "Proof of VAT registration",
+  "user_account_identity_documents_proof_tile_heading_authority_declaration": "Sworn statement",
+  "user_account_identity_documents_proof_tile_text_particular_identity": "Aadhaar card, ID card, passport, driving licence, Indian voter card.",
+  "user_account_identity_documents_proof_tile_text_particular_address": "Aadhaar card, GST certificate, utility bill (electricity, gas, water, internet or telephone), bank statement.",
+  "user_account_identity_documents_proof_tile_text_non_individual_identity": "Aadhaar card, ID card, passport, driving licence, Indian voter card.",
+  "user_account_identity_documents_proof_tile_text_non_individual_address": "GST certificate, utility bill (electricity, gas, water, internet or telephone), bank statement.",
+  "user_account_identity_documents_proof_tile_text_non_individual_vat": "Goods and Services Tax (GST) certificate.",
+  "user_account_identity_documents_proof_tile_text_non_individual_authority_declaration": "Document granting you authority to act on the company’s behalf.",
+  "user_account_identity_documents_proof_tile_extended_identity": "Document for legal representative, chief operations officer, or any other contact listed in the GST.",
+  "user_account_identity_documents_proof_tile_extended_authority_declaration": "Only if you are not the legal representative.",
+  "user_account_identity_documents_proof_tile_button": "Add"
 }

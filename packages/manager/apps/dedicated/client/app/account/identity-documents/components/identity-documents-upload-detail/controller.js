@@ -46,13 +46,33 @@ export default class AccountUserIdentityDocumentsUploadDetailController {
     }
   }
 
-  clickAddDocuments() {
+  saveDocuments(isReset = false) {
     this.addDocuments({
       proofType: this.proofType,
       documentType: this.currentDocument,
       files: this.files.flatMap((file) => file),
+      isReset,
     });
     this.goBack();
+  }
+
+  clickAddDocuments() {
+    this.saveDocuments();
+  }
+
+  goToParent() {
+    if (this.checkEmpty()) {
+      this.saveDocuments(true);
+    } else {
+      this.goBack();
+    }
+  }
+
+  checkEmpty() {
+    return this.files.reduce(
+      (acc, fileSlot) => acc && fileSlot.length === 0,
+      true,
+    );
   }
 
   checkValidity() {
