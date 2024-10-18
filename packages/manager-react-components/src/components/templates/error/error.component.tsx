@@ -12,10 +12,11 @@ import {
   ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components';
 import './translations/translations';
-import OOPS from './assets/error-banner-oops.png';
 
 import { ErrorBannerProps } from './error.types';
 import { useTranslation } from 'react-i18next';
+
+import ErrorImg from '../../../../public/assets/error-banner-oops.png';
 
 export const ErrorBanner = ({
   error,
@@ -27,7 +28,7 @@ export const ErrorBanner = ({
 
   return (
     <div className="mx-auto  w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5">
-      <img src={OOPS} alt="OOPS" className="w-full" />
+      <img src={ErrorImg} alt="OOPS" className="w-full" />
       <div className="py-2">
         <OsdsText size={ODS_TEXT_SIZE._600} level={ODS_TEXT_LEVEL.heading}>
           {t('manager_error_page_title')}

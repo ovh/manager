@@ -1,5 +1,4 @@
 import React, { PropsWithChildren } from 'react';
-import style from './table.module.scss';
 
 export type TableProps = PropsWithChildren<{
   fullWidth?: boolean;
@@ -12,7 +11,7 @@ export const Table: React.FC<TableProps> = ({
   cellSpacing = 0,
 }) => (
   <table
-    className={`${style.table} ${fullWidth ? 'w-full' : ''}`}
+    className={`${fullWidth ? 'w-full' : ''} manager-table`}
     cellSpacing={cellSpacing}
   >
     {children}
