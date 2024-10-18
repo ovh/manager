@@ -5,6 +5,8 @@ export const OBJECT_CONTAINER_S3_STATIC_URL_INFO = 'Virtual Hosted-Style :';
 
 export const OBJECT_CONTAINER_MODE_MULTI_ZONES = 'region-3-az';
 export const OBJECT_CONTAINER_MODE_MONO_ZONE = 'region';
+export const OBJECT_CONTAINER_MODE_LOCAL_ZONE = 'localzone';
+
 export const STORAGE_STANDARD_PLANCODE = 'storage-standard.consumption';
 export const SWIFT_PLANCODE = 'storage.consumption';
 export const STORAGE_STANDARD_REGION_PLANCODE = 'storage-standard';
@@ -43,12 +45,24 @@ export const OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS = {
     beta: false,
     new: false,
     isMultiZone: true,
+    isMonoZone: false,
+    isLocalZone: false,
     price: null,
   },
   [OBJECT_CONTAINER_MODE_MONO_ZONE]: {
     beta: false,
     new: false,
     isMultiZone: false,
+    isMonoZone: true,
+    isLocalZone: false,
+    price: null,
+  },
+  [OBJECT_CONTAINER_MODE_LOCAL_ZONE]: {
+    beta: false,
+    new: false,
+    isMultiZone: false,
+    isMonoZone: false,
+    isLocalZone: true,
     price: null,
   },
 };
@@ -56,11 +70,13 @@ export const OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS = {
 export const OBJECT_CONTAINER_DEPLOYMENT_MODES = [
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
   OBJECT_CONTAINER_MODE_MONO_ZONE,
+  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
 ];
 
 export const OBJECT_CONTAINER_DEPLOYMENT_MODE_TYPES = {
   MULTI_ZONES: 'region-3-az',
   MONO_ZONE: 'region',
+  LOCAL_ZONE: 'localzone',
 };
 
 export const OBJECT_CONTAINER_TYPE_OFFERS = [OBJECT_CONTAINER_OFFER_SWIFT];
