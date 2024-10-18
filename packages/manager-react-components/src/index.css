@@ -1,0 +1,17 @@
+.manager-table th {
+  padding: 1rem 1rem;
+  border-bottom: solid 1px var(--ods-color-blue-200);
+}
+
+.manager-table tbody td {
+  padding: 1rem 1rem;
+  border-bottom: solid 1px var(--ods-color-blue-200);
+}
+
+.manager-table td:first-child {
+  border-left: solid 1px var(--ods-color-blue-200);
+}
+
+.manager-table td:last-child {
+  border-right: solid 1px var(--ods-color-blue-200);
+}
