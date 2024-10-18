@@ -55,6 +55,21 @@ export type ResourceStatus =
   | 'toDelete'
   | 'toSuspend';
 
+export type Renew = {
+  current: CurrentRenew;
+  capacities: RenewCapacities;
+};
+
+export type CurrentRenew = {
+  mode: RenewMode | null;
+  nextDate: string | null;
+  period: string;
+};
+
+export type RenewCapacities = {
+  mode: RenewMode[];
+};
+
 export type ServiceDetails = {
   billing: {
     engagement: {
@@ -115,14 +130,7 @@ export type ServiceDetails = {
       pricingMode: string;
       pricingType: PricingType;
     };
-  };
-  renew: {
-    capacities: { mode: RenewMode[] };
-    current: {
-      mode: RenewMode | null;
-      nextDate: string | null;
-      period: string;
-    };
+    renew: Renew;
   };
   customer: {
     contacts: CustomerContact[];
