@@ -190,9 +190,36 @@
                 <oui-tile-definition
                     data-term="{{:: 'dedicatedCloud_nsx_edge_level' | translate }}"
                     data-description="{{:: $ctrl.datacenter.model.edgesLevel }}"
+                    data-ng-if="!$ctrl.pollNsxTaskId"
                 >
+                    <oui-action-menu
+                        aria-label="{{:: 'dedicatedCloud_datacenter_resize' | translate}}"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            aria-label="{{:: 'dedicatedCloud_datacenter_resize' | translate }}"
+                            data-ng-click="$ctrl.goToResizeNsxEdge($ctrl.datacenter.model.id)"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_datacenter_resize"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
                 </oui-tile-definition>
 
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_nsx_edge_level' | translate }}"
+                    data-ng-if="$ctrl.pollNsxTaskId"
+                >
+                    <oui-tile-description>
+                        <span class="oui-badge oui-badge_warning">
+                            <span
+                                data-translate="dedicatedCloud_nsx_task_progress"
+                            ></span>
+                        </span>
+                    </oui-tile-description>
+                </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'dedicatedCloud_nsx_edge_quantity' | translate }}"
                     data-description="{{:: $ctrl.datacenter.model.edgesCount }}"
