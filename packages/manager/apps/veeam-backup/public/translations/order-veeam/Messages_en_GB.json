@@ -1,0 +1,21 @@
+{
+  "description": "Our services are based on the Veeam Data Platform solution and the Veeam plugin for VMware Cloud Director (for backup). Our solutions are implemented on the VMware Cloud Foundation infrastructure, and directly manage the vCenters in order to carry out operations via VMware snapshot (with direct access to storage, if possible). The solution provided as standard is shared for all of the platform’s customers. The solution works agentlessly in virtual machines.",
+  "select_offer_title": "Select your solution",
+  "select_offer_description": "Add the Veeam Data Platform service to your VMware Cloud Director infrastructure. The VMware Cloud Director organization will be selected in the next step. Find out more about billing.",
+  "offer_title": "Enable {{productName}}",
+  "offer_content_part1": "The Veeam Data Platform service has a VCD plugin to back up VMs and vApps from any Virtual Data Center (VDC) in the organization.",
+  "offer_content_part2": "It is available at the organization level for any VMware Cloud Director user with the organization administrator role.",
+  "offer_price": "£9 /VM/month + consumption of OVHcloud Object Storage",
+  "next_step": "Next",
+  "choose_org_title": "Choose a VMware Cloud Director organization",
+  "all_organization_backed_up_message_fetch_next_page": "All VCD organizations are already associated with the Managed VEEAM for VCD service. Please load more organizations.",
+  "all_organization_backed_up_message": "All your VCD organizations are already associated with the Managed VEEAM for VCD service. Go to the list of your services.",
+  "name_cell": "Name",
+  "region_cell": "Location",
+  "description_cell": "Description",
+  "active_status": "Enabled",
+  "none_status": "None",
+  "error_status": "Error",
+  "cancel_button": "Cancel",
+  "order_button": "Order now"
+}
