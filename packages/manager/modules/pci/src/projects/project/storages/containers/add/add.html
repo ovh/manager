@@ -302,7 +302,7 @@
     <!--Regions list-->
     <oui-step-form
         data-position="{{!$ctrl.archive && $ctrl.isRightOffer() ? 2 : 1}}"
-        ata-ng-if="!$ctrl.archive && (!$ctrl.isRightOffer() || $ctrl.container.deploymentMode)"
+        data-ng-if="!$ctrl.archive && (!$ctrl.isRightOffer() || $ctrl.container.deploymentMode)"
         data-name="storage_container_add_region"
         data-header="{{:: 'pci_projects_project_storages_containers_add_region_title' | translate }}"
         data-navigation="$ctrl.container.region"
@@ -364,7 +364,7 @@
     <!--Create/Linked user-->
     <oui-step-form
         data-position="3"
-        data-ng-if="$ctrl.isRightOffer()"
+        data-ng-if="!$ctrl.archive && $ctrl.isRightOffer()"
         data-header="{{:: 'pci_projects_project_storages_containers_add_create_or_linked_user_title' | translate }}"
         data-navigation="$ctrl.isReadyForValidation()"
         data-name="storage_container_add_user"
