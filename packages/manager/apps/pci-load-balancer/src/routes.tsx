@@ -35,6 +35,7 @@ export const ROUTE_PATHS = {
   POOL_HEALTH_MONITOR: 'health-monitor',
   POOL_HEALTH_MONITOR_CREATE: 'health-monitor/create',
   POOL_HEALTH_MONITOR_EDIT: 'health-monitor/edit',
+  POOL_HEALTH_MONITOR_EDIT_NAME: 'edit-name',
   STATISTICS: 'statistics',
   CERTIFICATES: 'certificates',
   LOGS: 'logs',
@@ -136,6 +137,11 @@ const HealthMonitorEditPage = lazy(() =>
     '@/pages/detail/pools/detail/health-monitor/edit/HealthMonitorEdit.page'
   ),
 );
+const HealthMonitorEditNamePage = lazy(() =>
+  import(
+    '@/pages/detail/pools/detail/health-monitor/rename/RenameHealthMonitor.page'
+  ),
+);
 
 const StatisticsPage = lazy(() =>
   import('@/pages/detail/statistics/Statistics.page'),
@@ -224,6 +230,11 @@ const Routes = (
           id="health-monitor-delete"
           path={ROUTE_PATHS.POOL_DELETE}
           Component={HealthMonitorDeletePage}
+        />
+        <Route
+          id="health-monitor-rename"
+          path={ROUTE_PATHS.POOL_HEALTH_MONITOR_EDIT_NAME}
+          Component={HealthMonitorEditNamePage}
         />
       </Route>
       <Route

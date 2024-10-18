@@ -1,0 +1,6 @@
+{
+  "octavia_load_balancer_health_monitor_detail_overview_edit_name_title": "Cambiar el nombre",
+  "octavia_load_balancer_health_monitor_detail_overview_edit_name_label": "Nombre",
+  "octavia_load_balancer_health_monitor_detail_overview_edit_name_cancel": "Cancelar",
+  "octavia_load_balancer_health_monitor_detail_overview_edit_name_confirm": "Editar"
+}
