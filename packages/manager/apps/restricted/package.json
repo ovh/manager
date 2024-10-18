@@ -44,7 +44,7 @@
     "eslint-plugin-react": "^7.20.3",
     "express": "^4.17.1",
     "http-proxy-middleware": "^1.0.4",
-    "vite": "^5.2.13"
+    "vite": "^4.5.5"
   },
   "regions": [
     "CA",
