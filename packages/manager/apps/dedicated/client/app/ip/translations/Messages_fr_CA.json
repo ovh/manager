@@ -196,6 +196,8 @@
   "ip_virtualmac_machinename": "Nom de la machine virtuelle",
   "ip_virtualmac_add_new_success": "Une nouvelle MAC virtuelle a été générée et sera disponible sur l'IP {{t0}} dans quelques minutes.",
   "ip_virtualmac_add_new_failure": "Une erreur est survenue lors de la génération d'une nouvelle MAC virtuelle sur l'IP {{t0}}",
+  "ip_virtualmac_not_available_failure": "La MAC virtuelle sera disponible sur ce serveur à partir de December 2024",
+  "ip_virtualmac_not_available_failure_details": "Pour plus d'informations sur la gestion des IP et des MAC virtuelles avec OVHcloud, nous vous invitons à consulter les Guide de configuration réseau sous {{proxmoxLink}} et {{windowsServerLink}}. Ce document explique comment configurer vos serveurs OVHcloud pour optimiser les performances réseau dans des environnements virtualisés avec Proxmox VE, en utilisant des techniques telles que le routage des IP supplémentaires via le vRack .",
   "ip_virtualmac_add_existing_success": "L'IP {{t0}} sera associée à la MAC virtuelle existante d'ici quelques minutes.",
   "ip_virtualmac_add_impossible_server": "Vous devez d'abord rattacher cette IP à un serveur",
   "ip_virtualmac_add_impossible_status": "Une opération est en cours",
