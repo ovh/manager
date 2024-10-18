@@ -1,0 +1,18 @@
+{
+  "managed_vcd_onboarding_description_part1": "Managed VCD es una solución de virtualización totalmente operada por OVHcloud para ejecutar sus aplicaciones, sus MV y sus contenedores sin tener que preocuparse por las infraestructuras subyacentes.",
+  "managed_vcd_onboarding_description_part2": "Dispone de una interfaz sencilla y unificada para gestionar sus pools de recursos de forma flexible en los datacenters virtuales, así como de una solución de backup Veeam administrada.",
+  "managed_vcd_onboarding_order": "Contratar",
+  "managed_vcd_onboarding_more_info": "Más información",
+  "managed_vcd_onboarding_guide1_link": "Más información",
+  "managed_vcd_onboarding_guide1_category": "Presentación",
+  "managed_vcd_onboarding_guide1_title": "Descubrir Managed VCD",
+  "managed_vcd_onboarding_guide1_description": "Descubra el producto Managed VCD, sus ventajas, su uso y su tarificación.",
+  "managed_vcd_onboarding_guide2_category": "Tutorial y documentación",
+  "managed_vcd_onboarding_guide2_title": "Primeros pasos para utilizar Managed VCD",
+  "managed_vcd_onboarding_guide2_link": "Ver la documentación",
+  "managed_vcd_onboarding_guide2_description": "Los principios fundamentales de VCD. Descubra los conceptos básicos del VCD.",
+  "managed_vcd_onboarding_guide3_category": "FAQ",
+  "managed_vcd_onboarding_guide3_title": "Preguntas frecuentes",
+  "managed_vcd_onboarding_guide3_link": "Examinar las FAQ",
+  "managed_vcd_onboarding_guide3_description": "Consulte las FAQ para obtener respuestas a las preguntas más frecuentes."
+}
