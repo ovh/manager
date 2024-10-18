@@ -12,22 +12,33 @@ import {
   GetServicesMocksParams,
 } from '@ovh-ux/manager-react-components/src/hooks/services/mocks/services.mock';
 import { TestApp } from './TestApp';
-import { initTestI18n } from './init.i18n';
+import { getTesti18nParams, initTestI18n } from './init.i18n';
 import { toMswHandlers } from '../../../../../../../playwright-helpers';
 import { getAuthenticationMocks } from '../../../../../../../playwright-helpers/mocks/auth';
-import { getLicenseHycuMocks, GetLicenseHycuMocksParams } from '@/mocks';
+import {
+  getLicenseHycuMocks,
+  GetLicenseHycuMocksParams,
+  getServiceLicenseHycuMocks,
+  GetServiceLicenseHycuMocksParams,
+} from '@/mocks';
 
 let context: ShellContextType;
 let i18nValue: i18n;
 
 export const renderTestApp = async (
-  mockParams: GetServicesMocksParams & GetLicenseHycuMocksParams = {},
+  initialRoute = '/',
+  mockParams: GetServicesMocksParams &
+    GetLicenseHycuMocksParams &
+    GetServicesMocksParams &
+    GetServicesMocksParams &
+    GetServiceLicenseHycuMocksParams = {},
 ) => {
   global.server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),
-      ...getServicesMocks(mockParams),
       ...getLicenseHycuMocks(mockParams),
+      ...getServiceLicenseHycuMocks(mockParams),
+      ...getServicesMocks(mockParams),
     ]),
   );
 
@@ -42,18 +53,20 @@ export const renderTestApp = async (
   const result = render(
     <I18nextProvider i18n={i18nValue}>
       <ShellContext.Provider value={context}>
-        <TestApp />
+        <TestApp initialRoute={initialRoute} />
       </ShellContext.Provider>
     </I18nextProvider>,
   );
 
-  await waitFor(
-    () =>
-      expect(
-        screen.getAllByText('HYCU', { exact: false }).length,
-      ).toBeGreaterThan(0),
-    { timeout: 30000 },
-  );
+  if (!initialRoute || initialRoute === '/') {
+    await waitFor(
+      () =>
+        expect(
+          screen.getAllByText('HYCU', { exact: false }).length,
+        ).toBeGreaterThan(0),
+      { timeout: 30000 },
+    );
+  }
 
   return result;
 };
