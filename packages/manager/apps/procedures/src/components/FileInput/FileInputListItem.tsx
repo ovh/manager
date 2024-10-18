@@ -1,7 +1,7 @@
 import React, { FunctionComponent, MouseEvent } from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import { FileWithError } from './FileInputContainer';
 
 type FileInputListItemProps = {
@@ -44,14 +44,21 @@ export const FileInputListItem: FunctionComponent<FileInputListItemProps> = ({
         }
         size={ODS_ICON_SIZE.sm}
       />
-      <div className="text-sm">
+      <OsdsText
+        className="text-sm"
+        color={
+          hasError
+            ? ODS_THEME_COLOR_INTENT.error
+            : ODS_THEME_COLOR_INTENT.primary
+        }
+      >
         {file.name} {`(${bytesToSize(file.size)})`}
         {file.errors.map((error, index) => (
           <span className="block" key={index}>
             {error}
           </span>
         ))}
-      </div>
+      </OsdsText>
 
       <OsdsIcon
         name={ODS_ICON_NAME.CLOSE}

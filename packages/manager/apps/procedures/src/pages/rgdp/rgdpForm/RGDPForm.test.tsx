@@ -52,6 +52,12 @@ describe('RGDPForm', () => {
       expect(
         getByText('rgdp_form_field_label_request_description:'),
       ).toBeInTheDocument();
+
+      expect(getByText('rgdp_form_field_label_id_front:')).toBeInTheDocument();
+      expect(getByText('rgdp_form_field_label_id_back:')).toBeInTheDocument();
+      expect(
+        getByText('rgdp_form_field_label_other_documents:'),
+      ).toBeInTheDocument();
     });
   });
 
