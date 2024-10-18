@@ -108,7 +108,7 @@ export default function BillingSummary() {
         <div>
           <OsdsSelect
             data-testid="bills_period_selector"
-            className="w-full m-auto max-w-60 px-4"
+            className="w-full m-auto max-w-60 px-4 box-border"
             value={months}
             onOdsValueChange={(event) =>
               setMonths(Number(event.detail.value as string))

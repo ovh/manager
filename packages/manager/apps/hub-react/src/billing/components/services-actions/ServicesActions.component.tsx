@@ -85,6 +85,7 @@ export default function ServicesActions({
                   color={ODS_THEME_COLOR_INTENT.primary}
                   {...link}
                   disabled={disabled || undefined}
+                  dir="ltr"
                 >
                   {item.label}
                   {external && (

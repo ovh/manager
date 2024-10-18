@@ -17,6 +17,7 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_SKELETON_SIZE,
+  ODS_TEXT_COLOR_HUE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -72,8 +73,9 @@ export default function Products({ services }: ProductsProps) {
         <OsdsText
           className="inline-block my-6"
           level={ODS_TEXT_LEVEL.heading}
-          size={ODS_TEXT_SIZE._700}
-          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_TEXT_SIZE._500}
+          hue={ODS_TEXT_COLOR_HUE._800}
+          color={ODS_THEME_COLOR_INTENT.primary}
           data-testid="products_title"
         >
           {t('manager_hub_dashboard_services')}
@@ -96,7 +98,8 @@ export default function Products({ services }: ProductsProps) {
                     className="block flex-1 mb-6"
                     level={ODS_TEXT_LEVEL.subheading}
                     size={ODS_TEXT_SIZE._200}
-                    color={ODS_THEME_COLOR_INTENT.text}
+                    hue={ODS_TEXT_COLOR_HUE._800}
+                    color={ODS_THEME_COLOR_INTENT.primary}
                   >
                     {t(`manager_hub_products_${product.type}`)}
                     <OsdsChip
