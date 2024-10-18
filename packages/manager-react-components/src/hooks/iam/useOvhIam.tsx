@@ -32,7 +32,7 @@ export const fetchAuthorizationCheck = async (
   urn: string,
 ): Promise<IamCheckResponse> => {
   const { data } = await apiClient.v2.post(
-    `/iam/resource/${urn}/authorization/check`,
+    `/iam/resource/${encodeURIComponent(urn)}/authorization/check`,
     {
       actions,
     },

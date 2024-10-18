@@ -546,5 +546,6 @@
   "common_resiliate_contact_support": "Per disattivare questo servizio, contatta il nostro supporto tecnico al numero <strong>02 5560 0423</strong> o apri un ticket.",
   "core_pcc_top_guide_11_title": "Documentazione ufficiale di Nutanix",
   "core_pcc_top_guide_12_title": "Documentazione ufficiale di SAP HANA on Private Cloud",
-  "core_pcc_top_guide_13_title": "Autorizzare IP a connettersi al vCenter"
+  "core_pcc_top_guide_13_title": "Autorizzare IP a connettersi al vCenter",
+  "core_pcc_top_guide_14_title": "VMware on OVHcloud - VMware Cloud Director"
 }

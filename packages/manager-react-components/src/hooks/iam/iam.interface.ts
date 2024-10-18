@@ -1,3 +1,9 @@
+export interface IamObject {
+  id: string;
+  urn: string;
+  displayName?: string;
+}
+
 export interface IamInterface {
   urns?: string[];
   actions?: string[];
