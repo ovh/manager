@@ -54,7 +54,7 @@ describe('TerminatePage', () => {
         value: 'WRONG_INPUT',
       } as OdsInputValueChangeEventDetail);
     });
-    waitFor(() => {
+    await waitFor(() => {
       expect(getByTestId('terminate-formfield')).toHaveAttribute(
         'error',
         'common_field_error_required',

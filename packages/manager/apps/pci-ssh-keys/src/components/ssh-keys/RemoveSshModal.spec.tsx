@@ -29,7 +29,15 @@ function renderModal() {
   );
 }
 
-describe('Add ssh modal', () => {
+vi.mock('@/api/hooks/useSsh', async (importOriginal) => {
+  const actual: any = await importOriginal();
+  return {
+    ...actual,
+    useSshKey: vi.fn(() => ({ data: null, isPending: false })),
+  };
+});
+
+describe('Add ssh modal', async () => {
   it('should call the add function with given voucher id', async () => {
     vi.spyOn(useSShModule, 'useRemoveSsh').mockReturnValue(({
       remove,
@@ -40,7 +48,7 @@ describe('Add ssh modal', () => {
     act(() => {
       fireEvent.click(submitButton);
     });
-    waitFor(() => {
+    await waitFor(() => {
       expect(remove).toHaveBeenCalled();
     });
   });

@@ -68,6 +68,7 @@ export const useAllVolumes = (projectId: string) => {
           regionName: translateMicroRegion(volume.region),
         };
       }),
+    enabled: !!projectId,
   });
 };
 
@@ -103,6 +104,7 @@ export const getVolumeQueryKey = (projectId: string, volumeId: string) => [
 export const getVolumeQuery = (projectId: string, volumeId: string) => ({
   queryKey: getVolumeQueryKey(projectId, volumeId),
   queryFn: (): Promise<TVolume> => getVolume(projectId, volumeId),
+  enabled: !!volumeId,
 });
 
 export const useVolume = (projectId: string, volumeId: string) =>
@@ -141,7 +143,7 @@ export const useDeleteVolume = ({
       });
       queryClient.setQueryData(
         ['project', projectId, 'volumes'],
-        (data: { id: string }[]) => data.filter((v) => v.id !== volumeId),
+        (data: { id: string }[]) => data?.filter((v) => v.id !== volumeId),
       );
       onSuccess();
     },
@@ -174,7 +176,7 @@ export const useAttachVolume = ({
       queryClient.setQueryData(
         ['project', projectId, 'volumes'],
         (data: { id: string }[]) =>
-          data.map((v) =>
+          data?.map((v) =>
             v.id === volumeId ? { ...volume, attachedTo: [instanceId] } : v,
           ),
       );
@@ -205,7 +207,7 @@ export const useDetachVolume = ({
       queryClient.setQueryData(
         ['project', projectId, 'volumes'],
         (data: { id: string; attachedTo: string }[]) =>
-          data.map((v) => {
+          data?.map((v) => {
             if (v.attachedTo && v.id === volumeId) {
               return { ...volume, attachedTo: [] };
             }

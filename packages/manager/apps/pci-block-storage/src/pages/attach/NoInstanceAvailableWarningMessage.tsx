@@ -20,6 +20,7 @@ export default function NoInstanceWarningMessage() {
         color={ODS_THEME_COLOR_INTENT.warning}
         icon={ODS_ICON_NAME.WARNING}
         className="mt-6"
+        data-testid="AttachStorage-NoInstanceWarningMessage"
       >
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}

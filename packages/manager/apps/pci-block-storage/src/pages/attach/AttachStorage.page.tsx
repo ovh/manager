@@ -141,9 +141,7 @@ export default function AttachStorage() {
             </OsdsSelect>
           </div>
         )}
-        {!isPending && !instances?.length && (
-          <NoInstanceWarningMessage data-testid="AttachStorage-NoInstanceWarningMessage" />
-        )}
+        {!isPending && !instances?.length && <NoInstanceWarningMessage />}
       </slot>
       <OsdsButton
         slot="actions"

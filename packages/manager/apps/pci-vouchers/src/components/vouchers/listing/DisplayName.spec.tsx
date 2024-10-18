@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import { ReactNode } from 'react';
 import DisplayName from '@/components/vouchers/listing/DisplayName';
 
-vi.mock('@/data/bill', () => ({
+vi.mock('@/api/data/bill', () => ({
   getBill: () => ({
     pdfUrl: 'http://ovh.com',
   }),
@@ -25,7 +25,7 @@ describe('Datagrid Listing Product', () => {
 
     const productContent = getByText('Voucher description');
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(productContent).toBeInTheDocument();
     });
   });
@@ -43,7 +43,7 @@ describe('Datagrid Listing Product', () => {
     const spinnerElement = getByTestId('spinner');
     expect(spinnerElement).toBeInTheDocument();
 
-    waitFor(() => {
+    await waitFor(() => {
       const provisionningContent = getByText(
         'cpb_vouchers_name_credit_provisionning',
       );
