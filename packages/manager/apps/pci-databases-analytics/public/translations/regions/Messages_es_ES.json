@@ -75,5 +75,11 @@
   "region_PAR": "París",
   "region_PAR_micro": "París ({{ micro }})",
   "region_location_PAR": "Europa occidental (Francia)",
-  "region_continent_PAR": "Europa occidental"
+  "region_continent_PAR": "Europa occidental",
+  "region_US-EAST-VA": "Virginia",
+  "region_US-EAST-VA_micro": "Virginia ({{ micro }})",
+  "region_US-WEST-OR": "Oregón",
+  "region_US-WEST-OR_micro": "Oregón ({{ micro }})",
+  "region_continent_US-EAST-VA": "Norteamérica",
+  "region_continent_US-WEST-OR": "Norteamérica"
 }

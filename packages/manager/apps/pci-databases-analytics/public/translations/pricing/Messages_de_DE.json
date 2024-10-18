@@ -1,6 +1,6 @@
 {
-  "pricing_ht": "{{ price }} {{ unit }} zzgl. MwSt",
-  "pricing_ttc": "{{ price }} {{ unit }} inkl. MwSt",
+  "pricing_ht": "{{ price }} zzgl. MwSt",
+  "pricing_ttc": "{{ price }} inkl. MwSt",
   "pricing_button_hourly": "Uhr",
   "pricing_button_monthly": "Monatlich",
   "pricing_unit_hourly": "/Stunde",

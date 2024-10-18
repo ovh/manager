@@ -63,18 +63,33 @@ export const useNamespaceForm = ({
 
   const typeRules = z.nativeEnum(database.m3db.namespace.TypeEnum);
 
-  const schema = z.object({
-    name: nameRules,
-    resolution: mandatoryShortTimeRules,
-    blockDataExpirationDuration: optionalShortTimeRules,
-    blockSizeDuration: optionalShortTimeRules,
-    bufferFutureDuration: optionalShortTimeRules,
-    bufferPastDuration: optionalShortTimeRules,
-    periodDuration: mandatoryShortTimeRules,
-    snapshotEnabled: z.boolean().optional(),
-    type: typeRules,
-    writesToCommitLogEnabled: z.boolean().optional(),
-  });
+  const schema = z
+    .object({
+      name: nameRules,
+      periodDuration: mandatoryShortTimeRules,
+      resolution: optionalShortTimeRules,
+      blockDataExpirationDuration: optionalShortTimeRules,
+      blockSizeDuration: optionalShortTimeRules,
+      bufferFutureDuration: optionalShortTimeRules,
+      bufferPastDuration: optionalShortTimeRules,
+      snapshotEnabled: z.boolean().optional(),
+      type: typeRules,
+      writesToCommitLogEnabled: z.boolean().optional(),
+    })
+    .superRefine((values, context) => {
+      if (
+        values.type === database.m3db.namespace.TypeEnum.aggregated &&
+        !values.resolution
+      ) {
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: t('formNamespaceErrorMinLength', {
+            min: NAMESPACES_CONFIG.name.min,
+          }),
+          path: ['resolution'],
+        });
+      }
+    });
 
   type ValidationSchema = z.infer<typeof schema>;
 
