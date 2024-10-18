@@ -9,12 +9,18 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_THEME_COLOR_HUE,
+  ODS_THEME_COLOR_INTENT,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
+  ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
@@ -23,6 +29,9 @@ import {
   OsdsMessage,
   OsdsText,
   OsdsTile,
+  OsdsTooltipContent,
+  OsdsTooltip,
+  OsdsIcon,
 } from '@ovhcloud/ods-components/react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useHref } from 'react-router-dom';
@@ -41,6 +50,9 @@ import UpdateVersionBanner from '@/components/UpdateRancherVersionBanner/UpdateV
 import { useTrackingAction } from '@/hooks/useTrackingPage/useTrackingPage';
 import { getLatestVersionAvailable } from '@/utils/rancher';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+
+// to delete when return from API is OK
+const egressCIDRBlocksFake = ['192.0.2.0/24', '198.51.100.0/24'];
 
 export interface RancherDetailProps {
   rancher: RancherService;
@@ -245,6 +257,49 @@ const RancherDetail = ({
                   isDisabled={!isReadyStatus}
                 />
               </TileBlock>
+              <div className="flex flex-col mb-3">
+                <div className="flex justify-between">
+                  <OsdsText
+                    className="mb-2"
+                    size={ODS_TEXT_SIZE._200}
+                    level={ODS_TEXT_LEVEL.heading}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    hue={ODS_THEME_COLOR_HUE._800}
+                  >
+                    {t('egress_title')}
+                  </OsdsText>
+                  <OsdsTooltip>
+                    <OsdsIcon
+                      name={ODS_ICON_NAME.HELP}
+                      size={ODS_ICON_SIZE.xs}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    />
+                    <OsdsTooltipContent slot="tooltip-content">
+                      {t('egress_tooltip')}
+                    </OsdsTooltipContent>
+                  </OsdsTooltip>
+                </div>
+                <OsdsText
+                  className="mb-2"
+                  size={ODS_TEXT_SIZE._400}
+                  level={ODS_TEXT_LEVEL.body}
+                  color={ODS_THEME_COLOR_INTENT.default}
+                >
+                  {/* {currentState.networking.egressCIDRBlocks.map((ip) => ( */}
+                  {egressCIDRBlocksFake.map((ip) => (
+                    <OsdsClipboard
+                      aria-label="clipboard-egress"
+                      value={ip}
+                      key={ip}
+                      className="m-4"
+                    >
+                      <span slot="success-message">{t('copy')}</span>
+                      <span slot="error-message">{t('error')}</span>
+                    </OsdsClipboard>
+                  ))}
+                </OsdsText>
+                <OsdsDivider separator />
+              </div>
             </div>
           </OsdsTile>
         </div>
