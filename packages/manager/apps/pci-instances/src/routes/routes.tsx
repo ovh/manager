@@ -17,6 +17,7 @@ export const ROOT_PATH = '/pci/projects/:projectId/instances';
 export const SUB_PATHS = {
   onboarding: 'onboarding',
   new: 'new',
+  instance: ':instanceId',
 };
 
 const routes: RouteObject[] = [
@@ -45,6 +46,12 @@ const routes: RouteObject[] = [
         path: SUB_PATHS.new,
         ...lazyRouteConfig(() =>
           import('@/pages/instances/create/CreateInstance.page'),
+        ),
+      },
+      {
+        path: SUB_PATHS.instance,
+        ...lazyRouteConfig(() =>
+          import('@/pages/instances/instance/Instance.page'),
         ),
       },
     ],
