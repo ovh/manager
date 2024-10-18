@@ -6,5 +6,5 @@ export const trackingContext = {
   chapter1: 'Hub',
   chapter2: 'account',
   chapter3: 'identity-files',
-  level2: 'Manager-Hub'
+  level2: '88'
 };
