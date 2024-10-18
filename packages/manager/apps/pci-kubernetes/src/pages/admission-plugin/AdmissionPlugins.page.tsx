@@ -3,16 +3,17 @@ import {
   OsdsSwitchItem,
   OsdsButton,
   OsdsModal,
-  OsdsSpinner,
   OsdsTooltip,
   OsdsDivider,
   OsdsText,
   OsdsMessage,
   OsdsTooltipContent,
+  OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import { useCallback, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
 import {
   ODS_BUTTON_VARIANT,
   ODS_MESSAGE_TYPE,
@@ -21,11 +22,13 @@ import {
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
+  OdsSwitchChangedEventDetail,
+  OsdsSwitchCustomEvent,
 } from '@ovhcloud/ods-components';
 import { useTranslation, Translation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { plugins } from '../../components/service/AdmissionPlugins.component';
-import { useKubeDetail } from '@/api/hooks/useKubernetes';
+import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import usePluginState from '@/hooks/usePluginState';
 
 import { useUpdateAdmissionPlugin } from '@/api/hooks/useAdmissionPlugin/useAdmissionPlugin';
@@ -36,37 +39,48 @@ const AdmissionPluginsModal = () => {
   const navigate = useNavigate();
   const onClose = () => navigate('..');
   const { projectId, kubeId } = useParams();
-  const { data: kubeDetail, isPending } = useKubeDetail(projectId, kubeId);
+  const { data: kubeDetail, isPending } = useKubernetesCluster(
+    projectId,
+    kubeId,
+  );
   const { t } = useTranslation(['service']);
 
   const {
-    customization: { apiServer: { admissionPlugins } = {} } = {},
-  } = kubeDetail;
+    customization: {
+      apiServer: { admissionPlugins },
+    },
+  } = kubeDetail ?? {
+    customization: {
+      apiServer: { admissionPlugins: { enabled: [], disabled: [] } },
+    },
+  };
 
   const [pluginData, setPluginData] = useState(admissionPlugins);
   const pluginState = usePluginState(pluginData.enabled, pluginData.disabled);
-
   useResponsiveModal('450px');
   const { addError, addSuccess } = useNotifications();
 
-  const handleChange = useCallback((e, name) => {
-    const value = e.detail.current;
+  const handleChange = useCallback(
+    (e: OsdsSwitchCustomEvent<OdsSwitchChangedEventDetail>, name: string) => {
+      const value = e.detail.current;
 
-    setPluginData(
-      (prevPluginData) =>
-        Object.fromEntries(
-          Object.entries(prevPluginData).map(([state, array]) => {
-            if (!array.includes(name) && state === value) {
-              return [state, [...array, name]];
-            }
-            if (array.includes(name) && state !== value) {
-              return [state, array.filter((plugin) => plugin !== name)];
-            }
-            return [state, array];
-          }),
-        ) as TAdmissionPlugin,
-    );
-  }, []);
+      setPluginData(
+        (prevPluginData) =>
+          Object.fromEntries(
+            Object.entries(prevPluginData).map(([state, array]) => {
+              if (!array.includes(name) && state === value) {
+                return [state, [...array, name]];
+              }
+              if (array.includes(name) && state !== value) {
+                return [state, array.filter((plugin) => plugin !== name)];
+              }
+              return [state, array];
+            }),
+          ) as TAdmissionPlugin,
+      );
+    },
+    [],
+  );
 
   const {
     updateAdmissionPlugins,
@@ -85,6 +99,7 @@ const AdmissionPluginsModal = () => {
         </Translation>,
         true,
       );
+      onClose();
     },
     onSuccess: () => {
       addSuccess(
@@ -111,77 +126,89 @@ const AdmissionPluginsModal = () => {
 
   return (
     <OsdsModal
+      dismissible
       headline={t('kube_service_cluster_admission_plugins_mutation')}
       onOdsModalClose={() => {
         onClose();
       }}
     >
-      {(isPending || isMutationUpdating) && (
-        <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-      )}
+      {isPending || isMutationUpdating ? (
+        <div className="text-center my-10" data-testid="wrapper">
+          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+        </div>
+      ) : (
+        <>
+          <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="my-6">
+            {t('kube_service_cluster_admission_plugins_info_restrictions')}
+            <br />
 
-      <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="my-6">
-        {t('kube_service_cluster_admission_plugins_info_restrictions')}
-      </OsdsMessage>
-      <div className="my-10">
-        {!isPending &&
-          plugins.map((plugin, i) => (
-            <div key={plugin.name} className="my-8 mx-4">
-              <div className="flex  my-3, justify-between">
-                <OsdsTooltip role="tooltip">
-                  <OsdsText
-                    className="mb-4"
-                    size={ODS_TEXT_SIZE._400}
-                    level={ODS_TEXT_LEVEL.body}
-                    color={ODS_TEXT_COLOR_INTENT.text}
-                  >
-                    {plugin.name}
-                  </OsdsText>
-                  <OsdsTooltipContent slot="tooltip-content">
-                    test
-                  </OsdsTooltipContent>
-                </OsdsTooltip>
-                <OsdsSwitch
-                  size={ODS_SWITCH_SIZE.sm}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  key={plugin.name}
-                  onOdsSwitchChanged={(e) => {
-                    if (!plugin.disabled) {
-                      handleChange(e, plugin.name);
-                    }
-                  }}
-                  disabled={plugin.disabled}
-                >
-                  <OsdsSwitchItem
-                    color="primary"
-                    value="enabled"
-                    // TODO : fix this with ODS 18
-                    checked={
-                      pluginState(plugin.name) === 'enabled' || undefined
-                    }
-                  >
-                    {t('kube_service_cluster_admission_plugins_to_activate')}
-                  </OsdsSwitchItem>
-                  {!plugin.disabled && (
-                    <OsdsSwitchItem
-                      color="primary"
-                      value="disabled"
-                      checked={
-                        // TODO : fix this with ODS 18
-                        pluginState(plugin.name) === 'disabled' || undefined
-                      }
+            {t(
+              'kube_service_cluster_admission_plugins_info_restrictions_redeploy_after_change_admission',
+            )}
+          </OsdsMessage>
+          <div className="my-10">
+            {!isPending &&
+              plugins.map((plugin, i) => (
+                <div key={plugin.name} className="my-8 mx-4">
+                  <div className="flex  my-3, justify-between">
+                    <OsdsTooltip role="tooltip">
+                      <OsdsText
+                        className="mb-4"
+                        size={ODS_TEXT_SIZE._400}
+                        level={ODS_TEXT_LEVEL.body}
+                        color={ODS_TEXT_COLOR_INTENT.text}
+                      >
+                        {plugin.name}
+                      </OsdsText>
+                      <OsdsTooltipContent slot="tooltip-content">
+                        {t(plugin.tip)}
+                      </OsdsTooltipContent>
+                    </OsdsTooltip>
+                    <OsdsSwitch
+                      size={ODS_SWITCH_SIZE.sm}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                      key={plugin.name}
+                      onOdsSwitchChanged={(e) => {
+                        if (!plugin.disabled) {
+                          handleChange(e, plugin.name);
+                        }
+                      }}
+                      disabled={plugin.disabled}
                     >
-                      {t(
-                        'kube_service_cluster_admission_plugins_to_desactivate',
+                      <OsdsSwitchItem
+                        color="primary"
+                        value="enabled"
+                        // TODO : fix this with ODS 18
+                        checked={
+                          pluginState(plugin.name) === 'enabled' || undefined
+                        }
+                      >
+                        {t(
+                          'kube_service_cluster_admission_plugins_to_activate',
+                        )}
+                      </OsdsSwitchItem>
+                      {!plugin.disabled && (
+                        <OsdsSwitchItem
+                          color="primary"
+                          value="disabled"
+                          checked={
+                            // TODO : fix this with ODS 18
+                            pluginState(plugin.name) === 'disabled' || undefined
+                          }
+                        >
+                          {t(
+                            'kube_service_cluster_admission_plugins_to_desactivate',
+                          )}
+                        </OsdsSwitchItem>
                       )}
-                    </OsdsSwitchItem>
-                  )}
-                </OsdsSwitch>
-              </div>
-              {i !== plugins.length - 1 && <OsdsDivider separator />}
-            </div>
-          ))}
-      </div>
+                    </OsdsSwitch>
+                  </div>
+                  {i !== plugins.length - 1 && <OsdsDivider separator />}
+                </div>
+              ))}
+          </div>
+        </>
+      )}
       <div className="flex space-x-5 justify-end">
         <OsdsButton
           slot="actions"
