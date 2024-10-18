@@ -290,6 +290,7 @@ export default class PciStoragesContainersAddController {
 
   onContainerSolutionChange() {
     this.container.region = null;
+    this.container.containerType = null;
   }
 
   onRegionsFocus() {
