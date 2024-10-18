@@ -2,7 +2,9 @@ import { render, screen, act, waitFor } from '@testing-library/react';
 import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import * as OdsComponentModule from '@ovhcloud/ods-components/react';
-import { OsdsInput, OsdsTextArea } from '@ovhcloud/ods-components';
+import { OsdsInput, OsdsSelect, OsdsTextArea } from '@ovhcloud/ods-components';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import * as ConfirmModalModule from '@/components/modals/confirmModal/ConfirmModal.component';
 import { RGDPForm } from './RGDPForm.component';
 import { GDPRFormValues } from '@/types/gdpr.type';
 
@@ -32,8 +34,27 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   };
 });
 
+vi.mock(
+  '@/components/modals/confirmModal/ConfirmModal.component',
+  async (importOriginal) => {
+    const module: typeof ConfirmModalModule = await importOriginal();
+    return {
+      ConfirmModal: ({ ...props }: any) => (
+        <module.ConfirmModal data-testid={'confirmModal'} {...props} />
+      ),
+    };
+  },
+);
+
 describe('RGDPForm', () => {
-  const renderForm = () => render(<RGDPForm />);
+  const renderForm = () => {
+    const queryClient = new QueryClient();
+    return render(
+      <QueryClientProvider client={queryClient}>
+        <RGDPForm />
+      </QueryClientProvider>,
+    );
+  };
 
   it('Should render the form fields correctly when the form is displayed', async () => {
     const { getByText } = renderForm();
@@ -164,6 +185,56 @@ describe('RGDPForm', () => {
       expect(
         getByText('rgdp_form_validation_message_email_match'),
       ).toBeInTheDocument();
+    });
+  });
+
+  it('Should show confirmModal when...', async () => {
+    const { getByRole } = renderForm();
+
+    const surnameInput = getOsdsElementByFormName<OsdsInput>('surname');
+    const firstNameInput = getOsdsElementByFormName<OsdsInput>('firstName');
+    const requestDescriptionText = getOsdsElementByFormName<OsdsTextArea>(
+      'requestDescription',
+    );
+    const emailInput = getOsdsElementByFormName<OsdsInput>('email');
+    const confirmEmailInput = getOsdsElementByFormName<OsdsInput>(
+      'confirmEmail',
+    );
+    const objectSelect = getOsdsElementByFormName<OsdsSelect>('messageSubject');
+
+    const submitBtn = getByRole('button', { name: 'rgdp_form_submit' });
+
+    act(() => {
+      surnameInput.value = 'name';
+      firstNameInput.value = 'firstNameInput';
+      requestDescriptionText.value = 'des';
+      emailInput.value = 'ovh@internet.com';
+      confirmEmailInput.value = 'ovh@internet.com';
+      objectSelect.value = 'other_request';
+
+      surnameInput.odsValueChange.emit();
+      firstNameInput.odsValueChange.emit();
+      requestDescriptionText.odsValueChange.emit();
+      emailInput.odsValueChange.emit();
+      confirmEmailInput.odsValueChange.emit();
+      objectSelect.odsValueChange.emit();
+
+      surnameInput.odsInputBlur.emit();
+      firstNameInput.odsInputBlur.emit();
+      requestDescriptionText.odsBlur.emit();
+      emailInput.odsInputBlur.emit();
+      confirmEmailInput.odsInputBlur.emit();
+      objectSelect.odsBlur.emit();
+    });
+
+    act(() => {
+      submitBtn.click();
+    });
+
+    await waitFor(() => {
+      const confirmModal = screen.queryByTestId('confirmModal');
+      expect(confirmModal).toBeInTheDocument();
+      expect(submitBtn).not.toBeDisabled();
     });
   });
 });

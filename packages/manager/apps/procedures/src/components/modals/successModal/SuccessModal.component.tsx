@@ -13,16 +13,21 @@ import {
   OsdsModal,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 type Props = {
+  title: string;
+  description: string;
   ovhHomePageHref: string;
+  ovhHomePageLabel: string;
 };
 
-export const SuccessModal: FunctionComponent<Props> = ({ ovhHomePageHref }) => {
-  const { t } = useTranslation('account-disable-2fa');
-
+export const SuccessModal: FunctionComponent<Props> = ({
+  ovhHomePageHref,
+  title,
+  description,
+  ovhHomePageLabel,
+}) => {
   const gotToHomePage = () => {
     window.location.href = ovhHomePageHref;
   };
@@ -43,9 +48,7 @@ export const SuccessModal: FunctionComponent<Props> = ({ ovhHomePageHref }) => {
           className="block font-bold"
           hue={ODS_TEXT_COLOR_HUE._700}
         >
-          {t(
-            'account-disable-2fa-create-form-success-modal-send-document-title',
-          )}
+          {title}
         </OsdsText>
         <OsdsText
           level={ODS_TEXT_LEVEL.caption}
@@ -54,9 +57,7 @@ export const SuccessModal: FunctionComponent<Props> = ({ ovhHomePageHref }) => {
           className="block mt-2"
           hue={ODS_TEXT_COLOR_HUE._500}
         >
-          {t(
-            'account-disable-2fa-create-form-success-modal-send-document-description',
-          )}
+          {description}
         </OsdsText>
       </div>
       <OsdsButton
@@ -65,7 +66,7 @@ export const SuccessModal: FunctionComponent<Props> = ({ ovhHomePageHref }) => {
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={gotToHomePage}
       >
-        {t('account-disable-2fa-success-modal-back-home')}
+        {ovhHomePageLabel}
       </OsdsButton>
     </OsdsModal>
   );
