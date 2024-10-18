@@ -2,5 +2,6 @@
   "pci_instances_common_instances_title": "Instances",
   "pci_instances_common_create_instance": "Créer une instance",
   "pci_instances_common_new": "Nouveau",
-  "pci_instances_common_go_back": "Revenir à la page précédente"
+  "pci_instances_common_go_back": "Revenir à la page précédente",
+  "pci_instances_common_filter": "Filtrer"
 }
