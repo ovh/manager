@@ -21,7 +21,7 @@ export const licensesHycu: IHycuDetails[] = [
     },
     comment: '',
     serviceName: 'c1b7cb4f-6b63-45da-9a8a-f731f1a67b2c',
-    controllerId: '',
+    controllerId: 'test-id',
     licenseStatus: LicenseStatus.ACTIVATED,
     expirationDate: '0001-01-01T00:00:00Z',
   },
