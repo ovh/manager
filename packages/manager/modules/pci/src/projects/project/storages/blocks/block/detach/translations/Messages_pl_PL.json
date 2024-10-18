@@ -1,8 +1,0 @@
-{
- "pci_projects_project_storages_blocks_block_detach_title": "Odłącz wolumen od instancji",
- "pci_projects_project_storages_blocks_block_detach_detachvolume": "Odłącz wolumen {{volume}} od instancji {{instance}}",
- "pci_projects_project_storages_blocks_block_detach_submit_label": "Potwierdź",
- "pci_projects_project_storages_blocks_block_detach_cancel_label": "Anuluj",
- "pci_projects_project_storages_blocks_block_detach_success_message": "Wolumen {{ volume }} został odłączony.",
- "pci_projects_project_storages_blocks_block_detach_error_detach": "Wystąpił błąd podczas aktualizacji wolumenu {{volume}} : {{message}}."
-}

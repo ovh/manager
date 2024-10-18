@@ -11,6 +11,25 @@ import { mockedBasicOrderFunnelPlan } from '@/__tests__/helpers/mocks/order-funn
 import { Plan } from '@/types/orderFunnel';
 
 describe('PlanTile component', () => {
+  beforeEach(() => {
+    vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => {
+      return {
+        useGetCatalog: vi.fn(() => ({
+          isSuccess: true,
+          data: {
+            locale: {
+              currencyCode: 'EUR',
+            },
+          },
+        })),
+      };
+    });
+    vi.mock('@/hooks/useLocale', () => {
+      return {
+        useLocale: vi.fn(() => 'fr_FR'),
+      };
+    });
+  });
   afterEach(() => {
     vi.clearAllMocks();
   });

@@ -93,6 +93,9 @@ export const PCI_FEATURES = {
     HDS: 'public-cloud:hds',
     TRUSTED_ZONE: 'public-cloud:trusted-zone',
   },
+  ACTIONS: {
+    INSTANCE_LOCALZONE_BACKUP: 'public-cloud:instance:local-zone-backup',
+  },
 };
 
 export const PCI_FEATURES_STATES = {

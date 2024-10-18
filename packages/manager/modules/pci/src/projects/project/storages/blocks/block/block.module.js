@@ -9,8 +9,6 @@ import 'ovh-api-services';
 
 import blockEdit from './edit';
 
-import routing from './block.routing';
-
 const moduleName = 'ovhManagerPciStoragesBlocksBlock';
 
 angular
@@ -24,7 +22,6 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

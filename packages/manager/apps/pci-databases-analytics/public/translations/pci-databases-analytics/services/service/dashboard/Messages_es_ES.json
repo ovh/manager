@@ -26,6 +26,7 @@
   "maintenanceLink": "Gestionar y planificar mis operaciones de mantenimiento",
   "networkTitle": "Red utilizada",
   "networkLink": "Red privada: vRack n.° {{vrack}}",
+  "networkPublicTitle": "Red pública (internet)",
   "priceBillingTitle": "Soporte y facturación",
   "serviceIdLabel": "ID del servicio",
   "serviceIdCopyToast": "Se ha copiado el ID del servicio",

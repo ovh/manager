@@ -26,7 +26,7 @@ const Backups = () => {
   );
   const restoreModal = useModale('restore');
   const navigate = useNavigate();
-  const { projectId, service } = useServiceData();
+  const { projectId, service, serviceQuery } = useServiceData();
   const { isUserActive } = useUserActivityContext();
   const backupsQuery = useGetBackups(projectId, service.engine, service.id, {
     refetchInterval: isUserActive && POLLING.BACKUPS,
@@ -138,6 +138,10 @@ const Backups = () => {
           controller={restoreModal.controller}
           backup={selectedBackup}
           backups={backupsQuery.data}
+          onSuccess={() => {
+            restoreModal.close();
+            serviceQuery.refetch();
+          }}
         />
       )}
     </>

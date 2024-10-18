@@ -6,6 +6,7 @@ import {
   Globe2,
   HardDrive,
   MemoryStick,
+  ShieldAlert,
   ShieldCheck,
   TrafficCone,
   UserCheck,
@@ -150,8 +151,6 @@ const Dashboard = () => {
         ) : (
           <div data-testid="dashboard-metrics-skeleton">
             <Skeleton className="w-full h-[200px]" />
-            <Skeleton className="w-full h-[200px]" />
-            <Skeleton className="w-full h-[200px]" />
           </div>
         )}
       </div>
@@ -178,26 +177,34 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent>
             <Maintenance />
-            {service.networkType === database.NetworkTypeEnum.private &&
-              vrackQuery.isSuccess && (
-                <div data-testid="dashboard-vrack-container">
-                  <h5 className="py-6">
-                    <ShieldCheck className="size-4 inline mr-2 text-green-500" />
-                    {t('networkTitle')}
-                  </h5>
-                  <div className="flex flex-row gap-1">
-                    <OvhLink
-                      application="dedicated"
-                      path={`#/vrack/${vrackQuery.data.id}`}
-                    >
-                      {t('networkLink', {
-                        vrack: vrackQuery.data.id,
-                      })}
-                    </OvhLink>
-                    <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
+            <div data-testid="dashboard-vrack-container">
+              {service.networkType === database.NetworkTypeEnum.private ? (
+                vrackQuery.isSuccess && (
+                  <div>
+                    <h5 className="py-6">
+                      <ShieldCheck className="size-4 inline mr-2 text-green-500" />
+                      {t('networkTitle')}
+                    </h5>
+                    <div className="flex flex-row gap-1">
+                      <OvhLink
+                        application="dedicated"
+                        path={`#/vrack/${vrackQuery.data.id}`}
+                      >
+                        {t('networkLink', {
+                          vrack: vrackQuery.data.id,
+                        })}
+                      </OvhLink>
+                      <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
+                    </div>
                   </div>
-                </div>
+                )
+              ) : (
+                <h5 className="py-6">
+                  <ShieldAlert className="size-4 inline mr-2 text-amber-400" />
+                  {t('networkPublicTitle')}
+                </h5>
               )}
+            </div>
           </CardContent>
         </Card>
         <Card>
