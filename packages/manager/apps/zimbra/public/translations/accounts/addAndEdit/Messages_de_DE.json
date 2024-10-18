@@ -33,5 +33,8 @@
   "zimbra_account_add_error_message": "Ihre Anfrage zur Erstellung einer Account-E-Mail-Adresse ist fehlgeschlagen. {{ error }}",
   "zimbra_account_edit_success_message": "Ihre Anfrage zur Änderung eines E-Mail Accounts wurde registriert. Sie wird in Kürze bearbeitet.",
   "zimbra_account_edit_error_message": "Ihre Anfrage zur Änderung der Account-E-Mail-Adresse ist fehlgeschlagen. {{ error }}",
-  "zimbra_account_add_input_displayName_tooltip": "Name, der im Verzeichnis verwendet und den E-Mail-Empfänger:innen angezeigt wird"
+  "zimbra_account_add_input_displayName_tooltip": "Name, der im Verzeichnis verwendet und den E-Mail-Empfänger:innen angezeigt wird",
+  "zimbra_account_edit_tabs_settings": "Kontoeinstellungen",
+  "zimbra_account_edit_tabs_redirections": "Weiterleitungen",
+  "zimbra_account_edit_tabs_alias": "Alias"
 }

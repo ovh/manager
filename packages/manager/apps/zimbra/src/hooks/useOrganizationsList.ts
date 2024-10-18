@@ -24,8 +24,10 @@ export const useOrganizationList = (
     queryKey: getZimbraPlatformOrganizationQueryKey(platformId),
     queryFn: ({ pageParam }) =>
       getZimbraPlatformOrganization({ platformId, pageParam }),
-    enabled:
-      (typeof options.enabled !== 'undefined' ? options.enabled : true) &&
+    enabled: (query) =>
+      (typeof options.enabled === 'function'
+        ? options.enabled(query)
+        : typeof options.enabled !== 'boolean' || options.enabled) &&
       !!platformId,
     getNextPageParam: (lastPage: { cursorNext?: string }) =>
       lastPage.cursorNext,

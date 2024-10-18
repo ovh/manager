@@ -5,13 +5,15 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 export type TileBlockProps = {
   label: string;
+  testid?: string;
 };
 
 export const TileBlock: React.FC<React.PropsWithChildren<TileBlockProps>> = ({
   label,
+  testid,
   children,
 }) => (
-  <div className="flex flex-col mb-3">
+  <div data-testid={testid} className="flex flex-col mb-3">
     <OsdsDivider separator />
     <OsdsText
       className="mb-2"

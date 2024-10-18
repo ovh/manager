@@ -33,5 +33,8 @@
   "zimbra_account_add_error_message": "Se ha producido un error al enviar la solicitud de creación de cuenta de correo: {{ error }}",
   "zimbra_account_edit_success_message": "La solicitud de modificación de la cuenta de correo se ha enviado. Será tratada en unos instantes.",
   "zimbra_account_edit_error_message": "Se ha producido un error al enviar la solicitud de modificación de cuenta de correo: {{ error }}",
-  "zimbra_account_add_input_displayName_tooltip": "Nombre utilizado en el directorio y mostrado a los destinatarios de los emails"
+  "zimbra_account_add_input_displayName_tooltip": "Nombre utilizado en el directorio y mostrado a los destinatarios de los emails",
+  "zimbra_account_edit_tabs_settings": "Configuración de la cuenta",
+  "zimbra_account_edit_tabs_redirections": "Redirecciones",
+  "zimbra_account_edit_tabs_alias": "Alias"
 }

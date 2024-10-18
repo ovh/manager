@@ -1,0 +1,8 @@
+{
+  "zimbra_redirections_delete_modal_title": "Eliminar o reencaminhamento",
+  "zimbra_redirections_delete_modal_content": "Deseja eliminar o reencaminhamento?",
+  "zimbra_redirections_delete_button_delete": "Suprimir",
+  "zimbra_redirections_delete_button_cancel": "Anular",
+  "zimbra_redirections_delete_modal_from": "De:",
+  "zimbra_redirections_delete_modal_to": "Para:"
+}

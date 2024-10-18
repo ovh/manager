@@ -15,20 +15,20 @@ type UseAccountParams = Omit<
   'queryKey' | 'queryFn' | 'gcTime'
 > & {
   accountId?: string;
-  noCache?: boolean;
 };
 
 export const useAccount = (props: UseAccountParams) => {
-  const { accountId, noCache, ...options } = props;
+  const { accountId, ...options } = props;
   const { platformId } = usePlatform();
   return useQuery({
     ...options,
     queryKey: getZimbraPlatformAccountDetailQueryKey(platformId, accountId),
     queryFn: () => getZimbraPlatformAccountDetail(platformId, accountId),
-    enabled:
-      (typeof options.enabled !== 'undefined' ? options.enabled : true) &&
+    enabled: (query) =>
+      (typeof options.enabled === 'function'
+        ? options.enabled(query)
+        : typeof options.enabled !== 'boolean' || options.enabled) &&
       !!platformId &&
       !!accountId,
-    gcTime: noCache ? 0 : 5000,
   }) as UseQueryResult<AccountType>;
 };

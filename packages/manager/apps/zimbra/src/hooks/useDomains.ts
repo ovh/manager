@@ -37,10 +37,11 @@ export const useDomains = (props: UseDomainsParams = {}) => {
         organizationId: organizationId || selectedOrganizationId,
         pageParam,
       }),
-    enabled:
-      (typeof options.enabled !== 'undefined' ? options.enabled : true) &&
+    enabled: (query) =>
+      (typeof options.enabled === 'function'
+        ? options.enabled(query)
+        : typeof options.enabled !== 'boolean' || options.enabled) &&
       !!platformId,
-    staleTime: Infinity,
     getNextPageParam: (lastPage: { cursorNext?: string }) =>
       lastPage.cursorNext,
     select: (data) =>
