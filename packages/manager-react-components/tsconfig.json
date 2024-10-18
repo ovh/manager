@@ -23,6 +23,7 @@
       "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
     }
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "types"]
+  "include": ["src", "src/**/*", "*.spec.tsx"],
+  "exclude": ["node_modules", "dist", "types", "./src/**/*.stories.*"],
+  "files": ["global.d.ts"]
 }
