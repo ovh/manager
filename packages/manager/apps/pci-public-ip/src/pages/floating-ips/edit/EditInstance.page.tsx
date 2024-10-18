@@ -25,6 +25,7 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useAllFloatingIP, useUpdateInstance } from '@/api/hooks/useFloatingIP';
 import { useFilteredInstance } from '@/api/hooks/useInstance';
 import { FloatingIP, IPAddress, ResponseAPIError } from '@/interface';
+import usePageQuery from '@/hooks/usePageQuery';
 
 export default function EditInstancePage() {
   const { t: tEdit } = useTranslation('floating-ips-edit');
@@ -89,8 +90,13 @@ export default function EditInstancePage() {
     );
   };
 
+  const search = usePageQuery();
+
   const onClose = () => {
-    navigate('..');
+    navigate({
+      pathname: '..',
+      search,
+    });
   };
 
   const { attach, isPending: isPendingUpdateInstance } = useUpdateInstance({
