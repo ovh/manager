@@ -5,7 +5,7 @@
     data-translate="{{ 'ovhManagerPccDashboardComponentActivationStatus_' + $ctrl.ACTIVATION_STATUS[$ctrl.statusName].name }}"
 ></span>
 <div
-    data-ng-if="$ctrl.datacentersState && $ctrl.statusName === $ctrl.ACTIVATION_STATUS.enabled.name"
+    data-ng-if="$ctrl.datacentersState && ($ctrl.statusName === $ctrl.ACTIVATION_STATUS.enabled.name || $ctrl.statusName === $ctrl.ACTIVATION_STATUS.enabling.name)"
 >
     <div class="d-inline-block">
         <span
