@@ -33,15 +33,8 @@ import HYCU_CONFIG from '@/hycu.config';
 import { IHycuDetails } from '@/type/hycu.details.interface';
 
 import { urls, subRoutes } from '@/routes/routes.constant';
-import { usePackTypeLabel } from '@/hooks/service/usePackLabel';
 import HycuActionMenu from './menu/HycuActionMenu.component';
 import { getStatusColor } from '@/utils/statusColor';
-
-const dateFormat: Intl.DateTimeFormatOptions = {
-  day: '2-digit',
-  month: '2-digit',
-  year: 'numeric',
-};
 
 /* ========= datagrid cells ========= */
 const DatagridIdCell = (hycuDetail: IHycuDetails) => {
@@ -89,13 +82,13 @@ const DatagridCommercialNameCell = (hycuDetail: IHycuDetails) => {
     resourceName: hycuDetail.serviceName,
   });
 
-  const productName = usePackTypeLabel(
-    serviceDetails?.data.resource.product.name,
-  );
-
   return (
     <DataGridTextCell>
-      {isLoading ? <OsdsSkeleton></OsdsSkeleton> : productName}
+      {isLoading ? (
+        <OsdsSkeleton />
+      ) : (
+        serviceDetails?.data.resource.product.description
+      )}
     </DataGridTextCell>
   );
 };
