@@ -5,8 +5,8 @@ import {
   NavLink,
   useLocation,
   useNavigate,
-  useParams,
   useResolvedPath,
+  useParams,
 } from 'react-router-dom';
 import {
   OsdsTabs,
@@ -14,9 +14,14 @@ import {
   OsdsTabBarItem,
 } from '@ovhcloud/ods-components/react';
 
-import { BaseLayout } from '@ovh-ux/manager-react-components';
+import {
+  BaseLayout,
+  useServiceDetails,
+} from '@ovh-ux/manager-react-components';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
+import Errors from '@/components/Error/Error';
+import { urls } from '@/routes/routes.constant';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -29,21 +34,21 @@ export type DashboardLayoutProps = {
 };
 
 export default function DashboardPage() {
+  const { serviceName } = useParams();
   const [panel, setActivePanel] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation('hycu/dashboard');
+
+  const { data: serviceDetails, error } = useServiceDetails({
+    resourceName: serviceName,
+  });
 
   const tabsList = [
     {
       name: 'general_informations',
-      title: 'Informations générales',
+      title: t('hycu_dashboard_generals_informations_title'),
       to: useResolvedPath('').pathname,
-    },
-    {
-      name: 'Tab 2',
-      title: 'Tab 2',
-      to: useResolvedPath('Tab2').pathname,
     },
   ] as const;
 
@@ -58,14 +63,26 @@ export default function DashboardPage() {
   }, [location.pathname]);
 
   const header = {
-    title: t('title'),
+    title: serviceDetails?.data.resource.displayName,
+    description: serviceName,
   };
+
+  if (error) {
+    return (
+      <BaseLayout breadcrumb={<Breadcrumb />} header={header}>
+        <Errors error={error} />
+      </BaseLayout>
+    );
+  }
 
   return (
     <BaseLayout
       breadcrumb={<Breadcrumb />}
       header={header}
-      description="Description du hycu"
+      backLinkLabel={t('hycu_dashboard_back_link')}
+      onClickReturn={() => {
+        navigate(urls.listing);
+      }}
       tabs={
         <OsdsTabs panel={panel}>
           <OsdsTabBar slot="top">
