@@ -1,0 +1,11 @@
+{
+  "orderButtonLabel": "Commencer",
+  "moreInfoButtonLabel": "En savoir plus",
+  "hycu_onboarding_category_tutorial": "Tutoriel",
+  "hycu_onboarding_guide1_title": "Guides et documentations",
+  "hycu_onboarding_guide1_description": "Découvrez nos guides et documentations détaillés pour vous accompagner dans votre projet.",
+  "hycu_onboarding_guide2_title": "Nutanix on OVHcloud",
+  "hycu_onboarding_guide2_description": "Découvrez notre plateforme hyperconvergée (HCI) évolutive et prête à l'emploi en quelques heures. Disponible en offre packagée ou offre BYOL (Bring Your Own Licence), elle associe les licences logicielles de la Nutanix Cloud Platform (NCP) et les infrastructures Hosted Private Cloud d'OVHcloud dédiées et qualifiées Nutanix.",
+  "hycu_onboarding_guide3_title": "Plan de Reprise d'Activité (PRA)",
+  "hycu_onboarding_guide3_description": "Appuyez-vous sur le service HYCU for OVHcloud pour une reprise d'activité contrôlée et performante, avec un coût maîtrisé et sans surprise."
+}
