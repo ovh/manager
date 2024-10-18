@@ -62,6 +62,7 @@ initShell().then((shell) => {
           lng: locale,
           fallbackLng: 'fr_FR',
           ns: [], // namespaces to load by default
+          load: 'currentOnly',
           backend: {
             // path construction for async load, ns: namespace, lng: locale
             loadPath: (lngs: string[], namespaces: string[]) => {
