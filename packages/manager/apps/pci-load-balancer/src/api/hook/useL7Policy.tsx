@@ -14,7 +14,7 @@ import { paginateResults, sortResults } from '@/helpers';
 import { ACTION_LABELS, ACTIONS } from '@/constants';
 import queryClient from '@/queryClient';
 
-const getAttribute = (policy: TL7Policy) => {
+export const getAttribute = (policy: TL7Policy) => {
   switch (policy.action) {
     case ACTIONS.REDIRECT_TO_URL:
       return policy.redirectUrl;
@@ -35,7 +35,7 @@ export const useGetAllL7Policies = (
   useQuery({
     queryKey: ['l7Policies', projectId, 'listeners', listenerId, region],
     queryFn: () => getL7Policies(projectId, listenerId, region),
-    select: (l7Policies) =>
+    select: (l7Policies): TL7Policy[] =>
       l7Policies.map((l7Policy) => {
         const action = ACTION_LABELS[l7Policy.action];
         const attribute = getAttribute(l7Policy);
