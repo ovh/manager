@@ -1,3 +1,5 @@
+import { FileWithError } from '@/components/FileInput/FileInputContainer';
+
 export type GDPRFormValues = {
   firstName: string;
   surname: string;
@@ -7,4 +9,7 @@ export type GDPRFormValues = {
   nicHandle?: string;
   messageSubject: string;
   requestDescription: string;
+  idDocumentFront: FileWithError[];
+  idDocumentBack: FileWithError[];
+  otherDocuments: FileWithError[];
 };
