@@ -89,5 +89,6 @@
   "common_dual_list_target_move_all": "Alles löschen",
   "common_dual_list_target_search": "In den Zieldaten suchen",
   "common_cancel": "Abbrechen",
-  "common_confirm": "Bestätigen"
+  "common_confirm": "Bestätigen",
+  "common_not_supported": "Nicht unterstützt"
 }
