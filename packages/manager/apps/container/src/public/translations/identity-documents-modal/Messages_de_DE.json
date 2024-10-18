@@ -1,0 +1,8 @@
+{
+  "identity_documents_modal_title": "Wir müssen Ihre Identität überprüfen",
+  "identity_documents_modal_description": "Diese Überprüfung ist dem indischem Recht zufolge vor der Bestellung obligatorisch.",
+  "identity_documents_modal_button_start": "Starten",
+  "identity_documents_modal_button_later": "Später",
+  "identity_documents_modal_more_info": "Mehr Informationen",
+  "identity_documents_modal_legal_information": "Gemäß den geltenden Gesetzen ist OVHcloud zu KYCs („Know Your Customer“) bei alle seinen Kund:innen verpflichtet, wie es z. B. lokale Bestimmungen vorschreiben: Vorschriften Nr. 20(3)/2022-CERT-In. __ <br>Es handelt sich hierbei um einen Prozess, mit dem OVHcloud Belege sammelt, um die Identität und Adresse seiner Kund:innen zu bestätigen. Werden die für den KYC erforderlichen Dokumente nicht zur Verfügung gestellt, kann OVHcloud Ihnen Ihre Dienste nicht bereitstellen"
+}
