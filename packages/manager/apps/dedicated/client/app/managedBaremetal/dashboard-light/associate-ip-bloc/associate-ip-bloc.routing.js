@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.dedicatedCloud.details.dashboard.associate-ip-bloc',
+    'app.managedBaremetal.details.dashboard-light.associate-ip-bloc',
     {
       url: '/associate-ip-bloc',
       redirectTo: (transition) => {
@@ -8,8 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .injector()
           .getAsync('hasVCDMigration')
           .then((hasVCDMigration) =>
-            hasVCDMigration
-              ? 'app.dedicatedCloud.details.dashboard-light.associate-ip-bloc'
+            !hasVCDMigration
+              ? 'app.managedBaremetal.details.dashboard.associate-ip-bloc'
               : false,
           );
       },
@@ -24,8 +24,8 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         ips: /* @ngInject */ (currentService) =>
-          currentService.ips?.map((ip) => ip.network),
-        goBack: /* @ngInject */ (goBackToDashboard) => goBackToDashboard,
+          currentService.ips?.map(({ network }) => network),
+        goBack: /* @ngInject */ ($state) => () => $state.go('^'),
         trackingPrefix: () =>
           'dedicated::dedicatedClouds::dashboard::associate-ip-bloc',
         breadcrumb: () => null,
