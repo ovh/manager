@@ -201,5 +201,7 @@
   "sidebar_zimbra": "Zimbra Mail",
   "sidebar_pci_savings_plan": "Savings Plans",
   "sidebar_hycu": "HYCU",
-  "sidebar_all_hycu": "Alle meine Lizenzen"
+  "sidebar_all_hycu": "Alle meine Lizenzen",
+  "sidebar_veeam_backup": "Managed Veeam für VCD",
+  "sidebar_all_veeam_backup": "Alle Dienstleistungen"
 }
