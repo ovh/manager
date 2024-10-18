@@ -1,0 +1,7 @@
+{
+  "pci_project_regions_list_continent_all": "All locations",
+  "pci_project_regions_list_empty": "No locations are available",
+  "pci_project_regions_list_add": "Please activate the latest locations in each zone in the <a href=\"{{url}}\" class=\"oui-link\">Locations</a> section",
+  "pci_project_regions_list_region": "Location",
+  "pci_project_regions_list_quota": "Increase your quota"
+}

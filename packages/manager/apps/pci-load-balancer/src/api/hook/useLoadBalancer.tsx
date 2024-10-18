@@ -14,6 +14,8 @@ import {
   updateLoadBalancerName,
   TLoadBalancerListener,
   editListener,
+  TCreateLoadBalancerParam,
+  createLoadBalancer,
 } from '../data/load-balancer';
 import queryClient from '@/queryClient';
 import { PROTOCOLS } from '@/constants';
@@ -330,4 +332,48 @@ export const useLoadBalancerListeners = (
       filters,
     ],
   );
+};
+
+export const useCreateLoadBalancer = ({
+  projectId,
+  flavor,
+  region,
+  floatingIp,
+  privateNetwork,
+  subnet,
+  gateways,
+  listeners,
+  name,
+  onSuccess,
+  onError,
+}: TCreateLoadBalancerParam & {
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+}) => {
+  const mutation = useMutation({
+    mutationFn: async () =>
+      createLoadBalancer({
+        projectId,
+        flavor,
+        region,
+        floatingIp,
+        privateNetwork,
+        subnet,
+        gateways,
+        listeners,
+        name,
+      }),
+    onError,
+    onSuccess: async () => {
+      // TDOO invalidate right query
+      // await queryClient.invalidateQueries({
+      //   queryKey: getAllLoadBalancersQueryKey(projectId),
+      // });
+      onSuccess();
+    },
+  });
+  return {
+    doCreateLoadBalancer: () => mutation.mutate(),
+    ...mutation,
+  };
 };

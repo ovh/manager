@@ -52,6 +52,7 @@ export interface InstanceTableProps {
   projectId: string;
   region: string;
   onChange: (config: ListenerConfiguration[]) => void;
+  className: string;
 }
 
 interface ListenerForm {
@@ -70,6 +71,7 @@ export function InstanceTable({
   projectId,
   region,
   onChange,
+  className,
 }: Readonly<InstanceTableProps>) {
   const { t } = useTranslation('instances-table');
   const [listeners, setListeners] = useState<ListenerForm[]>([]);
@@ -98,7 +100,7 @@ export function InstanceTable({
   }, [listeners]);
 
   return (
-    <div>
+    <div className={className}>
       <OsdsButton
         className="mb-4"
         color={ODS_THEME_COLOR_INTENT.primary}
