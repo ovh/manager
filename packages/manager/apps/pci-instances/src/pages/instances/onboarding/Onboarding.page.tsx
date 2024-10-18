@@ -1,4 +1,4 @@
-import { FC, useContext, useMemo } from 'react';
+import { FC, useContext } from 'react';
 import {
   Card,
   OnboardingLayout,
@@ -45,14 +45,10 @@ const Onboarding: FC = () => {
     filters: [],
   });
 
-  const rootUrl = useMemo(() => `/pci/projects/${projectId}/instances`, [
-    projectId,
-  ]);
-
   if (isLoading) return <Spinner />;
 
   return data && data.length > 0 ? (
-    <Navigate to={rootUrl} />
+    <Navigate to={'..'} />
   ) : (
     <PageLayout>
       {project && <Breadcrumb projectLabel={project.description ?? ''} />}
