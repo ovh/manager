@@ -203,5 +203,7 @@
   "sidebar_hycu": "HYCU",
   "sidebar_all_hycu": "Tutte le mie licenze",
   "sidebar_veeam_backup": "Managed Veeam for VCD",
-  "sidebar_all_veeam_backup": "Tutti i servizi"
+  "sidebar_all_veeam_backup": "Tutti i servizi",
+  "sidebar_vmware_vsphere": "Managed VMware vSphere",
+  "sidebar_vmware_vcd": "Managed VCD"
 }
