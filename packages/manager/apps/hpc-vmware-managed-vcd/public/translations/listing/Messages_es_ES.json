@@ -1,0 +1,8 @@
+{
+  "managed_vcd_listing_title": "Managed VCD",
+  "managed_vcd_listing_id": "Id",
+  "managed_vcd_listing_name": "Nombre",
+  "managed_vcd_listing_location": "Zona",
+  "managed_vcd_listing_description": "Descripción",
+  "managed_vcd_listing_web_interface_url": "URL interfaz web"
+}

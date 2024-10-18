@@ -1,0 +1,22 @@
+[
+  {
+    "resourceURN": "urn:v1:resource:vmwareCloudDirectorBackup:BackupA",
+    "authorizedActions": [
+      "vmwareCloudDirectorBackup:apiovh:get",
+      "vmwareCloudDirector:apiovh:organization/get",
+      "account:apiovh:iam/resource/edit",
+      "account:apiovh:service/terminate"
+    ],
+    "unauthorizedActions": []
+  },
+  {
+    "resourceURN": "urn:v1:resource:vmwareCloudDirectorBackup:BackupB",
+    "authorizedActions": [],
+    "unauthorizedActions": [
+      "vmwareCloudDirectorBackup:apiovh:get",
+      "vmwareCloudDirector:apiovh:organization/get",
+      "account:apiovh:iam/resource/edit",
+      "account:apiovh:service/terminate"
+    ]
+  }
+]

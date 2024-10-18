@@ -546,5 +546,6 @@
   "common_resiliate_contact_support": "Para dar de baja este servicio, puede ponerse en contacto con nuestro Soporte en el <strong>91 758 34 77</strong>. ¡Gracias por su comprensión!",
   "core_pcc_top_guide_11_title": "Documentación oficial de Nutanix",
   "core_pcc_top_guide_12_title": "Documentación oficial de SAP HANA on Private Cloud",
-  "core_pcc_top_guide_13_title": "Autorizar las direcciones IP a conectarse al vCenter"
+  "core_pcc_top_guide_13_title": "Autorizar las direcciones IP a conectarse al vCenter",
+  "core_pcc_top_guide_14_title": "VMware on OVHcloud - VMware Cloud Director"
 }
