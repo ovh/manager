@@ -17,7 +17,7 @@
   "main": "src/index.js",
   "dependencies": {
     "base64url": "^3.0.0",
-    "cookie": "^0.3.1",
+    "cookie": "^0.7.0",
     "request": "^2.88.0"
   },
   "engines": {
