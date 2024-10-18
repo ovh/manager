@@ -102,6 +102,17 @@ hostedPrivateCloudUniverse.children = [
         },
         features: ['hycu'],
       },
+      {
+        id: 'veeam-backup',
+        translation: 'sidebar_veeam_backup',
+        serviceType: 'VEEAMBACKUP',
+        tag: NodeTag.NEW,
+        routing: {
+          application: 'veeam-backup',
+          hash: '#/',
+        },
+        features: ['veeam-backup'],
+      },
     ],
   },
 ];

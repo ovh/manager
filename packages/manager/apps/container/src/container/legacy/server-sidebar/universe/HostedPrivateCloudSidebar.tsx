@@ -14,6 +14,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import infinityCLoud from '@/assets/images/sidebar/infinity-cloud.png';
 import hycuLogo from '@/assets/images/sidebar/hycu-logo.svg';
+import veeamBackupLogo from '@/assets/images/sidebar/veeam-backup-logo.png';
 
 const features = [
   'dedicated-cloud',
@@ -33,6 +34,7 @@ const features = [
   'dedicated-cloud:order',
   'cloud-disk-array',
   'dedicated-nasha',
+  'veeam-backup',
   'veeam-cloud-connect:order',
   'veeam-enterprise:order',
   'hycu',
@@ -239,14 +241,35 @@ export default function HostedPrivateCloudSidebar() {
         ],
       });
     }
-    if (feature['hycu']) {
+
+    if (feature['hycu'] || feature['veeam-backup']) {
       menu.push({
         id: 'hpc-storage-backup',
         label: t('sidebar_storage_backup'),
         icon: <img className="mb-1 mr-1 w-6 aspect-square" alt="" src={infinityCLoud} />,
-        pathMatcher: new RegExp('^/hycu'),
+        pathMatcher: new RegExp('^/hycu|/veeam-backup'),
         badge: 'new',
         subItems: [
+          (feature['veeam-backup']) && {
+            id: 'hpc-veeam-backup',
+            label: t('sidebar_veeam_backup'),
+            icon: <img alt="" src={veeamBackupLogo} />,
+            pathMatcher: new RegExp('^/veeam-backup'),
+            async loader() {
+              const appId = 'veeam-backup';
+              const items = await loadServices('/vmwareCloudDirector/backup', null, appId);
+
+              return [
+                {
+                  id: 'veeam-backup-all',
+                  label: t('sidebar_all_veeam_backup'),
+                  href: navigation.getURL(appId, '#/'),
+                  ignoreSearch: true,
+                },
+                ...items
+              ];
+            },
+          },
           (feature['hycu']) && {
             id: 'hpc-hycu',
             label: t('sidebar_hycu'),
@@ -272,7 +295,7 @@ export default function HostedPrivateCloudSidebar() {
             },
           }
         ]
-      })
+      });
     }
 
     if (feature['key-management-service']) {
