@@ -136,7 +136,7 @@
     <!-- /Pack XDSL -->
 
     <div
-        data-ng-if="$ctrl.service.serviceType !== $ctrl.SERVICE_TYPE.PACK_XDSL && (!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt() && !$ctrl.service.hasPendingResiliation()"
+        data-ng-if="$ctrl.canResiliate() && (!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt() && !$ctrl.service.hasPendingResiliation()"
     >
         <oui-action-menu-item
             ng-if="$ctrl.resiliateLink && ($ctrl.service.hasAdminRights($ctrl.user.auth.account) || $ctrl.service.hasAdminRights($ctrl.user.nichandle))"
@@ -196,7 +196,7 @@
 
     <!-- Service with termination asked by the customer -->
     <oui-action-menu-item
-        ng-if="$ctrl.cancelResiliationLink && ($ctrl.service.canBeUnresiliated($ctrl.user.nichandle) || $ctrl.service.canCancelResiliationByEndRule())"
+        ng-if="$ctrl.service.serviceType !== $ctrl.SERVICE_TYPE.VRACK && $ctrl.cancelResiliationLink && ($ctrl.service.canBeUnresiliated($ctrl.user.nichandle) || $ctrl.service.canCancelResiliationByEndRule())"
         href="{{:: $ctrl.cancelResiliationLink }}"
         on-click="$ctrl.trackAction('go-to-cancel-resiliation')"
         data-navi-id="go-to-cancel-resiliation"

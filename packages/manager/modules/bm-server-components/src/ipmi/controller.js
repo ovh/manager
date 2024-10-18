@@ -6,7 +6,7 @@ import Ipmi from './ipmi.class';
 import Kvm from './kvm.class';
 import { State, STATE_ENUM } from './state.class';
 
-import { getIpmiGuideUrl, SSH_KEY } from './constants';
+import { getIpmiGuideUrl } from './constants';
 
 export default class BmServerComponentsIpmiController {
   /* @ngInject */
@@ -69,7 +69,6 @@ export default class BmServerComponentsIpmiController {
 
     this.ssh = {
       publicKey: '',
-      inputRules: SSH_KEY,
     };
 
     this.ipmiHelpUrl = getIpmiGuideUrl(this.user.ovhSubsidiary);
@@ -700,10 +699,6 @@ export default class BmServerComponentsIpmiController {
           this.$translate.instant('server_configuration_impi_navigation_error'),
         );
       });
-  }
-
-  isKeyValid() {
-    return SSH_KEY.pattern.test(this.ssh.publicKey);
   }
 
   static getTaskPath(serviceName, taskId) {

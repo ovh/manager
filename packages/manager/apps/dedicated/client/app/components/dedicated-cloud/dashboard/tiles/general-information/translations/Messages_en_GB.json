@@ -28,5 +28,7 @@
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_term": "Management interfaces",
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_vscope": "vScope",
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_webInterface": "Web interface",
-  "ovhManagerPccDashboardGeneralInformation_opensANewTab": "Opens a new tab"
+  "ovhManagerPccDashboardGeneralInformation_opensANewTab": "Opens a new tab",
+  "ovhManagerPccDashboardGeneralInformation_name_term": "Name",
+  "ovhManagerPccDashboardGeneralInformation_name_actionMenu_update": "Change name"
 }

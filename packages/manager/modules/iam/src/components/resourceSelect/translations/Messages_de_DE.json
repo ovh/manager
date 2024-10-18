@@ -2,5 +2,5 @@
   "iam_resource_select_resource_types_error_required": "Wählen Sie mindestens einen Produkttyp aus.",
   "iam_resource_select_resource_types_error_resources": "Für diese Produkttypen sind keine Ressourcen verfügbar.",
   "iam_resource_select_resources_error_required": "Wählen Sie mindestens eine Ressource aus.",
-  "iam_resource_select_resources_error_limit": "Sie können nicht mehr als 10 Ressourcen pro Richtlinie auswählen."
+  "iam_resource_select_resources_error_limit": "Sie können nicht mehr als {{max}} Ressourcen pro Richtlinie auswählen."
 }

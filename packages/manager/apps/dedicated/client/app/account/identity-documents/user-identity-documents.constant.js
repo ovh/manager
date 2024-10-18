@@ -40,6 +40,10 @@ export const KYC_STATUS = {
 
 export const KYC_ALLOWED_FILE_EXTENSIONS = ['jpg', 'jpeg', 'pdf', 'png'];
 
+export const DELAY_BETWEEN_RETRY = 3 * 1000;
+
+export const MAX_RETRIES = 1;
+
 export default {
   USER_TYPE,
   MAX_SIZE,
@@ -50,4 +54,6 @@ export default {
   LEGAL_LINK3,
   KYC_STATUS,
   KYC_ALLOWED_FILE_EXTENSIONS,
+  DELAY_BETWEEN_RETRY,
+  MAX_RETRIES,
 };

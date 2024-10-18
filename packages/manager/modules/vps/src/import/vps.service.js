@@ -314,7 +314,7 @@ export default /* @ngInject */ function VpsService(
     templateId,
     language,
     softIds,
-    sshKeys,
+    publicSshKey,
     doNotSendPassword,
   ) {
     if (!templateId) {
@@ -324,7 +324,7 @@ export default /* @ngInject */ function VpsService(
       .post([swsVpsProxypass, serviceName, 'reinstall'].join('/'), {
         language,
         softwareId: softIds,
-        sshKey: sshKeys,
+        publicSshKey,
         doNotSendPassword: Boolean(doNotSendPassword),
         templateId,
       })
