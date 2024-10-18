@@ -1,4 +1,4 @@
-import { MAXIMUM_SNAPSHOT_ALLOWED } from './constants';
+import { MAXIMUM_SNAPSHOT_ALLOWED, SNAPSHOT_TYPE } from './constants';
 
 export default class NetAppVolumesDashboardSnapshotsController {
   /* @ngInject */
@@ -10,6 +10,7 @@ export default class NetAppVolumesDashboardSnapshotsController {
 
   $onInit() {
     this.policyId = this.currentPolicy.id;
+    this.SNAPSHOT_TYPE = SNAPSHOT_TYPE;
   }
 
   isApplicablePolicy() {

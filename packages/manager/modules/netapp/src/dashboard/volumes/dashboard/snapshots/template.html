@@ -80,9 +80,12 @@
             <oui-action-menu
                 text="{{:: 'netapp_volumes_snapshots_actions' | translate }}"
                 compact
-                disabled="$row.isBeingDeleted()"
+                disabled="$row.type === $ctrl.SNAPSHOT_TYPE.SYSTEM || $row.isBeingDeleted()"
             >
-                <oui-action-menu-item on-click="$ctrl.editSnapshot($row.id)">
+                <oui-action-menu-item
+                    data-ng-if="$row.type !== $ctrl.SNAPSHOT_TYPE.AUTOMATIC"
+                    on-click="$ctrl.editSnapshot($row.id)"
+                >
                     <span
                         data-translate="netapp_volumes_snapshots_actions_edit"
                     ></span>
