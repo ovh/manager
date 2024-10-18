@@ -223,8 +223,8 @@ const DOCUMENT_NON_INDIVIDUAL_MATRIX = {
     extended: false,
     documents: {
       gst_certificate: {
-        quantity: 3,
-        mandatory: 3,
+        quantity: 1,
+        mandatory: 1,
         extended: true,
         acceptance_criteria: [
           DOCUMENT_ACCEPTANCE_CRITERIA.company_name_vat,
