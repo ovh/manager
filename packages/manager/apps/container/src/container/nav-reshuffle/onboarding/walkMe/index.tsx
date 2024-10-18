@@ -93,8 +93,8 @@ export const OnboardingWalkMe = () => {
     },
     {
       selector: '#useful-links',
-      placement: 'top-start',
-      mobilePlacement: 'top-start',
+      placement: 'right-end',
+      mobilePlacement: 'right-end',
       title: t('onboarding_walkme_popover_step4_title'),
       content: t('onboarding_walkme_popover_step4_content'),
       trackingVariant: '',
