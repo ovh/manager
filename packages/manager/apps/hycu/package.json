@@ -19,12 +19,12 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^7.5.0",
+    "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
-    "@ovh-ux/manager-react-components": "^1.39.1",
-    "@ovh-ux/manager-react-core-application": "^0.10.5",
-    "@ovh-ux/manager-react-shell-client": "^0.7.5",
+    "@ovh-ux/manager-react-components": "*",
+    "@ovh-ux/manager-react-core-application": "*",
+    "@ovh-ux/manager-react-shell-client": "*",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "*",
     "@ovhcloud/ods-common-core": "17.2.1",
