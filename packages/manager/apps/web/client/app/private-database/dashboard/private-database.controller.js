@@ -22,6 +22,7 @@ export default class PrivateDatabaseCtrl {
     databaseLink,
     hasConfiguration,
     logsLink,
+    isLogsToCustomerFeatureAvailable,
     metricsLink,
     Hosting,
     PrivateDatabase,
@@ -47,6 +48,7 @@ export default class PrivateDatabaseCtrl {
     this.hasConfiguration = hasConfiguration;
     this.hostingService = Hosting;
     this.logsLink = logsLink;
+    this.isLogsToCustomerFeatureAvailable = isLogsToCustomerFeatureAvailable;
     this.metricsLink = metricsLink;
     this.privateDatabaseExtensionService = PrivateDatabaseExtension;
     this.privateDatabaseService = PrivateDatabase;

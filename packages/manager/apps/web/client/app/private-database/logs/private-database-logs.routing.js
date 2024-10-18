@@ -9,6 +9,17 @@ export default /* @ngInject */ ($stateProvider) => {
     atInternet: {
       rename: PRIVATE_DATABASE_LOGS_TRACKING_HITS.LOGS_PAGE,
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('isLogsToCustomerFeatureAvailable')
+        .then((isLogsToCustomerFeatureAvailable) =>
+          isLogsToCustomerFeatureAvailable
+            ? false
+            : {
+                state: 'app.private-database.dashboard.state',
+              },
+        ),
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('private_database_logs'),
