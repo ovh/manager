@@ -39,24 +39,26 @@ describe('RGDPForm', () => {
     const { getByText } = renderForm();
 
     await waitFor(() => {
-      expect(getByText('rgdp_form_field_label_firstname:')).toBeInTheDocument();
-      expect(getByText('rgdp_form_field_label_surname:')).toBeInTheDocument();
-      expect(getByText('rgdp_form_field_label_email:')).toBeInTheDocument();
       expect(
-        getByText('rgdp_form_field_label_confirm_email:'),
+        getByText('rgdp_form_field_label_firstname :'),
+      ).toBeInTheDocument();
+      expect(getByText('rgdp_form_field_label_surname :')).toBeInTheDocument();
+      expect(getByText('rgdp_form_field_label_email :')).toBeInTheDocument();
+      expect(
+        getByText('rgdp_form_field_label_confirm_email :'),
       ).toBeInTheDocument();
       expect(getByText('rgdp_form_field_label_subject')).toBeInTheDocument();
       expect(
         getByText('rgdp_form_field_label_subject_detail'),
       ).toBeInTheDocument();
       expect(
-        getByText('rgdp_form_field_label_request_description:'),
+        getByText('rgdp_form_field_label_request_description :'),
       ).toBeInTheDocument();
 
-      expect(getByText('rgdp_form_field_label_id_front:')).toBeInTheDocument();
-      expect(getByText('rgdp_form_field_label_id_back:')).toBeInTheDocument();
+      expect(getByText('rgdp_form_field_label_id_front :')).toBeInTheDocument();
+      expect(getByText('rgdp_form_field_label_id_back :')).toBeInTheDocument();
       expect(
-        getByText('rgdp_form_field_label_other_documents:'),
+        getByText('rgdp_form_field_label_other_documents :'),
       ).toBeInTheDocument();
     });
   });

@@ -5,7 +5,6 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {
   FileInputContainer,
   FileWithError,
@@ -69,7 +68,7 @@ export const FileField: FunctionComponent<Props> = ({
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
                 color={ODS_THEME_COLOR_INTENT.primary}
               >
-                {label}:{required && <sup>*</sup>}
+                {label} :
               </OsdsText>
             </label>
             <FileInputContainer.FileInput />
