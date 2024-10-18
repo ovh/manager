@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsChip, OsdsText, OsdsLink } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { TKube } from '@/types';
+import { TAdmissionPlugin } from '@/types';
 import usePluginState from '@/hooks/usePluginState';
 
 export const plugins = [
@@ -16,23 +16,29 @@ export const plugins = [
     label: 'Plugin Node Restriction',
     value: 'node',
     disabled: true,
+    tip: 'kube_service_cluster_admission_plugins_node_restriction_explanation',
   },
   {
     name: 'AlwaysPullImages',
     label: 'Plugin Always Pull Images',
     value: 'pull',
+    tip: 'kube_service_cluster_admission_plugins_always_pull_image_explanation',
   },
 ];
 
+export type AdmissionPluginsProps = TAdmissionPlugin & {
+  isProcessing: boolean;
+};
+
 const AdmissionPlugins = ({
+  isProcessing,
   disabled,
   enabled,
-}: TKube['customization']['apiServer']['admissionPlugins']) => {
+}: AdmissionPluginsProps) => {
   const { t } = useTranslation(['service']);
 
-  const pluginsState = usePluginState(enabled, disabled);
   const navigate = useNavigate();
-
+  const pluginsState = usePluginState(enabled, disabled);
   return (
     <div className="mb-4 flex flex-wrap justify-between gap-4">
       {plugins.map((plugin) => (
@@ -64,7 +70,13 @@ const AdmissionPlugins = ({
         </div>
       ))}
       <OsdsLink
-        onClick={() => navigate('./admission-plugin')}
+        // FIXME ODSDS 18
+        disabled={isProcessing || undefined}
+        onClick={() => {
+          if (!isProcessing) {
+            navigate('./admission-plugin');
+          }
+        }}
         color={ODS_THEME_COLOR_INTENT.primary}
         className="flex font-bold"
       >
