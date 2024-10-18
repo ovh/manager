@@ -294,4 +294,12 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
   });
+
+  // ensure compatibility with project ACTIONS ui-sref links
+  // redirection to theu µapp is handled on container side
+  // will be removed once project section is migrated to react
+  $stateProvider.state('pci.projects.project.privateNetwork', {
+    url: '/private-networks',
+    template: '',
+  });
 };

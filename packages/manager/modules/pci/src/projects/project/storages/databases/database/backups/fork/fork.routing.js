@@ -13,10 +13,11 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       component: 'ovhManagerPciStoragesDatabaseBackupsForkComponent',
       resolve: {
-        addPrivateNetworksLink: /* @ngInject */ ($state, projectId) =>
-          $state.href('pci.projects.project.privateNetwork', {
-            projectId,
-          }),
+        addPrivateNetworksLink: /* @ngInject */ (getUAppUrl, projectId) =>
+          getUAppUrl(
+            'public-cloud',
+            `#/pci/projects/${projectId}/private-networks`,
+          ),
         backupList: (database, DatabaseService, projectId) =>
           DatabaseService.getBackups(
             projectId,

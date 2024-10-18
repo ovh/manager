@@ -25,14 +25,14 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
         goBack: /* @ngInject */ (goToInstances) => goToInstances,
         goToPrivateNetworkConfigPage: /* @ngInject */ (
-          $state,
+          getUAppUrl,
           projectId,
           region,
         ) => () =>
-          $state.go('pci.projects.project.privateNetwork.add', {
-            projectId,
-            region,
-          }),
+          getUAppUrl(
+            'public-cloud',
+            `#/pci/projects/${projectId}/private-networks/add?region=${region}`,
+          ),
         breadcrumb: () => null,
       },
     },
