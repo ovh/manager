@@ -15,6 +15,7 @@ export default {
     resourcesRequiredMessage: '@?',
     resourceTypesLabel: '@',
     resourceTypesName: '@',
+    maxLength: '@',
   },
   require: {
     requiredNgModel: '^ngModel',

@@ -2,5 +2,5 @@
   "iam_resource_select_resource_types_error_required": "Please select one or more product types.",
   "iam_resource_select_resource_types_error_resources": "No resources are available for this product type.",
   "iam_resource_select_resources_error_required": "Please select one or more resources",
-  "iam_resource_select_resources_error_limit": "You cannot select more than 10 resources per policy."
+  "iam_resource_select_resources_error_limit": "You cannot select more than {{max}} resources per policy."
 }
