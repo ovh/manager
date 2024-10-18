@@ -110,8 +110,10 @@ export default class AccountUserIdentityDocumentsController {
 
   handleUploadConfirmModal(open) {
     this.isOpenModal = open;
-    if (open) this.trackClick(TRACKING_TASK_TAG.clickSendMyDocuments);
-    this.trackPage(TRACKING_TASK_TAG.displayPopUpSendMyDocuments);
+    if (open) {
+      this.trackClick(TRACKING_TASK_TAG.clickSendMyDocuments);
+      this.trackPage(TRACKING_TASK_TAG.displayPopUpSendMyDocuments);
+    }
   }
 
   handleInformationModal(open) {
