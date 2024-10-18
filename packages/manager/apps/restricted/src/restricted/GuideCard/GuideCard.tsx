@@ -12,15 +12,15 @@ const GuideCard = ({ id, link }: Guide) => {
   const translationPrefix = `restricted_guide_card_${id}`;
   return (
     <a
-      className="guide-card py-2 oui-tile d-flex flex-column align-items-start p-3"
+      className="guide-card p-3 oui-tile d-flex flex-column align-items-start"
       target="_blank"
       rel="noreferrer noopener"
       href={region === 'US' ? US_GUIDE : link[locale] ?? link.default}
     >
       <h5 className="guide-title">{t('restricted_guide_card_title')}</h5>
-      <h3 className="font-weight-bold">{t(`${translationPrefix}_title`)}</h3>
+      <h3 className="fw-bold">{t(`${translationPrefix}_title`)}</h3>
       <div className="oui-tile__body mt-3">
-        <p className="oui-tile__description font-weight-normal">
+        <p className="oui-tile__description fw-normal">
           {t(`${translationPrefix}_description`)}
         </p>
         <span className="oui-link oui-link_icon">

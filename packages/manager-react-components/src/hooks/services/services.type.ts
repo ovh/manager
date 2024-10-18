@@ -80,7 +80,7 @@ export type ServiceDetails = {
         actions: LifecycleAction[];
       };
       current: {
-        createDate: string;
+        creationDate: string;
         pendingActions: LifecycleAction[];
         state: LifecycleState;
         terminationDate: string;

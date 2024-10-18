@@ -1,0 +1,15 @@
+{
+  "description": "Pour garantir une meilleure continuité d'activité de vos applications, il est nécessaire d'effectuer des copies régulières de vos données pour pouvoir les restaurer en cas de besoin. Notre produit Managed Veeam for VMware Cloud Director vous permet de protéger vos machines virtuelles en fonction de vos politiques de sauvegarde sans vous soucier de l'infrastructure sous-jacente.",
+  "order_button_label": "Commencer",
+  "more_info_button_label": "Plus d'information",
+  "new_badge_label": "Nouveauté",
+  "guide_category": "Tutoriel",
+  "guide1_title": "Sauvegarde avec Veeam Data Platform",
+  "guide1_description": "Découvrez comment effectuer des sauvegardes et restaurations avec l'intégration Veeam Data Platform",
+  "guide2_title": "Premiers pas pour utiliser Managed VCD",
+  "guide2_description": "Les principes fondamentaux de VEEAM. Découvrez les concepts de base du VEEAM",
+  "guide2_link_label": "Voir la documentation",
+  "guide3_title": "Questions fréquentes",
+  "guide3_description": "Parcourez les FAQ pour trouver des réponses aux questions les plus fréquentes.",
+  "guide3_link_label": "Parcourir les FAQ"
+}
