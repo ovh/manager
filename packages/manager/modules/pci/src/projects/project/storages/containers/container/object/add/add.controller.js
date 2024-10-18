@@ -59,7 +59,6 @@ export default class PciBlockStorageContainersContainerObjectAddController {
         this.storageClass,
       );
     } else {
-      //
       addPromise = this.PciProjectStorageContainersService.addObjects(
         this.projectId,
         this.container,
