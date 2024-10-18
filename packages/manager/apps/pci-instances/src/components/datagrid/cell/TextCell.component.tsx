@@ -26,6 +26,6 @@ type TTextCellProps = {
 
 export const TextCell: FC<TTextCellProps> = ({ isLoading, label }) => (
   <LoadingCell isLoading={isLoading}>
-    <BaseTextCell> {label}</BaseTextCell>
+    <BaseTextCell>{label}</BaseTextCell>
   </LoadingCell>
 );
