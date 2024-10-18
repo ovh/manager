@@ -21,7 +21,7 @@ const useServiceKeyActionsList = (
   isListMode?: boolean,
 ) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
-  const { addSuccess } = useNotifications();
+  const { addSuccess, clearNotifications } = useNotifications();
   const navigate = useNavigate();
   const {
     deleteKmsServiceKey,
@@ -42,6 +42,7 @@ const useServiceKeyActionsList = (
     okmsId: okms.id,
     keyId: okmsKey?.id,
     onSuccess: () => {
+      clearNotifications();
       addSuccess(
         t('key_management_service_service-keys_reactivate_success'),
         true,
