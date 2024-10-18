@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 import legacy from '@vitejs/plugin-legacy';
 import svgr from 'vite-plugin-svgr';
+import viteCompression from 'vite-plugin-compression';
 import yn from 'yn';
 
 import IframeHmrPlugin from './plugin/iframe-hmr.js';
@@ -60,6 +61,9 @@ const getBaseConfig = (config) => {
     },
     plugins: [
       react(),
+      viteCompression({
+        algorithm: 'brotliCompress',
+      }),
       legacy({
         targets: ['defaults'],
       }),
