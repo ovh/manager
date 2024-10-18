@@ -201,5 +201,7 @@
   "sidebar_reduce": "Riduci",
   "sidebar_pci_savings_plan": "Savings Plan",
   "sidebar_hycu": "HYCU",
-  "sidebar_all_hycu": "Tutte le mie licenze"
+  "sidebar_all_hycu": "Tutte le mie licenze",
+  "sidebar_veeam_backup": "Managed Veeam for VCD",
+  "sidebar_all_veeam_backup": "Tutti i servizi"
 }
