@@ -221,7 +221,7 @@
                 >
                     <div
                         data-ng-switch-when="true"
-                        data-ng-switch="field.indexOf('address') > -1"
+                        data-ng-switch="field.indexOf('address') > -1 && !$ctrl.options.customFieldForm"
                     >
                         <!-- SPECIAL FOR ADDRESS FIELD BECAUSE NGMODEL CAN'T ACCESS TO contact['address.city'] -->
                         <div

@@ -7,7 +7,9 @@ import moment from 'moment';
 export default /* @ngInject */ function(
   $timeout,
   $anchorScroll,
+  $http,
   ovhContact,
+  OvhContact,
   CONTACT_EDITION,
 ) {
   const self = this;
@@ -46,8 +48,17 @@ export default /* @ngInject */ function(
     const savePromise = self.ovhContactCtrl.contact.id
       ? self.ovhContactCtrl.contact.save()
       : self.ovhContactCtrl.contact
-          .create()
-          .then(() => ovhContact.addContact(self.ovhContactCtrl.contact));
+          .create(
+            $http,
+            OvhContact,
+            this.customList,
+            self.ovhContactCtrl.contact,
+          )
+          .then(() =>
+            !self.options.customFieldForm
+              ? ovhContact.addContact(self.ovhContactCtrl.contact)
+              : null,
+          );
 
     return savePromise
       .then(
@@ -68,12 +79,16 @@ export default /* @ngInject */ function(
     self.saveError = null;
 
     self.sortedFieldsByCountry =
+      self.options.customSortFieldForm ||
       CONTACT_EDITION[`SORTED_FIELDS_${self.ovhContactCtrl.contact.country}`] ||
       CONTACT_EDITION.SORTED_FIELDS_DEFAULT;
+
     alwaysVisibleFieldsByCountry =
+      self.options.customFieldForm ||
       CONTACT_EDITION[
         `ALWAYS_VISIBLE_FIELDS_${self.ovhContactCtrl.contact.country}`
-      ] || CONTACT_EDITION.ALWAYS_VISIBLE_FIELDS_DEFAULT;
+      ] ||
+      CONTACT_EDITION.ALWAYS_VISIBLE_FIELDS_DEFAULT;
   }
 
   function formatPhoneNumbers(phoneNumber) {
@@ -87,7 +102,7 @@ export default /* @ngInject */ function(
       self.creationRules[field].canBeNull === 0
     );
 
-    if (!isVisible && alwaysVisibleFieldsByCountry.indexOf(field) !== -1) {
+    if (!isVisible && alwaysVisibleFieldsByCountry.includes(field)) {
       isVisible = true;
     }
 
@@ -137,100 +152,104 @@ export default /* @ngInject */ function(
     options = {},
   ) {
     const inputToInitialize = document.getElementById(inputId);
-    const telInput = intlTelInput(inputToInitialize, {
-      initialCountry: self.ovhContactCtrl.contact.address.country,
-      nationalMode: false,
-      preferredCountries: [''],
-      utilsScript: 'build/js/utils.js',
-      ...options,
-    });
+    if (inputToInitialize) {
+      const telInput = intlTelInput(inputToInitialize, {
+        initialCountry: self.ovhContactCtrl.contact.address.country,
+        nationalMode: false,
+        preferredCountries: [''],
+        utilsScript: 'build/js/utils.js',
+        ...options,
+      });
 
-    inputToInitialize.addEventListener(
-      'blur',
-      (() =>
-        function forcePhoneFormat() {
-          // use timeout to force phone number to be undefined if only country dial code or to be
-          // prefixed by "+"(international format) if phone number value starts with country dialcode
+      inputToInitialize.addEventListener(
+        'blur',
+        (() =>
+          function forcePhoneFormat() {
+            // use timeout to force phone number to be undefined if only country dial code or to be
+            // prefixed by "+"(international format) if phone number value starts with country dialcode
+            $timeout(() => {
+              const countryData = telInput.getSelectedCountryData();
+              if (
+                self.ovhContactCtrl.contact[inputToInitialize.id] ===
+                  countryData.dialCode ||
+                self.ovhContactCtrl.contact[inputToInitialize.id] ===
+                  `+${countryData.dialCode}` ||
+                self.ovhContactCtrl.contact[inputToInitialize.id] === `+`
+              ) {
+                self.ovhContactCtrl.contact[inputToInitialize.id] = undefined;
+              } else if (
+                startsWith(
+                  self.ovhContactCtrl.contact[inputToInitialize.id],
+                  countryData.dialCode,
+                )
+              ) {
+                self.ovhContactCtrl.contact[inputToInitialize.id] = `+${
+                  self.ovhContactCtrl.contact[inputToInitialize.id]
+                }`;
+              }
+            }, 100);
+          })(),
+      );
+
+      inputToInitialize.addEventListener(
+        'keyup',
+        (() =>
+          function forcePlusChar() {
+            $timeout(() => {
+              if (
+                !startsWith(
+                  self.ovhContactCtrl.contact[inputToInitialize.id],
+                  '+',
+                )
+              ) {
+                self.ovhContactCtrl.contact[inputToInitialize.id] = `+${self
+                  .ovhContactCtrl.contact[inputToInitialize.id] || ''}`;
+              }
+            }, 100);
+          })(),
+      );
+
+      inputToInitialize.addEventListener(
+        'focus',
+        (() =>
+          function setCountryOnFocus() {
+            $timeout(() => {
+              const countryData = telInput.getSelectedCountryData();
+              if (!self.ovhContactCtrl.contact[inputToInitialize.id]) {
+                self.ovhContactCtrl.contact[
+                  inputToInitialize.id
+                ] = `+${countryData.dialCode}`;
+              }
+            }, 100);
+          })(),
+      );
+
+      const getSetValidityFunction = () =>
+        function setValidity() {
           $timeout(() => {
-            const countryData = telInput.getSelectedCountryData();
-            if (
-              self.ovhContactCtrl.contact[inputToInitialize.id] ===
-                countryData.dialCode ||
-              self.ovhContactCtrl.contact[inputToInitialize.id] ===
-                `+${countryData.dialCode}` ||
-              self.ovhContactCtrl.contact[inputToInitialize.id] === `+`
-            ) {
-              self.ovhContactCtrl.contact[inputToInitialize.id] = undefined;
-            } else if (
-              startsWith(
-                self.ovhContactCtrl.contact[inputToInitialize.id],
-                countryData.dialCode,
-              )
-            ) {
-              self.ovhContactCtrl.contact[inputToInitialize.id] = `+${
-                self.ovhContactCtrl.contact[inputToInitialize.id]
-              }`;
-            }
-          }, 100);
-        })(),
-    );
+            self.ovhContactEdit[inputToInitialize.id].$setValidity(
+              'internationalPhoneNumber',
+              telInput.isValidNumber(),
+            );
+          }, 100); // Setting validity on blur, right after the forcePhoneFormat has been done
+        };
 
-    inputToInitialize.addEventListener(
-      'keyup',
-      (() =>
-        function forcePlusChar() {
-          $timeout(() => {
-            if (
-              !startsWith(
-                self.ovhContactCtrl.contact[inputToInitialize.id],
-                '+',
-              )
-            ) {
-              self.ovhContactCtrl.contact[inputToInitialize.id] = `+${self
-                .ovhContactCtrl.contact[inputToInitialize.id] || ''}`;
-            }
-          }, 100);
-        })(),
-    );
+      inputToInitialize.addEventListener('blur', getSetValidityFunction());
+      inputToInitialize.addEventListener('keydown', getSetValidityFunction());
+      inputToInitialize.addEventListener(
+        'keypress',
+        function blockNonNumericKeys(event) {
+          if (event.charCode < 48 || event.charCode > 57) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        },
+      );
 
-    inputToInitialize.addEventListener(
-      'focus',
-      (() =>
-        function setCountryOnFocus() {
-          $timeout(() => {
-            const countryData = telInput.getSelectedCountryData();
-            if (!self.ovhContactCtrl.contact[inputToInitialize.id]) {
-              self.ovhContactCtrl.contact[
-                inputToInitialize.id
-              ] = `+${countryData.dialCode}`;
-            }
-          }, 100);
-        })(),
-    );
-
-    const getSetValidityFunction = () =>
-      function setValidity() {
-        $timeout(() => {
-          self.ovhContactEdit[inputToInitialize.id].$setValidity(
-            'internationalPhoneNumber',
-            telInput.isValidNumber(),
-          );
-        }, 100); // Setting validity on blur, right after the forcePhoneFormat has been done
-      };
-
-    inputToInitialize.addEventListener('blur', getSetValidityFunction());
-    inputToInitialize.addEventListener('keydown', getSetValidityFunction());
-    inputToInitialize.addEventListener('keypress', function blockNonNumericKeys(
-      event,
-    ) {
-      if (event.charCode < 48 || event.charCode > 57) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-    });
-
-    telInput.setNumber(initialValue);
-    return telInput;
+      telInput.setNumber(initialValue);
+      return telInput;
+    }
+    return null;
   };
 
   self.$onInit = function $onInit() {
@@ -242,7 +261,7 @@ export default /* @ngInject */ function(
     return ovhContact
       .getCreationRules()
       .then((rules) => {
-        self.creationRules = rules;
+        self.creationRules = self.options.customFieldRules || rules;
         self.ovhContactCtrl.manageOnInit();
       })
       .finally(() => {
@@ -260,7 +279,11 @@ export default /* @ngInject */ function(
   };
 
   self.$onDestroy = function $onDestroy() {
-    self.itiPhone.destroy();
-    self.itiCellPhone.destroy();
+    if (self.itiPhone) {
+      self.itiPhone.destroy();
+    }
+    if (self.itiCellPhone) {
+      self.itiCellPhone.destroy();
+    }
   };
 }
