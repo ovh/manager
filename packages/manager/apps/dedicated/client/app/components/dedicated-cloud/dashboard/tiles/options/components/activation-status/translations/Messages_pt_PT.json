@@ -9,5 +9,6 @@
   "ovhManagerPccDashboardComponentActivationStatus_awaitingValidation": "Validação pendente",
   "ovhManagerPccDashboardComponentActivationStatus_unknown": "Estado desconhecido",
   "ovhManagerPccDashboardComponentActivationStatus_hosted_on": "Alojado em {{ datacenter }}",
-  "ovhManagerPccDashboardComponentActivationStatus_migrating": "Migração em curso"
+  "ovhManagerPccDashboardComponentActivationStatus_migrating": "Migração em curso",
+  "ovhManagerPccDashboardComponentActivationStatus_enabling": "Ativação em curso"
 }
