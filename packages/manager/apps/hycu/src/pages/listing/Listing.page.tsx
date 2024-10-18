@@ -37,12 +37,6 @@ import { usePackTypeLabel } from '@/hooks/service/usePackLabel';
 import HycuActionMenu from './menu/HycuActionMenu.component';
 import { getStatusColor } from '@/utils/statusColor';
 
-const dateFormat: Intl.DateTimeFormatOptions = {
-  day: '2-digit',
-  month: '2-digit',
-  year: 'numeric',
-};
-
 /* ========= datagrid cells ========= */
 const DatagridIdCell = (hycuDetail: IHycuDetails) => {
   const navigate = useNavigate();
@@ -65,11 +59,11 @@ const DatagridIdCell = (hycuDetail: IHycuDetails) => {
 };
 
 const DatagridControllerIdCell = (hycuDetail: IHycuDetails) => {
-  return <DataGridTextCell>{hycuDetail.controllerId}</DataGridTextCell>;
+  return <DataGridTextCell>{hycuDetail.controllerId || '-'}</DataGridTextCell>;
 };
 
 const DatagridStatusCell = (hycuDetail: IHycuDetails) => {
-  const { t } = useTranslation('hycu/listing');
+  const { t } = useTranslation('hycu');
 
   return (
     <DataGridTextCell>
