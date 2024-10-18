@@ -102,7 +102,7 @@ export const OnboardingIntroduction = () => {
             className={`${style.welcomePopover} ${popoverStyle.popover} oui-popover`}
             ref={ref}
           >
-            <div className="oui-popover__content">
+            <div className={style.welcomePopoverBody}>
               <h2 className={popoverStyle['popover-header']}>
                 {t('onboarding_introduction_popover_title', {
                   userName: user.firstname,
@@ -111,23 +111,22 @@ export const OnboardingIntroduction = () => {
               <div className={popoverStyle['popover-body']}>
                 <p>{t('onboarding_introduction_popover_content')}</p>
               </div>
-              <div className="d-flex flex-row-reverse justify-content-between">
-                <button
-                  className="oui-button oui-button_primary"
-                  onClick={() => startOnboarding()}
-                  ref={refConfirm}
-                >
-                  {t('onboarding_popover_follow_guide_button')}
-                </button>
-                <button
-                  className="oui-button oui-button_ghost"
-                  onClick={() => closeOnboarding()}
-                >
-                  {onboarding.shouldShowOnboardingNextTime ? t('onboarding_popover_later_hide_button') : t('onboarding_popover_do_not_show_again_button')}
-                </button>
-              </div>
             </div>
-            <div className="oui-popover__arrow" aria-hidden="true"></div>
+            <div className={style.welcomePopoverFooter}>
+              <button
+                className="oui-button oui-button_ghost"
+                onClick={() => closeOnboarding()}
+              >
+                {onboarding.shouldShowOnboardingNextTime ? t('onboarding_popover_later_hide_button') : t('onboarding_popover_do_not_show_again_button')}
+              </button>
+              <button
+                className="oui-button oui-button_primary"
+                onClick={() => startOnboarding()}
+                ref={refConfirm}
+              >
+                {t('onboarding_popover_follow_guide_button')}
+              </button>
+            </div>
           </div>
         </>
       )}
