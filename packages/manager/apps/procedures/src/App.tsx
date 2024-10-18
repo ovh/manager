@@ -2,6 +2,11 @@ import React from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { odsSetup } from '@ovhcloud/ods-common-core';
+import {
+  useDefaultLanguage,
+  findAvailableLocale,
+  detectUserLocale,
+} from '@ovh-ux/manager-config';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import '@ovhcloud/ods-theme-blue-jeans';
 import queryClient from './query.client';
@@ -21,13 +26,16 @@ function getSubsidiary(subsidiary: string, locale: string) {
 
 const token = extractToken();
 const user = decodeToken(token);
-const { language: locale, subsidiary } = user || {};
+const { subsidiary } = user || {};
 
 if (!user) {
   const redirectUrl = getRedirectLoginUrl(user);
   window.location.assign(redirectUrl);
 } else {
-  initI18n(locale || 'en_GB', getSubsidiary(subsidiary, locale));
+  useDefaultLanguage('en_GB');
+  const locale = findAvailableLocale(detectUserLocale());
+
+  initI18n(locale, getSubsidiary(subsidiary, locale));
   initAuthenticationInterceptor(token);
   initInterceptor();
 
