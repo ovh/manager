@@ -1,15 +1,9 @@
 import { PageLayout, Title } from '@ovh-ux/manager-react-components';
 import { FC, useMemo } from 'react';
-import { useHref, useRouteLoaderData } from 'react-router-dom';
+import { useRouteLoaderData } from 'react-router-dom';
 import { TProject } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
-import {
-  OsdsDivider,
-  OsdsIcon,
-  OsdsLink,
-} from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { OsdsDivider } from '@ovhcloud/ods-components/react';
 import {
   Breadcrumb,
   TBreadcrumbProps,
@@ -17,10 +11,10 @@ import {
 import { useHidePreloader } from '@/hooks/hidePreloader/useHidePreloader';
 import { ModelStep } from './steps/model/ModelStep.component';
 import { RegionStep } from './steps/region/RegionStep.component';
+import { GoBack } from '@/components/navigation/GoBack.component';
 
 const CreateInstance: FC = () => {
   const project = useRouteLoaderData('root') as TProject;
-  const backHref = useHref('..');
   const { t } = useTranslation('common');
   const breadcrumbItems = useMemo<TBreadcrumbProps['items']>(
     () => [
@@ -41,20 +35,7 @@ const CreateInstance: FC = () => {
           items={breadcrumbItems}
         />
       )}
-      <OsdsLink
-        className="mt-12 mb-3"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        href={backHref}
-      >
-        <OsdsIcon
-          className="mr-2"
-          name={ODS_ICON_NAME.ARROW_LEFT}
-          size={ODS_ICON_SIZE.xs}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          slot="start"
-        />
-        {t('pci_instances_common_go_back')}
-      </OsdsLink>
+      <GoBack />
       <div className="header mb-6 mt-8">
         <Title>{t('pci_instances_common_create_instance')}</Title>
       </div>

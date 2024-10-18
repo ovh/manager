@@ -9,7 +9,6 @@ import { TProject } from '@ovh-ux/manager-pci-common';
 import {
   Datagrid,
   DatagridColumn,
-  DataGridTextCell,
   FilterAdd,
   FilterList,
   Notifications,
@@ -18,12 +17,9 @@ import {
   Title,
   useColumnFilters,
   useNotifications,
+  useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OsdsButton,
   OsdsDivider,
@@ -31,8 +27,6 @@ import {
   OsdsPopover,
   OsdsPopoverContent,
   OsdsSearchBar,
-  OsdsText,
-  OsdsSkeleton,
   OsdsLink,
 } from '@ovhcloud/ods-components/react';
 import {
@@ -46,16 +40,18 @@ import { Trans, useTranslation } from 'react-i18next';
 import { FilterComparator } from '@ovh-ux/manager-core-api';
 import { Spinner } from '@/components/spinner/Spinner.component';
 import { TInstance, useInstances } from '@/data/hooks/instance/useInstances';
-import StatusChip from '@/components/statusChip/StatusChip.component';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
+import { SUB_PATHS } from '@/routes/routes';
+import { StatusCell } from './datagrid/cell/StatusCell.component';
+import { ActionsCell } from './datagrid/cell/ActionsCell.component';
+import { NameIdCell } from './datagrid/cell/NameIdCell.component';
+import { TextCell } from '@/components/datagrid/cell/TextCell.component';
+import { AddressesCell } from './datagrid/cell/AddressesCell.component';
 
 const initialSorting = {
   id: 'name',
   desc: false,
 };
-
-const getOnboardingUrl = (projectId: string) =>
-  `/pci/projects/${projectId}/instances/onboarding`;
 
 const Instances: FC = () => {
   const { t } = useTranslation(['list', 'common']);
@@ -72,10 +68,11 @@ const Instances: FC = () => {
     addError,
   } = useNotifications();
   const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(null);
+  const { translateMicroRegion } = useTranslatedMicroRegions();
 
   const {
     data,
-    isLoading,
+    isLoading: instancesQueryLoading,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
@@ -91,124 +88,100 @@ const Instances: FC = () => {
     filters,
   });
 
-  const textCell = useCallback(
-    (props: TInstance, key: 'flavorName' | 'region' | 'imageName') =>
-      isRefetching ? (
-        <OsdsSkeleton />
-      ) : (
-        <DataGridTextCell>{props[key]}</DataGridTextCell>
-      ),
-    [isRefetching],
-  );
-
-  const listCell = useCallback(
-    (props: TInstance, key: 'public' | 'private') =>
-      isRefetching ? (
-        <OsdsSkeleton />
-      ) : (
-        <DataGridTextCell>
-          <ul>
-            {props.addresses.get(key)?.map((item) => (
-              <li className={'w-fit'} key={item.ip}>
-                {item.ip}
-              </li>
-            ))}
-          </ul>
-        </DataGridTextCell>
-      ),
-    [isRefetching],
-  );
-
   const datagridColumns: DatagridColumn<TInstance>[] = useMemo(
     () => [
       {
         id: 'name',
-        cell: (props) =>
-          isRefetching ? (
-            <OsdsSkeleton />
-          ) : (
-            <>
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-                color={ODS_THEME_COLOR_INTENT.text}
-                className={'block'}
-              >
-                {props.name}
-              </OsdsText>
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                color={ODS_THEME_COLOR_INTENT.text}
-                className={'block'}
-              >
-                {props.id}
-              </OsdsText>
-            </>
-          ),
-        label: t('nameId'),
+        cell: (instance) => (
+          <NameIdCell isLoading={isRefetching} instance={instance} />
+        ),
+        label: t('pci_instances_list_column_nameId'),
         isSortable: true,
       },
       {
         id: 'region',
-        cell: (props: TInstance) => textCell(props, 'region'),
-        label: t('region'),
+        cell: (instance) => (
+          <TextCell
+            isLoading={isRefetching}
+            label={translateMicroRegion(instance.region)}
+          />
+        ),
+        label: t('pci_instances_list_column_region'),
         isSortable: false,
       },
       {
         id: 'flavor',
-        cell: (props: TInstance) => textCell(props, 'flavorName'),
-        label: t('flavor'),
+        cell: (instance) => (
+          <TextCell isLoading={isRefetching} label={instance.flavorName} />
+        ),
+        label: t('pci_instances_list_column_flavor'),
         isSortable: true,
       },
       {
         id: 'image',
-        cell: (props: TInstance) => textCell(props, 'imageName'),
-        label: t('image'),
+        cell: (instance) => (
+          <TextCell isLoading={isRefetching} label={instance.imageName} />
+        ),
+        label: t('pci_instances_list_column_image'),
         isSortable: true,
       },
       {
         id: 'publicIPs',
-        cell: (props: TInstance) => listCell(props, 'public'),
-        label: t('public_IPs'),
+        cell: (instance) => (
+          <AddressesCell
+            isLoading={isRefetching}
+            addresses={instance.addresses.get('public') ?? []}
+          />
+        ),
+        label: t('pci_instances_list_column_public_IPs'),
         isSortable: false,
       },
       {
         id: 'privateIPs',
-        cell: (props: TInstance) => listCell(props, 'private'),
-        label: t('private_IPs'),
+        cell: (instance) => (
+          <AddressesCell
+            isLoading={isRefetching}
+            addresses={instance.addresses.get('private') ?? []}
+          />
+        ),
+        label: t('pci_instances_list_column_private_IPs'),
         isSortable: false,
       },
       {
         id: 'status',
-        cell: (props: TInstance) =>
-          isRefetching ? (
-            <OsdsSkeleton />
-          ) : (
-            <StatusChip status={props.status} />
-          ),
-        label: t('status'),
+        cell: (instance) => (
+          <StatusCell isLoading={isRefetching} instance={instance} />
+        ),
+        label: t('pci_instances_list_column_status'),
+        isSortable: false,
+      },
+      {
+        id: 'actions',
+        cell: (instance) => (
+          <ActionsCell isLoading={isRefetching} instance={instance} />
+        ),
+        label: t('pci_instances_list_column_actions'),
         isSortable: false,
       },
     ],
-    [isRefetching, listCell, t, textCell],
+    [isRefetching, t, translateMicroRegion],
   );
 
   const filterColumns = useMemo(
     () => [
       {
         id: 'name',
-        label: t('nameId'),
+        label: t('pci_instances_list_column_nameId'),
         comparators: [FilterComparator.Includes],
       },
       {
         id: 'flavor',
-        label: t('flavor'),
+        label: t('pci_instances_list_column_flavor'),
         comparators: [FilterComparator.Includes],
       },
       {
         id: 'image',
-        label: t('image'),
+        label: t('pci_instances_list_column_image'),
         comparators: [FilterComparator.Includes],
       },
     ],
@@ -231,7 +204,7 @@ const Instances: FC = () => {
       <>
         <Trans
           t={t}
-          i18nKey="unknown_error_message1"
+          i18nKey="pci_instances_list_unknown_error_message1"
           tOptions={{ interpolation: { escapeValue: true } }}
           shouldUnescape
           components={{
@@ -244,7 +217,7 @@ const Instances: FC = () => {
           }}
         />
         <br />
-        <Trans t={t} i18nKey="unknown_error_message2" />
+        <Trans t={t} i18nKey="pci_instances_list_unknown_error_message2" />
       </>
     ),
     [handleRefresh, t],
@@ -273,7 +246,8 @@ const Instances: FC = () => {
   }, [fetchNextPage]);
 
   useEffect(() => {
-    if (hasInconsistency) addWarning(t('inconsistency_message'), true);
+    if (hasInconsistency)
+      addWarning(t('pci_instances_list_inconsistency_message'), true);
     return () => {
       clearNotifications();
     };
@@ -287,10 +261,10 @@ const Instances: FC = () => {
     if (isError) addError(errorMessage, true);
   }, [isError, addError, t, errorMessage]);
 
-  if (isLoading) return <Spinner />;
+  if (instancesQueryLoading) return <Spinner />;
 
   if (data && !data.length && !filters.length && !isFetching)
-    return <Navigate to={getOnboardingUrl(projectId)} />;
+    return <Navigate to={SUB_PATHS.onboarding} />;
 
   return (
     <PageLayout>
@@ -363,7 +337,7 @@ const Instances: FC = () => {
                   className={'mr-2'}
                   color={ODS_THEME_COLOR_INTENT.primary}
                 />
-                {t('filter')}
+                {t('common:pci_instances_common_filter')}
               </OsdsButton>
               <OsdsPopoverContent>
                 <FilterAdd
@@ -394,6 +368,7 @@ const Instances: FC = () => {
               sorting={sorting}
               onSortChange={setSorting}
               manualSorting
+              className={'!overflow-x-visible'}
             />
           </div>
         )}
