@@ -8,7 +8,7 @@ import HYCU_CONFIG from '@/hycu.config';
 
 describe('License Hycu listing test suite', () => {
   it('should redirect to the onboarding page when the license hycu list is empty', async () => {
-    await renderTestApp({ nbLicenseHycu: 0 });
+    await renderTestApp('/', { nbLicenseHycu: 0 });
 
     expect(screen.getByText(HYCU_CONFIG.rootLabel)).toBeVisible();
     expect(
@@ -40,7 +40,9 @@ describe('License Hycu listing test suite', () => {
     await waitFor(
       () =>
         expect(
-          screen.getByText(labels.dashboard.general_informations),
+          screen.getAllByText(
+            labels.dashboard.hycu_dashboard_generals_informations_title,
+          )[0],
         ).toBeVisible(),
       { timeout: 30_000 },
     );
