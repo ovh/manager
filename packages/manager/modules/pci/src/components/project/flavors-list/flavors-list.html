@@ -16,6 +16,7 @@
             data-heading="{{:: flavorByCategory.title }}"
             data-subheading="{{:: flavorByCategory.isNew ? ('pci_project_flavors_category_new' | translate) : '' }}"
             data-variant="promotion"
+            data-on-active="$ctrl.onFlavorCategoryChange(flavorByCategory.category)"
         >
             <p
                 data-translate="{{:: 'pci_project_flavors_category_definition_' + flavorByCategory.category }}"
