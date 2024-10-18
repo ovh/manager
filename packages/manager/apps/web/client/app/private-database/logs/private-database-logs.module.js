@@ -7,7 +7,14 @@ import dataStreams from './data-streams';
 const moduleName = 'ovhManagerPrivateDatabaseLogs';
 
 angular
-  .module(moduleName, ['ovhManagerLogToCustomer', dataStreams])
+  .module(moduleName, [
+    'ngTranslateAsyncLoader',
+    'oui',
+    'pascalprecht.translate',
+    'ui.router',
+    'ovhManagerLogToCustomer',
+    dataStreams,
+  ])
   .config(routing)
   .component('privateDatabaseLogs', component)
   .service('logsService', service)

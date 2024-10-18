@@ -504,5 +504,6 @@
   "privateDatabase_tabs_list_extensions_enable_error": "Une erreur est survenue lors de l'action de l'extension.",
   "privateDatabase_tabs_list_extensions_disable_success": "Extension correctement désactivée.",
   "privateDatabase_tabs_list_extensions_disable_error": "Une erreur est survenue lors de la désactivation de l'extension.",
-  "privateDatabase_order_sql_period_sub_title": "Combien de temps désirez-vous l'utiliser ?"
+  "privateDatabase_order_sql_period_sub_title": "Combien de temps désirez-vous l'utiliser ?",
+  "privateDatabase_beta_status": "Beta"
 }
