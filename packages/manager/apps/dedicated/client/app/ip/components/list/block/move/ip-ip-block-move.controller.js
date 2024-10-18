@@ -1,4 +1,4 @@
-import { ADDITIONAL_IP } from '../ip-ip-block.constant';
+import { ADDITIONAL_IP, IP_SERVICETYPE__PARK } from '../ip-ip-block.constant';
 
 export default /* @ngInject */ (
   $scope,
@@ -14,6 +14,7 @@ export default /* @ngInject */ (
   $scope.ipCanBeMovedTo = false;
   $scope.ipCanBeMovedToError = '';
   $scope.ADDITIONAL_IP = ADDITIONAL_IP;
+  $scope.IP_SERVICETYPE__PARK = IP_SERVICETYPE__PARK;
 
   $scope.loading = {
     init: true,
@@ -38,7 +39,7 @@ export default /* @ngInject */ (
       Ip.getIpMove($scope.data.ipBlock.ipBlock).then((result) => {
         $scope.ipDestinations = result;
         $scope.ipDestinations.push({
-          service: $translate.instant('ip_servicetype__PARK'),
+          service: IP_SERVICETYPE__PARK,
           serviceType: '_PARK',
           nexthop: [],
         });
