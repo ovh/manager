@@ -15,6 +15,8 @@ export default /* @ngInject */ ($stateProvider) => {
       clearCache: /* @ngInject */ (cloudConnectService) => () =>
         cloudConnectService.clearAllCache(),
       breadcrumb: /* @ngInject */ (cloudConnectId) => cloudConnectId,
+      notifications: /* @ngInject */ (cloudConnectId, cloudConnectService) =>
+        cloudConnectService.getNotifications(cloudConnectId),
     },
   });
 };
