@@ -3,6 +3,7 @@ import {
   PROOF_TYPE,
   TRACKING_TASK_TAG,
   TRACKING_VARIABLES,
+  TRACKING_CONTEXT,
   LEGAL_LINK1,
   LEGAL_LINK2,
   LEGAL_LINK3,
@@ -106,8 +107,10 @@ export default class AccountUserIdentityDocumentsController {
 
   handleUploadConfirmModal(open) {
     this.isOpenModal = open;
-    this.trackClick(TRACKING_TASK_TAG.clickSendMyDocuments);
-    this.trackPage(TRACKING_TASK_TAG.displayPopUpSendMyDocuments);
+    if (open) {
+      this.trackClick(TRACKING_TASK_TAG.clickSendMyDocuments);
+      this.trackPage(TRACKING_TASK_TAG.displayPopUpSendMyDocuments);
+    }
   }
 
   handleInformationModal(open) {
@@ -195,6 +198,7 @@ export default class AccountUserIdentityDocumentsController {
     this.atInternet.trackClick({
       name: formatted,
       type,
+      ...TRACKING_CONTEXT,
     });
   }
 
@@ -202,6 +206,7 @@ export default class AccountUserIdentityDocumentsController {
     const formatted = replaceTrackingParams(hit, params);
     this.atInternet.trackPage({
       name: formatted,
+      ...TRACKING_CONTEXT,
     });
   }
 }
