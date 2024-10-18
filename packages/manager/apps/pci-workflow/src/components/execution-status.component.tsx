@@ -35,7 +35,9 @@ export default function ExecutionStatusComponent({
         color={ODS_THEME_COLOR_INTENT.text}
         className="block"
       >
-        {t(`pci_workflow_execution_status_${status}`)}
+        <span className="whitespace-nowrap">
+          {t(`pci_workflow_execution_status_${status}`)}
+        </span>
       </OsdsText>
     </OsdsChip>
   );
