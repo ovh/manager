@@ -2,9 +2,24 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
+function relativeImgPathImport() {
+  return {
+    name: 'relative-img-path-import',
+    transform(_code, id) {
+      if (/(jpg|jpeg|png|webp|gif|svg)$/.test(id)) {
+        const imgSrc = path.relative(process.cwd(), id);
+        return {
+          code: `export default '${imgSrc}'`,
+        };
+      }
+      return undefined;
+    },
+  };
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), relativeImgPathImport()],
   test: {
     globals: true,
     environment: 'jsdom',

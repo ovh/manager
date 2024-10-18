@@ -1,7 +1,7 @@
 import 'element-internals-polyfill';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { describe, expect, vi } from 'vitest';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import {
   ShellContext,
@@ -11,6 +11,10 @@ import { useParams } from 'react-router-dom';
 import OnBoardingPage from './Onboarding.page';
 
 vi.mock('react-router-dom');
+
+vi.mock('./OnBoardingGuard', () => ({
+  default: ({ children }) => <>{children}</>,
+}));
 
 const shellContext = {
   environment: {
@@ -43,6 +47,8 @@ describe('OnBoardingPage', () => {
     shell.navigation.getURL.mockResolvedValue('https://www.ovh.com');
     vi.mocked(useParams).mockReturnValue({ projectId: '123' });
     const { container } = render(<OnBoardingPage />, { wrapper });
-    expect(container).toBeDefined();
+    await waitFor(() => {
+      expect(container).toBeDefined();
+    });
   });
 });

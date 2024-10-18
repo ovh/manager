@@ -20,10 +20,12 @@ import {
 } from 'react-router-dom';
 import { GUIDES } from './onboarding.constants';
 import OnBoardingGuard from './OnboardingGuard';
+import { useProjectVrack } from '@/api/hooks/useVrack';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation('listing');
   const { t: tOnboarding } = useTranslation('onboarding');
+  const { t: tVrack } = useTranslation('vrack');
 
   const { projectId } = useParams();
   const navigate = useNavigate();
@@ -32,6 +34,8 @@ export default function OnBoardingPage() {
   const { ovhSubsidiary } = context.environment.getUser();
   const project = useRouteLoaderData('private-networks') as TProject;
   const [urlProject, setUrlProject] = useState('');
+  const { data: vrack, isPending } = useProjectVrack(projectId);
+  const isMissingVrack = !isPending && !vrack?.id;
 
   useEffect(() => {
     navigation
@@ -101,8 +105,16 @@ export default function OnBoardingPage() {
               </OsdsText>
             </>
           }
-          orderButtonLabel={t('pci_projects_project_network_private_create')}
-          onOrderButtonClick={() => navigate('../new')}
+          orderButtonLabel={
+            isMissingVrack
+              ? tVrack(
+                  'pci_projects_project_network_private_vrack_create_heading',
+                )
+              : t('pci_projects_project_network_private_create')
+          }
+          onOrderButtonClick={() =>
+            isMissingVrack ? navigate('./new') : navigate('../new')
+          }
         >
           {GUIDES.map((guide) => {
             const card = {

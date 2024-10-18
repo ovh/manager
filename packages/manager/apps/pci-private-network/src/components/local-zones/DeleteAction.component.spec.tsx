@@ -3,10 +3,6 @@ import { render, screen } from '@testing-library/react';
 import { useHref } from 'react-router-dom';
 import DeleteAction from '@/components/local-zones/DeleteAction.component';
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (key) => key }),
-}));
-
 vi.mock('react-router-dom', () => ({
   useHref: vi.fn(),
 }));
