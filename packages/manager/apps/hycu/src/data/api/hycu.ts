@@ -1,8 +1,10 @@
+import { AxiosResponse } from 'axios';
 import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
+import { IHycuDetails } from '@/type/hycu.details.interface';
 
 export type GetlicenseHycuListParams = {
   /** Filter resources on IAM tags */
-  iamTags: any;
+  iamTags: string;
 };
 
 export const getlicenseHycuListQueryKey = ['get/license/hycu'];
@@ -10,7 +12,7 @@ export const getlicenseHycuListQueryKey = ['get/license/hycu'];
 /**
  * Manage HYCU licenses : Get list of owned HYCU licenses
  */
-export const getlicenseHycuList = async (
+export const getlicenseHycuList = (
   params: GetlicenseHycuListParams,
 ): Promise<unknown> => apiClient.v6.get('/license/hycu', { data: params });
 
@@ -19,16 +21,13 @@ export type GetlicenseHycuServiceParams = {
   serviceName?: string;
 };
 
-export const getlicenseHycuServiceQueryKey = (
-  params: GetlicenseHycuServiceParams,
-) => [`get/license/hycu/${params.serviceName}`];
-
 /**
  * Manage HYCU licenses : Get HYCU license info
  */
-export const getlicenseHycuService = async (
+export const getlicenseHycuService = (
   params: GetlicenseHycuServiceParams,
-): Promise<any> => apiClient.v6.get(`/license/hycu/${params.serviceName}`);
+): Promise<AxiosResponse<IHycuDetails>> =>
+  apiClient.v6.get<IHycuDetails>(`/license/hycu/${params.serviceName}`);
 
 /**
  *  Get listing with iceberg V6

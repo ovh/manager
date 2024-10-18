@@ -16,7 +16,8 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-hycu-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-hycu-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-hycu-app' --include-dependencies -- npm run dev:watch --if-present",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.0.0",
@@ -48,15 +49,17 @@
     "@ovh-ux/manager-vite-config": "^0.8.2",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
+    "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.13",
     "@vitejs/plugin-react": "^4.3.2",
+    "@vitest/coverage-v8": "^2.1.3",
     "element-internals-polyfill": "^1.3.12",
     "eslint-plugin-prettier": "^5.2.1",
     "msw": "2.1.7",
     "typescript": "^5.1.6",
     "vite": "^5.2.13",
-    "vitest": "^2.1.2"
+    "vitest": "^2.1.3"
   },
   "regions": [
     "CA",

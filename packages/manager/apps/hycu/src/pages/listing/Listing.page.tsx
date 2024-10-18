@@ -56,11 +56,11 @@ const DatagridIdCell = (hycuDetail: IHycuDetails) => {
 };
 
 const DatagridControllerIdCell = (hycuDetail: IHycuDetails) => {
-  return <DataGridTextCell>{hycuDetail.controllerId}</DataGridTextCell>;
+  return <DataGridTextCell>{hycuDetail.controllerId || '-'}</DataGridTextCell>;
 };
 
 const DatagridStatusCell = (hycuDetail: IHycuDetails) => {
-  const { t } = useTranslation('hycu/listing');
+  const { t } = useTranslation('hycu');
 
   return (
     <DataGridTextCell>
