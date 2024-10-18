@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.63.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.63.2...@ovh-ux/manager-pci@6.63.3) (2024-10-18)
+
+
+### Bug Fixes
+
+* **pci.cloud-archive:** fix list and confing pages ([#13637](https://github.com/ovh/manager/issues/13637)) ([e62d5d0](https://github.com/ovh/manager/commit/e62d5d018258afe813bd41eec32fb3e1cdb5d711))
+
+
+
+
+
 ## [6.63.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.63.1...@ovh-ux/manager-pci@6.63.2) (2024-10-14)
 
 
