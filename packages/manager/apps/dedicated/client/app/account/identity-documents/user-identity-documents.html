@@ -85,7 +85,7 @@
             data-multiple
             data-maxsize="$ctrl.maximum_size"
             data-name="files"
-            data-disabled="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN"
+            data-disabled="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN || $ctrl.links"
         ></oui-file>
 
         <oui-form-actions
