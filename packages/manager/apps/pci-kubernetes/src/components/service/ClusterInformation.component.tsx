@@ -14,6 +14,8 @@ import { Clipboard } from '@ovh-ux/manager-react-components';
 import { TKube } from '@/types';
 import ClusterStatus from './ClusterStatus.component';
 import TileLine from './TileLine.component';
+import AdmissionPlugins from './AdmissionPlugins.component';
+import { isProcessing } from './ClusterManagement.component';
 
 export type ClusterInformationProps = {
   kubeDetail: TKube;
@@ -64,6 +66,15 @@ export default function ClusterInformation({
         <TileLine
           title={t('kube_service_cluster_status')}
           value={<ClusterStatus status={kubeDetail.status} />}
+        />
+        <TileLine
+          title={t('kube_service_cluster_admission_plugins')}
+          value={
+            <AdmissionPlugins
+              isProcessing={isProcessing(kubeDetail.status)}
+              {...kubeDetail.customization.apiServer.admissionPlugins}
+            />
+          }
         />
 
         <TileLine
