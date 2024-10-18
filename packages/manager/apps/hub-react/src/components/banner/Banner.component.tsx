@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import {
   ShellContext,
   useOvhTracking,
@@ -9,6 +9,8 @@ import {
   OdsHTMLAnchorElementRel,
 } from '@ovhcloud/ods-common-core';
 import { useFetchHubBanner } from '@/data/hooks/banner/useBanner';
+
+const DEFAULT_TRACKING = ['hub', 'dashboard', 'event-banner'];
 
 export default function Banner() {
   const { environment } = useContext(ShellContext);
@@ -26,7 +28,9 @@ export default function Banner() {
           onClick={() => {
             trackClick({
               actionType: 'action',
-              actions: [banner.tracker],
+              actions: banner.tracker
+                ? banner.tracker.split('::')
+                : DEFAULT_TRACKING,
             });
           }}
           href={banner.link}
