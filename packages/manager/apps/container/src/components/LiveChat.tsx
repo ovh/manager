@@ -32,7 +32,7 @@ const LiveChat: React.FC<ComponentProps<LiveChatProps>> = (
   { language, open, reduced, subsidiary, supportLevel, ...rest }: LiveChatProps,
 ): JSX.Element => {
   const customerLevel = getCustomerLevel(supportLevel);
-  const url = `https://chat.ovh.com/system/templates/liveChat-manager/${customerLevel}/${subsidiary}_${language}/docs/index2.html`;
+  const url = `https://chat.ovh.com/system/templates/pre-prod/LiveChat_V3/STD/FR_en/docs/index2.html`;
 
   return (
     <VirtualAgent
