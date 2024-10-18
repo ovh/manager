@@ -13,7 +13,7 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
-import { region } from '@ovh-ux/manager-components';
+import { region, sshKeySelector } from '@ovh-ux/manager-components';
 
 import VpsTaskService from './vps-task.service';
 import VpsNotificationIpv6Service from '../import/notification.service';
@@ -69,6 +69,7 @@ angular
     ovhManagerVpsVeeam,
     ovhManagerVpsWindows,
     region,
+    sshKeySelector,
   ])
   .component(detailComponent.name, detailComponent)
   .component(headerComponent.name, headerComponent)

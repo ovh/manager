@@ -1,0 +1,7 @@
+{
+  "manager_components_select_ssh_key": "SSH key(s) to pre-install:",
+  "manager_components_select_ssh_key_help": "Add a key in the My account section ",
+  "manager_components_sshkey_input": "Your Public SSH key:",
+  "manager_components_sshkey_input_placeholder": "Insert a public SSH key. For example: {{t0}}",
+  "manager_components_loading_sshKeys_error": "An error has occurred loading your SSH keys."
+}
