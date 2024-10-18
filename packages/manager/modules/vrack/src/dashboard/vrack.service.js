@@ -41,4 +41,8 @@ export default class Vrack {
   getIpLoadbalancing(serviceName) {
     return this.$http.get(`/ipLoadbalancing/${serviceName}`);
   }
+
+  terminateVrack(serviceName) {
+    return this.$http.post(`/vrack/${serviceName}/terminate`);
+  }
 }
