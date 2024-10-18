@@ -9,5 +9,6 @@
   "sign_up_form_global_information": "Per proseguire con l’ordine è necessario inserire le seguenti informazioni.",
   "sign_up_form_global_information_kyc_reminder": "Queste informazioni sono obbligatorie per effettuare l'ordine, ti chiediamo quindi di seguire le seguenti istruzioni:",
   "sign_up_form_global_information_kyc_reminder_fill_address": "Inserisci <strong>il tuo indirizzo completo</strong> ",
-  "sign_up_form_global_information_kyc_reminder_match_address": "L'indirizzo deve <strong>coincidere con quello presente nel giustificativo</strong> richiesto per verificare la tua identità"
+  "sign_up_form_global_information_kyc_reminder_match_address": "L'indirizzo deve <strong>coincidere con quello presente nel giustificativo</strong> richiesto per verificare la tua identità",
+  "sign_up_form_mandatory_fields": "campi obbligatori"
 }
