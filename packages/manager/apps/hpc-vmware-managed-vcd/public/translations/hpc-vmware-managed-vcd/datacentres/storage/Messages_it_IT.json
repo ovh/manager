@@ -1,0 +1,7 @@
+{
+  "managed_vcd_vdc_storage_name": "Cognome",
+  "managed_vcd_vdc_storage_profile": "Profilo",
+  "managed_vcd_vdc_storage_type": "Tipo",
+  "managed_vcd_vdc_storage_capacity": "Dimensione",
+  "managed_vcd_vdc_storage_order_cta": "Ordina uno Storage"
+}
