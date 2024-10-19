@@ -5,18 +5,18 @@ import fr_FR from './translations/Messages_fr_FR.json';
 import { useAuthorizationIam } from '../../hooks/iam';
 import { IamAuthorizationResponse } from '../../hooks/iam/iam.interface';
 
-jest.mock('../../hooks/iam');
+vitest.mock('../../hooks/iam');
 
 const renderComponent = (props: ManagerButtonProps) => {
   return render(<ManagerButton {...props} />);
 };
 
 const mockedHook =
-  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+  useAuthorizationIam as unknown as vitest.Mock<IamAuthorizationResponse>;
 
 describe('ManagerButton tests', () => {
   afterEach(() => {
-    jest.resetAllMocks();
+    vitest.resetAllMocks();
   });
 
   describe('should display manager button', () => {

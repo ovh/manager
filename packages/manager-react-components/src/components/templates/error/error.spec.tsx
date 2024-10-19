@@ -1,9 +1,11 @@
+import React from 'react';
 import { waitFor } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import { ErrorBanner } from './error.component';
 import tradFr from './translations/Messages_fr_FR.json';
 import { ErrorObject, ErrorBannerProps } from './error.types';
 import { defaultProps } from './error.stories';
+import { vitest } from 'vitest';
 
 const setupSpecTest = async (
   customProps?: Partial<ErrorBannerProps>,
@@ -36,7 +38,7 @@ describe('specs:error.component', () => {
       };
 
       const screen = await setupSpecTest(
-        { onRedirectHome: jest.fn() },
+        { onRedirectHome: vitest.fn() },
         customError,
       );
 
@@ -46,7 +48,7 @@ describe('specs:error.component', () => {
     });
 
     it('calls onRedirectHome when home button is clicked', async () => {
-      const onRedirectHomeMock = jest.fn();
+      const onRedirectHomeMock = vitest.fn();
       const screen = await setupSpecTest({
         onRedirectHome: onRedirectHomeMock,
       });
@@ -60,7 +62,7 @@ describe('specs:error.component', () => {
     });
 
     it('calls onReloadPage when reload button is clicked', async () => {
-      const onReloadPageMock = jest.fn();
+      const onReloadPageMock = vitest.fn();
       const screen = await setupSpecTest({ onReloadPage: onReloadPageMock });
 
       const reloadButton = screen.getByText(

@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { vitest } from 'vitest';
+import React, { useEffect } from 'react';
 import { render } from '@testing-library/react';
 import { useNotifications, NotificationType } from './useNotifications';
 import { Notifications } from './notifications.component';
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+vitest.mock('react-router-dom', async () => ({
+  ...(await vitest.importActual('react-router-dom')),
   useLocation: () => ({
     pathname: '/foo',
   }),

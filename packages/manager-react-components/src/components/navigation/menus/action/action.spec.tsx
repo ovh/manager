@@ -1,3 +1,5 @@
+import React from 'react';
+import { vitest } from 'vitest';
 import { waitFor, screen, fireEvent } from '@testing-library/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ActionMenu, ActionMenuProps } from './action.component';
@@ -5,7 +7,7 @@ import { render } from '../../../../utils/test.provider';
 import { useAuthorizationIam } from '../../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../../hooks/iam/iam.interface';
 
-jest.mock('../../../../hooks/iam');
+vitest.mock('../../../../hooks/iam');
 
 const actionItems: ActionMenuProps = {
   items: [

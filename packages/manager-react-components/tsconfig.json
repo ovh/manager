@@ -1,22 +1,28 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "es2020"],
-    "target": "ES2020",
-    "types": ["vite/client", "node", "jest"],
-    "module": "ESNext",
+    "lib": ["dom", "es2021"],
+    "noEmit": true,
+    "target": "es2020",
+    "types": ["vite/client", "node"],
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "removeComments": true,
     "outDir": "dist",
-    "allowJs": false,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "Node",
     "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "noImplicitAny": true,
     "declaration": true,
-    "declarationDir": "./dist/types",
-    "jsx": "react-jsx"
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
+    }
   },
-  "files": ["global.d.ts"],
-  "include": ["src/**/*", "*.spec.tsx"],
-  "exclude": ["./src/**/*.stories.*"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "types"]
 }

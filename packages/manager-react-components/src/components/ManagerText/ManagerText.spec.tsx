@@ -1,3 +1,5 @@
+import React from 'react';
+import { vitest } from 'vitest';
 import { screen } from '@testing-library/react';
 import { ManagerText, ManagerTextProps } from './ManagerText';
 import { render } from '../../utils/test.provider';
@@ -5,7 +7,7 @@ import fr_FR from './translations/Messages_fr_FR.json';
 import { useAuthorizationIam } from '../../hooks/iam';
 import { IamAuthorizationResponse } from '../../hooks/iam/iam.interface';
 
-jest.mock('../../hooks/iam');
+vitest.mock('../../hooks/iam');
 
 const renderComponent = (props: ManagerTextProps) => {
   return render(<ManagerText {...props} />);
@@ -15,7 +17,7 @@ const mockedHook =
 
 describe('ManagerText tests', () => {
   afterEach(() => {
-    jest.resetAllMocks();
+    vitest.resetAllMocks();
   });
 
   describe('should display manager text', () => {

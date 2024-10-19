@@ -1,14 +1,25 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React from 'react';
+import { vitest } from 'vitest';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useInfiniteQuery,
+} from '@tanstack/react-query';
 import { renderHook } from '@testing-library/react';
 import { useResourcesIcebergV2 } from './useIcebergV2';
 
-/* eslint-disable @typescript-eslint/no-var-requires */
-const mockUseQuery = require('@tanstack/react-query').useInfiniteQuery;
+vitest.mock('@tanstack/react-query', async () => {
+  const originalModule = await vitest.importActual('@tanstack/react-query');
+  return {
+    ...originalModule,
+    useInfiniteQuery: vitest.fn(),
+  };
+});
 
 const renderUseIcebergV2Hook = () => {
   const queryClient = new QueryClient();
 
-  const wrapper = ({ children }) => (
+  const wrapper = ({ children }: React.PropsWithChildren) => (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 
@@ -78,19 +89,19 @@ const mockData = {
   pageParams: [null, 2],
 };
 
-jest.mock('@tanstack/react-query', () => {
-  const originalModule = jest.requireActual('@tanstack/react-query');
+vitest.mock('@tanstack/react-query', async () => {
+  const originalModule = await vitest.importActual('@tanstack/react-query');
   return {
     ...originalModule,
-    useInfiniteQuery: jest.fn(),
+    useInfiniteQuery: vitest.fn(),
   };
 });
 
 describe('useIcebergV2', () => {
   beforeEach(() => {
-    mockUseQuery.mockImplementation(() => ({
+    (useInfiniteQuery as jest.Mock).mockImplementation(() => ({
       data: mockData,
-      error: null,
+      error: null as unknown,
       isLoading: false,
       hasNextPage: true,
       staleTime: 3000,
@@ -99,13 +110,13 @@ describe('useIcebergV2', () => {
   });
 
   it('should return flattenData with 10 items', async () => {
-    const result: any = renderUseIcebergV2Hook();
+    const result = renderUseIcebergV2Hook();
     const { flattenData } = result.current;
     expect(flattenData?.length).toEqual(10);
   });
 
   it('should return hasNextPage with true', async () => {
-    const result: any = renderUseIcebergV2Hook();
+    const result = renderUseIcebergV2Hook();
     const { hasNextPage } = result.current;
     expect(hasNextPage).toBeTruthy();
   });
