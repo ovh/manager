@@ -49,5 +49,6 @@
   "vrack_add_dialog_modal_title": "Aggiungere uno o più servizi",
   "vrack_add_dialog_modal_description": "Vuoi davvero aggiungere {{ services }} alla tua vRack?",
   "vrack_delete_dialog_modal_title": "Rimuovere uno o più servizi",
-  "vrack_delete_dialog_modal_description": "Vuoi davvero rimuovere {{ services }} dalla tua vRack?"
+  "vrack_delete_dialog_modal_description": "Vuoi davvero rimuovere {{ services }} dalla tua vRack?",
+  "vrack_service_type_ovhcloudconnect": "OVHcloud Connect"
 }
