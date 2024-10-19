@@ -30,6 +30,10 @@ export default class Vrack {
     return this.$http.get(`/dedicated/server/${serviceName}`);
   }
 
+  getOvhCloudConnectServer(serviceName) {
+    return this.$http.get(`/ovhCloudConnect/${serviceName}`);
+  }
+
   getDedicatedCloud(serviceName) {
     return this.$http.get(`/dedicatedCloud/${serviceName}`);
   }
@@ -40,5 +44,19 @@ export default class Vrack {
 
   getIpLoadbalancing(serviceName) {
     return this.$http.get(`/ipLoadbalancing/${serviceName}`);
+  }
+
+  associateOvhCloudConnectToVrack(serviceName, ovhCloudConnectId) {
+    return this.$http
+      .post(`/vrack/${serviceName}/ovhCloudConnect`, {
+        ovhCloudConnect: ovhCloudConnectId,
+      })
+      .then(({ data }) => data);
+  }
+
+  dissociateOvhCloudConnectFromVrack(serviceName, ovhCloudConnectId) {
+    return this.$http
+      .delete(`/vrack/${serviceName}/ovhCloudConnect/${ovhCloudConnectId}`)
+      .then(({ data }) => data);
   }
 }
