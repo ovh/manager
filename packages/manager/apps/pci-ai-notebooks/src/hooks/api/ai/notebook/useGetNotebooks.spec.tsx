@@ -9,8 +9,8 @@ vi.mock('@/data/api/ai/notebook/notebook.api', () => ({
   getNotebooks: vi.fn(),
 }));
 
-describe('useGetJobs', () => {
-  it('should return Jobs', async () => {
+describe('useGetNotebooks', () => {
+  it('should return Notebooks', async () => {
     const projectId = 'projectId';
 
     vi.mocked(notebookApi.getNotebooks).mockResolvedValue([mockedNotebook]);
