@@ -178,7 +178,7 @@ const AdmissionPluginsModal = () => {
                       <OsdsSwitchItem
                         color="primary"
                         value="enabled"
-                        // TODO : fix this with ODS 18
+                        // FIXME : fix this with ODS 18
                         checked={
                           pluginState(plugin.name) === 'enabled' || undefined
                         }
@@ -192,7 +192,7 @@ const AdmissionPluginsModal = () => {
                           color="primary"
                           value="disabled"
                           checked={
-                            // TODO : fix this with ODS 18
+                            // FIXME : fix this with ODS 18
                             pluginState(plugin.name) === 'disabled' || undefined
                           }
                         >
