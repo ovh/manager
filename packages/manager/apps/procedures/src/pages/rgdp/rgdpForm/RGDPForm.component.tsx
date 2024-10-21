@@ -3,8 +3,12 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_TYPE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
-import React, { FunctionComponent, useEffect } from 'react';
+import {
+  OsdsButton,
+  OsdsMessage,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { GDPRFormValues } from '@/types/gdpr.type';
@@ -21,6 +25,22 @@ import {
 } from './RGDPForm.constants';
 import './RGDPForm.style.css';
 import { FileField } from './FileField/FileField.component';
+import {
+  useRGDPSendForm,
+  useRGDPUploadDocuments,
+} from '@/data/hooks/rgdp/useRGDP';
+import { ConfirmModal } from '@/components/modals/confirmModal/ConfirmModal.component';
+import { SuccessModal } from '@/components/modals/successModal/SuccessModal.component';
+import { getWebSiteRedirectUrl } from '@/utils/url-builder';
+import { FileWithError } from '@/components/FileInput/FileInputContainer';
+
+const extractFiles = (formValue: GDPRFormValues): FileWithError[] => {
+  return [
+    formValue.idDocumentBack,
+    formValue.idDocumentFront,
+    formValue.otherDocuments,
+  ].flatMap((file) => (file ? [file] : [])) as any[];
+};
 
 export const RGDPForm: FunctionComponent = () => {
   const { t } = useTranslation('rgdp');
@@ -32,9 +52,47 @@ export const RGDPForm: FunctionComponent = () => {
     trigger,
   } = useForm<GDPRFormValues>({ mode: 'onBlur' });
 
-  const onSubmit = (data: GDPRFormValues) => {
-    // TODO: Handle API call & ConfirmModal
-    console.log(data);
+  const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+
+  const {
+    mutate: uploadDocuments,
+    isPending: isPendingUpload,
+    isError: isErrorUpload,
+  } = useRGDPUploadDocuments({
+    onSuccess: () => {
+      setShowSuccessModal(true);
+      setShowConfirmModal(false);
+    },
+    onError: () => {
+      setShowConfirmModal(false);
+    },
+  });
+
+  const {
+    mutate: sendForm,
+    isPending: isPendingSendForm,
+    isError: isErrorSendForm,
+  } = useRGDPSendForm({
+    onSuccess: (links) => {
+      const data = watch();
+      const files = extractFiles(data);
+      uploadDocuments({ fileLinks: links, files });
+    },
+    onError: () => {
+      setShowConfirmModal(false);
+    },
+  });
+
+  const isPending = isPendingUpload || isPendingSendForm;
+  const isError = isErrorUpload || isErrorSendForm;
+
+  const onSubmitForm = () => {
+    const data = watch();
+    const files = extractFiles(data);
+    const filesCount = files.length;
+
+    sendForm({ formData: data, numberOfDocuments: filesCount });
   };
 
   const email = watch('email');
@@ -46,7 +104,7 @@ export const RGDPForm: FunctionComponent = () => {
   }, [email]);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form onSubmit={handleSubmit(() => setShowConfirmModal(true))} noValidate>
       <div className="my-10">
         <TextField
           label={t('rgdp_form_field_label_firstname')}
@@ -217,6 +275,11 @@ export const RGDPForm: FunctionComponent = () => {
           helper={t('rgdp_form_field_helper_other_documents', { maxFiles: 8 })}
         />
       </div>
+      {isError && (
+        <OsdsMessage className="mt-5" color={ODS_THEME_COLOR_INTENT.error}>
+          {t('rgdp_form_error_message_submit')}
+        </OsdsMessage>
+      )}
       <OsdsButton
         type={ODS_BUTTON_TYPE.submit}
         color={ODS_THEME_COLOR_INTENT.primary}
@@ -225,6 +288,27 @@ export const RGDPForm: FunctionComponent = () => {
       >
         {t('rgdp_form_submit')}
       </OsdsButton>
+
+      {showConfirmModal && (
+        <ConfirmModal
+          title={t('rgpd_confirm_modal_title')}
+          descriptionInsure={t('rgpd_confirm_modal_description_insure')}
+          descriptionConfirm={t('rgpd_confirm_modal_description_confirm')}
+          noButtonLabel={t('rgpd_confirm_modal_no')}
+          yesButtonLabel={t('rgpd_confirm_modal_yes')}
+          isPending={isPending}
+          onClose={() => setShowConfirmModal(false)}
+          onValidate={onSubmitForm}
+        />
+      )}
+      {showSuccessModal && (
+        <SuccessModal
+          ovhHomePageHref={getWebSiteRedirectUrl()}
+          title={t('rgpd_confirm_success_modal_title')}
+          description={t('rgpd_confirm_success_modal_description')}
+          ovhHomePageLabel={t('rgpd_confirm_success_modal_back_home')}
+        />
+      )}
     </form>
   );
 };
