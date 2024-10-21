@@ -135,6 +135,10 @@ export const RGDPForm: FunctionComponent = () => {
           name="requestDescription"
           required={t('rgdp_form_validation_message_required')}
           control={control}
+          pattern={{
+            value: TextInputRegex,
+            message: t('rgdp_form_validation_message_invalid_format'),
+          }}
         />
       </div>
       <div>
