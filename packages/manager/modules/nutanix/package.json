@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nutanix",
-  "version": "1.21.2",
+  "version": "1.21.3",
   "private": true,
   "description": "OVHcloud Nutanix product",
   "repository": {
@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/manager-models": "^1.14.14",
+    "@ovh-ux/manager-models": "^1.14.15",
     "bootstrap4": "twbs/bootstrap#v4.6.2",
     "ipaddr.js": "^1.9.1",
     "lodash": "^4.17.14"

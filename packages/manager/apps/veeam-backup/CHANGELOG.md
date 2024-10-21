@@ -1,0 +1,11 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.0.0...@ovh-ux/manager-veeam-backup-app@0.1.0) (2024-10-21)
+
+
+### Features
+
+* **veeam-backup:** add new product veeam-backup ([#12611](https://github.com/ovh/manager/issues/12611)) ([df1cd33](https://github.com/ovh/manager/commit/df1cd3377a025e7a1cd4c166f26838d0871397c4))

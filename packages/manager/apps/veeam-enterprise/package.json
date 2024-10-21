@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-enterprise-app",
-  "version": "2.2.7",
+  "version": "2.2.8",
   "private": true,
   "description": "Veeam Enterprise standalone application.",
   "repository": {
@@ -19,8 +19,8 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-veeam-enterprise-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^7.4.0",
-    "@ovh-ux/manager-core": "^12.17.1",
+    "@ovh-ux/manager-config": "^7.5.0",
+    "@ovh-ux/manager-core": "^12.17.2",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
     "@ovh-ux/manager-veeam-enterprise": "^1.11.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",

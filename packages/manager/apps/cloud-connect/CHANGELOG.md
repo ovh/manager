@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect-app@1.10.7...@ovh-ux/manager-cloud-connect-app@1.10.8) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-cloud-connect-app
+
+
+
+
+
 ## [1.10.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect-app@1.10.6...@ovh-ux/manager-cloud-connect-app@1.10.7) (2024-10-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-cloud-connect-app
