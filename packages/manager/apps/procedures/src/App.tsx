@@ -52,10 +52,13 @@ if (!user) {
   }
 }
 
+console.log(user);
+
 useDefaultLanguage('en_GB');
 const locale = findAvailableLocale(detectUserLocale());
 
-initI18n(locale, getSubsidiary(subsidiary, locale));
+// TODO: I am using the language from the token for testing purposes in QA, normally, we should use the const locale.
+initI18n(user.language, getSubsidiary(subsidiary, locale));
 odsSetup();
 initInterceptor();
 
