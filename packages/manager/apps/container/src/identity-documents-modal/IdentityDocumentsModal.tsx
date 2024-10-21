@@ -2,7 +2,7 @@ import { kycIndiaModalLocalStorageKey, kycIndiaFeature, requiredStatusKey } from
 import { useIdentityDocumentsStatus } from "@/hooks/useIdentityDocumentsStatus";
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { FunctionComponent, useEffect, useRef, useState } from "react";
-import { useFeatureAvailability } from "@ovhcloud/manager-components";
+import { useFeatureAvailability } from "@ovh-ux/manager-react-components";
 import { useTranslation, Trans } from 'react-i18next';
 import { useLocalStorage } from "react-use";
 import { useShell } from "@/context";
