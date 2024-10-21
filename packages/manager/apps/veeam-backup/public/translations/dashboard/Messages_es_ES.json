@@ -20,5 +20,6 @@
   "manual_renew": "Renovación manual",
   "administrator_contact": "{{code}} Administrador",
   "billing_contact": "{{code}} Facturación",
-  "technical_contact": "{{code}} Técnico"
+  "technical_contact": "{{code}} Técnico",
+  "location": "Localización"
 }
