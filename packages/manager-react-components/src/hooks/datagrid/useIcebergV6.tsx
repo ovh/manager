@@ -52,7 +52,7 @@ export function useResourcesIcebergV6<T = unknown>({
   });
 
   return {
-    ...(dataSelected ?? { totalCount: 0, hasNextPage: false }),
+    ...(dataSelected ?? { ...dataSelected, totalCount: 0, hasNextPage: false }),
     ...rest,
     sorting,
     setSorting,
