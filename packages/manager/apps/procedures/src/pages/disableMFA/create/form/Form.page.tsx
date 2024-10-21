@@ -22,9 +22,9 @@ import { FormDocumentFieldList } from './FormDocumentFields/FormDocumentFieldLis
 import { LegalFrom } from '@/types/user.type';
 import useUser from '@/context/User/useUser';
 import { useUploadDocuments } from '@/data/hooks/useDocuments';
-import { ConfirmModal } from './Modal/ConfirmModal';
-import { SuccessModal } from './Modal/SuccessModal';
-import { ovhHomePageHref } from './constants/form.constants';
+import { getWebSiteRedirectUrl } from '@/utils/url-builder';
+import { ConfirmModal } from '@/components/modals/confirmModal/ConfirmModal.component';
+import { SuccessModal } from '@/components/modals/successModal/SuccessModal.component';
 
 const flatFiles = (files: FieldValues) =>
   Object.values(files)
@@ -132,6 +132,17 @@ const FormCreateRequest = () => {
 
       {showConfirmModal && (
         <ConfirmModal
+          title={t(
+            'account-disable-2fa-create-form-confirm-modal-send-document-title',
+          )}
+          descriptionInsure={t(
+            'account-disable-2fa-create-form-confirm-modal-send-document-description-insure',
+          )}
+          descriptionConfirm={t(
+            'account-disable-2fa-create-form-confirm-modal-send-document-description-confirm',
+          )}
+          noButtonLabel={t('account-disable-2fa-confirm-modal-no')}
+          yesButtonLabel={t('account-disable-2fa-confirm-modal-yes')}
           isPending={isPending}
           onClose={() => setShowConfirmModal(false)}
           onValidate={() => {
@@ -139,7 +150,18 @@ const FormCreateRequest = () => {
           }}
         />
       )}
-      {showSuccessModal && <SuccessModal ovhHomePageHref={ovhHomePageHref} />}
+      {showSuccessModal && (
+        <SuccessModal
+          ovhHomePageHref={getWebSiteRedirectUrl()}
+          title={t(
+            'account-disable-2fa-create-form-success-modal-send-document-title',
+          )}
+          description={t(
+            'account-disable-2fa-create-form-success-modal-send-document-description',
+          )}
+          ovhHomePageLabel={t('account-disable-2fa-success-modal-back-home')}
+        />
+      )}
     </form>
   );
 };

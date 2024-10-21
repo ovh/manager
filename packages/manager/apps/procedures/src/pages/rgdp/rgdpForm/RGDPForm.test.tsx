@@ -1,8 +1,15 @@
-import { render, screen, act, waitFor } from '@testing-library/react';
+import {
+  render,
+  screen,
+  act,
+  waitFor,
+  fireEvent,
+} from '@testing-library/react';
 import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import * as OdsComponentModule from '@ovhcloud/ods-components/react';
-import { OsdsInput, OsdsTextArea } from '@ovhcloud/ods-components';
+import { OsdsInput, OsdsSelect, OsdsTextArea } from '@ovhcloud/ods-components';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RGDPForm } from './RGDPForm.component';
 import { GDPRFormValues } from '@/types/gdpr.type';
 
@@ -22,7 +29,13 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
     OsdsInput: ({ ...props }: any) => (
       <module.OsdsInput {...props} data-testid={props.id} />
     ),
-    OsdsButton: ({ ...props }: any) => <button {...props} />,
+    OsdsButton: ({ ...props }: any) => (
+      <button
+        children={props.children}
+        disabled={props.disabled}
+        type={props.type}
+      />
+    ),
     OsdsSelect: ({ ...props }: any) => (
       <module.OsdsSelect {...props} data-testid={props.id} />
     ),
@@ -33,7 +46,14 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
 });
 
 describe('RGDPForm', () => {
-  const renderForm = () => render(<RGDPForm />);
+  const renderForm = () => {
+    const queryClient = new QueryClient();
+    return render(
+      <QueryClientProvider client={queryClient}>
+        <RGDPForm />
+      </QueryClientProvider>,
+    );
+  };
 
   it('Should render the form fields correctly when the form is displayed', async () => {
     const { getByText } = renderForm();
@@ -64,8 +84,8 @@ describe('RGDPForm', () => {
   });
 
   it('Should disable the submit button when required fields are not filled', async () => {
-    const { getByRole } = renderForm();
-    const submitBtn = getByRole('button', { name: 'rgdp_form_submit' });
+    const { getByText } = renderForm();
+    const submitBtn = getByText('rgdp_form_submit');
     expect(submitBtn).toBeDisabled();
   });
 
@@ -166,6 +186,54 @@ describe('RGDPForm', () => {
       expect(
         getByText('rgdp_form_validation_message_email_match'),
       ).toBeInTheDocument();
+    });
+  });
+
+  it('Should display confirm modal when the form is valid', async () => {
+    const { getByText } = renderForm();
+
+    const surnameInput = getOsdsElementByFormName<OsdsInput>('surname');
+    const firstNameInput = getOsdsElementByFormName<OsdsInput>('firstName');
+    const requestDescriptionText = getOsdsElementByFormName<OsdsTextArea>(
+      'requestDescription',
+    );
+    const emailInput = getOsdsElementByFormName<OsdsInput>('email');
+    const confirmEmailInput = getOsdsElementByFormName<OsdsInput>(
+      'confirmEmail',
+    );
+    const objectSelect = getOsdsElementByFormName<OsdsSelect>('messageSubject');
+
+    const submitBtn = getByText('rgdp_form_submit');
+
+    act(() => {
+      surnameInput.value = 'name';
+      firstNameInput.value = 'firstNameInput';
+      requestDescriptionText.value = 'des';
+      emailInput.value = 'ovh@internet.com';
+      confirmEmailInput.value = 'ovh@internet.com';
+      objectSelect.value = 'other_request';
+
+      surnameInput.odsValueChange.emit();
+      firstNameInput.odsValueChange.emit();
+      requestDescriptionText.odsValueChange.emit();
+      emailInput.odsValueChange.emit();
+      confirmEmailInput.odsValueChange.emit();
+      objectSelect.odsValueChange.emit();
+
+      surnameInput.odsInputBlur.emit();
+      firstNameInput.odsInputBlur.emit();
+      requestDescriptionText.odsBlur.emit();
+      emailInput.odsInputBlur.emit();
+      confirmEmailInput.odsInputBlur.emit();
+      objectSelect.odsBlur.emit();
+
+      fireEvent.submit(submitBtn);
+    });
+
+    await waitFor(() => {
+      const confirmModal = screen.getByText('rgpd_confirm_modal_yes');
+      expect(submitBtn).not.toBeDisabled();
+      expect(confirmModal).toBeInTheDocument();
     });
   });
 });
