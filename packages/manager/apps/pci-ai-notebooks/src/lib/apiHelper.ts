@@ -1,6 +1,6 @@
 import { AIError } from '@/data/api';
 
-export function getCdbApiErrorMessage(err: AIError): string {
+export function getAIApiErrorMessage(err: AIError): string {
   if (err.response.data.details?.message) {
     return err.response.data.details.message;
   }
