@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing-components",
-  "version": "3.21.1",
+  "version": "3.22.0",
   "private": true,
   "description": "OVHcloud manager billing components",
   "repository": {

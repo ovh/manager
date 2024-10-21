@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.42.3...@ovh-ux/manager-vps@2.43.0) (2024-10-21)
+
+
+### Features
+
+* **manager-components:** add sshKey component ([#12994](https://github.com/ovh/manager/issues/12994)) ([2a9c014](https://github.com/ovh/manager/commit/2a9c014188cbb6911f903eba28a9600b028f311a))
+
+
+
+
+
 ## [2.42.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.42.2...@ovh-ux/manager-vps@2.42.3) (2024-08-29)
 
 

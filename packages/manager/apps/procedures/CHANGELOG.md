@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.3.0...@ovh-ux/manager-procedures-app@0.4.0) (2024-10-21)
+
+
+### Features
+
+* **procedures:** use manager locale detection instead of support one ([#13299](https://github.com/ovh/manager/issues/13299)) ([2a212cc](https://github.com/ovh/manager/commit/2a212ccc593c92c9cf56453bc54ebfba4a46e75c))
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.2.1...@ovh-ux/manager-procedures-app@0.3.0) (2024-10-07)
 
 
