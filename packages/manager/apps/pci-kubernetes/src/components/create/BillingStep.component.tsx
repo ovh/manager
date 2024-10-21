@@ -1,6 +1,7 @@
 import {
   OsdsCheckbox,
   OsdsCheckboxButton,
+  OsdsLink,
   OsdsMessage,
   OsdsText,
   OsdsTile,
@@ -18,7 +19,11 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import {
+  ActionBanner,
+  useCatalogPrice,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
 import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
 
 const checkedClass =
@@ -51,6 +56,9 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
     getFormattedMonthlyCatalogPrice,
     getFormattedHourlyCatalogPrice,
   } = useCatalogPrice(4, { exclVat: true });
+
+  const projectURL = useProjectUrl('public-cloud');
+  const savingsPlanUrl = `${projectURL}/savings-plan`;
 
   return (
     <>
@@ -101,23 +109,19 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
           >
             <div className="flex flex-col">
               <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {t(
-                  'kubernetes_add_billing_anti_affinity_coming_soon_message_title',
-                )}
-              </OsdsText>
-              <OsdsText
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                 size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
-                {t(
-                  'kubernetes_add_billing_anti_affinity_coming_soon_message_description',
-                )}
+                {t('kubernetes_add_billing_savings_plan_banner')}
               </OsdsText>
+              <OsdsLink
+                className="mt-2"
+                color={ODS_THEME_COLOR_INTENT.primary}
+                href={savingsPlanUrl}
+              >
+                {t('kubernetes_add_billing_savings_plan_cta')}
+              </OsdsLink>
             </div>
           </OsdsMessage>
         ) : (
