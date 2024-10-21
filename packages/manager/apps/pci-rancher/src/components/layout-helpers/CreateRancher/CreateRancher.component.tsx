@@ -324,10 +324,14 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             />
           ))}
         </div>
-
-        <div className="flex mt-8">
+        <div
+          className={clsx(
+            'flex mt-8',
+            isDesktop ? 'flex-row' : 'flex-col items-center',
+          )}
+        >
           <OsdsButton
-            className="mr-4"
+            className={isDesktop ? 'mr-4 w-auto' : 'w-full mb-2'}
             slot="actions"
             variant={ODS_BUTTON_VARIANT.stroked}
             color={ODS_THEME_COLOR_INTENT.primary}
@@ -336,6 +340,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             {t('cancel')}
           </OsdsButton>
           <OsdsButton
+            className={isDesktop ? 'w-auto' : 'w-full'}
             disabled={
               !isCreateRancherAllowed || isCreateRancherLoading || undefined
             }
