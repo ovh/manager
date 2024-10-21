@@ -15,6 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { CONFIGURATION_CONFIG } from './configuration.constants';
 
 interface LabelsFormProps {
   labelValue: ai.Label[];
@@ -99,7 +100,10 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
             data-testid="label-add-button"
             variant={'ghost'}
             onClick={form.handleSubmit(onSubmit)}
-            disabled={disabled || labelValue.length > 9}
+            disabled={
+              disabled ||
+              labelValue.length >= CONFIGURATION_CONFIG.maxLabelNumber
+            }
             className="mt-[1.875rem] text-primary rounded-full p-2 ml-2 hover:text-primary"
           >
             <PlusCircle />
@@ -135,6 +139,7 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
         <p data-testid="configured-labels">
           {t('numberOfConfiguredLabels', {
             count: labelValue.length,
+            max: CONFIGURATION_CONFIG.maxLabelNumber,
             context: `${labelValue.length}`,
           })}
         </p>

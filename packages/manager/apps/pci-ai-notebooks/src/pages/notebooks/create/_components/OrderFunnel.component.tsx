@@ -34,12 +34,15 @@ import {
 } from '@/components/ui/popover';
 import { Label } from '@/components/ui/label';
 import LabelsForm from '@/components/order/configuration/LabelsForm.component';
+import SshKeyForm from '@/components/order/configuration/SshKeyForm.component';
+import { SshKey } from '@/types/cloud/sshkey';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
   catalog: order.publicOrder.Catalog;
   frameworks: ai.capabilities.notebook.Framework[];
   editors: ai.capabilities.notebook.Editor[];
+  sshKeys: SshKey[];
 }
 
 const OrderFunnel = ({
@@ -47,6 +50,7 @@ const OrderFunnel = ({
   catalog,
   frameworks,
   editors,
+  sshKeys,
 }: OrderFunnelProps) => {
   const model = useOrderFunnel(regions, catalog, frameworks, editors);
   const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
@@ -321,6 +325,33 @@ const OrderFunnel = ({
                         labelValue={field.value}
                         onChange={(newLabel) =>
                           model.form.setValue('labels', newLabel)
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </section>
+            <section
+              id="options-sshkeys"
+              className="divide-y-[1rem] divide-transparent"
+            >
+              <FormField
+                control={model.form.control}
+                name="sshKey"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className={classNameLabel}>
+                      {t('fieldConfigurationSSHKeysLabel')}
+                    </FormLabel>
+                    <FormControl>
+                      <SshKeyForm
+                        {...field}
+                        configuredSshKeys={sshKeys}
+                        sshKeyList={field.value}
+                        onChange={(newSshKey) =>
+                          model.form.setValue('sshKey', newSshKey)
                         }
                       />
                     </FormControl>

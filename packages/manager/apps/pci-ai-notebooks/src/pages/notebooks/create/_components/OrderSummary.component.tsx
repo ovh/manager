@@ -13,6 +13,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { bytesConverter } from '@/lib/bytesHelper';
 import { humanizeFramework } from '@/lib/frameworkNameHelper';
 import * as ai from '@/types/cloud/project/ai';
+import { OrderSshKey } from '@/types/orderFunnel';
 
 interface OrderSummaryProps {
   order: {
@@ -25,6 +26,7 @@ interface OrderSummaryProps {
     notebookName: string;
     unsecureHttp: boolean;
     labels: ai.Label[];
+    sshKey: OrderSshKey[];
   };
   onSectionClicked?: (target: string) => void;
 }
@@ -276,6 +278,29 @@ const LabelsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   );
 };
 
+const SshKeysDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  return (
+    <div className="flex items-center gap-2">
+      <Button
+        data-testid="sshKeys-section-button"
+        variant={'link'}
+        size={'link'}
+        type="button"
+        onClick={() => onSectionClicked('options-sshkeys')}
+        className="font-bold"
+      >
+        {t('summaryFieldSSHLabel')}
+      </Button>
+      <span>
+        {t(`summaryFieldSshKey`, {
+          count: order.sshKey.length,
+          context: `${order.sshKey.length}`,
+        })}
+      </span>
+    </div>
+  );
+};
 const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="grid grid-cols-1 gap-2">
@@ -286,6 +311,7 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <NameDetails order={order} onSectionClicked={onSectionClicked} />
       <PrivacyDetails order={order} onSectionClicked={onSectionClicked} />
       <LabelsDetails order={order} onSectionClicked={onSectionClicked} />
+      <SshKeysDetails order={order} onSectionClicked={onSectionClicked} />
     </div>
   );
 };

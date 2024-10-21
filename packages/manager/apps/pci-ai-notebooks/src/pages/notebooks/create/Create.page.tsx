@@ -8,6 +8,7 @@ import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
 import { useGetFramework } from '@/hooks/api/ai/notebook/capabilities/useGetFramework.hook';
 import { useGetEditor } from '@/hooks/api/ai/notebook/capabilities/useGetEditor.hook';
 import { useGetDatastoresWithRegions } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
+import { useGetSshkey } from '@/hooks/api/sshkey/useGetSshkey.hook';
 
 export function breadcrumb() {
   return (
@@ -38,6 +39,10 @@ const Notebook = () => {
   const editorQuery = useGetEditor(projectId, {
     refetchOnWindowFocus: false,
   });
+
+  const sshKeyQuery = useGetSshkey(projectId, {
+    refetchOnWindowFocus: false,
+  });
   return (
     <>
       <div className="flex justify-between w-full items-center">
@@ -47,12 +52,14 @@ const Notebook = () => {
       {regionsQuery.isSuccess &&
         catalogQuery.isSuccess &&
         frameworkQuery.isSuccess &&
-        editorQuery.isSuccess && (
+        editorQuery.isSuccess &&
+        sshKeyQuery.isSuccess && (
           <OrderFunnel
             regions={regionsQuery.data}
             catalog={catalogQuery.data}
             frameworks={frameworkQuery.data}
             editors={editorQuery.data}
+            sshKeys={sshKeyQuery.data}
           />
         )}
     </>

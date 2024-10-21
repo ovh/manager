@@ -13,6 +13,7 @@ import { Flavor } from '@/types/orderFunnel';
 import { useGetDatastore } from '@/hooks/api/ai/datastore/useGetDatastore.hook';
 import { useGetDatastores } from '@/hooks/api/ai/datastore/useGetDatastores.hook';
 import { useGetDatastoreContainer } from '@/hooks/api/ai/datastore/useGetDatastoreContainer.hook';
+import { useGetStorage } from '@/hooks/api/storage/useGetStorage.hook';
 
 export function useOrderFunnel(
   regions: ai.capabilities.Region[],
@@ -41,12 +42,13 @@ export function useOrderFunnel(
         value: z.string(),
       }),
     ),
-    /*
+    sshKey: z.array(
+      z.object({
         name: z.string(),
-        ,
-        //sshKey: z.string(),
-        //volume
-        */
+        sshKey: z.string(),
+      }),
+    ),
+    // volume
   });
 
   const form = useForm({
@@ -59,13 +61,8 @@ export function useOrderFunnel(
       notebookName: generateName(),
       privacy: 'private',
       labels: [],
-      /*
-            
-            name: generateName(),
-            ,
-            //sshkey:
-            //volume:
-            */
+      sshKey: [],
+      // volume,
     },
   });
 
@@ -76,25 +73,18 @@ export function useOrderFunnel(
   const notebookName = form.watch('notebookName');
   const unsecureHttp = form.watch('privacy');
   const labels = form.watch('labels');
-  /*
-  
-    
-    const name = form.watch('name');
-    ;
-    */
+  const sshKey = form.watch('sshKey');
 
   const flavorData = useGetFlavor(projectId, region);
 
   /*
   const datastoreData = useGetDatastores(projectId, region);
   datastoreData.isSuccess && console.log(datastoreData.data);
-  console.log('myFirstS3');
-  const containerData = useGetDatastoreContainer(projectId, region, 'myFirstS3');
-  containerData.isSuccess && console.log(containerData.data); 
-
-  console.log('tests3ab');
-  const containerDataBis = useGetDatastoreContainer(projectId, region, "tests3ab");
-  containerData.isSuccess && console.log(containerData.data); 
+  console.log(region);
+  const containerData = useGetDatastoreContainer(projectId, region, 'testS3');
+  containerData.isSuccess && console.log(containerData.data);
+  const storageData = useGetStorage(projectId);
+  storageData.isSuccess && console.log(storageData.data);
   */
 
   const listFlavor: Flavor[] = useMemo(() => {
@@ -152,6 +142,7 @@ export function useOrderFunnel(
       notebookName,
       unsecureHttp: unsecureHttpObject,
       labels,
+      sshKey,
     },
   };
 }
