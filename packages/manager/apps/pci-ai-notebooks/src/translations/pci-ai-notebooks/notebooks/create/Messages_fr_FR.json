@@ -37,5 +37,10 @@
   "summaryFieldLabels_zero": "Aucun",
   "summaryFieldLabels_one": "{{count}} label configuré",
   "summaryFieldLabels_other": "{{count}} labels configurés",
+  "fieldConfigurationSSHKeysLabel": "Clés publiques SSH",
+  "summaryFieldSSHLabel": "Clés SSH:",
+  "summaryFieldSshKey_zero": "Aucune",
+  "summaryFieldSshKey_one": "{{count}} clé configurée",
+  "summaryFieldSshKey_other": "{{count}} clés configurées",
   "orderButton": "Commander"
 }
