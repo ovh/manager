@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.7.2...@ovh-ux/manager-zimbra-app@0.8.0) (2024-10-21)
+
+
+### Features
+
+* **zimbra:** zimbra-ga first batch ([#13007](https://github.com/ovh/manager/issues/13007)) ([2b27a4d](https://github.com/ovh/manager/commit/2b27a4d0abe486697ae916f428551e2d9d11fb7e))
+
+
+
+
+
 ## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.7.1...@ovh-ux/manager-zimbra-app@0.7.2) (2024-10-17)
 
 
