@@ -3,6 +3,10 @@ import {
   NOT_SUBSCRIBED,
   SERVER_OPTIONS,
   NUTANIX_SERVICE_TYPE,
+  IAM_RESOURCE_SERVICES_PREFIX,
+  IAM_ACTION_SERVICES,
+  IAM_ACTION_SUPPORT,
+  NUTANIX_AUTHORIZATION_TYPE,
 } from './constants';
 import Cluster from './cluster.class';
 
@@ -256,5 +260,36 @@ export default class NutanixService {
 
   getDedicatedInstallTemplateApiSchema() {
     return this.$http.get('/dedicated/server.json').then(({ data }) => data);
+  }
+
+  getUserResources() {
+    return this.$http.get('/engine/api/v2/iam/resource', {
+      serviceType: 'api',
+    });
+  }
+
+  async checkIAMAccountAuthorizations(ressources) {
+    const accountRessource = ressources.find((ressource) =>
+      ressource.urn.includes(IAM_RESOURCE_SERVICES_PREFIX),
+    );
+
+    const { data: authorizations } = await this.$http.post(
+      `/engine/api/v2/iam/resource/${encodeURI(
+        accountRessource.urn,
+      )}/authorization/check`,
+      { actions: [...IAM_ACTION_SERVICES, ...IAM_ACTION_SUPPORT] },
+      {
+        serviceType: 'api',
+      },
+    );
+
+    return {
+      [NUTANIX_AUTHORIZATION_TYPE.SERVICES]: IAM_ACTION_SERVICES.every(
+        (action) => authorizations.authorizedActions.includes(action),
+      ),
+      [NUTANIX_AUTHORIZATION_TYPE.SUPPORT]: IAM_ACTION_SUPPORT.every((action) =>
+        authorizations.authorizedActions.includes(action),
+      ),
+    };
   }
 }
