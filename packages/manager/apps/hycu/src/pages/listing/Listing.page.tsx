@@ -30,7 +30,7 @@ import {
   useFormattedDate,
 } from '@ovh-ux/manager-react-components/src/hooks/date/useFormattedDate';
 import HYCU_CONFIG from '@/hycu.config';
-import { IHycuDetails } from '@/type/hycu.details.interface';
+import { IHycuDetails } from '@/types/hycu.details.interface';
 
 import { urls, subRoutes } from '@/routes/routes.constant';
 import HycuActionMenu from './menu/HycuActionMenu.component';
