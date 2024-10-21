@@ -35,24 +35,26 @@ export function useResourcesIcebergV6<T = unknown>({
         sortReverse: sorting?.desc,
       }),
     getNextPageParam: (lastPage, _allPages, lastPageIndex) => {
-      if (lastPage.totalCount / pageSize > lastPageIndex) return null;
-      return lastPageIndex + 1;
+      if (lastPage.totalCount / pageSize > lastPageIndex) {
+        return lastPageIndex + 1;
+      }
+      return null;
     },
     select: (data) => {
       const pageIndex = data.pageParams[data.pageParams.length - 1];
       const { totalCount } = data.pages[0];
+
       return {
         data,
         pageIndex,
         totalCount,
         flattenData: data.pages.flatMap((page) => page.data),
-        hasNextPage: totalCount / pageSize > pageIndex,
       };
     },
   });
 
   return {
-    ...(dataSelected ?? { ...dataSelected, totalCount: 0, hasNextPage: false }),
+    ...(dataSelected ?? { ...dataSelected, totalCount: 0 }),
     ...rest,
     sorting,
     setSorting,
