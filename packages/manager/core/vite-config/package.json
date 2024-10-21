@@ -19,6 +19,7 @@
     "@vitejs/plugin-react": "^2.2.0",
     "express": "^4.17.1",
     "http-proxy-middleware": "^1.0.4",
+    "vite-plugin-compression": "^0.5.1",
     "vite-plugin-svgr": "^3.2.0",
     "yn": "^5.0.0"
   }
