@@ -22,6 +22,7 @@ export default {
     isOldCluster: '<',
     isPackTypeAvailable: '<',
     nodes: '<',
+    goToResiliate: '<',
   },
   controller,
   template,

@@ -8,6 +8,7 @@ export const SERVICE_WITH_AGORA_TERMINATION = [
   'logs-account',
   'logs-enterprise',
   'logs-enterprise-hds',
+  'nutanix',
 ];
 
 export default {

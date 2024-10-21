@@ -48,6 +48,10 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       goToRedeploy: /* @ngInject */ ($state) => () =>
         $state.go('nutanix.dashboard.general-info.redeploy'),
+      goToResiliate: /* @ngInject */ ($state) => (serviceName) =>
+        $state.go('nutanix.dashboard.general-info.resiliate', {
+          serviceName,
+        }),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('nutanix_dashboard_general_info'),
       isPackTypeAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
