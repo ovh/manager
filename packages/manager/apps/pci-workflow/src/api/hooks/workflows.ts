@@ -16,6 +16,8 @@ import {
 import { deleteWorkflow } from '@/api/data/workflow';
 import { paginateResults } from '@/helpers';
 
+export const WORKFLOW_TYPE = 'instance_backup';
+
 export type TWorkflow = {
   name: string;
   id: string;
@@ -137,6 +139,11 @@ export const sortWorkflows = (
   return data;
 };
 
+export type TPaginatedWorkflow = TWorkflow & {
+  type: string;
+  typeLabel: string;
+};
+
 export const usePaginatedWorkflows = (
   projectId: string,
   pagination: PaginationState,
@@ -144,6 +151,7 @@ export const usePaginatedWorkflows = (
   filters: Filter[] = [],
   searchQueries: string[] = [],
 ) => {
+  const { t } = useTranslation('listing');
   const { data: workflows, isPending: isWorkflowsPending } = useWorkflows(
     projectId,
   );
@@ -159,6 +167,8 @@ export const usePaginatedWorkflows = (
       data: useMemo(() => {
         const workflowsWithInstanceIds = workflows.map((workflow, i) => ({
           ...workflow,
+          type: WORKFLOW_TYPE,
+          typeLabel: t(`pci_workflow_type_${WORKFLOW_TYPE}_title`),
           instanceName: results[i].data?.name,
         }));
         return paginateResults<TWorkflow>(

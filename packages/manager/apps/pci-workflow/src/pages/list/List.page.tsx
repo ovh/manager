@@ -39,7 +39,10 @@ import {
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import Actions from '@/components/actions.component';
-import { TWorkflow, usePaginatedWorkflows } from '@/api/hooks/workflows';
+import {
+  TPaginatedWorkflow,
+  usePaginatedWorkflows,
+} from '@/api/hooks/workflows';
 import ExecutionStatusComponent from '@/components/execution-status.component';
 import HidePreloader from '@/core/HidePreloader';
 
@@ -64,17 +67,17 @@ export default function ListingPage() {
     searchQueries,
   );
 
-  const columns: DatagridColumn<TWorkflow>[] = [
+  const columns: DatagridColumn<TPaginatedWorkflow>[] = [
     {
       id: 'name',
-      cell: (workflow: TWorkflow) => (
+      cell: (workflow: TPaginatedWorkflow) => (
         <DataGridTextCell>{workflow.name}</DataGridTextCell>
       ),
       label: t('pci_workflow_name'),
     },
     {
       id: 'id',
-      cell: (workflow: TWorkflow) => (
+      cell: (workflow: TPaginatedWorkflow) => (
         <DataGridTextCell>{workflow.id}</DataGridTextCell>
       ),
       label: t('pci_workflow_id'),
@@ -82,16 +85,14 @@ export default function ListingPage() {
     },
     {
       id: 'type',
-      cell: () => (
-        <DataGridTextCell>
-          {t('pci_workflow_type_instance_backup_title')}
-        </DataGridTextCell>
+      cell: (workflow: TPaginatedWorkflow) => (
+        <DataGridTextCell>{workflow.typeLabel}</DataGridTextCell>
       ),
       label: t('pci_workflow_type'),
     },
     {
       id: 'instanceName',
-      cell: (workflow: TWorkflow) => (
+      cell: (workflow: TPaginatedWorkflow) => (
         <OsdsLink
           color={ODS_THEME_COLOR_INTENT.primary}
           href={`${projectUrl}/instances/${workflow.instanceId}`}
@@ -103,21 +104,21 @@ export default function ListingPage() {
     },
     {
       id: 'cron',
-      cell: (workflow: TWorkflow) => (
+      cell: (workflow: TPaginatedWorkflow) => (
         <DataGridTextCell>{workflow.cron}</DataGridTextCell>
       ),
       label: t('pci_workflow_schedule'),
     },
     {
       id: 'lastExecution',
-      cell: (workflow: TWorkflow) => (
+      cell: (workflow: TPaginatedWorkflow) => (
         <DataGridTextCell>{workflow.lastExecution}</DataGridTextCell>
       ),
       label: t('pci_workflow_last_execution'),
     },
     {
       id: 'lastExecutionStatus',
-      cell: (workflow: TWorkflow) =>
+      cell: (workflow: TPaginatedWorkflow) =>
         workflow.lastExecutionStatus ? (
           <ExecutionStatusComponent status={workflow.lastExecutionStatus} />
         ) : null,
@@ -126,7 +127,7 @@ export default function ListingPage() {
     },
     {
       id: 'actions',
-      cell: (workflow: TWorkflow) => (
+      cell: (workflow: TPaginatedWorkflow) => (
         <div className="min-w-16">
           <Actions workflow={workflow} />
         </div>
@@ -241,7 +242,7 @@ export default function ListingPage() {
                     comparators: FilterCategories.String,
                   },
                   {
-                    id: 'type',
+                    id: 'typeLabel',
                     label: t('pci_workflow_type'),
                     comparators: FilterCategories.String,
                   },
