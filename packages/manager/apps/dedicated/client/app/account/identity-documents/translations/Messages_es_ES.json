@@ -2,7 +2,7 @@
   "user_account_identity_documents": "Mis documentos de identidad",
   "user_account_identity_documents_title": "Es necesario verificar los documentos",
   "user_account_identity_documents_sub_title": "Añada sus documentos",
-  "user_account_identity_documents_intro": "Ha creado una cuenta. Para realizar un pedido en nuestro sitio web, es necesario realizar comprobaciones de acuerdo con la legislación india.",
+  "user_account_identity_documents_intro": "Nuestro equipo de soporte local le responderá en 24 horas*",
   "user_account_identity_documents_upload": "Añada sus documentos",
   "user_account_identity_documents_intro_others": "Si es un particular, los justificantes de identidad y de dirección a continuación son suficientes. En este caso, no es necesario presentar la declaración jurada ni el justificante de IVA.",
   "user_account_identity_documents_selection_file_format": "Formato: jpg, jpeg, pdf y png. El tamaño máximo del archivo para cada documento es de 10 MB.",
@@ -17,5 +17,6 @@
   "user_account_identity_documents_legal_info3": "Los documentos se conservarán durante 5 años una vez finalizado el contrato.",
   "user_account_identity_documents_verification_in_progress_info": "Nuestro equipo está analizando el tratamiento de sus documentos.",
   "user_account_identity_documents_verification_waiting_info": "Su solicitud ha sido analizada, pero es necesaria información adicional. Consulte su tíquet de soporte.",
-  "user_account_identity_documents_legal_info4": "Plazo de respuesta en horario laboral: de 9:00 a 18:00 IST (hora estándar de la India) de lunes a viernes, excepto festivos."
+  "user_account_identity_documents_legal_info4": "Tiempo de respuesta en horario laborable: de 9:00 a 18:00 IST (hora estándar de la India) de lunes a viernes, excepto festivos.",
+  "user_account_identity_documents_default_intro": "Si es usted un particular, los justificantes de identidad y de dirección son suficientes. No es necesario presentar la declaración jurada ni el justificante de IVA."
 }
