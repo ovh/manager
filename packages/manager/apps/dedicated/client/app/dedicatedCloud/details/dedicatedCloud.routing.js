@@ -298,7 +298,8 @@ export default /* @ngInject */ ($stateProvider) => {
                 NEW_PRODUCT_LINK.default
               : null,
           ),
-      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+      breadcrumb: /* @ngInject */ (serviceName, dedicatedCloudDescription) =>
+        dedicatedCloudDescription.description || serviceName,
     },
     component: 'ovhManagerPcc',
     reloadOnSearch: false,

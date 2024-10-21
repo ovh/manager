@@ -8,6 +8,7 @@
             <!-- nationalIdentificationNumber -->
             <oui-field
                 data-label="{{ 'sign_up_activity_field_nationalIdentificationNumber' | translate}}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.mandatory }"
             >
                 <input
                     type="text"
@@ -30,6 +31,7 @@
             <!-- organisation -->
             <oui-field
                 data-label="{{ 'sign_up_activity_field_organisation_' + $ctrl.signUpFormCtrl.model.legalform | translateDefault:'sign_up_activity_field_organisation' }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.organisation.mandatory }"
             >
                 <input
                     type="text"
@@ -46,7 +48,10 @@
 
         <div class="col-lg-6" data-ng-if="$ctrl.signUpFormCtrl.rules.vat">
             <!-- vat -->
-            <oui-field data-label="{{ $ctrl.getVatFieldLabel() }}">
+            <oui-field
+                data-label="{{ $ctrl.getVatFieldLabel() }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.vat.mandatory }"
+            >
                 <input
                     type="text"
                     class="oui-input"
@@ -68,6 +73,7 @@
             <!-- corporationType -->
             <oui-field
                 data-label="{{ 'sign_up_activity_field_corporationType' | translate}}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.corporationType.mandatory }"
             >
                 <label class="oui-select">
                     <select
@@ -98,6 +104,7 @@
             <oui-field
                 data-label="{{ 'sign_up_activity_field_companyNationalIdentificationNumber_' + $ctrl.signUpFormCtrl.me.ovhSubsidiary.toLowerCase() | translateDefault:'sign_up_activity_field_companyNationalIdentificationNumber'}}"
                 data-label-popover="{{ 'sign_up_activity_field_companyNationalIdentificationNumber_' + $ctrl.signUpFormCtrl.me.ovhSubsidiary.toLowerCase() + '_tooltip' | translate}}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.mandatory }"
             >
                 <input
                     type="text"
@@ -120,6 +127,7 @@
             <!-- italianSDI -->
             <oui-field
                 data-label="{{ 'sign_up_activity_field_italian_sdi' | translate}}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.italianSDI.mandatory }"
             >
                 <input
                     type="text"
@@ -173,6 +181,7 @@
                 <div class="row">
                     <oui-field
                         class="col-lg-6"
+                        data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.organisation.mandatory }"
                         data-label="{{ 'siret_manual_company_name' | translate }}"
                     >
                         <input

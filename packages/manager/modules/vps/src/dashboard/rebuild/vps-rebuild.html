@@ -25,21 +25,13 @@
             </oui-select>
         </oui-field>
 
-        <oui-field
-            data-label="{{:: 'vps_configuration_reinstall_step1_select_ssh_key' | translate }}"
-            data-label-popover="{{:: 'vps_configuration_reinstall_step1_select_ssh_key_help' | translate }}"
+        <ovh-manager-ssh-key-selector
+            data-public-key="$ctrl.vpsOptions.publicSshKey"
+            data-required="false"
         >
-            <oui-select
-                id="sshKey"
-                name="sshKey"
-                data-items="$ctrl.sshKeys"
-                data-match="keyName"
-                data-model="$ctrl.vpsOptions.sshKey"
-                data-on-change="$ctrl.sshKey = modelValue.key"
-            ></oui-select>
-        </oui-field>
+        </ovh-manager-ssh-key-selector>
 
-        <oui-field data-ng-if="$ctrl.vpsOptions.sshKey">
+        <oui-field data-ng-if="$ctrl.vpsOptions.publicSshKey">
             <oui-checkbox
                 id="sendPassword"
                 name="sendPassword"

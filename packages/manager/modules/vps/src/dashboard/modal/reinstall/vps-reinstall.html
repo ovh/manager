@@ -114,40 +114,16 @@
         <div
             data-ng-if="$ctrl.template.value && ($ctrl.template.language || $ctrl.template.value.availableLanguage.length === 0) && !$ctrl.constructor.isWindows($ctrl.template.value)"
         >
-            <label
-                for="sshKey"
-                class="oui-label"
-                data-translate="vps_configuration_reinstall_step1_select_ssh_key"
-                data-oui-tooltip="{{::'vps_configuration_reinstall_step1_select_ssh_key_help' | translate}}"
-            ></label>
-            <div class="oui-select">
-                <!-- we need style overflow until something is set to handle multiple select-->
-                <select
-                    name="sshkey"
-                    id="sshKey"
-                    class="oui-select__input ssh-keys"
-                    size="8"
-                    multiple
-                    data-ng-options="sshKey for sshKey in $ctrl.userSshKeys | orderBy track by sshKey"
-                    data-ng-model="$ctrl.template.sshKeys"
-                    data-ng-if="$ctrl.userSshKeys.length > 0"
-                >
-                    <option value disabled selected></option>
-                </select>
-            </div>
-            <span
-                data-ng-if="!$ctrl.userSshKeys || $ctrl.userSshKeys.count === 0"
-                data-translate="vps_configuration_reinstall_step1_select_ssh_key_no"
-            ></span>
-            <span
-                data-ng-if="$ctrl.template.sshKeys && $ctrl.template.sshKeys.length > 0"
-                data-translate="vps_configuration_reinstall_step1_unselect_ssh_key"
-            ></span>
+            <ovh-manager-ssh-key-selector
+                data-public-key="$ctrl.template.publicSshKey"
+                data-required="false"
+            >
+            </ovh-manager-ssh-key-selector>
         </div>
 
         <!-- send password -->
         <oui-checkbox
-            data-ng-if="$ctrl.template.sshKeys && $ctrl.template.sshKeys.length > 0 && !$ctrl.constructor.isWindows($ctrl.template.value)"
+            data-ng-if="$ctrl.template.publicSshKey && !$ctrl.constructor.isWindows($ctrl.template.value)"
             data-description="{{ 'vps_configuration_reinstall_step2_alert2' | translate }}"
             id="sendPassword"
             name="sendPassword"

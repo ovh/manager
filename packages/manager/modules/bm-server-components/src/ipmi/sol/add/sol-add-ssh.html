@@ -6,53 +6,17 @@
         data-wizard-title="::'server_configuration_ssh_sol_add_key' | translate"
         data-wizard-confirm-button-text=":: 'server_configuration_ssh_sol_start' | translate"
     >
-        <div data-wizard-step data-wizard-step-valid="$ctrl.isKeyValid()">
+        <div data-wizard-step data-wizard-step-valid="$ctrl.ssh.publicKey">
             <h2
                 class="wizard-title-sub"
                 data-translate="server_configuration_ssh_sol_add_key_description"
             ></h2>
 
             <form name="solSshSession">
-                <oui-field
-                    class="fix-help-block"
-                    data-ng-class="{'oui-field_error': solSshSession.solSshKey.$invalid && solSshSession.$dirty}"
-                >
-                    <div
-                        class="mt-3 float-right sshkey-switch"
-                        data-ng-model="model.keyIsValid"
-                        data-sshkey-switch
-                        data-sshkey-switch-key="{{$ctrl.ssh.publicKey}}"
-                    ></div>
-
-                    <textarea
-                        class="mb-3 oui-input form-control"
-                        name="solSshKey"
-                        id="solSshKey"
-                        placeholder="{{:: 'server_configuration_ssh_sol_input_placeholder' | translate:{t0: $ctrl.ssh.inputRules.placeholder} }}"
-                        data-ng-model="$ctrl.ssh.publicKey"
-                        data-ng-pattern="$ctrl.ssh.inputRules.pattern"
-                        data-ng-trim="true"
-                        spellcheck="false"
-                        autocomplete="off"
-                        autocapitalize="off"
-                        autocorrect="off"
-                        rows="{{ $ctrl.ssh.inputRules.rows }}"
-                        required
-                    >
-                    </textarea>
-                    <span
-                        class="help-block"
-                        role="alert"
-                        data-ng-if="solSshSession.solSshKey.$invalid"
-                    >
-                        <span
-                            class="oui-field__error"
-                            data-ng-repeat="(error, value) in solSshSession.solSshKey.$error"
-                            data-ng-bind="('server_configuration_ssh_sol_input_bad_' + error ) | translate"
-                        >
-                        </span>
-                    </span>
-                </oui-field>
+                <ovh-manager-ssh-key-selector
+                    data-public-key="$ctrl.ssh.publicKey"
+                    data-required="true"
+                ></ovh-manager-ssh-key-selector>
             </form>
         </div>
     </div>

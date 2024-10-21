@@ -27,6 +27,10 @@ export const ACTIVATION_STATUS = {
     name: 'enabled',
     type: 'success',
   },
+  enabling: {
+    name: 'enabling',
+    type: 'info',
+  },
   inError: {
     name: 'inError',
     type: 'error',
