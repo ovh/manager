@@ -416,23 +416,3 @@ describe('deleteSubscription', () => {
     ).rejects.toThrow('Network Error');
   });
 });
-
-describe('updateAdmissionPlugin', () => {
-  it('calls v6.put with the correct parameters', async () => {
-    const projectId = 'project-id';
-    const kubeId = 'kube-id';
-    const customization = {
-      apiServer: { admissionPlugins: { enabled: [], disabled: [] } },
-    };
-
-    const expectedUrl = `/cloud/project/${projectId}/kube/${kubeId}/customization`;
-    vi.mocked(v6.put).mockResolvedValue({ customization });
-    await ApiKubernetesModule.updateAdmissionPlugin({
-      projectId,
-      kubeId,
-      customization,
-    });
-
-    expect(v6.put).toHaveBeenCalledWith(expectedUrl, customization);
-  });
-});

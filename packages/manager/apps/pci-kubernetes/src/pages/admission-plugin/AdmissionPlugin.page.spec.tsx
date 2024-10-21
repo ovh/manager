@@ -5,7 +5,7 @@ import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { wrapper } from '@/wrapperRenders';
 
 const navigate = vi.fn();
-const plugState = vi.fn();
+
 const updateAdmissionPlugin = vi.fn();
 
 vi.mock('@/api/hooks/useKubernetes', () => ({
@@ -18,7 +18,6 @@ vi.mock('react-router-dom', () => ({
   useParams: () => ({}),
 }));
 
-vi.mock('../hooks/usePluginState', () => plugState);
 vi.mock('@/api/hooks/useAdmissionPlugin/useAdmissionPlugin', () => ({
   useUpdateAdmissionPlugin: () => ({
     updateAdmissionPlugins: updateAdmissionPlugin,
@@ -28,7 +27,7 @@ vi.mock('@/api/hooks/useAdmissionPlugin/useAdmissionPlugin', () => ({
 describe('AdmissionPluginsModal', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    plugState.mockReturnValue(() => 'enabled');
+
     updateAdmissionPlugin.mockReturnValue({
       updateAdmissionPlugins: vi.fn(),
       isPending: false,
@@ -53,6 +52,13 @@ describe('AdmissionPluginsModal', () => {
             admissionPlugins: { enabled: ['NodeRestrictions'], disabled: [] },
           },
         },
+        plugins: [
+          {
+            name: 'NodeRestrictions',
+            state: 'enabled',
+            tip: 'node_restrictions_tip',
+          },
+        ],
       },
       isPending: false,
     });
@@ -74,6 +80,13 @@ describe('AdmissionPluginsModal', () => {
             admissionPlugins: { enabled: ['AlwaysPullImages'], disabled: [] },
           },
         },
+        plugins: [
+          {
+            name: 'AlwaysPullImages',
+            state: 'enabled',
+            tip: 'always_pull_images_tip',
+          },
+        ],
       },
       isPending: false,
     });
@@ -95,6 +108,24 @@ describe('AdmissionPluginsModal', () => {
   });
 
   it('handles save button click', () => {
+    (useKubernetesModule.useKubernetesCluster as Mock).mockReturnValue({
+      data: {
+        customization: {
+          apiServer: {
+            admissionPlugins: { enabled: [], disabled: [] },
+          },
+        },
+        plugins: [
+          {
+            name: 'AlwaysPullImages',
+            state: 'enabled',
+            tip: 'always_pull_images_tip',
+          },
+        ],
+      },
+      isPending: false,
+    });
+
     render(<AdmissionPluginsModal />, { wrapper });
     const saveButton = screen.getByText('common:common_save_button_label');
     fireEvent.click(saveButton);

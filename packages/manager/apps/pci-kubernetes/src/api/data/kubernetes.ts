@@ -324,16 +324,3 @@ export async function editNetwork(
   }
   return Promise.all(todo);
 }
-
-export const updateAdmissionPlugin = ({
-  projectId,
-  kubeId,
-  customization,
-}: {
-  projectId: string;
-  kubeId: string;
-  customization: TKube['customization'];
-}) => {
-  const url = `/cloud/project/${projectId}/kube/${kubeId}/customization`;
-  return v6.put(url, customization);
-};

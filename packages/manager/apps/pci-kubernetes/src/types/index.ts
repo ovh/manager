@@ -1,3 +1,5 @@
+import { pluginData } from '@/api/data/plugins';
+
 export type TKube = {
   id: string;
   region: string;
@@ -21,6 +23,7 @@ export type TKube = {
   auditLogsSubscribed: boolean;
   privateNetworkConfiguration: TNetworkConfiguration;
   isClusterReady: boolean;
+  plugins: typeof pluginData;
 };
 
 export type TAdmissionPlugin = {

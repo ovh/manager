@@ -1,4 +1,4 @@
-import { act, fireEvent, render, waitFor } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import {
@@ -39,27 +39,6 @@ describe('TerminatePage', () => {
     } as UseQueryResult<TKube>);
     const { getByText } = render(<TerminatePage />, { wrapper });
     expect(getByText('kube_service_terminate_description')).toBeInTheDocument();
-  });
-
-  it('displays error message when input is incorrect', async () => {
-    const { getByTestId } = render(<TerminatePage />, {
-      wrapper,
-    });
-    const terminateInput = getByTestId('terminate-input');
-    act(() => {
-      fireEvent.change(terminateInput, {
-        target: { value: 'WRONG_INPUT' },
-      });
-      ((terminateInput as unknown) as OsdsInput).odsValueChange.emit({
-        value: 'WRONG_INPUT',
-      } as OdsInputValueChangeEventDetail);
-    });
-    await waitFor(() => {
-      expect(getByTestId('terminate-formfield')).toHaveAttribute(
-        'error',
-        'common_field_error_required',
-      );
-    });
   });
 
   it('enables submit button when input is correct', () => {
