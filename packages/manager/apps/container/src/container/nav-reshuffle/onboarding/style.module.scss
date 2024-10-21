@@ -17,7 +17,40 @@
 }
 
 .welcomePopover {
-  max-width: 22.5rem !important;
+  width: 22.5rem !important;
+
+  min-width: unset !important;
+  max-width: unset !important;
+
   top: 3rem !important;
   right: 1.875rem !important;
+
+  .welcomePopoverBody {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .welcomePopoverFooter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+    min-width: 100%;
+  }
+}
+
+@media (max-width: $device-breakpoint-tablet-max-width) {
+  .welcomePopover {
+    right: 0 !important;
+
+    .welcomePopoverFooter {
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
 }
