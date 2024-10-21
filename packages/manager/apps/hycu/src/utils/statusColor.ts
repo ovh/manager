@@ -1,5 +1,5 @@
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { LicenseStatus } from '@/type/hycu.details.interface';
+import { LicenseStatus } from '@/types/hycu.details.interface';
 
 /* v8 ignore start */
 export const getStatusColor = (
