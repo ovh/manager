@@ -2,7 +2,7 @@ import { screen, waitFor } from '@testing-library/react';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import '@testing-library/jest-dom';
 import { labels } from '@/utils/tests/init.i18n';
-import { LicenseStatus } from '@/type/hycu.details.interface';
+import { LicenseStatus } from '@/types/hycu.details.interface';
 
 describe('License Hycu general informations tile for dashboard test suite', () => {
   it('should show informations of services', async () => {
