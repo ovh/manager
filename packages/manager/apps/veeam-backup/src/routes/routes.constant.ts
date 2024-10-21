@@ -5,7 +5,6 @@ export const urls = {
   listing: '/',
   dashboard: '/:id',
   deleteVeeam: '/delete/:id',
-  editVeeamDisplayName: '/edit-name/:id',
   deleteVeeamFromDashboard: '/:id/delete',
   editVeeamDisplayNameFromDashboard: '/:id/edit-name',
 };

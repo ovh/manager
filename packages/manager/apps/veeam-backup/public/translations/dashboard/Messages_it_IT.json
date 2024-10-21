@@ -19,6 +19,7 @@
   "automatic_renew": "Rinnovo automatico",
   "manual_renew": "Rinnovo manuale",
   "administrator_contact": "{{code}} Amministratore",
-  "billing_contact": "{{code}} Fattura",
-  "technical_contact": "{{code}} Tecnico"
+  "billing_contact": "{{code}} Fatturazione",
+  "technical_contact": "{{code}} Tecnico",
+  "location": "Localizzazione"
 }

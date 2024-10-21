@@ -1,15 +1,19 @@
 {
   "autorenew_agora_terminate_service_OKMS_RESOURCE": "Résilier mon KMS",
   "autorenew_agora_terminate_service_VRACK_SERVICES_RESOURCE": "Résilier vRack Services",
+  "autorenew_agora_terminate_service_VMWARE_CLOUD_DIRECTOR_BACKUP": "Résilier Managed Veeam for VCD",
   "autorenew_agora_terminate_service_warning_OKMS_RESOURCE": "Veuillez confirmer la résiliation de votre KMS",
   "autorenew_agora_terminate_service_warning_VRACK_SERVICES_RESOURCE": "Veuillez confirmer la résiliation de vRAck Services",
+  "autorenew_agora_terminate_service_warning_VMWARE_CLOUD_DIRECTOR_BACKUP": "Veuillez confirmer la résiliation de Managed Veeam for VCD",
   "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "Votre demande de résiliation de votre KMS a été prise en compte. Un e-mail contenant la procédure vous a été envoyé.",
   "autorenew_agora_terminate_service_success_VRACK_SERVICES_RESOURCE": "Votre demande de résiliation de vRAck Services a été prise en compte. Un e-mail contenant la procédure vous a été envoyé.",
+  "autorenew_agora_terminate_service_success_VMWARE_CLOUD_DIRECTOR_BACKUP": "Votre demande de résiliation de Managed Veeam for VCD a été prise en compte. Un e-mail contenant la procédure vous a été envoyé.",
   "autorenew_agora_terminate_service_error_OKMS_RESOURCE": "Une erreur est survenue lors de la demande de résiliation de votre KMS. {{error}}",
   "autorenew_agora_terminate_service_DBAAS_LOGS": "Résilier mon LDP",
   "autorenew_agora_terminate_service_warning_DBAAS_LOGS": "Veuillez confirmer la résiliation de votre LDP",
   "autorenew_agora_terminate_service_success_DBAAS_LOGS": "Votre demande de résiliation de votre LDP a été prise en compte. Un e-mail contenant la procédure vous a été envoyé.",
   "autorenew_agora_terminate_service_error_DBAAS_LOGS": "Une erreur est survenue lors de la demande de résiliation de votre LDP. {{error}}",
   "autorenew_agora_terminate_service_error_VRACK_SERVICES_RESOURCE": "Une erreur est survenue lors de la demande de résiliation de vRack Services. {{error}}",
+  "autorenew_agora_terminate_service_error_VMWARE_CLOUD_DIRECTOR_BACKUP": "Une erreur est survenue lors de la demande de résiliation de Managed Veeam for VCD. {{error}}",
   "autorenew_agora_terminate_service_confirm_input": "Entrez \"TERMINATE\" dans le champ ci-dessous pour confirmer"
 }

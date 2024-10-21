@@ -1,27 +1,45 @@
 import { useQuery, useQueries } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
-import { getVcdOrganization, getVmwareCloudDirectorBackup } from '../api';
+import {
+  organizationApiRoute,
+  getVcdOrganization,
+  getVmwareCloudDirectorBackup,
+} from '../api';
 import {
   BackupStatus,
   VCDOrganization,
   VCDOrganizationWithBackupStatus,
+  VeeamBackupWithIam,
 } from '../vcd.type';
+import { getRegionNameFromAzName } from './useVeeamBackup';
 
-export const getOrganizationIdFromBackupId = (backupId = '') =>
-  backupId.split('-veeam-backup')[0];
+const backupSuffix = '-veeam-backup';
+
+export const getOrganizationUuid = (organization?: VCDOrganization) =>
+  organization?.id.split(
+    `${organization?.currentState.region.toLowerCase()}-`,
+  )[1];
+
+export const getAvailabilityZone = (organization?: VCDOrganization) =>
+  `${organization?.currentState?.region.toLowerCase()}-a`;
+
+export const getOrganizationIdFromBackup = (backup?: VeeamBackupWithIam) =>
+  `org-${getRegionNameFromAzName(backup?.currentState?.azName)}-${
+    backup?.id.split(backupSuffix)[0]
+  }`;
 
 export const getOrganizationDisplayName = (organization?: VCDOrganization) =>
   organization?.currentState?.fullName || organization?.currentState?.name;
 
-export const getBackupIdFromOrganizationId = (organizationId: string) =>
-  `${organizationId}-veeam-backup`;
+export const getBackupIdFromOrganization = (organization: VCDOrganization) =>
+  `${getOrganizationUuid(organization)}${backupSuffix}`;
 
-export const organizationListQueryKey = ['/vmwareCloudDirector/organization'];
+export const organizationListQueryKey = [organizationApiRoute];
 
 export const useOrganizationList = ({ pageSize }: { pageSize?: number }) =>
   useResourcesIcebergV2<VCDOrganization>({
-    route: '/vmwareCloudDirector/organization',
+    route: organizationApiRoute,
     queryKey: organizationListQueryKey,
     pageSize,
   });
@@ -48,7 +66,7 @@ export const useOrganizationWithBackupStatusList = ({
         queryFn: async () => {
           try {
             await getVmwareCloudDirectorBackup(
-              getBackupIdFromOrganizationId(org.id),
+              getBackupIdFromOrganization(org),
             );
             return { organization: org.id, backupStatus: BackupStatus.active };
           } catch (err) {
@@ -77,6 +95,6 @@ export const useOrganizationWithBackupStatusList = ({
 
 export const useOrganization = (organizationId: string) =>
   useQuery<ApiResponse<VCDOrganization>, ApiError>({
-    queryKey: ['/vmwareCloudDirector/organization', organizationId],
+    queryKey: [organizationApiRoute, organizationId],
     queryFn: () => getVcdOrganization(organizationId),
   });

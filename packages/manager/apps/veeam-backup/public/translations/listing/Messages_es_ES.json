@@ -9,5 +9,6 @@
   "createdat_cell": "Fecha de creación",
   "edit_name_action": "Modificar el nombre",
   "delete_action": "Dar de baja",
-  "load_more_button": "Cargar las siguientes copias de seguridad"
+  "load_more_button": "Cargar las siguientes copias de seguridad",
+  "location_cell": "Localización"
 }

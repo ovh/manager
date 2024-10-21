@@ -4,7 +4,11 @@ import {
   OsdsSpinner,
   OsdsSkeleton,
 } from '@ovhcloud/ods-components/react';
-import { ODS_SKELETON_SIZE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_CHIP_SIZE,
+  ODS_SKELETON_SIZE,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 export const Loading = (props: React.HTMLAttributes<HTMLDivElement>) => (
@@ -14,7 +18,12 @@ export const Loading = (props: React.HTMLAttributes<HTMLDivElement>) => (
 );
 
 export const LoadingChip = ({ className }: { className?: string }) => (
-  <OsdsChip className={className} inline color={ODS_THEME_COLOR_INTENT.default}>
+  <OsdsChip
+    className={className}
+    inline
+    color={ODS_THEME_COLOR_INTENT.default}
+    size={ODS_CHIP_SIZE.sm}
+  >
     <OsdsSkeleton inline size={ODS_SKELETON_SIZE.xs} />
   </OsdsChip>
 );

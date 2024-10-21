@@ -1,8 +1,0 @@
-{
-  "manager_error_page_title": "Oops...!",
-  "manager_error_page_button_cancel": "Abbrechen",
-  "manager_error_page_detail_code": "Fehlercode: ",
-  "manager_error_page_action_reload_label": "Erneut versuchen",
-  "manager_error_page_action_home_label": "Zurück zur Startseite",
-  "manager_error_page_default": "Beim Laden der Seite ist ein Fehler aufgetreten."
-}

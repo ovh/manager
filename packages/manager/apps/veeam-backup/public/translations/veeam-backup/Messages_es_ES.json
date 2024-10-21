@@ -2,7 +2,7 @@
   "hpc-crumb": "Hosted Private Cloud",
   "order-veeam": "Contratar",
   "more_info_billing_modalities": "Más información sobre las modalidades de facturación.",
-  "update_display_name_modal_headline": "Modificar el nombre de la copia de seguridad {{id}}",
+  "update_display_name_modal_headline": "Editar el nombre",
   "update_display_name_input_label": "Nombre de la copia de seguridad",
   "update_display_name_description": "",
   "update_display_name_pattern_message": "El nombre debe contener un máximo de 32 caracteres",
@@ -10,5 +10,12 @@
   "coming_soon": "Próximamente",
   "unknown_date": "No disponible",
   "no_organization_message": "Actualmente no tiene ningún servicio VMware Cloud Director. Si desea más información sobre nuestro producto Managed VMware Cloud Director, consulte nuestra página",
-  "no_organization_link": "Consulte la página"
+  "no_organization_link": "Consulte la página",
+  "update_display_name_confirm_button": "Modificar",
+  "status-READY": "Suscrito",
+  "status-CREATING": "En proceso de activación",
+  "status-DISABLING": "Desactivando...",
+  "status-UPDATING": "Modificando...",
+  "status-DISABLED": "No suscrito",
+  "status-REMOVED": "No suscrito"
 }

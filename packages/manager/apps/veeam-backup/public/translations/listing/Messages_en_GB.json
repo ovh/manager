@@ -9,5 +9,6 @@
   "createdat_cell": "Creation date",
   "edit_name_action": "Change name",
   "delete_action": "Cancel",
-  "load_more_button": "Load the following backups"
+  "load_more_button": "Load the following backups",
+  "location_cell": "Location"
 }

@@ -4,6 +4,8 @@ import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { VeeamBackupWithIam } from '../vcd.type';
 import { getVmwareCloudDirectorBackup } from '../api';
 
+export const getRegionNameFromAzName = (azName = '') => azName?.split('-a')[0];
+
 export const veeamBackupListQueryKey = ['/vmwareCloudDirector/backup'];
 
 export const useVeeamBackupList = ({ pageSize }: { pageSize?: number }) =>
