@@ -33,19 +33,6 @@ export const routes: any[] = [
         },
         children: [
           {
-            id: 'edit-veeam',
-            path: urls.editVeeamDisplayName,
-            ...lazyRouteConfig(() =>
-              import('@/pages/edit-name/EditVeeamBackupDisplayNameModal.page'),
-            ),
-            handle: {
-              tracking: {
-                pageName: 'edit_veeam-backup',
-                pageType: PageType.popup,
-              },
-            },
-          },
-          {
             id: 'delete-veeam',
             path: urls.deleteVeeam,
             ...lazyRouteConfig(() =>

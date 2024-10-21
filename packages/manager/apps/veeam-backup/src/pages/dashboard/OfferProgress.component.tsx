@@ -6,6 +6,7 @@ import {
   OsdsTooltip,
   OsdsTooltipContent,
 } from '@ovhcloud/ods-components/react';
+import { Description } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
@@ -43,7 +44,7 @@ export const OfferProgress: React.FC<VeeamBackupOffer> = ({
             size={ODS_ICON_SIZE.xs}
           />
           <OsdsTooltipContent slot="tooltip-content">
-            {t(`${name}_tooltip`)}
+            <Description>{t(`${name}_tooltip`)}</Description>
           </OsdsTooltipContent>
         </OsdsTooltip>
       </div>

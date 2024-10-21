@@ -8,6 +8,7 @@
   "region_cell": "Region",
   "createdat_cell": "Created on",
   "edit_name_action": "Change name",
-  "delete_action": "Terminate",
-  "load_more_button": "Load the following backups"
+  "delete_action": "Cancel",
+  "load_more_button": "Load the following backups",
+  "location_cell": "Location"
 }

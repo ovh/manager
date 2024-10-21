@@ -11,11 +11,12 @@
   "all_organization_backed_up_message_fetch_next_page": "All VCD organisations are already linked to the Managed VEEAM for VCD service. Please upload more organisations.",
   "all_organization_backed_up_message": "All of your VCD organisations are already linked to the Managed VEEAM for VCD service. Go to the list of your services.",
   "name_cell": "Name",
-  "region_cell": "Location",
+  "region_cell": "Region",
   "description_cell": "Description",
   "active_status": "Enabled",
   "none_status": "None",
   "error_status": "Error",
   "cancel_button": "Cancel",
-  "order_button": "Order"
+  "order_button": "Order now",
+  "location_cell": "Location"
 }

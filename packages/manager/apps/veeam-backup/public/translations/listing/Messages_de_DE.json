@@ -9,5 +9,6 @@
   "createdat_cell": "Erstellungsdatum",
   "edit_name_action": "Namen ändern",
   "delete_action": "Kündigen",
-  "load_more_button": "Weitere Backups laden"
+  "load_more_button": "Weitere Backups laden",
+  "location_cell": "Standort"
 }

@@ -167,6 +167,10 @@ const productListingPages = {
     application: 'hpc-vmware-managed-vcd',
     hash: '#',
   },
+  VMWARE_CLOUD_DIRECTOR_BACKUP: {
+    application: 'veeam-backup',
+    hash: '#/',
+  },
   VPS: {
     application: 'dedicated',
     hash: '#/vps',

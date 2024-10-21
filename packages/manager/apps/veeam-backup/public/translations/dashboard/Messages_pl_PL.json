@@ -20,5 +20,6 @@
   "manual_renew": "Odnowienie ręczne",
   "administrator_contact": "{{code}} Kontakt administracyjny",
   "billing_contact": "{{code}} Kontakt księgowy",
-  "technical_contact": "{{code}} Kontakt techniczny"
+  "technical_contact": "{{code}} Kontakt techniczny",
+  "location": "Lokalizacja"
 }

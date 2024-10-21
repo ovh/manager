@@ -1,4 +1,5 @@
 import i18next, { i18n } from 'i18next';
+import deleteModal from '@ovh-ux/manager-react-components/src/components/templates/delete-modal/translations/Messages_fr_FR.json';
 import common from '../../public/translations/veeam-backup/Messages_fr_FR.json';
 import orderVeeam from '../../public/translations/order-veeam/Messages_fr_FR.json';
 import listing from '../../public/translations/listing/Messages_fr_FR.json';
@@ -28,6 +29,7 @@ function addTranslations() {
     .addResources(defaultLocale, 'onboarding', onboarding)
     .addResources(defaultLocale, 'delete-veeam', deleteVeeam)
     .addResources(defaultLocale, 'error', error)
+    .addResources(defaultLocale, 'delete-modal', deleteModal)
     .use({
       type: 'postProcessor',
       name: 'normalize',
@@ -67,4 +69,5 @@ export const labels = {
   deleteVeeam,
   listing,
   error,
+  deleteModal,
 };
