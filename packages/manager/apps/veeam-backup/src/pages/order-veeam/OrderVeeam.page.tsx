@@ -37,7 +37,12 @@ export default function OrderVeeamPage() {
       <Description>{t('select_offer_description')}</Description>
       <BillingLink className="mb-8" />
       <DashboardGridLayout>
-        <OsdsTile hoverable checked inline className="w-full h-full flex-col">
+        <OsdsTile
+          color={ODS_THEME_COLOR_INTENT.primary}
+          checked
+          inline
+          className="w-full h-full flex-col"
+        >
           <CommonTitle
             className="block mb-5"
             typoSize={ODS_THEME_TYPOGRAPHY_SIZE._400}

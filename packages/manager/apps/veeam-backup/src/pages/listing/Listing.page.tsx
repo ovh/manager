@@ -21,11 +21,12 @@ import {
   OvhRefCell,
   RegionCell,
   CreatedAtCell,
-  StatusCell,
   OrganizationCell,
+  LocationCell,
 } from './DatagridCell.component';
-import { productFullName } from '@/veeam-backup.config';
+import { productName } from '@/veeam-backup.config';
 import { Loading } from '@/components/Loading/Loading';
+import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
 
 export default function Listing() {
   const { t } = useTranslation('listing');
@@ -52,7 +53,7 @@ export default function Listing() {
       id: 'status',
       label: t('status_cell'),
       isSortable: false,
-      cell: StatusCell,
+      cell: BackupStatusBadge,
     },
     {
       id: 'ovhref',
@@ -65,6 +66,12 @@ export default function Listing() {
       label: t('vcdorg_cell'),
       isSortable: false,
       cell: OrganizationCell,
+    },
+    {
+      id: 'location',
+      label: t('location_cell'),
+      isSortable: false,
+      cell: LocationCell,
     },
     {
       id: 'region',
@@ -88,7 +95,7 @@ export default function Listing() {
 
   return (
     <RedirectionGuard
-      isLoading={isLoading || !flattenData}
+      isLoading={isLoading || (!flattenData && !isError)}
       condition={status === 'success' && data?.pages[0].data.length === 0}
       route={urls.onboarding}
       isError={isError}
@@ -97,7 +104,7 @@ export default function Listing() {
       <BaseLayout
         breadcrumb={<Breadcrumb />}
         header={{
-          title: productFullName,
+          title: productName,
         }}
         description={t('description')}
         message={<SuccessMessages />}
@@ -112,6 +119,7 @@ export default function Listing() {
             {t('order_button')}
           </OsdsButton>
         </div>
+
         <React.Suspense fallback={<Loading />}>
           {flattenData && (
             <Datagrid

@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { DataGridTextCell, Region } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   VCDOrganizationWithBackupStatus,
@@ -33,7 +33,13 @@ export const NameCell = (org: VCDOrganizationWithBackupStatus) => (
 );
 
 export const RegionCell = (org: VCDOrganizationWithBackupStatus) => (
-  <DataGridTextCell>{org?.currentState?.region}</DataGridTextCell>
+  <DataGridTextCell>{org?.currentState?.region.toLowerCase()}</DataGridTextCell>
+);
+
+export const LocationCell = (org: VCDOrganizationWithBackupStatus) => (
+  <DataGridTextCell>
+    <Region mode="region" name={org?.currentState?.region.toLowerCase()} />
+  </DataGridTextCell>
 );
 
 export const DescriptionCell = (org: VCDOrganizationWithBackupStatus) => (

@@ -12,19 +12,21 @@ import {
   Region,
 } from '@ovh-ux/manager-react-components';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
-import { getVeeamBackupDisplayName, useVeeamBackup } from '@/data';
+import {
+  getRegionNameFromAzName,
+  getVeeamBackupDisplayName,
+  useVeeamBackup,
+} from '@/data';
 import { urls } from '@/routes/routes.constant';
 import { SuccessMessages } from '@/components/Messages/SuccessMessage.component';
-import {
-  StatusCell,
-  OrganizationCell,
-} from '../listing/DatagridCell.component';
+import { OrganizationCell } from '../listing/DatagridCell.component';
 import { DisplayNameWithEditButton } from './DisplayName.component';
 import { OfferProgress } from './OfferProgress.component';
 import { SubscriptionTile } from './SubscriptionTile.component';
 import { ComingSoonBadge } from '@/components/ComingSoonBadge/ComingSoonBadge';
 import { BillingLink } from '@/components/Links/BillingLink.component';
 import { Loading } from '@/components/Loading/Loading';
+import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
 
 export default function DashboardPage() {
   const { id } = useParams();
@@ -62,7 +64,7 @@ export default function DashboardPage() {
                 {
                   id: 'status',
                   label: t('product_status'),
-                  value: <StatusCell className="mt-4" {...data?.data} />,
+                  value: <BackupStatusBadge className="mt-4" {...data?.data} />,
                 },
                 {
                   id: 'vcdOrg',
@@ -76,14 +78,25 @@ export default function DashboardPage() {
                   ),
                 },
                 {
-                  id: 'region',
-                  label: t('region'),
+                  id: 'location',
+                  label: t('location'),
                   value: (
                     <Description>
                       <Region
                         mode="region"
-                        name={data?.data.currentState.region.toLowerCase()}
+                        name={getRegionNameFromAzName(
+                          data?.data.currentState.azName,
+                        )}
                       />
+                    </Description>
+                  ),
+                },
+                {
+                  id: 'region',
+                  label: t('region'),
+                  value: (
+                    <Description>
+                      {getRegionNameFromAzName(data?.data.currentState.azName)}
                     </Description>
                   ),
                 },

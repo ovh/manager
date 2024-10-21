@@ -1,12 +1,12 @@
 import React from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
-import { MessageContextProvider } from '../../src/components/Messages/Messages.context';
-import { routes } from '../../src/routes/routes';
+import { MessageContextProvider } from '@/components/Messages/Messages.context';
+import { routes } from '@/routes/routes';
 
-export function TestApp() {
+export function TestApp({ initialRoute = '/' }: { initialRoute?: string }) {
   const router = createMemoryRouter(routes, {
-    initialEntries: ['/'],
+    initialEntries: [initialRoute],
     initialIndex: 0,
   });
 

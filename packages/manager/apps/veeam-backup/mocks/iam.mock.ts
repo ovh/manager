@@ -1,15 +1,21 @@
-import { PathParams } from 'msw';
-import { Handler } from '../../../../../playwright-helpers';
-import resourceList from './iam.json';
+import { IamCheckResponse } from '@ovh-ux/manager-react-components';
+import { backupList } from './veeam-backup.mock';
 
-const findResourceByUrn = (params: PathParams) =>
-  resourceList.find(({ resourceURN }) => resourceURN === params.urn);
-
-export const getIamMocks = (): Handler[] => [
+export const iamResponse: IamCheckResponse[] = [
   {
-    url: '/iam/resource/:urn/authorization/check',
-    response: (_: unknown, params: PathParams) => findResourceByUrn(params),
-    api: 'v2',
-    method: 'post',
+    urn: backupList[0].iam.urn,
+    authorizedActions: [
+      'account:apiovh:iam/resource/edit',
+      'account:apiovh:service/terminate',
+    ],
+    unauthorizedActions: [],
+  },
+  {
+    urn: backupList[1].iam.urn,
+    authorizedActions: [
+      'account:apiovh:iam/resource/edit',
+      'account:apiovh:service/terminate',
+    ],
+    unauthorizedActions: [],
   },
 ];

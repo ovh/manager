@@ -1,5 +1,24 @@
 import JSURL from 'jsurl';
 
+export const getVeeamBackupProductSettings = ({
+  orgId,
+  datacenterZone = 'eu-central-waw-a',
+}: {
+  orgId: string;
+  datacenterZone?: string;
+}) =>
+  JSURL.stringify({
+    planCode: 'backup-veeam-vcd',
+    quantity: 1,
+    productId: 'vmwareCloudDirectorBackup',
+    duration: 'P1M',
+    pricingMode: 'default',
+    configuration: [
+      { label: 'datacenter-zone', value: datacenterZone },
+      { label: 'org-id', value: orgId },
+    ],
+  });
+
 export const vrackProductSettings = JSURL.stringify({
   planCode: 'vrack',
   quantity: 1,

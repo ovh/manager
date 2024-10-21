@@ -4,6 +4,7 @@
   "display_name": "Nom",
   "product_status": "Statut",
   "vcd_org": "Organisation VCD",
+  "location": "Localisation",
   "region": "Région",
   "billing": "Facturation",
   "consumed_vms": "VMs consommées",
