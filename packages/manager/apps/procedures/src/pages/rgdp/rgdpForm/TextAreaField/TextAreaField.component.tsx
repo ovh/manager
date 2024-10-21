@@ -54,7 +54,7 @@ export const TextAreaField: FunctionComponent<Props> = ({
                   level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
                   color={ODS_THEME_COLOR_INTENT.primary}
                 >
-                  {label}:
+                  {label} :
                 </OsdsText>
               </label>
             )}
