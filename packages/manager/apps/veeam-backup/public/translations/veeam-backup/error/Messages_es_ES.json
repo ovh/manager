@@ -1,8 +1,0 @@
-{
-  "manager_error_page_title": "¡Vaya!",
-  "manager_error_page_button_cancel": "Cancelar",
-  "manager_error_page_detail_code": "Código de error: ",
-  "manager_error_page_action_reload_label": "Volver a intentarlo",
-  "manager_error_page_action_home_label": "Volver a la página de inicio",
-  "manager_error_page_default": "Se ha producido un error al cargar la página"
-}

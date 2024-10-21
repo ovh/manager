@@ -163,6 +163,10 @@ const productListingPages = {
     application: 'dedicated',
     hash: '#/veeam-enterprise',
   },
+  VMWARE_CLOUD_DIRECTOR_BACKUP: {
+    application: 'veeam-backup',
+    hash: '#/',
+  },
   VPS: {
     application: 'dedicated',
     hash: '#/vps',

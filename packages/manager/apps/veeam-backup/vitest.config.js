@@ -12,10 +12,13 @@ export default defineConfig({
     coverage: {
       include: ['src'],
       exclude: [
+        'src/pages/404.tsx',
         'src/App.tsx',
         'src/index.tsx',
         'src/tracking.constant.ts',
         'src/vite-hmr.ts',
+        'src/**/*.spec.ts',
+        'src/**/*.spec.tsx',
       ],
     },
     testTimeout: 60000,

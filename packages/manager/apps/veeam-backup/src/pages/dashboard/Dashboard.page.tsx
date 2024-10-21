@@ -1,6 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
+import {
+  OsdsChip,
+  OsdsMessage,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -11,20 +15,23 @@ import {
   RedirectionGuard,
   Region,
 } from '@ovh-ux/manager-react-components';
+import { ODS_MESSAGE_TYPE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
-import { getVeeamBackupDisplayName, useVeeamBackup } from '@/data';
+import {
+  getRegionNameFromAzName,
+  getVeeamBackupDisplayName,
+  useVeeamBackup,
+} from '@/data';
 import { urls } from '@/routes/routes.constant';
 import { SuccessMessages } from '@/components/Messages/SuccessMessage.component';
-import {
-  StatusCell,
-  OrganizationCell,
-} from '../listing/DatagridCell.component';
+import { OrganizationCell } from '../listing/DatagridCell.component';
 import { DisplayNameWithEditButton } from './DisplayName.component';
 import { OfferProgress } from './OfferProgress.component';
 import { SubscriptionTile } from './SubscriptionTile.component';
 import { ComingSoonBadge } from '@/components/ComingSoonBadge/ComingSoonBadge';
 import { BillingLink } from '@/components/Links/BillingLink.component';
 import { Loading } from '@/components/Loading/Loading';
+import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
 
 export default function DashboardPage() {
   const { id } = useParams();
@@ -40,7 +47,23 @@ export default function DashboardPage() {
         description: displayName !== data?.data?.id ? data?.data?.id : null,
       }}
       breadcrumb={<Breadcrumb />}
-      message={<SuccessMessages id={id} />}
+      message={
+        <>
+          {['DISABLED', 'DISABLING', 'REMOVED'].includes(
+            data?.data?.resourceStatus,
+          ) && (
+            <OsdsMessage type={ODS_MESSAGE_TYPE.warning}>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.warning}
+                size={ODS_TEXT_SIZE._400}
+              >
+                {t('terminated_service')}
+              </OsdsText>
+            </OsdsMessage>
+          )}
+          <SuccessMessages id={id} />
+        </>
+      }
       backLinkLabel={t('back_to_listing_label')}
       onClickReturn={() => navigate(urls.listing)}
     >
@@ -62,7 +85,7 @@ export default function DashboardPage() {
                 {
                   id: 'status',
                   label: t('product_status'),
-                  value: <StatusCell className="mt-4" {...data?.data} />,
+                  value: <BackupStatusBadge className="mt-4" {...data?.data} />,
                 },
                 {
                   id: 'vcdOrg',
@@ -76,14 +99,25 @@ export default function DashboardPage() {
                   ),
                 },
                 {
-                  id: 'region',
-                  label: t('region'),
+                  id: 'location',
+                  label: t('location'),
                   value: (
                     <Description>
                       <Region
                         mode="region"
-                        name={data?.data.currentState.region.toLowerCase()}
+                        name={getRegionNameFromAzName(
+                          data?.data.currentState.azName,
+                        )}
                       />
+                    </Description>
+                  ),
+                },
+                {
+                  id: 'region',
+                  label: t('region'),
+                  value: (
+                    <Description>
+                      {getRegionNameFromAzName(data?.data.currentState.azName)}
                     </Description>
                   ),
                 },

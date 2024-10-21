@@ -20,24 +20,29 @@ import {
   GetOrganizationMocksParams,
   GetVeeamBackupMocksParams,
   getIamMocks,
+  getCatalogMocks,
+  GetCatalogMocksParams,
 } from '../../mocks';
-import { productFullName } from '../../src/veeam-backup.config';
+import { productName } from '../veeam-backup.config';
 import { initTestI18n } from './test-i18n';
 import { TestApp } from './TestApp';
 
 let context: ShellContextType;
 let i18n: i18n;
 
-export const setupTest = async (
-  mockParams: GetOrganizationMocksParams &
-    GetVeeamBackupMocksParams &
-    GetServicesMocksParams = {},
-) => {
-  (global.server as SetupServer)?.resetHandlers(
+export const renderTest = async ({
+  initialRoute,
+  ...mockParams
+}: { initialRoute?: string } & GetOrganizationMocksParams &
+  GetVeeamBackupMocksParams &
+  GetCatalogMocksParams &
+  GetServicesMocksParams = {}) => {
+  ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),
       ...getVeeamBackupMocks(mockParams),
       ...getOrganizationMocks(mockParams),
+      ...getCatalogMocks(mockParams),
       ...getIamMocks(),
       ...getServicesMocks(mockParams),
     ]),
@@ -54,18 +59,20 @@ export const setupTest = async (
   const result = render(
     <I18nextProvider i18n={i18n}>
       <ShellContext.Provider value={context}>
-        <TestApp />
+        <TestApp initialRoute={initialRoute} />
       </ShellContext.Provider>
     </I18nextProvider>,
   );
 
-  await waitFor(
-    () =>
-      expect(
-        screen.getAllByText(productFullName, { exact: false }).length,
-      ).toBeGreaterThan(0),
-    { timeout: 30000 },
-  );
+  if (!initialRoute) {
+    await waitFor(
+      () =>
+        expect(
+          screen.getAllByText(productName, { exact: false }).length,
+        ).toBeGreaterThan(0),
+      { timeout: 30000 },
+    );
+  }
 
   return result;
 };

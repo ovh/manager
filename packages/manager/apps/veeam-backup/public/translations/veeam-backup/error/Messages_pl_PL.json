@@ -1,8 +1,0 @@
-{
-  "manager_error_page_title": "Ups ...!",
-  "manager_error_page_button_cancel": "Anuluj",
-  "manager_error_page_detail_code": "Kod błędu: ",
-  "manager_error_page_action_reload_label": "Spróbuj ponownie",
-  "manager_error_page_action_home_label": "Powrót do strony głównej",
-  "manager_error_page_default": "Wystąpił błąd podczas ładowania strony."
-}

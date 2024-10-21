@@ -44,9 +44,10 @@ export default function EditVeeamBackupDisplayNameModal() {
   return (
     <UpdateIamNameModal
       closeModal={onClose}
-      headline={t('update_display_name_modal_headline', { id })}
+      headline={t('update_display_name_modal_headline')}
       inputLabel={t('update_display_name_input_label')}
       description={t('update_display_name_description')}
+      confirmButtonLabel={t('update_display_name_confirm_button')}
       resourceName={id}
       isLoading={isLoading}
       pattern="^(\S| ){0,32}$"
