@@ -36,6 +36,7 @@
   "kube_service_cluster_admission_plugins_always_pull_image_explanation": "Force chaque nouveau pod à télécharger les images requises à chaque fois.",
   "kube_service_cluster_admission_plugins_node_restriction_explanation": "L'utilisation du plug-in du contrôleur d'admission NodeRestriction limite les objets Node et Pod qu'un kubelet peut modifier. Lorsqu'elles sont limitées par ce contrôleur d'admission, les kubelets ne sont autorisés à modifier que leur propre objet API Node et uniquement les objets API Pod qui sont liés à leur nœud.",
   "kube_service_cluster_admission_plugins_error": "Une erreur est survenue lors de la réinitialisation de votre cluster : {{ message }}",
+  "kube_service_cluster_admission_plugins_success": "La modification des Admission Plugins a été prise en compte.",
   "kube_service_cluster_version": "Version mineure de Kubernetes",
   "kube_service_cluster_update_available": "Une nouvelle mise à jour touchant à la sécurité (<i>patch version</i>) est disponible",
   "kube_service_cluster_minor_update_available": "Une mise à jour mineure est disponible",
