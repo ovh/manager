@@ -13,6 +13,9 @@ export default class PublicCloudController {
     this.shell = getShellClient();
 
     $scope.$on('oui-step-form.submit', (event, { form }) => {
+      if (form.$name?.startsWith('instances_add')) {
+        return;
+      }
       this.atInternet.trackClick({
         name: form.$name,
         type: 'action',
