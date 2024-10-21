@@ -17,6 +17,7 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     IT: 'it-vmware-vcd-backup?id=kb_article_view&sysparm_article=KB0063135',
     PL: 'pl-vmware-vcd-backup?id=kb_article_view&sysparm_article=KB0063136',
     PT: 'pt-vmware-vcd-backup?id=kb_article_view&sysparm_article=KB0063131',
+    NL: 'en-gb-vmware-vcd-backup?id=kb_article_view&sysparm_article=KB0063128',
     GB: 'en-gb-vmware-vcd-backup?id=kb_article_view&sysparm_article=KB0063128',
     CA: 'en-ca-vmware-vcd-backup?id=kb_article_view&sysparm_article=KB0063126',
     QC: 'fr-ca-vmware-vcd-backup?id=kb_article_view&sysparm_article=KB0063122',
@@ -32,45 +33,47 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
   },
   guideLink2: {
     DEFAULT:
-      'world-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad&spa=1',
+      'en-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062573',
     FR:
-      'fr-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad&spa=1',
+      'fr-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062580',
     DE:
-      'de-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'de-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062578',
     ES:
-      'es-es-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'es-es-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062574',
     IE:
-      'en-ie-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'en-ie-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062572',
     IT:
-      'it-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'it-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062582',
     PL:
-      'pl-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'pl-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062584',
     PT:
-      'pt-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'pt-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062583',
     GB:
-      'en-gb-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'en-gb-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062581',
+    NL:
+      'en-gb-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062581',
     CA:
-      'en-ca-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'en-ca-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062567',
     QC:
-      'fr-ca-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'fr-ca-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062579',
     WS:
-      'es-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'es-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062575',
     MA:
-      'fr-ma-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'fr-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062580',
     SN:
-      'fr-sn-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'fr-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062580',
     TN:
-      'fr-tn-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'fr-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062580',
     AU:
-      'en-au-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'en-au-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062570',
     IN:
-      'en-in-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'asia-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062569',
     SG:
-      'en-sg-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'en-sg-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062608',
     ASIA:
-      'asia-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'asia-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062569',
     WE:
-      'world-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+      'en-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062573',
   },
   guideLink3: {
     DEFAULT: 'en-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062598',
@@ -82,6 +85,7 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     PL: 'pl-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062561',
     PT: 'pt-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062562',
     GB: 'en-gb-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062557',
+    NL: 'en-gb-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062557',
     CA: 'en-ca-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062603',
     QC: 'fr-ca-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062601',
     WS: 'es-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062553',

@@ -24,7 +24,7 @@ export type UpdateNameModalProps = {
   inputLabel: string;
   defaultValue?: string;
   closeModal: () => void;
-  updateDisplayName: (newDisplayName: string) => void;
+  updateDisplayName: (newDisplayName?: string) => void;
   isLoading?: boolean;
   error?: string;
   cancelButtonLabel?: string;
