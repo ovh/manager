@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  OsdsButton,
   OsdsChip,
   OsdsIcon,
   OsdsSkeleton,
@@ -11,29 +12,28 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_BUTTON_TEXT_ALIGN,
+  ODS_CHIP_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigate } from 'react-router-dom';
 import {
   DashboardTile,
   Description,
-  ManagerButton,
   useServiceDetails,
   useFormattedDate,
   DateFormat,
 } from '@ovh-ux/manager-react-components';
 import { VeeamBackupWithIam } from '@/data';
 import { urls } from '@/routes/routes.constant';
-import { iamActions } from '@/veeam-backup.config';
 import { LoadingChip } from '@/components/Loading/Loading';
 
 export const SubscriptionTile: React.FC<VeeamBackupWithIam> = ({
   id,
   createdAt,
-  iam,
+  resourceStatus,
 }) => {
   const { t } = useTranslation('dashboard');
-  const { data, isLoading } = useServiceDetails({ resourceName: iam.id });
+  const { data, isLoading } = useServiceDetails({ resourceName: id });
   const navigate = useNavigate();
   const creationDate = useFormattedDate({
     dateString: createdAt,
@@ -64,6 +64,7 @@ export const SubscriptionTile: React.FC<VeeamBackupWithIam> = ({
                   className="mt-5"
                   inline
                   color={ODS_THEME_COLOR_INTENT.success}
+                  size={ODS_CHIP_SIZE.sm}
                 >
                   {t(`${data.data.renew.current.mode}_renew`)}
                 </OsdsChip>
@@ -79,14 +80,14 @@ export const SubscriptionTile: React.FC<VeeamBackupWithIam> = ({
         {
           id: 'deleteService',
           value: (
-            <ManagerButton
+            // IAM not implemented yet on services
+            <OsdsButton
               className="-ml-5 -mr-5"
-              urn={iam?.urn}
-              iamActions={[iamActions.terminateService]}
               variant={ODS_BUTTON_VARIANT.ghost}
               color={ODS_THEME_COLOR_INTENT.primary}
               size={ODS_BUTTON_SIZE.sm}
               textAlign={ODS_BUTTON_TEXT_ALIGN.start}
+              disabled={resourceStatus !== 'READY' || undefined}
               onClick={() =>
                 navigate(urls.deleteVeeamFromDashboard.replace(':id', id))
               }
@@ -98,7 +99,7 @@ export const SubscriptionTile: React.FC<VeeamBackupWithIam> = ({
                 color={ODS_THEME_COLOR_INTENT.primary}
                 size={ODS_ICON_SIZE.xs}
               />
-            </ManagerButton>
+            </OsdsButton>
           ),
         },
         {

@@ -1,3 +1,4 @@
-export * from './vcd-organization.mock';
-export * from './veeam-backup.mock';
-export * from './iam.mock';
+export * from './vcd-organization.handler';
+export * from './veeam-backup.handler';
+export * from './iam.handler';
+export * from './catalog.handler';

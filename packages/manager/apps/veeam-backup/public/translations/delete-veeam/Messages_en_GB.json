@@ -1,5 +1,5 @@
 {
   "headline": "Cancel my service",
   "delete_input_label": "Please enter the word \"TERMINATE\" to confirm the cancelation of your service.",
-  "terminate_veeam_backup_success": "Your termination request for {{name}} has been processed. You will receive an email with more information"
+  "terminate_veeam_backup_success": "Your cancellation request has been processed. You have been sent an email detailing the procedure to follow."
 }

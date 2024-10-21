@@ -11,11 +11,12 @@
   "all_organization_backed_up_message_fetch_next_page": "Todas las organizaciones de VCD ya están asociadas al servicio Managed VEEAM for VCD. Por favor, cargue más organizaciones.",
   "all_organization_backed_up_message": "Todas las organizaciones de VCD ya están asociadas al servicio Managed VEEAM for VCD. Acceda a la lista de sus servicios.",
   "name_cell": "Nombre",
-  "region_cell": "Localización",
+  "region_cell": "Región",
   "description_cell": "Descripción",
   "active_status": "Activado",
   "none_status": "Ninguno",
   "error_status": "Error",
   "cancel_button": "Cancelar",
-  "order_button": "Contratar"
+  "order_button": "Contratar",
+  "location_cell": "Localización"
 }

@@ -8,9 +8,9 @@ import {
 import { useTranslation } from 'react-i18next';
 
 const urls: Partial<{ [key in OvhSubsidiary]: string }> = {
-  FR: '/#',
-  GB: '/#',
-  DEFAULT: '/#',
+  FR: 'https://www.ovhcloud.com/fr/lp/vmware-vcd-evolution/veeam/',
+  GB: 'https://www.ovhcloud.com/en/lp/vmware-vcd-evolution/veeam/',
+  DEFAULT: 'https://www.ovhcloud.com/en/lp/vmware-vcd-evolution/veeam/',
 };
 
 export const useBillingUrl = () => {
