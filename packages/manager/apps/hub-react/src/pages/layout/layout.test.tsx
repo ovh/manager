@@ -435,10 +435,12 @@ describe('Layout.page', () => {
     mocks.isAccountSidebarVisible = true;
     const { getByTestId } = renderComponent(<Layout />);
 
-    expect(getByTestId('hub_main_div')).toHaveAttribute(
-      'class',
-      'absolute hub-main w-full h-full hub-main-view_sidebar_expanded',
-    );
+    await waitFor(() => {
+      expect(getByTestId('hub_main_div')).toHaveAttribute(
+        'class',
+        'absolute hub-main w-full h-full hub-main-view_sidebar_expanded',
+      );
+    });
   });
 
   it('should scroll into view skipnav button is clicked', async () => {

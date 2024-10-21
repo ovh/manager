@@ -8,5 +8,4 @@ export const useFetchHubNotifications = () =>
     queryKey: ['getHubNotifications'],
     queryFn: getNotifications,
     retry: 0,
-    refetchOnWindowFocus: false,
   });

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import {
   ShellContext,
   useOvhTracking,
@@ -9,6 +9,8 @@ import {
   OdsHTMLAnchorElementRel,
 } from '@ovhcloud/ods-common-core';
 import { useFetchHubBanner } from '@/data/hooks/banner/useBanner';
+
+const DEFAULT_TRACKING = ['hub', 'dashboard', 'event-banner'];
 
 export default function Banner() {
   const { environment } = useContext(ShellContext);
@@ -22,10 +24,13 @@ export default function Banner() {
       {isLoading && <OsdsSkeleton data-testid="banner_skeleton" inline />}
       {!isLoading && banner && (
         <OsdsLink
+          className="mb-4"
           onClick={() => {
             trackClick({
               actionType: 'action',
-              actions: [banner.tracker],
+              actions: banner.tracker
+                ? banner.tracker.split('::')
+                : DEFAULT_TRACKING,
             });
           }}
           href={banner.link}
@@ -34,7 +39,7 @@ export default function Banner() {
           data-testid="banner_link"
         >
           <img
-            className="md:hidden w-100 h-100"
+            className="md:hidden w-full h-full"
             src={banner.images.responsive.src}
             alt={banner.alt}
             width={banner.images.responsive.width}
@@ -42,7 +47,7 @@ export default function Banner() {
             data-testid="banner_image_responsive"
           />
           <img
-            className="hidden md:block w-100 h-100"
+            className="hidden md:block w-full h-full"
             src={banner.images.default.src}
             alt={banner.alt}
             width={banner.images.default.width}

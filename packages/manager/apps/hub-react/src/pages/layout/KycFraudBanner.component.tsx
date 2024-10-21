@@ -70,7 +70,7 @@ export default function KycFraudBanner() {
 
   return shouldBeDisplayed ? (
     <OsdsMessage
-      className="flex rounded"
+      className="flex rounded mb-4"
       type={
         data?.status === KycStatuses.REQUIRED
           ? ODS_MESSAGE_TYPE.warning

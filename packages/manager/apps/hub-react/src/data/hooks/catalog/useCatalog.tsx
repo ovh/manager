@@ -8,5 +8,4 @@ export const useFetchHubCatalog = () =>
     queryKey: ['getHubCatalog'],
     queryFn: getCatalog,
     retry: 0,
-    refetchOnWindowFocus: false,
   });

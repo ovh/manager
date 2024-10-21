@@ -1,5 +1,16 @@
 import { aapi } from '@ovh-ux/manager-core-api';
-import { SupportDataResponse } from '@/types/support.type';
+import { AxiosResponse } from 'axios';
+import { SupportResponse } from '@/types/support.type';
+import { ApiEnvelope } from '@/types/apiEnvelope.type';
 
-export const getHubSupport: () => Promise<SupportDataResponse> = async () =>
-  aapi.get('/hub/support').then(({ data }) => data.data.support.data);
+export const getHubSupport: (
+  cached: boolean,
+) => Promise<AxiosResponse<ApiEnvelope<SupportResponse>>> = (cached: boolean) =>
+  aapi.get(
+    '/hub/support',
+    !cached && {
+      headers: {
+        Pragma: 'no-cache',
+      },
+    },
+  );

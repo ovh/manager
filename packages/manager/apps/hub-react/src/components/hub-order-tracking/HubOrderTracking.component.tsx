@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Suspense, useContext, useMemo } from 'react';
+import { Suspense, useContext, useMemo } from 'react';
 import {
   OsdsChip,
   OsdsIcon,
@@ -13,6 +13,7 @@ import {
   ODS_ICON_NAME,
   ODS_TEXT_SIZE,
   ODS_ICON_SIZE,
+  ODS_TEXT_COLOR_HUE,
 } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -36,8 +37,8 @@ import {
 } from '@/data/api/apiOrder/apiOrder.constants';
 import useDateFormat from '@/hooks/dateFormat/useDateFormat';
 import { LastOrderTrackingResponse, OrderHistory } from '@/types/order.type';
-// FIXME: lazy load these comoponents
 import { Skeletons } from '@/components/skeletons/Skeletons.component';
+// FIXME: lazy load these comoponents
 import TileError from '@/components/tile-error/TileError.component';
 
 export default function HubOrderTracking() {
@@ -118,7 +119,7 @@ export default function HubOrderTracking() {
 
   return (
     <OsdsTile
-      className="block p-1 bg-[var(--ods-color-primary-200)]"
+      className="block p-1 bg-[var(--ods-color-primary-200)] p-6"
       variant={ODS_TILE_VARIANT.ghost}
       inline
     >
@@ -168,14 +169,16 @@ export default function HubOrderTracking() {
             <div className="mb-6 flex justify-center gap-3 items-center flex-wrap">
               <OsdsText
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                color={ODS_THEME_COLOR_INTENT.text}
+                hue={ODS_TEXT_COLOR_HUE._800}
+                color={ODS_THEME_COLOR_INTENT.primary}
                 className="block font-bold mr-1"
               >
                 {format(new Date(currentStatus.date))}
               </OsdsText>
               <OsdsText
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                color={ODS_THEME_COLOR_INTENT.text}
+                hue={ODS_TEXT_COLOR_HUE._800}
+                color={ODS_THEME_COLOR_INTENT.primary}
                 className="block mr-1"
               >
                 {t(`order_tracking_history_${currentStatus.label}`)}

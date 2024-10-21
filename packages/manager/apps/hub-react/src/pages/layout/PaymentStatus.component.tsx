@@ -13,6 +13,7 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_SKELETON_SIZE,
+  ODS_TEXT_COLOR_HUE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -89,7 +90,8 @@ export default function PaymentStatus({
           className="block flex-1 mb-6"
           level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
           size={ODS_TEXT_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
+          hue={ODS_TEXT_COLOR_HUE._800}
+          color={ODS_THEME_COLOR_INTENT.primary}
           data-testid="payment_status_title"
         >
           {t('ovh_manager_hub_payment_status_tile_title')}

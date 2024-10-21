@@ -63,7 +63,7 @@ export default function SiretBanner() {
 
   return shouldBeDisplayed ? (
     <OsdsMessage
-      className="flex rounded"
+      className="flex rounded mb-4"
       type={ODS_MESSAGE_TYPE.info}
       color={ODS_THEME_COLOR_INTENT.info}
       removable={true}
