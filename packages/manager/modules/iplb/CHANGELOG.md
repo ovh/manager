@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.17.0...@ovh-ux/manager-iplb@1.17.1) (2024-10-21)
+
+
+### Bug Fixes
+
+* **iplb:** update link to guides without redirect ([#13594](https://github.com/ovh/manager/issues/13594)) ([52d281b](https://github.com/ovh/manager/commit/52d281b4bb3c86ef7937ff7657b516444fcf5a4a))
+
+
+
+
+
 # [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.16.0...@ovh-ux/manager-iplb@1.17.0) (2024-10-14)
 
 

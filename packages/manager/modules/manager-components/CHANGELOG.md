@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.21.0...@ovh-ux/manager-components@1.22.0) (2024-10-21)
+
+
+### Features
+
+* **manager-components:** add sshKey component ([#12994](https://github.com/ovh/manager/issues/12994)) ([2a9c014](https://github.com/ovh/manager/commit/2a9c014188cbb6911f903eba28a9600b028f311a))
+
+
+
+
+
 # [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.20.1...@ovh-ux/manager-components@1.21.0) (2024-10-08)
 
 

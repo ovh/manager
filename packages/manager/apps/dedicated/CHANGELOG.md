@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.59.0...@ovh-ux/manager-dedicated@19.60.0) (2024-10-21)
+
+
+### Bug Fixes
+
+* **dedicated-cloud:** use description vs id in PCC list and breadcrumb ([#13345](https://github.com/ovh/manager/issues/13345)) ([5f8647e](https://github.com/ovh/manager/commit/5f8647e102f242826934346ae3b2f36aa1ac84b2))
+* **dedicated.vmware:** manage the enabling status for nsxt ([#9969](https://github.com/ovh/manager/issues/9969)) ([55dd4ef](https://github.com/ovh/manager/commit/55dd4efbf1615db5bfc4c4ad363dcd0a07309373))
+* **dedicated:** fix checkmark icon color ([#13509](https://github.com/ovh/manager/issues/13509)) ([12c2052](https://github.com/ovh/manager/commit/12c205221f83f80130a76d5ac59131982bdf5cfd))
+
+
+### Features
+
+* **account:** set up retry on error for kyc india procedure creation ([#13188](https://github.com/ovh/manager/issues/13188)) ([5793671](https://github.com/ovh/manager/commit/57936713c1e21a068f0e628782d2fa9ed4a37342))
+* **dedicated.pcc:** change description term ([#12908](https://github.com/ovh/manager/issues/12908)) ([a7d353d](https://github.com/ovh/manager/commit/a7d353db787ddf018ba21d1f4c45383ea336535c))
+* **dedicated:** update add message error for vMac if 403 response ([#12815](https://github.com/ovh/manager/issues/12815)) ([9b1938d](https://github.com/ovh/manager/commit/9b1938dedc24fe835b35f53f34d78a5507522625))
+
+
+
+
+
 # [19.59.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.58.0...@ovh-ux/manager-dedicated@19.59.0) (2024-10-17)
 
 
