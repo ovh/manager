@@ -37,13 +37,14 @@ export const PRIVATE_DATABASE_LOGS_KINDS_KEYS = {
   dbms: ['message'],
 };
 
-// TODO waiting for tracking PR
 export const PRIVATE_DATABASE_LOGS_TRACKING_HITS = {
-  LOGS_PAGE: ``,
-  TRANSFER: ``,
-  CREATE_ACCOUNT: ``,
-  CREATE_DATA_STREAM: ``,
-  SUBSCRIBE_OTHER_ACCOUNT: ``,
-  GRAYLOG_WATCH: ``,
-  STOP_TRANSFER: ``,
+  LOGS_PAGE: 'web::private-database::dashboard::logs',
+  TRANSFER: 'web::private-database::dashboard::logs::subscribe',
+  STOP_TRANSFER: 'web::private-database::dashboard::logs::unsubscribe',
+  SUBSCRIBE_OTHER_ACCOUNT:
+    'web::private-database::dashboard::logs::subscribe-other-datastream',
+  CREATE_ACCOUNT: 'web::private-database::dashboard::logs::create-account',
+  CREATE_DATA_STREAM:
+    'web::private-database::dashboard::logs::create-data-stream',
+  GRAYLOG_WATCH: 'web::private-database::dashboard::logs::graylog',
 };
