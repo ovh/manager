@@ -33,5 +33,8 @@
   "zimbra_account_add_error_message": "O seu pedido de criação de uma conta de e-mail não foi bem-sucedido. {{ error }}",
   "zimbra_account_edit_success_message": "O seu pedido de alteração de uma conta de e-mail foi registado. Será tratado dentro de alguns instantes.",
   "zimbra_account_edit_error_message": "O seu pedido de alteração de uma conta de e-mail não foi bem-sucedido. {{ error }}",
-  "zimbra_account_add_input_displayName_tooltip": "Nome utilizado no diretório e apresentado aos destinatários dos e-mails"
+  "zimbra_account_add_input_displayName_tooltip": "Nome utilizado no diretório e apresentado aos destinatários dos e-mails",
+  "zimbra_account_edit_tabs_settings": "Parâmetros da conta",
+  "zimbra_account_edit_tabs_redirections": "Reencaminhamentos",
+  "zimbra_account_edit_tabs_alias": "Alias"
 }

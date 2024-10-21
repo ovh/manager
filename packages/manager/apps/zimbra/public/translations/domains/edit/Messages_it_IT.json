@@ -1,0 +1,11 @@
+{
+  "zimbra_domain_edit_modal_title": "Configurazione del dominio",
+  "zimbra_domain_edit_modal_content": "Vuoi davvero eliminare il dominio dal server Zimbra?",
+  "zimbra_domain_edit_modal_message_disabled": "Il tuo dominio è in uso. Non è possibile eliminare questo dominio finché non compare.",
+  "zimbra_domain_edit_success_message": "La configurazione del dominio è stata presa in carico. Sarà attiva tra pochi minuti.",
+  "zimbra_domain_edit_error_message": "La configurazione del dominio non è andata a buon fine. {{ error }}",
+  "zimbra_domain_edit_domain_label": "Dominio",
+  "zimbra_domain_edit_organization_label": "Denominazione",
+  "zimbra_domain_edit_confirm": "Conferma",
+  "zimbra_domain_edit_cancel": "Annulla"
+}

@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 import {
-  DashboardLayout,
+  BaseLayout,
   GuideButton,
   GuideItem,
 } from '@ovh-ux/manager-react-components';
@@ -21,6 +21,7 @@ import { GUIDES_LIST } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
 
 import './Dashboard.scss';
+import { FEATURE_FLAGS } from '@/utils';
 
 export const Dashboard: React.FC = () => {
   const { platformId } = useParams();
@@ -68,7 +69,12 @@ export const Dashboard: React.FC = () => {
       name: 'domains',
       title: t('zimbra_dashboard_domains'),
       to: `${basePath}/domains`,
-      pathMatchers: computePathMatchers([urls.domains]),
+      pathMatchers: computePathMatchers([
+        urls.domains,
+        urls.domainsEdit,
+        urls.domainsDelete,
+        urls.domains_diagnostic,
+      ]),
     },
     {
       name: 'email_accounts',
@@ -76,18 +82,47 @@ export const Dashboard: React.FC = () => {
       to: `${basePath}/email_accounts`,
       pathMatchers: computePathMatchers([urls.email_accounts]),
     },
+    {
+      name: 'mailing_lists',
+      title: t('zimbra_dashboard_mailing_lists'),
+      to: `${basePath}/mailing_lists`,
+      pathMatchers: computePathMatchers([
+        urls.mailing_lists,
+        urls.mailing_lists_delete,
+      ]),
+      hidden: !FEATURE_FLAGS.MAILINGLISTS,
+    },
+    {
+      name: 'redirections',
+      title: t('zimbra_dashboard_redirections'),
+      to: `${basePath}/redirections`,
+      pathMatchers: computePathMatchers([
+        urls.redirections,
+        urls.redirections_delete,
+        urls.redirections_edit,
+      ]),
+      hidden: !FEATURE_FLAGS.REDIRECTIONS,
+    },
+    {
+      name: 'auto_replies',
+      title: t('zimbra_dashboard_auto_replies'),
+      to: `${basePath}/auto_replies`,
+      pathMatchers: computePathMatchers([urls.auto_replies]),
+      hidden: !FEATURE_FLAGS.AUTOREPLIES,
+    },
   ];
 
   return (
-    <DashboardLayout
+    <BaseLayout
       breadcrumb={<Breadcrumb />}
       header={{
         title: 'Zimbra',
         headerButton: <GuideButton items={guideItems} />,
       }}
       tabs={<TabsPanel tabs={tabsList} />}
-      content={<Outlet />}
-    />
+    >
+      <Outlet />
+    </BaseLayout>
   );
 };
 

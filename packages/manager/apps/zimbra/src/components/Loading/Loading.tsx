@@ -8,7 +8,7 @@ export default function Loading({
   size = ODS_SPINNER_SIZE.md,
 }) {
   return (
-    <div className={className}>
+    <div data-testid="spinner" className={className}>
       <OsdsSpinner mode={mode} size={size} inline></OsdsSpinner>
     </div>
   );

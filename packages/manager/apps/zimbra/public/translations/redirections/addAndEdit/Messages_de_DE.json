@@ -1,0 +1,17 @@
+{
+  "zimbra_redirections_edit_1": "Bitte geben Sie die Informationen für die Weiterleitung an.",
+  "zimbra_redirections_edit_2": "Die mit * gekennzeichneten Felder sind Pflichtangaben.",
+  "zimbra_redirections_title_add": "Weiterleitung erstellen",
+  "zimbra_redirections_title_edit": "Weiterleitung bearbeiten",
+  "zimbra_redirections_add_form_input_name_title_from": "Von Adresse",
+  "zimbra_redirections_add_form_input_name_title_to": "Zur Adresse",
+  "zimbra_redirections_add_form_input_checkbox": "Eine Kopie der E-Mail bei OVHcloud aufbewahren",
+  "zimbra_redirections_add_input_email_placeholder": "Name des Accounts",
+  "zimbra_redirections_add_select_domain_placeholder": "Einen Domainnamen auswählen",
+  "zimbra_redirections_add_btn_cancel": "Abbrechen",
+  "zimbra_redirections_add_btn_confirm": "Bestätigen",
+  "zimbra_redirections_add_success": "Ihre Anfrage zur Erstellung der Weiterleitung wurde registriert. Sie wird in einigen Augenblicken behandelt.",
+  "zimbra_redirections_edit_success": "Ihre Anfrage zur Änderung der Weiterleitung wurde registriert. Sie wird in einigen Augenblicken behandelt.",
+  "zimbra_redirections_add_error": "Ihre Anfrage zur Erstellung der Weiterleitung konnte nicht abgeschlossen werden. {{ error }}",
+  "zimbra_redirections_edit_error": "Ihre Anfrage zur Änderung der Weiterleitung konnte nicht abgeschlossen werden. {{ error }}"
+}

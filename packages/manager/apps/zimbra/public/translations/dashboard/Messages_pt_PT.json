@@ -34,5 +34,22 @@
   "zimbra_dashboard_tile_serviceConsumption_title": "Estatísticas",
   "zimbra_dashboard_tile_serviceConsumption_accountOffer": "Conta por oferta",
   "zimbra_dashboard_tile_serviceConsumption_noAccountOffer": "Atualmente não dispõe de nenhuma caixa de e-mail.",
-  "zimbra_dashboard_tile_usefulLinks_title": "Ligações úteis"
+  "zimbra_dashboard_tile_usefulLinks_title": "Ligações úteis",
+  "zimbra_dashboard_domains_edit": "Configuração do domínio",
+  "zimbra_dashboard_domains_diagnostic": "Diagnóstico",
+  "zimbra_dashboard_email_accounts_settings": "Parâmetros da conta",
+  "zimbra_dashboard_email_accounts_alias": "Alias",
+  "zimbra_dashboard_email_accounts_alias_add": "Criar um alias",
+  "zimbra_dashboard_email_accounts_alias_delete": "Eliminar um alias",
+  "zimbra_dashboard_email_accounts_redirections": "Reencaminhamentos",
+  "zimbra_dashboard_email_accounts_redirections_add": "Criar um reencaminhamento",
+  "zimbra_dashboard_email_accounts_redirections_edit": "Modificar um reencaminhamento",
+  "zimbra_dashboard_email_accounts_redirections_delete": "Eliminar um reencaminhamento",
+  "zimbra_dashboard_mailing_lists_add": "Criar uma lista de difusão",
+  "zimbra_dashboard_mailing_lists_settings": "Modificar a lista de difusão",
+  "zimbra_dashboard_mailing_lists": "Listas de difusão",
+  "zimbra_dashboard_redirections": "Reencaminhamentos",
+  "zimbra_dashboard_redirections_edit": "Modificar o reencaminhamento",
+  "zimbra_dashboard_redirections_delete": "Eliminar o reencaminhamento",
+  "zimbra_dashboard_auto_replies": "Resposta automática"
 }
