@@ -1,3 +1,5 @@
+@import 'bootstrap/scss/bootstrap';
+
 .restricted {
   background-color: rgb(241, 249, 253);
 
@@ -10,6 +12,7 @@
   }
 
   .restricted-main {
+    @extend .mx-auto;
     box-sizing: border-box;
     background-color: white;
     max-width: 62rem;

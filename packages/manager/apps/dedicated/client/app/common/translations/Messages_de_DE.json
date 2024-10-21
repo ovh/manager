@@ -546,5 +546,6 @@
   "core_pcc_top_guide_11_title": "Offizielle Dokumentation zu Nutanix",
   "older_interface": "Altes Kundeninterface",
   "core_pcc_top_guide_12_title": "Offizielle Dokumentation zu SAP HANA on Private Cloud",
-  "core_pcc_top_guide_13_title": "IPs die Verbindung zum vCenter erlauben"
+  "core_pcc_top_guide_13_title": "IPs die Verbindung zum vCenter erlauben",
+  "core_pcc_top_guide_14_title": "VMware on OVHcloud - VMware Cloud Director"
 }

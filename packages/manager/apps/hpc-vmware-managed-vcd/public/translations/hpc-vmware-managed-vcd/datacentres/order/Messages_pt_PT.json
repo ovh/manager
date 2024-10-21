@@ -1,0 +1,18 @@
+{
+  "managed_vcd_vdc_order_storage_title": "Encomendar capacidade de armazenamento",
+  "managed_vcd_vdc_order_compute_subtitle": "Pode personalizar o seu Virtual Datacenter adicionando Hosts virtuais. De seguida, será redirecionado para um novo separador para finalizar a sua encomenda. Selecione um tipo de Host Virtual.",
+  "managed_vcd_vdc_order_storage_subtitle": "Pode personalizar o seu Virtual Datacenter adicionando capacidade de armazenamento. De seguida, será redirecionado para um novo separador para finalizar a sua encomenda. Selecione a sua capacidade de armazenamento.",
+  "managed_vcd_vdc_order_unavailable": "Contacte o suporte OVHcloud",
+  "managed_vcd_vdc_order_vhost": "Virtual Host",
+  "managed_vcd_vdc_order_cpu_speed": "CPU (GHz)",
+  "managed_vcd_vdc_order_ram": "RAM",
+  "managed_vcd_vdc_order_ram_value": "{{ram}} GB",
+  "managed_vcd_vdc_order_vcpu_count": "Número de vCPU",
+  "managed_vcd_vdc_order_type": "Tipo",
+  "managed_vcd_vdc_order_price": "Preço",
+  "managed_vcd_vdc_order_price_detail": "Preço por 1 mês",
+  "managed_vcd_vdc_order_quantity_title": "Escolher uma quantidade",
+  "managed_vcd_vdc_order_quantity_label": "Quantidade",
+  "managed_vcd_vdc_order_cancel_cta": "Anular",
+  "managed_vcd_vdc_order_confirm_cta": "Encomendar"
+}

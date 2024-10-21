@@ -1,0 +1,13 @@
+{
+  "description": "Zarządzanie kopiami zapasowymi organizacji VMware Cloud Director",
+  "order_button": "Zamów",
+  "name_cell": "Nazwisko",
+  "status_cell": "Status",
+  "ovhref_cell": "Usługa",
+  "vcdorg_cell": "Organizacja VCD",
+  "region_cell": "Region",
+  "createdat_cell": "Data utworzenia",
+  "edit_name_action": "Zmień nazwę",
+  "delete_action": "Rezygnacja",
+  "load_more_button": "Załaduj następujące kopie zapasowe"
+}
