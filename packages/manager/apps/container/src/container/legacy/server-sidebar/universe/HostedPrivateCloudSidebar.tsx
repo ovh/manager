@@ -278,7 +278,7 @@ export default function HostedPrivateCloudSidebar() {
         id: 'hpc-storage-backup',
         label: t('sidebar_storage_backup'),
         icon: <img className="mb-1 mr-1 w-6 aspect-square" alt="" src={infinityCLoud} />,
-        pathMatcher: new RegExp('^/hycu|/veeam-backup'),
+        pathMatcher: new RegExp('^/(hycu|veeam-backup)'),
         badge: 'new',
         subItems: [
           (feature['veeam-backup']) && {
