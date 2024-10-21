@@ -24,7 +24,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { getStatusColor } from '@/utils/statusColor';
 import { useDetailsLicenseHYCU } from '@/hooks/api/license';
-import { LicenseStatus } from '@/type/hycu.details.interface';
+import { LicenseStatus } from '@/types/hycu.details.interface';
 
 const DownloadHycuLicense = ({ serviceName }: { serviceName: string }) => {
   const { t } = useTranslation('hycu/dashboard');

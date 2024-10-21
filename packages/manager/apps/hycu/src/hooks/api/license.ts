@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { DefinedInitialDataOptions, useQuery } from '@tanstack/react-query';
 import { getlicenseHycuService } from '@/data/api/hycu';
-import { IHycuDetails } from '@/type/hycu.details.interface';
+import { IHycuDetails } from '@/types/hycu.details.interface';
 
 export const useDetailsLicenseHYCU = (
   serviceName: string,

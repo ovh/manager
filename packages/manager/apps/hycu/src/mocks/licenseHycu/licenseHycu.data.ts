@@ -1,4 +1,4 @@
-import { IHycuDetails, LicenseStatus } from '@/type/hycu.details.interface';
+import { IHycuDetails, LicenseStatus } from '@/types/hycu.details.interface';
 
 export const licensesHycu: IHycuDetails[] = [
   {

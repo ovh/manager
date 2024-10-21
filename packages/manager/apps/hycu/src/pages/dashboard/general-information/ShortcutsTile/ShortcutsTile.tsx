@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useDetailsLicenseHYCU } from '@/hooks/api/license';
-import { LicenseStatus } from '@/type/hycu.details.interface';
+import { LicenseStatus } from '@/types/hycu.details.interface';
 
 const ShortcutsItem = ({
   children,

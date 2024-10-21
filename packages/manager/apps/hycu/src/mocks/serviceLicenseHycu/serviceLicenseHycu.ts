@@ -1,4 +1,4 @@
-import { LicenseStatus } from '@/type/hycu.details.interface';
+import { LicenseStatus } from '@/types/hycu.details.interface';
 import { Handler } from '../../../../../../../playwright-helpers';
 import { licensesHycuService } from './serviceLicenseHycu.data';
 

@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
-import { IHycuDetails } from '@/type/hycu.details.interface';
+import { IHycuDetails } from '@/types/hycu.details.interface';
 
 export type GetlicenseHycuListParams = {
   /** Filter resources on IAM tags */
