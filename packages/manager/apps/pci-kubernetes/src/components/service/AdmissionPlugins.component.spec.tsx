@@ -9,18 +9,28 @@ vi.mock('react-router-dom', () => ({
   useNavigate: () => navigate,
 }));
 
+const plugins = [
+  {
+    name: 'NodeRestriction',
+    label: 'Plugin Node Restriction',
+    tip: null,
+    state: 'enabled',
+    value: 'NodeRestriction',
+    disabled: false,
+  },
+  {
+    name: 'AlwaysPullImages',
+    label: 'Plugin Always Pull Images',
+    disabled: false,
+    tip: null,
+    state: 'disabled',
+    value: 'AlwaysPullImages',
+  },
+];
+
 describe('AdmissionPlugins', () => {
   it('renders plugins correctly', () => {
-    const enabled = ['NodeRestriction'];
-    const disabled = ['AlwaysPullImages'];
-
-    render(
-      <AdmissionPlugins
-        enabled={enabled}
-        disabled={disabled}
-        isProcessing={false}
-      />,
-    );
+    render(<AdmissionPlugins plugins={plugins} isProcessing={false} />);
 
     // Check plugin labels
     expect(screen.getByText('Plugin Node Restriction')).toBeInTheDocument();
@@ -49,9 +59,7 @@ describe('AdmissionPlugins', () => {
   });
 
   it('renders the mutation link', () => {
-    render(
-      <AdmissionPlugins enabled={[]} disabled={[]} isProcessing={false} />,
-    );
+    render(<AdmissionPlugins plugins={plugins} isProcessing={false} />);
 
     const mutationLink = screen.getByText(
       'kube_service_cluster_admission_plugins_mutation',
@@ -60,7 +68,7 @@ describe('AdmissionPlugins', () => {
   });
 
   it('disables the mutation link when isProcessing is true', () => {
-    render(<AdmissionPlugins enabled={[]} disabled={[]} isProcessing />);
+    render(<AdmissionPlugins plugins={plugins} isProcessing />);
 
     const mutationLink = screen.getByText(
       'kube_service_cluster_admission_plugins_mutation',
@@ -71,9 +79,7 @@ describe('AdmissionPlugins', () => {
   });
 
   it('navigates to the admission-plugin page when the mutation link is clicked', () => {
-    render(
-      <AdmissionPlugins enabled={[]} disabled={[]} isProcessing={false} />,
-    );
+    render(<AdmissionPlugins plugins={plugins} isProcessing={false} />);
 
     const mutationLink = screen.getByText(
       'kube_service_cluster_admission_plugins_mutation',

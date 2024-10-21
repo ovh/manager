@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import queryClient from '@/queryClient';
 import { getAllKubeQueryKey } from '../useKubernetes';
 
-import { updateAdmissionPlugin } from '@/api/data/kubernetes';
+import { updateAdmissionPlugin } from '@/api/data/plugins';
 import { TKube } from '@/types';
 
 export const useUpdateAdmissionPlugin = ({

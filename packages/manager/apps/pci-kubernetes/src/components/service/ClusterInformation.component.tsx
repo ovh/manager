@@ -71,6 +71,7 @@ export default function ClusterInformation({
           title={t('kube_service_cluster_admission_plugins')}
           value={
             <AdmissionPlugins
+              plugins={kubeDetail.plugins}
               isProcessing={isProcessing(kubeDetail.status)}
               {...kubeDetail.customization.apiServer.admissionPlugins}
             />

@@ -7,38 +7,18 @@ import { useNavigate } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsChip, OsdsText, OsdsLink } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { TAdmissionPlugin } from '@/types';
-import usePluginState from '@/hooks/usePluginState';
+import { pluginData } from '@/api/data/plugins';
 
-export const plugins = [
-  {
-    name: 'NodeRestriction',
-    label: 'Plugin Node Restriction',
-    value: 'node',
-    disabled: true,
-    tip: 'kube_service_cluster_admission_plugins_node_restriction_explanation',
-  },
-  {
-    name: 'AlwaysPullImages',
-    label: 'Plugin Always Pull Images',
-    value: 'pull',
-    tip: 'kube_service_cluster_admission_plugins_always_pull_image_explanation',
-  },
-];
-
-export type AdmissionPluginsProps = TAdmissionPlugin & {
+export type AdmissionPluginsProps = {
   isProcessing: boolean;
+  plugins: typeof pluginData;
 };
 
-const AdmissionPlugins = ({
-  isProcessing,
-  disabled,
-  enabled,
-}: AdmissionPluginsProps) => {
+const AdmissionPlugins = ({ isProcessing, plugins }: AdmissionPluginsProps) => {
   const { t } = useTranslation(['service']);
 
   const navigate = useNavigate();
-  const pluginsState = usePluginState(enabled, disabled);
+
   return (
     <div className="mb-4 flex flex-wrap justify-between gap-4">
       {plugins.map((plugin) => (
@@ -56,15 +36,15 @@ const AdmissionPlugins = ({
           </OsdsText>
           <OsdsChip
             color={
-              pluginsState(plugin.name) === 'enabled'
+              plugin.state === 'enabled'
                 ? ODS_THEME_COLOR_INTENT.success
                 : ODS_THEME_COLOR_INTENT.warning
             }
             data-testid={`admission-plugin-chip ${plugin.name}`}
           >
-            {pluginsState(plugin.name) === 'enabled' &&
+            {plugin.state === 'enabled' &&
               t('kube_service_cluster_admission_plugins_activated')}
-            {pluginsState(plugin.name) === 'disabled' &&
+            {plugin.state === 'disabled' &&
               t('kube_service_cluster_admission_plugins_desactivated')}
           </OsdsChip>
         </div>

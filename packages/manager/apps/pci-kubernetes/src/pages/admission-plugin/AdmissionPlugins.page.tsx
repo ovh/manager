@@ -25,14 +25,10 @@ import {
   OdsSwitchChangedEventDetail,
   OsdsSwitchCustomEvent,
 } from '@ovhcloud/ods-components';
-import { useTranslation, Translation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { plugins } from '../../components/service/AdmissionPlugins.component';
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
-import usePluginState from '@/hooks/usePluginState';
-
 import { useUpdateAdmissionPlugin } from '@/api/hooks/useAdmissionPlugin/useAdmissionPlugin';
-import { TAdmissionPlugin } from '@/types';
 import { useResponsiveModal } from '@/hooks/useResizeOsdsModal';
 
 const AdmissionPluginsModal = () => {
@@ -45,38 +41,24 @@ const AdmissionPluginsModal = () => {
   );
   const { t } = useTranslation(['service']);
 
-  const {
-    customization: {
-      apiServer: { admissionPlugins },
-    },
-  } = kubeDetail ?? {
-    customization: {
-      apiServer: { admissionPlugins: { enabled: [], disabled: [] } },
-    },
-  };
+  const { plugins } = kubeDetail ?? {};
 
-  const [pluginData, setPluginData] = useState(admissionPlugins);
-  const pluginState = usePluginState(pluginData.enabled, pluginData.disabled);
+  const [pluginData, setPluginData] = useState(plugins);
+
   useResponsiveModal('450px');
   const { addError, addSuccess } = useNotifications();
 
   const handleChange = useCallback(
     (e: OsdsSwitchCustomEvent<OdsSwitchChangedEventDetail>, name: string) => {
-      const value = e.detail.current;
+      const state = e.detail.current;
 
-      setPluginData(
-        (prevPluginData) =>
-          Object.fromEntries(
-            Object.entries(prevPluginData).map(([state, array]) => {
-              if (!array.includes(name) && state === value) {
-                return [state, [...array, name]];
-              }
-              if (array.includes(name) && state !== value) {
-                return [state, array.filter((plugin) => plugin !== name)];
-              }
-              return [state, array];
-            }),
-          ) as TAdmissionPlugin,
+      setPluginData((prevPluginData) =>
+        prevPluginData.map((plugin) => {
+          if (plugin.name === name) {
+            return { ...plugin, state };
+          }
+          return plugin;
+        }),
       );
     },
     [],
@@ -90,37 +72,35 @@ const AdmissionPluginsModal = () => {
     kubeId,
     onError: (error) => {
       addError(
-        <Translation ns="service">
-          {(_t) =>
-            _t('kube_service_cluster_admission_plugins_error', {
-              message: error?.message || null,
-            })
-          }
-        </Translation>,
+        t('kube_service_cluster_admission_plugins_error', {
+          message: error?.message || null,
+        }),
         true,
       );
       onClose();
     },
     onSuccess: () => {
-      addSuccess(
-        <Translation ns="service">
-          {(_t) => _t('kube_service_cluster_admission_plugins_success')}
-        </Translation>,
-        true,
-      );
+      addSuccess(t('kube_service_cluster_admission_plugins_success'), true);
       onClose();
     },
   });
 
   const handleCancel = () => {
-    setPluginData(admissionPlugins);
+    setPluginData(plugins);
     onClose();
   };
 
   const handleSave = () => {
+    const initialState = { enabled: [], disabled: [] };
+
+    const reorderPlugin = pluginData.reduce((acc, item) => {
+      acc[item.state].push(item.name);
+      return acc;
+    }, initialState);
+
     updateAdmissionPlugins({
       ...kubeDetail.customization,
-      apiServer: { admissionPlugins: pluginData },
+      apiServer: { admissionPlugins: reorderPlugin },
     });
   };
 
@@ -140,15 +120,15 @@ const AdmissionPluginsModal = () => {
         <>
           <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="my-6">
             {t('kube_service_cluster_admission_plugins_info_restrictions')}
-            <br />
-
+          </OsdsMessage>
+          <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="my-6">
             {t(
               'kube_service_cluster_admission_plugins_info_restrictions_redeploy_after_change_admission',
             )}
           </OsdsMessage>
           <div className="my-10">
             {!isPending &&
-              plugins.map((plugin, i) => (
+              pluginData?.map((plugin, i) => (
                 <div key={plugin.name} className="my-8 mx-4">
                   <div className="flex  my-3, justify-between">
                     <OsdsTooltip role="tooltip">
@@ -160,9 +140,11 @@ const AdmissionPluginsModal = () => {
                       >
                         {plugin.name}
                       </OsdsText>
-                      <OsdsTooltipContent slot="tooltip-content">
-                        {t(plugin.tip)}
-                      </OsdsTooltipContent>
+                      {plugin.tip && (
+                        <OsdsTooltipContent slot="tooltip-content">
+                          {t(plugin.tip)}
+                        </OsdsTooltipContent>
+                      )}
                     </OsdsTooltip>
                     <OsdsSwitch
                       size={ODS_SWITCH_SIZE.sm}
@@ -173,15 +155,14 @@ const AdmissionPluginsModal = () => {
                           handleChange(e, plugin.name);
                         }
                       }}
-                      disabled={plugin.disabled}
+                      // FIXME ODS18
+                      disabled={plugin.disabled || undefined}
                     >
                       <OsdsSwitchItem
                         color="primary"
                         value="enabled"
                         // FIXME : fix this with ODS 18
-                        checked={
-                          pluginState(plugin.name) === 'enabled' || undefined
-                        }
+                        checked={plugin.state === 'enabled' || undefined}
                       >
                         {t(
                           'kube_service_cluster_admission_plugins_to_activate',
@@ -193,7 +174,7 @@ const AdmissionPluginsModal = () => {
                           value="disabled"
                           checked={
                             // FIXME : fix this with ODS 18
-                            pluginState(plugin.name) === 'disabled' || undefined
+                            plugin.state === 'disabled' || undefined
                           }
                         >
                           {t(

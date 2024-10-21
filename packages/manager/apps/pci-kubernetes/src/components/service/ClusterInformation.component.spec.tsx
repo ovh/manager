@@ -25,6 +25,14 @@ describe('ClusterInformation', () => {
     },
     nodesUrl: 'http://nodes.url',
     privateNetworkConfiguration: null,
+    plugins: [
+      {
+        name: 'NodeRestriction',
+        state: 'disabled',
+        tip: 'node_restrictions_tip',
+      },
+      { name: 'AlwaysPullImages', state: 'enabled' },
+    ],
   } as TKube;
 
   it('renders cluster information correctly', () => {

@@ -32,6 +32,7 @@ import {
 } from '../data/kubernetes';
 import { getPrivateNetworkName } from '../data/network';
 import { useAllPrivateNetworks } from './useNetwork';
+import { pluginData } from '../data/plugins';
 
 export const getAllKubeQueryKey = (projectId: string) => [
   'project',
@@ -105,10 +106,36 @@ export const useKubernetesCluster = (projectId: string, kubeId: string) =>
   useQuery({
     queryKey: getKubernetesClusterQuery(projectId, kubeId),
     queryFn: () => getKubernetesCluster(projectId, kubeId),
-    select: (data) => ({
-      ...data,
-      isClusterReady: data.status === STATUS.READY,
-    }),
+    select: (data) => {
+      const pluginAlreadyExists = (name) =>
+        pluginData.find((plugin) => name === plugin.name);
+
+      const plugins = data?.customization?.apiServer?.admissionPlugins;
+      let processedPlugins: typeof pluginData;
+      if (plugins) {
+        processedPlugins = Object.entries(plugins)
+          .map(([state, names]) =>
+            names.map((name) => {
+              const existingPlugin = pluginAlreadyExists(name);
+              return {
+                name,
+                label: existingPlugin?.label || name,
+                state,
+                tip: existingPlugin?.tip || null,
+                value: existingPlugin?.value || name,
+                disabled: existingPlugin?.disabled ?? false,
+              };
+            }),
+          )
+          .flat();
+      }
+
+      return {
+        ...data,
+        isClusterReady: data.status === STATUS.READY,
+        plugins: processedPlugins,
+      };
+    },
   });
 
 type RenameKubernetesClusterProps = {
