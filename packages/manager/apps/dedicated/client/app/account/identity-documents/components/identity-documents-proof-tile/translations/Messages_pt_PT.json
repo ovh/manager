@@ -1,0 +1,19 @@
+{
+  "user_account_identity_documents_proof_tile_easiest": "O mais simples",
+  "user_account_identity_documents_proof_tile_heading_aadhaar_card": "Tem um cartão Aadhaar?",
+  "user_account_identity_documents_proof_tile_text_particular_aadhaar_card": "Envie um único documento para comprovar a sua identidade e o seu endereço",
+  "user_account_identity_documents_proof_tile_heading_identity": "Comprovativo de identidade",
+  "user_account_identity_documents_proof_tile_heading_address": "Comprovativo de morada",
+  "user_account_identity_documents_proof_tile_heading_vat": "Comprovativo de IVA",
+  "user_account_identity_documents_proof_tile_heading_authority_declaration": "Atestado sob compromisso de honra",
+  "user_account_identity_documents_proof_tile_text_particular_identity": "Cartão Aadhaar, documento de identificação, passaporte, carta de condução, cartão de eleitor indiano.",
+  "user_account_identity_documents_proof_tile_text_particular_address": "Cartão Aadhaar, certificado GST, fatura (eletricidade, gás, água, Internet ou telefone), extrato bancário.",
+  "user_account_identity_documents_proof_tile_text_non_individual_identity": "Cartão Aadhaar, documento de identificação, passaporte, carta de condução, cartão de eleitor indiano.",
+  "user_account_identity_documents_proof_tile_text_non_individual_address": "Certificado GST, fatura (eletricidade, gás, água, Internet ou telefone), extrato bancário.",
+  "user_account_identity_documents_proof_tile_text_non_individual_vat": "Certificado GST (imposto sobre produtos e serviços)",
+  "user_account_identity_documents_proof_tile_text_non_individual_authority_declaration": "Documento de permissão para agir em nome da empresa.",
+  "user_account_identity_documents_proof_tile_extended_identity": "Documento do representante legal, do diretor de Operações ou de qualquer outro contacto mencionado no certificado GST.",
+  "user_account_identity_documents_proof_tile_extended_authority_declaration": "Apenas se não for o representante legal.",
+  "user_account_identity_documents_proof_tile_button": "Adicionar",
+  "user_account_identity_documents_proof_tile_button_update": "Alterar"
+}
