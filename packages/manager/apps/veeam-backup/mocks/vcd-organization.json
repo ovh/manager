@@ -18,7 +18,7 @@
         "type": "VCD_UPDATE"
       }
     ],
-    "id": "6cfa2c69-c62c-4853-80ee-c9682e6727f0",
+    "id": "org-eu-west-gra-6cfa2c69-c62c-4853-80ee-c9682e6727f0",
     "resourceStatus": "UPDATING",
     "targetSpec": {
       "description": "Company production VCD Organization",
@@ -38,7 +38,7 @@
       "webInterfaceUrl": "https://vcd.my.second.lab"
     },
     "currentTasks": [],
-    "id": "61ebdcec-0623-4a61-834f-a1719cd475b4",
+    "id": "org-ca-east-bhs-61ebdcec-0623-4a61-834f-a1719cd475b4",
     "resourceStatus": "READY",
     "targetSpec": {
       "description": "My demo VCD Organization",

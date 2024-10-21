@@ -21,7 +21,7 @@
           "status": "READY"
         }
       ],
-      "region": "CA-EAST-BHS"
+      "azName": "eu-west-gra-a"
     },
     "updatedAt": "2024-06-14T09:21:21.943Z",
     "createdAt": "2024-06-14T09:21:21.943Z",
@@ -63,7 +63,7 @@
           "status": "READY"
         }
       ],
-      "region": "CA-EAST-BHS"
+      "azName": "ca-east-bhs-a"
     },
     "updatedAt": "2024-06-14T09:21:21.943Z",
     "createdAt": "2024-06-14T09:21:21.943Z",

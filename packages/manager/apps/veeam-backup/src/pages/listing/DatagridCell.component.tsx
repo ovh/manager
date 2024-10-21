@@ -9,7 +9,6 @@ import {
   ActionMenu,
   DataGridTextCell,
   DateFormat,
-  Description,
   LinkType,
   Links,
   Region,
@@ -22,7 +21,7 @@ import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   VeeamBackupWithIam,
   getOrganizationDisplayName,
-  getOrganizationIdFromBackupId,
+  getOrganizationIdFromBackup,
   useOrganization,
   ResourceStatus,
   getVeeamBackupDisplayName,
@@ -74,14 +73,14 @@ export const OvhRefCell = ({ id }: VeeamBackupWithIam) => (
 );
 
 export const OrganizationCell = ({
-  id,
   withLink,
   className,
+  ...backup
 }: VeeamBackupWithIam & {
   className?: string;
   withLink?: boolean;
 }): JSX.Element => {
-  const organizationId = getOrganizationIdFromBackupId(id);
+  const organizationId = getOrganizationIdFromBackup(backup);
   const { isLoading, data } = useOrganization(organizationId);
   const { shell } = React.useContext(ShellContext);
   const [href, setHref] = React.useState('');
@@ -115,7 +114,7 @@ export const RegionCell = ({
   currentState,
 }: VeeamBackupWithIam): JSX.Element => (
   <DataGridTextCell>
-    <Region mode="region" name={currentState.region.toLowerCase()} />
+    <Region mode="region" name={currentState.azName.split('-a')[0]} />
   </DataGridTextCell>
 );
 
@@ -132,6 +131,7 @@ export const CreatedAtCell = ({
 export const ActionCell = (backup: VeeamBackupWithIam): JSX.Element => {
   const { t } = useTranslation('listing');
   const navigate = useNavigate();
+  console.log({ urn: backup.iam.urn });
   return (
     <ActionMenu
       icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}

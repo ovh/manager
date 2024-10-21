@@ -6,7 +6,7 @@ import listing from '../../public/translations/listing/Messages_fr_FR.json';
 import dashboard from '../../public/translations/dashboard/Messages_fr_FR.json';
 import deleteVeeam from '../../public/translations/delete-veeam/Messages_fr_FR.json';
 import onboarding from '../../public/translations/onboarding/Messages_fr_FR.json';
-import { appName } from '../../src/veeam-backup.config';
+import { appName } from '../veeam-backup.config';
 
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];

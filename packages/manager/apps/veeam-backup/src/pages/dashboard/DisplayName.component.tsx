@@ -20,7 +20,9 @@ export const DisplayNameWithEditButton = (
   const navigate = useNavigate();
   return (
     <div className="flex items-center">
-      <Description>{getVeeamBackupDisplayName(backup)}</Description>
+      <Description className="max-w-[80%]">
+        {getVeeamBackupDisplayName(backup)}
+      </Description>
       <ManagerButton
         className="ml-4"
         data-testid="edit-name-button"

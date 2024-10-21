@@ -4,7 +4,7 @@
   "display_name": "Nom",
   "product_status": "Statut",
   "vcd_org": "Organisation VCD",
-  "region": "Région",
+  "region": "Localisation",
   "billing": "Facturation",
   "consumed_vms": "VMs consommées",
   "consumed_vms_label": "Si vous souhaitez augmenter votre quota, merci de contacter le support.",

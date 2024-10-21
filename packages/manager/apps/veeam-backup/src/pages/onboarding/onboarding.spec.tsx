@@ -1,10 +1,10 @@
 import { screen, waitFor } from '@testing-library/react';
-import { setupTest, labels } from './helpers';
+import { renderTest, labels } from '../../test-helpers';
 import '@testing-library/jest-dom';
 
 describe('onboarding', () => {
   it('displays the onboarding page if there is 0 backup', async () => {
-    await setupTest({ nbBackup: 0 });
+    await renderTest({ nbBackup: 0 });
     expect(screen.getByText(labels.onboarding.description)).toBeVisible();
     expect(
       screen.queryByText(labels.listing.description),
@@ -19,7 +19,7 @@ describe('onboarding', () => {
   });
 
   it('displays the listing page if there is at least 1 backup', async () => {
-    await setupTest({ nbBackup: 1 });
+    await renderTest({ nbBackup: 1 });
     expect(screen.getByText(labels.listing.description)).toBeVisible();
     expect(
       screen.queryByText(labels.onboarding.description),
@@ -27,7 +27,7 @@ describe('onboarding', () => {
   });
 
   it('displays message and disable action button if there is no organization', async () => {
-    await setupTest({ nbBackup: 0, nbOrganization: 0 });
+    await renderTest({ nbBackup: 0, nbOrganization: 0 });
     expect(
       screen.getByText(labels.onboarding.order_button_label),
     ).toBeDisabled();

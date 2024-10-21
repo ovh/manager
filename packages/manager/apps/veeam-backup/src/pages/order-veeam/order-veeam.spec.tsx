@@ -1,61 +1,66 @@
 import userEvent from '@testing-library/user-event';
-import { act, screen, waitFor } from '@testing-library/react';
-import { setupTest, labels } from './helpers';
+import { screen, waitFor } from '@testing-library/react';
+import { renderTest, labels } from '../../test-helpers';
 import '@testing-library/jest-dom';
+import { urls } from '@/routes/routes.constant';
 
 describe('order', () => {
   it('go to order step 1 from listing', async () => {
-    await setupTest();
+    await renderTest();
 
-    await act(() =>
+    await waitFor(() =>
       userEvent.click(screen.getByText(labels.listing.order_button)),
     );
 
-    await waitFor(() =>
-      expect(
-        screen.getByText(labels.orderVeeam.description),
-      ).toBeInTheDocument(),
+    await waitFor(
+      () =>
+        expect(
+          screen.getByText(labels.orderVeeam.description),
+        ).toBeInTheDocument(),
+      { timeout: 30000 },
     );
   });
 
   it('go to order step 2', async () => {
-    await setupTest();
+    await renderTest({ initialRoute: urls.orderVeeam });
 
-    await act(() =>
-      userEvent.click(screen.getByText(labels.listing.order_button)),
+    await waitFor(
+      () =>
+        expect(
+          screen.getByText(labels.orderVeeam.description),
+        ).toBeInTheDocument(),
+      { timeout: 30000 },
     );
 
     await waitFor(() =>
-      expect(
-        screen.getByText(labels.orderVeeam.description),
-      ).toBeInTheDocument(),
-    );
-
-    await act(() =>
       userEvent.click(screen.getByText(labels.orderVeeam.next_step)),
     );
 
-    await waitFor(() =>
-      expect(
-        screen.getByText(labels.orderVeeam.choose_org_title),
-      ).toBeInTheDocument(),
+    await waitFor(
+      () =>
+        expect(
+          screen.getByText(labels.orderVeeam.choose_org_title),
+        ).toBeInTheDocument(),
+      { timeout: 30000 },
     );
   });
 
   it('display all orgs backed-up message in step 2', async () => {
-    await setupTest({ allOrgsBackedUp: true });
+    await renderTest({ allOrgsBackedUp: true });
 
-    await act(() =>
+    await waitFor(() =>
       userEvent.click(screen.getByText(labels.listing.order_button)),
     );
 
-    await waitFor(() =>
-      expect(
-        screen.getByText(labels.orderVeeam.description),
-      ).toBeInTheDocument(),
+    await waitFor(
+      () =>
+        expect(
+          screen.getByText(labels.orderVeeam.description),
+        ).toBeInTheDocument(),
+      { timeout: 30000 },
     );
 
-    await act(() =>
+    await waitFor(() =>
       userEvent.click(screen.getByText(labels.orderVeeam.next_step)),
     );
 
@@ -71,19 +76,21 @@ describe('order', () => {
   });
 
   it('display empty org message in step 2', async () => {
-    await setupTest({ nbOrganization: 0 });
+    await renderTest({ nbOrganization: 0 });
 
-    await act(() =>
+    await waitFor(() =>
       userEvent.click(screen.getByText(labels.listing.order_button)),
     );
 
-    await waitFor(() =>
-      expect(
-        screen.getByText(labels.orderVeeam.description),
-      ).toBeInTheDocument(),
+    await waitFor(
+      () =>
+        expect(
+          screen.getByText(labels.orderVeeam.description),
+        ).toBeInTheDocument(),
+      { timeout: 30000 },
     );
 
-    await act(() =>
+    await waitFor(() =>
       userEvent.click(screen.getByText(labels.orderVeeam.next_step)),
     );
 

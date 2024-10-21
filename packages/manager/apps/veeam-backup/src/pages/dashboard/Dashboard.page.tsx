@@ -82,7 +82,7 @@ export default function DashboardPage() {
                     <Description>
                       <Region
                         mode="region"
-                        name={data?.data.currentState.region.toLowerCase()}
+                        name={data?.data.currentState.azName.split('-a')[0]}
                       />
                     </Description>
                   ),

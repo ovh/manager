@@ -33,7 +33,7 @@ export const SubscriptionTile: React.FC<VeeamBackupWithIam> = ({
   iam,
 }) => {
   const { t } = useTranslation('dashboard');
-  const { data, isLoading } = useServiceDetails({ resourceName: iam.id });
+  const { data, isLoading } = useServiceDetails({ resourceName: id });
   const navigate = useNavigate();
   const creationDate = useFormattedDate({
     dateString: createdAt,
