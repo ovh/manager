@@ -21,9 +21,9 @@ describe('Dashboard Tile component', () => {
   });
 
   it('renders correctly without items', async () => {
-    render(<DashboardTile title="Title 2" items={[]} />);
+    render(<DashboardTile title="Title" items={[]} />);
     await waitFor(() => {
-      expect(screen.getByText('Title 2')).toBeInTheDocument();
+      expect(screen.getByText('Title')).toBeInTheDocument();
     });
   });
 

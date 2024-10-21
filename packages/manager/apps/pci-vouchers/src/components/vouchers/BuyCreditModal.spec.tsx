@@ -15,7 +15,7 @@ import {
 import BuyCreditModal from '@/components/vouchers/BuyCreditModal';
 
 const buyMock = vi.fn(() => Promise.resolve({ data: {} }));
-vi.mock('@/hooks/useVouchers', () => ({
+vi.mock('@/api/hooks/useVouchers', () => ({
   useBuyCredit: () => ({
     buy: buyMock,
   }),
@@ -81,7 +81,7 @@ describe('Buy credit modal', () => {
     act(() => {
       fireEvent.click(submitButton);
     });
-    waitFor(() => {
+    await waitFor(() => {
       expect(buyMock).toHaveBeenCalledWith(25);
     });
   });

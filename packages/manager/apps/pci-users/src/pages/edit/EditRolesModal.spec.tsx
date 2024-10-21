@@ -24,8 +24,15 @@ vi.mock('@/api/hooks/useRole', () => {
   return {
     useUpdateUserRoles: () => ({
       update,
+      isPending: false,
     }),
-    useAllRoles: () => ({}),
+    useAllRoles: vi.fn(() => ({ isPending: false })),
+  };
+});
+
+vi.mock('@/api/hooks/useUser', () => {
+  return {
+    useUserRoles: vi.fn(() => ({ isPending: false })),
   };
 });
 
@@ -61,7 +68,7 @@ describe('Edit Role modal', () => {
       fireEvent.click(submitRolesEditButton);
     });
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(mockUpdate).toHaveBeenCalled();
     });
   });

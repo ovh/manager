@@ -795,5 +795,5 @@
   "streams_subscriptions_resource_products_account-api": "Panel klienta OVHcloud &amp; OVHcloud API",
   "streams_subscriptions_resource_products_account-audit": "Audyt logów OVHcloud",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
-  "streams_subscriptions_kind_label": "Typ (Kind)"
+  "streams_subscriptions_kind_label": "Typ (kind)"
 }

@@ -27,6 +27,6 @@ Then('User sees {int} guides', async function(
   this: ICustomWorld<ConfigParams>,
   nbGuides: number,
 ) {
-  const guides = await this.page.locator('ods-tile');
+  const guides = await this.page.locator('osds-tile');
   await expect(guides).toHaveCount(nbGuides);
 });

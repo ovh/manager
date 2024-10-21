@@ -1,4 +1,4 @@
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { GuidesHeader, GuidesHeaderProps } from './guides-header.component';
 import { render } from '../../utils/test.provider';
 
@@ -25,14 +25,14 @@ const guides = {
 
 describe('GuidesHeader tests', () => {
   it('should display guides list', () => {
-    const { container } = renderComponent({
+    renderComponent({
       label: 'hello',
       guides,
       ovhSubsidiary: 'EU',
       getGuideLabel: (guide) => guide.key,
     });
-    expect(container.querySelector('[label="foo-guide"]')).not.toBeNull();
-    expect(container.querySelector('[label="bar-guide"]')).not.toBeNull();
+    expect(screen.getAllByText('foo-guide')).not.toBeNull();
+    expect(screen.getAllByText('bar-guide')).not.toBeNull();
   });
 
   it('should display guides urls depending on ovhSubsidiary', () => {

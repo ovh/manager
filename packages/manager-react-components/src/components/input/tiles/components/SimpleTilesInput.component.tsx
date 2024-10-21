@@ -1,7 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { OdsCard } from '@ovhcloud/ods-components/react';
+import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
 import { clsx } from 'clsx';
 import isEqual from 'lodash.isequal';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import { hashCode } from '../../../../utils';
 
 const uniqBy = function uniqBy<I, U>(items: I[], cb: (item: I) => U): I[] {
@@ -147,40 +152,42 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
 
   return (
     <div id={typeof id === 'function' ? id() : id}>
-      <ul className="simple-tiles-input-ul grid gap-6 list-none p-6 m-0 grid-cols-1 md:grid-cols-3">
+      <ul className="grid gap-6 list-none p-6 m-0 grid-cols-1 md:grid-cols-3">
         {stack
           ? [...state.stacks.keys()].map((key) => (
               <li className="w-full px-1" key={hashCode(key)}>
-                <OdsCard
+                <OsdsTile
+                  checked={is.stack.checked(key)}
                   onClick={() =>
                     is.stack.singleton(key)
                       ? set.value(state.stacks.get(key)[0])
                       : set.selectedStack(key)
                   }
-                  className={`${clsx(
+                  className={clsx(
                     is.stack.checked(key)
                       ? state.activeClass
                       : state.inactiveClass,
-                  )} w-full px-[24px] py-[16px]`}
+                  )}
                 >
                   {is.stack.singleton(key)
                     ? label(state.stacks.get(key)[0])
                     : stack?.label(key, state.stacks.get(key))}
-                </OdsCard>
+                </OsdsTile>
               </li>
             ))
           : items.map((item: T) => (
               <li className="w-full px-1" key={hashCode(item)}>
-                <OdsCard
+                <OsdsTile
+                  checked={isEqual(value, item)}
                   onClick={() => set.value(item)}
-                  className={`${clsx(
+                  className={clsx(
                     isEqual(value, item)
                       ? state.activeClass
                       : state.inactiveClass,
-                  )} w-full px-[24px] py-[16px]`}
+                  )}
                 >
                   {label(item)}
-                </OdsCard>
+                </OsdsTile>
               </li>
             ))}
       </ul>
@@ -188,12 +195,16 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
         state.stacks.get(state.selectedStack)?.length > 1 && (
           <>
             <div className="mt-6 ml-8">
-              <span className="text-[--ods-color-heading] leading-[22px] font-bold">
+              <OsdsText
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+                color={ODS_THEME_COLOR_INTENT.text}
+              >
                 {stack.title(
                   state.selectedStack,
                   state.stacks.get(state.selectedStack),
                 )}
-              </span>
+              </OsdsText>
             </div>
             <SimpleTilesInputComponent
               value={value}

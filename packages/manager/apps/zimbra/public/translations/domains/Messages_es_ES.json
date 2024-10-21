@@ -6,5 +6,8 @@
   "zimbra_domains_datagrid_organization_label": "Organización",
   "zimbra_domains_datagrid_account_number": "Número de cuentas",
   "zimbra_domains_tooltip_delete": "Eliminar",
-  "zimbra_domains_tooltip_need_organization": "En primer lugar, debe configurar una organización"
+  "zimbra_domains_tooltip_need_organization": "En primer lugar, debe configurar una organización",
+  "zimbra_domains_datagrid_diagnostic_configuration_ok": "Configuración OK",
+  "zimbra_domains_datagrid_diagnostic_tooltip_title": "Diagnóstico {{ diagType }}",
+  "zimbra_domains_tooltip_configure": "Configurar"
 }

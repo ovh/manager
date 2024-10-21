@@ -71,5 +71,9 @@
   "manager_components_region_PAR": "Paris",
   "manager_components_region_PAR_micro": "Paris ({{ micro }})",
   "manager_components_region_location_PAR": "Europa Ocidental (França)",
-  "manager_components_region_continent_PAR": "Europa Ocidental"
+  "manager_components_region_continent_PAR": "Europa Ocidental",
+  "region_PAR": "Paris",
+  "region_PAR_micro": "Paris ({{ micro }})",
+  "region_location_PAR": "Europa Ocidental (França)",
+  "region_continent_PAR": "Europa Ocidental"
 }

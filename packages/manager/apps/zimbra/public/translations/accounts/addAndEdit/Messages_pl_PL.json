@@ -14,8 +14,8 @@
   "zimbra_account_add_input_lastName_placeholder": "Nazwisko",
   "zimbra_account_add_input_firstName_label": "Imię",
   "zimbra_account_add_input_firstName_placeholder": "Imię",
-  "zimbra_account_add_input_displayName_label": "Nazwa do wyświetlenia",
-  "zimbra_account_add_input_displayName_placeholder": "Nazwa do wyświetlenia",
+  "zimbra_account_add_input_displayName_label": "Wyświetlana nazwa",
+  "zimbra_account_add_input_displayName_placeholder": "Wyświetlana nazwa",
   "zimbra_account_add_input_initials_label": "Inicjały",
   "zimbra_account_add_input_initials_placeholder": "Inicjały",
   "zimbra_account_add_input_description_label": "Opis",
@@ -23,8 +23,8 @@
   "zimbra_account_add_input_password_label": "Hasło",
   "zimbra_account_add_input_password_helper": "Twoje hasło musi zawierać co najmniej:",
   "zimbra_account_add_input_password_helper_rule_1": "10 znaków",
-  "zimbra_account_add_input_password_helper_rule_2": "1 cyfra lub znak specjalny (€, !, &amp;,...)",
-  "zimbra_account_add_input_password_helper_rule_3": "1 wielka litera",
+  "zimbra_account_add_input_password_helper_rule_2": "1 cyfrę lub znak specjalny (€, !, &amp;,etc.)",
+  "zimbra_account_add_input_password_helper_rule_3": "1 dużą literę",
   "zimbra_account_add_input_mandatory": "Pola oznaczone gwiazdką * są obowiązkowe",
   "zimbra_account_add_button_save": "Zapisz",
   "zimbra_account_add_button_cancel": "Anuluj",
@@ -33,5 +33,8 @@
   "zimbra_account_add_error_message": "Utworzenie konta e-mail nie powiodło się. {{error}}",
   "zimbra_account_edit_success_message": "Dyspozycja modyfikacji konta e-mail została przyjęta. Zostanie przetworzona w ciągu kilku minut.",
   "zimbra_account_edit_error_message": "Modyfikacja konta e-mail nie powiodła się. {{error}}",
-  "zimbra_account_add_input_displayName_tooltip": "Nazwa używana w książce adresowej i wyświetlana odbiorcom wiadomości"
+  "zimbra_account_add_input_displayName_tooltip": "Nazwa używana w książce adresowej i wyświetlana odbiorcom wiadomości e-mail",
+  "zimbra_account_edit_tabs_settings": "Parametry konta",
+  "zimbra_account_edit_tabs_redirections": "Przekierowania",
+  "zimbra_account_edit_tabs_alias": "Alias"
 }

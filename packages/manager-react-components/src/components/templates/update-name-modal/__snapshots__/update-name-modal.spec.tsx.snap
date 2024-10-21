@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Update Name Modal component renders loading modal 1`] = `
+<DocumentFragment>
+  <osds-modal
+    dismissible="true"
+    headline="headline"
+  >
+    <osds-text
+      class="block my-4"
+      color="text"
+      level="body"
+    >
+      description
+    </osds-text>
+    <osds-form-field
+      class="mb-8"
+    >
+      <div
+        slot="label"
+      >
+        <osds-text
+          class="block mb-3"
+          color="text"
+          level="body"
+          size="200"
+        >
+          inputLabel
+        </osds-text>
+      </div>
+      <osds-input
+        aria-disabled="true"
+        aria-label="update-input"
+        disabled="true"
+        internals-disabled=""
+        type="text"
+      />
+      <div
+        class="mt-5"
+      >
+        <osds-text
+          class="block"
+          color="text"
+          level="body"
+          size="100"
+        >
+          regex epression to respect
+        </osds-text>
+      </div>
+    </osds-form-field>
+    <div
+      class="flex justify-center"
+    >
+      <osds-spinner
+        inline="true"
+        size="md"
+      />
+    </div>
+    <osds-button
+      color="primary"
+      disabled="true"
+      slot="actions"
+      type="button"
+      variant="ghost"
+    >
+      Annuler
+    </osds-button>
+    <osds-button
+      color="primary"
+      disabled="true"
+      slot="actions"
+      type="button"
+      variant="flat"
+    >
+      Confirmer
+    </osds-button>
+  </osds-modal>
+</DocumentFragment>
+`;

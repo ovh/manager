@@ -4,18 +4,35 @@ import { describe, it, vi } from 'vitest';
 import {
   useAttachVolume,
   useDeleteVolume,
+  useDetachVolume,
   useVolume,
   useVolumes,
 } from '@/api/hooks/useVolume';
+import {
+  TVolume,
+  getVolume,
+  getAllVolumes,
+  deleteVolume,
+  attachVolume,
+  detachVolume,
+} from '@/api/data/volume';
 
-vi.mock('@/api/data/volume', () => ({
-  getVolume: vi.fn(),
-  getAllVolumes: vi.fn(),
-  deleteVolume: vi.fn(),
-  attachVolume: vi.fn(),
-  detachVolume: vi.fn(),
-  paginateResults: vi.fn(),
-  sortResults: vi.fn(),
+vi.mock('@/api/data/volume', async (importOriginal) => {
+  const actual: any = await importOriginal();
+  return {
+    ...actual,
+    getVolume: vi.fn(),
+    getAllVolumes: vi.fn(),
+    deleteVolume: vi.fn(),
+    attachVolume: vi.fn(),
+    detachVolume: vi.fn(),
+  };
+});
+
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  useTranslatedMicroRegions: vi.fn(() => ({
+    translateMicroRegion: vi.fn((t) => t),
+  })),
 }));
 
 const queryClient = new QueryClient();
@@ -24,23 +41,44 @@ const wrapper = ({ children }) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 );
 
+afterEach(() => {
+  vi.restoreAllMocks();
+});
+
+const onSuccess = vi.fn();
+const onError = vi.fn();
+
 describe('useVolume', () => {
   it('returns volume data when volumeId is provided', async () => {
-    const volume = { id: '1', name: 'Volume 1' };
-    const getVolume = vi.fn().mockResolvedValue(volume);
+    const volumeMock: TVolume = {
+      id: '1',
+      name: 'Volume 1',
+      attachedTo: [],
+      creationDate: '',
+      description: '',
+      size: 0,
+      status: '',
+      statusGroup: '',
+      region: '',
+      bootable: false,
+      planCode: '',
+      type: '',
+      regionName: '',
+    };
+
+    vi.mocked(getVolume).mockResolvedValue(volumeMock);
 
     const { result } = renderHook(() => useVolume('123', '1'), {
       wrapper,
     });
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(getVolume).toHaveBeenCalledWith('123', '1');
-      expect(result.current.data).toEqual(volume);
+      expect(result.current.data).toEqual(volumeMock);
     });
   });
 
   it('does not fetch data when volumeId is not provided', () => {
-    const getVolume = vi.fn();
     const { result } = renderHook(() => useVolume('123', null), { wrapper });
 
     expect(getVolume).not.toHaveBeenCalled();
@@ -50,16 +88,45 @@ describe('useVolume', () => {
 
 describe('useVolumes', () => {
   it('returns volumes data when projectId is provided', async () => {
-    const volumes = [
-      { id: '1', name: 'Volume 1' },
-      { id: '2', name: 'Volume 2' },
+    const volumesMock: TVolume[] = [
+      {
+        id: '1',
+        name: 'Volume 1',
+        attachedTo: [],
+        creationDate: '',
+        description: '',
+        size: 0,
+        status: 'available',
+        statusGroup: '',
+        region: 'region',
+        bootable: false,
+        planCode: '',
+        type: '',
+        regionName: '',
+      },
+      {
+        id: '2',
+        name: 'Volume 2',
+        attachedTo: [],
+        creationDate: '',
+        description: '',
+        size: 0,
+        status: 'available',
+        statusGroup: '',
+        region: 'region',
+        bootable: false,
+        planCode: '',
+        type: '',
+        regionName: '',
+      },
     ];
-    const getAllVolumes = vi.fn().mockResolvedValue(volumes);
+
+    vi.mocked(getAllVolumes).mockResolvedValue(volumesMock);
 
     const { result } = renderHook(
       () =>
         useVolumes('123', {
-          pagination: { pageIndex: 1, pageSize: 10 },
+          pagination: { pageIndex: 0, pageSize: 10 },
           sorting: { id: 'name', desc: false },
         }),
       {
@@ -67,18 +134,52 @@ describe('useVolumes', () => {
       },
     );
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(getAllVolumes).toHaveBeenCalledWith('123');
-      expect(result.current.data).toEqual(volumes);
+      expect(result.current.data).toEqual({
+        pageCount: 1,
+        rows: [
+          {
+            attachedTo: [],
+            bootable: false,
+            creationDate: '',
+            description: '',
+            id: '1',
+            name: 'Volume 1',
+            planCode: '',
+            region: 'region',
+            regionName: 'region',
+            size: 0,
+            status: 'available',
+            statusGroup: 'ACTIVE',
+            type: '',
+          },
+          {
+            attachedTo: [],
+            bootable: false,
+            creationDate: '',
+            description: '',
+            id: '2',
+            name: 'Volume 2',
+            planCode: '',
+            region: 'region',
+            regionName: 'region',
+            size: 0,
+            status: 'available',
+            statusGroup: 'ACTIVE',
+            type: '',
+          },
+        ],
+        totalRows: 2,
+      });
     });
   });
 
   it('does not fetch data when projectId is not provided', () => {
-    const getAllVolumes = vi.fn();
     const { result } = renderHook(
       () =>
         useVolumes(null, {
-          pagination: { pageIndex: 1, pageSize: 10 },
+          pagination: { pageIndex: 0, pageSize: 10 },
           sorting: { id: 'name', desc: false },
         }),
       { wrapper },
@@ -91,9 +192,7 @@ describe('useVolumes', () => {
 
 describe('useDeleteVolume', () => {
   it('deletes volume when volumeId is provided', async () => {
-    const deleteVolume = vi.fn().mockResolvedValue(null);
-    const onSuccess = vi.fn();
-    const onError = vi.fn();
+    vi.mocked(deleteVolume).mockResolvedValue(null);
 
     const { result } = renderHook(
       () =>
@@ -110,17 +209,13 @@ describe('useDeleteVolume', () => {
 
     act(() => result.current.mutate());
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(deleteVolume).toHaveBeenCalledWith('123', '1');
       expect(onSuccess).toHaveBeenCalled();
     });
   });
 
   it('does not delete volume when volumeId is not provided', () => {
-    const deleteVolume = vi.fn();
-    const onSuccess = vi.fn();
-    const onError = vi.fn();
-
     const { result } = renderHook(
       () =>
         useDeleteVolume({
@@ -141,11 +236,21 @@ describe('useDeleteVolume', () => {
 
 describe('useAttachVolume', () => {
   it('attaches volume when volumeId and instanceId are provided', async () => {
-    const attachVolume = vi
-      .fn()
-      .mockResolvedValue({ id: '1', name: 'Volume 1' });
-    const onSuccess = vi.fn();
-    const onError = vi.fn();
+    vi.mocked(attachVolume).mockResolvedValue({
+      id: '1',
+      name: 'Volume 1',
+      attachedTo: [],
+      creationDate: '',
+      description: '',
+      size: 0,
+      status: 'available',
+      statusGroup: '',
+      region: 'region',
+      bootable: false,
+      planCode: '',
+      type: '',
+      regionName: '',
+    });
 
     const { result } = renderHook(
       () =>
@@ -163,7 +268,7 @@ describe('useAttachVolume', () => {
 
     act(() => result.current.mutate());
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(attachVolume).toHaveBeenCalledWith('123', '1', '1');
       expect(onSuccess).toHaveBeenCalled();
     });
@@ -172,15 +277,25 @@ describe('useAttachVolume', () => {
 
 describe('useDetachVolume', () => {
   it('detaches volume when volumeId and instanceId are provided', async () => {
-    const detachVolume = vi
-      .fn()
-      .mockResolvedValue({ id: '1', name: 'Volume 1' });
-    const onSuccess = vi.fn();
-    const onError = vi.fn();
+    vi.mocked(detachVolume).mockResolvedValue({
+      id: '1',
+      name: 'Volume 1',
+      attachedTo: [],
+      creationDate: '',
+      description: '',
+      size: 0,
+      status: 'available',
+      statusGroup: '',
+      region: 'region',
+      bootable: false,
+      planCode: '',
+      type: '',
+      regionName: '',
+    });
 
     const { result } = renderHook(
       () =>
-        useAttachVolume({
+        useDetachVolume({
           projectId: '123',
           volumeId: '1',
           instanceId: '1',
@@ -194,7 +309,7 @@ describe('useDetachVolume', () => {
 
     act(() => result.current.mutate());
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(detachVolume).toHaveBeenCalledWith('123', '1', '1');
       expect(onSuccess).toHaveBeenCalled();
     });

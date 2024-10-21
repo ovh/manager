@@ -1,5 +1,9 @@
 import React, { PropsWithChildren, RefAttributes, HTMLAttributes } from 'react';
-import { OdsButton, OdsTooltip } from '@ovhcloud/ods-components/react';
+import {
+  OsdsButton,
+  OsdsTooltip,
+  OsdsTooltipContent,
+} from '@ovhcloud/ods-components/react';
 import { JSX } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { StyleReactProps } from '@ovhcloud/ods-components/react/dist/types/react-component-lib/interfaces';
@@ -8,18 +12,14 @@ import './translations';
 import { useAuthorizationIam } from '../../hooks/iam';
 
 export type ManagerButtonProps = PropsWithChildren<{
-  id: string;
   iamActions?: string[];
   urn?: string;
   displayTooltip?: boolean;
   isIamTrigger?: boolean;
-  label: string;
 }>;
 
 export const ManagerButton = ({
-  id,
   children,
-  label,
   iamActions,
   urn,
   displayTooltip = true,
@@ -27,41 +27,30 @@ export const ManagerButton = ({
   ...restProps
 }: ManagerButtonProps &
   Partial<
-    JSX.OdsButton &
-      Omit<HTMLAttributes<HTMLOdsButtonElement>, 'style' | 'id'> &
+    JSX.OsdsButton &
+      Omit<HTMLAttributes<HTMLOsdsButtonElement>, 'style' | 'id'> &
       StyleReactProps &
-      RefAttributes<HTMLOdsButtonElement>
+      RefAttributes<HTMLOsdsButtonElement>
   >) => {
   const { t } = useTranslation('iam');
   const { isAuthorized } = useAuthorizationIam(iamActions, urn, isIamTrigger);
 
   if (isAuthorized) {
-    return (
-      <OdsButton data-testid="manager-button" {...restProps} label={label} />
-    );
+    return <OsdsButton {...restProps}>{children}</OsdsButton>;
   }
-  return displayTooltip ? (
-    <>
-      <div id={id} className="w-fit">
-        <OdsButton
-          {...restProps}
-          data-testid="manager-button-tooltip"
-          isDisabled={true}
-          label={label}
-          onClick={null}
-        />
-      </div>
-      <OdsTooltip triggerId={id} with-arrow>
-        <div>{t('common_iam_actions_message')}</div>
-      </OdsTooltip>
-    </>
+
+  return !displayTooltip ? (
+    <OsdsButton {...restProps} disabled onClick={null}>
+      {children}
+    </OsdsButton>
   ) : (
-    <OdsButton
-      {...restProps}
-      data-testid="manager-button-without-tooltip"
-      isDisabled={true}
-      onClick={null}
-      label={label}
-    />
+    <OsdsTooltip>
+      <OsdsButton {...restProps} disabled onClick={null}>
+        {children}
+      </OsdsButton>
+      <OsdsTooltipContent slot="tooltip-content">
+        <div>{t('common_iam_actions_message')}</div>
+      </OsdsTooltipContent>
+    </OsdsTooltip>
   );
 };

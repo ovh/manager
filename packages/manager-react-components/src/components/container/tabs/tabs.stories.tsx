@@ -1,6 +1,5 @@
-import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
 import TabsComponent from './Tabs.component';
 
 type TContinent = {
@@ -42,18 +41,10 @@ Demo.args = {
       key: 'Asia',
     },
   ] as TContinent[],
-  titleElement: (item: TContinent) => (
-    <div className="py-2">
-      <OdsText preset="span">{item.name}</OdsText>
-    </div>
-  ),
+  titleElement: (item: TContinent) => <div className="py-2">{item.name}</div>,
   contentElement: (item: TContinent) => (
     <ul className="mx-5 px-5 list-disc">
-      {item?.countries.map((country) => (
-        <li key={country}>
-          <OdsText preset="span">{country}</OdsText>
-        </li>
-      ))}
+      {item?.countries.map((country) => <li key={country}>{country}</li>)}
     </ul>
   ),
   mobileBreakPoint: 400,

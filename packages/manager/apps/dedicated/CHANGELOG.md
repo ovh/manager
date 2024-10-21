@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.59.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.58.0...@ovh-ux/manager-dedicated@19.59.0) (2024-10-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3399] ([dbf1962](https://github.com/ovh/manager/commit/dbf1962e0e747c9883eee6bfca25c27921eb01d3))
+* remove ovh-banner from universes ([#13496](https://github.com/ovh/manager/issues/13496)) ([bd91395](https://github.com/ovh/manager/commit/bd91395193ae97dc5cb7ea1dc6c32b69547e3fde))
+
+
+### Features
+
+* **container:** updated user widget and support dynamic updates ([fb64b9e](https://github.com/ovh/manager/commit/fb64b9eca4c10c868e656eb62f286ae971746de3))
+
+
+
+
+
 # [19.58.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.57.7...@ovh-ux/manager-dedicated@19.58.0) (2024-10-14)
 
 

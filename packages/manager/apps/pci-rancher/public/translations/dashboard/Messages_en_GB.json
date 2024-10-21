@@ -32,7 +32,7 @@
   "createRancherDescription": "You can manage multiple downstream clusters within this service.",
   "createRancherPlaceholder": "mon_rancher",
   "createRancherServiceLevel": "Choose plan",
-  "createRancherServiceLevelDescription": "Both plans offer all the Rancher features. The OVHcloud Edition plan only supports self-managed nodes brought individually to create downstream clusters on OVHcloud Public Cloud.<br> The Standard plan is perfect for private, multi-cloud and edge cloud uses. You can migrate to the Standard plan at any time.<br> Your usage will be billed on an hourly basis, depending on the total number of vCPUs on each of the worker nodes in your downstream Rancher clusters. <strong>Control plane nodes are not billed.</strong>",
+  "createRancherServiceLevelDescription": "Both plans offer all the Rancher features. The OVHcloud Edition plan only supports self-managed nodes brought individually to create downstream clusters on OVHcloud Public Cloud.<br> The Standard plan is perfect for private, multi-cloud and edge cloud uses. You can migrate to the Standard plan at any time.<br> You will be billed on an hourly basis, based on the total number of vCPUs on each worker node in your downstream Rancher clusters. <strong>Control plane nodes are not billed.</strong>",
   "createRancherVersion": "Rancher version",
   "createRancherVersionDescription": "This service is powered by SUSE Rancher. OVHcloud supports the latest versions of Rancher. We recommend using the latest version.<br> We apply security patches and provide new releases on a regular basis, in accordance with our software lifecycle policy.",
   "createRancherCTA": "Create a Managed Rancher Service",
@@ -53,5 +53,5 @@
   "upgradePlanButton": "Upgrade my plan",
   "savingsPlanMessage": "Take advantage of low monthly rates with Savings Plans — save money without sacrificing the flexibility to use instances whenever you need them.",
   "savingsPlanCTA": "Set up your Savings Plan",
-  "createRancherOfferDescription": "With a minimum of 20 vCPU charged per Rancher"
+  "createRancherOfferDescription": "With at least 20 vCPUs charged per Rancher"
 }

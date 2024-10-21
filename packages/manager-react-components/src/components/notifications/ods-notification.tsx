@@ -1,6 +1,10 @@
 import React from 'react';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_COLOR_INTENT,
+} from '@ovhcloud/ods-components';
+import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
   Notification,
   NotificationType,
@@ -14,15 +18,30 @@ type OdsNotificationProps = {
 const getOdsMessageColor = (type: NotificationType) => {
   switch (type) {
     case NotificationType.Success:
-      return ODS_MESSAGE_COLOR.success;
+      return ODS_MESSAGE_TYPE.success;
     case NotificationType.Error:
-      return ODS_MESSAGE_COLOR.danger;
+      return ODS_MESSAGE_TYPE.error;
     case NotificationType.Warning:
-      return ODS_MESSAGE_COLOR.warning;
+      return ODS_MESSAGE_TYPE.warning;
     case NotificationType.Info:
-      return ODS_MESSAGE_COLOR.information;
+      return ODS_MESSAGE_TYPE.info;
     default:
-      return ODS_MESSAGE_COLOR.information;
+      return ODS_MESSAGE_TYPE.info;
+  }
+};
+
+const getOdsTextColor = (type: NotificationType) => {
+  switch (type) {
+    case NotificationType.Success:
+      return ODS_TEXT_COLOR_INTENT.success;
+    case NotificationType.Error:
+      return ODS_TEXT_COLOR_INTENT.error;
+    case NotificationType.Warning:
+      return ODS_TEXT_COLOR_INTENT.warning;
+    case NotificationType.Info:
+      return ODS_TEXT_COLOR_INTENT.info;
+    default:
+      return ODS_TEXT_COLOR_INTENT.info;
   }
 };
 
@@ -31,13 +50,23 @@ export const OdsNotification: React.FC<OdsNotificationProps> = ({
 }) => {
   const { clearNotification } = useNotifications();
   return (
-    <OdsMessage
-      className="mb-2 w-full"
-      color={getOdsMessageColor(notification.type)}
-      onOdsRemove={() => clearNotification(notification.uid)}
+    <OsdsMessage
+      className="mb-2"
+      type={getOdsMessageColor(notification.type)}
+      {...(notification.dismissable
+        ? {
+            removable: true,
+            onOdsRemoveClick: () => clearNotification(notification.uid),
+          }
+        : {})}
     >
-      {notification.content}
-    </OdsMessage>
+      <OsdsText
+        color={getOdsTextColor(notification.type)}
+        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+      >
+        {notification.content}
+      </OsdsText>
+    </OsdsMessage>
   );
 };
 

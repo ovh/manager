@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.7.1...@ovh-ux/manager-telecom-dashboard@6.7.2) (2024-10-17)
+
+
+### Bug Fixes
+
+* remove ovh-banner from universes ([#13496](https://github.com/ovh/manager/issues/13496)) ([bd91395](https://github.com/ovh/manager/commit/bd91395193ae97dc5cb7ea1dc6c32b69547e3fde))
+
+
+
+
+
 ## [6.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.7.0...@ovh-ux/manager-telecom-dashboard@6.7.1) (2024-09-16)
 
 

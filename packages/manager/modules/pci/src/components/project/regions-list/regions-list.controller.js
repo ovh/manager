@@ -163,7 +163,9 @@ export default class RegionsListController {
           }
         })
         .finally(() => {
-          this.loadEnd();
+          if (this.loadEnd) {
+            this.loadEnd();
+          }
         });
     } else {
       this.regionsByDeploymentMode = this.regions;
@@ -221,7 +223,9 @@ export default class RegionsListController {
         );
         this.macroRegion = this.region?.macroRegion.text;
       }
-      this.loadEnd();
+      if (this.loadEnd) {
+        this.loadEnd();
+      }
     }
   }
 

@@ -26,7 +26,6 @@ import {
   Notifications,
 } from '@ovh-ux/manager-react-components';
 import { Outlet } from 'react-router-dom';
-
 import {
   useOverridePage,
   useDomains,
@@ -34,12 +33,19 @@ import {
   usePlatform,
   useOrganizationList,
 } from '@/hooks';
-import ActionButtonDomain from './ActionButtonDomain';
+import ActionButtonDomain from './ActionButtonDomain.component';
 import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+import {
+  DATAGRID_REFRESH_INTERVAL,
+  DATAGRID_REFRESH_ON_MOUNT,
+  DnsRecordType,
+  FEATURE_FLAGS,
+} from '@/utils';
 import Loading from '@/components/Loading/Loading';
-import { ResourceStatus } from '@/api/api.type';
+import { DiagnosticBadge } from '@/components/DiagnosticBadge';
+import { DomainType } from '@/api/domain/type';
+import { AccountStatistics, ResourceStatus } from '@/api/api.type';
 
 export type DomainsItem = {
   id: string;
@@ -66,25 +72,53 @@ const columns: DatagridColumn<DomainsItem>[] = [
   },
   {
     id: 'organization',
-    cell: (item) =>
-      item.organizationLabel && (
-        <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
-      ),
+    cell: (item) => (
+      <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
+    ),
     label: 'zimbra_domains_datagrid_organization_label',
   },
   {
     id: 'account',
-    cell: (item) =>
-      item.account && (
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_TEXT_SIZE._100}
-          level={ODS_TEXT_LEVEL.body}
-        >
-          {item.account}
-        </OsdsText>
-      ),
+    cell: (item) => (
+      <OsdsText
+        color={ODS_THEME_COLOR_INTENT.text}
+        size={ODS_TEXT_SIZE._100}
+        level={ODS_TEXT_LEVEL.body}
+      >
+        {item.account}
+      </OsdsText>
+    ),
     label: 'zimbra_domains_datagrid_account_number',
+  },
+  {
+    id: 'diagnostic',
+    cell: (item) => {
+      return (
+        <>
+          <DiagnosticBadge
+            diagType={DnsRecordType.MX}
+            domainId={item.id}
+            status="error"
+          />
+          <DiagnosticBadge
+            diagType={DnsRecordType.SRV}
+            domainId={item.id}
+            status="error"
+          />
+          <DiagnosticBadge
+            diagType={DnsRecordType.SPF}
+            domainId={item.id}
+            status="error"
+          />
+          <DiagnosticBadge
+            diagType={DnsRecordType.DKIM}
+            domainId={item.id}
+            status="warning"
+          />
+        </>
+      );
+    },
+    label: 'zimbra_domains_datagrid_diagnostic_label',
   },
   {
     id: 'tooltip',
@@ -117,13 +151,14 @@ export default function Domains() {
   const hrefAddDomain = useGenerateUrl('./add', 'href');
 
   const items: DomainsItem[] =
-    data?.map((item) => ({
+    data?.map((item: DomainType) => ({
       name: item.currentState.name,
       id: item.id,
       organizationId: item.currentState.organizationId,
       organizationLabel: item.currentState.organizationLabel,
       account: item.currentState.accountsStatistics.reduce(
-        (acc, current) => acc + current.configuredAccountsCount,
+        (acc: number, current: AccountStatistics) =>
+          acc + current.configuredAccountsCount,
         0,
       ),
       status: item.resourceStatus,
@@ -193,10 +228,18 @@ export default function Domains() {
           ) : (
             <>
               <Datagrid
-                columns={columns.map((column) => ({
-                  ...column,
-                  label: t(column.label),
-                }))}
+                columns={columns
+                  .filter(
+                    (c) =>
+                      !(
+                        !FEATURE_FLAGS.DOMAIN_DIAGNOSTICS &&
+                        c.id === 'diagnostic'
+                      ),
+                  )
+                  .map((column) => ({
+                    ...column,
+                    label: t(column.label),
+                  }))}
                 items={items}
                 totalItems={items.length}
                 hasNextPage={!isFetchingNextPage && hasNextPage}

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-zimbra-app",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "description": "zimbra react app",
   "repository": {
@@ -24,12 +24,12 @@
     "@ovh-ux/manager-config": "^7.4.0",
     "@ovh-ux/manager-core-api": "^0.8.0",
     "@ovh-ux/manager-core-utils": "^0.3.0",
-    "@ovh-ux/manager-react-components": "^1.38.0",
-    "@ovh-ux/manager-react-core-application": "^0.10.2",
-    "@ovh-ux/manager-react-shell-client": "^0.7.2",
+    "@ovh-ux/manager-react-components": "^1.38.2",
+    "@ovh-ux/manager-react-core-application": "^0.10.3",
+    "@ovh-ux/manager-react-shell-client": "^0.7.3",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
     "@ovh-ux/request-tagger": "^0.3.0",
-    "@ovh-ux/shell": "^3.8.0",
+    "@ovh-ux/shell": "^3.9.0",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
     "@ovhcloud/ods-components": "17.2.2",
@@ -56,10 +56,10 @@
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
-    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/coverage-v8": "^2.1.2",
     "typescript": "^4.3.2",
     "vite": "^5.2.13",
-    "vitest": "^2.0.5"
+    "vitest": "^2.1.2"
   },
   "regions": [
     "CA",

@@ -1,4 +1,4 @@
-import { fireEvent, screen, render } from '@testing-library/react';
+import { fireEvent, screen, render, act } from '@testing-library/react';
 import { ActionBanner, ActionBannerProps } from './action-banner.component';
 
 const renderComponent = (props: ActionBannerProps) =>
@@ -23,21 +23,23 @@ describe('ActionBanner tests', () => {
       cta: 'custom action',
       onClick: mockOnClick,
     });
-    expect(screen.getByTestId('actionBanner-button')).not.toBeNull();
-    const cta = screen.queryByTestId('actionBanner-button');
-    expect(mockOnClick).not.toHaveBeenCalled();
-    fireEvent.click(cta);
+
+    const actionBtn = screen.getByTestId('actionBanner-button');
+
+    act(() => fireEvent.click(actionBtn));
+
     expect(mockOnClick).toHaveBeenCalled();
   });
 
   it('should have a link action', () => {
     const href = 'www.ovhcloud.com';
-    renderComponent({
+    const { container } = renderComponent({
       message: 'hello world',
       cta: 'custom action',
       href,
     });
-    const link = screen.queryByTestId('action-banner-link');
+    const link = container.querySelector('osds-link');
+
     expect(link).toBeDefined();
     expect(link.getAttribute('href')).toBe(href);
     expect(link.getAttribute('target')).toBe('_blank');

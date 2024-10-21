@@ -6,7 +6,7 @@ import { defaultProps } from './dashboard.stories';
 describe('DashboardLayout component', () => {
   it('renders dashboard layout correctly', async () => {
     render(<DashboardLayout {...defaultProps} />);
-    waitFor(() => {
+    await waitFor(() => {
       expect(screen.getByText('Vrack Services')).toBeInTheDocument();
       expect(
         screen.getByText(
@@ -28,7 +28,7 @@ describe('DashboardLayout component', () => {
       />,
     );
 
-    fireEvent.click(screen.getByTestId('manager-back-link'));
+    fireEvent.click(screen.getByText(backLinkLabel));
 
     await waitFor(() => expect(spy).toHaveBeenCalled());
   });

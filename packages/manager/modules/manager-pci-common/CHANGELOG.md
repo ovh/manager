@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.7.1...@ovh-ux/manager-pci-common@0.7.2) (2024-10-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3392] ([d623f03](https://github.com/ovh/manager/commit/d623f032e4277f1a4cf453f945bed127d2d33449))
+* **i18n:** add missing translations [CDS 3399] ([dbf1962](https://github.com/ovh/manager/commit/dbf1962e0e747c9883eee6bfca25c27921eb01d3))
+* **i18n:** add missing translations [CDS 3402] ([b007251](https://github.com/ovh/manager/commit/b007251ae796eb0ad9d1edbc2b588ce3a4a8b88f))
+
+
+
+
+
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.7.0...@ovh-ux/manager-pci-common@0.7.1) (2024-10-15)
+
+
+### Reverts
+
+* Revert "feat(manager-react-components): update generator" ([f82658c](https://github.com/ovh/manager/commit/f82658c229a7880b01fcdcdab93e73f60ff7ad89))
+* Revert "fix(manager-react-components): fix bump ods 18 issues" ([fb0e56d](https://github.com/ovh/manager/commit/fb0e56d4e7f64d0ebe8f6ae8036384403cd678b7))
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.6.2...@ovh-ux/manager-pci-common@0.7.0) (2024-10-11)
 
 

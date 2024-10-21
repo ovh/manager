@@ -1,23 +1,27 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  OdsText,
-  OdsInput,
-  OdsMessage,
-  OdsModal,
-  OdsButton,
-  OdsFormField,
+  OsdsText,
+  OsdsInput,
+  OsdsMessage,
+  OsdsSpinner,
+  OsdsModal,
+  OsdsButton,
+  OsdsFormField,
 } from '@ovhcloud/ods-components/react';
 import {
+  ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
+  ODS_MESSAGE_TYPE,
+  ODS_SPINNER_SIZE,
   ODS_INPUT_TYPE,
-  ODS_MESSAGE_COLOR,
-  OdsInputChangeEventDetail,
-  OdsInputCustomEvent,
+  OdsInputValueChangeEvent,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { handleClick } from '../../../utils/click-utils';
 import './translations/translations';
-import './update-name-modal.scss';
 
 export type UpdateNameModalProps = {
   headline: string;
@@ -32,7 +36,6 @@ export type UpdateNameModalProps = {
   confirmButtonLabel?: string;
   pattern?: string;
   patternMessage?: string;
-  isOpen?: boolean;
 };
 
 export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
@@ -48,7 +51,6 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
   confirmButtonLabel,
   pattern,
   patternMessage,
-  isOpen = false,
 }) => {
   const { t } = useTranslation('update-name-modal');
   const [displayName, setDisplayName] = React.useState(defaultValue);
@@ -64,64 +66,88 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
   }, [displayName, pattern]);
 
   return (
-    <OdsModal isOpen={isOpen} onOdsClose={closeModal}>
-      <div>
-        <span className="update-name-headline text-[--ods-color-heading] text-[24px] leading-[32px] font-bold">
-          {headline}
-        </span>
-      </div>
+    <OsdsModal dismissible headline={headline} onOdsModalClose={closeModal}>
       {!!error && (
-        <OdsMessage color={ODS_MESSAGE_COLOR.danger}>
-          <OdsText preset="span">{t('updateModalError', { error })}</OdsText>
-        </OdsMessage>
+        <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('updateModalError', { error })}
+          </OsdsText>
+        </OsdsMessage>
       )}
-      <span className="update-name-description text-[--ods-color-text] text-[14px] leading-[18px] my-[8px]">
+      <OsdsText
+        color={ODS_THEME_COLOR_INTENT.text}
+        level={ODS_TEXT_LEVEL.body}
+        className="block my-4"
+      >
         {description}
-      </span>
-      <OdsFormField className="mb-8">
+      </OsdsText>
+      <OsdsFormField className="mb-8">
         <div slot="label">
-          <span className="update-name-input-label text-[--ods-color-text] text-[14px] leading-[18px] font-semibold">
+          <OsdsText
+            className="block mb-3"
+            color={ODS_THEME_COLOR_INTENT.text}
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._200}
+          >
             {inputLabel}
-          </span>
+          </OsdsText>
         </div>
-        <OdsInput
+        <OsdsInput
           aria-label="update-input"
-          isDisabled={isLoading}
+          disabled={isLoading || undefined}
           type={ODS_INPUT_TYPE.text}
           value={displayName}
-          hasError={isPatternError || undefined}
-          name="update-name-modal-input"
-          onOdsChange={(e: OdsInputCustomEvent<OdsInputChangeEventDetail>) =>
-            setDisplayName(e.detail.value as string)
+          error={isPatternError || undefined}
+          onOdsValueChange={(e: OdsInputValueChangeEvent) =>
+            setDisplayName(e.detail.value)
           }
         />
         {patternMessage && (
           <div className="mt-5">
-            <OdsText
-              preset="span"
-              className={`update-name-modal-pattern-message ${
-                isPatternError && pattern ? 'error' : ''
-              }`}
+            <OsdsText
+              className="block"
+              color={
+                isPatternError && pattern
+                  ? ODS_THEME_COLOR_INTENT.error
+                  : ODS_THEME_COLOR_INTENT.text
+              }
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_TEXT_SIZE._100}
             >
               {patternMessage}
-            </OdsText>
+            </OsdsText>
           </div>
         )}
-      </OdsFormField>
-      <OdsButton
-        isDisabled={isLoading}
+      </OsdsFormField>
+      {isLoading && (
+        <div className="flex justify-center">
+          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+        </div>
+      )}
+      <OsdsButton
+        disabled={isLoading || undefined}
         slot="actions"
+        type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.ghost}
+        color={ODS_THEME_COLOR_INTENT.primary}
         {...handleClick(closeModal)}
-        label={cancelButtonLabel || t('updateModalCancelButton')}
-      />
-      <OdsButton
-        isDisabled={isPatternError}
+      >
+        {cancelButtonLabel || t('updateModalCancelButton')}
+      </OsdsButton>
+      <OsdsButton
+        disabled={isLoading || isPatternError || undefined}
         slot="actions"
-        isLoading={isLoading}
+        type={ODS_BUTTON_TYPE.button}
+        variant={ODS_BUTTON_VARIANT.flat}
+        color={ODS_THEME_COLOR_INTENT.primary}
         {...handleClick(() => updateDisplayName(displayName))}
-        label={confirmButtonLabel || t('updateModalConfirmButton')}
-      />
-    </OdsModal>
+      >
+        {confirmButtonLabel || t('updateModalConfirmButton')}
+      </OsdsButton>
+    </OsdsModal>
   );
 };

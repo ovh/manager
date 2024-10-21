@@ -57,7 +57,7 @@ export const OnboardingWalkMe = () => {
   const steps = [
     {
       selector: '#header-user-menu-button',
-      placement: 'bottom-start',
+      placement: 'bottom-end',
       title: t('onboarding_walkme_popover_step1_title'),
       content: t('onboarding_walkme_popover_step1_content'),
       trackingVariant: 'my_account',
@@ -85,7 +85,7 @@ export const OnboardingWalkMe = () => {
     {
       selector: 'services',
       placement: 'left-start',
-      mobilePlacement: 'bottom-start',
+      mobilePlacement: 'right-start',
       title: t('onboarding_walkme_popover_step3_title'),
       content: t('onboarding_walkme_popover_step3_content'),
       trackingVariant: 'my_services',
@@ -93,8 +93,8 @@ export const OnboardingWalkMe = () => {
     },
     {
       selector: '#useful-links',
-      placement: 'top-start',
-      mobilePlacement: 'top-start',
+      placement: 'right-end',
+      mobilePlacement: 'right-end',
       title: t('onboarding_walkme_popover_step4_title'),
       content: t('onboarding_walkme_popover_step4_content'),
       trackingVariant: '',
@@ -112,19 +112,19 @@ export const OnboardingWalkMe = () => {
     },
   ];
 
-  const currentStepRank = useMemo(() => currentStepIndex + 1,[currentStepIndex]);
-  const isLastStep = useMemo(() => currentStepIndex === (steps.length - 1),[currentStepIndex]);
-  
+  const currentStepRank = useMemo(() => currentStepIndex + 1, [currentStepIndex]);
+  const isLastStep = useMemo(() => currentStepIndex === (steps.length - 1), [currentStepIndex]);
+
   useEffect(() => {
     const currentStep = steps[currentStepIndex]
-    if(currentStep){
+    if (currentStep) {
       trackingPlugin.trackPage(`product-navigation-reshuffle::version_V3::modal_guided_tour::step-${currentStepRank}::${currentStep.trackingLabel}`);
     }
   }, [currentStepIndex]);
 
   const onHideBtnClick = (isDone?: boolean) => {
     const currentStep = steps[currentStepIndex];
-    if(!isLastStep){
+    if (!isLastStep) {
       trackingPlugin.trackClick({
         name: `modal_guided_tour_version_V3::product-navigation-reshuffle::step-${currentStepRank}::${currentStep.trackingLabel}::decline_modal_guided_tour`,
         type: 'action',
@@ -157,7 +157,7 @@ export const OnboardingWalkMe = () => {
 
   const onNextBtnClick = () => {
     const currentStep = steps[currentStepIndex];
-    if(!isLastStep){
+    if (!isLastStep) {
       trackingPlugin.trackClick({
         name: `modal_guided_tour_version_V3::product-navigation-reshuffle::step-${currentStepRank}::${currentStep.trackingLabel}::go_to_next_step`,
         type: 'action',
@@ -305,9 +305,16 @@ export const OnboardingWalkMe = () => {
           <div className={`${popoverStyle['popover-body']} mb-3`}>
             {steps[currentStepIndex].content}
           </div>
-          <div className="d-flex flex-row-reverse justify-content-between">
+
+          <div className={style['onboarding-walkme_popover_footer']}>
             {currentStepIndex + 1 < steps.length ?
               <>
+                <button
+                  className="oui-button oui-button_ghost"
+                  onClick={() => onHideBtnClick()}
+                >
+                  {t('onboarding_popover_hide_button')}
+                </button>
                 <button
                   className="oui-button oui-button_primary"
                   onClick={onNextBtnClick}
@@ -316,12 +323,6 @@ export const OnboardingWalkMe = () => {
                     current: currentStepIndex + 1,
                     total: steps.length,
                   })}
-                </button>
-                <button
-                  className="oui-button oui-button_ghost"
-                  onClick={() => onHideBtnClick()}
-                >
-                  {t('onboarding_popover_hide_button')}
                 </button>
               </> :
               <button

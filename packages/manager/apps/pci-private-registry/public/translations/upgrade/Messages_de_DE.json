@@ -4,8 +4,8 @@
   "private_registry_upgrade_plan_connections": "{{ total }} simultanverbindungen*",
   "private_registry_upgrade_plan_vulnerability": "Nach Sicherheitslücken suchen",
   "private_registry_upgrade_plan_traffic": "100% nachhaltiges SLA und unbegrenzter Datenverkehr",
-  "private_registry_upgrade_core_registry_99": "99,9% Core & Registry",
-  "private_registry_upgrade_core_registry_95": "99,95% Core & Registry",
+  "private_registry_upgrade_core_registry_99": "99,9% Core &amp; Registry",
+  "private_registry_upgrade_core_registry_95": "99,95% Core &amp; Registry",
   "private_registry_upgrade_other_components": "99,9% für die restlichen Komponenten",
   "private_registry_upgrade_plan_warning": "* Die meiste Client-Software ist so konfiguriert, dass sie beim Zugriff auf ein Registry zeitgleich 5 http-Verbindungen verwendet.",
   "private_registry_upgrade_plan_available_storage": "Verfügbarer Speicher: "

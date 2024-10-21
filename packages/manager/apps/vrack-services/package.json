@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-services-app",
-  "version": "0.8.17",
+  "version": "0.8.19",
   "private": true,
   "description": "OVHcloud VrackServices app",
   "repository": {
@@ -11,23 +11,23 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "beta-test:e2e": "tsc && node ../../../../scripts/run-playwright-bdd.js",
-    "beta-test:e2e:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci",
     "build": "tsc && vite build",
     "dev": "tsc && vite",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-vrack-services-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-vrack-services-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-vrack-services-app' --include-dependencies -- npm run dev:watch --if-present",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "tsc && node ../../../../scripts/run-playwright-bdd.js",
+    "test:e2e:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^7.4.0",
     "@ovh-ux/manager-core-api": "^0.8.0",
-    "@ovh-ux/manager-module-order": "^0.5.3",
-    "@ovh-ux/manager-react-components": "^1.38.0",
-    "@ovh-ux/manager-react-core-application": "^0.10.2",
-    "@ovh-ux/manager-react-shell-client": "^0.7.2",
+    "@ovh-ux/manager-module-order": "^0.5.4",
+    "@ovh-ux/manager-react-components": "^1.38.2",
+    "@ovh-ux/manager-react-core-application": "^0.10.3",
+    "@ovh-ux/manager-react-shell-client": "^0.7.3",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "^0.3.0",
     "@ovhcloud/ods-common-core": "17.2.2",

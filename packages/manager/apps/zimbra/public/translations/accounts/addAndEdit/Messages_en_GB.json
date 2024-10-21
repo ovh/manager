@@ -23,8 +23,8 @@
   "zimbra_account_add_input_password_label": "Password",
   "zimbra_account_add_input_password_helper": "Your password must contain at least:",
   "zimbra_account_add_input_password_helper_rule_1": "10 characters",
-  "zimbra_account_add_input_password_helper_rule_2": "1 digit or special character (€, !, &amp;,...)",
-  "zimbra_account_add_input_password_helper_rule_3": "1 capital letter",
+  "zimbra_account_add_input_password_helper_rule_2": "1 digit or special character (€, !, &amp;)",
+  "zimbra_account_add_input_password_helper_rule_3": "1 uppercase letter",
   "zimbra_account_add_input_mandatory": "Fields marked with an asterisk (*) are mandatory",
   "zimbra_account_add_button_save": "Save",
   "zimbra_account_add_button_cancel": "Cancel",
@@ -33,5 +33,8 @@
   "zimbra_account_add_error_message": "Unable to submit your email account creation request. {{ error }}",
   "zimbra_account_edit_success_message": "Your request to edit your email account has been submitted. It will be processed in a few moments.",
   "zimbra_account_edit_error_message": "Unable to submit the request to edit your email account. {{ error }}",
-  "zimbra_account_add_input_displayName_tooltip": "Name used in the directory and displayed to email recipients"
+  "zimbra_account_add_input_displayName_tooltip": "Name displayed in the directory and to email recipients.",
+  "zimbra_account_edit_tabs_settings": "Account settings",
+  "zimbra_account_edit_tabs_redirections": "Redirections",
+  "zimbra_account_edit_tabs_alias": "Alias"
 }

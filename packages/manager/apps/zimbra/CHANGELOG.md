@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.7.2...@ovh-ux/manager-zimbra-app@0.8.0) (2024-10-21)
+
+
+### Features
+
+* **zimbra:** zimbra-ga first batch ([#13007](https://github.com/ovh/manager/issues/13007)) ([2b27a4d](https://github.com/ovh/manager/commit/2b27a4d0abe486697ae916f428551e2d9d11fb7e))
+
+
+
+
+
+## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.7.1...@ovh-ux/manager-zimbra-app@0.7.2) (2024-10-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3399] ([dbf1962](https://github.com/ovh/manager/commit/dbf1962e0e747c9883eee6bfca25c27921eb01d3))
+* **i18n:** add missing translations [CDS 3402] ([b007251](https://github.com/ovh/manager/commit/b007251ae796eb0ad9d1edbc2b588ce3a4a8b88f))
+
+
+
+
+
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.7.0...@ovh-ux/manager-zimbra-app@0.7.1) (2024-10-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.6.3...@ovh-ux/manager-zimbra-app@0.7.0) (2024-10-14)
 
 

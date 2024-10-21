@@ -4,8 +4,8 @@
   "private_registry_upgrade_plan_connections": "{{ total }} conexiones simultáneas*",
   "private_registry_upgrade_plan_vulnerability": "Análisis de vulnerabilidades",
   "private_registry_upgrade_plan_traffic": "SLA 100% y tráfico ilimitado",
-  "private_registry_upgrade_core_registry_99": "99,9% core & registry",
-  "private_registry_upgrade_core_registry_95": "99,95% core & registry",
+  "private_registry_upgrade_core_registry_99": "99,9% core &amp; registry",
+  "private_registry_upgrade_core_registry_95": "99,95% core &amp; registry",
   "private_registry_upgrade_other_components": "99,9% en el resto de componentes",
   "private_registry_upgrade_plan_warning": "* La mayoría de los programas clientes están configurados para utilizar cinco conexiones HTTP simultáneas durante el acceso a un registro.",
   "private_registry_upgrade_plan_available_storage": "Almacenamiento disponible: "

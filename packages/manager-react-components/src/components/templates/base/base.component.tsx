@@ -1,8 +1,8 @@
 import React from 'react';
 import { Headers, HeadersProps } from '../../content';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { LinkType, Links, Subtitle } from '../../typography';
+import { Description, LinkType, Links, Subtitle } from '../../typography';
 import { PageLayout } from '../layout/layout.component';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 export type BaseLayoutProps = React.PropsWithChildren<{
   breadcrumb?: React.ReactElement;
@@ -31,32 +31,24 @@ export const BaseLayout = ({
   tabs,
 }: BaseLayoutProps) => (
   <PageLayout>
-    <div>{breadcrumb}</div>
-    {header && (
-      <div className="mt-[24px]">
-        <Headers {...header} />
-      </div>
-    )}
+    <div className="mb-6">{breadcrumb}</div>
+    {header && <Headers {...header} />}
     {backLinkLabel && (onClickReturn || hrefPrevious) && (
-      <div className="mb-[16px]">
-        <Links
-          data-testid="manager-back-link"
-          onClickReturn={onClickReturn}
-          label={backLinkLabel}
-          type={LinkType.back}
-          target="_self"
-          href={hrefPrevious}
-        />
-      </div>
+      <Links
+        className="mb-6"
+        onClickReturn={onClickReturn}
+        label={backLinkLabel}
+        type={LinkType.back}
+        target={OdsHTMLAnchorElementTarget._self}
+        href={hrefPrevious}
+      />
     )}
-    {description && (
-      <OdsText className="mb-[16px]" preset="span">
-        {description}
-      </OdsText>
-    )}
-    {message && <div className="mb-5 max-w-[800px]">{message}</div>}
+    {description && <Description className="mb-6">{description}</Description>}
+    {message && <div className="mb-8 max-w-[800px]">{message}</div>}
     {subtitle && <Subtitle className="block mb-6">{subtitle}</Subtitle>}
-    {subDescription && <OdsText preset="span">{subDescription}</OdsText>}
+    {subDescription && (
+      <Description className="mb-8">{subDescription}</Description>
+    )}
     <div className="mb-6">{tabs}</div>
     {children}
   </PageLayout>

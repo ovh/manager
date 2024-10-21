@@ -1,14 +1,18 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import {
-  OdsBreadcrumb,
-  OdsBreadcrumbItem,
-  OdsMessage,
-  OdsTabs,
-  OdsTab,
+  OsdsBreadcrumb,
+  OsdsTile,
+  OsdsMessage,
+  OsdsDivider,
+  OsdsTabBar,
+  OsdsTabBarItem,
+  OsdsTabs,
 } from '@ovhcloud/ods-components/react';
-import { DashboardTile } from '../../content';
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_DIVIDER_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { Headers } from '../../content';
 import { DashboardLayout, DashboardLayoutProps } from './dashboard.component';
 import GuideButton, {
   GuideItem,
@@ -20,13 +24,13 @@ const guideItems: GuideItem[] = [
   {
     id: 1,
     href: 'https://www.ovh.com',
-    target: '_blank',
+    target: OdsHTMLAnchorElementTarget._blank,
     label: 'ovh.com',
   },
   {
     id: 2,
     href: 'https://help.ovhcloud.com/csm/fr-documentation?id=kb_home',
-    target: '_blank',
+    target: OdsHTMLAnchorElementTarget._blank,
     label: 'Guides OVH',
   },
 ];
@@ -39,9 +43,14 @@ export const defaultProps: DashboardLayoutProps = {
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   message: (
-    <OdsMessage className="w-full" color={ODS_MESSAGE_COLOR.success}>
+    <OsdsMessage
+      icon={ODS_ICON_NAME.SUCCESS_CIRCLE}
+      removable
+      className="w-full"
+      color={ODS_THEME_COLOR_INTENT.success}
+    >
       Votre service a été créé avec succès
-    </OdsMessage>
+    </OsdsMessage>
   ),
   subtitle: 'Lorem ipsum',
   backLinkLabel: 'Retour à la XXX',
@@ -51,50 +60,50 @@ export const defaultProps: DashboardLayoutProps = {
   subdescription:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia rutrum interdum. Nullam tempor, mi eu imperdiet scelerisque, lorem nisl blandit ligula, eget sodales erat nulla a odio. Donec efficitur posuere quam. Maecenas metus sem, venenatis id mattis eget, sollicitudin sit amet nulla. Sed ac erat fermentum, porta ligula ac,',
   tabs: (
-    <OdsTabs>
-      <OdsTab id="tab1" role="tab">
-        Tabs 1
-      </OdsTab>
-      <OdsTab id="tab2" role="tab">
-        Tabs 2
-      </OdsTab>
-      <OdsTab id="tab3" role="tab">
-        Tabs 3
-      </OdsTab>
-    </OdsTabs>
+    <>
+      <OsdsTabs>
+        <OsdsTabBar slot="top">
+          <OsdsTabBarItem panel="tab1" role="tab">
+            Tabs 1
+          </OsdsTabBarItem>
+          <OsdsTabBarItem panel="tab2" role="tab">
+            Tabs 2
+          </OsdsTabBarItem>
+          <OsdsTabBarItem panel="tab3" role="tab">
+            Tabs 3
+          </OsdsTabBarItem>
+        </OsdsTabBar>
+      </OsdsTabs>
+      <OsdsDivider separator size={ODS_DIVIDER_SIZE.zero} />
+    </>
   ),
   content: (
     <DashboardGridLayout>
-      <DashboardTile
-        key={1}
-        title="General info"
-        items={[
-          { id: '1', label: 'Name', value: 'service anme' },
-          { id: '2', label: 'Service ID', value: 'xxxx-1299075' },
-          { id: '3', label: 'Datacentre location', value: 'Madrid' },
-        ]}
-      />
-      <DashboardTile
-        key={2}
-        title="Configuration"
-        items={[{ id: '1', label: 'Quota 1', value: <div>Quota 1</div> }]}
-      />
-      <DashboardTile
-        key={3}
-        title="Billing"
-        items={[
-          { id: '1', label: 'Creation date', value: '19 Agost 2028' },
-          { id: '2', label: 'Next payment', value: '1 January 2029' },
-          { id: '3', label: 'Contact', value: 'Manager' },
-        ]}
-      />
+      <OsdsTile rounded>
+        <span slot="start">
+          <Headers subtitle="Tile 1" />
+        </span>
+      </OsdsTile>
+      <OsdsTile rounded>
+        <span slot="start">
+          <Headers subtitle="Tile 2" />
+        </span>
+      </OsdsTile>
+      <OsdsTile rounded>
+        <span slot="start">
+          <Headers subtitle="Tile 3" />
+        </span>
+      </OsdsTile>
     </DashboardGridLayout>
   ),
   breadcrumb: (
-    <OdsBreadcrumb>
-      <OdsBreadcrumbItem href="/vrack-services" label="Vrack Services" />
-      <OdsBreadcrumbItem href="/vrs-abc-def-ghi" label="vrs-abc-def-ghi" />
-    </OdsBreadcrumb>
+    <OsdsBreadcrumb
+      className="flex-start"
+      items={[
+        { label: 'vRack Services', href: '/vrack-services' },
+        { label: 'vrs-abc-def-ghi', href: '/vrs-abc-def-ghi' },
+      ]}
+    />
   ),
 };
 

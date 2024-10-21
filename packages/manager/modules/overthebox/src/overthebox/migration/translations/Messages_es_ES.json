@@ -5,7 +5,7 @@
   "overthebox_migration_current_offer": "Producto actual: {{offerName}}",
   "overthebox_migration_monthly_subscription": "Suscripción mensual",
   "overthebox_migration_hardware": "Caja",
-  "overthebox_migration_hardware_yes": "Quiero adquirir una nueva caja {{ deviceName }} ({{ price }} + IVA) *",
+  "overthebox_migration_hardware_yes": "Quiero adquirir un nuevo dispositivo {{ deviceName }} ({{ price }} + IVA)*",
   "overthebox_migration_hardware_no": "No quiero una caja",
   "overthebox_migration_choose_offer_action": "Seleccionar",
   "overthebox_migration_contact_title": "Entrega",
@@ -21,7 +21,7 @@
   "overthebox_migration_summary_table_quantity": "Cantidad",
   "overthebox_migration_summary_table_price_per_month": "Precio mensual (IVA no incl.)",
   "overthebox_migration_summary_table_offer": "Oferta {{offerName}}",
-  "overthebox_migration_summary_table_hardware": "Caja {{ deviceName }}",
+  "overthebox_migration_summary_table_hardware": "Dispositivo {{ deviceName }}",
   "overthebox_migration_summary_contracts_title": "Contratos",
   "overthebox_migration_summary_price_explain": "Su nueva suscripción mensual es de: {{price}}/mes + IVA, aplicable desde la entrega del nuevo servicio. Le informaremos por correo electrónico.",
   "overthebox_migration_summary_hardware_price": "El precio del material incluye los gastos de envío del mismo.",
@@ -34,5 +34,5 @@
   "overthebox_migration_summary_command_order_help": "Más información sobre el pago de una orden de pedido.",
   "overthebox_migration_summary_launch_migration_error": "Se ha producido un error al migrar la solución. {{errorMsg}}",
   "overthebox_migration_offers_title": "Selección de la solución",
-  "overthebox_migration_about": "* OverTheBox - Más información sobre la descripción del servicio y del gabinete."
+  "overthebox_migration_about": "* OverTheBox - Más información sobre la descripción del servicio y del dispositivo."
 }
