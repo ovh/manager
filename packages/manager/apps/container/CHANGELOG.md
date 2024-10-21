@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.83.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.82.0...@ovh-ux/manager-container-app@0.83.0) (2024-10-21)
+
+
+### Bug Fixes
+
+* **container:** fix onboarding last step pop-up overflow ([#13671](https://github.com/ovh/manager/issues/13671)) ([2343d35](https://github.com/ovh/manager/commit/2343d357c6355e2aed1649918662e134603a938b))
+* **container:** fix the init load translations files ([#13486](https://github.com/ovh/manager/issues/13486)) ([de50080](https://github.com/ovh/manager/commit/de50080e68020eee117c6ba24dd715db44e48680))
+
+
+### Features
+
+* **container:** added space between both ctas in guided tour ([#13355](https://github.com/ovh/manager/issues/13355)) ([ff5f8c6](https://github.com/ovh/manager/commit/ff5f8c616547a23db63c203235321f5c7b917988))
+* **container:** keep lvl2 closed when manually closed ([#13279](https://github.com/ovh/manager/issues/13279)) ([144af7e](https://github.com/ovh/manager/commit/144af7e1aa4fde72f2db6027a5629be49a535e72))
+* **container:** ordered applications by hash for routing ([#13630](https://github.com/ovh/manager/issues/13630)) ([3a68215](https://github.com/ovh/manager/commit/3a682158ed70ac68881a1b8ac1932b0b55d7d6ba))
+
+
+
+
+
 # [0.82.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.81.1...@ovh-ux/manager-container-app@0.82.0) (2024-10-17)
 
 
