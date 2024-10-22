@@ -1,6 +1,12 @@
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  act,
+  waitFor,
+} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
@@ -142,6 +148,9 @@ describe('Form.page', () => {
 
   it('should show SuccessModal on successful document upload', async () => {
     const { getByText, getByTestId } = renderFormComponent();
+    vi.spyOn(useDocumentsModule, 'getUploadDocumentsLinks').mockReturnValue(
+      Promise.resolve([]),
+    );
     vi.spyOn(useDocumentsModule, 'uploadDocuments').mockReturnValue(
       Promise.resolve(),
     );
@@ -168,11 +177,16 @@ describe('Form.page', () => {
     ).not.toBeNull();
   });
 
-  it('should show error message when document upload is not successful', async () => {
+  it('should enable file inputs until links retrieval is successful', async () => {
     const { getByText, getByTestId } = renderFormComponent();
-    vi.spyOn(useDocumentsModule, 'uploadDocuments').mockRejectedValue(null);
+    vi.spyOn(useDocumentsModule, 'getUploadDocumentsLinks').mockRejectedValue(
+      null,
+    );
 
     const fileInput = getByTestId('18');
+    // File input should not be disabled if getUploadDocumentsLinks has not yet been called and
+    // at least a document has been selected
+    expect(fileInput).not.toHaveAttribute('disabled');
     await act(() =>
       fireEvent.change(fileInput, {
         target: {
@@ -187,8 +201,55 @@ describe('Form.page', () => {
     const confirmBtn = getByText('account-disable-2fa-confirm-modal-yes');
     await act(() => fireEvent.click(confirmBtn));
 
-    expect(
-      getByText('account-disable-2fa-create-form-error-message-send-document'),
-    ).not.toBeNull();
+    await waitFor(() =>
+      expect(
+        getByText(
+          'account-disable-2fa-create-form-error-message-send-document',
+        ),
+      ).not.toBeNull(),
+    );
+    // File input should not be disabled if getUploadDocumentsLinks is not successful
+    expect(fileInput).not.toHaveAttribute('disabled');
   });
+
+  it(
+    'should show error message when document upload is not successful',
+    async () => {
+      const { getByText, getByTestId } = renderFormComponent();
+      vi.spyOn(useDocumentsModule, 'getUploadDocumentsLinks').mockReturnValue(
+        Promise.resolve([]),
+      );
+      vi.spyOn(useDocumentsModule, 'uploadDocuments').mockRejectedValue(null);
+
+      const fileInput = getByTestId('18');
+      await act(() =>
+        fireEvent.change(fileInput, {
+          target: {
+            files: [
+              new File(['test'], 'chucknorris.png', { type: 'image/png' }),
+            ],
+          },
+        }),
+      );
+
+      const submitBtn = getByText('account-disable-2fa-create-form-submit');
+      await act(() => fireEvent.click(submitBtn));
+
+      const confirmBtn = getByText('account-disable-2fa-confirm-modal-yes');
+      await act(() => fireEvent.click(confirmBtn));
+
+      await waitFor(
+        () =>
+          expect(
+            getByText(
+              'account-disable-2fa-create-form-error-message-send-document',
+            ),
+          ).not.toBeNull(),
+        { timeout: 30000 },
+      );
+      // File input should be disabled after getUploadDocumentsLinks is successful
+      expect(fileInput).toHaveAttribute('disabled');
+    },
+    { timeout: 60000 },
+  );
 });

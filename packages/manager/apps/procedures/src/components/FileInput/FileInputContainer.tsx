@@ -29,6 +29,7 @@ export type FileInputProps = {
   maxFiles: number;
   children: React.ReactNode;
   className?: string;
+  disabled: boolean;
 };
 
 export const FileInputContext = createContext<FileInputProps | undefined>(

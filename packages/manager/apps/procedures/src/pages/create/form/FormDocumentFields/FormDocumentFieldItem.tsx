@@ -21,6 +21,7 @@ type Props = {
   maxSize: number;
   maxFiles: number;
   id?: string;
+  disabled: boolean;
 };
 
 export const FormDocumentFieldItem: FunctionComponent<Props> = ({
@@ -33,6 +34,7 @@ export const FormDocumentFieldItem: FunctionComponent<Props> = ({
   maxFiles,
   maxSize,
   id,
+  disabled,
 }) => {
   return (
     <FileInputContainer
@@ -43,6 +45,7 @@ export const FormDocumentFieldItem: FunctionComponent<Props> = ({
       onChange={onChange}
       maxSize={maxSize}
       multiple={multiple}
+      disabled={disabled}
     >
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
