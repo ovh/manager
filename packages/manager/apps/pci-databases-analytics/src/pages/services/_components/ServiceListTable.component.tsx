@@ -49,7 +49,12 @@ export default function ServicesList({
 
   return (
     <>
-      <DataTable columns={columns} data={services} pageSize={25} />
+      <DataTable
+        columns={columns}
+        data={services}
+        pageSize={25}
+        itemNumber={services.length}
+      />
       {editingService && (
         <RenameService
           controller={renameModale.controller}

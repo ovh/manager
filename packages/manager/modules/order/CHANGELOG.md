@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.5.4...@ovh-ux/manager-module-order@0.6.0) (2024-10-21)
+
+
+### Features
+
+* **hpc-vmware-managed-vcd:** add new product VCD ([#12552](https://github.com/ovh/manager/issues/12552)) ([c990a65](https://github.com/ovh/manager/commit/c990a65189760c0b109902e3e292b31e8b59dd83))
+
+
+
+
+
 ## [0.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.5.3...@ovh-ux/manager-module-order@0.5.4) (2024-10-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-module-order

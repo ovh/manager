@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-metrics-app",
-  "version": "2.2.22",
+  "version": "2.2.23",
   "private": true,
   "repository": {
     "type": "git",
@@ -19,11 +19,11 @@
   },
   "dependencies": {
     "@ovh-ux/manager-components": "^1.22.0",
-    "@ovh-ux/manager-config": "^7.4.0",
-    "@ovh-ux/manager-core": "^12.17.1",
+    "@ovh-ux/manager-config": "^7.5.0",
+    "@ovh-ux/manager-core": "^12.17.2",
     "@ovh-ux/manager-metrics": "^1.6.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
-    "@ovh-ux/ng-at-internet": "^5.11.13",
+    "@ovh-ux/ng-at-internet": "^5.11.14",
     "@ovh-ux/ng-ovh-actions-menu": "^5.1.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.14.2",

@@ -1,6 +1,6 @@
 {
-  "pricing_ht": "{{ price }} {{ unit }} HT",
-  "pricing_ttc": "{{ price }} {{ unit }} TTC",
+  "pricing_ht": "{{ price }} HT",
+  "pricing_ttc": "{{ price }} TTC",
   "pricing_button_hourly": "Heure",
   "pricing_button_monthly": "Mensuel",
   "pricing_unit_hourly": "/heure",

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -12,6 +12,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
+import { Input } from '@/components/ui/input';
 
 import { ModalController } from '@/hooks/useModale';
 
@@ -23,6 +24,7 @@ import { useTrackAction, useTrackPage } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
 import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import { TERMINATE_CONFIRMATION } from '@/configuration/polling.constants';
 
 interface DeleteServiceModalProps {
   service: database.Service;
@@ -44,6 +46,7 @@ const DeleteService = ({
   const track = useTrackAction();
   const { t } = useTranslation('pci-databases-analytics/services/service');
   const toast = useToast();
+  const [confirmationInput, setConfirmationInput] = useState('');
   const integrationsQuery = useGetIntegrations(
     projectId,
     service.engine,
@@ -90,7 +93,7 @@ const DeleteService = ({
         onError(err);
       }
     },
-    onSuccess: () => {
+    onDeleteSuccess: () => {
       track(
         TRACKING.deleteService.success(service.engine, service.nodes[0].region),
       );
@@ -152,6 +155,16 @@ const DeleteService = ({
             name: service.description,
           })}
         </p>
+        <div className="flex flex-col gap-2">
+          <p>{t('deleteServiceConfirmation')}</p>
+          <Input
+            data-testid="delete-service-confirmation-input"
+            type="text"
+            onChange={(event) => {
+              setConfirmationInput(event.target.value);
+            }}
+          />
+        </div>
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
             <Button
@@ -176,7 +189,8 @@ const DeleteService = ({
             disabled={
               isPending ||
               serivcesQuery.isLoading ||
-              integrationsQuery.isLoading
+              integrationsQuery.isLoading ||
+              confirmationInput !== TERMINATE_CONFIRMATION
             }
             onClick={handleDelete}
           >

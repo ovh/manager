@@ -223,7 +223,11 @@
             <oui-action-menu-item
                 data-disabled="!$row.canCreateOrScheduleBackup()"
                 data-on-click="$ctrl.createBackupInstance($row)"
-                data-ng-if="$row.statusGroup === 'ACTIVE'"
+                data-ng-if="
+                    $row.statusGroup === 'ACTIVE'
+                        ? ($row.isLocalZone ? $ctrl.isInstanceLocalZoneBackupAvailable : true)
+                        : false
+                "
             >
                 <span
                     data-translate="pci_projects_project_instances_createBackup_label"

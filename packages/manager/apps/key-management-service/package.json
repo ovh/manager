@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-key-management-service-app",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "private": true,
   "description": "ovh key-management-service",
   "repository": {
@@ -22,13 +22,13 @@
     "test:e2e:script": "tsc && node ../../../../scripts/run-playwright.js"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "*",
+    "@ovh-ux/manager-config": "^7.5.0",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
-    "@ovh-ux/manager-module-order": "^0.5.4",
-    "@ovh-ux/manager-react-components": "^1.38.2",
-    "@ovh-ux/manager-react-core-application": "^0.10.3",
-    "@ovh-ux/manager-react-shell-client": "^0.7.3",
+    "@ovh-ux/manager-module-order": "^0.6.0",
+    "@ovh-ux/manager-react-components": "^1.39.0",
+    "@ovh-ux/manager-react-core-application": "^0.10.4",
+    "@ovh-ux/manager-react-shell-client": "^0.7.4",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "*",
     "@ovhcloud/ods-common-core": "17.2.2",

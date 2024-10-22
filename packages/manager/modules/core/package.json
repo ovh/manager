@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core",
-  "version": "12.17.1",
+  "version": "12.17.2",
   "private": true,
   "description": "Core functionalities shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/core#readme",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.0.1",
-    "@ovh-ux/manager-models": "^1.14.14"
+    "@ovh-ux/manager-models": "^1.14.15"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",

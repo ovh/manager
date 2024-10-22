@@ -251,11 +251,22 @@ export const registerPCINewPaymentState = (
       onAskCreditPayment: /* @ngInject */ ($state) => () =>
         $state.go(`${stateName}.credit`, {}, { location: false }),
 
-      onCartFinalized: /* @ngInject */ ($state, $window, cart) => ({
+      onCartFinalized: /* @ngInject */ ($state, cart, ovhShell) => ({
         orderId,
         prices,
         url: redirectUrl,
       }) => {
+        ovhShell.tracking.trackMixCommanderS3({
+          name: 'PCI project creation',
+          tc_additional_params: {
+            pcat: 'publiccloud',
+            ot: 'pci_project_creation',
+            conversion_date: new Date().toISOString(),
+            pci_mode: 'full',
+            pci_voucher: cart.projectItem?.voucherConfiguration?.value || '',
+          },
+        });
+
         if (cart.creditOption || prices.withTax.value !== 0) {
           window.top.location.href = redirectUrl;
           return redirectUrl;

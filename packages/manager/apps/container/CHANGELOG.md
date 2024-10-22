@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.84.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.83.0...@ovh-ux/manager-container-app@0.84.0) (2024-10-21)
+
+
+### Features
+
+* **hpc-vmware-managed-vcd:** add new product VCD ([#12552](https://github.com/ovh/manager/issues/12552)) ([c990a65](https://github.com/ovh/manager/commit/c990a65189760c0b109902e3e292b31e8b59dd83))
+* **hycu:** add product HYCU for OVHCloud ([#13244](https://github.com/ovh/manager/issues/13244)) ([5ab27eb](https://github.com/ovh/manager/commit/5ab27eb9dbb9ba886dbb61e6dd4a1670c138100c))
+* **veeam-backup:** add new product veeam-backup ([#12611](https://github.com/ovh/manager/issues/12611)) ([df1cd33](https://github.com/ovh/manager/commit/df1cd3377a025e7a1cd4c166f26838d0871397c4))
+
+
+
+
+
 # [0.83.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.82.0...@ovh-ux/manager-container-app@0.83.0) (2024-10-21)
 
 
