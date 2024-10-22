@@ -37,6 +37,7 @@ export const FileInputListItem: FunctionComponent<FileInputListItemProps> = ({
     >
       <OsdsIcon
         name={ODS_ICON_NAME.FILE}
+        className="flex-shrink-0"
         color={
           hasError
             ? ODS_THEME_COLOR_INTENT.error
@@ -45,7 +46,7 @@ export const FileInputListItem: FunctionComponent<FileInputListItemProps> = ({
         size={ODS_ICON_SIZE.sm}
       />
       <OsdsText
-        className="text-sm"
+        className="text-sm break-all"
         color={
           hasError
             ? ODS_THEME_COLOR_INTENT.error
@@ -67,7 +68,7 @@ export const FileInputListItem: FunctionComponent<FileInputListItemProps> = ({
             ? ODS_THEME_COLOR_INTENT.error
             : ODS_THEME_COLOR_INTENT.primary
         }
-        className="ml-auto cursor-pointer"
+        className="ml-auto cursor-pointer flex-shrink-0"
         size={ODS_ICON_SIZE.sm}
         onClick={(e) => deleteFile(e, file)}
       />
