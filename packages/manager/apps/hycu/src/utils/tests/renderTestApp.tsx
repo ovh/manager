@@ -16,6 +16,8 @@ import { getTesti18nParams, initTestI18n } from './init.i18n';
 import { toMswHandlers } from '../../../../../../../playwright-helpers';
 import { getAuthenticationMocks } from '../../../../../../../playwright-helpers/mocks/auth';
 import {
+  CatalogHycuMocksParams,
+  getCatalogHycuMocks,
   getLicenseHycuMocks,
   GetLicenseHycuMocksParams,
   getServiceLicenseHycuMocks,
@@ -30,7 +32,7 @@ export const renderTestApp = async (
   mockParams: GetServicesMocksParams &
     GetLicenseHycuMocksParams &
     GetServicesMocksParams &
-    GetServicesMocksParams &
+    CatalogHycuMocksParams &
     GetServiceLicenseHycuMocksParams = {},
 ) => {
   global.server?.resetHandlers(
@@ -39,6 +41,7 @@ export const renderTestApp = async (
       ...getLicenseHycuMocks(mockParams),
       ...getServiceLicenseHycuMocks(mockParams),
       ...getServicesMocks(mockParams),
+      ...getCatalogHycuMocks(mockParams),
     ]),
   );
 
