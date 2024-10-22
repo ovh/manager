@@ -47,11 +47,11 @@ describe('ServiceManagementTile component unit test suite', () => {
     );
 
     // and
-    const contactTitle = getByText('managed_vcd_dashboard_contact_list');
     const renewTitle = getByText('managed_vcd_dashboard_service_renew');
     const cancelTitle = getByText('managed_vcd_dashboard_service_cancellation');
     const pwdTitle = getByText('managed_vcd_dashboard_password');
-    const subtitles = [contactTitle, renewTitle, cancelTitle, pwdTitle];
+    const contactTitle = getByText('managed_vcd_dashboard_contact_list');
+    const subtitles = [renewTitle, cancelTitle, pwdTitle, contactTitle];
 
     subtitles.forEach((title: HTMLElement) => {
       expect(title).toHaveAttribute('size', ODS_THEME_TYPOGRAPHY_SIZE._200);

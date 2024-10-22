@@ -26,11 +26,6 @@ export default function OrganizationServiceManagementTile() {
         title={t('managed_vcd_dashboard_service_management')}
         items={[
           {
-            id: 'serviceContacts',
-            label: t('managed_vcd_dashboard_contact_list'),
-            value: <ServiceContactsTileItem />,
-          },
-          {
             id: 'serviceRenew',
             label: t('managed_vcd_dashboard_service_renew'),
             value: <ServiceRenewTileItem />,
@@ -83,6 +78,11 @@ export default function OrganizationServiceManagementTile() {
                 </OsdsChip>
               </div>
             ),
+          },
+          {
+            id: 'serviceContacts',
+            label: t('managed_vcd_dashboard_contact_list'),
+            value: <ServiceContactsTileItem />,
           },
         ]}
       />
