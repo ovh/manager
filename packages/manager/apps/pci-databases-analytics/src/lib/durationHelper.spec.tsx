@@ -6,6 +6,7 @@ import {
   durationToISODurationString,
   convertDurationStringToISODuration,
   durationStringToHuman,
+  durationStringToSeconds,
 } from '@/lib/durationHelper';
 
 test('durationStringToDuration', () => {
@@ -86,4 +87,40 @@ test('durationStringToHuman', () => {
   expect(durationStringToHuman('P2Y5M3DT4H50M45S', es)).toBe(
     '2 años, 5 meses, 3 días, 4 horas, 50 minutos, 45 segundos',
   );
+});
+
+
+describe('durationStringToSeconds', () => {
+  it('should return 0 for an empty string', () => {
+    expect(durationStringToSeconds('')).toEqual(0);
+  });
+
+  it('should return seconds only', () => {
+    expect(durationStringToSeconds('5S')).toEqual(5);
+  });
+
+  it('should return minutes only', () => {
+    expect(durationStringToSeconds('3m')).toEqual(180);
+  });
+
+  it('should return hours only', () => {
+    expect(durationStringToSeconds('2H')).toEqual(7200);
+  });
+
+  it('should return days only', () => {
+    expect(durationStringToSeconds('4D')).toEqual(345600);
+  });
+
+  it('should return months only', () => {
+    expect(durationStringToSeconds('6M')).toEqual(15768000);
+  });
+
+  it('should return years only', () => {
+    expect(durationStringToSeconds('1Y')).toEqual(31536000);
+  });
+
+  it('should return mixed durations', () => {
+    expect(durationStringToSeconds('2H30m')).toEqual(9000);
+    expect(durationStringToSeconds('4D5H')).toEqual(363600);
+  });
 });
