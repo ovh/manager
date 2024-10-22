@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.10.19...@ovh-ux/manager-hub-app@5.11.0) (2024-10-22)
+
+
+### Features
+
+* **hub:** rewrote hub in react ([#13689](https://github.com/ovh/manager/issues/13689)) ([03b1533](https://github.com/ovh/manager/commit/03b1533a6f12777a5ae44dfc8e6453cd4df29e7c))
+
+
+
+
+
 ## [5.10.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.10.18...@ovh-ux/manager-hub-app@5.10.19) (2024-10-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app
