@@ -56,6 +56,21 @@ export const getVcdProductSettings = ({
       : undefined,
   });
 
+export const getHYCUProductSettings = ({
+  planCode,
+  region,
+}: {
+  planCode: string;
+  region: string;
+}) =>
+  JSURL.stringify({
+    productId: 'licenseHycu',
+    planCode,
+    duration: 'P1M',
+    pricingMode: 'default',
+    configuration: [{ label: 'region', value: region }],
+  });
+
 export const ORDER_URLS = {
   EU: {
     DEDICATED: {
