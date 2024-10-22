@@ -1,0 +1,15 @@
+{
+  "hub_billing_summary_title": "Total amount of bills",
+  "hub_billing_summary_period_1": "The last month ",
+  "hub_billing_summary_period_3": "The last 3 months",
+  "hub_billing_summary_period_6": "The last 6 months",
+  "hub_billing_summary_debt": "{{ debt }} pending payment",
+  "hub_billing_summary_debt_pay": "Settle outstanding amount",
+  "hub_billing_summary_debt_null": "Paid",
+  "hub_billing_summary_debt_no_bills": "No bill for this period",
+  "hub_billing_summary_display_bills": "View bills",
+  "hub_billing_summary_display_bills_error": "Unable to retrieve total amount",
+  "hub_enterprise_billing_summary_title": "My bills",
+  "hub_enterprise_billing_summary_description": "To consult your invoices, please connect to your dedicated interface.",
+  "hub_enterprise_billing_summary_goto": "Log in"
+}

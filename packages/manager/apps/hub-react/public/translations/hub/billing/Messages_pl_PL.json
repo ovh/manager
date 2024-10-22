@@ -1,0 +1,15 @@
+{
+  "hub_billing_summary_title": "Łączna kwota faktur",
+  "hub_billing_summary_period_1": "Ostatni miesiąc",
+  "hub_billing_summary_period_3": "3 ostatnie miesiące",
+  "hub_billing_summary_period_6": "6 ostatnich miesięcy",
+  "hub_billing_summary_debt": "Pozostało do zapłaty: {{debt}} ",
+  "hub_billing_summary_debt_pay": "Ureguluj należności",
+  "hub_billing_summary_debt_null": "Opłacone",
+  "hub_billing_summary_debt_no_bills": "Brak faktur za ten okres",
+  "hub_billing_summary_display_bills": "Wyświetl faktury",
+  "hub_billing_summary_display_bills_error": "Nie można pobrać łącznej kwoty",
+  "hub_enterprise_billing_summary_title": "Faktury",
+  "hub_enterprise_billing_summary_description": "Aby sprawdzić faktury, zaloguj się do Panelu klienta",
+  "hub_enterprise_billing_summary_goto": "Zaloguj się"
+}
