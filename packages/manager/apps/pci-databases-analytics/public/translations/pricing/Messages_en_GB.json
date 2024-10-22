@@ -1,6 +1,6 @@
 {
-  "pricing_ht": "{{ price }} EX. VAT",
-  "pricing_ttc": "{{ price }} INCL. VAT",
+  "pricing_ht": "{{ price }} ex. VAT",
+  "pricing_ttc": "{{price}} incl. VAT",
   "pricing_button_hourly": "Hour",
   "pricing_button_monthly": "Monthly",
   "pricing_unit_hourly": "/hour",

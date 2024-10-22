@@ -8,15 +8,15 @@
   "interval-lastWeek": "1W",
   "interval-lastMonth": "1M",
   "interval-lastYear": "1Y",
-  "metricName-cpu_usage_percent": "Verwendete CPU ({{unit}})",
-  "metricName-disk_usage_percent": "Verwendeter Speicherplatz ({{unit}})",
+  "metricName-cpu_usage_percent": "CPU-Nutzung ({{unit}})",
+  "metricName-disk_usage_percent": "Genutzter Speicherplatz ({{unit}})",
   "metricName-diskio_read": "Anzahl IOPS (Lesen)",
   "metricName-diskio_writes": "Anzahl IOPS (Schreiben)",
-  "metricName-mem_usage_percent": "Verwendeter Speicher ({{unit}})",
-  "metricName-mem_usage": "Verwendeter Speicher ({{unit}})",
+  "metricName-mem_usage_percent": "Genutzter Speicher ({{unit}})",
+  "metricName-mem_usage": "Genutzter Speicher ({{unit}})",
   "metricName-net_receive": "Netzwerkempfang ({{unit}})",
   "metricName-net_send": "Netzwerkübertragung ({{unit}})",
-  "metricUnit-BYTES": "Bytes",
+  "metricUnit-BYTES": "Byte",
   "metricUnit-BYTES_PER_SECOND": "Bytes/s",
   "metricUnit-GIGABYTES": "GB",
   "metricUnit-GIGABYTES_PER_HOUR": "GB/s",
@@ -27,5 +27,5 @@
   "metricUnit-SCALAR": "Skalar",
   "metricUnit-SCALAR_PER_SECOND": "Skalar/Sekunde",
   "metricUnit-SECONDS": "Sekunden",
-  "metricUnit-UNKNOWN": "Unbekannt"
+  "metricUnit-UNKNOWN": "unbekannt"
 }

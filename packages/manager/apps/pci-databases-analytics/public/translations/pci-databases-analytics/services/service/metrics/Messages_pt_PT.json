@@ -8,7 +8,7 @@
   "interval-lastWeek": "1W",
   "interval-lastMonth": "1M",
   "interval-lastYear": "1A",
-  "metricName-cpu_usage_percent": "CPU utilizado ({{unit}})",
+  "metricName-cpu_usage_percent": "CPU utilizada ({{unit}})",
   "metricName-disk_usage_percent": "Espaço de disco utilizado ({{unit}})",
   "metricName-diskio_read": "Nº de IOPS (leitura)",
   "metricName-diskio_writes": "Nº de IOPS (escrita)",
