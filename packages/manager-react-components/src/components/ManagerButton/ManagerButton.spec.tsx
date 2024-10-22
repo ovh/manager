@@ -1,3 +1,5 @@
+import React from 'react';
+import { vitest } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
 import { ManagerButton, ManagerButtonProps } from './ManagerButton';
 import { render } from '../../utils/test.provider';
@@ -12,7 +14,7 @@ const renderComponent = (props: ManagerButtonProps) => {
 };
 
 const mockedHook =
-  useAuthorizationIam as unknown as vitest.Mock<IamAuthorizationResponse>;
+  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
 describe('ManagerButton tests', () => {
   afterEach(() => {
