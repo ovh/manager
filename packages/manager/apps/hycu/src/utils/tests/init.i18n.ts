@@ -4,6 +4,7 @@ import common from '../../../public/translations/hycu/Messages_fr_FR.json';
 import dashboard from '../../../public/translations/hycu/dashboard/Messages_fr_FR.json';
 import listing from '../../../public/translations/hycu/listing/Messages_fr_FR.json';
 import onboarding from '../../../public/translations/hycu/onboarding/Messages_fr_FR.json';
+import order from '../../../public/translations/hycu/order/Messages_fr_FR.json';
 
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
@@ -14,6 +15,7 @@ function addTranslations() {
     .addResources(defaultLocale, 'hycu/dashboard', dashboard)
     .addResources(defaultLocale, 'hycu/listing', listing)
     .addResources(defaultLocale, 'hycu/onboarding', onboarding)
+    .addResources(defaultLocale, 'hycu/order', order)
     .addResources(defaultLocale, 'error', error)
     .use({
       type: 'postProcessor',
@@ -53,5 +55,6 @@ export const labels = {
   dashboard,
   listing,
   onboarding,
+  order,
   error,
 };
