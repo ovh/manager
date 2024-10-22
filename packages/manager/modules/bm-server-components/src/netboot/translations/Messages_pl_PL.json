@@ -15,8 +15,11 @@
   "server_configuration_netboot_option_rescue": "Uruchom w trybie diagnostycznym (Rescue).",
   "server_configuration_netboot_option_network": "Uruchom z sieci (Netboot).",
   "server_configuration_netboot_configuration": "Konfiguracja:",
+  "server_configuration_netboot_rescue_help": "Tryb rescue może być przydatny podczas diagnozowania usterek sprzętowych na serwerze dedykowanym.",
+  "server_configuration_netboot_rescue_help_link": "Dostęp do przewodnika dotyczącego diagnostyki sprzętu.",
   "server_configuration_netboot_rescue_choice": "Dostępny tryb Rescue:",
   "server_configuration_netboot_rescue_mail": "Wyślij dane do logowania do trybu Rescue na adres e-mail:",
+  "server_configuration_netboot_rescue_mail_none": "Brak",
   "server_configuration_netboot_rescue_mail_invalid": "Nieprawidłowy",
   "server_configuration_netboot_kernel_choice": "Dostępne jądro:",
   "server_configuration_netboot_kernel_option": "Opcje obsługiwane przez to jądro:",
@@ -37,12 +40,7 @@
   "server_configuration_netboot_review": "Podsumowanie",
   "server_configuration_netboot_save_in_progress": "Aktualizacja...",
   "server_configuration_netboot_invalid": "Nieprawidłowy",
-  "server_configuration_netboot_rescue_help": "Tryb rescue może być przydatny podczas diagnozowania usterek sprzętowych na serwerze dedykowanym.",
-  "server_configuration_netboot_rescue_help_link": "Dostęp do przewodnika dotyczącego diagnostyki sprzętu.",
-  "server_configuration_netboot_rescue_mail_none": "Brak",
   "server_configuration_netboot_auth_method": "Metoda uwierzytelnienia:",
   "server_configuration_netboot_auth_method_sshkey": "Uwierzytelnienie za pomocą klucza SSH",
-  "server_configuration_netboot_auth_method_password": "Uwierzytelnienie za pomocą hasła",
-  "server_configuration_netboot_sshkey_input": "Publiczny klucz SSH:",
-  "server_configuration_netboot_sshkey_input_placeholder": "Wprowadź wartość typu sshPubKey. <u>Przykład:</u> {{t0}}"
+  "server_configuration_netboot_auth_method_password": "Uwierzytelnienie za pomocą hasła"
 }

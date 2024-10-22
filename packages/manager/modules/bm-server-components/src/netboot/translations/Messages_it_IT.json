@@ -15,8 +15,11 @@
   "server_configuration_netboot_option_rescue": "Avviare in Rescue mode",
   "server_configuration_netboot_option_network": "Avviare in modalità network",
   "server_configuration_netboot_configuration": "Configurazione:",
+  "server_configuration_netboot_rescue_help": "La modalità Rescue può essere utile per diagnosticare malfunzionamenti hardware su un server dedicato.",
+  "server_configuration_netboot_rescue_help_link": "Accedi alla guida di diagnostica hardware.",
   "server_configuration_netboot_rescue_choice": "Modalità Rescue disponibile:",
   "server_configuration_netboot_rescue_mail": "Ricevi le credenziali della modalità selezionata all'indirizzo email:",
+  "server_configuration_netboot_rescue_mail_none": "Nessuno",
   "server_configuration_netboot_rescue_mail_invalid": "Non valido",
   "server_configuration_netboot_kernel_choice": "Kernel disponibile:",
   "server_configuration_netboot_kernel_option": "Opzioni prese in carico da questo kernel:",
@@ -37,12 +40,7 @@
   "server_configuration_netboot_review": "Riepilogo",
   "server_configuration_netboot_save_in_progress": "Aggiornamento...",
   "server_configuration_netboot_invalid": "Non valido",
-  "server_configuration_netboot_rescue_help": "La modalità Rescue può essere utile per diagnosticare malfunzionamenti hardware su un server dedicato.",
-  "server_configuration_netboot_rescue_help_link": "Accedi alla guida di diagnostica hardware.",
-  "server_configuration_netboot_rescue_mail_none": "Nessuno",
   "server_configuration_netboot_auth_method": "Metodo di autenticazione:",
   "server_configuration_netboot_auth_method_sshkey": "Autenticazione tramite chiave SSH",
-  "server_configuration_netboot_auth_method_password": "Autenticazione tramite password",
-  "server_configuration_netboot_sshkey_input": "La tua chiave SSH pubblica:",
-  "server_configuration_netboot_sshkey_input_placeholder": "Inserire un valore di tipo sshPubKey. Esempio: {{t0}}"
+  "server_configuration_netboot_auth_method_password": "Autenticazione tramite password"
 }

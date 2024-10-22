@@ -2,7 +2,6 @@
   "web_paas_onboarding_title": "Web PaaS powered by Platform.sh",
   "web_paas_onboarding_description": "<b>Konzentrieren Sie sich auf den Code! Wir kümmern uns um den Rest.</b>",
   "web_paas_onboarding_description2": "Unsere automatisierte, flexible und vollständig „as a Service“ verwaltete Plattform ermöglicht es <b>Webentwicklern</b>, ihren <b>Quellcode mit Git</b> in jeder beliebigen Sprache bzw. jedem Framework zu deployen, und das ohne Kenntnisse in der Serveradministration.",
-  "web_paas_onboarding_order": "Ihr Projekt erstellen",
   "web_paas_onboarding_guide1_title": "Web PaaS powered by Platform.sh",
   "web_paas_onboarding_guide1_description": "Nur auf Englisch verfügbar"
 }

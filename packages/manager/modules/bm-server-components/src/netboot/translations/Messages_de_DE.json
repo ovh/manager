@@ -15,8 +15,11 @@
   "server_configuration_netboot_option_rescue": "Im Rescue-Modus booten",
   "server_configuration_netboot_option_network": "Im Netzwerk-Modus booten",
   "server_configuration_netboot_configuration": "Konfiguration:",
+  "server_configuration_netboot_rescue_help": "Der Rescue-Modus kann nützlich sein, um auf einem Dedicated Server Hardwareprobleme zu diagnostizieren.",
+  "server_configuration_netboot_rescue_help_link": "Sehen Sie sich die Anleitung für die Hardware-Diagnose an.",
   "server_configuration_netboot_rescue_choice": "Verfügbarer Rescue:",
   "server_configuration_netboot_rescue_mail": "Zugangsdaten an folgende E-Mail-Adresse versenden:",
+  "server_configuration_netboot_rescue_mail_none": "Keine",
   "server_configuration_netboot_rescue_mail_invalid": "Ungültig",
   "server_configuration_netboot_kernel_choice": "Verfügbarer Kernel:",
   "server_configuration_netboot_kernel_option": "Mit diesem Kernel kompatible Optionen:",
@@ -37,12 +40,7 @@
   "server_configuration_netboot_review": "Zusammenfassung",
   "server_configuration_netboot_save_in_progress": "Update wird durchgeführt...",
   "server_configuration_netboot_invalid": "Ungültig",
-  "server_configuration_netboot_rescue_help": "Der Rescue-Modus kann nützlich sein, um auf einem Dedicated Server Hardwareprobleme zu diagnostizieren.",
-  "server_configuration_netboot_rescue_help_link": "Sehen Sie sich die Anleitung für die Hardware-Diagnose an.",
-  "server_configuration_netboot_rescue_mail_none": "Keine",
   "server_configuration_netboot_auth_method": "Authentifizierungsmethode:",
   "server_configuration_netboot_auth_method_sshkey": "Authentifizierung per SSH-Schlüssel",
-  "server_configuration_netboot_auth_method_password": "Authentifizierung per Kennwort",
-  "server_configuration_netboot_sshkey_input": "Ihr öffentlicher SSH-Schlüssel:",
-  "server_configuration_netboot_sshkey_input_placeholder": "Fügen Sie einen Wert vom Typ sshPubKey ein. Beispiel: {{t0}}"
+  "server_configuration_netboot_auth_method_password": "Authentifizierung per Kennwort"
 }
