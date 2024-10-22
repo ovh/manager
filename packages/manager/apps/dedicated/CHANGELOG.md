@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.62.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.61.1...@ovh-ux/manager-dedicated@19.62.0) (2024-10-22)
+
+
+### Features
+
+* **account:** kyc digital process ([#12727](https://github.com/ovh/manager/issues/12727)) ([cf8f0c9](https://github.com/ovh/manager/commit/cf8f0c90150486fa0b30af98ce0c2d3dbdeabf90))
+
+
+
+
+
 ## [19.61.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.61.0...@ovh-ux/manager-dedicated@19.61.1) (2024-10-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
