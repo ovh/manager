@@ -53,7 +53,7 @@ export const FileField: FunctionComponent<Props> = ({
             },
           },
         }}
-        render={({ field: { onChange, value, name: _name } }) => (
+        render={({ field: { onChange, value, name: _name, disabled } }) => (
           <FileInputContainer
             id={`field_id_${_name}`}
             accept={accept}
@@ -62,6 +62,7 @@ export const FileField: FunctionComponent<Props> = ({
             onChange={(e) => onChange(e.files)}
             maxSize={maxSize}
             multiple={multiple}
+            disabled={disabled}
           >
             <label className="block mb-2">
               <OsdsText
