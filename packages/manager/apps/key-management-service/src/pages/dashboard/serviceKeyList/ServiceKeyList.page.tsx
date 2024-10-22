@@ -26,6 +26,11 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   DatagridCellType,
   DatagridCreationDate,
   DatagridServiceKeyActionMenu,
@@ -40,6 +45,7 @@ export default function Keys() {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { t: tError } = useTranslation('error');
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
   const columns = [
     {
       id: 'name',
@@ -109,6 +115,12 @@ export default function Keys() {
         variant={ODS_BUTTON_VARIANT.stroked}
         className={'xs:mt-2 sm:mt-0 md:mt-8 w-fit h-fit'}
         onClick={() => {
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['create_encryption_key'],
+          });
           navigate(ROUTES_URLS.createKmsServiceKey);
         }}
       >

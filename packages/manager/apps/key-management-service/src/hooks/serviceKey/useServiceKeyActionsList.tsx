@@ -5,6 +5,11 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useDeleteOkmsServiceKey } from '@/data/hooks/useDeleteOkmsServiceKey';
 import { useUpdateOkmsServiceKey } from '@/data/hooks/useUpdateOkmsServiceKey';
 import { ROUTES_URLS } from '@/routes/routes.constants';
@@ -22,6 +27,8 @@ const useServiceKeyActionsList = (
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { addSuccess } = useNotifications();
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
+  const trackLocation = isListMode ? PageLocation.datagrid : PageLocation.page;
   const {
     deleteKmsServiceKey,
     isPending: deleteIsPending,
@@ -69,6 +76,12 @@ const useServiceKeyActionsList = (
       label: t('key_management_service_service-keys_link_deactivate_key'),
       color: ODS_THEME_COLOR_INTENT.primary,
       onClick: () => {
+        trackClick({
+          location: trackLocation,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['desactivate_encryption_key'],
+        });
         return isListMode
           ? navigate(`${ROUTES_URLS.serviceKeyDeactivate}/${okmsKey?.id}`)
           : navigate(
@@ -86,7 +99,15 @@ const useServiceKeyActionsList = (
       label: t('key_management_service_service-keys_link_reactivate_key'),
       color: ODS_THEME_COLOR_INTENT.primary,
       disabled: updateIsPending,
-      onClick: () => updateKmsServiceKey({ state: OkmsServiceKeyState.active }),
+      onClick: () => {
+        trackClick({
+          location: trackLocation,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['reactivate_encryption_key'],
+        });
+        updateKmsServiceKey({ state: OkmsServiceKeyState.active });
+      },
     });
   }
   if (
@@ -99,7 +120,15 @@ const useServiceKeyActionsList = (
       color: ODS_THEME_COLOR_INTENT.error,
       disabled:
         okmsKey?.state === OkmsServiceKeyState.active || deleteIsPending,
-      onClick: () => deleteKmsServiceKey(),
+      onClick: () => {
+        trackClick({
+          location: trackLocation,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['delete_encryption_key'],
+        });
+        deleteKmsServiceKey();
+      },
     });
   }
   return items;

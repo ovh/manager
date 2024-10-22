@@ -5,6 +5,11 @@ import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigate, useParams } from 'react-router-dom';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { validateCredentialName } from '@/utils/credential/validateCredentialName';
 import { validateCredentialDescription } from '@/utils/credential/validateCredentialDescription';
@@ -50,6 +55,7 @@ const CreateGeneralInformations = ({
   const credentialDescriptionError = validateCredentialDescription(description);
   const credentialValidityError = validateValidityDate(validity);
   const credentialCreationMethodError = validateCredentialCreationMethod(csr);
+  const { trackClick } = useOvhTracking();
 
   useEffect(() => {
     if (!isCustomCsr) {
@@ -100,6 +106,12 @@ const CreateGeneralInformations = ({
               variant={ODS_BUTTON_VARIANT.stroked}
               color={ODS_THEME_COLOR_INTENT.primary}
               onClick={() => {
+                trackClick({
+                  location: PageLocation.funnel,
+                  buttonType: ButtonType.button,
+                  actionType: 'action',
+                  actions: ['cancel'],
+                });
                 navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
               }}
             >

@@ -15,7 +15,12 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useIdentityData } from '@/hooks/credential/useIdentityData';
 import { ROUTES_URLS } from '@/routes/routes.constants';
@@ -43,6 +48,7 @@ const CreateAddIdentities = ({
   const [isRootAccount, setIsRootAccount] = useState<boolean>(false);
   const { userList, groupList, serviceAccountList } = useIdentityData();
   const { nichandle } = useContext(ShellContext).environment.getUser();
+  const { trackClick } = useOvhTracking();
 
   useEffect(() => {
     if (isRootAccount) {
@@ -96,6 +102,12 @@ const CreateAddIdentities = ({
             color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_BUTTON_SIZE.sm}
             onClick={() => {
+              trackClick({
+                location: PageLocation.funnel,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['cancel'],
+              });
               navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
             }}
           >
@@ -108,7 +120,15 @@ const CreateAddIdentities = ({
             variant={ODS_BUTTON_VARIANT.ghost}
             color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_BUTTON_SIZE.sm}
-            onClick={prevStep}
+            onClick={() => {
+              trackClick({
+                location: PageLocation.funnel,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['previous'],
+              });
+              prevStep();
+            }}
           >
             {t(
               'key_management_service_credential_create_identities_button_back_label',
@@ -118,7 +138,15 @@ const CreateAddIdentities = ({
             inline
             color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_BUTTON_SIZE.sm}
-            onClick={nextStep}
+            onClick={() => {
+              trackClick({
+                location: PageLocation.funnel,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['confirm'],
+              });
+              nextStep();
+            }}
             disabled={
               identityURNs.length > 25 || identityURNs.length === 0 || undefined
             }

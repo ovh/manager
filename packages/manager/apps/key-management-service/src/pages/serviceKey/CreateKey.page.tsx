@@ -29,6 +29,11 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { OkmsServiceKeyReference } from '@/types/okmsServiceKeyReference.type';
 import {
@@ -82,7 +87,7 @@ export default function CreateKey() {
   >();
   const [keyDisplayName, setKeyDisplayName] = useState<string>('');
   const serviceKeyNameError = validateServiceKeyName(keyDisplayName);
-
+  const { trackClick } = useOvhTracking();
   const { createKmsServiceKey, isPending } = useCreateOkmsServiceKey({
     okmsId,
     onSuccess: () => {
@@ -437,6 +442,12 @@ export default function CreateKey() {
                   variant={ODS_BUTTON_VARIANT.stroked}
                   color={ODS_THEME_COLOR_INTENT.primary}
                   onClick={() => {
+                    trackClick({
+                      location: PageLocation.funnel,
+                      buttonType: ButtonType.button,
+                      actionType: 'action',
+                      actions: ['cancel'],
+                    });
                     navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
                   }}
                 >
@@ -446,7 +457,15 @@ export default function CreateKey() {
                   size={ODS_BUTTON_SIZE.md}
                   inline
                   color={ODS_THEME_COLOR_INTENT.primary}
-                  onClick={submitCreateKey}
+                  onClick={() => {
+                    trackClick({
+                      location: PageLocation.funnel,
+                      buttonType: ButtonType.button,
+                      actionType: 'action',
+                      actions: ['confirm'],
+                    });
+                    submitCreateKey();
+                  }}
                   disabled={
                     !!serviceKeyNameError ||
                     keyOperations.length === 0 ||

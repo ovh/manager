@@ -16,6 +16,11 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import Modal from '@/components/Modal/Modal';
 
 import { useUpdateOkmsServiceKey } from '@/data/hooks/useUpdateOkmsServiceKey';
@@ -41,7 +46,7 @@ export const ServiceKeyDeactivateModal = ({
   const { addSuccess } = useNotifications();
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { t: tCommon } = useTranslation('key-management-service/common');
-
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
   const closeModal = () => navigate('..');
@@ -139,6 +144,12 @@ export const ServiceKeyDeactivateModal = ({
         variant={ODS_BUTTON_VARIANT.stroked}
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['cancel'],
+          });
           navigate('..');
         }}
       >
@@ -148,7 +159,15 @@ export const ServiceKeyDeactivateModal = ({
         disabled={!deactivationReason || isPending || undefined}
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={onUpdateServiceKeyStatus}
+        onClick={() => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['confirm'],
+          });
+          onUpdateServiceKeyStatus();
+        }}
         aria-label="edit-name-okms"
       >
         {t('key_management_service_service-keys_deactivation_button_confirm')}
