@@ -1,0 +1,12 @@
+{
+  "hub_support_title": "Dernières demandes d'assistance",
+  "hub_support_read": "Lire",
+  "hub_support_state_open": "Ouvert",
+  "hub_support_state_closed": "Fermé",
+  "hub_support_state_unknown": "Inconnu",
+  "hub_support_account_management": "Gestion du compte",
+  "hub_support_need_help": "Besoin d'aide ?",
+  "hub_support_need_help_more": "Des difficultés pour utiliser vos produits et services ? Consultez dès maintenant nos guides.",
+  "hub_support_help": "Comprendre et utiliser vos services OVHcloud",
+  "hub_support_error": "Impossible de récupérer vos demandes d'assistance"
+}

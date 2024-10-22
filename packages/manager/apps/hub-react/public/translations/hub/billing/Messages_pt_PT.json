@@ -1,0 +1,15 @@
+{
+  "hub_billing_summary_title": "Montante total das faturas",
+  "hub_billing_summary_period_1": "Mês passado",
+  "hub_billing_summary_period_3": "Últimos 3 meses",
+  "hub_billing_summary_period_6": "Últimos 6 meses",
+  "hub_billing_summary_debt": "Montante de {{ debt }} por pagar",
+  "hub_billing_summary_debt_pay": "Saldar dívida",
+  "hub_billing_summary_debt_null": "Pago",
+  "hub_billing_summary_debt_no_bills": "Nenhuma fatura para este período",
+  "hub_billing_summary_display_bills": "Ver faturas",
+  "hub_billing_summary_display_bills_error": "Não é possível recuperar o montante total",
+  "hub_enterprise_billing_summary_title": "Faturas",
+  "hub_enterprise_billing_summary_description": "Para consultar as suas faturas, aceda à sua interface dedicada",
+  "hub_enterprise_billing_summary_goto": "Iniciar sessão"
+}
