@@ -14,7 +14,7 @@ const customization = {
 
 describe('useUpdateAdmissionPlugin', () => {
   it('updates admission plugin successfully', async () => {
-    vi.spyOn(v6, 'put').mockReturnValue(new Promise((res, rej) => res('ok')));
+    vi.spyOn(v6, 'put').mockReturnValue(Promise.resolve('ok'));
     const mockSuccess = vi.fn();
     const mockError = vi.fn();
 
