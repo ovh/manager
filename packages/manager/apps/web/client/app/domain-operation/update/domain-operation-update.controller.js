@@ -47,12 +47,12 @@ angular.module('App').controller(
       this.uploadMode = {};
       this.viewMode = {};
 
-      if (this.operation.canCancel) {
-        this.todoOperation = 'cancel';
+      if (this.operation.canAccelerate) {
+        this.todoOperation = 'accelerate';
       } else if (this.operation.canRelaunch) {
         this.todoOperation = 'relaunch';
-      } else if (this.operation.canAccelerate) {
-        this.todoOperation = 'accelerate';
+      } else if (this.operation.canCancel) {
+        this.todoOperation = 'cancel';
       }
 
       this.contactUrl = this.coreURLBuilder.buildURL('dedicated', '#/contact');
@@ -148,7 +148,6 @@ angular.module('App').controller(
             .then((args) => {
               this.args = args;
               this.baseArgs = angular.copy(args);
-              this.loading = false;
             })
             .catch((err) => {
               this.Alerter.alertFromSWS(
@@ -166,6 +165,9 @@ angular.module('App').controller(
             ALERTER_ID,
           );
           this.$scope.resetAction();
+        })
+        .finally(() => {
+          this.loading = false;
         });
     }
 

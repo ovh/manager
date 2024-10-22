@@ -102,8 +102,7 @@
         data-compact
         data-disabled="!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate && $row.function !== 'DomainIncomingTransfer'"
         data-placement="end"
-        data-oui-tooltip="{{:: 'domain_operations_no_action' | translate }}"
-        data-oui-tooltip-enable="{{!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate}}"
+        data-oui-tooltip="{{ :: !$row.canCancel && !$row.canRelaunch && !$row.canAccelerate ? 'domain_operations_no_action' : '' | translate }}"
         data-oui-tooltip-placement="left"
     >
         <oui-action-menu-item
