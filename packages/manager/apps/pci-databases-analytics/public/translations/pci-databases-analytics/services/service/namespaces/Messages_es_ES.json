@@ -33,7 +33,7 @@
   "formNamespaceFieldPeriodDurationLabel": "Período de retención ",
   "formNamespaceFieldPeriodDurationPlaceholder": "P. ej.: 48H",
   "formNamespaceFieldDurationDescription": "Ejemplos: 20S, 10m, 24H, 2D",
-  "formNamespaceFieldDurationPlaceholder": "10m",
+  "formNamespaceFieldDurationPlaceholder": "P. ej.: 10'",
   "formNamespaceFieldPeriodDurationDescription": "Período de retención de los datos para el namespace en formato «short time».",
   "formNamespaceFieldResolutionLabel": "Resolución",
   "formNamespaceFieldResolutionPlaceholder": "P. ej.: 1d",

@@ -33,7 +33,7 @@
   "formNamespaceFieldPeriodDurationLabel": "Aufbewahrungszeit ",
   "formNamespaceFieldPeriodDurationPlaceholder": "Beispiel: 48H",
   "formNamespaceFieldDurationDescription": "Beispiele: 20S, 10m, 24H, 2D",
-  "formNamespaceFieldDurationPlaceholder": "10m",
+  "formNamespaceFieldDurationPlaceholder": "Beispiel: 10 Min",
   "formNamespaceFieldPeriodDurationDescription": "Datenaufbewahrungszeit für den Namespace im Short-Time-Format.",
   "formNamespaceFieldResolutionLabel": "Auflösung",
   "formNamespaceFieldResolutionPlaceholder": "Beispiel: 1D",
