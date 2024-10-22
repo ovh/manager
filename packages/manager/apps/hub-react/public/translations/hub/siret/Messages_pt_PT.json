@@ -1,0 +1,9 @@
+{
+  "manager_hub_dashboard_banner_siret_link": "clique aqui para efetuar a atualização.",
+  "manager_hub_dashboard_banner_siret": "Para melhorar a qualidade dos seus dados, é necessário atualizar o NIF da sua empresa. Esta atualização demorará apenas alguns segundos. Tenha consigo a sua certidão de registo comercial e ",
+  "manager_hub_dashboard_modal_title": "Atualização dos seus dados",
+  "manager_hub_dashboard_modal_siret_part_1": "Para melhorar a qualidade dos seus dados, é necessário atualizar o NIF da sua empresa.",
+  "manager_hub_dashboard_modal_siret_part_2": "Se tiver a sua certidão de registo comercial consigo, esta atualização demorará apenas alguns segundos.",
+  "manager_hub_dashboard_modal_siret_link": "Atualizar",
+  "manager_hub_dashboard_modal_siret_cancel": "Agora não"
+}
