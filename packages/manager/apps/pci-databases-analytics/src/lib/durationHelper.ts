@@ -63,3 +63,33 @@ export function durationToISODurationString(durationTime: Duration) {
 export function convertDurationStringToISODuration(durationTime: string) {
   return durationToISODurationString(durationStringToDuration(durationTime));
 }
+
+export function durationStringToSeconds(durationString: string) {
+  // Regular expression to match the duration parts
+  const pattern = /(\d+Y)?(\d+M)?(\d+D)?(\d+H)?(\d+m)?(\d+S)?/;
+  const matches = pattern.exec(durationString);
+
+  // Convert matched values to numbers, defaulting to 0 if not present
+  const years = matches[1] ? parseInt(matches[1], 10) : 0;
+  const months = matches[2] ? parseInt(matches[2], 10) : 0;
+  const days = matches[3] ? parseInt(matches[3], 10) : 0;
+  const hours = matches[4] ? parseInt(matches[4], 10) : 0;
+  const minutes = matches[5] ? parseInt(matches[5], 10) : 0;
+  const seconds = matches[6] ? parseInt(matches[6], 10) : 0;
+
+  const yearsToSec = 31536000;
+  const monthToSec = 2628000;
+  const dayToSec = 86400;
+  const hourToSec = 3600;
+  const minToSec = 60;
+
+  const durationSec =
+    years * yearsToSec +
+    months * monthToSec +
+    days * dayToSec +
+    hours * hourToSec +
+    minutes * minToSec +
+    seconds;
+
+  return durationSec;
+}

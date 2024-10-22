@@ -2,10 +2,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
 import * as database from '@/types/cloud/project/database';
 import { NAMESPACES_CONFIG } from './namespace.constants';
-import { durationISOStringToShortTime } from '@/lib/durationHelper';
+import {
+  durationISOStringToShortTime,
+  durationStringToSeconds,
+} from '@/lib/durationHelper';
 
 export interface UseNamespaceFormProps {
   existingNamespaces: database.m3db.Namespace[];
@@ -86,6 +88,17 @@ export const useNamespaceForm = ({
           message: t('formNamespaceErrorMinLength', {
             min: NAMESPACES_CONFIG.name.min,
           }),
+          path: ['resolution'],
+        });
+      }
+      if (
+        values.type === database.m3db.namespace.TypeEnum.aggregated &&
+        durationStringToSeconds(values.periodDuration) <
+          durationStringToSeconds(values.resolution)
+      ) {
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: t('formNamespaceDurationResolutionErrorPattern'),
           path: ['resolution'],
         });
       }
