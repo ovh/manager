@@ -1,11 +1,11 @@
-import { act, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { setupTest, labels } from './helpers';
+import { renderTest, labels } from '../../test-helpers';
 import '@testing-library/jest-dom';
-import backupList from '../mocks/veeam-backup.json';
+import backupList from '../../../mocks/veeam-backup.json';
 
 const goToDashboard = async (name: string) => {
-  await act(() => {
+  await waitFor(() => {
     userEvent.click(screen.getByText(name));
   });
 
@@ -17,12 +17,12 @@ const goToDashboard = async (name: string) => {
 
 describe('dashboard', () => {
   it('displays the dashboard page when clicking on the link', async () => {
-    await setupTest();
+    await renderTest();
     await goToDashboard(backupList[0].iam.displayName);
   });
 
   it('displays the modal to delete backup when clicking on the action', async () => {
-    await setupTest();
+    await renderTest();
     await goToDashboard(backupList[0].iam.displayName);
 
     await waitFor(
@@ -33,7 +33,7 @@ describe('dashboard', () => {
       },
     );
 
-    await act(() =>
+    await waitFor(() =>
       userEvent.click(screen.getByText(labels.dashboard.delete_service)),
     );
 
@@ -47,7 +47,7 @@ describe('dashboard', () => {
   });
 
   it('displays the modal to edit backup name when clicking on the action', async () => {
-    await setupTest();
+    await renderTest();
     await goToDashboard(backupList[0].iam.displayName);
 
     await waitFor(
@@ -57,7 +57,9 @@ describe('dashboard', () => {
       },
     );
 
-    await act(() => userEvent.click(screen.getByTestId('edit-name-button')));
+    await waitFor(() =>
+      userEvent.click(screen.getByTestId('edit-name-button')),
+    );
 
     await waitFor(
       () =>
