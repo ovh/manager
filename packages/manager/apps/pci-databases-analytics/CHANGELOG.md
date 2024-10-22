@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.6.1...@ovh-ux/manager-pci-databases-analytics-app@1.6.2) (2024-10-22)
+
+
+### Bug Fixes
+
+* **pci-databases-analytics:** us regions and bug fixes ([#13273](https://github.com/ovh/manager/issues/13273)) ([f79f55e](https://github.com/ovh/manager/commit/f79f55e0941bef029677b8c31f015a4453003a97))
+
+
+
+
+
 ## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.6.0...@ovh-ux/manager-pci-databases-analytics-app@1.6.1) (2024-10-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app

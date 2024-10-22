@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-netapp-app",
-  "version": "0.8.33",
+  "version": "0.8.34",
   "private": true,
   "description": "NetApp standalone application",
   "repository": {
@@ -30,7 +30,7 @@
     "@ovh-ux/manager-models": "^1.14.15",
     "@ovh-ux/manager-netapp": "^1.15.3",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
-    "@ovh-ux/ng-at-internet": "^5.11.14",
+    "@ovh-ux/ng-at-internet": "^5.11.15",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.2",
