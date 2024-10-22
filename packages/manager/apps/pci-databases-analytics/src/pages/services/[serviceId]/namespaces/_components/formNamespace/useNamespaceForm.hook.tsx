@@ -57,13 +57,23 @@ export const useNamespaceForm = ({
   const mandatoryShortTimeRules = shortTimeRules.min(
     NAMESPACES_CONFIG.name.min,
     {
-      message: t('formNamespaceErrorMinLength', {
-        min: NAMESPACES_CONFIG.name.min,
-      }),
+      message: t('formNamespaceErrorMandatoryField'),
     },
   );
 
   const typeRules = z.nativeEnum(database.m3db.namespace.TypeEnum);
+
+  const setContextIssue = (
+    context: z.RefinementCtx,
+    message: string,
+    path: string[],
+  ) => {
+    context.addIssue({
+      code: z.ZodIssueCode.custom,
+      message,
+      path,
+    });
+  };
 
   const schema = z
     .object({
@@ -83,24 +93,20 @@ export const useNamespaceForm = ({
         values.type === database.m3db.namespace.TypeEnum.aggregated &&
         !values.resolution
       ) {
-        context.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: t('formNamespaceErrorMinLength', {
-            min: NAMESPACES_CONFIG.name.min,
-          }),
-          path: ['resolution'],
-        });
+        setContextIssue(context, t('formNamespaceErrorMandatoryField'), [
+          'resolution',
+        ]);
       }
       if (
         values.type === database.m3db.namespace.TypeEnum.aggregated &&
         durationStringToSeconds(values.periodDuration) <
           durationStringToSeconds(values.resolution)
       ) {
-        context.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: t('formNamespaceDurationResolutionErrorPattern'),
-          path: ['resolution'],
-        });
+        setContextIssue(
+          context,
+          t('formNamespaceDurationResolutionErrorPattern'),
+          ['resolution'],
+        );
       }
     });
 
