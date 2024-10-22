@@ -1,7 +1,7 @@
+import React from 'react';
 import { waitFor, screen } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import { DashboardTile } from './dashboard-tile.component';
-import '@testing-library/jest-dom';
 
 const testItem = {
   id: 'id',

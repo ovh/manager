@@ -6,7 +6,6 @@ import {
   OdsHTMLAnchorElementRel,
   OdsHTMLAnchorElementTarget,
 } from '@ovhcloud/ods-common-core';
-import { ReactI18NextChild } from 'react-i18next';
 
 export enum LinkType {
   back = 'back',
@@ -17,7 +16,7 @@ export enum LinkType {
 export interface LinksProps {
   className?: string;
   download?: string;
-  label?: ReactI18NextChild | Iterable<ReactI18NextChild>;
+  label?: React.ReactNode;
   href?: string;
   rel?: OdsHTMLAnchorElementRel;
   target?: OdsHTMLAnchorElementTarget;

@@ -11,7 +11,7 @@ export interface ColumnDatagrid {
   type: string;
 }
 
-interface ResourcesV6Hook {
+export interface ResourcesV6Hook {
   queryKey: string[];
   columns?: ColumnDatagrid[];
 }
