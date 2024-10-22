@@ -9,11 +9,15 @@ export type GetOrganizationMocksParams = {
   nbOrganization?: number;
   allOrgsBackedUp?: boolean;
   isDatacentresKo?: boolean;
+  isDatacentreUpdateKo?: boolean;
   nbDatacentres?: number;
 };
 
 const findOrganizationById = (params: PathParams) =>
   organizationList.find(({ id }) => id === params.id);
+
+const findDatacentreById = (params: PathParams) =>
+  datacentreList.find(({ id }) => id === params.id);
 
 export const getOrganizationMocks = ({
   isOrganizationKo,
@@ -21,6 +25,7 @@ export const getOrganizationMocks = ({
   nbOrganization = Number.POSITIVE_INFINITY,
   allOrgsBackedUp,
   isDatacentresKo,
+  isDatacentreUpdateKo,
   nbDatacentres = Number.POSITIVE_INFINITY,
 }: GetOrganizationMocksParams): Handler[] => {
   const nb = allOrgsBackedUp ? 1 : nbOrganization;
@@ -29,11 +34,33 @@ export const getOrganizationMocks = ({
       url: '/vmwareCloudDirector/organization/:id/virtualDataCenter',
       response: isDatacentresKo
         ? {
-            message: 'Datacentres error',
+            message: 'Datacentre error',
           }
         : datacentreList.slice(0, nbDatacentres),
       api: 'v2',
       status: isDatacentresKo ? 500 : 200,
+    },
+    {
+      url: '/vmwareCloudDirector/organization/:id/virtualDataCenter/:id',
+      response: (_: unknown, params: PathParams) =>
+        isDatacentresKo
+          ? {
+              message: 'Datacentre error',
+            }
+          : findDatacentreById(params),
+      api: 'v2',
+      status: isDatacentresKo ? 500 : 200,
+    },
+    {
+      url: '/vmwareCloudDirector/organization/:id/virtualDataCenter/:id',
+      response: isDatacentreUpdateKo
+        ? {
+            message: 'Datacentre update error',
+          }
+        : {},
+      method: 'put',
+      api: 'v2',
+      status: isDatacentreUpdateKo ? 500 : 200,
     },
     {
       url: '/vmwareCloudDirector/organization/:id',
