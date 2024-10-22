@@ -77,6 +77,7 @@ export const RouterWithQueryClientWrapper = ({
         getEnvironment: vi.fn(),
         setUniverse: vi.fn(),
         setApplication: vi.fn(),
+        setUser: vi.fn(),
       },
       i18n: {
         getLocale: vi.fn(),
@@ -140,6 +141,7 @@ export const RouterWithQueryClientWrapper = ({
         trackImpression: vi.fn(),
         trackMVTest: vi.fn(),
         trackPage: vi.fn(),
+        trackMixCommanderS3: vi.fn(),
       },
       logger: {
         log: vi.fn(),
