@@ -10,11 +10,11 @@ export default class HostingMultisiteGitViewLastDeploymentController {
       this.serviceName,
       this.websiteId,
     )
-      .then(([deploymentId]) => {
+      .then((deploymentIds) => {
         return this.HostingMultisiteGitViewLastDeploymentService.getWebsitesDeploymentLogs(
           this.serviceName,
           this.websiteId,
-          deploymentId,
+          deploymentIds.pop(),
         );
       })
       .then((logs) => {
