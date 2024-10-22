@@ -87,7 +87,7 @@ export const useL7PoliciesDatagridColumn = () => {
       cell: (props: TL7Policy) => (
         <ProvisioningStatusComponent
           status={props.provisioningStatus}
-          className="w-fit flex mx-auto"
+          className="w-fit"
         />
       ),
       label: tLoadBalancer('octavia_load_balancer_provisioning_status'),
@@ -98,7 +98,7 @@ export const useL7PoliciesDatagridColumn = () => {
       cell: (props: TL7Policy) => (
         <OperatingStatusComponent
           status={props.operatingStatus}
-          className="w-fit flex mx-auto"
+          className="w-fit"
         />
       ),
       label: tLoadBalancer('octavia_load_balancer_operating_status'),
