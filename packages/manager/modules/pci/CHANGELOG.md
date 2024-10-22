@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.64.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.63.3...@ovh-ux/manager-pci@6.64.0) (2024-10-22)
+
+
+### Bug Fixes
+
+* **public-cloud:** fix monthly price display ([#13048](https://github.com/ovh/manager/issues/13048)) ([a26dba8](https://github.com/ovh/manager/commit/a26dba87234652dfef21610e2436987f6f4185b7))
+
+
+### Features
+
+* **pci.instance:** add local zone backup ff ([#13619](https://github.com/ovh/manager/issues/13619)) ([38ec4d7](https://github.com/ovh/manager/commit/38ec4d7855ef2b7d79c540a694e93c324ab17255))
+* **pci:** add mix commander tag at projet creation & activation ([#13436](https://github.com/ovh/manager/issues/13436)) ([414712c](https://github.com/ovh/manager/commit/414712cfff26d6b846a603700dd723fe9568523b))
+
+
+
+
+
 ## [6.63.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.63.2...@ovh-ux/manager-pci@6.63.3) (2024-10-18)
 
 
