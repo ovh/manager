@@ -53,5 +53,7 @@
   "upgradePlanButton": "Zmień ofertę na wyższą",
   "savingsPlanMessage": "Dzięki Savings Plan zyskujesz korzystne opłaty miesięczne, a jednocześnie zachowujesz możliwość płatności za instancje w trybie za godzinę.",
   "savingsPlanCTA": "Skonfiguruj Savings Plans",
-  "createRancherOfferDescription": "Minimalną jednostką rozliczeniową w przypadku Ranchera jest 20 vCPU."
+  "createRancherOfferDescription": "Minimalną jednostką rozliczeniową w przypadku Ranchera jest 20 vCPU.",
+  "createRancherErrorInternalServerError": "Wystąpił błąd podczas tworzenia Managed Rancher Service.",
+  "createRancherErrorInternalServerBadRequestChangePlan": "Wystąpił błąd podczas zmiany oferty Managed Rancher Service. Aktualnie korzystasz ze sterowników, które nie są obsługiwane w ofercie {{plan}}: {{drivers}}"
 }

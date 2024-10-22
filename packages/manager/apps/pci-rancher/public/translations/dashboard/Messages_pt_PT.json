@@ -53,5 +53,7 @@
   "upgradePlanButton": "Melhorar a minha oferta",
   "savingsPlanMessage": "Graças aos Savings Plans, beneficie de preços mensais vantajosos, enquanto conserva a flexibilidade das instâncias à hora.",
   "savingsPlanCTA": "Configure os seus Savings Plans",
-  "createRancherOfferDescription": "Com um mínimo de 20 vCPU faturadas por Rancher"
+  "createRancherOfferDescription": "Com um mínimo de 20 vCPU faturadas por Rancher",
+  "createRancherErrorInternalServerError": "Ocorreu um erro aquando da criação do seu Managed Rancher Service.",
+  "createRancherErrorInternalServerBadRequestChangePlan": "Ocorreu um erro aquando da alteração da oferta do seu Managed Rancher Service. Atualmente, está a utilizar controladores que não são suportados na oferta {{plan}}: {{drivers}}"
 }
