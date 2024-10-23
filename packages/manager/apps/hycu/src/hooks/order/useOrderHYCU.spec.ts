@@ -1,24 +1,25 @@
 import { describe, expect, it, test, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import useOrderHYCU from './useOrderHYCU';
 
 vi.mock('@ovh-ux/manager-module-order', () => ({
-  useOrderURL: () => 'http://test',
+  useOrderURL: () => 'https://test',
   getHYCUProductSettings: () => 'test-settings',
 }));
 
 describe('get hycu express order linl ', () => {
   const useCases: {
     planCode: string;
-    region: string;
+    region: OvhSubsidiary;
   }[] = [
     {
       planCode: 'hycu-cloud-vm-pack-25',
-      region: 'FR',
+      region: OvhSubsidiary.FR,
     },
     {
       planCode: 'hycu-cloud-vm-pack-250',
-      region: 'US',
+      region: OvhSubsidiary.US,
     },
   ];
   test.each(useCases)(
@@ -29,16 +30,17 @@ describe('get hycu express order linl ', () => {
       const { result } = renderHook(() => useOrderHYCU({ planCode, region }));
       // then
       expect(result.current.orderLink).toContain(
-        'http://test?products=~(test-settings)',
+        'https://test?products=~(test-settings)',
       );
     },
   );
   it('should return null if planCode is not defined', () => {
     // given
-    const planCode = undefined;
-    const region = 'FR';
+    const region = OvhSubsidiary.FR;
     // when
-    const { result } = renderHook(() => useOrderHYCU({ planCode, region }));
+    const { result } = renderHook(() =>
+      useOrderHYCU({ planCode: null, region }),
+    );
 
     // then
     expect(result.current.orderLink).toBeNull();
