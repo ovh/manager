@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 export type BreadcrumbItem = {
+  id: string;
   label: string | undefined;
   href?: string;
 };
@@ -14,9 +15,13 @@ export interface BreadcrumbProps {
   items?: BreadcrumbItem[];
 }
 
-export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
+export const useBreadcrumb = ({
+  rootLabel,
+  appName,
+  items,
+}: BreadcrumbProps) => {
   const { shell } = useContext(ShellContext);
-  const [root, setRoot] = useState<BreadcrumbItem[]>([]);
+  const [root, setRoot] = useState<BreadcrumbItem>();
   const [paths, setPaths] = useState<BreadcrumbItem[]>([]);
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
@@ -29,7 +34,7 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
           label: rootLabel,
           href: String(response),
         };
-        setRoot([rootItem]);
+        setRoot(rootItem);
       } catch {
         // Fetch navigation error
       }
@@ -38,12 +43,16 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
   }, [rootLabel, appName, shell?.navigation]);
 
   useEffect(() => {
-    const pathsTab = pathnames.map((value) => ({
-      label: value,
-      href: `/#/${appName}/${value}`,
-    }));
-    setPaths(pathsTab);
-  }, [location]);
+    const pathsTab = pathnames.map((value) => {
+      const item = items?.find(({ id }) => id === value);
 
-  return [...root, ...paths];
+      return {
+        label: item ? item.label : value,
+        href: `/#/${appName}/${value}`,
+      };
+    });
+    setPaths(pathsTab);
+  }, [location, items]);
+
+  return [root, ...paths];
 };
