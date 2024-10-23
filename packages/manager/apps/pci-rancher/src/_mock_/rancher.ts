@@ -25,6 +25,9 @@ export const rancherMocked: RancherService = {
       datetime: '2023-12-12',
       orchestratedVcpus: 2,
     },
+    networking: {
+      egressCidrBlocks: ['192.0.2.0/24', '198.51.100.0/24'],
+    },
   },
   currentTasks: [],
   resourceStatus: ResourceStatus.READY,

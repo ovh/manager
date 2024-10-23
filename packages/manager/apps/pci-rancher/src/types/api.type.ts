@@ -75,6 +75,9 @@ export interface RancherService {
         description: string;
       },
     ];
+    networking: {
+      egressCidrBlocks: string[];
+    };
   };
   currentTasks: Array<RancherTask>;
   resourceStatus: ResourceStatus;
