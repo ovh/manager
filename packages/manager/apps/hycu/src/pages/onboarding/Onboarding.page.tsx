@@ -1,11 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { useNavigate } from 'react-router-dom';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import onboardingImgSrc from './hycu-x-ovhcloud.svg';
 import HYCU_CONFIG from '@/hycu.config';
+import { urls } from '@/routes/routes.constant';
 
 export default function Onboarding() {
+  const navigate = useNavigate();
   const { t } = useTranslation('hycu/onboarding');
   const { t: tCommon } = useTranslation('hycu');
   const link = useGuideUtils();
@@ -53,7 +56,9 @@ export default function Onboarding() {
       img={imgSrc}
       description={description}
       orderButtonLabel={t('orderButtonLabel')}
-      orderHref={t('orderButtonLink')}
+      onOrderButtonClick={() => {
+        navigate(urls.order);
+      }}
       moreInfoButtonLabel={t('moreInfoButtonLabel')}
       moreInfoHref={link?.main}
     >

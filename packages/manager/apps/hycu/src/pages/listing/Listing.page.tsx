@@ -120,6 +120,7 @@ const DatagridActionCell = (hycuDetail: IHycuDetails) => {
 };
 
 export default function Listing() {
+  const navigate = useNavigate();
   const { t } = useTranslation('hycu/listing');
   const { t: tCommon } = useTranslation('hycu');
   const { t: tError } = useTranslation('hycu/error');
@@ -198,6 +199,9 @@ export default function Listing() {
                 color={ODS_THEME_COLOR_INTENT.primary}
                 variant={ODS_BUTTON_VARIANT.stroked}
                 size={ODS_BUTTON_SIZE.sm}
+                onClick={() => {
+                  navigate(urls.order);
+                }}
                 inline
               >
                 {t('hycu_order')}
