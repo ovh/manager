@@ -193,8 +193,11 @@
                 >
                     <oui-select-picker-label>
                         <span
-                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_deployment_mode_' + deploymentModeName) | translate"
-                        ></span>
+                            data-ng-bind="::($ctrl.isLocalzoneAvailable
+                            ? 'pci_projects_project_storages_containers_add_deployment_mode_'
+                            : 'pci_projects_project_storages_containers_add_deployment_mode_flipping_') + deploymentModeName | translate"
+                        >
+                        </span>
                         <span
                             class="oui-badge oui-badge_best-seller"
                             data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[deploymentModeName].isMultiZone"

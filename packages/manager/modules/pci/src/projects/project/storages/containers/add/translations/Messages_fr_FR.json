@@ -51,5 +51,8 @@
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "consultez la page des prix.",
   "pci_projects_project_storages_containers_add_deployment_mode_localzone": "Local Zones",
   "pci_projects_project_storages_containers_add_deployment_mode_localzone_description": "Faible latence avec le meilleur rapport prix/performance pour vos charges de travail de données sensibles.",
-  "pci_projects_project_storages_containers_add_deployment_mode_localzone_label": "Local Zone"
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_label": "Local Zone",
+  "pci_projects_project_storages_containers_add_deployment_mode_flipping_region-3-az": "Régions 3-AZ",
+  "pci_projects_project_storages_containers_add_deployment_mode_flipping_region": "Régions",
+  "pci_projects_project_storages_containers_add_deployment_mode_flipping_localzone": "Local Zones"
 }
