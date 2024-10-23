@@ -252,13 +252,15 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      goBackToDashboard: /* @ngInject */ (goBackToState) => (
+      goBackToDashboard: /* @ngInject */ (goBackToState, hasVCDMigration) => (
         message = false,
         type = 'success',
         reload,
       ) =>
         goBackToState(
-          'app.dedicatedCloud.details.dashboard',
+          `app.dedicatedCloud.details.dashboard${
+            hasVCDMigration ? '-light' : ''
+          }`,
           message,
           type,
           reload,
