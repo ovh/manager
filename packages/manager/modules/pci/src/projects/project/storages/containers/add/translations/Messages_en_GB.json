@@ -6,14 +6,14 @@
   "pci_projects_project_storages_containers_add_offer_title": "Select your solution",
   "pci_projects_project_storages_containers_add_offer_storage": "Swift API",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard": "S3 API",
-  "pci_projects_project_storages_containers_add_offer_storage_description": "A basic storage solution with no specific requirements for performance. This is the native object storage of OpenStack, with Swift APIs.",
+  "pci_projects_project_storages_containers_add_offer_storage_description": "A basic storage solution with no specific requirements for performance. This is the OpenStack native object storage, with Swift APIs.",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard_description": "The perfect storage solution for high volumes of data at the best price. A wide range of S3 APIs are available with this solution.",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard_label": "New",
   "pci_projects_project_storages_containers_add_region_title": "Select a region",
   "pci_projects_project_storages_containers_add_type_title": "Select a type of container",
   "pci_projects_project_storages_containers_add_create_or_linked_user_title": "Link a user",
   "pci_projects_project_storages_containers_add_create_or_linked_user_success_field_secret_key": "Your S3 secret key:",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_description": "You can give access to the container to one of your preconfigured Openstack users with an \"Administrator\" or \"Object Storage Operator\" role, or you can create a new user.",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_description": "There are two ways to grant access to the container: assign an existing OpenStack user with “Administrator” or “Object Storage Operator” role, or create a new user.",
   "pci_projects_project_storages_containers_add_type_static_label": "Static hosting",
   "pci_projects_project_storages_containers_add_type_static_description": "Quick access and high performance. Link your domains and transfer your files.",
   "pci_projects_project_storages_containers_add_type_public_label": "Public",
@@ -47,5 +47,8 @@
   "pci_projects_project_storages_containers_add_offers_estimated_price": "From {{price}} ex. VAT/month/TB",
   "pci_projects_project_storages_containers_add_deployment_mode_price": "{{price}} ex. VAT/month/TB*",
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "*The price displayed is the advertised price of 1 TB of storage for 30 days. For more information, ",
-  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "see the prices page."
+  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "See the prices page.",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone": "Local Zones",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_description": "Low latency with the best price/performance ratio for your sensitive data workloads.",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_label": "Local Zone"
 }

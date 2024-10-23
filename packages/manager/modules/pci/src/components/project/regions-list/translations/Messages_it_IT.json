@@ -4,5 +4,7 @@
   "pci_project_regions_list_add": "Per attivare le ultime localizzazioni disponibili in ogni zona, accedi alla sezione <a href=\"{{url}}\" class=\"oui-link\">Region</a>",
   "pci_project_regions_list_region": "Localizzazione",
   "pci_project_regions_list_quota": "Aumenta la tua quota",
-  "pci_project_regions_list_current_offer": "Soluzione corrente"
+  "pci_project_regions_list_current_offer": "Soluzione corrente",
+  "pci_project_regions_list_activate_project_banner_message": "Per accedere agli step successivi, è necessario",
+  "pci_project_regions_list_activate_project_banner_link_text": "attivare il tuo progetto."
 }
