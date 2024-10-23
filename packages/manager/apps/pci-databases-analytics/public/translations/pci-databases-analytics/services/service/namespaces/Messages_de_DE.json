@@ -55,5 +55,6 @@
   "editNamespaceToastSuccessDescription": "Der Namespace {{name}} wurde geändert.",
   "editNamespaceTitle": "Namespace bearbeiten",
   "editNamespaceButtonConfirm": "Diesen Namespace bearbeiten",
-  "editNamespaceToastErrorTitle": "Bei der Änderung des Namespace ist ein Fehler aufgetreten."
+  "editNamespaceToastErrorTitle": "Bei der Änderung des Namespace ist ein Fehler aufgetreten.",
+  "formNamespaceErrorMandatoryField": "Dieses Feld muss ausgefüllt werden"
 }

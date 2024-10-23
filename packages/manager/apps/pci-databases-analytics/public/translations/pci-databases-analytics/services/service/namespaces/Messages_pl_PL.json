@@ -55,5 +55,6 @@
   "editNamespaceToastSuccessDescription": "Namespace {{name}} został zmodyfikowany",
   "editNamespaceTitle": "Zmień przestrzeń nazw",
   "editNamespaceButtonConfirm": "Zmień ten namespace",
-  "editNamespaceToastErrorTitle": "Wystąpił błąd podczas modyfikacji namespace"
+  "editNamespaceToastErrorTitle": "Wystąpił błąd podczas modyfikacji namespace",
+  "formNamespaceErrorMandatoryField": "To pole jest obowiązkowe"
 }

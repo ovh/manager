@@ -19,6 +19,7 @@
   "deleteNamespaceButtonCancel": "Annuler",
   "deleteNamespaceButtonConfirm": "Confirmer",
   "formNamespaceErrorMinLength": "Veuillez entrer au minimum {{min}} caractères",
+  "formNamespaceErrorMandatoryField": "Ce champ est obligatoire",
   "formNamespaceErrorMaxLength": "Veuillez entrer au maximum {{max}} caractères",
   "formNamespaceNameErrorPattern": "Doit uniquement contenir des nombres, lettres ou des underscores",
   "formNamespaceNameErrorDuplicate": "Un namespace avec le même nom existe déjà",
