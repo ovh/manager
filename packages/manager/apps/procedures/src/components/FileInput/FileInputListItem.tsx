@@ -10,13 +10,13 @@ type FileInputListItemProps = {
     e: MouseEvent<HTMLOsdsIconElement, globalThis.MouseEvent>,
     file: FileWithError,
   ) => void;
-  accept: string;
-  maxSize: number;
+  disabled: boolean;
 };
 
 export const FileInputListItem: FunctionComponent<FileInputListItemProps> = ({
   file,
   deleteFile,
+  disabled,
 }) => {
   const bytesToSize = (bytes: number): string => {
     if (bytes < 1024 * 1024) {
@@ -62,7 +62,9 @@ export const FileInputListItem: FunctionComponent<FileInputListItemProps> = ({
         }
         className="ml-auto cursor-pointer"
         size={ODS_ICON_SIZE.sm}
-        onClick={(e) => deleteFile(e, file)}
+        onClick={(e) => {
+          if (!disabled) deleteFile(e, file);
+        }}
       />
     </div>
   );
