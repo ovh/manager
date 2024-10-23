@@ -13,5 +13,6 @@
   "pci_projects_project_users_add_accesskey": "Your S3 access key:",
   "pci_projects_project_users_add_secretkey": "Your S3 secret key:",
   "pci_projects_project_users_add_as_no_credentials": "No credentials",
-  "pci_projects_project_users_add_as_credentials": "Credentials generated"
+  "pci_projects_project_users_add_as_credentials": "Credentials generated",
+  "pci_projects_project_users_add_info_banner": "New users will automatically have access to all containers in Local Zones."
 }

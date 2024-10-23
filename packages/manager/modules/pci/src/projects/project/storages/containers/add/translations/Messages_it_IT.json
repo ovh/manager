@@ -13,7 +13,7 @@
   "pci_projects_project_storages_containers_add_type_title": "Seleziona un tipo di container",
   "pci_projects_project_storages_containers_add_create_or_linked_user_title": "Associare un utente",
   "pci_projects_project_storages_containers_add_create_or_linked_user_success_field_secret_key": "La tua chiave segreta S3:",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_description": "È possibile consentire l'accesso al container a uno degli utenti OpenStack preconfigurati con un ruolo \"Amministratore\" o \"Operatore Object Storage\" oppure creare un nuovo utente.",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_description": "Puoi consentire l'accesso al container a uno degli utenti OpenStack preconfigurati con un ruolo \"Amministratore\" o \"Operatore Object Storage\" oppure creare un nuovo utente.",
   "pci_projects_project_storages_containers_add_type_static_label": "Hosting statico",
   "pci_projects_project_storages_containers_add_type_static_description": "Accesso rapido e performante per i tuoi siti. Associa i tuoi domini e archivia i tuoi file.",
   "pci_projects_project_storages_containers_add_type_public_label": "Pubblico",
@@ -47,5 +47,8 @@
   "pci_projects_project_storages_containers_add_offers_estimated_price": "A partire da {{price}} +IVA/mese/TB",
   "pci_projects_project_storages_containers_add_deployment_mode_price": "{{price}} +IVA/mese/TB*",
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "*Il prezzo indicato corrisponde al prezzo pubblico di 1 TB di storage per 30 giorni. Per maggiori informazioni, ",
-  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "consulta la pagina dei prezzi."
+  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "consulta la pagina dei prezzi.",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone": "Local Zone",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_description": "Bassa latenza con il miglior rapporto prezzo/performance per i tuoi carichi di lavoro di dati sensibili.",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_label": "Local Zone"
 }

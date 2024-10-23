@@ -6,14 +6,14 @@
   "pci_projects_project_storages_containers_add_offer_title": "Wählen Sie Ihr Angebot",
   "pci_projects_project_storages_containers_add_offer_storage": "Swift-API",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard": "S3-API",
-  "pci_projects_project_storages_containers_add_offer_storage_description": "Basislösung für Storage ohne besondere Leistungsanforderungen. Hierbei handelt es sich um den nativen Objektspeicher von OpenStack mit den Swift-APIs.",
+  "pci_projects_project_storages_containers_add_offer_storage_description": "Grundlegende Speicherlösung ohne besondere Leistungsanforderungen. Hierbei handelt es sich um den nativen Objektspeicher von OpenStack mit den Swift-APIs.",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard_description": "Dies ist die ideale Speicherlösung für große Datenmengen zum Bestpreis. Mit dieser Lösung ist eine breite Palette von S3-APIs verfügbar.",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard_label": "Neu",
   "pci_projects_project_storages_containers_add_region_title": "Standort auswählen",
   "pci_projects_project_storages_containers_add_type_title": "Wählen Sie einen Container-Typ aus",
   "pci_projects_project_storages_containers_add_create_or_linked_user_title": "Nutzer zuweisen",
   "pci_projects_project_storages_containers_add_create_or_linked_user_success_field_secret_key": "Ihr geheimer S3-Schlüssel:",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_description": "Einem vorkonfigurierten Nutzer von OpenStack können Sie den Zugang zu einem Container einrichten, indem Sie ihm die Rolle eines Administrators oder Object Storage Operators zuweisen. Außerdem können Sie einen neuen Nutzer erstellen.",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_description": "Sie können einem Ihrer vorkonfigurierten OpenStack-User mit der Rolle „Administrator“ oder „Object Storage Operator“ Zugriff auf den Container gewähren oder einen neuen User erstellen.",
   "pci_projects_project_storages_containers_add_type_static_label": "Statisches Hosting",
   "pci_projects_project_storages_containers_add_type_static_description": "Schneller und performanter Zugriff auf Ihre Webseiten. Verbinden Sie Ihre Domains und legen Sie Dateien ab.",
   "pci_projects_project_storages_containers_add_type_public_label": "Öffentlich",
@@ -47,5 +47,8 @@
   "pci_projects_project_storages_containers_add_offers_estimated_price": "Ab {{price}} inkl. MwSt./Monat/TB",
   "pci_projects_project_storages_containers_add_deployment_mode_price": "{{price}} ohne MwSt./Monat/TB*",
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "* Der angezeigte Preis entspricht dem öffentlichen Preis von 1 TB Storage für 30 Tage. Für mehr Informationen ",
-  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "die Seite zu den Preisen ansehen."
+  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "die Seite mit den Preisen zurate ziehen.",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone": "Local Zones",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_description": "Niedrige Latenz mit dem besten Preis-Leistungs-Verhältnis für Ihre Workloads mit sensiblen Daten.",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_label": "Local Zone"
 }

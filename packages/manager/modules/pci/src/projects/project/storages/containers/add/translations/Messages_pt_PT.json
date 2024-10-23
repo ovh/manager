@@ -13,7 +13,7 @@
   "pci_projects_project_storages_containers_add_type_title": "Selecione um tipo de container",
   "pci_projects_project_storages_containers_add_create_or_linked_user_title": "Associar um utilizador",
   "pci_projects_project_storages_containers_add_create_or_linked_user_success_field_secret_key": "A sua chave secreta S3:",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_description": "Pode dar acesso ao container a um dos seus utilizadores OpenStack pré-configurados com um papel «Administrador» ou «Operador Object Storage», ou então criar um novo utilizador.",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_description": "Pode dar acesso ao container a um dos seus utilizadores OpenStack pré-configurados com um papel “Administrador” ou “Operador Object Storage”, ou então criar um novo utilizador.",
   "pci_projects_project_storages_containers_add_type_static_label": "Alojamento estático",
   "pci_projects_project_storages_containers_add_type_static_description": "Acesso rápido e com excelente desempenho para os seus websites. Associe os seus domínios e arquive os seus ficheiros.",
   "pci_projects_project_storages_containers_add_type_public_label": "Público",
@@ -46,6 +46,9 @@
   "pci_projects_project_storages_containers_add_deployment_mode_soon": "Em breve",
   "pci_projects_project_storages_containers_add_offers_estimated_price": "A partir de {{price}} /mês por TB + IVA",
   "pci_projects_project_storages_containers_add_deployment_mode_price": "{{price}} /mês por TB* + IVA",
-  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "*O preço indicado corresponde ao preço público de 1 TB de armazenamento durante 30 dias. Para mais informações, ",
-  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "consulte a página de preços."
+  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "*O preço indicado corresponde ao preço público de 1 TB de armazenamento durante 30 dias. Para mais informações, ",
+  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "consulte a página dedicada aos preços.",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone": "Local Zones",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_description": "Baixa latência com a melhor relação preço/desempenho para as suas cargas de trabalho de dados sensíveis.",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_label": "Local Zone"
 }
