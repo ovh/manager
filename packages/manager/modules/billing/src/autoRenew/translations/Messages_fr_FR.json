@@ -1,7 +1,7 @@
 {
-  "billing_title": "Mes services",
-  "billing_description": "Gérez le renouvellement de vos services. Consultez leur statut ainsi que vos contrats.",
-  "billing_home_title": "Accueil",
+  "billing_title": "Gestion de mes offres et services",
+  "billing_description": "Bienvenue dans votre section GESTION DES SERVICES. Administrez le renouvellement, le paiement et la résiliation de vos services depuis cette page.",
+  "billing_home_title": "Tous les services",
   "billing_agreements_title": "Contrats",
   "billing_ssh_title": "Clés SSH",
   "billing_autorenew_service_disable_autorenew": "Désactiver le paiement automatique",
