@@ -9,7 +9,7 @@ import {
   patchRancherServiceQueryKey,
   postRancherServiceQueryKey,
 } from '@/data/api/services';
-import { RancherService } from '@/types/api.type';
+import { OVHError, RancherService } from '@/types/api.type';
 import {
   EditAction,
   EditMutationVariables,
@@ -62,9 +62,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
     status: MutationStatus;
     error: {
       response: {
-        data: {
-          message: string;
-        };
+        data: OVHError;
       };
     };
   }>({
@@ -75,7 +73,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
     (state) => state?.status === 'error',
   );
 
-  const errorMessage = updateError?.error?.response?.data?.message;
+  const errorMessage = updateError?.error?.response?.data;
 
   const mutationGenerateAccessState = useMutationState({
     filters: {
@@ -128,7 +126,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
         editNameResponseType={editNameBannerType}
         updateSoftwareResponseType={updateSoftwareResponseType}
         updateOfferResponseType={updateOfferResponseType}
-        updateOfferErrorMessage={errorMessage}
+        updateOfferError={errorMessage}
         hasErrorAccessDetail={mutationGenerateAccessState.length > 0}
       />
       <Outlet />
