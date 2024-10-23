@@ -10,5 +10,5 @@ export const urls = {
   listing: '/',
   onboarding: `/${subRoutes.onboarding}`,
   order: `/${subRoutes.order}`,
-  dashboard: `/${subRoutes.dashboard}`,
+  dashboard: `/${subRoutes.serviceName}`,
 } as const;
