@@ -85,7 +85,7 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
   return (
     <>
       {show && (
-        <OsdsModal dismissible={false}>
+        <OsdsModal dismissible={false} onClick={(e) => e.stopPropagation()}>
           <div className="p-1">
             <div className="w-full flex justify-center items-center">
               <img src={ovhCloudLogo} alt="ovh-cloud-logo" />

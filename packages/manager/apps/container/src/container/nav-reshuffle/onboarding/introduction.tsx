@@ -66,7 +66,7 @@ export const OnboardingIntroduction = () => {
 
   useClickAway(ref, () => {
     productNavReshuffle.reduceOnboarding();
-  });
+  }, ['click']);
 
   useEffect(() => {
     if (isPopoverVisible) {
