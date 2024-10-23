@@ -29,5 +29,6 @@ export default {
     is3azAvailable: '<',
     isLocalzoneAvailable: '<',
     is3azAvailable: '<',
+    isLocalzoneAvailable: '<',
   },
 };

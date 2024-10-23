@@ -27,5 +27,6 @@ export default {
     isLocalzoneAvailable: '<',
     is3azAvailable: '<',
     projectActivationPageHref: '<',
+    isLocalzoneAvailable: '<',
   },
 };
