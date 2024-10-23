@@ -24,5 +24,6 @@ export default {
     catalog: '<',
     is3azAvailable: '<',
     projectActivationPageHref: '<',
+    isLocalzoneAvailable: '<',
   },
 };

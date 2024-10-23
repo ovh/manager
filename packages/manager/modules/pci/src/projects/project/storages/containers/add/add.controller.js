@@ -108,6 +108,7 @@ export default class PciStoragesContainersAddController {
       },
     );
 
+    this.featureFlipLocalzoneContainer();
     this.setOffersPrices();
     this.setDeploymentModePrices();
     this.featureFlip3azContainer();
@@ -160,6 +161,18 @@ export default class PciStoragesContainersAddController {
       .map((addon) => addon.pricings[0].price)[0];
 
     return hourlyPrice * 730 * 1024 * 0.00000001;
+  }
+
+  featureFlipLocalzoneContainer() {
+    if (!this.isLocalzoneAvailable) {
+      const index = OBJECT_CONTAINER_DEPLOYMENT_MODES.indexOf(
+        OBJECT_CONTAINER_MODE_LOCAL_ZONE,
+      );
+
+      if (index > -1) {
+        OBJECT_CONTAINER_DEPLOYMENT_MODES.splice(index, 1);
+      }
+    }
   }
 
   setOffersPrices() {
