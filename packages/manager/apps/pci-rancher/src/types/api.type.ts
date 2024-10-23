@@ -18,6 +18,7 @@ export type ErrorResponse = {
     data: { message: string; class: string };
   };
 };
+export type OVHError = ErrorResponse['response']['data'];
 
 export enum PciProjectPlanCode {
   DISCOVERY = 'project.discovery',

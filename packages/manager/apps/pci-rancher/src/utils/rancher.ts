@@ -1,6 +1,6 @@
 import { TOptions } from 'i18next';
 import {
-  ErrorResponse,
+  OVHError,
   RancherPlan,
   RancherService,
   RancherVersion,
@@ -79,8 +79,8 @@ export const getRancherPlanDescription = (rancherPlan: RancherPlan['name']) => {
 /**
  * Extracts drivers and plan information from a switch plan error message.
  *
- * @param {string} inputString - The input error message string.
- * @returns {null|{drivers: string[], plan: string}} - An object containing the drivers and plan, or null if extraction fails.
+ * @param inputString - The input error message string.
+ * @returns - An object containing the drivers and plan, or null if extraction fails.
  * */
 export function extractDriversAndPlanFromSwitchPlanError(
   inputString: string,
@@ -111,13 +111,11 @@ export function extractDriversAndPlanFromSwitchPlanError(
   return null;
 }
 
-type OVHError = ErrorResponse['response']['data'];
-
 /**
  * Type guard to check if the error is an OVHError.
  *
- * @param {unknown} error - The error object to check.
- * @returns {error is OVHError} - True if the error is an OVHError, false otherwise.
+ * @param error - The error object to check.
+ * @returns - True if the error is an OVHError, false otherwise.
  */
 function isOVHError(error: unknown): error is OVHError {
   return (
@@ -133,31 +131,22 @@ function isOVHError(error: unknown): error is OVHError {
 /**
  * Manages Rancher errors and returns appropriate error messages for internationalization.
  *
- * @param {unknown} error - The error object containing the message and class.
- * @returns {[string, TOptions?]} - An array containing the error message key and optional options for internationalization, or null if the error is not recognized.
+ * @param error - The error object containing the message and class.
+ * @returns - An array containing the error message key and optional options for internationalization, or null if the error is not recognized.
  */
 export const getI18nextRancherError = (error: unknown): [string, TOptions?] => {
   if (isOVHError(error)) {
     const ovhError = error;
-    if (ovhError.class === 'Server::InternalServerError') {
-      return ['createRancherErrorInternalServerError'];
-    }
     if (ovhError.class === 'Client::BadRequest') {
       const content = extractDriversAndPlanFromSwitchPlanError(
         ovhError.message,
       );
       if (content) {
         const { plan, drivers } = content;
-        return [
-          'createRancherErrorInternalServerBadRequestChangePlan',
-          { plan, drivers: `[${drivers}]` },
-        ];
+        return ['badRequestSwitchPlan', { plan, drivers: `[${drivers}]` }];
       }
-      return [
-        'createRancherError',
-        { rancherCreationErrorMessage: ovhError.message },
-      ];
     }
+    return ['rancherError'];
   }
-  return ['createRancherError', { rancherCreationErrorMessage: '' }];
+  return ['rancherError'];
 };

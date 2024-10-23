@@ -34,11 +34,7 @@ import { useMedia } from 'react-use';
 
 import clsx from 'clsx';
 
-import {
-  getRancherPlanDescription,
-  isValidRancherName,
-  getI18nextRancherError,
-} from '@/utils/rancher';
+import { getRancherPlanDescription, isValidRancherName } from '@/utils/rancher';
 import { getRanchersUrl } from '@/utils/route';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
@@ -193,7 +189,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
 
   const rancherErrorBanner = useMemo(() => {
     if (hasRancherCreationError && rancherCreationErrorMessage) {
-      return t(...getI18nextRancherError(rancherCreationErrorMessage));
+      return t('createRancherErrorInternalServerError');
     }
     return null;
   }, [rancherCreationErrorMessage, hasRancherCreationError]);
