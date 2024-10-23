@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { KMSServiceInfos } from '@/types/okmsService.type';
+import { ServiceDetails } from '@ovh-ux/manager-react-components';
 
 export type UpdateOkmsNameParams = {
   serviceId: number;
@@ -30,7 +30,7 @@ export const getOkmsServiceId = async (okmsId: string) => {
 
 export const getServiceInfos = async (okmsId: string) => {
   const serviceId = await getOkmsServiceId(okmsId);
-  return apiClient.v6.get<KMSServiceInfos>(`/services/${serviceId.data[0]}`);
+  return apiClient.v6.get<ServiceDetails>(`/services/${serviceId.data[0]}`);
 };
 
 export type TerminateKmsParams = {

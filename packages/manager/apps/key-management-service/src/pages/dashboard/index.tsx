@@ -6,6 +6,7 @@ import {
   BaseLayout,
   HeadersProps,
   ErrorBanner,
+  useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
@@ -18,7 +19,6 @@ import { ROUTES_URLS } from '@/routes/routes.constants';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { getOkmsResourceQueryKey } from '@/data/api/okms';
 import { OKMS } from '@/types/okms.type';
-import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
 import { useOKMSById } from '@/data/hooks/useOKMS';
 
 export const OkmsContext = createContext<OKMS>(null);
@@ -45,15 +45,18 @@ export default function DashboardPage() {
     isLoading: isOkmsServiceInfosLoading,
     isError: isOkmsServiceInfosError,
     error: okmsServiceInfoError,
-  } = useKMSServiceInfos(okmsId);
-  const displayName = okmsServiceInfos?.data?.resource.displayName;
+  } = useServiceDetails({ resourceName: okmsId });
 
   if (isOkmsServiceInfosLoading || isOkmsLoading) return <Loading />;
 
-  if (isOkmsServiceInfosError || isOkmsError)
+  if (isOkmsServiceInfosError || isOkmsError) {
     return (
       <ErrorBanner
-        error={okmsServiceInfoError.response || okmsError.response}
+        error={
+          okmsServiceInfoError
+            ? okmsServiceInfoError.response
+            : okmsError.response
+        }
         onRedirectHome={() => navigate(ROUTES_URLS.listing)}
         onReloadPage={() =>
           queryClient.refetchQueries({
@@ -62,6 +65,9 @@ export default function DashboardPage() {
         }
       />
     );
+  }
+
+  const displayName = okmsServiceInfos?.data?.resource.displayName;
 
   const tabsList: DashboardTabItemProps[] = [
     {

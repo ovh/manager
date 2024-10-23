@@ -4,6 +4,7 @@ import {
   Clipboard,
   DataGridTextCell,
   Links,
+  useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -22,7 +23,6 @@ import { ServiceKeyStatus } from '../serviceKey/serviceKeyStatus/serviceKeyStatu
 import useServiceKeyActionsList from '@/hooks/serviceKey/useServiceKeyActionsList';
 import { useOkmsServiceKeyById } from '@/data/hooks/useOkmsServiceKeys';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
-import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
 import { OkmsServiceState } from '../layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
 import { OkmsContext } from '@/pages/dashboard';
 
@@ -61,10 +61,10 @@ export const DatagridCellRegion = (props: OKMS) => {
   );
 };
 
-export const DatagridCellStatus = (props: OKMS) => {
-  const { data: OkmsServiceInfos, isLoading, isError } = useKMSServiceInfos(
-    props.id,
-  );
+export const DatagridCellStatus = (kms: OKMS) => {
+  const { data: OkmsServiceInfos, isLoading, isError } = useServiceDetails({
+    resourceName: kms.id,
+  });
   if (isLoading) {
     return <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />;
   }
