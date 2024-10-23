@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.39.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.39.4...@ovh-ux/manager-web@18.39.5) (2024-10-23)
+
+
+### Bug Fixes
+
+* **web:** display last deployment logs instead of first one ([#13711](https://github.com/ovh/manager/issues/13711)) ([a160931](https://github.com/ovh/manager/commit/a160931946c90a6fc64d808f0ed20a529e5ea317))
+
+
+
+
+
 ## [18.39.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.39.3...@ovh-ux/manager-web@18.39.4) (2024-10-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
