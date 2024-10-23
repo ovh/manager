@@ -28,7 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => {
           const container = find(containers, {
             id: containerId,
-            region,
+            ...(region && { region }),
           });
 
           return PciProjectStorageContainersService.getContainer(
