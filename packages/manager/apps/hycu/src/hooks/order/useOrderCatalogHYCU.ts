@@ -10,7 +10,9 @@ export type OrderCatalogProps = {
 
 export const useOrderCatalogHYCU = (
   ovhSubsidiary: OvhSubsidiary,
-  options: Partial<DefinedInitialDataOptions<HYCUCatalog, ApiError>> = {},
+  options: Partial<DefinedInitialDataOptions<HYCUCatalog, ApiError>> & {
+    keepPreviousData?: boolean;
+  } = {},
 ) => {
   return useQuery<HYCUCatalog, ApiError>({
     queryKey: ['order/catalog/public/licenseHycu', ovhSubsidiary],
