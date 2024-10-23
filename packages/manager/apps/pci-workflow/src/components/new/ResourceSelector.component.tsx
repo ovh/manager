@@ -43,21 +43,23 @@ const useDatagridColumn = (
     {
       id: 'actions',
       cell: (instance: TWorkflowInstance) => (
-        <NotSupportedTooltipComponent region={instance.region}>
-          <OsdsRadioButton
-            checked={selectedInstance?.id === instance?.id || undefined}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_RADIO_BUTTON_SIZE.xs}
-            data-testid={`radio-button-${instance.id}`}
-            disabled={isLocalZone(instance.region) || undefined}
-            className="mx-auto"
-            onClick={() => {
-              if (!isLocalZone(instance.region)) {
-                onSelectInstance(instance);
-              }
-            }}
-          />
-        </NotSupportedTooltipComponent>
+        <div className="text-center">
+          <NotSupportedTooltipComponent region={instance.region}>
+            <OsdsRadioButton
+              checked={selectedInstance?.id === instance?.id || undefined}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              size={ODS_RADIO_BUTTON_SIZE.xs}
+              data-testid={`radio-button-${instance.id}`}
+              disabled={isLocalZone(instance.region) || undefined}
+              className="mx-auto"
+              onClick={() => {
+                if (!isLocalZone(instance.region)) {
+                  onSelectInstance(instance);
+                }
+              }}
+            />
+          </NotSupportedTooltipComponent>
+        </div>
       ),
       label: '',
     },
