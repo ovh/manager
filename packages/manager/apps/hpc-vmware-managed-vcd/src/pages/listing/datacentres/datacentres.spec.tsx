@@ -1,5 +1,10 @@
 import { screen, waitFor } from '@testing-library/react';
-import { labels, renderTest } from '../../../test-utils';
+import {
+  checkTextVisibility,
+  DEFAULT_LISTING_ERROR,
+  labels,
+  renderTest,
+} from '../../../test-utils';
 import { datacentreList } from '../../../../mocks/vcd-organization/vcd-datacentre.mock';
 import { organizationList } from '../../../../mocks/vcd-organization/vcd-organization.mock';
 
@@ -22,5 +27,14 @@ describe('Datacentres Listing Page', () => {
         screen.getByText(datacentreList[0].currentState.name),
       ).toBeVisible(),
     );
+  });
+
+  it('display an error', async () => {
+    await renderTest({
+      initialRoute: `/${organizationList[0].id}/datacentres`,
+      isDatacentresKo: true,
+    });
+
+    await checkTextVisibility(DEFAULT_LISTING_ERROR);
   });
 });

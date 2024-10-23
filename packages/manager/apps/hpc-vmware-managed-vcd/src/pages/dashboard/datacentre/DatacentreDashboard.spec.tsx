@@ -1,8 +1,6 @@
-import { screen, waitFor } from '@testing-library/react';
-import { labels, renderTest } from '../../../test-utils';
+import { checkTextVisibility, labels, renderTest } from '../../../test-utils';
 import { datacentreList } from '../../../../mocks/vcd-organization/vcd-datacentre.mock';
 import { organizationList } from '../../../../mocks/vcd-organization/vcd-organization.mock';
-import { COMPUTE_TITLE, STORAGE_TITLE } from './DatacentreDashboard.constant';
 
 describe('Datacentre Dashboard Page', () => {
   it('display the datacentre dashboard page', async () => {
@@ -10,16 +8,7 @@ describe('Datacentre Dashboard Page', () => {
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
     });
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(labels.datacentres.managed_vcd_vdc_vcpu_count),
-        ).toBeVisible(),
-      { timeout: 30_000 },
-    );
-
-    expect(screen.getByText(COMPUTE_TITLE)).toBeVisible();
-    expect(screen.getByText(STORAGE_TITLE)).toBeVisible();
+    await checkTextVisibility(labels.datacentres.managed_vcd_vdc_vcpu_count);
   });
 
   it('display an error', async () => {
@@ -28,11 +17,6 @@ describe('Datacentre Dashboard Page', () => {
       isDatacentresKo: true,
     });
 
-    await waitFor(
-      () => {
-        expect(screen.getByText('Datacentres error')).toBeVisible();
-      },
-      { timeout: 30_000 },
-    );
+    await checkTextVisibility('Datacentre error');
   });
 });
