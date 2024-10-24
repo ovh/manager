@@ -27,6 +27,8 @@ jest.mock('@ovh-ux/manager-react-shell-client', () => ({
 jest.mock('@/hooks/useGuideLink/useGuideLink', () => ({
   useGuideUtils: jest.fn(() => ({
     MANAGED_RANCHER_SERVICE_GETTING_STARTED: 'https://example.com/guide1',
+    MANAGED_RANCHER_SERVICE_CREATION: 'https://example.com/guide2',
+    MANAGED_RANCHER_SERVICE_LIFECYCLE_POLICY: 'https://example.com/guide3',
   })),
 }));
 
@@ -58,6 +60,12 @@ describe('Onboarding', () => {
   it('renders the guide tiles correctly', async () => {
     const screen = await setupSpecTest();
 
+    const tileList = [
+      { id: 1, href: 'https://example.com/guide1' },
+      { id: 2, href: 'https://example.com/guide2' },
+      { id: 3, href: 'https://example.com/guide3' },
+    ];
+
     const guideTitle = screen.getByText(
       onboardingTranslation.managedRancherServiceGettingStartedTitle,
     );
@@ -68,15 +76,32 @@ describe('Onboarding', () => {
     expect(guideTitle).toBeInTheDocument();
     expect(guideDescription).toBeInTheDocument();
 
-    const card = screen.getByTestId('tileCard');
-    expect(card).toHaveAttribute('href', 'https://example.com/guide1');
+    const cards = screen.getAllByTestId('tileCard');
+    cards.forEach((card, index) => {
+      expect(card).toHaveAttribute('href', tileList[index].href);
+    });
   });
 
   it('uses the guide link utility correctly', async () => {
     const guideUtils = useGuideUtils();
 
-    expect(guideUtils.MANAGED_RANCHER_SERVICE_GETTING_STARTED).toBe(
-      'https://example.com/guide1',
-    );
+    const expectedResults = [
+      {
+        key: 'MANAGED_RANCHER_SERVICE_GETTING_STARTED',
+        expectedValue: 'https://example.com/guide1',
+      },
+      {
+        key: 'MANAGED_RANCHER_SERVICE_CREATION',
+        expectedValue: 'https://example.com/guide2',
+      },
+      {
+        key: 'MANAGED_RANCHER_SERVICE_CREATION_USERS_PROJECTS',
+        expectedValue: 'https://example.com/guide3',
+      },
+    ];
+
+    expectedResults.forEach((testCase) => {
+      expect(guideUtils[testCase.key]).toBe(testCase.expectedValue);
+    });
   });
 });
