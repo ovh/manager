@@ -71,6 +71,7 @@ export default class ExchangeAddGroupCtrl {
       : this.groupToAdd.maxReceiveSize;
     this.model.joinRestriction = this.groupToAdd.subscribeRestriction;
     this.model.departRestriction = this.groupToAdd.unsubscribeRestriction;
+    this.model.company = this.groupToAdd.company;
 
     this.saveSelected();
   }
@@ -196,7 +197,7 @@ export default class ExchangeAddGroupCtrl {
   groupIsValid() {
     const isDomainPresent = this.groupToAdd.completeDomain != null;
     const isAddressPresent = this.groupToAdd.address != null;
-
+    const isCompanyPresent = this.groupToAdd.company != null;
     const maxReceiveSize = parseInt(this.groupToAdd.maxReceiveSize, 10);
     const isReceiveSizeCorrect =
       this.groupToAdd.receiveSizeUnlimited ||
@@ -212,6 +213,7 @@ export default class ExchangeAddGroupCtrl {
 
     return (
       isDomainPresent &&
+      isCompanyPresent &&
       isAddressPresent &&
       isReceiveSizeCorrect &&
       isSentSizeCorrect &&
