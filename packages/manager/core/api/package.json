@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-core-sso": "^0.2.1",
-    "@ovh-ux/request-tagger": "^0.4.0-alpha.0",
+    "@ovh-ux/request-tagger": "^0.3.0",
     "axios": "^1.1.2"
   },
   "devDependencies": {

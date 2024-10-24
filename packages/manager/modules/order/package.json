@@ -23,8 +23,8 @@
     "start:watch": "tsc -w"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-api": "^0.8.1-alpha.1",
-    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.1",
+    "@ovh-ux/manager-core-api": "^0.8.0",
+    "@ovh-ux/manager-react-shell-client": "^0.7.5",
     "jsurl": "^0.1.5"
   },
   "devDependencies": {

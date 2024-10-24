@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { Preview } from '@storybook/react';
 import '../src/tailwind/theme.css';
-import '../src/index.css';
 import i18n from './i18n';
 
 import '@ovhcloud/ods-theme-blue-jeans';
