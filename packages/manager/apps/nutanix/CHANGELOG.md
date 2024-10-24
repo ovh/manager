@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.51](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix-app@2.2.50...@ovh-ux/manager-nutanix-app@2.2.51) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
 ## [2.2.50](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix-app@2.2.49...@ovh-ux/manager-nutanix-app@2.2.50) (2024-10-24)
 
 

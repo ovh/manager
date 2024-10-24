@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.39.6...@ovh-ux/manager-web@18.40.0) (2024-10-24)
+
+
+### Features
+
+* **web.privatedabase:** move metrics to mimir ([#12299](https://github.com/ovh/manager/issues/12299)) ([0d118ba](https://github.com/ovh/manager/commit/0d118bac2ecd52c774122d8cb997684e44a5199b))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
 ## [18.39.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.39.5...@ovh-ux/manager-web@18.39.6) (2024-10-24)
 
 

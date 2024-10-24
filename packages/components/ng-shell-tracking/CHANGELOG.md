@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.14](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.5.13...@ovh-ux/ng-shell-tracking@0.5.14) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
 ## [0.5.13](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.5.12...@ovh-ux/ng-shell-tracking@0.5.13) (2024-10-24)
 
 
