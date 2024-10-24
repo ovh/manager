@@ -41,8 +41,8 @@ export const fetchAuthorizationCheck = async (
   return data;
 };
 export function useAuthorizationIam(
-  actions: string[],
-  urn: string,
+  actions?: string[],
+  urn?: string,
   isTrigger = true,
   // `isTrigger` is by default at true, to request at the init of the hook.
   // In the case of action menu, we want to trigger it, when user click on button
@@ -50,8 +50,9 @@ export function useAuthorizationIam(
   const { data, ...query } = useQuery({
     queryKey: [urn, actions],
     queryFn: () => fetchAuthorizationCheck(actions, urn),
-    enabled:
+    enabled: Boolean(
       urn && urn.length > 0 && actions && actions.length > 0 && isTrigger,
+    ),
     placeholderData: keepPreviousData,
   });
 
