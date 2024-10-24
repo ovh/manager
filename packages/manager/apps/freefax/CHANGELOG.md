@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.1.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@8.1.14...@ovh-ux/manager-freefax-app@8.1.15) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
 ## [8.1.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@8.1.13...@ovh-ux/manager-freefax-app@8.1.14) (2024-10-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-freefax-app
