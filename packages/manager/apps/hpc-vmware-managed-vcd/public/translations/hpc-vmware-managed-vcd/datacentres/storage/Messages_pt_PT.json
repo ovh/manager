@@ -2,6 +2,6 @@
   "managed_vcd_vdc_storage_name": "Nome",
   "managed_vcd_vdc_storage_profile": "Perfil",
   "managed_vcd_vdc_storage_type": "Tipo",
-  "managed_vcd_vdc_storage_capacity": "Tamanho",
+  "managed_vcd_vdc_storage_capacity": "Dimensão",
   "managed_vcd_vdc_storage_order_cta": "Encomendar um Storage"
 }

@@ -3,7 +3,7 @@
   "zimbra_redirections_from": "De",
   "zimbra_redirections_to": "A",
   "zimbra_redirections_organization": "Organização",
-  "zimbra_redirections_datagrid_tooltip_modification": "Modificar",
-  "zimbra_redirections_datagrid_tooltip_delete": "Suprimir",
+  "zimbra_redirections_datagrid_tooltip_modification": "Alterar",
+  "zimbra_redirections_datagrid_tooltip_delete": "Eliminar",
   "zimbra_redirections_account_title": "Gestão dos reencaminhamentos"
 }

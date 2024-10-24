@@ -1,18 +1,18 @@
 {
-  "managed_vcd_onboarding_description_part1": "O Managed VCD é uma solução de virtualização inteiramente operada pela OVHcloud para executar aplicações, VMs e containers sem ter de se preocupar com as infraestruturas subjacentes.",
-  "managed_vcd_onboarding_description_part2": "Dispõe de uma interface simples e unificada para gerir as suas pools de recursos de forma flexível no seio dos datacenters virtuais, assim como uma solução de backup Veeam administrado.",
+  "managed_vcd_onboarding_description_part1": "O Managed VCD é uma solução de virtualização inteiramente operada pela OVHcloud para executar aplicações, MV e containers sem que tenha de se preocupar com as infraestruturas subjacentes.",
+  "managed_vcd_onboarding_description_part2": "Disponha de uma interface simples e unificada para gerir as suas pools de recursos de forma flexível no âmbito dos datacenters virtuais, assim como de uma solução de backup Veeam gerido.",
   "managed_vcd_onboarding_order": "Encomendar",
   "managed_vcd_onboarding_more_info": "Saber mais",
   "managed_vcd_onboarding_guide1_link": "Saber mais",
-  "managed_vcd_onboarding_guide1_category": "Introdução",
+  "managed_vcd_onboarding_guide1_category": "Apresentação",
   "managed_vcd_onboarding_guide1_title": "Descobrir o Managed VCD",
-  "managed_vcd_onboarding_guide1_description": "Descubra o produto Managed VCD, as suas vantagens, a sua utilização e os seus preços.",
-  "managed_vcd_onboarding_guide2_category": "Tutorial e Documentação",
-  "managed_vcd_onboarding_guide2_title": "Primeiros passos para utilizar o Managed VCD",
+  "managed_vcd_onboarding_guide1_description": "Descubra o produto Managed VCD, as suas vantagens, a sua utilização e o seu preço.",
+  "managed_vcd_onboarding_guide2_category": "Tutorial e documentação",
+  "managed_vcd_onboarding_guide2_title": "Introdução ao uso do Managed VCD",
   "managed_vcd_onboarding_guide2_link": "Ver a documentação",
-  "managed_vcd_onboarding_guide2_description": "Princípios básicos do VCD. Descubra os conceitos de base do VCD.",
+  "managed_vcd_onboarding_guide2_description": "Princípios fundamentais do VCD Descubra os conceitos básicos do VCD",
   "managed_vcd_onboarding_guide3_category": "FAQ",
-  "managed_vcd_onboarding_guide3_title": "Questões frequentes",
+  "managed_vcd_onboarding_guide3_title": "Perguntas frequentes",
   "managed_vcd_onboarding_guide3_link": "Consultar as FAQ",
-  "managed_vcd_onboarding_guide3_description": "Consulte as FAQs para encontrar respostas às perguntas mais frequentes."
+  "managed_vcd_onboarding_guide3_description": "Consulte as FAQ para encontrar respostas às dúvidas mais frequentes."
 }

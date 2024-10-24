@@ -39,8 +39,8 @@
   "kube_add_billing_anti_affinity_title": "Fatturazione e anti-affinità",
   "kube_add_billing_anti_affinity_coming_soon_message_title": "Prezzi mensili",
   "kube_add_billing_anti_affinity_coming_soon_message_description": "I prezzi mensili saranno disponibili a breve con l'arrivo dei Saving Plans.",
-  "kubernetes_add_version_and_upgrade_policy_title": "Seleziona la versione minor di Kubernetes e la politica di sicurezza desiderata",
-  "kube_update_policy_picker_documentation_text": "Per saperne di più sulle politiche di sicurezza del servizio Managed Kubernetes.",
+  "kubernetes_add_version_and_upgrade_policy_title": "Seleziona la versione minore di Kubernetes e la politica di sicurezza desiderata.",
+  "kube_update_policy_picker_documentation_text": "Maggiori informazioni sulle politiche di sicurezza di Managed Kubernetes Service.",
   "kube_update_policy_picker_documentation_link": "Consulta la documentazione",
   "kubernetes_add_update_policy_title": "Seleziona la politica di sicurezza",
   "kubernetes_select_version_title": "Seleziona una versione"

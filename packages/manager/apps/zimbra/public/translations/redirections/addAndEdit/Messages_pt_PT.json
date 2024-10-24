@@ -1,17 +1,17 @@
 {
   "zimbra_redirections_edit_1": "Preencha as informações para o reencaminhamento.",
-  "zimbra_redirections_edit_2": "Os campos marcados com * são obrigatórios.",
+  "zimbra_redirections_edit_2": "Os campos marcados com um asterisco (*) são de preenchimento obrigatório",
   "zimbra_redirections_title_add": "Criar um reencaminhamento",
   "zimbra_redirections_title_edit": "Modificar o reencaminhamento",
   "zimbra_redirections_add_form_input_name_title_from": "Do endereço",
   "zimbra_redirections_add_form_input_name_title_to": "Para o endereço",
   "zimbra_redirections_add_form_input_checkbox": "Conservar uma cópia do e-mail na OVHcloud",
   "zimbra_redirections_add_input_email_placeholder": "Nome da conta",
-  "zimbra_redirections_add_select_domain_placeholder": "Selecionar um domínio",
+  "zimbra_redirections_add_select_domain_placeholder": "Escolher um nome de domínio",
   "zimbra_redirections_add_btn_cancel": "Anular",
   "zimbra_redirections_add_btn_confirm": "Confirmar",
-  "zimbra_redirections_add_success": "O seu pedido de criação do reencaminhamento foi corretamente tomado em conta. Será tratada dentro de alguns instantes.",
-  "zimbra_redirections_edit_success": "O seu pedido de alteração do reencaminhamento foi corretamente tomado em conta. Será tratada dentro de alguns instantes.",
-  "zimbra_redirections_add_error": "O seu pedido de criação do reencaminhamento não foi bem-sucedido. {{ error }}",
-  "zimbra_redirections_edit_error": "O seu pedido de alteração do reencaminhamento não foi bem-sucedido. {{ error }}"
+  "zimbra_redirections_add_success": "O seu pedido de criação de reencaminhamento foi registado. Será tratado dentro de alguns instantes.",
+  "zimbra_redirections_edit_success": "O seu pedido de alteração de reencaminhamento foi registado. Será tratado dentro de alguns instantes.",
+  "zimbra_redirections_add_error": "O seu pedido de criação de reencaminhamento não foi bem-sucedido. {{ error }}",
+  "zimbra_redirections_edit_error": "O seu pedido de alteração de reencaminhamento não foi bem-sucedido. {{ error }}"
 }
