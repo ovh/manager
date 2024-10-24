@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 
 describe('License Hycu Dashboard route test suite', () => {
   it('should show informations of services', async () => {
-    await renderTestApp('/fake-id');
+    await renderTestApp('/4a26ef55-d46b-4b71-88c8-76ad71b154b4');
 
     await waitFor(
       () =>
@@ -18,7 +18,7 @@ describe('License Hycu Dashboard route test suite', () => {
   });
 
   it('should show error if api services fail', async () => {
-    await renderTestApp('/fake-id', {
+    await renderTestApp('/4a26ef55-d46b-4b71-88c8-76ad71b154b4', {
       getServicesKo: true,
       isGetLicenseHycuKo: true,
       isGetServiceLicenseHycuKo: true,
