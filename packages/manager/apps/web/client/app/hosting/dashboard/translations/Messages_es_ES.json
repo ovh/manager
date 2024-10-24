@@ -299,10 +299,10 @@
   "hosting_tab_DOMAINS_table_header_ownlog": "Logs separados",
   "hosting_tab_DOMAINS_table_header_ssl": "SSL",
   "hosting_tab_DOMAINS_table_header_diagnostic": "Diagnóstico",
-  "hosting_tab_DOMAINS_table_git_state_created": "Activado",
+  "hosting_tab_DOMAINS_table_git_state_created": "Activo",
   "hosting_tab_DOMAINS_table_git_state_creating": "En curso",
   "hosting_tab_DOMAINS_table_git_state_deleting": "En proceso de eliminación",
-  "hosting_tab_DOMAINS_table_git_state_disabled": "Desactivado",
+  "hosting_tab_DOMAINS_table_git_state_disabled": "Inactivo",
   "hosting_tab_DOMAINS_table_git_state_error": "Error",
   "hosting_tab_DOMAINS_table_git_state_deploying": "En curso",
   "hosting_tab_DOMAINS_table_git_state_initialError": "Error",
@@ -1400,5 +1400,6 @@
   "hosting_dashboard_service_common_inactive": "Inactivo",
   "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo.",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Más"
+  "hosting_dashboard_tabs_dropdown": "Más",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Haga clic en el botón de acción para asociar Git"
 }

@@ -299,10 +299,10 @@
   "hosting_tab_DOMAINS_table_header_ownlog": "Getrennte Logs",
   "hosting_tab_DOMAINS_table_header_ssl": "SSL",
   "hosting_tab_DOMAINS_table_header_diagnostic": "Diagnose",
-  "hosting_tab_DOMAINS_table_git_state_created": "Aktiviert",
+  "hosting_tab_DOMAINS_table_git_state_created": "Aktiv",
   "hosting_tab_DOMAINS_table_git_state_creating": "Wird ausgeführt",
   "hosting_tab_DOMAINS_table_git_state_deleting": "Wird gelöscht",
-  "hosting_tab_DOMAINS_table_git_state_disabled": "Deaktiviert",
+  "hosting_tab_DOMAINS_table_git_state_disabled": "Inaktiv",
   "hosting_tab_DOMAINS_table_git_state_error": "Fehler",
   "hosting_tab_DOMAINS_table_git_state_deploying": "Wird ausgeführt",
   "hosting_tab_DOMAINS_table_git_state_initialError": "Fehler",
@@ -1400,5 +1400,6 @@
   "hosting_dashboard_service_common_inactive": "Inaktiv",
   "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen.",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Mehr"
+  "hosting_dashboard_tabs_dropdown": "Mehr",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Klicken Sie auf die Schaltfläche Aktion, um Git zuzuordnen"
 }
