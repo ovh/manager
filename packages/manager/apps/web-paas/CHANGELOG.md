@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@2.2.21...@ovh-ux/manager-web-paas-app@2.2.22) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
 ## [2.2.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@2.2.20...@ovh-ux/manager-web-paas-app@2.2.21) (2024-10-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-paas-app

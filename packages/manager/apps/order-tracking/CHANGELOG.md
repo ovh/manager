@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.12](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.9.11...@ovh-ux/order-tracking-app@2.9.12) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
 ## [2.9.11](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.9.10...@ovh-ux/order-tracking-app@2.9.11) (2024-10-22)
 
 **Note:** Version bump only for package @ovh-ux/order-tracking-app

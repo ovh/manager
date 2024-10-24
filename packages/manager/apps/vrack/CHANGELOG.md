@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@2.2.13...@ovh-ux/manager-vrack-app@2.2.14) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
 ## [2.2.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@2.2.12...@ovh-ux/manager-vrack-app@2.2.13) (2024-10-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack-app

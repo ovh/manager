@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.7.8...@ovh-ux/manager-pci-public-ip-app@0.7.9) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
 ## [0.7.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.7.7...@ovh-ux/manager-pci-public-ip-app@0.7.8) (2024-10-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
