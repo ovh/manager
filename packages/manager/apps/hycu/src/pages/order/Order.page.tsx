@@ -8,6 +8,7 @@ import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import OrderConfirmation from '@/components/Order/OrderConfirmation';
 import PackSelection from '@/components/Order/PackSelection';
 import useOrderHYCU from '@/hooks/order/useOrderHYCU';
+import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 
 export default function Order() {
   const { t } = useTranslation('hycu/order');
@@ -29,9 +30,16 @@ export default function Order() {
     region: subsidiary,
   });
 
+  const breadcrumbItems: BreadcrumbItem[] = [
+    {
+      id: 'order',
+      label: t('hycu_order_title'),
+    },
+  ];
+
   return (
     <BaseLayout
-      breadcrumb={<Breadcrumb />}
+      breadcrumb={<Breadcrumb items={breadcrumbItems} />}
       description={description}
       header={header}
     >
