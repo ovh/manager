@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.0...@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.1) (2024-10-24)
+
+
+### Reverts
+
+* Revert "fix(pci-workflow): update dependencies (#13760)" ([a0ec416](https://github.com/ovh/manager/commit/a0ec416cab9a52ca0f9d0d7eae5bd48b6cfd24a8)), closes [#13760](https://github.com/ovh/manager/issues/13760)
+
+
+
+
+
 # [0.1.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.0.0...@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.0) (2024-10-24)
 
 

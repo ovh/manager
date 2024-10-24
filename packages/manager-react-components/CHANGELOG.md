@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.39.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.39.1...@ovh-ux/manager-react-components@1.39.2) (2024-10-24)
+
+### Reverts
+
+- Revert "feat(manager-react-components): build manager react components lib" ([5d68a86](https://github.com/ovh/manager/commit/5d68a8677efea465ebf882c77ca5413388f2dfbf))
+- Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
 ## [1.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.39.0...@ovh-ux/manager-react-components@1.39.1) (2024-10-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-components

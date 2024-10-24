@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.6.2...@ovh-ux/manager-pci-databases-analytics-app@1.6.3) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
 ## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.6.1...@ovh-ux/manager-pci-databases-analytics-app@1.6.2) (2024-10-22)
 
 
