@@ -1,3 +1,5 @@
+import { DOMAIN_PREFIX_LISTING_MANAGE_DOMAINS } from './domains.constant';
+
 angular.module('App').config(($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.domain.all', {
     url: '/bulk',
@@ -16,6 +18,9 @@ angular.module('App').config(($stateProvider, $urlRouterProvider) => {
         },
       ],
       hideBreadcrumb: () => true,
+    },
+    atInternet: {
+      rename: DOMAIN_PREFIX_LISTING_MANAGE_DOMAINS,
     },
     translations: { value: ['../domain', '../domains'], format: 'json' },
   });
