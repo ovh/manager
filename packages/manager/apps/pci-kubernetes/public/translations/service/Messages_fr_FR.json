@@ -25,6 +25,18 @@
   "kube_service_cluster_status_SUSPENDED": "Suspendu",
   "kube_service_cluster_status_USER_ERROR": "En erreur",
   "kube_service_cluster_status_USER_QUOTA_ERROR": "Problème de quota",
+  "kube_service_cluster_admission_plugins": "Admission Plugins",
+  "kube_service_cluster_admission_plugins_mutation": "Activer/désactiver les plugins",
+  "kube_service_cluster_admission_plugins_activated": "Activé",
+  "kube_service_cluster_admission_plugins_desactivated": "Désactivé",
+  "kube_service_cluster_admission_plugins_to_activate": "Activer",
+  "kube_service_cluster_admission_plugins_info_restrictions": "Pour des raisons de sécurité, il n'est pas possible de désactiver le plugin Node Restriction.",
+  "kube_service_cluster_admission_plugins_info_restrictions_redeploy_after_change_admission": "Attention: veuillez noter que toute action sur  les Admisions Plugins implique un redéploiement de l'API Server de votre cluster.",
+  "kube_service_cluster_admission_plugins_to_desactivate": "Désactiver",
+  "kube_service_cluster_admission_plugins_always_pull_image_explanation": "Force chaque nouveau pod à télécharger les images requises à chaque fois.",
+  "kube_service_cluster_admission_plugins_node_restriction_explanation": "L'utilisation du plug-in du contrôleur d'admission NodeRestriction limite les objets Node et Pod qu'un kubelet peut modifier. Lorsqu'elles sont limitées par ce contrôleur d'admission, les kubelets ne sont autorisés à modifier que leur propre objet API Node et uniquement les objets API Pod qui sont liés à leur nœud.",
+  "kube_service_cluster_admission_plugins_error": "Une erreur est survenue lors de la réinitialisation de votre cluster : {{ message }}",
+  "kube_service_cluster_admission_plugins_success": "La modification des Admission Plugins a été prise en compte.",
   "kube_service_cluster_version": "Version mineure de Kubernetes",
   "kube_service_cluster_update_available": "Une nouvelle mise à jour touchant à la sécurité (<i>patch version</i>) est disponible",
   "kube_service_cluster_minor_update_available": "Une mise à jour mineure est disponible",
@@ -81,6 +93,6 @@
   "kube_service_cluster_network_vrack_default_gateway": "Passerelle par défaut du vRACK (DHCP)",
   "kube_service_cluster_network_vrack_customer_gateway": "Passerelle : {{ vRackGatewayIp }}",
   "kubernetes_add_private_network": "Configurer un réseau",
-  "kube_service_cluster_network_vrack_customer_gateway": "Passerelle : {{ vRackGatewayIp }}",
+
   "kube_service_network_edit": "Modifier les paramètres du réseau"
 }

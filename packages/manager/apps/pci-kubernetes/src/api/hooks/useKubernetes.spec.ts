@@ -52,7 +52,19 @@ describe('useKubes', () => {
 
 describe('useKubernetesCluster', () => {
   it('fetches Kubernetes cluster details successfully', async () => {
-    const mockData = { id: 'kube1', name: 'Kube 1', status: 'READY' } as TKube;
+    const mockData = {
+      id: 'kube1',
+      name: 'Kube 1',
+      status: 'READY',
+      customization: {
+        apiServer: {
+          admissionPlugins: {
+            enabled: ['NodeRestriction'],
+            disabled: ['AlwaysPullImages', 'No_referenced'],
+          },
+        },
+      },
+    } as TKube;
     vi.spyOn(ApiKubernetesModule, 'getKubernetesCluster').mockResolvedValueOnce(
       mockData,
     );
@@ -61,7 +73,39 @@ describe('useKubernetesCluster', () => {
       { wrapper },
     );
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
-    expect(result.current.data).toEqual({ ...mockData, isClusterReady: true });
+    expect(result.current.data).toEqual({
+      ...mockData,
+      isClusterReady: true,
+      plugins: [
+        {
+          name: 'NodeRestriction',
+          value: 'node',
+          state: 'enabled',
+          disabled: true,
+          label: 'Plugin Node Restriction',
+          tip:
+            'kube_service_cluster_admission_plugins_node_restriction_explanation',
+        },
+        {
+          name: 'AlwaysPullImages',
+          value: 'pull',
+          disabled: false,
+          label: 'Plugin Always Pull Images',
+          state: 'disabled',
+          tip:
+            'kube_service_cluster_admission_plugins_always_pull_image_explanation',
+        },
+
+        {
+          name: 'No_referenced',
+          value: 'No_referenced',
+          state: 'disabled',
+          disabled: false,
+          label: 'No_referenced',
+          tip: null,
+        },
+      ],
+    });
   });
 });
 
