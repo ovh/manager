@@ -10,7 +10,13 @@ import IdentityGroupNameCell from './cell/group/IdentityGroupNameCell.component'
 import IdentityGroupDescriptionCell from './cell/group/IdentityGroupDescriptionCell.component';
 import IdentityGroupDeleteActionCell from './cell/group/IdentityGroupDeleteActionCell';
 
-const IdentitiesSelectedGroups = () => {
+type IdentitiesSelectedGroupsProps = {
+  identityURNs: string[];
+};
+
+const IdentitiesSelectedGroups = ({
+  identityURNs,
+}: IdentitiesSelectedGroupsProps) => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
   const { groupList, setGroupList } = useIdentityData();
@@ -49,6 +55,7 @@ const IdentitiesSelectedGroups = () => {
       deleteCallback={() => setGroupList([])}
       datagridColumns={columns}
       items={groupList}
+      identityURNs={identityURNs}
     ></IdentitiesSelectedBase>
   );
 };

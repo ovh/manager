@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { ErrorResponse } from '@/types/api.type';
 import {
   getOkmsServiceKeyResource,
@@ -16,7 +17,7 @@ import {
 /* Service Key List */
 
 export const useAllOkmsServiceKeys = (okmsId: string) => {
-  return useQuery({
+  return useQuery<{ data: OkmsAllServiceKeys[] }, ApiError>({
     queryKey: getOkmsServiceKeyResourceListQueryKey(okmsId),
     queryFn: () => getListingOkmsServiceKey(okmsId),
     retry: false,
