@@ -1,6 +1,6 @@
 import { IHycuDetails, LicenseStatus } from '@/types/hycu.details.interface';
 
-export const licensesHycu: IHycuDetails[] = [
+export const licensesHycu: Readonly<IHycuDetails[]> = [
   {
     iam: {
       id: '4a26ef55-d46b-4b71-88c8-76ad71b154b4',
