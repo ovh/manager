@@ -5,12 +5,20 @@ angular.module('App').controller(
   'configurationCtrl',
   class ConfigurationCtrl {
     /* @ngInject */
-    constructor($scope, coreConfig, constants) {
+    constructor($scope, atInternet, coreConfig, constants) {
       this.constants = constants;
       $scope.user = coreConfig.getUser();
+      this.atInternet = atInternet;
       this.banner2024 =
         OVH_WEB_OFFERS_2024[$scope.user.ovhSubsidiary] ||
         OVH_WEB_OFFERS_2024.DEFAULT;
+    }
+
+    trackClickWebOfferBanner() {
+      this.atInternet.trackClick({
+        name: 'web::::::banner::link::go-to-special-offers',
+        type: 'action',
+      });
     }
 
     $onInit() {
