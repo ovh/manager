@@ -24,8 +24,8 @@ export const organizationList: IVcdOrganization[] = [
     id: '6cfa2c69-c62c-4853-80ee-c9682e6727f0',
     resourceStatus: 'UPDATING',
     targetSpec: {
-      description: 'Company production VCD Organization',
-      fullName: 'Company VCD',
+      description: 'Company VCD Organization targetSpec',
+      fullName: 'Company VCD targetSpec',
     },
     updatedAt: '2024-06-14T09:21:21.943Z',
     iam: {
@@ -48,8 +48,8 @@ export const organizationList: IVcdOrganization[] = [
     id: '61ebdcec-0623-4a61-834f-a1719cd475b4',
     resourceStatus: 'READY',
     targetSpec: {
-      description: 'My demo VCD Organization',
-      fullName: 'Demo VCD',
+      description: 'My demo VCD Organization targetSpec',
+      fullName: 'Demo VCD targetSpec',
     },
     updatedAt: '2024-06-14T09:21:21.943Z',
     iam: {
