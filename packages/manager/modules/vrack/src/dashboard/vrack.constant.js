@@ -37,6 +37,7 @@ export const FEATURE_NAMES = {
   legacyVrack: 'vrack',
   managedBareMetal: 'managed-bare-metal',
   managedBareMetalDatacenter: 'managed-bare-metal',
+  ovhCloudConnect: 'cloud-connect',
 };
 
 export const POLLING_INTERVAL = 500;
@@ -64,6 +65,7 @@ export const TYPE_SERVICE = {
   ip: 'ip',
   legacyVrack: 'legacyVrack',
   ipv6: 'ipv6',
+  ovhCloudConnect: 'ovhCloudConnect',
 };
 
 export const SERVICES = [
