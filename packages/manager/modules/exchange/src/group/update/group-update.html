@@ -58,6 +58,21 @@
                 <div class="form-group">
                     <label
                         class="control-label"
+                        for="selectedGroupCompany"
+                        data-translate="exchange_GROUPS_add_group_company_label"
+                    ></label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="selectedGroupCompany"
+                        maxlength="256"
+                        name="selectedGroupCompany"
+                        data-ng-model="ctrl.selectedGroup.company"
+                    />
+                </div>
+                <div class="form-group">
+                    <label
+                        class="control-label"
                         for="selectedGroupDisplayName"
                         data-translate="exchange_GROUPS_add_group_name_label"
                     ></label>
@@ -256,7 +271,15 @@
                     data-ng-bind="ctrl.selectedGroup.displayName | wucSliceContent: 150"
                     class="word-break"
                 ></dd>
-
+                <dt
+                    data-ng-if="ctrl.selectedGroup.company"
+                    data-translate="exchange_GROUPS_add_group_company_label"
+                ></dt>
+                <dd
+                    data-ng-if="ctrl.selectedGroup.company"
+                    data-ng-bind="ctrl.selectedGroup.company | wucSliceContent: 150"
+                    class="word-break"
+                ></dd>
                 <dt
                     data-translate="exchange_GROUPS_add_group_receive_size_label"
                 ></dt>

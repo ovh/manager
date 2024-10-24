@@ -27,6 +27,7 @@ export default class ExchangeAddResourceController {
       displayName: '',
       capacity: 0,
       resourceEmailAddress: '',
+      company: '',
     };
 
     $scope.addResource = () => this.addResource();
@@ -143,6 +144,8 @@ export default class ExchangeAddResourceController {
     const resourceTypeIsSelected = !isEmpty(this.model.resourceType);
     const displayNameIsCorrect =
       !isEmpty(this.model.displayName) && this.model.displayName.length <= 256;
+    const companyIsCorrect =
+      !isEmpty(this.model.company) && this.model.company.length <= 256;
     const capacityIsCorrect =
       this.model.capacity != null &&
       this.model.capacity >= 0 &&
@@ -154,6 +157,7 @@ export default class ExchangeAddResourceController {
       resourceTypeIsSelected &&
       resourceTypeIsSelected &&
       displayNameIsCorrect &&
+      companyIsCorrect &&
       capacityIsCorrect &&
       emailIsFree
     );
