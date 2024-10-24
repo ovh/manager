@@ -4,7 +4,7 @@
   "ip_byoip_disclaimer_description_point_1": " - Être le propriétaire de la plage d'adresses IP renseignée.",
   "ip_byoip_disclaimer_description_point_2": " - M'engager à faire en sorte que la plage d'adresses IP renseignée ne soit pas annoncée sur Internet par plusieurs réseaux simultanément (multi-homing)",
   "ip_byoip_disclaimer_description_point_3": " - Avoir une réputation saine sur cette plage d'adresses IP",
-  "ip_byoip_disclaimer_ordering_delay_message": "Veuillez noter que ce processus peut prendre jusqu'à deux semaines. Nous vous prions de nous excuser pour ce désagrément.",
+  "ip_byoip_disclaimer_ordering_delay_message": "Veuillez noter que ce processus peut prendre approximativement 3 semaines. Nous vous prions de nous excuser pour ce désagrément.",
   "ip_byoip_disclaimer_confirm_text": "Valider",
   "ip_byoip_disclaimer_cancel_text": "Annuler"
 }
