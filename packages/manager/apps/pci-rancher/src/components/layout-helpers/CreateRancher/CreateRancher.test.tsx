@@ -142,10 +142,18 @@ describe('CreateRancher', () => {
   });
 
   it('Given that there is an error i should see error banner.', async () => {
-    const screen = await setupSpecTest({ hasRancherCreationError: true });
+    const screen = await setupSpecTest({
+      hasRancherCreationError: true,
+      rancherCreationErrorMessage: {
+        class: 'Client::BadRequest',
+        message:
+          'Une erreur est survenue lors de la création de votre Managed Rancher Service.',
+      },
+    });
     const errorCreateBanner = screen.getByTestId('errorBanner');
-
-    expect(errorCreateBanner).not.toBeNull();
+    expect(errorCreateBanner).toHaveTextContent(
+      'Une erreur est survenue lors de la création de votre Managed Rancher Service.',
+    );
   });
 
   it('Given that there is prices I should see rancher pricing', async () => {

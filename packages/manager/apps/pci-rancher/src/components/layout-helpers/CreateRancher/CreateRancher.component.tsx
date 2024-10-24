@@ -28,7 +28,7 @@ import {
   useProject,
   usePciUrl,
 } from '@ovh-ux/manager-pci-common';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMedia } from 'react-use';
 
@@ -49,6 +49,7 @@ import {
   RancherVersion,
   CreateRancherPayload,
   TRancherPricing,
+  ErrorResponse,
 } from '@/types/api.type';
 import { useFormattedRancherPrices } from '@/data/hooks/useFormattedPrices/useFormattedPrices';
 
@@ -107,7 +108,7 @@ export interface CreateRancherProps {
   plans: RancherPlan[];
   versions: RancherVersion[];
   hasRancherCreationError: boolean;
-  rancherCreationErrorMessage?: string | null;
+  rancherCreationErrorMessage?: ErrorResponse['response']['data'] | null;
   onCreateRancher: (payload: CreateRancherPayload) => void;
   isProjectDiscoveryMode?: boolean;
   isCreateRancherLoading: boolean;
@@ -186,11 +187,18 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
     b.name.localeCompare(a.name),
   );
 
+  const rancherErrorBanner = useMemo(() => {
+    if (hasRancherCreationError && rancherCreationErrorMessage) {
+      return t('createRancherErrorInternalServerError');
+    }
+    return null;
+  }, [rancherCreationErrorMessage, hasRancherCreationError]);
+
   return (
     <div>
       <Title>{t('createRancherTitle')}</Title>
       <PciDiscoveryBanner project={project} />
-      {hasRancherCreationError && (
+      {rancherErrorBanner && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.error}
           type={ODS_MESSAGE_TYPE.error}
@@ -200,9 +208,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             color={ODS_THEME_COLOR_INTENT.text}
             data-testid="errorBanner"
           >
-            {t('createRancherError', {
-              rancherCreationErrorMessage,
-            })}
+            {rancherErrorBanner}
             <br />
           </OsdsText>
         </OsdsMessage>

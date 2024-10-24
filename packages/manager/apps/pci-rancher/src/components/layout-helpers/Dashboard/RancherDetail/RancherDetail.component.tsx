@@ -30,6 +30,7 @@ import { useTranslation } from 'react-i18next';
 
 import { MutationStatus } from '@tanstack/react-query';
 import {
+  OVHError,
   RancherPlanName,
   RancherService,
   RancherVersion,
@@ -39,7 +40,10 @@ import LinkIcon from '@/components/LinkIcon/LinkIcon.component';
 import StatusChip from '@/components/StatusChip/StatusChip.component';
 import UpdateVersionBanner from '@/components/UpdateRancherVersionBanner/UpdateVersionBanner.component';
 import { useTrackingAction } from '@/hooks/useTrackingPage/useTrackingPage';
-import { getLatestVersionAvailable } from '@/utils/rancher';
+import {
+  getI18nextRancherError,
+  getLatestVersionAvailable,
+} from '@/utils/rancher';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 export interface RancherDetailProps {
@@ -48,7 +52,7 @@ export interface RancherDetailProps {
   updateSoftwareResponseType: MutationStatus;
   updateOfferResponseType: MutationStatus;
   hasErrorAccessDetail: boolean;
-  updateOfferErrorMessage?: string;
+  updateOfferError: OVHError;
   versions: RancherVersion[];
 }
 
@@ -58,7 +62,7 @@ const RancherDetail = ({
   updateSoftwareResponseType,
   updateOfferResponseType,
   hasErrorAccessDetail,
-  updateOfferErrorMessage,
+  updateOfferError,
   versions,
 }: RancherDetailProps) => {
   const { t, i18n } = useTranslation([
@@ -78,12 +82,11 @@ const RancherDetail = ({
   const { addError, addInfo, clearNotifications } = useNotifications();
 
   useEffect(() => {
-    if (updateOfferErrorMessage) {
-      addError(
-        t('updateOfferError', { errorMessage: updateOfferErrorMessage }),
-      );
+    if (updateOfferError) {
+      const [getError, options] = getI18nextRancherError(updateOfferError);
+      addError(t(getError, options));
     }
-  }, [updateOfferErrorMessage]);
+  }, [updateOfferError]);
 
   useEffect(() => {
     if (updateSoftwareResponseType === 'pending') {

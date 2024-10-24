@@ -53,5 +53,9 @@
   "upgradePlanButton": "Upgrade my plan",
   "savingsPlanMessage": "Take advantage of low monthly rates with Savings Plans — save money without sacrificing the flexibility to use instances whenever you need them.",
   "savingsPlanCTA": "Set up your Savings Plan",
-  "createRancherOfferDescription": "With at least 20 vCPUs charged per Rancher"
+  "createRancherOfferDescription": "With at least 20 vCPUs charged per Rancher",
+  "createRancherErrorInternalServerError": "An error has occurred creating your Managed Rancher Service.",
+  "createRancherErrorInternalServerBadRequestChangePlan": "An error has occurred changing the solution for your Managed Rancher Service. You are currently using drivers that are not supported in the {{plan}} solution: {{drivers}}",
+  "badRequestSwitchPlan": "An error has occurred changing the solution for your Managed Rancher Service. You are currently using drivers that are not supported in the {{plan}} solution: {{drivers}}",
+  "rancherError": "An error occurred."
 }

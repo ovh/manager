@@ -1,9 +1,11 @@
 import { rancherMocked } from '@/_mock_/rancher';
 import {
+  extractDriversAndPlanFromSwitchPlanError,
   getLatestVersionAvailable,
   getLatestVersions,
   getVersion,
   isValidRancherName,
+  getI18nextRancherError,
 } from './rancher';
 import { versionsMocked } from '@/_mock_/version';
 
@@ -117,4 +119,60 @@ describe('Rancher version', () => {
       },
     ]);
   });
+});
+
+describe('extractDriversFromSwitchPlanError', () => {
+  it.each([
+    [
+      'Unable to switch to plan OVHCLOUD_EDITION [driver1, driver2]',
+      { drivers: ['driver1', ' driver2'], plan: 'OVHCLOUD_EDITION' },
+    ],
+    [
+      'Unable to switch to plan STANDARD [driver3, driver4]',
+      { drivers: ['driver3', ' driver4'], plan: 'STANDARD' },
+    ],
+    [
+      'Unable to switch to plan OVHCLOUD_EDITION [ driver5 , driver6 ]',
+      { drivers: ['driver5 ', ' driver6'], plan: 'OVHCLOUD_EDITION' },
+    ],
+    [
+      'Unable to switch to plan STANDARD [ driver7 , driver8 ]',
+      { drivers: ['driver7 ', ' driver8'], plan: 'STANDARD' },
+    ],
+    ['Invalid input string', null],
+    ['Unable to switch to plan [driver9, driver10]', null],
+    ['Unable to switch to plan OVHCLOUD_EDITION []', null],
+  ])('should return %s', (inputString, expected) => {
+    expect(extractDriversAndPlanFromSwitchPlanError(inputString)).toEqual(
+      expected,
+    );
+  });
+});
+
+describe('getI18nextRancherError', () => {
+  it.each([
+    [
+      { class: 'Client::BadRequest', message: 'plan and drivers' },
+      ['rancherError'],
+    ],
+    [
+      {
+        class: 'Client::BadRequest',
+        message:
+          'Unable to switch to plan OVHCLOUD_EDITION: You are currently using drivers that are not supported in plan OVHCLOUD_EDITION: [myDriver1, myDriver2]',
+      },
+      [
+        'badRequestSwitchPlan',
+        { plan: 'OVHCLOUD_EDITION', drivers: '[myDriver1, myDriver2]' },
+      ],
+    ],
+    [{ class: 'OtherError', message: 'some message' }, ['rancherError']],
+    [null, ['rancherError']],
+  ])(
+    'should return the correct error message for %o',
+    (input, expectedOutput) => {
+      const result = getI18nextRancherError(input);
+      expect(result).toEqual(expectedOutput);
+    },
+  );
 });

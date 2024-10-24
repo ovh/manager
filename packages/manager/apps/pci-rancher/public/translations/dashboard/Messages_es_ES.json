@@ -53,5 +53,9 @@
   "upgradePlanButton": "Mejorar mi plan",
   "savingsPlanMessage": "Disfrute de tarifas mensuales más económicas gracias a los Savings Plans, manteniendo la flexibilidad de las instancias por horas.",
   "savingsPlanCTA": "Configure sus Savings Plans",
-  "createRancherOfferDescription": "Con un mínimo de 20 vCPU facturadas por Rancher"
+  "createRancherOfferDescription": "Con un mínimo de 20 vCPU facturadas por Rancher",
+  "createRancherErrorInternalServerError": "Se ha producido un error al crear el servicio Managed Rancher.",
+  "createRancherErrorInternalServerBadRequestChangePlan": "Se ha producido un error al cambiar de producto el servicio Managed Rancher. Actualmente está usando controladores que no son compatibles con el plan {{plan}}: {{drivers}}",
+  "badRequestSwitchPlan": "Se ha producido un error al cambiar de producto el servicio Managed Rancher. Actualmente está usando controladores que no son compatibles con el plan {{plan}}: {{drivers}}",
+  "rancherError": "Se ha producido un error."
 }
