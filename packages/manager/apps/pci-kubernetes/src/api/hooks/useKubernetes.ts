@@ -166,6 +166,9 @@ export const useResetKubeConfig = ({
       await queryClient.invalidateQueries({
         queryKey: getKubernetesClusterQuery(projectId, kubeId),
       });
+      await queryClient.invalidateQueries({
+        queryKey: getAllKubeQueryKey(projectId),
+      });
       onSuccess();
     },
   });
@@ -195,6 +198,9 @@ export const useUpdateKubePolicy = ({
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: getKubernetesClusterQuery(projectId, kubeId),
+      });
+      await queryClient.invalidateQueries({
+        queryKey: getAllKubeQueryKey(projectId),
       });
       onSuccess();
     },
@@ -315,6 +321,9 @@ export const useUpdateKubeVersion = ({
       await queryClient.invalidateQueries({
         queryKey: getKubernetesClusterQuery(projectId, kubeId),
       });
+      await queryClient.invalidateQueries({
+        queryKey: getAllKubeQueryKey(projectId),
+      });
       onSuccess();
     },
   });
@@ -415,6 +424,9 @@ export const useAddOidcProvider = ({
       await queryClient.invalidateQueries({
         queryKey: getKubernetesClusterQuery(projectId, kubeId),
       });
+      await queryClient.invalidateQueries({
+        queryKey: getAllKubeQueryKey(projectId),
+      });
       onSuccess();
     },
   });
@@ -446,6 +458,9 @@ export const useUpdateOidcProvider = ({
       await queryClient.invalidateQueries({
         queryKey: getKubernetesClusterQuery(projectId, kubeId),
       });
+      await queryClient.invalidateQueries({
+        queryKey: getAllKubeQueryKey(projectId),
+      });
       onSuccess();
     },
   });
@@ -474,6 +489,9 @@ export const useRemoveOidcProvider = ({
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: getKubernetesClusterQuery(projectId, kubeId),
+      });
+      await queryClient.invalidateQueries({
+        queryKey: getAllKubeQueryKey(projectId),
       });
       onSuccess();
     },
@@ -528,6 +546,9 @@ export const useCreateSubscription = ({
       await queryClient.invalidateQueries({
         queryKey: getSubscribedLogsQueryKey(projectId, kubeId, 'audit'),
       });
+      await queryClient.invalidateQueries({
+        queryKey: getAllKubeQueryKey(projectId),
+      });
       onSuccess();
     },
   });
@@ -563,6 +584,9 @@ export const useRemoveSubscription = ({
       });
       await queryClient.invalidateQueries({
         queryKey: getSubscribedLogsQueryKey(projectId, kubeId, 'audit'),
+      });
+      await queryClient.invalidateQueries({
+        queryKey: getAllKubeQueryKey(projectId),
       });
       onSuccess();
     },

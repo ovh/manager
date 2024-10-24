@@ -36,7 +36,10 @@ import queryClient from '@/queryClient';
 import { getRegionSubsnetsQueryKey } from '@/api/hooks/useSubnets';
 import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
 import { LoadBalancerWarning } from '@/components/network/LoadBalancerWarning.component';
-import { getKubernetesClusterQuery } from '@/api/hooks/useKubernetes';
+import {
+  getAllKubeQueryKey,
+  getKubernetesClusterQuery,
+} from '@/api/hooks/useKubernetes';
 
 export default function EditNetworkPage() {
   const { t } = useTranslation('edit-network');
@@ -104,6 +107,9 @@ export default function EditNetworkPage() {
         });
         await queryClient.invalidateQueries({
           queryKey: getKubernetesClusterQuery(projectId, kubeId),
+        });
+        await queryClient.invalidateQueries({
+          queryKey: getAllKubeQueryKey(projectId),
         });
         onClose();
         addSuccess(
