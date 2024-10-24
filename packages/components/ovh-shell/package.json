@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/shell",
-  "version": "3.11.0-alpha.1",
+  "version": "3.10.0",
+  "private": true,
   "description": "Communication and interaction between applications",
   "repository": {
     "type": "git",
@@ -17,17 +18,16 @@
     "build": "tsc",
     "dev": "tsc",
     "dev:watch": "tsc -w",
-    "prepare": "tsc",
     "start": "lerna exec --stream --scope='@ovh-ux/shell' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/shell' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/shell' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^7.5.1-alpha.1",
-    "@ovh-ux/ovh-at-internet": "^0.15.1-alpha.1",
-    "@ovh-ux/ovh-reket": "^2.1.3",
-    "@ovh-ux/request-tagger": "^0.4.0-alpha.0",
-    "@ovh-ux/url-builder": "^1.3.0-alpha.0",
+    "@ovh-ux/manager-config": "^7.5.0",
+    "@ovh-ux/ovh-at-internet": "^0.15.0",
+    "@ovh-ux/ovh-reket": "^2.1.2",
+    "@ovh-ux/request-tagger": "^0.3.0",
+    "@ovh-ux/url-builder": "^1.2.0",
     "@types/react": "^18.0.0",
     "dompurify": "^2.3.3",
     "jest-cucumber": "^3.0.1",
