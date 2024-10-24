@@ -229,11 +229,15 @@
                     <span data-translate="privateDatabase_tab_METRICS"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
-                    data-ng-if="database.serviceInfos.status !== 'expired'"
+                    data-ng-if=":: ctrl.isLogsToCustomerFeatureAvailable && database.serviceInfos.status !== 'expired'"
                     href="{{ ctrl.logsLink }}"
                     active="ctrl.currentActiveLink() === ctrl.logsLink"
                 >
                     <span data-translate="privateDatabase_tab_LOGS"></span>
+                    <span
+                        class="oui-badge oui-badge_s oui-badge_success"
+                        data-translate="privateDatabase_beta_status"
+                    ></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
                     data-ng-if="database.serviceInfos.status !== 'expired' && !isLegacyDatabase() && !hasConfiguration"
@@ -254,6 +258,7 @@
             </oui-header-tabs>
         </div>
         <div ui-view></div>
+        <div data-ui-view="privateDatabaseLogsView"></div>
     </div>
 
     <div id="currentAction" class="modal fade currentAction" role="dialog">

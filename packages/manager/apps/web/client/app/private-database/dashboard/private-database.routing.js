@@ -68,6 +68,12 @@ export default /* @ngInject */ ($stateProvider) => {
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$.params()),
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+      isLogsToCustomerFeatureAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('private-database:logs-to-customer')
+          .then((feature) =>
+            feature.isFeatureAvailable('private-database:logs-to-customer'),
+          ),
     },
   });
 
