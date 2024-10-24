@@ -105,15 +105,15 @@ export default function Products({ services }: ProductsProps) {
                       {product.count}
                     </OsdsChip>
                   </OsdsText>
-                  {product.link && (
-                    <Suspense
-                      fallback={
-                        <OsdsSkeleton inline size={ODS_SKELETON_SIZE.xs} />
-                      }
-                    >
-                      <Await
-                        resolve={product.link}
-                        children={(link: string) => (
+                  <Suspense
+                    fallback={
+                      <OsdsSkeleton inline size={ODS_SKELETON_SIZE.xs} />
+                    }
+                  >
+                    <Await
+                      resolve={product.link}
+                      children={(link: string) =>
+                        link ? (
                           <>
                             <OsdsLink
                               slot="actions"
@@ -137,10 +137,12 @@ export default function Products({ services }: ProductsProps) {
                               </span>
                             </OsdsLink>
                           </>
-                        )}
-                      />
-                    </Suspense>
-                  )}
+                        ) : (
+                          <></>
+                        )
+                      }
+                    />
+                  </Suspense>
                 </div>
                 <div>
                   <ul
