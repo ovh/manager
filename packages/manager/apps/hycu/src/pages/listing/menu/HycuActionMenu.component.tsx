@@ -3,7 +3,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React from 'react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { IHycuDetails } from '@/type/hycu.details.interface';
+import { IHycuDetails } from '@/types/hycu.details.interface';
 
 const HycuActionMenu = ({
   serviceName: _serviceName,

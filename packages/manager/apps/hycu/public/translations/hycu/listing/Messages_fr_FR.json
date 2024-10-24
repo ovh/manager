@@ -1,8 +1,4 @@
 {
-  "hycu_status_activated": "Active",
-  "hycu_status_toActivate": "À activer",
-  "hycu_status_pending": "En cours d'activation",
-  "hycu_status_error": "Erreur d'activation",
   "hycu_cloud_vm_pack_unknown": "Pack inconnu",
   "hycu_name": "Nom",
   "hycu_controller_id": "Controller ID",

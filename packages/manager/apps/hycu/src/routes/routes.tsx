@@ -51,17 +51,6 @@ export const Routes: any = [
               },
             },
           },
-          {
-            id: 'dashboard.tab2',
-            path: 'Tab2',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/tab2')),
-            handle: {
-              tracking: {
-                pageName: 'tab2',
-                pageType: PageType.dashboard,
-              },
-            },
-          },
         ],
       },
       {
@@ -72,6 +61,17 @@ export const Routes: any = [
           tracking: {
             pageName: 'onboarding',
             pageType: PageType.onboarding,
+          },
+        },
+      },
+      {
+        id: 'order',
+        path: urls.order,
+        ...lazyRouteConfig(() => import('@/pages/order/Order.page')),
+        handle: {
+          tracking: {
+            pageName: 'order',
+            pageType: PageType.dashboard,
           },
         },
       },

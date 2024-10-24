@@ -30,18 +30,11 @@ import {
   useFormattedDate,
 } from '@ovh-ux/manager-react-components/src/hooks/date/useFormattedDate';
 import HYCU_CONFIG from '@/hycu.config';
-import { IHycuDetails } from '@/type/hycu.details.interface';
+import { IHycuDetails } from '@/types/hycu.details.interface';
 
 import { urls, subRoutes } from '@/routes/routes.constant';
-import { usePackTypeLabel } from '@/hooks/service/usePackLabel';
 import HycuActionMenu from './menu/HycuActionMenu.component';
 import { getStatusColor } from '@/utils/statusColor';
-
-const dateFormat: Intl.DateTimeFormatOptions = {
-  day: '2-digit',
-  month: '2-digit',
-  year: 'numeric',
-};
 
 /* ========= datagrid cells ========= */
 const DatagridIdCell = (hycuDetail: IHycuDetails) => {
@@ -65,11 +58,11 @@ const DatagridIdCell = (hycuDetail: IHycuDetails) => {
 };
 
 const DatagridControllerIdCell = (hycuDetail: IHycuDetails) => {
-  return <DataGridTextCell>{hycuDetail.controllerId}</DataGridTextCell>;
+  return <DataGridTextCell>{hycuDetail.controllerId || '-'}</DataGridTextCell>;
 };
 
 const DatagridStatusCell = (hycuDetail: IHycuDetails) => {
-  const { t } = useTranslation('hycu/listing');
+  const { t } = useTranslation('hycu');
 
   return (
     <DataGridTextCell>
@@ -89,13 +82,13 @@ const DatagridCommercialNameCell = (hycuDetail: IHycuDetails) => {
     resourceName: hycuDetail.serviceName,
   });
 
-  const productName = usePackTypeLabel(
-    serviceDetails?.data.resource.product.name,
-  );
-
   return (
     <DataGridTextCell>
-      {isLoading ? <OsdsSkeleton></OsdsSkeleton> : productName}
+      {isLoading ? (
+        <OsdsSkeleton />
+      ) : (
+        serviceDetails?.data.resource.product.description
+      )}
     </DataGridTextCell>
   );
 };
@@ -127,6 +120,7 @@ const DatagridActionCell = (hycuDetail: IHycuDetails) => {
 };
 
 export default function Listing() {
+  const navigate = useNavigate();
   const { t } = useTranslation('hycu/listing');
   const { t: tCommon } = useTranslation('hycu');
   const { t: tError } = useTranslation('hycu/error');
@@ -205,6 +199,9 @@ export default function Listing() {
                 color={ODS_THEME_COLOR_INTENT.primary}
                 variant={ODS_BUTTON_VARIANT.stroked}
                 size={ODS_BUTTON_SIZE.sm}
+                onClick={() => {
+                  navigate(urls.order);
+                }}
                 inline
               >
                 {t('hycu_order')}
