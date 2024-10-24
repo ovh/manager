@@ -1,14 +1,9 @@
 import React from 'react';
-import {
-  DashboardTile,
-  Description,
-  useServiceDetails,
-} from '@ovh-ux/manager-react-components';
+import { DashboardTile } from '@ovh-ux/manager-react-components';
 import {
   OsdsChip,
   OsdsIcon,
   OsdsLink,
-  OsdsSkeleton,
   OsdsTooltip,
   OsdsTooltipContent,
 } from '@ovhcloud/ods-components/react';
@@ -19,36 +14,11 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
-import useCurrentUser from '@/hooks/user/useCurrentUser';
+import ServiceRenewTileItem from './renew-tile-item/ServiceRenewTileItem';
+import ServiceContactsTileItem from './contact-tile-item/ServiceContactsTileItem';
 
-type TBillingTileProps = {
-  id: string;
-};
-
-function ServiceRenew({ id }: TBillingTileProps) {
-  const { data: billingService, isLoading } = useServiceDetails({
-    resourceName: id,
-  });
-  const { dateTimeFormat } = useCurrentUser();
-
-  const nextBillingDate = billingService?.data?.billing?.nextBillingDate;
-
-  if (isLoading) {
-    return <OsdsSkeleton />;
-  }
-
-  return nextBillingDate ? (
-    <Description>
-      {dateTimeFormat?.format(new Date(nextBillingDate))}
-    </Description>
-  ) : (
-    <span>-</span>
-  );
-}
-
-export default function BillingTile({ id }: TBillingTileProps) {
+export default function OrganizationServiceManagementTile() {
   const { t } = useTranslation('dashboard');
-  const { user } = useCurrentUser();
 
   return (
     <div className="h-fit">
@@ -56,17 +26,12 @@ export default function BillingTile({ id }: TBillingTileProps) {
         title={t('managed_vcd_dashboard_service_management')}
         items={[
           {
-            id: 'mailingList',
-            label: t('managed_vcd_dashboard_mailing_list'),
-            value: <Description>{user?.email}</Description>,
-          },
-          {
             id: 'serviceRenew',
             label: t('managed_vcd_dashboard_service_renew'),
-            value: <ServiceRenew id={id} />,
+            value: <ServiceRenewTileItem />,
           },
           {
-            id: 'cancellation',
+            id: 'serviceCancellation',
             label: t('managed_vcd_dashboard_service_cancellation'),
             value: (
               <OsdsChip
@@ -80,7 +45,7 @@ export default function BillingTile({ id }: TBillingTileProps) {
             ),
           },
           {
-            id: 'password',
+            id: 'servicePassword',
             label: t('managed_vcd_dashboard_password'),
             value: (
               <div className="flex-wrap">
@@ -113,6 +78,11 @@ export default function BillingTile({ id }: TBillingTileProps) {
                 </OsdsChip>
               </div>
             ),
+          },
+          {
+            id: 'serviceContacts',
+            label: t('managed_vcd_dashboard_contact_list'),
+            value: <ServiceContactsTileItem />,
           },
         ]}
       />
