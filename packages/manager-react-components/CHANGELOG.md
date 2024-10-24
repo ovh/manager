@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.39.2...@ovh-ux/manager-react-components@1.40.0) (2024-10-24)
+
+### Bug Fixes
+
+- fix some unit test where await was missing ([01677dc](https://github.com/ovh/manager/commit/01677dc0166f460e08a4907a3ab0a3dcc1368a9e))
+- **i18n:** add missing translations [CDS 3436] ([5ea6c29](https://github.com/ovh/manager/commit/5ea6c290f9878ea6a404410e9e61e0c54fcf4837))
+- **manager-component:** fix and refactor useResourcesIcebergV6 ([2006619](https://github.com/ovh/manager/commit/20066199b7722bfbf5216b6071b59c106d6859a1))
+- **manager-react-component:** fix IAM check for urn with / ([#13394](https://github.com/ovh/manager/issues/13394)) ([619f7d8](https://github.com/ovh/manager/commit/619f7d89f00ee73e48b4f8b419a06403e65cd19b)), closes [#13392](https://github.com/ovh/manager/issues/13392)
+- **manager-react-component:** fix stories typescript build ([12ab5e4](https://github.com/ovh/manager/commit/12ab5e406a0af1852dd63be970271a9ae2b7d1b1)), closes [#13676](https://github.com/ovh/manager/issues/13676)
+- move madrid LZ to southern europe ([#13705](https://github.com/ovh/manager/issues/13705)) ([69dab2e](https://github.com/ovh/manager/commit/69dab2ed8e54bed05149ea6e284247460d6ea9c8)), closes [#13704](https://github.com/ovh/manager/issues/13704)
+- move madrid LZ to southern europe ([#13727](https://github.com/ovh/manager/issues/13727)) ([01b5665](https://github.com/ovh/manager/commit/01b5665668fe99c5edc53a49f509e9c4ea36f422))
+- **react-component-manager:** allow use additionnal data of useIcebergV6 ([e28f048](https://github.com/ovh/manager/commit/e28f048dd324940e6d3669e50e4b05934db47eac)), closes [#MANAGER-14495](https://github.com/ovh/manager/issues/MANAGER-14495) [#MANAGER-15573](https://github.com/ovh/manager/issues/MANAGER-15573)
+- **react-components:** fix onboarding default size ([#13372](https://github.com/ovh/manager/issues/13372)) ([6a5d7d2](https://github.com/ovh/manager/commit/6a5d7d299f56f3d019f615c361b95a314de5d1fc))
+
+### Features
+
+- **manager-react-component:** fix has-next-param params ([78c4c66](https://github.com/ovh/manager/commit/78c4c669a818b8211c1f5bc86a8f3f257472b71a))
+
+### Reverts
+
+- Revert "feat(manager-react-components): build manager react components lib" ([5d68a86](https://github.com/ovh/manager/commit/5d68a8677efea465ebf882c77ca5413388f2dfbf))
+- Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+- Revert "fix: move madrid LZ to southern europe (#13705)" (#13724) ([b2e0261](https://github.com/ovh/manager/commit/b2e026143837e7dd3d9d68aad236b519d14a9bd9)), closes [#13705](https://github.com/ovh/manager/issues/13705) [#13724](https://github.com/ovh/manager/issues/13724)
+
 ## [1.39.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.39.1...@ovh-ux/manager-react-components@1.39.2) (2024-10-24)
 
 ### Reverts

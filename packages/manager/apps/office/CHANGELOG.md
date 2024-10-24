@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-office-app@0.11.11...@ovh-ux/manager-office-app@0.11.12) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
 ## [0.11.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-office-app@0.11.10...@ovh-ux/manager-office-app@0.11.11) (2024-10-24)
 
 

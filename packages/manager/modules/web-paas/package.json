@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-paas",
-  "version": "1.10.6",
+  "version": "1.10.7",
   "private": true,
   "description": "OVHcloud Web PaaS powered by Platform.sh",
   "repository": {
@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/url-builder": "^1.2.1",
+    "@ovh-ux/url-builder": "^1.2.2",
     "bootstrap": "^4.6.2",
     "flag-icon-css": "~0.8.5",
     "lodash": "^4.17.14"

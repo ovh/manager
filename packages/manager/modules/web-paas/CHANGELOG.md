@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.10.6...@ovh-ux/manager-web-paas@1.10.7) (2024-10-24)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([b7e6569](https://github.com/ovh/manager/commit/b7e656962f47205dd2c3e9bde1e440709850296d))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
 ## [1.10.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.10.5...@ovh-ux/manager-web-paas@1.10.6) (2024-10-24)
 
 

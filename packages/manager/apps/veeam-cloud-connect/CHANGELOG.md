@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect-app@3.2.24...@ovh-ux/manager-veeam-cloud-connect-app@3.2.25) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
 ## [3.2.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect-app@3.2.23...@ovh-ux/manager-veeam-cloud-connect-app@3.2.24) (2024-10-24)
 
 
