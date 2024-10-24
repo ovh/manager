@@ -54,5 +54,7 @@
   "ovh_contact_edit_mandatory_fields": "I campi indicati con * sono obbligatori.",
   "ovh_contact_edit_mandatory_field": "Questo campo è obbligatorio",
   "ovh_contact_edit_invalid_email": "Il valore deve essere un indirizzo email valido.",
-  "ovh_contact_edit_invalid_phone": "Verifica il formato del numero di telefono."
+  "ovh_contact_edit_invalid_phone": "Verifica il formato del numero di telefono.",
+  "ovh_contact_edit_label_address_cityName": "Città",
+  "ovh_contact_edit_label_address_zipCode": "CAP"
 }
