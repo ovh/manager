@@ -17,12 +17,49 @@ export default /* @ngInject */ ($stateProvider) => {
           })
           .then(({ data }) => data),
 
-      loadResource: /* @ngInject */ () => (service) => ({
-        ...service,
-        serviceName: service.id,
-      }),
+      loadResource: /* @ngInject */ (vrackService) => (service) => {
+        return vrackService.getVrackStatus(service.id).then((state) => {
+          return {
+            ...service,
+            serviceName: service.id,
+            state,
+          };
+        });
+      },
       staticResources: () => true,
       defaultFilterColumn: () => 'serviceName',
+      columnConfig: /* @ngInject */ () => ({
+        data: [
+          {
+            label: 'Service Name',
+            serviceLink: true,
+            property: 'serviceName',
+            hidden: false,
+          },
+          { label: 'Description', property: 'description', hidden: false },
+          { label: 'Name', property: 'name', hidden: false },
+          {
+            label: 'Status',
+            property: 'state',
+            sortable: false,
+            filterable: false,
+            hidden: false,
+            format: (value) => value.state,
+            map: (row) => {
+              switch (row.state) {
+                case 'active':
+                  return 'success';
+                case 'deleted':
+                  return 'warning';
+                case 'suspended':
+                  return 'error';
+                default:
+                  return 'info';
+              }
+            },
+          },
+        ],
+      }),
       header: /* @ngInject */ ($translate) => $translate.instant('vrack_title'),
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({
