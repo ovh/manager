@@ -17,6 +17,7 @@ import {
 
 import {
   IP_LOCATION_GROUPS,
+  IP_SERVICETYPE__PARK,
   PRODUCT_TYPES,
   TRACKING_PREFIX,
   VPS_MAX_QUANTITY,
@@ -118,16 +119,19 @@ export default class AgoraIpV4OrderController {
       })
       .then((results) => {
         results.services.push({
-          displayName: this.$translate.instant('ip_servicetype__PARK'),
+          displayName: IP_SERVICETYPE__PARK,
           serviceName: 'parking',
           type: 'parking',
         });
         this.user = results.user;
         this.services = results.services.map((service) => ({
           ...service,
-          translatedType: this.$translate.instant(
-            `ip_filter_services_title_${service.type}`,
-          ),
+          translatedType:
+            service.type === 'parking'
+              ? IP_SERVICETYPE__PARK
+              : this.$translate.instant(
+                  `ip_filter_services_title_${service.type}`,
+                ),
         }));
         this.ipFailoverPrice = this.getIpFailoverPrice();
 
