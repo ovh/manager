@@ -10,8 +10,6 @@ export const DEDICATED_CLOUD_DATACENTER = {
   },
 };
 
-export const TRACKING_PREFIX = 'Enterprise::PrivateCloud::';
-
 export const COMMERCIAL_RANGE_NAME_EOL = [
   'dedicated_cloud_2016',
   'cdi_2018',
@@ -38,5 +36,4 @@ export default {
   VDC_MIRGRATION_GUIDE_LINK,
   TRACKING_NEW_PRODUCT_BANNER,
   LANGUAGE_OVERRIDE,
-  TRACKING_PREFIX,
 };
