@@ -1,3 +1,5 @@
+import { TRACKING_MULTISITE_PREFIX } from '../git-integration.constants';
+
 export default class HostingMultisiteGitDeploymentController {
   /* @ngInject */
   constructor(
@@ -5,11 +7,13 @@ export default class HostingMultisiteGitDeploymentController {
     HostingDomain,
     coreURLBuilder,
     $translate,
+    atInternet,
   ) {
     this.HostingMultisiteGitDeploymentService = HostingMultisiteGitDeploymentService;
     this.HostingDomain = HostingDomain;
     this.coreURLBuilder = coreURLBuilder;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.gitForcePush = false;
   }
 
@@ -25,6 +29,10 @@ export default class HostingMultisiteGitDeploymentController {
   }
 
   deployment() {
+    this.atInternet.trackClick({
+      name: `${TRACKING_MULTISITE_PREFIX}::git-deployment::confirm`,
+      type: 'action',
+    });
     this.isDeploying = true;
     this.HostingMultisiteGitDeploymentService.postWebsiteDeploy(
       this.serviceName,
