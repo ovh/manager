@@ -5,7 +5,7 @@ import { labels } from '@/utils/tests/init.i18n';
 
 describe('License Hycu billing information tile for dashboard test suite', () => {
   it('should show informations of services', async () => {
-    await renderTestApp('/fake-id');
+    await renderTestApp('/4a26ef55-d46b-4b71-88c8-76ad71b154b4');
 
     await waitFor(
       () =>

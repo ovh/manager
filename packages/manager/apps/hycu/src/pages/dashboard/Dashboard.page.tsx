@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Outlet,
   NavLink,
-  useLocation,
   useNavigate,
   useResolvedPath,
   useParams,
@@ -17,6 +16,7 @@ import {
 import {
   BaseLayout,
   useServiceDetails,
+  Notifications,
 } from '@ovh-ux/manager-react-components';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
@@ -35,8 +35,6 @@ export type DashboardLayoutProps = {
 
 export default function DashboardPage() {
   const { serviceName } = useParams();
-  const [panel, setActivePanel] = useState('');
-  const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation('hycu/dashboard');
 
@@ -52,15 +50,7 @@ export default function DashboardPage() {
     },
   ] as const;
 
-  useEffect(() => {
-    const activeTab = tabsList.find((tab) => tab.to === location.pathname);
-    if (activeTab) {
-      setActivePanel(activeTab.name);
-    } else {
-      setActivePanel(tabsList[0].name);
-      navigate(`${tabsList[0].to}`);
-    }
-  }, [location.pathname]);
+  const panel = tabsList[0].name;
 
   const header = {
     title: serviceDetails?.data.resource.displayName,
@@ -83,6 +73,7 @@ export default function DashboardPage() {
       onClickReturn={() => {
         navigate(urls.listing);
       }}
+      message={<Notifications />}
       tabs={
         <OsdsTabs panel={panel}>
           <OsdsTabBar slot="top">
