@@ -47,4 +47,18 @@ describe('License Hycu listing test suite', () => {
       { timeout: 30_000 },
     );
   });
+
+  it('should navigate to hycu order on click order button ', async () => {
+    await renderTestApp();
+
+    await act(() =>
+      userEvent.click(screen.getByText(labels.listing.hycu_order)),
+    );
+
+    await waitFor(
+      () =>
+        expect(screen.getByText(labels.order.hycu_order_title)).toBeVisible(),
+      { timeout: 30_000 },
+    );
+  });
 });

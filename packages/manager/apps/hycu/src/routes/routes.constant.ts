@@ -1,13 +1,13 @@
 export const subRoutes = {
   onboarding: 'onboarding',
+  order: 'order',
   serviceName: ':serviceName',
 };
 
 export const urls = {
   root: '/',
-  onboarding: `/${subRoutes.onboarding}`,
   listing: '/',
+  onboarding: `/${subRoutes.onboarding}`,
+  order: `/${subRoutes.order}`,
   dashboard: `/${subRoutes.serviceName}`,
-  tab2: 'Tab2',
-  order: '/order',
 } as const;
