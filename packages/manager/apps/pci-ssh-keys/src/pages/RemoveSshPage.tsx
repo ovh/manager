@@ -1,11 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Translation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import RemoveSshModal from '@/components/ssh-keys/RemoveSshModal';
 
 export default function RemoveSshPage() {
   const { projectId, sshId } = useParams();
-  const { t } = useTranslation('common');
+
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
   const onClose = () => {
@@ -17,17 +17,26 @@ export default function RemoveSshPage() {
       sshId={`${sshId}`}
       onClose={() => onClose()}
       onSuccess={() => {
-        addSuccess(t('pci_projects_project_sshKeys_remove_success'), true);
+        addSuccess(
+          <Translation ns="common">
+            {(t) => t('pci_projects_project_sshKeys_remove_success')}
+          </Translation>,
+          true,
+        );
       }}
       onError={(error: Error) => {
         addError(
-          <span
-            dangerouslySetInnerHTML={{
-              __html: t('pci_projects_project_sshKeys_remove_error', {
-                error: error?.message,
-              }),
-            }}
-          ></span>,
+          <Translation ns="common">
+            {(t) => (
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t('pci_projects_project_sshKeys_remove_error', {
+                    error: error?.message,
+                  }),
+                }}
+              ></span>
+            )}
+          </Translation>,
           true,
         );
       }}
