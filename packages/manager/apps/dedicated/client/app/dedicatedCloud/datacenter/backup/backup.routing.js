@@ -77,9 +77,7 @@ export default /* @ngInject */ ($stateProvider) => {
                       ...backup,
                       datacenterId: datacenter.id,
                       datacenterName:
-                        datacenter.description ||
-                        datacenter.displayName ||
-                        datacenter.id.toString(),
+                        datacenter.displayName || datacenter.id.toString(),
                     }),
                 ),
           ),
