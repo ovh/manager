@@ -9,18 +9,23 @@
     </p>
 
     <ul v-if="success">
-      <li
-        v-for="{ package: { name, description, repository, version } } in packages"
-        v-bind:key="name">
+      <li v-if="packages.length === 0">
+        No packages found.
+      </li>
+      <li v-for="pkg in packages" :key="pkg?.package?.name">
         <a
-          v-bind:href="'https://github.com/ovh/manager/tree/master/' + repository.directory"
+          v-if="pkg?.package?.repository"
+          :href="'https://github.com/ovh/manager/tree/master/' + pkg?.package?.repository?.directory"
           rel="noopener noreferrer"
           target="_blank">
-          {{ name }}@{{ version }}
+          {{ pkg?.package?.name || 'n/a' }}@{{ pkg?.package?.version || 'n/a' }}
         </a>
+        <span v-else>
+          {{ pkg?.package?.name || 'n/a' }}@{{ pkg?.package?.version || 'n/a' }}
+        </span>
         <br>
         <span>
-          <strong>Description</strong>: {{ description || 'n/a' }}
+          <strong>Description</strong>: {{ pkg?.package?.description || 'n/a' }}
         </span>
         <hr>
       </li>
@@ -54,6 +59,7 @@ export default {
   },
   async mounted () {
     this.loading = true;
+
     try {
       const packages = await fetch('/manager/assets/json/packages.json');
       const packagesAsJson = await packages.json();
