@@ -1,5 +1,6 @@
 import template from './ip-ip-agoraOrder.html';
 import controller from './ip-ip-agoraOrder.controller';
+import { TRACKING_PREFIX } from './ip-ip-agoraOrder.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip.agora-order', {
@@ -26,7 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
         IpAgoraOrder.getIpCatalog(coreConfig.getUser().ovhSubsidiary),
     },
     atInternet: {
-      rename: 'dedicated::ip::dashboard::order',
+      rename: `${TRACKING_PREFIX}ip::funnel::add_additional_ip`,
     },
   });
 };

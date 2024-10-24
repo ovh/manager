@@ -1,6 +1,6 @@
 import {
   ADDITIONAL_IP,
-  TRACKING_PREFIX,
+  FUNNEL_TRACKING_PREFIX,
   DASHBOARD_STATE_NAME,
   ALERT_ID,
   IP_TYPE,
@@ -62,7 +62,7 @@ export default class AgoraIpOrderCtrl {
 
   resumeOrder() {
     this.atInternet.trackClick({
-      name: `${TRACKING_PREFIX}cancel`,
+      name: `${FUNNEL_TRACKING_PREFIX}link::back_previous_page`,
       type: 'action',
     });
     return this.$state.go(DASHBOARD_STATE_NAME);
