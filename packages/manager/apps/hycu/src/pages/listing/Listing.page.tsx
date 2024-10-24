@@ -134,7 +134,7 @@ export default function Listing() {
     setSorting,
   } = useResourcesIcebergV6({
     route: '/license/hycu',
-    queryKey: ['hycu', '/license/hycu'],
+    queryKey: ['/license/hycu', 'list'],
   });
 
   const columns = useMemo(() => {

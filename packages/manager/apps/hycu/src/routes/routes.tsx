@@ -50,6 +50,17 @@ export const Routes: any = [
                 pageType: PageType.dashboard,
               },
             },
+            children: [
+              {
+                id: 'activate-license',
+                path: urls.activateLicense,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/general-information/activation-license-modal/ActivationLicenseModal.page'
+                  ),
+                ),
+              },
+            ],
           },
         ],
       },

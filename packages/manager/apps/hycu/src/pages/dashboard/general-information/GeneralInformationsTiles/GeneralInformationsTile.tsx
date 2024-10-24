@@ -25,16 +25,20 @@ import { useTranslation } from 'react-i18next';
 import { getStatusColor } from '@/utils/statusColor';
 import { useDetailsLicenseHYCU } from '@/hooks/api/license';
 import { LicenseStatus } from '@/types/hycu.details.interface';
+import { subRoutes, urls } from '@/routes/routes.constant';
 
-const DownloadHycuLicense = ({ serviceName }: { serviceName: string }) => {
+const ActivateHycuLicense = ({ serviceName }: { serviceName: string }) => {
   const { t } = useTranslation('hycu/dashboard');
   const { data: hycuDetail, isLoading } = useDetailsLicenseHYCU(serviceName);
 
   if (isLoading) return <OsdsSkeleton />;
-  if (LicenseStatus.ACTIVATED !== hycuDetail.data.licenseStatus)
+  if (LicenseStatus.ACTIVATED !== hycuDetail?.data.licenseStatus)
     return <>{t('hycu_dashboard_wait_for_activation')}</>;
   return (
-    <OsdsLink color={ODS_THEME_COLOR_INTENT.primary}>
+    <OsdsLink
+      color={ODS_THEME_COLOR_INTENT.primary}
+      href={urls.activateLicense.replace(subRoutes.serviceName, serviceName)}
+    >
       {t('hycu_dashboard_download_license_file')}
       <span slot="end">
         <OsdsIcon
@@ -137,9 +141,9 @@ const GeneralInformationsTile = ({ serviceName }: { serviceName: string }) => {
           value: isLoading ? (
             <OsdsSkeleton />
           ) : (
-            <DownloadHycuLicense
+            <ActivateHycuLicense
               serviceName={serviceName}
-            ></DownloadHycuLicense>
+            ></ActivateHycuLicense>
           ),
         },
       ]}
