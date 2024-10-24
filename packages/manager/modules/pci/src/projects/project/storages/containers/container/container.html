@@ -44,11 +44,6 @@
         <cui-message-container
             data-messages="$ctrl.messages"
         ></cui-message-container>
-        <oui-message type="warning" data-ng-if="$ctrl.isFileUploadDisabled">
-            <span
-                data-translate="pci_projects_project_storages_containers_container_maintenance_message"
-            ></span>
-        </oui-message>
     </section>
 
     <div data-ng-if="$ctrl.container">
@@ -63,7 +58,7 @@
 
                 <!--Container object stored data-->
                 <p
-                    data-ng-if="!$ctrl.archive"
+                    data-ng-if="!$ctrl.archive && !$ctrl.isLocalZone()"
                     data-translate="pci_projects_project_storages_containers_container_object_info_storedObjects"
                     data-translate-values="{ count: '<strong>'+ $ctrl.container.storedObjects +'</strong>' }"
                 ></p>
@@ -77,13 +72,14 @@
 
                 <!--Container Stored -->
                 <p
+                    data-ng-if="!$ctrl.isLocalZone()"
                     data-translate="pci_projects_project_storages_containers_container_info_storedBytes"
                     data-translate-values="{ bytes: '<strong>'+ ($ctrl.container.storedBytes | RAUnitsBits) +'</strong>' }"
                 ></p>
 
                 <!--Container without data encryption-->
                 <p
-                    data-ng-if="$ctrl.displayEncryptionData && !$ctrl.container.isEncrypted"
+                    data-ng-if="$ctrl.displayEncryptionData && !$ctrl.container.isEncrypted && !$ctrl.isLocalZone()"
                     data-translate="pci_projects_project_storages_containers_container_info_data_encryption_disabled"
                 ></p>
 
@@ -103,7 +99,7 @@
                 </p>
 
                 <!-- bucket versioning -->
-                <p data-ng-if="$ctrl.isRightOffer()">
+                <p data-ng-if="$ctrl.isRightOffer() && !$ctrl.isLocalZone()">
                     <span
                         data-translate="pci_projects_project_storages_containers_update_versioning_versioning"
                     ></span>
@@ -118,7 +114,7 @@
                     >
                     </span>
                 </p>
-                <p data-ng-if="$ctrl.isRightOffer()">
+                <p data-ng-if="$ctrl.isRightOffer() && !$ctrl.isLocalZone()">
                     <button
                         class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                         data-ng-if="$ctrl.container.versioning.status === 'suspended' || $ctrl.container.versioning.status === 'disabled'"
@@ -263,7 +259,7 @@
 
             <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
-                    data-ng-if="$ctrl.container.s3StorageType"
+                    data-ng-if="$ctrl.container.s3StorageType && !$ctrl.isLocalZone()"
                     data-on-click="$ctrl.goToAddUserOnObject($row)"
                 >
                     <span
@@ -294,10 +290,7 @@
             </oui-action-menu>
 
             <oui-datagrid-topbar>
-                <oui-button
-                    data-on-click="$ctrl.addObject()"
-                    data-disabled="$ctrl.isFileUploadDisabled"
-                >
+                <oui-button data-on-click="$ctrl.addObject()">
                     <span
                         class="oui-icon oui-icon-add pr-1"
                         aria-hidden="true"

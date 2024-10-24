@@ -171,11 +171,22 @@
             data-ng-if="$ctrl.selectedRegion.enabled === false"
             class="regions-list"
         >
-            <p class="oui-color-ae-500">
+            <p class="oui-color-ae-500" data-ng-if="!$ctrl.isDiscoveryProject">
                 <strong
                     data-translate="pci_projects_project_storages_containers_add_add_region_activate"
                 >
                 </strong>
+            </p>
+        </div>
+        <div data-ng-if="$ctrl.isDiscoveryProject" class="regions-list">
+            <p class="oui-color-ae-500">
+                <strong
+                    data-translate="pci_project_regions_list_activate_project_banner_message"
+                ></strong>
+                <a
+                    data-ng-href="{{:: $ctrl.projectActivationPageHref }}"
+                    data-translate="pci_project_regions_list_activate_project_banner_link_text"
+                ></a>
             </p>
         </div>
     </oui-tabs-item>

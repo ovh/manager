@@ -22,5 +22,7 @@ export default {
     encryptionAlgorithms: '<',
     trackEncryptionAction: '<',
     catalog: '<',
+    projectActivationPageHref: '<',
+    isLocalzoneAvailable: '<',
   },
 };

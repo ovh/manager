@@ -13,5 +13,6 @@
   "pci_projects_project_users_add_accesskey": "Su clave de acceso S3:",
   "pci_projects_project_users_add_secretkey": "Su clave secreta S3:",
   "pci_projects_project_users_add_as_no_credentials": "Sin claves",
-  "pci_projects_project_users_add_as_credentials": "Claves generadas"
+  "pci_projects_project_users_add_as_credentials": "Claves generadas",
+  "pci_projects_project_users_add_info_banner": "Los nuevos usuarios tendrán acceso automáticamente a todos los contenedores en las Local Zones."
 }

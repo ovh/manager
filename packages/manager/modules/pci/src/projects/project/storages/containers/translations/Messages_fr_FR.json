@@ -35,5 +35,6 @@
   "pci_projects_project_storages_containers_s3_containers_load_error": "Une erreur est survenue sur un ou plusieurs de vos conteneurs S3 dans la région {{ regions }}. Veuillez réessayer ultérieurement.",
   "pci_projects_project_storages_containers_deployment_mode_label": "Mode de déploiment",
   "pci_projects_project_storages_containers_deployment_mode_region": "Région 1-AZ",
-  "pci_projects_project_storages_containers_deployment_mode_region-3-az": "Région 3-AZ"
+  "pci_projects_project_storages_containers_deployment_mode_region-3-az": "Région 3-AZ",
+  "pci_projects_project_storages_containers_deployment_mode_localzone": "Local Zone"
 }

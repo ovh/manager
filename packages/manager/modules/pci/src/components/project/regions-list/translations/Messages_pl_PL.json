@@ -4,5 +4,7 @@
   "pci_project_regions_list_add": "Włącz najnowsze regiony każdej strefy w sekcji <a href=\"{{url}}\" class=\"oui-link\">Lokalizacje</a>.",
   "pci_project_regions_list_region": "Lokalizacja",
   "pci_project_regions_list_quota": "Zwiększ limit",
-  "pci_project_regions_list_current_offer": "Aktualna oferta"
+  "pci_project_regions_list_current_offer": "Aktualna oferta",
+  "pci_project_regions_list_activate_project_banner_message": "Aby przejść do kolejnych etapów, musisz",
+  "pci_project_regions_list_activate_project_banner_link_text": "aktywować projekt."
 }

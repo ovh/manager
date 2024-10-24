@@ -91,6 +91,12 @@
                     data-ng-if="$row.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MONO_ZONE"
                     data-ng-bind=":: ('pci_projects_project_storages_containers_deployment_mode_region') | translate"
                 ></span>
+
+                <span
+                    class="oui-badge oui-badge_promotion"
+                    data-ng-if="$row.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_LOCAL_ZONE"
+                    data-ng-bind=":: ('pci_projects_project_storages_containers_deployment_mode_localzone') | translate"
+                ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_offer_label' | translate"
@@ -111,6 +117,14 @@
                 data-sortable
                 data-filterable
             >
+                <span
+                    data-ng-if="$row.deploymentMode !== $ctrl.OBJECT_CONTAINER_MODE_LOCAL_ZONE"
+                    data-ng-bind="$value"
+                ></span>
+                <span
+                    data-ng-if="$row.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_LOCAL_ZONE"
+                    >n/a</span
+                >
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_storedBytes_label' | translate"
@@ -122,7 +136,14 @@
                     data-ng-if="$value > 0"
                     data-ng-bind="$value | RAUnitsBits"
                 ></span>
-                <span data-ng-if="!$value">-</span>
+                <span
+                    data-ng-if="!$value && $row.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_LOCAL_ZONE"
+                    >n/a</span
+                >
+                <span
+                    data-ng-if="!$value && $row.deploymentMode !== $ctrl.OBJECT_CONTAINER_MODE_LOCAL_ZONE"
+                    >-</span
+                >
             </oui-datagrid-column>
 
             <oui-datagrid-column
@@ -140,7 +161,7 @@
             <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
                     data-on-click="$ctrl.goToAddUserContainer($row)"
-                    data-ng-if="$row.s3StorageType"
+                    data-ng-if="$row.s3StorageType && (!$row.deploymentMode || $row.deploymentMode !== $ctrl.OBJECT_CONTAINER_MODE_LOCAL_ZONE)"
                 >
                     <span
                         data-translate="pci_projects_project_storages_containers_view_add_user_label"
