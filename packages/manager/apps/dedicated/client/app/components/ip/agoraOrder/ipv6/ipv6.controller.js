@@ -1,5 +1,5 @@
 import find from 'lodash/find';
-
+import ovhManagerRegionService from '@ovh-ux/manager-components/src/region/service';
 import {
   ALERT_ID,
   DASHBOARD_STATE_NAME,
@@ -11,7 +11,6 @@ import {
   DEDICATED_IP_ORDER_TRACKING_PREFIX,
   ACTIONS_SUFFIX,
 } from './ipv6.constant';
-import ovhManagerRegionService from '../../../../../../../../modules/manager-components/src/region/service';
 
 export default class AgoraIpV6OrderController {
   /* @ngInject */
