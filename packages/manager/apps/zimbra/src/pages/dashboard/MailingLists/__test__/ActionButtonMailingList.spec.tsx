@@ -14,21 +14,27 @@ describe('MailingLists datagrid action menu', () => {
       />,
     );
 
-    expect(container.querySelectorAll('osds-menu-item').length).toBe(4);
+    const menuItems = container.querySelectorAll('ods-popover ods-button');
 
-    expect(container.querySelectorAll('osds-menu-item')[0]).toHaveTextContent(
+    expect(menuItems.length).toBe(4);
+
+    expect(menuItems[0]).toHaveAttribute(
+      'label',
       mailingListsTranslation.zimbra_mailinglists_datagrid_action_edit,
     );
 
-    expect(container.querySelectorAll('osds-menu-item')[1]).toHaveTextContent(
+    expect(menuItems[1]).toHaveAttribute(
+      'label',
       mailingListsTranslation.zimbra_mailinglists_datagrid_action_define_members,
     );
 
-    expect(container.querySelectorAll('osds-menu-item')[2]).toHaveTextContent(
+    expect(menuItems[2]).toHaveAttribute(
+      'label',
       mailingListsTranslation.zimbra_mailinglists_datagrid_action_configure_delegation,
     );
 
-    expect(container.querySelectorAll('osds-menu-item')[3]).toHaveTextContent(
+    expect(menuItems[3]).toHaveAttribute(
+      'label',
       mailingListsTranslation.zimbra_mailinglists_datagrid_action_delete,
     );
   });

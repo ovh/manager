@@ -1,16 +1,11 @@
+import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 import {
-  Datagrid,
-  DatagridColumn,
-  Notifications,
-} from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
-import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-components/react';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
@@ -63,20 +58,14 @@ const columns: DatagridColumn<AutoRepliesItem>[] = [
   {
     id: 'deleteButton',
     cell: () => (
-      <>
-        <OsdsButton
-          inline
-          size={ODS_BUTTON_SIZE.sm}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
-        >
-          <OsdsIcon
-            name={ODS_ICON_NAME.BIN}
-            size={ODS_ICON_SIZE.xs}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          ></OsdsIcon>
-        </OsdsButton>
-      </>
+      <OdsButton
+        inline-block
+        size={ODS_BUTTON_SIZE.sm}
+        color={ODS_BUTTON_COLOR.primary}
+        variant={ODS_BUTTON_VARIANT.outline}
+        icon={ODS_ICON_NAME.trash}
+        label=""
+      ></OdsButton>
     ),
     label: '',
   },
@@ -85,8 +74,7 @@ export function AutoReplies() {
   const { t } = useTranslation('autoReplies');
 
   return (
-    <div data-testid="autoreplies" className="py-6 mt-8">
-      <Notifications />
+    <div data-testid="autoreplies" className="py-6">
       <Outlet />
       <Datagrid
         columns={columns.map((column) => ({

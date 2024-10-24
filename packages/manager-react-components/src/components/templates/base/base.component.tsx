@@ -54,10 +54,10 @@ export const BaseLayout = ({
         {description}
       </OdsText>
     )}
-    {message && <div className="mb-5 max-w-[800px]">{message}</div>}
     {subtitle && <Subtitle className="block mb-6">{subtitle}</Subtitle>}
     {subDescription && <OdsText preset="span">{subDescription}</OdsText>}
     <div className="mb-6">{tabs}</div>
+    {message && <div className="mb-5 max-w-[800px]">{message}</div>}
     {children}
   </PageLayout>
 );

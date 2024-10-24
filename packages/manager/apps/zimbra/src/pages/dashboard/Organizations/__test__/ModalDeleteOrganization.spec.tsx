@@ -18,13 +18,13 @@ vi.mocked(useSearchParams).mockReturnValue([
 ]);
 
 describe('Organizations delete modal', () => {
-  it('should render modal', () => {
-    const { getByTestId } = render(<ModalDeleteOrganization />);
-    const modal = getByTestId('modal');
-    expect(modal).toHaveProperty(
-      'headline',
-      organizationsDeleteTranslation.zimbra_organization_delete_modal_title,
-    );
+  it('should render modal', async () => {
+    const { findByText } = render(<ModalDeleteOrganization />);
+    expect(
+      await findByText(
+        organizationsDeleteTranslation.zimbra_organization_delete_modal_title,
+      ),
+    ).toBeVisible();
   });
 
   it('should have button disabled if domains', async () => {
@@ -35,7 +35,7 @@ describe('Organizations delete modal', () => {
     });
 
     expect(getByTestId('banner-message')).toBeVisible();
-    expect(getByTestId('delete-btn')).toBeDisabled();
+    expect(getByTestId('delete-btn')).toHaveAttribute('is-disabled', 'true');
   });
 
   it('should delete org if no domains and clicked', async () => {
@@ -47,11 +47,13 @@ describe('Organizations delete modal', () => {
       expect(queryByTestId('spinner')).toBeNull();
     });
 
+    const button = getByTestId('delete-btn');
+
     expect(queryByTestId('banner-message')).toBeNull();
-    expect(getByTestId('delete-btn')).not.toBeDisabled();
+    expect(button).toHaveAttribute('is-disabled', 'false');
 
     await act(() => {
-      fireEvent.click(getByTestId('delete-btn'));
+      fireEvent.click(button);
     });
 
     expect(deleteZimbraPlatformOrganization).toHaveBeenCalledOnce();

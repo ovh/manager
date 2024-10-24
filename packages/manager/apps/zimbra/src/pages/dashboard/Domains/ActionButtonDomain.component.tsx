@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
+import { useNavigate } from 'react-router-dom';
 import { DomainsItem } from './Domains';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -13,24 +14,36 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
   domainItem,
 }) => {
   const { t } = useTranslation('domains');
-  const hrefDeleteDomain = useGenerateUrl('./delete', 'href', {
+  const navigate = useNavigate();
+  const { platformUrn } = usePlatform();
+
+  const hrefDeleteDomain = useGenerateUrl('./delete', 'path', {
     deleteDomainId: domainItem.id,
   });
-  const hrefEditDomain = useGenerateUrl('./edit', 'href', {
+
+  const handleDeleteDomainClick = () => {
+    navigate(hrefDeleteDomain);
+  };
+
+  const hrefEditDomain = useGenerateUrl('./edit', 'path', {
     editDomainId: domainItem.id,
   });
-  const { platformUrn } = usePlatform();
+
+  const handleEditDomainClick = () => {
+    navigate(hrefEditDomain);
+  };
+
   const actionItems = [
     {
       id: 1,
-      href: hrefEditDomain,
+      onclick: handleEditDomainClick,
       label: t('zimbra_domains_tooltip_configure'),
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.domain.edit],
     },
     {
       id: 2,
-      href: hrefDeleteDomain,
+      onclick: handleDeleteDomainClick,
       label: t('zimbra_domains_tooltip_delete'),
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.domain.delete],
@@ -38,7 +51,8 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
   ];
   return (
     <ActionMenu
-      disabled={domainItem.status !== ResourceStatus.READY}
+      id={domainItem.id}
+      isDisabled={domainItem.status !== ResourceStatus.READY}
       items={actionItems}
       isCompact
     />

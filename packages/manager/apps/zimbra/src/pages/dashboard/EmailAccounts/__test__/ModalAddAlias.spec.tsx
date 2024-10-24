@@ -2,9 +2,8 @@ import React from 'react';
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
-import { act } from 'react-dom/test-utils';
 import { useResolvedPath, useSearchParams } from 'react-router-dom';
-import { fireEvent, render, screen, waitFor } from '@/utils/test.provider';
+import { render, screen, waitFor, act } from '@/utils/test.provider';
 import { accountDetailMock } from '@/api/_mock_';
 import ModalAddAlias from '../ModalAddAlias.component';
 import emailAccountAliasAddTranslation from '@/public/translations/accounts/alias/add/Messages_fr_FR.json';
@@ -49,24 +48,20 @@ describe('add alias modal', () => {
     const inputAccount = getByTestId('input-alias');
     const selectDomain = getByTestId('select-domain');
 
-    expect(button).not.toBeEnabled();
+    expect(button).toHaveAttribute('is-disabled', 'true');
 
     act(() => {
-      inputAccount.odsInputBlur.emit({ name: 'alias', value: '' });
+      inputAccount.odsBlur.emit({ name: 'alias', value: '' });
     });
 
-    expect(inputAccount).toHaveAttribute('color', 'error');
+    expect(inputAccount).toHaveAttribute('has-error', 'true');
 
     act(() => {
-      fireEvent.change(inputAccount, { target: { value: 'alias' } });
-      fireEvent.change(selectDomain, { target: { value: 'domain' } });
-
-      // it seems we have to manually trigger the ods event
-      inputAccount.odsValueChange.emit({ name: 'alias', value: 'alias' });
-      selectDomain.odsValueChange.emit({ name: 'domain', value: 'domain' });
+      inputAccount.odsChange.emit({ name: 'alias', value: 'alias' });
+      selectDomain.odsChange.emit({ name: 'domain', value: 'domain' });
     });
 
-    expect(inputAccount).toHaveAttribute('color', 'default');
-    expect(button).toBeEnabled();
+    expect(inputAccount).toHaveAttribute('has-error', 'false');
+    expect(button).toHaveAttribute('is-disabled', 'false');
   });
 });

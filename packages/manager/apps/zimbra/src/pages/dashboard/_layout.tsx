@@ -1,5 +1,4 @@
 import React, { Suspense } from 'react';
-
 import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
 import Loading from '@/components/Loading/Loading';
 

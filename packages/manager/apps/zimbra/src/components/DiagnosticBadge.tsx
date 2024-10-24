@@ -1,21 +1,12 @@
 import React from 'react';
-import {
-  OsdsChip,
-  OsdsText,
-  OsdsTooltip,
-  OsdsTooltipContent,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { OdsTooltip, OdsText, OdsTag } from '@ovhcloud/ods-components/react';
+import { ODS_TAG_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { DnsRecordType } from '@/utils';
 import { useGenerateUrl } from '@/hooks';
 
-type StatusProps = 'error' | 'success' | 'warning';
+type StatusProps = 'critical' | 'success' | 'warning';
 type DiagnosticBadgeProps = {
   diagType: DnsRecordType;
   status?: StatusProps;
@@ -28,10 +19,10 @@ export const DiagnosticBadge: React.FC<DiagnosticBadgeProps> = ({
   domainId,
 }) => {
   const { t } = useTranslation('domains');
-  const chipColor = status as ODS_THEME_COLOR_INTENT;
+  const chipColor = status as ODS_TAG_COLOR;
   const navigate = useNavigate();
   const hasAction = !!(
-    status === 'error' &&
+    status === 'critical' &&
     [DnsRecordType.MX, DnsRecordType.SPF, DnsRecordType.SRV].some(
       (diag) => diag === diagType,
     ) &&
@@ -41,7 +32,6 @@ export const DiagnosticBadge: React.FC<DiagnosticBadgeProps> = ({
   const href = useGenerateUrl('./diagnostic', 'path', {
     domainId,
     dnsRecordType: diagType,
-    // remove when we get it from api
     isOvhDomain: 'false',
   });
 
@@ -50,40 +40,28 @@ export const DiagnosticBadge: React.FC<DiagnosticBadgeProps> = ({
   };
 
   return (
-    <OsdsTooltip className="mr-4">
+    <OdsTooltip className="mr-4" triggerId="tooltip-trigger">
       {status === 'success' ? (
         <>
-          <OsdsChip color={chipColor}>{diagType}</OsdsChip>
-          <OsdsTooltipContent
-            slot="tooltip-content"
-            className="flex items-start flex-col p-2 "
-          >
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            >
+          <OdsTag color={chipColor} label={diagType}></OdsTag>
+          <div id="tooltip-trigger" className="flex items-start flex-col p-2 ">
+            <OdsText preset={ODS_TEXT_PRESET.heading4}>
               {t('zimbra_domains_datagrid_diagnostic_tooltip_title', {
                 diagType,
               })}
-            </OsdsText>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            >
+            </OdsText>
+            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
               {t('zimbra_domains_datagrid_diagnostic_configuration_ok')}
-            </OsdsText>
-          </OsdsTooltipContent>
+            </OdsText>
+          </div>
         </>
       ) : (
-        <OsdsChip
+        <OdsTag
+          label={diagType}
           color={chipColor}
           {...(hasAction ? { selectable: true, onClick: handleChipClick } : {})}
-        >
-          {diagType}
-        </OsdsChip>
+        />
       )}
-    </OsdsTooltip>
+    </OdsTooltip>
   );
 };

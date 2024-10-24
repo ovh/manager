@@ -44,8 +44,8 @@ export const ManagerButton = ({
     <>
       <div id={id} className="w-fit">
         <OdsButton
-          {...restProps}
           data-testid="manager-button-tooltip"
+          {...restProps}
           isDisabled={true}
           label={label}
           onClick={null}
@@ -57,8 +57,8 @@ export const ManagerButton = ({
     </>
   ) : (
     <OdsButton
-      {...restProps}
       data-testid="manager-button-without-tooltip"
+      {...restProps}
       isDisabled={true}
       onClick={null}
       label={label}

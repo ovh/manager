@@ -4481,10 +4481,22 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-components@18.0.0":
-  version "18.0.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.0.0.tgz#b0e4da6c35c19004f35bac6b34abb1f78c6d1af0"
-  integrity sha512-Nhgi8iMX/+tWJb6D8WSN8qNqC32XEwdDL0rc7o9V0OwcXPwSqu7QtTYKB+1s1kGTDxfyl7HGrSDYbqgUI0niMw==
+"@ovhcloud/ods-components@18.1.0":
+  version "18.1.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.1.0.tgz#f44ac8bfef7779fe91d11344b8d34ab32e9d23d4"
+  integrity sha512-sVRK//y/EtB8etcHgsXqvVKVdfsjcSCTxRjPSOe+9OqRecxGiQGQGD8mWbJS7Mn8wbRkVcLKseHB4qsHuyfN5Q==
+  dependencies:
+    "@floating-ui/dom" "1.6.3"
+    "@stencil/core" "4.16.0"
+    google-libphonenumber "3.2.35"
+    tom-select "2.3.1"
+    tslib "2.6.3"
+    vanillajs-datepicker "1.3.4"
+
+"@ovhcloud/ods-components@18.2.0":
+  version "18.2.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.2.0.tgz#b7b3e90ac9da3179fa77cdbdbde9e58d3e13d791"
+  integrity sha512-2Pr/JbncpdsLAV2JqBs0rEwvBYOqSjnw4zWcChVj6KNDG86JBvWxKmmS0G0nt/g3CajzOEBVtlh94hpnXycUXA==
   dependencies:
     "@floating-ui/dom" "1.6.3"
     "@stencil/core" "4.16.0"
@@ -4507,10 +4519,15 @@
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-themes@18.0.0":
-  version "18.0.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.0.0.tgz#0a7c658e0e9d572262ed41896fee4819c2764167"
-  integrity sha512-0PfXUyF6bX9emb/a6S16QThKsSXyvrNYT3n1zQF/le8tMXP7292TGKIgqXhsZmkcD9tCdD6VLXuJTS8Zv3a5Yg==
+"@ovhcloud/ods-themes@18.1.0":
+  version "18.1.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.1.0.tgz#018aa644f1a133556072b0dcdb6ce2d64fdec54d"
+  integrity sha512-2TAHVQKG1c/1h0t5Cna9Vmbal/LiBbvY+neaXSDPLd9bLgGPf0og5Q7GB0XHCPYUv6w2uA86XptmBZnw89NdZg==
+
+"@ovhcloud/ods-themes@18.2.0":
+  version "18.2.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.2.0.tgz#2b6ba5cafda5460448e67122adfffc154e037be7"
+  integrity sha512-8rfoW5mw1eUzbVtAw0VKwjGu07RSrWtni1q3+T0FHbbp2FiZPkEN8lJHl8QxfPUv27OxwM70vsjzgU1luYYxsw==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -9592,12 +9609,7 @@ angular-ui-utils@angular-ui/ui-utils#0.2.3:
   version "0.0.0"
   resolved "https://codeload.github.com/angular-ui/ui-utils/tar.gz/125cb72d692f9f116454f338f6a5471f3088f9b9"
 
-angular-ui-validate@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/angular-ui-validate/-/angular-ui-validate-1.2.3.tgz#beb141f64409bfddba65c12f7581b893ddf59321"
-  integrity sha512-RiBd6JEt/zXXbSQMZ6j+0b5xxQfh2P9VFqDPaFEqOO68P/sindp318EQ59BoFn/DnQ3qI+b9MQQGv24sGZhZ2A==
-
-angular-ui-validate@angular-ui/ui-validate#~1.2.2:
+angular-ui-validate@^1.2.3, angular-ui-validate@angular-ui/ui-validate#~1.2.2:
   version "1.2.3"
   resolved "https://codeload.github.com/angular-ui/ui-validate/tar.gz/0d982055360032be2421b969fa1c83bf053e735a"
 

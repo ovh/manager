@@ -11,13 +11,19 @@ export type DashboardTileBlockItem = {
 export type DashboardTileProps = {
   title?: string;
   items: DashboardTileBlockItem[];
+  'data-testid'?: string;
 };
 
 export const DashboardTile: React.FC<DashboardTileProps> = ({
   title,
   items,
+  ...props
 }) => (
-  <OdsCard className="w-full flex-col p-[1rem]" color="neutral">
+  <OdsCard
+    data-testid={props['data-testid']}
+    className="w-full flex-col p-[1rem]"
+    color="neutral"
+  >
     <div className="flex flex-col w-full">
       {title && (
         <>

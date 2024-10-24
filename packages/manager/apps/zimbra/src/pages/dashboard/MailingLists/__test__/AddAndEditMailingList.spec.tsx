@@ -2,9 +2,8 @@ import React from 'react';
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
-import { act } from 'react-dom/test-utils';
 import { useSearchParams } from 'react-router-dom';
-import { render, waitFor, fireEvent } from '@/utils/test.provider';
+import { render, waitFor, fireEvent, act } from '@/utils/test.provider';
 import { mailingListsMock } from '@/api/_mock_';
 import AddAndEditMailingList from '../AddAndEditMailingList.page';
 import mailingListsAddAndEditTranslation from '@/public/translations/mailinglists/addAndEdit/Messages_fr_FR.json';
@@ -37,51 +36,53 @@ describe('mailing lists add and edit page', () => {
     const inputAccount = getByTestId('input-account');
     const selectDomain = getByTestId('select-domain');
     const inputOwner = getByTestId('input-owner');
-    const replyTo = getByTestId('radio-group-reply-to');
+    const replyToList = getByTestId(`radio-reply-to-${ReplyToChoices.LIST}`);
     const selectLanguage = getByTestId('select-language');
-    const moderationOption = getByTestId('radio-group-moderation-option');
+    const moderationOptionAll = getByTestId(
+      `radio-moderation-option-${ModerationChoices.ALL}`,
+    );
 
-    expect(button).not.toBeEnabled();
+    expect(button).toHaveAttribute('is-disabled', 'true');
 
     act(() => {
-      inputAccount.odsInputBlur.emit({ name: 'account', value: '' });
-      inputOwner.odsInputBlur.emit({ name: 'owner', value: '' });
+      inputAccount.odsBlur.emit({ name: 'account', value: '' });
+      inputOwner.odsBlur.emit({ name: 'owner', value: '' });
     });
 
-    expect(inputAccount).toHaveAttribute('color', 'error');
-    expect(inputOwner).toHaveAttribute('color', 'error');
-    expect(button).not.toBeEnabled();
+    expect(inputAccount).toHaveAttribute('has-error', 'true');
+    expect(inputOwner).toHaveAttribute('has-error', 'true');
+    expect(button).toHaveAttribute('is-disabled', 'true');
 
     act(() => {
-      inputAccount.odsValueChange.emit({ name: 'account', value: 'account' });
-      selectDomain.odsValueChange.emit({ name: 'domain', value: 'domain' });
-      inputOwner.odsValueChange.emit({
+      inputAccount.odsChange.emit({ name: 'account', value: 'account' });
+      selectDomain.odsChange.emit({ name: 'domain', value: 'domain' });
+      inputOwner.odsChange.emit({
         name: 'owner',
         value: 'testowner',
       });
-      selectLanguage.odsValueChange.emit({ name: 'language', value: 'FR' });
-      replyTo.odsValueChange.emit({
+      selectLanguage.odsChange.emit({ name: 'language', value: 'FR' });
+      replyToList.odsChange.emit({
         name: 'defaultReplyTo',
         value: ReplyToChoices.LIST,
       });
-      moderationOption.odsValueChange.emit({
+      moderationOptionAll.odsChange.emit({
         name: 'moderationOption',
         value: ModerationChoices.ALL,
       });
     });
 
-    expect(inputAccount).toHaveAttribute('color', 'default');
-    expect(inputOwner).toHaveAttribute('color', 'default');
-    expect(button).toBeEnabled();
+    expect(inputAccount).toHaveAttribute('has-error', 'false');
+    expect(inputOwner).toHaveAttribute('has-error', 'false');
+    expect(button).toHaveAttribute('is-disabled', 'false');
 
     act(() => {
-      inputOwner.odsValueChange.emit({
+      inputOwner.odsChange.emit({
         name: 'owner',
         value: 't',
       });
     });
 
-    expect(button).not.toBeEnabled();
+    expect(button).toHaveAttribute('is-disabled', 'true');
   });
 
   it('should be in edit mode if editMailingListId param is present', async () => {

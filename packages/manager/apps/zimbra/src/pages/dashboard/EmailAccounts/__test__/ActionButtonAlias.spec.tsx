@@ -14,13 +14,20 @@ describe('Alias datagrid action menu', () => {
       />,
     );
 
-    expect(container.querySelectorAll('osds-menu-item').length).toBe(1);
+    const menu = container.querySelector(
+      'ods-button[icon="ellipsis-horizontal"]',
+    );
 
-    expect(container.querySelectorAll('osds-menu-item')[0]).toHaveTextContent(
+    const menuItems = container.querySelectorAll('ods-popover ods-button');
+
+    expect(menuItems.length).toBe(1);
+
+    expect(menuItems[0]).toHaveAttribute(
+      'label',
       aliasTranslation.zimbra_account_alias_datagrid_tooltip_delete,
     );
 
-    expect(container.querySelectorAll('osds-menu-item')[0]).toBeEnabled();
+    expect(menu).toHaveAttribute('is-disabled', 'false');
   });
 
   it('should render correctly with disabled button', () => {
@@ -30,12 +37,19 @@ describe('Alias datagrid action menu', () => {
       />,
     );
 
-    expect(container.querySelectorAll('osds-menu-item').length).toBe(1);
+    const menu = container.querySelector(
+      'ods-button[icon="ellipsis-horizontal"]',
+    );
 
-    expect(container.querySelectorAll('osds-menu-item')[0]).toHaveTextContent(
+    const menuItems = container.querySelectorAll('ods-popover ods-button');
+
+    expect(menuItems.length).toBe(1);
+
+    expect(menuItems[0]).toHaveAttribute(
+      'label',
       aliasTranslation.zimbra_account_alias_datagrid_tooltip_delete,
     );
 
-    expect(container.querySelectorAll('osds-menu-item')[0]).toBeDisabled();
+    expect(menu).toHaveAttribute('is-disabled', 'true');
   });
 });

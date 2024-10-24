@@ -11,7 +11,8 @@ describe('Redirections page', () => {
 
     await waitFor(() => {
       const button = getByTestId('add-redirection-btn');
-      expect(button).toHaveTextContent(
+      expect(button).toHaveAttribute(
+        'label',
         redirectionsTranslation.zimbra_redirections_cta,
       );
     });

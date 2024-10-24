@@ -1,23 +1,32 @@
 import React from 'react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsLink } from '@ovhcloud/ods-components/react';
+import { OdsLink } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
+import {
+  ODS_LINK_COLOR,
+  ODS_LINK_ICON_ALIGNMENT,
+} from '@ovhcloud/ods-components';
+import { IconLinkAlignmentType } from '@ovh-ux/manager-react-components';
 
 interface IdLinkProps {
   id: string;
-  children: string;
+  label: string;
 }
 
-const IdLink: React.FC<IdLinkProps> = ({ id, children }) => {
+const IdLink: React.FC<IdLinkProps> = ({ id, label }) => {
   const navigate = useNavigate();
-  const handleLinkClick = () => {
+  const handleLinkClick = (event: React.MouseEvent) => {
+    event.preventDefault();
     navigate(`..?organizationId=${id}`);
   };
 
   return (
-    <OsdsLink color={ODS_THEME_COLOR_INTENT.primary} onClick={handleLinkClick}>
-      {children}
-    </OsdsLink>
+    <OdsLink
+      color={ODS_LINK_COLOR.primary}
+      onClick={handleLinkClick}
+      label={label}
+      iconAlignment={IconLinkAlignmentType.left}
+      href={`#`}
+    />
   );
 };
 
