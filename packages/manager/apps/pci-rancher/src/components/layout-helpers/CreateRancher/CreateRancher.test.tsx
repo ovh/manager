@@ -147,12 +147,12 @@ describe('CreateRancher', () => {
       rancherCreationErrorMessage: {
         class: 'Client::BadRequest',
         message:
-          'Unable to switch to plan OVHCLOUD_EDITION: You are currently using drivers that are not supported in plan OVHCLOUD_EDITION: [myDriver1, myDriver2]',
+          'Une erreur est survenue lors de la création de votre Managed Rancher Service.',
       },
     });
     const errorCreateBanner = screen.getByTestId('errorBanner');
     expect(errorCreateBanner).toHaveTextContent(
-      "Une erreur est survenue lors du changement d'offre de votre Managed Rancher Service. Vous utilisez actuellement des pilotes qui ne sont pas pris en charge dans l'offre OVHCLOUD_EDITION: [myDriver1, myDriver2]",
+      'Une erreur est survenue lors de la création de votre Managed Rancher Service.',
     );
   });
 
