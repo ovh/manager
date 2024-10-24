@@ -5,14 +5,18 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useNavigate } from 'react-router-dom';
 import { useDetailsLicenseHYCU } from '@/hooks/api/license';
 import { LicenseStatus } from '@/types/hycu.details.interface';
+import { subRoutes, urls } from '@/routes/routes.constant';
+import {
+  ManagerLink,
+  ManagerLinkProps,
+} from '@/components/ManagerLink/ManagerLink.component';
+import { IAM_ACTIONS } from '@/utils/iam.constants';
 
-const ShortcutsItem = ({
-  children,
-  ...rest
-}: React.ComponentProps<typeof OsdsLink>) => (
-  <OsdsLink color={ODS_THEME_COLOR_INTENT.primary} {...rest}>
+const ShortcutsItem = ({ children, ...rest }: ManagerLinkProps) => (
+  <ManagerLink color={ODS_THEME_COLOR_INTENT.primary} {...rest}>
     <div className="flex items-center">
       <div>{children}</div>
       <OsdsIcon
@@ -20,17 +24,31 @@ const ShortcutsItem = ({
         color={ODS_THEME_COLOR_INTENT.primary}
       ></OsdsIcon>
     </div>
-  </OsdsLink>
+  </ManagerLink>
 );
 
 const ShortcutsTile = ({ serviceName }: { serviceName: string }) => {
+  const navigate = useNavigate();
   const { data: hycuDetail } = useDetailsLicenseHYCU(serviceName);
   const { t } = useTranslation('hycu/dashboard');
 
   const links = {
     linkActivated: {
       id: 'link_activated',
-      value: <ShortcutsItem>{t('hycu_dashboard_link_activate')}</ShortcutsItem>,
+      value: (
+        <ShortcutsItem
+          iamActions={[IAM_ACTIONS.licenseHycuApiovhActivate]}
+          urn={hycuDetail?.data?.iam?.urn}
+          data-testid="hycu_link_activated_test_id"
+          onClick={() => {
+            navigate(
+              urls.activateLicense.replace(subRoutes.serviceName, serviceName),
+            );
+          }}
+        >
+          {t('hycu_dashboard_link_activate')}
+        </ShortcutsItem>
+      ),
     },
     linkReactivated: {
       id: 'link_reactivated',
