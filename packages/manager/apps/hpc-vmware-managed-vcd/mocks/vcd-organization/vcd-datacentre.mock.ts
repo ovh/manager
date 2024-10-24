@@ -17,7 +17,7 @@ export const datacentreList: IVcdDatacentre[] = [
     },
     currentTasks: [],
     targetSpec: {
-      description: 'VDC Description',
+      description: 'VDC Description targetSpec',
       vCPUSpeed: 3,
     },
     updatedAt: '2024-09-23T13:53:49Z',

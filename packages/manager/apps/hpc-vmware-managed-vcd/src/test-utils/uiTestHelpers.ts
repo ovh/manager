@@ -18,10 +18,10 @@ export const DEFAULT_LISTING_ERROR = 'An error occured while fetching data';
  * @param timeout time to wait for
  * @returns
  */
-export const checkTextVisibility = async (
+export const checkTextVisibility = (
   text: string,
   timeout = DEFAULT_TIMEOUT,
-) =>
+): Promise<void> =>
   waitFor(() => expect(screen.getByText(text)).toBeVisible(), {
     timeout,
   });
@@ -47,13 +47,13 @@ export const mockSubmitNewValue = async ({
 };
 
 // Modal helpers
-export const checkModalVisibility = async ({
+export const checkModalVisibility = ({
   container,
   isVisible,
 }: {
   container: HTMLElement;
   isVisible: boolean;
-}) =>
+}): Promise<void> =>
   waitFor(
     () => {
       const modal = container.querySelector('osds-modal');
@@ -64,19 +64,19 @@ export const checkModalVisibility = async ({
     { timeout: DEFAULT_TIMEOUT },
   );
 
-export const checkModalError = async ({
+export const checkModalError = ({
   container,
   error,
 }: {
   container: HTMLElement;
   error: string;
-}) =>
+}): Promise<void> =>
   waitFor(
     () =>
       expect(
-        within(
-          container.querySelector('osds-modal') as HTMLElement,
-        ).getByText(error, { exact: false }),
+        within(container.querySelector('osds-modal')).getByText(error, {
+          exact: false,
+        }),
       ).toBeVisible(),
     { timeout: DEFAULT_TIMEOUT },
   );
