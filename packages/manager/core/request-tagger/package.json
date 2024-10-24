@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/request-tagger",
   "version": "0.3.0",
+  "private": true,
   "description": "OVHcloud control panel Request tagger",
   "repository": {
     "type": "git",
@@ -19,8 +20,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "dev:watch": "tsc -w",
-    "prepare": "tsc"
+    "dev:watch": "tsc -w"
   },
   "devDependencies": {
     "typescript": "^5.1.6"

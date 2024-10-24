@@ -16,7 +16,6 @@
     "declarationDir": "./dist/types",
     "jsx": "react-jsx"
   },
-
   "files": ["global.d.ts"],
   "include": ["src/**/*", "*.spec.tsx"],
   "exclude": ["./src/**/*.stories.*"]

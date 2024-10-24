@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/manager-react-shell-client",
   "version": "0.7.5",
+  "private": true,
   "description": "",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -14,7 +15,6 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "prepare": "tsc",
     "start:watch": "tsc -w"
   },
   "dependencies": {
