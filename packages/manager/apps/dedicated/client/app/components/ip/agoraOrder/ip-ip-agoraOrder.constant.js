@@ -1,5 +1,5 @@
-export const TRACKING_PREFIX = 'dedicated::ip::dashboard::order::';
-
+export const TRACKING_PREFIX = 'DedicatedServers::network::ip::';
+export const FUNNEL_TRACKING_PREFIX = `${TRACKING_PREFIX}funnel::`;
 export const IP_TYPE = {
   IPv4: 'ipv4',
   IPv6: 'ipv6',
@@ -22,6 +22,7 @@ export const IP_FAILOVER_PLANCODE = {
 export default {
   ADDITIONAL_IP,
   TRACKING_PREFIX,
+  FUNNEL_TRACKING_PREFIX,
   IP_FAILOVER_PLANCODE,
   IP_TYPE_TITLE,
   DASHBOARD_STATE_NAME,
