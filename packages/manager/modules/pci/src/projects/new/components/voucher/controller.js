@@ -64,7 +64,7 @@ export default class PciProjectNewVoucherCtrl {
   }
 
   getFormatCreditText() {
-    return `<span class="text-success">${this.voucherEligibility.voucher.credit.text}</span>`;
+    return `<span class="text-success">${this.model?.voucher?.credit.text}</span>`;
   }
 
   submitVoucher() {
