@@ -106,9 +106,6 @@ export default function EditNetworkPage() {
           ),
         });
         await queryClient.invalidateQueries({
-          queryKey: getKubernetesClusterQuery(projectId, kubeId),
-        });
-        await queryClient.invalidateQueries({
           queryKey: getAllKubeQueryKey(projectId),
         });
         onClose();
