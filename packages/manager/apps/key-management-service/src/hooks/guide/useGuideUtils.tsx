@@ -1,9 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { GUIDE_LIST } from './guidesLinks.constant';
-
-const helpCenterUrl = 'https://help.ovhcloud.com';
+import { GUIDE_LIST, SUPPORT_URL } from './guidesLinks.constant';
 
 type GetGuideLinkProps = {
   name?: string;
@@ -17,7 +15,8 @@ function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
     const guide =
       GUIDE_LIST[key[0]][subsidiary as CountryCode] || GUIDE_LIST[key[0]].GB;
 
-    list[key[0]] = helpCenterUrl + guide;
+    const helpCenterUrl = SUPPORT_URL[subsidiary] ?? SUPPORT_URL.EU;
+    list[key[0]] = `${helpCenterUrl}${guide}`;
   });
   return list;
 }
