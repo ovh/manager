@@ -100,8 +100,9 @@ describe('useProducts', () => {
       },
     );
 
-    await waitFor(() => {
-      expect(result.current.products[0].link).toBeNull();
+    await waitFor(async () => {
+      const link = await result.current.products[0].link;
+      expect(link).toBeNull();
     });
   });
 
