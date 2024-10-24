@@ -79,7 +79,10 @@ export default function ServicesActions({
           {items.map((item, index) => {
             const { disabled, external, ...link } = item;
             return (
-              <div key={`service_action_${service.domain}_${index}`}>
+              <div
+                className="text-left"
+                key={`service_action_${service.domain}_${index}`}
+              >
                 {index > 0 && <OsdsDivider size={ODS_DIVIDER_SIZE.four} />}
                 <OsdsLink
                   color={ODS_THEME_COLOR_INTENT.primary}
