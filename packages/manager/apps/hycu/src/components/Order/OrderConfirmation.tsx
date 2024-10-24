@@ -19,18 +19,24 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { urls } from '@/routes/routes.constant';
 
 type OrderConfirmationProps = {
+  description: string;
+  doneLabel: string;
+  info: string;
   orderLink: string;
+  title: string;
+  onClickDone: () => void;
 };
 
-const OrderConfirmation = ({ orderLink }: OrderConfirmationProps) => {
-  const { t } = useTranslation('hycu/order');
-  const navigate = useNavigate();
-
+const OrderConfirmation = ({
+  description,
+  doneLabel,
+  info,
+  orderLink,
+  title,
+  onClickDone,
+}: OrderConfirmationProps) => {
   return (
     <>
       <OsdsTile className="mb-8">
@@ -41,14 +47,14 @@ const OrderConfirmation = ({ orderLink }: OrderConfirmationProps) => {
               size={ODS_THEME_TYPOGRAPHY_SIZE._600}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {t('hycu_order_initiated_title')}
+              {title}
             </OsdsText>
             <OsdsText
               level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
               size={ODS_THEME_TYPOGRAPHY_SIZE._800}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {t('hycu_order_initiated_description')}
+              {description}
             </OsdsText>
             <OsdsLink
               color={ODS_THEME_COLOR_INTENT.primary}
@@ -73,7 +79,7 @@ const OrderConfirmation = ({ orderLink }: OrderConfirmationProps) => {
               size={ODS_THEME_TYPOGRAPHY_SIZE._800}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {t('hycu_order_initiated_info')}
+              {info}
             </OsdsText>
           </div>
         </span>
@@ -83,11 +89,9 @@ const OrderConfirmation = ({ orderLink }: OrderConfirmationProps) => {
         size={ODS_BUTTON_SIZE.md}
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={() => {
-          navigate(urls.listing);
-        }}
+        onClick={onClickDone}
       >
-        {t('hycu_order_initiated_cta_done')}
+        {doneLabel}
       </OsdsButton>
     </>
   );

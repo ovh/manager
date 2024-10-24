@@ -75,6 +75,17 @@ export const Routes: any = [
           },
         },
       },
+      {
+        id: 'edit',
+        path: urls.edit,
+        ...lazyRouteConfig(() => import('@/pages/edit/Edit.page')),
+        handle: {
+          tracking: {
+            pageName: 'edit',
+            pageType: PageType.dashboard,
+          },
+        },
+      },
     ],
   },
   {
