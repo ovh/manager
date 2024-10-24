@@ -773,5 +773,7 @@
   "ip_table_manage_modify_ipv6block_reverse": "Zmień rewers",
   "ip_filter_services_title_parking": "Parking",
   "ip_virtualmac_not_available_failure": "Wirtualny adres MAC będzie dostępny na tym serwerze od grudnia 2024",
-  "ip_virtualmac_not_available_failure_details": "Aby uzyskać więcej informacji na temat zarządzania wirtualnymi adresami IP i MAC w OVHcloud, zapoznaj się z przewodnikami konfiguracji sieci: {{proxmoxLink}} i {{windowsServerLink}}. Dokument ten wyjaśnia, jak skonfigurować serwery OVHcloud w celu zoptymalizowania wydajności sieci w środowiskach zwirtualizowanych przy użyciu Proxmox VE, za pomocą technik, takich jak routing dodatkowych adresów IP przez vRack."
+  "ip_virtualmac_not_available_failure_details": "Aby uzyskać więcej informacji na temat zarządzania wirtualnymi adresami IP i MAC w OVHcloud, zapoznaj się z przewodnikami konfiguracji sieci: {{proxmoxLink}} i {{windowsServerLink}}. Dokument ten wyjaśnia, jak skonfigurować serwery OVHcloud w celu zoptymalizowania wydajności sieci w środowiskach zwirtualizowanych przy użyciu Proxmox VE, za pomocą technik, takich jak routing dodatkowych adresów IP przez vRack.",
+  "ip_byoip_delete_block_description_info1": "Ten blok IP jest częścią większego bloku BYOIP. Przejdź do sekcji <a href='{{ link }}'>Moje usługi</a> i wybierz opcję „Rezygnacja”, jeśli chcesz anulować usługę BYOIP.",
+  "ip_byoip_delete_block_description_info2": "Ten blok IP jest częścią większego bloku BYOIP. Skorzystaj z API <a href=\"{{ link }}\" target=\"_blank\">(link)</a>, jeśli chcesz anulować usługę BYOIP."
 }

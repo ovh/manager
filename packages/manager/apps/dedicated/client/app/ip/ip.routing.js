@@ -11,6 +11,7 @@ import {
 } from './ip.constant';
 
 const allowByoipFeatureName = 'ip:byoip';
+const allowDeleteByoipService = 'ip:deleteByoipService';
 
 export const listRouting = {
   reloadOnSearch: false,
@@ -143,6 +144,12 @@ export default /* @ngInject */ ($stateProvider) => {
         ovhFeatureFlipping
           .checkFeatureAvailability(allowByoipFeatureName)
           .then((feature) => feature.isFeatureAvailable(allowByoipFeatureName)),
+      isDeleteByoipServiceAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(allowDeleteByoipService)
+          .then((feature) =>
+            feature.isFeatureAvailable(allowDeleteByoipService),
+          ),
       goToByoipConfiguration: /* @ngInject */ ($state) => () => {
         return $state.go('app.ip.byoip');
       },
