@@ -2,10 +2,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
 import * as database from '@/types/cloud/project/database';
 import { NAMESPACES_CONFIG } from './namespace.constants';
-import { durationISOStringToShortTime } from '@/lib/durationHelper';
+import {
+  durationISOStringToShortTime,
+  durationStringToSeconds,
+} from '@/lib/durationHelper';
 
 export interface UseNamespaceFormProps {
   existingNamespaces: database.m3db.Namespace[];
@@ -55,26 +57,58 @@ export const useNamespaceForm = ({
   const mandatoryShortTimeRules = shortTimeRules.min(
     NAMESPACES_CONFIG.name.min,
     {
-      message: t('formNamespaceErrorMinLength', {
-        min: NAMESPACES_CONFIG.name.min,
-      }),
+      message: t('formNamespaceErrorMandatoryField'),
     },
   );
 
   const typeRules = z.nativeEnum(database.m3db.namespace.TypeEnum);
 
-  const schema = z.object({
-    name: nameRules,
-    resolution: mandatoryShortTimeRules,
-    blockDataExpirationDuration: optionalShortTimeRules,
-    blockSizeDuration: optionalShortTimeRules,
-    bufferFutureDuration: optionalShortTimeRules,
-    bufferPastDuration: optionalShortTimeRules,
-    periodDuration: mandatoryShortTimeRules,
-    snapshotEnabled: z.boolean().optional(),
-    type: typeRules,
-    writesToCommitLogEnabled: z.boolean().optional(),
-  });
+  const setContextIssue = (
+    context: z.RefinementCtx,
+    message: string,
+    path: string[],
+  ) => {
+    context.addIssue({
+      code: z.ZodIssueCode.custom,
+      message,
+      path,
+    });
+  };
+
+  const schema = z
+    .object({
+      name: nameRules,
+      periodDuration: mandatoryShortTimeRules,
+      resolution: optionalShortTimeRules,
+      blockDataExpirationDuration: optionalShortTimeRules,
+      blockSizeDuration: optionalShortTimeRules,
+      bufferFutureDuration: optionalShortTimeRules,
+      bufferPastDuration: optionalShortTimeRules,
+      snapshotEnabled: z.boolean().optional(),
+      type: typeRules,
+      writesToCommitLogEnabled: z.boolean().optional(),
+    })
+    .superRefine((values, context) => {
+      if (
+        values.type === database.m3db.namespace.TypeEnum.aggregated &&
+        !values.resolution
+      ) {
+        setContextIssue(context, t('formNamespaceErrorMandatoryField'), [
+          'resolution',
+        ]);
+      }
+      if (
+        values.type === database.m3db.namespace.TypeEnum.aggregated &&
+        durationStringToSeconds(values.periodDuration) <
+          durationStringToSeconds(values.resolution)
+      ) {
+        setContextIssue(
+          context,
+          t('formNamespaceDurationResolutionErrorPattern'),
+          ['resolution'],
+        );
+      }
+    });
 
   type ValidationSchema = z.infer<typeof schema>;
 

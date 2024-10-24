@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 
 import { ChevronDown, ChevronRight, HelpCircle } from 'lucide-react';
+import { useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -156,7 +156,9 @@ const AddEditNamespace = ({
           retention: retentionFormValues,
           snapshotEnabled: formValues.snapshotEnabled,
           writesToCommitLogEnabled: formValues.writesToCommitLogEnabled,
-          resolution: convertDurationStringToISODuration(formValues.resolution),
+          resolution: formValues.resolution
+            ? convertDurationStringToISODuration(formValues.resolution)
+            : null,
         },
       });
     } else {
@@ -170,7 +172,9 @@ const AddEditNamespace = ({
         namespace: {
           name: formValues.name,
           retention: retentionFormValues,
-          resolution: convertDurationStringToISODuration(formValues.resolution),
+          resolution: formValues.resolution
+            ? convertDurationStringToISODuration(formValues.resolution)
+            : null,
           type: formValues.type,
           snapshotEnabled: formValues.snapshotEnabled,
           writesToCommitLogEnabled: formValues.writesToCommitLogEnabled,

@@ -1,6 +1,5 @@
-import { useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
-
+import { useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -12,9 +11,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
-
 import { ModalController } from '@/hooks/useModale';
-
 import * as database from '@/types/cloud/project/database';
 import { useDeleteNamespace } from '@/hooks/api/database/namespace/useDeleteNamespace.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';

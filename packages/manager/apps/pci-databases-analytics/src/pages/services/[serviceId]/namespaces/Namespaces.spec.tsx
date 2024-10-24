@@ -235,7 +235,7 @@ describe('Open modals', () => {
         screen.getByTestId('add-edit-namespaces-resolution-input'),
         {
           target: {
-            value: '48H',
+            value: '1D',
           },
         },
       );
@@ -243,7 +243,7 @@ describe('Open modals', () => {
         screen.getByTestId('add-edit-namespaces-retention-input'),
         {
           target: {
-            value: '1D',
+            value: '48H',
           },
         },
       );

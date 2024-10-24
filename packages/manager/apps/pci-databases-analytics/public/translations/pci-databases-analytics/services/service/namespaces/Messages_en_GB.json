@@ -33,7 +33,7 @@
   "formNamespaceFieldPeriodDurationLabel": "Retention period ",
   "formNamespaceFieldPeriodDurationPlaceholder": "E.g.: 48H",
   "formNamespaceFieldDurationDescription": "Examples: 20S, 10m, 24H, 2D",
-  "formNamespaceFieldDurationPlaceholder": "10m",
+  "formNamespaceFieldDurationPlaceholder": "E.g: 10m",
   "formNamespaceFieldPeriodDurationDescription": "The data retention duration for the namespace in short time format.",
   "formNamespaceFieldResolutionLabel": "Resolution",
   "formNamespaceFieldResolutionPlaceholder": "E.g.: 1 day",
@@ -55,5 +55,6 @@
   "editNamespaceToastSuccessDescription": "The namespace {{name}} has been modified",
   "editNamespaceTitle": "Modify a namespace",
   "editNamespaceButtonConfirm": "Modify this namespace",
-  "editNamespaceToastErrorTitle": "An error occurred while modifying the namespace"
+  "editNamespaceToastErrorTitle": "An error occurred while modifying the namespace",
+  "formNamespaceErrorMandatoryField": "This field is mandatory"
 }

@@ -63,3 +63,26 @@ export function durationToISODurationString(durationTime: Duration) {
 export function convertDurationStringToISODuration(durationTime: string) {
   return durationToISODurationString(durationStringToDuration(durationTime));
 }
+
+export function durationStringToSeconds(durationString: string) {
+  const pattern = /(\d+Y)?(\d+M)?(\d+D)?(\d+H)?(\d+m)?(\d+S)?/;
+  const matches = pattern.exec(durationString);
+
+  const timeUnits = [
+    { unit: 'Y', factor: 31536000 }, // Year in seconds
+    { unit: 'M', factor: 2628000 }, // Month in seconds
+    { unit: 'D', factor: 86400 }, // Day in seconds
+    { unit: 'H', factor: 3600 }, // Hour in seconds
+    { unit: 'm', factor: 60 }, // Minute in seconds
+    { unit: 'S', factor: 1 }, // Second in seconds
+  ];
+
+  let totalSeconds = 0;
+
+  timeUnits.forEach((timeUnit, index) => {
+    const value = matches[index + 1] ? parseInt(matches[index + 1], 10) : 0;
+    totalSeconds += value * timeUnit.factor;
+  });
+
+  return totalSeconds;
+}
