@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import * as ApiKubernetesModule from '@/api/data/kubernetes';
 import {
@@ -62,6 +62,53 @@ describe('useKubernetesCluster', () => {
     );
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     expect(result.current.data).toEqual({ ...mockData, isClusterReady: true });
+  });
+  it('refetches data if the cluster is not ready', async () => {
+    const projectId = 'project1';
+    const kubeId = 'kube1';
+    const refetchIntervalTime = 1000;
+    const mockData = {
+      id: 'kube1',
+      name: 'Kube 1',
+      status: 'NOT_READY',
+    } as TKube;
+
+    vi.spyOn(ApiKubernetesModule, 'getKubernetesCluster').mockResolvedValue(
+      mockData,
+    );
+
+    const { result } = renderHook(
+      () => useKubernetesCluster(projectId, kubeId, refetchIntervalTime),
+      { wrapper },
+    );
+
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+
+    await waitFor(() =>
+      expect(ApiKubernetesModule.getKubernetesCluster).toHaveBeenCalledTimes(2),
+    );
+  });
+  it('does not refetch data if the cluster is ready', async () => {
+    const projectId = 'project1';
+    const kubeId = 'kube1';
+    const refetchIntervalTime = 1000;
+    const mockData = { id: 'kube1', name: 'Kube 1', status: 'READY' } as TKube;
+
+    vi.spyOn(ApiKubernetesModule, 'getKubernetesCluster').mockResolvedValue(
+      mockData,
+    );
+
+    const { result } = renderHook(
+      () => useKubernetesCluster(projectId, kubeId, refetchIntervalTime),
+      { wrapper },
+    );
+
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    await waitFor(() =>
+      expect(ApiKubernetesModule.getKubernetesCluster).toHaveBeenCalledTimes(1),
+    );
   });
 });
 

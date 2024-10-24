@@ -113,7 +113,11 @@ export function getKubernetesClusterQuery(projectId: string, kubeId: string) {
   return ['project', projectId, 'kube', kubeId];
 }
 
-export const useKubernetesCluster = (projectId: string, kubeId: string) =>
+export const useKubernetesCluster = (
+  projectId: string,
+  kubeId: string,
+  refetchIntervalTime?: number,
+) =>
   useQuery({
     queryKey: getKubernetesClusterQuery(projectId, kubeId),
     queryFn: () => getKubernetesCluster(projectId, kubeId),
@@ -121,6 +125,16 @@ export const useKubernetesCluster = (projectId: string, kubeId: string) =>
       ...data,
       isClusterReady: data.status === STATUS.READY,
     }),
+    refetchInterval(query) {
+      if (!refetchIntervalTime) {
+        return false;
+      }
+      const ready = query.state.data?.status === STATUS.READY;
+      if (!ready) {
+        return refetchIntervalTime;
+      }
+      return false;
+    },
   });
 
 type RenameKubernetesClusterProps = {
@@ -214,7 +228,11 @@ export const useUpdateKubePolicy = ({
   };
 };
 
-export const useKubeDetail = (projectId: string, kubeId: string) => {
+export const useKubeDetail = (
+  projectId: string,
+  kubeId: string,
+  refetchOnInterval?: number,
+) => {
   const { t } = useTranslation('listing');
 
   const {
@@ -222,7 +240,7 @@ export const useKubeDetail = (projectId: string, kubeId: string) => {
     error: kubeError,
     isLoading: isKubeLoading,
     isPending: isKubePending,
-  } = useKubernetesCluster(projectId, kubeId);
+  } = useKubernetesCluster(projectId, kubeId, refetchOnInterval);
 
   const {
     data: privateNetworks,
