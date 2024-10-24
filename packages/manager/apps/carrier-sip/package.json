@@ -33,7 +33,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.1",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^7.28.4",
     "@ovh-ux/ng-translate-async-loader": "^2.2.1",
-    "@ovh-ux/request-tagger": "^0.4.0-alpha.0",
+    "@ovh-ux/request-tagger": "^0.3.0",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.22",
     "CSV-JS": "^1.2.0",

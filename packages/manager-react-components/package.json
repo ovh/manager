@@ -26,8 +26,8 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@ovh-ux/manager-core-api": "^0.8.1-alpha.1",
-    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.1",
+    "@ovh-ux/manager-core-api": "^0.8.0",
+    "@ovh-ux/manager-react-shell-client": "^0.7.5",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
     "@ovhcloud/ods-components": "17.2.2",
