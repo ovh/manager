@@ -39,10 +39,22 @@ export const getAllKubeQueryKey = (projectId: string) => [
   'kube',
 ];
 
-export const useAllKube = (projectId: string) =>
+export const useAllKube = (projectId: string, refetchIntervalTime?: number) =>
   useQuery({
     queryKey: getAllKubeQueryKey(projectId),
     queryFn: (): Promise<Required<TKube[]>> => getAllKube(projectId),
+    refetchInterval(query) {
+      if (!refetchIntervalTime) {
+        return false;
+      }
+      const notAllReady = query.state.data?.some(
+        (data) => data.status !== 'READY',
+      );
+      if (notAllReady) {
+        return refetchIntervalTime;
+      }
+      return false;
+    },
   });
 
 export const useKubes = (
@@ -57,7 +69,7 @@ export const useKubes = (
     error: allKubeError,
     isLoading: isAllKubeLoading,
     isPending: isAllKubePending,
-  } = useAllKube(projectId);
+  } = useAllKube(projectId, 5000);
 
   const {
     data: privateNetworks,
@@ -101,7 +113,11 @@ export function getKubernetesClusterQuery(projectId: string, kubeId: string) {
   return ['project', projectId, 'kube', kubeId];
 }
 
-export const useKubernetesCluster = (projectId: string, kubeId: string) =>
+export const useKubernetesCluster = (
+  projectId: string,
+  kubeId: string,
+  refetchIntervalTime?: number,
+) =>
   useQuery({
     queryKey: getKubernetesClusterQuery(projectId, kubeId),
     queryFn: () => getKubernetesCluster(projectId, kubeId),
@@ -109,6 +125,16 @@ export const useKubernetesCluster = (projectId: string, kubeId: string) =>
       ...data,
       isClusterReady: data.status === STATUS.READY,
     }),
+    refetchInterval(query) {
+      if (!refetchIntervalTime) {
+        return false;
+      }
+      const ready = query.state.data?.status === STATUS.READY;
+      if (!ready) {
+        return refetchIntervalTime;
+      }
+      return false;
+    },
   });
 
 type RenameKubernetesClusterProps = {
@@ -131,9 +157,6 @@ export const useRenameKubernetesCluster = ({
       updateKubernetesCluster(projectId, kubeId, { name }),
     onError,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: getKubernetesClusterQuery(projectId, kubeId),
-      });
       await queryClient.invalidateQueries({
         queryKey: getAllKubeQueryKey(projectId),
       });
@@ -164,7 +187,7 @@ export const useResetKubeConfig = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: getKubernetesClusterQuery(projectId, kubeId),
+        queryKey: getAllKubeQueryKey(projectId),
       });
       onSuccess();
     },
@@ -194,7 +217,7 @@ export const useUpdateKubePolicy = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: getKubernetesClusterQuery(projectId, kubeId),
+        queryKey: getAllKubeQueryKey(projectId),
       });
       onSuccess();
     },
@@ -205,7 +228,11 @@ export const useUpdateKubePolicy = ({
   };
 };
 
-export const useKubeDetail = (projectId: string, kubeId: string) => {
+export const useKubeDetail = (
+  projectId: string,
+  kubeId: string,
+  refetchOnInterval?: number,
+) => {
   const { t } = useTranslation('listing');
 
   const {
@@ -213,7 +240,7 @@ export const useKubeDetail = (projectId: string, kubeId: string) => {
     error: kubeError,
     isLoading: isKubeLoading,
     isPending: isKubePending,
-  } = useKubernetesCluster(projectId, kubeId);
+  } = useKubernetesCluster(projectId, kubeId, refetchOnInterval);
 
   const {
     data: privateNetworks,
@@ -313,7 +340,7 @@ export const useUpdateKubeVersion = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: getKubernetesClusterQuery(projectId, kubeId),
+        queryKey: getAllKubeQueryKey(projectId),
       });
       onSuccess();
     },
@@ -341,9 +368,6 @@ export const useTerminateCluster = ({
     mutationFn: async () => terminateCluster(projectId, kubeId),
     onError,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: getKubernetesClusterQuery(projectId, kubeId),
-      });
       await queryClient.invalidateQueries({
         queryKey: getAllKubeQueryKey(projectId),
       });
@@ -378,9 +402,7 @@ export const useResetCluster = ({
       await queryClient.invalidateQueries({
         queryKey: ['region-subnets', projectId],
       });
-      await queryClient.invalidateQueries({
-        queryKey: getKubernetesClusterQuery(projectId, kubeId),
-      });
+
       await queryClient.invalidateQueries({
         queryKey: getAllKubeQueryKey(projectId),
       });
@@ -413,7 +435,7 @@ export const useAddOidcProvider = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: getKubernetesClusterQuery(projectId, kubeId),
+        queryKey: getAllKubeQueryKey(projectId),
       });
       onSuccess();
     },
@@ -444,7 +466,7 @@ export const useUpdateOidcProvider = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: getKubernetesClusterQuery(projectId, kubeId),
+        queryKey: getAllKubeQueryKey(projectId),
       });
       onSuccess();
     },
@@ -473,7 +495,7 @@ export const useRemoveOidcProvider = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: getKubernetesClusterQuery(projectId, kubeId),
+        queryKey: getAllKubeQueryKey(projectId),
       });
       onSuccess();
     },
@@ -528,6 +550,9 @@ export const useCreateSubscription = ({
       await queryClient.invalidateQueries({
         queryKey: getSubscribedLogsQueryKey(projectId, kubeId, 'audit'),
       });
+      await queryClient.invalidateQueries({
+        queryKey: getAllKubeQueryKey(projectId),
+      });
       onSuccess();
     },
   });
@@ -564,6 +589,7 @@ export const useRemoveSubscription = ({
       await queryClient.invalidateQueries({
         queryKey: getSubscribedLogsQueryKey(projectId, kubeId, 'audit'),
       });
+
       onSuccess();
     },
   });
