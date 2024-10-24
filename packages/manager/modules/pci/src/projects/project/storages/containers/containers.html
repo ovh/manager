@@ -136,7 +136,14 @@
                     data-ng-if="$value > 0"
                     data-ng-bind="$value | RAUnitsBits"
                 ></span>
-                <span data-ng-if="!$value">-</span>
+                <span
+                    data-ng-if="!$value && $row.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_LOCAL_ZONE"
+                    >n/a</span
+                >
+                <span
+                    data-ng-if="!$value && $row.deploymentMode !== $ctrl.OBJECT_CONTAINER_MODE_LOCAL_ZONE"
+                    >-</span
+                >
             </oui-datagrid-column>
 
             <oui-datagrid-column
