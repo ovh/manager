@@ -55,5 +55,7 @@
   "savingsPlanCTA": "Ihre Savings Plans konfigurieren",
   "createRancherOfferDescription": "Mit mindestens 20 abgerechneten vCPUs pro Rancher",
   "createRancherErrorInternalServerError": "Bei der Erstellung Ihres Managed Rancher Dienstes ist ein Fehler aufgetreten.",
-  "createRancherErrorInternalServerBadRequestChangePlan": "Beim Wechsel des Angebots Ihres Managed Rancher Service ist ein Fehler aufgetreten. Sie verwenden derzeit Treiber, die im Angebot {{plan}}: {{drivers}} nicht unterstützt werden"
+  "createRancherErrorInternalServerBadRequestChangePlan": "Beim Wechsel des Angebots Ihres Managed Rancher Service ist ein Fehler aufgetreten. Sie verwenden derzeit Treiber, die im Angebot {{plan}}: {{drivers}} nicht unterstützt werden",
+  "badRequestSwitchPlan": "Beim Wechsel des Angebots Ihres Managed Rancher Service ist ein Fehler aufgetreten. Sie verwenden derzeit Treiber, die im Angebot {{plan}}: {{drivers}} nicht unterstützt werden",
+  "rancherError": "Es ist ein Fehler aufgetreten."
 }
