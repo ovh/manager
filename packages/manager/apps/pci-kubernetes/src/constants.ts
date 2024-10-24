@@ -44,8 +44,12 @@ export const KUBECONFIG_URL =
 export const KUBECTL_URL =
   'https://kubernetes.io/docs/reference/kubectl/overview/';
 
-export const KUBE_INSTALL_URL =
-  'https://docs.ovh.com/gb/en/kubernetes/installing-kubernetes-dashboard/';
+export const KUBE_INSTALL_URL = {
+  DEFAULT:
+    'https://docs.ovh.com/gb/en/kubernetes/installing-kubernetes-dashboard/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/1500004918182-Installing-the-Kubernetes-Dashboard-on-OVHcloud-Managed-Kubernetes',
+};
 
 export const PROCESSING_STATUS = [
   'INSTALLING',
