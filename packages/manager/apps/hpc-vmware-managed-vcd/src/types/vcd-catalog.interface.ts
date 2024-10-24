@@ -1,32 +1,36 @@
 import { Price } from '@ovh-ux/manager-module-order';
 
-export enum ProductPricingCapacity {
-  CONSUMPTION = 'consumption',
-  DETACH = 'detach',
-  DOWNGRADE = 'downgrade',
-  DYNAMIC = 'dynamic',
-  INSTALLATION = 'installation',
-  RENEW = 'renew',
-  UPGRADE = 'upgrade',
-}
-enum ProductPricingType {
-  CONSUMPTION = 'consumption',
-  PURCHASE = 'purchase',
-  RENTAL = 'rental',
-}
-enum CatalogProductType {
-  CLOUD_SERVICE = 'cloud_service',
-  DELIVERY = 'delivery',
-  DEPOSIT = 'deposit',
-  DOMAIN = 'domain',
-  IMPLEMENTATION_SERVICES = 'implementation_servies',
-  SAAS_LICENSE = 'saas_license',
-  SHIPPING = 'shipping',
-  STORAGE = 'storage',
-}
+type ObjectValues<T> = T[keyof T];
+
+const pricingCapacity = {
+  CONSUMPTION: 'consumption',
+  DETACH: 'detach',
+  DOWNGRADE: 'downgrade',
+  DYNAMIC: 'dynamic',
+  INSTALLATION: 'installation',
+  RENEW: 'renew',
+  UPGRADE: 'upgrade',
+} as const;
+
+const productPricingType = {
+  CONSUMPTION: 'consumption',
+  PURCHASE: 'purchase',
+  RENTAL: 'rental',
+} as const;
+
+const catalogProduct = {
+  CLOUD_SERVICE: 'cloud_service',
+  DELIVERY: 'delivery',
+  DEPOSIT: 'deposit',
+  DOMAIN: 'domain',
+  IMPLEMENTATION_SERVICES: 'implementation_servies',
+  SAAS_LICENSE: 'saas_license',
+  SHIPPING: 'shipping',
+  STORAGE: 'storage',
+} as const;
 
 export interface IVcdCatalogProductPricing {
-  capacities: ProductPricingCapacity[];
+  capacities: ObjectValues<typeof pricingCapacity>[];
   description: string;
   duration: unknown;
   interval: number;
@@ -37,14 +41,14 @@ export interface IVcdCatalogProductPricing {
   price: Price;
   priceInUcents: number;
   pricingMode: string;
-  pricingType: ProductPricingType;
+  pricingType: ObjectValues<typeof productPricingType>;
 }
 
 export interface IVcdCatalogProduct {
   family: string;
   planCode: string;
   productName: string;
-  productType: CatalogProductType;
+  productType: ObjectValues<typeof catalogProduct>;
   prices: IVcdCatalogProductPricing[];
   exclusive: boolean;
   mandatory: boolean;

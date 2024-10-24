@@ -1,4 +1,5 @@
 import { IamCheckResponse } from '@ovh-ux/manager-react-components';
+import { datacentreList } from '../vcd-organization/vcd-datacentre.mock';
 import { organizationList } from '../vcd-organization/vcd-organization.mock';
 import { iamActions } from '@/utils/iam.constants';
 
@@ -15,6 +16,13 @@ export const resourceList: IamCheckResponse[] = [
     urn: organizationList[1].iam.urn,
     authorizedActions: [
       iamActions.vmwareCloudDirectorApiovhOrganizationEdit,
+      iamActions.vmwareCloudDirectorApiovhOrganizationVirtualDataCenterEdit,
+    ],
+    unauthorizedActions: [],
+  },
+  {
+    urn: datacentreList[0].iam.urn,
+    authorizedActions: [
       iamActions.vmwareCloudDirectorApiovhOrganizationVirtualDataCenterEdit,
     ],
     unauthorizedActions: [],
