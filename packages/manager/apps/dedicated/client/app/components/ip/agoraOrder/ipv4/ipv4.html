@@ -12,7 +12,7 @@
             data-valid="$ctrl.model.selectedService"
             data-editable="!$ctrl.isLoading"
             data-navigation="$ctrl.model.selectedService"
-            data-on-focus="$ctrl.onFlavorFocus()"
+            data-on-focus="$ctrl.model.selectedService && $ctrl.onEditStep('service')"
             data-on-submit="$ctrl.onIpServiceSelection()"
         >
             <div data-ng-show="$ctrl.loading.services" class="text-center">
@@ -69,7 +69,7 @@
             data-valid="$ctrl.model.selectedRegion"
             data-editable="!$ctrl.isLoading"
             data-navigation="$ctrl.model.selectedRegion"
-            data-on-focus="$ctrl.onFlavorFocus()"
+            data-on-focus="$ctrl.model.selectedRegion && $ctrl.onEditStep('location')"
             data-on-submit="$ctrl.manageLoadIpOffers()"
         >
             <div data-ng-show="$ctrl.loading.region" class="text-center">
@@ -85,6 +85,7 @@
                     data-variant="light"
                     data-picture="{{ ::region.icon }}"
                     data-model="$ctrl.model.selectedRegion"
+                    data-ng-click="trackParkingLocation()"
                     data-values="[region]"
                 >
                 </oui-select-picker>
@@ -99,6 +100,7 @@
             data-header="{{:: 'ip_agora_table_header_offer' | translate }}"
             data-navigation="$ctrl.model.params.selectedOffer"
             data-editable="!$ctrl.isLoading"
+            data-on-focus="$ctrl.model.params.selectedOffer && $ctrl.onEditStep('solution')"
             data-valid="$ctrl.model.params.selectedOffer"
         >
             <div data-ng-show="$ctrl.loading.ipOffers" class="text-center">
@@ -233,6 +235,7 @@
             data-header="{{:: 'ip_agora_ipv4_localisation_title' | translate }}"
             data-navigation="$ctrl.model.params.selectedCountry"
             data-editable="!$ctrl.isLoading"
+            data-on-focus="$ctrl.model.params.selectedCountry && $ctrl.onEditStep('location_ip_address')"
             data-valid="$ctrl.model.params.selectedCountry"
             data-submit-text="{{($ctrl.model.params.selectedOffer.isIpBlockOffer && !$ctrl.isPrivateCloudOffer ? 'ip_agora_table_next_text' : 'ip_agora_table_submit_text') | translate }}"
         >
@@ -322,6 +325,7 @@
                 </select>
                 <a
                     class="oui-link mb-4"
+                    data-ng-click="$ctrl.trackOrganisationLink($event)"
                     data-ui-sref="app.ip.organisation"
                     data-translate="ip_order_no_organisation_2"
                 ></a>
