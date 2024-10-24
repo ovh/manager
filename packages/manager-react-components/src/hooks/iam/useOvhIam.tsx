@@ -50,8 +50,9 @@ export function useAuthorizationIam(
   const { data, ...query } = useQuery({
     queryKey: [urn, actions],
     queryFn: () => fetchAuthorizationCheck(actions, urn),
-    enabled:
+    enabled: Boolean(
       urn && urn.length > 0 && actions && actions.length > 0 && isTrigger,
+    ),
     placeholderData: keepPreviousData,
   });
 
