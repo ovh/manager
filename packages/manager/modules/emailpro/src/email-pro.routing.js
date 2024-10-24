@@ -9,9 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('resources')
-        .then((resources) =>
-          resources.data.length === 0
+        .getAsync('noFiltersEmailPro')
+        .then((noFiltersEmailPro) =>
+          noFiltersEmailPro.data.length === 0
             ? { state: 'email-pro.onboarding' }
             : false,
         ),
@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
       apiPath: () => '/email/pro',
       dataModel: () => 'email.pro.Service',
       defaultFilterColumn: () => 'domain',
+      noFiltersEmailPro: /* @ngInject */ ($http) => $http.get('/email/pro'),
       header: /* @ngInject */ ($translate) =>
         $translate.instant('email_pro_title'),
       customizableColumns: () => true,

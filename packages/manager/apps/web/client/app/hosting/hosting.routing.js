@@ -10,9 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('resources')
-        .then((resources) =>
-          resources.data.length === 0
+        .getAsync('noFiltersHosting')
+        .then((noFiltersHosting) =>
+          noFiltersHosting.data.length === 0
             ? { state: 'app.hosting.onboarding' }
             : false,
         ),
@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/hosting/web',
       dataModel: () => 'hosting.web.Service',
+      noFiltersHosting: /* @ngInject */ ($http) => $http.get('/hosting/web'),
       loadResource: /* @ngInject */ ($translate) => (resource) => {
         const offerPrefix = NEW_OFFERS_NAME[resource.offer];
         const offerName = offerPrefix

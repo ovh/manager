@@ -8,9 +8,9 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('resources')
-        .then((resources) =>
-          resources.data.length === 0
+        .getAsync('noFilterPrivateDatabase')
+        .then((noFilterPrivateDatabase) =>
+          noFilterPrivateDatabase.data.length === 0
             ? { state: 'app.private-database.onboarding' }
             : false,
         ),
@@ -18,6 +18,8 @@ export default /* @ngInject */ ($stateProvider) => {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/hosting/privateDatabase',
       dataModel: () => 'hosting.privateDatabase.Service',
+      noFilterPrivateDatabase: /* @ngInject */ ($http) =>
+        $http.get('/hosting/privateDatabase'),
       defaultFilterColumn: () => 'serviceName',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('private_databases_title'),
