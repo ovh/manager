@@ -485,7 +485,11 @@
                             <td>example.com</td>
                             <td>0</td>
                             <td>TXT</td>
-                            <td data-ng-bind="hosting.token"></td>
+                            <td>
+                                <oui-clipboard
+                                    data-model="hosting.token"
+                                ></oui-clipboard>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
