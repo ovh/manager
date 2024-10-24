@@ -23,6 +23,8 @@ type QuantitySelectorProps = {
   onChangeQuantity: (v?: number) => void;
 };
 
+export const MAX_QUANTITY = 1000;
+
 const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   quantity,
   onMinusClick,
@@ -31,6 +33,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
 }) => (
   <OsdsQuantity>
     <OsdsButton
+      data-testid="minus-button"
       onClick={onMinusClick}
       slot="minus"
       size={ODS_BUTTON_SIZE.sm}
@@ -42,6 +45,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
       <OsdsIcon size={ODS_ICON_SIZE.sm} name={ODS_ICON_NAME.MINUS} contrasted />
     </OsdsButton>
     <OsdsInput
+      data-testid="input-quantity"
       type={ODS_INPUT_TYPE.number}
       color={ODS_THEME_COLOR_INTENT.primary}
       min={1}
@@ -49,7 +53,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
       value={quantity}
       onOdsValueChange={(e) => {
         const value = Number(e.detail.value);
-        if (value > 0) {
+        if (value > 0 && value <= MAX_QUANTITY) {
           onChangeQuantity(value);
         }
       }}
