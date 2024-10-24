@@ -3,25 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [3.11.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.11.0-alpha.0...@ovh-ux/shell@3.11.0-alpha.1) (2024-10-24)
-
-**Note:** Version bump only for package @ovh-ux/shell
-
-
-
-
-
-# [3.11.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.10.0...@ovh-ux/shell@3.11.0-alpha.0) (2024-10-24)
-
-
-### Features
-
-* **manager-react-components:** build manager react components lib ([3ffbfea](https://github.com/ovh/manager/commit/3ffbfeac1e0364917ae6c93f90b392bd1ee6603c))
-
-
-
-
-
 # [3.10.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.9.1...@ovh-ux/shell@3.10.0) (2024-10-22)
 
 

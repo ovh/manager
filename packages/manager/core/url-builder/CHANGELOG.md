@@ -3,17 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.3.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/url-builder@1.2.0...@ovh-ux/url-builder@1.3.0-alpha.0) (2024-10-24)
-
-
-### Features
-
-* **manager-react-components:** build manager react components lib ([3ffbfea](https://github.com/ovh/manager/commit/3ffbfeac1e0364917ae6c93f90b392bd1ee6603c))
-
-
-
-
-
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/url-builder@1.1.1...@ovh-ux/url-builder@1.2.0) (2024-08-08)
 
 

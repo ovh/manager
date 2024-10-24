@@ -3,25 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [0.8.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.8.0-alpha.0...@ovh-ux/manager-react-shell-client@0.8.0-alpha.1) (2024-10-24)
-
-**Note:** Version bump only for package @ovh-ux/manager-react-shell-client
-
-
-
-
-
-# [0.8.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.7.5...@ovh-ux/manager-react-shell-client@0.8.0-alpha.0) (2024-10-24)
-
-
-### Features
-
-* **manager-react-components:** build manager react components lib ([3ffbfea](https://github.com/ovh/manager/commit/3ffbfeac1e0364917ae6c93f90b392bd1ee6603c))
-
-
-
-
-
 ## [0.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.7.4...@ovh-ux/manager-react-shell-client@0.7.5) (2024-10-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-shell-client

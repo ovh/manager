@@ -3,34 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [0.8.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.8.0-alpha.0...@ovh-ux/manager-pci-common@0.8.0-alpha.1) (2024-10-24)
-
-
-### Bug Fixes
-
-* **pci-workflow:** deletion modal error message ([8b85120](https://github.com/ovh/manager/commit/8b85120224795459afb9e50fe24d02ca071ecdf3))
-* **pci-workflow:** minor ui fixes ([511126d](https://github.com/ovh/manager/commit/511126da17cff11a1a05d61911ec7e524a612a66))
-
-
-### Features
-
-* **pci-workflow:** optimize tests and use pci-common ([f1020d9](https://github.com/ovh/manager/commit/f1020d9388096507ba46f41cb13c557ad8d93145))
-
-
-
-
-
-# [0.8.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.7.4...@ovh-ux/manager-pci-common@0.8.0-alpha.0) (2024-10-24)
-
-
-### Features
-
-* **manager-react-components:** build manager react components lib ([3ffbfea](https://github.com/ovh/manager/commit/3ffbfeac1e0364917ae6c93f90b392bd1ee6603c))
-
-
-
-
-
 ## [0.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.7.3...@ovh-ux/manager-pci-common@0.7.4) (2024-10-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common

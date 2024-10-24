@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-shell-client",
-  "version": "0.8.0-alpha.1",
+  "version": "0.7.5",
   "description": "",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -18,10 +18,10 @@
     "start:watch": "tsc -w"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^7.5.1-alpha.1",
-    "@ovh-ux/ovh-at-internet": "^0.15.1-alpha.1",
-    "@ovh-ux/request-tagger": "^0.4.0-alpha.0",
-    "@ovh-ux/shell": "^3.11.0-alpha.1",
+    "@ovh-ux/manager-config": "^7.5.0",
+    "@ovh-ux/ovh-at-internet": "^0.15.0",
+    "@ovh-ux/request-tagger": "^0.3.0",
+    "@ovh-ux/shell": "^3.10.0",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.4.2",
     "react": "^18.2.0",
