@@ -1,4 +1,5 @@
 import { SUPPORT_URL } from '../../../new/constants';
+import { PCI_FEATURES } from '../../project.constants';
 import { MESSAGES_CONTAINER_NAME } from '../edit.constant';
 
 export default class {
@@ -42,18 +43,31 @@ export default class {
     });
   }
 
+  isSavingsPlanAvailable() {
+    return this.pciFeatures.isFeatureAvailable(
+      PCI_FEATURES.PRODUCTS.SAVINGS_PLAN,
+    );
+  }
+
   checkSavingsPlan(serviceId) {
-    this.$http({
-      url: `/services/${serviceId}/savingsPlans/subscribed`,
-    }).then(({ data }) => {
-      this.isLoading = false;
-      if (data.length) {
-        const activePlan = data.some((p) => p.status === 'ACTIVE');
-        if (activePlan) {
-          this.canDeleteProject = false;
-        }
-      }
-    });
+    if (this.isSavingsPlanAvailable()) {
+      this.$http({
+        url: `/services/${serviceId}/savingsPlans/subscribed`,
+      })
+        .then(({ data }) => {
+          this.isLoading = false;
+          if (data.length) {
+            const activePlan = data.some((p) => p.status === 'ACTIVE');
+            if (activePlan) {
+              this.canDeleteProject = false;
+            }
+          }
+        })
+        .catch(() => {
+          this.isLoading = false;
+        });
+    }
+    this.isLoading = false;
   }
 
   getTranslationKey() {

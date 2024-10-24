@@ -11,6 +11,7 @@ export default {
     trackPage: '<',
     isDiscoveryProject: '<',
     projectId: '<',
+    pciFeatures: '<',
   },
   controller,
   template,
