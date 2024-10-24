@@ -78,6 +78,15 @@ export const URL_MODEL = {
   },
 };
 
+export const ADD_INSTANCE_TRACKING_PAGE_NAME =
+  'compute::instances::instances::funnel::add_instance';
+export const ADD_INSTANCE_TRACKING_PREFIX = [
+  'PublicCloud',
+  'compute',
+  'instances',
+  'funnel',
+];
+
 export default {
   BANDWIDTH_OUT,
   INSTANCE_MODES_ENUM,
@@ -88,4 +97,6 @@ export default {
   PUBLIC_NETWORK,
   PUBLIC_NETWORK_BAREMETAL,
   URL_MODEL,
+  ADD_INSTANCE_TRACKING_PAGE_NAME,
+  ADD_INSTANCE_TRACKING_PREFIX,
 };

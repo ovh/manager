@@ -14,6 +14,7 @@ export default {
     image: '<?',
     includeCategories: '<?',
     onChange: '&?',
+    onCategoryChange: '&?',
     region: '<?',
     selectedCategory: '@?',
     serviceName: '@',

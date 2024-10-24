@@ -4,7 +4,6 @@
     id="create-instance-error-container"
     data-messages="$ctrl.messages.instance"
 ></cui-message-container>
-
 <pci-activate-project-banner
     data-ng-if="$ctrl.isDiscoveryProject"
     data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
@@ -31,6 +30,7 @@
             data-include-categories="$ctrl.includeCategories"
             data-exclude-categories="$ctrl.excludeCategories"
             data-on-change="$ctrl.onFlavorCategorySelect(flavor, category)"
+            data-on-category-change="$ctrl.onFlavorCategoryChange(category)"
             data-catalog-endpoint="$ctrl.catalogEndpoint"
             data-reload="$ctrl.reloadFlavorList"
             data-load-end="$ctrl.onFlavorListLoadEnd()"
@@ -65,6 +65,7 @@
                 <oui-tabs-item
                     data-ng-repeat="(continent, datacentersLocation) in $ctrl.availableRegions track by continent"
                     data-heading="{{:: continent }}"
+                    data-on-active="$ctrl.onContinentChange(continent, datacentersLocation)"
                 >
                     <div class="container-fluid px-0">
                         <span
@@ -79,7 +80,7 @@
                                 data-variant="light"
                                 data-picture="{{ ::datacenters[0].icon }}"
                                 data-model="$ctrl.model.datacenter"
-                                data-on-change="$ctrl.updateLocation(location)"
+                                data-on-change="$ctrl.updateLocation(location, datacenters)"
                                 data-match="name"
                                 data-values="datacenters"
                             >
@@ -161,6 +162,7 @@
                         <oui-checkbox
                             data-ng-if="$ctrl.constructor.hasRegions($ctrl.unavailableRegions[continent])"
                             data-model="$ctrl.showNonAvailableRegions"
+                            data-on-change="$ctrl.onShowNonAvailableRegionsChange(modelValue)"
                         >
                             <span
                                 data-translate="pci_projects_project_instances_add_region_display_nonavailable"
@@ -223,7 +225,7 @@
                                 <button
                                     type="button"
                                     class="oui-button oui-button_ghost"
-                                    data-ng-click="$ctrl.currentStep = 0"
+                                    data-ng-click="$ctrl.changeFlavor()"
                                 >
                                     <span
                                         data-translate="pci_project_instances_instance_add_choose_model"
@@ -297,6 +299,8 @@
             data-service-name="{{:: $ctrl.projectId }}"
             data-selected-image="$ctrl.model.image"
             data-is-image-compatible="$ctrl.model.isImageCompatible"
+            data-on-change="$ctrl.onImageSelected(image)"
+            data-on-tab-change="$ctrl.onImageTabChange(tab)"
         >
             <div class="d-flex justify-content-between">
                 <span
@@ -565,7 +569,7 @@
                     class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                     data-track-on="click"
                     data-track-name="PublicCloud::pci::projects::project::instances::add::guide-attaching-pci-floating-ip-to-instance"
-                    data-ng-click="$ctrl.currentStep = 1"
+                    data-ng-click="$ctrl.changeRegion()"
                 >
                     <span
                         data-translate="pci_projects_project_instances_add_attch_floating_ip_banner_localzone_description3"
@@ -581,7 +585,11 @@
         <div
             data-ng-if="$ctrl.isLocalPrivateMode() && $ctrl.isLocalZone() && !$ctrl.isAddingPrivateNetwork"
         >
-            <oui-checkbox class="mb-3" data-model="$ctrl.isAttachPublicNetwork">
+            <oui-checkbox
+                class="mb-3"
+                data-model="$ctrl.isAttachPublicNetwork"
+                data-on-change="$ctrl.onAttachPublicNetworkChange(modelValue)"
+            >
                 <oui-checkbox-label>
                     <span
                         data-translate="pci_projects_project_instances_add_localPrivateNetwork_add_public_network_checkbox_label"
@@ -600,6 +608,7 @@
             <oui-checkbox
                 class="mb-3"
                 data-model="$ctrl.isLocalPrivateModeLocalZone"
+                data-on-change="$ctrl.onIsLocalPrivateModeLocalZoneChange(modelValue)"
             >
                 <oui-checkbox-label>
                     <span
@@ -652,7 +661,7 @@
         >
             <oui-radio-group
                 data-model="$ctrl.isCreatingNewPrivateNetwork"
-                data-on-change="$ctrl.handleisCreatingNewPrivateNetworkChange()"
+                data-on-change="$ctrl.handleisCreatingNewPrivateNetworkChange(modelValue)"
                 class="mb-3"
             >
                 <oui-radio
@@ -1082,6 +1091,7 @@
             data-monthly-billing="$ctrl.instance.monthlyBilling"
             data-addons="$ctrl.addons"
             data-disabled="false"
+            data-on-change="$ctrl.onBillingChange(billing)"
         >
         </pci-project-flavor-billing>
 
