@@ -102,6 +102,10 @@ export const productListingPages: Record<
     application: 'dedicated',
     hash: '#/license',
   },
+  LICENSE_HYCU: {
+    application: 'hycu',
+    hash: '#',
+  },
   LICENSE_OFFICE: {
     application: 'web',
     hash: '#/office/license',
