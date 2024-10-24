@@ -17,7 +17,6 @@
     "build": "tsc",
     "dev": "tsc",
     "dev:watch": "tsc -w",
-    "prepare": "tsc",
     "start": "lerna exec --stream --scope='@ovh-ux/shell' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/shell' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/shell' --include-dependencies -- npm run dev:watch --if-present"

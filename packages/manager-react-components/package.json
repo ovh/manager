@@ -15,9 +15,7 @@
     "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager-react-components"
   },
-  "files": [
-    "dist"
-  ],
+  "ignoreDependencies": true,
   "scripts": {
     "build": "tsc && vite build",
     "dev": "tsc && vite build",
@@ -113,7 +111,6 @@
     "undici": "5.28.4",
     "vite": "^5.2.13",
     "vite-plugin-dts": "3.5.1",
-    "vite-plugin-static-copy": "^2.0.0",
     "vitest": "^1.2.0",
     "zustand": "^4.5.0"
   },

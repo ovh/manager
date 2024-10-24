@@ -18,6 +18,7 @@ import {
   ODS_THEME_COLOR_INTENT,
 } from '@ovhcloud/ods-common-theming';
 
+
 type OnboardingLayoutButtonProps = {
   orderButtonLabel?: string;
   orderHref?: string;
