@@ -17,6 +17,8 @@ import {
   SPLIT_PAYMENT,
   SPLIT_PAYMENT_FEATURE_NAME,
 } from './components/split-payment/constants';
+import autoRenewPaymentMethod from './components/payment-method';
+import autoRenewTips from './components/auto-renew-tips';
 
 const moduleName = 'ovhManagerBilling';
 
@@ -33,6 +35,8 @@ angular.module(moduleName, [
   splitPayment,
   subscriptionTile,
   autoRenew2016DeploymentBanner,
+  autoRenewPaymentMethod,
+  autoRenewTips,
 ]);
 
 export { RENEW_URL, SPLIT_PAYMENT, SPLIT_PAYMENT_FEATURE_NAME };

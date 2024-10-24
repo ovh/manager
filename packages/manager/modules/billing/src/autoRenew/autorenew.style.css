@@ -1,0 +1,20 @@
+.autorenew-box-container {
+  display: flex;
+  gap: 1rem;
+  margin: 1.25rem 0;
+  flex-wrap: wrap;
+}
+
+.autorenew-box-container .oui-box {
+  width: 25rem;
+  min-height: 8.75rem;
+}
+
+@media (max-width: 432px) {
+  .autorenew-box-container {
+    flex-direction: column;
+  }
+  .autorenew-box-container .oui-box {
+    width: auto;
+  }
+}
