@@ -11,6 +11,7 @@ import {
   DEDICATED_IP_ORDER_TRACKING_PREFIX,
   ACTIONS_SUFFIX,
 } from './ipv6.constant';
+import ovhManagerRegionService from '../../../../../../../../modules/manager-components/src/region/service';
 
 export default class AgoraIpV6OrderController {
   /* @ngInject */
@@ -140,7 +141,7 @@ export default class AgoraIpV6OrderController {
 
     this.catalogByLocation = this.ipv6RegionsWithPlan.map(
       ({ regionId, plan }) => {
-        const countryCode = this.constructor.getMacroRegion(regionId);
+        const countryCode = ovhManagerRegionService.getMacroRegion(regionId);
         const nbIpv6onRegion = this.regionState[regionId]
           ? this.regionState[regionId]
           : 0;
@@ -155,31 +156,6 @@ export default class AgoraIpV6OrderController {
         };
       },
     );
-  }
-
-  static getMacroRegion(region) {
-    const localZonePattern = /^lz/i;
-    const devZonePattern = /^1-/i;
-
-    let macro;
-    const local = region
-      .split('-')
-      ?.slice(2)
-      ?.join('-');
-
-    if (devZonePattern.test(local)) {
-      macro = [local];
-    } else {
-      const nbOfSlice = localZonePattern.test(local) ? 3 : 2;
-      macro = /[\D]{2,3}/.exec(
-        region
-          .split('-')
-          ?.slice(nbOfSlice)
-          ?.join('-'),
-      );
-    }
-
-    return (macro && macro[0]) || '';
   }
 
   redirectToPaymentPage() {
