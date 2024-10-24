@@ -42,6 +42,7 @@ export const PCI_FEATURES = {
     HORIZON: 'horizon',
     PUBLIC_GATEWAYS: 'public-gateways',
     DATA_PLATFORM: 'data-platform',
+    SAVINGS_PLAN: 'pci-savings-plan',
   },
   INSTANCE_FLAVORS_CATEGORY: {
     GENERAL: 'instance:flavors-category-general',
