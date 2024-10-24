@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.24-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect-app@3.2.23...@ovh-ux/manager-veeam-cloud-connect-app@3.2.24-alpha.0) (2024-10-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-cloud-connect-app
+
+
+
+
+
 ## [3.2.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect-app@3.2.22...@ovh-ux/manager-veeam-cloud-connect-app@3.2.23) (2024-10-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-cloud-connect-app

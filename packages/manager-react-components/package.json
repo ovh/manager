@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "version": "1.39.1",
+  "version": "1.40.0-alpha.0",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "types": "dist/types/src/lib.d.ts",
@@ -37,8 +37,8 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@ovh-ux/manager-core-api": "^0.8.0",
-    "@ovh-ux/manager-react-shell-client": "^0.7.5",
+    "@ovh-ux/manager-core-api": "^0.8.1-alpha.0",
+    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.0",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
     "@ovhcloud/ods-components": "17.2.2",

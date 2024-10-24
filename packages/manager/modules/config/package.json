@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-config",
-  "version": "7.5.0",
+  "version": "7.5.1-alpha.0",
   "private": true,
   "description": "Retrieve configuration based on the environment.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/config#readme",
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@ovh-ux/ovh-reket": "^2.1.2",
-    "@ovh-ux/request-tagger": "^0.3.0",
+    "@ovh-ux/request-tagger": "^0.4.0-alpha.0",
     "lodash-es": "^4.17.15"
   }
 }
