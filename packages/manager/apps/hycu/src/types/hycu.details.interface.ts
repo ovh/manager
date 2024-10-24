@@ -1,7 +1,7 @@
 export enum LicenseStatus {
   ACTIVATED = 'activated',
   TO_ACTIVATE = 'toActivate',
-  PENDING = 'pending',
+  PENDING = 'processing',
   ERROR = 'error',
 }
 
