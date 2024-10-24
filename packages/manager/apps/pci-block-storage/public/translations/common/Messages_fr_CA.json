@@ -18,5 +18,7 @@
   "pci_projects_project_storages_blocks_instance_attach_label": "Attacher à l'instance",
   "pci_projects_project_storages_blocks_create_backup_label": "Créer une sauvegarde",
   "pci_projects_project_storages_blocks_delete_label": "Supprimer",
-  "pci_projects_project_storages_blocks_add_label": "Créer un volume"
+  "pci_projects_project_storages_blocks_add_label": "Créer un volume",
+
+  "pci_projects_project_storages_blocks_new": "Beta"
 }
