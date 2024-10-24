@@ -1,4 +1,11 @@
-import { PROCESS_STEP, CONTEXT } from '../pack-migration.constant';
+import { set } from 'lodash';
+import {
+  PROCESS_STEP,
+  CONTEXT,
+  CUSTOM_FIELD_FORM,
+  CUSTOM_SORT_FIELD_FORM,
+  CUSTOM_FIELD_FORM_RULES,
+} from '../pack-migration.constant';
 
 export default class PackMigrationOntShippingCtrl {
   /* @ngInject */
@@ -18,12 +25,6 @@ export default class PackMigrationOntShippingCtrl {
 
   $onInit() {
     this.process = null;
-    this.ovhContactOptions = {
-      options: {
-        allowCreation: true,
-        allowEdition: false,
-      },
-    };
     this.loading = {
       init: true,
     };
@@ -32,6 +33,95 @@ export default class PackMigrationOntShippingCtrl {
 
     this.process.ontShipping = {
       address: null,
+    };
+
+    this.ovhContactOptions = {
+      options: {
+        allowCreation: true,
+        allowEdition: false,
+        customFieldForm: CUSTOM_FIELD_FORM,
+        customSortFieldForm: CUSTOM_SORT_FIELD_FORM,
+        customFieldRules: CUSTOM_FIELD_FORM_RULES,
+        customContactObject: {
+          firstName: '',
+          lastName: '',
+          address: '',
+          cityName: '',
+          zipCode: '',
+          // custom attributes
+          inEdition: false,
+          saveForEdition: {},
+          packName: this.process.pack.packName,
+          startEdition() {
+            this.inEdition = true;
+            return this;
+          },
+          stopEdition(cancel) {
+            this.inEdition = false;
+            if (this.saveForEdition && cancel) {
+              CUSTOM_FIELD_FORM.forEach((objectPath) => {
+                set(
+                  this,
+                  objectPath,
+                  angular.copy(this.saveForEdition?.objectPath),
+                );
+              });
+            }
+
+            this.saveForEdition = null;
+            return this;
+          },
+          create($http, OvhContact, contactList, contact) {
+            const body = CUSTOM_FIELD_FORM.reduce(
+              (accumulator, currentValue) => ({
+                ...accumulator,
+                [currentValue]: contact[currentValue],
+              }),
+              {},
+            );
+            return $http
+              .post(
+                `/pack/xdsl/${this.packName}/voipLine/options/customShippingAddress`,
+                body,
+              )
+              .then(({ data }) => {
+                const {
+                  address,
+                  cityName,
+                  countryCode,
+                  zipCode,
+                  firstName,
+                  lastName,
+                } = contact;
+                contactList.push(
+                  new OvhContact({
+                    address: {
+                      line1: address,
+                      city: cityName,
+                      country: countryCode,
+                      zip: zipCode,
+                    },
+                    firstName,
+                    lastName,
+                    id: data,
+                  }),
+                );
+                return this;
+              });
+          },
+          hasChange(path) {
+            if (!this.saveForEdition) {
+              return false;
+            }
+            if (path) {
+              return this.path !== this.saveForEdition.path;
+            }
+            return !!CUSTOM_FIELD_FORM.find((objPath) =>
+              this.hasChange(objPath),
+            );
+          },
+        },
+      },
     };
 
     // Initialize ONT address shipping
