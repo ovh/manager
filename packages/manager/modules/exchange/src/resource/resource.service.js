@@ -72,6 +72,7 @@ export default class ExchangeResources {
           type: camelCase(resource.resourceType),
           resourceEmailAddress: resource.resourceEmailAddress,
           displayName: resource.displayName,
+          company: resource.company,
         },
       },
     ).then((response) => {
@@ -96,6 +97,7 @@ export default class ExchangeResources {
           allowConflict: resource.allowConflict,
           capacity: resource.capacity,
           displayName: resource.displayName,
+          company: resource.company,
         },
       },
     ).then((response) => {

@@ -34,7 +34,24 @@
                         data-ng-pattern="/^[^<>]+$/"
                     />
                 </div>
-
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': ctrl.updateResourceForm.company.$dirty && ctrl.updateResourceForm.company.$invalid}"
+                >
+                    <label
+                        for="company"
+                        data-translate="exchange_tab_RESOURCES_add_resource_company"
+                    ></label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="company"
+                        maxlength="256"
+                        name="company"
+                        data-ng-model="ctrl.model.company"
+                        data-ng-pattern="/^[^<>]+$/"
+                    />
+                </div>
                 <div
                     class="form-group"
                     data-ng-class="{'has-error': ctrl.updateResourceForm.resourceCapacity.$dirty && ctrl.updateResourceForm.resourceCapacity.$invalid}"
@@ -89,7 +106,15 @@
                     data-ng-if="ctrl.model.displayName"
                     data-ng-bind-html="ctrl.model.displayName | wucSliceContent: 150"
                 ></dd>
-
+                <dt
+                    data-ng-if="ctrl.model.company"
+                    data-translate="exchange_tab_RESOURCES_add_resource_company"
+                ></dt>
+                <dd
+                    class="word-break"
+                    data-ng-if="ctrl.model.company"
+                    data-ng-bind-html="ctrl.model.company | wucSliceContent: 150"
+                ></dd>
                 <dt
                     data-translate="exchange_tab_RESOURCES_add_resource_capacity"
                 ></dt>
