@@ -1,7 +1,6 @@
 {
   "name": "@ovh-ux/url-builder",
   "version": "1.2.0",
-  "private": true,
   "description": "OVHcloud control panel URL Builder",
   "repository": {
     "type": "git",
@@ -21,6 +20,7 @@
     "build": "tsc",
     "dev": "tsc",
     "dev:watch": "tsc -w",
+    "prepare": "tsc",
     "start": "lerna exec --stream --scope='@ovh-ux/url-builder' --include-dependencies -- yarn run build",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/url-builder' --include-dependencies -- yarn run dev",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/url-builder' --include-dependencies -- yarn run dev:watch"
