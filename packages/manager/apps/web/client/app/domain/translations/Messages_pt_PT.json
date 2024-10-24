@@ -108,5 +108,7 @@
   "domains_action_per_line_autorenew_activate": "Ativar a renovação automática",
   "domains_action_per_line_autorenew_deactivate": "Desativar a renovação automática",
   "domains_action_per_line_resiliation_cancellation": "Anular a rescisão do serviço",
-  "domains_status_autorenew_in_progress": "Renovação em curso"
+  "domains_status_autorenew_in_progress": "Renovação em curso",
+  "domains_status_autorenew_registry_in_progress": "Renovação em curso",
+  "domains_status_tooltip_autorenew_registry_in_progress": "A renovação está em curso de finalização junto do registry"
 }

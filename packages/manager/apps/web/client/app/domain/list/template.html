@@ -80,15 +80,15 @@
             data-sortable
         >
             <span
-                class="{{:: 'oui-badge ' + $ctrl.DOMAINS_BADGES_STATUS[$value] }}"
-                data-translate="{{:: 'domains_status_' + $value }}"
+                class="{{ ::'oui-badge ' + $ctrl.DOMAINS_BADGES_STATUS[$value] }}"
+                data-translate="{{ ::'domains_status_' + $value }}"
             >
             </span>
             <button
-                data-ng-if="[$ctrl.DOMAIN_STATUS.RESTORABLE, $ctrl.DOMAIN_STATUS.PENDING_INCOMING_TRANSFER , $ctrl.DOMAIN_STATUS.DISPUTE, $ctrl.DOMAIN_STATUS.EXPIRED].includes($value)"
+                data-ng-if="[$ctrl.DOMAIN_STATUS.RESTORABLE, $ctrl.DOMAIN_STATUS.PENDING_INCOMING_TRANSFER , $ctrl.DOMAIN_STATUS.DISPUTE, $ctrl.DOMAIN_STATUS.EXPIRED, $ctrl.DOMAIN_STATUS.AUTORENEW_REGISTRY_IN_PROGRESS].includes($value)"
                 type="button"
                 class="oui-popover-button"
-                data-oui-popover="{{::'domains_status_tooltip_' + $value | translate}}"
+                data-oui-popover="{{ ::'domains_status_tooltip_' + $value | translate }}"
                 data-oui-popover-placement="right"
             ></button>
         </oui-datagrid-column>

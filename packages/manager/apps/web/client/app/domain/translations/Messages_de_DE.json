@@ -108,5 +108,7 @@
   "domains_action_per_line_autorenew_activate": "Automatische Verlängerung aktivieren",
   "domains_action_per_line_autorenew_deactivate": "Automatische Verlängerung deaktivieren",
   "domains_action_per_line_resiliation_cancellation": "Kündigung der Dienstes stornieren",
-  "domains_status_autorenew_in_progress": "Verlängerung wird vorgenommen"
+  "domains_status_autorenew_in_progress": "Verlängerung wird vorgenommen",
+  "domains_status_autorenew_registry_in_progress": "Verlängerung wird vorgenommen",
+  "domains_status_tooltip_autorenew_registry_in_progress": "Die Verlängerung wird bei der Registry abgeschlossen."
 }

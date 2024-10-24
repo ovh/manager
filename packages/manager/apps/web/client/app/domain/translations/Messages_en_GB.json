@@ -108,5 +108,7 @@
   "domains_action_per_line_autorenew_activate": "Enable automatic renewal",
   "domains_action_per_line_autorenew_deactivate": "Disable automatic renewal",
   "domains_action_per_line_resiliation_cancellation": "Cancel service termination",
-  "domains_status_autorenew_in_progress": "Renewal in progress"
+  "domains_status_autorenew_in_progress": "Renewal in progress",
+  "domains_status_autorenew_registry_in_progress": "Renewal in progress",
+  "domains_status_tooltip_autorenew_registry_in_progress": "The renewal process is being finalised with the registry"
 }

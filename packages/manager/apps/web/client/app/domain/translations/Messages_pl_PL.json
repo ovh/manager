@@ -108,5 +108,7 @@
   "domains_action_per_line_autorenew_activate": "Włącz automatyczne odnowienie",
   "domains_action_per_line_autorenew_deactivate": "Wyłącz automatyczne odnowienie",
   "domains_action_per_line_resiliation_cancellation": "Anuluj rezygnację z usługi",
-  "domains_status_autorenew_in_progress": "Trwa odnawianie"
+  "domains_status_autorenew_in_progress": "Trwa odnawianie",
+  "domains_status_autorenew_registry_in_progress": "Trwa odnawianie",
+  "domains_status_tooltip_autorenew_registry_in_progress": "Rejestr finalizuje odnowienie"
 }
