@@ -1,5 +1,4 @@
 import find from 'lodash/find';
-import ovhManagerRegionService from '@ovh-ux/manager-components/src/region/service';
 import {
   ALERT_ID,
   DASHBOARD_STATE_NAME,
@@ -25,6 +24,7 @@ export default class AgoraIpV6OrderController {
     atInternet,
     User,
     coreConfig,
+    ovhManagerRegionService,
   ) {
     this.$q = $q;
     this.$state = $state;
@@ -41,6 +41,7 @@ export default class AgoraIpV6OrderController {
     this.loading = {};
     this.ADDITIONAL_IP = ADDITIONAL_IP;
     this.type = IP_TYPE_TITLE.IPv6;
+    this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   $onInit() {
@@ -140,7 +141,9 @@ export default class AgoraIpV6OrderController {
 
     this.catalogByLocation = this.ipv6RegionsWithPlan.map(
       ({ regionId, plan }) => {
-        const countryCode = ovhManagerRegionService.getMacroRegion(regionId);
+        const countryCode = this.ovhManagerRegionService.getMacroRegionLowercase(
+          regionId,
+        );
         const nbIpv6onRegion = this.regionState[regionId]
           ? this.regionState[regionId]
           : 0;
