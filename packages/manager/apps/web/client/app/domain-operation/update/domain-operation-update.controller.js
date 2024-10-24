@@ -47,12 +47,12 @@ angular.module('App').controller(
       this.uploadMode = {};
       this.viewMode = {};
 
-      if (this.operation.canCancel) {
-        this.todoOperation = 'cancel';
+      if (this.operation.canAccelerate) {
+        this.todoOperation = 'accelerate';
       } else if (this.operation.canRelaunch) {
         this.todoOperation = 'relaunch';
-      } else if (this.operation.canAccelerate) {
-        this.todoOperation = 'accelerate';
+      } else if (this.operation.canCancel) {
+        this.todoOperation = 'cancel';
       }
 
       this.contactUrl = this.coreURLBuilder.buildURL('dedicated', '#/contact');
@@ -148,7 +148,6 @@ angular.module('App').controller(
             .then((args) => {
               this.args = args;
               this.baseArgs = angular.copy(args);
-              this.loading = false;
             })
             .catch((err) => {
               this.Alerter.alertFromSWS(
@@ -166,6 +165,9 @@ angular.module('App').controller(
             ALERTER_ID,
           );
           this.$scope.resetAction();
+        })
+        .finally(() => {
+          this.loading = false;
         });
     }
 
@@ -227,33 +229,34 @@ angular.module('App').controller(
         }
       }
 
-      switch (this.todoOperation) {
-        case 'relaunch':
-          await this.processOperation(
+      const operations = {
+        relaunch: () =>
+          this.processOperation(
             this.todoOperation,
             'domain_tab_OPERATION_update_relaunch_success',
             'domain_operations_relaunch_error',
-          );
-          break;
-        case 'cancel':
-          await this.processOperation(
+          ),
+        cancel: () =>
+          this.processOperation(
             this.todoOperation,
             'domain_operations_cancel_success',
             'domain_operations_cancel_error',
-          );
-          break;
-        case 'accelerate':
-          await this.processOperation(
+          ),
+        accelerate: () =>
+          this.processOperation(
             this.todoOperation,
             'domain_operations_accelerate_success',
             'domain_operations_accelerate_error',
-          );
-          break;
-        default:
-          this.displayAlert(
-            this.$translate.instant('domain_tab_OPERATION_update_success'),
-            ALERTER_ID,
-          );
+          ),
+      };
+      const operation = operations[this.todoOperation];
+      if (operation) {
+        await operation();
+      } else {
+        this.displayAlert(
+          this.$translate.instant('domain_tab_OPERATION_update_success'),
+          ALERTER_ID,
+        );
       }
 
       this.$scope.resetAction();
