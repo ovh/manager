@@ -12,7 +12,7 @@ import {
   GetServicesMocksParams,
 } from '@ovh-ux/manager-react-components';
 import { TestApp } from './TestApp';
-import { getTesti18nParams, initTestI18n } from './init.i18n';
+import { initTestI18n } from './init.i18n';
 import { toMswHandlers } from '../../../../../../../playwright-helpers';
 import { getAuthenticationMocks } from '../../../../../../../playwright-helpers/mocks/auth';
 import {
@@ -23,6 +23,7 @@ import {
   getServiceLicenseHycuMocks,
   GetServiceLicenseHycuMocksParams,
 } from '@/mocks';
+import { getIamMocks } from '@/mocks/iam/iam.handler';
 
 let context: ShellContextType;
 let i18nValue: i18n;
@@ -38,6 +39,7 @@ export const renderTestApp = async (
   global.server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),
+      ...getIamMocks(),
       ...getLicenseHycuMocks(mockParams),
       ...getServiceLicenseHycuMocks(mockParams),
       ...getServicesMocks(mockParams),
