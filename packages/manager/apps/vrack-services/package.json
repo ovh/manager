@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-services-app",
-  "version": "0.8.22-alpha.0",
+  "version": "0.8.22-alpha.1",
   "private": true,
   "description": "OVHcloud VrackServices app",
   "repository": {
@@ -22,12 +22,12 @@
     "test:e2e:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^7.5.1-alpha.0",
-    "@ovh-ux/manager-core-api": "^0.8.1-alpha.0",
-    "@ovh-ux/manager-module-order": "^0.6.2-alpha.0",
-    "@ovh-ux/manager-react-components": "^1.40.0-alpha.0",
-    "@ovh-ux/manager-react-core-application": "^0.10.6-alpha.0",
-    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.0",
+    "@ovh-ux/manager-config": "^7.5.1-alpha.1",
+    "@ovh-ux/manager-core-api": "^0.8.1-alpha.1",
+    "@ovh-ux/manager-module-order": "^0.6.2-alpha.1",
+    "@ovh-ux/manager-react-components": "^1.40.0-alpha.1",
+    "@ovh-ux/manager-react-core-application": "^0.10.6-alpha.1",
+    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.1",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "^0.4.0-alpha.0",
     "@ovhcloud/ods-common-core": "17.2.2",
