@@ -8,5 +8,6 @@
   "dedicatedCloud_tab_drp": "Plan Disaster Recovery (DRP)",
   "dedicatedCloud_datacenter_EOL_title": "Data wygaśnięcia Dedicated Cloud: 30 września 2022",
   "dedicatedCloud_datacenter_EOL_part_1": "W październiku 2021 roku poinformowaliśmy, że nasza oferta Dedicated Cloud dobiega końca i zostanie definitywnie wycofana z użytku 30 września 2022 roku. Krok ten jest ważny dla platform VMware, ponieważ pozwala zwiększyć jakość usługi, wydajność i bezpieczeństwo klastrów. Sprzęt (sprzed 2018 r.) wykorzystywany w ofercie  „Dedicated Cloud” nie pozwala nam już zagwarantować najwyższego poziomu usług i zintegrować go z nowoczesnymi architekturami VMware.",
-  "dedicatedCloud_datacenter_EOL_part_2": "Po naszych wcześniejszych komunikatach wielu klientów rozpoczęło już planowanie i migrację. Zachęcamy do zrobienia tego samego, zanim upłynie ostateczny termin 30 września 2022 r."
+  "dedicatedCloud_datacenter_EOL_part_2": "Po naszych wcześniejszych komunikatach wielu klientów rozpoczęło już planowanie i migrację. Zachęcamy do zrobienia tego samego, zanim upłynie ostateczny termin 30 września 2022 r.",
+  "dedicatedCloud_datacenter_resize": "Skaluj"
 }
