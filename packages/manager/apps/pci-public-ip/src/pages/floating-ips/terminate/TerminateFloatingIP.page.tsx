@@ -7,6 +7,7 @@ import {
 } from '@/api/hooks/useFloatingIP';
 import TerminateModal from '@/components/terminate/Terminate.component';
 import { ResponseAPIError } from '@/interface';
+import usePageQuery from '@/hooks/usePageQuery';
 
 export default function TerminateFloatingIPPage() {
   const navigate = useNavigate();
@@ -14,7 +15,15 @@ export default function TerminateFloatingIPPage() {
   const { projectId, ipId } = useParams();
   const { data: floatingIPs, isPending } = useAllFloatingIP(projectId);
   const floatingIP = floatingIPs?.find((row) => row.id === ipId) || undefined;
-  const onClose = () => navigate('..');
+
+  const search = usePageQuery();
+
+  const onClose = () => {
+    navigate({
+      pathname: '..',
+      search,
+    });
+  };
 
   const { terminate, isPending: isPendingTerminate } = useTerminateFloatingIP({
     projectId,
