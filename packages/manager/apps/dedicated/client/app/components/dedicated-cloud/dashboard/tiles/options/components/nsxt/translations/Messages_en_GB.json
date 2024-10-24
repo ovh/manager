@@ -1,4 +1,3 @@
 {
-  "ovhManagerPccDashboardOptionsNsxt_name": "Network and security virtualisation (NSX-T)",
-  "ovhManagerPccDashboardOptionsNsxt_tooltip": "Enabling and disabling NSX is currently unavailable."
+  "ovhManagerPccDashboardOptionsNsxt_name": "Network and security virtualisation (NSX-T)"
 }

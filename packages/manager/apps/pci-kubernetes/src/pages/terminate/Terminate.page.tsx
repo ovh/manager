@@ -92,6 +92,7 @@ export default function TerminatePage() {
     setFormState({
       ...formState,
       terminateInput: event.detail.value,
+      isTouched: true,
     });
   };
 

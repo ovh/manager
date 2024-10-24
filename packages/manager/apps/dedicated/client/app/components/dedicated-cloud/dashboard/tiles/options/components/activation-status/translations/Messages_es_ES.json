@@ -10,5 +10,5 @@
   "ovhManagerPccDashboardComponentActivationStatus_unknown": "Estado desconocido",
   "ovhManagerPccDashboardComponentActivationStatus_hosted_on": "Alojado en {{ datacenter }}",
   "ovhManagerPccDashboardComponentActivationStatus_migrating": "Migrando",
-  "ovhManagerPccDashboardComponentActivationStatus_enabling": "en proceso de activación"
+  "ovhManagerPccDashboardComponentActivationStatus_enabling": "En proceso de activación"
 }

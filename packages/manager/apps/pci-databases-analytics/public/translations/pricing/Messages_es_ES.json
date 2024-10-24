@@ -1,6 +1,6 @@
 {
   "pricing_ht": "{{ price }} + IVA",
-  "pricing_ttc": "{{ price }} IVA incl",
+  "pricing_ttc": "{{ price }} IVA incl.",
   "pricing_button_hourly": "Hora",
   "pricing_button_monthly": "Mensual",
   "pricing_unit_hourly": "/hora",

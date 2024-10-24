@@ -15,7 +15,7 @@ import {
 import AddVoucherModal from '@/components/vouchers/AddVoucherModal';
 
 const add = vi.fn(() => {});
-vi.mock('@/hooks/useVouchers', () => ({
+vi.mock('@/api/hooks/useVouchers', () => ({
   useAddVoucher: () => ({
     add,
   }),
@@ -81,7 +81,7 @@ describe('Add voucher modal', () => {
     act(() => {
       fireEvent.click(submitButton);
     });
-    waitFor(() => {
+    await waitFor(() => {
       expect(add).toHaveBeenCalledWith('hello');
     });
   });

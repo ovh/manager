@@ -80,6 +80,6 @@
   "region_US-EAST-VA_micro": "Virginia ({{ micro }})",
   "region_US-WEST-OR": "Oregon",
   "region_US-WEST-OR_micro": "Oregon ({{ micro }})",
-  "region_continent_US-EAST-VA": "Nord America",
-  "region_continent_US-WEST-OR": "Nord America"
+  "region_continent_US-EAST-VA": "Nord America ",
+  "region_continent_US-WEST-OR": "Nord America "
 }

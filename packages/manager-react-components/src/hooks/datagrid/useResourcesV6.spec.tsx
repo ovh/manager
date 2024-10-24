@@ -1,14 +1,28 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { renderHook } from '@testing-library/react';
-import { useResourcesV6 } from './useResourcesV6';
+import React from 'react';
+import { vitest } from 'vitest';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query';
+import { act, renderHook } from '@testing-library/react';
+import { IcebergFetchParamsV6 } from '@ovh-ux/manager-core-api';
+import { ResourcesV6Hook, useResourcesV6 } from './useResourcesV6';
 
-/* eslint-disable @typescript-eslint/no-var-requires */
-const mockUseQuery = require('@tanstack/react-query').useQuery;
+vitest.mock('@tanstack/react-query', async () => {
+  const originalModule = await vitest.importActual('@tanstack/react-query');
+  return {
+    ...originalModule,
+    useQuery: vitest.fn(),
+  };
+});
 
-const renderUseResourcesV6Hook = () => {
+const renderUseResourcesV6Hook = (
+  hookParams: Partial<IcebergFetchParamsV6 & ResourcesV6Hook> = {},
+) => {
   const queryClient = new QueryClient();
 
-  const wrapper = ({ children }) => (
+  const wrapper = ({ children }: React.PropsWithChildren) => (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 
@@ -23,19 +37,18 @@ const renderUseResourcesV6Hook = () => {
     },
   ];
 
-  const { result } = renderHook(
+  return renderHook(
     () =>
       useResourcesV6({
         columns,
         route: '/dedicated/nasha',
         queryKey: ['/dedicated/nasha'],
+        ...hookParams,
       }),
     {
       wrapper,
     },
   );
-
-  return result;
 };
 
 const mockData = {
@@ -46,17 +59,9 @@ const mockData = {
   totalCount: 26,
 };
 
-jest.mock('@tanstack/react-query', () => {
-  const originalModule = jest.requireActual('@tanstack/react-query');
-  return {
-    ...originalModule,
-    useQuery: jest.fn(),
-  };
-});
-
 describe('useResourcesV6', () => {
   beforeEach(() => {
-    mockUseQuery.mockImplementation(() => ({
+    (useQuery as jest.Mock).mockImplementation(() => ({
       data: mockData,
       error: null,
       isLoading: false,
@@ -67,25 +72,41 @@ describe('useResourcesV6', () => {
   });
 
   it('should return flattenData with 10 items, 10 items by cursor', async () => {
-    const result: any = renderUseResourcesV6Hook();
+    const { result } = renderUseResourcesV6Hook();
     const { flattenData } = result.current;
     expect(flattenData?.length).toEqual(10);
   });
 
+  it('should return flattenData with 20 items sorted by cursor without dupicated elements', async () => {
+    const hook = renderUseResourcesV6Hook();
+    act(() => hook.rerender());
+    act(() => hook.result.current.setSorting({ desc: false, id: 'name' }));
+    act(() => hook.rerender());
+    act(() => hook.result.current.fetchNextPage());
+    act(() => hook.rerender());
+    const { flattenData } = hook.result.current as {
+      flattenData: { name: string }[];
+    };
+    expect(new Set(flattenData.map((data) => data.name)).size).toEqual(
+      flattenData.length,
+    );
+    expect(flattenData.length).toEqual(20);
+  });
+
   it('should return hasNextPage with true, it rests 16 items to display', async () => {
-    const result: any = renderUseResourcesV6Hook();
+    const { result } = renderUseResourcesV6Hook();
     const { hasNextPage } = result.current;
     expect(hasNextPage).toBeTruthy();
   });
 
   it('should return pageIndex with 0 at the launch of the hook', async () => {
-    const result: any = renderUseResourcesV6Hook();
+    const { result } = renderUseResourcesV6Hook();
     const { pageIndex } = result.current;
     expect(pageIndex).toEqual(0);
   });
 
   it('should return totalCount with 26', async () => {
-    const result: any = renderUseResourcesV6Hook();
+    const { result } = renderUseResourcesV6Hook();
     const { totalCount } = result.current;
     expect(totalCount).toEqual(26);
   });

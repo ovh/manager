@@ -17,7 +17,7 @@
   "metricName-net_receive": "Ricezione di rete ({{unit}})",
   "metricName-net_send": "Trasmissione di rete ({{unit}})",
   "metricUnit-BYTES": "byte",
-  "metricUnit-BYTES_PER_SECOND": "byte/sec",
+  "metricUnit-BYTES_PER_SECOND": "byte/s",
   "metricUnit-GIGABYTES": "GB",
   "metricUnit-GIGABYTES_PER_HOUR": "GB/s",
   "metricUnit-MEGABYTES": "MB",
@@ -25,7 +25,7 @@
   "metricUnit-MILLISECONDS": "millisecondi",
   "metricUnit-PERCENT": "%",
   "metricUnit-SCALAR": "scalare",
-  "metricUnit-SCALAR_PER_SECOND": "scalare/sec",
+  "metricUnit-SCALAR_PER_SECOND": "scalari/s",
   "metricUnit-SECONDS": "secondi",
   "metricUnit-UNKNOWN": "sconosciuto"
 }

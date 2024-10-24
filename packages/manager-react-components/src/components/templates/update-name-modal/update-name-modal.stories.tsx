@@ -1,8 +1,11 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { UpdateNameModal as UpdateNameModalComponent } from './update-name-modal.component';
+import {
+  UpdateNameModal as UpdateNameModalComponent,
+  UpdateNameModalProps,
+} from './update-name-modal.component';
 
-export const UpdateNameModal = (props) => (
+export const UpdateNameModal = (props: UpdateNameModalProps) => (
   <UpdateNameModalComponent {...props} />
 );
 
@@ -23,7 +26,7 @@ const meta: Meta = {
   },
   args: {
     closeModal: () => console.log('close'),
-    updateDisplayName: (name) => console.log('updateDisplayName', name),
+    updateDisplayName: (name: string) => console.log('updateDisplayName', name),
     headline: 'headline',
     description:
       'Do you really want to update the display name of this resource ?',

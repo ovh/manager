@@ -34,7 +34,7 @@
   "zimbra_account_edit_success_message": "La tua richiesta di modifica dell'account email è stata presa in carico. Sarà elaborata entro pochi minuti.",
   "zimbra_account_edit_error_message": "La tua richiesta di modifica dell'account email non è andata a buon fine: {{ error }}",
   "zimbra_account_add_input_displayName_tooltip": "Nome utilizzato nell'elenco e visualizzato dai destinatari delle email",
-  "zimbra_account_edit_tabs_settings": "Impostazioni account",
+  "zimbra_account_edit_tabs_settings": "Parametri dell’account",
   "zimbra_account_edit_tabs_redirections": "Reindirizzamenti",
   "zimbra_account_edit_tabs_alias": "Alias"
 }

@@ -96,10 +96,12 @@ export const defaultProps: TableProps = {
           <tr key={`${header.firstName}-tr`}>
             {Object.keys(header).map((element) => (
               <td
-                key={`${header[element]}-${header[element].firstName}`}
+                key={`${header[element as keyof typeof header]}-${
+                  header.firstName
+                }`}
                 className="text-center"
               >
-                {header[element]}
+                {header[element as keyof typeof header]}
               </td>
             ))}
             <td key={`${header.firstName}-actions`} className="text-center">

@@ -1,13 +1,13 @@
 {
-  "zimbra_account_alias_add_modal_title": "Crea un alias",
-  "zimbra_account_alias_add_description": "Crea un alias per l’account {{ account }}",
+  "zimbra_account_alias_add_modal_title": "Creare un alias",
+  "zimbra_account_alias_add_description": "Creare un alias per l’account {{ account }}",
   "zimbra_account_alias_add_input_email_placeholder": "Alias",
-  "zimbra_account_alias_add_input_email_helper": "La parte locale dell’alias (il testo che precede \"@\") deve seguire queste linee guida:",
-  "zimbra_account_alias_add_input_email_helper_rule_1": "Deve terminare con una lettera o un numero",
-  "zimbra_account_alias_add_input_email_helper_rule_2": "I caratteri speciali autorizzati sono \".\", \"+\", \"-\" e \"_\"",
-  "zimbra_account_alias_add_input_email_helper_rule_3": "Impossibile posizionare i caratteri speciali affiancati",
-  "zimbra_account_alias_add_select_domain_placeholder": "Seleziona un dominio",
-  "zimbra_account_alias_add_btn_confirm": "Conferma",
-  "zimbra_account_alias_add_success_message": "La richiesta di creazione dell'alias è stata presa in carico. Sarà elaborata entro pochi minuti.",
-  "zimbra_account_alias_add_error_message": "Impossibile completare la richiesta di creazione dell'alias. {{ error }}"
+  "zimbra_account_alias_add_input_email_helper": "La parte locale del tuo alias (il testo che precede \"@\") deve rispettare i seguenti requisiti:",
+  "zimbra_account_alias_add_input_email_helper_rule_1": "deve terminare con una lettera o un numero",
+  "zimbra_account_alias_add_input_email_helper_rule_2": "i caratteri speciali autorizzati sono \".\", \"+\", \"-\" e \"_\"",
+  "zimbra_account_alias_add_input_email_helper_rule_3": "i caratteri speciali non possono susseguirsi l’uno all’altro",
+  "zimbra_account_alias_add_select_domain_placeholder": "Selezionare un dominio",
+  "zimbra_account_alias_add_btn_confirm": "Confermare",
+  "zimbra_account_alias_add_success_message": "La tua richiesta di creazione dell'alias è stata presa in carico. Sarà elaborata entro pochi minuti.",
+  "zimbra_account_alias_add_error_message": "Impossibile completare la richiesta di creazione dell'alias: {{ error }}"
 }

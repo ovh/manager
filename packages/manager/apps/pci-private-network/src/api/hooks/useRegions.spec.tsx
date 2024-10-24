@@ -14,7 +14,7 @@ const wrapper = ({ children }) => (
 );
 
 describe('useProjectRegions', () => {
-  it('should return regions when data is available', () => {
+  it('should return regions when data is available', async () => {
     vi.mocked(getProjectRegions).mockResolvedValue([
       { name: 'region1', services: [] },
       { name: 'region2', services: [] },
@@ -24,7 +24,7 @@ describe('useProjectRegions', () => {
       wrapper,
     });
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(result.current.data).toEqual([
         { name: 'region1', services: [] },
         { name: 'region2', services: [] },
@@ -32,21 +32,21 @@ describe('useProjectRegions', () => {
     });
   });
 
-  it('should return undefined when data is not available', () => {
+  it('should return undefined when data is not available', async () => {
     vi.mocked(getProjectRegions).mockResolvedValue(null);
 
     const { result } = renderHook(() => useProjectRegions('mocked_projectId'), {
       wrapper,
     });
 
-    waitFor(() => {
-      expect(result.current.data).toBeUndefined();
+    await waitFor(() => {
+      expect(result.current.data).toBeNull();
     });
   });
 });
 
 describe('useProjectAvailableRegions', () => {
-  it('should return regions with network service up when data is available', () => {
+  it('should return regions with network service up when data is available', async () => {
     vi.mocked(getProjectRegions).mockResolvedValue([
       { name: 'region1', services: [{ name: 'network', status: 'UP' }] },
       { name: 'region2', services: [{ name: 'network', status: 'DOWN' }] },
@@ -57,14 +57,14 @@ describe('useProjectAvailableRegions', () => {
       { wrapper },
     );
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(result.current.data).toEqual([
         { name: 'region1', services: [{ name: 'network', status: 'UP' }] },
       ]);
     });
   });
 
-  it('should return empty array when no regions with network service up', () => {
+  it('should return empty array when no regions with network service up', async () => {
     vi.mocked(getProjectRegions).mockResolvedValue([
       { name: 'region1', services: [{ name: 'network', status: 'DOWN' }] },
       { name: 'region2', services: [{ name: 'network', status: 'DOWN' }] },
@@ -75,7 +75,7 @@ describe('useProjectAvailableRegions', () => {
       { wrapper },
     );
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(result.current.data).toEqual([]);
     });
   });

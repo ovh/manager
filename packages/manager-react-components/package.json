@@ -14,10 +14,9 @@
     "dev": "tsc",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "start": "storybook dev -p 6006",
-    "test": "jest --coverage -u",
+    "test": "vitest",
     "test:cov": "vitest run --coverage",
-    "test:e2e": "tsc && npx playwright test --ui --debug",
-    "test:watch": "jest --watch"
+    "test:watch": "vitest"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,json,css,md}": [
@@ -112,7 +111,6 @@
     "i18next": "^23.8.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-i18next": "^11.18.1",
     "react-router-dom": "^6.3.0",
     "zustand": "^4.5.0"
   }

@@ -30,7 +30,10 @@ export function PciMaintenanceBanner({
   const { t } = useTranslation('pci-maintenance-banner');
 
   return (
-    <OsdsMessage type={ODS_MESSAGE_TYPE.warning}>
+    <OsdsMessage
+      type={ODS_MESSAGE_TYPE.warning}
+      data-testid="maintenance-banner"
+    >
       {projectName && (
         <OsdsText
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}

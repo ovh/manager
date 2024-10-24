@@ -1,3 +1,4 @@
+import { vitest } from 'vitest';
 import { waitFor, screen } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import {
@@ -9,7 +10,7 @@ import {
 import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
 import { useAuthorizationIam } from '../../../hooks/iam';
 
-jest.mock('../../../hooks/iam');
+vitest.mock('../../../hooks/iam');
 
 const mockedHook =
   useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
@@ -25,7 +26,7 @@ describe('Headers component', () => {
 
   it('renders header correctly', async () => {
     render(header());
-    waitFor(() => {
+    await waitFor(() => {
       expect(screen.getByText('Example for header')).toBeInTheDocument();
       expect(screen.getByText('description for header')).toBeInTheDocument();
     });
@@ -33,7 +34,7 @@ describe('Headers component', () => {
 
   it('renders subHeader correctly', async () => {
     render(subHeader());
-    waitFor(() => {
+    await waitFor(() => {
       expect(screen.getByText('Example for subHeader')).toBeInTheDocument();
       expect(screen.getByText('description for subheader')).toBeInTheDocument();
     });
@@ -41,7 +42,7 @@ describe('Headers component', () => {
 
   it('renders header with guides correctly', async () => {
     render(headerWithGuides());
-    waitFor(() => {
+    await waitFor(() => {
       expect(
         screen.getByText('Example for header with guides'),
       ).toBeInTheDocument();
@@ -51,7 +52,7 @@ describe('Headers component', () => {
 
   it('renders header with actions correctly', async () => {
     render(headerWithActions());
-    waitFor(() => {
+    await waitFor(() => {
       expect(
         screen.getByText('Example for header with actions'),
       ).toBeInTheDocument();
