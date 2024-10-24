@@ -15,7 +15,7 @@ export default class OverTheBoxMigrationCtrl {
     this.$scope.$on('selectedOffer', (event, offer) => {
       this.offerSelected = offer;
 
-      if (this.offerSelected.selectedHardware !== NO_HARDWARE) {
+      if (this.offerSelected.selectedHardwareName !== NO_HARDWARE) {
         this.currentStep = this.steps.contact;
       } else {
         this.currentStep = this.steps.summary;
