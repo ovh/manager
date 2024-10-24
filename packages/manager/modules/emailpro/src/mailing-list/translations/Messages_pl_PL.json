@@ -117,7 +117,7 @@
   "mailing_list_tab_modal_update_list_heading": "Wpisz następujące informacje:",
   "mailing_list_tab_modal_update_list_options": "Opcje:",
   "mailing_list_tab_modal_update_list_reply_to_list": "Lista",
-  "mailing_list_tab_modal_update_list_reply_to_last_user": "Nadawca e-maila",
+  "mailing_list_tab_modal_update_list_reply_to_last_user": "Do nadawcy wiadomości",
   "mailing_list_tab_modal_update_list_reply_to_email": "Adres e-mail",
   "mailing_list_tab_modal_subscriber_create": "Dodaj abonenta",
   "mailing_list_tab_modal_create_subscriber_title": "Chcesz dodać abonenta do listy mailingowej {0}",
