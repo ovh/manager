@@ -27,6 +27,7 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
         description: 'project-description',
       },
     }),
+    useCatalog: vi.fn(),
   };
 });
 
@@ -48,6 +49,11 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     useNotifications: () => ({
       addError: vi.fn(),
       addSuccess: vi.fn(),
+    }),
+    useMe: vi.fn().mockReturnValue({
+      me: {
+        ovhSubsidiary: 'FR',
+      },
     }),
   };
 });
@@ -87,5 +93,14 @@ vi.mock('@ovh-ux/manager-core-api', async () => {
       put: vi.fn(),
       delete: vi.fn(),
     },
+  };
+});
+
+vi.mock('@/helpers', async () => {
+  const actual = await vi.importActual('@/helpers');
+  return {
+    ...actual,
+    paginateResults: vi.fn(),
+    sortResults: vi.fn(),
   };
 });

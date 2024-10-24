@@ -45,7 +45,7 @@ export const useL7Rules = (
     () => ({
       isLoading,
       isPending,
-      allL7Policies: allL7Rules,
+      allL7Rules,
       paginatedL7Rules: paginateResults<TL7Rule>(
         sortResults<TL7Rule>(applyFilters(allL7Rules || [], filters), sorting),
         pagination,

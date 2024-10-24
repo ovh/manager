@@ -66,7 +66,7 @@ export default function PolicyForm({
       return pools?.filter(
         (pool) =>
           !UNAVAILABLE_POOL_PROTOCOLS.includes(pool.protocol) &&
-          LISTENER_POOL_PROTOCOL_COMBINATION[listener?.protocol].includes(
+          LISTENER_POOL_PROTOCOL_COMBINATION[listener?.protocol]?.includes(
             pool.protocol,
           ),
       );
@@ -161,6 +161,7 @@ export default function PolicyForm({
         />
         <OsdsInput
           value={policyState.name}
+          data-testid="policyForm-name_input"
           type={ODS_INPUT_TYPE.text}
           error={hasErrorName}
           onOdsValueChange={(event) => {
@@ -365,6 +366,7 @@ export default function PolicyForm({
           className="mr-4"
           color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.stroked}
+          data-testid="policyForm-cancel_button"
           onClick={onCancel}
         >
           {t('octavia_load_balancer_create_l7_policy_cancel')}
@@ -372,6 +374,7 @@ export default function PolicyForm({
         <OsdsButton
           color={ODS_THEME_COLOR_INTENT.primary}
           disabled={isDisabled || undefined}
+          data-testid="policyForm-submit_button"
           onClick={() => onSubmit(policyState)}
         >
           {submitButtonText ||
