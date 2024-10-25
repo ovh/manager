@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react';
 import { Translation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { TProtocol } from '@/api/data/load-balancer';
-import { useListener } from '@/api/hook/useListener';
-import { useEditLoadBalancer } from '@/api/hook/useLoadBalancer';
+import { useEditLoadBalancer, useListener } from '@/api/hook/useListener';
 import { useAllLoadBalancerPools } from '@/api/hook/usePool';
 import ListenerForm, {
   TListenerFormState,
@@ -43,12 +42,20 @@ export default function EditListener() {
     onError(error: ApiError) {
       addError(
         <Translation ns="load-balancer">
-          {(_t) =>
-            _t('octavia_load_balancer_global_error', {
-              message: error?.response?.data?.message || error?.message || null,
-              requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
-            })
-          }
+          {(_t) => (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: _t('octavia_load_balancer_global_error', {
+                  message: ((error.response as unknown) as {
+                    data: { message: string };
+                  }).data.message,
+                  requestId: ((error.response as unknown) as {
+                    headers: Record<string, unknown>;
+                  }).headers['x-ovh-queryid'],
+                }),
+              }}
+            />
+          )}
         </Translation>,
         true,
       );

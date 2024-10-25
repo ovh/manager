@@ -10,7 +10,7 @@ import { useHref } from 'react-router-dom';
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
 import ActionsComponent from '@/pages/detail/listeners/list/Actions.component';
-import { TLoadBalancerListener } from '@/api/data/load-balancer';
+import { TLoadBalancerListener } from '@/api/data/listener';
 
 export const useDatagridColumn = () => {
   const { t } = useTranslation('load-balancer');
