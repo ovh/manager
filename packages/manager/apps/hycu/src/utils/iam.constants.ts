@@ -1,3 +1,4 @@
 export const IAM_ACTIONS = {
-  licenseHycuApiovhActivate: 'licenseHycu:apiovh:activate',
+  licenseHycuApiOvhActivate: 'licenseHycu:apiovh:activate',
+  licenseHycuApiOvhRefresh: 'licenseHycu:apiovh:refresh',
 } as const;

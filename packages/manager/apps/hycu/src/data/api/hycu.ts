@@ -17,6 +17,10 @@ export const postActivateLicenseHycuMutationKey = () => [
   'license/hycu/activate',
   'post',
 ];
+export const postRegenerateLicenseHycuMutationKey = () => [
+  'license/hycu/refresh',
+  'post',
+];
 
 /**
  * Manage HYCU licenses : Get list of owned HYCU licenses
@@ -44,6 +48,8 @@ export type PostLicenseHycuActivateServiceParams = {
   licenseContent: string;
 };
 
+export type PostLicenseHycuRegenerateServiceParams = PostLicenseHycuActivateServiceParams;
+
 /**
  * Activate HYCU licenses : Post HYCU license content
  */
@@ -51,6 +57,16 @@ export const postLicenseHycuActivateService = (
   params: PostLicenseHycuActivateServiceParams,
 ): Promise<AxiosResponse> =>
   apiClient.v6.post(`/license/hycu/${params.serviceName}/activate`, {
+    licenseRequest: params.licenseContent,
+  });
+
+/**
+ * Regenerate HYCU licenses : Post HYCU license content
+ */
+export const postLicenseHycuRegenerateService = (
+  params: PostLicenseHycuRegenerateServiceParams,
+): Promise<AxiosResponse> =>
+  apiClient.v6.post(`/license/hycu/${params.serviceName}/refresh`, {
     licenseRequest: params.licenseContent,
   });
 

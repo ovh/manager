@@ -60,6 +60,15 @@ export const Routes: any = [
                   ),
                 ),
               },
+              {
+                id: 'regenerate-license',
+                path: urls.regenerateLicense,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/general-information/regenerate-license-modal/RegenerateLicenseModal.page'
+                  ),
+                ),
+              },
             ],
           },
         ],
