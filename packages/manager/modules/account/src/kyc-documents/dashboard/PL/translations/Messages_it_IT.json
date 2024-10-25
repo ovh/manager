@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_PL": "Copia fronte e retro di un documento di riconoscimento in corso di validità (passaporto, carta d'identità nazionale)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_PL": "Giustificativo di domicilio datato meno di 3 mesi, a te intestato e in cui compaia l’indirizzo indicato nel tuo profilo (per es. estratto conto, fattura di servizi di pubblica utilità...)",
+  "documents_dashboard_document_CORPORATE_ID_PL": "Estratto del Registro Imprese, Registro delle transazioni o Registro fiscale di una società associata all'indirizzo indicato nel tuo profilo datato meno di 3 mesi",
+  "documents_dashboard_document_ADMINISTRATION_ID_PL": "Documento di registrazione corrispondente all'attività",
+  "documents_dashboard_document_ASSOCIATION_ID_PL": "Documento di registrazione corrispondente all'attività.",
+  "documents_dashboard_document_individual_OTHER_PL": "Qualsiasi documento utile a comprendere la tua situazione attuale (domicilio, trasferimento, etc.)",
+  "documents_dashboard_document_corporation_OTHER_PL": "Per una convalida più rapida, verifica la qualità dei documenti allegati (fotocopie in bianco e nero e file provenienti da servizi di condivisione esterni non sono accettati).",
+  "documents_dashboard_document_association_OTHER_PL": "Per una convalida più rapida, verifica la qualità dei documenti allegati (fotocopie in bianco e nero e file provenienti da servizi di condivisione esterni non sono accettati).",
+  "documents_dashboard_document_administration_OTHER_PL": "Per una convalida più rapida, verifica la qualità dei documenti allegati (fotocopie in bianco e nero e file provenienti da servizi di condivisione esterni non sono accettati).",
+  "documents_dashboard_document_other_OTHER_PL": "Qualsiasi documento utile a comprendere la tua situazione attuale (domicilio, trasferimento, etc.)"
+}

@@ -1,0 +1,20 @@
+// Add centered text in the bootstrap 2 progress bar
+
+.progress-text {
+  position: relative;
+
+  span {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    text-shadow: 1px 1px 1px #333;
+  }
+}
+
+.bar-text {
+  z-index: 1;
+  position: absolute;
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="37px" height="22px" viewBox="0 0 37 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.1 (44463) - http://www.bohemiancoding.com/sketch -->
+    <title>paiement-differe</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="paiement-differe">
+            <g id="Rectangle">
+                <g id="path-1-link" fill="#FFFFFF">
+                    <rect id="path-1" x="0" y="0" width="37" height="22" rx="2"></rect>
+                </g>
+                <rect id="Rectangle-path" stroke="#CCCCCC" x="0.5" y="0.5" width="36" height="21" rx="2"></rect>
+            </g>
+            <circle id="Oval" stroke="#143F6C" stroke-width="2" cx="19" cy="11" r="7"></circle>
+            <path d="M19.5,11.5 L21.5,14.5" id="Stroke-353" stroke="#143F6C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(20.500000, 13.000000) scale(-1, 1) rotate(90.000000) translate(-20.500000, -13.000000) "></path>
+            <path d="M21.5,9.5 L16.5,9.5" id="Stroke-353-Copy" stroke="#143F6C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(19.000000, 9.500000) scale(-1, 1) rotate(90.000000) translate(-19.000000, -9.500000) "></path>
+        </g>
+    </g>
+</svg>

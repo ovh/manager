@@ -1,0 +1,80 @@
+.module-billing-menu > .sidebar {
+  left: 0;
+  top: 40px;
+}
+
+.module-billing-menu .sidebar .navigation-left-title:hover {
+  background-color: #3f5167;
+}
+
+.module-billing-menu .sidebar .extended-accordion-in {
+  height: auto;
+  visibility: visible;
+}
+
+.module-billing-menu .sidebar .navigation-left-title .fa-chevron-left {
+  opacity: 0.6;
+  font-size: 10px;
+  width: 8px;
+  height: 8px;
+  margin: 15px 0 0 15px;
+}
+
+.module-billing-menu .sidebar .navigation-left-title.not-expandable {
+  margin-left: 0;
+  padding-left: 23px;
+}
+
+.module-billing-menu > .sidebar .navigation-left.module-billing-menu-back {
+  padding: 20px 0 10px 0;
+}
+
+.module-billing-menu > .sidebar .navigation-left-title > span {
+  margin: 7px 10px 0 18px;
+}
+
+.module-billing-menu > .sidebar .navigation-left-list-container.active {
+  border-left-color: #00a2bf;
+}
+
+.module-billing-menu > .sidebar .navigation-left-list-container > li.active {
+  background-color: #00a2bf !important;
+}
+
+.module-billing-menu > .sidebar .navigation-left-list-container > li:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.module-billing-menu
+  > .sidebar
+  .navigation-left-list-container
+  > li
+  a.navigation-left-item:hover,
+.module-billing-menu
+  > .sidebar
+  .navigation-left-list-container
+  > li
+  a.navigation-left-item:focus {
+  background-color: transparent;
+}
+
+.module-billing-menu
+  .sidebar
+  .navigation-left-list-container
+  > li
+  a.navigation-left-item.active {
+  background-color: #00a2bf !important;
+  color: #122844;
+}
+
+.module-billing-menu
+  > .sidebar
+  .navigation-left-title
+  .module-billing-menu-small {
+  display: block;
+  font-weight: lighter;
+  font-size: 85%;
+  margin-top: 0;
+  padding-bottom: 12px;
+  line-height: 8px;
+}

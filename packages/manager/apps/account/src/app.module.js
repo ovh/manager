@@ -14,10 +14,17 @@ import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 // TODO: Change to '@ovh-ux/manager-account' when module is deployed
 // import Account from '@ovh-ux/manager-account';
 import Account from '../../../modules/account/src';
+import config, {
+  getConstants,
+} from '../../../modules/account/src/config/config';
+import dedicatedUniverseComponents from '../../../modules/account/src/dedicatedUniverseComponents';
+
 import errorPage from './error';
 
 import TRACKING from './tracking/at-internet.constants';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
+import './app.less';
+import './css/source.scss';
 
 export default async (containerEl, shellClient) => {
   const moduleName = 'AccountApp';
@@ -35,6 +42,8 @@ export default async (containerEl, shellClient) => {
     shellClient.environment.getEnvironment(),
     shellClient.i18n.getLocale(),
   ]);
+
+  const configConstants = getConstants(environment.getRegion());
 
   const coreCallbacks = {
     onLocaleChange: (lang) => {
@@ -124,6 +133,7 @@ export default async (containerEl, shellClient) => {
         ovhManagerAtInternetConfiguration,
         ngOvhSsoAuth,
         ngUiRouterBreadcrumb,
+        dedicatedUniverseComponents,
         'oui',
         uiRouter,
         errorPage,
@@ -132,6 +142,26 @@ export default async (containerEl, shellClient) => {
       ].filter(isString),
     )
     .constant('shellClient', shellClient)
+    .constant('constants', {
+      prodMode: config.prodMode,
+      swsProxyRootPath: config.swsProxyRootPath,
+      aapiRootPath: config.aapiRootPath,
+      target: config.target,
+      renew: configConstants.RENEW_URL,
+      urls: configConstants.URLS,
+      UNIVERS: configConstants.UNIVERS,
+      TOP_GUIDES: configConstants.TOP_GUIDES,
+      vmsUrl: configConstants.vmsUrl,
+      statusUrl: configConstants.statusUrl,
+      aapiHeaderName: 'X-Ovh-Session',
+      vrackUrl: configConstants.vrackUrl,
+      REDIRECT_URLS: configConstants.REDIRECT_URLS,
+      DEFAULT_LANGUAGE: configConstants.DEFAULT_LANGUAGE,
+      FALLBACK_LANGUAGE: configConstants.FALLBACK_LANGUAGE,
+      SUPPORT: configConstants.SUPPORT,
+      SECTIONS_UNIVERSE_MAP: configConstants.SECTIONS_UNIVERSE_MAP,
+    })
+    .constant('website_url', configConstants.website_url)
     .config(
       /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
     )

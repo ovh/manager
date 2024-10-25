@@ -1,0 +1,116 @@
+<div
+    class="alert alert-danger"
+    role="alert"
+    data-ng-if="$ctrl.initError"
+    data-ng-bind="$ctrl.initError"
+></div>
+
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner data-size="l"></oui-spinner>
+</div>
+
+<form
+    id="ovhSignupForm"
+    name="ovhSignupForm"
+    data-ng-if="$ctrl.rules"
+    data-ng-submit="$ctrl.submit()"
+    novalidate
+>
+    <oui-message
+        type="info"
+        data-ng-if="$ctrl.isIndianSubsidiary && $ctrl.isEditionDisabledByKyc"
+    >
+        <span
+            data-translate="signup_information_banner_for_indian_subsidiary"
+        ></span>
+        <a
+            data-ng-href="{{ $ctrl.newSupportTicketUrl }}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span
+                data-translate="signup_information_banner_link_for_indian_subsidiary"
+            ></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </oui-message>
+    <oui-message
+        type="success"
+        on-dismiss="$ctrl.onDismiss()"
+        dismissable
+        data-ng-if="$ctrl.isUpdated"
+    >
+        <span
+            data-translate="signup_field_add_companyNationalIdentificationNumber_siret_success"
+        ></span>
+    </oui-message>
+    <!-- FORM SECTIONS -->
+    <fieldset
+        data-ng-form="{{:: 'form_part_' + section }}"
+        data-ng-repeat="section in ::$ctrl.getSections() track by $index"
+        data-ng-if="$ctrl.getRulesBySection(section).length"
+    >
+        <h3 data-translate="{{ :: 'signup_section_' + section }}"></h3>
+        <div data-ng-attr-id="{{ :: 'ovh_form_content_' + section }}">
+            <!-- SECTION FIELDS -->
+            <new-account-form-field
+                data-ng-repeat="rule in $ctrl.getRulesBySection(section) track by rule.fieldName"
+                data-rule="rule"
+                data-ng-if="rule.fieldName !== 'phoneCountry' && !($ctrl.siretFieldIsAvailable() && section === 'activity')"
+                data-fieldset=":: ovhSignupForm['form_part_' + section]"
+                data-is-indian-subsidiary="$ctrl.isIndianSubsidiary"
+                data-is-edition-disabled-by-kyc="$ctrl.isEditionDisabledByKyc"
+            >
+            </new-account-form-field>
+
+            <!-- SECTION ACTIVITY FOR ONLY CORPORATION FR -->
+            <siret-component
+                class="col-sm-12"
+                data-country="$ctrl.model.country"
+                data-model="$ctrl.model"
+                data-tracking-mode="'modification'"
+                data-mode="'modification'"
+                data-ng-if="$ctrl.siretFieldIsAvailable() && section === 'activity'"
+                data-rules="$ctrl.siretModuleRules"
+                data-is-indian-subsidiary="$ctrl.isIndianSubsidiary"
+            ></siret-component>
+        </div>
+    </fieldset>
+
+    <!-- ALERT -->
+    <div data-ovh-alert="InfoErrors"></div>
+
+    <!-- FOOTER BUTTONS -->
+    <div class="mb-5">
+        <oui-message
+            class="mb-2"
+            type="warning"
+            data-ng-if="ovhSignupForm.$invalid && $ctrl.user.ovhSubsidiary === 'FR'"
+        >
+            <span data-translate="new_account_content_check_validation"></span>
+        </oui-message>
+        <button
+            class="oui-button oui-button_primary"
+            data-ng-disabled="ovhSignupForm.$invalid ||
+                (!$ctrl.hasChanges() && !$ctrl.submitError) ||
+                $ctrl.isSubmitting ||
+                ovhSignupForm.form_part_activity.searchForm"
+            type="submit"
+            data-track-on="click"
+            data-track-name="account::myaccount::profile::validation_profile_edit"
+            data-track-type="action"
+        >
+            <span
+                data-ng-if="!$ctrl.isSubmitting"
+                data-translate="user_account_OK"
+            ></span>
+            <span
+                data-ng-if="$ctrl.isSubmitting"
+                data-translate="user_agreements_accepting"
+            ></span>
+        </button>
+    </div>
+</form>

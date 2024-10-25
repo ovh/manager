@@ -1,0 +1,81 @@
+//
+// TABLE
+// --------------------------------------------------
+
+table {
+  // TODO Move to pretty?
+  .dropdown-menu li {
+    cursor: pointer;
+    padding: 3px 0;
+
+    &.divider {
+      margin: 1px;
+      padding: 0;
+    }
+
+    &.disabled {
+      cursor: auto;
+      padding: 3px 0;
+    }
+
+    &:hover a {
+      .background-color-fn(@defaultlineselectedbackground);
+      .color-fn(@defaultlineselectedfont);
+
+      background-image: none; //overload boostrap style
+    }
+  }
+
+  &.clickable {
+    tbody tr:hover > td {
+      cursor: pointer;
+      .background-color-fn(@defaultlineselectedbackground);
+      .color-fn(@defaultlineselectedfont);
+    }
+  }
+}
+
+.table {
+  > thead > tr > th {
+    overflow: inherit !important;
+  }
+
+  > thead > tr > th .btn-link,
+  > tbody > tr > td .btn-link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+
+    &:active {
+      text-decoration: none;
+    }
+  }
+
+  // avoid too small input with responsive tables
+  > tbody > tr > td input,
+  select {
+    min-width: 4.375rem;
+  }
+}
+
+.table-striped > div > .oui-datagrid > tbody > tr:nth-child(2n) > td,
+.table-striped > tbody > tr:nth-child(2n) > td,
+.table-striped > tbody > tr:nth-child(2n) > th {
+  &:extend(.oui-background-p-050);
+}
+
+.server-installation {
+  .list-striped,
+  .list-striped .oui-collapsible__body {
+    padding: 0 !important;
+  }
+
+  .list-striped oui-radio {
+    margin-top: 0 !important;
+    padding: calc(1rem - 1px);
+  }
+
+  .list-striped oui-radio:nth-child(2n) {
+    &:extend(.oui-background-p-050);
+  }
+}

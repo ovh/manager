@@ -1,0 +1,21 @@
+{
+  "user_account_dashboard_shortcut": "Raccourcis",
+  "user_account_dashboard_shortcut_ALL_BILLS": "Voir mes factures",
+  "user_account_dashboard_shortcut_PAYMENT_FOLLOW_UP": "Suivre mes paiements",
+  "user_account_dashboard_shortcut_ADD_PAYMENT_METHOD": "Ajouter un moyen de paiement",
+  "user_account_dashboard_shortcut_MANAGE_SERVICES": "Gérer mes services",
+  "user_account_dashboard_shortcut_MANAGE_USERS": "Gérer mes utilisateurs",
+  "user_account_dashboard_shortcut_ADD_CONTACT": "Ajouter un contact",
+  "user_account_dashboard_last_bill": "Ma dernière facture",
+  "user_account_dashboard_last_bill_reference": "Référence",
+  "user_account_dashboard_last_bill_date": "Date",
+  "user_account_dashboard_last_bill_amount": "Montant",
+  "user_account_dashboard_last_bill_see": "Voir ma facture",
+  "user_account_dashboard_profile": "Mon profil",
+  "user_account_dashboard_profile_edit": "Éditer mon profil",
+  "user_account_dashboard_profile_support_level": "Mon niveau de support :",
+  "user_account_dashboard_nichandle": "Nichandle",
+  "user_account_dashboard_customer_code": "Code client",
+  "user_account_dashboard_new": "nouveau",
+  "user_account_dashboard_banner_users_iam_link": "Gérer mes utilisateurs"
+}

@@ -1,0 +1,1636 @@
+<div data-ng-init="init()">
+    <div class="module-useraccount-sections-contacts-details-container">
+        <oui-header
+            heading="{{:: 'useraccount_contacts_details' | translate }}"
+        >
+        </oui-header>
+
+        <div data-ovh-alert="{{alerts.updateOwner}}"></div>
+
+        <div class="container-fluid p-5">
+            <div data-ng-if="loaders.owner">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div class="row" data-ng-if="!loaders.owner">
+                <div data-ng-if="ownerModel.id">
+                    <div class="col-md-6 col-md-offset-3">
+                        <form
+                            role="form"
+                            name="accountForm"
+                            data-ng-init="setFormScope(this)"
+                        >
+                            <!-- Legal Form -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                            'error': accountForm.legalForm.$dirty && accountForm.legalForm.$error,
+                            'success' : accountForm.legalForm.$dirty && accountForm.legalForm.$valid
+                        }"
+                            >
+                                <label class="control-label" for="legalForm">
+                                    {{ 'useraccount_contacts_owner_legalform' |
+                                    translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('legalForm')"
+                                        >*</strong
+                                    >
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-if="!edit.value || isReadonly('legalForm')"
+                                    >
+                                        <span
+                                            data-ng-bind="('useraccount_contacts_owner_legalform_' + ownerModel.legalForm) | ducTranslateAlt:'-'"
+                                        ></span>
+                                    </div>
+
+                                    <select
+                                        name="legalForm"
+                                        class="form-control"
+                                        data-ng-model="ownerModel.legalForm"
+                                        data-ng-show="edit.value && !isReadonly('legalForm')"
+                                        id="legalForm"
+                                        maxlength="250"
+                                        data-ng-required="isMandatory('legalForm')"
+                                        data-ng-readonly="isReadonly('legalForm')"
+                                        data-ng-options="(('user_account_legalform_' + legalform) | translate) for legalform in controls.legalforms"
+                                    >
+                                    </select>
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.legalForm.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="required"
+                                            data-ng-if="isMandatory('legalForm')"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_required"
+                                            ></p>
+                                        </div>
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                        <div
+                                            class="tspace5"
+                                            data-ng-if="edit.value && isReadonly('legalform') && hasTrade && isMandatory('legalform')"
+                                        >
+                                            <i class="fa fa-info-circle"></i>
+                                            <strong
+                                                data-translate="useraccount_contacts_owner_update_legalform_info"
+                                            ></strong>
+                                            <a
+                                                data-ng-href="{{domainOrderTradeUrl}}"
+                                                title="{{ 'core_new_window' | translate }}"
+                                                target="_blank"
+                                                data-translate="useraccount_contacts_owner_update_email_go"
+                                            ></a>
+                                            <i class="fa fa-external-link"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Non individual group information -->
+                            <div
+                                data-ng-if="ownerModel.legalForm !== 'individual'"
+                            >
+                                <!-- Organisation -->
+                                <div
+                                    class="form-group"
+                                    data-ng-class="{
+                                    'error': accountForm.organisationName.$dirty && accountForm.organisationName.$error,
+                                    'success' : accountForm.organisationName.$dirty && accountForm.organisationName.$valid
+                                }"
+                                    data-ng-if="ownerModel.legalForm === 'corporation' || ownerModel.legalForm === 'association'"
+                                >
+                                    <label
+                                        class="control-label"
+                                        for="organisationName"
+                                    >
+                                        {{
+                                        'useraccount_contacts_owner_organisation'
+                                        | translate }}
+                                        <strong
+                                            class="text-danger"
+                                            data-ng-if="isMandatory('organisationName')"
+                                            >*</strong
+                                        >
+                                    </label>
+                                    <div class="controls">
+                                        <div
+                                            data-ng-if="!edit.value"
+                                            data-ng-bind="ownerModel.organisationName || '-' "
+                                        ></div>
+                                        <input
+                                            data-ng-if="edit.value"
+                                            type="text"
+                                            class="form-control"
+                                            data-ng-model="ownerModel.organisationName"
+                                            id="organisationName"
+                                            name="organisationName"
+                                            maxlength="250"
+                                            data-ng-required="isMandatory('organisationName')"
+                                            data-ng-readonly="isReadonly('organisationName')"
+                                        />
+                                        <div
+                                            data-ng-if="edit.value"
+                                            data-ng-messages="accountForm.organisation.$error"
+                                            role="alert"
+                                        >
+                                            <div
+                                                class="text-danger"
+                                                data-ng-message="required"
+                                            >
+                                                <p
+                                                    data-translate="useraccount_contacts_owner_required"
+                                                    data-ng-if="isMandatory('organisationName')"
+                                                ></p>
+                                            </div>
+                                            <div
+                                                class="text-danger"
+                                                data-ng-message="maxlength"
+                                            >
+                                                <p
+                                                    data-translate="useraccount_contacts_owner_to_long"
+                                                ></p>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            data-ng-if="edit.value && isReadonly('organisationName') && hasTrade && isMandatory('organisationName')"
+                                        >
+                                            <i class="fa fa-info-circle"></i>
+                                            <strong
+                                                data-translate="useraccount_contacts_owner_update_organisationName_info"
+                                            ></strong>
+                                            <a
+                                                data-ng-href="{{domainOrderTradeUrl}}"
+                                                title="{{ 'core_new_window' | translate }}"
+                                                target="_blank"
+                                                data-translate="useraccount_contacts_owner_update_email_go"
+                                            ></a>
+                                            <i class="fa fa-external-link"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- organisationType -->
+                                <div
+                                    class="form-group"
+                                    data-ng-class="{
+                                    'error': accountForm.organisationType.$dirty && accountForm.organisationType.$error,
+                                    'success' : accountForm.organisationType.$dirty && accountForm.organisationType.$valid
+                                }"
+                                >
+                                    <label
+                                        class="control-label"
+                                        for="organisationType"
+                                    >
+                                        {{
+                                        'useraccount_contacts_owner_organisation_type'
+                                        | translate }}
+                                        <strong
+                                            class="text-danger"
+                                            data-ng-if="isMandatory('organisationType')"
+                                            >*</strong
+                                        >
+                                    </label>
+                                    <div class="controls">
+                                        <div
+                                            data-ng-if="!edit.value"
+                                            data-ng-bind="ownerModel.organisationType || '-' "
+                                        ></div>
+                                        <input
+                                            data-ng-if="edit.value"
+                                            type="text"
+                                            class="form-control"
+                                            data-ng-model="ownerModel.organisationType"
+                                            id="organisationType"
+                                            name="organisationType"
+                                            maxlength="250"
+                                            data-ng-required="isMandatory('organisationType')"
+                                            data-ng-readonly="isReadonly('organisationType')"
+                                        />
+                                        <div
+                                            data-ng-if="edit.value"
+                                            data-ng-messages="accountForm.organisationType.$error"
+                                            role="alert"
+                                        >
+                                            <div
+                                                class="text-danger"
+                                                data-ng-message="required"
+                                            >
+                                                <p
+                                                    data-translate="useraccount_contacts_owner_required"
+                                                    data-ng-if="isMandatory('organisationType')"
+                                                ></p>
+                                            </div>
+                                            <div
+                                                class="text-danger"
+                                                data-ng-message="maxlength"
+                                            >
+                                                <p
+                                                    data-translate="useraccount_contacts_owner_to_long"
+                                                ></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- companyNationalIdentification -->
+                                <div
+                                    class="form-group"
+                                    data-ng-class="{
+                                    'error': accountForm.companyNationalIdentificationNumber.$dirty && accountForm.companyNationalIdentificationNumber.$error,
+                                    'success' : accountForm.companyNationalIdentificationNumber.$dirty && accountForm.companyNationalIdentificationNumber.$valid
+                                }"
+                                >
+                                    <label
+                                        class="control-label"
+                                        for="companyNationalIdentificationNumber"
+                                    >
+                                        {{
+                                        'useraccount_contacts_owner_company_national_identification_number'
+                                        | translate }}
+                                        <strong
+                                            class="text-danger"
+                                            data-ng-if="isMandatory('companyNationalIdentificationNumber')"
+                                            >*</strong
+                                        >
+                                    </label>
+                                    <div class="controls">
+                                        <div
+                                            data-ng-if="!edit.value"
+                                            data-ng-bind="ownerModel.companyNationalIdentificationNumber || '-' "
+                                        ></div>
+                                        <input
+                                            data-ng-if="edit.value"
+                                            type="text"
+                                            class="form-control"
+                                            data-ng-model="ownerModel.companyNationalIdentificationNumber"
+                                            id="companyNationalIdentificationNumber"
+                                            name="companyNationalIdentificationNumber"
+                                            maxlength="250"
+                                            data-ng-required="isMandatory('companyNationalIdentificationNumber')"
+                                            data-ng-readonly="isReadonly('companyNationalIdentificationNumber')"
+                                        />
+                                        <div
+                                            data-ng-if="edit.value"
+                                            data-ng-messages="accountForm.companyNationalIdentificationNumber.$error"
+                                            role="alert"
+                                        >
+                                            <div
+                                                class="text-danger"
+                                                data-ng-message="required"
+                                            >
+                                                <p
+                                                    data-translate="useraccount_contacts_owner_required"
+                                                    data-ng-if="isMandatory('companyNationalIdentificationNumber')"
+                                                ></p>
+                                            </div>
+                                            <div
+                                                class="text-danger"
+                                                data-ng-message="maxlength"
+                                            >
+                                                <p
+                                                    data-translate="useraccount_contacts_owner_to_long"
+                                                ></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- VAT -->
+                                <div
+                                    class="form-group"
+                                    data-ng-if="worldPart !== 'CA'"
+                                    data-ng-class="{
+                                     'error': accountForm.vat.$dirty && accountForm.vat.$error,
+                                     'success' : accountForm.vat.$dirty && accountForm.vat.$valid
+                                 }"
+                                >
+                                    <label
+                                        for="vat"
+                                        class="control-label"
+                                        data-translate="useraccount_contacts_owner_tva"
+                                    ></label>
+
+                                    <div class="controls">
+                                        <div
+                                            data-ng-if="!edit.value"
+                                            data-ng-bind="ownerModel.vat || '-' "
+                                        ></div>
+                                        <input
+                                            data-ng-if="edit.value"
+                                            class="form-control"
+                                            name="vat"
+                                            id="vat"
+                                            type="text"
+                                            maxlength="250"
+                                            data-ng-model="ownerModel.vat"
+                                        />
+                                        <div
+                                            data-ng-if="edit.value"
+                                            data-ng-messages="accountForm.vat.$error"
+                                            role="alert"
+                                        >
+                                            <div
+                                                class="text-danger"
+                                                data-ng-message="maxlength"
+                                            >
+                                                <p
+                                                    data-translate="useraccount_contacts_owner_to_long"
+                                                ></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- First name -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                            'error': accountForm.firstName.$dirty && accountForm.firstName.$error,
+                            'success' : accountForm.firstName.$dirty && accountForm.firstName.$valid
+                        }"
+                            >
+                                <label class="control-label" for="firstName">
+                                    {{ 'useraccount_contacts_owner_firstname' |
+                                    translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('firstName')"
+                                        >*</strong
+                                    >
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-hide="edit.value"
+                                        data-ng-bind="ownerModel.firstName || '-'"
+                                    ></div>
+                                    <input
+                                        data-ng-show="edit.value"
+                                        type="text"
+                                        class="form-control"
+                                        id="firstName"
+                                        name="firstName"
+                                        data-ng-model="ownerModel.firstName"
+                                        maxlength="250"
+                                        data-ng-required="isMandatory('firstName')"
+                                        data-ng-readonly="isReadonly('firstName')"
+                                    />
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.firstName.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="required"
+                                            data-ng-if="isMandatory('firstName')"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_required"
+                                            ></p>
+                                        </div>
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+
+                                        <div
+                                            data-ng-if="edit.value && isReadonly('firstName') && hasTrade && isMandatory('firstName')"
+                                        >
+                                            <i class="fa fa-info-circle"></i>
+                                            <strong
+                                                data-translate="useraccount_contacts_owner_update_firstName_info"
+                                            ></strong>
+                                            <a
+                                                data-ng-href="{{domainOrderTradeUrl}}"
+                                                title="{{ 'core_new_window' | translate }}"
+                                                target="_blank"
+                                                data-translate="useraccount_contacts_owner_update_email_go"
+                                            ></a>
+                                            <i class="fa fa-external-link"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Last name -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                            'error': accountForm.lastName.$dirty && accountForm.lastName.$error,
+                            'success' : accountForm.lastName.$dirty && accountForm.lastName.$valid
+                        }"
+                            >
+                                <label for="lastName" class="control-label">
+                                    {{ 'useraccount_contacts_owner_lastname' |
+                                    translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('lastName')"
+                                        >*</strong
+                                    >
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-hide="edit.value"
+                                        data-ng-bind="ownerModel.lastName || '-'"
+                                    ></div>
+                                    <input
+                                        data-ng-if="edit.value"
+                                        type="text"
+                                        class="form-control"
+                                        data-ng-model="ownerModel.lastName"
+                                        maxlength="250"
+                                        name="lastName"
+                                        id="lastName"
+                                        data-ng-required="isMandatory('lastName')"
+                                        data-ng-readonly="isReadonly('lastName')"
+                                    />
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.lastName.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="required"
+                                            data-ng-if="isMandatory('lastName')"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_required"
+                                            ></p>
+                                        </div>
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+
+                                        <div
+                                            data-ng-if="edit.value && isReadonly('lastName') && hasTrade && isMandatory('lastName')"
+                                        >
+                                            <i class="fa fa-info-circle"></i>
+                                            <strong
+                                                data-translate="useraccount_contacts_owner_update_lastName_info"
+                                            ></strong>
+                                            <a
+                                                data-ng-href="{{domainOrderTradeUrl}}"
+                                                title="{{ 'core_new_window' | translate }}"
+                                                target="_blank"
+                                                data-translate="useraccount_contacts_owner_update_email_go"
+                                            ></a>
+                                            <i class="fa fa-external-link"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- nationalIdentificationNumber -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                                'error': accountForm.nationalIdentificationNumber.$dirty && accountForm.nationalIdentificationNumber.$error,
+                                'success' : accountForm.nationalIdentificationNumber.$dirty && accountForm.nationalIdentificationNumber.$valid
+                            }"
+                            >
+                                <label
+                                    class="control-label"
+                                    for="nationalIdentificationNumber"
+                                >
+                                    {{
+                                    'useraccount_contacts_owner_individual_national_identification_number'
+                                    | translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('nationalIdentificationNumber')"
+                                        >*</strong
+                                    >
+                                </label>
+                                <div class="controls">
+                                    <div
+                                        data-ng-if="!edit.value"
+                                        data-ng-bind="ownerModel.nationalIdentificationNumber || '-' "
+                                    ></div>
+                                    <input
+                                        data-ng-if="edit.value"
+                                        type="text"
+                                        class="form-control"
+                                        data-ng-model="ownerModel.nationalIdentificationNumber"
+                                        id="nationalIdentificationNumber"
+                                        name="nationalIdentificationNumber"
+                                        maxlength="250"
+                                        data-ng-required="isMandatory('nationalIdentificationNumber')"
+                                        data-ng-readonly="isReadonly('nationalIdentificationNumber')"
+                                    />
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.nationalIdentificationNumber.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="required"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_required"
+                                                data-ng-if="isMandatory('nationalIdentificationNumber')"
+                                            ></p>
+                                        </div>
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Gender -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                            'error': accountForm.gender.$dirty && accountForm.gender.$error,
+                            'success' : accountForm.gender.$dirty && accountForm.gender.$valid
+                        }"
+                            >
+                                <label class="control-label" for="gender">
+                                    {{ 'useraccount_contacts_owner_gender' |
+                                    translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('gender')"
+                                        >*</strong
+                                    >
+                                </label>
+
+                                <div class="controls">
+                                    <div data-ng-hide="edit.value">
+                                        <span
+                                            data-ng-bind="('useraccount_contacts_owner_gender_' + ownerModel.gender) | ducTranslateAlt:'-'"
+                                        ></span>
+                                    </div>
+                                    <select
+                                        class="form-control"
+                                        data-ng-model="ownerModel.gender"
+                                        data-ng-if="edit.value"
+                                        data-ng-options="(('useraccount_contacts_owner_gender_' + gender) | translate) for gender in controls.genders"
+                                        id="gender"
+                                        name="gender"
+                                        data-ng-required="isMandatory('gender')"
+                                    >
+                                    </select>
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.gender.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="required"
+                                            data-ng-if="isMandatory('gender')"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_required"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Nationality -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                            'error'     : accountForm.nationality.$dirty && accountForm.nationality.$error,
+                            'success'   : accountForm.nationality.$dirty && accountForm.nationality.$valid
+                        }"
+                            >
+                                <label class="control-label" for="nationality">
+                                    {{ 'useraccount_contacts_owner_nationality'
+                                    | translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('nationality')"
+                                        >*</strong
+                                    >
+                                </label>
+
+                                <div class="controls">
+                                    <div data-ng-show="!edit.value">
+                                        <span
+                                            data-ng-bind="('country_' + ownerModel.nationality) | ducTranslateAlt:'-'"
+                                        ></span>
+                                    </div>
+                                    <select
+                                        class="form-control"
+                                        data-ng-model="ownerModel.nationality"
+                                        data-ng-if="edit.value"
+                                        data-ng-options="(('country_' + country) | translate) for country in controls.countries"
+                                        name="nationality"
+                                        id="nationality"
+                                        data-ng-required="isMandatory('nationality')"
+                                    >
+                                    </select>
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.nationality.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="required"
+                                            data-ng-if="isMandatory('nationality')"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_required"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Birth date -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                            'error'     : accountForm.birthDay.$dirty && accountForm.birthDay.$error,
+                            'success'   : accountForm.birthDay.$dirty && accountForm.birthDay.$valid
+                        }"
+                            >
+                                <label class="control-label" for="birthDay">
+                                    {{ 'useraccount_contacts_owner_birthDay' |
+                                    translate }}
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-show="!edit.value"
+                                        data-ng-bind="ownerModel.birthDay || '-'"
+                                    ></div>
+                                    <div data-ng-show="edit.value">
+                                        <input
+                                            class="form-control"
+                                            type="text"
+                                            id="birthDay"
+                                            name="birthDay"
+                                            data-ng-model="ownerModel.birthDay"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Birth Country -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                                'error'     : accountForm.birthCountry.$dirty && accountForm.birthCountry.$error,
+                                'success'   : accountForm.birthCountry.$dirty && accountForm.birthCountry.$valid
+                        }"
+                            >
+                                <label class="control-label" for="country">
+                                    {{ 'useraccount_contacts_owner_birthCountry'
+                                    | translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('birthCountry')"
+                                        >*</strong
+                                    >
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-show="!edit.value"
+                                        data-ng-bind="('country_' + ownerModel.birthCountry) | ducTranslateAlt:'-'"
+                                    ></div>
+                                    <select
+                                        class="form-control"
+                                        data-ng-show="edit.value"
+                                        type="text"
+                                        data-ng-model="ownerModel.birthCountry"
+                                        data-ng-options="(('country_' + country) | translate) for country in controls.countries"
+                                        id="birthCountry"
+                                        name="birthCountry"
+                                        maxlength="250"
+                                        data-ng-required="isMandatory('birthCountry')"
+                                        data-ng-readonly="isReadonly('birthCountry')"
+                                    >
+                                    </select>
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.birthCountry.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Birth City -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                                'error'     : accountForm.birthCity.$dirty && accountForm.birthCity.$error,
+                                'success'   : accountForm.birthCity.$dirty && accountForm.birthCity.$valid
+                        }"
+                            >
+                                <label class="control-label" for="birthCity">
+                                    {{ 'useraccount_contacts_owner_birthCity' |
+                                    translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('birthCity')"
+                                        >*</strong
+                                    >
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-show="!edit.value"
+                                        data-ng-bind="ownerModel.birthCity || '-' "
+                                    ></div>
+                                    <input
+                                        class="form-control"
+                                        data-ng-show="edit.value"
+                                        type="text"
+                                        data-ng-model="ownerModel.birthCity"
+                                        name="birthCity"
+                                        id="birthCity"
+                                        maxlength="250"
+                                        data-ng-required="isMandatory('birthCity')"
+                                        data-ng-readonly="isReadonly('birthCity')"
+                                    />
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.birthCity.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Birth Zip -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                                'error': accountForm.birthZip.$dirty && accountForm.birthZip.$error,
+                                'success' : accountForm.birthZip.$dirty && accountForm.birthZip.$valid
+                        }"
+                            >
+                                <label class="control-label" for="birthZip">
+                                    {{ 'useraccount_contacts_owner_birthZip' |
+                                    translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('birthZip')"
+                                        >*</strong
+                                    >
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-show="!edit.value"
+                                        data-ng-bind="ownerModel.birthZip || '-'"
+                                    ></div>
+                                    <input
+                                        class="form-control"
+                                        data-ng-show="edit.value"
+                                        type="text"
+                                        data-ng-model="ownerModel.birthZip"
+                                        name="birthZip"
+                                        maxlength="250"
+                                        id="birthZip"
+                                        data-ng-required="isMandatory('birthZip')"
+                                        data-ng-readonly="isReadonly('birthZip')"
+                                    />
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.birthZip.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Language -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                            'error': accountForm.language.$dirty && accountForm.language.$error,
+                            'success' : accountForm.language.$dirty && accountForm.language.$valid
+                        }"
+                            >
+                                <label class="control-label">
+                                    {{ 'useraccount_contacts_owner_language' |
+                                    translate }}
+                                    <strong class="text-danger">*</strong>
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-show="!edit.value"
+                                        data-ng-bind="getLanguageName(ownerModel.language)"
+                                    ></div>
+                                    <select
+                                        class="form-control"
+                                        data-ng-model="ownerModel.language"
+                                        data-ng-if="edit.value"
+                                        data-ng-options="language.key as language.name for language in languages"
+                                        name="language"
+                                        id="language"
+                                        required
+                                    >
+                                    </select>
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.language.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="required"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_required"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Addresse Line1 -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                                'error': accountForm.addressLine1.$dirty && accountForm.addressLine1.$error,
+                                'success' : accountForm.addressLine1.$dirty && accountForm.addressLine1.$valid
+                        }"
+                            >
+                                <label class="control-label" for="addressLine1">
+                                    {{ 'useraccount_contacts_owner_address_1' |
+                                    translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('address.line1')"
+                                        >*</strong
+                                    >
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-show="!edit.value"
+                                        data-ng-bind="ownerModel.address.line1 || '-' "
+                                    ></div>
+                                    <input
+                                        class="form-control"
+                                        data-ng-show="edit.value"
+                                        type="text"
+                                        data-ng-model="ownerModel.address.line1"
+                                        id="addressLine1"
+                                        name="addressLine1"
+                                        maxlength="250"
+                                        data-ng-required="isMandatory('address.line1')"
+                                        data-ng-readonly="isReadonly('address.line1')"
+                                    />
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.addressLine1.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="required"
+                                            data-ng-if="isMandatory('address.line1')"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_required"
+                                            ></p>
+                                        </div>
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Addresse Line2 -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                                'error': accountForm.addressLine2.$dirty && accountForm.addressLine2.$error,
+                                'success' : accountForm.addressLine2.$dirty && accountForm.addressLine2.$valid
+                        }"
+                            >
+                                <label
+                                    for="addressLine2"
+                                    data-translate="useraccount_contacts_owner_address_2"
+                                    class="control-label"
+                                >
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-show="!edit.value"
+                                        data-ng-bind="ownerModel.address.line2 || '-' "
+                                    ></div>
+                                    <input
+                                        class="form-control"
+                                        data-ng-show="edit.value"
+                                        name="addressLine2"
+                                        id="addressLine2"
+                                        maxlength="250"
+                                        type="text"
+                                        data-ng-model="ownerModel.address.line2"
+                                    />
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.addressLine2.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Addresse Line3 -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                                'error': accountForm.addressLine3.$dirty && accountForm.addressLine3.$error,
+                                'success' : accountForm.addressLine3.$dirty && accountForm.addressLine3.$valid
+                        }"
+                            >
+                                <label
+                                    for="addressLine3"
+                                    data-translate="useraccount_contacts_owner_address_3"
+                                    class="control-label"
+                                ></label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-show="!edit.value"
+                                        data-ng-bind="ownerModel.address.line3 || '-' "
+                                    ></div>
+                                    <input
+                                        class="form-control"
+                                        data-ng-show="edit.value"
+                                        id="addressLine3"
+                                        name="addressLine3"
+                                        maxlength="250"
+                                        type="text"
+                                        data-ng-model="ownerModel.address.line3"
+                                    />
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.addressLine3.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Zip Code -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                                'error': accountForm.zip.$dirty && accountForm.zip.$error,
+                                'success' : accountForm.zip.$dirty && accountForm.zip.$valid
+                        }"
+                            >
+                                <label class="control-label" for="zip">
+                                    {{ 'useraccount_contacts_owner_zip' |
+                                    translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('address.zip')"
+                                        >*</strong
+                                    >
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-show="!edit.value"
+                                        data-ng-bind="ownerModel.address.zip || '-' "
+                                    ></div>
+                                    <input
+                                        class="form-control"
+                                        data-ng-show="edit.value"
+                                        type="text"
+                                        data-ng-model="ownerModel.address.zip"
+                                        name="zip"
+                                        maxlength="250"
+                                        id="zip"
+                                        data-ng-required="isMandatory('address.zip')"
+                                        data-ng-readonly="isReadonly('address.zip')"
+                                    />
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.zip.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="required"
+                                            data-ng-if="isMandatory('address.zip')"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_required"
+                                            ></p>
+                                        </div>
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- City -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                                'error': accountForm.addressCity.$dirty && accountForm.addressCity.$error,
+                                'success' : accountForm.addressCity.$dirty && accountForm.addressCity.$valid
+                        }"
+                            >
+                                <label class="control-label" for="addressCity">
+                                    {{ 'useraccount_contacts_owner_city' |
+                                    translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('address.city')"
+                                        >*</strong
+                                    >
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-show="!edit.value"
+                                        data-ng-bind="ownerModel.address.city || '-' "
+                                    ></div>
+                                    <input
+                                        class="form-control"
+                                        data-ng-show="edit.value"
+                                        type="text"
+                                        data-ng-model="ownerModel.address.city"
+                                        name="addressCity"
+                                        id="addressCity"
+                                        maxlength="250"
+                                        data-ng-required="isMandatory('address.city')"
+                                        data-ng-readonly="isReadonly('address.city')"
+                                    />
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.city.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="required"
+                                            data-ng-if="isMandatory('address.city')"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_required"
+                                            ></p>
+                                        </div>
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Country -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                                'error': accountForm.addressCountry.$dirty && accountForm.addressCountry.$error,
+                                'success' : accountForm.addressCountry.$dirty && accountForm.addressCountry.$valid
+                        }"
+                            >
+                                <label
+                                    class="control-label"
+                                    for="addressCountry"
+                                >
+                                    {{ 'useraccount_contacts_owner_country' |
+                                    translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('address.country')"
+                                        >*</strong
+                                    >
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-hide="edit.value && !isReadonly('address.country')"
+                                        data-ng-bind="('country_' + ownerModel.address.country) | ducTranslateAlt:'-'"
+                                    ></div>
+                                    <select
+                                        class="form-control"
+                                        data-ng-show="edit.value && !isReadonly('address.country')"
+                                        type="text"
+                                        data-ng-model="ownerModel.address.country"
+                                        data-ng-options="(('country_' + country) | translate) for country in controls.countries"
+                                        id="addressCountry"
+                                        name="addressCountry"
+                                        data-ng-required="isMandatory('address.country')"
+                                    >
+                                    </select>
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.addressCountry.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Province -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                                'error': accountForm.addressProvince.$dirty && accountForm.addressProvince.$error,
+                                'success' : accountForm.addressProvince.$dirty && accountForm.addressProvince.$valid
+                        }"
+                            >
+                                <label
+                                    for="addressProvince"
+                                    class="control-label"
+                                >
+                                    {{ 'useraccount_contacts_owner_province' |
+                                    translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('address.province')"
+                                        >*</strong
+                                    >
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-show="!edit.value"
+                                        data-ng-bind="ownerModel.address.province || '-'"
+                                    ></div>
+                                    <input
+                                        class="form-control"
+                                        data-ng-show="edit.value"
+                                        id="addressProvince"
+                                        name="addressProvince"
+                                        type="text"
+                                        maxlength="250"
+                                        data-ng-model="ownerModel.address.province"
+                                        data-ng-required="isMandatory('address.province')"
+                                        data-ng-readonly="isReadonly('address.province')"
+                                    />
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.province.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="required"
+                                            data-ng-if="isMandatory('address.province')"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_required"
+                                            ></p>
+                                        </div>
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                                'error': accountForm.phone.$dirty && accountForm.phone.$invalid,
+                                'success' : accountForm.phone.$dirty && accountForm.phone.$valid
+                        }"
+                            >
+                                <label for="phone" class="control-label">
+                                    {{ 'useraccount_contacts_owner_phone' |
+                                    translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('phone')"
+                                        >*</strong
+                                    >
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-show="!edit.value"
+                                        data-ng-bind="ownerModel.phone || '-'"
+                                    ></div>
+                                    <input
+                                        class="form-control"
+                                        id="phone"
+                                        name="phone"
+                                        data-ng-show="edit.value"
+                                        type="text"
+                                        maxlength="250"
+                                        data-ng-model="ownerModel.phone"
+                                        data-ng-required="isMandatory('phone')"
+                                        data-ng-readonly="isReadonly('phone')"
+                                    />
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.phone.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="required"
+                                            data-ng-if="isMandatory('phone')"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_required"
+                                            ></p>
+                                        </div>
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- cellPhone -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                                'error': accountForm.cellPhone.$dirty && accountForm.cellPhone.$invalid,
+                                'success' : accountForm.cellPhone.$dirty && accountForm.cellPhone.$valid
+                        }"
+                            >
+                                <label
+                                    for="cellPhone"
+                                    data-translate="useraccount_contacts_owner_cellPhone"
+                                    class="control-label"
+                                ></label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-show="!edit.value"
+                                        data-ng-bind="ownerModel.cellPhone || '-'"
+                                    ></div>
+                                    <input
+                                        class="form-control"
+                                        id="cellPhone"
+                                        name="cellPhone"
+                                        data-ng-show="edit.value"
+                                        type="text"
+                                        maxlength="250"
+                                        data-ng-model="ownerModel.cellPhone"
+                                    />
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.cellPhone.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Fax -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                                'error': accountForm.fax.$dirty && accountForm.fax.$invalid,
+                                'success' : accountForm.fax.$dirty && accountForm.fax.$valid
+                        }"
+                            >
+                                <label
+                                    for="fax"
+                                    data-translate="useraccount_contacts_owner_fax"
+                                    class="control-label"
+                                ></label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-show="!edit.value"
+                                        data-ng-bind="ownerModel.fax || '-'"
+                                    ></div>
+                                    <input
+                                        class="form-control"
+                                        id="fax"
+                                        name="fax"
+                                        data-ng-show="edit.value"
+                                        type="text"
+                                        maxlength="250"
+                                        data-ng-model="ownerModel.fax"
+                                    />
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.fax.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div
+                                class="form-group"
+                                data-ng-class="{
+                                'error': accountForm.email.$dirty && accountForm.email.$error,
+                                'success' : accountForm.email.$dirty && accountForm.email.$valid
+                        }"
+                            >
+                                <label class="control-label" for="email">
+                                    {{ 'useraccount_contacts_owner_email' |
+                                    translate }}
+                                    <strong
+                                        class="text-danger"
+                                        data-ng-if="isMandatory('email')"
+                                        >*</strong
+                                    >
+                                </label>
+
+                                <div class="controls">
+                                    <div
+                                        data-ng-show="!edit.value"
+                                        data-ng-bind="ownerModel.email || '-'"
+                                    ></div>
+
+                                    <input
+                                        class="form-control"
+                                        data-ng-show="edit.value"
+                                        type="email"
+                                        data-ng-model="ownerModel.email"
+                                        required
+                                        data-ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,20}$/"
+                                        name="email"
+                                        maxlength="250"
+                                        id="email"
+                                        data-ng-required="isMandatory('email')"
+                                        data-ng-readonly="isReadonly('email')"
+                                    />
+                                    <div
+                                        data-ng-if="edit.value"
+                                        data-ng-messages="accountForm.email.$error"
+                                        role="alert"
+                                    >
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="required"
+                                            data-ng-if="isMandatory('email')"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_required"
+                                            ></p>
+                                        </div>
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="maxlength"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_to_long"
+                                            ></p>
+                                        </div>
+                                        <div
+                                            class="text-danger"
+                                            data-ng-message="pattern"
+                                        >
+                                            <p
+                                                data-translate="useraccount_contacts_owner_email_pattern"
+                                            ></p>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        data-ng-if="edit.value && isReadonly('email') && hasTrade && isMandatory('email')"
+                                    >
+                                        <i class="fa fa-info-circle"></i>
+                                        <strong
+                                            data-translate="useraccount_contacts_owner_update_email_info"
+                                        ></strong>
+                                        <a
+                                            data-ng-href="{{domainOrderTradeUrl}}"
+                                            title="{{ 'core_new_window' | translate }}"
+                                            target="_blank"
+                                            data-translate="useraccount_contacts_owner_update_email_go"
+                                        ></a>
+                                        <i class="fa fa-external-link"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Update first/last name -->
+                            <div
+                                class="form-group"
+                                data-ng-if="updateOwnerName"
+                            >
+                                <label class="control-label" for="updateName">
+                                    <strong class="text-danger">*</strong>
+                                </label>
+
+                                <div class="controls">
+                                    <label class="checkbox">
+                                        <input
+                                            class="form-control"
+                                            type="checkbox"
+                                            id="updateName"
+                                            name="updateName"
+                                            title="{{ 'useraccount_contacts_owner_update_name_title' | translate }}"
+                                            data-ng-model="ownerModel.updateName"
+                                            required
+                                        />
+                                        <span
+                                            data-ng-bind=":: ('useraccount_contacts_owner_update_name_info') | translate"
+                                        ></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- BUTTONS -->
+                            <div class="text-right" data-ng-show="edit.value">
+                                <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    data-ng-click="cancel();"
+                                    data-ng-disabled="loaders.update"
+                                    data-translate="useraccount_contacts_owner_cancel"
+                                ></button>
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary"
+                                    data-ng-click="save();"
+                                    data-ng-disabled="accountForm.$invalid || loaders.update"
+                                    data-translate="useraccount_contacts_owner_ok"
+                                ></button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div
+                        class="col-md-6 alert"
+                        data-ng-if="!loaders.owner && domainsownerModel.length"
+                    >
+                        <p
+                            data-translate="useraccount_contacts_owner_domains_linked"
+                        ></p>
+                        <ul>
+                            <li
+                                data-ng-repeat="domain in domainsOwner"
+                                data-ng-bind="domain"
+                            ></li>
+                        </ul>
+                    </div>
+
+                    <div
+                        class="col-md-3"
+                        data-ng-show="!loaders.owner && !edit.value"
+                    >
+                        <p>
+                            <a
+                                data-ng-href="{{changeOwnerUrl}}"
+                                target="_blank"
+                                title="{{ 'useraccount_contacts_owner_change_owner' | translate }}"
+                            >
+                                <span
+                                    data-translate="useraccount_contacts_owner_change_owner"
+                                ></span>
+                                <i class="fa fa-external-link"></i>
+                            </a>
+                            <sup
+                                class="tooltip-help"
+                                data-oui-tooltip-placement="top"
+                                data-oui-tooltip="{{:: 'useraccount_contacts_owner_tooltip_will_pay' | translate }}"
+                                >?</sup
+                            >
+                        </p>
+                        <div class="text-right">
+                            <button
+                                type="button"
+                                class="btn btn-default"
+                                data-ng-click="edit();"
+                            >
+                                <span
+                                    data-ng-bind=":: 'useraccount_contacts_owner_edit' | translate"
+                                ></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

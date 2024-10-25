@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_FR": "Une copie recto-verso de votre pièce d'identité (Passeport, Carte Nationale d'Identité)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_FR": "Un justificatif de domicile de moins de 3 mois, à votre nom et à l'adresse indiquée dans votre profil",
+  "documents_dashboard_document_CORPORATE_ID_FR": "Le KBIS datant de moins de 3 mois",
+  "documents_dashboard_document_ADMINISTRATION_ID_FR": "Une fiche INSEE",
+  "documents_dashboard_document_ASSOCIATION_ID_FR": "L'extrait de parution au Journal Officiel et le dernier PV d'assemblée",
+  "documents_dashboard_document_individual_OTHER_FR": "Tout document utile pour comprendre votre situation (hébergement, déménagement,...)",
+  "documents_dashboard_document_corporation_OTHER_FR": "Si vous n'êtes pas mentionné sur le KBIS de votre entreprise/statut de l'association, merci de nous transmettre une copie de la pièce d'identité d'une personne y figurant.",
+  "documents_dashboard_document_association_OTHER_FR": "Si vous n'êtes pas mentionné sur le KBIS de votre entreprise/statut de l'association, merci de nous transmettre une copie de la pièce d'identité d'une personne y figurant.",
+  "documents_dashboard_document_administration_OTHER_FR": "Si vous n'êtes pas mentionné sur le KBIS de votre entreprise/statut de l'association, merci de nous transmettre une copie de la pièce d'identité d'une personne y figurant.",
+  "documents_dashboard_document_other_OTHER_FR": "Tout document utile pour comprendre votre situation (hébergement, déménagement,...)"
+}

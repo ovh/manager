@@ -1,0 +1,15 @@
+{
+  "account_contacts_service_edit": "Zmień kontakty",
+  "account_contacts_service_edit_description": "Zmień kontakty dla usługi {{serviceName}}",
+  "account_contacts_service_edit_contact_admin": "Kontakt administracyjny",
+  "account_contacts_service_edit_contact_tech": "Kontakt techniczny",
+  "account_contacts_service_edit_contact_billing": "Kontakt księgowy",
+  "account_contacts_service_edit_cancel": "Anuluj",
+  "account_contacts_service_edit_confirm": "Zatwierdź",
+  "account_contacts_service_edit_error": "Wystąpił błąd podczas zlecania zmiany kontaktu: {{message}}.",
+  "account_contacts_service_edit_success": "Kontakt został zmieniony. Kontakty otrzymają e-mail z opisem procedury do wykonania.",
+  "account_contacts_service_edit_warn_debt": "Nie możesz zmienić kontaktu księgowego, ponieważ masz nieuregulowaną fakturę za tę usługę. Aby zmienić kontakt, ureguluj płatność.",
+  "account_contacts_service_edit_pay": "Ureguluj płatność",
+  "account_contacts_service_edit_warn_contact_billing": "Nie możesz zmienić kontaktu księgowego, ponieważ masz nieuregulowaną fakturę za tę usługę. Skontaktuj się z osobą wyznaczoną jako kontakt księgowy {{nicBilling}}, aby dokonać tej zmiany. ",
+  "account_contacts_service_edit_description_trusted": "Zmień kontakty przypisane do usługi {{serviceName}} hostowanej w zaufanej strefie."
+}

@@ -1,0 +1,123 @@
+/* Installation modal */
+// .mainContainer
+#main-container .installation-server {
+  .pellet {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+  }
+
+  .controls {
+    .select-stretch {
+      width: auto;
+    }
+  }
+
+  .control-label-inline {
+    display: inline;
+  }
+
+  .accordion-list {
+    .deprecated {
+      text-decoration: line-through;
+    }
+
+    .accordion-list-container {
+      .category {
+        .background-color-fn(@defaultlineheadbackground);
+        .color-fn(@defaultlineheadfont);
+
+        font-weight: bold;
+        padding-left: 10px;
+        display: block;
+        cursor: pointer;
+      }
+
+      .items {
+        margin-bottom: 1px;
+        max-height: 230px;
+        overflow-y: auto;
+
+        .item {
+          padding-left: 20px;
+          cursor: pointer;
+          overflow: hidden;
+
+          &:nth-child(odd) {
+            .background-color-fn(@defaultlineoddbackground);
+            .color-fn(@defaultlineoddfont);
+          }
+
+          &:nth-child(even) {
+            .background-color-fn(@defaultlineevenbackground);
+            .color-fn(@defaultlineevenfont);
+          }
+
+          &:hover {
+            .background-color-fn(@defaultlinehoverbackground);
+            .color-fn(@defaultlinehoverfont);
+          }
+
+          &.selected-item,
+          &.selected-item:hover {
+            .background-color-fn(@defaultlineselectedbackground);
+            .color-fn(@defaultlineselectedfont);
+          }
+
+          &.selected-delete-item,
+          &.selected-delete-item:hover {
+            opacity: 0.5;
+          }
+
+          .info-distrib {
+            float: right;
+            padding-right: 10px;
+
+            &.warning-distrib {
+              color: red;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.form-horizontal.install .control-group {
+  margin-bottom: 5px;
+
+  .controls.form-info {
+    padding-top: 5px;
+  }
+
+  .control-label {
+    width: 180px;
+    margin-right: 10px;
+  }
+
+  label.checkbox {
+    margin-left: 190px;
+  }
+
+  .errorFormLabel {
+    margin-left: 40px;
+    font-size: 11px;
+    color: @red_const;
+  }
+}
+
+.form-control.oui-input_l,
+.form-control.oui-input_s {
+  width: inherit;
+}
+
+.fix-help-block .help-block {
+  // this is to compensate the move down of the next questions when an error is displayed
+  margin-bottom: -1.563rem;
+  height: 1.25rem;
+}
+
+.fix-help-block .oui-field__footer {
+  // this is to hide the native lib errors because they are customized
+  display: none;
+}

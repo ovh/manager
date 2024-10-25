@@ -1,0 +1,79 @@
+@import '@ovh-ux/ui-kit/dist/less/_tokens';
+@import (less) '@ovh-ux/ui-kit/dist/css/oui.css';
+@import (less) 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
+@import (less) 'font-awesome/css/font-awesome.min.css';
+@import (less) 'ovh-manager-webfont/dist/css/ovh-font.css';
+@import (less) 'animate.css/animate.min.css';
+@import (less) 'ui-select/dist/select.min.css';
+@import 'less/utils/variables';
+@import 'less/utils/function';
+@import 'less/utils/elements';
+@import 'less/utils/utilities';
+@import 'less/common/accordion';
+@import 'less/common/autocomplete';
+@import 'less/common/buttonIcons';
+@import 'less/common/button';
+@import 'less/common/countryIcon';
+@import 'less/common/distributionIcon';
+@import 'less/common/download';
+@import 'less/common/global';
+@import 'less/common/graphicalTools';
+@import 'less/common/header';
+@import 'less/common/icon';
+@import 'less/common/informationBlock';
+@import 'less/common/modal';
+@import 'less/common/popover';
+@import 'less/common/searchbar';
+@import 'less/common/selectList';
+@import 'less/common/serviceIcon';
+@import 'less/common/table';
+@import 'less/common/wizard';
+@import 'less/common/progressBarWithText';
+@import 'less/common/animation';
+@import 'less/common/navbar';
+@import '../components/sidebar-menu/sidebar-menu';
+@import '../components/zendesk/zendesk';
+@import 'less/module/ip/ip';
+@import 'less/module/ip/ip-dashboard';
+@import 'less/module/licence/licence';
+@import 'less/module/user-account/security';
+@import 'less/module/user-account/emails';
+@import 'less/module/user-account/ssh';
+@import 'less/module/user-account/advanced';
+@import 'less/dedicated/dedicatedcloud/common';
+@import 'less/dedicated/dedicatedcloud/banners';
+@import 'less/dedicated/dedicatedcloud/operations';
+@import 'less/dedicated/dedicatedcloud/datastores';
+@import 'less/dedicated/dedicatedcloud/security-options';
+@import 'less/dedicated/dedicatedcloud/users';
+@import 'less/dedicated/server/installation';
+@import 'less/dedicated/server/usb';
+@import 'less/dedicated/server/stats';
+@import 'less/dedicated/server/monitoring';
+@import 'less/dedicated/server/alert';
+@import 'less/dedicated/vrack/vrack';
+@import 'less/user-contracts/user-contracts';
+
+@actions-menu-item-link-icon-hover-bg-color: #59d2ef;
+
+oui-message,
+.oui-message {
+  margin-bottom: 0;
+}
+
+h3.font-lite {
+  font-weight: 300;
+}
+
+th .tooltip-container {
+  position: relative;
+  display: inline-block;
+  font-weight: 400;
+}
+
+td,
+th {
+  .oui-tooltip {
+    white-space: pre-wrap;
+  }
+}

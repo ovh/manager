@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_FR": "Una copia por ambas caras de su documento de identidad (pasaporte, DNI)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_FR": "Un justificante de domicilio con una antigüedad inferior a 3 meses, con su nombre y la dirección indicada en su perfil",
+  "documents_dashboard_document_CORPORATE_ID_FR": "El NIF con una antigüedad inferior a 3 meses",
+  "documents_dashboard_document_ADMINISTRATION_ID_FR": "Un justificante INSEE",
+  "documents_dashboard_document_ASSOCIATION_ID_FR": "El extracto de publicación en el Diario Oficial y la última acta de la asamblea",
+  "documents_dashboard_document_individual_OTHER_FR": "Cualquier documento útil para entender su situación (alojamiento, mudanza...)",
+  "documents_dashboard_document_corporation_OTHER_FR": "Si usted no aparece en el NIF de su empresa, deberá enviarnos una copia del documento de identidad de una persona que sí figure en él.",
+  "documents_dashboard_document_association_OTHER_FR": "Si usted no aparece en el NIF de su empresa o los estatutos de la asociación, deberá enviarnos una copia del documento de identidad de una persona que sí figure en ellos.",
+  "documents_dashboard_document_administration_OTHER_FR": "Si usted no aparece en el NIF de su empresa o los estatutos de la asociación, deberá enviarnos una copia del documento de identidad de una persona que sí figure en ellos.",
+  "documents_dashboard_document_other_OTHER_FR": "Cualquier documento útil para entender su situación (alojamiento, mudanza...)"
+}

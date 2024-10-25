@@ -1,0 +1,270 @@
+/* stylelint-disable no-descending-specificity, function-name-case */
+// .mainContainer
+#main-container.vps {
+  .alert.alert-info {
+    .btn {
+      padding: 2px 15px;
+      margin-left: 20px;
+    }
+
+    i {
+      margin-right: 1em;
+    }
+  }
+
+  .btn-action:hover {
+    i.icon {
+      &.icon-vps-additionnal-disk {
+        background-position: 0 -66px;
+      }
+    }
+  }
+
+  .btn-icon {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .country__flag {
+    border-radius: 3px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+  }
+
+  .disabled.btn-action:hover {
+    i.icon {
+      &.icon-vps-additionnal-disk {
+        background-position: 0 0;
+      }
+    }
+  }
+
+  i.icon {
+    &.icon-vps-veeam-restore {
+      background: url('../images/icn/icn_veeam_restore.png') no-repeat 0 0;
+    }
+
+    &.icon-vps-veeam-mount {
+      background: url('../images/icn/icn_veeam_mount.png') no-repeat 0 0;
+    }
+
+    &.icon-vps-veeam-restore,
+    &.icon-vps-veeam-mount {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+    }
+
+    &.icon-vps-additionnal-disk {
+      background: url('../images/btn/vps/btn-additional_disk.png') no-repeat 0 0;
+      height: 33px;
+      width: 33px;
+
+      &.icon-grey {
+        background-position: 0 0;
+      }
+
+      &.icon-blue {
+        display: block;
+        float: left;
+        height: 22px;
+        background-size: auto 69px;
+        background-position: 0 -22px;
+      }
+    }
+  }
+
+  i {
+    &.icon-selected-ip {
+      width: 18px;
+      height: 18px;
+      background: transparent url('../images/icn/icn_selected_ip.png') no-repeat
+        0 0;
+      margin-right: 5px;
+    }
+
+    &.icon-vps {
+      width: 30px;
+      height: 22px;
+      background-color: transparent;
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      display: block;
+      float: left;
+      margin: 3px 6px 0 0;
+    }
+
+    &.icon-veeam-mount {
+      .icon_position(3, 0);
+    }
+
+    &.icon-veeam-restore {
+      .icon_position(4, 0);
+    }
+
+    &.icon-veeam-umount {
+      .icon_position(6, 0);
+    }
+
+    &.icon-veeam-order {
+      .icon_position(5, 0);
+    }
+
+    &.icon-activate-backup {
+      .icon_position(17, 0);
+    }
+
+    &.icon-kvm-vps {
+      .icon_position(19, 0);
+    }
+
+    &.icon-renew-vps {
+      .icon_position(6, 1);
+    }
+
+    &.icon-rescue-vps {
+      .icon_position(7, 1);
+    }
+
+    &.icon-add-domain-on-dns {
+      .icon_position(3, 4);
+    }
+
+    &.icon-reinstall-vps {
+      .icon_position(7, 5);
+    }
+
+    &.icon-monitoring {
+      .icon_position(8, 6);
+    }
+
+    &.icon-restart-vps {
+      .icon_position(9, 6);
+    }
+
+    &.icon-desactivate-backup {
+      .icon_position(11, 6);
+    }
+
+    &.icon-modify-dns {
+      .icon_position(19, 6);
+    }
+
+    &.icon-init-password {
+      .icon_position(6, 7);
+    }
+
+    &.icon-add-ipv4 {
+      .icon_position(7, 7);
+    }
+
+    &.icon-take-snapshot {
+      .icon_position(8, 7);
+    }
+
+    &.icon-restore-snapshot {
+      .icon_position(9, 7);
+    }
+
+    &.icon-activate-snapshot {
+      .icon_position(10, 7);
+    }
+
+    &.icon-desactivate-snapshot {
+      .icon_position(11, 7);
+    }
+
+    &.icon-delete-snapshot {
+      .icon_position(13, 7);
+    }
+
+    &.icon-upgrade-vps {
+      .icon_position(19, 7);
+    }
+  }
+
+  .vps-snapshot-wizard {
+    .wizard-input-placeholder {
+      height: 20px;
+      padding: 4.909px;
+    }
+
+    .wizard-bottom-message-placeholder {
+      height: 40px;
+      padding: 4px;
+    }
+  }
+
+  .vps-kvm {
+    .wizard-step-content-container {
+      padding: 10px;
+    }
+
+    #sendCtrlAltDelButton {
+      border: none;
+      background-color: #3d92b1;
+      padding: 3px 10px;
+      color: #fff;
+      opacity: 0.8;
+      filter: alpha(opacity=80);
+      filter: progid:dximagetransform.microsoft.alpha(opacity=80);
+      -ms-filter: 'alpha(opacity=80)';
+      -moz-opacy: 0.8;
+      -khtml-opacity: 0.8;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+
+      &:hover {
+        opacity: 1;
+        filter: alpha(opacity=100);
+        filter: progid:dximagetransform.microsoft.alpha(opacity=100);
+        -ms-filter: 'alpha(opacity=100)';
+        -moz-opacy: 1;
+        -khtml-opacity: 1;
+      }
+    }
+
+    iframe {
+      width: 100%;
+    }
+  }
+
+  .platforms {
+    .packages {
+      margin-left: 15px;
+      margin-bottom: 0;
+
+      .odd {
+        margin-left: 0;
+      }
+
+      li {
+        display: list-item;
+        min-height: 25px;
+      }
+    }
+
+    .packages-title {
+      margin-top: 10px;
+      display: block;
+    }
+  }
+
+  .table {
+    &_ips {
+      td {
+        border-top: none;
+      }
+    }
+  }
+
+  .ip-v6-input {
+    width: 250px;
+  }
+
+  .ip__country {
+    margin-left: 5px;
+  }
+}
+/* stylelint-enable no-descending-specificity, function-name-case */

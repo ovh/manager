@@ -1,0 +1,153 @@
+<div class="ovh-signup">
+    <!-- EMAIL VALIDATION FORM -->
+    <h1
+        data-translate="user_account_task_change_email_validation_title"
+        data-ng-if="$ctrl.controls.validateEmailChange"
+    ></h1>
+
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.loading">
+        <div data-ovh-alert="{{$ctrl.alerts.dashboardInfos}}"></div>
+        <div data-ovh-alert="InfoAlert"></div>
+
+        <!-- ACCOUNT VALIDATION -->
+        <div
+            class="row d-md-flex"
+            data-ng-if="!$ctrl.controls.validateEmailChange && $ctrl.controls.taskEmailChangeTodo && $ctrl.user"
+        >
+            <div class="col-md-10 col-lg-8">
+                <div class="alert alert-info" role="alert">
+                    <p data-ng-bind="$ctrl.user.email || '/'" class="mb-3"></p>
+                    <p class="mb-3">
+                        <span
+                            class="label label-info"
+                            data-translate="user_account_email_pending_validation"
+                            data-translate-values="{ t0: $ctrl.controls.taskEmailChangeTodo.newEmail }"
+                        >
+                        </span>
+                    </p>
+                    <p
+                        class="mb-3"
+                        data-translate="user_account_email_validation_help"
+                        data-translate-values="{ t0: $ctrl.user.email }"
+                    ></p>
+                    <oui-button
+                        data-variant="primary"
+                        data-on-click="$ctrl.validateTaskWithToken()"
+                    >
+                        <span
+                            data-translate="user_account_email_token_received"
+                        ></span>
+                    </oui-button>
+                    <oui-button
+                        data-variant="secondary"
+                        class="ml-2"
+                        data-disabled="$ctrl.requestingToken"
+                        data-on-click="$ctrl.requestChangeEmailToken(controls.taskEmailChangeTodo.newEmail)"
+                    >
+                        <span
+                            data-translate="user_account_email_token_resend"
+                        ></span>
+                    </oui-button>
+                </div>
+            </div>
+        </div>
+
+        <!-- EMAIL VALIDATION FORM -->
+        <div data-ng-if="$ctrl.controls.validateEmailChange">
+            <button
+                type="button"
+                class="btn btn-link mb-4"
+                data-ng-click="$ctrl.resetInfoView()"
+            >
+                <span class="fa fa-chevron-left mr-2" aria-hidden="true">
+                </span>
+                <span data-translate="common_back"></span>
+            </button>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <strong
+                        data-ng-bind="'user_account_task_change_email_validation' | translate:{ t0: $ctrl.controls.validateEmailChange.data.newEmail }"
+                    >
+                    </strong>
+
+                    <div
+                        class="text-center"
+                        data-ng-if="$ctrl.controls.validateEmailChange.loading"
+                    >
+                        <oui-spinner data-size="l"></oui-spinner>
+                    </div>
+
+                    <form
+                        role="form"
+                        name="validateEmailForm"
+                        data-ng-if="!$ctrl.controls.validateEmailChange.loading"
+                        data-ng-submit="$ctrl.acceptEmail()"
+                    >
+                        <div class="form-group">
+                            <label
+                                for="validation_token"
+                                class="control-label"
+                                data-translate="user_account_email_token"
+                            ></label>
+                            <input
+                                id="validation_token"
+                                class="form-control"
+                                type="text"
+                                data-ng-required
+                                data-ng-model="$ctrl.controls.validateEmailChange.token"
+                                autofocus
+                            />
+                        </div>
+
+                        <div>
+                            <button
+                                type="button"
+                                class="btn btn-default mr-4"
+                                data-ng-disabled="!$ctrl.controls.validateEmailChange.token ||
+                                                      !$ctrl.controls.validateEmailChange.taskId || $ctrl.controls.validateEmailChange.error
+                                                      || $ctrl.controls.validateEmailChange.loading"
+                                data-ng-click="$ctrl.refuseEmail()"
+                                data-translate="user_account_email_token_refuse"
+                            ></button>
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                data-ng-disabled="!$ctrl.controls.validateEmailChange.token ||
+                                                      !$ctrl.controls.validateEmailChange.taskId || $ctrl.controls.validateEmailChange.error
+                                                      || $ctrl.controls.validateEmailChange.loading"
+                                data-translate="user_account_email_token_accept"
+                            ></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCOUNT MODIFICATIONS -->
+        <div
+            class="row d-md-flex"
+            data-ng-if="!$ctrl.controls.validateEmailChange"
+        >
+            <div class="col-md-10 col-lg-6">
+                <new-account-form
+                    data-ng-if="$ctrl.user"
+                    data-model="$ctrl.user"
+                    data-action="update"
+                    data-readonly="$ctrl.readOnlyProperties"
+                    data-on-submit="$ctrl.onProfileUpdate()"
+                    data-on-cancel="$ctrl.onProfileUpdate()"
+                    data-user-account-service-infos="$ctrl.userAccountServiceInfos"
+                    data-field-to-focus="$ctrl.fieldToFocus"
+                    data-kyc-status="$ctrl.kycStatus"
+                    data-get-kyc-status="$ctrl.getKycStatus"
+                >
+                </new-account-form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_ES": "Kopia obu stron dokumentu tożsamości (paszportu, dowodu osobistego)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_ES": "Dokument potwierdzający miejsce zamieszkania, nie starszy niż 3 miesiące, zawierający Twoje imię, nazwisko i adres podany w profilu (wyciąg bankowy, faktura za media, etc.)",
+  "documents_dashboard_document_CORPORATE_ID_ES": "Zaświadczenie o nadaniu numeru NIF (Número de Identificación Fiscal) lub innego numeru identyfikacyjnego o podobnym charakterze.",
+  "documents_dashboard_document_ADMINISTRATION_ID_ES": "Dokument potwierdzający rejestrację firmy w Zakładzie Ubezpieczeń Społecznych lub w podobnej instytucji.",
+  "documents_dashboard_document_ASSOCIATION_ID_ES": "Wyciąg z publikacji w Dzienniku Urzędowym lub inny dokument potwierdzający.",
+  "documents_dashboard_document_individual_OTHER_ES": "Wszelkie dokumenty przydatne do zrozumienia Twojej sytuacji (zakwaterowanie, przeprowadzka,...).",
+  "documents_dashboard_document_corporation_OTHER_ES": "Jeśli Twoje imię i nazwisko nie figurują w rejestrze przedsiębiorców ani w statucie stowarzyszenia, prosimy o dołączenie kopii dokumentu tożsamości osoby, która figuruje w oficjalnej dokumentacji.",
+  "documents_dashboard_document_association_OTHER_ES": "Jeśli Twoje imię i nazwisko nie figurują w odpisie z rejestru przedsiębiorców ani w statucie stowarzyszenia, prosimy o dołączenie kopii dokumentu tożsamości osoby, która figuruje w oficjalnej dokumentacji.",
+  "documents_dashboard_document_administration_OTHER_ES": "Jeśli Twoje imię i nazwisko nie figurują w rejestrze przedsiębiorców ani w statucie stowarzyszenia, prosimy o dołączenie kopii dokumentu tożsamości osoby, która figuruje w oficjalnej dokumentacji.",
+  "documents_dashboard_document_other_OTHER_ES": "Wszelkie dokumenty przydatne do zrozumienia Twojej sytuacje (dotyczące zakwaterowania, przeprowadzki, etc.)"
+}

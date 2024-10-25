@@ -1,0 +1,19 @@
+{
+  "bandwidth_unit_size_B": "b",
+  "bandwidth_unit_size_KB": "kb",
+  "bandwidth_unit_size_MB": "MB",
+  "bandwidth_unit_size_GB": "GB",
+  "bandwidth_unit_size_TB": "TB",
+  "bandwidth_unit_size_PB": "PB",
+  "bandwidth_unit_size_EB": "EB",
+  "bandwidth_unit_size_ZB": "ZB",
+  "bandwidth_unit_size_YB": "YB",
+  "bandwidth_unit_size_KiB": "KiB",
+  "bandwidth_unit_size_MiB": "MB",
+  "bandwidth_unit_size_GiB": "GiB",
+  "bandwidth_unit_size_TiB": "TiB",
+  "bandwidth_unit_size_PiB": "PiB",
+  "bandwidth_unit_size_EiB": "EiB",
+  "bandwidth_unit_size_ZiB": "ZiB",
+  "bandwidth_unit_size_YiB": "YiB"
+}

@@ -1,0 +1,109 @@
+<div data-ng-controller="UserAccount.controllers.ipRestrictions.add">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="addRestriction"
+        data-wizard-title="::'user_ipRestrictions_add' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="isValid">
+            <p data-translate="user_ipRestrictions_add_informations"></p>
+
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label
+                        data-translate="user_ipRestrictions_ip"
+                        class="col-xs-3 control-label"
+                        for="inputIp"
+                    ></label>
+
+                    <div class="col-xs-9">
+                        <input
+                            type="text"
+                            class="form-control"
+                            data-ng-model="restriction.ip"
+                            id="inputIp"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="inputWarning">
+                        <span data-translate="user_ipRestrictions_alert"></span>
+                        <span
+                            class="oui-icon security-icon-help oui-icon-help-circle"
+                            data-oui-tooltip="{{:: 'user_ipRestrictions_alert_information' | translate }}"
+                            data-oui-tooltip-placement="bottom"
+                            aria-hidden="true"
+                        >
+                        </span>
+                    </label>
+
+                    <div class="col-xs-9">
+                        <div class="checkbox">
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    data-ng-model="restriction.warning"
+                                    id="inputWarning"
+                                />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label
+                        data-translate="user_ipRestrictions_rule"
+                        class="col-xs-3 control-label"
+                        for="inputRule"
+                    >
+                    </label>
+                    <div class="col-xs-9">
+                        <select
+                            class="form-control"
+                            data-ng-model="restriction.rule"
+                            id="inputRule"
+                        >
+                            <option value="ACCEPT"
+                                >{{ 'user_ipRestrictions_rule_ACCEPT' |
+                                translate }}</option
+                            >
+                            <option value="DENY"
+                                >{{ 'user_ipRestrictions_rule_DENY' | translate
+                                }}</option
+                            >
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div data-wizard-step>
+            <p data-translate="user_ipRestrictions_add_summary"></p>
+
+            <dl class="dl-horizontal">
+                <dt data-translate="user_ipRestrictions_ip"></dt>
+                <dd data-ng-bind="restriction.ip"></dd>
+
+                <dt>
+                    <span data-translate="user_ipRestrictions_alert"></span>
+                </dt>
+                <dd>
+                    <span
+                        data-ng-class="{
+                              'fa fa-check': restriction.warning,
+                              'fa fa-times': !restriction.warning
+                          }"
+                        aria-label="{{ 'common_' + (restriction.warning ? 'yes' : 'no') | translate }}"
+                    >
+                    </span>
+                </dd>
+
+                <dt data-translate="user_ipRestrictions_rule"></dt>
+                <dd
+                    data-translate="{{ 'user_ipRestrictions_rule_'+restriction.rule }}"
+                ></dd>
+            </dl>
+        </div>
+    </div>
+</div>

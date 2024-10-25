@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
     <head>
         <meta charset="utf-8" />
         <title>Account App</title>
@@ -9,8 +9,45 @@
             }
         </style>
     </head>
-    <body class="container-fluid">
-        <ui-router-breadcrumb></ui-router-breadcrumb>
-        <div data-ui-view></div>
+    <body
+        class="h-100 ovh-manager-dedicated-app"
+        style="overflow: hidden;"
+        data-ng-class="{'in-container': !$ctrl.isTopLevelApplication}"
+    >
+        <div class="h-100 d-flex flex-column overflow-hidden ng-cloak">
+            <!-- Skip to main content -->
+            <div class="skipnav">
+                <a
+                    class="oui-button oui-button_ghost"
+                    href
+                    data-translate="common_skip_to_main_content"
+                    data-ng-click="scrollTo('maincontent')"
+                >
+                </a>
+            </div>
+            <div
+                class="container-fluid h-100 w-100"
+                style="overflow-y: auto; overflow-x: hidden;"
+                data-ui-view="app"
+            >
+                <div class="row h-100">
+                    <div class="px-0 h-100 col-lg-12" ui-view="container">
+                        <!-- Skip content target -->
+                        <div class="skiptarget">
+                            <a id="maincontent" href>-</a>
+                        </div>
+                        <!-- /Skip content target -->
+
+                        <ovh-browser-alert></ovh-browser-alert>
+                        <ovh-manager-banner-text></ovh-manager-banner-text>
+                        <div class="container-fluid px-md-5 px-3 mt-3">
+                            <ui-router-breadcrumb></ui-router-breadcrumb>
+                            <account-migration-notification></account-migration-notification>
+                            <div class="pb-5 mt-3" data-ui-view></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

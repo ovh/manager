@@ -1,0 +1,63 @@
+<div data-ng-controller="UserAccount.controllers.doubleAuth.totp.delete">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteDoubleAuthTotp"
+        data-wizard-title="::'user_account_security_double_auth_type_totp_modal_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="doesStepIsValid()">
+            <div data-ovh-alert="doubleAuthAlertTotpDelete"></div>
+
+            <h2
+                class="wizard-title-sub"
+                data-translate="user_account_security_double_auth_type_totp_modal_delete_app"
+            ></h2>
+            <p
+                data-translate="user_account_security_double_auth_type_totp_modal_delete_app_info"
+            ></p>
+            <form
+                name="userAccountDeleteTotpForm"
+                data-ng-if="totp.totpAccount.status ==='enabled'"
+            >
+                <div
+                    class="form-group"
+                    data-ng-class="{
+                         'has-error': userAccountDeleteTotpForm.code.$touched && userAccountDeleteTotpForm.code.$invalid
+                     }"
+                >
+                    <label
+                        class="control-label"
+                        for="code"
+                        data-translate="user_account_security_double_auth_type_totp_modal_delete_app_label"
+                    >
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="code"
+                        id="code"
+                        required
+                        data-ng-model="totp.code"
+                        data-ng-disabled="totp.isDeleting"
+                    />
+
+                    <oui-spinner data-size="s" data-ng-if="totp.isDeleting">
+                    </oui-spinner>
+
+                    <span
+                        class="help-block"
+                        role="alert"
+                        data-ng-if="userAccountDeleteTotpForm.code.$touched"
+                        data-ng-messages="userAccountDeleteTotpForm.code.$error"
+                    >
+                        <span
+                            data-ng-message="required"
+                            data-translate="user_account_security_double_auth_type_sms_modal_add_code_error_required"
+                        >
+                        </span>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

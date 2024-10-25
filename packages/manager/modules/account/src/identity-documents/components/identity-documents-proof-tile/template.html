@@ -1,0 +1,45 @@
+<div
+    data-ng-class="'d-flex w-100 oui-box align-items-stretch oui-box_kyc-digital-process oui-box_' + $ctrl.boxType"
+>
+    <div class="d-flex flex-column flex-grow-1 justify-content-center pr-3">
+        <span
+            class="oui-box__tag"
+            data-ng-if="$ctrl.proof === $ctrl.PROOF_TYPE.aadhaar_card"
+            data-translate="user_account_identity_documents_proof_tile_easiest"
+        ></span>
+        <h4
+            class="d-flex align-items-center my-1 mt-3 oui-box__heading"
+            data-translate="{{'user_account_identity_documents_proof_tile_heading_' + $ctrl.proof}}"
+        ></h4>
+        <p
+            class="d-flex align-items-center my-1 text-danger"
+            data-ng-if="$ctrl.extended"
+            data-translate="{{'user_account_identity_documents_proof_tile_extended_' + $ctrl.proof}}"
+        ></p>
+        <p
+            class="d-flex align-items-center my-1"
+            data-translate="{{'user_account_identity_documents_proof_tile_text_' + $ctrl.userTypeKey + '_' + $ctrl.proof}}"
+        ></p>
+    </div>
+    <div class="d-flex flex-shrink-1 flex-end align-items-center mt-3">
+        <oui-button
+            variant="primary"
+            data-ng-click="$ctrl.onClick()"
+            data-ng-if="$ctrl.kycStatus.status !== $ctrl.KYC_STATUS.OPEN && ($ctrl.isLoaded || (!$ctrl.isLoaded && !($ctrl.userTypeKey === $ctrl.USER_TYPE.individual && $ctrl.isValid)))"
+        >
+            <span
+                data-ng-if="!$ctrl.isLoaded"
+                data-translate="user_account_identity_documents_proof_tile_button"
+            ></span>
+            <span
+                data-ng-if="$ctrl.isLoaded"
+                data-translate="user_account_identity_documents_proof_tile_button_update"
+            ></span>
+        </oui-button>
+        <span
+            data-ng-if="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN"
+            class="oui-icon oui-icon-success-circle text-success"
+        >
+        </span>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+{
+  "account_contacts_service_edit": "Modifier les contacts",
+  "account_contacts_service_edit_description": "Modifier les contacts du service {{ serviceName }}",
+  "account_contacts_service_edit_description_trusted": "Modifier les contacts de votre service {{ serviceName }} en zone de confiance.",
+  "account_contacts_service_edit_contact_admin": "Contact administrateur",
+  "account_contacts_service_edit_contact_tech": "Contact technique",
+  "account_contacts_service_edit_contact_billing": "Contact facturation",
+  "account_contacts_service_edit_cancel": "Annuler",
+  "account_contacts_service_edit_confirm": "Valider",
+  "account_contacts_service_edit_error": "Une erreur est survenue lors de la demande de changement de contact : {{ message }}",
+  "account_contacts_service_edit_success": "La demande de changement de contact a été effectuée avec succès. Les contacts concernés par la demande recevront un e-mail contenant la procédure de validation.",
+  "account_contacts_service_edit_warn_debt": "Vous ne pouvez pas modifier le contact de facturation, car une facture est en attente de règlement pour ce service. Nous vous invitons à la régler afin d’effectuer ce changement.",
+  "account_contacts_service_edit_pay": "Régler la facture",
+  "account_contacts_service_edit_warn_contact_billing": "Vous ne pouvez pas modifier le contact de facturation, car une facture est en attente de règlement pour ce service. Nous vous invitons à joindre le contact de facturation actuel {{ nicBilling }} afin qu’il effectue ce changement."
+}

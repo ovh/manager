@@ -1,0 +1,59 @@
+.icon_position(@x: 1, @y: 1) {
+  @posx: (@x * @buttoniconsize) * -1;
+  @posy: (@y * @buttoniconsize) * -1;
+
+  background-position: ~` '@{posx}' ` ~` '@{posy}' `;
+}
+
+//ex : .transition-fn(~"left @{ANIMATION_TIME_CONST}, height @{ANIMATION_TIME_CONST}");
+//out: transition: left 0.35s, height 0.35s;
+.transition-fn(@arguments: 0) when not (@arguments = 0) {
+  transition: @arguments;
+  -moz-transition: @arguments;
+  -webkit-transition: @arguments;
+  -ms-transition: @arguments;
+  -o-transition: @arguments;
+}
+.transform-fn(@arguments: 0) when not (@arguments = 0) {
+  -moz-transform: @arguments;
+  -webkit-transform: @arguments;
+  -o-transform: @arguments;
+  -ms-transform: @arguments;
+  transform: @arguments;
+}
+
+.background-color-fn(@value) when (iscolor(@value)) {
+  background-color: @value;
+}
+
+.color-fn(@value) when (iscolor(@value)) {
+  color: @value;
+}
+
+.border-color-fn(@value) when (iscolor(@value)) {
+  border-color: @value;
+}
+
+.font-size-line-height-fn(@value, @space) {
+  font-size: @value;
+  line-height: @value + @space;
+}
+
+.line-height-fn(@value, @space) {
+  line-height: @value + @space;
+}
+
+.false-gradient(@value) {
+  background-color: @value;
+  background-image: -moz-linear-gradient(top, @value, @value);
+  background-image: -webkit-gradient(
+    linear,
+    0 0,
+    0 100%,
+    from(@value),
+    to(@value)
+  );
+  background-image: -webkit-linear-gradient(top, @value, @value);
+  background-image: -o-linear-gradient(top, @value, @value);
+  background-image: linear-gradient(to bottom, @value, @value);
+}

@@ -1,0 +1,76 @@
+.pcc-options {
+  .checklist() {
+    .list-no-style();
+
+    &__item {
+      margin-bottom: 0.8em;
+      padding-left: 30px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &::before {
+        content: '\00a0';
+        display: none;
+        margin-right: 16px;
+        width: 14px;
+        height: 14px;
+        background-image: url('../../../../images/glyphicons-halflings.png');
+      }
+
+      &_success {
+        padding-left: 0;
+
+        &::before {
+          display: inline-block;
+          background-position: -288px 0;
+        }
+      }
+
+      &_failure {
+        padding-left: 0;
+
+        &::before {
+          display: inline-block;
+          background-position: -312px 0;
+        }
+      }
+
+      &_loading {
+        background: url('../../../../images/loading.gif') no-repeat 0 50%;
+      }
+
+      .checklist-item__name {
+        display: inline-block;
+        width: 300px;
+        font-weight: bold;
+      }
+
+      .checklist-list-ip {
+        margin: 1em 30px;
+
+        &__container {
+          box-sizing: border-box;
+          height: 70px;
+          padding: 0.5em;
+          overflow-y: auto;
+        }
+      }
+    }
+  }
+
+  .checklist {
+    .checklist();
+  }
+
+  .userslist {
+    margin-top: 1em;
+    height: 100px;
+    overflow-y: auto;
+  }
+
+  .dl-horizontal {
+    min-height: 43px;
+  }
+}

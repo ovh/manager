@@ -1,0 +1,20 @@
+{
+  "user_account_dashboard_shortcut": "Shortcuts",
+  "user_account_dashboard_shortcut_ALL_BILLS": "Meine Rechnungen anzeigen",
+  "user_account_dashboard_shortcut_PAYMENT_FOLLOW_UP": "Zahlungen nachverfolgen",
+  "user_account_dashboard_shortcut_ADD_PAYMENT_METHOD": "Zahlungsmittel hinzufügen",
+  "user_account_dashboard_shortcut_MANAGE_SERVICES": "Meine Dienste verwalten",
+  "user_account_dashboard_shortcut_ADD_CONTACT": "Kontakt hinzufügen",
+  "user_account_dashboard_last_bill": "Meine letzte Rechnung",
+  "user_account_dashboard_last_bill_reference": "Referenz",
+  "user_account_dashboard_last_bill_date": "Datum",
+  "user_account_dashboard_last_bill_amount": "Betrag",
+  "user_account_dashboard_last_bill_see": "Rechnung anzeigen",
+  "user_account_dashboard_profile": "Mein Profil",
+  "user_account_dashboard_profile_edit": "Mein Profil bearbeiten",
+  "user_account_dashboard_profile_support_level": "Mein Support-Level:",
+  "user_account_dashboard_customer_code": "Kundencode",
+  "user_account_dashboard_nichandle": "NIC handle",
+  "user_account_dashboard_shortcut_MANAGE_USERS": "Meine Benutzer verwalten",
+  "user_account_dashboard_new": "Neu!"
+}

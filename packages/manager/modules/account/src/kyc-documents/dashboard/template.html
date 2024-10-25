@@ -1,0 +1,158 @@
+<div>
+    <div data-ng-if="$ctrl.displayError">
+        <!-- Upload Error -->
+        <oui-message data-type="error">
+            <span
+                data-translate="documents_dashboard_submit_error_message_description"
+            ></span>
+        </oui-message>
+    </div>
+    <oui-header
+        heading="{{:: 'documents_dashboard_title' | translate}}"
+        description="{{:: 'documents_dashboard_explanation' | translate}}"
+    >
+    </oui-header>
+
+    <div class="oui-modal-backdrop" data-ng-if="$ctrl.showModal"></div>
+    <div class="modal d-block" role="dialog" data-ng-if="$ctrl.showModal">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <oui-modal
+                    data-heading="{{:: 'documents_dashboard_modal_header' | translate }}"
+                    data-type="help"
+                    data-primary-label="{{:: 'documents_dashboard_modal_primary_label' | translate }}"
+                    data-primary-action="$ctrl.uploadDocuments()"
+                    data-secondary-label="{{:: 'documents_dashboard_modal_secondary_label' | translate }}"
+                    data-secondary-action="$ctrl.cancelSubmit()"
+                    data-secondary-disabled="false"
+                    data-on-dismiss="$ctrl.cancelSubmit()"
+                    data-loading="$ctrl.loading"
+                >
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+
+    <!-- IF DOCUMENTS NOT UPDLOADED YET OR PAGE RELOADED -->
+    <div data-ng-if="!$ctrl.documentsUploaded">
+        <!-- information banner for open status -->
+        <oui-message
+            class="mb-2"
+            data-type="info"
+            data-ng-if="$ctrl.resource.status === $ctrl.FRAUD_STATUS.OPEN"
+        >
+            <span
+                class="mb-1"
+                data-translate="document_dashboard_open_banner_text"
+            ></span>
+            <a
+                data-ng-href="{{:: $ctrl.supportLink}}"
+                data-translate="document_dashboard_open_banner_link"
+            ></a>
+        </oui-message>
+
+        <h4 data-translate="documents_dashboard_subtitle"></h4>
+
+        <!-- Document list -->
+        <p
+            data-translate="{{'documents_dashboard_' + $ctrl.user.legalform + '_requirement'}}"
+        ></p>
+        <ul>
+            <li
+                data-ng-repeat="document in $ctrl.documentList.mandatory track by $index"
+            >
+                <span data-ng-bind="document"></span>
+            </li>
+            <li
+                data-ng-repeat="document in $ctrl.documentList.optional track by $index"
+            >
+                <span data-ng-bind="document"></span>
+                <span
+                    data-translate="documents_dashboard_optional_document"
+                ></span>
+            </li>
+        </ul>
+
+        <!-- loader -->
+        <div class="col-lg-6 text-center mb-5" data-ng-if="$ctrl.loading">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <!-- Upload document -->
+        <div class="col-lg-6 mb-5" data-ng-if="!$ctrl.loading">
+            <!-- Upload Form -->
+            <form novalidate name="$ctrl.form" class="mt-2">
+                <small
+                    data-translate="documents_dashboard_form_requirement"
+                    data-translate-values="{
+                        maximum_size: $ctrl.maximum_size_mo,
+                        maximum_documents: $ctrl.maximum_documents,
+                        accept: 'pdf, jpeg, png, jpg'
+                    }"
+                ></small>
+                <oui-file
+                    data-model="$ctrl.documents"
+                    data-accept="application/pdf,image/jpeg,image/png,image/jpg"
+                    data-multiple
+                    data-maxsize="$ctrl.maximum_size"
+                    data-name="documents"
+                    data-disabled="$ctrl.isDisabled"
+                ></oui-file>
+
+                <oui-message
+                    class="mt-3"
+                    data-type="error"
+                    data-ng-if="$ctrl.documents.length > $ctrl.maximum_documents"
+                >
+                    <span
+                        data-translate="documents_dashboard_too_much_documents_error"
+                        data-translate-values="{maximum: $ctrl.maximum_documents}"
+                    ></span>
+                </oui-message>
+
+                <oui-form-actions
+                    class="mt-5"
+                    data-disabled="$ctrl.form.$invalid || !$ctrl.documents || $ctrl.documents.length === 0 || $ctrl.documents.length > $ctrl.maximum_documents || $ctrl.isDisabled "
+                    data-on-submit="$ctrl.sendDocumentClick()"
+                    data-submit-text="{{:: 'documents_dashboard_cta_send' | translate}}"
+                ></oui-form-actions>
+            </form>
+        </div>
+
+        <small
+            class="col-lg-12"
+            data-translate="documents_dashboard_legal_text"
+            data-translate-values="{privacyPolicy: $ctrl.privacyLink}"
+        ></small>
+    </div>
+    <!-- IF DOCUMENTS JUST UPDLOADED -->
+    <div data-ng-if="$ctrl.documentsUploaded">
+        <manager-on-boarding-layout
+            class="mt-5"
+            data-image-source=":: $ctrl.illustration"
+        >
+            <onboarding-title>
+                <p
+                    data-translate="documents_dashboard_submit_success_title"
+                ></p>
+            </onboarding-title>
+            <onboarding-description>
+                <p
+                    class="text-center"
+                    data-translate="documents_dashboard_submit_success_message"
+                ></p>
+                <a
+                    class="oui-button oui-button_primary oui-button_l text-light"
+                    href="{{:: $ctrl.hubLink }}"
+                    rel="noopener"
+                    data-ng-click="$ctrl.trackClick($ctrl.TRACKING.CTA_DASHBOARD)"
+                >
+                    <span
+                        data-translate="documents_dashboard_submit_success_cta"
+                    >
+                    </span>
+                </a>
+            </onboarding-description>
+        </manager-on-boarding-layout>
+    </div>
+</div>

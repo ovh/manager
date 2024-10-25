@@ -1,0 +1,55 @@
+<div data-ng-controller="UserAccount.controllers.doubleAuth.u2f.edit as $ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="cancel"
+        data-wizard-on-finish="editDoubleAuthU2f"
+        data-wizard-title="::'user_account_security_double_auth_type_u2f_modal_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="doesStepIsValid()">
+            <div class="text-center" data-ng-if="u2f.isEditing">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!u2f.isEditing">
+                <h2
+                    class="wizard-title-sub"
+                    data-translate="user_account_security_double_auth_type_u2f_modal_edit_description"
+                ></h2>
+                <form name="$ctrl.userAccountEditU2fDescriptionForm">
+                    <div
+                        class="form-group"
+                        data-ng-class="{ 'has-error': $ctrl.userAccountEditU2fDescriptionForm.description.$touched && $ctrl.userAccountEditU2fDescriptionForm.description.$invalid }"
+                    >
+                        <label
+                            class="control-label"
+                            for="description"
+                            data-translate="user_account_security_double_auth_type_u2f_modal_edit_description_label"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="description"
+                            name="description"
+                            placeholder="{{ 'user_account_security_double_auth_type_u2f_modal_edit_description_placeholder' | translate }}"
+                            data-ng-model="u2f.description"
+                            data-ng-maxlength="100"
+                        />
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="$ctrl.userAccountEditU2fDescriptionForm.description.$touched"
+                            data-ng-messages="$ctrl.userAccountEditU2fDescriptionForm.description.$error"
+                        >
+                            <span
+                                data-ng-message="maxlength"
+                                data-translate="user_account_security_double_auth_type_sms_modal_add_description_error_maxlength"
+                            >
+                            </span>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
