@@ -14,6 +14,8 @@ import {
   postActivateLicenseHycuMutationKey,
   postLicenseHycuActivateService,
   PostLicenseHycuActivateServiceParams,
+  postLicenseHycuRegenerateService,
+  postRegenerateLicenseHycuMutationKey,
 } from '@/data/api/hycu';
 import { IHycuDetails } from '@/types/hycu.details.interface';
 
@@ -28,6 +30,20 @@ export const useDetailsLicenseHYCU = (
   });
 };
 
+export const useInvalidateCacheForALicenseHycu = () => {
+  const queryClient = useQueryClient();
+
+  return (serviceName: string) => {
+    queryClient.invalidateQueries({ queryKey: getlicenseHycuListQueryKey() });
+    queryClient.invalidateQueries({
+      queryKey: getServiceDetailsQueryKey(serviceName),
+    });
+    queryClient.invalidateQueries({
+      queryKey: getlicenseHycuQueryKey(serviceName),
+    });
+  };
+};
+
 // https://eu.api.ovh.com/console/?section=%2Flicense%2Fhycu&branch=v1#post-/license/hycu/-serviceName-/activate
 // urn : licenseHycu:apiovh:activate
 export const useActivateLicenseHYCUMutation = (
@@ -39,7 +55,7 @@ export const useActivateLicenseHYCUMutation = (
     >
   > = {},
 ) => {
-  const queryClient = useQueryClient();
+  const invalidateCacheForService = useInvalidateCacheForALicenseHycu();
 
   const { onSuccess, ...restOptions } = options;
 
@@ -47,14 +63,32 @@ export const useActivateLicenseHYCUMutation = (
     mutationKey: postActivateLicenseHycuMutationKey(),
     mutationFn: (params) => postLicenseHycuActivateService(params),
     onSuccess: (data, variables, context) => {
-      queryClient.invalidateQueries({ queryKey: getlicenseHycuListQueryKey() });
-      queryClient.invalidateQueries({
-        queryKey: getServiceDetailsQueryKey(variables.serviceName),
-      });
-      queryClient.invalidateQueries({
-        queryKey: getlicenseHycuQueryKey(variables.serviceName),
-      });
+      invalidateCacheForService(variables.serviceName);
+      onSuccess?.(data, variables, context);
+    },
+    ...(restOptions ?? {}),
+  });
+};
 
+// https://eu.api.ovh.com/console/?section=%2Flicense%2Fhycu&branch=v1#post-/license/hycu/-serviceName-/activate
+// urn : licenseHycu:apiovh:activate
+export const useRegenerateLicenseHYCUMutation = (
+  options: Partial<
+    UseMutationOptions<
+      AxiosResponse,
+      Error,
+      PostLicenseHycuActivateServiceParams
+    >
+  > = {},
+) => {
+  const invalidateCacheForService = useInvalidateCacheForALicenseHycu();
+  const { onSuccess, ...restOptions } = options;
+
+  return useMutation({
+    mutationKey: postRegenerateLicenseHycuMutationKey(),
+    mutationFn: (params) => postLicenseHycuRegenerateService(params),
+    onSuccess: (data, variables, context) => {
+      invalidateCacheForService(variables.serviceName);
       onSuccess?.(data, variables, context);
     },
     ...(restOptions ?? {}),

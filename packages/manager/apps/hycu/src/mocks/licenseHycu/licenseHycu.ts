@@ -46,9 +46,15 @@ export const getLicenseHycuMocks = ({
       status: isGetLicenseHycuKo ? 500 : 200,
       api: 'v6',
     },
-
     {
       url: 'license/hycu/:serviceName/activate',
+      response: null,
+      method: 'post',
+      status: isGetLicenseHycuKo ? 500 : 200,
+      api: 'v6',
+    },
+    {
+      url: 'license/hycu/:serviceName/refresh',
       response: null,
       method: 'post',
       status: isGetLicenseHycuKo ? 500 : 200,
