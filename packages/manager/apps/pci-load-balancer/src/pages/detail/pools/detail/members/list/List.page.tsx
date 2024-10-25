@@ -83,7 +83,7 @@ export default function PoolMemberList() {
             className="xs:mb-0.5 sm:mb-0 inline-block ml-1"
             onClick={() => {
               clearNotifications();
-              navigate('./add-ip-instance');
+              navigate('../list/add-ip-instance');
             }}
           >
             <OsdsIcon
