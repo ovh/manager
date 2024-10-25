@@ -25,10 +25,12 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
 import punycode from 'punycode/punycode';
+import { useQuery } from '@tanstack/react-query';
 import { ApiEnvelope } from '@/types/apiEnvelope.type';
-import { HubProduct, ProductList } from '@/types/services.type';
+import { ProductList } from '@/types/services.type';
 import { useProducts } from '@/hooks/products/useProducts';
 import './Products.style.scss';
+import ServiceLink from '@/pages/layout/ServiceLink.component';
 
 type ProductsProps = {
   services: ApiEnvelope<ProductList>;
@@ -41,17 +43,8 @@ export default function Products({ services }: ProductsProps) {
   const [expand, setExpand] = useState(searchParams.get('expand') === 'true');
   const { trackClick } = useOvhTracking();
 
-  const { isLoading, products, canDisplayMore } = useProducts(
-    services.data,
-    expand,
-  );
+  const { products, canDisplayMore } = useProducts(services.data, expand);
 
-  const trackProductNavigation = (product: HubProduct) => {
-    trackClick({
-      actionType: 'action',
-      actions: ['product', product.formattedType, 'show-all'],
-    });
-  };
   const trackServiceNavigation = (productType: string) => {
     trackClick({
       actionType: 'action',
@@ -59,6 +52,7 @@ export default function Products({ services }: ProductsProps) {
     });
   };
   const updateExpand = () => {
+    console.log('clicked on expand / reduce');
     setExpand(!expand);
     trackClick({
       actionType: 'action',
@@ -66,7 +60,6 @@ export default function Products({ services }: ProductsProps) {
     });
   };
 
-  // isLoading is misleading here, the task done during this "loading" time is synchronous (MANAGER-15037)
   return (
     <>
       {products.length > 0 && (
@@ -82,11 +75,7 @@ export default function Products({ services }: ProductsProps) {
         </OsdsText>
       )}
       <div
-        className={
-          isLoading
-            ? ''
-            : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-3 mb-4'
-        }
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-3 mb-4"
         data-testid="products-list-container"
       >
         {products.map((product) => (
@@ -112,39 +101,16 @@ export default function Products({ services }: ProductsProps) {
                       {product.count}
                     </OsdsChip>
                   </OsdsText>
-                  {product.link && (
+                  {product.application && product.hash && (
                     <Suspense
                       fallback={
                         <OsdsSkeleton inline size={ODS_SKELETON_SIZE.xs} />
                       }
                     >
-                      <Await
-                        resolve={product.link}
-                        children={(link: string) => (
-                          <>
-                            <OsdsLink
-                              slot="actions"
-                              href={link}
-                              color={ODS_THEME_COLOR_INTENT.primary}
-                              onClick={() => {
-                                trackProductNavigation(product);
-                              }}
-                              target={OdsHTMLAnchorElementTarget._top}
-                              className="text-right"
-                              data-testid="product_link"
-                            >
-                              {tCommon('hub_support_see_more')}
-                              <span slot="end">
-                                <OsdsIcon
-                                  name={ODS_ICON_NAME.ARROW_RIGHT}
-                                  size={ODS_ICON_SIZE.xs}
-                                  color={ODS_THEME_COLOR_INTENT.text}
-                                  className="self-center ml-4"
-                                />
-                              </span>
-                            </OsdsLink>
-                          </>
-                        )}
+                      <ServiceLink
+                        application={product.application}
+                        hash={product.hash}
+                        type={product.formattedType}
                       />
                     </Suspense>
                   )}
@@ -183,7 +149,7 @@ export default function Products({ services }: ProductsProps) {
         ))}
       </div>
       <div className="text-center">
-        {canDisplayMore && !isLoading && (
+        {canDisplayMore && (
           <OsdsButton
             type={ODS_BUTTON_TYPE.button}
             variant={ODS_BUTTON_VARIANT.ghost}

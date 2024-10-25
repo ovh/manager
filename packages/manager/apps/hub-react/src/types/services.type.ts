@@ -38,5 +38,6 @@ export type HubProduct = {
   count: number;
   type: string;
   formattedType: string;
-  link: Promise<string> | null;
+  application: string;
+  hash: string;
 };

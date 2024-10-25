@@ -161,7 +161,7 @@ export default function PaymentStatus({
           className="block overflow-visible"
           data-testid="payment_status_table"
         >
-          <table className="table-auto">
+          <table className="table-fixed">
             <tbody>
               {!isLoading &&
                 services.map((service: BillingService) => (
@@ -169,7 +169,7 @@ export default function PaymentStatus({
                     key={`billing_service_${service.id}`}
                     data-testid="billing_service"
                   >
-                    <td scope="row" className="!p-4">
+                    <td scope="row" className="!p-4 break-all">
                       {service.url ? (
                         <OsdsLink
                           className="block mb-3"
@@ -260,7 +260,7 @@ export default function PaymentStatus({
                       )}
                     </td>
                     {autorenewLink && (
-                      <td>
+                      <td className="xs:w-2/12">
                         <Suspense
                           fallback={
                             <OsdsSkeleton data-testid="services_actions_skeleton" />

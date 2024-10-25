@@ -253,14 +253,14 @@ export default function Layout() {
                     {isLoading && <TileSkeleton />}
                     {!isLoading && !isFreshCustomer && (
                       <>
-                        <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
+                        <div className="w-full md:w-8/12 mb-6 md:mb-8 px-6 box-border">
                           <Suspense fallback={<TileSkeleton />}>
                             <PaymentStatus
                               canManageBilling={availability?.[BILLING_FEATURE]}
                             />
                           </Suspense>
                         </div>
-                        <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
+                        <div className="w-full md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
                           <Suspense
                             fallback={
                               <TileSkeleton data-testid="billing_summary_skeleton" />
@@ -287,7 +287,7 @@ export default function Layout() {
                           </Suspense>
                         </div>
                         {!isFreshCustomer && (
-                          <div className="md:w-4/12 order-4 px-6 box-border">
+                          <div className="w-full md:w-4/12 order-4 px-6 box-border">
                             <Suspense
                               fallback={
                                 <OsdsSkeleton

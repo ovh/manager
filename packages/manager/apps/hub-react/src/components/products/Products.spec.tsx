@@ -90,7 +90,7 @@ describe('Products.component', () => {
     expect(container.children.length).toBe(0);
   });
 
-  it('should display correctly a signle product with a single service', async () => {
+  it('should display correctly a single product with a single service', async () => {
     const [productName] = Object.keys(aFewProductsMocked.data);
     const {
       getByText,
