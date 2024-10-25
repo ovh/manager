@@ -5,7 +5,7 @@ import { OsdsButton, OsdsModal, OsdsText } from '@ovhcloud/ods-components/react'
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import ApplicationContext from '@/context';
-import ovhCloudLogo from '@/cookie-policy/assets/logo-ovhcloud.png';
+import ovhCloudLogo from '@/assets/images/logo-ovhcloud.png';
 import { useAuthorizationIam } from '@ovh-ux/manager-react-components/src/hooks/iam';
 import useAccountUrn from '@/hooks/accountUrn/useAccountUrn';
 
@@ -28,12 +28,14 @@ export default function AgreementsUpdateModal () {
     window.top.location.href = myContractsLink;
   }
 
+  console.log(agreements)
   return agreements?.length ? (
     <>
       <OsdsModal
         dismissible={false}
         className="text-center"
         color={ODS_THEME_COLOR_INTENT.info}
+        data-testid="agreements-update-modal"
       >
         <div className="w-full flex justify-center items-center mb-6">
           <img
