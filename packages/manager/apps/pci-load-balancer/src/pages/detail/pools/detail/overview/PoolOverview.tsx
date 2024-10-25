@@ -40,10 +40,12 @@ export default function PoolOverview() {
     poolId,
   });
 
+  const hrefEditPool = useHref(`../edit`);
+  const hrefAddMemberManually = useHref(`../members/list/create`);
+  const hrefAddInstanceIps = useHref(`../members/list/add-ip-instance`);
   const hrefDeletePool = useHref(
     `./delete?poolId=${pool?.id}&poolName=${pool?.name}`,
   );
-  const hrefEditPool = useHref(`../edit`);
 
   return (
     <>
@@ -77,13 +79,13 @@ export default function PoolOverview() {
               title={tPoolOverview(
                 'octavia_load_balancer_pools_detail_overview_management_add_manually',
               )}
-              href=""
+              href={hrefAddMemberManually}
             />
             <TileButton
               title={tPoolDetail(
                 'octavia_load_balancer_pools_detail_add_ips_instances',
               )}
-              href=""
+              href={hrefAddInstanceIps}
             />
             <TileButton
               title={tPoolOverview(
