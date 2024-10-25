@@ -55,6 +55,7 @@ export default class PciInstancesAddController {
     atInternet,
     PciProject,
     OvhApiCloudProjectRegion,
+    $scope,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -83,6 +84,36 @@ export default class PciInstancesAddController {
       INSTANCE_PRICING_LINKS[this.user.ovhSubsidiary] ||
       INSTANCE_PRICING_LINKS.DEFAULT;
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
+
+    $scope.$watch(
+      () => this.model.number,
+      (newNumber, oldNumber) => {
+        if (
+          typeof newNumber === 'number' &&
+          typeof oldNumber === 'number' &&
+          newNumber !== oldNumber
+        ) {
+          this.trackAddInstance([
+            'quantity_more',
+            'add_instance',
+            'configure_instance',
+            newNumber > oldNumber ? 'more' : 'less',
+          ]);
+        }
+      },
+    );
+
+    $scope.$watch(
+      () => this.currentStep,
+      (currentStep) => {
+        if (currentStep >= 4) {
+          this.instanceNumberValidated = true;
+        }
+        if (currentStep >= 5) {
+          this.networkValidated = true;
+        }
+      },
+    );
   }
 
   $onInit() {
@@ -200,10 +231,38 @@ export default class PciInstancesAddController {
     return this.model.datacenter?.type === 'localzone';
   }
 
-  updateLocation(location) {
+  updateLocation(location, datacenters) {
     this.model.location = location;
     this.selectedMode = this.isLocalZone() ? this.modes[2] : this.modes[0];
+    this.trackAddInstance(
+      [
+        'tile',
+        'add_instance',
+        'select_localisation',
+        datacenters[0]?.name?.toLowerCase(),
+      ].filter(Boolean),
+    );
     return null;
+  }
+
+  onContinentChange(_, datacentersMap) {
+    if (this.currentStep !== 1) {
+      return;
+    }
+    const continentCodes = Object.values(datacentersMap)
+      .flatMap((datacenters) =>
+        datacenters.map(({ continentCode }) => continentCode.toLowerCase()),
+      )
+      .filter((item, index, list) => list.indexOf(item) === index);
+    if (!continentCodes.length) {
+      return;
+    }
+    this.trackAddInstance([
+      'tab',
+      'add_instance',
+      'select_localisation',
+      continentCodes.length > 1 ? 'all' : continentCodes[0],
+    ]);
   }
 
   getSmallestGatewayInfo() {
@@ -304,12 +363,25 @@ export default class PciInstancesAddController {
   }
 
   onFlavorFocus() {
+    if (this.model.flavorGroup) {
+      this.trackAddInstance([
+        'link',
+        'add_instance',
+        `edit_step_flavor_${this.model.flavorGroup.name}`,
+      ]);
+    }
     this.displaySelectedFlavor = false;
   }
 
   onFlavorChange() {
     this.displaySelectedFlavor = true;
     this.getFilteredRegions();
+    this.trackAddInstance([
+      'button',
+      'add_instance',
+      'select_flavor',
+      `add_${this.model.flavorGroup.name}`,
+    ]);
   }
 
   displayFlavorSelectionHeader() {
@@ -349,6 +421,9 @@ export default class PciInstancesAddController {
 
   onFlavorCategorySelect(flavor, category) {
     this.selectedCategory = category;
+    this.trackAddInstance(
+      ['tile', 'add_instance', 'select_flavor', flavor?.name].filter(Boolean),
+    );
     if (flavor.legacy) {
       this.CucCloudMessage.warning(
         this.$translate.instant(
@@ -361,7 +436,20 @@ export default class PciInstancesAddController {
     }
   }
 
+  onFlavorCategoryChange(category) {
+    if (this.currentStep === 0 && category) {
+      this.trackAddInstance(['tab', 'add_instance', 'select_flavor', category]);
+    }
+  }
+
   onRegionFocus() {
+    if (this.instance?.region) {
+      this.trackAddInstance([
+        'link',
+        'add_instance',
+        `edit_step_localisation_${this.instance.region.toLowerCase()}`,
+      ]);
+    }
     this.displaySelectedRegion = false;
   }
 
@@ -416,6 +504,12 @@ export default class PciInstancesAddController {
       this.model.datacenter &&
       !this.isRegionAvailable(this.model.datacenter)
     ) {
+      this.trackAddInstance([
+        'button',
+        'add_instance',
+        'select_localisation',
+        `activate_add_${this.model.datacenter.name.toLowerCase()}`,
+      ]);
       this.isLoading = true;
       this.isAddingNewRegion = true;
       return this.addRegions().then(() => {
@@ -490,6 +584,14 @@ export default class PciInstancesAddController {
           ),
         );
     }
+
+    this.trackAddInstance([
+      'button',
+      'add_instance',
+      'select_localisation',
+      `add_${this.instance.region.toLowerCase()}`,
+    ]);
+
     this.model.image = null;
     return null;
   }
@@ -525,6 +627,13 @@ export default class PciInstancesAddController {
 
   onImageFocus() {
     this.displaySelectedImage = false;
+    if (this.model.image?.nameGeneric) {
+      this.trackAddInstance([
+        'link',
+        'add_instance',
+        `edit_step_image_${this.model.image.nameGeneric}`,
+      ]);
+    }
   }
 
   onImageChange() {
@@ -545,6 +654,13 @@ export default class PciInstancesAddController {
     } else {
       this.instance.sshKeyId = get(this.model.sshKey, 'id');
     }
+
+    this.trackAddInstance([
+      'button',
+      'add_instance',
+      'select_image',
+      `add_${this.model.image.nameGeneric}`,
+    ]);
   }
 
   isLinuxImageType() {
@@ -571,6 +687,13 @@ export default class PciInstancesAddController {
   }
 
   onInstanceFocus() {
+    if (this.instanceNumberValidated) {
+      this.trackAddInstance([
+        'link',
+        'add_instance',
+        'edit_step_configure_instance',
+      ]);
+    }
     if (this.isLocalZone() && !this.selectedPrivateNetwork.id) {
       // Display default selection for local private mode
       this.selectedPrivateNetwork = {
@@ -699,28 +822,45 @@ export default class PciInstancesAddController {
   }
 
   onCancel() {
-    this.trackAddInstance(`add::create-private-network::cancel`);
+    this.trackAddInstance(['add', 'create-private-network', 'cancel']);
     this.showAddPrivateNetworkModalForm = false;
   }
 
-  trackCreate() {
+  trackAction(type) {
     const mode = this.instance.monthlyBilling ? 'monthly' : 'hourly';
-    const [networkMode] = this.selectedMode.name.split('_');
-    this.trackAddInstance(
-      `instances_create_${
-        this.selectedCategory
-      }_${mode}_${this.instance.region.toLowerCase()}_${
-        this.model.flavorGroup.name
-      }_${networkMode}`,
-      'action',
-      false,
-    );
+    if (type === 'create') {
+      this.trackAddInstance([
+        'button',
+        'add_instance',
+        'add_billing',
+        `add_${mode}`,
+      ]);
+    }
+    this.trackAddInstance([
+      'button',
+      'add_instance',
+      ...(type === 'create' ? ['confirm'] : [type]),
+      [
+        ...(type === 'create' ? ['instances', 'created'] : []),
+        mode,
+        this.instance.region.toLowerCase(),
+        this.model.flavorGroup.name,
+        this.selectedMode.name.replace('_mode', ''),
+        this.model.image.nameGeneric,
+      ].join('_'),
+    ]);
   }
 
   onInstanceSubmit() {
     this.isLocalPrivateModeLocalZone = false;
     this.isCreatingNewPrivateNetwork = null;
     this.isAttachFloatingIP = false;
+    this.trackAddInstance([
+      'button',
+      'add_instance',
+      'configure_instance',
+      `add_${this.model.number}`,
+    ]);
   }
 
   onModeFocus() {
@@ -745,6 +885,16 @@ export default class PciInstancesAddController {
         this.isAttachFloatingIP = false;
       }
     });
+    if (this.networkValidated) {
+      this.trackAddInstance([
+        'link',
+        'add_instance',
+        `edit_step_configure_network_${this.selectedMode.name.replace(
+          '_mode',
+          '',
+        )}`,
+      ]);
+    }
   }
 
   loadNetworkDetails() {
@@ -795,9 +945,9 @@ export default class PciInstancesAddController {
       if (this.isCreateFloatingIPClicked) {
         this.isCreateFloatingIPClicked = false;
       }
-      this.trackAddInstance(`add::enable-attach-floating-ip`);
+      this.trackAddInstance(['add', 'enable-attach-floating-ip']);
     } else {
-      this.trackAddInstance(`add::disable-attach-floating-ip`);
+      this.trackAddInstance(['add', 'disable-attach-floating-ip']);
     }
     return this.floatingIps;
   }
@@ -832,6 +982,12 @@ export default class PciInstancesAddController {
         ),
       };
     }
+    this.trackAddInstance([
+      'tile',
+      'add_instance',
+      'configure_network',
+      mode.name.replace('_mode', ''),
+    ]);
   }
 
   isPrivateMode() {
@@ -849,7 +1005,7 @@ export default class PciInstancesAddController {
   onFloatingIpChange(value) {
     if (value !== null && !value?.id) {
       this.isCreateFloatingIPClicked = true;
-      this.trackAddInstance(`add::create-floating-ip`);
+      this.trackAddInstance(['add', 'create-floating-ip']);
     } else {
       this.selectedFloatingIP = value;
       this.isCreateFloatingIPClicked = false;
@@ -941,6 +1097,16 @@ export default class PciInstancesAddController {
     if (this.isLocalPrivateModeLocalZone && this.privateNetworkName) {
       this.onCreatePrivateNetworkClick();
     }
+
+    this.trackAddInstance([
+      'button',
+      'add_instance',
+      'configure_network',
+      [
+        this.selectedPrivateNetwork?.id ? 'associate' : 'add',
+        this.selectedMode.name.replace('_mode', ''),
+      ].join('_'),
+    ]);
 
     this.addons = [];
     if (
@@ -1098,7 +1264,7 @@ export default class PciInstancesAddController {
 
   create() {
     this.isLoading = true;
-    this.trackCreate();
+    this.trackAction('create');
 
     if (!this.isLinuxImageType()) {
       this.instance.userData = null;
@@ -1341,7 +1507,7 @@ export default class PciInstancesAddController {
   }
 
   cancel() {
-    this.trackAddInstance(`instances_add_cancel_creation`, 'action', false);
+    this.trackAction('cancel');
     return this.goBack();
   }
 
@@ -1448,10 +1614,92 @@ export default class PciInstancesAddController {
       });
   }
 
-  handleisCreatingNewPrivateNetworkChange() {
+  handleisCreatingNewPrivateNetworkChange(modelValue) {
     if (this.isCreatingNewPrivateNetwork === false) {
       this.privateNetworkName = null;
     }
     this.selectedPrivateNetwork = this.defaultPrivateNetwork;
+    this.trackAddInstance([
+      'box',
+      'add_instance',
+      modelValue
+        ? 'create_local_private_network'
+        : 'associate_existing_private_network',
+    ]);
+  }
+
+  onShowNonAvailableRegionsChange(modelValue) {
+    if (modelValue) {
+      this.trackAddInstance([
+        'box',
+        'add_instance',
+        'show_unvailable_localisations',
+      ]);
+    }
+  }
+
+  changeFlavor() {
+    this.trackAddInstance(['link', 'add_instance', 'change_flavor']);
+    this.currentStep = 0;
+  }
+
+  changeRegion() {
+    this.trackAddInstance([
+      'link',
+      'add_instance',
+      'configure_network',
+      'change_localisation',
+    ]);
+    this.currentStep = 1;
+  }
+
+  onImageSelected(image) {
+    this.trackAddInstance([
+      'tile',
+      'add_instance',
+      'select_image',
+      image.nameGeneric,
+    ]);
+  }
+
+  onImageTabChange(tab) {
+    if (this.currentStep === 2) {
+      this.trackAddInstance(['tab', 'add_instance', 'select_image', tab]);
+    }
+  }
+
+  onEnableDhcpChange(modelValue) {
+    this.trackAddInstance([
+      'box',
+      'add_instance',
+      `${modelValue ? '' : 'de'}activate_dhcp_private_network`,
+    ]);
+  }
+
+  onBillingChange(billing) {
+    this.trackAddInstance([
+      'tile',
+      'add_instance',
+      'select_billing',
+      billing ? 'monthly' : 'hourly',
+    ]);
+  }
+
+  onAttachPublicNetworkChange(modelValue) {
+    this.trackAddInstance([
+      'box',
+      'add_instance',
+      'configure_network',
+      `${modelValue ? '' : 'de'}activate_public_network`,
+    ]);
+  }
+
+  onIsLocalPrivateModeLocalZoneChange(modelValue) {
+    this.trackAddInstance([
+      'box',
+      'add_instance',
+      'configure_network',
+      `${modelValue ? '' : 'de'}activate_private_network_compatible_lz`,
+    ]);
   }
 }
