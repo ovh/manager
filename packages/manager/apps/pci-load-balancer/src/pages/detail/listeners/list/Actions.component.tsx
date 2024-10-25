@@ -5,7 +5,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
-import { TLoadBalancerListener } from '@/api/data/load-balancer';
+import { TLoadBalancerListener } from '@/api/data/listener';
 
 export type ActionsComponentProps = {
   listener: TLoadBalancerListener;
@@ -21,7 +21,7 @@ export default function ActionsComponent({
   const policiesHref = useHref(`../${id}/l7/list`);
   const deleteHref = useHref(`${id}/delete`);
 
-  const isPoliciesManagementAvailableForListener = protocol === 'http';
+  const isPoliciesManagementAvailableForListener = ['http'].includes(protocol);
 
   const items = [
     {
