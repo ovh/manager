@@ -1,9 +1,7 @@
 <div data-ovh-alert="{{alerts.main}}"></div>
 
 <div>
-    <oui-back-button data-on-click="goToList()">
-        <span data-translate="common_back"></span>
-    </oui-back-button>
+    <oui-back-button data-on-click="goToList()" />
 
     <h2
         data-ng-bind-html="('privateDatabase_tabs_user_grant_change' | translate) + ' ' + user.userName"
