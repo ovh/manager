@@ -13,6 +13,7 @@ export default {
     selectedImage: '=?',
     defaultImageId: '<?',
     onChange: '&?',
+    onTabChange: '&',
     serviceName: '@',
     region: '<?',
   },
