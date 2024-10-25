@@ -43,6 +43,12 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
     { serviceName },
   ]);
 
+  const { data: renewUrl, isLoading: isRenewUrlLoading } = useNavigationGetUrl([
+    'dedicated',
+    '#/billing/autorenew',
+    { searchText: serviceName },
+  ]);
+
   return (
     <DashboardTile
       title={t('hycu_dashboard_subscription_title')}
@@ -53,7 +59,13 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
           value: isLoading ? (
             <OsdsSkeleton />
           ) : (
-            <OsdsLink color={ODS_THEME_COLOR_INTENT.info}>{renewDate}</OsdsLink>
+            <OsdsLink
+              href={(renewUrl as string) ?? '#'}
+              className={isRenewUrlLoading ? 'cursor-wait' : ''}
+              color={ODS_THEME_COLOR_INTENT.info}
+            >
+              {renewDate}
+            </OsdsLink>
           ),
         },
         {
