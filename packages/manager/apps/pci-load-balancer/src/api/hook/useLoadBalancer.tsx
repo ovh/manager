@@ -1,24 +1,19 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { useMemo } from 'react';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
+import queryClient from '@/queryClient';
 import { paginateResults, sortResults } from '@/helpers';
 import {
-  createListener,
+  createLoadBalancer,
   deleteLoadBalancer,
   getLoadBalancer,
   getLoadBalancerFlavor,
-  getLoadBalancerListeners,
   getLoadBalancers,
+  TCreateLoadBalancerParam,
   TLoadBalancer,
   updateLoadBalancerName,
-  TLoadBalancerListener,
-  editListener,
-  TCreateLoadBalancerParam,
-  createLoadBalancer,
 } from '../data/load-balancer';
-import queryClient from '@/queryClient';
-import { PROTOCOLS } from '@/constants';
 
 export const getAllLoadBalancersQueryKey = (projectId: string) => [
   'load-balancers',
@@ -164,174 +159,6 @@ export const useRenameLoadBalancer = ({
     renameLoadBalancer: () => mutation.mutate(),
     ...mutation,
   };
-};
-
-export interface ListenerInfoProps {
-  name: string;
-  protocol: typeof PROTOCOLS[number];
-  port: number;
-  defaultPoolId?: string;
-}
-
-export interface CreateListenerProps {
-  projectId: string;
-  region: string;
-  loadBalancerId: string;
-  onError: (cause: Error) => void;
-  onSuccess: () => void;
-}
-
-export const useCreateListener = ({
-  projectId,
-  region,
-  loadBalancerId,
-  onError,
-  onSuccess,
-}: CreateListenerProps) => {
-  const mutation = useMutation({
-    mutationFn: (listenerInfo: ListenerInfoProps) =>
-      createListener({
-        projectId,
-        region,
-        loadBalancerId,
-        ...listenerInfo,
-      }),
-    onError,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['listeners'],
-      });
-      onSuccess();
-    },
-  });
-  return {
-    createListener: (listenerInfo: ListenerInfoProps) =>
-      mutation.mutate(listenerInfo),
-    ...mutation,
-  };
-};
-
-export interface EditListenerProps {
-  projectId: string;
-  region: string;
-  listenerId: string;
-  onError: (cause: Error) => void;
-  onSuccess: () => void;
-}
-
-export const useEditLoadBalancer = ({
-  projectId,
-  region,
-  listenerId,
-  onError,
-  onSuccess,
-}: EditListenerProps) => {
-  const mutation = useMutation({
-    mutationFn: ({
-      name,
-      defaultPoolId,
-    }: {
-      name: string;
-      defaultPoolId?: string;
-    }) =>
-      editListener({
-        projectId,
-        region,
-        listenerId,
-        name,
-        defaultPoolId,
-      }),
-    onError,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['listeners'],
-      });
-      onSuccess();
-    },
-  });
-  return {
-    editListener: ({
-      name,
-      defaultPoolId,
-    }: {
-      name: string;
-      defaultPoolId?: string;
-    }) =>
-      mutation.mutate({
-        name,
-        defaultPoolId,
-      }),
-    ...mutation,
-  };
-};
-
-export const useAllLoadBalancerListeners = ({
-  projectId,
-  region,
-  loadBalancerId,
-}: {
-  projectId: string;
-  region: string;
-  loadBalancerId: string;
-}) =>
-  useQuery({
-    queryKey: [
-      'listeners',
-      projectId,
-      'region',
-      region,
-      'loadbalancer',
-      loadBalancerId,
-      'listeners',
-    ],
-    queryFn: () => getLoadBalancerListeners(projectId, region, loadBalancerId),
-    enabled: !!region && !!loadBalancerId,
-    select: (data) =>
-      data.map((listener) => ({
-        ...listener,
-        search: `${listener.name} ${listener.defaultPoolId} ${listener.protocol} ${listener.port}`,
-      })),
-    throwOnError: true,
-  });
-
-export const useLoadBalancerListeners = (
-  projectId: string,
-  region: string,
-  loadBalancerId: string,
-  pagination: PaginationState,
-  sorting: ColumnSort,
-  filters: Filter[],
-) => {
-  const {
-    data: loadBalancerListeners,
-    error,
-    isLoading,
-    isPending,
-  } = useAllLoadBalancerListeners({ projectId, region, loadBalancerId });
-
-  return useMemo(
-    () => ({
-      isLoading,
-      isPending,
-      data: paginateResults<TLoadBalancerListener>(
-        sortResults<TLoadBalancerListener>(
-          applyFilters(loadBalancerListeners || [], filters),
-          sorting,
-        ),
-        pagination,
-      ),
-      error,
-    }),
-    [
-      loadBalancerListeners,
-      error,
-      isLoading,
-      isPending,
-      pagination,
-      sorting,
-      filters,
-    ],
-  );
 };
 
 export const useCreateLoadBalancer = ({

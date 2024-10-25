@@ -28,8 +28,8 @@ import {
   URL_PLACEHOLDER,
 } from '@/constants';
 import LabelComponent from '@/components/form/Label.component';
-import { TLoadBalancerListener } from '@/api/data/load-balancer';
 import { TLoadBalancerPool } from '@/api/data/pool';
+import { TLoadBalancerListener } from '@/api/data/listener';
 
 type PolicyFormProps = {
   policy: TL7Policy | null;

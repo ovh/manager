@@ -77,7 +77,7 @@ export default function ListenerForm({
       onChange((prev) => ({
         ...prev,
         protocol: selectedProtocol,
-        port: PROTOCOLS_PORT[selectedProtocol] || 1,
+        port: PROTOCOLS_PORT[selectedProtocol] || 0,
       }));
 
       if (

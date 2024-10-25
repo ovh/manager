@@ -7,8 +7,8 @@ import ListenerForm, {
   TListenerFormState,
 } from '@/components/form/ListenerForm.page';
 import { useAllLoadBalancerPools } from '@/api/hook/usePool';
-import { useCreateListener } from '@/api/hook/useLoadBalancer';
 import { TProtocol } from '@/api/data/load-balancer';
+import { useCreateListener } from '@/api/hook/useListener';
 
 export default function CreateListener() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function CreateListener() {
   const [formState, setFormState] = useState<TListenerFormState>({
     name: '',
     protocol: '' as TProtocol,
-    port: 1,
+    port: 0,
     pool: null,
   });
 
@@ -35,14 +35,21 @@ export default function CreateListener() {
     onError(error: ApiError) {
       addError(
         <Translation ns="load-balancer">
-          {(_t) =>
-            _t('octavia_load_balancer_global_error', {
-              message: error?.response?.data?.message || error?.message || null,
-              requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
-            })
-          }
+          {(_t) => (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: _t('octavia_load_balancer_global_error', {
+                  message: ((error.response as unknown) as {
+                    data: { message: string };
+                  }).data.message,
+                  requestId: ((error.response as unknown) as {
+                    headers: Record<string, unknown>;
+                  }).headers['x-ovh-queryid'],
+                }),
+              }}
+            />
+          )}
         </Translation>,
-
         true,
       );
       navigate('..');
