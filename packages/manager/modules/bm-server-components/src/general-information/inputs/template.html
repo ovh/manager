@@ -191,6 +191,18 @@
             maxlength="{{$ctrl.inputRules.hexstring.maxsize}}"
             placeholder="{{:: 'server_configuration_installation_inputs_item_placeholder' | translate:{ t0: 'hexstring' } }}"
         />
+        <!-- hostname -->
+        <input
+            data-ng-switch-when="hostname"
+            class="oui-input form-control"
+            data-ng-model="$ctrl.installation.input[input.name]"
+            data-ng-required="input.mandatory"
+            data-ng-pattern="$ctrl.inputRules.hostname.pattern"
+            name="{{input.name}}"
+            type="text"
+            maxlength="{{$ctrl.inputRules.hostname.maxsize}}"
+            placeholder="{{:: 'server_configuration_installation_inputs_item_placeholder' | translate:{ t0: 'hostname' } }}"
+        />
         <!-- url -->
         <!-- native HTML url type is too permissive -->
         <input

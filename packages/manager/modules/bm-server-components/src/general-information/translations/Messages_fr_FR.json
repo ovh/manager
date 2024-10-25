@@ -46,6 +46,7 @@
   "server_configuration_installation_inputs_item_mandatory": "Ce champ est obligatoire",
   "server_configuration_installation_inputs_bad_email": "L'adresse email saisie n'est pas valide",
   "server_configuration_installation_inputs_bad_hexstring": "La chaîne de caractères doit être composée uniquement de chiffres et de lettres comprises entre A et F",
+  "server_configuration_installation_inputs_bad_hostname": "Le hostname doit être composé uniquement de chiffres, lettres, traits d'union et points selon le format défini dans la RFC 1035",
   "server_configuration_installation_inputs_bad_ip": "L'adresse IPv4 saisie n'est pas valide",
   "server_configuration_installation_inputs_bad_required": "Ce champ est requis",
   "server_configuration_installation_inputs_bad_sshPubKey": "La clé publique SSH est invalide: seules les clés RSA, ECDSA et EdDSA au format OpenSSH sont acceptées",

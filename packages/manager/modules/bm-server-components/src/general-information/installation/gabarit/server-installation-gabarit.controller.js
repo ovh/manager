@@ -52,7 +52,6 @@ export default class ServerInstallationGabaritCtrl {
       options: {
         saveGabarit: false,
         gabaritNameSave: null,
-        customHostname: null,
         validForm: true,
       },
     };
@@ -207,7 +206,6 @@ export default class ServerInstallationGabaritCtrl {
     this.$scope.installation.options = {
       saveGabarit: false,
       gabaritNameSave: null,
-      customHostname: this.$scope.installation.selectGabarit.customHostname,
       validForm: true,
     };
 
@@ -360,7 +358,6 @@ export default class ServerInstallationGabaritCtrl {
       this.$scope.installation.selectGabarit.id,
       this.$scope.installation.selectPartitionScheme,
       {
-        customHostname: this.$scope.installation.options.customHostname,
         softRaidDevices:
           this.$scope.informations.nbDisk > 2 &&
           this.$scope.installation.nbDiskUse > 1
@@ -402,9 +399,6 @@ export default class ServerInstallationGabaritCtrl {
         this.$stateParams.productId,
         this.$scope.installation.selectGabarit.id,
         this.$scope.installation.options.gabaritNameSave,
-        {
-          customHostname: this.$scope.installation.options.customHostname,
-        },
       ).then(
         () => {
           this.$scope.installation.selectGabarit.displayName = angular.copy(

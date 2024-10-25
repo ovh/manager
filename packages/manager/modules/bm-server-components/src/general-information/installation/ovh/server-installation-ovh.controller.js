@@ -158,7 +158,6 @@ export default class ServerInstallationOvhCtrl {
       options: {
         saveGabarit: false,
         gabaritNameSave: null,
-        customHostname: null,
         variablePartition: null,
         validForm: true,
       },
@@ -2198,7 +2197,6 @@ export default class ServerInstallationOvhCtrl {
     this.$scope.installation.options = {
       saveGabarit: false,
       gabaritNameSave: null,
-      customHostname: null,
       variablePartition: null,
       validForm: true,
     };
@@ -2320,7 +2318,6 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.informations.gabaritName,
       this.$scope.installation.selectPartitionScheme,
       {
-        customHostname: this.$scope.installation.options.customHostname,
         softRaidDevices:
           this.$scope.informations.nbDisk > 2 &&
           this.$scope.installation.nbDiskUse > 1
@@ -2397,9 +2394,6 @@ export default class ServerInstallationOvhCtrl {
       this.$stateParams.productId,
       this.$scope.informations.gabaritName,
       this.$scope.installation.options.gabaritNameSave,
-      {
-        customHostname: this.$scope.installation.options.customHostname,
-      },
     ).then(
       () => {
         this.$scope.informations.gabaritName = angular.copy(
