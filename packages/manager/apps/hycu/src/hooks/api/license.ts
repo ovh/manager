@@ -14,6 +14,8 @@ import {
   postActivateLicenseHycuMutationKey,
   postLicenseHycuActivateService,
   PostLicenseHycuActivateServiceParams,
+  postLicenseHycuRegenerateService,
+  postRegenerateLicenseHycuMutationKey,
 } from '@/data/api/hycu';
 import { IHycuDetails } from '@/types/hycu.details.interface';
 
@@ -28,6 +30,20 @@ export const useDetailsLicenseHYCU = (
   });
 };
 
+export const useInvalidateCacheForALicenseHycu = () => {
+  const queryClient = useQueryClient();
+
+  return (serviceName: string) => {
+    queryClient.invalidateQueries({ queryKey: getLicenseHycuListQueryKey() });
+    queryClient.invalidateQueries({
+      queryKey: getServiceDetailsQueryKey(serviceName),
+    });
+    queryClient.invalidateQueries({
+      queryKey: getLicenseHycuQueryKey(serviceName),
+    });
+  };
+};
+
 export const useActivateLicenseHYCUMutation = (
   options: Partial<
     UseMutationOptions<
@@ -37,7 +53,7 @@ export const useActivateLicenseHYCUMutation = (
     >
   > = {},
 ) => {
-  const queryClient = useQueryClient();
+  const invalidateCacheForService = useInvalidateCacheForALicenseHycu();
 
   const { onSuccess, ...restOptions } = options;
 
@@ -45,14 +61,30 @@ export const useActivateLicenseHYCUMutation = (
     mutationKey: postActivateLicenseHycuMutationKey(),
     mutationFn: (params) => postLicenseHycuActivateService(params),
     onSuccess: (data, variables, context) => {
-      queryClient.invalidateQueries({ queryKey: getLicenseHycuListQueryKey() });
-      queryClient.invalidateQueries({
-        queryKey: getServiceDetailsQueryKey(variables.serviceName),
-      });
-      queryClient.invalidateQueries({
-        queryKey: getLicenseHycuQueryKey(variables.serviceName),
-      });
+      invalidateCacheForService(variables.serviceName);
+      onSuccess?.(data, variables, context);
+    },
+    ...(restOptions ?? {}),
+  });
+};
 
+export const useRegenerateLicenseHYCUMutation = (
+  options: Partial<
+    UseMutationOptions<
+      AxiosResponse,
+      Error,
+      PostLicenseHycuActivateServiceParams
+    >
+  > = {},
+) => {
+  const invalidateCacheForService = useInvalidateCacheForALicenseHycu();
+  const { onSuccess, ...restOptions } = options;
+
+  return useMutation({
+    mutationKey: postRegenerateLicenseHycuMutationKey(),
+    mutationFn: (params) => postLicenseHycuRegenerateService(params),
+    onSuccess: (data, variables, context) => {
+      invalidateCacheForService(variables.serviceName);
       onSuccess?.(data, variables, context);
     },
     ...(restOptions ?? {}),

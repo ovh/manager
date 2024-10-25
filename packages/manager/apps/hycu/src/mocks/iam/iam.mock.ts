@@ -5,7 +5,10 @@ import { IAM_ACTIONS } from '@/utils/iam.constants';
 export const resourceList: IamCheckResponse[] = [
   {
     urn: licensesHycu[0].iam.urn,
-    authorizedActions: [IAM_ACTIONS.licenseHycuApiovhActivate],
+    authorizedActions: [
+      IAM_ACTIONS.licenseHycuApiOvhActivate,
+      IAM_ACTIONS.licenseHycuApiOvhRefresh,
+    ],
     unauthorizedActions: [],
   },
   {
