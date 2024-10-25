@@ -41,9 +41,14 @@
                         data-ng-click="category.active = !category.active;"
                     >
                         <voip-time-condition-slot
+                            data-ng-if="SchedulerExportCtrl.timeCondition"
                             data-time-condition-slot="SchedulerExportCtrl.convertCategoryToSlot(category.value)"
                         >
                         </voip-time-condition-slot>
+                        <span
+                            data-ng-if="!SchedulerExportCtrl.timeCondition"
+                            data-translate="{{ 'telephony_scheduler_categories_' + category.value | tucSnakeCase }}"
+                        ></span>
                     </button>
                 </div>
             </div>
