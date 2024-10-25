@@ -8,7 +8,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './src/setupTests.tsx',
+    setupFiles: './src/setupTests.ts',
     coverage: {
       include: ['src'],
       exclude: [
@@ -24,17 +24,6 @@ export default defineConfig({
         'src/routes.tsx',
         'src/queryClient.ts',
       ],
-    },
-    testTimeout: 60_000,
-    fileParallelism: false,
-    maxWorkers: 1,
-    pollOptions: {
-      forks: {
-        singleFork: true,
-      },
-      threads: {
-        singleThread: true,
-      },
     },
   },
   resolve: {

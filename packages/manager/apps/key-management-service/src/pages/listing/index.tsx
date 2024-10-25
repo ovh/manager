@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
+  ODS_SPINNER_SIZE,
   ODS_MESSAGE_TYPE,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components';
-import { OsdsButton, OsdsMessage } from '@ovhcloud/ods-components/react';
+import {
+  OsdsButton,
+  OsdsMessage,
+  OsdsSpinner,
+} from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   BaseLayout,
   Datagrid,
   HeadersProps,
   Notifications,
-  RedirectionGuard,
+  useDatagridSearchParams,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import {
@@ -21,7 +26,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useOKMSList } from '@/data/hooks/useOKMS';
+import { useOKMS } from '@/data/hooks/useOKMS';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import {
   DatagridActionMenu,
@@ -31,6 +36,7 @@ import {
   DatagridCellStatus,
 } from '@/components/Listing/ListingCells';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
+import Loading from '@/components/Loading/Loading';
 
 export default function Listing() {
   const { t } = useTranslation('key-management-service/listing');
@@ -68,35 +74,24 @@ export default function Listing() {
     },
   ];
 
-  const {
-    data,
-    flattenData,
-    fetchNextPage,
-    hasNextPage,
-    isError,
-    isLoading,
-    status,
-  } = useOKMSList({
-    pageSize: 10,
+  const { sorting, setSorting } = useDatagridSearchParams();
+
+  const { error, data: okms, isLoading } = useOKMS({
+    sorting,
   });
+
+  useEffect(() => {
+    if (okms.length === 0 && !isLoading) {
+      navigate(ROUTES_URLS.onboarding);
+    }
+  }, [okms.length, isLoading]);
 
   const headerProps: HeadersProps = {
     title: t('key_management_service_listing_title'),
     headerButton: <KmsGuidesHeader />,
   };
-
   return (
-    <RedirectionGuard
-      isLoading={isLoading || !flattenData}
-      condition={status === 'success' && data?.pages[0].data.length === 0}
-      route={ROUTES_URLS.onboarding}
-      isError={isError}
-      errorComponent={
-        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
-          {tError('manager_error_page_default')}
-        </OsdsMessage>
-      }
-    >
+    <Suspense fallback={<Loading />}>
       <BaseLayout header={headerProps} message={<Notifications />}>
         <div className={'flex mb-3 mt-6'}>
           <OsdsButton
@@ -118,20 +113,31 @@ export default function Listing() {
             {t('key_management_service_listing_add_kms_button')}
           </OsdsButton>
         </div>
-        {flattenData && (
+        {error && (
+          <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
+            {tError('manager_error_page_default')}
+          </OsdsMessage>
+        )}
+
+        {isLoading && !error && (
+          <div className="text-center">
+            <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+          </div>
+        )}
+        {!isLoading && !error && (
           <div className={'mt-8'}>
             <Datagrid
               columns={columns}
-              items={flattenData}
-              totalItems={flattenData.length || 0}
-              hasNextPage={hasNextPage}
-              onFetchNextPage={() => fetchNextPage()}
+              items={okms || []}
+              totalItems={0}
+              sorting={sorting}
+              onSortChange={setSorting}
               contentAlignLeft
             />
           </div>
         )}
         <Outlet />
       </BaseLayout>
-    </RedirectionGuard>
+    </Suspense>
   );
 }

@@ -11,12 +11,7 @@ import IdentityUserGroupCell from './cell/user/IdentityUserGroupCell.component';
 import IdentityUserStatusCell from './cell/user/IdentityUserStatusCell.component';
 import IdentityUserDeleteActionCell from './cell/user/IdentityUserDeleteActionCell';
 
-type IdentitiesSelectedUsersListProps = {
-  identityURNs: string[];
-};
-const IdentitiesSelectedUsersList = ({
-  identityURNs,
-}: IdentitiesSelectedUsersListProps) => {
+const IdentitiesSelectedUsersList = () => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
   const { userList, setUserList } = useIdentityData();
@@ -64,7 +59,6 @@ const IdentitiesSelectedUsersList = ({
       }}
       datagridColumns={columns}
       items={userList}
-      identityURNs={identityURNs}
     ></IdentitiesSelectedBase>
   );
 };

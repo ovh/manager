@@ -29,8 +29,8 @@ export const useTerminateOKms = ({
       const { data: servicesId } = await queryClient.fetchQuery<
         ApiResponse<number[]>
       >({
-        queryKey: getOkmsServiceIdQueryKey(okmsId),
-        queryFn: () => getOkmsServiceId(okmsId),
+        queryKey: getOkmsServiceIdQueryKey({ okms: okmsId }),
+        queryFn: () => getOkmsServiceId({ okms: okmsId }),
       });
       return terminateOKms({ serviceId: servicesId[0] });
     },

@@ -1,15 +1,6 @@
-import { describe, expect, it, test, vi } from 'vitest';
+import { describe, expect, it, test } from 'vitest';
 import { OkmsServiceKeyOperations } from '@/types/okmsServiceKey.type';
 import { useServiceKeyOperationsTranslations } from './useServiceKeyOperationsTranslations';
-
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (translationKey: string) => translationKey,
-    i18n: {
-      changeLanguage: () => new Promise(() => {}),
-    },
-  }),
-}));
 
 describe('get service key operations translation ', () => {
   const useCases: {
