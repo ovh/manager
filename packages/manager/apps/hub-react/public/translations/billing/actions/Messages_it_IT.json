@@ -5,7 +5,7 @@
   "billing_services_actions_menu_manage_renew": "Configura il rinnovo",
   "billing_services_actions_menu_exchange_update_accounts": "Configura il rinnovo degli account",
   "billing_services_actions_menu_anticipate_renew": "Anticipa il pagamento",
-  "billing_services_actions_menu_resiliate": "Rescindi l’impegno contrattuale",
+  "billing_services_actions_menu_resiliate": "Disattivare",
   "billing_services_actions_menu_resiliate_my_engagement": "Rescindi l’impegno contrattuale",
   "billing_services_actions_menu_renew_label": "Rinnova il servizio: {{ serviceName }} (Nuova finestra)",
   "billing_services_actions_menu_renew": "Rinnova il servizio",

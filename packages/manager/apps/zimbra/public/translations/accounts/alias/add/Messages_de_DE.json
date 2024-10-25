@@ -2,12 +2,12 @@
   "zimbra_account_alias_add_modal_title": "Alias erstellen",
   "zimbra_account_alias_add_description": "Alias für den Account {{ account }} erstellen",
   "zimbra_account_alias_add_input_email_placeholder": "Alias",
-  "zimbra_account_alias_add_input_email_helper": "Der lokale Teil Ihres Alias (der Text vor dem „@“) muss den folgenden Richtlinien folgen:",
-  "zimbra_account_alias_add_input_email_helper_rule_1": "Sie muss mit einem Buchstaben oder einer Nummer enden",
-  "zimbra_account_alias_add_input_email_helper_rule_2": "Zulässige Sonderzeichen sind “.“, „+“, „-“ und „_“",
-  "zimbra_account_alias_add_input_email_helper_rule_3": "Sonderzeichen können nicht nebeneinander platziert werden",
+  "zimbra_account_alias_add_input_email_helper": "Der lokale Teil Ihres Alias (der Text vor dem „@“) muss den folgenden Richtlinien entsprechen:",
+  "zimbra_account_alias_add_input_email_helper_rule_1": "Er muss mit einem Buchstaben oder einer Zahl enden.",
+  "zimbra_account_alias_add_input_email_helper_rule_2": "Die zulässigen Sonderzeichen sind „.“, „+“, „-“ und „_“.",
+  "zimbra_account_alias_add_input_email_helper_rule_3": "Sonderzeichen können nicht nebeneinander platziert werden.",
   "zimbra_account_alias_add_select_domain_placeholder": "Einen Domainnamen auswählen",
   "zimbra_account_alias_add_btn_confirm": "Bestätigen",
-  "zimbra_account_alias_add_success_message": "Ihre Anfrage zur Erstellung eines Alias wurde registriert. Sie wird in einigen Augenblicken behandelt.",
-  "zimbra_account_alias_add_error_message": "Ihre Anfrage zur Erstellung eines Alias konnte nicht abgeschlossen werden. {{ error }}"
+  "zimbra_account_alias_add_success_message": "Ihre Anfrage zur Erstellung eines Alias wurde registriert. Sie wird in Kürze bearbeitet.",
+  "zimbra_account_alias_add_error_message": "Ihre Anfrage zur Erstellung eines Alias ist fehlgeschlagen. {{ error }}"
 }
