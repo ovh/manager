@@ -103,7 +103,7 @@ export const FileInputField = ({
               size={ODS_ICON_SIZE.lg}
             ></OsdsIcon>
             <OsdsText
-              size={ODS_THEME_TYPOGRAPHY_SIZE._800}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
               color={ODS_THEME_COLOR_INTENT.text}
             >
               {t('hycu_dashboard_drag_and_drop_attachment')}
@@ -119,6 +119,13 @@ export const FileInputField = ({
               onClick={() => fileInputRef.current.click()}
               inline
             >
+              <span slot="start">
+                <OsdsIcon
+                  size={ODS_ICON_SIZE.xxs}
+                  color={ODS_THEME_COLOR_INTENT.success}
+                  name={ODS_ICON_NAME.UPLOAD_CONCEPT}
+                ></OsdsIcon>
+              </span>
               {t('hycu_dashboard_browse')}
             </OsdsButton>
             <OsdsText color={ODS_THEME_COLOR_INTENT.error}>
