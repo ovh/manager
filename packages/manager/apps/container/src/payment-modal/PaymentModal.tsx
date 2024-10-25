@@ -52,7 +52,11 @@ const computeAlert = (paymentMethods: IPaymentMethod[]): string => {
   return null;
 };
 
-const PaymentModal = (): JSX.Element => {
+type Props = {
+  onDone: () => void;
+};
+
+const PaymentModal = ({ onDone }: Props): JSX.Element => {
   const [alert, setAlert] = useState('');
   const { t } = useTranslation('payment-modal');
   const [showPaymentModal, setShowPaymentModal] = useState(false);
@@ -79,6 +83,9 @@ const PaymentModal = (): JSX.Element => {
       if (alert) {
         setAlert(alert);
         setShowPaymentModal(true);
+      }
+      else {
+        onDone();
       }
     }
   }, [paymentResponse]);
