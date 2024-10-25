@@ -6,6 +6,7 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Products from '@/components/products/Products.component';
 import { ProductList } from '@/types/services.type';
 import { aFewProductsMocked, lotsOfProductsMocked } from '@/_mock_/products';
@@ -62,14 +63,17 @@ const shellContext = {
     },
   },
 };
+const queryClient = new QueryClient();
 
 const renderComponent = (services: ProductList) => {
   return render(
-    <ShellContext.Provider
-      value={(shellContext as unknown) as ShellContextType}
-    >
-      <Products services={{ status: 'OK', data: services }}></Products>
-    </ShellContext.Provider>,
+    <QueryClientProvider client={queryClient}>
+      <ShellContext.Provider
+        value={(shellContext as unknown) as ShellContextType}
+      >
+        <Products services={{ status: 'OK', data: services }}></Products>
+      </ShellContext.Provider>
+    </QueryClientProvider>,
   );
 };
 

@@ -10,15 +10,20 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 
-export default function ServiceLink({ application, hash, type }) {
+type Props = {
+  application: string;
+  hash: string;
+  type: string;
+};
+
+export default function ServiceLink({ application, hash, type }: Props) {
   const { t } = useTranslation();
   const {
     shell: { navigation },
   } = useContext(ShellContext);
-  const linkParams = [application, hash, {}];
   const { data: link, isLoading } = useQuery({
-    queryKey: ['shell', 'getUrl', linkParams],
-    queryFn: () => /* navigation.getURL(...linkParams) */ 'myFakeLink',
+    queryKey: ['shell', 'getUrl', application, hash],
+    queryFn: () => navigation.getURL(application, hash, {}) as Promise<string>,
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
   });

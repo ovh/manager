@@ -951,7 +951,8 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
     ],
     type: 'DEDICATED_CLOUD',
     formattedType: 'dedicated-cloud',
-    link: Promise.resolve('https://fake-link.com'),
+    application: 'dedicated',
+    hash: '#/dedicated_cloud',
   },
   {
     count: 8,
@@ -1055,7 +1056,8 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
     ],
     type: 'CLOUD_PROJECT',
     formattedType: 'cloud-project',
-    link: Promise.resolve('https://fake-link.com'),
+    application: 'public-cloud',
+    hash: '#/pci/projects',
   },
   {
     count: 5,
@@ -1155,7 +1157,8 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
     ],
     type: 'DBAAS_LOGS',
     formattedType: 'dbaas-logs',
-    link: Promise.resolve('https://fake-link.com'),
+    application: 'dedicated',
+    hash: '#/dbaas/logs',
   },
   {
     count: 4,
@@ -1259,7 +1262,8 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
     ],
     type: 'DEDICATED_SERVER',
     formattedType: 'dedicated-server',
-    link: Promise.resolve('https://fake-link.com'),
+    application: 'dedicated',
+    hash: '#/server',
   },
   {
     count: 3,
@@ -1339,7 +1343,8 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
     ],
     type: 'CDN_DEDICATED',
     formattedType: 'cdn-dedicated',
-    link: Promise.resolve('https://fake-link.com'),
+    application: 'dedicated',
+    hash: '#/configuration/cdn',
   },
   {
     count: 2,
@@ -1395,7 +1400,8 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
     ],
     type: 'DEDICATED_NASHA',
     formattedType: 'dedicated-nasha',
-    link: Promise.resolve('https://fake-link.com'),
+    application: 'dedicated',
+    hash: '#/nasha',
   },
 ];
 
@@ -1506,7 +1512,8 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
     ],
     type: 'DEDICATED_CLOUD',
     formattedType: 'dedicated-cloud',
-    link: Promise.resolve('https://fake-link.com'),
+    application: 'dedicated',
+    hash: '#/dedicated_cloud',
   },
   {
     count: 8,
@@ -1610,7 +1617,8 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
     ],
     type: 'CLOUD_PROJECT',
     formattedType: 'cloud-project',
-    link: Promise.resolve('https://fake-link.com'),
+    application: 'public-cloud',
+    hash: '#/pci/projects',
   },
   {
     count: 5,
@@ -1710,7 +1718,8 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
     ],
     type: 'DBAAS_LOGS',
     formattedType: 'dbaas-logs',
-    link: Promise.resolve('https://fake-link.com'),
+    application: 'dedicated',
+    hash: '#/dbaas/logs',
   },
   {
     count: 4,
@@ -1814,7 +1823,8 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
     ],
     type: 'DEDICATED_SERVER',
     formattedType: 'dedicated-server',
-    link: Promise.resolve('https://fake-link.com'),
+    application: 'dedicated',
+    hash: '#/server',
   },
   {
     count: 3,
@@ -1894,7 +1904,8 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
     ],
     type: 'CDN_DEDICATED',
     formattedType: 'cdn-dedicated',
-    link: Promise.resolve('https://fake-link.com'),
+    application: 'dedicated',
+    hash: '#/configuration/cdn',
   },
   {
     count: 2,
@@ -1950,7 +1961,8 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
     ],
     type: 'DEDICATED_NASHA',
     formattedType: 'dedicated-nasha',
-    link: Promise.resolve('https://fake-link.com'),
+    application: 'dedicated',
+    hash: '#/nasha',
   },
   {
     count: 1,
@@ -1978,6 +1990,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
     ],
     type: 'DEDICATED_HOUSING',
     formattedType: 'dedicated-housing',
-    link: Promise.resolve('https://fake-link.com'),
+    application: 'dedicated',
+    hash: '#/housing',
   },
 ];
