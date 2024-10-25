@@ -117,7 +117,7 @@
   "mailing_list_tab_modal_update_list_heading": "Please enter the following information:",
   "mailing_list_tab_modal_update_list_options": "Options:",
   "mailing_list_tab_modal_update_list_reply_to_list": "To the list",
-  "mailing_list_tab_modal_update_list_reply_to_last_user": "To an email sender",
+  "mailing_list_tab_modal_update_list_reply_to_last_user": "To the sender of the message",
   "mailing_list_tab_modal_update_list_reply_to_email": "To an email address",
   "mailing_list_tab_modal_subscriber_create": "Add a subscriber",
   "mailing_list_tab_modal_create_subscriber_title": "You are about to add a subscriber to the {0} mailing list",
