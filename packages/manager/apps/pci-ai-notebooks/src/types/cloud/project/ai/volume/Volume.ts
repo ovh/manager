@@ -12,7 +12,7 @@ export interface Volume {
   /** Enable/disable volume caching */
   cache: boolean;
   /** Public Cloud Storage container to attach */
-  container: string;
+  container?: string;
   /** Volume details for data store containers. Deprecated: Use volumeSource.dataStore instead */
   dataStore: DataStore;
   /** Volume Id. Deprecated: moved to status.volumes[] */
@@ -22,23 +22,23 @@ export interface Volume {
   /** Permissions to use on the mounted volume */
   permission: VolumePermissionEnum;
   /** Prefix to fetch only part of the volume */
-  prefix: string;
+  prefix?: string;
   /** Volume details for private swift containers. Deprecated: Use volumeSource.dataStore instead */
-  privateSwift: PrivateSwift;
+  privateSwift?: PrivateSwift;
   /** Volume details for public git repositories. Deprecated: Use volumeSource.publicGit instead */
-  publicGit: PublicGit;
+  publicGit?: PublicGit;
   /** Volume details for public swift containers. Deprecated: Use volumeSource.publicSwift instead */
-  publicSwift: PublicSwift;
+  publicSwift?: PublicSwift;
   /** Public Cloud Storage Region */
-  region: string;
+  region?: string;
   /** Volume details for volumes that do not have a datasource. Deprecated: Use volumeSource.standalone instead */
-  standalone: Standalone;
+  standalone?: Standalone;
   /** Target volume details for data store containers. Deprecated: Use volumeTarget.targetDataStore instead */
-  targetDataStore: DataStore;
+  targetDataStore?: DataStore;
   /** Target volume details for private swift containers. Deprecated: Use volumeTarget.targetDataStore instead */
-  targetPrivateSwift: PrivateSwift;
+  targetPrivateSwift?: PrivateSwift;
   /** Source volume details */
-  volumeSource: VolumeSource;
+  volumeSource?: VolumeSource;
   /** Target volume details */
-  volumeTarget: VolumeTarget;
+  volumeTarget?: VolumeTarget;
 }

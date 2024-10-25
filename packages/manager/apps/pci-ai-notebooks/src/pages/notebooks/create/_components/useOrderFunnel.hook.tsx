@@ -1,19 +1,21 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { z } from 'zod';
+import { s } from 'vitest/dist/reporters-P7C2ytIv';
 import { useGetFlavor } from '@/hooks/api/ai/capabilities/useGetFlavor.hook';
 import { generateName } from '@/lib/nameGenerator';
 import { createFlavorPricingList } from '@/lib/priceFlavorHelper';
 import { order } from '@/types/catalog';
 import * as ai from '@/types/cloud/project/ai';
-import { Flavor } from '@/types/orderFunnel';
-import { useGetDatastore } from '@/hooks/api/ai/datastore/useGetDatastore.hook';
+import { Flavor, OrderSshKey, PrivacyEnum } from '@/types/orderFunnel';
 import { useGetDatastores } from '@/hooks/api/ai/datastore/useGetDatastores.hook';
-import { useGetDatastoreContainer } from '@/hooks/api/ai/datastore/useGetDatastoreContainer.hook';
-import { useGetStorage } from '@/hooks/api/storage/useGetStorage.hook';
+import {
+  DataStoresWithContainers,
+  useGetDatastoresWithContainers,
+} from '@/hooks/api/ai/datastore/useGetDatastoresWithContainers.hook';
 
 export function useOrderFunnel(
   regions: ai.capabilities.Region[],
@@ -21,13 +23,12 @@ export function useOrderFunnel(
   frameworks: ai.capabilities.notebook.Framework[],
   editors: ai.capabilities.notebook.Editor[],
 ) {
-  const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
   const { projectId } = useParams();
   const orderSchema = z.object({
     region: z.string(),
     flavorWithQuantity: z.object({
       flavor: z.string(),
-      quantity: z.number(),
+      quantity: z.coerce.number(),
     }),
     frameworkWithVersion: z.object({
       framework: z.string(),
@@ -35,20 +36,32 @@ export function useOrderFunnel(
     }),
     editor: z.string(),
     notebookName: z.string().min(1),
-    httpsAccess: z.string(),
-    labels: z.array(
-      z.object({
-        key: z.string(),
-        value: z.string(),
-      }),
-    ),
+    privacy: z.nativeEnum(PrivacyEnum),
+    labels: z
+      .array(
+        z.object({
+          key: z.string().optional(),
+          value: z.string().optional(),
+        }),
+      )
+      .optional(),
     sshKey: z.array(
       z.object({
         name: z.string(),
         sshKey: z.string(),
       }),
     ),
-    // volume
+    volumes: z.array(
+      z.object({
+        cache: z.boolean(),
+        dataStore: z.object({
+          alias: z.string(),
+          container: z.string(),
+        }),
+        mountPath: z.string(),
+        permission: z.nativeEnum(ai.VolumePermissionEnum),
+      }),
+    ),
   });
 
   const form = useForm({
@@ -59,10 +72,10 @@ export function useOrderFunnel(
       frameworkWithVersion: { framework: '', version: '' },
       editor: '',
       notebookName: generateName(),
-      privacy: 'private',
+      privacy: PrivacyEnum.private,
       labels: [],
       sshKey: [],
-      // volume,
+      volumes: [],
     },
   });
 
@@ -74,23 +87,20 @@ export function useOrderFunnel(
   const unsecureHttp = form.watch('privacy');
   const labels = form.watch('labels');
   const sshKey = form.watch('sshKey');
+  const volumes = form.watch('volumes');
 
-  const flavorData = useGetFlavor(projectId, region);
-
-  /*
-  const datastoreData = useGetDatastores(projectId, region);
-  datastoreData.isSuccess && console.log(datastoreData.data);
-  console.log(region);
-  const containerData = useGetDatastoreContainer(projectId, region, 'testS3');
-  containerData.isSuccess && console.log(containerData.data);
-  const storageData = useGetStorage(projectId);
-  storageData.isSuccess && console.log(storageData.data);
-  */
+  const flavorQuery = useGetFlavor(projectId, region);
+  const datastoreQuery = useGetDatastores(projectId, region);
+  const containersQuery = useGetDatastoresWithContainers(
+    projectId,
+    region,
+    datastoreQuery.data,
+  );
 
   const listFlavor: Flavor[] = useMemo(() => {
-    if (flavorData.isLoading) return [];
-    return createFlavorPricingList(flavorData.data, catalog);
-  }, [region, flavorData.isSuccess]);
+    if (flavorQuery.isLoading) return [];
+    return createFlavorPricingList(flavorQuery.data, catalog);
+  }, [region, flavorQuery.isSuccess]);
 
   const regionObject: ai.capabilities.Region | undefined = useMemo(
     () => regions.find((r) => r.id === region),
@@ -105,7 +115,7 @@ export function useOrderFunnel(
   const frameworkObject:
     | ai.capabilities.notebook.Framework
     | undefined = useMemo(
-    () => frameworks.find((fmk) => fmk.name === frameworkWithversion.framework),
+    () => frameworks.find((fmk) => fmk.id === frameworkWithversion.framework),
     [frameworks, frameworkWithversion.framework],
   );
   const versionObject: string | undefined = useMemo(
@@ -116,14 +126,33 @@ export function useOrderFunnel(
 
   const editorObject:
     | ai.capabilities.notebook.Editor
-    | undefined = useMemo(() => editors.find((ed) => ed.name === editor), [
+    | undefined = useMemo(() => editors.find((ed) => ed.id === editor), [
     editors,
     editor,
   ]);
 
-  const unsecureHttpObject: boolean = useMemo(() => unsecureHttp === 'public', [
-    unsecureHttp,
-  ]);
+  const listDatastores: DataStoresWithContainers[] = useMemo(() => {
+    if (datastoreQuery.isLoading) return [];
+    return containersQuery.data;
+  }, [datastoreQuery.isSuccess, containersQuery.data]);
+
+  const unsecureHttpObject: boolean = useMemo(
+    () => unsecureHttp === PrivacyEnum.public,
+    [unsecureHttp],
+  );
+
+  const publicSshKeyList: string[] = useMemo(() => {
+    if (sshKey.length === 0) return [];
+    return sshKey.map((key: OrderSshKey) => key.sshKey);
+  }, [sshKey]);
+
+  const labelsObject: { [key: string]: string } = useMemo(() => {
+    if (labels.length === 0) return {};
+    return labels.reduce((acc, label) => {
+      acc[label.name] = label.value;
+      return acc;
+    }, {} as { [key: string]: string });
+  }, [labels]);
   return {
     form,
     lists: {
@@ -131,6 +160,7 @@ export function useOrderFunnel(
       flavors: listFlavor,
       frameworks,
       editors,
+      volumes: listDatastores,
     },
     result: {
       region: regionObject,
@@ -141,8 +171,9 @@ export function useOrderFunnel(
       editor: editorObject,
       notebookName,
       unsecureHttp: unsecureHttpObject,
-      labels,
-      sshKey,
+      labels: labelsObject,
+      sshKey: publicSshKeyList,
+      volumes,
     },
   };
 }

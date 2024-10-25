@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { AlertCircle, HelpCircle } from 'lucide-react';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as ai from '@/types/cloud/project/ai';
 import { order } from '@/types/catalog';
 import { useOrderFunnel } from './useOrderFunnel.hook';
@@ -36,6 +37,12 @@ import { Label } from '@/components/ui/label';
 import LabelsForm from '@/components/order/configuration/LabelsForm.component';
 import SshKeyForm from '@/components/order/configuration/SshKeyForm.component';
 import { SshKey } from '@/types/cloud/sshkey';
+import VolumeForm from '@/components/order/volumes/VolumesForm.component';
+import { useAddNotebook } from '@/hooks/api/ai/notebook/useAddNotebook.hook';
+import { useToast } from '@/components/ui/use-toast';
+import { getAIApiErrorMessage } from '@/lib/apiHelper';
+import ErrorList from '@/components/order/error-list/ErrorList.component';
+import { OrderVolumes, PrivacyEnum } from '@/types/orderFunnel';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
@@ -54,27 +61,73 @@ const OrderFunnel = ({
 }: OrderFunnelProps) => {
   const model = useOrderFunnel(regions, catalog, frameworks, editors);
   const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  const navigate = useNavigate();
 
-  /* const { addNotebook, isPending: isPendingAddNotebook } = useAddService({
+  const { toast } = useToast();
+  const { projectId } = useParams();
+  const { addNotebook, isPending: isPendingAddNotebook } = useAddNotebook({
     onError: (err) => {
       toast({
-        title: t('errorCreatingService'),
+        title: t('errorCreatingNotebook'),
         variant: 'destructive',
-        description: getCdbApiErrorMessage(err),
+        description: getAIApiErrorMessage(err),
       });
     },
-    onSuccess: (service) => {
+    onSuccess: (notebook) => {
       toast({
-        title: t('successCreatingService'),
+        title: t('successCreatingNotebook'),
       });
-      navigate(`../${service.id}`);
+      navigate(`../${notebook.id}`);
     },
   });
-  */
 
-  const onSubmit = model.form.handleSubmit((data) => {
-    console.log(data);
-  });
+  const onSubmit = model.form.handleSubmit(
+    (data) => {
+      const notebookInfos: ai.notebook.NotebookSpec = {
+        env: {
+          frameworkId: data.frameworkWithVersion.framework,
+          frameworkVersion: data.frameworkWithVersion.version,
+          editorId: data.editor,
+        },
+        region: data.region,
+        unsecureHttp: model.result.unsecureHttp,
+        sshPublicKeys: model.result.sshKey,
+        labels: model.result.labels,
+      };
+
+      if (model.result.flavor.type === ai.capabilities.FlavorTypeEnum.cpu) {
+        notebookInfos.resources = {
+          flavor: data.flavorWithQuantity.flavor,
+          cpu: data.flavorWithQuantity.quantity,
+        };
+      } else {
+        notebookInfos.resources = {
+          flavor: data.flavorWithQuantity.flavor,
+          gpu: data.flavorWithQuantity.quantity,
+        };
+      }
+
+      if (data.volumes.length > 0) {
+        notebookInfos.volumes = data.volumes.map((volume: OrderVolumes) => ({
+          cache: volume.cache,
+          dataStore: {
+            alias: volume.dataStore.alias,
+            container: volume.dataStore.container,
+          },
+          mountPath: volume.mountPath,
+          permission: volume.permission,
+        }));
+      }
+      addNotebook(notebookInfos);
+    },
+    (error) => {
+      toast({
+        title: t('errorFormTitle'),
+        variant: 'destructive',
+        description: <ErrorList error={error} />,
+      });
+    },
+  );
 
   const scrollToDiv = (target: string) => {
     const div = document.getElementById(target);
@@ -111,9 +164,10 @@ const OrderFunnel = ({
                         {...field}
                         regions={model.lists.regions}
                         value={field.value}
-                        onChange={(newRegion) =>
-                          model.form.setValue('region', newRegion)
-                        }
+                        onChange={(newRegion) => {
+                          model.form.setValue('region', newRegion);
+                          model.form.setValue('volumes', []);
+                        }}
                       />
                     </FormControl>
                     <FormMessage />
@@ -153,6 +207,7 @@ const OrderFunnel = ({
 
               <FormField
                 control={model.form.control}
+                defaultValue={1}
                 name="flavorWithQuantity.quantity"
                 render={({ field }) => (
                   <FormItem>
@@ -238,6 +293,38 @@ const OrderFunnel = ({
               />
             </section>
 
+            <section id="volumes">
+              <FormField
+                control={model.form.control}
+                name="volumes"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className={classNameLabel}>
+                      {t('fieldVolumesLabel')}
+                    </FormLabel>
+                    <FormControl>
+                      {model.lists.volumes.length > 0 ? (
+                        <VolumeForm
+                          {...field}
+                          configuredVolumesList={model.lists.volumes}
+                          selectedVolumesList={field.value}
+                          onChange={(newVolumes) =>
+                            model.form.setValue('volumes', newVolumes)
+                          }
+                        />
+                      ) : (
+                        <p>
+                          Vous n'avez pas de volumes configurés. Configurer un
+                          S3 ou Git / Configurer un container Swift
+                        </p>
+                      )}
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </section>
+
             <section
               id="options"
               className="divide-y-[1rem] divide-transparent"
@@ -271,13 +358,13 @@ const OrderFunnel = ({
                         className="mb-2"
                         name="access-type"
                         value={field.value}
-                        onValueChange={(newPrivacyValue) =>
+                        onValueChange={(newPrivacyValue: PrivacyEnum) =>
                           model.form.setValue('privacy', newPrivacyValue)
                         }
                       >
                         <div className="flex items-center space-x-2">
                           <RadioGroupItem
-                            value={'private'}
+                            value={PrivacyEnum.private}
                             id="private-access-radio"
                           />
 
@@ -292,7 +379,10 @@ const OrderFunnel = ({
                           </Popover>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <RadioGroupItem value={'public'} id="public-access" />
+                          <RadioGroupItem
+                            value={PrivacyEnum.public}
+                            id="public-access"
+                          />
                           <Label>{t('publicAccess')}</Label>
                           <Popover>
                             <PopoverTrigger>

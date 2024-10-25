@@ -13,7 +13,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { bytesConverter } from '@/lib/bytesHelper';
 import { humanizeFramework } from '@/lib/frameworkNameHelper';
 import * as ai from '@/types/cloud/project/ai';
-import { OrderSshKey } from '@/types/orderFunnel';
+import { OrderVolumes } from '@/types/orderFunnel';
 
 interface OrderSummaryProps {
   order: {
@@ -25,8 +25,9 @@ interface OrderSummaryProps {
     editor: ai.capabilities.notebook.Editor;
     notebookName: string;
     unsecureHttp: boolean;
-    labels: ai.Label[];
-    sshKey: OrderSshKey[];
+    labels: { [key: string]: string };
+    sshKey: string[];
+    volumes: OrderVolumes[];
   };
   onSectionClicked?: (target: string) => void;
 }
@@ -204,6 +205,31 @@ const EditorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   );
 };
 
+const VolumesDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <Button
+          variant={'link'}
+          size={'link'}
+          type="button"
+          onClick={() => onSectionClicked('volumes')}
+          className="font-bold"
+        >
+          {t('summaryFieldVolumesLabel')}
+        </Button>
+        <span>
+          {t(`summaryFieldVolumes`, {
+            count: order.volumes.length,
+            context: `${order.volumes.length}`,
+          })}
+        </span>
+      </div>
+    </div>
+  );
+};
+
 const NameDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
   return (
@@ -253,7 +279,6 @@ const PrivacyDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     </div>
   );
 };
-
 const LabelsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
   return (
@@ -270,8 +295,8 @@ const LabelsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
       </Button>
       <span>
         {t(`summaryFieldLabels`, {
-          count: order.labels.length,
-          context: `${order.labels.length}`,
+          count: Object.keys(order.labels).length,
+          context: `${Object.keys(order.labels).length}`,
         })}
       </span>
     </div>
@@ -308,6 +333,7 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <FlavorDetails order={order} onSectionClicked={onSectionClicked} />
       <FrameworkDetails order={order} onSectionClicked={onSectionClicked} />
       <EditorDetails order={order} onSectionClicked={onSectionClicked} />
+      <VolumesDetails order={order} onSectionClicked={onSectionClicked} />
       <NameDetails order={order} onSectionClicked={onSectionClicked} />
       <PrivacyDetails order={order} onSectionClicked={onSectionClicked} />
       <LabelsDetails order={order} onSectionClicked={onSectionClicked} />

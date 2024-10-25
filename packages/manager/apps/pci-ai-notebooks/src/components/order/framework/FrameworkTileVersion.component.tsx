@@ -15,7 +15,6 @@ import {
   CommandList,
 } from '@/components/ui/command';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
 interface VersionSelectorProps {
@@ -73,6 +72,7 @@ const VersionSelector = ({
                   key={fmkVersion}
                   value={fmkVersion}
                   onSelect={(value) => {
+                    console.log(value);
                     onChange(value);
                     setOpen(false);
                   }}

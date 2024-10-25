@@ -1,8 +1,8 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 
-import * as ai from '@/types/cloud/project/ai';
 import { getDatastoreContainer } from '@/data/api/ai/datastore.api';
 import { useQueryImmediateRefetch } from '../../useImmediateRefetch';
+import { Containers } from '@/types/orderFunnel';
 
 export function useGetDatastoreContainer(
   projectId: string,
@@ -24,5 +24,5 @@ export function useGetDatastoreContainer(
     queryKey,
     queryFn: () => getDatastoreContainer({ projectId, region, alias }),
     ...options,
-  }) as UseQueryResult<ai.DataStoreAuth, Error>;
+  }) as UseQueryResult<Containers, Error>;
 }

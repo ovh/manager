@@ -56,13 +56,13 @@ const FrameworksSelect = React.forwardRef<
                       ? fmk.versions.find((v: string) => v === value.version)
                       : fmk.versions[0]
                   }
-                  selected={fmk.name === value.framework}
+                  selected={fmk.id === value.framework}
                   onChange={(
                     newFramework: ai.capabilities.notebook.Framework,
                     newVersion: string,
                   ) => {
                     onChange({
-                      framework: newFramework.name,
+                      framework: newFramework.id,
                       version: newVersion,
                     });
                   }}

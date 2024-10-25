@@ -133,69 +133,70 @@ const SshKeyForm = React.forwardRef<HTMLInputElement, SshKeyFormProps>(
 
     return (
       <Form {...form}>
-        <div className="flex flex-row gap-2">
-          {sshKeysSelectList.length > 1 && (
-            <div className="w-full">
-              <FormItem>
-                <FormLabel data-testid="ssh-key-select-label">
-                  {t('configuredKeyFieldLabel')}
-                </FormLabel>
-                <Select
-                  value={selectedSSH}
-                  onValueChange={(value) => {
-                    setSelectedSSH(value);
-                    if (value === '-') {
-                      form.setValue('name', '');
-                    } else {
-                      form.setValue('name', value);
-                    }
-                    form.setValue(
-                      'sshKey',
-                      sshKeysSelectList.find((sshKey) => sshKey.name === value)
-                        .publicKey,
-                    );
-                  }}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.values(sshKeysSelectList).map((sshKey) => (
-                      <SelectItem key={sshKey.name} value={sshKey.name}>
-                        {sshKey.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </FormItem>
-            </div>
-          )}
-          <div className="w-full">
-            <FormField
-              control={form.control}
-              name="name"
-              defaultValue=""
-              render={({ field }) => (
+        <div className="flex w-full border border-gray-100 rounded-md items-start items-center gap-2 p-4">
+          <div className="flex flex-col gap-2 w-full">
+            <div
+              className={`grid ${
+                sshKeysSelectList.length > 1 ? `grid-cols-2` : `grid-cols-1`
+              }  gap-2 w-full`}
+            >
+              {sshKeysSelectList.length > 1 && (
                 <FormItem>
-                  <FormLabel data-testid="ssh-key-name-field-label">
-                    {t('sshKeyFieldLabel')}
+                  <FormLabel data-testid="ssh-key-select-label">
+                    {t('configuredKeyFieldLabel')}
                   </FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={selectedSSH !== '-'}
-                      data-testid="ssh-key-input-field"
-                      {...field}
-                      ref={ref}
-                    />
-                  </FormControl>
-                  <FormMessage />
+                  <Select
+                    value={selectedSSH}
+                    onValueChange={(value) => {
+                      setSelectedSSH(value);
+                      if (value === '-') {
+                        form.setValue('name', '');
+                      } else {
+                        form.setValue('name', value);
+                      }
+                      form.setValue(
+                        'sshKey',
+                        sshKeysSelectList.find(
+                          (sshKey) => sshKey.name === value,
+                        ).publicKey,
+                      );
+                    }}
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Object.values(sshKeysSelectList).map((sshKey) => (
+                        <SelectItem key={sshKey.name} value={sshKey.name}>
+                          {sshKey.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </FormItem>
               )}
-            />
-          </div>
-        </div>
-        <div className="flex flex-row items-center justify-between">
-          <div className="w-full">
+              <FormField
+                control={form.control}
+                name="name"
+                defaultValue=""
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel data-testid="ssh-key-name-field-label">
+                      {t('sshKeyFieldLabel')}
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        disabled={selectedSSH !== '-'}
+                        data-testid="ssh-key-input-field"
+                        {...field}
+                        ref={ref}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <FormField
               control={form.control}
               name="sshKey"
@@ -231,6 +232,7 @@ const SshKeyForm = React.forwardRef<HTMLInputElement, SshKeyFormProps>(
             <PlusCircle />
           </Button>
         </div>
+
         <ul>
           {sshKeyList.map((sshKey, index) => (
             <li key={sshKey.name} className="flex items-center">

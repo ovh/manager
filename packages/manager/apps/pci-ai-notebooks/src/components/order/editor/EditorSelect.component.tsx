@@ -26,9 +26,9 @@ const EditorsSelect = React.forwardRef<HTMLInputElement, EditorsSelectProps>(
           <RadioTile
             name="editor-select"
             key={editor.id}
-            onChange={() => onChange(editor.name)}
-            value={editor.name}
-            checked={editor.name === value}
+            onChange={() => onChange(editor.id)}
+            value={editor.id}
+            checked={editor.id === value}
           >
             <div className="flex justify-between items-center">
               <div className="flex gap-2 items-center">

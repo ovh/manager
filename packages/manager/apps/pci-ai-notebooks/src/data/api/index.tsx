@@ -2,6 +2,10 @@ export interface PCIAi {
   projectId: string;
 }
 
+export interface NotebookData extends PCIAi {
+  notebookId: string;
+}
+
 export class AIError extends Error {
   code: string;
 
