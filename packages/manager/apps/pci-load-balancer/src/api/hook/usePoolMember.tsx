@@ -19,7 +19,7 @@ export const useGetAllPoolMembers = (
   region: string,
 ) =>
   useQuery({
-    queryKey: ['poolMembers', projectId, 'pool', poolId, region],
+    queryKey: ['members', projectId, region, poolId],
     queryFn: () => getPoolMembers(projectId, region, poolId),
     select: (poolMembers: TPoolMember[]): TPoolMember[] =>
       poolMembers.map((member) => ({
@@ -83,7 +83,7 @@ export const useDeletePoolMember = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['poolMembers', projectId],
+        queryKey: ['members', projectId, region, poolId],
       });
       onSuccess();
     },
@@ -101,7 +101,7 @@ export const useGetPoolMember = (
   memberId: string,
 ) =>
   useQuery({
-    queryKey: ['poolMembers', projectId, poolId, region, memberId],
+    queryKey: ['member', projectId, region, poolId, memberId],
     queryFn: () => getPoolMember(projectId, region, poolId, memberId),
   });
 
@@ -130,7 +130,10 @@ export const useUpdatePoolMember = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['poolMembers', projectId],
+        queryKey: ['members', projectId, region, poolId],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ['member', projectId, region, poolId, memberId],
       });
       onSuccess();
     },
@@ -157,18 +160,19 @@ export const useCreatePoolMembers = ({
   onSuccess,
 }: CreatePoolMembersProps) => {
   const mutation = useMutation({
-    mutationFn: async (members: TPoolMember[]) =>
+    mutationFn: async (members: Partial<TPoolMember[]>) =>
       createPoolMembers(projectId, region, poolId, members),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['poolMembers', projectId],
+        queryKey: ['members', projectId, region, poolId],
       });
       onSuccess();
     },
   });
   return {
-    createPoolMembers: (members: TPoolMember[]) => mutation.mutate(members),
+    createPoolMembers: (members: Partial<TPoolMember[]>) =>
+      mutation.mutate(members),
     ...mutation,
   };
 };
