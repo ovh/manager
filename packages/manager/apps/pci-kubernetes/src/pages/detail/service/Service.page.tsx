@@ -1,4 +1,4 @@
-import { Notifications } from '@ovh-ux/manager-react-components';
+import { Notifications, useMe } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_SPINNER_SIZE,
@@ -30,6 +30,7 @@ export default function ServicePage() {
 
   const { data: kubeDetail, isPending } = useKubeDetail(projectId, kubeId);
   const { data: cloudSchema } = useGetCloudSchema();
+  const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
 
   const isVersionSupported = useMemo<boolean>(() => {
     if (kubeDetail?.version && cloudSchema) {
@@ -87,7 +88,8 @@ export default function ServicePage() {
             <span
               dangerouslySetInnerHTML={{
                 __html: t('kube_service_installation_information', {
-                  url: KUBE_INSTALL_URL,
+                  url:
+                    KUBE_INSTALL_URL[ovhSubsidiary] || KUBE_INSTALL_URL.DEFAULT,
                 }),
               }}
             />
