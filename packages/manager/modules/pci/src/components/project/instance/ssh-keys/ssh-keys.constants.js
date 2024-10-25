@@ -12,6 +12,8 @@ export const GUIDE_URLS = {
   PT: 'https://docs.ovh.com/pt/public-cloud/criacao-de-chaves-ssh/',
   SG: 'https://docs.ovh.com/sg/en/public-cloud/create-ssh-keys/',
   WORLD: 'https://docs.ovh.com/gb/en/public-cloud/create-ssh-keys/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/360002245164-Creating-and-Connecting-a-Public-Cloud-Instance',
 };
 
 export default {
