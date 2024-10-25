@@ -23,7 +23,7 @@ export const useDeleteOkmsServiceKey = ({
   onError,
 }: DeleteOkmsServiceKeyParams) => {
   const queryClient = useQueryClient();
-  const { addError, addSuccess } = useNotifications();
+  const { addError, addSuccess, clearNotifications } = useNotifications();
 
   const { t } = useTranslation('key-management-service/serviceKeys');
 
@@ -39,10 +39,12 @@ export const useDeleteOkmsServiceKey = ({
       await queryClient.invalidateQueries({
         queryKey: getOkmsServiceKeyResourceQueryKey({ okmsId, keyId }),
       });
+      clearNotifications();
       addSuccess(t('key_management_service_service-keys_delete_success'), true);
       onSuccess();
     },
     onError: (result: ApiError) => {
+      clearNotifications();
       addError(
         t('key_management_service_service-keys_delete_error', {
           error: result.message,
