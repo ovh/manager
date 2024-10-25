@@ -35,6 +35,7 @@ export const ROUTE_PATHS = {
   POOL_MEMBERS_CREATE: 'create',
   POOL_MEMBERS_DELETE: ':memberId/delete',
   POOL_MEMBERS_EDIT: ':memberId/edit',
+  POOL_MEMBERS_ADD_IP_INSTANCE: 'list/add-ip-instance',
   POOL_HEALTH_MONITOR: 'health-monitor',
   POOL_HEALTH_MONITOR_CREATE: 'health-monitor/create',
   POOL_HEALTH_MONITOR_EDIT: 'health-monitor/edit',
@@ -108,6 +109,11 @@ const PoolsMembersEditPage = lazy(() =>
 );
 const PoolsMembersCreatePage = lazy(() =>
   import('@/pages/detail/pools/detail/members/create/Create.page'),
+);
+const AddIpInstancePage = lazy(() =>
+  import(
+    '@/pages/detail/pools/detail/members/add-ip-instance/AddIpInstance.page'
+  ),
 );
 const PoolsMembersPage = lazy(() =>
   import('@/pages/detail/pools/detail/members/Member.page'),
@@ -235,6 +241,10 @@ const Routes = (
             Component={PoolsMembersCreatePage}
           />
         </Route>
+        <Route
+          path={ROUTE_PATHS.POOL_MEMBERS_ADD_IP_INSTANCE}
+          Component={AddIpInstancePage}
+        />
       </Route>
       <Route
         id="pools-detail-general-information"

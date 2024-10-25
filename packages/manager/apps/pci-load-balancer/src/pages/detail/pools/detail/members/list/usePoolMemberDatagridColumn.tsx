@@ -11,6 +11,7 @@ import ActionsComponent from '@/components/detail/pools/members/Actions.componen
 export const usePoolMemberDatagridColumn = () => {
   const { t: tLoadBalancer } = useTranslation('load-balancer');
   const { t: tPoolMembers } = useTranslation('pools/members/list');
+
   const columns: DatagridColumn<TPoolMember>[] = [
     {
       id: 'name',
@@ -54,6 +55,7 @@ export const usePoolMemberDatagridColumn = () => {
         />
       ),
       label: tLoadBalancer('octavia_load_balancer_operating_status'),
+      isSortable: false,
     },
     {
       id: 'actions',
@@ -63,6 +65,7 @@ export const usePoolMemberDatagridColumn = () => {
         </div>
       ),
       label: '',
+      isSortable: false,
     },
   ];
 

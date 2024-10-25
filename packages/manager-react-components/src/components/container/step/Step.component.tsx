@@ -144,7 +144,7 @@ export const StepComponent = ({
             </Suspense>
           </div>
           {!isLocked && (
-            <div className="flex mt-6">
+            <div className="flex mt-6 gap-2">
               {next?.action && (
                 <div data-testid="next">
                   <OsdsButton
