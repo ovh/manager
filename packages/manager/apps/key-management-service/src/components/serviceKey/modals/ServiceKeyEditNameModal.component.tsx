@@ -37,7 +37,7 @@ export const ServiceKeyEditNameModal = ({
 }: ServiceKeyEditNameModalProps) => {
   const [serviceKeyName, setServiceKeyName] = useState(name);
   const serviceKeyNameError = validateServiceKeyName(serviceKeyName);
-  const { addSuccess } = useNotifications();
+  const { addSuccess, clearNotifications } = useNotifications();
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { t: tCommon } = useTranslation('key-management-service/common');
 
@@ -49,6 +49,7 @@ export const ServiceKeyEditNameModal = ({
     okmsId,
     keyId,
     onSuccess: () => {
+      clearNotifications();
       addSuccess(
         t('key_management_service_service-keys_update_name_success'),
         true,

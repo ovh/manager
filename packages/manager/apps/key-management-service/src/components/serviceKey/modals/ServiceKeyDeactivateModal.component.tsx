@@ -38,7 +38,7 @@ export const ServiceKeyDeactivateModal = ({
   const [deactivationReason, setDeactivationReason] = useState<
     OkmsServiceKeyDeactivationReason
   >();
-  const { addSuccess } = useNotifications();
+  const { addSuccess, clearNotifications } = useNotifications();
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { t: tCommon } = useTranslation('key-management-service/common');
 
@@ -50,6 +50,7 @@ export const ServiceKeyDeactivateModal = ({
     okmsId,
     keyId,
     onSuccess: () => {
+      clearNotifications();
       addSuccess(
         t('key_management_service_service-keys_deactivation_success'),
         true,

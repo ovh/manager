@@ -22,7 +22,7 @@ export const useDeleteOkmsCredential = ({
   onError,
 }: IUseDeleteOkmsCredential) => {
   const queryClient = useQueryClient();
-  const { addError, addSuccess } = useNotifications();
+  const { addError, addSuccess, clearNotifications } = useNotifications();
   const { t } = useTranslation('key-management-service/credential');
 
   const { mutate, isPending } = useMutation({
@@ -34,11 +34,12 @@ export const useDeleteOkmsCredential = ({
       await queryClient.invalidateQueries({
         queryKey: getOkmsCredentialsQueryKey(okmsId),
       });
-
+      clearNotifications();
       addSuccess(t('key_management_service_credential_delete_success'), true);
       onSuccess();
     },
     onError: (result: ApiError) => {
+      clearNotifications();
       addError(
         t('key_management_service_credential_delete_error', {
           error: result.message,
