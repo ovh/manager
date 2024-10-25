@@ -168,7 +168,7 @@ export default function HealthMonitor() {
 
             <TileLine
               title={t(
-                'octavia-load-balancer:octavia_load_balancer_provisioning_status',
+                'load-balancer:octavia_load_balancer_provisioning_status',
               )}
               value={
                 <div>
@@ -184,9 +184,7 @@ export default function HealthMonitor() {
               }
             />
             <TileLine
-              title={t(
-                'octavia-load-balancer:octavia_load_balancer_operating_status',
-              )}
+              title={t('load-balancer:octavia_load_balancer_operating_status')}
               value={
                 <div>
                   {healthMonitor?.operatingStatus ? (
