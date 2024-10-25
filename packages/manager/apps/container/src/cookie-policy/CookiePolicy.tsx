@@ -24,7 +24,7 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 type Props = {
   shell: Shell;
-  onValidate: Function
+  onDone: Function
 };
 
 const ModalContent = ({ label }: { label: string }) => (
@@ -38,7 +38,7 @@ const ModalContent = ({ label }: { label: string }) => (
   </OsdsText>
 );
 
-const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
+const CookiePolicy = ({ shell, onDone }: Props): JSX.Element => {
   const { t } = useTranslation('cookie-policy');
   const [cookies, setCookies] = useCookies(['MANAGER_TRACKING']);
   const { environment } = useApplication();
@@ -64,7 +64,7 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
     setCookies('MANAGER_TRACKING', agreed ? 1 : 0);
     trackingPlugin.onUserConsentFromModal(agreed);
     setShow(false);
-    onValidate(true);
+    onDone();
   }
 
   useEffect(() => {
@@ -73,13 +73,14 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
     // activate tracking if region is US or if tracking consent cookie is valid
     if (isRegionUS || cookies.MANAGER_TRACKING === '1') {
       trackingPlugin.init(true);
+      onDone();
     } else if (cookies.MANAGER_TRACKING == null) {
       trackingPlugin.onConsentModalDisplay();
       setShow(true);
     } else {
       trackingPlugin.setEnabled(false);
+      onDone();
     }
-    onValidate(isRegionUS || cookies.MANAGER_TRACKING);
   }, [show]);
 
   return (
