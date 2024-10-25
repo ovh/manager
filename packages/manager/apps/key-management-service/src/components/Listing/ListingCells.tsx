@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   ActionMenu,
-  Clipboard,
+  DataGridClipboardCell,
   DataGridTextCell,
   Links,
 } from '@ovh-ux/manager-react-components';
@@ -10,7 +10,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
@@ -24,10 +24,9 @@ import { useOkmsServiceKeyById } from '@/data/hooks/useOkmsServiceKeys';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
 import { OkmsServiceState } from '../layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
-import { OkmsContext } from '@/pages/dashboard';
 
 export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
-  return <Clipboard value={props.id} />;
+  return <DataGridClipboardCell text={props.id} />;
 };
 
 export const DatagridCellName = (props: OKMS) => {
@@ -63,7 +62,7 @@ export const DatagridCellRegion = (props: OKMS) => {
 
 export const DatagridCellStatus = (props: OKMS) => {
   const { data: OkmsServiceInfos, isLoading, isError } = useKMSServiceInfos(
-    props.id,
+    props,
   );
   if (isLoading) {
     return <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />;
@@ -98,7 +97,7 @@ export const DatagridServiceKeyCellName = (props: OkmsAllServiceKeys) => {
 };
 
 export const DatagridServiceKeyCellId = (props: OkmsAllServiceKeys) => {
-  return <Clipboard value={props.id} />;
+  return <DataGridClipboardCell text={props.id} />;
 };
 
 export const DatagridCellType = (props: OkmsAllServiceKeys) => {
@@ -130,12 +129,12 @@ export const DatagridStatus = (props: OkmsAllServiceKeys) => {
 };
 
 export const DatagridServiceKeyActionMenu = (props: OkmsAllServiceKeys) => {
-  const okms = useContext(OkmsContext);
+  const { okmsId } = useParams();
   const { data: serviceKey, isPending } = useOkmsServiceKeyById({
-    okmsId: okms.id,
+    okmsId,
     keyId: props.id,
   });
-  const actionList = useServiceKeyActionsList(okms, serviceKey?.data, true);
+  const actionList = useServiceKeyActionsList(okmsId, serviceKey?.data, true);
 
   if (isPending) {
     return <></>;
