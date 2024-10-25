@@ -5,6 +5,29 @@
 
     <tuc-toast-message></tuc-toast-message>
 
+    <div class="modal d-block" data-ng-if="$ctrl.showModal">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <oui-modal
+                    data-heading="{{:: 'xdsl_detail_mail_sending_modal_header' | translate }}"
+                    data-type="help"
+                    data-primary-label="{{:: 'xdsl_detail_mail_sending_modal_primary_label' | translate }}"
+                    data-primary-action="$ctrl.launchChangeMailSending()"
+                    data-secondary-label="{{:: 'xdsl_detail_mail_sending_modal_secondary_label' | translate }}"
+                    data-secondary-action="$ctrl.cancelLaunch()"
+                    data-secondary-disabled="false"
+                    data-on-dismiss="$ctrl.cancelLaunch()"
+                >
+                    <p data-ng-bind-html="$ctrl.mailSendingAsking"></p>
+                    <p
+                        data-translate="xdsl_detail_mail_sending_modal_description"
+                    ></p>
+                    <p data-translate="xdsl_detail_mail_sending_modal_more"></p>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+
     <div data-ng-if="!$ctrl.isLoading()">
         <div class="row d-md-flex mb-5">
             <div class="col-xs-12 col-md-6">
@@ -89,6 +112,129 @@
                                                 </a>
                                             </oui-message>
                                         </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- Mail sending -->
+                            <li class="oui-tile__item">
+                                <div class="oui-tile__definition">
+                                    <div
+                                        class="oui-tile__term"
+                                        data-translate="xdsl_detail_mail_sending"
+                                    ></div>
+                                    <div
+                                        class="oui-tile__description"
+                                        data-ng-if="$ctrl.isTaskRunning"
+                                    >
+                                        <p
+                                            data-translate="xdsl_detail_mail_sending_update_running"
+                                        ></p>
+
+                                        <a
+                                            data-ng-href="{{::$ctrl.linkMailSendingGuide}}"
+                                            target="_blank"
+                                            rel="noopener"
+                                        >
+                                            <span
+                                                data-translate="xdsl_detail_mail_sending_guide"
+                                            ></span>
+                                            <i
+                                                class="fa fa-external-link"
+                                                aria-hidden="true"
+                                            ></i>
+                                        </a>
+                                    </div>
+                                    <div
+                                        class="oui-tile__description"
+                                        data-ng-if="!$ctrl.isTaskRunning"
+                                    >
+                                        <div
+                                            data-ng-if="$ctrl.mailSendingStatus === $ctrl.MAIL_SENDING_STATUS.noStatus"
+                                        >
+                                            <p
+                                                data-ng-bind-html="$ctrl.mailSendingStatusLabel"
+                                            ></p>
+                                            <div
+                                                class="mb-3 d-flex align-items-center justify-content-center"
+                                            >
+                                                <oui-button
+                                                    data-on-click="$ctrl.changeMailSending($ctrl.MAIL_SENDING_STATUS.enabled)"
+                                                    class="mr-2"
+                                                >
+                                                    <span
+                                                        data-translate="xdsl_detail_mail_sending_enable"
+                                                    ></span>
+                                                </oui-button>
+                                                <oui-button
+                                                    data-on-click="$ctrl.changeMailSending($ctrl.MAIL_SENDING_STATUS.disabled)"
+                                                >
+                                                    <span
+                                                        data-translate="xdsl_detail_mail_sending_disable"
+                                                    ></span>
+                                                </oui-button>
+                                            </div>
+                                        </div>
+                                        <div
+                                            data-ng-if="$ctrl.mailSendingStatus === $ctrl.MAIL_SENDING_STATUS.enabled"
+                                            class="mb-3 d-flex align-items-center justify-content-between"
+                                        >
+                                            <span
+                                                data-ng-bind-html="$ctrl.mailSendingStatusLabel"
+                                            ></span>
+                                            <oui-button
+                                                data-on-click="$ctrl.changeMailSending($ctrl.MAIL_SENDING_STATUS.disabled)"
+                                            >
+                                                <span
+                                                    data-translate="xdsl_detail_mail_sending_disable"
+                                                ></span>
+                                            </oui-button>
+                                        </div>
+                                        <div
+                                            data-ng-if="$ctrl.mailSendingStatus === $ctrl.MAIL_SENDING_STATUS.disabled"
+                                            class="mb-3 d-flex align-items-center justify-content-between"
+                                        >
+                                            <span
+                                                data-ng-bind-html="$ctrl.mailSendingStatusLabel"
+                                            ></span>
+                                            <oui-button
+                                                data-on-click="$ctrl.changeMailSending($ctrl.MAIL_SENDING_STATUS.enabled)"
+                                            >
+                                                <span
+                                                    data-translate="xdsl_detail_mail_sending_enable"
+                                                ></span>
+                                            </oui-button>
+                                        </div>
+                                        <div
+                                            data-ng-if="$ctrl.mailSendingStatus === $ctrl.MAIL_SENDING_STATUS.blockedForSpam"
+                                        >
+                                            <p>
+                                                <span
+                                                    data-translate="xdsl_detail_mail_sending_blockedForSpam_description"
+                                                ></span>
+                                                <a
+                                                    data-ng-href="{{$ctrllinkMailSendingHelp.}}"
+                                                    target="_blank"
+                                                >
+                                                    <span
+                                                        data-translate="xdsl_detail_mail_sending_blockedForSpam_link"
+                                                    ></span>
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <a
+                                            data-ng-href="{{$ctrl.linkMailSendingGuide}}"
+                                            target="_blank"
+                                            rel="noopener"
+                                        >
+                                            <span
+                                                data-translate="xdsl_detail_mail_sending_guide"
+                                            ></span>
+                                            <i
+                                                class="fa fa-external-link"
+                                                aria-hidden="true"
+                                            ></i>
+                                        </a>
                                     </div>
                                 </div>
                             </li>
