@@ -237,6 +237,14 @@
                                         ></span>
                                     </oui-action-menu-item>
                                     <oui-action-menu-item
+                                        data-on-click="ctrl.displayAliasesByGroup(ml)"
+                                        data-disabled="!ctrl.services.exchangeStates.constructor.isOk(ml)"
+                                    >
+                                        <span
+                                            data-translate="exchange_tab_ACCOUNTS_menu_alias"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
                                         data-on-click="ctrl.deleteGroup(ml)"
                                         data-disabled="!ctrl.services.exchangeStates.constructor.isOk(ml)"
                                     >

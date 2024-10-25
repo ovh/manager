@@ -4,7 +4,6 @@ export default class ExchangeTabManagersByGroupsCtrl {
     $scope,
     wucExchange,
     navigation,
-    mailingList,
     messaging,
     $translate,
     goToGroup,
@@ -22,7 +21,6 @@ export default class ExchangeTabManagersByGroupsCtrl {
     this.$routerParams = wucExchange.getParams();
     this.groupParams = {};
     this.goToGroup = goToGroup;
-    this.mailingList = mailingList;
 
     $scope.$on(wucExchange.events.accountsChanged, () => this.refreshList());
     $scope.getManagersList = () => this.managersList;
@@ -39,7 +37,7 @@ export default class ExchangeTabManagersByGroupsCtrl {
       .retrievingManagersByGroup(
         this.$routerParams.organization,
         this.$routerParams.productId,
-        this.mailingList.mailingListName,
+        this.$routerParams.group,
         pageSize,
         offset - 1,
       )
@@ -67,7 +65,7 @@ export default class ExchangeTabManagersByGroupsCtrl {
       .retrievingManagersByGroup(
         this.$routerParams.organization,
         this.$routerParams.productId,
-        this.mailingList.mailingListName,
+        this.$routerParams.group,
         this.groupParams.pageSize,
         this.groupParams.offset - 1,
       )
@@ -97,7 +95,6 @@ export default class ExchangeTabManagersByGroupsCtrl {
     this.services.navigation.setAction(
       'exchange/group/manager/remove/group-manager-remove',
       {
-        group: this.mailingList,
         manager,
       },
     );

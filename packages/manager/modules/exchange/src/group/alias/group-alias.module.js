@@ -3,22 +3,19 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 
-import routing from './group.routing';
+import routing from './group-alias.routing';
+import aliasAddModule from './add/group-alias-add.module';
+import aliasRemoveModule from './remove/group-alias-remove.module';
 
-import manager from './manager/manager.module';
-import member from './member/member.module';
-import alias from './alias/group-alias.module';
-
-const moduleName = 'ovhManagerExchangeDashboardGroup';
+const moduleName = 'ovhManagerExchangeDashboardGroupAlias';
 
 angular
   .module(moduleName, [
     ngTranslateAsyncLoader,
     'oui',
     'pascalprecht.translate',
-    manager,
-    member,
-    alias,
+    aliasAddModule,
+    aliasRemoveModule,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

@@ -70,14 +70,7 @@ export default class ExchangeTabGroupsCtrl {
   }
 
   displayAliasesByGroup(ml) {
-    this.search = null;
     this.goToAlias(ml);
-    this.services.navigation.selectedGroup = ml;
-    this.services.$scope.$broadcast(
-      'paginationServerSide.loadPage',
-      1,
-      'groupAliasTable',
-    );
   }
 
   getLoading() {

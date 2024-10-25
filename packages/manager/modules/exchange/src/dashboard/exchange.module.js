@@ -32,6 +32,7 @@ import resource from '../resource/resource.module';
 import disclaimer from '../disclaimer/disclaimer.module';
 import shared from '../shared/shared.module';
 import task from '../task/task.module';
+import alias from '../alias/exchange-alias.module';
 
 import {
   EXCHANGE_MX_CONFIG,
@@ -70,6 +71,7 @@ angular
     disclaimer,
     shared,
     task,
+    alias,
   ])
   .constant('EXCHANGE_MX_CONFIG', EXCHANGE_MX_CONFIG)
   .constant('EXCHANGE_CONFIG_URL', EXCHANGE_CONFIG_URL)

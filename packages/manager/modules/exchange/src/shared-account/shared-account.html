@@ -1,243 +1,262 @@
-<div class="row" data-ng-if="ctrl.showAccounts">
-    <div class="col-md-9">
-        <div
-            data-ng-if="!loading && canDisplayQuota"
-            data-ng-bind-html="'exchange_SHARED_ACCOUNTS_quota_recap' | translation: { t0: ctrl.quotaLimit, t1: quotaRemaining, t2: quoteRemainingPercent }"
-        ></div>
+<div ui-view>
+    <div class="row" data-ng-if="$ctrl.showAccounts">
+        <div class="col-md-9">
+            <div
+                data-ng-if="!loading && canDisplayQuota"
+                data-ng-bind-html="'exchange_SHARED_ACCOUNTS_quota_recap' | translation: { t0: $ctrl.quotaLimit, t1: quotaRemaining, t2: quoteRemainingPercent }"
+            ></div>
 
-        <p
-            class="alert alert-info"
-            role="alert"
-            data-ng-if="ctrl.accounts.list.messages.length > 0 && !ctrl.loading"
-        >
-            <strong data-translate="exchange_tab_ACCOUNTS_warning"></strong>
-            <span data-translate="exchange_tab_ACCOUNTS_partial"></span>
-        </p>
+            <p
+                class="alert alert-info"
+                role="alert"
+                data-ng-if="$ctrl.accounts.list.messages.length > 0 && !$ctrl.loading"
+            >
+                <strong data-translate="exchange_tab_ACCOUNTS_warning"></strong>
+                <span data-translate="exchange_tab_ACCOUNTS_partial"></span>
+            </p>
 
-        <form class="mb-3 form-inline d-md-flex justify-content-md-end">
-            <div class="form-group">
-                <label
-                    class="sr-only"
-                    for="groupSearch"
-                    data-ng-bind="::'common_search' | translate"
-                ></label>
-                <div class="input-group">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="groupSearch"
-                        maxlength="256"
-                        placeholder="{{'exchange_tab_ACCOUNTS_table_email' | translate}}"
-                        data-ng-change="ctrl.onSearch()"
-                        data-ng-disabled="ctrl.loading"
-                        data-ng-model="ctrl.searchValue"
-                    />
-                    <div class="input-group-btn" data-ng-if="ctrl.searchValue">
-                        <button
-                            class="btn btn-default"
-                            type="button"
-                            aria-label="{{'common_cancel' | translate}}"
-                            data-ng-click="ctrl.resetSearch()"
-                            data-ng-disabled="ctrl.loading"
+            <form class="mb-3 form-inline d-md-flex justify-content-md-end">
+                <div class="form-group">
+                    <label
+                        class="sr-only"
+                        for="groupSearch"
+                        data-ng-bind="::'common_search' | translate"
+                    ></label>
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="groupSearch"
+                            maxlength="256"
+                            placeholder="{{'exchange_tab_ACCOUNTS_table_email' | translate}}"
+                            data-ng-change="$ctrl.onSearch()"
+                            data-ng-disabled="$ctrl.loading"
+                            data-ng-model="$ctrl.searchValue"
+                        />
+                        <div
+                            class="input-group-btn"
+                            data-ng-if="$ctrl.searchValue"
                         >
-                            <span class="fa fa-times" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <span
-                        class="input-group-addon"
-                        data-ng-if="!ctrl.searchValue"
-                    >
-                        <span class="fa fa-search" aria-hidden="true"></span>
-                    </span>
-                </div>
-            </div>
-        </form>
-
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th
-                            scope="col"
-                            data-translate="exchange_tab_ACCOUNTS_table_email"
-                        ></th>
-                        <th
-                            class="text-center"
-                            scope="col"
-                            data-translate="exchange_tab_ACCOUNTS_table_size"
-                        ></th>
-                        <th
-                            class="text-center min-width"
-                            scope="col"
-                            data-translate="exchange_tab_ACCOUNTS_table_status"
-                        ></th>
-                        <th class="min-width" scope="col"></th>
-                    </tr>
-                </thead>
-
-                <tbody data-ng-if="ctrl.loading">
-                    <tr>
-                        <td class="text-center" colspan="4">
-                            <oui-spinner></oui-spinner>
-                        </td>
-                    </tr>
-                </tbody>
-
-                <tbody
-                    data-ng-if="ctrl.accounts.list.results.length === 0 && ctrl.accounts.list.messages.length === 0 && !ctrl.loading && ctrl.search.value == null"
-                >
-                    <tr>
-                        <td
-                            class="text-center"
-                            colspan="4"
-                            data-translate="exchange_tab_ACCOUNTS_table_empty"
-                        ></td>
-                    </tr>
-                </tbody>
-
-                <tbody
-                    data-ng-if="ctrl.accounts.list.results.length === 0 && ctrl.accounts.list.messages.length === 0 && !ctrl.loading && ctrl.search.value != null"
-                >
-                    <tr>
-                        <td
-                            class="text-center"
-                            colspan="4"
-                            data-translate="exchange_tab_ACCOUNTS_table_empty_search"
-                        ></td>
-                    </tr>
-                </tbody>
-
-                <tbody data-ng-if="!ctrl.loading">
-                    <tr
-                        data-ng-repeat="account in ctrl.accounts.list.results | orderBy:'primaryEmailAddress':false track by $index"
-                    >
-                        <th
-                            class="word-break"
-                            scope="row"
-                            data-ng-bind="account.primaryEmailDisplayName"
-                        ></th>
-                        <td
-                            class="text-center"
-                            data-ng-bind="ctrl.services.ExchangeSharedAccounts.getFormattedQuota(account.quota)"
-                        ></td>
-                        <td class="text-center">
-                            <span
-                                class="oui-badge oui-badge_warning"
-                                data-ng-if="account.state === ctrl.stateTaskError"
-                                data-oui-tooltip="{{:: 'exchange_tab_ACCOUNTS_state_TASK_ON_ERROR' | translate}}"
-                            ></span>
-                            <span
-                                class="oui-badge oui-badge_warning"
-                                data-ng-if="account.state === ctrl.stateTaskDoing"
-                                data-oui-tooltip="{{:: 'exchange_tab_ACCOUNTS_state_TASK_ON_DOING' | translate}}"
-                            ></span>
-                            <span
-                                class="oui-badge oui-badge_success"
-                                data-ng-if="account.state == ctrl.stateOk"
-                                data-translate="exchange_tab_ACCOUNTS_state_OK"
-                            ></span>
-                            <span
-                                class="oui-badge oui-badge_info"
-                                data-ng-if="account.state === ctrl.stateCreating"
-                                data-translate="exchange_tab_ACCOUNTS_state_CREATING"
-                            ></span>
-                            <span
-                                class="oui-badge oui-badge_info"
-                                data-ng-if="account.state === ctrl.stateDeleting"
-                                data-translate="exchange_tab_ACCOUNTS_state_DELETING"
-                            ></span>
-                            <span
-                                class="oui-badge oui-badge_info"
-                                data-ng-if="account.info === ctrl.stateSuspended"
-                                data-translate="exchange_tab_ACCOUNTS_state_SUSPENDED"
-                            ></span>
-                            <span
-                                class="oui-badge oui-badge_info"
-                                data-ng-if="account.state === ctrl.stateSuspending"
-                                data-translate="exchange_tab_ACCOUNTS_state_SUSPENDING"
-                            ></span>
-                            <span
-                                class="oui-badge oui-badge_info"
-                                data-ng-if="account.state === ctrl.stateReopening"
-                                data-translate="exchange_tab_ACCOUNTS_state_REOPENING"
-                            ></span>
-                        </td>
-
-                        <td class="text-center text-nowrap">
-                            <oui-action-menu
-                                data-compact
-                                data-disabled="!ctrl.isConfigurable(account)"
-                                data-placement="end"
+                            <button
+                                class="btn btn-default"
+                                type="button"
+                                aria-label="{{'common_cancel' | translate}}"
+                                data-ng-click="$ctrl.resetSearch()"
+                                data-ng-disabled="$ctrl.loading"
                             >
-                                <oui-action-menu-item
-                                    data-on-click="ctrl.editAccount(account)"
-                                    data-disabled="!ctrl.isEditable(account)"
-                                >
-                                    <span
-                                        data-translate="exchange_tab_ACCOUNTS_edit_account_tooltip"
-                                    ></span>
-                                </oui-action-menu-item>
-                                <oui-action-menu-item
-                                    data-on-click="ctrl.delegationSettings(account)"
-                                    data-disabled="ctrl.isDisabled(account)"
-                                >
-                                    <span
-                                        data-translate="exchange_tab_ACCOUNTS_popover_delegation"
-                                    ></span>
-                                </oui-action-menu-item>
-                                <oui-action-menu-item
-                                    data-on-click="ctrl.deleteAccount(account)"
-                                    data-disabled="ctrl.isDisabled(account)"
-                                >
-                                    <span
-                                        data-translate="exchange_tab_ACCOUNTS_popover_delete"
-                                    ></span>
-                                </oui-action-menu-item>
-                            </oui-action-menu>
-                        </td>
-                    </tr>
-
-                    <tr
-                        data-ng-repeat="account in ctrl.accounts.list.messages | orderBy:'id':false track by $index"
-                    >
-                        <td colspan="4">
+                                <span
+                                    class="fa fa-times"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                        </div>
+                        <span
+                            class="input-group-addon"
+                            data-ng-if="!$ctrl.searchValue"
+                        >
                             <span
-                                class="fa fa-exclamation-triangle mr-2"
+                                class="fa fa-search"
                                 aria-hidden="true"
                             ></span>
-                            <span
-                                data-ng-bind="account.primaryEmailAddress"
-                                data-oui-tooltip="{{:: 'exchange_tab_ACCOUNTS_partial_account' | translate}}"
-                            ></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                        </span>
+                    </div>
+                </div>
+            </form>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                data-translate="exchange_tab_ACCOUNTS_table_email"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="exchange_tab_ACCOUNTS_table_size"
+                            ></th>
+                            <th
+                                class="text-center min-width"
+                                scope="col"
+                                data-translate="exchange_tab_ACCOUNTS_table_status"
+                            ></th>
+                            <th class="min-width" scope="col"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody data-ng-if="$ctrl.loading">
+                        <tr>
+                            <td class="text-center" colspan="4">
+                                <oui-spinner></oui-spinner>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                    <tbody
+                        data-ng-if="$ctrl.accounts.list.results.length === 0 && $ctrl.accounts.list.messages.length === 0 && !$ctrl.loading && $ctrl.search.value == null"
+                    >
+                        <tr>
+                            <td
+                                class="text-center"
+                                colspan="4"
+                                data-translate="exchange_tab_ACCOUNTS_table_empty"
+                            ></td>
+                        </tr>
+                    </tbody>
+
+                    <tbody
+                        data-ng-if="$ctrl.accounts.list.results.length === 0 && $ctrl.accounts.list.messages.length === 0 && !$ctrl.loading && $ctrl.search.value != null"
+                    >
+                        <tr>
+                            <td
+                                class="text-center"
+                                colspan="4"
+                                data-translate="exchange_tab_ACCOUNTS_table_empty_search"
+                            ></td>
+                        </tr>
+                    </tbody>
+
+                    <tbody data-ng-if="!$ctrl.loading">
+                        <tr
+                            data-ng-repeat="account in $ctrl.accounts.list.results | orderBy:'primaryEmailAddress':false track by $index"
+                        >
+                            <th
+                                class="word-break"
+                                scope="row"
+                                data-ng-bind="account.primaryEmailDisplayName"
+                            ></th>
+                            <td
+                                class="text-center"
+                                data-ng-bind="$ctrl.services.ExchangeSharedAccounts.getFormattedQuota(account.quota)"
+                            ></td>
+                            <td class="text-center">
+                                <span
+                                    class="oui-badge oui-badge_warning"
+                                    data-ng-if="account.state === $ctrl.stateTaskError"
+                                    data-oui-tooltip="{{:: 'exchange_tab_ACCOUNTS_state_TASK_ON_ERROR' | translate}}"
+                                ></span>
+                                <span
+                                    class="oui-badge oui-badge_warning"
+                                    data-ng-if="account.state === $ctrl.stateTaskDoing"
+                                    data-oui-tooltip="{{:: 'exchange_tab_ACCOUNTS_state_TASK_ON_DOING' | translate}}"
+                                ></span>
+                                <span
+                                    class="oui-badge oui-badge_success"
+                                    data-ng-if="account.state == $ctrl.stateOk"
+                                    data-translate="exchange_tab_ACCOUNTS_state_OK"
+                                ></span>
+                                <span
+                                    class="oui-badge oui-badge_info"
+                                    data-ng-if="account.state === $ctrl.stateCreating"
+                                    data-translate="exchange_tab_ACCOUNTS_state_CREATING"
+                                ></span>
+                                <span
+                                    class="oui-badge oui-badge_info"
+                                    data-ng-if="account.state === $ctrl.stateDeleting"
+                                    data-translate="exchange_tab_ACCOUNTS_state_DELETING"
+                                ></span>
+                                <span
+                                    class="oui-badge oui-badge_info"
+                                    data-ng-if="account.info === $ctrl.stateSuspended"
+                                    data-translate="exchange_tab_ACCOUNTS_state_SUSPENDED"
+                                ></span>
+                                <span
+                                    class="oui-badge oui-badge_info"
+                                    data-ng-if="account.state === $ctrl.stateSuspending"
+                                    data-translate="exchange_tab_ACCOUNTS_state_SUSPENDING"
+                                ></span>
+                                <span
+                                    class="oui-badge oui-badge_info"
+                                    data-ng-if="account.state === $ctrl.stateReopening"
+                                    data-translate="exchange_tab_ACCOUNTS_state_REOPENING"
+                                ></span>
+                            </td>
+
+                            <td class="text-center text-nowrap">
+                                <oui-action-menu
+                                    data-compact
+                                    data-disabled="!$ctrl.isConfigurable(account)"
+                                    data-placement="end"
+                                >
+                                    <oui-action-menu-item
+                                        data-on-click="$ctrl.editAccount(account)"
+                                        data-disabled="!$ctrl.isEditable(account)"
+                                    >
+                                        <span
+                                            data-translate="exchange_tab_ACCOUNTS_edit_account_tooltip"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-on-click="$ctrl.delegationSettings(account)"
+                                        data-disabled="$ctrl.isDisabled(account)"
+                                    >
+                                        <span
+                                            data-translate="exchange_tab_ACCOUNTS_popover_delegation"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-on-click="$ctrl.displayAliasManagementView(account)"
+                                        data-disabled="!$ctrl.services.exchangeStates.constructor.isOk(account)"
+                                    >
+                                        <span
+                                            data-translate="exchange_tab_ACCOUNTS_menu_alias"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-on-click="$ctrl.deleteAccount(account)"
+                                        data-disabled="$ctrl.isDisabled(account)"
+                                    >
+                                        <span
+                                            data-translate="exchange_tab_ACCOUNTS_popover_delete"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                </oui-action-menu>
+                            </td>
+                        </tr>
+
+                        <tr
+                            data-ng-repeat="account in $ctrl.accounts.list.messages | orderBy:'id':false track by $index"
+                        >
+                            <td colspan="4">
+                                <span
+                                    class="fa fa-exclamation-triangle mr-2"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    data-ng-bind="account.primaryEmailAddress"
+                                    data-oui-tooltip="{{:: 'exchange_tab_ACCOUNTS_partial_account' | translate}}"
+                                ></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div
+                class="clearfix"
+                data-pagination-server-side="accountsTable"
+                data-pagination-server-side-function="retrievingAccounts"
+                data-pagination-server-side-paginated-stuff="getAccounts()"
+                data-pagination-server-side-table-loading="getLoading()"
+            ></div>
         </div>
 
-        <div
-            class="clearfix"
-            data-pagination-server-side="accountsTable"
-            data-pagination-server-side-function="retrievingAccounts"
-            data-pagination-server-side-paginated-stuff="getAccounts()"
-            data-pagination-server-side-table-loading="getLoading()"
-        ></div>
-    </div>
-
-    <div class="col-md-3 mt-5 mt-lg-0">
-        <button
-            class="oui-button oui-button_secondary w-100"
-            type="button"
-            data-translate="exchange_SHARED_ACCOUNTS_add_button_label"
-            data-ng-click="ctrl.newSharedAccount()"
-            data-ng-if="ctrl.isSharedAccountAdjustable()"
-        ></button>
-        <button
-            class="oui-button oui-button_secondary w-100 mt-2"
-            type="button"
-            data-ng-click="ctrl.services.navigation.setAction('exchange/account/export-as-csv/account-export-as-csv', { search : ctrl.searchValue, total : ctrl.accounts.list.results.length, exchange : ctrl.exchange, csvExportType: 'shared' })"
-            data-ng-disabled="ctrl.mailingLists.list.results.count === 0"
-            data-translate="exchange_SHARED_ACCOUNTS_export_csv"
-        ></button>
+        <div class="col-md-3 mt-5 mt-lg-0">
+            <button
+                class="oui-button oui-button_secondary w-100"
+                type="button"
+                data-translate="exchange_SHARED_ACCOUNTS_add_button_label"
+                data-ng-click="$ctrl.newSharedAccount()"
+                data-ng-if="$ctrl.isSharedAccountAdjustable()"
+            ></button>
+            <button
+                class="oui-button oui-button_secondary w-100 mt-2"
+                type="button"
+                data-ng-click="$ctrl.services.navigation.setAction('exchange/account/export-as-csv/account-export-as-csv', { search : $ctrl.searchValue, total : $ctrl.accounts.list.results.length, exchange : $ctrl.exchange, csvExportType: 'shared' })"
+                data-ng-disabled="$ctrl.mailingLists.list.results.count === 0"
+                data-translate="exchange_SHARED_ACCOUNTS_export_csv"
+            ></button>
+        </div>
     </div>
 </div>
