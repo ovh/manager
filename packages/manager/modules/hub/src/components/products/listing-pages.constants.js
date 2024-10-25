@@ -163,6 +163,10 @@ const productListingPages = {
     application: 'dedicated',
     hash: '#/veeam-enterprise',
   },
+  VMWARE_CLOUD_DIRECTOR: {
+    application: 'hpc-vmware-managed-vcd',
+    hash: '#',
+  },
   VPS: {
     application: 'dedicated',
     hash: '#/vps',
