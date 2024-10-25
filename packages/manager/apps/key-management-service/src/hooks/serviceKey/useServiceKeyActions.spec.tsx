@@ -1,8 +1,13 @@
 import { describe, expect, it, vi } from 'vitest';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { renderHook } from '@testing-library/react';
-import { OkmsKeyTypes, OkmsServiceKeyState } from '@/types/okmsServiceKey.type';
+import {
+  OkmsAllServiceKeys,
+  OkmsKeyTypes,
+  OkmsServiceKeyState,
+} from '@/types/okmsServiceKey.type';
 import useServiceKeyActionsList from './useServiceKeyActionsList';
+import { OKMS } from '@/types/okms.type';
 
 vi.mock('react-i18next', () => ({
   useTranslation: vi.fn(() => ({ t: vi.fn((key) => key) })),
@@ -31,13 +36,25 @@ vi.mock('@/data/hooks/useUpdateOkmsServiceKey', () => ({
 }));
 
 describe('useServiceKeyActionsList', () => {
-  const okmsId = 'testOkmsId';
-  const commonKeyProps = {
+  const okms: OKMS = {
+    iam: {
+      displayName: 'kms-1',
+      id: '1b4e7c8e-d1b8-4b46-a584-52c8b4b0225c',
+      urn: `urn:v1:eu:resource:okms:1b4e7c8e-d1b8-4b46-a584-52c8b4b0225c`,
+    },
+    id: '7f3a82ac-a8d8-4c2a-ab0c-f6e86ddf6a7c',
+    kmipEndpoint: 'eu-west-rbx.okms.ovh.net:1234',
+    region: 'EU_WEST_RBX',
+    restEndpoint: 'https://eu-west-rbx.okms.ovh.net',
+    swaggerEndpoint: '"https://swagger-eu-west-rbx.okms.ovh.net',
+  };
+
+  const commonKeyProps: Omit<OkmsAllServiceKeys, 'type' | 'state'> = {
     id: 'testKeyId',
     name: 'testKeyName',
-    keys: [] as any[],
+    keys: [],
     createdAt: '2023-01-01T00:00:00Z',
-    operations: [] as any[],
+    operations: [],
   };
 
   const useCases = [
@@ -171,7 +188,7 @@ describe('useServiceKeyActionsList', () => {
   useCases.forEach(({ description, okmsKey, expectedActions }) => {
     it(description, () => {
       const { result } = renderHook(() =>
-        useServiceKeyActionsList(okmsId, okmsKey),
+        useServiceKeyActionsList(okms, okmsKey),
       );
       expect(result.current).toEqual(
         expect.arrayContaining(
