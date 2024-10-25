@@ -52,9 +52,12 @@ export const FrameworkTile = ({
         versions={framework.versions}
         selectedVersion={selectedVersion}
         isFrameworkSelected={selected}
-        onChange={(versionName) =>
-          setSelectedVersion(framework.versions.find((v) => v === versionName))
-        }
+        onChange={(versionName) => {
+          console.log(framework.versions);
+          // console.log(framework.versions.find((v) => v === versionName));
+          console.log(versionName);
+          setSelectedVersion(framework.versions.find((v) => v === versionName));
+        }}
       />
       <RadioTile.Separator />
       <p className="text-xs text-justify leading-relaxed">
