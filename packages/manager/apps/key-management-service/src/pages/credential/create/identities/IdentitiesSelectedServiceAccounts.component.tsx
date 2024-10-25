@@ -6,11 +6,17 @@ import { ROUTES_URLS } from '@/routes/routes.constants';
 import { useIdentityData } from '@/hooks/credential/useIdentityData';
 import { IdentityOauthClient } from '@/types/identity.type';
 import IdentitiesSelectedBase from './IdentitiesSelectedBase.component';
-import IdentityServiceAccountDescriptionCell from './cell/service-account/IdentityServiceAccountDescriptionCell.component';
+import IdentityServiceAccountIdentityCell from './cell/service-account/IdentityServiceAccountIdentityCell.component';
 import IdentityServiceAccountNameCell from './cell/service-account/IdentityServiceAccountNameCell.component';
 import IdentityServiceAccountDeleteActionCell from './cell/service-account/IdentityServiceAccountDeleteActionCell';
 
-const IdentitiesSelectedServiceAccounts = () => {
+type IdentitiesSelectedServiceAccountsProps = {
+  identityURNs: string[];
+};
+
+const IdentitiesSelectedServiceAccounts = ({
+  identityURNs,
+}: IdentitiesSelectedServiceAccountsProps) => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
   const { serviceAccountList, setServiceAccountList } = useIdentityData();
@@ -23,10 +29,10 @@ const IdentitiesSelectedServiceAccounts = () => {
       isSortable: false,
     },
     {
-      id: 'description',
-      cell: IdentityServiceAccountDescriptionCell,
+      id: 'identity',
+      cell: IdentityServiceAccountIdentityCell,
       label: t(
-        'key_management_service_credential_user_list_column_description',
+        'key_management_service_credential_create_identities_service-account_tile_identity_label',
       ),
       isSortable: false,
     },
@@ -51,6 +57,7 @@ const IdentitiesSelectedServiceAccounts = () => {
       deleteCallback={() => setServiceAccountList([])}
       datagridColumns={columns}
       items={serviceAccountList}
+      identityURNs={identityURNs}
     ></IdentitiesSelectedBase>
   );
 };

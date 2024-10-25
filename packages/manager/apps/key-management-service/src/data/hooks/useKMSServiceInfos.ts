@@ -1,16 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import { OKMS } from '@/types/okms.type';
 import { ErrorResponse } from '@/types/api.type';
 import { KMSServiceInfos } from '@/types/okmsService.type';
 import { getServiceInfos } from '../api/okmsService';
 
-export const useKMSServiceInfos = (okms?: OKMS) => {
+export const getKMSServiceInfosQueryKey = (okmsId: string) => [
+  'okms/service/infos',
+  okmsId,
+];
+export const useKMSServiceInfos = (okmId?: string) => {
   return useQuery<{ data: KMSServiceInfos }, ErrorResponse>({
-    queryKey: ['okms/service/infos', okms?.id],
-    queryFn: () => getServiceInfos({ okms: okms?.id }),
+    queryKey: getKMSServiceInfosQueryKey(okmId),
+    queryFn: () => getServiceInfos(okmId),
     retry: false,
-    ...{
-      keepPreviousData: true,
-    },
   });
 };
