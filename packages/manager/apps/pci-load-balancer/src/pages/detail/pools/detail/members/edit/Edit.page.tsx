@@ -18,6 +18,7 @@ export default function EditPage() {
   const { t: tEdit } = useTranslation('pools/members/edit');
   const { t: tPciCommon } = useTranslation('pci-common');
   const { projectId, poolId, region, memberId } = useParams();
+
   const onClose = () => {
     navigate('..');
   };
@@ -28,8 +29,10 @@ export default function EditPage() {
     region,
     memberId,
   );
+
   const [memberName, setMemberName] = useState('');
   const [isTouched, setIsTouched] = useState(false);
+
   const {
     updatePoolMemberName,
     isPending: isPendingUpdate,
@@ -42,12 +45,17 @@ export default function EditPage() {
     onError(error: ApiError) {
       addError(
         <Translation ns="load-balancer">
-          {(_t) =>
-            _t('octavia_load_balancer_global_error', {
-              message: error?.response?.data?.message || error?.message || null,
-              requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
-            })
-          }
+          {(_t) => (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: _t('octavia_load_balancer_global_error', {
+                  message: (error?.response?.data as { message: string })
+                    ?.message,
+                  requestId: error.response?.headers['x-ovh-queryid'],
+                }),
+              }}
+            ></span>
+          )}
         </Translation>,
         true,
       );
@@ -57,7 +65,9 @@ export default function EditPage() {
       addSuccess(
         <Translation ns="pools/members">
           {(_t) =>
-            _t('octavia_load_balancer_pools_detail_members_edit_name_success')
+            _t('octavia_load_balancer_pools_detail_members_edit_name_success', {
+              membre: poolMember?.name,
+            })
           }
         </Translation>,
         true,
@@ -73,11 +83,13 @@ export default function EditPage() {
   const onCancel = () => {
     navigate('..');
   };
+
   useEffect(() => {
     if (poolMember) {
       setMemberName(poolMember.name);
     }
   }, [poolMember]);
+
   return (
     <PciModal
       title={tEdit('octavia_load_balancer_pools_members_edit_name_title')}
