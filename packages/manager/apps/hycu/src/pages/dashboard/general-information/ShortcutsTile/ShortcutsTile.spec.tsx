@@ -52,7 +52,7 @@ describe('License Hycu shortcuts tile for dashboard test suite', () => {
     await waitFor(
       () =>
         expect(
-          screen.getByText(labels.dashboard.hycu_dashboard_link_reactivate),
+          screen.getByText(labels.dashboard.hycu_dashboard_link_regenerate),
         ).toBeVisible(),
       { timeout: 20_000 },
     );
@@ -85,7 +85,7 @@ describe('License Hycu shortcuts tile for dashboard test suite', () => {
     await waitFor(
       () =>
         expect(
-          screen.getByText(labels.dashboard.hycu_dashboard_link_reactivate),
+          screen.getByText(labels.dashboard.hycu_dashboard_link_regenerate),
         ).toBeVisible(),
       { timeout: 20_000 },
     );
@@ -129,7 +129,7 @@ describe('License Hycu shortcuts tile for dashboard test suite', () => {
     );
   });
 
-  it('Can open activate modal without IAM authorization', async () => {
+  it("Can't open activate modal without IAM authorization", async () => {
     const user = userEvent.setup();
     await renderTestApp(`/${licensesHycu[1].serviceName}`, {
       licenseStatus: LicenseStatus.TO_ACTIVATE,
@@ -141,13 +141,73 @@ describe('License Hycu shortcuts tile for dashboard test suite', () => {
       { timeout: 30_000 },
     );
 
-    await user.click(screen.getByTestId('hycu_link_activated_test_id'));
+    await act(() =>
+      user.click(screen.getByTestId('hycu_link_activated_test_id')),
+    );
 
     await waitFor(
       () =>
         expect(
           screen.queryByText(
             labels.dashboard.hycu_dashboard_license_activate_description,
+          ),
+        ).not.toBeInTheDocument(),
+      { timeout: 20_000 },
+    );
+  });
+
+  it('Can open regenerate modal with IAM authorization', async () => {
+    const user = userEvent.setup();
+    await renderTestApp(`/${licensesHycu[0].serviceName}`, {
+      licenseStatus: LicenseStatus.ACTIVATED,
+    });
+
+    await waitFor(
+      () => {
+        expect(
+          screen.getByTestId('hycu_link_regenerate_test_id'),
+        ).not.toHaveAttribute('disabled');
+      },
+      { timeout: 30_000 },
+    );
+    await act(() =>
+      user.click(screen.getByTestId('hycu_link_regenerate_test_id')),
+    );
+
+    await waitFor(
+      () =>
+        expect(
+          screen.getByText(
+            labels.dashboard.hycu_dashboard_license_regenerate_description,
+          ),
+        ).toBeVisible(),
+      { timeout: 20_000 },
+    );
+  });
+
+  it("Can't open regenerate modal without IAM authorization", async () => {
+    const user = userEvent.setup();
+    await renderTestApp(`/${licensesHycu[1].serviceName}`, {
+      licenseStatus: LicenseStatus.ACTIVATED,
+    });
+
+    await waitFor(
+      () =>
+        expect(
+          screen.getByTestId('hycu_link_regenerate_test_id'),
+        ).toBeVisible(),
+      { timeout: 30_000 },
+    );
+
+    await act(() =>
+      user.click(screen.getByTestId('hycu_link_regenerate_test_id')),
+    );
+
+    await waitFor(
+      () =>
+        expect(
+          screen.queryByText(
+            labels.dashboard.hycu_dashboard_license_regenerate_description,
           ),
         ).not.toBeInTheDocument(),
       { timeout: 20_000 },
