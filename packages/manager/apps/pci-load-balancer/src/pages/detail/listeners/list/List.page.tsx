@@ -28,7 +28,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useDatagridColumn } from '@/pages/detail/listeners/list/useDatagridColumn';
-import { useLoadBalancerListeners } from '@/api/hook/useLoadBalancer';
+import { useLoadBalancerListeners } from '@/api/hook/useListener';
 
 export default function ListenerList() {
   const { t } = useTranslation('listeners');
@@ -59,7 +59,7 @@ export default function ListenerList() {
       <OsdsSpinner
         inline
         size={ODS_SPINNER_SIZE.md}
-        data-testid="List-spinner"
+        data-testid="listeners-spinner"
       />
     );
   }
@@ -171,7 +171,6 @@ export default function ListenerList() {
         onPaginationChange={setPagination}
         sorting={sorting}
         onSortChange={setSorting}
-        className="overflow-x-visible"
       />
 
       <Suspense>
