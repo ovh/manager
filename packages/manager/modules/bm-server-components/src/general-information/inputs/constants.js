@@ -11,6 +11,10 @@ export const INPUTS_RULES = {
     maxsize: 256,
     pattern: /^[a-f0-9]{1,256}$/i,
   },
+  hostname: {
+    maxsize: 253,
+    pattern: /^([a-z](?:[a-z0-9-]{0,61}[a-z0-9])?)+(\.[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?)*$/i,
+  },
   ip: {
     maxsize: 15,
     pattern: /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/,

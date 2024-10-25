@@ -1829,37 +1829,6 @@
                             </select>
                         </div>
 
-                        <!-- customHostname -->
-                        <div
-                            class="form-group"
-                            data-ng-class="{
-                                'has-error': optionForm.customHostname.$invalid && optionForm.$dirty
-                            }"
-                        >
-                            <label
-                                for="customHostname"
-                                class="control-label"
-                                data-translate="server_configuration_installation_form_customHostname"
-                            >
-                            </label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="customHostname"
-                                name="customHostname"
-                                data-ng-model="installation.options.customHostname"
-                                data-ng-pattern="/^[a-zA-Z0-9._-]{1,50}$/"
-                                data-ng-trim="true"
-                            />
-                            <span
-                                class="help-block"
-                                role="alert"
-                                data-ng-if="optionForm.customHostname.$invalid && optionForm.$dirty"
-                                data-translate="server_configuration_installation_form_customHostname_pattern"
-                            >
-                            </span>
-                        </div>
-
                         <!-- nbDisk -->
                         <div
                             class="form-inline"
