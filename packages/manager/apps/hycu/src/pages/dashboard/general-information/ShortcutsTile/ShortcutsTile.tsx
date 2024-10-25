@@ -1,4 +1,4 @@
-import { OsdsLink, OsdsIcon } from '@ovhcloud/ods-components/react';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { DashboardTile } from '@ovh-ux/manager-react-components';
 
 import React from 'react';
@@ -37,7 +37,7 @@ const ShortcutsTile = ({ serviceName }: { serviceName: string }) => {
       id: 'link_activated',
       value: (
         <ShortcutsItem
-          iamActions={[IAM_ACTIONS.licenseHycuApiovhActivate]}
+          iamActions={[IAM_ACTIONS.licenseHycuApiOvhActivate]}
           urn={hycuDetail?.data?.iam?.urn}
           data-testid="hycu_link_activated_test_id"
           onClick={() => {
@@ -51,9 +51,23 @@ const ShortcutsTile = ({ serviceName }: { serviceName: string }) => {
       ),
     },
     linkReactivated: {
-      id: 'link_reactivated',
+      id: 'link_regenerate',
       value: (
-        <ShortcutsItem>{t('hycu_dashboard_link_reactivate')}</ShortcutsItem>
+        <ShortcutsItem
+          iamActions={[IAM_ACTIONS.licenseHycuApiOvhRefresh]}
+          urn={hycuDetail?.data?.iam?.urn}
+          data-testid="hycu_link_regenerate_test_id"
+          onClick={() => {
+            navigate(
+              urls.regenerateLicense.replace(
+                subRoutes.serviceName,
+                serviceName,
+              ),
+            );
+          }}
+        >
+          {t('hycu_dashboard_link_regenerate')}
+        </ShortcutsItem>
       ),
     },
     linkChangePackType: {
@@ -70,7 +84,7 @@ const ShortcutsTile = ({ serviceName }: { serviceName: string }) => {
     <DashboardTile
       title={t('hycu_dashboard_shortcuts_title')}
       items={[
-        hycuDetail?.data.licenseStatus === LicenseStatus.TO_ACTIVATE
+        hycuDetail?.data.licenseStatus !== LicenseStatus.ACTIVATED
           ? links.linkActivated
           : links.linkReactivated,
         hycuDetail?.data.licenseStatus === LicenseStatus.ACTIVATED &&
