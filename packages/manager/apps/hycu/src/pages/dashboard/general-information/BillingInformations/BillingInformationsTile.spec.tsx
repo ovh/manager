@@ -2,10 +2,11 @@ import { screen, waitFor } from '@testing-library/react';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import '@testing-library/jest-dom';
 import { labels } from '@/utils/tests/init.i18n';
+import { licensesHycu } from '@/mocks/licenseHycu/licenseHycu.data';
 
 describe('License Hycu billing information tile for dashboard test suite', () => {
   it('should show informations of services', async () => {
-    await renderTestApp('/fake-id');
+    await renderTestApp(`/${licensesHycu[0].serviceName}`);
 
     await waitFor(
       () =>
