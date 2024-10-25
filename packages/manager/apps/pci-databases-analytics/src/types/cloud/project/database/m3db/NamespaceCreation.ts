@@ -8,7 +8,7 @@ export interface NamespaceCreation {
   /** Name of the namespace */
   name: string;
   /** Resolution for an aggregated namespace */
-  resolution: string;
+  resolution?: string;
   /** Retention configuration */
   retention: Retention;
   /** Defines whether M3db will create snapshot files for this namespace */
