@@ -13,7 +13,6 @@ export default /* @ngInject */ ($stateProvider) => {
         DedicatedCloud.getDatacenterInformations(
           serviceName,
           datacenterId,
-          true,
         ).then((datacenter) => ({
           model: {
             ...datacenter,
@@ -58,7 +57,7 @@ export default /* @ngInject */ ($stateProvider) => {
           'dedicatedCloudDatacenterAlert',
         );
       },
-      breadcrumb: /* @ngInject */ (datacenterId) => datacenterId,
+      breadcrumb: /* @ngInject */ (datacenter) => datacenter.model.name,
     },
   });
 };
