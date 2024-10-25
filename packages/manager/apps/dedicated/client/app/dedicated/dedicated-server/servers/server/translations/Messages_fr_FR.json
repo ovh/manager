@@ -356,8 +356,6 @@
   "server_configuration_installation_form_option": "Options d'installation :",
   "server_configuration_installation_form_gabaritNameSave": "Nom du gabarit :",
   "server_configuration_installation_form_gabaritNameSave_pattern": "Format invalide.",
-  "server_configuration_installation_form_customHostname": "Hostname :",
-  "server_configuration_installation_form_customHostname_pattern": "Format invalide.",
   "server_configuration_installation_form_nbdisk": "Nombre de disques partitionnés :",
   "server_configuration_installation_ovh_title": "Installation à partir d'un template OVHcloud",
   "server_configuration_installation_ovh_fail_os": "Une erreur s'est produite lors de la récupération des distributions disponible pour le serveur {{t0}}",
