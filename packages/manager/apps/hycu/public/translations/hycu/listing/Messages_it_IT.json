@@ -1,14 +1,14 @@
 {
   "hycu_status_activated": "Attivo",
   "hycu_status_toActivate": "Da attivare",
-  "hycu_status_pending": "Attivazione in corso",
+  "hycu_status_pending": "Attivazione in corso...",
   "hycu_status_error": "Errore di attivazione",
   "hycu_cloud_vm_pack_unknown": "Pack sconosciuto",
   "hycu_name": "Cognome",
   "hycu_controller_id": "Controller ID",
-  "hycu_status": "Status",
+  "hycu_status": "Stato",
   "hycu_commercial_name": "Tipo di pack",
   "hycu_subscribed_date": "Data di sottoscrizione",
-  "hycu_order": "Ordina",
-  "hycu_service_listing_terminate": "Disattiva"
+  "hycu_order": "Ordinare",
+  "hycu_service_listing_terminate": "Disattivare"
 }

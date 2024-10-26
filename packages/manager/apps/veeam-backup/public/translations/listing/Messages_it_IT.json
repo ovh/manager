@@ -1,13 +1,13 @@
 {
-  "description": "Gestire i backup delle organizzazioni VMware Cloud Director",
-  "order_button": "Ordina",
+  "description": "Gestire i backup delle tue organizzazioni VMware Cloud Director",
+  "order_button": "Ordinare",
   "name_cell": "Cognome",
-  "status_cell": "Status",
+  "status_cell": "Stato",
   "ovhref_cell": "Referenza",
   "vcdorg_cell": "Organizzazione VCD",
-  "region_cell": "Regione",
+  "region_cell": "Region",
   "createdat_cell": "Data di creazione",
   "edit_name_action": "Modifica il nome",
-  "delete_action": "Disattiva",
-  "load_more_button": "Carica i backup successivi"
+  "delete_action": "Disattivare",
+  "load_more_button": "Caricare i backup successivi"
 }

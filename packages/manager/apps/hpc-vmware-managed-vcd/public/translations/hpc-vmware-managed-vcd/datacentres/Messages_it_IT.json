@@ -1,7 +1,7 @@
 {
   "managed_vcd_vdc_title": "Datacenter virtuali",
   "managed_vcd_vdc_commercial_range": "Gamma commerciale",
-  "managed_vcd_vdc_vcpu_count": "Totale vCPU",
+  "managed_vcd_vdc_vcpu_count": "vCPU totali",
   "managed_vcd_vdc_ram_count": "RAM totale",
   "managed_vcd_vdc_quota_value": "{{quota}} GB",
   "managed_vcd_vdc_vcpu_speed": "Velocità vCPU",

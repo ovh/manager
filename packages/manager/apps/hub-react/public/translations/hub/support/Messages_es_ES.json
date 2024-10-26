@@ -1,9 +1,9 @@
 {
   "hub_support_title": "Últimas solicitudes de asistencia",
   "hub_support_read": "Leer",
-  "hub_support_state_open": "Abierta",
-  "hub_support_state_closed": "Cerrada",
-  "hub_support_state_unknown": "Desconocida",
+  "hub_support_state_open": "Abierto",
+  "hub_support_state_closed": "Cerrado",
+  "hub_support_state_unknown": "Desconocido",
   "hub_support_account_management": "Gestión de cuenta",
   "hub_support_need_help": "¿Necesita ayuda?",
   "hub_support_need_help_more": "¿Tiene problemas para utilizar sus productos y servicios? Consulte nuestras guías.",
