@@ -33,7 +33,7 @@
   "formNamespaceFieldPeriodDurationLabel": "Czas retencji ",
   "formNamespaceFieldPeriodDurationPlaceholder": "Przykład: 48 godz.",
   "formNamespaceFieldDurationDescription": "Przykłady: 20S, 10m, 24H, 2D",
-  "formNamespaceFieldDurationPlaceholder": "10m",
+  "formNamespaceFieldDurationPlaceholder": "Przykład: 10 m",
   "formNamespaceFieldPeriodDurationDescription": "Czas retencji danych dla namespace w formacie „short time”.",
   "formNamespaceFieldResolutionLabel": "Poziom szczegółowości danych",
   "formNamespaceFieldResolutionPlaceholder": "Przykład: 1 D",
@@ -55,5 +55,6 @@
   "editNamespaceToastSuccessDescription": "Namespace {{name}} został zmodyfikowany",
   "editNamespaceTitle": "Zmień przestrzeń nazw",
   "editNamespaceButtonConfirm": "Zmień ten namespace",
-  "editNamespaceToastErrorTitle": "Wystąpił błąd podczas modyfikacji namespace"
+  "editNamespaceToastErrorTitle": "Wystąpił błąd podczas modyfikacji namespace",
+  "formNamespaceErrorMandatoryField": "To pole jest obowiązkowe"
 }

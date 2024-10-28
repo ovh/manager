@@ -33,6 +33,7 @@ export default class FlavorBillingController {
 
   selectBilling(monthlyBilling) {
     this.monthlyBilling = monthlyBilling;
+    this.onChange({ billing: monthlyBilling });
   }
 
   isPricingComingSoon() {
