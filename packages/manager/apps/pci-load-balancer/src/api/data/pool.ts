@@ -113,7 +113,6 @@ export const updatePool = async ({
         : { type: 'disabled' },
     },
   );
-
   return data;
 };
 

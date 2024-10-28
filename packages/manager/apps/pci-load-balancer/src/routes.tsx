@@ -25,6 +25,7 @@ export const ROUTE_PATHS = {
   L7_RULES_EDIT: ':ruleId/edit',
   POOLS: 'pools',
   POOLS_CREATE: 'create',
+  POOLS_EDIT_NAME: 'edit-name',
   POOLS_EDIT: ':poolId/edit',
   POOL_LIST: 'list',
   POOL_DELETE: 'delete',
@@ -120,6 +121,9 @@ const PoolsEditPage = lazy(() =>
 const PoolListPage = lazy(() => import('@/pages/detail/pools/list/List.page'));
 const PoolDeletePage = lazy(() =>
   import('@/pages/detail/pools/delete/DeletePool.page'),
+);
+const PoolEditNamePage = lazy(() =>
+  import('@/pages/detail/pools/detail/overview/edit-name/EditName.page'),
 );
 const PoolDetailPage = lazy(() =>
   import('@/pages/detail/pools/detail/Detail.page'),
@@ -241,6 +245,10 @@ const Routes = (
           id="pool-detail-delete"
           path={ROUTE_PATHS.POOL_DELETE}
           Component={PoolDeletePage}
+        />
+        <Route
+          path={ROUTE_PATHS.POOLS_EDIT_NAME}
+          Component={PoolEditNamePage}
         />
       </Route>
       <Route

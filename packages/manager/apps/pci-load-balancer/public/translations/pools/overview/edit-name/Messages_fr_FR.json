@@ -1,0 +1,6 @@
+{
+  "octavia_load_balancer_pools_detail_overview_edit_name_title": "Modifier le nom",
+  "octavia_load_balancer_pools_detail_overview_edit_name_label": "Nom",
+  "octavia_load_balancer_pools_detail_overview_edit_name_cancel": "Annuler",
+  "octavia_load_balancer_pools_detail_overview_edit_name_confirm": "Modifier"
+}
