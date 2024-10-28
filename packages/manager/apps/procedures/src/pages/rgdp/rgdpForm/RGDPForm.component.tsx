@@ -89,10 +89,16 @@ export const RGDPForm: FunctionComponent = () => {
 
   const onSubmitForm = () => {
     const data = watch();
-    const files = extractFiles(data);
-    const filesCount = files.length;
-
-    sendForm({ formData: data, numberOfDocuments: filesCount });
+    const { email, category, description, nichandle, firstName, name } = data;
+    sendForm({
+      email,
+      category,
+      description,
+      nichandle,
+      firstName,
+      name,
+      numberOfDocuments: extractFiles(data).length,
+    });
   };
 
   const email = watch('email');
@@ -118,8 +124,8 @@ export const RGDPForm: FunctionComponent = () => {
         />
 
         <TextField
-          label={t('rgdp_form_field_label_surname')}
-          name="surname"
+          label={t('rgdp_form_field_label_name')}
+          name="name"
           required={t('rgdp_form_validation_message_required')}
           pattern={{
             value: TextInputRegex,
@@ -150,10 +156,10 @@ export const RGDPForm: FunctionComponent = () => {
         />
 
         <TextField
-          label={`${t('rgdp_form_field_label_nic')} (${t(
+          label={`${t('rgdp_form_field_label_nichandle')} (${t(
             'rgdp_form_field_optional',
           )})`}
-          name="nicHandle"
+          name="nichandle"
           pattern={{
             value: TextInputRegex,
             message: t('rgdp_form_validation_message_invalid_format'),
@@ -166,17 +172,17 @@ export const RGDPForm: FunctionComponent = () => {
             level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
             color={ODS_THEME_COLOR_INTENT.primary}
           >
-            {t('rgdp_form_field_label_subject')}
+            {t('rgdp_form_field_label_category')}
           </OsdsText>
 
           <SelectField
-            name="messageSubject"
+            name="category"
             required={t('rgdp_form_validation_message_required')}
             control={control}
-            placeholder={t('rgdp_form_field_placeholder_subject')}
+            placeholder={t('rgdp_form_field_placeholder_category')}
             options={GDPRSubjectValues.map((value) => ({
               value,
-              label: t(`rgdp_form_subject_${value}`),
+              label: t(`rgdp_form_category_${value}`),
             }))}
           />
 
@@ -184,13 +190,13 @@ export const RGDPForm: FunctionComponent = () => {
             level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
             color={ODS_THEME_COLOR_INTENT.primary}
           >
-            {t('rgdp_form_field_label_subject_detail')}
+            {t('rgdp_form_field_label_category_detail')}
           </OsdsText>
         </div>
 
         <TextAreaField
           label={t('rgdp_form_field_label_request_description')}
-          name="requestDescription"
+          name="description"
           required={t('rgdp_form_validation_message_required')}
           control={control}
           pattern={{

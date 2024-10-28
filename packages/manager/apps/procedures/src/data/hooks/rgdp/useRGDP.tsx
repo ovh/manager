@@ -2,11 +2,11 @@ import { useMutation } from '@tanstack/react-query';
 import {
   UploadLink,
   getUploadDocumentsLinks,
-  GetUploadDocumentsLinks,
   UploadDocuments,
   uploadDocuments,
   finalize,
 } from '@/data/api/rgdp/rgdpApi';
+import { GDPRValues } from '@/types/gdpr.type';
 
 export const useRGDPSendForm = ({
   onSuccess,
@@ -16,8 +16,7 @@ export const useRGDPSendForm = ({
   onError: () => void;
 }) =>
   useMutation({
-    mutationFn: (data: GetUploadDocumentsLinks) =>
-      getUploadDocumentsLinks(data),
+    mutationFn: (data: GDPRValues) => getUploadDocumentsLinks(data),
     onSuccess: (links) => {
       onSuccess?.(links);
     },
