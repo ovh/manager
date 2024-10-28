@@ -4,7 +4,7 @@ import PolicyForm from './PolicyForm.component';
 import { TL7Policy } from '@/api/data/l7Policies';
 import { TLoadBalancerPool } from '@/api/data/pool';
 import { wrapper } from '@/wrapperRenders';
-import { TLoadBalancerListener } from '@/api/data/load-balancer';
+import { TLoadBalancerListener } from '@/api/data/listener';
 
 const mockPolicy = {
   listenerId: 'listener-1',
