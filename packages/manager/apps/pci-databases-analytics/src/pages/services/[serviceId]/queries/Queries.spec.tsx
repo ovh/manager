@@ -24,7 +24,7 @@ import {
 // Override mock to add capabilities
 const mockedService = {
   ...mockedServiceOrig,
-  engine: database.EngineEnum.mysql,
+  engine: database.EngineEnum.postgresql,
   capabilities: {
     currentQueries: {
       read: database.service.capability.StateEnum.enabled,

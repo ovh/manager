@@ -30,7 +30,10 @@ const Queries = () => {
       {service.capabilities.currentQueries?.read ===
         database.service.capability.StateEnum.enabled && <CurrentQueries />}
       {service.capabilities.queryStatistics?.read ===
-        database.service.capability.StateEnum.enabled && <QueryStatistics />}
+        database.service.capability.StateEnum.enabled &&
+        service.engine === database.EngineEnum.postgresql && (
+          <QueryStatistics />
+        )}
     </>
   );
 };
