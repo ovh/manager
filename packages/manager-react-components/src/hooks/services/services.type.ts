@@ -65,8 +65,8 @@ export type ServiceDetails = {
       endRule: {
         possibleStrategies: EndRuleStrategy[];
         strategy: EndRuleStrategy;
-      };
-    };
+      } | null;
+    } | null;
     engagementRequest: {
       pricingMode: string;
       requestDate: string;
@@ -92,7 +92,7 @@ export type ServiceDetails = {
       invoiceName: string;
     };
     pricing: {
-      capacities: PricingCapacity;
+      capacities: PricingCapacity[];
       description: string;
       duration: string;
       engagementConfiguration: {
@@ -107,21 +107,21 @@ export type ServiceDetails = {
       minimumRepeat: number;
       price: {
         currencyCode: CurrencyCode;
-        priceInUcents: number | null;
+        priceInUcents?: number | null;
         text: string;
         value: number;
       };
-      priceInUcents: number;
+      priceInUcents?: number;
       pricingMode: string;
       pricingType: PricingType;
     };
-  };
-  renew: {
-    capacities: { mode: RenewMode[] };
-    current: {
-      mode: RenewMode | null;
-      nextDate: string | null;
-      period: string;
+    renew: {
+      capacities: { mode: RenewMode[] };
+      current: {
+        mode: RenewMode | null;
+        nextDate: string | null;
+        period: string;
+      };
     };
   };
   customer: {
