@@ -69,6 +69,15 @@ export const Routes: any = [
                   ),
                 ),
               },
+              {
+                id: 'edit-name',
+                path: urls.editName,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/general-information/edit/EditHycu.page'
+                  ),
+                ),
+              },
             ],
           },
         ],

@@ -22,6 +22,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { getStatusColor } from '@/utils/statusColor';
 import { useDetailsLicenseHYCU } from '@/hooks/api/license';
 import { LicenseStatus } from '@/types/hycu.details.interface';
@@ -65,10 +66,13 @@ const ControllerIdHycuLicense = ({ serviceName }: { serviceName: string }) => {
 const GeneralInformationsTile = ({ serviceName }: { serviceName: string }) => {
   const { t: tCommon } = useTranslation('hycu');
   const { t } = useTranslation('hycu/dashboard');
+  const navigate = useNavigate();
   const { data: hycuDetail } = useDetailsLicenseHYCU(serviceName);
   const { data: serviceDetails, isLoading } = useServiceDetails({
     resourceName: serviceName,
   });
+  const openEditNameModal = () =>
+    navigate(urls.editName.replace(subRoutes.serviceName, serviceName));
 
   return (
     <DashboardTile
@@ -86,10 +90,13 @@ const GeneralInformationsTile = ({ serviceName }: { serviceName: string }) => {
               </Description>
 
               <OsdsButton
+                data-testid="edit-hycu-displayname-action"
+                className="min-w-10"
                 circle
                 variant={ODS_BUTTON_VARIANT.stroked}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 size={ODS_BUTTON_SIZE.sm}
+                onClick={openEditNameModal}
               >
                 <OsdsIcon
                   aria-label="edit"

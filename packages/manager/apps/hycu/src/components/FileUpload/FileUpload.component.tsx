@@ -122,7 +122,7 @@ export const FileInputField = ({
               <span slot="start">
                 <OsdsIcon
                   size={ODS_ICON_SIZE.xxs}
-                  color={ODS_THEME_COLOR_INTENT.success}
+                  color={ODS_THEME_COLOR_INTENT.primary}
                   name={ODS_ICON_NAME.UPLOAD_CONCEPT}
                 ></OsdsIcon>
               </span>

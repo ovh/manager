@@ -12,4 +12,5 @@ export const urls = {
   dashboard: `/${subRoutes.serviceName}`,
   activateLicense: `/${subRoutes.serviceName}/activate-license`,
   regenerateLicense: `/${subRoutes.serviceName}/regenerate-license`,
+  editName: `/${subRoutes.serviceName}/edit-name`,
 } as const;
