@@ -1,4 +1,4 @@
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import '@testing-library/jest-dom';
@@ -59,6 +59,85 @@ describe('License Hycu listing test suite', () => {
       () =>
         expect(screen.getByText(labels.order.hycu_order_title)).toBeVisible(),
       { timeout: 30_000 },
+    );
+  });
+
+  it('open terminate modal on click on resiliate', async () => {
+    const user = userEvent.setup();
+    await renderTestApp(`/`);
+
+    const resiliateButton = await screen.getAllByText(
+      labels.terminate.hycu_terminate_confirm_label,
+      {
+        exact: true,
+      },
+    );
+
+    await waitFor(
+      () => {
+        expect(
+          screen.getAllByText(licensesHycu[0].serviceName)[0],
+        ).toBeVisible();
+        expect(resiliateButton[resiliateButton.length - 1]).not.toHaveAttribute(
+          'disabled',
+        );
+      },
+      { timeout: 30_000 },
+    );
+
+    await act(() => user.click(resiliateButton[resiliateButton.length - 1]));
+
+    await waitFor(
+      () =>
+        expect(
+          screen.getByText(labels.terminate.hycu_terminate_description),
+        ).toBeVisible(),
+      { timeout: 10_000 },
+    );
+  });
+
+  it('See success message after terminate service', async () => {
+    const user = userEvent.setup();
+    await renderTestApp(`/terminate/${licensesHycu[0].serviceName}`);
+
+    await waitFor(
+      () =>
+        expect(
+          screen.getByText(labels.terminate.hycu_terminate_description),
+        ).toBeVisible(),
+      { timeout: 10_000 },
+    );
+
+    await act(() =>
+      fireEvent.change(screen.getByLabelText('delete-input'), {
+        target: { value: 'TERMINATE' },
+      }),
+    );
+
+    const resiliateButton = await screen.getAllByText(
+      labels.terminate.hycu_terminate_confirm_label,
+      {
+        exact: true,
+      },
+    );
+
+    await waitFor(
+      () =>
+        expect(resiliateButton[resiliateButton.length - 1]).not.toHaveAttribute(
+          'disabled',
+        ),
+      { timeout: 10_000 },
+    );
+
+    await act(() => user.click(resiliateButton[resiliateButton.length - 1]));
+
+    await waitFor(
+      () => {
+        expect(
+          screen.queryByText(labels.terminate.hycu_terminate_description),
+        ).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
     );
   });
 });

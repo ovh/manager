@@ -8,6 +8,7 @@ export const resourceList: IamCheckResponse[] = [
     authorizedActions: [
       IAM_ACTIONS.licenseHycuApiOvhActivate,
       IAM_ACTIONS.licenseHycuApiOvhRefresh,
+      IAM_ACTIONS.licenseHycuApiOvhTerminate,
     ],
     unauthorizedActions: [],
   },

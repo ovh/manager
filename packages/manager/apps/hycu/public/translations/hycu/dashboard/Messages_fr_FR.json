@@ -8,7 +8,7 @@
   "hycu_dashboard_shortcuts_title": "Raccourcis",
   "hycu_dashboard_link_activate": "Activer la licence",
   "hycu_dashboard_link_regenerate": "Regénérer la licence",
-  "hycu_dashboard_link_terminated": "Résilier la licence",
+  "hycu_dashboard_link_terminate": "Résilier la licence",
   "hycu_dashboard_link_change_pack_type": "Modifier le type de pack",
   "hycu_dashboard_field_label_contacts": "Contacts",
   "hycu_dashboard_contact_type_administrator": "Administrateur",
@@ -26,7 +26,7 @@
   "hycu_dashboard_license_activate_description": "Veuillez transférer votre fichier de demande de licence. Ce fichier est à télécharger depuis votre controller HYCU une fois votre installation réalisée",
   "hycu_dashboard_license_more_information_link": "(plus de détails ici)",
   "hycu_dashboard_activation_license_success_message": "La demande d'activation de votre licence a bien été prise en compte. Votre fichier de licence sera bientôt disponible sur cette interface et vous sera également envoyé par e-mail.",
-  "hycu_dashboard_activation_license_error_message": "Une erreur est survenue lors de la soumission de votre licence.",
+  "hycu_dashboard_activation_license_error_message": "Une erreur est survenue lors de la soumission de votre licence : {{error}}.",
   "hycu_dashboard_regenerate_error_message": "Une erreur est survenue lors de la soumission de votre licence.",
   "hycu_dashboard_license_regenerate_heading": "Regénérer la licence",
   "hycu_dashboard_license_regenerate_description": "Si votre environnement technique HYCU a changé, il est nécessaire de soumettre une nouvelle demande afin d'obtenir un nouveau fichier de licence compatible avec votre controller HYCU. Veuillez transférer votre nouveau fichier de demande de licence. En réalisant cette action, vous vous engagez également à ne plus utiliser le fichier de licence précédemment fourni.",
@@ -44,10 +44,5 @@
   "hycu_dashboard_update_display_name_description": "",
   "hycu_dashboard_update_display_name_pattern_message": "Veuillez saisir un nom dont la longueur est comprise entre 1 et 32 caractères.",
   "hycu_dashboard_update_display_name_success": "La description a été modifiée avec succès.",
-  "hycu_dashboard_edit_modal_error": "Une erreur est survenue: {{error}}.",
-  "hycu_dashboard_terminate_headline": "",
-  "hycu_dashboard_terminate_description": "",
-  "hycu_dashboard_terminate_input_label": "",
-  "hycu_dashboard_cancel_label": "",
-  "hycu_dashboard_confirm_label": ""
+  "hycu_dashboard_edit_modal_error": "Une erreur est survenue: {{error}}."
 }
