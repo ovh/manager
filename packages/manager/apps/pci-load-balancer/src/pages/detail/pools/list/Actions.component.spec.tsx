@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { describe, it, expect } from 'vitest';
 import ActionsComponent from '@/pages/detail/listeners/list/Actions.component';
-import { TLoadBalancerListener } from '@/api/data/load-balancer';
+import { TLoadBalancerListener } from '@/api/data/listener';
 
 describe('ActionsComponent', () => {
   const listener = {
