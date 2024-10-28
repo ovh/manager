@@ -1,5 +1,3 @@
-import React from 'react';
-import { vitest } from 'vitest';
 import { FilterAdd, FilterAddProps } from './filter-add.component';
 import { render } from '../../utils/test.provider';
 
@@ -9,7 +7,7 @@ const renderComponent = (props: FilterAddProps) => {
 
 describe('FilterAdd tests', () => {
   it('should deactivate the add filter button when value est undefined', () => {
-    const mockOnAddFilter = vitest.fn();
+    const mockOnAddFilter = jest.fn();
     const props = {
       columns: [
         {
@@ -35,7 +33,7 @@ describe('FilterAdd tests', () => {
   });
 
   it('should set the id of first columns items as value of the id select', () => {
-    const mockOnAddFilter = vitest.fn();
+    const mockOnAddFilter = jest.fn();
     const props = {
       columns: [
         {

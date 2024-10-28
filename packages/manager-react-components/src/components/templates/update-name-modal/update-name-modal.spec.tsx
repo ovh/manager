@@ -1,15 +1,15 @@
-import { vitest } from 'vitest';
-import React, { waitFor, screen, fireEvent } from '@testing-library/react';
+import { waitFor, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { render } from '../../../utils/test.provider';
 import {
   UpdateNameModal,
   UpdateNameModalProps,
 } from './update-name-modal.component';
+import '@testing-library/jest-dom';
 
 export const sharedProps: UpdateNameModalProps = {
-  closeModal: vitest.fn(),
-  updateDisplayName: vitest.fn(),
+  closeModal: jest.fn(),
+  updateDisplayName: jest.fn(),
   headline: 'headline',
   description: 'description',
   inputLabel: 'inputLabel',

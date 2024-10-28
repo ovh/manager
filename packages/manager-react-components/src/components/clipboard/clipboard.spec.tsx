@@ -1,5 +1,3 @@
-import { vitest } from 'vitest';
-import React from 'react';
 import { fireEvent, waitFor } from '@testing-library/react';
 import { render } from '../../utils/test.provider';
 import { Clipboard } from './clipboard.component';
@@ -35,7 +33,7 @@ describe('Clipboard', () => {
     const { getByTestId } = await setupSpecTest();
     const clipboard = getByTestId('clipboard');
 
-    const clickHandler = vitest.spyOn(clipboard, 'click');
+    const clickHandler = jest.spyOn(clipboard, 'click');
     clipboard.click = () => {
       throw new Error('Mock error on click');
     };

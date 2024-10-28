@@ -1,4 +1,3 @@
-import React from 'react';
 import { Meta, Story } from '@storybook/react';
 
 import { useArgs } from '@storybook/client-api';
@@ -41,7 +40,7 @@ export const DemoSimple = Template.bind({});
 
 const commonArgs = {
   items: allCountries,
-  value: undefined as TCountry,
+  value: undefined,
   label: (country: TCountry) => country?.name,
   tileClass: {
     active: 'font-bold text-red-500 bg-orange-100',

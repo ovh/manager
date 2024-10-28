@@ -32,7 +32,7 @@
     "@ovh-ux/manager-config": "^7.5.2",
     "@ovh-ux/manager-core-api": "^0.8.2",
     "@ovh-ux/manager-react-components": "^1.40.0",
-    "@ovh-ux/manager-react-shell-client": "^0.7.3",
+    "@ovh-ux/manager-react-shell-client": "^0.7.7",
     "@ovh-ux/manager-vite-config": "^0.8.0",
     "@ovh-ux/ovh-payment-method": "^0.5.0",
     "@ovh-ux/ovh-product-icons": "^0.6.0",

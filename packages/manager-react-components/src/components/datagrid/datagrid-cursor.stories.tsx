@@ -73,7 +73,7 @@ const DatagridStory = ({
   );
 };
 
-export const Empty: any = {
+export const Empty = {
   args: {
     items: [],
   },

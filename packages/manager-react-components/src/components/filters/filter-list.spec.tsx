@@ -1,5 +1,3 @@
-import React from 'react';
-import { vitest } from 'vitest';
 import { OsdsChip } from '@ovhcloud/ods-components';
 import { act } from '@testing-library/react';
 import { FilterList, FilterListProps } from './filter-list.component';
@@ -13,7 +11,7 @@ describe('FilterList tests', () => {
   it('should not display chips when the filters props is empty', () => {
     const propsWithEmptyFilters = {
       filters: [],
-      onRemoveFilter: vitest.fn(),
+      onRemoveFilter: jest.fn(),
     } as FilterListProps;
 
     const { container } = renderComponent(propsWithEmptyFilters);
@@ -31,7 +29,7 @@ describe('FilterList tests', () => {
           label: "Nom d'utilisateur",
         },
       ],
-      onRemoveFilter: vitest.fn(),
+      onRemoveFilter: jest.fn(),
     } as FilterListProps;
 
     const { container, getAllByTestId } = renderComponent(
@@ -60,7 +58,7 @@ describe('FilterList tests', () => {
           label: "Nom d'utilisateur",
         },
       ],
-      onRemoveFilter: vitest.fn(),
+      onRemoveFilter: jest.fn(),
     } as FilterListProps;
 
     const { container, getAllByTestId } = renderComponent(
@@ -74,7 +72,7 @@ describe('FilterList tests', () => {
   });
 
   it('should call onRemoveFilter function when the chip cross is clicked', () => {
-    const mockOnRemoveFilter = vitest.fn();
+    const mockOnRemoveFilter = jest.fn();
     const propsWithOneFiltersItem = {
       filters: [
         {

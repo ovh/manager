@@ -1,4 +1,3 @@
-import React from 'react';
 import { within } from '@testing-library/react';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
@@ -25,7 +24,7 @@ const setupSpecTest = async (customProps?: Partial<TableProps>) =>
         </tr>
       </thead>
       <tbody>
-        {mocksData.map((header: any) => (
+        {mocksData.map((header) => (
           <tr key={`${header.firstName}-tr`}>
             {Object.keys(header).map((element) => (
               <td key={header[element]}>{header[element]}</td>

@@ -1,10 +1,10 @@
-import { vitest } from 'vitest';
-import React, { screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { PciMaintenanceBanner } from './PciMaintenanceBanner.component';
 import { render } from '../../utils/test.provider';
 
-vitest.mock('react-i18next', async () => {
-  const original = await vitest.importActual('react-i18next');
+jest.mock('react-i18next', () => {
+  const original = jest.requireActual('react-i18next');
   return {
     ...original,
     useTranslation: () => ({

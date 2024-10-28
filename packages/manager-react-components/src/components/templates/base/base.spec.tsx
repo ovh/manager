@@ -1,5 +1,3 @@
-import React from 'react';
-import { vitest } from 'vitest';
 import { waitFor, screen, fireEvent } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import { BaseLayout } from './base.component';
@@ -8,11 +6,11 @@ import { listingTemplateProps } from './base.stories';
 describe('BaseLayout component', () => {
   it('renders base component correctly', async () => {
     render(<BaseLayout {...listingTemplateProps} />);
-    await waitFor(() => {
+    waitFor(() => {
       expect(screen.getByText('Vrack Services')).toBeInTheDocument();
       expect(
         screen.getByText(
-          'Description de la listing, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         ),
       ).toBeInTheDocument();
     });
@@ -20,7 +18,7 @@ describe('BaseLayout component', () => {
 
   it('clicks on back link triggers return fn', async () => {
     const backLinkLabel = 'back link';
-    const spy = vitest.fn();
+    const spy = jest.fn();
 
     render(
       <BaseLayout

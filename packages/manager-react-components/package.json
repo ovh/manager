@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "version": "1.40.0",
+  "version": "1.41.0",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "types": "dist/types/src/lib.d.ts",
@@ -25,9 +25,10 @@
     "prepare": "vite build && tsc",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "start": "storybook dev -p 6006",
-    "test": "vitest",
+    "test": "jest --coverage -u",
     "test:cov": "vitest run --coverage",
-    "test:watch": "vitest"
+    "test:e2e": "tsc && npx playwright test --ui --debug",
+    "test:watch": "jest --watch"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,json,css,md}": [
