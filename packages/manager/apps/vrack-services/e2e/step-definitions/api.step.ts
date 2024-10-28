@@ -1,7 +1,7 @@
 import { Given } from '@cucumber/cucumber';
 import { ICustomWorld } from '@playwright-helpers';
 import { vsUpdateErrorMessage } from '../../mocks/vrack-services/vrack-services';
-import { servicesMockErrors } from '../../../../../manager-react-components/src/hooks/services/mocks/services.mock';
+import { servicesMockErrors } from '../../../../../manager-react-components/src/hooks/services/mocks';
 import { labels } from '../utils';
 import { ConfigParams } from '../../mocks/handlers';
 import vrackServicesList from '../../mocks/vrack-services/get-vrack-services.json';
