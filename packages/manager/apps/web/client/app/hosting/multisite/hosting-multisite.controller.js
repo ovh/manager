@@ -163,7 +163,6 @@ angular
           )}`,
           {
             domainName: digStatus.domain,
-            hosting: $scope.hosting.serviceName,
             ip: digStatus[recordType]?.ip,
           },
         );

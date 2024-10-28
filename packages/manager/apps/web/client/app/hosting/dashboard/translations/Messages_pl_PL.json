@@ -299,10 +299,10 @@
   "hosting_tab_DOMAINS_table_header_ownlog": "Rozdzielone logi",
   "hosting_tab_DOMAINS_table_header_ssl": "SSL",
   "hosting_tab_DOMAINS_table_header_diagnostic": "Diagnostyka",
-  "hosting_tab_DOMAINS_table_git_state_created": "Włączone",
+  "hosting_tab_DOMAINS_table_git_state_created": "Aktywny",
   "hosting_tab_DOMAINS_table_git_state_creating": "W realizacji",
   "hosting_tab_DOMAINS_table_git_state_deleting": "Trwa usuwanie",
-  "hosting_tab_DOMAINS_table_git_state_disabled": "Wyłączone",
+  "hosting_tab_DOMAINS_table_git_state_disabled": "Nieaktywny",
   "hosting_tab_DOMAINS_table_git_state_error": "Błąd",
   "hosting_tab_DOMAINS_table_git_state_deploying": "W realizacji",
   "hosting_tab_DOMAINS_table_git_state_initialError": "Błąd",
@@ -311,9 +311,9 @@
   "hosting_tab_DOMAINS_table_cdn_state_ACTIVE": "Aktywny",
   "hosting_tab_DOMAINS_table_cdn_state_NONE": "Wyłączony",
   "hosting_tab_DOMAINS_table_ssl_state_true": "Aktywny",
-  "hosting_tab_DOMAINS_diagnostique_tooltip_good_configuration": "Twoja domena {{domainName}} wskazuje poprawnie na Twój hosting {{hosting}} z IP {{ip}}",
-  "hosting_tab_DOMAINS_diagnostique_tooltip_not_good_configuration": "Twoja domena {{domainName}} nie wskazuje na hosting {{hosting}} z IP {{ip}}",
-  "hosting_tab_DOMAINS_diagnostique_tooltip_unconfigured": "Twoja domena {{domainName}} nie wskazuje aktualnie na żaden adres IP",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_good_configuration": "Domena {{domainName}} jest skierowana na adres IP {{ip}} Twojego hostingu",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_not_good_configuration": "Twoja domena {{domainName}} jest skierowana na adres IP {{ip}} innej usługi",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_unconfigured": "Rekord w strefie DNS nie działa. Nie znaleziono żadnej konfiguracji w strefie DNS",
   "hosting_tab_DOMAINS_table_ssl_state_false": "Wyłączony",
   "hosting_tab_DOMAINS_table_ssl_state_2": "Aktywny",
   "hosting_tab_DOMAINS_table_ssl_state_0": "Wyłączony",
@@ -1400,5 +1400,6 @@
   "hosting_dashboard_service_common_inactive": "Nieaktywny",
   "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Więcej"
+  "hosting_dashboard_tabs_dropdown": "Więcej",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Kliknij przycisk akcji, aby skojarzyć Git"
 }

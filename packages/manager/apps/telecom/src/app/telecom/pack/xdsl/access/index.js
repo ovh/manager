@@ -20,6 +20,8 @@ import profil from './profil';
 import rateLimit from './rateLimit';
 import XdslStatistics from './statistics';
 
+import service from './pack-xdsl-access.service';
+
 import './pack-xdsl-access.less';
 
 const moduleName = 'ovhManagerTelecomPackXdslAccess';
@@ -44,6 +46,7 @@ angular
     XdslStatistics,
     ngTranslateAsyncLoader,
   ])
-  .component('packXdslAccess', access);
+  .component('packXdslAccess', access)
+  .service('XdslAccessService', service);
 
 export default moduleName;

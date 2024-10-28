@@ -299,7 +299,7 @@
   "hosting_tab_DOMAINS_table_header_ownlog": "Separate logs",
   "hosting_tab_DOMAINS_table_header_ssl": "SSL",
   "hosting_tab_DOMAINS_table_header_diagnostic": "Diagnostic",
-  "hosting_tab_DOMAINS_table_git_state_created": "Enabled",
+  "hosting_tab_DOMAINS_table_git_state_created": "Active",
   "hosting_tab_DOMAINS_table_git_state_creating": "In progress",
   "hosting_tab_DOMAINS_table_git_state_deleting": "Deleting",
   "hosting_tab_DOMAINS_table_git_state_disabled": "Disabled",
@@ -311,9 +311,9 @@
   "hosting_tab_DOMAINS_table_cdn_state_ACTIVE": "Enabled",
   "hosting_tab_DOMAINS_table_cdn_state_NONE": "Disabled",
   "hosting_tab_DOMAINS_table_ssl_state_true": "Enabled",
-  "hosting_tab_DOMAINS_diagnostique_tooltip_good_configuration": "Your {{domainName}} domain points correctly to your {{hosting}} hosting plan with the IP {{ip}}",
-  "hosting_tab_DOMAINS_diagnostique_tooltip_not_good_configuration": "Your {{domainName}} domain does not point to your {{hosting}} hosting plan with the IP {{ip}}",
-  "hosting_tab_DOMAINS_diagnostique_tooltip_unconfigured": "Your {{domainName}} domain does not currently point to an IP address",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_good_configuration": "Your {{ domainName }} domain is configured on your hosting plan’s {{ ip }} IP address",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_not_good_configuration": "Your {{ domainName }} domain is configured to use the {{ ip }} IP address of a different service",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_unconfigured": "This record in your DNS zone isn’t working. Your DNS zone does not have any configuration.",
   "hosting_tab_DOMAINS_table_ssl_state_false": "Disabled",
   "hosting_tab_DOMAINS_table_ssl_state_2": "Enabled",
   "hosting_tab_DOMAINS_table_ssl_state_0": "Disabled",
@@ -1400,5 +1400,6 @@
   "hosting_dashboard_service_common_inactive": "Disabled",
   "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "More"
+  "hosting_dashboard_tabs_dropdown": "More",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Click the action button to associate Git"
 }
