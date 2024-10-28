@@ -25,6 +25,15 @@ export const Routes: any = [
         id: 'listing',
         path: urls.listing,
         ...lazyRouteConfig(() => import('@/pages/listing/Listing.page')),
+        children: [
+          {
+            id: 'listing_terminate',
+            path: urls.listing_terminate,
+            ...lazyRouteConfig(() =>
+              import('@/pages/terminate/terminate-hycu'),
+            ),
+          },
+        ],
         handle: {
           tracking: {
             pageName: 'listing',
@@ -74,8 +83,15 @@ export const Routes: any = [
                 path: urls.editName,
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/dashboard/general-information/edit/EditHycu.page'
+                    '@/pages/dashboard/general-information/edit-display-name/EditHycuDisplayName.page'
                   ),
+                ),
+              },
+              {
+                id: 'dashboard_terminate',
+                path: urls.dashboard_terminate,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/terminate/terminate-hycu'),
                 ),
               },
             ],

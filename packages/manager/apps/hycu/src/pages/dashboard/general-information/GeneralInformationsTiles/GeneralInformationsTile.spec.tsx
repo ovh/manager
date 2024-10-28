@@ -3,10 +3,11 @@ import { renderTestApp } from '@/utils/tests/renderTestApp';
 import '@testing-library/jest-dom';
 import { labels } from '@/utils/tests/init.i18n';
 import { LicenseStatus } from '@/types/hycu.details.interface';
+import { licensesHycu } from '@/mocks/licenseHycu/licenseHycu.data';
 
 describe('License Hycu general informations tile for dashboard test suite', () => {
   it('should show informations of services', async () => {
-    await renderTestApp('/4a26ef55-d46b-4b71-88c8-76ad71b154b4');
+    await renderTestApp(`/${licensesHycu[0].serviceName}`);
 
     await waitFor(
       () =>
@@ -40,7 +41,7 @@ describe('License Hycu general informations tile for dashboard test suite', () =
   });
 
   it('should show download license button when license is activated', async () => {
-    await renderTestApp('/4a26ef55-d46b-4b71-88c8-76ad71b154b4', {
+    await renderTestApp(`/${licensesHycu[0].serviceName}`, {
       licenseStatus: LicenseStatus.ACTIVATED,
     });
 
@@ -70,7 +71,7 @@ describe('License Hycu general informations tile for dashboard test suite', () =
   });
 
   it('should show wait for activation if license is not activated', async () => {
-    await renderTestApp('/4a26ef55-d46b-4b71-88c8-76ad71b154b4', {
+    await renderTestApp(`/${licensesHycu[0].serviceName}`, {
       licenseStatus: LicenseStatus.TO_ACTIVATE,
     });
 

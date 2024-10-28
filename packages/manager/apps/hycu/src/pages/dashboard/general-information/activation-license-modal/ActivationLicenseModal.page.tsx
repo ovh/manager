@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_TYPE,
@@ -56,8 +57,12 @@ export const ActivationHycuLicenseModal: React.FC<ActivationHycuLicenseModalProp
       addSuccess(t('hycu_dashboard_activation_license_success_message'), true);
       closeModal();
     },
-    onError: () => {
-      addError(t('hycu_dashboard_activation_license_error_message'));
+    onError: (error: AxiosError<{ message: string }>) => {
+      addError(
+        t('hycu_dashboard_activation_license_error_message', {
+          error: error.response.data?.message || error.message,
+        }),
+      );
     },
   });
   const onSubmit: SubmitHandler<FormValues> = (data) => {

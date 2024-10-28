@@ -9,7 +9,7 @@ import {
 import { AxiosError } from 'axios';
 import { useInvalidateCacheForALicenseHycu } from '@/hooks/api/license';
 
-export default function EditVeeamBackupDisplayNameModal() {
+export default function EditHycuDisplayNameModal() {
   const { serviceName } = useParams();
   const { addSuccess, addError } = useNotifications();
   const { t } = useTranslation('hycu/dashboard');

@@ -25,7 +25,7 @@ export const ManagerLink = ({
   const { t } = useTranslation('hycu');
   const { isAuthorized } = useAuthorizationIam(iamActions, urn, isIamTrigger);
 
-  if (isAuthorized) {
+  if (isAuthorized || iamActions === undefined) {
     return <OsdsLink {...restProps}>{children}</OsdsLink>;
   }
 
