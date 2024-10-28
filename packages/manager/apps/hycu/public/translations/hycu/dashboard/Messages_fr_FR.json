@@ -38,5 +38,16 @@
   "hycu_dashboard_upload_license_required": "Veuillez sélectionner une licence",
   "hycu_dashboard_drag_and_drop_attachment": "Glissez-Déposer une pièce jointe",
   "hycu_dashboard_accepted_formats": "Format accepté: .dat",
-  "hycu_dashboard_browse": "Parcourir"
+  "hycu_dashboard_browse": "Parcourir",
+  "hycu_dashboard_update_display_name_modal_headline": "Renommer la licence : {{serviceName}}",
+  "hycu_dashboard_update_display_name_input_label": "Nom",
+  "hycu_dashboard_update_display_name_description": "",
+  "hycu_dashboard_update_display_name_pattern_message": "Veuillez saisir un nom dont la longueur est comprise entre 1 et 32 caractères.",
+  "hycu_dashboard_update_display_name_success": "La description a été modifiée avec succès.",
+  "hycu_dashboard_edit_modal_error": "Une erreur est survenue: {{error}}.",
+  "hycu_dashboard_terminate_headline": "",
+  "hycu_dashboard_terminate_description": "",
+  "hycu_dashboard_terminate_input_label": "",
+  "hycu_dashboard_cancel_label": "",
+  "hycu_dashboard_confirm_label": ""
 }
