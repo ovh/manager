@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.21.15...@ovh-ux/manager-telecom@15.22.0) (2024-10-28)
+
+
+### Features
+
+* **xdsl.access:** add mail sending enable on access ([#13573](https://github.com/ovh/manager/issues/13573)) ([7ae64c5](https://github.com/ovh/manager/commit/7ae64c583e2ccab7b1ae593da144560b0a1bf11a))
+
+
+
+
+
 ## [15.21.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.21.14...@ovh-ux/manager-telecom@15.21.15) (2024-10-24)
 
 
