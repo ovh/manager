@@ -5,6 +5,7 @@ export default {
   bindings: {
     features: '<',
     goToMoveDialog: '<',
+    deletefeature: '<',
   },
   controller,
   template,

@@ -39,6 +39,8 @@ export const FEATURE_NAMES = {
   managedBareMetalDatacenter: 'managed-bare-metal',
 };
 
+export const DELETE_VRACK_SERVICE_FEATURE = 'vrack:delete';
+
 export const POLLING_INTERVAL = 500;
 export const ELIGIBLE_POLLING_INTERVAL = 1000;
 
