@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.65.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.64.1...@ovh-ux/manager-pci@6.65.0) (2024-10-28)
+
+
+### Bug Fixes
+
+* **pci:** not called savings plan check for us ([#13719](https://github.com/ovh/manager/issues/13719)) ([8b7353f](https://github.com/ovh/manager/commit/8b7353f2a6adad76ea3fa08009e04c8320dd89a2))
+
+
+### Features
+
+* **pci-object-storage:** 3az feature flipping ([#13521](https://github.com/ovh/manager/issues/13521)) ([a94d4a1](https://github.com/ovh/manager/commit/a94d4a1f8ce2740b7e26ca69c4db9c180d1de26e))
+* **pci:** localzone and instance creation tracking ([#13613](https://github.com/ovh/manager/issues/13613)) ([eedd4a7](https://github.com/ovh/manager/commit/eedd4a77ee809718355ef06c13f066da0b72d344))
+
+
+
+
+
 ## [6.64.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.64.0...@ovh-ux/manager-pci@6.64.1) (2024-10-24)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.19.6...@ovh-ux/manager-pci-rancher-app@1.20.0) (2024-10-28)
+
+
+### Features
+
+* **pci-rancher:** responsive layout on creation form([#13683](https://github.com/ovh/manager/issues/13683)) ([222008d](https://github.com/ovh/manager/commit/222008d6523d24a2c5ee73c196d5905da4792521))
+
+
+
+
+
 ## [1.19.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.19.5...@ovh-ux/manager-pci-rancher-app@1.19.6) (2024-10-24)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-databases-analytics-app",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "private": true,
   "description": "pci-databases-analytics",
   "repository": {
