@@ -44,13 +44,7 @@ describe('getListener', () => {
   });
 });
 describe('getLoadBalancerListeners', () => {
-  beforeEach(() => {
-    vi.mocked(v6.get).mockResolvedValue({ data: mockLoadBalancerListeners });
-  });
-
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
+  vi.mocked(v6.get).mockResolvedValue({ data: mockLoadBalancerListeners });
 
   it('should fetch load balancer for getLoadBalancerListeners success', async () => {
     const result = await getLoadBalancerListeners(

@@ -63,9 +63,6 @@ describe('NameStep', () => {
       edit: {
         label: firstCall.edit.label,
       },
-      cancel: {
-        label: firstCall.cancel.label,
-      },
     }).toEqual({
       isOpen: true,
       isLocked: false,
@@ -78,9 +75,6 @@ describe('NameStep', () => {
       },
       edit: {
         label: 'common_stepper_modify_this_step',
-      },
-      cancel: {
-        label: 'common_stepper_cancel_button_label',
       },
     });
   });
