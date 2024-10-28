@@ -177,7 +177,10 @@ describe('License Hycu activate license route test suite', () => {
         ).toBeVisible();
         expect(
           screen.queryAllByText(
-            labels.dashboard.hycu_dashboard_activation_license_error_message,
+            labels.dashboard.hycu_dashboard_activation_license_error_message.replace(
+              '{{error}}',
+              'Request failed with status code 500',
+            ),
           )[1],
         ).toBeVisible();
       },
