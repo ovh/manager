@@ -2,7 +2,6 @@ import {
   DashboardTile,
   DateFormat,
   Description,
-  Renew,
   useFormattedDate,
   useServiceDetails,
 } from '@ovh-ux/manager-react-components';
@@ -13,19 +12,23 @@ import {
   OsdsLink,
   OsdsSkeleton,
 } from '@ovhcloud/ods-components/react';
+import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigationGetUrl } from '@/hooks/shell/useNavigationGetUrl';
+import { subRoutes, urls } from '@/routes/routes.constant';
+import { ManagerLink } from '@/components/ManagerLink/ManagerLink.component';
 
 const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
   const { t } = useTranslation('hycu/dashboard');
+  const navigate = useNavigate();
 
   const { data: serviceDetails, isLoading } = useServiceDetails({
     resourceName: serviceName,
   });
 
   const renewDate = useFormattedDate({
-    dateString: (serviceDetails?.data.billing.renew as Renew)?.current.nextDate,
+    dateString: serviceDetails?.data.billing.nextBillingDate,
     format: DateFormat.display,
   });
 
@@ -48,6 +51,11 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
     '#/billing/autorenew',
     { searchText: serviceName },
   ]);
+
+  const openTerminateModal = () =>
+    navigate(
+      urls.dashboard_terminate.replace(subRoutes.serviceName, serviceName),
+    );
 
   return (
     <DashboardTile
@@ -119,17 +127,18 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
         {
           id: 'link_terminated',
           value: (
-            <OsdsLink color={ODS_THEME_COLOR_INTENT.primary}>
-              {t('hycu_dashboard_link_terminated')}
-              <span slot="end">
+            <ManagerLink
+              color={ODS_THEME_COLOR_INTENT.primary}
+              onClick={openTerminateModal}
+            >
+              <div className="flex items-center">
+                <div>{t('hycu_dashboard_link_terminate')}</div>
                 <OsdsIcon
-                  className="ml-3"
-                  size={ODS_ICON_SIZE.xs}
                   name={ODS_ICON_NAME.CHEVRON_RIGHT}
                   color={ODS_THEME_COLOR_INTENT.primary}
                 ></OsdsIcon>
-              </span>
-            </OsdsLink>
+              </div>
+            </ManagerLink>
           ),
         },
       ]}
