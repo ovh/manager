@@ -1,4 +1,4 @@
-import React, { waitFor, screen } from '@testing-library/react';
+import { waitFor, screen } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import { Description, DescriptionProps } from './description.component';
 

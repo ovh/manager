@@ -1,5 +1,3 @@
-import React from 'react';
-import { vitest } from 'vitest';
 import { fireEvent, screen, render, act } from '@testing-library/react';
 import { ActionBanner, ActionBannerProps } from './action-banner.component';
 
@@ -18,7 +16,7 @@ describe('ActionBanner tests', () => {
   });
 
   it('should have a working call to action button', () => {
-    const mockOnClick = vitest.fn();
+    const mockOnClick = jest.fn();
 
     renderComponent({
       message: 'hello world',

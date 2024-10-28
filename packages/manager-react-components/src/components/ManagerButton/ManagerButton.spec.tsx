@@ -1,5 +1,3 @@
-import React from 'react';
-import { vitest } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
 import { ManagerButton, ManagerButtonProps } from './ManagerButton';
 import { render } from '../../utils/test.provider';
@@ -7,7 +5,7 @@ import fr_FR from './translations/Messages_fr_FR.json';
 import { useAuthorizationIam } from '../../hooks/iam';
 import { IamAuthorizationResponse } from '../../hooks/iam/iam.interface';
 
-vitest.mock('../../hooks/iam');
+jest.mock('../../hooks/iam');
 
 const renderComponent = (props: ManagerButtonProps) => {
   return render(<ManagerButton {...props} />);
@@ -18,7 +16,7 @@ const mockedHook =
 
 describe('ManagerButton tests', () => {
   afterEach(() => {
-    vitest.resetAllMocks();
+    jest.resetAllMocks();
   });
 
   describe('should display manager button', () => {

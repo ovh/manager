@@ -1,20 +1,12 @@
-import { Mock, vitest } from 'vitest';
-import React, { waitFor, screen, fireEvent, act } from '@testing-library/react';
+import { waitFor, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { render } from '../../../utils/test.provider';
 import { DeleteModal } from './delete-modal.component';
+import '@testing-library/jest-dom';
 
-export const sharedProps: {
-  closeModal: Mock<unknown[], unknown>;
-  onConfirmDelete: Mock<unknown[], unknown>;
-  headline: 'headline';
-  description: 'description';
-  deleteInputLabel: 'deleteInputLabel';
-  cancelButtonLabel: 'cancelButtonLabel';
-  confirmButtonLabel: 'confirmButtonLabel';
-} = {
-  closeModal: vitest.fn(),
-  onConfirmDelete: vitest.fn(),
+export const sharedProps = {
+  closeModal: jest.fn(),
+  onConfirmDelete: jest.fn(),
   headline: 'headline',
   description: 'description',
   deleteInputLabel: 'deleteInputLabel',
@@ -93,7 +85,7 @@ describe('Delete Modal component', () => {
 
     await waitFor(() => expect(button).toBeEnabled());
 
-    act(async () => await userEvent.click(button));
+    await userEvent.click(button);
 
     await waitFor(() => {
       expect(sharedProps.onConfirmDelete).toHaveBeenCalled();

@@ -1,5 +1,3 @@
-import React from 'react';
-import { vitest } from 'vitest';
 import { waitFor, screen, fireEvent } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import { DashboardLayout } from './dashboard.component';
@@ -20,7 +18,7 @@ describe('DashboardLayout component', () => {
 
   it('clicks on back link triggers return fn', async () => {
     const backLinkLabel = 'back link';
-    const spy = vitest.fn();
+    const spy = jest.fn();
 
     render(
       <DashboardLayout

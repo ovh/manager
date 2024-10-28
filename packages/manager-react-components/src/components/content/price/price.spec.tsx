@@ -1,11 +1,10 @@
-import React from 'react';
 import { screen } from '@testing-library/react';
 import Price from './price.component';
 import { render } from '../../../utils/test.provider';
 import { IntervalUnitType, OvhSubsidiary } from '../../../enumTypes';
 
 describe('Price component', () => {
-  const renderPriceComponent = (props: React.ComponentProps<typeof Price>) => {
+  const renderPriceComponent = (props) => {
     render(<Price {...props} />);
   };
 
@@ -24,7 +23,6 @@ describe('Price component', () => {
       ...baseProps,
       value: 0,
       intervalUnit: IntervalUnitType.none,
-      locale: localeFr,
     };
     renderPriceComponent(props);
     const priceElement = screen.getByText('Inclus');

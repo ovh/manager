@@ -1,4 +1,3 @@
-import { vitest } from 'vitest';
 import { waitFor, screen } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import {
@@ -10,7 +9,7 @@ import {
 import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
 import { useAuthorizationIam } from '../../../hooks/iam';
 
-vitest.mock('../../../hooks/iam');
+jest.mock('../../../hooks/iam');
 
 const mockedHook =
   useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;

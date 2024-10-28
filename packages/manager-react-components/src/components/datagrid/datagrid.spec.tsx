@@ -1,5 +1,4 @@
-import { vitest } from 'vitest';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import {
   ColumnSort,
@@ -9,21 +8,16 @@ import {
 } from './datagrid.component';
 import DataGridTextCell from './text-cell.component';
 
-vitest.mock('react-i18next', async () => {
-  const originalModule = await vitest.importActual('react-i18next');
-
-  return {
-    ...originalModule,
-    useTranslation: () => {
-      return {
-        t: (str: string) => str,
-        i18n: {
-          changeLanguage: () => new Promise(() => {}),
-        },
-      };
-    },
-  };
-});
+jest.mock('react-i18next', () => ({
+  useTranslation: () => {
+    return {
+      t: (str: string) => str,
+      i18n: {
+        changeLanguage: () => new Promise(() => {}),
+      },
+    };
+  },
+}));
 
 const sampleColumns = [
   {
@@ -75,15 +69,6 @@ const DatagridTest = ({
 };
 
 describe('Paginated datagrid component', () => {
-  beforeAll(() => {
-    // Mock attachInternals method for all instances of custom elements
-    (HTMLElement.prototype.attachInternals as unknown) = vitest.fn(() => ({
-      // Mock the properties or methods used from internals
-      setValidity: vitest.fn(),
-      states: new Set(),
-    }));
-  });
-
   it('should display the correct number of columns', async () => {
     const { container } = render(
       <DatagridTest
@@ -112,7 +97,7 @@ describe('Paginated datagrid component', () => {
   });
 
   it('should call sort function when clicking columns header', async () => {
-    const handleSortChange = vitest.fn();
+    const handleSortChange = jest.fn();
     const SortTest = () => {
       const [sorting, setSorting] = useState({ id: 'a', desc: true });
       return (

@@ -17,7 +17,7 @@ import {
   OdsHTMLAnchorElementRel,
   OdsHTMLAnchorElementTarget,
 } from '@ovhcloud/ods-common-core';
-import { useTranslation } from 'react-i18next';
+import { ReactI18NextChild, useTranslation } from 'react-i18next';
 import { Links, LinkType } from '../../../typography';
 import '../translations/translation';
 
@@ -27,7 +27,7 @@ export interface GuideItem {
   download?: string;
   target?: OdsHTMLAnchorElementTarget;
   rel?: OdsHTMLAnchorElementRel;
-  label: React.ReactNode;
+  label: ReactI18NextChild | Iterable<ReactI18NextChild>;
 }
 
 export interface GuideButtonProps {

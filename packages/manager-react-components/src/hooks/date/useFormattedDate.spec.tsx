@@ -1,12 +1,11 @@
 import { renderHook } from '@testing-library/react';
-import { vitest } from 'vitest';
 import {
   useFormattedDate,
   defaultUnknownDateLabel,
   DateFormat,
 } from './useFormattedDate';
 
-vitest.mock('react-i18next', () => ({
+jest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
     i18n: {

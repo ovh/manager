@@ -1,4 +1,3 @@
-import { vitest } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import {
   getMacroRegion,
@@ -6,7 +5,7 @@ import {
   useTranslatedMicroRegions,
 } from './useTranslatedMicroRegions';
 
-vitest.mock('react-i18next', () => ({
+jest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
     i18n: { exists: () => true },
