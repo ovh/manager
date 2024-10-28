@@ -202,10 +202,15 @@ export const useUpdatePool = ({
       onError(cause);
     },
     onSuccess: async (pool: TLoadBalancerPool) => {
-      onSuccess(pool);
       await queryClient.invalidateQueries({
         queryKey: ['pools', projectId, region],
       });
+
+      // Invalidate cache for pool overview
+      await queryClient.invalidateQueries({
+        queryKey: ['pool', projectId, region, poolId],
+      });
+      onSuccess(pool);
     },
   });
 

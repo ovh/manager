@@ -130,7 +130,7 @@ export default function PoolOverview() {
                     color={ODS_THEME_COLOR_INTENT.primary}
                     size={ODS_BUTTON_SIZE.sm}
                     variant={ODS_BUTTON_VARIANT.ghost}
-                    href=""
+                    href={useHref('./edit-name')}
                   >
                     <OsdsIcon
                       size={ODS_ICON_SIZE.xxs}
