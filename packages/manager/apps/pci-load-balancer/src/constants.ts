@@ -468,3 +468,6 @@ export const POOL_HEALTH_MONITOR_TYPE = {
 
 export const HORIZON_LINK =
   'https://horizon.cloud.ovh.net/project/load_balancer';
+
+export const LOGS_FEATURE_AVAILABILITY_KEY =
+  'octavia-load-balancer:logs-to-customer';
