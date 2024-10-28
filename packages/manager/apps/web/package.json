@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "18.40.0",
+  "version": "18.41.0",
   "private": true,
   "description": "OVHcloud Web control panel.",
   "repository": {
@@ -26,8 +26,8 @@
     "@ovh-ux/manager-catalog-price": "^1.8.0",
     "@ovh-ux/manager-config": "^7.5.2",
     "@ovh-ux/manager-core": "^12.17.4",
-    "@ovh-ux/manager-email-domain": "^1.7.1",
-    "@ovh-ux/manager-emailpro": "^3.12.5",
+    "@ovh-ux/manager-email-domain": "^1.7.2",
+    "@ovh-ux/manager-emailpro": "^3.12.6",
     "@ovh-ux/manager-error-page": "^2.4.1",
     "@ovh-ux/manager-exchange": "^4.8.0",
     "@ovh-ux/manager-filters": "^1.1.1",
