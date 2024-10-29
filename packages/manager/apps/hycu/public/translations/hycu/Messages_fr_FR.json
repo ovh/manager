@@ -6,5 +6,8 @@
   "hycu_status_toActivate": "À activer",
   "hycu_status_processing": "En cours d'activation",
   "hycu_status_error": "Erreur d'activation",
+  "hycu_cta_cancel": "Annuler",
+  "hycu_cta_order": "Commander",
+  "hycu_cta_done": "Terminer",
   "common_iam_actions_message": "Vous ne disposez pas des permissions nécessaires pour effectuer cette action, veuillez contacter votre administrateur"
 }
