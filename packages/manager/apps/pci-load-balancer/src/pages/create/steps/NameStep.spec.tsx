@@ -148,7 +148,7 @@ describe('NameStep', () => {
 
         expect(queryByTestId('field')).toHaveAttribute(
           'error',
-          'common_field_error_pattern',
+          'common_field_error_maxlength',
         );
       });
     });
@@ -163,6 +163,7 @@ describe('NameStep', () => {
       act(() => {
         result.current.set.addon({ code: 'code' } as TAddon);
         result.current.set.region({ name: 'name' } as TRegion);
+        result.current.set.name('');
       });
 
       (useTracking as Mock).mockImplementation(() => ({

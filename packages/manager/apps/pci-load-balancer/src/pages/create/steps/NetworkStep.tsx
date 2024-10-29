@@ -18,7 +18,7 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCatalog } from '@ovh-ux/manager-pci-common';
 import {
@@ -38,7 +38,7 @@ import { useGetSubnetGateways } from '@/api/hook/useGateways';
 
 export const NetworkStep = (): JSX.Element => {
   const { t: tCommon } = useTranslation('pci-common');
-  const { t: tCreate } = useTranslation('create');
+  const { t: tCreate } = useTranslation('load-balancer/create');
 
   const { projectId } = useParams();
 
@@ -58,11 +58,10 @@ export const NetworkStep = (): JSX.Element => {
     store.region?.name,
     store.privateNetwork?.id,
   );
-  const { isPending: isSubnetGatewaysPending } = useGetSubnetGateways(
-    projectId,
-    store.region?.name,
-    store.subnet?.id,
-  );
+  const {
+    isPending: isSubnetGatewaysPending,
+    isFetching: isSubnetGatewaysFetching,
+  } = useGetSubnetGateways(projectId, store.region?.name, store.subnet?.id);
   const { data: catalog } = useCatalog();
 
   const { getFormattedHourlyCatalogPrice } = useCatalogPrice(5);
@@ -87,6 +86,10 @@ export const NetworkStep = (): JSX.Element => {
         : subnets;
     }, [subnets, store.publicIp]),
   ];
+
+  useEffect(() => {
+    store.set.subnet(subnetsList.length ? subnetsList[0] : null);
+  }, [subnetsList]);
 
   return (
     <StepComponent
@@ -129,47 +132,7 @@ export const NetworkStep = (): JSX.Element => {
       </OsdsText>
       {isPrivateNetworksPending ? (
         <div>
-          <OsdsSpinner inline />
-        </div>
-      ) : (
-        <OsdsFormField className="mt-8" inline error="">
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_TEXT_SIZE._100}
-            level={ODS_TEXT_LEVEL.subheading}
-            slot="label"
-          >
-            {tCreate('octavia_load_balancer_create_private_network_field')}
-          </OsdsText>
-          <OsdsSelect
-            className="w-[20rem]"
-            value={store.privateNetwork?.id}
-            error={false}
-            onOdsValueChange={(event) => {
-              const targetNetwork = (privateNetworks || []).find(
-                (ip) => ip.id === event.target.value,
-              );
-              store.set.privateNetwork(targetNetwork);
-            }}
-            inline
-          >
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_TEXT_SIZE._200}
-              slot="placeholder"
-            >
-              {tCreate('octavia_load_balancer_create_private_network_field')}
-            </OsdsText>
-            {privateNetworksList.map((network) => (
-              <OsdsSelectOption value={network.id} key={network.id}>
-                {network.name}
-              </OsdsSelectOption>
-            ))}
-          </OsdsSelect>
-        </OsdsFormField>
-      )}
-      {isSubnetsPending ? (
-        <div>
+          hello
           <OsdsSpinner inline />
         </div>
       ) : (
@@ -181,75 +144,120 @@ export const NetworkStep = (): JSX.Element => {
               level={ODS_TEXT_LEVEL.subheading}
               slot="label"
             >
-              {tCreate(
-                'octavia_load_balancer_create_private_network_field_subnet',
-              )}
+              {tCreate('octavia_load_balancer_create_private_network_field')}
             </OsdsText>
-
             <OsdsSelect
               className="w-[20rem]"
-              value={store.subnet?.id}
+              value={store.privateNetwork?.id}
               error={false}
               onOdsValueChange={(event) => {
-                const targetSubnet = subnetsList.find(
-                  (sub) => sub.id === event.target.value,
+                const targetNetwork = (privateNetworks || []).find(
+                  (ip) => ip.id === event.target.value,
                 );
-                store.set.subnet(targetSubnet);
+                store.set.privateNetwork(targetNetwork);
               }}
               inline
-              {...(subnetsList.length === 0 ? { disabled: true } : {})}
             >
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
                 size={ODS_TEXT_SIZE._200}
                 slot="placeholder"
               >
-                {tCreate(
-                  'octavia_load_balancer_create_private_network_field_subnet',
-                )}
+                {tCreate('octavia_load_balancer_create_private_network_field')}
               </OsdsText>
-              {subnetsList.map((subnet) => (
-                <OsdsSelectOption value={subnet.id} key={subnet.id}>
-                  {subnet.cidr}
+              {privateNetworksList.map((network) => (
+                <OsdsSelectOption value={network.id} key={network.id}>
+                  {network.name}
                 </OsdsSelectOption>
               ))}
             </OsdsSelect>
           </OsdsFormField>
-          {subnetsList.length === 0 &&
-            store.publicIp?.type !== FLOATING_IP_TYPE.NO_IP && (
-              <OsdsMessage
-                className="mt-8"
-                type={ODS_MESSAGE_TYPE.error}
-                color={ODS_THEME_COLOR_INTENT.error}
-              >
-                <div className="grid grid-cols-1 gap-1">
-                  <p>
-                    <OsdsText
-                      size={ODS_TEXT_SIZE._400}
-                      level={ODS_TEXT_LEVEL.body}
-                      color={ODS_THEME_COLOR_INTENT.error}
-                    >
-                      <span
-                        ref={networkTrack}
-                        dangerouslySetInnerHTML={{
-                          __html: tCreate(
-                            'octavia_load_balancer_create_private_network_no_subnet_text',
-                            {
-                              createPrivateNetworkLink: `${projectHref}/private-networks/new`,
-                              trackLabel:
-                                LOAD_BALANCER_CREATION_TRACKING.CREATE_PRIVATE_NETWORK,
-                            },
-                          ),
-                        }}
-                      ></span>
-                    </OsdsText>
-                  </p>
-                </div>
-              </OsdsMessage>
-            )}
+          {isSubnetsPending ? (
+            <div>
+              <OsdsSpinner inline />
+            </div>
+          ) : (
+            <>
+              <OsdsFormField className="mt-8" inline error="">
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  size={ODS_TEXT_SIZE._100}
+                  level={ODS_TEXT_LEVEL.subheading}
+                  slot="label"
+                >
+                  {tCreate(
+                    'octavia_load_balancer_create_private_network_field_subnet',
+                  )}
+                </OsdsText>
+
+                <OsdsSelect
+                  key={store.subnet?.id}
+                  className="w-[20rem]"
+                  value={store.subnet?.id}
+                  error={false}
+                  onOdsValueChange={(event) => {
+                    const targetSubnet = subnetsList.find(
+                      (sub) => sub.id === event.target.value,
+                    );
+                    store.set.subnet(targetSubnet);
+                  }}
+                  inline
+                  {...(subnetsList.length === 0 ? { disabled: true } : {})}
+                >
+                  <OsdsText
+                    color={ODS_THEME_COLOR_INTENT.text}
+                    size={ODS_TEXT_SIZE._200}
+                    slot="placeholder"
+                  >
+                    {tCreate(
+                      'octavia_load_balancer_create_private_network_field_subnet',
+                    )}
+                  </OsdsText>
+                  {subnetsList.map((subnet) => (
+                    <OsdsSelectOption value={subnet.id} key={subnet.id}>
+                      {subnet.cidr}
+                    </OsdsSelectOption>
+                  ))}
+                </OsdsSelect>
+              </OsdsFormField>
+              {subnetsList.length === 0 &&
+                store.publicIp?.type !== FLOATING_IP_TYPE.NO_IP && (
+                  <OsdsMessage
+                    className="mt-8"
+                    type={ODS_MESSAGE_TYPE.error}
+                    color={ODS_THEME_COLOR_INTENT.error}
+                  >
+                    <div className="grid grid-cols-1 gap-1">
+                      <p>
+                        <OsdsText
+                          size={ODS_TEXT_SIZE._400}
+                          level={ODS_TEXT_LEVEL.body}
+                          color={ODS_THEME_COLOR_INTENT.error}
+                        >
+                          <span
+                            ref={networkTrack}
+                            dangerouslySetInnerHTML={{
+                              __html: tCreate(
+                                'octavia_load_balancer_create_private_network_no_subnet_text',
+                                {
+                                  createPrivateNetworkLink: `${projectHref}/private-networks/new`,
+                                  trackLabel:
+                                    LOAD_BALANCER_CREATION_TRACKING.CREATE_PRIVATE_NETWORK,
+                                },
+                              ),
+                            }}
+                          ></span>
+                        </OsdsText>
+                      </p>
+                    </div>
+                  </OsdsMessage>
+                )}
+            </>
+          )}
         </>
       )}
-      {isSubnetGatewaysPending ? (
+
+      {isSubnetGatewaysFetching ? (
         <div>
           <OsdsSpinner inline />
         </div>
