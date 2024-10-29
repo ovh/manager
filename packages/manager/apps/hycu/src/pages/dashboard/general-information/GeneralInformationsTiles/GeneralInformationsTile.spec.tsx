@@ -7,10 +7,7 @@ import { labels } from '@/utils/tests/init.i18n';
 import { LicenseStatus } from '@/types/hycu.details.interface';
 import { licensesHycu } from '@/mocks/licenseHycu/licenseHycu.data';
 import { downloadTextAsFile } from '@/utils/downloadTextAsFile';
-import {
-  PREFIX_LICENSE_FILE_NAME,
-  SUFFIX_LICENSE_FILE_NAME,
-} from '@/constants';
+import { LICENSE_FILE_NAME_TEMPLATE } from '@/constants';
 
 describe('License Hycu general informations tile for dashboard test suite', () => {
   it('should show informations of services', async () => {
@@ -132,7 +129,10 @@ describe('License Hycu general informations tile for dashboard test suite', () =
     await waitFor(
       () =>
         expect(downloadTextAsFile).toHaveBeenCalledWith(
-          `${PREFIX_LICENSE_FILE_NAME}${licensesHycu[0].serviceName}${SUFFIX_LICENSE_FILE_NAME}`,
+          LICENSE_FILE_NAME_TEMPLATE.replace(
+            '{serviceName}',
+            licensesHycu[0].serviceName,
+          ),
           'my license content',
         ),
       { timeout: 20_000 },
