@@ -29,7 +29,7 @@ import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
 import { useGetFloatingIps } from '@/api/hook/useFloatingIps';
 
 export const IpStep = (): JSX.Element => {
-  const { t: tCreate } = useTranslation('create');
+  const { t: tCreate } = useTranslation('load-balancer/create');
   const { t: tCommon } = useTranslation('pci-common');
 
   const { trackStep } = useTrackStep();
@@ -182,13 +182,26 @@ export const IpStep = (): JSX.Element => {
                 size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
-                {tCreate('octavia_load_balancer_create_floating_ip_new_price', {
-                  price: getFormattedHourlyCatalogPrice(
-                    catalog?.addons.filter((addon) =>
-                      addon.planCode.match(AGORA_FLOATING_IP_REGEX),
-                    )[0].pricings[0].price,
-                  ),
-                })}
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: tCreate(
+                      'octavia_load_balancer_create_floating_ip_new_price',
+                      {
+                        price: `
+                          <b>
+                            ${
+                              getFormattedHourlyCatalogPrice(
+                                catalog?.addons.filter((addon) =>
+                                  addon.planCode.match(AGORA_FLOATING_IP_REGEX),
+                                )[0].pricings[0].price,
+                              ).split('/')[0]
+                            }
+                          </b>
+                        `,
+                      },
+                    ),
+                  }}
+                ></span>
                 {tCreate(
                   'octavia_load_balancer_create_floating_ip_new_price_interval',
                 )}

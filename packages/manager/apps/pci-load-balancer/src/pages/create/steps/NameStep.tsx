@@ -19,6 +19,7 @@ import { Translation, useTranslation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import { useState } from 'react';
 import {
   LOAD_BALANCER_CREATION_TRACKING,
   LOAD_BALANCER_NAME_REGEX,
@@ -30,7 +31,9 @@ import { getAllLoadBalancersQueryKey } from '@/api/hook/useLoadBalancer';
 
 export const NameStep = (): JSX.Element => {
   const { t: tCommon } = useTranslation('pci-common');
-  const { t: tCreate } = useTranslation('create');
+  const { t: tCreate } = useTranslation('load-balancer/create');
+
+  const [didTryCreate, setDidTryCreate] = useState(false);
 
   const { projectId } = useParams();
   const { trackClick, trackPage } = useTracking();
@@ -44,9 +47,11 @@ export const NameStep = (): JSX.Element => {
   );
 
   const navigate = useNavigate();
-  const { addSuccess, addError } = useNotifications();
+  const { addError, addInfo } = useNotifications();
 
   const create = async () => {
+    setDidTryCreate(true);
+
     trackClick({
       name: LOAD_BALANCER_CREATION_TRACKING.SUBMIT,
       type: 'action',
@@ -64,8 +69,8 @@ export const NameStep = (): JSX.Element => {
           name: LOAD_BALANCER_CREATION_TRACKING.SUCCESS,
           type: 'navigation',
         });
-        addSuccess(
-          <Translation ns="create">
+        addInfo(
+          <Translation ns="load-balancer/create">
             {(_t) => _t('octavia_load_balancer_create_banner')}
           </Translation>,
           false,
@@ -81,7 +86,7 @@ export const NameStep = (): JSX.Element => {
           type: 'navigation',
         });
         addError(
-          <Translation ns="octavia-load-balancer">
+          <Translation ns="load-balancer">
             {(_t) => (
               <span
                 dangerouslySetInnerHTML={{
@@ -121,13 +126,17 @@ export const NameStep = (): JSX.Element => {
       order={6}
     >
       <OsdsFormField
-        className="mt-8"
+        className="mt-8 w-[20rem]"
         inline
-        error={
-          !store.name.match(LOAD_BALANCER_NAME_REGEX) || store.name.length > 70
-            ? tCommon('common_field_error_pattern')
-            : ''
-        }
+        error={(() => {
+          if (store.name.length && !store.name.match(LOAD_BALANCER_NAME_REGEX))
+            return tCommon('common_field_error_pattern');
+          if (store.name.length > 70)
+            return tCommon('common_field_error_maxlength', {
+              maxlength: 70,
+            });
+          return '';
+        })()}
       >
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
@@ -152,26 +161,38 @@ export const NameStep = (): JSX.Element => {
             store.set.name(event.target.value as string)
           }
           className={
-            !store.name.match(LOAD_BALANCER_NAME_REGEX) ||
+            (store.name.length &&
+              !store.name.match(LOAD_BALANCER_NAME_REGEX)) ||
             store.name.length > 70
               ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
               : 'border-color-[var(--ods-color-default-200)] bg-white'
           }
         />
       </OsdsFormField>
-      <div className="mt-8">
-        <OsdsButton inline color={ODS_THEME_COLOR_INTENT.info} onClick={create}>
-          {tCreate('octavia_load_balancer_create_title')}
-        </OsdsButton>
-        <OsdsButton
-          inline
-          variant={ODS_BUTTON_VARIANT.ghost}
-          color={ODS_THEME_COLOR_INTENT.info}
-          onClick={cancel}
-        >
-          {tCommon('common_cancel')}
-        </OsdsButton>
-      </div>
+      {!didTryCreate && (
+        <div className="mt-8">
+          <OsdsButton
+            inline
+            color={ODS_THEME_COLOR_INTENT.info}
+            onClick={create}
+            {...((store.name.length &&
+              !store.name.match(LOAD_BALANCER_NAME_REGEX)) ||
+            store.name.length > 70
+              ? { disabled: true }
+              : {})}
+          >
+            {tCreate('octavia_load_balancer_create_title')}
+          </OsdsButton>
+          <OsdsButton
+            inline
+            variant={ODS_BUTTON_VARIANT.ghost}
+            color={ODS_THEME_COLOR_INTENT.info}
+            onClick={cancel}
+          >
+            {tCommon('common_cancel')}
+          </OsdsButton>
+        </div>
+      )}
     </StepComponent>
   );
 };
