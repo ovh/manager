@@ -48,6 +48,8 @@ export default function TableContainer({
     />
   );
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const columns: ColumnDef<RancherService>[] = useMemo(
     () => [
       {
@@ -72,6 +74,8 @@ export default function TableContainer({
         id: 'numberOfCpu',
         header: t('numberOfCpu'),
         accessorFn: (row) => row.currentState.usage?.orchestratedVcpus,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         cell: DisplayCellNumber,
       },
       {
