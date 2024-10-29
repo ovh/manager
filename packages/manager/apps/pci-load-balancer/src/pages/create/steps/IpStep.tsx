@@ -189,7 +189,6 @@ export const IpStep = (): JSX.Element => {
                     )[0].pricings[0].price,
                   ),
                 })}
-
                 {tCreate(
                   'octavia_load_balancer_create_floating_ip_new_price_interval',
                 )}

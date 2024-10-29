@@ -1,5 +1,13 @@
-import { Translation, useTranslation } from 'react-i18next';
-import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  // Translation,
+  useTranslation,
+  // Trans
+} from 'react-i18next';
+import {
+  OsdsMessage,
+  OsdsText,
+  OsdsLink,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_MESSAGE_TYPE,
   ODS_TEXT_LEVEL,
@@ -79,29 +87,56 @@ export const InstanceStep = (): JSX.Element => {
         hint: `${tCommon('common_stepper_optional_label')}`,
       }}
     >
-      <Translation ns="create">
-        {(_t) => (
-          <OsdsText
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="mb-4"
-          >
-            <span
-              ref={instanceTrack}
-              dangerouslySetInnerHTML={{
-                __html: _t('octavia_load_balancer_create_instance_intro', {
-                  linkUrl:
-                    GETTING_STARTED_LINK[me?.ovhSubsidiary] ||
-                    GETTING_STARTED_LINK.DEFAULT,
-                  trackLabel:
-                    LOAD_BALANCER_CREATION_TRACKING.GO_TO_INSTANCE_DOCUMENTATION,
-                }),
-              }}
-            ></span>
-          </OsdsText>
-        )}
-      </Translation>
+      {/* <Translation ns="create"> */}
+      {/*  {(tr) => ( */}
+      {/*    <OsdsText */}
+      {/*      size={ODS_TEXT_SIZE._400} */}
+      {/*      level={ODS_TEXT_LEVEL.body} */}
+      {/*      color={ODS_THEME_COLOR_INTENT.text} */}
+      {/*      className="mb-4" */}
+      {/*    > */}
+      {/*      <span ref={instanceTrack}> */}
+      {/*        <Trans */}
+      {/*          t={tr} */}
+      {/*          i18nKey="octavia_load_balancer_create_instance_intro" */}
+      {/*          values={{ */}
+      {/*            linkUrl: */}
+      {/*              GETTING_STARTED_LINK[me?.ovhSubsidiary] || */}
+      {/*              GETTING_STARTED_LINK.DEFAULT, */}
+      {/*            trackLabel: */}
+      {/*              LOAD_BALANCER_CREATION_TRACKING.GO_TO_INSTANCE_DOCUMENTATION, */}
+      {/*          }} */}
+      {/*          components={{ */}
+      {/*            a: <OsdsLink color={ODS_THEME_COLOR_INTENT.info} />, */}
+      {/*          }} */}
+      {/*        ></Trans> */}
+      {/*      </span> */}
+      {/*    </OsdsText> */}
+      {/*  )} */}
+      {/* </Translation> */}
+      {/* <Translation ns="create"> */}
+      {/*  {(_t) => ( */}
+      {/*    <OsdsText */}
+      {/*      size={ODS_TEXT_SIZE._400} */}
+      {/*      level={ODS_TEXT_LEVEL.body} */}
+      {/*      color={ODS_THEME_COLOR_INTENT.text} */}
+      {/*      className="mb-4" */}
+      {/*    > */}
+      {/*      <span */}
+      {/*        ref={instanceTrack} */}
+      {/*        dangerouslySetInnerHTML={{ */}
+      {/*          __html: _t('octavia_load_balancer_create_instance_intro', { */}
+      {/*            linkUrl: */}
+      {/*              GETTING_STARTED_LINK[me?.ovhSubsidiary] || */}
+      {/*              GETTING_STARTED_LINK.DEFAULT, */}
+      {/*            trackLabel: */}
+      {/*              LOAD_BALANCER_CREATION_TRACKING.GO_TO_INSTANCE_DOCUMENTATION, */}
+      {/*          }), */}
+      {/*        }} */}
+      {/*      ></span> */}
+      {/*    </OsdsText> */}
+      {/*  )} */}
+      {/* </Translation> */}
       <OsdsMessage
         className="mt-8"
         type={ODS_MESSAGE_TYPE.info}

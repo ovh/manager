@@ -7,7 +7,9 @@ export const useTranslatedLinkReference = () => {
 
   useEffect(() => {
     if (ref.current) {
-      const anchors = ref.current.querySelectorAll<HTMLAnchorElement>('a');
+      const anchors = ref.current.querySelectorAll<HTMLAnchorElement>(
+        'a,osds-link',
+      );
       anchors.forEach((anchor) => {
         const { trackName, trackOn, trackType, handled } = anchor.dataset;
         if (!handled) {
