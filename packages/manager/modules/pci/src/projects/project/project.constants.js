@@ -159,7 +159,7 @@ export const COMMUNITY_LINKS = [
   {
     term: 'pci_projects_project_community_discord_term',
     description: 'pci_projects_project_community_discord_description',
-    href: 'https://discord.com/invite/C9VVJZxxd6',
+    href: 'https://discord.gg/ovhcloud',
     regions: ['EU', 'CA'],
     trackingName: `${PROJECT_PAGE_TRACKING_NAME}::community-discord`,
   },
