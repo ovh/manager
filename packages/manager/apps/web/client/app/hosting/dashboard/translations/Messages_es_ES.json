@@ -307,7 +307,7 @@
   "hosting_tab_DOMAINS_table_git_state_deploying": "En curso",
   "hosting_tab_DOMAINS_table_git_state_initialError": "Error",
   "hosting_tab_DOMAINS_table_git_state_tooltip_lastDeploy": "Consultar la información del último despliegue",
-  "hosting_tab_DOMAINS_table_git_state_tooltip_limitedNumberPath": "La asociación GIT solo puede tener lugar en un único directorio",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Haga clic en el botón de acción para asociar Git",
   "hosting_tab_DOMAINS_table_cdn_state_ACTIVE": "Activado",
   "hosting_tab_DOMAINS_table_cdn_state_NONE": "Desactivado",
   "hosting_tab_DOMAINS_table_ssl_state_true": "Activado",
@@ -1400,6 +1400,5 @@
   "hosting_dashboard_service_common_inactive": "Inactivo",
   "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo.",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Más",
-  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Haga clic en el botón de acción para asociar Git"
+  "hosting_dashboard_tabs_dropdown": "Más"
 }

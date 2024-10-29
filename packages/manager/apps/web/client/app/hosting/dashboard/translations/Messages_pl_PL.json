@@ -307,7 +307,7 @@
   "hosting_tab_DOMAINS_table_git_state_deploying": "W realizacji",
   "hosting_tab_DOMAINS_table_git_state_initialError": "Błąd",
   "hosting_tab_DOMAINS_table_git_state_tooltip_lastDeploy": "Wyświetl informacje o ostatnim wdrożeniu.",
-  "hosting_tab_DOMAINS_table_git_state_tooltip_limitedNumberPath": "Powiązanie GIT może zostać wykonane tylko w jednym katalogu.",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Kliknij przycisk akcji, aby skojarzyć Git",
   "hosting_tab_DOMAINS_table_cdn_state_ACTIVE": "Aktywny",
   "hosting_tab_DOMAINS_table_cdn_state_NONE": "Wyłączony",
   "hosting_tab_DOMAINS_table_ssl_state_true": "Aktywny",
@@ -1400,6 +1400,5 @@
   "hosting_dashboard_service_common_inactive": "Nieaktywny",
   "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Więcej",
-  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Kliknij przycisk akcji, aby skojarzyć Git"
+  "hosting_dashboard_tabs_dropdown": "Więcej"
 }
