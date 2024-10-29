@@ -4,18 +4,28 @@ import DatacentreGenerationInformationTile from '@/components/tiles/datacentre-g
 import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import { useManagedVcdDatacentre } from '@/data/hooks/useManagedVcdDatacentres';
 import Loading from '@/components/loading/Loading.component';
+import Errors from '@/components/error/Error.component';
 
 export default function DatacentresGeneralInformationPage() {
   const { id, vdcId } = useParams();
-  const { data: vcdOrganization, isLoading } = useManagedVcdOrganization({
+  const {
+    data: vcdOrganization,
+    isLoading: isLoadingVcd,
+    error: vcdError,
+  } = useManagedVcdOrganization({
     id,
   });
   const {
     data: vcdDatacentre,
-    isLoading: isLoadingVdc,
+    isLoading: isLoadingDatacentre,
+    error: datacentreError,
   } = useManagedVcdDatacentre(id, vdcId);
 
-  if (isLoading || isLoadingVdc) {
+  if (vcdError || datacentreError) {
+    return <Errors error={vcdError?.response || datacentreError?.response} />;
+  }
+
+  if (isLoadingVcd || isLoadingDatacentre) {
     return (
       <div>
         <Loading />
