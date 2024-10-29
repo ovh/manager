@@ -2,11 +2,11 @@ import React from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import Errors from '@/components/error/Error.component';
 import Loading from '@/components/loading/Loading.component';
-import BillingTile from '@/components/tiles/billing-tile/BillingTile.component';
+import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import OrganizationGenerationInformationTile from '@/components/tiles/organization-general-information-tile/OrganizationGeneralInformationTile.component';
 import OrganizationOptionsTile from '@/components/tiles/organization-options-tile/OrganizationOptionsTile.component';
-import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
-import DataProtectionTile from '@/components/tiles/organization-data-tile/OrganizationDataProtectionTile.component';
+import OrganizationDataProtectionTile from '@/components/tiles/organization-data-tile/OrganizationDataProtectionTile.component';
+import OrganizationServiceManagementTile from '@/components/tiles/organization-service-tile/OrganizationServiceManagementTile.component';
 
 function GeneralInformation() {
   const { id } = useParams();
@@ -43,10 +43,12 @@ function GeneralInformation() {
         <OrganizationOptionsTile
           isLicenseActive={!!vcdOrganization.data?.currentState?.spla}
         />
-        <DataProtectionTile vcdOrganization={vcdOrganization.data} />
+        <OrganizationDataProtectionTile
+          vcdOrganization={vcdOrganization.data}
+        />
       </div>
       <div>
-        <BillingTile id={id} />
+        <OrganizationServiceManagementTile />
       </div>
       <Outlet />
     </div>
