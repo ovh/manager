@@ -151,7 +151,7 @@ export default function PoolMemberList() {
                     label: t(
                       'octavia_load_balancer_pools_detail_members_protocol_port',
                     ),
-                    comparators: FilterCategories.String,
+                    comparators: FilterCategories.Numeric,
                   },
                 ]}
                 onAddFilter={(addedFilter, column) => {
