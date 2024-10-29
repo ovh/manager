@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TKube } from '@/types';
 import queryClient from '@/queryClient';
-import { paginateResults } from '@/helpers';
+import { paginateResults, REFETCH_INTERVAL_DURATION } from '@/helpers';
 import { STATUS } from '@/constants';
 import {
   addOidcProvider,
@@ -44,6 +44,9 @@ export const useAllKube = (projectId: string) =>
   useQuery({
     queryKey: getAllKubeQueryKey(projectId),
     queryFn: (): Promise<Required<TKube[]>> => getAllKube(projectId),
+    refetchOnMount: 'always',
+    refetchOnReconnect: 'always',
+    refetchInterval: refetchIntervalTime,
   });
 
 export const useKubes = (
@@ -58,7 +61,7 @@ export const useKubes = (
     error: allKubeError,
     isLoading: isAllKubeLoading,
     isPending: isAllKubePending,
-  } = useAllKube(projectId);
+  } = useAllKube(projectId, REFETCH_INTERVAL_DURATION);
 
   const {
     data: privateNetworks,
@@ -117,6 +120,7 @@ export const useKubernetesCluster = (projectId: string, kubeId: string) =>
         }),
       };
     },
+    refetchInterval: refetchIntervalTime,
   });
 
 type RenameKubernetesClusterProps = {
@@ -213,7 +217,11 @@ export const useUpdateKubePolicy = ({
   };
 };
 
-export const useKubeDetail = (projectId: string, kubeId: string) => {
+export const useKubeDetail = (
+  projectId: string,
+  kubeId: string,
+  refetchInterval,
+) => {
   const { t } = useTranslation('listing');
 
   const {
@@ -221,7 +229,7 @@ export const useKubeDetail = (projectId: string, kubeId: string) => {
     error: kubeError,
     isLoading: isKubeLoading,
     isPending: isKubePending,
-  } = useKubernetesCluster(projectId, kubeId);
+  } = useKubernetesCluster(projectId, kubeId, refetchInterval);
 
   const {
     data: privateNetworks,
