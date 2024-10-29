@@ -11,7 +11,7 @@ import { pluginData } from '@/api/data/plugins';
 
 export type AdmissionPluginsProps = {
   isProcessing: boolean;
-  plugins: typeof pluginData;
+  plugins?: typeof pluginData;
 };
 
 const AdmissionPlugins = ({ isProcessing, plugins }: AdmissionPluginsProps) => {
@@ -21,7 +21,7 @@ const AdmissionPlugins = ({ isProcessing, plugins }: AdmissionPluginsProps) => {
 
   return (
     <div className="mb-4 flex flex-wrap justify-between gap-4">
-      {plugins.map((plugin) => (
+      {plugins?.map((plugin) => (
         <div
           className="flex w-full items-baseline justify-between "
           key={plugin.name}

@@ -1,7 +1,16 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { TKube } from '@/types';
+import { TAdmissionPlugin, TKube } from '@/types';
 
-export const pluginData = [
+type PluginsData = {
+  name: string;
+  label: string;
+  value?: string;
+  disabled?: boolean;
+  tip?: string;
+  state: string;
+};
+
+export const pluginData: PluginsData[] = [
   {
     name: 'NodeRestriction',
     label: 'Plugin Node Restriction',
@@ -31,3 +40,33 @@ export const updateAdmissionPlugin = ({
   const url = `/cloud/project/${projectId}/kube/${kubeId}/customization`;
   return v6.put(url, customization);
 };
+
+/**
+ * Checks if a plugin already exists in the plugin data.
+ * @param name - The name of the plugin to check.
+ * @returns - The plugin object if it exists, otherwise undefined.
+ */
+export const pluginAlreadyExists = (name: string): PluginsData | undefined =>
+  pluginData.find((plugin) => name === plugin.name);
+
+/**
+ * Maps an array of admission plugins to an object with additional properties.
+ * @param admissionPlugins - The admission plugins object.
+ * @returns - An array of mapped plugin objects.
+ */
+export const mapPluginsFromArrayToObject = (
+  admissionPlugins: TAdmissionPlugin,
+): PluginsData[] =>
+  Object.entries(admissionPlugins).flatMap(([state, names]) =>
+    names.map((name) => {
+      const existingPlugin = pluginAlreadyExists(name);
+      return {
+        name,
+        label: existingPlugin?.label || name,
+        state,
+        tip: existingPlugin?.tip || null,
+        value: existingPlugin?.value || name,
+        disabled: existingPlugin?.disabled ?? false,
+      };
+    }),
+  );

@@ -94,7 +94,7 @@ const AdmissionPluginsModal = () => {
     const initialState = { enabled: [], disabled: [] };
 
     const reorderPlugin = pluginData.reduce((acc, item) => {
-      acc[item.state].push(item.name);
+      acc[item.state] = [...acc[item.state], item.name];
       return acc;
     }, initialState);
 
@@ -108,9 +108,7 @@ const AdmissionPluginsModal = () => {
     <OsdsModal
       dismissible
       headline={t('kube_service_cluster_admission_plugins_mutation')}
-      onOdsModalClose={() => {
-        onClose();
-      }}
+      onOdsModalClose={onClose}
     >
       {isPending || isMutationUpdating ? (
         <div className="text-center my-10" data-testid="wrapper">
@@ -128,7 +126,7 @@ const AdmissionPluginsModal = () => {
           </OsdsMessage>
           <div className="my-10">
             {!isPending &&
-              pluginData?.map((plugin, i) => (
+              pluginData?.map((plugin, index) => (
                 <div key={plugin.name} className="my-8 mx-4">
                   <div className="flex  my-3, justify-between">
                     <OsdsTooltip role="tooltip">
@@ -179,7 +177,7 @@ const AdmissionPluginsModal = () => {
                       )}
                     </OsdsSwitch>
                   </div>
-                  {i !== plugins.length - 1 && <OsdsDivider separator />}
+                  {index !== plugins.length - 1 && <OsdsDivider separator />}
                 </div>
               ))}
           </div>

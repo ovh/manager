@@ -10,7 +10,7 @@ export type TKube = {
   version: string;
   nextUpgradeVersions: string[];
   kubeProxyMode: string;
-  customization: TClusterCustomization;
+  customization: TClusterCustomization | null;
   status: string;
   updatePolicy: string;
   isUpToDate: boolean;

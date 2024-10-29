@@ -12,7 +12,7 @@ export const useUpdateAdmissionPlugin = ({
   kubeId,
 }) => {
   const mutation = useMutation({
-    mutationFn: async (customization: TKube['customization']) =>
+    mutationFn: (customization: TKube['customization']) =>
       updateAdmissionPlugin({ projectId, kubeId, customization }),
     onError,
     onSuccess: async () => {

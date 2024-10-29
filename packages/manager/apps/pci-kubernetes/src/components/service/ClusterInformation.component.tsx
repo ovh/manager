@@ -69,7 +69,6 @@ export default function ClusterInformation({
           <AdmissionPlugins
             plugins={kubeDetail.plugins}
             isProcessing={isProcessing(kubeDetail.status)}
-            {...kubeDetail.customization.apiServer.admissionPlugins}
           />
         </TileLine>
 
