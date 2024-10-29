@@ -28,7 +28,7 @@ type TState = {
 
 export const RegionStep = (): JSX.Element => {
   const { t: tCommon } = useTranslation('pci-common');
-  const { t: tCreate } = useTranslation('create');
+  const { t: tCreate } = useTranslation('load-balancer/create');
   const { t: tRegionsList } = useTranslation('regions-list');
 
   const { projectId } = useParams();
