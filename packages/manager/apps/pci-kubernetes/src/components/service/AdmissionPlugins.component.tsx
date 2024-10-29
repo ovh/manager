@@ -50,7 +50,6 @@ const AdmissionPlugins = ({ isProcessing, plugins }: AdmissionPluginsProps) => {
         </div>
       ))}
       <OsdsLink
-        // FIXME ODSDS 18
         disabled={isProcessing || undefined}
         onClick={() => {
           if (!isProcessing) {

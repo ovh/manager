@@ -1,9 +1,30 @@
 import { useEffect } from 'react';
 import { BreakPoints } from '@/types';
 
-// FIXME with next version of Ods 18
+const getPopup = () =>
+  document
+    .querySelector('osds-modal')
+    ?.shadowRoot?.querySelector('dialog > div > div.popup') as HTMLElement;
+
 /**
- * Hook to make a modal responsive based on the screen size.
+ * Mutation observer to detect changes in the DOM.
+ */
+const getObserver = (applyStyles) =>
+  new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList' || mutation.type === 'attributes') {
+        const popup = getPopup();
+
+        if (popup) {
+          applyStyles(popup);
+          window.addEventListener('resize', () => applyStyles(popup));
+        }
+      }
+    });
+  });
+
+/**
+ * Hook to make a modal responsive based on the screen size. To fix in next version of osds 18
  *
  * @param {string} size - The maximum size of the modal when the screen width is greater than `BreakPoints.SM`.
  *
@@ -38,35 +59,14 @@ export const useResponsiveModal = (size) => {
       const styles = getStyles();
       Object.assign(element.style, styles);
     };
-    /**
-     * Mutation observer to detect changes in the DOM.
-     */
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'childList' || mutation.type === 'attributes') {
-          const popup = document
-            .querySelector('osds-modal')
-            ?.shadowRoot?.querySelector(
-              'dialog > div > div.popup',
-            ) as HTMLElement;
-
-          if (popup) {
-            applyStyles(popup);
-            window.addEventListener('resize', () => applyStyles(popup));
-          }
-        }
-      });
-    });
-
+    const observer = getObserver(applyStyles);
     observer.observe(document.body, {
       childList: true,
       subtree: true,
       attributes: true,
     });
 
-    const initialPopup = document
-      .querySelector('osds-modal')
-      ?.shadowRoot?.querySelector('dialog > div > div.popup') as HTMLElement;
+    const initialPopup = getPopup();
 
     if (initialPopup) {
       applyStyles(initialPopup);

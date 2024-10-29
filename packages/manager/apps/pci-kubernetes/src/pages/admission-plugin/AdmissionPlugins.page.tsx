@@ -155,13 +155,11 @@ const AdmissionPluginsModal = () => {
                           handleChange(e, plugin.name);
                         }
                       }}
-                      // FIXME ODS18
                       disabled={plugin.disabled || undefined}
                     >
                       <OsdsSwitchItem
                         color="primary"
                         value="enabled"
-                        // FIXME : fix this with ODS 18
                         checked={plugin.state === 'enabled' || undefined}
                       >
                         {t(
@@ -172,10 +170,7 @@ const AdmissionPluginsModal = () => {
                         <OsdsSwitchItem
                           color="primary"
                           value="disabled"
-                          checked={
-                            // FIXME : fix this with ODS 18
-                            plugin.state === 'disabled' || undefined
-                          }
+                          checked={plugin.state === 'disabled' || undefined}
                         >
                           {t(
                             'kube_service_cluster_admission_plugins_to_desactivate',
