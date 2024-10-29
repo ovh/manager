@@ -4,10 +4,12 @@ import style from './style.module.scss';
 import SidebarLinkTag from './SidebarLinkTag';
 import { Node } from './navigation-tree/node';
 import StaticLink from '@/container/nav-reshuffle/sidebar/StaticLink';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { OsdsIcon, OsdsSkeleton, OsdsSpinner } from '@ovhcloud/ods-components/react';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_SKELETON_SIZE,
+  ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 
@@ -19,6 +21,7 @@ export type SidebarLinkProps = {
   handleOnEnter?(node: Node): void;
   id?: string;
   isShortText?: boolean;
+  isLoading?: boolean;
 };
 
 const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
@@ -29,6 +32,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   handleOnEnter = () => { },
   id = '',
   isShortText = false,
+  isLoading = false,
 }: SidebarLinkProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
 
@@ -58,9 +62,12 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       data-testid={id}
       role="button"
     >
-      <span className='flex gap-2 align-items-center'>
-        <SvgIconWrapper name={node.svgIcon} height={32} width={32} className='p-1 fill-white block' />
-        {!isShortText && <span>{t(node.translation)}</span>}
+      <span className='flex gap-2 align-items-center w-full'>
+        <SvgIconWrapper name={node.svgIcon} height={32} width={32} className={`p-1 fill-white transition-all duration-200O shrink-0 ${isLoading && isShortText ? 'hidden' : 'block'}`} />
+        {isShortText &&
+          <OsdsSpinner className={`h-[32px] w-[32px] transition-all duration-200O shrink-0 ${isLoading ? 'block' : 'hidden'}`} size={ODS_SPINNER_SIZE.sm} contrasted />
+        }
+        {!isShortText && (isLoading ? <OsdsSkeleton inline={true} className='mx-2' size={ODS_SKELETON_SIZE.xs} randomized /> : <span>{t(node.translation)}</span>)}
       </span>
       <span className="flex justify-end align-items-center">
         {(count as number) > 0 && (

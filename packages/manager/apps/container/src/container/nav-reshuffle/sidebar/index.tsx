@@ -77,6 +77,7 @@ const Sidebar = (): JSX.Element => {
     const initializeNavigationTree = async () => {
       if (currentNavigationNode) return;
       const features = initFeatureNames(navigationTree);
+      setCurrentNavigationNode(findNodeById(navigationTree, 'sidebar'));
 
       const results = await fetchFeatureAvailabilityData(features);
 
@@ -236,10 +237,9 @@ const Sidebar = (): JSX.Element => {
   };
 
   const closeSubMenu = () => {
-    setShowSubTree(false);
-
     setTimeout(() => {
-      setSelectedNode(null);
+      setShowSubTree(false);
+      setIsManuallyClosed(true);
       setSelectedSubMenu(null);
       setIsManuallyClosed(true);
     }, 400);
@@ -277,119 +277,119 @@ const Sidebar = (): JSX.Element => {
     if (firstElement) firstElement.focus();
   };
 
+  const isLoading = useMemo<boolean>(() => (!servicesCount || !currentNavigationNode), [servicesCount, currentNavigationNode]);
+
   return (
     <div
-      className={`${style.sidebar} ${
-        selectedNode ? style.sidebar_selected : ''
+      className={`${style.sidebar} ${selectedNode ? style.sidebar_selected : ''
         }`}
     >
       <div
         className={`${style.sidebar_wrapper} ${!open && style.sidebar_short}`}
       >
         <div className={style.sidebar_lvl1}>
-        {!isMobile && (
-          <a
-            role="img"
-            className={`block ${style.sidebar_logo}`}
-            aria-label="OVHcloud"
-            target="_top"
-            href={logoLink}
-          >
-            <img
-              className={`${open ? 'mx-4' : 'mx-2'} my-3`}
-              src={open ? logo : shortLogo}
-              alt="OVHcloud"
-              aria-hidden="true"
-            />
-          </a>
-        )}
-
-        <div
-          className={style.sidebar_menu}
-          role="menubar"
-        >
-          <ul id="menu" role="menu">
-
-          <li className="px-3 mb-3 mt-2 h-8">
-              {open && currentNavigationNode && (
-                <h2>{t(currentNavigationNode.translation)}</h2>
-              )}
-          </li>
-
-            {currentNavigationNode?.children
-              ?.filter((node) => !shouldHideElement(node, node.count))
-              .map((node: Node) => (
-                <li
-                  key={node.id}
-                  id={node.id}
-                  className={`py-1 ${style.sidebar_menu_items} ${
-                    node.id === selectedNode?.id
-                    ? style.sidebar_menu_items_selected
-                    : ''
-                    }`}
-                  role="menuitem"
-                >
-                  <SidebarLink
-                    node={node}
-                    count={node.count}
-                    handleOnClick={() => menuClickHandler(node)}
-                    handleOnEnter={(node: Node) => onEnter(node)}
-                    id={node.idAttr}
-                    isShortText={!open}
-                  />
-                  {node.separator && <hr role="separator" />}
-                </li>
-              ))}
-          </ul>
-          <div className={`m-2.5 mt-10`}>
-            <OsdsButton
-              variant={ODS_BUTTON_VARIANT.stroked}
-              size={ODS_BUTTON_SIZE.sm}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              onClick={() =>
-                trackingPlugin.trackClick({
-                  name: 'navbar_v3_entry_home::cta_add_a_service',
-                  type: 'action',
-                })
-              }
-              href={navigationPlugin.getURL('catalog', '/')}
-              role="link"
-              title={t('sidebar_service_add')}
+          {!isMobile && (
+            <a
+              role="img"
+              className={`block ${style.sidebar_logo}`}
+              aria-label="OVHcloud"
+              target="_top"
+              href={logoLink}
             >
-              <div className='flex justify-center align-middle p-0 m-0'>
-                <SvgIconWrapper name={OvhProductName.SHOPPINGCARTPLUS} height={24} width={24} className='fill-[var(--ods-color-primary-500)]' />
-                {open && <span className="ml-3">{t('sidebar_service_add')}</span>}
-              </div>
-            </OsdsButton>
+              <img
+                className={`${open ? 'mx-4' : 'mx-2'} my-3`}
+                src={open ? logo : shortLogo}
+                alt="OVHcloud"
+                aria-hidden="true"
+              />
+            </a>
+          )}
+
+          <div
+            className={style.sidebar_menu}
+            role="menubar"
+          >
+            <ul id="menu" role="menu">
+
+              <li className="px-3 mb-3 mt-2 h-8">
+                {open && currentNavigationNode && (
+                  <h2>{t(currentNavigationNode.translation)}</h2>
+                )}
+              </li>
+
+              {currentNavigationNode?.children
+                ?.filter((node) => !shouldHideElement(node, node.count))
+                .map((node: Node) => (
+                  <li
+                    key={node.id}
+                    id={node.id}
+                    className={`py-1 ${style.sidebar_menu_items} ${node.id === selectedNode?.id
+                      ? style.sidebar_menu_items_selected
+                      : ''
+                      }`}
+                    role="menuitem"
+                  >
+                    <SidebarLink
+                      node={node}
+                      count={node.count}
+                      isLoading={isLoading}
+                      handleOnClick={() => menuClickHandler(node)}
+                      handleOnEnter={(node: Node) => onEnter(node)}
+                      id={node.idAttr}
+                      isShortText={!open}
+                    />
+                    {node.separator && <hr role="separator" />}
+                  </li>
+                ))}
+            </ul>
+            <div className={`m-2.5 mt-10`}>
+              <OsdsButton
+                variant={ODS_BUTTON_VARIANT.stroked}
+                size={ODS_BUTTON_SIZE.sm}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                onClick={() =>
+                  trackingPlugin.trackClick({
+                    name: 'navbar_v3_entry_home::cta_add_a_service',
+                    type: 'action',
+                  })
+                }
+                href={navigationPlugin.getURL('catalog', '/')}
+                role="link"
+                title={t('sidebar_service_add')}
+              >
+                <div className='flex justify-center align-middle p-0 m-0'>
+                  <SvgIconWrapper name={OvhProductName.SHOPPINGCARTPLUS} height={24} width={24} className='fill-[var(--ods-color-primary-500)]' />
+                  {open && <span className="ml-3">{t('sidebar_service_add')}</span>}
+                </div>
+              </OsdsButton>
+            </div>
           </div>
-        </div>
 
-        {assistanceTree && (
-          <Suspense fallback="">
-            <Assistance nodeTree={assistanceTree} selectedNode={selectedNode} isShort={!open}/>
-          </Suspense>
-        )}
+          {assistanceTree && (
+            <Suspense fallback="">
+              <Assistance nodeTree={assistanceTree} selectedNode={selectedNode} isLoading={isLoading} isShort={!open} />
+            </Suspense>
+          )}
 
-        <button
-          className={style.sidebar_toggle_btn}
-          onClick={toggleSidebar}
-          role="button"
-        >
-          {open && <span className="mr-2">{t('sidebar_reduce')}</span>}
-          <span
-            className={`${
-              style.sidebar_toggle_btn_first_icon
-              } oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
-            aria-hidden="true"
-          ></span>
-          <span
-            className={`oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
-            aria-hidden="true"
-          ></span>
-        </button>
+          <button
+            className={style.sidebar_toggle_btn}
+            onClick={toggleSidebar}
+            role="button"
+          >
+            {open && <span className="mr-2">{t('sidebar_reduce')}</span>}
+            <span
+              className={`${style.sidebar_toggle_btn_first_icon
+                } oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
+              aria-hidden="true"
+            ></span>
+            <span
+              className={`oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
+              aria-hidden="true"
+            ></span>
+          </button>
         </div>
       </div>
-      {showSubTree && !isManuallyClosed && (
+      {selectedNode && !isManuallyClosed && (
         <SubTree
           handleBackNavigation={() => {
             if (isMobile) setSelectedNode(null);

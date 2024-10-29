@@ -15,12 +15,14 @@ export interface AssistanceProps {
   nodeTree?: Node;
   isShort: boolean;
   selectedNode: Node;
+  isLoading: boolean;
 }
 
 const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   nodeTree,
   selectedNode,
-  isShort
+  isShort,
+  isLoading
 }): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
@@ -119,6 +121,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
         <AssistanceLinkItem
           key={`assistance_${node.id}`}
           node={node}
+          isLoading={isLoading}
           isSelected={node.id === selectedNode?.id}
         />
       ))}
