@@ -10,10 +10,11 @@ export const DEFAULT_CIDR = '10.{vlanId}.0.0/16';
 
 export const GATEWAY_HOURLY_PLAN_CODE = 'gateway.s.hour.consumption';
 
-export const schema = z.object({
+export const NEW_PRIVATE_NETWORK_FORM_SCHEMA = z.object({
   region: z.string().min(1),
   isLocalZone: z.boolean(),
   name: z.string().min(1),
+  defaultVlanId: z.number().optional(),
   vlanId: z
     .number()
     .min(VLAN_ID.min)
