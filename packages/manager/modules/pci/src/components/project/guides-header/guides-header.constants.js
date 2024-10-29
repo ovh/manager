@@ -266,7 +266,7 @@ export const LOADBALANCER_KUBE = {
   IE: 'https://docs.ovh.com/ie/en/kubernetes/using-lb/',
   DEFAULT: 'https://docs.ovh.com/gb/en/kubernetes/using-lb/',
   US:
-    'https://support.us.ovhcloud.com/hc/en-us/articles/1500004806361-How-to-Use-the-OVHcloud-Managed-Kubernetes-Load-Balancer',
+    'https://us.ovhcloud.com/public-cloud/load-balancer-kubernetes/-How-to-Use-the-OVHcloud-Managed-Kubernetes-Load-Balancer',
   ASIA: 'https://docs.ovh.com/asia/en/kubernetes/using-lb/',
   AU: 'https://docs.ovh.com/au/en/kubernetes/using-lb/',
   CA: 'https://docs.ovh.com/ca/en/kubernetes/using-lb/',

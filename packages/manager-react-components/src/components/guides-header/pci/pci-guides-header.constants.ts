@@ -12,8 +12,7 @@ export const PUBLIC_CLOUD_GUIDES: GuideLinks = {
   PT: 'https://docs.ovh.com/pt/public-cloud/',
   IE: 'https://docs.ovh.com/ie/en/public-cloud/',
   DEFAULT: 'https://docs.ovh.com/gb/en/public-cloud/',
-  US:
-    'https://support.us.ovhcloud.com/hc/en-us/categories/115000515130-Public-Cloud-Services',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/categories/115000515130-Public-Cloud-Services',
   ASIA: 'https://docs.ovh.com/asia/en/public-cloud/',
   AU: 'https://docs.ovh.com/au/en/public-cloud/',
   CA: 'https://docs.ovh.com/ca/en/public-cloud/',
@@ -52,8 +51,7 @@ export const PUBLIC_CLOUD_STORAGE_GUIDES: GuideLinks = {
 };
 
 export const FIRST_STEPS_WITH_INSTANCES: GuideLinks = {
-  FR:
-    'https://docs.ovh.com/fr/public-cloud/premiers-pas-instance-public-cloud/',
+  FR: 'https://docs.ovh.com/fr/public-cloud/premiers-pas-instance-public-cloud/',
   GB: 'https://docs.ovh.com/gb/en/public-cloud/public-cloud-first-steps/',
   DE: 'https://docs.ovh.com/de/public-cloud/public-cloud-erste-schritte/',
   ES: 'https://docs.ovh.com/es/public-cloud/public-cloud-primeros-pasos/',
@@ -62,13 +60,11 @@ export const FIRST_STEPS_WITH_INSTANCES: GuideLinks = {
   PT: 'https://docs.ovh.com/pt/public-cloud/public-cloud-primeiros-passos/',
   IE: 'https://docs.ovh.com/ie/en/public-cloud/public-cloud-first-steps/',
   DEFAULT: 'https://docs.ovh.com/gb/en/public-cloud/public-cloud-first-steps/',
-  US:
-    'https://support.us.ovhcloud.com/hc/en-us/articles/4481009956243-How-to-Manage-Your-Public-Cloud-Instance',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/4481009956243-How-to-Manage-Your-Public-Cloud-Instance',
   ASIA: 'https://docs.ovh.com/asia/en/public-cloud/public-cloud-first-steps/',
   AU: 'https://docs.ovh.com/au/en/public-cloud/public-cloud-first-steps/',
   CA: 'https://docs.ovh.com/ca/en/public-cloud/public-cloud-first-steps/',
-  QC:
-    'https://docs.ovh.com/ca/fr/public-cloud/premiers-pas-instance-public-cloud/',
+  QC: 'https://docs.ovh.com/ca/fr/public-cloud/premiers-pas-instance-public-cloud/',
   SG: 'https://docs.ovh.com/sg/en/public-cloud/public-cloud-first-steps/',
   WE: 'https://docs.ovh.com/us/en/public-cloud/public-cloud-first-steps/',
   WS: 'https://docs.ovh.com/us/es/public-cloud/public-cloud-primeros-pasos/',
@@ -85,8 +81,7 @@ export const IP_FAIL_OVER: GuideLinks = {
   PT: 'https://docs.ovh.com/pt/public-cloud/configurer-une-ip-failover/',
   IE: 'https://docs.ovh.com/ie/en/public-cloud/configure_a_failover_ip/',
   DEFAULT: 'https://docs.ovh.com/gb/en/public-cloud/configure_a_failover_ip/',
-  US:
-    'https://support.us.ovhcloud.com/hc/en-us/articles/115001588270-How-to-Order-Failover-IPs',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/115001588270-How-to-Order-Failover-IPs',
   ASIA: 'https://docs.ovh.com/asia/en/public-cloud/configure_a_failover_ip/',
   AU: 'https://docs.ovh.com/au/en/public-cloud/configure_a_failover_ip/',
   CA: 'https://docs.ovh.com/ca/en/public-cloud/configure_a_failover_ip/',
@@ -98,73 +93,47 @@ export const IP_FAIL_OVER: GuideLinks = {
 };
 
 export const USER_ROOT_AND_PASSWORD: GuideLinks = {
-  FR:
-    'https://docs.ovh.com/fr/public-cloud/passer-root-et-definir-un-mot-de-passe/',
-  GB:
-    'https://docs.ovh.com/gb/en/public-cloud/become_the_root_user_and_select_a_password/',
-  DE:
-    'https://docs.ovh.com/de/public-cloud/root-rechte_erlangen_und_passwort_festlegen/',
-  ES:
-    'https://docs.ovh.com/es/public-cloud/conectarse_como_usuario_root_y_establecer_una_contrasena/',
-  IT:
-    'https://docs.ovh.com/it/public-cloud/imposta_una_password_amministratore/',
+  FR: 'https://docs.ovh.com/fr/public-cloud/passer-root-et-definir-un-mot-de-passe/',
+  GB: 'https://docs.ovh.com/gb/en/public-cloud/become_the_root_user_and_select_a_password/',
+  DE: 'https://docs.ovh.com/de/public-cloud/root-rechte_erlangen_und_passwort_festlegen/',
+  ES: 'https://docs.ovh.com/es/public-cloud/conectarse_como_usuario_root_y_establecer_una_contrasena/',
+  IT: 'https://docs.ovh.com/it/public-cloud/imposta_una_password_amministratore/',
   PL: 'https://docs.ovh.com/pl/public-cloud/dostep_root_i_zdefiniowanie_hasla/',
-  PT:
-    'https://docs.ovh.com/pt/public-cloud/tornar-se_root_e_definir_uma_palavra-passe/',
-  IE:
-    'https://docs.ovh.com/ie/en/public-cloud/become_the_root_user_and_select_a_password/',
+  PT: 'https://docs.ovh.com/pt/public-cloud/tornar-se_root_e_definir_uma_palavra-passe/',
+  IE: 'https://docs.ovh.com/ie/en/public-cloud/become_the_root_user_and_select_a_password/',
   DEFAULT:
     'https://docs.ovh.com/gb/en/public-cloud/become_the_root_user_and_select_a_password/',
-  US:
-    'https://support.us.ovhcloud.com/hc/en-us/articles/360002208690-How-to-Access-a-Public-Cloud-Instance-via-VNC',
-  ASIA:
-    'https://docs.ovh.com/asia/en/public-cloud/become_the_root_user_and_select_a_password/',
-  AU:
-    'https://docs.ovh.com/au/en/public-cloud/become_the_root_user_and_select_a_password/',
-  CA:
-    'https://docs.ovh.com/ca/en/public-cloud/become_the_root_user_and_select_a_password/',
-  QC:
-    'https://docs.ovh.com/ca/fr/public-cloud/passer-root-et-definir-un-mot-de-passe/',
-  SG:
-    'https://docs.ovh.com/sg/en/public-cloud/become_the_root_user_and_select_a_password/',
-  WE:
-    'https://docs.ovh.com/us/en/public-cloud/become_the_root_user_and_select_a_password/',
-  WS:
-    'https://docs.ovh.com/us/es/public-cloud/conectarse_como_usuario_root_y_establecer_una_contrasena/',
-  IN:
-    'https://docs.ovh.com/asia/en/public-cloud/become_the_root_user_and_select_a_password/',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002208690-How-to-Access-a-Public-Cloud-Instance-via-VNC',
+  ASIA: 'https://docs.ovh.com/asia/en/public-cloud/become_the_root_user_and_select_a_password/',
+  AU: 'https://docs.ovh.com/au/en/public-cloud/become_the_root_user_and_select_a_password/',
+  CA: 'https://docs.ovh.com/ca/en/public-cloud/become_the_root_user_and_select_a_password/',
+  QC: 'https://docs.ovh.com/ca/fr/public-cloud/passer-root-et-definir-un-mot-de-passe/',
+  SG: 'https://docs.ovh.com/sg/en/public-cloud/become_the_root_user_and_select_a_password/',
+  WE: 'https://docs.ovh.com/us/en/public-cloud/become_the_root_user_and_select_a_password/',
+  WS: 'https://docs.ovh.com/us/es/public-cloud/conectarse_como_usuario_root_y_establecer_una_contrasena/',
+  IN: 'https://docs.ovh.com/asia/en/public-cloud/become_the_root_user_and_select_a_password/',
 };
 
 export const REVERSE_DNS: GuideLinks = {
-  FR:
-    'https://docs.ovh.com/fr/public-cloud/configurer-le-reverse-dns-dune-instance/',
+  FR: 'https://docs.ovh.com/fr/public-cloud/configurer-le-reverse-dns-dune-instance/',
   GB: 'https://docs.ovh.com/gb/en/public-cloud/configure-reverse-dns-instance/',
   DE: 'https://docs.ovh.com/de/public-cloud/reverse-dns-konfigurieren-instanz/',
-  ES:
-    'https://docs.ovh.com/es/public-cloud/configurar-el-inverso-dns-de-una-instancia/',
-  IT:
-    'https://docs.ovh.com/it/public-cloud/configura_il_reverse_dns_della_tua_istanza/',
-  PL:
-    'https://docs.ovh.com/pl/public-cloud/konfiguracja_rewersu_dns_instancji/',
-  PT:
-    'https://docs.ovh.com/pt/public-cloud/configurar_a_reverse_dns_de_uma_instancia/',
+  ES: 'https://docs.ovh.com/es/public-cloud/configurar-el-inverso-dns-de-una-instancia/',
+  IT: 'https://docs.ovh.com/it/public-cloud/configura_il_reverse_dns_della_tua_istanza/',
+  PL: 'https://docs.ovh.com/pl/public-cloud/konfiguracja_rewersu_dns_instancji/',
+  PT: 'https://docs.ovh.com/pt/public-cloud/configurar_a_reverse_dns_de_uma_instancia/',
   IE: 'https://docs.ovh.com/ie/en/public-cloud/configure-reverse-dns-instance/',
   DEFAULT:
     'https://docs.ovh.com/gb/en/public-cloud/configure-reverse-dns-instance/',
-  US:
-    'https://support.us.ovhcloud.com/hc/en-us/articles/360002181530-How-to-Configure-Reverse-DNS',
-  ASIA:
-    'https://docs.ovh.com/asia/en/public-cloud/configure-reverse-dns-instance/',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002181530-How-to-Configure-Reverse-DNS',
+  ASIA: 'https://docs.ovh.com/asia/en/public-cloud/configure-reverse-dns-instance/',
   AU: 'https://docs.ovh.com/au/en/public-cloud/configure-reverse-dns-instance/',
   CA: 'https://docs.ovh.com/ca/en/public-cloud/configure-reverse-dns-instance/',
-  QC:
-    'https://docs.ovh.com/ca/fr/public-cloud/configurer-le-reverse-dns-dune-instance/',
+  QC: 'https://docs.ovh.com/ca/fr/public-cloud/configurer-le-reverse-dns-dune-instance/',
   SG: 'https://docs.ovh.com/sg/en/public-cloud/configure-reverse-dns-instance/',
   WE: 'https://docs.ovh.com/us/en/public-cloud/configure-reverse-dns-instance/',
-  WS:
-    'https://docs.ovh.com/us/es/public-cloud/configurar-el-inverso-dns-de-una-instancia/',
-  IN:
-    'https://docs.ovh.com/asia/en/public-cloud/configure-reverse-dns-instance/',
+  WS: 'https://docs.ovh.com/us/es/public-cloud/configurar-el-inverso-dns-de-una-instancia/',
+  IN: 'https://docs.ovh.com/asia/en/public-cloud/configure-reverse-dns-instance/',
 };
 
 export const FIRST_STEPS_WITH_DATABASES: GuideLinks = {
@@ -198,16 +167,14 @@ export const MONGO_DB_CAPABILITIES_AND_LIMITATIONS: GuideLinks = {
   IE: 'https://docs.ovh.com/ie/en/publiccloud/databases/mongodb/capabilities/',
   DEFAULT:
     'https://docs.ovh.com/gb/en/publiccloud/databases/mongodb/capabilities/',
-  ASIA:
-    'https://docs.ovh.com/asia/en/publiccloud/databases/mongodb/capabilities/',
+  ASIA: 'https://docs.ovh.com/asia/en/publiccloud/databases/mongodb/capabilities/',
   AU: 'https://docs.ovh.com/au/en/publiccloud/databases/mongodb/capabilities/',
   CA: 'https://docs.ovh.com/ca/en/publiccloud/databases/mongodb/capabilities/',
   QC: 'https://docs.ovh.com/ca/fr/publiccloud/databases/mongodb/capabilities/',
   SG: 'https://docs.ovh.com/sg/en/publiccloud/databases/mongodb/capabilities/',
   WE: 'https://docs.ovh.com/us/en/publiccloud/databases/mongodb/capabilities/',
   WS: 'https://docs.ovh.com/us/es/publiccloud/databases/mongodb/capabilities/',
-  IN:
-    'https://docs.ovh.com/asia/en/publiccloud/databases/mongodb/capabilities/',
+  IN: 'https://docs.ovh.com/asia/en/publiccloud/databases/mongodb/capabilities/',
 };
 
 export const MYSQL_CAPABILITIES_AND_LIMITATIONS: GuideLinks = {
@@ -221,8 +188,7 @@ export const MYSQL_CAPABILITIES_AND_LIMITATIONS: GuideLinks = {
   IE: 'https://docs.ovh.com/ie/en/publiccloud/databases/mysql/capabilities/',
   DEFAULT:
     'https://docs.ovh.com/gb/en/publiccloud/databases/mysql/capabilities/',
-  ASIA:
-    'https://docs.ovh.com/asia/en/publiccloud/databases/mysql/capabilities/',
+  ASIA: 'https://docs.ovh.com/asia/en/publiccloud/databases/mysql/capabilities/',
   AU: 'https://docs.ovh.com/au/en/publiccloud/databases/mysql/capabilities/',
   CA: 'https://docs.ovh.com/ca/en/publiccloud/databases/mysql/capabilities/',
   QC: 'https://docs.ovh.com/ca/fr/publiccloud/databases/mysql/capabilities/',
@@ -236,8 +202,7 @@ export const CREATE_A_CLUSTER: GuideLinks = {
   GB: 'https://docs.ovh.com/gb/en/kubernetes/creating-a-cluster/',
   IE: 'https://docs.ovh.com/ie/en/kubernetes/creating-a-cluster/',
   DEFAULT: 'https://docs.ovh.com/gb/en/kubernetes/creating-a-cluster/',
-  US:
-    'https://support.us.ovhcloud.com/hc/en-us/articles/1500004767902-How-to-Create-a-Cluster-in-OVHcloud-Managed-Kubernetes',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/1500004767902-How-to-Create-a-Cluster-in-OVHcloud-Managed-Kubernetes',
   ASIA: 'https://docs.ovh.com/asia/en/kubernetes/creating-a-cluster/',
   AU: 'https://docs.ovh.com/au/en/kubernetes/creating-a-cluster/',
   CA: 'https://docs.ovh.com/ca/en/kubernetes/creating-a-cluster/',
@@ -249,8 +214,7 @@ export const DEPLOY_AN_APPLICATION: GuideLinks = {
   GB: 'https://docs.ovh.com/gb/en/kubernetes/deploying-an-application/',
   IE: 'https://docs.ovh.com/ie/en/kubernetes/deploying-an-application/',
   DEFAULT: 'https://docs.ovh.com/gb/en/kubernetes/deploying-an-application/',
-  US:
-    'https://support.us.ovhcloud.com/hc/en-us/articles/1500004771762-How-to-Deploy-an-Application-on-an-OVHcloud-Managed-Kubernetes-Cluster',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/1500004771762-How-to-Deploy-an-Application-on-an-OVHcloud-Managed-Kubernetes-Cluster',
   ASIA: 'https://docs.ovh.com/asia/en/kubernetes/deploying-an-application/',
   AU: 'https://docs.ovh.com/au/en/kubernetes/deploying-an-application/',
   CA: 'https://docs.ovh.com/ca/en/kubernetes/deploying-an-application/',
@@ -263,8 +227,7 @@ export const LOADBALANCER_KUBE: GuideLinks = {
   GB: 'https://docs.ovh.com/gb/en/kubernetes/using-lb/',
   IE: 'https://docs.ovh.com/ie/en/kubernetes/using-lb/',
   DEFAULT: 'https://docs.ovh.com/gb/en/kubernetes/using-lb/',
-  US:
-    'https://support.us.ovhcloud.com/hc/en-us/articles/1500004806361-How-to-Use-the-OVHcloud-Managed-Kubernetes-Load-Balancer',
+  US: 'https://us.ovhcloud.com/public-cloud/load-balancer-kubernetes/-How-to-Use-the-OVHcloud-Managed-Kubernetes-Load-Balancer',
   ASIA: 'https://docs.ovh.com/asia/en/kubernetes/using-lb/',
   AU: 'https://docs.ovh.com/au/en/kubernetes/using-lb/',
   CA: 'https://docs.ovh.com/ca/en/kubernetes/using-lb/',
@@ -275,77 +238,55 @@ export const LOADBALANCER_KUBE: GuideLinks = {
 
 export const FAQ_MANAGED_PRIVATE_REGISTRY: GuideLinks = {
   FR: 'https://docs.ovh.com/fr/private-registry/managed-private-registry-faq/',
-  GB:
-    'https://docs.ovh.com/gb/en/private-registry/managed-private-registry-faq/',
-  IE:
-    'https://docs.ovh.com/ie/en/private-registry/managed-private-registry-faq/',
+  GB: 'https://docs.ovh.com/gb/en/private-registry/managed-private-registry-faq/',
+  IE: 'https://docs.ovh.com/ie/en/private-registry/managed-private-registry-faq/',
   DEFAULT:
     'https://docs.ovh.com/gb/en/private-registry/managed-private-registry-faq/',
-  ASIA:
-    'https://docs.ovh.com/asia/en/private-registry/managed-private-registry-faq/',
-  AU:
-    'https://docs.ovh.com/au/en/private-registry/managed-private-registry-faq/',
-  CA:
-    'https://docs.ovh.com/ca/en/private-registry/managed-private-registry-faq/',
-  SG:
-    'https://docs.ovh.com/sg/en/private-registry/managed-private-registry-faq/',
-  WE:
-    'https://docs.ovh.com/us/en/private-registry/managed-private-registry-faq/',
-  IN:
-    'https://docs.ovh.com/asia/en/private-registry/managed-private-registry-faq/',
+  ASIA: 'https://docs.ovh.com/asia/en/private-registry/managed-private-registry-faq/',
+  AU: 'https://docs.ovh.com/au/en/private-registry/managed-private-registry-faq/',
+  CA: 'https://docs.ovh.com/ca/en/private-registry/managed-private-registry-faq/',
+  SG: 'https://docs.ovh.com/sg/en/private-registry/managed-private-registry-faq/',
+  WE: 'https://docs.ovh.com/us/en/private-registry/managed-private-registry-faq/',
+  IN: 'https://docs.ovh.com/asia/en/private-registry/managed-private-registry-faq/',
 };
 
 export const CREATE_A_MANAGED_PRIVATE_REGISTER: GuideLinks = {
-  GB:
-    'https://docs.ovh.com/gb/en/private-registry/creating-a-private-registry/',
-  IE:
-    'https://docs.ovh.com/ie/en/private-registry/creating-a-private-registry/',
+  GB: 'https://docs.ovh.com/gb/en/private-registry/creating-a-private-registry/',
+  IE: 'https://docs.ovh.com/ie/en/private-registry/creating-a-private-registry/',
   DEFAULT:
     'https://docs.ovh.com/gb/en/private-registry/creating-a-private-registry/',
-  ASIA:
-    'https://docs.ovh.com/asia/en/private-registry/creating-a-private-registry/',
-  AU:
-    'https://docs.ovh.com/au/en/private-registry/creating-a-private-registry/',
-  CA:
-    'https://docs.ovh.com/ca/en/private-registry/creating-a-private-registry/',
-  SG:
-    'https://docs.ovh.com/sg/en/private-registry/creating-a-private-registry/',
-  WE:
-    'https://docs.ovh.com/us/en/private-registry/creating-a-private-registry/',
-  IN:
-    'https://docs.ovh.com/asia/en/private-registry/creating-a-private-registry/',
+  ASIA: 'https://docs.ovh.com/asia/en/private-registry/creating-a-private-registry/',
+  AU: 'https://docs.ovh.com/au/en/private-registry/creating-a-private-registry/',
+  CA: 'https://docs.ovh.com/ca/en/private-registry/creating-a-private-registry/',
+  SG: 'https://docs.ovh.com/sg/en/private-registry/creating-a-private-registry/',
+  WE: 'https://docs.ovh.com/us/en/private-registry/creating-a-private-registry/',
+  IN: 'https://docs.ovh.com/asia/en/private-registry/creating-a-private-registry/',
 };
 
 export const CREATE_AND_USE_A_PRIVATE_IMAGE: GuideLinks = {
-  GB:
-    'https://docs.ovh.com/gb/en/private-registry/creating-and-using-a-private-image/',
-  IE:
-    'https://docs.ovh.com/ie/en/private-registry/creating-and-using-a-private-image/',
+  GB: 'https://docs.ovh.com/gb/en/private-registry/creating-and-using-a-private-image/',
+  IE: 'https://docs.ovh.com/ie/en/private-registry/creating-and-using-a-private-image/',
   DEFAULT:
     'https://docs.ovh.com/gb/en/private-registry/creating-and-using-a-private-image/',
-  ASIA:
-    'https://docs.ovh.com/asia/en/private-registry/creating-and-using-a-private-image/',
-  AU:
-    'https://docs.ovh.com/au/en/private-registry/creating-and-using-a-private-image/',
-  CA:
-    'https://docs.ovh.com/ca/en/private-registry/creating-and-using-a-private-image/',
-  SG:
-    'https://docs.ovh.com/sg/en/private-registry/creating-and-using-a-private-image/',
-  WE:
-    'https://docs.ovh.com/us/en/private-registry/creating-and-using-a-private-image/',
+  ASIA: 'https://docs.ovh.com/asia/en/private-registry/creating-and-using-a-private-image/',
+  AU: 'https://docs.ovh.com/au/en/private-registry/creating-and-using-a-private-image/',
+  CA: 'https://docs.ovh.com/ca/en/private-registry/creating-and-using-a-private-image/',
+  SG: 'https://docs.ovh.com/sg/en/private-registry/creating-and-using-a-private-image/',
+  WE: 'https://docs.ovh.com/us/en/private-registry/creating-and-using-a-private-image/',
 };
 
-export const DIFFERENCES_BETWEEN_AI_NOTEBOOKS_AI_TRAINING_AI_APPS: GuideLinks = {
-  GB: 'https://docs.ovh.com/gb/en/publiccloud/ai/ai-comparative-tables/',
-  IE: 'https://docs.ovh.com/ie/en/publiccloud/ai/ai-comparative-tables/',
-  DEFAULT: 'https://docs.ovh.com/gb/en/publiccloud/ai/ai-comparative-tables/',
-  ASIA: 'https://docs.ovh.com/asia/en/publiccloud/ai/ai-comparative-tables/',
-  AU: 'https://docs.ovh.com/au/en/publiccloud/ai/ai-comparative-tables/',
-  CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/ai-comparative-tables/',
-  SG: 'https://docs.ovh.com/sg/en/publiccloud/ai/ai-comparative-tables/',
-  WE: 'https://docs.ovh.com/us/en/publiccloud/ai/ai-comparative-tables/',
-  IN: 'https://docs.ovh.com/asia/en/publiccloud/ai/ai-comparative-tables/',
-};
+export const DIFFERENCES_BETWEEN_AI_NOTEBOOKS_AI_TRAINING_AI_APPS: GuideLinks =
+  {
+    GB: 'https://docs.ovh.com/gb/en/publiccloud/ai/ai-comparative-tables/',
+    IE: 'https://docs.ovh.com/ie/en/publiccloud/ai/ai-comparative-tables/',
+    DEFAULT: 'https://docs.ovh.com/gb/en/publiccloud/ai/ai-comparative-tables/',
+    ASIA: 'https://docs.ovh.com/asia/en/publiccloud/ai/ai-comparative-tables/',
+    AU: 'https://docs.ovh.com/au/en/publiccloud/ai/ai-comparative-tables/',
+    CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/ai-comparative-tables/',
+    SG: 'https://docs.ovh.com/sg/en/publiccloud/ai/ai-comparative-tables/',
+    WE: 'https://docs.ovh.com/us/en/publiccloud/ai/ai-comparative-tables/',
+    IN: 'https://docs.ovh.com/asia/en/publiccloud/ai/ai-comparative-tables/',
+  };
 
 export const AI_APPS_CAPABILITIES_AND_LIMITATIONS: GuideLinks = {
   GB: 'https://docs.ovh.com/gb/en/publiccloud/ai/apps/capabilities/',
@@ -469,23 +410,15 @@ export const SUBMIT_A_JOB_VIA_THE_USER_INTERFACE: GuideLinks = {
 };
 
 export const MANAGING_A_CUSTOM_IMAGE: GuideLinks = {
-  GB:
-    'https://docs.ovh.com/gb/en/publiccloud/ai/training/build-use-custom-image/',
-  IE:
-    'https://docs.ovh.com/ie/en/publiccloud/ai/training/build-use-custom-image/',
+  GB: 'https://docs.ovh.com/gb/en/publiccloud/ai/training/build-use-custom-image/',
+  IE: 'https://docs.ovh.com/ie/en/publiccloud/ai/training/build-use-custom-image/',
   DEFAULT: 'https://docs.ovh.com/gb/en/ai-training/build-use-custom-image/',
-  ASIA:
-    'https://docs.ovh.com/asia/en/publiccloud/ai/training/build-use-custom-image/',
-  AU:
-    'https://docs.ovh.com/au/en/publiccloud/ai/training/build-use-custom-image/',
-  CA:
-    'https://docs.ovh.com/ca/en/publiccloud/ai/training/build-use-custom-image/',
-  SG:
-    'https://docs.ovh.com/sg/en/publiccloud/ai/training/build-use-custom-image/',
-  WE:
-    'https://docs.ovh.com/us/en/publiccloud/ai/training/build-use-custom-image/',
-  IN:
-    'https://docs.ovh.com/asia/en/publiccloud/ai/training/build-use-custom-image/',
+  ASIA: 'https://docs.ovh.com/asia/en/publiccloud/ai/training/build-use-custom-image/',
+  AU: 'https://docs.ovh.com/au/en/publiccloud/ai/training/build-use-custom-image/',
+  CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/training/build-use-custom-image/',
+  SG: 'https://docs.ovh.com/sg/en/publiccloud/ai/training/build-use-custom-image/',
+  WE: 'https://docs.ovh.com/us/en/publiccloud/ai/training/build-use-custom-image/',
+  IN: 'https://docs.ovh.com/asia/en/publiccloud/ai/training/build-use-custom-image/',
 };
 
 export const DEPLOYING_A_CUSTOM_MODEL: GuideLinks = {

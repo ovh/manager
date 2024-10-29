@@ -24,7 +24,7 @@ export const GUIDES = [
   {
     id: 'load-balancer',
     links: {
-      US: 'https://support.us.ovhcloud.com/hc/en-us/articles/1500004806361',
+      US: 'https://us.ovhcloud.com/public-cloud/load-balancer-kubernetes/',
       DEFAULT: 'https://docs.ovh.com/gb/en/kubernetes/using-lb/',
     },
   },
