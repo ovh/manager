@@ -34,7 +34,6 @@ export const SizeStep = (): JSX.Element => {
       next={{
         action: () => {
           trackStep(1);
-
           store.check(StepsEnum.SIZE);
           store.lock(StepsEnum.SIZE);
 

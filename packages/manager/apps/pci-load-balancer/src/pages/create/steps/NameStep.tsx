@@ -16,10 +16,9 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { Translation, useTranslation } from 'react-i18next';
-import { useContext, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   LOAD_BALANCER_CREATION_TRACKING,
   LOAD_BALANCER_NAME_REGEX,
@@ -29,22 +28,14 @@ import { useGetFlavor } from '@/api/hook/useFlavors';
 import queryClient from '@/queryClient';
 import { getAllLoadBalancersQueryKey } from '@/api/hook/useLoadBalancer';
 
-type TState = {
-  isNameTouched: boolean;
-};
-
 export const NameStep = (): JSX.Element => {
   const { t: tCommon } = useTranslation('pci-common');
   const { t: tCreate } = useTranslation('create');
 
   const { projectId } = useParams();
-  const { tracking } = useContext(ShellContext).shell;
+  const { trackClick, trackPage } = useTracking();
 
   const store = useCreateStore();
-
-  const [state, setState] = useState<TState>({
-    isNameTouched: false,
-  });
 
   const { data: flavor } = useGetFlavor(
     projectId,
@@ -56,12 +47,12 @@ export const NameStep = (): JSX.Element => {
   const { addSuccess, addError } = useNotifications();
 
   const create = async () => {
-    tracking.trackClick({
+    trackClick({
       name: LOAD_BALANCER_CREATION_TRACKING.SUBMIT,
       type: 'action',
     });
 
-    tracking.trackClick({
+    trackClick({
       name: `${LOAD_BALANCER_CREATION_TRACKING.CONFIRM}::${store.addon.code}::${store.region.name}`,
       type: 'action',
     });
@@ -69,7 +60,7 @@ export const NameStep = (): JSX.Element => {
     await store.create(
       flavor,
       () => {
-        tracking.trackPage({
+        trackPage({
           name: LOAD_BALANCER_CREATION_TRACKING.SUCCESS,
           type: 'navigation',
         });
@@ -85,7 +76,7 @@ export const NameStep = (): JSX.Element => {
         });
       },
       (error: ApiError) => {
-        tracking.trackPage({
+        trackPage({
           name: LOAD_BALANCER_CREATION_TRACKING.ERROR,
           type: 'navigation',
         });
@@ -113,7 +104,7 @@ export const NameStep = (): JSX.Element => {
   };
 
   const cancel = () => {
-    tracking.trackClick({
+    trackClick({
       name: LOAD_BALANCER_CREATION_TRACKING.CANCEL,
       type: 'action',
     });
@@ -133,9 +124,7 @@ export const NameStep = (): JSX.Element => {
         className="mt-8"
         inline
         error={
-          state.isNameTouched &&
-          (!store.name.match(LOAD_BALANCER_NAME_REGEX) ||
-            store.name.length > 70)
+          !store.name.match(LOAD_BALANCER_NAME_REGEX) || store.name.length > 70
             ? tCommon('common_field_error_pattern')
             : ''
         }
@@ -163,18 +152,11 @@ export const NameStep = (): JSX.Element => {
             store.set.name(event.target.value as string)
           }
           className={
-            state.isNameTouched &&
-            (!store.name.match(LOAD_BALANCER_NAME_REGEX) ||
-              store.name.length > 70)
+            !store.name.match(LOAD_BALANCER_NAME_REGEX) ||
+            store.name.length > 70
               ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
               : 'border-color-[var(--ods-color-default-200)] bg-white'
           }
-          onOdsInputBlur={() => {
-            setState({
-              ...state,
-              isNameTouched: true,
-            });
-          }}
         />
       </OsdsFormField>
       <div className="mt-8">
