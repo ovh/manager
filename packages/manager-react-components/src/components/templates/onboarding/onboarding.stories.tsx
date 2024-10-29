@@ -5,7 +5,7 @@ import {
   OnboardingLayoutProps,
 } from './onboarding.component';
 import { Card } from '../../navigation/card/card.component';
-import placeholderSrc from './assets/placeholder.png';
+import placeholderSrc from './../../../../public/assets/placeholder.png';
 
 export const defaultProps: OnboardingLayoutProps = {
   title: 'Welcome to Onboarding',
