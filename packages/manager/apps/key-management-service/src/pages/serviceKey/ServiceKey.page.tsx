@@ -21,6 +21,11 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import { useOkmsServiceKeyById } from '@/data/hooks/useOkmsServiceKeys';
@@ -46,6 +51,7 @@ export default function Key() {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
 
   const {
     data: okms,
@@ -115,6 +121,12 @@ export default function Key() {
         }}
         onClickReturn={() => {
           navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.link,
+            actionType: 'navigation',
+            actions: ['return_listing_page'],
+          });
         }}
         backLinkLabel={t('key_management_service_service_keys_back_link')}
         message={<Notifications />}
@@ -148,9 +160,17 @@ export default function Key() {
                   circle
                   variant={ODS_BUTTON_VARIANT.stroked}
                   color={ODS_THEME_COLOR_INTENT.primary}
-                  onClick={() => navigate(ROUTES_URLS.serviceKeyEditName)}
                   urn={serviceKey.data.iam.urn}
                   iamActions={[kmsIamActions.serviceKeyUpdate]}
+                  onClick={() => {
+                    trackClick({
+                      location: PageLocation.page,
+                      buttonType: ButtonType.button,
+                      actionType: 'action',
+                      actions: ['rename_encryption_key'],
+                    });
+                    navigate(ROUTES_URLS.serviceKeyEditName);
+                  }}
                 >
                   <OsdsIcon
                     name={ODS_ICON_NAME.PEN}

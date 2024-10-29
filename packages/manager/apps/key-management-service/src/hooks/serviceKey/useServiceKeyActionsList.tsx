@@ -5,6 +5,12 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useDeleteOkmsServiceKey } from '@/data/hooks/useDeleteOkmsServiceKey';
 import { useUpdateOkmsServiceKey } from '@/data/hooks/useUpdateOkmsServiceKey';
 import { ROUTES_URLS } from '@/routes/routes.constants';
@@ -24,6 +30,9 @@ const useServiceKeyActionsList = (
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { addSuccess, clearNotifications } = useNotifications();
   const navigate = useNavigate();
+  const { trackClick, trackPage } = useOvhTracking();
+  const trackLocation = isListMode ? PageLocation.datagrid : PageLocation.page;
+
   const {
     deleteKmsServiceKey,
     isPending: deleteIsPending,
@@ -32,8 +41,17 @@ const useServiceKeyActionsList = (
     keyId: okmsKey?.id,
     onSuccess: () => {
       navigate(`/${okms.id}/${ROUTES_URLS.keys}`);
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'delete_encryption_key',
+      });
     },
-    onError: () => {},
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'delete_encryption_key',
+      });
+    },
   });
 
   const {
@@ -48,8 +66,17 @@ const useServiceKeyActionsList = (
         t('key_management_service_service-keys_reactivate_success'),
         true,
       );
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'reactivate_encryption_key',
+      });
     },
-    onError: () => {},
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'reactivate_encryption_key',
+      });
+    },
   });
 
   const items: ActionMenuItem[] = [];
@@ -64,6 +91,14 @@ const useServiceKeyActionsList = (
         JSON.stringify(okmsKey?.keys),
       )}`,
       download: `${okmsKey?.name}.jwk`,
+      onClick: () => {
+        trackClick({
+          location: trackLocation,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['download_encryption_key'],
+        });
+      },
     });
   }
   if (okmsKey?.state === OkmsServiceKeyState.active) {
@@ -72,6 +107,12 @@ const useServiceKeyActionsList = (
       label: t('key_management_service_service-keys_link_deactivate_key'),
       color: ODS_THEME_COLOR_INTENT.primary,
       onClick: () => {
+        trackClick({
+          location: trackLocation,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['deactivate_encryption_key'],
+        });
         return isListMode
           ? navigate(`${ROUTES_URLS.serviceKeyDeactivate}/${okmsKey?.id}`)
           : navigate(
@@ -94,12 +135,20 @@ const useServiceKeyActionsList = (
       label: t('key_management_service_service-keys_link_reactivate_key'),
       color: ODS_THEME_COLOR_INTENT.primary,
       disabled: updateIsPending,
-      onClick: () => updateKmsServiceKey({ state: OkmsServiceKeyState.active }),
       iamActions: [
         kmsIamActions.serviceKeyUpdate,
         kmsIamActions.serviceKeyActivate,
       ],
       urn: okmsKey?.iam.urn,
+      onClick: () => {
+        trackClick({
+          location: trackLocation,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['reactivate_encryption_key'],
+        });
+        updateKmsServiceKey({ state: OkmsServiceKeyState.active });
+      },
     });
   }
   if (
@@ -112,9 +161,17 @@ const useServiceKeyActionsList = (
       color: ODS_THEME_COLOR_INTENT.error,
       disabled:
         okmsKey?.state === OkmsServiceKeyState.active || deleteIsPending,
-      onClick: () => deleteKmsServiceKey(),
       iamActions: [kmsIamActions.serviceKeyDelete],
       urn: okmsKey?.iam.urn,
+      onClick: () => {
+        trackClick({
+          location: trackLocation,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['delete_encryption_key'],
+        });
+        deleteKmsServiceKey();
+      },
     });
   }
   return items;

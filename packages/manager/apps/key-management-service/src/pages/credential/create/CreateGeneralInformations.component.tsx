@@ -5,6 +5,11 @@ import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigate, useParams } from 'react-router-dom';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { validateCredentialName } from '@/utils/credential/validateCredentialName';
 import { validateCredentialDescription } from '@/utils/credential/validateCredentialDescription';
@@ -46,6 +51,8 @@ const CreateGeneralInformations = ({
   const { t } = useTranslation('key-management-service/credential');
   const { okmsId } = useParams();
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
+
   const credentialNameError = validateCredentialName(name);
   const credentialDescriptionError = validateCredentialDescription(description);
   const credentialValidityError = validateValidityDate(validity);
@@ -100,6 +107,12 @@ const CreateGeneralInformations = ({
               variant={ODS_BUTTON_VARIANT.stroked}
               color={ODS_THEME_COLOR_INTENT.primary}
               onClick={() => {
+                trackClick({
+                  location: PageLocation.funnel,
+                  buttonType: ButtonType.button,
+                  actionType: 'action',
+                  actions: ['cancel'],
+                });
                 navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
               }}
             >
@@ -109,7 +122,15 @@ const CreateGeneralInformations = ({
               size={ODS_BUTTON_SIZE.md}
               inline
               color={ODS_THEME_COLOR_INTENT.primary}
-              onClick={nextStep}
+              onClick={() => {
+                trackClick({
+                  location: PageLocation.funnel,
+                  buttonType: ButtonType.button,
+                  actionType: 'action',
+                  actions: ['next'],
+                });
+                nextStep();
+              }}
               disabled={
                 !!credentialNameError ||
                 !!credentialDescriptionError ||

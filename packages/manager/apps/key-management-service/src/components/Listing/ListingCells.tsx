@@ -87,10 +87,18 @@ export const DatagridActionMenu = (props: OKMS) => {
 
 export const DatagridServiceKeyCellName = (props: OkmsAllServiceKeys) => {
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
+
   return (
     <div>
       <Links
         onClickReturn={() => {
+          trackClick({
+            location: PageLocation.datagrid,
+            buttonType: ButtonType.link,
+            actionType: 'navigation',
+            actions: ['details_encryption_key'],
+          });
           navigate(`${props?.id}`);
         }}
         label={props?.name}

@@ -1,4 +1,5 @@
 import React, { Suspense, useEffect, useState } from 'react';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   BaseLayout,
   ErrorBanner,
@@ -21,6 +22,7 @@ import { OkmsCredential } from '@/types/okmsCredential.type';
 
 const CreateCredential = () => {
   const navigate = useNavigate();
+  const { trackPage } = useOvhTracking();
   const { okmsId } = useParams();
   const { data: okms, isLoading, error } = useOKMSById(okmsId);
   const { t } = useTranslation('key-management-service/credential');
@@ -36,8 +38,17 @@ const CreateCredential = () => {
     okmsId,
     onSuccess: (credential) => {
       setOkmsCredential(credential);
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'create_access_certificate',
+      });
     },
-    onError: () => {},
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'create_access_certificate',
+      });
+    },
   });
 
   const breadcrumbItems: BreadcrumbItem[] = [
