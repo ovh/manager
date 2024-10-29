@@ -234,8 +234,13 @@ export function InstanceTable({
                         },
                       ];
                     }
-                    toUpdate.port =
-                      toUpdate.protocol === PROTOCOLS.HTTPS ? 443 : 80;
+
+                    toUpdate.port = (() => {
+                      if (toUpdate.protocol === PROTOCOLS.HTTPS) return 443;
+                      if (toUpdate.protocol === PROTOCOLS.HTTP) return 80;
+                      return toUpdate.port;
+                    })();
+
                     setListeners(newListeners);
                   }}
                   inline
