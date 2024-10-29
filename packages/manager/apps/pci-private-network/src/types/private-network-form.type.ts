@@ -1,3 +1,6 @@
+import { z } from 'zod';
+import { NEW_PRIVATE_NETWORK_FORM_SCHEMA } from '@/pages/new/new.constants';
+
 export type Subnet = {
   cidr: string;
   enableDhcp: boolean;
@@ -10,13 +13,6 @@ export type Gateway = {
   name: string;
 };
 
-export type NewPrivateNetworkForm = {
-  region: string;
-  isLocalZone: boolean;
-  name: string;
-  defaultVlanId: number;
-  vlanId: number;
-  subnet: Subnet;
-  gateway?: Gateway;
-  existingGatewayId?: string | boolean;
-};
+export type NewPrivateNetworkForm = z.infer<
+  typeof NEW_PRIVATE_NETWORK_FORM_SCHEMA
+>;
