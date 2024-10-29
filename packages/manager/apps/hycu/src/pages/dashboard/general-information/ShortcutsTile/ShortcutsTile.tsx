@@ -90,7 +90,17 @@ const ShortcutsTile = ({ serviceName }: { serviceName: string }) => {
       linkChangePackType: {
         id: 'link_change_pack_type',
         value: (
-          <ShortcutsItem disabled={isServiceSuspended}>
+          <ShortcutsItem
+            disabled={isServiceSuspended}
+            iamActions={[IAM_ACTIONS.licenseHycuApiOvhEdit]}
+            urn={hycuDetail?.data?.iam?.urn}
+            data-testid="hycu_link_edit_test_id"
+            onClick={() => {
+              navigate(
+                urls.editPack.replace(subRoutes.serviceName, serviceName),
+              );
+            }}
+          >
             {t('hycu_dashboard_link_change_pack_type')}
           </ShortcutsItem>
         ),

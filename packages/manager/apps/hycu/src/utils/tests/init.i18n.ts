@@ -6,6 +6,7 @@ import listing from '../../../public/translations/hycu/listing/Messages_fr_FR.js
 import onboarding from '../../../public/translations/hycu/onboarding/Messages_fr_FR.json';
 import order from '../../../public/translations/hycu/order/Messages_fr_FR.json';
 import terminate from '../../../public/translations/hycu/terminate/Messages_fr_FR.json';
+import editPack from '../../../public/translations/hycu/edit-pack/Messages_fr_FR.json';
 
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
@@ -18,6 +19,7 @@ function addTranslations() {
     .addResources(defaultLocale, 'hycu/onboarding', onboarding)
     .addResources(defaultLocale, 'hycu/order', order)
     .addResources(defaultLocale, 'hycu/terminate', terminate)
+    .addResources(defaultLocale, 'hycu/edit-pack', editPack)
     .addResources(defaultLocale, 'error', error)
     .use({
       type: 'postProcessor',
@@ -59,5 +61,6 @@ export const labels = {
   onboarding,
   order,
   terminate,
+  editPack,
   error,
 };
