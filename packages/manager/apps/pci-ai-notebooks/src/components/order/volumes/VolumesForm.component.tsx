@@ -1,11 +1,15 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { GitBranchIcon, MinusCircle, Package, PlusCircle } from 'lucide-react';
+import {
+  GitBranchIcon,
+  HelpCircle,
+  Package,
+  PlusCircle,
+  XOctagon,
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { n } from 'vitest/dist/reporters-P7C2ytIv';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import * as ai from '@/types/cloud/project/ai';
@@ -25,13 +29,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useToast } from '@/components/ui/use-toast';
-import { getAIApiErrorMessage } from '@/lib/apiHelper';
-import * as sshkey from '@/types/cloud/sshkey';
+
 import { DataStoresWithContainers } from '@/hooks/api/ai/datastore/useGetDatastoresWithContainers.hook';
 import { FormVolumes, OrderVolumes } from '@/types/orderFunnel';
 import { VOLUMES_CONFIG } from './volume.const';
 import { Switch } from '@/components/ui/switch';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 interface VolumesFormProps {
   configuredVolumesList: DataStoresWithContainers[];
@@ -45,7 +52,7 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
     const { t } = useTranslation('pci-ai-notebooks/components/volumes');
     const [selectedVolume, setSelectedVolume] = useState<
       DataStoresWithContainers
-    >(configuredVolumesList[0]);
+    >();
     const volumesSchema = z.object({
       gitBranch: z.string().optional(),
       mountDirectory: z
@@ -66,7 +73,6 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
         )
         .refine(
           (data) => {
-            console.log(data);
             if (data === '/workspace') {
               return false;
             }
@@ -114,7 +120,7 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
         <div className="flex w-full items-start gap-2">
           <div
             className={`grid ${
-              selectedVolume.type === ai.DataStoreTypeEnum.git
+              selectedVolume?.type === ai.DataStoreTypeEnum.git
                 ? `grid-cols-4`
                 : `grid-cols-3`
             }  gap-2 w-full`}
@@ -123,7 +129,7 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
               <FormLabel>{t('containerFieldLabel')}</FormLabel>
               <FormControl>
                 <Select
-                  value={selectedVolume.id}
+                  value={selectedVolume?.id}
                   onValueChange={(value) => {
                     form.setValue('container', value);
                     setSelectedVolume(
@@ -132,7 +138,7 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
                   }}
                 >
                   <SelectTrigger>
-                    <SelectValue />
+                    <SelectValue placeholder={t('containerFieldPlaceholder')} />
                   </SelectTrigger>
                   <SelectContent>
                     {Object.values(configuredVolumesList).map((dataStore) => (
@@ -146,7 +152,7 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
               <FormMessage />
             </FormItem>
 
-            {selectedVolume.type === ai.DataStoreTypeEnum.git && (
+            {selectedVolume?.type === ai.DataStoreTypeEnum.git && (
               <FormField
                 control={form.control}
                 name="gitBranch"
@@ -197,7 +203,17 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
               defaultValue={ai.VolumePermissionEnum.RO}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t('permissionsFieldLabel')}</FormLabel>
+                  <div className="inline space-x-2">
+                    <FormLabel>{t('permissionsFieldLabel')}</FormLabel>
+                    <Popover>
+                      <PopoverTrigger>
+                        <HelpCircle className="size-4" />
+                      </PopoverTrigger>
+                      <PopoverContent>
+                        <p>{t('permissionDescription')}</p>
+                      </PopoverContent>
+                    </Popover>
+                  </div>
                   <FormControl>
                     <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger>
@@ -225,7 +241,19 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
             defaultValue={false}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t('cachingFieldLabel')}</FormLabel>
+                <div className="flex flex-row gap-2">
+                  <FormLabel className="mt-2">
+                    {t('cachingFieldLabel')}
+                  </FormLabel>
+                  <Popover>
+                    <PopoverTrigger>
+                      <HelpCircle className="size-4 mt-1" />
+                    </PopoverTrigger>
+                    <PopoverContent>
+                      <p>{t('cachingDescription')}</p>
+                    </PopoverContent>
+                  </Popover>
+                </div>
                 <FormControl>
                   <div className="pt-2">
                     <Switch
@@ -255,17 +283,12 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
         <ul>
           {selectedVolumesList.map((volume, index) => (
             <li key={volume.mountPath} className="flex items-center">
-              <Button
-                data-testid={`ssh-key-label-remove-button-${index}`}
-                className="text-red-500 rounded-full p-2 ml-2 hover:text-red-500 h-8 w-8"
-                variant={'ghost'}
-                type="button"
-                onClick={() => removeVolume(index)}
-                disabled={disabled}
-              >
-                <MinusCircle />
-              </Button>
-              <div className="flex flex-row gap-2">
+              <div className="flex flex-row items-center gap-2">
+                {volume.dataStore.type === ai.DataStoreTypeEnum.git ? (
+                  <GitBranchIcon className="mt-1 size-4 text-orange-600" />
+                ) : (
+                  <Package className="mt-1 size-4 text-primary-700" />
+                )}
                 <div>
                   <span>{volume.dataStore.alias}</span>
                   {volume.dataStore.container && (
@@ -286,11 +309,16 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
                   <span> - </span>
                   <span>{volume.cache ? 'cache' : 'no cache'}</span>
                 </div>
-                {volume.dataStore.type === ai.DataStoreTypeEnum.git ? (
-                  <GitBranchIcon className="mt-1 size-4 text-orange-600" />
-                ) : (
-                  <Package className="mt-1 size-4 text-emerald-600" />
-                )}
+                <Button
+                  data-testid={`ssh-key-label-remove-button-${index}`}
+                  className="text-red-500 rounded-full px-2 hover:text-red-500 h-8 w-8"
+                  variant={'ghost'}
+                  type="button"
+                  onClick={() => removeVolume(index)}
+                  disabled={disabled}
+                >
+                  <XOctagon />
+                </Button>
               </div>
             </li>
           ))}

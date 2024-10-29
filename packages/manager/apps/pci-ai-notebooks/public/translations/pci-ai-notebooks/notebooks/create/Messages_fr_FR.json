@@ -47,5 +47,10 @@
   "summaryFieldSshKey_zero": "Aucune",
   "summaryFieldSshKey_one": "{{count}} clé configurée",
   "summaryFieldSshKey_other": "{{count}} clés configurées",
-  "orderButton": "Commander"
+  "orderButton": "Commander",
+  "cliCode": "Equivalent CLI",
+  "errorGetCommandCli": "Une erreur est survenue lors de la génération de code équivalent pour la CLI",
+  "cliEquivalentModalTitle": "Création d’un notebook équivalent",
+  "cliEquivalentModalDescription": "Créer le même notebook via la CLI",
+  "cliEquivalentModalToastMessage": "Le code a été copié"
 }

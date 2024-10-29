@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { AlertCircle, HelpCircle } from 'lucide-react';
+import { AlertCircle, HelpCircle, TerminalSquare } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
 import * as ai from '@/types/cloud/project/ai';
 import { order } from '@/types/catalog';
 import { useOrderFunnel } from './useOrderFunnel.hook';
@@ -43,6 +44,9 @@ import { useToast } from '@/components/ui/use-toast';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import ErrorList from '@/components/order/error-list/ErrorList.component';
 import { OrderVolumes, PrivacyEnum } from '@/types/orderFunnel';
+import { useModale } from '@/hooks/useModale';
+import { useGetCommand } from '@/hooks/api/ai/notebook/useGetCommand.hook';
+import CliEquivalent from './CliEquivalent.component';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
@@ -61,10 +65,12 @@ const OrderFunnel = ({
 }: OrderFunnelProps) => {
   const model = useOrderFunnel(regions, catalog, frameworks, editors);
   const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  const cliEquivalentModale = useModale('cli');
   const navigate = useNavigate();
 
   const { toast } = useToast();
-  const { projectId } = useParams();
+  const [command, setCommand] = useState<ai.Command>({});
+
   const { addNotebook, isPending: isPendingAddNotebook } = useAddNotebook({
     onError: (err) => {
       toast({
@@ -80,6 +86,60 @@ const OrderFunnel = ({
       navigate(`../${notebook.id}`);
     },
   });
+
+  const { getCommand, isPending: isPendingCommand } = useGetCommand({
+    onError: (err) => {
+      toast({
+        title: t('errorGetCommandCli'),
+        variant: 'destructive',
+        description: getAIApiErrorMessage(err),
+      });
+    },
+    onSuccess: (cliCommand) => {
+      setCommand(cliCommand);
+    },
+  });
+
+  const getCliCommand = () => {
+    const notebookInfos: ai.notebook.NotebookSpec = {
+      env: {
+        frameworkId: model.result.framework.id,
+        frameworkVersion: model.form.getValues('frameworkWithVersion.version'),
+        editorId: model.result.editor.id,
+      },
+      region: model.result.region.id,
+      unsecureHttp: model.result.unsecureHttp,
+      sshPublicKeys: model.result.sshKey,
+      labels: model.result.labels,
+    };
+
+    if (model.result.flavor.type === ai.capabilities.FlavorTypeEnum.cpu) {
+      notebookInfos.resources = {
+        flavor: model.result.flavor.id,
+        cpu: model.result.resourcesQuantity,
+      };
+    } else {
+      notebookInfos.resources = {
+        flavor: model.result.flavor.id,
+        gpu: model.result.resourcesQuantity,
+      };
+    }
+
+    if (model.result.volumes.length > 0) {
+      notebookInfos.volumes = model.result.volumes.map(
+        (volume: OrderVolumes) => ({
+          cache: volume.cache,
+          dataStore: {
+            alias: volume.dataStore.alias,
+            container: volume.dataStore.container,
+          },
+          mountPath: volume.mountPath,
+          permission: volume.permission,
+        }),
+      );
+    }
+    getCommand(notebookInfos);
+  };
 
   const onSubmit = model.form.handleSubmit(
     (data) => {
@@ -467,18 +527,37 @@ const OrderFunnel = ({
                 />
               )}
             </CardContent>
-            <CardFooter className="flex justify-between">
+            <CardFooter className="flex flex-col">
               <Button
+                type="submit"
                 data-testid="order-submit-button"
                 className="w-full"
-                // disabled={isPendingAddService || isProjectDiscoveryMode}
+                disabled={isPendingAddNotebook}
               >
                 {t('orderButton')}
+              </Button>
+
+              <Button
+                type="button"
+                variant="link"
+                disabled={isPendingCommand}
+                onClick={() => {
+                  getCliCommand();
+                  cliEquivalentModale.open();
+                }}
+                className="flex flex-row gap-2 items-center"
+              >
+                <TerminalSquare className="size-4 text-primary-700" />{' '}
+                {t('cliCode')}
               </Button>
             </CardFooter>
           </Card>
         </form>
       </Form>
+      <CliEquivalent
+        controller={cliEquivalentModale.controller}
+        command={command}
+      />
     </>
   );
 };

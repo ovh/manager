@@ -1,21 +1,21 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { useParams } from 'react-router-dom';
-import { addNotebook } from '@/data/api/ai/notebook/notebook.api';
 import * as ai from '@/types/cloud/project/ai';
 import { AIError } from '@/data/api';
+import { getCommand } from '@/data/api/ai/notebook/command.api';
 
-interface AddNotebookProps {
+interface GetCommandProps {
   onError: (cause: AIError) => void;
-  onSuccess: (notebook: ai.notebook.Notebook) => void;
+  onSuccess: (notebook: ai.Command) => void;
 }
 
-export function useAddNotebook({ onError, onSuccess }: AddNotebookProps) {
+export function useGetCommand({ onError, onSuccess }: GetCommandProps) {
   const queryClient = useQueryClient();
   const { projectId } = useParams();
   const mutation = useMutation({
     mutationFn: (notebookInfo: ai.notebook.NotebookSpec) => {
-      return addNotebook({ projectId, notebookInfo });
+      return getCommand({ projectId, notebookInfo });
     },
     onError,
     onSuccess: (data) => {
@@ -30,7 +30,7 @@ export function useAddNotebook({ onError, onSuccess }: AddNotebookProps) {
   });
 
   return {
-    addNotebook: (notebookInfo: ai.notebook.NotebookSpec) => {
+    getCommand: (notebookInfo: ai.notebook.NotebookSpec) => {
       return mutation.mutate(notebookInfo);
     },
     ...mutation,

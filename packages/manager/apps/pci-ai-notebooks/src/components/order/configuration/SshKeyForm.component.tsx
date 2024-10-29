@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { MinusCircle, PlusCircle } from 'lucide-react';
+import { PlusCircle, XOctagon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { Input } from '@/components/ui/input';
@@ -236,17 +236,17 @@ const SshKeyForm = React.forwardRef<HTMLInputElement, SshKeyFormProps>(
         <ul>
           {sshKeyList.map((sshKey, index) => (
             <li key={sshKey.name} className="flex items-center">
+              <span>{sshKey.name}</span>
               <Button
                 data-testid={`ssh-key-label-remove-button-${index}`}
-                className="text-red-500 rounded-full p-2 ml-2 hover:text-red-500 h-8 w-8"
+                className="text-red-500 rounded-full p-2 hover:text-red-500 h-8 w-8"
                 variant={'ghost'}
                 type="button"
                 onClick={() => removeSSHKey(index)}
                 disabled={disabled}
               >
-                <MinusCircle />
+                <XOctagon />
               </Button>
-              <span>{sshKey.name}</span>
             </li>
           ))}
         </ul>
