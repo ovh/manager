@@ -5,7 +5,7 @@
   "billing_services_actions_menu_manage_renew": "Configure renewal",
   "billing_services_actions_menu_exchange_update_accounts": "Configure renewal for accounts",
   "billing_services_actions_menu_anticipate_renew": "Bring forward payment",
-  "billing_services_actions_menu_resiliate": "Cancel subscription",
+  "billing_services_actions_menu_resiliate": "Cancel",
   "billing_services_actions_menu_resiliate_my_engagement": "Cancel subscription",
   "billing_services_actions_menu_renew_label": "Renew the following service: {{ serviceName }} (New window)",
   "billing_services_actions_menu_renew": "Renew service",
@@ -17,7 +17,7 @@
   "billing_services_actions_menu_resiliate_WEBCOACH": "Delete my Web Coach",
   "billing_services_actions_menu_sms_credit": "Add credits",
   "billing_services_actions_menu_sms_renew": "Configure automatic reloading",
-  "billing_services_actions_menu_resiliate_cancel": "Stop cancellation of service",
+  "billing_services_actions_menu_resiliate_cancel": "Cancel service termination",
   "billing_services_actions_menu_see_dashboard": "View service details",
   "billing_services_actions_menu_commit": "Manage my commitment",
   "billing_services_actions_menu_commit_cancel": "Cancel subscription request"
