@@ -77,6 +77,15 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
           ),
         },
         {
+          id: 'date_creation',
+          label: t('hycu_dashboard_field_label_date_creation'),
+          value: isLoading ? (
+            <OsdsSkeleton />
+          ) : (
+            <Description>{creationDate}</Description>
+          ),
+        },
+        {
           id: 'contact',
           label: t('hycu_dashboard_field_label_contacts'),
           value: (
@@ -113,15 +122,6 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
                 </OsdsLink>
               </div>
             </div>
-          ),
-        },
-        {
-          id: 'date_creation',
-          label: t('hycu_dashboard_field_label_date_creation'),
-          value: isLoading ? (
-            <OsdsSkeleton />
-          ) : (
-            <Description>{creationDate}</Description>
           ),
         },
         {
