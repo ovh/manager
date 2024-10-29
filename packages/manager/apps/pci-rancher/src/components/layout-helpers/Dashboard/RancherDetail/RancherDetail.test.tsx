@@ -15,10 +15,10 @@ jest.mock('@ovh-ux/manager-react-shell-client', () => ({
   })),
 }));
 
-const updateOfferErrorMessage = 'error message';
+const updateOfferError = { class: 'error', message: 'error message' };
 
 const defaultProps: RancherDetailProps = {
-  updateOfferErrorMessage,
+  updateOfferError,
   versions: versionsMocked,
   rancher: rancherMocked,
   editNameResponseType: null,
