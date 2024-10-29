@@ -16,12 +16,9 @@ export default function EditPage() {
   const { addSuccess, addError } = useNotifications();
   const navigate = useNavigate();
   const { t: tEdit } = useTranslation('pools/members/edit');
-  const { t: tPciCommon } = useTranslation('pci-common');
-  const { projectId, poolId, region, memberId } = useParams();
 
-  const onClose = () => {
-    navigate('..');
-  };
+  const { projectId, poolId, region, memberId } = useParams();
+  const [memberName, setMemberName] = useState('');
 
   const { data: poolMember, isPending: isPendingPoolMember } = useGetPoolMember(
     projectId,
@@ -29,9 +26,6 @@ export default function EditPage() {
     region,
     memberId,
   );
-
-  const [memberName, setMemberName] = useState('');
-  const [isTouched, setIsTouched] = useState(false);
 
   const {
     updatePoolMemberName,
@@ -54,12 +48,12 @@ export default function EditPage() {
                   requestId: error.response?.headers['x-ovh-queryid'],
                 }),
               }}
-            ></span>
+            />
           )}
         </Translation>,
         true,
       );
-      onClose();
+      navigate('..');
     },
     onSuccess() {
       addSuccess(
@@ -93,39 +87,25 @@ export default function EditPage() {
   return (
     <PciModal
       title={tEdit('octavia_load_balancer_pools_members_edit_name_title')}
-      onClose={onClose}
+      onClose={() => navigate('..')}
       onCancel={onCancel}
       onConfirm={onConfirm}
       type="default"
       isPending={isPendingPoolMember || isPendingUpdate}
-      isDisabled={!memberName.trim()}
       submitText={tEdit(
         'octavia_load_balancer_pools_members_edit_name_confirm',
       )}
       cancelText={tEdit('octavia_load_balancer_pools_members_edit_name_cancel')}
     >
-      <OsdsFormField
-        className="mt-8"
-        error={
-          isTouched && !memberName.trim()
-            ? tPciCommon('common_field_error_required')
-            : ''
-        }
-      >
+      <OsdsFormField className="mt-8">
         <LabelComponent
           text={tEdit('octavia_load_balancer_pools_members_edit_name_label')}
-          slot="label"
-          hasError={isTouched && !memberName.trim()}
         />
         <OsdsInput
           value={memberName}
           type={ODS_INPUT_TYPE.text}
-          error={isTouched && !memberName.trim()}
           onOdsValueChange={(event) => {
             setMemberName(event.detail.value.trim());
-          }}
-          onOdsInputBlur={() => {
-            setIsTouched(true);
           }}
         />
       </OsdsFormField>
