@@ -10,7 +10,7 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import BillingTile from './BillingTile.component';
+import OrganizationServiceManagementTile from './OrganizationServiceManagementTile.component';
 
 const shellContext = {
   environment: {
@@ -27,34 +27,31 @@ const renderComponent = () => {
       <ShellContext.Provider
         value={(shellContext as unknown) as ShellContextType}
       >
-        <BillingTile id="testId" />
+        <OrganizationServiceManagementTile />
       </ShellContext.Provider>
     </QueryClientProvider>,
   );
 };
 
-describe.skip('BillingTile component unit test suite', () => {
+describe('ServiceManagementTile component unit test suite', () => {
   it('should define all sections with correct typo', () => {
     // when
     const { getByText } = renderComponent();
 
     // then
-    const billingTitle = getByText('managed_vcd_dashboard_service_management');
-    expect(billingTitle).toHaveAttribute(
-      'size',
-      ODS_THEME_TYPOGRAPHY_SIZE._400,
-    );
-    expect(billingTitle).toHaveAttribute(
+    const serviceTile = getByText('managed_vcd_dashboard_service_management');
+    expect(serviceTile).toHaveAttribute('size', ODS_THEME_TYPOGRAPHY_SIZE._400);
+    expect(serviceTile).toHaveAttribute(
       'level',
       ODS_THEME_TYPOGRAPHY_LEVEL.heading,
     );
 
     // and
-    const mailingTitle = getByText('managed_vcd_dashboard_mailing_list');
     const renewTitle = getByText('managed_vcd_dashboard_service_renew');
     const cancelTitle = getByText('managed_vcd_dashboard_service_cancellation');
     const pwdTitle = getByText('managed_vcd_dashboard_password');
-    const subtitles = [mailingTitle, renewTitle, cancelTitle, pwdTitle];
+    const contactTitle = getByText('managed_vcd_dashboard_contact_list');
+    const subtitles = [renewTitle, cancelTitle, pwdTitle, contactTitle];
 
     subtitles.forEach((title: HTMLElement) => {
       expect(title).toHaveAttribute('size', ODS_THEME_TYPOGRAPHY_SIZE._200);
