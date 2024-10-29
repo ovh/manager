@@ -1,4 +1,3 @@
-/* c8 ignore start */
 export function downloadTextAsFile(filename: string, text: string) {
   const blob = new Blob([text], { type: 'text/plain' });
   const link = document.createElement('a');
@@ -10,4 +9,3 @@ export function downloadTextAsFile(filename: string, text: string) {
 
   document.body.removeChild(link);
 }
-/* c8 ignore stop */
