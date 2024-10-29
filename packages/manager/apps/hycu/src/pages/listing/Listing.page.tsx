@@ -74,6 +74,7 @@ const DatagridStatusCell = (hycuDetail: IHycuDetails) => {
   return (
     <DataGridTextCell>
       <OsdsChip
+        className="whitespace-nowrap"
         color={getStatusColor(hycuDetail.licenseStatus)}
         size={ODS_CHIP_SIZE.sm}
         inline
