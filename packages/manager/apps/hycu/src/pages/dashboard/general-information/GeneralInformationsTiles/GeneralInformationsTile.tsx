@@ -24,21 +24,30 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { getStatusColor } from '@/utils/statusColor';
-import { useDetailsLicenseHYCU } from '@/hooks/api/license';
+import {
+  useDetailsLicenseHYCU,
+  useDownloadLicenseHYCUMutation,
+} from '@/hooks/api/license';
 import { LicenseStatus } from '@/types/hycu.details.interface';
 import { subRoutes, urls } from '@/routes/routes.constant';
+import { ManagerLink } from '@/components/ManagerLink/ManagerLink.component';
+import { IAM_ACTIONS } from '@/utils/iam.constants';
 
 const ActivateHycuLicense = ({ serviceName }: { serviceName: string }) => {
   const { t } = useTranslation('hycu/dashboard');
   const { data: hycuDetail, isLoading } = useDetailsLicenseHYCU(serviceName);
+  const { mutate } = useDownloadLicenseHYCUMutation();
 
   if (isLoading) return <OsdsSkeleton />;
   if (LicenseStatus.ACTIVATED !== hycuDetail?.data.licenseStatus)
     return <>{t('hycu_dashboard_wait_for_activation')}</>;
   return (
-    <OsdsLink
+    <ManagerLink
+      data-testid="dashboard-license-download-link"
+      urn={hycuDetail.data.iam.urn}
+      iamActions={[IAM_ACTIONS.licenseHycuApiOvhGet]}
       color={ODS_THEME_COLOR_INTENT.primary}
-      href={urls.activateLicense.replace(subRoutes.serviceName, serviceName)}
+      onClick={() => mutate({ serviceName })}
     >
       {t('hycu_dashboard_download_license_file')}
       <span slot="end">
@@ -49,7 +58,7 @@ const ActivateHycuLicense = ({ serviceName }: { serviceName: string }) => {
           color={ODS_THEME_COLOR_INTENT.primary}
         ></OsdsIcon>
       </span>
-    </OsdsLink>
+    </ManagerLink>
   );
 };
 

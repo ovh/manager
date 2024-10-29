@@ -31,14 +31,24 @@ export const FileInputField = ({
     if (file.size > MAX_FILE_SIZE) {
       setFileName('');
       control.setError(name, {
-        message: t('hycu_dashboard_upload_valid_file'),
+        message: t('hycu_dashboard_upload_file_too_big'),
+      });
+      return;
+    }
+    if (!file.name.endsWith('.dat')) {
+      setFileName('');
+      control.setError(name, {
+        message: t('hycu_dashboard_upload_file_bad_type'),
       });
       return;
     }
 
     const reader = new FileReader();
     reader.onloadend = () => {
-      const base64String = btoa(reader.result as string);
+      const base64String = (reader.result as string).replace(
+        'data:application/octet-stream;base64,',
+        '',
+      );
       onChange(base64String);
       setFileName(file.name);
       control.setError(name, undefined);

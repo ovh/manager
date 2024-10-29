@@ -21,6 +21,10 @@ export const postRegenerateLicenseHycuMutationKey = () => [
   'license/hycu/refresh',
   'post',
 ];
+export const getDownloadLicenseHycuMutationKey = () => [
+  'license/hycu/download',
+  'get',
+];
 
 /**
  * Manage HYCU licenses : Get list of owned HYCU licenses
@@ -33,6 +37,8 @@ export type GetlicenseHycuServiceParams = {
   /** Service name */
   serviceName?: string;
 };
+
+export type GetLicenseHycuDownloadServiceParams = { serviceName: string };
 
 /**
  * Manage HYCU licenses : Get HYCU license info
@@ -69,6 +75,14 @@ export const postLicenseHycuRegenerateService = (
   apiClient.v6.post(`/license/hycu/${params.serviceName}/refresh`, {
     licenseRequest: params.licenseContent,
   });
+
+/**
+ * Regenerate HYCU licenses : Post HYCU license content
+ */
+export const getLicenseHycuDownloadService = (
+  params: GetLicenseHycuDownloadServiceParams,
+): Promise<AxiosResponse> =>
+  apiClient.v6.get(`/license/hycu/${params.serviceName}/license`);
 
 /**
  *  Get listing with iceberg V6

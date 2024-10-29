@@ -8,6 +8,9 @@ import {
 } from '@tanstack/react-query';
 import { getServiceDetailsQueryKey } from '@ovh-ux/manager-react-components';
 import {
+  getDownloadLicenseHycuMutationKey,
+  getLicenseHycuDownloadService,
+  GetLicenseHycuDownloadServiceParams,
   getLicenseHycuListQueryKey,
   getLicenseHycuQueryKey,
   getLicenseHycuService,
@@ -18,6 +21,11 @@ import {
   postRegenerateLicenseHycuMutationKey,
 } from '@/data/api/hycu';
 import { IHycuDetails } from '@/types/hycu.details.interface';
+import { downloadTextAsFile } from '@/utils/downloadTextAsFile';
+import {
+  PREFIX_LICENSE_FILE_NAME,
+  SUFFIX_LICENSE_FILE_NAME,
+} from '@/constants';
 
 export const useDetailsLicenseHYCU = (
   serviceName: string,
@@ -85,6 +93,32 @@ export const useRegenerateLicenseHYCUMutation = (
     mutationFn: (params) => postLicenseHycuRegenerateService(params),
     onSuccess: (data, variables, context) => {
       invalidateCacheForService(variables.serviceName);
+      onSuccess?.(data, variables, context);
+    },
+    ...(restOptions ?? {}),
+  });
+};
+
+export const useDownloadLicenseHYCUMutation = (
+  options: Partial<
+    UseMutationOptions<
+      AxiosResponse<{ content: string }>,
+      Error,
+      GetLicenseHycuDownloadServiceParams
+    >
+  > = {},
+) => {
+  const { onSuccess, ...restOptions } = options;
+
+  return useMutation({
+    mutationKey: getDownloadLicenseHycuMutationKey(),
+    mutationFn: (params) => getLicenseHycuDownloadService(params),
+    onSuccess: (data, variables, context) => {
+      downloadTextAsFile(
+        `${PREFIX_LICENSE_FILE_NAME}${variables.serviceName}${SUFFIX_LICENSE_FILE_NAME}`,
+        data.data.content,
+      );
+
       onSuccess?.(data, variables, context);
     },
     ...(restOptions ?? {}),

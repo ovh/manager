@@ -6,6 +6,7 @@ export const resourceList: IamCheckResponse[] = [
   {
     urn: licensesHycu[0].iam.urn,
     authorizedActions: [
+      IAM_ACTIONS.licenseHycuApiOvhGet,
       IAM_ACTIONS.licenseHycuApiOvhActivate,
       IAM_ACTIONS.licenseHycuApiOvhRefresh,
       IAM_ACTIONS.licenseHycuApiOvhTerminate,
