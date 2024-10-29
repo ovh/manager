@@ -141,7 +141,7 @@ describe('NetworkStepStep', () => {
           isPending: true,
         }));
 
-        ((OsdsSpinner as unknown) as Mock).mockImplementationOnce(() => (
+        ((OsdsSpinner as unknown) as Mock).mockImplementation(() => (
           <div data-testid="spinner"></div>
         ));
 

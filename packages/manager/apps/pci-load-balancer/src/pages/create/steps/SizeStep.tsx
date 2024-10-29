@@ -14,7 +14,7 @@ import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
 import { useGetAddons } from '@/api/hook/useAddons';
 
 export const SizeStep = (): JSX.Element => {
-  const { t: tCreate } = useTranslation('create');
+  const { t: tCreate } = useTranslation('load-balancer/create');
   const { t: tCommon } = useTranslation('pci-common');
 
   const { trackStep } = useTrackStep();

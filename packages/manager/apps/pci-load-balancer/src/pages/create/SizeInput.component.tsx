@@ -19,6 +19,10 @@ const LabelComponent = ({
 
   const { getFormattedHourlyCatalogPrice } = useCatalogPrice();
 
+  const [priceValue, priceUnit] = getFormattedHourlyCatalogPrice(
+    item.price,
+  ).split('/');
+
   return (
     <div className="w-full">
       <div>
@@ -30,9 +34,9 @@ const LabelComponent = ({
         >
           {tCreate('octavia_load_balancer_create_size_flavour_title', {
             sizeCode: item.label,
-          })}
+          })}{' '}
         </OsdsText>
-        <div className="mt-4">
+        <div className="mt-4 font-normal">
           <OsdsText
             size={ODS_TEXT_SIZE._300}
             level={ODS_TEXT_LEVEL.button}
@@ -40,7 +44,7 @@ const LabelComponent = ({
           >
             {tCreate(
               `octavia_load_balancer_create_size_flavour_description_${item.code}`,
-            )}
+            )}{' '}
           </OsdsText>
         </div>
         <div className="mt-4 pt-4 text-center border-solid border-t border-0 border-[--ods-color-blue-200]">
@@ -49,7 +53,7 @@ const LabelComponent = ({
             level={ODS_TEXT_LEVEL.body}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {getFormattedHourlyCatalogPrice(item.price)}
+            <span className="font-bold">{priceValue}</span>/{priceUnit}
           </OsdsText>
         </div>
       </div>
