@@ -19,6 +19,7 @@ export default defineConfig({
         'src/index.tsx',
         'src/tracking.constant.ts',
         'src/vite-hmr.ts',
+        'src/utils/downloadTextAsFile.ts',
       ],
     },
     testTimeout: 60000,

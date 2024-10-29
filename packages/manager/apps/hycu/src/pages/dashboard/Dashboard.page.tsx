@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Outlet,
@@ -17,11 +17,14 @@ import {
   BaseLayout,
   useServiceDetails,
   Notifications,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import Errors from '@/components/Error/Error';
 import { urls } from '@/routes/routes.constant';
+import { useDetailsLicenseHYCU } from '@/hooks/api/license';
+import { LicenseStatus } from '@/types/hycu.details.interface';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -37,10 +40,23 @@ export default function DashboardPage() {
   const { serviceName } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation('hycu/dashboard');
+  const { addError, clearNotifications } = useNotifications();
 
+  const { data: licenseHycu } = useDetailsLicenseHYCU(serviceName);
   const { data: serviceDetails, error } = useServiceDetails({
     resourceName: serviceName,
   });
+
+  useEffect(() => {
+    if (licenseHycu?.data.licenseStatus === LicenseStatus.ERROR) {
+      clearNotifications();
+      addError(
+        t('hycu_dashboard_error_license_message', {
+          error: licenseHycu.data.comment,
+        }),
+      );
+    }
+  }, [licenseHycu]);
 
   const tabsList = [
     {
