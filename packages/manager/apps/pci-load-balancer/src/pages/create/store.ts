@@ -69,8 +69,17 @@ export type TCreateStore = {
   ) => Promise<void>;
 };
 
-const initialSteps = () => {
-  const entries: [[StepsEnum, TStep]] = [
+export const initialStoreState = () => ({
+  projectId: '',
+  addon: null,
+  region: null,
+  publicIp: null,
+  privateNetwork: null,
+  subnet: null,
+  gateways: [],
+  listeners: [],
+  name: '',
+  steps: new Map<StepsEnum, TStep>([
     [
       StepsEnum.SIZE,
       {
@@ -93,22 +102,11 @@ const initialSteps = () => {
         isChecked: false,
       } as TStep,
     ]),
-  ] as [[StepsEnum, TStep]];
-
-  return new Map<StepsEnum, TStep>(entries);
-};
+  ] as [[StepsEnum, TStep]]),
+});
 
 export const useCreateStore = create<TCreateStore>()((set, get) => ({
-  projectId: '',
-  addon: null,
-  region: null,
-  publicIp: null,
-  privateNetwork: null,
-  subnet: null,
-  gateways: [],
-  listeners: [],
-  name: '',
-  steps: initialSteps(),
+  ...initialStoreState(),
   set: {
     projectId: (val: string) => {
       set({
@@ -220,15 +218,7 @@ export const useCreateStore = create<TCreateStore>()((set, get) => ({
     if (!steps.length) {
       set(() => ({
         ...get(),
-        addon: null,
-        region: null,
-        publicIp: null,
-        privateNetwork: null,
-        subnet: null,
-        gateways: [],
-        listeners: [],
-        name: '',
-        steps: initialSteps(),
+        ...initialStoreState(),
       }));
     } else {
       steps.forEach((step) => {
