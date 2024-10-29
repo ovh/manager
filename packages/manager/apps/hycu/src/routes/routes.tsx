@@ -120,6 +120,17 @@ export const Routes: any = [
           },
         },
       },
+      {
+        id: 'edit-pack',
+        path: urls.editPack,
+        ...lazyRouteConfig(() => import('@/pages/edit-pack/EditPack.page')),
+        handle: {
+          tracking: {
+            pageName: 'edit-pack',
+            pageType: PageType.dashboard,
+          },
+        },
+      },
     ],
   },
   {
