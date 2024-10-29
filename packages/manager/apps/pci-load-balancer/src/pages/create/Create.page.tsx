@@ -33,7 +33,7 @@ export default function CreatePage(): JSX.Element {
   const { projectId } = useParams();
 
   const { t } = useTranslation('octavia-load-balancer');
-  const { t: tCreate } = useTranslation('create');
+  const { t: tCreate } = useTranslation('load-balancer/create');
 
   const store = useCreateStore();
 
