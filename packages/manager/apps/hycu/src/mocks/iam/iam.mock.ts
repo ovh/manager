@@ -10,12 +10,13 @@ export const resourceList: IamCheckResponse[] = [
       IAM_ACTIONS.licenseHycuApiOvhActivate,
       IAM_ACTIONS.licenseHycuApiOvhRefresh,
       IAM_ACTIONS.licenseHycuApiOvhTerminate,
+      IAM_ACTIONS.licenseHycuApiOvhEdit,
     ],
     unauthorizedActions: [],
   },
   {
     urn: licensesHycu[1].iam.urn,
     authorizedActions: [],
-    unauthorizedActions: [],
+    unauthorizedActions: [IAM_ACTIONS.licenseHycuApiOvhEdit],
   },
 ];
