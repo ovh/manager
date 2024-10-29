@@ -458,10 +458,15 @@
                 data-ng-required="true"
             />
         </oui-field>
-        <oui-spinner
-            data-size="s"
-            data-ng-if="$ctrl.isAddingRegion"
-        ></oui-spinner>
+
+        <oui-message
+            data-type="info"
+            data-ng-if="$ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MONO_ZONE || $ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MULTI_ZONES"
+        >
+            <p
+                data-translate="pci_projects_project_storages_containers_add_replication_rules_info"
+            ></p>
+        </oui-message>
     </oui-step-form>
 
     <!--Archive container steps-->
