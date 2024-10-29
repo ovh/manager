@@ -1,19 +1,33 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { DeleteModal } from '@ovh-ux/manager-react-components';
 import { useDeleteOkmsCredential } from '@/data/hooks/useDeleteOkmsCredential';
 
 const DeleteCredentialPage = () => {
   const navigate = useNavigate();
+  const { trackPage } = useOvhTracking();
   const { okmsId, credentialId } = useParams();
   const { t } = useTranslation('key-management-service/credential');
 
   const { mutate, isPending } = useDeleteOkmsCredential({
     okmsId,
     credentialId,
-    onError: () => navigate('..'),
-    onSuccess: () => navigate('..'),
+    onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'delete_access_certificate',
+      });
+      navigate('..');
+    },
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'delete_access_certificate',
+      });
+      navigate('..');
+    },
   });
 
   const onClose = () => {

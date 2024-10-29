@@ -14,6 +14,11 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import Loading from '@/components/Loading/Loading';
 import CredentialDatagrid from '../../../components/credential/credentialDatagrid/CredentialDatagrid';
 import { ROUTES_URLS } from '@/routes/routes.constants';
@@ -24,6 +29,7 @@ const CredentialList = () => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
   const okms = useContext(OkmsContext);
+  const { trackClick } = useOvhTracking();
 
   const { isAuthorized, isLoading: isLoadingIam } = useAuthorizationIam(
     [kmsIamActions.credentialGet],
@@ -44,6 +50,12 @@ const CredentialList = () => {
         variant={ODS_BUTTON_VARIANT.stroked}
         className={'w-fit'}
         onClick={() => {
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['create_access_certificate'],
+          });
           navigate(ROUTES_URLS.createCredential);
         }}
         iamActions={[kmsIamActions.credentialCreate]}

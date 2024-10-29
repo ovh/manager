@@ -29,6 +29,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { OkmsServiceKeyReference } from '@/types/okmsServiceKeyReference.type';
 import {
@@ -82,13 +88,22 @@ export default function CreateKey() {
   >();
   const [keyDisplayName, setKeyDisplayName] = useState<string>('');
   const serviceKeyNameError = validateServiceKeyName(keyDisplayName);
-
+  const { trackClick, trackPage } = useOvhTracking();
   const { createKmsServiceKey, isPending } = useCreateOkmsServiceKey({
     okmsId,
     onSuccess: () => {
       navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'create_encryption_key',
+      });
     },
-    onError: () => {},
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'create_encryption_key',
+      });
+    },
   });
 
   const getErrorMessage = (error: ServiceKeyNameErrorsType) => {
@@ -298,7 +313,15 @@ export default function CreateKey() {
                         >
                           <ServiceKeyTypeRadioButton
                             type={reference.type}
-                            onClick={() => selectKeyType(reference)}
+                            onClick={() => {
+                              trackClick({
+                                location: PageLocation.funnel,
+                                buttonType: ButtonType.button,
+                                actionType: 'action',
+                                actions: ['select_type_key', reference.type],
+                              });
+                              selectKeyType(reference);
+                            }}
                           />
                         </OsdsRadio>
                       );
@@ -407,21 +430,37 @@ export default function CreateKey() {
                             OdsCheckboxCheckedChangeEventDetail
                           >,
                         ) => {
+                          trackPage({
+                            pageType: PageType.bannerSuccess,
+                            pageName: 'deactivate_encryption_key',
+                          });
+                          let newOperations: OkmsServiceKeyOperations[][];
+
                           if (event.detail.checked) {
-                            setKeyOperations((prev) => [
-                              ...prev,
-                              operation.value,
-                            ]);
+                            setKeyOperations((prev) => {
+                              newOperations = [...prev, operation.value];
+                              return newOperations;
+                            });
                           } else {
                             const operationIndex = keyOperations.indexOf(
                               operation.value,
                             );
 
-                            const newOperations = [...keyOperations];
+                            newOperations = [...keyOperations];
                             newOperations.splice(operationIndex, 1);
 
                             setKeyOperations(newOperations);
                           }
+
+                          trackClick({
+                            location: PageLocation.funnel,
+                            buttonType: ButtonType.button,
+                            actionType: 'action',
+                            actions: [
+                              'select_use_key',
+                              newOperations.flat().join('_'),
+                            ],
+                          });
                         }}
                       >
                         <ServiceKeyOperationCheckbox operation={operation} />
@@ -437,6 +476,12 @@ export default function CreateKey() {
                   variant={ODS_BUTTON_VARIANT.stroked}
                   color={ODS_THEME_COLOR_INTENT.primary}
                   onClick={() => {
+                    trackClick({
+                      location: PageLocation.funnel,
+                      buttonType: ButtonType.button,
+                      actionType: 'action',
+                      actions: ['cancel'],
+                    });
                     navigate(`/${okmsId}/${ROUTES_URLS.keys}`);
                   }}
                 >
@@ -446,7 +491,15 @@ export default function CreateKey() {
                   size={ODS_BUTTON_SIZE.md}
                   inline
                   color={ODS_THEME_COLOR_INTENT.primary}
-                  onClick={submitCreateKey}
+                  onClick={() => {
+                    trackClick({
+                      location: PageLocation.funnel,
+                      buttonType: ButtonType.button,
+                      actionType: 'action',
+                      actions: ['confirm'],
+                    });
+                    submitCreateKey();
+                  }}
                   disabled={
                     !!serviceKeyNameError ||
                     keyOperations.length === 0 ||

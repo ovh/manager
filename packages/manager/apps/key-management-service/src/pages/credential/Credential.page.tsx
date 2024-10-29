@@ -9,6 +9,11 @@ import {
   useParams,
 } from 'react-router-dom';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   BaseLayout,
   ErrorBanner,
   Notifications,
@@ -42,6 +47,7 @@ export function useOutletCredential() {
 }
 
 const CredentialDashboard = () => {
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/credential');
   const [activePanel, setActivePanel] = useState('');
@@ -118,13 +124,29 @@ const CredentialDashboard = () => {
           'key_management_service_credential_dashboard_backlink',
         )}
         message={<Notifications />}
-        onClickReturn={() => navigate(`/${okmsId}/${ROUTES_URLS.credentials}`)}
+        onClickReturn={() => {
+          navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.link,
+            actionType: 'navigation',
+            actions: ['return_listing_page'],
+          });
+        }}
         tabs={
           <OsdsTabs panel={activePanel}>
             <OsdsTabBar slot="top">
               <NavLink
                 to={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}`}
                 className="flex no-underline"
+                onClick={() => {
+                  trackClick({
+                    location: PageLocation.page,
+                    buttonType: ButtonType.tab,
+                    actionType: 'navigation',
+                    actions: ['general-informations'],
+                  });
+                }}
               >
                 <OsdsTabBarItem
                   panel={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}`}
@@ -138,6 +160,14 @@ const CredentialDashboard = () => {
               <NavLink
                 to={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}/${ROUTES_URLS.credentialIdentities}`}
                 className="flex no-underline"
+                onClick={() => {
+                  trackClick({
+                    location: PageLocation.page,
+                    buttonType: ButtonType.tab,
+                    actionType: 'navigation',
+                    actions: ['identities'],
+                  });
+                }}
               >
                 <OsdsTabBarItem
                   panel={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}/${ROUTES_URLS.credentialIdentities}`}
