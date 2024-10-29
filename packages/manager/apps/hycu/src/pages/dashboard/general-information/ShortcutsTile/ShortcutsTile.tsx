@@ -84,7 +84,7 @@ const ShortcutsTile = ({ serviceName }: { serviceName: string }) => {
     <DashboardTile
       title={t('hycu_dashboard_shortcuts_title')}
       items={[
-        hycuDetail?.data.licenseStatus !== LicenseStatus.ACTIVATED
+        !hycuDetail?.data.controllerId
           ? links.linkActivated
           : links.linkReactivated,
         hycuDetail?.data.licenseStatus === LicenseStatus.ACTIVATED &&
