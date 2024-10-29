@@ -1,9 +1,3 @@
-import { TPoolMember } from '@/api/data/pool-member';
-import {
-  useCreatePoolMembers,
-  useGetAllPoolMembers,
-} from '@/api/hook/usePoolMember';
-import LabelComponent from '@/components/form/Label.component';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { TInstance, useInstances } from '@ovh-ux/manager-pci-common';
 import {
@@ -32,6 +26,12 @@ import { useEffect, useMemo, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { v4 as uuidV4 } from 'uuid';
+import LabelComponent from '@/components/form/Label.component';
+import {
+  useCreatePoolMembers,
+  useGetAllPoolMembers,
+} from '@/api/hook/usePoolMember';
+import { TPoolMember } from '@/api/data/pool-member';
 
 type TMappedInstance = {
   uuid: string;
@@ -313,7 +313,8 @@ export default function AddIpInstancePage() {
                       key={instance.uuid}
                       name={instance.label}
                       onOdsCheckedChange={(event) => {
-                        instance.checked = event.detail.checked;
+                        const toUpdate = instance;
+                        toUpdate.checked = event.detail.checked;
                         setState((prevState) => ({ ...prevState }));
                       }}
                     >
@@ -383,7 +384,8 @@ export default function AddIpInstancePage() {
                     type={ODS_INPUT_TYPE.text}
                     value={instance.name}
                     onOdsValueChange={(event) => {
-                      instance.name = event.detail.value;
+                      const toUpdate = instance;
+                      toUpdate.name = event.detail.value;
                       setState((prevState) => ({ ...prevState }));
                     }}
                   />
@@ -431,7 +433,8 @@ export default function AddIpInstancePage() {
                       (index !== 0 && formState.isDuplicatePort) || undefined
                     }
                     onOdsValueChange={(event) => {
-                      instance.protocolPort = Number(event.detail.value);
+                      const toUpdate = instance;
+                      toUpdate.protocolPort = Number(event.detail.value);
                       setState((prevState) => ({ ...prevState }));
                     }}
                   />

@@ -11,6 +11,9 @@ import { TPoolMember } from '@/api/data/pool-member';
 import LabelComponent from '@/components/form/Label.component';
 import { REGEX } from '@/constants';
 
+const PORT_MIN_VALUE = 1;
+const PORT_MAX_VALUE = 65535;
+
 export default function CreatePage() {
   const { addSuccess, addError } = useNotifications();
   const { projectId, region, poolId } = useParams();
@@ -26,10 +29,9 @@ export default function CreatePage() {
     address: '',
     protocolPort: 9000,
   } as TPoolMember);
-  const [isTouched, setIsTouched] = useState({
-    address: false,
-    protocolPort: false,
-  });
+
+  const [isAddressTouched, setIsAddressTouched] = useState(false);
+
   const {
     createPoolMembers,
     isPending: isPendingCreate,
@@ -68,6 +70,7 @@ export default function CreatePage() {
       navigate('..');
     },
   });
+
   const onConfirm = () => {
     createPoolMembers([poolMember]);
   };
@@ -75,8 +78,9 @@ export default function CreatePage() {
   const onCancel = () => {
     navigate('..');
   };
-  const errorMessageAddress = useMemo(() => {
-    if (isTouched.address) {
+
+  const addressIpErrorMessage = useMemo(() => {
+    if (isAddressTouched) {
       if (!poolMember.address.trim()) {
         return tPciCommon('common_field_error_required');
       }
@@ -85,19 +89,27 @@ export default function CreatePage() {
       }
     }
     return '';
-  }, [poolMember.address, isTouched.address]);
+  }, [poolMember.address, isAddressTouched]);
 
-  const errorMessageProtocolPort = useMemo(() => {
-    if (isTouched.protocolPort) {
-      if (!poolMember.protocolPort) {
-        return tPciCommon('common_field_error_required');
-      }
-      if (!(poolMember.protocolPort >= 1 && poolMember.protocolPort <= 65535)) {
-        return tPciCommon('common_field_error_max', { max: 65535 });
-      }
+  const protocolPortErrorMessage = useMemo(() => {
+    if (Number.isNaN(poolMember.protocolPort)) {
+      return tPciCommon('common_field_error_required');
     }
+
+    if (poolMember.protocolPort < PORT_MIN_VALUE) {
+      return tPciCommon('common_field_error_min', { min: PORT_MIN_VALUE });
+    }
+
+    if (poolMember.protocolPort > PORT_MAX_VALUE) {
+      return tPciCommon('common_field_error_max', { max: PORT_MAX_VALUE });
+    }
+
     return '';
-  }, [poolMember.protocolPort, isTouched.protocolPort]);
+  }, [poolMember.protocolPort]);
+
+  const isFormValid =
+    isAddressTouched && !protocolPortErrorMessage && !addressIpErrorMessage;
+
   return (
     <PciModal
       onConfirm={onConfirm}
@@ -111,6 +123,7 @@ export default function CreatePage() {
         'octavia_load_balancer_pools_detail_members_create_confirm',
       )}
       title={tCreate('octavia_load_balancer_pools_detail_members_create_title')}
+      isDisabled={!isFormValid}
     >
       <OsdsFormField className="mt-8">
         <LabelComponent
@@ -129,58 +142,45 @@ export default function CreatePage() {
           }}
         />
       </OsdsFormField>
-      <OsdsFormField className="mt-8" error={errorMessageAddress}>
+      <OsdsFormField className="mt-8" error={addressIpErrorMessage}>
         <LabelComponent
           text={tCreate(
             'octavia_load_balancer_pools_detail_members_create_address_ip_label',
           )}
-          slot="label"
-          hasError={!!errorMessageAddress}
+          hasError={!!addressIpErrorMessage}
         />
         <OsdsInput
           value={poolMember.address}
           type={ODS_INPUT_TYPE.text}
-          error={!!errorMessageAddress}
+          error={!!addressIpErrorMessage}
           onOdsValueChange={(event) => {
             setPoolMember((state) => ({
               ...state,
               address: event.detail.value.trim(),
             }));
           }}
-          onOdsInputBlur={() => {
-            setIsTouched((state) => ({
-              ...state,
-              address: true,
-            }));
-          }}
+          onOdsInputBlur={() => setIsAddressTouched(true)}
         />
       </OsdsFormField>
-      <OsdsFormField className="mt-8" error={errorMessageProtocolPort}>
+      <OsdsFormField className="mt-8" error={protocolPortErrorMessage}>
         <LabelComponent
           text={tCreate(
             'octavia_load_balancer_pools_detail_members_create_port_label',
           )}
-          slot="label"
-          hasError={!!errorMessageProtocolPort}
+          hasError={!!protocolPortErrorMessage}
         />
         <OsdsInput
           value={poolMember?.protocolPort}
           type={ODS_INPUT_TYPE.number}
-          min={1}
-          max={65535}
-          error={!!errorMessageProtocolPort}
+          min={PORT_MIN_VALUE}
+          max={PORT_MAX_VALUE}
+          error={!!protocolPortErrorMessage}
           onOdsValueChange={(event) => {
             setPoolMember((state) => ({
               ...state,
               protocolPort: event.detail.value
                 ? parseInt(event.detail.value, 10)
                 : 0,
-            }));
-          }}
-          onOdsInputBlur={() => {
-            setIsTouched((state) => ({
-              ...state,
-              protocolPort: true,
             }));
           }}
         />
