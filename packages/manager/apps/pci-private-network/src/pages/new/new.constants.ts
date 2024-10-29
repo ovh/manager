@@ -18,6 +18,7 @@ export const NEW_PRIVATE_NETWORK_FORM_SCHEMA = z.object({
   region: z.string().min(1),
   isLocalZone: z.boolean(),
   name: z.string().min(1),
+  defaultVlanId: z.number().optional(),
   vlanId: z
     .number()
     .min(VLAN_ID.min)
