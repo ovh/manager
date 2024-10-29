@@ -55,5 +55,8 @@
   "savingsPlanCTA": "Set up your Savings Plan",
   "createRancherOfferDescription": "With at least 20 vCPUs charged per Rancher",
   "egress_title": "Rancher egress CIDRs",
-  "egress_tooltip": "These CIDRs represent the output IP address ranges used by Rancher. You may need to authorize these IP addresses (whitelisting) to access your third-party platforms (e.g. API calls to provision resources)."
+  "egress_tooltip": "These CIDRs represent the output IP address ranges used by Rancher. You may need to authorize these IP addresses (whitelisting) to access your third-party platforms (e.g. API calls to provision resources).",
+  "createRancherErrorInternalServerError": "An error has occurred creating your Managed Rancher Service.",
+  "badRequestSwitchPlan": "An error has occurred changing the solution for your Managed Rancher Service. You are currently using drivers that are not supported in the {{plan}} solution: {{drivers}}",
+  "rancherError": "An error occurred."
 }

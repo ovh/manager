@@ -55,5 +55,8 @@
   "savingsPlanCTA": "Configure os seus Savings Plans",
   "createRancherOfferDescription": "Com um mínimo de 20 vCPU faturadas por Rancher",
   "egress_title": "Rancher egress CIDRs",
-  "egress_tooltip": "Estes CIDRs representam os intervalos de endereços IP de saída utilizados pelo Rancher. Pode ser necessário autorizar estes endereços IP (whitelisting) a aceder às suas plataformas de terceiros (ex: chamadas API para aprovisionar recursos)."
+  "egress_tooltip": "Estes CIDRs representam os intervalos de endereços IP de saída utilizados pelo Rancher. Pode ser necessário autorizar estes endereços IP (whitelisting) a aceder às suas plataformas de terceiros (ex: chamadas API para aprovisionar recursos).",
+  "createRancherErrorInternalServerError": "Ocorreu um erro aquando da criação do seu Managed Rancher Service.",
+  "badRequestSwitchPlan": "Ocorreu um erro aquando da alteração da oferta do seu Managed Rancher Service. Atualmente, está a utilizar controladores que não são suportados na oferta {{plan}}: {{drivers}}",
+  "rancherError": "Ocorreu um erro."
 }

@@ -55,5 +55,8 @@
   "savingsPlanCTA": "Skonfiguruj Savings Plans",
   "createRancherOfferDescription": "Minimalną jednostką rozliczeniową w przypadku Ranchera jest 20 vCPU.",
   "egress_title": "Rancher z błędami CIDR",
-  "egress_tooltip": "Te CIDRs reprezentują zakresy wyjściowych adresów IP używane przez Rancher. Może być konieczne zezwolenie tym adresom IP (białe listy) na dostęp do Twoich platform podmiotów trzecich (na przykład: wywołania API w celu dostarczania zasobów)."
+  "egress_tooltip": "Te CIDRs reprezentują zakresy wyjściowych adresów IP używane przez Rancher. Może być konieczne zezwolenie tym adresom IP (białe listy) na dostęp do Twoich platform podmiotów trzecich (na przykład: wywołania API w celu dostarczania zasobów).",
+  "createRancherErrorInternalServerError": "Wystąpił błąd podczas tworzenia Managed Rancher Service.",
+  "badRequestSwitchPlan": "Wystąpił błąd podczas zmiany oferty Managed Rancher Service. Aktualnie korzystasz ze sterowników, które nie są obsługiwane w ofercie {{plan}}: {{drivers}}",
+  "rancherError": "Wystąpił błąd"
 }
