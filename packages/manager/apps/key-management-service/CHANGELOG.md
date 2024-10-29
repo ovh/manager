@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.9.5...@ovh-ux/manager-key-management-service-app@0.10.0) (2024-10-29)
+
+
+### Bug Fixes
+
+* **kms:** add clear notifications before trigger new notif ([#13629](https://github.com/ovh/manager/issues/13629)) ([57be199](https://github.com/ovh/manager/commit/57be199729b6bedeac98df86665d514d13105504))
+* **kms:** lean ([#13788](https://github.com/ovh/manager/issues/13788)) ([3979308](https://github.com/ovh/manager/commit/397930811507f1be72a074805615d7ac0728cf30))
+
+
+### Features
+
+* **key-management-service:** update US guide link ([#13757](https://github.com/ovh/manager/issues/13757)) ([bc5154e](https://github.com/ovh/manager/commit/bc5154ef586b93fe5d343f34b25e6099c4368637))
+
+
+
+
+
 ## [0.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.9.4...@ovh-ux/manager-key-management-service-app@0.9.5) (2024-10-24)
 
 
