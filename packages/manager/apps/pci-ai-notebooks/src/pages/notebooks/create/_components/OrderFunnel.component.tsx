@@ -599,6 +599,20 @@ const OrderFunnel = ({
               >
                 {t('orderButton')}
               </Button>
+
+              <Button
+                type="button"
+                variant="link"
+                disabled={isPendingCommand}
+                onClick={() => {
+                  getCliCommand();
+                  cliEquivalentModale.open();
+                }}
+                className="flex flex-row gap-2 items-center"
+              >
+                <TerminalSquare className="size-4 text-primary-700" />{' '}
+                {t('cliCode')}
+              </Button>
             </CardFooter>
           </Card>
         </form>
