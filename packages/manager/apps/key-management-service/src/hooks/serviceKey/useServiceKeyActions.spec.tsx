@@ -31,6 +31,17 @@ vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(() => vi.fn()),
 }));
 
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const mod = await importOriginal<
+    typeof import('@ovh-ux/manager-react-shell-client')
+  >();
+
+  return {
+    ...mod,
+    useOvhTracking: vi.fn(() => vi.fn()),
+  };
+});
+
 vi.mock('@/data/hooks/useDeleteOkmsServiceKey', () => ({
   useDeleteOkmsServiceKey: vi.fn(() => ({
     deleteKmsServiceKey: vi.fn(),

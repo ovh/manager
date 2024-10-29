@@ -10,6 +10,11 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 type IdentitiesRootAccountProps = {
   isRootAccount: boolean;
@@ -21,12 +26,19 @@ const IdentitiesRootAccount = ({
   setIsRootAccount,
 }: IdentitiesRootAccountProps) => {
   const { t } = useTranslation('key-management-service/credential');
+  const { trackClick } = useOvhTracking();
 
   return (
     <OsdsFormField inline>
       <OsdsCheckbox
         checked={isRootAccount}
         onOdsCheckedChange={() => {
+          trackClick({
+            location: PageLocation.funnel,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['toggle_root_identity', !isRootAccount ? 'on' : 'off'],
+          });
           setIsRootAccount(!isRootAccount);
         }}
       >

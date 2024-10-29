@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   OsdsButton,
   OsdsFormField,
@@ -40,6 +41,7 @@ export const ServiceKeyEditNameModal = ({
   const { addSuccess, clearNotifications } = useNotifications();
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { t: tCommon } = useTranslation('key-management-service/common');
+  const { trackPage } = useOvhTracking();
 
   const navigate = useNavigate();
 
@@ -54,9 +56,19 @@ export const ServiceKeyEditNameModal = ({
         t('key_management_service_service-keys_update_name_success'),
         true,
       );
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'rename_encryption_key',
+      });
       closeModal();
     },
-    onError: closeModal,
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'rename_encryption_key',
+      });
+      closeModal();
+    },
   });
 
   const getErrorMessage = (error: ServiceKeyNameErrorsType) => {
