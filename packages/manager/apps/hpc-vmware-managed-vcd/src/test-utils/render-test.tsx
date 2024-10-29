@@ -19,6 +19,8 @@ import {
   getVeeamBackupMocks,
   getOrganizationMocks,
   GetOrganizationMocksParams,
+  getDatacentreOrderMocks,
+  GetDatacentreOrderMocksParams,
   GetVeeamBackupMocksParams,
   getIamMocks,
 } from '../../mocks';
@@ -35,6 +37,7 @@ export const renderTest = async ({
 }: {
   initialRoute?: string;
 } & GetOrganizationMocksParams &
+  GetDatacentreOrderMocksParams &
   GetVeeamBackupMocksParams &
   GetServicesMocksParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
@@ -42,6 +45,7 @@ export const renderTest = async ({
       ...getAuthenticationMocks({ isAuthMocked: true }),
       ...getVeeamBackupMocks(mockParams),
       ...getOrganizationMocks(mockParams),
+      ...getDatacentreOrderMocks(mockParams),
       ...getIamMocks(),
       ...getServicesMocks(mockParams),
     ]),
