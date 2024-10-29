@@ -3,12 +3,13 @@ import {
   OsdsSwitchItem,
   OsdsButton,
   OsdsModal,
-  OsdsTooltip,
+  OsdsPopoverContent,
   OsdsDivider,
   OsdsText,
   OsdsMessage,
-  OsdsTooltipContent,
+  OsdsPopover,
   OsdsSpinner,
+  OsdsIcon,
 } from '@ovhcloud/ods-components/react';
 import { useCallback, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -16,6 +17,8 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 import {
   ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
   ODS_SPINNER_SIZE,
   ODS_SWITCH_SIZE,
@@ -129,21 +132,38 @@ const AdmissionPluginsModal = () => {
               pluginData?.map((plugin, index) => (
                 <div key={plugin.name} className="my-8 mx-4">
                   <div className="flex  my-3, justify-between">
-                    <OsdsTooltip role="tooltip">
-                      <OsdsText
-                        className="mb-4"
-                        size={ODS_TEXT_SIZE._400}
-                        level={ODS_TEXT_LEVEL.body}
-                        color={ODS_TEXT_COLOR_INTENT.text}
-                      >
-                        {plugin.name}
-                      </OsdsText>
+                    <OsdsPopover>
+                      <span slot="popover-trigger">
+                        <OsdsText
+                          className="mb-4"
+                          size={ODS_TEXT_SIZE._400}
+                          level={ODS_TEXT_LEVEL.body}
+                          color={ODS_TEXT_COLOR_INTENT.text}
+                        >
+                          {plugin.name}
+                        </OsdsText>
+                        {plugin.tip && (
+                          <OsdsIcon
+                            name={ODS_ICON_NAME.HELP}
+                            size={ODS_ICON_SIZE.xs}
+                            className="ml-4 cursor-help"
+                            color={ODS_THEME_COLOR_INTENT.primary}
+                          />
+                        )}
+                      </span>
                       {plugin.tip && (
-                        <OsdsTooltipContent slot="tooltip-content">
-                          {t(plugin.tip)}
-                        </OsdsTooltipContent>
+                        <>
+                          <OsdsPopoverContent>
+                            <OsdsText
+                              color={ODS_THEME_COLOR_INTENT.text}
+                              level={ODS_TEXT_LEVEL.body}
+                            >
+                              {t(plugin.tip)}
+                            </OsdsText>
+                          </OsdsPopoverContent>
+                        </>
                       )}
-                    </OsdsTooltip>
+                    </OsdsPopover>
                     <OsdsSwitch
                       size={ODS_SWITCH_SIZE.sm}
                       color={ODS_THEME_COLOR_INTENT.primary}
