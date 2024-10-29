@@ -22,10 +22,7 @@ import {
 } from '@/data/api/hycu';
 import { IHycuDetails } from '@/types/hycu.details.interface';
 import { downloadTextAsFile } from '@/utils/downloadTextAsFile';
-import {
-  PREFIX_LICENSE_FILE_NAME,
-  SUFFIX_LICENSE_FILE_NAME,
-} from '@/constants';
+import { LICENSE_FILE_NAME_TEMPLATE } from '@/constants';
 
 export const useDetailsLicenseHYCU = (
   serviceName: string,
@@ -115,7 +112,10 @@ export const useDownloadLicenseHYCUMutation = (
     mutationFn: (params) => getLicenseHycuDownloadService(params),
     onSuccess: (data, variables, context) => {
       downloadTextAsFile(
-        `${PREFIX_LICENSE_FILE_NAME}${variables.serviceName}${SUFFIX_LICENSE_FILE_NAME}`,
+        LICENSE_FILE_NAME_TEMPLATE.replace(
+          '{serviceName}',
+          variables.serviceName,
+        ),
         data.data.content,
       );
 
