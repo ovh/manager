@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.15.5...@ovh-ux/manager-netapp@1.16.0) (2024-10-29)
+
+
+### Features
+
+* **dedicated:** remove unavailable option in snapshot ([#13562](https://github.com/ovh/manager/issues/13562)) ([39930cc](https://github.com/ovh/manager/commit/39930cc8df787895128eb37dc80508097311f79f))
+
+
+
+
+
 ## [1.15.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.15.4...@ovh-ux/manager-netapp@1.15.5) (2024-10-24)
 
 
