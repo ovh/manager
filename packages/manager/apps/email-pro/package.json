@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-emailpro-app",
-  "version": "0.10.18",
+  "version": "0.10.19-alpha.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -18,16 +18,16 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-emailpro-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^7.5.2",
-    "@ovh-ux/manager-core": "^12.17.4",
-    "@ovh-ux/manager-emailpro": "^3.12.6",
+    "@ovh-ux/manager-config": "^7.5.3-alpha.0",
+    "@ovh-ux/manager-core": "^12.17.5-alpha.0",
+    "@ovh-ux/manager-emailpro": "^3.12.7",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.1.1",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
-    "@ovh-ux/ng-ovh-payment-method": "^9.16.4",
+    "@ovh-ux/ng-ovh-payment-method": "^9.16.5",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.1",
-    "@ovh-ux/ng-ovh-request-tagger": "^1.2.5",
+    "@ovh-ux/ng-ovh-request-tagger": "^1.2.6-alpha.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.8.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.1",
     "@ovh-ux/ng-ovh-user-pref": "^2.1.1",
@@ -37,7 +37,7 @@
     "@ovh-ux/ng-translate-async-loader": "^2.2.1",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.3.1",
     "@ovh-ux/ng-ui-router-layout": "^4.3.1",
-    "@ovh-ux/request-tagger": "^0.3.2",
+    "@ovh-ux/request-tagger": "^0.4.0-alpha.0",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",

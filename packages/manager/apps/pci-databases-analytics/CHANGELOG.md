@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.6-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.6.5...@ovh-ux/manager-pci-databases-analytics-app@1.6.6-alpha.0) (2024-10-29)
+
+
+### Bug Fixes
+
+* **pci-databases-analytics:** namespace edition and creation form ([#13674](https://github.com/ovh/manager/issues/13674)) ([344d248](https://github.com/ovh/manager/commit/344d24840640dee9eb887abd14a9420bee2cba6b))
+
+
+
+
+
 ## [1.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.6.4...@ovh-ux/manager-pci-databases-analytics-app@1.6.5) (2024-10-28)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.11.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.10.2...@ovh-ux/shell@3.11.0-alpha.0) (2024-10-29)
+
+
+### Features
+
+* build and publish manager-react-components and its deps ([c2e0f33](https://github.com/ovh/manager/commit/c2e0f33b43abc2118b1d2f666f3e820566ada897))
+
+
+
+
+
 ## [3.10.2](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.10.1...@ovh-ux/shell@3.10.2) (2024-10-24)
 
 

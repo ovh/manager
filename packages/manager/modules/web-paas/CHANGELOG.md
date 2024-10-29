@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.8-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.10.7...@ovh-ux/manager-web-paas@1.10.8-alpha.0) (2024-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-paas
+
+
+
+
+
 ## [1.10.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.10.6...@ovh-ux/manager-web-paas@1.10.7) (2024-10-24)
 
 

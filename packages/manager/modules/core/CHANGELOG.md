@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.17.5-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.17.4...@ovh-ux/manager-core@12.17.5-alpha.0) (2024-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
 ## [12.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.17.3...@ovh-ux/manager-core@12.17.4) (2024-10-24)
 
 

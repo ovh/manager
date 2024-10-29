@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.12.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.11.0...@ovh-ux/manager-public-cloud@6.12.0-alpha.0) (2024-10-29)
+
+
+### Features
+
+* **pci:** localzone and instance creation tracking ([#13613](https://github.com/ovh/manager/issues/13613)) ([eedd4a7](https://github.com/ovh/manager/commit/eedd4a77ee809718355ef06c13f066da0b72d344))
+
+
+
+
+
 # [6.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.10.12...@ovh-ux/manager-public-cloud@6.11.0) (2024-10-28)
 
 

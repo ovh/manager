@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.18-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.14.17...@ovh-ux/manager-models@1.14.18-alpha.0) (2024-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-models
+
+
+
+
+
 ## [1.14.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.14.16...@ovh-ux/manager-models@1.14.17) (2024-10-24)
 
 

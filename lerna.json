@@ -20,7 +20,7 @@
       "conventionalCommits": true
     },
     "version": {
-      "allowBranch": "master"
+      "allowBranch": "test/mrc-publish"
     }
   }
 }
