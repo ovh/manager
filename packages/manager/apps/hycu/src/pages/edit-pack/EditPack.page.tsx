@@ -1,12 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import {
   BaseLayout,
   Description,
   OvhSubsidiary,
   Subtitle,
+  useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
@@ -37,26 +38,37 @@ import {
   OrderTile,
   OrderTileWrapper,
 } from '@/components/Order/OrderTile.component';
+
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { useOrderCatalogHYCU } from '@/hooks/order/useOrderCatalogHYCU';
 import useOrderHYCU from '@/hooks/order/useOrderHYCU';
-import { urls } from '@/routes/routes.constant';
+import { subRoutes, urls } from '@/routes/routes.constant';
 import { CONTACT_URL_BY_SUBSIDIARY } from '@/utils/contactList';
 import { sortPacksByPrice } from '@/utils/sortPacks';
 import { getRenewPrice } from '@/utils/getRenewPrice';
 
-export default function Order() {
-  const { t } = useTranslation('hycu/order');
+export default function EditPack() {
+  const { serviceName } = useParams();
+  const { t } = useTranslation('hycu/edit-pack');
   const { t: tCommon } = useTranslation('hycu');
   const { t: tError } = useTranslation('hycu/error');
   const navigate = useNavigate();
 
   const { environment } = useContext(ShellContext);
-  const subsidiary: OvhSubsidiary = environment.getUser()
-    .ovhSubsidiary as OvhSubsidiary;
+  const subsidiary = environment.getUser().ovhSubsidiary as OvhSubsidiary;
+  const { data: serviceDetails, error } = useServiceDetails({
+    resourceName: serviceName,
+  });
 
   const [selectedPack, setSelectedPack] = useState<string>(null);
   const [isOrderInitiated, setIsOrderInitiated] = useState(false);
+  const [currentPack, displayName] = useMemo(
+    () => [
+      serviceDetails?.data.billing.plan.code ?? null,
+      serviceDetails?.data.resource.displayName ?? 'N/A',
+    ],
+    [serviceDetails],
+  );
 
   const { data: orderCatalogHYCU, isLoading, isError } = useOrderCatalogHYCU(
     subsidiary,
@@ -71,18 +83,23 @@ export default function Order() {
   });
 
   const header = {
-    title: t('hycu_order_title'),
+    title: t('hycu_edit_pack_title'),
   };
-  const description: string = t('hycu_order_description');
+  const description: string = t('hycu_edit_pack_description');
 
   const breadcrumbItems: BreadcrumbItem[] = [
     {
-      id: 'order',
-      label: t('hycu_order_title'),
+      id: serviceName,
+      label: serviceName,
+    },
+    {
+      id: 'edit-pack',
+      label: t('hycu_edit_pack_title'),
     },
   ];
 
-  if (isError) return <Errors>{tError('manager_error_page_default')}</Errors>;
+  if (isError || error)
+    return <Errors>{tError('manager_error_page_default')}</Errors>;
 
   if (isLoading) return <Loading />;
 
@@ -94,11 +111,15 @@ export default function Order() {
     >
       {!isOrderInitiated ? (
         <>
-          <Subtitle className="block mb-6">{t('hycu_order_subtitle')}</Subtitle>
+          <Subtitle className="block mb-6">
+            {t('hycu_edit_pack_subtitle', {
+              displayName,
+            })}
+          </Subtitle>
           <Description className="mb-8">
             <Trans
               t={t}
-              i18nKey="hycu_order_subtitle_description"
+              i18nKey="hycu_edit_pack_subtitle_description"
               components={{
                 contact: (
                   <OsdsLink
@@ -114,6 +135,7 @@ export default function Order() {
             {sortPacksByPrice(orderCatalogHYCU?.plans).map((product) => (
               <OrderTile
                 checked={product.planCode === selectedPack || undefined}
+                disabled={product.planCode === currentPack || undefined}
                 key={product.planCode}
                 label={product.invoiceName}
                 pricing={getRenewPrice(product.pricings)}
@@ -129,7 +151,9 @@ export default function Order() {
               className="mr-4"
               color={ODS_THEME_COLOR_INTENT.primary}
               onClick={() => {
-                navigate(urls.listing);
+                navigate(
+                  urls.dashboard.replace(subRoutes.serviceName, serviceName),
+                );
               }}
               slot="actions"
               variant={ODS_BUTTON_VARIANT.ghost}
@@ -159,14 +183,14 @@ export default function Order() {
                   size={ODS_THEME_TYPOGRAPHY_SIZE._600}
                   color={ODS_THEME_COLOR_INTENT.text}
                 >
-                  {t('hycu_order_initiated_title')}
+                  {t('hycu_edit_pack_initiated_title')}
                 </OsdsText>
                 <OsdsText
                   level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
                   size={ODS_THEME_TYPOGRAPHY_SIZE._800}
                   color={ODS_THEME_COLOR_INTENT.text}
                 >
-                  {t('hycu_order_initiated_description')}
+                  {t('hycu_edit_pack_initiated_description')}
                 </OsdsText>
                 <OsdsLink
                   color={ODS_THEME_COLOR_INTENT.primary}
@@ -191,7 +215,7 @@ export default function Order() {
                   size={ODS_THEME_TYPOGRAPHY_SIZE._800}
                   color={ODS_THEME_COLOR_INTENT.text}
                 >
-                  {t('hycu_order_initiated_info')}
+                  {t('hycu_edit_pack_initiated_info')}
                 </OsdsText>
               </div>
             </span>
@@ -202,7 +226,9 @@ export default function Order() {
             variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => {
-              navigate(urls.listing);
+              navigate(
+                urls.dashboard.replace(subRoutes.serviceName, serviceName),
+              );
             }}
           >
             {tCommon('hycu_cta_done')}

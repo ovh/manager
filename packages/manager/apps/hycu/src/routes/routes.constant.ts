@@ -1,4 +1,5 @@
 export const subRoutes = {
+  editPack: 'edit-pack',
   onboarding: 'onboarding',
   order: 'order',
   serviceName: ':serviceName',
@@ -10,6 +11,7 @@ export const urls = {
   onboarding: `/${subRoutes.onboarding}`,
   order: `/${subRoutes.order}`,
   dashboard: `/${subRoutes.serviceName}`,
+  editPack: `/${subRoutes.serviceName}/${subRoutes.editPack}`,
   activateLicense: `/${subRoutes.serviceName}/activate-license`,
   regenerateLicense: `/${subRoutes.serviceName}/regenerate-license`,
   editName: `/${subRoutes.serviceName}/edit-name`,

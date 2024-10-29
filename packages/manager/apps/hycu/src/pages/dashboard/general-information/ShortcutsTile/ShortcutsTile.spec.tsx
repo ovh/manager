@@ -213,4 +213,51 @@ describe('License Hycu shortcuts tile for dashboard test suite', () => {
       { timeout: 20_000 },
     );
   });
+
+  it('Can open edit page with IAM authorization', async () => {
+    const user = userEvent.setup();
+    await renderTestApp(`/${licensesHycu[0].serviceName}`, {
+      licenseStatus: LicenseStatus.ACTIVATED,
+    });
+
+    await waitFor(
+      () => {
+        expect(
+          screen.getByTestId('hycu_link_edit_test_id'),
+        ).not.toHaveAttribute('disabled');
+      },
+      { timeout: 30_000 },
+    );
+    await act(() => user.click(screen.getByTestId('hycu_link_edit_test_id')));
+
+    await waitFor(
+      () =>
+        expect(
+          screen.getByText(labels.editPack.hycu_edit_pack_description),
+        ).toBeVisible(),
+      { timeout: 20_000 },
+    );
+  });
+
+  it("Can't open edit page without IAM authorization", async () => {
+    const user = userEvent.setup();
+    await renderTestApp(`/${licensesHycu[1].serviceName}`, {
+      licenseStatus: LicenseStatus.ACTIVATED,
+    });
+
+    await waitFor(
+      () => expect(screen.getByTestId('hycu_link_edit_test_id')).toBeVisible(),
+      { timeout: 30_000 },
+    );
+
+    await act(() => user.click(screen.getByTestId('hycu_link_edit_test_id')));
+
+    await waitFor(
+      () =>
+        expect(
+          screen.queryByText(labels.editPack.hycu_edit_pack_description),
+        ).not.toBeInTheDocument(),
+      { timeout: 20_000 },
+    );
+  });
 });
