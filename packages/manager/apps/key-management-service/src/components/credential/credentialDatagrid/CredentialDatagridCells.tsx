@@ -102,7 +102,7 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential) => {
       id: 2,
       label: t('key_management_service_credential_delete'),
       color: ODS_THEME_COLOR_INTENT.error,
-      iamActions: ['okms:apiovh:resource/credential/delete'],
+      iamActions: ['okms:apiovh:credential/delete'],
       urn: okms.iam.urn,
       onClick: () =>
         navigate(`${ROUTES_URLS.credentialDelete}/${credential.id}`),

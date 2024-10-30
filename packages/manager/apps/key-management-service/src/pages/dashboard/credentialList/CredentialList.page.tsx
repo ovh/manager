@@ -25,7 +25,7 @@ const CredentialList = () => {
   const okms = useContext(OkmsContext);
 
   const { isAuthorized, isLoading: isLoadingIam } = useAuthorizationIam(
-    ['okms:apiovh:resource/credential/get'],
+    ['okms:apiovh:credential/get'],
     okms.iam.urn,
   );
 
@@ -45,7 +45,7 @@ const CredentialList = () => {
         onClick={() => {
           navigate(ROUTES_URLS.createCredential);
         }}
-        iamActions={['okms:apiovh:resource/credential/create']}
+        iamActions={['okms:apiovh:credential/create']}
         urn={okms.iam.urn}
       >
         <span slot="start">
