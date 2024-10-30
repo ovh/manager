@@ -43,7 +43,7 @@ function GeneralInformation() {
         <OrganizationOptionsTile
           isLicenseActive={!!vcdOrganization?.data?.currentState?.spla}
         />
-        <DataProtectionTile />
+        <DataProtectionTile vcdOrganization={vcdOrganization?.data} />
       </div>
       <div>
         <BillingTile id={id} />

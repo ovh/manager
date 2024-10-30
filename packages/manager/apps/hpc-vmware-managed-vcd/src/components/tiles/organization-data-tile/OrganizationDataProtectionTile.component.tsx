@@ -9,8 +9,15 @@ import {
   DATA_PROTECTION_RECOVERY_TITLE,
 } from '@/pages/dashboard/organization/OrganizationDashboard.constants';
 import BackupTileItem from './backup-tile-item/BackupTileItem.component';
+import IVcdOrganization from '@/types/vcd-organization.interface';
 
-export default function DataProtectionTile() {
+type TTileProps = {
+  vcdOrganization: IVcdOrganization;
+};
+
+export default function DataProtectionTile({
+  vcdOrganization,
+}: Readonly<TTileProps>) {
   const { t } = useTranslation('dashboard');
 
   return (
@@ -21,7 +28,7 @@ export default function DataProtectionTile() {
           {
             id: 'backup',
             label: DATA_PROTECTION_BACKUP_TITLE,
-            value: <BackupTileItem />,
+            value: <BackupTileItem vcdOrganization={vcdOrganization} />,
           },
           {
             id: 'recovery',

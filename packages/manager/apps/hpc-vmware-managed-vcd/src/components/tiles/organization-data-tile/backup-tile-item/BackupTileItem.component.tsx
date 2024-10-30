@@ -1,5 +1,4 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { Links, LinkType } from '@ovh-ux/manager-react-components';
@@ -11,14 +10,20 @@ import {
   BackupBadgeParams,
   getBackupBadgeParams,
   getBackupBadgeStatus,
-} from '@/utils/getBackupBadge';
+} from '@/utils/veeamBackupBadge';
+import IVcdOrganization from '@/types/vcd-organization.interface';
 
-export default function BackupTileItem() {
-  const { id } = useParams();
+type TTileProps = {
+  vcdOrganization: IVcdOrganization;
+};
+
+export default function BackupTileItem({
+  vcdOrganization,
+}: Readonly<TTileProps>) {
   const { t } = useTranslation('dashboard');
   const { shell } = React.useContext(ShellContext);
   const { data: vcdBackup, isLoading, error } = useManagedVcdOrganizationBackup(
-    id,
+    vcdOrganization,
   );
   const [veeamHref, setVeeamHref] = React.useState('');
   const badgeParams: BackupBadgeParams = getBackupBadgeParams(
