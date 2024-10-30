@@ -77,7 +77,7 @@ const useServiceKeyActionsList = (
               `/${okms.id}/${ROUTES_URLS.keys}/${okmsKey?.id}/${ROUTES_URLS.serviceKeyDeactivate}`,
             );
       },
-      iamActions: ['okms:apiovh:resource/serviceKey/deactivate'],
+      iamActions: ['okms:apiovh:serviceKey/deactivate'],
       urn: okms.iam.urn,
     });
   }
@@ -91,7 +91,7 @@ const useServiceKeyActionsList = (
       color: ODS_THEME_COLOR_INTENT.primary,
       disabled: updateIsPending,
       onClick: () => updateKmsServiceKey({ state: OkmsServiceKeyState.active }),
-      iamActions: ['okms:apiovh:resource/serviceKey/activate'],
+      iamActions: ['okms:apiovh:serviceKey/activate'],
       urn: okms.iam.urn,
     });
   }
@@ -106,7 +106,7 @@ const useServiceKeyActionsList = (
       disabled:
         okmsKey?.state === OkmsServiceKeyState.active || deleteIsPending,
       onClick: () => deleteKmsServiceKey(),
-      iamActions: ['okms:apiovh:resource/serviceKey/delete'],
+      iamActions: ['okms:apiovh:serviceKey/delete'],
       urn: okms.iam.urn,
     });
   }

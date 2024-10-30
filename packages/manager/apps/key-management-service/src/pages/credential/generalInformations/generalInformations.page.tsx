@@ -93,7 +93,7 @@ const CredentialGeneralInformations = () => {
             color={ODS_THEME_COLOR_INTENT.error}
             variant={ODS_BUTTON_VARIANT.ghost}
             onClick={() => navigate(ROUTES_URLS.credentialDelete)}
-            iamActions={['okms:apiovh:resource/credential/delete']}
+            iamActions={['okms:apiovh:credential/delete']}
             urn={okms.iam.urn}
           >
             {t('key_management_service_credential_delete')}

@@ -113,7 +113,7 @@ export default function Keys() {
             navigate(ROUTES_URLS.createKmsServiceKey);
           }}
           urn={okms.iam.urn}
-          iamActions={['okms:apiovh:resource/serviceKey/create']}
+          iamActions={['okms:apiovh:serviceKey/create']}
         >
           <span slot="start">
             <OsdsIcon
