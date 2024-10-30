@@ -18,13 +18,13 @@ export const TerminateLicensePage = () => {
   };
 
   const handleSuccessDelete = async () => {
-    addSuccess(t('hycu_terminate_success_message', { serviceName }), true);
     closeModal();
+    addSuccess(t('hycu_terminate_success_message', { serviceName }), true);
   };
 
   const handleErrorDelete = async (error: AxiosError) => {
-    addError(t('hycu_terminate_error_message', { error: error.message }));
     closeModal();
+    addError(t('hycu_terminate_error_message', { error: error.message }));
   };
 
   return (
