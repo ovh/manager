@@ -1,14 +1,17 @@
 import { FileWithError } from '@/components/FileInput/FileInputContainer';
 
-export type GDPRFormValues = {
+export type GDPRValues = {
   firstName: string;
-  surname: string;
-  phone: string;
+  name: string;
   email: string;
+  nichandle?: string;
+  category: string;
+  description: string;
+  numberOfDocuments: number;
+};
+
+export type GDPRFormValues = Omit<GDPRValues, 'numberOfDocuments'> & {
   confirmEmail: string;
-  nicHandle?: string;
-  messageSubject: string;
-  requestDescription: string;
   idDocumentFront: FileWithError[];
   idDocumentBack: FileWithError[];
   otherDocuments: FileWithError[];
