@@ -62,14 +62,14 @@ describe('RGDPForm', () => {
       expect(
         getByText('rgdp_form_field_label_firstname :'),
       ).toBeInTheDocument();
-      expect(getByText('rgdp_form_field_label_surname :')).toBeInTheDocument();
+      expect(getByText('rgdp_form_field_label_name :')).toBeInTheDocument();
       expect(getByText('rgdp_form_field_label_email :')).toBeInTheDocument();
       expect(
         getByText('rgdp_form_field_label_confirm_email :'),
       ).toBeInTheDocument();
-      expect(getByText('rgdp_form_field_label_subject')).toBeInTheDocument();
+      expect(getByText('rgdp_form_field_label_category')).toBeInTheDocument();
       expect(
-        getByText('rgdp_form_field_label_subject_detail'),
+        getByText('rgdp_form_field_label_category_detail'),
       ).toBeInTheDocument();
       expect(
         getByText('rgdp_form_field_label_request_description :'),
@@ -92,10 +92,10 @@ describe('RGDPForm', () => {
   it('Should show errors on multiple required fields when blurred with empty values', async () => {
     const { queryAllByText } = renderForm();
 
-    const surnameInput = getOsdsElementByFormName<OsdsInput>('surname');
+    const surnameInput = getOsdsElementByFormName<OsdsInput>('name');
     const firstNameInput = getOsdsElementByFormName<OsdsInput>('firstName');
     const requestDescriptionText = getOsdsElementByFormName<OsdsTextArea>(
-      'requestDescription',
+      'description',
     );
 
     await act(async () => {
@@ -119,9 +119,9 @@ describe('RGDPForm', () => {
   it('Should show pattern validation errors on multiple fields when invalid characters are entered', async () => {
     const { queryAllByText } = renderForm();
 
-    const surnameInput = getOsdsElementByFormName<OsdsInput>('surname');
+    const surnameInput = getOsdsElementByFormName<OsdsInput>('name');
     const firstNameInput = getOsdsElementByFormName<OsdsInput>('firstName');
-    const nicInput = getOsdsElementByFormName<OsdsInput>('nicHandle');
+    const nicInput = getOsdsElementByFormName<OsdsInput>('nichandle');
 
     await act(async () => {
       surnameInput.value = '<';
@@ -192,16 +192,16 @@ describe('RGDPForm', () => {
   it('Should display confirm modal when the form is valid', async () => {
     const { getByText } = renderForm();
 
-    const surnameInput = getOsdsElementByFormName<OsdsInput>('surname');
+    const surnameInput = getOsdsElementByFormName<OsdsInput>('name');
     const firstNameInput = getOsdsElementByFormName<OsdsInput>('firstName');
     const requestDescriptionText = getOsdsElementByFormName<OsdsTextArea>(
-      'requestDescription',
+      'description',
     );
     const emailInput = getOsdsElementByFormName<OsdsInput>('email');
     const confirmEmailInput = getOsdsElementByFormName<OsdsInput>(
       'confirmEmail',
     );
-    const objectSelect = getOsdsElementByFormName<OsdsSelect>('messageSubject');
+    const objectSelect = getOsdsElementByFormName<OsdsSelect>('category');
 
     const submitBtn = getByText('rgdp_form_submit');
 
