@@ -55,5 +55,5 @@
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_region-3-az": "Régions 3-AZ",
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_region": "Régions",
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_localzone": "Local Zones",
-  "pci_projects_project_storages_containers_add_replication_rules_info": "Félicitations, votre bucket est presque prêt à être utilisé avec une résilience intégrée pour assurer un temps de fonctionnement maximal. Veuillez noter que cela n'inclut pas la réplication hors site de vos données. Si votre cas d'utilisation nécessite cette couche de protection supplémentaire, envisagez d'utiliser notre réplication asynchrone sur une ou plusieurs régions (disponible uniquement via les API). Pour en savoir plus et commence"
+  "pci_projects_project_storages_containers_add_replication_rules_info": "Félicitations, votre bucket est presque prêt à être utilisé avec une résilience intégrée pour assurer un temps de fonctionnement maximal. Veuillez noter que cela n'inclut pas la réplication hors site de vos données. Si votre cas d'utilisation nécessite cette couche de protection supplémentaire, envisagez d'utiliser notre réplication asynchrone sur une ou plusieurs régions (disponible uniquement via les API). Pour en savoir plus et commencer."
 }
