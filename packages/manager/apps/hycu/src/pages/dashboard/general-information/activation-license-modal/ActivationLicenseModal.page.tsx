@@ -117,11 +117,7 @@ export const ActivationHycuLicenseModal: React.FC<ActivationHycuLicenseModalProp
           </OsdsButton>
           <OsdsButton
             data-testid="hycu-dashboard-upload-confirm"
-            disabled={
-              (!isValid && isSubmitted) || isActivationPending
-                ? true
-                : undefined
-            }
+            disabled={!isValid || isActivationPending ? true : undefined}
             slot="actions"
             type={ODS_BUTTON_TYPE.submit}
             variant={ODS_BUTTON_VARIANT.flat}
