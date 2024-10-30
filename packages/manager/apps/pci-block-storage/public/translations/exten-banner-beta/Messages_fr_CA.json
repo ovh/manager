@@ -1,3 +1,3 @@
 {
-  "exten_banner_description": "Optimisez vos performances avec Bloc Storage NVMe over Fabric !\nDisponible en phase bêta dans la région SBG7, doublez les performances de vos volumes Classic et améliorez l’efficacité de vos charges de travail intensives."
+  "exten_banner_description": "Optimisez vos performances avec Block Storage NVMe over Fabric !\nDisponible en phase bêta dans les régions {{regions}}, doublez les performances de vos volumes Classic et améliorez l'efficacité de vos charges de travail intensives."
 }
