@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.6.2...@ovh-ux/manager-restricted-app@0.6.3-alpha.0) (2024-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-restricted-app
+
+
+
+
+
 ## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.6.1...@ovh-ux/manager-restricted-app@0.6.2) (2024-10-24)
 
 

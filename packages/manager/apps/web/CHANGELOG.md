@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.41.1-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.41.0...@ovh-ux/manager-web@18.41.1-alpha.0) (2024-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 # [18.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.40.0...@ovh-ux/manager-web@18.41.0) (2024-10-28)
 
 
