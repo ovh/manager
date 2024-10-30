@@ -13,6 +13,7 @@ import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import React, { ChangeEvent, useRef, useState } from 'react';
 import { Controller, UseControllerProps } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { LICENSE_FILE_EXT } from '@/constants';
 
 const MAX_FILE_SIZE = 10e3; // 1 MB limit ~
 
@@ -35,10 +36,12 @@ export const FileInputField = ({
       });
       return;
     }
-    if (!file.name.endsWith('.dat')) {
+    if (!file.name.endsWith(LICENSE_FILE_EXT)) {
       setFileName('');
       control.setError(name, {
-        message: t('hycu_dashboard_upload_file_bad_type'),
+        message: t('hycu_dashboard_upload_file_bad_type', {
+          extension: LICENSE_FILE_EXT,
+        }),
       });
       return;
     }
@@ -94,7 +97,7 @@ export const FileInputField = ({
             data-testid="license-file-input"
             ref={fileInputRef}
             type="file"
-            accept=".dat"
+            accept={LICENSE_FILE_EXT}
             onChange={(e) => handleFileChange(e, onChange)}
             style={{ display: 'none' }}
           />
@@ -119,7 +122,9 @@ export const FileInputField = ({
               {t('hycu_dashboard_drag_and_drop_attachment')}
             </OsdsText>
             <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-              {t('hycu_dashboard_accepted_formats')}
+              {t('hycu_dashboard_accepted_formats', {
+                extension: LICENSE_FILE_EXT,
+              })}
             </OsdsText>
             <OsdsButton
               type={ODS_BUTTON_TYPE.button}
