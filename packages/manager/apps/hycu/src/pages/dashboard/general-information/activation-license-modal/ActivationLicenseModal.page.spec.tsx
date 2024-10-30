@@ -1,4 +1,4 @@
-import { Mock, vi } from 'vitest';
+import { vi } from 'vitest';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
@@ -12,7 +12,7 @@ const createFakeFile = () => {
   const blob = new Blob([content], { type: 'text/plain' });
 
   // Convert the Blob to a File object
-  return new File([blob], 'license.dat', {
+  return new File([blob], 'license.req', {
     type: 'text/plain',
     lastModified: Date.now(),
   });

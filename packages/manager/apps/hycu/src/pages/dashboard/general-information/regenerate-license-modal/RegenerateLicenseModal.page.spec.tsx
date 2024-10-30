@@ -12,7 +12,7 @@ const createFakeFile = () => {
   const blob = new Blob([content], { type: 'text/plain' });
 
   // Convert the Blob to a File object
-  return new File([blob], 'license.dat', {
+  return new File([blob], 'license.req', {
     type: 'text/plain',
     lastModified: Date.now(),
   });
@@ -166,14 +166,13 @@ describe('License Hycu regenerate license route test suite', () => {
 
     await act(() => user.click(submitButton));
 
-    expect(
-      screen.queryByText(
-        labels.dashboard.hycu_dashboard_upload_license_required,
-      ),
-    ).not.toBeInTheDocument();
-
     await waitFor(
       () => {
+        expect(
+          screen.queryByText(
+            labels.dashboard.hycu_dashboard_upload_license_required,
+          ),
+        ).not.toBeInTheDocument();
         expect(
           screen.queryByText(
             labels.dashboard.hycu_dashboard_license_regenerate_description,
