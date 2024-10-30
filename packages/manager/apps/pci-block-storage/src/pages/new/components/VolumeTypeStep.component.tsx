@@ -27,11 +27,6 @@ import { useConsumptionVolumesAddon } from '@/api/hooks/useConsumptionVolumesAdd
 import { StepState } from '@/pages/new/hooks/useStep';
 import { TLocalisation } from '@/api/hooks/useRegions';
 
-export const volumeTypeName = {
-  'volume.high-speed-BETA.consumption': 'High-speed Exten',
-  'volume.classic-BETA.consumption': 'Classic - Exten',
-};
-
 export interface VolumeTypeStepProps {
   projectId: string;
   region: TLocalisation;
@@ -79,7 +74,7 @@ export function VolumeTypeStep({
                 size={ODS_THEME_TYPOGRAPHY_SIZE._600}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
-                {volumeTypeName[vType.planCode] ?? vType.blobs.technical.name}
+                {vType.blobs.technical.name}
               </OsdsText>
               {vType.blobs.tags.includes('is_new') && (
                 <OsdsChip

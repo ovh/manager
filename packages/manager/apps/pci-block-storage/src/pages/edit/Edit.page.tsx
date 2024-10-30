@@ -440,7 +440,7 @@ export default function EditPage() {
           </div>
 
           {!hasError &&
-            (estimatedPrice?.monthly ? (
+            (estimatedPrice?.monthly !== undefined ? (
               <OsdsText
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                 size={ODS_THEME_TYPOGRAPHY_SIZE._400}
