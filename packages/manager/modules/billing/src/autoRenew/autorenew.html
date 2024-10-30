@@ -75,57 +75,10 @@
         </p>
     </oui-message>
 
-    <div data-ng-if="$ctrl.nics.length > 1">
-        <label
-            for="nicBilling"
-            class="oui-label"
-            data-translate="billing_autorenew_service_autorenew_contact_filter"
-        ></label>
-        <oui-select
-            class="oui-select_l"
-            id="nicBilling"
-            data-name="nicBilling"
-            data-model="$ctrl.nicBillingFilter"
-            data-items="$ctrl.nics"
-            data-on-change="$ctrl.onNicBillingChange(modelValue)"
-        >
-        </oui-select>
+    <div class="autorenew-box-container">
+        <ovh-manager-auto-renew-payment-method></ovh-manager-auto-renew-payment-method>
+        <ovh-manager-auto-renew-tips></ovh-manager-auto-renew-tips>
     </div>
-
-    <form novalidate>
-        <oui-field
-            data-ng-if="$ctrl.nicRenew.isMandatory && $ctrl.defaultPaymentMean && $ctrl.nicRenew.active"
-            data-label="{{::'autorenew_service_autorenew_day' | translate}}"
-            data-label-popover="{{ :: $ctrl.choiceRenewDayTooltipAvailable ?
-                'autorenew_service_autorenew_day_tooltip_autorenew_2016' :
-                'autorenew_service_autorenew_day_tooltip' | translate }}"
-            data-size="l"
-        >
-            <label class="oui-select" data-ng-hide="$ctrl.nicRenewLoading">
-                <select
-                    name="renewDay"
-                    class="oui-select__input"
-                    data-ng-change="$ctrl.onAutoRenewChange($ctrl.nicRenew)"
-                    data-ng-disabled="!$ctrl.nicRenew.active"
-                    data-ng-model="$ctrl.nicRenew.renewDay"
-                    data-ng-model-options="{ debounce: 1000 }"
-                    data-ng-options="day for day in $ctrl.nicRenew.renewDays track by day"
-                >
-                    <option
-                        value
-                        data-translate="billing_autorenew_service_autorenew_contact_filter_all"
-                    >
-                    </option>
-                </select>
-                <span
-                    class="oui-icon oui-icon-chevron-down"
-                    aria-hidden="true"
-                ></span>
-            </label>
-            <oui-spinner size="s" data-ng-show="$ctrl.nicRenewLoading">
-            </oui-spinner>
-        </oui-field>
-    </form>
 
     <oui-datagrid
         id="services"

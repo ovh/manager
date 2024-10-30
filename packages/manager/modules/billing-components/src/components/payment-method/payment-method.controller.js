@@ -31,8 +31,8 @@ export default class PaymentMethodController {
       });
 
     this.updatePaymentMethodLink = this.coreURLBuilder.buildURL(
-      'new-billing',
-      '/payment/method',
+      'dedicated',
+      '#/billing/payment/method',
     );
   }
 }
