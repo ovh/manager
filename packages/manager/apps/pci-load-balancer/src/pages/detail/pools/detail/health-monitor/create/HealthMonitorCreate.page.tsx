@@ -6,7 +6,7 @@ import {
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import HealthMonitorForm from '@/components/form/HealthMonitorForm.page';
+import HealthMonitorForm from '@/components/form/HealthMonitorForm.component';
 import { useGetPool } from '@/api/hook/usePool';
 import {
   useCreateHealthMonitor,

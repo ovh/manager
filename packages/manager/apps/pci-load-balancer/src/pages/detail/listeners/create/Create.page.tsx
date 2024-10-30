@@ -5,7 +5,7 @@ import { Translation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import ListenerForm, {
   TListenerFormState,
-} from '@/components/form/ListenerForm.page';
+} from '@/components/form/ListenerForm.component';
 import { useAllLoadBalancerPools } from '@/api/hook/usePool';
 import { TProtocol } from '@/api/data/load-balancer';
 import { useCreateListener } from '@/api/hook/useListener';
