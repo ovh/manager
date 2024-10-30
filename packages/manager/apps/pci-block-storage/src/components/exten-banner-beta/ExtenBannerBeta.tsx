@@ -1,24 +1,62 @@
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import {
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_COLOR_HUE,
+  ODS_TEXT_COLOR_INTENT,
+} from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { useParams } from 'react-router-dom';
+import { useMemo } from 'react';
 import { FA_EXTEN_BANNER } from '@/api/data/quota';
+import { useProjectsAvailableVolumes } from '@/api/hooks/useProjectsAvailableVolumes';
 
-export function ExtenBannerBeta() {
+const extenProducts = [
+  'volume.high-speed-BETA.consumption',
+  'volume.classic-BETA.consumption',
+];
+
+function Banner() {
   const { t } = useTranslation('exten-banner-beta');
-  const { data } = useFeatureAvailability([FA_EXTEN_BANNER]);
+  const { projectId } = useParams();
+  const { data: availableVolumes } = useProjectsAvailableVolumes(projectId);
 
-  if (!data?.[FA_EXTEN_BANNER]) return null;
+  const regions = useMemo(
+    () =>
+      availableVolumes
+        ? [
+            ...new Set(
+              availableVolumes.plans
+                .filter((p) => extenProducts.includes(p.code))
+                .flatMap((p) => p.regions)
+                .map((r) => r.name),
+            ),
+          ]
+        : [],
+    [availableVolumes],
+  );
+
+  if (!availableVolumes) return null;
 
   return (
     <OsdsMessage type={ODS_MESSAGE_TYPE.info}>
       <OsdsText
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+        color={ODS_TEXT_COLOR_INTENT.info}
         style={{ whiteSpace: 'pre-wrap' }}
+        hue={ODS_TEXT_COLOR_HUE._700}
       >
-        {t('exten_banner_description')}
+        {t('exten_banner_description', {
+          regions: regions.join(', '),
+        })}
       </OsdsText>
     </OsdsMessage>
   );
+}
+
+export function ExtenBannerBeta() {
+  const { data } = useFeatureAvailability([FA_EXTEN_BANNER]);
+
+  if (!data?.[FA_EXTEN_BANNER]) return null;
+
+  return <Banner />;
 }
