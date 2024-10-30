@@ -12,6 +12,11 @@ const queryClient = new QueryClient();
 const wrapper = ({ children }: PropsWithChildren) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 );
+vi.mock('i18next', () => ({
+  default: {
+    language: 'fr_FR',
+  },
+}));
 
 describe('useFetchHubNotifications', () => {
   it('should return notifications after extracting them from api envelope', async () => {

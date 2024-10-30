@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.63.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.62.2...@ovh-ux/manager-dedicated@19.63.0) (2024-10-29)
+
+
+### Bug Fixes
+
+* **dedicated-cloud:** replace description by name in breadcrumb ([#13249](https://github.com/ovh/manager/issues/13249)) ([b1d1b3a](https://github.com/ovh/manager/commit/b1d1b3a2ceeda15462f28620dc7a789ac0edc92e))
+
+
+### Features
+
+* **dedicated.ip:** navigate user to api console ([#12236](https://github.com/ovh/manager/issues/12236)) ([4df8cb5](https://github.com/ovh/manager/commit/4df8cb5530b0bd280773740ad540b7f29c482c23))
+* **dedicated:** modify the delay message for order confirmation ([#12560](https://github.com/ovh/manager/issues/12560)) ([7fdb3e5](https://github.com/ovh/manager/commit/7fdb3e5078ea921b2bba39bd562277281f507550))
+
+
+
+
+
 ## [19.62.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.62.1...@ovh-ux/manager-dedicated@19.62.2) (2024-10-24)
 
 
