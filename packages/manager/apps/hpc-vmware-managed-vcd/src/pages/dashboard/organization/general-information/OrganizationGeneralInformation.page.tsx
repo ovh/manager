@@ -8,7 +8,7 @@ import OrganizationOptionsTile from '@/components/tiles/organization-options-til
 import OrganizationDataProtectionTile from '@/components/tiles/organization-data-tile/OrganizationDataProtectionTile.component';
 import OrganizationServiceManagementTile from '@/components/tiles/organization-service-tile/OrganizationServiceManagementTile.component';
 
-function GeneralInformation() {
+export default function GeneralInformation() {
   const { id } = useParams();
   const {
     data: vcdOrganization,
@@ -45,12 +45,8 @@ function GeneralInformation() {
         />
         <OrganizationDataProtectionTile />
       </div>
-      <div>
-        <OrganizationServiceManagementTile />
-      </div>
+      <OrganizationServiceManagementTile />
       <Outlet />
     </div>
   );
 }
-
-export default GeneralInformation;
