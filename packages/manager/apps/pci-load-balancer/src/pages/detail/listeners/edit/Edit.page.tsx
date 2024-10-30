@@ -8,7 +8,7 @@ import { useEditLoadBalancer, useListener } from '@/api/hook/useListener';
 import { useAllLoadBalancerPools } from '@/api/hook/usePool';
 import ListenerForm, {
   TListenerFormState,
-} from '@/components/form/ListenerForm.page';
+} from '@/components/form/ListenerForm.component';
 
 export default function EditListener() {
   const navigate = useNavigate();
