@@ -19,7 +19,7 @@ export const licensesHycuService: ServiceDetails = {
       invoiceName: 'HYCU Hybrid Cloud - 25 VMs',
     },
     pricing: {
-      capacities: 'renew',
+      capacities: ['renew'],
       description: 'rental for 1 month',
       interval: 1,
       duration: 'P1M',

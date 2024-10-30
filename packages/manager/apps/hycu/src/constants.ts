@@ -9,4 +9,4 @@ export const packTypeLabel = {
 } as const;
 
 export const LICENSE_FILE_EXT = '.req';
-export const LICENSE_FILE_NAME_TEMPLATE = `license-hycu-{serviceName}.${LICENSE_FILE_EXT}`;
+export const LICENSE_FILE_NAME_TEMPLATE = `license-hycu-{serviceName}.dat`;

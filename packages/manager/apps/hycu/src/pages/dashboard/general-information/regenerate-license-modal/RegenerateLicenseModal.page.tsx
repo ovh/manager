@@ -95,11 +95,7 @@ export const RegenerateHycuLicenseModal: React.FC<RegenerateHycuLicenseModalProp
           </OsdsButton>
           <OsdsButton
             data-testid="hycu-dashboard-regenerate-upload-confirm"
-            disabled={
-              (!isValid && isSubmitted) || isRegeneratePending
-                ? true
-                : undefined
-            }
+            disabled={!isValid || isRegeneratePending ? true : undefined}
             slot="actions"
             type={ODS_BUTTON_TYPE.submit}
             variant={ODS_BUTTON_VARIANT.flat}
