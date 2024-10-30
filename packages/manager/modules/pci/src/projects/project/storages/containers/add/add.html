@@ -205,7 +205,7 @@
                         ></span>
                         <span
                             class="oui-badge oui-badge_info"
-                            data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[deploymentModeName].isMonoZone"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[deploymentModeName].isMonoZone && $ctrl.isLocalzoneAvailable"
                             data-ng-bind=":: ('pci_projects_project_storages_containers_add_deployment_mode_' + deploymentModeName + '_label') | translate"
                         ></span>
                         <span
@@ -282,7 +282,7 @@
                         ></span>
                         <span
                             class="oui-badge oui-badge_info"
-                            data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[$ctrl.container.deploymentMode].isMonoZone"
+                            data-ng-if="$ctrl.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[$ctrl.container.deploymentMode].isMonoZone && $ctrl.isLocalzoneAvailable"
                             data-ng-bind=":: ('pci_projects_project_storages_containers_add_deployment_mode_' + $ctrl.container.deploymentMode + '_label') | translate"
                         ></span>
                         <span

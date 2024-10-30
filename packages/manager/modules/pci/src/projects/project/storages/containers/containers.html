@@ -89,7 +89,9 @@
                 <span
                     class="oui-badge oui-badge_info"
                     data-ng-if="$row.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MONO_ZONE"
-                    data-ng-bind=":: ('pci_projects_project_storages_containers_deployment_mode_region') | translate"
+                    data-ng-bind=":: (!$ctrl.isLocalzoneAvailable
+                    ? 'pci_projects_project_storages_containers_add_deployment_mode_flipping_region'
+                    :'pci_projects_project_storages_containers_deployment_mode_region') | translate"
                 ></span>
 
                 <span

@@ -33,5 +33,6 @@ export default {
     trackingTag: '<',
     trackPage: '<',
     regions: '<?',
+    isLocalzoneAvailable: '<',
   },
 };
