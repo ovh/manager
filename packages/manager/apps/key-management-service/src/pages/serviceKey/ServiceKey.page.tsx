@@ -149,7 +149,7 @@ export default function Key() {
                   color={ODS_THEME_COLOR_INTENT.primary}
                   onClick={() => navigate(ROUTES_URLS.serviceKeyEditName)}
                   urn={kms.iam.urn}
-                  iamActions={['okms:apiovh:resource/serviceKey/update']}
+                  iamActions={['okms:apiovh:serviceKey/update']}
                 >
                   <OsdsIcon
                     name={ODS_ICON_NAME.PEN}
