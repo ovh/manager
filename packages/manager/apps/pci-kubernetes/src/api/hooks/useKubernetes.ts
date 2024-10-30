@@ -220,7 +220,7 @@ export const useUpdateKubePolicy = ({
 export const useKubeDetail = (
   projectId: string,
   kubeId: string,
-  refetchInterval,
+  refetchInterval: number,
 ) => {
   const { t } = useTranslation('listing');
 
