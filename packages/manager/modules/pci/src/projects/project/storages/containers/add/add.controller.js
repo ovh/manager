@@ -108,7 +108,7 @@ export default class PciStoragesContainersAddController {
       },
     );
 
-    this.featureFlipLocalzoneContainer();
+    // this.featureFlipLocalzoneContainer();
     this.setOffersPrices();
     this.setDeploymentModePrices();
     this.featureFlip3azContainer();
