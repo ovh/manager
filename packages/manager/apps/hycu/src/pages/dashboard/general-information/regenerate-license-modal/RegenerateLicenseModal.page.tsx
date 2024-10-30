@@ -37,7 +37,7 @@ export const RegenerateHycuLicenseModal: React.FC<RegenerateHycuLicenseModalProp
   const { t } = useTranslation('hycu/dashboard');
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
-  const { addSuccess, addError } = useNotifications();
+  const { addInfo, addError } = useNotifications();
   const {
     control,
     handleSubmit,
@@ -48,7 +48,7 @@ export const RegenerateHycuLicenseModal: React.FC<RegenerateHycuLicenseModalProp
     isPending: isRegeneratePending,
   } = useRegenerateLicenseHYCUMutation({
     onSuccess: () => {
-      addSuccess(t('hycu_dashboard_regenerate_success_message'), true);
+      addInfo(t('hycu_dashboard_regenerate_success_message'), true);
       closeModal();
     },
     onError: () => {

@@ -20,29 +20,29 @@ export default function EditHycuDisplayNameModal() {
 
   const invalidateCacheForLicense = useInvalidateCacheForALicenseHycu();
 
-  const onClose = () => {
+  const closeModal = () => {
     navigate('..');
   };
 
   return (
     <UpdateIamNameModal
-      closeModal={onClose}
+      closeModal={closeModal}
       headline={t('hycu_dashboard_update_display_name_modal_headline', {
         serviceName,
       })}
       inputLabel={t('hycu_dashboard_update_display_name_input_label')}
       description={t('hycu_dashboard_update_display_name_description')}
-      resourceName={serviceName}
+      resourceName={serviceDetails?.data?.resource?.displayName}
       isLoading={isLoading}
       pattern="^(\S| |\-){0,32}$"
       patternMessage={t('hycu_dashboard_update_display_name_pattern_message')}
       onSuccess={() => {
-        navigate('..');
         addSuccess(
           t('hycu_dashboard_update_display_name_success', {
             serviceName,
           }),
         );
+        closeModal();
         setTimeout(() => {
           invalidateCacheForLicense(serviceName);
         }, 2000);

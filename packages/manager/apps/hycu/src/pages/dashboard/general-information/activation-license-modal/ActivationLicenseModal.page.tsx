@@ -42,7 +42,7 @@ export const ActivationHycuLicenseModal: React.FC<ActivationHycuLicenseModalProp
   const { t } = useTranslation('hycu/dashboard');
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
-  const { addSuccess, addError } = useNotifications();
+  const { addInfo, addError } = useNotifications();
   const link = useGuideUtils();
   const {
     control,
@@ -54,7 +54,7 @@ export const ActivationHycuLicenseModal: React.FC<ActivationHycuLicenseModalProp
     isPending: isActivationPending,
   } = useActivateLicenseHYCUMutation({
     onSuccess: () => {
-      addSuccess(t('hycu_dashboard_activation_license_success_message'), true);
+      addInfo(t('hycu_dashboard_activation_license_success_message'), true);
       closeModal();
     },
     onError: (error: AxiosError<{ message: string }>) => {
