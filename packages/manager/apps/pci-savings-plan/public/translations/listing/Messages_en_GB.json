@@ -26,5 +26,6 @@
   "banner_renew_activate": "Auto-renewal has been enabled for the {{planName}} Savings Plan. Your Savings Plan will be renewed on {{endDate}}",
   "banner_renew_deactivate": " Auto-renewal has been disabled for the {{planName}} Savings Plan. Your Savings Plan ends on {{endDate}}. Your active services will not be impacted when your Savings Plan expires.",
   "banner_edit_name": "The name of the Savings Plan has been updated.",
-  "banner_create_sp": "Your Savings Plan has been created. This will be active from {{startDate}}"
+  "banner_create_sp": "Your Savings Plan has been created. This will be active from {{startDate}}",
+  "informationMessage": "You continue to manage your services as usual. The platform automatically calculates your usage based on your Savings Plan configurations and consumption of your existing or future resources."
 }

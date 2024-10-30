@@ -1,6 +1,7 @@
 {
   "title": "Savings Plans",
   "createSavingsPlan": "Créer un Savings Plan",
+  "informationMessage": "Vous continuez à gérer vos services comme d'habitude. La plateforme calcule automatiquement votre utilisation en fonction des configurations de vos Savings Plans et de la consommation de vos ressources existantes ou futures.",
   "name": "Nom",
   "model": "Modèle",
   "quantity": "Quantité",

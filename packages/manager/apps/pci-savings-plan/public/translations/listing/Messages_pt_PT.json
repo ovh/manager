@@ -26,5 +26,6 @@
   "banner_renew_activate": "A renovação automática do Savings Plan {{planName}} foi ativada com sucesso. O seu Savings Plan será renovado a {{endDate}}",
   "banner_renew_deactivate": " A renovação automática do Savings Plan {{planName}} foi desativada com sucesso. O seu Savings Plan terminará a {{endDate}}. A expiração do Savings Plan não terá qualquer impacto nos seus serviços ativos.",
   "banner_edit_name": "O nome do Savings Plan foi modificado com sucesso.",
-  "banner_create_sp": "O seu Savings Plan foi criado com sucesso e ficará ativo a partir de {{startDate}}."
+  "banner_create_sp": "O seu Savings Plan foi criado com sucesso e ficará ativo a partir de {{startDate}}.",
+  "informationMessage": "Continua a gerir os seus serviços como de costume. A plataforma calcula automaticamente a sua utilização em função das configurações dos seus Savings Plans e do consumo dos seus recursos existentes ou futuros."
 }

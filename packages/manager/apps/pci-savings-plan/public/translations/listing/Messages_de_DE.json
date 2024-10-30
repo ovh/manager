@@ -26,5 +26,6 @@
   "banner_renew_activate": "Die automatische Verlängerung des Savings Plan {{planName}} wurde erfolgreich aktiviert. Ihr Savings Plan wird am {{endDate}} verlängert.",
   "banner_renew_deactivate": " Die automatische Verlängerung des Savings Plan {{planName}} wurde erfolgreich deaktiviert. Ihr Savings Plan endet am {{endDate}}. Das Ablaufen Ihres Savings Plan hat keine Auswirkungen auf Ihre aktiven Dienste.",
   "banner_edit_name": "Der Name des Savings Plan wurde erfolgreich geändert.",
-  "banner_create_sp": "Ihr Savings Plan wurde erstellt. Er ist ab dem {{startDate}} aktiv."
+  "banner_create_sp": "Ihr Savings Plan wurde erstellt. Er ist ab dem {{startDate}} aktiv.",
+  "informationMessage": "Sie können Ihre Dienstleistungen weiterhin wie gewohnt verwalten. Die Plattform berechnet automatisch Ihre Nutzung basierend auf den Konfigurationen Ihrer Savings Pläne und dem Verbrauch Ihrer bestehenden oder zukünftigen Ressourcen."
 }
