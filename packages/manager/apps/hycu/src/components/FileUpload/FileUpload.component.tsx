@@ -29,6 +29,7 @@ export const FileInputField = ({
 
   const parseFile = async (file: File, onChange: (result: string) => void) => {
     onChange(undefined);
+    control.setError(name, undefined);
     if (file.size > MAX_FILE_SIZE) {
       setFileName('');
       control.setError(name, {
@@ -54,7 +55,6 @@ export const FileInputField = ({
       );
       onChange(base64String);
       setFileName(file.name);
-      control.setError(name, undefined);
     };
     reader.readAsDataURL(file);
   };

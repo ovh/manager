@@ -72,11 +72,8 @@ describe('License Hycu regenerate license route test suite', () => {
     const submitButton = screen.getByTestId(
       'hycu-dashboard-regenerate-upload-confirm',
     );
-    await act(() => user.click(submitButton));
 
-    expect(
-      screen.getByText(labels.dashboard.hycu_dashboard_upload_license_required),
-    ).toBeVisible();
+    expect(submitButton).toHaveAttribute('disabled');
   });
 
   it('should call mutate when form valid and submitted', async () => {
@@ -168,11 +165,7 @@ describe('License Hycu regenerate license route test suite', () => {
 
     await waitFor(
       () => {
-        expect(
-          screen.queryByText(
-            labels.dashboard.hycu_dashboard_upload_license_required,
-          ),
-        ).not.toBeInTheDocument();
+        expect(submitButton).toHaveAttribute('disabled');
         expect(
           screen.queryByText(
             labels.dashboard.hycu_dashboard_license_regenerate_description,
