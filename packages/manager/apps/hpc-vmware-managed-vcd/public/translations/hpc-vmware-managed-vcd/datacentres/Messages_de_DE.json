@@ -2,9 +2,9 @@
   "managed_vcd_vdc_title": "Virtuelle Rechenzentren",
   "managed_vcd_vdc_commercial_range": "Kaufmännische Reihe",
   "managed_vcd_vdc_vcpu_count": "vCPU gesamt",
-  "managed_vcd_vdc_ram_count": "RAM gesamt",
-  "managed_vcd_vdc_quota_value": "{{quota}} GB",
-  "managed_vcd_vdc_vcpu_speed": "vCPU Geschwindigkeit",
-  "managed_vcd_vdc_vcpu_value": "{{speed}} GHz",
+  "managed_vcd_vdc_ram_count": "RAM insgesamt",
+  "managed_vcd_vdc_quota_value": "{{quota}} GB",
+  "managed_vcd_vdc_vcpu_speed": "vCPU-Geschwindigkeit",
+  "managed_vcd_vdc_vcpu_value": "{{speed}} GHz",
   "managed_vcd_vdc_id": "ID"
 }
