@@ -1,6 +1,6 @@
 {
   "hycu_crumb": "HYCU",
-  "hycu_description": "Simplifiez vos sauvegardes, plans de reprise après sinistre et migrations de votre infrastructure Nutanix. Ce service vous propose différents packs de licences HYCU Hybrid Cloud pour protéger vos charges de travail Nutanix.",
+  "hycu_description": "Simplifiez vos sauvegardes, plans de reprise après sinistre et migrations de votre infrastructure Nutanix. Ce service vous propose différents packs de licences HYCU R-Cloud Hybrid Cloud Edition pour protéger vos charges de travail Nutanix.",
   "hycu_cloud_vm_pack_unknown": "Pack inconnu",
   "hycu_status_active": "Active",
   "hycu_status_toActivate": "À activer",
