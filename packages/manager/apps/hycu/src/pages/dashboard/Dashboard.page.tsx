@@ -82,33 +82,32 @@ export default function DashboardPage() {
   }
 
   return (
-    <>
-      <BaseLayout
-        breadcrumb={<Breadcrumb />}
-        header={header}
-        backLinkLabel={t('hycu_dashboard_back_link')}
-        onClickReturn={() => {
-          navigate(urls.listing);
-        }}
-        message={<Notifications />}
-        tabs={
-          <OsdsTabs panel={panel}>
-            <OsdsTabBar slot="top">
-              {tabsList.map((tab: DashboardTabItemProps) => (
-                <NavLink key={tab.name} to={tab.to} className="no-underline">
-                  <OsdsTabBarItem
-                    key={`osds-tab-bar-item-${tab.name}`}
-                    panel={tab.name}
-                  >
-                    {tab.title}
-                  </OsdsTabBarItem>
-                </NavLink>
-              ))}
-            </OsdsTabBar>
-          </OsdsTabs>
-        }
-      ></BaseLayout>
+    <BaseLayout
+      breadcrumb={<Breadcrumb />}
+      header={header}
+      backLinkLabel={t('hycu_dashboard_back_link')}
+      onClickReturn={() => {
+        navigate(urls.listing);
+      }}
+      message={<Notifications />}
+      tabs={
+        <OsdsTabs panel={panel}>
+          <OsdsTabBar slot="top">
+            {tabsList.map((tab: DashboardTabItemProps) => (
+              <NavLink key={tab.name} to={tab.to} className="no-underline">
+                <OsdsTabBarItem
+                  key={`osds-tab-bar-item-${tab.name}`}
+                  panel={tab.name}
+                >
+                  {tab.title}
+                </OsdsTabBarItem>
+              </NavLink>
+            ))}
+          </OsdsTabBar>
+        </OsdsTabs>
+      }
+    >
       <Outlet />
-    </>
+    </BaseLayout>
   );
 }
