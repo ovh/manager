@@ -1,0 +1,8 @@
+{
+  "payment_method_title": "Mon moyen de paiement",
+  "payment_method_default_label": "Par défaut",
+  "payment_method_expired_label": "Expiré",
+  "payment_method_update_link_label": "Modifier",
+  "payment_method_expiration_date_label": "Exp. {{date}}",
+  "payment_expiration_no_default_method_message": "Vous n'avez pas renseigné de moyen de paiement par défaut."
+}

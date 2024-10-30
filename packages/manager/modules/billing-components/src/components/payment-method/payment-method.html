@@ -1,0 +1,45 @@
+<div
+    class="oui-box oui-box_light d-flex flex-column justify-content-between h-100 p-2"
+>
+    <div class="d-flex justify-content-between align-items-center flex-wrap">
+        <h6 class="oui-box__heading p-0 m-0">
+            {{ 'payment_method_title' | translate }}
+        </h6>
+        <span
+            class="oui-chip"
+            ng-if="!$ctrl.isExpiredCard && $ctrl.paymentMehtod"
+            data-translate="payment_method_default_label"
+        ></span>
+        <span
+            class="oui-chip oui-background-ae-300"
+            ng-if="$ctrl.isExpiredCard"
+            data-translate="payment_method_expired_label"
+        ></span>
+    </div>
+    <div
+        class="d-flex align-items-center justify-content-between"
+        ng-if="$ctrl.paymentMehtod"
+    >
+        <div class="d-flex align-items-center">
+            <img
+                data-ng-src="{{:: $ctrl.icon }}"
+                alt
+                data-ng-attr-alt="{{:: $ctrl.paymentMehtod.paymentType }}"
+                aria-hidden="true"
+            />
+            <label>{{::$ctrl.paymentMehtod.label}}</label>
+        </div>
+        <label
+            data-translate="payment_method_expiration_date_label"
+            data-translate-values="{ date: $ctrl.formatedExpirationDate}"
+        >
+        </label>
+    </div>
+    <div class="d-flex align-items-center" ng-if="!$ctrl.paymentMehtod">
+        <p>{{ 'payment_expiration_no_default_method_message' | translate}}</p>
+    </div>
+    <a class="oui-link_icon" data-ng-href="{{$ctrl.updatePaymentMethodLink}}">
+        {{ 'payment_method_update_link_label' | translate}}
+        <span class="oui-icon oui-icon-arrow-right" aria-hidden="true"></span>
+    </a>
+</div>
