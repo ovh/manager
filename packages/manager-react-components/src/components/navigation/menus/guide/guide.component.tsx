@@ -28,6 +28,7 @@ export interface GuideItem {
   target?: OdsHTMLAnchorElementTarget;
   rel?: OdsHTMLAnchorElementRel;
   label: React.ReactNode;
+  onClick?: () => void;
 }
 
 export interface GuideButtonProps {
@@ -66,6 +67,7 @@ export const GuideButton: React.FC<GuideButtonProps> = ({ items }) => {
               rel={item.rel}
               type={LinkType.external}
               label={item.label}
+              onClickReturn={item.onClick}
             />
           </OsdsMenuItem>
         </OsdsMenuGroup>
