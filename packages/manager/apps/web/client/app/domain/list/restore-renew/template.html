@@ -4,9 +4,9 @@
     data-primary-action="$ctrl.redirectToRenew()"
     data-primary-label="{{:: 'domains_restore_renew_modal_confirm' | translate }}"
     data-primary-disabled="!$ctrl.domains.length"
-    data-secondary-action="$ctrl.goBack()"
+    data-secondary-action="$ctrl.goBackWithTrackClick()"
     data-secondary-label="{{:: 'domains_restore_renew_modal_cancel' | translate }}"
-    data-on-dismiss="$ctrl.goBack()"
+    data-on-dismiss="$ctrl.goBackWithTrackClick()"
 >
     <div data-ng-if="$ctrl.domains.length">
         <p

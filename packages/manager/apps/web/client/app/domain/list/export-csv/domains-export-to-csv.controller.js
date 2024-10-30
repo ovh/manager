@@ -11,13 +11,22 @@ angular.module('App').controller(
   'DomainsToCsvCtrl',
   class DomainsToCsvCtrl {
     /* @ngInject */
-    constructor($scope, $rootScope, $q, $translate, Domain, exportCsv) {
+    constructor(
+      $scope,
+      $rootScope,
+      $q,
+      $translate,
+      atInternet,
+      Domain,
+      exportCsv,
+    ) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;
       this.$q = $q;
       this.$translate = $translate;
       this.Domain = Domain;
       this.exportCsv = exportCsv;
+      this.atInternet = atInternet;
     }
 
     $onInit() {
@@ -124,6 +133,11 @@ angular.module('App').controller(
      * Export Accounts to CSV file
      */
     exportAccountsToCsv() {
+      this.atInternet.trackClick({
+        name: 'this.web::domain::::pop-up::button::export-domains-csv',
+        type: 'action',
+      });
+
       const choices = filter(this.csvExportOptions, (opt) => opt.checked);
       const header = map(choices, (opt) =>
         this.$translate.instant(
@@ -187,6 +201,10 @@ angular.module('App').controller(
               this.$q.when(!isEmpty(get(options, 'zones')) && !this.canceler),
             done: (options) => {
               if (this.canceler) {
+                this.atInternet.trackClick({
+                  name: 'web::domain::::::listing::export-csv::cancel',
+                  type: 'action',
+                });
                 this.$rootScope.$broadcast('domain.csv.export.cancel');
               } else {
                 const data = this.exportCsv.exportData({
@@ -194,11 +212,20 @@ angular.module('App').controller(
                   fileName: null,
                   datas: options.datas,
                 });
+                this.atInternet.trackClick({
+                  name: 'web::domain::::::listing::export-csv::done',
+                  type: 'action',
+                });
                 this.$rootScope.$broadcast('domain.csv.export.done', data);
               }
             },
-            error: (err) =>
-              this.$rootScope.$broadcast('domain.csv.export.error', err),
+            error: (err) => {
+              this.atInternet.trackClick({
+                name: 'web::domain::::::listing::export-csv::error',
+                type: 'action',
+              });
+              this.$rootScope.$broadcast('domain.csv.export.error', err);
+            },
           });
         })
         .catch((err) =>
@@ -210,6 +237,10 @@ angular.module('App').controller(
 
     closeExport() {
       this.canceler = true;
+      this.atInternet.trackClick({
+        name: 'web::domain::::pop-up::button::export-domains-csv::cancel',
+        type: 'action',
+      });
       this.$scope.resetAction();
     }
   },

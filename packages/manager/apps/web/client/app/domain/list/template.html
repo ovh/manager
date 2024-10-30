@@ -35,8 +35,11 @@
                     <span data-translate="domains_action_restore_renew"></span>
                 </oui-button>
 
-                <oui-button
-                    data-variant="secondary"
+                <button
+                    type="button"
+                    class="oui-button oui-button_secondary"
+                    data-track-on="click"
+                    data-track-name="web::domain::::page::button::export-csv::domain"
                     data-ng-click="$ctrl.setActionMultiple('export-csv/domains-export-to-csv')"
                     data-ng-disabled="$ctrl.loading.domainsExportCsv"
                 >
@@ -48,7 +51,7 @@
                         data-translate="domains_dashboard_tooltip_export_csv_creation_doing"
                         data-ng-if="$ctrl.loading.domainsExportCsv"
                     ></span>
-                </oui-button>
+                </button>
             </div>
         </oui-datagrid-topbar>
         <oui-datagrid-column
@@ -60,6 +63,8 @@
             data-searchable
         >
             <a
+                data-track-on="click"
+                data-track-name="web::domain::::datagrid::link::details_domain::domain"
                 data-ng-href="{{:: $ctrl.getServiceNameLink($row) }}"
                 data-ng-bind="$ctrl.constructor.convertToPunycode($value)"
             ></a>
@@ -159,6 +164,8 @@
             <div class="position-relative">
                 <a
                     class="oui-link_icon"
+                    data-track-on="click"
+                    data-track-name="web::domain::::datagrid::link::details_contact_owner::domain"
                     data-ng-href="{{:: $ctrl.linkToOwnerPage($row.contactOwner.id, $row.domain)}}"
                     target="_top"
                 >
@@ -191,6 +198,8 @@
         >
             <a
                 class="oui-link_icon"
+                data-track-on="click"
+                data-track-name="web::domain::::datagrid::link::details_admin_contact::domain"
                 data-ng-if="$row.contactAdmin.id === $ctrl.user.auth.account"
                 data-ng-href="{{:: $ctrl.USER_ACCOUNT_INFOS_LINK }}"
                 target="_top"
@@ -216,6 +225,8 @@
         >
             <a
                 class="oui-link_icon"
+                data-track-on="click"
+                data-track-name="web::domain::::datagrid::link::details_billing_contact::domain"
                 data-ng-if="$row.contactBilling.id === $ctrl.user.auth.account"
                 data-ng-href="{{:: $ctrl.USER_ACCOUNT_INFOS_LINK }}"
                 target="_top"
@@ -241,6 +252,8 @@
         >
             <a
                 class="oui-link_icon"
+                data-track-on="click"
+                data-track-name="web::domain::::datagrid::link::details_technical_contact::domain"
                 data-ng-if="$row.contactTech.id === $ctrl.user.auth.account"
                 data-ng-href="{{:: $ctrl.USER_ACCOUNT_INFOS_LINK }}"
                 target="_top"
@@ -289,7 +302,6 @@
                 <span data-translate="domains_action_per_line_detail"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-on-click="$ctrl.goToRestoreRenew($row)"
                 aria-label="{{:: $row.state === $ctrl.DOMAIN_STATUS.RESTORABLE ? 'domains_action_per_line_restore' : 'domains_action_per_line_renew' | translate }}"
                 data-ng-if="$ctrl.constructor.isDomainRenewableOrRestorable($row)"
             >
