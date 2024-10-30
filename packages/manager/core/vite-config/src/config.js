@@ -53,6 +53,7 @@ const getBaseConfig = (config) => {
         '@vitest',
         'typescript',
         'date-fns',
+        '@ovh-ux/manager-react-components',
       ],
     },
     define: {
