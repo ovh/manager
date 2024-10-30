@@ -5,3 +5,4 @@ export * from './domain';
 export * from './account';
 export * from './alias';
 export * from './task';
+export * from './order';

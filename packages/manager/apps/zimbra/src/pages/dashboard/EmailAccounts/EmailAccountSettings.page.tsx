@@ -37,11 +37,12 @@ import {
   putZimbraPlatformAccount,
 } from '@/api/account';
 import { DomainType } from '@/api/domain';
-import { formInputRegex } from './account.constants';
 import {
+  ACCOUNT_REGEX,
   checkValidityField,
   checkValidityForm,
   FormTypeInterface,
+  PASSWORD_REGEX,
 } from '@/utils';
 import queryClient from '@/queryClient';
 
@@ -75,6 +76,7 @@ export default function EmailAccountSettings({
         touched: false,
         hasError: false,
         required: true,
+        validate: ACCOUNT_REGEX,
       },
       domain: {
         value: '',
@@ -98,6 +100,7 @@ export default function EmailAccountSettings({
         touched: false,
         hasError: false,
         required: !editEmailAccountId,
+        validate: PASSWORD_REGEX,
       },
     },
     ...(editEmailAccountId && {
@@ -135,7 +138,7 @@ export default function EmailAccountSettings({
       ...form[name],
       value,
       touched: true,
-      hasError: !checkValidityField(name, value, formInputRegex, form),
+      hasError: !checkValidityField(name, value, form),
     };
     setForm((oldForm) => ({ ...oldForm, ...newForm }));
     setIsFormValid(checkValidityForm(form));
