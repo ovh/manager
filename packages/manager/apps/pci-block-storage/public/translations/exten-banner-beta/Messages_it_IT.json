@@ -1,3 +1,3 @@
 {
-  "exten_banner_description": "Ottimizza le performance con Block Storage NVMe over Fabric! Disponibile in fase beta nelle Region {{regions}}, raddoppia le performance dei volumi Classic e migliora l'efficacia dei carichi di lavoro intensivi."
+  "exten_banner_description": "Ottimizza le performance con Block Storage NVMe over Fabric!\nDisponibile in fase beta nelle Region {{regions}}, raddoppia le performance dei volumi Classic e migliora l'efficacia dei carichi di lavoro intensivi."
 }
