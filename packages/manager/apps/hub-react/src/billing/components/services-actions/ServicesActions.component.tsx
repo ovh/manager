@@ -16,7 +16,7 @@ import {
   OsdsSkeleton,
 } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import React, { Suspense } from 'react';
+import React, { Suspense, useMemo } from 'react';
 import {
   ServiceAction,
   useServiceActions,
@@ -36,9 +36,13 @@ export default function ServicesActions({
   trackingPrefix,
 }: ServicesActionsProps) {
   const links = useServiceLinks(service, autoRenewLink);
+  // links are memoized because useServiceLinks returns a new Object on each render
+  // which causes a render loop in useServiceLinks
+  // @TODO fix useServiceLinks
+  const memoizedLinks = useMemo(() => links, [service, autoRenewLink]);
   const items: ServiceAction[] = useServiceActions(
     service,
-    links,
+    memoizedLinks,
     trackingPrefix,
   );
   const shouldBeDisplayed =
