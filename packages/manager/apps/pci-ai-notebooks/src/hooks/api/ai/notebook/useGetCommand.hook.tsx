@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import * as ai from '@/types/cloud/project/ai';
 import { AIError } from '@/data/api';
-import { getCommand } from '@/data/api/ai/notebook/command.api';
+import { getCommand } from '@/data/api/ai/notebook/notebook.api';
 
 interface GetCommandProps {
   onError: (cause: AIError) => void;

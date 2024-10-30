@@ -26,3 +26,26 @@ export const addNotebook = async ({ projectId, notebookInfo }: AddNotebook) =>
   apiClient.v6
     .post(`/cloud/project/${projectId}/ai/notebook`, notebookInfo)
     .then((res) => res.data as ai.notebook.Notebook);
+
+export const startNotebook = async ({
+  projectId,
+  notebookId,
+}: NotebookData) => {
+  return apiClient.v6
+    .put(`/cloud/project/${projectId}/ai/notebook/${notebookId}/start`)
+    .then((res) => res.data as ai.notebook.Notebook);
+};
+
+export const stopNotebook = async ({ projectId, notebookId }: NotebookData) => {
+  return apiClient.v6
+    .put(`/cloud/project/${projectId}/ai/notebook/${notebookId}/stop`)
+    .then((res) => res.data as ai.notebook.Notebook);
+};
+
+export const deleteNotebook = async ({ projectId, notebookId }: NotebookData) =>
+  apiClient.v6.delete(`/cloud/project/${projectId}/ai/notebook/${notebookId}`);
+
+export const getCommand = async ({ projectId, notebookInfo }: AddNotebook) =>
+  apiClient.v6
+    .post(`/cloud/project/${projectId}/ai/notebook/command`, notebookInfo)
+    .then((res) => res.data as ai.Command);

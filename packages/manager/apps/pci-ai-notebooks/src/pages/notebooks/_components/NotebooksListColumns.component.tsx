@@ -6,7 +6,6 @@ import {
   ShieldCheck,
   Zap,
 } from 'lucide-react';
-import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as ai from '@/types/cloud/project/ai';
@@ -23,14 +22,20 @@ import {
 import { SortableHeader } from '@/components/ui/data-table';
 import Link from '@/components/links/Link.component';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
-import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import NotebookStatusBadge from './NotebookStatusBadge.component';
+import { isDeletingNotebook, isRunningNotebook } from '@/lib/statusHelper';
 
 interface NotebooksListColumnsProps {
+  onStartClicked: (notebook: ai.notebook.Notebook) => void;
+  onStopClicked: (notebook: ai.notebook.Notebook) => void;
   onDeleteClicked: (notebook: ai.notebook.Notebook) => void;
 }
 
-export const getColumns = ({ onDeleteClicked }: NotebooksListColumnsProps) => {
+export const getColumns = ({
+  onStartClicked,
+  onStopClicked,
+  onDeleteClicked,
+}: NotebooksListColumnsProps) => {
   const navigate = useNavigate();
   const { t } = useTranslation('pci-ai-notebooks/notebooks');
   const { t: tRegions } = useTranslation('regions');
@@ -163,13 +168,13 @@ export const getColumns = ({ onDeleteClicked }: NotebooksListColumnsProps) => {
     {
       id: 'actions',
       cell: ({ row }) => {
-        const service = row.original;
+        const notebook = row.original;
 
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
-                data-testid="services-action-trigger"
+                data-testid="notebooks-action-trigger"
                 variant="menu"
                 size="menu"
               >
@@ -192,30 +197,43 @@ export const getColumns = ({ onDeleteClicked }: NotebooksListColumnsProps) => {
               >
                 {t('tableActionManage')}
               </DropdownMenuItem>
+
               <DropdownMenuItem
+                data-testid="notebook-action-start-button"
+                disabled={
+                  isRunningNotebook(notebook.status.state) ||
+                  isDeletingNotebook(notebook.status.state)
+                }
                 variant="primary"
                 onClick={() => {
-                  navigator.clipboard.writeText(service.id);
-                  toast.success('Service id saved in clipboard', {
-                    dismissible: true,
-                  });
+                  onStartClicked(row.original);
                 }}
               >
                 {t('tableActionStart')}
               </DropdownMenuItem>
+
               <DropdownMenuItem
+                data-testid="notebook-action-stop-button"
+                disabled={
+                  !isRunningNotebook(notebook.status.state) ||
+                  isDeletingNotebook(notebook.status.state)
+                }
                 variant="primary"
                 onClick={() => {
-                  navigator.clipboard.writeText(service.id);
-                  toast.success('Service id saved in clipboard', {
-                    dismissible: true,
-                  });
+                  onStopClicked(row.original);
                 }}
               >
                 {t('tableActionStop')}
               </DropdownMenuItem>
+
+              <DropdownMenuSeparator />
+
               <DropdownMenuItem
                 variant="destructive"
+                disabled={
+                  isRunningNotebook(notebook.status.state) ||
+                  isDeletingNotebook(notebook.status.state)
+                }
                 onClick={() => {
                   onDeleteClicked(row.original);
                 }}

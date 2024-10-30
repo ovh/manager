@@ -1,8 +1,13 @@
 import { ColumnDef } from '@tanstack/react-table';
+import { useMemo } from 'react';
 import { DataTable } from '@/components/ui/data-table';
 import { Skeleton } from '@/components/ui/skeleton';
 import * as ai from '@/types/cloud/project/ai';
 import { getColumns } from './NotebooksListColumns.component';
+import { useModale } from '@/hooks/useModale';
+import DeleteNotebook from '../[notebookId]/_components/DeleteNotebook.component';
+import StartNotebook from '../[notebookId]/_components/StartNotebook.component';
+import StopNotebook from '../[notebookId]/_components/StopNotebook.component';
 
 interface NotebooksListProps {
   notebooks: ai.notebook.Notebook[];
@@ -13,17 +18,33 @@ export default function NotebooksList({
   notebooks,
   refetchFn,
 }: NotebooksListProps) {
-  /* const deleteModale = useModale('delete');
-  
-  const deletingService = useMemo(
-    () => services.find((s) => s.id === deleteModale.value),
-    [deleteModale.value, services],
+  const startModale = useModale('start');
+  const stopModale = useModale('stop');
+  const deleteModale = useModale('delete');
+
+  const startingNotebook = useMemo(
+    () => notebooks.find((s) => s.id === startModale.value),
+    [startModale.value, notebooks],
   );
-  */
+  const stoppingNotebook = useMemo(
+    () => notebooks.find((s) => s.id === stopModale.value),
+    [stopModale.value, notebooks],
+  );
+
+  const deletingNotebook = useMemo(
+    () => notebooks.find((s) => s.id === deleteModale.value),
+    [deleteModale.value, notebooks],
+  );
 
   const columns: ColumnDef<ai.notebook.Notebook>[] = getColumns({
+    onStartClicked: (notebook: ai.notebook.Notebook) => {
+      startModale.open(notebook.id);
+    },
+    onStopClicked: (notebook: ai.notebook.Notebook) => {
+      stopModale.open(notebook.id);
+    },
     onDeleteClicked: (notebook: ai.notebook.Notebook) => {
-      console.log(notebook);
+      deleteModale.open(notebook.id);
     },
   });
 
@@ -35,18 +56,36 @@ export default function NotebooksList({
         pageSize={25}
         // itemNumber={notebooks.length}
       />
-      {/* 
-      {deletingService && (
-        <DeleteService
+      {deletingNotebook && (
+        <DeleteNotebook
           controller={deleteModale.controller}
-          service={deletingService}
+          notebook={deletingNotebook}
           onSuccess={() => {
             deleteModale.close();
             refetchFn();
           }}
         />
       )}
-      */}
+      {startingNotebook && (
+        <StartNotebook
+          controller={startModale.controller}
+          notebook={startingNotebook}
+          onSuccess={() => {
+            startModale.close();
+            refetchFn();
+          }}
+        />
+      )}
+      {stoppingNotebook && (
+        <StopNotebook
+          controller={stopModale.controller}
+          notebook={stoppingNotebook}
+          onSuccess={() => {
+            stopModale.close();
+            refetchFn();
+          }}
+        />
+      )}
     </>
   );
 }

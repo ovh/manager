@@ -8,7 +8,7 @@ import {
 
 import { ModalController } from '@/hooks/useModale';
 import * as ai from '@/types/cloud/project/ai';
-import CliCodeBlock from '@/components/modal-code-block/CliCodeBlock.component';
+import CliCodeBlock from '@/components/cli-code-block/CliCodeBlock.component';
 
 interface CliEquivalentModalProps {
   command: ai.Command;
