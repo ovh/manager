@@ -8,4 +8,5 @@ export const packTypeLabel = {
   'hycu-cloud-vm-pack-500': '500 VMs',
 } as const;
 
-export const LICENSE_FILE_NAME_TEMPLATE = 'license-hycu-{serviceName}.dat' as const;
+export const LICENSE_FILE_EXT = '.req';
+export const LICENSE_FILE_NAME_TEMPLATE = `license-hycu-{serviceName}.${LICENSE_FILE_EXT}`;
