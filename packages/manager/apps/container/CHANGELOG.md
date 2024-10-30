@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.86.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.85.2...@ovh-ux/manager-container-app@0.86.0-alpha.0) (2024-10-30)
+
+
+### Features
+
+* build and publish manager-react-components and its deps ([cbcd795](https://github.com/ovh/manager/commit/cbcd7959a217c191c003058455ba2c38fb7553f1))
+
+
+
+
+
 ## [0.85.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.85.1...@ovh-ux/manager-container-app@0.85.2) (2024-10-24)
 
 

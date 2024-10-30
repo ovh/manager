@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.2.3...@ovh-ux/manager-core-sso@0.3.0) (2024-10-30)
+
+
+### Features
+
+* build and publish manager-react-components and its deps ([cbcd795](https://github.com/ovh/manager/commit/cbcd7959a217c191c003058455ba2c38fb7553f1))
+
+
+
+
+
 ## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.2.2...@ovh-ux/manager-core-sso@0.2.3) (2024-10-24)
 
 
