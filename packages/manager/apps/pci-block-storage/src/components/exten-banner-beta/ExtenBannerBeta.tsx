@@ -21,7 +21,7 @@ function Banner() {
   const { projectId } = useParams();
   const { data: availableVolumes } = useProjectsAvailableVolumes(projectId);
 
-  const regions = useMemo(
+  const regionsString = useMemo(
     () =>
       availableVolumes
         ? [
@@ -31,8 +31,8 @@ function Banner() {
                 .flatMap((p) => p.regions)
                 .map((r) => r.name),
             ),
-          ]
-        : [],
+          ].join(', ')
+        : '',
     [availableVolumes],
   );
 
@@ -46,7 +46,7 @@ function Banner() {
         hue={ODS_TEXT_COLOR_HUE._700}
       >
         {t('exten_banner_description', {
-          regions: regions.join(', '),
+          regions: regionsString,
         })}
       </OsdsText>
     </OsdsMessage>
