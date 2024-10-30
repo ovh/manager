@@ -11,11 +11,12 @@ import {
 import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import React, { PropsWithChildren } from 'react';
 
+import placeholderImg from '../../../../public/assets/placeholder.png';
+
 import {
   ODS_THEME_COLOR_HUE,
   ODS_THEME_COLOR_INTENT,
 } from '@ovhcloud/ods-common-theming';
-import placeholderSrc from './assets/placeholder.png';
 
 type OnboardingLayoutButtonProps = {
   orderButtonLabel?: string;
@@ -109,7 +110,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
         <section className="flex flex-col items-center mt-8">
           <img
             className={`max-h-[150px] ${imgClassName ?? ''}`}
-            src={placeholderSrc}
+            src={placeholderImg}
             {...imgProps}
           />
           <OsdsText
