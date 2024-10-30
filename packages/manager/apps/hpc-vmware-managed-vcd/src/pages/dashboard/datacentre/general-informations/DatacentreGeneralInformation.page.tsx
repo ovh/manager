@@ -5,6 +5,7 @@ import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import { useManagedVcdDatacentre } from '@/data/hooks/useManagedVcdDatacentres';
 import Loading from '@/components/loading/Loading.component';
 import Errors from '@/components/error/Error.component';
+import DatacentreUsageTile from '@/components/tiles/datacentre-usage-tile/DatacentreUsageTile.component';
 
 export default function DatacentresGeneralInformationPage() {
   const { id, vdcId } = useParams();
@@ -40,8 +41,9 @@ export default function DatacentresGeneralInformationPage() {
           vcdDatacentre={vcdDatacentre?.data}
           vcdOrganization={vcdOrganization?.data}
         />
-        <Outlet />
+        <DatacentreUsageTile vcdDatacentre={vcdDatacentre?.data} />
       </div>
+      <Outlet />
     </React.Suspense>
   );
 }
