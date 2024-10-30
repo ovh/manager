@@ -1,8 +1,8 @@
 {
-  "hycu_order_title": "Commander une licence HYCU Hybrid Cloud",
-  "hycu_order_description": "HYCU Hybrid Cloud est un logiciel de sauvegarde et de restauration spécialement conçu pour Nutanix. Nous vous proposons différents packs de licences selon le nombre de machines virtuelles (VM) utilisées par vos charges de travail Nutanix.",
+  "hycu_order_title": "Commander une licence HYCU R-Cloud Hybrid Cloud Edition",
+  "hycu_order_description": "HYCU R-Cloud Hybrid Cloud Edition est un logiciel de sauvegarde et de restauration spécialement conçu pour Nutanix. Nous vous proposons différents packs de licences selon le nombre de machines virtuelles (VM) utilisées par vos charges de travail Nutanix.",
   "hycu_order_subtitle": "Choisissez le type de pack",
-  "hycu_order_subtitle_description": "Sélectionnez le nombre de machines virtuelles (VM) à couvrir par la licence HYCU Hybrid Cloud. Veuillez noter qu'il vous sera impossible de sauvegarder plus de VM que le nombre prévu dans le pack. Si vous souhaitez protéger plus de 500 VM, merci de vous rapprocher de notre <contact>service commercial</contact>.",
+  "hycu_order_subtitle_description": "Sélectionnez le nombre de machines virtuelles (VM) à couvrir par la licence HYCU R-Cloud Hybrid Cloud Edition. Veuillez noter qu'il vous sera impossible de sauvegarder plus de VM que le nombre prévu dans le pack. Si vous souhaitez protéger plus de 500 VM, merci de vous rapprocher de notre <contact>service commercial</contact>.",
   "hycu_order_cta_cancel": "Annuler",
   "hycu_order_cta_order": "Commander",
   "hycu_order_initiated_title": "Commande de votre pack",
