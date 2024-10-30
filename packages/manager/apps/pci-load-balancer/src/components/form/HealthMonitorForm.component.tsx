@@ -168,7 +168,13 @@ export default function HealthMonitorForm({
   };
 
   if (isPending) {
-    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
+    return (
+      <OsdsSpinner
+        inline
+        size={ODS_SPINNER_SIZE.md}
+        data-testid="HealthMonitorForm-spinner"
+      />
+    );
   }
 
   return (
@@ -216,6 +222,7 @@ export default function HealthMonitorForm({
           />
 
           <OsdsInput
+            data-testid="HealthMonitorForm-name_input"
             name="name"
             type={ODS_INPUT_TYPE.text}
             value={formState?.name}
@@ -269,7 +276,11 @@ export default function HealthMonitorForm({
 
         {displayHttpSpecificFields && (
           <div>
-            <OsdsFormField className="my-8" error={errors.urlPath}>
+            <OsdsFormField
+              className="my-8"
+              error={errors.urlPath}
+              data-testid="HealthMonitorForm_urlPath_field"
+            >
               <LabelComponent
                 text={LABELS.URL_PATH}
                 hasError={!!errors.urlPath}
@@ -287,7 +298,11 @@ export default function HealthMonitorForm({
               />
             </OsdsFormField>
 
-            <OsdsFormField className="my-8" error={errors.expectedCode}>
+            <OsdsFormField
+              className="my-8"
+              error={errors.expectedCode}
+              data-testid="HealthMonitorForm_expectedCode_field"
+            >
               <LabelComponent
                 text={t(
                   'octavia_load_balancer_health_monitor_form_expected_code',
@@ -386,6 +401,7 @@ export default function HealthMonitorForm({
 
         <div className="flex gap-4">
           <OsdsButton
+            data-testid="HealthMonitorForm-cancel_button"
             slot="actions"
             color={ODS_THEME_COLOR_INTENT.primary}
             variant={ODS_BUTTON_VARIANT.ghost}
@@ -394,6 +410,7 @@ export default function HealthMonitorForm({
             {tCommon('common_cancel')}
           </OsdsButton>
           <OsdsButton
+            data-testid="HealthMonitorForm-submit_button"
             slot="actions"
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => onSubmit(formState)}

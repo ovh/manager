@@ -39,7 +39,7 @@ export const useAllLoadBalancerPools = ({
       data.map((pool) => ({
         ...pool,
         search: `${pool.name} ${pool.algorithm} ${pool.protocol}`,
-      })),
+      })) as TLoadBalancerPool[],
     throwOnError: true,
   });
 

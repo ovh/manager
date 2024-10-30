@@ -122,12 +122,19 @@ export default function ListenerForm({
   const isFormValid = formState.name && formState.protocol && !portError;
 
   if (isPending) {
-    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
+    return (
+      <OsdsSpinner
+        inline
+        size={ODS_SPINNER_SIZE.md}
+        data-testid="ListenerForm_spinner"
+      />
+    );
   }
 
   return (
     <div className="min-w-[20rem] md:w-1/4 sm:w-1">
       <OsdsFormField
+        data-testid="ListenerForm_name-field"
         className="my-8"
         error={isNameRequired ? tCommon('common_field_error_required') : ''}
       >
@@ -137,6 +144,7 @@ export default function ListenerForm({
         />
 
         <OsdsInput
+          data-testid="ListenerForm_name-input"
           type={ODS_INPUT_TYPE.text}
           value={formState.name}
           error={isNameRequired}
@@ -156,6 +164,7 @@ export default function ListenerForm({
         />
 
         <OsdsSelect
+          data-testid="ListenerForm_protocol-select"
           value={formState.protocol}
           inline
           onOdsValueChange={handle.protocolChange}
@@ -179,6 +188,7 @@ export default function ListenerForm({
         />
 
         <OsdsInput
+          data-testid="ListenerForm_port-input"
           type={ODS_INPUT_TYPE.number}
           min={PORT_MIN_VALUE}
           max={PORT_MAX_VALUE}
@@ -221,6 +231,7 @@ export default function ListenerForm({
 
       <div className="flex gap-4">
         <OsdsButton
+          data-testid="ListenerForm_cancel-button"
           slot="actions"
           color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.ghost}
@@ -229,6 +240,7 @@ export default function ListenerForm({
           {tCommon('common_cancel')}
         </OsdsButton>
         <OsdsButton
+          data-testid="ListenerForm_submit-button"
           slot="actions"
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => onSubmit(formState)}
