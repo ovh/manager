@@ -14,6 +14,7 @@ export const useTokenForm = ({ regions }: UseTokenFormProps) => {
 
   const nameRules = z
     .string()
+    .trim()
     .min(TOKEN_CONFIG.name.min, {
       message: t('formTokenErrorMinLength', {
         min: TOKEN_CONFIG.name.min,
@@ -30,6 +31,7 @@ export const useTokenForm = ({ regions }: UseTokenFormProps) => {
 
   const labelSelectorRules = z
     .string()
+    .trim()
     .max(TOKEN_CONFIG.name.max, {
       message: t('formTokenErrorMaxLength', {
         max: TOKEN_CONFIG.label.max,
@@ -45,6 +47,7 @@ export const useTokenForm = ({ regions }: UseTokenFormProps) => {
 
   const regionRules = z
     .string()
+    .trim()
     .min(TOKEN_CONFIG.region.min, {
       message: t('formTokenErrorMinLength', {
         min: TOKEN_CONFIG.region.min,

@@ -14,6 +14,7 @@ export const useDatastoreForm = ({ regions }: UseDatastoreFormProps) => {
 
   const aliasRules = z
     .string()
+    .trim()
     .min(DATASTORE_CONFIG.other.min, {
       message: t('formDatastoreErrorMinLength', {
         min: DATASTORE_CONFIG.other.min,
@@ -30,6 +31,7 @@ export const useDatastoreForm = ({ regions }: UseDatastoreFormProps) => {
 
   const enpointRules = z
     .string()
+    .trim()
     .min(DATASTORE_CONFIG.other.min, {
       message: t('formDatastoreErrorMinLength', {
         min: DATASTORE_CONFIG.other.min,
@@ -43,6 +45,7 @@ export const useDatastoreForm = ({ regions }: UseDatastoreFormProps) => {
 
   const regionRules = z
     .string()
+    .trim()
     .min(DATASTORE_CONFIG.region.min, {
       message: t('formDatastoreErrorMinLength', {
         min: DATASTORE_CONFIG.region.min,
@@ -56,6 +59,7 @@ export const useDatastoreForm = ({ regions }: UseDatastoreFormProps) => {
 
   const s3RegionRules = z
     .string()
+    .trim()
     .min(DATASTORE_CONFIG.other.min, {
       message: t('formDatastoreErrorMinLength', {
         min: DATASTORE_CONFIG.other.min,
@@ -69,6 +73,7 @@ export const useDatastoreForm = ({ regions }: UseDatastoreFormProps) => {
 
   const s3AccessKeyRules = z
     .string()
+    .trim()
     .min(DATASTORE_CONFIG.key.min, {
       message: t('formDatastoreErrorMinLength', {
         min: DATASTORE_CONFIG.key.min,
@@ -82,6 +87,7 @@ export const useDatastoreForm = ({ regions }: UseDatastoreFormProps) => {
 
   const s3SecretKeyRules = z
     .string()
+    .trim()
     .min(DATASTORE_CONFIG.key.min, {
       message: t('formDatastoreErrorMinLength', {
         min: DATASTORE_CONFIG.key.min,

@@ -23,7 +23,8 @@ export const useGitForm = ({ regions }: UseGitFormProps) => {
       message: t('formGitErrorMaxLength', {
         max: GIT_CONFIG.other.max,
       }),
-    });
+    })
+    .trim();
 
   const nameRules = globalRules.regex(GIT_CONFIG.name.pattern, {
     message: t('formGitNameErrorPattern'),
@@ -31,6 +32,7 @@ export const useGitForm = ({ regions }: UseGitFormProps) => {
 
   const regionRules = z
     .string()
+    .trim()
     .min(GIT_CONFIG.region.min, {
       message: t('formGitErrorMinLength', {
         min: GIT_CONFIG.region.min,
@@ -44,6 +46,7 @@ export const useGitForm = ({ regions }: UseGitFormProps) => {
 
   const optionalRules = z
     .string()
+    .trim()
     .max(GIT_CONFIG.other.max, {
       message: t('formGitErrorMaxLength', {
         max: GIT_CONFIG.other.max,
@@ -53,6 +56,7 @@ export const useGitForm = ({ regions }: UseGitFormProps) => {
 
   const sshKeyRules = z
     .string()
+    .trim()
     .max(GIT_CONFIG.key.max, {
       message: t('formGitErrorMaxLength', {
         max: GIT_CONFIG.key.max,

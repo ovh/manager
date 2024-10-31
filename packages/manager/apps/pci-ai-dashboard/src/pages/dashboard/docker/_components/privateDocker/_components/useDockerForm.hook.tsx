@@ -14,6 +14,7 @@ export const useDockerForm = ({ regions }: UseDockerFormProps) => {
 
   const regionRules = z
     .string()
+    .trim()
     .min(DOCKER_CONFIG.region.min, {
       message: t('formDockerErrorMinLength', {
         min: DOCKER_CONFIG.region.min,
@@ -27,6 +28,7 @@ export const useDockerForm = ({ regions }: UseDockerFormProps) => {
 
   const usernameRules = z
     .string()
+    .trim()
     .min(DOCKER_CONFIG.other.min, {
       message: t('formDockerErrorMinLength', {
         min: DOCKER_CONFIG.other.min,
@@ -36,17 +38,23 @@ export const useDockerForm = ({ regions }: UseDockerFormProps) => {
       message: t('formDockerNameErrorPattern'),
     });
 
-  const passwordRules = z.string().min(DOCKER_CONFIG.other.min, {
-    message: t('formDockerErrorMinLength', {
-      min: DOCKER_CONFIG.other.min,
-    }),
-  });
+  const passwordRules = z
+    .string()
+    .trim()
+    .min(DOCKER_CONFIG.other.min, {
+      message: t('formDockerErrorMinLength', {
+        min: DOCKER_CONFIG.other.min,
+      }),
+    });
 
-  const urlRules = z.string().min(DOCKER_CONFIG.other.min, {
-    message: t('formDockerErrorMinLength', {
-      min: DOCKER_CONFIG.other.min,
-    }),
-  });
+  const urlRules = z
+    .string()
+    .trim()
+    .min(DOCKER_CONFIG.other.min, {
+      message: t('formDockerErrorMinLength', {
+        min: DOCKER_CONFIG.other.min,
+      }),
+    });
 
   const schema = z.object({
     region: regionRules,

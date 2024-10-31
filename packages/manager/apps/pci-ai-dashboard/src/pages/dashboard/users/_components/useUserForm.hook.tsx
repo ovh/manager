@@ -10,6 +10,7 @@ export const useUserForm = () => {
 
   const descriptionRules = z
     .string()
+    .trim()
     .min(USER_CONFIG.description.min, {
       message: t('formUserErrorMinLength', {
         min: USER_CONFIG.description.min,
