@@ -445,7 +445,7 @@
         <oui-field
             data-size="xl"
             data-help-text="{{ ::'pci_projects_project_storages_containers_add_pattern_help_storage-s3' | translate }}"
-            data-ng-if="$ctrl.isRightOffer() && !$ctrl.isLocalZone() ? !$ctrl.archive && $ctrl.currentStep > 4 : !$ctrl.archive && !$ctrl.isAddingRegion && !$ctrl.isAddingRegionError"
+            data-ng-if="$ctrl.shouldDisplayContainerName()"
         >
             <input
                 class="oui-input"

@@ -139,6 +139,13 @@ export default class PciStoragesContainersAddController {
     this.messages = this.messageHandler.getMessages();
   }
 
+  shouldDisplayContainerName() {
+    if (this.isRightOffer() && !this.isLocalZone()) {
+      return !this.archive && this.currentStep > 4;
+    }
+    return !this.archive && !this.isAddingRegion && !this.isAddingRegionError;
+  }
+
   featureFlip3azContainer() {
     if (!this.is3azAvailable) {
       const index = OBJECT_CONTAINER_DEPLOYMENT_MODES.indexOf(
