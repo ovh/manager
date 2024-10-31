@@ -17,7 +17,23 @@ export function Redirections(): JSX.Element {
     <>
       <Route
         path="/useraccount/*"
-        element={<Rewrite to="/dedicated/useraccount/*" />}
+        element={<Rewrite to="/account/useraccount/*" />}
+      />
+      <Route
+        path="/dedicated/useraccount/*"
+        element={<Rewrite to="/account/useraccount/*" />}
+      />
+      <Route
+        path="/dedicated/contacts/*"
+        element={<Rewrite to="/account/contacts/*" />}
+      />
+      <Route
+        path="/dedicated/identity-documents/*"
+        element={<Rewrite to="/account/identity-documents/*" />}
+      />
+      <Route
+        path="/dedicated/documents/*"
+        element={<Rewrite to="/account/documents/*" />}
       />
       <Route
         path="/billing/*"
