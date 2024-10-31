@@ -27,9 +27,7 @@ export default function EditHycuDisplayNameModal() {
   return (
     <UpdateIamNameModal
       closeModal={closeModal}
-      headline={t('hycu_dashboard_update_display_name_modal_headline', {
-        serviceName,
-      })}
+      headline={t('hycu_dashboard_update_display_name_modal_headline')}
       inputLabel={t('hycu_dashboard_update_display_name_input_label')}
       description={t('hycu_dashboard_update_display_name_description')}
       resourceName={serviceDetails?.data?.resource?.displayName}
