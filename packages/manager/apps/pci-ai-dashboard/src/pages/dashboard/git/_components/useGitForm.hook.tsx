@@ -25,6 +25,10 @@ export const useGitForm = ({ regions }: UseGitFormProps) => {
       }),
     });
 
+  const nameRules = globalRules.regex(GIT_CONFIG.name.pattern, {
+    message: t('formGitNameErrorPattern'),
+  });
+
   const regionRules = z
     .string()
     .min(GIT_CONFIG.region.min, {
@@ -59,7 +63,7 @@ export const useGitForm = ({ regions }: UseGitFormProps) => {
   const schema = z
     .object({
       credentialsType: z.enum(['basicAuth', 'sshKeypair']),
-      alias: globalRules,
+      alias: nameRules,
       endpoint: globalRules,
       region: regionRules,
       password: optionalRules,

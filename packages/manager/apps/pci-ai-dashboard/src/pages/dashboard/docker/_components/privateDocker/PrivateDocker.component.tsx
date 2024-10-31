@@ -18,7 +18,7 @@ import { useUserActivityContext } from '@/contexts/UserActivity.context';
 const PrivateDocker = () => {
   const { t } = useTranslation('pci-ai-dashboard/docker');
   const { projectId } = useParams();
-  const privateRegistriesPath = `#/pci/project/${projectId}/private-registry`;
+  const privateRegistriesPath = `#/pci/projects/${projectId}/private-registry`;
   const { isUserActive } = useUserActivityContext();
   const dockerQuery = useGetRegistries(projectId, {
     refetchInterval: isUserActive && POLLING.DOCKER,

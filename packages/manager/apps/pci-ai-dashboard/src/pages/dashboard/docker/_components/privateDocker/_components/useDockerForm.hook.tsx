@@ -25,11 +25,16 @@ export const useDockerForm = ({ regions }: UseDockerFormProps) => {
       }),
     });
 
-  const usernameRules = z.string().min(DOCKER_CONFIG.other.min, {
-    message: t('formDockerErrorMinLength', {
-      min: DOCKER_CONFIG.other.min,
-    }),
-  });
+  const usernameRules = z
+    .string()
+    .min(DOCKER_CONFIG.other.min, {
+      message: t('formDockerErrorMinLength', {
+        min: DOCKER_CONFIG.other.min,
+      }),
+    })
+    .regex(DOCKER_CONFIG.name.pattern, {
+      message: t('formDockerNameErrorPattern'),
+    });
 
   const passwordRules = z.string().min(DOCKER_CONFIG.other.min, {
     message: t('formDockerErrorMinLength', {

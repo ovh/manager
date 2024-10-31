@@ -6,4 +6,7 @@ export const DOCKER_CONFIG = {
   other: {
     min: 1,
   },
+  name: {
+    pattern: /^[\w_][\w\-_]{0,60}$/,
+  },
 };

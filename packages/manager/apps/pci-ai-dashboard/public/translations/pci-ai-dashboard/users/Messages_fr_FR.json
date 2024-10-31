@@ -10,6 +10,7 @@
   "formAddUserFieldDescriptionLabel": "Description",
   "formUserErrorMinLength": "Veuillez entrer au minimum {{min}} caractères",
   "formUserErrorMaxLength": "Veuillez entrer {{max}} caractères maximum",
+  "formUserNameErrorPattern": "Doit uniquement contenir des nombres, lettres, underscores ou tirets, ne doit pas commencer par un tiret.",
   "formAddUserFieldRoleLabel": "Rôle",
   "formAddUserButtonCancel": "Annuler",
   "formAddUserButtonConfirm": "Ajouter un utilsateur",

@@ -51,7 +51,7 @@ const Billing = () => {
       )}
       <OvhLink
         application="public-cloud"
-        path={`#/pci/project/${projectId}/billing`}
+        path={`#/pci/projects/${projectId}/billing`}
       >
         <div className="flex flex-row gap-1 items-center">
           {t('billingDetailsButton')}

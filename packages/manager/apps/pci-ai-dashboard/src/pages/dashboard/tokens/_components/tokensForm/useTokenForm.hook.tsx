@@ -23,6 +23,9 @@ export const useTokenForm = ({ regions }: UseTokenFormProps) => {
       message: t('formTokenErrorMaxLength', {
         max: TOKEN_CONFIG.name.max,
       }),
+    })
+    .regex(TOKEN_CONFIG.name.pattern, {
+      message: t('formTokenNameErrorPattern'),
     });
 
   const labelSelectorRules = z

@@ -19,6 +19,9 @@ export const useUserForm = () => {
       message: t('formUserErrorMaxLength', {
         max: USER_CONFIG.description.max,
       }),
+    })
+    .regex(USER_CONFIG.description.pattern, {
+      message: t('formUserNameErrorPattern'),
     });
 
   const userRoleRules = z.nativeEnum(ai.TokenRoleEnum);
