@@ -38,14 +38,15 @@ const SubTree = ({
   const lastElement = getLastElement(rootNode);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeOut = setTimeout(() => {
       setIsOpen(open);
     }, 10);
+    return () => clearTimeout(timeOut);
   }, [open])
 
   return (
     <div
-      className={`${style.subtree_content} ${isOpen ? style.subtree_content_open : ''}`}
+      className={`${style.subtree_content} ${isOpen ? style.subtree_content_open : style.subtree_content_close}`}
       onBlur={(e: any) => {
         const id = e.relatedTarget?.id.replace('-link', '');
         if (id === lastElement.id) {
