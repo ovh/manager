@@ -1,6 +1,10 @@
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { PaginationState } from '@ovh-ux/manager-react-components';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import {
+  QueryObserverOptions,
+  useMutation,
+  useQuery,
+} from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TKube } from '@/types';
@@ -40,7 +44,7 @@ export const getAllKubeQueryKey = (projectId: string) => [
   'kube',
 ];
 
-export const useAllKube = (projectId: string) =>
+export const useAllKube = (projectId: string, refetchIntervalTime?: number) =>
   useQuery({
     queryKey: getAllKubeQueryKey(projectId),
     queryFn: (): Promise<Required<TKube[]>> => getAllKube(projectId),
@@ -105,7 +109,11 @@ export function getKubernetesClusterQuery(projectId: string, kubeId: string) {
   return ['project', projectId, 'kube', kubeId];
 }
 
-export const useKubernetesCluster = (projectId: string, kubeId: string) =>
+export const useKubernetesCluster = (
+  projectId: string,
+  kubeId: string,
+  refetchIntervalTime: number,
+) =>
   useQuery({
     queryKey: getKubernetesClusterQuery(projectId, kubeId),
     queryFn: () => getKubernetesCluster(projectId, kubeId),

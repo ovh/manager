@@ -1,6 +1,6 @@
 import { PaginationState } from '@ovh-ux/manager-react-components';
 
-export const REFETCH_INTERVAL_DURATION = 15000;
+export const REFETCH_INTERVAL_DURATION = 15_000;
 
 export const compareFunction = <T>(key: keyof T) => (a: T, b: T) => {
   const aValue = a[key] || '';
