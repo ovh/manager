@@ -7,7 +7,7 @@ import {
 } from './validityDateUtils';
 
 describe('getNextMonth', () => {
-  it('should return a date one month from now', () => {
+  it('should return a date one month from now test', () => {
     const today = new Date();
     const nextMonth = getNextMonth();
 
