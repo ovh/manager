@@ -1,5 +1,4 @@
 import assign from 'lodash/assign';
-import filter from 'lodash/filter';
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
 
@@ -64,7 +63,9 @@ export default class {
         serviceName,
       })
       .$promise.then((offers) =>
-        filter(offers, { planCode: 'pcc-option-windows' }),
+        offers?.filter(({ planCode }) =>
+          planCode.startsWith('pcc-option-windows'),
+        ),
       );
   }
 
