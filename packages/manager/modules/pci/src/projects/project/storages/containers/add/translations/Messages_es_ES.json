@@ -32,8 +32,8 @@
   "pci_projects_project_storages_containers_add_type_price": "{{price}}/mes + IVA por GB",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard_recommanded": "Recomendada",
   "pci_projects_project_storages_containers_deployment_mode_title": "Seleccione un modo de implementación",
-  "pci_projects_project_storages_containers_add_deployment_mode_region-3-az": "Región 3-AZ",
-  "pci_projects_project_storages_containers_add_deployment_mode_region": "Región 1-AZ",
+  "pci_projects_project_storages_containers_add_deployment_mode_region-3-az": "Regiones 3-AZ",
+  "pci_projects_project_storages_containers_add_deployment_mode_region": "Regiones 1-AZ",
   "pci_projects_project_storages_containers_add_deployment_mode_region-3-az_description": "Implementación de alta resiliencia y disponible en 3 zonas de disponibilidad.",
   "pci_projects_project_storages_containers_add_deployment_mode_region_description": "Implementación resiliente y económica en 1 zona de disponibilidad.",
   "pci_projects_project_storages_containers_add_deployment_mode_region-3-az_label": "3-AZ",
@@ -50,5 +50,8 @@
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "consulte la página de precios.",
   "pci_projects_project_storages_containers_add_deployment_mode_localzone": "Local Zones",
   "pci_projects_project_storages_containers_add_deployment_mode_localzone_description": "Baja latencia con la mejor relación rendimiento-precio para sus cargas de trabajo de datos sensibles.",
-  "pci_projects_project_storages_containers_add_deployment_mode_localzone_label": "Local Zone"
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_label": "Local Zone",
+  "pci_projects_project_storages_containers_add_deployment_mode_flipping_region-3-az": "Regiones 3-AZ",
+  "pci_projects_project_storages_containers_add_deployment_mode_flipping_region": "Regiones",
+  "pci_projects_project_storages_containers_add_deployment_mode_flipping_localzone": "Local Zones"
 }
