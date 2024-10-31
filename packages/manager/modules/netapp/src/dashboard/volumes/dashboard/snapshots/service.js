@@ -1,7 +1,6 @@
-import { SNAPSHOT_TYPE } from '../constants';
-import { FETCH_INTERVAL, SNAPSHOT_STATUS } from './constants';
+import { SNAPSHOT_TYPE, FETCH_INTERVAL, SNAPSHOT_STATUS } from './constants';
 
-export default class NetAppRestoreVolumeService {
+export default class NetAppSnapshotService {
   /* @ngInject */
   constructor($http, $q, iceberg, Poller) {
     this.$http = $http;
