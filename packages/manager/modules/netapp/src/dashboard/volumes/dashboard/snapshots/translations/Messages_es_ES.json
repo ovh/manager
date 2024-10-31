@@ -30,5 +30,9 @@
   "netapp_volumes_snapshots_policies_apply_error": "No se ha podido aplicar la regla. Por favor, vuelva a intentarlo más adelante.",
   "netapp_volumes_snapshots_type_automatic": "Automática",
   "netapp_volumes_snapshots_type_system": "Sistema",
-  "netapp_volumes_snapshots_created_at_helper": "Las fechas se muestran en formato UTC"
+  "netapp_volumes_snapshots_created_at_helper": "Las fechas se muestran en formato UTC",
+  "netapp_volumes_snapshots_actions_hold": "Realizar copia de seguridad",
+  "netapp_volumes_snapshots_hold_action_doing": "La copia de seguridad del snapshot se ha registrado y será efectiva en unos instantes.",
+  "netapp_volumes_snapshots_hold_action_success": "La copia de seguridad del snapshot se ha realizado correctamente.",
+  "netapp_volumes_snapshots_hold_action_error": "Se ha producido un problema al realizar la copia de seguridad del snapshot."
 }
