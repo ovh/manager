@@ -21,6 +21,7 @@
   "formAddDatastoreFieldS3RegionLabel": "Region du S3",
   "formDatastoreErrorMinLength": "Veuillez entrer au minimum {{min}} caractères",
   "formDatastoreErrorMaxLength": "Veuillez entrer {{max}} caractères maximum",
+  "formDatastoreNameErrorPattern": "Doit uniquement contenir des nombres, lettres, underscores ou tirets, ne doit pas commencer par un tiret.",
   "formAddDatastoreButtonCancel": "Annuler",
   "formAddDatastoreButtonConfirm": "Ajouter",
   "formDatastoreToastSuccessTitle": "Succés",

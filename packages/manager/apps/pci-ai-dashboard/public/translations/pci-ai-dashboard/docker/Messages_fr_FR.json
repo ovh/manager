@@ -24,6 +24,7 @@
   "formAddDockerFieldUrlPlaceholder": "https://docker.io/",
   "formDockerErrorMinLength": "Veuillez entrer au minimum {{min}} caractères",
   "formDockerErrorMaxLength": "Veuillez entrer {{max}} caractères maximum",
+  "formDockerNameErrorPattern": "Doit uniquement contenir des nombres, lettres, underscores ou tirets, ne doit pas commencer par un tiret.",
   "formAddDockerButtonCancel": "Annuler",
   "formAddDockerButtonConfirm": "Ajouter",
   "formDockerToastSuccessTitle": "Succés",

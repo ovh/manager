@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { AlertCircle, ArrowRight } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
-import NavLink from '@/components/links/NavLink.component';
 import usePciProject from '@/hooks/api/project/useGetProjects.hook';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import OvhLink from '@/components/links/OvhLink.component';
 import { PlanCode } from '@/configuration/project';
+import A from '@/components/links/A.component';
 
 export const DashboardHeader = () => {
   const { t } = useTranslation('pci-ai-dashboard');
@@ -48,12 +48,16 @@ export const DashboardHeader = () => {
       )}
       <p>{t('paragraphe1')}</p>
       <p>{t('paragraphe2')}</p>
-      <NavLink to="https://www.ovhcloud.com/fr/public-cloud/prices/#ai-&-machine-learning">
+      <A
+        href="https://www.ovhcloud.com/fr/public-cloud/prices/#ai-&-machine-learning"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <div className="flex flex-row gap-1 items-center">
           {t('linkPrice')}
           <ArrowRight className="size-4 mt-1" />
         </div>
-      </NavLink>
+      </A>
     </div>
   );
 };

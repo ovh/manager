@@ -23,6 +23,9 @@ export const useDatastoreForm = ({ regions }: UseDatastoreFormProps) => {
       message: t('formDatastoreErrorMaxLength', {
         max: DATASTORE_CONFIG.other.max,
       }),
+    })
+    .regex(DATASTORE_CONFIG.name.pattern, {
+      message: t('formDatastoreNameErrorPattern'),
     });
 
   const enpointRules = z

@@ -34,7 +34,7 @@ const Users = () => {
     refetchInterval: isUserActive && POLLING.USERS,
   });
   const queryClient = useQueryClient();
-  const userPath = `#/pci/project/${projectId}/users`;
+  const userPath = `#/pci/projects/${projectId}/users`;
   return (
     <>
       <div className="float-right">

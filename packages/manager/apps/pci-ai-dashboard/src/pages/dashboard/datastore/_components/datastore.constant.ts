@@ -11,4 +11,7 @@ export const DATASTORE_CONFIG = {
     min: 1,
     max: 50,
   },
+  name: {
+    pattern: /^[\w_][\w\-_]{0,60}$/,
+  },
 };
