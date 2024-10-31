@@ -1,4 +1,4 @@
-import { Retention } from '@/types/cloud/project/database/m3db/namespace/Retention';
+import { RetentionCreation } from '@/types/cloud/project/database/m3db/namespace/RetentionCreation';
 import { TypeEnum } from '@/types/cloud/project/database/m3db/namespace/TypeEnum';
 
 /** M3db Namespace creation definition */
@@ -10,7 +10,7 @@ export interface NamespaceCreation {
   /** Resolution for an aggregated namespace */
   resolution?: string;
   /** Retention configuration */
-  retention: Retention;
+  retention: RetentionCreation;
   /** Defines whether M3db will create snapshot files for this namespace */
   snapshotEnabled: boolean;
   /** Type of namespace */
