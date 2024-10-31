@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { Translation, useTranslation } from 'react-i18next';
 import {
+  Headers,
   useCatalogPrice,
   useNotifications,
   useProjectLocalRegions,
@@ -263,13 +264,11 @@ export default function EditPage() {
         <>
           <div className="header mb-6 mt-8">
             <div className="flex items-center justify-between">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-                color={ODS_THEME_COLOR_INTENT.primary}
-              >
-                {tEdit('pci_projects_project_storages_blocks_block_edit_title')}
-              </OsdsText>
+              <Headers
+                title={tEdit(
+                  'pci_projects_project_storages_blocks_block_edit_title',
+                )}
+              />
             </div>
           </div>
 

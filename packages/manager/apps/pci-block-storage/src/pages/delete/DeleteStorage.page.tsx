@@ -77,6 +77,7 @@ export default function DeleteStorage() {
     <OsdsModal
       headline={t('pci_projects_project_storages_blocks_block_delete_title')}
       onOdsModalClose={onClose}
+      color={ODS_THEME_COLOR_INTENT.warning}
     >
       <slot name="content">
         {isPending ? (
