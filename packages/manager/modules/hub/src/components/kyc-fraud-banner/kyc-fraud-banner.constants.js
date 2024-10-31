@@ -25,6 +25,9 @@ export const TRACK_IMPRESSION_REQUIRED = {
   variant: 'required',
 };
 
+export const SUPPORT_URL = 'https://help.ovhcloud.com/csm?id=csm_get_help';
+
 export default {
   FRAUD_STATUS,
+  SUPPORT_URL,
 };
