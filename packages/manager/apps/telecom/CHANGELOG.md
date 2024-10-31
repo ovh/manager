@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.22.1-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.22.1-alpha.1...@ovh-ux/manager-telecom@15.22.1-alpha.2) (2024-10-31)
+
+
+### Bug Fixes
+
+* **telecom.alias:** fix the button label on export scheduler ([522304d](https://github.com/ovh/manager/commit/522304d9b680475c5477b2913da78653935e7631))
+
+
+
+
+
 ## [15.22.1-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.22.1-alpha.0...@ovh-ux/manager-telecom@15.22.1-alpha.1) (2024-10-31)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
