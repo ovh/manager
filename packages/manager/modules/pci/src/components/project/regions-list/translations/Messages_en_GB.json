@@ -5,6 +5,6 @@
   "pci_project_regions_list_region": "Location",
   "pci_project_regions_list_quota": "Increase your quota",
   "pci_project_regions_list_current_offer": "Current solution",
-  "pci_project_regions_list_activate_project_banner_message": "Activate your project to go to the next steps.",
+  "pci_project_regions_list_activate_project_banner_message": "To go to the next steps,",
   "pci_project_regions_list_activate_project_banner_link_text": "activate your project."
 }
