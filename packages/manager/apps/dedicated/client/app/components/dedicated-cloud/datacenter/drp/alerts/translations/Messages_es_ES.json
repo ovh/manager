@@ -3,7 +3,7 @@
   "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_EPCC": "el Hosted Private Cloud {{pccId}} se ha instalado correctamente.",
   "dedicatedCloud_options_zerto_delivered_message_part_two_onPremise": "su infraestructura remota se ha instalado correctamente.",
   "dedicatedCloud_options_zerto_delivered_message_part_three": "Le hemos enviado la contraseña ZSSP a la dirección de correo electrónico {{email}}.",
-  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Se está activando el DRP Zerto. La operación podría tardar hasta una hora.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Se está activando el DRP Zerto. La operación puede tardar hasta 4 horas.",
   "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_EPCC": "Puede acceder a la tarea «enableDisasterRecovery» del Private Cloud principal para consultar el progreso.",
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_one": "Para completar la activación de su DRP Zerto",
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_two": "debe añadir las IP de la VPN en los parámetros del DRP.",
