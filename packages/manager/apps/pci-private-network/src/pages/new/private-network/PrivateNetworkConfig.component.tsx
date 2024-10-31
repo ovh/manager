@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   OsdsFormField,
   OsdsCheckbox,
@@ -38,7 +38,6 @@ const PrivateNetworkConfig: React.FC = () => {
   const {
     setValue,
     unregister,
-    setError,
     formState: {
       touchedFields: { name: touched },
       errors: { name: error },
@@ -58,6 +57,18 @@ const PrivateNetworkConfig: React.FC = () => {
   useEffect(() => {
     setValue('defaultVlanId', defaultVlanId);
   }, [defaultVlanId]);
+
+  const handleDefineVlanId = useCallback((event: CustomEvent) => {
+    const value = event.detail.checked;
+
+    if (!value) {
+      unregister('vlanId'); // customer doesn't want to define it then reset to default
+    } else {
+      setValue('vlanId', defaultVlanId);
+    }
+
+    setDefineVlanId(value);
+  }, []);
 
   return (
     <div className="flex flex-col gap-6 my-8">
@@ -111,17 +122,7 @@ const PrivateNetworkConfig: React.FC = () => {
           </OsdsText>
           <OsdsCheckbox
             data-testid="define-vlan"
-            onOdsCheckedChange={(event: CustomEvent) => {
-              const value = event.detail.checked;
-
-              if (!value) {
-                unregister('vlanId'); // customer doesn't want to define it then reset to default
-              } else {
-                setValue('vlanId', defaultVlanId);
-              }
-
-              setDefineVlanId(value);
-            }}
+            onOdsCheckedChange={handleDefineVlanId}
           >
             <OsdsCheckboxButton
               size={ODS_CHECKBOX_BUTTON_SIZE.sm}
