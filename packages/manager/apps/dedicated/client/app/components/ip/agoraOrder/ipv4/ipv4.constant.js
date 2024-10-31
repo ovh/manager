@@ -7,6 +7,8 @@ import {
 
 export const FETCH_PRICE_MAX_TRIES = 5;
 
+export const IP_SERVICETYPE__PARK = 'IP Parking';
+
 export const PRODUCT_TYPES = {
   dedicatedServer: {
     apiTypeName: 'SERVER',
@@ -124,6 +126,7 @@ export const IP_LOCATION_GROUPS_BASED_ON_DATACENTER = [
 export default {
   FETCH_PRICE_MAX_TRIES,
   IP_LOCATION_GROUPS,
+  IP_SERVICETYPE__PARK,
   PRODUCT_TYPES,
   TRACKING_PREFIX,
   VPS_MAX_QUANTITY,
