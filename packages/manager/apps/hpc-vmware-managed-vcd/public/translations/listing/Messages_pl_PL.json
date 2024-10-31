@@ -1,8 +1,8 @@
 {
   "managed_vcd_listing_title": "Managed VCD",
-  "managed_vcd_listing_id": "Id",
-  "managed_vcd_listing_name": "Nazwisko",
+  "managed_vcd_listing_id": "ID",
+  "managed_vcd_listing_name": "Nazwa",
   "managed_vcd_listing_location": "Region",
   "managed_vcd_listing_description": "Opis",
-  "managed_vcd_listing_web_interface_url": "URL interfejsu www"
+  "managed_vcd_listing_web_interface_url": "URL interfejsu WWW"
 }

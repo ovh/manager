@@ -1,13 +1,13 @@
 {
   "hycu_status_activated": "Aktywny",
   "hycu_status_toActivate": "Do aktywacji",
-  "hycu_status_pending": "W trakcie aktywacji",
+  "hycu_status_pending": "Trwa aktywacja",
   "hycu_status_error": "Błąd aktywacji",
   "hycu_cloud_vm_pack_unknown": "Nieznany pakiet",
-  "hycu_name": "Nazwisko",
+  "hycu_name": "Nazwa",
   "hycu_controller_id": "Controller ID",
   "hycu_status": "Status",
-  "hycu_commercial_name": "Rodzaj pakietu",
+  "hycu_commercial_name": "Typ pakietu",
   "hycu_subscribed_date": "Data subskrypcji",
   "hycu_order": "Zamów",
   "hycu_service_listing_terminate": "Rezygnacja"
