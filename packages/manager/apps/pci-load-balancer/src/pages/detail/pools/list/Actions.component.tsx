@@ -11,7 +11,7 @@ export default function ActionsComponent({ pool }: ActionsComponentProps) {
   const { t } = useTranslation('pools');
 
   const poolEditHref = useHref(`../${pool.id}/edit`);
-  const membersHref = useHref(``);
+  const membersHref = useHref(`../${pool?.id}/members/list`);
   const deleteHref = useHref(
     `delete?poolId=${pool?.id}&poolName=${pool?.name}`,
   );
