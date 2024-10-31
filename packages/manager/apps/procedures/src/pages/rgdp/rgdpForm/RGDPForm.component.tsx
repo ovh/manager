@@ -34,13 +34,8 @@ import { SuccessModal } from '@/components/modals/successModal/SuccessModal.comp
 import { getWebSiteRedirectUrl } from '@/utils/url-builder';
 import { FileWithError } from '@/components/FileInput/FileInputContainer';
 
-const extractFiles = (formValue: GDPRFormValues): FileWithError[] => {
-  return [
-    formValue.idDocumentBack,
-    formValue.idDocumentFront,
-    formValue.otherDocuments,
-  ].flatMap((file) => (file ? [file] : [])) as any[];
-};
+const extractFiles = (formValue: GDPRFormValues): File[] =>
+  formValue.otherDocuments.filter((file) => file);
 
 export const RGDPForm: FunctionComponent = () => {
   const { t } = useTranslation('rgdp');
@@ -141,7 +136,7 @@ export const RGDPForm: FunctionComponent = () => {
           required={t('rgdp_form_validation_message_required')}
           pattern={{
             value: EmailRegex,
-            message: t('rgdp_form_validation_message_invalid_format'),
+            message: t('rgdp_form_validation_message_invalid_email_format'),
           }}
           control={control}
         />
@@ -206,14 +201,16 @@ export const RGDPForm: FunctionComponent = () => {
         />
       </div>
       <div>
-        <div className="mb-6 flex flex-col gap-4">
+        <div className="mb-6 flex flex-col">
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.info}
             level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
             className="block mb-6"
             size={ODS_TEXT_SIZE._500}
           >
-            {t('rgdp_form_upload_documents_title')}
+            {`${t('rgdp_form_upload_documents_title')} (${t(
+              'rgdp_form_field_optional',
+            )})`}
           </OsdsText>
 
           <OsdsText
@@ -236,39 +233,11 @@ export const RGDPForm: FunctionComponent = () => {
             color={ODS_THEME_COLOR_INTENT.text}
             size={ODS_TEXT_SIZE._500}
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          >
-            {t('rgdp_form_upload_documents_notice_no_valid_doc')}
-          </OsdsText>
-
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_TEXT_SIZE._500}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            className="font-bold"
+            className="font-bold mt-4"
           >
             {t('rgdp_form_upload_documents_notice_file_format')}
           </OsdsText>
         </div>
-
-        <FileField
-          label={t('rgdp_form_field_label_id_front')}
-          name="idDocumentFront"
-          control={control}
-          accept={RGDPAcceptFile}
-          maxFiles={1}
-          maxSize={MaxFileSize}
-          helper={t('rgdp_form_field_helper_id')}
-        />
-
-        <FileField
-          label={t('rgdp_form_field_label_id_back')}
-          name="idDocumentBack"
-          control={control}
-          accept={RGDPAcceptFile}
-          maxFiles={1}
-          maxSize={MaxFileSize}
-          helper={t('rgdp_form_field_helper_id')}
-        />
 
         <FileField
           label={t('rgdp_form_field_label_other_documents')}
