@@ -22,7 +22,7 @@ export const getAllLoadBalancersQueryKey = (projectId: string) => [
 
 export const useAllLoadBalancers = (projectId: string) =>
   useQuery({
-    queryKey: [projectId, 'loadBalancers'],
+    queryKey: getAllLoadBalancersQueryKey(projectId),
     queryFn: () => getLoadBalancers(projectId),
     select: (data) => data.resources,
   });
@@ -65,14 +65,7 @@ export const useLoadBalancer = ({
   loadBalancerId: string;
 }) =>
   useQuery({
-    queryKey: [
-      'project',
-      projectId,
-      'region',
-      region,
-      'loadBalancer',
-      loadBalancerId,
-    ],
+    queryKey: ['loadBalancer', projectId, region, loadBalancerId],
     queryFn: () => getLoadBalancer(projectId, region, loadBalancerId),
     throwOnError: true,
   });
@@ -144,11 +137,9 @@ export const useRenameLoadBalancer = ({
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: [
-          'project',
-          projectId,
-          'region',
-          loadBalancer.region,
           'loadBalancer',
+          projectId,
+          loadBalancer.region,
           loadBalancer.id,
         ],
       });

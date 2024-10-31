@@ -24,6 +24,9 @@ export const compareFunction = <T>(key: keyof T) => (a: T, b: T) => {
   const aValue = a[key] || '';
   const bValue = b[key] || '';
 
+  if (typeof aValue === 'number' && typeof bValue === 'number') {
+    return aValue - bValue;
+  }
   return aValue.toString().localeCompare(bValue.toString());
 };
 
