@@ -18,9 +18,11 @@ export default function Edit() {
   const { t: tEditName } = useTranslation('load-balancer/edit-name');
   const { projectId, region, loadBalancerId } = useParams();
   const navigate = useNavigate();
+
   const onClose = () => {
     navigate('..');
   };
+
   const {
     data: loadBalancer,
     isPending: isPendingLoadBalancer,
@@ -29,7 +31,9 @@ export default function Edit() {
     region,
     loadBalancerId,
   });
+
   const [loadBalancerName, setLoadBalancerName] = useState(loadBalancer?.name);
+
   const {
     renameLoadBalancer,
     isPending: isPendingRename,
@@ -40,12 +44,17 @@ export default function Edit() {
     onError(error: ApiError) {
       addError(
         <Translation ns="load-balancer">
-          {(_t) =>
-            _t('octavia_load_balancer_global_error', {
-              message: error?.response?.data?.message || error?.message || null,
-              requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
-            })
-          }
+          {(_t) => (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: _t('octavia_load_balancer_global_error', {
+                  message:
+                    error?.response?.data?.message || error?.message || null,
+                  requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
+                }),
+              }}
+            />
+          )}
         </Translation>,
         true,
       );
@@ -53,7 +62,7 @@ export default function Edit() {
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="octavia-load-balancer_overview">
+        <Translation ns="load-balancer/overview">
           {(_t) => _t('octavia_load_balancer_edit_name_success')}
         </Translation>,
         true,
@@ -61,13 +70,17 @@ export default function Edit() {
       navigate('..');
     },
   });
+
   const onCancel = () => {
     navigate('..');
   };
+
   const onConfirm = () => {
     renameLoadBalancer();
   };
+
   const isPending = isPendingLoadBalancer || isPendingRename;
+
   return (
     <PciModal
       title={tEditName('octavia_load_balancer_edit_name_title')}

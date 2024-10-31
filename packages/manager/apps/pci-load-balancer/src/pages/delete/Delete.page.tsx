@@ -12,7 +12,7 @@ import {
 } from '@/api/hook/useLoadBalancer';
 
 export default function DeletePage() {
-  const { addSuccess, addError } = useNotifications();
+  const { addInfo, addError } = useNotifications();
   const { t: tDelete } = useTranslation('load-balancer/delete');
   const navigate = useNavigate();
   const { projectId, loadBalancerId, region } = useParams();
@@ -37,19 +37,24 @@ export default function DeletePage() {
     onError(error: ApiError) {
       addError(
         <Translation ns="load-balancer">
-          {(_t) =>
-            _t('octavia_load_balancer_global_error', {
-              message: error?.response?.data?.message || error?.message || null,
-              requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
-            })
-          }
+          {(_t) => (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: _t('octavia_load_balancer_global_error', {
+                  message:
+                    error?.response?.data?.message || error?.message || null,
+                  requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
+                }),
+              }}
+            />
+          )}
         </Translation>,
         true,
       );
       onClose();
     },
     onSuccess() {
-      addSuccess(
+      addInfo(
         <Translation ns="load-balancer">
           {(_t) => _t('octavia_load_balancer_delete_success')}
         </Translation>,
