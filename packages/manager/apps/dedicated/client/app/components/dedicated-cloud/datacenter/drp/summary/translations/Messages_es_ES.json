@@ -2,7 +2,7 @@
   "dedicatedCloud_datacenter_order_ip": "No tiene ningún pool de direcciones IP disponible. <a ui-sref=\"{{sref}}\">Contratar</a> uno.",
   "dedicatedCloud_datacenter_drp_confirm_create_success_part_one": "Su DRP Zerto se ha creado correctamente.",
   "dedicatedCloud_datacenter_drp_confirm_create_success_part_two": "Le hemos enviado la contraseña ZSSP a la dirección de correo electrónico {{email}}.",
-  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Se está activando el DRP Zerto. La operación podría tardar hasta una hora.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Se está activando el DRP Zerto. La operación puede tardar hasta 4 horas.",
   "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_EPCC": "Puede acceder a la tarea «enableDisasterRecovery» del Private Cloud principal para consultar el progreso.",
   "dedicatedCloud_datacenter_drp_confirm_create_error": "Se ha producido un error al activar su DRP.",
   "dedicatedCloud_datacenter_drp_confirm_summary_title": "Resumen de la configuración de su DRP",
