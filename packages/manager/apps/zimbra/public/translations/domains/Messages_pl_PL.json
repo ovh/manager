@@ -8,6 +8,6 @@
   "zimbra_domains_tooltip_delete": "Usuń",
   "zimbra_domains_tooltip_need_organization": "Najpierw skonfiguruj organizację",
   "zimbra_domains_datagrid_diagnostic_configuration_ok": "Konfiguracja OK",
-  "zimbra_domains_datagrid_diagnostic_tooltip_title": "Diagnostyka {{ diagType }}",
+  "zimbra_domains_datagrid_diagnostic_tooltip_title": "Diagnostyka {{diagType}}",
   "zimbra_domains_tooltip_configure": "Skonfiguruj"
 }

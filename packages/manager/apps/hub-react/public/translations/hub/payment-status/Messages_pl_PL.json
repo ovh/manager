@@ -1,6 +1,6 @@
 {
   "ovh_manager_hub_payment_status_tile_title": "Ostatnie statusy płatności za usługi",
-  "ovh_manager_hub_payment_status_tile_see_all": "Zobacz wszystko",
+  "ovh_manager_hub_payment_status_tile_see_all": "Wyświetl wszystkie",
   "ovh_manager_hub_payment_status_tile_now": "Natychmiast",
   "ovh_manager_hub_payment_status_tile_before": "przed {{date}}",
   "ovh_manager_hub_payment_status_tile_renew": "począwszy od {{ date }}",

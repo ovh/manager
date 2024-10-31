@@ -8,7 +8,7 @@
   "pci_workflow_last_execution_status": "Letzter Ausführungsstatus",
   "pci_workflow_delete": "Löschen",
   "pci_workflow_delete_title": "Workflow-Schedule löschen",
-  "pci_workflow_type_instance_backup_title": "Automatisches Instance Backup",
+  "pci_workflow_type_instance_backup_title": "Automatische Sicherung der Instanzen",
   "pci_workflow_view_executions": "Ausführungen anzeigen",
   "pci_workflow_execution_status_IDLE": "Inaktiv",
   "pci_workflow_execution_status_RUNNING": "Wird ausgeführt",

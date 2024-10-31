@@ -1,18 +1,18 @@
 {
-  "managed_vcd_onboarding_description_part1": "Managed VCD to rozwiązanie do wirtualizacji, które jest w pełni obsługiwane przez OVHcloud i służy do uruchamiania aplikacji, wirtualnych maszyn oraz kontenerów bez konieczności martwienia się o infrastruktury.",
-  "managed_vcd_onboarding_description_part2": "Możesz w prosty i ujednolicony sposób zarządzać pulami zasobów w sposób elastyczny w wirtualnych centrach danych oraz korzystać z zarządzanego rozwiązania do tworzenia kopii zapasowych Veeam.",
+  "managed_vcd_onboarding_description_part1": "Managed VCD to rozwiązanie do wirtualizacji, które jest w pełni obsługiwane przez OVHcloud i służy do uruchamiania aplikacji, wirtualnych maszyn oraz kontenerów. Nie musisz martwić się o infrastrukturę.",
+  "managed_vcd_onboarding_description_part2": "Masz do dyspozycji prosty, ujednolicony interfejs do elastycznego zarządzania pulami zasobów w wirtualnych centrach danych, a także zarządzane rozwiązanie Veeam do tworzenia kopii zapasowych.",
   "managed_vcd_onboarding_order": "Zamów",
-  "managed_vcd_onboarding_more_info": "Dowiedz się więcej",
-  "managed_vcd_onboarding_guide1_link": "Dowiedz się więcej",
+  "managed_vcd_onboarding_more_info": "Dowiedz się więcej",
+  "managed_vcd_onboarding_guide1_link": "Dowiedz się więcej",
   "managed_vcd_onboarding_guide1_category": "Wprowadzenie",
   "managed_vcd_onboarding_guide1_title": "Poznaj Managed VCD",
-  "managed_vcd_onboarding_guide1_description": "Sprawdź usługę Managed VCD i poznaj jej zalety, sposób użycia i ceny.",
+  "managed_vcd_onboarding_guide1_description": "Poznaj usługę Managed VCD, jej zalety, sposób użycia i ceny.",
   "managed_vcd_onboarding_guide2_category": "Tutoriale i dokumentacja",
   "managed_vcd_onboarding_guide2_title": "Pierwsze kroki z Managed VCD",
   "managed_vcd_onboarding_guide2_link": "Wyświetl dokumentację",
-  "managed_vcd_onboarding_guide2_description": "Podstawowe zasady VCD. Zapoznaj się z podstawowymi koncepcjami VCD.",
+  "managed_vcd_onboarding_guide2_description": "Podstawowe założenia VCD. Poznaj podstawowe pojęcia związane z VCD",
   "managed_vcd_onboarding_guide3_category": "FAQ",
-  "managed_vcd_onboarding_guide3_title": "Najczęstsze pytania",
-  "managed_vcd_onboarding_guide3_link": "Przejrzyj FAQ",
-  "managed_vcd_onboarding_guide3_description": "Przejrzyj FAQ, aby znaleźć odpowiedzi na najczęściej zadawane pytania."
+  "managed_vcd_onboarding_guide3_title": "Najczęściej zadawane pytania",
+  "managed_vcd_onboarding_guide3_link": "Sprawdź FAQ",
+  "managed_vcd_onboarding_guide3_description": "Sprawdź FAQ, aby znaleźć odpowiedzi na najczęściej zadawane pytania."
 }

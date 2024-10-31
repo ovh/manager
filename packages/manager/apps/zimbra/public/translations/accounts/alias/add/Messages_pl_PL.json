@@ -1,13 +1,13 @@
 {
   "zimbra_account_alias_add_modal_title": "Utwórz alias",
-  "zimbra_account_alias_add_description": "Utwórz alias dla konta {{ account }}",
+  "zimbra_account_alias_add_description": "Utwórz alias dla konta {{account}}",
   "zimbra_account_alias_add_input_email_placeholder": "Alias",
-  "zimbra_account_alias_add_input_email_helper": "Pierwsza część aliasu (tekst przed \"@\") musi być utworzona zgodnie z następującymi wytycznymi:",
-  "zimbra_account_alias_add_input_email_helper_rule_1": "Musi kończyć się literą lub numerem",
+  "zimbra_account_alias_add_input_email_helper": "Pierwsza część aliasu (tekst przed „@”) musi być utworzona zgodnie z następującymi wytycznymi:",
+  "zimbra_account_alias_add_input_email_helper_rule_1": "Musi kończyć się literą lub cyfrą",
   "zimbra_account_alias_add_input_email_helper_rule_2": "Dozwolone są następujące znaki specjalne: \".\", \"+\", \"-\" i \"_\"",
-  "zimbra_account_alias_add_input_email_helper_rule_3": "Znaków specjalnych nie można umieścić obok siebie",
+  "zimbra_account_alias_add_input_email_helper_rule_3": "Znaki specjalne nie mogą być umieszczone obok siebie.",
   "zimbra_account_alias_add_select_domain_placeholder": "Wybierz nazwę domeny",
   "zimbra_account_alias_add_btn_confirm": "Zatwierdź",
-  "zimbra_account_alias_add_success_message": "Zlecenie utworzenia aliasu zostało przyjęte. Zostanie ona przetworzona za kilka minut.",
-  "zimbra_account_alias_add_error_message": "Zlecenie utworzenia aliasu nie powiodło się. {{ error }}"
+  "zimbra_account_alias_add_success_message": "Dyspozycja utworzenia aliasu została przyjęta. Zostanie przetworzona w ciągu kilku minut.",
+  "zimbra_account_alias_add_error_message": "Utworzenie aliasu nie powiodło się. {{error}}"
 }

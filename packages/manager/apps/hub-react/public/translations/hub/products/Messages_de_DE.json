@@ -16,10 +16,10 @@
   "manager_hub_products_DOMAIN": "Domainnamen",
   "manager_hub_products_DOMAIN_ZONE": "DNS-Zone",
   "manager_hub_products_EMAIL_DOMAIN": "E-Mails",
-  "manager_hub_products_EMAIL_EXCHANGE": "Microsoft Exchange ",
-  "manager_hub_products_EMAIL_EXCHANGE_SERVICE": "Microsoft Exchange ",
+  "manager_hub_products_EMAIL_EXCHANGE": "Microsoft Exchange",
+  "manager_hub_products_EMAIL_EXCHANGE_SERVICE": "Microsoft Exchange",
   "manager_hub_products_EMAIL_PRO": "E-Mail für Profis",
-  "manager_hub_products_EXCHANGE": "Microsoft Exchange ",
+  "manager_hub_products_EXCHANGE": "Microsoft Exchange",
   "manager_hub_products_FREEFAX": "Fax",
   "manager_hub_products_HOSTING_PRIVATE_DATABASE": "Web Cloud Databases",
   "manager_hub_products_HOSTING_WEB": "Webhosting",
@@ -67,5 +67,5 @@
   "manager_hub_products_XDSL": "xDSL",
   "manager_hub_products_WEB_PAA_S_SUBSCRIPTION": "Web PaaS",
   "manager_hub_products_see_less": "Weniger Dienste anzeigen",
-  "manager_hub_products_see_more": "Mehr Dienste anzeigen"
+  "manager_hub_products_see_more": "Alle Produkte und Dienste anzeigen"
 }

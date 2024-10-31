@@ -5,7 +5,7 @@
   "billing_services_actions_menu_manage_renew": "Skonfiguruj odnowienie",
   "billing_services_actions_menu_exchange_update_accounts": "Skonfiguruj odnowienie kont",
   "billing_services_actions_menu_anticipate_renew": "Prognoza płatności",
-  "billing_services_actions_menu_resiliate": "Rezygnacja z umowy terminowej",
+  "billing_services_actions_menu_resiliate": "Rezygnacja",
   "billing_services_actions_menu_resiliate_my_engagement": "Rezygnacja z umowy terminowej",
   "billing_services_actions_menu_renew_label": "Odnowienie usługi: {{serviceName}} (Nowe okno)",
   "billing_services_actions_menu_renew": "Odnów usługę",

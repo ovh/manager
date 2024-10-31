@@ -1,14 +1,14 @@
 {
-  "description": "I nostri servizi sono basati sulla soluzione Veeam Data Platform e sul plugin Veeam per VMware Cloud Director (per il backup). Le nostre soluzioni sono implementate nell'infrastruttura VMware Cloud Foundation e gestiscono direttamente le vCenter per realizzare le operazioni tramite Snapshot VMware (se possibile con accesso diretto allo storage). La soluzione standard è condivisa con tutti i clienti della piattaforma. La soluzione funziona senza agente nelle macchine virtuali.",
-  "select_offer_title": "Seleziona la tua offerta",
-  "select_offer_description": "Aggiungi il servizio Veeam Data Platform alla tua infrastruttura VMware Cloud Director. L'organizzazione VMware Cloud Director verrà selezionata nello step successivo. Per saperne di più sulle modalità di fatturazione.",
-  "offer_title": "Attiva {{productName}}",
+  "description": "I nostri servizi sono basati sulla soluzione Veeam Data Platform e sul plugin Veeam per VMware Cloud Director (per il backup). Le nostre soluzioni sono implementate nell'infrastruttura VMware Cloud Foundation e gestiscono direttamente i vCenter per realizzare le operazioni tramite Snapshot VMware (se possibile con un accesso diretto allo storage). La soluzione fornita come standard è condivisa per tutti i clienti della piattaforma. La soluzione funziona senza agenti nelle macchine virtuali.",
+  "select_offer_title": "Seleziona la tua soluzione",
+  "select_offer_description": "Aggiungi il servizio di Veeam Data Platform alla tua infrastruttura VMware Cloud Director. Sarà possibile selezionare l'organizzazione VMware Cloud Director nello step successivo. Maggiori informazioni sulle modalità di fatturazione.",
+  "offer_title": "Attivare {{productName}}",
   "offer_content_part1": "Il servizio Veeam Data Platform dispone di un plugin VCD per il backup di VM e vApp da qualsiasi Virtual Data Center (VDC) dell’organizzazione.",
-  "offer_content_part2": "È disponibile a livello di organizzazione per tutti gli utenti di VMware Cloud Director che hanno il ruolo di amministratore dell'organizzazione.",
+  "offer_content_part2": "È disponibile a livello di organizzazione per tutti gli utenti di VMware Cloud Director che hanno il ruolo di amministratore.",
   "offer_price": "9 € +IVA/VM/mese + consumo di OVHcloud Object Storage",
-  "next_step": "Avanti",
+  "next_step": "Successivo",
   "choose_org_title": "Scegli un'organizzazione VMware Cloud Director",
-  "all_organization_backed_up_message_fetch_next_page": "Tutte le organizzazioni VCD sono già associate al servizio Managed VEEAM for VCD. Si prega di caricare più organizzazioni.",
+  "all_organization_backed_up_message_fetch_next_page": "Tutte le organizzazioni VCD sono già associate al servizio Managed VEEAM for VCD. È necessario caricare più organizzazioni.",
   "all_organization_backed_up_message": "Tutte le organizzazioni VCD sono già associate al servizio Managed VEEAM for VCD. Accedi alla lista dei tuoi servizi.",
   "name_cell": "Cognome",
   "region_cell": "Localizzazione",
@@ -16,6 +16,6 @@
   "active_status": "Attivato",
   "none_status": "Nessuna",
   "error_status": "Errore",
-  "cancel_button": "Annulla",
-  "order_button": "Ordina"
+  "cancel_button": "Annullare",
+  "order_button": "Ordinare"
 }

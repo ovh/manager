@@ -60,12 +60,12 @@
   "manager_hub_products_TELEPHONY": "Serviço Telefónico",
   "manager_hub_products_VEEAM_CLOUD_CONNECT": "Veeam Cloud Connect",
   "manager_hub_products_VEEAM_ENTERPRISE": "Veeam Enterprise",
-  "manager_hub_products_VEEAM_VEEAM_ENTERPRISE": "Veeam Enterpise",
+  "manager_hub_products_VEEAM_VEEAM_ENTERPRISE": "Veeam Enterprise",
   "manager_hub_products_VPS": "Servidores privados virtuais",
   "manager_hub_products_VRACK": "vRacks",
   "manager_hub_products_VRACK_SERVICES": "vRack Services",
   "manager_hub_products_XDSL": "xDSL",
   "manager_hub_products_WEB_PAA_S_SUBSCRIPTION": "Web PaaS",
   "manager_hub_products_see_less": "Ver menos serviços",
-  "manager_hub_products_see_more": "Ver mais serviços"
+  "manager_hub_products_see_more": "Ver todos os produtos e serviços"
 }

@@ -7,8 +7,8 @@
   "hycu_name": "Name",
   "hycu_controller_id": "Controller-ID",
   "hycu_status": "Status",
-  "hycu_commercial_name": "Pakettyp",
+  "hycu_commercial_name": "Paket-Typ",
   "hycu_subscribed_date": "Anmeldungsdatum",
   "hycu_order": "Bestellen",
-  "hycu_service_listing_terminate": "kündigen"
+  "hycu_service_listing_terminate": "Kündigen"
 }

@@ -1,18 +1,18 @@
 {
-  "managed_vcd_onboarding_description_part1": "Managed VCD è una soluzione di virtualizzazione totalmente gestita da OVHcloud per eseguire applicazioni, VM e container senza doversi preoccupare delle infrastrutture sottostanti.",
-  "managed_vcd_onboarding_description_part2": "Disporrete di un'interfaccia semplice e unificata per gestire i vostri pool di risorse in modo flessibile all'interno dei datacenter virtuali, oltre che di una soluzione di backup Veeam gestita.",
-  "managed_vcd_onboarding_order": "Ordina",
+  "managed_vcd_onboarding_description_part1": "Managed VCD è una soluzione di virtualizzazione totalmente gestita da OVHcloud per eseguire le tue applicazioni, VM e container senza doverti preoccupare delle infrastrutture sottostanti.",
+  "managed_vcd_onboarding_description_part2": "Disponi di un'interfaccia semplice e unificata per gestire i tuoi pool di risorse in modo flessibile all'interno dei datacenter virtuali, oltre che di una soluzione di backup Veeam gestita.",
+  "managed_vcd_onboarding_order": "Ordinare",
   "managed_vcd_onboarding_more_info": "Scopri di più",
   "managed_vcd_onboarding_guide1_link": "Scopri di più",
   "managed_vcd_onboarding_guide1_category": "Presentazione",
   "managed_vcd_onboarding_guide1_title": "Scopri Managed VCD",
-  "managed_vcd_onboarding_guide1_description": "Scopri il prodotto Managed VCD, i suoi vantaggi, il suo utilizzo e la sua tariffazione.",
+  "managed_vcd_onboarding_guide1_description": "Scopri il servizio Managed VCD, i suoi vantaggi, il suo utilizzo e la sua tariffazione.",
   "managed_vcd_onboarding_guide2_category": "Tutorial e documentazione",
   "managed_vcd_onboarding_guide2_title": "Iniziare a utilizzare Managed VCD",
   "managed_vcd_onboarding_guide2_link": "Consulta la documentazione",
   "managed_vcd_onboarding_guide2_description": "I principi fondamentali di VCD. Scopri i concetti di base del VCD.",
   "managed_vcd_onboarding_guide3_category": "FAQ",
-  "managed_vcd_onboarding_guide3_title": "FAQ",
-  "managed_vcd_onboarding_guide3_link": "Sfoglia le FAQ",
-  "managed_vcd_onboarding_guide3_description": "Consulta le FAQ per trovare le risposte alle domande più frequenti."
+  "managed_vcd_onboarding_guide3_title": "Domande frequenti",
+  "managed_vcd_onboarding_guide3_link": "Consulta le FAQ",
+  "managed_vcd_onboarding_guide3_description": "Fai una ricerca tra le FAQ per trovare la risposta alle domande più frequenti."
 }

@@ -37,19 +37,19 @@
   "zimbra_dashboard_tile_usefulLinks_title": "Nützliche Links",
   "zimbra_dashboard_domains_edit": "Konfiguration der Domain",
   "zimbra_dashboard_domains_diagnostic": "Diagnose",
-  "zimbra_dashboard_email_accounts_settings": "Kontoeinstellungen",
+  "zimbra_dashboard_email_accounts_settings": "Account-Einstellungen",
   "zimbra_dashboard_email_accounts_alias": "Alias",
   "zimbra_dashboard_email_accounts_alias_add": "Alias erstellen",
   "zimbra_dashboard_email_accounts_alias_delete": "Alias löschen",
   "zimbra_dashboard_email_accounts_redirections": "Weiterleitungen",
   "zimbra_dashboard_email_accounts_redirections_add": "Weiterleitung erstellen",
-  "zimbra_dashboard_email_accounts_redirections_edit": "Weiterleitung bearbeiten",
+  "zimbra_dashboard_email_accounts_redirections_edit": "Eine Weiterleitung bearbeiten",
   "zimbra_dashboard_email_accounts_redirections_delete": "Eine Weiterleitung löschen",
   "zimbra_dashboard_mailing_lists_add": "Mailingliste erstellen",
   "zimbra_dashboard_mailing_lists_settings": "Mailingliste bearbeiten",
   "zimbra_dashboard_mailing_lists": "Mailinglisten",
   "zimbra_dashboard_redirections": "Weiterleitungen",
   "zimbra_dashboard_redirections_edit": "Weiterleitung bearbeiten",
-  "zimbra_dashboard_redirections_delete": "Weiterleitung löschen",
-  "zimbra_dashboard_auto_replies": "Beantworter"
+  "zimbra_dashboard_redirections_delete": "Die Weiterleitung löschen",
+  "zimbra_dashboard_auto_replies": "Automatische Antworten"
 }

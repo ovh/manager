@@ -1,14 +1,14 @@
 {
   "hpc-crumb": "Hosted Private Cloud",
   "order-veeam": "Zamów",
-  "more_info_billing_modalities": "Dowiedz się więcej o metodach fakturowania.",
+  "more_info_billing_modalities": "Dowiedz się więcej o trybach fakturowania.",
   "update_display_name_modal_headline": "Zmień nazwę kopii zapasowej {{id}}",
   "update_display_name_input_label": "Nazwa kopii zapasowej",
   "update_display_name_description": "",
   "update_display_name_pattern_message": "Nazwa może zawierać maksymalnie 32 znaki",
-  "update_veeam_backup_display_name_success": "Nazwa została zmieniona.",
+  "update_veeam_backup_display_name_success": "Nazwa została zmodyfikowana.",
   "coming_soon": "Wkrótce",
-  "unknown_date": "brak danych",
-  "no_organization_message": "Nie posiadasz aktualnie usługi VMware Cloud Director. Jeśli chcesz dowiedzieć się więcej o naszym produkcie Managed VMware Cloud Director, sprawdź naszą stronę",
+  "unknown_date": "Nie dotyczy",
+  "no_organization_message": "Nie posiadasz aktualnie usługi VMware Cloud Director. Jeśli chcesz dowiedzieć się więcej o produkcie Managed VMware Cloud Director, sprawdź naszą stronę",
   "no_organization_link": "Przejdź na stronę"
 }

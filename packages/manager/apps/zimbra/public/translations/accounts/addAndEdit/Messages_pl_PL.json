@@ -34,7 +34,7 @@
   "zimbra_account_edit_success_message": "Dyspozycja modyfikacji konta e-mail została przyjęta. Zostanie przetworzona w ciągu kilku minut.",
   "zimbra_account_edit_error_message": "Modyfikacja konta e-mail nie powiodła się. {{error}}",
   "zimbra_account_add_input_displayName_tooltip": "Nazwa używana w książce adresowej i wyświetlana odbiorcom wiadomości e-mail",
-  "zimbra_account_edit_tabs_settings": "Parametry konta",
+  "zimbra_account_edit_tabs_settings": "Ustawienia konta",
   "zimbra_account_edit_tabs_redirections": "Przekierowania",
   "zimbra_account_edit_tabs_alias": "Alias"
 }

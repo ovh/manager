@@ -1,6 +1,6 @@
 {
   "pci_workflow_title": "Gestão do fluxo de trabalho",
-  "pci_workflow_name": "Sobrenome",
+  "pci_workflow_name": "Nome",
   "pci_workflow_type": "Fluxo de trabalho",
   "pci_workflow_resource": "Recursos atribuídos",
   "pci_workflow_schedule": "Planeamento (UNIX Cron)",

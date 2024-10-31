@@ -25,7 +25,7 @@
   "manager_hub_products_HOSTING_WEB": "Hosting WWW",
   "manager_hub_products_IP_LOADBALANCER": "IP Load Balancer",
   "manager_hub_products_IP_LOADBALANCING": "IP Load Balancer",
-  "manager_hub_products_IP_SERVICE": "Adresy IP",
+  "manager_hub_products_IP_SERVICE": "Adres IP",
   "manager_hub_products_KEY_MANAGEMENT_SERVICE": "Key Management Service",
   "manager_hub_products_LICENCE": "Licencje",
   "manager_hub_products_LICENSE_WINDOWS": "Licencje Windows",
@@ -52,7 +52,7 @@
   "manager_hub_products_STORAGE_NETAPP": "Enterprise File Storage",
   "manager_hub_products_NUTANIX": "Nutanix",
   "manager_hub_products_NETAPP": "NetApp",
-  "manager_hub_products_OVH_CLOUD_CONNECT": "OVHCloud Connect",
+  "manager_hub_products_OVH_CLOUD_CONNECT": "OVHcloud Connect",
   "manager_hub_products_OVER_THE_BOX": "OverTheBox",
   "manager_hub_products_PACK_XDSL": "Pakiety xDSL",
   "manager_hub_products_SMS": "SMS",
@@ -67,5 +67,5 @@
   "manager_hub_products_XDSL": "xDSL",
   "manager_hub_products_WEB_PAA_S_SUBSCRIPTION": "Web PaaS",
   "manager_hub_products_see_less": "Wyświetl mniej usług",
-  "manager_hub_products_see_more": "Wyświetl więcej usług"
+  "manager_hub_products_see_more": "Wyświetl wszystkie produkty i usługi"
 }

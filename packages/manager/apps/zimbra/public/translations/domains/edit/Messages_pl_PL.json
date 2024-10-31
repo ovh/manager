@@ -1,11 +1,11 @@
 {
   "zimbra_domain_edit_modal_title": "Konfiguracja domeny",
-  "zimbra_domain_edit_modal_content": "Czy jesteś pewny(a), że chcesz usunąć domenę z serwera Zimbra?",
-  "zimbra_domain_edit_modal_message_disabled": "Twoja domena jest aktualnie używana. Nie możesz usunąć tej domeny, dopóki jest ona aktywna.",
-  "zimbra_domain_edit_success_message": "Konfiguracja Twojej domeny została zapisana. Zostanie włączona za kilka minut.",
-  "zimbra_domain_edit_error_message": "Konfiguracja Twojej domeny nie powiodła się. {{ error }}",
+  "zimbra_domain_edit_modal_content": "Czy na pewno chcesz usunąć domenę z serwera Zimbra?",
+  "zimbra_domain_edit_modal_message_disabled": "Domena jest aktualnie używana. Dopóki domena znajduje się w tym stanie, nie możesz jej usunąć.",
+  "zimbra_domain_edit_success_message": "Konfiguracja domeny została zapisana. Będzie aktywna za kilka minut.",
+  "zimbra_domain_edit_error_message": "Konfiguracja domeny nie powiodła się. {{error}}",
   "zimbra_domain_edit_domain_label": "Domena",
-  "zimbra_domain_edit_organization_label": "Firma",
+  "zimbra_domain_edit_organization_label": "Organizacja",
   "zimbra_domain_edit_confirm": "Zatwierdź",
   "zimbra_domain_edit_cancel": "Anuluj"
 }

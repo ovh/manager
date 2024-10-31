@@ -56,7 +56,7 @@
   "iam_resource_type_mxplanAccount": "Konto MX Plan",
   "iam_resource_type_nas": "NAS",
   "iam_resource_type_nasHA": "NAS-HA",
-  "iam_resource_type_nutanix": "Hosted Private Cloud powered by Nutanix",
+  "iam_resource_type_nutanix": "Nutanix on OVHcloud",
   "iam_resource_type_overTheBox": "OverTheBox",
   "iam_resource_type_overTheBoxHardware": "Sprzęt OverTheBox",
   "iam_resource_type_ovhCloudConnect": "OVHcloud Connect",
@@ -65,7 +65,7 @@
   "iam_resource_type_partner": "Partnerzy",
   "iam_resource_type_pccManagementFee": "Hosted Private Cloud Management Fees",
   "iam_resource_type_pccServicePack": "Pakiet VMware",
-  "iam_resource_type_pccVMware": "Hosted Private Cloud powered by VMware",
+  "iam_resource_type_pccVMware": "VMware on OVHcloud",
   "iam_resource_type_publicCloudProject": "Projekt Public Cloud",
   "iam_resource_type_sharepoint": "SharePoint",
   "iam_resource_type_sms": "SMS",
@@ -96,5 +96,6 @@
   "iam_resource_type_ipService": "IP: Usługa",
   "iam_resource_type_okms": "Key Management System (KMS)",
   "iam_resource_type_okms/kmip": "Key Management System (KMS) / KMIP",
-  "iam_resource_type_okms/serviceKey": "Key Management System (KMS) / Klucz"
+  "iam_resource_type_okms/serviceKey": "Key Management System (KMS) / Klucz",
+  "iam_resource_type_licenseHycu": "HYCU dla OVHcloud"
 }

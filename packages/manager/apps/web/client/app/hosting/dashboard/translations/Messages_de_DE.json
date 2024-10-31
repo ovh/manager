@@ -307,7 +307,7 @@
   "hosting_tab_DOMAINS_table_git_state_deploying": "Wird ausgeführt",
   "hosting_tab_DOMAINS_table_git_state_initialError": "Fehler",
   "hosting_tab_DOMAINS_table_git_state_tooltip_lastDeploy": "Informationen zur letzten Bereitstellung ansehen",
-  "hosting_tab_DOMAINS_table_git_state_tooltip_limitedNumberPath": "Die GIT-Zuordnung kann nur in einem Verzeichnis erfolgen.",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Klicken Sie auf die Schaltfläche Aktion, um Git zuzuordnen",
   "hosting_tab_DOMAINS_table_cdn_state_ACTIVE": "Aktiviert",
   "hosting_tab_DOMAINS_table_cdn_state_NONE": "Deaktiviert",
   "hosting_tab_DOMAINS_table_ssl_state_true": "Aktiviert",
@@ -1400,6 +1400,5 @@
   "hosting_dashboard_service_common_inactive": "Inaktiv",
   "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen.",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Mehr",
-  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Klicken Sie auf die Schaltfläche Aktion, um Git zuzuordnen"
+  "hosting_dashboard_tabs_dropdown": "Mehr"
 }

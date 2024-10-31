@@ -18,7 +18,7 @@
   "manager_hub_products_EMAIL_DOMAIN": "Direcciones de correo",
   "manager_hub_products_EMAIL_EXCHANGE": "Microsoft Exchange",
   "manager_hub_products_EMAIL_EXCHANGE_SERVICE": "Microsoft Exchange",
-  "manager_hub_products_EMAIL_PRO": "Emails Pro",
+  "manager_hub_products_EMAIL_PRO": "Email Pro",
   "manager_hub_products_EXCHANGE": "Microsoft Exchange",
   "manager_hub_products_FREEFAX": "Fax",
   "manager_hub_products_HOSTING_PRIVATE_DATABASE": "Web Cloud Databases",
@@ -60,12 +60,12 @@
   "manager_hub_products_TELEPHONY": "Telefonía",
   "manager_hub_products_VEEAM_CLOUD_CONNECT": "Veeam Cloud Connect",
   "manager_hub_products_VEEAM_ENTERPRISE": "Veeam Enterprise",
-  "manager_hub_products_VEEAM_VEEAM_ENTERPRISE": "Veeam Enterpise",
+  "manager_hub_products_VEEAM_VEEAM_ENTERPRISE": "Veeam Enterprise",
   "manager_hub_products_VPS": "Servidores privados virtuales",
   "manager_hub_products_VRACK": "vRacks",
   "manager_hub_products_VRACK_SERVICES": "vRack Services",
   "manager_hub_products_XDSL": "xDSL",
   "manager_hub_products_WEB_PAA_S_SUBSCRIPTION": "Web PaaS",
   "manager_hub_products_see_less": "Ver menos servicios",
-  "manager_hub_products_see_more": "Ver más servicios"
+  "manager_hub_products_see_more": "Ver todos los productos y servicios"
 }

@@ -5,7 +5,7 @@
   "billing_services_actions_menu_manage_renew": "Verlängerung konfigurieren",
   "billing_services_actions_menu_exchange_update_accounts": "Verlängerung der Accounts konfigurieren",
   "billing_services_actions_menu_anticipate_renew": "Vorauszahlen",
-  "billing_services_actions_menu_resiliate": "Meine Vertragsbindung kündigen",
+  "billing_services_actions_menu_resiliate": "Kündigen",
   "billing_services_actions_menu_resiliate_my_engagement": "Meine Vertragsbindung kündigen",
   "billing_services_actions_menu_renew_label": "Dienst verlängern: {{ serviceName }} (Neues Fenster)",
   "billing_services_actions_menu_renew": "Dienst verlängern",

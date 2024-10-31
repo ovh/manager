@@ -12,7 +12,7 @@
   "pci_workflow_view_executions": "Wyświetl listę uruchomień",
   "pci_workflow_execution_status_IDLE": "Nieaktywny",
   "pci_workflow_execution_status_RUNNING": "Trwa wykonywanie",
-  "pci_workflow_execution_status_SUCCESS": "Operacja zakończona powodzeniem",
+  "pci_workflow_execution_status_SUCCESS": "Operacja zakończona pomyślnie",
   "pci_workflow_execution_status_ERROR": "Błąd",
   "pci_workflow_execution_status_PAUSED": "Zatrzymany",
   "pci_workflow_executions_title": "Uruchomienie workflowu '{{ workflowName }}'",

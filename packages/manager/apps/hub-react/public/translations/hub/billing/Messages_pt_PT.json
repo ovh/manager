@@ -9,7 +9,7 @@
   "hub_billing_summary_debt_no_bills": "Nenhuma fatura para este período",
   "hub_billing_summary_display_bills": "Ver faturas",
   "hub_billing_summary_display_bills_error": "Não é possível recuperar o montante total",
-  "hub_enterprise_billing_summary_title": "Faturas",
+  "hub_enterprise_billing_summary_title": "As minhas faturas",
   "hub_enterprise_billing_summary_description": "Para consultar as suas faturas, aceda à sua interface dedicada",
   "hub_enterprise_billing_summary_goto": "Iniciar sessão"
 }

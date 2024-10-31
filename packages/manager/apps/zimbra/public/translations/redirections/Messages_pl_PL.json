@@ -1,9 +1,9 @@
 {
   "zimbra_redirections_cta": "Utwórz przekierowanie",
-  "zimbra_redirections_from": "Od",
-  "zimbra_redirections_to": "Wkrótce",
-  "zimbra_redirections_organization": "Firma",
-  "zimbra_redirections_datagrid_tooltip_modification": "Zmień",
+  "zimbra_redirections_from": "Z",
+  "zimbra_redirections_to": "Do",
+  "zimbra_redirections_organization": "Organizacja",
+  "zimbra_redirections_datagrid_tooltip_modification": "Zmodyfikuj",
   "zimbra_redirections_datagrid_tooltip_delete": "Usuń",
   "zimbra_redirections_account_title": "Zarządzanie przekierowaniami"
 }

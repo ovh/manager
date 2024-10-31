@@ -10,7 +10,7 @@
   "pci_workflow_delete_title": "Delete workflow schedule",
   "pci_workflow_type_instance_backup_title": "Automatic instance backup",
   "pci_workflow_view_executions": "Show executions",
-  "pci_workflow_execution_status_IDLE": "Inactive",
+  "pci_workflow_execution_status_IDLE": "Disabled",
   "pci_workflow_execution_status_RUNNING": "Executing...",
   "pci_workflow_execution_status_SUCCESS": "Success",
   "pci_workflow_execution_status_ERROR": "Error",
