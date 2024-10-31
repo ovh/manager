@@ -1,6 +1,7 @@
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   Headers,
+  Notifications,
   useFeatureAvailability,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
@@ -127,6 +128,7 @@ export default function DetailPage() {
 
       <div className="header mt-8 mb-4">
         <Headers title={loadBalancerDetail?.name} />
+        <Notifications />
       </div>
 
       <div className="mb-8">

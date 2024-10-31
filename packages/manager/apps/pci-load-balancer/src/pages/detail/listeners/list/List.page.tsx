@@ -97,7 +97,7 @@ export default function ListenerList() {
               });
               addFilter({
                 key: 'search',
-                value: detail.inputValue,
+                value: detail.inputValue.trim(),
                 comparator: FilterComparator.Includes,
                 label: '',
               });
