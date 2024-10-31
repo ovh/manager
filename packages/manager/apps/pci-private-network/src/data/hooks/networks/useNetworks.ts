@@ -6,7 +6,7 @@ import {
 } from '@/data/api/networks';
 import { CreationStatus } from '@/types/network.type';
 
-export const useGetPrivateNetworks = (projectId: string) =>
+export const usePrivateNetworks = (projectId: string) =>
   useQuery({
     queryKey: ['aggregated-network', projectId],
     queryFn: () => getPrivateNetworks(projectId),
@@ -22,7 +22,7 @@ export const useCheckPrivateNetworkCreationStatus = () =>
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
   });
 
-export const useGetSubnets = (
+export const useSubnets = (
   projectId: string,
   networkId: string,
   region: string,
