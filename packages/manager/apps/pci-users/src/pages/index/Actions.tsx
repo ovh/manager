@@ -43,6 +43,7 @@ export default function Actions({ user }: { user: User }) {
   return (
     <OsdsMenu>
       <OsdsButton
+        className="w-[2rem]"
         slot={'menu-title'}
         circle
         color={ODS_THEME_COLOR_INTENT.primary}

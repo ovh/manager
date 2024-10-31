@@ -45,6 +45,7 @@ export default function RemoveUserModal({
   return (
     <OsdsModal
       headline={t('pci_projects_project_users_delete_title')}
+      color={ODS_THEME_COLOR_INTENT.warning}
       onOdsModalClose={onClose}
     >
       <slot name="content">
