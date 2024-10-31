@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-metrics-app",
-  "version": "2.2.27-alpha.0",
+  "version": "2.2.27-alpha.1",
   "private": true,
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
     "@ovh-ux/ng-at-internet": "^5.11.18-alpha.0",
     "@ovh-ux/ng-ovh-actions-menu": "^5.1.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.14.2",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.15.0",
     "@ovh-ux/ng-ovh-doc-url": "^2.1.1",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.1",

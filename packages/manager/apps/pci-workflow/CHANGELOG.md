@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.3...@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.4) (2024-10-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3452] ([2c7c328](https://github.com/ovh/manager/commit/2c7c32855c2fd23351552620fe9ab8b540368224))
+
+
+
+
+
 # [0.1.0-alpha.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.2...@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.3) (2024-10-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app

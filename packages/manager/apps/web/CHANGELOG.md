@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.41.1-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.41.1-alpha.0...@ovh-ux/manager-web@18.41.1-alpha.1) (2024-10-31)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([2e9a533](https://github.com/ovh/manager/commit/2e9a5332ee5f2f3e5a66e30dd7dd0f06494c1201))
+
+
+
+
+
 ## [18.41.1-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.41.0...@ovh-ux/manager-web@18.41.1-alpha.0) (2024-10-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

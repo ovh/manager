@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.15-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.1.15-alpha.0...@ovh-ux/manager-pci-savings-plan-app@1.1.15-alpha.1) (2024-10-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
 ## [1.1.15-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.1.14...@ovh-ux/manager-pci-savings-plan-app@1.1.15-alpha.0) (2024-10-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app

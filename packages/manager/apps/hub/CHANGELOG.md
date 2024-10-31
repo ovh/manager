@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.12.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.11.3-alpha.0...@ovh-ux/manager-hub-app@5.12.0-alpha.0) (2024-10-31)
+
+
+### Features
+
+* remove rbx1 eol banner ([#13411](https://github.com/ovh/manager/issues/13411)) ([80c859f](https://github.com/ovh/manager/commit/80c859febb49e8d9f48027cd05c95175c3f76f7f))
+
+
+
+
+
 ## [5.11.3-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.11.2...@ovh-ux/manager-hub-app@5.11.3-alpha.0) (2024-10-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

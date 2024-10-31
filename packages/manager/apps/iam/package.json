@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iam-app",
-  "version": "2.3.16-alpha.0",
+  "version": "2.3.16-alpha.1",
   "private": true,
   "description": "IAM standalone application.",
   "repository": {
@@ -22,7 +22,7 @@
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-config": "^7.5.3-alpha.0",
     "@ovh-ux/manager-core": "^12.17.5-alpha.0",
-    "@ovh-ux/manager-iam": "^1.12.2",
+    "@ovh-ux/manager-iam": "^1.13.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
     "@ovh-ux/ng-at-internet": "^5.11.18-alpha.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.0",

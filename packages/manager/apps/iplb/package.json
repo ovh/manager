@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iplb-app",
-  "version": "2.4.16-alpha.0",
+  "version": "2.4.16-alpha.1",
   "private": true,
   "description": "IP Load Balancer standalone application.",
   "repository": {
@@ -29,7 +29,7 @@
     "@ovh-ux/ng-ovh-actions-menu": "^5.1.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-chart": "^1.2.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.14.2",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.15.0",
     "@ovh-ux/ng-ovh-doc-url": "^2.1.1",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.2",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
