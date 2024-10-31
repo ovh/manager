@@ -22,6 +22,7 @@ export type TSubnet = {
   ipVersion: number;
   id: string;
   name: string;
+  search?: string;
 };
 
 export type TNetwork = {

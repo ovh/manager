@@ -6,10 +6,11 @@ import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 
 type BackButtonProps = {
+  title?: string;
   onClick?: () => void;
 };
 
-const BackButton: FC<BackButtonProps> = ({ onClick }) => {
+const BackButton: FC<BackButtonProps> = ({ title, onClick }) => {
   const { t } = useTranslation('common');
   const backHref = useHref('..');
 
@@ -17,7 +18,6 @@ const BackButton: FC<BackButtonProps> = ({ onClick }) => {
     <OsdsLink
       data-testid="back-btn"
       color={ODS_THEME_COLOR_INTENT.primary}
-      className="mt-10"
       href={backHref}
       onClick={onClick}
     >
@@ -28,7 +28,7 @@ const BackButton: FC<BackButtonProps> = ({ onClick }) => {
         color={ODS_THEME_COLOR_INTENT.primary}
       />
       <span className="ml-4">
-        {t('common_back_button_back_to_previous_page')}
+        {title || t('common_back_button_back_to_previous_page')}
       </span>
     </OsdsLink>
   );

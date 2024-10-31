@@ -4,7 +4,7 @@ import {
   getPrivateNetworks,
   getSubnets,
 } from '@/data/api/networks';
-import { CreationStatus } from '@/types/network.type';
+import { CreationStatus, TSubnet } from '@/types/network.type';
 
 export const usePrivateNetworks = (projectId: string) =>
   useQuery({
@@ -31,4 +31,17 @@ export const useSubnets = (
     queryKey: ['subnets', projectId, networkId, region],
     queryFn: () => getSubnets(projectId, region, networkId),
     enabled: !!(projectId && networkId && region),
+    select: (subnets: TSubnet[]) =>
+      subnets.map((subnet) => {
+        const allocatedIp = subnet?.allocationPools
+          ?.map((i) => `${i.start} - ${i.end}`)
+          .join(' ,');
+
+        return {
+          ...subnet,
+          region,
+          allocatedIp,
+          search: `${subnet.name} ${region} ${subnet.ipVersion} ${subnet.cidr} ${region} ${allocatedIp}`,
+        };
+      }),
   });
