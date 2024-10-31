@@ -64,7 +64,7 @@ describe('Add voucher modal', () => {
   it('should call the add function with given voucher id', async () => {
     const { getByTestId } = renderModal();
     const voucherInput = getByTestId('voucherId');
-    const submitButton = getByTestId('submitButton');
+    const submitButton = getByTestId('pciModal-button_submit');
     expect(add).not.toHaveBeenCalled();
     act(() => {
       fireEvent.change(voucherInput, {

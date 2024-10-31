@@ -1,11 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { describe, it, vi } from 'vitest';
-import {
-  QueryClient,
-  QueryClientProvider,
-  UseQueryResult,
-} from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   ShellContext,
   ShellContextType,
@@ -24,6 +20,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
     pagination: {},
   }),
   PciGuidesHeader: vi.fn().mockReturnValue(<div></div>),
+  Headers: vi.fn().mockReturnValue(<div>Headers</div>),
   Notifications: vi.fn().mockReturnValue(<div></div>),
   Datagrid: vi.fn().mockReturnValue(<div>Datagrid</div>),
   PciDiscoveryBanner: vi.fn().mockReturnValue(<div>Discovery</div>),
