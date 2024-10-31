@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "es2020"],
+    "lib": ["dom", "es2021"],
     "target": "ES2020",
     "types": ["vite/client", "node", "jest"],
     "module": "ESNext",
     "outDir": "dist",
-    "allowJs": false,
+    "allowJs": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
