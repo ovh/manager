@@ -3,7 +3,7 @@
   "itemCount_other": "{{count}} éléments",
   "currentPage": "Page {{currentPage}} sur {{totalPagesCount}}",
   "goToFirstPage": "Aller à la première page",
-  "goToPreviousPage": "Aller à la page précedente",
+  "goToPreviousPage": "Aller à la page précédente",
   "goToNextPage": "Aller à la page suivante",
   "goToLastPage": "Aller à la dernière page",
   "noResult": "Aucun résultat"
