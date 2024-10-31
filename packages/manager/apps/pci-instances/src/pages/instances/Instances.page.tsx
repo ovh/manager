@@ -1,6 +1,7 @@
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Navigate,
+  Outlet,
   useHref,
   useParams,
   useRouteLoaderData,
@@ -267,118 +268,121 @@ const Instances: FC = () => {
     return <Navigate to={SUB_PATHS.onboarding} />;
 
   return (
-    <PageLayout>
-      {project && <Breadcrumb projectLabel={project.description ?? ''} />}
-      <div className="header mb-6 mt-8">
-        <div className="flex items-center justify-between">
-          <Title>{t('common:pci_instances_common_instances_title')}</Title>
-          <PciGuidesHeader category="instances"></PciGuidesHeader>
+    <>
+      <PageLayout>
+        {project && <Breadcrumb projectLabel={project.description ?? ''} />}
+        <div className="header mb-6 mt-8">
+          <div className="flex items-center justify-between">
+            <Title>{t('common:pci_instances_common_instances_title')}</Title>
+            <PciGuidesHeader category="instances"></PciGuidesHeader>
+          </div>
         </div>
-      </div>
-      <div>
-        <OsdsDivider />
-        <Notifications />
-        <OsdsDivider />
-        <div className={'sm:flex items-center justify-between mt-4'}>
-          <OsdsButton
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.stroked}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            inline
-            href={createInstanceHref}
-          >
-            <span slot="start" className="flex items-center">
-              <OsdsIcon
-                name={ODS_ICON_NAME.ADD}
-                size={ODS_ICON_SIZE.xxs}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                className="mr-4"
+        <div>
+          <OsdsDivider />
+          <Notifications />
+          <OsdsDivider />
+          <div className={'sm:flex items-center justify-between mt-4'}>
+            <OsdsButton
+              size={ODS_BUTTON_SIZE.sm}
+              variant={ODS_BUTTON_VARIANT.stroked}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              inline
+              href={createInstanceHref}
+            >
+              <span slot="start" className="flex items-center">
+                <OsdsIcon
+                  name={ODS_ICON_NAME.ADD}
+                  size={ODS_ICON_SIZE.xxs}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  className="mr-4"
+                />
+                <span>{t('common:pci_instances_common_create_instance')}</span>
+              </span>
+            </OsdsButton>
+            <div className="justify-between flex gap-5">
+              <div>
+                <OsdsButton
+                  slot="reset-trigger"
+                  size={ODS_BUTTON_SIZE.sm}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  variant={ODS_BUTTON_VARIANT.stroked}
+                  onClick={handleRefresh}
+                  {...(isFetching && { disabled: true })}
+                >
+                  <OsdsIcon
+                    name={ODS_ICON_NAME.REFRESH}
+                    size={ODS_ICON_SIZE.xs}
+                    className={'mr-2'}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                  />
+                </OsdsButton>
+              </div>
+              <OsdsSearchBar
+                className={'w-auto'}
+                value={searchField}
+                disabled={filters.length > 0 || isFetching}
+                onOdsSearchSubmit={handleOdsSearchSubmit}
               />
-              <span>{t('common:pci_instances_common_create_instance')}</span>
-            </span>
-          </OsdsButton>
-          <div className="justify-between flex gap-5">
-            <div>
-              <OsdsButton
-                slot="reset-trigger"
-                size={ODS_BUTTON_SIZE.sm}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                variant={ODS_BUTTON_VARIANT.stroked}
-                onClick={handleRefresh}
-                {...(isFetching && { disabled: true })}
-              >
-                <OsdsIcon
-                  name={ODS_ICON_NAME.REFRESH}
-                  size={ODS_ICON_SIZE.xs}
-                  className={'mr-2'}
+              <OsdsPopover ref={filterPopoverRef}>
+                <OsdsButton
+                  slot="popover-trigger"
+                  size={ODS_BUTTON_SIZE.sm}
                   color={ODS_THEME_COLOR_INTENT.primary}
-                />
-              </OsdsButton>
+                  variant={ODS_BUTTON_VARIANT.stroked}
+                  {...((filters.length > 0 || isFetching) && {
+                    disabled: true,
+                  })}
+                >
+                  <OsdsIcon
+                    name={ODS_ICON_NAME.FILTER}
+                    size={ODS_ICON_SIZE.xs}
+                    className={'mr-2'}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                  />
+                  {t('common:pci_instances_common_filter')}
+                </OsdsButton>
+                <OsdsPopoverContent>
+                  <FilterAdd
+                    columns={filterColumns}
+                    onAddFilter={(addedFilter, column) => {
+                      addFilter({
+                        ...addedFilter,
+                        label: column.id,
+                      });
+                      filterPopoverRef.current?.closeSurface();
+                    }}
+                  />
+                </OsdsPopoverContent>
+              </OsdsPopover>
             </div>
-            <OsdsSearchBar
-              className={'w-auto'}
-              value={searchField}
-              disabled={filters.length > 0 || isFetching}
-              onOdsSearchSubmit={handleOdsSearchSubmit}
-            />
-            <OsdsPopover ref={filterPopoverRef}>
-              <OsdsButton
-                slot="popover-trigger"
-                size={ODS_BUTTON_SIZE.sm}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                variant={ODS_BUTTON_VARIANT.stroked}
-                {...((filters.length > 0 || isFetching) && {
-                  disabled: true,
-                })}
-              >
-                <OsdsIcon
-                  name={ODS_ICON_NAME.FILTER}
-                  size={ODS_ICON_SIZE.xs}
-                  className={'mr-2'}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                />
-                {t('common:pci_instances_common_filter')}
-              </OsdsButton>
-              <OsdsPopoverContent>
-                <FilterAdd
-                  columns={filterColumns}
-                  onAddFilter={(addedFilter, column) => {
-                    addFilter({
-                      ...addedFilter,
-                      label: column.id,
-                    });
-                    filterPopoverRef.current?.closeSurface();
-                  }}
-                />
-              </OsdsPopoverContent>
-            </OsdsPopover>
           </div>
+          <div className="my-5">
+            <FilterList filters={filters} onRemoveFilter={removeFilter} />
+          </div>
+          {data && (
+            <div className="mt-10">
+              <Datagrid
+                columns={datagridColumns}
+                hasNextPage={!isFetchingNextPage && hasNextPage}
+                items={data}
+                onFetchNextPage={handleFetchNextPage}
+                totalItems={data.length}
+                sorting={sorting}
+                onSortChange={setSorting}
+                manualSorting
+                className={'!overflow-x-visible'}
+              />
+            </div>
+          )}
+          {isFetchingNextPage && (
+            <div className="mt-5">
+              <Spinner />
+            </div>
+          )}
         </div>
-        <div className="my-5">
-          <FilterList filters={filters} onRemoveFilter={removeFilter} />
-        </div>
-        {data && (
-          <div className="mt-10">
-            <Datagrid
-              columns={datagridColumns}
-              hasNextPage={!isFetchingNextPage && hasNextPage}
-              items={data}
-              onFetchNextPage={handleFetchNextPage}
-              totalItems={data.length}
-              sorting={sorting}
-              onSortChange={setSorting}
-              manualSorting
-              className={'!overflow-x-visible'}
-            />
-          </div>
-        )}
-        {isFetchingNextPage && (
-          <div className="mt-5">
-            <Spinner />
-          </div>
-        )}
-      </div>
-    </PageLayout>
+      </PageLayout>
+      <Outlet />
+    </>
   );
 };
 
