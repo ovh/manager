@@ -28,8 +28,8 @@ import { HighSpeedV2Infos } from '@/pages/new/components/HighSpeedV2Infos';
 import { TLocalisation } from '@/api/hooks/useRegions';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
+import { useVolumeMaxSize } from '@/api/data/quota';
 
-export const VOLUME_MAX_SIZE = 4 * 1000; // Should be 10 * 1024 (but API is wrong;
 export const VOLUME_MIN_SIZE = 10; // 10 Gio
 export const VOLUME_UNLIMITED_QUOTA = -1; // Should be 10 * 1024 (but API is wrong)
 
@@ -53,21 +53,29 @@ export function CapacityStep({
   const { t: tGlobal } = useTranslation('global');
   const [volumeCapacity, setVolumeCapacity] = useState<number>(VOLUME_MIN_SIZE);
   const [maxSize, setMaxSize] = useState(0);
-  const { data: regionQuotas, isLoading } = useRegionsQuota(projectId);
+  const {
+    data: regionQuotas,
+    isLoading: isRegionQuotaLoading,
+  } = useRegionsQuota(projectId, region.name);
   const isCapacityValid =
     volumeCapacity >= VOLUME_MIN_SIZE && volumeCapacity <= maxSize;
 
+  const { volumeMaxSize, isLoading: isVolumeMaxSizeLoading } = useVolumeMaxSize(
+    region.name,
+  );
+
+  const isLoading = isRegionQuotaLoading && isVolumeMaxSizeLoading;
+
   useEffect(() => {
     if (!isLoading) {
-      const quota = regionQuotas?.find(({ region: r }) => r === region?.name);
-      let availableGigabytes = VOLUME_MAX_SIZE;
+      let availableGigabytes = volumeMaxSize;
       if (
-        quota?.volume &&
-        quota.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA
+        regionQuotas?.volume &&
+        regionQuotas.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA
       ) {
         availableGigabytes = Math.min(
-          VOLUME_MAX_SIZE,
-          quota.volume.maxGigabytes - quota.volume.usedGigabytes,
+          volumeMaxSize,
+          regionQuotas.volume.maxGigabytes - regionQuotas.volume.usedGigabytes,
         );
       }
       setMaxSize(availableGigabytes);

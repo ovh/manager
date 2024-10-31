@@ -28,16 +28,14 @@ export function PriceEstimate({
   const priceEstimate = price * volumeCapacity * ESTIMATE_MONTHLY_HOURS;
 
   return (
-    !!priceEstimate && (
-      <OsdsText
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
-        {t('pci_projects_project_storages_blocks_add_submit_price_text', {
-          price: getFormattedCatalogPrice(priceEstimate),
-        })}
-      </OsdsText>
-    )
+    <OsdsText
+      level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+      size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+      color={ODS_THEME_COLOR_INTENT.text}
+    >
+      {t('pci_projects_project_storages_blocks_add_submit_price_text', {
+        price: getFormattedCatalogPrice(priceEstimate),
+      })}
+    </OsdsText>
   );
 }
