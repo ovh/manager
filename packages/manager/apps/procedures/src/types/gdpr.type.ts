@@ -12,7 +12,5 @@ export type GDPRValues = {
 
 export type GDPRFormValues = Omit<GDPRValues, 'numberOfDocuments'> & {
   confirmEmail: string;
-  idDocumentFront: FileWithError[];
-  idDocumentBack: FileWithError[];
   otherDocuments: FileWithError[];
 };

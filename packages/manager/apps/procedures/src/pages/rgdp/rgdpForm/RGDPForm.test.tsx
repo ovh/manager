@@ -75,8 +75,6 @@ describe('RGDPForm', () => {
         getByText('rgdp_form_field_label_request_description :'),
       ).toBeInTheDocument();
 
-      expect(getByText('rgdp_form_field_label_id_front :')).toBeInTheDocument();
-      expect(getByText('rgdp_form_field_label_id_back :')).toBeInTheDocument();
       expect(
         getByText('rgdp_form_field_label_other_documents :'),
       ).toBeInTheDocument();
@@ -158,7 +156,7 @@ describe('RGDPForm', () => {
 
     await waitFor(() => {
       expect(
-        getByText('rgdp_form_validation_message_invalid_format'),
+        getByText('rgdp_form_validation_message_invalid_email_format'),
       ).toBeInTheDocument();
     });
   });
