@@ -25,14 +25,19 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
   };
 });
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (translationKey: string) => translationKey,
-    i18n: {
-      changeLanguage: () => new Promise(() => {}),
-    },
-  }),
-}));
+vi.mock('react-i18next', async (importOriginal) => {
+  const original = await importOriginal<typeof import('react-i18next')>();
+
+  return {
+    ...original,
+    useTranslation: () => ({
+      t: (translationKey: string) => translationKey,
+      i18n: {
+        changeLanguage: () => new Promise(() => {}),
+      },
+    }),
+  };
+});
 
 vi.mock('@ovh-ux/manager-core-api', async () => {
   const mod = await vi.importActual('@ovh-ux/manager-core-api');
