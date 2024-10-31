@@ -28,7 +28,5 @@ export default {
     enableVersioning: '<',
     is3azAvailable: '<',
     isLocalzoneAvailable: '<',
-    is3azAvailable: '<',
-    isLocalzoneAvailable: '<',
   },
 };
