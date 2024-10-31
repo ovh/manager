@@ -2,6 +2,7 @@ import {
   OsdsButton,
   OsdsSpinner,
   OsdsText,
+  OsdsChip,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -9,11 +10,15 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import {
+  ODS_CHIP_SIZE,
+  ODS_BUTTON_SIZE,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
+import {
   TilesInputComponent,
   useCatalogPrice,
 } from '@ovh-ux/manager-react-components';
 
-import { ODS_BUTTON_SIZE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { TAddon, TCatalog } from '@ovh-ux/manager-pci-common';
@@ -37,6 +42,7 @@ export function VolumeTypeStep({
 }: Readonly<VolumeTypeStepProps>) {
   const { t } = useTranslation('add');
   const { t: tStepper } = useTranslation('stepper');
+  const { t: tCommon } = useTranslation('common');
   const [volumeType, setVolumeType] = useState<TAddon>(undefined);
   const tBytes = useTranslateBytes();
   const { getFormattedCatalogPrice } = useCatalogPrice(6, {
@@ -62,7 +68,7 @@ export function VolumeTypeStep({
         items={displayedTypes || []}
         label={(vType: TCatalog['addons'][0]) => (
           <div className="w-full">
-            <div className="border-solid border-0 border-b border-b-[#85d9fd] py-3">
+            <div className="border-solid border-0 border-b border-b-[#85d9fd] py-3 d-flex">
               <OsdsText
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                 size={ODS_THEME_TYPOGRAPHY_SIZE._600}
@@ -70,6 +76,16 @@ export function VolumeTypeStep({
               >
                 {vType.blobs.technical.name}
               </OsdsText>
+              {vType.blobs.tags.includes('is_new') && (
+                <OsdsChip
+                  className="ms-3"
+                  color={ODS_THEME_COLOR_INTENT.success}
+                  size={ODS_CHIP_SIZE.sm}
+                  inline
+                >
+                  {tCommon('pci_projects_project_storages_blocks_new')}
+                </OsdsChip>
+              )}
             </div>
             <div className="py-3">
               <OsdsText

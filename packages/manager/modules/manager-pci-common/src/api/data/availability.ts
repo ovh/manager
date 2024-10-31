@@ -19,15 +19,18 @@ export type TProductAvailability = {
   }[];
 };
 
+export type ProductAvailabilityFilter = {
+  addonFamily?: string;
+  planCode?: string;
+  planFamily?: string;
+  product?: string;
+};
+
 export const getProductAvailability = async (
   projectId: string,
   params: {
-    addonFamily?: string;
     ovhSubsidiary: string;
-    planCode?: string;
-    planFamily?: string;
-    product?: string;
-  },
+  } & ProductAvailabilityFilter,
 ): Promise<TProductAvailability> => {
   const { data } = await v6.get<TProductAvailability>(
     `/cloud/project/${projectId}/capabilities/productAvailability`,

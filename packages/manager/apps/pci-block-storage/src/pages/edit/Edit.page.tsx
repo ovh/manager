@@ -5,7 +5,6 @@ import {
   useCatalogPrice,
   useNotifications,
   useProjectLocalRegions,
-  useProjectQuota,
   useProjectUrl,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
@@ -38,11 +37,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useProject } from '@ovh-ux/manager-pci-common';
-import {
-  VOLUME_MAX_SIZE,
-  VOLUME_MIN_SIZE,
-  VOLUME_UNLIMITED_QUOTA,
-} from '@/constants';
+import { VOLUME_MIN_SIZE, VOLUME_UNLIMITED_QUOTA } from '@/constants';
 import ChipRegion from '@/components/edit/ChipRegion.component';
 import { TVolume } from '@/api/data/volume';
 import {
@@ -51,6 +46,8 @@ import {
   useVolume,
 } from '@/api/hooks/useVolume';
 import HidePreloader from '@/core/HidePreloader';
+import { useVolumeMaxSize } from '@/api/data/quota';
+import { useRegionsQuota } from '@/api/hooks/useQuota';
 
 type TFormState = {
   name: string;
@@ -95,6 +92,8 @@ export default function EditPage() {
     isPending: isPendingVolume,
   } = useVolume(projectId, volumeId);
 
+  const { volumeMaxSize } = useVolumeMaxSize(volume?.region);
+
   const {
     data: localRegions,
     isPending: isPendingLocal,
@@ -106,7 +105,7 @@ export default function EditPage() {
     size: {
       value: volume?.size || VOLUME_MIN_SIZE,
       min: VOLUME_MIN_SIZE,
-      max: VOLUME_MAX_SIZE,
+      max: volumeMaxSize,
     },
     bootable: volume?.bootable || false,
     isInitialized: false,
@@ -152,25 +151,23 @@ export default function EditPage() {
     },
   });
 
-  const { data: projectQuota, isPending: isPendingQuota } = useProjectQuota(
+  const { data: regionQuota, isPending: isPendingQuota } = useRegionsQuota(
     projectId,
+    volume?.region,
   );
 
   const getMaxSize = (_volume: TVolume) => {
-    if (projectQuota?.length > 0) {
-      const regionQuota = projectQuota.find(
-        ({ region }) => region === _volume.region,
-      );
+    if (regionQuota) {
       if (
         regionQuota.volume &&
         regionQuota.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA
       ) {
         const availableGigabytes =
           regionQuota.volume.maxGigabytes - regionQuota.volume.usedGigabytes;
-        return Math.min(_volume.size + availableGigabytes, VOLUME_MAX_SIZE);
+        return Math.min(_volume.size + availableGigabytes, volumeMaxSize);
       }
     }
-    return VOLUME_MAX_SIZE;
+    return volumeMaxSize;
   };
 
   const getVolumePriceEstimationFromCatalog = (
@@ -194,7 +191,7 @@ export default function EditPage() {
     isPendingQuota;
 
   useEffect(() => {
-    if (volume && projectQuota) {
+    if (volume && regionQuota) {
       setFormState({
         name: volume.name,
         size: {
@@ -206,7 +203,7 @@ export default function EditPage() {
         isInitialized: true,
       });
     }
-  }, [volume, projectQuota]);
+  }, [volume, regionQuota]);
 
   useEffect(() => {
     const { min, max, value } = formState.size;
@@ -443,7 +440,7 @@ export default function EditPage() {
           </div>
 
           {!hasError &&
-            (estimatedPrice?.monthly ? (
+            (estimatedPrice?.monthly !== undefined ? (
               <OsdsText
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                 size={ODS_THEME_TYPOGRAPHY_SIZE._400}
