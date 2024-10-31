@@ -35,11 +35,6 @@ describe('RGDPIntroduction Component', () => {
     );
     expect(identityVerificationElement).toBeInTheDocument();
 
-    const clientAreaElement = screen.getByText(
-      'rgdp_introduction_content_client_area',
-    );
-    expect(clientAreaElement).toBeInTheDocument();
-
     const noteElement = screen.getByText('rgdp_introduction_please_note');
     expect(noteElement).toBeInTheDocument();
   });

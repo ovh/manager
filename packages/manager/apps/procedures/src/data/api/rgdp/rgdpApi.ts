@@ -16,7 +16,7 @@ type TicketUploadInfo = {
 
 export type UploadDocuments = {
   fileLinks: UploadLink[];
-  files: FileWithError[];
+  files: File[];
 };
 
 const s3AxiosInstance = axios.create({});
@@ -34,10 +34,10 @@ export const getUploadDocumentsLinks = (
   });
 };
 
-const uploadDocument: (
-  link: UploadLink,
-  file: FileWithError,
-) => Promise<void> = (link, file) => {
+const uploadDocument: (link: UploadLink, file: File) => Promise<void> = (
+  link,
+  file,
+) => {
   // TODO: remove the mock in the ticket MANAGER-15473
   // return s3AxiosInstance.put(link.link, file, {
   //   headers: {

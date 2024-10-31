@@ -37,13 +37,6 @@ export const RGDPIntroduction: FunctionComponent = () => {
           {t('rgdp_introduction_content_identity_verification')}
         </OsdsText>
         <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_TEXT_SIZE._500}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        >
-          {t('rgdp_introduction_content_client_area')}
-        </OsdsText>
-        <OsdsText
           class="mt-2"
           color={ODS_THEME_COLOR_INTENT.text}
           size={ODS_TEXT_SIZE._500}
