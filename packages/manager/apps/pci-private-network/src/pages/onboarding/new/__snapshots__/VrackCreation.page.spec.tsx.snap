@@ -1,0 +1,56 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`VrackCreationPage > renders correctly 1`] = `
+<div>
+  <osds-modal
+    headline="pci_projects_project_network_private_vrack_create_heading"
+  >
+    <slot
+      name="content"
+    >
+      <div
+        class="mt-6"
+      >
+        <osds-button
+          class="w-full sm:w-auto"
+          color="primary"
+          inline="true"
+          variant="flat"
+        >
+          pci_projects_project_network_private_vrack_create_new
+        </osds-button>
+        <osds-button
+          class="ml-0 mt-4 sm:ml-4 sm:mt-0 w-full sm:w-auto"
+          color="primary"
+          inline="true"
+          variant="stroked"
+        >
+          pci_projects_project_network_private_vrack_create_existing
+        </osds-button>
+        <p>
+          <osds-text
+            color="text"
+            level="body"
+            size="400"
+          >
+            pci_projects_project_network_private_vrack_create_description
+          </osds-text>
+        </p>
+      </div>
+    </slot>
+    <osds-button
+      color="primary"
+      slot="actions"
+      variant="ghost"
+    >
+      pci_projects_project_network_private_vrack_create_cancel
+    </osds-button>
+    <osds-button
+      color="primary"
+      slot="actions"
+    >
+      pci_projects_project_network_private_vrack_create_action
+    </osds-button>
+  </osds-modal>
+</div>
+`;
