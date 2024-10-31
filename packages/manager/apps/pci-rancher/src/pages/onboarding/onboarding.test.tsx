@@ -95,7 +95,7 @@ describe('Onboarding', () => {
         expectedValue: 'https://example.com/guide2',
       },
       {
-        key: 'MANAGED_RANCHER_SERVICE_CREATION_USERS_PROJECTS',
+        key: 'MANAGED_RANCHER_SERVICE_LIFECYCLE_POLICY',
         expectedValue: 'https://example.com/guide3',
       },
     ];
