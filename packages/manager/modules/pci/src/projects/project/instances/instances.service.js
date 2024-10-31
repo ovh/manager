@@ -327,8 +327,16 @@ export default class PciProjectInstanceService {
       catalogEndpoint,
     ).then((catalog) =>
       instance.isLocalZone
-        ? catalog[`snapshot.consumption.${instance.region}`] ??
-          catalog['snapshot.consumption.LZ']
+        ? this.getProductAvailability(projectId).then(
+            ({ plans }) =>
+              catalog[
+                plans.find(
+                  ({ code, regions }) =>
+                    code.startsWith('snapshot.consumption') &&
+                    regions.find(({ name }) => name === instance.region),
+                )?.code
+              ] ?? catalog['snapshot.consumption.LZ'],
+          )
         : get(
             catalog,
             `snapshot.monthly.postpaid.${instance.region}`,
@@ -546,7 +554,10 @@ export default class PciProjectInstanceService {
       });
   }
 
-  getProductAvailability(projectId, ovhSubsidiary) {
+  getProductAvailability(
+    projectId,
+    ovhSubsidiary = this.coreConfig.getUser().ovhSubsidiary,
+  ) {
     return this.$http
       .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
         params: {
