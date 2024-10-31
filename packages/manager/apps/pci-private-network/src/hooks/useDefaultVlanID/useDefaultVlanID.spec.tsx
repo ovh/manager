@@ -2,8 +2,8 @@ import { describe, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import useDefaultVlanID from './useDefaultVlanID';
 
-const { useGetPrivateNetworks, networks } = vi.hoisted(() => ({
-  useGetPrivateNetworks: vi.fn(),
+const { usePrivateNetworks, networks } = vi.hoisted(() => ({
+  usePrivateNetworks: vi.fn(),
   networks: [
     {
       id: '123',
@@ -27,12 +27,12 @@ vi.mock('@ovh-ux/manager-pci-common', () => ({
 }));
 
 vi.mock('@/data/hooks/networks/useNetworks', () => ({
-  useGetPrivateNetworks,
+  usePrivateNetworks,
 }));
 
 describe('useDefaultVlanID', () => {
   it('should return 1 as default vlanId and all ids are yet available when there is no private networks', () => {
-    useGetPrivateNetworks.mockReturnValue({ data: [] });
+    usePrivateNetworks.mockReturnValue({ data: [] });
 
     const { result } = renderHook(() => useDefaultVlanID());
 
@@ -40,7 +40,7 @@ describe('useDefaultVlanID', () => {
   });
 
   it('should return the smallest id not yet allocated and all not available ids', () => {
-    useGetPrivateNetworks.mockReturnValue({ data: networks });
+    usePrivateNetworks.mockReturnValue({ data: networks });
 
     const { result } = renderHook(() => useDefaultVlanID());
 

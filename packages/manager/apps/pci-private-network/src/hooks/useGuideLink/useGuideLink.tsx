@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useMemo } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { GUIDE_LINKS } from './useGuideLink.constant';
@@ -11,8 +11,8 @@ type GetGuideLinkProps = {
 function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
   return Object.entries(GUIDE_LINKS).reduce(
     (result, [key, value]) => ({
-      [key]: value[subsidiary] ?? value.DEFAULT,
       ...result,
+      [key]: value[subsidiary] ?? value.DEFAULT,
     }),
     {} as { [guideName: string]: string },
   );
@@ -24,14 +24,12 @@ export type UseGuideLinkProps = {
 
 export default function useGuideLink() {
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
-  const [links, setLinks] = useState<UseGuideLinkProps>({});
 
-  useEffect(() => {
-    const guides = getGuideListLink({
-      subsidiary: ovhSubsidiary as OvhSubsidiary,
-    });
-    setLinks(guides);
-  }, [ovhSubsidiary]);
-
-  return links;
+  return useMemo(
+    () =>
+      getGuideListLink({
+        subsidiary: ovhSubsidiary as OvhSubsidiary,
+      }),
+    [ovhSubsidiary],
+  );
 }
