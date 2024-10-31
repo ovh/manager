@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.8.0-alpha.0...@ovh-ux/manager-pci-common@0.8.0-alpha.1) (2024-10-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3452] ([2c7c328](https://github.com/ovh/manager/commit/2c7c32855c2fd23351552620fe9ab8b540368224))
+
+
+
+
+
 # [0.8.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.7.6...@ovh-ux/manager-pci-common@0.8.0-alpha.0) (2024-10-30)
 
 

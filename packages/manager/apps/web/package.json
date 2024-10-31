@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "18.41.1-alpha.0",
+  "version": "18.41.1-alpha.1",
   "private": true,
   "description": "OVHcloud Web control panel.",
   "repository": {
@@ -41,7 +41,7 @@
     "@ovh-ux/ng-ovh-actions-menu": "^5.1.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-chart": "^1.2.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.14.2",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.15.0",
     "@ovh-ux/ng-ovh-contracts": "^4.6.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.1.1",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.2",

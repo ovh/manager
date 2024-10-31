@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hpc-vmware-managed-vcd-app",
-  "version": "0.1.4-alpha.0",
+  "version": "0.1.4-alpha.1",
   "private": true,
   "description": "New managed VMware Cloud Director offers",
   "repository": {

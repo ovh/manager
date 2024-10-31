@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.2.4...@ovh-ux/ng-ovh-contact@5.2.5) (2024-10-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3452] ([2c7c328](https://github.com/ovh/manager/commit/2c7c32855c2fd23351552620fe9ab8b540368224))
+
+
+
+
+
 ## [5.2.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.2.3...@ovh-ux/ng-ovh-contact@5.2.4) (2024-10-24)
 
 

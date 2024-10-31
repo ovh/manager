@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.12.2...@ovh-ux/manager-iam@1.13.0) (2024-10-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 113] ([87a54f0](https://github.com/ovh/manager/commit/87a54f06ac732ca94a90c7f2bf45233f6588b9f1))
+
+
+### Features
+
+* **hycu:** add translation for HYCU product ([edb1485](https://github.com/ovh/manager/commit/edb14853deb575173de4011b48f4dc83eda6a1d3))
+
+
+
+
+
 ## [1.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.12.1...@ovh-ux/manager-iam@1.12.2) (2024-10-24)
 
 
