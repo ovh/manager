@@ -1,0 +1,6 @@
+{
+  "pci_instances_delete_instance_title": "Supprimer une instance",
+  "pci_instances_delete_instance_confirmation_message": "Êtes-vous sûr de vouloir supprimer l'instance {{ name }} ?",
+  "pci_instances_delete_instance_error_message": "Une erreur est survenue lors de la suppression de l'instance {{ name }}.",
+  "pci_instances_delete_instance_success_message": "L'instance {{ name }} a bien été supprimée."
+}
