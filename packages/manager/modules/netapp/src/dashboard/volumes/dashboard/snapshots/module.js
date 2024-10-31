@@ -14,6 +14,7 @@ import addModule from './add';
 import restoreModule from './restore';
 import editModule from './edit';
 import deleteModule from './delete';
+import service from './service';
 
 const moduleName = 'ovhManagerNetAppVolumesDashboardSnapshots';
 
@@ -33,6 +34,7 @@ angular
   ])
   .config(routing)
   .component('ovhManagerNetAppVolumesDashboardSnapshots', component)
+  .service('NetAppSnapshotService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

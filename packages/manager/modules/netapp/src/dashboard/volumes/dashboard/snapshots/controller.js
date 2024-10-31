@@ -2,10 +2,13 @@ import { MAXIMUM_SNAPSHOT_ALLOWED, SNAPSHOT_TYPE } from './constants';
 
 export default class NetAppVolumesDashboardSnapshotsController {
   /* @ngInject */
-  constructor(Alerter, $translate) {
+  constructor(Alerter, $translate, NetAppSnapshotService) {
     this.Alerter = Alerter;
     this.$translate = $translate;
     this.MAXIMUM_SNAPSHOT_ALLOWED = MAXIMUM_SNAPSHOT_ALLOWED;
+    this.SNAPSHOT_TYPE = SNAPSHOT_TYPE;
+    this.NetAppSnapshotService = NetAppSnapshotService;
+    this.loadingSnapshotHold = false;
   }
 
   $onInit() {
@@ -36,5 +39,40 @@ export default class NetAppVolumesDashboardSnapshotsController {
           )} ${error.message}`,
         ),
       );
+  }
+
+  holdSnapshot(snapshotId) {
+    this.trackClick('hold');
+    this.loadingSnapshotHold = true;
+    this.Alerter.set(
+      'alert-info',
+      this.$translate.instant('netapp_volumes_snapshots_hold_action_doing'),
+    );
+    this.NetAppSnapshotService.holdSnapshot(
+      this.serviceName,
+      this.volumeId,
+      snapshotId,
+    )
+      .then(() =>
+        this.goToSnapshots(
+          this.$translate.instant(
+            'netapp_volumes_snapshots_hold_action_success',
+          ),
+        ),
+      )
+      .catch((error) =>
+        this.Alerter.error(
+          this.$translate.instant(
+            'netapp_volumes_snapshots_hold_action_error',
+            {
+              message: error.data?.message,
+              requestId: error.headers?.('X-Ovh-Queryid') || null,
+            },
+          ),
+        ),
+      )
+      .finally(() => {
+        this.loadingSnapshotHold = false;
+      });
   }
 }

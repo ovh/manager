@@ -3,10 +3,10 @@ import { SNAPSHOT_STATUS } from './constants';
 
 export default class NetAppVolumesDashboardSnapshotsRestoreController {
   /* @ngInject */
-  constructor($translate, NetAppRestoreVolumeService, coreConfig) {
+  constructor($translate, NetAppSnapshotService, coreConfig) {
     this.$translate = $translate;
     this.language = coreConfig.getUserLocale().replace('_', '-');
-    this.NetAppRestoreVolumeService = NetAppRestoreVolumeService;
+    this.NetAppSnapshotService = NetAppSnapshotService;
   }
 
   $onInit() {
@@ -42,7 +42,7 @@ export default class NetAppVolumesDashboardSnapshotsRestoreController {
   restoreVolume() {
     this.isLoading = true;
     this.trackClick('restore::confirm');
-    this.NetAppRestoreVolumeService.restoreVolume(
+    this.NetAppSnapshotService.restoreVolume(
       this.serviceName,
       this.volumeId,
       this.snapshotToRevertTo,
