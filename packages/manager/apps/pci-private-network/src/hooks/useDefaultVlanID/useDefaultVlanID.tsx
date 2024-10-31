@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { VLAN_ID } from '@/pages/new/new.constants';
-import { useGetPrivateNetworks } from '@/data/hooks/networks/useNetworks';
+import { usePrivateNetworks } from '@/data/hooks/networks/useNetworks';
 import { getNextAvailableVlanId } from '@/utils/utils';
 
 type GetDefaultVlanId = {
@@ -10,19 +10,14 @@ type GetDefaultVlanId = {
 };
 
 export default function useDefaultVlanID(): GetDefaultVlanId {
-  const [defaultVlanId, setDefaultVlanId] = useState<number>(VLAN_ID.default);
-  const [notAvailableIds, setNotAvailableIds] = useState<number[]>([]);
   const { data: project } = useProject();
-  const { data: networks } = useGetPrivateNetworks(project.project_id);
+  const { data: networks } = usePrivateNetworks(project.project_id);
 
-  useEffect(() => {
+  return useMemo(() => {
     const ids = networks?.map((network) => network.vlanId);
-    const vlanIds = ids?.filter((id) => !!id);
-    const id = getNextAvailableVlanId(vlanIds);
+    const vlanIds = ids?.filter((id) => !!id) || [];
+    const id = getNextAvailableVlanId(vlanIds) || VLAN_ID.default;
 
-    setNotAvailableIds(vlanIds);
-    setDefaultVlanId(id);
+    return { defaultVlanId: id, notAvailableIds: vlanIds };
   }, [networks]);
-
-  return { defaultVlanId, notAvailableIds };
 }

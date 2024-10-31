@@ -115,7 +115,7 @@ const PrivateNetworkConfig: React.FC = () => {
               const value = event.detail.checked;
 
               if (!value) {
-                unregister('vlanId'); // customer does'nt want to define it then reset to default
+                unregister('vlanId'); // customer doesn't want to define it then reset to default
               } else {
                 setValue('vlanId', defaultVlanId);
               }
