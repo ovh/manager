@@ -10,5 +10,6 @@
   "pci_instances_list_inconsistency_message": "Toutes les données n'ont pas pu être chargées. Notre équipe technique est informée et travaille à résoudre le problème.",
   "pci_instances_list_unknown_error_message1": "Nous n'avons pas pu récupérer la liste de vos instances. Veuillez cliquer sur le bouton <Link>'Rafraîchir'</Link> pour essayer à nouveau.",
   "pci_instances_list_unknown_error_message2": "Nos équipes techniques ont été notifiées de ce problème et travaillent à sa résolution.",
-  "pci_instances_list_action_instance_details": "Détails de l'instance"
+  "pci_instances_list_action_instance_details": "Détails de l'instance",
+  "pci_instances_list_action_delete_instance": "Supprimer"
 }
