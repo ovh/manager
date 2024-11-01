@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import { useUpdateVcdOrganizationDetails } from '@/data/hooks/useUpdateVcdOrganization';
 import { IVcdOrganizationState } from '@/types/vcd-organization.interface';
@@ -10,6 +9,8 @@ import {
   validateOrganizationName,
 } from '@/utils/formValidation';
 import { EditDetailModal } from './EditDetailModal';
+import { useMessageContext } from '@/context/Message.context';
+import { subRoutes } from '@/routes/routes.constant';
 
 type OrganizationDetailName = 'name' | 'description';
 type TValidationFunctions = {
@@ -27,16 +28,18 @@ export const UpdateDetailModalHandler = ({
   const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
-  const { addSuccess } = useNotifications();
+  const { addSuccess } = useMessageContext();
   const { id } = useParams();
   const { data: vcdOrganization } = useManagedVcdOrganization({ id });
   const { updateDetails, error, isError } = useUpdateVcdOrganizationDetails({
     id,
     onSuccess: () => {
-      addSuccess(
-        t(`managed_vcd_dashboard_edit_${detailName}_modal_success`),
-        true,
-      );
+      addSuccess({
+        content: t(`managed_vcd_dashboard_edit_${detailName}_modal_success`),
+        dismissable: true,
+        includedSubRoutes: [id],
+        excludedSubRoutes: [subRoutes.datacentres],
+      });
       closeModal();
     },
   });

@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { odsSetup } from '@ovhcloud/ods-common-core';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import { Routes } from './routes/routes';
+import { MessageContextProvider } from './context/Message.context';
 
 odsSetup();
 
@@ -20,7 +21,9 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <MessageContextProvider>
+        <RouterProvider router={router} />
+      </MessageContextProvider>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );
