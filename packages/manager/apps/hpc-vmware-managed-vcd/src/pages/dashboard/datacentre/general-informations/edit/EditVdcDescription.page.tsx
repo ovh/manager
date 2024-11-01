@@ -1,28 +1,31 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useManagedVcdDatacentre } from '@/data/hooks/useManagedVcdDatacentres';
 import { useUpdateVdcDetails } from '@/data/hooks/useUpdateVcdDatacentre';
 import { validateDescription } from '@/utils/formValidation';
 import { IVcdDatacentreState } from '@/types/vcd-datacenter.interface';
 import { EditDetailModal } from '@/components/modal/EditDetailModal';
+import { useMessageContext } from '@/context/Message.context';
+import { subRoutes } from '@/routes/routes.constant';
 
 export default function EditVdcDescription() {
   const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
-  const { addSuccess } = useNotifications();
+  const { addSuccess } = useMessageContext();
   const { id, vdcId } = useParams();
   const { data: vcdDatacentre } = useManagedVcdDatacentre(id, vdcId);
   const { updateDetails, error, isError } = useUpdateVdcDetails({
     id,
     vdcId,
     onSuccess: () => {
-      addSuccess(
-        t('managed_vcd_dashboard_edit_description_modal_success'),
-        true,
-      );
+      addSuccess({
+        content: t('managed_vcd_dashboard_edit_description_modal_success'),
+        dismissable: true,
+        includedSubRoutes: [id],
+        excludedSubRoutes: [subRoutes.datacentres],
+      });
       closeModal();
     },
   });
