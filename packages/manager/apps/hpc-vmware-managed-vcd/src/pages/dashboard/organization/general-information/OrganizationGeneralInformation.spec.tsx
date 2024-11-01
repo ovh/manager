@@ -4,9 +4,11 @@ import {
   renderTest,
   labels,
   checkModalVisibility,
+  waitForEnabledElement,
   mockSubmitNewValue,
   checkModalError,
   DEFAULT_TIMEOUT,
+  checkTextVisibility,
 } from '../../../../test-utils';
 import { organizationList } from '../../../../../mocks/vcd-organization/vcd-organization.mock';
 
@@ -19,21 +21,15 @@ describe('Organization General Information Page', () => {
       initialRoute: `/${organizationList[1].id}`,
     });
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.dashboard.managed_vcd_dashboard_data_protection,
-          ),
-        ).toBeVisible(),
-      { timeout: DEFAULT_TIMEOUT },
+    await checkTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_data_protection,
     );
 
     let editButton;
     await waitFor(
       () => {
         editButton = screen.getAllByTestId('editIcon').at(0);
-        return expect(editButton).not.toHaveAttribute('disabled');
+        return expect(editButton).toBeEnabled();
       },
       { timeout: DEFAULT_TIMEOUT },
     );
@@ -44,12 +40,9 @@ describe('Organization General Information Page', () => {
     await mockSubmitNewValue({ submitButtonLabel });
 
     await checkModalVisibility({ container, isVisible: false });
-
-    expect(
-      screen.queryByText(
-        labels.dashboard.managed_vcd_dashboard_edit_name_modal_success,
-      ),
-    ).toBeVisible();
+    await checkTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_edit_name_modal_success,
+    );
   });
 
   it('trying to update name displays an error if update organization service is KO', async () => {
@@ -71,21 +64,15 @@ describe('Organization General Information Page', () => {
       initialRoute: `/${organizationList[1].id}`,
     });
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.dashboard.managed_vcd_dashboard_data_protection,
-          ),
-        ).toBeVisible(),
-      { timeout: DEFAULT_TIMEOUT },
+    await checkTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_data_protection,
     );
 
     let editButton;
     await waitFor(
       () => {
         editButton = screen.getAllByTestId('editIcon').at(1);
-        return expect(editButton).not.toHaveAttribute('disabled');
+        return expect(editButton).toBeEnabled();
       },
       { timeout: DEFAULT_TIMEOUT },
     );
@@ -96,12 +83,9 @@ describe('Organization General Information Page', () => {
     await mockSubmitNewValue({ submitButtonLabel });
 
     await checkModalVisibility({ container, isVisible: false });
-
-    expect(
-      screen.queryByText(
-        labels.dashboard.managed_vcd_dashboard_edit_description_modal_success,
-      ),
-    ).toBeVisible();
+    await checkTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_edit_description_modal_success,
+    );
   });
 
   it('trying to update description displays an error if update organization service is KO', async () => {
@@ -116,5 +100,51 @@ describe('Organization General Information Page', () => {
 
     await checkModalVisibility({ container, isVisible: true });
     await checkModalError({ container, error: 'Organization update error' });
+  });
+
+  it('resets the password of the organization', async () => {
+    const { container } = await renderTest({
+      initialRoute: `/${organizationList[1].id}`,
+    });
+
+    await checkTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_password_renew,
+    );
+
+    const resetPasswordLink = await waitForEnabledElement(
+      labels.dashboard.managed_vcd_dashboard_password_renew,
+    );
+    await waitFor(() => userEvents.click(resetPasswordLink));
+
+    await checkModalVisibility({ container, isVisible: true });
+
+    const validateButton = await waitForEnabledElement(
+      labels.dashboard.managed_vcd_dashboard_edit_modal_cta_validate,
+    );
+    await waitFor(() => userEvents.click(validateButton));
+
+    await checkModalVisibility({ container, isVisible: false });
+    await checkTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_password_renew_success,
+    );
+  });
+
+  it('trying to reset password displays an error if reset password service is KO', async () => {
+    const { container } = await renderTest({
+      initialRoute: `/${organizationList[0].id}/reset-password`,
+      isOrganizationResetPasswordKo: true,
+    });
+
+    await checkModalVisibility({ container, isVisible: true });
+
+    const validateButton = await waitForEnabledElement(
+      labels.dashboard.managed_vcd_dashboard_edit_modal_cta_validate,
+    );
+    await waitFor(() => userEvents.click(validateButton));
+
+    await checkModalVisibility({ container, isVisible: false });
+    await checkTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_password_renew_error,
+    );
   });
 });
