@@ -116,6 +116,7 @@ export default class ServicesActionsCtrl {
         break;
       case SERVICE_TYPE.OKMS:
       case SERVICE_TYPE.VRACK_SERVICES:
+      case SERVICE_TYPE.LICENSE_HYCU:
         this.resiliateLink = `${this.autorenewLink}/terminate-service?id=${this.service.id}${serviceTypeParam}`;
         break;
       default:
