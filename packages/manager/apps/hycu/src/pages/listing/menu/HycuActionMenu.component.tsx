@@ -1,4 +1,8 @@
-import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+import {
+  ActionMenu,
+  ActionMenuItem,
+  useServiceDetails,
+} from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
@@ -14,6 +18,9 @@ const HycuActionMenu = ({ serviceName }: Pick<IHycuDetails, 'serviceName'>) => {
     navigate(
       urls.listing_terminate.replace(subRoutes.serviceName, serviceName),
     );
+  const { data: serviceDetails } = useServiceDetails({
+    resourceName: serviceName,
+  });
 
   const items: ActionMenuItem[] = [
     {
@@ -21,6 +28,8 @@ const HycuActionMenu = ({ serviceName }: Pick<IHycuDetails, 'serviceName'>) => {
       label: t('hycu_service_listing_terminate'),
       color: ODS_THEME_COLOR_INTENT.error,
       onClick: openTerminateModal,
+      disabled:
+        serviceDetails?.data.resource.state === 'suspended' || undefined,
     },
   ];
 

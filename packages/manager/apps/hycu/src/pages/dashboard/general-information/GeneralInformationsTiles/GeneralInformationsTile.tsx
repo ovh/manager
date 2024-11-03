@@ -8,7 +8,6 @@ import {
   OsdsIcon,
   OsdsButton,
   OsdsSkeleton,
-  OsdsLink,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
@@ -99,10 +98,14 @@ const GeneralInformationsTile = ({ serviceName }: { serviceName: string }) => {
               </Description>
 
               <OsdsButton
+                disabled={
+                  serviceDetails?.data.resource.state === 'suspended' ||
+                  undefined
+                }
                 data-testid="edit-hycu-displayname-action"
                 className="min-w-10"
                 circle
-                variant={ODS_BUTTON_VARIANT.stroked}
+                variant={ODS_BUTTON_VARIANT.ghost}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 size={ODS_BUTTON_SIZE.sm}
                 onClick={openEditNameModal}

@@ -1,7 +1,10 @@
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { DashboardTile } from '@ovh-ux/manager-react-components';
+import {
+  DashboardTile,
+  useServiceDetails,
+} from '@ovh-ux/manager-react-components';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -30,55 +33,71 @@ const ShortcutsItem = ({ children, ...rest }: ManagerLinkProps) => (
 const ShortcutsTile = ({ serviceName }: { serviceName: string }) => {
   const navigate = useNavigate();
   const { data: hycuDetail } = useDetailsLicenseHYCU(serviceName);
+  const { data: serviceDetails } = useServiceDetails({
+    resourceName: serviceName,
+  });
   const { t } = useTranslation('hycu/dashboard');
 
-  const links = {
-    linkActivated: {
-      id: 'link_activated',
-      value: (
-        <ShortcutsItem
-          iamActions={[IAM_ACTIONS.licenseHycuApiOvhActivate]}
-          urn={hycuDetail?.data?.iam?.urn}
-          data-testid="hycu_link_activated_test_id"
-          onClick={() => {
-            navigate(
-              urls.activateLicense.replace(subRoutes.serviceName, serviceName),
-            );
-          }}
-        >
-          {t('hycu_dashboard_link_activate')}
-        </ShortcutsItem>
-      ),
-    },
-    linkReactivated: {
-      id: 'link_regenerate',
-      value: (
-        <ShortcutsItem
-          iamActions={[IAM_ACTIONS.licenseHycuApiOvhRefresh]}
-          urn={hycuDetail?.data?.iam?.urn}
-          data-testid="hycu_link_regenerate_test_id"
-          onClick={() => {
-            navigate(
-              urls.regenerateLicense.replace(
-                subRoutes.serviceName,
-                serviceName,
-              ),
-            );
-          }}
-        >
-          {t('hycu_dashboard_link_regenerate')}
-        </ShortcutsItem>
-      ),
-    },
-    linkChangePackType: {
-      id: 'link_change_pack_type',
-      value: (
-        <ShortcutsItem>
-          {t('hycu_dashboard_link_change_pack_type')}
-        </ShortcutsItem>
-      ),
-    },
-  } as const;
+  const isServiceSuspended = useMemo(
+    () => serviceDetails?.data.resource.state === 'suspended',
+    [serviceDetails],
+  );
+
+  const links = useMemo(
+    () => ({
+      linkActivated: {
+        id: 'link_activated',
+        value: (
+          <ShortcutsItem
+            disabled={isServiceSuspended}
+            iamActions={[IAM_ACTIONS.licenseHycuApiOvhActivate]}
+            urn={hycuDetail?.data?.iam?.urn}
+            data-testid="hycu_link_activated_test_id"
+            onClick={() => {
+              navigate(
+                urls.activateLicense.replace(
+                  subRoutes.serviceName,
+                  serviceName,
+                ),
+              );
+            }}
+          >
+            {t('hycu_dashboard_link_activate')}
+          </ShortcutsItem>
+        ),
+      },
+      linkReactivated: {
+        id: 'link_regenerate',
+        value: (
+          <ShortcutsItem
+            disabled={isServiceSuspended}
+            iamActions={[IAM_ACTIONS.licenseHycuApiOvhRefresh]}
+            urn={hycuDetail?.data?.iam?.urn}
+            data-testid="hycu_link_regenerate_test_id"
+            onClick={() => {
+              navigate(
+                urls.regenerateLicense.replace(
+                  subRoutes.serviceName,
+                  serviceName,
+                ),
+              );
+            }}
+          >
+            {t('hycu_dashboard_link_regenerate')}
+          </ShortcutsItem>
+        ),
+      },
+      linkChangePackType: {
+        id: 'link_change_pack_type',
+        value: (
+          <ShortcutsItem disabled={isServiceSuspended}>
+            {t('hycu_dashboard_link_change_pack_type')}
+          </ShortcutsItem>
+        ),
+      },
+    }),
+    [isServiceSuspended, hycuDetail],
+  );
 
   return (
     <DashboardTile

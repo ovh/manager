@@ -47,5 +47,6 @@
   "hycu_dashboard_update_display_name_pattern_message": "Veuillez utiliser uniquement des lettres sans accent et les caractères spéciaux suivants : ! @ # $ % ^ & * ( ) - _ + = [ ] { } ; : , . ? (limité à 36 caractères).",
   "hycu_dashboard_update_display_name_success": "La description a été modifiée avec succès.",
   "hycu_dashboard_edit_modal_error": "Une erreur est survenue: {{error}}.",
-  "hycu_dashboard_error_license_message": "Une erreur est survenue lors de l'activation de votre licence ({{error}}). Nous vous invitons à vérifier les informations fournies et à réaliser une nouvelle tentative. Si le problème persiste, veuillez contacter notre support."
+  "hycu_dashboard_error_license_message": "Une erreur est survenue lors de l'activation de votre licence ({{error}}). Nous vous invitons à vérifier les informations fournies et à réaliser une nouvelle tentative. Si le problème persiste, veuillez contacter notre support.",
+  "hycu_dashboard_warning_license_suspended_message": "Le service a été résilié."
 }

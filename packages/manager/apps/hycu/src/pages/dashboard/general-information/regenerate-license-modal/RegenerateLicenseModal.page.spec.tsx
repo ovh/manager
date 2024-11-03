@@ -47,7 +47,7 @@ describe('License Hycu regenerate license route test suite', () => {
     await renderTestApp(`/${licensesHycu[0].serviceName}/regenerate-license`, {
       getServicesKo: true,
       isGetLicenseHycuKo: true,
-      isGetServiceLicenseHycuKo: true,
+      getDetailsServicesKo: true,
     });
 
     await waitFor(() => expect(screen.getByAltText('OOPS')).toBeVisible(), {
