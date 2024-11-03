@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useEffect, useMemo } from 'react';
-import { FLOATING_IP_TYPE, NETWORK_PRIVATE_VISIBILITY } from '@/constants';
+import { FLOATING_IP_TYPE } from '@/constants';
 import { useCreateStore } from '@/pages/create/store';
 import {
   useGetPrivateNetworkSubnets,
@@ -18,8 +18,8 @@ import {
 } from '@/api/hook/useNetwork';
 import { useGetFloatingIps } from '@/api/hook/useFloatingIps';
 import { useGetSubnetGateways } from '@/api/hook/useGateways';
-import { SizeStep } from '@/pages/create/steps/SizeStep';
-import { RegionStep } from '@/pages/create/steps/RegionStep';
+import { SizeStep } from '@/pages/create/steps/size/SizeStep';
+import { RegionStep } from '@/pages/create/steps/region/RegionStep';
 import { IpStep } from '@/pages/create/steps/IpStep';
 import { NetworkStep } from '@/pages/create/steps/NetworkStep';
 import { InstanceStep } from '@/pages/create/steps/InstanceStep';
@@ -38,11 +38,11 @@ export default function CreatePage(): JSX.Element {
   const store = useCreateStore();
 
   const { data: project } = useProject();
-  const { data: privateNetworks } = useGetRegionPrivateNetworks(
+  const { list: privateNetworksList } = useGetRegionPrivateNetworks(
     projectId,
     store.region?.name,
   );
-  const { data: floatingIps } = useGetFloatingIps(
+  const { list: floatingIpsList } = useGetFloatingIps(
     projectId,
     store.region?.name,
   );
@@ -58,54 +58,14 @@ export default function CreatePage(): JSX.Element {
     store.subnet?.id,
   );
 
-  const [floatingIpsList, privateNetworksList, subnetsList] = [
-    useMemo(
-      () => [
-        {
-          associatedEntity: null,
-          id: 'create',
-          ip: tCreate(
-            'octavia_load_balancer_create_floating_ip_field_new_floating_ip',
-          ),
-          networkId: '',
-          status: '',
-          type: FLOATING_IP_TYPE.CREATE,
-        },
-        {
-          associatedEntity: null,
-          id: 'none',
-          ip: tCreate(
-            'octavia_load_balancer_create_floating_ip_field_no_floating_ip',
-          ),
-          networkId: '',
-          status: '',
-          type: FLOATING_IP_TYPE.NO_IP,
-        },
-        ...(floatingIps || [])
-          .filter((ip) => !ip.associatedEntity)
-          .map((ip) => ({
-            ...ip,
-            type: FLOATING_IP_TYPE.IP,
-          })),
-      ],
-      [floatingIps],
-    ),
-    useMemo(
-      () =>
-        (privateNetworks || []).filter(
-          (network) => network.visibility === NETWORK_PRIVATE_VISIBILITY,
-        ),
-      [privateNetworks],
-    ),
-    useMemo(() => {
-      if (!subnets) {
-        return [];
-      }
-      return store.publicIp?.type !== FLOATING_IP_TYPE.NO_IP
-        ? subnets.filter((subnet) => subnet.gatewayIp)
-        : subnets;
-    }, [subnets, store.publicIp]),
-  ];
+  const subnetsList = useMemo(() => {
+    if (!subnets) {
+      return [];
+    }
+    return store.publicIp?.type !== FLOATING_IP_TYPE.NO_IP
+      ? subnets.filter((subnet) => subnet.gatewayIp)
+      : subnets;
+  }, [subnets, store.publicIp]);
 
   useEffect(() => {
     store.reset();

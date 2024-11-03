@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
 import {
   getPrivateNetworkByRegion,
   getPrivateNetworks,
@@ -6,6 +7,7 @@ import {
   getRegionPrivateNetworks,
   getSubnetByNetworkAndRegion,
 } from '../data/network';
+import { NETWORK_PRIVATE_VISIBILITY } from '@/constants';
 
 export const usePrivateNetworkByRegion = ({
   projectId,
@@ -81,10 +83,24 @@ export const useGetPrivateNetworkSubnets = (
 export const useGetRegionPrivateNetworks = (
   projectId: string,
   region: string,
-) =>
-  useQuery({
+) => {
+  const query = useQuery({
     queryKey: ['project', projectId, 'region', region, 'networks'],
     queryFn: () => getRegionPrivateNetworks(projectId, region),
     enabled: !!projectId && !!region,
     throwOnError: true,
   });
+
+  const list = useMemo(
+    () =>
+      (query.data || []).filter(
+        (network) => network.visibility === NETWORK_PRIVATE_VISIBILITY,
+      ),
+    [query.data],
+  );
+
+  return {
+    ...query,
+    list,
+  };
+};

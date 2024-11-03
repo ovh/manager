@@ -8,7 +8,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepComponent, useMe } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { PRODUCT_LINK } from '@/constants';
-import SizeInputComponent from '@/pages/create/SizeInput.component';
+import SizeInputComponent from './input/SizeInput.component';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
 import { useGetAddons } from '@/api/hook/useAddons';
