@@ -20,16 +20,17 @@ export const ManagerLink = ({
   urn,
   displayTooltip = true,
   isIamTrigger = true,
+  disabled,
   ...restProps
 }: ManagerLinkProps) => {
   const { t } = useTranslation('hycu');
   const { isAuthorized } = useAuthorizationIam(iamActions, urn, isIamTrigger);
 
-  if (isAuthorized || iamActions === undefined) {
+  if (!disabled && (isAuthorized || iamActions === undefined)) {
     return <OsdsLink {...restProps}>{children}</OsdsLink>;
   }
 
-  return !displayTooltip ? (
+  return !displayTooltip || disabled ? (
     <OsdsLink {...restProps} disabled onClick={null}>
       {children}
     </OsdsLink>
