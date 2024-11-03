@@ -30,9 +30,9 @@ export default function EditHycuDisplayNameModal() {
       headline={t('hycu_dashboard_update_display_name_modal_headline')}
       inputLabel={t('hycu_dashboard_update_display_name_input_label')}
       description={t('hycu_dashboard_update_display_name_description')}
-      resourceName={serviceDetails?.data?.resource?.displayName}
+      resourceName={serviceName}
       isLoading={isLoading}
-      pattern="^(\S| |\-){0,32}$"
+      pattern="^[\x00-\x7F]{1,36}$"
       patternMessage={t('hycu_dashboard_update_display_name_pattern_message')}
       onSuccess={() => {
         addSuccess(
