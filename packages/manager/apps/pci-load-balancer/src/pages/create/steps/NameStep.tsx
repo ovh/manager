@@ -129,12 +129,13 @@ export const NameStep = (): JSX.Element => {
         className="mt-8 w-[20rem]"
         inline
         error={(() => {
-          if (store.name.length && !store.name.match(LOAD_BALANCER_NAME_REGEX))
-            return tCommon('common_field_error_pattern');
           if (store.name.length > 70)
             return tCommon('common_field_error_maxlength', {
               maxlength: 70,
             });
+          if (store.name.length && !store.name.match(LOAD_BALANCER_NAME_REGEX))
+            return tCommon('common_field_error_pattern');
+
           return '';
         })()}
       >
