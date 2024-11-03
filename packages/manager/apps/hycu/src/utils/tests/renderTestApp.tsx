@@ -20,10 +20,9 @@ import {
   getCatalogHycuMocks,
   getLicenseHycuMocks,
   GetLicenseHycuMocksParams,
-  getServiceLicenseHycuMocks,
-  GetServiceLicenseHycuMocksParams,
 } from '@/mocks';
 import { getIamMocks } from '@/mocks/iam/iam.handler';
+import { licensesHycuService } from '@/mocks/serviceLicenseHycu/serviceLicenseHycu.data';
 
 let context: ShellContextType;
 let i18nValue: i18n;
@@ -32,17 +31,17 @@ export const renderTestApp = async (
   initialRoute = '/',
   mockParams: GetServicesMocksParams &
     GetLicenseHycuMocksParams &
-    GetServicesMocksParams &
-    CatalogHycuMocksParams &
-    GetServiceLicenseHycuMocksParams = {},
+    CatalogHycuMocksParams = {},
 ) => {
   global.server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),
       ...getIamMocks(),
       ...getLicenseHycuMocks(mockParams),
-      ...getServiceLicenseHycuMocks(mockParams),
-      ...getServicesMocks(mockParams),
+      ...getServicesMocks({
+        ...mockParams,
+        serviceResponse: mockParams.serviceResponse ?? licensesHycuService,
+      }),
       ...getCatalogHycuMocks(mockParams),
     ]),
   );

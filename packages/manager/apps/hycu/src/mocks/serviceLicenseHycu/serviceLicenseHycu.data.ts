@@ -1,4 +1,4 @@
-import { CurrencyCode, ServiceDetails } from '@ovh-ux/manager-react-components';
+import { ServiceDetails, CurrencyCode } from '@ovh-ux/manager-react-components';
 
 export const licensesHycuService: ServiceDetails = {
   route: {
