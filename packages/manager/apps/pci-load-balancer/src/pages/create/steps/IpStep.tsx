@@ -21,9 +21,8 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { useMemo } from 'react';
 import { useCatalog } from '@ovh-ux/manager-pci-common';
-import { AGORA_FLOATING_IP_REGEX, FLOATING_IP_TYPE } from '@/constants';
+import { AGORA_FLOATING_IP_REGEX } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
 import { useGetFloatingIps } from '@/api/hook/useFloatingIps';
@@ -40,42 +39,10 @@ export const IpStep = (): JSX.Element => {
   const store = useCreateStore();
 
   const {
-    data: floatingIps,
+    list: floatingIpsList,
     isPending: isFloatingIpsPending,
   } = useGetFloatingIps(projectId, store.region?.name);
   const { data: catalog } = useCatalog();
-
-  const floatingIpsList = useMemo(
-    () => [
-      {
-        associatedEntity: null,
-        id: 'create',
-        ip: tCreate(
-          'octavia_load_balancer_create_floating_ip_field_new_floating_ip',
-        ),
-        networkId: '',
-        status: '',
-        type: FLOATING_IP_TYPE.CREATE,
-      },
-      {
-        associatedEntity: null,
-        id: 'none',
-        ip: tCreate(
-          'octavia_load_balancer_create_floating_ip_field_no_floating_ip',
-        ),
-        networkId: '',
-        status: '',
-        type: FLOATING_IP_TYPE.NO_IP,
-      },
-      ...(floatingIps || [])
-        .filter((ip) => !ip.associatedEntity)
-        .map((ip) => ({
-          ...ip,
-          type: FLOATING_IP_TYPE.IP,
-        })),
-    ],
-    [floatingIps],
-  );
 
   return (
     <StepComponent
