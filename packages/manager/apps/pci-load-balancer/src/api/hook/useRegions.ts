@@ -40,7 +40,7 @@ export const useGetRegions = (
 
   return {
     data: useMemo(() => {
-      const regions = new Map();
+      const regions: Map<string, TRegion[]> = new Map();
       if (plansResponse && networks) {
         plansResponse?.plans.forEach((plan) => {
           const match = plan.code.match(SIZE_FLAVOUR_REGEX);
