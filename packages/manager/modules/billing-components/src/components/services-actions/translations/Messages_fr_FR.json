@@ -15,6 +15,7 @@
   "billing_services_actions_menu_resiliate_HOSTING_WEB": "Supprimer immédiatement l'hébergement",
   "billing_services_actions_menu_resiliate_HOSTING_PRIVATE_DATABASE": "Supprimer mon hébergement SQL privé",
   "billing_services_actions_menu_resiliate_WEBCOACH": "Supprimer mon WebCoach",
+  "billing_services_actions_menu_resiliate_LICENSE_HYCU": "Supprimer ma license Hycu",
   "billing_services_actions_menu_sms_credit": "Ajouter des crédits",
   "billing_services_actions_menu_sms_renew": "Configurer la recharge automatique",
   "billing_services_actions_menu_resiliate_cancel": "Annuler la résiliation du service",
