@@ -77,6 +77,24 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
           ),
         },
         {
+          id: 'link_terminated',
+          value: (
+            <ManagerLink
+              color={ODS_THEME_COLOR_INTENT.primary}
+              onClick={openTerminateModal}
+              disabled={serviceDetails?.data.resource.state === 'suspended'}
+            >
+              <div className="flex items-center">
+                <div>{t('hycu_dashboard_link_terminate')}</div>
+                <OsdsIcon
+                  name={ODS_ICON_NAME.CHEVRON_RIGHT}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                ></OsdsIcon>
+              </div>
+            </ManagerLink>
+          ),
+        },
+        {
           id: 'contact',
           label: t('hycu_dashboard_field_label_contacts'),
           value: (
@@ -95,23 +113,6 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
                     ))}
               </div>
             </div>
-          ),
-        },
-        {
-          id: 'link_terminated',
-          value: (
-            <ManagerLink
-              color={ODS_THEME_COLOR_INTENT.primary}
-              onClick={openTerminateModal}
-            >
-              <div className="flex items-center">
-                <div>{t('hycu_dashboard_link_terminate')}</div>
-                <OsdsIcon
-                  name={ODS_ICON_NAME.CHEVRON_RIGHT}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                ></OsdsIcon>
-              </div>
-            </ManagerLink>
           ),
         },
       ]}
