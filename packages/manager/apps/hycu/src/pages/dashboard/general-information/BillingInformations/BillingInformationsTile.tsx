@@ -37,15 +37,6 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
     format: DateFormat.display,
   });
 
-  const {
-    data: contactUrl,
-    isLoading: isContactUrlLoading,
-  } = useNavigationGetUrl([
-    'dedicated',
-    '#/contacts/services',
-    { serviceName },
-  ]);
-
   const { data: renewUrl, isLoading: isRenewUrlLoading } = useNavigationGetUrl([
     'dedicated',
     '#/billing/autorenew',
@@ -102,24 +93,6 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
                         `hycu_dashboard_contact_type_${contact.type}`,
                       )}`}</Description>
                     ))}
-              </div>
-
-              <div className="flex flex-row items-center">
-                <OsdsLink
-                  href={(contactUrl as string) ?? '#'}
-                  className={isContactUrlLoading ? 'cursor-wait' : ''}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                >
-                  {t('hycu_dashboard_field_label_manage_contacts')}
-                  <span slot="end">
-                    <OsdsIcon
-                      className="ml-3"
-                      name={ODS_ICON_NAME.ARROW_RIGHT}
-                      size={ODS_ICON_SIZE.xs}
-                      color={ODS_THEME_COLOR_INTENT.info}
-                    ></OsdsIcon>
-                  </span>
-                </OsdsLink>
               </div>
             </div>
           ),
