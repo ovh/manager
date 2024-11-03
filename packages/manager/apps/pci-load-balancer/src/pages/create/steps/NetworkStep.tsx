@@ -18,7 +18,7 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCatalog } from '@ovh-ux/manager-pci-common';
 import {
@@ -48,11 +48,12 @@ export const NetworkStep = (): JSX.Element => {
 
   const {
     data: privateNetworks,
-    isPending: isPrivateNetworksPending,
+    isFetching: isPrivateNetworksPending,
+    list: privateNetworksList,
   } = useGetRegionPrivateNetworks(projectId, store.region?.name);
   const {
-    data: subnets,
     isPending: isSubnetsPending,
+    list: subnetsList,
   } = useGetPrivateNetworkSubnets(
     projectId,
     store.region?.name,
@@ -69,24 +70,6 @@ export const NetworkStep = (): JSX.Element => {
 
   const { trackStep } = useTrackStep();
   const networkTrack = useTranslatedLinkReference();
-
-  const [privateNetworksList, subnetsList] = [
-    useMemo(
-      () =>
-        (privateNetworks || []).filter(
-          (network) => network.visibility === NETWORK_PRIVATE_VISIBILITY,
-        ),
-      [privateNetworks],
-    ),
-    useMemo(() => {
-      if (!subnets) {
-        return [];
-      }
-      return store.publicIp?.type !== FLOATING_IP_TYPE.NO_IP
-        ? subnets.filter((subnet) => subnet.gatewayIp)
-        : subnets;
-    }, [subnets, store.publicIp]),
-  ];
 
   useEffect(() => {
     store.set.subnet(subnetsList.length ? subnetsList[0] : null);
@@ -133,7 +116,6 @@ export const NetworkStep = (): JSX.Element => {
       </OsdsText>
       {isPrivateNetworksPending ? (
         <div>
-          hello
           <OsdsSpinner inline />
         </div>
       ) : (

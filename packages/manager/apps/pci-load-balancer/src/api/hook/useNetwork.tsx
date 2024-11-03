@@ -7,7 +7,8 @@ import {
   getRegionPrivateNetworks,
   getSubnetByNetworkAndRegion,
 } from '../data/network';
-import { NETWORK_PRIVATE_VISIBILITY } from '@/constants';
+import { FLOATING_IP_TYPE, NETWORK_PRIVATE_VISIBILITY } from '@/constants';
+import { useCreateStore } from '@/pages/create/store';
 
 export const usePrivateNetworkByRegion = ({
   projectId,
@@ -64,8 +65,10 @@ export const useGetPrivateNetworkSubnets = (
   projectId: string,
   region: string,
   networkId: string,
-) =>
-  useQuery({
+) => {
+  const store = useCreateStore();
+
+  const query = useQuery({
     queryKey: [
       'project',
       projectId,
@@ -79,6 +82,21 @@ export const useGetPrivateNetworkSubnets = (
     enabled: !!projectId && !!region && !!networkId,
     throwOnError: true,
   });
+
+  const list = useMemo(() => {
+    if (!query.data) {
+      return [];
+    }
+    return store.publicIp?.type !== FLOATING_IP_TYPE.NO_IP
+      ? query.data.filter((subnet) => subnet.gatewayIp)
+      : query.data;
+  }, [query.data, store.publicIp]);
+
+  return {
+    ...query,
+    list,
+  };
+};
 
 export const useGetRegionPrivateNetworks = (
   projectId: string,
