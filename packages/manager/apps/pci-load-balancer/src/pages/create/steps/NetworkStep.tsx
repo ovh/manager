@@ -58,10 +58,11 @@ export const NetworkStep = (): JSX.Element => {
     store.region?.name,
     store.privateNetwork?.id,
   );
-  const {
-    isPending: isSubnetGatewaysPending,
-    isFetching: isSubnetGatewaysFetching,
-  } = useGetSubnetGateways(projectId, store.region?.name, store.subnet?.id);
+  const { isFetching: isSubnetGatewaysFetching } = useGetSubnetGateways(
+    projectId,
+    store.region?.name,
+    store.subnet?.id,
+  );
   const { data: catalog } = useCatalog();
 
   const { getFormattedHourlyCatalogPrice } = useCatalogPrice(5);
@@ -264,7 +265,7 @@ export const NetworkStep = (): JSX.Element => {
       ) : (
         <>
           {store.subnet &&
-            store.gateways.length !== 0 &&
+            store.gateways.length === 0 &&
             store.publicIp.type !== FLOATING_IP_TYPE.NO_IP && (
               <OsdsMessage
                 className="mt-8"
