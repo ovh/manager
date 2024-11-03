@@ -26,6 +26,10 @@ import { AGORA_FLOATING_IP_REGEX } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
 import { useGetFloatingIps } from '@/api/hook/useFloatingIps';
+import {
+  useGetPrivateNetworkSubnets,
+  useGetRegionPrivateNetworks,
+} from '@/api/hook/useNetwork';
 
 export const IpStep = (): JSX.Element => {
   const { t: tCreate } = useTranslation('load-balancer/create');
@@ -42,6 +46,11 @@ export const IpStep = (): JSX.Element => {
     list: floatingIpsList,
     isPending: isFloatingIpsPending,
   } = useGetFloatingIps(projectId, store.region?.name);
+  const { list: privateNetworksList } = useGetRegionPrivateNetworks(
+    projectId,
+    store.region?.name,
+  );
+
   const { data: catalog } = useCatalog();
 
   return (
@@ -57,6 +66,10 @@ export const IpStep = (): JSX.Element => {
 
           store.check(StepsEnum.PUBLIC_IP);
           store.lock(StepsEnum.PUBLIC_IP);
+
+          if (privateNetworksList.length > 0) {
+            store.set.privateNetwork(privateNetworksList[0]);
+          }
 
           store.open(StepsEnum.PRIVATE_NETWORK);
         },
