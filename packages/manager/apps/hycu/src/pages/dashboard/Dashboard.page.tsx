@@ -40,7 +40,7 @@ export default function DashboardPage() {
   const { serviceName } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation('hycu/dashboard');
-  const { addError, clearNotifications } = useNotifications();
+  const { addError, addWarning, clearNotifications } = useNotifications();
 
   const { data: licenseHycu } = useDetailsLicenseHYCU(serviceName);
   const { data: serviceDetails, error } = useServiceDetails({
@@ -48,7 +48,10 @@ export default function DashboardPage() {
   });
 
   useEffect(() => {
-    if (licenseHycu?.data.licenseStatus === LicenseStatus.ERROR) {
+    if (serviceDetails?.data.resource.state === 'suspended') {
+      clearNotifications();
+      addWarning(t('hycu_dashboard_warning_license_suspended_message'));
+    } else if (licenseHycu?.data.licenseStatus === LicenseStatus.ERROR) {
       clearNotifications();
       addError(
         t('hycu_dashboard_error_license_message', {
@@ -56,7 +59,7 @@ export default function DashboardPage() {
         }),
       );
     }
-  }, [licenseHycu]);
+  }, [licenseHycu, serviceDetails]);
 
   const tabsList = [
     {
