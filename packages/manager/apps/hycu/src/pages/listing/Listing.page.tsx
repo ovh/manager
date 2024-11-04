@@ -50,7 +50,7 @@ const DatagridIdCell = (hycuDetail: IHycuDetails) => {
             ),
           )
         }
-        label={hycuDetail?.iam.serviceName ?? hycuDetail.serviceName}
+        label={hycuDetail?.iam.displayName ?? hycuDetail.serviceName}
       ></Links>
     </DataGridTextCell>
   );
