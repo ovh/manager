@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   OsdsIcon,
   OsdsLink,
@@ -21,6 +21,7 @@ import { useFetchHubNotifications } from '@/data/hooks/notifications/useNotifica
 import { Notification, NotificationType } from '@/types/notifications.type';
 import useGuideUtils from '@/hooks/guides/useGuideUtils';
 import { NOTIFICATIONS_LINKS } from '@/pages/layout/layout.constants';
+import NotificationsCarouselSkeleton from '@/pages/layout/NotificationsCarousel.skeleton';
 
 const getMessageColor = (type: NotificationType) => {
   switch (type) {
@@ -70,7 +71,7 @@ const getTextColor = (type: NotificationType) => {
 export default function NotificationsCarousel() {
   const { t } = useTranslation('hub/notifications');
   const { trackClick } = useOvhTracking();
-  const { data: notifications } = useFetchHubNotifications();
+  const { data: notifications, isLoading } = useFetchHubNotifications();
   const [currentIndex, setCurrentIndex] = useState(0);
   const notificationsLinks = useGuideUtils(NOTIFICATIONS_LINKS);
 
@@ -88,7 +89,9 @@ export default function NotificationsCarousel() {
     notifications?.[currentIndex] &&
     notificationsLinks[notifications[currentIndex].id];
 
-  return (
+  return isLoading ? (
+    <NotificationsCarouselSkeleton />
+  ) : (
     <>
       {notifications?.length > 0 && (
         <OsdsMessage
