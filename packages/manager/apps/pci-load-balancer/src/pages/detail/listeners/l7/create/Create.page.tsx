@@ -76,7 +76,9 @@ export default function CreatePage() {
       navigate('..');
     },
   });
+
   const isPending = isPendingListener || isPendingPools || isPendingCreate;
+
   return (
     <div>
       <div className=" mt-8">
