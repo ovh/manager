@@ -187,7 +187,7 @@ export const STORAGE_ASYNC_REPLICATION_LINK = {
   MA:
     'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062418',
   NL:
-    'https://help.ovhcloud.com/csm/en-nl-documentation-storage-backup?id=kb_browse_cat&kb_id=38e74da5a884a950f07829d7d5c75217',
+    'https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062417',
   PL:
     'https://help.ovhcloud.com/csm/pl-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062421',
   PT:
