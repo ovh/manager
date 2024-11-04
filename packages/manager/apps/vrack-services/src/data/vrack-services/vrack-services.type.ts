@@ -1,8 +1,7 @@
 import { Task, IamMetadata } from '../api.type';
 
 export type Region = {
-  description: string;
-  code: string;
+  name: string;
 };
 
 export type Endpoint = {
