@@ -35,7 +35,6 @@
     ]
   },
   "dependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@ovh-ux/manager-core-api": "^0.9.0-alpha.0",
     "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.0",
     "@ovhcloud/ods-common-core": "17.2.2",
@@ -44,7 +43,6 @@
     "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
     "@tanstack/react-query": "^5.51.21",
     "@tanstack/react-table": "^8.20.1",
-    "babel-preset-react-app": "^10.0.1",
     "clsx": "^2.1.1",
     "lodash.isdate": "^4.0.1",
     "lodash.isequal": "^4.5.0",
