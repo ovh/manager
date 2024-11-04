@@ -28,28 +28,88 @@ export default class ServicesActionsCtrl {
   $onInit() {
 
     this.user = this.coreConfig.getUser();
-    this.BillingLinksService.generateAutorenewLinks(this.service, {
-      billingManagementAvailability: this.billingManagementAvailability,
-      getCommitmentLink: this.getCommitmentLink,
-      getCancelCommitmentLink: this.getCancelCommitmentLink,
-      getCancelResiliationLink: this.getCancelResiliationLink,
-      getResiliationLink: this.getResiliationLink,
-    })
-      .then((links) => {
-        this.autorenewLink = links.autorenewLink;
-        this.commitmentLink = links.commitmentLink;
-        this.cancelCommitmentLink = links.cancelCommitmentLink;
-        this.cancelResiliationLink = links.cancelResiliationLink;
-        this.warningLink = links.warningLink;
-        this.updateLink = links.updateLink;
-        this.deleteLink = links.deleteLink;
-        this.resiliateLink = links.resiliateLink;
-        this.buyingLink = links.buyingLink;
-        this.renewLink = links.renewLink;
-      })
-      .finally(() => {
-        this.isLoading = false;
-      });
+
+    this.commitmentLink =
+      (this.getCommitmentLink && this.getCommitmentLink(this.service)) ||
+      `${this.autorenewLink}/${this.service.id}/commitment`;
+    this.cancelCommitmentLink =
+      (this.getCancelCommitmentLink &&
+        this.getCancelCommitmentLink(this.service)) ||
+      `${this.autorenewLink}/${this.service.id}/cancel-commitment`;
+    this.cancelResiliationLink =
+      (this.getCancelResiliationLink && this.getCancelResiliationLink()) ||
+      `${this.autorenewLink}/cancel-resiliation?serviceId=${this.service.serviceId}${serviceTypeParam}`;
+
+    this.warningLink = `${this.autorenewLink}/warn-nic?nic=${this.service.contactBilling}`;
+    this.updateLink = `${this.autorenewLink}/update?serviceId=${this.service.serviceId}${serviceTypeParam}`;
+    this.deleteLink =
+      this.service.serviceType &&
+      `${this.autorenewLink}/delete-${this.service.serviceType
+        .replace(/_/g, '-')
+        .toLowerCase()}?serviceId=${this.service.serviceId}`;
+
+    const resiliationByEndRuleLink =
+      (this.getResiliationLink && this.getResiliationLink()) ||
+      `${this.autorenewLink}/resiliation?serviceId=${this.service.id}&serviceName=${this.service.serviceId}${serviceTypeParam}`;
+
+    switch (this.service.serviceType) {
+      case SERVICE_TYPE.EXCHANGE:
+        this.resiliateLink = `${this.service.url}?action=resiliate`;
+        this.renewLink = `${this.service.url}?tab=ACCOUNT`;
+        break;
+      case SERVICE_TYPE.EMAIL_DOMAIN:
+        this.resiliateLink = `${this.autorenewLink}/delete-email?serviceId=${this.service.serviceId}&name=${this.service.domain}`;
+        this.cancelResiliationLink = null;
+        break;
+      case SERVICE_TYPE.SMS:
+        this.buyingLink = this.coreURLBuilder.buildURL(
+          'telecom',
+          '#/sms/:serviceName/order',
+          {
+            serviceName: this.service.serviceId,
+          },
+        );
+        this.renewLink = this.coreURLBuilder.buildURL(
+          'telecom',
+          '#/sms/:serviceName/options/recredit',
+          { serviceName: this.service.serviceId },
+        );
+        break;
+      case SERVICE_TYPE.TELEPHONY:
+        this.resiliateLink = this.coreURLBuilder.buildURL(
+          'telecom',
+          '#/telephony/:serviceName/administration/deleteGroup',
+          { serviceName: this.service.serviceId },
+        );
+        break;
+      case SERVICE_TYPE.PACK_XDSL:
+        this.resiliateLink = this.coreURLBuilder.buildURL(
+          'telecom',
+          '#/pack/:serviceName',
+          { serviceName: this.service.serviceId },
+        );
+        break;
+      case SERVICE_TYPE.ALL_DOM:
+        this.resiliateLink = this.service.canResiliateByEndRule()
+          ? resiliationByEndRuleLink
+          : `${this.autorenewLink}/delete-all-dom?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;
+        break;
+      case SERVICE_TYPE.OKMS:
+      case SERVICE_TYPE.VRACK_SERVICES:
+        this.resiliateLink = `${this.autorenewLink}/terminate-service?id=${this.service.id}${serviceTypeParam}`;
+        break;
+      case SERVICE_TYPE.VRACK:
+        if (this.service.status !== 'suspended') {
+          this.resiliateLink = `${this.autorenewLink}/terminate-vrack?service=${this.service.serviceId}${serviceTypeParam}`;
+        }
+        break;
+      default:
+        this.resiliateLink = this.service.canResiliateByEndRule()
+          ? resiliationByEndRuleLink
+          : this.autorenewLink &&
+            `${this.autorenewLink}/delete?serviceId=${this.service.serviceId}${serviceTypeParam}`;
+        break;
+    }
   }
 
   getRenewUrl() {
@@ -59,11 +119,11 @@ export default class ServicesActionsCtrl {
   }
 
   canResiliate() {
-    return ![
-      SERVICE_TYPE.PACK_XDSL,
-      SERVICE_TYPE.VRACK,
-      SERVICE_TYPE.VMWARE_CLOUD_DIRECTOR_ORGANIZATION,
-    ].includes(this.service.serviceType);
+    if (this.service.serviceType === this.SERVICE_TYPE.VRACK) {
+      return this.canDeleteVrack && !!this.resiliateLink;
+    }
+
+    return ![this.SERVICE_TYPE.PACK_XDSL].includes(this.service.serviceType);
   }
 
   getExchangeBilling() {
