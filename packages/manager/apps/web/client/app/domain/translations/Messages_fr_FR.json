@@ -36,6 +36,8 @@
   "domains_status_technical_suspended": "Procédure en cours",
   "domains_status_registry_suspended": "Procédure en cours",
   "domains_status_autorenew_in_progress": "Renouvellement en cours",
+  "domains_status_autorenew_registry_in_progress": "Renouvellement en cours",
+  "domains_status_tooltip_autorenew_registry_in_progress": "Le renouvellement est en cours de finalisation auprès du registre",
   "domains_suspension_state_not_suspended": "Actif",
   "domains_suspension_state_suspended": "Inactif",
   "domains_renewal_mode_automatic_renew": "Renouvellement automatique",
