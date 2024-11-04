@@ -7,7 +7,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "region": "LIM"
+      "region": "eu-west-lim"
     },
     "currentTasks": [],
     "id": "vrs-ahc-fw4-od1-efq",
@@ -63,7 +63,7 @@
         }
       ],
       "vrackId": null,
-      "region": "GRA"
+      "region": "eu-west-gra"
     },
     "currentTasks": [],
     "id": "vrs-ar7-72w-poh-3qe",
@@ -110,7 +110,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [
       {
@@ -146,7 +146,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [
       {
@@ -181,7 +181,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lb-b5o",
@@ -199,7 +199,7 @@
       "productStatus": "ACTIVE",
       "subnets": [],
       "vrackId": "pn-00001",
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lb-b5r",
@@ -216,7 +216,7 @@
       "productStatus": "DISABLED",
       "subnets": [],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lb-b5s",
@@ -262,7 +262,7 @@
         }
       ],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [
       {
@@ -288,7 +288,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lb-b5u",
@@ -334,7 +334,7 @@
         }
       ],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lb-b5v",
@@ -351,7 +351,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lb-b5x",
@@ -397,7 +397,7 @@
         }
       ],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7la-b5o",
@@ -412,7 +412,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lc-b5o",
@@ -429,7 +429,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7ld-b5o",
@@ -446,7 +446,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7le-b5o",
@@ -463,7 +463,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lf-b5o",
@@ -480,7 +480,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lg-b5o",
@@ -497,7 +497,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lh-b5o",
@@ -514,7 +514,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7li-b5o",
@@ -531,7 +531,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "region": "RBX"
+      "region": "eu-west-rbx"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lj-b5o",
