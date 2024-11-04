@@ -307,7 +307,7 @@
   "hosting_tab_DOMAINS_table_git_state_deploying": "In corso",
   "hosting_tab_DOMAINS_table_git_state_initialError": "Errore",
   "hosting_tab_DOMAINS_table_git_state_tooltip_lastDeploy": "Consulta le informazioni dell’ultimo deploy",
-  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Clicca sul pulsante azione per associare Git",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Clicca sul pulsante per associare Git",
   "hosting_tab_DOMAINS_table_cdn_state_ACTIVE": "Attivato",
   "hosting_tab_DOMAINS_table_cdn_state_NONE": "Disattivato",
   "hosting_tab_DOMAINS_table_ssl_state_true": "Attivato",
