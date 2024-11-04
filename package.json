@@ -41,7 +41,7 @@
     "start": "node -r esm scripts/start-application.js",
     "test:jest": "jest --runInBand",
     "test": "yarn lint",
-    "test:turbo": "turbo run test --concurrency=1",
+    "test:turbo": "turbo run test --concurrency=1 --filter=\"@ovh-ux/manager-pci-ai-endpoints-app\"",
     "test:scripts": "make test",
     "test:playwright:run": "lerna run test:e2e:ci --stream --concurrency=1 --no-bail"
   },
