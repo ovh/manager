@@ -93,8 +93,9 @@ export default class RegionsListController {
             (value, index, self) =>
               index ===
               self.findIndex(
-                (t) =>
-                  t.name === value.name && t.datacenter === value.datacenter,
+                (region) =>
+                  region.name === value.name &&
+                  region.datacenter === value.datacenter,
               ),
           );
 
