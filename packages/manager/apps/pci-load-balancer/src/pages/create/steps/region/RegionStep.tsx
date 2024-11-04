@@ -16,7 +16,7 @@ import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
 import { LabelComponent } from './components/Label.component';
 import { StackLabelComponent } from './components/StackLabel.component';
-import { GroupLabelComponent } from '@/pages/create/steps/region/components/GroupLabel.component';
+import { GroupLabelComponent } from './components/GroupLabel.component';
 
 export const RegionStep = (): JSX.Element => {
   const { t: tCommon } = useTranslation('pci-common');
@@ -93,14 +93,15 @@ export const RegionStep = (): JSX.Element => {
         </div>
       ) : (
         <ShapesInputComponent<TRegion>
-          value={store.region}
+          className="bg-red"
           items={regions?.get(store.addon?.code) || []}
+          onInput={(region) => store.set.region(region)}
+          value={store.region}
           item={{
             LabelComponent,
             getId: (item) => item.name,
             isDisabled: (item) => !item.isEnabled,
           }}
-          onInput={(region) => store.set.region(region)}
           stack={{
             by: (item) => item?.macroName || '',
             LabelComponent: StackLabelComponent,

@@ -17,7 +17,7 @@ export const GroupLabelComponent = ({
   const shouldBeBold = isGroupSelected && !isMobile;
 
   return (
-    <div className="whitespace-nowrap">
+    <div className="whitespace-nowrap p-4">
       <OsdsText
         size={shouldBeBold ? ODS_TEXT_SIZE._500 : ODS_TEXT_SIZE._400}
         level={ODS_TEXT_LEVEL.body}

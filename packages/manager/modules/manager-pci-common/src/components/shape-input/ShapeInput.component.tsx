@@ -1,13 +1,20 @@
-import React, { useCallback, useMemo, useState } from 'react';
 import clsx from 'clsx';
 import isEqual from 'lodash.isequal';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { AccordionComponent } from '../accordion/Accordion.component';
+import { DefaultItemLabelComponent } from './default-components/item-label';
+import { DefaultStackLabelComponent } from './default-components/stack-label';
+import { DefaultStackTitleComponent } from './default-components/stack-title';
+import { DefaultGroupLabelComponent } from './default-components/group-label';
+import { DefaultShapeComponent } from './default-components/default-shape';
+import { GHOST_BUTTON_CLASS } from './constants';
 
-export type TInputProps<T> = {
-  value: T;
-  items: T[];
-  item: {
-    LabelComponent: ({
+export type TShapesInputProps<T> = {
+  items?: T[];
+  value?: T;
+  onInput?: (value: T) => void;
+  item?: {
+    LabelComponent?: ({
       item,
       isItemSelected,
       isMobile,
@@ -16,13 +23,12 @@ export type TInputProps<T> = {
       isItemSelected: boolean;
       isMobile: boolean;
     }) => JSX.Element;
-    getId: (item: T) => string;
+    getId?: (item: T) => string;
     isDisabled?: (item: T) => boolean;
   };
-  onInput: (value: T) => void;
   stack?: {
     by: (item: T) => string;
-    LabelComponent: ({
+    LabelComponent?: ({
       stackKey,
       isStackSelected,
       stackItems,
@@ -33,7 +39,7 @@ export type TInputProps<T> = {
       stackItems: T[];
       isMobile: boolean;
     }) => JSX.Element;
-    TitleComponent: ({
+    TitleComponent?: ({
       stackKey,
       stackItems,
       isMobile,
@@ -45,7 +51,7 @@ export type TInputProps<T> = {
   };
   group?: {
     by: (item: T) => string;
-    LabelComponent: ({
+    LabelComponent?: ({
       groupName,
       isGroupSelected,
       groupItems,
@@ -62,24 +68,46 @@ export type TInputProps<T> = {
   className?: string;
 };
 
+type TState<T> = {
+  value: T;
+  group: string;
+};
+
 export const ShapesInputComponent = function ShapesInputComponent<T>({
+  items = [],
   value,
-  items,
-  item,
   onInput,
+  item,
   stack,
   group,
   className,
   isMobile = false,
   ...props
-}: Readonly<TInputProps<T>>): JSX.Element {
-  const [selectedGroupName, setSelectedGroupName] = useState<string>(undefined);
+}: Readonly<TShapesInputProps<T>>): JSX.Element {
+  const [state, setState] = useState<TState<T>>({
+    value,
+    group: undefined,
+  });
+
+  const LabelComponent = memo(
+    item?.LabelComponent || DefaultItemLabelComponent,
+  );
+  const StackLabelComponent = memo(
+    stack?.LabelComponent || DefaultStackLabelComponent,
+  );
+  const StackTitleComponent = memo(
+    stack?.TitleComponent || DefaultStackTitleComponent,
+  );
+  const GroupLabelComponent = memo(
+    group?.LabelComponent || DefaultGroupLabelComponent,
+  );
+  const ShapeComponent = memo(DefaultShapeComponent);
 
   const groupHandler = {
     itemsMap: useMemo(() => {
       const map = new Map<string, T[]>([[undefined, items]]);
 
-      items.forEach((i) => {
+      items.forEach((i, index) => {
         if (group) {
           const groupKey = group.by(i) ?? '';
           if (!map.has(groupKey)) {
@@ -87,7 +115,12 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
           }
           map.get(groupKey).push(i);
         } else {
-          map.set(item.getId(i), [i]);
+          map.set(
+            typeof item?.getId === 'function'
+              ? item.getId(i)
+              : `group-${index}`,
+            [i],
+          );
         }
       });
       return map;
@@ -98,10 +131,10 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
     itemsMap: useMemo(() => {
       const map = new Map<string, T[]>();
 
-      (group && selectedGroupName
-        ? items.filter((i) => group.by(i) === selectedGroupName)
+      (group && state.group
+        ? items.filter((i) => group.by(i) === state.group)
         : items
-      ).forEach((i) => {
+      ).forEach((i, index) => {
         if (stack) {
           const stackKey = stack.by(i) ?? '';
           if (!map.has(stackKey)) {
@@ -109,11 +142,16 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
           }
           map.get(stackKey).push(i);
         } else {
-          map.set(item.getId(i), [i]);
+          map.set(
+            typeof item?.getId === 'function'
+              ? item.getId(i)
+              : `stack-${index}`,
+            [i],
+          );
         }
       });
       return map;
-    }, [items, stack, selectedGroupName, group, item.getId]),
+    }, [items, stack, state.group, group, item?.getId]),
     is: {
       stackSingle: useCallback(
         (stackKey: string) => stackHandler.itemsMap.get(stackKey).length === 1,
@@ -121,17 +159,33 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
       ),
       stackDisabled: useCallback(
         (stackKey: string) =>
-          item.isDisabled &&
+          item?.isDisabled &&
           stackHandler.itemsMap.get(stackKey)?.every(item.isDisabled),
-        [items, item.isDisabled],
+        [items, item?.isDisabled],
       ),
       stackSelected: useCallback(
         (stackKey: string) =>
-          stackHandler.itemsMap.get(stackKey)?.some((i) => isEqual(i, value)),
-        [items, value],
+          stackHandler.itemsMap
+            .get(stackKey)
+            ?.some((i) => isEqual(i, state.value)),
+        [items, state.value],
       ),
     },
   };
+
+  // Update state.value if value prop changes
+  useEffect(() => {
+    if (value && !isEqual(value, state.value)) {
+      setState((prev) => ({ ...prev, value }));
+    }
+  }, [value]);
+
+  // Notify parent if value changes
+  useEffect(() => {
+    if (onInput) {
+      onInput(state.value);
+    }
+  }, [state.value]);
 
   return (
     <section className={className} {...props}>
@@ -143,21 +197,29 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
                 <li
                   key={groupName || 'none'}
                   className={clsx(
-                    'p-4 cursor-pointer border border-solid border-[#bef1ff] rounded-t-lg',
-                    groupName === selectedGroupName
+                    'border border-solid border-[#bef1ff] rounded-t-lg',
+                    groupName === state.group
                       ? 'border-b-0 bg-[#F5FEFF]'
                       : 'border-b bg-white',
                   )}
-                  onClick={() => {
-                    setSelectedGroupName(groupName);
-                  }}
                 >
-                  <group.LabelComponent
-                    groupName={groupName}
-                    isGroupSelected={groupName === selectedGroupName}
-                    groupItems={items.filter((i) => group.by(i) === groupName)}
-                    isMobile={isMobile}
-                  />
+                  <button
+                    className={clsx(GHOST_BUTTON_CLASS, 'w-full h-full')}
+                    onClick={() => {
+                      setState((prev) => ({ ...prev, group: groupName }));
+                    }}
+                  >
+                    <GroupLabelComponent
+                      groupName={groupName}
+                      isGroupSelected={groupName === state.group}
+                      groupItems={
+                        !groupName
+                          ? items
+                          : items.filter((i) => group.by(i) === groupName)
+                      }
+                      isMobile={isMobile}
+                    />
+                  </button>
                 </li>
               ))}
               <li
@@ -174,63 +236,67 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
           >
             <ul className="list-none grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 m-0 p-4">
               {[...stackHandler.itemsMap.keys()].map((stackKey) => (
-                <li
-                  key={stackKey}
-                  className={clsx(
-                    'border-solid border-2 rounded-lg cursor-pointer p-2',
-                    stackHandler.is.stackDisabled(stackKey) &&
-                      'cursor-not-allowed pointer-events-none opacity-50',
-                    stackHandler.is.stackSelected(stackKey)
-                      ? 'border-[--ods-color-blue-600] bg-[--ods-color-blue-100]'
-                      : 'bg-white border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600]',
-                  )}
-                  onClick={() => {
-                    const firstEnabledItem = stackHandler.itemsMap
-                      .get(stackKey)
-                      .find((i) => !item.isDisabled || !item.isDisabled(i));
-                    onInput(firstEnabledItem);
-                  }}
-                >
-                  {stackHandler.is.stackSingle(stackKey) ? (
-                    <>
-                      <item.LabelComponent
-                        item={stackHandler.itemsMap.get(stackKey)[0]}
-                        isItemSelected={isEqual(
-                          value,
-                          stackHandler.itemsMap.get(stackKey)[0],
+                <li key={stackKey}>
+                  <ShapeComponent
+                    isSelected={stackHandler.is.stackSelected(stackKey)}
+                    isDisabled={stackHandler.is.stackDisabled(stackKey)}
+                    action={() => {
+                      const firstEnabledItem = stackHandler.itemsMap
+                        .get(stackKey)
+                        .find(
+                          (i) =>
+                            typeof item?.isDisabled !== 'function' ||
+                            !item.isDisabled(i),
+                        );
+                      setState((prev) => ({
+                        ...prev,
+                        value: firstEnabledItem,
+                      }));
+                    }}
+                  >
+                    {stackHandler.is.stackSingle(stackKey) ? (
+                      <>
+                        <LabelComponent
+                          item={stackHandler.itemsMap.get(stackKey)[0]}
+                          isItemSelected={isEqual(
+                            state.value,
+                            stackHandler.itemsMap.get(stackKey)[0],
+                          )}
+                          isMobile={isMobile}
+                        />
+                      </>
+                    ) : (
+                      <StackLabelComponent
+                        stackKey={stackKey}
+                        isStackSelected={stackHandler.is.stackSelected(
+                          stackKey,
                         )}
+                        stackItems={stackHandler.itemsMap.get(stackKey)}
                         isMobile={isMobile}
                       />
-                    </>
-                  ) : (
-                    <stack.LabelComponent
-                      stackKey={stackKey}
-                      isStackSelected={stackHandler.is.stackSelected(stackKey)}
-                      stackItems={stackHandler.itemsMap.get(stackKey)}
-                      isMobile={isMobile}
-                    />
-                  )}
+                    )}
+                  </ShapeComponent>
                 </li>
               ))}
             </ul>
             {stack &&
-              value &&
-              stackHandler.itemsMap.get(stack.by(value))?.length > 1 && (
+              state.value &&
+              stackHandler.itemsMap.get(stack.by(state.value))?.length > 1 && (
                 <div className="pl-4">
-                  <stack.TitleComponent
-                    stackKey={stack.by(value)}
+                  <StackTitleComponent
+                    stackKey={stack.by(state.value)}
                     stackItems={
-                      stackHandler.itemsMap.get(stack.by(value)) || []
+                      stackHandler.itemsMap.get(stack.by(state.value)) || []
                     }
                     isMobile={isMobile}
                   />
                   <ShapesInputComponent
-                    value={value}
-                    items={stackHandler.itemsMap.get(stack.by(value))}
+                    value={state.value}
+                    items={stackHandler.itemsMap.get(stack.by(state.value))}
                     item={{
                       LabelComponent: item.LabelComponent,
                       getId: item.getId,
-                      isDisabled: item.isDisabled,
+                      isDisabled: item?.isDisabled,
                     }}
                     onInput={onInput}
                   />
@@ -246,7 +312,7 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
               title={
                 <group.LabelComponent
                   groupName={groupName}
-                  isGroupSelected={groupName === selectedGroupName}
+                  isGroupSelected={groupName === state.group}
                   groupItems={items.filter((i) => group.by(i) === groupName)}
                   isMobile={isMobile}
                 />
@@ -254,12 +320,12 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
               isOpen={!groupName}
             >
               <ShapesInputComponent
-                value={value}
+                value={state.value}
                 items={groupHandler.itemsMap.get(groupName)}
                 item={{
                   LabelComponent: item.LabelComponent,
                   getId: item.getId,
-                  isDisabled: item.isDisabled,
+                  isDisabled: item?.isDisabled,
                 }}
                 onInput={onInput}
                 stack={stack}
