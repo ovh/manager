@@ -463,9 +463,25 @@
             data-type="info"
             data-ng-if="$ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MONO_ZONE || $ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MULTI_ZONES"
         >
-            <p
-                data-translate="pci_projects_project_storages_containers_add_replication_rules_info"
-            ></p>
+            <p>
+                <span
+                    data-translate="pci_projects_project_storages_containers_add_replication_rules_info"
+                ></span>
+                <a
+                    href="{{:: $ctrl.asyncReplicationLink }}"
+                    class="oui-link_icon"
+                    rel="noreferrer"
+                    target="_blank"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_containers_add_replication_rules_info_link"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-external-link"
+                        aria-hidden="true"
+                    ></span>
+                </a>
+            </p>
         </oui-message>
     </oui-step-form>
 
