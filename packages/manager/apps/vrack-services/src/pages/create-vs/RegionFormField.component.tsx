@@ -17,6 +17,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_COUNTRY_ISO_CODE } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { Region } from '@ovh-ux/manager-react-components';
 import {
   getvrackServicesReferenceRegionListQueryKey,
   getvrackServicesReferenceRegionList,
@@ -76,58 +77,61 @@ export const RegionFormField: React.FC<RegionFormFieldProps> = ({
             required
           >
             {data?.data?.map((region) => {
-              const [country, city] = region.description.split('-');
+              const [, , code] = region.name?.split('-');
               return (
                 <OsdsRadio
-                  className="w-[165px] mr-5 mb-5"
-                  id={region.code}
-                  key={region.code}
-                  value={region.code}
+                  className="mr-5 mb-5"
+                  id={region.name}
+                  key={region.name}
+                  value={region.name}
                   name={regionInputName}
-                  checked={selectedRegion === region.code || undefined}
+                  checked={selectedRegion === region.name || undefined}
                   disabled={isReadOnly || undefined}
                   onKeyDown={(event: React.KeyboardEvent) => {
                     if ([' ', 'Enter'].includes(event.key)) {
-                      setSelectedRegion(region.code);
+                      setSelectedRegion(region.name);
                     }
                   }}
                 >
                   <OsdsTile
-                    className="flex flex-col h-full w-[165px]"
+                    className="flex flex-col h-full w-full"
                     hoverable
                     color={ODS_THEME_COLOR_INTENT.primary}
-                    checked={selectedRegion === region.code || undefined}
+                    checked={selectedRegion === region.name || undefined}
                     onClick={() => {
-                      setSelectedRegion(region.code);
+                      setSelectedRegion(region.name);
                     }}
                   >
-                    <div slot="start" className="w-full">
+                    <div slot="start" className="flex h-full w-full p-1 m-1">
+                      <OsdsText
+                        className="flex-col mb-5 mr-11"
+                        size={ODS_TEXT_SIZE._400}
+                        level={ODS_TEXT_LEVEL.body}
+                        color={ODS_THEME_COLOR_INTENT.text}
+                      >
+                        <Region
+                          mode="region"
+                          name={region.name?.toLowerCase()}
+                        ></Region>
+                      </OsdsText>
                       <OsdsFlag
-                        className="w-11 mx-auto"
+                        className="flex-col w-5 h-5"
                         iso={
-                          regionNameToIsoCode[region.code] ||
+                          regionNameToIsoCode[code.toUpperCase()] ||
                           ODS_COUNTRY_ISO_CODE.FR
                         }
                         lazy
                         assetPath="flags/"
                       />
                     </div>
-                    <OsdsText
-                      className="block mt-6 mb-1"
-                      size={ODS_TEXT_SIZE._200}
-                      level={ODS_TEXT_LEVEL.heading}
-                      color={ODS_THEME_COLOR_INTENT.text}
-                    >
-                      {country}
-                    </OsdsText>
                     <div slot="end" className="w-full">
                       <OsdsText
                         className="mx-auto"
-                        size={ODS_TEXT_SIZE._400}
+                        size={ODS_TEXT_SIZE._300}
                         level={ODS_TEXT_LEVEL.body}
                         color={ODS_THEME_COLOR_INTENT.text}
                       >
-                        {`${city || ''} (${region.code})`}
+                        {`${region.name || ''}`}
                       </OsdsText>
                     </div>
                   </OsdsTile>
