@@ -191,7 +191,7 @@ const Routes = (
     />
     <Route path="" element={<Navigate to={ROUTE_PATHS.LISTING} replace />} />
     <Route path={ROUTE_PATHS.L7} Component={L7Page}>
-      <Route path="" element={<Navigate to={ROUTE_PATHS.L7_LIST} />} />
+      <Route path="" element={<Navigate to={ROUTE_PATHS.L7_LIST} replace />} />
       <Route path={ROUTE_PATHS.L7_CREATE} Component={L7PoliciesCreatePage} />
       <Route path={ROUTE_PATHS.L7_EDIT} Component={L7PoliciesEditPage} />
       <Route path={ROUTE_PATHS.L7_LIST} Component={L7PoliciesListPage}>
@@ -199,7 +199,10 @@ const Routes = (
       </Route>
     </Route>
     <Route path={ROUTE_PATHS.L7_RULES} Component={L7RulesPage}>
-      <Route path="" element={<Navigate to={ROUTE_PATHS.L7_RULES_LIST} />} />
+      <Route
+        path=""
+        element={<Navigate to={ROUTE_PATHS.L7_RULES_LIST} replace />}
+      />
       <Route path={ROUTE_PATHS.L7_RULES_CREATE} Component={L7RulesCreatePage} />
       <Route path={ROUTE_PATHS.L7_RULES_EDIT} Component={L7RulesEditPage} />
       <Route path={ROUTE_PATHS.L7_RULES_LIST} Component={L7PRulesListPage}>
@@ -216,12 +219,12 @@ const Routes = (
     >
       <Route
         path=""
-        element={<Navigate to={ROUTE_PATHS.GENERAL_INFORMATION} />}
+        element={<Navigate to={ROUTE_PATHS.GENERAL_INFORMATION} replace />}
       />
       <Route path={ROUTE_PATHS.POOL_MEMBERS} Component={PoolsMembersPage}>
         <Route
           path=""
-          element={<Navigate to={ROUTE_PATHS.POOL_MEMBERS_LIST} />}
+          element={<Navigate to={ROUTE_PATHS.POOL_MEMBERS_LIST} replace />}
         />
         <Route
           path={ROUTE_PATHS.POOL_MEMBERS_LIST}
@@ -291,7 +294,7 @@ const Routes = (
     <Route id="detail" path={ROUTE_PATHS.DETAIL} Component={DetailPage}>
       <Route
         path=""
-        element={<Navigate to={ROUTE_PATHS.GENERAL_INFORMATION} />}
+        element={<Navigate to={ROUTE_PATHS.GENERAL_INFORMATION} replace />}
       />
       <Route
         id="detail-general-information"
@@ -308,7 +311,10 @@ const Routes = (
         path={ROUTE_PATHS.LISTENERS}
         Component={ListenersPage}
       >
-        <Route path="" element={<Navigate to={ROUTE_PATHS.LISTENERS_LIST} />} />
+        <Route
+          path=""
+          element={<Navigate to={ROUTE_PATHS.LISTENERS_LIST} replace />}
+        />
         <Route
           id="listeners-list"
           path={ROUTE_PATHS.LISTENERS_LIST}
@@ -332,7 +338,10 @@ const Routes = (
         />
       </Route>
       <Route id="detail-pools" path={ROUTE_PATHS.POOLS} Component={PoolsPage}>
-        <Route path="" element={<Navigate to={ROUTE_PATHS.POOL_LIST} />} />
+        <Route
+          path=""
+          element={<Navigate to={ROUTE_PATHS.POOL_LIST} replace />}
+        />
         <Route
           id="pool-list"
           path={ROUTE_PATHS.POOL_LIST}
