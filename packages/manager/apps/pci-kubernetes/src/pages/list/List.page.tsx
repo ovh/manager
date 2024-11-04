@@ -12,6 +12,7 @@ import {
   useDataGrid,
   useNotifications,
   useProjectUrl,
+  ManagerText,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -83,6 +84,15 @@ export default function ListPage() {
           }
         />
       </div>
+
+      <ManagerText
+        iamActions={[
+          'manager-react-components:apiovh:manager-react-components/attach-action',
+        ]}
+        urn="urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd"
+      >
+        Test manager Test
+      </ManagerText>
 
       <Notifications />
 

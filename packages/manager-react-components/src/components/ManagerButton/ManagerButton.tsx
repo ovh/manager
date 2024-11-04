@@ -36,20 +36,20 @@ export const ManagerButton = ({
   const { isAuthorized } = useAuthorizationIam(iamActions, urn, isIamTrigger);
 
   if (isAuthorized) {
-    return <OsdsButton {...restProps}>{children}</OsdsButton>;
+    return <OsdsButton {...restProps}>{children} TEST1!</OsdsButton>;
   }
 
   return !displayTooltip ? (
     <OsdsButton {...restProps} disabled onClick={null}>
-      {children}
+      {children} TEST2!
     </OsdsButton>
   ) : (
     <OsdsTooltip>
       <OsdsButton {...restProps} disabled onClick={null}>
-        {children}
+        {children} TEST3!
       </OsdsButton>
       <OsdsTooltipContent slot="tooltip-content">
-        <div>{t('common_iam_actions_message')}</div>
+        <div>{t('common_iam_actions_message')} TEST4!</div>
       </OsdsTooltipContent>
     </OsdsTooltip>
   );
