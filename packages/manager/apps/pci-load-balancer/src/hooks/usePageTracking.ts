@@ -24,9 +24,9 @@ export default function usePageTracking() {
 
   useEffect(() => {
     const pageId = location.pathname.split('/').pop();
-    const pageKey = pageId === 'ssh' ? '' : `::${pageId}`;
+    const pageKey = pageId === 'root' ? '' : `::${pageId}`;
     trackPage({
-      name: `${PAGE_PREFIX}::sshKeys${pageKey}`,
+      name: `${PAGE_PREFIX}::octavia-loadbalancer${pageKey}`,
       level2: PCI_LEVEL2,
     });
   }, [location]);
