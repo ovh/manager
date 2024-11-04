@@ -23,6 +23,7 @@ export const ROUTE_PATHS = {
   localZone: 'localZone',
   delete: 'delete',
   new: 'new',
+  subnet: ':networkId/subnets',
 };
 
 export default [
@@ -83,6 +84,10 @@ export default [
           tracking: 'new',
         },
         ...lazyRouteConfig(() => import('@/pages/new/New.page')),
+      },
+      {
+        path: ROUTE_PATHS.subnet,
+        ...lazyRouteConfig(() => import('@/pages/subnet/listing/Listing.page')),
       },
     ],
   },
