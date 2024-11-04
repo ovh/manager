@@ -8,7 +8,7 @@ export enum LicenseStatus {
 export interface IamDetails {
   id: string;
   urn: string;
-  serviceName?: string;
+  displayName?: string;
 }
 
 export interface IHycuDetails {
