@@ -75,5 +75,11 @@
   "region_PAR": "Paryż",
   "region_PAR_micro": "Paryż ({{micro}})",
   "region_location_PAR": "Europa Zachodnia (Francja)",
-  "region_continent_PAR": "Europa Zachodnia"
+  "region_continent_PAR": "Europa Zachodnia",
+  "region_US-EAST-VA": "Wirginia",
+  "region_US-EAST-VA_micro": "Wirginia ({{micro}})",
+  "region_US-WEST-OR": "Oregon",
+  "region_US-WEST-OR_micro": "Oregon ({{micro}})",
+  "region_continent_US-EAST-VA": "Ameryka Północna",
+  "region_continent_US-WEST-OR": "Ameryka Północna"
 }

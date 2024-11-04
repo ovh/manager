@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.62.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.62.1...@ovh-ux/manager-dedicated@19.62.2) (2024-10-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3427] ([f2f661c](https://github.com/ovh/manager/commit/f2f661cfeaa804e09cd24484e965017482ea4783))
+* **i18n:** add missing translations [CDS 3436] ([5ea6c29](https://github.com/ovh/manager/commit/5ea6c290f9878ea6a404410e9e61e0c54fcf4837))
+* **i18n:** add missing translations [CDS 3440] ([39b1334](https://github.com/ovh/manager/commit/39b133489e64ab22128666bad6d07e2d6f13b412))
+* remove unused translations [CDS] ([b7e6569](https://github.com/ovh/manager/commit/b7e656962f47205dd2c3e9bde1e440709850296d))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [19.62.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.62.0...@ovh-ux/manager-dedicated@19.62.1) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+# [19.62.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.61.1...@ovh-ux/manager-dedicated@19.62.0) (2024-10-22)
+
+
+### Features
+
+* **account:** kyc digital process ([#12727](https://github.com/ovh/manager/issues/12727)) ([cf8f0c9](https://github.com/ovh/manager/commit/cf8f0c90150486fa0b30af98ce0c2d3dbdeabf90))
+
+
+
+
+
+## [19.61.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.61.0...@ovh-ux/manager-dedicated@19.61.1) (2024-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [19.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.60.0...@ovh-ux/manager-dedicated@19.61.0) (2024-10-21)
+
+
+### Features
+
+* **hpc-vmware-managed-vcd:** add new product VCD ([#12552](https://github.com/ovh/manager/issues/12552)) ([c990a65](https://github.com/ovh/manager/commit/c990a65189760c0b109902e3e292b31e8b59dd83))
+
+
+
+
+
+# [19.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.59.0...@ovh-ux/manager-dedicated@19.60.0) (2024-10-21)
+
+
+### Bug Fixes
+
+* **dedicated-cloud:** use description vs id in PCC list and breadcrumb ([#13345](https://github.com/ovh/manager/issues/13345)) ([5f8647e](https://github.com/ovh/manager/commit/5f8647e102f242826934346ae3b2f36aa1ac84b2))
+* **dedicated.vmware:** manage the enabling status for nsxt ([#9969](https://github.com/ovh/manager/issues/9969)) ([55dd4ef](https://github.com/ovh/manager/commit/55dd4efbf1615db5bfc4c4ad363dcd0a07309373))
+* **dedicated:** fix checkmark icon color ([#13509](https://github.com/ovh/manager/issues/13509)) ([12c2052](https://github.com/ovh/manager/commit/12c205221f83f80130a76d5ac59131982bdf5cfd))
+
+
+### Features
+
+* **account:** set up retry on error for kyc india procedure creation ([#13188](https://github.com/ovh/manager/issues/13188)) ([5793671](https://github.com/ovh/manager/commit/57936713c1e21a068f0e628782d2fa9ed4a37342))
+* **dedicated.pcc:** change description term ([#12908](https://github.com/ovh/manager/issues/12908)) ([a7d353d](https://github.com/ovh/manager/commit/a7d353db787ddf018ba21d1f4c45383ea336535c))
+* **dedicated:** update add message error for vMac if 403 response ([#12815](https://github.com/ovh/manager/issues/12815)) ([9b1938d](https://github.com/ovh/manager/commit/9b1938dedc24fe835b35f53f34d78a5507522625))
+
+
+
+
+
 # [19.59.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.58.0...@ovh-ux/manager-dedicated@19.59.0) (2024-10-17)
 
 

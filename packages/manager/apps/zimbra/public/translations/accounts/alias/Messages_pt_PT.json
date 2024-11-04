@@ -3,5 +3,5 @@
   "zimbra_account_alias_cta": "Adicionar um alias",
   "zimbra_account_alias_datagrid_alias_label": "Alias",
   "zimbra_account_alias_datagrid_status_label": "Estado",
-  "zimbra_account_alias_datagrid_tooltip_delete": "Suprimir"
+  "zimbra_account_alias_datagrid_tooltip_delete": "Eliminar"
 }

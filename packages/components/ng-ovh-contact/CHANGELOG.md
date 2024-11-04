@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.2.3...@ovh-ux/ng-ovh-contact@5.2.4) (2024-10-24)
+
+
+### Bug Fixes
+
+* **telecom.xdsl:** add custom address for ONT shipping ([#13452](https://github.com/ovh/manager/issues/13452)) ([a588912](https://github.com/ovh/manager/commit/a588912c1869fc88d1152e824ed37eb3d06645a2))
+
+
+
+
+
+## [5.2.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.2.2...@ovh-ux/ng-ovh-contact@5.2.3) (2024-10-24)
+
+
+### Bug Fixes
+
+* **telecom.xdsl:** add custom address for ONT shipping ([#13452](https://github.com/ovh/manager/issues/13452)) ([a588912](https://github.com/ovh/manager/commit/a588912c1869fc88d1152e824ed37eb3d06645a2))
+
+
+
+
+
 ## [5.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.2.1...@ovh-ux/ng-ovh-contact@5.2.2) (2024-10-03)
 
 

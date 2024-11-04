@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.15.1...@ovh-ux/ovh-at-internet@0.15.2) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.15.0...@ovh-ux/ovh-at-internet@0.15.1) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.14.1...@ovh-ux/ovh-at-internet@0.15.0) (2024-10-22)
+
+
+### Features
+
+* **pci:** add mix commander tag at projet creation & activation ([#13436](https://github.com/ovh/manager/issues/13436)) ([414712c](https://github.com/ovh/manager/commit/414712cfff26d6b846a603700dd723fe9568523b))
+
+
+
+
+
+## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.14.0...@ovh-ux/ovh-at-internet@0.14.1) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/ovh-at-internet
+
+
+
+
+
 # [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.13.3...@ovh-ux/ovh-at-internet@0.14.0) (2024-10-03)
 
 

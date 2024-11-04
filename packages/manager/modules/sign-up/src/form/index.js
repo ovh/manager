@@ -6,6 +6,7 @@ import activity from './activity';
 import component from './component';
 import details from './details';
 import identity from './identity';
+import './sign-up.scss';
 
 const moduleName = 'ovhSignUpForm';
 

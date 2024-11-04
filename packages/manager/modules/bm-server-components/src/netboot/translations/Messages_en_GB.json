@@ -15,8 +15,11 @@
   "server_configuration_netboot_option_rescue": "Boot in rescue mode ",
   "server_configuration_netboot_option_network": "Boot in network mode",
   "server_configuration_netboot_configuration": "Configuration:",
+  "server_configuration_netboot_rescue_help": "Rescue mode is useful for diagnosing hardware faults on a dedicated server.",
+  "server_configuration_netboot_rescue_help_link": "Access the hardware diagnostic guide.",
   "server_configuration_netboot_rescue_choice": "Rescue available:",
   "server_configuration_netboot_rescue_mail": "Send new login details to the following email address:",
+  "server_configuration_netboot_rescue_mail_none": "None",
   "server_configuration_netboot_rescue_mail_invalid": "Invalid",
   "server_configuration_netboot_kernel_choice": "Kernel available:",
   "server_configuration_netboot_kernel_option": "Options covered by this kernel:",
@@ -37,12 +40,7 @@
   "server_configuration_netboot_review": "Summary",
   "server_configuration_netboot_save_in_progress": "Updating...",
   "server_configuration_netboot_invalid": "Invalid",
-  "server_configuration_netboot_rescue_help": "Rescue mode is useful for diagnosing hardware faults on a dedicated server.",
-  "server_configuration_netboot_rescue_help_link": "Access the hardware diagnostic guide.",
-  "server_configuration_netboot_rescue_mail_none": "None",
   "server_configuration_netboot_auth_method": "Authentication method:",
   "server_configuration_netboot_auth_method_sshkey": "Authentication via SSH key",
-  "server_configuration_netboot_auth_method_password": "Password authentication",
-  "server_configuration_netboot_sshkey_input": "Your Public SSH key:",
-  "server_configuration_netboot_sshkey_input_placeholder": "Enter an sshPubKey value. For example: {{t0}}"
+  "server_configuration_netboot_auth_method_password": "Password authentication"
 }

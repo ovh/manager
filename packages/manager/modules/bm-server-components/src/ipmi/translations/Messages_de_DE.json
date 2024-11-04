@@ -40,6 +40,7 @@
   "server_configuration_impi_SOL_help_link": "Zum Konfigurationshandbuch",
   "server_configuration_ipmi_title": "IPMI",
   "server_configuration_kvm_title": "KVM",
+  "server_configuration_kvm_disable": "IPMI/KVM für diesen Server nicht verfügbar",
   "server_configuration_kvm_explanation": "KVM-over-IP-Switches ermöglichen es Nutzer:innen, einen Server in einem Netzwerk jederzeit und von überall aus über Remote-IP-Zugriff zu steuern.",
   "server_configuration_kvm_price_per_month": "{{t0}} für einen Monat",
   "server_configuration_kvm_contract_validation_title": "Validierung der Verträge",
@@ -61,16 +62,12 @@
   "server_configuration_tile_sol_heading": "Serial over LAN (SoL)",
   "server_configuration_tile_sol_description": "Zugriff auf die serielle Konsole Ihres Servers über eine gesicherte Verbindung",
   "server_configuration_ssh_sol_definition": "SoL SSH (Authentifizierung mit dem SSH-Schlüssel)",
-  "server_configuration_ssh_sol_input_placeholder": "Fügen Sie einen öffentlichen SSH-Schlüssel ein. Beispiel: {{t0}}",
-  "server_configuration_ssh_sol_input_bad_pattern": "Der öffentliche SSH-Schlüssel ist ungültig: Es werden nur RSA-, ECDSA- und EdDSA-Schlüssel im OpenSSH-Format akzeptiert",
   "server_configuration_ssh_sol_add_key": "SSH-Schlüssel hinzufügen",
   "server_configuration_ssh_sol_add_key_description": "Bitte geben Sie den öffentlichen SSH-Schlüssel ein, der zum Starten der SoL-Session (Serial over LAN) verwendet wird.",
   "server_configuration_ssh_sol_start": "SoL-Session via SSH starten",
-  "server_configuration_ssh_sol_input_bad_required": "Bitte geben Sie einen öffentlichen SSH-Schlüssel in das Eingabefeld ein.",
   "server_configuration_tile_ipmi_heading": "IPMI",
   "server_configuration_tile_ipmi_description": "IPMI (Intelligent Platform Management Interface) verwalten",
   "server_configuration_doing": "[Wird ausgeführt]",
   "server_common_confirm": "Bestätigen",
-  "server_common_cancel": "Abbrechen",
-  "server_configuration_kvm_disable": "IPMI/KVM für diesen Server nicht verfügbar"
+  "server_common_cancel": "Abbrechen"
 }

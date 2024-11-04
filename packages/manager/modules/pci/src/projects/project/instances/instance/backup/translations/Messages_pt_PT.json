@@ -5,7 +5,7 @@
   "pci_projects_project_instances_instance_backup_price": "Preço: {{ price }}/mês por GB + IVA",
   "pci_projects_project_instances_instance_backup_submit_label": "Confirmar",
   "pci_projects_project_instances_instance_backup_cancel_label": "Anular",
-  "pci_projects_project_instances_instance_backup_success_message": "O backup {{ backup }} está em processo de criação. Para consultar o estado e os detalhes da operação, aceda à página 'Instance Backup'. Se o backup não for apresentado logo de imediato, tente atualizar a página para atualizar a lista.",
+  "pci_projects_project_instances_instance_backup_success_message": "O backup {{ backup }} está em processo de criação. Para consultar o estado e os detalhes da operação, aceda à página 'Instance Backup'. Se o backup não for apresentado imediatamente, não hesite em atualizar a página para obter a lista mais recente.",
   "pci_projects_project_instances_instance_backup_error_backup": "Ocorreu um erro durante a criação do backup {{ backup }}: {{ message }}",
   "pci_projects_project_instances_instance_backup_warning_iops_message": "A cópia de segurança só inclui o seu disco de raiz (sistema operativo). Não será feito nenhum backup dos dados armazenados nos seus dispositivos NVMe. Utilize as suas próprias ferramentas para o fazer.",
   "pci_projects_project_instances_instance_backup_trusted_zone_extra_amount_charge_message": "O preço indicado corresponde ao preço do serviço. O custo adicional relativo ao Trusted Zone é adicionado à faturação mensal global.",

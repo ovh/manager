@@ -1,7 +1,7 @@
 {
   "ovhManagerPccDashboardGeneralInformation_heading": "Allgemeine Informationen",
-  "ovhManagerPccDashboardGeneralInformation_description_term": "Beschreibung",
-  "ovhManagerPccDashboardGeneralInformation_description_actionMenu_update": "Beschreibung bearbeiten",
+  "ovhManagerPccDashboardGeneralInformation_name_term": "Name",
+  "ovhManagerPccDashboardGeneralInformation_name_actionMenu_update": "Namen ändern",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_term": "Softwarelösung",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_available": "Eine Aktualisierung ist verfügbar",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_planned": "Die Aktualisierung ist programmiert",

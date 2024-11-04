@@ -106,33 +106,10 @@
                     </div>
 
                     <div data-ng-if="$ctrl.currentAuthMethod === $ctrl.SSHKEY">
-                        <oui-field
-                            data-label="{{:: 'server_configuration_netboot_sshkey_input' | translate}}"
-                        >
-                            <div
-                                class="float-right sshkey-switch"
-                                data-ng-model="model.keyIsValid"
-                                data-sshkey-switch
-                                data-sshkey-switch-key="{{$ctrl.ssh.publicKey}}"
-                            ></div>
-
-                            <textarea
-                                class="oui-input form-control"
-                                name="rescueSshKey"
-                                id="rescueSshKey"
-                                placeholder="{{:: 'server_configuration_netboot_sshkey_input_placeholder' | translate:{t0: $ctrl.ssh.inputRules.placeholder} }}"
-                                data-ng-model="$ctrl.ssh.publicKey"
-                                data-ng-required="true"
-                                data-ng-pattern="$ctrl.ssh.inputRules.pattern"
-                                data-ng-trim="true"
-                                spellcheck="false"
-                                autocomplete="off"
-                                autocapitalize="off"
-                                autocorrect="off"
-                                rows="{{ $ctrl.ssh.inputRules.rows }}"
-                            >
-                            </textarea>
-                        </oui-field>
+                        <ovh-manager-ssh-key-selector
+                            data-public-key="$ctrl.ssh.publicKey"
+                            data-required="true"
+                        ></ovh-manager-ssh-key-selector>
                     </div>
 
                     <oui-field

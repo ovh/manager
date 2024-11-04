@@ -1,0 +1,10 @@
+{
+  "managed_vcd_vdc_title": "Wirtualne centra danych",
+  "managed_vcd_vdc_commercial_range": "Gama",
+  "managed_vcd_vdc_vcpu_count": "Całkowite zasoby vCPU",
+  "managed_vcd_vdc_ram_count": "Całkowita pamięć RAM",
+  "managed_vcd_vdc_quota_value": "{{quota}} GB",
+  "managed_vcd_vdc_vcpu_speed": "Prędkość vCPU",
+  "managed_vcd_vdc_vcpu_value": "{{speed}} GHz",
+  "managed_vcd_vdc_id": "ID"
+}

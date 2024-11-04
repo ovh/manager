@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-emailpro",
-  "version": "3.12.5",
+  "version": "3.12.6",
   "private": true,
   "description": "Email Pro product.",
   "repository": {

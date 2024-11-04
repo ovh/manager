@@ -3,6 +3,77 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.40.0...@ovh-ux/manager-web@18.41.0) (2024-10-28)
+
+
+### Bug Fixes
+
+* **web:** handle multiple can correct ([#13620](https://github.com/ovh/manager/issues/13620)) ([9bfe21a](https://github.com/ovh/manager/commit/9bfe21a301c6495169574e7ef1db323468a6a3cc))
+
+
+### Features
+
+* **web:** improve messages git datagrid ([#12945](https://github.com/ovh/manager/issues/12945)) ([865a1aa](https://github.com/ovh/manager/commit/865a1aa41035a4f07a1a5790608624efd7d88009))
+* **web:** wording change for tooltips multisite ([#13532](https://github.com/ovh/manager/issues/13532)) ([5424c67](https://github.com/ovh/manager/commit/5424c67e7f1d246b18e54e6c2be5c97198a52766))
+
+
+
+
+
+# [18.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.39.6...@ovh-ux/manager-web@18.40.0) (2024-10-24)
+
+
+### Features
+
+* **web.privatedabase:** move metrics to mimir ([#12299](https://github.com/ovh/manager/issues/12299)) ([0d118ba](https://github.com/ovh/manager/commit/0d118bac2ecd52c774122d8cb997684e44a5199b))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [18.39.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.39.5...@ovh-ux/manager-web@18.39.6) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [18.39.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.39.4...@ovh-ux/manager-web@18.39.5) (2024-10-23)
+
+
+### Bug Fixes
+
+* **web:** display last deployment logs instead of first one ([#13711](https://github.com/ovh/manager/issues/13711)) ([a160931](https://github.com/ovh/manager/commit/a160931946c90a6fc64d808f0ed20a529e5ea317))
+
+
+
+
+
+## [18.39.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.39.3...@ovh-ux/manager-web@18.39.4) (2024-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [18.39.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.39.2...@ovh-ux/manager-web@18.39.3) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [18.39.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.39.1...@ovh-ux/manager-web@18.39.2) (2024-10-17)
 
 

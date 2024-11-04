@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.6.18...@ovh-ux/manager-pci-ssh-keys-app@0.6.19) (2024-10-24)
+
+
+### Bug Fixes
+
+* fix some unit test where await was missing ([01677dc](https://github.com/ovh/manager/commit/01677dc0166f460e08a4907a3ab0a3dcc1368a9e))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [0.6.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.6.17...@ovh-ux/manager-pci-ssh-keys-app@0.6.18) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [0.6.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.6.16...@ovh-ux/manager-pci-ssh-keys-app@0.6.17) (2024-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ssh-keys-app
+
+
+
+
+
+## [0.6.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.6.15...@ovh-ux/manager-pci-ssh-keys-app@0.6.16) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ssh-keys-app
+
+
+
+
+
 ## [0.6.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.6.14...@ovh-ux/manager-pci-ssh-keys-app@0.6.15) (2024-10-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ssh-keys-app

@@ -28,5 +28,6 @@
   "deleteServiceButtonCancel": "Anular",
   "deleteServiceButtonConfirm": "Eliminar",
   "deleteServiceIntegrationDescription": "Ao eliminar este serviço, irá eliminar a seguinte associação de integração:",
-  "deleteServiceIntegrationsDescription": "Ao eliminar este serviço, irá eliminar as seguintes associações de integração:"
+  "deleteServiceIntegrationsDescription": "Ao eliminar este serviço, irá eliminar as seguintes associações de integração:",
+  "deleteServiceConfirmation": "Introduza «TERMINATE» para confirmar a sua escolha."
 }

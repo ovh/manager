@@ -199,5 +199,11 @@
   "sidebar_security_operations": "Operaciones",
   "sidebar_security_identity": "Identidad y seguridad",
   "sidebar_reduce": "Minimizar",
-  "sidebar_pci_savings_plan": "Savings Plans"
+  "sidebar_pci_savings_plan": "Savings Plans",
+  "sidebar_hycu": "HYCU",
+  "sidebar_all_hycu": "Todas mis licencias",
+  "sidebar_veeam_backup": "Managed Veeam for VCD",
+  "sidebar_all_veeam_backup": "Todos los servicios",
+  "sidebar_vmware_vsphere": "Managed VMware vSphere",
+  "sidebar_vmware_vcd": "Managed VCD"
 }

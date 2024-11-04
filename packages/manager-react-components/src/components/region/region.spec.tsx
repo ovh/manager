@@ -1,3 +1,4 @@
+import React from 'react';
 import { screen } from '@testing-library/react';
 import { render } from '../../utils/test.provider';
 import { Region, RegionProps } from './region.component';
@@ -14,7 +15,9 @@ describe('Region component', () => {
       ...DemoRegion.args,
     });
     const regionElement = screen.getByText(
-      translatedRegion[`region_${DemoRegion.args.name}`],
+      translatedRegion[
+        `region_${DemoRegion.args.name}` as keyof typeof translatedRegion
+      ],
     );
     expect(regionElement).toBeVisible();
   });

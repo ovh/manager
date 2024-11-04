@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.2.2...@ovh-ux/manager-core-sso@0.2.3) (2024-10-24)
+
+
+### Reverts
+
+* Revert "ci(core.sso): add prepare command to publish (#13756)" ([8e0577d](https://github.com/ovh/manager/commit/8e0577d5fd8dec5f39ee61cbb3540cc023c60684)), closes [#13756](https://github.com/ovh/manager/issues/13756)
+
+
+
+
+
+## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.2.1...@ovh-ux/manager-core-sso@0.2.2) (2024-10-24)
+
+
+### Reverts
+
+* Revert "ci(core.sso): add prepare command to publish (#13756)" ([8e0577d](https://github.com/ovh/manager/commit/8e0577d5fd8dec5f39ee61cbb3540cc023c60684)), closes [#13756](https://github.com/ovh/manager/issues/13756)
+
+
+
+
+
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.2.0...@ovh-ux/manager-core-sso@0.2.1) (2024-10-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-sso
+
+
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.1.0...@ovh-ux/manager-core-sso@0.2.0) (2024-08-08)
 
 

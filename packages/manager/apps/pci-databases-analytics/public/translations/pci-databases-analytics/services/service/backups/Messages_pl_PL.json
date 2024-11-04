@@ -17,7 +17,7 @@
   "actionRestore": "Przywróć",
   "restoreBackupToastErrorTitle": "Wystąpił błąd podczas przywracania usługi",
   "restoreBackupToastSuccessTitle": "Operacja zakończona pomyślnie",
-  "restoreBackupToastSuccessDescription": "Przywrócenie usługi zostało wykonane",
+  "restoreBackupToastSuccessDescription": "Dyspozycja przywrócenia usługi została przyjęta. Przywracanie wkrótce się rozpocznie.",
   "errorSourceTypeFieldInvalid": "Ten typ punktu przywracania nie jest dostępny dla tej usługi",
   "errorSourcePITFieldInvalidDate": "Wybrana data jest nieprawidłowa",
   "errorSourceBackupFieldEmpty": "Wybierz backup",

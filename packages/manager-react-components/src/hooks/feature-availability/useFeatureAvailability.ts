@@ -1,9 +1,8 @@
 import { apiClient, ApiError } from '@ovh-ux/manager-core-api';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
-export type UseFeatureAvailabilityResult<
-  T = Record<string, boolean>
-> = UseQueryResult<T, ApiError>;
+export type UseFeatureAvailabilityResult<T = Record<string, boolean>> =
+  UseQueryResult<T, ApiError>;
 
 export const fetchFeatureAvailabilityData = async <T extends string[]>(
   featureList: [...T],
@@ -12,7 +11,7 @@ export const fetchFeatureAvailabilityData = async <T extends string[]>(
     `/feature/${featureList.join(',')}/availability`,
   );
 
-  const features = {} as Record<typeof featureList[number], boolean>;
+  const features = {} as Record<(typeof featureList)[number], boolean>;
   featureList.forEach((feature) => {
     features[feature] = feature in result.data ? result.data[feature] : false;
   });
@@ -35,9 +34,10 @@ export const getFeatureAvailabilityQueryKey = <T extends string[]>(
  */
 export const useFeatureAvailability = <T extends string[]>(
   featureList: [...T],
-): UseFeatureAvailabilityResult<Record<typeof featureList[number], boolean>> =>
-  useQuery<Record<typeof featureList[number], boolean>, ApiError>({
+): UseFeatureAvailabilityResult<
+  Record<(typeof featureList)[number], boolean>
+> =>
+  useQuery<Record<(typeof featureList)[number], boolean>, ApiError>({
     queryKey: getFeatureAvailabilityQueryKey(featureList),
     queryFn: () => fetchFeatureAvailabilityData(featureList),
-    retry: false,
   });

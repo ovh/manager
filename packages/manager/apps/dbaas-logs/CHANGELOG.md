@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@2.3.21...@ovh-ux/manager-dbaas-logs-app@2.3.22) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [2.3.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@2.3.20...@ovh-ux/manager-dbaas-logs-app@2.3.21) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [2.3.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@2.3.19...@ovh-ux/manager-dbaas-logs-app@2.3.20) (2024-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-dbaas-logs-app
+
+
+
+
+
+## [2.3.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@2.3.18...@ovh-ux/manager-dbaas-logs-app@2.3.19) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-dbaas-logs-app
+
+
+
+
+
+## [2.3.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@2.3.17...@ovh-ux/manager-dbaas-logs-app@2.3.18) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-dbaas-logs-app
+
+
+
+
+
 ## [2.3.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@2.3.16...@ovh-ux/manager-dbaas-logs-app@2.3.17) (2024-10-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-dbaas-logs-app

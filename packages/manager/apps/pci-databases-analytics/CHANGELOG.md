@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.6.4...@ovh-ux/manager-pci-databases-analytics-app@1.6.5) (2024-10-28)
+
+
+### Bug Fixes
+
+* **pci-databases-analytics:** namespace edition and creation form ([#13674](https://github.com/ovh/manager/issues/13674)) ([344d248](https://github.com/ovh/manager/commit/344d24840640dee9eb887abd14a9420bee2cba6b))
+
+
+
+
+
+## [1.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.6.3...@ovh-ux/manager-pci-databases-analytics-app@1.6.4) (2024-10-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3427] ([f2f661c](https://github.com/ovh/manager/commit/f2f661cfeaa804e09cd24484e965017482ea4783))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [1.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.6.2...@ovh-ux/manager-pci-databases-analytics-app@1.6.3) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.6.1...@ovh-ux/manager-pci-databases-analytics-app@1.6.2) (2024-10-22)
+
+
+### Bug Fixes
+
+* **pci-databases-analytics:** us regions and bug fixes ([#13273](https://github.com/ovh/manager/issues/13273)) ([f79f55e](https://github.com/ovh/manager/commit/f79f55e0941bef029677b8c31f015a4453003a97))
+
+
+
+
+
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.6.0...@ovh-ux/manager-pci-databases-analytics-app@1.6.1) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.5.1...@ovh-ux/manager-pci-databases-analytics-app@1.6.0) (2024-10-17)
 
 

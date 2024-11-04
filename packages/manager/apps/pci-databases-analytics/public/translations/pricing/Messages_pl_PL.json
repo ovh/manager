@@ -1,6 +1,6 @@
 {
-  "pricing_ht": "{{price } {{unit}} netto",
-  "pricing_ttc": "{{price}} {{unit}} brutto",
+  "pricing_ht": "{{price}} netto",
+  "pricing_ttc": "{{price}} brutto",
   "pricing_button_hourly": "Godzina",
   "pricing_button_monthly": "Abonament miesięczny",
   "pricing_unit_hourly": "/godz.",

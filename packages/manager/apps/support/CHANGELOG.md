@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.11.11...@ovh-ux/manager-support-app@2.11.12) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [2.11.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.11.10...@ovh-ux/manager-support-app@2.11.11) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [2.11.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.11.9...@ovh-ux/manager-support-app@2.11.10) (2024-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-support-app
+
+
+
+
+
+## [2.11.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.11.8...@ovh-ux/manager-support-app@2.11.9) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-support-app
+
+
+
+
+
 ## [2.11.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.11.7...@ovh-ux/manager-support-app@2.11.8) (2024-10-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-support-app

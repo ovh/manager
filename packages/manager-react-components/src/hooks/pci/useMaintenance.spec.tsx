@@ -3,6 +3,8 @@ import {
   QueryClientProvider,
   UseQueryResult,
 } from '@tanstack/react-query';
+import { vitest } from 'vitest';
+import React from 'react';
 import { renderHook } from '@testing-library/react';
 import { useProductMaintenance } from './useMaintenance';
 import * as useMigrationSteins from './useMigrationSteins';
@@ -10,11 +12,12 @@ import * as useAggregatedPrivateNetworks from './useAggregatedPrivateNetworks';
 import * as useProjectRegions from './useProjectRegions';
 import { Stein } from './useMigrationSteins';
 import { Region } from './useProjectRegions';
+import '@testing-library/jest-dom';
 
 const renderUseMaintenanceHook = () => {
   const queryClient = new QueryClient();
 
-  const wrapper = ({ children }) => (
+  const wrapper = ({ children }: React.PropsWithChildren) => (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 
@@ -27,9 +30,20 @@ const renderUseMaintenanceHook = () => {
 
 describe('useMaintenance', () => {
   it('should return hasMaintenance with false value when useMigrationSteins return empty array', async () => {
-    jest.spyOn(useMigrationSteins, 'useMigrationSteins').mockReturnValue({
+    vitest.spyOn(useMigrationSteins, 'useMigrationSteins').mockReturnValue({
       data: [],
     } as UseQueryResult<Stein[]>);
+    vitest.spyOn(useProjectRegions, 'useProjectRegions').mockReturnValue({
+      data: [],
+    } as UseQueryResult<Region[]>);
+    vitest
+      .spyOn(
+        useAggregatedPrivateNetworks,
+        'useAggregatedPrivateNetworksRegions',
+      )
+      .mockReturnValue({
+        data: [],
+      } as UseQueryResult<string[]>);
 
     const result = renderUseMaintenanceHook();
 
@@ -50,11 +64,11 @@ describe('useMaintenance', () => {
       },
     ];
 
-    jest.spyOn(useMigrationSteins, 'useMigrationSteins').mockReturnValue({
+    vitest.spyOn(useMigrationSteins, 'useMigrationSteins').mockReturnValue({
       data: mockSteins,
     } as UseQueryResult<Stein[]>);
 
-    jest
+    vitest
       .spyOn(
         useAggregatedPrivateNetworks,
         'useAggregatedPrivateNetworksRegions',
@@ -79,7 +93,7 @@ describe('useMaintenance', () => {
       },
     ];
 
-    jest.spyOn(useProjectRegions, 'useProjectRegions').mockReturnValue({
+    vitest.spyOn(useProjectRegions, 'useProjectRegions').mockReturnValue({
       data: mockedCustomRegions,
     } as UseQueryResult<Region[]>);
 
@@ -96,13 +110,13 @@ describe('useMaintenance', () => {
       },
     ];
 
-    jest.spyOn(useMigrationSteins, 'useMigrationSteins').mockReturnValue({
+    vitest.spyOn(useMigrationSteins, 'useMigrationSteins').mockReturnValue({
       data: mockSteins,
     } as UseQueryResult<Stein[]>);
 
     const mockedProjectRegions = ['REGION-1', 'REGION-2'];
 
-    jest
+    vitest
       .spyOn(
         useAggregatedPrivateNetworks,
         'useAggregatedPrivateNetworksRegions',

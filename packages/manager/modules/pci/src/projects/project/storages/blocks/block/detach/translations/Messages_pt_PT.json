@@ -1,8 +1,0 @@
-{
- "pci_projects_project_storages_blocks_block_detach_title": "Desassociar o volume de uma instância",
- "pci_projects_project_storages_blocks_block_detach_detachvolume": "Desassociar o volume {{ volume }} da instância {{ instance }}",
- "pci_projects_project_storages_blocks_block_detach_submit_label": "Confirmar",
- "pci_projects_project_storages_blocks_block_detach_cancel_label": "Anular",
- "pci_projects_project_storages_blocks_block_detach_success_message": "O volume {{ volume }} foi desassociado",
- "pci_projects_project_storages_blocks_block_detach_error_detach": "Ocorreu um erro ao atualizar o volume {{ volume }}: {{ message }}"
-}

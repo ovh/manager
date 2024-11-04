@@ -17,7 +17,7 @@
   "actionRestore": "Wiederherstellen",
   "restoreBackupToastErrorTitle": "Bei der Wiederherstellung Ihres Dienstes ist ein Fehler aufgetreten.",
   "restoreBackupToastSuccessTitle": "Erfolgreich",
-  "restoreBackupToastSuccessDescription": "Die Wiederherstellung Ihres Dienstes wurde erfolgreich durchgeführt.",
+  "restoreBackupToastSuccessDescription": "Die Wiederherstellung des Dienstes wurde registriert und wird in Kürze gestartet.",
   "errorSourceTypeFieldInvalid": "Dieser Wiederherstellungspunkttyp ist für diesen Dienst nicht verfügbar.",
   "errorSourcePITFieldInvalidDate": "Das gewählte Datum ist ungültig.",
   "errorSourceBackupFieldEmpty": "Bitte wählen Sie ein Backup aus.",

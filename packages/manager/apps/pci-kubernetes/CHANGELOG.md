@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.4.6...@ovh-ux/manager-pci-kubernetes-app@0.5.0) (2024-10-28)
+
+
+### Features
+
+* **pci-kubernetes:** update guide url ([#13747](https://github.com/ovh/manager/issues/13747)) ([8c7142b](https://github.com/ovh/manager/commit/8c7142b900dc73fafd531090d4ee5eb94d1f627e))
+
+
+
+
+
+## [0.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.4.5...@ovh-ux/manager-pci-kubernetes-app@0.4.6) (2024-10-24)
+
+
+### Bug Fixes
+
+* fix some unit test where await was missing ([01677dc](https://github.com/ovh/manager/commit/01677dc0166f460e08a4907a3ab0a3dcc1368a9e))
+* **i18n:** add missing translations [CDS 3436] ([5ea6c29](https://github.com/ovh/manager/commit/5ea6c290f9878ea6a404410e9e61e0c54fcf4837))
+* **i18n:** add missing translations [CDS 3440] ([39b1334](https://github.com/ovh/manager/commit/39b133489e64ab22128666bad6d07e2d6f13b412))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [0.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.4.4...@ovh-ux/manager-pci-kubernetes-app@0.4.5) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [0.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.4.3...@ovh-ux/manager-pci-kubernetes-app@0.4.4) (2024-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+## [0.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.4.2...@ovh-ux/manager-pci-kubernetes-app@0.4.3) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
 ## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.4.1...@ovh-ux/manager-pci-kubernetes-app@0.4.2) (2024-10-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

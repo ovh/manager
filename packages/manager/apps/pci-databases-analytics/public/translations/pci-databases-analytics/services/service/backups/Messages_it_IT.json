@@ -17,7 +17,7 @@
   "actionRestore": "Ripristinare",
   "restoreBackupToastErrorTitle": "Si è verificato un errore durante il ripristino del tuo servizio",
   "restoreBackupToastSuccessTitle": "Completato",
-  "restoreBackupToastSuccessDescription": "Il ripristino del tuo servizio è stato effettuato correttamente",
+  "restoreBackupToastSuccessDescription": "Il ripristino del servizio è stato preso in carico e comincerà a breve.",
   "errorSourceTypeFieldInvalid": "Questo tipo di punto di ripristino non è disponibile per questo servizio",
   "errorSourcePITFieldInvalidDate": "La data scelta non è valida",
   "errorSourceBackupFieldEmpty": "Scegli un backup",

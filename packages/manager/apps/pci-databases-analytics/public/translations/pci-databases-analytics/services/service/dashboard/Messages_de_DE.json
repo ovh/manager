@@ -26,6 +26,7 @@
   "maintenanceLink": "Wartungsarbeiten verwalten und planen",
   "networkTitle": "Verwendetes Netzwerk",
   "networkLink": "Privates Netzwerk: vRack Nr. {{vrack}}",
+  "networkPublicTitle": "Öffentliches Netzwerk (Internet)",
   "priceBillingTitle": "Support und Abrechnung",
   "serviceIdLabel": "Dienst-ID",
   "serviceIdCopyToast": "Die Dienst-ID wurde kopiert.",

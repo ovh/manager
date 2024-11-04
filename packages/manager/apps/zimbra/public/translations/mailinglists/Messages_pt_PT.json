@@ -5,10 +5,10 @@
   "zimbra_mailinglists_datagrid_aliases_label": "Alias",
   "zimbra_mailinglists_datagrid_moderators_label": "Moderadores",
   "zimbra_mailinglists_datagrid_subscribers_label": "Subscritores",
-  "zimbra_mailinglists_datagrid_action_edit": "Configurar a lista de difusão",
-  "zimbra_mailinglists_datagrid_action_define_members": "Definir membros",
+  "zimbra_mailinglists_datagrid_action_edit": "Configurar a mailing list",
+  "zimbra_mailinglists_datagrid_action_define_members": "Definir os membros",
   "zimbra_mailinglists_datagrid_action_configure_delegation": "Configurar a delegação",
-  "zimbra_mailinglists_datagrid_action_delete": "Eliminar lista de difusão",
-  "zimbra_mailinglists_datagrid_cta": "Criar uma lista de difusão",
-  "zimbra_mailinglists_quota_label": "Quota da lista de difusão"
+  "zimbra_mailinglists_datagrid_action_delete": "Eliminar a mailing list",
+  "zimbra_mailinglists_datagrid_cta": "Criar uma mailing list",
+  "zimbra_mailinglists_quota_label": "Quota de mailing lists"
 }

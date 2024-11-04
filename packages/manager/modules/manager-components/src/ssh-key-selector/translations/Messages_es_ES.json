@@ -1,0 +1,7 @@
+{
+  "manager_components_select_ssh_key": "Llave(s) SSH a preinstalar:",
+  "manager_components_select_ssh_key_help": "Añadir una llave en la sección «Mi cuenta»",
+  "manager_components_sshkey_input": "Su llave SSH pública:",
+  "manager_components_sshkey_input_placeholder": "Introduzca una llave SSH pública. Ejemplo: {{t0}}",
+  "manager_components_loading_sshKeys_error": "Se ha producido un error al cargar las llaves SSH."
+}

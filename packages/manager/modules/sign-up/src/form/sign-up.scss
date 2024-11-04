@@ -1,0 +1,9 @@
+@import '@ovh-ux/ui-kit/dist/scss/_tokens';
+
+.required-field {
+  .oui-field__label::after {
+    content: ' *';
+    color: $ae-500;
+    font-weight: $jupiter-font-weight;
+  }
+}

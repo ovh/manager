@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.6.1...@ovh-ux/manager-restricted-app@0.6.2) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.6.0...@ovh-ux/manager-restricted-app@0.6.1) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.5.2...@ovh-ux/manager-restricted-app@0.6.0) (2024-10-21)
+
+
+### Features
+
+* **restricted:** bump bootstrap 5 ([b59f23b](https://github.com/ovh/manager/commit/b59f23bf70160ab8c780be161635e13cbc4d8b99))
+
+
+
+
+
 ## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.5.1...@ovh-ux/manager-restricted-app@0.5.2) (2024-09-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-restricted-app

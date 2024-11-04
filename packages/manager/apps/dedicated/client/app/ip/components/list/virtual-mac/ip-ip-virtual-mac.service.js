@@ -1,11 +1,6 @@
 import set from 'lodash/set';
 
-export default /* @ngInject */ function IpVirtualMacService(
-  $http,
-  $q,
-  constants,
-  Poll,
-) {
+export default /* @ngInject */ function IpVirtualMacService($http, $q, Poll) {
   const swsIpPath = '2api/sws/module/ip';
   const swsProxypassPath = 'apiv6';
 
@@ -41,7 +36,9 @@ export default /* @ngInject */ function IpVirtualMacService(
       })
       .then(
         (data) => data.data,
-        (http) => $q.reject(http.data),
+        (http) => {
+          return $q.reject({ data: http.data, status: http.status });
+        },
       );
 
   this.addIpToVirtualMac = (

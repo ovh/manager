@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.10.12...@ovh-ux/manager-public-cloud@6.11.0) (2024-10-28)
+
+
+### Features
+
+* **pci:** localzone and instance creation tracking ([#13613](https://github.com/ovh/manager/issues/13613)) ([eedd4a7](https://github.com/ovh/manager/commit/eedd4a77ee809718355ef06c13f066da0b72d344))
+
+
+
+
+
+## [6.10.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.10.11...@ovh-ux/manager-public-cloud@6.10.12) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [6.10.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.10.10...@ovh-ux/manager-public-cloud@6.10.11) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [6.10.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.10.9...@ovh-ux/manager-public-cloud@6.10.10) (2024-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [6.10.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.10.8...@ovh-ux/manager-public-cloud@6.10.9) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [6.10.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.10.7...@ovh-ux/manager-public-cloud@6.10.8) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
 ## [6.10.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.10.6...@ovh-ux/manager-public-cloud@6.10.7) (2024-10-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

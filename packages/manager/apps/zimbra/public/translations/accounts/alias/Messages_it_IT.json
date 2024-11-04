@@ -1,7 +1,7 @@
 {
   "zimbra_account_alias_title": "Gestione degli alias",
-  "zimbra_account_alias_cta": "Aggiungi un alias",
+  "zimbra_account_alias_cta": "Aggiungere un alias",
   "zimbra_account_alias_datagrid_alias_label": "Alias",
-  "zimbra_account_alias_datagrid_status_label": "Status",
+  "zimbra_account_alias_datagrid_status_label": "Stato",
   "zimbra_account_alias_datagrid_tooltip_delete": "Eliminare"
 }

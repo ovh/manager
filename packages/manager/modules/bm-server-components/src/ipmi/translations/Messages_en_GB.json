@@ -40,6 +40,7 @@
   "server_configuration_impi_SOL_help_link": "Access configuration guide",
   "server_configuration_ipmi_title": "IPMI",
   "server_configuration_kvm_title": "KVM",
+  "server_configuration_kvm_disable": "IPMI/KVM not available for this server",
   "server_configuration_kvm_explanation": "KVM over IP switches allow users to control a server over a network, anywhere, anytime, through remote IP access.",
   "server_configuration_kvm_price_per_month": "{{t0}} for 1 month",
   "server_configuration_kvm_contract_validation_title": "Accept terms and condition",
@@ -61,16 +62,12 @@
   "server_configuration_tile_sol_heading": "Serial over LAN (SoL)",
   "server_configuration_tile_sol_description": "Access to your server's serial console via a secure connection",
   "server_configuration_ssh_sol_definition": "SSH SoL (authentication with SSH key)",
-  "server_configuration_ssh_sol_input_placeholder": "Insert a public SSH key. For example: {{t0}}",
-  "server_configuration_ssh_sol_input_bad_pattern": "The SSH public key is invalid: only RSA, ECDSA and EdDSA keys in OpenSSH format are supported",
   "server_configuration_ssh_sol_add_key": "Add SSH key",
   "server_configuration_ssh_sol_add_key_description": "Please enter the public SSH key that will be used to launch the Serial over LAN (SoL) session",
   "server_configuration_ssh_sol_start": "Launch SoL session via SSH",
-  "server_configuration_ssh_sol_input_bad_required": "Please enter a public SSH key in the input field.",
   "server_configuration_tile_ipmi_heading": "IPMI",
   "server_configuration_tile_ipmi_description": "Manage IPMI (Intelligent Platform Management Interface)",
   "server_configuration_doing": "[In progress]",
   "server_common_confirm": "Confirm",
-  "server_common_cancel": "Cancel",
-  "server_configuration_kvm_disable": "IPMI/KVM not available for this server"
+  "server_common_cancel": "Cancel"
 }

@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.7.6...@ovh-ux/manager-react-shell-client@0.7.7) (2024-10-24)
+
+
+### Reverts
+
+* Revert "feat(manager-react-components): build manager react components lib" ([5d68a86](https://github.com/ovh/manager/commit/5d68a8677efea465ebf882c77ca5413388f2dfbf))
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [0.7.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.7.5...@ovh-ux/manager-react-shell-client@0.7.6) (2024-10-24)
+
+
+### Reverts
+
+* Revert "feat(manager-react-components): build manager react components lib" ([5d68a86](https://github.com/ovh/manager/commit/5d68a8677efea465ebf882c77ca5413388f2dfbf))
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [0.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.7.4...@ovh-ux/manager-react-shell-client@0.7.5) (2024-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-shell-client
+
+
+
+
+
+## [0.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.7.3...@ovh-ux/manager-react-shell-client@0.7.4) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-shell-client
+
+
+
+
+
 ## [0.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.7.2...@ovh-ux/manager-react-shell-client@0.7.3) (2024-10-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-shell-client

@@ -42,6 +42,7 @@ export const PCI_FEATURES = {
     HORIZON: 'horizon',
     PUBLIC_GATEWAYS: 'public-gateways',
     DATA_PLATFORM: 'data-platform',
+    SAVINGS_PLAN: 'pci-savings-plan',
   },
   INSTANCE_FLAVORS_CATEGORY: {
     GENERAL: 'instance:flavors-category-general',
@@ -92,6 +93,9 @@ export const PCI_FEATURES = {
     CREATE_PROJECT: 'public-cloud:create-project',
     HDS: 'public-cloud:hds',
     TRUSTED_ZONE: 'public-cloud:trusted-zone',
+  },
+  ACTIONS: {
+    INSTANCE_LOCALZONE_BACKUP: 'public-cloud:instance:local-zone-backup',
   },
 };
 

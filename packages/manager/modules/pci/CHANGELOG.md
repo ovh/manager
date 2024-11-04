@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.65.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.64.1...@ovh-ux/manager-pci@6.65.0) (2024-10-28)
+
+
+### Bug Fixes
+
+* **pci:** not called savings plan check for us ([#13719](https://github.com/ovh/manager/issues/13719)) ([8b7353f](https://github.com/ovh/manager/commit/8b7353f2a6adad76ea3fa08009e04c8320dd89a2))
+
+
+### Features
+
+* **pci-object-storage:** 3az feature flipping ([#13521](https://github.com/ovh/manager/issues/13521)) ([a94d4a1](https://github.com/ovh/manager/commit/a94d4a1f8ce2740b7e26ca69c4db9c180d1de26e))
+* **pci:** localzone and instance creation tracking ([#13613](https://github.com/ovh/manager/issues/13613)) ([eedd4a7](https://github.com/ovh/manager/commit/eedd4a77ee809718355ef06c13f066da0b72d344))
+
+
+
+
+
+## [6.64.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.64.0...@ovh-ux/manager-pci@6.64.1) (2024-10-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3427] ([f2f661c](https://github.com/ovh/manager/commit/f2f661cfeaa804e09cd24484e965017482ea4783))
+* **i18n:** add missing translations [CDS 3436] ([5ea6c29](https://github.com/ovh/manager/commit/5ea6c290f9878ea6a404410e9e61e0c54fcf4837))
+
+
+
+
+
+# [6.64.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.63.3...@ovh-ux/manager-pci@6.64.0) (2024-10-22)
+
+
+### Bug Fixes
+
+* **public-cloud:** fix monthly price display ([#13048](https://github.com/ovh/manager/issues/13048)) ([a26dba8](https://github.com/ovh/manager/commit/a26dba87234652dfef21610e2436987f6f4185b7))
+
+
+### Features
+
+* **pci.instance:** add local zone backup ff ([#13619](https://github.com/ovh/manager/issues/13619)) ([38ec4d7](https://github.com/ovh/manager/commit/38ec4d7855ef2b7d79c540a694e93c324ab17255))
+* **pci:** add mix commander tag at projet creation & activation ([#13436](https://github.com/ovh/manager/issues/13436)) ([414712c](https://github.com/ovh/manager/commit/414712cfff26d6b846a603700dd723fe9568523b))
+
+
+
+
+
 ## [6.63.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.63.2...@ovh-ux/manager-pci@6.63.3) (2024-10-18)
 
 

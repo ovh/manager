@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.35](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.6.34...@ovh-ux/manager-pci-app@4.6.35) (2024-10-28)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
+## [4.6.34](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.6.33...@ovh-ux/manager-pci-app@4.6.34) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [4.6.33](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.6.32...@ovh-ux/manager-pci-app@4.6.33) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [4.6.32](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.6.31...@ovh-ux/manager-pci-app@4.6.32) (2024-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
+## [4.6.31](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.6.30...@ovh-ux/manager-pci-app@4.6.31) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
+## [4.6.30](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.6.29...@ovh-ux/manager-pci-app@4.6.30) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
 ## [4.6.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@4.6.28...@ovh-ux/manager-pci-app@4.6.29) (2024-10-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-app

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-contact",
-  "version": "5.2.2",
+  "version": "5.2.4",
   "description": "Helps you dealing with OVHcloud contacts from /me/contact API.",
   "keywords": [
     "angularjs",

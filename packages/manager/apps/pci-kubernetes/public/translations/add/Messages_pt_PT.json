@@ -39,8 +39,8 @@
   "kube_add_node_pool_name_input_pattern_validation_error": "O nome deve ter pelo menos dois caracteres, começar com um carácter alfabético, acabar por um caráter alfanumérico e os únicos caracteres especiais autorizados são os traços e os underscores.",
   "kube_add_billing_anti_affinity_coming_soon_message_title": "Preços mensais",
   "kube_add_billing_anti_affinity_coming_soon_message_description": "Os preços mensais estarão disponíveis em breve com a chegada dos Saving Plans.",
-  "kubernetes_add_version_and_upgrade_policy_title": "Selecione a versão menor de Kubernetes e a política de segurança desejada",
-  "kube_update_policy_picker_documentation_text": "Saber mais sobre as políticas de segurança do Managed Kubernetes Service.",
+  "kubernetes_add_version_and_upgrade_policy_title": "Selecione a versão menor de Kubernetes e a política de segurança desejada.",
+  "kube_update_policy_picker_documentation_text": "Saber mais sobre as políticas de segurança do Managed Kubernetes Service",
   "kube_update_policy_picker_documentation_link": "Consulte a documentação",
   "kubernetes_add_update_policy_title": "Selecione a política de segurança",
   "kubernetes_select_version_title": "Selecione uma versão"

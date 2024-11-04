@@ -15,8 +15,11 @@
   "server_configuration_netboot_option_rescue": "Fazer boot em modo rescue",
   "server_configuration_netboot_option_network": "Efetuar boot em modo network",
   "server_configuration_netboot_configuration": "Configuração:",
+  "server_configuration_netboot_rescue_help": "O rescue pode ser útil para diagnosticar avarias materiais num servidor dedicado.",
+  "server_configuration_netboot_rescue_help_link": "Aceda ao manual de diagnóstico de hardware",
   "server_configuration_netboot_rescue_choice": "\"Rescue\" disponível:",
   "server_configuration_netboot_rescue_mail": "Receber os dados de acesso ao modo para o e-mail:",
+  "server_configuration_netboot_rescue_mail_none": "Nenhuma",
   "server_configuration_netboot_rescue_mail_invalid": "Inválida",
   "server_configuration_netboot_kernel_choice": "Kernel disponível:",
   "server_configuration_netboot_kernel_option": "Opões tomadas em conta por este kernel:",
@@ -37,12 +40,7 @@
   "server_configuration_netboot_review": "Resumo",
   "server_configuration_netboot_save_in_progress": "Atualização...",
   "server_configuration_netboot_invalid": "Inválida",
-  "server_configuration_netboot_rescue_help": "O rescue pode ser útil para diagnosticar avarias materiais num servidor dedicado.",
-  "server_configuration_netboot_rescue_help_link": "Aceda ao manual de diagnóstico de hardware",
-  "server_configuration_netboot_rescue_mail_none": "Nenhuma",
   "server_configuration_netboot_auth_method": "Método de autenticação:",
   "server_configuration_netboot_auth_method_sshkey": "Autenticação com chave SSH",
-  "server_configuration_netboot_auth_method_password": "Autenticação com palavra-passe",
-  "server_configuration_netboot_sshkey_input": "A sua chave SSH pública:",
-  "server_configuration_netboot_sshkey_input_placeholder": "Introduza um valor do tipo sshPubKey. Exemplo: {{t0}}"
+  "server_configuration_netboot_auth_method_password": "Autenticação com palavra-passe"
 }

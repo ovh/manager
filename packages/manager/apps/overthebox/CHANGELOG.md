@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.26](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@6.3.25...@ovh-ux/manager-overthebox-app@6.3.26) (2024-10-28)
+
+**Note:** Version bump only for package @ovh-ux/manager-overthebox-app
+
+
+
+
+
+## [6.3.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@6.3.24...@ovh-ux/manager-overthebox-app@6.3.25) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [6.3.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@6.3.23...@ovh-ux/manager-overthebox-app@6.3.24) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [6.3.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@6.3.22...@ovh-ux/manager-overthebox-app@6.3.23) (2024-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-overthebox-app
+
+
+
+
+
+## [6.3.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@6.3.21...@ovh-ux/manager-overthebox-app@6.3.22) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-overthebox-app
+
+
+
+
+
 ## [6.3.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@6.3.20...@ovh-ux/manager-overthebox-app@6.3.21) (2024-10-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-overthebox-app

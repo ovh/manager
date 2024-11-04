@@ -40,6 +40,7 @@
   "server_configuration_impi_SOL_help_link": "Acceder a la guía de configuración",
   "server_configuration_ipmi_title": "IPMI",
   "server_configuration_kvm_title": "KVM",
+  "server_configuration_kvm_disable": "IPMI/KVM no disponible para este servidor",
   "server_configuration_kvm_explanation": "Los conmutadores KVM por IP permiten a los usuarios controlar un servidor en una red, en cualquier momento y lugar, a través de un acceso IP remoto.",
   "server_configuration_kvm_price_per_month": "{{t0}} por un mes",
   "server_configuration_kvm_contract_validation_title": "Aceptación de los contratos",
@@ -61,16 +62,12 @@
   "server_configuration_tile_sol_heading": "Serial over LAN (SoL)",
   "server_configuration_tile_sol_description": "Acceso a la consola de serie de la máquina a través de una conexión segura",
   "server_configuration_ssh_sol_definition": "SSH SoL (autenticación con clave SSH)",
-  "server_configuration_ssh_sol_input_placeholder": "Introduzca una clave SSH pública. Ejemplo: {{t0}}",
-  "server_configuration_ssh_sol_input_bad_pattern": "La clave pública SSH no es válida: solo se aceptan claves RSA, ECDSA y EdDSA en formato OpenSSH.",
   "server_configuration_ssh_sol_add_key": "Añadir la clave SSH",
   "server_configuration_ssh_sol_add_key_description": "Introduzca la clave SSH pública que se utilizará para iniciar la sesión Serial over LAN (SoL)",
   "server_configuration_ssh_sol_start": "Iniciar la sesión SoL por SSH",
-  "server_configuration_ssh_sol_input_bad_required": "Introduzca una clave SSH pública en el campo de entrada.",
   "server_configuration_tile_ipmi_heading": "IPMI",
   "server_configuration_tile_ipmi_description": "Gestionar la IPMI (Intelligent Platform Management Interface)",
   "server_configuration_doing": "[en curso]",
   "server_common_confirm": "Confirmar",
-  "server_common_cancel": "Cancelar",
-  "server_configuration_kvm_disable": "IPMI/KVM no disponible para este servidor"
+  "server_common_cancel": "Cancelar"
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.19.2...@ovh-ux/manager-overthebox@6.19.3) (2024-10-28)
+
+
+### Bug Fixes
+
+* **overthebox.migration:** fix routing error on shipping page ([b50abc7](https://github.com/ovh/manager/commit/b50abc76619ca1fb6861ab331bab20c55f8e5337))
+
+
+
+
+
 ## [6.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.19.1...@ovh-ux/manager-overthebox@6.19.2) (2024-10-17)
 
 

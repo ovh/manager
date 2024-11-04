@@ -33,7 +33,7 @@
   "formNamespaceFieldPeriodDurationLabel": "Aufbewahrungszeit ",
   "formNamespaceFieldPeriodDurationPlaceholder": "Beispiel: 48H",
   "formNamespaceFieldDurationDescription": "Beispiele: 20S, 10m, 24H, 2D",
-  "formNamespaceFieldDurationPlaceholder": "10m",
+  "formNamespaceFieldDurationPlaceholder": "Beispiel: 10 Min",
   "formNamespaceFieldPeriodDurationDescription": "Datenaufbewahrungszeit für den Namespace im Short-Time-Format.",
   "formNamespaceFieldResolutionLabel": "Auflösung",
   "formNamespaceFieldResolutionPlaceholder": "Beispiel: 1D",
@@ -55,5 +55,6 @@
   "editNamespaceToastSuccessDescription": "Der Namespace {{name}} wurde geändert.",
   "editNamespaceTitle": "Namespace bearbeiten",
   "editNamespaceButtonConfirm": "Diesen Namespace bearbeiten",
-  "editNamespaceToastErrorTitle": "Bei der Änderung des Namespace ist ein Fehler aufgetreten."
+  "editNamespaceToastErrorTitle": "Bei der Änderung des Namespace ist ein Fehler aufgetreten.",
+  "formNamespaceErrorMandatoryField": "Dieses Feld muss ausgefüllt werden"
 }

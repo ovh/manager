@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
@@ -17,7 +17,7 @@ import {
   OdsHTMLAnchorElementTarget,
   OdsHTMLAnchorElementRel,
 } from '@ovhcloud/ods-common-core';
-import { ReactI18NextChild, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import '../translations/translation';
 
 import { ManagerButton } from '../../../ManagerButton/ManagerButton';
@@ -29,7 +29,7 @@ export interface ActionMenuItem {
   href?: string;
   target?: OdsHTMLAnchorElementTarget;
   onClick?: () => void;
-  label: ReactI18NextChild | Iterable<ReactI18NextChild>;
+  label: ReactNode;
   color?: ODS_THEME_COLOR_INTENT;
   variant?: ODS_BUTTON_VARIANT;
   disabled?: boolean;

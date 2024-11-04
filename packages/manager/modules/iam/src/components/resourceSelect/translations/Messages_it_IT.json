@@ -2,5 +2,5 @@
   "iam_resource_select_resource_types_error_required": "Seleziona uno o più tipi di prodotto.",
   "iam_resource_select_resource_types_error_resources": "Nessuna risorsa disponibile per questi tipi di prodotto.",
   "iam_resource_select_resources_error_required": "Seleziona una o più risorse",
-  "iam_resource_select_resources_error_limit": "Non è possibile selezionare più di 10 risorse per politica."
+  "iam_resource_select_resources_error_limit": "Non puoi selezionare più di {{max}} risorse per politica."
 }

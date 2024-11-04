@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.22.0...@ovh-ux/manager-components@1.22.1) (2024-10-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3427] ([f2f661c](https://github.com/ovh/manager/commit/f2f661cfeaa804e09cd24484e965017482ea4783))
+* **i18n:** add missing translations [CDS 3436] ([5ea6c29](https://github.com/ovh/manager/commit/5ea6c290f9878ea6a404410e9e61e0c54fcf4837))
+* **instances:** move madrid LZ to southern europe ([#13696](https://github.com/ovh/manager/issues/13696)) ([1d00d86](https://github.com/ovh/manager/commit/1d00d8611d6789e913761ef0658c2ba670dc1740))
+
+
+
+
+
+# [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.21.0...@ovh-ux/manager-components@1.22.0) (2024-10-21)
+
+
+### Features
+
+* **manager-components:** add sshKey component ([#12994](https://github.com/ovh/manager/issues/12994)) ([2a9c014](https://github.com/ovh/manager/commit/2a9c014188cbb6911f903eba28a9600b028f311a))
+
+
+
+
+
 # [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.20.1...@ovh-ux/manager-components@1.21.0) (2024-10-08)
 
 

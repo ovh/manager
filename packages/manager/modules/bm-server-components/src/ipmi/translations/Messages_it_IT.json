@@ -40,6 +40,7 @@
   "server_configuration_impi_SOL_help_link": "Accedere alla guida di configurazione",
   "server_configuration_ipmi_title": "IPMI",
   "server_configuration_kvm_title": "KVM",
+  "server_configuration_kvm_disable": "IPMI/KVM non disponibile per questo server",
   "server_configuration_kvm_explanation": "Gli switch KVM su IP permettono agli utenti di controllare un server su una rete, in qualsiasi momento e da qualunque localizzazione, grazie all'accesso IP remoto.",
   "server_configuration_kvm_price_per_month": "{{t0}} per una durata di un mese",
   "server_configuration_kvm_contract_validation_title": "Accetta i contratti",
@@ -61,16 +62,12 @@
   "server_configuration_tile_sol_heading": "Serial over LAN (SoL)",
   "server_configuration_tile_sol_description": "Accesso alla console di serie della macchina tramite una connessione sicura",
   "server_configuration_ssh_sol_definition": "SSH SoL (autenticazione con chiave SSH)",
-  "server_configuration_ssh_sol_input_placeholder": "Inserisci una chiave SSH pubblica. Esempio: {{t0}}",
-  "server_configuration_ssh_sol_input_bad_pattern": "La chiave pubblica SSH non è valida: sono accettate solo le chiavi RSA, ECDSA e EdDSA in formato OpenSSH",
   "server_configuration_ssh_sol_add_key": "Aggiungere la chiave SSH",
   "server_configuration_ssh_sol_add_key_description": "Inserisci la chiave SSH pubblica che sarà utilizzata per avviare la sessione Serial over LAN (SoL)",
   "server_configuration_ssh_sol_start": "Avviare la sessione SSL via SSH",
-  "server_configuration_ssh_sol_input_bad_required": "Inserire una chiave SSH pubblica nel campo di input.",
   "server_configuration_tile_ipmi_heading": "IPMI",
   "server_configuration_tile_ipmi_description": "Gestire l’IPMI (Intelligent Platform Management Interface)",
   "server_configuration_doing": "[In corso]",
   "server_common_confirm": "Conferma",
-  "server_common_cancel": "Annulla",
-  "server_configuration_kvm_disable": "IPMI/KVM non disponibile per questo server"
+  "server_common_cancel": "Annulla"
 }

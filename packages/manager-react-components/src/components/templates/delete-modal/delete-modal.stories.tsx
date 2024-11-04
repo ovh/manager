@@ -1,8 +1,13 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { DeleteModal as DeleteModalComponent } from './delete-modal.component';
+import {
+  DeleteModal as DeleteModalComponent,
+  DeleteModalProps,
+} from './delete-modal.component';
 
-export const DeleteModal = (props) => <DeleteModalComponent {...props} />;
+export const DeleteModal = (props: DeleteModalProps) => (
+  <DeleteModalComponent {...props} />
+);
 
 const meta: Meta = {
   title: 'Templates/Delete Modal',

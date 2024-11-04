@@ -1,0 +1,9 @@
+{
+  "manager_hub_dashboard_banner_siret_link": "cliquez-ici pour la mise à jour.",
+  "manager_hub_dashboard_banner_siret": "Dans le cadre de l’amélioration de la qualité de vos données, nous avons besoin de mettre à jour le numéro SIRET de votre entreprise. Cette mise à jour ne prendra que quelques secondes, munissez-vous de votre KBIS et ",
+  "manager_hub_dashboard_modal_title": "Mise à jour de vos coordonnées",
+  "manager_hub_dashboard_modal_siret_part_1": "Dans le cadre de l’amélioration de la qualité de vos données, nous avons besoin de mettre à jour le numéro SIRET de votre entreprise.",
+  "manager_hub_dashboard_modal_siret_part_2": "Avec l'aide de votre KBIS, cette mise à jour ne prendra que quelques secondes.",
+  "manager_hub_dashboard_modal_siret_link": "Mettre à jour",
+  "manager_hub_dashboard_modal_siret_cancel": "Pas maintenant"
+}

@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.12.1...@ovh-ux/manager-iam@1.12.2) (2024-10-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3427] ([f2f661c](https://github.com/ovh/manager/commit/f2f661cfeaa804e09cd24484e965017482ea4783))
+* **i18n:** add missing translations [CDS 3436] ([5ea6c29](https://github.com/ovh/manager/commit/5ea6c290f9878ea6a404410e9e61e0c54fcf4837))
+
+
+
+
+
+## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.12.0...@ovh-ux/manager-iam@1.12.1) (2024-10-21)
+
+
+### Bug Fixes
+
+* **iam:** increase resources size for group creation ([#13440](https://github.com/ovh/manager/issues/13440)) ([c4504e3](https://github.com/ovh/manager/commit/c4504e30255d86613ca22463bd8e1d89e19f0ec7))
+
+
+
+
+
 # [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.11.3...@ovh-ux/manager-iam@1.12.0) (2024-10-07)
 
 

@@ -20,7 +20,8 @@ export const GUIDES = [
       FR: 'https://docs.ovh.com/fr/load-balancer/iplb-presentation/',
       WE: 'https://docs.ovh.com/us/en/load-balancer/loadbalancer-introduction/',
       WS: 'https://docs.ovh.com/us/en/load-balancer/loadbalancer-introduction/',
-      US: 'https://docs.ovh.com/us/en/load-balancer/loadbalancer-introduction/',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/19796409257875-Introduction-to-the-OVHcloud-Load-Balancer',
     },
   },
   {
@@ -42,7 +43,8 @@ export const GUIDES = [
       FR: 'https://docs.ovh.com/fr/load-balancer/utilisation-iplb/',
       WE: 'https://docs.ovh.com/us/en/load-balancer/usage-loadbalancer/',
       WS: 'https://docs.ovh.com/us/en/load-balancer/usage-loadbalancer/',
-      US: 'https://docs.ovh.com/us/en/load-balancer/usage-loadbalancer/',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/19799659671315-Managing-Your-Load-Balancer-Service-via-the-Control-Panel',
     },
   },
   {
@@ -64,7 +66,8 @@ export const GUIDES = [
       FR: 'https://docs.ovh.com/fr/load-balancer/iplb-http2/',
       WE: 'https://docs.ovh.com/us/en/load-balancer/lb-http2/',
       WS: 'https://docs.ovh.com/us/en/load-balancer/lb-http2/',
-      US: 'https://docs.ovh.com/us/en/load-balancer/lb-http2/',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/19805896005139-Configuring-HTTP-2-on-an-OVHcloud-Load-Balancer-Service',
     },
   },
 ];

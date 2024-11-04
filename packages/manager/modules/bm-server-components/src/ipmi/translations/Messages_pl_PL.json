@@ -40,6 +40,7 @@
   "server_configuration_impi_SOL_help_link": "Sprawdź przewodnik dotyczący konfiguracji.",
   "server_configuration_ipmi_title": "IPMI",
   "server_configuration_kvm_title": "KVM",
+  "server_configuration_kvm_disable": "IPMI/KVM niedostępne dla tego serwera",
   "server_configuration_kvm_explanation": "Przełączniki KVM over IP umożliwiają użytkownikom sterowanie serwerem w sieci z dowolnego miejsca i w dowolnym czasie dzięki zdalnemu dostępowi IP.",
   "server_configuration_kvm_price_per_month": "{{t0}} na okres jednego miesiąca",
   "server_configuration_kvm_contract_validation_title": "Akceptacja regulaminów",
@@ -61,16 +62,12 @@
   "server_configuration_tile_sol_heading": "Serial over LAN (SoL)",
   "server_configuration_tile_sol_description": "Dostęp do konsoli szeregowej Twojego serwera za pomocą bezpiecznego połączenia.",
   "server_configuration_ssh_sol_definition": "SSH SoL (uwierzytelnianie za pomocą klucza SSH)",
-  "server_configuration_ssh_sol_input_placeholder": "Wprowadź publiczny klucz SSH. <u>Przykład:</u> {{t0}}",
-  "server_configuration_ssh_sol_input_bad_pattern": "Publiczny klucz SSH jest nieprawidłowy: akceptowane są tylko klucze RSA, ECDSA i EdDSA w formacie OpenSSH",
   "server_configuration_ssh_sol_add_key": "Dodaj klucz SSH",
   "server_configuration_ssh_sol_add_key_description": "Wprowadź publiczny klucz SSH, który będzie używany do uruchomienia sesji Serial over LAN (SoL)",
   "server_configuration_ssh_sol_start": "Uruchom sesję SoL przez SSH",
-  "server_configuration_ssh_sol_input_bad_required": "Wprowadź publiczny klucz SSH w przeznaczonym do tego celu polu.",
   "server_configuration_tile_ipmi_heading": "IPMI",
   "server_configuration_tile_ipmi_description": "Zarządzanie interfejsem IPMI (Intelligent Platform Management Interface)",
   "server_configuration_doing": "[W realizacji]",
   "server_common_confirm": "Zatwierdź",
-  "server_common_cancel": "Anuluj",
-  "server_configuration_kvm_disable": "IPMI/KVM niedostępne dla tego serwera"
+  "server_common_cancel": "Anuluj"
 }

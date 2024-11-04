@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.11.8...@ovh-ux/manager-pci-users-app@0.11.9) (2024-10-24)
+
+
+### Bug Fixes
+
+* fix some unit test where await was missing ([01677dc](https://github.com/ovh/manager/commit/01677dc0166f460e08a4907a3ab0a3dcc1368a9e))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [0.11.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.11.7...@ovh-ux/manager-pci-users-app@0.11.8) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [0.11.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.11.6...@ovh-ux/manager-pci-users-app@0.11.7) (2024-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-users-app
+
+
+
+
+
+## [0.11.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.11.5...@ovh-ux/manager-pci-users-app@0.11.6) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-users-app
+
+
+
+
+
 ## [0.11.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.11.4...@ovh-ux/manager-pci-users-app@0.11.5) (2024-10-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-users-app

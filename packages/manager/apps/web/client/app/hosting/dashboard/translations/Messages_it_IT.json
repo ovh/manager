@@ -299,10 +299,10 @@
   "hosting_tab_DOMAINS_table_header_ownlog": "Log separati",
   "hosting_tab_DOMAINS_table_header_ssl": "SSL",
   "hosting_tab_DOMAINS_table_header_diagnostic": "Diagnostica",
-  "hosting_tab_DOMAINS_table_git_state_created": "Attivato",
+  "hosting_tab_DOMAINS_table_git_state_created": "Attivo",
   "hosting_tab_DOMAINS_table_git_state_creating": "In corso",
   "hosting_tab_DOMAINS_table_git_state_deleting": "Eliminazione in corso...",
-  "hosting_tab_DOMAINS_table_git_state_disabled": "Disattivato",
+  "hosting_tab_DOMAINS_table_git_state_disabled": "Disattivo",
   "hosting_tab_DOMAINS_table_git_state_error": "Errore",
   "hosting_tab_DOMAINS_table_git_state_deploying": "In corso",
   "hosting_tab_DOMAINS_table_git_state_initialError": "Errore",
@@ -311,9 +311,9 @@
   "hosting_tab_DOMAINS_table_cdn_state_ACTIVE": "Attivato",
   "hosting_tab_DOMAINS_table_cdn_state_NONE": "Disattivato",
   "hosting_tab_DOMAINS_table_ssl_state_true": "Attivato",
-  "hosting_tab_DOMAINS_diagnostique_tooltip_good_configuration": "Il tuo dominio {{domainName}} punta correttamente verso l’hosting {{hosting}} con l’IP {{ip}}",
-  "hosting_tab_DOMAINS_diagnostique_tooltip_not_good_configuration": "Il tuo dominio {{domainName}} non punta verso l’hosting {{hosting}} con l’IP {{ip}}",
-  "hosting_tab_DOMAINS_diagnostique_tooltip_unconfigured": "Il tuo dominio {{domainName}} al momento non punta verso alcun indirizzo IP",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_good_configuration": "Il dominio {{ domainName }} è configurato sull'indirizzo IP {{ ip }} del tuo hosting.",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_not_good_configuration": "Il dominio {{ domainName }} è configurato verso l'indirizzo IP {{ ip }} di un altro servizio.",
+  "hosting_tab_DOMAINS_diagnostique_tooltip_unconfigured": "Questo record nella tua zona DNS non funziona. Non è stata trovata nessuna configurazione nella tua zona DNS",
   "hosting_tab_DOMAINS_table_ssl_state_false": "Disattivato",
   "hosting_tab_DOMAINS_table_ssl_state_2": "Attivato",
   "hosting_tab_DOMAINS_table_ssl_state_0": "Disattivato",
@@ -1400,5 +1400,6 @@
   "hosting_dashboard_service_common_inactive": "Disattivo",
   "hosting_dashboard_email_offer_get_error": "Impossibile recuperare l’indirizzo email",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Più"
+  "hosting_dashboard_tabs_dropdown": "Più",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Clicca sul pulsante azione per associare Git"
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-tail-logs@2.1.1...@ovh-ux/ng-tail-logs@2.2.0) (2024-10-24)
+
+
+### Features
+
+* **web.privatedabase:** move metrics to mimir ([#12299](https://github.com/ovh/manager/issues/12299)) ([0d118ba](https://github.com/ovh/manager/commit/0d118bac2ecd52c774122d8cb997684e44a5199b))
+
+
+
+
+
 ## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-tail-logs@2.1.0...@ovh-ux/ng-tail-logs@2.1.1) (2023-12-05)
 
 **Note:** Version bump only for package @ovh-ux/ng-tail-logs

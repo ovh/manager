@@ -90,23 +90,15 @@
         >
         </textarea>
         <!-- sshPubKey -->
-        <div
-            data-ng-switch-when="sshPubKey"
-            class="float-right sshkey-switch"
-            data-sshkey-switch
-            data-sshkey-switch-key="{{$ctrl.installation.input[input.name]}}"
-        ></div>
-        <textarea
-            data-ng-switch-when="sshPubKey"
-            class="oui-input form-control"
-            data-ng-model="$ctrl.installation.input[input.name]"
-            data-ng-required="input.mandatory"
-            rows="{{$ctrl.inputRules.sshPubKey.maxsize}}"
-            name="{{input.name}}"
-            data-ng-pattern="$ctrl.inputRules.sshPubKey.pattern"
-            placeholder="{{:: 'server_configuration_installation_inputs_item_placeholder' | translate:{ t0: 'sshPubKey' } }}. {{:: 'server_configuration_installation_inputs_item_placeholder_example' | translate:{ t0: $ctrl.inputRules.sshPubKey.placeholder } }}"
-        >
-        </textarea>
+        <div data-ng-switch-when="sshPubKey">
+            <ovh-manager-ssh-key-selector
+                data-public-key="$ctrl.installation.input[input.name]"
+                data-required="input.mandatory"
+                data-rows="$ctrl.inputRules.sshPubKey.maxsize"
+                data-name="input.name"
+                data-placeholder="{{:: 'server_configuration_installation_inputs_item_placeholder' | translate:{ t0: 'sshPubKey' } }}. {{:: 'server_configuration_installation_inputs_item_placeholder_example' | translate:{ t0: $ctrl.inputRules.sshPubKey.placeholder } }}"
+            ></ovh-manager-ssh-key-selector>
+        </div>
         <!-- keyValue -->
         <!-- custom validation error messages not implemented -->
         <div data-ng-switch-when="keyValue">

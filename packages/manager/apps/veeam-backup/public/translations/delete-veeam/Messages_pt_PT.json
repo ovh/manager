@@ -1,0 +1,5 @@
+{
+  "headline": "Rescindir o meu serviço",
+  "delete_input_label": "Introduza a palavra «TERMINATE» para confirmar a rescisão do seu serviço.",
+  "terminate_veeam_backup_success": "O seu pedido de rescisão para {{name}} foi registado. Vai receber um e-mail com mais informações."
+}

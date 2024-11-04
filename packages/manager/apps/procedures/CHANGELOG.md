@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.5.1...@ovh-ux/manager-procedures-app@0.5.2) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.5.0...@ovh-ux/manager-procedures-app@0.5.1) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.4.1...@ovh-ux/manager-procedures-app@0.5.0) (2024-10-23)
+
+
+### Features
+
+* **procedures:** added retry loop on document upload ([#13124](https://github.com/ovh/manager/issues/13124)) ([ea29f22](https://github.com/ovh/manager/commit/ea29f2204c02c92b0da79066042688e94f02f992))
+
+
+
+
+
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.4.0...@ovh-ux/manager-procedures-app@0.4.1) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.3.0...@ovh-ux/manager-procedures-app@0.4.0) (2024-10-21)
+
+
+### Features
+
+* **procedures:** use manager locale detection instead of support one ([#13299](https://github.com/ovh/manager/issues/13299)) ([2a212cc](https://github.com/ovh/manager/commit/2a212ccc593c92c9cf56453bc54ebfba4a46e75c))
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.2.1...@ovh-ux/manager-procedures-app@0.3.0) (2024-10-07)
 
 

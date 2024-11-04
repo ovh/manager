@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.85.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.85.1...@ovh-ux/manager-container-app@0.85.2) (2024-10-24)
+
+
+### Reverts
+
+* Revert "feat(manager-react-components): build manager react components lib" ([5d68a86](https://github.com/ovh/manager/commit/5d68a8677efea465ebf882c77ca5413388f2dfbf))
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [0.85.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.85.0...@ovh-ux/manager-container-app@0.85.1) (2024-10-24)
+
+
+### Reverts
+
+* Revert "feat(manager-react-components): build manager react components lib" ([5d68a86](https://github.com/ovh/manager/commit/5d68a8677efea465ebf882c77ca5413388f2dfbf))
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+# [0.85.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.84.1...@ovh-ux/manager-container-app@0.85.0) (2024-10-22)
+
+
+### Features
+
+* **account:** kyc digital process ([#12727](https://github.com/ovh/manager/issues/12727)) ([cf8f0c9](https://github.com/ovh/manager/commit/cf8f0c90150486fa0b30af98ce0c2d3dbdeabf90))
+
+
+
+
+
+## [0.84.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.84.0...@ovh-ux/manager-container-app@0.84.1) (2024-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.84.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.83.0...@ovh-ux/manager-container-app@0.84.0) (2024-10-21)
+
+
+### Features
+
+* **hpc-vmware-managed-vcd:** add new product VCD ([#12552](https://github.com/ovh/manager/issues/12552)) ([c990a65](https://github.com/ovh/manager/commit/c990a65189760c0b109902e3e292b31e8b59dd83))
+* **hycu:** add product HYCU for OVHCloud ([#13244](https://github.com/ovh/manager/issues/13244)) ([5ab27eb](https://github.com/ovh/manager/commit/5ab27eb9dbb9ba886dbb61e6dd4a1670c138100c))
+* **veeam-backup:** add new product veeam-backup ([#12611](https://github.com/ovh/manager/issues/12611)) ([df1cd33](https://github.com/ovh/manager/commit/df1cd3377a025e7a1cd4c166f26838d0871397c4))
+
+
+
+
+
 # [0.83.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.82.0...@ovh-ux/manager-container-app@0.83.0) (2024-10-21)
 
 

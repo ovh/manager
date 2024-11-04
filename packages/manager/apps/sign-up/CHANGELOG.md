@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.9.4](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.9.3...@ovh-ux/sign-up-app@3.9.4) (2024-10-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3436] ([5ea6c29](https://github.com/ovh/manager/commit/5ea6c290f9878ea6a404410e9e61e0c54fcf4837))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [3.9.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.9.2...@ovh-ux/sign-up-app@3.9.3) (2024-10-24)
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
+## [3.9.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.9.1...@ovh-ux/sign-up-app@3.9.2) (2024-10-22)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [3.9.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.9.0...@ovh-ux/sign-up-app@3.9.1) (2024-10-21)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+# [3.9.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.8.6...@ovh-ux/sign-up-app@3.9.0) (2024-10-21)
+
+
+### Features
+
+* **sign-up:** added asterisks to indicate mandatory fields ([#12711](https://github.com/ovh/manager/issues/12711)) ([ef4e323](https://github.com/ovh/manager/commit/ef4e32333ec5541521dc64cbd8ed77fdaa3886cb))
+
+
+
+
+
 ## [3.8.6](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.8.5...@ovh-ux/sign-up-app@3.8.6) (2024-10-03)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app

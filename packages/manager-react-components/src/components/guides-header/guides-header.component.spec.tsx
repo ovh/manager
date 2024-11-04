@@ -1,3 +1,5 @@
+import React from 'react';
+import { vitest } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
 import { GuidesHeader, GuidesHeaderProps } from './guides-header.component';
 import { render } from '../../utils/test.provider';
@@ -59,7 +61,7 @@ describe('GuidesHeader tests', () => {
   });
 
   it('should trigger onGuideClick', () => {
-    const onGuideClick = jest.fn();
+    const onGuideClick = vitest.fn();
     const { container } = renderComponent({
       label: 'hello',
       guides,
@@ -73,7 +75,7 @@ describe('GuidesHeader tests', () => {
   });
 
   it('should not trigger onGuideClick if it is undefined', () => {
-    const onGuideClick = jest.fn();
+    const onGuideClick = vitest.fn();
     const { container } = renderComponent({
       label: 'hello',
       guides,

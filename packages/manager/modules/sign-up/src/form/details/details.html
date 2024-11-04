@@ -5,6 +5,7 @@
             <oui-field
                 data-label="{{ 'sign_up_details_field_legalform' | translate }}"
                 data-label-popover="{{ '' | translate }}"
+                data-ng-class="{'required-field': $ctrl.signUpFormCtrl.rules.legalform.mandatory}"
             >
                 <label class="oui-select">
                     <select
@@ -30,6 +31,7 @@
         <div class="col-lg">
             <!-- country -->
             <oui-field
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.country.mandatory}"
                 data-label="{{ 'sign_up_details_field_country' | translate }}"
             >
                 <label class="oui-select">
@@ -56,6 +58,7 @@
             <!-- language -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_language' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.language.mandatory}"
             >
                 <label class="oui-select">
                     <select
@@ -81,7 +84,7 @@
 
     <div class="row" data-ng-if="$ctrl.signUpFormCtrl.rules.phoneType">
         <div class="col-lg">
-            <oui-field>
+            <oui-field class="required-field">
                 <oui-radio-group
                     name="phoneType"
                     data-model="$ctrl.signUpFormCtrl.model.phoneType"
@@ -109,6 +112,7 @@
             <!-- phone -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_phone' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.phone.mandatory}"
             >
                 <div class="oui-input-group phone-number-field">
                     <ui-select
@@ -172,6 +176,7 @@
             <!-- address -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_address' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.address.mandatory}"
             >
                 <input
                     type="text"
@@ -191,6 +196,7 @@
             <!-- area -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_' + ($ctrl.signUpFormCtrl.model.country.includes('AU', 'US', 'WE', 'IN') ? 'state' : $ctrl.signUpFormCtrl.model.country === 'CA' ? 'province' : 'area') | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.area.mandatory}"
             >
                 <label class="oui-select">
                     <select
@@ -219,6 +225,7 @@
             <!-- zip -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_zip' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.zip.mandatory}"
             >
                 <div
                     data-ng-class="{ 'oui-input-group zip-group' : $ctrl.signUpFormCtrl.rules.zip.prefix }"
@@ -250,6 +257,7 @@
             <!-- city -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_city' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.city.mandatory}"
             >
                 <input
                     type="text"
@@ -274,6 +282,7 @@
             <!-- gender -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_gender' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.sex.mandatory}"
             >
                 <label class="oui-select">
                     <select
@@ -304,6 +313,7 @@
             <!-- birthDay -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_birthday' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.birthDay.mandatory}"
             >
                 <input
                     type="date"
@@ -325,6 +335,7 @@
             <!-- purchase purpose -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_purpose_of_purchase' | translate }}"
+                data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.purposeOfPurchase.mandatory}"
             >
                 <oui-select
                     id="purposeOfPurchase"

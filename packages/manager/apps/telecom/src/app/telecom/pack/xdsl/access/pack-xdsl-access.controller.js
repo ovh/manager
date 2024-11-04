@@ -15,6 +15,10 @@ import {
   PROVIDER,
   PROVIDER_INFRA,
   ACCESS_TYPE,
+  MAIL_SENDING_STATUS,
+  POLLING_INTERVAL,
+  MAIL_SENDING_HELP,
+  MAIL_SENDING_GUIDE_URL,
 } from './pack-xdsl-access.constants';
 
 export default class XdslAccessCtrl {
@@ -27,6 +31,7 @@ export default class XdslAccessCtrl {
     $state,
     $stateParams,
     $templateCache,
+    $timeout,
     $translate,
     $uibModal,
     OvhApiPackXdsl,
@@ -39,6 +44,7 @@ export default class XdslAccessCtrl {
     OvhApiXdslNotifications,
     TucToast,
     TucToastError,
+    XdslAccessService,
     XdslTaskPoller,
     PACK,
     PACK_IP,
@@ -51,6 +57,7 @@ export default class XdslAccessCtrl {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$templateCache = $templateCache;
+    this.$timeout = $timeout;
     this.$translate = $translate;
     this.$uibModal = $uibModal;
     this.OvhApiPackXdsl = OvhApiPackXdsl;
@@ -63,6 +70,7 @@ export default class XdslAccessCtrl {
     this.OvhApiXdslNotifications = OvhApiXdslNotifications;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
+    this.XdslAccessService = XdslAccessService;
     this.XdslTaskPoller = XdslTaskPoller;
     this.PACK = PACK;
     this.PACK_IP = PACK_IP;
@@ -72,6 +80,13 @@ export default class XdslAccessCtrl {
   $onInit() {
     this.packName = this.$stateParams.packName;
     this.number = this.$stateParams.number;
+
+    this.showModal = false;
+    this.poller = null;
+
+    this.linkMailSendingHelp = MAIL_SENDING_HELP;
+    this.linkMailSendingGuide = MAIL_SENDING_GUIDE_URL;
+    this.MAIL_SENDING_STATUS = MAIL_SENDING_STATUS;
 
     this.$scope.loaders = {
       details: true,
@@ -166,6 +181,10 @@ export default class XdslAccessCtrl {
     this.$scope.$on('$destroy', () => {
       this.XdslTaskPoller.unregister(this.diagPollerTicket);
       this.XdslTaskPoller.unregister(this.additionalIpPollerTicket);
+
+      if (this.poller) {
+        this.$timeout.cancel(this.poller);
+      }
     });
 
     return this.$q.all([
@@ -425,6 +444,9 @@ export default class XdslAccessCtrl {
                 );
               }
 
+              // Check if change mail sending status is running
+              this.getChangeMailSendingTask();
+
               return this.$scope.access.xdsl;
             },
             (err) => {
@@ -632,6 +654,74 @@ export default class XdslAccessCtrl {
         this.$templateCache.put(
           'pack-xdsl-access-tooltip-dslamProfile.html',
           `<div class="text-left">${profilesTemplate}<p class="text-warning" data-translate="xdsl_access_profile_tooltip_time"></p></div>`,
+        );
+      });
+  }
+
+  /**
+   * Check if change mail sending status is running
+   */
+  getChangeMailSendingTask() {
+    return this.XdslAccessService.getChangeMailTasks(
+      this.$stateParams.serviceName,
+    ).then(({ data }) => {
+      if (data.length > 0) {
+        this.isTaskRunning = true;
+        // Task change mail sending running
+        this.poller = this.$timeout(() => {
+          this.getChangeMailSendingTask();
+        }, POLLING_INTERVAL);
+      } else {
+        this.XdslAccessService.getAccess(this.$stateParams.serviceName).then(
+          (result) => {
+            const access = result.data;
+
+            // Set mail sending status
+            this.mailSendingStatus =
+              access?.mailSending || MAIL_SENDING_STATUS.noStatus;
+            this.mailSendingStatusLabel = this.$translate.instant(
+              `xdsl_detail_mail_sending_status_${this.mailSendingStatus}`,
+            );
+            this.isTaskRunning = false;
+          },
+        );
+      }
+    });
+  }
+
+  /**
+   * Change mail sending status
+   */
+  changeMailSending(status) {
+    this.mailSendingNewStatus = status;
+    this.mailSendingAsking = this.$translate.instant(
+      `xdsl_detail_mail_sending_modal_${status}`,
+    );
+    this.showModal = true;
+  }
+
+  cancelLaunch() {
+    this.showModal = false;
+  }
+
+  launchChangeMailSending() {
+    this.showModal = false;
+    this.XdslAccessService.updateMailSending(
+      this.$stateParams.serviceName,
+      this.mailSendingNewStatus,
+    )
+      .then(() => {
+        this.TucToast.success(
+          this.$translate.instant('xdsl_detail_mail_sending_update_succeed'),
+        );
+        // Asynchronous call, need to ask the tasks when finished to display the new status and the button(s)
+        this.getChangeMailSendingTask();
+      })
+      .catch((error) => {
+        this.TucToastError(
+          this.$translate.instant('xdsl_detail_mail_sending_update_failed', {
+            error: error.data.message,
+          }),
         );
       });
   }

@@ -27,16 +27,17 @@ export function useAuthorizationsIam({ actions, urns }: IamInterface) {
   return data || [];
 }
 
+export function getAuthorizationCheckUrl(urn: string) {
+  return `/iam/resource/${encodeURIComponent(urn)}/authorization/check`;
+}
+
 export const fetchAuthorizationCheck = async (
   actions: string[],
   urn: string,
 ): Promise<IamCheckResponse> => {
-  const { data } = await apiClient.v2.post(
-    `/iam/resource/${urn}/authorization/check`,
-    {
-      actions,
-    },
-  );
+  const { data } = await apiClient.v2.post(getAuthorizationCheckUrl(urn), {
+    actions,
+  });
   return data;
 };
 export function useAuthorizationIam(

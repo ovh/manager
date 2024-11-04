@@ -76,7 +76,7 @@ const UpdatePlanContent = ({
         onError(err);
       }
     },
-    onSuccess: (updatedService) => {
+    onEditSuccess: (updatedService) => {
       toast.toast({
         title: t('updatePlanToastSuccessTitle'),
         description: t('updatePlanToastSuccessDescription', {

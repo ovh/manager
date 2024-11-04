@@ -23,6 +23,7 @@
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
+    "@ovh-ux/manager-pci-common": "^0.7.6",
     "@ovh-ux/manager-react-components": "2.0.0",
     "@ovh-ux/manager-react-core-application": "*",
     "@ovh-ux/manager-react-shell-client": "*",
