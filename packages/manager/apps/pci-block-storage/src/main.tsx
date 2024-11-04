@@ -11,8 +11,6 @@ import './index.css';
 
 import '@/vite-hmr.ts';
 
-// build block storage
-
 const init = async (
   appName: string,
   { reloadOnLocaleChange } = { reloadOnLocaleChange: false },

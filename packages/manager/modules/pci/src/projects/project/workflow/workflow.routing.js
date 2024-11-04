@@ -5,8 +5,6 @@ import map from 'lodash/map';
 import Workflow from './Workflow.class';
 import { PCI_FEATURES } from '../../projects.constant';
 
-// build workflow
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.workflow', {
     url: '/workflow?id',
