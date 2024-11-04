@@ -266,7 +266,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         <DescriptionWrapper>
           {t('choose_ressource_description')}
         </DescriptionWrapper>
-        <div className="flex flex-row  w-full">
+        <div className="flex flex-row  w-full overflow-x-auto">
           {resources.map((resource) => (
             <SimpleTile
               key={resource.value.toString()}
@@ -302,7 +302,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           {t(getDescriptionInstanceKey(instanceCategory))}
         </DescriptionWrapper>
         {!isTechnicalInfoLoading ? (
-          <div className="flex flex-row">
+          <div className="flex flex-row w-full overflow-x-auto">
             {currentInstanceSelected.technical?.map(({ name, technical }) => (
               <TileTechnicalInfo
                 key={name}
@@ -406,7 +406,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
               ? ODS_THEME_COLOR_INTENT.primary
               : ODS_THEME_COLOR_INTENT.error
           }
-          className={`${COMMON_SPACING} w-1/3`}
+          className={`${COMMON_SPACING} md:w-1/3`}
           value={planName}
           onOdsValueChange={(
             e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,

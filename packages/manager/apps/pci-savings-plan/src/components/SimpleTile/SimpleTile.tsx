@@ -14,7 +14,7 @@ const SimpleTile: React.FC<React.PropsWithChildren<{
       isActive ? ODS_THEME_COLOR_INTENT.primary : ODS_THEME_COLOR_INTENT.default
     }
     variant={ODS_TILE_VARIANT.stroked}
-    className={`flex items-center justify-center w-1/4  mr-5 text-center ${
+    className={`flex items-center justify-center w-1/2 shrink-0 md:shrink md:w-1/4  mr-5 text-center ${
       onClick ? 'cursor-pointer' : 'cursor-default'
     } ${
       isActive ? ' bg-[--ods-color-blue-100] border-[--ods-color-blue-600]' : ''
