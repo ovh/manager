@@ -26,10 +26,7 @@ import { AGORA_FLOATING_IP_REGEX } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
 import { useGetFloatingIps } from '@/api/hook/useFloatingIps';
-import {
-  useGetPrivateNetworkSubnets,
-  useGetRegionPrivateNetworks,
-} from '@/api/hook/useNetwork';
+import { useGetRegionPrivateNetworks } from '@/api/hook/useNetwork';
 
 export const IpStep = (): JSX.Element => {
   const { t: tCreate } = useTranslation('load-balancer/create');
