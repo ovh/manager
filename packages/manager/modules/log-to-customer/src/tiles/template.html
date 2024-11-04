@@ -81,9 +81,9 @@
                     variant="link"
                     class="d-block mt-1"
                     data-ng-click="$ctrl.deleteLogSubscription(subscription)"
+                    data-disabled="subscription.isLoading"
                 >
                     <span
-                        data-ng-if="!subscription.isLoading"
                         data-translate="log_title_subscriptions_unsubscribe"
                     ></span>
                     <oui-spinner

@@ -40,7 +40,7 @@ export default class LogToCustomerTileCtrl {
     this.loading = true;
     this.streamSubscriptions = [];
 
-    this.$q
+    return this.$q
       .all([this.getDataStreams(), this.getSubscribedStreams()])
       .catch(({ data }) => {
         this.alertError(data.message);
@@ -109,14 +109,14 @@ export default class LogToCustomerTileCtrl {
       `${this.logSubscriptionUrl}/${subscription.subscriptionId}`,
     )
       .then(({ data }) => {
-        this.LogToCustomerService.pollOperation(
+        return this.LogToCustomerService.pollOperation(
           subscription.serviceName,
           data,
         ).then(() => {
           this.Alerter.success(
             this.$translate.instant('logs_list_unsubscription_success'),
           );
-          this.loadStreams();
+          return this.loadStreams();
         });
       })
       .catch(({ data }) => {
