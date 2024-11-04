@@ -13,7 +13,7 @@ export const getGatewaysByRegion = async (
   return data;
 };
 
-export const associateGateway = async (
+export const createGatewayInterface = async (
   projectId: string,
   region: string,
   gatewayId: string,
@@ -29,7 +29,7 @@ export const associateGateway = async (
   return data;
 };
 
-export const assignGatewayToOperation = async (
+export const assignGateway = async (
   projectId: string,
   region: string,
   resourceId: string,
@@ -37,5 +37,5 @@ export const assignGatewayToOperation = async (
 ) => {
   const subnets = await getSubnets(projectId, region, resourceId);
 
-  await associateGateway(projectId, region, gatewayId, subnets[0].id);
+  await createGatewayInterface(projectId, region, gatewayId, subnets[0].id);
 };
