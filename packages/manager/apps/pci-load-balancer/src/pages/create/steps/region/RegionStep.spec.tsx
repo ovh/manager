@@ -1,16 +1,16 @@
 import { describe, Mock, vi } from 'vitest';
 import {
   StepComponent,
-  TilesInputComponent,
   TStepProps,
   useMe,
 } from '@ovh-ux/manager-react-components';
 import { render, renderHook } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import { OsdsLink, OsdsSpinner } from '@ovhcloud/ods-components/react';
+import { ShapesInputComponent } from '@ovh-ux/manager-pci-common';
 import { wrapper } from '@/wrapperRenders';
-import { RegionStep } from '@/pages/create/steps/RegionStep';
-import { StepsEnum, TAddon, useCreateStore } from '@/pages/create/store';
+import { RegionStep } from './RegionStep';
+import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { REGION_AVAILABILITY_LINK } from '@/constants';
 import { TRegion, useGetRegions } from '@/api/hook/useRegions';
 import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
@@ -49,21 +49,28 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
 });
 
 vi.mock('@ovh-ux/manager-react-components', async () => {
-  const {
-    StepComponent: ActualStepComponent,
-    TilesInputComponent: ActualTilesInputComponent,
-    ...rest
-  } = await vi.importActual('@ovh-ux/manager-react-components');
+  const { StepComponent: ActualStepComponent, ...rest } = await vi.importActual(
+    '@ovh-ux/manager-react-components',
+  );
   return {
     ...rest,
     useMe: vi.fn(),
     StepComponent: vi
       .fn()
       .mockImplementation(ActualStepComponent as typeof StepComponent),
-    TilesInputComponent: vi
+  };
+});
+vi.mock('@ovh-ux/manager-pci-common', async () => {
+  const {
+    ShapesInputComponent: ActualShapesInputComponent,
+    ...rest
+  } = await vi.importActual('@ovh-ux/manager-pci-common');
+  return {
+    ...rest,
+    ShapesInputComponent: vi
       .fn()
       .mockImplementation(
-        ActualTilesInputComponent as typeof TilesInputComponent,
+        ActualShapesInputComponent as typeof ShapesInputComponent,
       ),
   };
 });
@@ -164,7 +171,7 @@ describe('RegionStep', () => {
           isPending: false,
         }));
 
-        ((TilesInputComponent as unknown) as Mock).mockImplementationOnce(
+        ((ShapesInputComponent as unknown) as Mock).mockImplementationOnce(
           () => <div data-testid="input"></div>,
         );
 
@@ -180,7 +187,7 @@ describe('RegionStep', () => {
       (useGetRegions as Mock).mockImplementationOnce(() => ({
         isPending: false,
       }));
-      (TilesInputComponent as Mock).mockImplementationOnce(() => (
+      (ShapesInputComponent as Mock).mockImplementationOnce(() => (
         <div data-testid="input"></div>
       ));
     });
@@ -197,7 +204,7 @@ describe('RegionStep', () => {
         });
 
         test('Next button should be enabled if region is set', () => {
-          (TilesInputComponent as Mock).mockImplementationOnce(() => (
+          (ShapesInputComponent as Mock).mockImplementationOnce(() => (
             <div data-testid="input"></div>
           ));
 
@@ -213,7 +220,7 @@ describe('RegionStep', () => {
       });
       describe('click', () => {
         it('Should track on next click', async () => {
-          (TilesInputComponent as Mock).mockImplementationOnce(() => (
+          (ShapesInputComponent as Mock).mockImplementationOnce(() => (
             <div data-testid="input"></div>
           ));
           const trackStepSpy = vi.fn();
