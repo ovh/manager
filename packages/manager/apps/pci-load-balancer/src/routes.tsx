@@ -4,6 +4,8 @@ import { ErrorBoundary } from './pages/ErrorBoundary';
 
 export const ROUTE_PATHS = {
   ROOT: '/pci/projects/:projectId/octavia-load-balancer',
+  ONBOARDING: 'onboarding',
+  NO_PRIVATE_NETWORK: 'no-private-network',
   LISTING: 'load-balancers',
   DETAIL: ':region/:loadBalancerId',
   GENERAL_INFORMATION: 'general-information',
@@ -49,6 +51,10 @@ export const ROUTE_PATHS = {
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing.page'));
+const OnBoardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
+const NoPrivateNetworkPage = lazy(() =>
+  import('@/pages/onboarding/NoPrivateNetwork.page'),
+);
 const DetailPage = lazy(() => import('@/pages/detail/Detail.page'));
 const OverviewPage = lazy(() =>
   import('@/pages/detail/overview/Overview.page'),
@@ -182,6 +188,12 @@ const Routes = (
     errorElement={<ErrorBoundary />}
   >
     <Route path="" element={<Navigate to={ROUTE_PATHS.LISTING} replace />} />
+    <Route path={ROUTE_PATHS.ONBOARDING} Component={OnBoardingPage}>
+      <Route
+        path={ROUTE_PATHS.NO_PRIVATE_NETWORK}
+        Component={NoPrivateNetworkPage}
+      />
+    </Route>
     <Route path={ROUTE_PATHS.LISTING} Component={ListingPage}>
       <Route path={ROUTE_PATHS.DELETE} Component={DeletePage} />
     </Route>
