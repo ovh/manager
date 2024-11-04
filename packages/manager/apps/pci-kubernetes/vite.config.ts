@@ -12,17 +12,4 @@ export default defineConfig({
       plugins: [tailwindcss],
     },
   },
-  resolve: {
-    ...baseConfig.resolve,
-    dedupe: [
-      'i18next',
-      'react',
-      'react-dom',
-      'react-i18next',
-      'react-router-dom',
-      'zustand',
-      '@ovh-ux/manager-react-components',
-      '@ovh-ux/manager-react-shell-client',
-    ],
-  },
 });

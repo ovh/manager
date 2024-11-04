@@ -5228,6 +5228,33 @@
   resolved "https://registry.npmjs.org/@orchidjs/unicode-variants/-/unicode-variants-1.0.4.tgz#6d2f812e3b19545bba2d81caffff1204de9a6a58"
   integrity sha512-NvVBRnZNE+dugiXERFsET1JlKZfM5lJDEpSMilKW4bToYJ7pxf0Zne78xyXB2ny2c2aHfJ6WLnz1AaTNHAmQeQ==
 
+"@ovh-ux/manager-react-components@1.41.0-alpha.2":
+  version "1.41.0-alpha.2"
+  resolved "https://registry.npmjs.org/@ovh-ux/manager-react-components/-/manager-react-components-1.41.0-alpha.2.tgz#14a5689e2ca6a34e334cf8b57e9822b336e94424"
+  integrity sha512-4qDWHjgWv7HJYUgkygerAnnXaJ0yJ+YcvqDXOOLTyL1FrYfzt5z4D92zPVOKLQRlA3v8SA859ehiSNCuY7SuKw==
+  dependencies:
+    "@ovh-ux/manager-core-api" "^0.9.0-alpha.0"
+    "@ovh-ux/manager-react-shell-client" "^0.8.0-alpha.0"
+    "@ovhcloud/ods-common-core" "17.2.2"
+    "@ovhcloud/ods-common-theming" "17.2.2"
+    "@ovhcloud/ods-components" "17.2.2"
+    "@ovhcloud/ods-theme-blue-jeans" "17.2.2"
+    "@tanstack/react-query" "^5.51.21"
+    "@tanstack/react-table" "^8.20.1"
+    clsx "^2.1.1"
+    lodash.isdate "^4.0.1"
+    lodash.isequal "^4.5.0"
+    react-use "^17.5.0"
+    sass "1.71.0"
+    tailwindcss "^3.4.4"
+    uuid "^9.0.1"
+  optionalDependencies:
+    i18next "^23.8.2"
+    react "18.2.0"
+    react-dom "18.2.0"
+    react-router-dom "^6.3.0"
+    zustand "^4.5.0"
+
 "@ovh-ux/ng-ovh-api-wrappers@^5.0.0", "@ovh-ux/ng-ovh-api-wrappers@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-5.1.0.tgz#b8bfef258a4e0860eabf219cb1880ca0a15da687"

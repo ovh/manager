@@ -54,6 +54,7 @@ const getBaseConfig = (config) => {
         'typescript',
         'date-fns',
         '@ovh-ux/manager-react-components',
+        '@ovh-ux/manager-react-components/react',
       ],
     },
     define: {
