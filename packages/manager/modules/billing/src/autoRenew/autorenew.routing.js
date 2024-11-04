@@ -91,6 +91,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         },
         featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
           ovhFeatureFlipping.checkFeatureAvailability([
+            'vrack:delete',
             'billing:management',
             'billing:autorenew2016Deployment',
           ]),
@@ -103,6 +104,8 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
           featureAvailability?.isFeatureAvailable(
             'billing:autorenew2016Deployment',
           ) || false,
+        canDeleteVrack: /* @ngInject */ (featureAvailability) =>
+          featureAvailability?.isFeatureAvailable('vrack:delete') || false,
         hideBreadcrumb: /* @ngInject */ () => true,
         trackingPrefix: () => 'dedicated::account::billing::autorenew',
       },
