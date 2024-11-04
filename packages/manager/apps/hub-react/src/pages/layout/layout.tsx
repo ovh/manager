@@ -32,6 +32,8 @@ import { useFetchHubLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
 // Components used in Suspense's fallback cannot be lazy loaded (break testing)
 import TileGridSkeleton from '@/components/tile-grid-skeleton/TileGridSkeleton.component';
 import TileSkeleton from '@/components/tile-grid-skeleton/tile-skeleton/TileSkeleton.component';
+import NotificationsCarouselSkeleton from '@/pages/layout/NotificationsCarousel.skeleton';
+import PaymentStatusSkeleton from '@/pages/layout/PaymentStatus.skeleton';
 
 const Welcome = lazy(() => import('@/components/welcome/Welcome.component'));
 const Banner = lazy(() => import('@/components/banner/Banner.component'));
@@ -158,29 +160,13 @@ export default function Layout() {
                     <Welcome />
                   </Suspense>
                   <div className="flex flex-wrap w-full minw-0 items-center justify-between">
-                    {isLoading && (
-                      <OsdsSkeleton data-testid="banners_skeleton" />
-                    )}
+                    {isLoading && <NotificationsCarouselSkeleton />}
                     {!isLoading && !isFreshCustomer && (
                       <>
-                        <Suspense
-                          fallback={
-                            <OsdsSkeleton
-                              data-testid="banner_skeleton"
-                              inline
-                            />
-                          }
-                        >
+                        <Suspense>
                           <Banner />
                         </Suspense>
-                        <Suspense
-                          fallback={
-                            <OsdsSkeleton
-                              data-testid="notifications_carousel_skeleton"
-                              inline
-                            />
-                          }
-                        >
+                        <Suspense fallback={<NotificationsCarouselSkeleton />}>
                           <NotificationsCarousel />
                         </Suspense>
                       </>
@@ -250,11 +236,26 @@ export default function Layout() {
                     </OsdsText>
                   )}
                   <div className={`flex flex-wrap ${isLoading ? '' : '-mx-6'}`}>
-                    {isLoading && <TileSkeleton />}
+                    {isLoading && (
+                      <>
+                        <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
+                          <PaymentStatusSkeleton />
+                        </div>
+                        <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
+                          <TileSkeleton data-testid="billing_summary_skeleton" />
+                        </div>
+                        <div className="md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 px-6 box-border">
+                          <TileSkeleton data-testid="support_skeleton" />
+                        </div>
+                        <div className="md:w-4/12 order-4 px-6 box-border">
+                          <TileSkeleton data-testid="order_tracking_skeleton" />
+                        </div>
+                      </>
+                    )}
                     {!isLoading && !isFreshCustomer && (
                       <>
                         <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
-                          <Suspense fallback={<TileSkeleton />}>
+                          <Suspense fallback={<PaymentStatusSkeleton />}>
                             <PaymentStatus
                               canManageBilling={availability?.[BILLING_FEATURE]}
                             />
@@ -290,10 +291,7 @@ export default function Layout() {
                           <div className="md:w-4/12 order-4 px-6 box-border">
                             <Suspense
                               fallback={
-                                <OsdsSkeleton
-                                  data-testid="order_tracking_skeleton"
-                                  inline
-                                />
+                                <TileSkeleton data-testid="order_tracking_skeleton" />
                               }
                             >
                               <OrderTracking />
