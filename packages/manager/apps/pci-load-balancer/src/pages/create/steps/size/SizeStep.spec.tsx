@@ -11,7 +11,7 @@ import { SizeStep } from './SizeStep';
 import { wrapper } from '@/wrapperRenders';
 import { useGetAddons } from '@/api/hook/useAddons';
 import { PRODUCT_LINK } from '@/constants';
-import SizeInputComponent from '@/pages/create/SizeInput.component';
+import SizeInputComponent from './input/SizeInput.component';
 import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
 import { StepsEnum, TAddon, useCreateStore } from '@/pages/create/store';
 
@@ -65,9 +65,9 @@ vi.mock('@/api/hook/useAddons', async () => {
   };
 });
 
-vi.mock('@/pages/create/SizeInput.component', async () => {
+vi.mock('./input/SizeInput.component', async () => {
   const { default: ActualDefault, ...rest } = await vi.importActual(
-    '@/pages/create/SizeInput.component',
+    './input/SizeInput.component',
   );
   return {
     ...rest,
