@@ -2,16 +2,13 @@ import { Handler } from '@playwright-helpers';
 
 const regionList = [
   {
-    description: 'France - Roubaix',
-    code: 'RBX',
+    name: 'eu-west-rbx',
   },
   {
-    description: 'Germany - Limburg',
-    code: 'LIM',
+    name: 'eu-west-lim',
   },
   {
-    description: 'Canada - Beauharnois',
-    code: 'BHS',
+    name: 'eu-west-gra',
   },
 ];
 
