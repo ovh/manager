@@ -11,6 +11,8 @@ import './index.css';
 
 import '@/vite-hmr.ts';
 
+// regen staging
+
 const init = async (
   appName: string,
   { reloadOnLocaleChange } = { reloadOnLocaleChange: false },
