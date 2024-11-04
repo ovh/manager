@@ -32,6 +32,7 @@ import terminatePrivateDatabase from './actions/terminatePrivateDatabase/private
 import terminateWebCoach from './actions/terminate-webcoach/terminate-webcoach.module';
 import terminateAllDOm from './actions/terminate-all-dom/module';
 import update from './actions/update/update.module';
+import terminateVrack from './actions/terminate-vrack';
 import warnNicBilling from './actions/warnNicBilling/warnNicBilling.module';
 import warnPendingDebt from './actions/warnPendingDebt/pending-debt.module';
 
@@ -73,6 +74,7 @@ angular
     terminateWebCoach,
     terminateAllDOm,
     uiRouter,
+    terminateVrack,
     update,
     warnNicBilling,
     warnPendingDebt,

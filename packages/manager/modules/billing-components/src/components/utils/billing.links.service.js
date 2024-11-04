@@ -103,6 +103,11 @@ export default class BillingLinksService {
             ? resiliationByEndRuleLink
             : `${autorenewLink}/delete-all-dom?serviceId=${service.serviceId}&serviceType=${service.serviceType}`;
           break;
+        case SERVICE_TYPE.VRACK:
+          if (service.status !== 'suspended') {
+            links.resiliateLink = `${autorenewLink}/terminate-vrack?service=${service.serviceId}${serviceTypeParam}`;
+          }
+          break;
         case SERVICE_TYPE.OKMS:
         case SERVICE_TYPE.VRACK_SERVICES:
         case SERVICE_TYPE.LICENSE_HYCU:
