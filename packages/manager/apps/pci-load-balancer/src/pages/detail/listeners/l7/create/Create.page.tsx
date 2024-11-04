@@ -1,5 +1,6 @@
 import {
   Headers,
+  Notifications,
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
@@ -40,12 +41,17 @@ export default function CreatePage() {
     onError(error: ApiError) {
       addError(
         <Translation ns="load-balancer">
-          {(_t) =>
-            _t('octavia_load_balancer_global_error', {
-              message: error?.response?.data?.message || error?.message || null,
-              requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
-            })
-          }
+          {(_t) => (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: _t('octavia_load_balancer_global_error', {
+                  message:
+                    error?.response?.data?.message || error?.message || null,
+                  requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
+                }),
+              }}
+            ></span>
+          )}
         </Translation>,
         true,
       );
@@ -79,6 +85,7 @@ export default function CreatePage() {
           title={t('octavia_load_balancer_create_l7_policy_title')}
         />
       </div>
+      <Notifications />
       {isPending ? (
         <OsdsSpinner size={ODS_SPINNER_SIZE.md} inline />
       ) : (
