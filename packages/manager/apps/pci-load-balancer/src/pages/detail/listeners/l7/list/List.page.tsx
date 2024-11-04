@@ -125,7 +125,7 @@ export default function L7PoliciesList() {
                   {
                     id: 'position',
                     label: t('octavia_load_balancer_list_l7_policies_position'),
-                    comparators: FilterCategories.String,
+                    comparators: FilterCategories.Numeric,
                   },
                   {
                     id: 'name',
