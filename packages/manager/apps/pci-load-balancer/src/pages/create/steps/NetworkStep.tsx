@@ -25,7 +25,6 @@ import {
   AGORA_GATEWAY_REGEX,
   FLOATING_IP_TYPE,
   LOAD_BALANCER_CREATION_TRACKING,
-  NETWORK_PRIVATE_VISIBILITY,
 } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
