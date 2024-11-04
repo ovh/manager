@@ -4,8 +4,16 @@ import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { PciModal } from '@ovh-ux/manager-pci-common';
-import { OsdsFormField, OsdsInput } from '@ovhcloud/ods-components/react';
-import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
+import {
+  OsdsFormField,
+  OsdsInput,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+import { ODS_INPUT_TYPE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import { useCreatePoolMembers } from '@/api/hook/usePoolMember';
 import { TPoolMember } from '@/api/data/pool-member';
 import LabelComponent from '@/components/form/Label.component';
@@ -19,7 +27,9 @@ export default function CreatePage() {
   const { projectId, region, poolId } = useParams();
   const { t: tCreate } = useTranslation('pools/members/create');
   const { t: tPciCommon } = useTranslation('pci-common');
+
   const navigate = useNavigate();
+
   const onClose = () => {
     navigate('..');
   };
@@ -125,6 +135,15 @@ export default function CreatePage() {
       title={tCreate('octavia_load_balancer_pools_detail_members_create_title')}
       isDisabled={!isFormValid}
     >
+      <OsdsText
+        level={ODS_TEXT_LEVEL.subheading}
+        size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+        color={ODS_THEME_COLOR_INTENT.text}
+      >
+        {tCreate(
+          'octavia_load_balancer_pools_detail_members_create_description',
+        )}
+      </OsdsText>
       <OsdsFormField className="mt-8">
         <LabelComponent
           text={tCreate(
