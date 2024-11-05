@@ -1,11 +1,11 @@
 import React from 'react';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useParams } from 'react-router-dom';
+import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   usePciBreadcrumb,
   BreadcrumbItem,
 } from '@/hooks/breadcrumb/useBreadcrumb';
-import { useProject } from '@/data/hooks/pci/useProject';
 import appConfig from '@/pci-ai-endpoints.config';
 
 export interface BreadcrumbProps {
@@ -18,7 +18,7 @@ function Breadcrumb({ customRootLabel }: BreadcrumbProps): JSX.Element {
   const label = customRootLabel || appConfig.rootLabel;
 
   const { projectId } = useParams();
-  const { project } = useProject({ projectId });
+  const { data: project } = useProject();
 
   if (project) {
     const breadcrumbPci = usePciBreadcrumb({

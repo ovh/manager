@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "es2020"],
+    "lib": ["dom", "es2020", "ESNext"],
     "noEmit": true,
-    "target": "es2020",
-    "types": ["vite/client", "node"],
-    "module": "ES2020",
-    "moduleResolution": "node",
+    "target": "ESNext",
+    "types": ["vite/client", "node", "jest", "@testing-library/jest-dom"],
+    "module": "esnext",
+    "moduleResolution": "Node",
     "removeComments": true,
     "outDir": "dist",
     "esModuleInterop": true,
@@ -17,9 +17,10 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "jsx": "react",
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@playwright-helpers/*": ["../../../../playwright-helpers/*"],
+      "@translation/*": ["./public/translations/*"]
     }
   },
   "include": ["src"],
