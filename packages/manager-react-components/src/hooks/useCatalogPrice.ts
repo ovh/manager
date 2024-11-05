@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useMe } from './useMe';
 
-const ASIA_FORMAT = ['SG', 'ASIA', 'AU', 'IN'];
-const FRENCH_FORMAT = [
+export const ASIA_FORMAT = ['SG', 'ASIA', 'AU', 'IN'];
+export const FRENCH_FORMAT = [
   'CZ',
   'ES',
   'FR',
@@ -23,6 +23,9 @@ export interface CatalogPriceOptions {
   exclVat?: boolean;
 }
 
+export const priceToUcent = (price: number) => price * 100_000_000;
+export const priceFromUcent = (price: number) => price / 100_000_000;
+
 export const useCatalogPrice = (
   maximumFractionDigits?: number,
   options?: CatalogPriceOptions,
@@ -30,14 +33,13 @@ export const useCatalogPrice = (
   const { i18n, t } = useTranslation('order-price');
   const { me } = useMe();
 
-  const isTaxExcl =
-    options?.exclVat ||
-    [...ASIA_FORMAT, ...FRENCH_FORMAT, ...GERMAN_FORMAT].includes(
-      me?.ovhSubsidiary,
-    );
+  const isFrench = FRENCH_FORMAT.includes(me?.ovhSubsidiary);
+  const isAsia = ASIA_FORMAT.includes(me?.ovhSubsidiary);
+  const isGerman = GERMAN_FORMAT.includes(me?.ovhSubsidiary);
+  const isTaxExcl = options?.exclVat || isAsia || isFrench || isGerman;
 
   const getTextPrice = (priceInCents: number) => {
-    const priceToFormat = priceInCents / 100000000;
+    const priceToFormat = priceFromUcent(priceInCents);
     const numberFormatOptions = {
       style: 'currency',
       currency: me?.currency?.code,
@@ -52,13 +54,11 @@ export const useCatalogPrice = (
   };
 
   const getFormattedCatalogPrice = (price: number): string =>
-    `${
-      isTaxExcl && !options?.hideTaxLabel
-        ? t('order_catalog_price_tax_excl_label', {
-            price: getTextPrice(price),
-          })
-        : getTextPrice(price)
-    }`;
+    isTaxExcl && !options?.hideTaxLabel && !isGerman
+      ? t('order_catalog_price_tax_excl_label', {
+          price: getTextPrice(price),
+        })
+      : getTextPrice(price);
 
   const getFormattedHourlyCatalogPrice = (price: number) =>
     `${getFormattedCatalogPrice(price)} / ${t(
