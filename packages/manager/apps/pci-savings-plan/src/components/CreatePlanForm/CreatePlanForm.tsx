@@ -336,10 +336,10 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           <span slot="end">
             <QuantitySelector
               quantity={quantity}
-              onMinusClick={() => setQuantity((prevQ) => prevQ - 1)}
+              onMinusClick={() => setQuantity(quantity - 1)}
               onPlusClick={() => {
-                if (quantity <= MAX_QUANTITY) {
-                  setQuantity((prevQ) => prevQ + 1);
+                if (quantity < MAX_QUANTITY) {
+                  setQuantity(quantity + 1);
                 }
               }}
               onChangeQuantity={onChangeQuantity}
