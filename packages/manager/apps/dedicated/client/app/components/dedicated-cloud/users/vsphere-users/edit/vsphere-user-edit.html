@@ -1,7 +1,7 @@
 <form name="userEditForm" data-ng-submit="$ctrl.editUser()" novalidate>
     <oui-modal
         data-primary-label="{{:: 'wizard_confirm' | translate }}"
-        data-primary-disabled="userEditForm.$invalid"
+        data-primary-disabled="userEditForm.$invalid || !$ctrl.isEdited()"
         data-secondary-label="{{:: 'wizard_close' | translate }}"
         data-secondary-action="$ctrl.goBack()"
         data-on-dismiss="$ctrl.goBack()"
