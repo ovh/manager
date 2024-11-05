@@ -16,5 +16,9 @@
   "guide3Description": "Cómo montar un NAS en Windows Server a través del protocolo CIFS",
   "guide3Link": "https://help.ovhcloud.com/csm/es-es-public-cloud-storage-nas-cifs?id=kb_article_view&amp;sysparm_article=KB0046668",
   "managedRancherServiceGettingStartedTitle": "Empezar con Managed Rancher Service",
-  "managedRancherServiceGettingStartedTitleDescription": "Descubra cómo utilizar Managed Rancher Service en OVHcloud"
+  "managedRancherServiceGettingStartedTitleDescription": "Descubra cómo utilizar Managed Rancher Service en OVHcloud",
+  "managedRancherServiceGettingStartedTitle2": "Crear, actualizar y acceder a un Managed Rancher Service",
+  "managedRancherServiceGettingStartedTitleDescription2": "Cómo crear, actualizar y acceder a un Managed Rancher Service",
+  "managedRancherServiceGettingStartedTitle3": "Descripción del Ciclo de Vida de Managed Rancher Service",
+  "managedRancherServiceGettingStartedTitleDescription3": "Descubra el ciclo de vida de las versiones de Rancher en Managed Rancher Service"
 }

@@ -39,7 +39,9 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
 
-import QuantitySelector from '@/components/QuantitySelector/QuantitySelector';
+import QuantitySelector, {
+  MAX_QUANTITY,
+} from '@/components/QuantitySelector/QuantitySelector';
 import useTechnicalInfo, { usePricingInfo } from '@/hooks/useCatalogCommercial';
 import {
   getMutationKeyCreateSavingsPlan,
@@ -335,7 +337,11 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
             <QuantitySelector
               quantity={quantity}
               onMinusClick={() => setQuantity(quantity - 1)}
-              onPlusClick={() => setQuantity(quantity + 1)}
+              onPlusClick={() => {
+                if (quantity < MAX_QUANTITY) {
+                  setQuantity(quantity + 1);
+                }
+              }}
               onChangeQuantity={onChangeQuantity}
             />
           </span>

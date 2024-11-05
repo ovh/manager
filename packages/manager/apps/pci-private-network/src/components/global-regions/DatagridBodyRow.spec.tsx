@@ -4,10 +4,6 @@ import { useHref } from 'react-router-dom';
 import DataGridBodyRow from '@/components/global-regions/DatagridBodyRow';
 import { TAggregatedNetwork } from '@/api/data/network';
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (key: string) => key }),
-}));
-
 vi.mock('react-router-dom', () => ({
   useHref: vi.fn(),
 }));
@@ -21,7 +17,11 @@ describe('DataGridBodyRow', () => {
     } as unknown) as TAggregatedNetwork;
 
     render(
-      <DataGridBodyRow network={network} projectUrl="mocked_projectUrl" />,
+      <table>
+        <tbody>
+          <DataGridBodyRow network={network} projectUrl="mocked_projectUrl" />
+        </tbody>
+      </table>,
     );
     expect(screen.getByText('mocked_vlanId')).toBeInTheDocument();
     expect(screen.getByText('mocked_name')).toBeInTheDocument();
@@ -38,7 +38,11 @@ describe('DataGridBodyRow', () => {
     } as unknown) as TAggregatedNetwork;
 
     render(
-      <DataGridBodyRow network={network} projectUrl="mocked_projectUrl" />,
+      <table>
+        <tbody>
+          <DataGridBodyRow network={network} projectUrl="mocked_projectUrl" />
+        </tbody>
+      </table>,
     );
     expect(screen.getAllByText('mocked_region')).toHaveLength(1);
     expect(screen.getAllByText('mocked_cidr')).toHaveLength(1);
@@ -61,7 +65,11 @@ describe('DataGridBodyRow', () => {
     } as unknown) as TAggregatedNetwork;
 
     const { getByTestId } = render(
-      <DataGridBodyRow network={network} projectUrl="mocked_projectUrl" />,
+      <table>
+        <tbody>
+          <DataGridBodyRow network={network} projectUrl="mocked_projectUrl" />
+        </tbody>
+      </table>,
     );
     const deleteButton = getByTestId('dataGridBodyRow-delete_button');
     expect(deleteButton).toBeInTheDocument();
@@ -82,7 +90,11 @@ describe('DataGridBodyRow', () => {
     } as unknown) as TAggregatedNetwork;
 
     render(
-      <DataGridBodyRow network={network} projectUrl="mocked_projectUrl" />,
+      <table>
+        <tbody>
+          <DataGridBodyRow network={network} projectUrl="mocked_projectUrl" />
+        </tbody>
+      </table>,
     );
     const tooltip = screen.getByText(
       'pci_projects_project_network_private_delete',

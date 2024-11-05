@@ -1,11 +1,7 @@
-import { describe, vi } from 'vitest';
+import { describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import GlobalRegionsDatagrid from '@/components/global-regions/GlobalRegionsDatagrid';
 import { TAggregatedNetwork } from '@/api/data/network';
-
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (key) => key }),
-}));
 
 describe('GlobalRegionsDatagrid', () => {
   it('should render DataGridNoResults when no networks', () => {

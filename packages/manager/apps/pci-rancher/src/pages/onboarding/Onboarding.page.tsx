@@ -30,20 +30,38 @@ export default function Onboarding() {
     navigate(getCreateRancherUrl(projectId));
   };
 
-  const tileList = [
+  const tileData = [
     {
       id: 1,
-      texts: {
-        title: t('managedRancherServiceGettingStartedTitle'),
-        description: t('managedRancherServiceGettingStartedTitleDescription'),
-        category: t('guideCategory'),
-      },
-      href: link?.MANAGED_RANCHER_SERVICE_GETTING_STARTED as string,
-
-      isExternalHref: true,
-      hoverable: true,
+      titleKey: 'managedRancherServiceGettingStartedTitle',
+      descriptionKey: 'managedRancherServiceGettingStartedTitleDescription',
+      hrefKey: 'MANAGED_RANCHER_SERVICE_GETTING_STARTED',
+    },
+    {
+      id: 2,
+      titleKey: 'managedRancherServiceGettingStartedTitle2',
+      descriptionKey: 'managedRancherServiceGettingStartedTitleDescription2',
+      hrefKey: 'MANAGED_RANCHER_SERVICE_CREATION',
+    },
+    {
+      id: 3,
+      titleKey: 'managedRancherServiceGettingStartedTitle3',
+      descriptionKey: 'managedRancherServiceGettingStartedTitleDescription3',
+      hrefKey: 'MANAGED_RANCHER_SERVICE_LIFECYCLE_POLICY',
     },
   ];
+
+  const tileList = tileData.map((item) => ({
+    ...item,
+    texts: {
+      title: t(item.titleKey),
+      description: t(item.descriptionKey),
+      category: t('guideCategory'),
+    },
+    href: link?.[item.hrefKey] as string,
+    isExternalHref: true,
+    hoverable: true,
+  }));
 
   return (
     <PageLayout>
