@@ -83,9 +83,6 @@ describe('ButtonAction', () => {
       }),
     );
 
-    expect(screen.getByTestId('create-private-network')).toHaveAttribute(
-      'disabled',
-      'true',
-    );
+    expect(screen.getByTestId('create-private-network')).toBeDisabled();
   });
 });
