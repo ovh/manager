@@ -1,4 +1,4 @@
-import { Links, Notifications } from '@ovh-ux/manager-react-components';
+import { Links } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
@@ -45,8 +45,6 @@ export default function Pools() {
           label={t('octavia_load_balancer_pools_description_part_2_link')}
         />
       </div>
-
-      <Notifications />
 
       <Suspense>
         <Outlet />

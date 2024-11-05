@@ -5,7 +5,6 @@ import {
   FilterAdd,
   FilterList,
   Headers,
-  Notifications,
   useColumnFilters,
   useDataGrid,
   useNotifications,
@@ -63,8 +62,6 @@ export default function L7PoliciesList() {
           title={t('octavia_load_balancer_list_l7_policies_title')}
         />
       </div>
-
-      <Notifications />
 
       <div className="sm:flex items-center justify-between mt-4">
         <OsdsButton
