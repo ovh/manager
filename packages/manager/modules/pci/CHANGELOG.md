@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.66.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.65.1...@ovh-ux/manager-pci@6.66.0) (2024-11-05)
+
+
+### Bug Fixes
+
+* **pci:** hide savings plan banner for us ([#13495](https://github.com/ovh/manager/issues/13495)) ([16ff953](https://github.com/ovh/manager/commit/16ff953fabd4f93f64fca4d542183a5e88c85066))
+
+
+### Features
+
+* **pci-instances:** secure flavor list ([#13542](https://github.com/ovh/manager/issues/13542)) ([a03d306](https://github.com/ovh/manager/commit/a03d30647b9bb39bd488ff79a75123ed3aed31b2))
+* **pci.instances.add:** add ssh US guide link ([#13789](https://github.com/ovh/manager/issues/13789)) ([9062d4d](https://github.com/ovh/manager/commit/9062d4d19f9ec9e543808c2f87613d5b3d8cda82))
+* **pci:** update discord link on dashboard page ([#13833](https://github.com/ovh/manager/issues/13833)) ([67b3155](https://github.com/ovh/manager/commit/67b31558a465786442c28eb331ef20e98efdf8ac))
+
+
+
+
+
 ## [6.65.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.65.0...@ovh-ux/manager-pci@6.65.1) (2024-11-04)
 
 

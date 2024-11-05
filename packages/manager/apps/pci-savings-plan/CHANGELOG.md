@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.1.15-alpha.3...@ovh-ux/manager-pci-savings-plan-app@1.2.0-alpha.0) (2024-11-05)
+
+
+### Bug Fixes
+
+* **svp:** add max quantity ([#13915](https://github.com/ovh/manager/issues/13915)) ([2dac090](https://github.com/ovh/manager/commit/2dac090605611e9e12e4fd4f09142f96033be035))
+
+
+### Features
+
+* **pci-savings-plan:** avoid exceeding max quantity ([#13565](https://github.com/ovh/manager/issues/13565)) ([c9fd6e6](https://github.com/ovh/manager/commit/c9fd6e635bbced25ad49e17e56424922f3973717))
+
+
+
+
+
 ## [1.1.15-alpha.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.1.15-alpha.2...@ovh-ux/manager-pci-savings-plan-app@1.1.15-alpha.3) (2024-11-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
