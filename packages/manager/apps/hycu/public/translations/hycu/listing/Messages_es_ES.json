@@ -1,7 +1,7 @@
 {
   "hycu_status_activated": "Activo",
-  "hycu_status_toActivate": "Por activar",
-  "hycu_status_pending": "En proceso de activación",
+  "hycu_status_toActivate": "Pendiente de activar",
+  "hycu_status_pending": "en proceso de activación",
   "hycu_status_error": "Error de activación",
   "hycu_cloud_vm_pack_unknown": "Pack desconocido",
   "hycu_name": "Nombre",

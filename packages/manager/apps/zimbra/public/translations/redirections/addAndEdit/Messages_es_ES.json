@@ -1,8 +1,8 @@
 {
   "zimbra_redirections_edit_1": "Por favor, complete los datos para la redirección.",
-  "zimbra_redirections_edit_2": "Los campos marcados con * son obligatorios.",
+  "zimbra_redirections_edit_2": "Los campos marcados con un asterisco (*) son obligatorios.",
   "zimbra_redirections_title_add": "Crear una redirección",
-  "zimbra_redirections_title_edit": "Modificar la redirección",
+  "zimbra_redirections_title_edit": "Editar la redirección",
   "zimbra_redirections_add_form_input_name_title_from": "De la dirección",
   "zimbra_redirections_add_form_input_name_title_to": "A la dirección",
   "zimbra_redirections_add_form_input_checkbox": "Conservar una copia del correo en OVHcloud",
@@ -11,7 +11,7 @@
   "zimbra_redirections_add_btn_cancel": "Cancelar",
   "zimbra_redirections_add_btn_confirm": "Confirmar",
   "zimbra_redirections_add_success": "La solicitud de creación de redirecciones se ha enviado. Será tratada en unos instantes.",
-  "zimbra_redirections_edit_success": "La solicitud de modificación de la redirección se ha enviado. Será tratada en unos instantes.",
-  "zimbra_redirections_add_error": "No se ha podido completar la solicitud de creación de redirecciones. {{ error }}",
-  "zimbra_redirections_edit_error": "No se ha podido completar la solicitud de cambio de redirección. {{ error }}"
+  "zimbra_redirections_edit_success": "La solicitud de modificación de redirecciones se ha enviado. Será tratada en unos instantes.",
+  "zimbra_redirections_add_error": "Se ha producido un error al enviar la solicitud de creación de redirecciones. {{ error }}",
+  "zimbra_redirections_edit_error": "Se ha producido un error al enviar la solicitud de modificación de redirecciones. {{ error }}"
 }

@@ -1,7 +1,7 @@
 {
   "hycu_status_activated": "Active",
-  "hycu_status_toActivate": "To activate",
-  "hycu_status_pending": "Enabling",
+  "hycu_status_toActivate": "Enabling required",
+  "hycu_status_pending": "Enabling...",
   "hycu_status_error": "Activation error",
   "hycu_cloud_vm_pack_unknown": "Unknown pack",
   "hycu_name": "Name",
@@ -9,6 +9,6 @@
   "hycu_status": "Status",
   "hycu_commercial_name": "Pack type",
   "hycu_subscribed_date": "Subscription date",
-  "hycu_order": "Order now",
-  "hycu_service_listing_terminate": "Cancel"
+  "hycu_order": "Order",
+  "hycu_service_listing_terminate": "Terminate"
 }

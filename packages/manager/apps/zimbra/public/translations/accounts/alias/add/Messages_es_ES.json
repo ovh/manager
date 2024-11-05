@@ -2,12 +2,12 @@
   "zimbra_account_alias_add_modal_title": "Crear un alias",
   "zimbra_account_alias_add_description": "Crear un alias para la cuenta {{ account }}",
   "zimbra_account_alias_add_input_email_placeholder": "Alias",
-  "zimbra_account_alias_add_input_email_helper": "La parte local del alias (el texto que precede al «@») debe seguir las siguientes directrices:",
-  "zimbra_account_alias_add_input_email_helper_rule_1": "Debe terminar con una letra o un número",
-  "zimbra_account_alias_add_input_email_helper_rule_2": "Los caracteres especiales permitidos son \".\", \"+\", \"-\" y \"_\"",
-  "zimbra_account_alias_add_input_email_helper_rule_3": "Los caracteres especiales no se pueden colocar juntos",
+  "zimbra_account_alias_add_input_email_helper": "La parte local del alias (el texto que precede a «@») debe cumplir los siguientes requisitos:",
+  "zimbra_account_alias_add_input_email_helper_rule_1": "debe terminar por una letra o un número;",
+  "zimbra_account_alias_add_input_email_helper_rule_2": "los caracteres especiales autorizados son los siguientes: «.», «+», «-» y «_»;",
+  "zimbra_account_alias_add_input_email_helper_rule_3": "los caracteres especiales no pueden ir seguidos.",
   "zimbra_account_alias_add_select_domain_placeholder": "Seleccionar un dominio",
   "zimbra_account_alias_add_btn_confirm": "Confirmar",
   "zimbra_account_alias_add_success_message": "La solicitud de creación de alias se ha enviado. Será tratada en unos instantes.",
-  "zimbra_account_alias_add_error_message": "No se ha podido completar la solicitud de creación de alias. {{ error }}"
+  "zimbra_account_alias_add_error_message": "Se ha producido un error al enviar la solicitud de creación del alias. {{ error }}"
 }

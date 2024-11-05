@@ -45,11 +45,11 @@
   "zimbra_dashboard_email_accounts_redirections_add": "Create a redirection",
   "zimbra_dashboard_email_accounts_redirections_edit": "Modify a redirection",
   "zimbra_dashboard_email_accounts_redirections_delete": "Delete a redirection",
-  "zimbra_dashboard_mailing_lists_add": "Create mailing list",
+  "zimbra_dashboard_mailing_lists_add": "Create a mailing list",
   "zimbra_dashboard_mailing_lists_settings": "Edit mailing list",
   "zimbra_dashboard_mailing_lists": "Mailing lists",
   "zimbra_dashboard_redirections": "Redirections",
-  "zimbra_dashboard_redirections_edit": "Modify the redirection",
+  "zimbra_dashboard_redirections_edit": "Modify redirection",
   "zimbra_dashboard_redirections_delete": "Delete redirection",
   "zimbra_dashboard_auto_replies": "Auto-replies"
 }

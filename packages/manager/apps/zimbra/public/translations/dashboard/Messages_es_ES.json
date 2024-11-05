@@ -43,13 +43,13 @@
   "zimbra_dashboard_email_accounts_alias_delete": "Eliminar un alias",
   "zimbra_dashboard_email_accounts_redirections": "Redirecciones",
   "zimbra_dashboard_email_accounts_redirections_add": "Crear una redirección",
-  "zimbra_dashboard_email_accounts_redirections_edit": "Modificar una redirección",
+  "zimbra_dashboard_email_accounts_redirections_edit": "Editar una redirección",
   "zimbra_dashboard_email_accounts_redirections_delete": "Eliminar una redirección",
   "zimbra_dashboard_mailing_lists_add": "Crear una lista de difusión",
-  "zimbra_dashboard_mailing_lists_settings": "Editar lista de difusión",
+  "zimbra_dashboard_mailing_lists_settings": "Editar la lista de difusión",
   "zimbra_dashboard_mailing_lists": "Listas de difusión",
   "zimbra_dashboard_redirections": "Redirecciones",
-  "zimbra_dashboard_redirections_edit": "Modificar la redirección",
+  "zimbra_dashboard_redirections_edit": "Editar la redirección",
   "zimbra_dashboard_redirections_delete": "Eliminar la redirección",
-  "zimbra_dashboard_auto_replies": "Respuesta automática"
+  "zimbra_dashboard_auto_replies": "Contestadores"
 }

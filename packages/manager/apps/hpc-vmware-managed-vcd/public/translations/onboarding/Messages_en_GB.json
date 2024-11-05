@@ -1,18 +1,18 @@
 {
-  "managed_vcd_onboarding_description_part1": "Managed VCD is a virtualization solution fully operated by OVHcloud to run your applications, VMs and containers without having to worry about the underlying infrastructure.",
+  "managed_vcd_onboarding_description_part1": "Managed VCD is a virtualisation solution, fully operated by OVHcloud, where you can run your applications, VMs and containers without having to worry about the underlying infrastructure.",
   "managed_vcd_onboarding_description_part2": "You get a simple, unified interface to flexibly manage your resource pools within virtual datacentres, as well as a managed Veeam backup solution.",
-  "managed_vcd_onboarding_order": "Order now",
+  "managed_vcd_onboarding_order": "Order",
   "managed_vcd_onboarding_more_info": "Find out more",
   "managed_vcd_onboarding_guide1_link": "Find out more",
   "managed_vcd_onboarding_guide1_category": "Introduction",
   "managed_vcd_onboarding_guide1_title": "Discover Managed VCD",
-  "managed_vcd_onboarding_guide1_description": "Discover the Managed VCD product, its benefits, usage and pricing.",
+  "managed_vcd_onboarding_guide1_description": "Discover the Managed VCD solution, its benefits, usage and pricing.",
   "managed_vcd_onboarding_guide2_category": "Tutorial and Documentation",
   "managed_vcd_onboarding_guide2_title": "Getting started with Managed VCD",
-  "managed_vcd_onboarding_guide2_link": "See the documentation",
-  "managed_vcd_onboarding_guide2_description": "The fundamentals of VCD. Discover the basic concepts of VCD.",
+  "managed_vcd_onboarding_guide2_link": "View documentation",
+  "managed_vcd_onboarding_guide2_description": "The fundamental principles of VCD. Discover the basic concepts of VCD.",
   "managed_vcd_onboarding_guide3_category": "FAQs",
   "managed_vcd_onboarding_guide3_title": "Frequently asked questions",
   "managed_vcd_onboarding_guide3_link": "Browse FAQ",
-  "managed_vcd_onboarding_guide3_description": "Browse the FAQs for answers to common questions."
+  "managed_vcd_onboarding_guide3_description": "Browse the FAQs to find answers to common questions."
 }
