@@ -2,6 +2,7 @@ import {
   InfiniteData,
   keepPreviousData,
   Query,
+  QueryClient,
   QueryKey,
   useInfiniteQuery,
   useQueryClient,
@@ -46,6 +47,26 @@ export type TInstance = DeepReadonly<{
   imageName: string;
   addresses: Map<TAddressType, TAddress[]>;
 }>;
+
+export const updateDeletedInstanceStatus = (
+  queryClient: QueryClient,
+  instanceId: string,
+) => {
+  queryClient.setQueriesData<InfiniteData<TInstanceDto[], number>>(
+    { predicate: (query: Query) => query.queryKey.includes('list') },
+    (prevData) => {
+      if (!prevData) return undefined;
+      const updatedPages = prevData.pages.map((page) =>
+        page.map((instance) =>
+          instance.id === instanceId
+            ? { ...instance, status: 'DELETING' as TInstanceStatusDto }
+            : instance,
+        ),
+      );
+      return { ...prevData, pages: updatedPages };
+    },
+  );
+};
 
 const buildInstanceStatusSeverity = (
   status: TInstanceStatusDto,

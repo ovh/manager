@@ -27,3 +27,9 @@ export const getInstances = (
       },
     })
     .then((response) => response.data);
+
+export const deleteInstance = (
+  projectId: string,
+  instanceId: string,
+): Promise<null> =>
+  v6.delete(`/cloud/project/${projectId}/instance/${instanceId}`);
