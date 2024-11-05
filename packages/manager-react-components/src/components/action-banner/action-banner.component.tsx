@@ -24,7 +24,6 @@ export type ActionBannerProps = {
 
 export function ActionBanner({
   message,
-  cta,
   type = ODS_MESSAGE_TYPE.info,
   onClick,
   href,
@@ -56,7 +55,7 @@ export function ActionBanner({
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={onClick}
           >
-            {cta}
+            Test
           </OsdsButton>
         )}
         {href && (
@@ -66,7 +65,7 @@ export function ActionBanner({
             href={href}
             target={OdsHTMLAnchorElementTarget._blank}
           >
-            {cta}
+            Test
           </OsdsLink>
         )}
       </div>
