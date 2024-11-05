@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.5.1-alpha.3...@ovh-ux/manager-pci-kubernetes-app@0.6.0-alpha.0) (2024-11-05)
+
+
+### Features
+
+* **pci-block-storage:** add exten beta ([#13489](https://github.com/ovh/manager/issues/13489)) ([b6a2723](https://github.com/ovh/manager/commit/b6a27231b08782b79300833cca7f9448d1190e64))
+
+
+
+
+
 ## [0.5.1-alpha.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.5.1-alpha.2...@ovh-ux/manager-pci-kubernetes-app@0.5.1-alpha.3) (2024-11-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
