@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useProject, PciProject } from '@/data/hooks/pci/useProject';
+import { useProject } from '@ovh-ux/manager-pci-common';
 
 export type BreadcrumbItem = {
   label: string | undefined;
@@ -22,10 +22,10 @@ export const usePciBreadcrumb = ({
   const { shell } = useContext(ShellContext);
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
   const [appRoot, setAppRoot] = useState<BreadcrumbItem[]>([]);
-  const { project } = useProject({ projectId });
+  const { data: project } = useProject();
 
   useEffect(() => {
-    const { description } = project as PciProject;
+    const { description } = project;
     const fetchRoot = async () => {
       try {
         const response = (await shell?.navigation.getURL(

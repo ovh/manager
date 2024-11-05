@@ -8,7 +8,7 @@ import {
   BaseLayout,
   Datagrid,
   DataGridTextCell,
-  useResourcesIcebergV2,
+  useResourcesIcebergV6,
 } from '@ovh-ux/manager-react-components';
 
 import Loading from '@/components/Loading/Loading';
@@ -26,6 +26,7 @@ export default function Listing() {
   const navigate = useNavigate();
   const location = useLocation();
   const { projectId } = useParams();
+
   const {
     data,
     fetchNextPage,
@@ -37,8 +38,8 @@ export default function Listing() {
     setSorting,
     error,
     status,
-  } = useResourcesIcebergV2({
-    route: `/publicCloud/project/${projectId}`,
+  } = useResourcesIcebergV6({
+    route: `/cloud/project/${projectId}/ai/app`,
     queryKey: ['pci-ai-endpoints', `/publicCloud/project/${projectId}`],
   });
 
