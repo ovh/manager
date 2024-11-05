@@ -1,4 +1,5 @@
 import { PaginationState } from '@ovh-ux/manager-react-components';
+import { z } from 'zod';
 
 export const compareFunction = <T>(key: keyof T) => (a: T, b: T) => {
   const aValue = a[key] || '';
@@ -72,3 +73,86 @@ export const isIPValid = (ip: string) => {
     return false;
   }
 };
+
+/**
+ * Validates data against a given Zod schema.
+ *
+ * @template T - Type of the data to validate.
+ * @param params - Parameters for the function.
+ * @param params.schema - The Zod schema used for validation.
+ * @param params.data - The data to validate.
+ * @param params.onInvalid - Optional function called in case of validation error.
+ * @returns - The validated data or null if validation fails.
+ */
+export function validateSchema<T>({
+  schema,
+  data,
+  onInvalid,
+}: {
+  schema: z.Schema;
+  data: T;
+  onInvalid?: (error: z.ZodError) => void;
+}) {
+  try {
+    const validatedData = schema.parse(data);
+    return validatedData as T;
+  } catch (error) {
+    if (onInvalid && error instanceof z.ZodError) {
+      onInvalid(error);
+    }
+  }
+  return null;
+}
+
+/**
+ * Converts a number of bytes into a human-readable format (e.g., Ko, Mo, Go, To).
+ *
+ * @param bytes - The number of bytes to convert.
+ * @returns - The formatted string representing the size in appropriate units.
+ */
+export function formatBytes(bytes: number): string {
+  const units = ['o', 'KiB', 'MiB', 'GiB', 'TiB'];
+  const convertionRate = 1024;
+  let unitIndex = 0;
+  let size = bytes; // Use a separate variable to hold the size value
+
+  while (size >= convertionRate && unitIndex < units.length - 1) {
+    size /= convertionRate;
+    unitIndex += 1;
+  }
+
+  return `${Math.round(size)} ${units[unitIndex]}`;
+}
+
+type ColorThreshold = {
+  threshold: number; // The upper limit for the threshold
+  color: string; // The color associated with this threshold
+};
+
+/**
+ * Returns the appropriate color based on the provided percentage.
+ *
+ * @param percentage - The percentage value (0 to 100).
+ * @param thresholds - The color thresholds to use for determining color.
+ * @returns - The color corresponding to the percentage.
+ */
+export function getColorByPercentage(percentage: number): string {
+  const colorThresholds: ColorThreshold[] = [
+    { threshold: 33.333, color: 'blue' }, // Color for less than or equal to 33.333%
+    { threshold: 66, color: 'yellow' }, // Color for between 33.333% and 66%
+    { threshold: 100, color: 'red' }, // Color for greater than 66%
+  ].sort((a, b) => a.threshold - b.threshold);
+  // Sort thresholds to ensure they are in ascending order
+  colorThresholds.sort((a, b) => a.threshold - b.threshold);
+
+  // Loop through thresholds to find the appropriate color
+  for (let i = 0; i < colorThresholds.length; i += 1) {
+    const { threshold, color } = colorThresholds[i];
+    if (percentage <= threshold) {
+      return color;
+    }
+  }
+
+  // If percentage exceeds all thresholds, return the last color
+  return thresholds[thresholds.length - 1].color;
+}

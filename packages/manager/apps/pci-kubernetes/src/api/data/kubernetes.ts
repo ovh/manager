@@ -1,5 +1,7 @@
 import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
 import { TKube, TNetworkConfiguration } from '@/types';
+import { validateSchema } from '@/helpers';
+import { EtcdUsageSchema, TKubeEtcdUsage } from '@/schema/kubernetes';
 
 export const getKubernetesCluster = async (
   projectId: string,
@@ -324,3 +326,10 @@ export async function editNetwork(
   }
   return Promise.all(todo);
 }
+
+export const getKubeEtcdUsage = async (projectId: string, kubeId: string) => {
+  const { data } = await v6.get<TKubeEtcdUsage>(
+    `/cloud/project/${projectId}/kube/${kubeId}/metrics/etcdUsage`,
+  );
+  return validateSchema<TKubeEtcdUsage>({ schema: EtcdUsageSchema, data });
+};

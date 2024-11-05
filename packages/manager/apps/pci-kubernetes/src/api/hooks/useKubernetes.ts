@@ -29,6 +29,7 @@ import {
   updateKubernetesCluster,
   updateKubeVersion,
   updateOidcProvider,
+  getKubeEtcdUsage,
 } from '../data/kubernetes';
 import { getPrivateNetworkName } from '../data/network';
 import { useAllPrivateNetworks } from './useNetwork';
@@ -598,5 +599,22 @@ export const useCreateKubernetesCluster = ({
   return {
     createCluster: mutation.mutate,
     ...mutation,
+  };
+};
+
+export const useGetClusterEtcdUsage = (projectId, kubeId) => {
+  const queryKey = ['project', projectId, 'kube', kubeId, 'etcd', 'usage'];
+  const query = useQuery({
+    queryKey,
+    queryFn: async () => {
+      const data = await getKubeEtcdUsage(projectId, kubeId);
+      return data;
+    },
+    enabled: Boolean(projectId),
+    suspense: true,
+  });
+
+  return {
+    ...query,
   };
 };

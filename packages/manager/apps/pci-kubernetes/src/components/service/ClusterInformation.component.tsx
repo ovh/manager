@@ -11,9 +11,11 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { Clipboard } from '@ovh-ux/manager-react-components';
+
 import { TKube } from '@/types';
 import ClusterStatus from './ClusterStatus.component';
 import TileLine from './TileLine.component';
+import ClusterEtcd from './ClusterETCD.component';
 
 export type ClusterInformationProps = {
   kubeDetail: TKube;
@@ -60,7 +62,10 @@ export default function ClusterInformation({
             </OsdsText>
           }
         />
-
+        <TileLine
+          title={t('kube_service_cluster_etcd_quota')}
+          value={<ClusterEtcd />}
+        />
         <TileLine
           title={t('kube_service_cluster_status')}
           value={<ClusterStatus status={kubeDetail.status} />}
