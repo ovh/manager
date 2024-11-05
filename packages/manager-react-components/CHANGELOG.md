@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.2...@ovh-ux/manager-react-components@2.0.0-alpha.0) (2024-11-05)
+
+### Features
+
+- **mrc:** remove CTA prop ([42499e8](https://github.com/ovh/manager/commit/42499e80d2d7528ec675d8db9bac1583f51a7b64))
+
+### BREAKING CHANGES
+
+- **mrc:** remove CTA prop
+
 # [1.41.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.1...@ovh-ux/manager-react-components@1.41.0-alpha.2) (2024-11-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-components
