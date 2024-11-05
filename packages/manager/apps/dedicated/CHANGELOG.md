@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.64.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.64.0-alpha.0...@ovh-ux/manager-dedicated@19.64.0-alpha.1) (2024-11-05)
+
+
+### Bug Fixes
+
+* **dedicated:** replace support links with help center ([#12538](https://github.com/ovh/manager/issues/12538)) ([ec0a58c](https://github.com/ovh/manager/commit/ec0a58c2fbfba427073d7ba17dbb58d2916b57a8))
+
+
+### Features
+
+* **dedicated.ip:** make parking as constant ([#13610](https://github.com/ovh/manager/issues/13610)) ([a824545](https://github.com/ovh/manager/commit/a82454558830bdc29946ee1cc36c1d6d6583aeb8))
+* **dedicated:** add vrack orderable in  ipv4 ([#12779](https://github.com/ovh/manager/issues/12779)) ([934e5d3](https://github.com/ovh/manager/commit/934e5d386eb0fefafcfc815a863dbff7c1ef05e7))
+* **dedicated:** zerto disclaimer ([#10644](https://github.com/ovh/manager/issues/10644)) ([46506c3](https://github.com/ovh/manager/commit/46506c34d5880b964c989948c36e3da0145e6bdc))
+
+
+
+
+
 # [19.64.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.63.1-alpha.0...@ovh-ux/manager-dedicated@19.64.0-alpha.0) (2024-10-31)
 
 
