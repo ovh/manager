@@ -35,9 +35,10 @@ describe('SubnetConfig CIDR', () => {
           resolver: zodResolver(NEW_PRIVATE_NETWORK_FORM_SCHEMA),
         });
 
-        return <FormProvider {...form}>{children}</FormProvider>;
-      },
-    });
+          return <FormProvider {...form}>{children}</FormProvider>;
+        },
+      }),
+    );
 
     await waitFor(() => {
       expect(screen.getByTestId('private-network-cidr')).toHaveValue(cidr);
