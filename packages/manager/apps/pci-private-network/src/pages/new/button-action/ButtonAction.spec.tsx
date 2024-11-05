@@ -24,10 +24,7 @@ vi.mock('@/data/hooks/networks/useNetworks', () => ({
 describe('ButtonAction', () => {
   it('should disabled button when region is not selected', () => {
     render(<ButtonAction />, { wrapper: NewPrivateNetworkWrapper });
-    expect(screen.getByTestId('create-private-network')).toHaveAttribute(
-      'disabled',
-      'true',
-    );
+    expect(screen.getByTestId('create-private-network')).toBeDisabled();
   });
 
   it('should disabled button when name is empty', async () => {
@@ -53,10 +50,7 @@ describe('ButtonAction', () => {
       }),
     );
 
-    expect(screen.getByTestId('create-private-network')).toHaveAttribute(
-      'disabled',
-      'true',
-    );
+    expect(screen.getByTestId('create-private-network')).toBeDisabled();
   });
 
   it('should disabled button when cidr is not valid', async () => {
