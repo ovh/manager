@@ -21,9 +21,7 @@ const DeleteInstance: FC = () => {
   };
 
   const handleMutationSuccess = () => {
-    if (instanceId) {
-      updateDeletedInstanceStatus(queryClient, instanceId);
-    }
+    updateDeletedInstanceStatus(queryClient, instanceId);
     addSuccess(
       t('pci_instances_delete_instance_success_message', {
         name: instanceName,
