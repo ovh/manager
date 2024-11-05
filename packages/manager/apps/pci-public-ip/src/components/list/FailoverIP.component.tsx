@@ -1,6 +1,5 @@
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import {
-  useFeatureAvailability,
   DataGridTextCell,
   Datagrid,
   FilterAdd,
@@ -142,12 +141,12 @@ export default function FailoverIPComponent({
             slot={'menu-title'}
             color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.stroked}
+            variant={ODS_BUTTON_VARIANT.flat}
             className={'flex'}
           >
             <OsdsText
               size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-              color={ODS_THEME_COLOR_INTENT.primary}
+              contrasted
               className={'align-middle'}
             >
               {t('common_actions')}
@@ -156,7 +155,7 @@ export default function FailoverIPComponent({
               name={ODS_ICON_NAME.CHEVRON_DOWN}
               color={ODS_THEME_COLOR_INTENT.primary}
               size={ODS_ICON_SIZE.sm}
-              className={'ml-4 align-middle'}
+              className={'ml-4 bg-white align-middle'}
             ></OsdsIcon>
           </OsdsButton>
           <OsdsMenuItem>

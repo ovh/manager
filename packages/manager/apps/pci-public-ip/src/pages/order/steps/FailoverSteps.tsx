@@ -84,7 +84,6 @@ export const FailoverSteps = ({
             <OsdsMessage
               icon={ODS_ICON_NAME.INFO}
               color={ODS_THEME_COLOR_INTENT.primary}
-              className="rounded-[8px]"
             >
               <p className="text-base font-sans">
                 <span
@@ -105,12 +104,13 @@ export const FailoverSteps = ({
               </p>
             </OsdsMessage>
             <div>
-              <OsdsText>
+              <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
                 {tOrder('pci_additional_ips_failoverip_order_instance')}
               </OsdsText>
             </div>
             <OsdsSelect
               required
+              inline
               value={form.instance?.id}
               onOdsValueChange={(event) => {
                 setForm({
@@ -135,7 +135,6 @@ export const FailoverSteps = ({
           <OsdsMessage
             icon={ODS_ICON_NAME.ERROR_CIRCLE}
             color={ODS_THEME_COLOR_INTENT.error}
-            className="rounded-[8px]"
           >
             <p>
               <OsdsText

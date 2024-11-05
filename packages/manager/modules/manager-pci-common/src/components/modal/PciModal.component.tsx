@@ -9,7 +9,7 @@ import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 
 export type PciModalProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   type?: 'warning' | 'default';
   title: string;
   isPending?: boolean;
