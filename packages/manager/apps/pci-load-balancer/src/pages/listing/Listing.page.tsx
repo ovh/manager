@@ -4,7 +4,6 @@ import {
   FilterAdd,
   FilterList,
   Headers,
-  Notifications,
   RedirectionGuard,
   useColumnFilters,
   useDataGrid,
@@ -77,8 +76,6 @@ export default function ListingPage() {
       <div className="header mt-8">
         <Headers title={t('octavia_load_balancers')} />
       </div>
-
-      <Notifications />
 
       <div className="sm:flex items-center justify-between mt-4">
         <OsdsButton

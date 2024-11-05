@@ -1,6 +1,5 @@
 import {
   Headers,
-  Notifications,
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
@@ -87,7 +86,6 @@ export default function CreatePage() {
           title={t('octavia_load_balancer_create_l7_policy_title')}
         />
       </div>
-      <Notifications />
       {isPending ? (
         <OsdsSpinner size={ODS_SPINNER_SIZE.md} inline />
       ) : (
