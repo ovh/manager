@@ -44,18 +44,21 @@ describe('SubnetConfig CIDR', () => {
   });
 
   it('should display CIDR with vlanId when it was defined by user', async () => {
-    render(<SubnetConfig />, {
-      wrapper: ({ children }) => {
-        const form = useForm<NewPrivateNetworkForm>({
-          defaultValues: {
-            vlanId: 9,
-          },
-          resolver: zodResolver(NEW_PRIVATE_NETWORK_FORM_SCHEMA),
-        });
+    await waitFor(() =>
+      render(<SubnetConfig />, {
+        wrapper: ({ children }) => {
+          const form = useForm<NewPrivateNetworkForm>({
+            defaultValues: {
+              defaultVlanId: 1,
+              vlanId: 9,
+            },
+            resolver: zodResolver(NEW_PRIVATE_NETWORK_FORM_SCHEMA),
+          });
 
-        return <FormProvider {...form}>{children}</FormProvider>;
-      },
-    });
+          return <FormProvider {...form}>{children}</FormProvider>;
+        },
+      }),
+    );
 
     await waitFor(() => {
       expect(screen.getByTestId('private-network-cidr')).toHaveValue(
