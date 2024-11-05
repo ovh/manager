@@ -50,8 +50,9 @@ export type TInstance = DeepReadonly<{
 
 export const updateDeletedInstanceStatus = (
   queryClient: QueryClient,
-  instanceId: string,
+  instanceId?: string | null,
 ) => {
+  if (!instanceId) return;
   queryClient.setQueriesData<InfiniteData<TInstanceDto[], number>>(
     { predicate: (query: Query) => query.queryKey.includes('list') },
     (prevData) => {
