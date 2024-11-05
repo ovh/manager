@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { OsdsSwitch } from '@ovhcloud/ods-components';
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import AdmissionPluginsModal from './AdmissionPlugins.page';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
@@ -107,12 +108,12 @@ describe('AdmissionPluginsModal', () => {
     expect(navigate).toHaveBeenCalledWith('..');
   });
 
-  it('handles save button click', () => {
+  it('handles save button click', async () => {
     (useKubernetesModule.useKubernetesCluster as Mock).mockReturnValue({
       data: {
         customization: {
           apiServer: {
-            admissionPlugins: { enabled: [], disabled: [] },
+            admissionPlugins: { enabled: ['AlwaysPullImages'], disabled: [] },
           },
         },
         plugins: [
@@ -120,6 +121,7 @@ describe('AdmissionPluginsModal', () => {
             name: 'AlwaysPullImages',
             state: 'enabled',
             tip: 'always_pull_images_tip',
+            disabled: false,
           },
         ],
       },
@@ -127,8 +129,27 @@ describe('AdmissionPluginsModal', () => {
     });
 
     render(<AdmissionPluginsModal />, { wrapper });
+
     const saveButton = screen.getByText('common:common_save_button_label');
-    fireEvent.click(saveButton);
-    expect(updateAdmissionPlugin).toHaveBeenCalled();
+    const input = (screen.getByTestId(
+      'AlwaysPullImages-switch',
+    ) as unknown) as OsdsSwitch;
+
+    input.odsSwitchChanged.emit({
+      current: 'disabled',
+    });
+    await waitFor(() => {
+      expect(saveButton).not.toBeDisabled();
+      fireEvent.click(saveButton);
+
+      expect(updateAdmissionPlugin).toHaveBeenCalledWith({
+        apiServer: {
+          admissionPlugins: {
+            disabled: ['AlwaysPullImages'],
+            enabled: [],
+          },
+        },
+      });
+    });
   });
 });

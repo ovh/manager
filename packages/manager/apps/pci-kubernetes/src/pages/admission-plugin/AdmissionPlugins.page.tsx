@@ -184,6 +184,7 @@ const AdmissionPluginsModal = () => {
                       size={ODS_SWITCH_SIZE.sm}
                       color={ODS_THEME_COLOR_INTENT.primary}
                       key={plugin.name}
+                      data-testid={`${plugin.name}-switch`}
                       onOdsSwitchChanged={(e) => {
                         if (!plugin.disabled) {
                           handleChange(e, plugin.name);

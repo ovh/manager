@@ -78,13 +78,12 @@ describe('useKubernetesCluster', () => {
       isClusterReady: true,
       plugins: [
         {
-          name: 'NodeRestriction',
-          value: 'node',
-          state: 'enabled',
-          disabled: true,
-          label: 'Plugin Node Restriction',
-          tip:
-            'kube_service_cluster_admission_plugins_node_restriction_explanation',
+          name: 'No_referenced',
+          value: 'No_referenced',
+          state: 'disabled',
+          disabled: false,
+          label: 'No_referenced',
+          tip: null,
         },
         {
           name: 'AlwaysPullImages',
@@ -97,12 +96,13 @@ describe('useKubernetesCluster', () => {
         },
 
         {
-          name: 'No_referenced',
-          value: 'No_referenced',
-          state: 'disabled',
-          disabled: false,
-          label: 'No_referenced',
-          tip: null,
+          name: 'NodeRestriction',
+          value: 'node',
+          state: 'enabled',
+          disabled: true,
+          label: 'Plugin Node Restriction',
+          tip:
+            'kube_service_cluster_admission_plugins_node_restriction_explanation',
         },
       ],
     });

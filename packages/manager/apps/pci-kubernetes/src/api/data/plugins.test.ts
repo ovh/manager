@@ -32,15 +32,6 @@ describe('mapAdmissionPlugins', () => {
     const result = mapPluginsFromArrayToObject(admissionPlugins);
     expect(result).toEqual([
       {
-        name: 'NodeRestriction',
-        label: 'Plugin Node Restriction',
-        state: 'enabled',
-        tip:
-          'kube_service_cluster_admission_plugins_node_restriction_explanation',
-        value: 'node',
-        disabled: true,
-      },
-      {
         name: 'NonExistentPlugin',
         label: 'NonExistentPlugin',
         state: 'enabled',
@@ -56,6 +47,15 @@ describe('mapAdmissionPlugins', () => {
           'kube_service_cluster_admission_plugins_always_pull_image_explanation',
         value: 'pull',
         disabled: false,
+      },
+      {
+        name: 'NodeRestriction',
+        label: 'Plugin Node Restriction',
+        state: 'enabled',
+        tip:
+          'kube_service_cluster_admission_plugins_node_restriction_explanation',
+        value: 'node',
+        disabled: true,
       },
     ]);
   });
