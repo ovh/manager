@@ -18,7 +18,11 @@ const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
 
 export const Routes: any = [
   {
-    path: '/pci/projects/:projectId/ai-endpoints',
+    path: '/',
+    ...lazyRouteConfig(() => import('@/pages/layout')),
+  },
+  {
+    path: '/pci/projects/:projectId/ai/endpoints',
     ...lazyRouteConfig(() => import('@/pages/layout')),
     children: [
       {
@@ -31,34 +35,36 @@ export const Routes: any = [
             pageType: PageType.listing,
           },
         },
-      },
-      {
-        path: urls.dashboard,
-        ...lazyRouteConfig(() => import('@/pages/dashboard')),
         children: [
           {
-            id: 'dashboard',
-            path: '',
-            ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/general-informations'),
-            ),
-            handle: {
-              tracking: {
-                pageName: 'dashboard',
-                pageType: PageType.dashboard,
+            path: urls.dashboard,
+            ...lazyRouteConfig(() => import('@/pages/dashboard')),
+            children: [
+              {
+                id: 'dashboard',
+                path: '',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/general-informations'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'dashboard',
+                    pageType: PageType.dashboard,
+                  },
+                },
               },
-            },
-          },
-          {
-            id: 'tab2',
-            path: 'Tab2',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/tab2')),
-            handle: {
-              tracking: {
-                pageName: 'tab2',
-                pageType: PageType.dashboard,
+              {
+                id: 'tab2',
+                path: 'Tab2',
+                ...lazyRouteConfig(() => import('@/pages/dashboard/tab2')),
+                handle: {
+                  tracking: {
+                    pageName: 'tab2',
+                    pageType: PageType.dashboard,
+                  },
+                },
               },
-            },
+            ],
           },
         ],
       },
