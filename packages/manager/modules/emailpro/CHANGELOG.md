@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.12.6...@ovh-ux/manager-emailpro@3.12.7) (2024-11-05)
+
+
+### Bug Fixes
+
+* **web:** fix table filters on web universe ([8e52150](https://github.com/ovh/manager/commit/8e52150c050d0f479b335f6d385400352f790b5c))
+
+
+
+
+
 ## [3.12.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.12.5...@ovh-ux/manager-emailpro@3.12.6) (2024-10-28)
 
 
