@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.17.6-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.17.6-alpha.0...@ovh-ux/manager-hub@3.17.6-alpha.1) (2024-11-05)
+
+
+### Bug Fixes
+
+* **dedicated:** replace support links with help center ([#12538](https://github.com/ovh/manager/issues/12538)) ([ec0a58c](https://github.com/ovh/manager/commit/ec0a58c2fbfba427073d7ba17dbb58d2916b57a8))
+
+
+
+
+
 ## [3.17.6-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.17.5...@ovh-ux/manager-hub@3.17.6-alpha.0) (2024-10-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub
