@@ -51,22 +51,24 @@ export const pluginAlreadyExists = (name: string): PluginsData | undefined =>
 
 /**
  * Maps an array of admission plugins to an object with additional properties.
- * @param admissionPlugins - The admission plugins object.
- * @returns - An array of mapped plugin objects.
+ * @param admissionPlugins - The admission, enabled, and disabled plugins object.
+ * @returns - An array of plugin objects, each with name, label, state, tip, value, and disabled properties, sorted alphabetically by label
  */
 export const mapPluginsFromArrayToObject = (
   admissionPlugins: TAdmissionPlugin,
 ): PluginsData[] =>
-  Object.entries(admissionPlugins).flatMap(([state, names]) =>
-    names.map((name) => {
-      const existingPlugin = pluginAlreadyExists(name);
-      return {
-        name,
-        label: existingPlugin?.label || name,
-        state,
-        tip: existingPlugin?.tip || null,
-        value: existingPlugin?.value || name,
-        disabled: existingPlugin?.disabled ?? false,
-      };
-    }),
-  );
+  Object.entries(admissionPlugins)
+    .flatMap(([state, names]) =>
+      names.map((name) => {
+        const existingPlugin = pluginAlreadyExists(name);
+        return {
+          name,
+          label: existingPlugin?.label || name,
+          state,
+          tip: existingPlugin?.tip || null,
+          value: existingPlugin?.value || name,
+          disabled: existingPlugin?.disabled ?? false,
+        };
+      }),
+    )
+    .sort((a, b) => a.label.localeCompare(b.label));

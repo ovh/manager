@@ -13,7 +13,10 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useCallback, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 
 import {
   ODS_BUTTON_VARIANT,
@@ -47,6 +50,7 @@ const AdmissionPluginsModal = () => {
   const { plugins } = kubeDetail ?? {};
 
   const [pluginData, setPluginData] = useState(plugins);
+  const [isTouched, setIsTouched] = useState(false);
 
   useResponsiveModal('450px');
   const { addError, addSuccess } = useNotifications();
@@ -54,7 +58,7 @@ const AdmissionPluginsModal = () => {
   const handleChange = useCallback(
     (e: OsdsSwitchCustomEvent<OdsSwitchChangedEventDetail>, name: string) => {
       const state = e.detail.current;
-
+      setIsTouched(true);
       setPluginData((prevPluginData) =>
         prevPluginData.map((plugin) => {
           if (plugin.name === name) {
@@ -120,18 +124,30 @@ const AdmissionPluginsModal = () => {
       ) : (
         <>
           <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="my-6">
-            {t('kube_service_cluster_admission_plugins_info_restrictions')}
+            <OsdsText
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              color={ODS_THEME_COLOR_INTENT.text}
+              className="block"
+            >
+              {t('kube_service_cluster_admission_plugins_info_restrictions')}
+            </OsdsText>
           </OsdsMessage>
           <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="my-6">
-            {t(
-              'kube_service_cluster_admission_plugins_info_restrictions_redeploy_after_change_admission',
-            )}
+            <OsdsText
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              color={ODS_THEME_COLOR_INTENT.text}
+              className="block"
+            >
+              {t(
+                'kube_service_cluster_admission_plugins_info_restrictions_redeploy_after_change_admission',
+              )}
+            </OsdsText>
           </OsdsMessage>
           <div className="my-10">
             {!isPending &&
               pluginData?.map((plugin, index) => (
                 <div key={plugin.name} className="my-8 mx-4">
-                  <div className="flex  my-3, justify-between">
+                  <div className="flex flex-col items-baseline md:flex-row  my-3, justify-between">
                     <OsdsPopover>
                       <span slot="popover-trigger">
                         <OsdsText
@@ -140,7 +156,7 @@ const AdmissionPluginsModal = () => {
                           level={ODS_TEXT_LEVEL.body}
                           color={ODS_TEXT_COLOR_INTENT.text}
                         >
-                          {plugin.name}
+                          {plugin.label}
                         </OsdsText>
                         {plugin.tip && (
                           <OsdsIcon
@@ -220,7 +236,7 @@ const AdmissionPluginsModal = () => {
           color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.flat}
           onClick={handleSave}
-          disabled={isMutationUpdating || undefined}
+          disabled={isMutationUpdating || !isTouched || undefined}
           data-testid="confirm-btn"
         >
           {t('common:common_save_button_label')}

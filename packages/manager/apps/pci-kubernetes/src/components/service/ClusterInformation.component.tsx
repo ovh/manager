@@ -65,13 +65,6 @@ export default function ClusterInformation({
         <TileLine label={t('kube_service_cluster_status')}>
           <ClusterStatus status={kubeDetail.status} />
         </TileLine>
-        <TileLine label={t('kube_service_cluster_admission_plugins')}>
-          <AdmissionPlugins
-            plugins={kubeDetail.plugins}
-            isProcessing={isProcessing(kubeDetail.status)}
-          />
-        </TileLine>
-
         <TileLine label={t('kube_service_cluster_version')}>
           <OsdsText
             className="mb-4"
@@ -82,7 +75,12 @@ export default function ClusterInformation({
             {kubeDetail.version}
           </OsdsText>
         </TileLine>
-
+        <TileLine label={t('kube_service_cluster_admission_plugins')}>
+          <AdmissionPlugins
+            plugins={kubeDetail.plugins}
+            isProcessing={isProcessing(kubeDetail.status)}
+          />
+        </TileLine>
         <TileLine label={t('kube_service_cluster_region')}>
           <OsdsText
             className="mb-4"
