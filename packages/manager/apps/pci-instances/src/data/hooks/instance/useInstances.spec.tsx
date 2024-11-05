@@ -11,8 +11,9 @@ import {
   useInstances,
   TUseInstancesQueryParams,
 } from './useInstances';
-import { setupInstanceServer } from '@/__mocks__/instance/node';
 import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.types';
+import { setupInstancesServer } from '@/__mocks__/instance/node';
+import { TInstancesServerResponse } from '@/__mocks__/instance/handlers';
 
 // builders
 const instanceDtoBuilder = (
@@ -233,7 +234,13 @@ describe('UseInstances hook', () => {
         test(`When invoking useInstances() hook', then, expect the computed instances to be '${JSON.stringify(
           expectedInstances,
         )}' and the query hasNext property to be ${expectedQueryHasNext}`, async () => {
-          server = setupInstanceServer<TInstanceDto[]>(queryPayload);
+          const serverResponse: TInstancesServerResponse[] = [
+            {
+              method: 'get',
+              payload: queryPayload,
+            },
+          ];
+          server = setupInstancesServer(serverResponse);
 
           const { wrapper, queryClient } = initQueryClient();
           const { result } = renderHook(
