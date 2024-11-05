@@ -12,7 +12,7 @@ import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
-import { schema } from './new.constants';
+import { NEW_PRIVATE_NETWORK_FORM_SCHEMA } from './new.constants';
 import LocalisationConfig from './localisation/LocalisationConfig.component';
 import PrivateNetworkConfig from './private-network/PrivateNetworkConfig.component';
 import SubnetConfig from './subnet/SubnetConfig.component';
@@ -36,7 +36,7 @@ export default function NewPage(): JSX.Element {
         ipVersion: 4,
       },
     },
-    resolver: zodResolver(schema),
+    resolver: zodResolver(NEW_PRIVATE_NETWORK_FORM_SCHEMA),
   });
 
   useEffect(() => {
@@ -60,7 +60,7 @@ export default function NewPage(): JSX.Element {
           },
         ]}
       />
-      <div className="mb-8">
+      <div className="my-8">
         <BackButton />
       </div>
 
