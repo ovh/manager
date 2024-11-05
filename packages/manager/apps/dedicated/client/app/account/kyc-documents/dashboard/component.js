@@ -8,6 +8,7 @@ export default {
     isDisabled: '<',
     supportLink: '<',
     hubLink: '<',
+    isSupportWithExternalLinks: '<',
   },
   controller,
   template,

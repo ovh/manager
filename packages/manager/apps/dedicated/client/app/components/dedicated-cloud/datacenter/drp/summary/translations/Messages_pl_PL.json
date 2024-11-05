@@ -2,7 +2,7 @@
   "dedicatedCloud_datacenter_order_ip": "Brak dostępnej puli adresów IP. <a ui-sref=\"{{sref}}\">Zamów pulę</a>",
   "dedicatedCloud_datacenter_drp_confirm_create_success_part_one": "Twój Zerto DRP został utworzony.",
   "dedicatedCloud_datacenter_drp_confirm_create_success_part_two": "Na adres {{email}} przesłaliśmy hasło ZSSP.",
-  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Trwa aktywacja Zerto DRP. Operacja może potrwać do godziny.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Trwa aktywacja Zerto DRP. Operacja może potrwać do 4 godzin.",
   "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_EPCC": "Sprawdź zadanie enableDisasterRecovery na głównej infrastrukturze Hosted Private Cloud i śledź jego postęp.",
   "dedicatedCloud_datacenter_drp_confirm_create_error": "Wystąpił błąd podczas aktywacji Twojego DRP.",
   "dedicatedCloud_datacenter_drp_confirm_summary_title": "Podsumowanie konfiguracji Twojego DRP",

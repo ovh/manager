@@ -2,7 +2,7 @@
   "dedicatedCloud_datacenter_order_ip": "You do not have any available IP address pools. Please <a ui-sref=\"{{sref}}\">order one</a>",
   "dedicatedCloud_datacenter_drp_confirm_create_success_part_one": "Your Zerto DRP has been created.",
   "dedicatedCloud_datacenter_drp_confirm_create_success_part_two": "Your ZSSP password has been sent to {{email}}.",
-  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Enabling Zerto DRP. The operation could take up to an hour to complete.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Enabling Zerto DRP. This operation could take up to 4 hours to complete.",
   "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_EPCC": "Please check the enableDisasterRecovery task on your primary Private Cloud to track its progress.",
   "dedicatedCloud_datacenter_drp_confirm_create_error": "An error has occurred enabling your DRP.",
   "dedicatedCloud_datacenter_drp_confirm_summary_title": "DRP configuration summary",

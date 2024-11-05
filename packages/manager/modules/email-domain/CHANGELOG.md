@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.7.2...@ovh-ux/manager-email-domain@1.7.3) (2024-11-05)
+
+
+### Bug Fixes
+
+* **web:** fix table filters on web universe ([8e52150](https://github.com/ovh/manager/commit/8e52150c050d0f479b335f6d385400352f790b5c))
+
+
+
+
+
 ## [1.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.7.1...@ovh-ux/manager-email-domain@1.7.2) (2024-10-28)
 
 

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.42.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.41.1-alpha.1...@ovh-ux/manager-web@18.42.0-alpha.0) (2024-11-05)
+
+
+### Bug Fixes
+
+* **web.ssl:** support providers COMODO and SECTIGO ([63e917f](https://github.com/ovh/manager/commit/63e917f856c477f1cd20dffaec937125d09a274a))
+* **web:** fix table filters on web universe ([8e52150](https://github.com/ovh/manager/commit/8e52150c050d0f479b335f6d385400352f790b5c))
+* **web:** move ssh input form ([3bbf095](https://github.com/ovh/manager/commit/3bbf09537cdcb653fc127b3c85e0109a8279c65a))
+
+
+### Features
+
+* **domains:** handle new status ([#13418](https://github.com/ovh/manager/issues/13418)) ([93342bb](https://github.com/ovh/manager/commit/93342bb0195263854d6b88f7afe9301be9673ce6))
+* **web:** add clipboard copy for token ovhcontrol ([b01b0b9](https://github.com/ovh/manager/commit/b01b0b9f4046deb06d930ca8ab400beb9dcd3bf6))
+* **web:** add web offer click tracking action ([d625e64](https://github.com/ovh/manager/commit/d625e64ca4a20731961538873cc00046b6a12d95))
+* **web:** delete black label on web databases ([4e81a36](https://github.com/ovh/manager/commit/4e81a36022aacdefb59b986a03efcd32215d6cdd))
+* **web:** tracking actions on git ([13d5c8e](https://github.com/ovh/manager/commit/13d5c8e9de0edf396b90b8c5d09d383136d27902))
+
+
+
+
+
 ## [18.41.1-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.41.1-alpha.0...@ovh-ux/manager-web@18.41.1-alpha.1) (2024-10-31)
 
 

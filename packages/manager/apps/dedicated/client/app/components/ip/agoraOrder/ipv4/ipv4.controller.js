@@ -17,6 +17,7 @@ import {
 
 import {
   IP_LOCATION_GROUPS,
+  IP_SERVICETYPE__PARK,
   PRODUCT_TYPES,
   TRACKING_PREFIX,
   VPS_MAX_QUANTITY,
@@ -28,6 +29,7 @@ import {
   DATACENTER_TO_COUNTRY,
   DATACENTER_TO_REGION,
   IP_LOCATION_GROUPS_BASED_ON_DATACENTER,
+  REGION_TO_DATACENTER,
 } from './ipv4.constant';
 
 export default class AgoraIpV4OrderController {
@@ -71,8 +73,8 @@ export default class AgoraIpV4OrderController {
 
   $onInit() {
     this.catalogByLocation = [];
-    this.isParkingIp = false;
-    this.parkingIpOffers = [];
+    this.isParkingIpOrVrack = false;
+    this.IpOffers = [];
     this.model = {
       params: {},
       selectedService: null,
@@ -115,19 +117,24 @@ export default class AgoraIpV4OrderController {
       .all({
         user: this.User.getUser(),
         services: this.Ipv4AgoraOrder.getServices(),
+        vrack: this.Ipv4AgoraOrder.getVracks(), // toDo
       })
       .then((results) => {
         results.services.push({
-          displayName: this.$translate.instant('ip_servicetype__PARK'),
+          displayName: IP_SERVICETYPE__PARK,
           serviceName: 'parking',
           type: 'parking',
         });
         this.user = results.user;
-        this.services = results.services.map((service) => ({
+        this.services = [...results.services, ...results.vrack];
+        this.services = this.services.map((service) => ({
           ...service,
-          translatedType: this.$translate.instant(
-            `ip_filter_services_title_${service.type}`,
-          ),
+          translatedType:
+            service.type === 'parking'
+              ? IP_SERVICETYPE__PARK
+              : this.$translate.instant(
+                  `ip_filter_services_title_${service.type}`,
+                ),
         }));
         this.ipFailoverPrice = this.getIpFailoverPrice();
 
@@ -307,21 +314,65 @@ export default class AgoraIpV4OrderController {
     this.trackStep(3);
   }
 
-  onIpServiceSelection() {
-    this.isParkingIp =
-      this.model?.selectedService?.type === PRODUCT_TYPES.parking.typeName;
-    if (this.isParkingIp) {
-      this.loading.region = true;
-      this.parkingIpOffers = this.ipCatalog.filter((plan) =>
-        /^ip-v4|^ip-failover/.test(plan.planCode),
+  /* To be replaced once we have region list coming from API for the Vrack, as of now consider IPV6 regions */
+  getIpv6RegionsWithPlan(IpOffers) {
+    this.IP_REGION = 'ip_region';
+    return IpOffers.map((plan) => {
+      const {
+        details: {
+          product: { configurations },
+        },
+      } = plan;
+      const regionConfig = configurations.find(
+        (config) => config.name === this.IP_REGION,
       );
-      const DATACENTERS = this.parkingIpOffers
-        .map((ipOffer) => {
-          return ipOffer.details.product.configurations.find(
-            (config) => config.name === 'datacenter',
-          )?.values;
-        })
-        .flat();
+
+      return regionConfig.values.map((regionId) => ({
+        regionId,
+        plan: plan.planCode,
+      }));
+    }).flat();
+  }
+
+  static getMacroRegion(region) {
+    const localZonePattern = /^lz/i;
+    const devZonePattern = /^1-/i;
+
+    let macro;
+    const local = region
+      .split('-')
+      ?.slice(2)
+      ?.join('-');
+
+    if (devZonePattern.test(local)) {
+      macro = [local];
+    } else {
+      const nbOfSlice = localZonePattern.test(local) ? 3 : 2;
+      macro = /[\D]{2,3}/.exec(
+        region
+          .split('-')
+          ?.slice(nbOfSlice)
+          ?.join('-'),
+      );
+    }
+
+    return (macro && macro[0]) || '';
+  }
+
+  onIpServiceSelection() {
+    this.isParkingIpOrVrack =
+      this.model?.selectedService?.type === PRODUCT_TYPES.parking.typeName ||
+      this.model?.selectedService?.type === PRODUCT_TYPES.vrack.typeName;
+    this.IpOffers = this.ipCatalog.filter((plan) =>
+      /^ip-v4|^ip-failover/.test(plan.planCode),
+    );
+    if (this.model?.selectedService?.type === PRODUCT_TYPES.parking.typeName) {
+      this.loading.region = true;
+      const DATACENTERS = this.IpOffers.map((ipOffer) => {
+        return ipOffer.details.product.configurations.find(
+          (config) => config.name === 'datacenter',
+        )?.values;
+      }).flat();
       const uniqueDatacenters = [...new Set(DATACENTERS)];
       this.catalogByLocation = uniqueDatacenters.map((datacenter) => {
         const flag =
@@ -331,6 +382,30 @@ export default class AgoraIpV4OrderController {
           regionName: DATACENTER_TO_REGION[datacenter],
           location: this.$translate.instant(
             `ip_agora_ipv6_location_${DATACENTER_TO_REGION[datacenter]}`,
+          ),
+          icon: `oui-flag oui-flag_${flag}`,
+        };
+      });
+      this.loading.region = false;
+      return null;
+    }
+
+    if (this.model?.selectedService?.type === PRODUCT_TYPES.vrack.typeName) {
+      this.loading.region = true;
+      this.Ipv6Offers = this.ipCatalog.filter(
+        (plan) => plan.planCode.match(/^ip-v6.*/) != null,
+      );
+      /* To be replaced once we have region list coming from API for the Vrack, as of now consider IPV6 regions */
+      this.ipv6RegionsWithPlan = this.getIpv6RegionsWithPlan(this.Ipv6Offers);
+      this.catalogByLocation = this.ipv6RegionsWithPlan.map(({ regionId }) => {
+        const datacenter = REGION_TO_DATACENTER[regionId];
+        const flag =
+          datacenter === 'ERI' ? 'gb' : DATACENTER_TO_COUNTRY[datacenter];
+        return {
+          datacenter,
+          regionName: regionId,
+          location: this.$translate.instant(
+            `ip_agora_ipv6_location_${regionId}`,
           ),
           icon: `oui-flag oui-flag_${flag}`,
         };
@@ -402,7 +477,7 @@ export default class AgoraIpV4OrderController {
       ipOffersPromise = this.loadPrivateCloudIpOffers(
         get(this.model, 'selectedService.serviceName'),
       );
-    } else if (this.isParkingIp) {
+    } else if (this.isParkingIpOrVrack) {
       // Country for Single IP selection in parking
       const country = [
         DATACENTER_TO_COUNTRY[this.model.selectedRegion.datacenter],
@@ -410,14 +485,13 @@ export default class AgoraIpV4OrderController {
       // Multiple countries are available for block IP selection in parking and vrack
       const countries = AgoraIpV4OrderController.getCountriesFromDatacenter(
         this.model.selectedRegion.datacenter,
-        this.parkingIpOffers,
+        this.IpOffers,
       ).map((value) => value.toLowerCase());
-      const ipOfferDetails = this.parkingIpOffers.map(
-        this.createOfferDto.bind(this),
-      );
+      const ipOfferDetails = this.IpOffers.map(this.createOfferDto.bind(this));
       const ipOffersByDatacenter = AgoraIpV4OrderController.getRegionFromDatacenter(
         this.model.selectedRegion.datacenter,
       );
+
       blockIpOfferDetails = this.filterOffer(
         ipOfferDetails,
         'productShortName',
@@ -551,7 +625,7 @@ export default class AgoraIpV4OrderController {
       this.model.params.selectedCountry = head(
         get(this.model, 'params.selectedOffer.countries'),
       );
-    } else if (this.isParkingIp) {
+    } else if (this.isParkingIpOrVrack) {
       const code = DATACENTER_TO_COUNTRY[this.model.selectedRegion.datacenter];
       this.model.params.selectedCountry = {
         code: code.toUpperCase(),
@@ -610,15 +684,24 @@ export default class AgoraIpV4OrderController {
         serviceName: get(this.model, 'selectedService.serviceName'),
         ...commonProductProps,
       });
-    } else if (this.isParkingIp) {
+    } else if (
+      this.model?.selectedService?.type === PRODUCT_TYPES.parking.typeName
+    ) {
       const { datacenter } = this.model.selectedRegion;
       productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
-        organisation: get(
-          this.model.params,
-          'selectedOrganisation.organisationId',
-        ),
+        organisation: this.model.params.selectedOrganisation.organisationId,
         ...commonProductProps,
         country: params.selectedCountry?.code,
+        datacenter,
+      });
+    } else if (
+      this.model?.selectedService?.type === PRODUCT_TYPES.vrack.typeName
+    ) {
+      const { datacenter } = this.model.selectedRegion;
+      productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
+        organisation: this.model.params.selectedOrganisation.organisationId,
+        ...commonProductProps,
+        productRegionName: this.model.params.selectedOffer.productRegion,
         datacenter,
       });
     } else {
@@ -693,7 +776,8 @@ export default class AgoraIpV4OrderController {
         PRODUCT_TYPES.privateCloud.typeName ||
       this.model.selectedService?.type ===
         PRODUCT_TYPES.dedicatedServer.typeName ||
-      this.model.selectedService?.type === PRODUCT_TYPES.parking.typeName
+      this.model.selectedService?.type === PRODUCT_TYPES.parking.typeName ||
+      this.model.selectedService?.type === PRODUCT_TYPES.vrack.typeName
     );
   }
 

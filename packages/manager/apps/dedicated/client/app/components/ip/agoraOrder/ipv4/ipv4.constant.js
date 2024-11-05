@@ -7,6 +7,8 @@ import {
 
 export const FETCH_PRICE_MAX_TRIES = 5;
 
+export const IP_SERVICETYPE__PARK = 'IP Parking';
+
 export const PRODUCT_TYPES = {
   dedicatedServer: {
     apiTypeName: 'SERVER',
@@ -23,6 +25,10 @@ export const PRODUCT_TYPES = {
   parking: {
     apiTypeName: 'parking',
     typeName: 'parking',
+  },
+  vrack: {
+    apiTypeName: 'VRACK',
+    typeName: 'VRACK',
   },
 };
 
@@ -121,9 +127,29 @@ export const IP_LOCATION_GROUPS_BASED_ON_DATACENTER = [
   { labels: ['USA'], countries: ['us'], datacenter: ['HIL', 'VIN'] },
 ];
 
+/* To be replaced once we have region list coming from API for the Vrack, as of now consider IPV6 regions */
+export const REGION_TO_DATACENTER = {
+  'eu-west-rbx': 'RBX',
+  'eu-west-gra': 'GRA',
+  'eu-west-sbg': 'SBG',
+  'eu-west-par': 'PAR',
+  'labeu-west-1-preprod': 'CR2',
+  'eu-west-lim': 'LIM',
+  'eu-central-waw': 'WAW',
+  'eu-west-eri': 'ERI',
+  'ca-east-bhs': 'BHS',
+  'ca-east-tor': 'YYZ',
+  'ap-southeast-sgp': 'SGP',
+  'ap-southeast-syd': 'SYD',
+  'ap-south-mum': 'YNM',
+  'us-east-vin': 'VIN',
+  'us-west-hil': 'HIL',
+};
+
 export default {
   FETCH_PRICE_MAX_TRIES,
   IP_LOCATION_GROUPS,
+  IP_SERVICETYPE__PARK,
   PRODUCT_TYPES,
   TRACKING_PREFIX,
   VPS_MAX_QUANTITY,
@@ -134,4 +160,5 @@ export default {
   DATACENTER_TO_COUNTRY,
   DATACENTER_TO_REGION,
   IP_LOCATION_GROUPS_BASED_ON_DATACENTER,
+  REGION_TO_DATACENTER,
 };
