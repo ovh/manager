@@ -75,6 +75,22 @@ export default class PciStoragesContainersController {
         `pci_projects_project_storages_containers_deployment_mode_${type}`,
       );
     });
+    if (!this.is3azAvailable) {
+      delete this.deploymentModeOptions.values[
+        OBJECT_CONTAINER_MODE_MULTI_ZONES
+      ];
+    }
+    if (!this.isLocalzoneAvailable) {
+      delete this.deploymentModeOptions.values[
+        OBJECT_CONTAINER_MODE_LOCAL_ZONE
+      ];
+
+      this.deploymentModeOptions.values[
+        OBJECT_CONTAINER_MODE_MONO_ZONE
+      ] = this.$translate.instant(
+        'pci_projects_project_storages_containers_add_deployment_mode_flipping_region',
+      );
+    }
   }
 
   addDeploymentMode() {

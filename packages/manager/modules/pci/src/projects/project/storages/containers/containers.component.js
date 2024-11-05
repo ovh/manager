@@ -34,5 +34,6 @@ export default {
     trackPage: '<',
     regions: '<?',
     isLocalzoneAvailable: '<',
+    is3azAvailable: '<',
   },
 };

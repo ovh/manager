@@ -273,7 +273,9 @@
                 >
                     <oui-select-picker-label>
                         <strong
-                            data-ng-bind=":: ('pci_projects_project_storages_containers_add_deployment_mode_' + $ctrl.container.deploymentMode) | translate"
+                            data-ng-bind=":: (($ctrl.isLocalzoneAvailable
+                            ? 'pci_projects_project_storages_containers_add_deployment_mode_'
+                            : 'pci_projects_project_storages_containers_add_deployment_mode_flipping_') + $ctrl.container.deploymentMode) | translate"
                         ></strong>
                         <span
                             class="oui-badge oui-badge_best-seller oui-3az"
