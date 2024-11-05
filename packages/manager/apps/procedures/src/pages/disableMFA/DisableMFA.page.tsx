@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
-import ovhCloudLogo from '@/assets/logo-ovhcloud.png';
 import { Status2fa } from '@/types/status.type';
-import { useFetch2faStatus } from '@/data/hooks/useStatus';
 import {
   createRoutePath,
   seeRoutePath,
@@ -13,6 +11,7 @@ import { accountDisable2faRoute } from '@/routes/routes';
 import { SkeletonLoading } from '@/components/Loading/SkeletonLoading';
 import { SessionModals } from '@/context/User/modals/SessionModals';
 import { PageLayout } from '@/components/PageLayout/PageLayout.component';
+import { useProcedures } from '@/data/hooks/useProcedures';
 
 const redirectStrategies: Record<Status2fa['status'] | 'error', string> = {
   open: `${accountDisable2faRoute}/${seeRoutePath}`,
@@ -36,7 +35,12 @@ export default function DisableMFA() {
       navigate(`${url}${location.search || ''}`, { replace: true });
     }
   };
-  const { data, error, isSuccess, isFetched, isLoading } = useFetch2faStatus();
+
+  const { useStatus } = useProcedures('2FA');
+
+  const { data, error, isSuccess, isFetched, isLoading } = useStatus<
+    Status2fa
+  >();
   const route = redirectStrategies[data?.status];
   useEffect(() => {
     if (isFetched) {

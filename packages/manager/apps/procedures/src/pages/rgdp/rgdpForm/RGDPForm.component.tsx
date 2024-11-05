@@ -11,7 +11,7 @@ import {
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { GDPRFormValues } from '@/types/gdpr.type';
+import { GDPRFormValues, GDPRValues } from '@/types/gdpr.type';
 import { TextField } from './TextField/TextField.component';
 import { SelectField } from './SelectField/SelectField.component';
 import { TextAreaField } from './TextAreaField/TextAreaField.component';
@@ -25,14 +25,10 @@ import {
 } from './RGDPForm.constants';
 import './RGDPForm.style.css';
 import { FileField } from './FileField/FileField.component';
-import {
-  useRGDPSendForm,
-  useRGDPUploadDocuments,
-} from '@/data/hooks/rgdp/useRGDP';
 import { ConfirmModal } from '@/components/modals/confirmModal/ConfirmModal.component';
 import { SuccessModal } from '@/components/modals/successModal/SuccessModal.component';
 import { getWebSiteRedirectUrl } from '@/utils/url-builder';
-import { FileWithError } from '@/components/FileInput/FileInputContainer';
+import { useProcedures } from '@/data/hooks/useProcedures';
 
 const extractFiles = (formValue: GDPRFormValues): File[] =>
   formValue.otherDocuments.filter((file) => file);
@@ -49,12 +45,13 @@ export const RGDPForm: FunctionComponent = () => {
 
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+  const { useUploadDocuments, useUploadLinks } = useProcedures('GDPR');
 
   const {
     mutate: uploadDocuments,
     isPending: isPendingUpload,
     isError: isErrorUpload,
-  } = useRGDPUploadDocuments({
+  } = useUploadDocuments({
     onSuccess: () => {
       setShowSuccessModal(true);
       setShowConfirmModal(false);
@@ -68,11 +65,11 @@ export const RGDPForm: FunctionComponent = () => {
     mutate: sendForm,
     isPending: isPendingSendForm,
     isError: isErrorSendForm,
-  } = useRGDPSendForm({
+  } = useUploadLinks<GDPRValues>({
     onSuccess: (links) => {
       const data = watch();
       const files = extractFiles(data);
-      uploadDocuments({ fileLinks: links, files });
+      uploadDocuments({ links, files });
     },
     onError: () => {
       setShowConfirmModal(false);
