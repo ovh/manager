@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.0.0-alpha.0...@ovh-ux/manager-react-components@2.0.0-alpha.1) (2024-11-05)
+
+### Bug Fixes
+
+- **mrc:** test comment 2 ([9bd91de](https://github.com/ovh/manager/commit/9bd91de248f6c6018b7dfb8725fc6e062a171958))
+
 # [2.0.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.2...@ovh-ux/manager-react-components@2.0.0-alpha.0) (2024-11-05)
 
 ### Features
