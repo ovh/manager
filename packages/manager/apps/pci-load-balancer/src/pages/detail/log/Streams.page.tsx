@@ -16,10 +16,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useContext, useState } from 'react';
-import {
-  Notifications,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   DbaasLogsAccountSelector,
@@ -52,7 +49,6 @@ export default function StreamsPage() {
       projectId={projectId}
       region={region}
     >
-      <Notifications />
       <div className="mb-6">
         <OsdsLink
           color={ODS_THEME_COLOR_INTENT.primary}
