@@ -4,7 +4,7 @@ import { useShell } from '@ovh-ux/manager-react-core-application';
 import {
   ErrorMessage,
   TRACKING_LABELS,
-} from '@ovh-ux/manager-react-components/src/components/';
+} from '@ovh-ux/manager-react-components/dist/src/components';
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
 
 interface ErrorObject {
