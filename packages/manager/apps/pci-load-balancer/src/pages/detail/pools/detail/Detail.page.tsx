@@ -3,7 +3,6 @@ import {
   Headers,
   Links,
   LinkType,
-  Notifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
@@ -114,10 +113,6 @@ export default function PoolDetailPage() {
         type={LinkType.back}
         href={hrefPools}
       />
-
-      <div className="my-5">
-        <Notifications />
-      </div>
 
       <div className="my-10">
         <TabsPanel tabs={tabs} />

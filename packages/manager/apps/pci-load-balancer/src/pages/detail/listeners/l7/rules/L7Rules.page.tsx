@@ -15,11 +15,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useProject } from '@ovh-ux/manager-pci-common';
-import {
-  Headers,
-  Notifications,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
+import { Headers, useProjectUrl } from '@ovh-ux/manager-react-components';
 import { useListener } from '@/api/hook/useListener';
 import { ROUTE_PATHS } from '@/routes';
 
@@ -104,7 +100,6 @@ export default function L7RulesPage() {
           title={t('octavia_load_balancer_list_l7_rules_title')}
         />
       </div>
-      <Notifications />
       <Suspense>
         <Outlet />
       </Suspense>
