@@ -1,11 +1,8 @@
-import { JsonBodyType } from 'msw';
 import { setupServer } from 'msw/node';
-import { instancesHandlers } from './handlers';
+import { instancesHandlers, TInstancesServerResponse } from './handlers';
 
-export const setupInstanceServer = <T extends JsonBodyType>(
-  mockedResponsePayload?: T,
-) => {
-  const server = setupServer(...instancesHandlers(mockedResponsePayload));
+export const setupInstancesServer = (response: TInstancesServerResponse[]) => {
+  const server = setupServer(...instancesHandlers(response));
   server.listen({
     onUnhandledRequest: 'error',
   });
