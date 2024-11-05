@@ -5223,6 +5223,9 @@
   dependencies:
     lodash "^4.17.21"
 
+"@ovh-ux/request-tagger@*":
+  version "0.4.0-alpha.0"
+
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.6.tgz#8db90747f02d2bb95e3a5563d1c5a77a25edd0ad"
