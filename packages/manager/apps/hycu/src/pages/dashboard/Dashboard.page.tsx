@@ -1,13 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Outlet,
-  NavLink,
   useNavigate,
   useResolvedPath,
   useParams,
+  NavLink,
+  Outlet,
 } from 'react-router-dom';
+import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_COLOR_INTENT,
+} from '@ovhcloud/ods-components';
+import {
+  OsdsMessage,
+  OsdsText,
   OsdsTabs,
   OsdsTabBar,
   OsdsTabBarItem,
@@ -17,14 +24,13 @@ import {
   BaseLayout,
   useServiceDetails,
   Notifications,
-  useNotifications,
 } from '@ovh-ux/manager-react-components';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import Errors from '@/components/Error/Error';
 import { urls } from '@/routes/routes.constant';
 import { useDetailsLicenseHYCU } from '@/hooks/api/license';
-import { LicenseStatus } from '@/types/hycu.details.interface';
+import { IHycuDetails, LicenseStatus } from '@/types/hycu.details.interface';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -36,29 +42,61 @@ export type DashboardLayoutProps = {
   tabs: DashboardTabItemProps[];
 };
 
+const ServiceSuspendedBanner = () => {
+  const { t } = useTranslation('hycu/dashboard');
+
+  return (
+    <OsdsMessage className="mb-2" type={ODS_MESSAGE_TYPE.warning}>
+      <OsdsText
+        color={ODS_TEXT_COLOR_INTENT.warning}
+        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+      >
+        {t('hycu_dashboard_warning_license_suspended_message')}
+      </OsdsText>
+    </OsdsMessage>
+  );
+};
+
+const LicenseErrorActivationBanner = ({
+  licenseHycu,
+}: {
+  licenseHycu: IHycuDetails;
+}) => {
+  const { t } = useTranslation('hycu/dashboard');
+
+  return (
+    <OsdsMessage className="mb-2" type={ODS_MESSAGE_TYPE.error}>
+      <OsdsText
+        color={ODS_TEXT_COLOR_INTENT.error}
+        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+      >
+        {t('hycu_dashboard_error_license_message', {
+          error: licenseHycu.comment,
+        })}
+      </OsdsText>
+    </OsdsMessage>
+  );
+};
+
 export default function DashboardPage() {
   const { serviceName } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation('hycu/dashboard');
-  const { addError, addWarning, clearNotifications } = useNotifications();
 
   const { data: licenseHycu } = useDetailsLicenseHYCU(serviceName);
   const { data: serviceDetails, error } = useServiceDetails({
     resourceName: serviceName,
   });
 
-  useEffect(() => {
+  const dashboardBanner = useMemo(() => {
     if (serviceDetails?.data.resource.state === 'suspended') {
-      clearNotifications();
-      addWarning(t('hycu_dashboard_warning_license_suspended_message'));
-    } else if (licenseHycu?.data.licenseStatus === LicenseStatus.ERROR) {
-      clearNotifications();
-      addError(
-        t('hycu_dashboard_error_license_message', {
-          error: licenseHycu.data.comment,
-        }),
-      );
+      return <ServiceSuspendedBanner />;
     }
+    if (licenseHycu?.data.licenseStatus === LicenseStatus.ERROR) {
+      return <LicenseErrorActivationBanner licenseHycu={licenseHycu.data} />;
+    }
+
+    return null;
   }, [licenseHycu, serviceDetails]);
 
   const tabsList = [
@@ -92,7 +130,12 @@ export default function DashboardPage() {
       onClickReturn={() => {
         navigate(urls.listing);
       }}
-      message={<Notifications />}
+      message={
+        <>
+          {dashboardBanner}
+          <Notifications />
+        </>
+      }
       tabs={
         <OsdsTabs panel={panel}>
           <OsdsTabBar slot="top">
