@@ -6,5 +6,6 @@
   "hycu_commercial_name": "Type de pack",
   "hycu_subscribed_date": "Date de souscription",
   "hycu_order": "Commander",
-  "hycu_service_listing_terminate": "Résilier"
+  "hycu_service_listing_terminate": "Résilier",
+  "hycu_listing_error_loading_data": "Erreur de chargement"
 }

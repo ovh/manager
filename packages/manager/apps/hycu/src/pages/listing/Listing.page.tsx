@@ -7,6 +7,7 @@ import {
   OsdsChip,
   OsdsMessage,
   OsdsSkeleton,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
   Datagrid,
@@ -36,6 +37,16 @@ import HycuActionMenu from './menu/HycuActionMenu.component';
 import { getStatusColor } from '@/utils/statusColor';
 
 /* ========= datagrid cells ========= */
+const DatagridErrorCell = () => {
+  const { t } = useTranslation('hycu/listing');
+
+  return (
+    <DataGridTextCell>
+      <OsdsText>{t('hycu_listing_error_loading_data')}</OsdsText>
+    </DataGridTextCell>
+  );
+};
+
 const DatagridIdCell = (hycuDetail: IHycuDetails) => {
   const navigate = useNavigate();
 
@@ -84,9 +95,11 @@ const DatagridStatusCell = (hycuDetail: IHycuDetails) => {
 };
 
 const DatagridCommercialNameCell = (hycuDetail: IHycuDetails) => {
-  const { data: serviceDetails, isLoading } = useServiceDetails({
+  const { data: serviceDetails, isLoading, isError } = useServiceDetails({
     resourceName: hycuDetail.serviceName,
   });
+
+  if (isError) return <DatagridErrorCell />;
 
   return (
     <DataGridTextCell>
@@ -100,7 +113,7 @@ const DatagridCommercialNameCell = (hycuDetail: IHycuDetails) => {
 };
 
 const DatagridCreatedDateCell = (hycuDetail: IHycuDetails) => {
-  const { data: serviceDetails, isLoading } = useServiceDetails({
+  const { data: serviceDetails, isLoading, isError } = useServiceDetails({
     resourceName: hycuDetail.serviceName,
   });
   const creationDate =
@@ -109,6 +122,8 @@ const DatagridCreatedDateCell = (hycuDetail: IHycuDetails) => {
     dateString: creationDate as string,
     format: DateFormat.compact,
   });
+
+  if (isError) return <DatagridErrorCell />;
 
   return (
     <DataGridTextCell>
@@ -150,31 +165,35 @@ export default function Listing() {
       {
         id: 'name',
         label: t('hycu_name'),
+        isSortable: false,
         cell: DatagridIdCell,
       },
       {
-        id: 'controller_id',
+        id: 'controllerId',
         label: t('hycu_controller_id'),
         cell: DatagridControllerIdCell,
       },
       {
-        id: 'status',
+        id: 'licenseStatus',
         label: t('hycu_status'),
         cell: DatagridStatusCell,
       },
       {
         id: 'commercial_name',
         label: t('hycu_commercial_name'),
+        isSortable: false,
         cell: DatagridCommercialNameCell,
       },
       {
         id: 'subscribed_date',
         label: t('hycu_subscribed_date'),
+        isSortable: false,
         cell: DatagridCreatedDateCell,
       },
       {
         id: 'action',
         label: '',
+        isSortable: false,
         cell: DatagridActionCell,
       },
     ];
