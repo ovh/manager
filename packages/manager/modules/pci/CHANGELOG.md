@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.65.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.65.0...@ovh-ux/manager-pci@6.65.1) (2024-11-04)
+
+
+### Bug Fixes
+
+* **pci.instances:** use productAvailability to get snapshot price ([#13827](https://github.com/ovh/manager/issues/13827)) ([11c884e](https://github.com/ovh/manager/commit/11c884e3d384ca400c3abf8fa5ddc7b38999becf))
+
+
+
+
+
 # [6.65.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.64.1...@ovh-ux/manager-pci@6.65.0) (2024-10-28)
 
 

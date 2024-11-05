@@ -8,14 +8,15 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('resources')
-        .then((resouces) =>
-          resouces.data.length === 0
+        .getAsync('noFiltersEmail')
+        .then((noFiltersEmail) =>
+          noFiltersEmail.data.length === 0
             ? { state: 'app.email.onboarding' }
             : false,
         ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      noFiltersEmail: /* @ngInject */ ($http) => $http.get('/email/domain'),
       apiPath: () => '/email/domain',
       dataModel: () => 'email.domain.DomainService',
       defaultFilterColumn: () => 'domain',
