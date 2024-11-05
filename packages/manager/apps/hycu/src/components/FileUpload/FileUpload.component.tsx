@@ -15,7 +15,7 @@ import { Controller, UseControllerProps } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { LICENSE_FILE_EXT } from '@/constants';
 
-const MAX_FILE_SIZE = 10e3; // 1 MB limit ~
+const MAX_FILE_SIZE = 1e6; // 1 MB limit ~
 
 export const FileInputField = ({
   name,
