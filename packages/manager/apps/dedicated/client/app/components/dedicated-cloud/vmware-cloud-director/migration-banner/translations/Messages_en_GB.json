@@ -1,3 +1,4 @@
 {
-  "dedicatedCloud_managed_vcd_migration_pending_warning": "Warning: migration in progress, any changes made to your service will not be taken into account"
+  "dedicatedCloud_managed_vcd_migration_pending_warning": "Warning: migration in progress, any changes made to your service will not be taken into account",
+  "dedicatedCloud_managed_vcd_migrated": "Your Hosted Private Cloud solution has either been migrated or is currently being migrated to VMware Cloud Director. You can use this page to manage the public IP blocks (order a new block, reassign an existing block to another service) currently linked to your Hosted Private Cloud service and connected to your VMware Cloud Director service. This is temporary and will change once your public IP blocks have been linked to your VMware Cloud Director service."
 }
