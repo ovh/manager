@@ -1,9 +1,9 @@
 {
   "zimbra_redirections_cta": "Create a redirection",
   "zimbra_redirections_from": "From",
-  "zimbra_redirections_to": "Coming",
-  "zimbra_redirections_organization": "Organisation ",
-  "zimbra_redirections_datagrid_tooltip_modification": "Modify",
+  "zimbra_redirections_to": "To",
+  "zimbra_redirections_organization": "Organisation",
+  "zimbra_redirections_datagrid_tooltip_modification": "Edit",
   "zimbra_redirections_datagrid_tooltip_delete": "Delete",
   "zimbra_redirections_account_title": "Manage redirections"
 }

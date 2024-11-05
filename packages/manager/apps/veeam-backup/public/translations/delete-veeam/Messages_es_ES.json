@@ -1,5 +1,5 @@
 {
   "headline": "Dar de baja mi servicio",
   "delete_input_label": "Introduzca la palabra «TERMINATE» para confirmar la baja del servicio.",
-  "terminate_veeam_backup_success": "Su solicitud de baja de {{name}} se ha enviado. Recibirá un mensaje de correo electrónico con más información"
+  "terminate_veeam_backup_success": "Su solicitud de baja de {{name}} se ha enviado. Recibirá un mensaje de correo electrónico con información adicional"
 }

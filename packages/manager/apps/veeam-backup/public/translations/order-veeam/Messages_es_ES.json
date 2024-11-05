@@ -1,7 +1,7 @@
 {
-  "description": "Nuestros servicios se basan en la solución Veeam Data Platform y el plugin Veeam para VMware Cloud Director (para backup). Nuestras soluciones se implementan a nivel de la infraestructura VMware Cloud Foundation y controlan directamente los vCenter para realizar las operaciones a través de un snapshot VMware (si es posible con acceso directo al almacenamiento). La solución estándar es compartida entre todos los clientes de la plataforma. La solución funciona sin agentes en las máquinas virtuales.",
+  "description": "Nuestros servicios se basan en la solución Veeam Data Platform y el plugin Veeam para VMware Cloud Director (para la copia de seguridad). Nuestras soluciones se implementan a nivel de la infraestructura VMware Cloud Foundation y controlan directamente los vCenter para realizar las operaciones a través de un snapshot VMware (si es posible, con acceso directo al almacenamiento). La solución estándar es compartida entre todos los clientes de la plataforma. La solución funciona sin agentes en las máquinas virtuales.",
   "select_offer_title": "Seleccione su producto",
-  "select_offer_description": "Añada el servicio Veeam Data Platform a su infraestructura VMware Cloud Director. La selección de la organización VMware Cloud Director se realizará en la siguiente etapa. Más información sobre las modalidades de facturación.",
+  "select_offer_description": "Añada el servicio Veeam Data Platform a su infraestructura VMware Cloud Director. La selección de la organización VMware Cloud Director se realizará en el siguiente paso. Más información sobre las modalidades de facturación.",
   "offer_title": "Activar {{productName}}",
   "offer_content_part1": "El servicio Veeam Data Platform dispone de un plugin VCD para guardar las MV y las vApps desde cualquier Virtual Data Center (VDC) de la organización.",
   "offer_content_part2": "Está disponible a nivel de organización para cualquier usuario de VMware Cloud Director que tenga el rol de administrador de la organización.",
@@ -14,7 +14,7 @@
   "region_cell": "Localización",
   "description_cell": "Descripción",
   "active_status": "Activado",
-  "none_status": "Ninguno",
+  "none_status": "Ninguno/a",
   "error_status": "Error",
   "cancel_button": "Cancelar",
   "order_button": "Contratar"

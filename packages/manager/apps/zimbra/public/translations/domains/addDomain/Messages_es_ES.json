@@ -27,7 +27,7 @@
   "zimbra_domains_add_domain_configuration_cname_title": "Validación de su dominio",
   "zimbra_domains_add_domain_configuration_cname_description": "Para validar que es el propietario de este dominio, agregue este registro.",
   "zimbra_domains_add_domain_configuration_info": "Dispone de 48 horas para realizar esta validación. Puede consultar esta información más adelante en la tabla dominio.",
-  "zimbra_domains_add_domain_configuration_part_1": "Una vez validado el dominio, deberá editar manualmente los registros MX y SRV en la zona DNS.",
+  "zimbra_domains_add_domain_configuration_part_1": "Una vez validado el dominio, deberá editar manualmente los registros MX y SRV en su zona DNS.",
   "zimbra_domains_add_domain_configuration_part_2": "Puede encontrar la información necesaria en la sección del dominio asociado.",
   "zimbra_domains_add_domain_configuration_guides_referee": "Por favor, consulte nuestra guía",
   "zimbra_domains_add_domain_warning_modification_domain": "Debe asegurarse de que el administrador del dominio puede modificar la zona DNS del dominio elegido."

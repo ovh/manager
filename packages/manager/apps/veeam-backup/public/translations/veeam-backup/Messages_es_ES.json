@@ -8,7 +8,7 @@
   "update_display_name_pattern_message": "El nombre debe contener un máximo de 32 caracteres",
   "update_veeam_backup_display_name_success": "El nombre se ha modificado correctamente.",
   "coming_soon": "Próximamente",
-  "unknown_date": "No disponible",
+  "unknown_date": "N/A",
   "no_organization_message": "Actualmente no tiene ningún servicio VMware Cloud Director. Si desea más información sobre nuestro producto Managed VMware Cloud Director, consulte nuestra página",
   "no_organization_link": "Consulte la página"
 }

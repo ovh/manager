@@ -97,5 +97,5 @@
   "iam_resource_type_okms": "Key Management System (KMS)",
   "iam_resource_type_okms/kmip": "Key Management System (KMS) / KMIP",
   "iam_resource_type_okms/serviceKey": "Key Management System (KMS) / Klucz",
-  "iam_resource_type_licenseHycu": "HYCU dla OVHcloud"
+  "iam_resource_type_licenseHycu": "HYCU for OVHcloud"
 }
