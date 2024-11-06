@@ -5114,38 +5114,18 @@
   integrity sha512-U69T3ItWHvLwGg5eJ0n3I62nWuE6ilHlmz7zM0npLBRvPRd7e6NYmg54vvRtP5mZG7kZqZCFVdsTWo7BPtBujg==
 
 "@orchidjs/sifter@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@orchidjs/sifter/-/sifter-1.0.3.tgz#43f42519472282eb632d0a1589184f044d64129b"
-  integrity sha512-zCZbwKegHytfsPm8Amcfh7v/4vHqTAaOu6xFswBYcn8nznBOuseu6COB2ON7ez0tFV0mKL0nRNnCiZZA+lU9/g==
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@orchidjs/sifter/-/sifter-1.1.0.tgz#b36154ad0cda4898305d1ac44f318b41048a0438"
+  integrity sha512-mYwHCfr736cIWWdhhSZvDbf90AKt2xyrJspKFC3qyIJG1LtrJeJunYEqCGG4Aq2ijENbc4WkOjszcvNaIAS/pQ==
   dependencies:
-    "@orchidjs/unicode-variants" "^1.0.4"
+    "@orchidjs/unicode-variants" "^1.1.2"
 
-"@orchidjs/unicode-variants@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.0.4.tgz#6d2f812e3b19545bba2d81caffff1204de9a6a58"
-  integrity sha512-NvVBRnZNE+dugiXERFsET1JlKZfM5lJDEpSMilKW4bToYJ7pxf0Zne78xyXB2ny2c2aHfJ6WLnz1AaTNHAmQeQ==
+"@orchidjs/unicode-variants@^1.0.4", "@orchidjs/unicode-variants@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
+  integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
-"@ovh-ux/manager-react-components@^1.41.1":
-  version "1.41.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.41.1.tgz#da0195c82fdf26e101f47c11d5b604c90547d810"
-  integrity sha512-aol1jycPupdDEFQ1IXibwvy5+YilUTvPEaASrePy3iNPozAQ/sXaweRJuUJoNqk77p/6AF2NGygV8R/MNOjcYg==
-  dependencies:
-    "@ovhcloud/ods-common-core" "17.2.2"
-    "@ovhcloud/ods-common-theming" "17.2.2"
-    "@ovhcloud/ods-components" "17.2.2"
-    "@ovhcloud/ods-theme-blue-jeans" "17.2.2"
-    "@tanstack/react-query" "^5.51.21"
-    "@tanstack/react-table" "^8.20.1"
-    clsx "^2.1.1"
-    lodash.isdate "^4.0.1"
-    lodash.isequal "^4.5.0"
-    react-i18next "^14.0.5"
-    react-use "^17.5.0"
-    sass "1.71.0"
-    tailwindcss "^3.4.4"
-    uuid "^9.0.1"
-
-"@ovh-ux/manager-react-components@^1.41.2":
+"@ovh-ux/manager-react-components@^1.41.1", "@ovh-ux/manager-react-components@^1.41.2":
   version "1.41.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.41.2.tgz#087cacbbff37c594201851f5f27d2a0c524545b5"
   integrity sha512-Yl7lWtGGqw3CUeVMaCMwkoTWomxlbCT2hD+Q2h8zgclnsyfEbTvQT6iFVpueiFwhTikCRm+oFsbRy3gL8XOOzw==
@@ -9578,6 +9558,17 @@
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-react/-/plugin-react-4.3.2.tgz#1e13f666fe3135b477220d3c13b783704636b6e4"
   integrity sha512-hieu+o05v4glEBucTcKMK3dlES0OeJlD9YVOAPraVMOInBCwzumaIFiUjr4bHK7NPgnAHgiskUoceKercrN8vg==
+  dependencies:
+    "@babel/core" "^7.25.2"
+    "@babel/plugin-transform-react-jsx-self" "^7.24.7"
+    "@babel/plugin-transform-react-jsx-source" "^7.24.7"
+    "@types/babel__core" "^7.20.5"
+    react-refresh "^0.14.2"
+
+"@vitejs/plugin-react@^4.3.3":
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/@vitejs/plugin-react/-/plugin-react-4.3.3.tgz#28301ac6d7aaf20b73a418ee5c65b05519b4836c"
+  integrity sha512-NooDe9GpHGqNns1i8XDERg0Vsg5SSYRhRxxyTGogUdkdNt47jal+fbuYi+Yfq6pzRCKXyoPcWisfxE6RIM3GKA==
   dependencies:
     "@babel/core" "^7.25.2"
     "@babel/plugin-transform-react-jsx-self" "^7.24.7"

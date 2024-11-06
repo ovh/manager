@@ -1,8 +1,8 @@
 import React from 'react';
 import { Outlet, useParams } from 'react-router-dom';
+import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
 import Errors from '@/components/error/Error.component';
 import Loading from '@/components/loading/Loading.component';
-import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import OrganizationGenerationInformationTile from '@/components/tiles/organization-general-information-tile/OrganizationGeneralInformationTile.component';
 import OrganizationOptionsTile from '@/components/tiles/organization-options-tile/OrganizationOptionsTile.component';
 import OrganizationDataProtectionTile from '@/components/tiles/organization-data-tile/OrganizationDataProtectionTile.component';
@@ -16,9 +16,8 @@ export default function GeneralInformation() {
     isRefetchError,
     error,
     isLoading,
-  } = useManagedVcdOrganization({
+  } = useVcdOrganization({
     id,
-    refetchOnWindowFocus: true,
     refetchInterval: 60 * 1000,
   });
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { DatagridColumn } from '@ovh-ux/manager-react-components';
+import { VCDOrderableVhostPriced } from '@ovh-ux/manager-module-vcd-api';
 import { DatacentreOrderProvider } from '@/context/DatacentreOrder.context';
-import { IVdcOrderableVhostPriced } from '@/types/vcd-vdc-orderable-resource.interface';
 import { DatacentreOrder } from '@/components/form/DatacentreOrder.component';
 import {
   ComputeOrderSelectCell,
@@ -23,7 +23,7 @@ export default function ComputeOrderPage() {
   const { t: tCompute } = useTranslation(
     'hpc-vmware-managed-vcd/datacentres/compute',
   );
-  const columns: DatagridColumn<IVdcOrderableVhostPriced>[] = [
+  const columns: DatagridColumn<VCDOrderableVhostPriced>[] = [
     {
       id: 'select',
       cell: ComputeOrderSelectCell,

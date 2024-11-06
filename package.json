@@ -19,6 +19,7 @@
       "packages/manager/core/url-builder",
       "packages/manager/core/utils",
       "packages/manager/core/vite-config",
+      "packages/manager/core/test-utils",
       "packages/manager/modules/*",
       "packages/manager/tools/*",
       "packages/manager-react-components"
