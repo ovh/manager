@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import {
   OsdsCheckbox,
@@ -34,7 +34,7 @@ import usePrepareGatewayCreation from '@/hooks/usePrepareGatewayCreation/usePrep
 const GatewayCreation: React.FC = () => {
   const { t } = useTranslation(['new', 'common']);
   const guides = useGuideLink();
-  const { watch } = useFormContext<NewPrivateNetworkForm>();
+  const { watch, unregister } = useFormContext<NewPrivateNetworkForm>();
   const region = watch('region');
   const isGatewayAvailable = useGatewayAvailabilityRegion(
     region,
@@ -65,8 +65,8 @@ const GatewayCreation: React.FC = () => {
 
   const renderMessage = useCallback(
     () =>
-      existingGateway?.externalInformation ? (
-        <ExistingGatewayMessage gateway={existingGateway.name} />
+      existingGateway ? (
+        <ExistingGatewayMessage gateway={existingGateway} />
       ) : (
         <AvailableGatewayMessage
           size={catalog?.size.toUpperCase()}
@@ -77,6 +77,11 @@ const GatewayCreation: React.FC = () => {
       ),
     [existingGateway, catalog, region],
   );
+
+  useEffect(() => {
+    // unregister snat every time region or gateway change
+    unregister('enableSnat');
+  }, [region, existingGateway, createGateway]);
 
   return (
     <>

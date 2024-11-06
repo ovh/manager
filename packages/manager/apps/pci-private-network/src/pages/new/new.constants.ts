@@ -39,4 +39,5 @@ export const NEW_PRIVATE_NETWORK_FORM_SCHEMA = z.object({
     })
     .optional(),
   existingGatewayId: z.string().optional(),
+  enableSnat: z.boolean().optional(),
 });
