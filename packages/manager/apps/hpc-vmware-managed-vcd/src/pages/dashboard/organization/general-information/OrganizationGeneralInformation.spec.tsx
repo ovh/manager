@@ -1,5 +1,6 @@
 import userEvents from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
+import { organizationList } from '@ovh-ux/manager-module-vcd-api';
 import {
   renderTest,
   labels,
@@ -10,7 +11,6 @@ import {
   DEFAULT_TIMEOUT,
   checkTextVisibility,
 } from '../../../../test-utils';
-import { organizationList } from '../../../../../mocks/vcd-organization/vcd-organization.mock';
 
 const submitButtonLabel =
   labels.dashboard.managed_vcd_dashboard_edit_modal_cta_edit;

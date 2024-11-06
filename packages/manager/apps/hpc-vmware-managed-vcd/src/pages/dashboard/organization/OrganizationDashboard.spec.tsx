@@ -1,7 +1,7 @@
 import userEvents from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
+import { organizationList } from '@ovh-ux/manager-module-vcd-api';
 import { renderTest, labels } from '../../../test-utils';
-import { organizationList } from '../../../../mocks/vcd-organization/vcd-organization.mock';
 
 describe('Organization Dashboard Page', () => {
   it('display the dashboard page', async () => {

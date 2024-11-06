@@ -2,14 +2,13 @@ import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import userEvents from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
 import {
-  renderTest,
-  labels,
   checkModal,
   waitForOptions,
   changeInputValue,
   getButtonByIcon,
-} from '@/test-helpers';
-import { backupList } from '@/../mocks/veeam-backup.mock';
+} from '@ovh-ux/manager-core-test-utils';
+import { backupList } from '@ovh-ux/manager-module-vcd-api';
+import { renderTest, labels } from '@/test-helpers';
 import { urls } from '@/routes/routes.constant';
 import '@testing-library/jest-dom';
 

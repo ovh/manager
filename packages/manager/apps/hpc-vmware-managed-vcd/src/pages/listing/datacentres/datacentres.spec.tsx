@@ -1,12 +1,14 @@
 import { screen, waitFor } from '@testing-library/react';
 import {
+  organizationList,
+  datacentreList,
+} from '@ovh-ux/manager-module-vcd-api';
+import {
   checkTextVisibility,
   DEFAULT_LISTING_ERROR,
   labels,
   renderTest,
 } from '../../../test-utils';
-import { datacentreList } from '../../../../mocks/vcd-organization/vcd-datacentre.mock';
-import { organizationList } from '../../../../mocks/vcd-organization/vcd-organization.mock';
 
 describe('Datacentres Listing Page', () => {
   it('displays the virtual datacentres listing page', async () => {

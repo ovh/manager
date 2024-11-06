@@ -1,5 +1,5 @@
 import { IamCheckResponse } from '@ovh-ux/manager-react-components';
-import { backupList } from './veeam-backup.mock';
+import { backupList } from '@ovh-ux/manager-module-vcd-api';
 import { iamActions } from '../src/veeam-backup.config';
 
 export const iamResponse: IamCheckResponse[] = [

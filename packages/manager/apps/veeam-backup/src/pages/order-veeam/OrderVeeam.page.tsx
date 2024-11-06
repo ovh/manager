@@ -29,11 +29,11 @@ import {
   ODS_TEXT_SIZE,
   ODS_MESSAGE_TYPE,
 } from '@ovhcloud/ods-components';
+import { useVeeamBackupVmConsumptionPricing } from '@ovh-ux/manager-module-vcd-api';
 import { BillingLink } from '@/components/Links/BillingLink.component';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { OrderVeeamStep2 } from './OrderVeeamStep2.component';
 import { productName } from '@/veeam-backup.config';
-import { useVeeamBackupVmConsumptionPricing } from '@/data';
 import { Loading } from '@/components/Loading/Loading';
 
 export default function OrderVeeamPage() {
@@ -96,7 +96,7 @@ export default function OrderVeeamPage() {
                   value={pricing?.price || 0}
                   tax={pricing?.tax}
                   intervalUnit={
-                    (pricing?.intervalUnit as any) as IntervalUnitType
+                    (pricing?.intervalUnit as unknown) as IntervalUnitType
                   }
                   locale={i18nextLocaleToOvh(i18n.language)}
                   ovhSubsidiary={
