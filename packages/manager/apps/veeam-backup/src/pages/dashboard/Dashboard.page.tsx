@@ -16,12 +16,12 @@ import {
   Region,
 } from '@ovh-ux/manager-react-components';
 import { ODS_MESSAGE_TYPE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import {
   getRegionNameFromAzName,
   getVeeamBackupDisplayName,
   useVeeamBackup,
-} from '@/data';
+} from '@ovh-ux/manager-module-vcd-api';
+import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constant';
 import { SuccessMessages } from '@/components/Messages/SuccessMessage.component';
 import { OrganizationCell } from '../listing/DatagridCell.component';

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { OsdsMessage } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { VCDOrganization } from '@/data';
+import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
 import { VCDOrgInfoLink } from '../Links/VCDOrgInfoLink.component';
 
 export type NoOrganizationMessageProps = {
