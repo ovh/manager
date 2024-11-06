@@ -1,7 +1,7 @@
 import React from 'react';
 import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
-import { Description, ManagerButton } from '@ovh-ux/manager-react-components';
+import { Description } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
@@ -10,7 +10,10 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_BUTTON_TYPE,
 } from '@ovhcloud/ods-components';
-import { VeeamBackupWithIam, getVeeamBackupDisplayName } from '@/data';
+import {
+  VeeamBackupWithIam,
+  getVeeamBackupDisplayName,
+} from '@ovh-ux/manager-module-vcd-api';
 import { urls } from '@/routes/routes.constant';
 
 export const DisplayNameWithEditButton = (

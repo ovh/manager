@@ -1,4 +1,4 @@
-import { backupList } from '../../../mocks/veeam-backup.mock';
+import { backupList } from '../mocks';
 import {
   getRegionNameFromAzName,
   getVeeamBackupDisplayName,
@@ -25,7 +25,7 @@ describe('Veeam-backup API utils', () => {
         ...backupList[0],
         iam: {
           ...backupList[0].iam,
-          displayName: null as string,
+          displayName: (null as unknown) as string,
         },
       };
       expect(getVeeamBackupDisplayName(backupWithoutDisplayName)).toBe(

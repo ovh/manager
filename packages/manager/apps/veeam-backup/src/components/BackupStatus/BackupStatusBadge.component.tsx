@@ -3,7 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
-import { ResourceStatus, VeeamBackupWithIam } from '@/data';
+import {
+  ResourceStatus,
+  VeeamBackupWithIam,
+} from '@ovh-ux/manager-module-vcd-api';
 
 export type BackupStatusBadgeProps = {
   resourceStatus: ResourceStatus;

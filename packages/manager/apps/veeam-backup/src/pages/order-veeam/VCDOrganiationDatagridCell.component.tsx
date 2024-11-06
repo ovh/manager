@@ -7,7 +7,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   VCDOrganizationWithBackupStatus,
   getOrganizationDisplayName,
-} from '@/data';
+} from '@ovh-ux/manager-module-vcd-api';
 
 const colorByStatus = {
   active: ODS_THEME_COLOR_INTENT.success,

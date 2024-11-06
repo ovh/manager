@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  OsdsChip,
-  OsdsLink,
-  OsdsSkeleton,
-} from '@ovhcloud/ods-components/react';
+import { OsdsLink, OsdsSkeleton } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
 import {
   ActionMenu,
@@ -23,10 +19,9 @@ import {
   getOrganizationDisplayName,
   getOrganizationIdFromBackup,
   useOrganization,
-  ResourceStatus,
   getVeeamBackupDisplayName,
   getRegionNameFromAzName,
-} from '@/data';
+} from '@ovh-ux/manager-module-vcd-api';
 import { vcdOrganizationAppName } from '@/veeam-backup.config';
 import { urls } from '@/routes/routes.constant';
 

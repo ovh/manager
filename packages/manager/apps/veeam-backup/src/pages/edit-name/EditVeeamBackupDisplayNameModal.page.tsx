@@ -14,7 +14,7 @@ import {
   veeamBackupListQueryKey,
   veeamBackupQueryKey,
   useVeeamBackup,
-} from '@/data';
+} from '@ovh-ux/manager-module-vcd-api';
 import { PageName } from '@/tracking.constant';
 import { MessagesContext } from '@/components/Messages/Messages.context';
 

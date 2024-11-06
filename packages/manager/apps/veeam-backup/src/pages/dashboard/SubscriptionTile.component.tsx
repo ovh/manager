@@ -23,7 +23,7 @@ import {
   useFormattedDate,
   DateFormat,
 } from '@ovh-ux/manager-react-components';
-import { VeeamBackupWithIam } from '@/data';
+import { VeeamBackupWithIam } from '@ovh-ux/manager-module-vcd-api';
 import { urls } from '@/routes/routes.constant';
 import { LoadingChip } from '@/components/Loading/Loading';
 
