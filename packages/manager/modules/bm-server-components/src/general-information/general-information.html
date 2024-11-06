@@ -107,16 +107,12 @@
                 data-ng-if="$ctrl.canInstallOs()"
             >
                 <span
-                    data-translate="dedicated_server_dashboard_installation_ovh_button"
+                    data-translate="dedicated_server_dashboard_installation_install_button"
+                    data-ng-if="!$ctrl.hasOperatingSystem()"
                 ></span>
-            </oui-action-menu-item>
-            <oui-action-menu-item
-                data-on-click="$ctrl.openOsInstallation('gabarit')"
-                data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask"
-                data-ng-if="$ctrl.canInstallOs()"
-            >
                 <span
-                    data-translate="dedicated_server_dashboard_installation_gabarit_button"
+                    data-translate="dedicated_server_dashboard_installation_reinstall_button"
+                    data-ng-if="$ctrl.hasOperatingSystem()"
                 ></span>
             </oui-action-menu-item>
         </oui-action-menu>

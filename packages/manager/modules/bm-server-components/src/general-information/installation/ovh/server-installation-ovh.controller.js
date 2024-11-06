@@ -154,14 +154,10 @@ export default class ServerInstallationOvhCtrl {
       // has been customized(change to false in loadPartition())
       dirtyPartition: true,
       // STEP3
-      gabaritNameSave: null,
       options: {
-        saveGabarit: false,
-        gabaritNameSave: null,
         variablePartition: null,
         validForm: true,
       },
-      variablePartition: false,
       saveSize: null,
     };
 
@@ -2185,7 +2181,6 @@ export default class ServerInstallationOvhCtrl {
               0)
         ) {
           this.$scope.installation.options.variablePartition = partition;
-          this.$scope.installation.variablePartition = true;
         }
       });
     }
@@ -2193,10 +2188,7 @@ export default class ServerInstallationOvhCtrl {
 
   checkIntegrity() {
     this.$scope.errorInst.ws = null;
-    this.$scope.installation.variablePartition = false;
     this.$scope.installation.options = {
-      saveGabarit: false,
-      gabaritNameSave: null,
       variablePartition: null,
       validForm: true,
     };
@@ -2226,19 +2218,6 @@ export default class ServerInstallationOvhCtrl {
   }
 
   // ------INSTALL------
-  validationGabaritName() {
-    this.$scope.errorInst.gabaritName = !/^[a-zA-Z0-9_-]{1,50}$/.test(
-      this.$scope.installation.gabaritNameSave,
-    );
-  }
-
-  getMountPoint() {
-    const list = [];
-    this.$scope.installation.partitionSchemeModels.forEach((partition) => {
-      list.push(partition);
-    });
-    return list;
-  }
 
   saveRemainingSize(_size, stop) {
     let size = _size;
@@ -2255,10 +2234,8 @@ export default class ServerInstallationOvhCtrl {
         }
       }
 
-      // if user has check, change variable partition and uncheck save gabarit
-      if (!this.$scope.installation.options.saveGabarit) {
-        this.addRemainingSize();
-      }
+      // if change variable partition
+      this.addRemainingSize();
 
       if (this.$scope.installation.options.variablePartition) {
         this.$scope.loader.loading = true;
@@ -2389,47 +2366,14 @@ export default class ServerInstallationOvhCtrl {
     });
   }
 
-  setGabarit() {
-    this.Server.putSetGabarit(
-      this.$stateParams.productId,
-      this.$scope.informations.gabaritName,
-      this.$scope.installation.options.gabaritNameSave,
-    ).then(
-      () => {
-        this.$scope.informations.gabaritName = angular.copy(
-          this.$scope.installation.options.gabaritNameSave,
-        );
-        if (this.$scope.installation.hardwareRaid.raid) {
-          this.setHardwareRaid(this.$scope.installation.partitionSchemesList);
-          // means we append the HW conf to all the partitioning schemes because we are saving a customer template, so user could choose another partitioning scheme next time
-        } else {
-          this.startInstall();
-        }
-      },
-      (data) => {
-        this.$scope.loader.loading = false;
-        this.saveRemainingSize(this.$scope.installation.saveSize, true);
-        this.$scope.errorInst.wsinstall = this.$translate.instant(
-          'server_configuration_installation_error_save',
-          { t0: data.message },
-        );
-      },
-    );
-  }
-
   install() {
     this.trackClick(
       `dedicated::dedicated::${this.serverType}::system-install::public-catalog::install`,
     );
-    if (this.$scope.installation.options.saveGabarit) {
-      this.$scope.loader.loading = true;
-      this.setGabarit();
-    } else {
-      if (this.$scope.installation.hardwareRaid.raid) {
-        this.setHardwareRaid();
-      }
-      this.startInstall();
+    if (this.$scope.installation.hardwareRaid.raid) {
+      this.setHardwareRaid();
     }
+    this.startInstall();
   }
 
   raidIsPersonnalizable() {
@@ -2443,16 +2387,6 @@ export default class ServerInstallationOvhCtrl {
   hasLicencedOs() {
     return this.$scope.installation.distributionList?.find(
       (distribution) => distribution.family === 'WINDOWS',
-    );
-  }
-
-  nameGabaritValidator() {
-    return this.$scope.optionForm?.gabaritNameSave.$setValidity(
-      'pattern',
-      !this.$scope.installation.options.saveGabarit ||
-        /^[a-zA-Z0-9-]{1,50}$/.test(
-          this.$scope.installation.options.gabaritNameSave,
-        ),
     );
   }
 
