@@ -28,6 +28,8 @@ const getCustomerLevel = (level: string) => {
   }
 };
 
+// test
+
 const LiveChat: React.FC<ComponentProps<LiveChatProps>> = (
   { language, open, reduced, subsidiary, supportLevel, ...rest }: LiveChatProps,
 ): JSX.Element => {
