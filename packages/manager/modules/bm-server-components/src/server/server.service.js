@@ -3,12 +3,10 @@ import compact from 'lodash/compact';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import head from 'lodash/head';
-import indexOf from 'lodash/indexOf';
 import map from 'lodash/map';
 import parseInt from 'lodash/parseInt';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
-import orderBy from 'lodash/orderBy';
 import uniq from 'lodash/uniq';
 
 export default class Server {
@@ -816,21 +814,6 @@ export default class Server {
     );
   }
 
-  getPersonalTemplates(serviceName) {
-    return this.OvhHttp.get(
-      '/sws/dedicated/server/{serviceName}/installation/templates',
-      {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
-        },
-        params: {
-          type: 'personal',
-        },
-      },
-    );
-  }
-
   getPartitionSchemes(productId, templateName) {
     return this.get(productId, '{templateName}/partitionScheme', {
       urlParams: {
@@ -971,20 +954,6 @@ export default class Server {
     );
   }
 
-  putSetGabarit(productId, gabaritName, gabaritNameNew, customization) {
-    return this.put(productId, '{gabaritName}', {
-      urlParams: {
-        gabaritName,
-      },
-      data: {
-        templateName: gabaritNameNew,
-        customization,
-      },
-      proxypass: true,
-      urlPath: this.path.installationMe,
-    });
-  }
-
   startInstallation(
     serviceName,
     templateName,
@@ -1003,17 +972,6 @@ export default class Server {
         partitionSchemeName,
         templateName,
       },
-    });
-  }
-
-  deleteGabarit(productId, gabaritName) {
-    return this.delete(productId, '{gabaritName}', {
-      urlParams: {
-        gabaritName,
-      },
-      broadcast: 'dedicated.installation.gabarit.refresh',
-      urlPath: this.path.installationMe,
-      proxypass: true,
     });
   }
 
@@ -1476,57 +1434,6 @@ export default class Server {
     );
   }
 
-  getPartitionSchemeHardwareRaid(productId, templateName, schemeName) {
-    return this.get(
-      productId,
-      '{templateName}/partitionScheme/{schemeName}/hardwareRaid',
-      {
-        urlParams: {
-          templateName,
-          schemeName,
-        },
-        proxypass: true,
-        urlPath: this.path.installationMe,
-      },
-    ).then((response) => {
-      const index = indexOf(response, 'managerHardRaid');
-
-      if (index !== -1) {
-        return this.get(
-          productId,
-          '{templateName}/partitionScheme/{schemeName}/hardwareRaid/{name}',
-          {
-            urlParams: {
-              templateName,
-              schemeName,
-              name: response[index],
-            },
-            proxypass: true,
-            urlPath: this.path.installationMe,
-          },
-        );
-      }
-
-      if (response.length > 0) {
-        return this.get(
-          productId,
-          '{templateName}/partitionScheme/{schemeName}/hardwareRaid/{name}',
-          {
-            urlParams: {
-              templateName,
-              schemeName,
-              name: response[0],
-            },
-            proxypass: true,
-            urlPath: this.path.installationMe,
-          },
-        );
-      }
-
-      return this.$q.when();
-    });
-  }
-
   // eslint-disable-next-line class-methods-use-this
   isHardRaidLocationError(error) {
     return (
@@ -1543,18 +1450,6 @@ export default class Server {
       error.data &&
       error.data.message === 'Hardware RAID is not supported by this server'
     );
-  }
-
-  getPartitionSchemesByPriority(productId, templateName) {
-    return this.getPartitionSchemes(productId, templateName).then((schemes) => {
-      const getSchemes = map(schemes, (scheme) =>
-        this.getPartitionSchemePriority(productId, templateName, scheme),
-      );
-
-      return this.$q.all(getSchemes).then((schemesDetails) => {
-        return map(orderBy(schemesDetails, 'priority', 'desc'), 'name');
-      });
-    });
   }
 
   updateServiceInfos(serviceName, data) {

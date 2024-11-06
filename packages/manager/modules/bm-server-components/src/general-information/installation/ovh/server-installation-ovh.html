@@ -350,7 +350,7 @@
                         class="alert alert-danger"
                         role="alert"
                         data-ng-if="installation.hardwareRaid.error"
-                        data-translate="server_configuration_installation_gabarit_step2_invalid"
+                        data-translate="server_configuration_installation_ovh_stephardraid_label_error"
                     ></div>
                 </form>
             </div>
@@ -1742,92 +1742,6 @@
                         <h5
                             data-translate="server_configuration_installation_form_option"
                         ></h5>
-                        <!-- saveGabarit -->
-                        <label>
-                            <span
-                                data-translate="server_configuration_installation_ovh_step3_saveGabarit"
-                            ></span>
-                            <span
-                                class="fa fa-question-circle"
-                                aria-label="{{ 'server_configuration_installation_ovh_step3_saveGabarit_help' | translate }}"
-                                data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step3_saveGabarit_help' | translate }}"
-                                data-oui-tooltip-placement="right"
-                            >
-                            </span>
-                        </label>
-                        <oui-switch
-                            id="saveGabarit"
-                            name="saveGabarit"
-                            data-model="installation.options.saveGabarit"
-                            data-on-change="$ctrl.nameGabaritValidator()"
-                        ></oui-switch>
-
-                        <!-- gabaritNameSave -->
-                        <div
-                            class="form-group"
-                            data-ng-show="installation.options.saveGabarit == true"
-                            data-ng-class="{
-                                    'has-error': optionForm.gabaritNameSave.$invalid && optionForm.$dirty
-                                }"
-                        >
-                            <label
-                                for="gabaritNameSave"
-                                class="control-label"
-                                data-translate="server_configuration_installation_form_gabaritNameSave"
-                            >
-                            </label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="gabaritNameSave"
-                                name="gabaritNameSave"
-                                data-ng-model="installation.options.gabaritNameSave"
-                                data-ng-change="$ctrl.nameGabaritValidator()"
-                                data-ng-required="installation.options.saveGabarit"
-                                data-ng-trim="true"
-                            />
-                            <span
-                                class="help-block"
-                                role="alert"
-                                data-ng-if="optionForm.gabaritNameSave.$invalid && optionForm.$dirty"
-                                data-translate="server_configuration_installation_form_gabaritNameSave_pattern"
-                            >
-                            </span>
-                        </div>
-
-                        <!-- variablePartition -->
-                        <div
-                            class="form-group"
-                            data-ng-show="installation.customInstall && installation.options.saveGabarit == true && installation.variablePartition != null"
-                        >
-                            <label
-                                for="variablePartition"
-                                class="control-label"
-                            >
-                                <span
-                                    data-translate="server_configuration_installation_ovh_step3_partition_variable"
-                                ></span
-                                >&nbsp;
-                                <span
-                                    class="icon-warning"
-                                    data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step3_partition_variable_help' | translate }}"
-                                    data-oui-tooltip-placement="right"
-                                >
-                                </span>
-                            </label>
-                            <select
-                                class="form-control"
-                                id="variablePartition"
-                                data-ng-options="partition as partition.mountPoint for partition in getMountPoint()"
-                                data-ng-model="installation.options.variablePartition"
-                            >
-                                <option
-                                    value
-                                    data-ng-bind=":: 'server_configuration_installation_ovh_step3_partition_none' | translate"
-                                >
-                                </option>
-                            </select>
-                        </div>
 
                         <!-- nbDisk -->
                         <div
@@ -1867,18 +1781,12 @@
                         </div>
 
                         <div
-                            data-ng-if="configError.raidDiskUse || (installation.options.variablePartition && installation.options.saveGabarit)"
+                            data-ng-if="configError.raidDiskUse"
                         >
                             <p
                                 class="text-danger"
                                 data-ng-if="configError.raidDiskUse"
                                 data-translate="server_configuration_installation_ovh_step2_error_raid_diskUse"
-                            ></p>
-                            <p
-                                class="text-danger"
-                                data-ng-if="installation.options.variablePartition && installation.options.saveGabarit"
-                                data-translate="server_configuration_installation_ovh_step3_partition_variable_info"
-                                data-translate-values="{ t0: installation.options.variablePartition.mountPoint }"
                             ></p>
                         </div>
                     </div>
