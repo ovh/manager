@@ -25,7 +25,6 @@ import resiliation from './resiliation';
 import terminate from '../terminate';
 import upgrade from './upgrade';
 
-import installationGabarit from './installation/gabarit';
 import installationOvh from './installation/ovh';
 import installationProgress from './installation/progress';
 
@@ -58,7 +57,6 @@ angular
     serverNetwork,
     serverConsumptionTile,
     serverAdvancedFeatures,
-    installationGabarit,
     installationOvh,
     installationProgress,
     serverDashboard,
