@@ -8,6 +8,7 @@ import '@uirouter/angularjs';
 
 import controller from './user-ip-restriction.controller';
 import service from './user-ip-restriction.service';
+import validationService from './validator.service';
 
 import addController from './add/user-ip-restriction-add.controller';
 import deleteController from './delete/user-ip-restriction-delete.controller';
@@ -30,6 +31,7 @@ angular
   .controller('UserAccount.controllers.ipRestrictions.add', addController)
   .controller('UserAccount.controllers.ipRestrictions.delete', deleteController)
   .service('UserAccount.services.ipRestrictions', service)
+  .service('Validator', validationService)
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(

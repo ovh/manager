@@ -15,6 +15,8 @@ import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import 'bootstrap';
 import 'angular-ui-bootstrap';
 import 'punycode';
+/* eslint-disable import/no-webpack-loader-syntax */
+import 'script-loader!ipaddr.js/ipaddr.min.js';
 
 const moduleName = 'ovhManagerAccountLazyLoading';
 

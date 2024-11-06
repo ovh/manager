@@ -51,6 +51,7 @@
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "core-js": "^3.6.5",
     "flatpickr": "~4.6.3",
+    "ipaddr.js": "^1.6.0",
     "jquery": "^2.1.3",
     "jsurl": "^0.1.4",
     "lodash": "^4.17.15",
