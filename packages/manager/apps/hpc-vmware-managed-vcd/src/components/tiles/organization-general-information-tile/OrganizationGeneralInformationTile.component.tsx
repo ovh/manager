@@ -17,14 +17,14 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import IVcdOrganization from '@/types/vcd-organization.interface';
+import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
 import { subRoutes } from '@/routes/routes.constant';
 import { iamActions } from '@/utils/iam.constants';
 import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
 import DatacentresCount from './DatacentresCount.component';
 
 type TTileProps = {
-  vcdOrganization: IVcdOrganization;
+  vcdOrganization: VCDOrganization;
 };
 
 export default function OrganizationGenerationInformationTile({

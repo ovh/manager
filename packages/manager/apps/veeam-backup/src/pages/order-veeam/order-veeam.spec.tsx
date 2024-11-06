@@ -1,11 +1,10 @@
 import userEvent from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
 import {
-  renderTest,
-  labels,
   waitForOptions,
   getButtonByLabel,
-} from '@/test-helpers';
+} from '@ovh-ux/manager-core-test-utils';
+import { renderTest, labels } from '@/test-helpers';
 import { urls } from '@/routes/routes.constant';
 import '@testing-library/jest-dom';
 

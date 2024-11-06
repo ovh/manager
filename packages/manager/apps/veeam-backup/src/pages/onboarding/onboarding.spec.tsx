@@ -1,5 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
-import { renderTest, labels, waitForOptions } from '../../test-helpers';
+import { waitForOptions } from '@ovh-ux/manager-core-test-utils';
+import { renderTest, labels } from '@/test-helpers';
 import '@testing-library/jest-dom';
 
 describe('onboarding', () => {

@@ -10,11 +10,14 @@ import {
   DatagridColumn,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
+import {
+  VeeamBackup,
+  useVeeamBackupList,
+} from '@ovh-ux/manager-module-vcd-api';
 import ErrorBanner from '@/components/Error/Error';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constant';
 import { SuccessMessages } from '@/components/Messages/SuccessMessage.component';
-import { VeeamBackupWithIam, useVeeamBackupList } from '@/data';
 import {
   DisplayNameCell,
   ActionCell,
@@ -42,7 +45,7 @@ export default function Listing() {
     status,
   } = useVeeamBackupList({ pageSize: 10 });
 
-  const columns: DatagridColumn<VeeamBackupWithIam>[] = [
+  const columns: DatagridColumn<VeeamBackup>[] = [
     {
       id: 'name',
       label: t('name_cell'),
