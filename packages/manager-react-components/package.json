@@ -102,7 +102,7 @@
     "postcss": "8.4.31",
     "prettier": "3.0.1",
     "prop-types": "15.8.1",
-    "react-dom": "18.2.0",
+    "react-dom": "^18.2.0",
     "react-i18next": "^14.0.5",
     "react-router-dom": "^6.3.0",
     "react-use": "^17.5.0",
@@ -115,13 +115,13 @@
     "vite-plugin-dts": "3.5.1",
     "vite-plugin-static-copy": "^2.0.0",
     "vitest": "^1.2.0",
-    "zustand": "^4.5.0"
+    "zustand": "^4.5.5"
   },
   "optionalDependencies": {
     "i18next": "^23.8.2",
     "react": "^18.2.0",
-    "react-dom": "18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
-    "zustand": "^4.5.0"
+    "zustand": "^4.5.5"
   }
 }
