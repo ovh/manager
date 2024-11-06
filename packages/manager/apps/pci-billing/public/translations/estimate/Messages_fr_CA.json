@@ -1,0 +1,16 @@
+{
+  "cpbe_estimate_summary_header": "Si votre consommation reste la même, le 1er {{ month }} vous devriez payer:",
+  "cpbe_estimate_summary_renew_monthly_sub_label": "Renouvellement de vos forfaits mensuels: <strong>{{ total }}</strong>",
+  "cpbe_estimate_summary_hourly_consumption_label": "Consommation à la demande en {{ month }}: <strong>{{ total }}</strong>",
+  "cpbe_estimate_alert_header_title": "Alerte consommation à la demande",
+  "cpbe_estimate_alert_header_description": "Cette alerte est basée sur la projection en fin de mois",
+  "cpbe_estimate_alert_create": "Créer l'alerte",
+  "cpbe_estimate_alert_edit": "Modifier l'alerte",
+  "cpbe_estimate_alert_delete": "Supprimer l'alerte",
+  "cpbe_estimate_alert_delete_success": "Alerte consommation supprimée.",
+  "cpbe_estimate_alert_delete_error": "Oups, une erreur est survenue lors de la suppression de votre alerte.",
+  "cpbe_estimate_alert_chart_label_now": "Aujourd'hui",
+  "cpbe_estimate_alert_chart_label_future": "Fin du mois",
+  "cpbe_estimate_alert_chart_label_limit": "Limite",
+  "cpbe_estimate_price_error_message": "Oups, nous n'arrivons pas à récupérer les informations concernant les prix."
+}
