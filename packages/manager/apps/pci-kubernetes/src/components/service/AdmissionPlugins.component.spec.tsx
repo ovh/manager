@@ -41,7 +41,7 @@ describe('AdmissionPlugins', () => {
       'admission-plugin-chip NodeRestriction',
     );
     expect(nodeRestrictionChip).toHaveStyle(
-      `background-color: ${ODS_THEME_COLOR_INTENT.success}`,
+      `background-color: ${ODS_THEME_COLOR_INTENT.info}`,
     );
     expect(nodeRestrictionChip).toHaveTextContent(
       'kube_service_cluster_admission_plugins_activated',
@@ -51,7 +51,7 @@ describe('AdmissionPlugins', () => {
       'admission-plugin-chip AlwaysPullImages',
     );
     expect(alwaysPullImagesChip).toHaveStyle(
-      `background-color: ${ODS_THEME_COLOR_INTENT.warning}`,
+      `background-color: ${ODS_THEME_COLOR_INTENT.default}`,
     );
     expect(alwaysPullImagesChip).toHaveTextContent(
       'kube_service_cluster_admission_plugins_desactivated',

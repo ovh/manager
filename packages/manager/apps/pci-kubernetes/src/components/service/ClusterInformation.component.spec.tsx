@@ -49,10 +49,10 @@ describe('ClusterInformation', () => {
 
     expect(
       screen.getByTestId('admission-plugin-chip AlwaysPullImages'),
-    ).toHaveProperty('color', ODS_THEME_COLOR_INTENT.success);
+    ).toHaveProperty('color', ODS_THEME_COLOR_INTENT.info);
     expect(
       screen.getByTestId('admission-plugin-chip NodeRestriction'),
-    ).toHaveProperty('color', ODS_THEME_COLOR_INTENT.warning);
+    ).toHaveProperty('color', ODS_THEME_COLOR_INTENT.default);
     expect(screen.getByText('Region1')).toBeInTheDocument();
   });
 

@@ -68,8 +68,8 @@ const AdmissionPlugins = ({ isProcessing, plugins }: AdmissionPluginsProps) => {
           <OsdsChip
             color={
               plugin.state === 'enabled'
-                ? ODS_THEME_COLOR_INTENT.success
-                : ODS_THEME_COLOR_INTENT.warning
+                ? ODS_THEME_COLOR_INTENT.info
+                : ODS_THEME_COLOR_INTENT.default
             }
             data-testid={`admission-plugin-chip ${plugin.name}`}
           >
