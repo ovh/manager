@@ -12,5 +12,6 @@ export default {
     cancel: '<',
     usersCredentials: '<',
     trackingPrefix: '<',
+    isLocalzoneAvailable: '<',
   },
 };
