@@ -30,7 +30,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import { ErrorBanner } from '@ovh-ux/manager-react-components';
+import { ErrorBanner, Region } from '@ovh-ux/manager-react-components';
 import { useOrderCatalogOKMS } from '@/data/hooks/useOrderCatalogOKMS';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 
@@ -111,9 +111,10 @@ const RegionSelector = ({
                 (region) => {
                   return (
                     <OsdsSelectOption value={region} key={region}>
-                      {t(
-                        `key_management_service_create_region_${region.toLowerCase()}`,
-                      )}
+                      <Region
+                        mode={'region'}
+                        name={region.toLowerCase().replaceAll('_', '-')}
+                      />
                     </OsdsSelectOption>
                   );
                 },
