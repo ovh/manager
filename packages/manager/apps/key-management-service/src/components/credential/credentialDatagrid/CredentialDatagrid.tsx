@@ -6,7 +6,7 @@ import {
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import {
   getOkmsCredentialsQueryKey,
@@ -28,12 +28,16 @@ const CredentialDatagrid = () => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
   const { okmsId } = useParams();
+  const { state } = useLocation();
 
   const {
     data: credentials,
     isLoading: isLoadingCredentials,
     error: credentialsError,
-  } = useOkmsCredentials(okmsId);
+  } = useOkmsCredentials({
+    okmsId,
+    deletingCredentialId: state?.deletingCredentialId,
+  });
 
   if (isLoadingCredentials) return <Loading />;
 
