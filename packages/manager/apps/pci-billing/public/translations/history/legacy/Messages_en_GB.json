@@ -1,0 +1,14 @@
+{
+  "cpbh_current_month": "{{month}} {{year}} invoices ",
+  "cpbh_next_month": "Following month ",
+  "cpbh_previous_month": "Previous month ",
+  "cpbhd_monthly_header": "Monthly subscriptions for {{month}} {{year}}",
+  "cpbhd_hourly_header": "On-demand usage for {{lastMonth}} {{previousYear}}",
+  "cpbhd_bill_link": "See all invoices ",
+  "cpbhd_bill_pdf_tooltip": "Download PDF invoice ",
+  "cpbhd_bill_pdf_link": "{{month}} {{year}} invoice ",
+  "cpb_error_message": "Oops, we can not retrieve all the information.",
+  "cpbhd_monthly_post_paid_header": "Monthly plans – {{lastMonth}} {{previousYear}}",
+  "cpbhd_monthly_bill_header": "Bill for {{month}} {{year}}",
+  "cpbhd_monthly_bill_description": "(usage for {{lastMonth}} {{previousYear}})"
+}

@@ -1,0 +1,13 @@
+{
+  "cpbc_billing_control": "Faturação",
+  "cpbc_tab_consumption": "O meu consumo atual",
+  "cpbc_tab_forecast": "Estimativa da minha próxima fatura",
+  "cpbc_tab_history": "Histórico",
+  "cpbc_monthly_header": "Próxima faturação mensal",
+  "cpbc_monthly_header_description": "Planos e pagamentos proporcionais",
+  "cpbc_hourly_header": "Próxima fatura",
+  "cpbc_hourly_header_description": "Consumo a pedido do mês decorrente",
+  "cpb_error_message": "Lamentamos, mas não foi possível recuperar todas as informações.",
+  "cpbc_monthly_header_post_paid": "Faturas mensais",
+  "cpbc_hourly_header_post_paid": "Faturas por horas"
+}
