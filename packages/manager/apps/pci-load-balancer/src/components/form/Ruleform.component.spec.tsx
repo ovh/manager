@@ -27,13 +27,17 @@ describe('RuleForm Component', () => {
       ruleType: 'ruleType',
       compareType: 'compareType',
     } as TL7Rule;
+
     const { getByTestId } = render(
       <RuleForm onSubmit={handleSubmit} onCancel={onCancel} rule={rule} />,
     );
+
     const submitButton = getByTestId('ruleForm-submit_button');
+
     act(() => {
       fireEvent.click(submitButton);
     });
-    expect(handleSubmit).toHaveBeenCalled();
+
+    expect(handleSubmit).toHaveBeenCalledOnce();
   });
 });
