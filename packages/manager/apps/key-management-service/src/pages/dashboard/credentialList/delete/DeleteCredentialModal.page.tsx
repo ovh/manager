@@ -19,7 +19,9 @@ const DeleteCredentialPage = () => {
         pageType: PageType.bannerSuccess,
         pageName: 'delete_access_certificate',
       });
-      navigate('..');
+      navigate('..', {
+        state: { deletingCredentialId: credentialId },
+      });
     },
     onError: () => {
       trackPage({
