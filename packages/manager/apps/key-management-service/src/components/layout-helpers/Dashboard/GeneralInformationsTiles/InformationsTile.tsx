@@ -1,11 +1,22 @@
 import React from 'react';
-import { OsdsButton, OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
-import { Clipboard, ServiceDetails } from '@ovh-ux/manager-react-components';
+import {
+  Clipboard,
+  Region,
+  ServiceDetails,
+} from '@ovh-ux/manager-react-components';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsLink,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_LINK_REFERRER_POLICY,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   ButtonType,
@@ -68,11 +79,16 @@ const InformationsTile = ({
       <TileItem
         title={t('key_management_service_dashboard_field_label_region')}
       >
-        <TileValue
-          value={t(
-            `key_management_service_dashboard_region_${okmsData?.region.toLowerCase()}`,
-          )}
-        />
+        <OsdsText
+          size={ODS_TEXT_SIZE._400}
+          level={ODS_TEXT_LEVEL.body}
+          color={ODS_THEME_COLOR_INTENT.default}
+        >
+          <Region
+            mode={'region'}
+            name={okmsData.region.toLowerCase().replaceAll('_', '-')}
+          />
+        </OsdsText>
       </TileItem>
       <TileSeparator />
       <TileItem
