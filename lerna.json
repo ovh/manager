@@ -18,7 +18,8 @@
       "conventionalCommits": true
     },
     "version": {
-      "allowBranch": "master"
+      "allowBranch": "master",
+      "ignoreChanges": ["packages/manager-react-components/**"]
     }
   },
   "$schema": "node_modules/lerna/schemas/lerna-schema.json"
