@@ -14,7 +14,7 @@ import {
   OsdsSelect,
 } from '@ovhcloud/ods-components';
 import FormCreateRequest from './Form.page';
-import * as useDocumentsModule from '@/data/api/documentsApi';
+import * as useProcedures from '@/data/api/proceduresApi';
 
 const renderFormComponent = () => {
   const queryClient = new QueryClient();
@@ -148,12 +148,11 @@ describe('Form.page', () => {
 
   it('should show SuccessModal on successful document upload', async () => {
     const { getByText, getByTestId } = renderFormComponent();
-    vi.spyOn(useDocumentsModule, 'getUploadDocumentsLinks').mockReturnValue(
-      Promise.resolve([]),
-    );
-    vi.spyOn(useDocumentsModule, 'uploadDocuments').mockReturnValue(
-      Promise.resolve(),
-    );
+    vi.spyOn(useProcedures, 'getProceduresAPI').mockReturnValue({
+      getDocumentsLinks: () => Promise.resolve([]),
+      getStatus: undefined,
+      uploadDocuments: () => Promise.resolve(),
+    });
 
     const fileInput = getByTestId('18');
     await act(() =>
@@ -179,9 +178,11 @@ describe('Form.page', () => {
 
   it('should enable file inputs until links retrieval is successful', async () => {
     const { getByText, getByTestId } = renderFormComponent();
-    vi.spyOn(useDocumentsModule, 'getUploadDocumentsLinks').mockRejectedValue(
-      null,
-    );
+    vi.spyOn(useProcedures, 'getProceduresAPI').mockReturnValue({
+      getDocumentsLinks: () => Promise.reject(new Error('404 chucknorris')),
+      getStatus: undefined,
+      uploadDocuments: () => Promise.reject(new Error('404 chucknorris')),
+    });
 
     const fileInput = getByTestId('18');
     // File input should not be disabled if getUploadDocumentsLinks has not yet been called and
@@ -216,10 +217,11 @@ describe('Form.page', () => {
     'should show error message when document upload is not successful',
     async () => {
       const { getByText, getByTestId } = renderFormComponent();
-      vi.spyOn(useDocumentsModule, 'getUploadDocumentsLinks').mockReturnValue(
-        Promise.resolve([]),
-      );
-      vi.spyOn(useDocumentsModule, 'uploadDocuments').mockRejectedValue(null);
+      vi.spyOn(useProcedures, 'getProceduresAPI').mockReturnValue({
+        getDocumentsLinks: () => Promise.resolve([]),
+        getStatus: () => Promise.resolve(undefined),
+        uploadDocuments: () => Promise.reject(new Error('404 chucknorris')),
+      });
 
       const fileInput = getByTestId('18');
       await act(() =>

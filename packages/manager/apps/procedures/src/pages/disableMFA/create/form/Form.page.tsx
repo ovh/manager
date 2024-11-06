@@ -21,11 +21,11 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { FormDocumentFieldList } from './FormDocumentFields/FormDocumentFieldList';
 import { LegalFrom } from '@/types/user.type';
 import useUser from '@/context/User/useUser';
-import { useUploadDocuments, useUploadLinks } from '@/data/hooks/useDocuments';
 import ExitGuard from '@/components/ExitGuard/ExitGuard.component';
 import { getWebSiteRedirectUrl } from '@/utils/url-builder';
 import { ConfirmModal } from '@/components/modals/confirmModal/ConfirmModal.component';
 import { SuccessModal } from '@/components/modals/successModal/SuccessModal.component';
+import { useProcedures } from '@/data/hooks/useProcedures';
 
 const flatFiles = (files: FieldValues) =>
   Object.values(files)
@@ -44,6 +44,7 @@ const FormCreateRequest = () => {
   );
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+  const { useUploadDocuments, useUploadLinks } = useProcedures('2FA');
 
   const files = flatFiles(watch());
   const isAnyFileSelected = files.length > 0;
@@ -178,7 +179,7 @@ const FormCreateRequest = () => {
             if (links) {
               uploadDocuments({ files, links });
             } else {
-              getUploadLinks(files.length);
+              getUploadLinks({ numberOfDocuments: files.length });
             }
           }}
         />
