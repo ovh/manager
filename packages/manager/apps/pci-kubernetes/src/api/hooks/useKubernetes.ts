@@ -107,20 +107,14 @@ export const useKubernetesCluster = (projectId: string, kubeId: string) =>
     queryKey: getKubernetesClusterQuery(projectId, kubeId),
     queryFn: () => getKubernetesCluster(projectId, kubeId),
     select: (data) => {
-      const { admissionPlugins } = data.customization?.apiServer || {};
-      if (admissionPlugins) {
-        const plugins = mapPluginsFromArrayToObject(admissionPlugins);
-        if (plugins.length) {
-          return {
-            ...data,
-            isClusterReady: data.status === STATUS.READY,
-            plugins: mapPluginsFromArrayToObject(admissionPlugins),
-          };
-        }
-      }
+      const { admissionPlugins } = data.customization.apiServer || {};
+      const plugins = mapPluginsFromArrayToObject(admissionPlugins);
       return {
         ...data,
         isClusterReady: data.status === STATUS.READY,
+        ...(plugins.length && {
+          plugins,
+        }),
       };
     },
   });

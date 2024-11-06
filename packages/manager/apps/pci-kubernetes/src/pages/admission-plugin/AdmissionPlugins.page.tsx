@@ -97,7 +97,7 @@ const AdmissionPluginsModal = () => {
     onClose();
   };
 
-  const handleSave = () => {
+  const handleSave = useCallback(() => {
     const initialState = { enabled: [], disabled: [] };
 
     const reorderPlugin = pluginData.reduce((acc, item) => {
@@ -109,7 +109,7 @@ const AdmissionPluginsModal = () => {
       ...kubeDetail.customization,
       apiServer: { admissionPlugins: reorderPlugin },
     });
-  };
+  }, [pluginData, updateAdmissionPlugins, kubeDetail]);
 
   return (
     <OsdsModal
