@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.86.0-alpha.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.0-alpha.5...@ovh-ux/manager-container-app@0.86.0-alpha.6) (2024-11-06)
+
+
+### Features
+
+* **container:** test comment ([8f5097e](https://github.com/ovh/manager/commit/8f5097ede9058a4b5427189cc0beade171357ed1))
+
+
+
+
+
 # [0.86.0-alpha.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.0-alpha.4...@ovh-ux/manager-container-app@0.86.0-alpha.5) (2024-11-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

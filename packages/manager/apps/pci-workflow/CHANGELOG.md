@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.9...@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.10) (2024-11-06)
+
+
+### Bug Fixes
+
+* **manager-react-components:** udpate dependencies versions ([9bb9c47](https://github.com/ovh/manager/commit/9bb9c4746ee71f35e622e4511e4be0370984f901))
+
+
+
+
+
 # [0.1.0-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.8...@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.9) (2024-11-06)
 
 

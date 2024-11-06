@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-services-app",
-  "version": "0.8.24-alpha.4",
+  "version": "0.8.24-alpha.5",
   "private": true,
   "description": "OVHcloud VrackServices app",
   "repository": {

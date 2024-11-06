@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.20-alpha.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.8.20-alpha.6...@ovh-ux/manager-pci-vouchers-app@0.8.20-alpha.7) (2024-11-06)
+
+
+### Bug Fixes
+
+* **manager-react-components:** udpate dependencies versions ([9bb9c47](https://github.com/ovh/manager/commit/9bb9c4746ee71f35e622e4511e4be0370984f901))
+
+
+
+
+
 ## [0.8.20-alpha.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.8.20-alpha.5...@ovh-ux/manager-pci-vouchers-app@0.8.20-alpha.6) (2024-11-06)
 
 
