@@ -23,6 +23,8 @@ jobs:
           yarn exec turbo -- run build --filter="./packages/manager/core/*" --concurrency=5
           yarn exec turbo -- run build --filter="./packages/manager-react-components" --concurrency=5
           yarn exec turbo -- run build --filter="./packages/manager/modules/order" --concurrency=5
+          yarn exec turbo -- run build --filter="./packages/manager/modules/common-api" --concurrency=5
+          yarn exec turbo -- run build --filter="./packages/manager/modules/vcd-api" --concurrency=5
       # This task is for running the jest tests outside microApps
       - name: Run tests Jest
         run: yarn test:jest

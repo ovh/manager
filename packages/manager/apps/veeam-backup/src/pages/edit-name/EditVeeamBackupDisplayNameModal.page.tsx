@@ -12,9 +12,9 @@ import { UpdateIamNameModal } from '@ovh-ux/manager-react-components';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   veeamBackupListQueryKey,
-  veeamBackupQueryKey,
+  getVeeamBackupQueryKey,
   useVeeamBackup,
-} from '@/data';
+} from '@ovh-ux/manager-module-vcd-api';
 import { PageName } from '@/tracking.constant';
 import { MessagesContext } from '@/components/Messages/Messages.context';
 
@@ -66,7 +66,7 @@ export default function EditVeeamBackupDisplayNameModal() {
             queryKey: veeamBackupListQueryKey,
           });
           queryClient.invalidateQueries({
-            queryKey: veeamBackupQueryKey(id),
+            queryKey: getVeeamBackupQueryKey(id),
           });
         }, 2000);
       }}

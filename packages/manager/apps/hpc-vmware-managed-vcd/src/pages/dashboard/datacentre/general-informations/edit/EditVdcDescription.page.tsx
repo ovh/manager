@@ -1,10 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useManagedVcdDatacentre } from '@/data/hooks/useManagedVcdDatacentres';
-import { useUpdateVdcDetails } from '@/data/hooks/useUpdateVcdDatacentre';
+import {
+  useUpdateVdcDetails,
+  useVcdDatacentre,
+  VCDDatacentreTargetSpec,
+} from '@ovh-ux/manager-module-vcd-api';
 import { validateDescription } from '@/utils/formValidation';
-import { IVcdDatacentreState } from '@/types/vcd-datacenter.interface';
 import { EditDetailModal } from '@/components/modal/EditDetailModal';
 import { useMessageContext } from '@/context/Message.context';
 import { subRoutes } from '@/routes/routes.constant';
@@ -15,7 +17,7 @@ export default function EditVdcDescription() {
   const closeModal = () => navigate('..');
   const { addSuccess } = useMessageContext();
   const { id, vdcId } = useParams();
-  const { data: vcdDatacentre } = useManagedVcdDatacentre(id, vdcId);
+  const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
   const { updateDetails, error, isError } = useUpdateVdcDetails({
     id,
     vdcId,
@@ -29,7 +31,8 @@ export default function EditVdcDescription() {
     },
   });
 
-  const currentVdcDetails: IVcdDatacentreState = vcdDatacentre.data.targetSpec;
+  const currentVdcDetails: VCDDatacentreTargetSpec =
+    vcdDatacentre.data.targetSpec;
 
   return (
     <EditDetailModal
