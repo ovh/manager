@@ -10,6 +10,7 @@ const {
   operationId,
   createPrivateNetwork,
   assignGateway,
+  enableSnatOnGateway,
 } = vi.hoisted(() => ({
   form: {
     region: 'RBX-1',
@@ -35,6 +36,7 @@ const {
   operationId: 'operationId',
   createPrivateNetwork: vi.fn(),
   assignGateway: vi.fn(),
+  enableSnatOnGateway: vi.fn(),
 }));
 
 vi.mock('@/data/api/networks', async (importOriginal) => {
@@ -53,6 +55,7 @@ vi.mock('@/data/api/gateway', async (importOriginal) => {
 
   return {
     ...original,
+    enableSnatOnGateway,
     assignGateway,
   };
 });
@@ -93,6 +96,19 @@ describe('Create Private Network', () => {
     });
 
     expect(getCreationStatus).toHaveBeenCalledWith({ projectId, operationId });
+  });
+
+  it('should enable snat', async () => {
+    const values: NewPrivateNetworkForm = { ...form, enableSnat: true };
+    const { region, existingGatewayId } = values;
+
+    await handleCreatePrivateNetwork(values, projectId, getCreationStatus);
+
+    expect(enableSnatOnGateway).toHaveBeenCalledWith(
+      projectId,
+      region,
+      existingGatewayId,
+    );
   });
 
   it('should assign gateway when gateway already exists', async () => {

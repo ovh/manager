@@ -98,7 +98,38 @@ describe('GatewayCreation', () => {
     fireEvent.click(screen.getByTestId('create-public-gateway'));
 
     await waitFor(() =>
-      expect(screen.getByTestId('gateway-gateway2')).toBeInTheDocument(),
+      expect(
+        screen.getByText(
+          'pci_projects_project_network_private_create_summary_step_gateway_available',
+        ),
+      ).toBeInTheDocument(),
+    );
+  });
+
+  it('should display snat checkbox when gateway exist and has not externalInformation', async () => {
+    useGatewayAvailabilityRegion.mockReturnValue(true);
+
+    useExistingGatewayRegion.mockReturnValue({
+      gateway: {
+        id: 'gatewayid2',
+        name: 'gateway2',
+        region: 'GRA11',
+      },
+      isLoading: false,
+    });
+
+    render(<GatewayCreation />, {
+      wrapper: NewPrivateNetworkWrapper,
+    });
+
+    fireEvent.click(screen.getByTestId('create-public-gateway'));
+
+    await waitFor(() =>
+      expect(
+        screen.getByText(
+          'pci_projects_project_network_private_create_summary_step_gateway_enable_snat',
+        ),
+      ).toBeInTheDocument(),
     );
   });
 });

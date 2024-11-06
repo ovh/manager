@@ -6,7 +6,7 @@ import {
 } from '@/types/network.type';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import { createPrivateNetwork } from '@/data/api/networks';
-import { assignGateway } from '@/data/api/gateway';
+import { assignGateway, enableSnatOnGateway } from '@/data/api/gateway';
 
 type GetCreationStatus = UseMutateAsyncFunction<
   TNetworkCreationResponse,
@@ -23,6 +23,7 @@ export const handleCreatePrivateNetwork = async (
   const {
     defaultVlanId,
     existingGatewayId,
+    enableSnat,
     isLocalZone,
     region,
     ...networkCreationParams
@@ -44,6 +45,10 @@ export const handleCreatePrivateNetwork = async (
   });
 
   if (!isLocalZone && typeof existingGatewayId === 'string') {
+    if (enableSnat) {
+      await enableSnatOnGateway(projectId, region, existingGatewayId);
+    }
+
     await assignGateway(
       projectId,
       region,

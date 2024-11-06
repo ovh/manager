@@ -39,3 +39,15 @@ export const assignGateway = async (
 
   await createGatewayInterface(projectId, region, gatewayId, subnets[0].id);
 };
+
+export const enableSnatOnGateway = async (
+  projectId: string,
+  region: string,
+  gatewayId: string,
+) => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/region/${region}/gateway/${gatewayId}/expose`,
+  );
+
+  return data;
+};

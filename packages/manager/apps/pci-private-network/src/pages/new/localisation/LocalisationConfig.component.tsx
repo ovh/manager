@@ -15,8 +15,11 @@ const LocalisationConfig: React.FC = () => {
       <RegionSelector
         projectId={project.project_id}
         onSelectRegion={(region) => {
-          setValue('region', region.name, { shouldValidate: true });
-          setValue('isLocalZone', region.isLocalZone);
+          // region isMacro
+          if (region) {
+            setValue('region', region.name, { shouldValidate: true });
+            setValue('isLocalZone', region.isLocalZone);
+          }
         }}
         regionFilter={(region) =>
           region.isMacro ||
