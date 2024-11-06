@@ -20,7 +20,9 @@ const DeleteCredentialPage = () => {
         pageType: PageType.bannerSuccess,
         pageName: 'delete_access_certificate',
       });
-      navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
+      navigate(`/${okmsId}/${ROUTES_URLS.credentials}`, {
+        state: { deletingCredentialId: credentialId },
+      });
     },
     onError: () => {
       trackPage({
