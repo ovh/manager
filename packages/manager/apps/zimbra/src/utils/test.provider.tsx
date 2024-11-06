@@ -29,6 +29,8 @@ import redirectionsTranslation from '@/public/translations/redirections/Messages
 import redirectionsAddAndEditTranslation from '@/public/translations/redirections/addAndEdit/Messages_fr_FR.json';
 import redirectionsDeleteTranslation from '@/public/translations/redirections/delete/Messages_fr_FR.json';
 import onboardingTranslation from '@/public/translations/onboarding/Messages_fr_FR.json';
+import autoRepliesTranslation from '@/public/translations/autoReplies/Messages_fr_FR.json';
+import autoRepliesDeleteTranslation from '@/public/translations/autoReplies/delete/Messages_fr_FR.json';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 
@@ -57,6 +59,8 @@ i18n.use(initReactI18next).init({
       redirections: redirectionsTranslation,
       'redirections/addAndEdit': redirectionsAddAndEditTranslation,
       'redirections/delete': redirectionsDeleteTranslation,
+      autoReplies: autoRepliesTranslation,
+      'autoReplies/delete': autoRepliesDeleteTranslation,
       onboarding: onboardingTranslation,
     },
   },
