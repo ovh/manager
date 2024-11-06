@@ -1,4 +1,9 @@
-import { DashboardLayout, ErrorBanner } from '@ovh-ux/manager-react-components';
+import {
+  DashboardLayout,
+  ErrorBanner,
+  useMe,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
 import React, { Suspense } from 'react';
 import {
   Outlet,
@@ -28,6 +33,10 @@ export default function DashboardPage() {
     refetchInterval: 5000,
   });
   const navigate = useNavigate();
+
+  const me = useMe();
+
+  console.info('dashbaord useMe : ', me);
 
   const tabsList: DashboardTabItemProps[] = [
     {

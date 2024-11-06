@@ -14,7 +14,7 @@ import {
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
-import { Title } from '@ovh-ux/manager-react-components';
+import { Title, useMe } from '@ovh-ux/manager-react-components';
 import { RancherService } from '@/types/api.type';
 import TableContainer from '@/components/Table/TableContainer/TableContainer.component';
 import {
@@ -41,6 +41,9 @@ const ListingTablePage: React.FC<ListingProps> = ({
     trackAction(TrackingPageView.ListingPage, TrackingEvent.add);
 
   useTrackingPage();
+
+  const me = useMe();
+  console.info('me toto : ', me);
 
   const tasks = data.map((rancher) => rancher.currentTasks).flat();
 
