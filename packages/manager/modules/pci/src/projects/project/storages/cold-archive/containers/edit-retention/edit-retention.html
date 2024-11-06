@@ -1,0 +1,56 @@
+<oui-modal
+    data-heading="{{ 'pci_projects_project_storages_cold_archive_containers_container_edit_retention_title' | translate }}"
+    data-primary-action="$ctrl.archiveContainer()"
+    data-primary-label="{{:: 'pci_projects_project_storages_cold_archive_containers_container_edit_retention_submit_label' | translate }}"
+    data-primary-disabled="$ctrl.isLoading || $ctrl.disableSubmit || $ctrl.hasWarning"
+    data-secondary-action="$ctrl.cancel()"
+    data-on-dismiss="$ctrl.cancel()"
+    data-secondary-label="{{:: 'pci_projects_project_storages_cold_archive_containers_container_edit_retention_cancel_label' | translate }}"
+    data-loading="$ctrl.isLoading"
+>
+    <p
+        data-translate="pci_projects_project_storages_cold_archive_containers_container_edit_retention_description"
+        data-translate-values="{ 'containerName': '<strong>' + $ctrl.container.name + '</strong>'}"
+    ></p>
+
+    <div>
+        <oui-field
+            data-label="{{ 'pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_days' | translate }}"
+        >
+            <oui-numeric
+                id="lockedUntilDays"
+                data-name="number"
+                data-min="1"
+                data-model="$ctrl.lockedUntilDays"
+                data-on-change="$ctrl.onLockedUntilDaysChange(modelValue)"
+                class="mb-3"
+            >
+            </oui-numeric>
+
+            <div
+                class="oui-color-ae-500 mb-3"
+                data-ng-if="$ctrl.disableSubmit"
+                data-translate="pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_value_wartning"
+            ></div>
+
+            <oui-message data-type="warning" data-ng-if="!$ctrl.hasWarning">
+                <div
+                    class="d-flex flex-row justify-content-between align-items-center"
+                >
+                    <div class="mr-1 mb-1">
+                        <span
+                            data-translate="pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_help"
+                            data-translate-values="{ date: ($ctrl.newRetentionDate | date:'short') }"
+                        ></span>
+                    </div>
+                </div>
+            </oui-message>
+
+            <span
+                class="oui-color-ae-500"
+                data-ng-if="$ctrl.hasWarning"
+                data-translate="pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_wartning_help"
+            ></span>
+        </oui-field>
+    </div>
+</oui-modal>

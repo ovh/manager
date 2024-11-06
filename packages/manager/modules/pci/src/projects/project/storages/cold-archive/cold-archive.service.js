@@ -214,11 +214,18 @@ export default class PciStoragesColdArchiveService {
       .then(({ data }) => data);
   }
 
-  startArchiveContainer(serviceName, regionName, archiveName) {
+  startArchiveContainer({
+    serviceName,
+    regionName,
+    archiveName,
+    lockedUntilDays,
+  }) {
+    const params = lockedUntilDays ? { lockedUntilDays } : {};
+
     return this.$http
       .post(
         `/cloud/project/${serviceName}/region/${regionName}/coldArchive/${archiveName}/archive`,
-        {},
+        params,
       )
       .then(({ data }) => data);
   }

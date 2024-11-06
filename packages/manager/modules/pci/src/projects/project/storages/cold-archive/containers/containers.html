@@ -55,6 +55,16 @@
             <span data-ng-if="!$value">-</span>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title="'pci_projects_project_storages_cold_archive_containers_locked_until_label' | translate"
+            data-property="gridPropertyLockedUntil"
+            data-type="date"
+            data-searchable
+            data-sortable
+            data-filterable
+        >
+            <span data-ng-bind="::$row.lockedUntil | date: 'short'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_storages_cold_archive_containers_status_label' | translate"
             data-property="translatedStatus"
             data-type="string"
@@ -106,6 +116,16 @@
                 >
                     <span
                         data-translate="pci_projects_project_storages_cold_archive_container_action_restore"
+                    ></span>
+                </oui-action-menu-item>
+
+                <!--Action: edit retention-->
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.constructor.isActionEditRetentionContainerAvailable($row)"
+                    data-on-click="$ctrl.onEditRetentionContainerClick($row)"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_cold_archive_container_action_edit_retention"
                     ></span>
                 </oui-action-menu-item>
 
