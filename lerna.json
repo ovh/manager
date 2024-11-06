@@ -5,7 +5,8 @@
     "packages/manager/apps/*",
     "packages/manager/core/*",
     "packages/manager/modules/*",
-    "packages/manager/tools/*"
+    "packages/manager/tools/*",
+    "packages/manager-react-components"
   ],
   "npmClient": "yarn",
   "version": "independent",
@@ -17,7 +18,8 @@
       "conventionalCommits": true
     },
     "version": {
-      "allowBranch": "build/mrc-v2"
+      "allowBranch": "build/mrc-v2",
+      "ignoreChanges": ["@ovh-ux/manager-react-components"]
     }
   },
   "$schema": "node_modules/lerna/schemas/lerna-schema.json"
