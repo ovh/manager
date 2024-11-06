@@ -2,6 +2,7 @@ import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Home from './DisableMFA.page';
+import { useProcedures } from '@/data/hooks/useProcedures';
 
 const mockedUsedNavigate = vi.fn();
 const mockedUsedLocation = vi.fn();
@@ -28,8 +29,10 @@ vi.mock('@/components/Loading/Loading', () => ({
   default: () => <p>TestLoading</p>,
 }));
 
-vi.mock('@/data/hooks/useStatus', () => ({
-  useFetch2faStatus: () => fetch2faStatusFakeResponse,
+vi.mock('@/data/hooks/useProcedures', () => ({
+  useProcedures: () => ({
+    useStatus: () => fetch2faStatusFakeResponse,
+  }),
 }));
 
 describe('DisableMFA.page', () => {
