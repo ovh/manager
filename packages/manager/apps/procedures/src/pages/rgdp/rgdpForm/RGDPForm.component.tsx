@@ -251,7 +251,7 @@ export const RGDPForm: FunctionComponent = () => {
         />
       </div>
       {isError && (
-        <OsdsMessage className="mt-5" color={ODS_THEME_COLOR_INTENT.error}>
+        <OsdsMessage className="my-5" color={ODS_THEME_COLOR_INTENT.error}>
           {t('rgdp_form_error_message_submit')}
         </OsdsMessage>
       )}
