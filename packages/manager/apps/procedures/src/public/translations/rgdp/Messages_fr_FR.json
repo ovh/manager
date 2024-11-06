@@ -49,5 +49,5 @@
   "rgpd_confirm_success_modal_description": "Elle sera prise en compte dès que possible par notre équipe support.",
   "rgpd_confirm_success_modal_back_home": "Retour à la page d'accueil",
 
-  "rgdp_form_error_message_submit": "Vos documents n'ont pas été correctement envoyés. Veuillez relancer l'envoi de vos documents."
+  "rgdp_form_error_message_submit": "Oups, il y a un problème ! Nous n'arrivons pas à envoyer la demande"
 }
