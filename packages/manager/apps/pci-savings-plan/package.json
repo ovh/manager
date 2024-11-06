@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-savings-plan-app",
-  "version": "1.2.0-alpha.0",
+  "version": "1.2.0-alpha.1",
   "private": true,
   "description": "savings plan application",
   "repository": {
@@ -23,8 +23,8 @@
     "@ovh-ux/manager-config": "^7.5.3-alpha.0",
     "@ovh-ux/manager-core-api": "^0.9.0-alpha.0",
     "@ovh-ux/manager-core-utils": "*",
-    "@ovh-ux/manager-pci-common": "^0.8.0-alpha.4",
-    "@ovh-ux/manager-react-components": "^1.41.0-alpha.2",
+    "@ovh-ux/manager-pci-common": "^0.8.0-alpha.5",
+    "@ovh-ux/manager-react-components": "^2.0.0-alpha.0",
     "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.0",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "^0.4.0-alpha.0",
