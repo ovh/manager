@@ -1,5 +1,4 @@
 {
-  "lerna": "3.15.0",
   "packages": [
     "docs",
     "packages/components/*",
@@ -10,7 +9,6 @@
     "packages/manager-react-components"
   ],
   "npmClient": "yarn",
-  "useWorkspaces": true,
   "version": "independent",
   "command": {
     "bootstrap": {
@@ -20,7 +18,8 @@
       "conventionalCommits": true
     },
     "version": {
-      "allowBranch": "master"
+      "allowBranch": "build/mrc-v2"
     }
-  }
+  },
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json"
 }
