@@ -31,6 +31,7 @@ export default class CucVrackService {
       'dedicatedCloud',
       'managedBareMetal',
       'dedicatedServerInterface',
+      'ovhCloudConnect',
     ];
   }
 
