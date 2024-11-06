@@ -55,11 +55,6 @@ export default function RuleForm({
     }
   }, [rule]);
 
-  const isDisabled =
-    !formState.ruleType ||
-    !formState.value ||
-    !formState.key ||
-    !formState.compareType;
   const [isTouched, setIsTouched] = useState({
     ruleType: false,
     compareType: false,
@@ -67,8 +62,22 @@ export default function RuleForm({
     value: false,
   });
 
+  const ruleTypeError = useMemo(() => {
+    if (isTouched.ruleType && !formState.ruleType) {
+      return tPciCommon('common_field_error_required');
+    }
+    return '';
+  }, [isTouched.ruleType, formState.ruleType]);
+
+  const compareTypeError = useMemo(() => {
+    if (isTouched.compareType && !formState.compareType) {
+      return tPciCommon('common_field_error_required');
+    }
+    return '';
+  }, [isTouched.compareType, formState.compareType]);
+
   const keyError = useMemo(() => {
-    if (isTouched.key) {
+    if (isTouched.key && RULE_TYPES_WITH_KEY.includes(formState.ruleType)) {
       if (!formState.key) {
         return tPciCommon('common_field_error_required');
       }
@@ -77,35 +86,11 @@ export default function RuleForm({
       }
     }
     return '';
-  }, [isTouched.key, formState.key]);
+  }, [isTouched.key, formState.key, formState.ruleType]);
 
-  const valueErrorMessage = useMemo(() => {
-    if (isTouched.value) {
-      if (!formState.value) {
-        return tPciCommon('common_field_error_required');
-      }
-      if (formState.compareType === RULE_COMPARE_TYPES.REGEX) {
-        return t('octavia_load_balancer_create_l7_rule_value_regex_pattern');
-      }
-      if (formState.ruleType === RULE_TYPES.SSL_VERIFY_RESULT) {
-        return t(
-          'octavia_load_balancer_create_l7_rule_value_ssl_verify_result_pattern',
-        );
-      }
-      if (formState.ruleType === RULE_TYPES.COOKIE) {
-        return t('octavia_load_balancer_create_l7_rule_value_cookie_pattern');
-      }
-      return t('octavia_load_balancer_create_l7_rule_value_default_pattern');
-    }
-    return '';
-  }, [
-    isTouched.value,
-    formState.value,
-    formState.ruleType,
-    formState.compareType,
-  ]);
-
-  const validateValuePattern = useMemo(() => {
+  const isValuePatternValid = useMemo(() => {
+    // If the user has selected regex as compare type we try to create a regex from the inputted value
+    // If it throws an error, it means the inputted value is an invalid regex
     if (formState.compareType === RULE_COMPARE_TYPES.REGEX) {
       try {
         const regex = new RegExp(formState.value);
@@ -128,6 +113,40 @@ export default function RuleForm({
     formState.compareType,
   ]);
 
+  const valueError = useMemo(() => {
+    if (!isTouched.value) return '';
+
+    if (!isValuePatternValid) {
+      if (formState.compareType === RULE_COMPARE_TYPES.REGEX) {
+        return t('octavia_load_balancer_create_l7_rule_value_regex_pattern');
+      }
+
+      if (formState.ruleType === RULE_TYPES.SSL_VERIFY_RESULT) {
+        return t(
+          'octavia_load_balancer_create_l7_rule_value_ssl_verify_result_pattern',
+        );
+      }
+
+      if (formState.ruleType === RULE_TYPES.COOKIE) {
+        return t('octavia_load_balancer_create_l7_rule_value_cookie_pattern');
+      }
+
+      return t('octavia_load_balancer_create_l7_rule_value_default_pattern');
+    }
+
+    if (!formState.value) {
+      return tPciCommon('common_field_error_required');
+    }
+
+    return '';
+  }, [
+    isTouched.value,
+    formState.value,
+    formState.ruleType,
+    formState.compareType,
+    isValuePatternValid,
+  ]);
+
   const listCompareType = useMemo(() => {
     if (formState.ruleType) {
       return COMPARE_TYPES_AVAILABILITY_BY_TYPE[formState.ruleType];
@@ -135,23 +154,57 @@ export default function RuleForm({
     return [];
   }, [formState.ruleType]);
 
+  const onRuleTypeChange = (ruleType: string) => {
+    // If the currently selected compare type is available to the new rule type we keep it
+    // else if only one compare type is available we pre select it
+    setFormState((state) => ({
+      ...state,
+      ruleType,
+    }));
+
+    if (
+      !COMPARE_TYPES_AVAILABILITY_BY_TYPE[ruleType].find(
+        (compareType) => compareType.value === formState.compareType,
+      )
+    ) {
+      setFormState((prevState) => ({
+        ...prevState,
+        compareType:
+          COMPARE_TYPES_AVAILABILITY_BY_TYPE[ruleType].length === 1
+            ? COMPARE_TYPES_AVAILABILITY_BY_TYPE[ruleType][0].value
+            : undefined,
+      }));
+    }
+    // If the selected rule type does not allow to input a key, we empty the key value
+    if (!RULE_TYPES_WITH_KEY.includes(ruleType)) {
+      setFormState((prevState) => ({
+        ...prevState,
+        key: undefined,
+      }));
+    }
+    // L7 Rule of type sslConnHasCert can only have True value, so we prefill the field and disable it
+    if (ruleType === RULE_TYPES.SSL_CONN_HAS_CERT) {
+      setFormState((prevState) => ({
+        ...prevState,
+        value: 'True',
+      }));
+    }
+  };
+
+  const isDisabled =
+    !!ruleTypeError || !!compareTypeError || !!keyError || !!valueError;
+
   return (
     <div className="w-[20rem]">
-      <OsdsFormField
-        error={
-          isTouched.ruleType && !formState.ruleType
-            ? tPciCommon('common_field_error_required')
-            : ''
-        }
-      >
+      <OsdsFormField error={ruleTypeError}>
         <LabelComponent
           text={t('octavia_load_balancer_create_l7_rule_type')}
-          hasError={isTouched.ruleType && !formState.ruleType}
+          hasError={!!ruleTypeError}
         />
         <OsdsSelect
           value={formState.ruleType}
           inline
-          error={isTouched.ruleType && !formState.ruleType}
+          error={!!ruleTypeError}
           onOdsBlur={() => {
             setIsTouched((state) => ({
               ...state,
@@ -160,11 +213,7 @@ export default function RuleForm({
           }}
           onOdsValueChange={(event) => {
             const ruleType = event.detail.value as string;
-            setFormState((state) => ({
-              ...state,
-              ruleType,
-              value: ruleType === RULE_TYPES.SSL_CONN_HAS_CERT ? 'True' : null,
-            }));
+            onRuleTypeChange(ruleType);
           }}
         >
           <span slot="placeholder">
@@ -184,23 +233,17 @@ export default function RuleForm({
           </OsdsText>
         )}
       </OsdsFormField>
-      <OsdsFormField
-        className="mt-8"
-        error={
-          isTouched.compareType && !formState.compareType
-            ? tPciCommon('common_field_error_required')
-            : ''
-        }
-      >
+
+      <OsdsFormField className="mt-8" error={compareTypeError}>
         <LabelComponent
           text={t('octavia_load_balancer_create_l7_rule_compare_type')}
-          hasError={isTouched.ruleType && !formState.ruleType}
+          hasError={!!compareTypeError}
         />
         <OsdsSelect
           value={formState.compareType}
           inline
           key={formState.ruleType}
-          error={isTouched.compareType && !formState.compareType}
+          error={!!compareTypeError}
           onOdsBlur={() => {
             setIsTouched((state) => ({
               ...state,
@@ -231,14 +274,12 @@ export default function RuleForm({
           </OsdsText>
         )}
       </OsdsFormField>
+
       <OsdsFormField className="mt-8" error={keyError}>
         <LabelComponent
           text={t('octavia_load_balancer_create_l7_rule_key')}
           helpText={t('octavia_load_balancer_create_l7_rule_key_tooltip')}
-          hasError={
-            isTouched.key &&
-            (!formState.key || !RegExp(KEY_REGEX).test(formState.key))
-          }
+          hasError={!!keyError}
         />
         <OsdsInput
           value={formState?.key}
@@ -246,10 +287,7 @@ export default function RuleForm({
             !RULE_TYPES_WITH_KEY.includes(formState.ruleType) || undefined
           }
           type={ODS_INPUT_TYPE.text}
-          error={
-            isTouched.key &&
-            (!formState.key || !RegExp(KEY_REGEX).test(formState.key))
-          }
+          error={!!keyError}
           onOdsValueChange={(event) => {
             setFormState((state) => ({
               ...state,
@@ -264,16 +302,12 @@ export default function RuleForm({
           }}
         />
       </OsdsFormField>
-      <OsdsFormField
-        className="mt-8"
-        error={
-          isTouched.value && !validateValuePattern ? valueErrorMessage : ''
-        }
-      >
+
+      <OsdsFormField className="mt-8" error={valueError}>
         <LabelComponent
           text={t('octavia_load_balancer_create_l7_rule_value')}
           helpText={t('octavia_load_balancer_create_l7_rule_value_tooltip')}
-          hasError={isTouched.value && !validateValuePattern}
+          hasError={!!valueError}
         />
         <OsdsInput
           value={formState?.value}
@@ -281,7 +315,7 @@ export default function RuleForm({
             formState.ruleType === RULE_TYPES.SSL_CONN_HAS_CERT || undefined
           }
           type={ODS_INPUT_TYPE.text}
-          error={isTouched.value && !validateValuePattern}
+          error={!!valueError}
           onOdsValueChange={(event) => {
             setFormState((state) => ({
               ...state,
@@ -296,6 +330,7 @@ export default function RuleForm({
           }}
         />
       </OsdsFormField>
+
       <OsdsToggle
         checked={formState.invert || undefined}
         className="mt-8"
