@@ -51,7 +51,7 @@ export default function ApiUrlPage() {
             className="block text-center mt-5"
           />
         ) : (
-          <>
+          <div className="md:w-1/2">
             <OsdsText
               color={ODS_TEXT_COLOR_INTENT.text}
               level={ODS_TEXT_LEVEL.body}
@@ -61,7 +61,7 @@ export default function ApiUrlPage() {
               {t('private_registry_harbor_api_url')}
             </OsdsText>
             <Clipboard aria-label="clipboard" value={registry?.url} />
-          </>
+          </div>
         )}
       </div>
 

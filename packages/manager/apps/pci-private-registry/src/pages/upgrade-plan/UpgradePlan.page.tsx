@@ -192,7 +192,7 @@ export default function UpgradePlanPage(): JSX.Element {
       <div className="flex mt-8">
         <OsdsButton
           size={ODS_BUTTON_SIZE.md}
-          variant={ODS_BUTTON_VARIANT.stroked}
+          variant={ODS_BUTTON_VARIANT.ghost}
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={cancel}
         >
