@@ -1,14 +1,16 @@
 import userEvent from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
 import {
+  organizationList,
+  datacentreList,
+} from '@ovh-ux/manager-module-vcd-api';
+import {
   checkModalError,
   checkModalVisibility,
   labels,
   mockEditInputValue,
   renderTest,
 } from '../../../../test-utils';
-import { organizationList } from '../../../../../mocks/vcd-organization/vcd-organization.mock';
-import { datacentreList } from '../../../../../mocks/vcd-organization/vcd-datacentre.mock';
 import {
   DEFAULT_TIMEOUT,
   mockSubmitNewValue,

@@ -1,28 +1,28 @@
 import {
-  IVdcOrderableResource,
-  IVdcOrderableResourcePriced,
-} from '@/types/vcd-vdc-orderable-resource.interface';
-import { TVcdCatalog } from '@/types/vcd-catalog.interface';
+  VCDCatalog,
+  VCDOrderableResource,
+  VCDOrderableResourcePriced,
+} from '@ovh-ux/manager-module-vcd-api';
 
-export const getVdcResourcePrice = (resource: IVdcOrderableResourcePriced) =>
+export const getVdcResourcePrice = (resource: VCDOrderableResourcePriced) =>
   resource.pricing?.priceInUcents;
 
 export const getVdcResourcePriceLabel = (
-  resource: IVdcOrderableResourcePriced,
+  resource: VCDOrderableResourcePriced,
 ) => resource.pricing.price.text;
 
 export const getPricedVdcResources = ({
   resources,
   catalog,
 }: {
-  resources: IVdcOrderableResource[];
-  catalog: TVcdCatalog;
-}): IVdcOrderableResourcePriced[] => {
+  resources: VCDOrderableResource[];
+  catalog: VCDCatalog;
+}): VCDOrderableResourcePriced[] => {
   if (!resources || !catalog) {
     return [];
   }
   return resources
-    .reduce((list: IVdcOrderableResourcePriced[], resource) => {
+    .reduce((list: VCDOrderableResourcePriced[], resource) => {
       const prices = catalog.find(
         ({ planCode }) => planCode === resource.profile,
       )?.prices;
