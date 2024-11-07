@@ -1,7 +1,10 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  getServiceDetailsQueryKey,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import {
   getOkmsResourceQueryKey,
   getOkmsServicesResourceListQueryKey,
@@ -12,7 +15,6 @@ import {
   getOkmsServiceId,
   updateOkmsName,
 } from '../api/okmsService';
-import { getKMSServiceInfosQueryKey } from './useKMSServiceInfos';
 
 export type UpdateOkmsParams = {
   okmsId: string;
@@ -58,7 +60,7 @@ export const useUpdateOkmsName = ({
         queryKey: getOkmsServicesResourceListQueryKey,
       });
       await queryClient.invalidateQueries({
-        queryKey: getKMSServiceInfosQueryKey(okmsId),
+        queryKey: getServiceDetailsQueryKey(okmsId),
       });
       await queryClient.invalidateQueries({
         queryKey: getOkmsResourceQueryKey(okmsId),

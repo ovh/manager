@@ -1,9 +1,11 @@
-import { UpdateNameModal } from '@ovh-ux/manager-react-components';
+import {
+  UpdateNameModal,
+  useServiceDetails,
+} from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useUpdateOkmsName } from '@/data/hooks/useUpdateOkmsName';
-import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
 
 const OkmsNameUpdateModal = () => {
   const { t: tDashboard } = useTranslation('key-management-service/dashboard');
@@ -11,7 +13,9 @@ const OkmsNameUpdateModal = () => {
     'key-management-service/credential',
   );
   const { okmsId } = useParams();
-  const { data: okmsServiceInfos, isLoading } = useKMSServiceInfos(okmsId);
+  const { data: okmsServiceInfos, isLoading } = useServiceDetails({
+    resourceName: okmsId,
+  });
   const navigate = useNavigate();
   const { updateKmsName, isPending, error } = useUpdateOkmsName({
     okmsId,

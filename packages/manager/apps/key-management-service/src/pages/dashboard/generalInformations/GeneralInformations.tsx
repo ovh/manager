@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
+import { useServiceDetails } from '@ovh-ux/manager-react-components';
 import { useOKMSById } from '@/data/hooks/useOKMS';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import InformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/InformationsTile';
 import BillingInformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/BillingInformationsTile';
-import { useKMSServiceInfos } from '@/data/hooks/useKMSServiceInfos';
 import Loading from '@/components/Loading/Loading';
 
 function GeneralInformationsTab() {
@@ -14,7 +14,7 @@ function GeneralInformationsTab() {
   const {
     data: okmsService,
     isLoading: isOkmsServiceLoading,
-  } = useKMSServiceInfos(okms?.data.id);
+  } = useServiceDetails({ resourceName: okms?.data.id });
 
   const navigate = useNavigate();
 

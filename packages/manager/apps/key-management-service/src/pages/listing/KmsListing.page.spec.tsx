@@ -3,11 +3,11 @@ import userEvent from '@testing-library/user-event';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import '@testing-library/jest-dom';
 import { labels } from '@/utils/tests/init.i18n';
-import { okmsList } from '@/mocks/okms.mock';
+import { okmsMock } from '@/mocks/kms/okms.mock';
 
 describe('KMS listing test suite', () => {
   it('should redirect to the onboarding page when the kms list is empty', async () => {
-    await renderTestApp({ nbOkms: 0 });
+    await renderTestApp('/', { nbOkms: 0 });
 
     expect(screen.getByText(labels.onboarding.title)).toBeVisible();
 
@@ -66,7 +66,7 @@ describe('KMS listing test suite', () => {
     await renderTestApp();
 
     await act(() =>
-      userEvent.click(screen.getByText(okmsList[0].iam.displayName)),
+      userEvent.click(screen.getByText(okmsMock[0].iam.displayName)),
     );
 
     await waitFor(
