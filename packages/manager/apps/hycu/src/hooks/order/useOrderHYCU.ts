@@ -8,14 +8,16 @@ import { useMemo } from 'react';
 interface HYCUOrder {
   planCode: string;
   region: OvhSubsidiary;
+  serviceName?: string;
 }
 
-const useOrderHYCU = ({ planCode, region }: HYCUOrder) => {
+const useOrderHYCU = ({ planCode, region, serviceName = '' }: HYCUOrder) => {
   const orderBaseUrl = useOrderURL('express_review_base');
   const orderLink = useMemo(() => {
     const HYCUProductSettings = getHYCUProductSettings({
       planCode,
       region,
+      serviceName,
     });
     if (planCode) return `${orderBaseUrl}?products=~(${HYCUProductSettings})`;
     return null;
