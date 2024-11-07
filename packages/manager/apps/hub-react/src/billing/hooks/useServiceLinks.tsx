@@ -1,13 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { BillingService } from '@/billing/types/billingServices.type';
 import { ServiceLinks } from '@/billing/types/service-links.type';
 import { RENEW_URL, SERVICE_TYPE } from '@/billing.constants';
 
-export const useServiceLinks = async (
+export const useServiceLinks = (
   service: BillingService,
   autoRenewLink?: string,
 ) => {
@@ -186,10 +183,9 @@ export const useServiceLinks = async (
       if (service.url && !service.isByoipService()) {
         availableLinks.seeService = service.url;
       }
-      setLinks(() => availableLinks);
+      return availableLinks;
     };
-    console.log('updating links');
-    determineLinks();
+    determineLinks().then(setLinks);
   }, [service, autoRenewLink]);
 
   return links;

@@ -1,3 +1,4 @@
+import React, { Suspense } from 'react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
@@ -16,7 +17,6 @@ import {
   OsdsSkeleton,
 } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import React, { Suspense } from 'react';
 import {
   ServiceAction,
   useServiceActions,
