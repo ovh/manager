@@ -27,6 +27,7 @@ export default class ExchangeAddResourceController {
       displayName: '',
       capacity: 0,
       resourceEmailAddress: '',
+      company: '',
     };
 
     $scope.addResource = () => this.addResource();
