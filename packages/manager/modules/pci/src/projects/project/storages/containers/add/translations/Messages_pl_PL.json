@@ -13,7 +13,7 @@
   "pci_projects_project_storages_containers_add_type_title": "Wybierz rodzaj kontenera",
   "pci_projects_project_storages_containers_add_create_or_linked_user_title": "Przypisz użytkownika",
   "pci_projects_project_storages_containers_add_create_or_linked_user_success_field_secret_key": "Tajny klucz S3:",
-  "pci_projects_project_storages_containers_add_create_or_linked_user_description": "Możesz przyznać dostęp do kontenera jednemu ze wstępnie skonfigurowanych użytkowników Openstack z rolą „Administrator” lub „Object Storage Operator” albo utworzyć nowego użytkownika.",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_description": "Możesz przyznać dostęp do kontenera jednemu ze wstępnie skonfigurowanych użytkowników OpenStack z rolą „Administrator” lub „Operator Object Storage” albo utworzyć nowego użytkownika.",
   "pci_projects_project_storages_containers_add_type_static_label": "Hosting statyczny",
   "pci_projects_project_storages_containers_add_type_static_description": "Szybki i wydajny dostęp do Twoich stron. Połącz Twoje domeny i przechowuj pliki.",
   "pci_projects_project_storages_containers_add_type_public_label": "Publiczny",
@@ -32,8 +32,8 @@
   "pci_projects_project_storages_containers_add_type_price": "{{price}} netto/m-c/GB",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard_recommanded": "Zalecane",
   "pci_projects_project_storages_containers_deployment_mode_title": "Wybierz tryb wdrożenia",
-  "pci_projects_project_storages_containers_add_deployment_mode_region-3-az": "Region 3-AZ",
-  "pci_projects_project_storages_containers_add_deployment_mode_region": "Region 1-AZ",
+  "pci_projects_project_storages_containers_add_deployment_mode_region-3-az": "Regiony 3-AZ",
+  "pci_projects_project_storages_containers_add_deployment_mode_region": "Regiony 1-AZ",
   "pci_projects_project_storages_containers_add_deployment_mode_region-3-az_description": "Wdrożenie o wysokiej odporności dostępne w 3 Availability Zones.",
   "pci_projects_project_storages_containers_add_deployment_mode_region_description": "Odporne i ekonomiczne wdrożenie w 1 Availability Zone.",
   "pci_projects_project_storages_containers_add_deployment_mode_region-3-az_label": "3-AZ",
@@ -47,5 +47,11 @@
   "pci_projects_project_storages_containers_add_offers_estimated_price": "Od {{price}} netto/m-c/TB",
   "pci_projects_project_storages_containers_add_deployment_mode_price": "{{price}} netto/m-c/TB*",
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "*Podana cena to standardowa stawka za korzystanie z 1 TB przestrzeni dyskowej przez 30 dni. Więcej informacji ",
-  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "znajdziesz na stronie z cennikiem."
+  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "Sprawdź cennik.",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone": "Local Zones",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_description": "Niskie opóźnienia i najlepsza relacja ceny do wydajności dla obciążeń przetwarzających wrażliwe dane.",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_label": "Local Zone",
+  "pci_projects_project_storages_containers_add_deployment_mode_flipping_region-3-az": "Regiony 3-AZ",
+  "pci_projects_project_storages_containers_add_deployment_mode_flipping_region": "Regiony",
+  "pci_projects_project_storages_containers_add_deployment_mode_flipping_localzone": "Local Zones"
 }

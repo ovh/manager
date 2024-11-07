@@ -2,7 +2,7 @@
     data-heading="{{ 'pci_projects_project_storages_containers_container_delete_'+ ($ctrl.archive ? 'archive' : 'object') + '_title' | translate }}"
     data-primary-action="$ctrl.deleteStorage()"
     data-primary-label="{{:: 'pci_projects_project_storages_containers_container_delete_submit_label' | translate }}"
-    data-primary-disabled="$ctrl.isLoading"
+    data-primary-disabled="$ctrl.isPrimaryDisabled()"
     data-secondary-action="$ctrl.cancel()"
     data-secondary-label="{{:: 'pci_projects_project_storages_containers_container_delete_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"

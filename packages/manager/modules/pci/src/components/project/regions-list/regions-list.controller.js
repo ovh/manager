@@ -81,20 +81,25 @@ export default class RegionsListController {
         this.coreConfig.getUser().ovhSubsidiary,
       )
         .then((productCapabilities) => {
-          const productCapability = productCapabilities.plans
-            ?.filter((plan) =>
-              plan.code?.startsWith(STORAGE_STANDARD_REGION_PLANCODE),
-            )
-            .filter(
-              (plan, index, self) =>
-                index === self.findIndex((p) => p.name === plan.name),
-            );
+          const productCapability = productCapabilities.plans?.filter((plan) =>
+            plan.code?.startsWith(STORAGE_STANDARD_REGION_PLANCODE),
+          );
 
           const productRegionsAllowed = productCapability?.flatMap(
             ({ regions }) => regions,
           );
 
-          const regionsAllowedByDeploymentMode = productRegionsAllowed.filter(
+          const uniqueProductRegionsAllowed = productRegionsAllowed.filter(
+            (value, index, self) =>
+              index ===
+              self.findIndex(
+                (region) =>
+                  region.name === value.name &&
+                  region.datacenter === value.datacenter,
+              ),
+          );
+
+          const regionsAllowedByDeploymentMode = uniqueProductRegionsAllowed.filter(
             (item) => item.type === this.deploymentMode,
           );
 

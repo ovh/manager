@@ -23,5 +23,7 @@ export default {
     trackEncryptionAction: '<',
     catalog: '<',
     is3azAvailable: '<',
+    projectActivationPageHref: '<',
+    isLocalzoneAvailable: '<',
   },
 };

@@ -13,5 +13,6 @@
   "pci_projects_project_users_add_accesskey": "Ihr S3-Zugangsschlüssel:",
   "pci_projects_project_users_add_secretkey": "Ihr geheimer S3-Schlüssel:",
   "pci_projects_project_users_add_as_no_credentials": "Keine Zugangsdaten",
-  "pci_projects_project_users_add_as_credentials": "Erstellte Zugangsdaten"
+  "pci_projects_project_users_add_as_credentials": "Erstellte Zugangsdaten",
+  "pci_projects_project_users_add_info_banner": "Neue User haben automatisch Zugriff auf alle Container in den Local Zones."
 }
