@@ -1,0 +1,50 @@
+<div>
+    <oui-datagrid
+        class="oui-tile__body table-responsive"
+        page-size="10"
+        data-rows="$ctrl.tags"
+        data-selectable-rows
+    >
+        <oui-datagrid-topbar>
+            <oui-button
+                variant="secondary"
+                type="button"
+                data-on-click="$ctrl.goToAssignTags()"
+            >
+                <span data-translate="server_tags_action_assign_tag"></span>
+            </oui-button>
+            <oui-button
+                variant="secondary"
+                type="button"
+                data-on-click="$ctrl.goToUnassignTags($selectedRows)"
+                data-disabled="!$selectedRows.length"
+            >
+                <span data-translate="server_tags_action_unassign_tag"></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title="::'server_tags_column_tag' | translate"
+            data-property="tag"
+        >
+            <span data-ng-bind="$row.tag.key + ': ' + $row.tag.value"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'server_tags_column_tag_type' | translate"
+        >
+            <span
+                data-translate="{{'server_tags_tag_type_'+ $row.tagType}}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="top-end">
+            <oui-action-menu-item
+                disabled="$isSelected"
+                data-on-click="$ctrl.goToUnassignTags()"
+            >
+                <span data-translate="server_tags_action_unassign_tag"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.goToViewTagDetails()">
+                <span data-translate="server_tags_action_tag_details"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>

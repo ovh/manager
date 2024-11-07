@@ -1,0 +1,9 @@
+{
+  "server_tags_column_tag": "Tag",
+  "server_tags_column_tag_type": "Tag Type",
+  "server_tags_tag_type_custom": "Custom Type",
+  "server_tags_tag_type_ovhcloud": "OVHcloud Type",
+  "server_tags_action_assign_tag": "Assigner un tag",
+  "server_tags_action_unassign_tag": "Désassigner",
+  "server_tags_action_tag_details": "Tag details"
+}
