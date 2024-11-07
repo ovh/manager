@@ -79,15 +79,15 @@ export const defaultServiceResponse: ServiceDetails = {
   customer: {
     contacts: [
       {
-        customerCode: 'ls148374-ovh',
+        customerCode: 'adminCustomerCode',
         type: 'administrator',
       },
       {
-        customerCode: 'ls148374-ovh',
+        customerCode: 'technicalCustomerCode',
         type: 'technical',
       },
       {
-        customerCode: 'pt299635-ovh',
+        customerCode: 'billingCustomerCode',
         type: 'billing',
       },
     ],
