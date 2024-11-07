@@ -1,7 +1,7 @@
 {
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_activation_header": "Confirmar a ativação da sua funcionalidade SGX",
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_deactivation_header": "Desativar a sua funcionalidade SGX",
-  "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_activation_content": "Intel Software Guard Extensions é uma funcionalidade que lhe oferecemos gratuitamente. A sua ativação não implica qualquer faturação adicional. Ao clicar em “Confirmar”, o seu servidor será automaticamente reiniciado (reboot) para que a SGX seja ativada.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_activation_content": "A OVHcloud oferece a funcionalidade Intel Software Guard Extensions (SGX) de forma gratuita. Assim, a sua ativação não lhe será faturada. Ao clicar em “Validar”, o seu servidor será reiniciado uma ou várias vezes para que a funcionalidade SGX possa ser ativada.",
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_deactivation_content": "Pretende desativar a sua funcionalidade SGX? Esta alteração implicará uma reinicialização (reboot) automática do seu servidor.",
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_cancel": "Cancelar",
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_confirm": "Confirmar"

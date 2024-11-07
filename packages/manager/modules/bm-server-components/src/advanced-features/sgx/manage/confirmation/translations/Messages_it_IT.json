@@ -1,7 +1,7 @@
 {
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_activation_header": "Conferma l’attivazione della funzionalità SGX.",
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_deactivation_header": "Disattiva la funzionalità SGX.",
-  "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_activation_content": "Intel Software Guard Extensions è una funzionalità proposta gratuitamente. La sua attivazione non comporta quindi una fatturazione aggiuntiva. Cliccando su “Conferma”, il server si riavvierà automaticamente per consentire l’attivazione di SGX.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_activation_content": "Intel Software Guard Extensions è una funzionalità proposta gratuitamente, la sua attivazione non verrà fatturata. Cliccando su \"Confermare\", il tuo server verrà riavviato una o più volte per consentire l’attivazione di SGX.",
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_deactivation_content": "Vuoi disattivare la funzionalità SGX? Ti ricordiamo che questa operazione comporta il riavvio automatico del server.",
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_cancel": "Annulla",
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_confirm": "Conferma"
