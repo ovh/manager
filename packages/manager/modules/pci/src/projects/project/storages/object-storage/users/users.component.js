@@ -19,5 +19,6 @@ export default {
     userCredential: '<',
     trackingInfo: '<',
     refreshS3Credentials: '<',
+    isLocalzoneAvailable: '<',
   },
 };

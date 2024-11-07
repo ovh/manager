@@ -15,5 +15,6 @@
   "pci_projects_project_storages_containers_users_see_secret_key": "Ver la clave secreta",
   "pci_projects_project_storages_containers_users_show_secret_key_success": "La clave secreta de su usuario {{user}} es {{secret}}.",
   "pci_projects_project_storages_containers_users_add_success_field_secret_key": "Su llave secreta S3:",
-  "pci_projects_project_storages_containers_users_show_secret_key_error": "Se ha producido un error al cargar la clave secreta del usuario {{ user }}: {{ message }}"
+  "pci_projects_project_storages_containers_users_show_secret_key_error": "Se ha producido un error al cargar la clave secreta del usuario {{ user }}: {{ message }}",
+  "pci_projects_project_storages_containers_users_user_info_banner": "Los nuevos usuarios tendrán acceso automáticamente a todos los contenedores en las Local Zones."
 }

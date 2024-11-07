@@ -16,5 +16,7 @@ export default {
     projectId: '<?',
     reload: '<?',
     loadEnd: '&?',
+    isDiscoveryProject: '<',
+    projectActivationPageHref: '<',
   },
 };

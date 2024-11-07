@@ -19,6 +19,7 @@ import {
   OBJECT_CONTAINER_MODE_MONO_ZONE,
   STORAGE_STANDARD_PLANCODE,
   SWIFT_PLANCODE,
+  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
 } from '../containers.constants';
 
 import { CONTAINER_USER_ASSOCIATION_MODES } from './components/associate-user-to-container/constant';
@@ -107,6 +108,7 @@ export default class PciStoragesContainersAddController {
       },
     );
 
+    this.featureFlipLocalzoneContainer();
     this.setOffersPrices();
     this.setDeploymentModePrices();
     this.featureFlip3azContainer();
@@ -137,6 +139,13 @@ export default class PciStoragesContainersAddController {
     this.messages = this.messageHandler.getMessages();
   }
 
+  shouldDisplayContainerName() {
+    if (this.isRightOffer() && !this.isLocalZone()) {
+      return !this.archive && this.currentStep > 4;
+    }
+    return !this.archive && !this.isAddingRegion && !this.isAddingRegionError;
+  }
+
   featureFlip3azContainer() {
     if (!this.is3azAvailable) {
       const index = OBJECT_CONTAINER_DEPLOYMENT_MODES.indexOf(
@@ -158,7 +167,19 @@ export default class PciStoragesContainersAddController {
       .filter((addon) => addon.planCode === planCode)
       .map((addon) => addon.pricings[0].price)[0];
 
-    return hourlyPrice * 720 * 1024 * 0.00000001;
+    return hourlyPrice * 730 * 1024 * 0.00000001;
+  }
+
+  featureFlipLocalzoneContainer() {
+    if (!this.isLocalzoneAvailable) {
+      const index = OBJECT_CONTAINER_DEPLOYMENT_MODES.indexOf(
+        OBJECT_CONTAINER_MODE_LOCAL_ZONE,
+      );
+
+      if (index > -1) {
+        OBJECT_CONTAINER_DEPLOYMENT_MODES.splice(index, 1);
+      }
+    }
   }
 
   setOffersPrices() {
@@ -192,7 +213,7 @@ export default class PciStoragesContainersAddController {
 
         if (price > 0) {
           if (!lowestPrice || price < lowestPrice) {
-            lowestPrice = price * 720 * 1024 * 0.00000001;
+            lowestPrice = price * 730 * 1024 * 0.00000001;
           }
         }
       }
@@ -237,7 +258,25 @@ export default class PciStoragesContainersAddController {
             OBJECT_CONTAINER_MODE_MONO_ZONE,
           ),
         );
+
+      this.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[
+        OBJECT_CONTAINER_MODE_LOCAL_ZONE
+      ].price =
+        this.getLowestPriceAddon(
+          productCapability,
+          OBJECT_CONTAINER_MODE_LOCAL_ZONE,
+        ) &&
+        this.PriceFormatter.format(
+          this.getLowestPriceAddon(
+            productCapability,
+            OBJECT_CONTAINER_MODE_LOCAL_ZONE,
+          ),
+        );
     });
+  }
+
+  isLocalZone() {
+    return this.container.deploymentMode === OBJECT_CONTAINER_MODE_LOCAL_ZONE;
   }
 
   isRightOffer() {
@@ -271,6 +310,7 @@ export default class PciStoragesContainersAddController {
 
   onContainerSolutionChange() {
     this.container.region = null;
+    this.container.containerType = null;
   }
 
   onRegionsFocus() {
