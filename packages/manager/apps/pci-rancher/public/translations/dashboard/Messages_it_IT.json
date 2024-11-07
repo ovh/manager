@@ -53,5 +53,7 @@
   "upgradePlanButton": "Migliorare la tua soluzione",
   "savingsPlanMessage": "Usufruisci di tariffe mensili vantaggiose grazie ai Savings Plan, conservando la flessibilità delle istanze all’ora.",
   "savingsPlanCTA": "Configura i tuoi Savings Plan",
-  "createRancherOfferDescription": "Con un minimo di 20 vCPU fatturate da Rancher"
+  "createRancherOfferDescription": "Con un minimo di 20 vCPU fatturate da Rancher",
+  "egress_title": "Rancher egress CIDRs",
+  "egress_tooltip": "Questi CIDR rappresentano gli intervalli di indirizzi IP di output utilizzati da Rancher. Potrebbe essere necessario autorizzare questi indirizzi IP (whitelisting) ad accedere alle piattaforme terze (ad esempio, chiamate API per il provisioning delle risorse)."
 }
