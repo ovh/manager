@@ -29,5 +29,6 @@
   "netapp_volumes_snapshots_policies_apply_success": "Die Regel wurde angewandt.",
   "netapp_volumes_snapshots_policies_apply_error": "Die Regel konnte nicht angewandt werden. Bitte versuchen Sie es später erneut.",
   "netapp_volumes_snapshots_type_automatic": "Automatisch",
-  "netapp_volumes_snapshots_type_system": "System"
+  "netapp_volumes_snapshots_type_system": "System",
+  "netapp_volumes_snapshots_created_at_helper": "Datumsangaben werden im UTC-Format gemacht."
 }
