@@ -43,7 +43,7 @@ describe('Add ssh modal', async () => {
       remove,
     } as unknown) as UseRemoveSshKeyReturnType);
     const { getByTestId } = renderModal();
-    const submitButton = getByTestId('submitButton');
+    const submitButton = getByTestId('pciModal-button_submit');
     expect(remove).not.toHaveBeenCalled();
     act(() => {
       fireEvent.click(submitButton);

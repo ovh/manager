@@ -20,6 +20,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   }),
   PciGuidesHeader: vi.fn().mockReturnValue(<div></div>),
   Notifications: vi.fn().mockReturnValue(<div>Notifications</div>),
+  Headers: vi.fn().mockReturnValue(<div>Headers</div>),
   Datagrid: vi.fn().mockReturnValue(<div>Datagrid</div>),
   PciDiscoveryBanner: vi.fn().mockReturnValue(<div>Discovery</div>),
 }));
