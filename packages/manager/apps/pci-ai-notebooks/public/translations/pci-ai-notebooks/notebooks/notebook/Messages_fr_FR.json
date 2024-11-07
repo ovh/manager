@@ -1,4 +1,8 @@
 {
+  "dashboardTab": "Dashboard",
+  "dataTab": "Données attachées",
+  "backupTab": "Backup",
+  "logsTab": "Logs",
   "deleteNotebookTitle": "Supprimer le notebook",
   "deleteNotebookDescription": "Etes-vous sur de vouloir supprimer le notebook {{name}} ?",
   "notebookButtonCancel": "Annuler",

@@ -23,7 +23,7 @@ import { SortableHeader } from '@/components/ui/data-table';
 import Link from '@/components/links/Link.component';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
 import NotebookStatusBadge from './NotebookStatusBadge.component';
-import { isDeletingNotebook, isRunningNotebook } from '@/lib/statusHelper';
+import { isDeletingNotebook, isRunningNotebook } from '@/lib/notebookHelper';
 
 interface NotebooksListColumnsProps {
   onStartClicked: (notebook: ai.notebook.Notebook) => void;

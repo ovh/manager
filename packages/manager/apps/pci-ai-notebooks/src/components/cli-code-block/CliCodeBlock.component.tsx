@@ -8,9 +8,15 @@ interface CliCodeBlockProps {
   title: string;
   code: string;
   toastMessage?: string;
+  size?: string;
 }
 
-const CliCodeBlock = ({ title, code, toastMessage }: CliCodeBlockProps) => {
+const CliCodeBlock = ({
+  title,
+  code,
+  toastMessage,
+  size,
+}: CliCodeBlockProps) => {
   const { t } = useTranslation('common');
   const toast = useToast();
   const handleCopyPass = (valueToCopy: string) => {
@@ -22,7 +28,7 @@ const CliCodeBlock = ({ title, code, toastMessage }: CliCodeBlockProps) => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row items-center justify-between p-2 px-8">
+      <div className="flex flex-row items-center justify-between p-2 px-6">
         <p>{title}</p>
         <Button
           data-testid="code-block-copy-button"
@@ -34,7 +40,7 @@ const CliCodeBlock = ({ title, code, toastMessage }: CliCodeBlockProps) => {
           <span className="sr-only">copy</span>
         </Button>
       </div>
-      <ScrollArea className="max-h-[80vh] px-6">
+      <ScrollArea className={size}>
         <pre
           style={{ wordBreak: 'break-word' }}
           className="p-4 whitespace-pre-wrap rounded-md bg-[#122844] text-white"

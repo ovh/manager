@@ -31,7 +31,8 @@ const buttonVariants = cva(
         link: "text-base",
         table: "h-4 w-4 my-auto",
         menu: 'size-8 p-0',
-        input: "h-10 w-full rounded-md px-3 py-2 text-sm"
+        input: "h-10 w-full rounded-md px-3 py-2 text-sm",
+        roundedIcon: "h-8 w-8 rounded-full",
       },
     },
     defaultVariants: {

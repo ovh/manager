@@ -42,6 +42,15 @@ export default [
         ...lazyRouteConfig(() =>
           import('@/pages/notebooks/[notebookId]/Notebook.layout'),
         ),
+        children: [
+          {
+            path: '',
+            id: 'notebook.dashboard',
+            ...lazyRouteConfig(() =>
+              import('@/pages/notebooks/[notebookId]/dashboard/Dashboard.page'),
+            ),
+          },
+        ],
       },
     ],
   },

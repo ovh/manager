@@ -1,0 +1,21 @@
+{
+  "dashboardTitle": "Dashboard",
+  "resourcesTitle": "Ressources",
+  "powerTitleSection": "Power",
+  "computeTitleSection": "Compute",
+  "storageTitleSection": "Stockage",
+  "gpuMemoryField": "{{ gpu }} x {{ memory }} RAM",
+  "gcuComputeField": "CPU: {{ cpu }} vCores ",
+  "memoryField": "RAM: {{ memory }}",
+  "publicNetworkField": "Réseau public: {{ network }}/s",
+  "temporaryLocalStorageField": "Stockage local éphémère: {{ storage }} SSD",
+  "temporaryLocalStorageHelper": "Not that much for now",
+  "workspaceStorage": "Espace de travail {{ storage }} SSD inclus",
+  "workspaceStorageHelper": "Nothing for now",
+  "sliderInfo": "{{ usedStorage }} / {{ totalStorage }}",
+  "notebookIdLabel": "Id du notebook",
+  "notebookIdCopyToast": "L'identifiant du notebook a été copié",
+  "billingLink": "Gérer la facturation",
+  "supportLink": "Contacter le support",
+  "deleteNotebookButton": "Supprimer"
+}
