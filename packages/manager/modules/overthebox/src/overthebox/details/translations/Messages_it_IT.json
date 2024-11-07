@@ -98,5 +98,7 @@
   "overTheBox_cancel": "Annullare",
   "overTheBox_confirm_unlink_device": "Il dispositivo non sarà in grado di connettersi al servizio?",
   "overTheBox_unlink_device_error": "Impossibile dissociare la periferica: {{errorMessage}}",
-  "overTheBox_unlink_device_success": "Il dispositivo è stato scollegato correttamente."
+  "overTheBox_unlink_device_success": "Il dispositivo è stato scollegato correttamente.",
+  "overTheBox_release_channel_deprecated": "Versione deprezzata {{version}}",
+  "overTheBox_release_channel": "Versione {{version}}"
 }

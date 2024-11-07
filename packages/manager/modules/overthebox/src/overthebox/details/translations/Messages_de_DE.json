@@ -98,5 +98,7 @@
   "overTheBox_cancel": "Abbrechen",
   "overTheBox_confirm_unlink_device": "Dieses Gerät kann keine Verbindung mehr mit diesem Dienst herstellen, sind Sie sicher?",
   "overTheBox_unlink_device_error": "Das Gerät konnte nicht getrennt werden: {{errorMessage}}",
-  "overTheBox_unlink_device_success": "Die Zuordnung des Geräts wurde erfolgreich aufgehoben."
+  "overTheBox_unlink_device_success": "Die Zuordnung des Geräts wurde erfolgreich aufgehoben.",
+  "overTheBox_release_channel_deprecated": "Veraltete Version {{version}}",
+  "overTheBox_release_channel": "Version {{version}}"
 }
