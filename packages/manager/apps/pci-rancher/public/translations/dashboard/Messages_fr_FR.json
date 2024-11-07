@@ -10,6 +10,8 @@
   "service_level": "Offre",
   "count_cpu_orchestrated": "Nombre de vCPUs orchestrés",
   "security_and_access": "Accès et sécurité",
+  "egress_title": "Rancher egress CIDRs",
+  "egress_tooltip": "Ces CIDRs représentent les plages d'adresses IP de sortie utilisées par Rancher. Il peut être nécessaire d'autoriser ces adresses IP (whitelisting) à accéder à vos plateformes tierces (ex: appels APIs pour provisionner des ressources).",
   "rancher_ui_access": "Accès à l'interface Rancher",
   "rancher_button_acces": "Accéder à Rancher",
   "generate_access": "Générer vos accès temporaires",
