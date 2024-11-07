@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <div class="mt-4">
+            <div>
                 <p data-ng-if="$ctrl.currentNetboot.type === $ctrl.RESCUE">
                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                     <span
@@ -59,22 +59,16 @@
                         </span>
                     </a>
                 </p>
+            </div>
 
-                <p
-                    data-ng-if="$ctrl.currentNetboot.type === $ctrl.RESCUE || $ctrl.currentNetboot.type === $ctrl.NETWORK"
-                >
-                    <strong
-                        data-translate="server_configuration_netboot_configuration"
-                    ></strong>
-                </p>
-
+            <div class="mt-5">
                 <div data-ng-if="$ctrl.currentNetboot.type === $ctrl.RESCUE">
                     <oui-field
                         label="{{:: 'server_configuration_netboot_rescue_choice' | translate}}"
                         size="xl"
                     >
                         <select
-                            class="form-control w-auto"
+                            class="form-control mt-3 w-auto"
                             id="rescue"
                             name="rescue"
                             data-ng-options="rescue as rescue.kernel + ' - ' + rescue.description for rescue in $ctrl.netboots.rescue track by rescue.kernel"
@@ -90,7 +84,7 @@
                         </select>
                     </oui-field>
 
-                    <div class="row mb-2">
+                    <div class="row mb-5">
                         <div
                             class="col-md-4"
                             data-ng-repeat="(key, data) in $ctrl.rescueAuthMethods"
@@ -117,7 +111,7 @@
                         size="xl"
                     >
                         <input
-                            class="oui-input"
+                            class="oui-input mt-3"
                             type="email"
                             id="rescueMail"
                             name="rescueMail"
@@ -136,7 +130,7 @@
                         size="xl"
                     >
                         <select
-                            class="form-control"
+                            class="form-control mt-3"
                             id="kernel"
                             name="kernel"
                             data-ng-options="network as network.description group by network.kernel for network in $ctrl.netboots.network"
