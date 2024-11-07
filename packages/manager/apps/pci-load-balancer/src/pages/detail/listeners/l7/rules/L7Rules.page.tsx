@@ -15,7 +15,11 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useProject } from '@ovh-ux/manager-pci-common';
-import { Headers, useProjectUrl } from '@ovh-ux/manager-react-components';
+import {
+  Headers,
+  Notifications,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
 import { useListener } from '@/api/hook/useListener';
 import { ROUTE_PATHS } from '@/routes';
 
@@ -94,7 +98,10 @@ export default function L7RulesPage() {
         />
         {tPciCommon('common_back_button_back_to_previous_page')}
       </OsdsLink>
-      <div className="header mt-8">
+      <div className="my-5">
+        <Notifications />
+      </div>
+      <div className="header">
         <Headers
           description={t('octavia_load_balancer_list_l7_rules_description')}
           title={t('octavia_load_balancer_list_l7_rules_title')}

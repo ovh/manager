@@ -9,7 +9,7 @@ import {
   useDataGrid,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { Suspense, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import {
   OsdsButton,
   OsdsIcon,
@@ -51,6 +51,10 @@ export default function L7PoliciesList() {
     sorting,
     filters,
   );
+
+  useEffect(() => {
+    clearNotifications();
+  }, []);
 
   const columns = useL7PoliciesDatagridColumn();
 
