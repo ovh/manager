@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_ICON_NAME,
