@@ -3,6 +3,7 @@
         type="button"
         class="btn btn-link dropdown-toggle"
         title="{{:: 'common_actions' | translate }}"
+        data-ng-click="calculateDropdownPosition($event)"
         data-uib-dropdown-toggle
     >
         <span
@@ -13,7 +14,11 @@
         </span>
     </button>
 
-    <ul class="dropdown-menu-right" data-uib-dropdown-menu>
+    <ul
+        class="dropdown-menu-right"
+        data-uib-dropdown-menu
+        data-ng-style="dropDownMenuStyle"
+    >
         <!-- DESCRIPTION -->
         <li>
             <button

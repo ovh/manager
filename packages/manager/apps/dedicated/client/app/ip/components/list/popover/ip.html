@@ -3,6 +3,7 @@
         type="button"
         class="btn btn-link dropdown-toggle"
         title="{{:: 'common_actions' | translate }}"
+        data-ng-click="calculateDropdownPosition($event)"
         data-uib-dropdown-toggle
     >
         <span
@@ -14,7 +15,11 @@
     </button>
 
     <!-- IPv6 -->
-    <ul class="dropdown-menu-right" data-uib-dropdown-menu>
+    <ul
+        class="dropdown-menu-right"
+        data-uib-dropdown-menu
+        data-ng-style="dropDownMenuStyle"
+    >
         <li data-ng-if="ipBlock.isUniq">
             <button
                 type="button"
@@ -40,6 +45,7 @@
         type="button"
         class="btn btn-link dropdown-toggle"
         title="{{:: 'common_actions' | translate }}"
+        data-ng-click="calculateDropdownPosition($event)"
         data-uib-dropdown-toggle
     >
         <span
@@ -51,7 +57,11 @@
     </button>
 
     <!-- IPv4 -->
-    <ul class="dropdown-menu-right" data-uib-dropdown-menu>
+    <ul
+        class="dropdown-menu-right"
+        data-uib-dropdown-menu
+        data-ng-style="dropDownMenuStyle"
+    >
         <!-- DESCRIPTION -->
         <li data-ng-if="ipBlock.isUniq">
             <button
