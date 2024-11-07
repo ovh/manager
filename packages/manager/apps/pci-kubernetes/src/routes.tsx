@@ -81,6 +81,12 @@ export default [
                 ),
               },
               {
+                path: 'admission-plugin',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/admission-plugin/AdmissionPlugins.page'),
+                ),
+              },
+              {
                 path: 'edit-network',
                 ...lazyRouteConfig(() =>
                   import('@/pages/edit-network/EditNetwork.page'),

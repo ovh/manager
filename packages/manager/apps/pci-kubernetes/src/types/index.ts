@@ -1,3 +1,5 @@
+import { pluginData } from '@/api/data/plugins';
+
 export type TKube = {
   id: string;
   region: string;
@@ -8,7 +10,7 @@ export type TKube = {
   version: string;
   nextUpgradeVersions: string[];
   kubeProxyMode: string;
-  customization: TClusterCustomization;
+  customization: TClusterCustomization | null;
   status: string;
   updatePolicy: string;
   isUpToDate: boolean;
@@ -21,6 +23,7 @@ export type TKube = {
   auditLogsSubscribed: boolean;
   privateNetworkConfiguration: TNetworkConfiguration;
   isClusterReady: boolean;
+  plugins: typeof pluginData;
 };
 
 export type TAdmissionPlugin = {
@@ -45,4 +48,12 @@ export enum UpdatePolicy {
   NeverUpdate = 'NEVER_UPDATE',
   MinimalDowntime = 'MINIMAL_DOWNTIME',
   AlwaysUpdate = 'ALWAYS_UPDATE',
+}
+
+export enum BreakPoints {
+  XS = 0,
+  SM = 540,
+  MD = 720,
+  LG = 960,
+  XL = 1140,
 }
