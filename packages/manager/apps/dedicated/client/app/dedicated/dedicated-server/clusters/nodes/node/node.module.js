@@ -23,6 +23,7 @@ import tasks from '../tasks';
 import interventions from '../intervention';
 import ipmi from '../ipmi';
 import netboot from '../netboot';
+import tags from '../tags';
 import trafficOrder from './traffic/order';
 import trafficCancel from './traffic/cancel';
 import trafficService from './traffic/traffic.service';
@@ -47,6 +48,7 @@ angular
     interventions,
     ipmi,
     netboot,
+    tags,
     displayName,
     reboot,
     monitoring,
