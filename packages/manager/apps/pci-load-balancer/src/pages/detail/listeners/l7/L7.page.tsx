@@ -3,6 +3,7 @@ import {
   Headers,
   Links,
   LinkType,
+  Notifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
@@ -71,6 +72,10 @@ export default function L7Page() {
         type={LinkType.back}
         href={hrefListeners}
       />
+
+      <div className="mt-5">
+        <Notifications />
+      </div>
 
       <Suspense>
         <Outlet />
