@@ -1,7 +1,7 @@
 {
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_activation_header": "Die Aktivierung Ihrer SGX-Funktion bestätigen",
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_deactivation_header": "Ihre SGX-Funktion deaktivieren",
-  "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_activation_content": "Die Funktion Intel Software Guard Extensions stellen wir Ihnen kostenfrei zur Verfügung. Daher wird bei ihrer Aktivierung keinerlei Zusatzgebühr berechnet. Wenn Sie auf „Bestätigen“ klicken, wird Ihr Server automatisch neu gestartet, um SGX zu aktivieren.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_activation_content": "Intel Software Guard Extensions ist eine Funktion, die wir kostenlos zur Verfügung stellen. Die Aktivierung wird Ihnen nicht in Rechnung gestellt. Wenn Sie auf „Bestätigen“ klicken, wird Ihr Server einmal oder mehrfach neu gestartet, damit SGX aktiviert werden kann.",
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_deactivation_content": "Möchten Sie Ihre SGX-Funktion deaktivieren? Diese Änderung bewirkt einen automatischen Neustart Ihres Servers. ",
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_cancel": "Abbrechen",
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm_confirm": "Bestätigen"
