@@ -43,6 +43,7 @@ import {
 } from '@/hooks/api/database/namespace/useAddNamespace.hook';
 import { useEditNamespace } from '@/hooks/api/database/namespace/useEditNamespace.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface AddEditNamespaceModalProps {
   isEdition: boolean;
@@ -185,138 +186,103 @@ const AddEditNamespace = ({
 
   return (
     <Dialog {...controller}>
-      <DialogContent className="sm:max-w-xl">
-        <DialogHeader>
-          <DialogTitle data-testid="add-edit-namespaces-modal">
-            {t(`${prefix}NamespaceTitle`)}
-          </DialogTitle>
-          {!isEdition && (
-            <DialogDescription>
-              {t('addNamespaceDescription')}
-            </DialogDescription>
-          )}
-        </DialogHeader>
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="flex flex-col gap-2">
-            {/* NamespaceName */}
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('formNamespaceFieldNameLabel')}</FormLabel>
-                  <FormControl>
-                    <Input
-                      data-testid="add-edit-namespaces-name-input"
-                      placeholder="name"
-                      disabled={
-                        isEdition ||
-                        isPendingAddNamespace ||
-                        isPendingEditNamespace
-                      }
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            {/* Namespace type */}
-            <FormField
-              control={form.control}
-              name="type"
-              render={({ field }) => (
-                <FormItem className="flex flex-col gap-1 mt-2">
-                  <div className="flex items-center space-x-2">
-                    <FormLabel>{t('formNamespaceFieldTypeLabel')}</FormLabel>
-                    <FormControl>
-                      <RadioGroup value={field.value} ref={field.ref}>
-                        <FormItem className="flex items-center gap-2 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value={field.value} />
-                          </FormControl>
-                          <FormLabel className="font-normal">
-                            {t(`formNamespaceField${field.value}TypeLabel`)}
-                          </FormLabel>
-                        </FormItem>
-                      </RadioGroup>
-                    </FormControl>
-                    <Popover>
-                      <PopoverTrigger>
-                        <HelpCircle className="size-4" />
-                      </PopoverTrigger>
-                      <PopoverContent>
-                        <p>{t('formNamespaceFieldTypeDescription')}</p>
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            {/* Retention */}
-            <FormField
-              control={form.control}
-              name="periodDuration"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex items-center space-x-2 mt-2">
-                    <FormLabel>
-                      {t('formNamespaceFieldPeriodDurationLabel')}
-                    </FormLabel>
-                    <Popover>
-                      <PopoverTrigger>
-                        <HelpCircle className="size-4" />
-                      </PopoverTrigger>
-                      <PopoverContent>
-                        <p>
-                          {t('formNamespaceFieldPeriodDurationDescription')}
-                        </p>
-                        <p>{t('formNamespaceFieldDurationDescription')}</p>
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-                  <FormControl>
-                    <Input
-                      data-testid="add-edit-namespaces-retention-input"
-                      placeholder={t(
-                        'formNamespaceFieldPeriodDurationPlaceholder',
-                      )}
-                      disabled={isPendingAddNamespace || isPendingEditNamespace}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            {/* Resolution */}
-            {form.getValues('type') ===
-              database.m3db.namespace.TypeEnum.aggregated && (
+      <DialogContent className="px-0 sm:max-w-2xl">
+        <ScrollArea className="max-h-[80vh] px-6">
+          <DialogHeader>
+            <DialogTitle data-testid="add-edit-namespaces-modal">
+              {t(`${prefix}NamespaceTitle`)}
+            </DialogTitle>
+            {!isEdition && (
+              <DialogDescription>
+                {t('addNamespaceDescription')}
+              </DialogDescription>
+            )}
+          </DialogHeader>
+          <Form {...form}>
+            <form onSubmit={onSubmit} className="flex flex-col gap-2">
+              {/* NamespaceName */}
               <FormField
                 control={form.control}
-                name="resolution"
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('formNamespaceFieldNameLabel')}</FormLabel>
+                    <FormControl>
+                      <Input
+                        data-testid="add-edit-namespaces-name-input"
+                        placeholder="name"
+                        disabled={
+                          isEdition ||
+                          isPendingAddNamespace ||
+                          isPendingEditNamespace
+                        }
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {/* Namespace type */}
+              <FormField
+                control={form.control}
+                name="type"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col gap-1 mt-2">
+                    <div className="flex items-center space-x-2">
+                      <FormLabel>{t('formNamespaceFieldTypeLabel')}</FormLabel>
+                      <FormControl>
+                        <RadioGroup value={field.value} ref={field.ref}>
+                          <FormItem className="flex items-center gap-2 space-y-0">
+                            <FormControl>
+                              <RadioGroupItem value={field.value} />
+                            </FormControl>
+                            <FormLabel className="font-normal">
+                              {t(`formNamespaceField${field.value}TypeLabel`)}
+                            </FormLabel>
+                          </FormItem>
+                        </RadioGroup>
+                      </FormControl>
+                      <Popover>
+                        <PopoverTrigger>
+                          <HelpCircle className="size-4" />
+                        </PopoverTrigger>
+                        <PopoverContent>
+                          <p>{t('formNamespaceFieldTypeDescription')}</p>
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {/* Retention */}
+              <FormField
+                control={form.control}
+                name="periodDuration"
                 render={({ field }) => (
                   <FormItem>
                     <div className="flex items-center space-x-2 mt-2">
                       <FormLabel>
-                        {t('formNamespaceFieldResolutionLabel')}
+                        {t('formNamespaceFieldPeriodDurationLabel')}
                       </FormLabel>
                       <Popover>
                         <PopoverTrigger>
                           <HelpCircle className="size-4" />
                         </PopoverTrigger>
                         <PopoverContent>
-                          <p>{t('formNamespaceFieldResolutionDescription')}</p>
+                          <p>
+                            {t('formNamespaceFieldPeriodDurationDescription')}
+                          </p>
                           <p>{t('formNamespaceFieldDurationDescription')}</p>
                         </PopoverContent>
                       </Popover>
                     </div>
                     <FormControl>
                       <Input
-                        data-testid="add-edit-namespaces-resolution-input"
+                        data-testid="add-edit-namespaces-retention-input"
                         placeholder={t(
-                          'formNamespaceFieldResolutionPlaceholder',
+                          'formNamespaceFieldPeriodDurationPlaceholder',
                         )}
                         disabled={
                           isPendingAddNamespace || isPendingEditNamespace
@@ -328,274 +294,319 @@ const AddEditNamespace = ({
                   </FormItem>
                 )}
               />
-            )}
-            {/* Advanced configuration */}
-            <div className="w-full rounded-md border-2 mt-2">
-              <Button
-                type="button"
-                variant="ghost"
-                className="flex flex-row justify-between w-full font-semibold hover:text-primary"
-                onClick={() => setAdvancedConfiguration(!advancedConfiguration)}
-              >
-                {t('formNamespaceButtonAdvancedConfiguration')}
-                {advancedConfiguration ? (
-                  <ChevronDown className="h-5 w-5" />
-                ) : (
-                  <ChevronRight className="h-5 w-5" />
-                )}
-              </Button>
-              {advancedConfiguration && (
-                <div className="mx-3 mt-2 mb-4">
-                  {/* WritesToCommitLogEnabled */}
-                  <FormField
-                    control={form.control}
-                    name="writesToCommitLogEnabled"
-                    render={({ field }) => (
-                      <FormItem>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-2">
-                            <FormLabel>writesToCommitLogEnabled</FormLabel>
-                            <Popover>
-                              <PopoverTrigger>
-                                <HelpCircle className="size-4" />
-                              </PopoverTrigger>
-                              <PopoverContent>
-                                <p>
-                                  {t(
-                                    'formNamespaceFieldWritesToCommitLogEnabledDescription',
-                                  )}
-                                </p>
-                              </PopoverContent>
-                            </Popover>
-                          </div>
-                          <FormControl>
-                            <Switch
-                              checked={field.value}
-                              onCheckedChange={field.onChange}
-                              ref={field.ref}
-                            />
-                          </FormControl>
-                        </div>
-                      </FormItem>
-                    )}
-                  />
-                  {/* Snapshot */}
-                  <FormField
-                    control={form.control}
-                    name="snapshotEnabled"
-                    render={({ field }) => (
-                      <FormItem>
-                        <div className="flex items-center mt-2 justify-between">
-                          <div className="flex items-center space-x-2">
-                            <FormLabel>snapshotEnabled</FormLabel>
-                            <Popover>
-                              <PopoverTrigger>
-                                <HelpCircle className="size-4" />
-                              </PopoverTrigger>
-                              <PopoverContent>
-                                <p>
-                                  {t(
-                                    'formNamespaceFieldSnapshotEnabledDescription',
-                                  )}
-                                </p>
-                              </PopoverContent>
-                            </Popover>
-                          </div>
-                          <FormControl>
-                            <Switch
-                              checked={field.value}
-                              onCheckedChange={field.onChange}
-                              ref={field.ref}
-                            />
-                          </FormControl>
-                        </div>
-                      </FormItem>
-                    )}
-                  />
-                  {/* blockSizeDuration Retention */}
-                  <FormField
-                    control={form.control}
-                    name="blockSizeDuration"
-                    render={({ field }) => (
-                      <FormItem>
-                        <div className="flex items-center space-x-2 mt-2">
-                          <FormLabel>retention.blockSizeDuration</FormLabel>
-                          <Popover>
-                            <PopoverTrigger>
-                              <HelpCircle className="size-4" />
-                            </PopoverTrigger>
-                            <PopoverContent>
-                              <p>
-                                {t(
-                                  'formNamespaceFieldBlockSizeDurationDescription',
-                                )}
-                              </p>
-                              <p>
-                                {t('formNamespaceFieldDurationDescription')}
-                              </p>
-                            </PopoverContent>
-                          </Popover>
-                        </div>
-                        <FormControl>
-                          <Input
-                            placeholder={t(
-                              'formNamespaceFieldDurationPlaceholder',
-                            )}
-                            disabled={
-                              isEdition ||
-                              isPendingAddNamespace ||
-                              isPendingEditNamespace
-                            }
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  {/* bufferPastDuration */}
-                  <FormField
-                    control={form.control}
-                    name="bufferPastDuration"
-                    render={({ field }) => (
-                      <FormItem>
-                        <div className="flex items-center space-x-2 mt-2">
-                          <FormLabel>retention.bufferPastDuration</FormLabel>
-                          <Popover>
-                            <PopoverTrigger>
-                              <HelpCircle className="size-4" />
-                            </PopoverTrigger>
-                            <PopoverContent>
-                              <p>
-                                {t(
-                                  'formNamespaceFieldBufferPastDurationDescription',
-                                )}
-                              </p>
-                              <p>
-                                {t('formNamespaceFieldDurationDescription')}
-                              </p>
-                            </PopoverContent>
-                          </Popover>
-                        </div>
-                        <FormControl>
-                          <Input
-                            placeholder={t(
-                              'formNamespaceFieldDurationPlaceholder',
-                            )}
-                            disabled={
-                              isPendingAddNamespace || isPendingEditNamespace
-                            }
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  {/* bufferFutureDuration */}
-                  <FormField
-                    control={form.control}
-                    name="bufferFutureDuration"
-                    render={({ field }) => (
-                      <FormItem>
-                        <div className="flex items-center space-x-2 mt-2">
-                          <FormLabel>retention.bufferFutureDuration</FormLabel>
-                          <Popover>
-                            <PopoverTrigger>
-                              <HelpCircle className="size-4" />
-                            </PopoverTrigger>
-                            <PopoverContent>
-                              <p>
-                                {t(
-                                  'formNamespaceFieldBufferFutureDurationDescription',
-                                )}
-                              </p>
-                              <p>
-                                {t('formNamespaceFieldDurationDescription')}
-                              </p>
-                            </PopoverContent>
-                          </Popover>
-                        </div>
-                        <FormControl>
-                          <Input
-                            placeholder={t(
-                              'formNamespaceFieldDurationPlaceholder',
-                            )}
-                            disabled={
-                              isPendingAddNamespace || isPendingEditNamespace
-                            }
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  {/* blockDataExpirationDuration */}
-                  <FormField
-                    control={form.control}
-                    name="blockDataExpirationDuration"
-                    render={({ field }) => (
-                      <FormItem>
-                        <div className="flex items-center space-x-2 mt-2">
-                          <FormLabel>
-                            retention.blockDataExpirationDuration
-                          </FormLabel>
-                          <Popover>
-                            <PopoverTrigger>
-                              <HelpCircle className="size-4" />
-                            </PopoverTrigger>
-                            <PopoverContent>
-                              <p>
-                                {t(
-                                  'formNamespaceFieldDataExpirationDurationDescription',
-                                )}
-                              </p>
-                              <p>
-                                {t('formNamespaceFieldDurationDescription')}
-                              </p>
-                            </PopoverContent>
-                          </Popover>
-                        </div>
-                        <FormControl>
-                          <Input
-                            data-testid="add-edit-namespaces-blockDataExpirationDuration-input"
-                            placeholder={t(
-                              'formNamespaceFieldDurationPlaceholder',
-                            )}
-                            disabled={
-                              isPendingAddNamespace || isPendingEditNamespace
-                            }
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+              {/* Resolution */}
+              {form.getValues('type') ===
+                database.m3db.namespace.TypeEnum.aggregated && (
+                <FormField
+                  control={form.control}
+                  name="resolution"
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="flex items-center space-x-2 mt-2">
+                        <FormLabel>
+                          {t('formNamespaceFieldResolutionLabel')}
+                        </FormLabel>
+                        <Popover>
+                          <PopoverTrigger>
+                            <HelpCircle className="size-4" />
+                          </PopoverTrigger>
+                          <PopoverContent>
+                            <p>
+                              {t('formNamespaceFieldResolutionDescription')}
+                            </p>
+                            <p>{t('formNamespaceFieldDurationDescription')}</p>
+                          </PopoverContent>
+                        </Popover>
+                      </div>
+                      <FormControl>
+                        <Input
+                          data-testid="add-edit-namespaces-resolution-input"
+                          placeholder={t(
+                            'formNamespaceFieldResolutionPlaceholder',
+                          )}
+                          disabled={
+                            isPendingAddNamespace || isPendingEditNamespace
+                          }
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               )}
-            </div>
-            <DialogFooter className="flex justify-end mt-4">
-              <DialogClose asChild>
+              {/* Advanced configuration */}
+              <div className="w-full rounded-md border-2 mt-2">
                 <Button
-                  data-testid="add-edit-namespaces-cancel-button"
                   type="button"
-                  variant="outline"
+                  variant="ghost"
+                  className="flex flex-row justify-between w-full font-semibold hover:text-primary"
+                  onClick={() =>
+                    setAdvancedConfiguration(!advancedConfiguration)
+                  }
                 >
-                  {t('formNamespaceButtonCancel')}
+                  {t('formNamespaceButtonAdvancedConfiguration')}
+                  {advancedConfiguration ? (
+                    <ChevronDown className="h-5 w-5" />
+                  ) : (
+                    <ChevronRight className="h-5 w-5" />
+                  )}
                 </Button>
-              </DialogClose>
-              <Button
-                data-testid="add-edit-namespaces-submit-button"
-                type="submit"
-                disabled={isPendingAddNamespace || isPendingEditNamespace}
-              >
-                {t(`${prefix}NamespaceButtonConfirm`)}
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
+                {advancedConfiguration && (
+                  <div className="mx-3 mt-2 mb-4">
+                    {/* WritesToCommitLogEnabled */}
+                    <FormField
+                      control={form.control}
+                      name="writesToCommitLogEnabled"
+                      render={({ field }) => (
+                        <FormItem>
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-2">
+                              <FormLabel>writesToCommitLogEnabled</FormLabel>
+                              <Popover>
+                                <PopoverTrigger>
+                                  <HelpCircle className="size-4" />
+                                </PopoverTrigger>
+                                <PopoverContent>
+                                  <p>
+                                    {t(
+                                      'formNamespaceFieldWritesToCommitLogEnabledDescription',
+                                    )}
+                                  </p>
+                                </PopoverContent>
+                              </Popover>
+                            </div>
+                            <FormControl>
+                              <Switch
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                                ref={field.ref}
+                              />
+                            </FormControl>
+                          </div>
+                        </FormItem>
+                      )}
+                    />
+                    {/* Snapshot */}
+                    <FormField
+                      control={form.control}
+                      name="snapshotEnabled"
+                      render={({ field }) => (
+                        <FormItem>
+                          <div className="flex items-center mt-2 justify-between">
+                            <div className="flex items-center space-x-2">
+                              <FormLabel>snapshotEnabled</FormLabel>
+                              <Popover>
+                                <PopoverTrigger>
+                                  <HelpCircle className="size-4" />
+                                </PopoverTrigger>
+                                <PopoverContent>
+                                  <p>
+                                    {t(
+                                      'formNamespaceFieldSnapshotEnabledDescription',
+                                    )}
+                                  </p>
+                                </PopoverContent>
+                              </Popover>
+                            </div>
+                            <FormControl>
+                              <Switch
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                                ref={field.ref}
+                              />
+                            </FormControl>
+                          </div>
+                        </FormItem>
+                      )}
+                    />
+                    {/* blockSizeDuration Retention */}
+                    <FormField
+                      control={form.control}
+                      name="blockSizeDuration"
+                      render={({ field }) => (
+                        <FormItem>
+                          <div className="flex items-center space-x-2 mt-2">
+                            <FormLabel>retention.blockSizeDuration</FormLabel>
+                            <Popover>
+                              <PopoverTrigger>
+                                <HelpCircle className="size-4" />
+                              </PopoverTrigger>
+                              <PopoverContent>
+                                <p>
+                                  {t(
+                                    'formNamespaceFieldBlockSizeDurationDescription',
+                                  )}
+                                </p>
+                                <p>
+                                  {t('formNamespaceFieldDurationDescription')}
+                                </p>
+                              </PopoverContent>
+                            </Popover>
+                          </div>
+                          <FormControl>
+                            <Input
+                              placeholder={t(
+                                'formNamespaceFieldDurationPlaceholder',
+                              )}
+                              disabled={
+                                isEdition ||
+                                isPendingAddNamespace ||
+                                isPendingEditNamespace
+                              }
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    {/* bufferPastDuration */}
+                    <FormField
+                      control={form.control}
+                      name="bufferPastDuration"
+                      render={({ field }) => (
+                        <FormItem>
+                          <div className="flex items-center space-x-2 mt-2">
+                            <FormLabel>retention.bufferPastDuration</FormLabel>
+                            <Popover>
+                              <PopoverTrigger>
+                                <HelpCircle className="size-4" />
+                              </PopoverTrigger>
+                              <PopoverContent>
+                                <p>
+                                  {t(
+                                    'formNamespaceFieldBufferPastDurationDescription',
+                                  )}
+                                </p>
+                                <p>
+                                  {t('formNamespaceFieldDurationDescription')}
+                                </p>
+                              </PopoverContent>
+                            </Popover>
+                          </div>
+                          <FormControl>
+                            <Input
+                              placeholder={t(
+                                'formNamespaceFieldDurationPlaceholder',
+                              )}
+                              disabled={
+                                isPendingAddNamespace || isPendingEditNamespace
+                              }
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    {/* bufferFutureDuration */}
+                    <FormField
+                      control={form.control}
+                      name="bufferFutureDuration"
+                      render={({ field }) => (
+                        <FormItem>
+                          <div className="flex items-center space-x-2 mt-2">
+                            <FormLabel>
+                              retention.bufferFutureDuration
+                            </FormLabel>
+                            <Popover>
+                              <PopoverTrigger>
+                                <HelpCircle className="size-4" />
+                              </PopoverTrigger>
+                              <PopoverContent>
+                                <p>
+                                  {t(
+                                    'formNamespaceFieldBufferFutureDurationDescription',
+                                  )}
+                                </p>
+                                <p>
+                                  {t('formNamespaceFieldDurationDescription')}
+                                </p>
+                              </PopoverContent>
+                            </Popover>
+                          </div>
+                          <FormControl>
+                            <Input
+                              placeholder={t(
+                                'formNamespaceFieldDurationPlaceholder',
+                              )}
+                              disabled={
+                                isPendingAddNamespace || isPendingEditNamespace
+                              }
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    {/* blockDataExpirationDuration */}
+                    <FormField
+                      control={form.control}
+                      name="blockDataExpirationDuration"
+                      render={({ field }) => (
+                        <FormItem>
+                          <div className="flex items-center space-x-2 mt-2">
+                            <FormLabel>
+                              retention.blockDataExpirationDuration
+                            </FormLabel>
+                            <Popover>
+                              <PopoverTrigger>
+                                <HelpCircle className="size-4" />
+                              </PopoverTrigger>
+                              <PopoverContent>
+                                <p>
+                                  {t(
+                                    'formNamespaceFieldDataExpirationDurationDescription',
+                                  )}
+                                </p>
+                                <p>
+                                  {t('formNamespaceFieldDurationDescription')}
+                                </p>
+                              </PopoverContent>
+                            </Popover>
+                          </div>
+                          <FormControl>
+                            <Input
+                              data-testid="add-edit-namespaces-blockDataExpirationDuration-input"
+                              placeholder={t(
+                                'formNamespaceFieldDurationPlaceholder',
+                              )}
+                              disabled={
+                                isPendingAddNamespace || isPendingEditNamespace
+                              }
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                )}
+              </div>
+              <DialogFooter className="flex justify-end mt-4">
+                <DialogClose asChild>
+                  <Button
+                    data-testid="add-edit-namespaces-cancel-button"
+                    type="button"
+                    variant="outline"
+                  >
+                    {t('formNamespaceButtonCancel')}
+                  </Button>
+                </DialogClose>
+                <Button
+                  data-testid="add-edit-namespaces-submit-button"
+                  type="submit"
+                  disabled={isPendingAddNamespace || isPendingEditNamespace}
+                >
+                  {t(`${prefix}NamespaceButtonConfirm`)}
+                </Button>
+              </DialogFooter>
+            </form>
+          </Form>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );

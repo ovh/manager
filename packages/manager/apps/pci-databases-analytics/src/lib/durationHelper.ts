@@ -9,30 +9,57 @@ export function durationStringToHuman(durationString: string, locale: Locale) {
 }
 
 export function durationStringToDuration(durationString: string) {
-  // Regular expression to match the duration parts
-  const pattern = /(\d+Y)?(\d+M)?(\d+D)?(\d+H)?(\d+m)?(\d+S)?/;
-  const matches = pattern.exec(durationString);
+  const pattern = /(\d+Y)?(\d+M)?(\d+W)?(\d+D)?(\d+H)?(\d+m)?(\d+S)?/g;
+  const matches = [...durationString.matchAll(pattern)];
 
-  // Convert matched values to numbers, defaulting to 0 if not present
-  const years = matches[1] ? parseInt(matches[1], 10) : 0;
-  const months = matches[2] ? parseInt(matches[2], 10) : 0;
-  const days = matches[3] ? parseInt(matches[3], 10) : 0;
-  const hours = matches[4] ? parseInt(matches[4], 10) : 0;
-  const minutes = matches[5] ? parseInt(matches[5], 10) : 0;
-  const seconds = matches[6] ? parseInt(matches[6], 10) : 0;
-  // Construct and return the duration object
-  return { years, months, days, hours, minutes, seconds };
+  const {
+    years,
+    months,
+    weeks,
+    days,
+    hours,
+    minutes,
+    seconds,
+  } = matches.reduce(
+    (acc, match) => {
+      if (match[1]) acc.years += parseInt(match[1], 10);
+      if (match[2]) acc.months += parseInt(match[2], 10);
+      if (match[3]) acc.weeks += parseInt(match[3], 10);
+      if (match[4]) acc.days += parseInt(match[4], 10);
+      if (match[5]) acc.hours += parseInt(match[5], 10);
+      if (match[6]) acc.minutes += parseInt(match[6], 10);
+      if (match[7]) acc.seconds += parseInt(match[7], 10);
+      return acc;
+    },
+    {
+      years: 0,
+      months: 0,
+      weeks: 0,
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    },
+  );
+
+  // Adjust total days based on weeks
+  const totalDays = days + weeks * 7;
+
+  return { years, months, days: totalDays, hours, minutes, seconds };
 }
 
 export function durationISOStringToShortTime(durationISOString: string) {
-  let durationString = '';
   const durationISO = duration.parse(durationISOString);
+
+  let durationString = '';
   if (durationISO.years > 0) durationString += `${durationISO.years}Y`;
   if (durationISO.months > 0) durationString += `${durationISO.months}M`;
+  if (durationISO.weeks > 0) durationString += `${durationISO.weeks}W`;
   if (durationISO.days > 0) durationString += `${durationISO.days}D`;
   if (durationISO.hours > 0) durationString += `${durationISO.hours}H`;
   if (durationISO.minutes > 0) durationString += `${durationISO.minutes}m`;
   if (durationISO.seconds > 0) durationString += `${durationISO.seconds}S`;
+
   return durationString;
 }
 
@@ -46,7 +73,6 @@ export function durationToISODurationString(durationTime: Duration) {
     seconds = 0,
   } = durationTime;
 
-  // Construct the duration string part by part
   const yearsPart = years > 0 ? `${years}Y` : '';
   const monthsPart = months > 0 ? `${months}M` : '';
   const daysPart = days > 0 ? `${days}D` : '';
@@ -55,7 +81,6 @@ export function durationToISODurationString(durationTime: Duration) {
   const minutesPart = minutes > 0 ? `${minutes}M` : '';
   const secondsPart = seconds > 0 ? `${seconds}S` : '';
 
-  // Combine all parts to form the full ISO 8601 duration string
   const isoDuration = `P${yearsPart}${monthsPart}${daysPart}${timePart}${hoursPart}${minutesPart}${secondsPart}`;
   return isoDuration;
 }
@@ -65,13 +90,14 @@ export function convertDurationStringToISODuration(durationTime: string) {
 }
 
 export function durationStringToSeconds(durationString: string) {
-  const pattern = /(\d+Y)?(\d+M)?(\d+D)?(\d+H)?(\d+m)?(\d+S)?/;
-  const matches = pattern.exec(durationString);
+  const pattern = /(\d+Y)?(\d+M)?(\d+D)?(\d+W)?(\d+H)?(\d+m)?(\d+S)?/g;
+  const matches = [...durationString.matchAll(pattern)];
 
   const timeUnits = [
     { unit: 'Y', factor: 31536000 }, // Year in seconds
     { unit: 'M', factor: 2628000 }, // Month in seconds
     { unit: 'D', factor: 86400 }, // Day in seconds
+    { unit: 'W', factor: 604800 }, // Week in seconds
     { unit: 'H', factor: 3600 }, // Hour in seconds
     { unit: 'm', factor: 60 }, // Minute in seconds
     { unit: 'S', factor: 1 }, // Second in seconds
@@ -79,9 +105,13 @@ export function durationStringToSeconds(durationString: string) {
 
   let totalSeconds = 0;
 
-  timeUnits.forEach((timeUnit, index) => {
-    const value = matches[index + 1] ? parseInt(matches[index + 1], 10) : 0;
-    totalSeconds += value * timeUnit.factor;
+  matches.forEach((match) => {
+    timeUnits.forEach((timeUnit, index) => {
+      if (match[index + 1]) {
+        const value = parseInt(match[index + 1], 10);
+        totalSeconds += value * timeUnit.factor;
+      }
+    });
   });
 
   return totalSeconds;
