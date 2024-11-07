@@ -11,5 +11,6 @@
   "pci_instances_list_unknown_error_message1": "Nous n'avons pas pu récupérer la liste de vos instances. Veuillez cliquer sur le bouton <Link>'Rafraîchir'</Link> pour essayer à nouveau.",
   "pci_instances_list_unknown_error_message2": "Nos équipes techniques ont été notifiées de ce problème et travaillent à sa résolution.",
   "pci_instances_list_action_instance_details": "Détails de l'instance",
-  "pci_instances_list_action_delete_instance": "Supprimer"
+  "pci_instances_list_action_delete_instance": "Supprimer",
+  "pci_instances_list_action_autobackup": "Créer une sauvegarde automatisée"
 }

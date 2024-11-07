@@ -18,6 +18,7 @@ import {
   Title,
   useColumnFilters,
   useNotifications,
+  useProjectUrl,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -44,7 +45,10 @@ import { TInstance, useInstances } from '@/data/hooks/instance/useInstances';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { SUB_PATHS } from '@/routes/routes';
 import { StatusCell } from './datagrid/cell/StatusCell.component';
-import { ActionsCell } from './datagrid/cell/ActionsCell.component';
+import {
+  ActionsCell,
+  TActionsCellHrefs,
+} from './datagrid/cell/ActionsCell.component';
 import { NameIdCell } from './datagrid/cell/NameIdCell.component';
 import { TextCell } from '@/components/datagrid/cell/TextCell.component';
 import { AddressesCell } from './datagrid/cell/AddressesCell.component';
@@ -88,6 +92,17 @@ const Instances: FC = () => {
     sortOrder: sorting.desc ? 'desc' : 'asc',
     filters,
   });
+
+  const projectUrl = useProjectUrl('public-cloud');
+
+  const actionsCellHrefs = useCallback(
+    (instance: TInstance): TActionsCellHrefs => ({
+      deleteHref: `delete?instanceId=${instance.id}&instanceName=${instance.name}`,
+      autobackupHref: `${projectUrl}/workflow/new`,
+      detailsHref: instance.id,
+    }),
+    [projectUrl],
+  );
 
   const datagridColumns: DatagridColumn<TInstance>[] = useMemo(
     () => [
@@ -159,13 +174,16 @@ const Instances: FC = () => {
       {
         id: 'actions',
         cell: (instance) => (
-          <ActionsCell isLoading={isRefetching} instance={instance} />
+          <ActionsCell
+            isLoading={isRefetching}
+            hrefs={actionsCellHrefs(instance)}
+          />
         ),
         label: t('pci_instances_list_column_actions'),
         isSortable: false,
       },
     ],
-    [isRefetching, t, translateMicroRegion],
+    [actionsCellHrefs, isRefetching, t, translateMicroRegion],
   );
 
   const filterColumns = useMemo(
