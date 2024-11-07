@@ -29,5 +29,6 @@
   "netapp_volumes_snapshots_policies_apply_success": "Policy applied successfully.",
   "netapp_volumes_snapshots_policies_apply_error": "The policy could not be applied. Please try again later.",
   "netapp_volumes_snapshots_type_automatic": "Automatic",
-  "netapp_volumes_snapshots_type_system": "System"
+  "netapp_volumes_snapshots_type_system": "System",
+  "netapp_volumes_snapshots_created_at_helper": "Dates are expressed in UTC format"
 }
