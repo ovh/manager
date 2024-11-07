@@ -37,7 +37,10 @@ export const addNamespace = async ({
     )
     .then((res) => res.data as database.m3db.Namespace);
 
-export type NamespaceEdition = Omit<database.m3db.Namespace, 'name' | 'type'>;
+export type NamespaceEdition = Omit<
+  database.m3db.NamespaceCreation,
+  'name' | 'type'
+>;
 export interface EditNamespace extends ServiceData {
   namespace: NamespaceEdition;
 }
