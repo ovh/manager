@@ -80,6 +80,7 @@ export default function EditPack() {
   const { orderLink, redirectToOrder } = useOrderHYCU({
     planCode: selectedPack,
     region: subsidiary,
+    serviceName,
   });
 
   const header = {
