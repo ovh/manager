@@ -59,12 +59,15 @@ export const getVcdProductSettings = ({
 export const getHYCUProductSettings = ({
   planCode,
   region,
+  serviceName = '',
 }: {
   planCode: string;
   region: string;
+  serviceName?: string;
 }) =>
   JSURL.stringify({
     productId: 'licenseHycu',
+    serviceName,
     planCode,
     duration: 'P1M',
     pricingMode: 'default',
@@ -203,19 +206,19 @@ export const ORDER_URLS = {
       TN: 'https://eco.ovhcloud.com/fr-tn/',
     },
     express_review_base: {
-      CZ: 'https://www.ovh.cz/order/express/#/express/review',
+      CZ: 'https://www.ovh.ie/order/express/#/express/review',
       DE: 'https://www.ovh.de/order/express/#/express/review',
       ES: 'https://www.ovh.es/order/express/#/express/review',
-      FI: 'https://www.ovh-hosting.fi/order/express/#/express/review',
+      FI: 'https://www.ovh.ie/order/express/#/express/review',
       FR: 'https://www.ovh.com/fr/order/express/#/express/review',
       GB: 'https://www.ovh.co.uk/order/express/#/express/review',
       IE: 'https://www.ovh.ie/order/express/#/express/review',
       IT: 'https://www.ovh.it/order/express/#/express/review',
-      LT: 'https://www.ovh.lt/order/express/#/express/review',
+      LT: 'https://www.ovh.ie/order/express/#/express/review',
       NL: 'https://www.ovh.nl/order/express/#/express/review',
       PL: 'https://www.ovh.pl/order/express/#/express/review',
       PT: 'https://www.ovh.pt/order/express/#/express/review',
-      MA: 'https://www.ovh.ma/order/express/#/express/review',
+      MA: 'https://www.ovh.com/ma/order/express/#/express/review',
       SN: 'https://www.ovh.sn/order/express/#/express/review',
       TN: 'https://www.ovh.com/tn/order/express/#/express/review',
     },
