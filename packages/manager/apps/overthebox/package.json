@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-overthebox-app",
-  "version": "6.3.27-alpha.0",
+  "version": "6.3.27-alpha.1",
   "private": true,
   "description": "OverTheBox standalone application.",
   "repository": {
@@ -68,7 +68,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.2",
+    "@ovh-ux/manager-webpack-config": "^7.0.3",
     "glob": "^7.1.6",
     "ovh-manager-webfont": "^1.2.0",
     "webpack-merge": "^4.2.2"

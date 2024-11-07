@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.8.24-alpha.4...@ovh-ux/manager-vrack-services-app@0.9.0-alpha.0) (2024-11-07)
+
+
+### Features
+
+* split services mock file ([16c3cab](https://github.com/ovh/manager/commit/16c3cab2dd56af8ed859618dfaf809956c46e610))
+
+
+
+
+
 ## [0.8.24-alpha.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.8.24-alpha.3...@ovh-ux/manager-vrack-services-app@0.8.24-alpha.4) (2024-11-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack-services-app

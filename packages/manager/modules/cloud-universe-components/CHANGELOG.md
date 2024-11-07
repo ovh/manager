@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.15.0...@ovh-ux/ng-ovh-cloud-universe-components@2.16.0) (2024-11-07)
+
+
+### Features
+
+* **vrack:** add occ as new eligibility service in vrack ([#13956](https://github.com/ovh/manager/issues/13956)) ([84fcb41](https://github.com/ovh/manager/commit/84fcb416b9a5433b2f4c6b036315b0b04c4b5fc2))
+
+
+
+
+
 # [2.15.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.14.2...@ovh-ux/ng-ovh-cloud-universe-components@2.15.0) (2024-10-31)
 
 

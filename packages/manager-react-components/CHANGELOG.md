@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.41.0-alpha.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.4...@ovh-ux/manager-react-components@1.41.0-alpha.5) (2024-11-07)
+
+### Bug Fixes
+
+- **manager-components:** fix services type ([84a0527](https://github.com/ovh/manager/commit/84a0527ef98de57d2b23ebb756e375460d975ae6))
+
+### Features
+
+- split services mock file ([16c3cab](https://github.com/ovh/manager/commit/16c3cab2dd56af8ed859618dfaf809956c46e610))
+
 # [1.41.0-alpha.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.3...@ovh-ux/manager-react-components@1.41.0-alpha.4) (2024-11-06)
 
 ### Bug Fixes

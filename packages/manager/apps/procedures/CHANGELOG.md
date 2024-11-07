@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.5.3-alpha.1...@ovh-ux/manager-procedures-app@0.5.3-alpha.2) (2024-11-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
 ## [0.5.3-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.5.3-alpha.0...@ovh-ux/manager-procedures-app@0.5.3-alpha.1) (2024-10-31)
 
 **Note:** Version bump only for package @ovh-ux/manager-procedures-app

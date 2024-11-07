@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nutanix-app",
-  "version": "2.2.52-alpha.0",
+  "version": "2.2.52-alpha.1",
   "private": true,
   "description": "OVHcloud Nutanix app",
   "repository": {
@@ -64,7 +64,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.2",
+    "@ovh-ux/manager-webpack-config": "^7.0.3",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"

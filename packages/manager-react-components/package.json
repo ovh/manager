@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "version": "1.41.0-alpha.4",
+  "version": "1.41.0-alpha.5",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "types": "dist/types/src/lib.d.ts",
@@ -56,7 +56,7 @@
     "@babel/core": "7.22.10",
     "@mdx-js/react": "^3.0.1",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
-    "@ovh-ux/manager-vite-config": "^0.8.1",
+    "@ovh-ux/manager-vite-config": "^0.8.2",
     "@storybook/addon-docs": "^7.5.3",
     "@storybook/addon-essentials": "7.5.3",
     "@storybook/addon-interactions": "7.5.3",
