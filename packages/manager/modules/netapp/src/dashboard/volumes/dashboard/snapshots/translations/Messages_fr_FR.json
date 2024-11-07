@@ -10,6 +10,7 @@
   "netapp_volumes_snapshots_name": "Nom",
   "netapp_volumes_snapshots_description": "Description",
   "netapp_volumes_snapshots_created_at": "Date de création",
+  "netapp_volumes_snapshots_created_at_helper": "Les dates sont spécifiées au format UTC",
   "netapp_volumes_snapshots_type": "Type",
   "netapp_volumes_snapshots_type_manual": "Manuelle",
   "netapp_volumes_snapshots_type_automatic": "Automatique",
