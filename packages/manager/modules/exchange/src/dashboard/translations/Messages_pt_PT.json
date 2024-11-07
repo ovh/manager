@@ -1687,5 +1687,7 @@
   "exchange_tab_domain_add_step2_dkim_checkbox": "Ativar DKIM (recomendado)",
   "exchange_tab_domain_add_step3_dkim_confirmation": "Configuração DKIM",
   "exchange_ACTION_order_accounts_step3_bc_ovhtel": "A nota de encomenda foi gerada com sucesso. A sua encomenda está a ser tratada.",
-  "exchange_ACTION_order_accounts_step3_explication_ovhtel": "Tenha em conta que é necessário aguardar cerca de 10 minutos para que a conta seja criada."
+  "exchange_ACTION_order_accounts_step3_explication_ovhtel": "Tenha em conta que é necessário aguardar cerca de 10 minutos para que a conta seja criada.",
+  "exchange_tab_RESOURCES_add_resource_company": "Empresa",
+  "exchange_GROUPS_add_group_company_label": "Empresa"
 }

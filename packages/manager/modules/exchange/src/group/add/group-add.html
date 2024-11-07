@@ -61,7 +61,21 @@
                         data-ng-if="ctrl.takenEmailError"
                     ></small>
                 </div>
-
+                <div class="form-group">
+                    <label
+                        class="control-label"
+                        for="company"
+                        data-translate="exchange_GROUPS_add_group_company_label"
+                    ></label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        maxlength="256"
+                        name="groupToAddCompany"
+                        id="company"
+                        data-ng-model="ctrl.groupToAdd.company"
+                    />
+                </div>
                 <div class="form-group">
                     <label
                         class="control-label"
@@ -439,7 +453,15 @@
                     class="word-break"
                     data-ng-bind-template="{{ctrl.groupToAdd.address}}@{{ctrl.groupToAdd.completeDomain.displayName}}"
                 ></dd>
-
+                <dt
+                    data-ng-if="ctrl.groupToAdd.company"
+                    data-translate="exchange_GROUPS_add_group_company_label"
+                ></dt>
+                <dd
+                    class="word-break"
+                    data-ng-if="ctrl.groupToAdd.company"
+                    data-ng-bind="ctrl.groupToAdd.company | wucSliceContent: 150"
+                ></dd>
                 <dt
                     data-ng-if="ctrl.groupToAdd.displayName"
                     data-translate="exchange_GROUPS_add_group_name_label"

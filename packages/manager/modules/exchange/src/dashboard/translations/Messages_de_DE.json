@@ -1687,5 +1687,7 @@
   "exchange_tab_domain_add_step2_dkim_checkbox": "DKIM aktivieren (empfohlen)",
   "exchange_tab_domain_add_step3_dkim_confirmation": "DKIM-Konfiguration",
   "exchange_ACTION_order_accounts_step3_bc_ovhtel": "Der Bestellschein wurde erfolgreich erstellt. Ihre Bestellung wird bearbeitet.",
-  "exchange_ACTION_order_accounts_step3_explication_ovhtel": "Bitte beachten Sie, dass die Erstellung des Accounts etwa 10 Minuten in Anspruch nimmt."
+  "exchange_ACTION_order_accounts_step3_explication_ovhtel": "Bitte beachten Sie, dass die Erstellung des Accounts etwa 10 Minuten in Anspruch nimmt.",
+  "exchange_tab_RESOURCES_add_resource_company": "Unternehmen",
+  "exchange_GROUPS_add_group_company_label": "Unternehmen"
 }
