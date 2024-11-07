@@ -1,8 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-import { Card } from '@ovh-ux/manager-react-components';
+import {
+  Card,
+  useMe,
+  ManagerText,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
 import { OsdsText, OsdsDivider } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -33,6 +39,13 @@ export default function Catalog() {
     searchText,
   });
 
+  const context = useContext(ShellContext);
+  console.info('context : ', context);
+  const me = useMe();
+  // const url = useProjectUrl('pci');
+  console.info('me : ', me);
+  // console.info('url : ', url);
+
   useEffect(() => {
     if (products.length > 0) {
       const customSearchParams = getSearchUrlFromFilterParams(
@@ -52,6 +65,16 @@ export default function Catalog() {
     <div className="m-10">
       <Breadcrumb />
       <br />
+      <div>
+        <ManagerText
+          urn="urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd"
+          iamActions={[
+            'manager-react-components:apiovh:manager-react-components/get-display',
+          ]}
+        >
+          Coucou Salut
+        </ManagerText>
+      </div>
       <OsdsText
         level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
         size={ODS_THEME_TYPOGRAPHY_SIZE._600}

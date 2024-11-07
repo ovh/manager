@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.9.0-alpha.0",
-    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.0",
+    "@ovh-ux/manager-react-shell-client": "1.0.0",
     "jsurl": "^0.1.5"
   },
   "devDependencies": {

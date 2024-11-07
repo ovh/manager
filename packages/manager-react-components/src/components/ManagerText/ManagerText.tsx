@@ -33,12 +33,14 @@ export const ManagerText = ({
   if (!isAuthorized) {
     return (
       <OsdsTooltip>
-        <OsdsText {...restProps}>{t('iam_hidden_text').toUpperCase()}</OsdsText>
+        <OsdsText {...restProps}>
+          {t('iam_hidden_text').toUpperCase()} TEST 1
+        </OsdsText>
         <OsdsTooltipContent slot="tooltip-content">
-          <div>{t('common_iam_get_message')}</div>
+          <div>{t('common_iam_get_message')} COUCOU</div>
         </OsdsTooltipContent>
       </OsdsTooltip>
     );
   }
-  return <OsdsText {...restProps}>{children}</OsdsText>;
+  return <OsdsText {...restProps}>{children} TEST 4444</OsdsText>;
 };
