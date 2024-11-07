@@ -17,11 +17,19 @@ const FRENCH_FORMAT = [
   'TN',
 ];
 export const GERMAN_FORMAT = ['DE', 'FI', 'SN'];
+export const HOUR_IN_MONTH = 730;
 
 export interface CatalogPriceOptions {
   hideTaxLabel?: boolean;
   exclVat?: boolean;
 }
+
+/**
+ * Handle the conversion on the frontend side from hourly price to monthly.
+ * In the future, this conversion should be handled on the backend to improve efficiency and maintainability.
+ * */
+export const convertHourlyPriceToMonthly = (hourlyPrice: number) =>
+  hourlyPrice * HOUR_IN_MONTH;
 
 export const useCatalogPrice = (
   maximumFractionDigits?: number,
