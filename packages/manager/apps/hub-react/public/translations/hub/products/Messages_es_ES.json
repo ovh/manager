@@ -67,5 +67,6 @@
   "manager_hub_products_XDSL": "xDSL",
   "manager_hub_products_WEB_PAA_S_SUBSCRIPTION": "Web PaaS",
   "manager_hub_products_see_less": "Ver menos servicios",
-  "manager_hub_products_see_more": "Ver todos los productos y servicios"
+  "manager_hub_products_see_more": "Ver todos los productos y servicios",
+  "manager_hub_products_VMWARE_CLOUD_DIRECTOR": "Managed VCD"
 }
