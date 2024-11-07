@@ -33,6 +33,7 @@ import {
 } from '../data/kubernetes';
 import { getPrivateNetworkName } from '../data/network';
 import { useAllPrivateNetworks } from './useNetwork';
+import { mapPluginsFromArrayToObject } from '../data/plugins';
 
 export const getAllKubeQueryKey = (projectId: string) => [
   'project',
@@ -106,10 +107,17 @@ export const useKubernetesCluster = (projectId: string, kubeId: string) =>
   useQuery({
     queryKey: getKubernetesClusterQuery(projectId, kubeId),
     queryFn: () => getKubernetesCluster(projectId, kubeId),
-    select: (data) => ({
-      ...data,
-      isClusterReady: data.status === STATUS.READY,
-    }),
+    select: (data) => {
+      const { admissionPlugins } = data.customization.apiServer || {};
+      const plugins = mapPluginsFromArrayToObject(admissionPlugins);
+      return {
+        ...data,
+        isClusterReady: data.status === STATUS.READY,
+        ...(plugins.length && {
+          plugins,
+        }),
+      };
+    },
   });
 
 type RenameKubernetesClusterProps = {

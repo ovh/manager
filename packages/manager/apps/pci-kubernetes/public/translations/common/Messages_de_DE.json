@@ -87,5 +87,6 @@
   "common_dual_list_target_placeholder": "Kein Element ausgewählt",
   "common_dual_list_target_move": "Löschen",
   "common_dual_list_target_move_all": "Alles löschen",
-  "common_dual_list_target_search": "In den Zieldaten suchen"
+  "common_dual_list_target_search": "In den Zieldaten suchen",
+  "common_save_button_label": "Anmelden"
 }

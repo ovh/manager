@@ -22,13 +22,14 @@ export type ClusterManagementProps = {
   kubeDetail: TKube;
 };
 
+export const isProcessing = (status: string) =>
+  PROCESSING_STATUS.includes(status);
+
 export default function ClusterManagement({
   kubeDetail,
 }: Readonly<ClusterManagementProps>) {
   const { t } = useTranslation('service');
   const { t: tDetail } = useTranslation('listing');
-
-  const isProcessing = (status: string) => PROCESSING_STATUS.includes(status);
 
   const hrefRenameCluster = useHref('./name');
   const hrefResetClusterConfig = useHref('./reset-kubeconfig');

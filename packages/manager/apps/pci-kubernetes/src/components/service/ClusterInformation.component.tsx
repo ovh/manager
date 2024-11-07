@@ -10,12 +10,17 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { Clipboard } from '@ovh-ux/manager-react-components';
 
+import ClusterEtcd from './ClusterETCD.component';
+import {
+  Clipboard,
+  TileBlock as TileLine,
+} from '@ovh-ux/manager-react-components';
 import { TKube } from '@/types';
 import ClusterStatus from './ClusterStatus.component';
-import TileLine from './TileLine.component';
-import ClusterEtcd from './ClusterETCD.component';
+
+import AdmissionPlugins from './AdmissionPlugins.component';
+import { isProcessing } from './ClusterManagement.component';
 
 export type ClusterInformationProps = {
   kubeDetail: TKube;
@@ -44,67 +49,71 @@ export default function ClusterInformation({
         </OsdsText>
         <OsdsDivider separator />
 
-        <TileLine
-          title={tDetail('kube_list_id')}
-          value={<Clipboard aria-label="clipboard" value={kubeDetail.id} />}
-        />
+        <TileLine label={tDetail('kube_list_id')}>
+          <Clipboard aria-label="clipboard" value={kubeDetail.id} />
+        </TileLine>
 
-        <TileLine
-          title={t('kube_service_name')}
-          value={
-            <OsdsText
-              className="mb-4 break-words"
-              size={ODS_TEXT_SIZE._400}
-              level={ODS_TEXT_LEVEL.body}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {kubeDetail.name}
-            </OsdsText>
-          }
-        />
-        <TileLine
-          title={t('kube_service_cluster_etcd_quota')}
-          value={<ClusterEtcd />}
-        />
-        <TileLine
-          title={t('kube_service_cluster_status')}
-          value={<ClusterStatus status={kubeDetail.status} />}
-        />
+        <TileLine label={t('kube_service_name')}>
+          {' '}
+          <OsdsText
+            className="mb-4 break-words"
+            size={ODS_TEXT_SIZE._400}
+            level={ODS_TEXT_LEVEL.body}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {kubeDetail.name}
+          </OsdsText>
+        </TileLine>
+        <TileLine label={t('kube_service_cluster_etcd_quota')}>
+          <ClusterEtcd />
+        </TileLine>
+        <TileLine label={t('kube_service_cluster_status')}>
+          <ClusterStatus status={kubeDetail.status} />
+        </TileLine>
+        <TileLine label={t('kube_service_name')}>
+          <OsdsText
+            className="mb-4 break-words"
+            size={ODS_TEXT_SIZE._400}
+            level={ODS_TEXT_LEVEL.body}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {kubeDetail.name}
+          </OsdsText>
+        </TileLine>
 
-        <TileLine
-          title={t('kube_service_cluster_version')}
-          value={
-            <OsdsText
-              className="mb-4"
-              size={ODS_TEXT_SIZE._400}
-              level={ODS_TEXT_LEVEL.body}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {kubeDetail.version}
-            </OsdsText>
-          }
-        />
+        <TileLine label={t('kube_service_cluster_status')}>
+          <ClusterStatus status={kubeDetail.status} />
+        </TileLine>
+        <TileLine label={t('kube_service_cluster_version')}>
+          <OsdsText
+            className="mb-4"
+            size={ODS_TEXT_SIZE._400}
+            level={ODS_TEXT_LEVEL.body}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {kubeDetail.version}
+          </OsdsText>
+        </TileLine>
+        <TileLine label={t('kube_service_cluster_admission_plugins')}>
+          <AdmissionPlugins
+            plugins={kubeDetail.plugins}
+            isProcessing={isProcessing(kubeDetail.status)}
+          />
+        </TileLine>
+        <TileLine label={t('kube_service_cluster_region')}>
+          <OsdsText
+            className="mb-4"
+            size={ODS_TEXT_SIZE._400}
+            level={ODS_TEXT_LEVEL.body}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {kubeDetail.region}
+          </OsdsText>
+        </TileLine>
 
-        <TileLine
-          title={t('kube_service_cluster_region')}
-          value={
-            <OsdsText
-              className="mb-4"
-              size={ODS_TEXT_SIZE._400}
-              level={ODS_TEXT_LEVEL.body}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {kubeDetail.region}
-            </OsdsText>
-          }
-        />
-
-        <TileLine
-          title={t('kube_service_cluster_nodes_url')}
-          value={
-            <Clipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
-          }
-        />
+        <TileLine label={t('kube_service_cluster_nodes_url')}>
+          <Clipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
+        </TileLine>
       </div>
     </OsdsTile>
   );
