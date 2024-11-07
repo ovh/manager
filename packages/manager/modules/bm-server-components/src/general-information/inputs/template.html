@@ -25,14 +25,14 @@
     >
         <!-- all header -->
         <label class="oui-field__label">
-            <span data-ng-bind="input.description"></span
+            <h6><span data-ng-bind="input.description"></span
             ><span
                 data-ng-if="input.mandatory"
                 class="oui-color-ae-500"
                 oui-tooltip="{{:: 'server_configuration_installation_inputs_item_mandatory' | translate }}"
                 oui-tooltip-placement="right"
                 >&nbsp;*</span
-            >
+            ></h6>
         </label>
         <!-- enum -->
         <select
