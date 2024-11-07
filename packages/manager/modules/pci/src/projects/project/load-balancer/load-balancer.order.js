@@ -7,6 +7,7 @@ export const LOAD_BALANCER_ORDER_URLS = {
   PT: 'https://www.ovh.pt/solucoes/load-balancer/',
   FR: 'https://www.ovh.com/fr/solutions/load-balancer/',
   WS: 'https://www.ovh.com/world/es/soluciones/load-balancer/',
+  US: 'https://us.ovhcloud.com/public-cloud/load-balancer-kubernetes/',
 };
 
 export function getLoadBalancerOrderUrl(subsidiary) {
