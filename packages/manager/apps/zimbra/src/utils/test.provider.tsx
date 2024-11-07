@@ -30,6 +30,7 @@ import redirectionsAddAndEditTranslation from '@/public/translations/redirection
 import redirectionsDeleteTranslation from '@/public/translations/redirections/delete/Messages_fr_FR.json';
 import onboardingTranslation from '@/public/translations/onboarding/Messages_fr_FR.json';
 import autoRepliesTranslation from '@/public/translations/autoReplies/Messages_fr_FR.json';
+import autoRepliesAddTranslation from '@/public/translations/autoReplies/add/Messages_fr_FR.json';
 import autoRepliesDeleteTranslation from '@/public/translations/autoReplies/delete/Messages_fr_FR.json';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
@@ -60,6 +61,7 @@ i18n.use(initReactI18next).init({
       'redirections/addAndEdit': redirectionsAddAndEditTranslation,
       'redirections/delete': redirectionsDeleteTranslation,
       autoReplies: autoRepliesTranslation,
+      'autoReplies/add': autoRepliesAddTranslation,
       'autoReplies/delete': autoRepliesDeleteTranslation,
       onboarding: onboardingTranslation,
     },
@@ -73,6 +75,8 @@ export const getShellContext = () => {
       getUser: () => ({
         ovhSubsidiary: 'FR',
       }),
+      getRegion: () => 'EU',
+      getUserLocale: () => 'fr_FR',
     },
     shell: {
       routing: {

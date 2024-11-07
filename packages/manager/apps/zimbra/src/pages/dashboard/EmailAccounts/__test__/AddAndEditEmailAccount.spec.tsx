@@ -9,6 +9,7 @@ import AddAndEditEmailAccount from '../AddAndEditEmailAccount.page';
 import emailAccountAddAndEditTranslation from '@/public/translations/accounts/addAndEdit/Messages_fr_FR.json';
 import emailAccountAliasTranslation from '@/public/translations/accounts/alias/Messages_fr_FR.json';
 import redirectionsTranslation from '@/public/translations/redirections/Messages_fr_FR.json';
+import autoRepliesTranslation from '@/public/translations/autoReplies/Messages_fr_FR.json';
 
 describe('email account add and edit page', () => {
   it('if there is not editEmailAccountId params', async () => {
@@ -81,6 +82,19 @@ describe('email account add and edit page', () => {
 
     expect(
       getByText(redirectionsTranslation.zimbra_redirections_account_title),
+    ).toBeInTheDocument();
+  });
+
+  it('should display autoreplies tab page', () => {
+    vi.mocked(useLocation).mockReturnValue({
+      pathname:
+        '/00000000-0000-0000-0000-000000000001/email_accounts/auto_replies',
+    } as Location);
+
+    const { getByText } = render(<AddAndEditEmailAccount />);
+
+    expect(
+      getByText(autoRepliesTranslation.zimbra_auto_replies_account_title),
     ).toBeInTheDocument();
   });
 

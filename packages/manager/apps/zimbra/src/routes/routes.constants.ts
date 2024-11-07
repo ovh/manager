@@ -22,6 +22,11 @@ export const urls = {
     '/:serviceName/email_accounts/redirections/edit',
   email_accounts_redirections_delete:
     '/:serviceName/email_accounts/redirections/delete',
+  email_accounts_auto_replies: '/:serviceName/email_accounts/auto_replies',
+  email_accounts_auto_replies_add:
+    '/:serviceName/email_accounts/auto_replies/add',
+  email_accounts_auto_replies_delete:
+    '/:serviceName/email_accounts/auto_replies/delete',
   mailing_lists: '/:serviceName/mailing_lists',
   mailing_lists_add: '/:serviceName/mailing_lists/add',
   mailing_lists_edit: '/:serviceName/mailing_lists/edit',

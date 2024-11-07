@@ -313,6 +313,7 @@ export default function ModalAddAndEditRedirections() {
 
         <OsdsFormField data-testid="field-checkbox" className="mt-5">
           <OsdsCheckboxButton
+            color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_CHECKBOX_BUTTON_SIZE.sm}
             checked={form.checked.value === 'checked'}
             onClick={() =>

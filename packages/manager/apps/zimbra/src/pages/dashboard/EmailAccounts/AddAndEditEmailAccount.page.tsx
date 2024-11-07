@@ -10,6 +10,7 @@ import EmailAccountSettings from './EmailAccountSettings.page';
 import EmailAccountsAlias from './EmailAccountsAlias.page';
 import Redirections from '../Redirections/Redirections';
 import { FEATURE_FLAGS } from '@/utils';
+import AutoReplies from '../AutoReplies/AutoReplies';
 
 export default function AddAndEditAccount() {
   const { t } = useTranslation('accounts/addAndEdit');
@@ -23,6 +24,7 @@ export default function AddAndEditAccount() {
   const [isSettingsTab, setIsSettingsTab] = useState(false);
   const [isAliasTab, setIsAliasTab] = useState(false);
   const [isRedirectionsTab, setIsRedirectionsTab] = useState(false);
+  const [isAutoRepliesTab, setIsAutoRepliesTab] = useState(false);
 
   const goBack = () => {
     return navigate(goBackUrl);
@@ -65,11 +67,18 @@ export default function AddAndEditAccount() {
     urls.email_accounts_redirections_delete,
   ]);
 
+  const pathMatcherAutoRepliesTabs = computePathMatchers([
+    urls.email_accounts_auto_replies,
+    urls.email_accounts_auto_replies_add,
+    urls.email_accounts_auto_replies_delete,
+  ]);
+
   useEffect(() => {
     if (!isLoadingEmailDetailRequest && !isLoadingDomainRequest && platformId) {
       setIsSettingsTab(activatedTabs(pathMatcherSettingsTabs));
       setIsAliasTab(activatedTabs(pathMatcherAliasTabs));
       setIsRedirectionsTab(activatedTabs(pathMatcherRedirectionsTabs));
+      setIsAutoRepliesTab(activatedTabs(pathMatcherAutoRepliesTabs));
       setIsLoading(false);
     }
   }, [isLoadingEmailDetailRequest, isLoadingDomainRequest, location.pathname]);
@@ -78,9 +87,10 @@ export default function AddAndEditAccount() {
     editEmailAccountId,
   };
 
-  const hrefSettings = useGenerateUrl(`../settings`, 'path', params);
+  const hrefSettings = useGenerateUrl('../settings', 'path', params);
   const hrefAlias = useGenerateUrl('../alias', 'path', params);
   const hrefRedirections = useGenerateUrl('../redirections', 'path', params);
+  const hrefAutoReplies = useGenerateUrl('../auto_replies', 'path', params);
 
   const tabsList: TabItemProps[] = [
     {
@@ -102,6 +112,13 @@ export default function AddAndEditAccount() {
       to: hrefRedirections,
       pathMatchers: pathMatcherRedirectionsTabs,
       hidden: !FEATURE_FLAGS.REDIRECTIONS,
+    },
+    {
+      name: 'auto_replies',
+      title: t('zimbra_account_edit_tabs_auto_replies'),
+      to: hrefAutoReplies,
+      pathMatchers: pathMatcherAutoRepliesTabs,
+      hidden: !FEATURE_FLAGS.AUTOREPLIES,
     },
   ];
 
@@ -140,6 +157,7 @@ export default function AddAndEditAccount() {
           )}
           {isAliasTab && <EmailAccountsAlias />}
           {isRedirectionsTab && <Redirections />}
+          {isAutoRepliesTab && <AutoReplies />}
         </>
       )}
     </>

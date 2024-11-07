@@ -20,11 +20,14 @@ export default function ModalDeleteDomain() {
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
+  const params = Object.fromEntries(searchParams.entries());
+  delete params.deleteAutoReplyId;
+
   const deleteAutoReplyId = searchParams.get('deleteAutoReplyId');
 
   const { addError, addSuccess } = useNotifications();
 
-  const goBackUrl = useGenerateUrl('..', 'path');
+  const goBackUrl = useGenerateUrl('..', 'path', params);
   const onClose = () => navigate(goBackUrl);
 
   const { mutate: deleteAutoReply, isPending: isSending } = useMutation({
@@ -95,16 +98,14 @@ export default function ModalDeleteDomain() {
         variant: ODS_BUTTON_VARIANT.flat,
       }}
     >
-      <>
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
-          {t('zimbra_auto_replies_delete_modal_content')}
-        </OsdsText>
-      </>
+      <OsdsText
+        color={ODS_THEME_COLOR_INTENT.text}
+        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+        hue={ODS_THEME_COLOR_HUE._500}
+      >
+        {t('zimbra_auto_replies_delete_modal_content')}
+      </OsdsText>
     </Modal>
   );
 }
