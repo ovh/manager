@@ -18,7 +18,6 @@ export default class ExchangeUpdateGroupCtrl {
 
     this.$routerParams = wucExchange.getParams();
     this.selectedGroup = navigation.currentActionData;
-
     if (
       has(this.selectedGroup, 'mailingListAddress') &&
       this.selectedGroup.mailingListAddress != null
@@ -85,7 +84,10 @@ export default class ExchangeUpdateGroupCtrl {
 
   prepareModel() {
     this.model = {
-      displayName: this.selectedGroup.displayName,
+      displayName:
+        this.selectedGroup.displayName === ''
+          ? null
+          : this.selectedGroup.displayName,
       mailingListAddress: `${this.selectedGroup.address}@${this.selectedGroup.completeDomain.name}`,
       senderAuthentification: this.selectedGroup.senderAuthentification,
       hiddenFromGAL: this.selectedGroup.hiddenFromGAL,
@@ -97,6 +99,8 @@ export default class ExchangeUpdateGroupCtrl {
         : this.selectedGroup.maxReceiveSize,
       joinRestriction: camelCase(this.selectedGroup.joinRestriction),
       departRestriction: camelCase(this.selectedGroup.departRestriction),
+      company:
+        this.selectedGroup.company === '' ? null : this.selectedGroup.company,
     };
   }
 
@@ -140,7 +144,6 @@ export default class ExchangeUpdateGroupCtrl {
       this.services.$translate.instant('exchange_dashboard_action_doing'),
     );
     this.prepareModel();
-
     this.services.wucExchange
       .updateGroup(
         this.$routerParams.organization,
