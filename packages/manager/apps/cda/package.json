@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cda-app",
-  "version": "2.3.11-alpha.1",
+  "version": "2.3.11-alpha.2",
   "private": true,
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.0",
     "@ovh-ux/ng-ovh-actions-menu": "^5.1.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.15.0",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.16.0",
     "@ovh-ux/ng-ovh-doc-url": "^2.1.1",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.1",
@@ -63,7 +63,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.2",
+    "@ovh-ux/manager-webpack-config": "^7.0.3",
     "glob": "^7.1.6",
     "webpack-merge": "^4.2.2"
   },

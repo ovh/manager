@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-emailpro-app",
-  "version": "0.10.19-alpha.1",
+  "version": "0.10.19-alpha.2",
   "private": true,
   "repository": {
     "type": "git",
@@ -63,7 +63,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.2",
+    "@ovh-ux/manager-webpack-config": "^7.0.3",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"

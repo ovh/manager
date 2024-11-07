@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-octavia-load-balancer-app",
-  "version": "0.6.21-alpha.0",
+  "version": "0.6.21-alpha.1",
   "private": true,
   "description": "OVHcloud OctaviaLoadBalancer app",
   "repository": {
@@ -66,7 +66,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.2",
+    "@ovh-ux/manager-webpack-config": "^7.0.3",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack": "^5.94.0",
