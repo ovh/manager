@@ -39,6 +39,7 @@ import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { useOKMSById } from '@/data/hooks/useOKMS';
 import ServiceKeyStateActions from '@/components/serviceKey/serviceKeyStateActions/ServiceKeyStateActions.component';
 import { getOkmsResourceQueryKey } from '@/data/api/okms';
+import { kmsIamActions } from '@/utils/iam/iam.constants';
 
 export default function Key() {
   const { okmsId, keyId } = useParams();
@@ -149,7 +150,7 @@ export default function Key() {
                   color={ODS_THEME_COLOR_INTENT.primary}
                   onClick={() => navigate(ROUTES_URLS.serviceKeyEditName)}
                   urn={kms.iam.urn}
-                  iamActions={['okms:apiovh:serviceKey/update']}
+                  iamActions={[kmsIamActions.serviceKeyUpdate]}
                 >
                   <OsdsIcon
                     name={ODS_ICON_NAME.PEN}

@@ -7,6 +7,7 @@ import guide from '../../../public/translations/key-management-service/guide/Mes
 import listing from '../../../public/translations/key-management-service/listing/Messages_fr_FR.json';
 import onboarding from '../../../public/translations/key-management-service/onboarding/Messages_fr_FR.json';
 import serviceKeys from '../../../public/translations/key-management-service/serviceKeys/Messages_fr_FR.json';
+import credentials from '../../../public/translations/key-management-service/credential/Messages_fr_FR.json';
 import terminate from '../../../public/translations/key-management-service/terminate/Messages_fr_FR.json';
 
 export const defaultLocale = 'fr_FR';
@@ -30,6 +31,11 @@ function addTranslations() {
       defaultLocale,
       'key-management-service/serviceKeys',
       serviceKeys,
+    )
+    .addResources(
+      defaultLocale,
+      'key-management-service/credential',
+      credentials,
     )
     .use({
       type: 'postProcessor',
@@ -71,5 +77,6 @@ export const labels = {
   listing,
   onboarding,
   serviceKeys,
+  credentials,
   terminate,
 };

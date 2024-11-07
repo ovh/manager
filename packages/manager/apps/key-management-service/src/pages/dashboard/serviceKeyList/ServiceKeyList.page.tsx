@@ -31,6 +31,7 @@ import { ROUTES_URLS } from '@/routes/routes.constants';
 import { OkmsContext } from '..';
 import Loading from '@/components/Loading/Loading';
 import { getOkmsServiceKeyResourceListQueryKey } from '@/data/api/okmsServiceKey';
+import { kmsIamActions } from '@/utils/iam/iam.constants';
 
 export default function Keys() {
   const { t } = useTranslation('key-management-service/serviceKeys');
@@ -113,7 +114,7 @@ export default function Keys() {
             navigate(ROUTES_URLS.createKmsServiceKey);
           }}
           urn={okms.iam.urn}
-          iamActions={['okms:apiovh:serviceKey/create']}
+          iamActions={[kmsIamActions.serviceKeyCreate]}
         >
           <span slot="start">
             <OsdsIcon
