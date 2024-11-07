@@ -9,7 +9,6 @@ import {
 
 export const useProducts = (services: ProductList, expand = false) => {
   const { shell } = useContext(ShellContext);
-  let isLoading = true;
   const servicesByProducts = services?.data || {};
   const productNames = Object.keys(servicesByProducts);
   const products: HubProduct[] = productNames
@@ -37,10 +36,8 @@ export const useProducts = (services: ProductList, expand = false) => {
     })
     .sort((productA, productB) => productB.count - productA.count)
     .slice(0, expand ? productNames.length : DEFAULT_DISPLAYED_PRODUCTS);
-  isLoading = false;
 
   return {
-    isLoading,
     products,
     canDisplayMore: productNames.length > DEFAULT_DISPLAYED_PRODUCTS,
   };

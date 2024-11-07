@@ -41,10 +41,7 @@ export default function Products({ services }: ProductsProps) {
   const [expand, setExpand] = useState(searchParams.get('expand') === 'true');
   const { trackClick } = useOvhTracking();
 
-  const { isLoading, products, canDisplayMore } = useProducts(
-    services.data,
-    expand,
-  );
+  const { products, canDisplayMore } = useProducts(services.data, expand);
 
   const trackProductNavigation = (product: HubProduct) => {
     trackClick({
@@ -82,11 +79,7 @@ export default function Products({ services }: ProductsProps) {
         </OsdsText>
       )}
       <div
-        className={
-          isLoading
-            ? ''
-            : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-3 mb-4'
-        }
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-3 mb-4"
         data-testid="products-list-container"
       >
         {products.map((product) => (
@@ -183,7 +176,7 @@ export default function Products({ services }: ProductsProps) {
         ))}
       </div>
       <div className="text-center">
-        {canDisplayMore && !isLoading && (
+        {canDisplayMore && (
           <OsdsButton
             type={ODS_BUTTON_TYPE.button}
             variant={ODS_BUTTON_VARIANT.ghost}
