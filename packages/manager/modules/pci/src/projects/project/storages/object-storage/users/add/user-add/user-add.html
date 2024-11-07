@@ -8,6 +8,9 @@
     data-primary-disabled="!$ctrl.canUserBeCreated()"
     data-loading="$ctrl.isLoading"
 >
+    <oui-message data-type="info" data-ng-if="$ctrl.isLocalzoneAvailable">
+        <p data-translate="pci_projects_project_users_add_info_banner"></p>
+    </oui-message>
     <p data-translate="pci_projects_project_users_add_short_description"></p>
     <oui-radio
         data-ng-if="$ctrl.isUserCouldGenerateCredentails"

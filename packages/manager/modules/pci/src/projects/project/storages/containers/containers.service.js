@@ -373,21 +373,6 @@ export default class PciStoragesContainersService {
   }
 
   /**
-   * Temporary feature to check if the merge of the S3 endpoints is ongoing.
-   * @param projectId {String}: project id (serviceName)
-   * @param {string} region container region
-   * @returns boolean
-   */
-  hasOngoingOpenIOMigration(projectId, region) {
-    return this.$http
-      .get(
-        `/cloud/project/${projectId}/region/${region}/storage/openiomigrating`,
-      )
-      .then(({ data }) => data?.ismigrating)
-      .catch(() => false);
-  }
-
-  /**
    * Create a S3 High Perf Standard Object
    * Nota: later it will be used also to create S3 Standard Storage Object
    * @param projectId {String}: project id (serviceName)

@@ -18,6 +18,16 @@ export default class PciBlockStorageDetailsDeleteController {
     this.isLoading = false;
   }
 
+  isPrimaryDisabled() {
+    return (
+      this.isLoading ||
+      (this.container &&
+        !this.container.containerType &&
+        this.container.objects &&
+        this.container.objects.length > 0)
+    );
+  }
+
   deleteStorage() {
     this.atInternet.trackClick({
       name: `${this.trackingPrefix}delete::confirm`,
