@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-paas-app",
-  "version": "2.2.24-alpha.1",
+  "version": "2.2.24-alpha.2",
   "private": true,
   "repository": {
     "type": "git",
@@ -24,10 +24,10 @@
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
     "@ovh-ux/manager-product-offers": "^5.6.1",
     "@ovh-ux/manager-web-paas": "^1.10.8-alpha.0",
-    "@ovh-ux/manager-webpack-dev-server": "^4.0.1",
+    "@ovh-ux/manager-webpack-dev-server": "^4.0.2",
     "@ovh-ux/ng-at-internet": "^5.11.18-alpha.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.15.0",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.16.0",
     "@ovh-ux/ng-ovh-contracts": "^4.6.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.2",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
@@ -63,7 +63,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.2",
+    "@ovh-ux/manager-webpack-config": "^7.0.3",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"
