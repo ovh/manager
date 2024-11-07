@@ -49,11 +49,14 @@
             <oui-datagrid-column
                 title=":: 'netapp_volumes_snapshots_created_at' | translate"
                 property="createdAt"
+                helper=":: 'netapp_volumes_snapshots_created_at_helper' | translate"
                 sortable
                 searchable
                 filterable
             >
-                <span data-ng-bind=":: $row.createdAt | date:'medium'"></span>
+                <span
+                    data-ng-bind=":: $row.createdAt | date:'medium':'UTC'"
+                ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
                 title=":: 'netapp_volumes_snapshots_type' | translate"
