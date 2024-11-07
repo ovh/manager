@@ -19,7 +19,8 @@ export interface RouteHandle {
 export const ROUTE_PATHS = {
   root: '/pci/projects/:projectId/private-networks',
   onboarding: 'onboarding',
-  globalRegions: '',
+  listing: '',
+  globalRegions: 'vRack',
   localZone: 'localZone',
   delete: 'delete',
   new: 'new',
@@ -31,12 +32,17 @@ export default [
     ...lazyRouteConfig(() => import('@/pages/Layout')),
   },
   {
-    id: 'private-networks',
     path: ROUTE_PATHS.root,
     loader: async ({ params }) =>
       queryClient.fetchQuery(getProjectQuery(params.projectId)),
     ...lazyRouteConfig(() => import('@/pages/Layout')),
     children: [
+      {
+        path: ROUTE_PATHS.listing,
+        ...lazyRouteConfig(() =>
+          import('@/pages/private-network/listing/ListingGuard'),
+        ),
+      },
       {
         path: ROUTE_PATHS.globalRegions,
         handle: {
