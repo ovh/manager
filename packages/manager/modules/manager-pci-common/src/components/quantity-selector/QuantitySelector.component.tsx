@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import {
   OsdsButton,
   OsdsFormField,
@@ -20,7 +21,6 @@ import {
   ODS_INPUT_TYPE,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
 
 import '../../translations/quantity-selector';
 

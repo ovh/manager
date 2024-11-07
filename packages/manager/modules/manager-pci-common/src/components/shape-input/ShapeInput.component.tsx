@@ -1,6 +1,6 @@
+import React, { useCallback, useMemo, useState } from 'react';
 import clsx from 'clsx';
 import isEqual from 'lodash.isequal';
-import { useCallback, useMemo, useState } from 'react';
 import { AccordionComponent } from '../accordion/Accordion.component';
 
 export type TInputProps<T> = {
