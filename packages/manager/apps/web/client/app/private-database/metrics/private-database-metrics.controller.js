@@ -82,7 +82,7 @@ angular.module('App').controller(
                   query: (start, end, step) => {
                     const url = `${
                       data.endpoint
-                    }/prometheus/api/v1/query_range?query=containers_swap{container_name="${
+                    }/prometheus/api/v1/query_range?query=container_memory_swap{name="${
                       this.serviceName
                     }"}&start=${start.toISOString()}&end=${end.toISOString()}&step=${step}`;
 
