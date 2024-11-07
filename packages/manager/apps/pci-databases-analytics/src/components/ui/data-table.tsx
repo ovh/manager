@@ -22,6 +22,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Skeleton } from './skeleton';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select';
+import { useTranslation } from 'react-i18next';
 
 interface DataTablePaginationProps<TData> {
   table: TanStackTable<TData>
@@ -31,13 +32,14 @@ export function DataTablePagination<TData>({
   table,
   itemNumber,
 }: DataTablePaginationProps<TData>) {
+  const { t } = useTranslation('pci-databases-analytics/components/data-table');
   return (
     <div className="flex justify-end mt-4">
       <div className="flex items-center">
         <div className="flex items-center space-x-2">
         {itemNumber > 0 && (
           <div className="flex px-4 items-center justify-center text-sm font-medium">
-            <span>{itemNumber} Results</span>
+            <span>{t('itemCount', { count: itemNumber })}</span>
           </div>
         )}
           <Select
@@ -59,8 +61,7 @@ export function DataTablePagination<TData>({
           </Select>
         </div>
         <div className="flex px-4 items-center justify-center text-sm font-medium">
-          <span>Page {table.getState().pagination.pageIndex + 1} of{" "}
-          {table.getPageCount()}</span>
+          <span>{t('currentPage', { currentPage: table.getState().pagination.pageIndex + 1, totalPagesCount: table.getPageCount()})}</span>
         </div>
         <div className="flex items-center space-x-2">
           <Button
@@ -69,7 +70,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
           >
-            <span className="sr-only">Go to first page</span>
+            <span className="sr-only">{t('goToFirstPage')}</span>
             <ChevronFirst className="h-4 w-4" />
           </Button>
           <Button
@@ -78,7 +79,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            <span className="sr-only">Go to previous page</span>
+          <span className="sr-only">{t('goToPreviousPage')}</span>
             <ChevronLeft className="h-4 w-4" />
           </Button>
           <Button
@@ -87,7 +88,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            <span className="sr-only">Go to next page</span>
+            <span className="sr-only">{t('goToNextPage')}</span>
             <ChevronRight className="h-4 w-4" />
           </Button>
           <Button
@@ -96,7 +97,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
           >
-            <span className="sr-only">Go to last page</span>
+            <span className="sr-only">{t('goToLastPage')}</span>
             <ChevronLast className="h-4 w-4" />
           </Button>
         </div>
@@ -118,6 +119,7 @@ export function DataTable<TData, TValue>({
   pageSize,
   itemNumber,
 }: DataTableProps<TData, TValue>) {
+  const { t } = useTranslation('pci-databases-analytics/components/data-table');
   const [sorting, setSorting] = useState<SortingState>([]);
   const table = useReactTable({
     data,
@@ -180,7 +182,7 @@ export function DataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                 {t('noResult')}
                 </TableCell>
               </TableRow>
             )}

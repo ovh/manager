@@ -17,6 +17,7 @@ describe('durationStringToDuration', () => {
       { days: 6, hours: 4, minutes: 20, months: 3, seconds: 45, years: 0 },
     ],
     ['', { days: 0, hours: 0, minutes: 0, months: 0, seconds: 0, years: 0 }],
+    ['2W', { days: 14, hours: 0, minutes: 0, months: 0, seconds: 0, years: 0 }],
     ['3J', { days: 0, hours: 0, minutes: 0, months: 0, seconds: 0, years: 0 }],
   ])('should convert duration string to the duration', (input, expected) => {
     expect(durationStringToDuration(input)).toStrictEqual(expected);
@@ -28,6 +29,7 @@ describe('durationISOStringToShortTime', () => {
     ['P1Y3M4DT4H6M40S', '1Y3M4D4H6m40S'],
     ['PT1H52M47S', '1H52m47S'],
     ['P2Y5M6DT', '2Y5M6D'],
+    ['P1W7D', '1W7D'],
   ])(
     'should convert an ISO duration string to short time format',
     (input, expected) => {

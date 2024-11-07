@@ -41,10 +41,10 @@ const Service = () => {
   });
   const catalogQuery = useGetCatalog({ refetchOnWindowFocus: false });
   const loading =
-    availabilitiesQuery.isLoading ||
-    suggestionsQuery.isLoading ||
-    capabilitiesQuery.isLoading ||
-    catalogQuery.isLoading;
+    availabilitiesQuery.isPending ||
+    suggestionsQuery.isPending ||
+    capabilitiesQuery.isPending ||
+    catalogQuery.isPending;
 
   // if we have en engine set in query params, override suggestions
   const stepEngine = searchParams.get('STEP_1');
@@ -65,6 +65,7 @@ const Service = () => {
               },
         )
       : suggestionsQuery.data;
+
   return (
     <>
       <div className="flex justify-between w-full items-center">
