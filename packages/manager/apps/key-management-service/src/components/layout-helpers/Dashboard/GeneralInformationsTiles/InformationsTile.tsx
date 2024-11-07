@@ -1,6 +1,6 @@
 import React from 'react';
 import { OsdsButton, OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
-import { Clipboard } from '@ovh-ux/manager-react-components';
+import { Clipboard, ServiceDetails } from '@ovh-ux/manager-react-components';
 import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
@@ -21,11 +21,10 @@ import { Tile } from '@/components/dashboard/tile/tile.component';
 import { TileSeparator } from '@/components/dashboard/tile-separator/tileSeparator';
 import { TileValue } from '@/components/dashboard/tile-value/tileValue.component';
 import { TileItem } from '@/components/dashboard/tile-item/tileItem.component';
-import { KMSServiceInfos } from '@/types/okmsService.type';
 
 type InformationTileProps = {
   okmsData?: OKMS;
-  okmsServiceInfos?: KMSServiceInfos;
+  okmsServiceInfos?: ServiceDetails;
 };
 
 const InformationsTile = ({

@@ -1,4 +1,8 @@
-import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+import {
+  ActionMenu,
+  ActionMenuItem,
+  ServiceDetails,
+} from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
@@ -18,7 +22,6 @@ import {
 import { OKMS } from '@/types/okms.type';
 import { useTerminateOKms } from '@/data/hooks/useTerminateOKms';
 import { TerminateModal } from '@/components/Modal/terminate/TerminateModal.component';
-import { KMSServiceInfos } from '@/types/okmsService.type';
 import { OkmsServiceState } from '../okmsServiceState/OkmsServiceState.component';
 import { Tile } from '@/components/dashboard/tile/tile.component';
 import { TileItem } from '@/components/dashboard/tile-item/tileItem.component';
@@ -28,7 +31,7 @@ import { TileValueDate } from '@/components/dashboard/tile-value-date/tileValueD
 
 type BillingInformationsTileProps = {
   okmsData?: OKMS;
-  okmsService?: KMSServiceInfos;
+  okmsService?: ServiceDetails;
 };
 
 const BillingInformationsTile = ({
@@ -152,8 +155,8 @@ const BillingInformationsTile = ({
         >
           <span>
             <OsdsChip color={ODS_TEXT_COLOR_INTENT.error} inline>
-              {okmsService?.billing.engagement
-                ? okmsService.billing.engagement
+              {okmsService?.billing.engagement?.endRule?.strategy
+                ? okmsService.billing.engagement.endRule.strategy
                 : t(
                     'key_management_service_dashboard_field_label_engagement_none',
                   )}

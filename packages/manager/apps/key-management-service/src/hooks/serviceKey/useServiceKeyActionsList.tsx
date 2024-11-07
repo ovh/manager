@@ -14,6 +14,7 @@ import {
   OkmsServiceKeyState,
 } from '@/types/okmsServiceKey.type';
 import { OKMS } from '@/types/okms.type';
+import { kmsIamActions } from '@/utils/iam/iam.constants';
 
 const useServiceKeyActionsList = (
   okms: OKMS,
@@ -77,7 +78,7 @@ const useServiceKeyActionsList = (
               `/${okms.id}/${ROUTES_URLS.keys}/${okmsKey?.id}/${ROUTES_URLS.serviceKeyDeactivate}`,
             );
       },
-      iamActions: ['okms:apiovh:serviceKey/deactivate'],
+      iamActions: [kmsIamActions.serviceKeyDeactivate],
       urn: okms.iam.urn,
     });
   }
@@ -91,7 +92,7 @@ const useServiceKeyActionsList = (
       color: ODS_THEME_COLOR_INTENT.primary,
       disabled: updateIsPending,
       onClick: () => updateKmsServiceKey({ state: OkmsServiceKeyState.active }),
-      iamActions: ['okms:apiovh:serviceKey/activate'],
+      iamActions: [kmsIamActions.serviceKeyActivate],
       urn: okms.iam.urn,
     });
   }
@@ -106,7 +107,7 @@ const useServiceKeyActionsList = (
       disabled:
         okmsKey?.state === OkmsServiceKeyState.active || deleteIsPending,
       onClick: () => deleteKmsServiceKey(),
-      iamActions: ['okms:apiovh:serviceKey/delete'],
+      iamActions: [kmsIamActions.serviceKeyDelete],
       urn: okms.iam.urn,
     });
   }

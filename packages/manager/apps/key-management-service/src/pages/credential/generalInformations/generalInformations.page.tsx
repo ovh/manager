@@ -16,6 +16,7 @@ import CredentialCreationMethod from '@/components/credential/credentialCreation
 import { getDownloadCredentialParameters } from '@/utils/credential/credentialDownload';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { useOutletCredential } from '../Credential.page';
+import { kmsIamActions } from '@/utils/iam/iam.constants';
 
 const dateFormat: Intl.DateTimeFormatOptions = {
   hour12: false,
@@ -93,7 +94,7 @@ const CredentialGeneralInformations = () => {
             color={ODS_THEME_COLOR_INTENT.error}
             variant={ODS_BUTTON_VARIANT.ghost}
             onClick={() => navigate(ROUTES_URLS.credentialDelete)}
-            iamActions={['okms:apiovh:credential/delete']}
+            iamActions={[kmsIamActions.credentialDelete]}
             urn={okms.iam.urn}
           >
             {t('key_management_service_credential_delete')}
