@@ -40,7 +40,7 @@ export default [
       {
         path: ROUTE_PATHS.listing,
         ...lazyRouteConfig(() =>
-          import('@/pages/private-network/listing/ListingGuard'),
+          import('@/pages/private-network/listing/ListingLayout.component'),
         ),
       },
       {
