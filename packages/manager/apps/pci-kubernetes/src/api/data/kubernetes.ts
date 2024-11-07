@@ -14,6 +14,7 @@ export const getKubernetesCluster = async (
 export const getAllKube = async (projectId: string): Promise<TKube[]> => {
   const { data } = await fetchIcebergV6<TKube>({
     route: `/cloud/project/${projectId}/kube`,
+    disableCache: true,
   });
   return data;
 };

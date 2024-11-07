@@ -44,8 +44,11 @@ export const getAllKubeQueryKey = (projectId: string) => [
   'kube',
 ];
 
-export const useAllKube = (projectId: string, refetchIntervalTime?: number) =>
-  useQuery({
+export const useAllKube = (
+  projectId: string,
+  refetchIntervalTime?: QueryObserverOptions['refetchInterval'],
+) =>
+  useQuery<Required<TKube[]>>({
     queryKey: getAllKubeQueryKey(projectId),
     queryFn: (): Promise<Required<TKube[]>> => getAllKube(projectId),
     refetchOnMount: 'always',
