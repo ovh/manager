@@ -63,6 +63,7 @@
   "server_tab_cloud_backup": "Backup storage",
   "server_tab_ftp_backup": "Backup storage",
   "server_tab_task": "Tâches",
+  "server_tab_tags": "Tags",
   "server_tab_ipmi": "IPMI / KVM",
   "server_tab_dashboard": "Etat du serveur",
   "server_tab_dashboard_install_progress": "Votre système d’exploitation est en cours de déploiement. Cette opération peut nécessiter une dizaine de minutes. À la fin de l’installation, votre serveur redémarrera sur les disques sélectionnés.",
