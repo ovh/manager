@@ -5,9 +5,9 @@
   "status_cell": "Estado",
   "ovhref_cell": "Referencia",
   "vcdorg_cell": "Organización VCD",
-  "region_cell": "Zona",
+  "region_cell": "Región",
   "createdat_cell": "Fecha de creación",
-  "edit_name_action": "Modificar el nombre",
+  "edit_name_action": "Editar el nombre",
   "delete_action": "Dar de baja",
   "load_more_button": "Cargar las siguientes copias de seguridad"
 }

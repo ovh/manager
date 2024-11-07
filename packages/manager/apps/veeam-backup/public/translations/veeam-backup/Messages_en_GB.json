@@ -1,14 +1,14 @@
 {
   "hpc-crumb": "Hosted Private Cloud",
-  "order-veeam": "Order now",
+  "order-veeam": "Order",
   "more_info_billing_modalities": "Find out more about billing.",
-  "update_display_name_modal_headline": "Modify the name of the {{id}} backup",
+  "update_display_name_modal_headline": "Modify the name of the backup {{id}}",
   "update_display_name_input_label": "Backup name",
   "update_display_name_description": "",
   "update_display_name_pattern_message": "The name must contain a maximum of 32 characters",
-  "update_veeam_backup_display_name_success": "The name has been modified.",
+  "update_veeam_backup_display_name_success": "The name has been changed.",
   "coming_soon": "Coming soon",
   "unknown_date": "N/A",
-  "no_organization_message": "You do not currently have a VMware Cloud Director service. If you would like to learn more about our Managed VMware Cloud Director product, you can visit our",
-  "no_organization_link": "Go to"
+  "no_organization_message": "You do not currently have a VMware Cloud Director service. If you would like to learn more about our Managed VMware Cloud Director solution, please visit our webpage.",
+  "no_organization_link": "Go to webpage"
 }

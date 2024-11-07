@@ -1,7 +1,7 @@
 {
   "managed_vcd_vdc_compute_vhost_profile": "Virtual Host",
   "managed_vcd_vdc_compute_billing": "Facturación",
-  "managed_vcd_vdc_compute_billing_MONTHLY": "Al mes",
+  "managed_vcd_vdc_compute_billing_MONTHLY": "Por meses",
   "managed_vcd_vdc_compute_id": "ID",
   "managed_vcd_vdc_compute_order_cta": "Contratar un Virtual Host"
 }

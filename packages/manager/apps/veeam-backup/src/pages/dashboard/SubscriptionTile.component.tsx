@@ -59,13 +59,13 @@ export const SubscriptionTile: React.FC<VeeamBackupWithIam> = ({
           ) : (
             <>
               <Description className="block">{nextBillingDate}</Description>
-              {data?.data?.renew?.current?.mode && (
+              {data?.data?.billing?.renew?.current?.mode && (
                 <OsdsChip
                   className="mt-5"
                   inline
                   color={ODS_THEME_COLOR_INTENT.success}
                 >
-                  {t(`${data.data.renew.current.mode}_renew`)}
+                  {t(`${data.data.billing.renew.current.mode}_renew`)}
                 </OsdsChip>
               )}
             </>

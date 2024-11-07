@@ -3,5 +3,5 @@
   "managed_vcd_vdc_storage_profile": "Profile",
   "managed_vcd_vdc_storage_type": "Type",
   "managed_vcd_vdc_storage_capacity": "Size",
-  "managed_vcd_vdc_storage_order_cta": "Order a storage"
+  "managed_vcd_vdc_storage_order_cta": "Order storage"
 }

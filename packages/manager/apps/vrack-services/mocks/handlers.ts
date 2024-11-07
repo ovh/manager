@@ -8,7 +8,7 @@ import {
 import {
   GetServicesMocksParams,
   getServicesMocks,
-} from '@ovh-ux/manager-react-components/src/hooks/services/mocks/services.mock';
+} from '@ovh-ux/manager-react-components/src/hooks/services/mocks';
 import {
   getFeatureAvailabilityMocks,
   GetFeatureAvailabilityMocksParams,

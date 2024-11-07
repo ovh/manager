@@ -1,18 +1,18 @@
 {
   "managed_vcd_vdc_order_storage_title": "Order storage capacity",
-  "managed_vcd_vdc_order_compute_subtitle": "You can customize your Virtual Datacentre by adding Virtual Hosts. You will then be redirected to a new tab to finalize your order. Select a type of Virtual Host.",
-  "managed_vcd_vdc_order_storage_subtitle": "You can customize your Virtual Datacentre by adding storage capacity. You will then be redirected to a new tab to finalize your order. Select your storage capacity.",
+  "managed_vcd_vdc_order_compute_subtitle": "You can customise your Virtual Datacentre by adding Virtual Hosts. You will then be redirected to a new tab to complete your order. Select a type of Virtual Host.",
+  "managed_vcd_vdc_order_storage_subtitle": "You can customise your Virtual Datacentre by adding storage capacity. You will then be redirected to a new tab to complete your order. Select your storage capacity.",
   "managed_vcd_vdc_order_unavailable": "Please contact OVHcloud support",
   "managed_vcd_vdc_order_vhost": "Virtual Host",
   "managed_vcd_vdc_order_cpu_speed": "CPU (GHz)",
   "managed_vcd_vdc_order_ram": "RAM",
-  "managed_vcd_vdc_order_ram_value": "{{ram}}GB",
-  "managed_vcd_vdc_order_vcpu_count": "Number of vCPU",
+  "managed_vcd_vdc_order_ram_value": "{{ram}} GB",
+  "managed_vcd_vdc_order_vcpu_count": "Number of vCPUs",
   "managed_vcd_vdc_order_type": "Type",
   "managed_vcd_vdc_order_price": "Price",
   "managed_vcd_vdc_order_price_detail": "Price for 1 month",
   "managed_vcd_vdc_order_quantity_title": "Choose a quantity",
   "managed_vcd_vdc_order_quantity_label": "Quantity",
   "managed_vcd_vdc_order_cancel_cta": "Cancel",
-  "managed_vcd_vdc_order_confirm_cta": "Order now"
+  "managed_vcd_vdc_order_confirm_cta": "Order"
 }
