@@ -23,8 +23,8 @@ type TStep = {
 export enum StepsEnum {
   SIZE = 'SIZE',
   REGION = 'REGION',
-  PUBLIC_IP = 'PUBLIC_IP',
-  PRIVATE_NETWORK = 'PRIVATE_NETWORK',
+  IP = 'IP',
+  NETWORK = 'NETWORK',
   INSTANCE = 'INSTANCE',
   NAME = 'NAME',
 }
@@ -90,8 +90,8 @@ export const initialStoreState = () => ({
     ],
     ...[
       StepsEnum.REGION,
-      StepsEnum.PUBLIC_IP,
-      StepsEnum.PRIVATE_NETWORK,
+      StepsEnum.IP,
+      StepsEnum.NETWORK,
       StepsEnum.INSTANCE,
       StepsEnum.NAME,
     ].map((step: StepsEnum) => [
@@ -231,10 +231,10 @@ export const useCreateStore = create<TCreateStore>()((set, get) => ({
           case StepsEnum.REGION:
             get().set.region(null);
             break;
-          case StepsEnum.PUBLIC_IP:
+          case StepsEnum.IP:
             get().set.publicIp(null);
             break;
-          case StepsEnum.PRIVATE_NETWORK:
+          case StepsEnum.NETWORK:
             get().set.privateNetwork(null);
             get().set.subnet(null);
             get().set.gateways([]);

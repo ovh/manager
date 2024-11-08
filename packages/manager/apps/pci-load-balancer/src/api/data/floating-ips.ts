@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { FLOATING_IP_TYPES } from '@/constants';
 
 export type TFloatingIp = {
   associatedEntity: string;
@@ -6,7 +7,7 @@ export type TFloatingIp = {
   ip: string;
   networkId: string;
   status: string;
-  type: string;
+  type: typeof FLOATING_IP_TYPES[number];
 };
 
 export const getFloatingIps = async (projectId: string, region: string) => {

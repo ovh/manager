@@ -62,7 +62,9 @@ export const FLOATING_IP_TYPE = {
   NO_IP: 'none',
   CREATE: 'create',
   IP: 'ip',
-};
+} as const;
+
+export const FLOATING_IP_TYPES = ['none', 'create', 'ip'] as const;
 
 export const PRODUCT_LINK = {
   FR: 'https://www.ovhcloud.com/fr/public-cloud/load-balancer/',
