@@ -30,6 +30,14 @@ export type RuleFormProps = {
   onCancel: () => void;
 };
 
+const EMPTY_FORM = {
+  value: '',
+  invert: false,
+  key: '',
+  ruleType: '',
+  compareType: '',
+} as TL7Rule;
+
 export default function RuleForm({
   rule,
   onSubmit,
@@ -38,22 +46,7 @@ export default function RuleForm({
 }: Readonly<RuleFormProps>) {
   const { t } = useTranslation('l7/rules/rules-form');
   const { t: tPciCommon } = useTranslation('pci-common');
-  const [formState, setFormState] = useState<TL7Rule>({
-    value: '',
-    invert: false,
-    key: '',
-    ruleType: '',
-    compareType: '',
-  } as TL7Rule);
-
-  useEffect(() => {
-    if (rule) {
-      setFormState((state) => ({
-        ...state,
-        ...rule,
-      }));
-    }
-  }, [rule]);
+  const [formState, setFormState] = useState<TL7Rule>(rule || EMPTY_FORM);
 
   const [isTouched, setIsTouched] = useState({
     ruleType: false,
@@ -61,6 +54,35 @@ export default function RuleForm({
     key: false,
     value: false,
   });
+
+  useEffect(() => {
+    const { compareType, ruleType } = formState;
+    const types = COMPARE_TYPES_AVAILABILITY_BY_TYPE[ruleType];
+
+    // Reset comparison type if not available when changing rule type
+    if (types?.length && !types?.some((cmp) => cmp.value === compareType)) {
+      setFormState((state) => ({
+        ...state,
+        compareType: types[0].value,
+      }));
+    }
+
+    // If the selected rule type does not allow to input a key, we empty the key value
+    if (!RULE_TYPES_WITH_KEY.includes(ruleType)) {
+      setFormState((prevState) => ({
+        ...prevState,
+        key: undefined,
+      }));
+    }
+
+    // L7 Rule of type sslConnHasCert can only have True value, so we prefill the field and disable it
+    if (ruleType === RULE_TYPES.SSL_CONN_HAS_CERT) {
+      setFormState((prevState) => ({
+        ...prevState,
+        value: 'True',
+      }));
+    }
+  }, [formState.ruleType]);
 
   const ruleTypeError = useMemo(() => {
     if (isTouched.ruleType && !formState.ruleType) {
@@ -154,43 +176,6 @@ export default function RuleForm({
     return [];
   }, [formState.ruleType]);
 
-  const onRuleTypeChange = (ruleType: string) => {
-    // If the currently selected compare type is available to the new rule type we keep it
-    // else if only one compare type is available we pre select it
-    setFormState((state) => ({
-      ...state,
-      ruleType,
-    }));
-
-    if (
-      !COMPARE_TYPES_AVAILABILITY_BY_TYPE[ruleType].find(
-        (compareType) => compareType.value === formState.compareType,
-      )
-    ) {
-      setFormState((prevState) => ({
-        ...prevState,
-        compareType:
-          COMPARE_TYPES_AVAILABILITY_BY_TYPE[ruleType].length === 1
-            ? COMPARE_TYPES_AVAILABILITY_BY_TYPE[ruleType][0].value
-            : undefined,
-      }));
-    }
-    // If the selected rule type does not allow to input a key, we empty the key value
-    if (!RULE_TYPES_WITH_KEY.includes(ruleType)) {
-      setFormState((prevState) => ({
-        ...prevState,
-        key: undefined,
-      }));
-    }
-    // L7 Rule of type sslConnHasCert can only have True value, so we prefill the field and disable it
-    if (ruleType === RULE_TYPES.SSL_CONN_HAS_CERT) {
-      setFormState((prevState) => ({
-        ...prevState,
-        value: 'True',
-      }));
-    }
-  };
-
   const isDisabled =
     !!ruleTypeError || !!compareTypeError || !!keyError || !!valueError;
 
@@ -212,8 +197,10 @@ export default function RuleForm({
             }));
           }}
           onOdsValueChange={(event) => {
-            const ruleType = event.detail.value as string;
-            onRuleTypeChange(ruleType);
+            setFormState((state) => ({
+              ...state,
+              ruleType: event.detail.value as string,
+            }));
           }}
         >
           <span slot="placeholder">
