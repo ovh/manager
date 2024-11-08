@@ -1,3 +1,3 @@
 {
-  "exten_banner_description": "Zoptymalizuj swoją wydajność korzystając z Block Storage NVMe over Fabric!\nZwiększ wydajność wolumenów Classic i zwiększ wydajność w przypadku intensywnych obciążeń, dzięki czemu Twoje rozwiązania będą dostępne w fazie beta w regionach {{regions}}."
+  "exten_banner_description": "Zoptymalizuj wydajność, korzystając z Block Storage NVMe over Fabric! Rozwiązanie dostępne w fazie beta w regionach {{regions}} pozwala podwoić wydajność wolumenów Classic i poprawić efektywność intensywnych obciążeń."
 }
