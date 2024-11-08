@@ -70,12 +70,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       /* @ngInject */
       getServiceInfos: (AccountContactsService) => (service) =>
-        AccountContactsService.getServiceInfos(service).then(
-          (serviceInfos) => ({
-            ...service,
-            ...serviceInfos,
-          }),
-        ),
+        AccountContactsService.getServiceInfos(service),
       goToContacts: /* @ngInject */ ($state, $timeout, Alerter) => (
         message = false,
         type = 'success',
