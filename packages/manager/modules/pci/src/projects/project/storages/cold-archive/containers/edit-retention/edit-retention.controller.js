@@ -26,8 +26,6 @@ export default class PciBlockStorageDetailsArchiveController {
   }
 
   onLockedUntilDaysChange(modelValue) {
-    this.disableSubmit = modelValue > 4500;
-
     this.newRetentionDate = new Date();
     this.newRetentionDate.setDate(this.newRetentionDate.getDate() + modelValue);
 

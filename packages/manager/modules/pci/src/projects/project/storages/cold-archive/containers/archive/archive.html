@@ -2,7 +2,7 @@
     data-heading="{{ 'pci_projects_project_storages_cold_archive_containers_container_archive_title' | translate }}"
     data-primary-action="$ctrl.archiveContainer()"
     data-primary-label="{{:: 'pci_projects_project_storages_cold_archive_containers_container_archive_submit_label' | translate }}"
-    data-primary-disabled="$ctrl.isLoading || $ctrl.disableSubmit"
+    data-primary-disabled="$ctrl.isLoading  || $ctrl.hasRetention && !$ctrl.lockedUntilDays"
     data-secondary-action="$ctrl.cancel()"
     data-on-dismiss="$ctrl.cancel()"
     data-secondary-label="{{:: 'pci_projects_project_storages_cold_archive_containers_container_archive_cancel_label' | translate }}"
@@ -13,32 +13,29 @@
         data-translate-values="{ 'containerName': '<strong>' + $ctrl.container.name + '</strong>'}"
     ></p>
 
-    <oui-radio-group data-model="$ctrl.hasRetention" class="mb-3">
-        <oui-radio data-value="true" class="mb-3">
-            <span
-                data-translate="pci_projects_project_storages_cold_archive_containers_container_archive_has_retention"
-            ></span>
-        </oui-radio>
+    <form novalidate name="form">
+        <oui-radio-group data-model="$ctrl.hasRetention" class="mb-3">
+            <oui-radio data-value="true" class="mb-3">
+                <span
+                    data-translate="pci_projects_project_storages_cold_archive_containers_container_archive_has_retention"
+                ></span>
+            </oui-radio>
 
-        <div class="ml-4" data-ng-if="$ctrl.hasRetention">
-            <oui-field
-                data-label="{{ 'pci_projects_project_storages_cold_archive_containers_container_archive_retention_days' | translate }}"
-            >
-                <oui-numeric
-                    id="lockedUntilDays"
-                    data-name="number"
-                    data-min="1"
-                    data-model="$ctrl.lockedUntilDays"
-                    data-on-change="$ctrl.onLockedUntilDaysChange(modelValue)"
-                    class="mb-3"
+            <div class="ml-4" data-ng-if="$ctrl.hasRetention">
+                <oui-field
+                    data-label="{{ 'pci_projects_project_storages_cold_archive_containers_container_archive_retention_days' | translate }}"
                 >
-                </oui-numeric>
-
-                <div
-                    class="oui-color-ae-500 mb-3"
-                    data-ng-if="$ctrl.disableSubmit"
-                    data-translate="pci_projects_project_storages_cold_archive_containers_container_retention_retention_value_wartning"
-                ></div>
+                    <oui-numeric
+                        id="lockedUntilDays"
+                        data-name="number"
+                        data-min="1"
+                        data-max="4500"
+                        data-model="$ctrl.lockedUntilDays"
+                        data-on-change="$ctrl.onLockedUntilDaysChange(modelValue)"
+                        class="mb-3"
+                    >
+                    </oui-numeric>
+                </oui-field>
 
                 <oui-message data-type="warning">
                     <div
@@ -47,18 +44,18 @@
                         <div class="mr-1 mb-1">
                             <span
                                 data-translate="pci_projects_project_storages_cold_archive_containers_container_retention_warning"
-                                data-translate-values="{ date: ($ctrl.retentionDate | date:'short') }"
+                                data-translate-values="{ date: ($ctrl.retentionDate | date:'shortDate') }"
                             ></span>
                         </div>
                     </div>
                 </oui-message>
-            </oui-field>
-        </div>
+            </div>
 
-        <oui-radio data-value="false" class="mb-3">
-            <span
-                data-translate="pci_projects_project_storages_cold_archive_containers_container_archive_has_no_retention"
-            ></span>
-        </oui-radio>
-    </oui-radio-group>
+            <oui-radio data-value="false" class="mb-3">
+                <span
+                    data-translate="pci_projects_project_storages_cold_archive_containers_container_archive_has_no_retention"
+                ></span>
+            </oui-radio>
+        </oui-radio-group>
+    </form>
 </oui-modal>

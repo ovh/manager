@@ -62,7 +62,11 @@
             data-sortable
             data-filterable
         >
-            <span data-ng-bind="::$row.lockedUntil | date: 'short'"></span>
+            <span
+                data-ng-if="$row.lockedUntil"
+                data-ng-bind="::$row.lockedUntil | date: 'short'"
+            ></span>
+            <span data-ng-if="!$row.lockedUntil">-</span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_storages_cold_archive_containers_status_label' | translate"
