@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.41.0-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.8...@ovh-ux/manager-react-components@1.41.0-alpha.9) (2024-11-08)
+
+### Bug Fixes
+
+- **manager-react-components:** update peer dependencies ([bd0a433](https://github.com/ovh/manager/commit/bd0a433030aea43fd0000133d38dd827f4801e5e))
+
 # [1.41.0-alpha.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.7...@ovh-ux/manager-react-components@1.41.0-alpha.8) (2024-11-08)
 
 ### Bug Fixes
