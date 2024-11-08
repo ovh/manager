@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.8.0-alpha.8...@ovh-ux/manager-pci-common@0.8.0-alpha.9) (2024-11-08)
+
+
+### Bug Fixes
+
+* **manager-pci-common:** update peer dependencies ([6cd2ee2](https://github.com/ovh/manager/commit/6cd2ee2285c3872c53af36c994085c287ec2d262))
+
+
+
+
+
 # [0.8.0-alpha.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.8.0-alpha.7...@ovh-ux/manager-pci-common@0.8.0-alpha.8) (2024-11-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common
