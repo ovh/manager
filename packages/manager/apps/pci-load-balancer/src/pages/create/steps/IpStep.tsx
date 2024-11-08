@@ -24,15 +24,15 @@ import { useParams } from 'react-router-dom';
 import { useCatalog } from '@ovh-ux/manager-pci-common';
 import { AGORA_FLOATING_IP_REGEX } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
-import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
-import { useGetFloatingIps } from '@/api/hook/useFloatingIps';
+import { useTracking } from '@/pages/create/hooks/useTracking';
 import { useGetRegionPrivateNetworks } from '@/api/hook/useNetwork';
+import { useFloatingIpsList } from '@/api/hook/useFloatingIpsList';
 
 export const IpStep = (): JSX.Element => {
   const { t: tCreate } = useTranslation('load-balancer/create');
   const { t: tCommon } = useTranslation('pci-common');
 
-  const { trackStep } = useTrackStep();
+  const { trackStep } = useTracking();
   const { getFormattedHourlyCatalogPrice } = useCatalogPrice(5);
 
   const { projectId } = useParams();
@@ -40,9 +40,10 @@ export const IpStep = (): JSX.Element => {
   const store = useCreateStore();
 
   const {
-    list: floatingIpsList,
+    data: floatingIpsList,
     isPending: isFloatingIpsPending,
-  } = useGetFloatingIps(projectId, store.region?.name);
+  } = useFloatingIpsList(projectId, store.region?.name);
+
   const { list: privateNetworksList } = useGetRegionPrivateNetworks(
     projectId,
     store.region?.name,
@@ -53,36 +54,31 @@ export const IpStep = (): JSX.Element => {
   return (
     <StepComponent
       title={tCreate('octavia_load_balancer_create_floating_ip_title')}
-      isOpen={store.steps.get(StepsEnum.PUBLIC_IP).isOpen}
-      isChecked={store.steps.get(StepsEnum.PUBLIC_IP).isChecked}
-      isLocked={store.steps.get(StepsEnum.PUBLIC_IP).isLocked}
+      isOpen={store.steps.get(StepsEnum.IP).isOpen}
+      isChecked={store.steps.get(StepsEnum.IP).isChecked}
+      isLocked={store.steps.get(StepsEnum.IP).isLocked}
       order={3}
       next={{
         action: () => {
           trackStep(3);
 
-          store.check(StepsEnum.PUBLIC_IP);
-          store.lock(StepsEnum.PUBLIC_IP);
+          store.check(StepsEnum.IP);
+          store.lock(StepsEnum.IP);
 
           if (privateNetworksList.length > 0) {
             store.set.privateNetwork(privateNetworksList[0]);
           }
 
-          store.open(StepsEnum.PRIVATE_NETWORK);
+          store.open(StepsEnum.NETWORK);
         },
         label: tCommon('common_stepper_next_button_label'),
-        isDisabled: store.publicIp === null,
       }}
       edit={{
         action: () => {
-          store.unlock(StepsEnum.PUBLIC_IP);
-          store.uncheck(StepsEnum.PUBLIC_IP);
-          store.open(StepsEnum.PUBLIC_IP);
-          store.reset(
-            StepsEnum.PRIVATE_NETWORK,
-            StepsEnum.INSTANCE,
-            StepsEnum.NAME,
-          );
+          store.unlock(StepsEnum.IP);
+          store.uncheck(StepsEnum.IP);
+          store.open(StepsEnum.IP);
+          store.reset(StepsEnum.NETWORK, StepsEnum.INSTANCE, StepsEnum.NAME);
         },
         label: tCommon('common_stepper_modify_this_step'),
       }}
@@ -100,7 +96,7 @@ export const IpStep = (): JSX.Element => {
           <OsdsSpinner inline />
         </div>
       ) : (
-        <OsdsFormField className="mt-8" inline error="">
+        <OsdsFormField className="mt-8" inline>
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
             size={ODS_TEXT_SIZE._100}
@@ -171,7 +167,7 @@ export const IpStep = (): JSX.Element => {
                                 catalog?.addons.filter((addon) =>
                                   addon.planCode.match(AGORA_FLOATING_IP_REGEX),
                                 )[0].pricings[0].price,
-                              ).split('/')[0]
+                              )?.split('/')[0]
                             }
                           </b>
                         `,

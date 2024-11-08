@@ -27,7 +27,7 @@ import {
   LOAD_BALANCER_CREATION_TRACKING,
 } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
-import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
+import { useTracking } from '@/pages/create/hooks/useTracking';
 import {
   useGetPrivateNetworkSubnets,
   useGetRegionPrivateNetworks,
@@ -67,7 +67,7 @@ export const NetworkStep = (): JSX.Element => {
 
   const { getFormattedHourlyCatalogPrice } = useCatalogPrice(5);
 
-  const { trackStep } = useTrackStep();
+  const { trackStep } = useTracking();
   const networkTrack = useTranslatedLinkReference();
 
   useEffect(() => {
@@ -77,16 +77,16 @@ export const NetworkStep = (): JSX.Element => {
   return (
     <StepComponent
       title={tCreate('octavia_load_balancer_create_private_network_title')}
-      isOpen={store.steps.get(StepsEnum.PRIVATE_NETWORK).isOpen}
-      isChecked={store.steps.get(StepsEnum.PRIVATE_NETWORK).isChecked}
-      isLocked={store.steps.get(StepsEnum.PRIVATE_NETWORK).isLocked}
+      isOpen={store.steps.get(StepsEnum.NETWORK).isOpen}
+      isChecked={store.steps.get(StepsEnum.NETWORK).isChecked}
+      isLocked={store.steps.get(StepsEnum.NETWORK).isLocked}
       order={4}
       next={{
         action: () => {
           trackStep(4);
 
-          store.check(StepsEnum.PRIVATE_NETWORK);
-          store.lock(StepsEnum.PRIVATE_NETWORK);
+          store.check(StepsEnum.NETWORK);
+          store.lock(StepsEnum.NETWORK);
 
           store.open(StepsEnum.INSTANCE);
         },
@@ -97,9 +97,9 @@ export const NetworkStep = (): JSX.Element => {
       }}
       edit={{
         action: () => {
-          store.unlock(StepsEnum.PRIVATE_NETWORK);
-          store.uncheck(StepsEnum.PRIVATE_NETWORK);
-          store.open(StepsEnum.PRIVATE_NETWORK);
+          store.unlock(StepsEnum.NETWORK);
+          store.uncheck(StepsEnum.NETWORK);
+          store.open(StepsEnum.NETWORK);
           store.reset(StepsEnum.INSTANCE, StepsEnum.NAME);
         },
         label: tCommon('common_stepper_modify_this_step'),

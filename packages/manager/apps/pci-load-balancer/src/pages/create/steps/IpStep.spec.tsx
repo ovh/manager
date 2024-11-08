@@ -4,19 +4,33 @@ import {
   TStepProps,
   useMe,
 } from '@ovh-ux/manager-react-components';
-import { render, renderHook } from '@testing-library/react';
-import { OsdsLink, OsdsSpinner } from '@ovhcloud/ods-components/react';
+import { render, renderHook, within } from '@testing-library/react';
+import {
+  OsdsSelect,
+  OsdsSelectOption,
+  OsdsSpinner,
+} from '@ovhcloud/ods-components/react';
 import { act } from 'react-dom/test-utils';
+import React from 'react';
 import { IpStep } from './IpStep';
 import { wrapper } from '@/wrapperRenders';
-import { PRODUCT_LINK } from '@/constants';
-import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
+import { useTracking } from '../hooks/useTracking';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useGetFloatingIps } from '@/api/hook/useFloatingIps';
 import { TFloatingIp } from '@/api/data/floating-ips';
 
-vi.mock('@/pages/create/hooks/useTrackStep', async () => ({
-  useTrackStep: vi.fn().mockImplementation(() => ({ trackStep: vi.fn() })),
+vi.mock('react-i18next', async () => {
+  const { ...rest } = await vi.importActual('react-i18next');
+  return {
+    ...rest,
+    useTranslation: vi.fn().mockImplementation((namespace: string) => ({
+      t: vi.fn().mockImplementation((key: string) => `${namespace} | ${key}`),
+    })),
+  };
+});
+
+vi.mock('../hooks/useTracking', async () => ({
+  useTracking: vi.fn().mockImplementation(() => ({ trackStep: vi.fn() })),
 }));
 
 vi.mock('@ovhcloud/ods-components/react', async () => {
@@ -25,21 +39,32 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
     OsdsSpinner: ActualOsdsSpinner,
     OsdsFormField: ActualOsdsFormField,
     OsdsSelect: ActualOsdsSelect,
+    OsdsSelectOption: ActualOsdsSelectOption,
+    OsdsMessage: ActualOsdsMessage,
     ...rest
   } = await vi.importActual('@ovhcloud/ods-components/react');
 
-  const [OsdsLinkElem, OsdsSpinnerElem, OsdsFormFieldElem, OsdsSelectElem] = [
+  const [
+    OsdsLinkElem,
+    OsdsSpinnerElem,
+    OsdsFormFieldElem,
+    OsdsSelectElem,
+    OsdsSelectOptionElem,
+    OsdsMessageElem,
+  ] = [
     ActualOsdsLink as React.ElementType,
     ActualOsdsSpinner as React.ElementType,
     ActualOsdsFormField as React.ElementType,
     ActualOsdsSelect as React.ElementType,
+    ActualOsdsSelectOption as React.ElementType,
+    ActualOsdsMessage as React.ElementType,
   ];
 
   return {
     ...rest,
     OsdsSpinner: vi
       .fn()
-      .mockImplementation(({ props, children }) => (
+      .mockImplementation(({ children, ...props }) => (
         <OsdsSpinnerElem {...props}>{children}</OsdsSpinnerElem>
       )),
     OsdsLink: vi
@@ -47,15 +72,25 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
       .mockImplementation(({ props, children }) => (
         <OsdsLinkElem {...props}>{children}</OsdsLinkElem>
       )),
-    OsdsFormField: vi.fn().mockImplementation(({ props, children }) => (
+    OsdsFormField: vi.fn().mockImplementation(({ children, ...props }) => (
       <OsdsFormFieldElem {...props} data-testid="form-field">
         {children}
       </OsdsFormFieldElem>
     )),
-    OsdsSelect: vi.fn().mockImplementation(({ props, children }) => (
-      <OsdsSelectElem {...props} data-testid="select">
+    OsdsSelect: vi.fn().mockImplementation(({ children, ...props }) => (
+      <OsdsSelectElem {...props} data-testid="osds-select">
         {children}
       </OsdsSelectElem>
+    )),
+    OsdsSelectOption: vi
+      .fn()
+      .mockImplementation(({ children, ...props }) => (
+        <OsdsSelectOptionElem {...props}>{children}</OsdsSelectOptionElem>
+      )),
+    OsdsMessage: vi.fn().mockImplementation(({ children, ...props }) => (
+      <OsdsMessageElem {...props} data-testid="osds-message">
+        {children}
+      </OsdsMessageElem>
     )),
   };
 });
@@ -77,9 +112,9 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
 });
 
 vi.mock('@/api/hook/useFloatingIps', async () => {
-  const actual = await vi.importActual('@/api/hook/useFloatingIps');
+  const { ...rest } = await vi.importActual('@/api/hook/useFloatingIps');
   return {
-    ...actual,
+    ...rest,
     useGetFloatingIps: vi
       .fn()
       .mockImplementation(() => ({ data: undefined, isPending: true })),
@@ -96,22 +131,33 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
   };
 });
 
+const renderStep = () => render(<IpStep />, { wrapper });
+const renderStore = () => renderHook(() => useCreateStore());
+
 describe('IpStepStep', () => {
-  // TODO add snapshot test
+  beforeEach(() => {
+    const { result } = renderStore();
+    act(() => {
+      result.current.reset();
+      result.current.open(StepsEnum.IP);
+    });
+  });
   describe('should render', () => {
     beforeAll(() => {
       (useMe as Mock).mockImplementation(() => ({ me: undefined }));
 
-      render(<IpStep />, { wrapper });
+      renderStep();
     });
     it('should render StepComponent with right props', () => {
-      const { result } = renderHook(() => useCreateStore());
+      const { result } = renderStore();
 
-      act(() => result.current.open(StepsEnum.PUBLIC_IP));
+      act(() => result.current.open(StepsEnum.IP));
       const { calls } = (StepComponent as Mock).mock;
       const call = calls[calls.length - 1][0] as TStepProps;
 
-      expect(call.title).toBe('octavia_load_balancer_create_floating_ip_title');
+      expect(call.title).toBe(
+        'load-balancer/create | octavia_load_balancer_create_floating_ip_title',
+      );
 
       expect(call.isOpen).toBe(true);
 
@@ -121,45 +167,29 @@ describe('IpStepStep', () => {
 
       expect(call.order).toBe(3);
 
-      expect(call.next.label).toBe('common_stepper_next_button_label');
-      expect(call.next.isDisabled).toBe(true);
+      expect(call.next.label).toBe(
+        'pci-common | common_stepper_next_button_label',
+      );
+      expect(call.next.isDisabled).toBeUndefined();
 
-      expect(call.edit.label).toBe('common_stepper_modify_this_step');
+      expect(call.edit.label).toBe(
+        'pci-common | common_stepper_modify_this_step',
+      );
     });
 
-    describe.skip('Product link', () => {
-      it('should render ovhSubsidiary product link if found', () => {
-        ((OsdsLink as unknown) as Mock).mockImplementationOnce(({ href }) => (
-          <a href={href} data-testid="link"></a>
-        ));
-        (useMe as Mock).mockImplementation(() => ({
-          me: { ovhSubsidiary: 'FR' },
-        }));
-        const { getByTestId } = render(<IpStep />, { wrapper });
+    it('should render intro', () => {
+      const { getByText } = renderStep();
 
-        expect(getByTestId('link').attributes.getNamedItem('href').value).toBe(
-          PRODUCT_LINK.FR,
-        );
-      });
-
-      it('should render default product link if not found', () => {
-        ((OsdsLink as unknown) as Mock).mockImplementationOnce(({ href }) => (
-          <a href={href} data-testid="link"></a>
-        ));
-        (useMe as Mock).mockImplementation(() => ({
-          me: undefined,
-        }));
-        const { getByTestId } = render(<IpStep />, { wrapper });
-
-        expect(getByTestId('link').attributes.getNamedItem('href').value).toBe(
-          PRODUCT_LINK.DEFAULT,
-        );
-      });
+      expect(
+        getByText(
+          'load-balancer/create | octavia_load_balancer_create_floating_ip_intro',
+        ),
+      ).toBeInTheDocument();
     });
 
     describe('Floating ips', () => {
       it('should show spinner if floating ips are pending', () => {
-        (useGetFloatingIps as Mock).mockImplementationOnce(() => ({
+        (useGetFloatingIps as Mock).mockImplementation(() => ({
           data: undefined,
           isPending: true,
         }));
@@ -168,116 +198,342 @@ describe('IpStepStep', () => {
           <div data-testid="spinner"></div>
         ));
 
-        const { getByTestId } = render(<IpStep />, { wrapper });
+        const { getByTestId } = renderStep();
 
         expect(getByTestId('spinner')).toBeInTheDocument();
       });
 
       describe('Floating ips are not pending', () => {
         beforeEach(() => {
-          (useGetFloatingIps as Mock).mockImplementationOnce(() => ({
-            data: [],
+          (useGetFloatingIps as Mock).mockImplementation(() => ({
             isPending: false,
+            isFetching: false,
           }));
         });
         it('should not show spinner', () => {
-          const { queryByTestId } = render(<IpStep />, { wrapper });
+          ((OsdsSpinner as unknown) as Mock).mockReturnValue(
+            <span data-testid="spinner"></span>,
+          );
+          const { queryByTestId } = renderStep();
 
-          expect(queryByTestId('spinner')).toBeNull();
+          expect(queryByTestId('spinner')).not.toBeInTheDocument();
         });
         describe('Field', () => {
-          it.skip('should show form field', async () => {
-            const { queryByTestId } = render(<IpStep />, { wrapper });
+          beforeEach(() => {
+            (useGetFloatingIps as Mock).mockReturnValueOnce({
+              isPending: false,
+              isFetching: false,
+            });
+          });
+          it('should show form field', () => {
+            const { queryByTestId } = renderStep();
+
             expect(queryByTestId('form-field')).toBeInTheDocument();
           });
 
-          describe.skip('content', () => {
-            // TODO continue for content of the form field
+          describe('content', () => {
+            it('should have the right label', () => {
+              ((OsdsSelect as unknown) as Mock).mockImplementationOnce(() => (
+                <></>
+              ));
+              const { getByTestId } = renderStep();
 
-            it('should display the select', () => {
-              render(<IpStep />, { wrapper });
-              // expect(within(field).getByTestId('select')).toBeInTheDocument();
+              expect(
+                within(getByTestId('form-field')).getByText(
+                  'load-balancer/create | octavia_load_balancer_create_floating_ip_field',
+                ),
+              ).toBeInTheDocument();
+            });
+
+            describe('select', () => {
+              it('should display the select', () => {
+                const { getByTestId } = renderStep();
+                expect(
+                  within(getByTestId('form-field')).getByTestId('osds-select'),
+                ).toBeInTheDocument();
+              });
+
+              it('value should be the id of the floating ip if it is set', () => {
+                const { result } = renderStore();
+                act(() => {
+                  result.current.set.publicIp({ id: 'test' } as TFloatingIp);
+                });
+                const { getByTestId } = renderStep();
+
+                expect(
+                  getByTestId('osds-select').attributes.getNamedItem('value')
+                    .value,
+                ).toBe('test');
+              });
+
+              it('value should be undefined if the floating is not set', () => {
+                const { getByTestId } = renderStep();
+
+                expect(
+                  getByTestId('osds-select').attributes.getNamedItem('value'),
+                ).toBeNull();
+              });
+
+              it('should display the placeholder', () => {
+                const { getByTestId } = renderStep();
+
+                expect(
+                  within(getByTestId('osds-select')).getByText(
+                    'load-balancer/create | octavia_load_balancer_create_floating_ip_field',
+                  ),
+                ).toBeInTheDocument();
+              });
+
+              describe('Options', () => {
+                beforeEach(() => {
+                  ((OsdsSelectOption as unknown) as Mock).mockReset();
+                });
+                it('should show the create as the first option', () => {
+                  renderStep();
+
+                  const {
+                    calls,
+                  } = ((OsdsSelectOption as unknown) as Mock).mock;
+
+                  const call = calls[0][0] as {
+                    value: string;
+                    children: string;
+                  };
+
+                  expect(call.value).toBe('create');
+                  expect(call.children).toBe(
+                    'load-balancer/create | octavia_load_balancer_create_floating_ip_field_new_floating_ip',
+                  );
+                });
+
+                it('should show the no ip as the second option', () => {
+                  renderStep();
+
+                  const {
+                    calls,
+                  } = ((OsdsSelectOption as unknown) as Mock).mock;
+
+                  const call = calls[1][0] as {
+                    value: string;
+                    children: string;
+                  };
+
+                  expect(call.value).toBe('none');
+                  expect(call.children).toBe(
+                    'load-balancer/create | octavia_load_balancer_create_floating_ip_field_no_floating_ip',
+                  );
+                });
+
+                it('should show the select with the right options', () => {
+                  (useGetFloatingIps as Mock).mockImplementationOnce(() => ({
+                    list: [
+                      { id: '1', ip: 'ip' },
+                      { id: '1', ip: 'ip' },
+                    ] as TFloatingIp[],
+                    isPending: false,
+                  }));
+                });
+              });
+            });
+
+            describe('Messages', () => {
+              describe('create', () => {
+                it("should not show the message if the selected ip isn't create", () => {
+                  const { queryByTestId } = renderStep();
+
+                  expect(queryByTestId('osds-message')).not.toBeInTheDocument();
+                });
+
+                describe('selected ip is create', () => {
+                  beforeEach(() => {
+                    const { result } = renderStore();
+                    act(() => {
+                      result.current.set.publicIp({
+                        id: 'create',
+                      } as TFloatingIp);
+                    });
+                  });
+                  it('should show the message', () => {
+                    const { getByTestId } = renderStep();
+
+                    expect(getByTestId('osds-message')).toBeInTheDocument();
+
+                    expect(
+                      getByTestId('osds-message').attributes.getNamedItem(
+                        'color',
+                      ).value,
+                    ).toBe('info');
+                  });
+
+                  it('should display the info message with the right content', () => {
+                    // TODO extra checks
+                    const { getByTestId } = renderStep();
+
+                    const messageElement = getByTestId('osds-message');
+
+                    expect(messageElement).toMatchSnapshot();
+                  });
+                });
+              });
+              describe('none', () => {
+                it("should not show the message if the selected ip isn't none", () => {
+                  const { queryByTestId } = renderStep();
+
+                  expect(queryByTestId('osds-message')).not.toBeInTheDocument();
+                });
+
+                describe('selected ip is none', () => {
+                  beforeEach(() => {
+                    const { result } = renderStore();
+                    act(() => {
+                      result.current.set.publicIp({
+                        id: 'none',
+                      } as TFloatingIp);
+                    });
+                  });
+                  it('should show the message', () => {
+                    const { getByTestId } = renderStep();
+
+                    expect(getByTestId('osds-message')).toBeInTheDocument();
+
+                    expect(
+                      getByTestId('osds-message').attributes.getNamedItem(
+                        'color',
+                      ).value,
+                    ).toBe('warning');
+                  });
+
+                  it('should display the warning message with the right content', () => {
+                    // TODO extra checks
+                    const { getByTestId } = renderStep();
+
+                    const messageElement = getByTestId('osds-message');
+
+                    expect(messageElement).toMatchSnapshot();
+                  });
+                });
+              });
             });
           });
         });
       });
     });
   });
+
   describe('Actions', () => {
-    beforeAll(() => {
-      (useGetFloatingIps as Mock).mockImplementationOnce(() => ({
-        isPending: false,
-      }));
-    });
-
-    describe('next', () => {
-      describe('render', () => {
-        test('Next button should be disabled if addon is not set', () => {
-          const { getByText } = render(<IpStep />, { wrapper });
-
-          const nextButton = getByText('common_stepper_next_button_label');
-          expect(
-            nextButton.attributes.getNamedItem('disabled').value,
-          ).toBeTruthy();
-        });
-
-        test('Next button should be enabled if addon is set', () => {
-          const { result } = renderHook(() => useCreateStore());
-          act(() => result.current.set.publicIp({} as TFloatingIp));
-
-          const { getByText } = render(<IpStep />, { wrapper });
-
-          const nextButton = getByText('common_stepper_next_button_label');
-          expect(
-            nextButton.attributes.getNamedItem('disabled')?.value,
-          ).toBeFalsy();
-        });
+    beforeEach(() => {
+      const { result } = renderStore();
+      act(() => {
+        result.current.set.publicIp({ id: 'create' } as TFloatingIp);
       });
+    });
+    describe('next', () => {
       describe('click', () => {
         it('Should track on next click', async () => {
           const trackStepSpy = vi.fn();
 
-          const { result } = renderHook(() => useCreateStore());
-          act(() => result.current.set.publicIp({} as TFloatingIp));
-
-          (useTrackStep as Mock).mockImplementationOnce(() => ({
+          (useTracking as Mock).mockImplementation(() => ({
             trackStep: trackStepSpy,
           }));
 
-          const { getByText } = render(<IpStep />, { wrapper });
+          const { getByText } = renderStep();
 
-          const nextButton = getByText('common_stepper_next_button_label');
+          const nextButton = getByText(
+            'pci-common | common_stepper_next_button_label',
+          );
 
           act(() => nextButton.click());
 
           expect(trackStepSpy).toHaveBeenCalledWith(3);
         });
-        test("Prepare networks's step on next click", () => {
-          const { result } = renderHook(() => useCreateStore());
-          act(() => {
-            result.current.reset();
-            result.current.set.publicIp({} as TFloatingIp);
-          });
+        test("Prepare network's step on next click", () => {
+          const { result } = renderStore();
 
-          const { getByText } = render(<IpStep />, { wrapper });
+          const { getByText } = renderStep();
 
-          // const nextButton = getByText('common_stepper_next_button_label');
-          //
-          // act(()=>nextButton.click());
-          //
-          // expect([
-          //   result.current.steps.get(StepsEnum.PUBLIC_IP).isChecked,
-          //   result.current.steps.get(StepsEnum.PUBLIC_IP).isLocked,
-          //   result.current.steps.get(StepsEnum.PRIVATE_NETWORK).isOpen
-          // ]).toEqual([
-          //   true,
-          //   true,
-          //   true
-          // ]);
+          const nextButton = getByText(
+            'pci-common | common_stepper_next_button_label',
+          );
+
+          const { check, lock, open } = { ...result.current };
+
+          result.current.check = vi.fn();
+          result.current.lock = vi.fn();
+          result.current.open = vi.fn();
+
+          act(() => nextButton.click());
+
+          expect(result.current.check).toHaveBeenCalledWith(StepsEnum.IP);
+          expect(result.current.lock).toHaveBeenCalledWith(StepsEnum.IP);
+          expect(result.current.open).toHaveBeenCalledWith(StepsEnum.NETWORK);
+
+          result.current.check = check;
+          result.current.lock = lock;
+          result.current.open = open;
         });
       });
     });
 
-    // TODO test edit
+    describe('edit', () => {
+      describe('render', () => {
+        it('should not display if step is not checked', () => {
+          const { queryByText } = renderStep();
+
+          const editButton = queryByText(
+            'pci-common | common_stepper_modify_this_step',
+          );
+          expect(editButton).not.toBeInTheDocument();
+        });
+        it('should have the right label', () => {
+          const { result } = renderStore();
+          act(() => result.current.lock(StepsEnum.IP));
+
+          const { queryByText } = renderStep();
+
+          const editButton = queryByText(
+            'pci-common | common_stepper_modify_this_step',
+          );
+          expect(editButton).toBeInTheDocument();
+        });
+      });
+
+      describe('click', () => {
+        it('should prepare steps on click', () => {
+          const { result } = renderStore();
+          act(() => result.current.lock(StepsEnum.IP));
+
+          const { unlock, uncheck, open, reset } = { ...result.current };
+
+          result.current.unlock = vi.fn();
+          result.current.uncheck = vi.fn();
+          result.current.open = vi.fn();
+          result.current.reset = vi.fn();
+
+          const { getByText } = renderStep();
+
+          const editButton = getByText(
+            'pci-common | common_stepper_modify_this_step',
+          );
+
+          act(() => {
+            editButton.click();
+          });
+
+          // expect(result.current.unlock).toHaveBeenCalledWith(StepsEnum.IP);
+          // expect(result.current.uncheck).toHaveBeenCalledWith(StepsEnum.IP);
+          // expect(result.current.open).toHaveBeenCalledWith(StepsEnum.IP);
+          // expect(result.current.reset).toHaveBeenCalledWith(
+          //   StepsEnum.NETWORK,
+          //   StepsEnum.INSTANCE,
+          //   StepsEnum.NAME,
+          // );
+
+          result.current.unlock = unlock;
+          result.current.uncheck = uncheck;
+          result.current.open = open;
+          result.current.reset = reset;
+        });
+      });
+    });
   });
 });

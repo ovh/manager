@@ -5,39 +5,59 @@ import {
   useMe,
 } from '@ovh-ux/manager-react-components';
 import { render, renderHook } from '@testing-library/react';
-import { OsdsLink, OsdsSpinner } from '@ovhcloud/ods-components/react';
+import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { SizeStep } from './SizeStep';
 import { wrapper } from '@/wrapperRenders';
 import { useGetAddons } from '@/api/hook/useAddons';
 import { PRODUCT_LINK } from '@/constants';
 import SizeInputComponent from './input/SizeInput.component';
-import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
+import { useTracking } from '../../hooks/useTracking';
 import { StepsEnum, TAddon, useCreateStore } from '@/pages/create/store';
 
-vi.mock('@/pages/create/hooks/useTrackStep', async () => ({
-  useTrackStep: vi.fn().mockImplementation(() => ({ trackStep: vi.fn() })),
+vi.mock('react-i18next', async () => {
+  const { ...rest } = await vi.importActual('react-i18next');
+  return {
+    ...rest,
+    useTranslation: vi.fn().mockImplementation((namespace: string) => ({
+      t: vi.fn().mockImplementation((key: string) => `${namespace} | ${key}`),
+    })),
+  };
+});
+
+vi.mock('../../hooks/useTracking', async () => ({
+  useTracking: vi.fn().mockImplementation(() => ({ trackStep: vi.fn() })),
 }));
 
 vi.mock('@ovhcloud/ods-components/react', async () => {
   const {
     OsdsSpinner: ActualOsdsSpinner,
     OsdsLink: ActualOsdsLink,
+    OsdsText: ActualOsdsText,
     ...rest
   } = await vi.importActual('@ovhcloud/ods-components/react');
-  const [OsdsSpinnerElem, OsdsLinkElem] = [
+  const [OsdsSpinnerElem, OsdsLinkElem, OsdsTextElem] = [
     ActualOsdsSpinner as React.ElementType,
     ActualOsdsLink as React.ElementType,
+    ActualOsdsText as React.ElementType,
   ];
   return {
     ...rest,
     OsdsSpinner: vi
       .fn()
-      .mockImplementation(OsdsSpinnerElem as typeof OsdsSpinner),
-    OsdsLink: vi
+      .mockImplementation(({ children, ...props }) => (
+        <OsdsSpinnerElem {...props}>{children}</OsdsSpinnerElem>
+      )),
+    OsdsLink: vi.fn().mockImplementation(({ children, ...props }) => (
+      <OsdsLinkElem {...props} data-testid="osds-link">
+        {children}
+      </OsdsLinkElem>
+    )),
+    OsdsText: vi
       .fn()
-      .mockImplementation(({ props, children }) => (
-        <OsdsLinkElem {...props}>{children}</OsdsLinkElem>
+      .mockImplementation(({ children, ...props }) => (
+        <OsdsTextElem {...props}>{children}</OsdsTextElem>
       )),
   };
 });
@@ -77,21 +97,31 @@ vi.mock('./input/SizeInput.component', async () => {
   };
 });
 
+const renderStep = () => render(<SizeStep />, { wrapper });
+const renderStore = () => renderHook(() => useCreateStore());
+
 describe('SizeStep', () => {
-  // TODO add snapshot test
+  beforeEach(() => {
+    const { result } = renderStore();
+    act(() => {
+      result.current.reset();
+      result.current.open(StepsEnum.SIZE);
+    });
+  });
   describe('should render', () => {
-    beforeAll(() => {
+    beforeEach(() => {
       (useMe as Mock).mockImplementation(() => ({ me: undefined }));
       (StepComponent as Mock).mockImplementationOnce(({ children }) => (
-        <div>{children}</div>
+        <div data-testid="step-component">{children}</div>
       ));
-
-      render(<SizeStep />, { wrapper });
     });
     it('should render StepComponent with right props', () => {
+      renderStep();
       const call = (StepComponent as Mock).mock.calls[0][0] as TStepProps;
 
-      expect(call.title).toBe('octavia_load_balancer_create_size_title');
+      expect(call.title).toBe(
+        'load-balancer/create | octavia_load_balancer_create_size_title',
+      );
 
       expect(call.isOpen).toBe(true);
 
@@ -101,54 +131,66 @@ describe('SizeStep', () => {
 
       expect(call.order).toBe(1);
 
-      expect(call.next.label).toBe('common_stepper_next_button_label');
+      expect(call.next.label).toBe(
+        'pci-common | common_stepper_next_button_label',
+      );
       expect(call.next.isDisabled).toBe(true);
 
-      expect(call.edit.label).toBe('common_stepper_modify_this_step');
+      expect(call.edit.label).toBe(
+        'pci-common | common_stepper_modify_this_step',
+      );
+    });
+
+    it('should render intro', () => {
+      const { getByText } = renderStep();
+      expect(
+        getByText(
+          'load-balancer/create | octavia_load_balancer_create_size_intro',
+        ),
+      ).toBeInTheDocument();
+      expect(
+        getByText(
+          'load-balancer/create | octavia_load_balancer_create_size_intro_link',
+        ),
+      ).toBeInTheDocument();
     });
 
     describe('Product link', () => {
       it('should render ovhSubsidiary product link if found', () => {
-        ((OsdsLink as unknown) as Mock).mockImplementationOnce(({ href }) => (
-          <a href={href} data-testid="link"></a>
-        ));
         (useMe as Mock).mockImplementation(() => ({
           me: { ovhSubsidiary: 'FR' },
         }));
-        const { getByTestId } = render(<SizeStep />, { wrapper });
+        const { getByTestId } = renderStep();
 
-        expect(getByTestId('link').attributes.getNamedItem('href').value).toBe(
-          PRODUCT_LINK.FR,
-        );
+        expect(
+          getByTestId('osds-link').attributes.getNamedItem('href').value,
+        ).toBe(PRODUCT_LINK.FR);
       });
 
       it('should render default product link if not found', () => {
-        ((OsdsLink as unknown) as Mock).mockImplementationOnce(({ href }) => (
-          <a href={href} data-testid="link"></a>
-        ));
         (useMe as Mock).mockImplementation(() => ({
           me: undefined,
         }));
-        const { getByTestId } = render(<SizeStep />, { wrapper });
+        const { getByTestId } = renderStep();
 
-        expect(getByTestId('link').attributes.getNamedItem('href').value).toBe(
-          PRODUCT_LINK.DEFAULT,
-        );
+        expect(
+          getByTestId('osds-link').attributes.getNamedItem('href').value,
+        ).toBe(PRODUCT_LINK.DEFAULT);
       });
     });
 
     describe('Addons', () => {
       it('should show spinner if addons are pending', () => {
-        (useGetAddons as Mock).mockImplementation(() => ({
+        (useGetAddons as Mock).mockImplementationOnce(() => ({
           data: undefined,
           isPending: true,
         }));
 
-        ((OsdsSpinner as unknown) as Mock).mockImplementation(() => (
+        ((OsdsSpinner as unknown) as Mock).mockImplementationOnce(() => (
           <div data-testid="spinner"></div>
         ));
 
-        const { getByTestId } = render(<SizeStep />, { wrapper });
+        const { getByTestId } = renderStep();
 
         expect(getByTestId('spinner')).toBeInTheDocument();
       });
@@ -163,12 +205,13 @@ describe('SizeStep', () => {
           <div data-testid="input"></div>
         ));
 
-        const { getByTestId } = render(<SizeStep />, { wrapper });
+        const { getByTestId } = renderStep();
 
         expect(getByTestId('input')).toBeInTheDocument();
       });
     });
   });
+
   describe('Actions', () => {
     beforeAll(() => {
       (useGetAddons as Mock).mockImplementationOnce(() => ({
@@ -182,21 +225,25 @@ describe('SizeStep', () => {
     describe('next', () => {
       describe('render', () => {
         test('Next button should be disabled if addon is not set', () => {
-          const { getByText } = render(<SizeStep />, { wrapper });
+          const { getByText } = renderStep();
 
-          const nextButton = getByText('common_stepper_next_button_label');
+          const nextButton = getByText(
+            'pci-common | common_stepper_next_button_label',
+          );
           expect(
             nextButton.attributes.getNamedItem('disabled').value,
           ).toBeTruthy();
         });
 
         test('Next button should be enabled if addon is set', () => {
-          const { result } = renderHook(() => useCreateStore());
+          const { result } = renderStore();
           act(() => result.current.set.addon({} as TAddon));
 
-          const { getByText } = render(<SizeStep />, { wrapper });
+          const { getByText } = renderStep();
 
-          const nextButton = getByText('common_stepper_next_button_label');
+          const nextButton = getByText(
+            'pci-common | common_stepper_next_button_label',
+          );
           expect(
             nextButton.attributes.getNamedItem('disabled')?.value,
           ).toBeFalsy();
@@ -206,43 +253,115 @@ describe('SizeStep', () => {
         it('Should track on next click', async () => {
           const trackStepSpy = vi.fn();
 
-          const { result } = renderHook(() => useCreateStore());
+          const { result } = renderStore();
           act(() => result.current.set.addon({} as TAddon));
 
-          (useTrackStep as Mock).mockImplementationOnce(() => ({
+          (useTracking as Mock).mockImplementation(() => ({
             trackStep: trackStepSpy,
           }));
 
-          const { getByText } = render(<SizeStep />, { wrapper });
+          const { getByText } = renderStep();
 
-          const nextButton = getByText('common_stepper_next_button_label');
+          const nextButton = getByText(
+            'pci-common | common_stepper_next_button_label',
+          );
 
           act(() => nextButton.click());
 
           expect(trackStepSpy).toHaveBeenCalledWith(1);
         });
         test("Prepare region's step on next click", () => {
-          const { result } = renderHook(() => useCreateStore());
+          const { result } = renderStore();
           act(() => {
-            result.current.reset();
             result.current.set.addon({} as TAddon);
           });
 
-          const { getByText } = render(<SizeStep />, { wrapper });
+          const { getByText } = renderStep();
 
-          const nextButton = getByText('common_stepper_next_button_label');
+          const nextButton = getByText(
+            'pci-common | common_stepper_next_button_label',
+          );
+
+          const { check, lock, open } = { ...result.current };
+
+          result.current.check = vi.fn();
+          result.current.lock = vi.fn();
+          result.current.open = vi.fn();
 
           act(() => nextButton.click());
 
-          expect([
-            result.current.steps.get(StepsEnum.SIZE).isChecked,
-            result.current.steps.get(StepsEnum.SIZE).isLocked,
-            result.current.steps.get(StepsEnum.REGION).isOpen,
-          ]).toEqual([true, true, true]);
+          expect(result.current.check).toHaveBeenCalledWith(StepsEnum.SIZE);
+          expect(result.current.lock).toHaveBeenCalledWith(StepsEnum.SIZE);
+          expect(result.current.open).toHaveBeenCalledWith(StepsEnum.REGION);
+
+          result.current.check = check;
+          result.current.lock = lock;
+          result.current.open = open;
         });
       });
     });
 
-    // TODO test edit
+    describe('edit', () => {
+      describe('render', () => {
+        it('should not display if step is not checked', () => {
+          const { queryByText } = renderStep();
+
+          const editButton = queryByText(
+            'pci-common | common_stepper_modify_this_step',
+          );
+          expect(editButton).not.toBeInTheDocument();
+        });
+        it('should have the right label', () => {
+          const { result } = renderStore();
+          act(() => result.current.lock(StepsEnum.SIZE));
+
+          const { queryByText } = renderStep();
+
+          const editButton = queryByText(
+            'pci-common | common_stepper_modify_this_step',
+          );
+          expect(editButton).toBeInTheDocument();
+        });
+      });
+
+      describe('click', () => {
+        it('should prepare steps on click', () => {
+          const { result } = renderStore();
+
+          const { unlock, uncheck, open, reset } = { ...result.current };
+
+          act(() => result.current.lock(StepsEnum.SIZE));
+
+          result.current.unlock = vi.fn();
+          result.current.uncheck = vi.fn();
+          result.current.open = vi.fn();
+          result.current.reset = vi.fn();
+
+          const { getByText } = renderStep();
+
+          const editButton = getByText(
+            'pci-common | common_stepper_modify_this_step',
+          );
+
+          act(() => editButton.click());
+
+          expect(result.current.unlock).toHaveBeenCalledWith(StepsEnum.SIZE);
+          expect(result.current.uncheck).toHaveBeenCalledWith(StepsEnum.SIZE);
+          expect(result.current.open).toHaveBeenCalledWith(StepsEnum.SIZE);
+          expect(result.current.reset).toHaveBeenCalledWith(
+            StepsEnum.REGION,
+            StepsEnum.IP,
+            StepsEnum.NETWORK,
+            StepsEnum.INSTANCE,
+            StepsEnum.NAME,
+          );
+
+          result.current.unlock = unlock;
+          result.current.uncheck = uncheck;
+          result.current.open = open;
+          result.current.reset = reset;
+        });
+      });
+    });
   });
 });

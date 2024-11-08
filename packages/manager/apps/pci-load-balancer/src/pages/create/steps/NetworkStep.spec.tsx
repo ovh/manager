@@ -9,14 +9,14 @@ import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { act } from 'react-dom/test-utils';
 import { NetworkStep } from './NetworkStep';
 import { wrapper } from '@/wrapperRenders';
-import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
+import { useTracking } from '@/pages/create/hooks/useTracking';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useGetFloatingIps } from '@/api/hook/useFloatingIps';
 import { TFloatingIp } from '@/api/data/floating-ips';
 import { useGetRegionPrivateNetworks } from '@/api/hook/useNetwork';
 
-vi.mock('@/pages/create/hooks/useTrackStep', async () => ({
-  useTrackStep: vi.fn().mockImplementation(() => ({ trackStep: vi.fn() })),
+vi.mock('@/pages/create/hooks/useTracking', async () => ({
+  useTracking: vi.fn().mockImplementation(() => ({ trackStep: vi.fn() })),
 }));
 
 vi.mock('@ovhcloud/ods-components/react', async () => {
@@ -116,7 +116,7 @@ describe('NetworkStepStep', () => {
     it.skip('should render StepComponent with right props', () => {
       const { result } = renderHook(() => useCreateStore());
 
-      act(() => result.current.open(StepsEnum.PRIVATE_NETWORK));
+      act(() => result.current.open(StepsEnum.NETWORK));
       const { calls } = (StepComponent as Mock).mock;
       const call = calls[calls.length - 1][0] as TStepProps;
 
@@ -221,7 +221,7 @@ describe('NetworkStepStep', () => {
           const { result } = renderHook(() => useCreateStore());
           act(() => result.current.set.publicIp({} as TFloatingIp));
 
-          (useTrackStep as Mock).mockImplementationOnce(() => ({
+          (useTracking as Mock).mockImplementationOnce(() => ({
             trackStep: trackStepSpy,
           }));
 

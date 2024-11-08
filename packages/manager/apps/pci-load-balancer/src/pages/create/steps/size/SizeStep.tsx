@@ -10,14 +10,14 @@ import { useTranslation } from 'react-i18next';
 import { PRODUCT_LINK } from '@/constants';
 import SizeInputComponent from './input/SizeInput.component';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
-import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
+import { useTracking } from '@/pages/create/hooks/useTracking';
 import { useGetAddons } from '@/api/hook/useAddons';
 
 export const SizeStep = (): JSX.Element => {
   const { t: tCreate } = useTranslation('load-balancer/create');
   const { t: tCommon } = useTranslation('pci-common');
 
-  const { trackStep } = useTrackStep();
+  const { trackStep } = useTracking();
 
   const store = useCreateStore();
 
@@ -34,6 +34,7 @@ export const SizeStep = (): JSX.Element => {
       next={{
         action: () => {
           trackStep(1);
+
           store.check(StepsEnum.SIZE);
           store.lock(StepsEnum.SIZE);
 
@@ -49,8 +50,8 @@ export const SizeStep = (): JSX.Element => {
           store.open(StepsEnum.SIZE);
           store.reset(
             StepsEnum.REGION,
-            StepsEnum.PUBLIC_IP,
-            StepsEnum.PRIVATE_NETWORK,
+            StepsEnum.IP,
+            StepsEnum.NETWORK,
             StepsEnum.INSTANCE,
             StepsEnum.NAME,
           );

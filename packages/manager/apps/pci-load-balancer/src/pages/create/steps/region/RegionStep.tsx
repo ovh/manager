@@ -13,21 +13,21 @@ import { ShapesInputComponent } from '@ovh-ux/manager-pci-common';
 import { TRegion, useGetRegions } from '@/api/hook/useRegions';
 import { REGION_AVAILABILITY_LINK } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
-import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
+import { useTracking } from '@/pages/create/hooks/useTracking';
 import { LabelComponent } from './components/Label.component';
 import { StackLabelComponent } from './components/StackLabel.component';
 import { GroupLabelComponent } from './components/GroupLabel.component';
+import { StackTitleComponent } from '@/pages/create/steps/region/components/StackTitle.component';
 
 export const RegionStep = (): JSX.Element => {
   const { t: tCommon } = useTranslation('pci-common');
   const { t: tCreate } = useTranslation('load-balancer/create');
-  const { t: tRegionsList } = useTranslation('regions-list');
 
   const isMobile = useMedia(`(max-width: 640px)`);
 
   const { projectId } = useParams();
 
-  const { trackStep } = useTrackStep();
+  const { trackStep } = useTracking();
 
   const store = useCreateStore();
   const { data: regions, isPending: isRegionsPending } = useGetRegions(
@@ -49,7 +49,7 @@ export const RegionStep = (): JSX.Element => {
           store.check(StepsEnum.REGION);
           store.lock(StepsEnum.REGION);
 
-          store.open(StepsEnum.PUBLIC_IP);
+          store.open(StepsEnum.IP);
         },
         label: tCommon('common_stepper_next_button_label'),
         isDisabled: store.region === null,
@@ -60,8 +60,8 @@ export const RegionStep = (): JSX.Element => {
           store.uncheck(StepsEnum.REGION);
           store.open(StepsEnum.REGION);
           store.reset(
-            StepsEnum.PUBLIC_IP,
-            StepsEnum.PRIVATE_NETWORK,
+            StepsEnum.IP,
+            StepsEnum.NETWORK,
             StepsEnum.INSTANCE,
             StepsEnum.NAME,
           );
@@ -93,7 +93,6 @@ export const RegionStep = (): JSX.Element => {
         </div>
       ) : (
         <ShapesInputComponent<TRegion>
-          className="bg-red"
           items={regions?.get(store.addon?.code) || []}
           onInput={(region) => store.set.region(region)}
           value={store.region}
@@ -105,17 +104,7 @@ export const RegionStep = (): JSX.Element => {
           stack={{
             by: (item) => item?.macroName || '',
             LabelComponent: StackLabelComponent,
-            TitleComponent: () => (
-              <div className="mt-3 mb-6">
-                <OsdsText
-                  size={ODS_TEXT_SIZE._400}
-                  level={ODS_TEXT_LEVEL.body}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
-                  {tRegionsList('pci_project_regions_list_region')}
-                </OsdsText>
-              </div>
-            ),
+            TitleComponent: StackTitleComponent,
           }}
           group={{
             by: (item) => item.continent,

@@ -1,0 +1,116 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`IpStepStep > should render > Floating ips > Floating ips are not pending > Field > content > Messages > create > selected ip is create > should display the info message with the right content 1`] = `
+<osds-message
+  class="mt-8"
+  color="info"
+  data-testid="osds-message"
+  type="info"
+>
+  <div
+    class="grid grid-cols-1 gap-8 py-6"
+  >
+    <div>
+      <osds-text
+        color="text"
+        size="400"
+      >
+        load-balancer/create | octavia_load_balancer_create_floating_ip_new_information
+      </osds-text>
+    </div>
+    <div>
+      <osds-text
+        color="text"
+        size="400"
+      >
+        <span>
+          load-balancer/create | octavia_load_balancer_create_floating_ip_new_price
+        </span>
+        load-balancer/create | octavia_load_balancer_create_floating_ip_new_price_interval
+      </osds-text>
+    </div>
+  </div>
+</osds-message>
+`;
+
+exports[`IpStepStep > should render > Floating ips > Floating ips are not pending > Field > content > Messages > none > selected ip is create > should display the info message with the right content 1`] = `
+<osds-message
+  class="mt-8"
+  color="info"
+  data-testid="osds-message"
+  type="info"
+>
+  <div
+    class="grid grid-cols-1 gap-8 py-6"
+  >
+    <div>
+      <osds-text
+        color="text"
+        size="400"
+      >
+        load-balancer/create | octavia_load_balancer_create_floating_ip_new_information
+      </osds-text>
+    </div>
+    <div>
+      <osds-text
+        color="text"
+        size="400"
+      >
+        <span>
+          load-balancer/create | octavia_load_balancer_create_floating_ip_new_price
+        </span>
+        load-balancer/create | octavia_load_balancer_create_floating_ip_new_price_interval
+      </osds-text>
+    </div>
+  </div>
+</osds-message>
+`;
+
+exports[`IpStepStep > should render > Floating ips > Floating ips are not pending > Field > content > Messages > none > selected ip is none > should display the info message with the right content 1`] = `
+<osds-message
+  class="mt-8"
+  color="info"
+  data-testid="osds-message"
+  type="info"
+>
+  <div
+    class="grid grid-cols-1 gap-8 py-6"
+  >
+    <div>
+      <osds-text
+        color="text"
+        size="400"
+      >
+        load-balancer/create | octavia_load_balancer_create_floating_ip_new_information
+      </osds-text>
+    </div>
+    <div>
+      <osds-text
+        color="text"
+        size="400"
+      >
+        <span>
+          load-balancer/create | octavia_load_balancer_create_floating_ip_new_price
+        </span>
+        load-balancer/create | octavia_load_balancer_create_floating_ip_new_price_interval
+      </osds-text>
+    </div>
+  </div>
+</osds-message>
+`;
+
+exports[`IpStepStep > should render > Floating ips > Floating ips are not pending > Field > content > Messages > none > selected ip is none > should display the warning message with the right content 1`] = `
+<osds-message
+  class="mt-10"
+  color="warning"
+  data-testid="osds-message"
+  type="warning"
+>
+  <osds-text
+    color="text"
+    size="400"
+  >
+    load-balancer/create | octavia_load_balancer_create_floating_ip_no_floating_ip_information
+  </osds-text>
+</osds-message>
+`;

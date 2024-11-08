@@ -16,7 +16,6 @@ import {
   useGetPrivateNetworkSubnets,
   useGetRegionPrivateNetworks,
 } from '@/api/hook/useNetwork';
-import { useGetFloatingIps } from '@/api/hook/useFloatingIps';
 import { useGetSubnetGateways } from '@/api/hook/useGateways';
 import { SizeStep } from '@/pages/create/steps/size/SizeStep';
 import { RegionStep } from '@/pages/create/steps/region/RegionStep';
@@ -24,6 +23,7 @@ import { IpStep } from '@/pages/create/steps/IpStep';
 import { NetworkStep } from '@/pages/create/steps/NetworkStep';
 import { InstanceStep } from '@/pages/create/steps/InstanceStep';
 import { NameStep } from '@/pages/create/steps/NameStep';
+import { useFloatingIpsList } from '@/api/hook/useFloatingIpsList';
 
 export default function CreatePage(): JSX.Element {
   const projectHref = useProjectUrl('public-cloud');
@@ -42,7 +42,7 @@ export default function CreatePage(): JSX.Element {
     projectId,
     store.region?.name,
   );
-  const { list: floatingIpsList } = useGetFloatingIps(
+  const { data: floatingIpsList } = useFloatingIpsList(
     projectId,
     store.region?.name,
   );
