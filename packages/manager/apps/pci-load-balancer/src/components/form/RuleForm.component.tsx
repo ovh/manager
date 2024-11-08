@@ -176,8 +176,18 @@ export default function RuleForm({
     return [];
   }, [formState.ruleType]);
 
-  const isDisabled =
+  const hasError =
     !!ruleTypeError || !!compareTypeError || !!keyError || !!valueError;
+
+  const isDisabled = useMemo(() => {
+    if (hasError) return true;
+    if (!formState.ruleType) return true;
+    if (!formState.compareType) return true;
+    if (RULE_TYPES_WITH_KEY.includes(formState.ruleType) && !formState.key)
+      return true;
+    if (!formState.value) return true;
+    return false;
+  }, [hasError, formState]);
 
   return (
     <div className="w-[20rem]">
