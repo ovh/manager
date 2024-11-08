@@ -2,30 +2,38 @@ import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
 import {
   Headers,
   Notifications,
+  useMe,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { useHref, useParams } from 'react-router-dom';
-import { useProject } from '@ovh-ux/manager-pci-common';
+import { useCatalog, useProject } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useEffect, useMemo } from 'react';
-import { FLOATING_IP_TYPE } from '@/constants';
-import { useCreateStore } from '@/pages/create/store';
+import { useEffect } from 'react';
+import { useMedia } from 'react-use';
+import { useCreateStore } from './store';
 import {
   useGetPrivateNetworkSubnets,
   useGetRegionPrivateNetworks,
 } from '@/api/hook/useNetwork';
-import { useGetFloatingIps } from '@/api/hook/useFloatingIps';
 import { useGetSubnetGateways } from '@/api/hook/useGateways';
-import { SizeStep } from '@/pages/create/steps/size/SizeStep';
-import { RegionStep } from '@/pages/create/steps/region/RegionStep';
-import { IpStep } from '@/pages/create/steps/IpStep';
-import { NetworkStep } from '@/pages/create/steps/NetworkStep';
-import { InstanceStep } from '@/pages/create/steps/InstanceStep';
-import { NameStep } from '@/pages/create/steps/NameStep';
+
+import { SizeStep } from './steps/size/SizeStep';
+import { RegionStep } from './steps/region/RegionStep';
+import { IpStep } from './steps/ip/IpStep';
+import { NetworkStep } from './steps/network/NetworkStep';
+import { InstanceStep } from './steps/InstanceStep';
+import { NameStep } from './steps/NameStep';
+import { useGetAddons } from '@/api/hook/useAddons';
+import { useGetRegions } from '@/api/hook/useRegions';
+import { useGetFloatingIps } from '@/api/hook/useFloatingIps';
 
 export default function CreatePage(): JSX.Element {
+  const { me } = useMe();
+  const { data: addons, isPending: isAddonsPending } = useGetAddons();
+  const isMobile = useMedia(`(max-width: 768px)`);
+
   const projectHref = useProjectUrl('public-cloud');
 
   const backHref = useHref('..');
@@ -38,52 +46,51 @@ export default function CreatePage(): JSX.Element {
   const store = useCreateStore();
 
   const { data: project } = useProject();
+  const { data: regions, isPending: isRegionsPending } = useGetRegions(
+    projectId,
+  );
   const { list: privateNetworksList } = useGetRegionPrivateNetworks(
     projectId,
     store.region?.name,
   );
-  const { list: floatingIpsList } = useGetFloatingIps(
-    projectId,
-    store.region?.name,
-  );
-  const { data: subnets } = useGetPrivateNetworkSubnets(
+  const {
+    filteredData: filteredFloatingIps,
+    filteredDataWithDefaults: filteredFloatingIpsWithDefaults,
+    isPending: isFloatingIpsListPending,
+  } = useGetFloatingIps(projectId, store.region?.name);
+  const { list: subnetsList } = useGetPrivateNetworkSubnets(
     projectId,
     store.region?.name,
     store.privateNetwork?.id,
   );
 
-  const { data: subnetGateways } = useGetSubnetGateways(
-    projectId,
-    store.region?.name,
-    store.subnet?.id,
-  );
+  const {
+    data: subnetGateways,
+    isFetching: isSubnetGatewaysFetching,
+  } = useGetSubnetGateways(projectId, store.region?.name, store.subnet?.id);
 
-  const subnetsList = useMemo(() => {
-    if (!subnets) {
-      return [];
-    }
-    return store.publicIp?.type !== FLOATING_IP_TYPE.NO_IP
-      ? subnets.filter((subnet) => subnet.gatewayIp)
-      : subnets;
-  }, [subnets, store.publicIp]);
+  const { data: catalog } = useCatalog();
 
+  //-----------
   useEffect(() => {
     store.reset();
     store.set.projectId(projectId);
   }, []);
 
   useEffect(() => {
-    if (floatingIpsList.length > 0) {
-      store.set.publicIp(floatingIpsList[0]);
+    if (filteredFloatingIpsWithDefaults.length > 0) {
+      store.set.publicIp(filteredFloatingIpsWithDefaults[0]);
     }
-  }, [floatingIpsList]);
+  }, [filteredFloatingIpsWithDefaults.length]);
 
+  // Set private network when private networks list changes
   useEffect(() => {
     if (privateNetworksList.length > 0) {
       store.set.privateNetwork(privateNetworksList[0]);
     }
   }, [privateNetworksList]);
 
+  // Set subnet when subnetsList changes
   useEffect(() => {
     if (subnetsList.length > 0) {
       store.set.subnet(subnetsList[0]);
@@ -94,6 +101,7 @@ export default function CreatePage(): JSX.Element {
     store.set.gateways(subnetGateways || []);
   }, [subnetGateways]);
 
+  // Set load balancer name from region name when it changes
   useEffect(() => {
     if (store.region) {
       const date = new Date();
@@ -144,10 +152,27 @@ export default function CreatePage(): JSX.Element {
       </OsdsText>
 
       <div className="mt-6">
-        <SizeStep />
-        <RegionStep />
-        <IpStep />
-        <NetworkStep />
+        <SizeStep
+          ovhSubsidiary={me?.ovhSubsidiary}
+          addons={addons}
+          isLoading={isAddonsPending}
+        />
+        <RegionStep
+          isLoading={isRegionsPending}
+          regions={regions}
+          ovhSubsidiary={me?.ovhSubsidiary}
+          isMobile={isMobile}
+        />
+        <IpStep
+          floatingIps={filteredFloatingIps}
+          privateNetworksList={privateNetworksList}
+          catalog={catalog}
+          isLoading={isFloatingIpsListPending}
+        />
+        <NetworkStep
+          subnetsList={subnetsList}
+          isLoading={isSubnetGatewaysFetching}
+        />
         <InstanceStep />
         <NameStep />
       </div>
