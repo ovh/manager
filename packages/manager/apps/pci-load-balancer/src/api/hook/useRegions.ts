@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
+import { getMacroRegion } from '@ovh-ux/manager-react-components';
 import { useGetPrivateNetworks } from '@/api/hook/useNetwork';
 import { SIZE_FLAVOUR_REGEX } from '@/constants';
 import { useGetPlans } from '@/api/hook/usePlans';
@@ -12,19 +13,7 @@ export type TRegion = {
   microName: string;
   continent: string;
 };
-const getMacroRegion = (region: string) => {
-  const regionSubStrings = region.split('-');
 
-  const macroRegionMap = [
-    null,
-    regionSubStrings[0].split(/(\d)/)[0],
-    regionSubStrings[0],
-    regionSubStrings[2],
-    regionSubStrings[2] === 'LZ' ? regionSubStrings[3] : regionSubStrings[2],
-    regionSubStrings[3],
-  ];
-  return macroRegionMap[regionSubStrings.length] || 'Unknown_Macro_Region';
-};
 export const useGetRegions = (
   projectId: string,
 ): { data: Map<string, TRegion[]>; isPending: boolean } => {
@@ -36,7 +25,7 @@ export const useGetRegions = (
     data: networks,
     isPending: isNetworksPending,
   } = useGetPrivateNetworks(projectId);
-  const { t: tRegion } = useTranslation('regions');
+  const { t: tRegion } = useTranslation('region');
 
   return {
     data: useMemo(() => {
