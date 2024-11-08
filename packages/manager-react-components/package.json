@@ -43,7 +43,7 @@
     "@babel/core": "7.22.10",
     "@mdx-js/react": "^3.0.1",
     "@ovh-ux/manager-core-api": "^0.9.0-alpha.0",
-    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.1",
+    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.0",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
     "@ovh-ux/manager-vite-config": "^0.8.1",
     "@storybook/addon-docs": "^7.5.3",
