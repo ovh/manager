@@ -2,7 +2,7 @@ import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { PlusCircle, XOctagon } from 'lucide-react';
+import { PlusCircle, Trash2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -111,7 +111,7 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
         </div>
         <ul>
           {labelValue.map((label, index) => (
-            <li key={label.name} className="flex items-center">
+            <li key={label.name} className="flex items-center ml-5 text-sm">
               <div>
                 <span>{label.name}</span>
                 {label.value && (
@@ -131,7 +131,7 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
                 onClick={() => removeLabel(index)}
                 disabled={disabled}
               >
-                <XOctagon />
+                <Trash2 />
               </Button>
             </li>
           ))}

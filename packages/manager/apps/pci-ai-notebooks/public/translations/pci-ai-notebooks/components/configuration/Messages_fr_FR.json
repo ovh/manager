@@ -6,7 +6,7 @@
   "numberOfConfiguredLabels_one": "{{count}} label configuré sur {{max}}",
   "numberOfConfiguredLabels_other": "{{count}} labels configurés sur {{max}}",
   "duplicateKeyError": "Cette clé SSH existe déjà",
-  "configuredKeyFieldLabel": "Clé SSH enregistrée",
+  "configuredKeyFieldLabel": "Clé SSH",
   "sshKeyFieldLabel": "Nom de la clé SSH",
   "sskKeyValueFieldLabel": "Clé publique SSH",
   "numberOfConfiguredKeys_zero": "{{count}} clés SSH configurés",
@@ -14,5 +14,8 @@
   "numberOfConfiguredKeys_other": "{{count}} clés SSH configurées sur {{max}}",
   "addSshKeyToastErrorTitle": "Une erreur est survenue lors de la création de votre clé SSH",
   "formConnectionPoolToastSuccessTitle": "Succés",
-  "addSshKeySuccessDescription": "Nouvelle clé SSH créée"
+  "addSshKeySuccessDescription": "Nouvelle clé SSH créée",
+  "addSshKeyTitle": "Configurer un nouvelle clé SSH",
+  "formSshKeyButtonCancel": "Annuler",
+  "formSshKeyButtonConfirm": "Confirmer"
 }

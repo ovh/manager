@@ -7,7 +7,7 @@ import {
   HelpCircle,
   Package,
   PlusCircle,
-  XOctagon,
+  Trash2,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
@@ -117,13 +117,13 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
 
     return (
       <Form {...form}>
-        <div className="flex w-full items-start gap-2">
+        <div className="flex flex-col w-full md:flex-row md:items-start gap-2">
           <div
             className={`grid ${
               selectedVolume?.type === ai.DataStoreTypeEnum.git
-                ? `grid-cols-4`
-                : `grid-cols-3`
-            }  gap-2 w-full`}
+                ? `grid-cols-2 md:grid-cols-4`
+                : `grid-cols-2 md:grid-cols-3`
+            } gap-2 w-full`}
           >
             <FormItem>
               <FormLabel>{t('containerFieldLabel')}</FormLabel>
@@ -209,7 +209,7 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
                       <PopoverTrigger>
                         <HelpCircle className="size-4" />
                       </PopoverTrigger>
-                      <PopoverContent>
+                      <PopoverContent className="text-sm">
                         <p>{t('permissionDescription')}</p>
                       </PopoverContent>
                     </Popover>
@@ -235,54 +235,59 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
               )}
             />
           </div>
-          <FormField
-            control={form.control}
-            name="cache"
-            defaultValue={false}
-            render={({ field }) => (
-              <FormItem>
-                <div className="flex flex-row gap-2">
-                  <FormLabel className="mt-2">
-                    {t('cachingFieldLabel')}
-                  </FormLabel>
-                  <Popover>
-                    <PopoverTrigger>
-                      <HelpCircle className="size-4 mt-1" />
-                    </PopoverTrigger>
-                    <PopoverContent>
-                      <p>{t('cachingDescription')}</p>
-                    </PopoverContent>
-                  </Popover>
-                </div>
-                <FormControl>
-                  <div className="pt-2">
-                    <Switch
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
+          <div className="flex flex-row justify-around">
+            <FormField
+              control={form.control}
+              name="cache"
+              defaultValue={false}
+              render={({ field }) => (
+                <FormItem>
+                  <div className="flex flex-row gap-2">
+                    <FormLabel className="mt-2">
+                      {t('cachingFieldLabel')}
+                    </FormLabel>
+                    <Popover>
+                      <PopoverTrigger>
+                        <HelpCircle className="size-4 mt-1" />
+                      </PopoverTrigger>
+                      <PopoverContent className="text-sm">
+                        <p>{t('cachingDescription')}</p>
+                      </PopoverContent>
+                    </Popover>
                   </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <FormControl>
+                    <div className="pt-2">
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <Button
-            data-testid="ssh-key-label-add-button"
-            variant={'ghost'}
-            onClick={form.handleSubmit(onSubmit)}
-            disabled={
-              disabled ||
-              selectedVolumesList.length >= VOLUMES_CONFIG.maxVolumes
-            }
-            className="mt-[1.875rem] text-primary rounded-full p-2 ml-2 hover:text-primary"
-          >
-            <PlusCircle />
-          </Button>
+            <Button
+              data-testid="ssh-key-label-add-button"
+              variant={'ghost'}
+              onClick={form.handleSubmit(onSubmit)}
+              disabled={
+                disabled ||
+                selectedVolumesList.length >= VOLUMES_CONFIG.maxVolumes
+              }
+              className="mt-[1.875rem] text-primary rounded-full p-2 ml-2 hover:text-primary"
+            >
+              <PlusCircle />
+            </Button>
+          </div>
         </div>
         <ul>
           {selectedVolumesList.map((volume, index) => (
-            <li key={volume.mountPath} className="flex items-center">
+            <li
+              key={volume.mountPath}
+              className="flex items-center ml-5 text-sm"
+            >
               <div className="flex flex-row items-center gap-2">
                 {volume.dataStore.type === ai.DataStoreTypeEnum.git ? (
                   <GitBranchIcon className="mt-1 size-4 text-orange-600" />
@@ -317,7 +322,7 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
                   onClick={() => removeVolume(index)}
                   disabled={disabled}
                 >
-                  <XOctagon />
+                  <Trash2 />
                 </Button>
               </div>
             </li>

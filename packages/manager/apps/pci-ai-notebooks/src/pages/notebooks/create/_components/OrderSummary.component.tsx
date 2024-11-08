@@ -29,8 +29,27 @@ interface OrderSummaryProps {
     sshKey: string[];
     volumes: OrderVolumes[];
   };
-  onSectionClicked?: (target: string) => void;
+  onSectionClicked?: (target: string, advancedConfig?: boolean) => void;
 }
+const NameDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <Button
+          variant={'link'}
+          size={'link'}
+          type="button"
+          onClick={() => onSectionClicked('name')}
+          className="font-bold"
+        >
+          {t('summaryFieldNameLabel')}
+        </Button>
+        <span>{order.notebookName}</span>
+      </div>
+    </div>
+  );
+};
 
 const RegionDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
@@ -150,15 +169,6 @@ const FrameworkDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         {order.framework && (
           <>
             <span>{humanizeFramework(order.framework)}</span>
-            {/* 
-            {order.framework.logoUrl && (
-              <img
-                className="block w-9 h-6"
-                src={order.framework.logoUrl}
-                alt={order.framework.name}
-              />
-            )}
-            */}
           </>
         )}
       </div>
@@ -205,51 +215,6 @@ const EditorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   );
 };
 
-const VolumesDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
-  const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
-  return (
-    <div className="flex flex-col gap-2">
-      <div className="flex items-center gap-2">
-        <Button
-          variant={'link'}
-          size={'link'}
-          type="button"
-          onClick={() => onSectionClicked('volumes')}
-          className="font-bold"
-        >
-          {t('summaryFieldVolumesLabel')}
-        </Button>
-        <span>
-          {t(`summaryFieldVolumes`, {
-            count: order.volumes.length,
-            context: `${order.volumes.length}`,
-          })}
-        </span>
-      </div>
-    </div>
-  );
-};
-
-const NameDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
-  const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
-  return (
-    <div className="flex flex-col gap-2">
-      <div className="flex items-center gap-2">
-        <Button
-          variant={'link'}
-          size={'link'}
-          type="button"
-          onClick={() => onSectionClicked('options')}
-          className="font-bold"
-        >
-          {t('summaryFieldNameLabel')}
-        </Button>
-        <span>{order.notebookName}</span>
-      </div>
-    </div>
-  );
-};
-
 const PrivacyDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
   return (
@@ -279,6 +244,32 @@ const PrivacyDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     </div>
   );
 };
+
+const VolumesDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <Button
+          variant={'link'}
+          size={'link'}
+          type="button"
+          onClick={() => onSectionClicked('volumes', true)}
+          className="font-bold"
+        >
+          {t('summaryFieldVolumesLabel')}
+        </Button>
+        <span>
+          {t(`summaryFieldVolumes`, {
+            count: order.volumes.length,
+            context: `${order.volumes.length}`,
+          })}
+        </span>
+      </div>
+    </div>
+  );
+};
+
 const LabelsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
   return (
@@ -288,7 +279,7 @@ const LabelsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         variant={'link'}
         size={'link'}
         type="button"
-        onClick={() => onSectionClicked('options')}
+        onClick={() => onSectionClicked('labels', true)}
         className="font-bold"
       >
         {t('summaryFieldLabelsLabel')}
@@ -312,7 +303,7 @@ const SshKeysDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         variant={'link'}
         size={'link'}
         type="button"
-        onClick={() => onSectionClicked('options-sshkeys')}
+        onClick={() => onSectionClicked('sshKey', true)}
         className="font-bold"
       >
         {t('summaryFieldSSHLabel')}
@@ -329,15 +320,21 @@ const SshKeysDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="grid grid-cols-1 gap-2">
+      <NameDetails order={order} onSectionClicked={onSectionClicked} />
       <RegionDetails order={order} onSectionClicked={onSectionClicked} />
       <FlavorDetails order={order} onSectionClicked={onSectionClicked} />
       <FrameworkDetails order={order} onSectionClicked={onSectionClicked} />
       <EditorDetails order={order} onSectionClicked={onSectionClicked} />
-      <VolumesDetails order={order} onSectionClicked={onSectionClicked} />
-      <NameDetails order={order} onSectionClicked={onSectionClicked} />
       <PrivacyDetails order={order} onSectionClicked={onSectionClicked} />
-      <LabelsDetails order={order} onSectionClicked={onSectionClicked} />
-      <SshKeysDetails order={order} onSectionClicked={onSectionClicked} />
+      {order.volumes.length > 0 && (
+        <VolumesDetails order={order} onSectionClicked={onSectionClicked} />
+      )}
+      {Object.keys(order.labels).length > 0 && (
+        <LabelsDetails order={order} onSectionClicked={onSectionClicked} />
+      )}
+      {order.sshKey.length > 0 && (
+        <SshKeysDetails order={order} onSectionClicked={onSectionClicked} />
+      )}
     </div>
   );
 };
