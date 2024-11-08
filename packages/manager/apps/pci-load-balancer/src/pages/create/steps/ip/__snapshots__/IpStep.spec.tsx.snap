@@ -1,0 +1,34 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`IpStep > should render > isLoading > isLoading is false > Field > content > select > Options > should show the select with the right options 1`] = `
+[
+  [
+    {
+      "children": "load-balancer/create | octavia_load_balancer_create_floating_ip_field_new_floating_ip",
+      "value": "create",
+    },
+    {},
+  ],
+  [
+    {
+      "children": "load-balancer/create | octavia_load_balancer_create_floating_ip_field_no_floating_ip",
+      "value": "none",
+    },
+    {},
+  ],
+  [
+    {
+      "children": "ip1",
+      "value": "ip1",
+    },
+    {},
+  ],
+  [
+    {
+      "children": "ip2",
+      "value": "ip2",
+    },
+    {},
+  ],
+]
+`;
