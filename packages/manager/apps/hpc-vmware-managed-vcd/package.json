@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hpc-vmware-managed-vcd-app",
-  "version": "0.2.0-alpha.1",
+  "version": "0.2.0-alpha.2",
   "private": true,
   "description": "New managed VMware Cloud Director offers",
   "repository": {
@@ -26,9 +26,9 @@
     "@ovh-ux/manager-config": "^7.5.3-alpha.0",
     "@ovh-ux/manager-core-api": "^0.9.0-alpha.0",
     "@ovh-ux/manager-core-utils": "*",
-    "@ovh-ux/manager-module-order": "^0.6.4-alpha.0",
-    "@ovh-ux/manager-react-components": "^1.41.0-alpha.6",
-    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.0",
+    "@ovh-ux/manager-module-order": "^0.6.4-alpha.1",
+    "@ovh-ux/manager-react-components": "^1.41.0-alpha.7",
+    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.1",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "^0.4.0-alpha.0",
     "@ovhcloud/ods-common-core": "17.2.2",
