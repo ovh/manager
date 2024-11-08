@@ -1,22 +1,30 @@
 import { describe, Mock, vi } from 'vitest';
-import {
-  StepComponent,
-  TStepProps,
-  useMe,
-} from '@ovh-ux/manager-react-components';
-import { render, renderHook } from '@testing-library/react';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+import { StepComponent, TStepProps } from '@ovh-ux/manager-react-components';
+import { render, renderHook, within } from '@testing-library/react';
+import { OsdsSelect, OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { act } from 'react-dom/test-utils';
+import React from 'react';
 import { NetworkStep } from './NetworkStep';
 import { wrapper } from '@/wrapperRenders';
-import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
+import { useTracking } from '@/pages/create/hooks/useTracking';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useGetFloatingIps } from '@/api/hook/useFloatingIps';
 import { TFloatingIp } from '@/api/data/floating-ips';
 import { useGetRegionPrivateNetworks } from '@/api/hook/useNetwork';
+import { TSubnet } from '@/api/data/network';
 
-vi.mock('@/pages/create/hooks/useTrackStep', async () => ({
-  useTrackStep: vi.fn().mockImplementation(() => ({ trackStep: vi.fn() })),
+vi.mock('react-i18next', async () => {
+  const { ...rest } = await vi.importActual('react-i18next');
+  return {
+    ...rest,
+    useTranslation: vi.fn().mockImplementation((namespace: string) => ({
+      t: vi.fn().mockImplementation((key: string) => `${namespace} | ${key}`),
+    })),
+  };
+});
+
+vi.mock('@/pages/create/hooks/useTracking', async () => ({
+  useTracking: vi.fn().mockImplementation(() => ({ trackStep: vi.fn() })),
 }));
 
 vi.mock('@ovhcloud/ods-components/react', async () => {
@@ -102,26 +110,34 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
   };
 });
 
+const renderStep = (subnetsList: TSubnet[] = [], isLoading = false) =>
+  render(<NetworkStep subnetsList={subnetsList} isLoading={isLoading} />, {
+    wrapper,
+  });
+const renderStore = () => renderHook(() => useCreateStore());
+
 describe('NetworkStepStep', () => {
-  // TODO add snapshot test
+  beforeEach(() => {
+    const { result } = renderStore();
+    act(() => {
+      result.current.reset();
+      result.current.open(StepsEnum.NETWORK);
+    });
+  });
   describe('should render', () => {
     beforeAll(() => {
-      (useMe as Mock).mockImplementation(() => ({ me: undefined }));
       (StepComponent as Mock).mockImplementationOnce(({ children }) => (
         <div>{children}</div>
       ));
 
-      render(<NetworkStep />, { wrapper });
+      renderStep();
     });
-    it.skip('should render StepComponent with right props', () => {
-      const { result } = renderHook(() => useCreateStore());
-
-      act(() => result.current.open(StepsEnum.PRIVATE_NETWORK));
+    it('should render StepComponent with right props', () => {
       const { calls } = (StepComponent as Mock).mock;
       const call = calls[calls.length - 1][0] as TStepProps;
 
       expect(call.title).toBe(
-        'octavia_load_balancer_create_private_network_title',
+        'load-balancer/create | octavia_load_balancer_create_private_network_title',
       );
 
       expect(call.isOpen).toBe(true);
@@ -132,14 +148,27 @@ describe('NetworkStepStep', () => {
 
       expect(call.order).toBe(4);
 
-      expect(call.next.label).toBe('common_stepper_next_button_label');
+      expect(call.next.label).toBe(
+        'pci-common | common_stepper_next_button_label',
+      );
       expect(call.next.isDisabled).toBe(true);
 
-      expect(call.edit.label).toBe('common_stepper_modify_this_step');
+      expect(call.edit.label).toBe(
+        'pci-common | common_stepper_modify_this_step',
+      );
+    });
+
+    it('should display intro text', () => {
+      const { getByText } = renderStep();
+      expect(
+        getByText(
+          'load-balancer/create | octavia_load_balancer_create_private_network_intro',
+        ),
+      ).toBeInTheDocument();
     });
 
     describe('Private networks', () => {
-      it.skip('should show spinner if private networks are pending', () => {
+      it('should show spinner if private networks are pending', () => {
         (useGetRegionPrivateNetworks as Mock).mockImplementationOnce(() => ({
           data: undefined,
           isPending: true,
@@ -149,35 +178,48 @@ describe('NetworkStepStep', () => {
           <div data-testid="spinner"></div>
         ));
 
-        const { getByTestId } = render(<NetworkStep />, { wrapper });
+        const { getByTestId } = renderStep();
 
         expect(getByTestId('spinner')).toBeInTheDocument();
       });
 
-      describe.skip('Private networks are not pending', () => {
-        beforeEach(() => {
-          (useGetRegionPrivateNetworks as Mock).mockImplementationOnce(() => ({
-            data: [],
-            isPending: false,
-          }));
-        });
-        it('should not show spinner', () => {
-          const { queryByTestId } = render(<NetworkStep />, { wrapper });
+      describe('Private networks are not pending', () => {
+        it.skip('should not show spinner', () => {
+          const { queryByTestId } = renderStep();
 
-          expect(queryByTestId('spinner')).toBeNull();
+          // expect(queryByTestId('spinner')).toBeNull();
         });
-        describe('Field', () => {
+        describe('Private network Field', () => {
           it('should show form field', async () => {
-            const { queryByTestId } = render(<NetworkStep />, { wrapper });
+            const { queryByTestId } = renderStep();
             expect(queryByTestId('form-field')).toBeInTheDocument();
           });
 
-          describe.skip('content', () => {
-            // TODO continue for content of the form field
+          describe('content', () => {
+            let field: HTMLElement;
+            beforeAll(() => {
+              const { getByTestId } = renderStep();
+              field = getByTestId('form-field');
+            });
 
-            it('should display the select', () => {
-              render(<NetworkStep />, { wrapper });
-              // expect(within(field).getByTestId('select')).toBeInTheDocument();
+            it('should display label', () => {
+              ((OsdsSelect as unknown) as Mock).mockImplementation(() => <></>);
+              renderStep();
+
+              expect(
+                within(field).getByText(
+                  'load-balancer/create | octavia_load_balancer_create_private_network_field',
+                ),
+              );
+            });
+
+            it.skip('should display the select', () => {
+              ((OsdsSelect as unknown) as Mock).mockImplementation(() => (
+                <div data-testid="select"></div>
+              ));
+              const { debug } = renderStep();
+              debug();
+              expect(within(field).getByTestId('select')).toBeInTheDocument();
             });
           });
         });
@@ -194,7 +236,7 @@ describe('NetworkStepStep', () => {
     describe('next', () => {
       describe.skip('render', () => {
         test('Next button should be disabled if addon is not set', () => {
-          const { getByText } = render(<NetworkStep />, { wrapper });
+          const { getByText } = renderStep();
 
           const nextButton = getByText('common_stepper_next_button_label');
           expect(
@@ -203,10 +245,10 @@ describe('NetworkStepStep', () => {
         });
 
         test('Next button should be enabled if addon is set', () => {
-          const { result } = renderHook(() => useCreateStore());
+          const { result } = renderStore();
           act(() => result.current.set.publicIp({} as TFloatingIp));
 
-          const { getByText } = render(<NetworkStep />, { wrapper });
+          const { getByText } = renderStep();
 
           const nextButton = getByText('common_stepper_next_button_label');
           expect(
@@ -218,14 +260,14 @@ describe('NetworkStepStep', () => {
         it('Should track on next click', async () => {
           const trackStepSpy = vi.fn();
 
-          const { result } = renderHook(() => useCreateStore());
+          const { result } = renderStore();
           act(() => result.current.set.publicIp({} as TFloatingIp));
 
-          (useTrackStep as Mock).mockImplementationOnce(() => ({
+          (useTracking as Mock).mockImplementationOnce(() => ({
             trackStep: trackStepSpy,
           }));
 
-          const { getByText } = render(<NetworkStep />, { wrapper });
+          const { getByText } = renderStep();
 
           const nextButton = getByText('common_stepper_next_button_label');
 
@@ -234,13 +276,13 @@ describe('NetworkStepStep', () => {
           expect(trackStepSpy).toHaveBeenCalledWith(3);
         });
         test("Prepare networks's step on next click", () => {
-          const { result } = renderHook(() => useCreateStore());
+          const { result } = renderStore();
           act(() => {
             result.current.reset();
             result.current.set.publicIp({} as TFloatingIp);
           });
 
-          const { getByText } = render(<NetworkStep />, { wrapper });
+          const { getByText } = renderStep();
 
           const nextButton = getByText('common_stepper_next_button_label');
           //

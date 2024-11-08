@@ -1,10 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { TInstance } from '@ovh-ux/manager-pci-common';
-import {
-  FLOATING_IP_CREATE_DESCRIPTION,
-  FLOATING_IP_TYPE,
-  PROTOCOLS,
-} from '@/constants';
+import { FLOATING_IP_CREATE_DESCRIPTION, PROTOCOLS } from '@/constants';
 import { TPrivateNetwork, TSubnet } from '@/api/data/network';
 import { ListenerConfiguration } from '@/components/create/InstanceTable.component';
 import { TFloatingIp } from '@/api/data/floating-ips';
@@ -170,15 +166,13 @@ export const createLoadBalancer = async ({
     },
   };
 
-  if (floatingIp.type === FLOATING_IP_TYPE.CREATE) {
+  if (floatingIp.type === 'create') {
     network.private.floatingIpCreate = {
       description: `${FLOATING_IP_CREATE_DESCRIPTION} ${name}`,
     };
   }
 
-  if (
-    ![FLOATING_IP_TYPE.CREATE, FLOATING_IP_TYPE.NO_IP].includes(floatingIp.type)
-  ) {
+  if (!['create', 'none'].includes(floatingIp.type)) {
     network.private.floatingIp = {
       id: floatingIp.id,
     };

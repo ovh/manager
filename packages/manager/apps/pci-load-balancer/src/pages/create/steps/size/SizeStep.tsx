@@ -5,24 +5,33 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { StepComponent, useMe } from '@ovh-ux/manager-react-components';
+import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { PRODUCT_LINK } from '@/constants';
 import SizeInputComponent from './input/SizeInput.component';
-import { StepsEnum, useCreateStore } from '@/pages/create/store';
-import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
-import { useGetAddons } from '@/api/hook/useAddons';
+import { StepsEnum, TAddon, useCreateStore } from '@/pages/create/store';
+import { useTracking } from '@/pages/create/hooks/useTracking';
+import { useColumnsCount } from '@/pages/create/hooks/useColumnsCount';
 
-export const SizeStep = (): JSX.Element => {
+export type TSizeStepProps = {
+  ovhSubsidiary: string;
+  addons: TAddon[];
+  isLoading: boolean;
+};
+
+export const SizeStep = ({
+  ovhSubsidiary,
+  addons,
+  isLoading,
+}: Readonly<TSizeStepProps>): JSX.Element => {
   const { t: tCreate } = useTranslation('load-balancer/create');
   const { t: tCommon } = useTranslation('pci-common');
 
-  const { trackStep } = useTrackStep();
+  const columnsCount = useColumnsCount();
+
+  const { trackStep } = useTracking();
 
   const store = useCreateStore();
-
-  const { me } = useMe();
-  const { data: addons, isPending: isAddonsPending } = useGetAddons();
 
   return (
     <StepComponent
@@ -34,6 +43,7 @@ export const SizeStep = (): JSX.Element => {
       next={{
         action: () => {
           trackStep(1);
+
           store.check(StepsEnum.SIZE);
           store.lock(StepsEnum.SIZE);
 
@@ -49,8 +59,8 @@ export const SizeStep = (): JSX.Element => {
           store.open(StepsEnum.SIZE);
           store.reset(
             StepsEnum.REGION,
-            StepsEnum.PUBLIC_IP,
-            StepsEnum.PRIVATE_NETWORK,
+            StepsEnum.IP,
+            StepsEnum.NETWORK,
             StepsEnum.INSTANCE,
             StepsEnum.NAME,
           );
@@ -65,13 +75,13 @@ export const SizeStep = (): JSX.Element => {
       >
         {tCreate('octavia_load_balancer_create_size_intro')}{' '}
         <OsdsLink
-          href={PRODUCT_LINK[me?.ovhSubsidiary] || PRODUCT_LINK.DEFAULT}
+          href={PRODUCT_LINK[ovhSubsidiary] || PRODUCT_LINK.DEFAULT}
           color={ODS_THEME_COLOR_INTENT.primary}
         >
           {tCreate('octavia_load_balancer_create_size_intro_link')}
         </OsdsLink>
       </OsdsText>
-      {isAddonsPending ? (
+      {isLoading ? (
         <div className="text-center mt-6">
           <OsdsSpinner inline />
         </div>
@@ -80,6 +90,7 @@ export const SizeStep = (): JSX.Element => {
           addons={addons || []}
           value={store.addon}
           onInput={store.set.addon}
+          columnsCount={columnsCount}
         />
       )}
     </StepComponent>

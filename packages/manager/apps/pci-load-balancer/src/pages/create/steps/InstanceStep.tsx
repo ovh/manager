@@ -1,10 +1,4 @@
-import {
-  Trans,
-  Translation,
-  // Translation,
-  useTranslation,
-  // Trans
-} from 'react-i18next';
+import { Trans, Translation, useTranslation } from 'react-i18next';
 import {
   OsdsMessage,
   OsdsText,
@@ -17,8 +11,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepComponent, useMe } from '@ovh-ux/manager-react-components';
-import { useContext, useState } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { InstanceTable } from '@/components/create/InstanceTable.component';
 import {
@@ -28,7 +21,7 @@ import {
   MAX_LISTENER,
 } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
-import { useTrackStep } from '@/pages/create/hooks/useTrackStep';
+import { useTracking } from '../hooks/useTracking';
 import { useTranslatedLinkReference } from '@/hooks/useTranslatedLinkReference';
 
 export const InstanceStep = (): JSX.Element => {
@@ -39,8 +32,8 @@ export const InstanceStep = (): JSX.Element => {
 
   const { projectId } = useParams();
 
-  const { trackStep } = useTrackStep();
-  const { tracking } = useContext(ShellContext).shell;
+  const { trackStep, trackClick } = useTracking();
+
   const instanceTrack = useTranslatedLinkReference();
 
   const store = useCreateStore();
@@ -76,10 +69,11 @@ export const InstanceStep = (): JSX.Element => {
       }}
       skip={{
         action: () => {
-          tracking.trackClick({
+          trackClick({
             name: LOAD_BALANCER_CREATION_TRACKING.SKIP_STEP_5,
             type: 'action',
           });
+
           store.set.listeners([]);
 
           setTableKey((prev) => prev + 1);

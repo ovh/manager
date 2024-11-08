@@ -17,11 +17,12 @@ export const GroupLabelComponent = ({
   const shouldBeBold = isGroupSelected && !isMobile;
 
   return (
-    <div className="whitespace-nowrap p-4">
+    <div className="max-w-full p-4">
       <OsdsText
         size={shouldBeBold ? ODS_TEXT_SIZE._500 : ODS_TEXT_SIZE._400}
         level={ODS_TEXT_LEVEL.body}
         color={ODS_THEME_COLOR_INTENT.text}
+        className="overflow-hidden whitespace-nowrap text-ellipsis"
       >
         {groupName || tRegionsList('pci_project_regions_list_continent_all')}
       </OsdsText>
