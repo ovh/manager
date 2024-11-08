@@ -1,6 +1,6 @@
 {
   "price_ht_label": "ex. VAT",
-  "price_ttc_label": "{0} INCL. VAT",
+  "price_ttc_label": "INCL. VAT",
   "price_free": "Included",
   "price_gst_excl_label": "ex. GST",
   "price_gst_incl_label": "incl. GST",
