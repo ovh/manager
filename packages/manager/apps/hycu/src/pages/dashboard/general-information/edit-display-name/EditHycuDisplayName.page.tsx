@@ -29,7 +29,6 @@ export default function EditHycuDisplayNameModal() {
       closeModal={closeModal}
       headline={t('hycu_dashboard_update_display_name_modal_headline')}
       inputLabel={t('hycu_dashboard_update_display_name_input_label')}
-      description={t('hycu_dashboard_update_display_name_description')}
       resourceName={serviceName}
       isLoading={isLoading}
       pattern="^[\x00-\x7F]{1,36}$"
