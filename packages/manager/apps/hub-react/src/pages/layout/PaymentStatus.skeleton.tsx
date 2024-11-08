@@ -54,6 +54,7 @@ export default function PaymentStatusSkeleton() {
           <tbody>
             {[1, 2, 3, 4].map((line: number) => (
               <tr
+                className="p-6"
                 key={`billing_service_skeleton_${line}`}
                 data-testid="billing_service"
               >
@@ -65,6 +66,7 @@ export default function PaymentStatusSkeleton() {
                     size={ODS_SKELETON_SIZE.xs}
                   />
                   <OsdsSkeleton
+                    className="block"
                     data-testid="service_category_skeleton"
                     inline
                     size={ODS_SKELETON_SIZE.xs}
@@ -73,16 +75,18 @@ export default function PaymentStatusSkeleton() {
                 <td scope="row" className="!p-4">
                   <div className="lg:inline mb-1">
                     <OsdsSkeleton
+                      className="block mb-5"
                       data-testid="service_status_skeleton"
                       inline
                       size={ODS_SKELETON_SIZE.xs}
                     />
                   </div>
                   <div
-                    className="d-lg-inline mb-1"
+                    className="lg:inline mb-1"
                     data-testid="service_expiration_date_message"
                   >
                     <OsdsSkeleton
+                      className="block"
                       data-testid="service_date_skeleton"
                       inline
                       size={ODS_SKELETON_SIZE.xs}
