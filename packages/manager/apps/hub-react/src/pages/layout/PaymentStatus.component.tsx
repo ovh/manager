@@ -207,7 +207,10 @@ export default function PaymentStatus({
                       <div className="lg:inline mb-1">
                         <Suspense
                           fallback={
-                            <OsdsSkeleton data-testid="billing_status_skeleton" />
+                            <OsdsSkeleton
+                              className="mb-5"
+                              data-testid="billing_status_skeleton"
+                            />
                           }
                         >
                           <BillingStatus service={service} />
@@ -215,7 +218,7 @@ export default function PaymentStatus({
                       </div>
                       {!service.isBillingSuspended() && (
                         <div
-                          className="d-lg-inline mb-1"
+                          className="lg:inline mb-1"
                           data-testid="service_expiration_date_message"
                         >
                           {service.isOneShot() &&
