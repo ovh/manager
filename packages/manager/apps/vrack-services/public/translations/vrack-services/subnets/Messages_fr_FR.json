@@ -10,6 +10,7 @@
   "cidrLabel": "Plage d'adresses du sous-réseau (CIDR)",
   "serviceRangeLabel": "Plage d'adresses de service (CIDR)",
   "serviceRangeAdditionalText": "La plage d'adresses de service sera utilisée par les services du vRack Services. Par conséquent, les adresses de cette plage ne doivent pas être utilisées par d'autres nœuds connectés au vRack. La plage d'adresse de service doit être un sous-ensemble de la plage d'addresses du sous-réseau, et sa taille doit être comprise entre /27 et /29.",
+  "subnetRangeAdditionalText": "La plage d'adresses du sous-réseau doit être en /24.",
   "vlanLabel": "VLAN",
   "vlanAdditionalText": "Vous pouvez exposer ce sous-réseau sur un VLAN spécifique.",
   "vlanNoVlanOptionLabel": "Pas de VLAN",
