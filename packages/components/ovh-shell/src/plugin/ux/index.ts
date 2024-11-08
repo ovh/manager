@@ -20,6 +20,8 @@ export interface IUXPlugin {
   toggleNotificationsSidebarVisibility(): void;
   toggleAccountSidebarVisibility(): void;
   getUserIdCookie(): string;
+  registerModalActionDoneListener(callback: CallableFunction): void;
+  notifyModalActionDone(): void;
 }
 
 // TODO: remove this once we have a more generic Plugin class
@@ -33,6 +35,8 @@ export class UXPlugin implements IUXPlugin {
   private shellUX: ShellUX;
 
   private sidebarMenuUpdateItemLabelListener?: CallableFunction;
+
+  private onModalActionDone?: CallableFunction;
 
   constructor(shell: Shell) {
     this.shell = shell;
@@ -252,5 +256,16 @@ export class UXPlugin implements IUXPlugin {
   // request the client application to open his sidebar
   requestClientSidebarOpen() {
     this.shell.emitEvent('ux:client-sidebar-open');
+  }
+
+  /* ----------- Modal action methods -----------*/
+  registerModalActionDoneListener(callback: CallableFunction) {
+    this.onModalActionDone = callback;
+  }
+
+  notifyModalActionDone() {
+    if (this.onModalActionDone) {
+      this.onModalActionDone();
+    }
   }
 }
