@@ -32,7 +32,7 @@
   "summaryFieldPrivacyLabel": "Confidentialité:",
   "summaryFieldPublicLabel": "Public",
   "summaryFieldPrivateLabel": "Private",
-  "formButtonAdvancedConfiguration": "Configuration avancées",
+  "formButtonAdvancedConfiguration": "Configuration avancée",
   "fieldVolumesLabel": "Volumes",
   "summaryFieldVolumesLabel": "Volumes:",
   "summaryFieldVolumes_one": "{{count}} volume configuré",

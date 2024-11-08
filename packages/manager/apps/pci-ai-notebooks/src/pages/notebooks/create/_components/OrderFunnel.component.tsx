@@ -7,7 +7,7 @@ import {
   TerminalSquare,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as ai from '@/types/cloud/project/ai';
 import { order } from '@/types/catalog';
 import { useOrderFunnel } from './useOrderFunnel.hook';
@@ -72,7 +72,10 @@ const OrderFunnel = ({
 }: OrderFunnelProps) => {
   const model = useOrderFunnel(regions, catalog, frameworks, editors);
   const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
-  const [advancedConfiguration, setAdvancedConfiguration] = useState(false);
+  const [showAdvancedConfiguration, setShowAdvancedConfiguration] = useState(
+    false,
+  );
+  const accordionContentRef = useRef(null);
   const cliEquivalentModale = useModale('cli');
   const navigate = useNavigate();
 
@@ -204,6 +207,17 @@ const OrderFunnel = ({
       div.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  useEffect(() => {
+    if (accordionContentRef?.current) {
+      accordionContentRef.current.style.position = showAdvancedConfiguration
+        ? 'unset'
+        : 'relative';
+      if (showAdvancedConfiguration) {
+        scrollToDiv('advancedConfig');
+      }
+    }
+  }, [showAdvancedConfiguration, scrollToDiv, accordionContentRef?.current]);
 
   const classNameLabel = 'scroll-m-20 text-xl font-semibold';
 
@@ -449,127 +463,132 @@ const OrderFunnel = ({
                     variant="ghost"
                     className="w-full flex flex-row items-center justify-between font-semibold text-xl"
                     onClick={() => {
-                      setAdvancedConfiguration(!advancedConfiguration);
+                      setShowAdvancedConfiguration((prevValue) => !prevValue);
                     }}
                   >
                     {t('formButtonAdvancedConfiguration')}
-                    {advancedConfiguration ? (
+                    {showAdvancedConfiguration ? (
                       <ChevronUp className="h-5 w-5 shrink-0 transition-transform duration-200" />
                     ) : (
                       <ChevronDown className="h-5 w-5 shrink-0 transition-transform duration-200" />
                     )}
                   </Button>
                 </CardHeader>
-                <CardContent>
-                  <div className={`${advancedConfiguration ? '' : 'hidden'}`}>
-                    <div className="flex flex-col gap-6">
-                      <section id="volumes">
-                        <FormField
-                          control={model.form.control}
-                          name="volumes"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className={classNameLabel}>
-                                {t('fieldVolumesLabel')}
-                              </FormLabel>
-                              <p>
-                                Faire un petit laius sur les volumes, à quoi ils
-                                servent, comment les configurer et tout ci tout
-                                ca
-                              </p>
-                              <FormControl>
-                                {model.lists.volumes.length > 0 ? (
-                                  <VolumeForm
-                                    {...field}
-                                    configuredVolumesList={model.lists.volumes}
-                                    selectedVolumesList={field.value}
-                                    onChange={(newVolumes) =>
-                                      model.form.setValue('volumes', newVolumes)
-                                    }
-                                  />
-                                ) : (
-                                  <p>
-                                    Vous n'avez pas de volumes configurés.
-                                    Configurer un S3 ou Git / Configurer un
-                                    container Swift
-                                  </p>
-                                )}
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </section>
-                      <section id="labels">
-                        <FormField
-                          control={model.form.control}
-                          name="labels"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className={classNameLabel}>
-                                {t('fieldConfigurationLabelsLabel')}
-                              </FormLabel>
-                              <FormControl>
-                                <LabelsForm
+                <CardContent
+                  ref={accordionContentRef}
+                  data-state={showAdvancedConfiguration ? 'open' : 'closed'}
+                  className={`
+                  overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down
+                  ${
+                    showAdvancedConfiguration ? 'max-h-screen' : 'max-h-0 py-0'
+                  }`}
+                >
+                  <div className="flex flex-col gap-6">
+                    <section id="volumes">
+                      <FormField
+                        control={model.form.control}
+                        name="volumes"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className={classNameLabel}>
+                              {t('fieldVolumesLabel')}
+                            </FormLabel>
+                            <p>
+                              Faire un petit laius sur les volumes, à quoi ils
+                              servent, comment les configurer et tout ci tout ca
+                            </p>
+                            <FormControl>
+                              {model.lists.volumes.length > 0 ? (
+                                <VolumeForm
                                   {...field}
-                                  labelValue={field.value}
-                                  onChange={(newLabel) =>
-                                    model.form.setValue('labels', newLabel)
+                                  configuredVolumesList={model.lists.volumes}
+                                  selectedVolumesList={field.value}
+                                  onChange={(newVolumes) =>
+                                    model.form.setValue('volumes', newVolumes)
                                   }
                                 />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </section>
-                      <section id="sshKey">
-                        <FormField
-                          control={model.form.control}
-                          name="sshKey"
-                          render={({ field }) => (
-                            <FormItem>
-                              <div>
-                                <FormLabel className={classNameLabel}>
-                                  {t('fieldConfigurationSSHKeysLabel')}
-                                </FormLabel>
-                              </div>
-                              <div className="flex flex-row gap-2">
-                                <Button
-                                  data-testid="sshkey-add-button"
-                                  variant={'outline'}
-                                  size="sm"
-                                  className="text-base"
-                                  onClick={() => addSshKeyModale.open()}
-                                >
-                                  <Plus className="size-4 mr-2" />
-                                  {t('sshkeyAddButtonLabel')}
-                                </Button>
-                                <Popover>
-                                  <PopoverTrigger>
-                                    <HelpCircle className="size-4" />
-                                  </PopoverTrigger>
-                                  <PopoverContent className="text-sm">
-                                    <p>{t('sshKeyConfigurationHelper')}</p>
-                                  </PopoverContent>
-                                </Popover>
-                              </div>
-                              <FormControl>
-                                <SshKeyForm
-                                  {...field}
-                                  configuredSshKeys={sshKeys}
-                                  sshKeyList={field.value}
-                                  onChange={(newSshKey) =>
-                                    model.form.setValue('sshKey', newSshKey)
-                                  }
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </section>
-                    </div>
+                              ) : (
+                                <p>
+                                  Vous n'avez pas de volumes configurés.
+                                  Configurer un S3 ou Git / Configurer un
+                                  container Swift
+                                </p>
+                              )}
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </section>
+                    <section id="labels">
+                      <FormField
+                        control={model.form.control}
+                        name="labels"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className={classNameLabel}>
+                              {t('fieldConfigurationLabelsLabel')}
+                            </FormLabel>
+                            <FormControl>
+                              <LabelsForm
+                                {...field}
+                                labelValue={field.value}
+                                onChange={(newLabel) =>
+                                  model.form.setValue('labels', newLabel)
+                                }
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </section>
+                    <section id="sshKey">
+                      <FormField
+                        control={model.form.control}
+                        name="sshKey"
+                        render={({ field }) => (
+                          <FormItem>
+                            <div>
+                              <FormLabel className={classNameLabel}>
+                                {t('fieldConfigurationSSHKeysLabel')}
+                              </FormLabel>
+                            </div>
+                            <div className="flex flex-row gap-2">
+                              <Button
+                                data-testid="sshkey-add-button"
+                                variant={'outline'}
+                                size="sm"
+                                className="text-base"
+                                onClick={() => addSshKeyModale.open()}
+                              >
+                                <Plus className="size-4 mr-2" />
+                                {t('sshkeyAddButtonLabel')}
+                              </Button>
+                              <Popover>
+                                <PopoverTrigger>
+                                  <HelpCircle className="size-4" />
+                                </PopoverTrigger>
+                                <PopoverContent className="text-sm">
+                                  <p>{t('sshKeyConfigurationHelper')}</p>
+                                </PopoverContent>
+                              </Popover>
+                            </div>
+                            <FormControl>
+                              <SshKeyForm
+                                {...field}
+                                configuredSshKeys={sshKeys}
+                                sshKeyList={field.value}
+                                onChange={(newSshKey) =>
+                                  model.form.setValue('sshKey', newSshKey)
+                                }
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </section>
                   </div>
                 </CardContent>
               </Card>
@@ -582,9 +601,11 @@ const OrderFunnel = ({
             <CardContent className="grid grid-cols-1 gap-2">
               <OrderSummary
                 order={model.result}
-                onSectionClicked={(section, advConfig = false) => {
-                  if (advConfig) setAdvancedConfiguration(true);
-                  scrollToDiv(section);
+                onSectionClicked={(target) => {
+                  if (['volumes', 'labels', 'sshKey'].includes(target)) {
+                    setShowAdvancedConfiguration(true);
+                  }
+                  scrollToDiv(target);
                 }}
               />
               {model.result.flavor && (

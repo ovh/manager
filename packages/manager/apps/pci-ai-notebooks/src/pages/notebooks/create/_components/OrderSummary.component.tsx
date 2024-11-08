@@ -29,7 +29,7 @@ interface OrderSummaryProps {
     sshKey: string[];
     volumes: OrderVolumes[];
   };
-  onSectionClicked?: (target: string, advancedConfig?: boolean) => void;
+  onSectionClicked?: (target: string) => void;
 }
 const NameDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
@@ -224,7 +224,7 @@ const PrivacyDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
           variant={'link'}
           size={'link'}
           type="button"
-          onClick={() => onSectionClicked('options')}
+          onClick={() => onSectionClicked('access')}
           className="font-bold"
         >
           {t('summaryFieldPrivacyLabel')}
@@ -254,7 +254,7 @@ const VolumesDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
           variant={'link'}
           size={'link'}
           type="button"
-          onClick={() => onSectionClicked('volumes', true)}
+          onClick={() => onSectionClicked('volumes')}
           className="font-bold"
         >
           {t('summaryFieldVolumesLabel')}
@@ -279,7 +279,7 @@ const LabelsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         variant={'link'}
         size={'link'}
         type="button"
-        onClick={() => onSectionClicked('labels', true)}
+        onClick={() => onSectionClicked('labels')}
         className="font-bold"
       >
         {t('summaryFieldLabelsLabel')}
@@ -303,7 +303,7 @@ const SshKeysDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         variant={'link'}
         size={'link'}
         type="button"
-        onClick={() => onSectionClicked('sshKey', true)}
+        onClick={() => onSectionClicked('sshKey')}
         className="font-bold"
       >
         {t('summaryFieldSSHLabel')}
