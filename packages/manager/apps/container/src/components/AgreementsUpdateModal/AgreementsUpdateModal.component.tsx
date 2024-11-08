@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import useAgreementsUpdate from '@/hooks/agreements/useAgreementsUpdate';
-import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE, ODS_THEME_COLOR_HUE } from '@ovhcloud/ods-common-theming';
+import { ODS_THEME_COLOR_HUE, ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import { OsdsButton, OsdsModal, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
@@ -8,6 +8,8 @@ import ApplicationContext from '@/context';
 import ovhCloudLogo from '@/assets/images/logo-ovhcloud.png';
 import { useAuthorizationIam } from '@ovh-ux/manager-react-components/src/hooks/iam';
 import useAccountUrn from '@/hooks/accountUrn/useAccountUrn';
+import { ModalTypes } from '@/context/modals/modals.context';
+import { useModals } from '@/context/modals';
 
 export default function AgreementsUpdateModal () {
   const { shell } = useContext(ApplicationContext);
@@ -16,19 +18,25 @@ export default function AgreementsUpdateModal () {
     .getEnvironment()
     .getRegion();
   const navigation = shell.getPlugin('navigation');
-  const { t } = useTranslation('agreements-update-modal');
-  const { data: urn } = useAccountUrn({ enabled: region !== 'US' });
-  const { isAuthorized: canUserAcceptAgreements } = useAuthorizationIam(['account:apiovh:me/agreements/accept'], urn);
-  const { data: agreements } = useAgreementsUpdate({ enabled: canUserAcceptAgreements });
+  const { current } = useModals();
   const myContractsLink = navigation.getURL(
     'dedicated',
     '#/billing/autoRenew/agreements',
   );
+  const { t } = useTranslation('agreements-update-modal');
+  const { data: urn } = useAccountUrn({ enabled: region !== 'US' && current === ModalTypes.agreements && window.location.href !== myContractsLink });
+  const { isAuthorized: canUserAcceptAgreements } = useAuthorizationIam(['account:apiovh:me/agreements/accept'], urn);
+  const { data: agreements, isLoading } = useAgreementsUpdate({ enabled: canUserAcceptAgreements });
   const goToContractPage = () => {
-    window.top.location.href = myContractsLink;
-  }
+    navigation.navigateTo('dedicated', `#/billing/autoRenew/agreements`);
+  };
 
-  console.log(agreements)
+  useEffect(() => {
+    if (canUserAcceptAgreements && !agreements?.length && current === ModalTypes.agreements) {
+      shell.getPlugin('ux').notifyModalActionDone();
+    }
+  }, [canUserAcceptAgreements, agreements, current]);
+
   return agreements?.length ? (
     <>
       <OsdsModal
