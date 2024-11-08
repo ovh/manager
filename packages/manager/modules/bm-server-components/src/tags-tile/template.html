@@ -1,0 +1,34 @@
+<oui-tile
+    class="h-100"
+    data-loading="$ctrl.loading"
+    data-heading="{{:: 'server_tags_title' | translate }}"
+>
+    <div ovh-alert="bandwithError" data-ng-if="bandwithError"></div>
+    <!-- Gateway IPv4-->
+    <oui-tile-definition ng-if="!tags">
+        <oui-tile-description>
+            <span data-translate="server_tags_empty_msg"></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-definition ng-if="tags">
+        <oui-tile-description>
+            <span
+                class="oui-badge ng-scope oui-badge_info"
+                data-ng-repeat="tag in tags track by $index"
+            >
+                {{ tag }}</span
+            >
+        </oui-tile-description>
+    </oui-tile-definition>
+    <div>
+        <a class="oui-link_icon" data-ng-href="#">
+            <span
+                data-translate="{{:: tags ? 'server_tags_link' : 'server_tags_add_link' }}"
+            ></span>
+            <span
+                class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </div>
+</oui-tile>
