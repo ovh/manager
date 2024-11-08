@@ -5,8 +5,8 @@
   "pci_projects_project_network_private_vrack_create_description": "Per attivare la tua nuova vRack, clicca su “Crea”.",
   "pci_projects_project_network_private_vrack_create_choose": "Seleziona una vRack esistente",
   "pci_projects_project_network_private_vrack_create_action": "Crea",
-  "pci_projects_project_network_private_vrack_create_cancel": "Annulla",
+  "pci_projects_project_network_private_vrack_create_cancel": "Annullare",
   "pci_projects_project_network_private_vrack_create_init_error": "Si è verificato un errore durante il caricamento delle informazioni: {{ message }}",
   "pci_projects_project_network_private_vrack_create_error": "Si è verificato un errore durante l’attivazione della vRack: {{ message }}",
-  "pci_projects_project_network_private_vrack_pending": "La tua vRack è in corso di attivazione. L’operazione potrebbe richiedere qualche minuto."
+  "pci_projects_project_network_private_vrack_pending": "Attivazione della vRack in corso... L'operazione potrebbe richiedere alcuni minuti"
 }
