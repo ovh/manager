@@ -12,7 +12,7 @@ describe('getFloatingIps', () => {
       ip: '192.168.1.1',
       networkId: 'network1',
       status: 'active',
-      type: 'public',
+      type: 'ip',
     },
     {
       associatedEntity: 'entity2',
@@ -20,7 +20,7 @@ describe('getFloatingIps', () => {
       ip: '192.168.1.2',
       networkId: 'network2',
       status: 'inactive',
-      type: 'private',
+      type: 'ip',
     },
   ];
 
