@@ -15,6 +15,8 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { useModals } from '@/context/modals';
+import { ModalTypes } from '@/context/modals/modals.context';
 
 export interface IPaymentMethod {
   icon?: any;
@@ -52,29 +54,32 @@ const computeAlert = (paymentMethods: IPaymentMethod[]): string => {
   return null;
 };
 
-type Props = {
-  onDone: () => void;
-};
-
-const PaymentModal = ({ onDone }: Props): JSX.Element => {
+const PaymentModal = (): JSX.Element => {
   const [alert, setAlert] = useState('');
   const { t } = useTranslation('payment-modal');
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const shell = useShell();
+  const { current } = useModals();
 
   const paymentMethodURL = shell
     .getPlugin('navigation')
     .getURL('dedicated', '#/billing/payment/method');
 
-  const closeHandler = () => setShowPaymentModal(false);
+  const closeHandler = () => {
+    setShowPaymentModal(false);
+    shell.getPlugin('ux').notifyModalActionDone();
+  };
   const validateHandler = () =>  {
     setShowPaymentModal(false);
     window.location.href = paymentMethodURL;
-  }
+  };
 
-  const { data: paymentResponse } = useQuery({
+  const isReadyToRequest = current === ModalTypes.payment && window.location.href !== paymentMethodURL;
+
+  const { data: paymentResponse, isLoading } = useQuery({
     queryKey: ['me-payment-method'],
-    queryFn: () => fetchIcebergV6<IPaymentMethod>({ route: '/me/payment/method' })
+    queryFn: () => fetchIcebergV6<IPaymentMethod>({ route: '/me/payment/method' }),
+    enabled: isReadyToRequest,
   });
 
   useEffect(() => {
@@ -84,11 +89,14 @@ const PaymentModal = ({ onDone }: Props): JSX.Element => {
         setAlert(alert);
         setShowPaymentModal(true);
       }
-      else {
-        onDone();
+      else if (isReadyToRequest) {
+        shell.getPlugin('ux').notifyModalActionDone();
       }
     }
-  }, [paymentResponse]);
+    else if (isReadyToRequest && !isLoading) {
+      shell.getPlugin('ux').notifyModalActionDone();
+    }
+  }, [paymentResponse, isReadyToRequest, isLoading]);
 
   return !showPaymentModal ? (
     <></>
