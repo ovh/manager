@@ -346,27 +346,27 @@ export const PoolFormComponent = ({
         </OsdsSelect>
       </OsdsFormField>
 
-      <OsdsToggle
-        className="mt-8"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        checked={state.permanentSession.isEnabled || undefined}
-        onClick={() =>
-          setState((prev) => ({
-            ...prev,
-            permanentSession: {
-              ...prev.permanentSession,
-              isEnabled: !prev.permanentSession.isEnabled,
-            },
-          }))
-        }
-      >
+      <div className="flex mt-8">
         <LabelComponent
           text={t('octavia_load_balancer_pools_create_session')}
           helpText={t('octavia_load_balancer_pools_create_session_tooltip')}
           slot="start"
           className="mr-6"
         />
-      </OsdsToggle>
+        <OsdsToggle
+          color={ODS_THEME_COLOR_INTENT.primary}
+          checked={state.permanentSession.isEnabled || undefined}
+          onClick={() =>
+            setState((prev) => ({
+              ...prev,
+              permanentSession: {
+                ...prev.permanentSession,
+                isEnabled: !prev.permanentSession.isEnabled,
+              },
+            }))
+          }
+        ></OsdsToggle>
+      </div>
 
       {state.permanentSession.isEnabled && (
         <>
