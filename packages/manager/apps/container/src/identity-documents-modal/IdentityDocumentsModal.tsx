@@ -1,29 +1,26 @@
 import {
-  kycIndiaModalLocalStorageKey,
   kycIndiaFeature,
+  kycIndiaModalLocalStorageKey,
   requiredStatusKey,
   trackingContext,
   trackingPrefix,
 } from './constants';
 import { useIdentityDocumentsStatus } from '@/hooks/useIdentityDocumentsStatus';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
-import { useTranslation, Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useLocalStorage } from 'react-use';
 import { useShell } from '@/context';
-import {
-  OsdsButton,
-  OsdsCollapsible,
-  OsdsModal,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsCollapsible, OsdsModal, OsdsText, } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_HUE,
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { useModals } from '@/context/modals';
+import { ModalTypes } from '@/context/modals/modals.context';
 
 export const IdentityDocumentsModal: FunctionComponent = () => {
   const shell = useShell();
@@ -31,17 +28,21 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
   const [storage, setStorage] = useLocalStorage<boolean>(
     kycIndiaModalLocalStorageKey,
   );
+  const { current } = useModals();
+
+  const kycURL = navigationPlugin.getURL('dedicated', `#/identity-documents`);
 
   const { t } = useTranslation('identity-documents-modal');
   const legalInformationRef = useRef<any>(null);
 
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  const availabilityDataResponse = useFeatureAvailability([kycIndiaFeature]);
-  const availability = availabilityDataResponse?.data;
+  const { data: availability, isLoading: isFeatureAvailabilityLoading } = useFeatureAvailability([kycIndiaFeature]);
+
+  const isKycAvailable = useMemo(() => Boolean(availability && availability[kycIndiaFeature] && !storage), [availability, storage]);
 
   const { data: statusDataResponse } = useIdentityDocumentsStatus({
-    enabled: Boolean(availability && availability[kycIndiaFeature] && !storage),
+    enabled: isKycAvailable && current === ModalTypes.kyc && window.location.href !== kycURL,
   });
 
   const trackingPlugin = shell.getPlugin('tracking');
@@ -57,7 +58,6 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
 
   const onConfirm = () => {
     setShowModal(false);
-    setStorage(true);
     trackingPlugin.trackClick({
       name: `${trackingPrefix}::pop-up::button::kyc::start-verification`,
       type: 'action',
@@ -65,6 +65,12 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
     });
     navigationPlugin.navigateTo('dedicated', `#/identity-documents`);
   };
+
+  useEffect(() => {
+    if (!isFeatureAvailabilityLoading && !isKycAvailable && current === ModalTypes.kyc) {
+      shell.getPlugin('ux').notifyModalActionDone();
+    }
+  }, [isFeatureAvailabilityLoading, isKycAvailable, current]);
 
   useEffect(() => {
     if (statusDataResponse?.data?.status === requiredStatusKey) {

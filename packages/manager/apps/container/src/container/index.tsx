@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
 import LegacyContainer from '@/container/legacy';
@@ -13,7 +13,8 @@ import PaymentModal from '@/payment-modal/PaymentModal';
 import LiveChat from '@/components/LiveChat';
 import { IdentityDocumentsModal } from '@/identity-documents-modal/IdentityDocumentsModal';
 import AgreementsUpdateModal from '@/components/AgreementsUpdateModal/AgreementsUpdateModal.component';
-import useModals from '@/hooks/modals/useModals';
+import useModals from '@/context/modals/useModals';
+import { ModalsProvider } from '@/context/modals';
 
 export default function Container(): JSX.Element {
   const {
@@ -24,15 +25,18 @@ export default function Container(): JSX.Element {
     chatbotReduced,
     setChatbotReduced,
   } = useContainer();
+  useModals();
   const shell = useShell();
+  const [isCookiePolicyApplied, setIsCookiePolicyApplied] = useState(false);
   const environment: Environment = shell
     .getPlugin('environment')
     .getEnvironment();
   const language = environment.getUserLanguage();
   const { ovhSubsidiary, supportLevel } = environment.getUser();
-  const { current, next } = useModals();
 
   const isNavReshuffle = betaVersion && useBeta;
+
+  const cookiePolicyHandler = (isApplied: boolean): void => setIsCookiePolicyApplied(isApplied);
 
   useEffect(() => {
     if (!isLoading) {
@@ -81,26 +85,22 @@ export default function Container(): JSX.Element {
       <Suspense fallback="">
         <SSOAuthModal />
       </Suspense>
-      {current === 'agreements' && (
-        <Suspense fallback="">
-          <AgreementsUpdateModal />
-        </Suspense>
+      {isCookiePolicyApplied && (
+        <ModalsProvider>
+          <Suspense fallback="">
+            <AgreementsUpdateModal />
+          </Suspense>
+          <Suspense fallback="">
+            <PaymentModal />
+          </Suspense>
+          <Suspense fallback="">
+            <IdentityDocumentsModal />
+          </Suspense>
+        </ModalsProvider>
       )}
-      {current === 'payment' && (
-        <Suspense fallback="">
-          <PaymentModal onDone={next} />
-        </Suspense>
-      )}
-      {current === 'payment' &&
-        <Suspense fallback="">
-          <IdentityDocumentsModal />
-        </Suspense>
-      }
-      {current === 'cookies' && (
-        <Suspense fallback="...">
-          <CookiePolicy shell={shell} onDone={next} />
-        </Suspense>
-      )}
+      <Suspense fallback="...">
+        <CookiePolicy shell={shell} onValidate={cookiePolicyHandler} />
+      </Suspense>
     </>
   );
 }
