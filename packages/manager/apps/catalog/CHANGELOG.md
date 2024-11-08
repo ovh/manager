@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.22-alpha.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.14.22-alpha.9...@ovh-ux/manager-catalog-app@1.14.22-alpha.10) (2024-11-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
 ## [1.14.22-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.14.22-alpha.8...@ovh-ux/manager-catalog-app@1.14.22-alpha.9) (2024-11-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-catalog-app

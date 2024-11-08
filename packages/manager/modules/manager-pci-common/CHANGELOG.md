@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0-alpha.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.8.0-alpha.11...@ovh-ux/manager-pci-common@0.8.0-alpha.12) (2024-11-08)
+
+
+### Reverts
+
+* Revert "fix(manager-react-components): update peer dependencies" ([83a2a20](https://github.com/ovh/manager/commit/83a2a20827c1ace427ec476457148f544ace70d6))
+
+
+
+
+
 # [0.8.0-alpha.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.8.0-alpha.10...@ovh-ux/manager-pci-common@0.8.0-alpha.11) (2024-11-08)
 
 
