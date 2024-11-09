@@ -3,26 +3,15 @@
   "version": "1.41.0-alpha.10",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "types": "dist/types/src/lib.d.ts",
-  "main": "dist/src/lib.js",
-  "browser": "dist/manager-react-components-lib.es.ts",
-  "homepage": "https://github.com/ovh/manager/blob/master/packages/manager-react-components/README.md",
-  "bugs": {
-    "url": "https://github.com/ovh/manager/issues"
-  },
+  "main": "src/lib.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager-react-components"
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "build": "tsc && vite build",
-    "dev": "tsc && vite build",
-    "build:storybook": "storybook build",
-    "prepare": "tsc && vite build",
+    "dev": "tsc",
+    "prepare": "tsc",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "start": "storybook dev -p 6006",
     "test": "vitest",
@@ -44,8 +33,8 @@
     "clsx": "^2.1.1",
     "lodash.isdate": "^4.0.1",
     "lodash.isequal": "^4.5.0",
-    "react-i18next": "^14.0.5",
     "react-use": "^17.5.0",
+    "react-i18next": "^14.0.5",
     "sass": "1.71.0",
     "tailwindcss": "^3.4.4",
     "uuid": "^9.0.1"
@@ -53,8 +42,6 @@
   "devDependencies": {
     "@babel/core": "7.22.10",
     "@mdx-js/react": "^3.0.1",
-    "@ovh-ux/manager-core-api": "^0.9.0-alpha.0",
-    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.3",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
     "@ovh-ux/manager-vite-config": "^0.8.1",
     "@storybook/addon-docs": "^7.5.3",
@@ -102,7 +89,6 @@
     "postcss": "8.4.31",
     "prettier": "3.0.1",
     "prop-types": "15.8.1",
-    "react-i18next": "^14.0.5",
     "storybook": "7.5.3",
     "storybook-addon-react-router-v6": "^2.0.10",
     "ts-jest": "^29.1.1",
@@ -116,7 +102,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core-api": "^0.9.0-alpha.0",
-    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.0",
+    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.3",
     "i18next": "^23.8.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
