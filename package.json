@@ -4,15 +4,26 @@
   "private": true,
   "description": "OVH Control Panel also known as Manager",
   "license": "BSD-3-Clause",
-  "workspaces": [
-    "docs",
-    "packages/components/*",
-    "packages/manager/apps/*",
-    "packages/manager/core/*",
-    "packages/manager/modules/*",
-    "packages/manager/tools/*",
-    "packages/manager-react-components"
-  ],
+  "workspaces": {
+    "packages": [
+      "docs",
+      "packages/components/*",
+      "packages/manager/apps/*",
+      "packages/manager/core/api",
+      "packages/manager/core/application",
+      "packages/manager/core/generator",
+      "packages/manager/core/ovh-product-icons",
+      "packages/manager/core/request-tagger",
+      "packages/manager/core/sso",
+      "packages/manager/core/tailwind-config",
+      "packages/manager/core/url-builder",
+      "packages/manager/core/utils",
+      "packages/manager/core/vite-config",
+      "packages/manager/modules/*",
+      "packages/manager/tools/*",
+      "packages/manager-react-components"
+    ]
+  },
   "scripts": {
     "build": "yarn run build:turbo",
     "build:turbo": "turbo run build --concurrency=5",
