@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@1.0.6...@ovh-ux/manager-react-shell-client@2.0.0) (2024-11-11)
+
+
+### Features
+
+* **shell-client:** new breaking change ([d5adb34](https://github.com/ovh/manager/commit/d5adb344426907ed733f5cde379312c6b407fea8))
+
+
+### BREAKING CHANGES
+
+* **shell-client:** new breaking change
+
+
+
+
+
 # [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.8.1...@ovh-ux/manager-react-shell-client@0.9.0) (2024-11-11)
 
 
