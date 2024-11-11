@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4-alpha.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.1.4-alpha.11...@ovh-ux/manager-hub-react-app@0.1.4-alpha.12) (2024-11-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-react-app
+
+
+
+
+
 ## [0.1.4-alpha.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.1.4-alpha.10...@ovh-ux/manager-hub-react-app@0.1.4-alpha.11) (2024-11-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-react-app

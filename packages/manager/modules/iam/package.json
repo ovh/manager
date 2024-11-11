@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iam",
-  "version": "1.13.1",
+  "version": "1.13.2",
   "private": true,
   "description": "IAM product.",
   "repository": {

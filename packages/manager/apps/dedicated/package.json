@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "19.64.0-alpha.2",
+  "version": "19.64.0-alpha.3",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -56,7 +56,7 @@
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-browser-alert": "^2.1.1",
     "@ovh-ux/ng-ovh-chart": "^1.2.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.16.0",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.17.0",
     "@ovh-ux/ng-ovh-contacts": "^5.3.2",
     "@ovh-ux/ng-ovh-contracts": "^4.6.0",
     "@ovh-ux/ng-ovh-doc-url": "^2.1.1",
@@ -152,7 +152,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.3",
+    "@ovh-ux/manager-webpack-config": "^7.0.4",
     "eslint-plugin-angular": "^4.0.1",
     "glob": "^7.1.4",
     "webpack": "^5.76.2",

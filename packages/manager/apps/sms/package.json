@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms-app",
-  "version": "8.1.18-alpha.1",
+  "version": "8.1.18-alpha.2",
   "private": true,
   "description": "SMS standalone application.",
   "repository": {
@@ -71,7 +71,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.3",
+    "@ovh-ux/manager-webpack-config": "^7.0.4",
     "glob": "^7.1.6",
     "ovh-manager-webfont": "^1.2.0",
     "webpack-merge": "^4.2.2"

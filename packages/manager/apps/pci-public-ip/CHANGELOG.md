@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.11-alpha.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.7.11-alpha.12...@ovh-ux/manager-pci-public-ip-app@0.7.11-alpha.13) (2024-11-11)
+
+
+### Bug Fixes
+
+* **manager-react-components:** udpate dependencies versions ([9bb9c47](https://github.com/ovh/manager/commit/9bb9c4746ee71f35e622e4511e4be0370984f901))
+* **pci-public-ip:** fix µ-app's build ([18f3290](https://github.com/ovh/manager/commit/18f32905ae8f32265af3e3e8ff4896cb0d44c539))
+
+
+
+
+
 ## [0.7.11-alpha.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.7.11-alpha.11...@ovh-ux/manager-pci-public-ip-app@0.7.11-alpha.12) (2024-11-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app

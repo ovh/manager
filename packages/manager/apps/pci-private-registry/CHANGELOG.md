@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.13-alpha.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.1.13-alpha.12...@ovh-ux/manager-pci-private-registry-app@0.1.13-alpha.13) (2024-11-11)
+
+
+### Bug Fixes
+
+* **manager-react-components:** udpate dependencies versions ([9bb9c47](https://github.com/ovh/manager/commit/9bb9c4746ee71f35e622e4511e4be0370984f901))
+
+
+
+
+
 ## [0.1.13-alpha.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.1.13-alpha.11...@ovh-ux/manager-pci-private-registry-app@0.1.13-alpha.12) (2024-11-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app

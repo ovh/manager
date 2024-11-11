@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.8.0...@ovh-ux/manager-react-shell-client@0.8.1) (2024-11-11)
+
+
+### Bug Fixes
+
+* **manager-pci-common:** update peer dependencies ([6cd2ee2](https://github.com/ovh/manager/commit/6cd2ee2285c3872c53af36c994085c287ec2d262))
+* **shell-client:** fix bug ([924bacc](https://github.com/ovh/manager/commit/924baccd236f15f431d493babf427f2431fadebe))
+
+
+
+
+
 # [0.8.0-alpha.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.8.0-alpha.2...@ovh-ux/manager-react-shell-client@0.8.0-alpha.3) (2024-11-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-shell-client

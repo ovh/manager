@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-cloud-universe-components",
-  "version": "2.16.0",
+  "version": "2.17.0",
   "private": true,
   "description": "Collection of components for the Cloud control panel.",
   "keywords": [

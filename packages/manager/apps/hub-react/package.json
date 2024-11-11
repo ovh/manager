@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub-react-app",
-  "version": "0.1.4-alpha.11",
+  "version": "0.1.4-alpha.12",
   "private": true,
   "description": "OVHcloud Dashboard control panel.",
   "repository": {
@@ -25,8 +25,8 @@
     "@ovh-ux/manager-config": "^7.5.3-alpha.0",
     "@ovh-ux/manager-core-api": "^0.9.0-alpha.0",
     "@ovh-ux/manager-models": "^1.14.18-alpha.0",
-    "@ovh-ux/manager-react-components": "^1.41.0-alpha.10",
-    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.3",
+    "@ovh-ux/manager-react-components": "^1.41.0-alpha.11",
+    "@ovh-ux/manager-react-shell-client": "^0.8.1",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
     "@ovh-ux/request-tagger": "^0.4.0-alpha.0",
     "@ovhcloud/ods-common-core": "17.2.1",
@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.3.1",
-    "@ovh-ux/manager-vite-config": "^0.8.2",
+    "@ovh-ux/manager-vite-config": "^0.8.3",
     "@playwright/test": "^1.41.2",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/jest-dom": "^6.4.6",

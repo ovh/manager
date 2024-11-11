@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.41.0-alpha.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.10...@ovh-ux/manager-react-components@1.41.0-alpha.11) (2024-11-11)
+
+### Bug Fixes
+
+- **manager-components:** fix services type ([84a0527](https://github.com/ovh/manager/commit/84a0527ef98de57d2b23ebb756e375460d975ae6))
+- **manager-pci-common:** update peer dependencies ([6cd2ee2](https://github.com/ovh/manager/commit/6cd2ee2285c3872c53af36c994085c287ec2d262))
+- **manager-react-components:** udpate dependencies versions ([9bb9c47](https://github.com/ovh/manager/commit/9bb9c4746ee71f35e622e4511e4be0370984f901))
+
+### Features
+
+- split services mock file ([16c3cab](https://github.com/ovh/manager/commit/16c3cab2dd56af8ed859618dfaf809956c46e610))
+
+### Reverts
+
+- Revert "fix(manager-pci-common): update peer dependencies (mrc without build) (#13971)" ([8b81fcc](https://github.com/ovh/manager/commit/8b81fcc58788ed6c9ae962a332c10ab07d26aaef)), closes [#13971](https://github.com/ovh/manager/issues/13971)
+
 # [1.41.0-alpha.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.9...@ovh-ux/manager-react-components@1.41.0-alpha.10) (2024-11-08)
 
 ### Reverts
