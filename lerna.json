@@ -18,7 +18,7 @@
       "conventionalCommits": true
     },
     "version": {
-      "allowBranch": "master"
+      "allowBranch": "test/shell-client-versioning"
     }
   },
   "$schema": "node_modules/lerna/schemas/lerna-schema.json"
