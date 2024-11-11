@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-carbon-calculator-app",
-  "version": "0.4.16-alpha.1",
+  "version": "0.4.16-alpha.2",
   "private": true,
   "description": "OVHcloud CarbonCalculator app",
   "repository": {
@@ -59,7 +59,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.3",
+    "@ovh-ux/manager-webpack-config": "^7.0.4",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack": "^5.94.0",

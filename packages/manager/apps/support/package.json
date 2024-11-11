@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-support-app",
-  "version": "2.11.13-alpha.1",
+  "version": "2.11.13-alpha.2",
   "private": true,
   "description": "Support standalone application.",
   "repository": {
@@ -51,7 +51,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.3",
+    "@ovh-ux/manager-webpack-config": "^7.0.4",
     "glob": "^7.1.6",
     "webpack-merge": "^4.2.2"
   },

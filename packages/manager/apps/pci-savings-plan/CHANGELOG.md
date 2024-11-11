@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.2.0-alpha.8...@ovh-ux/manager-pci-savings-plan-app@1.2.0-alpha.9) (2024-11-11)
+
+
+### Bug Fixes
+
+* **manager-react-components:** udpate dependencies versions ([9bb9c47](https://github.com/ovh/manager/commit/9bb9c4746ee71f35e622e4511e4be0370984f901))
+
+
+
+
+
 # [1.2.0-alpha.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.2.0-alpha.7...@ovh-ux/manager-pci-savings-plan-app@1.2.0-alpha.8) (2024-11-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app

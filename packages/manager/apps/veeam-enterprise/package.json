@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-enterprise-app",
-  "version": "2.2.11-alpha.2",
+  "version": "2.2.11-alpha.3",
   "private": true,
   "description": "Veeam Enterprise standalone application.",
   "repository": {
@@ -24,7 +24,7 @@
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
     "@ovh-ux/manager-veeam-enterprise": "^1.11.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.16.0",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.17.0",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.2.6-alpha.0",
@@ -61,7 +61,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.3",
+    "@ovh-ux/manager-webpack-config": "^7.0.4",
     "glob": "^7.1.6",
     "webpack-merge": "^4.2.2"
   },

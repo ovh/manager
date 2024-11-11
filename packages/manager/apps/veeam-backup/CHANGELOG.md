@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.2.0-alpha.5...@ovh-ux/manager-veeam-backup-app@0.2.0-alpha.6) (2024-11-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3458] ([7e28b09](https://github.com/ovh/manager/commit/7e28b094b3beecf58574f99d00a97ef9ae458498))
+
+
+### Features
+
+* split services mock file ([16c3cab](https://github.com/ovh/manager/commit/16c3cab2dd56af8ed859618dfaf809956c46e610))
+
+
+
+
+
 # [0.2.0-alpha.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.2.0-alpha.4...@ovh-ux/manager-veeam-backup-app@0.2.0-alpha.5) (2024-11-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app

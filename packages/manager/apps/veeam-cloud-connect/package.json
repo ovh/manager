@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-cloud-connect-app",
-  "version": "3.2.26-alpha.2",
+  "version": "3.2.26-alpha.3",
   "private": true,
   "description": "Veeam Cloud Connect standalone application.",
   "repository": {
@@ -26,7 +26,7 @@
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
     "@ovh-ux/manager-veeam-cloud-connect": "^2.8.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.16.0",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.17.0",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.2.6-alpha.0",
@@ -61,7 +61,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.3",
+    "@ovh-ux/manager-webpack-config": "^7.0.4",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"
