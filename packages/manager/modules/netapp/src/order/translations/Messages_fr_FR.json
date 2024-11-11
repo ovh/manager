@@ -18,5 +18,6 @@
   "netapp_order_commitment_duration_description": "Bénéficiez d'une remise en vous engageant.",
   "netapp_order_commitment_payment": "Modalités de paiement",
   "netapp_order_confirm": "Valider",
-  "netapp_order_performance_customization": "Lors du provisionnement de votre capacité vous allez définir par la même occasion le niveau de performance de votre service. Pour rappel, 64Mo/s et 4000 IOPS par To provisionné."
+  "netapp_order_performance_customization": "Lors du provisionnement de votre capacité vous allez définir par la même occasion le niveau de performance de votre service. Pour rappel, 64Mo/s et 4000 IOPS par To provisionné.",
+  "netapp_order_private_connectivity_in_compatible_info_banner": "La connectivité privée via notre service vRack n'est pas compatible sur les datacenters de Beauharnois et Strasbourg."
 }
