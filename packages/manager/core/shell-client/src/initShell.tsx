@@ -19,4 +19,6 @@ export const initShellContext = async (
   return { shell, environment, tracking };
 };
 
+// patch fix
+
 export default initShellContext;
