@@ -81,7 +81,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   items,
   isCompact,
   icon,
-  variant = ODS_BUTTON_VARIANT.stroked,
+  variant = ODS_BUTTON_VARIANT.outline,
   disabled,
 }) => {
   const { t } = useTranslation('buttons');
@@ -93,7 +93,8 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         <OdsButton
           data-testid="navigation-action-trigger-action"
           slot="menu-title"
-          variant={ODS_BUTTON_VARIANT.outline}
+          variant={variant}
+          isDisabled={disabled}
           size={ODS_BUTTON_SIZE.sm}
           onClick={() => setIsTrigger(true)}
           {...(!isCompact && { label: t('common_actions') })}
@@ -107,7 +108,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
       <OdsPopover
         className="py-[8px] px-0 overflow-hidden"
         triggerId="navigation-action-trigger"
-        with-arrow="true"
+        with-arrow
       >
         {items.map(({ id, ...item }) => {
           return (

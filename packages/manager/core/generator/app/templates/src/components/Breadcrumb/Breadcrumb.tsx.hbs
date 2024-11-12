@@ -1,5 +1,5 @@
 import React from 'react';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import { OdsBreadcrumb, OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
 import {
   {{#if isPCI}}
   usePciBreadcrumb,
@@ -32,14 +32,26 @@ function Breadcrumb({ customRootLabel }: BreadcrumbProps): JSX.Element {
       projectId,
       appName: '{{appName}}',
     });
-    return <OsdsBreadcrumb items={breadcrumbPci} />;
+    return (
+      <OdsBreadcrumb>
+        {breadcrumbPci?.map(item => (
+          <OdsBreadcrumbItem key={item.label} href={item.href} label={item.label} />
+        ))}
+      </OdsBreadcrumb>
+    );
   }
   {{else}}
   const breadcrumbItems = useBreadcrumb({
     rootLabel: label,
     appName: '{{appName}}',
   });
-  return <OsdsBreadcrumb items={breadcrumbItems} />;
+  return (
+    <OdsBreadcrumb>
+      {breadcrumbItems?.map(item => (
+        <OdsBreadcrumbItem key={item.label} href={item.href} label={item.label} />
+      ))}
+    </OdsBreadcrumb>
+  );
   {{/if}}
 }
 

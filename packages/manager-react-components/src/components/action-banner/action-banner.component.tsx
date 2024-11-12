@@ -32,10 +32,10 @@ export function ActionBanner({
     <OdsMessage
       color={color}
       variant={variant}
-      className={'mt-3 flex-row'}
+      className="mt-3 flex-row"
       data-testid="actionBanner-message_container"
     >
-      <div className={'sm:flex sm:flex-row sm:justify-between sm:items-center'}>
+      <div className="sm:flex sm:flex-row sm:justify-between sm:items-center">
         <OdsText>
           <span
             dangerouslySetInnerHTML={{
@@ -56,9 +56,9 @@ export function ActionBanner({
             data-testid="action-banner-link"
             id="action-banner-link"
             className="sm:mt-0 mt-4 sm:ml-4 ml-0"
-            onClick={() => onClick && onClick()}
+            onClick={onClick}
             href={href}
-            target={'_blank'}
+            target="_blank"
           >
             {cta}
           </OdsLink>
