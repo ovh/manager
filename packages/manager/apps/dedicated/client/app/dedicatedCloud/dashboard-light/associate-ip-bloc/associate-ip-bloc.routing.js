@@ -25,7 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         ips: /* @ngInject */ (currentService) =>
           currentService.ips?.map(({ network }) => network),
-        goBack: /* @ngInject */ (goBackToDashboard) => goBackToDashboard,
+        goBack: /* @ngInject */ ($state) => () => $state.go('^'),
         trackingPrefix: () =>
           'dedicated::dedicatedClouds::dashboard::associate-ip-bloc',
         breadcrumb: () => null,

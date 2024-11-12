@@ -224,15 +224,13 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      goBackToDashboard: /* @ngInject */ (goBackToState, hasVCDMigration) => (
+      goBackToDashboard: /* @ngInject */ (goBackToState) => (
         message = false,
         type = 'success',
         reload,
       ) =>
         goBackToState(
-          `app.managedBaremetal.details.dashboard${
-            hasVCDMigration ? '-light' : ''
-          }`,
+          'app.managedBaremetal.details.dashboard',
           message,
           type,
           reload,
