@@ -13,6 +13,7 @@ export type TShapesInputProps<T> = {
   items?: T[];
   value?: T;
   onInput?: (value: T) => void;
+  columnsCount?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
   item?: {
     LabelComponent?: ({
       item,
@@ -62,7 +63,6 @@ export type TShapesInputProps<T> = {
       groupItems: T[];
       isMobile: boolean;
     }) => JSX.Element;
-    value?: string;
   };
   isMobile?: boolean;
   className?: string;
@@ -73,10 +73,39 @@ type TState<T> = {
   group: string;
 };
 
+/**
+ * ShapesInputComponent
+ * An input component that allows the user to select an item from a list of items
+ * It's like a select, but items are displayed as shapes/tiles
+ * shapes can be grouped and stacked based on a common function value(common value), thus we can have group of inputs and stack of inputs
+ * The component is generic, meaning the items can be of any type
+ * @param items {Array} list of items to be displayed, default is an empty array
+ * @param value {Any} the selected item, default is undefined
+ * @param onInput {function} callback function to be called when the selected item changes,is optional
+ * @param columnsCount number of columns to display the items in,range from 1 to 12, default is 3
+ * @param item an optional object that contains the following properties:
+ * - LabelComponent: a component that will be used to display the item, is optional, a default component will be used if not provided
+ * - getId: a function that returns a unique id for the item, is optional, the index of the item will be used if not provided
+ * - isDisabled: a function that returns a boolean indicating if the item is disabled, is optional
+ * @param stack an optional object that contains the following properties:
+ * - by: a function that returns a common value for a group of items
+ * - LabelComponent: a component that will be used to display the stack, is optional, a default component will be used if not provided
+ * - TitleComponent: a component that will be used to display the title of the stack, is optional, a default component will be used if not provided
+ * If the stack is not provided, the items will be displayed as single items
+ * @param group an object that contains the following properties:
+ * - by: a function that returns a common value for a group of items
+ * - LabelComponent: a component that will be used to display the group, is optional, a default component will be used if not provided
+ * If the group is not provided, the items will be displayed as a single group
+ * @param className additional classes to be added to the component
+ * @param isMobile boolean indicating if the component is being displayed on a mobile device, default is false
+ * @param props additional props to be passed to the component
+ * @constructor Creates a ShapesInputComponent
+ */
 export const ShapesInputComponent = function ShapesInputComponent<T>({
   items = [],
   value,
   onInput,
+  columnsCount = 3,
   item,
   stack,
   group,
@@ -188,23 +217,23 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
   }, [state.value]);
 
   return (
-    <section className={className} {...props}>
+    <section className={className} {...props} style={{ maxWidth: '100%' }}>
       {!isMobile || !group ? (
         <>
           {group && (
-            <ul className="list-none flex flex-row gap-0 m-0 p-0 w-full">
+            <ul className="list-none flex flex-row gap-0 m-0 p-0 max-w-full w-full">
               {[...groupHandler.itemsMap.keys()].map((groupName) => (
                 <li
                   key={groupName || 'none'}
                   className={clsx(
-                    'border border-solid border-[#bef1ff] rounded-t-lg',
+                    'border border-solid border-[#bef1ff] rounded-t-lg overflow-hidden',
                     groupName === state.group
-                      ? 'border-b-0 bg-[#F5FEFF]'
+                      ? 'border-b-0 bg-[#F5FEFF] m-t[1px]'
                       : 'border-b bg-white',
                   )}
                 >
                   <button
-                    className={clsx(GHOST_BUTTON_CLASS, 'w-full h-full')}
+                    className={clsx(GHOST_BUTTON_CLASS, 'h-full w-full')}
                     onClick={() => {
                       setState((prev) => ({ ...prev, group: groupName }));
                     }}
@@ -224,17 +253,19 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
               ))}
               <li
                 key="none"
-                className="border-0 border-b border-solid border-b-[#bef1ff] w-full"
+                className="border-0 border-b border-solid border-b-[#bef1ff] grow"
               ></li>
             </ul>
           )}
           <div
             className={clsx(
               group &&
-                'bg-[#F5FEFF] border border-solid border-t-0 border-[#BEF1FF]',
+                'bg-[#F5FEFF] border border-t-0 border-solid border-[#BEF1FF]',
             )}
           >
-            <ul className="list-none grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 m-0 p-4">
+            <ul
+              className={`list-none grid grid-cols-${columnsCount} gap-6 m-0 p-4`}
+            >
               {[...stackHandler.itemsMap.keys()].map((stackKey) => (
                 <li key={stackKey}>
                   <ShapeComponent
@@ -329,6 +360,7 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
                 }}
                 onInput={onInput}
                 stack={stack}
+                columnsCount={1}
               />
             </AccordionComponent>
           ))}
