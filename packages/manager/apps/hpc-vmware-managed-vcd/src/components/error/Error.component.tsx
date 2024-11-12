@@ -28,7 +28,7 @@ const Errors: React.FC<ErrorObject> = ({ error }) => {
   const env = environment.getEnvironment();
 
   React.useEffect(() => {
-    env.then((response) => {
+    env.then((response: any) => {
       const { applicationName } = response;
       const name = `errors::${getTrackingTypology(error)}::${applicationName}`;
       tracking.trackPage({
