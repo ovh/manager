@@ -55,6 +55,7 @@ export const SLAAC_VALUES = {
 export const VRACK_DASHBOARD_TRACKING_PREFIX = 'vrack::dashboard';
 export const VRACK_ACTIONS_SUFFIX = 'action';
 
+// SERVICES TO WORK WITH (others are excluded)
 export const TYPE_SERVICE = {
   cloudProject: 'cloudProject',
   dedicatedCloud: 'dedicatedCloud',
@@ -66,6 +67,7 @@ export const TYPE_SERVICE = {
   ipv6: 'ipv6',
 };
 
+// ALL ELIGIBLE SERVICES FOR VRACK
 export const SERVICES = [
   'cloudProject',
   'dedicatedCloud',
@@ -76,6 +78,7 @@ export const SERVICES = [
   'legacyVrack',
   'ipv6',
   'ovhCloudConnect',
+  'vrackServices',
 ];
 
 export const API_STATUS = {

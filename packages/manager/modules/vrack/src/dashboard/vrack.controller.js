@@ -537,7 +537,7 @@ export default class VrackMoveDialogCtrl {
             }
             break;
           default:
-            this.updateOvhCloudConnect();
+            this.updateExcludedServices();
             break;
         }
       }
@@ -554,9 +554,12 @@ export default class VrackMoveDialogCtrl {
     }
   }
 
-  updateOvhCloudConnect() {
+  updateExcludedServices() {
     if (this.data.eligibleServices?.ovhCloudConnect?.length > 0) {
       this.data.eligibleServices.ovhCloudConnect = [];
+    }
+    if (this.data.eligibleServices?.vrackServices?.length > 0) {
+      this.data.eligibleServices.vrackServices = [];
     }
   }
 
@@ -614,7 +617,7 @@ export default class VrackMoveDialogCtrl {
                   }
                   break;
                 default:
-                  this.updateOvhCloudConnect();
+                  this.updateExcludedServices();
                   break;
               }
             }
