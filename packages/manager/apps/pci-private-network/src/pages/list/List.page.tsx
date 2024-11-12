@@ -93,7 +93,7 @@ export default function ListingPage() {
             >
               {t('pci_projects_project_network_private')}
             </OsdsText>
-            <PciGuidesHeader category="instances"></PciGuidesHeader>
+            <PciGuidesHeader category="instances" />
           </div>
         </div>
 

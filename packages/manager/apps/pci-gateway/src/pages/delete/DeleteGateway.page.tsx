@@ -1,15 +1,6 @@
 import { Translation, useTranslation } from 'react-i18next';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -18,6 +9,7 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContext, useState } from 'react';
+import { DeletionModal } from '@ovh-ux/manager-pci-common';
 import { useDeleteGateway } from '@/api/hooks/useGateway';
 import queryClient from '@/queryClient';
 import { Gateway } from '@/interface';
@@ -104,60 +96,34 @@ export default function DeleteGateway() {
 
   const isPending = isPendingDeleteGateway || isOperationPending;
   return (
-    <OsdsModal
-      headline={
+    <DeletionModal
+      title={
         !isPending ? tDelete('pci_projects_project_public_gateway_delete') : ''
       }
-      onOdsModalClose={() => onClose(true)}
+      isPending={isPending}
+      isDisabled={isPending}
+      onCancel={() => onClose(true)}
+      onClose={() => onClose(true)}
+      onConfirm={() => {
+        deleteGateway();
+        tracking?.trackClick({
+          name: `${ACTION_PREFIX}::delete::confirm`,
+          type: 'action',
+        });
+      }}
+      submitText={tDelete('pci_projects_project_public_gateway_delete_confirm')}
+      cancelText={tDelete('pci_projects_project_public_gateway_delete_cancel')}
     >
-      <slot name="content">
-        {!isPending ? (
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_TEXT_SIZE._400}
-            className="block mt-6"
-          >
-            {tDelete(
-              'pci_projects_project_public_gateway_delete_confirmation',
-              {
-                name,
-              },
-            )}
-          </OsdsText>
-        ) : (
-          <OsdsSpinner
-            inline
-            size={ODS_SPINNER_SIZE.md}
-            className="block text-center"
-            data-testid="deleteGateway-spinner"
-          />
-        )}
-      </slot>
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={() => onClose(true)}
-        data-testid="deleteGateway-button_cancel"
+      <OsdsText
+        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+        color={ODS_THEME_COLOR_INTENT.text}
+        size={ODS_TEXT_SIZE._400}
+        className="block mt-6"
       >
-        {tDelete('pci_projects_project_public_gateway_delete_cancel')}
-      </OsdsButton>
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={() => {
-          deleteGateway();
-          tracking?.trackClick({
-            name: `${ACTION_PREFIX}::delete::confirm`,
-            type: 'action',
-          });
-        }}
-        {...(isPending ? { disabled: true } : {})}
-        data-testid="deleteGateway-button_submit"
-      >
-        {tDelete('pci_projects_project_public_gateway_delete_confirm')}
-      </OsdsButton>
-    </OsdsModal>
+        {tDelete('pci_projects_project_public_gateway_delete_confirmation', {
+          name,
+        })}
+      </OsdsText>
+    </DeletionModal>
   );
 }

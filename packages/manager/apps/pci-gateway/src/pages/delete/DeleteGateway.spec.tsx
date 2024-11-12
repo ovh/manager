@@ -54,7 +54,7 @@ describe('DeleteGateway component tests', () => {
       deleteGateway: mockDeleteGateway,
     } as unknown) as UseDeleteGatewayReturnType);
     const { queryByTestId } = renderDeleteGatewayPage();
-    expect(queryByTestId('deleteGateway-spinner')).toBeVisible();
+    expect(queryByTestId('pciModal-spinner')).toBeVisible();
   });
 
   it('should not display spinner when deleteGateway is not pending', () => {
@@ -63,7 +63,7 @@ describe('DeleteGateway component tests', () => {
       deleteGateway: mockDeleteGateway,
     } as unknown) as UseDeleteGatewayReturnType);
     const { queryByTestId } = renderDeleteGatewayPage();
-    expect(queryByTestId('deleteGateway-spinner')).not.toBeInTheDocument();
+    expect(queryByTestId('pciModal-spinner')).not.toBeInTheDocument();
   });
 
   it('should disabled submit button when deleteGateway is pending', () => {
@@ -74,7 +74,7 @@ describe('DeleteGateway component tests', () => {
     const { queryByTestId } = renderDeleteGatewayPage();
 
     const submitButton = (queryByTestId(
-      'deleteGateway-button_submit',
+      'pciModal-button_submit',
     ) as unknown) as OsdsButton;
 
     expect(submitButton).toHaveAttribute('disabled');
@@ -87,7 +87,7 @@ describe('DeleteGateway component tests', () => {
       deleteGateway: mockDeleteGateway,
     } as unknown) as UseDeleteGatewayReturnType);
     const { queryByTestId } = renderDeleteGatewayPage();
-    const submitButton = queryByTestId('deleteGateway-button_submit');
+    const submitButton = queryByTestId('pciModal-button_submit');
     expect(submitButton).not.toHaveAttribute('disabled');
   });
 
@@ -99,7 +99,7 @@ describe('DeleteGateway component tests', () => {
 
     const { getByTestId } = renderDeleteGatewayPage();
 
-    const submitButton = getByTestId('deleteGateway-button_submit');
+    const submitButton = getByTestId('pciModal-button_submit');
 
     act(() => {
       fireEvent.click(submitButton);
