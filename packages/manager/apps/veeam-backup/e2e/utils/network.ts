@@ -2,7 +2,7 @@ import { BrowserContext } from '@playwright/test';
 import {
   getServicesMocks,
   GetServicesMocksParams,
-} from '@ovh-ux/manager-react-components/src/hooks/services/mocks';
+} from '@ovh-ux/manager-react-components';
 import {
   ICustomWorld,
   toPlaywrightMockHandler,
