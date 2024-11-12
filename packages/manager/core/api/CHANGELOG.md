@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.9.0 (2024-11-12)
+
+
+### Bug Fixes
+
+* **core-api:** fix error not thrown from axios interceptor ([5990368](https://github.com/ovh/manager/commit/599036881c0c4c285d778265d201024126450636))
+* **generator:** fix handle error in generator react ([c2982d4](https://github.com/ovh/manager/commit/c2982d42f1127015868e5c4ef558159a585288b2))
+* **generator:** fixes and improvements ([#10904](https://github.com/ovh/manager/issues/10904)) ([ba4c845](https://github.com/ovh/manager/commit/ba4c84573128923f67c996c98039ca5dc7133457))
+* merge develop changes ([899ce10](https://github.com/ovh/manager/commit/899ce10676ccccdf4fa6da656b4d2890b2a61ecb))
+
+
+### Features
+
+* build and publish manager-react-components and its deps ([cbcd795](https://github.com/ovh/manager/commit/cbcd7959a217c191c003058455ba2c38fb7553f1))
+* clean dependencies versions of react apps ([7969ba7](https://github.com/ovh/manager/commit/7969ba70f9e03033271a48a5bd0021484ea36263))
+* **core:** add request tagger in client axios ([#10421](https://github.com/ovh/manager/issues/10421)) ([0e244c1](https://github.com/ovh/manager/commit/0e244c1f3bdac292ce1b0d9b125ba2d700587b12))
+* **dedicated:** vrack services microapp ([#10924](https://github.com/ovh/manager/issues/10924)) ([0316238](https://github.com/ovh/manager/commit/0316238dbaa0729c9c925efa902b4d657351e329))
+* **generator:**  add generator vitejs react v1 ([#9186](https://github.com/ovh/manager/issues/9186)) ([c911ee6](https://github.com/ovh/manager/commit/c911ee6168e2803e2022dc0e275f242953ad8255))
+* **generator:** add listing of v2 endpoints + multiple endpoints ([f8aeb36](https://github.com/ovh/manager/commit/f8aeb3624c3db9a94ae68800641b7ec9373493a0))
+* **generator:** add pagination v2 cursor and fix pagination v6 ([#10379](https://github.com/ovh/manager/issues/10379)) ([4fd7800](https://github.com/ovh/manager/commit/4fd7800c51e0fc224520e9c90126879c4c550247))
+* pci vouchers app in reactjs ([d6821ce](https://github.com/ovh/manager/commit/d6821cecd3bde7d884054d8e782e9a1e9dbfddac))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+### BREAKING CHANGES
+
+* **generator:** rename useShellClient into initShellClient
+
+
+
+
+
 # [0.9.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.8.2...@ovh-ux/manager-core-api@0.9.0-alpha.0) (2024-10-30)
 
 

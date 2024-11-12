@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-models",
-  "version": "1.14.18-alpha.0",
+  "version": "2.0.0",
   "private": true,
   "description": "Set of classes representing API data ",
   "repository": {
@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "index.js",
   "devDependencies": {
-    "@ovh-ux/manager-config": "^7.5.3-alpha.0",
+    "@ovh-ux/manager-config": "^8.0.0",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {

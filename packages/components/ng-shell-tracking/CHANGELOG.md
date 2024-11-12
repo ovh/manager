@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.6.0 (2024-11-12)
+
+
+### Bug Fixes
+
+* **ng-shell-tracking:** remove trackOrder deprecated method ([222cb68](https://github.com/ovh/manager/commit/222cb68c44b922454f7aa48ad061f4e6b2f72a7a))
+* **provider:** add missing `trackOrder` ([#7376](https://github.com/ovh/manager/issues/7376)) ([3e4e6ee](https://github.com/ovh/manager/commit/3e4e6eed6a30973e2062ba2789e225723a98d078))
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### Features
+
+* migrate from vuepress to vitepress ([6968c85](https://github.com/ovh/manager/commit/6968c85f00e19c41bc240abb37a50e9dacf9c5e5))
+* **ng-shell-tracking:** create component ([5093f63](https://github.com/ovh/manager/commit/5093f636c710e006ec67bdf5f5197e51f555616d))
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+* piano analytics tracking ([#8557](https://github.com/ovh/manager/issues/8557)) ([0b62090](https://github.com/ovh/manager/commit/0b620907c48aea25bd7e43cca39cb6d81863b05d))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
 ## [0.5.15-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.5.14...@ovh-ux/ng-shell-tracking@0.5.15-alpha.0) (2024-10-30)
 
 **Note:** Version bump only for package @ovh-ux/ng-shell-tracking

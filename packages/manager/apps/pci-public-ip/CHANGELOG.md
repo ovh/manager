@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.7.11-alpha.12...@ovh-ux/manager-pci-public-ip-app@0.7.11) (2024-11-12)
+
+
+### Bug Fixes
+
+* **pci-public-ip:** fix µ-app's build ([5dde862](https://github.com/ovh/manager/commit/5dde862233e0ac88b7b66176ad15cb21630f0abf))
+
+
+
+
+
 ## [0.7.11-alpha.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.7.11-alpha.11...@ovh-ux/manager-pci-public-ip-app@0.7.11-alpha.12) (2024-11-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app

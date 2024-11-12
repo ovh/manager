@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/request-tagger",
-  "version": "0.4.0-alpha.0",
+  "version": "0.4.0",
   "description": "OVHcloud control panel Request tagger",
   "repository": {
     "type": "git",

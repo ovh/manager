@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.5.0 (2024-11-12)
+
+
+### Bug Fixes
+
+* **dedicated:** improve URL routing ([#9745](https://github.com/ovh/manager/issues/9745)) ([6447bbf](https://github.com/ovh/manager/commit/6447bbf7b4adf5446d388e139efa8c0e75aae7cf))
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### Features
+
+* **dedicated:** add new carbon calculator app ([#9724](https://github.com/ovh/manager/issues/9724)) ([dfb15ba](https://github.com/ovh/manager/commit/dfb15ba88a2b678d2e4a91654360a47823d8cfb4))
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+* **signup:** add searchable country list and update labels ([#10625](https://github.com/ovh/manager/issues/10625)) ([a263199](https://github.com/ovh/manager/commit/a263199b06a47298eb7bf0a99814b38da3b544c2))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
 ## [0.4.16-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-carbon-calculator-app@0.4.16-alpha.0...@ovh-ux/manager-carbon-calculator-app@0.4.16-alpha.1) (2024-11-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-carbon-calculator-app

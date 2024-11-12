@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-support",
-  "version": "1.23.6-alpha.0",
+  "version": "2.0.0",
   "private": true,
   "description": "Support component to manage tickets.",
   "repository": {
@@ -11,7 +11,7 @@
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/manager-models": "^1.14.18-alpha.0",
+    "@ovh-ux/manager-models": "^2.0.0",
     "bootstrap": "^4.3.1",
     "lodash": "^4.17.15"
   },

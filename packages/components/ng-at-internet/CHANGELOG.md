@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 6.0.0 (2024-11-12)
+
+
+### Bug Fixes
+
+* **at-internet:** fix infinite process queue loop ([029dcd2](https://github.com/ovh/manager/commit/029dcd2241d959314f147540fa337ae31ca1f480))
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([cbdfb91](https://github.com/ovh/manager/commit/cbdfb91a9dc7daf20f6ee82ebeffb034238da4ce))
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([8eac31f](https://github.com/ovh/manager/commit/8eac31f81e46d1570c131cf55788d6435842ab6d))
+* **deps:** upgrade component-rollup-config to v6.0.2 ([#15](https://github.com/ovh/manager/issues/15)) ([d9a8307](https://github.com/ovh/manager/commit/d9a8307f3819ca7c439a7fd6e51197913409dd76))
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+* **dev-deps:** upgrade @ovh-ux/component-rollup-config to `v11.0.0` ([3ae659b](https://github.com/ovh/manager/commit/3ae659bea59244fd5660375b9dac52055cc374b0))
+* **ng-at-internet:** use ovh-at-internet component ([7d914f9](https://github.com/ovh/manager/commit/7d914f94cc3d6954144bfc9c82892638c8bd8cd7))
+* optimize cookie policy ([#4845](https://github.com/ovh/manager/issues/4845)) ([c6edceb](https://github.com/ovh/manager/commit/c6edceb22689c6837d25c08f0e62cc4ae0d79ce4))
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+
+
+### Code Refactoring
+
+* update stack with component-rollup-config ([#8](https://github.com/ovh/manager/issues/8)) ([46e01ba](https://github.com/ovh/manager/commit/46e01ba295bbe84f140ddb7820ec4648b8e50927))
+
+
+### Features
+
+* add `pageUrl` ([#5811](https://github.com/ovh/manager/issues/5811)) ([fc0aa8e](https://github.com/ovh/manager/commit/fc0aa8e3eee7baf8d7bece9d015018f193312a03))
+* add project id and voucher code ([1fd54f9](https://github.com/ovh/manager/commit/1fd54f9e04346c5ec4b971141e9dcd63e3ecb730))
+* add tracking on project creation ([#6807](https://github.com/ovh/manager/issues/6807)) ([28012e1](https://github.com/ovh/manager/commit/28012e15f7a4434c5fe2379c62fef1f344caa616))
+* **atinternet:** queue tracking when tracker not enabled ([49c9172](https://github.com/ovh/manager/commit/49c917227b8792cf1a00fd8ab92192290bacb5fa))
+* **constants:** add order status ([2bee240](https://github.com/ovh/manager/commit/2bee240b38d8246880d2fc3d7089722512d740e3))
+* **custom-vars:** update variable ([f9664e0](https://github.com/ovh/manager/commit/f9664e080ad08143e08b5f8ed0463d3bb6783448))
+* **directive:** add impression tracking ([#4073](https://github.com/ovh/manager/issues/4073)) ([941c9ef](https://github.com/ovh/manager/commit/941c9ef969e20594512d84e0b5298bdb6c81db05))
+* migrate from vuepress to vitepress ([6968c85](https://github.com/ovh/manager/commit/6968c85f00e19c41bc240abb37a50e9dacf9c5e5))
+* piano analytics tracking ([#8557](https://github.com/ovh/manager/issues/8557)) ([0b62090](https://github.com/ovh/manager/commit/0b620907c48aea25bd7e43cca39cb6d81863b05d))
+* **provider:** add `clearTrackQueue` method ([cd2de0f](https://github.com/ovh/manager/commit/cd2de0f07b17d17b25fe0b3d8df1fab535b460e1))
+* **provider:** add default configuration ([0e36693](https://github.com/ovh/manager/commit/0e36693e7b6245d805f70f0be2caee4094c6c768))
+* **provider:** add setRegion ([bde4150](https://github.com/ovh/manager/commit/bde415075c74d2dcc864987a681e180bc554a019))
+
+
+### Performance Improvements
+
+* **ng-at-internet:** replace lodash with lodash-es ([#3047](https://github.com/ovh/manager/issues/3047)) ([c638090](https://github.com/ovh/manager/commit/c638090cdbce9c44b65539e43c3031e205663199))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+### BREAKING CHANGES
+
+* module is now named `ngAtInternet`
+
+
+
+
+
 ## [5.11.18-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.11.17...@ovh-ux/ng-at-internet@5.11.18-alpha.0) (2024-10-30)
 
 **Note:** Version bump only for package @ovh-ux/ng-at-internet

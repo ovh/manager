@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-bm-server-components",
-  "version": "1.36.4-alpha.1",
+  "version": "2.0.0",
   "private": true,
   "description": "OVHcloud BmServerComponents product",
   "repository": {
@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/manager-config": "^7.5.3-alpha.0",
+    "@ovh-ux/manager-config": "^8.0.0",
     "angular-ui-validate": "angular-ui/ui-validate#~1.2.2",
     "bootstrap4": "twbs/bootstrap#v4.6.2",
     "ipaddr.js": "^1.6.0",
