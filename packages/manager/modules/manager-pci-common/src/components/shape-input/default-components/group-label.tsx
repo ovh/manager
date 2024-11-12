@@ -9,6 +9,7 @@ export const DefaultGroupLabelComponent = ({
   groupItems: unknown[];
   isMobile: boolean;
 }): JSX.Element => (
+  // TODO edit
   <div className="whitespace-nowrap p-4 font-bold">
     {groupName}({groupItems?.length || 0}) [
     {isGroupSelected ? 'selected' : 'not selected'}] /

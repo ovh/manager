@@ -21,7 +21,7 @@ export const LabelComponent = ({
   ).split('/');
 
   return (
-    <div className="p-2">
+    <div className="p-4">
       <OsdsText
         size={ODS_TEXT_SIZE._400}
         level={ODS_TEXT_LEVEL.body}

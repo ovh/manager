@@ -14,7 +14,7 @@ export const GroupLabelComponent = ({
 }) => {
   const { t: tRegionsList } = useTranslation('regions-list');
 
-  const shouldBeBold = isGroupSelected && !isMobile;
+  const shouldBeBold = isMobile || (isGroupSelected && !isMobile);
 
   return (
     <div className="max-w-full p-4">
