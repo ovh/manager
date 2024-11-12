@@ -52,6 +52,7 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
     setStorage(true);
     trackingPlugin.trackClick({
       name: `${trackingPrefix}::pop-up::link::kyc::cancel`,
+      type: 'action',
       ...trackingContext,
     });
   };
