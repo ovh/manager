@@ -35,8 +35,8 @@ export interface IPaymentMethod {
   paymentMethodId: number;
 }
 
-const computeAlert = (paymentMethods: IPaymentMethod[]): string => {
-  const currentCreditCard: IPaymentMethod = paymentMethods?.find(currentPaymentMethod => currentPaymentMethod.paymentType === 'CREDIT_CARD'
+const computeAlert = (paymentMethods: IPaymentMethod[] =[]): string => {
+  const currentCreditCard: IPaymentMethod = paymentMethods.find(currentPaymentMethod => currentPaymentMethod.paymentType === 'CREDIT_CARD'
   && currentPaymentMethod.default);
 
   if (currentCreditCard?.expirationDate) {
@@ -83,18 +83,15 @@ const PaymentModal = (): JSX.Element => {
   });
 
   useEffect(() => {
-    if (paymentResponse) {
-      const alert = computeAlert(paymentResponse.data);
+    if (isReadyToRequest && !isLoading) {
+      const alert = computeAlert(paymentResponse?.data);
       if (alert) {
         setAlert(alert);
         setShowPaymentModal(true);
       }
-      else if (isReadyToRequest) {
+      else {
         shell.getPlugin('ux').notifyModalActionDone();
       }
-    }
-    else if (isReadyToRequest && !isLoading) {
-      shell.getPlugin('ux').notifyModalActionDone();
     }
   }, [paymentResponse, isReadyToRequest, isLoading]);
 
