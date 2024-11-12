@@ -8,6 +8,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { ShapesInputComponent } from '@ovh-ux/manager-pci-common';
+import { useEffect, useRef } from 'react';
 import { TRegion } from '@/api/hook/useRegions';
 import { REGION_AVAILABILITY_LINK } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
@@ -39,85 +40,106 @@ export const RegionStep = ({
 
   const store = useCreateStore();
 
+  // TODO: remove this once the class is added to step component directly in manager-react-components
+  useEffect(() => {
+    const refEl = document.getElementById('ref');
+    if (refEl) {
+      const stepEl = refEl.nextSibling;
+      if (stepEl) {
+        const targetEl = stepEl.childNodes.item(1);
+
+        if (targetEl.nodeName === 'DIV') {
+          const target = targetEl as HTMLDivElement;
+          if (!target.classList.contains('max-w-[calc(100%-76px)]')) {
+            target.classList.add('max-w-[calc(100%-76px)]');
+          }
+        }
+      }
+    }
+  }, []);
+
   return (
-    <StepComponent
-      title={tCreate('octavia_load_balancer_create_region_title')}
-      isOpen={store.steps.get(StepsEnum.REGION).isOpen}
-      isChecked={store.steps.get(StepsEnum.REGION).isChecked}
-      isLocked={store.steps.get(StepsEnum.REGION).isLocked}
-      order={2}
-      next={{
-        action: () => {
-          trackStep(2);
+    <>
+      <div id="ref"></div>
+      <StepComponent
+        title={tCreate('octavia_load_balancer_create_region_title')}
+        isOpen={store.steps.get(StepsEnum.REGION).isOpen}
+        isChecked={store.steps.get(StepsEnum.REGION).isChecked}
+        isLocked={store.steps.get(StepsEnum.REGION).isLocked}
+        order={2}
+        next={{
+          action: () => {
+            trackStep(2);
 
-          store.check(StepsEnum.REGION);
-          store.lock(StepsEnum.REGION);
+            store.check(StepsEnum.REGION);
+            store.lock(StepsEnum.REGION);
 
-          store.open(StepsEnum.IP);
-        },
-        label: tCommon('common_stepper_next_button_label'),
-        isDisabled: store.region === null,
-      }}
-      edit={{
-        action: () => {
-          store.unlock(StepsEnum.REGION);
-          store.uncheck(StepsEnum.REGION);
-          store.open(StepsEnum.REGION);
-          store.reset(
-            StepsEnum.IP,
-            StepsEnum.NETWORK,
-            StepsEnum.INSTANCE,
-            StepsEnum.NAME,
-          );
-        },
-        label: tCommon('common_stepper_modify_this_step'),
-      }}
-    >
-      <div className="mb-4">
-        <OsdsText
-          size={ODS_TEXT_SIZE._400}
-          level={ODS_TEXT_LEVEL.body}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
-          {tCreate('octavia_load_balancer_create_region_intro')}{' '}
-          <OsdsLink
-            href={
-              REGION_AVAILABILITY_LINK[ovhSubsidiary] ||
-              REGION_AVAILABILITY_LINK.DEFAULT
-            }
-            color={ODS_THEME_COLOR_INTENT.primary}
+            store.open(StepsEnum.IP);
+          },
+          label: tCommon('common_stepper_next_button_label'),
+          isDisabled: store.region === null,
+        }}
+        edit={{
+          action: () => {
+            store.unlock(StepsEnum.REGION);
+            store.uncheck(StepsEnum.REGION);
+            store.open(StepsEnum.REGION);
+            store.reset(
+              StepsEnum.IP,
+              StepsEnum.NETWORK,
+              StepsEnum.INSTANCE,
+              StepsEnum.NAME,
+            );
+          },
+          label: tCommon('common_stepper_modify_this_step'),
+        }}
+      >
+        <div className="mb-4">
+          <OsdsText
+            size={ODS_TEXT_SIZE._400}
+            level={ODS_TEXT_LEVEL.body}
+            color={ODS_THEME_COLOR_INTENT.text}
           >
-            {tCreate('octavia_load_balancer_create_region_link')}
-          </OsdsLink>
-        </OsdsText>
-      </div>
-      {isLoading ? (
-        <div className="text-center mt-6">
-          <OsdsSpinner inline />
+            {tCreate('octavia_load_balancer_create_region_intro')}{' '}
+            <OsdsLink
+              href={
+                REGION_AVAILABILITY_LINK[ovhSubsidiary] ||
+                REGION_AVAILABILITY_LINK.DEFAULT
+              }
+              color={ODS_THEME_COLOR_INTENT.primary}
+            >
+              {tCreate('octavia_load_balancer_create_region_link')}
+            </OsdsLink>
+          </OsdsText>
         </div>
-      ) : (
-        <ShapesInputComponent<TRegion>
-          items={regions?.get(store.addon?.code) || []}
-          onInput={(region) => store.set.region(region)}
-          value={store.region}
-          columnsCount={columnsCount}
-          item={{
-            LabelComponent,
-            getId: (item) => item.name,
-            isDisabled: (item) => !item.isEnabled,
-          }}
-          stack={{
-            by: (item) => item?.macroName || '',
-            LabelComponent: StackLabelComponent,
-            TitleComponent: StackTitleComponent,
-          }}
-          group={{
-            by: (item) => item.continent,
-            LabelComponent: GroupLabelComponent,
-          }}
-          isMobile={isMobile}
-        />
-      )}
-    </StepComponent>
+        {isLoading ? (
+          <div className="text-center mt-6">
+            <OsdsSpinner inline />
+          </div>
+        ) : (
+          <ShapesInputComponent<TRegion>
+            items={regions?.get(store.addon?.code) || []}
+            onInput={(region) => store.set.region(region)}
+            value={store.region}
+            columnsCount={columnsCount}
+            item={{
+              LabelComponent,
+              getId: (item) => item.name,
+              isDisabled: (item) => !item.isEnabled,
+            }}
+            stack={{
+              by: (item) => item?.macroName || '',
+              LabelComponent: StackLabelComponent,
+              TitleComponent: StackTitleComponent,
+            }}
+            group={{
+              by: (item) => item.continent,
+              LabelComponent: GroupLabelComponent,
+            }}
+            isMobile={isMobile}
+          />
+        )}
+      </StepComponent>
+    </>
   );
 };

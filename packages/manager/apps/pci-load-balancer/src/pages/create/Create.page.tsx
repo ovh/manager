@@ -71,7 +71,7 @@ export default function CreatePage(): JSX.Element {
 
   const { data: catalog } = useCatalog();
 
-  //-----------
+  // reset the store on mount and set the project id
   useEffect(() => {
     store.reset();
     store.set.projectId(projectId);
