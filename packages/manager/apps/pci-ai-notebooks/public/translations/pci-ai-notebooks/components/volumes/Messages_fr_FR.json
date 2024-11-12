@@ -1,7 +1,7 @@
 {
   "containerFieldLabel": "Container",
   "containerFieldPlaceholder": "Séléctionner un container",
-  "gitBranchFieldLabel": "Branch GIT",
+  "gitBranchFieldLabel": "Branch Git",
   "mountDirectoryFieldLabel": "Répertoire de montage",
   "permissionsFieldLabel": "Permission",
   "permissionDescription": "En `Lecture Seule` aucune synchronisation n'est lancée en fin de job. Le job se finalise ainsi plus rapidement.",

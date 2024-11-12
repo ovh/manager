@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { fr } from 'date-fns/locale';
 import RadioTile from '@/components/radio-tile/RadioTile.component';
 import * as ai from '@/types/cloud/project/ai';
 import VersionSelector from './FrameworkTileVersion.component';
@@ -19,7 +17,6 @@ export const FrameworkTile = ({
     version: string,
   ) => void;
 }) => {
-  const { t } = useTranslation('pci-ai-notebooks/component/framework');
   const [selectedVersion, setSelectedVersion] = useState<string>(version);
   const handleFrameworkClick = () => {
     onChange(framework, selectedVersion);
@@ -55,12 +52,9 @@ export const FrameworkTile = ({
         versions={framework.versions}
         selectedVersion={selectedVersion}
         isFrameworkSelected={selected}
-        onChange={(versionName) => {
-          console.log(framework.versions);
-          // console.log(framework.versions.find((v) => v === versionName));
-          console.log(versionName);
-          setSelectedVersion(framework.versions.find((v) => v === versionName));
-        }}
+        onChange={(versionName) =>
+          setSelectedVersion(framework.versions.find((v) => v === versionName))
+        }
       />
       <RadioTile.Separator />
       <p className="text-xs text-justify leading-relaxed">

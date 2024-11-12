@@ -1,6 +1,6 @@
 {
-  "resource_price": "Prix ressources",
-  "pricing_ht": "{{ price }} HT / heure",
-  "pricing_ttc": "{{ price }} TTC",
-  "pricing_label": "Prix"
+  "pricingHt": "{{ price }} HT",
+  "pricingInHour": "/ heure",
+  "pricingTtc": "{{ price }} TTC",
+  "pricingLabel": "Prix"
 }

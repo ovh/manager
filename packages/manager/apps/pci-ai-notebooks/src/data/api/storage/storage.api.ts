@@ -8,7 +8,6 @@ export const getStorage = async ({ projectId }: PCIAi) =>
       headers: {
         'X-Pagination-Mode': 'CachedObjectList-Pages',
         'X-Pagination-Size': '50000',
-        Pragma: 'no-cache',
       },
     })
     .then((res) => res.data as storage.Container[]);

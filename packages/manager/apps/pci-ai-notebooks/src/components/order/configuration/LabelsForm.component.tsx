@@ -33,7 +33,10 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
         .max(15)
         .refine(
           (newKey) =>
-            !labelValue.some((existingLabel) => existingLabel.name === newKey),
+            !labelValue.some(
+              (existingLabel) =>
+                existingLabel.name.toLowerCase() === newKey.toLowerCase(),
+            ),
           {
             message: t('existingKeyError'),
           },

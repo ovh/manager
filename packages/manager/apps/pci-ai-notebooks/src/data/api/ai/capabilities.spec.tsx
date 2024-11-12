@@ -31,7 +31,6 @@ describe('Capabilities functions', () => {
         headers: {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
           'X-Pagination-Size': '50000',
-          Pragma: 'no-cache',
         },
       },
     );

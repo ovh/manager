@@ -35,6 +35,8 @@
   "formButtonAdvancedConfiguration": "Configuration avancée",
   "fieldVolumesLabel": "Volumes",
   "summaryFieldVolumesLabel": "Volumes:",
+  "fieldVolumeDescription": "Faire un petit laius sur les volumes, à quoi ils servent, comment les configurer et tout ci tout ca",
+  "noVolumeDescription": "Vous n'avez pas de volumes configurés. Configurer un S3 ou Git / Configurer un container Swift",
   "summaryFieldVolumes_one": "{{count}} volume configuré",
   "summaryFieldVolumes_other": "{{count}} volumes configurés",
   "fieldConfigurationLabelsLabel": "Labels",

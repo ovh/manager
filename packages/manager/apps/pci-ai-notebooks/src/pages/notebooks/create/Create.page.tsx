@@ -9,6 +9,7 @@ import { useGetFramework } from '@/hooks/api/ai/notebook/capabilities/useGetFram
 import { useGetEditor } from '@/hooks/api/ai/notebook/capabilities/useGetEditor.hook';
 import { useGetSshkey } from '@/hooks/api/sshkey/useGetSshkey.hook';
 import { mockedSuggestion } from '@/__tests__/helpers/mocks/suggestion';
+import { useGetSuggestions } from '@/hooks/api/ai/notebook/useGetSuggestions.hook';
 
 export function breadcrumb() {
   return (
@@ -22,11 +23,10 @@ export function breadcrumb() {
 const Notebook = () => {
   const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
   const { projectId } = useParams();
-  /* /
+
   const suggestionsQuery = useGetSuggestions(projectId, {
     refetchOnWindowFocus: false,
   });
-  */
 
   const regionsQuery = useGetRegions(projectId, {
     refetchOnWindowFocus: false,
@@ -60,7 +60,7 @@ const Notebook = () => {
             frameworks={frameworkQuery.data}
             editors={editorQuery.data}
             sshKeys={sshKeyQuery.data}
-            suggestions={mockedSuggestion}
+            suggestions={suggestionsQuery.data}
           />
         )}
     </>

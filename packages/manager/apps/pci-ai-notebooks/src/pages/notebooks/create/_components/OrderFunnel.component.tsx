@@ -49,16 +49,12 @@ import { useAddNotebook } from '@/hooks/api/ai/notebook/useAddNotebook.hook';
 import { useToast } from '@/components/ui/use-toast';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import ErrorList from '@/components/order/error-list/ErrorList.component';
-import {
-  OrderSshKey,
-  OrderVolumes,
-  PrivacyEnum,
-  Suggestions,
-} from '@/types/orderFunnel';
+import { OrderSshKey, PrivacyEnum, Suggestions } from '@/types/orderFunnel';
 import { useModale } from '@/hooks/useModale';
 import { useGetCommand } from '@/hooks/api/ai/notebook/useGetCommand.hook';
 import CliEquivalent from './CliEquivalent.component';
 import AddSSHKey from '@/pages/_components/AddSSHKey.component';
+import { getNotebookSpec } from '@/lib/orderFunnelHelper';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
@@ -126,83 +122,17 @@ const OrderFunnel = ({
   });
 
   const getCliCommand = () => {
-    const notebookInfos: ai.notebook.NotebookSpec = {
-      env: {
-        frameworkId: model.result.framework.id,
-        frameworkVersion: model.form.getValues('frameworkWithVersion.version'),
-        editorId: model.result.editor.id,
-      },
-      region: model.result.region.id,
-      unsecureHttp: model.result.unsecureHttp,
-      sshPublicKeys: model.result.sshKey,
-      labels: model.result.labels,
-    };
-
-    if (model.result.flavor.type === ai.capabilities.FlavorTypeEnum.cpu) {
-      notebookInfos.resources = {
-        flavor: model.result.flavor.id,
-        cpu: model.result.resourcesQuantity,
-      };
-    } else {
-      notebookInfos.resources = {
-        flavor: model.result.flavor.id,
-        gpu: model.result.resourcesQuantity,
-      };
-    }
-
-    if (model.result.volumes.length > 0) {
-      notebookInfos.volumes = model.result.volumes.map(
-        (volume: OrderVolumes) => ({
-          cache: volume.cache,
-          dataStore: {
-            alias: volume.dataStore.alias,
-            container: volume.dataStore.container,
-          },
-          mountPath: volume.mountPath,
-          permission: volume.permission,
-        }),
-      );
-    }
+    const notebookInfos: ai.notebook.NotebookSpec = getNotebookSpec(
+      model.result,
+    );
     getCommand(notebookInfos);
   };
 
   const onSubmit = model.form.handleSubmit(
-    (data) => {
-      const notebookInfos: ai.notebook.NotebookSpec = {
-        env: {
-          frameworkId: data.frameworkWithVersion.framework,
-          frameworkVersion: data.frameworkWithVersion.version,
-          editorId: data.editor,
-        },
-        region: data.region,
-        unsecureHttp: model.result.unsecureHttp,
-        sshPublicKeys: model.result.sshKey,
-        labels: model.result.labels,
-      };
-
-      if (model.result.flavor.type === ai.capabilities.FlavorTypeEnum.cpu) {
-        notebookInfos.resources = {
-          flavor: data.flavorWithQuantity.flavor,
-          cpu: data.flavorWithQuantity.quantity,
-        };
-      } else {
-        notebookInfos.resources = {
-          flavor: data.flavorWithQuantity.flavor,
-          gpu: data.flavorWithQuantity.quantity,
-        };
-      }
-
-      if (data.volumes.length > 0) {
-        notebookInfos.volumes = data.volumes.map((volume: OrderVolumes) => ({
-          cache: volume.cache,
-          dataStore: {
-            alias: volume.dataStore.alias,
-            container: volume.dataStore.container,
-          },
-          mountPath: volume.mountPath,
-          permission: volume.permission,
-        }));
-      }
+    () => {
+      const notebookInfos: ai.notebook.NotebookSpec = getNotebookSpec(
+        model.result,
+      );
       addNotebook(notebookInfos);
     },
     (error) => {
@@ -506,10 +436,7 @@ const OrderFunnel = ({
                             <FormLabel className={classNameLabel}>
                               {t('fieldVolumesLabel')}
                             </FormLabel>
-                            <p>
-                              Faire un petit laius sur les volumes, à quoi ils
-                              servent, comment les configurer et tout ci tout ca
-                            </p>
+                            <p>{t('fieldVolumeDescription')}</p>
                             <FormControl>
                               {model.lists.volumes.length > 0 ? (
                                 <VolumeForm
@@ -521,11 +448,7 @@ const OrderFunnel = ({
                                   }
                                 />
                               ) : (
-                                <p>
-                                  Vous n'avez pas de volumes configurés.
-                                  Configurer un S3 ou Git / Configurer un
-                                  container Swift
-                                </p>
+                                <p>{t('noVolumeDescription')}</p>
                               )}
                             </FormControl>
                             <FormMessage />
@@ -573,6 +496,7 @@ const OrderFunnel = ({
                                 variant={'outline'}
                                 size="sm"
                                 className="text-base"
+                                type="button"
                                 onClick={() => addSshKeyModale.open()}
                               >
                                 <Plus className="size-4 mr-2" />
@@ -623,6 +547,7 @@ const OrderFunnel = ({
               />
               {model.result.flavor && (
                 <OrderPrice
+                  minuteConverter={60} // affichage du prix à l'heure
                   price={model.result.flavor.pricing[0]}
                   quantity={model.result.resourcesQuantity}
                 />

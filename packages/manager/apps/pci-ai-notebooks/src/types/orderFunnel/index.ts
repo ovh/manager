@@ -58,3 +58,19 @@ export interface Suggestions {
   editorId: string;
   unsecureHttp: boolean;
 }
+
+export interface NotebookOrderResult {
+  region: ai.capabilities.Region;
+  flavor: Flavor;
+  resourcesQuantity: number;
+  framework: ai.capabilities.notebook.Framework;
+  version: string;
+  editor: ai.capabilities.notebook.Editor;
+  notebookName: string;
+  unsecureHttp: boolean;
+  labels: {
+    [key: string]: string;
+  };
+  sshKey: string[];
+  volumes: any[];
+}

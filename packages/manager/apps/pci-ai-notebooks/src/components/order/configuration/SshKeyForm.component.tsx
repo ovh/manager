@@ -5,7 +5,14 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { PlusCircle, Trash2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Form, FormItem, FormLabel } from '@/components/ui/form';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 import { CONFIGURATION_CONFIG } from './configuration.constants';
 import { OrderSshKey } from '@/types/orderFunnel';
 import {
@@ -25,7 +32,7 @@ interface SshKeyFormProps {
 }
 
 const SshKeyForm = React.forwardRef<HTMLInputElement, SshKeyFormProps>(
-  ({ configuredSshKeys, sshKeyList, onChange, disabled }) => {
+  ({ configuredSshKeys, sshKeyList, onChange, disabled }, ref) => {
     const { t } = useTranslation('pci-ai-notebooks/components/configuration');
     const [selectedSSH, setSelectedSSH] = useState<sshkey.SshKey>();
     const sshKeySchema = z.object({
@@ -67,33 +74,44 @@ const SshKeyForm = React.forwardRef<HTMLInputElement, SshKeyFormProps>(
         {configuredSshKeys.length > 0 && (
           <div className="flex w-full items-start gap-2">
             <div className="w-full">
-              <FormItem>
-                <FormLabel data-testid="ssh-key-select-label">
-                  {t('configuredKeyFieldLabel')}
-                </FormLabel>
-                <Select
-                  value={selectedSSH?.name}
-                  onValueChange={(value) => {
-                    const newSshKey: sshkey.SshKey = configuredSshKeys.find(
-                      (sshKey) => sshKey.name === value,
-                    );
-                    setSelectedSSH(newSshKey);
-                    form.setValue('name', newSshKey.name);
-                    form.setValue('sshKey', newSshKey.publicKey);
-                  }}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.values(configuredSshKeys).map((sshKey) => (
-                      <SelectItem key={sshKey.name} value={sshKey.name}>
-                        {sshKey.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </FormItem>
+              <FormField
+                control={form.control}
+                name="name"
+                render={() => (
+                  <FormItem>
+                    <FormLabel data-testid="ssh-key-select-label">
+                      {t('configuredKeyFieldLabel')}
+                    </FormLabel>
+                    <Select
+                      value={selectedSSH?.name}
+                      onValueChange={(value) => {
+                        const newSshKey: sshkey.SshKey = configuredSshKeys.find(
+                          (sshKey) => sshKey.name === value,
+                        );
+                        setSelectedSSH(newSshKey);
+                        form.setValue('name', newSshKey.name);
+                        form.setValue('sshKey', newSshKey.publicKey);
+                      }}
+                    >
+                      <SelectTrigger>
+                        <SelectValue
+                          ref={ref}
+                          placeholder={t('sshKeyFieldPlaceholder')}
+                        />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {Object.values(configuredSshKeys).map((sshKey) => (
+                          <SelectItem key={sshKey.name} value={sshKey.name}>
+                            {sshKey.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormControl />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
             <Button
               data-testid="ssh-key-label-add-button"

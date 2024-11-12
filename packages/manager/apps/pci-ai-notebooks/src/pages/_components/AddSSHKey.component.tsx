@@ -54,7 +54,8 @@ const AddSSHKey = ({
       .refine(
         (newKeyName) =>
           !configuredSshKeys.some(
-            (existingSSHKey) => existingSSHKey.name === newKeyName,
+            (existingSSHKey) =>
+              existingSSHKey.name.toLowerCase() === newKeyName.toLowerCase(),
           ),
         {
           message: t('duplicateKeyError'),

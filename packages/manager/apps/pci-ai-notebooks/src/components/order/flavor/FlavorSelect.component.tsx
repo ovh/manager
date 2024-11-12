@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Cpu, Zap } from 'lucide-react';
 import Price from '@/components/price/Price.component';
@@ -130,9 +130,12 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
               </TableCell>
               <TableCell className="text-[#4d5592] border border-primary-100">
                 <Price
-                  priceInUcents={resourcesQuantity * flavor.pricing[0]?.price}
-                  taxInUcents={resourcesQuantity * flavor.pricing[0]?.tax}
+                  priceInUcents={
+                    60 * resourcesQuantity * flavor.pricing[0]?.price
+                  }
+                  taxInUcents={60 * resourcesQuantity * flavor.pricing[0]?.tax}
                   decimals={2}
+                  displayInHour={true}
                 />
               </TableCell>
             </TableRow>
@@ -143,6 +146,6 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
   },
 );
 
-FlavorsSelect.displayName = 'FlavorsBisSelect';
+FlavorsSelect.displayName = 'FlavorsSelect';
 
 export default FlavorsSelect;

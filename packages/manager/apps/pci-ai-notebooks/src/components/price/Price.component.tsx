@@ -6,8 +6,14 @@ interface PriceProps {
   priceInUcents: number;
   taxInUcents: number;
   decimals: number;
+  displayInHour: boolean;
 }
-const Price = ({ priceInUcents, taxInUcents, decimals = 2 }: PriceProps) => {
+const Price = ({
+  priceInUcents,
+  taxInUcents,
+  decimals = 2,
+  displayInHour = true,
+}: PriceProps) => {
   const { t } = useTranslation('pricing');
   const catalog = useGetCatalog();
   const locale = useLocale();
@@ -22,8 +28,8 @@ const Price = ({ priceInUcents, taxInUcents, decimals = 2 }: PriceProps) => {
   }
 
   const ucentToEur = 100_000_000;
-  const price = (60 * priceInUcents) / ucentToEur;
-  const priceWithTax = (60 * (priceInUcents + taxInUcents)) / ucentToEur;
+  const price = priceInUcents / ucentToEur;
+  const priceWithTax = (priceInUcents + taxInUcents) / ucentToEur;
   const formatPrice = (value: number) => {
     const formatter = new Intl.NumberFormat(locale.replace('_', '-'), {
       style: 'currency',
@@ -37,10 +43,11 @@ const Price = ({ priceInUcents, taxInUcents, decimals = 2 }: PriceProps) => {
   return (
     <>
       <span data-testid="pricing-ht" className="font-bold">
-        {t('pricing_ht', { price: formatPrice(price) })}
+        {t('pricingHt', { price: formatPrice(price) })}
       </span>{' '}
+      {displayInHour && <span>{t('pricingInHour')}</span>}{' '}
       <span data-testid="pricing-ttc">
-        ({t('pricing_ttc', { price: formatPrice(priceWithTax) })})
+        ({t('pricingTtc', { price: formatPrice(priceWithTax) })})
       </span>
     </>
   );

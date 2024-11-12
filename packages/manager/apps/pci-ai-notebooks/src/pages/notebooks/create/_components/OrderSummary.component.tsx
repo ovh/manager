@@ -11,9 +11,9 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { bytesConverter } from '@/lib/bytesHelper';
-import { humanizeFramework } from '@/lib/frameworkNameHelper';
 import * as ai from '@/types/cloud/project/ai';
 import { OrderVolumes } from '@/types/orderFunnel';
+import { humanizeFramework } from '@/lib/orderFunnelHelper';
 
 interface OrderSummaryProps {
   order: {
