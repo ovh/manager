@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.18.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.17.6-alpha.1...@ovh-ux/manager-hub@3.18.0-alpha.0) (2024-11-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3464] ([9d7df44](https://github.com/ovh/manager/commit/9d7df4480c77ac7a06ed2db9e551db9b16339c74))
+
+
+### Features
+
+* **vcd:** add vcd service on hub ([b364501](https://github.com/ovh/manager/commit/b36450100d7696a056d920bc426fa86a4a2eb671))
+
+
+
+
+
 ## [3.17.6-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.17.6-alpha.0...@ovh-ux/manager-hub@3.17.6-alpha.1) (2024-11-05)
 
 

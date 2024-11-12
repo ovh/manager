@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-connect-app",
-  "version": "1.10.12-alpha.2",
+  "version": "1.10.12-alpha.3",
   "private": true,
   "description": "OVHcloud Connect standalone application.",
   "repository": {
@@ -19,7 +19,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-cloud-connect-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-cloud-connect": "^1.15.0",
+    "@ovh-ux/manager-cloud-connect": "^1.16.0",
     "@ovh-ux/manager-config": "^7.5.3-alpha.0",
     "@ovh-ux/manager-core": "^12.17.5-alpha.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",

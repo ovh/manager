@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.64.0-alpha.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.64.0-alpha.3...@ovh-ux/manager-dedicated@19.64.0-alpha.4) (2024-11-12)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** fix dashboard display PCC for VCD migration ([06e266e](https://github.com/ovh/manager/commit/06e266eaa6e55f6ae031849d531d70ab461a9cc4))
+* **dedicated.pcc:** fix missing messages on ip block actions ([b04cc08](https://github.com/ovh/manager/commit/b04cc08a1da2dcde1fc8f91b09f4d9e575736eb0))
+* **dedicated.pcc:** fix windows SPLA plan code with suffix ([3fdb5b0](https://github.com/ovh/manager/commit/3fdb5b02bb524fd6426c82db00a96a7ded8b9096))
+* **i18n:** add missing translations [CDS 3459] ([63680ef](https://github.com/ovh/manager/commit/63680ef99c9c486ff6cd1e9a536396cc1f192d9d))
+
+
+### Features
+
+* **dedicated-cloud:** add dashboard light when vcd and pcc is migrated ([8b97f57](https://github.com/ovh/manager/commit/8b97f573ee2dd6ff78bb27cfebb5179c5fdf2a84))
+
+
+
+
+
 # [19.64.0-alpha.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.64.0-alpha.2...@ovh-ux/manager-dedicated@19.64.0-alpha.3) (2024-11-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
