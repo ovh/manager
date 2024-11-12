@@ -1,18 +1,17 @@
 export default class BmServerComponentsTagsTileController {
   /* @ngInject */
-  constructor($scope, atInternet) {
+  constructor(atInternet) {
     this.atInternet = atInternet;
-    this.$scope = $scope;
   }
 
   $onInit() {
-    this.$scope.tags = null;
+    this.tags = null;
     const { tags } = this.server.iam;
     if (tags) {
-      this.$scope.tags = Object.keys(tags).map((key) => `${key}:${tags[key]}`);
+      this.tags = Object.keys(tags).map((key) => `${key}:${tags[key]}`);
 
       if (tags.length > 10) {
-        this.$scope.tags = [...this.$scope.tags.slice(0, 10), '...'];
+        this.tags = [...this.tags.slice(0, 10), '...'];
       }
     }
   }

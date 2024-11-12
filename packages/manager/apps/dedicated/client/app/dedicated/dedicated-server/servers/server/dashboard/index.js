@@ -15,7 +15,7 @@ import {
   serverServiceStatus,
   serverBandwidthDashboard,
   serverNetwork,
-  serverTags,
+  serverTagsTile,
   serverConsumptionTile,
   serverAdvancedFeatures,
 } from '@ovh-ux/manager-bm-server-components';
@@ -57,7 +57,7 @@ angular
     serverServiceStatus,
     serverBandwidthDashboard,
     serverNetwork,
-    serverTags,
+    serverTagsTile,
     serverConsumptionTile,
     serverAdvancedFeatures,
     installationGabarit,

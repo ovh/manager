@@ -16,7 +16,7 @@ angular
     'ngTranslateAsyncLoader',
     ovhManagerCore,
   ])
-  .component('serverTags', component)
+  .component('serverTagsTile', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
