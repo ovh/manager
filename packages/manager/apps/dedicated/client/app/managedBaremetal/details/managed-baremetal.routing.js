@@ -24,18 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         };
       }
-
-      return transition
-        .injector()
-        .getAsync('hasVCDMigration')
-        .then((hasVCDMigration) => {
-          if (hasVCDMigration) {
-            return 'app.managedBaremetal.details.dashboard.light';
-          }
-
-          return 'app.managedBaremetal.details.dashboard';
-        })
-        .catch(() => 'app.managedBaremetal.details.dashboard');
+      return 'app.managedBaremetal.details.dashboard';
     },
     resolve: {
       currentService: /* @ngInject */ (DedicatedCloud, productId) =>
@@ -297,33 +286,6 @@ export default /* @ngInject */ ($stateProvider) => {
       trackingPrefix: () => 'dedicated::managedBaremetal',
       usesLegacyOrder: /* @ngInject */ (currentService) =>
         currentService.usesLegacyOrder,
-      dedicatedCloudVCDMigrationState: /* @ngInject */ (
-        DedicatedCloud,
-        $stateParams,
-        managedVCDAvailability,
-      ) => {
-        if (!managedVCDAvailability) return null;
-        return DedicatedCloud.getManagedVCDMigrationState(
-          $stateParams.productId,
-        ).catch(() => null);
-      },
-      dedicatedCloudPCCMigrationState: /* @ngInject */ (
-        DedicatedCloud,
-        productId,
-        managedVCDAvailability,
-      ) => {
-        if (!managedVCDAvailability) return null;
-        return DedicatedCloud.getPCCMigrationState(productId).catch(() => null);
-      },
-      hasVCDMigration: /* @ngInject */ (
-        dedicatedCloudVCDMigrationState,
-        dedicatedCloudPCCMigrationState,
-      ) => {
-        return !!(
-          dedicatedCloudVCDMigrationState?.isDone ||
-          dedicatedCloudPCCMigrationState?.isEnabling
-        );
-      },
       breadcrumb: /* @ngInject */ (productId) => productId,
     },
     views: {
