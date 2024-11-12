@@ -689,7 +689,7 @@ export default class AgoraIpV4OrderController {
     ) {
       const { datacenter } = this.model.selectedRegion;
       productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
-        organisation: this.model.params.selectedOrganisation.organisationId,
+        organisation: this.model.params.selectedOrganisation?.organisationId,
         ...commonProductProps,
         country: params.selectedCountry?.code,
         datacenter,
