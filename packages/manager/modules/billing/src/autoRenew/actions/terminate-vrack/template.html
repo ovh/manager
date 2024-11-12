@@ -4,16 +4,9 @@
     data-primary-label="{{:: 'autorenew_agora_terminate_vrack_blocked_close' | translate }}"
     data-secondary-disabled="true"
     data-on-dismiss="$ctrl.goBack()"
-    data-ng-if="!isEmpty"
+    data-ng-if="!$ctrl.isEmpty"
 >
-    <div data-ng-show="isLoading" class="text-center">
-        <oui-spinner></oui-spinner>
-    </div>
-    <oui-message
-        data-type="warning"
-        class="mb-2"
-        data-ng-if="!isEmpty && !isLoading"
-    >
+    <oui-message data-type="warning" class="mb-2" data-ng-if="!$ctrl.isEmpty">
         <span
             data-translate="autorenew_agora_terminate_vrack_blocked_description"
         ></span>
@@ -29,7 +22,7 @@
     data-secondary-label="{{:: 'autorenew_service_terminate_cancel' | translate }}"
     data-loading="$ctrl.isDeleting"
     data-on-dismiss="$ctrl.goBack()"
-    data-ng-if="!isLoading && isEmpty"
+    data-ng-if="$ctrl.isEmpty"
 >
     <oui-message data-type="warning" class="mb-2">
         <span

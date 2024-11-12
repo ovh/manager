@@ -1,31 +1,12 @@
+import { TERMINATE_PATTERN } from './constants';
+
 export default class TerminateVrackController {
   /* @ngInject */
-  constructor($scope, $translate, BillingTerminate, OvhApiVrack) {
+  constructor($scope, $translate, BillingTerminate) {
     this.$scope = $scope;
-    this.TERMINATE_PATTERN = /^TERMINATE$/;
+    this.TERMINATE_PATTERN = TERMINATE_PATTERN;
     this.$translate = $translate;
     this.BillingTerminate = BillingTerminate;
-    this.OvhApiVrack = OvhApiVrack;
-  }
-
-  $onInit() {
-    this.$scope.isEmpty = false;
-    this.$scope.isLoading = true;
-    this.OvhApiVrack.Aapi()
-      .services({ serviceName: this.service })
-      .$promise.then((allServicesParam) => {
-        const services = Object.entries(allServicesParam).filter(
-          ([, value]) => {
-            return Array.isArray(value) && value.length;
-          },
-        );
-        if (!services.length) {
-          this.$scope.isEmpty = true;
-        }
-      })
-      .finally(() => {
-        this.$scope.isLoading = false;
-      });
   }
 
   terminate() {
