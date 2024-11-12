@@ -307,7 +307,7 @@
   "hosting_tab_DOMAINS_table_git_state_deploying": "In progress",
   "hosting_tab_DOMAINS_table_git_state_initialError": "Error",
   "hosting_tab_DOMAINS_table_git_state_tooltip_lastDeploy": "View latest deployment information",
-  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Click the action button to associate Git",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Click the action button to sync with Git",
   "hosting_tab_DOMAINS_table_cdn_state_ACTIVE": "Enabled",
   "hosting_tab_DOMAINS_table_cdn_state_NONE": "Disabled",
   "hosting_tab_DOMAINS_table_ssl_state_true": "Enabled",
