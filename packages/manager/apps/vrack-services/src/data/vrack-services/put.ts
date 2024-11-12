@@ -22,7 +22,6 @@ export const updateVrackServices = async ({
     {
       checksum,
       targetSpec: {
-        displayName: targetSpec.displayName || null,
         subnets:
           targetSpec.subnets?.map((subnet) => ({
             cidr: subnet.cidr,
