@@ -307,6 +307,7 @@ export default /* @ngInject */ (
       })
       .$promise.catch(() => {
         $interval.cancel($scope.pollTimer);
+        $scope.pollTimer = null;
         if (callback) callback();
       });
   };
