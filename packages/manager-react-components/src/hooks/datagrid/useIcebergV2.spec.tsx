@@ -89,14 +89,6 @@ const mockData = {
   pageParams: [null, 2],
 };
 
-vitest.mock('@tanstack/react-query', async () => {
-  const originalModule = await vitest.importActual('@tanstack/react-query');
-  return {
-    ...originalModule,
-    useInfiniteQuery: vitest.fn(),
-  };
-});
-
 describe('useIcebergV2', () => {
   beforeEach(() => {
     (useInfiniteQuery as jest.Mock).mockImplementation(() => ({

@@ -1,0 +1,66 @@
+#storybook-docs > .sbdocs-wrapper {
+  padding: 1.5rem 3rem 3rem 3rem;
+}
+
+/***************************************
+    * TYPOGRAPHY
+***************************************/
+
+html body *:not(pre):not(code),
+html body .sbdocs-content *:not(pre):not(code) {
+  font-family: var(--ods-font-family-default);
+}
+
+pre,
+code {
+  font-family: var(--ods-font-family-code) !important;
+  padding: 20px;
+  background: inherit;
+}
+
+.sbdocs-content > h1,
+.sbdocs-content > div:not(.sb-unstyled) > h1,
+.sbdocs-content > h2,
+.sbdocs-content > div:not(.sb-unstyled) > h2,
+.sbdocs-content > h3,
+.sbdocs-content > div:not(.sb-unstyled) > h3,
+.sbdocs-content > h4,
+.sbdocs-content > div:not(.sb-unstyled) > h4,
+.sbdocs-content > h5,
+.sbdocs-content > div:not(.sb-unstyled) > h5,
+.sbdocs-content > h6,
+.sbdocs-content > div:not(.sb-unstyled) > h6 {
+  color: var(--ods-color-primary-800);
+}
+
+.sbdocs-content :where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span)) {
+  font-size: 1rem !important;
+}
+
+.sbdocs-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)) {
+  font-size: 1rem !important;
+}
+
+.documentation-overview {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  column-gap: 2rem;
+}
+
+.documentation-overview__table {
+  align-self: flex-start;
+  text-align: left;
+}
+
+.documentation-do-table,
+.documentation-dont-table {
+  width: 100%;
+}
+
+.documentation-do-table tr {
+  background-color: var(--ods-color-success-050) !important;
+}
+
+.documentation-dont-table tr {
+  background-color: var(--ods-color-critical-050) !important;
+}

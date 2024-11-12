@@ -27,14 +27,14 @@ const guides = {
 
 describe('GuidesHeader tests', () => {
   it('should display guides list', () => {
-    renderComponent({
+    const { container } = renderComponent({
       label: 'hello',
       guides,
       ovhSubsidiary: 'EU',
       getGuideLabel: (guide) => guide.key,
     });
-    expect(screen.getAllByText('foo-guide')).not.toBeNull();
-    expect(screen.getAllByText('bar-guide')).not.toBeNull();
+    expect(container.querySelector('[label="foo-guide"]')).not.toBeNull();
+    expect(container.querySelector('[label="bar-guide"]')).not.toBeNull();
   });
 
   it('should display guides urls depending on ovhSubsidiary', () => {
