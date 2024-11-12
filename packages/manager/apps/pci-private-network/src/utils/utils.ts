@@ -1,4 +1,7 @@
+import { PaginationState } from '@ovh-ux/manager-react-components';
+import { TRegion } from '@ovh-ux/manager-pci-common';
 import { VLAN_ID } from '@/pages/new/new.constants';
+import { TGroupedNetwork, TNetwork } from '@/types/network.type';
 
 const maxRandomNumber = 9999;
 
@@ -30,3 +33,49 @@ export function getNextAvailableVlanId(allocatedIds: number[]): number {
 
   return VLAN_ID.default;
 }
+
+export const getLocalZoneRegions = (regions: TRegion[] = []) =>
+  regions?.filter(({ type }) => type.includes('localzone')) || [];
+
+type GroupedVlanId = {
+  vlanId: number;
+  name: string;
+  regions: string[];
+};
+
+export const groupedPrivateNetworkByVlanId = (
+  networks: TNetwork[],
+): TGroupedNetwork[] => {
+  const grouped = networks.reduce((acc, item) => {
+    if (item.vlanId) {
+      if (!acc[item.vlanId]) {
+        acc[item.vlanId] = {
+          vlanId: item.vlanId,
+          name: item.name,
+          regions: [],
+        };
+      }
+      acc[item.vlanId].regions.push(item.region);
+    }
+    return acc;
+  }, {} as { [key: number]: GroupedVlanId });
+
+  return Object.values(grouped).map(({ vlanId, name, regions }) => ({
+    vlanId,
+    name,
+    regions: regions.join(', '),
+    search: `${vlanId} ${name} ${regions.join(' ')}`,
+  }));
+};
+
+export const paginateResults = <T>(
+  items: T[],
+  pagination: PaginationState,
+) => ({
+  rows: items.slice(
+    pagination.pageIndex * pagination.pageSize,
+    (pagination.pageIndex + 1) * pagination.pageSize,
+  ),
+  pageCount: Math.ceil(items.length / pagination.pageSize),
+  totalRows: items.length,
+});

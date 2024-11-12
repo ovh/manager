@@ -28,10 +28,6 @@ export const ROUTE_PATHS = {
 
 export default [
   {
-    path: '/',
-    ...lazyRouteConfig(() => import('@/pages/Layout')),
-  },
-  {
     path: ROUTE_PATHS.root,
     loader: async ({ params }) =>
       queryClient.fetchQuery(getProjectQuery(params.projectId)),
@@ -40,8 +36,16 @@ export default [
       {
         path: ROUTE_PATHS.listing,
         ...lazyRouteConfig(() =>
-          import('@/pages/private-network/listing/ListingLayout.component'),
+          import('@/pages/listing/ListingLayout.component'),
         ),
+        children: [
+          {
+            path: '',
+            ...lazyRouteConfig(() =>
+              import('@/pages/listing/region/PrivateNetworkRegion.page'),
+            ),
+          },
+        ],
       },
       {
         path: ROUTE_PATHS.globalRegions,

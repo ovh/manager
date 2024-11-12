@@ -23,5 +23,6 @@
   "pci_projects_project_network_private_back_to_list": "Voir tous les réseaux privés",
   "pci_projects_project_network_private_subnet_create": "Créer un sous-réseau",
   "pci_projects_project_network_private_ip_version": "IP Version",
-  "pci_projects_project_network_private_action": "Actions"
+  "pci_projects_project_network_private_action": "Actions",
+  "pci_projects_project_network_private_subnet_show": "Voir les sous-réseaux"
 }

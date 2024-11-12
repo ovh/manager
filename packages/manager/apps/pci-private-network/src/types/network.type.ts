@@ -32,6 +32,13 @@ export type TNetwork = {
   vlanId: number | null;
 };
 
+export type TGroupedNetwork = {
+  vlanId: number;
+  name: string;
+  regions: string;
+  search: string;
+};
+
 export type TNetworkCreationData = {
   name: string;
   subnet: Subnet;
