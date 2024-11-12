@@ -152,7 +152,7 @@
                     data-ng-hide="installation.warningExistPartition || informations.gabaritName != null"
                 >
                     <oui-checkbox
-                        data-disabled="!$ctrl.raidIsPersonnalizable()"
+                        data-disabled="!informations.raidController"
                         data-model="installation.raidSetup"
                     >
                         <oui-checkbox-label
@@ -160,15 +160,6 @@
                                 data-translate="server_configuration_installation_ovh_step1_hardwareRaid"
                             ></span
                         ></oui-checkbox-label>
-                        <oui-checkbox-description
-                            ><p class="text-danger">
-                                <span
-                                    data-ng-if="informations.hardwareRaid.error.wrongLocation"
-                                    data-translate="server_configuration_installation_ovh_step1_hardwareRaid_wrong_location"
-                                >
-                                </span>
-                            </p>
-                        </oui-checkbox-description>
                     </oui-checkbox>
 
                     <oui-checkbox

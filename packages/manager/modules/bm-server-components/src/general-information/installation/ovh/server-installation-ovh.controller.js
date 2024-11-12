@@ -517,33 +517,28 @@ export default class ServerInstallationOvhCtrl {
   }
 
   getHardwareRaid() {
-    if (!this.$scope.informations.hardwareRaid.profile) {
-      this.$scope.loader.loading = true;
-      return this.$q
-        .all([this.getHardwareRaidProfile(), this.getHardwareSpecification()])
-        .catch((error) => {
-          this.$scope.informations.hardwareRaid.error.wrongLocation = this.Server.isHardRaidLocationError(
-            error,
-          );
-          this.$scope.informations.hardwareRaid.error.notAvailable = this.Server.isHardRaidUnavailableError(
-            error,
-          );
-          if (
-            !this.$scope.informations.hardwareRaid.error.wrongLocation &&
-            !this.$scope.informations.hardwareRaid.error.notAvailable
-          ) {
-            this.goBack();
-            this.Alerter.alertFromSWS(
-              this.$translate.instant(
-                'server_configuration_installation_ovh_stephardraid_loading_error',
-              ),
-              error.data,
-              'server_dashboard_alert',
-            );
-          }
-        });
-    }
-    return this.$q.when({});
+    this.$scope.loader.loading = true;
+    return this.getHardwareSpecification()
+      .then(() => {
+        if (
+          this.$scope.informations.diskGroups.some(
+            (diskGroup) => diskGroup.raidController !== null,
+          )
+        ) {
+          // we only run this function if there is a HW raid controller otherwise API call will fail
+          this.getHardwareRaidProfile();
+        }
+      })
+      .catch((error) => {
+        this.goBack();
+        this.Alerter.alertFromSWS(
+          this.$translate.instant(
+            'server_configuration_installation_ovh_stephardraid_loading_error',
+          ),
+          error.data,
+          'server_dashboard_alert',
+        );
+      });
   }
 
   // Delete all Error message after cancel action
@@ -2374,14 +2369,6 @@ export default class ServerInstallationOvhCtrl {
       this.setHardwareRaid();
     }
     this.startInstall();
-  }
-
-  raidIsPersonnalizable() {
-    return (
-      this.$scope.informations.raidController &&
-      !this.$scope.informations.hardwareRaid.error.wrongLocation &&
-      !this.$scope.informations.hardwareRaid.error.notAvailable
-    );
   }
 
   hasLicencedOs() {
