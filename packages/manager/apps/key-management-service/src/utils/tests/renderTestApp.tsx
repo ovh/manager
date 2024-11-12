@@ -9,7 +9,7 @@ import { I18nextProvider } from 'react-i18next';
 import {
   getServicesMocks,
   GetServicesMocksParams,
-} from '@ovh-ux/manager-react-components/src/hooks/services/mocks';
+} from '@ovh-ux/manager-react-components';
 import { render, waitFor, screen } from '@testing-library/react';
 import { TestApp } from './TestApp';
 import { initTestI18n } from './init.i18n';

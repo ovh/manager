@@ -11,16 +11,16 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
+    "beta-test:e2e": "tsc && npx playwright test --headed",
+    "beta-test:e2e:cii": "tsc && npx playwright test",
+    "beta-test:e2e:script": "tsc && node ../../../../scripts/run-playwright.js",
     "build": "tsc && vite build",
     "dev": "tsc && vite",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-key-management-service-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-key-management-service-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-key-management-service-app' --include-dependencies -- npm run dev:watch --if-present",
     "test": "vitest run --reporter=verbose",
-    "test:coverage": "vitest run --coverage",
-    "test:e2e": "tsc && npx playwright test --headed",
-    "test:e2e:cii": "tsc && npx playwright test",
-    "test:e2e:script": "tsc && node ../../../../scripts/run-playwright.js"
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^7.5.3-alpha.0",
