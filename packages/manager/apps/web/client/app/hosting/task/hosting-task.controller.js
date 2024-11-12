@@ -1,5 +1,8 @@
 import get from 'lodash/get';
-import { HOSTING_TASK_TABLE_ID } from './hosting-task.constants';
+import {
+  HOSTING_TASK_TABLE_ID,
+  HOSTING_TASK_STATUS,
+} from './hosting-task.constants';
 
 angular.module('App').controller(
   'HostingTabTasksCtrl',
@@ -24,19 +27,12 @@ angular.module('App').controller(
       this.$q = $q;
       this.ouiDatagridService = ouiDatagridService;
       this.datagridId = HOSTING_TASK_TABLE_ID;
+      this.HOSTING_TASK_STATUS = HOSTING_TASK_STATUS;
     }
 
     $onInit() {
       this.atInternet.trackPage({ name: 'web::hosting::tasks' });
 
-      this.states = {
-        DOING: 'DOING',
-        ERROR: 'ERROR',
-        DONE: 'DONE',
-        CANCELLED: 'CANCELLED',
-        TODO: 'TODO',
-        INIT: 'INIT',
-      };
       this.tasksList = undefined;
 
       this.loadPaginated = this.loadPaginated.bind(this);
@@ -54,18 +50,13 @@ angular.module('App').controller(
           tasks: this.Hosting.getTasksList(
             this.$stateParams.productId,
             pageSize,
-            offset - 1,
+            Math.ceil(offset / pageSize),
           ),
         })
         .then(({ hosting, tasks }) => {
           this.hosting = hosting;
           this.tasksList = tasks;
-          return {
-            data: tasks.list.results,
-            meta: {
-              totalCount: tasks.count,
-            },
-          };
+          return tasks;
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(

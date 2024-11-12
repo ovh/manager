@@ -27,6 +27,7 @@ import union from 'lodash/union';
         $rootScope,
         $stateParams,
         constants,
+        iceberg,
         WucConverterService,
         HOSTING,
         HOSTING_UPGRADES,
@@ -41,6 +42,7 @@ import union from 'lodash/union';
         this.$rootScope = $rootScope;
         this.$stateParams = $stateParams;
         this.constants = constants;
+        this.iceberg = iceberg;
         this.WucConverterService = WucConverterService;
         this.HOSTING = HOSTING;
         this.HOSTING_UPGRADES = HOSTING_UPGRADES;
@@ -355,17 +357,23 @@ import union from 'lodash/union';
       /**
        * Get tasks list
        * @param {string} serviceName
-       * @param {integer} count
+       * @param {integer} pageSize
        * @param {integer} offset
        */
-      getTasksList(serviceName, count, offset) {
-        return this.OvhHttp.get(`/sws/hosting/web/${serviceName}/tasks`, {
-          rootPath: '2api',
-          params: {
-            count,
-            offset,
-          },
-        });
+      getTasksList(serviceName, pageSize = 25, offset = 0) {
+        return this.iceberg(`/hosting/web/${serviceName}/tasks`)
+          .query()
+          .expand('CachedObjectList-Pages')
+          .limit(pageSize)
+          .offset(offset)
+          .execute(null, true)
+          .$promise.then((response) => ({
+            data: response.data,
+            meta: {
+              totalCount:
+                parseInt(response.headers['x-pagination-elements'], 10) || 0,
+            },
+          }));
       }
 
       /**

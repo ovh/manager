@@ -50,10 +50,10 @@
         >
             <span
                 class="oui-badge"
-                data-ng-class="{ 'oui-badge_info': $row.status !== 'ERROR' && $row.status !== 'DONE',
-                                   'oui-badge_error': $row.status === 'ERROR',
-                                   'oui-badge_success': $row.status === 'DONE'}"
-                data-ng-bind="'hosting_tab_TASKS_status_' +  $row.status | translate"
+                data-ng-class="{ 'oui-badge_info': $row.status !== $ctrl.HOSTING_TASK_STATUS.error && $row.status !== $ctrl.HOSTING_TASK_STATUS.done,
+                                   'oui-badge_error': $row.status === $ctrl.HOSTING_TASK_STATUS.error,
+                                   'oui-badge_success': $row.status === $ctrl.HOSTING_TASK_STATUS.done}"
+                data-ng-bind="'hosting_tab_TASKS_status_' +  $row.status.toUpperCase() | translate"
             >
             </span>
         </oui-datagrid-column>
