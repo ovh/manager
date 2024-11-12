@@ -4665,15 +4665,15 @@
   resolved "https://registry.yarnpkg.com/@open-draft/until/-/until-2.1.0.tgz#0acf32f470af2ceaf47f095cdecd40d68666efda"
   integrity sha512-U69T3ItWHvLwGg5eJ0n3I62nWuE6ilHlmz7zM0npLBRvPRd7e6NYmg54vvRtP5mZG7kZqZCFVdsTWo7BPtBujg==
 
-"@ovh-ux/manager-react-shell-client@^0.8.0-alpha.3":
-  version "0.8.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.0-alpha.3.tgz#a5e734d66d06ac383e84b23ef385e614245d17af"
-  integrity sha512-d8aiD7TPaMkeTVha7l7ARAZFvJQxltfofWoJ2r+C8YrjIrgHuUqIisrczCELDFYT5/BYecwNj+gkByCslXV07Q==
+"@ovh-ux/manager-react-shell-client@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.0.tgz#3e05a5a869f5a9719ef4f9d9165b05e77a71a1b2"
+  integrity sha512-O0a2vmZCuVQIPZelx4EU43XIg3BUYfPrcf7q5BngqnzzVcaEQUGf5Or2y+QZ+BTMkeSegO7Gw6+kW1pTb4W48g==
   dependencies:
-    "@ovh-ux/manager-config" "^7.5.3-alpha.0"
-    "@ovh-ux/ovh-at-internet" "^0.15.3-alpha.0"
-    "@ovh-ux/request-tagger" "^0.4.0-alpha.0"
-    "@ovh-ux/shell" "^3.11.0-alpha.0"
+    "@ovh-ux/manager-config" "^8.0.0"
+    "@ovh-ux/ovh-at-internet" "^0.16.0"
+    "@ovh-ux/request-tagger" "^0.4.0"
+    "@ovh-ux/shell" "^4.0.0"
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
 
