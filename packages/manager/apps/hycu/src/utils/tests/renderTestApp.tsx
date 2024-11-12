@@ -10,7 +10,7 @@ import { render, waitFor, screen } from '@testing-library/react';
 import {
   getServicesMocks,
   GetServicesMocksParams,
-} from '@ovh-ux/manager-react-components/src/hooks/services/mocks';
+} from '@ovh-ux/manager-react-components';
 import { TestApp } from './TestApp';
 import { initTestI18n } from './init.i18n';
 import { toMswHandlers } from '../../../../../../../playwright-helpers';

@@ -1,6 +1,9 @@
 import { ServiceDetails } from '../services.type';
 import { defaultServiceResponse, servicesMockErrors } from './services.mock';
 
+/**
+ * @deprecated Move GetServicesMocksParams out of mrc
+ */
 export type GetServicesMocksParams = {
   getServicesKo?: boolean;
   getDetailsServicesKo?: boolean;
@@ -9,6 +12,9 @@ export type GetServicesMocksParams = {
   serviceResponse?: ServiceDetails;
 };
 
+/**
+ * @deprecated Move getServicesMocks out of mrc
+ */
 export const getServicesMocks = ({
   getServicesKo,
   getDetailsServicesKo,
