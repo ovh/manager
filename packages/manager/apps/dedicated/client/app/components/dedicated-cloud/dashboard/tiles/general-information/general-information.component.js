@@ -5,11 +5,10 @@ export default {
   bindings: {
     currentService: '<',
     editDetails: '<',
-    onUpgradeVersion: '<?',
+    onUpgradeVersion: '<',
     associateIpBlockLink: '<',
-    onExecutionDateChange: '<?',
+    onExecutionDateChange: '<',
     trackingPrefix: '<',
-    hasVcdMigration: '<?',
   },
   controller,
   name: 'ovhManagerPccDashboardGeneralInformation',

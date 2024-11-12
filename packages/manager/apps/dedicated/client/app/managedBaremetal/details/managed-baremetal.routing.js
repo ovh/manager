@@ -28,11 +28,13 @@ export default /* @ngInject */ ($stateProvider) => {
       return transition
         .injector()
         .getAsync('hasVCDMigration')
-        .then((hasVCDMigration) =>
-          hasVCDMigration
-            ? 'app.managedBaremetal.details.dashboard-light'
-            : 'app.managedBaremetal.details.dashboard',
-        )
+        .then((hasVCDMigration) => {
+          if (hasVCDMigration) {
+            return 'app.managedBaremetal.details.dashboard.light';
+          }
+
+          return 'app.managedBaremetal.details.dashboard';
+        })
         .catch(() => 'app.managedBaremetal.details.dashboard');
     },
     resolve: {
@@ -293,7 +295,6 @@ export default /* @ngInject */ ($stateProvider) => {
         Alerter.set(`alert-${type}`, message, null, 'dedicatedCloud');
       },
       trackingPrefix: () => 'dedicated::managedBaremetal',
-      vcdTrackingPrefix: () => 'Baremetal::Managed_baremetal::',
       usesLegacyOrder: /* @ngInject */ (currentService) =>
         currentService.usesLegacyOrder,
       dedicatedCloudVCDMigrationState: /* @ngInject */ (

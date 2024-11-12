@@ -4,7 +4,9 @@ export default {
   bindings: {
     currentService: '<',
     editDetails: '<',
+    onUpgradeVersion: '<',
     associateIpBlockLink: '<',
+    onExecutionDateChange: '<',
     trackingPrefix: '<',
   },
   template,

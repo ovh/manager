@@ -1,8 +1,11 @@
+import { TRACKING_PREFIX } from './dedicatedCloud.constant';
+
 export default class {
   /* @ngInject */
   constructor($scope, $translate) {
     this.$scope = $scope;
     this.$translate = $translate;
+    this.TRACKING_PREFIX = TRACKING_PREFIX;
   }
 
   $onInit() {

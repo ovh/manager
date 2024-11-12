@@ -16,7 +16,6 @@ export default {
     dedicatedCloudVCDMigrationState: '<',
     dedicatedCloudPCCMigrationState: '<',
     hasVCDMigration: '<',
-    vcdTrackingPrefix: '<',
   },
   controller,
   template,

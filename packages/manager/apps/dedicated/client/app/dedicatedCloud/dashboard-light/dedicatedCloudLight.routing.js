@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedCloud.details.dashboard-light', {
-    url: '/migration-vcd',
+  $stateProvider.state('app.dedicatedCloud.details.dashboard.light', {
+    url: '/tag/migration-vcd',
     redirectTo: (transition) => {
       return transition
         .injector()
@@ -15,14 +15,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: () => null,
-      associateIpBlockLink: /* @ngInject */ ($state) => () =>
-        $state.href(
-          'app.dedicatedCloud.details.dashboard-light.associate-ip-bloc',
-        ),
     },
     reloadOnSearch: false,
-    views: {
-      pccView: 'pccDashboardLight',
-    },
+    component: 'pccDashboardLight',
   });
 };
