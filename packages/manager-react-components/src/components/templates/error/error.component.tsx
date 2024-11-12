@@ -6,7 +6,6 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import './translations/translations';
-import './error.scss';
 
 import { ErrorBannerProps } from './error.types';
 import { useTranslation } from 'react-i18next';

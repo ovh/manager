@@ -3,3 +3,7 @@
 html {
   font-family: var(--ods-font-family-default);
 }
+
+@import './components/templates/error/error.scss';
+@import './components/templates/update-name-modal/update-name-modal.scss';
+@import './components/filters/filters.scss';

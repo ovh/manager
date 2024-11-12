@@ -17,7 +17,6 @@ import {
 } from '@ovhcloud/ods-components';
 import { handleClick } from '../../../utils/click-utils';
 import './translations/translations';
-import './update-name-modal.scss';
 
 export type UpdateNameModalProps = {
   headline: string;

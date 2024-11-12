@@ -25,7 +25,7 @@
     "prepare": "tsc && vite build",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "start": "storybook dev -p 6006",
-    "test": "vitest",
+    "test": "vitest run",
     "test:cov": "vitest run --coverage",
     "test:watch": "vitest"
   },

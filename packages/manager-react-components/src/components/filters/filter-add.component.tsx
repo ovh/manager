@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Filter, FilterComparator } from '@ovh-ux/manager-core-api';
 import { ODS_BUTTON_SIZE, ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
-import './filters.scss';
 
 import {
   OdsButton,
