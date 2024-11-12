@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0-alpha.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.21.0-alpha.12...@ovh-ux/manager-pci-rancher-app@1.21.0-alpha.13) (2024-11-12)
+
+
+### Features
+
+* **pci-rancher:** add Egress Gateway IP  ([#13662](https://github.com/ovh/manager/issues/13662)) ([27f678b](https://github.com/ovh/manager/commit/27f678bd099a38d111166d0011258548bdee65a7))
+
+
+
+
+
 # [1.21.0-alpha.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.21.0-alpha.11...@ovh-ux/manager-pci-rancher-app@1.21.0-alpha.12) (2024-11-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.2.0-alpha.8...@ovh-ux/manager-pci-savings-plan-app@1.2.0-alpha.9) (2024-11-12)
+
+
+### Features
+
+* **svp:** use bff to get offers ([#13813](https://github.com/ovh/manager/issues/13813)) ([479cfee](https://github.com/ovh/manager/commit/479cfeeaed2dd5d82a03644846ffd7f73b791ba9))
+
+
+
+
+
 # [1.2.0-alpha.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.2.0-alpha.7...@ovh-ux/manager-pci-savings-plan-app@1.2.0-alpha.8) (2024-11-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app

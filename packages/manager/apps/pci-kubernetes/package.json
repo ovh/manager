@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-kubernetes-app",
-  "version": "0.6.0-alpha.8",
+  "version": "0.6.0-alpha.9",
   "private": true,
   "description": "PCI Kubernetes react app",
   "type": "module",
