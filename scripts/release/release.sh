@@ -32,7 +32,7 @@ version() {
     node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
-    node_modules/.bin/lerna version --conventional-prerelease=@ovh-ux/shell,@ovh-ux/url-builder,@ovh-ux/manager-react-components,@ovh-ux/manager-react-shell-client,@ovh-ux/request-tagger --conventional-commits --no-commit-hooks --no-git-tag-version --no-push  --yes
+    node_modules/.bin/lerna version --conventional-graduate --conventional-commits --no-commit-hooks --no-git-tag-version --no-push  --yes
   fi
 }
 
