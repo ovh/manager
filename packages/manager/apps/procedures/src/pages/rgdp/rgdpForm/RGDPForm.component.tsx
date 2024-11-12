@@ -11,7 +11,7 @@ import {
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { GDPRFormValues, GDPRValues } from '@/types/gdpr.type';
+import { FinalizeValues, GDPRFormValues, GDPRValues } from '@/types/gdpr.type';
 import { TextField } from './TextField/TextField.component';
 import { SelectField } from './SelectField/SelectField.component';
 import { TextAreaField } from './TextAreaField/TextAreaField.component';
@@ -71,7 +71,13 @@ export const RGDPForm: FunctionComponent = () => {
     onSuccess: (links) => {
       const data = watch();
       const files = extractFiles(data);
-      uploadDocuments({ links, files });
+      uploadDocuments({
+        links,
+        files,
+        finalizeData: {
+          email: data.email,
+        } as FinalizeValues,
+      });
     },
     onError: () => {
       setShowConfirmModal(false);

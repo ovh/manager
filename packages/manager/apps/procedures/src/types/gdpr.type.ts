@@ -10,6 +10,8 @@ export type GDPRValues = {
   numberOfDocuments: number;
 };
 
+export type FinalizeValues = Pick<GDPRValues, 'email'>;
+
 export type GDPRFormValues = Omit<GDPRValues, 'numberOfDocuments'> & {
   confirmEmail: string;
   otherDocuments: FileWithError[];
