@@ -18,6 +18,7 @@ import { usePrivateNetworksRegion } from '@/data/hooks/networks/useNetworks';
 import DataGridHeaderActions, {
   ColumnFilter,
 } from '@/components/datagrid-header-actions/DatagridHeaderActions.component';
+import { useActiveTab } from '@/hooks/useActiveTab/useActiveTab';
 
 const PrivateNetworkRegion: React.FC = () => {
   const { t } = useTranslation('listing');
@@ -26,6 +27,7 @@ const PrivateNetworkRegion: React.FC = () => {
   const navigate = useNavigate();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const { pagination, setPagination } = useDatagridSearchParams();
+  const activeTab = useActiveTab();
 
   const data = usePrivateNetworksRegion(projectId, pagination, filters);
 
@@ -71,7 +73,10 @@ const PrivateNetworkRegion: React.FC = () => {
   );
 
   return (
-    <OsdsTabPanel name={PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME}>
+    <OsdsTabPanel
+      active={activeTab === PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME}
+      name={PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME}
+    >
       <DataGridHeaderActions
         createLabel={t('pci_projects_project_network_private_create')}
         onCreate={() => navigate('./new')}

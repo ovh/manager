@@ -45,9 +45,15 @@ export default [
               import('@/pages/listing/region/PrivateNetworkRegion.page'),
             ),
           },
+          {
+            path: ROUTE_PATHS.localZone,
+            ...lazyRouteConfig(() =>
+              import('@/pages/listing/localZone/PrivateNetworkLZ.page'),
+            ),
+          },
         ],
       },
-      {
+      /* {
         path: ROUTE_PATHS.globalRegions,
         handle: {
           tracking: 'globalRegions',
@@ -64,7 +70,7 @@ export default [
             },
           },
         ],
-      },
+      }, */
       {
         path: ROUTE_PATHS.localZone,
         handle: {

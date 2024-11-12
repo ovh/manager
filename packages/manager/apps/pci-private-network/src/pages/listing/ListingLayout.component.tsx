@@ -1,10 +1,11 @@
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   PciGuidesHeader,
   useProjectUrl,
   Title,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import {
   OsdsBreadcrumb,
@@ -23,6 +24,7 @@ import { MaintenanceBanner } from '@/components/maintenance/MaintenanceBanner.co
 import { usePrivateNetworks } from '@/data/hooks/networks/useNetworks';
 import { useProductMaintenance } from '@/hooks/useMaintenance/useMaintenance';
 import { PrivateNetworkTabName } from './ListingLayout.constant';
+import { useActiveTab } from '@/hooks/useActiveTab/useActiveTab';
 
 const ListingLayout: React.FC = () => {
   const { t } = useTranslation('listing');
@@ -30,6 +32,7 @@ const ListingLayout: React.FC = () => {
   const { data: project } = useProject();
   const projectId = project.project_id;
   const navigate = useNavigate();
+  const tab = useActiveTab();
 
   const { isPending, data: networks } = usePrivateNetworks(projectId);
 
@@ -41,6 +44,18 @@ const ListingLayout: React.FC = () => {
     projectId,
     regions,
   );
+
+  const { clearNotifications } = useNotifications();
+
+  const handleTabChange = useCallback(({ detail }: CustomEvent) => {
+    clearNotifications();
+
+    if (detail?.panel === PrivateNetworkTabName.LOCAL_ZONE_TAB_NAME) {
+      navigate('./localZone');
+    } else {
+      navigate('');
+    }
+  }, []);
 
   useEffect(() => {
     if (networks?.length === 0) {
@@ -88,7 +103,7 @@ const ListingLayout: React.FC = () => {
         />
       ) : (
         <>
-          <OsdsTabs>
+          <OsdsTabs panel={tab} onOdsTabsChanged={handleTabChange}>
             <OsdsTabBar slot="top">
               <OsdsTabBarItem
                 panel={PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME}
