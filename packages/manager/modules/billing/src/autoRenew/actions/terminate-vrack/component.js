@@ -6,6 +6,7 @@ export default {
     goBack: '<',
     service: '<',
     serviceType: '<',
+    isEmpty: '<',
   },
   controller,
   template,

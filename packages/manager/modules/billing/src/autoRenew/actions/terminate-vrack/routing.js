@@ -12,6 +12,20 @@ export default /* @ngInject */ ($stateProvider) => {
       service: /* @ngInject */ ($transition$) => $transition$.params().service,
       serviceType: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceType,
+      isEmpty: /* @ngInject */ (OvhApiVrack, $transition$) =>
+        OvhApiVrack.Aapi()
+          .services({ serviceName: $transition$.params().service })
+          .$promise.then((allServicesParam) => {
+            const services = Object.entries(allServicesParam).filter(
+              ([, value]) => {
+                return Array.isArray(value) && value.length;
+              },
+            );
+            return !services.length;
+          })
+          .catch(() => {
+            return false;
+          }),
       breadcrumb: () => null,
     },
     atInternet: {

@@ -120,7 +120,7 @@ export default class ServicesActionsCtrl {
 
   canResiliate() {
     if (this.service.serviceType === this.SERVICE_TYPE.VRACK) {
-      return this.canDeleteVrack && !!this.resiliateLink;
+      return this.deleteVrackAvailability && !!this.resiliateLink;
     }
 
     return ![this.SERVICE_TYPE.PACK_XDSL].includes(this.service.serviceType);
