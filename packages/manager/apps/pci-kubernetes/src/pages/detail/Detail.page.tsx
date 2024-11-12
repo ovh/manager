@@ -74,7 +74,7 @@ export default function DetailPage() {
     },
   ];
 
-  const { data: kubeDetail } = useKubeDetail(projectId, kubeId);
+  const { data: kubeDetail } = useKubeDetail(projectId, kubeId, 5000);
 
   useEffect(() => {
     const activeTab = tabs.find((tab) => location.pathname.startsWith(tab.to));
