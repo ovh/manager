@@ -285,22 +285,8 @@ describe('NetworkStepStep', () => {
           const { getByText } = renderStep();
 
           const nextButton = getByText('common_stepper_next_button_label');
-          //
-          // act(()=>nextButton.click());
-          //
-          // expect([
-          //   result.current.steps.get(StepsEnum.PUBLIC_IP).isChecked,
-          //   result.current.steps.get(StepsEnum.PUBLIC_IP).isLocked,
-          //   result.current.steps.get(StepsEnum.PRIVATE_NETWORK).isOpen
-          // ]).toEqual([
-          //   true,
-          //   true,
-          //   true
-          // ]);
         });
       });
     });
-
-    // TODO test edit
   });
 });
