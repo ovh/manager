@@ -40,7 +40,7 @@ export const AccordionComponent = ({
     >
       <div>
         <button
-          className="flex cursor-pointer px-2 py-4 w-full border-0 bg-transparent"
+          className="flex cursor-pointer px-2 w-full border-0 bg-transparent items-stretch"
           onClick={() => toggle()}
         >
           <div className="w-full text-left">
@@ -53,19 +53,15 @@ export const AccordionComponent = ({
             </OsdsText>
           </div>
           <div className="w-fit flex items-center">
-            {!state.isOpen ? (
-              <OsdsIcon
-                name={ODS_ICON_NAME.CHEVRON_DOWN}
-                size={ODS_ICON_SIZE.sm}
-                color={ODS_THEME_COLOR_INTENT.primary}
-              ></OsdsIcon>
-            ) : (
-              <OsdsIcon
-                name={ODS_ICON_NAME.CHEVRON_UP}
-                size={ODS_ICON_SIZE.sm}
-                color={ODS_THEME_COLOR_INTENT.primary}
-              ></OsdsIcon>
-            )}
+            <OsdsIcon
+              name={
+                state.isOpen
+                  ? ODS_ICON_NAME.CHEVRON_UP
+                  : ODS_ICON_NAME.CHEVRON_DOWN
+              }
+              size={ODS_ICON_SIZE.xxs}
+              color={ODS_THEME_COLOR_INTENT.primary}
+            ></OsdsIcon>
           </div>
         </button>
       </div>
