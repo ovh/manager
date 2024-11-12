@@ -188,7 +188,6 @@
   "ip_servicetype_ipLoadbalancing": "IP Load Balancing",
   "ip_servicetype_cloudProject": "Progetto Cloud",
   "ip_servicetype_vRack": "vRack",
-  "ip_servicetype__PARK": "Parking",
   "ip_order_quota_full": "Hai raggiunto la quota massima di indirizzi IP per questo server.",
   "ip_order_noservices": "Non ci sono servizi disponibili per l'ordine",
   "ip_order_step1_question": "Seleziona il servizio per cui vuoi acquistare ",
