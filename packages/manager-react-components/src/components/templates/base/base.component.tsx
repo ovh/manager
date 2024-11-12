@@ -38,7 +38,7 @@ export const BaseLayout = ({
       </div>
     )}
     {backLinkLabel && (onClickReturn || hrefPrevious) && (
-      <div className="mb-[24px]">
+      <div className="mb-[16px]">
         <Links
           data-testid="manager-back-link"
           onClickReturn={onClickReturn}
@@ -50,11 +50,11 @@ export const BaseLayout = ({
       </div>
     )}
     {description && (
-      <OdsText className="mb-[24px]" preset="span">
+      <OdsText className="mb-[16px]" preset="span">
         {description}
       </OdsText>
     )}
-    {message && <div className="mb-8">{message}</div>}
+    {message && <div className="mb-5 max-w-[800px]">{message}</div>}
     {subtitle && <Subtitle className="block mb-6">{subtitle}</Subtitle>}
     {subDescription && <OdsText preset="span">{subDescription}</OdsText>}
     <div className="mb-6">{tabs}</div>
