@@ -3,6 +3,111 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 9.0.0 (2024-11-12)
+
+
+### Bug Fixes
+
+* add missing dependency ([#3322](https://github.com/ovh/manager/issues/3322)) ([0511592](https://github.com/ovh/manager/commit/0511592eb266047ee454f285d95c3960fe2c54e4))
+* add regenerator-runtime ([982d03a](https://github.com/ovh/manager/commit/982d03a1054ecc3c6fb886f57c8b8f9afe0e7001))
+* **apps:** define Application Version ([700fd68](https://github.com/ovh/manager/commit/700fd68b7934a48ddc04f1c2ef8695d20ee7c993))
+* bump lodash to version >= 4.17.14 ([#1072](https://github.com/ovh/manager/issues/1072)) ([1a32ddc](https://github.com/ovh/manager/commit/1a32ddc7f3dadcd45cc34571e7ab0941b99c78c7))
+* bump semver range for @ovh-ux/manager-config package ([5f3eda1](https://github.com/ovh/manager/commit/5f3eda16abd4df3b46cdde241c827a1d1d6dc80c))
+* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
+* bump semver range for @ovh-ux/manager-config package ([23b469f](https://github.com/ovh/manager/commit/23b469f6264610c47076da908f688e8069f19c76))
+* bump tuc ([2ffd4ab](https://github.com/ovh/manager/commit/2ffd4ab6d41ad57c2f4717b839766ffe511cb69d))
+* **deps:** add missing @ovh-ux/manager-ng-layout-helpers dependency ([#3363](https://github.com/ovh/manager/issues/3363)) ([e5557d0](https://github.com/ovh/manager/commit/e5557d07a50a89c37833fa88c5369597bf726a0d))
+* **deps:** add missing deps related to @ovh-ux/manager-advices ([#4727](https://github.com/ovh/manager/issues/4727)) ([73bd7e5](https://github.com/ovh/manager/commit/73bd7e537ac87667de6305b13293c5c9213c47ad)), closes [#4597](https://github.com/ovh/manager/issues/4597)
+* **deps:** add missing moment dependency ([#2874](https://github.com/ovh/manager/issues/2874)) ([65d471a](https://github.com/ovh/manager/commit/65d471ae00b0a1f4022fc5b28ae37c3dda6923f8))
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+* **deps:** update dependencies with latest version ([#3057](https://github.com/ovh/manager/issues/3057)) ([24d06ad](https://github.com/ovh/manager/commit/24d06addfaab0716e725242beae2d3d92feb8856))
+* **deps:** upgrade `ovh-api-services` to `v14.0.0` ([#6148](https://github.com/ovh/manager/issues/6148)) ([b6fedbb](https://github.com/ovh/manager/commit/b6fedbbd5e1ad6b2f303c8e8125c2d24208b589b))
+* **deps:** upgrade `ovh-api-services` to `v14.0.1` ([#6217](https://github.com/ovh/manager/issues/6217)) ([ccfbacb](https://github.com/ovh/manager/commit/ccfbacb9f96d2252f29d347125494d2d1ef9c974))
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+* **deps:** upgrade ng-ovh-telecom-universe-components to v3.0.3 ([574ff83](https://github.com/ovh/manager/commit/574ff831df6f06aeb538ddfe91a5123163cc2d84))
+* **deps:** upgrade ovh-api-services ([#4706](https://github.com/ovh/manager/issues/4706)) ([5619e0c](https://github.com/ovh/manager/commit/5619e0c761a865be15701e096745c68dcc824f8e))
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+* **deps:** upgrade ovh-api-services to v11.0.1 ([#4067](https://github.com/ovh/manager/issues/4067)) ([994f173](https://github.com/ovh/manager/commit/994f173072ab2e6920fa48049d477579f7364657))
+* **deps:** upgrade ovh-api-services to v11.1.1 ([#4831](https://github.com/ovh/manager/issues/4831)) ([33d056a](https://github.com/ovh/manager/commit/33d056a2a8e09392e1f8795a8716c52a15b66b73))
+* **deps:** upgrade ovh-api-services to v9.26.0 ([#1789](https://github.com/ovh/manager/issues/1789)) ([90361dc](https://github.com/ovh/manager/commit/90361dc945014853db1cf4535e2d5b89b67efbea))
+* **deps:** upgrade ovh-api-services to v9.27.1 ([fb116c4](https://github.com/ovh/manager/commit/fb116c4a0e9085c71e8fe1266b818f3464e5bc94))
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **deps:** use latest dependencies ([#3335](https://github.com/ovh/manager/issues/3335)) ([01d3a89](https://github.com/ovh/manager/commit/01d3a8901b7d2404f6299c4c04e1630146b6f2d8))
+* **deps:** use latest for @ovh-ux/manager-core ([#2394](https://github.com/ovh/manager/issues/2394)) ([fd0a25b](https://github.com/ovh/manager/commit/fd0a25b11bd5119649daf3b1605bb56bf70f3ff9))
+* fix version for tuc ([836fed6](https://github.com/ovh/manager/commit/836fed60565ab2911ef10064f36708021ad09dd6))
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+* **pci:** display error in regions ([#8128](https://github.com/ovh/manager/issues/8128)) ([4f0538e](https://github.com/ovh/manager/commit/4f0538e756d4be3c7c547a85b5f284249a0af4f2))
+* **sms:** add error missing dependencies ([#144](https://github.com/ovh/manager/issues/144)) ([b96ff13](https://github.com/ovh/manager/commit/b96ff13beea83d32966194047ccea372d3725e60))
+* sort import to fix undefined lodash ([3bd12fc](https://github.com/ovh/manager/commit/3bd12fc89acebd879a058fa8b4b0c90d7a76e89e))
+* update to use latest list layout ([c0cad60](https://github.com/ovh/manager/commit/c0cad603c8cce8ca8833c58c95d444aebfff7622))
+* use new component to display contracts ([f0e0a1b](https://github.com/ovh/manager/commit/f0e0a1b0099443eb690186e9f7e94382ec89f040))
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+* **deps:** upgrade dependencies ([#252](https://github.com/ovh/manager/issues/252)) ([f87f7b7](https://github.com/ovh/manager/commit/f87f7b7fa7fdc91bf3adf095a074eba94a3908bf))
+* **deps:** upgrade ng-at-internet to v4.0.0 ([#265](https://github.com/ovh/manager/issues/265)) ([e89e179](https://github.com/ovh/manager/commit/e89e179d6d44a04736dd2704323f6538a326b940))
+* **deps:** upgrade ng-ovh-apiv7 to v2.0.0 ([ac6ac62](https://github.com/ovh/manager/commit/ac6ac62dba51dc067eb8b1327b6ce8c7647addca))
+* **deps:** upgrade ng-ovh-telecom-universe-components to v2.0.1 ([3ffc516](https://github.com/ovh/manager/commit/3ffc516058fb861a364a76fbf447093a34137673))
+* **deps:** upgrade ng-pagination-front to v8.0.0-alpha.0 ([f820440](https://github.com/ovh/manager/commit/f820440a6ab6de803490cc2ff518cf999f1a838c))
+
+
+### Code Refactoring
+
+* bump all packages to @ovh-ux/manager-core@^5.0.0 ([7cbc70a](https://github.com/ovh/manager/commit/7cbc70a2a2286a71b71a4d6289665581414cf54d))
+* use @ovh-ux/ng-ovh-checkbox-table ([#1054](https://github.com/ovh/manager/issues/1054)) ([a7cd76f](https://github.com/ovh/manager/commit/a7cd76f6f6cff61ffc978174c6223b6b19eb8fc1))
+
+
+### Features
+
+* add breadcrumb ([a64a5f0](https://github.com/ovh/manager/commit/a64a5f0e081ab6acd2f6aad4d272d5c1cbebab3a))
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+* **core:** add request-tagger interceptor ([e797d9d](https://github.com/ovh/manager/commit/e797d9d942fa2a7917eea04244ec158e25cc3149))
+* create ng-ovh-chart component ([#11356](https://github.com/ovh/manager/issues/11356)) ([dde7809](https://github.com/ovh/manager/commit/dde780945145ef49f9280a037cb00683b5aa31db))
+* **environment:** use ufrontend to bootstrap application ([fba286f](https://github.com/ovh/manager/commit/fba286f89e58e73f8899da0dbac615f65fc6a7f8))
+* **pci:** add @ovh-ux/manager-pci package ([#230](https://github.com/ovh/manager/issues/230)) ([9c36a75](https://github.com/ovh/manager/commit/9c36a75f47ca86121e1050e4f9e6f39ae64e84ef))
+* **sms.compose.receivers:** if invalid receivers, display error message ([#792](https://github.com/ovh/manager/issues/792)) ([6f6a8f6](https://github.com/ovh/manager/commit/6f6a8f60c4044e53ea450c69e0d305f8515191ed))
+* **sms:** add global sms order ([e723a8b](https://github.com/ovh/manager/commit/e723a8bde7037f172e44191c5ac7c730941fda18))
+* **sms:** lazy load sms root state ([2291467](https://github.com/ovh/manager/commit/22914675eb9e1bc87baf917210955fe13efb38e5))
+* **sms:** replace responsive-tabs by header-tabs component ([#203](https://github.com/ovh/manager/issues/203)) ([f5cb0eb](https://github.com/ovh/manager/commit/f5cb0ebe3501665c1012ba85e64cc7d346727ba9))
+* **ufrontend:** add treeshaking ([7ff7623](https://github.com/ovh/manager/commit/7ff7623b2d13b6f2aea2d3a4bfd9d62e169e93c6))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+* replace ovh-angular-checkbox-table by @ovh-ux/ng-ovh-checkbox-table
+* Until theses packages has a dependency to @ovh-ux/manager-core@^5.0.0, the host project needs to import @ovh-ux/manager-config
+
+Before:
+
+yarn add @ovh-ux/manager-core
+
+Now:
+
+yarn add @ovh-ux/manager-config
+yarn add @ovh-ux/manager-core
+* **deps:** replace `ng-at-internet` by `@ovh-ux/ng-at-internet`
+* **deps:** replace both `@ovh-ux/ng-ovh-apiv7` and `ovh-angular-swimming-poll` by `@ovh-ux/ng-ovh-api-wrappers` and `@ovh-ux/ng-ovh-swimming-poll`
+* **deps:** replace `ovh-angular-apiv7` by `@ovh-ux/ng-ovh-apiv7`
+* **deps:** replace `ovh-angular-pagination-front` by `@ovh-ux/ng-pagination-front`
+* **deps:** replace `@ovh-ux/telecom-universe-components` by `@ovh-ux/ng-ovh-telecom-universe-components`
+* **sms:** rename sms.* states to sms.service.*
+
+
+
+
+
 ## [8.1.18-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@8.1.18-alpha.0...@ovh-ux/manager-sms-app@8.1.18-alpha.1) (2024-11-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-sms-app

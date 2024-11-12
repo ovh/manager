@@ -3,6 +3,115 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 4.0.0 (2024-11-12)
+
+
+### Bug Fixes
+
+* add missing translations ([#5892](https://github.com/ovh/manager/issues/5892)) ([3589fd9](https://github.com/ovh/manager/commit/3589fd9a15d23813b0c2c15892bff06440571bfe))
+* add target _top to links ([2d375e6](https://github.com/ovh/manager/commit/2d375e6ac23773f6d4f9780aa3fa8df903692adc))
+* **anthos:** tracking bugs ([05dd6a8](https://github.com/ovh/manager/commit/05dd6a81596193154f488d5f67ecb3d47cf488a6)), closes [#MANAGER-7392](https://github.com/ovh/manager/issues/MANAGER-7392)
+* **billing us:** ldp enterprise offers should be terminated by Agora ([#12813](https://github.com/ovh/manager/issues/12813)) ([5d72738](https://github.com/ovh/manager/commit/5d72738c3e65018f64ebb334b45639b20258e409))
+* **billing-components:** add NAS-HA to commitment ([e139ee3](https://github.com/ovh/manager/commit/e139ee3a8dd5b67ae0f5673bc5f7c7a2bfcbbcc8))
+* **billing-components:** prevent test on service info while loading ([#5364](https://github.com/ovh/manager/issues/5364)) ([7fdd746](https://github.com/ovh/manager/commit/7fdd746f660327acc77820e607a99737a14c4da5))
+* **billing.autorenew:** change redirection of telephony resiliation ([#8889](https://github.com/ovh/manager/issues/8889)) ([267d98f](https://github.com/ovh/manager/commit/267d98fcbac535c5d7de8b00d69a0ce27fecb7c8))
+* **billing.autorenew:** track service type on resiliation ([#5798](https://github.com/ovh/manager/issues/5798)) ([c77eb21](https://github.com/ovh/manager/commit/c77eb212b8f99035a2f95a7af434599b7445738a))
+* **billing.commitment:** change content if no discount ([#7875](https://github.com/ovh/manager/issues/7875)) ([10fbe0d](https://github.com/ovh/manager/commit/10fbe0d31aa4d0ba73f0429f330affe38255e722))
+* **billing.services:** fix rules wording ([#9532](https://github.com/ovh/manager/issues/9532)) ([3ac3ec6](https://github.com/ovh/manager/commit/3ac3ec68213b797014b91f56e651e75f8e188f1f))
+* **billing:** add missed netapp storage service key ([#6273](https://github.com/ovh/manager/issues/6273)) ([4febeea](https://github.com/ovh/manager/commit/4febeea4a378bee634c49a3e8b34c2ddc6fc0ea8))
+* **billing:** commitment discount amount ([#5874](https://github.com/ovh/manager/issues/5874)) ([908aaa8](https://github.com/ovh/manager/commit/908aaa854b3216c3f6bdda0c05dbfc85580887ef))
+* **billing:** commitment improvement pending status ([#7488](https://github.com/ovh/manager/issues/7488)) ([9bb731f](https://github.com/ovh/manager/commit/9bb731ff438172af38f10eb33b9d092afbb7a55f))
+* **billing:** update exchange accounts menu link ([#9718](https://github.com/ovh/manager/issues/9718)) ([5f4a4c7](https://github.com/ovh/manager/commit/5f4a4c735d0bbc9f4057041b02ef2c6b6c881328))
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+* **commitment:** add `netapp` catalog ([#5957](https://github.com/ovh/manager/issues/5957)) ([bf7c8ec](https://github.com/ovh/manager/commit/bf7c8eca990af32b4550033e118a03d0d3f2349b))
+* **commitment:** fix issue with upfront price ([#5947](https://github.com/ovh/manager/issues/5947)) ([373289e](https://github.com/ovh/manager/commit/373289ed4f82fb59c56908702403fa99ba2c9f11))
+* **commitment:** fix total price display ([#5924](https://github.com/ovh/manager/issues/5924)) ([6a3d218](https://github.com/ovh/manager/commit/6a3d218a452fb0d3e40267d324d486679c0af4a2))
+* **commitment:** update translation ([#7388](https://github.com/ovh/manager/issues/7388)) ([320f463](https://github.com/ovh/manager/commit/320f4636cf0116cf0eab7d67819077c9b070d13f))
+* **commitment:** update translation ([#7388](https://github.com/ovh/manager/issues/7388)) ([f889ab4](https://github.com/ovh/manager/commit/f889ab45d69e3b7f73311ac5a11007e4d830d350))
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+* **dedicated.server:** commitment feature not showing cancel options ([#8866](https://github.com/ovh/manager/issues/8866)) ([7bbf5e9](https://github.com/ovh/manager/commit/7bbf5e9e3571641980fdc915af77335188863826))
+* **dedicated:** commitment cancellation link display for us ([#11128](https://github.com/ovh/manager/issues/11128)) ([ec14e09](https://github.com/ovh/manager/commit/ec14e09031fe0c6d10094676b1fb76583f1bec35))
+* **dedicated:** cpanel commitment not working ([#5339](https://github.com/ovh/manager/issues/5339)) ([58848fd](https://github.com/ovh/manager/commit/58848fde915be39f3c8b4e65343dfb32fdc90d94)), closes [#DTRSD-43193](https://github.com/ovh/manager/issues/DTRSD-43193)
+* **dedicated:** disable view service details for byoip ([#12001](https://github.com/ovh/manager/issues/12001)) ([91872c0](https://github.com/ovh/manager/commit/91872c02804ef82ab71df5d49974688f10d8f886))
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.3` ([#6745](https://github.com/ovh/manager/issues/6745)) ([38d1144](https://github.com/ovh/manager/commit/38d11445b3671755758d153a4f4a166c7946705c)), closes [ovh/ovh-ui-kit#777](https://github.com/ovh/ovh-ui-kit/issues/777)
+* fix missing action 'cancel subscription' on services for CA NIC ([#10070](https://github.com/ovh/manager/issues/10070)) ([01b916e](https://github.com/ovh/manager/commit/01b916ed1ce026364f15a110e87ba4ddd15ee4ad))
+* **i18n:** add missing translations [CDS 1004] ([cd652e3](https://github.com/ovh/manager/commit/cd652e3073bc649a7f051e978ada0aaf6d5ab0fc))
+* **i18n:** add missing translations [CDS 1032] ([f101cb2](https://github.com/ovh/manager/commit/f101cb255f1a10ac94f2bf97095fdd420fa412c9))
+* **i18n:** add missing translations [CDS 1044] ([23a67b4](https://github.com/ovh/manager/commit/23a67b4a91703a7e9cfb93a563ecff0a847c5840))
+* **i18n:** add missing translations [CDS 1048] ([e9694ff](https://github.com/ovh/manager/commit/e9694ff6b3cd164c1b1856031445700ac20927f0))
+* **i18n:** add missing translations [CDS 1085] ([2e3b699](https://github.com/ovh/manager/commit/2e3b699f505718404788412f135810f8935bdeed))
+* **i18n:** add missing translations [CDS 1230] ([38db816](https://github.com/ovh/manager/commit/38db81644f9ebe668921e62e3c1a4ae4ed967a9f))
+* **i18n:** add missing translations [CDS 1239] ([51239cf](https://github.com/ovh/manager/commit/51239cfb10e50f2d78aa4b42ae07d8e6a2021bc7))
+* **i18n:** add missing translations [CDS 1239] ([#5890](https://github.com/ovh/manager/issues/5890)) ([aa6da29](https://github.com/ovh/manager/commit/aa6da29a4acbbd8f8c1ef4fb781a9aed41e44149))
+* **i18n:** add missing translations [CDS 1261] ([#5899](https://github.com/ovh/manager/issues/5899)) ([e35d431](https://github.com/ovh/manager/commit/e35d431d4955805e87c081fe2028a80a37dbdb7a))
+* **i18n:** add missing translations [CDS 1295] ([4d3cace](https://github.com/ovh/manager/commit/4d3caceb4fbb837f4b4ecd677d9b9e47af8acc0b))
+* **i18n:** add missing translations [CDS 1358] ([#6205](https://github.com/ovh/manager/issues/6205)) ([88be6a5](https://github.com/ovh/manager/commit/88be6a5b35425ea74db28c5b7bc26a0bb15f26db))
+* **i18n:** add missing translations [CDS 1428] ([eab4d70](https://github.com/ovh/manager/commit/eab4d703e3ab487ceff0cf2869cb74202fb900a0))
+* **i18n:** add missing translations [CDS 1460] ([c4aebf4](https://github.com/ovh/manager/commit/c4aebf426e92bd8eb183eab4d4c800f6e6aee348))
+* **i18n:** add missing translations [CDS 1655] ([a90ea6b](https://github.com/ovh/manager/commit/a90ea6b0d6112ba9960ac9c435d1e9b211996c71))
+* **i18n:** add missing translations [CDS 1657] ([76bf43d](https://github.com/ovh/manager/commit/76bf43d99e9d918740cede0039b80b44cb6cee06))
+* **i18n:** add missing translations [CDS 1822] ([1aca7d0](https://github.com/ovh/manager/commit/1aca7d0b3ee3e92cf8f69f493441fd3d1d9e9ae6))
+* **i18n:** add missing translations [CDS 1845] ([f75942a](https://github.com/ovh/manager/commit/f75942a59d4e65aec0a187bfb6fee9de9b2ee3ed))
+* **i18n:** add missing translations [CDS 2500] ([b47388a](https://github.com/ovh/manager/commit/b47388a9b8487ea854dffe8f2c0c6afa80868408))
+* **i18n:** add missing translations [CDS 2508] ([9be3c8b](https://github.com/ovh/manager/commit/9be3c8ba032b22a67cde28a6332b0ecc78fa79e7))
+* **modules.billing-components:** avoid text overflow ([38a2ba0](https://github.com/ovh/manager/commit/38a2ba0d825f444f935eb2627e50ff4673ddcdf3))
+* **modules.billing-components:** avoid word break ([094b651](https://github.com/ovh/manager/commit/094b651a038cdba68875ed95f7ff7ad14bf909b3))
+* **pnr:** add top attribute to oui-action-menu-item with href ([5284489](https://github.com/ovh/manager/commit/5284489da8ae691bbf5b83493dba09f917760a96))
+* **resiliation:** translate error message ([#5300](https://github.com/ovh/manager/issues/5300)) ([a00179a](https://github.com/ovh/manager/commit/a00179a2f7646b778700e904b8d99a71f854c3f6))
+* **services-action:** allow resiliation on commited services ([#5129](https://github.com/ovh/manager/issues/5129)) ([d0bcc7f](https://github.com/ovh/manager/commit/d0bcc7fa0f337f5d4c77e6ff551742def0c575f0))
+* **subscription-tile:** fix contact management ([#5916](https://github.com/ovh/manager/issues/5916)) ([21274cf](https://github.com/ovh/manager/commit/21274cf1c7ce0572f689f6611730ca087c7e9894))
+* update links to use shell client navigation plugin ([6b766e7](https://github.com/ovh/manager/commit/6b766e7be5c18249d8ce06b0cc2dd974360e9a6d))
+
+
+### Code Refactoring
+
+* **billing:** rename module ([8a9e8b7](https://github.com/ovh/manager/commit/8a9e8b7b3fb56351d9cafce4f23c3e30eef2b7c1))
+
+
+### Features
+
+* add engagement component ([79f603c](https://github.com/ovh/manager/commit/79f603c4d811b60a4416e1a9cf499ffc4365d250))
+* all dom termination enhancement ([#5574](https://github.com/ovh/manager/issues/5574)) ([7a2a4bd](https://github.com/ovh/manager/commit/7a2a4bdb084ceedcbb2307b9d22c8bf7ac81ca90))
+* **billing-component.resiliation:** add end_strategy parameter ([b5c67dc](https://github.com/ovh/manager/commit/b5c67dc4657e6a15dcbe994f420457f1755d1622))
+* **billing:** set new content for split payment modal ([#5144](https://github.com/ovh/manager/issues/5144)) ([6e16b8c](https://github.com/ovh/manager/commit/6e16b8c0534571fc30384b58d0cf08e2de101429))
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* cancel a service with commitment ([#5677](https://github.com/ovh/manager/issues/5677)) ([f7dc6ab](https://github.com/ovh/manager/commit/f7dc6ab24db5a01b1d8521fc072def4da5aa5633))
+* commit re-commit text changes ([6588853](https://github.com/ovh/manager/commit/658885373ef0f592a0776eec0759b9a5c9d84273)), closes [#MANAGER-7434](https://github.com/ovh/manager/issues/MANAGER-7434)
+* **commitment-duration:** allow default duration preselection ([bf63bfa](https://github.com/ovh/manager/commit/bf63bfa4d579863d3bd3d8d11d74ea38f36631a6))
+* **dedicated.ldp:** implement cancel button ([#12521](https://github.com/ovh/manager/issues/12521)) ([0be5932](https://github.com/ovh/manager/commit/0be5932e6d2810928a15cc6190fd3dee34cac51c))
+* **dedicated:** add vrack to my services page ([#12440](https://github.com/ovh/manager/issues/12440)) ([a66d8b2](https://github.com/ovh/manager/commit/a66d8b2810e31b850e806f4a26b435b6037ca226))
+* **dedicated:** adding banner for autorenew 2016 deployment ([#9650](https://github.com/ovh/manager/issues/9650)) ([2feaba1](https://github.com/ovh/manager/commit/2feaba1957136ced5fed54cff7771a39f4289bec))
+* **dedicated:** fix a typo for billing commitment ([#9543](https://github.com/ovh/manager/issues/9543)) ([449fb29](https://github.com/ovh/manager/commit/449fb29d3fe245b20b466fa315b7ef243664eeb8))
+* **dedicated:** move billing status and action in commitment section ([#12602](https://github.com/ovh/manager/issues/12602)) ([3c61a8e](https://github.com/ovh/manager/commit/3c61a8e76f07d3b7dcb0648a0c1e557db2766f79))
+* **dedicated:** multi az feature change ([#11223](https://github.com/ovh/manager/issues/11223)) ([c751bee](https://github.com/ovh/manager/commit/c751bee0fe8d3bdc9638d063ee4a217399fa505f))
+* **dedicated:** replace text of cta ([6700bff](https://github.com/ovh/manager/commit/6700bff506f461abb7c8b3370b0efcc53f5c62f7))
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.0.0` ([d09ca10](https://github.com/ovh/manager/commit/d09ca10f4b7ca629e0b2f1fcb59278ea7f309a9e))
+* **hub:** split api calls in hub ([4acda51](https://github.com/ovh/manager/commit/4acda512ff5371589fb34a493578f36bbaf2a87d))
+* **modules.billing-component:** take quantity in account ([4b08133](https://github.com/ovh/manager/commit/4b081332aa51e9635256e669d5a659e825258e43))
+* **modules.commitment-pricing-mode:** allow to hidden discount ([7a25ab7](https://github.com/ovh/manager/commit/7a25ab7f8eff0d2ef52deb1b61587263b50afaf3))
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+* **subscription-tile:** add default url for commit action ([#6015](https://github.com/ovh/manager/issues/6015)) ([e9c310c](https://github.com/ovh/manager/commit/e9c310ce3afbb18269feb2906b27237ddff39453))
+* **telecom:** redirect on btn resiliate click ([#10589](https://github.com/ovh/manager/issues/10589)) ([25d9520](https://github.com/ovh/manager/commit/25d9520caac40d270a03665430e196b3819d3b63))
+* track changes for recommitment ([#5955](https://github.com/ovh/manager/issues/5955)) ([ffffe48](https://github.com/ovh/manager/commit/ffffe486c3e7d997f894a34bdd306be60e4922d1))
+* use feature availability to display renew actions ([#5054](https://github.com/ovh/manager/issues/5054)) ([d3de920](https://github.com/ovh/manager/commit/d3de92098fea3aa35d06cc9f9308bd330ee2bd7e))
+* **vrack-services:** handle resiliate on vrack services ([#11483](https://github.com/ovh/manager/issues/11483)) ([2d1dbed](https://github.com/ovh/manager/commit/2d1dbed6445ae4bc377a9f3ebdd33438e22ba81a))
+* **web:** add spf diag and fix mx and srv ([#9773](https://github.com/ovh/manager/issues/9773)) ([3576462](https://github.com/ovh/manager/commit/3576462dabfffa70174fe6127c7d6050bfda57aa))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+### BREAKING CHANGES
+
+* **billing:** rename billing module to billing-components
+
+
+
+
+
 ## [3.22.4-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.22.3...@ovh-ux/manager-billing-components@3.22.4-alpha.0) (2024-10-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

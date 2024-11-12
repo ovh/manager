@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2024-11-12)
+
+
+### Bug Fixes
+
+* **apps:** define Application Version ([700fd68](https://github.com/ovh/manager/commit/700fd68b7934a48ddc04f1c2ef8695d20ee7c993))
+* **deps:** bump dependencies ([2bbbf54](https://github.com/ovh/manager/commit/2bbbf540b44ed1bffb555fc55045a6f9ea756e78))
+* **deps:** upgarde `@ovh-ux/ui-kit` to `v6.0.0` ([#7088](https://github.com/ovh/manager/issues/7088)) ([1b79579](https://github.com/ovh/manager/commit/1b79579d4bd58ce748f70b8c7eb2c8461cdc4cc8))
+* **deps:** upgrade `@ovh-ux/ng-ovh-payment-method` to `v9.0.0` ([b968cdb](https://github.com/ovh/manager/commit/b968cdbc32661a4d6ac791b4f77321a383b25fb5))
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.1` ([defea82](https://github.com/ovh/manager/commit/defea8213431605013ebc69646267fe568adaccb))
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.2` ([#6335](https://github.com/ovh/manager/issues/6335)) ([b91ce69](https://github.com/ovh/manager/commit/b91ce698bf1d230de112e1896626574e1553769b))
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.3` ([#6745](https://github.com/ovh/manager/issues/6745)) ([38d1144](https://github.com/ovh/manager/commit/38d11445b3671755758d153a4f4a166c7946705c)), closes [ovh/ovh-ui-kit#777](https://github.com/ovh/ovh-ui-kit/issues/777)
+* **deps:** upgrade `ovh-api-services` to `v14.0.0` ([#6148](https://github.com/ovh/manager/issues/6148)) ([b6fedbb](https://github.com/ovh/manager/commit/b6fedbbd5e1ad6b2f303c8e8125c2d24208b589b))
+* **deps:** upgrade `ovh-api-services` to `v14.0.1` ([#6217](https://github.com/ovh/manager/issues/6217)) ([ccfbacb](https://github.com/ovh/manager/commit/ccfbacb9f96d2252f29d347125494d2d1ef9c974))
+* **deps:** upgrade `ovh-api-services` to `v14.0.6` ([#7273](https://github.com/ovh/manager/issues/7273)) ([90698c8](https://github.com/ovh/manager/commit/90698c8c025bba09dd8e1baf64ccc0eecd56d3a8))
+* **pci:** display error in regions ([#8128](https://github.com/ovh/manager/issues/8128)) ([4f0538e](https://github.com/ovh/manager/commit/4f0538e756d4be3c7c547a85b5f284249a0af4f2))
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### Features
+
+* bump @ovh-ux/ui-kit to v6.1.0 ([a1eaaa5](https://github.com/ovh/manager/commit/a1eaaa5cb68652d1d600ba02e0d27de557de94e5))
+* **dedicated.otrs:** paginate support tickets ([#8540](https://github.com/ovh/manager/issues/8540)) ([24e7308](https://github.com/ovh/manager/commit/24e73084d5db1b364989b7817b759719272b1fce))
+* **email-domain:** add standalone email-domain  application ([72a43c3](https://github.com/ovh/manager/commit/72a43c3494431873720020fb39cad1ddce6d87ac))
+* **nutanix:** bring your own license ([4aecf21](https://github.com/ovh/manager/commit/4aecf215501541223bd10fd4851a4bac92a4c45f))
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+* **signup:** add searchable country list and update labels ([#10625](https://github.com/ovh/manager/issues/10625)) ([a263199](https://github.com/ovh/manager/commit/a263199b06a47298eb7bf0a99814b38da3b544c2))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+* **email-domain:** add email-domain application
+
+
+
+
+
 ## [2.2.15-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emaildomain-app@2.2.15-alpha.1...@ovh-ux/manager-emaildomain-app@2.2.15-alpha.2) (2024-11-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-emaildomain-app
