@@ -387,7 +387,6 @@
   "server_configuration_installation_ovh_step1_doc_tooltip_os": "Accéder à la page de documentation officielle de la distribution {{t0}} (en anglais)",
   "server_configuration_installation_ovh_step1_doc_tooltip_app": "Accéder à la page de documentation officielle de l'application fournie avec la distribution {{t0}} (en anglais)",
   "server_configuration_installation_ovh_step1_hardwareRaid": "Personnaliser la configuration du hardware RAID",
-  "server_configuration_installation_ovh_step1_hardwareRaid_wrong_location": "Le Hardware RAID n'est disponible que sur les serveurs situés sur le continent de votre compte client.",
   "server_configuration_installation_ovh_step1_warning_exist": "Attention, vous avez commencé la configuration d'une installation sous la distribution <b>{{t0}}</b>. La modification de la distribution supprimera cette configuration.",
   "server_configuration_installation_ovh_step1_warning_exist_valid": "Supprimer la configuration précédente",
   "server_configuration_installation_ovh_step1_warning_exist_cancel": "Ne pas changer de distribution",
