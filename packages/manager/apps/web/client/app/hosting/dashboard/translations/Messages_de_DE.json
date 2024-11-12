@@ -307,7 +307,7 @@
   "hosting_tab_DOMAINS_table_git_state_deploying": "Wird ausgeführt",
   "hosting_tab_DOMAINS_table_git_state_initialError": "Fehler",
   "hosting_tab_DOMAINS_table_git_state_tooltip_lastDeploy": "Informationen zur letzten Bereitstellung ansehen",
-  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Klicken Sie auf die Schaltfläche Aktion, um Git zuzuordnen",
+  "hosting_tab_DOMAINS_table_git_state_tooltip_disabled": "Klicken Sie auf die Aktionsschaltfläche, um Git zuzuordnen.",
   "hosting_tab_DOMAINS_table_cdn_state_ACTIVE": "Aktiviert",
   "hosting_tab_DOMAINS_table_cdn_state_NONE": "Deaktiviert",
   "hosting_tab_DOMAINS_table_ssl_state_true": "Aktiviert",

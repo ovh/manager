@@ -8,5 +8,5 @@
   "pci_projects_project_network_private_vrack_create_cancel": "Anular",
   "pci_projects_project_network_private_vrack_create_init_error": "Ocorreu um erro ao carregar as informações {{ message }}",
   "pci_projects_project_network_private_vrack_create_error": "Ocorreu um erro ao ativar o vRack {{ message }}",
-  "pci_projects_project_network_private_vrack_pending": "A ativação do seu vRack está em curso. A operação pode demorar alguns minutos"
+  "pci_projects_project_network_private_vrack_pending": "A ativação do seu vRack está em curso. A operação pode levar alguns minutos"
 }
