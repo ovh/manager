@@ -1434,24 +1434,6 @@ export default class Server {
     );
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  isHardRaidLocationError(error) {
-    return (
-      error.status === 403 &&
-      error.data &&
-      error.data.message === 'Not available from this location'
-    );
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  isHardRaidUnavailableError(error) {
-    return (
-      error.status === 403 &&
-      error.data &&
-      error.data.message === 'Hardware RAID is not supported by this server'
-    );
-  }
-
   updateServiceInfos(serviceName, data) {
     return this.OvhHttp.put('/dedicated/server/{serviceName}/serviceInfos', {
       rootPath: 'apiv6',
