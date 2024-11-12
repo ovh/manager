@@ -11,14 +11,14 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
+    "beta-test:e2e": "tsc && node ../../../../scripts/run-playwright-bdd.js",
+    "beta-test:e2e:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci",
     "build": "tsc && vite build",
     "dev": "tsc && vite",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-catalog-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-catalog-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-catalog-app' --include-dependencies -- npm run dev:watch --if-present",
-    "test": "jest",
-    "test:e2e": "tsc && node ../../../../scripts/run-playwright-bdd.js",
-    "test:e2e:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci"
+    "test": "jest"
   },
   "dependencies": {
     "@cucumber/cucumber": "^10.3.1",
