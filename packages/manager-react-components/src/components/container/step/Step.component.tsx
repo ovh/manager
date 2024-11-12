@@ -91,7 +91,7 @@ export const StepComponent = ({
         </div>
       )}
     </div>
-    <div className="basis-full px-5">
+    <div className="basis-full px-5 max-w-[calc(100%-76px)]">
       <div className="flex flex-col md:flex-row">
         <div
           className={clsx(
