@@ -252,7 +252,6 @@ export const useUpdateVrackServices = ({
         vrackServicesId: id,
         checksum: vs.checksum,
         targetSpec: {
-          displayName: vs.currentState.displayName,
           subnets: vs.currentState.subnets.map((subnet) =>
             subnet.cidr !== cidr
               ? subnet
