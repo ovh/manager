@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-exchange-app",
-  "version": "0.11.18-alpha.1",
+  "version": "0.11.18-alpha.2",
   "private": true,
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
     "@ovh-ux/manager-advices": "^1.8.1",
     "@ovh-ux/manager-config": "^7.5.3-alpha.0",
     "@ovh-ux/manager-core": "^12.17.5-alpha.0",
-    "@ovh-ux/manager-exchange": "^4.8.0",
+    "@ovh-ux/manager-exchange": "^4.9.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
     "@ovh-ux/ng-at-internet": "^5.11.18-alpha.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",

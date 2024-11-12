@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.8.0...@ovh-ux/manager-exchange@4.9.0) (2024-11-12)
+
+
+### Features
+
+* **exchange:** add company label for ressources and group ([#13765](https://github.com/ovh/manager/issues/13765)) ([daff845](https://github.com/ovh/manager/commit/daff845fc46f8d327920d48cedaca6ef7cc6185c))
+
+
+
+
+
 # [4.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.7.2...@ovh-ux/manager-exchange@4.8.0) (2024-08-19)
 
 
