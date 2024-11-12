@@ -7,8 +7,8 @@ import OrderFunnel from './_components/OrderFunnel.component';
 import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
 import { useGetFramework } from '@/hooks/api/ai/notebook/capabilities/useGetFramework.hook';
 import { useGetEditor } from '@/hooks/api/ai/notebook/capabilities/useGetEditor.hook';
-import { useGetDatastoresWithRegions } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
 import { useGetSshkey } from '@/hooks/api/sshkey/useGetSshkey.hook';
+import { mockedSuggestion } from '@/__tests__/helpers/mocks/suggestion';
 
 export function breadcrumb() {
   return (
@@ -60,6 +60,7 @@ const Notebook = () => {
             frameworks={frameworkQuery.data}
             editors={editorQuery.data}
             sshKeys={sshKeyQuery.data}
+            suggestions={mockedSuggestion}
           />
         )}
     </>

@@ -49,7 +49,12 @@ import { useAddNotebook } from '@/hooks/api/ai/notebook/useAddNotebook.hook';
 import { useToast } from '@/components/ui/use-toast';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import ErrorList from '@/components/order/error-list/ErrorList.component';
-import { OrderSshKey, OrderVolumes, PrivacyEnum } from '@/types/orderFunnel';
+import {
+  OrderSshKey,
+  OrderVolumes,
+  PrivacyEnum,
+  Suggestions,
+} from '@/types/orderFunnel';
 import { useModale } from '@/hooks/useModale';
 import { useGetCommand } from '@/hooks/api/ai/notebook/useGetCommand.hook';
 import CliEquivalent from './CliEquivalent.component';
@@ -61,6 +66,7 @@ interface OrderFunnelProps {
   frameworks: ai.capabilities.notebook.Framework[];
   editors: ai.capabilities.notebook.Editor[];
   sshKeys: SshKey[];
+  suggestions: Suggestions[];
 }
 
 const OrderFunnel = ({
@@ -69,8 +75,15 @@ const OrderFunnel = ({
   frameworks,
   editors,
   sshKeys,
+  suggestions,
 }: OrderFunnelProps) => {
-  const model = useOrderFunnel(regions, catalog, frameworks, editors);
+  const model = useOrderFunnel(
+    regions,
+    catalog,
+    frameworks,
+    editors,
+    suggestions,
+  );
   const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
   const [showAdvancedConfiguration, setShowAdvancedConfiguration] = useState(
     false,
@@ -217,7 +230,7 @@ const OrderFunnel = ({
         scrollToDiv('advancedConfig');
       }
     }
-  }, [showAdvancedConfiguration, scrollToDiv, accordionContentRef?.current]);
+  }, [showAdvancedConfiguration, accordionContentRef?.current]);
 
   const classNameLabel = 'scroll-m-20 text-xl font-semibold';
 
@@ -356,7 +369,7 @@ const OrderFunnel = ({
                       <FrameworksSelect
                         {...field}
                         frameworks={model.lists.frameworks}
-                        value={field.value}
+                        value={model.form.getValues('frameworkWithVersion')}
                         onChange={(newFrameworkWithVersion) =>
                           model.form.setValue(
                             'frameworkWithVersion',

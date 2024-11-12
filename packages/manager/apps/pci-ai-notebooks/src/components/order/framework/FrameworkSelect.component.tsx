@@ -1,8 +1,5 @@
-import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
-import RadioTile from '@/components/radio-tile/RadioTile.component';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Badge } from '@/components/ui/badge';
 import * as ai from '@/types/cloud/project/ai';
 import FrameworkTile from './FrameworkTile.component';
 import { FrameworkWithVersion } from '@/types/orderFunnel';
@@ -19,8 +16,6 @@ const FrameworksSelect = React.forwardRef<
   const [selectedFrameworkTypeIndex, setSelectedFrameworkTypeIndex] = useState(
     0,
   );
-  const { t } = useTranslation('pci-ai-notebooks/components/framework');
-
   const mappedFramework = frameworks.map((fmk) => ({
     ...fmk,
     type: fmk.docUrl ? 'classical' : 'quantique',

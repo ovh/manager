@@ -44,3 +44,17 @@ export enum PrivacyEnum {
   'private' = 'private',
   'public' = 'public',
 }
+
+export interface Suggestions {
+  region: string;
+  ressources: {
+    nb: number;
+    flavor: string;
+  };
+  framework: {
+    id: string;
+    version: string;
+  };
+  editorId: string;
+  unsecureHttp: boolean;
+}

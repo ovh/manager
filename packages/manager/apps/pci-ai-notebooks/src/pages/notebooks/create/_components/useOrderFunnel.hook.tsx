@@ -10,7 +10,12 @@ import { generateName } from '@/lib/nameGenerator';
 import { createFlavorPricingList } from '@/lib/priceFlavorHelper';
 import { order } from '@/types/catalog';
 import * as ai from '@/types/cloud/project/ai';
-import { Flavor, OrderSshKey, PrivacyEnum } from '@/types/orderFunnel';
+import {
+  Flavor,
+  OrderSshKey,
+  PrivacyEnum,
+  Suggestions,
+} from '@/types/orderFunnel';
 import { useGetDatastores } from '@/hooks/api/ai/datastore/useGetDatastores.hook';
 import {
   DataStoresWithContainers,
@@ -22,6 +27,7 @@ export function useOrderFunnel(
   catalog: order.publicOrder.Catalog,
   frameworks: ai.capabilities.notebook.Framework[],
   editors: ai.capabilities.notebook.Editor[],
+  suggestions: Suggestions[],
 ) {
   const { projectId } = useParams();
   const orderSchema = z.object({
@@ -67,7 +73,7 @@ export function useOrderFunnel(
   const form = useForm({
     resolver: zodResolver(orderSchema),
     defaultValues: {
-      region: regions[0].id,
+      region: suggestions[0].region,
       flavorWithQuantity: { flavor: '', quantity: 1 },
       frameworkWithVersion: { framework: '', version: '' },
       editor: '',
@@ -97,15 +103,15 @@ export function useOrderFunnel(
     datastoreQuery.data,
   );
 
-  const listFlavor: Flavor[] = useMemo(() => {
-    if (flavorQuery.isLoading) return [];
-    return createFlavorPricingList(flavorQuery.data, catalog);
-  }, [region, flavorQuery.isSuccess]);
-
   const regionObject: ai.capabilities.Region | undefined = useMemo(
     () => regions.find((r) => r.id === region),
     [regions, region],
   );
+
+  const listFlavor: Flavor[] = useMemo(() => {
+    if (flavorQuery.isLoading) return [];
+    return createFlavorPricingList(flavorQuery.data, catalog);
+  }, [region, flavorQuery.isSuccess]);
 
   const flavorObject: Flavor | undefined = useMemo(
     () => listFlavor.find((f) => f.id === flavorWithQuantity.flavor),
@@ -153,6 +159,36 @@ export function useOrderFunnel(
       return acc;
     }, {} as { [key: string]: string });
   }, [labels]);
+
+  // Select default Flavor Id / Flavor number when region change
+  useEffect(() => {
+    const suggestedFlavor =
+      suggestions.find((sug) => sug.region === regionObject.id).ressources
+        .flavor ?? listFlavor[0].id;
+    form.setValue('flavorWithQuantity.flavor', suggestedFlavor);
+    form.setValue('flavorWithQuantity.quantity', 1);
+  }, [regionObject, region, flavorQuery.isSuccess]);
+
+  // Change Framework when region change?
+  useEffect(() => {
+    const suggestedFramework =
+      suggestions.find((sug) => sug.region === regionObject.id).framework.id ??
+      frameworks[0].id;
+    const suggestedFrameworkVersion =
+      suggestions.find((sug) => sug.region === regionObject.id).framework
+        .version ?? frameworks[0].versions[0];
+    form.setValue('frameworkWithVersion.framework', suggestedFramework);
+    form.setValue('frameworkWithVersion.version', suggestedFrameworkVersion);
+  }, [regionObject, region]);
+
+  // Change editors when region change?
+  useEffect(() => {
+    const suggestedEditors =
+      suggestions.find((sug) => sug.region === regionObject.id).editorId ??
+      editors[0].id;
+    form.setValue('editor', suggestedEditors);
+  }, [regionObject, region]);
+
   return {
     form,
     lists: {
