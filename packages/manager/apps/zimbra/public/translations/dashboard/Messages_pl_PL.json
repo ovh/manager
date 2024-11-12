@@ -51,5 +51,6 @@
   "zimbra_dashboard_redirections": "Przekierowania",
   "zimbra_dashboard_redirections_edit": "Zmodyfikuj przekierowanie",
   "zimbra_dashboard_redirections_delete": "Usuń przekierowanie",
-  "zimbra_dashboard_auto_replies": "Autoresponder"
+  "zimbra_dashboard_auto_replies": "Autoresponder",
+  "zimbra_dashboard_auto_replies_delete": "Usuń autoresponder"
 }

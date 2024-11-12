@@ -1,0 +1,8 @@
+{
+  "zimbra_auto_replies_delete_success_message": "Zlecenie usunięcia zostało przyjęte. Zostanie ona wykonana w ciągu kilku minut.",
+  "zimbra_auto_replies_delete_error_message": "Zlecenie usunięcia nie powiodło się. Spróbuj ponownie za kilka minut.",
+  "zimbra_auto_replies_delete_modal_title": "Usuń autoresponder",
+  "zimbra_auto_replies_delete_cancel": "Anuluj",
+  "zimbra_auto_replies_delete_cta": "Usuń",
+  "zimbra_auto_replies_delete_modal_content": "Czy na pewno chcesz usunąć autoresponder?"
+}
