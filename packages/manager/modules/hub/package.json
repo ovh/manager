@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub",
-  "version": "3.17.6-alpha.1",
+  "version": "3.18.0-alpha.0",
   "private": true,
   "description": "Set of components for Manager Hub",
   "repository": {

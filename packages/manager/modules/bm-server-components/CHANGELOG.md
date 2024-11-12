@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.36.4-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.36.4-alpha.0...@ovh-ux/manager-bm-server-components@1.36.4-alpha.1) (2024-11-12)
+
+
+### Bug Fixes
+
+* **dedicated:** fix extentions word ([0f49cb7](https://github.com/ovh/manager/commit/0f49cb778e11c3d8f087cf1edc490c41e66dc625))
+* **dedicated:** update SGX feature confirmation text ([2ea2c50](https://github.com/ovh/manager/commit/2ea2c5095efe01c68d17f2d69931f95a1c288563))
+* **i18n:** add missing translations [CDS 3462] ([0333155](https://github.com/ovh/manager/commit/03331552f4de7a47a346417f3f47126a91850dc1))
+
+
+
+
+
 ## [1.36.4-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.36.3...@ovh-ux/manager-bm-server-components@1.36.4-alpha.0) (2024-10-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-bm-server-components
