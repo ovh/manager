@@ -15,7 +15,7 @@ type OdsNotificationProps = {
   notification: Notification;
 };
 
-const getOdsMessageColor = (type: NotificationType) => {
+export const getOdsNotificationMessageColor = (type: NotificationType) => {
   switch (type) {
     case NotificationType.Success:
       return ODS_MESSAGE_TYPE.success;
@@ -30,7 +30,7 @@ const getOdsMessageColor = (type: NotificationType) => {
   }
 };
 
-const getOdsTextColor = (type: NotificationType) => {
+export const getOdsNotificationTextColor = (type: NotificationType) => {
   switch (type) {
     case NotificationType.Success:
       return ODS_TEXT_COLOR_INTENT.success;
@@ -52,7 +52,7 @@ export const OdsNotification: React.FC<OdsNotificationProps> = ({
   return (
     <OsdsMessage
       className="mb-2"
-      type={getOdsMessageColor(notification.type)}
+      type={getOdsNotificationMessageColor(notification.type)}
       {...(notification.dismissable
         ? {
             removable: true,
@@ -61,7 +61,7 @@ export const OdsNotification: React.FC<OdsNotificationProps> = ({
         : {})}
     >
       <OsdsText
-        color={getOdsTextColor(notification.type)}
+        color={getOdsNotificationTextColor(notification.type)}
         size={ODS_THEME_TYPOGRAPHY_SIZE._400}
       >
         {notification.content}

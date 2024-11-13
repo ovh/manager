@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  HeadersProps,
-  BaseLayout,
-  Notifications,
-} from '@ovh-ux/manager-react-components';
+import { HeadersProps, BaseLayout } from '@ovh-ux/manager-react-components';
 import {
   OsdsTabBar,
   OsdsTabBarItem,
@@ -12,6 +8,7 @@ import {
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
+import { MessageList } from '@/components/message/MessageList.component';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -74,7 +71,7 @@ export default function VcdDashboardLayout({
           </OsdsTabs>
         }
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
-        message={<Notifications />}
+        message={<MessageList />}
         backLinkLabel={backLinkLabel}
         onClickReturn={onClickReturn}
       />
