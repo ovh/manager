@@ -46,9 +46,9 @@ export const getAllKubeQueryKey = (projectId: string) => [
 
 export const useAllKube = (
   projectId: string,
-  options?: Partial<UndefinedInitialDataOptions>,
+  options?: Partial<UndefinedInitialDataOptions<TKube[]>>,
 ) =>
-  useQuery<Required<TKube[]>>({
+  useQuery({
     queryKey: getAllKubeQueryKey(projectId),
     queryFn: (): Promise<Required<TKube[]>> => getAllKube(projectId),
     refetchOnMount: 'always',
@@ -115,12 +115,12 @@ export function getKubernetesClusterQuery(projectId: string, kubeId: string) {
 export const useKubernetesCluster = (
   projectId: string,
   kubeId: string,
-  options?: Partial<UndefinedInitialDataOptions>,
+  options?: Partial<UndefinedInitialDataOptions<TKube>>,
 ) =>
-  useQuery<TKube>({
+  useQuery({
     queryKey: getKubernetesClusterQuery(projectId, kubeId),
     queryFn: () => getKubernetesCluster(projectId, kubeId),
-    select: (data) => {
+    select: (data: TKube) => {
       const { admissionPlugins } = data.customization.apiServer || {};
       const plugins = mapPluginsFromArrayToObject(admissionPlugins);
       return {
@@ -231,7 +231,7 @@ export const useUpdateKubePolicy = ({
 export const useKubeDetail = (
   projectId: string,
   kubeId: string,
-  options?: Partial<UndefinedInitialDataOptions>,
+  options?: Partial<UndefinedInitialDataOptions<TKube>>,
 ) => {
   const { t } = useTranslation('listing');
 
