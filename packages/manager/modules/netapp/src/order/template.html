@@ -34,15 +34,23 @@
         </oui-step-form>
         <oui-step-form
             name="region"
-            header="{{:: 'netapp_order_datacenter' | translate }}"
+            header="{{:: 'netapp_order_region' | translate }}"
             data-valid="$ctrl.selectedRegion"
             on-focus="$ctrl.onRegionStepFocus()"
         >
-            <div class="mb-2" data-ng-if="$ctrl.regions">
-                <ovh-manager-region-selector
-                    regions="$ctrl.regions"
-                    model="$ctrl.selectedRegion"
-                ></ovh-manager-region-selector>
+            <div class="row" data-ng-show="$ctrl.catalogByLocation.length >= 1">
+                <oui-select-picker
+                    class="d-inline-block col-md-6 col-xl-3 my-3"
+                    data-name="region"
+                    data-ng-repeat="region in $ctrl.catalogByLocation track by region.regionName"
+                    data-label="{{ region.location }}"
+                    data-description="{{ region.regionName }}"
+                    data-variant="light"
+                    data-picture="{{ ::region.icon }}"
+                    data-model="$ctrl.selectedRegion"
+                    data-values="[region]"
+                >
+                </oui-select-picker>
             </div>
             <!-- information banner for private connectivity via vRack service is not compatible with below regions -->
             <oui-message
