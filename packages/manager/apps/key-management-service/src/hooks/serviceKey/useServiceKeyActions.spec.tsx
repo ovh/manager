@@ -7,15 +7,25 @@ import {
   OkmsServiceKeyState,
 } from '@/types/okmsServiceKey.type';
 import useServiceKeyActionsList from './useServiceKeyActionsList';
-import { OKMS } from '@/types/okms.type';
+import { okmsMock } from '@/mocks/kms/okms.mock';
 
 vi.mock('react-i18next', () => ({
   useTranslation: vi.fn(() => ({ t: vi.fn((key) => key) })),
 }));
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useNotifications: vi.fn(() => ({ addSuccess: vi.fn() })),
-}));
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const mod = await importOriginal<
+    typeof import('@ovh-ux/manager-react-components')
+  >();
+
+  return {
+    ...mod,
+    useNotifications: vi.fn().mockReturnValue({
+      addError: vi.fn(),
+      addSuccess: vi.fn(),
+    }),
+  };
+});
 
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(() => vi.fn()),
@@ -36,19 +46,6 @@ vi.mock('@/data/hooks/useUpdateOkmsServiceKey', () => ({
 }));
 
 describe('useServiceKeyActionsList', () => {
-  const okms: OKMS = {
-    iam: {
-      displayName: 'kms-1',
-      id: '1b4e7c8e-d1b8-4b46-a584-52c8b4b0225c',
-      urn: `urn:v1:eu:resource:okms:1b4e7c8e-d1b8-4b46-a584-52c8b4b0225c`,
-    },
-    id: '7f3a82ac-a8d8-4c2a-ab0c-f6e86ddf6a7c',
-    kmipEndpoint: 'eu-west-rbx.okms.ovh.net:1234',
-    region: 'EU_WEST_RBX',
-    restEndpoint: 'https://eu-west-rbx.okms.ovh.net',
-    swaggerEndpoint: '"https://swagger-eu-west-rbx.okms.ovh.net',
-  };
-
   const commonKeyProps: Omit<OkmsAllServiceKeys, 'type' | 'state'> = {
     id: 'testKeyId',
     name: 'testKeyName',
@@ -188,7 +185,7 @@ describe('useServiceKeyActionsList', () => {
   useCases.forEach(({ description, okmsKey, expectedActions }) => {
     it(description, () => {
       const { result } = renderHook(() =>
-        useServiceKeyActionsList(okms, okmsKey),
+        useServiceKeyActionsList(okmsMock[0], okmsKey),
       );
       expect(result.current).toEqual(
         expect.arrayContaining(

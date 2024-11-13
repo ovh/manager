@@ -58,7 +58,8 @@ export default class ExchangeAddGroupCtrl {
   }
 
   prepareModel() {
-    this.model.displayName = this.groupToAdd.displayName;
+    this.model.displayName =
+      this.groupToAdd.displayName === '' ? null : this.groupToAdd.displayName;
     this.model.domain = this.groupToAdd.completeDomain.name;
     this.model.address = this.groupToAdd.address;
     this.model.senderAuthentification = this.groupToAdd.auth;
@@ -71,6 +72,8 @@ export default class ExchangeAddGroupCtrl {
       : this.groupToAdd.maxReceiveSize;
     this.model.joinRestriction = this.groupToAdd.subscribeRestriction;
     this.model.departRestriction = this.groupToAdd.unsubscribeRestriction;
+    this.model.company =
+      this.groupToAdd.company === '' ? null : this.groupToAdd.company;
 
     this.saveSelected();
   }
@@ -206,6 +209,7 @@ export default class ExchangeAddGroupCtrl {
     const isSentSizeCorrect =
       this.groupToAdd.sentSizeUnlimited ||
       (!isNaN(maxSendSize) && maxSendSize >= 0 && maxSendSize <= 100);
+
     const isSubscriptionPresent =
       this.groupToAdd.subscribeRestriction != null &&
       this.groupToAdd.unsubscribeRestriction != null;

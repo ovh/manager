@@ -5,9 +5,9 @@ export const NAMESPACES_CONFIG = {
     pattern: /^\w+$/,
   },
   shortTime: {
-    min: 1,
+    min: 2,
     max: 15,
-    pattern: /^(?:(\d+D)?(\d+H)?(\d+m)?(\d+S)?)?$/,
+    pattern: /^(?:(\d+W)?(\d+D)?(\d+H)?(\d+m)?(\d+S)?)?$/,
   },
   maxNamespaceNumber: 5,
 };

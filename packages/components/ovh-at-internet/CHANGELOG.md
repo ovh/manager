@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.16.0 (2024-11-12)
+
+
+### Bug Fixes
+
+* **config:** remove unnecessary module resolutions ([e60d83c](https://github.com/ovh/manager/commit/e60d83c343cc15c2f306c1a748c3c06dfa573608))
+* **generator:** fix generator and supercomponents ([dc78ef2](https://github.com/ovh/manager/commit/dc78ef2efaa84d3d6ec69dbfc2af5debb8b35537))
+* **ovh-at-internet:** rename site_name attribute ([e911064](https://github.com/ovh/manager/commit/e9110643e8e6abd7452fc6867aaa2dfe37a422a9))
+* **ovh-at-internet:** revert constants with prefix manager ([c972499](https://github.com/ovh/manager/commit/c972499d559be236422e74bf7ef2ddcc98926994))
+* **ts:** fix ts import errors ([58ad060](https://github.com/ovh/manager/commit/58ad060b9d4b6f9634268b5cf4bde98301bbbc98))
+
+
+### Features
+
+* add mix commander tracking script ([#10439](https://github.com/ovh/manager/issues/10439)) ([46ff61e](https://github.com/ovh/manager/commit/46ff61efad2262a35276c759b06016e42c257722))
+* add website config for India tracking ([#10032](https://github.com/ovh/manager/issues/10032)) ([5eb8bb6](https://github.com/ovh/manager/commit/5eb8bb63fa4c0c51169ca1b60ca0af465d564416))
+* **at-internet:** update tracking ([91a9867](https://github.com/ovh/manager/commit/91a9867d7a37111a13e6f3f68695f316fa06ca76))
+* catalog react uapp ([#10005](https://github.com/ovh/manager/issues/10005)) ([e456451](https://github.com/ovh/manager/commit/e45645174e0a6e0834d06c3c23c535ff374dceba))
+* **chakra:** add chakra theme and components ([a4ce7ad](https://github.com/ovh/manager/commit/a4ce7adc01f59dcea9d0add60cc6c3ed225c13de))
+* **ovh-at-internet:** create component ([b692503](https://github.com/ovh/manager/commit/b692503df0ed2d91bf0ff4e44af85d4b7dddc350))
+* pci vouchers app in reactjs ([d6821ce](https://github.com/ovh/manager/commit/d6821cecd3bde7d884054d8e782e9a1e9dbfddac))
+* **pci:** add mix commander tag at projet creation & activation ([#13436](https://github.com/ovh/manager/issues/13436)) ([414712c](https://github.com/ovh/manager/commit/414712cfff26d6b846a603700dd723fe9568523b))
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+* piano analytics tracking ([#8557](https://github.com/ovh/manager/issues/8557)) ([0b62090](https://github.com/ovh/manager/commit/0b620907c48aea25bd7e43cca39cb6d81863b05d))
+* **pnr:** add nav tracking ([0ec0ada](https://github.com/ovh/manager/commit/0ec0adae23428bf77e9808b1e86f4e917583d376))
+* **sign-up:** siret create a corporation not created yet path  ([#10394](https://github.com/ovh/manager/issues/10394)) ([818f752](https://github.com/ovh/manager/commit/818f75212aeed0dcf2d5a3df3cadc835711d83aa))
+* sms marketing consent ([#9797](https://github.com/ovh/manager/issues/9797)) ([5ca7626](https://github.com/ovh/manager/commit/5ca7626097dc31ef1b3565626ebc024cc816a150))
+* **tracking:** add tracking on ods components ([eb1b217](https://github.com/ovh/manager/commit/eb1b2172957559e3d788984d15a1b6f466267c4a))
+* **tracking:** remove "Full URL" property encoding ([#10131](https://github.com/ovh/manager/issues/10131)) ([645cd8e](https://github.com/ovh/manager/commit/645cd8ef02aa06901e60321772500ae979646804))
+* updated tracking functions declaration ([#13386](https://github.com/ovh/manager/issues/13386)) ([ffd35b6](https://github.com/ovh/manager/commit/ffd35b64cde87a96390fb551fff9c9a233ab7543))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
 ## [0.15.3-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.15.2...@ovh-ux/ovh-at-internet@0.15.3-alpha.0) (2024-10-30)
 
 **Note:** Version bump only for package @ovh-ux/ovh-at-internet

@@ -6,10 +6,10 @@ import {
   OdsChipAttribute,
 } from '@ovhcloud/ods-components';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
-import { OkmsState } from '@/types/okmsService.type';
+import { ResourceStatus } from '@ovh-ux/manager-react-components';
 
 export type OkmsStateProps = Omit<OdsChipAttribute, 'color'> & {
-  state: OkmsState | string;
+  state: ResourceStatus;
 };
 
 export const OkmsServiceState = ({ state, ...props }: OkmsStateProps) => {
@@ -21,37 +21,37 @@ export const OkmsServiceState = ({ state, ...props }: OkmsStateProps) => {
   let color: OdsChipAttribute['color'];
 
   switch (state) {
-    case OkmsState.Active:
+    case 'active':
       label = t(
         'key_management_service_dashboard_dashboard_field_state_active',
       );
       color = ODS_TEXT_COLOR_INTENT.success;
       break;
-    case OkmsState.Deleted:
+    case 'deleted':
       label = t(
         'key_management_service_dashboard_dashboard_field_state_deleted',
       );
       color = ODS_TEXT_COLOR_INTENT.error;
       break;
-    case OkmsState.Suspended:
+    case 'suspended':
       label = t(
         'key_management_service_dashboard_dashboard_field_state_suspended',
       );
       color = ODS_TEXT_COLOR_INTENT.warning;
       break;
-    case OkmsState.ToActivate:
+    case 'toActivate':
       label = t(
         'key_management_service_dashboard_dashboard_field_state_toActivate',
       );
       color = ODS_TEXT_COLOR_INTENT.info;
       break;
-    case OkmsState.ToDelete:
+    case 'toDelete':
       label = t(
         'key_management_service_dashboard_dashboard_field_state_toDelete',
       );
       color = ODS_TEXT_COLOR_INTENT.default;
       break;
-    case OkmsState.ToSuspend:
+    case 'toSuspend':
       label = t(
         'key_management_service_dashboard_dashboard_field_state_toSuspend',
       );

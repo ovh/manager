@@ -27,5 +27,6 @@ export default {
     encryptionAvailable: '<',
     enableVersioning: '<',
     is3azAvailable: '<',
+    isLocalzoneAvailable: '<',
   },
 };

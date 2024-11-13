@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.0...@ovh-ux/manager-pci-workflow-app@0.1.1) (2024-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+# [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.15...@ovh-ux/manager-pci-workflow-app@0.1.0) (2024-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+# [0.1.0-alpha.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.14...@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.15) (2024-11-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+# [0.1.0-alpha.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.13...@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.14) (2024-11-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+# [0.1.0-alpha.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.12...@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.13) (2024-11-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+# [0.1.0-alpha.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.11...@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.12) (2024-11-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+# [0.1.0-alpha.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.10...@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.11) (2024-11-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
 # [0.1.0-alpha.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.9...@ovh-ux/manager-pci-workflow-app@0.1.0-alpha.10) (2024-11-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app

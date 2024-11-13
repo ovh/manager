@@ -4,8 +4,8 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   ErrorMessage,
   TRACKING_LABELS,
-} from '@ovh-ux/manager-react-components/src/components/';
-import { ErrorBanner } from '@ovh-ux/manager-react-components';
+  ErrorBanner,
+} from '@ovh-ux/manager-react-components';
 
 interface ErrorObject {
   [key: string]: any;
@@ -28,7 +28,7 @@ const Errors: React.FC<ErrorObject> = ({ error }) => {
   const env = environment.getEnvironment();
 
   React.useEffect(() => {
-    env.then((response) => {
+    env.then((response: any) => {
       const { applicationName } = response;
       const name = `errors::${getTrackingTypology(error)}::${applicationName}`;
       tracking.trackPage({

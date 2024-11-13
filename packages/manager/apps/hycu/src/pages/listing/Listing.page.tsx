@@ -16,6 +16,8 @@ import {
   BaseLayout,
   Links,
   useServiceDetails,
+  DateFormat,
+  useFormattedDate,
 } from '@ovh-ux/manager-react-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -25,10 +27,6 @@ import {
   ODS_MESSAGE_TYPE,
   ODS_BUTTON_SIZE,
 } from '@ovhcloud/ods-components';
-import {
-  DateFormat,
-  useFormattedDate,
-} from '@ovh-ux/manager-react-components/src/hooks/date/useFormattedDate';
 import HYCU_CONFIG from '@/hycu.config';
 import { IHycuDetails } from '@/type/hycu.details.interface';
 

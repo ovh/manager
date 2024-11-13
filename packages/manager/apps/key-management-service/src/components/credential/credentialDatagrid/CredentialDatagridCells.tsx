@@ -15,6 +15,7 @@ import { CredentialStatus } from '../credentialStatus/CredentialStatus.component
 import { getDownloadCredentialParameters } from '@/utils/credential/credentialDownload';
 import { OkmsContext } from '@/pages/dashboard';
 import { ROUTES_URLS } from '@/routes/routes.constants';
+import { kmsIamActions } from '@/utils/iam/iam.constants';
 
 export const DatagridCredentialCellName = (credential: OkmsCredential) => {
   const navigate = useNavigate();
@@ -102,7 +103,7 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential) => {
       id: 2,
       label: t('key_management_service_credential_delete'),
       color: ODS_THEME_COLOR_INTENT.error,
-      iamActions: ['okms:apiovh:credential/delete'],
+      iamActions: [kmsIamActions.credentialDelete],
       urn: okms.iam.urn,
       onClick: () =>
         navigate(`${ROUTES_URLS.credentialDelete}/${credential.id}`),

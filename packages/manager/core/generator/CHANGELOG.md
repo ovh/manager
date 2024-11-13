@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.15.1...@ovh-ux/manager-generator@0.15.2) (2024-11-12)
+
+
+### Bug Fixes
+
+* update export in mrc ([#14040](https://github.com/ovh/manager/issues/14040)) ([1289c90](https://github.com/ovh/manager/commit/1289c909066028cf88685625a3dd0952c2581564))
+
+
+
+
+
 ## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.15.0...@ovh-ux/manager-generator@0.15.1) (2024-10-15)
 
 

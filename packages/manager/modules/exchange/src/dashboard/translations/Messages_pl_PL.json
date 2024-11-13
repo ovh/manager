@@ -1687,5 +1687,7 @@
   "exchange_tab_domain_add_step2_dkim_checkbox": "Włącz DKIM (zalecane)",
   "exchange_tab_domain_add_step3_dkim_confirmation": "Konfiguracja DKIM",
   "exchange_ACTION_order_accounts_step3_bc_ovhtel": "Zamówienie zostało wygenerowane. Trwa przetwarzanie Twojego zamówienia.",
-  "exchange_ACTION_order_accounts_step3_explication_ovhtel": "Utworzenie konta zajmie około 10 minut."
+  "exchange_ACTION_order_accounts_step3_explication_ovhtel": "Utworzenie konta zajmie około 10 minut.",
+  "exchange_tab_RESOURCES_add_resource_company": "Firma",
+  "exchange_GROUPS_add_group_company_label": "Firma"
 }

@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer-app@0.7.0...@ovh-ux/manager-octavia-load-balancer-app@0.7.1) (2024-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-octavia-load-balancer-app
+
+
+
+
+
+# 0.7.0 (2024-11-12)
+
+
+### Bug Fixes
+
+* **public-cloud:** fix local change on octavia ([#9970](https://github.com/ovh/manager/issues/9970)) ([6ef76e2](https://github.com/ovh/manager/commit/6ef76e2c9d6e883e1a481916b82e4718113e448d))
+
+
+### Features
+
+* add Logs to customer for Octavia Load Balancer ([#11860](https://github.com/ovh/manager/issues/11860)) ([0d66ac3](https://github.com/ovh/manager/commit/0d66ac3cbeccf4aa3c9464c08230077f1649c231))
+* **log-live-tail:** update theme ([#12089](https://github.com/ovh/manager/issues/12089)) ([d13ee5e](https://github.com/ovh/manager/commit/d13ee5e6d18a4b9d1b22c47326c61005711319e0))
+* **octavia:** add ocatvia  ([#9948](https://github.com/ovh/manager/issues/9948)) ([e8c32ab](https://github.com/ovh/manager/commit/e8c32ab29c65496b251ef008418e04f543c5f46e))
+* **octavia:** fixed link in onboarding page for us ([#10586](https://github.com/ovh/manager/issues/10586)) ([a940050](https://github.com/ovh/manager/commit/a9400504707961a69d63ca56775d4775dc90fa86))
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+* **signup:** add searchable country list and update labels ([#10625](https://github.com/ovh/manager/issues/10625)) ([a263199](https://github.com/ovh/manager/commit/a263199b06a47298eb7bf0a99814b38da3b544c2))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+
+
+
 ## [0.6.21-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer-app@0.6.21-alpha.0...@ovh-ux/manager-octavia-load-balancer-app@0.6.21-alpha.1) (2024-11-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-octavia-load-balancer-app

@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.2.0...@ovh-ux/manager-hub-react-app@0.2.1) (2024-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-react-app
+
+
+
+
+
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.2.0-alpha.0...@ovh-ux/manager-hub-react-app@0.2.0) (2024-11-12)
+
+
+### Bug Fixes
+
+* update export in mrc ([#14040](https://github.com/ovh/manager/issues/14040)) ([1289c90](https://github.com/ovh/manager/commit/1289c909066028cf88685625a3dd0952c2581564))
+
+
+
+
+
+# [0.2.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.1.4-alpha.11...@ovh-ux/manager-hub-react-app@0.2.0-alpha.0) (2024-11-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3464] ([9d7df44](https://github.com/ovh/manager/commit/9d7df4480c77ac7a06ed2db9e551db9b16339c74))
+
+
+### Features
+
+* **vcd:** add vcd service on hub ([b364501](https://github.com/ovh/manager/commit/b36450100d7696a056d920bc426fa86a4a2eb671))
+
+
+
+
+
+## [0.1.4-alpha.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.1.4-alpha.10...@ovh-ux/manager-hub-react-app@0.1.4-alpha.11) (2024-11-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-react-app
+
+
+
+
+
+## [0.1.4-alpha.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.1.4-alpha.9...@ovh-ux/manager-hub-react-app@0.1.4-alpha.10) (2024-11-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-react-app
+
+
+
+
+
+## [0.1.4-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.1.4-alpha.8...@ovh-ux/manager-hub-react-app@0.1.4-alpha.9) (2024-11-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-react-app
+
+
+
+
+
+## [0.1.4-alpha.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.1.4-alpha.7...@ovh-ux/manager-hub-react-app@0.1.4-alpha.8) (2024-11-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-react-app
+
+
+
+
+
+## [0.1.4-alpha.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.1.4-alpha.6...@ovh-ux/manager-hub-react-app@0.1.4-alpha.7) (2024-11-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-react-app
+
+
+
+
+
 ## [0.1.4-alpha.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.1.4-alpha.5...@ovh-ux/manager-hub-react-app@0.1.4-alpha.6) (2024-11-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-react-app

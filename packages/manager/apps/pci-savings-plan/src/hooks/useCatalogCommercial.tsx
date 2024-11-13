@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { v2 } from '@ovh-ux/manager-core-api';
+import { aapi, v2 } from '@ovh-ux/manager-core-api';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import React from 'react';
 import {
@@ -11,6 +11,7 @@ import {
   CommercialCatalogPricingType,
   CommercialCatalogTechnicalType,
 } from '@/types/commercial-catalog.type';
+import { useServiceId } from './useSavingsPlan';
 
 const getCatalogCommercial = async <T,>({
   additionalParams,
@@ -27,15 +28,16 @@ const getCatalogCommercial = async <T,>({
 
 export const getCommercialOffers = async ({
   productCode,
-  merchant,
+  serviceId,
 }: {
   productCode: string;
-  merchant: string;
+  serviceId: number;
 }): Promise<CommercialCatalogPricingType[]> => {
-  return getCatalogCommercial<CommercialCatalogPricingType[]>({
-    additionalParams: `nature=BILLING_PLAN&productCode=${productCode}%20SP`,
-    merchant,
-  });
+  const { data } = await aapi.get<{ offers: CommercialCatalogPricingType[] }>(
+    `publiccloud/savingsplan/subscribableOffers/${serviceId}?productCode=${productCode}`,
+  );
+
+  return data.offers;
 };
 
 export const getTechnicalInfo = async ({
@@ -80,15 +82,14 @@ export const usePricingInfo = ({
 }: {
   productSizeCode: string;
 }) => {
-  const context = React.useContext(ShellContext);
-  const subsidiary = context.environment.getUser().ovhSubsidiary;
+  const serviceId = useServiceId();
 
   return useQuery({
     queryKey: ['pricingInfo', productSizeCode],
     queryFn: () =>
       getCommercialOffers({
         productCode: productSizeCode,
-        merchant: subsidiary,
+        serviceId,
       }),
     select: (res) =>
       res.map(formatPricingInfo).filter((item) => item.id !== null),

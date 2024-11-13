@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.67.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.66.0...@ovh-ux/manager-pci@6.67.0) (2024-11-12)
+
+
+### Features
+
+* **pci-object-storage:** s3 localzones ([#13561](https://github.com/ovh/manager/issues/13561)) ([0ad0fc1](https://github.com/ovh/manager/commit/0ad0fc1fd6ad4b3878de0260d25635ae04174928))
+
+
+
+
+
 # [6.66.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.65.1...@ovh-ux/manager-pci@6.66.0) (2024-11-05)
 
 

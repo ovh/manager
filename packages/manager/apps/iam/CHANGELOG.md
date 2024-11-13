@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.0.0...@ovh-ux/manager-iam-app@3.0.1) (2024-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
+# 3.0.0 (2024-11-12)
+
+
+### Bug Fixes
+
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### Features
+
+* **iam:** add IAM & Restricted applications ([f928cc6](https://github.com/ovh/manager/commit/f928cc6b28b94fbf9c0c99f460f217f08ede283d))
+* move users management from account to iam ([#11391](https://github.com/ovh/manager/issues/11391)) ([0ffda6d](https://github.com/ovh/manager/commit/0ffda6d3f5f4c15fbe587ea4feb05b163371a66d))
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+* **signup:** add searchable country list and update labels ([#10625](https://github.com/ovh/manager/issues/10625)) ([a263199](https://github.com/ovh/manager/commit/a263199b06a47298eb7bf0a99814b38da3b544c2))
+
+
+### Reverts
+
+* Revert "release: radon-sheep-1" ([fae4a9c](https://github.com/ovh/manager/commit/fae4a9cb14816715b060fe0ebe42d45056c9714d))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
 ## [2.3.16-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@2.3.16-alpha.1...@ovh-ux/manager-iam-app@2.3.16-alpha.2) (2024-11-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-iam-app

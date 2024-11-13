@@ -1,0 +1,4 @@
+{
+  "cloud_connect_notifications_incident": "W dniu {{startDate}} zgłoszono awarię, która może mieć wpływ na działanie Twojej usługi.",
+  "cloud_connect_notifications_maintenance": "Prace techniczne zostaną przeprowadzone w dniach {{startDate}}-{{endDate}}"
+}

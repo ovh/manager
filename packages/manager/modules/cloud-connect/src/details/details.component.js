@@ -5,6 +5,7 @@ export default {
     cloudConnect: '<',
     guideUrl: '<',
     clearCache: '<',
+    notifications: '<',
   },
   template,
 };

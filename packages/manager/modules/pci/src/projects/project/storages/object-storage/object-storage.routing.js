@@ -184,6 +184,12 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
           ),
 
+      isLocalzoneAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('public-cloud:object-storage:localzone')
+          .then((feature) =>
+            feature.isFeatureAvailable('public-cloud:object-storage:localzone'),
+          ),
       breadcrumb: () => null,
     },
   });

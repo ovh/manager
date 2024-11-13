@@ -1,4 +1,4 @@
-import { IamObject } from '@ovh-ux/manager-react-components/src/hooks/iam';
+import { IamObject } from '@ovh-ux/manager-react-components';
 
 export enum BackupResourceStatus {
   CREATING = 'CREATING',

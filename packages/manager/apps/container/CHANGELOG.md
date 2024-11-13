@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.86.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.0...@ovh-ux/manager-container-app@0.86.1) (2024-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.86.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.0-alpha.11...@ovh-ux/manager-container-app@0.86.0) (2024-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.86.0-alpha.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.0-alpha.10...@ovh-ux/manager-container-app@0.86.0-alpha.11) (2024-11-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.86.0-alpha.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.0-alpha.9...@ovh-ux/manager-container-app@0.86.0-alpha.10) (2024-11-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.86.0-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.0-alpha.8...@ovh-ux/manager-container-app@0.86.0-alpha.9) (2024-11-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.86.0-alpha.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.0-alpha.7...@ovh-ux/manager-container-app@0.86.0-alpha.8) (2024-11-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.86.0-alpha.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.0-alpha.6...@ovh-ux/manager-container-app@0.86.0-alpha.7) (2024-11-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
 # [0.86.0-alpha.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.0-alpha.5...@ovh-ux/manager-container-app@0.86.0-alpha.6) (2024-11-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

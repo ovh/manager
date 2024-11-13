@@ -4,6 +4,7 @@ import {
   CONTAINER_DEFAULT_USER,
   CONTAINER_GUIDES,
   OBJECT_CONTAINER_S3_STATIC_URL_INFO,
+  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
 } from '../containers.constants';
 
 export default class PciStoragesContainersContainerController {
@@ -62,7 +63,12 @@ export default class PciStoragesContainersContainerController {
       this.container.s3StorageType !== null &&
       !this.archive;
     this.loadMessages();
-    this.checkFileUploadState();
+  }
+
+  isLocalZone() {
+    return (
+      this.container?.regionDetails?.type === OBJECT_CONTAINER_MODE_LOCAL_ZONE
+    );
   }
 
   translateStorageClass() {
@@ -112,18 +118,6 @@ export default class PciStoragesContainersContainerController {
         this.$window.top.location = url;
       })
       .catch((err) => this.handleDownloadError(err));
-  }
-
-  checkFileUploadState() {
-    if (!this.container.s3StorageType) {
-      return false;
-    }
-    return this.PciProjectStorageContainersService.hasOngoingOpenIOMigration(
-      this.projectId,
-      this.container.region,
-    ).then((ismigrating) => {
-      this.isFileUploadDisabled = ismigrating;
-    });
   }
 
   downloadStandardS3Object(serviceName, regionName, containerName, object) {

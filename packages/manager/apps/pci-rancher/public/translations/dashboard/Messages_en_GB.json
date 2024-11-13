@@ -53,5 +53,7 @@
   "upgradePlanButton": "Upgrade my plan",
   "savingsPlanMessage": "Take advantage of low monthly rates with Savings Plans — save money without sacrificing the flexibility to use instances whenever you need them.",
   "savingsPlanCTA": "Set up your Savings Plan",
-  "createRancherOfferDescription": "With at least 20 vCPUs charged per Rancher"
+  "createRancherOfferDescription": "With at least 20 vCPUs charged per Rancher",
+  "egress_title": "Rancher egress CIDRs",
+  "egress_tooltip": "These CIDRs represent the output IP address ranges used by Rancher. You may need to authorize these IP addresses (whitelisting) to access your third-party platforms (e.g. API calls to provision resources)."
 }

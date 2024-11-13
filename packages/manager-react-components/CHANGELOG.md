@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0...@ovh-ux/manager-react-components@1.41.1) (2024-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+# [1.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.10...@ovh-ux/manager-react-components@1.41.0) (2024-11-12)
+
+### Bug Fixes
+
+- update export in mrc ([#14040](https://github.com/ovh/manager/issues/14040)) ([1289c90](https://github.com/ovh/manager/commit/1289c909066028cf88685625a3dd0952c2581564))
+
+# [1.41.0-alpha.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.9...@ovh-ux/manager-react-components@1.41.0-alpha.10) (2024-11-08)
+
+### Reverts
+
+- Revert "fix(manager-pci-common): update peer dependencies (mrc without build) (#13971)" ([8b81fcc](https://github.com/ovh/manager/commit/8b81fcc58788ed6c9ae962a332c10ab07d26aaef)), closes [#13971](https://github.com/ovh/manager/issues/13971)
+- Revert "fix(manager-react-components): update peer dependencies" ([83a2a20](https://github.com/ovh/manager/commit/83a2a20827c1ace427ec476457148f544ace70d6))
+
+# [1.41.0-alpha.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.8...@ovh-ux/manager-react-components@1.41.0-alpha.9) (2024-11-08)
+
+### Bug Fixes
+
+- **manager-react-components:** update peer dependencies ([bd0a433](https://github.com/ovh/manager/commit/bd0a433030aea43fd0000133d38dd827f4801e5e))
+
+# [1.41.0-alpha.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.7...@ovh-ux/manager-react-components@1.41.0-alpha.8) (2024-11-08)
+
+### Bug Fixes
+
+- **manager-pci-common:** update peer dependencies (mrc without build) ([#13971](https://github.com/ovh/manager/issues/13971)) ([c47475d](https://github.com/ovh/manager/commit/c47475d1596186ede38fdcf5011d6b9835f31295))
+
+# [1.41.0-alpha.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.6...@ovh-ux/manager-react-components@1.41.0-alpha.7) (2024-11-08)
+
+### Bug Fixes
+
+- **manager-pci-common:** update peer dependencies ([6cd2ee2](https://github.com/ovh/manager/commit/6cd2ee2285c3872c53af36c994085c287ec2d262))
+
+# [1.41.0-alpha.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.5...@ovh-ux/manager-react-components@1.41.0-alpha.6) (2024-11-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
 # [1.41.0-alpha.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.4...@ovh-ux/manager-react-components@1.41.0-alpha.5) (2024-11-07)
 
 ### Bug Fixes

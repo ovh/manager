@@ -3,11 +3,11 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { useAuthorizationIam } from '@ovh-ux/manager-react-components/src/hooks/iam';
 import {
   Description,
   ManagerButton,
-} from '@ovh-ux/manager-react-components/src/components';
+  useAuthorizationIam,
+} from '@ovh-ux/manager-react-components';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -18,6 +18,7 @@ import Loading from '@/components/Loading/Loading';
 import CredentialDatagrid from '../../../components/credential/credentialDatagrid/CredentialDatagrid';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { OkmsContext } from '..';
+import { kmsIamActions } from '@/utils/iam/iam.constants';
 
 const CredentialList = () => {
   const { t } = useTranslation('key-management-service/credential');
@@ -25,7 +26,7 @@ const CredentialList = () => {
   const okms = useContext(OkmsContext);
 
   const { isAuthorized, isLoading: isLoadingIam } = useAuthorizationIam(
-    ['okms:apiovh:credential/get'],
+    [kmsIamActions.credentialGet],
     okms.iam.urn,
   );
 
@@ -45,7 +46,7 @@ const CredentialList = () => {
         onClick={() => {
           navigate(ROUTES_URLS.createCredential);
         }}
-        iamActions={['okms:apiovh:credential/create']}
+        iamActions={[kmsIamActions.credentialCreate]}
         urn={okms.iam.urn}
       >
         <span slot="start">

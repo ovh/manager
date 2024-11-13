@@ -4,7 +4,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   ErrorMessage,
   TRACKING_LABELS,
-} from '@ovh-ux/manager-react-components/src/components/';
+} from '@ovh-ux/manager-react-components';
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
 
 interface ErrorObject {
