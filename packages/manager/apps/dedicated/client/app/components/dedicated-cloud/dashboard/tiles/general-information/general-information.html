@@ -197,10 +197,19 @@
     </oui-tile-definition>
 
     <oui-tile-definition
-        data-ng-if="$ctrl.hasVcdMigration"
+        data-ng-if="$ctrl.vcdDashboardRedirectURL"
         data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_vcd_name' | translate }}"
-        data-description="{{:: $ctrl.bindings.vcdName || '-' }}"
-    ></oui-tile-definition>
+    >
+        <oui-tile-description>
+            <a
+                class="oui-link"
+                data-ng-href="{{:: $ctrl.vcdDashboardRedirectURL }}"
+                data-ng-bind=":: $ctrl.vcdMigrationState.vcdName"
+                target="_top"
+            >
+            </a>
+        </oui-tile-description>
+    </oui-tile-definition>
 
     <oui-tile-definition
         data-ng-if="!$ctrl.hasVcdMigration"

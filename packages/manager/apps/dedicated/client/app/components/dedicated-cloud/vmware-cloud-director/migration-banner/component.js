@@ -6,7 +6,6 @@ export default {
     trackingPrefix: '<',
     pccMigrationState: '<',
     vcdMigrationState: '<',
-    hasVcdMigration: '<',
   },
   controller,
   template,

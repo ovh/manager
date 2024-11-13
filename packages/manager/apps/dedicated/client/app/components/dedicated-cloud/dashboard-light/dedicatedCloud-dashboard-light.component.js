@@ -6,6 +6,7 @@ export default {
     editDetails: '<',
     associateIpBlockLink: '<',
     trackingPrefix: '<',
+    dedicatedCloudVCDMigrationState: '<',
   },
   template,
 };
