@@ -1,6 +1,0 @@
-{
-  "pci_kubernetes_network_data_public": "Publiczny interfejs węzłów",
-  "pci_kubernetes_network_data_private": "Prywatny interfejs węzłów",
-  "pci_kubernetes_network_data_ip": "Adres IP Twojej bramki",
-  "pci_kubernetes_network_data_dhcp": "zdefiniowany przez DHCP"
-}

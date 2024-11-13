@@ -1,7 +1,0 @@
-{
-  "pci_kubernetes_edit_network_title": "Change linked network settings",
-  "pci_kubernetes_edit_network_submit": "Confirm",
-  "pci_kubernetes_edit_network_cancel": "Cancel",
-  "pci_kubernetes_edit_network_success": "Changing linked network settings...",
-  "pci_kubernetes_edit_network_error": "Unable to change linked network settings: {{ message }}"
-}

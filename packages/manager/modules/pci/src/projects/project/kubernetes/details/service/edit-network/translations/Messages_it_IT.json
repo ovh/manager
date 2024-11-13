@@ -1,7 +1,0 @@
-{
-  "pci_kubernetes_edit_network_title": "Modificare i parametri della rete associata",
-  "pci_kubernetes_edit_network_submit": "Confermare",
-  "pci_kubernetes_edit_network_cancel": "Annullare",
-  "pci_kubernetes_edit_network_success": "Modifica i parametri della rete associata in corso...",
-  "pci_kubernetes_edit_network_error": "Impossibile modificare i parametri della rete associata: {{ message }}"
-}

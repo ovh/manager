@@ -1,7 +1,0 @@
-{
-  "pci_kubernetes_edit_network_title": "Einstellungen des verbundenen Netzwerks ändern",
-  "pci_kubernetes_edit_network_submit": "Bestätigen",
-  "pci_kubernetes_edit_network_cancel": "Abbrechen",
-  "pci_kubernetes_edit_network_success": "Die Einstellungen für das verbundene Netzwerk werden geändert.",
-  "pci_kubernetes_edit_network_error": "Die Einstellungen für das verbundene Netzwerk können nicht geändert werden: {{ message }}"
-}

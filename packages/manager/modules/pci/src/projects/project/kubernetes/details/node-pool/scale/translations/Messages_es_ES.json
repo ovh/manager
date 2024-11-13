@@ -1,9 +1,0 @@
-{
-  "kube_node_pool_autoscaling_scale_success": "Modificando su pool de nodos...",
-  "kube_node_pool_autoscaling_scale_error": "Se ha producido un error al modificar el pool de nodos: {{message}}",
-  "kube_node_pool_autoscaling_scale_error_InsufficientVCPUsQuota": "El límite de vCPU de su proyecto es insuficiente para realizar esta operación. Por favor, aumente los límites de su cuota o solicite menos recursos.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientRAMQuota": "El límite de RAM de su proyecto es insuficiente para realizar esta operación. Por favor, aumente los límites de su cuota o solicite menos recursos.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientPortsQuota": "El límite de puertos de su proyecto es insuficiente para realizar esta operación. Por favor, aumente los límites de su cuota o solicite menos recursos.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientInstancesQuota": "El límite de instancias de su proyecto es insuficiente para realizar la operación. Por favor, aumente los límites de su cuota o solicite menos recursos.",
-  "kube_node_pool_autoscaling_scale_error_quota_link": "Aumentar los límites de mi cuota"
-}

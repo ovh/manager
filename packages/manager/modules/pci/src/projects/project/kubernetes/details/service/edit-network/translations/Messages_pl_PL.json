@@ -1,7 +1,0 @@
-{
-  "pci_kubernetes_edit_network_title": "Zmień ustawienia przypisanej sieci",
-  "pci_kubernetes_edit_network_submit": "Zatwierdź",
-  "pci_kubernetes_edit_network_cancel": "Anuluj",
-  "pci_kubernetes_edit_network_success": "Ustawienia przypisanej sieci są zmieniane",
-  "pci_kubernetes_edit_network_error": "Nie można zmienić ustawień przypisanej sieci: {{message}}"
-}

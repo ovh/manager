@@ -1,5 +1,0 @@
-{
-  "kube_logs_tab_title": "Logs",
-  "kube_logs_main_description": "Encontrará abaixo os registos de auditoria do seu cluster Kubernetes que fornecem um conjunto cronológico de registos pertinentes para a segurança e documentam a sequência de ações no seu cluster: atividades geradas pelos utilizadores, pelas aplicações que utilizam a API Kubernetes e pelo próprio plano de controlo.",
-  "logs_list_description_audit": "Ao subscrever os logs de auditoria do seu cluster Kubernetes, estes serão transferidos para o Logs Data Platform e poderá centralizá-los com os seus outros logs, efetuar pesquisas avançadas, gerir as suas retenções, definir alertas, bem como painéis de controlo para observar facilmente os seus clusters."
-}

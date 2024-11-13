@@ -1,9 +1,0 @@
-{
-  "kube_node_pool_autoscaling_scale_success": "L'ajustement de votre pool de nœuds est en cours.",
-  "kube_node_pool_autoscaling_scale_error": "Une erreur s'est produite lors de l'ajustement du pool de nœuds : {{message}}",
-  "kube_node_pool_autoscaling_scale_error_InsufficientVCPUsQuota": "Le quota de vCPUs de votre projet est insuffisant pour réaliser l'opération. Merci d'augmenter votre quota ou demander moins de ressources.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientRAMQuota": "Le quota de RAM de votre projet est insuffisant pour réaliser l'opération. Merci d'augmenter votre quota ou demander moins de ressources.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientPortsQuota": "Le quota de ports de votre projet est insuffisant pour réaliser l'opération. Merci d'augmenter votre quota ou demander moins de ressources.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientInstancesQuota": "Le quota d'instances de votre projet est insuffisant pour réaliser l'opération. Merci d'augmenter votre quota ou demander moins de ressources.",
-  "kube_node_pool_autoscaling_scale_error_quota_link": "Augmenter mon quota."
-}

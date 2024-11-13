@@ -18,7 +18,6 @@ import activate from './activate';
 import components from './components';
 import inactive from './inactive';
 import instances from './instances';
-import kubernetes from './kubernetes';
 import loadBalancer from './load-balancer';
 import notebooks from './notebooks';
 import ai from './ai';
@@ -60,7 +59,6 @@ angular
     loadBalancer,
     notebooks,
     ai,
-    kubernetes,
     quota,
     quotaExceedError,
     regions,
