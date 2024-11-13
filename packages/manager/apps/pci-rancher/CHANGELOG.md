@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.21.0...@ovh-ux/manager-pci-rancher-app@1.21.1) (2024-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
 # [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.21.0-alpha.13...@ovh-ux/manager-pci-rancher-app@1.21.0) (2024-11-12)
 
 

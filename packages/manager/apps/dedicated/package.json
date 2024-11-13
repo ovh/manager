@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "20.0.0",
+  "version": "20.0.1",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -85,7 +85,7 @@
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.3.1",
     "@ovh-ux/ng-ui-router-layout": "^4.3.1",
     "@ovh-ux/request-tagger": "^0.4.0",
-    "@ovh-ux/shell": "^4.0.0",
+    "@ovh-ux/shell": "^4.0.1",
     "@ovh-ux/sign-up": "^3.0.0",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",
