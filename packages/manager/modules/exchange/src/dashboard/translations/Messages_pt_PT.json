@@ -234,7 +234,7 @@
   "exchange_tab_ALIAS_add_alias_valid_smtp": "Atenção, certos caracteres especiais não são aceites no nome de um alias, por exemplo + ? / () [] ;",
   "exchange_tab_ALIAS_add_alias_valid_x500": "Atenção: o caráter especial \"@\" não é aceite no âmbito de um endereço X500",
   "exchange_tab_ALIAS_add_alias_success_message": "O alias vai ser adicionado.",
-  "exchange_tab_ALIAS_add_alias_error_message": "Ocorreu um erro aquando da criação do seu alias.",
+  "exchange_tab_ALIAS_add_alias_error_message": "Ocorreu um erro aquando da criação do seu alias. {{ error }}",
   "exchange_tab_ALIAS_add_no_domains": "Ainda não adicionou um domínio ou o mesmo ainda não foi validado. <br/>Deve de seguida adicionar um domínio e aguardar que o mesmo esteja válido para que possa criar um alias na sua conta Exchange.",
   "exchange_tab_ALIAS_domain_loading_failure": "Ocorreu um erro aquando do carregamento dos seus domínios.",
   "exchange_tab_ALIAS_add_alias_limit_tooltip": "Já atingiu o limite de {0} alias por cada conta Exchange.",
