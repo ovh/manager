@@ -22,7 +22,6 @@ import {
   getVeeamBackupProductSettings,
   useOrderURL,
 } from '@ovh-ux/manager-module-order';
-import { urls } from '@/routes/routes.constant';
 import {
   BackupStatus,
   VCDOrganization,
@@ -30,7 +29,8 @@ import {
   getAvailabilityZone,
   getOrganizationUuid,
   useOrganizationWithBackupStatusList,
-} from '@/data';
+} from '@ovh-ux/manager-module-vcd-api';
+import { urls } from '@/routes/routes.constant';
 import { Loading } from '@/components/Loading/Loading';
 import {
   BackupStatusCell,

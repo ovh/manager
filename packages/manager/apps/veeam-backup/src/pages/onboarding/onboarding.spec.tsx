@@ -1,5 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
-import { renderTest, labels, waitForOptions } from '../../test-helpers';
+import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
+import { renderTest, labels } from '@/test-helpers';
 import '@testing-library/jest-dom';
 
 describe('onboarding', () => {
@@ -8,7 +9,7 @@ describe('onboarding', () => {
     await waitFor(
       () =>
         expect(screen.getByText(labels.onboarding.description)).toBeVisible(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
     expect(
@@ -19,7 +20,7 @@ describe('onboarding', () => {
         expect(
           screen.getByText(labels.onboarding.order_button_label),
         ).toBeEnabled(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 
@@ -27,7 +28,7 @@ describe('onboarding', () => {
     await renderTest({ nbBackup: 1 });
     await waitFor(
       () => expect(screen.getByText(labels.listing.description)).toBeVisible(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
     expect(
       screen.queryByText(labels.onboarding.description),
@@ -41,7 +42,7 @@ describe('onboarding', () => {
         expect(
           screen.getByText(labels.onboarding.order_button_label),
         ).toBeDisabled(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
     await waitFor(
       () =>
@@ -50,7 +51,7 @@ describe('onboarding', () => {
             exact: false,
           }),
         ).toBeVisible(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 });
