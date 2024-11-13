@@ -13,6 +13,7 @@ import update from './update';
 import vmwareOptionDisable from './vmware-option/disable';
 import vmwareOptionOrder from './vmware-option/order';
 import vcdOrder from './vmware-cloud-director/order';
+import dashboardLight from '../dashboard-light';
 
 const moduleName = 'managedBaremetalDashboardModule';
 
@@ -30,6 +31,7 @@ angular
     vmwareOptionDisable,
     vmwareOptionOrder,
     vcdOrder,
+    dashboardLight,
   ])
   .config(routing);
 
