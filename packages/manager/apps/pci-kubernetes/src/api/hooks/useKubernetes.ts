@@ -27,7 +27,6 @@ import {
   resetCluster,
   resetKubeConfig,
   terminateCluster,
-  TOidcProvider,
   TResetClusterParams,
   updateKubePolicy,
   updateKubernetesCluster,
@@ -38,6 +37,7 @@ import {
 import { getPrivateNetworkName } from '../data/network';
 import { useAllPrivateNetworks } from './useNetwork';
 import { mapPluginsFromArrayToObject } from '../data/plugins';
+import { OidcFormValues } from '@/pages/oidc-provider/AddOrUpdateOIDCProvider.page';
 
 export const getAllKubeQueryKey = (projectId: string) => [
   'project',
@@ -421,23 +421,26 @@ export const useResetCluster = ({
   };
 };
 
-type AddOidcProviderProps = {
+type AddOrUpdateOidcProviderProps = {
   projectId: string;
   kubeId: string;
-  params: TOidcProvider;
   onError: (cause: Error) => void;
   onSuccess: () => void;
+  isUpdate: boolean;
 };
 
-export const useAddOidcProvider = ({
+export const useAddOrUpdateOidcProvider = ({
   projectId,
   kubeId,
-  params,
   onError,
   onSuccess,
-}: AddOidcProviderProps) => {
+  isUpdate,
+}: AddOrUpdateOidcProviderProps) => {
   const mutation = useMutation({
-    mutationFn: async () => addOidcProvider(projectId, kubeId, params),
+    mutationFn: async (params: OidcFormValues) =>
+      isUpdate
+        ? updateOidcProvider(projectId, kubeId, params)
+        : addOidcProvider(projectId, kubeId, params),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
@@ -447,38 +450,8 @@ export const useAddOidcProvider = ({
     },
   });
   return {
-    addOidcProvider: () => mutation.mutate(),
-    ...mutation,
-  };
-};
-
-type UpdateOidcProviderProps = {
-  projectId: string;
-  kubeId: string;
-  params: TOidcProvider;
-  onError: (cause: Error) => void;
-  onSuccess: () => void;
-};
-
-export const useUpdateOidcProvider = ({
-  projectId,
-  kubeId,
-  params,
-  onError,
-  onSuccess,
-}: UpdateOidcProviderProps) => {
-  const mutation = useMutation({
-    mutationFn: async () => updateOidcProvider(projectId, kubeId, params),
-    onError,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: getKubernetesClusterQuery(projectId, kubeId),
-      });
-      onSuccess();
-    },
-  });
-  return {
-    updateOidcProvider: () => mutation.mutate(),
+    addOrUpdateOidcProvider: (params: OidcFormValues) =>
+      mutation.mutate(params),
     ...mutation,
   };
 };
