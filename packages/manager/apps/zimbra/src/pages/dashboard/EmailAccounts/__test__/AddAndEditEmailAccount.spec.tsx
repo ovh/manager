@@ -143,8 +143,8 @@ describe('email account add and edit page', () => {
       });
     });
 
-    expect(inputPassword).toHaveAttribute('color', 'default');
-    expect(button).toBeEnabled();
+    expect(inputPassword).toHaveAttribute('color', 'error');
+    expect(button).toBeDisabled();
 
     await act(() => {
       // No uppercased + digit or special + 10 characters total
@@ -155,7 +155,7 @@ describe('email account add and edit page', () => {
     });
 
     expect(inputPassword).toHaveAttribute('color', 'error');
-    expect(button).not.toBeEnabled();
+    expect(button).toBeDisabled();
 
     await act(() => {
       // Uppercased + special + 10 characters total
@@ -165,8 +165,8 @@ describe('email account add and edit page', () => {
       });
     });
 
-    expect(inputPassword).toHaveAttribute('color', 'default');
-    expect(button).toBeEnabled();
+    expect(inputPassword).toHaveAttribute('color', 'error');
+    expect(button).toBeDisabled();
 
     await act(() => {
       // Uppercased + digit or special but 9 characters total
@@ -177,6 +177,17 @@ describe('email account add and edit page', () => {
     });
 
     expect(inputPassword).toHaveAttribute('color', 'error');
-    expect(button).not.toBeEnabled();
+    expect(button).toBeDisabled();
+
+    await act(() => {
+      // Uppercased + digit AND special + 10 characters total
+      inputPassword.odsValueChange.emit({
+        name: 'password',
+        value: 'Aaaaaaa1#a',
+      });
+    });
+
+    expect(inputPassword).toHaveAttribute('color', 'default');
+    expect(button).toBeEnabled();
   });
 });

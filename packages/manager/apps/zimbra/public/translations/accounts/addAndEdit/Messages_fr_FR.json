@@ -27,7 +27,7 @@
   "zimbra_account_add_input_password_label": "Mot de passe",
   "zimbra_account_add_input_password_helper": "Votre mot de passe doit contenir au minimum :",
   "zimbra_account_add_input_password_helper_rule_1": "10 caractères",
-  "zimbra_account_add_input_password_helper_rule_2": "1 chiffre ou caractère spécial (€, !, &,…)",
+  "zimbra_account_add_input_password_helper_rule_2": "1 chiffre et 1 caractère spécial ($, !, &,…)",
   "zimbra_account_add_input_password_helper_rule_3": "1 lettre majuscule",
   "zimbra_account_add_input_mandatory": "Les champs mentionnés avec un astérisque * sont obligatoires",
   "zimbra_account_add_button_save": "Enregistrer",
