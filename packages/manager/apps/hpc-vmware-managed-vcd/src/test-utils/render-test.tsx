@@ -19,6 +19,8 @@ import {
   getVeeamBackupMocks,
   getOrganizationMocks,
   GetOrganizationMocksParams,
+  getDatacentresMocks,
+  GetDatacentresMocksParams,
   getDatacentreOrderMocks,
   GetDatacentreOrderMocksParams,
   GetVeeamBackupMocksParams,
@@ -37,6 +39,7 @@ export const renderTest = async ({
 }: {
   initialRoute?: string;
 } & GetOrganizationMocksParams &
+  GetDatacentresMocksParams &
   GetDatacentreOrderMocksParams &
   GetVeeamBackupMocksParams &
   GetServicesMocksParams = {}) => {
@@ -45,6 +48,7 @@ export const renderTest = async ({
       ...getAuthenticationMocks({ isAuthMocked: true }),
       ...getVeeamBackupMocks(mockParams),
       ...getOrganizationMocks(mockParams),
+      ...getDatacentresMocks(mockParams),
       ...getDatacentreOrderMocks(mockParams),
       ...getIamMocks(),
       ...getServicesMocks(mockParams),

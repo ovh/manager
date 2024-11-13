@@ -12,6 +12,11 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import OrganizationServiceManagementTile from './OrganizationServiceManagementTile.component';
 
+vi.mock('react-router-dom', () => ({
+  useNavigate: () => ({ navigate: vi.fn() }),
+  useParams: () => ({ id: 'id' }),
+}));
+
 const shellContext = {
   environment: {
     getUser: vi.fn(),
