@@ -25,7 +25,6 @@
   "ovhManagerPccDashboardGeneralInformation_commercial_range": "Gamme commerciale",
 
   "ovhManagerPccDashboardGeneralInformation_numberOfDatacenters_term": "Nombre de datacenters",
-  "ovhManagerPccDashboardGeneralInformation_vcd_name": "Nom du VCD",
 
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_term": "Nombre de blocs IP",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_ripe": "RIPE",

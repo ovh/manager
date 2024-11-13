@@ -8,7 +8,7 @@ export default class {
 
   $onInit() {
     this.guideLinks = this.DedicatedCloud.getVCDGuideLinks();
-    this.defineMigrationTitle();
+    this.checkMigration();
   }
 
   trackGuideClick(guideName) {
@@ -18,11 +18,19 @@ export default class {
     });
   }
 
-  defineMigrationTitle() {
-    this.migrationTitle = this.$translate.instant(
-      this.vcdMigrationState.isDone
-        ? 'dedicatedCloud_vmware_cloud_director_migration'
-        : 'dedicatedCloud_vmware_cloud_director_validate_migration',
-    );
+  checkMigration() {
+    this.loading = true;
+    return this.DedicatedCloud.getManagedVCDMigrationState(this.productId)
+      .then((state) => {
+        this.vcdMigrationState = state;
+        this.migrationTitle = this.$translate.instant(
+          this.vcdMigrationState.isDone
+            ? 'dedicatedCloud_vmware_cloud_director_migration'
+            : 'dedicatedCloud_vmware_cloud_director_validate_migration',
+        );
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 }

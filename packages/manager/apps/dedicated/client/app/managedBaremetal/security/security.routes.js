@@ -5,16 +5,6 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       pccView: 'ovhManagerPccSecurity',
     },
-    redirectTo: (transition) => {
-      return transition
-        .injector()
-        .getAsync('hasVCDMigration')
-        .then((hasVCDMigration) =>
-          hasVCDMigration
-            ? 'app.managedBaremetal.details.dashboard-light'
-            : false,
-        );
-    },
     resolve: {
       goBack: /* @ngInject */ (goBackToState, OvhApiDedicatedCloud) => (
         message = false,

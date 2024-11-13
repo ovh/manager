@@ -28,6 +28,5 @@
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_term": "Interfacce di gestione",
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_vscope": "vScope",
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_webInterface": "Interfaccia Web",
-  "ovhManagerPccDashboardGeneralInformation_opensANewTab": "Apri in una nuova scheda",
-  "ovhManagerPccDashboardGeneralInformation_vcd_name": "Nome del VCD"
+  "ovhManagerPccDashboardGeneralInformation_opensANewTab": "Apri in una nuova scheda"
 }

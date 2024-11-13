@@ -6,7 +6,6 @@ export default {
     goToVcdOrder: '<',
     productId: '<',
     trackingPrefix: '<',
-    vcdMigrationState: '<',
   },
   name: 'ovhManagerPccDashboardVmwareCloudDirector',
   controller,
