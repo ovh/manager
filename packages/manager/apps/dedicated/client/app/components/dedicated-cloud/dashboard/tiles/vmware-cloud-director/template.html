@@ -3,7 +3,7 @@
 </div>
 <div
     class="oui-tile mt-3"
-    data-ng-if="!$ctrl.loading && $ctrl.vcdMigrationState.isAllowed"
+    data-ng-if="!$ctrl.loading && $ctrl.pccMigrationState.isAllowed"
 >
     <h4 class="oui-tile__title oui-heading_4">
         <span
@@ -17,7 +17,7 @@
     </h4>
 
     <oui-tile-definition data-term="{{:: $ctrl.migrationTitle }}">
-        <oui-tile-description data-ng-if=":: $ctrl.vcdMigrationState.isDone">
+        <oui-tile-description data-ng-if=":: $ctrl.pccMigrationState.isDone">
             <span
                 class="oui-badge oui-badge_success"
                 data-translate="dedicatedCloud_vmware_cloud_director_migration_confirmed"
@@ -28,7 +28,7 @@
                 data-translate="dedicatedCloud_vmware_cloud_director_migration_confirmed_detail"
             ></p>
         </oui-tile-description>
-        <oui-tile-description data-ng-if=":: !$ctrl.vcdMigrationState.isDone">
+        <oui-tile-description data-ng-if=":: !$ctrl.pccMigrationState.isDone">
             <p
                 data-translate="dedicatedCloud_vmware_cloud_director_validate_migration_detail"
             ></p>
@@ -46,7 +46,7 @@
     <oui-tile-definition
         data-term="{{:: 'dedicatedCloud_vmware_cloud_director_useful_links' | translate }}"
     >
-        <oui-tile-description data-ng-if=":: $ctrl.vcdMigrationState.isDone">
+        <oui-tile-description data-ng-if=":: $ctrl.pccMigrationState.isDone">
             <a
                 data-ng-href="{{ :: $ctrl.guideLinks.MIGRATION}}"
                 data-ng-click="$ctrl.trackGuideClick('MIGRATION')"
@@ -63,7 +63,7 @@
                 ></i>
             </a>
         </oui-tile-description>
-        <oui-tile-description data-ng-if=":: !$ctrl.vcdMigrationState.isDone">
+        <oui-tile-description data-ng-if=":: !$ctrl.pccMigrationState.isDone">
             <a
                 data-ng-href="{{ :: $ctrl.guideLinks.OFFER}}"
                 data-ng-click="$ctrl.trackGuideClick('OFFER')"

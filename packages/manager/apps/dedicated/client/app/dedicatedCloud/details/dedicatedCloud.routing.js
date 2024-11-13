@@ -121,31 +121,22 @@ export default /* @ngInject */ ($stateProvider) => {
         DedicatedCloud,
         $stateParams,
         managedVCDAvailability,
-      ) => {
-        if (!managedVCDAvailability) return null;
-        return DedicatedCloud.getManagedVCDMigrationState(
-          $stateParams.productId,
-        ).catch(() => null);
-      },
+      ) =>
+        managedVCDAvailability
+          ? DedicatedCloud.getVCDMigrationState($stateParams.productId)
+          : null,
       dedicatedCloudPCCMigrationState: /* @ngInject */ (
         DedicatedCloud,
         $stateParams,
         managedVCDAvailability,
-      ) => {
-        if (!managedVCDAvailability) return null;
-        return DedicatedCloud.getPCCMigrationState(
-          $stateParams.productId,
-        ).catch(() => null);
-      },
-      hasVCDMigration: /* @ngInject */ (
-        dedicatedCloudVCDMigrationState,
-        dedicatedCloudPCCMigrationState,
-      ) => {
-        return !!(
-          dedicatedCloudVCDMigrationState?.isDone ||
-          dedicatedCloudPCCMigrationState?.isEnabling
-        );
-      },
+      ) =>
+        managedVCDAvailability
+          ? DedicatedCloud.getPCCMigrationState($stateParams.productId)
+          : null,
+      hasVCDMigration: /* @ngInject */ (dedicatedCloudVCDMigrationState) =>
+        dedicatedCloudVCDMigrationState?.isEnabled ||
+        dedicatedCloudVCDMigrationState?.isEnabling,
+
       drpAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
           .checkFeatureAvailability('dedicated-cloud:drp')

@@ -300,31 +300,23 @@ export default /* @ngInject */ ($stateProvider) => {
         currentService.usesLegacyOrder,
       dedicatedCloudVCDMigrationState: /* @ngInject */ (
         DedicatedCloud,
-        $stateParams,
+        productId,
         managedVCDAvailability,
-      ) => {
-        if (!managedVCDAvailability) return null;
-        return DedicatedCloud.getManagedVCDMigrationState(
-          $stateParams.productId,
-        ).catch(() => null);
-      },
+      ) =>
+        managedVCDAvailability
+          ? DedicatedCloud.getVCDMigrationState(productId)
+          : null,
       dedicatedCloudPCCMigrationState: /* @ngInject */ (
         DedicatedCloud,
         productId,
         managedVCDAvailability,
-      ) => {
-        if (!managedVCDAvailability) return null;
-        return DedicatedCloud.getPCCMigrationState(productId).catch(() => null);
-      },
-      hasVCDMigration: /* @ngInject */ (
-        dedicatedCloudVCDMigrationState,
-        dedicatedCloudPCCMigrationState,
-      ) => {
-        return !!(
-          dedicatedCloudVCDMigrationState?.isDone ||
-          dedicatedCloudPCCMigrationState?.isEnabling
-        );
-      },
+      ) =>
+        managedVCDAvailability
+          ? DedicatedCloud.getPCCMigrationState(productId)
+          : null,
+      hasVCDMigration: /* @ngInject */ (dedicatedCloudVCDMigrationState) =>
+        dedicatedCloudVCDMigrationState?.isEnabled ||
+        dedicatedCloudVCDMigrationState?.isEnabling,
       breadcrumb: /* @ngInject */ (productId) => productId,
     },
     views: {

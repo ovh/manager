@@ -35,7 +35,7 @@ export default {
     trackingPrefix: '<',
     dedicatedCloudDescription: '<',
     managedVCDAvailability: '<',
-    dedicatedCloudVCDMigrationState: '<',
+    dedicatedCloudPCCMigrationState: '<',
   },
   template,
 };
