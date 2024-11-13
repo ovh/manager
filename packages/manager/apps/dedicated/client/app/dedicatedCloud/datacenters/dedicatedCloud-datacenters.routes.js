@@ -5,16 +5,6 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       pccView: 'ovhManagerPccDatacenters',
     },
-    redirectTo: (transition) => {
-      return transition
-        .injector()
-        .getAsync('hasVCDMigration')
-        .then((hasVCDMigration) =>
-          hasVCDMigration
-            ? 'app.dedicatedCloud.details.dashboard-light'
-            : false,
-        );
-    },
     resolve: {
       addDatacenter: /* @ngInject */ ($state) => () =>
         $state.go('app.dedicatedCloud.details.datacenter.add-datacenter'),

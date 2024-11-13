@@ -5,16 +5,6 @@ export default /* @ngInject */ ($stateProvider) => {
     'app.managedBaremetal.details.dashboard.associate-ip-bloc',
     {
       url: '/associate-ip-bloc',
-      redirectTo: (transition) => {
-        return transition
-          .injector()
-          .getAsync('hasVCDMigration')
-          .then((hasVCDMigration) =>
-            hasVCDMigration
-              ? 'app.managedBaremetal.details.dashboard-light.associate-ip-bloc'
-              : false,
-          );
-      },
       params: {
         ips: null,
       },
