@@ -1,9 +1,0 @@
-{
-  "pci_workflow_delete_confirmation": "¿Seguro que quiere eliminar la planificación del flujo de trabajo «{{ workflowName }}»?",
-  "pci_workflow_delete_warning": "Esta acción no se puede deshacer.",
-  "pci_workflow_delete_enter": "Introduzca «DELETE» en el siguiente campo para confirmar la acción.",
-  "pci_workflow_delete_success": "La planificación del flujo de trabajo «{{ workflowName }}» se ha eliminado correctamente.",
-  "pci_workflow_delete_error": "Se ha producido un error al eliminar la planificación del flujo de trabajo: {{ message }}.",
-  "pci_workflow_common_delete": "Eliminar",
-  "pci_workflow_common_cancel": "Cancelar"
-}
