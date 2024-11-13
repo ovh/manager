@@ -24,16 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         };
       }
-
-      return transition
-        .injector()
-        .getAsync('hasVCDMigration')
-        .then((hasVCDMigration) =>
-          hasVCDMigration
-            ? 'app.managedBaremetal.details.dashboard-light'
-            : 'app.managedBaremetal.details.dashboard',
-        )
-        .catch(() => 'app.managedBaremetal.details.dashboard');
+      return 'app.managedBaremetal.details.dashboard';
     },
     resolve: {
       currentService: /* @ngInject */ (DedicatedCloud, productId) =>
@@ -224,15 +215,13 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      goBackToDashboard: /* @ngInject */ (goBackToState, hasVCDMigration) => (
+      goBackToDashboard: /* @ngInject */ (goBackToState) => (
         message = false,
         type = 'success',
         reload,
       ) =>
         goBackToState(
-          `app.managedBaremetal.details.dashboard${
-            hasVCDMigration ? '-light' : ''
-          }`,
+          'app.managedBaremetal.details.dashboard',
           message,
           type,
           reload,
@@ -295,36 +284,8 @@ export default /* @ngInject */ ($stateProvider) => {
         Alerter.set(`alert-${type}`, message, null, 'dedicatedCloud');
       },
       trackingPrefix: () => 'dedicated::managedBaremetal',
-      vcdTrackingPrefix: () => 'Baremetal::Managed_baremetal::',
       usesLegacyOrder: /* @ngInject */ (currentService) =>
         currentService.usesLegacyOrder,
-      dedicatedCloudVCDMigrationState: /* @ngInject */ (
-        DedicatedCloud,
-        $stateParams,
-        managedVCDAvailability,
-      ) => {
-        if (!managedVCDAvailability) return null;
-        return DedicatedCloud.getManagedVCDMigrationState(
-          $stateParams.productId,
-        ).catch(() => null);
-      },
-      dedicatedCloudPCCMigrationState: /* @ngInject */ (
-        DedicatedCloud,
-        productId,
-        managedVCDAvailability,
-      ) => {
-        if (!managedVCDAvailability) return null;
-        return DedicatedCloud.getPCCMigrationState(productId).catch(() => null);
-      },
-      hasVCDMigration: /* @ngInject */ (
-        dedicatedCloudVCDMigrationState,
-        dedicatedCloudPCCMigrationState,
-      ) => {
-        return !!(
-          dedicatedCloudVCDMigrationState?.isDone ||
-          dedicatedCloudPCCMigrationState?.isEnabling
-        );
-      },
       breadcrumb: /* @ngInject */ (productId) => productId,
     },
     views: {

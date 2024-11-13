@@ -32,12 +32,10 @@
 
         <ovh-manager-pcc-managed-vcd-migration-banner
             data-service-name="$ctrl.dedicatedCloud.serviceName"
-            data-tracking-prefix="$ctrl.vcdTrackingPrefix"
-            data-vcd-migration-state="$ctrl.dedicatedCloudVCDMigrationState"
-            data-pcc-migration-state="$ctrl.dedicatedCloudPCCMigrationState"
-            data-has-vcd-migration="$ctrl.hasVCDMigration"
+            data-tracking-prefix="$ctrl.TRACKING_PREFIX"
         />
-        <oui-header-tabs data-ng-if="!$ctrl.isTabsHidden">
+
+        <oui-header-tabs>
             <oui-header-tabs-item data-state="{{:: $ctrl.pccDashboardState }}"
                 ><span data-translate="dedicatedCloud_tab_dashboard"></span
             ></oui-header-tabs-item>
