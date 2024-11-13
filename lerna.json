@@ -20,7 +20,8 @@
       "conventionalCommits": true
     },
     "version": {
-      "allowBranch": "master"
+      "allowBranch": "revert/lerna-bump",
+      "ignoreChanges": ["packages/manager-react-components/**"]
     }
   }
 }
