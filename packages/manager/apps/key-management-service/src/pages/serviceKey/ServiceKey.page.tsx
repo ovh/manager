@@ -149,7 +149,7 @@ export default function Key() {
                   variant={ODS_BUTTON_VARIANT.stroked}
                   color={ODS_THEME_COLOR_INTENT.primary}
                   onClick={() => navigate(ROUTES_URLS.serviceKeyEditName)}
-                  urn={kms.iam.urn}
+                  urn={serviceKey.data.iam.urn}
                   iamActions={[kmsIamActions.serviceKeyUpdate]}
                 >
                   <OsdsIcon
