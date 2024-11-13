@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.0.1...@ovh-ux/manager-dedicated@20.0.2) (2024-11-13)
+
+
+### Bug Fixes
+
+* **dedicated:** resolve order ipv4 issue ([f70bcdd](https://github.com/ovh/manager/commit/f70bcdd34733c31544c7019375a0a7f1d971b322))
+
+
+### Reverts
+
+* **dedicated.pcc:** add dashboard light when vcd and pcc is migrated ([d144d2b](https://github.com/ovh/manager/commit/d144d2b591f725000c5abaa75042e6b6714df6a1))
+
+
+
+
+
 ## [20.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.0.0...@ovh-ux/manager-dedicated@20.0.1) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
