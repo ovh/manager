@@ -568,11 +568,10 @@ export default class DomainTabGeneralInformationsCtrl {
     const ownerUrlInfo = { target: '', error: '' };
     if (has(domain, 'name') && has(domain, 'whoisOwner.id')) {
       ownerUrlInfo.target = this.coreURLBuilder.buildURL(
-        'dedicated',
-        '#/contact/:currentDomain/:contactId',
+        'web',
+        '#/domain/:currentDomain/contact-management',
         {
           currentDomain: domain.name,
-          contactId: domain.whoisOwner.id,
         },
       );
     } else if (!has(domain, 'name')) {
