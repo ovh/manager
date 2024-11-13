@@ -15,10 +15,23 @@
 
     <div data-ng-show="!$ctrl.loading">
         <div class="row" data-ng-if="!$ctrl.zone">
-            <div class="col-md-12">
+            <div class="col-md-10">
                 <div data-ovh-alert="{{alerts.main}}"></div>
                 <strong data-translate="domain_tab_CONTACT_header"></strong>
                 <p data-translate="domain_tab_CONTACT_description"></p>
+            </div>
+            <div class="col-md-2">
+                <oui-guide-menu
+                    data-text="{{ ::'domain_tab_CONTACT_guide_text' | translate }}"
+                >
+                    <oui-guide-menu-item
+                        data-href="{{ ::$ctrl.GUIDE_URL }}"
+                        data-external="true"
+                        ><span
+                            data-ng-bind="::'domain_tab_CONTACT_guide_url' | translate"
+                        ></span>
+                    </oui-guide-menu-item>
+                </oui-guide-menu>
             </div>
         </div>
     </div>

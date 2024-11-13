@@ -1,3 +1,5 @@
+import { GUIDE_URL } from './dashboard.constants';
+
 export default class DomainContactDashboardCtrl {
   /* @ngInject */
   constructor(coreConfig, Domain) {
@@ -6,6 +8,7 @@ export default class DomainContactDashboardCtrl {
     this.user = this.coreConfig.getUser();
     this.hideAdminDescription = true;
     this.loading = true;
+    this.GUIDE_URL = GUIDE_URL;
   }
 
   $onInit() {
