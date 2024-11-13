@@ -75,11 +75,9 @@ export default function DetailPage() {
     },
   ];
 
-  const { data: kubeDetail } = useKubeDetail(
-    projectId,
-    kubeId,
-    REFETCH_INTERVAL_DURATION,
-  );
+  const { data: kubeDetail } = useKubeDetail(projectId, kubeId, {
+    refetchInterval: REFETCH_INTERVAL_DURATION,
+  });
 
   useEffect(() => {
     const activeTab = tabs.find((tab) => location.pathname.startsWith(tab.to));

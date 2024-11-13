@@ -1,7 +1,7 @@
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { PaginationState } from '@ovh-ux/manager-react-components';
 import {
-  QueryObserverOptions,
+  UndefinedInitialDataOptions,
   useMutation,
   useQuery,
 } from '@tanstack/react-query';
@@ -46,14 +46,14 @@ export const getAllKubeQueryKey = (projectId: string) => [
 
 export const useAllKube = (
   projectId: string,
-  refetchIntervalTime?: QueryObserverOptions['refetchInterval'],
+  options?: Partial<UndefinedInitialDataOptions>,
 ) =>
   useQuery<Required<TKube[]>>({
     queryKey: getAllKubeQueryKey(projectId),
     queryFn: (): Promise<Required<TKube[]>> => getAllKube(projectId),
     refetchOnMount: 'always',
     refetchOnReconnect: 'always',
-    refetchInterval: refetchIntervalTime,
+    ...(options || {}),
   });
 
 export const useKubes = (
@@ -68,7 +68,7 @@ export const useKubes = (
     error: allKubeError,
     isLoading: isAllKubeLoading,
     isPending: isAllKubePending,
-  } = useAllKube(projectId, REFETCH_INTERVAL_DURATION);
+  } = useAllKube(projectId, { refetchInterval: REFETCH_INTERVAL_DURATION });
 
   const {
     data: privateNetworks,
@@ -115,9 +115,9 @@ export function getKubernetesClusterQuery(projectId: string, kubeId: string) {
 export const useKubernetesCluster = (
   projectId: string,
   kubeId: string,
-  refetchIntervalTime: number,
+  options?: Partial<UndefinedInitialDataOptions>,
 ) =>
-  useQuery({
+  useQuery<TKube>({
     queryKey: getKubernetesClusterQuery(projectId, kubeId),
     queryFn: () => getKubernetesCluster(projectId, kubeId),
     select: (data) => {
@@ -131,7 +131,7 @@ export const useKubernetesCluster = (
         }),
       };
     },
-    refetchInterval: refetchIntervalTime,
+    ...(options || {}),
   });
 
 type RenameKubernetesClusterProps = {
@@ -231,7 +231,7 @@ export const useUpdateKubePolicy = ({
 export const useKubeDetail = (
   projectId: string,
   kubeId: string,
-  refetchInterval?: number,
+  options?: Partial<UndefinedInitialDataOptions>,
 ) => {
   const { t } = useTranslation('listing');
 
@@ -240,7 +240,7 @@ export const useKubeDetail = (
     error: kubeError,
     isLoading: isKubeLoading,
     isPending: isKubePending,
-  } = useKubernetesCluster(projectId, kubeId, refetchInterval);
+  } = useKubernetesCluster(projectId, kubeId, options);
 
   const {
     data: privateNetworks,
