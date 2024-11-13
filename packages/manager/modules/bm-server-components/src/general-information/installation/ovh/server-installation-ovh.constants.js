@@ -12,8 +12,22 @@ export const TEMPLATE_OS_HARDWARE_RAID_ENUM = {
   raid60: 'raid60',
 };
 
+export const TEMPLATE_OS_SOFTWARE_RAID_LIST = {
+  1: ['_0'],
+  2: ['_0', '_1'],
+  3: ['_0', '_1', '_5'],
+  4: ['_0', '_1', '_5', '_10'],
+  5: ['_0', '_1', '_5', '_6', '_10'],
+  6: ['_0', '_1', '_5', '_6', '_10'],
+  7: ['_0', '_1', '_5', '_6', '_7', '_10'],
+};
+
+export const PARTITION_TYPES = ['LOGICAL', 'LV', 'PRIMARY'];
+
 export default {
   MOUNT_POINTS,
   MAX_MOUNT_POINTS,
   TEMPLATE_OS_HARDWARE_RAID_ENUM,
+  TEMPLATE_OS_SOFTWARE_RAID_LIST,
+  PARTITION_TYPES,
 };

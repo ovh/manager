@@ -835,20 +835,6 @@ export default class Server {
     });
   }
 
-  getOvhPartitionSchemesTemplates(serviceName, template, customeInstall) {
-    return this.OvhHttp.get(
-      '/sws/dedicated/server/{serviceName}/installation/{template}/partitionSchemes',
-      {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
-          template,
-          customeInstall,
-        },
-      },
-    );
-  }
-
   getOvhPartitionSchemesTemplatesDetail(template, partitionScheme) {
     return this.OvhHttp.get(
       '/sws/dedicated/server/installationTemplate/{template}/{partitionScheme}/partitions',
@@ -857,6 +843,9 @@ export default class Server {
         urlParams: {
           template,
           partitionScheme,
+        },
+        params: {
+          type: 'ovh',
         },
       },
     );
@@ -937,18 +926,6 @@ export default class Server {
           templateName: gabaritName,
           schemeName: gabaritSchemePartitionName,
           mountpoint,
-        },
-      },
-    );
-  }
-
-  checkIntegrity(gabaritName) {
-    return this.OvhHttp.post(
-      '/me/installationTemplate/{gabaritName}/checkIntegrity',
-      {
-        rootPath: 'apiv6',
-        urlParams: {
-          gabaritName,
         },
       },
     );
