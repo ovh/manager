@@ -10,6 +10,8 @@ import {
   MOUNT_POINTS,
   MAX_MOUNT_POINTS,
   TEMPLATE_OS_HARDWARE_RAID_ENUM,
+  TEMPLATE_OS_SOFTWARE_RAID_LIST,
+  PARTITION_TYPES,
 } from './server-installation-ovh.constants';
 
 export default class ServerInstallationOvhCtrl {
@@ -72,7 +74,6 @@ export default class ServerInstallationOvhCtrl {
 
       defaultOsCategory: 'BASIC',
 
-      // get by Server.getOvhPartitionSchemesTemplates
       raidList: null, // Map[nbDisk, available raid]
       fileSystemList: null,
       partitionTypeList: null,
@@ -696,43 +697,16 @@ export default class ServerInstallationOvhCtrl {
     this.$scope.setPartition.delModel = null;
     this.clearError();
 
-    this.Server.getOvhPartitionSchemesTemplates(
-      this.$stateParams.productId,
-      this.$scope.installation.selectDistribution.id,
-      this.$scope.informations.customInstall,
-    ).then(
-      (partitionSchemesList) => {
-        this.$scope.installation.partitionSchemesList = partitionSchemesList.results
-          .sort((a, b) => b.priority - a.priority)
-          .map((r) => r.name);
+    this.$scope.installation.partitionSchemesList = this.$scope.installation.selectDistribution.schemeNames;
+    this.$scope.informations.gabaritName = this.$scope.installation.selectDistribution.id;
+    this.$scope.constants.raidList = TEMPLATE_OS_SOFTWARE_RAID_LIST;
+    this.$scope.constants.fileSystemList = this.$scope.installation.selectDistribution.filesystems;
+    this.$scope.constants.partitionTypeList = PARTITION_TYPES;
+    this.$scope.informations.softRaidOnlyMirroring = this.$scope.installation.selectDistribution.softRaidOnlyMirroring;
 
-        this.$scope.informations.gabaritName = partitionSchemesList.gabaritName;
-        this.$scope.constants.raidList =
-          partitionSchemesList.partitionRaidEnumMap;
-        this.$scope.constants.fileSystemList =
-          partitionSchemesList.templateOsFileSystemEnum;
-        this.$scope.constants.partitionTypeList =
-          partitionSchemesList.templatePartitionTypeEnum;
-        this.$scope.informations.softRaidOnlyMirroring =
-          partitionSchemesList.softRaidOnlyMirroring;
-        if (this.$scope.installation.partitionSchemesList.length > 0) {
-          this.showPartition();
-        }
-        return null;
-      },
-      (data) => {
-        this.$scope.loader.loading = false;
-        this.goBack();
-        this.Alerter.alertFromSWS(
-          this.$translate.instant(
-            'server_configuration_installation_ovh_fail_partition_schemes',
-            { t0: this.$scope.constants.server.name },
-          ),
-          data.data,
-          'server_dashboard_alert',
-        );
-      },
-    );
+    if (this.$scope.installation.partitionSchemesList.length > 0) {
+      this.showPartition();
+    }
   }
 
   static toBytes(size) {
@@ -2193,19 +2167,6 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.installation.customInstall &&
       this.$scope.informations.gabaritName
     ) {
-      this.$scope.loader.loading = true;
-      this.Server.checkIntegrity(this.$scope.informations.gabaritName).then(
-        () => {
-          this.$scope.loader.loading = false;
-        },
-        (data) => {
-          this.$scope.loader.loading = false;
-          this.$scope.errorInst.ws = this.$translate.instant(
-            'server_configuration_installation_ovh_step3_error_integrity',
-            { t0: data },
-          );
-        },
-      );
       this.addRemainingSize();
     } else {
       this.loadPartition();

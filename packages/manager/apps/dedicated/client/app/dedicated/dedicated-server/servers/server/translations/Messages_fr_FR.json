@@ -468,7 +468,6 @@
   "server_configuration_installation_ovh_step3_disk_os": "Configuration visible par l'OS :",
   "server_configuration_installation_ovh_step3_partition_order": "Partition : <b>{{t0}}</b>",
   "server_configuration_installation_ovh_step3_partition_size": "Taille : <b>{{t0}}</b>",
-  "server_configuration_installation_ovh_step3_error_integrity": "Une erreur a été détecté lors du test de coherence de votre installation personnalisé ({{t0}}). Installation impossible.",
   "server_configuration_installation_ovh_step3_error_integrity_info": "Veuillez corriger l'erreur en cliquant sur le bouton précédent",
   "server_configuration_installation_ovh_step3_scheme": "Schéma de partitionnement :",
   "server_configuration_installation_ovh_step3_remaining_error": "Une erreur est survenue lors de la modification de la partition {{t0}} en partition variable ({{t1}}).",
