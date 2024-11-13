@@ -85,13 +85,28 @@ export const Routes: any = [
                   },
                 },
               },
+              {
+                id: 'reset-password',
+                path: urls.resetPassword,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/organization/general-information/edit/EditPassword.page'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'reset-password',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
             ],
           },
           {
             id: 'datacentres',
             path: urls.datacentres,
             ...lazyRouteConfig(() =>
-              import('@/pages/listing/datacentres/datacentres.page'),
+              import('@/pages/listing/datacentres/Datacentres.page'),
             ),
             handle: {
               tracking: {

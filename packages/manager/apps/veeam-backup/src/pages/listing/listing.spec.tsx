@@ -1,10 +1,9 @@
 import { screen, waitFor } from '@testing-library/react';
 import {
-  renderTest,
-  labels,
-  waitForOptions,
+  WAIT_FOR_DEFAULT_OPTIONS,
   getButtonByLabel,
-} from '@/test-helpers';
+} from '@ovh-ux/manager-core-test-utils';
+import { renderTest, labels } from '@/test-helpers';
 import '@testing-library/jest-dom';
 
 describe('listing', () => {
@@ -12,7 +11,7 @@ describe('listing', () => {
     await renderTest();
     await waitFor(
       () => expect(screen.getByText(labels.listing.description)).toBeVisible(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 

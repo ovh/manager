@@ -44,7 +44,7 @@
   "hycu_dashboard_update_display_name_modal_headline": "Change name",
   "hycu_dashboard_update_display_name_input_label": "Name",
   "hycu_dashboard_update_display_name_pattern_message": "Must contain unaccented letters and the following special characters: ! @ # $ % ^ &amp; * ( ) - _ + = [ ] { } ; : , . ? (limited to 36 characters).",
-  "hycu_dashboard_update_display_name_success": "The description has been modified.",
+  "hycu_dashboard_update_display_name_success": "The name has been changed.",
   "hycu_dashboard_edit_modal_error": "An error has occurred: {{error}}.",
   "hycu_dashboard_error_license_message": "An error has occurred activating your licence ({{error}}). Please check the information provided and try again. If the problem persists, please contact our support team.",
   "hycu_dashboard_warning_license_suspended_message": "The service has been cancelled."

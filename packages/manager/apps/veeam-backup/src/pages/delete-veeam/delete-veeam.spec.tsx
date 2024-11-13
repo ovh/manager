@@ -1,13 +1,12 @@
 import userEvents from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
 import {
-  renderTest,
-  labels,
-  checkModal,
+  assertModalVisibility,
   changeInputValue,
   getButtonByLabel,
-} from '@/test-helpers';
-import { backupList } from '@/../mocks/veeam-backup.mock';
+} from '@ovh-ux/manager-core-test-utils';
+import { backupList } from '@ovh-ux/manager-module-vcd-api';
+import { renderTest, labels } from '@/test-helpers';
 import { urls } from '@/routes/routes.constant';
 import '@testing-library/jest-dom';
 
@@ -23,7 +22,7 @@ describe('Delete veeam-backup', () => {
     });
     await waitFor(() => userEvents.click(deleteButton));
 
-    await checkModal({ container, isVisible: true });
+    await assertModalVisibility({ container, isVisible: true });
 
     await changeInputValue({
       inputLabel: 'delete-input',
@@ -33,12 +32,12 @@ describe('Delete veeam-backup', () => {
     const confirmButton = await getButtonByLabel({
       container,
       label: 'deleteModalDeleteButton',
-      altLabel: 'Supprimer',
+      altLabel: 'Résilier',
     });
 
     await waitFor(() => userEvents.click(confirmButton));
 
-    await checkModal({ container, isVisible: false });
+    await assertModalVisibility({ container, isVisible: false });
 
     expect(
       screen.getByText(labels.deleteVeeam.terminate_veeam_backup_success),

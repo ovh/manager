@@ -1,7 +1,8 @@
 import userEvents from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
+import { organizationList } from '@ovh-ux/manager-module-vcd-api';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { renderTest, labels } from '../../../test-utils';
-import { organizationList } from '../../../../mocks/vcd-organization/vcd-organization.mock';
 
 describe('Organization Dashboard Page', () => {
   it('display the dashboard page', async () => {
@@ -9,19 +10,11 @@ describe('Organization Dashboard Page', () => {
     const link = screen.getByText(organizationList[0].currentState.fullName);
     await waitFor(() => userEvents.click(link));
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.dashboard.managed_vcd_dashboard_data_protection,
-          ),
-        ).toBeVisible(),
-      { timeout: 30000 },
+    await assertTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_data_protection,
     );
 
-    expect(
-      screen.getByText(organizationList[0].currentState.description),
-    ).toBeVisible();
+    await assertTextVisibility(organizationList[0].currentState.description);
   });
 
   it('display an error', async () => {
@@ -29,9 +22,7 @@ describe('Organization Dashboard Page', () => {
       initialRoute: `/${organizationList[0].id}`,
       isOrganizationKo: true,
     });
-    await waitFor(
-      () => expect(screen.getByText('Organization error')).toBeVisible(),
-      { timeout: 30000 },
-    );
+
+    await assertTextVisibility('Organization error');
   });
 });

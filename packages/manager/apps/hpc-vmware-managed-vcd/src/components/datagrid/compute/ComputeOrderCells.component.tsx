@@ -7,11 +7,11 @@ import {
 import { OsdsRadio, OsdsRadioButton } from '@ovhcloud/ods-components/react';
 import { ODS_RADIO_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { IVdcOrderableVhostPriced } from '@/types/vcd-vdc-orderable-resource.interface';
+import { VCDOrderableVhostPriced } from '@ovh-ux/manager-module-vcd-api';
 import { getVdcResourcePriceLabel } from '@/utils/getPricedOrderableResource';
 import { useDatacentreOrderContext } from '@/context/DatacentreOrder.context';
 
-export const ComputeOrderSelectCell = (vHost: IVdcOrderableVhostPriced) => {
+export const ComputeOrderSelectCell = (vHost: VCDOrderableVhostPriced) => {
   const { selectedResource, setSelectedResource } = useDatacentreOrderContext();
   return (
     <DataGridTextCell>
@@ -30,12 +30,12 @@ export const ComputeOrderSelectCell = (vHost: IVdcOrderableVhostPriced) => {
   );
 };
 
-export const ComputeOrderVhostCell = (vHost: IVdcOrderableVhostPriced) => (
+export const ComputeOrderVhostCell = (vHost: VCDOrderableVhostPriced) => (
   <DataGridTextCell>{vHost.profile}</DataGridTextCell>
 );
 
-export const ComputeOrderCpuSpeedCell = (vHost: IVdcOrderableVhostPriced) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+export const ComputeOrderCpuSpeedCell = (vHost: VCDOrderableVhostPriced) => {
+  const { t } = useTranslation('datacentres');
   return (
     <DataGridTextCell>
       {t('managed_vcd_vdc_vcpu_value', { speed: vHost.vCPUSpeed })}
@@ -43,8 +43,8 @@ export const ComputeOrderCpuSpeedCell = (vHost: IVdcOrderableVhostPriced) => {
   );
 };
 
-export const ComputeOrderRamCell = (vHost: IVdcOrderableVhostPriced) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/order');
+export const ComputeOrderRamCell = (vHost: VCDOrderableVhostPriced) => {
+  const { t } = useTranslation('datacentres/order');
   return (
     <DataGridTextCell>
       {t('managed_vcd_vdc_order_ram_value', {
@@ -54,12 +54,12 @@ export const ComputeOrderRamCell = (vHost: IVdcOrderableVhostPriced) => {
   );
 };
 
-export const ComputeOrderCpuCountCell = (vHost: IVdcOrderableVhostPriced) => (
+export const ComputeOrderCpuCountCell = (vHost: VCDOrderableVhostPriced) => (
   <DataGridTextCell>{vHost.vCPUCount}</DataGridTextCell>
 );
 
-export const ComputeOrderPriceCell = (vHost: IVdcOrderableVhostPriced) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/order');
+export const ComputeOrderPriceCell = (vHost: VCDOrderableVhostPriced) => {
+  const { t } = useTranslation('datacentres/order');
   return (
     <DataGridTextCell>
       <Description className="font-semibold">
