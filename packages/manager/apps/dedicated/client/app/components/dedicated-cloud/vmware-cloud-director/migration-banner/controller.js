@@ -6,7 +6,7 @@ export default class ManagedVcdMigrationBannerCtrl {
   }
 
   $onInit() {
-    this.trackMigrationState();
+    this.loadMigrationState();
   }
 
   trackPage(name) {
@@ -15,17 +15,26 @@ export default class ManagedVcdMigrationBannerCtrl {
     });
   }
 
-  trackMigrationState() {
-    if (this.pccMigrationState?.isEnabling) {
-      this.trackPage(
-        'vmware::vmware::banner-info::migrate_to_managed_vcd_pending',
-      );
-    }
+  loadMigrationState() {
+    this.migrationState = null;
 
-    if (this.vcdMigrationState?.isDone) {
-      this.trackPage(
-        'vmware::vmware::banner-info::migrate_to_managed_vcd_success',
-      );
-    }
+    this.DedicatedCloud.getPCCMigrationState(this.serviceName).then((state) => {
+      this.migrationState = state;
+      if (state.isEnabling) {
+        this.trackPage(
+          'vmware::vmware::banner-info::migrate_to_managed_vcd_pending',
+        );
+      }
+    });
+
+    this.DedicatedCloud.getManagedVCDMigrationState(this.serviceName).then(
+      (state) => {
+        if (state.isDone) {
+          this.trackPage(
+            'vmware::vmware::banner-info::migrate_to_managed_vcd_success',
+          );
+        }
+      },
+    );
   }
 }
