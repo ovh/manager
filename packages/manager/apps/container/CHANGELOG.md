@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.87.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.1...@ovh-ux/manager-container-app@0.87.0) (2024-11-13)
+
+
+### Features
+
+* **container:** new feature on container ([c960dee](https://github.com/ovh/manager/commit/c960dee6386a261ad5f8b23262fc87003c3ed43b))
+
+
+
+
+
 ## [0.86.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.0...@ovh-ux/manager-container-app@0.86.1) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
