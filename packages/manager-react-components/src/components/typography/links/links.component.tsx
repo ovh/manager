@@ -1,11 +1,6 @@
 import React from 'react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsLink, OsdsIcon } from '@ovhcloud/ods-components/react';
-import {
-  OdsHTMLAnchorElementRel,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-common-core';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsLink } from '@ovhcloud/ods-components/react';
 
 export enum LinkType {
   back = 'back',
@@ -16,10 +11,10 @@ export enum LinkType {
 export interface LinksProps {
   className?: string;
   download?: string;
-  label?: React.ReactNode;
+  label?: string;
   href?: string;
-  rel?: OdsHTMLAnchorElementRel;
-  target?: OdsHTMLAnchorElementTarget;
+  rel?: string;
+  target?: string;
   type?: LinkType;
   onClickReturn?: () => void;
 }
@@ -28,43 +23,17 @@ export const Links: React.FC<LinksProps> = ({
   label,
   onClickReturn,
   type,
+  href,
   ...props
 }: LinksProps) => (
-  <OsdsLink
-    color={ODS_THEME_COLOR_INTENT.primary}
+  <OdsLink
+    href={href}
     onClick={onClickReturn}
     {...props}
-  >
-    <span slot="start">
-      {type === LinkType.back && (
-        <OsdsIcon
-          className="mr-4"
-          hoverable
-          name={ODS_ICON_NAME.ARROW_LEFT}
-          size={ODS_ICON_SIZE.xxs}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        />
-      )}
-    </span>
-
-    {label}
-    {[LinkType.next, LinkType.external].includes(type) && (
-      <span slot="end">
-        <OsdsIcon
-          aria-hidden="true"
-          className="ml-4"
-          name={
-            type === LinkType.external
-              ? ODS_ICON_NAME.EXTERNAL_LINK
-              : ODS_ICON_NAME.ARROW_RIGHT
-          }
-          hoverable
-          size={ODS_ICON_SIZE.xxs}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        />
-      </span>
-    )}
-  </OsdsLink>
+    {...(type === LinkType.next && { icon: ODS_ICON_NAME.arrowRight })}
+    {...(type === LinkType.external && { icon: ODS_ICON_NAME.externalLink })}
+    label={label}
+  ></OdsLink>
 );
 
 export default Links;

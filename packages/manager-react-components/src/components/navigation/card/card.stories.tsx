@@ -1,6 +1,5 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Card, CardProps } from './card.component';
 
 export const defaultProps: CardProps = {
@@ -81,11 +80,9 @@ WithBadges.args = {
   badges: [
     {
       text: 'Cloud computing',
-      color: ODS_THEME_COLOR_INTENT.primary,
     },
     {
       text: 'Beta',
-      color: ODS_THEME_COLOR_INTENT.success,
     },
   ],
 };

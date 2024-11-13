@@ -4,8 +4,8 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   ErrorMessage,
   TRACKING_LABELS,
+  ErrorBanner,
 } from '@ovh-ux/manager-react-components';
-import { ErrorBanner } from '@ovh-ux/manager-react-components';
 
 interface ErrorObject {
   [key: string]: any;
