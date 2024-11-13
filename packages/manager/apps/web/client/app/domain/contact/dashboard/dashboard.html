@@ -1,0 +1,215 @@
+<div data-ui-view>
+    <h1 data-translate="domain_tab_CONTACT_title"></h1>
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+
+    <oui-message data-type="error" data-ng-if="$ctrl.saveError">
+        <span
+            class="d-block"
+            data-translate="domain_tab_CONTACT_description_error_message"
+        >
+        </span>
+        <small data-ng-bind-html="$ctrl.saveError"></small>
+    </oui-message>
+
+    <div data-ng-show="!$ctrl.loading">
+        <div class="row" data-ng-if="!$ctrl.zone">
+            <div class="col-md-12">
+                <div data-ovh-alert="{{alerts.main}}"></div>
+                <strong data-translate="domain_tab_CONTACT_header"></strong>
+                <p data-translate="domain_tab_CONTACT_description"></p>
+            </div>
+        </div>
+    </div>
+
+    <div data-ng-show="!$ctrl.loading" class="row d-flex align-items-stretch">
+        <oui-tile
+            class="col-md-3 m-1 align-self-stretch"
+            heading="{{:: 'domain_tab_CONTACT_owner' | translate }}"
+        >
+            <p data-translate="domain_tab_CONTACT_description_owner"></p>
+            <oui-button
+                data-ng-if="$ctrl.isOwner"
+                data-variant="link"
+                data-icon-right="oui-icon-arrow-right"
+                class="mb-2"
+            >
+                <span data-translate="{{ 'domain_tab_CONTACT_modify' }}"></span>
+            </oui-button>
+        </oui-tile>
+        <oui-tile
+            class="col-md-3 m-1 align-self-stretch"
+            heading="{{:: 'domain_tab_CONTACT_admin' | translate }}"
+        >
+            <div
+                data-ng-if="$ctrl.domainInfos.contactAdmin === $ctrl.user.nichandle"
+            >
+                <span
+                    data-ng-if="$ctrl.user.legalform!=='individual'"
+                    class="d-block font-weight-bold"
+                    data-ng-bind="[$ctrl.user.organisation, $ctrl.user.corporationType].join(' ')"
+                ></span>
+                <span
+                    class="d-block font-weight-bold"
+                    data-ng-bind="[$ctrl.user.firstname, $ctrl.user.name].join(' ')"
+                ></span>
+                <span
+                    class="d-block font-weight-bold"
+                    data-ng-bind="[$ctrl.user.address, $ctrl.user.complementaryAddress, $ctrl.user.zip, $ctrl.user.city.country].join(' ')"
+                ></span>
+                <span
+                    class="d-block font-weight-bold"
+                    data-ng-if="$ctrl.user.email"
+                    data-ng-bind="$ctrl.user.email"
+                ></span>
+                <span
+                    class="d-block font-weight-bold"
+                    data-ng-if="$ctrl.user.phone"
+                    data-ng-bind="$ctrl.user.phone"
+                ></span>
+                <span
+                    class="d-block font-weight-bold"
+                    data-ng-if="$ctrl.user.nationalIdentifcationNumber"
+                    data-ng-bind="$ctrl.user.nationalIdentifcationNumber"
+                ></span>
+                <span
+                    class="d-block font-weight-bold mb-2"
+                    data-ng-if="$ctrl.user.nichandle"
+                    data-ng-bind="$ctrl.user.nichandle"
+                ></span>
+            </div>
+
+            <oui-button
+                data-variant="link"
+                data-icon-right="{{$ctrl.hideAdminDescription?'oui-icon-chevron-down':'oui-icon-chevron-up'}}"
+                class="mb-2"
+                data-ng-click="$ctrl.toggleAdminDescription()"
+            >
+                <span
+                    data-translate="{{ 'domain_tab_CONTACT_view_more' }}"
+                ></span>
+            </oui-button>
+
+            <p
+                data-ng-hide="$ctrl.hideAdminDescription"
+                data-translate="domain_tab_CONTACT_description_admin"
+            ></p>
+
+            <oui-button
+                data-ng-if="$ctrl.domainInfos.contactAdmin === $ctrl.user.nichandle"
+                data-variant="link"
+                data-icon-right="oui-icon-arrow-right"
+                class="mb-2"
+            >
+                <span data-translate="{{ 'domain_tab_CONTACT_modify' }}"></span>
+            </oui-button>
+        </oui-tile>
+        <oui-tile
+            class="col-md-3 m-1 align-self-stretch"
+            heading="{{:: 'domain_tab_CONTACT_technical' | translate }}"
+        >
+            <div
+                data-ng-if="$ctrl.domainInfos.contactTech === $ctrl.user.nichandle"
+            >
+                <span
+                    data-ng-if="$ctrl.user.legalform!=='individual'"
+                    class="d-block font-weight-bold"
+                    data-ng-bind="[$ctrl.user.organisation, $ctrl.user.corporationType].join(' ')"
+                ></span>
+                <span
+                    class="d-block font-weight-bold"
+                    data-ng-bind="[$ctrl.user.firstname, $ctrl.user.name].join(' ')"
+                ></span>
+                <span
+                    class="d-block font-weight-bold"
+                    data-ng-bind="[$ctrl.user.address, $ctrl.user.complementaryAddress, $ctrl.user.zip, $ctrl.user.city.country].join(' ')"
+                ></span>
+                <span
+                    class="d-block font-weight-bold"
+                    data-ng-if="$ctrl.user.email"
+                    data-ng-bind="$ctrl.user.email"
+                ></span>
+                <span
+                    class="d-block font-weight-bold"
+                    data-ng-if="$ctrl.user.phone"
+                    data-ng-bind="$ctrl.user.phone"
+                ></span>
+                <span
+                    class="d-block font-weight-bold"
+                    data-ng-if="$ctrl.user.nationalIdentifcationNumber"
+                    data-ng-bind="$ctrl.user.nationalIdentifcationNumber"
+                ></span>
+                <span
+                    class="d-block font-weight-bold mb-2"
+                    data-ng-if="$ctrl.user.nichandle"
+                    data-ng-bind="$ctrl.user.nichandle"
+                ></span>
+            </div>
+
+            <p data-translate="domain_tab_CONTACT_description_technical"></p>
+            <oui-button
+                data-ng-if="$ctrl.domainInfos.contactTech === $ctrl.user.nichandle"
+                data-variant="link"
+                data-icon-right="oui-icon-arrow-right"
+                class="mb-2"
+            >
+                <span data-translate="{{ 'domain_tab_CONTACT_modify' }}"></span>
+            </oui-button>
+        </oui-tile>
+    </div>
+    <div class="row">
+        <oui-tile
+            class="col-md-3 m-1 align-self-stretch"
+            heading="{{:: 'domain_tab_CONTACT_billing' | translate }}"
+        >
+            <div
+                data-ng-if="$ctrl.domainInfos.contactBilling === $ctrl.user.nichandle"
+            >
+                <span
+                    data-ng-if="$ctrl.user.legalform!=='individual'"
+                    class="d-block font-weight-bold"
+                    data-ng-bind="[$ctrl.user.organisation, $ctrl.user.corporationType].join(' ')"
+                ></span>
+                <span
+                    class="d-block font-weight-bold"
+                    data-ng-bind="[$ctrl.user.firstname, $ctrl.user.name].join(' ')"
+                ></span>
+                <span
+                    class="d-block font-weight-bold"
+                    data-ng-bind="[$ctrl.user.address, $ctrl.user.complementaryAddress, $ctrl.user.zip, $ctrl.user.city.country].join(' ')"
+                ></span>
+                <span
+                    class="d-block font-weight-bold"
+                    data-ng-if="$ctrl.user.email"
+                    data-ng-bind="$ctrl.user.email"
+                ></span>
+                <span
+                    class="d-block font-weight-bold"
+                    data-ng-if="$ctrl.user.phone"
+                    data-ng-bind="$ctrl.user.phone"
+                ></span>
+                <span
+                    class="d-block font-weight-bold"
+                    data-ng-if="$ctrl.user.nationalIdentifcationNumber"
+                    data-ng-bind="$ctrl.user.nationalIdentifcationNumber"
+                ></span>
+                <span
+                    class="d-block font-weight-bold mb-2"
+                    data-ng-if="$ctrl.user.nichandle"
+                    data-ng-bind="$ctrl.user.nichandle"
+                ></span>
+            </div>
+
+            <p data-translate="domain_tab_CONTACT_description_billing"></p>
+            <oui-button
+                data-ng-if="$ctrl.domainInfos.contactBilling === $ctrl.user.nichandle"
+                data-variant="link"
+                data-icon-right="oui-icon-arrow-right"
+                class="mb-2"
+            >
+                <span data-translate="{{ 'domain_tab_CONTACT_modify' }}"></span>
+            </oui-button>
+        </oui-tile>
+    </div>
+</div>
