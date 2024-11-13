@@ -25,7 +25,6 @@ export default function Container(): JSX.Element {
     chatbotReduced,
     setChatbotReduced,
   } = useContainer();
-  useModals();
   const shell = useShell();
   const [isCookiePolicyApplied, setIsCookiePolicyApplied] = useState(false);
   const environment: Environment = shell

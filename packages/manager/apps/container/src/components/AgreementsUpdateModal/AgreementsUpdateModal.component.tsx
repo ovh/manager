@@ -26,7 +26,7 @@ export default function AgreementsUpdateModal () {
   const { t } = useTranslation('agreements-update-modal');
   const { data: urn } = useAccountUrn({ enabled: region !== 'US' && current === ModalTypes.agreements && window.location.href !== myContractsLink });
   const { isAuthorized: canUserAcceptAgreements } = useAuthorizationIam(['account:apiovh:me/agreements/accept'], urn);
-  const { data: agreements, isLoading } = useAgreementsUpdate({ enabled: canUserAcceptAgreements });
+  const { data: agreements } = useAgreementsUpdate({ enabled: canUserAcceptAgreements });
   const goToContractPage = () => {
     navigation.navigateTo('dedicated', `#/billing/autoRenew/agreements`);
   };
