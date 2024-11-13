@@ -125,13 +125,13 @@ export default [
               {
                 path: 'add-oidc-provider',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/oidc-provider/AddOIDCProvider.page'),
+                  import('@/pages/oidc-provider/AddOrUpdateOIDCProvider.page'),
                 ),
               },
               {
                 path: 'update-oidc-provider',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/oidc-provider/UpdateOIDCProvider.page'),
+                  import('@/pages/oidc-provider/AddOrUpdateOIDCProvider.page'),
                 ),
               },
               {

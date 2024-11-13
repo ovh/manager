@@ -82,13 +82,13 @@ export const getClusterRestrictions = async (
 export type TOidcProvider = {
   issuerUrl: string;
   clientId: string;
-  usernameClaim: string;
-  usernamePrefix: string;
-  groupsClaim: string | null;
-  groupsPrefix: string;
-  signingAlgorithms: string | null;
-  caContent: string;
-  requiredClaim: string | null;
+  usernameClaim?: string;
+  usernamePrefix?: string;
+  groupsClaim?: string | null;
+  groupsPrefix?: string;
+  signingAlgorithms?: string | null;
+  caContent?: string;
+  requiredClaim?: string | null;
 };
 
 export const getOidcProvider = async (

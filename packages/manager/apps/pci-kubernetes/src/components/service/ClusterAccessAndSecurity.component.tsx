@@ -38,6 +38,7 @@ import {
   CONFIG_FILENAME,
   KUBE_INSTALLING_STATUS,
   KUBECONFIG_URL,
+  PROCESSING_STATUS,
 } from '@/constants';
 import {
   useClusterRestrictions,
@@ -94,6 +95,7 @@ export default function ClusterAccessAndSecurity({
         true,
       ),
   });
+  const isProcessing = (status: string) => PROCESSING_STATUS.includes(status);
 
   return (
     <OsdsTile
@@ -253,7 +255,8 @@ export default function ClusterAccessAndSecurity({
                       label: t(
                         'kube_service_access_security_oidc_menu_action_add_provider',
                       ),
-                      disabled: isOidcDefined,
+                      disabled:
+                        isProcessing(kubeDetail?.status) || isOidcDefined,
                       href: hrefAddOIDCProvider,
                     },
                     {
@@ -261,7 +264,8 @@ export default function ClusterAccessAndSecurity({
                       label: t(
                         'kube_service_access_security_oidc_menu_action_set_provider',
                       ),
-                      disabled: !isOidcDefined,
+                      disabled:
+                        isProcessing(kubeDetail?.status) || !isOidcDefined,
                       href: hrefUpdateOIDCProvider,
                     },
                     {
@@ -269,7 +273,8 @@ export default function ClusterAccessAndSecurity({
                       label: t(
                         'kube_service_access_security_oidc_menu_action_remove_provider',
                       ),
-                      disabled: !isOidcDefined,
+                      disabled:
+                        isProcessing(kubeDetail?.status) || !isOidcDefined,
                       href: hrefRemoveOIDCProvider,
                     },
                   ]}
