@@ -1,7 +1,4 @@
 export const urls = {
-  root: '/',
+  root: '/onboarding',
   onboarding: 'onboarding',
-  listing: '',
-  dashboard: ':serviceName',
-  tab2: 'tab2',
 };
