@@ -11,6 +11,8 @@ interface LiveChatProps {
   onReduce?: () => void;
 }
 
+// test
+
 const getCustomerLevel = (level: string) => {
   switch (level) {
     case 'standard':
