@@ -30,7 +30,7 @@
     "vitest": "^2.1.4"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core-api": "^0.9.0",
+    "@ovh-ux/manager-core-api": "^0.10.0",
     "@ovhcloud/ods-common-core": "17.x",
     "@ovhcloud/ods-components": "17.x",
     "@tanstack/react-query": "5.x",

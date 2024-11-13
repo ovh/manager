@@ -2,14 +2,13 @@ import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import userEvents from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
 import {
-  renderTest,
-  labels,
-  checkModal,
-  waitForOptions,
+  assertModalVisibility,
+  WAIT_FOR_DEFAULT_OPTIONS,
   changeInputValue,
   getButtonByIcon,
-} from '@/test-helpers';
-import { backupList } from '@/../mocks/veeam-backup.mock';
+} from '@ovh-ux/manager-core-test-utils';
+import { backupList } from '@ovh-ux/manager-module-vcd-api';
+import { renderTest, labels } from '@/test-helpers';
 import { urls } from '@/routes/routes.constant';
 import '@testing-library/jest-dom';
 
@@ -22,7 +21,7 @@ describe('Edit name', () => {
     await waitFor(
       () =>
         expect(screen.getByText(labels.dashboard.delete_service)).toBeVisible(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
     const editButton = await getButtonByIcon({
@@ -31,7 +30,7 @@ describe('Edit name', () => {
     });
     await waitFor(() => userEvents.click(editButton));
 
-    await checkModal({ container, isVisible: true });
+    await assertModalVisibility({ container, isVisible: true });
 
     await changeInputValue({ inputLabel: 'update-input', value: 'new name' });
 
@@ -42,7 +41,7 @@ describe('Edit name', () => {
 
     await waitFor(() => userEvents.click(modifyButton));
 
-    await checkModal({ container, isVisible: false });
+    await assertModalVisibility({ container, isVisible: false });
 
     expect(
       screen.getByText(labels.common.update_veeam_backup_display_name_success),

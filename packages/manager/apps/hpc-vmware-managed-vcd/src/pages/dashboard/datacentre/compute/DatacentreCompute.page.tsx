@@ -5,25 +5,28 @@ import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { VHOSTS_TITLE } from './DatacentreCompute.constants';
+import {
+  getVcdDatacentreComputeRoute,
+  getVdcComputeQueryKey,
+  VCDCompute,
+} from '@ovh-ux/manager-module-vcd-api';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
-import IVcdCompute from '@/types/vcd-compute.interface';
-import { getVcdDatacentreComputeRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
 import { subRoutes, urls } from '@/routes/routes.constant';
-import { getVdcComputeQueryKey } from '@/utils/queryKeys';
+import { VHOST_LABEL, VHOSTS_LABEL } from './datacentreCompute.constants';
+import { ID_LABEL } from '../../dashboard.constants';
 
-const DatagridIdCell = (vcdCompute: IVcdCompute) => (
+const DatagridIdCell = (vcdCompute: VCDCompute) => (
   <DataGridTextCell>{vcdCompute?.id}</DataGridTextCell>
 );
-const DatagridVHostProfilCell = (vcdCompute: IVcdCompute) => (
+const DatagridVHostProfilCell = (vcdCompute: VCDCompute) => (
   <DataGridTextCell>{vcdCompute?.currentState?.profile}</DataGridTextCell>
 );
 
-const DatagridCpuCountCell = (vcdCompute: IVcdCompute) => (
+const DatagridCpuCountCell = (vcdCompute: VCDCompute) => (
   <DataGridTextCell>{vcdCompute.currentState?.vCPUCount}</DataGridTextCell>
 );
-const DatagridBillingCell = (vcdCompute: IVcdCompute) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/compute');
+const DatagridBillingCell = (vcdCompute: VCDCompute) => {
+  const { t } = useTranslation('datacentres/compute');
   return (
     <DataGridTextCell>
       {t(
@@ -33,8 +36,8 @@ const DatagridBillingCell = (vcdCompute: IVcdCompute) => {
   );
 };
 
-const DatagridRamCountCell = (vcdCompute: IVcdCompute) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+const DatagridRamCountCell = (vcdCompute: VCDCompute) => {
+  const { t } = useTranslation('datacentres');
 
   return (
     <DataGridTextCell>
@@ -47,21 +50,21 @@ const DatagridRamCountCell = (vcdCompute: IVcdCompute) => {
 
 export default function ComputeListingPage() {
   const { id, vdcId } = useParams();
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/compute');
-  const { t: tVdc } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+  const { t } = useTranslation('datacentres/compute');
+  const { t: tVdc } = useTranslation('datacentres');
   const navigate = useNavigate();
 
   const columns = [
     {
       id: 'id',
       cell: DatagridIdCell,
-      label: t('managed_vcd_vdc_compute_id'),
+      label: ID_LABEL,
       isSortable: false,
     },
     {
       id: 'vHostProfile',
       cell: DatagridVHostProfilCell,
-      label: t('managed_vcd_vdc_compute_vhost_profile'),
+      label: VHOST_LABEL,
       isSortable: false,
     },
     {
@@ -86,7 +89,7 @@ export default function ComputeListingPage() {
 
   return (
     <DatagridContainer
-      title={VHOSTS_TITLE}
+      title={VHOSTS_LABEL}
       queryKey={getVdcComputeQueryKey(vdcId)}
       columns={columns}
       route={{

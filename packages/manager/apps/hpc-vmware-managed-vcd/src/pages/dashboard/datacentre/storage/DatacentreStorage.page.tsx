@@ -5,30 +5,33 @@ import { useTranslation } from 'react-i18next';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import IVcdStorage from '@/types/vcd-storage.interface';
+import {
+  getVcdDatacentreStorageRoute,
+  getVdcStorageQueryKey,
+  VCDStorage,
+} from '@ovh-ux/manager-module-vcd-api';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
-import { STORAGE_TITLE } from '../DatacentreDashboard.constant';
-import { getVcdDatacentreStorageRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
+import { STORAGE_LABEL } from '../datacentreDashboard.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
-import { getVdcStorageQueryKey } from '@/utils/queryKeys';
 import { capitalize } from '@/utils/capitalize';
+import { ID_LABEL } from '../../dashboard.constants';
 
-const DatagridIdCell = (vcdStorage: IVcdStorage) => (
+const DatagridIdCell = (vcdStorage: VCDStorage) => (
   <DataGridTextCell>{vcdStorage?.id}</DataGridTextCell>
 );
-const DatagridNameCell = (vcdStorage: IVcdStorage) => (
+const DatagridNameCell = (vcdStorage: VCDStorage) => (
   <DataGridTextCell>{vcdStorage?.currentState?.name}</DataGridTextCell>
 );
-const DatagridProfileCell = (vcdStorage: IVcdStorage) => (
+const DatagridProfileCell = (vcdStorage: VCDStorage) => (
   <DataGridTextCell>{vcdStorage?.currentState?.profile}</DataGridTextCell>
 );
-const DatagridTypeCell = (vcdStorage: IVcdStorage) => (
+const DatagridTypeCell = (vcdStorage: VCDStorage) => (
   <DataGridTextCell>
     {capitalize(vcdStorage?.currentState?.type)}
   </DataGridTextCell>
 );
-const DatagridCapacityCell = (vcdStorage: IVcdStorage) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+const DatagridCapacityCell = (vcdStorage: VCDStorage) => {
+  const { t } = useTranslation('datacentres');
   return (
     <DataGridTextCell>
       {t('managed_vcd_vdc_quota_value', {
@@ -37,8 +40,8 @@ const DatagridCapacityCell = (vcdStorage: IVcdStorage) => {
     </DataGridTextCell>
   );
 };
-const DatagridBillingCell = (vcdStorage: IVcdStorage) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/compute');
+const DatagridBillingCell = (vcdStorage: VCDStorage) => {
+  const { t } = useTranslation('datacentres/compute');
   return (
     <DataGridTextCell>
       {t(
@@ -50,18 +53,15 @@ const DatagridBillingCell = (vcdStorage: IVcdStorage) => {
 
 export default function StorageListingPage() {
   const { id, vdcId } = useParams();
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/storage');
-  const { t: tVdc } = useTranslation('hpc-vmware-managed-vcd/datacentres');
-  const { t: tCompute } = useTranslation(
-    'hpc-vmware-managed-vcd/datacentres/compute',
-  );
+  const { t } = useTranslation('datacentres/storage');
+  const { t: tCompute } = useTranslation('datacentres/compute');
   const navigate = useNavigate();
 
   const columns = [
     {
       id: 'id',
       cell: DatagridIdCell,
-      label: tVdc('managed_vcd_vdc_id'),
+      label: ID_LABEL,
       isSortable: false,
     },
     {
@@ -98,7 +98,7 @@ export default function StorageListingPage() {
 
   return (
     <DatagridContainer
-      title={STORAGE_TITLE}
+      title={STORAGE_LABEL}
       queryKey={getVdcStorageQueryKey(vdcId)}
       columns={columns}
       route={{

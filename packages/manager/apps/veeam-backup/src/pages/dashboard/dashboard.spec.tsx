@@ -1,16 +1,14 @@
 import { screen, waitFor } from '@testing-library/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
-  renderTest,
-  labels,
-  waitForOptions,
-  goToDashboard,
+  WAIT_FOR_DEFAULT_OPTIONS,
   getButtonByIcon,
   getButtonByLabel,
-} from '@/test-helpers';
-import { backupList } from '@/../mocks/veeam-backup.mock';
-import '@testing-library/jest-dom';
+} from '@ovh-ux/manager-core-test-utils';
+import { backupList } from '@ovh-ux/manager-module-vcd-api';
+import { renderTest, labels, goToDashboard } from '@/test-helpers';
 import { urls } from '@/routes/routes.constant';
+import '@testing-library/jest-dom';
 
 describe('dashboard', () => {
   it('displays the dashboard page when clicking on the link', async () => {
@@ -26,7 +24,7 @@ describe('dashboard', () => {
             ),
           ),
         ),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 
@@ -44,7 +42,7 @@ describe('dashboard', () => {
             ),
           ),
         ),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
     await getButtonByIcon({

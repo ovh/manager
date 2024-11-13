@@ -6,16 +6,16 @@ import {
   Description,
 } from '@ovh-ux/manager-react-components';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import IVcdDatacentre from '@/types/vcd-datacenter.interface';
+import { VCDDatacentre } from '@ovh-ux/manager-module-vcd-api';
 
 type TTileProps = {
-  vcdDatacentre: IVcdDatacentre;
+  vcdDatacentre: VCDDatacentre;
 };
 
 export default function DatacentreUsageTile({
   vcdDatacentre,
 }: Readonly<TTileProps>) {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+  const { t } = useTranslation('datacentres');
 
   return (
     <div>
