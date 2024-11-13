@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.8.0...@ovh-ux/manager-react-shell-client@0.8.1) (2024-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-shell-client
+
+
+
+
+
 # 0.8.0 (2024-11-12)
 
 
