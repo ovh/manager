@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.15.2...@ovh-ux/manager-generator@0.15.3) (2024-11-13)
+
+
+### Bug Fixes
+
+* tests in react uapp ([9e32503](https://github.com/ovh/manager/commit/9e325034dce5297457fe48572165a727435a44a3))
+
+
+### Reverts
+
+* revert "feat(manager-react-components): update generator" ([2da1897](https://github.com/ovh/manager/commit/2da1897c12b6190f5335b9649e6888a13b8587b6))
+* revert "fix(manager-react-components): fix bump ods 18 issues" ([6ce273f](https://github.com/ovh/manager/commit/6ce273f1321f31a2a75d67143c28cf4b77be6918))
+
+
+
+
+
 ## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.15.1...@ovh-ux/manager-generator@0.15.2) (2024-11-12)
 
 
