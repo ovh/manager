@@ -1,6 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import onboardingImgSrc from './onboarding-img.png';
@@ -33,14 +39,13 @@ export default function Onboarding() {
       texts: {
         title: t('guide3Title'),
         description: t('guide3Description'),
-        category: t('guideCategory'),
+        category: t('tutoCategory'),
       },
-      href: link?.guideLink3,
+      href: link?.tutoLink1,
     },
   ];
 
   const title: string = t('title');
-  const description: string = t('description');
   const imgSrc = {
     src: onboardingImgSrc,
   };
@@ -51,11 +56,69 @@ export default function Onboarding() {
       <OnboardingLayout
         title={title}
         img={imgSrc}
-        description={description}
-        orderButtonLabel={t('orderButtonLabel')}
-        orderHref={t('orderButtonLink')}
-        moreInfoButtonLabel={t('moreInfoButtonLabel')}
-        moreInfoHref={t('moreInfoButtonLink')}
+        description={
+          <>
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              className="block"
+            >
+              {t('description')}
+            </OsdsText>
+            <div className="block mt-4">
+              <div className="block inline">
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  level={ODS_TEXT_LEVEL.body}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                >
+                  {t('description1')}
+                </OsdsText>{' '}
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  level={ODS_TEXT_LEVEL.body}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                  className="font-bold"
+                >
+                  {t('description2')}
+                </OsdsText>{' '}
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  level={ODS_TEXT_LEVEL.body}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                >
+                  {t('description3')}
+                </OsdsText>{' '}
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  level={ODS_TEXT_LEVEL.body}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                  className="font-bold"
+                >
+                  {t('description4')}
+                </OsdsText>{' '}
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  level={ODS_TEXT_LEVEL.body}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                >
+                  {t('description5')}
+                </OsdsText>{' '}
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  level={ODS_TEXT_LEVEL.body}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                  className="font-bold"
+                >
+                  {t('description6')}
+                </OsdsText>
+              </div>
+            </div>
+          </>
+        }
+        moreInfoButtonLabel={t('goToAiEndpoint')}
+        moreInfoHref="https://endpoints.ai.cloud.ovh.net/"
       >
         {tileList.map((tile) => (
           <Card key={tile.id} href={tile.href} texts={tile.texts} />

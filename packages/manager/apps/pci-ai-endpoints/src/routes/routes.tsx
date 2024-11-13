@@ -26,19 +26,8 @@ export const Routes: any = [
     ...lazyRouteConfig(() => import('@/pages/layout')),
     children: [
       {
-        id: 'listing',
-        path: urls.listing,
-        ...lazyRouteConfig(() => import('@/pages/listing')),
-        handle: {
-          tracking: {
-            pageName: 'listing',
-            pageType: PageType.listing,
-          },
-        },
-      },
-      {
         id: 'onboarding',
-        path: urls.onboarding,
+        path: '',
         ...lazyRouteConfig(() => import('@/pages/onboarding')),
         handle: {
           tracking: {

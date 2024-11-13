@@ -37,21 +37,6 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     WS: '/update-path',
     US: '/update-path',
   },
-  guideLink3: {
-    DE: '/guide-link-3-path',
-    ES: '/guide-link-3-path',
-    IE: '/en/guide-link-3-path',
-    IT: '/guide-link-3-path',
-    PL: '/guide-link-3-path',
-    PT: '/guide-link-3-path',
-    FR: '/guide-link-3-path',
-    GB: '/guide-link-3-path',
-    CA: '/update-path',
-    QC: '/update-path',
-    WE: '/update-path',
-    WS: '/update-path',
-    US: '/update-path',
-  },
   /*
   addNewGuideLink : {
     DEFAULT: '/guide-link-3-path',
@@ -60,6 +45,24 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     ...
   }
   */
+};
+
+const TUTO_LIST: { [guideName: string]: Partial<GuideLinks> } = {
+  tutoLink1: {
+    DE: 'https://blog.ovhcloud.com/tag/ai-endpoints/',
+    ES: 'https://blog.ovhcloud.com/tag/ai-endpoints/',
+    IE: 'https://blog.ovhcloud.com/tag/ai-endpoints/',
+    IT: 'https://blog.ovhcloud.com/tag/ai-endpoints/',
+    PL: 'https://blog.ovhcloud.com/tag/ai-endpoints/',
+    PT: 'https://blog.ovhcloud.com/tag/ai-endpoints/',
+    FR: 'https://blog.ovhcloud.com/tag/ai-endpoints/',
+    GB: 'https://blog.ovhcloud.com/tag/ai-endpoints/',
+    CA: 'https://blog.ovhcloud.com/tag/ai-endpoints/',
+    QC: 'https://blog.ovhcloud.com/tag/ai-endpoints/',
+    WE: 'https://blog.ovhcloud.com/tag/ai-endpoints/',
+    WS: 'https://blog.ovhcloud.com/tag/ai-endpoints/',
+    US: 'https://blog.ovhcloud.com/tag/ai-endpoints/',
+  },
 };
 
 type GetGuideLinkProps = {
@@ -72,6 +75,11 @@ function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
   const keys = Object.entries(GUIDE_LIST);
   keys.forEach((key) => {
     list[key[0]] = docUrl + GUIDE_LIST[key[0]][subsidiary as CountryCode];
+  });
+
+  const tutos = Object.entries(TUTO_LIST);
+  tutos.forEach((key) => {
+    list[key[0]] = TUTO_LIST[key[0]][subsidiary as CountryCode];
   });
   return list;
 }
