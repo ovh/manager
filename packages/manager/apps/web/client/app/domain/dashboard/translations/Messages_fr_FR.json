@@ -826,6 +826,7 @@
   "domain_dashboard_recommended_hosting_label": "-{{ reduction }} sur votre Hébergement {{ type }} pour le Black Friday.",
   "domain_dashboard_recommended_hosting_discover": "Découvrir les solutions",
   "domain_tab_emails": "E-mails et mailing-lists",
+  "domain_tab_contact": "Gérer les contacts",
   "domain_dashboard_general_information_domain_delete_at_expiration": "Résiliation demandée",
   "domain_dashboard_general_information_domain_expired": "Résilié",
   "domain_dashboard_general_information_domain_manualPayment": "Renouvellement manuel",
