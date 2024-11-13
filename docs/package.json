@@ -6,7 +6,7 @@
   "scripts": {
     "docs:build": "yarn docs:build:manager-react-components && node cli/prebuild.js &&  vitepress build --base /manager/",
     "docs:build:manager-react-components": "cd ../packages/manager-react-components && yarn build:storybook && rm -rf ../../docs/docs/public/storybook-static && mkdir -p ../../docs/docs/public/storybook-static && cp -r ./storybook-static/* ../../docs/docs/public/storybook-static",
-    "docs:deploy": "yarn run docs:build && gh-pages -d .vitepress/dist -m \"docs: update documentation [skip ci]\"",
+    "docs:deploy": "yarn run docs:build && touch .vitepress/dist/storybook-static/.nojekyll && touch .vitepress/dist/.nojekyll  && gh-pages -d .vitepress/dist --dotfiles -m \"docs: update documentation [skip ci]\"",
     "docs:dev": "node cli/prebuild.js && vitepress dev",
     "docs:preview": "vitepress preview"
   },
