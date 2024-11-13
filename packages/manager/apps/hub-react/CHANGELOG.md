@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.2.1...@ovh-ux/manager-hub-react-app@0.2.2) (2024-11-13)
+
+
+### Bug Fixes
+
+* **hub-react:** reworked services link definition ([#13984](https://github.com/ovh/manager/issues/13984)) ([5a4743e](https://github.com/ovh/manager/commit/5a4743e659c6162e6882402ba732ae95a61be2ea))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.2.0...@ovh-ux/manager-hub-react-app@0.2.1) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-react-app
