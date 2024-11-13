@@ -5,7 +5,8 @@ export const getOrderCatalogOKMS = async (
   ovhSubsidiary: string,
 ): Promise<OKMSCatalog> => {
   const { data } = await apiClient.v6.get<OKMSCatalog>(
-    `/order/catalog/public/okms?ovhSubsidiary=${ovhSubsidiary}`,
+    '/order/catalog/public/okms',
+    { params: { ovhSubsidiary } },
   );
   return data;
 };
