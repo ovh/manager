@@ -165,6 +165,9 @@ export default function EditSubnetModal() {
       </FormField>
 
       <FormField label={t('cidrLabel')} fullWidth>
+        <span slot="helper">
+          <OsdsText>{t('subnetRangeAdditionalText')}</OsdsText>
+        </span>
         <OsdsInput
           disabled={disabledInputs}
           type={ODS_INPUT_TYPE.text}
