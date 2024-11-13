@@ -12,8 +12,6 @@ export const MANAGED_PCC_MIGRATION_STATUS = {
   UNKNOWN: 'unknown',
 };
 
-export const TRACKING_PREFIX = 'Baremetal::Managed_baremetal::';
-
 export const MANAGED_VCD_MIGRATION_STATUS = {
   TO_MIGRATE: 'TO_MIGRATE',
   MIGRATED: 'MIGRATED',
@@ -190,5 +188,4 @@ export default {
   MANAGED_VCD_MIGRATION_STATUS,
   MANAGED_VCD_MIGRATION_STATE,
   MANAGED_PCC_MIGRATION_STATUS,
-  TRACKING_PREFIX,
 };
