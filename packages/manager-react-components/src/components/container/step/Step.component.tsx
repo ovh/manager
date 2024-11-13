@@ -1,22 +1,9 @@
 import React, { Suspense } from 'react';
-import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsLink,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-  ODS_THEME_COLOR_INTENT,
-} from '@ovhcloud/ods-common-theming';
+import { OdsButton, OdsIcon, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { v4 as uuidV4 } from 'uuid';
 import {
   ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { clsx } from 'clsx';
@@ -61,33 +48,32 @@ export const StepComponent = ({
   cancel,
 }: TStepProps): JSX.Element => {
   return (
-    <section className="flex flex-row border-0 border-t-[1px] border-solid border-t-[#b3b3b3] pt-5 mb-5">
+    <section className="flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5">
       <div className="basis-[40px]">
         {isChecked ? (
-          <OsdsIcon
-            size={ODS_ICON_SIZE.sm}
-            name={ODS_ICON_NAME.CHECK}
-            className={'mr-2'}
-            color={ODS_THEME_COLOR_INTENT.primary}
+          <OdsIcon
+            name={ODS_ICON_NAME.check}
+            className="block p-[12px] text-[20px] text-[--ods-color-primary-500]"
           />
         ) : (
           <div
             className={clsx(
               'flex justify-center items-center font-bold border-2 border-solid rounded-full h-10 w-10',
-              isOpen ? 'border-[#0050d7]' : 'border-[grey]',
+              isOpen
+                ? 'border-[--ods-color-primary-500]'
+                : 'border-[--ods-color-neutral-500]',
             )}
           >
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-              color={
+            <span
+              className={clsx(
+                'font-semibold text-[16px] leading-[20px]',
                 isOpen
-                  ? ODS_THEME_COLOR_INTENT.text
-                  : ODS_THEME_COLOR_INTENT.default
-              }
+                  ? 'text-[--ods-color-text]'
+                  : 'text-[--ods-color-neutral-500]',
+              )}
             >
               {order}
-            </OsdsText>
+            </span>
           </div>
         )}
       </div>
@@ -95,29 +81,27 @@ export const StepComponent = ({
         <div className="flex flex-col md:flex-row">
           <div
             className={clsx(
-              'font-sans font-normal p-0 m-0 w-full md:w-5/6 leading-10',
+              'font-normal leading-[43px] p-0 m-0 w-full md:w-5/6',
               isOpen
-                ? 'text-[1.625rem] text-[#00185e]'
-                : 'text-[1.25rem] text-[grey]',
+                ? 'text-[26px] text-[--ods-color-text]'
+                : 'text-[20px] text-[--ods-color-neutral-500]',
             )}
           >
             {title}
           </div>
           {edit?.action && isLocked && (
             <div className="text-2xl w-full md:w-1/6" data-testid="edit">
-              <OsdsLink
+              <OdsButton
+                label={edit.label as string}
                 data-testid="edit-cta"
                 className="float-left md:float-right"
-                color={ODS_THEME_COLOR_INTENT.primary}
-                {...(edit.isDisabled ? { disabled: true } : {})}
+                isDisabled={edit.isDisabled || undefined}
                 onClick={() => {
                   if (!edit.isDisabled) {
                     edit.action(id);
                   }
                 }}
-              >
-                {edit.label}
-              </OsdsLink>
+              />
             </div>
           )}
         </div>
@@ -131,43 +115,22 @@ export const StepComponent = ({
                 isLocked && 'cursor-not-allowed pointer-events-none opacity-50',
               )}
             >
-              <Suspense
-                fallback={<OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
-              >
+              <Suspense fallback={<OdsSpinner size={ODS_SPINNER_SIZE.md} />}>
                 {children}
               </Suspense>
             </div>
-            {!isLocked && (next || cancel) && (
-              <div className="flex mt-6">
-                {next && (
-                  <OsdsButton
-                    data-testid="next-cta"
-                    size={ODS_BUTTON_SIZE.md}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    onClick={() => {
-                      next.action(id);
-                    }}
-                    className="w-fit"
-                    {...(next.isDisabled ? { disabled: true } : {})}
-                  >
-                    {next.label}
-                  </OsdsButton>
-                )}
-                {cancel && (
-                  <OsdsButton
-                    data-testid="cancel-cta"
-                    size={ODS_BUTTON_SIZE.md}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    variant={ODS_BUTTON_VARIANT.ghost}
-                    onClick={() => {
-                      cancel.action(id);
-                    }}
-                    className="w-fit"
-                    {...(cancel.isDisabled ? { disabled: true } : {})}
-                  >
-                    {cancel.label}
-                  </OsdsButton>
-                )}
+            {next?.action && !isLocked && (
+              <div className="mt-6" data-testid="next">
+                <OdsButton
+                  data-testid="next-cta"
+                  label={next.label as string}
+                  size={ODS_BUTTON_SIZE.md}
+                  onClick={() => {
+                    next.action(id);
+                  }}
+                  className="w-fit"
+                  isDisabled={next.isDisabled || undefined}
+                />
               </div>
             )}
           </>

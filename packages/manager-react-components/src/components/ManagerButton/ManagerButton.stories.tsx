@@ -3,7 +3,8 @@ import { ManagerButton, ManagerButtonProps } from './ManagerButton';
 
 export const Default = {
   args: {
-    children: 'Remove button',
+    id: 'iam-button-urn-action-1',
+    label: 'Remove button',
     urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
     iamActions: ['vrackServices:apiovh:iam/resource/tag/remove'],
   },

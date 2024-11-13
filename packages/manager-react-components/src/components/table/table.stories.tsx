@@ -1,68 +1,40 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
+import { OdsText, OdsButton, OdsPopover } from '@ovhcloud/ods-components/react';
 import {
-  OsdsText,
-  OsdsIcon,
-  OsdsButton,
-  OsdsMenuItem,
-  OsdsMenu,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_TEXT_SIZE,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
   ODS_BUTTON_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Table, TableProps } from './table.component';
 import { mockColumns, mocksData } from './table.mock';
 
-const DisplayCellMenu = () => (
-  <OsdsMenu className="absolute ml-[-15px] mt-[-15px]">
-    <OsdsButton
-      slot="menu-title"
-      inline
-      circle
-      color={ODS_THEME_COLOR_INTENT.info}
-      variant={ODS_BUTTON_VARIANT.stroked}
-      type={ODS_BUTTON_TYPE.button}
-      size={ODS_BUTTON_SIZE.sm}
-    >
-      <OsdsIcon
-        color={ODS_THEME_COLOR_INTENT.primary}
-        name={ODS_ICON_NAME.ELLIPSIS}
-        size={ODS_ICON_SIZE.xs}
+const DisplayCellMenu = ({ id }) => (
+  <div>
+    <div id={`menu-button-${id}`} className="w-full">
+      <OdsButton
+        slot="menu-title"
+        size={ODS_BUTTON_SIZE.sm}
+        icon={ODS_ICON_NAME.ellipsisHorizontal}
+        variant={ODS_BUTTON_VARIANT.outline}
+        label=""
       />
-    </OsdsButton>
-    <OsdsMenuItem>
-      <OsdsButton
-        color={ODS_THEME_COLOR_INTENT.primary}
-        size={ODS_BUTTON_SIZE.sm}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        text-align="start"
-      >
-        <span slot="start">
-          <span>Manager</span>
-        </span>
-      </OsdsButton>
-    </OsdsMenuItem>
-    <OsdsMenuItem>
-      <OsdsButton
-        type={ODS_BUTTON_TYPE.button}
-        size={ODS_BUTTON_SIZE.sm}
-        color={ODS_THEME_COLOR_INTENT.error}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        text-align="start"
-        class="hydrated"
-      >
-        <span slot="start">
-          <span>Supprimer</span>
-        </span>
-      </OsdsButton>
-    </OsdsMenuItem>
-  </OsdsMenu>
+    </div>
+    <OdsPopover triggerId={`menu-button-${id}`}>
+      <div>
+        <OdsButton text-align="start" label="Manager" />
+      </div>
+      <div>
+        <OdsButton
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.ghost}
+          text-align="start"
+          class="hydrated"
+          label="Supprimer"
+        />
+      </div>
+    </OdsPopover>
+  </div>
 );
 
 export const defaultProps: TableProps = {
@@ -72,23 +44,11 @@ export const defaultProps: TableProps = {
       <thead>
         <tr>
           {mockColumns.map((header) => (
-            <th key={header.accessoryKey} className="text-center">
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.text}
-                size={ODS_TEXT_SIZE._500}
-              >
-                {header.header}
-              </OsdsText>
+            <th scope="col" key={header.accessoryKey} className="text-center">
+              {header.header}
             </th>
           ))}
-          <th>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_TEXT_SIZE._500}
-            >
-              Button
-            </OsdsText>
-          </th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -101,11 +61,13 @@ export const defaultProps: TableProps = {
                 }`}
                 className="text-center"
               >
-                {header[element as keyof typeof header]}
+                <OdsText preset="span">
+                  {header[element as keyof typeof header]}
+                </OdsText>
               </td>
             ))}
             <td key={`${header.firstName}-actions`} className="text-center">
-              <DisplayCellMenu />
+              <DisplayCellMenu id={header.firstName} />
             </td>
           </tr>
         ))}

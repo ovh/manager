@@ -19,8 +19,8 @@ vitest.mock('react-i18next', async () => {
 describe('PciMaintenanceBanner', () => {
   it('should display maintenance url', () => {
     const url = 'www.ovhcloud.com';
-    const { container } = render(<PciMaintenanceBanner maintenanceURL={url} />);
-    const link = container.querySelector('osds-link');
+    render(<PciMaintenanceBanner maintenanceURL={url} />);
+    const link = screen.getByTestId('pci-maintenance-banner-link');
     expect(link).toHaveAttribute('href', url);
     expect(link).toHaveAttribute('target', '_blank');
   });
