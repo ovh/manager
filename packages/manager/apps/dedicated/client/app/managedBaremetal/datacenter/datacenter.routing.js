@@ -5,7 +5,16 @@ export default /* @ngInject */ ($stateProvider) => {
       'dedicatedCloudView@app.managedBaremetal.details':
         'ovhManagerDedicatedCloudDatacenter',
     },
-    redirectTo: 'app.managedBaremetal.details.datacenters.datacenter.dashboard',
+    redirectTo: (transition) => {
+      return transition
+        .injector()
+        .getAsync('hasVCDMigration')
+        .then((hasVCDMigration) =>
+          hasVCDMigration
+            ? 'app.managedBaremetal.details.dashboard-light'
+            : 'app.managedBaremetal.details.datacenters.datacenter.dashboard',
+        );
+    },
     resolve: {
       datacenterId: /* @ngInject */ ($transition$) =>
         $transition$.params().datacenterId,
