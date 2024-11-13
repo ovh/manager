@@ -1678,7 +1678,7 @@ class DedicatedCloudService {
       );
   }
 
-  getManagedVCDMigrationState(serviceName) {
+  getPCCMigrationState(serviceName) {
     const resourcePath = `${serviceName}/option/tovcdmigration`;
     return this.$q
       .all({
@@ -1694,14 +1694,16 @@ class DedicatedCloudService {
       .then(({ step1, step2 }) => {
         const countStep1 = step1?.data?.length;
         const countStep2 = step2?.data?.length;
-        return new VCDMigrationState((countStep1 ?? 0) + (countStep2 ?? 0));
-      });
+        return new PCCMigrationState((countStep1 ?? 0) + (countStep2 ?? 0));
+      })
+      .catch(() => new PCCMigrationState(0));
   }
 
-  getPCCMigrationState(serviceName) {
+  getVCDMigrationState(serviceName) {
     return this.$http
       .get(`/dedicatedCloud/${serviceName}/tag/vcdMigration`)
-      .then(({ data }) => new PCCMigrationState(data?.state));
+      .then(({ data }) => new VCDMigrationState(data))
+      .catch(() => null);
   }
 
   getLocation(serviceName) {
