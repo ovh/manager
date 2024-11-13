@@ -73,6 +73,19 @@ export function getPciProjectMenu(
           title: 'Instances',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/instances`),
         },
+        isFeaturesAvailable('instance-backup') && {
+          id: 'instance-backup',
+          title: 'Instance Backup',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/instance-backups`,
+          ),
+        },
+        isFeaturesAvailable('workflow-management') && {
+          id: 'workflow-management',
+          title: 'Workflow Management',
+          href: getURL('public-cloud', `#/pci/projects/${projectId}/workflow`),
+        },
       ],
     });
   }
@@ -101,20 +114,29 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/storages/blocks`,
           ),
         },
+        isFeaturesAvailable('volume-backup') && {
+          id: 'volume-backup',
+          title: 'Volume Backup',
+          badge: 'new',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/volume-backup`,
+          ),
+        },
+        isFeaturesAvailable('snapshot') && {
+          id: 'snapshot',
+          title: 'Volume Snapshot',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/volume-snapshots`,
+          ),
+        },
         isFeaturesAvailable('object-storage') && {
           id: 'object-storage',
           title: 'Object Storage',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/storages/objects`,
-          ),
-        },
-        isFeaturesAvailable('archive') && {
-          id: 'archive',
-          title: 'Cloud Archive',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/cloud-archives`,
           ),
         },
         isFeaturesAvailable('cold-archive') && {
@@ -126,35 +148,13 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/storages/cold-archive`,
           ),
         },
-        isFeaturesAvailable('snapshot') && {
-          id: 'snapshot',
-          title: 'Volume Snapshot',
+        isFeaturesAvailable('archive') && {
+          id: 'archive',
+          title: 'Cloud Archive',
           href: getURL(
             'public-cloud',
-            `#/pci/projects/${projectId}/storages/volume-snapshots`,
+            `#/pci/projects/${projectId}/storages/cloud-archives`,
           ),
-        },
-        isFeaturesAvailable('volume-backup') && {
-          id: 'volume-backup',
-          title: 'Volume Backup',
-          badge: 'new',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/volume-backup`,
-          ),
-        },
-        isFeaturesAvailable('instance-backup') && {
-          id: 'instance-backup',
-          title: 'Instance Backup',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/instance-backups`,
-          ),
-        },
-        isFeaturesAvailable('workflow-management') && {
-          id: 'workflow-management',
-          title: 'Workflow Management',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/workflow`),
         },
       ],
     });
