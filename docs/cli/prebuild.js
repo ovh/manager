@@ -4,7 +4,7 @@ const path = require('path');
 const pick = require('lodash/pick');
 
 // Get all workspaces defined in the `package.json` file.
-const { workspaces } = require('./../../package.json');
+const { workspaces } = require('../../package.json');
 
 // Keep the bare minimum entries from all package.json files.
 const entries = ['name', 'version', 'description', 'repository'];
@@ -19,7 +19,7 @@ const packages = getMonorepoPackages(directoryPath).map(
 );
 
 // Group packages by their corresponding workspaces.
-const groupedWorkspaces = workspaces.map((workspace) => {
+const groupedWorkspaces = workspaces.packages.map((workspace) => {
   const packagesList = packages.filter((pkg) => {
     // Remove the pattern `/*` from the workspace name.
     if (
