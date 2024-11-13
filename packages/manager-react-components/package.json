@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "version": "1.41.1",
+  "version": "2.1.0",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "types": "dist/types/src/lib.d.ts",
@@ -25,7 +25,7 @@
     "prepare": "tsc && vite build",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "start": "storybook dev -p 6006",
-    "test": "vitest",
+    "test": "vitest run",
     "test:cov": "vitest run --coverage",
     "test:watch": "vitest"
   },
@@ -35,10 +35,9 @@
     ]
   },
   "dependencies": {
-    "@ovhcloud/ods-common-core": "17.2.2",
-    "@ovhcloud/ods-common-theming": "17.2.2",
-    "@ovhcloud/ods-components": "17.2.2",
-    "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@ovhcloud/ods-components": "18.0.0",
+    "@ovhcloud/ods-themes": "18.0.0",
     "@tanstack/react-query": "^5.51.21",
     "@tanstack/react-table": "^8.20.1",
     "clsx": "^2.1.1",
@@ -57,6 +56,7 @@
     "@ovh-ux/manager-react-shell-client": "^0.8.1",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
     "@ovh-ux/manager-vite-config": "^0.8.1",
+    "@storybook/addon-a11y": "8.0.4",
     "@storybook/addon-docs": "^7.5.3",
     "@storybook/addon-essentials": "7.5.3",
     "@storybook/addon-interactions": "7.5.3",
@@ -116,7 +116,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core-api": "^0.9.0-alpha.0",
-    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.0",
+    "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.3",
     "i18next": "^23.8.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

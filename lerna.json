@@ -20,7 +20,8 @@
       "conventionalCommits": true
     },
     "version": {
-      "allowBranch": "master"
+      "allowBranch": "master",
+      "ignoreChanges": ["packages/manager-react-components/**"]
     }
   }
 }

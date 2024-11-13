@@ -1,0 +1,71 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { OdsText } from '@ovhcloud/ods-components';
+import { Links, LinkType } from './../../../index.ts';
+
+<Meta title="Manager React Components/What's news/migration guide/1.xx.x to 2.0.0" />
+
+# Migration from 1.x.x to 2.0.0
+
+If you have any questions or issues regarding the new version, feel free to
+reach us directly.
+
+## Libraries
+
+### Before migration
+
+Be sure, to allow time to :
+
+- To Bump the new react components versin in your uapp and correct the components updated that have changed
+- To update your existing unit test if needed
+- To Bump the version of ods inside your app v17 -> v18
+
+### Installation
+
+#### update your package.json
+
+```js
+@ovh-ux/manager-react-components: "^2.0.0"
+```
+
+## Components
+
+The following components have been removed:
+
+- `CommonTitle` you can replace by the component Title
+- `Description`
+
+The following components have breaking change:
+
+- `Links` 'target' attribute is now 'string'
+- `UpdateNameModal` new attribute 'isOpen' at 'false' by default
+- `DeleteModal` new attribute 'isOpen' at 'false' by default
+- `Pci Maintenance Banner` 'type' attribue replace by 'color' type ODS_MESSSAGE_COLOR
+- `Notifications` => (deprecated)
+- `Guide component` 'target', 'rel', 'label' updated to type 'string'
+- `Actions Component` 'target', 'rel', 'label' updated to type 'string' , 'color' attribute remove
+- `OdsClipboard` new attributes 'labelCopySuccess', 'labelCopy'
+- `ActionBanner component` attribute 'type' replace by 'color' ODS_MESSAGE_COLOR
+- `Manager Button` => new attributes 'id' string and 'label' string
+
+The following components have been updated:
+
+- `Title`
+- `SubTitle`
+- `Onboarding`
+- `Error template`
+- `Dashboard template`
+- `Base template`
+- `Table`
+- `Redirection Guard`
+- `Card Component`
+- `SimpleTileSInput`
+- `Guide Header`
+- `Filters`
+- `Datagrid`
+- `Price`
+- `Headers`
+- `Dashboard Tile`
+- `Tabs`
+- `Steps`
+
+**_As each component was refactored, there are too many changes to list everything here, but its mainly refactoring some ods-text and ods-button_**

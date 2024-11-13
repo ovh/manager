@@ -25,23 +25,21 @@ describe('ActionBanner tests', () => {
       cta: 'custom action',
       onClick: mockOnClick,
     });
-
-    const actionBtn = screen.getByTestId('actionBanner-button');
-
-    act(() => fireEvent.click(actionBtn));
-
+    expect(screen.getByTestId('actionBanner-button')).not.toBeNull();
+    const cta = screen.queryByTestId('actionBanner-button');
+    expect(mockOnClick).not.toHaveBeenCalled();
+    act(() => fireEvent.click(cta));
     expect(mockOnClick).toHaveBeenCalled();
   });
 
   it('should have a link action', () => {
     const href = 'www.ovhcloud.com';
-    const { container } = renderComponent({
+    renderComponent({
       message: 'hello world',
       cta: 'custom action',
       href,
     });
-    const link = container.querySelector('osds-link');
-
+    const link = screen.queryByTestId('action-banner-link');
     expect(link).toBeDefined();
     expect(link.getAttribute('href')).toBe(href);
     expect(link.getAttribute('target')).toBe('_blank');
