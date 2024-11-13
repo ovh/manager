@@ -78,8 +78,11 @@ const useServiceKeyActionsList = (
               `/${okms.id}/${ROUTES_URLS.keys}/${okmsKey?.id}/${ROUTES_URLS.serviceKeyDeactivate}`,
             );
       },
-      iamActions: [kmsIamActions.serviceKeyDeactivate],
-      urn: okms.iam.urn,
+      iamActions: [
+        kmsIamActions.serviceKeyUpdate,
+        kmsIamActions.serviceKeyDeactivate,
+      ],
+      urn: okmsKey?.iam.urn,
     });
   }
   if (
@@ -92,8 +95,11 @@ const useServiceKeyActionsList = (
       color: ODS_THEME_COLOR_INTENT.primary,
       disabled: updateIsPending,
       onClick: () => updateKmsServiceKey({ state: OkmsServiceKeyState.active }),
-      iamActions: [kmsIamActions.serviceKeyActivate],
-      urn: okms.iam.urn,
+      iamActions: [
+        kmsIamActions.serviceKeyUpdate,
+        kmsIamActions.serviceKeyActivate,
+      ],
+      urn: okmsKey?.iam.urn,
     });
   }
   if (
@@ -108,7 +114,7 @@ const useServiceKeyActionsList = (
         okmsKey?.state === OkmsServiceKeyState.active || deleteIsPending,
       onClick: () => deleteKmsServiceKey(),
       iamActions: [kmsIamActions.serviceKeyDelete],
-      urn: okms.iam.urn,
+      urn: okmsKey?.iam.urn,
     });
   }
   return items;

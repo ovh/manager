@@ -1,4 +1,4 @@
-import { ColumnSort } from '@ovh-ux/manager-react-components';
+import { ColumnSort, IamObject } from '@ovh-ux/manager-react-components';
 
 export type OkmsServiceKeyOptions = {
   sorting: ColumnSort;
@@ -24,6 +24,7 @@ export type OkmsServiceKeyBase = {
   state: OkmsServiceKeyState;
   type: OkmsKeyTypes;
   keys?: any[];
+  iam: IamObject;
 };
 
 /*
