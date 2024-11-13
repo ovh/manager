@@ -5,6 +5,16 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       pccView: 'ovhManagerPccDatacenters',
     },
+    redirectTo: (transition) => {
+      return transition
+        .injector()
+        .getAsync('hasVCDMigration')
+        .then((hasVCDMigration) =>
+          hasVCDMigration
+            ? 'app.managedBaremetal.details.dashboard-light'
+            : false,
+        );
+    },
     resolve: {
       addDatacenter: /* @ngInject */ ($state) => () =>
         $state.go('app.managedBaremetal.details.datacenters.add-datacenter'),
