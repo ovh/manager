@@ -7,6 +7,8 @@ import {
   SIZE_FACTOR,
   SIZE_MULTIPLE,
   IN_COMPATIBLE_REGION,
+  DATACENTER_TO_COUNTRY,
+  DATACENTER_TO_REGION,
 } from './constants';
 
 const findRegionConfiguration = (configurations) =>
@@ -87,7 +89,20 @@ export default class OvhManagerNetAppOrderCtrl {
       ),
     );
 
-    [this.selectedRegion] = this.regions;
+    this.catalogByLocation = this.regions.map((datacenter) => {
+      const flag =
+        datacenter === 'ERI' ? 'gb' : DATACENTER_TO_COUNTRY[datacenter];
+      return {
+        datacenter,
+        regionName: DATACENTER_TO_REGION[datacenter],
+        location: this.$translate.instant(
+          `netapp_order_location_${DATACENTER_TO_REGION[datacenter]}`,
+        ),
+        icon: `oui-flag oui-flag_${flag}`,
+      };
+    });
+
+    [this.selectedRegion] = this.catalogByLocation;
   }
 
   onSizeStepFocus() {
@@ -95,7 +110,10 @@ export default class OvhManagerNetAppOrderCtrl {
       this.catalog.plans,
       this.selectedLicense.name,
     );
-    const availablePlans = getPlansWithRegion(plans, this.selectedRegion);
+    const availablePlans = getPlansWithRegion(
+      plans,
+      this.selectedRegion.datacenter,
+    );
     this.plans = availablePlans.map((plan) => ({
       ...plan,
       size:
@@ -153,7 +171,7 @@ export default class OvhManagerNetAppOrderCtrl {
   goToOrderUrl() {
     const pricingModeType = this.pricingMode.pricingMode.replace(/[0-9]+/, '');
     this.atInternet.trackClick({
-      name: `netapp::order::confirm::${this.selectedRegion}_${this.selectedLicense.name}_${this.selectedSize}TB_${this.duration.duration}_${pricingModeType}`,
+      name: `netapp::order::confirm::${this.selectedRegion.datacenter}_${this.selectedLicense.name}_${this.selectedSize}TB_${this.duration.duration}_${pricingModeType}`,
       type: 'action',
     });
 
@@ -170,7 +188,7 @@ export default class OvhManagerNetAppOrderCtrl {
       configuration: [
         {
           label: REGION_LABEL,
-          value: this.selectedRegion,
+          value: this.selectedRegion.datacenter,
         },
       ],
     };
