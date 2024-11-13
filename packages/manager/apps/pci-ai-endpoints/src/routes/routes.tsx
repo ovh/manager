@@ -35,38 +35,6 @@ export const Routes: any = [
             pageType: PageType.listing,
           },
         },
-        children: [
-          {
-            path: urls.dashboard,
-            ...lazyRouteConfig(() => import('@/pages/dashboard')),
-            children: [
-              {
-                id: 'dashboard',
-                path: '',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/dashboard/general-informations'),
-                ),
-                handle: {
-                  tracking: {
-                    pageName: 'dashboard',
-                    pageType: PageType.dashboard,
-                  },
-                },
-              },
-              {
-                id: 'tab2',
-                path: 'Tab2',
-                ...lazyRouteConfig(() => import('@/pages/dashboard/tab2')),
-                handle: {
-                  tracking: {
-                    pageName: 'tab2',
-                    pageType: PageType.dashboard,
-                  },
-                },
-              },
-            ],
-          },
-        ],
       },
       {
         id: 'onboarding',
