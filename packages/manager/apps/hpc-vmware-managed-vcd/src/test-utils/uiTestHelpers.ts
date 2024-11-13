@@ -12,10 +12,11 @@ import { expect } from 'vitest';
 export const DEFAULT_TIMEOUT = 30_000;
 export const DEFAULT_LISTING_ERROR = 'An error occured while fetching data';
 
+// General helpers
 /**
  * @description Standard check: wait and expect some text to be visible on the screen
  * @param text expected to be visible
- * @param timeout time to wait for
+ * @param timeout time to wait for (default to 30sec)
  * @returns
  */
 export const checkTextVisibility = (
@@ -25,6 +26,17 @@ export const checkTextVisibility = (
   waitFor(() => expect(screen.getByText(text)).toBeVisible(), {
     timeout,
   });
+
+export const waitForEnabledElement = async (
+  elementLabel: string,
+): Promise<HTMLElement> => {
+  let button;
+  await waitFor(() => {
+    button = screen.getByText(elementLabel);
+    return expect(button).toBeEnabled();
+  });
+  return button;
+};
 
 // Form helpers
 export const mockEditInputValue = async (value: string) => {

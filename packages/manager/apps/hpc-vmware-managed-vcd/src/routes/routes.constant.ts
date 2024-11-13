@@ -8,6 +8,7 @@ export const subRoutes = {
   datacentres: 'datacentres',
   datacentreStorage: 'storage',
   datacentreCompute: 'compute',
+  resetPassword: 'reset-password',
 };
 
 export const urls = {
@@ -15,6 +16,7 @@ export const urls = {
   listing: '/',
   onboarding: `/${subRoutes.onboarding}`,
   dashboard: `/${subRoutes.dashboard}`,
+  resetPassword: `/${subRoutes.dashboard}/${subRoutes.resetPassword}`,
   editName: `/${subRoutes.dashboard}/${subRoutes.editName}`,
   editDescription: `/${subRoutes.dashboard}/${subRoutes.editDescription}`,
   datacentres: `/${subRoutes.dashboard}/${subRoutes.datacentres}`,
