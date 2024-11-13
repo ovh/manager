@@ -8,11 +8,26 @@
 
     <div data-ng-if="!$ctrl.loading">
         <div class="row">
-            <strong
-                class="mb-2"
-                data-translate="domain_tab_CONTACT_header"
-            ></strong>
-            <p data-translate="domain_tab_CONTACT_description"></p>
+            <div class="col-md-10">
+                <strong
+                    class="mb-2"
+                    data-translate="domain_tab_CONTACT_header"
+                ></strong>
+                <p data-translate="domain_tab_CONTACT_description"></p>
+            </div>
+            <div class="col-md-2">
+                <oui-guide-menu
+                    data-text="{{ ::'domain_tab_CONTACT_guide_text' | translate }}"
+                >
+                    <oui-guide-menu-item
+                        data-href="{{ ::$ctrl.GUIDE_URL }}"
+                        data-external="true"
+                        ><span
+                            data-translate="domain_tab_CONTACT_guide_manage_contact_and_services"
+                        ></span>
+                    </oui-guide-menu-item>
+                </oui-guide-menu>
+            </div>
         </div>
 
         <div class="row d-flex align-items-stretch">

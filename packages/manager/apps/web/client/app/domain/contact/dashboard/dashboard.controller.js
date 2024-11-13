@@ -2,6 +2,7 @@ import {
   INFO_PROPERTIES,
   INFO_PROPERTIES_ARRAY,
   LEGAL_FORM_INDIVIDUAL,
+  GUIDE_URLS,
 } from './dashboard.constants';
 
 export default class DomainContactDashboardCtrl {
@@ -17,6 +18,8 @@ export default class DomainContactDashboardCtrl {
     this.INFO_PROPERTIES = INFO_PROPERTIES;
     this.LEGAL_FORM_INDIVIDUAL = LEGAL_FORM_INDIVIDUAL;
     this.infoProperties = INFO_PROPERTIES_ARRAY;
+    this.ovhSubsidiary = this.user.ovhSubsidiary;
+    this.GUIDE_URL = GUIDE_URLS[this.ovhSubsidiary] || GUIDE_URLS.DEFAULT;
   }
 
   $onInit() {
