@@ -1,4 +1,3 @@
-import camelCase from 'lodash/camelCase';
 import compact from 'lodash/compact';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
@@ -809,6 +808,7 @@ export default class Server {
         },
         params: {
           type: 'ovh',
+          mode: 'new',
         },
       },
     );
@@ -851,103 +851,21 @@ export default class Server {
     );
   }
 
-  postAddPartition(gabaritName, gabaritSchemePartitionName, partition) {
-    const data = angular.copy(partition);
-    data.type = camelCase(data.typePartition);
-    delete data.typePartition;
-
-    data.filesystem = camelCase(data.fileSystem);
-    delete data.fileSystem;
-
-    data.size = camelCase(data.partitionSize);
-    delete data.partitionSize;
-
-    data.raid = data.raid ? parseInt(data.raid.replace(/_/g, ''), 10) : null;
-
-    delete data.oldMountPoint;
-
-    data.step = camelCase(data.order);
-    delete data.order;
-
-    data.mountpoint = data.mountPoint;
-    delete data.mountPoint;
-
-    return this.OvhHttp.post(
-      '/me/installationTemplate/{templateName}/partitionScheme/{schemeName}/partition',
-      {
-        rootPath: 'apiv6',
-        urlParams: {
-          templateName: gabaritName,
-          schemeName: gabaritSchemePartitionName,
-        },
-        data,
-      },
-    );
-  }
-
-  putSetPartition(gabaritName, gabaritSchemePartitionName, partition) {
-    const newPartition = angular.copy(partition);
-    newPartition.filesystem = camelCase(newPartition.fileSystem);
-    newPartition.mountpoint = newPartition.mountPoint;
-    newPartition.size = {
-      value: newPartition.partitionSize,
-      unit: 'MB',
-    };
-    newPartition.type = camelCase(newPartition.typePartition);
-    newPartition.raid = newPartition.raid
-      ? parseInt(newPartition.raid.replace(/_/g, ''), 10)
-      : null;
-    delete newPartition.fileSystem;
-    delete newPartition.mountPoint;
-    delete newPartition.typePartition;
-    delete newPartition.partitionSize;
-    delete newPartition.oldMountPoint;
-
-    return this.OvhHttp.put(
-      '/me/installationTemplate/{gabaritName}/partitionScheme/{gabaritSchemePartitionName}/partition/{mountpoint}',
-      {
-        rootPath: 'apiv6',
-        urlParams: {
-          gabaritName,
-          gabaritSchemePartitionName,
-          mountpoint: partition.oldMountPoint,
-        },
-        data: newPartition,
-      },
-    );
-  }
-
-  deleteSetPartition(gabaritName, gabaritSchemePartitionName, mountpoint) {
-    return this.OvhHttp.delete(
-      '/me/installationTemplate/{templateName}/partitionScheme/{schemeName}/partition/{mountpoint}',
-      {
-        rootPath: 'apiv6',
-        urlParams: {
-          templateName: gabaritName,
-          schemeName: gabaritSchemePartitionName,
-          mountpoint,
-        },
-      },
-    );
-  }
-
   startInstallation(
     serviceName,
-    templateName,
-    partitionSchemeName,
-    details,
-    userMetadata = {},
+    operatingSystem,
+    storage = {},
+    customizations = {},
   ) {
-    return this.OvhHttp.post('/dedicated/server/{serviceName}/install/start', {
+    return this.OvhHttp.post('/dedicated/server/{serviceName}/reinstall', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,
       },
       data: {
-        userMetadata,
-        details,
-        partitionSchemeName,
-        templateName,
+        operatingSystem,
+        storage,
+        customizations,
       },
     });
   }
@@ -1365,49 +1283,6 @@ export default class Server {
           `apiv6/dedicated/server/${selectedServer.name}/install/hardwareRaidProfile`,
         )
         .then((results) => results.data),
-    );
-  }
-
-  postHardwareRaid(productId, templateName, schemeName, disks, raid) {
-    return this.post(
-      productId,
-      '{templateName}/partitionScheme/{schemeName}/hardwareRaid',
-      {
-        urlParams: {
-          templateName,
-          schemeName,
-        },
-        data: {
-          disks,
-          mode: raid,
-          name: 'managerHardRaid',
-          step: 1,
-        },
-        proxypass: true,
-        urlPath: this.path.installationMe,
-      },
-    );
-  }
-
-  putHardwareRaid(productId, templateName, schemeName, disks, raid) {
-    return this.put(
-      productId,
-      '{templateName}/partitionScheme/{schemeName}/hardwareRaid/{name}',
-      {
-        urlParams: {
-          templateName,
-          schemeName,
-          name: 'managerHardRaid',
-        },
-        data: {
-          disks,
-          mode: raid,
-          name: 'managerHardRaid',
-          step: 1,
-        },
-        proxypass: true,
-        urlPath: this.path.installationMe,
-      },
     );
   }
 

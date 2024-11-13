@@ -4,14 +4,11 @@ import forEachRight from 'lodash/forEachRight';
 import range from 'lodash/range';
 import set from 'lodash/set';
 import some from 'lodash/some';
-import Inputs from '../../inputs/inputs.class';
 import { INPUTS_RULES } from '../../inputs/constants';
 import {
   MOUNT_POINTS,
   MAX_MOUNT_POINTS,
-  TEMPLATE_OS_HARDWARE_RAID_ENUM,
   TEMPLATE_OS_SOFTWARE_RAID_LIST,
-  PARTITION_TYPES,
 } from './server-installation-ovh.constants';
 
 export default class ServerInstallationOvhCtrl {
@@ -74,9 +71,8 @@ export default class ServerInstallationOvhCtrl {
 
       defaultOsCategory: 'BASIC',
 
-      raidList: null, // Map[nbDisk, available raid]
+      raidList: TEMPLATE_OS_SOFTWARE_RAID_LIST,
       fileSystemList: null,
-      partitionTypeList: null,
 
       forbiddenMountPoint: [
         '/etc',
@@ -90,22 +86,25 @@ export default class ServerInstallationOvhCtrl {
         '/sys',
       ],
 
-      warningRaid0: '_0',
-      warningRaid1: '_1',
-      warningLV: 'LV',
-      warningLogical: 'LOGICAL',
-      warningPrimary: 'PRIMARY',
-      warningNone: 'NONE',
-      warningSwap: 'SWAP',
-      warningReiserfs: 'REISERFS',
-      warningWindows: 'WINDOWS',
+      warningRaid0: 0,
+      warningRaid1: 1,
+      warningRaid5: 5,
+      warningRaid6: 6,
+      warningRaid7: 7,
+      warningRaid10: 10,
+      warningRaid50: 50,
+      warningRaid60: 60,
+      warningNone: 'none',
+      warningSwap: 'swap',
+      warningReiserfs: 'reiserfs',
+      warningWindows: 'windows',
       warningBoot: '/boot',
       warningRoot: '/',
       warningCwin: 'c:',
-      warningNTFS: 'NTFS',
-      warningEXT4: 'EXT_4',
-      warningLINUX: 'LINUX',
-      warningZFS: 'ZFS',
+      warningNTFS: 'ntfs',
+      warningEXT4: 'ext4',
+      warningLinux: 'linux',
+      warningZFS: 'zfs',
 
       swapLabel: 'swap',
 
@@ -150,6 +149,8 @@ export default class ServerInstallationOvhCtrl {
       // STEP2 SELECT
       selectPartitionScheme: null, // select hight priority partition scheme
       partitionSchemeModels: null, // detail of partitionScheme selected
+      storage: [],
+      customizations: {},
       nbDiskUse: null, // if nbPhysicalDisk > 2 user can select nb disk to use
       // dirtyPartition: true if variable partition size
       // has been customized(change to false in loadPartition())
@@ -188,7 +189,6 @@ export default class ServerInstallationOvhCtrl {
 
     this.$scope.newPartition = {
       order: 0,
-      typePartition: null,
       fileSystem: null,
       mountPoint: null,
       volumeName: null,
@@ -224,15 +224,11 @@ export default class ServerInstallationOvhCtrl {
       orderFirstWin: false,
       raid0: false,
       raidLv: false,
-      orderType: false,
-      typePrimary: false,
 
       mountPointEmpty: false,
       mountPoint: false,
       mountPoint2: false,
       mountPointUse: false,
-
-      volumeNameEmpty: false,
 
       partitionSizeToAdd: false,
       partitionSizeOver: false,
@@ -409,7 +405,7 @@ export default class ServerInstallationOvhCtrl {
           [this.$scope.installation.selectDesktopType] =
             this.$scope.installation.desktopType || [];
         }
-        this.$scope.installation.selectFamily = this.$scope.constants.warningLINUX;
+        this.$scope.installation.selectFamily = this.$scope.constants.warningLinux;
       })
       .catch((data) => {
         this.goBack();
@@ -565,29 +561,29 @@ export default class ServerInstallationOvhCtrl {
         realRemainingSize = remainingSize;
       } else if (raid) {
         switch (raid) {
-          case '_0':
+          case this.$scope.constants.warningRaid0:
             realRemainingSize = remainingSize;
             break;
-          case '_1':
+          case this.$scope.constants.warningRaid1:
             realRemainingSize =
               remainingSize / this.$scope.installation.nbDiskUse;
             break;
-          case '_5':
+          case this.$scope.constants.warningRaid5:
             realRemainingSize =
               remainingSize -
               remainingSize / this.$scope.installation.nbDiskUse;
             break;
-          case '_6':
+          case this.$scope.constants.warningRaid6:
             realRemainingSize =
               remainingSize -
               (remainingSize / this.$scope.installation.nbDiskUse) * 2;
             break;
-          case '_7':
+          case this.$scope.constants.warningRaid7:
             realRemainingSize =
               remainingSize -
               (remainingSize / this.$scope.installation.nbDiskUse) * 3;
             break;
-          case '_10':
+          case this.$scope.constants.warningRaid10:
             realRemainingSize =
               remainingSize / (this.$scope.installation.nbDiskUse / 2);
             break;
@@ -699,9 +695,7 @@ export default class ServerInstallationOvhCtrl {
 
     this.$scope.installation.partitionSchemesList = this.$scope.installation.selectDistribution.schemeNames;
     this.$scope.informations.gabaritName = this.$scope.installation.selectDistribution.id;
-    this.$scope.constants.raidList = TEMPLATE_OS_SOFTWARE_RAID_LIST;
     this.$scope.constants.fileSystemList = this.$scope.installation.selectDistribution.filesystems;
-    this.$scope.constants.partitionTypeList = PARTITION_TYPES;
     this.$scope.informations.softRaidOnlyMirroring = this.$scope.installation.selectDistribution.softRaidOnlyMirroring;
 
     if (this.$scope.installation.partitionSchemesList.length > 0) {
@@ -843,23 +837,6 @@ export default class ServerInstallationOvhCtrl {
     this.getRemainingSize();
   }
 
-  validationTypePrimary(forNewPartition) {
-    let nbPrimary = 0;
-    let nbOther = 0;
-
-    this.$scope.installation.partitionSchemeModels.forEach((partition2) => {
-      if (partition2.typePartition === this.$scope.constants.warningPrimary) {
-        nbPrimary += 1;
-      } else {
-        nbOther += 1;
-      }
-    });
-    if (forNewPartition) {
-      return nbPrimary === 4;
-    }
-    return (nbPrimary === 4 && nbOther > 0) || nbPrimary > 4;
-  }
-
   // ------VALIDATION TOOLS------
   // Create table of boolean with key = the propertie and value = true
   // because this propertie is already use
@@ -934,19 +911,6 @@ export default class ServerInstallationOvhCtrl {
     );
 
     if (
-      this.$scope.constants.partitionTypeList.includes(
-        this.$scope.constants.warningLogical,
-      )
-    ) {
-      this.$scope.newPartition.typePartition = angular.copy(
-        this.$scope.constants.warningLogical,
-      );
-    } else {
-      this.$scope.newPartition.typePartition = angular.copy(
-        this.$scope.constants.partitionTypeList[0],
-      );
-    }
-    if (
       this.$scope.installation.selectDistribution.family ===
       this.$scope.constants.warningWindows
     ) {
@@ -977,9 +941,7 @@ export default class ServerInstallationOvhCtrl {
       );
     }
 
-    if (this.validationTypePrimary(true)) {
-      this.$scope.errorInst.typePrimary = true;
-    } else if (
+    if (
       this.$scope.informations.softRaidOnlyMirroring &&
       this.$scope.newPartition.mountPoint ===
         this.$scope.constants.warningCwin &&
@@ -1002,20 +964,12 @@ export default class ServerInstallationOvhCtrl {
 
   checkall(partition) {
     this.validationMountPoint(partition);
-
-    // this.validationOrder // load by validationMountPoint
-    // this.validationType //load by validationOrder
-    // this.validationRaid(partition); //load by /this.$scope.validationType
-    this.validationVolumeName(partition);
     this.validationFileSystem(partition);
-
-    // this.validationSize //load by validationRaid
   }
 
   isValidPartition() {
     return (
       !this.hasErrorOrder() &&
-      !this.hasErrorType() &&
       !this.hasErrorMountPoint() &&
       !this.hasErrorVolumeName() &&
       !this.hasErrorRaid() &&
@@ -1034,10 +988,8 @@ export default class ServerInstallationOvhCtrl {
       } else {
         trueSize = this.$scope.newPartition.partitionSize;
         if (
-          this.$scope.newPartition.typePartition !==
-            this.$scope.constants.warningLV &&
           this.$scope.newPartition.fileSystem !==
-            this.$scope.constants.warningZFS
+          this.$scope.constants.warningZFS
         ) {
           this.$scope.newPartition.volumeName = null;
         }
@@ -1049,57 +1001,29 @@ export default class ServerInstallationOvhCtrl {
           this.$scope.newPartition.raid = null;
         }
 
-        this.Server.postAddPartition(
-          this.$scope.informations.gabaritName,
-          this.$scope.installation.selectPartitionScheme,
-          {
-            raid: this.$scope.newPartition.raid,
-            fileSystem: this.$scope.newPartition.fileSystem,
-            typePartition: this.$scope.newPartition.typePartition,
-            volumeName: this.$scope.newPartition.volumeName,
-            order: this.$scope.newPartition.order,
-            mountPoint: this.$scope.newPartition.mountPoint,
-            oldMountPoint: this.$scope.newPartition.mountPoint,
-            partitionSize: trueSize,
-          },
-        ).then(
-          () => {
-            this.$scope.warning.raid0 = false;
-            this.$scope.newPartition.partitionSize = trueSize;
-            this.$scope.newPartition.orderTable = angular.copy(
-              this.$scope.newPartition.order,
-            );
-            this.$scope.installation.partitionSchemeModels.push(
-              angular.copy(this.$scope.newPartition),
-            );
-
-            this.$scope.newPartition.order = null;
-            this.$scope.newPartition.typePartition = null;
-            this.$scope.newPartition.fileSystem = null;
-            this.$scope.newPartition.mountPoint = null;
-            this.$scope.newPartition.volumeName = null;
-            this.$scope.newPartition.raid = null;
-            this.$scope.newPartition.partitionSize = null;
-
-            this.$scope.newPartition.display = false;
-
-            this.$scope.buttonControl.displayAddConfirmation = false;
-            this.$scope.buttonControl.addInProgress = false;
-            this.clearError();
-            this.refreshBar();
-            this.validationNbDiskUse(this.$scope.installation.nbDiskUse);
-          },
-          (data) => {
-            this.$scope.buttonControl.addInProgress = false;
-            this.$scope.errorInst.ws = this.$translate.instant(
-              'server_configuration_installation_ovh_step2_error_add',
-              {
-                t0: this.$scope.newPartition.mountPoint,
-                t1: data.message,
-              },
-            );
-          },
+        this.$scope.warning.raid0 = false;
+        this.$scope.newPartition.partitionSize = trueSize;
+        this.$scope.newPartition.orderTable = angular.copy(
+          this.$scope.newPartition.order,
         );
+        this.$scope.installation.partitionSchemeModels.push(
+          angular.copy(this.$scope.newPartition),
+        );
+
+        this.$scope.newPartition.order = null;
+        this.$scope.newPartition.fileSystem = null;
+        this.$scope.newPartition.mountPoint = null;
+        this.$scope.newPartition.volumeName = null;
+        this.$scope.newPartition.raid = null;
+        this.$scope.newPartition.partitionSize = null;
+
+        this.$scope.newPartition.display = false;
+
+        this.$scope.buttonControl.displayAddConfirmation = false;
+        this.$scope.buttonControl.addInProgress = false;
+        this.clearError();
+        this.refreshBar();
+        this.validationNbDiskUse(this.$scope.installation.nbDiskUse);
       }
     } else {
       this.$scope.buttonControl.addInProgress = false;
@@ -1148,54 +1072,28 @@ export default class ServerInstallationOvhCtrl {
       } else {
         trueSize = partitionToSet.partitionSize;
         if (
-          partitionToSet.typePartition !== this.$scope.constants.warningLV &&
-          partitionToSet.fileSystem !== this.$scope.constants.warningZFS
+          (!this.$scope.installation.selectDistribution.lvmReady &&
+            partitionToSet.fileSystem !== this.$scope.constants.warningZFS) ||
+          partitionToSet.fileSystem === this.$scope.constants.warningSwap
         ) {
           partitionToSet.volumeName = null;
         }
 
-        this.Server.putSetPartition(
-          this.$scope.informations.gabaritName,
-          this.$scope.installation.selectPartitionScheme,
-          {
-            raid: partitionToSet.raid,
-            fileSystem: partitionToSet.fileSystem,
-            typePartition: partitionToSet.typePartition,
-            volumeName: partitionToSet.volumeName,
-            order: partitionToSet.order,
-            mountPoint: partitionToSet.mountPoint,
-            oldMountPoint: this.$scope.setPartition.save.mountPoint,
-            partitionSize: trueSize,
-          },
-        ).then(
-          () => {
-            if (partitionToSet.isRemainingSizePartition) {
-              this.$scope.installation.dirtyPartition = true;
-            }
-            this.$scope.warning.raid0 = false;
+        if (partitionToSet.isRemainingSizePartition) {
+          this.$scope.installation.dirtyPartition = true;
+        }
+        this.$scope.warning.raid0 = false;
 
-            partitionToSet.partitionSize = trueSize;
-            partitionToSet.orderTable = angular.copy(partitionToSet.order);
+        partitionToSet.partitionSize = trueSize;
+        partitionToSet.orderTable = angular.copy(partitionToSet.order);
 
-            this.$scope.setPartition.save = null;
-            this.$scope.setPartition.indexSet = -1;
+        this.$scope.setPartition.save = null;
+        this.$scope.setPartition.indexSet = -1;
 
-            this.$scope.buttonControl.displayAddConfirmation = false;
-            this.$scope.buttonControl.setInProgress = false;
-            this.clearError();
-            this.validationNbDiskUse(this.$scope.installation.nbDiskUse);
-          },
-          (data) => {
-            this.$scope.buttonControl.setInProgress = false;
-            this.$scope.errorInst.ws = this.$translate.instant(
-              'server_configuration_installation_ovh_step2_error_set',
-              {
-                t0: partitionToSet.mountPoint,
-                t1: data.message,
-              },
-            );
-          },
-        );
+        this.$scope.buttonControl.displayAddConfirmation = false;
+        this.$scope.buttonControl.setInProgress = false;
+        this.clearError();
+        this.validationNbDiskUse(this.$scope.installation.nbDiskUse);
       }
     } else {
       this.$scope.buttonControl.setInProgress = false;
@@ -1222,42 +1120,22 @@ export default class ServerInstallationOvhCtrl {
 
   deleteValidPartition() {
     this.$scope.buttonControl.deleteInProgress = true;
-    this.Server.deleteSetPartition(
-      this.$scope.informations.gabaritName,
-      this.$scope.installation.selectPartitionScheme,
+    if (
       this.$scope.installation.partitionSchemeModels[
         this.$scope.setPartition.delModel
-      ].mountPoint,
-    ).then(
-      () => {
-        if (
-          this.$scope.installation.partitionSchemeModels[
-            this.$scope.setPartition.delModel
-          ].isRemainingSizePartition
-        ) {
-          this.$scope.installation.dirtyPartition = true;
-        }
-        this.$scope.installation.partitionSchemeModels.splice(
-          this.$scope.setPartition.delModel,
-          1,
-        );
-        this.$scope.setPartition.delModel = null;
-        this.getRemainingSize();
-        this.$scope.buttonControl.deleteInProgress = false;
-        this.clearError();
-        this.validationNbDiskUse(this.$scope.installation.nbDiskUse);
-      },
-      (data) => {
-        this.$scope.buttonControl.deleteInProgress = false;
-        this.$scope.errorInst.ws = this.$translate.instant(
-          'server_configuration_installation_ovh_step2_error_delete',
-          {
-            t0: this.$scope.setPartition.delModel.mountPoint,
-            t1: data.message,
-          },
-        );
-      },
+      ].isRemainingSizePartition
+    ) {
+      this.$scope.installation.dirtyPartition = true;
+    }
+    this.$scope.installation.partitionSchemeModels.splice(
+      this.$scope.setPartition.delModel,
+      1,
     );
+    this.$scope.setPartition.delModel = null;
+    this.getRemainingSize();
+    this.$scope.buttonControl.deleteInProgress = false;
+    this.clearError();
+    this.validationNbDiskUse(this.$scope.installation.nbDiskUse);
   }
 
   deleteCancelPartition() {
@@ -1290,7 +1168,6 @@ export default class ServerInstallationOvhCtrl {
     return (
       this.$scope.errorInst.order ||
       this.$scope.errorInst.orderFirst ||
-      this.$scope.errorInst.orderType ||
       this.$scope.errorInst.orderFirstWin
     );
   }
@@ -1347,63 +1224,6 @@ export default class ServerInstallationOvhCtrl {
           firstPartition.mountPoint !== this.$scope.constants.warningCwin;
       }
     }
-    this.validationType(partition);
-  }
-
-  // ------TYPE VALIDATION------
-  validationVolumeNameByType(partition) {
-    this.$scope.errorInst.volumeNameEmpty =
-      partition.typePartition === this.$scope.constants.warningLV &&
-      partition.volumeName === '';
-  }
-
-  hasErrorType() {
-    return (
-      this.$scope.errorInst.orderType ||
-      this.$scope.errorInst.typePrimary ||
-      this.$scope.errorInst.mountPointPrimary
-    );
-  }
-
-  validationType(partition) {
-    if (
-      this.$scope.installation.selectDistribution.family ===
-        this.$scope.constants.warningWindows &&
-      partition.mountPoint === this.$scope.constants.warningCwin
-    ) {
-      this.$scope.errorInst.mountPointPrimary =
-        partition.typePartition !== this.$scope.constants.warningPrimary;
-    } else {
-      this.$scope.errorInst.mountPointPrimary = false;
-    }
-
-    this.$scope.errorInst.orderType = false;
-
-    // this.$scope.errorInst.orderLv = false;
-    if (
-      !this.$scope.errorInst.order &&
-      !this.$scope.errorInst.orderFirst &&
-      !this.$scope.errorInst.mountPointPrimary
-    ) {
-      this.$scope.installation.partitionSchemeModels.forEach((partition2) => {
-        // Primary first Test
-        if (
-          (partition2.order < partition.order &&
-            partition2.typePartition !== this.$scope.constants.warningPrimary &&
-            partition.typePartition === this.$scope.constants.warningPrimary) ||
-          (partition2.order > partition.order &&
-            partition2.typePartition === this.$scope.constants.warningPrimary &&
-            partition.typePartition !== this.$scope.constants.warningPrimary)
-        ) {
-          this.$scope.errorInst.orderType = true;
-        }
-      });
-    }
-
-    this.$scope.errorInst.typePrimary =
-      !this.$scope.errorInst.orderType && this.validationTypePrimary();
-    this.validationRaid(partition);
-    this.validationVolumeNameByType(partition);
   }
 
   // ------FILE SYSTEM VALIDATION------
@@ -1481,10 +1301,6 @@ export default class ServerInstallationOvhCtrl {
 
   hasErrorVolumeName() {
     return this.$scope.errorInst.volumeNameEmpty;
-  }
-
-  validationVolumeName(partition) {
-    this.validationVolumeNameByType(partition);
   }
 
   // ------Soft RAID VALIDATION------
@@ -1710,7 +1526,7 @@ export default class ServerInstallationOvhCtrl {
         this.$scope.informations.raidController
       ) {
         set(option, 'partition.realSize', option.partition.partitionSize);
-      } else if (option.partition.raid === '_7') {
+      } else if (option.partition.raid === this.$scope.constants.warningRaid7) {
         const { nbDiskUse: nbDisks } = this.$scope.installation;
         const nbParityDisks = 3;
         const nbDataDisks = nbDisks - nbParityDisks;
@@ -1722,10 +1538,10 @@ export default class ServerInstallationOvhCtrl {
         );
       } else if (option.partition.raid) {
         switch (option.partition.raid) {
-          case '_0':
+          case this.$scope.constants.warningRaid0:
             set(option, 'partition.realSize', option.partition.partitionSize);
             break;
-          case '_1':
+          case this.$scope.constants.warningRaid1:
             set(
               option,
               'partition.realSize',
@@ -1733,7 +1549,7 @@ export default class ServerInstallationOvhCtrl {
                 this.$scope.installation.nbDiskUse,
             );
             break;
-          case '_5':
+          case this.$scope.constants.warningRaid5:
             set(
               option,
               'partition.realSize',
@@ -1742,7 +1558,7 @@ export default class ServerInstallationOvhCtrl {
                   (this.$scope.installation.nbDiskUse - 1),
             );
             break;
-          case '_6':
+          case this.$scope.constants.warningRaid6:
             set(
               option,
               'partition.realSize',
@@ -1751,7 +1567,7 @@ export default class ServerInstallationOvhCtrl {
                 this.$scope.installation.nbDiskUse,
             );
             break;
-          case '_10':
+          case this.$scope.constants.warningRaid10:
             set(
               option,
               'partition.realSize',
@@ -1881,38 +1697,38 @@ export default class ServerInstallationOvhCtrl {
       }
       if (nbOfDisk >= 8) {
         this.$scope.informations.hardwareRaid.availableRaids.push(
-          TEMPLATE_OS_HARDWARE_RAID_ENUM.raid60,
+          this.$scope.constants.warningRaid60,
         );
       }
       if (nbOfDisk >= 7) {
         this.$scope.informations.hardwareRaid.availableRaids.push(
-          TEMPLATE_OS_HARDWARE_RAID_ENUM.raid7,
+          this.$scope.constants.warningRaid7,
         );
       }
       if (nbOfDisk >= 6) {
         this.$scope.informations.hardwareRaid.availableRaids.push(
-          TEMPLATE_OS_HARDWARE_RAID_ENUM.raid50,
+          this.$scope.constants.warningRaid50,
         );
       }
       if (nbOfDisk >= 4) {
         this.$scope.informations.hardwareRaid.availableRaids.push(
-          TEMPLATE_OS_HARDWARE_RAID_ENUM.raid6,
+          this.$scope.constants.warningRaid6,
         );
         this.$scope.informations.hardwareRaid.availableRaids.push(
-          TEMPLATE_OS_HARDWARE_RAID_ENUM.raid10,
+          this.$scope.constants.warningRaid10,
         );
       }
       if (nbOfDisk >= 3) {
         this.$scope.informations.hardwareRaid.availableRaids.push(
-          TEMPLATE_OS_HARDWARE_RAID_ENUM.raid5,
+          this.$scope.constants.warningRaid5,
         );
       }
       if (nbOfDisk >= 2) {
         this.$scope.informations.hardwareRaid.availableRaids.push(
-          TEMPLATE_OS_HARDWARE_RAID_ENUM.raid1,
+          this.$scope.constants.warningRaid1,
         );
         this.$scope.informations.hardwareRaid.availableRaids.push(
-          TEMPLATE_OS_HARDWARE_RAID_ENUM.raid0,
+          this.$scope.constants.warningRaid0,
         );
       }
     }
@@ -1928,31 +1744,31 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.installation.hardwareRaid.disks = null;
 
       switch (this.$scope.installation.hardwareRaid.raid) {
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid60:
+        case this.$scope.constants.warningRaid60:
           minDisks = 8;
           minDisksPerArray = 4;
           break;
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid50:
+        case this.$scope.constants.warningRaid50:
           minDisks = 6;
           minDisksPerArray = 3;
           break;
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid10:
+        case this.$scope.constants.warningRaid10:
           minDisksPerArray = 2;
           minDisks = 4;
           break;
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid7:
+        case this.$scope.constants.warningRaid7:
           minDisks = 7;
           break;
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid6:
+        case this.$scope.constants.warningRaid6:
           minDisks = 4;
           break;
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid5:
+        case this.$scope.constants.warningRaid5:
           minDisks = 3;
           break;
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid1:
+        case this.$scope.constants.warningRaid1:
           minDisks = 2;
           break;
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid0:
+        case this.$scope.constants.warningRaid0:
           minDisks = 2;
           break;
         default:
@@ -1978,17 +1794,17 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.installation.hardwareRaid.arrays = null;
 
       switch (this.$scope.installation.hardwareRaid.raid) {
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid60:
+        case this.$scope.constants.warningRaid60:
           maxNumberArray = this.$scope.installation.hardwareRaid.disks / 4;
           minNumberArray = 2;
           isMultipleArrays = true;
           break;
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid50:
+        case this.$scope.constants.warningRaid50:
           maxNumberArray = this.$scope.installation.hardwareRaid.disks / 3;
           minNumberArray = 2;
           isMultipleArrays = true;
           break;
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid10:
+        case this.$scope.constants.warningRaid10:
           maxNumberArray = this.$scope.installation.hardwareRaid.disks / 2;
           minNumberArray = 2;
           isMultipleArrays = true;
@@ -2030,31 +1846,31 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.installation.hardwareRaid.totalSpace =
         this.$scope.installation.hardwareRaid.disks * diskSize;
       switch (this.$scope.installation.hardwareRaid.raid) {
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid60:
+        case this.$scope.constants.warningRaid60:
           this.$scope.installation.hardwareRaid.availableSpace =
             (nbOfDisks - 2 * grappe) * diskSize;
           break;
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid50:
+        case this.$scope.constants.warningRaid50:
           this.$scope.installation.hardwareRaid.availableSpace =
             (nbOfDisks - grappe) * diskSize;
           break;
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid10:
+        case this.$scope.constants.warningRaid10:
           this.$scope.installation.hardwareRaid.availableSpace =
             grappe * diskSize;
           break;
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid7:
+        case this.$scope.constants.warningRaid7:
           this.$scope.installation.hardwareRaid.availableSpace =
             (nbOfDisks - 3) * diskSize;
           break;
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid6:
+        case this.$scope.constants.warningRaid6:
           this.$scope.installation.hardwareRaid.availableSpace =
             (nbOfDisks - 2) * diskSize;
           break;
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid5:
+        case this.$scope.constants.warningRaid5:
           this.$scope.installation.hardwareRaid.availableSpace =
             (nbOfDisks - 1) * diskSize;
           break;
-        case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid1:
+        case this.$scope.constants.warningRaid1:
           this.$scope.installation.hardwareRaid.availableSpace = diskSize;
           break;
         default:
@@ -2192,76 +2008,19 @@ export default class ServerInstallationOvhCtrl {
 
       // if change variable partition
       this.addRemainingSize();
-
-      if (this.$scope.installation.options.variablePartition) {
-        this.$scope.loader.loading = true;
-        this.Server.putSetPartition(
-          this.$scope.informations.gabaritName,
-          this.$scope.installation.selectPartitionScheme,
-          {
-            raid: this.$scope.installation.options.variablePartition.raid,
-            fileSystem: this.$scope.installation.options.variablePartition
-              .fileSystem,
-            typePartition: this.$scope.installation.options.variablePartition
-              .typePartition,
-            volumeName: this.$scope.installation.options.variablePartition
-              .volumeName,
-            order: this.$scope.installation.options.variablePartition.order,
-            mountPoint: this.$scope.installation.options.variablePartition
-              .mountPoint,
-            oldMountPoint: this.$scope.installation.options.variablePartition
-              .mountPoint,
-            partitionSize: size,
-          },
-        ).then(
-          () => {
-            if (!stop) {
-              this.install();
-            } else {
-              this.$scope.loader.loading = false;
-            }
-          },
-          (data) => {
-            this.$scope.loader.loading = false;
-            if (size === 0) {
-              this.$scope.errorInst.wsinstall = this.$translate.instant(
-                'server_configuration_installation_ovh_step3_remaining_error',
-                {
-                  t0: this.$scope.installation.options.variablePartition
-                    .mountPoint,
-                  t1: data.message,
-                },
-              );
-            } // else it's revert size
-          },
-        );
-      } else if (!stop) {
-        this.install();
-      }
-    } else if (!stop) {
+    }
+    if (!stop) {
       this.install();
     }
   }
 
   startInstall() {
     this.$scope.loader.loading = true;
-    const inputs = new Inputs(this.$scope.installation.inputs);
     this.Server.startInstallation(
       this.$stateParams.productId,
       this.$scope.informations.gabaritName,
-      this.$scope.installation.selectPartitionScheme,
-      {
-        softRaidDevices:
-          this.$scope.informations.nbDisk > 2 &&
-          this.$scope.installation.nbDiskUse > 1
-            ? this.$scope.installation.nbDiskUse
-            : null,
-        noRaid:
-          this.$scope.installation.nbDiskUse === 1 &&
-          !this.$scope.informations.raidController,
-        diskGroupId: this.$scope.installation.diskGroup.diskGroupId || null,
-      },
-      inputs.answersHash2userMetadata(this.$scope.installation.input),
+      this.$scope.installation.storage,
+      this.$scope.installation.customizations,
     ).then(
       (task) => {
         set(task, 'id', task.taskId);
@@ -2284,57 +2043,115 @@ export default class ServerInstallationOvhCtrl {
     );
   }
 
-  setHardwareRaid(
-    schemeNameFilterList = [this.$scope.installation.selectPartitionScheme],
-  ) {
-    const disks = this.prepareDiskList();
-
-    schemeNameFilterList.forEach((schemeNameFilter) => {
-      this.Server.postHardwareRaid(
-        this.$stateParams.productId,
-        this.$scope.informations.gabaritName,
-        schemeNameFilter,
-        disks,
-        this.$scope.installation.hardwareRaid.raid,
-      )
-        .catch((error) => {
-          if (error.status === 409) {
-            return this.Server.putHardwareRaid(
-              this.$stateParams.productId,
-              this.$scope.informations.gabaritName,
-              schemeNameFilter,
-              disks,
-              this.$scope.installation.hardwareRaid.raid,
-            );
-          }
-          return this.$q.reject(error);
-        })
-        .then(() => {
-          this.startInstall();
-        })
-        .catch(() => {
-          this.$scope.loader.loading = false;
-          this.saveRemainingSize(this.$scope.installation.saveSize, true);
-          this.$scope.errorInst.wsinstall = this.$translate.instant(
-            'server_configuration_installation_error_hardwareRaid',
-          );
+  getCustomizations() {
+    const customizations = {};
+    Object.values(this.$scope.installation.inputs).forEach((input) => {
+      if (
+        input.type !== 'keyValue' &&
+        this.$scope.installation.input[input.name]
+      ) {
+        customizations[input.name.toString()] = this.$scope.installation.input[
+          input.name
+        ].toString();
+      } else if (
+        input.type === 'keyValue' &&
+        this.$scope.installation.input[input.name].length > 0
+      ) {
+        customizations[input.name.toString()] = {};
+        this.$scope.installation.input[input.name].forEach((keyValueItem) => {
+          customizations[input.name.toString()][
+            keyValueItem.key.toString()
+          ] = keyValueItem.value.toString();
         });
+      }
     });
+    this.$scope.installation.customizations = customizations;
+  }
+
+  getStoragePartitioningLayout() {
+    this.$scope.installation.partitionSchemeModels.sort(
+      (a, b) => a.order - b.order,
+    );
+    const layout = [];
+    angular.forEach(
+      this.$scope.installation.partitionSchemeModels,
+      (partition) => {
+        const newPartition = {
+          fileSystem: partition.fileSystem,
+          mountPoint: partition.mountPoint,
+          size: partition.partitionSize,
+          raidLevel: partition.raid,
+          extras: {},
+        };
+        if (
+          partition.volumeName &&
+          this.$scope.installation.selectDistribution.lvmReady &&
+          partition.fileSystem !== this.$scope.constants.warningZFS &&
+          partition.fileSystem !== this.$scope.constants.warningSwap
+        ) {
+          newPartition.extras = {
+            lv: {
+              name: partition.volumeName,
+            },
+          };
+        }
+        if (
+          partition.volumeName &&
+          partition.fileSystem === this.$scope.constants.warningZFS
+        ) {
+          newPartition.extras = {
+            zp: {
+              name: partition.volumeName,
+            },
+          };
+        }
+        layout.push(newPartition);
+      },
+    );
+    return layout;
+  }
+
+  setStorage() {
+    const storage = {
+      diskGroupId: this.$scope.installation.diskGroup.diskGroupId || null,
+      hardwareRaid: [],
+      partitioning: {
+        disks:
+          this.$scope.informations.nbDisk > 2 &&
+          this.$scope.installation.nbDiskUse > 1
+            ? this.$scope.installation.nbDiskUse
+            : 0,
+      },
+    };
+    if (this.$scope.installation.raidSetup) {
+      const disks = this.prepareDiskList();
+      storage.hardwareRaid.push({
+        arrays: this.$scope.installation.hardwareRaid.arrays,
+        disks: disks.length,
+        raidLevel: this.$scope.installation.hardwareRaid.raid,
+      });
+    }
+    if (this.$scope.installation.customInstall) {
+      storage.partitioning.layout = this.getStoragePartitioningLayout();
+    } else {
+      storage.partitioning.schemeName = this.$scope.installation.selectPartitionScheme;
+    }
+    this.$scope.installation.storage.push(storage);
   }
 
   install() {
     this.trackClick(
       `dedicated::dedicated::${this.serverType}::system-install::public-catalog::install`,
     );
-    if (this.$scope.installation.hardwareRaid.raid) {
-      this.setHardwareRaid();
-    }
+    this.getCustomizations();
+    this.setStorage();
     this.startInstall();
   }
 
   hasLicencedOs() {
     return this.$scope.installation.distributionList?.find(
-      (distribution) => distribution.family === 'WINDOWS',
+      (distribution) =>
+        distribution.family === this.$scope.constants.warningWindows,
     );
   }
 
