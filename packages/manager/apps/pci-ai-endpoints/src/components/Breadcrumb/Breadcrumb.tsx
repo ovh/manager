@@ -20,13 +20,12 @@ function Breadcrumb({ customRootLabel }: BreadcrumbProps): JSX.Element {
   const { projectId } = useParams();
   const { data: project } = useProject();
 
-  if (project) {
-    const breadcrumbPci = usePciBreadcrumb({
-      projectId,
-      appName: 'pci-ai-endpoints',
-    });
-    return <OsdsBreadcrumb items={breadcrumbPci} />;
-  }
+  const breadcrumbPci = usePciBreadcrumb({
+    projectId,
+    appName: 'pci-ai-endpoints',
+  });
+
+  return <OsdsBreadcrumb items={breadcrumbPci} />;
 }
 
 export default Breadcrumb;

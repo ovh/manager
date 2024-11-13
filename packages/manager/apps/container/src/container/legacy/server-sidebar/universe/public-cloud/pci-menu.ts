@@ -387,8 +387,7 @@ export function getPciProjectMenu(
           id: 'endpoints',
           title: 'AI Endpoints',
           badge: 'alpha',
-          href: 'https://endpoints.ai.cloud.ovh.net/',
-          external: true,
+          href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/endpoints`),
         },
       ],
     });
