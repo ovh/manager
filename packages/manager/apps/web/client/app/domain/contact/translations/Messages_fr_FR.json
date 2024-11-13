@@ -1,0 +1,16 @@
+{
+  "domain_tab_CONTACT_title": "Gérer les contacts et titulaires",
+  "domain_tab_CONTACT_modify": "Modifier",
+  "domain_tab_CONTACT_owner": "Titulaire",
+  "domain_tab_CONTACT_admin": "Administrateur",
+  "domain_tab_CONTACT_technical": "Technique",
+  "domain_tab_CONTACT_billing": "Facturation",
+  "domain_tab_CONTACT_header": "Chaque nom de domaine est lié à 4 types de contacts. Chacun est associé à un identifiant client et dispose d'autorisations spécifiques.",
+  "domain_tab_CONTACT_description": "Seuls les rôles \"Titulaire\" et \"Administrateur\" peuvent modifier ici les contacts associés au nom de domaine concerné. Toute mise à jour est immédiate.",
+  "domain_tab_CONTACT_description_owner": "Entité ou personne titulaire du domaine et responsable de son utilisation. Il peut devenir administrateur par le biais d’une procédure.",
+  "domain_tab_CONTACT_description_admin": "Il gère les aspects juridiques et administratifs d'un domaine. Il possède des droits de modification sur l'ensemble des contacts. Il peut gérer les aspects contractuels liés au domaine comme le renouvellement ou la résiliation.",
+  "domain_tab_CONTACT_description_technical": "Il gère les aspects techniques d'un service. Il est responsable de la définition des serveurs DNS autoritaires.",
+  "domain_tab_CONTACT_description_billing": "Il gère uniquement la facturation d'un service dont ses prélèvements.",
+  "domain_tab_CONTACT_description_error_message": "Une erreur est apparue",
+  "domain_tab_CONTACT_view_more": "Voir plus"
+}
