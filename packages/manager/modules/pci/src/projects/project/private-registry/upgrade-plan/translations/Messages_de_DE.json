@@ -1,6 +1,0 @@
-{
-  "private_registry_upgrade_plan": "Angebot ändern",
-  "private_registry_upgrade_plan_breadcrumb": "Angebot ändern",
-  "private_registry_upgrade_plan_success": "Ihr Angebot wurde geändert",
-  "private_registry_upgrade_plan_error": "Bei der Änderung Ihres Angebots ist ein Fehler aufgetreten: {{ message }}"
-}
