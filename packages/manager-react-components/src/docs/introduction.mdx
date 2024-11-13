@@ -1,18 +1,35 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { Links, LinkType } from './../index.ts';
+import { version, dependencies } from './../../package.json';
 
 <Meta title="Manager React Components/Introduction" />
 
 # Welcome to the Manager Component Storybook!
 
-<Links
-  type={LinkType.external}
-  label="Follow on Github"
-  href="https://github.com/ovh/manager/tree/master/packages/manager-react-components"
-  target="_blank"
-/>
+<div>
+  <Links
+    type={LinkType.external}
+    label={`Library package version ${version}`}
+    href="https://github.com/ovh/manager/tree/master/packages/manager-react-components"
+    target="_blank"
+  />
+  <br />
+</div>
 
-<img
-  src="https://th.bing.com/th/id/R.173e08cbab5c318ff60d0e2445c8aafd?rik=WDLPHDEItBd4Bw&pid=ImgRaw&r=0"
-  alt="welcome"
-/>
+<div>
+  <Links
+    type={LinkType.external}
+    label={`@ovhcloud/ods-components and @ovhcloud/ods-themes version ${dependencies['@ovhcloud/ods-components']}`}
+    href="https://ovh.github.io/design-system/v18.3.0/?path=/docs/ovhcloud-design-system-welcome--docs"
+    target="_blank"
+  />
+  <br />
+</div>
+
+<div>
+  <br />
+  <img
+    src="https://th.bing.com/th/id/R.173e08cbab5c318ff60d0e2445c8aafd?rik=WDLPHDEItBd4Bw&pid=ImgRaw&r=0"
+    alt="welcome"
+  />
+</div>
