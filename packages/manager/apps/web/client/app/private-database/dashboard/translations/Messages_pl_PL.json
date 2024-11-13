@@ -504,5 +504,6 @@
   "privateDatabase_tabs_list_extensions_enable_error": "Wystąpił błąd podczas aktywowania rozszerzenia.",
   "privateDatabase_tabs_list_extensions_disable_success": "Rozszerzenie poprawnie dezaktywowane.",
   "privateDatabase_tabs_list_extensions_disable_error": "Wystąpił błąd podczas aktywowania rozszerzenia.",
-  "privateDatabase_order_sql_period_sub_title": "Jak długo chcesz korzystać z bazy?"
+  "privateDatabase_order_sql_period_sub_title": "Jak długo chcesz korzystać z bazy?",
+  "privateDatabase_beta_status": "Wersja beta"
 }
