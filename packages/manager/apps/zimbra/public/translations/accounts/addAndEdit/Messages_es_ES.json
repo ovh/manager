@@ -23,7 +23,7 @@
   "zimbra_account_add_input_password_label": "Contraseña",
   "zimbra_account_add_input_password_helper": "La contraseña debe contener al menos:",
   "zimbra_account_add_input_password_helper_rule_1": "10 caracteres",
-  "zimbra_account_add_input_password_helper_rule_2": "1 cifra o carácter especial (€, !, &amp;...)",
+  "zimbra_account_add_input_password_helper_rule_2": "1 número y 1 carácter especial ($,!, &amp;,...)",
   "zimbra_account_add_input_password_helper_rule_3": "1 letra mayúscula",
   "zimbra_account_add_input_mandatory": "Los campos marcados con un asterisco (*) son obligatorios.",
   "zimbra_account_add_button_save": "Guardar",
