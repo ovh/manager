@@ -37,14 +37,6 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     WS: '/update-path',
     US: '/update-path',
   },
-  /*
-  addNewGuideLink : {
-    DEFAULT: '/guide-link-3-path',
-    DE: '/guide-link-3-path',
-    ES: '/guide-link-3-path',
-    ...
-  }
-  */
 };
 
 const TUTO_LIST: { [guideName: string]: Partial<GuideLinks> } = {

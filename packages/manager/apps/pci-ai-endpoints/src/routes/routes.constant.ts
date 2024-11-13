@@ -1,4 +1,4 @@
 export const urls = {
-  root: '/onboarding',
+  root: '/',
   onboarding: 'onboarding',
 };
