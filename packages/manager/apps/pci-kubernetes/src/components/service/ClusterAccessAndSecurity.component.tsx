@@ -1,4 +1,3 @@
-import { ResponseAPIError } from '@ovh-ux/manager-pci-common';
 import {
   ActionMenu,
   Clipboard,
