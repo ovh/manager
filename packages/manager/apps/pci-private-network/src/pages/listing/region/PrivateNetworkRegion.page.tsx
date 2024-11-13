@@ -13,7 +13,7 @@ import {
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
 import { PrivateNetworkTabName } from '../ListingLayout.constant';
-import { usePrivateNetworkColumns } from '@/hooks/useColumns/useColumns';
+import { usePrivateNetworkRegionColumns } from '@/hooks/useColumns/useColumns';
 import { usePrivateNetworksRegion } from '@/data/hooks/networks/useNetworks';
 import DataGridHeaderActions, {
   ColumnFilter,
@@ -22,7 +22,7 @@ import { useActiveTab } from '@/hooks/useActiveTab/useActiveTab';
 
 const PrivateNetworkRegion: React.FC = () => {
   const { t } = useTranslation('listing');
-  const columns = usePrivateNetworkColumns();
+  const columns = usePrivateNetworkRegionColumns();
   const { projectId } = useParams();
   const navigate = useNavigate();
   const { filters, addFilter, removeFilter } = useColumnFilters();

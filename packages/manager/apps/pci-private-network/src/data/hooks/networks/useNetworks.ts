@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useQuery, useMutation } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueries } from '@tanstack/react-query';
 import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
 import { PaginationState } from '@ovh-ux/manager-react-components';
 import {
@@ -7,7 +7,12 @@ import {
   getPrivateNetworks,
   getSubnets,
 } from '@/data/api/networks';
-import { CreationStatus, TNetwork } from '@/types/network.type';
+import {
+  CreationStatus,
+  TGroupedSubnet,
+  TNetwork,
+  TSubnet,
+} from '@/types/network.type';
 import queryClient from '@/queryClient';
 import { groupedPrivateNetworkByVlanId, paginateResults } from '@/utils/utils';
 
@@ -38,6 +43,52 @@ export const usePrivateNetworksRegion = (
       ),
     [data, filters, pagination],
   );
+};
+
+export const usePrivateNetworkLZ = (projectId: string) => {
+  const queryKey = networkQueryKey(projectId);
+  const data = queryClient.getQueryData<TNetwork[]>(queryKey) || [];
+  const networks = data.filter((network) => !network.vlanId);
+
+  return useQueries({
+    queries: networks.map(({ id, region, name }) => ({
+      queryKey: networkQueryKey(projectId, ['subnets', region, id]),
+      queryFn: () => getSubnets(projectId, region, id),
+      select: (subnets: TSubnet[]): TGroupedSubnet[] =>
+        subnets.map(
+          ({
+            allocationPools,
+            id: subId,
+            cidr,
+            gatewayIp,
+            dhcpEnabled,
+            ipVersion,
+          }) => {
+            const allocatedIp = allocationPools
+              ?.map((i) => `${i.start} - ${i.end}`)
+              .join(' ,');
+
+            return {
+              id: subId,
+              name,
+              region,
+              cidr,
+              gatewayIp,
+              dhcpEnabled,
+              ipVersion,
+              allocatedIp,
+              search: `${name} ${region} ${ipVersion} ${cidr} ${region} ${allocatedIp}`,
+            };
+          },
+        ),
+    })),
+    combine: (results) => ({
+      data: results.map((result) => ({
+        ...result.data?.[0],
+      })),
+      isPending: results.some((result) => result.isPending),
+    }),
+  });
 };
 
 export const useCheckPrivateNetworkCreationStatus = () =>
