@@ -21,7 +21,7 @@
   "order_instance": "Crear una instancia",
   "order_rancher": "Iniciar Managed Rancher Services",
   "listing_resultats": "resultados",
-  "months": "{{count}} meses",
+  "months": "{{count}} mes",
   "months_plural": "{{count}} meses",
   "banner_renew_activate": "La renovación automática del Savings Plan {{planName}} se ha activado correctamente. Su Savings Plan se renovará el {{endDate}}",
   "banner_renew_deactivate": " La renovación automática del Savings Plan {{planName}} se ha desactivado correctamente. Su Savings Plan finalizará el {{endDate}}. La expiración de su Savings Plan no afectará a sus servicios activos.",

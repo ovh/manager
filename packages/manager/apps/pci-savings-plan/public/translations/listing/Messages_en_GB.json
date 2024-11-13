@@ -21,7 +21,7 @@
   "order_instance": "Create an instance",
   "order_rancher": "Get started with Managed Rancher Services",
   "listing_resultats": "results",
-  "months": "{{count}} months",
+  "months": "{{count}} month",
   "months_plural": "{{count}} months",
   "banner_renew_activate": "Auto-renewal has been enabled for the {{planName}} Savings Plan. Your Savings Plan will be renewed on {{endDate}}",
   "banner_renew_deactivate": " Auto-renewal has been disabled for the {{planName}} Savings Plan. Your Savings Plan ends on {{endDate}}. Your active services will not be impacted when your Savings Plan expires.",
