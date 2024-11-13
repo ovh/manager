@@ -1,18 +1,20 @@
-import {
-  MANAGED_VCD_MIGRATION_STATE,
-  MANAGED_VCD_MIGRATION_STATUS,
-} from './dedicatedCloud.constant';
+import { VCD_MIGRATION_STATUS } from './dedicatedCloud.constant';
 
 export default class VCDMigrationState {
-  constructor(value) {
-    this.state = MANAGED_VCD_MIGRATION_STATE[Math.min(value ?? 0, 2)];
+  constructor({ state, value }) {
+    this.state = state ?? VCD_MIGRATION_STATUS.UNKNOWN;
+    this.value = value;
   }
 
-  get isDone() {
-    return this.state === MANAGED_VCD_MIGRATION_STATUS.MIGRATED;
+  get isEnabling() {
+    return this.state === VCD_MIGRATION_STATUS.ENABLING;
   }
 
-  get isAllowed() {
-    return this.state !== MANAGED_VCD_MIGRATION_STATUS.NOT_ALLOWED;
+  get isEnabled() {
+    return this.state === VCD_MIGRATION_STATUS.ENABLED;
+  }
+
+  get vcdName() {
+    return this.value;
   }
 }

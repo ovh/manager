@@ -1,10 +1,11 @@
 export default class {
   /* @ngInject */
-  constructor($scope, $translate, DedicatedCloud, Alerter) {
+  constructor($scope, $translate, DedicatedCloud, Alerter, coreURLBuilder) {
     this.$scope = $scope;
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
     this.Alerter = Alerter;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -29,8 +30,14 @@ export default class {
         this.currentService.isMajorSolutionUpdateAvailable(),
       version: this.currentService.version,
     };
-    this.isLoading = false;
+    if (this.vcdMigrationState?.vcdName) {
+      this.vcdDashboardRedirectURL = this.coreURLBuilder.buildURL(
+        'hpc-vmware-managed-vcd',
+        `#/${this.vcdMigrationState.vcdName}`,
+      );
+    }
 
+    this.isLoading = false;
     return this.loadLocation();
   }
 
