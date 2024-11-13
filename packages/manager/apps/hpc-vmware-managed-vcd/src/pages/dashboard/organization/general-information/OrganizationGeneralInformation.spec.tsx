@@ -7,6 +7,7 @@ import {
   mockSubmitNewValue,
   checkModalError,
   DEFAULT_TIMEOUT,
+  checkTextVisibility,
 } from '../../../../test-utils';
 import { organizationList } from '../../../../../mocks/vcd-organization/vcd-organization.mock';
 
@@ -19,21 +20,15 @@ describe('Organization General Information Page', () => {
       initialRoute: `/${organizationList[1].id}`,
     });
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.dashboard.managed_vcd_dashboard_data_protection,
-          ),
-        ).toBeVisible(),
-      { timeout: DEFAULT_TIMEOUT },
+    await checkTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_data_protection,
     );
 
     let editButton;
     await waitFor(
       () => {
         editButton = screen.getAllByTestId('editIcon').at(0);
-        return expect(editButton).not.toHaveAttribute('disabled');
+        return expect(editButton).toBeEnabled();
       },
       { timeout: DEFAULT_TIMEOUT },
     );
@@ -44,12 +39,9 @@ describe('Organization General Information Page', () => {
     await mockSubmitNewValue({ submitButtonLabel });
 
     await checkModalVisibility({ container, isVisible: false });
-
-    expect(
-      screen.queryByText(
-        labels.dashboard.managed_vcd_dashboard_edit_name_modal_success,
-      ),
-    ).toBeVisible();
+    await checkTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_edit_name_modal_success,
+    );
   });
 
   it('trying to update name displays an error if update organization service is KO', async () => {
@@ -71,21 +63,15 @@ describe('Organization General Information Page', () => {
       initialRoute: `/${organizationList[1].id}`,
     });
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.dashboard.managed_vcd_dashboard_data_protection,
-          ),
-        ).toBeVisible(),
-      { timeout: DEFAULT_TIMEOUT },
+    await checkTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_data_protection,
     );
 
     let editButton;
     await waitFor(
       () => {
         editButton = screen.getAllByTestId('editIcon').at(1);
-        return expect(editButton).not.toHaveAttribute('disabled');
+        return expect(editButton).toBeEnabled();
       },
       { timeout: DEFAULT_TIMEOUT },
     );
@@ -96,12 +82,9 @@ describe('Organization General Information Page', () => {
     await mockSubmitNewValue({ submitButtonLabel });
 
     await checkModalVisibility({ container, isVisible: false });
-
-    expect(
-      screen.queryByText(
-        labels.dashboard.managed_vcd_dashboard_edit_description_modal_success,
-      ),
-    ).toBeVisible();
+    await checkTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_edit_description_modal_success,
+    );
   });
 
   it('trying to update description displays an error if update organization service is KO', async () => {

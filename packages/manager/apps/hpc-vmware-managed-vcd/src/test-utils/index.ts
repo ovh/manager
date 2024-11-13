@@ -4,6 +4,7 @@ export {
   DEFAULT_TIMEOUT,
   DEFAULT_LISTING_ERROR,
   checkTextVisibility,
+  waitForEnabledElement,
   mockEditInputValue,
   mockSubmitNewValue,
   checkModalVisibility,
