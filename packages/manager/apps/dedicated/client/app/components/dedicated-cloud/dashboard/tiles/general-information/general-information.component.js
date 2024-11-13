@@ -10,6 +10,7 @@ export default {
     onExecutionDateChange: '<?',
     trackingPrefix: '<',
     hasVcdMigration: '<?',
+    vcdMigrationState: '<?',
   },
   controller,
   name: 'ovhManagerPccDashboardGeneralInformation',

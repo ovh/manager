@@ -20,7 +20,7 @@ export default class {
 
   defineMigrationTitle() {
     this.migrationTitle = this.$translate.instant(
-      this.vcdMigrationState.isDone
+      this.pccMigrationState.isDone
         ? 'dedicatedCloud_vmware_cloud_director_migration'
         : 'dedicatedCloud_vmware_cloud_director_validate_migration',
     );

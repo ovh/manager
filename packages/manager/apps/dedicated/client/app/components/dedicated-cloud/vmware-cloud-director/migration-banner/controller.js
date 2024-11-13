@@ -16,13 +16,13 @@ export default class ManagedVcdMigrationBannerCtrl {
   }
 
   trackMigrationState() {
-    if (this.pccMigrationState?.isEnabling) {
+    if (this.vcdMigrationState?.isEnabling) {
       this.trackPage(
         'vmware::vmware::banner-info::migrate_to_managed_vcd_pending',
       );
     }
 
-    if (this.vcdMigrationState?.isDone) {
+    if (this.vcdMigrationState?.isEnabled) {
       this.trackPage(
         'vmware::vmware::banner-info::migrate_to_managed_vcd_success',
       );
