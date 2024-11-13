@@ -24,8 +24,14 @@
             </oui-tile-definition>
             <oui-tile-definition
                 term="{{:: 'netapp_dashboard_information_region' | translate }}"
-                description="{{ $ctrl.storage.region }}"
             >
+                <oui-tile-description>
+                    <span
+                        data-translate="{{ :: 'netapp_dashboard_location_' + $ctrl.storage.region }}"
+                    ></span>
+                    <br />
+                    <span data-ng-bind=":: $ctrl.storage.region"></span>
+                </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition
                 term="{{:: 'netapp_dashboard_information_performance_level' | translate }}"
