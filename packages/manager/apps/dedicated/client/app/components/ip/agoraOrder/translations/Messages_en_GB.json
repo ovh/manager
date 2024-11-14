@@ -89,5 +89,6 @@
   "ip_agora_ipv4_localisation_description": "To change the geolocation of your IP address, please select country in the drop-down list.",
   "ip_agora_table_next_text": "Next",
   "ip_agora_ipv6_no_services": " Additional IPv6 addresses can only be linked to a vRack private network. You can create one here: ",
-  "ip_agora_ipv6_no_services_link": " Create a vRack "
+  "ip_agora_ipv6_no_services_link": " Create a vRack ",
+  "ip_agora_ipv4_localisation_not_available": "Geolocation information cannot be changed for only one IP address."
 }
