@@ -30,6 +30,7 @@ import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
 import { useGetVrack } from '@/hooks/api/network/useGetVrack.hook';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
+import { useGetServiceSubnet } from '@/hooks/api/network/useGetServiceSubnet.hook';
 
 interface MetricTile {
   name: string;
@@ -39,6 +40,7 @@ interface MetricTile {
 const Dashboard = () => {
   const { service, projectId } = useServiceData();
   const vrackQuery = useGetVrack(projectId);
+  const subnet = useGetServiceSubnet(projectId, service);
   const metricsQuery = useGetMetrics(projectId, service.engine, service.id);
   const toast = useToast();
   const { t } = useTranslation(
@@ -178,27 +180,41 @@ const Dashboard = () => {
           <CardContent>
             <Maintenance />
             <div data-testid="dashboard-vrack-container">
-              {service.networkType === database.NetworkTypeEnum.private ? (
-                vrackQuery.isSuccess && (
-                  <div>
-                    <h5 className="py-6">
-                      <ShieldCheck className="size-4 inline mr-2 text-green-500" />
-                      {t('networkTitle')}
-                    </h5>
-                    <div className="flex flex-row gap-1">
-                      <OvhLink
-                        application="dedicated"
-                        path={`#/vrack/${vrackQuery.data.id}`}
-                      >
+              {service.networkType === database.NetworkTypeEnum.private && (
+                <div>
+                  <h5 className="py-6">
+                    <ShieldCheck className="size-4 inline mr-2 text-green-500" />
+                    {t('networkTitle')}
+                  </h5>
+                  {vrackQuery.isSuccess ? (
+                    <OvhLink
+                      application="dedicated"
+                      path={`#/vrack/${vrackQuery.data.id}`}
+                    >
+                      <div className="flex flex-row gap-1">
                         {t('networkLink', {
                           vrack: vrackQuery.data.id,
                         })}
-                      </OvhLink>
-                      <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
-                    </div>
+                        <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
+                      </div>
+                    </OvhLink>
+                  ) : (
+                    <Skeleton className="w-28 h-4" />
+                  )}
+
+                  <div className="flex flex-row gap-1 items-center">
+                    <b>{t('subnetTitle')}</b>
+                    {subnet ? (
+                      <span>
+                        `${subnet.cidr} - ${subnet.ipPools[0].region}`
+                      </span>
+                    ) : (
+                      <Skeleton className="w-28 h-4" />
+                    )}
                   </div>
-                )
-              ) : (
+                </div>
+              )}
+              {service.networkType === database.NetworkTypeEnum.public && (
                 <h5 className="py-6">
                   <ShieldAlert className="size-4 inline mr-2 text-amber-400" />
                   {t('networkPublicTitle')}
