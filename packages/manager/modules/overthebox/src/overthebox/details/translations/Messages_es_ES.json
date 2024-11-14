@@ -98,5 +98,7 @@
   "overTheBox_cancel": "Cancelar",
   "overTheBox_confirm_unlink_device": "Este dispositivo ya no podrá conectarse a este servicio, ¿está seguro?",
   "overTheBox_unlink_device_error": "No se pudo desasociar el dispositivo: {{errorMessage}}",
-  "overTheBox_unlink_device_success": "El dispositivo se ha desvinculado correctamente."
+  "overTheBox_unlink_device_success": "El dispositivo se ha desvinculado correctamente.",
+  "overTheBox_release_channel_deprecated": "Versión obsoleta {{version}}",
+  "overTheBox_release_channel": "Versión {{version}}"
 }

@@ -98,5 +98,7 @@
   "overTheBox_cancel": "Anular",
   "overTheBox_confirm_unlink_device": "Este dispositivo já não conseguirá estabelecer ligação, tem a certeza?",
   "overTheBox_unlink_device_error": "Não foi possível desassociar o dispositivo: {{errorMessage}}",
-  "overTheBox_unlink_device_success": "O dispositivo foi dissociado com sucesso."
+  "overTheBox_unlink_device_success": "O dispositivo foi dissociado com sucesso.",
+  "overTheBox_release_channel_deprecated": "Versão com imparidade {{version}}",
+  "overTheBox_release_channel": "Versão {{version}}"
 }
