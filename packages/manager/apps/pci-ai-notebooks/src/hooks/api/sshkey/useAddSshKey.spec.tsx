@@ -11,14 +11,17 @@ vi.mock('@/data/api/sshkey/sshkey.api', () => ({
 
 describe('useAddSshKey', () => {
   it('should create a SshKey', async () => {
-    const onSuccess = vi.fn();
+    const onAddKeySuccess = vi.fn();
     const onError = vi.fn();
 
     vi.mocked(sshkeyApi.addSSHKey).mockResolvedValue(mockedSshKey);
 
-    const { result } = renderHook(() => useAddSshKey({ onError, onSuccess }), {
-      wrapper: QueryClientWrapper,
-    });
+    const { result } = renderHook(
+      () => useAddSshKey({ onError, onAddKeySuccess }),
+      {
+        wrapper: QueryClientWrapper,
+      },
+    );
 
     const addSshKeyProps: sshkeyApi.AddSSHKey = {
       projectId: 'projectId',

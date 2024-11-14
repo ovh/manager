@@ -53,9 +53,6 @@ export const FrameworkTile = ({
         selectedVersion={selectedVersion}
         isFrameworkSelected={selected}
         onChange={(versionName) => {
-          console.log(framework.versions);
-          // console.log(framework.versions.find((v) => v === versionName));
-          console.log(versionName);
           setSelectedVersion(framework.versions.find((v) => v === versionName));
         }}
       />

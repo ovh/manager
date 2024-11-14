@@ -528,33 +528,6 @@ const OrderFunnel = ({
                 </CardContent>
               </Card>
             </section>
-            <section
-              id="options-sshkeys"
-              className="divide-y-[1rem] divide-transparent"
-            >
-              <FormField
-                control={model.form.control}
-                name="sshKey"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldConfigurationSSHKeysLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <SshKeyForm
-                        {...field}
-                        configuredSshKeys={sshKeys}
-                        sshKeyList={field.value}
-                        onChange={(newSshKey) =>
-                          model.form.setValue('sshKey', newSshKey)
-                        }
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
           </div>
           <Card className="sticky top-4 h-fit shadow-lg">
             <CardHeader>
@@ -598,20 +571,6 @@ const OrderFunnel = ({
                 disabled={isPendingAddNotebook}
               >
                 {t('orderButton')}
-              </Button>
-
-              <Button
-                type="button"
-                variant="link"
-                disabled={isPendingCommand}
-                onClick={() => {
-                  getCliCommand();
-                  cliEquivalentModale.open();
-                }}
-                className="flex flex-row gap-2 items-center"
-              >
-                <TerminalSquare className="size-4 text-primary-700" />{' '}
-                {t('cliCode')}
               </Button>
             </CardFooter>
           </Card>

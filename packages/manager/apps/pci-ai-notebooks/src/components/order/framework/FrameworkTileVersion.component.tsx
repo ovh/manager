@@ -72,7 +72,6 @@ const VersionSelector = ({
                   key={fmkVersion}
                   value={fmkVersion}
                   onSelect={(value) => {
-                    console.log(value);
                     onChange(value);
                     setOpen(false);
                   }}
