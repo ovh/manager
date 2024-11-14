@@ -4,6 +4,11 @@ export default /* @ngInject */ ($stateProvider) => {
     params: {
       user: null,
     },
+    redirectTo: (transition) => {
+      return transition.params().user === null
+        ? 'app.dedicatedCloud.details.users'
+        : false;
+    },
     views: {
       modal: {
         component: 'dedicatedCloudVsphereUserEdit',

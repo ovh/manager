@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import pick from 'lodash/pick';
 
 export default class {
   /* @ngInject */
@@ -11,6 +10,7 @@ export default class {
 
   $onInit() {
     this.user.tokenValidator = this.user.isTokenValidator;
+    this.originUser = this.pickUserInformationToSend();
     this.emailRegExp = /^(?:[\w-.]+@[\w-.]+\.[\w-]+)?$/;
     if (this.coreConfig.isRegion('US')) {
       this.phoneRegExp = /\+1\.\d{10}/;
@@ -20,23 +20,42 @@ export default class {
     this.phoneExample = new RandExp(this.phoneRegExp).gen();
   }
 
+  pickUserInformationToSend() {
+    if (this.user === null) return null;
+    const {
+      userId,
+      name,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      tokenValidator,
+      canManageNetwork,
+      canManageIpFailOvers,
+      nsxRight,
+      encryptionRight,
+    } = this.user;
+
+    return {
+      userId,
+      name,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      tokenValidator,
+      canManageNetwork,
+      canManageIpFailOvers,
+      nsxRight,
+      encryptionRight,
+    };
+  }
+
   editUser() {
     this.loading = true;
     return this.DedicatedCloud.updateUser(
       this.productId,
-      pick(this.user, [
-        'userId',
-        'name',
-        'firstName',
-        'lastName',
-        'email',
-        'phoneNumber',
-        'tokenValidator',
-        'canManageNetwork',
-        'canManageIpFailOvers',
-        'nsxRight',
-        'encryptionRight',
-      ]),
+      this.pickUserInformationToSend(),
     )
       .then(() => {
         this.goBack(
@@ -53,5 +72,9 @@ export default class {
           'danger',
         );
       });
+  }
+
+  isEdited() {
+    return !angular.equals(this.pickUserInformationToSend(), this.originUser);
   }
 }
