@@ -27,6 +27,7 @@ import {
   Datagrid,
   FilterAdd,
   FilterList,
+  Headers,
   Notifications,
   useColumnFilters,
   useDataGrid,
@@ -77,19 +78,13 @@ export default function NodesPage(): JSX.Element {
 
   return (
     <>
-      <OsdsText
-        color={ODS_TEXT_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.heading}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._700}
-      >
-        {pool?.name}
-      </OsdsText>
+      <Headers title={pool?.name} />
 
       <Notifications />
       <div>
         <OsdsLink
           color={ODS_THEME_COLOR_INTENT.primary}
-          className="mt-10"
+          className="mt-6"
           href={backLink}
         >
           <OsdsIcon
@@ -118,7 +113,7 @@ export default function NodesPage(): JSX.Element {
         <div className="flex flex-row">
           <OsdsButton
             size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.stroked}
+            variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
             className="xs:mb-0.5 sm:mb-0 ml-0.5"
             onClick={() => {
@@ -128,7 +123,7 @@ export default function NodesPage(): JSX.Element {
             <OsdsIcon
               size={ODS_ICON_SIZE.xs}
               name={ODS_ICON_NAME.REFRESH}
-              className="mr-2"
+              className="mr-2 bg-white"
               color={ODS_THEME_COLOR_INTENT.primary}
             />
           </OsdsButton>

@@ -145,7 +145,7 @@ export default function RestrictionsPage() {
       <div className="my-8">
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.stroked}
+          variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
           className="xs:mb-0.5 sm:mb-0"
           inline
@@ -154,7 +154,7 @@ export default function RestrictionsPage() {
           <OsdsIcon
             size={ODS_ICON_SIZE.xs}
             name={ODS_ICON_NAME.PLUS}
-            className="mr-2"
+            className="mr-2 bg-white"
             color={ODS_THEME_COLOR_INTENT.primary}
           />
           {t('kube_restrictions_add')}
