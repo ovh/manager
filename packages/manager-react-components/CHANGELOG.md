@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.41.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.2...@ovh-ux/manager-react-components@1.41.1) (2024-11-14)
+
+### Bug Fixes
+
+- **manager-react-components**new trad for continent container (#14095) ([#14095](https://github.com/ovh/manager/pull/14095)) ([c3447fc](https://github.com/ovh/manager/commit/c3447fc85eece49a494745be935e1ebe01e62ab7))
+- **manager-react-components**useCatalogPrice ([#14056](https://github.com/ovh/manager/pull/14056)) ([744965e5](https://github.com/ovh/manager/commit/74965e5c096dba555e9ec59b47716bd8e562733b))
+- **manager-react-components**useNotifications prevent early clears ([#14056](https://github.com/ovh/manager/pull/14056)) ([8816453](https://github.com/ovh/manager/commit/881645356019834987bdd43af05cb25b0b5a638a))
+- **manager-react-components**add skip to StepComponent ([#14056](https://github.com/ovh/manager/pull/14056)) ([52a71a4](https://github.com/ovh/manager/commit/52a71a438a54b6e470c9821610710b6ef7ea211f))
+- add missing translations [CDS 3468] (#14095) ([#14021](https://github.com/ovh/manager/pull/14021)) ([455aa34](https://github.com/ovh/manager/commit/455aa34f6d0331040e64ce640d29c5b6d361aef3))
+
 ## [1.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0...@ovh-ux/manager-react-components@1.41.1) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-components
