@@ -6,13 +6,13 @@ import {
   getVcdOrganization,
   getVmwareCloudDirectorBackup,
 } from '../api';
+import { getRegionNameFromAzName } from './useVeeamBackup';
 import {
   BackupStatus,
   VCDOrganization,
   VCDOrganizationWithBackupStatus,
   VeeamBackupWithIam,
-} from '../vcd.type';
-import { getRegionNameFromAzName } from './useVeeamBackup';
+} from '../types';
 
 const backupSuffix = '-veeam-backup';
 

@@ -1,5 +1,5 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
-import { VeeamBackupWithIam } from '../vcd.type';
+import { VeeamBackupWithIam } from '../types';
 
 export const getVmwareCloudDirectorBackup = async (
   backupId: string,

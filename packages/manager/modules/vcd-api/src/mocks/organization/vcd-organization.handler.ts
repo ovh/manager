@@ -1,5 +1,5 @@
 import { PathParams } from 'msw';
-import { Handler } from '../../vcd.type';
+import { Handler } from '../../types';
 import { organizationList } from './vcd-organization.mock';
 
 export type GetOrganizationMocksParams = {

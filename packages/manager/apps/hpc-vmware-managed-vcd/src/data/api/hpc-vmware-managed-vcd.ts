@@ -1,7 +1,6 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
-import IVcdOrganization, {
-  IVcdOrganizationState,
-} from '@/types/vcd-organization.interface';
+import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
+import { IVcdOrganizationState } from '@/types/vcd-organization.interface';
 import { VCD_ORGANIZATION_ROUTE } from './hpc-vmware-managed-vcd.constants';
 import IVcdOrganizationBackup from '@/types/vcd-organization-backup.interface';
 
@@ -20,7 +19,7 @@ export type UpdateVcdOrganizationDetailsParams = {
  */
 export const getVcdOrganization = async (
   id: string,
-): Promise<ApiResponse<IVcdOrganization>> =>
+): Promise<ApiResponse<VCDOrganization>> =>
   apiClient.v2.get(`${VCD_ORGANIZATION_ROUTE}/${id}`);
 
 /**
@@ -37,9 +36,7 @@ export const getVcdOrganizationBackup = async (
 export const updateVcdOrganizationDetails = async ({
   id,
   details,
-}: UpdateVcdOrganizationDetailsParams): Promise<ApiResponse<
-  IVcdOrganization
->> =>
+}: UpdateVcdOrganizationDetailsParams): Promise<ApiResponse<VCDOrganization>> =>
   apiClient.v2.put(`${VCD_ORGANIZATION_ROUTE}/${id}`, {
     targetSpec: details,
   });

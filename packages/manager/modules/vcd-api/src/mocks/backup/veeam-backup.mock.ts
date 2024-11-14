@@ -1,4 +1,4 @@
-import { VeeamBackupWithIam } from '../../vcd.type';
+import { VeeamBackupWithIam } from '../../types';
 
 export const backupList: VeeamBackupWithIam[] = [
   {

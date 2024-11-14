@@ -1,8 +1,11 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
-import { VCDOrganization } from '../vcd.type';
+import { VCDOrganization } from '../types';
 
 export const organizationApiRoute = '/vmwareCloudDirector/organization';
 
+/**
+ * Get one VCD Organization
+ */
 export const getVcdOrganization = async (
   organizationId: string,
 ): Promise<ApiResponse<VCDOrganization>> =>

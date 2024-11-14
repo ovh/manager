@@ -1,4 +1,4 @@
-import { VCDOrganizationWithIam } from '../../vcd.type';
+import { VCDOrganizationWithIam } from '../../types';
 
 export const organizationList: VCDOrganizationWithIam[] = [
   {

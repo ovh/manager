@@ -1,7 +1,7 @@
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import { useQuery } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { VeeamBackupWithIam } from '../vcd.type';
+import { VeeamBackupWithIam } from '../types';
 import { getVmwareCloudDirectorBackup } from '../api';
 
 export const getRegionNameFromAzName = (azName = '') => azName?.split('-a')[0];

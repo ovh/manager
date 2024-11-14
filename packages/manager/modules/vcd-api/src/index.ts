@@ -1,5 +1,5 @@
 export * from './hook';
 export * from './api';
-export * from './vcd.type';
+export * from './types';
 export * from './catalog.type';
 export * from './mocks';
