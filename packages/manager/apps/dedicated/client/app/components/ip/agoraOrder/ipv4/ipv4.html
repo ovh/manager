@@ -241,7 +241,7 @@
             >
                 <div class="row">
                     <p
-                        data-translate="ip_agora_ip_localisation_description"
+                        data-translate="{{ $ctrl.model.params.selectedOffer.countries.length === 1 ? 'ip_agora_ipv4_localisation_not_available' : 'ip_agora_ip_localisation_description' }}"
                         data-translate-values="{ ipType: $ctrl.type }"
                     ></p>
                 </div>

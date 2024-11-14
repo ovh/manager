@@ -89,5 +89,6 @@
   "ip_agora_ipv4_localisation_description": "Para modificar la geolocalización de su dirección IP, seleccione un país de la lista desplegable.",
   "ip_agora_table_next_text": "Siguiente",
   "ip_agora_ipv6_no_services": " Las direcciones Additional IPv6 solo pueden asociarse a una red privada vRack. Puede crear una aquí: ",
-  "ip_agora_ipv6_no_services_link": " Crear un vRack"
+  "ip_agora_ipv6_no_services_link": " Crear un vRack",
+  "ip_agora_ipv4_localisation_not_available": "No es posible modificar los datos de geolocalización para una única dirección IP."
 }
