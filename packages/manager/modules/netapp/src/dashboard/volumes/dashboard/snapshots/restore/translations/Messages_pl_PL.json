@@ -1,5 +1,5 @@
 {
-  "netapp_volumes_snapshots_restore_title": "Przywróć wolumen ze snapshota",
+  "netapp_volumes_snapshots_restore_title": "Przywróć ostatni snapshot",
   "netapp_volumes_snapshots_restore_description": "Czy na pewno chcesz przywrócić następujący wolumen?",
   "netapp_volumes_snapshots_restore_volume_label": "Wolumen",
   "netapp_volumes_snapshots_restore_snapshot_label": "Nazwa snapshota",

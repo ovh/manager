@@ -42,5 +42,5 @@
   "netapp_volumes_status_reverting_error": "Error de restauración",
   "netapp_volumes_mount_path_not_configurated": "No configurado",
   "netapp_volumes_edit_volume_size": "Cambiar el tamaño",
-  "netapp_volumes_restore_snapshot": "Restaurar un volumen desde un snapshot"
+  "netapp_volumes_restore_snapshot": "Restaurar el último snapshot"
 }
