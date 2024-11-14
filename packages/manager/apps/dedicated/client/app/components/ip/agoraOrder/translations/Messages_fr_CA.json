@@ -7,6 +7,7 @@
   "ip_agora_select_quantity_title": "Choisissez votre quantité",
   "ip_agora_ip_localisation_title": "Localisation de l'adresse IP",
   "ip_agora_ip_localisation_description": "Veuillez choisir l'un des emplacements disponibles pour votre nouveau bloc d'adresses {{ ipType }} supplémentaire.",
+  "ip_agora_ipv4_localisation_not_available": "Les informations de géolocalisation ne peuvent être modifiées pour une seule adresse IP.",
   "ip_agora_ipv4_localisation_title": "Géolocalisation de l'adresse IP",
   "ip_agora_ipv4_localisation_description": "Pour modifier la géolocalisation de votre adresse IP, merci de choisir un pays dans la liste déroulante.",
   "ipv4_select_placeholder": "Selectionner une taille",
