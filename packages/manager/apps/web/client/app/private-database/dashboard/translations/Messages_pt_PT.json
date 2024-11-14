@@ -504,5 +504,6 @@
   "privateDatabase_tabs_list_extensions_enable_error": "Erro ao processar ativação da extensão",
   "privateDatabase_tabs_list_extensions_disable_success": "Extensão desativada",
   "privateDatabase_tabs_list_extensions_disable_error": "Erro ao processar desativação da extensão",
-  "privateDatabase_order_sql_period_sub_title": "Durante quanto tempo deseja utilizá-las?"
+  "privateDatabase_order_sql_period_sub_title": "Durante quanto tempo deseja utilizá-las?",
+  "privateDatabase_beta_status": "Beta"
 }

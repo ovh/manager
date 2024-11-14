@@ -504,5 +504,6 @@
   "privateDatabase_tabs_list_extensions_enable_error": "An error has occurred enabling your extension.",
   "privateDatabase_tabs_list_extensions_disable_success": "Extension correctly disabled.",
   "privateDatabase_tabs_list_extensions_disable_error": "An error has occurred disabling the extension.",
-  "privateDatabase_order_sql_period_sub_title": "How long do you want to use it for?"
+  "privateDatabase_order_sql_period_sub_title": "How long do you want to use it for?",
+  "privateDatabase_beta_status": "Beta"
 }
