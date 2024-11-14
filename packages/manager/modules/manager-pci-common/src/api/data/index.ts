@@ -7,3 +7,5 @@ export * from './instance';
 export * from './operation';
 export * from './project';
 export * from './regions';
+export * from './image';
+export * from './volume';
