@@ -12,13 +12,13 @@ export interface BreadcrumbProps {
   rootLabel?: string;
   appName?: string;
   projectId?: string;
-  items?: BreadcrumbItem[];
+  // items?: BreadcrumbItem[];
 }
 export const usePciBreadcrumb = ({
   projectId,
   appName,
-  items,
-}: BreadcrumbProps) => {
+}: // items,
+BreadcrumbProps) => {
   const { shell } = useContext(ShellContext);
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
   const [appRoot, setAppRoot] = useState<BreadcrumbItem[]>([]);
