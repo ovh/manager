@@ -84,7 +84,11 @@
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="::'domain_operations_table_header_status' | translate"
+        data-sortable
+        data-filterable
+        data-type="options"
         data-property="status"
+        data-type-options="$ctrl.operationStatusColumnOptions"
     >
         <span
             class="oui-badge"
@@ -197,7 +201,11 @@
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="::'domain_operations_table_header_status' | translate"
+        data-type="options"
+        data-type-options="$ctrl.operationStatusColumnOptions"
         data-property="status"
+        data-sortable
+        data-filterable
     >
         <span
             class="oui-badge"
