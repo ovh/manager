@@ -6,12 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
     controller: 'ExchangeTabManagersByGroupsCtrl',
     controllerAs: 'ctrl',
     template,
-    params: {
-      mailingList: {},
-    },
     resolve: {
-      mailingList: /* @ngInject */ ($transition$) =>
-        $transition$.params().mailingList,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('exchange_group_manager'),
     },

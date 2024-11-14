@@ -227,4 +227,8 @@ export default class ExchangeTabSharedAccountsCtrl {
       );
     }
   }
+
+  displayAliasManagementView(account) {
+    this.goToAliasManagement(account);
+  }
 }

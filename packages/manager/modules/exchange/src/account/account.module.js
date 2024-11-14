@@ -6,7 +6,7 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import routing from './account.routing';
 import service from './account.service';
 
-import alias from './alias/alias.module';
+import alias from './alias/account-alias.module';
 import add from './add/add.module';
 import updateAccount from './update/update.module';
 
