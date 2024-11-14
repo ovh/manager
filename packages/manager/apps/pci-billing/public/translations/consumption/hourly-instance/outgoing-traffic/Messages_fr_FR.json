@@ -1,0 +1,9 @@
+{
+  "cpbc_no_consumption_data": "Pas de consommation pour la période sélectionnée.",
+  "cpbc_hourly_instance_trafic_unlimitted": "illimité",
+  "cpbc_hourly_instance_trafic_included": "inclus",
+  "unit_size_GB": "Go",
+  "cpbc_hourly_instance_trafic_region": "Région",
+  "cpbc_hourly_instance_trafic_trafic": "Trafic",
+  "cpbc_hourly_instance_trafic_price": "Prix"
+}
