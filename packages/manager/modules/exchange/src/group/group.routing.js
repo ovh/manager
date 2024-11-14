@@ -10,22 +10,19 @@ export default /* @ngInject */ ($stateProvider) => {
       goToAlias: /* @ngInject */ ($state, $transition$) => (mailingList) =>
         $state.go('exchange.dashboard.group.mailing-list.alias', {
           ...$transition$.params(),
-          mailingList,
-          address: mailingList.mailingListAddress,
+          group: mailingList.mailingListAddress,
         }),
       goToGroup: /* @ngInject */ ($state, $transition$) => () =>
         $state.go('exchange.dashboard.group', $transition$.params()),
       goToManager: /* @ngInject */ ($state, $transition$) => (mailingList) =>
         $state.go('exchange.dashboard.group.mailing-list.manager', {
           ...$transition$.params(),
-          mailingList,
-          address: mailingList.mailingListAddress,
+          group: mailingList.mailingListAddress,
         }),
       goToMembers: /* @ngInject */ ($state, $transition$) => (mailingList) =>
         $state.go('exchange.dashboard.group.mailing-list.member', {
           ...$transition$.params(),
-          mailingList,
-          address: mailingList.mailingListAddress,
+          group: mailingList.mailingListAddress,
         }),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('exchange_group'),
@@ -33,12 +30,11 @@ export default /* @ngInject */ ($stateProvider) => {
   });
 
   $stateProvider.state('exchange.dashboard.group.mailing-list', {
-    url: '/:address',
+    url: '/:group',
     redirectTo: 'exchange.dashboard.group',
     template: '<div ui-view></div>',
     resolve: {
-      address: /* @ngInject */ ($transition$) => $transition$.params().address,
-      breadcrumb: /* @ngInject */ (address) => address,
+      breadcrumb: /* @ngInject */ ($transition$) => $transition$.params().group,
     },
   });
 };

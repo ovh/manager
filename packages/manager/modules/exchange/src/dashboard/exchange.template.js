@@ -5,8 +5,6 @@ import serviceDiskOrderSpaceTemplate from '../information/disk/service-disk-orde
 import disclaimerRemoveTemplate from '../disclaimer/remove/disclaimer-remove.html';
 import disclaimerUpdateTemplate from '../disclaimer/update/disclaimer-update.html';
 import disclaimerAddTemplate from '../disclaimer/add/disclaimer-add.html';
-import groupAliasRemoveTemplate from '../group/alias/remove/group-alias-remove.html';
-import groupAliasAddTemplate from '../group/alias/add/group-alias-add.html';
 import groupRemoveTemplate from '../group/remove/group-remove.html';
 import groupUpdateTemplate from '../group/update/group-update.html';
 import groupMemberRemoveTemplate from '../group/member/remove/group-member-remove.html';
@@ -49,9 +47,6 @@ import externalContactAddTemplate from '../external-contact/add/external-contact
 import officeAttachDialogTemplate from '../office-attach/dialog/office-attach-dialog.html';
 import officeAttachTemplate from '../office-attach/office-attach.html';
 import accountOrderTemplate from '../account/order/account-order.html';
-import accountAliasRemoveTemplate from '../account/alias/remove/account-alias-remove.html';
-import accountAliasTemplate from '../account/alias/account-alias.html';
-import accountAliasAddTemplate from '../account/alias/add/account-alias-add.html';
 import accountRemoveTemplate from '../account/remove/account-remove.html';
 import accountTemplate from '../account/account.html';
 import accountDelegationTemplate from '../account/delegation/account-delegation.html';
@@ -110,14 +105,6 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put(
     'exchange/disclaimer/add/disclaimer-add.html',
     disclaimerAddTemplate,
-  );
-  $templateCache.put(
-    'exchange/group/alias/remove/group-alias-remove.html',
-    groupAliasRemoveTemplate,
-  );
-  $templateCache.put(
-    'exchange/group/alias/add/group-alias-add.html',
-    groupAliasAddTemplate,
   );
   $templateCache.put(
     'exchange/group/remove/group-remove.html',
@@ -280,18 +267,6 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put(
     'exchange/account/order/account-order.html',
     accountOrderTemplate,
-  );
-  $templateCache.put(
-    'exchange/account/alias/remove/account-alias-remove.html',
-    accountAliasRemoveTemplate,
-  );
-  $templateCache.put(
-    'exchange/account/alias/account-alias.html',
-    accountAliasTemplate,
-  );
-  $templateCache.put(
-    'exchange/account/alias/add/account-alias-add.html',
-    accountAliasAddTemplate,
   );
   $templateCache.put(
     'exchange/account/remove/account-remove.html',

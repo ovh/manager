@@ -7,9 +7,6 @@ import ExchangeExternalContactsDeleteCtrl from '../external-contact/remove/exter
 import ExchangeExternalContactsModifyCtrl from '../external-contact/update/external-contact-update.controller';
 import ExchangeGroupAccountsCtrl from '../group/accounts/group-accounts.controller';
 import ExchangeAddGroupCtrl from '../group/add/group-add.controller';
-import ExchangeAddGroupAliasCtrl from '../group/alias/add/group-alias-add.controller';
-import ExchangeTabGroupAliasCtrl from '../group/alias/group-alias.controller';
-import ExchangeRemoveGroupAliasCtrl from '../group/alias/remove/group-alias-remove.controller';
 import ExchangeMailingListDelegationCtrl from '../group/delegation/group-delegation.controller';
 import ExchangeTabGroupsCtrl from '../group/group.controller';
 import ExchangeTabManagersByGroupsCtrl from '../group/manager/group-manager.controller';
@@ -34,8 +31,6 @@ import ExchangeUpdateResourceController from '../resource/update/resource-update
 import ExchangeAddSharedAccountCtrl from '../shared-account/add/shared-account-add.controller';
 import ExchangeSharedAccountDelegationCtrl from '../shared-account/delegation/shared-account-delegation.controller';
 import exchangeAccountCtlr from '../account/account.controller';
-import ExchangeAddAccountAliasCtrl from '../account/alias/add/account-alias-add.controller';
-import ExchangeRemoveAliasCtrl from '../account/alias/remove/account-alias-remove.controller';
 import ExchangeAccountDelegationCtrl from '../account/delegation/account-delegation.controller';
 import ExchangeExportToCsvAccountsCtrl from '../account/export-as-csv/account-export-as-csv.controller';
 import ExchangeExportAsPstCtrl from '../account/export-as-pst/account-export-as-pst.controller';
@@ -63,7 +58,6 @@ import ExchangeDomainSpfAutoconfigCtrl from '../domain/spf-autoconfig/domain-spf
 import ExchangeDomainDkimAutoconfigCtrl from '../domain/dkim-autoconfig/domain-dkim-autoconfig.controller';
 import ExchangeUpdateDomainCtrl from '../domain/update/domain-update.controller';
 import ExchangeDeleteSharedAccountCtrl from '../shared-account/delete/shared-account-delete.controller';
-import ExchangeTabSharedAccountsCtrl from '../shared-account/shared-account.controller';
 import ExchangeUpdateSharedAccountCtrl from '../shared-account/update/shared-account-update.controller';
 import ExchangeAddPublicFolderCtrl from '../shared/add/shared-add.controller';
 import ExchangeRemovePublicFolderPermissionCtrl from '../shared/permission/remove/shared-permission-remove.controller';
@@ -101,9 +95,6 @@ angular
   )
   .controller('ExchangeGroupAccountsCtrl', ExchangeGroupAccountsCtrl)
   .controller('ExchangeAddGroupCtrl', ExchangeAddGroupCtrl)
-  .controller('ExchangeAddGroupAliasCtrl', ExchangeAddGroupAliasCtrl)
-  .controller('ExchangeTabGroupAliasCtrl', ExchangeTabGroupAliasCtrl)
-  .controller('ExchangeRemoveGroupAliasCtrl', ExchangeRemoveGroupAliasCtrl)
   .controller(
     'ExchangeMailingListDelegationCtrl',
     ExchangeMailingListDelegationCtrl,
@@ -140,8 +131,6 @@ angular
     ExchangeSharedAccountDelegationCtrl,
   )
   .controller('exchangeAccountCtlr', exchangeAccountCtlr)
-  .controller('ExchangeAddAccountAliasCtrl', ExchangeAddAccountAliasCtrl)
-  .controller('ExchangeRemoveAliasCtrl', ExchangeRemoveAliasCtrl)
   .controller('ExchangeAccountDelegationCtrl', ExchangeAccountDelegationCtrl)
   .controller(
     'ExchangeExportToCsvAccountsCtrl',
@@ -187,7 +176,6 @@ angular
     'ExchangeDeleteSharedAccountCtrl',
     ExchangeDeleteSharedAccountCtrl,
   )
-  .controller('ExchangeTabSharedAccountsCtrl', ExchangeTabSharedAccountsCtrl)
   .controller(
     'ExchangeUpdateSharedAccountCtrl',
     ExchangeUpdateSharedAccountCtrl,

@@ -11,7 +11,6 @@ export default class ExchangeRemoveMemberCtrl {
 
     this.$routerParams = wucExchange.getParams();
 
-    this.group = navigation.currentActionData.group;
     this.member = navigation.currentActionData.member;
 
     $scope.submit = () => this.submit();
@@ -26,7 +25,7 @@ export default class ExchangeRemoveMemberCtrl {
       .removeMember(
         this.$routerParams.organization,
         this.$routerParams.productId,
-        this.group.mailingListName,
+        this.$routerParams.group,
         this.member.id,
         this.member.type,
       )
@@ -36,7 +35,7 @@ export default class ExchangeRemoveMemberCtrl {
             'exchange_GROUPS_remove_member_success_message',
             {
               t0: this.member.primaryEmailAddress,
-              t1: this.group.mailingListDisplayName,
+              t1: this.$routerParams.group,
             },
           ),
           success,
@@ -48,7 +47,7 @@ export default class ExchangeRemoveMemberCtrl {
             'exchange_GROUPS_remove_member_error_message',
             {
               t0: this.member.primaryEmailAddress,
-              t1: this.group.mailingListDisplayName,
+              t1: this.$routerParams.group,
             },
           ),
           failure,
