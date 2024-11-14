@@ -2,8 +2,7 @@ import { TERMINATE_PATTERN } from './constants';
 
 export default class TerminateVrackController {
   /* @ngInject */
-  constructor($scope, $translate, BillingTerminate) {
-    this.$scope = $scope;
+  constructor($translate, BillingTerminate) {
     this.TERMINATE_PATTERN = TERMINATE_PATTERN;
     this.$translate = $translate;
     this.BillingTerminate = BillingTerminate;
