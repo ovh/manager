@@ -69,7 +69,10 @@ export const SelectField: FunctionComponent<Props> = ({
               </label>
             )}
             <OsdsSelect
-              onOdsValueChange={onChange}
+              onOdsValueChange={(e) => {
+                if (!e.target.value) return;
+                onChange(e);
+              }}
               onBlur={onBlur}
               value={value as string}
               name={name}
