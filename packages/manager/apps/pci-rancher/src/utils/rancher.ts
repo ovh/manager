@@ -129,12 +129,14 @@ function isOVHError(error: unknown): error is OVHError {
 }
 
 /**
- * Manages Rancher errors and returns appropriate error messages for internationalization.
+ * Manages Rancher error and return appropriate error messages for internationalization.
  *
  * @param error - The error object containing the message and class.
  * @returns - An array containing the error message key and optional options for internationalization, or null if the error is not recognized.
  */
-export const getI18nextRancherError = (error: unknown): [string, TOptions?] => {
+export const getI18nextRancherError = (
+  error: unknown,
+): [string?, TOptions?] => {
   if (isOVHError(error)) {
     const ovhError = error;
     if (ovhError.class === 'Client::BadRequest') {
@@ -146,7 +148,6 @@ export const getI18nextRancherError = (error: unknown): [string, TOptions?] => {
         return ['badRequestSwitchPlan', { plan, drivers: `[${drivers}]` }];
       }
     }
-    return ['rancherError'];
   }
-  return ['rancherError'];
+  return [];
 };

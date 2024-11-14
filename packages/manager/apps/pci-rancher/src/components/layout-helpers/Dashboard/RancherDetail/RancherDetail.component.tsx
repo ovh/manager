@@ -95,7 +95,9 @@ const RancherDetail = ({
   useEffect(() => {
     if (updateOfferError) {
       const [getError, options] = getI18nextRancherError(updateOfferError);
-      addError(t(getError, options));
+      if (getError) {
+        addError(t(getError, options));
+      }
     }
   }, [updateOfferError]);
 
