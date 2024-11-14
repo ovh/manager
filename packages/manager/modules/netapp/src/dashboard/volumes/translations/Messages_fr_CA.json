@@ -37,7 +37,7 @@
   "netapp_volumes_create_volume_quantity_info": "Stockage utilisé : {{quantity}}/{{max}}",
   "netapp_volumes_edit_volume": "Modifier le volume",
   "netapp_volumes_create_snapshot": "Créer un snapshot",
-  "netapp_volumes_restore_snapshot": "Rétablir à un snapshot du volume",
+  "netapp_volumes_restore_snapshot": "Restaurer le dernier snapshot",
   "netapp_volumes_manage_snapshots": "Gérer les snapshots",
   "netapp_volumes_manage_acl": "Gérer IP Access (ACL)",
   "netapp_volumes_delete_volume": "Supprimer le volume",
