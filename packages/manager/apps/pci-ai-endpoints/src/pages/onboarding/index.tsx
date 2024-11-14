@@ -49,6 +49,7 @@ export default function Onboarding() {
   const imgSrc = {
     src: onboardingImgSrc,
   };
+  const descBis: string = t('descriptionBis');
 
   return (
     <>
@@ -66,55 +67,18 @@ export default function Onboarding() {
             >
               {t('description')}
             </OsdsText>
-            <div className="block mt-4">
-              <div className="block inline">
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                >
-                  {t('description1')}
-                </OsdsText>{' '}
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  className="font-bold"
-                >
-                  {t('description2')}
-                </OsdsText>{' '}
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                >
-                  {t('description3')}
-                </OsdsText>{' '}
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  className="font-bold"
-                >
-                  {t('description4')}
-                </OsdsText>{' '}
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                >
-                  {t('description5')}
-                </OsdsText>{' '}
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  className="font-bold"
-                >
-                  {t('description6')}
-                </OsdsText>
-              </div>
-            </div>
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              className="block mt-4"
+            >
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: descBis,
+                }}
+              />
+            </OsdsText>
           </>
         }
         moreInfoButtonLabel={t('goToAiEndpoint')}
