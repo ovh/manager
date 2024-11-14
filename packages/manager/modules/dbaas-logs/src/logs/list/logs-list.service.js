@@ -33,13 +33,16 @@ export default class LogsListService {
         res = res.addFilter(filter.name, filter.operator, filter.value);
       });
     }
-    return res.execute().$promise.then((response) => ({
-      data: response.data.map((service) => this.transformService(service)),
-      meta: {
-        totalCount:
-          parseInt(response.headers['x-pagination-elements'], 10) || 0,
-      },
-    }));
+
+    return res
+      .execute(null, { headers: { Pragma: 'no-cache' } })
+      .$promise.then((response) => ({
+        data: response.data.map((service) => this.transformService(service)),
+        meta: {
+          totalCount:
+            parseInt(response.headers['x-pagination-elements'], 10) || 0,
+        },
+      }));
   }
 
   /**
