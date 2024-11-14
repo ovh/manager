@@ -144,6 +144,16 @@ export const REGION_TO_DATACENTER = {
   'ap-south-mum': 'YNM',
   'us-east-vin': 'VIN',
   'us-west-hil': 'HIL',
+}
+export const SERVER_REGION = {
+  USA: 'USA',
+  CANADA: 'CANADA - ASIA',
+  EUROPE: 'EUROPE',
+};
+
+export const ORGANISATION_GROUP = {
+  RIPE: 'RIPE',
+  ARIN: 'ARIN',
 };
 
 export default {
@@ -161,4 +171,6 @@ export default {
   DATACENTER_TO_REGION,
   IP_LOCATION_GROUPS_BASED_ON_DATACENTER,
   REGION_TO_DATACENTER,
+  SERVER_REGION,
+  ORGANISATION_GROUP,
 };
