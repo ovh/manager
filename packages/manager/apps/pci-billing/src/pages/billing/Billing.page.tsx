@@ -1,11 +1,16 @@
-import { useProject } from '@ovh-ux/manager-pci-common';
+import {
+  PciFreeLocalZonesBanner,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
 import {
   Headers,
+  Notifications,
   PciGuidesHeader,
+  useFeatureAvailability,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useContext, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import {
@@ -15,16 +20,24 @@ import {
   useResolvedPath,
 } from 'react-router-dom';
 import { sub } from 'date-fns';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ROUTE_PATHS } from '@/routes';
 import TabsPanel from '@/components/TabsPanel.component';
+import { PCI_FEATURES_FREE_LOCAL_ZONES_BANNER } from '@/constants';
 
 export default function BillingPage() {
-  const { t } = useTranslation('legacy');
+  const { t } = useTranslation('consumption');
   const location = useLocation();
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
 
   const anteriorDate = sub(new Date(), { months: 1 });
+
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+
+  const { data: availability } = useFeatureAvailability([
+    PCI_FEATURES_FREE_LOCAL_ZONES_BANNER,
+  ]);
 
   // date-fns begin the index of month in 0 instead of 1
   // Ex: January is 0, February is 1, etc.
@@ -78,6 +91,13 @@ export default function BillingPage() {
           headerButton={<PciGuidesHeader category="instances" />}
         />
       </div>
+
+      {availability && availability[PCI_FEATURES_FREE_LOCAL_ZONES_BANNER] && (
+        <PciFreeLocalZonesBanner ovhSubsidiary={ovhSubsidiary} showConfirm />
+      )}
+
+      <Notifications />
+
       <div className="my-10">
         <TabsPanel tabs={tabs} />
       </div>
