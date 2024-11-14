@@ -24,6 +24,12 @@
         </div>
     </div>
 
+    <ovh-manager-pcc-managed-vcd-migration-banner
+        data-tracking-prefix="$ctrl.vcdTrackingPrefix"
+        data-vcd-migration-state="$ctrl.dedicatedCloudVCDMigrationState"
+        data-pcc-migration-state="$ctrl.dedicatedCloudPCCMigrationState"
+    />
+
     <oui-header-tabs>
         <oui-header-tabs-item data-state="{{:: $ctrl.dashboardState }}"
             ><span data-translate="dedicatedCloud_tab_dashboard"></span

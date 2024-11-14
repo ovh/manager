@@ -1,12 +1,25 @@
 export default class ManagedVcdMigrationBannerCtrl {
   /* @ngInject */
-  constructor(DedicatedCloud, atInternet) {
+  constructor(DedicatedCloud, atInternet, ovhFeatureFlipping) {
     this.DedicatedCloud = DedicatedCloud;
     this.atInternet = atInternet;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
   $onInit() {
+    this.loadReminderFeatureAvailability();
     this.trackMigrationState();
+  }
+
+  loadReminderFeatureAvailability() {
+    const feature = 'dedicated-cloud:vcd-migration:reminder';
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability(feature)
+      .then((featureAvailability) => {
+        this.hasReminderAvailability = featureAvailability.isFeatureAvailable(
+          feature,
+        );
+      });
   }
 
   trackPage(name) {

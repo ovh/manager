@@ -14,6 +14,10 @@ export default class VCDMigrationState {
     return this.state === VCD_MIGRATION_STATUS.ENABLED;
   }
 
+  get hasMigration() {
+    return this.isEnabled || this.isEnabling;
+  }
+
   get vcdName() {
     return this.value;
   }
