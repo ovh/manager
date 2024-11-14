@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export default function ExitGuard() {
+export default function ExitGuard(): null {
   useEffect(() => {
     const confirmExit = (event: BeforeUnloadEvent) => {
       event.preventDefault();
