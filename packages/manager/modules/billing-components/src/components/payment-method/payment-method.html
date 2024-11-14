@@ -39,7 +39,8 @@
         <p>{{ 'payment_expiration_no_default_method_message' | translate}}</p>
     </div>
     <a class="oui-link_icon" data-ng-href="{{$ctrl.updatePaymentMethodLink}}">
-        {{ 'payment_method_update_link_label' | translate}}
+        {{ !$ctrl.paymentMehtod ? 'payment_method_add_link_label':
+        'payment_method_update_link_label' | translate}}
         <span class="oui-icon oui-icon-arrow-right" aria-hidden="true"></span>
     </a>
 </div>
