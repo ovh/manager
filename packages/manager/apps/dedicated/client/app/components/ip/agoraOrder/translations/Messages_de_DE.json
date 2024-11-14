@@ -88,6 +88,6 @@
   "ip_agora_ipv4_localisation_title": "Geolokalisierung der IP-Adresse",
   "ip_agora_ipv4_localisation_description": "Um die Geolokalisierung Ihrer IP-Adresse zu ändern, wählen Sie bitte ein Land aus der Drop-down-Liste aus.",
   "ip_agora_table_next_text": "Weiter",
-  "ip_agora_ipv6_no_services": " IPv6-Adressen können nur an ein privates vRack Netzwerk angehängt werden. Hier können Sie ein solches erstellen: ",
+  "ip_agora_ipv6_no_services": " Additional IPv6 Adressen können nur mit einem privaten vRack Netzwerk verbunden werden. Das können Sie hier erstellen: ",
   "ip_agora_ipv6_no_services_link": " vRack erstellen"
 }
