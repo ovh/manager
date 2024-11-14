@@ -850,7 +850,7 @@
   "hosting_configuration_tab_sql_data_base_state": "Status",
   "hosting_configuration_tab_sql_data_base_server": "Serwer",
   "hosting_configuration_tab_sql_data_base_version": "Wersja",
-  "hosting_tab_MODULES_guide_help": "Potrzebujesz pomocy w instalacji modułu?",
+  "hosting_tab_MODULES_guide_help": "Potrzebujesz pomocy w zmianie hasła do modułu?",
   "hosting_configuration_tab_modules_module_name": "Moduł",
   "hosting_configuration_tab_modules_module_path": "Ścieżka",
   "hosting_configuration_tab_modules_status_maintenance": "Trwają prace konserwacyjne Twojego hostingu. Spróbuj ponownie później.",

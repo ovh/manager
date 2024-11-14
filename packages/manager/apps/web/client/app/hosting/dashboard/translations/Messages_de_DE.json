@@ -850,7 +850,7 @@
   "hosting_configuration_tab_sql_data_base_state": "Status",
   "hosting_configuration_tab_sql_data_base_server": "Server",
   "hosting_configuration_tab_sql_data_base_version": "Version",
-  "hosting_tab_MODULES_guide_help": "Benötigen Sie Hilfe bei der Installation Ihres 1 Klick Moduls?",
+  "hosting_tab_MODULES_guide_help": "Sie benötigen Hilfe bei der Änderung des Passworts Ihres 1-Klick-Moduls?",
   "hosting_configuration_tab_modules_module_name": "Modul",
   "hosting_configuration_tab_modules_module_path": "Pfad",
   "hosting_configuration_tab_modules_status_maintenance": "Für Ihr Hosting sind gerade Wartungsarbeiten im Gange. Bitte versuchen Sie es später erneut.",
