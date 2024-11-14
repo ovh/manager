@@ -23,7 +23,7 @@
   "zimbra_account_add_input_password_label": "Passwort",
   "zimbra_account_add_input_password_helper": "Ihr Passwort muss mindestens Folgendes enthalten:",
   "zimbra_account_add_input_password_helper_rule_1": "10 Zeichen",
-  "zimbra_account_add_input_password_helper_rule_2": "1 Ziffer oder Sonderzeichen (€,!, &amp; …)",
+  "zimbra_account_add_input_password_helper_rule_2": "1 Ziffer und 1 Sonderzeichen ($,!, &amp;,...)",
   "zimbra_account_add_input_password_helper_rule_3": "1 Großbuchstabe",
   "zimbra_account_add_input_mandatory": "Die mit einem Stern * gekennzeichneten Felder sind Pflichtfelder.",
   "zimbra_account_add_button_save": "Speichern",

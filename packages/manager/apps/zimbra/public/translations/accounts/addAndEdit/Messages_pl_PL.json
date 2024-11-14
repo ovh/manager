@@ -23,7 +23,7 @@
   "zimbra_account_add_input_password_label": "Hasło",
   "zimbra_account_add_input_password_helper": "Twoje hasło musi zawierać co najmniej:",
   "zimbra_account_add_input_password_helper_rule_1": "10 znaków",
-  "zimbra_account_add_input_password_helper_rule_2": "1 cyfrę lub znak specjalny (€, !, &amp;,etc.)",
+  "zimbra_account_add_input_password_helper_rule_2": "1 cyfra i 1 znak specjalny ($, !, &amp;,...)",
   "zimbra_account_add_input_password_helper_rule_3": "1 dużą literę",
   "zimbra_account_add_input_mandatory": "Pola oznaczone gwiazdką * są obowiązkowe",
   "zimbra_account_add_button_save": "Zapisz",
