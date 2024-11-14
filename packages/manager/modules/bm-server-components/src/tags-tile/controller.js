@@ -1,7 +1,7 @@
 export default class BmServerComponentsTagsTileController {
   /* @ngInject */
-  constructor(atInternet) {
-    this.atInternet = atInternet;
+  constructor($state) {
+    this.$state = $state;
   }
 
   $onInit() {
@@ -14,5 +14,9 @@ export default class BmServerComponentsTagsTileController {
         this.tags = [...this.tags.slice(0, 10), '...'];
       }
     }
+  }
+
+  goToTags() {
+    this.$state.go('app.dedicated-server.server.tags');
   }
 }

@@ -3,8 +3,6 @@
     data-loading="$ctrl.loading"
     data-heading="{{:: 'server_tags_title' | translate }}"
 >
-    <div ovh-alert="bandwithError" data-ng-if="bandwithError"></div>
-    <!-- Gateway IPv4-->
     <oui-tile-definition ng-if="!$ctrl.tags">
         <oui-tile-description>
             <span data-translate="server_tags_empty_msg"></span>
@@ -15,13 +13,12 @@
             <span
                 class="oui-badge ng-scope oui-badge_info"
                 data-ng-repeat="tag in $ctrl.tags track by $index"
-            >
-                {{ tag }}</span
-            >
+                data-ng-bind=":: tag"
+            ></span>
         </oui-tile-description>
     </oui-tile-definition>
     <div>
-        <a class="oui-link_icon" data-ng-href="#">
+        <a class="oui-link_icon" data-ng-click="$ctrl.goToTags()">
             <span
                 data-translate="{{:: $ctrl.tags ? 'server_tags_link' : 'server_tags_add_link' }}"
             ></span>
