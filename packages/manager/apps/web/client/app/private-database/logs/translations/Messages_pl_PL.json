@@ -1,3 +1,5 @@
 {
-  "private_database_logs": "Logi"
+  "private_database_logs": "Logi",
+  "private_database_logs_description_dbms": "Poniżej znajdziesz logi w czasie rzeczywistym generowane przez Web Cloud Database.",
+  "private_database_data_streams_description_dbms": "Po zasubskrybowaniu logów Webcloud Database zostaną one przeniesione do Logs Data Platform. Platforma ta zapewnia dostęp do zaawansowanych funkcji, takich jak zarządzanie alertami, wyszukiwanie lub zarządzanie czasem przechowywania."
 }
