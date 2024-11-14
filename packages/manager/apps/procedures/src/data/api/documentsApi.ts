@@ -12,15 +12,15 @@ const s3AxiosInstance = axios.create({});
 export const getUploadDocumentsLinks = (
   numberOfDocuments: number,
 ): Promise<UploadLink[]> => {
-  return v6
-    .post('/me/procedure/2FA', {
-      numberOfDocuments,
-    })
-    .then(({ data }) => data.uploadLinks);
+  return new Promise((resolve) => {
+    setTimeout(() => resolve([]), 5000);
+  });
 };
 
 const finalize: () => Promise<void> = () => {
-  return v6.post('/me/procedure/2FA/finalize').then(({ data }) => data);
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(), 5000);
+  });
 };
 
 const uploadDocument: (link: UploadLink, file: File) => Promise<void> = (
