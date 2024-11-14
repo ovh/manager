@@ -103,7 +103,7 @@ const FormCreateRequest = () => {
 
   return (
     <form onSubmit={handleSubmit(() => setShowConfirmModal(true))}>
-      {(areUploadLinksPending || isUploadPending) && <ExitGuard />}
+      {isPending && <ExitGuard />}
       {isOtherLegalFormForFR && (
         <div className="my-6">
           <OsdsText
