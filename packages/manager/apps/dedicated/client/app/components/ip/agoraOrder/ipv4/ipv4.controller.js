@@ -84,6 +84,7 @@ export default class AgoraIpV4OrderController {
       selectedService: null,
       selectedServiceRegion: null,
       region: null,
+      selectedOffer: null,
     };
     this.loading = {};
     this.user = this.$state.params.user;
@@ -101,6 +102,7 @@ export default class AgoraIpV4OrderController {
     this.atInternet.trackClick({
       name: `${FUNNEL_TRACKING_PREFIX}tile::add_additional_ip::edit_step_select_${step}`,
       type: 'action',
+      level2: 57,
     });
   }
 
@@ -218,7 +220,9 @@ export default class AgoraIpV4OrderController {
   }
 
   getServiceRegion() {
-    this.trackClick(`select_service::next_${this.model.selectedService}`);
+    this.trackClick(
+      `select_service::next_${this.model.selectedService.serviceName}`,
+    );
     this.loadServiceRegion = true;
     this.model.selectedServiceRegion = null;
     let request = null;
@@ -256,17 +260,11 @@ export default class AgoraIpV4OrderController {
     });
   }
 
-  trackParkingLocation() {
-    this.atInternet.trackClick({
-      name: `${FUNNEL_TRACKING_PREFIX}button::add_additional_ip::select_location::next`,
-      type: 'action',
-    });
-  }
-
   trackOrganisationLink() {
     this.atInternet.trackClick({
       name: `${FUNNEL_TRACKING_PREFIX}link::add_additional_ip::link_to_organisations_management`,
       type: 'action',
+      level2: 57,
     });
   }
 
@@ -454,7 +452,9 @@ export default class AgoraIpV4OrderController {
 
   manageLoadIpOffers() {
     if (this.model.selectedRegion) {
-      this.trackClick(`select_region::next`);
+      this.trackClick(
+        `select_region::next_${this.model.selectedRegion.regionName}`,
+      );
     }
 
     this.loading.ipOffers = true;
@@ -675,7 +675,7 @@ export default class AgoraIpV4OrderController {
   }
 
   onSelectedOfferChange(selectedOffer) {
-    this.trackClick(`select_solution::next_${this.model.params.selectedOffer}`);
+    this.model.selectedOffer = selectedOffer;
     this.maxSize = IP_AGORA[selectedOffer].maxQty;
     this.minSize = IP_AGORA[selectedOffer].minQty;
     this.model.params.selectedQuantity = this.minSize;
@@ -725,12 +725,6 @@ export default class AgoraIpV4OrderController {
       quantity: get(this.model.params, 'selectedQuantity', 1),
     };
 
-    const setup = `${this.model.selectedService}_${this.model.selectedRegion}_${this.model.selectedOffer}`;
-    this.atInternet.trackClick({
-      name: `${FUNNEL_TRACKING_PREFIX}button::add_additional_ip::confirm::ipv4_${setup}`,
-      type: 'action',
-    });
-
     let productToOrder = null;
     if (this.isPrivateCloudOffer) {
       productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
@@ -770,6 +764,15 @@ export default class AgoraIpV4OrderController {
       });
     }
 
+    const setup = `${commonProductProps.destination}_${orderableIpCountry ||
+      params.selectedCountry?.code ||
+      ''}_${productToOrder.planCode}`;
+    this.atInternet.trackClick({
+      name: `${FUNNEL_TRACKING_PREFIX}button::add_additional_ip::confirm::ipv4_${setup}`,
+      type: 'action',
+      level2: 57,
+    });
+
     return this.User.getUrlOf('express_order')
       .then((url) => {
         this.$window.open(
@@ -781,6 +784,7 @@ export default class AgoraIpV4OrderController {
         this.atInternet.trackClick({
           name: `${TRACKING_PREFIX}ip::banner-error::add_additional_ip_error::${err}`,
           type: 'display',
+          level2: 57,
         });
         this.Alerter.error(
           this.$translate.instant('ip_order_finish_error'),
@@ -849,14 +853,36 @@ export default class AgoraIpV4OrderController {
     this.atInternet.trackClick({
       name: `${FUNNEL_TRACKING_PREFIX}select::add_additional_ip::${name}`,
       type: 'action',
+      level2: 57,
+    });
+  }
+
+  trackSelectRegion(region) {
+    this.trackClick(`select_region::next_${region}`);
+  }
+
+  trackSelectLocation(location) {
+    this.trackClick(`select_location::next_${location.code}`);
+  }
+
+  offerTraking() {
+    this.trackClick(`select_solution::next_${this.model.selectedOffer}`);
+  }
+
+  locationTraking() {
+    this.atInternet.trackClick({
+      name: `${FUNNEL_TRACKING_PREFIX}button::add_additional_ip::select_location::next`,
+      type: 'action',
+      level2: 57,
     });
   }
 
   resumeOrder() {
-    const setup = `${this.model.selectedService}_${this.model.selectedRegion}_${this.model.selectedOffer}`;
+    const setup = `${this.model.selectedService.serviceName}_${this.model.selectedRegion.regionName}_${this.model.selectedOffer}`;
     this.atInternet.trackClick({
       name: `${FUNNEL_TRACKING_PREFIX}button::add_additional_ip::cancel::ipv4_${setup}`,
       type: 'action',
+      level2: 57,
     });
 
     return this.$state.go(DASHBOARD_STATE_NAME);

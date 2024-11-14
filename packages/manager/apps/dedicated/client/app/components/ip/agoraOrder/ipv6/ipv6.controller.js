@@ -77,6 +77,7 @@ export default class AgoraIpV6OrderController {
     this.atInternet.trackClick({
       name: `${FUNNEL_TRACKING_PREFIX}tile::add_additional_ip::edit_step_select_${step}`,
       type: ACTIONS_SUFFIX,
+      level2: 57,
     });
   }
 
@@ -202,8 +203,9 @@ export default class AgoraIpV6OrderController {
     });
 
     this.atInternet.trackClick({
-      name: `${FUNNEL_TRACKING_PREFIX}button::add_additional_ip::confirm::ipv6_${trakingService}__free`,
+      name: `${FUNNEL_TRACKING_PREFIX}button::add_additional_ip::confirm::ipv6_${trakingService}_${regionId}__free`,
       type: 'action',
+      level2: 57,
     });
 
     return this.User.getUrlOf('express_order')
@@ -212,12 +214,13 @@ export default class AgoraIpV6OrderController {
           `${url}review?products=${JSURL.stringify([productToOrder])}`,
           '_blank',
         );
-        this.goToDashboard();
+        this.$state.go(DASHBOARD_STATE_NAME);
       })
       .catch((error) => {
         this.atInternet.trackClick({
           name: `${TRACKING_PREFIX}ip::banner-error::add_additional_ip_error::${error}`,
           type: 'display',
+          level2: 57,
         });
 
         this.Alerter.error(
@@ -238,8 +241,9 @@ export default class AgoraIpV6OrderController {
 
   goToDashboard() {
     this.atInternet.trackClick({
-      name: `${FUNNEL_TRACKING_PREFIX}button::add_additional_ip::cancel::ipv6_${this.model.selectedService}__free`,
+      name: `${FUNNEL_TRACKING_PREFIX}button::add_additional_ip::cancel::ipv6_${this.model.selectedService}_${this.model.selectedPlan.regionId}_free`,
       type: 'action',
+      level2: 57,
     });
 
     return this.$state.go(DASHBOARD_STATE_NAME);
@@ -249,10 +253,19 @@ export default class AgoraIpV6OrderController {
     this.$state.go('vrack.index');
   }
 
+  trackSelectRegion(name) {
+    this.atInternet.trackClick({
+      name: `${FUNNEL_TRACKING_PREFIX}select::add_additional_ip::select_region::next_${name}`,
+      type: 'action',
+      level2: 57,
+    });
+  }
+
   trackClick(name) {
     this.atInternet.trackClick({
       name: `${FUNNEL_TRACKING_PREFIX}select::add_additional_ip::${name}`,
       type: ACTIONS_SUFFIX,
+      level2: 57,
     });
   }
 }

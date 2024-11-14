@@ -53,10 +53,20 @@ export default class AgoraIpOrderCtrl {
   }
 
   goToIpv4Order() {
+    this.atInternet.trackClick({
+      name: `${FUNNEL_TRACKING_PREFIX}tile::add_additional_ip::select_version::next_ipv4`,
+      type: 'action',
+      level2: 57,
+    });
     this.$state.go('app.ip.agora-order.ipv4');
   }
 
   goToIpv6Order() {
+    this.atInternet.trackClick({
+      name: `${FUNNEL_TRACKING_PREFIX}tile::add_additional_ip::select_version::next_ipv6`,
+      type: 'action',
+      level2: 57,
+    });
     this.$state.go('app.ip.agora-order.ipv6');
   }
 
@@ -64,6 +74,7 @@ export default class AgoraIpOrderCtrl {
     this.atInternet.trackClick({
       name: `${FUNNEL_TRACKING_PREFIX}link::back_previous_page`,
       type: 'action',
+      level2: 57,
     });
     return this.$state.go(DASHBOARD_STATE_NAME);
   }

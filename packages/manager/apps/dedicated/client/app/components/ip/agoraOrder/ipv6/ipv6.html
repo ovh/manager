@@ -129,6 +129,7 @@
                         data-disabled="!plan.available"
                         data-values="[plan]"
                         oui-tooltip="{{:: $ctrl.getRegionTooltip(plan.available) }}"
+                        data-on-change="$ctrl.trackSelectRegion(plan.regionId)"
                     >
                     </oui-select-picker>
                 </div>

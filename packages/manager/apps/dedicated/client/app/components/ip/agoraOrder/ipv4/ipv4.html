@@ -69,7 +69,7 @@
             data-valid="$ctrl.model.selectedRegion"
             data-editable="!$ctrl.isLoading"
             data-navigation="$ctrl.model.selectedRegion"
-            data-on-focus="$ctrl.model.selectedRegion && $ctrl.onEditStep('location')"
+            data-on-focus="$ctrl.model.selectedRegion && $ctrl.onEditStep('region')"
             data-on-submit="$ctrl.manageLoadIpOffers()"
         >
             <div data-ng-show="$ctrl.loading.region" class="text-center">
@@ -85,7 +85,7 @@
                     data-variant="light"
                     data-picture="{{ ::region.icon }}"
                     data-model="$ctrl.model.selectedRegion"
-                    data-ng-click="trackParkingLocation()"
+                    data-on-change="$ctrl.trackSelectRegion(region.regionName)"
                     data-values="[region]"
                 >
                 </oui-select-picker>
@@ -102,6 +102,7 @@
             data-editable="!$ctrl.isLoading"
             data-on-focus="$ctrl.model.params.selectedOffer && $ctrl.onEditStep('solution')"
             data-valid="$ctrl.model.params.selectedOffer"
+            data-on-submit="$ctrl.offerTraking()"
         >
             <div data-ng-show="$ctrl.loading.ipOffers" class="text-center">
                 <oui-spinner></oui-spinner>
@@ -238,6 +239,7 @@
             data-on-focus="$ctrl.model.params.selectedCountry && $ctrl.onEditStep('location_ip_address')"
             data-valid="$ctrl.model.params.selectedCountry"
             data-submit-text="{{($ctrl.model.params.selectedOffer.isIpBlockOffer && !$ctrl.isPrivateCloudOffer ? 'ip_agora_table_next_text' : 'ip_agora_table_submit_text') | translate }}"
+            data-on-submit="$ctrl.locationTraking()"
         >
             <div
                 data-ng-show="$ctrl.model.params.selectedOffer.countries.length > 0"
@@ -257,6 +259,7 @@
                             data-name="description"
                             data-model="$ctrl.model.params.selectedCountry"
                             disabled="$ctrl.model.params.selectedOffer.countries.length === 1"
+                            data-on-change="$ctrl.trackSelectLocation($ctrl.model.params.selectedCountry)"
                         >
                             <div class="row">
                                 <div
