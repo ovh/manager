@@ -1,0 +1,8 @@
+{
+  "zimbra_auto_replies_delete_success_message": "Votre demande de suppression a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
+  "zimbra_auto_replies_delete_error_message": "Votre demande de suppression n'a pas pu aboutir. Merci de réessayer dans quelques instants.",
+  "zimbra_auto_replies_delete_modal_title": "Supprimer un répondeur",
+  "zimbra_auto_replies_delete_cancel": "Annuler",
+  "zimbra_auto_replies_delete_cta": "Supprimer",
+  "zimbra_auto_replies_delete_modal_content": "Êtes-vous sûr de vouloir supprimer le répondeur ?"
+}

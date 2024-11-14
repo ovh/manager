@@ -11,6 +11,11 @@ export const IAM_ACTIONS = {
     create: `${IAM_ACTIONS_PREFIX}alias/create`,
     delete: `${IAM_ACTIONS_PREFIX}alias/delete`,
   },
+  autoReply: {
+    create: `${IAM_ACTIONS_PREFIX}autoReply/create`,
+    delete: `${IAM_ACTIONS_PREFIX}autoReply/delete`,
+    edit: `${IAM_ACTIONS_PREFIX}autoReply/edit`,
+  },
   domain: {
     create: `${IAM_ACTIONS_PREFIX}domain/create`,
     delete: `${IAM_ACTIONS_PREFIX}domain/delete`,

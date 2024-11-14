@@ -3,17 +3,11 @@ import {
   DatagridColumn,
   Notifications,
 } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-} from '@ovhcloud/ods-components';
-import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
+import ActionButtonAutoReply from './ActionButtonAutoReply.component';
+import { ResourceStatus } from '@/api/api.type';
 
 export type AutoRepliesItem = {
   id: string;
@@ -21,6 +15,7 @@ export type AutoRepliesItem = {
   from: string;
   until: string;
   copyTo: string;
+  status: ResourceStatus;
 };
 
 const items: AutoRepliesItem[] = [
@@ -30,6 +25,7 @@ const items: AutoRepliesItem[] = [
     from: '11/02/2023',
     until: '11/02/2024',
     copyTo: 'copy@example1.com',
+    status: ResourceStatus.READY,
   },
   {
     id: '2',
@@ -37,6 +33,7 @@ const items: AutoRepliesItem[] = [
     from: '11/03/2023',
     until: '11/03/2024',
     copyTo: 'copy@example2.com',
+    status: ResourceStatus.ERROR,
   },
 ];
 const columns: DatagridColumn<AutoRepliesItem>[] = [
@@ -62,20 +59,7 @@ const columns: DatagridColumn<AutoRepliesItem>[] = [
   },
   {
     id: 'deleteButton',
-    cell: () => (
-      <OsdsButton
-        inline
-        size={ODS_BUTTON_SIZE.sm}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.ghost}
-      >
-        <OsdsIcon
-          name={ODS_ICON_NAME.BIN}
-          size={ODS_ICON_SIZE.xs}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        ></OsdsIcon>
-      </OsdsButton>
-    ),
+    cell: (item) => <ActionButtonAutoReply autoReplyItem={item} />,
     label: '',
   },
 ];

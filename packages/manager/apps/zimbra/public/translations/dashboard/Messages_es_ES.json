@@ -51,5 +51,6 @@
   "zimbra_dashboard_redirections": "Redirecciones",
   "zimbra_dashboard_redirections_edit": "Editar la redirección",
   "zimbra_dashboard_redirections_delete": "Eliminar la redirección",
-  "zimbra_dashboard_auto_replies": "Contestadores"
+  "zimbra_dashboard_auto_replies": "Contestadores",
+  "zimbra_dashboard_auto_replies_delete": "Eliminar un contestador"
 }
