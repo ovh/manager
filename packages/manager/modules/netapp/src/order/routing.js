@@ -22,6 +22,8 @@ export default /* @ngInject */ ($stateProvider) => {
             }`,
           )
           .then(({ data }) => data),
+      displayIncompatibleBanner: /* @ngInject */ (features) =>
+        features.isFeatureAvailable('vrack-services'),
       goBackLink: /* @ngInject */ ($state) => $state.href('netapp'),
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
       breadcrumb: /* @ngInject */ ($translate) =>
