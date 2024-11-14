@@ -3,5 +3,8 @@
   "billing_autorenew_service_update_manual_non_automatic": "Con esta modalidad, el servicio no se renovará automáticamente en la fecha de expiración.",
   "billing_autorenew_service_update_manual_expiration": "Recibirá varios mensajes de correo electrónico en las semanas y días previos a la fecha de expiración ({{ expiration }}).",
   "billing_autorenew_service_update_manual_renew": "Para conservar el servicio, solo tendrá que renovarlo.",
-  "billing_autorenew_service_update_manual_warning": "Atención: Una vez que el servicio haya expirado, se suspenderá de forma inmediata y no podrá acceder a él. Los datos asociados al servicio se eliminarán de forma definitiva, si no abona el importe pendiente."
+  "billing_autorenew_service_update_manual_warning": "Atención: Una vez que el servicio haya expirado, se suspenderá de forma inmediata y no podrá acceder a él. Los datos asociados al servicio se eliminarán de forma definitiva, si no abona el importe pendiente.",
+  "billing_autorenew_service_update_manual_warning_banner_hosting_impact": "Atención: La desactivación de la renovación automática también afectará a los productos asociados a su alojamiento compartido.",
+  "billing_autorenew_service_update_manual_warning_banner_email_instructions": "Si desea conservar los mensajes de correo electrónico, le recomendamos que los desvincule.",
+  "billing_autorenew_service_update_manual_warning_banner_guide_link": "Enlace a la guía"
 }

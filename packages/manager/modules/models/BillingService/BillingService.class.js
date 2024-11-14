@@ -362,4 +362,8 @@ export default class BillingService {
       !this.isResiliated()
     );
   }
+
+  get isHostingWeb() {
+    return this.serviceType === 'HOSTING_WEB';
+  }
 }

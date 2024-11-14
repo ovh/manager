@@ -3,5 +3,8 @@
   "billing_autorenew_service_update_manual_non_automatic": "With this renewal method, your service will not be renewed automatically when it reaches its expiry date.",
   "billing_autorenew_service_update_manual_expiration": "You will be sent several email notifications in the weeks and days before the expiry date, and they will alert you regarding the expiry on {{ expiration }}.",
   "billing_autorenew_service_update_manual_renew": "You will simply need to renew your service if you want to keep using it.",
-  "billing_autorenew_service_update_manual_warning": "Please note that once the service expires, it will be immediately suspended. It will no longer be accessible, and the data associated with the service will be permanently deleted within a few days if we do not receive any payment."
+  "billing_autorenew_service_update_manual_warning": "Please note that once the service expires, it will be immediately suspended. It will no longer be accessible, and the data associated with the service will be permanently deleted within a few days if we do not receive any payment.",
+  "billing_autorenew_service_update_manual_warning_banner_hosting_impact": "Warning: Disabling automatic renewal will also impact the products linked to your web hosting plan.",
+  "billing_autorenew_service_update_manual_warning_banner_email_instructions": "If you would like to keep your emails, please unsync them.",
+  "billing_autorenew_service_update_manual_warning_banner_guide_link": "Link to the guide"
 }

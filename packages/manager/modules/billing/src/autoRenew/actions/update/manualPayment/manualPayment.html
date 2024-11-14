@@ -1,3 +1,26 @@
+<div
+    class="oui-message oui-message_warning text-center my-1"
+    ng-if="$ctrl.showAlertBanner"
+    role="alert"
+>
+    <p
+        class="mb-0"
+        data-translate="billing_autorenew_service_update_manual_warning_banner_hosting_impact"
+    ></p>
+    <p
+        class="mb-0"
+        data-translate="billing_autorenew_service_update_manual_warning_banner_email_instructions"
+    ></p>
+    <a
+        target="_blank"
+        rel="noopener"
+        class="d-inline-block oui-link_icon"
+        data-translate="billing_autorenew_service_update_manual_warning_banner_guide_link"
+        data-ng-href="{{ ::$ctrl.GuideLink }}"
+    >
+    </a>
+</div>
+
 <p
     data-translate="billing_autorenew_service_update_manual_sumup"
     data-translate-values="{

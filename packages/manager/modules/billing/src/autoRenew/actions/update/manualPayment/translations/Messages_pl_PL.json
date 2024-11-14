@@ -3,5 +3,8 @@
   "billing_autorenew_service_update_manual_non_automatic": "W tej konfiguracji odnowienia Twoja usługa nie będzie automatycznie odnawiana w dniu jej wygaśnięcia.",
   "billing_autorenew_service_update_manual_expiration": "Na kilka tygodni/dni przed wygaśnięciem usługi otrzymasz kilka przypomnień e-mailem o dacie wygaśnięcia {{expiration}}.",
   "billing_autorenew_service_update_manual_renew": "Dzięki temu, jeśli chcesz zachować usługę, będziesz mógł ją odnowić.",
-  "billing_autorenew_service_update_manual_warning": "Uwaga: po wygaśnięciu usługi zostanie ona natychmiast zawieszona i nie będzie już dostępna. W przypadku braku uregulowania płatności dane powiązane z tą usługą zostaną definitywnie usunięte po kilku dniach."
+  "billing_autorenew_service_update_manual_warning": "Uwaga: po wygaśnięciu usługi zostanie ona natychmiast zawieszona i nie będzie już dostępna. W przypadku braku uregulowania płatności dane powiązane z tą usługą zostaną definitywnie usunięte po kilku dniach.",
+  "billing_autorenew_service_update_manual_warning_banner_hosting_impact": "Uwaga: wyłączenie automatycznego odnowienia wpłynie również na produkty powiązane z Twoim hostingiem.",
+  "billing_autorenew_service_update_manual_warning_banner_email_instructions": "Jeśli chcesz zachować e-maile, zalecamy, abyś już teraz je odłączył.",
+  "billing_autorenew_service_update_manual_warning_banner_guide_link": "Link do przewodnika"
 }
