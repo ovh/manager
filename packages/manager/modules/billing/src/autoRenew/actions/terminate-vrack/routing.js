@@ -12,9 +12,9 @@ export default /* @ngInject */ ($stateProvider) => {
       service: /* @ngInject */ ($transition$) => $transition$.params().service,
       serviceType: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceType,
-      isEmpty: /* @ngInject */ (OvhApiVrack, $transition$) =>
+      isEmpty: /* @ngInject */ (OvhApiVrack, service) =>
         OvhApiVrack.Aapi()
-          .services({ serviceName: $transition$.params().service })
+          .services({ serviceName: service })
           .$promise.then((allServicesParam) => {
             const services = Object.entries(allServicesParam).filter(
               ([, value]) => {
