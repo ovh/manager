@@ -3,5 +3,8 @@
   "billing_autorenew_service_update_manual_non_automatic": "Questa modalità non consente il rinnovo automatico del servizio alla scadenza.",
   "billing_autorenew_service_update_manual_expiration": "Riceverai alcune email di notifica nelle settimane/giorni precedenti alla scadenza, che ti ricorderanno che il servizio sarà attivo fino al {{ expiration }}.",
   "billing_autorenew_service_update_manual_renew": "Per mantenere il servizio attivo, sarà sufficiente rinnovarlo.",
-  "billing_autorenew_service_update_manual_warning": "Attenzione: una volta giunto a scadenza, il servizio viene immediatamente sospeso e non sarà più accessibile. In caso di mancato pagamento da parte tua entro qualche giorno, i dati ad esso associati verranno eliminati definitivamente."
+  "billing_autorenew_service_update_manual_warning": "Attenzione: una volta giunto a scadenza, il servizio viene immediatamente sospeso e non sarà più accessibile. In caso di mancato pagamento da parte tua entro qualche giorno, i dati ad esso associati verranno eliminati definitivamente.",
+  "billing_autorenew_service_update_manual_warning_banner_hosting_impact": "Attenzione: la disattivazione del rinnovo automatico avrà impatto anche sui prodotti associati al tuo hosting condiviso.",
+  "billing_autorenew_service_update_manual_warning_banner_email_instructions": "Per conservare le email, ti consigliamo di disassociarle.",
+  "billing_autorenew_service_update_manual_warning_banner_guide_link": "Link alla guida"
 }
