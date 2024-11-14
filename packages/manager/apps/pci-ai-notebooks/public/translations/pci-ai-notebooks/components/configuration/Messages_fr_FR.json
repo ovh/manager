@@ -1,0 +1,22 @@
+{
+  "keyFieldLabel": "Clé",
+  "valueFieldLabel": "Valeur",
+  "existingKeyError": "Cette clé existe déjà",
+  "numberOfConfiguredLabels_zero": "{{count}} labels configurés",
+  "numberOfConfiguredLabels_one": "{{count}} label configuré sur {{max}}",
+  "numberOfConfiguredLabels_other": "{{count}} labels configurés sur {{max}}",
+  "duplicateKeyError": "Cette clé SSH est déjà configurée pour ce notebook",
+  "configuredKeyFieldLabel": "Clé SSH déjà paramétrée",
+  "sshKeyFieldPlaceholder": "Sélectionner une clé SSH",
+  "sshKeyFieldLabel": "Nom de la clé SSH",
+  "sskKeyValueFieldLabel": "Clé publique SSH",
+  "numberOfConfiguredKeys_zero": "{{count}} clés SSH configurées",
+  "numberOfConfiguredKeys_one": "{{count}} clé SSH configurée sur {{max}}",
+  "numberOfConfiguredKeys_other": "{{count}} clés SSH configurées sur {{max}}",
+  "addSshKeyToastErrorTitle": "Une erreur est survenue lors de la création de votre clé SSH",
+  "formConnectionPoolToastSuccessTitle": "Succés",
+  "addSshKeySuccessDescription": "Nouvelle clé SSH créée",
+  "addSshKeyTitle": "Configurer un nouvelle clé SSH",
+  "formSshKeyButtonCancel": "Annuler",
+  "formSshKeyButtonConfirm": "Confirmer"
+}

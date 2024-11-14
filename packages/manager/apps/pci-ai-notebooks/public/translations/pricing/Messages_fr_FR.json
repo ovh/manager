@@ -1,0 +1,6 @@
+{
+  "pricingHt": "{{ price }} HT",
+  "pricingInHour": "/ heure",
+  "pricingTtc": "{{ price }} TTC",
+  "pricingLabel": "Prix"
+}

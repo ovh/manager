@@ -1,6 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
-import { getRegions } from './capabilities.api';
+import { getRegions, getFlavor } from './capabilities.api';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -31,9 +31,25 @@ describe('Capabilities functions', () => {
         headers: {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
           'X-Pagination-Size': '50000',
-          Pragma: 'no-cache',
         },
       },
+    );
+  });
+});
+
+describe('Capabilities Flavor functions', () => {
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('should call getFlavor', async () => {
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getFlavor({
+      projectId: 'projectId',
+      region: 'regionId',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/ai/capabilities/region/regionId/flavor',
     );
   });
 });
