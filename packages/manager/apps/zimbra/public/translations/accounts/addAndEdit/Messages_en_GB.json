@@ -23,7 +23,7 @@
   "zimbra_account_add_input_password_label": "Password",
   "zimbra_account_add_input_password_helper": "Your password must contain at least:",
   "zimbra_account_add_input_password_helper_rule_1": "10 characters",
-  "zimbra_account_add_input_password_helper_rule_2": "1 digit or special character (€, !, &amp;)",
+  "zimbra_account_add_input_password_helper_rule_2": "1 digit and 1 special character ($,!, &amp;,...)",
   "zimbra_account_add_input_password_helper_rule_3": "1 uppercase letter",
   "zimbra_account_add_input_mandatory": "Fields marked with an asterisk (*) are mandatory",
   "zimbra_account_add_button_save": "Save",
