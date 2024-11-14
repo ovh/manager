@@ -96,7 +96,7 @@ export default class OvhManagerNetAppOrderCtrl {
         datacenter,
         regionName: DATACENTER_TO_REGION[datacenter],
         location: this.$translate.instant(
-          `netapp_order_location_${DATACENTER_TO_REGION[datacenter]}`,
+          `netapp_location_${DATACENTER_TO_REGION[datacenter]}`,
         ),
         icon: `oui-flag oui-flag_${flag}`,
       };
