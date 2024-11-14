@@ -5,7 +5,7 @@ import {
   getOrganizationDisplayName,
   getOrganizationIdFromBackup,
   getOrganizationUuid,
-} from './useOrganizations';
+} from './useVcdOrganization';
 import { organizationList } from '../mocks/organization/vcd-organization.mock';
 
 describe('Managed VCD API utils', () => {

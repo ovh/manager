@@ -2,7 +2,7 @@ import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 import { VCDOrganization, VCDOrganizationTargetSpec } from '../types';
 import { getVcdOrganizationRoute } from '../utils/apiRoutes';
 
-type UpdateVcdOrganizationDetailsParams = {
+export type UpdateVcdOrganizationDetailsParams = {
   id: string;
   details: VCDOrganizationTargetSpec;
 };
