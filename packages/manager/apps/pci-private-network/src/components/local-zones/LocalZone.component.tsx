@@ -38,7 +38,6 @@ import {
 import { useProjectRegions } from '@/api/hooks/useRegions';
 import { PRIVATE_NETWORK_LIST } from '@/constants';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
-import { useNewNetworkStore } from '@/pages/new/store';
 
 type TLocalZoneComponent = {
   projectId: string;
@@ -57,7 +56,6 @@ export default function LocalZoneComponent({
   const navigate = useNavigate();
 
   const { data: regions } = useProjectRegions(projectId);
-  const store = useNewNetworkStore();
 
   const { data: aggregatedNetworks } = useAggregatedLocalNetworks(
     projectId,
@@ -85,10 +83,7 @@ export default function LocalZoneComponent({
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => {
-            store.reset();
-            navigate('../new');
-          }}
+          onClick={() => navigate('../new')}
         >
           <OsdsIcon
             name={ODS_ICON_NAME.ADD}
