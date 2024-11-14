@@ -315,8 +315,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ? DedicatedCloud.getPCCMigrationState(productId)
           : null,
       hasVCDMigration: /* @ngInject */ (dedicatedCloudVCDMigrationState) =>
-        dedicatedCloudVCDMigrationState?.isEnabled ||
-        dedicatedCloudVCDMigrationState?.isEnabling,
+        dedicatedCloudVCDMigrationState?.hasMigration,
       breadcrumb: /* @ngInject */ (productId) => productId,
     },
     views: {

@@ -15,4 +15,8 @@ export default class PCCMigrationState {
   get isAllowed() {
     return this.state !== PCC_MIGRATION_STATUS.NOT_ALLOWED;
   }
+
+  get isToMigrate() {
+    return this.state === PCC_MIGRATION_STATUS.TO_MIGRATE;
+  }
 }
