@@ -126,23 +126,24 @@
                     data-variant="secondary"
                     data-ng-if="!$ctrl.streamSubscriptions.hasOwnProperty($row.streamId)"
                     data-ng-click="$ctrl.createLogSubscription($row.streamId)"
+                    data-disabled="$ctrl.streamLoading[$row.streamId]"
                 >
                     <span data-translate="list_button_subscribe"></span>
                     <oui-spinner
                         size="s"
-                        data-ng-if="$ctrl.loading === $row.streamId"
+                        data-ng-if="$ctrl.streamLoading[$row.streamId]"
                     ></oui-spinner>
                 </oui-button>
                 <oui-button
                     data-variant="secondary"
-                    loading="$ctrl.loading === $row.streamId"
                     data-ng-if="$ctrl.streamSubscriptions.hasOwnProperty($row.streamId)"
                     data-ng-click="$ctrl.deleteLogSubscription($row.streamId)"
+                    data-disabled="$ctrl.streamLoading[$row.streamId]"
                 >
                     <span data-translate="list_button_unsubscribe"></span>
                     <oui-spinner
                         size="s"
-                        data-ng-if="$ctrl.loading === $row.streamId"
+                        data-ng-if="$ctrl.streamLoading[$row.streamId]"
                     ></oui-spinner>
                 </oui-button>
             </div>

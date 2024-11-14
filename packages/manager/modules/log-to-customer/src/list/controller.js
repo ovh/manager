@@ -20,7 +20,7 @@ export default class LogToCustomerListCtrl {
   }
 
   $onInit() {
-    this.loading = false;
+    this.streamLoading = {};
     this.accountList = [];
     this.streams = [];
     this.streamSubscriptions = {};
@@ -58,13 +58,10 @@ export default class LogToCustomerListCtrl {
   }
 
   getStreamData() {
-    this.$q
+    return this.$q
       .all([this.getSubscribedStreams(), this.getLogAccountStreams()])
       .catch((error) => {
         this.alertError(error?.data?.message);
-      })
-      .finally(() => {
-        this.loading = false;
       });
   }
 
@@ -82,50 +79,54 @@ export default class LogToCustomerListCtrl {
 
   createLogSubscription(id) {
     this.trackClick(this.trackingHits.SUBSCRIBE);
-    this.loading = id;
+    this.streamLoading[id] = true;
     this.LogToCustomerService.post(this.logSubscriptionApiData.url, {
       ...this.logSubscriptionApiData.params,
       streamId: id,
     })
       .then(({ data }) => {
-        this.LogToCustomerService.pollOperation(
+        return this.LogToCustomerService.pollOperation(
           this.selectedAccount.serviceName,
           data,
         ).then(() => {
           this.Alerter.success(
             this.$translate.instant('logs_list_subscription_success'),
           );
-          this.getStreamData();
+          return this.getStreamData();
         });
       })
       .catch(({ data }) => {
         this.alertError(data.message);
-        this.loading = false;
+      })
+      .finally(() => {
+        this.streamLoading[id] = false;
       });
   }
 
   deleteLogSubscription(streamId) {
     this.trackClick(this.trackingHits.UNSUBSCRIBE);
-    this.loading = streamId;
+    this.streamLoading[streamId] = true;
     const { subscriptionId } = this.streamSubscriptions[streamId];
 
     this.LogToCustomerService.delete(
       `${this.logSubscriptionApiData.url}/${subscriptionId}`,
     )
       .then(({ data }) => {
-        this.LogToCustomerService.pollOperation(
+        return this.LogToCustomerService.pollOperation(
           this.selectedAccount.serviceName,
           data,
         ).then(() => {
           this.Alerter.success(
             this.$translate.instant('logs_list_unsubscription_success'),
           );
-          this.getStreamData();
+          return this.getStreamData();
         });
       })
       .catch(({ data }) => {
         this.alertError(data.message);
-        this.loading = false;
+      })
+      .finally(() => {
+        this.streamLoading[streamId] = false;
       });
   }
 
