@@ -266,9 +266,9 @@ const TAG = {
 
   // List of applications - banners
   APPLICATIONS__DELETE_APPLICATION_CONFIRM_BANNER__ERROR:
-    'iam::applications::delete-application-confirm-banner::error',
+    'dedicated::account::iam::applications::delete-application::confirm-banner::error',
   APPLICATIONS__DELETE_APPLICATION_CONFIRM_BANNER__SUCCESS:
-    'iam::applications::delete-application-confirm-banner::success',
+    'dedicated::account::iam::applications::delete-application::confirm-banner::success',
 
   // Commons
   ADD_ACTION_MANUALLY_SUCCESS: 'add-manually-success',
