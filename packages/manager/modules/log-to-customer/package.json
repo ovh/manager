@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-log-to-customer",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "Module to handle logs to customer",
   "keywords": [
     "angularjs",

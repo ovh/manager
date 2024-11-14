@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.3.1...@ovh-ux/manager-log-to-customer@2.3.2) (2024-11-14)
+
+
+### Bug Fixes
+
+* fix log to customer subscription transition workflow ([#13914](https://github.com/ovh/manager/issues/13914)) ([081da67](https://github.com/ovh/manager/commit/081da67463530ccb5ba4ca8771b5f0c964f9c3a6))
+
+
+
+
+
 ## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.3.0...@ovh-ux/manager-log-to-customer@2.3.1) (2024-08-29)
 
 
