@@ -4,3 +4,5 @@ export * from './flavors';
 export * from './instance';
 export * from './project';
 export * from './regions';
+export * from './image';
+export * from './volume';
