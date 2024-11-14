@@ -1,11 +1,7 @@
 import { useQuery, useQueries } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
-import {
-  organizationApiRoute,
-  getVcdOrganization,
-  getVmwareCloudDirectorBackup,
-} from '../api';
+import { getVcdOrganization, getVmwareCloudDirectorBackup } from '../api';
 import { getRegionNameFromAzName } from './useVeeamBackup';
 import {
   BackupStatus,
@@ -13,6 +9,7 @@ import {
   VCDOrganizationWithBackupStatus,
   VeeamBackupWithIam,
 } from '../types';
+import { VCD_ORGANIZATION_ROUTE } from '../utils/apiRoutes';
 
 const backupSuffix = '-veeam-backup';
 
@@ -35,11 +32,11 @@ export const getOrganizationDisplayName = (organization?: VCDOrganization) =>
 export const getBackupIdFromOrganization = (organization: VCDOrganization) =>
   `${getOrganizationUuid(organization)}${backupSuffix}`;
 
-export const organizationListQueryKey = [organizationApiRoute];
+export const organizationListQueryKey = [VCD_ORGANIZATION_ROUTE];
 
 export const useOrganizationList = ({ pageSize }: { pageSize?: number }) =>
   useResourcesIcebergV2<VCDOrganization>({
-    route: organizationApiRoute,
+    route: VCD_ORGANIZATION_ROUTE,
     queryKey: organizationListQueryKey,
     pageSize,
   });
@@ -95,6 +92,6 @@ export const useOrganizationWithBackupStatusList = ({
 
 export const useOrganization = (organizationId: string) =>
   useQuery<ApiResponse<VCDOrganization>, ApiError>({
-    queryKey: [organizationApiRoute, organizationId],
+    queryKey: [VCD_ORGANIZATION_ROUTE, organizationId],
     queryFn: () => getVcdOrganization(organizationId),
   });
