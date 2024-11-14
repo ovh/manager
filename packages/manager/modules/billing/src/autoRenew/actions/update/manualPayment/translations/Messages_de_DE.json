@@ -3,5 +3,8 @@
   "billing_autorenew_service_update_manual_non_automatic": "In diesem Verlängerungsmodus wird Ihr Dienst am Ablaufdatum nicht mehr automatisch verlängert.",
   "billing_autorenew_service_update_manual_expiration": "In den Wochen/Tagen vor Ablauf des Dienstes erhalten Sie mehrere E-Mail-Benachrichtigungen, um Sie auf das Ablaufdatum am {{ expiration }} hinzuweisen.",
   "billing_autorenew_service_update_manual_renew": "Wenn Sie Ihren Dienst weiterhin nutzen möchten, können Sie ihn einfach verlängern.",
-  "billing_autorenew_service_update_manual_warning": "Achtung: Sobald der Dienst abgelaufen ist, wird er umgehend geschlossen. Er ist dann nicht mehr erreichbar und die zugehörigen Daten werden ohne Aktion Ihrerseits innerhalb weniger Tage unwiderruflich gelöscht."
+  "billing_autorenew_service_update_manual_warning": "Achtung: Sobald der Dienst abgelaufen ist, wird er umgehend geschlossen. Er ist dann nicht mehr erreichbar und die zugehörigen Daten werden ohne Aktion Ihrerseits innerhalb weniger Tage unwiderruflich gelöscht.",
+  "billing_autorenew_service_update_manual_warning_banner_hosting_impact": "Achtung: Die Deaktivierung der automatischen Verlängerung wirkt sich auch auf die mit Ihrem Shared Hosting verbundenen Produkte aus.",
+  "billing_autorenew_service_update_manual_warning_banner_email_instructions": "Wenn Sie die E-Mails behalten möchten, sollten Sie diese ab sofort trennen.",
+  "billing_autorenew_service_update_manual_warning_banner_guide_link": "Link zur Anleitung"
 }
