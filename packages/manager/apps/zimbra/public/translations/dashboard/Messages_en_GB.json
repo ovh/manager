@@ -51,5 +51,6 @@
   "zimbra_dashboard_redirections": "Redirections",
   "zimbra_dashboard_redirections_edit": "Modify redirection",
   "zimbra_dashboard_redirections_delete": "Delete redirection",
-  "zimbra_dashboard_auto_replies": "Auto-replies"
+  "zimbra_dashboard_auto_replies": "Auto-replies",
+  "zimbra_dashboard_auto_replies_delete": "Delete an auto-reply"
 }

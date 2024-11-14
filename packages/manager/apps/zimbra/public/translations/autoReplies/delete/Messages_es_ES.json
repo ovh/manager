@@ -1,0 +1,8 @@
+{
+  "zimbra_auto_replies_delete_success_message": "La solicitud de eliminación se ha enviado. Va a ejecutarse.",
+  "zimbra_auto_replies_delete_error_message": "No se ha podido completar la solicitud de eliminación. Por favor, vuelva a intentarlo en unos instantes.",
+  "zimbra_auto_replies_delete_modal_title": "Eliminar un contestador",
+  "zimbra_auto_replies_delete_cancel": "Cancelar",
+  "zimbra_auto_replies_delete_cta": "Eliminar",
+  "zimbra_auto_replies_delete_modal_content": "¿Seguro que quiere eliminar el contestador?"
+}

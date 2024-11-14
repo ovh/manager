@@ -1,0 +1,8 @@
+{
+  "zimbra_auto_replies_delete_success_message": "O seu pedido de eliminação foi corretamente tomado em conta. Será executada dentro de alguns instantes.",
+  "zimbra_auto_replies_delete_error_message": "O seu pedido de eliminação não foi bem-sucedido. Tente novamente mais tarde.",
+  "zimbra_auto_replies_delete_modal_title": "Eliminar uma resposta automática",
+  "zimbra_auto_replies_delete_cancel": "Anular",
+  "zimbra_auto_replies_delete_cta": "Suprimir",
+  "zimbra_auto_replies_delete_modal_content": "Tem a certeza de que quer eliminar a resposta automática?"
+}

@@ -51,5 +51,6 @@
   "zimbra_dashboard_redirections": "Weiterleitungen",
   "zimbra_dashboard_redirections_edit": "Weiterleitung bearbeiten",
   "zimbra_dashboard_redirections_delete": "Die Weiterleitung löschen",
-  "zimbra_dashboard_auto_replies": "Automatische Antworten"
+  "zimbra_dashboard_auto_replies": "Automatische Antworten",
+  "zimbra_dashboard_auto_replies_delete": "Eine Auto-Antwort löschen"
 }

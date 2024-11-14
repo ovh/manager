@@ -1,0 +1,8 @@
+{
+  "zimbra_auto_replies_delete_success_message": "Ihre Anfrage zur Löschung wurde registriert. Sie wird in einigen Augenblicken ausgeführt.",
+  "zimbra_auto_replies_delete_error_message": "Ihre Anfrage zum Löschen konnte nicht abgeschlossen werden. Bitte versuchen Sie es in einigen Augenblicken erneut.",
+  "zimbra_auto_replies_delete_modal_title": "Eine Auto-Antwort löschen",
+  "zimbra_auto_replies_delete_cancel": "Abbrechen",
+  "zimbra_auto_replies_delete_cta": "Löschen",
+  "zimbra_auto_replies_delete_modal_content": "Sind Sie sicher, dass Sie die Auto-Antwort löschen möchten?"
+}

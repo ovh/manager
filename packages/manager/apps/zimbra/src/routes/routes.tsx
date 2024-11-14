@@ -260,6 +260,17 @@ export const Routes: any = [
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/AutoReplies/AutoReplies'),
             ),
+            children: [
+              {
+                path: 'delete',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/AutoReplies/ModalDeleteAutoReply.component'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
+            ],
           },
         ],
       },
