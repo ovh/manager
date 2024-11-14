@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-private-network-app",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "private": true,
   "description": "PCI Private network react app",
   "type": "module",
