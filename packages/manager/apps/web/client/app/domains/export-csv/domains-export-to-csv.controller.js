@@ -6,21 +6,37 @@ import map from 'lodash/map';
 import size from 'lodash/size';
 import trim from 'lodash/trim';
 import uniq from 'lodash/uniq';
+import {
+  DOMAIN_PREFIX_LISTING_EXPORT_ERROR,
+  DOMAIN_PREFIX_LISTING_EXPORT_SUCCESS,
+  DOMAIN_PREFIX_POPUP_BUTTON_EXPORT_CSV_DOMAIN,
+  DOMAIN_PREFIX_POPUP_EXPORT_CSV,
+} from '../domains.constant';
 
 angular.module('App').controller(
   'DomainsToCsvCtrl',
   class DomainsToCsvCtrl {
     /* @ngInject */
-    constructor($scope, $rootScope, $q, $translate, Domain, exportCsv) {
+    constructor(
+      $scope,
+      $rootScope,
+      $q,
+      $translate,
+      Domain,
+      exportCsv,
+      atInternet,
+    ) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;
       this.$q = $q;
       this.$translate = $translate;
       this.Domain = Domain;
       this.exportCsv = exportCsv;
+      this.atInternet = atInternet;
     }
 
     $onInit() {
+      this.atInternet.trackPage({ name: DOMAIN_PREFIX_POPUP_EXPORT_CSV });
       this.exportResults = {
         data: null,
         success: false,
@@ -110,14 +126,26 @@ angular.module('App').controller(
         this.exportStatus.doing = false;
         this.exportResults.data = data;
         this.exportResults.success = true;
+        this.atInternet.trackPage({
+          name: DOMAIN_PREFIX_LISTING_EXPORT_SUCCESS,
+        });
       });
       this.$scope.$on('domain.csv.export.error', () => {
         this.exportStatus.doing = false;
         this.exportResults.error = true;
+        this.atInternet.trackPage({
+          name: DOMAIN_PREFIX_LISTING_EXPORT_ERROR,
+        });
       });
 
       this.$scope.closeExport = () => this.closeExport();
-      this.$scope.exportAccounts = () => this.exportAccountsToCsv();
+      this.$scope.exportAccounts = () => {
+        this.atInternet.trackClick({
+          name: DOMAIN_PREFIX_POPUP_BUTTON_EXPORT_CSV_DOMAIN,
+          type: 'action',
+        });
+        return this.exportAccountsToCsv();
+      };
     }
 
     /**

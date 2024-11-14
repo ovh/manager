@@ -23,6 +23,14 @@ import {
   PRODUCT_TYPE,
 } from './list-domain-layout.constants';
 
+import {
+  DOMAIN_PREFIX_PAGE_BUTTON_RENEW_RESTORE_DOMAIN,
+  DOMAIN_PREFIX_PAGE_BUTTON_EXPORT_CSV_DOMAIN,
+  DOMAIN_PREFIX_PAGE_BUTTON_DATAGRID_LINK,
+  DOMAIN_PREFIX_PAGE_BUTTON_DATAGRID,
+  DOMAIN,
+} from '../../domains/domains.constant';
+
 export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
   constructor(
@@ -35,6 +43,7 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     $scope,
     $timeout,
     $window,
+    atInternet,
   ) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
@@ -53,12 +62,15 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     this.DOMAINS_BADGES_RENEWAL_MODE = DOMAINS_BADGES_RENEWAL_MODE;
     this.IDN_PREFIX = IDN_PREFIX;
     this.DOMAIN_OBJECT_KEYS = DOMAIN_OBJECT_KEYS;
+    this.DOMAIN_PREFIX_PAGE_BUTTON_RENEW_RESTORE_DOMAIN = DOMAIN_PREFIX_PAGE_BUTTON_RENEW_RESTORE_DOMAIN;
+    this.DOMAIN_PREFIX_PAGE_BUTTON_EXPORT_CSV_DOMAIN = DOMAIN_PREFIX_PAGE_BUTTON_EXPORT_CSV_DOMAIN;
     this.coreURLBuilder = coreURLBuilder;
     this.user = coreConfig.getUser();
     this.Domain = Domain;
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.$window = $window;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -268,6 +280,20 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
       'dedicated',
       `#/contact/${domain}/${ownerId}`,
     );
+  }
+
+  trackDomainLinkClick(track) {
+    this.atInternet.trackClick({
+      name: `${DOMAIN_PREFIX_PAGE_BUTTON_DATAGRID_LINK}${track}::${DOMAIN}`,
+      type: 'action',
+    });
+  }
+
+  trackDomainButtonClick(track) {
+    this.atInternet.trackClick({
+      name: `${DOMAIN_PREFIX_PAGE_BUTTON_DATAGRID}::${track}::${DOMAIN}`,
+      type: 'action',
+    });
   }
 
   static isDomainRenewableOrRestorable(domain) {
