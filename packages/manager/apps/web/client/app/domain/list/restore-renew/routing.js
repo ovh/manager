@@ -1,3 +1,5 @@
+import { DOMAIN_PREFIX_POPUP_RENEW_RESTORE } from '../../../domains/domains.constant';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain.index.restore-renew', {
     url: '/restore-renew',
@@ -20,6 +22,9 @@ export default /* @ngInject */ ($stateProvider) => {
       modal: {
         component: 'webdomainRestoreRenewModale',
       },
+    },
+    atInternet: {
+      rename: DOMAIN_PREFIX_POPUP_RENEW_RESTORE,
     },
     layout: 'modal',
   });
