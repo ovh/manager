@@ -1,7 +1,14 @@
 <oui-message
     class="pt-2"
     data-type="info"
-    data-ng-if="$ctrl.vcdMigrationState.isEnabled || $ctrl.vcdMigrationState.isEnabling"
+    data-ng-if="$ctrl.vcdMigrationState.hasMigration"
 >
     <span data-translate="dedicatedCloud_managed_vcd_migrated"></span>
+</oui-message>
+<oui-message
+    class="pt-2"
+    data-type="warning"
+    data-ng-if="$ctrl.hasReminderAvailability && $ctrl.pccMigrationState.isToMigrate"
+>
+    <span data-translate="dedicatedCloud_pcc_to_migrate"></span>
 </oui-message>
