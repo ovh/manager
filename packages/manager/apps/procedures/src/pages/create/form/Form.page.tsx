@@ -25,6 +25,7 @@ import { useUploadDocuments, useUploadLinks } from '@/data/hooks/useDocuments';
 import { ConfirmModal } from './Modal/ConfirmModal';
 import { SuccessModal } from './Modal/SuccessModal';
 import { ovhHomePageHref } from './constants/form.constants';
+import ExitGuard from '@/components/ExitGuard/ExitGuard.component';
 
 const flatFiles = (files: FieldValues) =>
   Object.values(files)
@@ -102,6 +103,7 @@ const FormCreateRequest = () => {
 
   return (
     <form onSubmit={handleSubmit(() => setShowConfirmModal(true))}>
+      {(areUploadLinksPending || isUploadPending) && <ExitGuard />}
       {isOtherLegalFormForFR && (
         <div className="my-6">
           <OsdsText
