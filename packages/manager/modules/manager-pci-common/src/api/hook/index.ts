@@ -8,3 +8,5 @@ export * from './useOperation';
 export * from './useProject';
 export * from './useRegions';
 export * from './useInstance';
+export * from './useImage';
+export * from './useVolume';
