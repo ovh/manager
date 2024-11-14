@@ -547,5 +547,6 @@
   "core_pcc_top_guide_11_title": "Nutanix official documentation",
   "core_pcc_top_guide_12_title": "SAP HANA on Private Cloud official documentation",
   "core_pcc_top_guide_13_title": "Authorise IPs to connect to vCenter",
-  "core_pcc_top_guide_14_title": "VMware on OVHcloud - VMware Cloud Director"
+  "core_pcc_top_guide_14_title": "VMware on OVHcloud - VMware Cloud Director",
+  "core_sd_top_guide_8_title": "Enable and configure the Edge Network Firewall"
 }
