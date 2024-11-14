@@ -134,8 +134,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ? DedicatedCloud.getPCCMigrationState($stateParams.productId)
           : null,
       hasVCDMigration: /* @ngInject */ (dedicatedCloudVCDMigrationState) =>
-        dedicatedCloudVCDMigrationState?.isEnabled ||
-        dedicatedCloudVCDMigrationState?.isEnabling,
+        dedicatedCloudVCDMigrationState?.hasMigration,
 
       drpAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
