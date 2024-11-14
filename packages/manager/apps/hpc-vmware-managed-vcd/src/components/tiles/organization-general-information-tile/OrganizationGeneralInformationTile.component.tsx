@@ -41,8 +41,8 @@ export default function OrganizationGenerationInformationTile({
           label: t('managed_vcd_dashboard_name'),
           value: (
             <EditableTileItem
-              label={vcdOrganization?.currentState?.fullName}
-              urn={vcdOrganization?.iam?.urn}
+              label={vcdOrganization.currentState?.fullName}
+              urn={vcdOrganization.iam?.urn}
               iamActions={[
                 iamActions.vmwareCloudDirectorApiovhOrganizationEdit,
               ]}
@@ -55,8 +55,8 @@ export default function OrganizationGenerationInformationTile({
           label: t('managed_vcd_dashboard_description'),
           value: (
             <EditableTileItem
-              label={vcdOrganization?.currentState?.description}
-              urn={vcdOrganization?.iam.urn}
+              label={vcdOrganization.currentState?.description}
+              urn={vcdOrganization.iam.urn}
               iamActions={[
                 iamActions.vmwareCloudDirectorApiovhOrganizationEdit,
               ]}
@@ -76,7 +76,7 @@ export default function OrganizationGenerationInformationTile({
               hue={ODS_THEME_COLOR_HUE._500}
             >
               <Region
-                name={vcdOrganization?.currentState?.region?.toLowerCase()}
+                name={vcdOrganization.currentState?.region?.toLowerCase()}
                 mode="region"
               />
             </OsdsText>
@@ -93,7 +93,7 @@ export default function OrganizationGenerationInformationTile({
           value: (
             <Links
               type={LinkType.external}
-              href={vcdOrganization?.currentState?.webInterfaceUrl}
+              href={vcdOrganization.currentState?.webInterfaceUrl}
               label={t('managed_vcd_dashboard_management_interface_access')}
               target={OdsHTMLAnchorElementTarget._blank}
             />

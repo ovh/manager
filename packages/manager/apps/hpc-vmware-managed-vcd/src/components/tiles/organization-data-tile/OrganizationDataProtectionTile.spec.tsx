@@ -20,6 +20,7 @@ import { useManagedVcdOrganizationBackup } from '../../../data/hooks/useManagedV
 import IVcdOrganizationBackup, {
   BackupResourceStatus,
 } from '../../../types/vcd-organization-backup.interface';
+import { organizationList } from '../../../../mocks/vcd-organization/vcd-organization.mock';
 
 vi.mock('../../../data/hooks/useManagedVcdOrganization', () => ({
   useManagedVcdOrganizationBackup: vi.fn(),
@@ -44,7 +45,7 @@ const renderComponent = () => {
       <ShellContext.Provider
         value={(shellContext as unknown) as ShellContextType}
       >
-        <OrganizationDataProtectionTile />
+        <OrganizationDataProtectionTile vcdOrganization={organizationList[0]} />
       </ShellContext.Provider>
     </QueryClientProvider>,
   );

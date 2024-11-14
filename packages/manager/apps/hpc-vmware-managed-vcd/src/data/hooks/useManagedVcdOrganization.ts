@@ -14,6 +14,7 @@ import {
   getVcdOrganizationQueryKey,
   getVcdOrganizationBackupQueryKey,
 } from '@/utils/queryKeys';
+import { getBackupIdFromOrganization } from '@/utils/veeamBackupId';
 
 interface IUseManagedVcdOrganization
   extends Pick<UseQueryOptions, 'refetchOnWindowFocus' | 'refetchInterval'> {
@@ -35,10 +36,13 @@ const useManagedVcdOrganization = ({
   });
 };
 
-export const useManagedVcdOrganizationBackup = (id: string) => {
+export const useManagedVcdOrganizationBackup = (
+  vcdOrganization: IVcdOrganization,
+) => {
   return useQuery<ApiResponse<IVcdOrganizationBackup>, ApiError>({
-    queryKey: getVcdOrganizationBackupQueryKey(id),
-    queryFn: () => getVcdOrganizationBackup(id),
+    queryKey: getVcdOrganizationBackupQueryKey(vcdOrganization.id),
+    queryFn: () =>
+      getVcdOrganizationBackup(getBackupIdFromOrganization(vcdOrganization)),
     retry: false,
     placeholderData: keepPreviousData,
   });

@@ -37,13 +37,13 @@ function GeneralInformation() {
   return (
     <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-10">
       <OrganizationGenerationInformationTile
-        vcdOrganization={vcdOrganization?.data}
+        vcdOrganization={vcdOrganization.data}
       />
       <div className="flex flex-col gap-8">
         <OrganizationOptionsTile
-          isLicenseActive={!!vcdOrganization?.data?.currentState?.spla}
+          isLicenseActive={!!vcdOrganization.data?.currentState?.spla}
         />
-        <DataProtectionTile />
+        <DataProtectionTile vcdOrganization={vcdOrganization.data} />
       </div>
       <div>
         <BillingTile id={id} />

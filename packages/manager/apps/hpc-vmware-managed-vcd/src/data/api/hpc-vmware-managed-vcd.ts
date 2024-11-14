@@ -27,11 +27,9 @@ export const getVcdOrganization = async (
  * Get VCD Backup
  */
 export const getVcdOrganizationBackup = async (
-  organizationId: string,
+  backupId: string,
 ): Promise<ApiResponse<IVcdOrganizationBackup>> =>
-  apiClient.v2.get(
-    `/vmwareCloudDirector/backup/${organizationId}-veeam-backup`,
-  );
+  apiClient.v2.get(`/vmwareCloudDirector/backup/${backupId}`);
 
 /**
  * Edit VCD Organization
