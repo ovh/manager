@@ -1,4 +1,4 @@
-import { ResourceStatus, Task, WithIam } from './vcd-utility.type';
+import { ResourceStatus, Task, WithIam, WithoutIam } from './vcd-utility.type';
 
 export type VCDDatacentreTargetSpec = {
   vCPUSpeed: number;
@@ -15,13 +15,13 @@ export type VCDDatacentreState = VCDDatacentreTargetSpec & {
   name: string;
 };
 
-export type VCDDatacentre = {
+export type VCDDatacentre = WithIam<{
   id: string;
   resourceStatus: ResourceStatus;
   currentState: VCDDatacentreState;
   targetSpec: VCDDatacentreTargetSpec;
   currentTasks?: Task[];
   updatedAt: string;
-};
+}>;
 
-export type VCDDatacentreWithIam = WithIam<VCDDatacentre>;
+export type VCDDatacentreWithoutIam = WithoutIam<VCDDatacentre>;

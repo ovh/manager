@@ -1,16 +1,15 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
-
+import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
 import VcdDashboardLayout from '@/components/dashboard/layout/VcdDashboardLayout.component';
-import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { urls } from '@/routes/routes.constant';
 
 export default function DashboardPage() {
   const { id } = useParams();
   const { t } = useTranslation('dashboard');
-  const { data: vcdOrganisation } = useManagedVcdOrganization({ id });
+  const { data: vcdOrganisation } = useVcdOrganization({ id });
   const navigate = useNavigate();
 
   const tabsList = [

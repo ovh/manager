@@ -1,6 +1,6 @@
-import IVcdOrganization from '../../src/types/vcd-organization.interface';
+import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
 
-export const organizationList: IVcdOrganization[] = [
+export const organizationList: VCDOrganization[] = [
   {
     currentState: {
       apiUrl: 'https://vcd.my.company',

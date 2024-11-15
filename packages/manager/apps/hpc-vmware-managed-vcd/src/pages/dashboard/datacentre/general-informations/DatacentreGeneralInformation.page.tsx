@@ -1,8 +1,10 @@
 import React from 'react';
 import { Outlet, useParams } from 'react-router-dom';
+import {
+  useVcdDatacentre,
+  useVcdOrganization,
+} from '@ovh-ux/manager-module-vcd-api';
 import DatacentreGenerationInformationTile from '@/components/tiles/datacentre-general-information-tile/DatacentreGeneralInformationTile.component';
-import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
-import { useManagedVcdDatacentre } from '@/data/hooks/useManagedVcdDatacentres';
 import Loading from '@/components/loading/Loading.component';
 import Errors from '@/components/error/Error.component';
 import DatacentreUsageTile from '@/components/tiles/datacentre-usage-tile/DatacentreUsageTile.component';
@@ -13,14 +15,14 @@ export default function DatacentresGeneralInformationPage() {
     data: vcdOrganization,
     isLoading: isLoadingVcd,
     error: vcdError,
-  } = useManagedVcdOrganization({
+  } = useVcdOrganization({
     id,
   });
   const {
     data: vcdDatacentre,
     isLoading: isLoadingDatacentre,
     error: datacentreError,
-  } = useManagedVcdDatacentre(id, vdcId);
+  } = useVcdDatacentre(id, vdcId);
 
   if (vcdError || datacentreError) {
     return <Errors error={vcdError?.response || datacentreError?.response} />;

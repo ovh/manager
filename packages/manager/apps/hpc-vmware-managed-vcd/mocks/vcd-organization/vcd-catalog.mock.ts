@@ -1,6 +1,6 @@
-import { TVcdCatalog } from '../../src/types/vcd-catalog.interface';
+import { VCDCatalog } from '@ovh-ux/manager-module-vcd-api';
 
-export const catalogProductList: TVcdCatalog = [
+export const catalogProductList: VCDCatalog = [
   {
     productName: 'pack-3264',
     mandatory: false,

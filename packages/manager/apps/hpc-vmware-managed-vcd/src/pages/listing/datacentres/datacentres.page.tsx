@@ -2,17 +2,19 @@ import { DataGridTextCell, Links } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import {
+  getVcdDatacentresQueryKey,
+  getVcdDatacentresRoute,
+  VCDDatacentre,
+} from '@ovh-ux/manager-module-vcd-api';
 import DatagridContainer, {
   TDatagridContainerProps,
 } from '@/components/datagrid/container/DatagridContainer.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
-import IVcdDatacentre from '@/types/vcd-datacenter.interface';
-import { getVcdDatacentresRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
-import { getVcdDatacentresQueryKey } from '@/utils/queryKeys';
 import { capitalize } from '@/utils/capitalize';
 
 /* ========= datagrid cells ========= */
-const DatagridIdCell = (vcdDatacentre: IVcdDatacentre) => {
+const DatagridIdCell = (vcdDatacentre: VCDDatacentre) => {
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -32,15 +34,15 @@ const DatagridIdCell = (vcdDatacentre: IVcdDatacentre) => {
   );
 };
 
-const DatagridDescriptionCell = (vcdDatacentre: IVcdDatacentre) => (
+const DatagridDescriptionCell = (vcdDatacentre: VCDDatacentre) => (
   <DataGridTextCell>{vcdDatacentre.currentState?.description}</DataGridTextCell>
 );
 
-const DatagridCpuCountCell = (vcdDatacentre: IVcdDatacentre) => (
+const DatagridCpuCountCell = (vcdDatacentre: VCDDatacentre) => (
   <DataGridTextCell>{vcdDatacentre.currentState?.vCPUCount}</DataGridTextCell>
 );
 
-const DatagridCpuSpeedCell = (vcdDatacentre: IVcdDatacentre) => {
+const DatagridCpuSpeedCell = (vcdDatacentre: VCDDatacentre) => {
   const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
 
   return (
@@ -52,7 +54,7 @@ const DatagridCpuSpeedCell = (vcdDatacentre: IVcdDatacentre) => {
   );
 };
 
-const DatagridRamCountCell = (vcdDatacentre: IVcdDatacentre) => {
+const DatagridRamCountCell = (vcdDatacentre: VCDDatacentre) => {
   const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
 
   return (
@@ -64,7 +66,7 @@ const DatagridRamCountCell = (vcdDatacentre: IVcdDatacentre) => {
   );
 };
 
-const DatagridCommercialRange = (vcdDatacentre: IVcdDatacentre) => (
+const DatagridCommercialRange = (vcdDatacentre: VCDDatacentre) => (
   <DataGridTextCell>
     {capitalize(vcdDatacentre.currentState?.commercialRange)}
   </DataGridTextCell>

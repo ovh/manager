@@ -1,25 +1,36 @@
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { VCDDatacentre } from '../types';
-import { getVcdDatacentreQueryKey, getVcdDatacentresQueryKey } from '../utils';
-import { getVcdDatacentre, getVcdDatacentres } from '../api';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { updateVdcDetails, UpdateVdcDetailsParams } from '../api';
+import {
+  getVcdDatacentresQueryKey,
+  updateVdcDetailsMutationKey,
+} from '../utils';
 
-const useManagedVcdDatacentres = (id: string) => {
-  return useQuery<ApiResponse<VCDDatacentre[]>, ApiError>({
-    queryKey: getVcdDatacentresQueryKey(id),
-    queryFn: () => getVcdDatacentres(id),
-    retry: false,
-    placeholderData: keepPreviousData,
+export const useUpdateVdcDetails = ({
+  id,
+  vdcId,
+  onSuccess,
+  onError,
+}: {
+  id: string;
+  vdcId: string;
+  onSuccess?: () => void;
+  onError?: (result: ApiError) => void;
+}) => {
+  const queryClient = useQueryClient();
+
+  const { mutateAsync: updateDetails, error, isError } = useMutation({
+    mutationKey: updateVdcDetailsMutationKey(vdcId),
+    mutationFn: ({ details }: UpdateVdcDetailsParams) =>
+      updateVdcDetails({ id, vdcId, details }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: getVcdDatacentresQueryKey(id),
+      });
+      onSuccess?.();
+    },
+    onError: (result: ApiError) => onError?.(result),
   });
-};
 
-export const useManagedVcdDatacentre = (id: string, vdcId: string) => {
-  return useQuery<ApiResponse<VCDDatacentre>, ApiError>({
-    queryKey: getVcdDatacentreQueryKey(id, vdcId),
-    queryFn: () => getVcdDatacentre(id, vdcId),
-    retry: false,
-    placeholderData: keepPreviousData,
-  });
+  return { updateDetails, error, isError };
 };
-
-export default useManagedVcdDatacentres;

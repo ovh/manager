@@ -3,6 +3,7 @@ import { IamObject } from '@ovh-ux/manager-react-components';
 export type ObjectValues<T> = T[keyof T];
 
 export type WithIam<T> = T & { iam: IamObject };
+export type WithoutIam<T> = Omit<T, 'iam'>;
 
 export type BillingType = 'MONTHLY' | 'DEMO';
 

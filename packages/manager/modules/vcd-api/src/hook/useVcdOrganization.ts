@@ -1,4 +1,9 @@
-import { useQuery, useQueries } from '@tanstack/react-query';
+import {
+  useQuery,
+  useQueries,
+  UseQueryOptions,
+  keepPreviousData,
+} from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import { getVcdOrganization, getVmwareCloudDirectorBackup } from '../api';
@@ -7,9 +12,18 @@ import {
   BackupStatus,
   VCDOrganization,
   VCDOrganizationWithBackupStatus,
+  VeeamBackup,
   VeeamBackupWithIam,
 } from '../types';
 import { VCD_ORGANIZATION_ROUTE } from '../utils/apiRoutes';
+import {
+  getVcdOrganizationBackupQueryKey,
+  getVcdOrganizationQueryKey,
+} from '../utils';
+
+type UseVcdOrganization = Pick<UseQueryOptions, 'refetchInterval'> & {
+  id: string;
+};
 
 const backupSuffix = '-veeam-backup';
 
@@ -95,3 +109,28 @@ export const useOrganization = (organizationId: string) =>
     queryKey: [VCD_ORGANIZATION_ROUTE, organizationId],
     queryFn: () => getVcdOrganization(organizationId),
   });
+
+export const useVcdOrganization = ({
+  id,
+  refetchInterval,
+}: UseVcdOrganization) => {
+  return useQuery<ApiResponse<VCDOrganization>, ApiError>({
+    queryKey: getVcdOrganizationQueryKey(id),
+    queryFn: () => getVcdOrganization(id),
+    retry: false,
+    refetchInterval,
+    placeholderData: keepPreviousData,
+  });
+};
+
+export const useVcdOrganizationBackup = (vcdOrganization: VCDOrganization) => {
+  return useQuery<ApiResponse<VeeamBackup>, ApiError>({
+    queryKey: getVcdOrganizationBackupQueryKey(vcdOrganization.id),
+    queryFn: () =>
+      getVmwareCloudDirectorBackup(
+        getBackupIdFromOrganization(vcdOrganization),
+      ),
+    retry: false,
+    placeholderData: keepPreviousData,
+  });
+};

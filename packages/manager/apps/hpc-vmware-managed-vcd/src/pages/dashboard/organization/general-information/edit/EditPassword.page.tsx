@@ -5,7 +5,7 @@ import { OsdsModal, OsdsButton } from '@ovhcloud/ods-components/react';
 import { Description } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { useResetPassword } from '@/data/hooks/useResetPassword';
+import { useResetVcdPassword } from '@ovh-ux/manager-module-vcd-api';
 import { useMessageContext } from '@/context/Message.context';
 import { subRoutes } from '@/routes/routes.constant';
 
@@ -15,7 +15,7 @@ export default function EditPassword() {
   const closeModal = () => navigate('..');
   const { id } = useParams();
   const { addSuccess, addError } = useMessageContext();
-  const { mutate: resetPassword } = useResetPassword(
+  const { mutate: resetPassword } = useResetVcdPassword(
     { id },
     {
       onSettled: () => closeModal(),

@@ -1,7 +1,6 @@
-import IVcdDatacentre from '@/types/vcd-datacenter.interface';
-import IVcdOrganization from '@/types/vcd-organization.interface';
+import { VCDDatacentre, VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
 
-export type UpdatableResource = IVcdOrganization | IVcdDatacentre;
+export type UpdatableResource = VCDOrganization | VCDDatacentre;
 
 const targetSpecKey = 'configure-target-spec';
 

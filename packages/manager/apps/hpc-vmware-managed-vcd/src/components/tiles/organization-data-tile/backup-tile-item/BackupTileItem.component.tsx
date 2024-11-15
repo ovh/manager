@@ -4,17 +4,20 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { OsdsChip, OsdsSkeleton } from '@ovhcloud/ods-components/react';
+import {
+  getBackupIdFromOrganization,
+  useVeeamBackup,
+  VCDOrganization,
+} from '@ovh-ux/manager-module-vcd-api';
 import { veeamBackupAppName } from '@/routes/routes.constant';
-import { useManagedVcdOrganizationBackup } from '@/data/hooks/useManagedVcdOrganization';
 import {
   BackupBadgeParams,
   getBackupBadgeParams,
   getBackupBadgeStatus,
 } from '@/utils/veeamBackupBadge';
-import IVcdOrganization from '@/types/vcd-organization.interface';
 
 type TTileProps = {
-  vcdOrganization: IVcdOrganization;
+  vcdOrganization: VCDOrganization;
 };
 
 export default function BackupTileItem({
@@ -22,8 +25,8 @@ export default function BackupTileItem({
 }: Readonly<TTileProps>) {
   const { t } = useTranslation('dashboard');
   const { shell } = React.useContext(ShellContext);
-  const { data: vcdBackup, isLoading, error } = useManagedVcdOrganizationBackup(
-    vcdOrganization,
+  const { data: vcdBackup, isLoading, error } = useVeeamBackup(
+    getBackupIdFromOrganization(vcdOrganization),
   );
   const [veeamHref, setVeeamHref] = React.useState('');
   const badgeParams: BackupBadgeParams = getBackupBadgeParams(

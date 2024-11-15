@@ -4,7 +4,7 @@ import {
 } from '@ovh-ux/manager-module-order';
 import { VCDOrder } from '../types';
 
-const useVcdOrder = ({
+export const useVcdOrder = ({
   serviceName,
   planCode,
   quantity,
@@ -24,5 +24,3 @@ const useVcdOrder = ({
 
   return { orderLink, redirectToOrder };
 };
-
-export default useVcdOrder;

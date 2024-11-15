@@ -1,6 +1,6 @@
-import { IVdcOrderableResourceData } from '../../src/types/vcd-vdc-orderable-resource.interface';
+import { VCDOrderableResourceData } from '@ovh-ux/manager-module-vcd-api';
 
-export const orderableResourceData: IVdcOrderableResourceData = {
+export const orderableResourceData: VCDOrderableResourceData = {
   compute: [
     {
       memoryQuota: 64,

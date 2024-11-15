@@ -1,6 +1,6 @@
-import IVcdStorage from '../../src/types/vcd-storage.interface';
+import { VCDStorage } from '@ovh-ux/manager-module-vcd-api';
 
-export const storageList: IVcdStorage[] = [
+export const storageList: VCDStorage[] = [
   {
     id: 'fccce864-e1d5-4ab8-ad6a-79ecd295f420',
     resourceStatus: 'READY',

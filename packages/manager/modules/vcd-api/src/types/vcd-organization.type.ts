@@ -1,5 +1,11 @@
-import { BillingType, ResourceStatus, Task, WithIam } from './vcd-utility.type';
-import { BackupStatus } from './vcd-backup.type';
+import {
+  BillingType,
+  ResourceStatus,
+  Task,
+  WithIam,
+  WithoutIam,
+} from './vcd-utility.type';
+import { BackupStatus, VeeamBackupOffer } from './vcd-backup.type';
 
 export type VCDRegion =
   | 'AP-SOUTH-MUM'
@@ -30,17 +36,32 @@ export type VCDOrganizationState = VCDOrganizationTargetSpec & {
   webInterfaceUrl: string;
 };
 
-export type VCDOrganization = {
+export type VCDOrganization = WithIam<{
   id: string;
   resourceStatus: ResourceStatus;
   currentState: VCDOrganizationState;
   targetSpec: VCDOrganizationTargetSpec;
   currentTasks?: Task[];
   updatedAt: string;
-};
+}>;
 
 export type VCDOrganizationWithBackupStatus = VCDOrganization & {
   backupStatus?: BackupStatus;
 };
 
-export type VCDOrganizationWithIam = WithIam<VCDOrganization>;
+export type VCDOrganizationWithoutIam = WithoutIam<VCDOrganization>;
+
+export type VCDOrganizationBackup = WithIam<{
+  id: string;
+  resourceStatus: ResourceStatus;
+  currentState: {
+    offers: VeeamBackupOffer[];
+    region: string;
+  };
+  targetSpec: {
+    offers: Omit<VeeamBackupOffer, 'usedSpaceInGB'>[];
+  };
+  currentTasks?: Task[];
+  createdAt?: string;
+  updatedAt?: string;
+}>;

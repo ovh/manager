@@ -15,18 +15,20 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
+import {
+  ResourceStatus,
+  useVeeamBackup,
+  VeeamBackupWithIam,
+} from '@ovh-ux/manager-module-vcd-api';
 import OrganizationDataProtectionTile from './OrganizationDataProtectionTile.component';
-import { useManagedVcdOrganizationBackup } from '../../../data/hooks/useManagedVcdOrganization';
-import IVcdOrganizationBackup, {
-  BackupResourceStatus,
-} from '../../../types/vcd-organization-backup.interface';
 import { organizationList } from '../../../../mocks/vcd-organization/vcd-organization.mock';
 
-vi.mock('../../../data/hooks/useManagedVcdOrganization', () => ({
-  useManagedVcdOrganizationBackup: vi.fn(),
+vi.mock('@ovh-ux/manager-module-vcd-api', () => ({
+  useVeeamBackup: vi.fn(),
+  getBackupIdFromOrganization: vi.fn(),
 }));
-vi.mocked(useManagedVcdOrganizationBackup).mockReturnValue(
-  {} as UseQueryResult<ApiResponse<IVcdOrganizationBackup>, ApiError>,
+vi.mocked(useVeeamBackup).mockReturnValue(
+  {} as UseQueryResult<ApiResponse<VeeamBackupWithIam>, ApiError>,
 );
 
 const shellContext = {
@@ -88,9 +90,9 @@ describe('OrganizationDataProtectionTile component unit test suite', () => {
 
 describe('OrganizationDataProtectionTile query state-based behavior unit test suite', () => {
   it('should display backupLoading when query isLoading', async () => {
-    vi.mocked(useManagedVcdOrganizationBackup).mockReturnValue({
+    vi.mocked(useVeeamBackup).mockReturnValue({
       isLoading: true,
-    } as UseQueryResult<ApiResponse<IVcdOrganizationBackup>, ApiError>);
+    } as UseQueryResult<ApiResponse<VeeamBackupWithIam>, ApiError>);
 
     // when
     await act(async () => renderComponent());
@@ -101,9 +103,9 @@ describe('OrganizationDataProtectionTile query state-based behavior unit test su
   });
 
   it('should display backupError when query isError', async () => {
-    vi.mocked(useManagedVcdOrganizationBackup).mockReturnValue({
+    vi.mocked(useVeeamBackup).mockReturnValue({
       isError: true,
-    } as UseQueryResult<ApiResponse<IVcdOrganizationBackup>, ApiError>);
+    } as UseQueryResult<ApiResponse<VeeamBackupWithIam>, ApiError>);
 
     // when
     await act(async () => renderComponent());
@@ -116,10 +118,10 @@ describe('OrganizationDataProtectionTile query state-based behavior unit test su
   });
 
   it('should display noBackup when query isError 404', async () => {
-    vi.mocked(useManagedVcdOrganizationBackup).mockReturnValue({
+    vi.mocked(useVeeamBackup).mockReturnValue({
       isError: true,
       error: { response: { status: 404 } },
-    } as UseQueryResult<ApiResponse<IVcdOrganizationBackup>, ApiError>);
+    } as UseQueryResult<ApiResponse<VeeamBackupWithIam>, ApiError>);
 
     // when
     await act(async () => renderComponent());
@@ -130,11 +132,11 @@ describe('OrganizationDataProtectionTile query state-based behavior unit test su
   });
 
   it('should display backupStatus when query isSuccess', async () => {
-    const testStatus = BackupResourceStatus.CREATING;
-    vi.mocked(useManagedVcdOrganizationBackup).mockReturnValue({
+    const testStatus: ResourceStatus = 'READY';
+    vi.mocked(useVeeamBackup).mockReturnValue({
       isSuccess: true,
       data: { data: { resourceStatus: testStatus } },
-    } as UseQueryResult<ApiResponse<IVcdOrganizationBackup>, ApiError>);
+    } as UseQueryResult<ApiResponse<VeeamBackupWithIam>, ApiError>);
 
     // when
     await act(async () => renderComponent());

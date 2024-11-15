@@ -1,21 +1,23 @@
 import React from 'react';
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import {
+  useVcdOrganization,
+  useVcdDatacentre,
+  getVcdDatacentresQueryKey,
+} from '@ovh-ux/manager-module-vcd-api';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import VcdDashboardLayout from '@/components/dashboard/layout/VcdDashboardLayout.component';
-import { useManagedVcdDatacentre } from '@/data/hooks/useManagedVcdDatacentres';
-import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
 import { COMPUTE_TITLE, STORAGE_TITLE } from './DatacentreDashboard.constant';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import { isUpdatingTargetSpec } from '@/utils/refetchConditions';
-import { getVcdDatacentresQueryKey } from '@/utils/queryKeys';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
   const { t } = useTranslation('dashboard');
-  const { data: vcdDatacentre } = useManagedVcdDatacentre(id, vdcId);
-  const { data: vcdOrganization } = useManagedVcdOrganization({ id });
+  const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
+  const { data: vcdOrganization } = useVcdOrganization({ id });
   const navigate = useNavigate();
   useAutoRefetch({
     queryKey: getVcdDatacentresQueryKey(id),

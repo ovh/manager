@@ -1,6 +1,6 @@
-import { VCDDatacentreWithIam } from '../../types';
+import { VCDDatacentre } from '../../types';
 
-export const datacentreList: VCDDatacentreWithIam[] = [
+export const datacentreList: VCDDatacentre[] = [
   {
     id: 'vdc-eu-central-waw-adc311b5-0c0b-4071-b48f-b20813868bcf',
     resourceStatus: 'READY',

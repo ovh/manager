@@ -1,6 +1,6 @@
-import IVcdCompute from '../../src/types/vcd-compute.interface';
+import { VCDCompute } from '@ovh-ux/manager-module-vcd-api';
 
-export const computeList: IVcdCompute[] = [
+export const computeList: VCDCompute[] = [
   {
     id: 'f578c64f-ebec-4c19-a006-c96b1c7c1b95',
     resourceStatus: 'READY',

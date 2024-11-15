@@ -4,15 +4,15 @@ import { DashboardTile } from '@ovh-ux/manager-react-components';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
+import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
 import {
   DATA_PROTECTION_BACKUP_TITLE,
   DATA_PROTECTION_RECOVERY_TITLE,
 } from '@/pages/dashboard/organization/OrganizationDashboard.constants';
 import BackupTileItem from './backup-tile-item/BackupTileItem.component';
-import IVcdOrganization from '@/types/vcd-organization.interface';
 
 type TTileProps = {
-  vcdOrganization: IVcdOrganization;
+  vcdOrganization: VCDOrganization;
 };
 
 export default function DataProtectionTile({

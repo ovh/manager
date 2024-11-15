@@ -1,6 +1,6 @@
-import { VCDOrganizationWithIam } from '../../types';
+import { VCDOrganization } from '../../types';
 
-export const organizationList: VCDOrganizationWithIam[] = [
+export const organizationList: VCDOrganization[] = [
   {
     currentState: {
       apiUrl: 'https://vcd.my.company',

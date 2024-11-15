@@ -1,9 +1,7 @@
-import IVcdOrganizationBackup, {
-  BackupResourceStatus,
-} from '../../src/types/vcd-organization-backup.interface';
+import { VCDOrganizationBackup } from '@ovh-ux/manager-module-vcd-api';
 import { organizationList } from '../vcd-organization/vcd-organization.mock';
 
-export const backupList: IVcdOrganizationBackup[] = [
+export const backupList: VCDOrganizationBackup[] = [
   {
     id: `${organizationList[0].id}-veeam-backup`,
     iam: {
@@ -30,7 +28,7 @@ export const backupList: IVcdOrganizationBackup[] = [
     },
     updatedAt: '2024-06-14T09:21:21.943Z',
     createdAt: '2024-06-14T09:21:21.943Z',
-    resourceStatus: BackupResourceStatus.READY,
+    resourceStatus: 'READY',
     targetSpec: {
       offers: [
         {

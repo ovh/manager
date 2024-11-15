@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { DatagridColumn } from '@ovh-ux/manager-react-components';
+import { VCDOrderableStoragePriced } from '@ovh-ux/manager-module-vcd-api';
 import { DatacentreOrderProvider } from '@/context/DatacentreOrder.context';
-import { IVdcOrderableStoragePriced } from '@/types/vcd-vdc-orderable-resource.interface';
 import { DatacentreOrder } from '@/components/form/DatacentreOrder.component';
 import {
   StorageOrderPriceCell,
@@ -18,7 +18,7 @@ import { subRoutes } from '@/routes/routes.constant';
 export default function StorageOrderPage() {
   const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/order');
 
-  const columns: DatagridColumn<IVdcOrderableStoragePriced>[] = [
+  const columns: DatagridColumn<VCDOrderableStoragePriced>[] = [
     {
       id: 'select',
       cell: StorageOrderSelectCell,

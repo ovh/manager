@@ -1,6 +1,6 @@
-import IVcdDatacentre from '../../src/types/vcd-datacenter.interface';
+import { VCDDatacentre } from '@ovh-ux/manager-module-vcd-api';
 
-export const datacentreList: IVcdDatacentre[] = [
+export const datacentreList: VCDDatacentre[] = [
   {
     id: 'vdc-eu-central-waw-adc311b5-0c0b-4071-b48f-b20813868bcf',
     resourceStatus: 'READY',

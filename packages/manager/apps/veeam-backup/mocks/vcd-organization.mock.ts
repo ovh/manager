@@ -1,6 +1,6 @@
-import { VCDOrganizationWithIam } from '@/data';
+import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
 
-export const organizationList: VCDOrganizationWithIam[] = [
+export const organizationList: VCDOrganization[] = [
   {
     currentState: {
       apiUrl: 'https://vcd.my.company',

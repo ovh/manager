@@ -1,4 +1,4 @@
-import { IVdcOrderableResourceData } from '@/types/vcd-vdc-orderable-resource.interface';
+import { VCDOrderableResourceData } from '@ovh-ux/manager-module-vcd-api';
 import { Handler } from '../../../../../../playwright-helpers';
 import { catalogProductList } from './vcd-catalog.mock';
 import { orderableResourceData } from './vdc-orderable-resource.mock';
@@ -16,7 +16,7 @@ export const getDatacentreOrderMocks = ({
   isOrderableResourceKO,
   nbOrderableResource = Number.POSITIVE_INFINITY,
 }: GetDatacentreOrderMocksParams): Handler[] => {
-  const selectedOrderableResource: IVdcOrderableResourceData = {
+  const selectedOrderableResource: VCDOrderableResourceData = {
     compute: orderableResourceData.compute.slice(0, nbOrderableResource),
     storage: orderableResourceData.storage.slice(0, nbOrderableResource),
   };
