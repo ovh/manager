@@ -37,7 +37,7 @@ angular
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('account.**', {
-        url: '',
+        url: '/',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
