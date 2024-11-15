@@ -1,6 +1,7 @@
 import { ColumnDef } from '@tanstack/react-table';
 import {
   Cpu,
+  HelpCircle,
   MoreHorizontal,
   ShieldAlert,
   ShieldCheck,
@@ -24,6 +25,11 @@ import Link from '@/components/links/Link.component';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
 import NotebookStatusBadge from './NotebookStatusBadge.component';
 import { isDeletingNotebook, isRunningNotebook } from '@/lib/notebookHelper';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 interface NotebooksListColumnsProps {
   onStartClicked: (notebook: ai.notebook.Notebook) => void;
@@ -120,10 +126,18 @@ export const getColumns = ({
     {
       id: 'Operating time',
       accessorFn: (row) => convertSecondsToTimeString(row.status.duration),
-      header: ({ column }) => (
-        <SortableHeader column={column}>
-          {t('tableHeaderDuration')}
-        </SortableHeader>
+      header: () => (
+          <div className="flex flex-row gap-2 font-semibold">
+            {t('tableHeaderDuration')}
+            <Popover>
+              <PopoverTrigger>
+                <HelpCircle className="size-4" />
+              </PopoverTrigger>
+              <PopoverContent>
+                <p>{t('durationHelper')}</p>
+              </PopoverContent>
+            </Popover>
+          </div>
       ),
     },
     {

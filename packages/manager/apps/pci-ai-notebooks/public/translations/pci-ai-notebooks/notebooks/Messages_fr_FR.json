@@ -9,6 +9,7 @@
   "networkSecureTitle": "Privé",
   "networkPublicTitle": "Public",
   "tableHeaderDuration": "Durée",
+  "durationHelper": "Durée de fonctionnement du notebook",
   "tableHeaderStatus": "Statut",
   "tableActionManage": "Gérer",
   "tableActionStart": "Démarrer",

@@ -7,6 +7,7 @@ import { useToast } from '@/components/ui/use-toast';
 import DeleteNotebook from '../../_components/DeleteNotebook.component';
 import { useGetNotebooks } from '@/hooks/api/ai/notebook/useGetNotebooks.hook';
 import { useModale } from '@/hooks/useModale';
+import { isRunningNotebook } from '@/lib/notebookHelper';
 
 const Configurations = () => {
   const { notebook, notebookQuery, projectId } = useNotebookData();
@@ -46,6 +47,9 @@ const Configurations = () => {
         variant="destructive"
         className="w-full bg-background border-2 hover:bg-destructive/10 font-semibold border-destructive text-destructive mt-4"
         onClick={() => deleteModale.open()}
+        disabled={
+          isRunningNotebook(notebook.status.state)
+        }
       >
         {t('deleteNotebookButton')}
       </Button>
@@ -56,7 +60,7 @@ const Configurations = () => {
           deleteModale.close();
           notebookQuery.refetch();
           getNotebooksQuery.refetch();
-          navigate(`../../`);
+          navigate(`../../../`);
         }}
       />
     </div>

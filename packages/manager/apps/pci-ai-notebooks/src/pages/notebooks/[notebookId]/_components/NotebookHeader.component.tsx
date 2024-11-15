@@ -12,6 +12,10 @@ import { Skeleton } from '@/components/ui/skeleton';
 import * as ai from '@/types/cloud/project/ai';
 import NotebookStatusBadge from '../../_components/NotebookStatusBadge.component';
 import { Button } from '@/components/ui/button';
+import StartNotebook from './StartNotebook.component';
+import { useModale } from '@/hooks/useModale';
+import StopNotebook from './StopNotebook.component';
+import { isDeletingNotebook, isRunningNotebook } from '@/lib/notebookHelper';
 
 export const NotebookHeader = ({
   notebook,
@@ -19,6 +23,8 @@ export const NotebookHeader = ({
   notebook: ai.notebook.Notebook;
 }) => {
   const { t } = useTranslation('regions');
+  const startModale = useModale('start');
+  const stopModale = useModale('stop');
   return (
     <div
       data-testid="notebook-header-container"
@@ -28,14 +34,31 @@ export const NotebookHeader = ({
         <NotebookText width={40} height={40} />
       </div>
       <div className="w-full">
-        <div className="flex flex-row  items-center gap-8">
+        <div className="flex flex-row  items-center gap-5">
           <h2>{notebook.spec.name ?? 'Dashboard'}</h2>
           <div className="flex flex-row gap-2">
-            <Button type="button" size="roundedIcon">
-              <PlayIcon className="size-4 ml-1 fill-white" />
+            <Button
+              type="button"
+              size="roundedIcon"
+              onClick={() => startModale.open()}
+              disabled={
+                isRunningNotebook(notebook.status.state) ||
+                isDeletingNotebook(notebook.status.state)
+              }
+            >
+              <PlayIcon className="size-3 fill-white" />
             </Button>
-            <Button type="button" size="roundedIcon" className="bg-red-400">
-              <Square className="size-4 fill-white" />
+            <Button
+              type="button"
+              size="roundedIcon"
+              className="bg-red-400 hover:bg-red-600"
+              onClick={() => stopModale.open()}
+              disabled={
+                !isRunningNotebook(notebook.status.state) ||
+                isDeletingNotebook(notebook.status.state)
+              }
+            >
+              <Square className="size-3 fill-white" />
             </Button>
           </div>
         </div>
@@ -55,6 +78,20 @@ export const NotebookHeader = ({
           </Badge>
         </div>
       </div>
+      <StartNotebook
+        controller={startModale.controller}
+        notebook={notebook}
+        onSuccess={() => {
+          startModale.close();
+        }}
+      />
+      <StopNotebook
+        controller={stopModale.controller}
+        notebook={notebook}
+        onSuccess={() => {
+          stopModale.close();
+        }}
+      />
     </div>
   );
 };

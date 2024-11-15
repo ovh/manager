@@ -32,7 +32,7 @@ const buttonVariants = cva(
         table: "h-4 w-4 my-auto",
         menu: 'size-8 p-0',
         input: "h-10 w-full rounded-md px-3 py-2 text-sm",
-        roundedIcon: "h-8 w-8 rounded-full",
+        roundedIcon: "h-6 w-6 rounded-full",
       },
     },
     defaultVariants: {

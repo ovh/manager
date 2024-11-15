@@ -53,7 +53,7 @@ const Dashboard = () => {
         <Card>
           <CardHeader>
             <h4>
-              <Atom className="size-4 inline mr-2 text-sky-600" />
+              <Atom className="size-4 inline mr-2" />
               <span>{t('resourcesTitle')}</span>
             </h4>
           </CardHeader>

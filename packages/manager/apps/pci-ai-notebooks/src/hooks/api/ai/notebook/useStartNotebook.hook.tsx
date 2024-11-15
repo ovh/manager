@@ -20,11 +20,11 @@ export function useStartNotebook({
     },
     onError,
     onSuccess: () => {
-      onStartSuccess();
       // Invalidate service list query to get the latest data
       queryClient.invalidateQueries({
         queryKey: [projectId, 'ai/notebook'],
       });
+      onStartSuccess();
     },
   });
 
