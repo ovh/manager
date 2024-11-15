@@ -1,15 +1,16 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import useAgreementsUpdate from '@/hooks/agreements/useAgreementsUpdate';
 import { ODS_THEME_COLOR_HUE, ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
-import { OsdsButton, OsdsModal, OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsLink, OsdsModal, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import ApplicationContext from '@/context';
 import ovhCloudLogo from '@/assets/images/logo-ovhcloud.png';
 import { useAuthorizationIam } from '@ovh-ux/manager-react-components/src/hooks/iam';
 import useAccountUrn from '@/hooks/accountUrn/useAccountUrn';
 import { ModalTypes } from '@/context/modals/modals.context';
 import { useModals } from '@/context/modals';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 export default function AgreementsUpdateModal () {
   const { shell } = useContext(ApplicationContext);
@@ -21,23 +22,38 @@ export default function AgreementsUpdateModal () {
   const { current } = useModals();
   const myContractsLink = navigation.getURL(
     'dedicated',
-    '#/billing/autoRenew/agreements',
+    '#/billing/autorenew/agreements',
   );
+  const [ showModal, setShowModal ] = useState(false);
+  const shouldTryToDisplay = useMemo(() => region !== 'US' && current === ModalTypes.agreements && window.location.href !== myContractsLink, [region, current, window.location.href]);
   const { t } = useTranslation('agreements-update-modal');
-  const { data: urn } = useAccountUrn({ enabled: region !== 'US' && current === ModalTypes.agreements && window.location.href !== myContractsLink });
-  const { isAuthorized: canUserAcceptAgreements } = useAuthorizationIam(['account:apiovh:me/agreements/accept'], urn);
-  const { data: agreements } = useAgreementsUpdate({ enabled: canUserAcceptAgreements });
+  const { data: urn } = useAccountUrn({ enabled: shouldTryToDisplay });
+  const { isAuthorized: canUserAcceptAgreements, isLoading: isAuthorizationLoading } = useAuthorizationIam(['account:apiovh:me/agreements/accept'], urn);
+  const { data: agreements, isLoading: areAgreementsLoading } = useAgreementsUpdate({ enabled: canUserAcceptAgreements });
   const goToContractPage = () => {
+    setShowModal(false);
     navigation.navigateTo('dedicated', `#/billing/autorenew/agreements`);
   };
 
   useEffect(() => {
-    if (canUserAcceptAgreements && !agreements?.length && current === ModalTypes.agreements) {
-      shell.getPlugin('ux').notifyModalActionDone();
+    // We consider we have loaded all information if conditions are not respected to try to display the modal
+    const hasFullyLoaded = !shouldTryToDisplay
+      // Or authorization are loaded but user does have right to accept contract or has no contract to accept
+      || !isAuthorizationLoading && (!canUserAcceptAgreements || !areAgreementsLoading);
+    // If current modal to be displayed is the agreements one and everything has loaded we can handle the display
+    if (shouldTryToDisplay && hasFullyLoaded) {
+      // If no contract are to be accepted we go to the next modal (if it exists)
+      if (!agreements?.length) {
+        shell.getPlugin('ux').notifyModalActionDone();
+      }
+      // Otherwise we display the modal
+      else {
+        setShowModal(true);
+      }
     }
-  }, [canUserAcceptAgreements, agreements, current]);
+  }, [shouldTryToDisplay, canUserAcceptAgreements, agreements, current]);
 
-  return agreements?.length ? (
+  return showModal ? (
     <>
       <OsdsModal
         dismissible={false}
@@ -65,14 +81,21 @@ export default function AgreementsUpdateModal () {
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           hue={ODS_THEME_COLOR_HUE._800}
         >
-          <p
-            className="mt-6"
-            dangerouslySetInnerHTML={{
-              __html: t('agreements_update_modal_description', {
-                link: myContractsLink,
-              }),
-            }}
-          ></p>
+          <p className="mt-6">
+            <Trans
+              i18nKey="agreements_update_modal_description"
+              t={t}
+              components={{
+                anchor: (
+                  <OsdsLink
+                    href={myContractsLink}
+                    target={OdsHTMLAnchorElementTarget._top}
+                    onClick={() => setShowModal(false)}
+                  ></OsdsLink>
+                ),
+              }}
+            />
+          </p>
         </OsdsText>
 
         <OsdsButton
