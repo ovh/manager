@@ -15,9 +15,7 @@
     "dev": "tsc && vite",
     "start": "lerna exec --stream --scope='{{ packageName }}' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='{{ packageName }}' --include-dependencies -- npm run dev --if-present",
-    "start:watch": "lerna exec --stream --parallel --scope='{{ packageName }}' --include-dependencies -- npm run dev:watch --if-present",
-    "test:e2e": "tsc && node ../../../../scripts/run-playwright-bdd.js",
-    "test:e2e:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci"
+    "start:watch": "lerna exec --stream --parallel --scope='{{ packageName }}' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "*",
@@ -30,7 +28,7 @@
     "@tanstack/react-query-devtools": "^5.51.21",
     "@ovhcloud/ods-components": "^18.3.0",
     "@ovhcloud/ods-themes": "^18.3.0",
-    "@ovh-ux/manager-react-components": "^2.3.0",
+    "@ovh-ux/manager-react-components": "^2.2.0",
     "axios": "^1.1.2",
     "clsx": "^1.2.1",
     "i18next": "^23.8.2",
@@ -45,7 +43,6 @@
     "@cucumber/cucumber": "^10.3.1",
     "@ovh-ux/manager-vite-config": "*",
     "typescript": "^5.1.6",
-    "@playwright/test": "^1.41.2",
     "vite": "^5.2.13"
   },
   "regions": [
