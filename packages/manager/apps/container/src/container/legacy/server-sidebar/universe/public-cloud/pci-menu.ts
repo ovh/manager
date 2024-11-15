@@ -420,13 +420,11 @@ export function getPciProjectMenu(
     pciMenu.push({
       id: 'identity-security',
       title: 'Identity, Security & Operations',
-      badge: 'new',
       subItems: [
         {
           id: 'key-management-service',
           title: 'Key Management Service',
           href: getURL('key-management-service', `/`),
-          badge: 'beta'
         },
       ],
     },
