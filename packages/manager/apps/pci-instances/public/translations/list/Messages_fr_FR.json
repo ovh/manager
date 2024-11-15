@@ -12,5 +12,7 @@
   "pci_instances_list_unknown_error_message2": "Nos équipes techniques ont été notifiées de ce problème et travaillent à sa résolution.",
   "pci_instances_list_action_instance_details": "Détails de l'instance",
   "pci_instances_list_action_delete_instance": "Supprimer",
-  "pci_instances_list_action_autobackup": "Créer une sauvegarde automatisée"
+  "pci_instances_list_action_autobackup": "Créer une sauvegarde automatisée",
+  "pci_instances_list_action_start_instance": "Démarrer",
+  "pci_instances_list_action_stop_instance": "Arrêter"
 }

@@ -19,7 +19,18 @@ export const SUB_PATHS = {
   new: 'new',
   instance: ':instanceId',
   delete: 'delete',
+  stop: 'stop',
+  start: 'start',
 };
+
+const actionRoutes = [SUB_PATHS.delete, SUB_PATHS.start, SUB_PATHS.stop].map(
+  (path) => ({
+    path,
+    ...lazyRouteConfig(() =>
+      import('@/pages/instances/action/InstanceAction.page'),
+    ),
+  }),
+);
 
 const routes: RouteObject[] = [
   {
@@ -36,14 +47,7 @@ const routes: RouteObject[] = [
       {
         path: '',
         ...lazyRouteConfig(() => import('@/pages/instances/Instances.page')),
-        children: [
-          {
-            path: SUB_PATHS.delete,
-            ...lazyRouteConfig(() =>
-              import('@/pages/instances/delete/DeleteInstance.page'),
-            ),
-          },
-        ],
+        children: actionRoutes,
       },
       {
         path: SUB_PATHS.onboarding,
