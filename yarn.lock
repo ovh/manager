@@ -5228,6 +5228,19 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.0.4.tgz#6d2f812e3b19545bba2d81caffff1204de9a6a58"
   integrity sha512-NvVBRnZNE+dugiXERFsET1JlKZfM5lJDEpSMilKW4bToYJ7pxf0Zne78xyXB2ny2c2aHfJ6WLnz1AaTNHAmQeQ==
 
+"@ovh-ux/manager-config@^5.0.0 || ^6.0.0", "@ovh-ux/manager-config@^7.3.3", "@ovh-ux/manager-config@^7.5.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-config/-/manager-config-0.4.0.tgz#81171e361b8400870821632adddea7b46a240395"
+  integrity sha512-ZiLfkRNwCqnyQvYpN9Frx/WKXE9JEQhtkmoxIdhzDtkBjvuIHbC9uGH7rzh771xfuZcUPv8hmidwf0cjdpXCjQ==
+
+"@ovh-ux/manager-core@^12.17.0":
+  version "7.6.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-7.6.2.tgz#feb47b957ec5a3e9c738138d66be5785f21ba022"
+  integrity sha512-cJV89OTuaJDKgYhkhcy6X0zBt2LrRX49lwbxb1qxB6BTh0IPDb7zS1e3+U2pkgXkNnH7gc6RA+HhBYQWLcTwWw==
+  dependencies:
+    "@ovh-ux/ng-translate-async-loader" "^2.0.2"
+    lodash "^4.17.15"
+
 "@ovh-ux/manager-react-components@^1.41.1":
   version "1.41.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.41.1.tgz#da0195c82fdf26e101f47c11d5b604c90547d810"
@@ -5260,12 +5273,47 @@
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
 
+"@ovh-ux/ng-at-internet@^5.11.11", "@ovh-ux/ng-at-internet@^5.11.15":
+  version "5.9.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet/-/ng-at-internet-5.9.1.tgz#2a53a3ed33fcdd8362baa4c842191df2dc48c37f"
+  integrity sha512-pc/yayZin4ytjleR4jJoOwDUWAJL/xt4/LKYUPSCx7f4ALpazLb+YRsr7DhnJBV/cr4XeNJ8DPXP+bvmnl/bfw==
+  dependencies:
+    "@ovh-ux/ovh-at-internet" "^0.1.0"
+    lodash-es "^4.17.15"
+
 "@ovh-ux/ng-ovh-api-wrappers@^5.0.0", "@ovh-ux/ng-ovh-api-wrappers@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-5.1.0.tgz#b8bfef258a4e0860eabf219cb1880ca0a15da687"
   integrity sha512-xljPUGrnTPUNnuTAblmOonCMnrrh2KcoUytvO4eIKFva2Dzd2AavUcSo0qbKgmCdFX86v96DDldHO89S/eQKmA==
   dependencies:
     lodash "^4.17.21"
+
+"@ovh-ux/ng-ovh-request-tagger@^1.2.3":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-request-tagger/-/ng-ovh-request-tagger-1.1.0.tgz#f350dca335bc00c4c69d249901d88bb9d4483160"
+  integrity sha512-K0/B58f/4guN4HBC7BYgKht3iRZcUTK9IzP2PewppPBjuy4N06Qh7lOD6Z2Eo+l9jm+Un4+WnlOxuwUoTSn1nQ==
+  dependencies:
+    lodash "^4.17.15"
+
+"@ovh-ux/ng-shell-tracking@^0.5.8":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-shell-tracking/-/ng-shell-tracking-0.1.1.tgz#2ef0727583f7ac1a7fbdb7573db70a6c612c2545"
+  integrity sha512-IK926W3WG4cLxLmgTuKlL8EZOIWb11YpmdzSqbG/Eu3tt25NQb0kbHlmOLCIDYVT6hu4vjg+6ExKhvwHQKBVJg==
+  dependencies:
+    "@ovh-ux/ovh-at-internet" "^0.1.0"
+    lodash-es "^4.17.15"
+
+"@ovh-ux/ovh-at-internet@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.1.0.tgz#7da4a994a7b55249297c2d0a2b710a052cdbb4ab"
+  integrity sha512-zuTPfmFZ+MnDcMYtS7YnkpSnW0k3jGIUZGlFxS52fWEu4TlEFEshUXVAwKknPjarMXCEoJTV9RbdyagkKuwQiQ==
+  dependencies:
+    "@ovh-ux/manager-config" "^5.0.0 || ^6.0.0"
+    "@types/lodash-es" "^4.17.5"
+    lodash-es "^4.17.15"
+
+"@ovh-ux/request-tagger@^0.3.0":
+  version "0.4.0"
 
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.6"
@@ -5276,6 +5324,19 @@
     less "^3.9.0"
     lodash "^4.17.20"
     rollup-pluginutils "^2.8.2"
+
+"@ovh-ux/shell@^3.7.0":
+  version "4.0.1"
+  dependencies:
+    "@ovh-ux/manager-config" "^8.0.0"
+    "@ovh-ux/ovh-at-internet" "^0.16.0"
+    "@ovh-ux/ovh-reket" "^2.1.6"
+    "@ovh-ux/request-tagger" "^0.4.0"
+    "@ovh-ux/url-builder" "^2.0.0"
+    "@types/react" "^18.0.0"
+    dompurify "^2.3.3"
+    jest-cucumber "^3.0.1"
+    nanoid "^3.1.25"
 
 "@ovh-ux/translate-async-loader@^1.0.8":
   version "1.0.8"
@@ -26619,16 +26680,7 @@ string-length@^4.0.1:
     char-regex "^1.0.2"
     strip-ansi "^6.0.0"
 
-"string-width-cjs@npm:string-width@^4.2.0":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
-  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
-  dependencies:
-    emoji-regex "^8.0.0"
-    is-fullwidth-code-point "^3.0.0"
-    strip-ansi "^6.0.1"
-
-"string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.0.0, string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.2, string-width@^4.2.3:
+"string-width-cjs@npm:string-width@^4.2.0", "string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.0.0, string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.2, string-width@^4.2.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -26742,14 +26794,7 @@ stringify-entities@^3.0.0:
     character-entities-legacy "^1.0.0"
     xtend "^4.0.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
-  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
-  dependencies:
-    ansi-regex "^5.0.1"
-
-strip-ansi@6.0.1, strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@6.0.1, strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -29590,7 +29635,7 @@ wordwrap@^1.0.0:
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
   integrity sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==
 
-"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0":
+"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
@@ -29611,15 +29656,6 @@ wrap-ansi@^6.0.1, wrap-ansi@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-6.2.0.tgz#e9393ba07102e6c91a3b221478f0257cd2856e53"
   integrity sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==
-  dependencies:
-    ansi-styles "^4.0.0"
-    string-width "^4.1.0"
-    strip-ansi "^6.0.0"
-
-wrap-ansi@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
-  integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
   dependencies:
     ansi-styles "^4.0.0"
     string-width "^4.1.0"
