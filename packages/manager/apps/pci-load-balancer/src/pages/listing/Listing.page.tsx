@@ -83,7 +83,7 @@ export default function ListingPage() {
       <div className="sm:flex items-center justify-between mt-4">
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.stroked}
+          variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
           className="xs:mb-0.5 sm:mb-0"
           onClick={() => {
@@ -94,7 +94,7 @@ export default function ListingPage() {
           <OsdsIcon
             size={ODS_ICON_SIZE.xs}
             name={ODS_ICON_NAME.PLUS}
-            className="mr-2"
+            className="mr-2 bg-white"
             color={ODS_THEME_COLOR_INTENT.primary}
           />
           {t('octavia_load_balancers_add_button')}
