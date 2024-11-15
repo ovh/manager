@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-documentation@0.5.0...@ovh-ux/manager-documentation@0.6.0) (2024-11-15)
+
+
+### Features
+
+* **manager-react-components:** bump ods version 18.3.0 ([#14080](https://github.com/ovh/manager/issues/14080)) ([040237b](https://github.com/ovh/manager/commit/040237b6b436b9c1e5b76c9fed3076102aee3c1e))
+
+
+
+
+
 # [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-documentation@0.4.3...@ovh-ux/manager-documentation@0.5.0) (2024-09-05)
 
 
