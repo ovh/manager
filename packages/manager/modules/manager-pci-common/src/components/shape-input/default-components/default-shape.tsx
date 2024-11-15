@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { GHOST_BUTTON_CLASS } from '../constants';
 
 export const DefaultShapeComponent = ({
