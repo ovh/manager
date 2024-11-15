@@ -4,6 +4,7 @@ import {
   UndefinedInitialDataOptions,
   useMutation,
   useQuery,
+  useSuspenseQuery,
 } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -631,16 +632,11 @@ export const useCreateKubernetesCluster = ({
 
 export const useGetClusterEtcdUsage = (projectId, kubeId) => {
   const queryKey = ['project', projectId, 'kube', kubeId, 'etcd', 'usage'];
-  const query = useQuery({
+  return useSuspenseQuery({
     queryKey,
     queryFn: async () => {
       const data = await getKubeEtcdUsage(projectId, kubeId);
       return data;
     },
-    enabled: Boolean(projectId),
-    suspense: true,
   });
-  return {
-    ...query,
-  };
 };

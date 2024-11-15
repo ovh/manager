@@ -93,6 +93,8 @@
   "kube_service_cluster_network_vrack_default_gateway": "Passerelle par défaut du vRACK (DHCP)",
   "kube_service_cluster_network_vrack_customer_gateway": "Passerelle : {{ vRackGatewayIp }}",
   "kubernetes_add_private_network": "Configurer un réseau",
-
-  "kube_service_network_edit": "Modifier les paramètres du réseau"
+  "kube_service_network_edit": "Modifier les paramètres du réseau",
+  "kube_service_cluster_etcd_quota": "Utilisation du quota ETCD",
+  "kube_service_cluster_etcd_quota_info": "Le quota Etcd représente l'espace alloué à la base de donnée ETCD de votre cluster managé. Veuillez consulter notre guide pour en savoir plus sur le quota ETCD.  <a href=\"{{link}}\" rel=\"noopener\" target=\"_blank\">{{link}}</a>",
+  "kube_service_etcd_quota_error": "Ce cluster utilise plus de 80% de l'espace ETCD attribué. Consultez cette page pour éviter tout impact sur votre service: <a href=\"{{link}}\" rel=\"noopener\" target=\"_blank\">{{link}}</a>"
 }
