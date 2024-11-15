@@ -15,6 +15,18 @@ export default function KmsGuidesHeader() {
       target: OdsHTMLAnchorElementTarget._blank,
       label: t('guides_header_find_out_more'),
     },
+    {
+      id: 2,
+      href: guideLinks?.usage,
+      target: OdsHTMLAnchorElementTarget._blank,
+      label: t('guides_header_kms_usage'),
+    },
+    {
+      id: 3,
+      href: guideLinks?.kmip,
+      target: OdsHTMLAnchorElementTarget._blank,
+      label: t('guides_header_connect_kmip_product'),
+    },
   ];
 
   return <GuideButton items={kmsGuides} />;
