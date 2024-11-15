@@ -97,7 +97,9 @@ const Instances: FC = () => {
 
   const actionsCellHrefs = useCallback(
     (instance: TInstance): TActionsCellHrefs => ({
-      deleteHref: `delete?instanceId=${instance.id}&instanceName=${instance.name}`,
+      deleteHref: `delete?instanceId=${instance.id}`,
+      stopHref: `stop?instanceId=${instance.id}`,
+      startHref: `start?instanceId=${instance.id}`,
       autobackupHref: `${projectUrl}/workflow/new`,
       detailsHref: instance.id,
     }),
