@@ -6,6 +6,7 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import AgreementsUpdateModal from '@/components/AgreementsUpdateModal/AgreementsUpdateModal.component';
+import { ModalTypes } from '@/context/modals/modals.context';
 
 const mocks = vi.hoisted(() => ({
   isAuthorized: false,
@@ -16,8 +17,8 @@ const mocks = vi.hoisted(() => ({
 const shellContext = {
   shell: {
     getPlugin: (plugin: string) => {
-      if (plugin === 'navigation') {
-        return {
+      switch (plugin) {
+        case 'navigation': return {
           getURL: vi.fn(
             () =>
               new Promise((resolve) => {
@@ -25,12 +26,15 @@ const shellContext = {
               }),
           ),
         };
+        case 'ux': return {
+          notifyModalActionDone: vi.fn(),
+        };
+        case 'environment': return {
+          getEnvironment: () => ({
+            getRegion: vi.fn(() => mocks.region),
+          })
+        };
       }
-      return {
-        getEnvironment: () => ({
-          getRegion: vi.fn(() => mocks.region),
-        })
-      };
     },
   }
 };
@@ -64,6 +68,10 @@ vi.mock('@ovh-ux/manager-react-components/src/hooks/iam', () => ({
   useAuthorizationIam: () => () => ({ isAuthorized: mocks.isAuthorized })
 }));
 
+vi.mock('@/context/modals', () => ({
+  useModals: () => ({ current: ModalTypes.agreements })
+}));
+
 vi.mock('@/hooks/agreements/useAgreementsUpdate', () => ({
   default: () => ({ data: mocks.agreements })
 }));
@@ -78,7 +86,7 @@ describe('AgreementsUpdateModal', () => {
     const { queryByTestId } = renderComponent();
     expect(queryByTestId('agreements-update-modal')).not.toBeInTheDocument();
   });
-  it('should display a modal for non US and authorized customers without new contract', () => {
+  it('should display nothing for non US and authorized customers without new contract', () => {
     mocks.isAuthorized = true;
     const { queryByTestId } = renderComponent();
     expect(queryByTestId('agreements-update-modal')).not.toBeInTheDocument();
