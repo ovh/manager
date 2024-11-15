@@ -501,10 +501,11 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped text-center">
                         <thead>
                             <tr>
                                 <th
+                                    class="text-center"
                                     data-ng-if="!informations.softRaidOnlyMirroring"
                                 >
                                     <span
@@ -515,17 +516,37 @@
                                     </span>
                                 </th>
                                 <th
+                                    class="text-center"
                                     data-translate="server_configuration_installation_ovh_step2_file_system"
                                 ></th>
                                 <th
+                                    class="text-center"
                                     data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-translate="server_configuration_installation_ovh_step2_mount_point"
                                 ></th>
+                                <!-- volume name -->
                                 <th
-                                    data-ng-if="!informations.softRaidOnlyMirroring"
-                                    data-translate="server_configuration_installation_ovh_step2_volume_name"
+                                    class="text-center"
+                                    data-ng-if="installation.selectDistribution.lvmReady && installation.selectDistribution.filesystems.indexOf(constants.warningZFS) === -1"
+                                    data-translate="server_configuration_installation_ovh_step2_lv_name"
                                 ></th>
                                 <th
+                                    class="text-center"
+                                    data-ng-if="!installation.selectDistribution.lvmReady && installation.selectDistribution.filesystems.indexOf(constants.warningZFS) > -1"
+                                    data-translate="server_configuration_installation_ovh_step2_zp_name"
+                                ></th>
+                                <th
+                                    class="text-center"
+                                    data-ng-if="installation.selectDistribution.lvmReady && installation.selectDistribution.filesystems.indexOf(constants.warningZFS) > -1"
+                                    data-translate="server_configuration_installation_ovh_step2_all_name"
+                                ></th>
+                                <!-- end volume name -->
+                                <th
+                                    class="text-center"
+                                    data-ng-if="installation.selectDistribution.lvmReady"
+                                ></th>
+                                <th
+                                    class="text-center"
                                     data-ng-show="installation.nbDiskUse > 1 && !informations.raidController"
                                 >
                                     <span
@@ -539,10 +560,12 @@
                                     </span>
                                 </th>
                                 <th
-                                    scope="col"
+                                    class="text-center"
                                     data-ng-if="informations.softRaidOnlyMirroring"
                                 ></th>
-                                <th>
+                                <th
+                                    class="text-center"
+                                >
                                     <span
                                         data-translate="server_configuration_installation_ovh_step2_available_size"
                                     ></span>
@@ -554,6 +577,7 @@
                                     </span>
                                 </th>
                                 <th
+                                    class="text-center"
                                     data-ng-show="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
                                 >
                                     <span
@@ -665,6 +689,24 @@
                                     />
                                 </td>
                                 <td
+                                    class="form-group text-center"
+                                    data-ng-if="installation.selectDistribution.lvmReady"
+                                >
+                                    <span
+                                        class="oui-badge oui-badge_s oui-badge_best-seller"
+                                        data-translate="server_configuration_installation_ovh_step2_lvm_badge"
+                                        data-ng-if="partition.volumeName && partition.fileSystem !== constants.warningZFS && partition.fileSystem !== constants.warningSwap"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_lvm_badge_tooltip' | translate}}"
+                                        data-oui-tooltip-placement="bottom"
+                                    >
+                                    </span>
+                                    <span
+                                        data-ng-if="!partition.volumeName || partition.fileSystem === constants.warningZFS || partition.fileSystem === constants.warningSwap"
+                                    >
+                                        -
+                                    </span>
+                                </td>
+                                <td
                                     class="form-group"
                                     data-ng-show="installation.nbDiskUse > 1 && !informations.raidController"
                                     data-ng-class="{
@@ -678,20 +720,20 @@
                                     </span>
                                     <span
                                         data-ng-hide="$ctrl.isSetPartition(partition) || partition.fileSystem == constants.warningSwap"
-                                        data-ng-bind="partition.raid.replace('_', '')"
+                                        data-ng-bind="partition.raid"
                                     >
                                     </span>
                                     <select
                                         class="form-control"
                                         data-ng-if="$ctrl.isSetPartition(partition) && partition.fileSystem != constants.warningSwap && !informations.softRaidOnlyMirroring"
-                                        data-ng-options="raid as raid.replace('_', '') for raid in $ctrl.getRaidList(installation.nbDiskUse)"
+                                        data-ng-options="raid as raid for raid in $ctrl.getRaidList(installation.nbDiskUse)"
                                         data-ng-model="partition.raid"
                                         data-ng-change="$ctrl.validationRaid(partition)"
                                     >
                                     </select>
                                     <span
                                         data-ng-if="$ctrl.isSetPartition(partition) && partition.fileSystem != constants.warningSwap && informations.softRaidOnlyMirroring"
-                                        data-ng-bind="partition.raid.replace('_', '')"
+                                        data-ng-bind="partition.raid"
                                     >
                                     </span>
                                     <span
@@ -793,7 +835,9 @@
                                     >
                                     </span>
                                 </td>
-                                <td>
+                                <td
+                                    class="text-left"
+                                >
                                     <button
                                         type="button"
                                         class="btn btn-link"
@@ -933,14 +977,14 @@
                                     <select
                                         class="form-control"
                                         data-ng-if="newPartition.fileSystem !== constants.warningSwap && !informations.softRaidOnlyMirroring"
-                                        data-ng-options="raid as raid.replace('_','') for raid in $ctrl.getRaidList(installation.nbDiskUse)"
+                                        data-ng-options="raid as raid for raid in $ctrl.getRaidList(installation.nbDiskUse)"
                                         data-ng-model="newPartition.raid"
                                         data-ng-change="$ctrl.validationRaid(newPartition)"
                                     >
                                     </select>
                                     <span
                                         data-ng-if="informations.softRaidOnlyMirroring"
-                                        data-ng-bind="newPartition.raid.replace('_', '')"
+                                        data-ng-bind="newPartition.raid"
                                     >
                                     </span>
                                 </td>
@@ -1490,11 +1534,11 @@
                             </select>
                         </p>
 
-                        <table class="table table-striped">
+                        <table class="table table-striped text-center">
                             <thead>
                                 <tr>
                                     <th
-                                        scope="col"
+                                        class="text-center"
                                         data-ng-if="!informations.softRaidOnlyMirroring"
                                     >
                                         <span
@@ -1505,21 +1549,37 @@
                                         </span>
                                     </th>
                                     <th
-                                        scope="col"
+                                        class="text-center"
                                         data-translate="server_configuration_installation_ovh_step2_file_system"
                                     ></th>
                                     <th
-                                        scope="col"
+                                        class="text-center"
                                         data-ng-if="!informations.softRaidOnlyMirroring"
                                         data-translate="server_configuration_installation_ovh_step2_mount_point"
                                     ></th>
+                                    <!-- volume name -->
                                     <th
-                                        scope="col"
-                                        data-ng-if="!informations.softRaidOnlyMirroring"
-                                        data-translate="server_configuration_installation_ovh_step2_volume_name"
+                                        class="text-center"
+                                        data-ng-if="installation.selectDistribution.lvmReady && installation.selectDistribution.filesystems.indexOf(constants.warningZFS) === -1"
+                                        data-translate="server_configuration_installation_ovh_step2_lv_name"
                                     ></th>
                                     <th
-                                        scope="col"
+                                        class="text-center"
+                                        data-ng-if="!installation.selectDistribution.lvmReady && installation.selectDistribution.filesystems.indexOf(constants.warningZFS) > -1"
+                                        data-translate="server_configuration_installation_ovh_step2_zp_name"
+                                    ></th>
+                                    <th
+                                        class="text-center"
+                                        data-ng-if="installation.selectDistribution.lvmReady && installation.selectDistribution.filesystems.indexOf(constants.warningZFS) > -1"
+                                        data-translate="server_configuration_installation_ovh_step2_all_name"
+                                    ></th>
+                                    <!-- end volume name -->
+                                    <th
+                                        class="text-center"
+                                        data-ng-if="installation.selectDistribution.lvmReady"
+                                    ></th>
+                                    <th
+                                        class="text-center"
                                         data-ng-if="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
                                     >
                                         <span
@@ -1533,7 +1593,9 @@
                                         </span>
                                     </th>
 
-                                    <th scope="col">
+                                    <th
+                                        class="text-center"
+                                    >
                                         <span
                                             data-translate="server_configuration_installation_ovh_step2_available_size"
                                         ></span>
@@ -1545,7 +1607,7 @@
                                         </span>
                                     </th>
                                     <th
-                                        scope="col"
+                                        class="text-center"
                                         data-ng-if="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
                                     >
                                         <span
@@ -1566,7 +1628,6 @@
                                 >
                                     <th
                                         data-ng-if="!informations.softRaidOnlyMirroring"
-                                        scope="row"
                                         data-ng-bind="partition.order"
                                     ></th>
                                     <td>
@@ -1586,17 +1647,35 @@
                                         data-ng-bind="partition.mountPoint"
                                     ></td>
                                     <td
-                                        data-ng-if="!informations.softRaidOnlyMirroring"
+                                        data-ng-if="installation.selectDistribution.lvmReady || installation.selectDistribution.filesystems.indexOf(constants.warningZFS) > -1"
                                     >
                                         <span
-                                            data-ng-if="(!installation.selectDistribution.lvmReady && partition.fileSystem !== constants.warningZFS ) || partition.fileSystem === constants.warningSwap"
+                                            data-ng-if="partition.fileSystem === constants.warningSwap"
                                         >
                                             -
                                         </span>
                                         <span
-                                            data-ng-if="(installation.selectDistribution.lvmReady && partition.fileSystem !== constants.warningSwap ) || partition.fileSystem === constants.warningZFS"
+                                            data-ng-if="partition.fileSystem !== constants.warningSwap"
                                             data-ng-bind="partition.volumeName"
                                         >
+                                        </span>
+                                    </td>
+                                    <td
+                                        class="text-center"
+                                        data-ng-if="installation.selectDistribution.lvmReady"
+                                    >
+                                        <span
+                                            class="oui-badge oui-badge_s oui-badge_best-seller"
+                                            data-translate="server_configuration_installation_ovh_step2_lvm_badge"
+                                            data-ng-if="partition.volumeName && partition.fileSystem !== constants.warningZFS && partition.fileSystem !== constants.warningSwap"
+                                            data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_lvm_badge_tooltip' | translate}}"
+                                            data-oui-tooltip-placement="bottom"
+                                        >
+                                        </span>
+                                        <span
+                                            data-ng-if="!partition.volumeName || partition.fileSystem === constants.warningZFS || partition.fileSystem === constants.warningSwap"
+                                        >
+                                            -
                                         </span>
                                     </td>
                                     <td
@@ -1609,7 +1688,7 @@
                                         </span>
                                         <span
                                             data-ng-if="partition.fileSystem != constants.warningSwap"
-                                            data-ng-bind="partition.raid.replace('_', '')"
+                                            data-ng-bind="partition.raid"
                                         >
                                         </span>
                                         <span
