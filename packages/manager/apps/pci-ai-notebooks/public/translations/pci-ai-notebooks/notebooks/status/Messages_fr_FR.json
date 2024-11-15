@@ -1,7 +1,7 @@
 {
   "status-DELETING": "En cours de suppression",
   "status-RESTARTING": "Redémarrage en cours",
-  "status-STARTING'": "Démarrage",
+  "status-STARTING": "Démarrage",
   "status-STOPPING": "En cours d'extinction",
   "status-FAILED": "Erreur",
   "status-ERROR": "Erreur",

@@ -37,6 +37,12 @@ export default [
           import('@/pages/notebooks/create/Create.page'),
         ),
       },
+      {
+        path: ':notebookId',
+        ...lazyRouteConfig(() =>
+          import('@/pages/notebooks/[notebookId]/Notebook.layout'),
+        ),
+      },
     ],
   },
   {

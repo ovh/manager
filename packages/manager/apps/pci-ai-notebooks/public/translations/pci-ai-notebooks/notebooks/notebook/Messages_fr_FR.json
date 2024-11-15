@@ -1,4 +1,26 @@
 {
-  "titleNot": "Dashboard page",
-  "tesazdazt": "test"
+  "deleteNotebookTitle": "Supprimer le notebook",
+  "deleteNotebookDescription": "Etes-vous sur de vouloir supprimer le notebook {{name}} ?",
+  "notebookButtonCancel": "Annuler",
+  "deleteNotebookButtonConfirm": "Supprimer",
+  "notebookToastErrorTitle": "Echec",
+  "notebookToastSuccessTitle": "Succès",
+  "deleteNotebookToastSuccessDescription": "Le notebook {{name}} a été supprimé",
+  "startNotebookTitle": "Démarrer le notebook",
+  "startNotebookDescription": "Etes-vous sur de vouloir démarrer le notebook {{name}} ?",
+  "startNotebookButtonConfirm": "Démarrer",
+  "startNotebookToastSuccessDescription": "Le notebook {{name}} a été démarré",
+  "stopNotebookTitle": "Arrêter le notebook",
+  "stopNotebookDescription1": "Lorsque vous stoppez un AI Notebook :",
+  "stopNotebookDescriptionList1": "Les ressources de calculs sont libérées (vous ne payez plus pour les CPUs et GPUs)",
+  "stopNotebookDescriptionList2": "Nous sauvegardons votre Espace de travail (dossier /worskpace) de manière sécurisée (10 Gio gratuits, ensuite au coût de l'Object Storage).",
+  "stopNotebookDescriptionList3": "Tout ce qui est sur le stockage local éphémère sera perdu.",
+  "stopNotebookDescription2": "Une fois stoppé, vous pourrez soit",
+  "stopNotebookDescription2Bis": "supprimer",
+  "stopNotebookDescription2Ter": "votre AI Notebook soit le",
+  "stopNotebookDescription2Quater": "relancer",
+  "stopNotebookDescription3": "Nous restaurerons votre Espace de Travail et réallouerons des ressources de calculs.",
+  "stopNotebookConfirmation": "Etes-vous sur de vouloir arrêter le notebook {{name}} ?",
+  "stopNotebookButtonConfirm": "Arrêter",
+  "stopNotebookToastSuccessDescription": "Le notebook {{name}} a été arrêté"
 }

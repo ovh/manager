@@ -219,7 +219,6 @@ const OrderFunnel = ({
                 )}
               />
             </section>
-
             <section id="flavor">
               <FormField
                 control={model.form.control}
@@ -284,7 +283,6 @@ const OrderFunnel = ({
                 )}
               />
             </section>
-
             <section id="framework">
               <h4 className="mb-2">{t('fieldCaracteristicLabel')}</h4>
               <FormField
