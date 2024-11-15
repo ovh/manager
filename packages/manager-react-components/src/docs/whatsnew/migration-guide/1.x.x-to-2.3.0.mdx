@@ -2,9 +2,9 @@ import { Meta, Story } from '@storybook/addon-docs/blocks';
 import { OdsText } from '@ovhcloud/ods-components';
 import { Links, LinkType } from './../../../index.ts';
 
-<Meta title="Manager React Components/What's news/migration guide/1.xx.x to 2.0.0" />
+<Meta title="Manager React Components/What's news/migration guide/1.xx.x to 2.3.0" />
 
-# Migration from 1.x.x to 2.0.0
+# Migration from 1.x.x to 2.3.0
 
 If you have any questions or issues regarding the new version, feel free to
 reach us directly.
@@ -24,7 +24,7 @@ Be sure, to allow time to :
 #### update your package.json
 
 ```js
-@ovh-ux/manager-react-components: "^2.0.0"
+@ovh-ux/manager-react-components: "^2.3.0"
 ```
 
 ## Components
@@ -42,7 +42,7 @@ The following components have breaking change:
 - `Pci Maintenance Banner` 'type' attribue replace by 'color' type ODS_MESSSAGE_COLOR
 - `Notifications` => (deprecated)
 - `Guide component` 'target', 'rel', 'label' updated to type 'string'
-- `Actions Component` 'target', 'rel', 'label' updated to type 'string' , 'color' attribute remove
+- `Actions Component` 'target', 'rel', 'label' updated to type 'string', 'disabled' to 'isDisabled', 'color' attribute remove
 - `OdsClipboard` new attributes 'labelCopySuccess', 'labelCopy'
 - `ActionBanner component` attribute 'type' replace by 'color' ODS_MESSAGE_COLOR
 - `Manager Button` => new attributes 'id' string and 'label' string
