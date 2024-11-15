@@ -8,34 +8,44 @@ import { ResourceStatus } from '@/api/api.type';
 
 describe('Alias datagrid action menu', () => {
   it('should render correctly with enabled button', () => {
-    const { container } = render(
+    const { container, getByTestId } = render(
       <ActionButtonAlias
         aliasItem={{ ...aliasMock[0], status: ResourceStatus.READY }}
       />,
     );
 
-    expect(container.querySelectorAll('osds-menu-item').length).toBe(1);
+    const menu = getByTestId('navigation-action-trigger-action');
 
-    expect(container.querySelectorAll('osds-menu-item')[0]).toHaveTextContent(
+    const menuItems = container.querySelectorAll('ods-popover ods-button');
+
+    expect(menuItems.length).toBe(1);
+
+    expect(menuItems[0]).toHaveAttribute(
+      'label',
       aliasTranslation.zimbra_account_alias_datagrid_tooltip_delete,
     );
 
-    expect(container.querySelectorAll('osds-menu-item')[0]).toBeEnabled();
+    expect(menu).toHaveAttribute('is-disabled', 'false');
   });
 
   it('should render correctly with disabled button', () => {
-    const { container } = render(
+    const { container, getByTestId } = render(
       <ActionButtonAlias
         aliasItem={{ ...aliasMock[0], status: ResourceStatus.CREATING }}
       />,
     );
 
-    expect(container.querySelectorAll('osds-menu-item').length).toBe(1);
+    const menu = getByTestId('navigation-action-trigger-action');
 
-    expect(container.querySelectorAll('osds-menu-item')[0]).toHaveTextContent(
+    const menuItems = container.querySelectorAll('ods-popover ods-button');
+
+    expect(menuItems.length).toBe(1);
+
+    expect(menuItems[0]).toHaveAttribute(
+      'label',
       aliasTranslation.zimbra_account_alias_datagrid_tooltip_delete,
     );
 
-    expect(container.querySelectorAll('osds-menu-item')[0]).toBeDisabled();
+    expect(menu).toHaveAttribute('is-disabled', 'true');
   });
 });

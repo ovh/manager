@@ -1,7 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { RedirectionsItem } from './Redirections';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -17,24 +18,31 @@ const ActionButtonRedirections: React.FC<ActionButtonRedirectionsAccountProps> =
 }) => {
   const { t } = useTranslation('redirections');
   const { platformUrn } = usePlatform();
+  const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
   const params = Object.fromEntries(searchParams.entries());
 
-  const hrefEditRedirections = useGenerateUrl('./edit', 'href', {
+  const hrefEditRedirections = useGenerateUrl('./edit', 'path', {
     editRedirectionId: redirectionsItem.id,
     ...params,
   });
 
-  const hrefDeleteRedirections = useGenerateUrl('./delete', 'href', {
+  const handleEditRedirectionsClick = () => {
+    navigate(hrefEditRedirections);
+  };
+
+  const hrefDeleteRedirections = useGenerateUrl('./delete', 'path', {
     deleteRedirectionId: redirectionsItem.id,
     ...params,
   });
-
+  const handleDeleteRedirectionsClick = () => {
+    navigate(hrefDeleteRedirections);
+  };
   const actionItems = [
     {
       id: 1,
-      href: hrefEditRedirections,
+      onClick: handleEditRedirectionsClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.redirection.edit],
       label: t('zimbra_redirections_datagrid_tooltip_modification'),
@@ -42,16 +50,19 @@ const ActionButtonRedirections: React.FC<ActionButtonRedirectionsAccountProps> =
     },
     {
       id: 2,
-      href: hrefDeleteRedirections,
+      onClick: handleDeleteRedirectionsClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.redirection.delete],
       label: t('zimbra_redirections_datagrid_tooltip_delete'),
+      color: ODS_BUTTON_COLOR.critical,
     },
   ];
   return (
     <ActionMenu
-      disabled={redirectionsItem.status !== ResourceStatus.READY}
+      id={redirectionsItem.id}
+      isDisabled={redirectionsItem.status !== ResourceStatus.READY}
       items={actionItems.filter((i) => !i.hidden)}
+      variant={ODS_BUTTON_VARIANT.ghost}
       isCompact
     />
   );

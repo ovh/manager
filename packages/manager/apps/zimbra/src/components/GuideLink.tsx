@@ -1,27 +1,39 @@
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import React, { useContext } from 'react';
-import { Links, LinkType } from '@ovh-ux/manager-react-components';
+import React, { useContext, useMemo } from 'react';
+import {
+  IconLinkAlignmentType,
+  Links,
+  LinkType,
+} from '@ovh-ux/manager-react-components';
+import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
 import { Guide } from '@/guides.constants';
 
 interface GuideLinkProps {
   label: string;
-  guide: Guide;
+  guide: string | Guide;
 }
 
 export default function GuideLink({ label, guide }: Readonly<GuideLinkProps>) {
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
 
+  const url = useMemo(() => {
+    if (typeof guide === 'string') {
+      return guide;
+    }
+
+    return (typeof guide.url === 'string'
+      ? guide.url
+      : guide.url?.[ovhSubsidiary] || guide.url.DEFAULT) as string;
+  }, [guide, ovhSubsidiary]);
+
   return (
     <Links
       type={LinkType.external}
-      target={OdsHTMLAnchorElementTarget._blank}
-      href={
-        typeof guide.url === 'string'
-          ? guide.url
-          : guide.url?.[ovhSubsidiary] || guide.url.DEFAULT
-      }
+      color={ODS_LINK_COLOR.primary}
+      iconAlignment={IconLinkAlignmentType.right}
+      target="_blank"
+      href={url}
       label={label}
     />
   );
