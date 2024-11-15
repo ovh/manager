@@ -264,7 +264,10 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
             )}
           >
             <ul
-              className={`list-none grid grid-cols-${columnsCount} gap-6 m-0 p-4`}
+              className="list-none grid gap-6 m-0 p-4"
+              style={{
+                gridTemplateColumns: `repeat(${columnsCount}, minmax(0, 1fr))`,
+              }}
             >
               {[...stackHandler.itemsMap.keys()].map((stackKey) => (
                 <li key={stackKey}>
