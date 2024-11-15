@@ -1,11 +1,15 @@
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { PaginationState } from '@ovh-ux/manager-react-components';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import {
+  UndefinedInitialDataOptions,
+  useMutation,
+  useQuery,
+} from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TKube } from '@/types';
 import queryClient from '@/queryClient';
-import { paginateResults } from '@/helpers';
+import { paginateResults, REFETCH_INTERVAL_DURATION } from '@/helpers';
 import { STATUS } from '@/constants';
 import {
   addOidcProvider,
@@ -40,10 +44,16 @@ export const getAllKubeQueryKey = (projectId: string) => [
   'kube',
 ];
 
-export const useAllKube = (projectId: string) =>
+export const useAllKube = (
+  projectId: string,
+  options?: Partial<UndefinedInitialDataOptions<TKube[]>>,
+) =>
   useQuery({
     queryKey: getAllKubeQueryKey(projectId),
     queryFn: (): Promise<Required<TKube[]>> => getAllKube(projectId),
+    refetchOnMount: 'always',
+    refetchOnReconnect: 'always',
+    ...(options || {}),
   });
 
 export const useKubes = (
@@ -58,7 +68,7 @@ export const useKubes = (
     error: allKubeError,
     isLoading: isAllKubeLoading,
     isPending: isAllKubePending,
-  } = useAllKube(projectId);
+  } = useAllKube(projectId, { refetchInterval: REFETCH_INTERVAL_DURATION });
 
   const {
     data: privateNetworks,
@@ -102,11 +112,15 @@ export function getKubernetesClusterQuery(projectId: string, kubeId: string) {
   return ['project', projectId, 'kube', kubeId];
 }
 
-export const useKubernetesCluster = (projectId: string, kubeId: string) =>
+export const useKubernetesCluster = (
+  projectId: string,
+  kubeId: string,
+  options?: Partial<UndefinedInitialDataOptions<TKube>>,
+) =>
   useQuery({
     queryKey: getKubernetesClusterQuery(projectId, kubeId),
     queryFn: () => getKubernetesCluster(projectId, kubeId),
-    select: (data) => {
+    select: (data: TKube) => {
       const { admissionPlugins } = data.customization.apiServer || {};
       const plugins = mapPluginsFromArrayToObject(admissionPlugins);
       return {
@@ -117,6 +131,7 @@ export const useKubernetesCluster = (projectId: string, kubeId: string) =>
         }),
       };
     },
+    ...(options || {}),
   });
 
 type RenameKubernetesClusterProps = {
@@ -213,7 +228,11 @@ export const useUpdateKubePolicy = ({
   };
 };
 
-export const useKubeDetail = (projectId: string, kubeId: string) => {
+export const useKubeDetail = (
+  projectId: string,
+  kubeId: string,
+  options?: Partial<UndefinedInitialDataOptions<TKube>>,
+) => {
   const { t } = useTranslation('listing');
 
   const {
@@ -221,7 +240,7 @@ export const useKubeDetail = (projectId: string, kubeId: string) => {
     error: kubeError,
     isLoading: isKubeLoading,
     isPending: isKubePending,
-  } = useKubernetesCluster(projectId, kubeId);
+  } = useKubernetesCluster(projectId, kubeId, options);
 
   const {
     data: privateNetworks,
