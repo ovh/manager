@@ -1,14 +1,14 @@
 export interface GuideLinks {
-  [key: string]: string | undefined;
+  [key: string]: string | Guide;
   FR?: string;
-  GB: string;
+  GB?: string;
   DE?: string;
   ES?: string;
   IT?: string;
   PL?: string;
   PT?: string;
-  IE: string;
-  DEFAULT: string;
+  IE?: string;
+  DEFAULT?: string;
   MA?: string;
   TN?: string;
   SN?: string;

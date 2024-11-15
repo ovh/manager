@@ -13,11 +13,13 @@ describe('Onboarding page', () => {
   });
 
   it('should call window open on click', async () => {
-    const { findByText } = render(<Onboarding />);
+    const { container } = render(<Onboarding />);
 
     const spy = vi.spyOn(window, 'open');
 
-    const button = await findByText(onboardingTranslation.orderButtonLabel);
+    const button = await container.querySelector(
+      `ods-button[label="${onboardingTranslation.orderButtonLabel}"]`,
+    );
 
     await act(() => {
       fireEvent.click(button);

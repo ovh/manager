@@ -18,13 +18,13 @@ vi.mocked(useSearchParams).mockReturnValue([
 ]);
 
 describe('Domains delete modal', () => {
-  it('check if it is displayed', () => {
-    const { getByTestId } = render(<ModalDeleteDomain />);
-    const modal = getByTestId('modal');
-    expect(modal).toHaveProperty(
-      'headline',
-      domainsDeleteTranslation.zimbra_domain_delete_modal_title,
-    );
+  it('check if it is displayed', async () => {
+    const { findByText } = render(<ModalDeleteDomain />);
+    expect(
+      await findByText(
+        domainsDeleteTranslation.zimbra_domain_delete_modal_title,
+      ),
+    ).toBeVisible();
   });
 
   it('if have email use the domain', async () => {
@@ -35,7 +35,7 @@ describe('Domains delete modal', () => {
     });
 
     expect(getByTestId('banner-message')).toBeVisible();
-    expect(getByTestId('delete-btn')).toBeDisabled();
+    expect(getByTestId('delete-btn')).toHaveAttribute('is-disabled', 'true');
   });
 
   it('if there is not email use the domain', async () => {
@@ -49,7 +49,7 @@ describe('Domains delete modal', () => {
     const btn = getByTestId('delete-btn');
 
     expect(queryByTestId('banner-message')).toBeNull();
-    expect(btn).toBeEnabled();
+    expect(btn).toHaveAttribute('is-disabled', 'false');
 
     await act(() => {
       fireEvent.click(btn);

@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_COLOR_HUE,
-} from '@ovhcloud/ods-common-theming';
-import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
+  ODS_BUTTON_VARIANT,
+  ODS_INPUT_TYPE,
+  ODS_MODAL_COLOR,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
 import {
-  OsdsFormField,
-  OsdsInput,
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsText,
+  OdsFormField,
+  OdsInput,
+  OdsSelect,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -52,7 +51,7 @@ export default function ModalEditDomain() {
   const { addError, addSuccess } = useNotifications();
 
   const goBackUrl = useGenerateUrl('..', 'path');
-  const onClose = () => navigate(goBackUrl);
+  const goBack = () => navigate(goBackUrl);
 
   const { mutate: handleEditDomain, isPending: isSending } = useMutation({
     mutationFn: () =>
@@ -61,29 +60,19 @@ export default function ModalEditDomain() {
       }),
     onSuccess: () => {
       addSuccess(
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_domain_edit_success_message')}
-        </OsdsText>,
+        </OdsText>,
         true,
       );
     },
     onError: (error: ApiError) => {
       addError(
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_domain_edit_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OsdsText>,
+        </OdsText>,
         true,
       );
     },
@@ -92,7 +81,7 @@ export default function ModalEditDomain() {
         queryKey: getZimbraPlatformDomainsQueryKey(platformId),
       });
 
-      onClose();
+      goBack();
     },
   });
 
@@ -105,68 +94,58 @@ export default function ModalEditDomain() {
   return (
     <Modal
       title={t('zimbra_domain_edit_modal_title')}
-      color={ODS_THEME_COLOR_INTENT.info}
-      onDismissible={onClose}
-      dismissible={true}
+      color={ODS_MODAL_COLOR.information}
+      onClose={goBack}
+      isOpen
+      isDismissible={true}
       isLoading={isLoadingDomain || isLoadingOrganizations}
       primaryButton={{
         label: t('zimbra_domain_edit_confirm'),
         action: handleEditDomain,
-        disabled:
-          isSending ||
+        variant: ODS_BUTTON_VARIANT.default,
+        isDisabled:
           detailDomain?.currentState?.organizationId === selectedOrganization,
+        isLoading: isSending,
         testid: 'edit-btn',
       }}
       secondaryButton={{
         label: t('zimbra_domain_edit_cancel'),
-        action: onClose,
-        disabled: isSending,
+        action: goBack,
         testid: 'cancel-btn',
       }}
     >
       <>
-        <OsdsFormField className="mt-5">
-          <div slot="label">
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            >
-              {t('zimbra_domain_edit_domain_label')}
-            </OsdsText>
-          </div>
-          <OsdsInput
+        <OdsFormField className="mt-5">
+          <label htmlFor="domain" slot="label">
+            {t('zimbra_domain_edit_domain_label')}
+          </label>
+          <OdsInput
             type={ODS_INPUT_TYPE.text}
-            disabled={true}
+            isDisabled={true}
+            id="domain"
+            name="domain"
+            defaultValue={detailDomain?.currentState?.name}
             value={detailDomain?.currentState?.name}
             data-testid="input-domain"
-          ></OsdsInput>
-        </OsdsFormField>
-        <OsdsFormField className="mt-5">
-          <div slot="label">
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            >
-              {t('zimbra_domain_edit_organization_label')}
-            </OsdsText>
-          </div>
-          <OsdsSelect
+          ></OdsInput>
+        </OdsFormField>
+        <OdsFormField className="mt-5">
+          <label slot="label">
+            {t('zimbra_domain_edit_organization_label')}
+          </label>
+          <OdsSelect
             name="organization"
             value={selectedOrganization}
-            onOdsValueChange={(e) =>
-              setSelectedOrganization(e.detail.value as string)
-            }
+            onOdsChange={(e) => setSelectedOrganization(e.detail.value)}
             data-testid="select-organization"
           >
             {organizationsList?.map((organization) => (
-              <OsdsSelectOption value={organization.id} key={organization.id}>
+              <option key={organization.id} value={organization.id}>
                 {organization.currentState.label}
-              </OsdsSelectOption>
+              </option>
             ))}
-          </OsdsSelect>
-        </OsdsFormField>
+          </OdsSelect>
+        </OdsFormField>
       </>
     </Modal>
   );

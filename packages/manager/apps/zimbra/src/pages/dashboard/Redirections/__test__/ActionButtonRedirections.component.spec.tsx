@@ -20,20 +20,25 @@ describe('Redirections datagrid action menu', () => {
       />,
     );
 
-    if (FEATURE_FLAGS.REDIRECTIONS_EDIT) {
-      expect(container.querySelectorAll('osds-menu-item').length).toBe(2);
+    const menuItems = container.querySelectorAll('ods-popover ods-button');
 
-      expect(container.querySelectorAll('osds-menu-item')[0]).toHaveTextContent(
+    if (FEATURE_FLAGS.REDIRECTIONS_EDIT) {
+      expect(menuItems.length).toBe(2);
+
+      expect(menuItems[0]).toHaveAttribute(
+        'label',
         redirectionsTranslation.zimbra_redirections_datagrid_tooltip_modification,
       );
 
-      expect(container.querySelectorAll('osds-menu-item')[1]).toHaveTextContent(
+      expect(menuItems[1]).toHaveAttribute(
+        'label',
         redirectionsTranslation.zimbra_redirections_datagrid_tooltip_delete,
       );
     } else {
-      expect(container.querySelectorAll('osds-menu-item').length).toBe(1);
+      expect(menuItems.length).toBe(1);
 
-      expect(container.querySelectorAll('osds-menu-item')[0]).toHaveTextContent(
+      expect(menuItems[0]).toHaveAttribute(
+        'label',
         redirectionsTranslation.zimbra_redirections_datagrid_tooltip_delete,
       );
     }

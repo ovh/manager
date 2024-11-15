@@ -2,19 +2,17 @@ import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { useSearchParams } from 'react-router-dom';
 import ModalDeleteAutoReply from '../ModalDeleteAutoReply.component';
-import { render, screen } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 
 describe('ModalDeleteAutoReply Component', () => {
   it('should have button disabled if no deleteAutoReplyId', () => {
-    render(<ModalDeleteAutoReply />);
-    expect(screen.getByTestId('cancel-btn')).toBeInTheDocument();
-    expect(screen.getByTestId('delete-btn')).toBeInTheDocument();
+    const { getByTestId } = render(<ModalDeleteAutoReply />);
 
-    const cancelButton = screen.getByTestId('cancel-btn');
-    const deleteButton = screen.getByTestId('delete-btn');
+    const cancelButton = getByTestId('cancel-btn');
+    const deleteButton = getByTestId('delete-btn');
 
-    expect(cancelButton).toBeEnabled();
-    expect(deleteButton).toBeDisabled();
+    expect(cancelButton).toBeInTheDocument();
+    expect(deleteButton).toHaveAttribute('is-disabled', 'true');
   });
 
   it('should have button enabled if deleteAutoReplyId', () => {
@@ -25,14 +23,12 @@ describe('ModalDeleteAutoReply Component', () => {
       vi.fn(),
     ]);
 
-    render(<ModalDeleteAutoReply />);
-    expect(screen.getByTestId('cancel-btn')).toBeInTheDocument();
-    expect(screen.getByTestId('delete-btn')).toBeInTheDocument();
+    const { getByTestId } = render(<ModalDeleteAutoReply />);
 
-    const cancelButton = screen.getByTestId('cancel-btn');
-    const deleteButton = screen.getByTestId('delete-btn');
+    const cancelButton = getByTestId('cancel-btn');
+    const deleteButton = getByTestId('delete-btn');
 
-    expect(cancelButton).toBeEnabled();
-    expect(deleteButton).toBeEnabled();
+    expect(cancelButton).toBeInTheDocument();
+    expect(deleteButton).toHaveAttribute('is-disabled', 'false');
   });
 });

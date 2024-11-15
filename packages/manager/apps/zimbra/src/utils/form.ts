@@ -1,6 +1,7 @@
 export type FieldType = {
   value: string;
   touched: boolean;
+  defaultValue?: string;
   hasError?: boolean;
   required?: boolean;
   validate?: ((value: string) => boolean) | RegExp;

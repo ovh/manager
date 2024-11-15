@@ -18,13 +18,13 @@ vi.mocked(useSearchParams).mockReturnValue([
 ]);
 
 describe('Alias delete modal', () => {
-  it('should render correctly', () => {
-    const { getByTestId } = render(<ModalDeleteAlias />);
-    const modal = getByTestId('modal');
-    expect(modal).toHaveProperty(
-      'headline',
-      accountAliasDeleteTranslation.zimbra_account_alias_delete_modal_title,
-    );
+  it('should render correctly', async () => {
+    const { findByText } = render(<ModalDeleteAlias />);
+    expect(
+      await findByText(
+        accountAliasDeleteTranslation.zimbra_account_alias_delete_modal_title,
+      ),
+    ).toBeVisible();
   });
 
   it('should delete alias', async () => {
