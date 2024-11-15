@@ -1,12 +1,11 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { getProceduresAPI, UploadLink } from '@/data/api/proceduresApi';
+import {
+  getProceduresAPI,
+  UploadDocuments,
+  UploadLink,
+} from '@/data/api/proceduresApi';
 import { Procedure } from '@/types/procedure';
-
-export type UploadDocumentsProps = {
-  files: File[];
-  links: UploadLink[];
-};
 
 export const useProcedures = (procedure: Procedure) => {
   const { getStatus, getDocumentsLinks, uploadDocuments } = getProceduresAPI(
@@ -45,8 +44,8 @@ export const useProcedures = (procedure: Procedure) => {
     onError: () => void;
   }) =>
     useMutation({
-      mutationFn: ({ files, links }: UploadDocumentsProps) => {
-        return uploadDocuments(files, links);
+      mutationFn: (documentsData: UploadDocuments) => {
+        return uploadDocuments(documentsData);
       },
       onSuccess: () => {
         onSuccess?.();
