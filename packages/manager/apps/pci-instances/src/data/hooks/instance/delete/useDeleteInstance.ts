@@ -1,4 +1,8 @@
-import { useMutation } from '@tanstack/react-query';
+import {
+  UseMutateFunction,
+  useMutation,
+  UseMutationResult,
+} from '@tanstack/react-query';
 import { deleteInstance } from '@/data/api/instance';
 import { DeepReadonly } from '@/types/utils.type';
 import { instancesQueryKey } from '@/utils';
@@ -27,4 +31,16 @@ export const useDeleteInstance = (
     deleteInstance: mutation.mutate,
     ...mutation,
   };
+};
+
+export const instanceMutationFn = (type: 'delete', mutationArgs: any): any => {
+  switch (type) {
+    case 'delete':
+      return useDeleteInstance(mutationArgs.projectId, {
+        onError: mutationArgs.onError,
+        onSuccess: mutationArgs.onSuccess,
+      });
+    default:
+      return null;
+  }
 };
