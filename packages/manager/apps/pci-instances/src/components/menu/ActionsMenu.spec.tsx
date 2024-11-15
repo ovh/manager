@@ -1,6 +1,10 @@
 import { describe, test, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { ActionsMenu, TActionsMenuItem } from './ActionsMenu.component';
+import {
+  ActionsMenu,
+  groupActionMenuItems,
+  TActionsMenuItem,
+} from './ActionsMenu.component';
 
 const onMenuItemClickMock = vi.fn();
 
@@ -18,6 +22,25 @@ const testItems: TActionsMenuItem[] = [
 const renderActionsMenu = (items: TActionsMenuItem[]) => {
   render(<ActionsMenu items={items} />);
 };
+
+describe('Considering the groupActionMenuItems() function', () => {
+  test("should group items by 'group' property", () => {
+    const items: TActionsMenuItem[] = [
+      { group: 'boot', label: 'Start' },
+      { group: 'boot', label: 'Stop' },
+      { group: 'delete', label: 'Delete' },
+      { label: 'Foo' },
+    ];
+
+    const result = groupActionMenuItems(items);
+
+    expect(result).toEqual({
+      boot: [{ label: 'Start' }, { label: 'Stop' }],
+      delete: [{ label: 'Delete' }],
+      others: [{ label: 'Foo' }],
+    });
+  });
+});
 
 describe('Considering the ActionsMenu component', () => {
   test('Should render only action menu button with Icon as first child if items prop is []', () => {
