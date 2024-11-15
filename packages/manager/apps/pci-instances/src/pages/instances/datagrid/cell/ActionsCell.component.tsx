@@ -8,7 +8,12 @@ import {
 import { LoadingCell } from '@/components/datagrid/cell/LoadingCell.component';
 import { DeepReadonly } from '@/types/utils.type';
 
-type TActionsCellHref = 'deleteHref' | 'autobackupHref' | 'detailsHref';
+type TActionsCellHref =
+  | 'deleteHref'
+  | 'autobackupHref'
+  | 'detailsHref'
+  | 'stopHref'
+  | 'startHref';
 export type TActionsCellHrefs = Record<TActionsCellHref, string>;
 
 export type TActionsCellProps = DeepReadonly<{
@@ -22,10 +27,22 @@ export const ActionsCell: FC<TActionsCellProps> = ({ isLoading, hrefs }) => {
     {
       label: t('pci_instances_list_action_instance_details'),
       href: useHref(hrefs.detailsHref),
+      group: 'general',
     },
     {
       label: t('pci_instances_list_action_autobackup'),
       href: hrefs.autobackupHref,
+      group: 'general',
+    },
+    {
+      label: t('pci_instances_list_action_start_instance'),
+      href: useHref(hrefs.startHref),
+      group: 'boot',
+    },
+    {
+      label: t('pci_instances_list_action_stop_instance'),
+      href: useHref(hrefs.stopHref),
+      group: 'boot',
     },
     {
       label: t('pci_instances_list_action_delete_instance'),

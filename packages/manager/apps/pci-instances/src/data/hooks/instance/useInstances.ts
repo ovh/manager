@@ -8,7 +8,7 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 import { useCallback, useEffect, useMemo } from 'react';
-import { FilterWithLabel } from '@ovh-ux/manager-react-components/src/components/filters/interface';
+import { FilterWithLabel } from '@ovh-ux/manager-react-components';
 import { getInstances } from '@/data/api/instance';
 import { instancesQueryKey } from '@/utils';
 import { DeepReadonly } from '@/types/utils.type';
@@ -67,6 +67,25 @@ export const updateDeletedInstanceStatus = (
       return { ...prevData, pages: updatedPages };
     },
   );
+};
+
+export const getInstanceNameById = (
+  id: string | null,
+  queryClient: QueryClient,
+): string | undefined => {
+  if (!id) return undefined;
+
+  const data = queryClient.getQueriesData<InfiniteData<TInstanceDto[], number>>(
+    {
+      predicate: (query: Query) => query.queryKey.includes('list'),
+    },
+  );
+  return data.reduce((acc, [, result]) => {
+    if (acc.length) return acc;
+    if (result)
+      return result.pages.flat().find((elt) => elt.id === id)?.name ?? acc;
+    return acc;
+  }, '');
 };
 
 const buildInstanceStatusSeverity = (

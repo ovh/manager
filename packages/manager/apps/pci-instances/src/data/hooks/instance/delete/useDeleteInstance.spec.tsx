@@ -8,7 +8,7 @@ import {
   TInstance,
   updateDeletedInstanceStatus,
   useInstances,
-} from './useInstances';
+} from '../useInstances';
 import { setupInstancesServer } from '@/__mocks__/instance/node';
 import { useDeleteInstance } from './useDeleteInstance';
 import { TInstanceDto } from '@/types/instance/api.types';
