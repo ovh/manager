@@ -1,4 +1,4 @@
-import { Links } from '@ovh-ux/manager-react-components';
+import { Headers, Links } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
@@ -14,15 +14,9 @@ export default function Pools() {
 
   return (
     <div>
-      <OsdsText
-        size={ODS_TEXT_SIZE._600}
-        level={ODS_TEXT_LEVEL.heading}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
-        {t('octavia_load_balancer_pools_title')}
-      </OsdsText>
+      <Headers title={t('octavia_load_balancer_pools_title')} />
 
-      <div className="my-8">
+      <div>
         <OsdsText
           className="block"
           size={ODS_TEXT_SIZE._400}

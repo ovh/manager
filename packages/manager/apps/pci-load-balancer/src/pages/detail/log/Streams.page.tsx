@@ -89,7 +89,7 @@ export default function StreamsPage() {
         className="mt-4"
         color={ODS_THEME_COLOR_INTENT.primary}
         size={ODS_BUTTON_SIZE.sm}
-        variant={ODS_BUTTON_VARIANT.stroked}
+        variant={ODS_BUTTON_VARIANT.flat}
         onClick={() => {
           gotoAddDataStream();
         }}
@@ -99,6 +99,7 @@ export default function StreamsPage() {
           <OsdsIcon
             name={ODS_ICON_NAME.ADD}
             size={ODS_ICON_SIZE.xxs}
+            className="bg-white"
             color={ODS_THEME_COLOR_INTENT.primary}
           />
         </span>
