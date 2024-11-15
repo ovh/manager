@@ -37,10 +37,10 @@ describe('TabsPanel component', () => {
     const link2 = getByText('2');
 
     await waitFor(async () => {
-      expect(link1).toHaveAttribute('active', '');
+      expect(link1).toHaveAttribute('is-selected', 'true');
     });
 
-    expect(link2).not.toHaveAttribute('active', '');
+    expect(link2).toHaveAttribute('is-selected', 'false');
   });
 
   it('should render correctly with second tab active', async () => {
@@ -60,9 +60,9 @@ describe('TabsPanel component', () => {
     const link2 = getByText('2');
 
     await waitFor(async () => {
-      expect(link2).toHaveAttribute('active', '');
+      expect(link2).toHaveAttribute('is-selected', 'true');
     });
 
-    expect(link1).not.toHaveAttribute('active', '');
+    expect(link1).toHaveAttribute('is-selected', 'false');
   });
 });

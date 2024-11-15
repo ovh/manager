@@ -10,9 +10,10 @@ import {
   BaseLayout,
   GuideButton,
   GuideItem,
+  Notifications,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import TabsPanel, { TabItemProps } from './TabsPanel';
@@ -25,6 +26,7 @@ import { FEATURE_FLAGS } from '@/utils';
 
 export const Dashboard: React.FC = () => {
   const { platformId } = useParams();
+  const { notifications } = useNotifications();
   const { t } = useTranslation('dashboard');
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
@@ -36,7 +38,7 @@ export const Dashboard: React.FC = () => {
       id: 1,
       href: `${GUIDES_LIST.administrator_guide.url[ovhSubsidiary] ||
         GUIDES_LIST.administrator_guide.url.DEFAULT}`,
-      target: OdsHTMLAnchorElementTarget._blank,
+      target: '_blank',
       label: t('zimbra_dashboard_administrator_guide'),
     },
   ];
@@ -119,6 +121,10 @@ export const Dashboard: React.FC = () => {
         title: 'Zimbra',
         headerButton: <GuideButton items={guideItems} />,
       }}
+      message={
+        // temporary fix margin even if empty
+        notifications.length ? <Notifications /> : null
+      }
       tabs={<TabsPanel tabs={tabsList} />}
     >
       <Outlet />

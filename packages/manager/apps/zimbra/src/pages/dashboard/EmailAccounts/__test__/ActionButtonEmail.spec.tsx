@@ -11,13 +11,17 @@ describe('EmailAccounts datagrid action menu', () => {
       <ActionButtonEmail emailsItem={accountsMock[0]} />,
     );
 
-    expect(container.querySelectorAll('osds-menu-item').length).toBe(2);
+    const menuItems = container.querySelectorAll('ods-popover ods-button');
 
-    expect(container.querySelectorAll('osds-menu-item')[0]).toHaveTextContent(
+    expect(menuItems.length).toBe(2);
+
+    expect(menuItems[0]).toHaveAttribute(
+      'label',
       accountTranslation.zimbra_account_datagrid_tooltip_modification,
     );
 
-    expect(container.querySelectorAll('osds-menu-item')[1]).toHaveTextContent(
+    expect(menuItems[1]).toHaveAttribute(
+      'label',
       accountTranslation.zimbra_account_datagrid_tooltip_delete,
     );
   });

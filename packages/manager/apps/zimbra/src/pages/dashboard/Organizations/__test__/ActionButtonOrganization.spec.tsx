@@ -11,13 +11,17 @@ describe('Organizations datagrid action menu', () => {
       <ActionButtonOrganization organizationItem={organizationDetailMock} />,
     );
 
-    expect(container.querySelectorAll('osds-menu-item').length).toBe(2);
+    const menuItems = container.querySelectorAll('ods-popover ods-button');
 
-    expect(container.querySelectorAll('osds-menu-item')[0]).toHaveTextContent(
+    expect(menuItems.length).toBe(2);
+
+    expect(menuItems[0]).toHaveAttribute(
+      'label',
       organizationsTranslation.zimbra_organization_edit,
     );
 
-    expect(container.querySelectorAll('osds-menu-item')[1]).toHaveTextContent(
+    expect(menuItems[1]).toHaveAttribute(
+      'label',
       organizationsTranslation.zimbra_organization_delete,
     );
   });

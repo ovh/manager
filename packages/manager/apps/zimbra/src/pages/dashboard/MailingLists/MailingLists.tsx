@@ -1,23 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
-import { Outlet } from 'react-router-dom';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsText } from '@ovhcloud/ods-components/react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_COLOR_HUE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import {
   Datagrid,
   DatagridColumn,
   ManagerButton,
-  Notifications,
 } from '@ovh-ux/manager-react-components';
-
 import {
   usePlatform,
   useGenerateUrl,
@@ -48,13 +43,7 @@ const columns: DatagridColumn<MailingListItem>[] = [
   {
     id: 'domains',
     cell: (item) => (
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._100}
-        level={ODS_TEXT_LEVEL.body}
-      >
-        {item.name}
-      </OsdsText>
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>
     ),
     label: 'zimbra_mailinglists_datagrid_name_label',
   },
@@ -69,52 +58,28 @@ const columns: DatagridColumn<MailingListItem>[] = [
   {
     id: 'owner',
     cell: (item) => (
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._100}
-        level={ODS_TEXT_LEVEL.body}
-      >
-        {item.owner}
-      </OsdsText>
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.owner}</OdsText>
     ),
     label: 'zimbra_mailinglists_datagrid_owner_label',
   },
   {
     id: 'aliases',
     cell: (item) => (
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._100}
-        level={ODS_TEXT_LEVEL.body}
-      >
-        {item.aliases}
-      </OsdsText>
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.aliases}</OdsText>
     ),
     label: 'zimbra_mailinglists_datagrid_aliases_label',
   },
   {
     id: 'moderators',
     cell: (item) => (
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._100}
-        level={ODS_TEXT_LEVEL.body}
-      >
-        {item.moderators}
-      </OsdsText>
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.moderators}</OdsText>
     ),
     label: 'zimbra_mailinglists_datagrid_moderators_label',
   },
   {
     id: 'subscribers',
     cell: (item) => (
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._100}
-        level={ODS_TEXT_LEVEL.body}
-      >
-        {item.subscribers}
-      </OsdsText>
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.subscribers}</OdsText>
     ),
     label: 'zimbra_mailinglists_datagrid_subscribers_label',
   },
@@ -147,6 +112,7 @@ export const getMailingListItems = (
 
 export default function MailingLists() {
   const { t } = useTranslation('mailinglists');
+  const navigate = useNavigate();
   const { platformUrn, data: platformData } = usePlatform();
   const { data, isLoading } = useMailingLists({
     refetchInterval: DATAGRID_REFRESH_INTERVAL,
@@ -156,49 +122,42 @@ export default function MailingLists() {
 
   const items: MailingListItem[] = getMailingListItems(data);
 
-  const hrefAddMailingList = useGenerateUrl('./add', 'href');
+  const hrefAddMailingList = useGenerateUrl('./add', 'path');
 
+  const handleAddMailingListClick = () => {
+    navigate(hrefAddMailingList);
+  };
   // this will need to be updated
   const quota = platformData?.currentState?.quota || 0;
 
   return (
     <div className="py-6 mt-8">
-      <Notifications />
       <Outlet />
       {platformUrn && !isOverridedPage && (
         <>
           <div className="flex flex-col items-start">
             <div className="mb-8">
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.text}
-                hue={ODS_TEXT_COLOR_HUE._500}
-                size={ODS_TEXT_SIZE._200}
-                className="mr-4"
+              <OdsText
+                preset={ODS_TEXT_PRESET.paragraph}
+                className="mr-4 font-bold"
               >
                 <strong>{t('zimbra_mailinglists_quota_label')}</strong>
                 {` ${quota}/1000`}
-              </OsdsText>
+              </OdsText>
             </div>
             <ManagerButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              inline
+              id="add-mailinglist-btn"
+              color={ODS_BUTTON_COLOR.primary}
+              inline-block
               size={ODS_BUTTON_SIZE.sm}
-              href={hrefAddMailingList}
+              onClick={handleAddMailingListClick}
               urn={platformUrn}
               iamActions={[IAM_ACTIONS.mailingList.create]}
               data-testid="add-mailinglist-btn"
               className="mb-6"
-            >
-              <span slot="start">
-                <OsdsIcon
-                  name={ODS_ICON_NAME.PLUS}
-                  size={ODS_ICON_SIZE.sm}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  contrasted
-                ></OsdsIcon>
-              </span>
-              <span slot="end">{t('zimbra_mailinglists_datagrid_cta')}</span>
-            </ManagerButton>
+              icon={ODS_ICON_NAME.plus}
+              label={t('zimbra_mailinglists_datagrid_cta')}
+            />
           </div>
           {isLoading ? (
             <Loading />

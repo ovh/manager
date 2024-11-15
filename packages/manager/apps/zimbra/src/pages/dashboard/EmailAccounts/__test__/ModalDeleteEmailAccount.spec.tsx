@@ -17,12 +17,13 @@ vi.mocked(useSearchParams).mockReturnValue([
 ]);
 
 describe('Domains delete modal', () => {
-  it('check if it is displayed', () => {
-    const { getByTestId } = render(<ModalDeleteEmailAccount />);
-    expect(getByTestId('modal')).toHaveProperty(
-      'headline',
-      accountsDeleteTranslation.zimbra_account_delete_modal_title,
-    );
+  it('check if it is displayed', async () => {
+    const { findByText } = render(<ModalDeleteEmailAccount />);
+    expect(
+      await findByText(
+        accountsDeleteTranslation.zimbra_account_delete_modal_title,
+      ),
+    ).toBeVisible();
   });
 
   it('check transition from step 1 to step 2 and delete', async () => {

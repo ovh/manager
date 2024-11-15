@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { LinkType, Links, Subtitle } from '@ovh-ux/manager-react-components';
+import {
+  IconLinkAlignmentType,
+  LinkType,
+  Links,
+  Subtitle,
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useDomains, useGenerateUrl, usePlatform, useAccount } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
 import { TabItemProps, AccountTabsPanel } from './AccountTabsPanel.component';
@@ -15,20 +20,15 @@ import AutoReplies from '../AutoReplies/AutoReplies';
 export default function AddAndEditAccount() {
   const { t } = useTranslation('accounts/addAndEdit');
   const location = useLocation();
-  const navigate = useNavigate();
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
   const editEmailAccountId = searchParams.get('editEmailAccountId');
   const [isLoading, setIsLoading] = useState(true);
-  const goBackUrl = useGenerateUrl('..', 'path');
+  const goBackUrl = useGenerateUrl('..', 'href');
   const [isSettingsTab, setIsSettingsTab] = useState(false);
   const [isAliasTab, setIsAliasTab] = useState(false);
   const [isRedirectionsTab, setIsRedirectionsTab] = useState(false);
   const [isAutoRepliesTab, setIsAutoRepliesTab] = useState(false);
-
-  const goBack = () => {
-    return navigate(goBackUrl);
-  };
 
   const {
     data: editAccountDetail,
@@ -132,8 +132,9 @@ export default function AddAndEditAccount() {
             data-testid="page-title"
           >
             <Links
+              iconAlignment={IconLinkAlignmentType.left}
               type={LinkType.back}
-              onClickReturn={goBack}
+              href={goBackUrl}
               label={t('zimbra_account_add_cta_back')}
             />
             <Subtitle>
