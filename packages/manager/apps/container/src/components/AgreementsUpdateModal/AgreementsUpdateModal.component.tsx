@@ -28,7 +28,7 @@ export default function AgreementsUpdateModal () {
   const { isAuthorized: canUserAcceptAgreements } = useAuthorizationIam(['account:apiovh:me/agreements/accept'], urn);
   const { data: agreements } = useAgreementsUpdate({ enabled: canUserAcceptAgreements });
   const goToContractPage = () => {
-    navigation.navigateTo('dedicated', `#/billing/autoRenew/agreements`);
+    navigation.navigateTo('dedicated', `#/billing/autorenew/agreements`);
   };
 
   useEffect(() => {
