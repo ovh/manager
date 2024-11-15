@@ -4,5 +4,6 @@
   "nutanix_dashboard_guides_header": "Guides",
   "nutanix_dashboard_guides_header_all_guides": "Tous les guides",
   "nutanix_dashboard_cluster_warning1": "Vous devez enregistrer votre licence Nutanix sur votre cluster dans Prism Central avant le [{{endDate}}]",
-  "nutanix_dashboard_cluster_warning2": "Enregistrez votre licence"
+  "nutanix_dashboard_cluster_warning2": "Enregistrez votre licence",
+  "nutanix_dashboard_service_suspended": "Le service a été résilié."
 }
