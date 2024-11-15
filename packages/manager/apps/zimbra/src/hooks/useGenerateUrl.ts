@@ -1,10 +1,11 @@
-import { useHref } from 'react-router-dom';
+import { RelativeRoutingType, useHref } from 'react-router-dom';
 import { useOrganization } from '@/hooks';
 
 export const useGenerateUrl = (
   baseURL: string,
   type: 'path' | 'href' = 'path',
   params?: Record<string, string | number>,
+  relativeType: RelativeRoutingType = 'path',
 ) => {
   const { data: organization } = useOrganization();
 
@@ -18,7 +19,7 @@ export const useGenerateUrl = (
     .join('&')}`;
 
   if (type === 'href') {
-    return useHref(fullURL);
+    return useHref(fullURL, { relative: relativeType });
   }
   return fullURL;
 };

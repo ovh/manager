@@ -1,7 +1,7 @@
 import React from 'react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 
 interface LabelChipProps {
   id: string;
@@ -26,14 +26,14 @@ const LabelChip: React.FC<LabelChipProps> = ({ id, children }) => {
   };
 
   return (
-    <OsdsChip
-      inline
-      color={ODS_THEME_COLOR_INTENT.primary}
-      selectable
+    <div
       onClick={handleLinkClick}
+      role="button"
+      aria-hidden="true"
+      className="cursor-pointer inline-block"
     >
-      {children}
-    </OsdsChip>
+      <OdsBadge id={id} label={children} size={ODS_BADGE_SIZE.lg} />
+    </div>
   );
 };
 

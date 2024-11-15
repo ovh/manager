@@ -15,12 +15,16 @@ describe('General Informations page', () => {
     const title = await findByText(
       dashboardTranslation.zimbra_dashboard_tile_status_title,
     );
-    const serviceStatus = queryByTestId('tileblock-orga');
+    const serviceStatus = queryByTestId('org-status');
+    const status = getByTestId('status');
     const accounts = getByTestId('platform-accounts');
+    const usefulLinks = getByTestId('useful-links');
 
     expect(title).toBeVisible();
     expect(serviceStatus).toBeNull();
+    expect(status).toBeInTheDocument();
     expect(accounts).toBeInTheDocument();
+    expect(usefulLinks).toBeInTheDocument();
   });
 
   it('should display organization status', async () => {
@@ -37,7 +41,7 @@ describe('General Informations page', () => {
       dashboardTranslation.zimbra_dashboard_tile_status_title,
     );
 
-    const serviceStatus = getByTestId('tileblock-orga');
+    const serviceStatus = getByTestId('org-status');
 
     expect(title).toBeVisible();
     expect(serviceStatus).toBeInTheDocument();

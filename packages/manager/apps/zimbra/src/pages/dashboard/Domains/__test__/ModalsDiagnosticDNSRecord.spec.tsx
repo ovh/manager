@@ -17,15 +17,17 @@ vi.mocked(useSearchParams).mockReturnValue([
 ]);
 
 describe('Domain diagnostic modalc ', () => {
-  it('should display diagnostic modal', () => {
-    const { getByTestId } = render(
+  it('should display diagnostic modal', async () => {
+    const { findByText, getByTestId } = render(
       <ModalDiagnosticDnsRecord dnsRecordType={DnsRecordType.SRV} />,
     );
-    const modal = getByTestId('modal');
-    expect(modal).toHaveProperty(
-      'headline',
-      domainDiagnosticTranslation.zimbra_domain_modal_diagnostic_srv_title,
-    );
+
+    expect(
+      await findByText(
+        domainDiagnosticTranslation.zimbra_domain_modal_diagnostic_srv_title,
+      ),
+    ).toBeVisible();
+
     expect(
       getByTestId('diagnostic-srv-modal-secondary-btn'),
     ).toBeInTheDocument();
@@ -33,15 +35,17 @@ describe('Domain diagnostic modalc ', () => {
 });
 
 describe('Domain diagnostic modal MX', () => {
-  it('should display diagnostic modal', () => {
-    const { getByTestId } = render(
+  it('should display diagnostic modal', async () => {
+    const { findByText, getByTestId } = render(
       <ModalDiagnosticDnsRecord dnsRecordType={DnsRecordType.MX} />,
     );
-    const modal = getByTestId('modal');
-    expect(modal).toHaveProperty(
-      'headline',
-      domainDiagnosticTranslation.zimbra_domain_modal_diagnostic_mx_title,
-    );
+
+    expect(
+      await findByText(
+        domainDiagnosticTranslation.zimbra_domain_modal_diagnostic_mx_title,
+      ),
+    ).toBeVisible();
+
     expect(
       getByTestId('diagnostic-mx-modal-secondary-btn'),
     ).toBeInTheDocument();
@@ -49,15 +53,17 @@ describe('Domain diagnostic modal MX', () => {
 });
 
 describe('Domain diagnostic modal SPF', () => {
-  it('should display diagnostic modal', () => {
-    const { getByTestId } = render(
+  it('should display diagnostic modal', async () => {
+    const { findByText, getByTestId } = render(
       <ModalDiagnosticDnsRecord dnsRecordType={DnsRecordType.SPF} />,
     );
-    const modal = getByTestId('modal');
-    expect(modal).toHaveProperty(
-      'headline',
-      domainDiagnosticTranslation.zimbra_domain_modal_diagnostic_spf_title,
-    );
+
+    expect(
+      await findByText(
+        domainDiagnosticTranslation.zimbra_domain_modal_diagnostic_spf_title,
+      ),
+    ).toBeVisible();
+
     expect(
       getByTestId('diagnostic-spf-modal-secondary-btn'),
     ).toBeInTheDocument();

@@ -17,13 +17,11 @@ vi.mocked(useSearchParams).mockReturnValue([
 ]);
 
 describe('Domains edit modal', () => {
-  it('check if it is displayed', () => {
-    const { getByTestId } = render(<ModalEditDomain />);
-    const modal = getByTestId('modal');
-    expect(modal).toHaveProperty(
-      'headline',
-      domainsEditTranslation.zimbra_domain_edit_modal_title,
-    );
+  it('check if it is displayed', async () => {
+    const { findByText } = render(<ModalEditDomain />);
+    expect(
+      await findByText(domainsEditTranslation.zimbra_domain_edit_modal_title),
+    ).toBeVisible();
   });
 
   it('check if disabled input have the domain name', async () => {
@@ -43,20 +41,16 @@ describe('Domains edit modal', () => {
     const { getByTestId } = render(<ModalEditDomain />);
     const confirmCta = getByTestId('edit-btn');
     const selectOrganization = getByTestId('select-organization');
-    expect(confirmCta).toBeDisabled();
+    expect(confirmCta).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
-      fireEvent.change(selectOrganization, {
-        target: { value: '1903b491-4d10-4000-8b70-f474d1abe601' },
-      });
-
-      // it seems we have to manually trigger the ods event
-      selectOrganization.odsValueChange.emit({
+    act(() => {
+      selectOrganization.odsChange.emit({
+        name: 'organization',
         value: '1903b491-4d10-4000-8b70-f474d1abe601',
       });
     });
 
-    expect(confirmCta).toBeEnabled();
+    expect(confirmCta).toHaveAttribute('is-disabled', 'false');
 
     await act(() => {
       fireEvent.click(confirmCta);

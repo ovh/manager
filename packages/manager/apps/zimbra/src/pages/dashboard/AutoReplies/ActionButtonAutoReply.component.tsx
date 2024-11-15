@@ -1,14 +1,11 @@
 import React from 'react';
 import { ManagerButton } from '@ovh-ux/manager-react-components';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
-
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { AutoRepliesItem } from './AutoReplies';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -23,6 +20,7 @@ const ActionButtonAutoReply: React.FC<ActionButtonAutoReplyProps> = ({
 }) => {
   const { platformUrn } = usePlatform();
 
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const params = Object.fromEntries(searchParams.entries());
 
@@ -31,23 +29,21 @@ const ActionButtonAutoReply: React.FC<ActionButtonAutoReplyProps> = ({
     ...params,
   });
 
+  const handleDeleteClick = () => navigate(hrefDeleteAutoReply);
+
   return (
     <ManagerButton
+      id={`delete-auto-reply-${autoReplyItem.id}`}
       data-testid="delete-auto-reply"
-      href={hrefDeleteAutoReply}
-      inline
+      onClick={handleDeleteClick}
       urn={platformUrn}
       iamActions={[IAM_ACTIONS.autoReply.delete]}
-      disabled={autoReplyItem.status !== ResourceStatus.READY ? true : null}
+      isDisabled={autoReplyItem.status !== ResourceStatus.READY ? true : null}
       variant={ODS_BUTTON_VARIANT.ghost}
-      color={ODS_THEME_COLOR_INTENT.primary}
-    >
-      <OsdsIcon
-        name={ODS_ICON_NAME.BIN}
-        size={ODS_ICON_SIZE.xs}
-        color={ODS_THEME_COLOR_INTENT.primary}
-      ></OsdsIcon>
-    </ManagerButton>
+      color={ODS_BUTTON_COLOR.critical}
+      icon={ODS_ICON_NAME.trash}
+      label=""
+    ></ManagerButton>
   );
 };
 

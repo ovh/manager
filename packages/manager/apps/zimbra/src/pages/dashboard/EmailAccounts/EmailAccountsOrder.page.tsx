@@ -5,41 +5,28 @@ import {
   useNotifications,
   OvhSubsidiary,
   IntervalUnitType,
+  IconLinkAlignmentType,
 } from '@ovh-ux/manager-react-components';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
-  ODS_THEME_COLOR_HUE,
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  OsdsText,
-  OsdsButton,
-  OsdsCheckbox,
-  OsdsCheckboxButton,
-  OsdsQuantity,
-  OsdsInput,
-  OsdsIcon,
-  OsdsFormField,
-  OsdsRadioGroup,
-  OsdsRadio,
-  OsdsRadioButton,
-  OsdsLink,
-  OsdsTile,
+  OdsText,
+  OdsButton,
+  OdsCheckbox,
+  OdsQuantity,
+  OdsFormField,
+  OdsRadio,
+  OdsLink,
+  OdsCard,
 } from '@ovhcloud/ods-components/react';
 import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
-  ODS_CHECKBOX_BUTTON_SIZE,
+  ODS_CARD_COLOR,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_INPUT_TYPE,
-  ODS_LINK_REFERRER_POLICY,
-  ODS_RADIO_BUTTON_SIZE,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
 import Loading from '@/components/Loading/Loading';
@@ -70,60 +57,37 @@ function OrderGeneratedTile({ orderURL }: Readonly<OrderGeneratedTileProps>) {
 
   return (
     <>
-      <OsdsTile data-testid="order-generated-tile" className="mb-6">
-        <span slot="start">
-          <div className="flex flex-col gap-6 mb-6">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {t('zimbra_account_order_initiated_title')}
-            </OsdsText>
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._800}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {t('zimbra_account_order_initiated_subtitle')}
-            </OsdsText>
-            <OsdsLink
-              className="break-all"
-              color={ODS_THEME_COLOR_INTENT.primary}
-              target={OdsHTMLAnchorElementTarget._blank}
-              referrerpolicy={
-                ODS_LINK_REFERRER_POLICY.strictOriginWhenCrossOrigin
-              }
-              href={orderURL}
-            >
-              {orderURL}
-              <span slot="end">
-                <OsdsIcon
-                  className="ml-4 cursor-pointer"
-                  name={ODS_ICON_NAME.EXTERNAL_LINK}
-                  size={ODS_ICON_SIZE.xs}
-                  hoverable
-                ></OsdsIcon>
-              </span>
-            </OsdsLink>
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._800}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {t('zimbra_account_order_initiated_info')}
-            </OsdsText>
-          </div>
-        </span>
-      </OsdsTile>
-      <OsdsButton
-        inline
-        size={ODS_BUTTON_SIZE.md}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={goBack}
+      <OdsCard
+        data-testid="order-generated-tile"
+        color={ODS_CARD_COLOR.neutral}
+        className="mb-6"
       >
-        {t('zimbra_account_order_cta_done')}
-      </OsdsButton>
+        <div className="flex flex-col gap-6 p-6">
+          <OdsText preset={ODS_TEXT_PRESET.heading3}>
+            {t('zimbra_account_order_initiated_title')}
+          </OdsText>
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            {t('zimbra_account_order_initiated_subtitle')}
+          </OdsText>
+          <OdsLink
+            className="break-all"
+            target="_blank"
+            referrerpolicy="strict-origin-when-cross-origin"
+            href={orderURL}
+            icon={ODS_ICON_NAME.externalLink}
+            label={orderURL}
+          ></OdsLink>
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            {t('zimbra_account_order_initiated_info')}
+          </OdsText>
+        </div>
+      </OdsCard>
+      <OdsButton
+        label={t('zimbra_account_order_cta_done')}
+        size={ODS_BUTTON_SIZE.md}
+        color={ODS_BUTTON_COLOR.primary}
+        onClick={goBack}
+      ></OdsButton>
     </>
   );
 }
@@ -179,7 +143,7 @@ function OrderCatalogForm({
           value: '0',
           required: false,
           touched: false,
-          validate: (value) => Number(value) >= 0,
+          validate: (value) => Number(value) >= 0 && Number(value) <= 1000,
         },
       };
     }, {}),
@@ -230,64 +194,28 @@ function OrderCatalogForm({
 
   return (
     <div className="flex flex-col gap-6 mt-4">
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.primary}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-        hue={ODS_THEME_COLOR_HUE._800}
-      >
+      <OdsText preset={ODS_TEXT_PRESET.heading3}>
         {t('zimbra_account_order_subtitle')}
-      </OsdsText>
-      {plans.flatMap(({ planCode, blobs, monthly }, index) => {
+      </OdsText>
+      {plans.flatMap(({ planCode, blobs, monthly }) => {
         const quantity = Number(form[planCode].value);
         return (
-          <div className="flex flex-col gap-4" key={index}>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            >
+          <div className="flex flex-col gap-4" key={planCode}>
+            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
               {blobs?.commercial?.name}
-            </OsdsText>
-            <OsdsQuantity>
-              <OsdsButton
-                slot="minus"
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_BUTTON_SIZE.sm}
-                data-testid="quantity-minus"
-              >
-                <OsdsIcon
-                  size={ODS_ICON_SIZE.sm}
-                  name={ODS_ICON_NAME.MINUS}
-                  contrasted
-                ></OsdsIcon>
-              </OsdsButton>
-              <OsdsInput
-                id={planCode}
-                name={planCode}
-                type={ODS_INPUT_TYPE.number}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                min={0}
-                max={1000}
-                value={quantity || 0}
-                onOdsValueChange={({ detail }) => {
-                  const { name, value } = detail;
-                  handleFormChange(name, value);
-                }}
-              />
-              <OsdsButton
-                slot="plus"
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_BUTTON_SIZE.sm}
-                data-testid="quantity-plus"
-              >
-                <OsdsIcon
-                  size={ODS_ICON_SIZE.sm}
-                  name={ODS_ICON_NAME.PLUS}
-                  contrasted
-                ></OsdsIcon>
-              </OsdsButton>
-            </OsdsQuantity>
+            </OdsText>
+            <OdsQuantity
+              id={planCode}
+              name={planCode}
+              className="justify-start"
+              min={0}
+              max={1000}
+              value={quantity || 0}
+              onOdsChange={({ detail }) => {
+                const { name, value } = detail;
+                handleFormChange(name, value.toString());
+              }}
+            ></OdsQuantity>
             <Price
               value={quantity ? quantity * monthly.price : monthly.price}
               tax={quantity ? quantity * monthly.tax : monthly.tax}
@@ -299,105 +227,79 @@ function OrderCatalogForm({
         );
       })}
       <div className="flex flex-col gap-6">
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.primary}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-          hue={ODS_THEME_COLOR_HUE._800}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.heading3}>
           {t('zimbra_account_order_subtitle_commitment')}
-        </OsdsText>
-        <OsdsFormField>
-          <OsdsRadioGroup
-            value={form.commitment.value as string}
-            data-testid="radio-group-commitment"
-          >
-            <OsdsRadio value="1">
-              <OsdsRadioButton
-                className="items-start"
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_RADIO_BUTTON_SIZE.xs}
-              >
-                <span slot="end">
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  >
-                    {`1 ${t('zimbra_account_order_commitment_month')}`}
-                  </OsdsText>
-                </span>
-              </OsdsRadioButton>
-            </OsdsRadio>
-            <OsdsRadio disabled={true} value="12">
-              <OsdsRadioButton
-                className="items-start"
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_RADIO_BUTTON_SIZE.xs}
-                disabled={true}
-              >
-                <span slot="end">
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  >
-                    {`12 ${t('zimbra_account_order_commitment_months')}`}
-                  </OsdsText>
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  >
-                    {t('zimbra_account_order_commitment_available_soon')}
-                  </OsdsText>
-                </span>
-              </OsdsRadioButton>
-            </OsdsRadio>
-          </OsdsRadioGroup>
-        </OsdsFormField>
+        </OdsText>
+        <OdsFormField>
+          <div className="flex leading-none gap-4">
+            <OdsRadio
+              id="1-month"
+              name="1-month"
+              data-testid="radio-1-month"
+              value="1"
+              isChecked={form.commitment.value === '1'}
+              onOdsChange={(event) =>
+                handleFormChange('commitment', event.detail.value)
+              }
+            ></OdsRadio>
+            <label htmlFor="1-month" className="flex flex-col w-full">
+              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                {`1 ${t('zimbra_account_order_commitment_month')}`}
+              </OdsText>
+            </label>
+          </div>
+          <div className="flex leading-none gap-4">
+            <OdsRadio
+              id="12-month"
+              name="12-month"
+              data-testid="radio-12-month"
+              value="12"
+              isChecked={form.commitment.value === '12'}
+              isDisabled={true}
+              onOdsChange={(event) =>
+                handleFormChange('commitment', event.detail.value)
+              }
+            ></OdsRadio>
+            <label htmlFor="12-month" className="flex flex-col w-full">
+              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                {`12 ${t('zimbra_account_order_commitment_months')}`}
+              </OdsText>
+              <OdsText preset={ODS_TEXT_PRESET.caption}>
+                {t('zimbra_account_order_commitment_available_soon')}
+              </OdsText>
+            </label>
+          </div>
+        </OdsFormField>
       </div>
-      <OsdsFormField>
-        <OsdsCheckbox
-          key="consent"
-          checked={form.consent.value === 'checked'}
-          name="consent"
-          onOdsCheckedChange={() =>
-            handleFormChange(
-              'consent',
-              form.consent.value === 'checked' ? '' : 'checked',
-            )
-          }
-        >
-          <OsdsCheckboxButton
-            className="flex items-start"
-            size={ODS_CHECKBOX_BUTTON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            data-testid="checkbox-consent"
-          >
-            <span slot="end">
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.text}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              >
-                {t('zimbra_account_order_legal_checkbox')}
-              </OsdsText>
-            </span>
-          </OsdsCheckboxButton>
-        </OsdsCheckbox>
-      </OsdsFormField>
-      <OsdsButton
+      <OdsFormField>
+        <div className="flex leading-none gap-4">
+          <OdsCheckbox
+            id="consent"
+            name="consent"
+            data-testid="consent"
+            isChecked={form.consent.value === 'checked'}
+            onOdsChange={() =>
+              handleFormChange(
+                'consent',
+                form.consent.value === 'checked' ? '' : 'checked',
+              )
+            }
+          ></OdsCheckbox>
+          <label htmlFor="consent">
+            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+              {t('zimbra_account_order_legal_checkbox')}
+            </OdsText>
+          </label>
+        </div>
+      </OdsFormField>
+      <OdsButton
         className="w-fit"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        inline
-        size={ODS_BUTTON_SIZE.sm}
-        disabled={!isFormValid ? true : null}
+        color={ODS_BUTTON_COLOR.primary}
+        isDisabled={!isFormValid ? true : null}
         onClick={handleConfirm}
         data-testid="order-account-confirm-btn"
-      >
-        {t('zimbra_account_order_cta_confirm')}
-      </OsdsButton>
+        label={t('zimbra_account_order_cta_confirm')}
+      ></OdsButton>
     </div>
   );
 }
@@ -426,14 +328,9 @@ export default function EmailAccountsOrder() {
   useEffect(() => {
     if (isError && error) {
       addError(
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_account_order_no_product_error_message')}
-        </OsdsText>,
+        </OdsText>,
         true,
       );
     }
@@ -445,16 +342,11 @@ export default function EmailAccountsOrder() {
         type={LinkType.back}
         onClickReturn={goBack}
         label={t('zimbra_account_order_cta_back')}
+        iconAlignment={IconLinkAlignmentType.left}
       />
-      <OsdsText
-        data-testid="page-title"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-        hue={ODS_THEME_COLOR_HUE._800}
-      >
+      <OdsText data-testid="page-title" preset={ODS_TEXT_PRESET.heading2}>
         {t('zimbra_account_order_title')}
-      </OsdsText>
+      </OdsText>
       {isLoading ? (
         <Loading />
       ) : (

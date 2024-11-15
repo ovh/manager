@@ -3,7 +3,7 @@ import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
 import { Location, useLocation, useSearchParams } from 'react-router-dom';
-import { fireEvent, render, waitFor, act } from '@/utils/test.provider';
+import { render, waitFor, act } from '@/utils/test.provider';
 import { accountDetailMock } from '@/api/_mock_';
 import AddAndEditEmailAccount from '../AddAndEditEmailAccount.page';
 import emailAccountAddAndEditTranslation from '@/public/translations/accounts/addAndEdit/Messages_fr_FR.json';
@@ -118,90 +118,82 @@ describe('email account add and edit page', () => {
     const selectDomain = getByTestId('select-domain');
     const inputPassword = getByTestId('input-password');
 
-    expect(button).not.toBeEnabled();
+    expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
-      fireEvent.change(inputPassword, { target: { value: '' } });
-      inputPassword.odsBlur.emit({ name: 'password', value: '' });
-      fireEvent.change(inputAccount, { target: { value: '' } });
-      inputAccount.odsInputBlur.emit({ name: 'account', value: '' });
+    act(() => {
+      inputPassword.odsChange.emit({ name: 'password', value: '' });
+      inputAccount.odsChange.emit({ name: 'account', value: '' });
     });
 
-    expect(inputAccount).toHaveAttribute('color', 'error');
-    expect(inputPassword).toHaveAttribute('color', 'default');
+    expect(inputAccount).toHaveAttribute('has-error', 'true');
+    expect(inputPassword).toHaveAttribute('has-error', 'false');
 
-    await act(() => {
-      fireEvent.change(inputAccount, { target: { value: 'account' } });
-      fireEvent.change(selectDomain, { target: { value: 'domain' } });
-      fireEvent.change(inputPassword, {
-        target: { value: 'PasswordWithGoodPattern1&' },
-      });
-      // it seems we have to manually trigger the ods event
-      inputAccount.odsValueChange.emit({ name: 'account', value: 'account' });
-      selectDomain.odsValueChange.emit({ name: 'domain', value: 'domain' });
-      inputPassword.odsValueChange.emit({
+    act(() => {
+      inputAccount.odsChange.emit({ name: 'account', value: 'account' });
+      selectDomain.odsChange.emit({ name: 'domain', value: 'domain' });
+      inputPassword.odsChange.emit({
         name: 'password',
         value: 'PasswordWithGoodPattern1&',
       });
     });
 
-    expect(inputAccount).toHaveAttribute('color', 'default');
-    expect(inputPassword).toHaveAttribute('color', 'default');
-    expect(button).toBeEnabled();
+    expect(inputAccount).toHaveAttribute('has-error', 'false');
+    expect(inputPassword).toHaveAttribute('has-error', 'false');
+    expect(button).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
+    act(() => {
       // Uppercased + digit + 10 characters total
-      inputPassword.odsValueChange.emit({
+      inputPassword.odsChange.emit({
         name: 'password',
         value: 'Aaaaaaaaa1',
       });
     });
 
-    expect(inputPassword).toHaveAttribute('color', 'error');
-    expect(button).toBeDisabled();
+    expect(inputPassword).toHaveAttribute('has-error', 'true');
+    expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // No uppercased + digit or special + 10 characters total
-      inputPassword.odsValueChange.emit({
+      inputPassword.odsChange.emit({
         name: 'password',
         value: 'aaaaaaaaa1',
       });
     });
 
-    expect(inputPassword).toHaveAttribute('color', 'error');
-    expect(button).toBeDisabled();
+    expect(inputPassword).toHaveAttribute('has-error', 'true');
+    expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // Uppercased + special + 10 characters total
-      inputPassword.odsValueChange.emit({
+      inputPassword.odsChange.emit({
         name: 'password',
         value: 'Aaaaaaaaa#',
       });
     });
 
-    expect(inputPassword).toHaveAttribute('color', 'error');
-    expect(button).toBeDisabled();
+    expect(inputPassword).toHaveAttribute('has-error', 'true');
+    expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // Uppercased + digit or special but 9 characters total
-      inputPassword.odsValueChange.emit({
+      inputPassword.odsChange.emit({
         name: 'password',
         value: 'Aaaaaaaa1',
       });
     });
 
-    expect(inputPassword).toHaveAttribute('color', 'error');
-    expect(button).toBeDisabled();
+    expect(inputPassword).toHaveAttribute('has-error', 'true');
+    expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // Uppercased + digit AND special + 10 characters total
-      inputPassword.odsValueChange.emit({
+      inputPassword.odsChange.emit({
         name: 'password',
         value: 'Aaaaaaa1#a',
       });
     });
 
-    expect(inputPassword).toHaveAttribute('color', 'default');
-    expect(button).toBeEnabled();
+    expect(inputPassword).toHaveAttribute('has-error', 'false');
+    expect(button).toHaveAttribute('is-disabled', 'false');
   });
 });

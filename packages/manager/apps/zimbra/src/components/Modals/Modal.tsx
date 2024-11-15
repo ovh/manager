@@ -1,82 +1,99 @@
 import React from 'react';
-import { OsdsButton, OsdsModal } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OdsButton, OdsModal, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_MODAL_COLOR,
+  ODS_BUTTON_COLOR,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
 import Loading from '@/components/Loading/Loading';
 
 export interface ButtonType {
   testid?: string;
   action: () => void;
   label: string;
-  disabled?: boolean;
-  color?: ODS_THEME_COLOR_INTENT;
+  isDisabled?: boolean;
+  isLoading?: boolean;
   variant?: ODS_BUTTON_VARIANT;
 }
 
 export interface ModalProps {
   title?: string;
-  color?: ODS_THEME_COLOR_INTENT;
-  dismissible?: boolean;
+  color?: ODS_MODAL_COLOR;
+  isDismissible?: boolean;
   isLoading?: boolean;
-  onDismissible?: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
   children?: React.ReactElement;
   primaryButton?: ButtonType;
   secondaryButton?: ButtonType;
 }
 
+const mapModalColorToButtonColor = (modalColor: ODS_MODAL_COLOR) => {
+  if (modalColor === ODS_MODAL_COLOR.critical) {
+    return ODS_BUTTON_COLOR.critical;
+  }
+  return ODS_BUTTON_COLOR.primary;
+};
+
 const Modal: React.FC<ModalProps> = ({
-  title,
-  color,
-  dismissible,
-  onDismissible,
+  color = ODS_MODAL_COLOR.information,
+  isDismissible,
+  onClose,
   isLoading,
   primaryButton,
   secondaryButton,
   children,
+  isOpen,
+  title,
 }) => {
+  const buttonColor = mapModalColorToButtonColor(color);
+
   return (
-    <OsdsModal
+    <OdsModal
       data-testid="modal"
       color={color}
-      headline={title}
-      dismissible={dismissible}
+      isDismissible={isDismissible}
       className="text-left"
-      onOdsModalClose={onDismissible}
+      onOdsClose={onClose}
+      isOpen={isOpen}
     >
+      <OdsText className="mb-4" preset={ODS_TEXT_PRESET.heading4}>
+        {title}
+      </OdsText>
       {!isLoading && <div className="flex flex-col text-left">{children}</div>}
       {isLoading && <Loading />}
-
       {secondaryButton && (
-        <OsdsButton
+        <OdsButton
           {...(secondaryButton.testid
             ? { 'data-testid': secondaryButton.testid }
             : {})}
           slot="actions"
-          inline
-          color={secondaryButton.color ?? ODS_THEME_COLOR_INTENT.primary}
-          onClick={!secondaryButton.disabled ? secondaryButton.action : null}
-          {...(secondaryButton.disabled || isLoading ? { disabled: true } : {})}
-          variant={secondaryButton.variant ?? ODS_BUTTON_VARIANT.stroked}
-        >
-          {secondaryButton.label}
-        </OsdsButton>
+          color={buttonColor}
+          onClick={!secondaryButton.isDisabled ? secondaryButton.action : null}
+          isDisabled={secondaryButton.isDisabled}
+          isLoading={secondaryButton.isLoading}
+          variant={secondaryButton.variant ?? ODS_BUTTON_VARIANT.outline}
+          label={secondaryButton.label}
+          className="mt-4"
+        />
       )}
       {primaryButton && (
-        <OsdsButton
+        <OdsButton
           {...(primaryButton.testid
             ? { 'data-testid': primaryButton.testid }
             : {})}
           slot="actions"
-          inline
-          color={primaryButton.color ?? ODS_THEME_COLOR_INTENT.primary}
-          onClick={!primaryButton.disabled ? primaryButton.action : null}
-          {...(primaryButton.disabled || isLoading ? { disabled: true } : {})}
-          variant={primaryButton.variant ?? ODS_BUTTON_VARIANT.flat}
-        >
-          {primaryButton.label}
-        </OsdsButton>
+          color={buttonColor}
+          onClick={!primaryButton.isDisabled ? primaryButton.action : null}
+          isDisabled={primaryButton.isDisabled}
+          isLoading={primaryButton.isLoading || isLoading}
+          variant={primaryButton.variant ?? ODS_BUTTON_VARIANT.default}
+          label={primaryButton.label}
+          className="mt-4"
+        />
       )}
-    </OsdsModal>
+    </OdsModal>
   );
 };
 
