@@ -12,7 +12,7 @@ export default {
     getCancelResiliationLink: '&?',
     getResiliationLink: '&?',
     handleGoToResiliation: '&?',
-    isCustomResiliationHandle: '<?',
+    isCustomResiliationHandled: '<?',
   },
   controller,
   template,

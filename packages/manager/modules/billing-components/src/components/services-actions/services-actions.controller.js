@@ -1,4 +1,8 @@
-import { RENEW_URL, SERVICE_TYPE } from './service-actions.constants';
+import {
+  RENEW_URL,
+  SERVICE_TYPE,
+  SERVICE_ACTIVE_STATUS,
+} from './service-actions.constants';
 
 export default class ServicesActionsCtrl {
   /* @ngInject */
@@ -10,6 +14,7 @@ export default class ServicesActionsCtrl {
     coreURLBuilder,
     BillingLinksService,
   ) {
+    this.SERVICE_ACTIVE_STATUS = SERVICE_ACTIVE_STATUS;
     this.$injector = $injector;
     this.$q = $q;
     this.atInternet = atInternet;

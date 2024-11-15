@@ -236,7 +236,7 @@ export default class ServicesActionsCtrl {
   handleClickResiliate(event) {
     this.trackAction('stop', true);
 
-    if (this.isCustomResiliationHandle) {
+    if (this.isCustomResiliationHandled) {
       event.preventDefault();
       this.handleGoToResiliation();
     }

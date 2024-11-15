@@ -109,7 +109,7 @@ export default class BillingLinksService {
         default:
           links.resiliateLink = service.canResiliateByEndRule()
             ? resiliationByEndRuleLink
-            : `${links.billingManagementAvailabilityAndHaveAutorenewLink}/delete?serviceId=${service.serviceId}${serviceTypeParam}`;
+            : `${links.autorenewLink}/delete?serviceId=${service.serviceId}${serviceTypeParam}`;
           break;
       }
 

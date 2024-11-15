@@ -45,7 +45,10 @@ export const RENEW_URL = {
   WE: 'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser=',
 };
 
+export const SERVICE_ACTIVE_STATUS = 'ACTIVE';
+
 export default {
+  SERVICE_ACTIVE_STATUS,
   RENEW_URL,
   SERVICE_TYPE,
 };
