@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "types": "dist/types/src/lib.d.ts",
@@ -36,8 +36,6 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@ovhcloud/ods-components": "18.0.0",
-    "@ovhcloud/ods-themes": "18.0.0",
     "@tanstack/react-query": "^5.51.21",
     "@tanstack/react-table": "^8.20.1",
     "clsx": "^2.1.1",
@@ -52,11 +50,12 @@
   "devDependencies": {
     "@babel/core": "7.22.10",
     "@mdx-js/react": "^3.0.1",
+    "@ovhcloud/ods-components": "^18.3.0",
+    "@ovhcloud/ods-themes": "^18.3.0",
     "@ovh-ux/manager-core-api": "^0.9.0",
     "@ovh-ux/manager-react-shell-client": "^0.8.1",
     "@ovh-ux/manager-tailwind-config": "^0.2.0",
     "@ovh-ux/manager-vite-config": "^0.8.1",
-    "@storybook/addon-a11y": "8.0.4",
     "@storybook/addon-docs": "^7.5.3",
     "@storybook/addon-essentials": "7.5.3",
     "@storybook/addon-interactions": "7.5.3",
@@ -115,6 +114,8 @@
     "zustand": "^4.5.5"
   },
   "peerDependencies": {
+    "@ovhcloud/ods-components": "^18.3.0",
+    "@ovhcloud/ods-themes": "^18.3.0",
     "@ovh-ux/manager-core-api": "^0.9.0-alpha.0",
     "@ovh-ux/manager-react-shell-client": "^0.8.0-alpha.3",
     "i18next": "^23.8.2",
