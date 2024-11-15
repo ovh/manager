@@ -1,4 +1,6 @@
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useEffect } from 'react';
+
 import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
@@ -10,11 +12,10 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-
-import ClusterEtcd from './ClusterETCD.component';
 import {
   Clipboard,
   TileBlock as TileLine,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { TKube } from '@/types';
 import ClusterStatus from './ClusterStatus.component';
@@ -22,6 +23,7 @@ import ClusterETCD from './ClusterETCD.component';
 
 import AdmissionPlugins from './AdmissionPlugins.component';
 import { isProcessing } from './ClusterManagement.component';
+import ClusterTile from './ClusterTile.component';
 
 export type ClusterInformationProps = {
   kubeDetail: TKube;
@@ -32,6 +34,9 @@ export default function ClusterInformation({
 }: Readonly<ClusterInformationProps>) {
   const { t } = useTranslation('service');
   const { t: tDetail } = useTranslation('listing');
+  const { clearNotifications } = useNotifications();
+
+  useEffect(() => clearNotifications, []);
 
   return (
     <OsdsTile
@@ -55,23 +60,6 @@ export default function ClusterInformation({
         </TileLine>
 
         <TileLine label={t('kube_service_name')}>
-          {' '}
-          <OsdsText
-            className="mb-4 break-words"
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {kubeDetail.name}
-          </OsdsText>
-        </TileLine>
-        <TileLine label={t('kube_service_cluster_etcd_quota')}>
-          <ClusterEtcd />
-        </TileLine>
-        <TileLine label={t('kube_service_cluster_status')}>
-          <ClusterStatus status={kubeDetail.status} />
-        </TileLine>
-        <TileLine label={t('kube_service_name')}>
           <OsdsText
             className="mb-4 break-words"
             size={ODS_TEXT_SIZE._400}
@@ -85,6 +73,7 @@ export default function ClusterInformation({
         <TileLine label={t('kube_service_cluster_status')}>
           <ClusterStatus status={kubeDetail.status} />
         </TileLine>
+
         <TileLine label={t('kube_service_cluster_version')}>
           <OsdsText
             className="mb-4"
@@ -111,21 +100,15 @@ export default function ClusterInformation({
             {kubeDetail.region}
           </OsdsText>
         </TileLine>
-        <TileLine label={t('kube_service_name')}>
-          <OsdsText
-            className="mb-4 break-words"
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {kubeDetail.name}
-          </OsdsText>
-        </TileLine>
-        <TileLine label={t('kube_service_cluster_etcd_quota')}>
-          <ClusterETCD />
-        </TileLine>
+
         <TileLine label={t('kube_service_cluster_nodes_url')}>
           <Clipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
+        </TileLine>
+        {
+          // hacky, need to use a help icon and a tooltip inside the string label
+        }
+        <TileLine label={((<ClusterTile />) as unknown) as string}>
+          <ClusterETCD />
         </TileLine>
       </div>
     </OsdsTile>

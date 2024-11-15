@@ -1,5 +1,6 @@
 import { useTranslation, Trans } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ErrorBoundary } from 'react-error-boundary';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,

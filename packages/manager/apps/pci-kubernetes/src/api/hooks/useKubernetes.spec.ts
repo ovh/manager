@@ -3,6 +3,7 @@ import { describe, it, vi } from 'vitest';
 import * as ApiKubernetesModule from '@/api/data/kubernetes';
 import {
   useAllKube,
+  useGetClusterEtcdUsage,
   useKubernetesCluster,
   useKubes,
   useRenameKubernetesCluster,
@@ -174,5 +175,39 @@ describe('useUpdateKubePolicy', () => {
     result.current.updateKubePolicy();
     await waitFor(() => expect(mockSuccess).toHaveBeenCalled());
     expect(mockError).not.toHaveBeenCalled();
+  });
+});
+
+describe('useGetClusterEtcdUsage', () => {
+  afterEach(() => {
+    vi.clearAllMocks();
+    vi.restoreAllMocks();
+  });
+  it('fetches etcd usage successfully', async () => {
+    const mockData = { usage: 500, quota: 1024 };
+    vi.spyOn(ApiKubernetesModule, 'getKubeEtcdUsage').mockResolvedValueOnce(
+      mockData,
+    );
+
+    const { result } = renderHook(
+      () => useGetClusterEtcdUsage('project-valid', 'kube1'),
+      { wrapper },
+    );
+
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    expect(result.current.data).toEqual(mockData);
+  });
+
+  it('handles error when fetching etcd usage', async () => {
+    vi.spyOn(ApiKubernetesModule, 'getKubeEtcdUsage').mockRejectedValueOnce(
+      new Error('Network Error'),
+    );
+
+    const { result } = renderHook(
+      () => useGetClusterEtcdUsage('project-error', 'kube1'),
+      { wrapper },
+    );
+
+    expect(result.current).toBe(null);
   });
 });

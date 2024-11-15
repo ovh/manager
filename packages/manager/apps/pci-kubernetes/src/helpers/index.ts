@@ -1,6 +1,9 @@
 import { PaginationState } from '@ovh-ux/manager-react-components';
 import { z } from 'zod';
 
+export const QUOTA_ERROR_URL =
+  'https://docs.ovh.com/gb/en/kubernetes/etcd-quota-error/';
+
 export const compareFunction = <T>(key: keyof T) => (a: T, b: T) => {
   const aValue = a[key] || '';
   const bValue = b[key] || '';
@@ -133,14 +136,19 @@ type ColorThreshold = {
  * Returns the appropriate color based on the provided percentage.
  *
  * @param percentage - The percentage value (0 to 100).
- * @param thresholds - The color thresholds to use for determining color.
  * @returns - The color corresponding to the percentage.
  */
 export function getColorByPercentage(percentage: number): string {
   const colorThresholds: ColorThreshold[] = [
-    { threshold: 33.333, color: 'blue' }, // Color for less than or equal to 33.333%
-    { threshold: 66, color: 'yellow' }, // Color for between 33.333% and 66%
-    { threshold: 100, color: 'red' }, // Color for greater than 66%
+    {
+      threshold: 69,
+      color: 'var(--ods-color-primary-500)',
+    }, // Color for less than or equal to 33.333%
+    {
+      threshold: 79,
+      color: 'var(--ods-color-warning-500)',
+    }, // Color for between 33.333% and 66%
+    { threshold: 100, color: 'var(--ods-color-error-500)' }, // Color for greater than 80%
   ].sort((a, b) => a.threshold - b.threshold);
   // Sort thresholds to ensure they are in ascending order
   colorThresholds.sort((a, b) => a.threshold - b.threshold);
@@ -154,5 +162,5 @@ export function getColorByPercentage(percentage: number): string {
   }
 
   // If percentage exceeds all thresholds, return the last color
-  return thresholds[thresholds.length - 1].color;
+  return colorThresholds[colorThresholds.length - 1].color;
 }
