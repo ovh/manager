@@ -55,7 +55,6 @@ export default function NotebookLayout() {
   if (!notebook) {
     return (
       <>
-        {/* <NotebookHeader.Skeleton /> */}
         <TabsMenu.Skeleton />
         Loading your notebook data
       </>
@@ -68,11 +67,7 @@ export default function NotebookLayout() {
 
   return (
     <>
-      {/*
-      <NotebookHeader notebook={notebook} />
-      <NotebookTabs service={notebook} />
-      */}
-      <div>Hello Notebook {notebook.spec.name}</div>
+      <div>{notebook.spec.name}</div>
       <div className="space-y-2">
         <Outlet context={notebookLayoutContext} />
       </div>
