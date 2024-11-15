@@ -18,12 +18,13 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { TKube } from '@/types';
-import ClusterStatus from './ClusterStatus.component';
-import ClusterETCD from './ClusterETCD.component';
 
+import ClusterETCD from './ClusterETCD.component';
 import AdmissionPlugins from './AdmissionPlugins.component';
 import { isProcessing } from './ClusterManagement.component';
 import ClusterTile from './ClusterTile.component';
+
+import ClusterStatus from './ClusterStatus.component';
 
 export type ClusterInformationProps = {
   kubeDetail: TKube;
