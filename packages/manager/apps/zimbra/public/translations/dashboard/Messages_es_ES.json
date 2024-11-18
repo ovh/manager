@@ -57,5 +57,6 @@
   "zimbra_dashboard_email_accounts_auto_replies_add": "Crear un contestador",
   "zimbra_dashboard_email_accounts_auto_replies_delete": "Eliminar un contestador",
   "zimbra_dashboard_redirections_add": "Crear una redirección",
-  "zimbra_dashboard_auto_replies_add": "Crear un contestador"
+  "zimbra_dashboard_auto_replies_add": "Crear un contestador",
+  "zimbra_dashboard_email_accounts_order": "Contratar cuentas de correo"
 }
