@@ -1,27 +1,22 @@
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import { useQuery } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { VeeamBackupWithIam } from '../types';
+import { VeeamBackup } from '../types';
 import { getVmwareCloudDirectorBackup } from '../api';
+import { getVeeamBackupQueryKey, veeamBackupListQueryKey } from '../utils';
 
 export const getRegionNameFromAzName = (azName = '') => azName?.split('-a')[0];
 
-export const veeamBackupListQueryKey = ['/vmwareCloudDirector/backup'];
-
 export const useVeeamBackupList = ({ pageSize }: { pageSize?: number }) =>
-  useResourcesIcebergV2<VeeamBackupWithIam>({
+  useResourcesIcebergV2<VeeamBackup>({
     route: '/vmwareCloudDirector/backup',
     queryKey: veeamBackupListQueryKey,
     pageSize,
   });
 
-export const veeamBackupQueryKey = (id: string) => [
-  `/vmwareCloudDirector/backup/${id}`,
-];
-
 export const useVeeamBackup = (id?: string) =>
-  useQuery<ApiResponse<VeeamBackupWithIam>, ApiError>({
-    queryKey: veeamBackupQueryKey(id),
+  useQuery<ApiResponse<VeeamBackup>, ApiError>({
+    queryKey: getVeeamBackupQueryKey(id),
     queryFn: () => getVmwareCloudDirectorBackup(id),
     retry: false,
     retryOnMount: false,
@@ -31,5 +26,5 @@ export const useVeeamBackup = (id?: string) =>
     enabled: !!id,
   });
 
-export const getVeeamBackupDisplayName = (backup?: VeeamBackupWithIam) =>
+export const getVeeamBackupDisplayName = (backup?: VeeamBackup) =>
   backup?.iam?.displayName || backup?.id;

@@ -13,7 +13,6 @@ import {
   VCDOrganization,
   VCDOrganizationWithBackupStatus,
   VeeamBackup,
-  VeeamBackupWithIam,
 } from '../types';
 import { VCD_ORGANIZATION_ROUTE } from '../utils/apiRoutes';
 import {
@@ -35,7 +34,7 @@ export const getOrganizationUuid = (organization?: VCDOrganization) =>
 export const getAvailabilityZone = (organization?: VCDOrganization) =>
   `${organization?.currentState?.region.toLowerCase()}-a`;
 
-export const getOrganizationIdFromBackup = (backup?: VeeamBackupWithIam) =>
+export const getOrganizationIdFromBackup = (backup?: VeeamBackup) =>
   `org-${getRegionNameFromAzName(backup?.currentState?.azName)}-${
     backup?.id.split(backupSuffix)[0]
   }`;

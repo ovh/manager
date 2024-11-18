@@ -3,11 +3,10 @@ import { IamObject } from '@ovh-ux/manager-react-components';
 export type ObjectValues<T> = T[keyof T];
 
 export type WithIam<T> = T & { iam: IamObject };
-export type WithoutIam<T> = Omit<T, 'iam'>;
 
 export type BillingType = 'MONTHLY' | 'DEMO';
 
-export type Handler<T = any> = {
+export type Handler<T = unknown> = {
   url: string;
   response?: T;
   headers?: HeadersInit;

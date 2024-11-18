@@ -23,11 +23,11 @@ import {
   useFormattedDate,
   DateFormat,
 } from '@ovh-ux/manager-react-components';
-import { VeeamBackupWithIam } from '@ovh-ux/manager-module-vcd-api';
+import { VeeamBackup } from '@ovh-ux/manager-module-vcd-api';
 import { urls } from '@/routes/routes.constant';
 import { LoadingChip } from '@/components/Loading/Loading';
 
-export const SubscriptionTile: React.FC<VeeamBackupWithIam> = ({
+export const SubscriptionTile: React.FC<VeeamBackup> = ({
   id,
   createdAt,
   resourceStatus,

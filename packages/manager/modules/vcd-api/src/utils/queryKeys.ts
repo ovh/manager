@@ -1,11 +1,20 @@
 const vcdBaseKey = 'vmwareCloudDirector';
 const vdcBaseKey = 'virtualDataCenter';
+const veeamBackupBaseKey = 'backup';
 export const icebergListingQueryKey = 'servicesListingIceberg';
 
+// Veeam Backup
+export const veeamBackupListQueryKey = [vcdBaseKey, veeamBackupBaseKey];
+export const getVeeamBackupQueryKey = (id: string) => [
+  ...veeamBackupListQueryKey,
+  id,
+];
+export const veeamBackupCatalogQueryKey = [veeamBackupBaseKey, 'catalog'];
+
 // VCD organizations
-export const getVcdOrganizationsQueryKey = () => [vcdBaseKey, 'organizations'];
+export const vcdOrganizationListQueryKey = [vcdBaseKey, 'organizations'];
 export const getVcdOrganizationQueryKey = (id: string) => [
-  ...getVcdOrganizationsQueryKey(),
+  ...vcdOrganizationListQueryKey,
   id,
 ];
 export const getVcdOrganizationBackupQueryKey = (id: string) => [
@@ -23,13 +32,13 @@ export const getVcdCatalogQueryKey = (serviceName: string) => [
   serviceName,
 ];
 
-// VCD Organization virtualDataCenters
-export const getVcdDatacentresQueryKey = (id: string) => [
+// VCD organization virtualDataCenters
+export const getVcdDatacentreListQueryKey = (id: string) => [
   ...getVcdOrganizationQueryKey(id),
   vdcBaseKey,
 ];
 export const getVcdDatacentreQueryKey = (id: string, vdcId: string) => [
-  ...getVcdDatacentresQueryKey(id),
+  ...getVcdDatacentreListQueryKey(id),
   vdcId,
 ];
 

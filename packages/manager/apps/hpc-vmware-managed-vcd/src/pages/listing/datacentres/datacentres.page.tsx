@@ -3,7 +3,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
-  getVcdDatacentresQueryKey,
+  getVcdDatacentreListQueryKey,
   getVcdDatacentresRoute,
   VCDDatacentre,
 } from '@ovh-ux/manager-module-vcd-api';
@@ -113,7 +113,7 @@ export default function DatacentresListing() {
 
   const datagridProps: TDatagridContainerProps = {
     title: tVdc('managed_vcd_vdc_title'),
-    queryKey: getVcdDatacentresQueryKey(id),
+    queryKey: getVcdDatacentreListQueryKey(id),
     isEmbedded: true,
     route: {
       api: getVcdDatacentresRoute(id),

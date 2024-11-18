@@ -1,6 +1,6 @@
-import { VeeamBackupWithIam } from '../../types';
+import { VeeamBackup } from '../../types';
 
-export const backupList: VeeamBackupWithIam[] = [
+export const backupList: VeeamBackup[] = [
   {
     id: '6cfa2c69-c62c-4853-80ee-c9682e6727f0-veeam-backup',
     iam: {

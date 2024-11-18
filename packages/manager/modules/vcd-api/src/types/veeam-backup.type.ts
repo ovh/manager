@@ -27,7 +27,7 @@ export type VeeamBackupOffer = {
     | 'UPDATING';
 };
 
-export type VeeamBackup = {
+export type VeeamBackup = WithIam<{
   id: string;
   currentState: {
     vms?: number;
@@ -40,6 +40,4 @@ export type VeeamBackup = {
   targetSpec: {
     offers: Omit<VeeamBackupOffer, 'usedSpaceInGB'>[];
   };
-};
-
-export type VeeamBackupWithIam = WithIam<VeeamBackup>;
+}>;

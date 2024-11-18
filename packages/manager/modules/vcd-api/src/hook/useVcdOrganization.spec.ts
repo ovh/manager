@@ -1,4 +1,5 @@
 import { backupList } from '../mocks/backup/veeam-backup.mock';
+import { organizationList } from '../mocks/vcd-organization/vcd-organization.mock';
 import {
   getAvailabilityZone,
   getBackupIdFromOrganization,
@@ -6,7 +7,6 @@ import {
   getOrganizationIdFromBackup,
   getOrganizationUuid,
 } from './useVcdOrganization';
-import { organizationList } from '../mocks/organization/vcd-organization.mock';
 
 describe('Managed VCD API utils', () => {
   it('getAvailabilityZone returns the azName from the region', () => {

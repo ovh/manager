@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import {
   useVcdOrganization,
   useVcdDatacentre,
-  getVcdDatacentresQueryKey,
+  getVcdDatacentreListQueryKey,
 } from '@ovh-ux/manager-module-vcd-api';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import VcdDashboardLayout from '@/components/dashboard/layout/VcdDashboardLayout.component';
@@ -20,7 +20,7 @@ function DatacentreDashboardPage() {
   const { data: vcdOrganization } = useVcdOrganization({ id });
   const navigate = useNavigate();
   useAutoRefetch({
-    queryKey: getVcdDatacentresQueryKey(id),
+    queryKey: getVcdDatacentreListQueryKey(id),
     enabled: isUpdatingTargetSpec(vcdDatacentre?.data),
     interval: 4000,
   });

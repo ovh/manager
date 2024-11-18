@@ -2,7 +2,7 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { updateVdcDetails, UpdateVdcDetailsParams } from '../api';
 import {
-  getVcdDatacentresQueryKey,
+  getVcdDatacentreListQueryKey,
   updateVdcDetailsMutationKey,
 } from '../utils';
 
@@ -25,7 +25,7 @@ export const useUpdateVdcDetails = ({
       updateVdcDetails({ id, vdcId, details }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: getVcdDatacentresQueryKey(id),
+        queryKey: getVcdDatacentreListQueryKey(id),
       });
       onSuccess?.();
     },

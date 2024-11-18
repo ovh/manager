@@ -10,7 +10,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
-  getVcdOrganizationsQueryKey,
+  vcdOrganizationListQueryKey,
   VCD_ORGANIZATION_ROUTE,
   VCDOrganization,
 } from '@ovh-ux/manager-module-vcd-api';
@@ -92,7 +92,7 @@ export default function Listing() {
   return (
     <DatagridContainer
       title={t('managed_vcd_listing_title')}
-      queryKey={getVcdOrganizationsQueryKey()}
+      queryKey={vcdOrganizationListQueryKey}
       route={{
         api: VCD_ORGANIZATION_ROUTE,
         onboarding: urls.onboarding,

@@ -1,4 +1,4 @@
-export * from './vcd-backup.type';
+export * from './veeam-backup.type';
 export * from './vcd-catalog.type';
 export * from './vcd-compute.type';
 export * from './vcd-datacentre.type';

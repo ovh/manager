@@ -5,8 +5,8 @@ import {
   UpdateVcdOrganizationDetailsParams,
 } from '../api';
 import {
+  vcdOrganizationListQueryKey,
   getVcdOrganizationQueryKey,
-  getVcdOrganizationsQueryKey,
   icebergListingQueryKey,
   updateVcdOrganizationDetailsMutationKey,
 } from '../utils';
@@ -32,7 +32,7 @@ export const useUpdateVcdOrganizationDetails = ({
         exact: true,
       });
       queryClient.invalidateQueries({
-        queryKey: [...getVcdOrganizationsQueryKey(), icebergListingQueryKey],
+        queryKey: [...vcdOrganizationListQueryKey, icebergListingQueryKey],
         exact: true,
       });
       onSuccess?.();
