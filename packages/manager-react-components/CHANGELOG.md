@@ -3,9 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0...@ovh-ux/manager-react-components@1.41.1) (2024-11-13)
+## [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.1.0...@ovh-ux/manager-react-components@2.2.0) (2024-11-15)
 
-**Note:** Version bump only for package @ovh-ux/manager-react-components
+### Features
+
+- **manager-react-components:** bump ods version 18.3.0 ([#14080](https://github.com/ovh/manager/pull/14080)) ([377f420](https://github.com/ovh/manager/commit/377f4206c7e9a4f43aec27b25a1a617e62aa5dba))
+
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.0.0...@ovh-ux/manager-react-components@2.1.0) (2024-11-13)
+
+### BREAKING CHANGE
+
+### Reverts
+
+- Revert "Upgrade ods version 18" ([a31810d](https://github.com/ovh/manager/commit/a31810d871f1e5625804cb5a9e61adca56b24084)) [#14035](https://github.com/ovh/manager/pull/14035)
+- Revert "Update generator" ([9b01d07](https://github.com/ovh/manager/commit/9b01d0716a28a258048ec51f253d32ca846e2899))
+- Revert "Fix bump ods 18 issues" ([72d937f](https://github.com/ovh/manager/commit/72d937f20792d1c668f43dd7cc023c80f93cf1a0))
+
+# [1.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0...@ovh-ux/manager-react-components@1.41.1) (2024-11-13)
+
+### Bug Fixes
+
+- Version bump only for package @ovh-ux/manager-react-components ([b86394f](https://github.com/ovh/manager/commit/b86394f1d186821084237348f2001fa930fee0f8))
 
 # [1.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0-alpha.10...@ovh-ux/manager-react-components@1.41.0) (2024-11-12)
 
