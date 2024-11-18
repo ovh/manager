@@ -28,6 +28,11 @@
                     class="mb-3"
                 >
                 </oui-numeric>
+                <small
+                    class="oui-color-ae-500 text-sm"
+                    data-ng-if="$ctrl.hasWarning"
+                    data-translate="pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_wartning_help"
+                ></small>
             </oui-field>
 
             <oui-message data-type="warning" data-ng-if="!$ctrl.hasWarning">
@@ -42,12 +47,6 @@
                     </div>
                 </div>
             </oui-message>
-
-            <small
-                class="oui-color-ae-500 text-sm"
-                data-ng-if="$ctrl.hasWarning"
-                data-translate="pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_wartning_help"
-            ></small>
         </form>
     </div>
 </oui-modal>
