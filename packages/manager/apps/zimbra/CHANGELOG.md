@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.8.6...@ovh-ux/manager-zimbra-app@0.9.0) (2024-11-18)
+
+
+### Bug Fixes
+
+* **zimbra:** update password policy ([#14062](https://github.com/ovh/manager/issues/14062)) ([6c397a7](https://github.com/ovh/manager/commit/6c397a74a0c55003bae31d73d3edbceed9649ce3))
+
+
+### Features
+
+* **zimbra:** add autoreply delete modal ([#13970](https://github.com/ovh/manager/issues/13970)) ([1277281](https://github.com/ovh/manager/commit/127728161e9f8f1864c30667a9be577678f933e9))
+
+
+
+
+
 ## [0.8.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.8.5...@ovh-ux/manager-zimbra-app@0.8.6) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app
