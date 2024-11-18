@@ -3,7 +3,7 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsDivider, OsdsText } from '@ovhcloud/ods-components/react';
 
 type TileLineProps = {
-  title: JSX.Element;
+  title: string | JSX.Element;
   value: JSX.Element;
 };
 export default function TileLine({ title, value }: Readonly<TileLineProps>) {
