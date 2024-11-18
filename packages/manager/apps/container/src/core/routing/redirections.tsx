@@ -1,7 +1,6 @@
 import React from 'react';
 import { Navigate, Route, useLocation, useParams } from 'react-router-dom';
-import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
-import { useState, useEffect } from 'react';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 
 function Rewrite({ to }: { to: string }): JSX.Element {
   const location = useLocation();
@@ -15,18 +14,12 @@ function Rewrite({ to }: { to: string }): JSX.Element {
 }
 
 export function Redirections(): JSX.Element {
-  const [isNewAccountAvailable, setIsNewAccountAvailable] = useState(false);
-
-  useEffect(() => {
-    const initFeatures = async () => {
-      const features = await fetchFeatureAvailabilityData(['new-account']);
-      setIsNewAccountAvailable(features['new-account']);
-    };
-  });
+  const {data} = useFeatureAvailability(['new-account']);
+  const isAppAvailable = !!data?.['new-account'];
 
   return (
     <>
-      {isNewAccountAvailable ? (
+      {isAppAvailable ? (
         <>
           <Route
             path="/useraccount/*"

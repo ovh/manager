@@ -83,7 +83,7 @@ export function IFrameAppRouter({
       ),
     [sortedConfiguration],
   );
-  const redirections = useMemo(() => Redirections(), []);
+  const redirections = Redirections();
   return (
     <Routes>
       {redirections}
