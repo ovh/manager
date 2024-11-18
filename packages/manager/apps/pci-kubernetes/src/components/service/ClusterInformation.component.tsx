@@ -16,6 +16,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { TKube } from '@/types';
 import ClusterStatus from './ClusterStatus.component';
+import ClusterETCD from './ClusterETCD.component';
 
 import AdmissionPlugins from './AdmissionPlugins.component';
 import { isProcessing } from './ClusterManagement.component';
@@ -46,11 +47,9 @@ export default function ClusterInformation({
           {t('kube_service_cluster_information')}
         </OsdsText>
         <OsdsDivider separator />
-
         <TileLine label={tDetail('kube_list_id')}>
           <Clipboard aria-label="clipboard" value={kubeDetail.id} />
         </TileLine>
-
         <TileLine label={t('kube_service_name')}>
           <OsdsText
             className="mb-4 break-words"
@@ -61,7 +60,6 @@ export default function ClusterInformation({
             {kubeDetail.name}
           </OsdsText>
         </TileLine>
-
         <TileLine label={t('kube_service_cluster_status')}>
           <ClusterStatus status={kubeDetail.status} />
         </TileLine>
@@ -91,9 +89,11 @@ export default function ClusterInformation({
             {kubeDetail.region}
           </OsdsText>
         </TileLine>
-
         <TileLine label={t('kube_service_cluster_nodes_url')}>
           <Clipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
+        </TileLine>
+        <TileLine label={t('kube_service_cluster_etcd_quota')}>
+          <ClusterETCD />
         </TileLine>
       </div>
     </OsdsTile>
