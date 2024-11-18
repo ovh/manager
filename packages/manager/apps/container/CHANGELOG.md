@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.86.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.1...@ovh-ux/manager-container-app@0.86.2) (2024-11-18)
+
+
+### Bug Fixes
+
+* **container:** add idattr and universe in zimbra link ([#13846](https://github.com/ovh/manager/issues/13846)) ([33d5364](https://github.com/ovh/manager/commit/33d5364ea4a1bd4510a39ef06fb54005142759aa))
+
+
+
+
+
 ## [0.86.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.0...@ovh-ux/manager-container-app@0.86.1) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
