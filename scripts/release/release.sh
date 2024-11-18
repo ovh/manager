@@ -33,6 +33,12 @@ version() {
   else
     printf "%s\n" "Releasing"
     node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push  --yes
+    # Check if manager-react-components is in the list of changed packages
+    if echo "$changed_packages" | grep -q "manager-react-components"; then
+      # If it is, run the versioning command for manager-react-components
+      printf "%s\n" "Releasing manager-react-components"
+      node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --yes --scope=manager-react-components
+    fi
   fi
 }
 
