@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.68.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.67.0...@ovh-ux/manager-pci@6.68.0) (2024-11-18)
+
+
+### Features
+
+* **pci.kubernetes:** add url ([#14005](https://github.com/ovh/manager/issues/14005)) ([8dc4d13](https://github.com/ovh/manager/commit/8dc4d13d0ab02367f65ca12126987457253941fe))
+* **pci:** remove private-network angularjs section ([0d246fe](https://github.com/ovh/manager/commit/0d246feb2bcd84c359fefb3165732e3f4f78b9df))
+
+
+
+
+
 # [6.67.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.66.0...@ovh-ux/manager-pci@6.67.0) (2024-11-12)
 
 

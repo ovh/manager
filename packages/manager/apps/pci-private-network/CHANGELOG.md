@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.9.9...@ovh-ux/manager-pci-private-network-app@0.10.0) (2024-11-18)
+
+
+### Bug Fixes
+
+* bump mrc version & fix style ([#14133](https://github.com/ovh/manager/issues/14133)) ([6ba0614](https://github.com/ovh/manager/commit/6ba0614324d53072fa25392ffdc44212559f247e))
+* **pci.project:** update continent for Rabat ([#13105](https://github.com/ovh/manager/issues/13105)) ([6818e73](https://github.com/ovh/manager/commit/6818e73fd9632fecd023010019e647c97c8507f4))
+
+
+### Features
+
+* **pci-private-network:** region search params in creation ([c7737d4](https://github.com/ovh/manager/commit/c7737d4b1daf008d2d491ad049ff8da6dbb62e83))
+
+
+
+
+
 ## [0.9.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.9.8...@ovh-ux/manager-pci-private-network-app@0.9.9) (2024-11-14)
 
 
