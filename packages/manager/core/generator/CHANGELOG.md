@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.17.0...@ovh-ux/manager-generator@0.17.1) (2024-11-18)
+
+
+### Bug Fixes
+
+* **generator:** delete e2e tests ([375de0a](https://github.com/ovh/manager/commit/375de0aa0061d44b7ce29bea1df830fa5372eba0))
+
+
+
+
+
 # [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.16.0...@ovh-ux/manager-generator@0.17.0) (2024-11-15)
 
 
