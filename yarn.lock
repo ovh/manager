@@ -5365,7 +5365,7 @@
 
 "@ovhcloud/ods-components@^18.3.0":
   version "18.3.0"
-  resolved "https://artifactory.ovhcloud.tools:443/artifactory/api/npm/digital-tools-manager-aapi-npm/@ovhcloud/ods-components/-/ods-components-18.3.0.tgz#f5fa856bb45ad7df3ebe421d64ab334f41c7206c"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.3.0.tgz#f5fa856bb45ad7df3ebe421d64ab334f41c7206c"
   integrity sha512-E2bDV7RDnNty8fR7Fbvkxug2pySmsy4BQIt9rY0VTZWtcbaUlazmKbr+l+TjeL7vRxiPR4+9xLidI1kwt26O9A==
   dependencies:
     "@floating-ui/dom" "1.6.11"
@@ -5391,7 +5391,7 @@
 
 "@ovhcloud/ods-themes@^18.3.0":
   version "18.3.0"
-  resolved "https://artifactory.ovhcloud.tools:443/artifactory/api/npm/digital-tools-manager-aapi-npm/@ovhcloud/ods-themes/-/ods-themes-18.3.0.tgz#804e3502e6791f7ec2efc24abb107d27cd4e02e0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.3.0.tgz#804e3502e6791f7ec2efc24abb107d27cd4e02e0"
   integrity sha512-mTxtcM4tCUPk98x65PeslXqGONJraTryXgkbgbZuvtOYf9SgVl+zFJfyisD2sYGuJvVf6hJP1NvJkyrxOUqtSw==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
