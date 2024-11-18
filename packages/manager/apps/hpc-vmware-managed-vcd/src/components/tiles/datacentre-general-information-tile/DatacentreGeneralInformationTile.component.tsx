@@ -9,16 +9,15 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import IVcdDatacentre from '@/types/vcd-datacenter.interface';
-import IVcdOrganization from '@/types/vcd-organization.interface';
+import { VCDDatacentre, VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
 import { subRoutes } from '@/routes/routes.constant';
 import { iamActions } from '@/utils/iam.constants';
 import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
 import { capitalize } from '@/utils/capitalize';
 
 type TTileProps = {
-  vcdDatacentre: IVcdDatacentre;
-  vcdOrganization: IVcdOrganization;
+  vcdDatacentre: VCDDatacentre;
+  vcdOrganization: VCDOrganization;
 };
 
 export default function DatacentreGenerationInformationTile({

@@ -1,4 +1,4 @@
-import { order } from '../src/data';
+import { order } from '@ovh-ux/manager-module-vcd-api';
 
 export const veeamBackupCatalog = ({
   catalogId: 7700,

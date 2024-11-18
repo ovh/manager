@@ -4,8 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { order } from '../catalog.type';
 import { getVeeamBackupCatalog } from '../api';
-
-export const veeamBackupCatalogQueryKey = ['catalog', 'veeam-backup'];
+import { veeamBackupCatalogQueryKey } from '../utils';
 
 export const vmPlanCode = 'backup-veeam-vcd-vm';
 

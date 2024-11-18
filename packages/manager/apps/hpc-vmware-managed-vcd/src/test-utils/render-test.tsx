@@ -12,9 +12,7 @@ import { render, waitFor, screen } from '@testing-library/react';
 import {
   getServicesMocks,
   GetServicesMocksParams,
-} from '@ovh-ux/manager-react-components';
-import { toMswHandlers } from '../../../../../../playwright-helpers';
-import { getAuthenticationMocks } from '../../../../../../playwright-helpers/mocks/auth';
+} from '@ovh-ux/manager-react-components/src/hooks/services/mocks/services.mock';
 import {
   getVeeamBackupMocks,
   getOrganizationMocks,
@@ -25,7 +23,9 @@ import {
   GetDatacentreOrderMocksParams,
   GetVeeamBackupMocksParams,
   getIamMocks,
-} from '../../mocks';
+} from '@ovh-ux/manager-module-vcd-api';
+import { toMswHandlers } from '../../../../../../playwright-helpers';
+import { getAuthenticationMocks } from '../../../../../../playwright-helpers/mocks/auth';
 import { initTestI18n, labels } from './test-i18n';
 import { TestApp } from './TestApp';
 import { APP_NAME } from '@/tracking.constant';

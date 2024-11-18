@@ -11,23 +11,23 @@ import {
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  useVcdCatalog,
+  useVcdOrder,
+  useVdcOrderableResource,
+  VCDOrderableStoragePriced,
+  VCDOrderableVhostPriced,
+} from '@ovh-ux/manager-module-vcd-api';
 import { QuantitySelector } from './QuantitySelector.component';
 import { useDatacentreOrderContext } from '@/context/DatacentreOrder.context';
-import { useVdcOrderableResource } from '@/data/hooks/useOrderableResource';
-import { useVcdCatalog } from '@/data/hooks/useVcdCatalog';
-import useVcdOrder from '@/data/hooks/useVcdOrder';
 import { validateQuantity } from '@/utils/formValidation';
 import { getPricedVdcResources } from '@/utils/getPricedOrderableResource';
 import Loading from '../loading/Loading.component';
-import {
-  IVdcOrderableStoragePriced,
-  IVdcOrderableVhostPriced,
-} from '@/types/vcd-vdc-orderable-resource.interface';
 
 type OrderType = 'compute' | 'storage';
 type OrderColumns<T extends OrderType> = T extends 'compute'
-  ? DatagridColumn<IVdcOrderableVhostPriced>[]
-  : DatagridColumn<IVdcOrderableStoragePriced>[];
+  ? DatagridColumn<VCDOrderableVhostPriced>[]
+  : DatagridColumn<VCDOrderableStoragePriced>[];
 
 interface DatacentreOrderProps<T extends OrderType> {
   orderType: T;

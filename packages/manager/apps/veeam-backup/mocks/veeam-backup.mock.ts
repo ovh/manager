@@ -1,6 +1,6 @@
-import { VeeamBackupWithIam } from '@/data';
+import { VeeamBackup } from '@ovh-ux/manager-module-vcd-api';
 
-export const backupList: VeeamBackupWithIam[] = [
+export const backupList: VeeamBackup[] = [
   {
     id: '6cfa2c69-c62c-4853-80ee-c9682e6727f0-veeam-backup',
     iam: {

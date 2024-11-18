@@ -11,13 +11,15 @@ import { render, waitFor, screen } from '@testing-library/react';
 import {
   getServicesMocks,
   GetServicesMocksParams,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-react-components/src/hooks/services/mocks/services.mock';
+import {
+  getOrganizationMocks,
+  GetOrganizationMocksParams,
+} from '@ovh-ux/manager-module-vcd-api';
 import { toMswHandlers } from '../../../../../../playwright-helpers';
 import { getAuthenticationMocks } from '../../../../../../playwright-helpers/mocks/auth';
 import {
   getVeeamBackupMocks,
-  getOrganizationMocks,
-  GetOrganizationMocksParams,
   GetVeeamBackupMocksParams,
   getIamMocks,
   getCatalogMocks,

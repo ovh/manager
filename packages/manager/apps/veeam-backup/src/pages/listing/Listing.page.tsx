@@ -11,7 +11,7 @@ import {
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 import {
-  VeeamBackupWithIam,
+  VeeamBackup,
   useVeeamBackupList,
 } from '@ovh-ux/manager-module-vcd-api';
 import ErrorBanner from '@/components/Error/Error';
@@ -45,7 +45,7 @@ export default function Listing() {
     status,
   } = useVeeamBackupList({ pageSize: 10 });
 
-  const columns: DatagridColumn<VeeamBackupWithIam>[] = [
+  const columns: DatagridColumn<VeeamBackup>[] = [
     {
       id: 'name',
       label: t('name_cell'),

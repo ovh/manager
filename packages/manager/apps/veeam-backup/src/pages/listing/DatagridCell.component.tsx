@@ -15,7 +15,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
-  VeeamBackupWithIam,
+  VeeamBackup,
   getOrganizationDisplayName,
   getOrganizationIdFromBackup,
   useOrganization,
@@ -25,7 +25,7 @@ import {
 import { vcdOrganizationAppName } from '@/veeam-backup.config';
 import { urls } from '@/routes/routes.constant';
 
-export const DisplayNameCell = (backup: VeeamBackupWithIam): JSX.Element => {
+export const DisplayNameCell = (backup: VeeamBackup): JSX.Element => {
   const navigate = useNavigate();
   return (
     <DataGridTextCell>
@@ -39,7 +39,7 @@ export const DisplayNameCell = (backup: VeeamBackupWithIam): JSX.Element => {
   );
 };
 
-export const OvhRefCell = ({ id }: VeeamBackupWithIam) => (
+export const OvhRefCell = ({ id }: VeeamBackup) => (
   <DataGridTextCell>{id}</DataGridTextCell>
 );
 
@@ -47,7 +47,7 @@ export const OrganizationCell = ({
   withLink,
   className,
   ...backup
-}: VeeamBackupWithIam & {
+}: VeeamBackup & {
   className?: string;
   withLink?: boolean;
 }): JSX.Element => {
@@ -81,25 +81,19 @@ export const OrganizationCell = ({
   );
 };
 
-export const RegionCell = ({
-  currentState,
-}: VeeamBackupWithIam): JSX.Element => (
+export const RegionCell = ({ currentState }: VeeamBackup): JSX.Element => (
   <DataGridTextCell>
     {getRegionNameFromAzName(currentState.azName)}
   </DataGridTextCell>
 );
 
-export const LocationCell = ({
-  currentState,
-}: VeeamBackupWithIam): JSX.Element => (
+export const LocationCell = ({ currentState }: VeeamBackup): JSX.Element => (
   <DataGridTextCell>
     <Region mode="region" name={getRegionNameFromAzName(currentState.azName)} />
   </DataGridTextCell>
 );
 
-export const CreatedAtCell = ({
-  createdAt,
-}: VeeamBackupWithIam): JSX.Element => {
+export const CreatedAtCell = ({ createdAt }: VeeamBackup): JSX.Element => {
   const date = useFormattedDate({
     dateString: createdAt,
     format: DateFormat.compact,
@@ -107,7 +101,7 @@ export const CreatedAtCell = ({
   return <DataGridTextCell>{date}</DataGridTextCell>;
 };
 
-export const ActionCell = (backup: VeeamBackupWithIam): JSX.Element => {
+export const ActionCell = (backup: VeeamBackup): JSX.Element => {
   const { t } = useTranslation('listing');
   const navigate = useNavigate();
 

@@ -11,14 +11,12 @@ import {
   ODS_BUTTON_TYPE,
 } from '@ovhcloud/ods-components';
 import {
-  VeeamBackupWithIam,
+  VeeamBackup,
   getVeeamBackupDisplayName,
 } from '@ovh-ux/manager-module-vcd-api';
 import { urls } from '@/routes/routes.constant';
 
-export const DisplayNameWithEditButton = (
-  backup: VeeamBackupWithIam,
-): JSX.Element => {
+export const DisplayNameWithEditButton = (backup: VeeamBackup): JSX.Element => {
   const navigate = useNavigate();
   return (
     <div className="flex items-center">
