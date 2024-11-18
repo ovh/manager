@@ -149,5 +149,5 @@ export const getI18nextRancherError = (
       }
     }
   }
-  return [];
+  return ['rancherError'];
 };
