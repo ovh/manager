@@ -108,45 +108,47 @@ export const DatacentreOrder = <T extends OrderType>({
   }
 
   return (
-    <div className="px-10 my-4 flex flex-col">
-      <Subtitle>{title}</Subtitle>
-      <Description className="my-6">{subtitle}</Description>
-      <Datagrid
-        columns={columns}
-        items={pricedResources}
-        totalItems={pricedResources.length}
-        contentAlignLeft
-      />
-      <div className="mt-10">
-        <QuantitySelector
-          quantity={selectedQuantity}
-          setQuantity={setSelectedQuantity}
-          isValid={isValidQuantity}
-          title={t('managed_vcd_vdc_order_quantity_title')}
-          label={t('managed_vcd_vdc_order_quantity_label')}
-          min={minQuantity}
-          max={maxQuantity}
+    <React.Suspense>
+      <div className="px-10 my-4 flex flex-col">
+        <Subtitle>{title}</Subtitle>
+        <Description className="my-6">{subtitle}</Description>
+        <Datagrid
+          columns={columns}
+          items={pricedResources}
+          totalItems={pricedResources.length}
+          contentAlignLeft
         />
+        <div className="mt-10">
+          <QuantitySelector
+            quantity={selectedQuantity}
+            setQuantity={setSelectedQuantity}
+            isValid={isValidQuantity}
+            title={t('managed_vcd_vdc_order_quantity_title')}
+            label={t('managed_vcd_vdc_order_quantity_label')}
+            min={minQuantity}
+            max={maxQuantity}
+          />
+        </div>
+        <div className="flex items-center gap-x-4 mt-10">
+          <OsdsButton
+            size={ODS_BUTTON_SIZE.sm}
+            variant={ODS_BUTTON_VARIANT.ghost}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            onClick={() => navigate(backLink)}
+          >
+            {t('managed_vcd_vdc_order_cancel_cta')}
+          </OsdsButton>
+          <OsdsButton
+            size={ODS_BUTTON_SIZE.sm}
+            variant={ODS_BUTTON_VARIANT.flat}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            disabled={!isValidQuantity || undefined}
+            onClick={isValidQuantity ? redirectToOrder : null}
+          >
+            {t('managed_vcd_vdc_order_confirm_cta')}
+          </OsdsButton>
+        </div>
       </div>
-      <div className="flex items-center gap-x-4 mt-10">
-        <OsdsButton
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => navigate(backLink)}
-        >
-          {t('managed_vcd_vdc_order_cancel_cta')}
-        </OsdsButton>
-        <OsdsButton
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.flat}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          disabled={!isValidQuantity || undefined}
-          onClick={isValidQuantity ? redirectToOrder : null}
-        >
-          {t('managed_vcd_vdc_order_confirm_cta')}
-        </OsdsButton>
-      </div>
-    </div>
+    </React.Suspense>
   );
 };
