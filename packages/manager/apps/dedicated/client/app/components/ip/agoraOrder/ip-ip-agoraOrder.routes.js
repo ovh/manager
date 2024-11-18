@@ -28,6 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     atInternet: {
       rename: `${TRACKING_PREFIX}ip::funnel::add_additional_ip`,
+      level2: 57,
     },
   });
 };

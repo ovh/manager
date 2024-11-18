@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX } from '../ip-ip-agoraOrder.constant';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip.agora-order.ipv6', {
     url: '/ipv6',
@@ -7,6 +9,10 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: /* @ngInject */ () => false,
+    },
+    atInternet: {
+      rename: `${TRACKING_PREFIX}ip::funnel::add_additional_ip`,
+      level2: 57,
     },
   });
 };

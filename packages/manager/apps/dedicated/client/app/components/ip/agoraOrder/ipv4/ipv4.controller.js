@@ -85,6 +85,7 @@ export default class AgoraIpV4OrderController {
       selectedServiceRegion: null,
       region: null,
       selectedOffer: null,
+      selectedCountry: null,
     };
     this.loading = {};
     this.user = this.$state.params.user;
@@ -451,12 +452,6 @@ export default class AgoraIpV4OrderController {
   }
 
   manageLoadIpOffers() {
-    if (this.model.selectedRegion) {
-      this.trackClick(
-        `select_region::next_${this.model.selectedRegion.regionName}`,
-      );
-    }
-
     this.loading.ipOffers = true;
     this.ipOffers = [];
     this.failoverIpOffers = [];
@@ -862,6 +857,7 @@ export default class AgoraIpV4OrderController {
   }
 
   trackSelectLocation(location) {
+    this.model.selectedCountry = location;
     this.trackClick(`select_location::next_${location.code}`);
   }
 

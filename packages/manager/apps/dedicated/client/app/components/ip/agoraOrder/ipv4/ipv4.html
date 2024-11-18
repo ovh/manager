@@ -236,7 +236,7 @@
             data-header="{{:: 'ip_agora_ipv4_localisation_title' | translate }}"
             data-navigation="$ctrl.model.params.selectedCountry"
             data-editable="!$ctrl.isLoading"
-            data-on-focus="$ctrl.model.params.selectedCountry && $ctrl.onEditStep('location_ip_address')"
+            data-on-focus="$ctrl.model.selectedCountry && $ctrl.onEditStep('location_ip_address')"
             data-valid="$ctrl.model.params.selectedCountry"
             data-submit-text="{{($ctrl.model.params.selectedOffer.isIpBlockOffer && !$ctrl.isPrivateCloudOffer ? 'ip_agora_table_next_text' : 'ip_agora_table_submit_text') | translate }}"
             data-on-submit="$ctrl.locationTraking()"
