@@ -45,7 +45,7 @@ function ClusterEtcd() {
   useEffect(() => {
     if (percentage > 80) {
       addWarning(
-        <Trans components={{ a: <a></a> }}>
+        <Trans components={{ a: <a> </a> }}>
           {t('kube_service_etcd_quota_error', {
             link: QUOTA_ERROR_URL,
           })}

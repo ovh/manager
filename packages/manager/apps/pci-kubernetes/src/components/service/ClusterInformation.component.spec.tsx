@@ -41,20 +41,6 @@ describe('ClusterInformation', () => {
     ],
   } as TKube;
 
-  it.skip('calls clearNotifications on unmount', async () => {
-    const { unmount } = renderClusterInformation(kubeDetail);
-    const mockClearNotifications = vi.fn();
-
-    vi.spyOn(manager, 'useNotifications').mockReturnValue({
-      clearNotifications: mockClearNotifications,
-    });
-    expect(mockClearNotifications).not.toHaveBeenCalled();
-    act(() => unmount());
-    // not working issue
-    // https://github.com/testing-library/react-hooks-testing-library/issues/847
-    expect(mockClearNotifications).toHaveBeenCalledTimes(1);
-  });
-
   it('renders cluster information correctly', async () => {
     const { debug } = renderClusterInformation(kubeDetail);
 

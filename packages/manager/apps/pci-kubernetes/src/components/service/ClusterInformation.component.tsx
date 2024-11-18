@@ -20,7 +20,7 @@ import {
 import { TKube } from '@/types';
 import ClusterStatus from './ClusterStatus.component';
 import ClusterETCD from './ClusterETCD.component';
-
+import TileLineLegacy from './TileLine.component';
 import AdmissionPlugins from './AdmissionPlugins.component';
 import { isProcessing } from './ClusterManagement.component';
 import ClusterTile from './ClusterTile.component';
@@ -106,9 +106,7 @@ export default function ClusterInformation({
         {
           // hacky, need to use a help icon and a tooltip inside the string label
         }
-        <TileLine label={((<ClusterTile />) as unknown) as string}>
-          <ClusterETCD />
-        </TileLine>
+        <TileLineLegacy title={<ClusterTile />} value={<ClusterETCD />} />
       </div>
     </OsdsTile>
   );
