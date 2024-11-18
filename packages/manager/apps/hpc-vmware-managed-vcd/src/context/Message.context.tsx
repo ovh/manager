@@ -1,4 +1,4 @@
-import { NotificationType } from '@ovh-ux/manager-react-components/src/components/notifications/useNotifications';
+import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import React, {
   createContext,
   FC,
@@ -12,7 +12,7 @@ import React, {
 export type MessageType = {
   uid: number;
   content: ReactNode;
-  type: NotificationType;
+  type: ODS_MESSAGE_TYPE;
   persistent?: boolean;
   includedSubRoutes?: string[];
   excludedSubRoutes?: string[];
@@ -64,13 +64,13 @@ export const MessageContextProvider: FC<PropsWithChildren> = ({ children }) => {
     () => ({
       messages,
       addSuccess: (props: AddSpecificMessageProps) =>
-        addMessage({ type: NotificationType.Success, ...props }),
+        addMessage({ type: ODS_MESSAGE_TYPE.success, ...props }),
       addError: (props: AddSpecificMessageProps) =>
-        addMessage({ type: NotificationType.Error, ...props }),
+        addMessage({ type: ODS_MESSAGE_TYPE.error, ...props }),
       addInfo: (props: AddSpecificMessageProps) =>
-        addMessage({ type: NotificationType.Info, ...props }),
+        addMessage({ type: ODS_MESSAGE_TYPE.info, ...props }),
       addWarning: (props: AddSpecificMessageProps) =>
-        addMessage({ type: NotificationType.Warning, ...props }),
+        addMessage({ type: ODS_MESSAGE_TYPE.warning, ...props }),
       clearMessage: (id) => deleteMessage(id),
       clearMessages: () => setMessages([]),
     }),

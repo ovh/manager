@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
-import { NotificationType } from '@ovh-ux/manager-react-components';
 import {
   ODS_MESSAGE_TYPE,
   ODS_TEXT_COLOR_INTENT,
@@ -13,24 +12,12 @@ type MessageProps = {
   message: MessageType;
 };
 
-const messageColors = {
-  [NotificationType.Success]: ODS_MESSAGE_TYPE.success,
-  [NotificationType.Error]: ODS_MESSAGE_TYPE.error,
-  [NotificationType.Warning]: ODS_MESSAGE_TYPE.warning,
-  [NotificationType.Info]: ODS_MESSAGE_TYPE.info,
-};
 const textColors = {
-  [NotificationType.Success]: ODS_TEXT_COLOR_INTENT.success,
-  [NotificationType.Error]: ODS_TEXT_COLOR_INTENT.error,
-  [NotificationType.Warning]: ODS_TEXT_COLOR_INTENT.warning,
-  [NotificationType.Info]: ODS_TEXT_COLOR_INTENT.info,
+  [ODS_MESSAGE_TYPE.success]: ODS_TEXT_COLOR_INTENT.success,
+  [ODS_MESSAGE_TYPE.error]: ODS_TEXT_COLOR_INTENT.error,
+  [ODS_MESSAGE_TYPE.warning]: ODS_TEXT_COLOR_INTENT.warning,
+  [ODS_MESSAGE_TYPE.info]: ODS_TEXT_COLOR_INTENT.info,
 };
-
-const getMessageColor = (type: NotificationType) =>
-  messageColors[type] || ODS_MESSAGE_TYPE.info;
-
-const getTextColor = (type: NotificationType) =>
-  textColors[type] || ODS_TEXT_COLOR_INTENT.info;
 
 export const Message: React.FC<MessageProps> = ({ message }) => {
   const { pathname } = useLocation();
@@ -38,7 +25,7 @@ export const Message: React.FC<MessageProps> = ({ message }) => {
   const {
     content,
     uid,
-    type,
+    type = ODS_MESSAGE_TYPE.info,
     persistent,
     includedSubRoutes,
     excludedSubRoutes,
@@ -65,7 +52,7 @@ export const Message: React.FC<MessageProps> = ({ message }) => {
   return (
     <OsdsMessage
       className="mb-2"
-      type={getMessageColor(type)}
+      type={type}
       {...(persistent
         ? {}
         : {
@@ -74,7 +61,7 @@ export const Message: React.FC<MessageProps> = ({ message }) => {
           })}
     >
       <OsdsText
-        color={getTextColor(type)}
+        color={textColors[type] || ODS_TEXT_COLOR_INTENT.info}
         size={ODS_THEME_TYPOGRAPHY_SIZE._400}
       >
         {content}

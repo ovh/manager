@@ -71,7 +71,7 @@ export default function OrganizationServiceManagementTile() {
                 <OsdsChip
                   inline
                   color={ODS_THEME_COLOR_INTENT.primary}
-                  className="ml-3"
+                  className="ml-3 mt-3"
                   size={ODS_CHIP_SIZE.sm}
                 >
                   {t('managed_vcd_dashboard_coming_soon')}

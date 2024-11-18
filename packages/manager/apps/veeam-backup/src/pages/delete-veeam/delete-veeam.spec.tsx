@@ -33,7 +33,7 @@ describe('Delete veeam-backup', () => {
     const confirmButton = await getButtonByLabel({
       container,
       label: 'deleteModalDeleteButton',
-      altLabel: labels.deleteModal.deleteModalDeleteButton,
+      altLabel: 'Supprimer',
     });
 
     await waitFor(() => userEvents.click(confirmButton));
