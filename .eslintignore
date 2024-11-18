@@ -1,8 +1,5 @@
 dist
 node_modules
-packages/manager/tools/sao-ovh-manager-module/template/apiv2/src
-packages/manager/tools/sao-ovh-manager-module/template/default/src
-packages/manager/tools/sao-ovh-manager-app/template
 packages/manager/core/generator/app/templates
 packages/components/ovh-shell
 www
