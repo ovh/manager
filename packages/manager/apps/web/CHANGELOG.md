@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.0.2...@ovh-ux/manager-web@19.1.0) (2024-11-18)
+
+
+### Features
+
+* **web.domain:** add tracking for domain optim ([#13539](https://github.com/ovh/manager/issues/13539)) ([80f774b](https://github.com/ovh/manager/commit/80f774bbf4fd42635c77d478b6787f3d0f97e19e))
+* **web:** add guide link in 1clic module tab ([#13840](https://github.com/ovh/manager/issues/13840)) ([a5d6bcd](https://github.com/ovh/manager/commit/a5d6bcdceeb3035f171395e7b5087b7f4476f220))
+* **web:** add private-database logs to customer module ([#13574](https://github.com/ovh/manager/issues/13574)) ([7c3e37a](https://github.com/ovh/manager/commit/7c3e37ae7561e3b060546b1627159788dd4634f8))
+* **web:** make operation status sortable ([#13749](https://github.com/ovh/manager/issues/13749)) ([ca922bb](https://github.com/ovh/manager/commit/ca922bb79a46ccfb1a9146433eeec4ea6e61fd3b))
+
+
+
+
+
 ## [19.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.0.1...@ovh-ux/manager-web@19.0.2) (2024-11-14)
 
 

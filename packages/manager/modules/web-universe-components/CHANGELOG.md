@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.19.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.18.2...@ovh-ux/ng-ovh-web-universe-components@9.19.0) (2024-11-18)
+
+
+### Features
+
+* **web.exchange:** add alias feature on group and shared account ([#13780](https://github.com/ovh/manager/issues/13780)) ([2984665](https://github.com/ovh/manager/commit/298466530fda2b0fdcee5e80f8abcf15e27eef00))
+
+
+
+
+
 ## [9.18.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.18.1...@ovh-ux/ng-ovh-web-universe-components@9.18.2) (2024-09-26)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-web-universe-components
