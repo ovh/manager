@@ -4,6 +4,8 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 const docUrl = 'https://help.ovhcloud.com/csm/';
 
+const usDocUrl = 'https://support.us.ovhcloud.com/hc/en-us/articles/';
+
 type GuideLinks = { [key in CountryCode | 'DEFAULT']: string };
 
 const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
@@ -30,6 +32,7 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     ASIA: 'asia-vmware-vcd-backup?id=kb_article_view&sysparm_article=KB0063129',
     WE: 'en-vmware-vcd-backup?id=kb_article_view&sysparm_article=KB0063125',
     WS: 'es-vmware-vcd-backup?id=kb_article_view&sysparm_article=KB0063132',
+    US: '33255029079059-VMware-Cloud-Director-Backup-with-Veeam-Data-Platform',
   },
   guideLink2: {
     DEFAULT:
@@ -74,6 +77,7 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
       'asia-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062569',
     WE:
       'en-vmware-vcd-getting-started-dashboard-overview?id=kb_article_view&sysparm_article=KB0062573',
+    US: '28330367397139-VMware-Cloud-Director-The-Fundamentals-of-VCD',
   },
   guideLink3: {
     DEFAULT: 'en-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062598',
@@ -97,6 +101,7 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     SG: 'en-sg-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062554',
     ASIA: 'asia-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062558',
     WE: 'en-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062598',
+    US: '28329887272467-VMware-Cloud-Director-FAQ',
   },
 };
 
@@ -107,9 +112,10 @@ type GetGuideLinkProps = {
 
 function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
   const list: { [guideName: string]: string } = {};
+  const prefix = subsidiary === 'US' ? usDocUrl : docUrl;
   const keys = Object.entries(GUIDE_LIST);
   keys.forEach((key) => {
-    list[key[0]] = docUrl + GUIDE_LIST[key[0]][subsidiary || 'DEFAULT'];
+    list[key[0]] = prefix + GUIDE_LIST[key[0]][subsidiary || 'DEFAULT'];
   });
   return list;
 }
