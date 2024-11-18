@@ -259,7 +259,7 @@
                             id="hardwareRaidRaidMode"
                             name="hardwareRaidRaidMode"
                             data-ng-if="installation.hardwareRaid.controller"
-                            data-ng-options="raid as 'raid' + raid for raid in informations.hardwareRaid.availableRaids | orderBy:'toString()'"
+                            data-ng-options="raid as 'raid' + raid for raid in informations.hardwareRaid.availableRaids | orderBy:''"
                             data-ng-model="installation.hardwareRaid.raid"
                         >
                         </select>
@@ -282,7 +282,7 @@
                             id="hardwareRaidNbDisks"
                             name="hardwareRaidNbDisks"
                             data-ng-if="informations.hardwareRaid.availableDisks.length !== 1 && installation.hardwareRaid.raid"
-                            data-ng-options="disk as disk for disk in informations.hardwareRaid.availableDisks"
+                            data-ng-options="disk as disk for disk in informations.hardwareRaid.availableDisks | orderBy:''"
                             data-ng-model="installation.hardwareRaid.disks"
                         >
                         </select>
