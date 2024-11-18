@@ -31,6 +31,17 @@ vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(() => vi.fn()),
 }));
 
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const mod = await importOriginal<
+    typeof import('@ovh-ux/manager-react-shell-client')
+  >();
+
+  return {
+    ...mod,
+    useOvhTracking: vi.fn(() => vi.fn()),
+  };
+});
+
 vi.mock('@/data/hooks/useDeleteOkmsServiceKey', () => ({
   useDeleteOkmsServiceKey: vi.fn(() => ({
     deleteKmsServiceKey: vi.fn(),
@@ -52,6 +63,12 @@ describe('useServiceKeyActionsList', () => {
     keys: [],
     createdAt: '2023-01-01T00:00:00Z',
     operations: [],
+    iam: {
+      id: '8f8a75b0-3bde-4b8d-a8c0-928basvced',
+      urn:
+        'urn:v1:eu:resource:okms:8f8a75b0-b57d-45fc-8d4f-256664DFE/serviceKey/dqd63-5688-409c-234-125e24538f34',
+      displayName: 'ServiceKeyTest',
+    },
   };
 
   const useCases = [

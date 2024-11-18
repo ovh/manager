@@ -4,6 +4,11 @@ import {
   Subtitle,
 } from '@ovh-ux/manager-react-components';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   ODS_THEME_TYPOGRAPHY_SIZE,
   ODS_THEME_COLOR_INTENT,
 } from '@ovhcloud/ods-common-theming';
@@ -41,6 +46,7 @@ const CreateGeneralInformationsCreationMethod = ({
   credentialCreationMethodError,
 }: CreateGeneralInformationsCreationMethodProps) => {
   const { t } = useTranslation('key-management-service/credential');
+  const { trackClick } = useOvhTracking();
 
   const getCreationMethodErrorMessage = (
     error: CredentialCreationMethodErrorsType,
@@ -65,7 +71,15 @@ const CreateGeneralInformationsCreationMethod = ({
           <OsdsRadioButton
             size={ODS_RADIO_BUTTON_SIZE.sm}
             color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => setIsCustomCsr(false)}
+            onClick={() => {
+              trackClick({
+                location: PageLocation.funnel,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['select_type_key', 'ovh_generated'],
+              });
+              setIsCustomCsr(false);
+            }}
           >
             <span slot="end">
               <OsdsText
@@ -88,7 +102,15 @@ const CreateGeneralInformationsCreationMethod = ({
           <OsdsRadioButton
             size={ODS_RADIO_BUTTON_SIZE.sm}
             color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => setIsCustomCsr(true)}
+            onClick={() => {
+              trackClick({
+                location: PageLocation.funnel,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['select_type_key', 'custom'],
+              });
+              setIsCustomCsr(true);
+            }}
           >
             <span slot="end">
               <OsdsText

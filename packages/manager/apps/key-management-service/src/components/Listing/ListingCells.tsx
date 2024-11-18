@@ -4,6 +4,7 @@ import {
   Clipboard,
   DataGridTextCell,
   Links,
+  Region,
   useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import {
@@ -12,7 +13,6 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { OKMS } from '@/types/okms.type';
@@ -52,11 +52,13 @@ export const DatagridCellName = (props: OKMS) => {
   );
 };
 
-export const DatagridCellRegion = (props: OKMS) => {
-  const { t } = useTranslation('key-management-service/listing');
+export const DatagridCellRegion = (kms: OKMS) => {
   return (
     <DataGridTextCell>
-      {t(`key_management_service_listing_region_${props.region.toLowerCase()}`)}
+      <Region
+        mode={'region'}
+        name={kms.region.toLowerCase().replaceAll('_', '-')}
+      />
     </DataGridTextCell>
   );
 };
@@ -85,10 +87,18 @@ export const DatagridActionMenu = (props: OKMS) => {
 
 export const DatagridServiceKeyCellName = (props: OkmsAllServiceKeys) => {
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
+
   return (
     <div>
       <Links
         onClickReturn={() => {
+          trackClick({
+            location: PageLocation.datagrid,
+            buttonType: ButtonType.link,
+            actionType: 'navigation',
+            actions: ['details_encryption_key'],
+          });
           navigate(`${props?.id}`);
         }}
         label={props?.name}

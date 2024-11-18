@@ -10,6 +10,11 @@ import {
   DashboardTileBlockItem,
   ManagerButton,
 } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { CredentialStatus } from '@/components/credential/credentialStatus/CredentialStatus.component';
 import { TileValueDate } from '@/components/dashboard/tile-value-date/tileValueDate.component';
 import CredentialCreationMethod from '@/components/credential/credentialCreationMethod/credentialCreationMethod.component';
@@ -32,6 +37,7 @@ const CredentialGeneralInformations = () => {
   const { okms, credential } = useOutletCredential();
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/credential');
+  const { trackClick } = useOvhTracking();
 
   const { filename, href, isDisabled } = getDownloadCredentialParameters(
     credential,
@@ -86,6 +92,14 @@ const CredentialGeneralInformations = () => {
             href={href}
             download={filename}
             disabled={isDisabled || undefined}
+            onClick={() =>
+              trackClick({
+                location: PageLocation.page,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['download_access_certificate'],
+              })
+            }
           >
             {t('key_management_service_credential_download')}
           </OsdsButton>
@@ -93,8 +107,16 @@ const CredentialGeneralInformations = () => {
             size={ODS_BUTTON_SIZE.sm}
             color={ODS_THEME_COLOR_INTENT.error}
             variant={ODS_BUTTON_VARIANT.ghost}
-            onClick={() => navigate(ROUTES_URLS.credentialDelete)}
             iamActions={[kmsIamActions.credentialDelete]}
+            onClick={() => {
+              trackClick({
+                location: PageLocation.page,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['delete_access_certificate'],
+              });
+              navigate(ROUTES_URLS.credentialDelete);
+            }}
             urn={okms.iam.urn}
           >
             {t('key_management_service_credential_delete')}
@@ -105,7 +127,7 @@ const CredentialGeneralInformations = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 break-words">
       <DashboardTile
         title={t(
           'key_management_service_credential_dashboard_tile_general_informations',

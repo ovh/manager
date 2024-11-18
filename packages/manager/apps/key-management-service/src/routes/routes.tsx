@@ -92,6 +92,12 @@ export default [
                     '@/pages/dashboard/generalInformations/updateName/OkmsNameUpdateModal'
                   ),
                 ),
+                handle: {
+                  tracking: {
+                    pageName: 'rename_kms',
+                    pageType: PageType.popup,
+                  },
+                },
               },
             ],
           },
@@ -100,6 +106,12 @@ export default [
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/serviceKeyList/ServiceKeyList.page'),
             ),
+            handle: {
+              tracking: {
+                pageName: 'encryption_keys',
+                pageType: PageType.listing,
+              },
+            },
             children: [
               {
                 path: `${ROUTES_URLS.serviceKeyDeactivate}/${ROUTES_URLS.keyId}`,
@@ -108,6 +120,12 @@ export default [
                     '@/pages/serviceKey/deactivateServiceKeyModal/DeactivateServiceKeyModal.page'
                   ),
                 ),
+                handle: {
+                  tracking: {
+                    pageName: 'deactivate_encryption_key',
+                    pageType: PageType.popup,
+                  },
+                },
               },
             ],
           },
@@ -116,6 +134,12 @@ export default [
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/credentialList/CredentialList.page'),
             ),
+            handle: {
+              tracking: {
+                pageName: 'access_certificates',
+                pageType: PageType.listing,
+              },
+            },
             children: [
               {
                 path: `${ROUTES_URLS.credentialDelete}/${ROUTES_URLS.credentialId}`,
@@ -124,6 +148,12 @@ export default [
                     '@/pages/dashboard/credentialList/delete/DeleteCredentialModal.page'
                   ),
                 ),
+                handle: {
+                  tracking: {
+                    pageName: 'delete_access_certificate',
+                    pageType: PageType.popup,
+                  },
+                },
               },
             ],
           },
@@ -132,12 +162,24 @@ export default [
       {
         path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.createKmsServiceKey}`,
         ...lazyRouteConfig(() => import('@/pages/serviceKey/CreateKey.page')),
+        handle: {
+          tracking: {
+            pageName: 'create_encryption_key',
+            pageType: PageType.funnel,
+          },
+        },
       },
       {
         path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.credentials}/${ROUTES_URLS.createCredential}`,
         ...lazyRouteConfig(() =>
           import('@/pages/credential/create/CreateCredential.page'),
         ),
+        handle: {
+          tracking: {
+            pageName: 'create_access_certificate',
+            pageType: PageType.funnel,
+          },
+        },
         children: [
           {
             path: ROUTES_URLS.createCredentialAddUserModal,
@@ -176,6 +218,12 @@ export default [
                 '@/pages/credential/generalInformations/generalInformations.page'
               ),
             ),
+            handle: {
+              tracking: {
+                pageName: 'details_access_certificate',
+                pageType: PageType.dashboard,
+              },
+            },
             children: [
               {
                 path: ROUTES_URLS.credentialDelete,
@@ -184,6 +232,12 @@ export default [
                     '@/pages/credential/generalInformations/delete/DeleteCredentialModal.page'
                   ),
                 ),
+                handle: {
+                  tracking: {
+                    pageName: 'delete_access_certificate',
+                    pageType: PageType.popup,
+                  },
+                },
               },
             ],
           },
@@ -192,12 +246,24 @@ export default [
             ...lazyRouteConfig(() =>
               import('@/pages/credential/identities/identities.page'),
             ),
+            handle: {
+              tracking: {
+                pageName: 'details_identities',
+                pageType: PageType.dashboard,
+              },
+            },
           },
         ],
       },
       {
         path: `${ROUTES_URLS.okmsId}/${ROUTES_URLS.keys}/${ROUTES_URLS.keyId}`,
         ...lazyRouteConfig(() => import('@/pages/serviceKey/ServiceKey.page')),
+        handle: {
+          tracking: {
+            pageName: 'details_encryption_key',
+            pageType: PageType.dashboard,
+          },
+        },
         children: [
           {
             path: ROUTES_URLS.serviceKeyEditName,
@@ -206,6 +272,12 @@ export default [
                 '@/pages/serviceKey/editServiceKeyNameModal/EditServiceKeyNameModal.page'
               ),
             ),
+            handle: {
+              tracking: {
+                pageName: 'rename_encryption_key',
+                pageType: PageType.popup,
+              },
+            },
           },
           {
             path: ROUTES_URLS.serviceKeyDeactivate,
@@ -214,6 +286,12 @@ export default [
                 '@/pages/serviceKey/deactivateServiceKeyModal/DeactivateServiceKeyModal.page'
               ),
             ),
+            handle: {
+              tracking: {
+                pageName: 'deactivate_encryption_key',
+                pageType: PageType.popup,
+              },
+            },
           },
         ],
       },

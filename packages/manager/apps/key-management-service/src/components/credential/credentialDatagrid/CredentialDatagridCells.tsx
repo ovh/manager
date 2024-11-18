@@ -9,6 +9,11 @@ import {
   Links,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { OkmsCredential } from '@/types/okmsCredential.type';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { CredentialStatus } from '../credentialStatus/CredentialStatus.component';
@@ -19,10 +24,17 @@ import { kmsIamActions } from '@/utils/iam/iam.constants';
 
 export const DatagridCredentialCellName = (credential: OkmsCredential) => {
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
   return (
     <div>
       <Links
         onClickReturn={() => {
+          trackClick({
+            location: PageLocation.datagrid,
+            buttonType: ButtonType.link,
+            actionType: 'action',
+            actions: ['details_access_certificate'],
+          });
           navigate(`${credential.id}`);
         }}
         label={credential.name}
@@ -86,7 +98,7 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential) => {
   const { t } = useTranslation('key-management-service/credential');
   const okms = useContext(OkmsContext);
   const navigate = useNavigate();
-
+  const { trackClick } = useOvhTracking();
   const { filename, href, isDisabled } = getDownloadCredentialParameters(
     credential,
   );
@@ -98,6 +110,13 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential) => {
       href,
       download: filename,
       disabled: isDisabled,
+      onClick: () =>
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.link,
+          actionType: 'action',
+          actions: ['download_access_certificate'],
+        }),
     },
     {
       id: 2,
@@ -105,8 +124,15 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential) => {
       color: ODS_THEME_COLOR_INTENT.error,
       iamActions: [kmsIamActions.credentialDelete],
       urn: okms.iam.urn,
-      onClick: () =>
-        navigate(`${ROUTES_URLS.credentialDelete}/${credential.id}`),
+      onClick: () => {
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.link,
+          actionType: 'action',
+          actions: ['delete_access_certificate'],
+        });
+        navigate(`${ROUTES_URLS.credentialDelete}/${credential.id}`);
+      },
     },
   ];
 

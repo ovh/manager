@@ -17,7 +17,7 @@ const CreateCredentialConfirmationDetails = ({
 
   return (
     <OsdsTile>
-      <div className="flex flex-col w-full gap-7 md:gap-9">
+      <div className="flex flex-col w-full gap-7 md:gap-9 break-words">
         <Subtitle>
           {t(
             'key_management_service_credential_create_confirmation_details_title',
