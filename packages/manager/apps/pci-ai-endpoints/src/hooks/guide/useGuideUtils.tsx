@@ -2,40 +2,50 @@ import { useContext, useEffect, useState } from 'react';
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-const docUrl = 'https://docs.ovh.com';
+const docUrl = 'https://help.ovhcloud.com';
 
 type GuideLinks = { [key in CountryCode]: string };
 
 const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
   guideLink1: {
-    DE: '/update-path',
-    ES: '/update-path',
-    IE: '/en/update-path',
-    IT: '/update-path',
-    PL: '/update-path',
-    PT: '/update-path',
-    FR: '/update-path',
-    GB: '/update-path',
-    CA: '/update-path',
-    QC: '/update-path',
-    WE: '/update-path',
-    WS: '/update-path',
-    US: '/update-path',
+    DE:
+      '/csm/de-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065406',
+    ES:
+      '/csm/es--public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065402',
+    IE:
+      '/csm/en-ie-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065398',
+    IT:
+      '/csm/it-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065399',
+    PL:
+      '/csm/pl-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065419',
+    PT:
+      '/csm/pt-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065400',
+    FR:
+      '/csm/fr-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065411',
+    GB:
+      '/csm/en-gb-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065401',
+    CA:
+      '/csm/fr-ca-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065405',
   },
   guideLink2: {
-    DE: '/guide-link-2-path',
-    ES: '/guide-link-2-path',
-    IE: '/en/guide-link-2-path',
-    IT: '/guide-link-2-path',
-    PL: '/guide-link-2-path',
-    PT: '/guide-link-2-path',
-    FR: '/guide-link-2-path',
-    GB: '/guide-link-2-path',
-    CA: '/update-path',
-    QC: '/update-path',
-    WE: '/update-path',
-    WS: '/update-path',
-    US: '/update-path',
+    DE:
+      '/csm/de-public-cloud-ai-endpoints-capabilities?id=kb_article_view&sysparm_article=KB0065404',
+    ES:
+      '/csm/es-public-cloud-ai-endpoints-capabilities?id=kb_article_view&sysparm_article=KB0065425',
+    IE:
+      '/csm/en-ie-public-cloud-ai-endpoints-capabilities?id=kb_article_view&sysparm_article=KB0065412',
+    IT:
+      '/csm/it-public-cloud-ai-endpoints-capabilities?id=kb_article_view&sysparm_article=KB0065422',
+    PL:
+      '/csm/pl-public-cloud-ai-endpoints-capabilities?id=kb_article_view&sysparm_article=KB0065423',
+    PT:
+      '/csm/pt-public-cloud-ai-endpoints-capabilities?id=kb_article_view&sysparm_article=KB0065426',
+    FR:
+      '/csm/fr-public-cloud-ai-endpoints-capabilities?id=kb_article_view&sysparm_article=KB0065424',
+    GB:
+      '/csm/en-gb-public-cloud-ai-endpoints-capabilities?id=kb_article_view&sysparm_article=KB0065417',
+    CA:
+      '/csm/fr-ca-public-cloud-ai-endpoints-capabilities?id=kb_article_view&sysparm_article=KB0065416',
   },
 };
 
