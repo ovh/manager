@@ -1,0 +1,13 @@
+{
+  "pci_projects_project_regions": "Localizaciones",
+  "pci_projects_project_regions_title": "Añadir localizaciones",
+  "pci_projects_project_regions_description": "Con OVH, puede crear sus infraestructuras o contenedores en distintas localizaciones. Por defecto tiene acceso a una selección de localizaciones, pero puede añadir otras si así lo desea.",
+  "pci_projects_project_regions_added_title": "Localizaciones disponibles",
+  "pci_projects_project_regions_available_to_add_title": "Localizaciones que puede añadir",
+  "pci_projects_project_regions_add_region": "Añadir una localización",
+  "pci_projects_project_regions_all_added": "Todas las localizaciones añadidas",
+  "pci_projects_project_regions_info_message": "La adición de nuevas localizaciones puede tardar unos minutos. Una vez que se hayan añadido, podrá crear un servidor o un contenedor.",
+  "pci_projects_project_regions_all": "Todas las localizaciones",
+  "pci_projects_project_regions_add_region_error": "Se ha producido un error al añadir la localización: {{message}}.",
+  "pci_projects_project_regions_add_region_success": "Se está activando la localización {{ code }}. La operación puede tardar hasta 60 minutos. Cuando la localización esté disponible, le informaremos por correo electrónico."
+}
