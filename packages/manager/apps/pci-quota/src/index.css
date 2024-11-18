@@ -1,0 +1,28 @@
+@import '@ovh-ux/manager-react-components/dist/style.css';
+@import '@ovh-ux/manager-pci-common/dist/style.css';
+@import '@datatr-ux/ods-tailwind-config/style.css';
+@import '@datatr-ux/uxlib/style.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+button {
+  font-family: var(--ods-font-family-default);
+}
+
+.shape-input-group-label {
+  &::part(text) {
+    @apply text-[#0050d7];
+  }
+  &.active {
+    &::part(text) {
+      @apply text-[#4d5592];
+    }
+  }
+}
+
+.font-bold-class::part(text) {
+  @apply font-bold;
+}
