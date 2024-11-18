@@ -19,9 +19,9 @@ import {
   ResourceStatus,
   useVeeamBackup,
   VeeamBackupWithIam,
+  organizationList,
 } from '@ovh-ux/manager-module-vcd-api';
 import OrganizationDataProtectionTile from './OrganizationDataProtectionTile.component';
-import { organizationList } from '../../../../mocks/vcd-organization/vcd-organization.mock';
 
 vi.mock('@ovh-ux/manager-module-vcd-api', () => ({
   useVeeamBackup: vi.fn(),

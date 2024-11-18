@@ -1,6 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
+import { organizationList } from '@ovh-ux/manager-module-vcd-api';
 import { renderTest, labels } from '../../../test-utils';
-import { organizationList } from '../../../../mocks/vcd-organization/vcd-organization.mock';
 
 describe('Organizations Listing Page', () => {
   it('display the listing page if there is at least one organization', async () => {

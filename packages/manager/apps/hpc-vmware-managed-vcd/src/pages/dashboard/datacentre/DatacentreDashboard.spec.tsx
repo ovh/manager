@@ -1,6 +1,8 @@
+import {
+  organizationList,
+  datacentreList,
+} from '@ovh-ux/manager-module-vcd-api';
 import { checkTextVisibility, labels, renderTest } from '../../../test-utils';
-import { datacentreList } from '../../../../mocks/vcd-organization/vcd-datacentre.mock';
-import { organizationList } from '../../../../mocks/vcd-organization/vcd-organization.mock';
 
 describe('Datacentre Dashboard Page', () => {
   it('display the datacentre dashboard page', async () => {

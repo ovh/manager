@@ -5,8 +5,8 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { datacentreList } from '@ovh-ux/manager-module-vcd-api';
 import DatacentreUsageTile from './DatacentreUsageTile.component';
-import { datacentreList } from '../../../../mocks/vcd-organization/vcd-datacentre.mock';
 
 type TTileItem = {
   label: HTMLElement;

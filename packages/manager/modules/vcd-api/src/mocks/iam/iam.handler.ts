@@ -1,5 +1,5 @@
 import { PathParams } from 'msw';
-import { Handler } from '../../../../../../playwright-helpers';
+import { Handler } from '../../types';
 import { resourceList } from './iam.mock';
 
 const findResourceByUrn = (params: PathParams) =>

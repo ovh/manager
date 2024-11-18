@@ -1,7 +1,7 @@
 import { IamCheckResponse } from '@ovh-ux/manager-react-components';
-import { datacentreList } from '../vcd-organization/vcd-datacentre.mock';
+import { datacentreList } from '../vcd-datacentre';
 import { organizationList } from '../vcd-organization/vcd-organization.mock';
-import { iamActions } from '@/utils/iam.constants';
+import { iamActions } from '../../utils';
 
 export const resourceList: IamCheckResponse[] = [
   {
