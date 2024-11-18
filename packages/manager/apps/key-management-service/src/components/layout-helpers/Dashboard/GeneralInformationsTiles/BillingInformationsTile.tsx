@@ -2,6 +2,7 @@ import {
   ActionMenu,
   ActionMenuItem,
   ServiceDetails,
+  useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -28,6 +29,7 @@ import { TileItem } from '@/components/dashboard/tile-item/tileItem.component';
 import { TileValue } from '@/components/dashboard/tile-value/tileValue.component';
 import { TileSeparator } from '@/components/dashboard/tile-separator/tileSeparator';
 import { TileValueDate } from '@/components/dashboard/tile-value-date/tileValueDate.component';
+import { DISPLAY_CONTACTS_MANAGEMENT_KEY } from './BillingInformationsTile.constants';
 
 type BillingInformationsTileProps = {
   okmsData?: OKMS;
@@ -42,6 +44,9 @@ const BillingInformationsTile = ({
   const { trackClick, trackPage } = useOvhTracking();
   const [contactUrl, setContactUrl] = useState('');
   const [showTerminationModal, setShowTerminationModal] = useState(false);
+  const { data: availability } = useFeatureAvailability([
+    DISPLAY_CONTACTS_MANAGEMENT_KEY,
+  ]);
   const {
     shell: { navigation },
   } = useContext(ShellContext);
@@ -163,45 +168,49 @@ const BillingInformationsTile = ({
             </OsdsChip>
           </span>
         </TileItem>
-        <TileSeparator />
-        <TileItem
-          title={t('key_management_service_dashboard_field_label_contacts')}
-        >
-          {okmsService?.customer.contacts.map((contact) => {
-            return (
-              <TileValue
-                key={contact.customerCode + contact.type}
-                value={`${contact.customerCode} ${t(
-                  `key_management_service_dashboard_contact_type_${contact.type}`,
-                )}`}
-              />
-            );
-          })}
-          <div className="flex flex-row items-center">
-            <OsdsLink
-              href={contactUrl}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              onClick={() =>
-                trackClick({
-                  location: PageLocation.page,
-                  buttonType: ButtonType.externalLink,
-                  actionType: 'navigation',
-                  actions: ['contact_support'],
-                })
-              }
+        {availability?.[DISPLAY_CONTACTS_MANAGEMENT_KEY] && (
+          <>
+            <TileSeparator />
+            <TileItem
+              title={t('key_management_service_dashboard_field_label_contacts')}
             >
-              {t(
-                'key_management_service_dashboard_field_label_manage_contacts',
-              )}
-            </OsdsLink>
-            <OsdsIcon
-              className="pl-4"
-              name={ODS_ICON_NAME.ARROW_RIGHT}
-              size={ODS_ICON_SIZE.xs}
-              color={ODS_THEME_COLOR_INTENT.info}
-            ></OsdsIcon>
-          </div>
-        </TileItem>
+              {okmsService?.customer.contacts.map((contact) => {
+                return (
+                  <TileValue
+                    key={contact.customerCode + contact.type}
+                    value={`${contact.customerCode} ${t(
+                      `key_management_service_dashboard_contact_type_${contact.type}`,
+                    )}`}
+                  />
+                );
+              })}
+              <div className="flex flex-row items-center">
+                <OsdsLink
+                  href={contactUrl}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  onClick={() =>
+                    trackClick({
+                      location: PageLocation.page,
+                      buttonType: ButtonType.externalLink,
+                      actionType: 'navigation',
+                      actions: ['contact_support'],
+                    })
+                  }
+                >
+                  {t(
+                    'key_management_service_dashboard_field_label_manage_contacts',
+                  )}
+                </OsdsLink>
+                <OsdsIcon
+                  className="pl-4"
+                  name={ODS_ICON_NAME.ARROW_RIGHT}
+                  size={ODS_ICON_SIZE.xs}
+                  color={ODS_THEME_COLOR_INTENT.info}
+                ></OsdsIcon>
+              </div>
+            </TileItem>
+          </>
+        )}
       </Tile>
       {showTerminationModal && (
         <TerminateModal
