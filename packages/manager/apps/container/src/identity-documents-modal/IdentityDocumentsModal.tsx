@@ -41,7 +41,7 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
 
   const isKycAvailable = useMemo(() => Boolean(availability && availability[kycIndiaFeature] && !storage), [availability, storage]);
 
-  const { data: statusDataResponse } = useIdentityDocumentsStatus({
+  const { data: statusDataResponse, isLoading: isProcedureStatusLoading } = useIdentityDocumentsStatus({
     enabled: isKycAvailable && current === ModalTypes.kyc && window.location.href !== kycURL,
   });
 
@@ -68,16 +68,23 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
   };
 
   useEffect(() => {
-    if (!isFeatureAvailabilityLoading && !isKycAvailable && current === ModalTypes.kyc) {
-      shell.getPlugin('ux').notifyModalActionDone();
+    const shouldTryToDisplay = isKycAvailable && current === ModalTypes.kyc && window.location.href !== kycURL;
+    // We consider we have loaded all information if conditions are not respected to try to display the modal
+    const hasFullyLoaded = !shouldTryToDisplay
+      // Or procedure status is loaded
+      || !isProcedureStatusLoading;
+    // If current modal to be displayed is the kyc one and everything has loaded we can handle the display
+    if (shouldTryToDisplay && hasFullyLoaded) {
+      // If procedure's status is required we display the modal
+      if (statusDataResponse?.data?.status === requiredStatusKey) {
+        setShowModal(true);
+      }
+      // Otherwise we go to the next modal (if it exists)
+      else {
+        shell.getPlugin('ux').notifyModalActionDone();
+      }
     }
-  }, [isFeatureAvailabilityLoading, isKycAvailable, current]);
-
-  useEffect(() => {
-    if (statusDataResponse?.data?.status === requiredStatusKey) {
-      setShowModal(true);
-    }
-  }, [statusDataResponse?.data?.status]);
+  }, [isKycAvailable, current, isProcedureStatusLoading, statusDataResponse]);
 
   useEffect(() => {
     if (showModal) {
