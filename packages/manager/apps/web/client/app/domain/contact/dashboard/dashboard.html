@@ -1,5 +1,18 @@
 <div data-ui-view>
-    <h1 data-translate="domain_tab_CONTACT_title"></h1>
+    <div class="d-flex flex-wrap align-items-center justify-content-between">
+        <h1 data-translate="domain_tab_CONTACT_title"></h1>
+        <oui-guide-menu
+            data-text="{{ ::'domain_tab_CONTACT_guide_text' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-href="{{ ::$ctrl.GUIDE_URL }}"
+                data-external="true"
+                ><span
+                    data-translate="domain_tab_CONTACT_guide_manage_contact_and_services"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </div>
     <div class="text-center" data-ng-if="$ctrl.loading">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
@@ -8,25 +21,12 @@
 
     <div data-ng-if="!$ctrl.loading">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <strong
                     class="mb-2"
                     data-translate="domain_tab_CONTACT_header"
                 ></strong>
                 <p data-translate="domain_tab_CONTACT_description"></p>
-            </div>
-            <div class="col-md-2">
-                <oui-guide-menu
-                    data-text="{{ ::'domain_tab_CONTACT_guide_text' | translate }}"
-                >
-                    <oui-guide-menu-item
-                        data-href="{{ ::$ctrl.GUIDE_URL }}"
-                        data-external="true"
-                        ><span
-                            data-translate="domain_tab_CONTACT_guide_manage_contact_and_services"
-                        ></span>
-                    </oui-guide-menu-item>
-                </oui-guide-menu>
             </div>
         </div>
 

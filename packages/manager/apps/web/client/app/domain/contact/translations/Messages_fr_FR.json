@@ -12,6 +12,8 @@
   "domain_tab_CONTACT_description_technical": "Il gère les aspects techniques d'un service. Il est responsable de la définition des serveurs DNS autoritaires.",
   "domain_tab_CONTACT_description_billing": "Il gère uniquement la facturation d'un service dont ses prélèvements.",
   "domain_tab_CONTACT_description_error_message": "Une erreur est apparue",
+  "domain_tab_CONTACT_modify_error_message": "Votre demande de modification n'a pas pu aboutir. {{ errorMsg }}",
+  "domain_tab_CONTACT_modify_success_message": "Votre demande de modification a bien été prise en compte. Elle sera exécutée d'ici quelques instants",
   "domain_tab_CONTACT_guide_text": "Guide",
   "domain_tab_CONTACT_guide_manage_contact_and_services": "Gérer les contacts de ses services",
   "domain_tab_CONTACT_view_more": "Voir plus"
