@@ -3,7 +3,6 @@ import chunk from 'lodash/chunk';
 import forEachRight from 'lodash/forEachRight';
 import range from 'lodash/range';
 import set from 'lodash/set';
-import some from 'lodash/some';
 import { INPUTS_RULES } from '../../inputs/constants';
 import {
   MOUNT_POINTS,
@@ -180,6 +179,7 @@ export default class ServerInstallationOvhCtrl {
         error: {},
         availableDisks: [],
         availableArrays: [],
+        mapping: {}, // mapping diskGroupId => (hardwareRaid.profile controller id, hardwareRaid.profile disks)
       },
       remainingSize: 0,
       showAllDisk: false,
@@ -267,7 +267,23 @@ export default class ServerInstallationOvhCtrl {
     this.$scope.$watch('installation.diskGroup', (newValue) => {
       if (newValue) {
         this.$scope.installation.raidSetup = false;
+        if (
+          Object.keys(this.$scope.informations.hardwareRaid.mapping).length !==
+          0
+        ) {
+          // info is ready
+          const controllerId = this.$scope.informations.hardwareRaid.mapping[
+            newValue.diskGroupId
+          ][0];
+          if (controllerId !== null) {
+            this.$scope.installation.hardwareRaid.controller = this.$scope.informations.hardwareRaid.profile.controllers[
+              controllerId
+            ]; // set new controller raid matching new selected diskgroupid
+          }
+        }
         this.refreshDiskGroupInfos(newValue);
+        this.recalculateAvailableRaid(); // will update: installation.hardwareRaid.raid
+        this.recalculateAvailableRaidDisks();
       }
     });
 
@@ -284,7 +300,7 @@ export default class ServerInstallationOvhCtrl {
     // ------ HARDWARE RAID TOOL--------
     this.$scope.$watch('installation.hardwareRaid.controller', () => {
       this.clearHardwareRaidSpace();
-      this.recalculateAvailableRaid();
+      this.recalculateAvailableRaid(); // will update: installation.hardwareRaid.raid
     });
 
     this.$scope.$watch('installation.hardwareRaid.raid', () => {
@@ -501,13 +517,49 @@ export default class ServerInstallationOvhCtrl {
 
   // ------STEP Hard Raid------
 
+  generateHardwareRaidControllersMapping() {
+    const mapping = {};
+    this.$scope.informations.diskGroups.forEach((diskGroup) => {
+      if (diskGroup.raidController === null) {
+        mapping[diskGroup.diskGroupId] = [null, null];
+      } else {
+        this.$scope.informations.hardwareRaid.profile.controllers.forEach(
+          (controller, controllerId) => {
+            for (
+              let controllerArrayId = 0;
+              controllerArrayId < controller.disks.length;
+              controllerArrayId += 1
+            ) {
+              if (
+                diskGroup.diskGroupId ===
+                controller.disks[controllerArrayId].diskGroupId
+              ) {
+                // same characteristics, we have the mapping diskGroupId => (hardwareRaid.profile controller id, hardwareRaid.profile disks)
+                mapping[diskGroup.diskGroupId] = [
+                  controllerId,
+                  controllerArrayId,
+                ];
+                controllerArrayId = controller.disks.length; // we have found what we want we can exit here
+              }
+            }
+          },
+        );
+      }
+    });
+    this.$scope.informations.hardwareRaid.mapping = mapping;
+  }
+
   getHardwareRaidProfile() {
     return this.Server.getHardwareRaidProfile(this.$stateParams.productId).then(
       (raidProfile) => {
         this.$scope.informations.hardwareRaid.profile = raidProfile;
-        if (some(raidProfile?.controllers)) {
-          [this.$scope.installation.hardwareRaid.controller] =
-            raidProfile.controllers || [];
+        this.generateHardwareRaidControllersMapping();
+        const controllerId = this.$scope.informations.hardwareRaid.mapping[
+          this.$scope.installation.diskGroup.diskGroupId
+        ][0];
+        if (controllerId !== null) {
+          this.$scope.installation.hardwareRaid.controller =
+            raidProfile.controllers[controllerId];
         }
       },
     );
@@ -1686,8 +1738,15 @@ export default class ServerInstallationOvhCtrl {
 
   recalculateAvailableRaid() {
     if (this.$scope.installation.hardwareRaid.controller) {
-      const nbOfDisk = this.$scope.installation.hardwareRaid.controller.disks[0]
-        .names.length;
+      const controllerArrayId = this.$scope.informations.hardwareRaid.mapping[
+        this.$scope.installation.diskGroup.diskGroupId
+      ][1];
+      if (controllerArrayId === null) {
+        return; // selected diskGroup doesn't have any raidController
+      }
+      const nbOfDisk = this.$scope.installation.hardwareRaid.controller.disks[
+        controllerArrayId
+      ].names.length;
       this.$scope.installation.hardwareRaid.raid = null;
       this.$scope.informations.hardwareRaid.availableDisks = [];
       this.$scope.informations.hardwareRaid.availableRaids = [];
@@ -1727,6 +1786,9 @@ export default class ServerInstallationOvhCtrl {
         this.$scope.informations.hardwareRaid.availableRaids.push(
           this.$scope.constants.warningRaid1,
         );
+        if (!this.$scope.installation.hardwareRaid.raid) {
+          this.$scope.installation.hardwareRaid.raid = this.$scope.constants.warningRaid1; // set a default value to be ergonomic
+        }
         this.$scope.informations.hardwareRaid.availableRaids.push(
           this.$scope.constants.warningRaid0,
         );
@@ -1736,8 +1798,15 @@ export default class ServerInstallationOvhCtrl {
 
   recalculateAvailableRaidDisks() {
     if (this.$scope.installation.hardwareRaid.controller) {
-      const nbOfDisk = this.$scope.installation.hardwareRaid.controller.disks[0]
-        .names.length;
+      const controllerArrayId = this.$scope.informations.hardwareRaid.mapping[
+        this.$scope.installation.diskGroup.diskGroupId
+      ][1];
+      if (controllerArrayId === null) {
+        return; // selected diskGroup doesn't have any raidController
+      }
+      const nbOfDisk = this.$scope.installation.hardwareRaid.controller.disks[
+        controllerArrayId
+      ].names.length;
       let minDisks = 1;
       let minDisksPerArray = 1;
       this.$scope.informations.hardwareRaid.availableDisks = [];
@@ -1774,9 +1843,12 @@ export default class ServerInstallationOvhCtrl {
         default:
           minDisks = 1;
       }
-
-      for (let i = minDisks; i < nbOfDisk + 1; i += minDisksPerArray) {
+      let i = 0;
+      for (i = minDisks; i < nbOfDisk + 1; i += minDisksPerArray) {
         this.$scope.informations.hardwareRaid.availableDisks.push(i);
+      }
+      if (i > minDisks && i - 1 <= nbOfDisk) {
+        this.$scope.installation.hardwareRaid.disks = i - 1; // set a default value to be ergonomic
       }
     }
   }
@@ -1786,8 +1858,11 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.installation.hardwareRaid.disks &&
       this.$scope.installation.hardwareRaid.controller
     ) {
+      const controllerArrayId = this.$scope.informations.hardwareRaid.mapping[
+        this.$scope.installation.diskGroup.diskGroupId
+      ][1];
       let maxNumberArray = this.$scope.installation.hardwareRaid.controller
-        .disks[0].names.length;
+        .disks[controllerArrayId].names.length;
       let minNumberArray = 1;
       let isMultipleArrays = false;
       this.$scope.informations.hardwareRaid.availableArrays = [];
@@ -1833,9 +1908,14 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.installation.hardwareRaid.arrays &&
       this.$scope.installation.hardwareRaid.controller
     ) {
+      const controllerArrayId = this.$scope.informations.hardwareRaid.mapping[
+        this.$scope.installation.diskGroup.diskGroupId
+      ][1];
       const diskSize = Math.round(
         ServerInstallationOvhCtrl.toBytes(
-          this.$scope.installation.hardwareRaid.controller.disks[0].capacity,
+          this.$scope.installation.hardwareRaid.controller.disks[
+            controllerArrayId
+          ].capacity,
         ) /
           1024 /
           1024,
@@ -1895,14 +1975,17 @@ export default class ServerInstallationOvhCtrl {
   }
 
   prepareDiskList() {
+    const controllerArrayId = this.$scope.informations.hardwareRaid.mapping[
+      this.$scope.installation.diskGroup.diskGroupId
+    ][1];
+
     const disksPerArray =
       this.$scope.installation.hardwareRaid.disks /
       this.$scope.installation.hardwareRaid.arrays;
     if (this.$scope.installation.hardwareRaid.arrays === 1) {
-      return this.$scope.installation.hardwareRaid.controller.disks[0].names.slice(
-        0,
-        this.$scope.installation.hardwareRaid.disks,
-      );
+      return this.$scope.installation.hardwareRaid.controller.disks[
+        controllerArrayId
+      ].names.slice(0, this.$scope.installation.hardwareRaid.disks);
     }
 
     // API expect something like this...:
@@ -1913,10 +1996,9 @@ export default class ServerInstallationOvhCtrl {
     //    "[c0:d9, c0:d10, c0:d11]"
     // ]
     return chunk(
-      this.$scope.installation.hardwareRaid.controller.disks[0].names.slice(
-        0,
-        this.$scope.installation.hardwareRaid.disks,
-      ),
+      this.$scope.installation.hardwareRaid.controller.disks[
+        controllerArrayId
+      ].names.slice(0, this.$scope.installation.hardwareRaid.disks),
       disksPerArray,
     ).map((elem) => `[${elem.toString()}]`);
   }
