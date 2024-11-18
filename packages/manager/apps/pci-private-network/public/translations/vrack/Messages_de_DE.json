@@ -8,5 +8,5 @@
   "pci_projects_project_network_private_vrack_create_cancel": "Abbrechen",
   "pci_projects_project_network_private_vrack_create_init_error": "Beim Laden der Informationen ist ein Fehler aufgetreten: {{ message }}",
   "pci_projects_project_network_private_vrack_create_error": "Bei der Aktivierung des vRack ist ein Fehler aufgetreten: {{message}}",
-  "pci_projects_project_network_private_vrack_pending": "vRack wird aktiviert. Dieser Vorgang kann einige Minuten dauern"
+  "pci_projects_project_network_private_vrack_pending": "Ihr vRack wird aktiviert. Dieser Vorgang kann einige Minuten in Anspruch nehmen."
 }
