@@ -6482,83 +6482,10 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-components@18.3.0":
+"@ovhcloud/ods-components@^18.3.0":
   version "18.3.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.3.0.tgz#f5fa856bb45ad7df3ebe421d64ab334f41c7206c"
   integrity sha512-E2bDV7RDnNty8fR7Fbvkxug2pySmsy4BQIt9rY0VTZWtcbaUlazmKbr+l+TjeL7vRxiPR4+9xLidI1kwt26O9A==
-  dependencies:
-    "@floating-ui/dom" "1.6.11"
-    "@stencil/core" "4.16.0"
-    google-libphonenumber "3.2.35"
-    tom-select "2.3.1"
-    tslib "2.6.3"
-    vanillajs-datepicker "1.3.4"
-
-"@ovhcloud/ods-components@18.4.1", "@ovhcloud/ods-components@^18.4.1":
-  version "18.4.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.4.1.tgz#44e21d23fbf844348e94b966d2aa5c38d8376dc8"
-  integrity sha512-aS7BArn0691hyHAn2/ND/7XYIX01gAmVCSvEl8uT9umT4iDDvodipkWRtGxBUin6ndvyED1Jx0BfCbtYsrKPeQ==
-  dependencies:
-    "@floating-ui/dom" "1.6.11"
-    "@stencil/core" "4.16.0"
-    google-libphonenumber "3.2.35"
-    tom-select "2.3.1"
-    tslib "2.6.3"
-    vanillajs-datepicker "1.3.4"
-
-"@ovhcloud/ods-components@18.5.3", "@ovhcloud/ods-components@^18.5.3":
-  version "18.5.3"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.5.3.tgz#fdda4b29372bcb29b490cd450a450f03ecbbd500"
-  integrity sha512-+Ic1Uh15NHokvcyyejU5ChfG0kC8pqN9T0v8lx1HUyHdNKuXjuSjP3v1RGZuN1OxvvG8WgtaF3kjwSaj2eMZ1w==
-  dependencies:
-    "@floating-ui/dom" "1.6.11"
-    "@stencil/core" "4.16.0"
-    google-libphonenumber "3.2.35"
-    tom-select "2.3.1"
-    tslib "2.6.3"
-    vanillajs-datepicker "1.3.4"
-
-"@ovhcloud/ods-components@18.6.1":
-  version "18.6.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.1.tgz#69160c8945e6374aef08a257ca8c609a1cdc2661"
-  integrity sha512-AVgmYtJI8Um60/zf9wLiUWpjzbQt/ZBR4kZUnt85XnhZVLEjNtI6mtphTnpT4VNXzvR69yOfgBESWO3BWLCujQ==
-  dependencies:
-    "@floating-ui/dom" "1.6.11"
-    "@stencil/core" "4.16.0"
-    google-libphonenumber "3.2.35"
-    mark.js "8.11.1"
-    tom-select "2.3.1"
-    tslib "2.6.3"
-    vanillajs-datepicker "1.3.4"
-
-"@ovhcloud/ods-components@^18.5.0":
-  version "18.5.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.5.0.tgz#f5b9d3ace2dafab19340e1457a0d113ccb09a52c"
-  integrity sha512-578ljWS0bQOROt2LTFMDVP8NIaSXu1K8OjqzaXnSBdw1sL/zbKCmtsvYMyaAuOTRK1iwYqL7BI45L2IIu9J4ig==
-  dependencies:
-    "@floating-ui/dom" "1.6.11"
-    "@stencil/core" "4.16.0"
-    google-libphonenumber "3.2.35"
-    tom-select "2.3.1"
-    tslib "2.6.3"
-    vanillajs-datepicker "1.3.4"
-
-"@ovhcloud/ods-components@^18.5.1":
-  version "18.5.1"
-  resolved "https://registry.npmjs.org/@ovhcloud/ods-components/-/ods-components-18.5.1.tgz#2cd471856178f6f49c5056658626c27d8f86f020"
-  integrity sha512-PrwAuXAVF8CwhdVQGOO59ZVVlmP05WBsLDmoorGkw57qb9rodggdUYFwocmAuntAf7bzMc//oi1oFf78znQkzA==
-  dependencies:
-    "@floating-ui/dom" "1.6.11"
-    "@stencil/core" "4.16.0"
-    google-libphonenumber "3.2.35"
-    tom-select "2.3.1"
-    tslib "2.6.3"
-    vanillajs-datepicker "1.3.4"
-
-"@ovhcloud/ods-components@^18.6.2":
-  version "18.6.2"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.2.tgz#eac36f664d0a5f7773dde14addd7db9db1346f7f"
-  integrity sha512-lLkTN+EwAhx/aqa50WwZ56ivhr1swpA+cgiTwtSwSWbXGoyPl0kwaWXtD6Sa5bh2Rrm8uw01tV4HawPM+dlScQ==
   dependencies:
     "@floating-ui/dom" "1.6.11"
     "@stencil/core" "4.16.0"
@@ -6582,40 +6509,10 @@
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-themes@18.3.0":
+"@ovhcloud/ods-themes@^18.3.0":
   version "18.3.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.3.0.tgz#804e3502e6791f7ec2efc24abb107d27cd4e02e0"
   integrity sha512-mTxtcM4tCUPk98x65PeslXqGONJraTryXgkbgbZuvtOYf9SgVl+zFJfyisD2sYGuJvVf6hJP1NvJkyrxOUqtSw==
-
-"@ovhcloud/ods-themes@18.4.1", "@ovhcloud/ods-themes@^18.4.1":
-  version "18.4.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.4.1.tgz#1c8dfeff1ba0b829fd61e8dea41af4cdbed46912"
-  integrity sha512-bezBp/Bgbo19IFPJ/+a/bFt2IArjq8wGrHPshpk/bVVZsxkgpAiUfRERmftU+l7gYU3e+yvFdopNL6eRaJDPWQ==
-
-"@ovhcloud/ods-themes@18.5.3", "@ovhcloud/ods-themes@^18.5.3":
-  version "18.5.3"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.5.3.tgz#44f2b4c565e2c63d487dc3865d2558b11726bc2c"
-  integrity sha512-y3uhYsQvdyx/aJBBKjN899U23FmNq2oFBJRG7VZ3PBrR6TKUuEx4kGKIIE9Lr7Fpw75ayYhuXTLM1gVA5308dA==
-
-"@ovhcloud/ods-themes@18.6.1":
-  version "18.6.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.1.tgz#76c786202b5c8d5c259b0b7a709ed8634f5b2b38"
-  integrity sha512-22puEiRx+jwUtICpoFs5PO15r62CdwRxSSlZboM+RySeOtGM7KZwg9AA2PBs9Cjm9XHDimtZxoHvL8cr6vsHFw==
-
-"@ovhcloud/ods-themes@^18.5.0":
-  version "18.5.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.5.0.tgz#0da59e081ee1db44dadf5c3a63e49f73fc280ea3"
-  integrity sha512-PAwRtQOYQ1mVVP1RMt2J65NMf7tRbk+jDEf46jUWwRsS2gFuzNrwH3pfgKk4G/nksZ5exTKNL0MeC/fLLVr4Wg==
-
-"@ovhcloud/ods-themes@^18.5.1":
-  version "18.5.1"
-  resolved "https://registry.npmjs.org/@ovhcloud/ods-themes/-/ods-themes-18.5.1.tgz#392a5b3c380d1ea2b4195242a1a70dfdba0e0c6d"
-  integrity sha512-5LRplIJcchtgx8qBvs/XR0FkGxd1QM/xt6+otGJsJj/G8/0ZVT6gQGlJ6Pim/5yUfZCtXKFX79+56jS9fHXRVA==
-
-"@ovhcloud/ods-themes@^18.6.2":
-  version "18.6.2"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.2.tgz#a30da060530c4e7c2e95610ce49a858fc03cfa15"
-  integrity sha512-RSn1FGXc5szaGn/Jz/Pu2ww85KKboaX3VgCFDmYMyv1EC6QNBIYoTItOBMT2Xkvmv2xsnFnCCphI0D/sXSjVGQ==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -7631,11 +7528,6 @@
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.21.0.tgz#c65ae4262bdcfe415dbd4f64ec87676e4a56e2b5"
   integrity sha512-xfSkCAchbdG5PnbrKqFWwia4Bi61nH+wm8wLEqfHDyp7Y3dZzgqS2itV8i4gAq9pC2HsTpwyBC6Ds8VHZ96JlA==
 
-"@remix-run/router@1.22.0":
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.22.0.tgz#dd8096cb055c475a4de6b35322b8d3b118c17b43"
-  integrity sha512-MBOl8MeOzpK0HQQQshKB7pABXbmyHizdTpqnrIseTbsv0nAepwC2ENZa1aaBExNQcpLoXmWthhak8SABLzvGPw==
-
 "@remix-run/router@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.9.0.tgz#9033238b41c4cbe1e961eccb3f79e2c588328cf6"
@@ -8470,10 +8362,10 @@
   resolved "https://registry.npmjs.org/@stencil/core/-/core-4.16.0.tgz#79c430d5875e0ce3a7666607b6fb53512890577b"
   integrity sha512-gXaC5IrquV/Hw5JIZTCWkM5lJEbBQtnvHLhDebjar6A6+YBqxah04dardS+YUNVuRbnE6Hcja7KKiAXT3oVsvw==
 
-"@storybook/addon-actions@8.6.12":
-  version "8.6.12"
-  resolved "https://registry.npmjs.org/@storybook/addon-actions/-/addon-actions-8.6.12.tgz#b3a0ded04e0318f9dcad12c8946ae66426e0700e"
-  integrity sha512-B5kfiRvi35oJ0NIo53CGH66H471A3XTzrfaa6SxXEJsgxxSeKScG5YeXcCvLiZfvANRQ7QDsmzPUgg0o3hdMXw==
+"@storybook/addon-actions@7.5.3":
+  version "7.5.3"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-7.5.3.tgz#e0d0d819488d1d19918b23469b3ea6610fee5f07"
+  integrity sha512-v3yL6Eq/jCiXfA24JjRdbEQUuorms6tmrywaKcd1tAy4Ftgof0KHB4tTcTyiajrI5bh6PVJoRBkE8IDqmNAHkA==
   dependencies:
     "@storybook/global" "^5.0.0"
     "@types/uuid" "^9.0.1"
@@ -8528,17 +8420,10 @@
     "@storybook/addon-viewport" "8.6.12"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-highlight@8.6.12":
-  version "8.6.12"
-  resolved "https://registry.npmjs.org/@storybook/addon-highlight/-/addon-highlight-8.6.12.tgz#3d65f89ef46a0b50b1c256b44a6f0be6572303dc"
-  integrity sha512-9FITVxdoycZ+eXuAZL9ElWyML/0fPPn9UgnnAkrU7zkMi+Segq/Tx7y+WWanC5zfWZrXAuG6WTOYEXeWQdm//w==
-  dependencies:
-    "@storybook/global" "^5.0.0"
-
-"@storybook/addon-interactions@^8.6.7":
-  version "8.6.12"
-  resolved "https://registry.npmjs.org/@storybook/addon-interactions/-/addon-interactions-8.6.12.tgz#04fadf3809a6afdfa0ab38c52ca0584253f107dd"
-  integrity sha512-cTAJlTq6uVZBEbtwdXkXoPQ4jHOAGKQnYSezBT4pfNkdjn/FnEeaQhMBDzf14h2wr5OgBnJa6Lmd8LD9ficz4A==
+"@storybook/addon-interactions@7.5.3":
+  version "7.5.3"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-interactions/-/addon-interactions-7.5.3.tgz#5aef96b3fa24aaafb88c0fc501f6a7e8cfa2a342"
+  integrity sha512-gD3cU8sYSM/mdbA9ooYIb4c689JkDsJbZ17vfYJ5RjNkSmqKehybdpZOfkj27sVIyFtmscSi75t+pzK4Pv4rZw==
   dependencies:
     "@storybook/global" "^5.0.0"
     "@storybook/instrumenter" "8.6.12"
@@ -9153,15 +9038,10 @@
   resolved "https://registry.yarnpkg.com/@tanstack/query-devtools/-/query-devtools-5.51.16.tgz#d855d00e7939c1a442c2e8ae3ad1a5bd603d003b"
   integrity sha512-ajwuq4WnkNCMj/Hy3KR8d3RtZ6PSKc1dD2vs2T408MdjgKzQ3klVoL6zDgVO7X+5jlb5zfgcO3thh4ojPhfIaw==
 
-"@tanstack/query-devtools@5.65.0":
-  version "5.65.0"
-  resolved "https://registry.yarnpkg.com/@tanstack/query-devtools/-/query-devtools-5.65.0.tgz#37da5e911543b4f6d98b9a04369eab0de6044ba1"
-  integrity sha512-g5y7zc07U9D3esMdqUfTEVu9kMHoIaVBsD0+M3LPdAdD710RpTcLiNvJY1JkYXqkq9+NV+CQoemVNpQPBXVsJg==
-
-"@tanstack/query-devtools@5.72.2":
-  version "5.72.2"
-  resolved "https://registry.npmjs.org/@tanstack/query-devtools/-/query-devtools-5.72.2.tgz#35a8bc7951d31cfdbbed1f7774909a61c60f35ef"
-  integrity sha512-mMKnGb+iOhVBcj6jaerCFRpg8pACStdG8hmUBHPtToeZzs4ctjBUL1FajqpVn2WaMxnq8Wya+P3Q5tPFNM9jQw==
+"@tanstack/query-devtools@5.59.20":
+  version "5.59.20"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-devtools/-/query-devtools-5.59.20.tgz#a827ac682ec1268fc9c99e7b6eb739f35b5606aa"
+  integrity sha512-vxhuQ+8VV4YWQSFxQLsuM+dnEKRY7VeRzpNabFXdhEwsBYLrjXlF1pM38A8WyKNLqZy8JjyRO8oP4Wd/oKHwuQ==
 
 "@tanstack/react-query-devtools@5.29.2":
   version "5.29.2"
@@ -9184,12 +9064,12 @@
   dependencies:
     "@tanstack/query-devtools" "5.51.16"
 
-"@tanstack/react-query-devtools@^5.69.0":
-  version "5.72.2"
-  resolved "https://registry.npmjs.org/@tanstack/react-query-devtools/-/react-query-devtools-5.72.2.tgz#e84bd3ccfd3e21cb9b86d83ace13469e612ffde3"
-  integrity sha512-n53qr9JdHCJTCUba6OvMhwiV2CcsckngOswKEE7nM5pQBa/fW9c43qw8omw1RPT2s+aC7MuwS8fHsWT8g+j6IQ==
+"@tanstack/react-query-devtools@^5.50.1":
+  version "5.60.5"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-5.60.5.tgz#fe398b4896a292fbe835d3fd4799e929de94c25a"
+  integrity sha512-lzANl0ih3CNKBGUoXhhkAAHI1Y4Yqs9Jf3iuTUsGiPpmF0RWXTeYFaQxc+h1PhJz3VwYrIYCwmPoNts0mSjSuA==
   dependencies:
-    "@tanstack/query-devtools" "5.72.2"
+    "@tanstack/query-devtools" "5.59.20"
 
 "@tanstack/react-query@5.51.11":
   version "5.51.11"
@@ -25019,12 +24899,12 @@ react-responsive@^9.0.0-beta.6:
     shallow-equal "^1.2.1"
 
 react-router-dom@^6.24.1:
-  version "6.29.0"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.29.0.tgz#2ffb56b03ef3d6d6daafcfad9f3922132d2ced94"
-  integrity sha512-pkEbJPATRJ2iotK+wUwHfy0xs2T59YPEN8BQxVCPeBZvK7kfPESRc/nyxzdcxR17hXgUPYx2whMwl+eo9cUdnQ==
+  version "6.28.0"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.28.0.tgz#f73ebb3490e59ac9f299377062ad1d10a9f579e6"
+  integrity sha512-kQ7Unsl5YdyOltsPGl31zOjLrDv+m2VcIEcIHqYYD3Lp0UppLjrzcfJqDJwXxFw3TH/yvapbnUvPlAj7Kx5nbg==
   dependencies:
-    "@remix-run/router" "1.22.0"
-    react-router "6.29.0"
+    "@remix-run/router" "1.21.0"
+    react-router "6.28.0"
 
 react-router-dom@^6.25.1:
   version "6.26.2"
@@ -25070,13 +24950,6 @@ react-router@6.28.0:
   integrity sha512-HrYdIFqdrnhDw0PqG/AKjAqEqM7AvxCz0DQ4h2W8k6nqmc5uRBYDag0SBxx9iYz5G8gnuNVLzUe13wl9eAsXXg==
   dependencies:
     "@remix-run/router" "1.21.0"
-
-react-router@6.29.0:
-  version "6.29.0"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.29.0.tgz#14a329ca838b4de048fc5cca82874b727ee546b7"
-  integrity sha512-DXZJoE0q+KyeVw75Ck6GkPxFak63C4fGqZGNijnWgzB/HzSP1ZfTlBj5COaGWwhrMQ/R8bXiq5Ooy4KG+ReyjQ==
-  dependencies:
-    "@remix-run/router" "1.22.0"
 
 react-router@^6.21.3:
   version "6.22.1"
@@ -30892,8 +30765,3 @@ zwitch@^1.0.0:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/zwitch/-/zwitch-1.0.5.tgz#d11d7381ffed16b742f6af7b3f223d5cd9fe9920"
   integrity sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==
-
-zwitch@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/zwitch/-/zwitch-2.0.4.tgz#c827d4b0acb76fc3e685a4c6ec2902d51070e9d7"
-  integrity sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==
