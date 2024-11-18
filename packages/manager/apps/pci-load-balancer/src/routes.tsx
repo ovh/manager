@@ -186,6 +186,9 @@ const Routes = (
     path={ROUTE_PATHS.ROOT}
     Component={LayoutPage}
     errorElement={<ErrorBoundary />}
+    handle={{
+      tracking: 'loadbalancer',
+    }}
   >
     <Route path="" element={<Navigate to={ROUTE_PATHS.LISTING} replace />} />
     <Route path={ROUTE_PATHS.ONBOARDING} Component={OnBoardingPage}>
@@ -200,27 +203,74 @@ const Routes = (
     <Route
       path="create"
       Component={lazy(() => import('@/pages/create/Create.page'))}
+      handle={{
+        tracking: 'add',
+      }}
     />
-    <Route path="" element={<Navigate to={ROUTE_PATHS.LISTING} replace />} />
-    <Route path={ROUTE_PATHS.L7} Component={L7Page}>
+    <Route
+      path={ROUTE_PATHS.L7}
+      Component={L7Page}
+      handle={{
+        tracking: 'listeners::policies',
+      }}
+    >
       <Route path="" element={<Navigate to={ROUTE_PATHS.L7_LIST} replace />} />
-      <Route path={ROUTE_PATHS.L7_CREATE} Component={L7PoliciesCreatePage} />
-      <Route path={ROUTE_PATHS.L7_EDIT} Component={L7PoliciesEditPage} />
+      <Route
+        path={ROUTE_PATHS.L7_CREATE}
+        Component={L7PoliciesCreatePage}
+        handle={{
+          tracking: 'add',
+        }}
+      />
+      <Route
+        path={ROUTE_PATHS.L7_EDIT}
+        Component={L7PoliciesEditPage}
+        handle={{
+          tracking: 'edit',
+        }}
+      />
       <Route path={ROUTE_PATHS.L7_LIST} Component={L7PoliciesListPage}>
-        <Route path={ROUTE_PATHS.L7_DELETE} Component={L7PoliciesDeletePage} />
+        <Route
+          path={ROUTE_PATHS.L7_DELETE}
+          Component={L7PoliciesDeletePage}
+          handle={{
+            tracking: 'delete',
+          }}
+        />
       </Route>
     </Route>
-    <Route path={ROUTE_PATHS.L7_RULES} Component={L7RulesPage}>
+    <Route
+      path={ROUTE_PATHS.L7_RULES}
+      Component={L7RulesPage}
+      handle={{
+        tracking: 'listeners::policies::rules',
+      }}
+    >
       <Route
         path=""
         element={<Navigate to={ROUTE_PATHS.L7_RULES_LIST} replace />}
       />
-      <Route path={ROUTE_PATHS.L7_RULES_CREATE} Component={L7RulesCreatePage} />
-      <Route path={ROUTE_PATHS.L7_RULES_EDIT} Component={L7RulesEditPage} />
+      <Route
+        path={ROUTE_PATHS.L7_RULES_CREATE}
+        Component={L7RulesCreatePage}
+        handle={{
+          tracking: 'add',
+        }}
+      />
+      <Route
+        path={ROUTE_PATHS.L7_RULES_EDIT}
+        Component={L7RulesEditPage}
+        handle={{
+          tracking: 'add',
+        }}
+      />
       <Route path={ROUTE_PATHS.L7_RULES_LIST} Component={L7PRulesListPage}>
         <Route
           path={ROUTE_PATHS.L7_RULES_DELETE}
           Component={L7RulesDeletePage}
+          handle={{
+            tracking: 'delete',
+          }}
         />
       </Route>
     </Route>
@@ -228,12 +278,21 @@ const Routes = (
       id="pools-detail"
       path={ROUTE_PATHS.POOL_DETAIL}
       Component={PoolDetailPage}
+      handle={{
+        tracking: 'detail::pools',
+      }}
     >
       <Route
         path=""
         element={<Navigate to={ROUTE_PATHS.GENERAL_INFORMATION} replace />}
       />
-      <Route path={ROUTE_PATHS.POOL_MEMBERS} Component={PoolsMembersPage}>
+      <Route
+        path={ROUTE_PATHS.POOL_MEMBERS}
+        Component={PoolsMembersPage}
+        handle={{
+          tracking: 'members',
+        }}
+      >
         <Route
           path=""
           element={<Navigate to={ROUTE_PATHS.POOL_MEMBERS_LIST} replace />}
@@ -245,15 +304,24 @@ const Routes = (
           <Route
             path={ROUTE_PATHS.POOL_MEMBERS_DELETE}
             Component={PoolsMembersDeletePage}
+            handle={{
+              tracking: 'delete',
+            }}
           />
 
           <Route
             path={ROUTE_PATHS.POOL_MEMBERS_EDIT}
             Component={PoolsMembersEditPage}
+            handle={{
+              tracking: 'edit',
+            }}
           />
           <Route
             path={ROUTE_PATHS.POOL_MEMBERS_CREATE}
             Component={PoolsMembersCreatePage}
+            handle={{
+              tracking: 'add',
+            }}
           />
         </Route>
         <Route
@@ -265,45 +333,76 @@ const Routes = (
         id="pools-detail-general-information"
         path={ROUTE_PATHS.GENERAL_INFORMATION}
         Component={PoolOverviewPage}
+        handle={{
+          tracking: 'overview',
+        }}
       >
         <Route
           id="pool-detail-delete"
           path={ROUTE_PATHS.POOL_DELETE}
           Component={PoolDeletePage}
+          handle={{
+            tracking: 'delete',
+          }}
         />
         <Route
           path={ROUTE_PATHS.POOLS_EDIT_NAME}
           Component={PoolEditNamePage}
+          handle={{
+            tracking: 'edit',
+          }}
         />
       </Route>
       <Route
         id="pools-detail-health-monitor"
         path={ROUTE_PATHS.POOL_HEALTH_MONITOR}
         Component={PoolHealthMonitorPage}
+        handle={{
+          tracking: 'health-monitor',
+        }}
       >
         <Route
           id="health-monitor-delete"
           path={ROUTE_PATHS.POOL_DELETE}
           Component={HealthMonitorDeletePage}
+          handle={{
+            tracking: 'delete',
+          }}
         />
         <Route
           id="health-monitor-rename"
           path={ROUTE_PATHS.POOL_HEALTH_MONITOR_EDIT_NAME}
           Component={HealthMonitorEditNamePage}
+          handle={{
+            tracking: 'edit-name',
+          }}
         />
       </Route>
       <Route
         id="health-monitor-create"
         path={ROUTE_PATHS.POOL_HEALTH_MONITOR_CREATE}
         Component={HealthMonitorCreatePage}
+        handle={{
+          tracking: 'add',
+        }}
       />
       <Route
         id="health-monitor-edit"
         path={ROUTE_PATHS.POOL_HEALTH_MONITOR_EDIT}
         Component={HealthMonitorEditPage}
+        handle={{
+          tracking: 'edit',
+        }}
       />
     </Route>
-    <Route id="detail" path={ROUTE_PATHS.DETAIL} Component={DetailPage}>
+    <Route
+      id="detail"
+      path={ROUTE_PATHS.DETAIL}
+      Component={DetailPage}
+      handle={{
+        tracking: 'detail',
+      }}
+    >
       <Route
         path=""
         element={<Navigate to={ROUTE_PATHS.GENERAL_INFORMATION} replace />}
@@ -316,12 +415,18 @@ const Routes = (
         <Route
           path={ROUTE_PATHS.EDIT_NAME_LOAD_BALANCER}
           Component={EditLoadBalancerNamePage}
+          handle={{
+            tracking: 'rename',
+          }}
         />
       </Route>
       <Route
         id="detail-listeners"
         path={ROUTE_PATHS.LISTENERS}
         Component={ListenersPage}
+        handle={{
+          tracking: 'listeners',
+        }}
       >
         <Route
           path=""
@@ -336,20 +441,36 @@ const Routes = (
             id="listener-delete"
             path={ROUTE_PATHS.LISTENER_DELETE}
             Component={DeleteListenerPage}
+            handle={{
+              tracking: 'delete',
+            }}
           />
         </Route>
         <Route
           id="listener-create"
           path={ROUTE_PATHS.LISTENER_CREATE}
           Component={ListenersCreatePage}
+          handle={{
+            tracking: 'add',
+          }}
         />
         <Route
           id="listener-edit"
           path={ROUTE_PATHS.LISTENER_EDIT}
           Component={ListenersEditPage}
+          handle={{
+            tracking: 'edit',
+          }}
         />
       </Route>
-      <Route id="detail-pools" path={ROUTE_PATHS.POOLS} Component={PoolsPage}>
+      <Route
+        id="detail-pools"
+        path={ROUTE_PATHS.POOLS}
+        Component={PoolsPage}
+        handle={{
+          tracking: 'pools',
+        }}
+      >
         <Route
           path=""
           element={<Navigate to={ROUTE_PATHS.POOL_LIST} replace />}
@@ -363,17 +484,26 @@ const Routes = (
             id="pool-delete"
             path={ROUTE_PATHS.POOL_DELETE}
             Component={PoolDeletePage}
+            handle={{
+              tracking: 'delete',
+            }}
           />
         </Route>
         <Route
           id="pools-create"
           path={ROUTE_PATHS.POOLS_CREATE}
           Component={PoolsCreatePage}
+          handle={{
+            tracking: 'add',
+          }}
         />
         <Route
           id="pools-edit"
           path={ROUTE_PATHS.POOLS_EDIT}
           Component={PoolsEditPage}
+          handle={{
+            tracking: 'edit',
+          }}
         />
       </Route>
 
@@ -387,8 +517,22 @@ const Routes = (
         path={ROUTE_PATHS.CERTIFICATES}
         Component={CertificatesPage}
       />
-      <Route id="detail-logs" path={ROUTE_PATHS.LOGS} Component={LogsPage} />
-      <Route id="streams" path={ROUTE_PATHS.STREAMS} Component={StreamsPage} />
+      <Route
+        id="detail-logs"
+        path={ROUTE_PATHS.LOGS}
+        Component={LogsPage}
+        handle={{
+          tracking: 'logs',
+        }}
+      />
+      <Route
+        id="streams"
+        path={ROUTE_PATHS.STREAMS}
+        Component={StreamsPage}
+        handle={{
+          tracking: 'logs::data-streams',
+        }}
+      />
     </Route>
     <Route path="" element={<>Page not found</>}></Route>
   </Route>
