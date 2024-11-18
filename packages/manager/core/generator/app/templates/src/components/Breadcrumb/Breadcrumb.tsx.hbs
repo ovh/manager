@@ -10,7 +10,7 @@ import {
 } from '@/hooks/breadcrumb/useBreadcrumb';
 {{#if isPCI}}
 import { useParams } from 'react-router-dom';
-import { useProject } from '@/data/hooks/pci/useProject';
+import { useProject } from '@ovh-ux/manager-pci-common';
 {{/if}}
 import appConfig from '@/{{appName}}.config';
 
@@ -25,7 +25,7 @@ function Breadcrumb({ customRootLabel }: BreadcrumbProps): JSX.Element {
 
   {{#if isPCI}}
   const { projectId } = useParams();
-  const { project } = useProject({ projectId });
+  const { data: project } = useProject(projectId);
 
   if (project) {
     const breadcrumbPci = usePciBreadcrumb({
