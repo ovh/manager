@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.10.2...@ovh-ux/manager-key-management-service-app@0.11.0) (2024-11-18)
+
+
+### Bug Fixes
+
+* **kms:** change iam perm on serviceKeys ([83816c7](https://github.com/ovh/manager/commit/83816c71a4e7ef70fedc0fd5ebe375da48842f7e))
+* **kms:** fix credential confirm page ([8c34594](https://github.com/ovh/manager/commit/8c345942736794321d2f98d9bc040e2f095f2f68))
+* **kms:** fix credential page word wrap ([e90c559](https://github.com/ovh/manager/commit/e90c5593064f257abf3e0a61b7c49da98f25731d))
+* **kms:** use <Region /> component ([3d43c51](https://github.com/ovh/manager/commit/3d43c512371a80838cc0e3c7a227580a618b6d36))
+
+
+### Features
+
+* **kms:** add tracking batch 2 and 3 ([50a392a](https://github.com/ovh/manager/commit/50a392a55c61edfaecf561fea24e603c224f1502))
+
+
+
+
+
 ## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.10.1...@ovh-ux/manager-key-management-service-app@0.10.2) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
