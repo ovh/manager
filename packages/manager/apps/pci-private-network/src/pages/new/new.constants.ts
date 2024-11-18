@@ -10,9 +10,11 @@ export const DEFAULT_CIDR = '10.{vlanId}.0.0/16';
 
 export const GATEWAY_HOURLY_PLAN_CODE = 'gateway.s.hour.consumption';
 
-const cidrRegex = new RegExp(
-  /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(8|9|1[0-6]|1[7-9]|2[0-9]))$/,
-); // a valid ip address with mask between 9 and 29
+const ipSchema = z.string().ip();
+const maskSchema = z
+  .number()
+  .min(9)
+  .max(29);
 
 export const NEW_PRIVATE_NETWORK_FORM_SCHEMA = z.object({
   region: z.string().min(1),
@@ -25,7 +27,12 @@ export const NEW_PRIVATE_NETWORK_FORM_SCHEMA = z.object({
     .max(VLAN_ID.max)
     .optional(),
   subnet: z.object({
-    cidr: z.string().regex(cidrRegex),
+    cidr: z.string().refine((value) => {
+      const [ip, mask] = value.split('/');
+      return (
+        ipSchema.safeParse(ip).success && maskSchema.safeParse(+mask).success
+      );
+    }),
     enableDhcp: z.boolean(),
     ipVersion: z.number(),
     enableGatewayIp: z.boolean(),
