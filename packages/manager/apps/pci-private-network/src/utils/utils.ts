@@ -1,8 +1,6 @@
 import { nanoid } from 'nanoid';
 import { VLAN_ID } from '@/pages/new/new.constants';
 
-const maxRandomNumber = 9999;
-
 const getDate = () => {
   const date = new Date();
   return `${date.getDate()}${date.getMonth() + 1}`;
