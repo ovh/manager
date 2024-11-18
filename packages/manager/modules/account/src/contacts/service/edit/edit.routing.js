@@ -12,10 +12,14 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      billLink: /* @ngInject */ ($state) =>
-        $state.href('account.billing.main.history.pay-debt', {
-          debtId: DEBT_ALL,
-        }),
+      billLink: /* @ngInject */ (coreURLBuilder) =>
+        coreURLBuilder.buildURL(
+          'dedicated',
+          `#/billing/history/debt/:debtId/pay`,
+          {
+            debtId: DEBT_ALL,
+          },
+        ),
       /* @ngInject */
       changeContact: (AccountContactsService) => (service) =>
         AccountContactsService.changeContact(service),
