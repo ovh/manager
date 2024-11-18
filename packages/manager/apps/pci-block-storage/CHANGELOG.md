@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.6.2...@ovh-ux/manager-pci-block-storage-app@0.6.3) (2024-11-18)
+
+
+### Bug Fixes
+
+* bump mrc version & fix style ([#14133](https://github.com/ovh/manager/issues/14133)) ([6ba0614](https://github.com/ovh/manager/commit/6ba0614324d53072fa25392ffdc44212559f247e))
+
+
+
+
+
 ## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.6.1...@ovh-ux/manager-pci-block-storage-app@0.6.2) (2024-11-14)
 
 

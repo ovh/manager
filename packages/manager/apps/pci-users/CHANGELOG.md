@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.11.11...@ovh-ux/manager-pci-users-app@0.11.12) (2024-11-18)
+
+
+### Bug Fixes
+
+* **pci.project:** update continent for Rabat ([#13105](https://github.com/ovh/manager/issues/13105)) ([6818e73](https://github.com/ovh/manager/commit/6818e73fd9632fecd023010019e647c97c8507f4))
+
+
+
+
+
 ## [0.11.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.11.10...@ovh-ux/manager-pci-users-app@0.11.11) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-users-app

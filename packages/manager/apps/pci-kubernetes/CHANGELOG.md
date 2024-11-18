@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.6.1...@ovh-ux/manager-pci-kubernetes-app@0.7.0) (2024-11-18)
+
+
+### Features
+
+* **pci-kuberbetes:** display cluster status ([#13802](https://github.com/ovh/manager/issues/13802)) ([f101ba3](https://github.com/ovh/manager/commit/f101ba339b6cc50a7a9ab7649dae414a45c516ce))
+
+
+
+
+
 ## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.6.0...@ovh-ux/manager-pci-kubernetes-app@0.6.1) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

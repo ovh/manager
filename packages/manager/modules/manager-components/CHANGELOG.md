@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.22.1...@ovh-ux/manager-components@1.22.2) (2024-11-18)
+
+
+### Bug Fixes
+
+* **pci.project:** update continent for Rabat ([#13105](https://github.com/ovh/manager/issues/13105)) ([6818e73](https://github.com/ovh/manager/commit/6818e73fd9632fecd023010019e647c97c8507f4))
+
+
+
+
+
 ## [1.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.22.0...@ovh-ux/manager-components@1.22.1) (2024-10-24)
 
 
