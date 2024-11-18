@@ -5,7 +5,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
 const moduleName =
-  'ovhManagerDedicatedServerDashboardServerInstallationGabarit';
+  'ovhManagerDedicatedServerDashboardServerInstallationGabaritLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {

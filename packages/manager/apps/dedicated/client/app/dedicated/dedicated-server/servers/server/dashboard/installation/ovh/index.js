@@ -4,12 +4,13 @@ import 'oclazyload';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
-const moduleName = 'ovhManagerDedicatedServerDashboardServerInstallationOvh';
+const moduleName =
+  'ovhManagerDedicatedServerDashboardServerInstallationOvhLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicated-server.server.dashboard.installation-ovh.**',
+      'app.dedicated-server.server.dashboard.installation-template-ovh.**',
       {
         url: '/installation/ovh',
         lazyLoad: ($transition$) => {

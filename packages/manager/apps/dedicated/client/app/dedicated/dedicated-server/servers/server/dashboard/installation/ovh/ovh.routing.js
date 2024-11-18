@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.dedicated-server.server.dashboard.installation-ovh',
+    'app.dedicated-server.server.dashboard.installation-template-ovh',
     {
       url: '/installation/ovh',
       views: {
