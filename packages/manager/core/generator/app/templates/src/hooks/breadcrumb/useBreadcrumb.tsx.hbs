@@ -2,7 +2,8 @@ import { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 {{#if isPCI}}
-import { useProject, PciProject } from '@/data/hooks/pci/useProject';
+import { useProject } from '@ovh-ux/manager-pci-common';
+import { useProjectUrl } from '@ovh-ux/manager-react-components';
 {{/if}}
 export type BreadcrumbItem = {
   label: string | undefined;
@@ -24,10 +25,10 @@ export const usePciBreadcrumb = ({
   const { shell } = useContext(ShellContext);
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
   const [appRoot, setAppRoot] = useState<BreadcrumbItem[]>([]);
-  const { project } = useProject({ projectId });
+  const { data: project } = useProject(projectId);
+  const hrefProject = useProjectUrl('public-cloud');
 
   useEffect(() => {
-    const { description } = project as PciProject;
     const fetchRoot = async () => {
       try {
         const response = (await shell?.navigation.getURL(
@@ -36,8 +37,8 @@ export const usePciBreadcrumb = ({
           {},
         )) as string;
         const rootItem = {
-          label: description,
-          href: response as string,
+          label: project?.description,
+          href: hrefProject,
         };
         const appRoot = {
           label: appName,
@@ -54,8 +55,8 @@ export const usePciBreadcrumb = ({
 
   return [...root, ...appRoot];
 };
-{{/if}}
 
+{{else}}
 export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
   const { shell } = useContext(ShellContext);
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
@@ -89,3 +90,4 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
 
   return [...root, ...paths];
 };
+{{/if}}
