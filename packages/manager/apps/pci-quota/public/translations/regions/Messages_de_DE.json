@@ -1,0 +1,13 @@
+{
+  "pci_projects_project_regions": "Standorte",
+  "pci_projects_project_regions_title": "Standorte hinzufügen",
+  "pci_projects_project_regions_description": "OVH bietet Ihnen mehrere Standorte, um Ihre Infrastrukturen oder einen Container zu erstellen. Standardmäßig haben Sie Zugriff auf bestimmte Standorte, Sie können jedoch wahlweise weitere Standorte hinzufügen.",
+  "pci_projects_project_regions_added_title": "Verfügbare Standorte",
+  "pci_projects_project_regions_available_to_add_title": "Standorte, die Sie hinzufügen können",
+  "pci_projects_project_regions_add_region": "Standort hinzufügen",
+  "pci_projects_project_regions_all_added": "Alle hinzugefügten Standorte",
+  "pci_projects_project_regions_info_message": "Es kann einige Minuten dauern, neue Standorte hinzuzufügen. Sobald die Standorte hinzugefügt wurden, können Sie einen Server oder Container hinzufügen.",
+  "pci_projects_project_regions_all": "Alle Standorte",
+  "pci_projects_project_regions_add_region_error": "Beim Hinzufügen des Standorts ist ein Fehler aufgetreten: {{message}}",
+  "pci_projects_project_regions_add_region_success": "Der Standort {{ code }} wird zurzeit aktiviert. Dieser Vorgang kann bis zu 60 Minuten dauern. Sie werden per E-Mail benachrichtigt, sobald der Standort verfügbar ist."
+}
