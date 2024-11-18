@@ -24,7 +24,7 @@ export type UpdateNameModalProps = {
   inputLabel: string;
   defaultValue?: string;
   closeModal: () => void;
-  updateDisplayName: (newDisplayName?: string) => void;
+  updateDisplayName: (newDisplayName: string) => void;
   isLoading?: boolean;
   error?: string;
   cancelButtonLabel?: string;
@@ -108,6 +108,7 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
         )}
       </OdsFormField>
       <OdsButton
+        isDisabled={isLoading}
         slot="actions"
         variant={ODS_BUTTON_VARIANT.ghost}
         {...handleClick(closeModal)}
