@@ -64,9 +64,9 @@ export function convertDurationStringToISODuration(durationTime: string) {
   return durationToISODurationString(durationStringToDuration(durationTime));
 }
 
-export function convertSecondsToTimeString(seconds: number) {
-  if (seconds === 0) return '0s';
-  if (seconds < 60) return `${seconds}s`;
+export function convertSecondsToTimeString(seconds: number, short: boolean) {
+  if (seconds === 0) return short ? '0s' : '0 secondes';
+  if (seconds < 60) return short? `${seconds}s` : `${seconds} secondes`;
   const days = Math.floor(seconds / 86400);
   const leftoverSeconds = seconds % 86400;
   const hours = Math.floor(leftoverSeconds / 3600);
@@ -75,13 +75,13 @@ export function convertSecondsToTimeString(seconds: number) {
 
   const timeStringParts = [];
   if (days > 0) {
-    timeStringParts.push(`${days}d`);
+    timeStringParts.push(short? `${days}d` :  `${days} jours`);
   }
   if (hours > 0) {
-    timeStringParts.push(`${hours}h`);
+    timeStringParts.push(short ? `${hours}h` : `${hours} heures`);
   }
   if (minutes > 0) {
-    timeStringParts.push(`${minutes}m`);
+    timeStringParts.push(short ?  `${minutes}m` : `${minutes} minutes`);
   }
 
   return timeStringParts.join(' ');

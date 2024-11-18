@@ -125,19 +125,20 @@ export const getColumns = ({
     },
     {
       id: 'Operating time',
-      accessorFn: (row) => convertSecondsToTimeString(row.status.duration),
+      accessorFn: (row) =>
+        convertSecondsToTimeString(row.status.duration, true),
       header: () => (
-          <div className="flex flex-row gap-2 font-semibold">
-            {t('tableHeaderDuration')}
-            <Popover>
-              <PopoverTrigger>
-                <HelpCircle className="size-4" />
-              </PopoverTrigger>
-              <PopoverContent>
-                <p>{t('durationHelper')}</p>
-              </PopoverContent>
-            </Popover>
-          </div>
+        <div className="flex flex-row gap-2 font-semibold">
+          {t('tableHeaderDuration')}
+          <Popover>
+            <PopoverTrigger>
+              <HelpCircle className="size-4" />
+            </PopoverTrigger>
+            <PopoverContent>
+              <p>{t('durationHelper')}</p>
+            </PopoverContent>
+          </Popover>
+        </div>
       ),
     },
     {
@@ -154,13 +155,13 @@ export const getColumns = ({
           <div>
             {unsecureHttp ? (
               <div className="flex gap-2 items-center">
-                <ShieldCheck className="size-4 inline mr-2 text-green-500" />
-                {t('networkSecureTitle')}
+                <ShieldAlert className="size-4 inline mr-2 text-amber-400" />
+                {t('networkPublicTitle')}
               </div>
             ) : (
               <div className="flex gap-2 items-center">
-                <ShieldAlert className="size-4 inline mr-2 text-amber-400" />
-                {t('networkPublicTitle')}
+                <ShieldCheck className="size-4 inline mr-2 text-green-500" />
+                {t('networkSecureTitle')}
               </div>
             )}
           </div>

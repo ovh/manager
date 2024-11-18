@@ -17,12 +17,12 @@ const CliCodeBlock = ({
   toastMessage,
   size,
 }: CliCodeBlockProps) => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('pci-ai-notebooks/components/configuration');
   const toast = useToast();
   const handleCopyPass = (valueToCopy: string) => {
     navigator.clipboard.writeText(valueToCopy);
     toast.toast({
-      title: toastMessage || t('copied'),
+      title: toastMessage || t('cliToastCopied'),
     });
   };
 

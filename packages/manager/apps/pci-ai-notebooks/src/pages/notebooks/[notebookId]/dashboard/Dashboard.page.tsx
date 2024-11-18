@@ -3,11 +3,13 @@ import {
   ArrowRight,
   Atom,
   Globe2,
+  Link,
+  RefreshCcwDot,
   Settings2,
   TerminalSquare,
   UserCheck,
 } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useNotebookData } from '../Notebook.context';
 import Resources from './_components/Resources.component';
@@ -19,6 +21,8 @@ import { useToast } from '@/components/ui/use-toast';
 import * as ai from '@/types/cloud/project/ai';
 import CliCodeBlock from '@/components/cli-code-block/CliCodeBlock.component';
 import OvhLink from '@/components/links/OvhLink.component';
+import LifeCycle from './_components/LifeCycle.component';
+import NotebookLink from './_components/NotebookLink.component';
 
 const Dashboard = () => {
   const { notebook, projectId } = useNotebookData();
@@ -26,7 +30,7 @@ const Dashboard = () => {
   const { toast } = useToast();
   const [command, setCommand] = useState<ai.Command>({});
 
-  const { getCommand, isPending: isPendingCommand } = useGetCommand({
+  const { getCommand } = useGetCommand({
     onError: (err) => {
       toast({
         title: t('errorGetCommandCli'),
@@ -53,24 +57,41 @@ const Dashboard = () => {
         <Card>
           <CardHeader>
             <h4>
+              <Link className="size-4 inline mr-2" />
+              <span>Accès</span>
+            </h4>
+          </CardHeader>
+          <CardContent>
+           <NotebookLink/>
+          </CardContent>
+            <h4 className='px-6 mb-4'>
+              <Globe2 className="size-4 inline mr-2" />
+              <span>Privacy</span>
+            </h4>
+          <CardContent>
+            <Privacy />
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <h4>
+              <RefreshCcwDot className="size-4 inline mr-2" />
+              <span>{t('lifeCycleTitle')}</span>
+            </h4>
+          </CardHeader>
+          <CardContent>
+            <LifeCycle />
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <h4>
               <Atom className="size-4 inline mr-2" />
               <span>{t('resourcesTitle')}</span>
             </h4>
           </CardHeader>
           <CardContent>
             <Resources />
-          </CardContent>
-        </Card>
-        <Card>Cycle de vie</Card>
-        <Card>
-          <CardHeader>
-            <h4>
-              <Globe2 className="size-4 inline mr-2" />
-              <span>Privacy</span>
-            </h4>
-          </CardHeader>
-          <CardContent>
-            <Privacy />
           </CardContent>
         </Card>
       </div>

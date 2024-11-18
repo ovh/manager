@@ -1,4 +1,4 @@
-import { Plus, ShieldAlert, ShieldCheck, X } from 'lucide-react';
+import { Plus, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNotebookData } from '../../Notebook.context';
 import { Button } from '@/components/ui/button';
@@ -81,19 +81,6 @@ const Privacy = () => {
                 </div>
               </Badge>
             ))}
-        </div>
-        <div className="mt-4">
-          {notebook.spec.unsecureHttp ? (
-            <div className="flex flex-row gap-2 items-center font-semibold">
-              <h5>Accès publique</h5>
-              <ShieldAlert className="size-4 text-amber-400" />
-            </div>
-          ) : (
-            <div className="flex flex-row gap-2 items-center font-semibold">
-              <h5>Accès privé</h5>
-              <ShieldCheck className="size-4 text-green-500" />
-            </div>
-          )}
         </div>
       </div>
       <AddLabel

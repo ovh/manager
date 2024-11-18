@@ -1,11 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import {
   NotebookText,
-  Play,
-  PlayCircle,
   PlayIcon,
+  ShieldAlert,
+  ShieldCheck,
   Square,
-  Trash2,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -16,13 +15,19 @@ import StartNotebook from './StartNotebook.component';
 import { useModale } from '@/hooks/useModale';
 import StopNotebook from './StopNotebook.component';
 import { isDeletingNotebook, isRunningNotebook } from '@/lib/notebookHelper';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 export const NotebookHeader = ({
   notebook,
 }: {
   notebook: ai.notebook.Notebook;
 }) => {
-  const { t } = useTranslation('regions');
+  const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook');
+  const { t: tRegions } = useTranslation('regions');
   const startModale = useModale('start');
   const stopModale = useModale('stop');
   return (
@@ -71,11 +76,33 @@ export const NotebookHeader = ({
             {notebook.spec.env.frameworkVersion}
           </Badge>
           <Badge variant={'outline'} className="capitalize">
-            {t(`region_${notebook.spec.region}`)}
+            {tRegions(`region_${notebook.spec.region}`)}
           </Badge>
           <Badge variant={'outline'} className="capitalize">
             {notebook.spec.env.editorId}
           </Badge>
+
+          {notebook.spec.unsecureHttp ? (
+            <Popover>
+              <PopoverTrigger>
+                <ShieldAlert className="size-5 text-amber-400 mb-1" />
+              </PopoverTrigger>
+              <PopoverContent>
+                <h4>{t('publicAccessTitle')}</h4>
+                <p>{t('publicAccessHelper')}</p>
+              </PopoverContent>
+            </Popover>
+          ) : (
+            <Popover>
+              <PopoverTrigger>
+                <ShieldCheck className="size-5 text-green-500 mb-1" />
+              </PopoverTrigger>
+              <PopoverContent>
+                <h4>{t('privateAccessHelperTitle')}</h4>
+                <p>{t('privateAccessHelperDesc')}</p>
+              </PopoverContent>
+            </Popover>
+          )}
         </div>
       </div>
       <StartNotebook

@@ -18,5 +18,6 @@
   "addSshKeySuccessDescription": "Nouvelle clé SSH créée",
   "addSshKeyTitle": "Configurer un nouvelle clé SSH",
   "formSshKeyButtonCancel": "Annuler",
-  "formSshKeyButtonConfirm": "Confirmer"
+  "formSshKeyButtonConfirm": "Confirmer",
+  "cliToastCopied": "Le code a été copié"
 }

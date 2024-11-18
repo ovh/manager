@@ -57,10 +57,10 @@ const Configurations = () => {
         controller={deleteModale.controller}
         notebook={notebook}
         onSuccess={() => {
-          deleteModale.close();
-          notebookQuery.refetch();
-          getNotebooksQuery.refetch();
           navigate(`../../../`);
+          deleteModale.close();
+          getNotebooksQuery.refetch();
+          
         }}
       />
     </div>
