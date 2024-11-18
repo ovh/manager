@@ -126,6 +126,8 @@ webCloudUniverse.children = [
       children: [
         {
           id: 'zimbra',
+          idAttr: 'zimbra-link',
+          universe: webCloudUniverse.id,
           translation: 'sidebar_zimbra',
           routing: {
             application: 'zimbra',
