@@ -20,7 +20,7 @@
       "conventionalCommits": true
     },
     "version": {
-      "allowBranch": "master",
+      "allowBranch": "dev/hbelkhir/release-sh",
       "ignoreChanges": ["packages/manager-react-components/**"]
     }
   }
