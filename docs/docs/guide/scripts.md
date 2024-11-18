@@ -7,17 +7,9 @@ Our [`package.json`](package.json) houses a collection of [run-scripts](https://
 <!--lint disable no-shortcut-reference-link no-undefined-references-->
 [[toc]]
 
-### Generate a module (or an Application)
-
-![generate module](/assets/img/generate-module-app.gif)
+### Generate a Micro Application
 
 ```sh
-# `foo` is the name of your module.
-$ yarn run generate:module ./packages/manager/modules/foo
-
-# `foo` is the name of your application.
-$ yarn run generate:app ./packages/manager/apps/foo
-
 # `foo` is the name of your micro-application.
 $ yarn run generate:uapp
 
