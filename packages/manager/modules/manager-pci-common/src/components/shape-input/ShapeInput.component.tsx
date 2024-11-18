@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import isEqual from 'lodash.isequal';
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { AccordionComponent } from '../accordion/Accordion.component';
 import { DefaultItemLabelComponent } from './default-components/item-label';
 import { DefaultStackLabelComponent } from './default-components/stack-label';
