@@ -10,7 +10,6 @@ export default class ExchangeRemoveManagerCtrl {
     };
 
     this.$routerParams = wucExchange.getParams();
-    this.group = navigation.currentActionData.group;
     this.manager = navigation.currentActionData.manager;
 
     $scope.submit = () => this.submit();
@@ -25,7 +24,7 @@ export default class ExchangeRemoveManagerCtrl {
       .removeManager(
         this.$routerParams.organization,
         this.$routerParams.productId,
-        this.group.mailingListName,
+        this.$routerParams.group,
         this.manager.id,
       )
       .then((success) => {
@@ -34,7 +33,7 @@ export default class ExchangeRemoveManagerCtrl {
             'exchange_GROUPS_remove_manager_success_message',
             {
               t0: this.manager.primaryEmailAddress,
-              t1: this.group.mailingListDisplayName,
+              t1: this.$routerParams.group,
             },
           ),
           success,
@@ -46,7 +45,7 @@ export default class ExchangeRemoveManagerCtrl {
             'exchange_GROUPS_remove_manager_error_message',
             {
               t0: this.manager.primaryEmailAddress,
-              t1: this.group.mailingListDisplayName,
+              t1: this.$routerParams.group,
             },
           ),
           failure,

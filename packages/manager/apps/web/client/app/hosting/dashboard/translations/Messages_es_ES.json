@@ -850,7 +850,7 @@
   "hosting_configuration_tab_sql_data_base_state": "Estado",
   "hosting_configuration_tab_sql_data_base_server": "Servidor",
   "hosting_configuration_tab_sql_data_base_version": "Versión",
-  "hosting_tab_MODULES_guide_help": "¿Necesita ayuda para instalar su módulo en un clic?",
+  "hosting_tab_MODULES_guide_help": "¿Necesita ayuda para cambiar la contraseña de su módulo en un clic?",
   "hosting_configuration_tab_modules_module_name": "Módulo",
   "hosting_configuration_tab_modules_module_path": "Ruta",
   "hosting_configuration_tab_modules_status_maintenance": "El alojamiento está en mantenimiento. Por favor, inténtelo de nuevo más tarde.",

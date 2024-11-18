@@ -1,0 +1,39 @@
+export const WEB_DOMAIN = 'web::domain::';
+export const BUTTON = 'button';
+export const CANCEL = 'cancel';
+export const DATAGRID = 'datagrid';
+export const DOMAIN = 'domain';
+export const DOMAINS = 'domains';
+export const ERROR = 'error';
+export const EXPORT_CSV = 'export-csv';
+export const EXPORT_CSV_DOMAINS = 'export-domains-csv';
+export const GO_TO_ORDER = 'go-to-order';
+export const LINK_DETAILS = 'link_details';
+export const LISTING = 'listing';
+export const MANAGE_DOMAINS = 'manage_domains';
+export const PAGE = 'page';
+export const POPUP = 'pop-up';
+export const RENEW_RESTORE = 'renew_restore';
+export const SUCCESS = 'success';
+
+export const DOMAIN_PREFIX_LISTING = `${WEB_DOMAIN}::${LISTING}`;
+export const DOMAIN_PREFIX_LISTING_MANAGE_DOMAINS = `${DOMAIN_PREFIX_LISTING}::${MANAGE_DOMAINS}`;
+
+export const DOMAIN_PREFIX_LISTING_EXPORT = `${WEB_DOMAIN}::${LISTING}::${EXPORT_CSV}`;
+export const DOMAIN_PREFIX_LISTING_EXPORT_SUCCESS = `${DOMAIN_PREFIX_LISTING_EXPORT}::${SUCCESS}`;
+export const DOMAIN_PREFIX_LISTING_EXPORT_ERROR = `${DOMAIN_PREFIX_LISTING_EXPORT}::${ERROR}`;
+
+export const DOMAIN_PREFIX_PAGE_BUTTON = `${WEB_DOMAIN}::${PAGE}::${BUTTON}`;
+export const DOMAIN_PREFIX_PAGE_BUTTON_GO_TO_ORDER = `${WEB_DOMAIN}::${PAGE}::${BUTTON}::${GO_TO_ORDER}::${DOMAIN}`;
+export const DOMAIN_PREFIX_PAGE_BUTTON_EXPORT_CSV_DOMAIN = `${WEB_DOMAIN}::${PAGE}::${BUTTON}::${EXPORT_CSV}::${DOMAIN}`;
+export const DOMAIN_PREFIX_PAGE_BUTTON_RENEW_RESTORE_DOMAIN = `${WEB_DOMAIN}::${PAGE}::${BUTTON}::${RENEW_RESTORE}-${DOMAIN}`;
+export const DOMAIN_PREFIX_PAGE_BUTTON_DATAGRID_LINK = `${WEB_DOMAIN}::${DATAGRID}::${LINK_DETAILS}_`;
+export const DOMAIN_PREFIX_PAGE_BUTTON_DATAGRID = `${WEB_DOMAIN}::${DATAGRID}::${BUTTON}`;
+
+export const DOMAIN_PREFIX_POPUP_BUTTON = `${WEB_DOMAIN}::${POPUP}::${BUTTON}`;
+export const DOMAIN_PREFIX_POPUP_RENEW_RESTORE = `${WEB_DOMAIN}::${POPUP}::${RENEW_RESTORE}::${DOMAIN}`;
+export const DOMAIN_PREFIX_POPUP_EXPORT_CSV = `${WEB_DOMAIN}::${POPUP}::${EXPORT_CSV}::${DOMAIN}`;
+export const DOMAIN_PREFIX_POPUP_BUTTON_RENEW_CANCEL = `${DOMAIN_PREFIX_POPUP_BUTTON}::${RENEW_RESTORE}::${DOMAINS}::${CANCEL}`;
+export const DOMAIN_PREFIX_POPUP_BUTTON_RENEW_GO_TO_ORDER = `${WEB_DOMAIN}::${POPUP}::${BUTTON}::${RENEW_RESTORE}-${DOMAINS}::${GO_TO_ORDER}`;
+export const DOMAIN_PREFIX_POPUP_BUTTON_EXPORT_CSV_DOMAIN = `${DOMAIN_PREFIX_POPUP_BUTTON}::${EXPORT_CSV_DOMAINS}`;
+export const DOMAIN_PREFIX_POPUP_BUTTON_CANCEL_EXPORT_CSV_DOMAIN = `${DOMAIN_PREFIX_POPUP_BUTTON_EXPORT_CSV_DOMAIN}::${CANCEL}`;

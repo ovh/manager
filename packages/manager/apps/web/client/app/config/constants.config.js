@@ -112,6 +112,8 @@ module.exports = {
             'https://www.ovh.de/g1474.allgemeine-informationen-ovh-webhosting-mails',
           autoRenew: 'https://www.ovh.de/g1271.renew',
           emailsCreation: 'https://www.ovh.de/g1343.qssq',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/de-web-hosting-1-click-module-setting-up?id=kb_article_view&sysparm_article=KB0052393',
           hostingPhpConfiguration:
             'https://www.ovh.de/g1999.webhosting_so_andern_sie_die_php-version_von_ihrem_kundencenter_aus',
           hostingPrivateDatabase:
@@ -157,6 +159,8 @@ module.exports = {
           emailsConfiguration:
             'https://www.ovh.es/g1474.correo-alojamiento-compartido-ovh',
           emailsCreation: 'https://www.ovh.es/g1343.qssq',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/es-es-web-hosting-1-click-module-setting-up?id=kb_article_view&sysparm_article=KB0052400',
           hostingPhpConfiguration:
             'https://www.ovh.es/g1999.alojamiento_compartido_configurar_la_versión_de_PHP_desde_el_área_de_cliente',
           hostingPrivateDatabase:
@@ -253,7 +257,8 @@ module.exports = {
             'https://www.ovh.com/fr/g1990.mutualise_taches_automatisees_cron',
           hostingFtp:
             'https://docs.ovh.com/fr/hosting/connexion-espace-stockage-ftp-hebergement-web/',
-          hostingModule: 'https://docs.ovh.com/fr/hosting/modules-en-1-clic/',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/fr-web-hosting-cms-update-admin-password?id=kb_article_view&sysparm_article=KB0064938',
           hostingScriptEmail:
             'https://www.ovh.com/fr/g1974.mutualise_suivi_des_emails_automatises',
           hostingStatsLogs:
@@ -363,6 +368,8 @@ module.exports = {
             'https://www.ovh.co.uk/g1474.ovh-mails-general-use',
           autoRenew: 'https://www.ovh.co.uk/g1271.renew',
           emailsCreation: 'https://www.ovh.co.uk/g1343.qssq',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/en-gb-web-hosting-1-click-module-setting-up?id=kb_article_view&sysparm_article=KB0052396',
           hostingPhpConfiguration:
             'https://www.ovh.co.uk/g1999.hosting_how_to_configure_php_from_your_customer_account',
           hostingPrivateDatabase:
@@ -403,6 +410,8 @@ module.exports = {
         bulkChangeOwner:
           'https://www.ovh.ie/order/domain/#/legacy/domain/trade/list',
         guides: {
+          hostingModule:
+            'https://help.ovhcloud.com/csm/en-ie-web-hosting-1-click-module-setting-up?id=kb_article_view&sysparm_article=KB0052397',
           hostingPhpConfiguration:
             'https://www.ovh.ie/g1999.hosting_how_to_configure_php_from_your_customer_account',
           works: {
@@ -442,6 +451,8 @@ module.exports = {
             'https://www.ovh.it/g1271.imposta_il_rinnovo_automatico_dei_tuoi_servizi_ovh',
           emailsCreateMailingListGuide:
             'https://www.ovh.it/g1596.mail_mutualise_guide_dutilisation_mailing-list',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/it-web-hosting-1-click-module-setting-up?id=kb_article_view&sysparm_article=KB0052395',
           hostingPhpConfiguration:
             'https://www.ovh.it/g1999.configura_la_tua_versione_di_php_dal_tuo_Spazio_Cliente_OVH',
           hostingPrivateDatabase:
@@ -535,6 +546,8 @@ module.exports = {
           emailsConfiguration:
             'https://www.ovh.nl/g1474.algemene-informatie-ovh-webhosting-emails',
           emailsCreation: 'https://www.ovh.nl/g1343.qssq',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/en-nl-documentation-web-cloud?id=kb_browse_cat&kb_id=e17b4f25551974502d4c6e78b7421955',
           hostingPrivateDatabaseDBaaS: {
             beginner:
               'https://docs.ovh.com/nl/clouddb/aan-de-slag-met-clouddb/',
@@ -597,6 +610,8 @@ module.exports = {
           emailsCreation: 'https://www.ovh.pl/g1343.qssq',
           emailsCreateMailingListGuide:
             'https://www.ovh.pl/g1596.mail_mutualise_guide_dutilisation_mailing-list',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/pl-documentation-web-cloud?id=kb_browse_cat&kb_id=e17b4f25551974502d4c6e78b7421955',
           hostingPhpConfiguration:
             'https://www.ovh.pl/g1999.skonfiguruj_wersje_php_w_panelu_klienta',
           hostingPrivateDatabase: 'https://www.ovh.pl/g2023.prywatny_sql',
@@ -649,6 +664,8 @@ module.exports = {
           emailsCreation: 'https://www.ovh.pt/g1343.qssq',
           emailsCreateMailingListGuide:
             'https://www.ovh.pt/g1596.mail_mutualise_guide_dutilisation_mailing-list',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/pt-web-hosting-1-click-module-setting-up?id=kb_article_view&sysparm_article=KB0052410',
           hostingPhpConfiguration:
             'https://www.ovh.pt/g1999.partilhado_configurar_a_versao_de_php_a_partir_do_seu_espaco_cliente',
           hostingPrivateDatabase:
@@ -847,6 +864,8 @@ module.exports = {
           all: 'https://docs.ovh.com/asia/en/',
           dnsForExternalDomain:
             'https://docs.ovh.com/asia/en/domains/create_a_dns_zone_for_a_domain_which_is_not_registered_at_ovh/',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/asia-web-hosting-1-click-module-setting-up?id=kb_article_view&sysparm_article=KB0052394',
           hostingPrivateDatabase:
             'https://docs.ovh.com/asia/en/hosting/getting-started-with-private-sql/',
           hostingPrivateDatabaseDBaaS: {
@@ -882,6 +901,8 @@ module.exports = {
           all: 'https://docs.ovh.com/asia/en/',
           dnsForExternalDomain:
             'https://docs.ovh.com/asia/en/domains/create_a_dns_zone_for_a_domain_which_is_not_registered_at_ovh/',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/asia-web-hosting-1-click-module-setting-up?id=kb_article_view&sysparm_article=KB0052394',
           hostingPrivateDatabase:
             'https://docs.ovh.com/asia/en/hosting/getting-started-with-private-sql/',
           hostingPrivateDatabaseDBaaS: {
@@ -917,6 +938,8 @@ module.exports = {
           all: 'https://docs.ovh.com/au/en/',
           dnsForExternalDomain:
             'https://docs.ovh.com/au/en/domains/create_a_dns_zone_for_a_domain_which_is_not_registered_at_ovh/',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/en-au-web-hosting-1-click-module-setting-up?id=kb_article_view&sysparm_article=KB0040389',
           hostingPrivateDatabase:
             'https://docs.ovh.com/au/en/hosting/getting-started-with-private-sql/',
           hostingPrivateDatabaseDBaaS: {
@@ -953,6 +976,8 @@ module.exports = {
           all: 'https://docs.ovh.com/ca/en/',
           dnsForExternalDomain:
             'https://docs.ovh.com/ca/en/domains/create_a_dns_zone_for_a_domain_which_is_not_registered_at_ovh/',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/en-ca-web-hosting-1-click-module-setting-up?id=kb_article_view&sysparm_article=KB0052391',
           hostingPrivateDatabase:
             'https://docs.ovh.com/ca/en/hosting/getting-started-with-private-sql/',
           hostingPrivateDatabaseDBaaS: {
@@ -989,6 +1014,8 @@ module.exports = {
           all: 'https://docs.ovh.com/ca/fr/',
           dnsForExternalDomain:
             'https://docs.ovh.com/ca/fr/domains/creer-une-zone-dns-pour-un-domaine-externe/',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/en-ca-web-hosting-1-click-module-setting-up?id=kb_article_view&sysparm_article=KB0052391',
           hostingPrivateDatabase:
             'https://docs.ovh.com/ca/fr/hosting/premiers-pas-avec-sql-prive/',
           hostingPrivateDatabaseDBaaS: {
@@ -1024,6 +1051,8 @@ module.exports = {
           all: 'https://docs.ovh.com/sg/en/',
           dnsForExternalDomain:
             'https://docs.ovh.com/sg/en/domains/create_a_dns_zone_for_a_domain_which_is_not_registered_at_ovh/',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/en-sg-web-hosting-1-click-module-setting-up?id=kb_article_view&sysparm_article=KB0052404',
           hostingPrivateDatabase:
             'https://docs.ovh.com/asia/en/hosting/getting-started-with-private-sql/',
           hostingPrivateDatabaseDBaaS: {
@@ -1059,6 +1088,8 @@ module.exports = {
           all: 'https://docs.ovh.com/ca/en/',
           dnsForExternalDomain:
             'https://docs.ovh.com/ca/en/domains/create_a_dns_zone_for_a_domain_which_is_not_registered_at_ovh/',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/en-ie-web-hosting-1-click-module-setting-up?id=kb_article_view&sysparm_article=KB0052397',
           hostingPrivateDatabase:
             'https://docs.ovh.com/ca/en/hosting/getting-started-with-private-sql/',
           hostingPrivateDatabaseDBaaS: {
@@ -1095,6 +1126,8 @@ module.exports = {
           all: 'https://docs.ovh.com/us/es/',
           dnsForExternalDomain:
             'https://docs.ovh.com/us/es/domains/create_a_dns_zone_for_a_domain_which_is_not_registered_at_ovh/',
+          hostingModule:
+            'https://help.ovhcloud.com/csm/en-web-hosting-1-click-module-setting-up?id=kb_article_view&sysparm_article=KB0052401',
           hostingPrivateDatabase:
             'https://docs.ovh.com/us/es/hosting/getting-started-with-private-sql/',
           hostingPrivateDatabaseDBaaS: {

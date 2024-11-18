@@ -385,6 +385,27 @@ export default class OverTheBoxDetailsCtrl {
   }
 
   /**
+   * Translate channel with deprecated translation managed
+   * @param {*} channel channel to be translate
+   * @returns translated channel
+   */
+  translateReleaseChannel(channel) {
+    if (channel.includes(this.OVERTHEBOX_DETAILS.deprecated)) {
+      // Remove deprecated part
+      const version = channel.split(this.OVERTHEBOX_DETAILS.deprecated)[0];
+      return this.$translate.instant('overTheBox_release_channel_deprecated', {
+        version,
+      });
+    }
+    if (channel.includes(this.OVERTHEBOX_DETAILS.version)) {
+      return this.$translate.instant('overTheBox_release_channel', {
+        version: channel,
+      });
+    }
+    return this.$translate.instant(`overTheBox_release_channel_${channel}`);
+  }
+
+  /**
    * Get available release channels
    * @returns {Promise}
    */
@@ -397,23 +418,10 @@ export default class OverTheBoxDetailsCtrl {
       .$promise.then((channels) => {
         this.releaseChannels = channels.map((channel) => ({
           name: channel,
-          label: this.$translate.instant(
-            `overTheBox_release_channel_${channel.replace('.', '_')}`,
-          ),
+          label: this.translateReleaseChannel(channel),
         }));
 
-        const result = this.releaseChannels.find(
-          (channel) => this.releaseChannel === channel.name,
-        );
-
-        if (result) {
-          this.releaseChannel = this.$translate.instant(
-            `overTheBox_release_channel_${this.releaseChannel.replace(
-              '.',
-              '_',
-            )}`,
-          );
-        }
+        this.releaseChannel = this.translateReleaseChannel(this.releaseChannel);
       });
   }
 

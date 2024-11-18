@@ -799,20 +799,34 @@ export default class Exchange {
   getAliases(
     organizationName,
     exchangeService,
-    account,
-    count = 10,
+    email,
+    aliasType,
     offset = 0,
+    pageSize = 25,
+    sort = { name: 'alias', dir: 'asc' },
+    filters = null,
   ) {
-    return this.services.OvhHttp.get(
-      `/sws/exchange/${organizationName}/${exchangeService}/accounts/${account}/alias`,
-      {
-        rootPath: '2api',
-        params: {
-          count,
-          offset,
-        },
+    let res = this.services
+      .iceberg(
+        `/email/exchange/${organizationName}/service/${exchangeService}/${aliasType}/${email}/alias`,
+      )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(offset)
+      .sort(sort.name, sort.dir);
+    if (filters !== null) {
+      filters.forEach((item) => {
+        res = res.addFilter(item.name, item.operator, item.value);
+      });
+    }
+    return res.execute(null, true).$promise.then((response) => ({
+      data: response.data,
+      meta: {
+        totalCount:
+          parseInt(response.headers['x-pagination-elements'], 10) || 0,
       },
-    );
+    }));
   }
 
   /**
@@ -841,49 +855,26 @@ export default class Exchange {
   /**
    * Add an account alias
    */
-  addAlias(organization, serviceName, account, alias) {
-    return this.services.OvhHttp.post(
-      '/email/exchange/{organization}/service/{exchange}/account/{account}/alias',
-      {
-        rootPath: 'apiv6',
-        urlParams: {
-          organization,
-          exchange: serviceName,
-          account,
-        },
-        data: {
+  addAlias(organization, productId, email, aliasType, alias) {
+    return this.services.$http
+      .post(
+        `/email/exchange/${organization}/service/${productId}/${aliasType}/${email}/alias`,
+        {
           alias,
         },
-      },
-    ).then((data) => {
-      this.resetAccounts();
-      this.resetTasks();
-
-      return data;
-    });
+      )
+      .then((data) => data);
   }
 
   /**
    * Delete an account alias
    */
-  deleteAlias(organization, productId, account, alias) {
-    return this.services.OvhHttp.delete(
-      '/email/exchange/{organization}/service/{exchange}/account/{account}/alias/{alias}',
-      {
-        rootPath: 'apiv6',
-        urlParams: {
-          organization,
-          exchange: productId,
-          account,
-          alias,
-        },
-      },
-    ).then((data) => {
-      this.resetAccounts();
-      this.resetTasks();
-
-      return data;
-    });
+  deleteAlias(organization, productId, email, aliasType, alias) {
+    return this.services.$http
+      .delete(
+        `/email/exchange/${organization}/service/${productId}/${aliasType}/${email}/alias/${alias}`,
+      )
+      .then((data) => data);
   }
 
   getGroupManagerList(organization, serviceName, groupName, count, offset) {

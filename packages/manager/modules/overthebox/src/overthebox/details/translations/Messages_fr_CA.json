@@ -73,9 +73,7 @@
   "overTheBox_change_release_channel_error": "Nous n'avons pas pu effectuer le changement de la version : {{errorMessage}}",
   "overTheBox_release_channel_stable": "Version stable avec mise à jour automatique",
   "overTheBox_release_channel_beta": "Version beta avec mise à jour automatique",
-  "overTheBox_release_channel_v0_8": "Version v0.8",
-  "overTheBox_release_channel_v0_9": "Version v0.9",
-  "overTheBox_release_channel_v1_0": "Version v1.0",
+  "overTheBox_release_channel": "Version {{version}}",
   "overTheBox_version_system": "Version du système d'exploitation",
   "overTheBox_last_seen": "Dernière connexion du périphérique",
   "overTheBox_last_seen_few_seconds": "Il y a quelques secondes",
@@ -98,5 +96,6 @@
   "overTheBox_confirm_unlink_device": "Ce périphérique ne pourra plus se connecter ce service, en êtes-vous sûr?",
   "overTheBox_unlink_device_error": "Nous n'avons pas pu dissocier le périphérique : {{errorMessage}}",
   "overTheBox_unlink_device_success": "Votre périphérique a été dissocié avec succès.",
-  "overTheBox_change_offer": "Changer d'offre"
+  "overTheBox_change_offer": "Changer d'offre",
+  "overTheBox_release_channel_deprecated": "Version dépréciée {{version}}"
 }

@@ -7,7 +7,7 @@ import routing from './group.routing';
 
 import manager from './manager/manager.module';
 import member from './member/member.module';
-import alias from './alias/alias.module';
+import alias from './alias/group-alias.module';
 
 const moduleName = 'ovhManagerExchangeDashboardGroup';
 

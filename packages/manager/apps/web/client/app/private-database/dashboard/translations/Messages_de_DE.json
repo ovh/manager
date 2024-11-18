@@ -504,5 +504,6 @@
   "privateDatabase_tabs_list_extensions_enable_error": "Beim Einrichten der Erweiterung ist ein Fehler aufgetreten.",
   "privateDatabase_tabs_list_extensions_disable_success": "Die Erweiterung wurde erfolgreich deaktiviert.",
   "privateDatabase_tabs_list_extensions_disable_error": "Bei der Deaktivierung der Erweiterung ist ein Fehler aufgetreten.",
-  "privateDatabase_order_sql_period_sub_title": "Wie lange möchten Sie sie benutzen? "
+  "privateDatabase_order_sql_period_sub_title": "Wie lange möchten Sie sie benutzen? ",
+  "privateDatabase_beta_status": "Beta"
 }

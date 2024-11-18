@@ -1,0 +1,8 @@
+{
+  "zimbra_auto_replies_delete_success_message": "Your deletion request has been processed. It will be executed in a few moments.",
+  "zimbra_auto_replies_delete_error_message": "Your deletion request could not be completed. Please try again in a few moments.",
+  "zimbra_auto_replies_delete_modal_title": "Delete an auto-reply",
+  "zimbra_auto_replies_delete_cancel": "Cancel",
+  "zimbra_auto_replies_delete_cta": "Delete",
+  "zimbra_auto_replies_delete_modal_content": "Are you sure you want to delete the auto-reply?"
+}
