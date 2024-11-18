@@ -101,7 +101,7 @@
   "manager_components_region_continent_ATL": "Nord America ",
   "manager_components_region_RBA": "Rabat",
   "manager_components_region_RBA_micro": "Rabat ({{ micro }})",
-  "manager_components_region_continent_RBA": "Nord Africa",
+  "manager_components_region_continent_RBA": "Africa",
   "manager_components_region_TYO": "Tokyo",
   "manager_components_region_TYO_micro": "Tokyo ({{ micro }})",
   "manager_components_region_continent_TYO": "APAC",

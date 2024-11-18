@@ -2,6 +2,7 @@ import {
   StepComponent,
   TilesInputComponent,
 } from '@ovh-ux/manager-react-components';
+import { useSearchParams } from 'react-router-dom';
 
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
@@ -34,6 +35,7 @@ export default function LocalizationStep(): JSX.Element {
   const { t: tCommon } = useTranslation('common');
   const { t: tRegion } = useTranslation('region');
   const { t: tRegions, i18n } = useTranslation('regions');
+  const [searchParams] = useSearchParams();
 
   const {
     data: regions,
@@ -112,6 +114,16 @@ export default function LocalizationStep(): JSX.Element {
       setMappedRegions(result);
     }
   }, [regions, i18n.language]);
+
+  useEffect(() => {
+    const region = searchParams.get('region');
+    if (mappedRegions?.length && !store.form.region && region) {
+      store.setForm({
+        ...store.form,
+        region: mappedRegions.find(({ name }) => name === region),
+      });
+    }
+  }, [mappedRegions]);
 
   return (
     <StepComponent

@@ -20,6 +20,7 @@ import TabsPanel from '@/components/detail/TabsPanel.component';
 import { useKubeDetail } from '@/api/hooks/useKubernetes';
 import { TRACKING_TABS } from '@/tracking.constants';
 import { useAppStore } from '@/store';
+import { REFETCH_INTERVAL_DURATION } from '@/helpers';
 
 export default function DetailPage() {
   const { t } = useTranslation('listing');
@@ -74,7 +75,9 @@ export default function DetailPage() {
     },
   ];
 
-  const { data: kubeDetail } = useKubeDetail(projectId, kubeId);
+  const { data: kubeDetail } = useKubeDetail(projectId, kubeId, {
+    refetchInterval: REFETCH_INTERVAL_DURATION,
+  });
 
   useEffect(() => {
     const activeTab = tabs.find((tab) => location.pathname.startsWith(tab.to));
