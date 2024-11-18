@@ -33,6 +33,7 @@ angular
   ])
   .config(redirection)
   .config(routing)
+  .run(/* @ngTranslationsInject:json ./common/translations */)
   .run(
     /* @ngInject */ ($translate) => {
       let lang = $translate.use();
