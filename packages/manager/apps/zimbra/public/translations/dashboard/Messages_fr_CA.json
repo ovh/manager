@@ -17,6 +17,9 @@
   "zimbra_dashboard_email_accounts_redirections_add": "Créer une redirection",
   "zimbra_dashboard_email_accounts_redirections_edit": "Modifier une redirection",
   "zimbra_dashboard_email_accounts_redirections_delete": "Supprimer une redirection",
+  "zimbra_dashboard_email_accounts_auto_replies": "Répondeurs",
+  "zimbra_dashboard_email_accounts_auto_replies_add": "Créer un répondeur",
+  "zimbra_dashboard_email_accounts_auto_replies_delete": "Supprimer un répondeur",
   "zimbra_dashboard_mailing_lists_add": "Créer une liste de diffusion",
   "zimbra_dashboard_mailing_lists_settings": "Modifier la liste de diffusion",
   "zimbra_dashboard_error_service": "No services info",
@@ -28,6 +31,7 @@
   "zimbra_dashboard_organizations_edit": "Modifier l'organisation",
   "zimbra_dashboard_organizations_delete": "Supprimer l'organisation",
   "zimbra_dashboard_redirections": "Redirections",
+  "zimbra_dashboard_redirections_add": "Créer une redirection",
   "zimbra_dashboard_redirections_edit": "Modifier la redirection",
   "zimbra_dashboard_redirections_delete": "Supprimer la redirection",
   "zimbra_dashboard_title": "Zimbra",
@@ -44,5 +48,6 @@
   "zimbra_dashboard_tile_serviceConsumption_noAccountOffer": "Vous ne possedez actuellement aucune boite email.",
   "zimbra_dashboard_tile_usefulLinks_title": "Liens utiles",
   "zimbra_dashboard_auto_replies": "Répondeurs",
+  "zimbra_dashboard_auto_replies_add": "Créer un répondeur",
   "zimbra_dashboard_auto_replies_delete": "Supprimer un répondeur"
 }

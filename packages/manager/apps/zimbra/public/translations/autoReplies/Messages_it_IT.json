@@ -2,5 +2,7 @@
   "zimbra_auto_replies_name": "Cognome",
   "zimbra_auto_replies_from": "Dal",
   "zimbra_auto_replies_until": "Fino al",
-  "zimbra_auto_replies_copyTo": "Copia in"
+  "zimbra_auto_replies_copyTo": "Copia in",
+  "zimbra_auto_replies_add_cta": "Crea una risposta automatica",
+  "zimbra_auto_replies_account_title": "Gestione delle risposte automatiche"
 }

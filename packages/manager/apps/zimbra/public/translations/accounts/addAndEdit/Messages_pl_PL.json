@@ -36,5 +36,6 @@
   "zimbra_account_add_input_displayName_tooltip": "Nazwa używana w książce adresowej i wyświetlana odbiorcom wiadomości e-mail",
   "zimbra_account_edit_tabs_settings": "Ustawienia konta",
   "zimbra_account_edit_tabs_redirections": "Przekierowania",
-  "zimbra_account_edit_tabs_alias": "Alias"
+  "zimbra_account_edit_tabs_alias": "Alias",
+  "zimbra_account_edit_tabs_auto_replies": "Autorespondery"
 }

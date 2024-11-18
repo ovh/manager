@@ -2,5 +2,7 @@
   "zimbra_auto_replies_name": "Name",
   "zimbra_auto_replies_from": "From",
   "zimbra_auto_replies_until": "Until",
-  "zimbra_auto_replies_copyTo": "Copy to"
+  "zimbra_auto_replies_copyTo": "Copy to",
+  "zimbra_auto_replies_add_cta": "Create an auto-reply",
+  "zimbra_auto_replies_account_title": "Voicemail management"
 }
