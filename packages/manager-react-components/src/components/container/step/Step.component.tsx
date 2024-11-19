@@ -3,6 +3,7 @@ import { OdsButton, OdsIcon, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { v4 as uuidV4 } from 'uuid';
 import {
   ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
@@ -26,10 +27,11 @@ export type TStepProps = {
     label: string | JSX.Element;
     isDisabled?: boolean;
   };
-  cancel?: {
+  skip?: {
     action: (id: string) => void;
     label: string | JSX.Element;
     isDisabled?: boolean;
+    hint?: string;
   };
   children?: JSX.Element | JSX.Element[];
 };
@@ -45,7 +47,7 @@ export const StepComponent = ({
   children,
   next,
   edit,
-  cancel,
+  skip,
 }: TStepProps): JSX.Element => {
   return (
     <section className="flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5">
@@ -88,6 +90,7 @@ export const StepComponent = ({
             )}
           >
             {title}
+            {skip?.hint && <div className="ml-2">{skip.hint}</div>}
           </div>
           {edit?.action && isLocked && (
             <div className="text-2xl w-full md:w-1/6" data-testid="edit">
@@ -119,18 +122,36 @@ export const StepComponent = ({
                 {children}
               </Suspense>
             </div>
-            {next?.action && !isLocked && (
-              <div className="mt-6" data-testid="next">
-                <OdsButton
-                  data-testid="next-cta"
-                  label={next.label as string}
-                  size={ODS_BUTTON_SIZE.md}
-                  onClick={() => {
-                    next.action(id);
-                  }}
-                  className="w-fit"
-                  isDisabled={next.isDisabled || undefined}
-                />
+            {!isLocked && (
+              <div className="flex mt-6">
+                {next?.action && !isLocked && (
+                  <div className="mt-6" data-testid="next">
+                    <OdsButton
+                      data-testid="next-cta"
+                      label={next.label as string}
+                      size={ODS_BUTTON_SIZE.md}
+                      onClick={() => {
+                        next.action(id);
+                      }}
+                      className="w-fit"
+                      isDisabled={next.isDisabled || undefined}
+                    />
+                  </div>
+                )}
+                {skip?.action && (
+                  <div>
+                    <OdsButton
+                      label={skip.label as string}
+                      variant={ODS_BUTTON_VARIANT.ghost}
+                      size={ODS_BUTTON_SIZE.md}
+                      onClick={() => {
+                        skip.action(id);
+                      }}
+                      className="w-fit"
+                      isDisabled={skip.isDisabled || undefined}
+                    />
+                  </div>
+                )}
               </div>
             )}
           </>
