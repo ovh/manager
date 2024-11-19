@@ -6,11 +6,10 @@ import {
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
 import App from './App';
-import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
+import '@ovhcloud/ods-themes/default';
 import './index.scss';
 import './vite-hmr';
-
-import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
+import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constants';
 
 const trackingContext = {
   chapter1: UNIVERSE,
@@ -48,4 +47,4 @@ const init = async (appName: string) => {
   );
 };
 
-init('web-office-365');
+init('web-office');
