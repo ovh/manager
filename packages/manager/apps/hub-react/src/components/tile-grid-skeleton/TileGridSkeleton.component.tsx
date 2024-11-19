@@ -9,11 +9,15 @@ export default function TileGridSkeleton() {
       <OsdsSkeleton
         data-testid="tile_grid_title_skeleton"
         size={ODS_SKELETON_SIZE.md}
+        className="my-6"
       />
       <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-3 mb-4"
         data-testid="tile_grid_content_skeletons"
       >
+        <TileSkeleton />
+        <TileSkeleton />
+        <TileSkeleton />
         <TileSkeleton />
         <TileSkeleton />
         <TileSkeleton />

@@ -35,6 +35,7 @@ import TileSkeleton from '@/components/tile-grid-skeleton/tile-skeleton/TileSkel
 import NotificationsCarouselSkeleton from '@/pages/layout/NotificationsCarousel.skeleton';
 import PaymentStatusSkeleton from '@/pages/layout/PaymentStatus.skeleton';
 import BillingSummarySkeleton from '@/pages/layout/BillingSummary.skeleton';
+import OrderTrackingSkeleton from '@/components/hub-order-tracking/OrderTracking.skeleton';
 
 const Welcome = lazy(() => import('@/components/welcome/Welcome.component'));
 const Banner = lazy(() => import('@/components/banner/Banner.component'));
@@ -212,7 +213,9 @@ export default function Layout() {
                       {t('manager_hub_dashboard_overview')}
                     </OsdsText>
                   )}
-                  <div className={`flex flex-wrap ${isLoading ? '' : '-mx-6'}`}>
+                  <div
+                    className={`flex flex-wrap ${isLoading ? 'mt-8' : '-mx-6'}`}
+                  >
                     {isLoading && (
                       <>
                         <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
@@ -221,11 +224,8 @@ export default function Layout() {
                         <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
                           <BillingSummarySkeleton data-testid="billing_summary_skeleton" />
                         </div>
-                        <div className="md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 px-6 box-border">
-                          <TileSkeleton data-testid="support_skeleton" />
-                        </div>
                         <div className="md:w-4/12 order-4 px-6 box-border">
-                          <TileSkeleton data-testid="order_tracking_skeleton" />
+                          <OrderTrackingSkeleton data-testid="order_tracking_skeleton" />
                         </div>
                       </>
                     )}
@@ -266,7 +266,7 @@ export default function Layout() {
                       <div className="md:w-4/12 order-4 px-6 box-border">
                         <Suspense
                           fallback={
-                            <TileSkeleton data-testid="order_tracking_skeleton" />
+                            <OrderTrackingSkeleton data-testid="order_tracking_skeleton" />
                           }
                         >
                           <OrderTracking />

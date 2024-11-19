@@ -58,7 +58,7 @@ export default function PaymentStatusSkeleton() {
                 key={`billing_service_skeleton_${line}`}
                 data-testid="billing_service"
               >
-                <td scope="row" className="!p-4">
+                <td scope="row" className="!p-5">
                   <OsdsSkeleton
                     className="block mb-3"
                     data-testid="service_name_skeleton"
@@ -72,7 +72,7 @@ export default function PaymentStatusSkeleton() {
                     size={ODS_SKELETON_SIZE.xs}
                   />
                 </td>
-                <td scope="row" className="!p-4">
+                <td scope="row" className="!p-5">
                   <div className="lg:inline mb-1">
                     <OsdsSkeleton
                       className="block mb-5"
