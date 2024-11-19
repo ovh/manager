@@ -4,7 +4,6 @@ import {
   UndefinedInitialDataOptions,
   useMutation,
   useQuery,
-  useSuspenseQuery,
 } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
