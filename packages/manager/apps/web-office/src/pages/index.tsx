@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export default function WebOffice_365() {
-  const { t } = useTranslation('web-office-365');
+export default function WebOffice() {
+  const { t } = useTranslation('web-office');
 
   return (
     <div>
