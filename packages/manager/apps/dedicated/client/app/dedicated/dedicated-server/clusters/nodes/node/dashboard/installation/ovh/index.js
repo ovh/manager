@@ -10,7 +10,7 @@ const moduleName =
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicated-cluster.cluster.node.dashboard.installation-ovh.**',
+      'app.dedicated-cluster.cluster.node.dashboard.installation-standard.**',
       {
         url: '/installation/ovh',
         lazyLoad: ($transition$) => {
