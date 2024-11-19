@@ -87,5 +87,8 @@
   "ip_agora_table_header_region": "Wybierz region dla nowego Additional IP",
   "ip_agora_ipv4_localisation_title": "Geolokalizacja adresu IP",
   "ip_agora_ipv4_localisation_description": "Aby zmienić geolokalizację adresu IP, wybierz kraj z rozwijanej listy.",
-  "ip_agora_table_next_text": "Dalej"
+  "ip_agora_table_next_text": "Dalej",
+  "ip_agora_ipv6_no_services": " Adresy Additional IPv6 można przypisać tylko do prywatnej sieci vRack. Możesz utworzyć ją tutaj: ",
+  "ip_agora_ipv6_no_services_link": " Utwórz vRack",
+  "ip_agora_ipv4_localisation_not_available": "Informacje geolokalizacyjne nie mogą być modyfikowane dla pojedynczego adresu IP."
 }

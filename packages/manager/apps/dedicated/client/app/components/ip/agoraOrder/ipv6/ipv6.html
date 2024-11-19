@@ -76,8 +76,21 @@
             </div>
             <div
                 data-ng-show="!$ctrl.loading.services && !$ctrl.services.length"
-                data-translate="ip_order_noservices"
-            ></div>
+            >
+                <oui-message data-type="warning">
+                    <p class="d-flex align-items-center">
+                        <span data-translate="ip_agora_ipv6_no_services"></span>
+                        <oui-button
+                            variant="link"
+                            data-on-click="$ctrl.goToVrackPage()"
+                        >
+                            <span
+                                data-translate="ip_agora_ipv6_no_services_link"
+                            ></span>
+                        </oui-button>
+                    </p>
+                </oui-message>
+            </div>
         </oui-step-form>
 
         <oui-step-form

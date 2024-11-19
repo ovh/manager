@@ -1,5 +1,5 @@
 {
-  "netapp_volumes_snapshots_restore_title": "Auf Volume-Snapshot zurücksetzen",
+  "netapp_volumes_snapshots_restore_title": "Letzten Snapshot wiederherstellen",
   "netapp_volumes_snapshots_restore_description": "Möchten Sie das folgende Volume wirklich wiederherstellen?",
   "netapp_volumes_snapshots_restore_volume_label": "Volume",
   "netapp_volumes_snapshots_restore_snapshot_label": "Name des Snapshots",

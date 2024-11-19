@@ -45,9 +45,16 @@ export const FileInput: FunctionComponent<Props> = ({ className }) => {
   };
 
   const mapToFilesWithError = (files: File[]): FileWithError[] => {
+    const allowedTypes = accept
+      .split(',')
+      .map((type) => type.trim().toLocaleLowerCase())
+      .filter(Boolean);
+
     return files.map((fileItem) => {
       const errorMessages: string[] = [];
-      if (!accept.includes(fileItem.type)) {
+      const fileType = fileItem.type?.toLocaleLowerCase();
+
+      if (allowedTypes.length > 0 && !allowedTypes.includes(fileType)) {
         const { types, lastType } = parseContentTypes(accept);
         errorMessages.push(
           t('account-disable-2fa-file-input-type-file-error', {
