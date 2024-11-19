@@ -25,7 +25,15 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     GB:
       '/csm/en-gb-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065401',
     CA:
+      '/csm/en-ca-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065397',
+    QC:
       '/csm/fr-ca-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065405',
+    WE:
+      '/csm/en-ca-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065397',
+    WS:
+      '/csm/en-ca-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065397',
+    US:
+      '/csm/en-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065403',
   },
   guideLink2: {
     DE:
@@ -45,7 +53,15 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     GB:
       '/csm/en-gb-public-cloud-ai-endpoints-capabilities?id=kb_article_view&sysparm_article=KB0065417',
     CA:
+      '/csm/en-ca-public-cloud-ai-endpoints-capabilities?id=kb_article_view&sysparm_article=KB0065420',
+    QC:
       '/csm/fr-ca-public-cloud-ai-endpoints-capabilities?id=kb_article_view&sysparm_article=KB0065416',
+    WE:
+      '/csm/en-ca-public-cloud-ai-endpoints-capabilities?id=kb_article_view&sysparm_article=KB0065420',
+    WS:
+      '/csm/en-ca-public-cloud-ai-endpoints-capabilities?id=kb_article_view&sysparm_article=KB0065420',
+    US:
+      '/csm/en-public-cloud-ai-endpoints-capabilities?id=kb_article_view&sysparm_article=KB0065421',
   },
 };
 
