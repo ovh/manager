@@ -237,14 +237,22 @@ export default class VrackMoveDialogCtrl {
         });
     }
 
-    this.$scope.$on('$destroy', () => {
-      if (this.poller) {
-        this.$timeout.cancel(this.poller);
-      }
-      if (this.pollerEligible) {
-        this.$timeout.cancel(this.pollerEligible);
-      }
-    });
+    this.$scope.$on('$destroy', this.clearPolling);
+  }
+
+  $onDestroy() {
+    this.clearPolling();
+  }
+
+  clearPolling() {
+    if (this.poller) {
+      this.$timeout.cancel(this.poller);
+      this.poller = null;
+    }
+    if (this.pollerEligible) {
+      this.$timeout.cancel(this.pollerEligible);
+      this.pollerEligible = null;
+    }
   }
 
   refreshMessage() {
@@ -366,11 +374,13 @@ export default class VrackMoveDialogCtrl {
       .then((dedicatedServerInterfaces) => {
         // We need to append dedicatedServerInterfaces list to dedicatedServers list.
         if (dedicatedServerInterfaces.length > 0) {
-          this.data.eligibleServices.dedicatedServer = [];
-          this.data.eligibleServices.dedicatedServerInterface = [];
+          if (!this.data.eligibleServices.dedicatedServer) {
+            this.data.eligibleServices.dedicatedServer = [];
+          }
           this.data.eligibleServices.dedicatedServer = this.data.eligibleServices.dedicatedServer.concat(
             dedicatedServerInterfaces,
           );
+          this.data.eligibleServices.dedicatedServerInterface = [];
         }
       });
   }
