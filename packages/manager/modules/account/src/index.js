@@ -12,6 +12,7 @@ import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ovhContacts from '@ovh-ux/ng-ovh-contacts';
 import 'bootstrap';
 import 'angular-ui-bootstrap';
 import 'punycode';
@@ -25,6 +26,7 @@ angular
   .module(moduleName, [
     'ui.router',
     'oc.lazyLoad',
+    'ovh-api-services',
     ngAtInternetUiRouterPlugin,
     ngOvhApiWrappers,
     ngOvhHttp,
@@ -35,6 +37,7 @@ angular
     ngOvhUtils,
     ngTranslateAsyncLoader,
     ngPaginationFront,
+    ovhContacts,
     ovhManagerAtInternetConfiguration,
   ])
   .config(
