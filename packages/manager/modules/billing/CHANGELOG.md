@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0...@ovh-ux/manager-billing@0.21.0) (2024-11-19)
+
+
+### Features
+
+* **dedicated:** add alert on hosting renewal deactivation ([#13612](https://github.com/ovh/manager/issues/13612)) ([b8f1e14](https://github.com/ovh/manager/commit/b8f1e1430d88539806a02ff0f62d06ad487df65f))
+
+
+
+
+
 # 0.20.0 (2024-11-12)
 
 

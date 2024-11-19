@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-freefax-app",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "private": true,
   "description": "Freefax standalone application.",
   "repository": {
@@ -21,7 +21,7 @@
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.8.1",
     "@ovh-ux/manager-config": "^8.0.0",
-    "@ovh-ux/manager-core": "^13.0.0",
+    "@ovh-ux/manager-core": "^13.0.1",
     "@ovh-ux/manager-freefax": "^7.9.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
     "@ovh-ux/manager-telecom-styles": "^4.8.3",
