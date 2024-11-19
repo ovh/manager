@@ -1,6 +1,7 @@
 {
   "pci_projects_project_storages_cold_archive_containers_container_edit_retention_title": "Modifier la durée de retention",
-  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_description": "Vous êtez sur le point de modifier la durée de retention de votre conteneur {{ containerName }}.</br>En configurant une durée de rétention, votre archive sera verrouillée et vous ne pourrez plus supprimer vos données pendant toute la période de rétention.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_description": "Vous êtes sur le point de modifier la durée de retention de votre conteneur {{ containerName }}.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_description_2": "En configurant une durée de rétention, votre archive sera verrouillée et vous ne pourrez plus supprimer vos données pendant toute la période de rétention.",
   "pci_projects_project_storages_cold_archive_containers_container_edit_retention_submit_label": "Modifier",
   "pci_projects_project_storages_cold_archive_containers_container_edit_retention_cancel_label": "Annuler",
   "pci_projects_project_storages_cold_archive_containers_container_edit_retention_success_message": "La durée de rétention du conteneur {{ containerName }} a été modifiée avec succès.",

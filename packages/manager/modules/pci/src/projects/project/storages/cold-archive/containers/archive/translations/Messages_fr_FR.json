@@ -1,6 +1,7 @@
 {
   "pci_projects_project_storages_cold_archive_containers_container_archive_title": "Archiver votre conteneur",
-  "pci_projects_project_storages_cold_archive_containers_container_archive_description": "Vous êtez sur le point d'archiver votre conteneur {{ containerName }}. </br>En configurant une durée de rétention, votre archive sera verrouillée et vous ne pourrez plus supprimer vos données pendant toute la période de rétention.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_description": "Vous êtes sur le point d'archiver votre conteneur {{ containerName }}.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_description_2": "En configurant une durée de rétention, votre archive sera verrouillée et vous ne pourrez plus supprimer vos données pendant toute la période de rétention.",
   "pci_projects_project_storages_cold_archive_containers_container_archive_submit_label": "Archiver",
   "pci_projects_project_storages_cold_archive_containers_container_archive_cancel_label": "Annuler",
   "pci_projects_project_storages_cold_archive_containers_container_archive_success_message": "Le conteneur {{ containerName }} est en cours d'archivage.",
