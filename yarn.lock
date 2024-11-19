@@ -6414,6 +6414,15 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
+"@ovh-ux/manager-core-api@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.9.0.tgz#a0e4a556e01583b63027c73c5b358f96d3016230"
+  integrity sha512-5Pok3Oj4zlWEIdbEAM6H3WNitRLBP+U6dvgEYWm8nDj+6gwxMgceb5mBuZvPsph4eoNE15t9EJDRRr2C3lQInA==
+  dependencies:
+    "@ovh-ux/manager-core-sso" "^0.3.0"
+    "@ovh-ux/request-tagger" "^0.4.0"
+    axios "^1.1.2"
+
 "@ovh-ux/manager-pci-common@^0.14.4":
   version "0.14.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-0.14.4.tgz#1de97298b0041e42829e4390423986daabcb442b"
@@ -6489,6 +6498,15 @@
   integrity sha512-LvxWv+ER5p8hKHntejrcbxPNA6s9MqcAxnnDfvxPTeo292ZVERy6rDZ1ukuV8w6BhRKGGU/IXL8jILgLS6drKg==
   dependencies:
     lodash "^4.17.15"
+
+"@ovh-ux/ovh-at-internet@^0.17.0":
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.17.0.tgz#464c5230e672b35b9dff95bf89dfd85ce806da2e"
+  integrity sha512-sSiJ4zI94WdofCvEC6/cUmL1jgBIyQkZ+JQqXm5X2ux8WeLZH0p2TsULhn/sjEY/TbHFmkEWmuIijp5hNoXOaw==
+  dependencies:
+    "@ovh-ux/manager-config" "^8.0.1"
+    "@types/lodash-es" "^4.17.5"
+    lodash-es "^4.17.15"
 
 "@ovh-ux/ovh-at-internet@^0.18.1":
   version "0.18.1"
@@ -9881,7 +9899,7 @@
   resolved "https://registry.yarnpkg.com/@types/linkify-it/-/linkify-it-3.0.5.tgz#1e78a3ac2428e6d7e6c05c1665c242023a4601d8"
   integrity sha512-yg6E+u0/+Zjva+buc3EIb+29XEg4wltq7cSmd4Uc2EE/1nUVmxyzpX6gUXD0V8jIrG0r7YeOGVIbYRkxeooCtw==
 
-"@types/lodash-es@^4.17.12":
+"@types/lodash-es@^4.17.12", "@types/lodash-es@^4.17.5":
   version "4.17.12"
   resolved "https://registry.yarnpkg.com/@types/lodash-es/-/lodash-es-4.17.12.tgz#65f6d1e5f80539aa7cfbfc962de5def0cf4f341b"
   integrity sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==
@@ -29996,17 +30014,6 @@ vite@^5.3.3:
     esbuild "^0.21.3"
     postcss "^8.4.40"
     rollup "^4.13.0"
-  optionalDependencies:
-    fsevents "~2.3.3"
-
-vite@^5.4.12:
-  version "5.4.14"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.14.tgz#ff8255edb02134df180dcfca1916c37a6abe8408"
-  integrity sha512-EK5cY7Q1D8JNhSaPKVK4pwBFvaTmZxEnoKXLG/U9gmdDcihQGNzFlgIvaxezFR4glP1LsuiedwMBqCXH3wZccA==
-  dependencies:
-    esbuild "^0.21.3"
-    postcss "^8.4.43"
-    rollup "^4.20.0"
   optionalDependencies:
     fsevents "~2.3.3"
 
