@@ -73,9 +73,7 @@
   "overTheBox_change_release_channel_error": "Non è stato possibile effettuare la modifica della versione: {{errorMessage}}",
   "overTheBox_release_channel_stable": "Versione stabile con aggiornamento automatico",
   "overTheBox_release_channel_beta": "Versione beta con aggiornamento automatico",
-  "overTheBox_release_channel_v0_8": "Versione v0.8",
-  "overTheBox_release_channel_v0_9": "Versione v0.9",
-  "overTheBox_release_channel_v1_0": "Versione v1.0",
+  "overTheBox_release_channel": "Versione {{version}}",
   "overTheBox_version_system": "Versione del sistema",
   "overTheBox_last_seen": "Ultima connessione del dispositivo",
   "overTheBox_last_seen_few_seconds": "Qualche secondo fa",
@@ -93,12 +91,11 @@
   "overTheBox_model_device": "Modello di dispositivo",
   "overTheBox_detail_bandwidth": "Banda passante massima",
   "overTheBox_model_device_unknown": "Sconosciuto",
-  "overTheBox_change_offer": "Modificare soluzione",
   "overTheBox_deviceId_unlink": "Dissociare",
   "overTheBox_cancel": "Annullare",
   "overTheBox_confirm_unlink_device": "Il dispositivo non sarà in grado di connettersi al servizio?",
   "overTheBox_unlink_device_error": "Impossibile dissociare la periferica: {{errorMessage}}",
   "overTheBox_unlink_device_success": "Il dispositivo è stato scollegato correttamente.",
-  "overTheBox_release_channel_deprecated": "Versione deprezzata {{version}}",
-  "overTheBox_release_channel": "Versione {{version}}"
+  "overTheBox_change_offer": "Modificare soluzione",
+  "overTheBox_release_channel_deprecated": "Versione deprezzata {{version}}"
 }

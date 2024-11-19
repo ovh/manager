@@ -73,9 +73,7 @@
   "overTheBox_change_release_channel_error": "Die Änderung der Version konnte nicht durchgeführt werden: {{errorMessage}}",
   "overTheBox_release_channel_stable": "Stabile Version mit automatischen Updates",
   "overTheBox_release_channel_beta": "Beta-Version mit automatischen Updates",
-  "overTheBox_release_channel_v0_8": "Version 0.8",
-  "overTheBox_release_channel_v0_9": "Version 0.9",
-  "overTheBox_release_channel_v1_0": "Version 1.0",
+  "overTheBox_release_channel": "Version {{version}}",
   "overTheBox_version_system": "Version des Systems",
   "overTheBox_last_seen": "Letzte Geräteverbindung",
   "overTheBox_last_seen_few_seconds": "Vor ein paar Sekunden",
@@ -93,12 +91,11 @@
   "overTheBox_model_device": "Gerätemodell",
   "overTheBox_detail_bandwidth": "Maximale Bandbreite",
   "overTheBox_model_device_unknown": "Unbekannt",
-  "overTheBox_change_offer": "Angebot wechseln",
   "overTheBox_deviceId_unlink": "Trennen",
   "overTheBox_cancel": "Abbrechen",
   "overTheBox_confirm_unlink_device": "Dieses Gerät kann keine Verbindung mehr mit diesem Dienst herstellen, sind Sie sicher?",
   "overTheBox_unlink_device_error": "Das Gerät konnte nicht getrennt werden: {{errorMessage}}",
   "overTheBox_unlink_device_success": "Die Zuordnung des Geräts wurde erfolgreich aufgehoben.",
-  "overTheBox_release_channel_deprecated": "Veraltete Version {{version}}",
-  "overTheBox_release_channel": "Version {{version}}"
+  "overTheBox_change_offer": "Angebot wechseln",
+  "overTheBox_release_channel_deprecated": "Veraltete Version {{version}}"
 }

@@ -73,9 +73,7 @@
   "overTheBox_change_release_channel_error": "No ha sido posible modificar la versión: {{errorMessage}}",
   "overTheBox_release_channel_stable": "Versión estable con actualización automática",
   "overTheBox_release_channel_beta": "Versión beta con actualización automática",
-  "overTheBox_release_channel_v0_8": "Versión v0.8",
-  "overTheBox_release_channel_v0_9": "Versión v0.9",
-  "overTheBox_release_channel_v1_0": "Versión v1.0",
+  "overTheBox_release_channel": "Versión {{version}}",
   "overTheBox_version_system": "Versión del sistema",
   "overTheBox_last_seen": "Última conexión del dispositivo",
   "overTheBox_last_seen_few_seconds": "Hace algunos segundos",
@@ -93,12 +91,11 @@
   "overTheBox_model_device": "Modelo de dispositivo",
   "overTheBox_detail_bandwidth": "Ancho de banda máximo",
   "overTheBox_model_device_unknown": "Desconocido",
-  "overTheBox_change_offer": "Cambiar de plan",
   "overTheBox_deviceId_unlink": "Desvincular",
   "overTheBox_cancel": "Cancelar",
   "overTheBox_confirm_unlink_device": "Este dispositivo ya no podrá conectarse a este servicio, ¿está seguro?",
   "overTheBox_unlink_device_error": "No se pudo desasociar el dispositivo: {{errorMessage}}",
   "overTheBox_unlink_device_success": "El dispositivo se ha desvinculado correctamente.",
-  "overTheBox_release_channel_deprecated": "Versión obsoleta {{version}}",
-  "overTheBox_release_channel": "Versión {{version}}"
+  "overTheBox_change_offer": "Cambiar de plan",
+  "overTheBox_release_channel_deprecated": "Versión obsoleta {{version}}"
 }
