@@ -33,7 +33,7 @@
         data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_softwareSolution_term' | translate }}"
     >
         <oui-tile-description>
-            <span data-ng-bind=":: $ctrl.bindings.softwareSolution"></span>
+            <p data-ng-bind=":: $ctrl.bindings.softwareSolution"></p>
             <span
                 class="oui-badge oui-badge_warning"
                 data-ng-if="$ctrl.bindings.updateAvailable && !$ctrl.currentService.vcenterUpgradePendingTask"
