@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.17.1...@ovh-ux/manager-generator@0.17.2) (2024-11-19)
+
+
+### Bug Fixes
+
+* **generator:** correct issue with pci breadcrumb ([7e26a9d](https://github.com/ovh/manager/commit/7e26a9d62195929917e203d8616c39242ef12d8f))
+* **generator:** delete cucumber config ([f44ff78](https://github.com/ovh/manager/commit/f44ff78aff45d4e3412e67a57be50d914b0831b4))
+
+
+
+
+
 ## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.17.0...@ovh-ux/manager-generator@0.17.1) (2024-11-18)
 
 
