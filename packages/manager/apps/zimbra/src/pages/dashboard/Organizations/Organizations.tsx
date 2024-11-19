@@ -13,8 +13,12 @@ import {
   DatagridColumn,
   ManagerButton,
 } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ResourceStatus } from '@/api/api.type';
-
 import { useOrganizationList, usePlatform, useGenerateUrl } from '@/hooks';
 import ActionButtonOrganization from './ActionButtonOrganization.component';
 import IdLink from './IdLink';
@@ -23,6 +27,7 @@ import { BadgeStatus } from '@/components/BadgeStatus';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 import Loading from '@/components/Loading/Loading';
+import { ADD_ORGANIZATION } from '@/tracking.constant';
 
 export type OrganizationItem = {
   id: string;
@@ -69,6 +74,7 @@ const columns: DatagridColumn<OrganizationItem>[] = [
 
 export default function Organizations() {
   const { t } = useTranslation('organizations');
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { platformUrn } = usePlatform();
   const {
@@ -97,6 +103,12 @@ export default function Organizations() {
   const hrefAddOrganization = useGenerateUrl('./add', 'path');
 
   const handleOrganizationClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [ADD_ORGANIZATION],
+    });
     navigate(hrefAddOrganization);
   };
 

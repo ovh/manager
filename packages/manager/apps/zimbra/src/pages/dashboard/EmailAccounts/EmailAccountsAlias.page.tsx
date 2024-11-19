@@ -16,6 +16,11 @@ import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { Outlet, useNavigate, useSearchParams } from 'react-router-dom';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   AliasType,
   getZimbraPlatformAlias,
   getZimbraPlatformAliasQueryKey,
@@ -26,6 +31,7 @@ import { BadgeStatus } from '@/components/BadgeStatus';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
 import Loading from '@/components/Loading/Loading';
+import { EMAIL_ACCOUNT_ADD_ALIAS } from '@/tracking.constant';
 
 export type AliasItem = {
   id: string;
@@ -34,6 +40,7 @@ export type AliasItem = {
 };
 
 export default function EmailAccountsAlias() {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('accounts/alias');
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -69,6 +76,12 @@ export default function EmailAccountsAlias() {
 
   const hrefAddAlias = useGenerateUrl('./add', 'href', params);
   const handleAddAliasClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [EMAIL_ACCOUNT_ADD_ALIAS],
+    });
     navigate(hrefAddAlias);
   };
   const items: AliasItem[] =

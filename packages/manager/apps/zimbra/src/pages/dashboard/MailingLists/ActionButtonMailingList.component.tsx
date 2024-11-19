@@ -3,10 +3,21 @@ import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { MailingListItem } from './MailingLists';
 import { ResourceStatus } from '@/api/api.type';
+import {
+  CONFIGURE_DELEGATION_MAILING_LIST,
+  DEFINE_MEMBERS_MAILING_LIST,
+  DELETE_MAILING_LIST,
+  EDIT_MAILING_LIST,
+} from '@/tracking.constant';
 
 interface ActionButtonMailingListProps {
   mailingListItem: MailingListItem;
@@ -15,6 +26,7 @@ interface ActionButtonMailingListProps {
 const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
   mailingListItem,
 }) => {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('mailinglists');
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
@@ -24,6 +36,12 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
   });
 
   const handleDeleteMailingListClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [DELETE_MAILING_LIST],
+    });
     navigate(hrefDeleteMailingList);
   };
 
@@ -32,6 +50,12 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
   });
 
   const handleEditMailingListClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [EDIT_MAILING_LIST],
+    });
     navigate(hrefEditMailingList);
   };
 
@@ -44,6 +68,12 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
   );
 
   const handleDefineMembersMailingListClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [DEFINE_MEMBERS_MAILING_LIST],
+    });
     navigate(hrefDefineMembersMailingList);
   };
 
@@ -56,6 +86,12 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
   );
 
   const handleDefineConfigureDelegationMailingList = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [CONFIGURE_DELEGATION_MAILING_LIST],
+    });
     navigate(hrefConfigureDelegationMailingList);
   };
 

@@ -4,7 +4,7 @@ import { DashboardTile, ManagerText } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { AccountStatistics } from '@/api/api.type';
 import { useOrganization, usePlatform } from '@/hooks';
-import { GuideLinks, GUIDES_LIST } from '@/guides.constants';
+import { Guide, GUIDES_LIST } from '@/guides.constants';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import GuideLink from '@/components/GuideLink';
 import { BadgeStatus } from '@/components/BadgeStatus';
@@ -15,7 +15,7 @@ function GeneralInformation() {
   const { data: platform, platformUrn } = usePlatform();
   const { data: organisation } = useOrganization();
 
-  const links: GuideLinks = {
+  const links: Record<string, Guide> = {
     zimbra_dashboard_webmail: GUIDES_LIST.webmail,
     zimbra_dashboard_administrator_guide: GUIDES_LIST.administrator_guide,
     zimbra_dashboard_user_guides: GUIDES_LIST.user_guide,

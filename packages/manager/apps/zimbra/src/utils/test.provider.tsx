@@ -133,7 +133,7 @@ const customRender = (
 
 // We should look into using that
 // https://testing-library.com/docs/user-event/intro
-export function setup(jsx: React.ReactElement) {
+export function setup(jsx: React.ReactElement): unknown {
   return {
     user: userEvent.setup(),
     ...customRender(jsx),

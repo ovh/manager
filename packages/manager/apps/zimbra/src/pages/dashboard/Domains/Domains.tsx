@@ -15,6 +15,11 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { Outlet, useNavigate } from 'react-router-dom';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   useOverridePage,
   useDomains,
   useGenerateUrl,
@@ -36,6 +41,7 @@ import { DomainType } from '@/api/domain/type';
 import { AccountStatistics, ResourceStatus } from '@/api/api.type';
 import { BadgeStatus } from '@/components/BadgeStatus';
 import { CnameBadge } from './CnameBadge.component';
+import { ADD_DOMAIN } from '@/tracking.constant';
 
 export type DomainsItem = {
   id: string;
@@ -118,6 +124,7 @@ const columns: DatagridColumn<DomainsItem>[] = [
 
 export default function Domains() {
   const { t } = useTranslation('domains');
+  const { trackClick } = useOvhTracking();
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
   const isOverridedPage = useOverridePage();
@@ -141,6 +148,12 @@ export default function Domains() {
   const hrefAddDomain = useGenerateUrl('./add', 'path');
 
   const handleAddDomainClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [ADD_DOMAIN],
+    });
     navigate(hrefAddDomain);
   };
 
