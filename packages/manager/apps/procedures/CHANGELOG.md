@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.6.0...@ovh-ux/manager-procedures-app@0.6.1) (2024-11-19)
+
+
+### Bug Fixes
+
+* **procedures:** handle unknown file types in file input validation ([#13925](https://github.com/ovh/manager/issues/13925)) ([848c577](https://github.com/ovh/manager/commit/848c5774df6912e9ccdef90b0e5dc4e0934c4544))
+
+
+
+
+
 # 0.6.0 (2024-11-12)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.2.1...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.2.2) (2024-11-19)
+
+
+### Bug Fixes
+
+* **vcd:** fix veeam backup status ([#13856](https://github.com/ovh/manager/issues/13856)) ([26226e3](https://github.com/ovh/manager/commit/26226e33e051583bb0dca92a78aa6068a7970f6b))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.2.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.2.1) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.0.5...@ovh-ux/manager-dedicated@20.1.0) (2024-11-19)
+
+
+### Features
+
+* **dedicated-cloud:** disabled confirm form when user is not edited ([#13927](https://github.com/ovh/manager/issues/13927)) ([f60dab0](https://github.com/ovh/manager/commit/f60dab007956fc02c343f94adfc4a642539aff4a))
+* **dedicated.ip:** modify step4 no geolocation message ([#13622](https://github.com/ovh/manager/issues/13622)) ([94f9d27](https://github.com/ovh/manager/commit/94f9d2770380705a70afce6612f88c50530752f4))
+* **dedicated.ip:** remove parking for ipv6 order ([#12852](https://github.com/ovh/manager/issues/12852)) ([c1e976c](https://github.com/ovh/manager/commit/c1e976c9b572a28cc22f18694ef95a1e0fbc4980))
+* **dedicated:** filter organizations when order ipv4([#13464](https://github.com/ovh/manager/issues/13464)) ([b015c6d](https://github.com/ovh/manager/commit/b015c6d0e49479c44818a4ff90e9423a4f352957))
+
+
+
+
+
 ## [20.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.0.4...@ovh-ux/manager-dedicated@20.0.5) (2024-11-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
