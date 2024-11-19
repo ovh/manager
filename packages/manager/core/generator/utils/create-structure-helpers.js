@@ -37,19 +37,18 @@ export const createPages = (templates, appDirectory, isApiV6) =>
   templates.map((template) =>
     template === 'listing'
       ? {
-          type: 'add',
-          path: join(
+          type: 'addMany',
+          destination: join(
             appDirectory,
-            `../../../apps/{{dashCase appName}}/src/pages/listing/index.tsx`,
+            `../../../apps/{{dashCase appName}}/src/pages/listing/`,
           ),
-          force: true,
-          templateFile: join(
+          templateFiles: join(
             appDirectory,
-            `./conditional-templates/${template}/${
-              isApiV6
-                ? 'index-api-v6-pagination-step'
-                : 'index-api-v2-pagination-cursor'
-            }.tsx.hbs`,
+            `./conditional-templates/listing/${isApiV6 ? 'v6' : 'v2'}`,
+          ),
+          base: join(
+            appDirectory,
+            `./conditional-templates/listing/${isApiV6 ? 'v6' : 'v2'}`,
           ),
         }
       : {
