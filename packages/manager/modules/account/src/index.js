@@ -17,6 +17,7 @@ import 'angular-ui-bootstrap';
 import 'punycode';
 /* eslint-disable import/no-webpack-loader-syntax */
 import 'script-loader!ipaddr.js/ipaddr.min.js';
+import 'ovh-api-services';
 
 const moduleName = 'ovhManagerAccountLazyLoading';
 
