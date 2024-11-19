@@ -18,7 +18,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import TileLine from '@/components/detail/TileLine.component';
-import { getFormattedDate } from '@/helpers';
+import { useFormattedDate } from '@/hooks/useFormattedDate';
 
 export interface GeneralInformationProps {
   loadBalancerName: string;
@@ -34,6 +34,7 @@ export default function GeneralInformation({
   loadBalancerId,
 }: GeneralInformationProps) {
   const { t } = useTranslation('load-balancer/overview');
+  const creationDate = useFormattedDate(loadBalancerCreationDate, 'PP');
 
   const editNameHref = useHref('./edit-name');
 
@@ -92,7 +93,7 @@ export default function GeneralInformation({
 
           <TileLine
             title={t('octavia_load_balancer_overview_info_creation_date')}
-            value={getFormattedDate(loadBalancerCreationDate, 'PP')}
+            value={creationDate}
           />
 
           <TileLine
