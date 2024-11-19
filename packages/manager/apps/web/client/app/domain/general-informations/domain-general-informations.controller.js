@@ -52,6 +52,7 @@ export default class DomainTabGeneralInformationsCtrl {
     DOMAIN,
     goToDnsAnycast,
     goToTerminateAnycast,
+    goToContactManagement,
     shellClient,
     atInternet,
   ) {
@@ -81,6 +82,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.DOMAIN = DOMAIN;
     this.goToDnsAnycast = goToDnsAnycast;
     this.goToTerminateAnycast = goToTerminateAnycast;
+    this.goToContactManagement = goToContactManagement;
     this.DOMAIN_STATE_TYPE = DOMAIN_STATE_TYPE;
     this.shellClient = shellClient;
     this.atInternet = atInternet;
@@ -233,13 +235,9 @@ export default class DomainTabGeneralInformationsCtrl {
       });
   }
 
+
   initActions() {
-    const contactManagementUrl = this.coreConfig.isRegion('EU')
-      ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
-          serviceName: this.domain.name,
-          category: PRODUCT_TYPE,
-        })
-      : '';
+    const contactManagementUrl = this.$state.href('app.domain.product.contact', this.$stateParams)
 
     this.actions = {
       manageContact: {

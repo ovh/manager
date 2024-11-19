@@ -9,4 +9,11 @@ export default class ContactService {
       .get(`/domain/${serviceName}/serviceInfos`)
       .then(({ data }) => data);
   }
+
+  getDomainContactInformations(contactId) {
+    return this.$http
+      .get(`/domain/contact/${contactId}`)
+      .then(({ data }) => data);
+  }
+
 }
