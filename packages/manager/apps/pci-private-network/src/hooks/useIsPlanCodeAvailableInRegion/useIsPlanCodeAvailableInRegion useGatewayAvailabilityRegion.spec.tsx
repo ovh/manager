@@ -1,6 +1,6 @@
 import { describe, vi } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
-import useGatewayAvailabilityRegion from './useGatewayAvailabilityRegion';
+import useGatewayAvailabilityRegion from './useIsPlanCodeAvailableInRegion';
 
 vi.mock('@ovh-ux/manager-pci-common', () => ({
   useProject: vi.fn().mockReturnValue({ data: {} }),
