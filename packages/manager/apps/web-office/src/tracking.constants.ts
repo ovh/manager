@@ -17,4 +17,4 @@ export const LEVEL2 = {
 };
 export const UNIVERSE = 'WebCloud';
 export const SUB_UNIVERSE = 'Web';
-export const APP_NAME = 'web-office-365';
+export const APP_NAME = 'web-office';
