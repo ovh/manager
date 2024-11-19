@@ -16,7 +16,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import { cidr } from '@/__mocks__/network';
 import SubnetConfig from './SubnetConfig.component';
-import { NewPrivateNetworkWrapper } from '@/utils/test/test.provider';
+import { NewPrivateNetworkWrapper } from '@/__tests__/wrapper';
 import { NEW_PRIVATE_NETWORK_FORM_SCHEMA } from '../new.constants';
 
 vi.mock('@/hooks/useGuideLink/useGuideLink');
@@ -28,7 +28,9 @@ describe('SubnetConfig CIDR', () => {
       wrapper: ({ children }) => {
         const form = useForm<NewPrivateNetworkForm>({
           defaultValues: {
-            defaultVlanId: 1,
+            subnet: {
+              cidr,
+            },
           },
           resolver: zodResolver(NEW_PRIVATE_NETWORK_FORM_SCHEMA),
         });

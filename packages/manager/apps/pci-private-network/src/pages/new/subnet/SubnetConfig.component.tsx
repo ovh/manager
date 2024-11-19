@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import {
   OsdsFormField,
@@ -19,7 +19,6 @@ import { Subtitle } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
-import { DEFAULT_CIDR } from '@/pages/new/new.constants';
 import GatewayConfig from './gateway/GatewayConfig.component';
 
 const SubnetConfig: React.FC = () => {
@@ -32,8 +31,6 @@ const SubnetConfig: React.FC = () => {
       errors: { subnet: error },
     },
   } = useFormContext<NewPrivateNetworkForm>();
-  const defaultVlanId = watch('defaultVlanId');
-  const vlanId = watch('vlanId');
   const dhcp = watch('subnet.enableDhcp');
   const cidr = watch('subnet.cidr');
 
@@ -41,15 +38,6 @@ const SubnetConfig: React.FC = () => {
     touched?.cidr,
     error?.cidr,
   ]);
-
-  useEffect(() => {
-    const id = vlanId || defaultVlanId;
-    const defaultCIDR = DEFAULT_CIDR.replace('{vlanId}', `${id % 255}`);
-    setValue('subnet.cidr', defaultCIDR, {
-      shouldValidate: true,
-      shouldTouch: true,
-    });
-  }, [defaultVlanId, vlanId]);
 
   return (
     <div className="flex flex-col gap-6 my-8">

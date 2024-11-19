@@ -1,8 +1,13 @@
 import { useContext } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { getCatalog } from '@ovh-ux/manager-pci-common';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { getGatewaysByRegion } from '@/data/api/gateway';
+
+export type TUseGatewayCatalog = UseQueryResult<
+  { size: string; pricePerMonth: number; pricePerHour: number },
+  Error
+>;
 
 export const useGatewayByRegion = (projectId: string, region: string) =>
   useQuery({
@@ -16,7 +21,7 @@ export const useGatewayByRegion = (projectId: string, region: string) =>
       })),
   });
 
-export const useGatewayCatalog = () => {
+export const useGatewayCatalog = (): TUseGatewayCatalog => {
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
   return useQuery({
