@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useBlocker, useNavigate } from 'react-router-dom';
+import { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AlertCircle, ArrowRight } from 'lucide-react';
 import { useOrderFunnel } from './useOrderFunnel.hook';
@@ -45,17 +45,8 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import OvhLink from '@/components/links/OvhLink.component';
 import { PlanCode } from '@/types/cloud/Project';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
-import { useLoadingIndicatorContext } from '@/contexts/LoadingIndicator.context';
 import { usePostTracking } from '@/hooks/api/tracking/usePostTracking.hook';
+import { useBeforeUnload } from '@/hooks/useBeforeUnload.hook';
 
 interface OrderFunnelProps {
   availabilities: database.Availability[];
@@ -86,49 +77,14 @@ const OrderFunnel = ({
       console.log('posted tracking');
     },
   });
-  // control the loading indicator in the top of the app
-  const { setLoading } = useLoadingIndicatorContext();
-  // control if a service has been created
-  const [newId, setNewId] = useState('');
-  // block the navigation inside the router app
-  const blocker = useBlocker(
-    ({ currentLocation, nextLocation }) =>
-      currentLocation.pathname !== nextLocation.pathname && newId.length === 0,
-  );
-  // remove loading indicator if navigation is blocked
-  useEffect(() => {
-    if (blocker.state === 'blocked') {
-      setLoading(false);
-    }
-  }, [blocker.state]);
-  // handle the post of the tracking
-  const trackExit = () => {
-    try {
-      const data = `${model.result.engine?.name}-${model.result.plan?.name}-${model.result.region?.name}-${model.result.flavor?.name}`;
-      console.log(data);
-      postTracking(data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  // handle navigator navigation (tab closing, window closing, manual url change)
-  useEffect(() => {
-    async function beforeUnload(e: BeforeUnloadEvent) {
-      // avoid navigation on modern browsers
-      e.preventDefault();
-      // deprecated, but needed for older navigators
-      const confirmationMessage = 'You have unsaved changes. Continue?';
-      e.returnValue = confirmationMessage;
-      // execute the post tracking
-      trackExit();
-      return confirmationMessage;
-    }
-    window.addEventListener('beforeunload', beforeUnload);
-    // remove the listener on cleanup
-    return () => {
-      window.removeEventListener('beforeunload', beforeUnload);
-    };
-  }, [model]);
+
+  const { BeforeUnloadDialog, setEnabled } = useBeforeUnload({
+    onUnload: useCallback(() => {
+      postTracking(
+        `${model.result.engine?.name}-${model.result.plan?.name}-${model.result.region?.name}-${model.result.flavor?.name}`,
+      );
+    }, [model]),
+  });
 
   const projectData = usePciProject();
   const [showMonthlyPrice, setShowMonthlyPrice] = useState(false);
@@ -147,7 +103,7 @@ const OrderFunnel = ({
       toast({
         title: t('successCreatingService'),
       });
-      setNewId(service.id);
+      setEnabled(true);
       navigate(`../${service.id}`);
     },
   });
@@ -213,28 +169,7 @@ const OrderFunnel = ({
 
   return (
     <>
-      {blocker.state === 'blocked' && newId.length === 0 && (
-        <Dialog defaultOpen={true}>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Do you really want to leave the page?</DialogTitle>
-              <DialogDescription>Your selection will be lost</DialogDescription>
-            </DialogHeader>
-            <DialogFooter>
-              <DialogClose onClick={() => blocker.reset()}>No</DialogClose>
-              <Button
-                onClick={() => {
-                  trackExit();
-                  setLoading(true);
-                  blocker.proceed();
-                }}
-              >
-                Yes
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-      )}
+      {BeforeUnloadDialog}
       {isProjectDiscoveryMode && (
         <Alert variant="warning">
           <AlertDescription className="text-base">
