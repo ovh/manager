@@ -9,7 +9,6 @@ export const createPrivateNetwork = async (
   projectId: string,
 ) => {
   const {
-    defaultVlanId,
     existingGatewayId,
     enableSnat,
     isLocalZone,

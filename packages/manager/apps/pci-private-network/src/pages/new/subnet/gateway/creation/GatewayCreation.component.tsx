@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import {
   OsdsCheckbox,
@@ -21,12 +21,12 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation, Trans } from 'react-i18next';
-import useGatewayAvailabilityRegion from '@/hooks/useGatewayAvailabilityRegion/useGatewayAvailabilityRegion';
+import useIsPlanCodeAvailableInRegion from '@/hooks/useIsPlanCodeAvailableInRegion/useIsPlanCodeAvailableInRegion';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
 import { GATEWAY_HOURLY_PLAN_CODE } from '../../../new.constants';
 import useGetExistingGatewayRegion from '@/hooks/useExistingGatewayRegion/useExistingGatewayRegion';
-import useAvailableGatewayCatalog from '@/hooks/useAvailableGatewayCatalog/useAvailableGatewayCatalog';
+import { useGatewayCatalog } from '@/data/hooks/gateway/useGateway';
 import AvailableGatewayMessage from '../message/AvailableGatewayMessage.component';
 import ExistingGatewayMessage from '../message/ExistingGatewayMessage.component';
 import usePrepareGatewayCreation from '@/hooks/usePrepareGatewayCreation/usePrepareGatewayCreation';
@@ -36,12 +36,12 @@ const GatewayCreation: React.FC = () => {
   const guides = useGuideLink();
   const { watch, unregister } = useFormContext<NewPrivateNetworkForm>();
   const region = watch('region');
-  const isGatewayAvailable = useGatewayAvailabilityRegion(
+  const isGatewayAvailable = useIsPlanCodeAvailableInRegion(
     region,
     GATEWAY_HOURLY_PLAN_CODE,
   );
 
-  const { catalog, isLoading: isCatalogLoading } = useAvailableGatewayCatalog();
+  const { data: catalog, isLoading: isCatalogLoading } = useGatewayCatalog();
 
   const {
     getFormattedHourlyCatalogPrice,
@@ -49,7 +49,7 @@ const GatewayCreation: React.FC = () => {
   } = useCatalogPrice(4);
 
   const {
-    gateway: existingGateway,
+    gateway,
     isLoading: isExistingGatewayLoading,
   } = useGetExistingGatewayRegion(region);
 
@@ -58,30 +58,34 @@ const GatewayCreation: React.FC = () => {
   usePrepareGatewayCreation({
     createGateway,
     searching: isExistingGatewayLoading,
-    gateway: existingGateway,
+    gateway,
     catalog,
     region,
   });
 
-  const renderMessage = useCallback(
-    () =>
-      existingGateway ? (
-        <ExistingGatewayMessage gateway={existingGateway} />
-      ) : (
-        <AvailableGatewayMessage
-          size={catalog?.size.toUpperCase()}
-          region={region}
-          monthlyPrice={getFormattedMonthlyCatalogPrice(catalog?.pricePerMonth)}
-          hourlyPrice={getFormattedHourlyCatalogPrice(catalog?.pricePerHour)}
-        />
-      ),
-    [existingGateway, catalog, region],
-  );
+  const renderGatewayMessage = () => {
+    if (isCatalogLoading || isExistingGatewayLoading) {
+      return <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />;
+    }
+
+    return gateway ? (
+      <ExistingGatewayMessage gateway={gateway} />
+    ) : (
+      <AvailableGatewayMessage
+        size={catalog?.size.toUpperCase()}
+        region={region}
+        monthlyPrice={getFormattedMonthlyCatalogPrice(catalog?.pricePerMonth)}
+        hourlyPrice={getFormattedHourlyCatalogPrice(catalog?.pricePerHour)}
+      />
+    );
+  };
 
   useEffect(() => {
     // unregister snat every time region or gateway change
     unregister('enableSnat');
-  }, [region, existingGateway, createGateway]);
+  }, [region, gateway, createGateway]);
+
+  const isGatewayReady = isGatewayAvailable && (gateway || catalog);
 
   return (
     <>
@@ -89,7 +93,7 @@ const GatewayCreation: React.FC = () => {
         data-testid="create-public-gateway"
         name="create-public-gateway"
         checked={createGateway}
-        disabled={!isGatewayAvailable || (!existingGateway && !catalog)}
+        disabled={!isGatewayReady}
         onOdsCheckedChange={(event: CustomEvent) =>
           setCreateGateway(event.detail.checked)
         }
@@ -109,15 +113,7 @@ const GatewayCreation: React.FC = () => {
           </OsdsText>
         </OsdsCheckboxButton>
       </OsdsCheckbox>
-      {createGateway && (
-        <>
-          {isCatalogLoading || isExistingGatewayLoading ? (
-            <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />
-          ) : (
-            renderMessage()
-          )}
-        </>
-      )}
+      {createGateway && renderGatewayMessage()}
       <OsdsText
         color={ODS_TEXT_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.body}

@@ -3,6 +3,8 @@ export enum PrivateNetworkTabName {
   LOCAL_ZONE_TAB_NAME = 'LOCAL_ZONE',
 }
 
+export const DEFAULT_CIDR = '10.{vlanId}.0.0/16';
+
 export const PRIVATE_NETWORK_LIST = {
   CIDR: 'CIDR',
   DHCP: 'DHCP',

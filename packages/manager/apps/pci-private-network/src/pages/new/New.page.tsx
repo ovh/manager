@@ -18,6 +18,8 @@ import PrivateNetworkConfig from './private-network/PrivateNetworkConfig.compone
 import SubnetConfig from './subnet/SubnetConfig.component';
 import ButtonAction from './button-action/ButtonAction.component';
 import BackButton from '@/components/back-button/BackButton.component';
+import useDefaultVlanID from '@/hooks/useDefaultVlanID/useDefaultVlanID';
+import { getDefaultCIDR } from '@/utils/utils';
 
 export default function NewPage(): JSX.Element {
   const { t } = useTranslation(['new', 'listing']);
@@ -28,9 +30,13 @@ export default function NewPage(): JSX.Element {
   const projectUrl = useProjectUrl('public-cloud');
   const backHref = useHref('..');
 
+  const { defaultVlanId } = useDefaultVlanID();
+  const cidr = getDefaultCIDR(defaultVlanId);
+
   const form = useForm<NewPrivateNetworkForm>({
     defaultValues: {
       subnet: {
+        cidr,
         enableDhcp: true,
         enableGatewayIp: true,
         ipVersion: 4,

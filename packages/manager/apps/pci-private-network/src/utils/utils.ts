@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import { VLAN_ID } from '@/pages/new/new.constants';
+import { DEFAULT_CIDR } from '@/constants';
 
 const getDate = () => {
   const date = new Date();
@@ -25,3 +26,6 @@ export function getNextAvailableVlanId(allocatedIds: number[]): number {
 
   return VLAN_ID.default;
 }
+
+export const getDefaultCIDR = (vlanId: number) =>
+  DEFAULT_CIDR.replace('{vlanId}', `${vlanId % 255}`);

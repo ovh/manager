@@ -5,7 +5,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import ButtonAction from './ButtonAction.component';
-import { NewPrivateNetworkWrapper } from '@/utils/test/test.provider';
+import { NewPrivateNetworkWrapper } from '@/__tests__/wrapper';
 import { cidr } from '@/__mocks__/network';
 import { NEW_PRIVATE_NETWORK_FORM_SCHEMA } from '../new.constants';
 

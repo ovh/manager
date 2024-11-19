@@ -6,7 +6,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import GatewayConfig from './GatewayConfig.component';
 import { NEW_PRIVATE_NETWORK_FORM_SCHEMA } from '../../new.constants';
-import { NewPrivateNetworkWrapper } from '@/utils/test/test.provider';
+import { NewPrivateNetworkWrapper } from '@/__tests__/wrapper';
+import {
+  useGatewayCatalog,
+  TUseGatewayCatalog,
+} from '@/data/hooks/gateway/useGateway';
 
 vi.mock('@/hooks/useGuideLink/useGuideLink', () => ({
   default: () => ({
@@ -14,13 +18,14 @@ vi.mock('@/hooks/useGuideLink/useGuideLink', () => ({
     REGION_AVAILABILITY: '',
   }),
 }));
-vi.mock('@/hooks/useGatewayAvailabilityRegion/useGatewayAvailabilityRegion');
 vi.mock(
-  '@/hooks/useAvailableGatewayCatalog/useAvailableGatewayCatalog',
-  () => ({
-    default: () => ({ catalog: undefined, isLoading: false }),
-  }),
+  '@/hooks/useIsPlanCodeAvailableInRegion/useIsPlanCodeAvailableInRegion',
 );
+vi.mock('@/data/hooks/gateway/useGateway');
+vi.mocked(useGatewayCatalog).mockResolvedValue({
+  data: undefined,
+  isLoading: false,
+} as TUseGatewayCatalog);
 vi.mock('@/hooks/useExistingGatewayRegion/useExistingGatewayRegion', () => ({
   default: () => ({ gateway: undefined, isLoading: false }),
 }));

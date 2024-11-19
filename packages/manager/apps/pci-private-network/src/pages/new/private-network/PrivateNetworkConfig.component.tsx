@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   OsdsFormField,
   OsdsCheckbox,
@@ -31,6 +31,7 @@ import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import { VLAN_ID } from '@/pages/new/new.constants';
 import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
 import useDefaultVlanID from '@/hooks/useDefaultVlanID/useDefaultVlanID';
+import { getDefaultCIDR } from '@/utils/utils';
 
 const PrivateNetworkConfig: React.FC = () => {
   const { t } = useTranslation(['new', 'common']);
@@ -54,11 +55,7 @@ const PrivateNetworkConfig: React.FC = () => {
 
   const hasError = useMemo(() => touched && !!error, [touched, error]);
 
-  useEffect(() => {
-    setValue('defaultVlanId', defaultVlanId);
-  }, [defaultVlanId]);
-
-  const handleDefineVlanId = useCallback((event: CustomEvent) => {
+  const onDefineVlanId = (event: CustomEvent) => {
     const value = event.detail.checked;
 
     if (!value) {
@@ -68,7 +65,16 @@ const PrivateNetworkConfig: React.FC = () => {
     }
 
     setDefineVlanId(value);
-  }, []);
+  };
+
+  const onChangeVlanId = ({ target }) => {
+    const id = target.value as number;
+    const cidr = getDefaultCIDR(id);
+    setValue('vlanId', id, {
+      shouldValidate: true,
+    });
+    setValue('subnet.cidr', cidr);
+  };
 
   return (
     <div className="flex flex-col gap-6 my-8">
@@ -122,7 +128,7 @@ const PrivateNetworkConfig: React.FC = () => {
           </OsdsText>
           <OsdsCheckbox
             data-testid="define-vlan"
-            onOdsCheckedChange={handleDefineVlanId}
+            onOdsCheckedChange={onDefineVlanId}
           >
             <OsdsCheckboxButton
               size={ODS_CHECKBOX_BUTTON_SIZE.sm}
@@ -173,11 +179,7 @@ const PrivateNetworkConfig: React.FC = () => {
                   type={ODS_INPUT_TYPE.number}
                   color={ODS_THEME_COLOR_INTENT.primary}
                   value={vlanId ?? defaultVlanId}
-                  onOdsValueChange={({ target }) =>
-                    setValue('vlanId', target.value as number, {
-                      shouldValidate: true,
-                    })
-                  }
+                  onOdsValueChange={onChangeVlanId}
                   min={VLAN_ID.min}
                   max={VLAN_ID.max}
                 />

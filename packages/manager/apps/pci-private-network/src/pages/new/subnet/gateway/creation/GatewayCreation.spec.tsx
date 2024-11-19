@@ -1,22 +1,15 @@
 import '@testing-library/jest-dom';
 import { describe, vi } from 'vitest';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { NewPrivateNetworkWrapper } from '@/utils/test/test.provider';
+import { NewPrivateNetworkWrapper } from '@/__tests__/wrapper';
+import {
+  useGatewayCatalog,
+  TUseGatewayCatalog,
+} from '@/data/hooks/gateway/useGateway';
+import useIsPlanCodeAvailableInRegion from '@/hooks/useIsPlanCodeAvailableInRegion/useIsPlanCodeAvailableInRegion';
+import useExistingGatewayRegion from '@/hooks/useExistingGatewayRegion/useExistingGatewayRegion';
 import GatewayCreation from './GatewayCreation.component';
-
-const {
-  catalog,
-  useExistingGatewayRegion,
-  useGatewayAvailabilityRegion,
-} = vi.hoisted(() => ({
-  useGatewayAvailabilityRegion: vi.fn(),
-  useExistingGatewayRegion: vi.fn(),
-  catalog: {
-    size: 's',
-    pricePerMonth: 0,
-    pricePerHour: 0,
-  },
-}));
+import { TGateway } from '@/types/gateway.type';
 
 vi.mock('@/hooks/useGuideLink/useGuideLink', () => ({
   default: () => ({
@@ -25,26 +18,24 @@ vi.mock('@/hooks/useGuideLink/useGuideLink', () => ({
   }),
 }));
 vi.mock(
-  '@/hooks/useGatewayAvailabilityRegion/useGatewayAvailabilityRegion',
-  () => ({
-    default: useGatewayAvailabilityRegion,
-  }),
+  '@/hooks/useIsPlanCodeAvailableInRegion/useIsPlanCodeAvailableInRegion',
 );
-vi.mock(
-  '@/hooks/useAvailableGatewayCatalog/useAvailableGatewayCatalog',
-  () => ({
-    default: () => ({ catalog, isLoading: false }),
-  }),
-);
-vi.mock('@/hooks/useExistingGatewayRegion/useExistingGatewayRegion', () => ({
-  default: useExistingGatewayRegion,
-}));
+vi.mock('@/data/hooks/gateway/useGateway');
+vi.mocked(useGatewayCatalog).mockReturnValue({
+  data: {
+    size: 's',
+    pricePerMonth: 0,
+    pricePerHour: 0,
+  },
+  isLoading: false,
+} as TUseGatewayCatalog);
+vi.mock('@/hooks/useExistingGatewayRegion/useExistingGatewayRegion');
 
 vi.mock('@/hooks/usePrepareGatewayCreation/usePrepareGatewayCreation');
 
 describe('GatewayCreation', () => {
   it('should disabled the assign gateway checkbox when region is not yet selected', () => {
-    useExistingGatewayRegion.mockReturnValue({
+    vi.mocked(useExistingGatewayRegion).mockReturnValue({
       gateway: undefined,
       isLoading: false,
     });
@@ -57,9 +48,9 @@ describe('GatewayCreation', () => {
   });
 
   it('should display gateway catalog when user check assign a gateway and there is not yet an existing gateway for the region', async () => {
-    useGatewayAvailabilityRegion.mockReturnValue(true);
+    vi.mocked(useIsPlanCodeAvailableInRegion).mockReturnValue(true);
 
-    useExistingGatewayRegion.mockReturnValue({
+    vi.mocked(useExistingGatewayRegion).mockReturnValue({
       gateway: undefined,
       isLoading: false,
     });
@@ -76,9 +67,9 @@ describe('GatewayCreation', () => {
   });
 
   it('should display existing gateway when user check assign a gateway and exist already', async () => {
-    useGatewayAvailabilityRegion.mockReturnValue(true);
+    vi.mocked(useIsPlanCodeAvailableInRegion).mockReturnValue(true);
 
-    useExistingGatewayRegion.mockReturnValue({
+    vi.mocked(useExistingGatewayRegion).mockReturnValue({
       gateway: {
         id: 'gatewayid2',
         name: 'gateway2',
@@ -87,7 +78,7 @@ describe('GatewayCreation', () => {
           ips: [{ ip: 'ip1', subnetId: 'subnetId' }],
           networkId: 'net1',
         },
-      },
+      } as TGateway,
       isLoading: false,
     });
 
@@ -107,14 +98,14 @@ describe('GatewayCreation', () => {
   });
 
   it('should display snat checkbox when gateway exist and has not externalInformation', async () => {
-    useGatewayAvailabilityRegion.mockReturnValue(true);
+    vi.mocked(useIsPlanCodeAvailableInRegion).mockReturnValue(true);
 
-    useExistingGatewayRegion.mockReturnValue({
+    vi.mocked(useExistingGatewayRegion).mockReturnValue({
       gateway: {
         id: 'gatewayid2',
         name: 'gateway2',
         region: 'GRA11',
-      },
+      } as TGateway,
       isLoading: false,
     });
 
