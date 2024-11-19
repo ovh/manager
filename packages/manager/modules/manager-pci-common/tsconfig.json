@@ -6,7 +6,6 @@
     "types": ["vite/client", "node"],
     "module": "ESNext",
     "skipLibCheck": true,
-    /* Bundler mode UP */
     "moduleResolution": "node",
     "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
