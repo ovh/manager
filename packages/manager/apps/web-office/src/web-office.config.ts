@@ -4,5 +4,5 @@ export default {
       serviceKey: 'serviceName',
     },
   },
-  rootLabel: 'web-office-365',
+  rootLabel: 'web-office',
 };
