@@ -41,6 +41,6 @@ export const LEVEL2 = {
   86: 'ManagerPublicCloud',
   87: 'ManagerTelecom',
   88: 'ManagerHub',
-  95: 'account-creation',
+  95: 'Manager-account-creation',
   98: 'ManagerHostedPrivateCloud',
 };

@@ -9,7 +9,7 @@ export const AT_INTERNET_LEVEL2: Record<string, string> = {
   86: 'Manager-PublicCloud',
   87: 'Manager-Telecom',
   88: 'Manager-Hub',
-  95: 'account-creation',
+  95: 'Manager-account-creation',
   98: 'Manager-HostedPrivateCloud',
 };
 
