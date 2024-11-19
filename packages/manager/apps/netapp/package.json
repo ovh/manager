@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-netapp-app",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "private": true,
   "description": "NetApp standalone application",
   "repository": {
@@ -20,15 +20,15 @@
   },
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.8.1",
-    "@ovh-ux/manager-billing-components": "^4.0.0",
+    "@ovh-ux/manager-billing-components": "^4.0.1",
     "@ovh-ux/manager-catalog-price": "^1.8.0",
     "@ovh-ux/manager-components": "^1.22.2",
     "@ovh-ux/manager-config": "^8.0.0",
-    "@ovh-ux/manager-core": "^13.0.0",
+    "@ovh-ux/manager-core": "^13.0.1",
     "@ovh-ux/manager-error-page": "^2.4.1",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
-    "@ovh-ux/manager-models": "^2.0.0",
-    "@ovh-ux/manager-netapp": "^2.0.0",
+    "@ovh-ux/manager-models": "^2.1.0",
+    "@ovh-ux/manager-netapp": "^2.0.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
     "@ovh-ux/ng-at-internet": "^6.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.0",

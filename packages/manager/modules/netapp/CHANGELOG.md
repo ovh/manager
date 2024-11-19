@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.0.0...@ovh-ux/manager-netapp@2.0.1) (2024-11-19)
+
+
+### Bug Fixes
+
+* **dedicated:** correct revert snapshot instead of restore ([#13510](https://github.com/ovh/manager/issues/13510)) ([3faac07](https://github.com/ovh/manager/commit/3faac0704fde48fca1ac17f635ba423e6eeba28c))
+
+
+
+
+
 # 2.0.0 (2024-11-12)
 
 

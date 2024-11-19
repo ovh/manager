@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.26.2...@ovh-ux/manager-dbaas-logs@1.26.3) (2024-11-19)
+
+
+### Bug Fixes
+
+* **dedicated.dbaas:** fix cache refresh with iceberg query ([#13972](https://github.com/ovh/manager/issues/13972)) ([d8f92be](https://github.com/ovh/manager/commit/d8f92be0d7544a66d63e9d80d533bcd3267b3513))
+
+
+
+
+
 ## [1.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.26.1...@ovh-ux/manager-dbaas-logs@1.26.2) (2024-10-17)
 
 
