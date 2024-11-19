@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, } from 'react';
 import { useTranslation } from 'react-i18next';
-import { {{#if isPCI }} useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
+import { {{#if isPCI }}useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
 
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 
 import {
+  BaseLayout,
   Datagrid,
   DataGridTextCell,
-  useResourcesIcebergV6,
-  dataType,
-  BaseLayout
+  useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
 
 import Loading from '@/components/Loading/Loading';
@@ -18,49 +17,49 @@ import ErrorBanner from '@/components/Error/Error';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 import appConfig from '@/{{appName}}.config';
+import { urls } from '@/routes/routes.constant';
 
 export default function Listing() {
+  const { t } = useTranslation('listing');
   const myConfig = appConfig;
   const serviceKey = myConfig.listing?.datagrid?.serviceKey;
   const [columns, setColumns] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const { t } = useTranslation('listing');
   {{#if isPCI }}
   const { projectId } = useParams();
   {{/if}}
   const {
+    data,
+    fetchNextPage,
+    hasNextPage,
     flattenData,
     isError,
-    error,
-    totalCount,
-    hasNextPage,
-    fetchNextPage,
     isLoading,
-    status,
     sorting,
     setSorting,
-    pageIndex,
-  } = useResourcesIcebergV6({
+    error,
+    status,
+  } = useResourcesIcebergV2({
     route: `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`,
     queryKey: ['{{appName}}', `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`],
   });
 
   const navigateToDashboard = (label: string) => {
-    const path =
+    let path =
       location.pathname.indexOf('pci') > -1 ? `${location.pathname}/` : '/';
     navigate(`${path}${label}`);
   };
 
   useEffect(() => {
-    if (columns && status === 'success' && flattenData?.length > 0) {
-      const newColumns = Object.keys(flattenData[0])
+    if (status === 'success' && data?.pages[0].data.length === 0) {
+      navigate(urls.onboarding);
+    } else if (status === 'success' && data?.pages.length > 0 && !flattenData) {
+      const tmp = Object.keys(data?.pages[0].data[0])
         .filter((element) => element !== 'iam')
         .map((element) => ({
           id: element,
           label: element,
-          // @ts-ignore
-          type: dataType(flattenData[0][element]),
           cell: (props: any) => {
             const label = props[element] as string;
             if (typeof label === 'string' || typeof label === 'number') {
@@ -79,16 +78,16 @@ export default function Listing() {
             return <div>-</div>;
           },
         }));
-      setColumns(newColumns);
+      setColumns(tmp);
     }
-  }, [flattenData]);
+  }, [data]);
 
   if (isError) {
-    return <ErrorBanner error={error.message} />;
+    return <ErrorBanner error={error} />;
   }
 
-  if (isLoading && pageIndex === 1) {
-    return (<div><Loading/></div>)
+  if (isLoading && !flattenData) {
+    return (<div data-testid="listing-page-spinner"><Loading/></div>)
   }
 
   const header = {
@@ -102,11 +101,12 @@ export default function Listing() {
           <Datagrid
             columns={columns}
             items={flattenData || []}
-            totalItems={totalCount || 0}
-            hasNextPage={hasNextPage && !isLoading}
+            totalItems={0}
             onFetchNextPage={fetchNextPage}
+            hasNextPage={hasNextPage && !isLoading}
             sorting={sorting}
             onSortChange={setSorting}
+            manualSorting={false}
           />
         )}
       </React.Suspense>
