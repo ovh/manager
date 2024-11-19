@@ -73,9 +73,7 @@
   "overTheBox_change_release_channel_error": "We were unable to change the version: {{errorMessage}}",
   "overTheBox_release_channel_stable": "Stable version with automatic update",
   "overTheBox_release_channel_beta": "Beta version with automatic update",
-  "overTheBox_release_channel_v0_8": "Version v0.8",
-  "overTheBox_release_channel_v0_9": "Version v0.9",
-  "overTheBox_release_channel_v1_0": "Version v1.0",
+  "overTheBox_release_channel": "Version {{version}}",
   "overTheBox_version_system": "System version",
   "overTheBox_last_seen": "Device Last Connected",
   "overTheBox_last_seen_few_seconds": "A few seconds ago",
@@ -93,12 +91,11 @@
   "overTheBox_model_device": "Device model",
   "overTheBox_detail_bandwidth": "Maximum bandwidth",
   "overTheBox_model_device_unknown": "Unknown",
-  "overTheBox_change_offer": "Change plan",
   "overTheBox_deviceId_unlink": "Detach",
   "overTheBox_cancel": "Cancel",
   "overTheBox_confirm_unlink_device": "This device will no longer be able to connect to this service, are you sure?",
   "overTheBox_unlink_device_error": "Unable to unlink the device: {{errorMessage}}",
   "overTheBox_unlink_device_success": "Your device has been successfully detached.",
-  "overTheBox_release_channel_deprecated": "Deprecated version {{version}}",
-  "overTheBox_release_channel": "Version {{version}}"
+  "overTheBox_change_offer": "Change plan",
+  "overTheBox_release_channel_deprecated": "Deprecated version {{version}}"
 }
