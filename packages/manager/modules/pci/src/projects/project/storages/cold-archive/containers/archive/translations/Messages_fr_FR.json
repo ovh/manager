@@ -9,6 +9,7 @@
   "pci_projects_project_storages_cold_archive_containers_container_archive_has_retention": "Planifier une durée de rétention",
   "pci_projects_project_storages_cold_archive_containers_container_archive_has_no_retention": "Ne pas planifier de durée de rétention",
   "pci_projects_project_storages_cold_archive_containers_container_archive_retention_days": "Ajouter le nombre de jours de rétention",
-  "pci_projects_project_storages_cold_archive_containers_container_retention_warning": "Votre durée de rétention prendra fin le <strong>{{ date }}</strong>.</br>Vous ne pourrez procéder à la suppression de vos données qu'une fois cette date passée.",
+  "pci_projects_project_storages_cold_archive_containers_container_retention_warning": "Votre durée de rétention prendra fin le <strong>{{ date }}</strong>.",
+  "pci_projects_project_storages_cold_archive_containers_container_retention_warning_2": "Vous ne pourrez procéder à la suppression de vos données qu'une fois cette date passée.",
   "pci_projects_project_storages_cold_archive_containers_container_retention_retention_value_wartning": "Ajouter le nombre de jours de rétention (minimum 1 jour, maximum 4500 jours)"
 }

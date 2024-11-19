@@ -8,7 +8,8 @@
   "pci_projects_project_storages_cold_archive_containers_container_edit_retention_error_message": "Une erreur est survenue lors de la modification de la durée de retention du conteneur {{ containerName }} : {{ message }}.",
   "pci_projects_project_storages_cold_archive_containers_container_edit_retention_has_retention": "Planifier une durée de rétention",
   "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_days": "Ajouter le nombre de jours de rétention",
-  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_help": "Votre nouvelle durée de rétention prendra fin le <strong>{{ date }}</strong>.</br>Vous ne pourrez procéder à la suppression de vos données qu'une fois cette date passée.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_help": "Votre nouvelle durée de rétention prendra fin le <strong>{{ date }}</strong>.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_help_2": "Vous ne pourrez procéder à la suppression de vos données qu'une fois cette date passée.",
   "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_wartning_help": "La nouvelle durée de rétention est invalide car la nouvelle date de fin de rétention est inférieure ou égale à celle déjà planifiée.",
   "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_value_wartning": "Ajouter le nombre de jours de rétention (minimum 1 jour, maximum 4500 jours)"
 }
