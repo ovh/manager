@@ -387,12 +387,12 @@ export function getPciProjectMenu(
         isFeaturesAvailable('pci-ai-endpoints') ? {
           id: 'pci-ai-endpoints',
           title: 'AI Endpoints',
-          badge: 'alpha',
+          badge: 'beta',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/endpoints`),
         } : {
           id: 'ai-endpoints',
           title: 'AI Endpoints',
-          badge: 'alpha',
+          badge: 'beta',
           href: 'https://endpoints.ai.cloud.ovh.net/',
           external: true,
         },

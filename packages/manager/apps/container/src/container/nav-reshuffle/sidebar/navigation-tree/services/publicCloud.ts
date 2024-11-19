@@ -559,7 +559,7 @@ pciNode.children = [
         count: false,
         url: 'https://endpoints.ai.cloud.ovh.net/',
         features: ['ai-endpoints'],
-        tag: NodeTag.ALPHA,
+        tag: NodeTag.BETA,
         isExternal: true,
       },
       {
@@ -573,7 +573,7 @@ pciNode.children = [
         },
         features: ['pci-ai-endpoints'],
         forceVisibility: true,
-        tag: NodeTag.ALPHA,
+        tag: NodeTag.BETA,
       },
     ],
   },
