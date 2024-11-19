@@ -1,33 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import {
-  getNextMonth,
   getDaysFromDate,
   addDaysToDate,
   getDateFromDays,
 } from './validityDateUtils';
-
-describe.skip('getNextMonth', () => {
-  it('should return a date one month from now', () => {
-    const today = new Date();
-    const nextMonth = getNextMonth();
-
-    // Adjust the year if necessary (e.g., December to January)
-    const expectedMonth = (today.getMonth() + 1) % 12;
-    const expectedYear =
-      today.getFullYear() + (today.getMonth() === 11 ? 1 : 0);
-
-    expect(nextMonth.getMonth()).toBe(expectedMonth);
-    expect(nextMonth.getFullYear()).toBe(expectedYear);
-  });
-
-  it('should keep the same day of the month if possible', () => {
-    const today = new Date();
-    const nextMonth = getNextMonth();
-
-    const expectedDay = today.getDate();
-    expect(nextMonth.getDate()).toBe(expectedDay);
-  });
-});
 
 describe('getDaysFromDate', () => {
   it('should return the correct number of days from today', () => {

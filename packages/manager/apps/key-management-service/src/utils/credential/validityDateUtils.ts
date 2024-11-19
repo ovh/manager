@@ -4,12 +4,6 @@ export function addDaysToDate(days: number): Date {
   return targetDate;
 }
 
-export function getNextMonth(): Date {
-  const today = new Date();
-  today.setMonth(today.getMonth() + 1);
-  return today;
-}
-
 export function getDaysFromDate(date: Date): number {
   const referenceDate = new Date();
   const oneDay = 24 * 60 * 60 * 1000;
