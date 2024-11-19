@@ -120,4 +120,8 @@ export default class DedicatedServerDashboard {
         this.updatingNoIntervention = false;
       });
   }
+
+  goToTags() {
+    this.$state.go('app.dedicated-server.server.tags');
+  }
 }
