@@ -1,10 +1,5 @@
 import { PaginationState } from '@ovh-ux/manager-react-components';
 import { ColumnSort } from '@tanstack/react-table';
-import { format } from 'date-fns';
-import * as dateFnsLocales from 'date-fns/locale';
-import { useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import { THealthMonitorType } from '@/api/data/health-monitor';
 import { HEALTH_MONITOR_TYPE } from '@/constants';
 
@@ -43,31 +38,6 @@ export const sortResults = <T>(items: T[], sorting: ColumnSort): T[] => {
   }
 
   return data;
-};
-
-export const getFormattedDate = (date: string | null, formatStr = 'PPpp') => {
-  const { i18n } = useTranslation();
-
-  const locales = useRef({ ...dateFnsLocales }).current;
-
-  let displayDate = '';
-
-  if (date) {
-    const userLocale = getDateFnsLocale(i18n.language);
-
-    if (userLocale in locales) {
-      const localeId = userLocale as keyof typeof locales;
-      displayDate = format(new Date(date), formatStr, {
-        locale: locales[localeId],
-      });
-    } else {
-      displayDate = format(new Date(date), formatStr, {
-        locale: locales.fr,
-      });
-    }
-  }
-
-  return displayDate;
 };
 
 export const isTypeHttpOrHttps = (type: THealthMonitorType) =>
