@@ -44,6 +44,20 @@ vi.mock('axios', async (importActual) => {
   return mockAxios;
 });
 
+vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
+  return {
+    ...(await importActual<
+      typeof import('@ovh-ux/manager-react-shell-client')
+    >()),
+    useOvhTracking: vi.fn(() => {
+      return {
+        trackClick: vi.fn(),
+        trackPage: vi.fn(),
+      };
+    }),
+  };
+});
+
 vi.mock('@/hooks', async (importActual) => {
   return {
     ...(await importActual<typeof import('@/hooks')>()),

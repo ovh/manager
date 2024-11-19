@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import {
   IconLinkAlignmentType,
   Links,
@@ -9,6 +9,11 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   useDomains,
   useGenerateUrl,
   usePlatform,
@@ -16,18 +21,21 @@ import {
 } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
 import MailingListSettings from './MailingListSettings.page';
+import {
+  ADD_MAILING_LIST,
+  BACK_PREVIOUS_PAGE,
+  EDIT_MAILING_LIST,
+} from '@/tracking.constant';
 
 export default function AddAndEditMailingList() {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('mailinglists/addAndEdit');
   const location = useLocation();
-  const navigate = useNavigate();
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
   const editMailingListId = searchParams.get('editMailingListId');
   const [isLoading, setIsLoading] = useState(true);
   const goBackUrl = useGenerateUrl('..', 'path');
-
-  const goBack = () => navigate(goBackUrl);
 
   const {
     data: editMailingListDetail,
@@ -63,7 +71,18 @@ export default function AddAndEditMailingList() {
               data-testid="back-btn"
               type={LinkType.back}
               iconAlignment={IconLinkAlignmentType.left}
-              onClickReturn={goBack}
+              href={goBackUrl}
+              onClickReturn={() => {
+                trackClick({
+                  location: PageLocation.page,
+                  buttonType: ButtonType.link,
+                  actionType: 'navigation',
+                  actions: [
+                    editMailingListId ? EDIT_MAILING_LIST : ADD_MAILING_LIST,
+                    BACK_PREVIOUS_PAGE,
+                  ],
+                });
+              }}
               color={ODS_LINK_COLOR.primary}
               label={t('zimbra_mailinglist_add_cta_back')}
             />

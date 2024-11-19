@@ -35,7 +35,13 @@ import {
 } from '@ovhcloud/ods-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import {
   useAccount,
   useAccountList,
@@ -50,6 +56,13 @@ import {
   makeDateFromDDMMYYYY,
 } from '@/utils';
 import Loading from '@/components/Loading/Loading';
+import {
+  ADD_AUTO_REPLY,
+  BACK_PREVIOUS_PAGE,
+  CANCEL,
+  CONFIRM,
+  EMAIL_ACCOUNT_ADD_AUTO_REPLY,
+} from '@/tracking.constant';
 
 export enum AutoReplyTypes {
   LINKED = 'linked',
@@ -73,6 +86,7 @@ const durationChoices = [
 ];
 
 export default function AddAutoReply() {
+  const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation('autoReplies/add');
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
@@ -82,6 +96,9 @@ export default function AddAutoReply() {
   const params = Object.fromEntries(searchParams.entries());
   const organizationId = searchParams.get('organizationId');
   const editEmailAccountId = searchParams.get('editEmailAccountId');
+  const trackingName = editEmailAccountId
+    ? EMAIL_ACCOUNT_ADD_AUTO_REPLY
+    : ADD_AUTO_REPLY;
   const [isFormValid, setIsFormValid] = useState(false);
   const [selectedOrganizationId, setSelectedOrganizationId] = useState(
     organizationId,
@@ -89,7 +106,7 @@ export default function AddAutoReply() {
 
   const goBackUrl = useGenerateUrl('..', 'path', params);
 
-  const goBack = () => navigate(goBackUrl);
+  const onClose = () => navigate(goBackUrl);
 
   const [form, setForm] = useState<FormTypeInterface>({
     ...{
@@ -246,6 +263,10 @@ export default function AddAutoReply() {
       return Promise.resolve(payload);
     },
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: trackingName,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_auto_replies_add_success_message')}
@@ -254,6 +275,10 @@ export default function AddAutoReply() {
       );
     },
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: trackingName,
+      });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_auto_replies_add_error_message', {
@@ -267,19 +292,43 @@ export default function AddAutoReply() {
       /* queryClient.invalidateQueries({
         queryKey: getZimbraPlatformMailingListsQueryKey(platformId),
       }); */
-      goBack();
+      onClose();
     },
   });
 
   const handleSavelick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CONFIRM],
+    });
     addAutoReply(getDataBody(form));
+  };
+
+  const handleCancelClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CANCEL],
+    });
+    onClose();
   };
 
   return (
     <div className="w-full md:w-3/4 flex flex-col space-y-5">
       <Links
         type={LinkType.back}
-        onClickReturn={goBack}
+        href={goBackUrl}
+        onClickReturn={() => {
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.link,
+            actionType: 'navigation',
+            actions: [trackingName, BACK_PREVIOUS_PAGE],
+          });
+        }}
         iconAlignment={IconLinkAlignmentType.left}
         label={t('zimbra_auto_replies_add_cta_back')}
       />
@@ -516,7 +565,7 @@ export default function AddAutoReply() {
         ></OdsButton>
         <OdsButton
           slot="actions"
-          onClick={goBack}
+          onClick={handleCancelClick}
           color={ODS_BUTTON_COLOR.primary}
           variant={ODS_BUTTON_VARIANT.outline}
           label={t('zimbra_auto_replies_add_button_cancel')}

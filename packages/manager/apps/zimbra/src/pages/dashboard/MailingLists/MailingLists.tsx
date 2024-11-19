@@ -14,6 +14,11 @@ import {
   ManagerButton,
 } from '@ovh-ux/manager-react-components';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   usePlatform,
   useGenerateUrl,
   useMailingLists,
@@ -27,6 +32,7 @@ import { MailingListType } from '@/api/mailinglist';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 import Loading from '@/components/Loading/Loading';
 import { BadgeStatus } from '@/components/BadgeStatus';
+import { ADD_MAILING_LIST } from '@/tracking.constant';
 
 export type MailingListItem = {
   id: string;
@@ -117,6 +123,7 @@ export const getMailingListItems = (
 };
 
 export default function MailingLists() {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('mailinglists');
   const navigate = useNavigate();
   const { platformUrn, data: platformData } = usePlatform();
@@ -131,6 +138,12 @@ export default function MailingLists() {
   const hrefAddMailingList = useGenerateUrl('./add', 'path');
 
   const handleAddMailingListClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [ADD_MAILING_LIST],
+    });
     navigate(hrefAddMailingList);
   };
   // this will need to be updated
