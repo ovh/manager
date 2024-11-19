@@ -1,5 +1,4 @@
 import { PaginationState } from '@ovh-ux/manager-react-components';
-import { z } from 'zod';
 
 export const REFETCH_INTERVAL_DURATION = 15_000;
 export const QUOTA_ERROR_URL =
@@ -77,52 +76,7 @@ export const isIPValid = (ip: string) => {
     return false;
   }
 };
-/**
- * Validates data against a given Zod schema.
- *
- * @template T - Type of the data to validate.
- * @param params - Parameters for the function.
- * @param params.schema - The Zod schema used for validation.
- * @param params.data - The data to validate.
- * @param params.onInvalid - Optional function called in case of validation error.
- * @returns - The validated data or null if validation fails.
- */
-export function validateSchema<T>({
-  schema,
-  data,
-  onInvalid,
-}: {
-  schema: z.Schema;
-  data: T;
-  onInvalid?: (error: z.ZodError) => void;
-}) {
-  try {
-    const validatedData = schema.parse(data);
-    return validatedData as T;
-  } catch (error) {
-    if (onInvalid && error instanceof z.ZodError) {
-      onInvalid(error);
-    }
-  }
-  return null;
-}
-/**
- * Converts a number of bytes into a human-readable format (e.g., Ko, Mo, Go, To).
- *
- * @param bytes - The number of bytes to convert.
- * @returns - The formatted string representing the size in appropriate units.
- */
-export function formatBytes(bytes: number): string {
-  const units = ['o', 'KiB', 'MiB', 'GiB', 'TiB'];
-  const convertionRate = 1024;
-  let unitIndex = 0;
-  let size = bytes; // Use a separate variable to hold the size value
-  while (size >= convertionRate && unitIndex < units.length - 1) {
-    size /= convertionRate;
-    unitIndex += 1;
-  }
-  return `${Math.round(size)} ${units[unitIndex]}`;
-}
+
 type ColorThreshold = {
   threshold: number; // The upper limit for the threshold
   color: string; // The color associated with this threshold

@@ -1,13 +1,10 @@
-import { describe, it, vi } from 'vitest';
-import { z } from 'zod';
+import { describe, it } from 'vitest';
 import {
   compareFunction,
   formatIP,
   getFormatedKubeVersion,
   isIPValid,
   paginateResults,
-  validateSchema,
-  formatBytes,
   getColorByPercentage,
 } from '@/helpers/index';
 
@@ -68,60 +65,6 @@ describe('helper', () => {
     const ip = '192.168.1.1/999';
     const result = isIPValid(ip);
     expect(result).toBe(false);
-  });
-});
-
-describe('validateSchema', () => {
-  const schema = z.object({
-    name: z.string(),
-    age: z
-      .number()
-      .int()
-      .positive(),
-  });
-
-  it('should return validated data if data is valid', () => {
-    const data = { name: 'John', age: 30 };
-    const result = validateSchema({ schema, data });
-    expect(result).toEqual(data);
-  });
-
-  it('should return null and call onInvalid if data is invalid', () => {
-    const data = { name: 'John', age: -5 };
-    const onInvalidMock = vi.fn();
-    const result = validateSchema({ schema, data, onInvalid: onInvalidMock });
-
-    expect(result).toBeNull();
-    expect(onInvalidMock).toHaveBeenCalledTimes(1);
-    expect(onInvalidMock.mock.calls[0][0]).toBeInstanceOf(z.ZodError);
-  });
-
-  it('should return null without calling onInvalid if data is invalid and onInvalid is not provided', () => {
-    const data = { name: 'John', age: -5 };
-    const result = validateSchema({ schema, data });
-    expect(result).toBeNull();
-  });
-});
-
-describe('formatBytes', () => {
-  it('should format bytes correctly for values under 1024', () => {
-    expect(formatBytes(512)).toBe('512 o');
-  });
-
-  it('should format bytes correctly in KiB', () => {
-    expect(formatBytes(2048)).toBe('2 KiB');
-  });
-
-  it('should format bytes correctly in MiB', () => {
-    expect(formatBytes(1048576)).toBe('1 MiB');
-  });
-
-  it('should format bytes correctly in GiB', () => {
-    expect(formatBytes(1073741824)).toBe('1 GiB');
-  });
-
-  it('should format bytes correctly in TiB', () => {
-    expect(formatBytes(1099511627776)).toBe('1 TiB');
   });
 });
 

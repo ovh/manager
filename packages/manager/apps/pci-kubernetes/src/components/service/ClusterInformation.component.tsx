@@ -83,6 +83,7 @@ export default function ClusterInformation({
             {kubeDetail.version}
           </OsdsText>
         </TileLine>
+        <TileLineLegacy title={<ClusterTile />} value={<ClusterETCD />} />
         <TileLine label={t('kube_service_cluster_admission_plugins')}>
           <AdmissionPlugins
             plugins={kubeDetail.plugins}
@@ -103,10 +104,6 @@ export default function ClusterInformation({
         <TileLine label={t('kube_service_cluster_nodes_url')}>
           <Clipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
         </TileLine>
-        {
-          // hacky, need to use a help icon and a tooltip inside the string label
-        }
-        <TileLineLegacy title={<ClusterTile />} value={<ClusterETCD />} />
       </div>
     </OsdsTile>
   );

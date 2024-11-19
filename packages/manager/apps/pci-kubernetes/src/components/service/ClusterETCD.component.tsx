@@ -1,21 +1,32 @@
 import { useEffect, useMemo } from 'react';
 import {
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { Trans, useTranslation } from 'react-i18next';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
+import { useTranslation } from 'react-i18next';
+import { useBytes } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { OsdsProgressBar, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  OsdsIcon,
+  OsdsLink,
+  OsdsProgressBar,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import { useParams } from 'react-router-dom';
 import { useGetClusterEtcdUsage } from '@/api/hooks/useKubernetes';
-import { formatBytes, getColorByPercentage, QUOTA_ERROR_URL } from '@/helpers';
+import { getColorByPercentage, QUOTA_ERROR_URL } from '@/helpers';
 
 const getProgressBarStyle = (color: string) => `
   progress[value] {
-    --progress: calc(var(--w) * (attr(value) / 100)); /* Largeur de la progression en fonction du pourcentage */
+    --progress: calc(var(--w) * (attr(value) / 100)); 
     --color: ${color};
-    --background: lightgrey; /* Couleur de fond */
+    --background: lightgrey; 
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -30,11 +41,13 @@ const getProgressBarStyle = (color: string) => `
   }
   progress[value]::-moz-progress-bar {
     background: var(--color);
-  }
+}
 `;
 
 function ClusterEtcd() {
   const { projectId, kubeId } = useParams();
+  const { formatBytes } = useBytes();
+
   const {
     data: { usage: used, quota: total },
   } = useGetClusterEtcdUsage(projectId, kubeId);
@@ -45,11 +58,34 @@ function ClusterEtcd() {
   useEffect(() => {
     if (percentage > 80) {
       addWarning(
-        <Trans components={{ a: <a> </a> }}>
-          {t('kube_service_etcd_quota_error', {
-            link: QUOTA_ERROR_URL,
-          })}
-        </Trans>,
+        <>
+          {t('kube_service_etcd_quota_error')}
+          <br />
+          <OsdsLink
+            color={ODS_THEME_COLOR_INTENT.primary}
+            href={QUOTA_ERROR_URL}
+            target={OdsHTMLAnchorElementTarget._blank}
+          >
+            {' '}
+            <OsdsText
+              size={ODS_TEXT_SIZE._400}
+              level={ODS_TEXT_LEVEL.body}
+              className="mt-4 float-right"
+            >
+              {t('kube_service_etcd_quota_error_link')}
+            </OsdsText>
+            <span slot="end">
+              <OsdsIcon
+                aria-hidden="true"
+                className="ml-4"
+                name={ODS_ICON_NAME.EXTERNAL_LINK}
+                hoverable
+                size={ODS_ICON_SIZE.xxs}
+                color={ODS_THEME_COLOR_INTENT.primary}
+              />
+            </span>
+          </OsdsLink>
+        </>,
         true,
       );
     }
@@ -76,7 +112,7 @@ function ClusterEtcd() {
         color={ODS_TEXT_COLOR_INTENT.text}
         className="mt-4 float-right"
       >
-        {formatBytes(used)} / {formatBytes(total)}
+        {formatBytes(used, 0, 1024)} / {formatBytes(total, 0, 1024)}
       </OsdsText>
     </div>
   );
