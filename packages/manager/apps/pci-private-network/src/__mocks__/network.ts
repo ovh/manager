@@ -9,7 +9,6 @@ const privateNetworkForm = {
     enableGatewayIp: true,
     ipVersion: 4,
   },
-  defaultVlanId: 1,
   vlanId: 22,
   existingGatewayId: 'testExistingIdGateway',
   gateway: {

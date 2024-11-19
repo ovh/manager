@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useProject, useProductAvailability } from '@ovh-ux/manager-pci-common';
 
-export default function useGatewayAvailabilityRegion(
+export default function useIsPlanCodeAvailableInRegion(
   region: string,
   planCode: string,
 ): boolean {
@@ -18,5 +18,5 @@ export default function useGatewayAvailabilityRegion(
     }
 
     return false;
-  }, [data, region]);
+  }, [data, region, planCode]);
 }

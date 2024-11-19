@@ -16,7 +16,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import PrivateNetworkConfig from './PrivateNetworkConfig.component';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import { NEW_PRIVATE_NETWORK_FORM_SCHEMA } from '../new.constants';
-import { NewPrivateNetworkWrapper } from '@/utils/test/test.provider';
+import { NewPrivateNetworkWrapper } from '@/__tests__/wrapper';
 
 vi.mock('@/hooks/useGuideLink/useGuideLink', () => ({
   default: () => ({ VLAN: '' }),
