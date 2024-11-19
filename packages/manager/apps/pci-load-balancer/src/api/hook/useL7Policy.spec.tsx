@@ -11,7 +11,7 @@ import {
   useCreatePolicy,
   getAttribute,
   useUpdatePolicy,
-  setSearchPolicy,
+  mapSearchPolicy,
 } from './useL7Policy';
 import {
   getL7Policies,
@@ -250,7 +250,7 @@ describe('getAttribute', () => {
     expect(result).toBe('-');
   });
 });
-describe('setSearchPolicy', () => {
+describe('mapSearchPolicy', () => {
   it('should set search attribute correctly for REDIRECT_TO_URL action', () => {
     const policies = [
       {
@@ -266,7 +266,7 @@ describe('setSearchPolicy', () => {
         operatingStatus: LoadBalancerOperatingStatusEnum.ONLINE,
       },
     ] as TL7Policy[];
-    const result = setSearchPolicy(policies);
+    const result = mapSearchPolicy(policies);
     expect(result[0].search).toContain(
       '1 policy1 Redirect to URL http://example.com 301 active online http://example.com /prefix pool-id',
     );
@@ -287,7 +287,7 @@ describe('setSearchPolicy', () => {
         operatingStatus: LoadBalancerOperatingStatusEnum.OFFLINE,
       },
     ] as TL7Policy[];
-    const result = setSearchPolicy(policies);
+    const result = mapSearchPolicy(policies);
     expect(result[0].search).toContain(
       '2 policy2 Redirect Prefix /prefix 302 updating offline http://example.com /prefix pool-id',
     );
@@ -308,7 +308,7 @@ describe('setSearchPolicy', () => {
         operatingStatus: LoadBalancerOperatingStatusEnum.DEGRADED,
       },
     ] as TL7Policy[];
-    const result = setSearchPolicy(policies);
+    const result = mapSearchPolicy(policies);
     expect(result[0].search).toContain(
       '3 policy3 Redirect to Pool pool-id 303 error degraded http://example.com /prefix pool-id',
     );
