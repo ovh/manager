@@ -65,6 +65,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
     event: OsdsSearchBarCustomEvent<OdsInputValueChangeEventDetail>,
   ) => {
     setLocalSearchValue(event.detail.value);
+    setSearchValue(event.detail.value);
   };
 
   const onDeleteCategory = (category: string) =>
