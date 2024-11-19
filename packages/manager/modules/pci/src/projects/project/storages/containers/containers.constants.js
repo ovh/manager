@@ -159,6 +159,55 @@ export const STORAGE_PRICES_LINK = {
   WS: 'https://www.ovhcloud.com/es/public-cloud/prices/#439',
 };
 
+export const DEPLOYMENT_MODE_LINK = {
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065336',
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065346',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065339',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065340',
+  DE:
+    'https://help.ovhcloud.com/csm/de-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065337',
+  ES:
+    'https://help.ovhcloud.com/csm/es-es-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065348',
+  EU:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065349',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065345',
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065338',
+  IE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065349',
+  IN:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065346',
+  IT:
+    'https://help.ovhcloud.com/csm/it-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065347',
+  MA:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065345',
+  NL:
+    'https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065336',
+  PL:
+    'https://help.ovhcloud.com/csm/pl-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065335',
+  PT:
+    'https://help.ovhcloud.com/csm/pt-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065342',
+  QC:
+    'https://help.ovhcloud.com/csm/fr-ca-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065344',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065343',
+  SN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065345',
+  TN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065345',
+  US:
+    'https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065336',
+  WE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065349',
+  WS:
+    'https://help.ovhcloud.com/csm/es-public-cloud-storage-s3-deployments-modes?id=kb_article_view&sysparm_article=KB0065341',
+};
+
 export const STORAGE_ASYNC_REPLICATION_LINK = {
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062417',
@@ -328,6 +377,7 @@ export default {
   STORAGE_GATEWAY,
   STORAGE_PRICES_LINK,
   STORAGE_ASYNC_REPLICATION_LINK,
+  DEPLOYMENT_MODE_LINK,
 
   X_AUTH_TOKEN,
   X_CONTAINER_HEADERS_REGEX,

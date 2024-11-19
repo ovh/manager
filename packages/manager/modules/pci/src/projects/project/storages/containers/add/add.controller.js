@@ -21,6 +21,7 @@ import {
   STORAGE_STANDARD_PLANCODE,
   SWIFT_PLANCODE,
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
+  DEPLOYMENT_MODE_LINK,
 } from '../containers.constants';
 
 import { CONTAINER_USER_ASSOCIATION_MODES } from './components/associate-user-to-container/constant';
@@ -46,6 +47,9 @@ export default class PciStoragesContainersAddController {
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
     this.storagePricesLink =
       STORAGE_PRICES_LINK[ovhSubsidiary] || STORAGE_PRICES_LINK.DEFAULT;
+
+    this.deploymentModeLink =
+      DEPLOYMENT_MODE_LINK[ovhSubsidiary] || DEPLOYMENT_MODE_LINK.DEFAULT;
 
     this.asyncReplicationLink =
       STORAGE_ASYNC_REPLICATION_LINK[ovhSubsidiary] ||
