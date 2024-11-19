@@ -1,31 +1,34 @@
-import React, { useEffect, useContext } from 'react';
-import { defineCurrentPage } from '@ovh-ux/request-tagger';
-import { Outlet, useLocation, useMatches } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import {
-  useOvhTracking,
   useRouteSynchro,
-  ShellContext,
+  useRouting,
 } from '@ovh-ux/manager-react-shell-client';
+import { useOfficeLicenses } from '@/hooks';
+import Loading from '@/components/Loading/Loading';
 
 export default function Layout() {
   const location = useLocation();
-  const { shell } = useContext(ShellContext);
-  const matches = useMatches();
-  const { trackCurrentPage } = useOvhTracking();
+
+  const routing = useRouting();
+
   useRouteSynchro();
 
+  const { data, isLoading } = useOfficeLicenses();
+
   useEffect(() => {
-    const match = matches.slice(-1);
-    defineCurrentPage(`app.web-office-365-${match[0]?.id}`);
+    routing.onHashChange();
   }, [location]);
 
-  useEffect(() => {
-    trackCurrentPage();
-  }, [location]);
-
-  useEffect(() => {
-    shell.ux.hidePreloader();
-  }, []);
-
-  return <Outlet />;
+  useRouteSynchro();
+  return (
+    <>
+      <Outlet />
+      {isLoading && <Loading />}
+      {!data && !isLoading && <Navigate to="onboarding" />}
+      {data && location.pathname === '/' && location.search === '' && (
+        <Navigate to="/license" />
+      )}
+    </>
+  );
 }

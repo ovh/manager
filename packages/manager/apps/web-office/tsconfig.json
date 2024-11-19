@@ -19,9 +19,16 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
+      "@/public/*": ["./public/*"],
       "@/*": ["./src/*"]
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "types", "src/__tests__"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "types",
+    "src/**/*.spec.ts",
+    "src/**/*.spec.tsx"
+  ]
 }
