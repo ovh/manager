@@ -98,9 +98,10 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
           onClick={() => setIsTrigger(true)}
           {...(!isCompact && { label: t('common_actions') })}
           icon={
-            icon ?? isCompact
-              ? ODS_ICON_NAME.ellipsisHorizontal
-              : ODS_ICON_NAME.chevronDown
+            icon ||
+            (isCompact
+              ? ODS_ICON_NAME.ellipsisVertical
+              : ODS_ICON_NAME.chevronDown)
           }
         />
       </div>
