@@ -48,10 +48,11 @@ function ClusterEtcd() {
   const { projectId, kubeId } = useParams();
   const { formatBytes } = useBytes();
 
-  const {
-    data: { usage: used, quota: total },
-  } = useGetClusterEtcdUsage(projectId, kubeId);
-  const percentage = useMemo(() => (used / total) * 100, []);
+  const { data: { usage: used, quota: total } = {} } = useGetClusterEtcdUsage(
+    projectId,
+    kubeId,
+  );
+  const percentage = useMemo(() => (used / total) * 100, [used, total]);
   const { t } = useTranslation(['service']);
   const { addWarning } = useNotifications();
 

@@ -4,7 +4,6 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import { vi } from 'vitest';
-import { ErrorBoundary } from 'react-error-boundary';
 
 export const shellContext = {
   environment: {
@@ -26,13 +25,11 @@ const queryClient = new QueryClient({
 });
 
 export const wrapper = ({ children }) => (
-  <ErrorBoundary fallback={<div>Error From Test</div>}>
-    <QueryClientProvider client={queryClient}>
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
-        {children}
-      </ShellContext.Provider>
-    </QueryClientProvider>
-  </ErrorBoundary>
+  <QueryClientProvider client={queryClient}>
+    <ShellContext.Provider
+      value={(shellContext as unknown) as ShellContextType}
+    >
+      {children}
+    </ShellContext.Provider>
+  </QueryClientProvider>
 );

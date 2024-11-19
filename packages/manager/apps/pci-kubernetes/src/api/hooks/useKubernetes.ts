@@ -632,7 +632,7 @@ export const useCreateKubernetesCluster = ({
 
 export const useGetClusterEtcdUsage = (projectId, kubeId) => {
   const queryKey = ['project', projectId, 'kube', kubeId, 'etcd', 'usage'];
-  return useSuspenseQuery({
+  return useQuery({
     queryKey,
     queryFn: async () => {
       const data = await getKubeEtcdUsage(projectId, kubeId);

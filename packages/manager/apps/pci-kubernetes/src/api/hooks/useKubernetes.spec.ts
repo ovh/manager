@@ -207,7 +207,6 @@ describe('useGetClusterEtcdUsage', () => {
       () => useGetClusterEtcdUsage('project-error', 'kube1'),
       { wrapper },
     );
-
-    expect(result.current).toBe(null);
+    await waitFor(() => expect(result.current.isError).toBe(true));
   });
 });

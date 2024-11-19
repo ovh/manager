@@ -1,11 +1,11 @@
 import { render, waitFor } from '@testing-library/react';
 import * as manager from '@ovh-ux/manager-react-components';
 import { vi } from 'vitest';
-import { UseSuspenseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult } from '@tanstack/react-query';
 import ClusterEtcd from './ClusterETCD.component';
 import { wrapper } from '@/wrapperRenders';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
-import { formatBytes, getColorByPercentage } from '@/helpers';
+import { getColorByPercentage } from '@/helpers';
 
 describe('ClusterEtcd', () => {
   it('renders progress bar and usage text correctly', async () => {
@@ -16,7 +16,7 @@ describe('ClusterEtcd', () => {
     vi.spyOn(useKubernetesModule, 'useGetClusterEtcdUsage').mockReturnValue(({
       data: { usage: mockUsage, quota: mockQuota },
       isPending: false,
-    } as unknown) as UseSuspenseQueryResult<{ usage: number; quota: number }>);
+    } as unknown) as UseQueryResult<{ usage: number; quota: number }>);
 
     const { getByText, container } = render(<ClusterEtcd />, { wrapper });
 
@@ -30,7 +30,7 @@ describe('ClusterEtcd', () => {
         mockPercentage.toString(),
       );
       expect(
-        getByText(`${formatBytes(mockUsage)} / ${formatBytes(mockQuota)}`),
+        getByText('500 unit_size_B / 1000 unit_size_B'),
       ).toBeInTheDocument();
     });
   });
@@ -43,7 +43,7 @@ describe('ClusterEtcd', () => {
     vi.spyOn(useKubernetesModule, 'useGetClusterEtcdUsage').mockReturnValue(({
       data: { usage: mockUsage, quota: mockQuota },
       isPending: false,
-    } as unknown) as UseSuspenseQueryResult<{ usage: number; quota: number }>);
+    } as unknown) as UseQueryResult<{ usage: number; quota: number }>);
 
     const { container } = render(<ClusterEtcd />, { wrapper });
 
@@ -63,13 +63,13 @@ describe('ClusterEtcd', () => {
     vi.spyOn(useKubernetesModule, 'useGetClusterEtcdUsage').mockReturnValue(({
       data: { usage: mockUsage, quota: mockQuota },
       isPending: false,
-    } as unknown) as UseSuspenseQueryResult<{ usage: number; quota: number }>);
+    } as unknown) as UseQueryResult<{ usage: number; quota: number }>);
 
     const { getByText } = render(<ClusterEtcd />, { wrapper });
 
     await waitFor(() => {
       expect(
-        getByText(`${formatBytes(mockUsage)} / ${formatBytes(mockQuota)}`),
+        getByText('300 unit_size_B / 600 unit_size_B'),
       ).toBeInTheDocument();
     });
   });
@@ -85,7 +85,7 @@ describe('ClusterEtcd', () => {
     vi.spyOn(useKubernetesModule, 'useGetClusterEtcdUsage').mockReturnValue(({
       data: { usage: mockUsage, quota: mockQuota },
       isPending: false,
-    } as unknown) as UseSuspenseQueryResult<{ usage: number; quota: number }>);
+    } as unknown) as UseQueryResult<{ usage: number; quota: number }>);
 
     // Render the component
     render(<ClusterEtcd />);
