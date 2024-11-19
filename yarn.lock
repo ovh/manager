@@ -3088,7 +3088,22 @@
   dependencies:
     "@floating-ui/utils" "^0.2.5"
 
-"@floating-ui/dom@1.6.3", "@floating-ui/dom@^1.0.1", "@floating-ui/dom@^1.6.1":
+"@floating-ui/core@^1.6.0":
+  version "1.6.8"
+  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.6.8.tgz#aa43561be075815879305965020f492cdb43da12"
+  integrity sha512-7XJ9cPU+yI2QeLS+FCSlqNFZJq8arvswefkZrYI1yQBbftw6FyrZOxYSh+9S7z7TpeWlRt9zJ5IhM1WIL334jA==
+  dependencies:
+    "@floating-ui/utils" "^0.2.8"
+
+"@floating-ui/dom@1.6.11":
+  version "1.6.11"
+  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.6.11.tgz#8631857838d34ee5712339eb7cbdfb8ad34da723"
+  integrity sha512-qkMCxSR24v2vGkhYDo/UzxfJN3D4syqSjyuTFz6C7XcpU1pASPRieNI0Kj5VP3/503mOfYiGY891ugBX1GlABQ==
+  dependencies:
+    "@floating-ui/core" "^1.6.0"
+    "@floating-ui/utils" "^0.2.8"
+
+"@floating-ui/dom@^1.0.1", "@floating-ui/dom@^1.6.1":
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.6.3.tgz#954e46c1dd3ad48e49db9ada7218b0985cee75ef"
   integrity sha512-RnDthu3mzPlQ31Ss/BTwQ1zjzIhr3lk1gZB1OC56h/1vEtaXkESrOqL5fQVMfXpwGtRwX+YsZBdyHtJMQnkArw==
@@ -3112,6 +3127,11 @@
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.5.tgz#105c37d9d9620ce69b7f692a20c821bf1ad2cbf9"
   integrity sha512-sTcG+QZ6fdEUObICavU+aB3Mp8HY4n14wYHdxK4fXjPmv3PXZZeY5RaguJmGyeH/CJQhX3fqKUtS4qc1LoHwhQ==
+
+"@floating-ui/utils@^0.2.8":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.8.tgz#21a907684723bbbaa5f0974cf7730bd797eb8e62"
+  integrity sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==
 
 "@fortawesome/fontawesome-free@^5.11.2":
   version "5.15.4"
@@ -5233,12 +5253,12 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-components@18.0.0":
-  version "18.0.0"
-  resolved "https://registry.npmjs.org/@ovhcloud/ods-components/-/ods-components-18.0.0.tgz#b0e4da6c35c19004f35bac6b34abb1f78c6d1af0"
-  integrity sha512-Nhgi8iMX/+tWJb6D8WSN8qNqC32XEwdDL0rc7o9V0OwcXPwSqu7QtTYKB+1s1kGTDxfyl7HGrSDYbqgUI0niMw==
+"@ovhcloud/ods-components@^18.3.0":
+  version "18.3.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.3.0.tgz#f5fa856bb45ad7df3ebe421d64ab334f41c7206c"
+  integrity sha512-E2bDV7RDnNty8fR7Fbvkxug2pySmsy4BQIt9rY0VTZWtcbaUlazmKbr+l+TjeL7vRxiPR4+9xLidI1kwt26O9A==
   dependencies:
-    "@floating-ui/dom" "1.6.3"
+    "@floating-ui/dom" "1.6.11"
     "@stencil/core" "4.16.0"
     google-libphonenumber "3.2.35"
     tom-select "2.3.1"
@@ -5259,10 +5279,10 @@
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-themes@18.0.0":
-  version "18.0.0"
-  resolved "https://registry.npmjs.org/@ovhcloud/ods-themes/-/ods-themes-18.0.0.tgz#0a7c658e0e9d572262ed41896fee4819c2764167"
-  integrity sha512-0PfXUyF6bX9emb/a6S16QThKsSXyvrNYT3n1zQF/le8tMXP7292TGKIgqXhsZmkcD9tCdD6VLXuJTS8Zv3a5Yg==
+"@ovhcloud/ods-themes@^18.3.0":
+  version "18.3.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.3.0.tgz#804e3502e6791f7ec2efc24abb107d27cd4e02e0"
+  integrity sha512-mTxtcM4tCUPk98x65PeslXqGONJraTryXgkbgbZuvtOYf9SgVl+zFJfyisD2sYGuJvVf6hJP1NvJkyrxOUqtSw==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -6159,6 +6179,11 @@
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.19.2.tgz#0c896535473291cb41f152c180bedd5680a3b273"
   integrity sha512-baiMx18+IMuD1yyvOGaHM9QrVUPGGG0jC+z+IPHnRJWUAUvaKuWKyE8gjDj2rzv3sz9zOGoRSPgeBVHRhZnBlA==
 
+"@remix-run/router@1.21.0":
+  version "1.21.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.21.0.tgz#c65ae4262bdcfe415dbd4f64ec87676e4a56e2b5"
+  integrity sha512-xfSkCAchbdG5PnbrKqFWwia4Bi61nH+wm8wLEqfHDyp7Y3dZzgqS2itV8i4gAq9pC2HsTpwyBC6Ds8VHZ96JlA==
+
 "@remix-run/router@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.9.0.tgz#9033238b41c4cbe1e961eccb3f79e2c588328cf6"
@@ -6697,14 +6722,6 @@
   resolved "https://registry.npmjs.org/@stencil/core/-/core-4.16.0.tgz#79c430d5875e0ce3a7666607b6fb53512890577b"
   integrity sha512-gXaC5IrquV/Hw5JIZTCWkM5lJEbBQtnvHLhDebjar6A6+YBqxah04dardS+YUNVuRbnE6Hcja7KKiAXT3oVsvw==
 
-"@storybook/addon-a11y@8.0.4":
-  version "8.0.4"
-  resolved "https://registry.npmjs.org/@storybook/addon-a11y/-/addon-a11y-8.0.4.tgz#2e62ab86a016a9ed6e4b52d61e0549c2568b0923"
-  integrity sha512-5OyZNzjNXjNUD9vBfjxFnJjMMcBFYWyI4zy5qmJcbAvBv/COiXNfNg2cr2YPNtU5WfA6nsaIESfHFGBHI3GDAg==
-  dependencies:
-    "@storybook/addon-highlight" "8.0.4"
-    axe-core "^4.2.0"
-
 "@storybook/addon-actions@7.5.3":
   version "7.5.3"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-7.5.3.tgz#e0d0d819488d1d19918b23469b3ea6610fee5f07"
@@ -6839,13 +6856,6 @@
     "@storybook/core-events" "7.5.3"
     "@storybook/global" "^5.0.0"
     "@storybook/preview-api" "7.5.3"
-
-"@storybook/addon-highlight@8.0.4":
-  version "8.0.4"
-  resolved "https://registry.npmjs.org/@storybook/addon-highlight/-/addon-highlight-8.0.4.tgz#32f21a1f850394e83277a1cd553a33c86cb603f4"
-  integrity sha512-tnEiVaJlXL07v8JBox+QtRPVruoy0YovOTAOWY7fKDiKzF1I9wLaJjQF3wOsvwspHTHu00OZw2gsazgXiH4wLQ==
-  dependencies:
-    "@storybook/global" "^5.0.0"
 
 "@storybook/addon-interactions@7.5.3":
   version "7.5.3"
@@ -8790,6 +8800,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/history@^4.7.11":
+  version "4.7.11"
+  resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.11.tgz#56588b17ae8f50c53983a524fc3cc47437969d64"
+  integrity sha512-qjDJRrmvBMiTx+jyLxvLfJU7UznFuokDv4f3WRuriHKERccVpFU+8XMQUAbDzoiJCsmexxRExQeMwwCdamSKDA==
+
 "@types/hoist-non-react-statics@^3.0.1":
   version "3.3.5"
   resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.5.tgz#dab7867ef789d87e2b4b0003c9d65c49cc44a494"
@@ -9142,6 +9157,23 @@
   integrity sha512-xfVcv5zjC6fGf6axPyKxdXNm9RKK9OFzSIyZeCR3r9h4zDuqSpHc8ilTBtfQ1zU/uCx+tAsB+W6vzdCBMu1jtg==
   dependencies:
     react-query "*"
+
+"@types/react-router-dom@^5.3.3":
+  version "5.3.3"
+  resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-5.3.3.tgz#e9d6b4a66fcdbd651a5f106c2656a30088cc1e83"
+  integrity sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==
+  dependencies:
+    "@types/history" "^4.7.11"
+    "@types/react" "*"
+    "@types/react-router" "*"
+
+"@types/react-router@*":
+  version "5.1.20"
+  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-5.1.20.tgz#88eccaa122a82405ef3efbcaaa5dcdd9f021387c"
+  integrity sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==
+  dependencies:
+    "@types/history" "^4.7.11"
+    "@types/react" "*"
 
 "@types/react-transition-group@^4.4.0", "@types/react-transition-group@^4.4.6":
   version "4.4.10"
@@ -11200,11 +11232,6 @@ aws4@^1.8.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.12.0.tgz#ce1c9d143389679e253b314241ea9aa5cec980d3"
   integrity sha512-NmWvPnx0F1SfrQbYwOi7OeaNGokp9XhzNioJ/CSBs8Qa4vxug81mhJEAVZwxXuBmYB5KDRfMq/F3RR0BIU7sWg==
-
-axe-core@^4.2.0:
-  version "4.10.0"
-  resolved "https://registry.npmjs.org/axe-core/-/axe-core-4.10.0.tgz#d9e56ab0147278272739a000880196cdfe113b59"
-  integrity sha512-Mr2ZakwQ7XUAjp7pAwQWRhhK8mQQ6JAaNWSjmjxil0R8BPioMtQsTLOolGYkji1rcL++3dCqZA3zWqpT+9Ew6g==
 
 axios@^0.21.1:
   version "0.21.4"
@@ -24188,6 +24215,14 @@ react-router-dom@^6.3.0:
     "@remix-run/router" "1.9.0"
     react-router "6.16.0"
 
+react-router-dom@^6.4.0:
+  version "6.28.0"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.28.0.tgz#f73ebb3490e59ac9f299377062ad1d10a9f579e6"
+  integrity sha512-kQ7Unsl5YdyOltsPGl31zOjLrDv+m2VcIEcIHqYYD3Lp0UppLjrzcfJqDJwXxFw3TH/yvapbnUvPlAj7Kx5nbg==
+  dependencies:
+    "@remix-run/router" "1.21.0"
+    react-router "6.28.0"
+
 react-router@6.16.0:
   version "6.16.0"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.16.0.tgz#abbf3d5bdc9c108c9b822a18be10ee004096fb81"
@@ -24201,6 +24236,13 @@ react-router@6.26.2:
   integrity sha512-tvN1iuT03kHgOFnLPfLJ8V95eijteveqdOSk+srqfePtQvqCExB8eHOYnlilbOcyJyKnYkr1vJvf7YqotAJu1A==
   dependencies:
     "@remix-run/router" "1.19.2"
+
+react-router@6.28.0:
+  version "6.28.0"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.28.0.tgz#29247c86d7ba901d7e5a13aa79a96723c3e59d0d"
+  integrity sha512-HrYdIFqdrnhDw0PqG/AKjAqEqM7AvxCz0DQ4h2W8k6nqmc5uRBYDag0SBxx9iYz5G8gnuNVLzUe13wl9eAsXXg==
+  dependencies:
+    "@remix-run/router" "1.21.0"
 
 react-router@^6.21.3:
   version "6.22.1"
