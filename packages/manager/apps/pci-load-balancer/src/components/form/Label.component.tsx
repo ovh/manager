@@ -40,7 +40,7 @@ export default function LabelComponent({
         {text}
       </OsdsText>
 
-      {helpText && (
+      {!!helpText && (
         <OsdsPopover className="w-4 h-4">
           <OsdsIcon
             slot="popover-trigger"

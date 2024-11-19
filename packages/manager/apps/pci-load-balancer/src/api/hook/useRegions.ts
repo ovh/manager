@@ -14,6 +14,8 @@ export type TRegion = {
   continent: string;
 };
 
+// @TODO this part looks similar to what have been created in the region selector
+// of pci-common, do some refactoring
 export const useGetRegions = (
   projectId: string,
 ): { data: Map<string, TRegion[]>; isPending: boolean } => {

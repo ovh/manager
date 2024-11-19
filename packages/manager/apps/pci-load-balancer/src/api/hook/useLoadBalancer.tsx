@@ -183,10 +183,6 @@ export const useCreateLoadBalancer = ({
       }),
     onError,
     onSuccess: async () => {
-      // TDOO invalidate right query
-      // await queryClient.invalidateQueries({
-      //   queryKey: getAllLoadBalancersQueryKey(projectId),
-      // });
       onSuccess();
     },
   });
