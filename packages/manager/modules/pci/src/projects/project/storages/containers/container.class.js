@@ -28,6 +28,7 @@ export default class Container {
     encryption,
     versioning,
     deploymentMode,
+    replication,
   }) {
     Object.assign(this, {
       name,
@@ -52,6 +53,7 @@ export default class Container {
       state,
       storageGateway,
       encryption,
+      replication,
     });
     this.storedObjects = this.storedObjects || this.objectsCount || 0;
     this.storedBytes = this.storedBytes || this.objectsSize;
