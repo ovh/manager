@@ -14,13 +14,11 @@ export interface IFrameAppRouterProps {
 function makeRoute({
   id,
   appConfig,
-  iframeRef,
-  configuration
+  iframeRef
 }: {
   id: string;
   appConfig: Application;
   iframeRef: RefObject<HTMLIFrameElement>;
-  configuration: Record<string, Application>;
 }) {
   const { hash, path } = appConfig.container;
   const normalizedHash = (hash || '').replace(/^\//, '');
@@ -31,7 +29,7 @@ function makeRoute({
       path={target}
       element={
         appConfig.container.enabled ? (
-          <IFrameApplicationRoute iframeRef={iframeRef} appConfig={appConfig} configuration={configuration}/>
+          <IFrameApplicationRoute iframeRef={iframeRef} appConfig={appConfig}/>
         ) : (
           <ExternalApplicationRoute appConfig={appConfig} />
         )
@@ -81,7 +79,7 @@ export function IFrameAppRouter({
   const routes = useMemo(
     () =>
       sortedConfiguration.map(([id, appConfig]) =>
-        makeRoute({ appConfig, iframeRef, id, configuration }),
+        makeRoute({ appConfig, iframeRef, id }),
       ),
     [sortedConfiguration],
   );
