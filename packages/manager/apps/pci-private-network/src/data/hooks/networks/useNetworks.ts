@@ -6,6 +6,7 @@ import {
   checkPrivateNetworkCreationStatus,
   getPrivateNetworks,
   getSubnets,
+  deleteNetwork as apiDeleteNetwork,
 } from '@/data/api/networks';
 import {
   CreationStatus,
@@ -16,16 +17,23 @@ import {
 import queryClient from '@/queryClient';
 import { groupedPrivateNetworkByVlanId, paginateResults } from '@/utils/utils';
 
-export const networkQueryKey = (
-  projectId: string,
-  rest: string[] = [],
-): string[] => ['project', projectId, 'network', ...rest];
+const networkQueryKey = (projectId: string, rest: string[] = []): string[] => [
+  'project',
+  projectId,
+  'network',
+  ...rest,
+];
+
+const getPrivateNetworkQuery = (projectId: string) => ({
+  queryKey: networkQueryKey(projectId),
+  queryFn: () => getPrivateNetworks(projectId),
+});
+
+const fetchPrivateNetwork = async (projectId: string) =>
+  queryClient.fetchQuery(getPrivateNetworkQuery(projectId));
 
 export const usePrivateNetworks = (projectId: string) =>
-  useQuery({
-    queryKey: networkQueryKey(projectId),
-    queryFn: () => getPrivateNetworks(projectId),
-  });
+  useQuery(getPrivateNetworkQuery(projectId));
 
 export const usePrivateNetworksRegion = (
   projectId: string,
@@ -70,6 +78,7 @@ export const usePrivateNetworkLZ = (projectId: string) => {
 
             return {
               id: subId,
+              networkId: id,
               name,
               region,
               cidr,
@@ -111,3 +120,38 @@ export const useSubnets = (
     queryFn: () => getSubnets(projectId, region, networkId),
     enabled: !!(projectId && networkId && region),
   });
+
+export const setOptimisticPrivateNetworks = async (
+  projectId: string,
+  newNetwork: TNetwork,
+) => {
+  const queryKey = networkQueryKey(projectId);
+  const networks = queryClient.getQueryData<TNetwork[]>(queryKey);
+
+  if (!networks) {
+    await fetchPrivateNetwork(projectId);
+  } else {
+    queryClient.setQueryData(queryKey, (data: TNetwork[]) => [
+      newNetwork,
+      ...data,
+    ]);
+  }
+};
+
+export const deletePrivateNetworks = async (
+  projectId: string,
+  region: string,
+  networkId: string,
+) => {
+  await apiDeleteNetwork(projectId, region, networkId);
+
+  const queryKey = networkQueryKey(projectId);
+  const networks = queryClient.getQueryData<TNetwork[]>(queryKey);
+
+  if (!networks) {
+    await fetchPrivateNetwork(projectId);
+  } else {
+    const newNetworks = networks.filter((network) => network.id !== networkId);
+    queryClient.setQueryData(queryKey, newNetworks);
+  }
+};

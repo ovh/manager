@@ -33,12 +33,13 @@ export type TNetwork = {
 export type TGroupedNetwork = {
   vlanId: number;
   name: string;
-  regions: string;
+  regions: string[];
   search: string;
 };
 
 export type TGroupedSubnet = {
   id: string;
+  networkId: string;
   name: string;
   region: string;
   cidr: string;

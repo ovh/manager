@@ -112,17 +112,36 @@ describe('groupPrivateNetworkByVlanId', () => {
         vlanId: null,
         visibility: NetworkVisibility.Private,
       },
+      {
+        id: 'net5',
+        name: 'net5',
+        region: 'region5',
+        vlanId: 34,
+        visibility: NetworkVisibility.Private,
+      },
+      {
+        id: 'net6',
+        name: 'net6',
+        region: 'region6',
+        vlanId: 34,
+        visibility: NetworkVisibility.Private,
+      },
     ];
 
     const result = groupedPrivateNetworkByVlanId(networks);
 
     expect(result).toEqual([
-      { vlanId: 1, name: 'net3', regions: 'region3', search: '1 net3 region3' },
+      {
+        vlanId: 1,
+        name: 'net3',
+        regions: ['region3'],
+        search: '1 net3 region3',
+      },
       {
         vlanId: 34,
         name: 'net1',
-        regions: 'region1, region2',
-        search: '34 net1 region1 region2',
+        regions: ['region1', 'region2', 'region5', 'region6'],
+        search: '34 net1 region1 region2 region5 region6',
       },
     ]);
   });

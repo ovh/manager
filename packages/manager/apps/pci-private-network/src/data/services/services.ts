@@ -3,10 +3,12 @@ import {
   TNetworkCreationResponse,
   TNetworkCreationStatusParams,
   TNetworkCreationData,
+  NetworkVisibility,
 } from '@/types/network.type';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
-import { createPrivateNetwork } from '@/data/api/networks';
+import { createPrivateNetwork, getNetwork } from '@/data/api/networks';
 import { assignGateway, enableSnatOnGateway } from '@/data/api/gateway';
+import { setOptimisticPrivateNetworks } from '../hooks/networks/useNetworks';
 
 type GetCreationStatus = UseMutateAsyncFunction<
   TNetworkCreationResponse,
@@ -39,7 +41,7 @@ export const handleCreatePrivateNetwork = async (
     data,
   });
 
-  const status = await getCreationStatus({
+  const { resourceId } = await getCreationStatus({
     projectId,
     operationId: creation.id,
   });
@@ -49,11 +51,21 @@ export const handleCreatePrivateNetwork = async (
       await enableSnatOnGateway(projectId, region, existingGatewayId);
     }
 
-    await assignGateway(
-      projectId,
-      region,
-      status.resourceId,
-      existingGatewayId,
-    );
+    await assignGateway(projectId, region, resourceId, existingGatewayId);
   }
+
+  let createdVlanId = data.vlanId || null;
+
+  if (!createdVlanId && !isLocalZone) {
+    const createdNetwork = await getNetwork(projectId, region, resourceId);
+    createdVlanId = createdNetwork.vlanId;
+  }
+
+  await setOptimisticPrivateNetworks(projectId, {
+    id: resourceId,
+    name: data.name,
+    region,
+    visibility: NetworkVisibility.Private,
+    vlanId: createdVlanId,
+  });
 };

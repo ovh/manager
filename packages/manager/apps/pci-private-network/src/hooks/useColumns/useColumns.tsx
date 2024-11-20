@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import {
   OsdsButton,
@@ -24,6 +25,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import DatagridActions from '@/components/datagrid-actions/DatagridActions.component';
 import { TGroupedNetwork, TGroupedSubnet } from '@/types/network.type';
+import SlicedRegions from '@/components/sliced-regions/SlicedRegions';
 
 export function usePrivateNetworkRegionColumns() {
   const { t } = useTranslation(['listing', 'common']);
@@ -40,7 +42,9 @@ export function usePrivateNetworkRegionColumns() {
       {
         id: 'region',
         cell: ({ regions }: TGroupedNetwork) => (
-          <DataGridTextCell>{regions}</DataGridTextCell>
+          <DataGridTextCell>
+            <SlicedRegions regions={regions} length={3} />
+          </DataGridTextCell>
         ),
         label: t('pci_projects_project_network_private_region'),
       },
@@ -132,6 +136,7 @@ export function usePrivateNetworkRegionColumns() {
 
 export function usePrivateNetworkLZColumns() {
   const { t } = useTranslation(['listing', 'common']);
+  const navigate = useNavigate();
 
   const renderChip = (textKey: string, color: ODS_THEME_COLOR_INTENT) => (
     <OsdsChip className="inline-flex m-3" size={ODS_CHIP_SIZE.sm} color={color}>
@@ -195,13 +200,16 @@ export function usePrivateNetworkLZColumns() {
       },
       {
         id: 'actions',
-        cell: () => (
+        cell: ({ region, networkId }: TGroupedSubnet) => (
           <div>
             <OsdsTooltip>
               <OsdsButton
                 size={ODS_BUTTON_SIZE.sm}
                 variant={ODS_BUTTON_VARIANT.ghost}
                 color={ODS_THEME_COLOR_INTENT.primary}
+                onClick={() =>
+                  navigate(`./delete?networkId=${networkId}&region=${region}`)
+                }
               >
                 <OsdsIcon
                   name={ODS_ICON_NAME.BIN}

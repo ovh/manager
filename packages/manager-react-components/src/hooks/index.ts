@@ -19,5 +19,6 @@ export {
   useTranslatedMicroRegions,
   isLocalZone,
 } from './region/useTranslatedMicroRegions';
+export { useMigrationSteins } from './pci/useMigrationSteins';
 
 export type TRegion = Region;

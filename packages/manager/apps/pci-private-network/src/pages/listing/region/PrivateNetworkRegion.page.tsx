@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { OsdsTabPanel } from '@ovhcloud/ods-components/react';
 import {
   Datagrid,
+  Notifications,
   useColumnFilters,
   useDatagridSearchParams,
 } from '@ovh-ux/manager-react-components';
@@ -77,6 +78,7 @@ const PrivateNetworkRegion: React.FC = () => {
       active={activeTab === PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME}
       name={PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME}
     >
+      <Notifications />
       <DataGridHeaderActions
         createLabel={t('pci_projects_project_network_private_create')}
         onCreate={() => navigate('./new')}

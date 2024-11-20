@@ -5,7 +5,6 @@ import {
   checkPrivateNetworkCreationStatus,
   createNetwork,
   createNetworkCall,
-  deleteNetwork,
   enableSnatOnGatewayCall,
   getAggregatedNetwork,
   getCreatedSubnet,
@@ -28,21 +27,6 @@ describe('Network API', () => {
     expect(result).toEqual(mockData.resources);
     expect(vi.mocked(v6.get)).toHaveBeenCalledWith(
       '/cloud/project/mocked_projectId/aggregated/network',
-    );
-  });
-
-  it('should delete the network successfully', async () => {
-    const mockData = { status: 'deleted' };
-    vi.mocked(v6.delete).mockResolvedValue({ data: mockData });
-
-    const result = await deleteNetwork(
-      'mocked_projectId',
-      'mocked_region',
-      'mocked_networkId',
-    );
-    expect(result).toEqual(mockData);
-    expect(vi.mocked(v6.delete)).toHaveBeenCalledWith(
-      '/cloud/project/mocked_projectId/region/mocked_region/network/mocked_networkId',
     );
   });
 

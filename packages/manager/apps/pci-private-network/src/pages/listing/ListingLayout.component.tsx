@@ -22,7 +22,7 @@ import {
 } from '@ovh-ux/manager-pci-common';
 import { MaintenanceBanner } from '@/components/maintenance/MaintenanceBanner.component';
 import { usePrivateNetworks } from '@/data/hooks/networks/useNetworks';
-import { useProductMaintenance } from '@/hooks/useMaintenance/useMaintenance';
+// import { useProductMaintenance } from '@/hooks/useMaintenance/useMaintenance';
 import { PrivateNetworkTabName } from './ListingLayout.constant';
 import { useActiveTab } from '@/hooks/useActiveTab/useActiveTab';
 
@@ -36,14 +36,14 @@ const ListingLayout: React.FC = () => {
 
   const { isPending, data: networks } = usePrivateNetworks(projectId);
 
-  const regions = useMemo(() => networks?.map((network) => network.region), [
+  /* const regions = useMemo(() => networks?.map((network) => network.region), [
     networks,
-  ]);
+  ]); */
 
-  const { hasMaintenance, maintenanceURL } = useProductMaintenance(
+  /* const { hasMaintenance, maintenanceURL } = useProductMaintenance(
     projectId,
     regions,
-  );
+  ); */
 
   const { clearNotifications } = useNotifications();
 
@@ -88,11 +88,11 @@ const ListingLayout: React.FC = () => {
       <div className="mb-5">
         <PciDiscoveryBanner project={project} />
 
-        {hasMaintenance && (
+        {/* hasMaintenance && (
           <div className="mt-5">
             <MaintenanceBanner maintenanceURL={maintenanceURL} />
           </div>
-        )}
+        ) */}
       </div>
 
       {isPending ? (

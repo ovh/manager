@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Translation } from 'react-i18next';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import DeleteModal from '@/components/delete/DeleteModal.component';
-import { useDeleteNetwork } from '@/api/hooks/useNetwork';
+import { deletePrivateNetworks } from '@/data/hooks/networks/useNetworks';
 
 export default function DeleteLocalZone() {
   const navigate = useNavigate();
@@ -18,11 +19,13 @@ export default function DeleteLocalZone() {
 
   const onClose = () => navigate('..');
 
-  const { deleteNetwork, isPending } = useDeleteNetwork({
-    projectId,
-    region,
-    networkId,
-    onSuccess: () => {
+  const [isPending, setIsPending] = useState<boolean>(false);
+
+  const onDeleteNetwork = async () => {
+    setIsPending(true);
+
+    try {
+      await deletePrivateNetworks(projectId, region, networkId);
       addSuccess(
         <Translation ns="listing">
           {(t) =>
@@ -33,10 +36,8 @@ export default function DeleteLocalZone() {
         </Translation>,
         true,
       );
-      onClose();
-    },
-    onError: (error: ApiError) => {
-      onClose();
+    } catch (e) {
+      const error = (e as unknown) as ApiError;
       addError(
         <Translation ns="listing">
           {(t) =>
@@ -47,15 +48,18 @@ export default function DeleteLocalZone() {
         </Translation>,
         true,
       );
-    },
-  });
+    }
+
+    setIsPending(false);
+    onClose();
+  };
 
   return (
     <DeleteModal
       networkId={networkId}
       isPending={isPending}
       onClose={onClose}
-      onConfirm={deleteNetwork}
+      onConfirm={onDeleteNetwork}
     />
   );
 }

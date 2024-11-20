@@ -1,12 +1,8 @@
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { PaginationState } from '@ovh-ux/manager-react-components';
-import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
+import { useQueries, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import {
-  deleteNetwork,
-  getAggregatedNetwork,
-  TAggregatedNetwork,
-} from '@/api/data/network';
+import { getAggregatedNetwork, TAggregatedNetwork } from '@/api/data/network';
 import { TGateway, TRegion } from '@/api/data/regions';
 import { getSubnets, TSubnet } from '@/api/data/subnets';
 import {
@@ -14,7 +10,6 @@ import {
   isLocalZoneRegion,
   paginateResults,
 } from '@/api/utils/utils';
-import queryClient from '@/queryClient';
 
 export const useAggregatedNetwork = (projectId: string) =>
   useQuery({
@@ -230,37 +225,5 @@ export const useLocalZoneNetworks = (
     isFetching,
     data,
     error: subnetQueries.map((q) => q.error).some((e) => e),
-  };
-};
-
-type TDeleteNetwork = {
-  projectId: string;
-  region: string;
-  networkId: string;
-  onError: (cause: Error) => void;
-  onSuccess: () => void;
-};
-
-export const useDeleteNetwork = ({
-  projectId,
-  region,
-  networkId,
-  onError,
-  onSuccess,
-}: TDeleteNetwork) => {
-  const mutation = useMutation({
-    mutationFn: () => deleteNetwork(projectId, region, networkId),
-    onError,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['aggregated-network', projectId],
-      });
-      return onSuccess();
-    },
-  });
-
-  return {
-    deleteNetwork: mutation.mutate,
-    ...mutation,
   };
 };

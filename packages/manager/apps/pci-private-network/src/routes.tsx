@@ -16,7 +16,7 @@ export interface RouteHandle {
   tracking?: string;
 }
 
-export const ROUTE_PATHS = {
+const ROUTE_PATHS = {
   root: '/pci/projects/:projectId/private-networks',
   onboarding: 'onboarding',
   listing: '',
@@ -50,6 +50,17 @@ export default [
             ...lazyRouteConfig(() =>
               import('@/pages/listing/localZone/PrivateNetworkLZ.page'),
             ),
+            children: [
+              {
+                path: ROUTE_PATHS.delete,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/delete/DeleteNetwork.page'),
+                ),
+                handle: {
+                  tracking: 'delete',
+                },
+              },
+            ],
           },
         ],
       },
@@ -71,7 +82,7 @@ export default [
           },
         ],
       }, */
-      {
+      /* {
         path: ROUTE_PATHS.localZone,
         handle: {
           tracking: 'localZone',
@@ -88,7 +99,7 @@ export default [
             },
           },
         ],
-      },
+      }, */
       {
         path: ROUTE_PATHS.onboarding,
         ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),

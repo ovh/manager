@@ -63,7 +63,7 @@ export const groupedPrivateNetworkByVlanId = (
   return Object.values(grouped).map(({ vlanId, name, regions }) => ({
     vlanId,
     name,
-    regions: regions.join(', '),
+    regions,
     search: `${vlanId} ${name} ${regions.join(' ')}`,
   }));
 };

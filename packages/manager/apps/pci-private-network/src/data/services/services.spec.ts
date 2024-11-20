@@ -1,14 +1,16 @@
 import { describe, vi } from 'vitest';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
-import { TNetworkCreationResponse } from '@/types/network.type';
+import { TNetwork, TNetworkCreationResponse } from '@/types/network.type';
+import { getNetwork, createPrivateNetwork } from '@/data/api/networks';
 import { handleCreatePrivateNetwork } from './services';
+import { setOptimisticPrivateNetworks } from '@/data/hooks/networks/useNetworks';
 
+const vlanIdTest = 3000;
 const {
   form,
   projectId,
   getCreationStatus,
   operationId,
-  createPrivateNetwork,
   assignGateway,
   enableSnatOnGateway,
 } = vi.hoisted(() => ({
@@ -39,16 +41,11 @@ const {
   enableSnatOnGateway: vi.fn(),
 }));
 
-vi.mock('@/data/api/networks', async (importOriginal) => {
-  const original = await importOriginal<typeof import('@/data/api/networks')>();
-
-  return {
-    ...original,
-    createPrivateNetwork: createPrivateNetwork.mockResolvedValue({
-      id: operationId,
-    } as TNetworkCreationResponse),
-  };
-});
+vi.mock('@/data/api/networks');
+vi.mocked(getNetwork).mockResolvedValue({ vlanId: vlanIdTest } as TNetwork);
+vi.mocked(createPrivateNetwork).mockResolvedValue({
+  id: operationId,
+} as TNetworkCreationResponse);
 
 vi.mock('@/data/api/gateway', async (importOriginal) => {
   const original = await importOriginal<typeof import('@/data/api/gateway')>();
@@ -59,6 +56,8 @@ vi.mock('@/data/api/gateway', async (importOriginal) => {
     assignGateway,
   };
 });
+
+vi.mock('@/data/hooks/networks/useNetworks');
 
 describe('Create Private Network', () => {
   it('should not post gateway and vlanId when region is LZ', async () => {
@@ -96,6 +95,13 @@ describe('Create Private Network', () => {
     });
 
     expect(getCreationStatus).toHaveBeenCalledWith({ projectId, operationId });
+    expect(setOptimisticPrivateNetworks).toHaveBeenCalledWith(projectId, {
+      id: 'testResourceId',
+      name,
+      region,
+      visibility: 'private',
+      vlanId,
+    });
   });
 
   it('should enable snat', async () => {
@@ -122,5 +128,25 @@ describe('Create Private Network', () => {
       'testResourceId',
       existingGatewayId,
     );
+  });
+
+  it('should call getNetwork and setOptimisticPrivateNetworks when region is not LZ and vlanId not defined by user', async () => {
+    const { vlanId, ...values } = form;
+
+    await handleCreatePrivateNetwork(values, projectId, getCreationStatus);
+
+    expect(getNetwork).toHaveBeenCalledWith(
+      projectId,
+      values.region,
+      'testResourceId',
+    );
+
+    expect(setOptimisticPrivateNetworks).toHaveBeenCalledWith(projectId, {
+      id: 'testResourceId',
+      name: values.name,
+      region: values.region,
+      visibility: 'private',
+      vlanId: vlanIdTest,
+    });
   });
 });
