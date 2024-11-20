@@ -8,6 +8,7 @@ import {
   SavingsPlanService,
 } from '@/types/api.type';
 import { getSavingsPlansUrl } from '@/utils/routes';
+import { useSubscribedAllQuery } from '@/axios-client/Query';
 
 export const getSubscribedSavingsPlan = async (
   serviceId: number,
@@ -87,6 +88,11 @@ export const useServiceId = () => {
 
 export const useSavingsPlan = () => {
   const serviceId = useServiceId();
+
+  const { data, isLoading } = useSubscribedAllQuery({ serviceId }, {
+    refetchInterval: 1000,
+
+  });
 
   return useQuery({
     queryKey: ['savings-plan', serviceId],
