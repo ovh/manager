@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.12.0...@ovh-ux/manager-vrack@1.12.1) (2024-11-20)
+
+
+### Bug Fixes
+
+* **dedicated.vrack:** fix attach vrack for legacy infra ([#14152](https://github.com/ovh/manager/issues/14152)) ([9dd81fc](https://github.com/ovh/manager/commit/9dd81fcbac207eb4bb26b7a02526591e4815e2ac))
+
+
+
+
+
 # [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.11.0...@ovh-ux/manager-vrack@1.12.0) (2024-10-07)
 
 
