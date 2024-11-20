@@ -78,14 +78,6 @@ const OrderFunnel = ({
     },
   });
 
-  const { BeforeUnloadDialog, setEnabled } = useBeforeUnload({
-    onUnload: useCallback(() => {
-      postTracking(
-        `${model.result.engine?.name}-${model.result.plan?.name}-${model.result.region?.name}-${model.result.flavor?.name}`,
-      );
-    }, [model]),
-  });
-
   const projectData = usePciProject();
   const [showMonthlyPrice, setShowMonthlyPrice] = useState(false);
   const navigate = useNavigate();
@@ -103,9 +95,34 @@ const OrderFunnel = ({
       toast({
         title: t('successCreatingService'),
       });
-      setEnabled(true);
+      // setEnabled(true);
       navigate(`../${service.id}`);
     },
+  });
+  const { BeforeUnloadDialog, setEnabled } = useBeforeUnload({
+    onUnload: useCallback(() => {
+      postTracking(
+        `${model.result.engine?.name}-${model.result.plan?.name}-${model.result.region?.name}-${model.result.flavor?.name}`,
+      );
+
+      try {
+        const serviceInfos: ServiceCreationWithEngine = {
+          description: model.result?.name,
+          engine: model.result.engine?.name as database.EngineEnum,
+          nodesPattern: {
+            flavor: model.result.flavor?.name,
+            number: model.result.nodes,
+            region: model.result.region?.name,
+          },
+          plan: model.result.plan?.name,
+          version: model.result.version?.name,
+          ipRestrictions: [],
+        };
+        addService(serviceInfos);
+      } catch (e) {
+        console.log(e);
+      }
+    }, [model]),
   });
 
   const isProjectDiscoveryMode =
