@@ -2,7 +2,7 @@ import { http, HttpResponse, JsonBodyType, RequestHandler } from 'msw';
 import { DeepReadonly } from '@/types/utils.type';
 
 export type TInstancesServerResponse = DeepReadonly<{
-  method: 'get' | 'delete';
+  method: 'get' | 'delete' | 'post';
   payload: JsonBodyType;
 }>;
 
@@ -21,6 +21,8 @@ const getResponseEndpoint = (
       return `${rootUri}/aggregated/instance`;
     case 'delete':
       return `${rootUri}/instance/:instanceId`;
+    case 'post':
+      return `${rootUri}/instance/:instanceId/*`;
     default:
       return '';
   }
