@@ -73,9 +73,7 @@
                 </oui-tile-description>
             </oui-tile-definition>
             <div data-ng-if="$ctrl.networkInformations.vRackServicesURN">
-                <oui-tile-definition
-                    term="{{:: 'netapp_dashboard_network_configuration_vrack_id' | translate }}"
-                >
+                <oui-tile-definition term="{{:: $ctrl.LABELS.VRACK}}">
                     <oui-tile-description>
                         <a
                             data-ng-if="$ctrl.networkInformations.vrackServices.currentState.vrackId"
