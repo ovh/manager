@@ -108,14 +108,13 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
         )}
       </OdsFormField>
       <OdsButton
-        isDisabled={isLoading}
         slot="actions"
         variant={ODS_BUTTON_VARIANT.ghost}
         {...handleClick(closeModal)}
         label={cancelButtonLabel || t('updateModalCancelButton')}
       />
       <OdsButton
-        isDisabled={isPatternError}
+        isDisabled={isPatternError || defaultValue === displayName || undefined}
         slot="actions"
         isLoading={isLoading}
         {...handleClick(() => updateDisplayName(displayName))}
