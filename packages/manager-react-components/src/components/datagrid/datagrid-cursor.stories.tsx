@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { ColumnSort } from '@tanstack/react-table';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { withRouter } from 'storybook-addon-react-router-v6';
+import { useSearchParams } from 'react-router-dom';
 import { Datagrid } from './datagrid.component';
-import { DataGridTextCell } from './text-cell.component';
+import { useColumnFilters } from '../filters';
+import { columsTmp, columsFilters } from './datagrid.stories';
 import { ActionMenu } from '../navigation';
 
 interface Item {
@@ -12,26 +14,11 @@ interface Item {
   actions: React.ReactElement;
 }
 
-const columns = [
-  {
-    id: 'label',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.label}</DataGridTextCell>;
-    },
-    label: 'Label',
-  },
-  {
-    id: 'price',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
-    },
-    label: 'Price',
-  },
-];
-
 const DatagridStory = (args) => {
   const [sorting, setSorting] = useState<ColumnSort>();
   const [data, setData] = useState(args.items);
+  const [searchParams] = useSearchParams();
+  const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const fetchNextPage = () => {
     const itemsIndex = data?.length;
@@ -43,27 +30,36 @@ const DatagridStory = (args) => {
   };
 
   return (
-    <Datagrid
-      items={data}
-      columns={args.columns}
-      hasNextPage={data?.length > 0 && data.length < 30}
-      onFetchNextPage={fetchNextPage}
-      totalItems={data?.length}
-      {...(args.isSortable
-        ? {
-            sorting,
-            onSortChange: setSorting,
-            manualSorting: false,
-          }
-        : {})}
-    />
+    <>
+      {`${searchParams}` && (
+        <>
+          <pre>Search params: ?{`${searchParams}`}</pre>
+          <hr />
+        </>
+      )}
+      <Datagrid
+        items={data}
+        columns={args.columns}
+        hasNextPage={data?.length > 0 && data.length < 30}
+        onFetchNextPage={fetchNextPage}
+        totalItems={data?.length}
+        filters={{ filters, add: addFilter, remove: removeFilter }}
+        {...(args.isSortable
+          ? {
+              sorting,
+              onSortChange: setSorting,
+              manualSorting: false,
+            }
+          : {})}
+      />
+    </>
   );
 };
 
 export const Basic = DatagridStory.bind({});
 
 Basic.args = {
-  columns,
+  columns: columsTmp,
   items: [...Array(10).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
@@ -76,14 +72,14 @@ Basic.args = {
 export const Empty = DatagridStory.bind({});
 
 Empty.args = {
-  columns,
+  columns: columsTmp,
   items: [],
 };
 
 export const Sortable = DatagridStory.bind({});
 
 Sortable.args = {
-  columns,
+  columns: columsTmp,
   items: [...Array(10).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
@@ -102,7 +98,7 @@ const actionsColumns = {
 export const WithActions = DatagridStory.bind({});
 
 WithActions.args = {
-  columns: [...columns, actionsColumns],
+  columns: [...columsTmp, actionsColumns],
   items: [...Array(8).keys()].map((_, i) => {
     return {
       label: `Service #${i}`,
@@ -137,6 +133,17 @@ WithActions.args = {
     };
   }),
   isSortable: true,
+};
+
+export const Filters = {
+  args: {
+    items: [...Array(10).keys()].map((_, i) => ({
+      label: `Item #${i}`,
+      price: Math.floor(1 + Math.random() * 100),
+    })),
+    isSortable: true,
+    columns: columsFilters,
+  },
 };
 
 export default {

@@ -1,16 +1,18 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { useSearchParams } from 'react-router-dom';
+import { FilterCategories, applyFilters } from '@ovh-ux/manager-core-api';
 import { Datagrid } from './datagrid.component';
 import { DataGridTextCell } from './text-cell.component';
 import { useDatagridSearchParams } from './useDatagridSearchParams';
+import { useColumnFilters } from '../filters';
 
 interface Item {
   label: string;
   price: number;
 }
 
-const columns = [
+export const columsTmp = [
   {
     id: 'label',
     cell: (item: Item) => {
@@ -24,6 +26,25 @@ const columns = [
       return <DataGridTextCell>{item.price} €</DataGridTextCell>;
     },
     label: 'Price',
+  },
+];
+
+export const columsFilters = [
+  {
+    id: 'label',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.label}</DataGridTextCell>;
+    },
+    label: 'Label',
+    comparator: FilterCategories.String,
+  },
+  {
+    id: 'price',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
+    },
+    label: 'Price',
+    comparator: FilterCategories.String,
   },
 ];
 
@@ -44,10 +65,12 @@ const DatagridStory = ({
   items,
   isPaginated,
   isSortable,
+  columns = columsTmp,
 }: {
   items: Item[];
   isPaginated: boolean;
   isSortable: boolean;
+  columns?: any;
 }) => {
   const [searchParams] = useSearchParams();
   const { pagination, setPagination, sorting, setSorting } =
@@ -65,6 +88,8 @@ const DatagridStory = ({
     sorting,
     onSortChange: setSorting,
   };
+  const { filters, addFilter, removeFilter } = useColumnFilters();
+
   return (
     <>
       {`${searchParams}` && (
@@ -75,10 +100,14 @@ const DatagridStory = ({
       )}
       <Datagrid
         columns={columns}
-        items={sortItems(items, sorting).slice(start, end)}
+        items={applyFilters(
+          sortItems(items, sorting).slice(start, end),
+          filters,
+        )}
         totalItems={items.length}
         {...paginationAttrs}
         {...sortingAttrs}
+        filters={{ filters, add: addFilter, remove: removeFilter }}
       />
     </>
   );
@@ -87,7 +116,7 @@ const DatagridStory = ({
 export const Basic = DatagridStory.bind({});
 
 Basic.args = {
-  columns,
+  columns: columsTmp,
   items: [...Array(50).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
@@ -99,12 +128,24 @@ Basic.args = {
 export const Sortable = DatagridStory.bind({});
 
 Sortable.args = {
-  columns,
+  columns: columsTmp,
   items: [...Array(8).keys()].map((_, i) => ({
     label: `Service #${i}`,
     price: Math.floor(1 + Math.random() * 100),
   })),
   isSortable: true,
+};
+
+export const Filters = {
+  args: {
+    items: [...Array(50).keys()].map((_, i) => ({
+      label: `Item #${i}`,
+      price: Math.floor(1 + Math.random() * 100),
+    })),
+    isPaginated: true,
+    isSortable: true,
+    columns: columsFilters,
+  },
 };
 
 export default {
