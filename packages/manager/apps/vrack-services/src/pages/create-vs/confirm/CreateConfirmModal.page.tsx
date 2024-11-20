@@ -92,14 +92,6 @@ export default function CreateConfirmModal() {
       >
         {t('modalDescriptionLine2')}
       </OsdsText>
-      <OsdsText
-        className="block mb-8"
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_TEXT_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
-        {t('modalDescriptionLine3')}
-      </OsdsText>
       {isError && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.error}
