@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.2.3...@ovh-ux/manager-hub-react-app@0.3.0) (2024-11-20)
+
+
+### Features
+
+* **hycu:** add hycu service on hub and my services ([9f10592](https://github.com/ovh/manager/commit/9f1059281f2b8fa3883b04fc41358749d376bb69))
+
+
+
+
+
 ## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.2.2...@ovh-ux/manager-hub-react-app@0.2.3) (2024-11-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-react-app

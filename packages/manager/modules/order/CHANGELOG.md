@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.7.1...@ovh-ux/manager-module-order@0.8.0) (2024-11-20)
+
+
+### Bug Fixes
+
+* **hycu:** express order URLs and edit pack parameters ([334b709](https://github.com/ovh/manager/commit/334b709426ef463e36fdcc27fbbdb6ec91f3412b))
+
+
+### Features
+
+* **hycu:** create order page ([da78d05](https://github.com/ovh/manager/commit/da78d05e2d4d254fb185995df3acf508c61a5176))
+
+
+
+
+
 ## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.7.0...@ovh-ux/manager-module-order@0.7.1) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-module-order

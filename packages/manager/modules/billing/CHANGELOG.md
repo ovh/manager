@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.21.0...@ovh-ux/manager-billing@0.22.0) (2024-11-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3494] ([cafbeb3](https://github.com/ovh/manager/commit/cafbeb3760646da4ea18528ad3f94f0fd490d0d3))
+
+
+### Features
+
+* **billing-component:** add resiliation agora service for HYCU ([8176b67](https://github.com/ovh/manager/commit/8176b67ab85d2e5258d7764cb7ed05d5cb9d9a37))
+* **hycu:** add agora termination for hycu service ([dfecf5a](https://github.com/ovh/manager/commit/dfecf5a6f404676ae618e1220cd9f44a1f79afb4))
+* **hycu:** add hycu service on hub and my services ([9f10592](https://github.com/ovh/manager/commit/9f1059281f2b8fa3883b04fc41358749d376bb69))
+
+
+
+
+
 # [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0...@ovh-ux/manager-billing@0.21.0) (2024-11-19)
 
 
