@@ -1,4 +1,4 @@
-import React, { useMemo, RefObject, useEffect } from 'react';
+import { useMemo, RefObject } from 'react';
 import { Navigate, Routes, Route } from 'react-router-dom';
 import { Application } from '@ovh-ux/manager-config';
 import { ExternalApplicationRoute } from './route/external-application-route';
@@ -14,7 +14,7 @@ export interface IFrameAppRouterProps {
 function makeRoute({
   id,
   appConfig,
-  iframeRef
+  iframeRef,
 }: {
   id: string;
   appConfig: Application;
@@ -29,7 +29,7 @@ function makeRoute({
       path={target}
       element={
         appConfig.container.enabled ? (
-          <IFrameApplicationRoute iframeRef={iframeRef} appConfig={appConfig}/>
+          <IFrameApplicationRoute iframeRef={iframeRef} appConfig={appConfig} />
         ) : (
           <ExternalApplicationRoute appConfig={appConfig} />
         )
