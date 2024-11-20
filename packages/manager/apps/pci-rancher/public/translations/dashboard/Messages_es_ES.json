@@ -55,5 +55,5 @@
   "savingsPlanCTA": "Configure sus Savings Plans",
   "createRancherOfferDescription": "Con un mínimo de 20 vCPU facturadas por Rancher",
   "egress_title": "Rancher egress CIDRs",
-  "egress_tooltip": "Estos CIDR representan los intervalos de direcciones IP de salida que utiliza Rancher. Puede ser necesario autorizar a estas direcciones IP (whitelisting) a acceder a sus plataformas de terceros (p. ej., llamadas a la API para aprovisionar recursos)."
+  "egress_tooltip": "Las notaciones CIDR representan los rangos de las direcciones IP de salida utilizadas por Rancher. Puede ser necesario autorizar estas direcciones IP («whitelisting») a acceder a sus plataformas de terceros (p. ej., llamadas a la API para aprovisionar recursos)."
 }
