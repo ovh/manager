@@ -3,7 +3,9 @@ export default class BmServerComponentsTagsTileController {
     this.tags = null;
     const { tags } = this.server.iam;
     if (tags) {
-      this.tags = Object.keys(tags).map((key) => `${key}:${tags[key]}`);
+      this.tags = Object.keys(tags)
+        .filter((key) => !key.startsWith('ovh:'))
+        .map((key) => `${key}:${tags[key]}`)
 
       if (tags.length > 10) {
         this.tags = [...this.tags.slice(0, 10), '...'];
