@@ -11,5 +11,9 @@
   "autorenew_agora_terminate_service_VRACK_SERVICES_RESOURCE": "Dar de baja los vRack Services",
   "autorenew_agora_terminate_service_warning_VRACK_SERVICES_RESOURCE": "Por favor, confirme la baja de los vRack Services",
   "autorenew_agora_terminate_service_success_VRACK_SERVICES_RESOURCE": "La solicitud de baja de los vRack Services se ha enviado correctamente. Le hemos enviado un mensaje de correo electrónico con el procedimiento que debe seguir.",
-  "autorenew_agora_terminate_service_error_VRACK_SERVICES_RESOURCE": "Se ha producido un error al solicitar la baja de los vRack Services: {{error}}"
+  "autorenew_agora_terminate_service_error_VRACK_SERVICES_RESOURCE": "Se ha producido un error al solicitar la baja de los vRack Services: {{error}}",
+  "autorenew_agora_terminate_service_LICENSE_HYCU": "Dar de baja mi licencia HYCU",
+  "autorenew_agora_terminate_service_warning_LICENSE_HYCU": "Por favor, confirme la baja de su licencia HYCU",
+  "autorenew_agora_terminate_service_success_LICENSE_HYCU": "La solicitud de baja de su licencia HYCU se ha enviado. Le hemos enviado un mensaje de correo electrónico con el procedimiento que debe seguir.",
+  "autorenew_agora_terminate_service_error_LICENSE_HYCU": "Se ha producido un error al solicitar la baja de su licencia HYCU. {{error}}"
 }
