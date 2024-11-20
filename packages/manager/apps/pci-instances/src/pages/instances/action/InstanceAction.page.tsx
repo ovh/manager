@@ -31,13 +31,8 @@ const InstanceAction: FC = () => {
 
   const executeSuccessCallback = useCallback((): void => {
     if (!instanceId) return;
-    switch (section) {
-      case 'delete':
-        updateDeletedInstanceStatus(queryClient, instanceId);
-        break;
-      case 'start':
-      case 'stop':
-      default:
+    if (section === 'delete') {
+      updateDeletedInstanceStatus(queryClient, instanceId);
     }
   }, [instanceId, section]);
 

@@ -12,6 +12,8 @@ const initialProps: TActionsCellProps = {
     deleteHref: 'foo/delete',
     detailsHref: 'foo/details',
     autobackupHref: 'foo/autobackup',
+    startHref: 'foo/start',
+    stopHref: 'foo/stop',
   },
 };
 
