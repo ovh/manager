@@ -7,6 +7,7 @@ import {
   POLLING_TYPE,
   VRACK_SERVICES_STATUS,
   NETAPP_NAME_PATTERN,
+  LABELS,
 } from '../constants';
 
 export default class OvhManagerNetAppDashboardIndexCtrl {
@@ -21,6 +22,7 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
     this.VRACK_SERVICES_STATUS = VRACK_SERVICES_STATUS;
     this.SERVICE_TYPE = SERVICE_TYPE;
     this.NETAPP_NAME_PATTERN = NETAPP_NAME_PATTERN;
+    this.LABELS = LABELS;
   }
 
   $onInit() {
