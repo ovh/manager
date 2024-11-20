@@ -29,6 +29,10 @@ import {
   GetCredentialsMockParams,
 } from '@/mocks/credentials/credentials.handler';
 import { kmsServicesMock } from '@/mocks/services/services.mock';
+import {
+  GetFeatureAvailabilituMocksParams,
+  getFeatureAvailabilityMocks,
+} from '@/mocks/feature-availability/feature-availability.handler';
 
 let context: ShellContextType;
 let i18nValue: i18n;
@@ -39,6 +43,7 @@ export const renderTestApp = async (
     GetServiceKeysMockParams &
     GetCredentialsMockParams &
     GetServicesMocksParams &
+    GetFeatureAvailabilituMocksParams &
     GetIamAuthorizationMockParams = {},
 ) => {
   global.server?.resetHandlers(
@@ -49,6 +54,7 @@ export const renderTestApp = async (
       ...getServicesMocks({ ...mockParams, serviceResponse: kmsServicesMock }),
       ...getIamMocks(mockParams),
       ...getCredentialsMock(mockParams),
+      ...getFeatureAvailabilityMocks(mockParams),
     ]),
   );
 
