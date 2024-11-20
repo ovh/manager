@@ -57,24 +57,22 @@ function ClusterEtcd() {
   const { addWarning } = useNotifications();
 
   useEffect(() => {
-    if (percentage > 80) {
+    if (percentage >= 80) {
       addWarning(
         <>
-          {t('kube_service_etcd_quota_error')}
+          <span className="text-[#995400]">
+            {t('kube_service_etcd_quota_error')}
+          </span>
+
           <br />
           <OsdsLink
+            className="mt-4"
             color={ODS_THEME_COLOR_INTENT.primary}
             href={QUOTA_ERROR_URL}
             target={OdsHTMLAnchorElementTarget._blank}
           >
             {' '}
-            <OsdsText
-              size={ODS_TEXT_SIZE._400}
-              level={ODS_TEXT_LEVEL.body}
-              className="mt-4 float-right"
-            >
-              {t('kube_service_etcd_quota_error_link')}
-            </OsdsText>
+            {t('kube_service_etcd_quota_error_link')}
             <span slot="end">
               <OsdsIcon
                 aria-hidden="true"
@@ -98,7 +96,7 @@ function ClusterEtcd() {
     const style = document.createElement('style');
     style.textContent = getProgressBarStyle(getColorByPercentage(percentage));
     shadowRoot.appendChild(style);
-  }, []);
+  }, [percentage]);
 
   return (
     <div className="w-full p-3 my-4">
