@@ -11,5 +11,9 @@
   "autorenew_agora_terminate_service_VRACK_SERVICES_RESOURCE": "Rezygnacja z vRack Services",
   "autorenew_agora_terminate_service_warning_VRACK_SERVICES_RESOURCE": "Potwierdź rezygnację z vRAck Services",
   "autorenew_agora_terminate_service_success_VRACK_SERVICES_RESOURCE": "Rezygnacja z vRAck Services została zarejestrowana. Otrzymasz e-mail z opisem dalszej procedury.",
-  "autorenew_agora_terminate_service_error_VRACK_SERVICES_RESOURCE": "Wystąpił błąd podczas rezygnacji z vRack Services. {{error}}"
+  "autorenew_agora_terminate_service_error_VRACK_SERVICES_RESOURCE": "Wystąpił błąd podczas rezygnacji z vRack Services. {{error}}",
+  "autorenew_agora_terminate_service_LICENSE_HYCU": "Rezygnacja z licencji HYCU",
+  "autorenew_agora_terminate_service_warning_LICENSE_HYCU": "Potwierdź rezygnację z licencji HYCU",
+  "autorenew_agora_terminate_service_success_LICENSE_HYCU": "Rezygnacja z licencji HYCU została przyjęta. Otrzymasz e-mail z opisem dalszej procedury.",
+  "autorenew_agora_terminate_service_error_LICENSE_HYCU": "Wystąpił błąd podczas składania rezygnacji z licencji HYCU. {{error}}"
 }

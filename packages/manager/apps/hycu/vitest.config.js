@@ -10,12 +10,16 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/setupTests.tsx'],
     coverage: {
+      provider: 'v8',
+      reporter: ['text'],
       include: ['src'],
       exclude: [
+        'src/mocks',
         'src/App.tsx',
         'src/index.tsx',
         'src/tracking.constant.ts',
         'src/vite-hmr.ts',
+        'src/utils/downloadTextAsFile.ts',
       ],
     },
     testTimeout: 60000,

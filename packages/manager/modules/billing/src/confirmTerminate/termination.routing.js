@@ -1,4 +1,3 @@
-import { SERVICE_WITH_AGORA_TERMINATION } from '../../../billing-components/src/components/cancellation-form/confirm-terminate.constants';
 import controller from './legacy/termination-legacy.controller';
 import template from './legacy/termination-legacy.html';
 
@@ -12,17 +11,21 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       translations: { value: ['./legacy', '../autoRenew'], format: 'json' },
       redirectTo: (transition) => {
         const injector = transition.injector();
-        return injector.getAsync('planCode').then((planCode) => {
-          return SERVICE_WITH_AGORA_TERMINATION.includes(planCode)
-            ? 'app.account.billing.confirmTerminateAgora'
-            : false;
-        });
+        return injector
+          .getAsync('hasAgoraTermination')
+          .then((hasAgoraTermination) => {
+            return hasAgoraTermination
+              ? 'app.account.billing.confirmTerminateAgora'
+              : false;
+          });
       },
       resolve: {
         planCode: /* @ngInject */ (BillingTerminate, $transition$) =>
           BillingTerminate.getServiceApi($transition$.params().id).then(
             (service) => service.billing.plan.code,
           ),
+        hasAgoraTermination: /* @ngInject */ (BillingTerminate, planCode) =>
+          BillingTerminate.constructor.hasAgoraTermination(planCode),
         hideBreadcrumb: () => true,
       },
     });
@@ -33,11 +36,13 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       component: 'billingConfirmTermination',
       redirectTo: (transition) => {
         const injector = transition.injector();
-        return injector.getAsync('planCode').then((planCode) => {
-          return !SERVICE_WITH_AGORA_TERMINATION.includes(planCode)
-            ? 'app.account.billing.confirmTerminate'
-            : false;
-        });
+        return injector
+          .getAsync('hasAgoraTermination')
+          .then((hasAgoraTermination) => {
+            return !hasAgoraTermination
+              ? 'app.account.billing.confirmTerminate'
+              : false;
+          });
       },
       resolve: {
         confirmTermination: /* @ngInject */ (
@@ -55,6 +60,8 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         serviceId: /* @ngInject */ ($transition$) => $transition$.params().id,
         token: /* @ngInject */ ($transition$) => $transition$.params().token,
         user: /* @ngInject */ (currentUser) => currentUser,
+        hasAgoraTermination: /* @ngInject */ (BillingTerminate, planCode) =>
+          BillingTerminate.constructor.hasAgoraTermination(planCode),
         hideBreadcrumb: () => true,
       },
     });

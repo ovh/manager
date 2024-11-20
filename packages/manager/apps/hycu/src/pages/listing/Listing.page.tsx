@@ -1,12 +1,13 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import {
   OsdsButton,
   OsdsChip,
   OsdsMessage,
   OsdsSkeleton,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
   Datagrid,
@@ -18,6 +19,7 @@ import {
   useServiceDetails,
   DateFormat,
   useFormattedDate,
+  Notifications,
 } from '@ovh-ux/manager-react-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -28,20 +30,23 @@ import {
   ODS_BUTTON_SIZE,
 } from '@ovhcloud/ods-components';
 import HYCU_CONFIG from '@/hycu.config';
-import { IHycuDetails } from '@/type/hycu.details.interface';
+import { IHycuDetails } from '@/types/hycu.details.interface';
 
 import { urls, subRoutes } from '@/routes/routes.constant';
-import { usePackTypeLabel } from '@/hooks/service/usePackLabel';
 import HycuActionMenu from './menu/HycuActionMenu.component';
 import { getStatusColor } from '@/utils/statusColor';
 
-const dateFormat: Intl.DateTimeFormatOptions = {
-  day: '2-digit',
-  month: '2-digit',
-  year: 'numeric',
+/* ========= datagrid cells ========= */
+const DatagridErrorCell = () => {
+  const { t } = useTranslation('hycu/listing');
+
+  return (
+    <DataGridTextCell>
+      <OsdsText>{t('hycu_listing_error_loading_data')}</OsdsText>
+    </DataGridTextCell>
+  );
 };
 
-/* ========= datagrid cells ========= */
 const DatagridIdCell = (hycuDetail: IHycuDetails) => {
   const navigate = useNavigate();
 
@@ -56,22 +61,29 @@ const DatagridIdCell = (hycuDetail: IHycuDetails) => {
             ),
           )
         }
-        label={hycuDetail.serviceName}
+        label={hycuDetail?.iam.displayName ?? hycuDetail.serviceName}
       ></Links>
     </DataGridTextCell>
   );
 };
 
 const DatagridControllerIdCell = (hycuDetail: IHycuDetails) => {
-  return <DataGridTextCell>{hycuDetail.controllerId}</DataGridTextCell>;
+  return (
+    <DataGridTextCell
+      className={hycuDetail.controllerId ? '' : 'block w-full text-center'}
+    >
+      {hycuDetail.controllerId || '-'}
+    </DataGridTextCell>
+  );
 };
 
 const DatagridStatusCell = (hycuDetail: IHycuDetails) => {
-  const { t } = useTranslation('hycu/listing');
+  const { t } = useTranslation('hycu');
 
   return (
     <DataGridTextCell>
       <OsdsChip
+        className="whitespace-nowrap"
         color={getStatusColor(hycuDetail.licenseStatus)}
         size={ODS_CHIP_SIZE.sm}
         inline
@@ -83,23 +95,25 @@ const DatagridStatusCell = (hycuDetail: IHycuDetails) => {
 };
 
 const DatagridCommercialNameCell = (hycuDetail: IHycuDetails) => {
-  const { data: serviceDetails, isLoading } = useServiceDetails({
+  const { data: serviceDetails, isLoading, isError } = useServiceDetails({
     resourceName: hycuDetail.serviceName,
   });
 
-  const productName = usePackTypeLabel(
-    serviceDetails?.data.resource.product.name,
-  );
+  if (isError) return <DatagridErrorCell />;
 
   return (
     <DataGridTextCell>
-      {isLoading ? <OsdsSkeleton></OsdsSkeleton> : productName}
+      {isLoading ? (
+        <OsdsSkeleton />
+      ) : (
+        serviceDetails?.data.resource.product.description
+      )}
     </DataGridTextCell>
   );
 };
 
 const DatagridCreatedDateCell = (hycuDetail: IHycuDetails) => {
-  const { data: serviceDetails, isLoading } = useServiceDetails({
+  const { data: serviceDetails, isLoading, isError } = useServiceDetails({
     resourceName: hycuDetail.serviceName,
   });
   const creationDate =
@@ -108,6 +122,8 @@ const DatagridCreatedDateCell = (hycuDetail: IHycuDetails) => {
     dateString: creationDate as string,
     format: DateFormat.compact,
   });
+
+  if (isError) return <DatagridErrorCell />;
 
   return (
     <DataGridTextCell>
@@ -125,6 +141,7 @@ const DatagridActionCell = (hycuDetail: IHycuDetails) => {
 };
 
 export default function Listing() {
+  const navigate = useNavigate();
   const { t } = useTranslation('hycu/listing');
   const { t: tCommon } = useTranslation('hycu');
   const { t: tError } = useTranslation('hycu/error');
@@ -140,7 +157,7 @@ export default function Listing() {
     setSorting,
   } = useResourcesIcebergV6({
     route: '/license/hycu',
-    queryKey: ['hycu', '/license/hycu'],
+    queryKey: ['/license/hycu', 'list'],
   });
 
   const columns = useMemo(() => {
@@ -148,31 +165,35 @@ export default function Listing() {
       {
         id: 'name',
         label: t('hycu_name'),
+        isSortable: false,
         cell: DatagridIdCell,
       },
       {
-        id: 'controller_id',
+        id: 'controllerId',
         label: t('hycu_controller_id'),
         cell: DatagridControllerIdCell,
       },
       {
-        id: 'status',
+        id: 'licenseStatus',
         label: t('hycu_status'),
         cell: DatagridStatusCell,
       },
       {
         id: 'commercial_name',
         label: t('hycu_commercial_name'),
+        isSortable: false,
         cell: DatagridCommercialNameCell,
       },
       {
         id: 'subscribed_date',
         label: t('hycu_subscribed_date'),
+        isSortable: false,
         cell: DatagridCreatedDateCell,
       },
       {
         id: 'action',
         label: '',
+        isSortable: false,
         cell: DatagridActionCell,
       },
     ];
@@ -184,44 +205,51 @@ export default function Listing() {
   };
 
   return (
-    <RedirectionGuard
-      isLoading={isLoading || !flattenData}
-      condition={status === 'success' && flattenData?.length === 0}
-      route={urls.onboarding}
-      isError={isError}
-      errorComponent={
-        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
-          {tError('manager_error_page_default')}
-        </OsdsMessage>
-      }
-    >
-      <BaseLayout header={header}>
-        <React.Suspense>
-          <div className="flex flex-col gap-4">
-            <div>
-              <OsdsButton
-                color={ODS_THEME_COLOR_INTENT.primary}
-                variant={ODS_BUTTON_VARIANT.stroked}
-                size={ODS_BUTTON_SIZE.sm}
-                inline
-              >
-                {t('hycu_order')}
-              </OsdsButton>
+    <>
+      <RedirectionGuard
+        isLoading={isLoading || !flattenData}
+        condition={status === 'success' && flattenData?.length === 0}
+        route={urls.onboarding}
+        isError={isError}
+        errorComponent={
+          <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
+            {tError('manager_error_page_default')}
+          </OsdsMessage>
+        }
+      >
+        <Notifications />
+        <BaseLayout header={header}>
+          <React.Suspense>
+            <div className="flex flex-col gap-4">
+              <div>
+                <OsdsButton
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  variant={ODS_BUTTON_VARIANT.stroked}
+                  size={ODS_BUTTON_SIZE.sm}
+                  onClick={() => {
+                    navigate(urls.order);
+                  }}
+                  inline
+                >
+                  {t('hycu_order')}
+                </OsdsButton>
+              </div>
+              {columns && flattenData && (
+                <Datagrid
+                  columns={columns}
+                  items={flattenData}
+                  totalItems={totalCount || 0}
+                  hasNextPage={hasNextPage && !isLoading}
+                  onFetchNextPage={fetchNextPage}
+                  sorting={sorting}
+                  onSortChange={setSorting}
+                />
+              )}
             </div>
-            {columns && flattenData && (
-              <Datagrid
-                columns={columns}
-                items={flattenData}
-                totalItems={totalCount || 0}
-                hasNextPage={hasNextPage && !isLoading}
-                onFetchNextPage={fetchNextPage}
-                sorting={sorting}
-                onSortChange={setSorting}
-              />
-            )}
-          </div>
-        </React.Suspense>
-      </BaseLayout>
-    </RedirectionGuard>
+          </React.Suspense>
+        </BaseLayout>
+      </RedirectionGuard>
+      <Outlet />
+    </>
   );
 }

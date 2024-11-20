@@ -1,21 +1,35 @@
-import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+import {
+  ActionMenu,
+  ActionMenuItem,
+  useServiceDetails,
+} from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { IHycuDetails } from '@/type/hycu.details.interface';
+import { IHycuDetails } from '@/types/hycu.details.interface';
+import { subRoutes, urls } from '@/routes/routes.constant';
 
-const HycuActionMenu = ({
-  serviceName: _serviceName,
-}: Pick<IHycuDetails, 'serviceName'>) => {
+const HycuActionMenu = ({ serviceName }: Pick<IHycuDetails, 'serviceName'>) => {
   const { t } = useTranslation('hycu/listing');
+  const navigate = useNavigate();
+  const openTerminateModal = () =>
+    navigate(
+      urls.listing_terminate.replace(subRoutes.serviceName, serviceName),
+    );
+  const { data: serviceDetails } = useServiceDetails({
+    resourceName: serviceName,
+  });
 
   const items: ActionMenuItem[] = [
     {
       id: 1,
       label: t('hycu_service_listing_terminate'),
       color: ODS_THEME_COLOR_INTENT.error,
-      onClick: () => {},
+      onClick: openTerminateModal,
+      disabled:
+        serviceDetails?.data.resource.state === 'suspended' || undefined,
     },
   ];
 
@@ -23,6 +37,7 @@ const HycuActionMenu = ({
     <ActionMenu
       items={items}
       isCompact
+      variant={ODS_BUTTON_VARIANT.ghost}
       icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
     />
   );

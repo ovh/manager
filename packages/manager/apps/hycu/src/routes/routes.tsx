@@ -25,6 +25,15 @@ export const Routes: any = [
         id: 'listing',
         path: urls.listing,
         ...lazyRouteConfig(() => import('@/pages/listing/Listing.page')),
+        children: [
+          {
+            id: 'listing_terminate',
+            path: urls.listing_terminate,
+            ...lazyRouteConfig(() =>
+              import('@/pages/terminate/terminate-hycu'),
+            ),
+          },
+        ],
         handle: {
           tracking: {
             pageName: 'listing',
@@ -50,17 +59,42 @@ export const Routes: any = [
                 pageType: PageType.dashboard,
               },
             },
-          },
-          {
-            id: 'dashboard.tab2',
-            path: 'Tab2',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/tab2')),
-            handle: {
-              tracking: {
-                pageName: 'tab2',
-                pageType: PageType.dashboard,
+            children: [
+              {
+                id: 'activate-license',
+                path: urls.activateLicense,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/general-information/activation-license-modal/ActivationLicenseModal.page'
+                  ),
+                ),
               },
-            },
+              {
+                id: 'regenerate-license',
+                path: urls.regenerateLicense,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/general-information/regenerate-license-modal/RegenerateLicenseModal.page'
+                  ),
+                ),
+              },
+              {
+                id: 'edit-name',
+                path: urls.editName,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/general-information/edit-display-name/EditHycuDisplayName.page'
+                  ),
+                ),
+              },
+              {
+                id: 'dashboard_terminate',
+                path: urls.dashboard_terminate,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/terminate/terminate-hycu'),
+                ),
+              },
+            ],
           },
         ],
       },
@@ -72,6 +106,28 @@ export const Routes: any = [
           tracking: {
             pageName: 'onboarding',
             pageType: PageType.onboarding,
+          },
+        },
+      },
+      {
+        id: 'order',
+        path: urls.order,
+        ...lazyRouteConfig(() => import('@/pages/order/Order.page')),
+        handle: {
+          tracking: {
+            pageName: 'order',
+            pageType: PageType.dashboard,
+          },
+        },
+      },
+      {
+        id: 'edit-pack',
+        path: urls.editPack,
+        ...lazyRouteConfig(() => import('@/pages/edit-pack/EditPack.page')),
+        handle: {
+          tracking: {
+            pageName: 'edit-pack',
+            pageType: PageType.dashboard,
           },
         },
       },

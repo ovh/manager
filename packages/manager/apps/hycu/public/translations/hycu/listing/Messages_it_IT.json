@@ -10,5 +10,6 @@
   "hycu_commercial_name": "Tipo di pack",
   "hycu_subscribed_date": "Data di sottoscrizione",
   "hycu_order": "Ordinare",
-  "hycu_service_listing_terminate": "Disattivare"
+  "hycu_service_listing_terminate": "Disattivare",
+  "hycu_listing_error_loading_data": "Errore di caricamento"
 }

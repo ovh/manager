@@ -10,5 +10,6 @@
   "hycu_commercial_name": "Tipo de pack",
   "hycu_subscribed_date": "Data de subscrição",
   "hycu_order": "Encomendar",
-  "hycu_service_listing_terminate": "Rescindir"
+  "hycu_service_listing_terminate": "Rescindir",
+  "hycu_listing_error_loading_data": "Erro de carregamento"
 }

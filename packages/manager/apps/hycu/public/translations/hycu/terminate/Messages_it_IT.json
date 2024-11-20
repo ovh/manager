@@ -1,0 +1,9 @@
+{
+  "hycu_terminate_headline": "Disattivare il servizio HYCU for OVHcloud",
+  "hycu_terminate_description": "Inserisci la parola \"TERMINATE\" per confermare la disattivazione del tuo servizio HYCU for OVHcloud. Effettuando questa azione, ti impegni anche a non utilizzare più il file di licenza fornito precedentemente.",
+  "hycu_terminate_input_label": "Parola di conferma: ",
+  "hycu_terminate_cancel_label": "Annullare",
+  "hycu_terminate_confirm_label": "Disattivare",
+  "hycu_terminate_success_message": "La richiesta di disattivazione per {{serviceName}} è stata presa in carico, riceverai un’email per confermarla.",
+  "hycu_terminate_error_message": "Si è verificato un errore: {{error}}."
+}
