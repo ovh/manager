@@ -10,5 +10,6 @@
   "hycu_commercial_name": "Paket-Typ",
   "hycu_subscribed_date": "Anmeldungsdatum",
   "hycu_order": "Bestellen",
-  "hycu_service_listing_terminate": "Kündigen"
+  "hycu_service_listing_terminate": "Kündigen",
+  "hycu_listing_error_loading_data": "Fehler beim Laden"
 }

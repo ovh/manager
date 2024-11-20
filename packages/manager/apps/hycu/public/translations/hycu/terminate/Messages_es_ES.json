@@ -1,0 +1,9 @@
+{
+  "hycu_terminate_headline": "Dar de baja el servicio HYCU for OVHcloud",
+  "hycu_terminate_description": "Introduzca la palabra «TERMINATE» para confirmar la baja de su servicio HYCU for OVHcloud. Al realizar esta acción, se compromete a no utilizar el archivo de licencia anteriormente proporcionado.",
+  "hycu_terminate_input_label": "Palabra de confirmación: ",
+  "hycu_terminate_cancel_label": "Cancelar",
+  "hycu_terminate_confirm_label": "Dar de baja",
+  "hycu_terminate_success_message": "Su solicitud de baja para {{serviceName}} se ha enviado. Recibirá un mensaje de correo electrónico para validarla.",
+  "hycu_terminate_error_message": "Se ha producido un error: {{error}}."
+}
