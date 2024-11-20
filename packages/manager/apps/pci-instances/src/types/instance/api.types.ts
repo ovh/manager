@@ -62,7 +62,3 @@ export type TRetrieveInstancesQueryParams = DeepReadonly<{
   searchField?: string;
   searchValue?: string;
 }>;
-
-export type TDeleteInstanceDto = null;
-export type TStartInstanceDto = null;
-export type TStopInstanceDto = null;
