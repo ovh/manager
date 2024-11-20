@@ -1,0 +1,22 @@
+{
+  "user_account_identity_documents": "Meine Ausweisdokumente",
+  "user_account_identity_documents_title": "Überprüfung der Dokumente erforderlich",
+  "user_account_identity_documents_sub_title": "Dokumente einreichen",
+  "user_account_identity_documents_intro": "Sie erhalten innerhalb von 24 Stunden* eine Antwort von unserem lokalen Support-Team",
+  "user_account_identity_documents_upload": "Laden Sie Ihre Dokumente herunter",
+  "user_account_identity_documents_intro_others": "Wenn Sie eine Privatperson sind, sind die folgenden Identitäts- und Adressnachweise ausreichend. In diesem Fall ist es nicht erforderlich, die ehrenwörtliche Erklärung oder den Mehrwertsteuernachweis vorzulegen.",
+  "user_account_identity_documents_selection_file_format": "Format: jpg, jpeg, pdf, png. Die maximale Dateigröße für jedes Dokument beträgt 10 MB.",
+  "user_account_identity_documents_selection_file_format_invalid": "Das Format {{values}} der hochgeladenen Dokumente wird nicht akzeptiert. Verwenden Sie bitte eines der unterstützten Formate: .jpg, .jpeg, .pdf oder .png.",
+  "user_account_identity_documents_submit": "Meine Dokumente senden",
+  "user_account_identity_documents_submit_success_message_title": "Wir haben Ihre Dokumente erhalten.",
+  "user_account_identity_documents_submit_success_message_description": "Sie werden unseren Teams zur Validierung vorgelegt. Sie werden per E-Mail über die Validierung informiert oder kontaktiert, wenn wir weitere Informationen benötigen.",
+  "user_account_identity_documents_submit_error_message_description": "Ihre Dokumente wurden nicht ordnungsgemäß gesendet. Bitte wiederholen Sie den Upload und die Übermittlung Ihrer Dokumente.",
+  "user_account_identity_documents_go_back_to_dashboard": "Mein Dashboard anzeigen",
+  "user_account_identity_documents_legal_info1": "OVH S.A.S ist für die Verarbeitung Ihrer personenbezogenen Daten verantwortlich. Die über dieses Formular erhobenen Daten werden verarbeitet, um den <a href=\"{{ link1 }}\" target=\"_blank\">Richtlinien zur Cybersicherheit vom 28.04.2022</a> Rechnung zu tragen, die das CERT-IN gemäß den Bestimmungen des Unterabschnitts (6) von <a href=\"{{ link2 }}\" target=\"_blank\">Artikel 70B</a> des Information Technology (IT) Act von 2000 veröffentlicht hat.",
+  "user_account_identity_documents_legal_info2": "Weitere Informationen zur Verarbeitung Ihrer Daten und zu Ihren Rechten finden Sie in unseren <a href=\"{{ link }}\" target=\"_blank\">Richtlinien zur Nutzung personenbezogener Daten.</a>",
+  "user_account_identity_documents_legal_info3": "Die Dokumente werden nach Vertragsende noch 5 Jahre aufbewahrt.",
+  "user_account_identity_documents_verification_in_progress_info": "Die Verarbeitung Ihrer Dokumente wird derzeit von unserem Team analysiert.",
+  "user_account_identity_documents_verification_waiting_info": "Ihre Anfrage wurde analysiert, es werden jedoch weitere Dokumente benötigt. Bitte sehen Sie sich Ihr Support-Ticket an.",
+  "user_account_identity_documents_default_intro": "Wenn Sie eine Privatperson sind, reichen Identitäts- und Adressnachweise aus. Sie brauchen keinen Mehrwertsteuernachweis und keine eidesstattliche Erklärung vorzulegen.",
+  "user_account_identity_documents_legal_info4": "Reaktionszeit während der Arbeitszeiten: Montag bis Freitag von 9:00 Uhr bis 18:00 Uhr IST (Indische Normalzeit), Feiertage ausgenommen."
+}

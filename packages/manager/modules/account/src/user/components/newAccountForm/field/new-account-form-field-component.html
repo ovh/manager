@@ -1,0 +1,208 @@
+<div
+    data-ng-class="{ 'oui-field': $ctrl.rule.hasBottomMargin,
+                    'col-sm-12': $ctrl.rule.fieldName !== $ctrl.FIELD_NAME_LIST.city && $ctrl.rule.fieldName !== $ctrl.FIELD_NAME_LIST.zip,
+                    'col-sm-6': $ctrl.rule.fieldName === $ctrl.FIELD_NAME_LIST.city || $ctrl.rule.fieldName === $ctrl.FIELD_NAME_LIST.zip,
+                    'oui-field mb-0': !$ctrl.rule.hasBottomMargin,
+                    'oui-field_error': $ctrl.isInvalid()
+    }"
+>
+    <div class="oui-field__header" data-ng-if="$ctrl.shouldDisplayLabel()">
+        <label
+            class="oui-field__label"
+            data-ng-if="$ctrl.rule.fieldName !== 'area'"
+            data-ng-bind="('signup_field_' + $ctrl.rule.displayFieldName | translate) + ' ' + ($ctrl.rule.mandatory ? '' : 'signup_not_mandatory_field' | translate)"
+        ></label>
+        <label
+            class="oui-field__label"
+            data-ng-if="$ctrl.rule.fieldName === $ctrl.FIELD_NAME_LIST.area"
+            data-ng-bind="$ctrl.getTranslatedArea()"
+        ></label>
+    </div>
+    <div class="oui-field__control">
+        <!-- TEXT INPUT -->
+        <input
+            data-ng-if="$ctrl.getFieldType() === 'text'"
+            type="text"
+            class="oui-input"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-model="$ctrl.value"
+            data-ng-model-options="{ debounce: $ctrl.debounce }"
+            data-ng-change="$ctrl.onChange()"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+            data-ng-pattern="$ctrl.inputValidator"
+            data-ng-disabled="$ctrl.disableInputField"
+            data-ng-required="$ctrl.rule.mandatory"
+        />
+
+        <!-- SELECT INPUT -->
+        <oui-select
+            data-ng-if="$ctrl.getFieldType() === 'select'"
+            items="$ctrl.getTranslatedEnums()"
+            match="translated"
+            model="$ctrl.value"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            on-change="$ctrl.onChange()"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+            data-ng-pattern="$ctrl.inputValidator"
+            data-ng-required="$ctrl.rule.mandatory"
+            disabled="$ctrl.disableDropDownSelection"
+            searchable
+        >
+        </oui-select>
+
+        <!-- DATE PICKER INPUT -->
+        <oui-calendar
+            data-ng-if="$ctrl.getFieldType() === 'date'"
+            data-alt-format="{{ $ctrl.dateFormat() }}"
+            placeholder="{{ 'signup_field_date_placeholder' | translate }}"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            model="$ctrl.value"
+            model-options="{ debounce: $ctrl.debounce }"
+            on-change="$ctrl.onChange()"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+            data-ng-pattern="$ctrl.inputValidator"
+            data-ng-required="$ctrl.rule.mandatory"
+            week-numbers="false"
+            data-options="{
+                    showWeeks: false,
+                    defaultDate: $ctrl.value,
+                    monthSelectorType: 'dropdown'
+                }"
+        >
+        </oui-calendar>
+
+        <!-- PHONE INPUT -->
+
+        <div
+            class="oui-input-group phone-number-field d-flex align-items-stretch"
+            data-ng-if="$ctrl.getFieldType() === $ctrl.FIELD_NAME_LIST.phone"
+        >
+            <ui-select
+                data-ng-model="$ctrl.phoneCountry.country"
+                data-on-select="$ctrl.onPhonePrefixChange()"
+                theme="ui-select-oui-kit"
+            >
+                <ui-select-match>
+                    <country-flag
+                        data-country="$select.selected.country"
+                        data-label="+{{ $select.selected.prefix }}"
+                    ></country-flag>
+                </ui-select-match>
+                <ui-select-choices
+                    data-repeat="phoneCountry.country as phoneCountry in ($ctrl.phoneCountryList | filter: $select.search) track by $index"
+                >
+                    <country-flag
+                        data-country="phoneCountry.country"
+                        data-label="{{ phoneCountry.label + ' (+' + phoneCountry.prefix + ')' }}"
+                    >
+                    </country-flag>
+                </ui-select-choices>
+            </ui-select>
+            <input
+                type="text"
+                class="oui-input oui-input_phone m-0"
+                data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+                data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+                data-ng-model="$ctrl.value"
+                data-ng-model-options="{ debounce: $ctrl.debounce }"
+                data-ng-required="$ctrl.rule.mandatory"
+                data-ng-attr-placeholder="{{ $ctrl.phonePlaceHolder }}"
+                data-ng-change="$ctrl.onChange()"
+                data-ng-focus="$ctrl.focused = true"
+                data-ng-blur="$ctrl.focused = false"
+                data-ng-pattern="$ctrl.inputValidator"
+            />
+        </div>
+
+        <input
+            data-ng-if="$ctrl.getFieldType() === $ctrl.FIELD_NAME_LIST.email"
+            type="email"
+            class="oui-input"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-model="$ctrl.value"
+            data-ng-model-options="{ debounce: $ctrl.debounce }"
+            data-ng-change="$ctrl.onChange()"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+            data-ng-pattern="$ctrl.inputValidator"
+            data-ng-required="$ctrl.rule.mandatory"
+        />
+
+        <oui-password
+            data-ng-if="$ctrl.getFieldType() === $ctrl.FIELD_NAME_LIST.password"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-model="$ctrl.value"
+            data-ng-model-options="{ debounce: $ctrl.debounce }"
+            data-ng-change="$ctrl.onChange()"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+            data-ng-pattern="$ctrl.inputValidator"
+            data-ng-required="$ctrl.rule.mandatory"
+        >
+        </oui-password>
+
+        <!-- CHECKBOX INPUT -->
+        <oui-checkbox
+            data-ng-if="$ctrl.getFieldType() === 'checkbox'"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-model="$ctrl.value"
+            data-on-change="$ctrl.onChange()"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+            data-ng-pattern="$ctrl.inputValidator"
+            data-ng-required="$ctrl.rule.mandatory"
+            data-disabled="$ctrl.rule.disabled()"
+        >
+            <span
+                data-translate="{{ 'signup_field_' + $ctrl.rule.displayFieldName | translate }} {{ !$ctrl.rule.mandatory ? 'signup_not_mandatory_field' : '' | translate }}"
+            ></span>
+        </oui-checkbox>
+
+        <oui-radio-group
+            data-ng-if="$ctrl.getFieldType() === 'radio'"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-model="$ctrl.value"
+            data-ng-required="$ctrl.rule.mandatory"
+            data-on-change="$ctrl.onChange()"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+        >
+            <oui-radio
+                data-ng-repeat="value in $ctrl.getTranslatedEnums()"
+                data-value="value.key"
+                inline
+            >
+                <span data-ng-bind="value.translated"></span>
+            </oui-radio>
+        </oui-radio-group>
+
+        <p
+            class="help-block text-danger"
+            role="alert"
+            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error.required"
+            data-translate="signup_field_required_error"
+        ></p>
+        <p
+            class="help-block text-danger"
+            role="alert"
+            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error.pattern"
+            data-translate="{{ $ctrl.rule.fieldName !== 'password' ? 'signup_field_pattern_error' : 'signup_password_invalid' }}"
+        ></p>
+        <p
+            class="help-block text-danger"
+            role="alert"
+            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error.emailAvailable && $ctrl.value"
+            data-translate="signup_email_in_use"
+        ></p>
+    </div>
+</div>
