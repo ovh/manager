@@ -39,8 +39,8 @@ export const FEATURE_NAMES = {
   managedBareMetalDatacenter: 'managed-bare-metal',
 };
 
-export const POLLING_INTERVAL = 500;
-export const ELIGIBLE_POLLING_INTERVAL = 1000;
+export const POLLING_INTERVAL = 3000;
+export const ELIGIBLE_POLLING_INTERVAL = 3000;
 
 export const STATUS = {
   ok: 'ok',
