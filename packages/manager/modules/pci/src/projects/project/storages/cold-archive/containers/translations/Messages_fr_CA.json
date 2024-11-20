@@ -5,5 +5,7 @@
   "pci_projects_project_storages_cold_archives_guides_public-cloud-create-project_description": "Créer un projet public cloud",
   "pci_projects_project_storages_cold_archives_add_container_success_secret_label": "Votre clé secrète S3 :",
   "pci_projects_project_storages_cold_archive_containers_status_restore_date": "Jusqu'au {{ date }}",
-  "pci_projects_project_storages_cold_archive_containers_status_restore_date_tooltip": "Date à laquelle les fichiers restaurés seront supprimés de ce conteneur."
+  "pci_projects_project_storages_cold_archive_containers_status_restore_date_tooltip": "Date à laquelle les fichiers restaurés seront supprimés de ce conteneur.",
+  "pci_projects_project_storages_cold_archive_containers_locked_until_label": "Verrouillé jusqu'au",
+  "pci_projects_project_storages_cold_archive_container_action_edit_retention": "Modifier la durée de rétention"
 }
