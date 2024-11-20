@@ -1,10 +1,7 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import {
-  TDeleteInstanceDto,
   TInstanceDto,
   TRetrieveInstancesQueryParams,
-  TStartInstanceDto,
-  TStopInstanceDto,
 } from '@/types/instance/api.types';
 
 export const getInstances = (
@@ -34,17 +31,17 @@ export const getInstances = (
 export const deleteInstance = (
   projectId: string,
   instanceId: string,
-): Promise<TDeleteInstanceDto> =>
+): Promise<null> =>
   v6.delete(`/cloud/project/${projectId}/instance/${instanceId}`);
 
 export const stopInstance = (
   projectId: string,
   instanceId: string,
-): Promise<TStopInstanceDto> =>
+): Promise<null> =>
   v6.post(`/cloud/project/${projectId}/instance/${instanceId}/stop`);
 
 export const startInstance = (
   projectId: string,
   instanceId: string,
-): Promise<TStartInstanceDto> =>
+): Promise<null> =>
   v6.post(`/cloud/project/${projectId}/instance/${instanceId}/start`);

@@ -7,23 +7,16 @@ import {
 } from '@/data/api/instance';
 import { DeepReadonly } from '@/types/utils.type';
 import { instancesQueryKey } from '@/utils';
-import {
-  TDeleteInstanceDto,
-  TStopInstanceDto,
-  TStartInstanceDto,
-} from '@/types/instance/api.types';
 
 export type TMutationFnType = 'delete' | 'start' | 'stop';
-export type TMutationFnReturnType =
-  | TDeleteInstanceDto
-  | TStopInstanceDto
-  | TStartInstanceDto;
 export type TMutationFnVariables = string | null;
 
 export type TUseInstanceActionCallbacks = DeepReadonly<{
-  onSuccess?: (data?: TMutationFnReturnType) => void;
+  onSuccess?: (data?: null) => void;
   onError?: (error: unknown) => void;
 }>;
+
+const unknownError = new Error('Unknwon Error');
 
 export const useInstanceAction = (
   type: TMutationFnType | null,
@@ -36,7 +29,7 @@ export const useInstanceAction = (
   ]);
   const mutationFn = useCallback(
     (instanceId: string | null) => {
-      if (!instanceId) return Promise.reject();
+      if (!instanceId) return Promise.reject(unknownError);
       switch (type) {
         case 'delete':
           return deleteInstance(projectId, instanceId);
@@ -45,18 +38,13 @@ export const useInstanceAction = (
         case 'stop':
           return stopInstance(projectId, instanceId);
         default:
-          return Promise.reject();
+          return Promise.reject(unknownError);
       }
     },
     [projectId, type],
   );
 
-  const mutation = useMutation<
-    TMutationFnReturnType,
-    unknown,
-    TMutationFnVariables,
-    unknown
-  >({
+  const mutation = useMutation<null, unknown, TMutationFnVariables, unknown>({
     mutationKey,
     mutationFn,
     onError,
