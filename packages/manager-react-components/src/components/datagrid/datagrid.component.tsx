@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   ColumnDef,
   ColumnSort as TanstackColumnSort,
@@ -8,15 +9,22 @@ import {
   useReactTable,
   getSortedRowModel,
 } from '@tanstack/react-table';
-import { ODS_ICON_NAME, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import {
+  ODS_ICON_NAME,
+  ODS_BUTTON_VARIANT,
+  ODS_BUTTON_SIZE,
+} from '@ovhcloud/ods-components';
+import {
+  OdsPopover,
   OdsButton,
   OdsIcon,
   OdsPagination,
   OdsSkeleton,
   OdsTable,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+import { FilterComparator } from '@ovh-ux/manager-core-api';
+import { FilterAdd, FilterList } from '../filters';
+import { FilterWithLabel } from '../filters/interface';
 import { DataGridTextCell } from './text-cell.component';
 import { defaultNumberOfLoadingRows } from './datagrid.contants';
 import './translations';
@@ -37,6 +45,21 @@ export interface DatagridColumn<T> {
   label: string;
   /** is the column sortable ? (defaults is true) */
   isSortable?: boolean;
+  /** set column filter */
+  comparator?: FilterComparator;
+}
+
+type ColumnFilterProps = {
+  key: string;
+  value: string | string[];
+  comparator: FilterComparator;
+  label: string;
+};
+
+export interface FilterProps {
+  filters: FilterWithLabel[];
+  add: (filters: ColumnFilterProps) => void;
+  remove: (filter: FilterWithLabel) => void;
 }
 
 export interface DatagridProps<T> {
@@ -74,6 +97,7 @@ export interface DatagridProps<T> {
   isLoading?: boolean;
   /** number of loading rows to show when table is in loading state, defaults to pagination.pageSize or 5 */
   numberOfLoadingRows?: number;
+  filters?: FilterProps;
 }
 
 export const Datagrid = <T,>({
@@ -93,6 +117,7 @@ export const Datagrid = <T,>({
   noResultLabel,
   isLoading = false,
   numberOfLoadingRows,
+  filters,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
   const pageCount = pagination
@@ -139,8 +164,53 @@ export const Datagrid = <T,>({
     }),
   });
 
+  const [columnsFilters, setColumnsFilters] = useState([]);
+  useEffect(() => {
+    const clmFilters = columns
+      .filter((item) => 'comparator' in item)
+      .map((column) => ({
+        id: column.id,
+        label: column.label,
+        comparators: column.comparator,
+      }));
+    setColumnsFilters(clmFilters);
+  }, [columns]);
+
   return (
     <div>
+      {columnsFilters.length > 0 && (
+        <div className="flex flex-row-reverse pb-[5px]">
+          <div id="datagrid-filter-popover-trigger">
+            <OdsButton
+              slot="datagrid-filter-popover-trigger"
+              size={ODS_BUTTON_SIZE.sm}
+              variant={ODS_BUTTON_VARIANT.outline}
+              icon={ODS_ICON_NAME.filter}
+              label="Filter"
+            />
+          </div>
+          <OdsPopover triggerId="datagrid-filter-popover-trigger" with-arrow>
+            <FilterAdd
+              columns={columnsFilters}
+              onAddFilter={(addedFilter, column) => {
+                filters.add({
+                  ...addedFilter,
+                  label: column.label,
+                });
+              }}
+            />
+          </OdsPopover>
+        </div>
+      )}
+      {filters?.filters && (
+        <div id="datagrid-filter-list" className="my-5">
+          <FilterList
+            filters={filters.filters}
+            onRemoveFilter={filters.remove}
+          />
+        </div>
+      )}
+
       <div className={`contents px-[1px] ${className || ''}`}>
         <OdsTable className="overflow-x-visible">
           <table className="w-full border-collapse">

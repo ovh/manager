@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Filter, FilterComparator } from '@ovh-ux/manager-core-api';
 import { ODS_BUTTON_SIZE, ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 
@@ -48,6 +48,10 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
     setValue('');
   };
 
+  useEffect(() => {
+    setSelectedComparator(selectedColumn?.comparators[0]);
+  }, [selectedColumn]);
+
   return (
     <>
       <div>
@@ -78,19 +82,31 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
               {t('common_criteria_adder_operator_label')}
             </span>
           </div>
-          <OdsSelect
-            name="add-operator"
-            value={selectedComparator}
-            onOdsChange={(event) => {
-              setSelectedComparator(event.detail.value as FilterComparator);
-            }}
-          >
-            {selectedColumn?.comparators?.map((comp) => (
-              <option key={comp} value={comp}>
-                {t(`${'common_criteria_adder_operator_'}${comp}`)}
-              </option>
-            ))}
-          </OdsSelect>
+          {selectedColumn &&
+            columns.map((column) => {
+              return (
+                <div
+                  key={`filter-condition-select-${column.id}`}
+                  className={column.id === selectedColumn.id ? '' : 'hidden'}
+                >
+                  <OdsSelect
+                    name={`add-operator-${column?.id}`}
+                    value={selectedComparator}
+                    onOdsChange={(event) => {
+                      setSelectedComparator(
+                        event.detail.value as FilterComparator,
+                      );
+                    }}
+                  >
+                    {column?.comparators?.map((comp) => (
+                      <option key={`${column.id}-${comp}`} value={comp}>
+                        {t(`${'common_criteria_adder_operator_'}${comp}`)}
+                      </option>
+                    ))}
+                  </OdsSelect>
+                </div>
+              );
+            })}
         </OdsFormField>
       </div>
       <div>
