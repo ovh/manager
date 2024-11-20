@@ -1,42 +1,30 @@
 import React, { useState } from 'react';
 import { ColumnSort } from '@tanstack/react-table';
 import { withRouter } from 'storybook-addon-react-router-v6';
+import { applyFilters } from '@ovh-ux/manager-core-api';
 import { useSearchParams } from 'react-router-dom';
 import { Datagrid } from './datagrid.component';
-import { DataGridTextCell } from './text-cell.component';
+import { useColumnFilters } from '../filters';
+import { columsTmp, columsFilters } from './datagrid.stories';
 
 interface Item {
   label: string;
   price: number;
 }
 
-const columns = [
-  {
-    id: 'label',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.label}</DataGridTextCell>;
-    },
-    label: 'Label',
-  },
-  {
-    id: 'price',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
-    },
-    label: 'Price',
-  },
-];
-
 const DatagridStory = ({
   items,
   isSortable,
+  columns = columsTmp,
 }: {
   items: Item[];
   isSortable: boolean;
+  columns?: any;
 }) => {
   const [sorting, setSorting] = useState<ColumnSort>();
   const [data, setData] = useState(items);
   const [searchParams] = useSearchParams();
+  const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const fetchNextPage = () => {
     const itemsIndex = data.length;
@@ -57,10 +45,11 @@ const DatagridStory = ({
       )}
       <Datagrid
         columns={columns}
-        items={data}
+        items={applyFilters(data, filters)}
         totalItems={data.length}
         hasNextPage={data.length > 0 && data.length < 30}
         onFetchNextPage={fetchNextPage}
+        filters={{ filters, add: addFilter, remove: removeFilter }}
         {...(isSortable
           ? {
               sorting,
@@ -96,6 +85,17 @@ export const Sortable = {
       price: Math.floor(1 + Math.random() * 100),
     })),
     isSortable: true,
+  },
+};
+
+export const Filters = {
+  args: {
+    items: [...Array(10).keys()].map((_, i) => ({
+      label: `Item #${i}`,
+      price: Math.floor(1 + Math.random() * 100),
+    })),
+    isSortable: true,
+    columns: columsFilters,
   },
 };
 
