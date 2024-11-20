@@ -47,12 +47,15 @@ const CreateAddIdentities = ({
   const { okmsId } = useParams();
   const [isRootAccount, setIsRootAccount] = useState<boolean>(false);
   const { userList, groupList, serviceAccountList } = useIdentityData();
-  const { nichandle } = useContext(ShellContext).environment.getUser();
+  const { auth } = useContext(ShellContext).environment.getUser();
+  const region = useContext(ShellContext).environment.getRegion();
   const { trackClick } = useOvhTracking();
 
   useEffect(() => {
     if (isRootAccount) {
-      setIdentityURNs([`urn:v1:eu:identity:account:${nichandle}`]);
+      setIdentityURNs([
+        `urn:v1:${region.toLowerCase()}:identity:account:${auth.account}`,
+      ]);
       return;
     }
     const userURNs = userList.map((user) => user.urn);
