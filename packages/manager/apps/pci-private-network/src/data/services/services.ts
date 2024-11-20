@@ -3,6 +3,7 @@ import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import { createPrivateNetwork as apiCreatePrivateNetwork } from '@/data/api/networks';
 import { assignGateway, enableSnatOnGateway } from '@/data/api/gateway';
 import { fetchCheckPrivateNetworkCreationStatus } from '../hooks/networks/useNetworks';
+import queryClient from '@/queryClient';
 
 export const createPrivateNetwork = async (
   values: NewPrivateNetworkForm,
@@ -43,4 +44,14 @@ export const createPrivateNetwork = async (
       existingGatewayId,
     );
   }
+};
+
+export const refreshPrivateNetworkList = (projectId: string) => {
+  queryClient.invalidateQueries({
+    queryKey: ['project', projectId, 'gateway'],
+  });
+  queryClient.invalidateQueries({ queryKey: ['subnet', projectId] });
+  queryClient.invalidateQueries({
+    queryKey: ['aggregated-network', projectId],
+  });
 };

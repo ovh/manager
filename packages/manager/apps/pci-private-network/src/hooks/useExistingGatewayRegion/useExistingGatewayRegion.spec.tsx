@@ -2,9 +2,9 @@ import { describe, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import useExistingGatewayRegion from './useExistingGatewayRegion';
 
-const { useGatewayByRegion, gateways, gatewaysExternalInfo } = vi.hoisted(
+const { useGatewaysByRegion, gateways, gatewaysExternalInfo } = vi.hoisted(
   () => ({
-    useGatewayByRegion: vi.fn(),
+    useGatewaysByRegion: vi.fn(),
     gateways: [
       {
         id: 'gatewayid1',
@@ -41,19 +41,19 @@ vi.mock('@ovh-ux/manager-pci-common', () => ({
 }));
 
 vi.mock('@/data/hooks/gateway/useGateway', () => ({
-  useGatewayByRegion,
+  useGatewaysByRegion,
 }));
 
 describe('useExistingGatewayRegion', () => {
   it('should return the first gateways found when there is no gateway with externalInformation', () => {
-    useGatewayByRegion.mockReturnValue({ data: gateways, isLoading: false });
+    useGatewaysByRegion.mockReturnValue({ data: gateways, isLoading: false });
     const { result } = renderHook(() => useExistingGatewayRegion('SGP1'));
 
     expect(result.current).toEqual({ gateway: gateways[0], isLoading: false });
   });
 
   it('should return the first gateways found whith externalInformation', () => {
-    useGatewayByRegion.mockReturnValue({
+    useGatewaysByRegion.mockReturnValue({
       data: gatewaysExternalInfo,
       isLoading: false,
     });

@@ -13,14 +13,29 @@ export const usePrivateNetworks = (projectId: string) =>
     queryFn: () => getPrivateNetworks(projectId),
   });
 
+const getNetworkCompletedStatus = async (
+  projectId: string,
+  operationId: string,
+) => {
+  const data = await checkPrivateNetworkCreationStatus({
+    projectId,
+    operationId,
+  });
+
+  if (data.status !== 'completed') {
+    throw new Error(data.status);
+  }
+
+  return data;
+};
+
 export const fetchCheckPrivateNetworkCreationStatus = (
   projectId: string,
   operationId: string,
 ) =>
   queryClient.fetchQuery({
     queryKey: [],
-    queryFn: () =>
-      checkPrivateNetworkCreationStatus({ projectId, operationId }),
+    queryFn: () => getNetworkCompletedStatus(projectId, operationId),
     retry: (_failureCount, error) =>
       ![CreationStatus.completed, CreationStatus.inError].includes(
         error.message as CreationStatus,

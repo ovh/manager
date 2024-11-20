@@ -39,10 +39,6 @@ export const checkPrivateNetworkCreationStatus = async ({
     `/cloud/project/${projectId}/operation/${operationId}`,
   );
 
-  if (data.status !== 'completed') {
-    throw new Error(data.status);
-  }
-
   return data;
 };
 
