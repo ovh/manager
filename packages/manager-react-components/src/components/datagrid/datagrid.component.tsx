@@ -236,12 +236,7 @@ export const Datagrid = <T,>({
                     'border-solid border-[1px] h-[3.25rem] border-[var(--ods-color-blue-200)]'
                   }
                 >
-                  <td
-                    className={
-                      contentAlignLeft ? 'text-left pl-4' : 'text-center'
-                    }
-                    colSpan={columns.length}
-                  >
+                  <td className="text-center" colSpan={columns.length}>
                     <DataGridTextCell>
                       {noResultLabel ?? t('common_pagination_no_results')}
                     </DataGridTextCell>
