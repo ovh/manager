@@ -6,7 +6,6 @@ import {
   REGION_LABEL,
   SIZE_FACTOR,
   SIZE_MULTIPLE,
-  IN_COMPATIBLE_REGION,
   DATACENTER_TO_COUNTRY,
   DATACENTER_TO_REGION,
 } from './constants';
@@ -47,7 +46,6 @@ export default class OvhManagerNetAppOrderCtrl {
     this.$window = $window;
     this.coreConfig = coreConfig;
     this.RedirectionService = RedirectionService;
-    this.IN_COMPATIBLE_REGION = IN_COMPATIBLE_REGION;
   }
 
   $onInit() {

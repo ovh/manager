@@ -48,5 +48,4 @@ export default {
   SIZE_MULTIPLE,
   SIZE_FACTOR,
   REGION_LABEL,
-  IN_COMPATIBLE_REGION,
 };
