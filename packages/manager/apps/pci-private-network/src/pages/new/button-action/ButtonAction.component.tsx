@@ -18,8 +18,10 @@ import { useFormContext } from 'react-hook-form';
 import { ErrorResponse } from '@/types/network.type';
 import { ROUTE_PATHS } from '@/routes';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
-import { createPrivateNetwork } from '@/data/services/services';
-import { resetNetworks } from '@/queryClient';
+import {
+  createPrivateNetwork,
+  refreshPrivateNetworkList,
+} from '@/data/services/services';
 
 const ButtonAction: React.FC = () => {
   const { t } = useTranslation(['new', 'common']);
@@ -51,7 +53,6 @@ const ButtonAction: React.FC = () => {
       ? ROUTE_PATHS.localZone
       : ROUTE_PATHS.globalRegions;
 
-    await resetNetworks(projectId);
     navigate(`../${redirectPath}`);
   };
 
@@ -71,6 +72,7 @@ const ButtonAction: React.FC = () => {
 
     try {
       await createPrivateNetwork(values, projectId);
+      refreshPrivateNetworkList(projectId);
       onSuccess(values.name, values.isLocalZone);
     } catch (e) {
       onError(e);
@@ -95,7 +97,7 @@ const ButtonAction: React.FC = () => {
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
           inline
-          onClick={async () => navigate('..')}
+          onClick={() => navigate('..')}
         >
           {t('common:common_cancel_button_label')}
         </OsdsButton>
