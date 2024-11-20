@@ -64,12 +64,12 @@ describe('ActionMenu', () => {
     const actionMenuIcon = screen.getByTestId(
       'navigation-action-trigger-action',
     );
-    expect(actionMenuIcon.getAttribute('icon')).toBe('ellipsis-horizontal');
+    expect(actionMenuIcon.getAttribute('icon')).toBe('ellipsis-vertical');
   });
 
   it('renders compact menu with custom icon menu correctly', async () => {
     await setupSpecTest({
-      icon: ODS_ICON_NAME.ellipsisVertical,
+      icon: ODS_ICON_NAME.ellipsisHorizontal,
     });
     const actionMenuIcon = screen.getByTestId(
       'navigation-action-trigger-action',
