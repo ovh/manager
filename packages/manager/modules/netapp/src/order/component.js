@@ -6,7 +6,6 @@ export default {
     catalog: '<',
     goBackLink: '<',
     goBack: '<',
-    displayIncompatibleBanner: '<',
   },
   controller,
   template,
