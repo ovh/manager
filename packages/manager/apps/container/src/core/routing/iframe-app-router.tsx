@@ -1,4 +1,4 @@
-import React, { useMemo, RefObject } from 'react';
+import React, { useMemo, RefObject, useEffect } from 'react';
 import { Navigate, Routes, Route } from 'react-router-dom';
 import { Application } from '@ovh-ux/manager-config';
 import { ExternalApplicationRoute } from './route/external-application-route';
@@ -15,10 +15,12 @@ function makeRoute({
   id,
   appConfig,
   iframeRef,
+  configuration
 }: {
   id: string;
   appConfig: Application;
   iframeRef: RefObject<HTMLIFrameElement>;
+  configuration: Record<string, Application>;
 }) {
   const { hash, path } = appConfig.container;
   const normalizedHash = (hash || '').replace(/^\//, '');
@@ -29,7 +31,7 @@ function makeRoute({
       path={target}
       element={
         appConfig.container.enabled ? (
-          <IFrameApplicationRoute iframeRef={iframeRef} appConfig={appConfig} />
+          <IFrameApplicationRoute iframeRef={iframeRef} appConfig={appConfig} configuration={configuration}/>
         ) : (
           <ExternalApplicationRoute appConfig={appConfig} />
         )
@@ -79,11 +81,12 @@ export function IFrameAppRouter({
   const routes = useMemo(
     () =>
       sortedConfiguration.map(([id, appConfig]) =>
-        makeRoute({ appConfig, iframeRef, id }),
+        makeRoute({ appConfig, iframeRef, id, configuration }),
       ),
     [sortedConfiguration],
   );
-  const redirections = Redirections();
+  const redirections = useMemo(() => Redirections(configuration), [configuration]);
+
   return (
     <Routes>
       {redirections}

@@ -8,11 +8,13 @@ import { appendSlash, removeHashbang } from './utils';
 export interface IFrameApplicationRouteProps {
   iframeRef: RefObject<HTMLIFrameElement>;
   appConfig: Application;
+  configuration: Record<string, Application>;
 }
 
 export function IFrameApplicationRoute({
   iframeRef,
   appConfig,
+  configuration,
 }: IFrameApplicationRouteProps): JSX.Element {
   const location = useLocation();
   const navigate = useNavigate();
@@ -63,6 +65,19 @@ export function IFrameApplicationRoute({
 
   // when iframe's location changed, update the container's url
   const onIFrameLocationChanged = () => {
+    // TODO: remove those redirections when dedicated account will be dropped
+    const isNewAccountAvailable = !!configuration?.['new-account'];
+    if (isNewAccountAvailable) {
+      const routes = ['/dedicated/useraccount', '/dedicated/contacts', '/dedicated/identity-documents', '/dedicated/documents'];
+      routes.every((route) => {
+        if (location.pathname.includes(route)) {
+          location.pathname = location.pathname.replace('dedicated', 'account');
+          return false;
+        }
+        return true;
+      });
+    }
+
     if (iframeRef.current && iframeLocation !== null) {
       const newHash = `/${appConfig.container.path}${removeHashbang(
         iframeLocation.hash,
