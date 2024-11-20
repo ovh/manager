@@ -19,6 +19,7 @@
   "orders_order_status_documentsRequested": "En attente de documents",
   "orders_order_status_notPaid": "Paiement non reçu",
   "orders_order_status_unknown": "Inconnu",
+  "orders_order_status_toFinalize": "Commande à finaliser",
   "orders_order_bc_expired": "Commande expirée",
   "orders_order_status_filter_progress": "En cours",
   "orders_order_status_filter_all": "Toutes",
@@ -28,5 +29,6 @@
   "orders_search_input_title": "Rechercher mes commandes par identifiant.",
   "orders_table_actions_tooltip": "Plus de détails sur cette commande",
   "orders_order_action_retract": "Annuler la commande",
+  "orders_order_action_finalize": "Finaliser ma commande",
   "orders_tracking": "Suivi de commande"
 }

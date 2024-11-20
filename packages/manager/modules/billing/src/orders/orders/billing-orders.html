@@ -54,38 +54,16 @@
                 target="_top"
             >
                 <span
-                    class="oui-badge"
-                    data-ng-class="{
-                        'oui-badge_error': $value === 'cancelled'
-                                         || $value === 'notPaid'
-                                         || $value === 'notPaid',
-                        'oui-badge_info': $value === 'cancelling'
-                                        || $value === 'checking'
-                                        || $value === 'delivering',
-                        'oui-badge_warning': $value === 'documentsRequested'
-                                           || $value === 'unknown',
-                        'oui-badge_success': $value === 'delivered',
-                      }"
-                    data-ng-bind="('orders_order_status_' + $value) | translate"
+                    class="oui-badge oui-badge_{{ $value.badgeClass }}"
+                    data-ng-bind="$value.translationKey | translate"
                 >
                 </span>
             </a>
 
             <span
-                class="oui-badge"
+                class="oui-badge oui-badge_{{ $value.badgeClass }}"
                 data-ng-if="!$ctrl.allowOrderTracking"
-                data-ng-class="{
-                    'oui-badge_error': $value === 'cancelled'
-                                     || $value === 'notPaid'
-                                     || $value === 'notPaid',
-                    'oui-badge_info': $value === 'cancelling'
-                                    || $value === 'checking'
-                                    || $value === 'delivering',
-                    'oui-badge_warning': $value === 'documentsRequested'
-                                       || $value === 'unknown',
-                    'oui-badge_success': $value === 'delivered',
-                  }"
-                data-ng-bind="('orders_order_status_' + $value) | translate"
+                data-ng-bind="$value.translationKey | translate"
             >
             </span>
         </oui-datagrid-column>
@@ -124,6 +102,13 @@
                 data-on-click="$ctrl.goToOrderRetractation($row)"
             >
                 <span data-translate="orders_order_action_retract"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$row.canFinalize"
+                data-ng-href="{{ $row.url }}"
+                data-external
+            >
+                <span data-translate="orders_order_action_finalize"></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>
