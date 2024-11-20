@@ -1,7 +1,10 @@
 export const USER_DASHBOARD_SHORTCUTS = [
   {
     key: 'ALL_BILLS',
-    state: 'account.billing.main.history',
+    url: {
+      baseURL: 'dedicated',
+      path: '#/billing/history',
+    },
     isAvailable: (user) => !user.enterprise,
   },
   {
@@ -11,7 +14,10 @@ export const USER_DASHBOARD_SHORTCUTS = [
   },
   {
     key: 'PAYMENT_FOLLOW_UP',
-    state: 'account.billing.main.payments',
+    url: {
+      baseURL: 'dedicated',
+      path: '#/billing/payments',
+    },
     isAvailable: (user) => !user.enterprise,
   },
   {
@@ -21,7 +27,10 @@ export const USER_DASHBOARD_SHORTCUTS = [
   },
   {
     key: 'ADD_PAYMENT_METHOD',
-    state: 'account.billing.payment.method.add',
+    url: {
+      baseURL: 'dedicated',
+      path: '#/billing/payment/method/add',
+    },
     isAvailable: (user) => !user.enterprise,
   },
   {
@@ -31,7 +40,10 @@ export const USER_DASHBOARD_SHORTCUTS = [
   },
   {
     key: 'MANAGE_SERVICES',
-    state: 'account.billing.autorenew',
+    url: {
+      baseURL: 'dedicated',
+      path: '#/billing/autorenew',
+    },
     regions: ['EU', 'CA'],
   },
   {
