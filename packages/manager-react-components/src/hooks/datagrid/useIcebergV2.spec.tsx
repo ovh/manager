@@ -5,7 +5,8 @@ import {
   QueryClientProvider,
   useInfiniteQuery,
 } from '@tanstack/react-query';
-import { renderHook } from '@testing-library/react';
+import { FilterComparator } from '@ovh-ux/manager-core-api';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import { useResourcesIcebergV2 } from './useIcebergV2';
 
 vitest.mock('@tanstack/react-query', async () => {
@@ -47,7 +48,7 @@ const mockData = {
         },
         {
           ip: '15.235.xxx.xxx',
-          newUpgradeSystem: true,
+          newUpgradeSystem: false,
         },
         {
           ip: '148.113.xxx.xxx',
@@ -74,7 +75,7 @@ const mockData = {
           newUpgradeSystem: true,
         },
         {
-          ip: '15.235.xxx.xxx',
+          ip: '15.234.xxx.xxx',
           newUpgradeSystem: true,
         },
         {
@@ -111,5 +112,27 @@ describe('useIcebergV2', () => {
     const result = renderUseIcebergV2Hook();
     const { hasNextPage } = result.current;
     expect(hasNextPage).toBeTruthy();
+  });
+
+  it('should match 15.235.xxx.xxx with a filter ip', async () => {
+    const result = renderUseIcebergV2Hook();
+    act(() => {
+      result.current.filters.add({
+        comparator: 'includes' as FilterComparator,
+        key: 'ip',
+        value: '15.235',
+        label: 'ip',
+      });
+    });
+    waitFor(() => {
+      const { flattenData, filters } = result.current;
+      expect(flattenData.length).toBe(1);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      expect(flattenData[0].ip).toBe('15.235.xxx.xxx');
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      expect(filters.value).toBe(15.235);
+    });
   });
 });
