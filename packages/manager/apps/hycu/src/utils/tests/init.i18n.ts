@@ -1,5 +1,4 @@
 import i18next, { i18n, InitOptions } from 'i18next';
-import error from '@ovh-ux/manager-react-components/dist/src/components/templates/error/translations/Messages_fr_FR.json';
 import common from '../../../public/translations/hycu/Messages_fr_FR.json';
 import dashboard from '../../../public/translations/hycu/dashboard/Messages_fr_FR.json';
 import listing from '../../../public/translations/hycu/listing/Messages_fr_FR.json';
@@ -20,7 +19,6 @@ function addTranslations() {
     .addResources(defaultLocale, 'hycu/order', order)
     .addResources(defaultLocale, 'hycu/terminate', terminate)
     .addResources(defaultLocale, 'hycu/edit-pack', editPack)
-    .addResources(defaultLocale, 'error', error)
     .use({
       type: 'postProcessor',
       name: 'normalize',
@@ -62,5 +60,4 @@ export const labels = {
   order,
   terminate,
   editPack,
-  error,
 };
