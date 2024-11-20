@@ -62,7 +62,7 @@ export const ActionsMenu: FC<TActionsMenuProps> = ({ items }) => {
         />
       </OsdsButton>
       {Object.values(groupedItems).map((value, index, arr) => (
-        <div key={index}>
+        <div key={`group-${index}`}>
           {value.map(({ label, href, onMenuItemClick }) => (
             <OsdsMenuItem key={label}>
               <OsdsButton
