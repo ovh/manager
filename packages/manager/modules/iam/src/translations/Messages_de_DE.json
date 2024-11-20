@@ -97,5 +97,8 @@
   "iam_resource_type_okms": "Key Management System (KMS)",
   "iam_resource_type_okms/kmip": "Key Management System (KMS)/KMIP",
   "iam_resource_type_okms/serviceKey": "Key Management System (KMS)/Schlüssel",
-  "iam_resource_type_licenseHycu": "HYCU for OVHcloud"
+  "iam_resource_type_licenseHycu": "HYCU for OVHcloud",
+  "iam_resource_type_vmwareCloudDirector": "VCD on OVHcloud",
+  "iam_resource_type_vmwareCloudDirector/virtualDataCenter": "VDC on OVHcloud",
+  "iam_resource_type_vmwareCloudDirectorBackup": "VEEAM Backup on OVHcloud"
 }
