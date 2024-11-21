@@ -53,7 +53,7 @@ export default function VolumeList({ volumes }: Readonly<VolumeListProps>) {
   );
 
   const getVolumePriceInfoTooltip = (volume: TMappedVolume) =>
-    `${t('cpbc_volume_consumption_tooltip_part1')}${t(
+    `${t('cpbc_volume_consumption_tooltip_part1')} ${t(
       'cpbc_volume_consumption_tooltip_part2',
       {
         amount: volume.amount,
