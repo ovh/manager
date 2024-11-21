@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TKube } from '@/types';
+import { OidcFormValues, TKube } from '@/types';
 import queryClient from '@/queryClient';
 import { paginateResults, REFETCH_INTERVAL_DURATION } from '@/helpers';
 import { STATUS } from '@/constants';
@@ -37,7 +37,6 @@ import {
 import { getPrivateNetworkName } from '../data/network';
 import { useAllPrivateNetworks } from './useNetwork';
 import { mapPluginsFromArrayToObject } from '../data/plugins';
-import { OidcFormValues } from '@/pages/oidc-provider/AddOrUpdateOIDCProvider.page';
 
 export const getAllKubeQueryKey = (projectId: string) => [
   'project',
@@ -421,7 +420,7 @@ export const useResetCluster = ({
   };
 };
 
-type AddOrUpdateOidcProviderProps = {
+type UpsertOidcProviderProps = {
   projectId: string;
   kubeId: string;
   onError: (cause: Error) => void;
@@ -429,13 +428,13 @@ type AddOrUpdateOidcProviderProps = {
   isUpdate: boolean;
 };
 
-export const useAddOrUpdateOidcProvider = ({
+export const useUpsertOidcProvider = ({
   projectId,
   kubeId,
   onError,
   onSuccess,
   isUpdate,
-}: AddOrUpdateOidcProviderProps) => {
+}: UpsertOidcProviderProps) => {
   const mutation = useMutation({
     mutationFn: async (params: OidcFormValues) =>
       isUpdate
@@ -450,8 +449,7 @@ export const useAddOrUpdateOidcProvider = ({
     },
   });
   return {
-    addOrUpdateOidcProvider: (params: OidcFormValues) =>
-      mutation.mutate(params),
+    upsertOidcProvider: (params: OidcFormValues) => mutation.mutate(params),
     ...mutation,
   };
 };

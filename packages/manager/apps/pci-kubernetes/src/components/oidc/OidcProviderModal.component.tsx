@@ -17,53 +17,23 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Translation, useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useForm, Controller } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
 import {
   useOidcProvider,
-  useAddOrUpdateOidcProvider,
+  useUpsertOidcProvider,
 } from '@/api/hooks/useKubernetes';
+import { OidcFormValues, oidcSchema } from '@/types';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
-const oidcSchema = z.object({
-  issuerUrl: z
-    .string()
-    .url({ message: 'Issuer URL must be a valid URL' })
-    .refine((url) => url.startsWith('https://'), {
-      message: 'Issuer URL must use HTTPS protocol',
-    }),
-  clientId: z
-    .string()
-    .min(1, { message: 'common:common_field_error_required' }),
-  usernameClaim: z.string().optional(),
-  usernamePrefix: z.string().optional(),
-  groupsClaim: z
-    .string()
-    .nullable()
-    .optional(),
-  groupsPrefix: z.string().optional(),
-  signingAlgorithms: z
-    .string()
-    .nullable()
-    .optional(),
-  caContent: z.string().optional(),
-  requiredClaim: z
-    .string()
-    .nullable()
-    .optional(),
-});
-
-export type OidcFormValues = z.infer<typeof oidcSchema> &
-  Required<{ issuerUrl: string; clientId: string }>;
-
-export default function AddOrUpdateOIDCProvider() {
+export function OidcProviderModal() {
   const { t } = useTranslation([
+    'upsert-oidc-provider',
     'add-oidc-provider',
     'update-oidc-provider',
     'common',
@@ -72,7 +42,7 @@ export default function AddOrUpdateOIDCProvider() {
   const navigate = useNavigate();
   const onClose = () => navigate('..');
   const { tracking } = useContext(ShellContext)?.shell || {};
-  const [isUpdate, setIsUpdate] = useState<boolean>(false);
+
   const {
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -97,27 +67,25 @@ export default function AddOrUpdateOIDCProvider() {
     if (oidcProvider) {
       setValue('issuerUrl', oidcProvider.issuerUrl);
       setValue('clientId', oidcProvider.clientId);
-      setIsUpdate(!!oidcProvider?.clientId);
     }
   }, [oidcProvider]);
 
+  const isUpdate = !!oidcProvider?.clientId;
+  const mode = isUpdate ? 'update' : 'add';
+
   const {
-    addOrUpdateOidcProvider,
-    isPending: isPendingAddOrUpdateOidcProvider,
-  } = useAddOrUpdateOidcProvider({
+    upsertOidcProvider,
+    isPending: isPendingUpsertOidcProvider,
+  } = useUpsertOidcProvider({
     projectId,
     kubeId,
     isUpdate,
     onError(error: ApiError) {
       addError(
-        <Translation
-          ns={`${isUpdate ? 'update-oidc-provider' : 'add-oidc-provider'}`}
-        >
+        <Translation ns={`${mode}-oidc-provider`}>
           {(_t) =>
             _t(
-              `pci_projects_project_kubernetes_details_service_${
-                isUpdate ? 'update' : 'add'
-              }_oidc_provider_request_error`,
+              `pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_request_error`,
               {
                 message:
                   error?.response?.data?.message || error?.message || null,
@@ -131,14 +99,10 @@ export default function AddOrUpdateOIDCProvider() {
     },
     onSuccess() {
       addSuccess(
-        <Translation
-          ns={`${isUpdate ? 'update-oidc-provider' : 'add-oidc-provider'}`}
-        >
+        <Translation ns={`${mode}-oidc-provider`}>
           {(_t) =>
             _t(
-              `pci_projects_project_kubernetes_details_service_${
-                isUpdate ? 'update' : 'add'
-              }_oidc_provider_request_success`,
+              `pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_request_success`,
             )
           }
         </Translation>,
@@ -147,26 +111,21 @@ export default function AddOrUpdateOIDCProvider() {
       onClose();
     },
   });
-  const isPending = isPendingOidcProvider || isPendingAddOrUpdateOidcProvider;
+  const isPending = isPendingOidcProvider || isPendingUpsertOidcProvider;
+
   const onSubmit = (data: OidcFormValues) => {
-    addOrUpdateOidcProvider(data);
+    upsertOidcProvider(data);
   };
   return (
     <OsdsModal
       onOdsModalClose={() => {
         tracking?.trackClick({
-          name: `${KUBE_TRACK_PREFIX}::details::service::${
-            isUpdate ? 'update' : 'add'
-          }-oidc-provider::cancel`,
+          name: `${KUBE_TRACK_PREFIX}::details::service::${mode}-oidc-provider::cancel`,
         });
         onClose();
       }}
       headline={t(
-        `${
-          isUpdate ? 'update-oidc-provider:' : 'add-oidc-provider:'
-        }pci_projects_project_kubernetes_details_service_${
-          isUpdate ? 'update' : 'add'
-        }_oidc_provider_title`,
+        `${mode}-oidc-provider:pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_title`,
       )}
     >
       <slot name="content">
@@ -176,7 +135,7 @@ export default function AddOrUpdateOIDCProvider() {
               inline
               size={ODS_SPINNER_SIZE.md}
               className="block text-center"
-              data-testid={`${isUpdate ? 'update' : 'add'}OIDCProvider-spinner`}
+              data-testid={`${mode}OIDCProvider-spinner`}
             />
           </div>
         ) : (
@@ -187,7 +146,7 @@ export default function AddOrUpdateOIDCProvider() {
               color={ODS_THEME_COLOR_INTENT.text}
             >
               {t(
-                'pci_projects_project_kubernetes_details_service_add_oidc_provider_description',
+                'pci_projects_project_kubernetes_details_service_upsert_oidc_provider_description',
               )}
             </OsdsText>
             <OsdsFormField
@@ -202,11 +161,7 @@ export default function AddOrUpdateOIDCProvider() {
                 slot="label"
               >
                 {t(
-                  `${
-                    isUpdate ? 'update-oidc-provider:' : 'add-oidc-provider:'
-                  }pci_projects_project_kubernetes_details_service_${
-                    isUpdate ? 'update' : 'add'
-                  }_oidc_provider_field_url`,
+                  `${mode}-oidc-provider:pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_field_url`,
                 )}
               </OsdsText>
 
@@ -216,7 +171,7 @@ export default function AddOrUpdateOIDCProvider() {
                 color={ODS_TEXT_COLOR_INTENT.text}
               >
                 {t(
-                  'pci_projects_project_kubernetes_details_service_add_oidc_provider_field_url_extra',
+                  'pci_projects_project_kubernetes_details_service_upsert_oidc_provider_field_url_extra',
                 )}
               </OsdsText>
               <Controller
@@ -246,11 +201,7 @@ export default function AddOrUpdateOIDCProvider() {
                 slot="label"
               >
                 {t(
-                  `${
-                    isUpdate ? 'update-oidc-provider:' : 'add-oidc-provider:'
-                  }pci_projects_project_kubernetes_details_service_${
-                    isUpdate ? 'update' : 'add'
-                  }_oidc_provider_field_client_id`,
+                  `${mode}-oidc-provider:pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_field_client_id`,
                 )}
               </OsdsText>
               <OsdsText
@@ -259,7 +210,7 @@ export default function AddOrUpdateOIDCProvider() {
                 color={ODS_TEXT_COLOR_INTENT.text}
               >
                 {t(
-                  'pci_projects_project_kubernetes_details_service_add_oidc_provider_field_client_id_extra',
+                  'pci_projects_project_kubernetes_details_service_upsert_oidc_provider_field_client_id_extra',
                 )}
               </OsdsText>
               <Controller
@@ -282,32 +233,20 @@ export default function AddOrUpdateOIDCProvider() {
                 color={ODS_THEME_COLOR_INTENT.primary}
                 variant={ODS_BUTTON_VARIANT.ghost}
                 onClick={onClose}
-                data-testid={`${
-                  isUpdate ? 'update-oidc-provider:' : 'add-oidc-provider:'
-                }${isUpdate ? 'update' : 'add'}OIDCProvider-button_cancel`}
+                data-testid={`${mode}-oidc-provider:${mode}OIDCProvider-button_cancel`}
               >
                 {t(
-                  `${
-                    isUpdate ? 'update-oidc-provider:' : 'add-oidc-provider:'
-                  }pci_projects_project_kubernetes_details_service_${
-                    isUpdate ? 'update' : 'add'
-                  }_oidc_provider_action_cancel`,
+                  `${mode}-oidc-provider:pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_action_cancel`,
                 )}
               </OsdsButton>
               <OsdsButton
                 color={ODS_THEME_COLOR_INTENT.primary}
                 disabled={isPending || isSubmitting || undefined}
                 type={ODS_BUTTON_TYPE.submit}
-                data-testid={`${
-                  isUpdate ? 'update' : 'add'
-                }OIDCProvider-button_submit`}
+                data-testid={`${mode}OIDCProvider-button_submit`}
               >
                 {t(
-                  `${
-                    isUpdate ? 'update-oidc-provider:' : 'add-oidc-provider:'
-                  }pci_projects_project_kubernetes_details_service_${
-                    isUpdate ? 'update' : 'add'
-                  }_oidc_provider_action_${isUpdate ? 'update' : 'add'}`,
+                  `${mode}-oidc-provider:pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_action_${mode}`,
                 )}
               </OsdsButton>
             </div>
