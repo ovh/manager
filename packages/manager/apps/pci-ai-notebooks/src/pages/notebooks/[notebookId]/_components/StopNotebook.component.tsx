@@ -19,7 +19,7 @@ interface StopNotebookModalProps {
   notebook: ai.notebook.Notebook;
   controller: ModalController;
   onSuccess?: () => void;
-  onError?: (service: Error) => void;
+  onError?: (notebook: Error) => void;
 }
 
 const StopNotebook = ({

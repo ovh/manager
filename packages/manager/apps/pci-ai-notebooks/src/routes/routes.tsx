@@ -50,6 +50,15 @@ export default [
               import('@/pages/notebooks/[notebookId]/dashboard/Dashboard.page'),
             ),
           },
+          {
+            path: 'attach-data',
+            id: 'notebook.attach-data',
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/notebooks/[notebookId]/attached-data/AttachedData.page'
+              ),
+            ),
+          },
         ],
       },
     ],
