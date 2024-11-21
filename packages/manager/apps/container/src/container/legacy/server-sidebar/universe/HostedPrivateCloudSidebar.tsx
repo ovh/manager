@@ -335,14 +335,12 @@ export default function HostedPrivateCloudSidebar() {
         id: 'identity-security-operations',
         label: t('sidebar_identity_security_operations'),
         icon: <OsdsIcon name={ODS_ICON_NAME.CLOUD_EYE_CONCEPT} size={ODS_ICON_SIZE.xxs} color={ODS_THEME_COLOR_INTENT.text}/>,
-        badge: 'new',
         pathMatcher: new RegExp('^/key-management-service'),
         subItems: [
           {
             id: 'key-management-service',
             label: t('sidebar_key-management-service'),
             href: navigation.getURL('key-management-service', '/'),
-            badge: 'beta',
             pathMatcher: new RegExp('^/key-management-service'),
             icon: keyIcon,
             async loader() {
