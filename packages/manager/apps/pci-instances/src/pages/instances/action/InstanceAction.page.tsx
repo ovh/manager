@@ -23,8 +23,8 @@ const InstanceAction: FC = () => {
   const section = useUrlLastSection();
   const { instanceId } = useUrlSearchParams('instanceId');
   const instanceName = useMemo(
-    () => getInstanceNameById(instanceId, queryClient),
-    [instanceId],
+    () => getInstanceNameById(projectId, instanceId, queryClient),
+    [instanceId, projectId],
   );
 
   const canExecuteAction = instanceId && instanceName && section;
@@ -32,9 +32,9 @@ const InstanceAction: FC = () => {
   const executeSuccessCallback = useCallback((): void => {
     if (!instanceId) return;
     if (section === 'delete') {
-      updateDeletedInstanceStatus(queryClient, instanceId);
+      updateDeletedInstanceStatus(projectId, queryClient, instanceId);
     }
-  }, [instanceId, section]);
+  }, [instanceId, projectId, section]);
 
   const handleModalClose = () => {
     navigate('..');
