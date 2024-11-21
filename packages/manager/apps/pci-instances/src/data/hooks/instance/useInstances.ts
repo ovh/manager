@@ -50,13 +50,21 @@ export type TInstance = DeepReadonly<{
   addresses: Map<TAddressType, TAddress[]>;
 }>;
 
+const listQueryKeyPredicate = (projectId: string) => (query: Query) =>
+  instancesQueryKey(projectId, ['list']).every((elt) =>
+    query.queryKey.includes(elt),
+  );
+
 export const updateDeletedInstanceStatus = (
+  projectId: string,
   queryClient: QueryClient,
   instanceId?: string | null,
 ) => {
   if (!instanceId) return;
   queryClient.setQueriesData<InfiniteData<TInstanceDto[], number>>(
-    { predicate: (query: Query) => query.queryKey.includes('list') },
+    {
+      predicate: listQueryKeyPredicate(projectId),
+    },
     (prevData) => {
       if (!prevData) return undefined;
       const updatedPages = prevData.pages.map((page) =>
@@ -72,6 +80,7 @@ export const updateDeletedInstanceStatus = (
 };
 
 export const getInstanceNameById = (
+  projectId: string,
   id: string | null,
   queryClient: QueryClient,
 ): string | undefined => {
@@ -79,7 +88,7 @@ export const getInstanceNameById = (
 
   const data = queryClient.getQueriesData<InfiniteData<TInstanceDto[], number>>(
     {
-      predicate: (query: Query) => query.queryKey.includes('list'),
+      predicate: listQueryKeyPredicate(projectId),
     },
   );
   return data.reduce((acc, [, result]) => {
@@ -222,10 +231,8 @@ export const useInstances = (
     ): boolean =>
       JSON.stringify(currentQueryKey) === JSON.stringify(initialQueryKey);
 
-    const isListQuery = (query: Query) => query.queryKey.includes('list');
-
     const listCachedQueries = queryClient.getQueriesData({
-      predicate: isListQuery,
+      predicate: listQueryKeyPredicate(projectId),
     });
 
     const queryData = queryClient.getQueryData<InfiniteData<TInstance[]>>(
@@ -235,7 +242,8 @@ export const useInstances = (
     if (listCachedQueries.length > 1) {
       queryClient.removeQueries({
         predicate: (query) =>
-          isListQuery(query) && !queryKeyEqualsInitialQueryKey(query.queryKey),
+          listQueryKeyPredicate(projectId)(query) &&
+          !queryKeyEqualsInitialQueryKey(query.queryKey),
       });
     }
 
