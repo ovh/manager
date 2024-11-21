@@ -18,5 +18,6 @@
   "netapp_order_commitment_payment": "Modalidades de pagamento",
   "netapp_order_confirm": "Validar",
   "netapp_order_performance_level_type_Premium_additionnal_description": "64MB/s e 4000 IOPS por TB aprovisionado.",
-  "netapp_order_performance_customization": "Aquando do aprovisionamento da sua capacidade vai definir o nível de desempenho do seu serviço. Lembrete: 64MB/s e 4000 IOPS por TB aprovisionado."
+  "netapp_order_performance_customization": "Aquando do aprovisionamento da sua capacidade vai definir o nível de desempenho do seu serviço. Lembrete: 64MB/s e 4000 IOPS por TB aprovisionado.",
+  "netapp_order_region": "Area"
 }
