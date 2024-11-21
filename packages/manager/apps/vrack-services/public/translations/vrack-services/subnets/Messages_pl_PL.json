@@ -54,5 +54,6 @@
   "subnetUpdateError": "Wystąpił błąd podczas aktualizacji Twojej podsieci: {{error}}.",
   "subnetUpdatePending": "Trwa modyfikacja podsieci",
   "modalSubnetUpdateCancelButton": "Anuluj",
-  "modalSubnetUpdateConfirmButton": "Zmień"
+  "modalSubnetUpdateConfirmButton": "Zmień",
+  "subnetRangeAdditionalText": "Zakres adresów podsieci musi być w przedziale /24."
 }

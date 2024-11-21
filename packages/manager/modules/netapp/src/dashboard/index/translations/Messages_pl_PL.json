@@ -2,7 +2,7 @@
   "netapp_dashboard_information": "Informacje",
   "netapp_dashboard_information_name": "Nazwa",
   "netapp_dashboard_information_id": "ID",
-  "netapp_dashboard_information_region": "Lokalizacja centrum danych",
+  "netapp_dashboard_information_region": "Region",
   "netapp_dashboard_information_performance_level": "Poziom wydajności",
   "netapp_dashboard_information_quota": "Rozmiar przestrzeni dyskowej",
   "netapp_dashboard_information_quota_formatted": "{{quota}}",
