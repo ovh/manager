@@ -73,20 +73,6 @@ const DataGridHeaderActions: FC<Props> = ({
           {createLabel}
         </OsdsButton>
         <div className="flex items-center">
-          <OsdsButton
-            className="mr-4"
-            color={ODS_THEME_COLOR_INTENT.primary}
-            variant={ODS_BUTTON_VARIANT.stroked}
-            size={ODS_BUTTON_SIZE.sm}
-            inline
-          >
-            <OsdsIcon
-              name={ODS_ICON_NAME.REFRESH}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_ICON_SIZE.xs}
-              className="mr-7"
-            />
-          </OsdsButton>
           <OsdsSearchBar
             value={searchField}
             onOdsSearchSubmit={(event) => {
