@@ -15,6 +15,7 @@ import { privateNetworkForm as form, projectId } from '@/__mocks__/network';
 
 const vlanIdTest = 3000;
 const operationId = 'operationId';
+const resourceId = 'testResourceId';
 
 vi.mock('@/data/api/networks');
 vi.mocked(getNetwork).mockResolvedValue({ vlanId: vlanIdTest } as TNetwork);
@@ -26,7 +27,7 @@ vi.mock('@/data/api/gateway');
 
 vi.mock('@/data/hooks/networks/useNetworks');
 vi.mocked(fetchCheckPrivateNetworkCreationStatus).mockResolvedValue({
-  resourceId: 'testResourceId',
+  resourceId,
 } as TNetworkCreationResponse);
 
 describe('Create Private Network', () => {
@@ -73,7 +74,7 @@ describe('Create Private Network', () => {
     );
 
     expect(addPrivateNetwork).toHaveBeenCalledWith(projectId, {
-      id: 'testResourceId',
+      id: resourceId,
       name,
       region,
       visibility: 'private',
@@ -102,7 +103,7 @@ describe('Create Private Network', () => {
     expect(assignGateway).toHaveBeenCalledWith(
       projectId,
       region,
-      'testResourceId',
+      resourceId,
       existingGatewayId,
     );
   });
@@ -115,11 +116,11 @@ describe('Create Private Network', () => {
     expect(getNetwork).toHaveBeenCalledWith(
       projectId,
       values.region,
-      'testResourceId',
+      resourceId,
     );
 
     expect(addPrivateNetwork).toHaveBeenCalledWith(projectId, {
-      id: 'testResourceId',
+      id: resourceId,
       name: values.name,
       region: values.region,
       visibility: 'private',

@@ -53,6 +53,40 @@ export const usePrivateNetworksRegion = (
   );
 };
 
+const getFormattedSubnets = (
+  networkId: string,
+  name: string,
+  region: string,
+  subnets: TSubnet[],
+): TGroupedSubnet[] =>
+  subnets.map(
+    ({
+      allocationPools,
+      id: subId,
+      cidr,
+      gatewayIp,
+      dhcpEnabled,
+      ipVersion,
+    }) => {
+      const allocatedIp = allocationPools
+        ?.map((i) => `${i.start} - ${i.end}`)
+        .join(' ,');
+
+      return {
+        id: subId,
+        networkId,
+        name,
+        region,
+        cidr,
+        gatewayIp,
+        dhcpEnabled,
+        ipVersion,
+        allocatedIp,
+        search: `${name} ${region} ${ipVersion} ${cidr} ${region} ${allocatedIp}`,
+      };
+    },
+  );
+
 export const usePrivateNetworkLZ = (projectId: string) => {
   const queryKey = networkQueryKey(projectId);
   const data = queryClient.getQueryData<TNetwork[]>(queryKey) || [];
@@ -62,34 +96,8 @@ export const usePrivateNetworkLZ = (projectId: string) => {
     queries: networks.map(({ id, region, name }) => ({
       queryKey: networkQueryKey(projectId, ['subnets', region, id]),
       queryFn: () => getSubnets(projectId, region, id),
-      select: (subnets: TSubnet[]): TGroupedSubnet[] =>
-        subnets.map(
-          ({
-            allocationPools,
-            id: subId,
-            cidr,
-            gatewayIp,
-            dhcpEnabled,
-            ipVersion,
-          }) => {
-            const allocatedIp = allocationPools
-              ?.map((i) => `${i.start} - ${i.end}`)
-              .join(' ,');
-
-            return {
-              id: subId,
-              networkId: id,
-              name,
-              region,
-              cidr,
-              gatewayIp,
-              dhcpEnabled,
-              ipVersion,
-              allocatedIp,
-              search: `${name} ${region} ${ipVersion} ${cidr} ${region} ${allocatedIp}`,
-            };
-          },
-        ),
+      select: (subnets: TSubnet[]) =>
+        getFormattedSubnets(id, name, region, subnets),
     })),
     combine: (results) => ({
       data: results.map((result) => ({

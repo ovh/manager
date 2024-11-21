@@ -11,13 +11,17 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
-  OsdsSearchBarCustomEvent,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { FilterAdd, FilterList } from '@ovh-ux/manager-react-components';
+import {
+  FilterAdd,
+  FilterList,
+  PaginationState,
+  useColumnFilters,
+} from '@ovh-ux/manager-react-components';
 import { Filter, FilterComparator } from '@ovh-ux/manager-core-api';
 
-export type ColumnFilter = {
+type ColumnFilter = {
   id: string;
   label: string;
   comparators: FilterComparator[];
@@ -25,34 +29,48 @@ export type ColumnFilter = {
 
 type Props = {
   createLabel: string;
-  filters: Array<
-    Filter & {
-      label: string;
-    }
-  >;
-  onCreate?: () => void;
-  onSearch: (
-    event: OsdsSearchBarCustomEvent<{
-      optionValue: string;
-      inputValue: string;
-    }>,
-  ) => void;
-  removeFilter: (filter: Filter) => void;
   columnFilters: ColumnFilter[];
-  handleAddFilter: (filter: Filter, column: ColumnFilter) => void;
+  pagination: PaginationState;
+  setPagination: (pagination: PaginationState) => void;
+  onCreate?: () => void;
 };
 
 const DataGridHeaderActions: FC<Props> = ({
   createLabel,
-  filters,
   columnFilters,
+  pagination,
+  setPagination,
   onCreate,
-  onSearch,
-  removeFilter,
-  handleAddFilter,
 }) => {
+  const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchField, setSearchField] = useState<string>('');
   const filterPopoverRef = useRef(undefined);
+
+  const initializePagination = () => {
+    setPagination({
+      pageIndex: 0,
+      pageSize: pagination.pageSize,
+    });
+  };
+
+  const onSearch = ({ detail }) => {
+    initializePagination();
+    addFilter({
+      key: 'search',
+      value: detail.inputValue,
+      comparator: FilterComparator.Includes,
+      label: '',
+    });
+    setSearchField('');
+  };
+
+  const onAddFilter = (addedFilter: Filter, column: ColumnFilter) => {
+    initializePagination();
+    addFilter({
+      ...addedFilter,
+      label: column.label,
+    });
+  };
 
   return (
     <>
@@ -73,13 +91,7 @@ const DataGridHeaderActions: FC<Props> = ({
           {createLabel}
         </OsdsButton>
         <div className="flex items-center">
-          <OsdsSearchBar
-            value={searchField}
-            onOdsSearchSubmit={(event) => {
-              onSearch(event);
-              setSearchField('');
-            }}
-          />
+          <OsdsSearchBar value={searchField} onOdsSearchSubmit={onSearch} />
           <OsdsPopover ref={filterPopoverRef}>
             <OsdsButton
               slot="popover-trigger"
@@ -99,7 +111,7 @@ const DataGridHeaderActions: FC<Props> = ({
               <FilterAdd
                 columns={columnFilters}
                 onAddFilter={(addedFilter, column) => {
-                  handleAddFilter(addedFilter, column);
+                  onAddFilter(addedFilter, column);
                   filterPopoverRef.current?.closeSurface();
                 }}
               />
