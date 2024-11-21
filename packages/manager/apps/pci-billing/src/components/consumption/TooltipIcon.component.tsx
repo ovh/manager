@@ -32,6 +32,7 @@ export default function TooltipIcon({
           size={ODS_TEXT_SIZE._100}
           level={ODS_TEXT_LEVEL.body}
           color={ODS_THEME_COLOR_INTENT.text}
+          className="break-normal"
         >
           {content}
         </OsdsText>
