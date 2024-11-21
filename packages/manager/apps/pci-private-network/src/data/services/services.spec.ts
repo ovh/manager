@@ -1,15 +1,23 @@
 import { describe, vi } from 'vitest';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
-import { TNetworkCreationResponse } from '@/types/network.type';
-import { createPrivateNetwork as apiCreatePrivateNetwork } from '@/data/api/networks';
+import { TNetwork, TNetworkCreationResponse } from '@/types/network.type';
+import {
+  createPrivateNetwork as apiCreatePrivateNetwork,
+  getNetwork,
+} from '@/data/api/networks';
 import { enableSnatOnGateway, assignGateway } from '@/data/api/gateway';
-import { fetchCheckPrivateNetworkCreationStatus } from '@/data/hooks/networks/useNetworks';
+import {
+  fetchCheckPrivateNetworkCreationStatus,
+  addPrivateNetwork,
+} from '@/data/hooks/networks/useNetworks';
 import { createPrivateNetwork } from './services';
 import { privateNetworkForm as form, projectId } from '@/__mocks__/network';
 
+const vlanIdTest = 3000;
 const operationId = 'operationId';
 
 vi.mock('@/data/api/networks');
+vi.mocked(getNetwork).mockResolvedValue({ vlanId: vlanIdTest } as TNetwork);
 vi.mocked(apiCreatePrivateNetwork).mockResolvedValue({
   id: operationId,
 } as TNetworkCreationResponse);
@@ -63,6 +71,14 @@ describe('Create Private Network', () => {
       projectId,
       operationId,
     );
+
+    expect(addPrivateNetwork).toHaveBeenCalledWith(projectId, {
+      id: 'testResourceId',
+      name,
+      region,
+      visibility: 'private',
+      vlanId,
+    });
   });
 
   it('should enable snat', async () => {
@@ -89,5 +105,25 @@ describe('Create Private Network', () => {
       'testResourceId',
       existingGatewayId,
     );
+  });
+
+  it('should call getNetwork and addPrivateNetwork when region is not LZ and vlanId not defined by user', async () => {
+    const { vlanId, ...values } = form;
+
+    await createPrivateNetwork(values, projectId);
+
+    expect(getNetwork).toHaveBeenCalledWith(
+      projectId,
+      values.region,
+      'testResourceId',
+    );
+
+    expect(addPrivateNetwork).toHaveBeenCalledWith(projectId, {
+      id: 'testResourceId',
+      name: values.name,
+      region: values.region,
+      visibility: 'private',
+      vlanId: vlanIdTest,
+    });
   });
 });

@@ -11,17 +11,15 @@ type AllocationPools = {
 };
 
 export type TSubnet = {
-  allocationPools?: AllocationPools[];
-  allocatedIp?: string;
+  allocationPools: AllocationPools[];
   cidr: string;
   dhcpEnabled: boolean;
   gatewayIp: string | null;
-  gatewayName: string;
-  networkId: string;
-  region: string;
   ipVersion: number;
   id: string;
   name: string;
+  hostRoutes: string[];
+  dnsNameServers: string[];
 };
 
 export type TNetwork = {
@@ -30,6 +28,26 @@ export type TNetwork = {
   region: string;
   visibility: NetworkVisibility;
   vlanId: number | null;
+};
+
+export type TGroupedNetwork = {
+  vlanId: number;
+  name: string;
+  regions: string[];
+  search: string;
+};
+
+export type TGroupedSubnet = {
+  id: string;
+  networkId: string;
+  name: string;
+  region: string;
+  cidr: string;
+  gatewayIp: string;
+  ipVersion: number;
+  dhcpEnabled: boolean;
+  allocatedIp?: string;
+  search: string;
 };
 
 export type TNetworkCreationData = {

@@ -1,8 +1,14 @@
-import { TNetworkCreationData } from '@/types/network.type';
+import { TNetworkCreationData, NetworkVisibility } from '@/types/network.type';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
-import { createPrivateNetwork as apiCreatePrivateNetwork } from '@/data/api/networks';
+import {
+  createPrivateNetwork as apiCreatePrivateNetwork,
+  getNetwork,
+} from '@/data/api/networks';
 import { assignGateway, enableSnatOnGateway } from '@/data/api/gateway';
-import { fetchCheckPrivateNetworkCreationStatus } from '../hooks/networks/useNetworks';
+import {
+  fetchCheckPrivateNetworkCreationStatus,
+  addPrivateNetwork,
+} from '../hooks/networks/useNetworks';
 import queryClient from '@/queryClient';
 
 export const createPrivateNetwork = async (
@@ -27,7 +33,7 @@ export const createPrivateNetwork = async (
     data,
   });
 
-  const status = await fetchCheckPrivateNetworkCreationStatus(
+  const { resourceId } = await fetchCheckPrivateNetworkCreationStatus(
     projectId,
     creation.id,
   );
@@ -37,13 +43,23 @@ export const createPrivateNetwork = async (
       await enableSnatOnGateway(projectId, region, existingGatewayId);
     }
 
-    await assignGateway(
-      projectId,
-      region,
-      status.resourceId,
-      existingGatewayId,
-    );
+    await assignGateway(projectId, region, resourceId, existingGatewayId);
   }
+
+  let createdVlanId = data.vlanId || null;
+
+  if (!createdVlanId && !isLocalZone) {
+    const createdNetwork = await getNetwork(projectId, region, resourceId);
+    createdVlanId = createdNetwork.vlanId;
+  }
+
+  await addPrivateNetwork(projectId, {
+    id: resourceId,
+    name: data.name,
+    region,
+    visibility: NetworkVisibility.Private,
+    vlanId: createdVlanId,
+  });
 };
 
 export const refreshPrivateNetworkList = (projectId: string) => {
