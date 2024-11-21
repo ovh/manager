@@ -57,5 +57,6 @@
   "zimbra_dashboard_email_accounts_auto_replies_add": "Create an auto-reply",
   "zimbra_dashboard_email_accounts_auto_replies_delete": "Delete an auto-reply",
   "zimbra_dashboard_redirections_add": "Create a redirection",
-  "zimbra_dashboard_auto_replies_add": "Create an auto-reply"
+  "zimbra_dashboard_auto_replies_add": "Create an auto-reply",
+  "zimbra_dashboard_email_accounts_order": "Order email accounts"
 }

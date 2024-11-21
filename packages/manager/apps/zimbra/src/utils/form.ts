@@ -3,6 +3,7 @@ export type FieldType = {
   touched: boolean;
   hasError?: boolean;
   required?: boolean;
+  validate?: ((value: string) => boolean) | RegExp;
 };
 
 export interface FormTypeInterface {
@@ -16,13 +17,29 @@ export interface FormInputRegexInterface {
 export const checkValidityField = (
   name: string,
   value: string,
-  formInputRegex: FormInputRegexInterface,
   form: FormTypeInterface,
 ) => {
-  return formInputRegex[name]
-    ? formInputRegex[name].test(value) ||
-        (!form[name].required && form[name].value === '')
-    : true;
+  const field = form[name];
+
+  if (!field) {
+    throw new Error(
+      `checkValidityField field is not defined for name "${name}"`,
+    );
+  }
+
+  if (!field.required && !value) {
+    return true;
+  }
+
+  if (typeof field.validate === 'function') {
+    return field.validate(value);
+  }
+
+  if (field.validate instanceof RegExp) {
+    return field.validate.test(String(value));
+  }
+
+  return !field.required || !!value;
 };
 
 export const checkValidityForm = (form: FormTypeInterface) => {
@@ -36,3 +53,7 @@ export const checkValidityForm = (form: FormTypeInterface) => {
 export const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 export const ACCOUNT_REGEX = /^(?:[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*)(?:(?:[.|+])(?:[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*))*$/;
+
+export const PASSWORD_REGEX = /^(?=.*[!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*\d)(?=.*[A-Z])(?=(.*)).{10,64}$/;
+
+export const OWNER_REGEX = /^[A-Za-z0-9]{2,20}$/;
