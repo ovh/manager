@@ -38,8 +38,8 @@ import {
   PageLocation,
   PageType,
   useOvhTracking,
+  ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { OkmsServiceKeyReference } from '@/types/okmsServiceKeyReference.type';
 import {
