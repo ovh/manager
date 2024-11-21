@@ -54,5 +54,6 @@
   "subnetUpdateError": "Si è verificato un errore durante l'aggiornamento della sottorete: {{error}}.",
   "subnetUpdatePending": "Modifica della sottorete in corso...",
   "modalSubnetUpdateCancelButton": "Annullare",
-  "modalSubnetUpdateConfirmButton": "Modificare"
+  "modalSubnetUpdateConfirmButton": "Modificare",
+  "subnetRangeAdditionalText": "L'intervallo di indirizzi della sottorete deve essere /24."
 }

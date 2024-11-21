@@ -2,7 +2,7 @@
   "netapp_dashboard_information": "Information",
   "netapp_dashboard_information_name": "Name",
   "netapp_dashboard_information_id": "ID",
-  "netapp_dashboard_information_region": "Datacentre location",
+  "netapp_dashboard_information_region": "Region",
   "netapp_dashboard_information_performance_level": "Performance level",
   "netapp_dashboard_information_quota": "Storage size",
   "netapp_dashboard_information_quota_formatted": "{{quota}}GB",
