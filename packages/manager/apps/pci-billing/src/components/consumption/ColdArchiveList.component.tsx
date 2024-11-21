@@ -48,6 +48,7 @@ export default function ColdArchiveList({
     const sortedColdArchives = coldArchives?.sort((a, b) =>
       a.region.localeCompare(b.region),
     );
+
     return paginateResults(sortedColdArchives || [], pagination);
   }, [coldArchives, pagination, setPagination]);
 

@@ -27,7 +27,7 @@ export default function SnapshotList({
   const { pagination, setPagination } = useDataGrid();
 
   const getSnapshotPriceInfoTooltip = (snapshot: TSnapshot) =>
-    `${t('cpbc_snapshot_col_usage_info_part1')}${t(
+    `${t('cpbc_snapshot_col_usage_info_part1')} ${t(
       'cpbc_snapshot_col_usage_info_part2',
       {
         amount: (snapshot.instance?.quantity?.value || 0).toFixed(2),
