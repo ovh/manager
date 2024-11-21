@@ -1,13 +1,18 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import {
+  render,
+  screen,
+  waitFor,
+  fireEvent,
+  act,
+} from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import { act } from 'react-dom/test-utils';
 import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
 import * as usersApi from '@/data/api/database/user.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { useToast } from '@/components/ui/use-toast';
-import ResetUserPassword from '@/pages/services/[serviceId]/users/_components/ResetUserPassword.component';
+import ResetUserPassword from '@/pages/services/[serviceId]/users/resetPassword/ResetPassword.modal';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import {
   mockedDatabaseUser,
@@ -17,6 +22,17 @@ import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 
 describe('Reset user password modal', () => {
   beforeEach(async () => {
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useParams: () => ({
+          projectId: 'projectId',
+          category: database.engine.CategoryEnum.all,
+          userId: mockedDatabaseUser.id,
+        }),
+      };
+    });
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({
         t: (key: string) => key,
@@ -68,56 +84,21 @@ describe('Reset user password modal', () => {
     vi.clearAllMocks();
   });
   it('should open the modal', async () => {
-    const controller = {
-      open: false,
-      onOpenChange: vi.fn(),
-    };
-    const { rerender } = render(
-      <ResetUserPassword
-        controller={controller}
-        service={mockedService}
-        user={mockedDatabaseUser}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+    const { rerender } = render(<ResetUserPassword />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
     await waitFor(() => {
       expect(
         screen.queryByTestId('reset-password-modal'),
       ).not.toBeInTheDocument();
     });
-    controller.open = true;
-    rerender(
-      <ResetUserPassword
-        controller={controller}
-        service={mockedService}
-        user={mockedDatabaseUser}
-      />,
-    );
+    rerender(<ResetUserPassword />);
     await waitFor(() => {
       expect(screen.queryByTestId('reset-password-modal')).toBeInTheDocument();
     });
   });
   it('should reset a user password on submit', async () => {
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
-    const user = {
-      id: '0',
-      username: 'avadmin',
-      status: database.StatusEnum.READY,
-      createdAt: '2024-03-19T11:34:47.088723+01:00',
-    };
-    const onSuccess = vi.fn();
-    render(
-      <ResetUserPassword
-        controller={controller}
-        service={mockedService}
-        user={user}
-        onSuccess={onSuccess}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+    render(<ResetUserPassword />, { wrapper: RouterWithQueryClientWrapper });
     act(() => {
       fireEvent.click(screen.getByTestId('reset-password-submit-button'));
     });
@@ -127,27 +108,13 @@ describe('Reset user password modal', () => {
         title: 'resetUserPasswordToastSuccessTitle',
         description: 'resetUserPasswordToastSuccessDescription',
       });
-      expect(onSuccess).toHaveBeenCalled();
     });
   });
   it('should call onError when api failed', async () => {
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
-    const onError = vi.fn();
     vi.mocked(usersApi.resetUserPassword).mockImplementationOnce(() => {
       throw apiErrorMock;
     });
-    render(
-      <ResetUserPassword
-        controller={controller}
-        service={mockedService}
-        user={mockedDatabaseUser}
-        onError={onError}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+    render(<ResetUserPassword />, { wrapper: RouterWithQueryClientWrapper });
     act(() => {
       fireEvent.click(screen.getByTestId('reset-password-submit-button'));
     });
@@ -158,24 +125,12 @@ describe('Reset user password modal', () => {
         description: apiErrorMock.response.data.message,
         variant: 'destructive',
       });
-      expect(onError).toHaveBeenCalled();
     });
   });
   it('should copy password to clipboard', async () => {
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
     const writeTextMock = vi.fn();
     vi.stubGlobal('navigator', { clipboard: { writeText: writeTextMock } });
-    render(
-      <ResetUserPassword
-        controller={controller}
-        service={mockedService}
-        user={mockedDatabaseUser}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+    render(<ResetUserPassword />, { wrapper: RouterWithQueryClientWrapper });
     act(() => {
       fireEvent.click(screen.getByTestId('reset-password-submit-button'));
     });
@@ -197,20 +152,7 @@ describe('Reset user password modal', () => {
     });
   });
   it('should close modal on close button after submit', async () => {
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
-    const onClose = vi.fn();
-    render(
-      <ResetUserPassword
-        controller={controller}
-        service={mockedService}
-        user={mockedDatabaseUser}
-        onClose={onClose}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+    render(<ResetUserPassword />, { wrapper: RouterWithQueryClientWrapper });
     act(() => {
       fireEvent.click(screen.getByTestId('reset-password-submit-button'));
     });
@@ -228,7 +170,6 @@ describe('Reset user password modal', () => {
         title: 'resetUserPasswordToastSuccessTitle',
         description: 'resetUserPasswordToastSuccessDescription',
       });
-      expect(onClose).toHaveBeenCalled();
     });
   });
 });

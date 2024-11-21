@@ -5,9 +5,9 @@ import {
   waitFor,
   fireEvent,
   getByText,
+  act,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import { act } from 'react-dom/test-utils';
 import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
 import * as usersApi from '@/data/api/database/user.api';
@@ -21,7 +21,7 @@ import {
 } from '@/__tests__/helpers/mocks/databaseUser';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 
-describe('Add user modal', () => {
+describe('AddEdit user form', () => {
   beforeEach(async () => {
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({
@@ -71,52 +71,22 @@ describe('Add user modal', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
-  it('should open the modal', async () => {
-    const controller = {
-      open: false,
-      onOpenChange: vi.fn(),
-    };
-    const { rerender } = render(
-      <AddEditUserModal
-        controller={controller}
-        service={mockedService}
-        isEdition={false}
-        users={[]}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('add-edit-user-modal'),
-      ).not.toBeInTheDocument();
+  it('should render the form', async () => {
+    render(<AddEditUserModal service={mockedService} existingUsers={[]} />, {
+      wrapper: RouterWithQueryClientWrapper,
     });
-    controller.open = true;
-    rerender(
-      <AddEditUserModal
-        controller={controller}
-        service={mockedService}
-        isEdition={false}
-        users={[]}
-      />,
-    );
     await waitFor(() => {
       expect(screen.queryByTestId('add-edit-user-modal')).toBeInTheDocument();
     });
   });
   it('should have redis inputs when provided a Redis engine', async () => {
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
     render(
       <AddEditUserModal
-        controller={controller}
         service={{
           ...mockedService,
           engine: database.EngineEnum.redis,
         }}
-        isEdition={false}
-        users={[]}
+        existingUsers={[]}
       />,
       { wrapper: RouterWithQueryClientWrapper },
     );
@@ -135,19 +105,13 @@ describe('Add user modal', () => {
     });
   });
   it('should have group input when provided a m3db engine', async () => {
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
     render(
       <AddEditUserModal
-        controller={controller}
         service={{
           ...mockedService,
           engine: database.EngineEnum.m3db,
         }}
-        isEdition={false}
-        users={[]}
+        existingUsers={[]}
       />,
       { wrapper: RouterWithQueryClientWrapper },
     );
@@ -157,21 +121,9 @@ describe('Add user modal', () => {
     });
   });
   it('should add a user on submit', async () => {
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
-    const onSuccess = vi.fn();
-    render(
-      <AddEditUserModal
-        controller={controller}
-        service={mockedService}
-        isEdition={false}
-        onSuccess={onSuccess}
-        users={[]}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+    render(<AddEditUserModal service={mockedService} existingUsers={[]} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
     act(() => {
       fireEvent.change(screen.getByTestId('add-edit-username-input'), {
         target: {
@@ -186,25 +138,16 @@ describe('Add user modal', () => {
         title: 'formUserToastSuccessTitle',
         description: 'addUserToastSuccessDescription',
       });
-      expect(onSuccess).toHaveBeenCalled();
     });
   });
   it('should add a user with redis values on submit', async () => {
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
-    const onSuccess = vi.fn();
     render(
       <AddEditUserModal
-        controller={controller}
         service={{
           ...mockedService,
           engine: database.EngineEnum.redis,
         }}
-        isEdition={false}
-        onSuccess={onSuccess}
-        users={[]}
+        existingUsers={[]}
       />,
       { wrapper: RouterWithQueryClientWrapper },
     );
@@ -235,38 +178,14 @@ describe('Add user modal', () => {
         title: 'formUserToastSuccessTitle',
         description: 'addUserToastSuccessDescription',
       });
-      expect(onSuccess).toHaveBeenCalledWith({
-        engine: 'redis',
-        projectId: 'projectId',
-        serviceId: 'serviceId',
-        user: {
-          categories: [],
-          channels: [],
-          commands: [],
-          keys: ['newKey'],
-          name: 'newUser',
-        },
-      });
     });
   });
   it('should add a user with a role', async () => {
     const mockScrollIntoView = vi.fn();
     window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
-    const onSuccess = vi.fn();
-    render(
-      <AddEditUserModal
-        controller={controller}
-        service={mockedService}
-        isEdition={false}
-        onSuccess={onSuccess}
-        users={[]}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+    render(<AddEditUserModal service={mockedService} existingUsers={[]} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
     await waitFor(() => {
       expect(
         screen.getByText('formUserRoleInputPlaceholder'),
@@ -305,30 +224,13 @@ describe('Add user modal', () => {
         title: 'formUserToastSuccessTitle',
         description: 'addUserToastSuccessDescription',
       });
-      expect(onSuccess).toHaveBeenCalledWith({
-        engine: 'mongodb',
-        projectId: 'projectId',
-        serviceId: 'serviceId',
-        user: {
-          name: 'newUser',
-          roles: ['backup@admin'],
-        },
-      });
     });
   });
   it('should display an error if user already exists', async () => {
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
-    const onSuccess = vi.fn();
     render(
       <AddEditUserModal
-        controller={controller}
         service={mockedService}
-        isEdition={false}
-        onSuccess={onSuccess}
-        users={[
+        existingUsers={[
           mockedDatabaseUser,
           {
             ...mockedDatabaseUser,
@@ -348,7 +250,6 @@ describe('Add user modal', () => {
     });
     await waitFor(() => {
       expect(usersApi.addUser).not.toHaveBeenCalled();
-      expect(onSuccess).not.toHaveBeenCalled();
       expect(
         screen.getByText('formUserNameErrorDuplicate'),
       ).toBeInTheDocument();
@@ -363,28 +264,15 @@ describe('Add user modal', () => {
     });
     await waitFor(() => {
       expect(usersApi.addUser).not.toHaveBeenCalled();
-      expect(onSuccess).not.toHaveBeenCalled();
       expect(
         screen.getByText('formUserNameErrorDuplicate'),
       ).toBeInTheDocument();
     });
   });
   it('should display an error if userName is too short', async () => {
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
-    const onSuccess = vi.fn();
-    render(
-      <AddEditUserModal
-        controller={controller}
-        service={mockedService}
-        isEdition={false}
-        onSuccess={onSuccess}
-        users={[]}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+    render(<AddEditUserModal service={mockedService} existingUsers={[]} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
     act(() => {
       fireEvent.change(screen.getByTestId('add-edit-username-input'), {
         target: {
@@ -395,26 +283,13 @@ describe('Add user modal', () => {
     });
     await waitFor(() => {
       expect(usersApi.addUser).not.toHaveBeenCalled();
-      expect(onSuccess).not.toHaveBeenCalled();
       expect(screen.getByText('formUserErrorMinLength')).toBeInTheDocument();
     });
   });
   it('should display an error if userName is too long', async () => {
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
-    const onSuccess = vi.fn();
-    render(
-      <AddEditUserModal
-        controller={controller}
-        service={mockedService}
-        isEdition={false}
-        onSuccess={onSuccess}
-        users={[]}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+    render(<AddEditUserModal service={mockedService} existingUsers={[]} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
     act(() => {
       fireEvent.change(screen.getByTestId('add-edit-username-input'), {
         target: {
@@ -425,26 +300,13 @@ describe('Add user modal', () => {
     });
     await waitFor(() => {
       expect(usersApi.addUser).not.toHaveBeenCalled();
-      expect(onSuccess).not.toHaveBeenCalled();
       expect(screen.getByText('formUserErrorMaxLength')).toBeInTheDocument();
     });
   });
   it('should display an error if userName does not match patter', async () => {
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
-    const onSuccess = vi.fn();
-    render(
-      <AddEditUserModal
-        controller={controller}
-        service={mockedService}
-        isEdition={false}
-        onSuccess={onSuccess}
-        users={[]}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+    render(<AddEditUserModal service={mockedService} existingUsers={[]} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
     act(() => {
       fireEvent.change(screen.getByTestId('add-edit-username-input'), {
         target: {
@@ -455,7 +317,6 @@ describe('Add user modal', () => {
     });
     await waitFor(() => {
       expect(usersApi.addUser).not.toHaveBeenCalled();
-      expect(onSuccess).not.toHaveBeenCalled();
       expect(screen.getByText('formUserNameErrorPattern')).toBeInTheDocument();
     });
   });
@@ -463,21 +324,9 @@ describe('Add user modal', () => {
     vi.mocked(usersApi.addUser).mockImplementation(() => {
       throw apiErrorMock;
     });
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
-    const onError = vi.fn();
-    render(
-      <AddEditUserModal
-        controller={controller}
-        service={mockedService}
-        isEdition={false}
-        onError={onError}
-        users={[]}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+    render(<AddEditUserModal service={mockedService} existingUsers={[]} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
     act(() => {
       fireEvent.change(screen.getByTestId('add-edit-username-input'), {
         target: {
@@ -493,7 +342,6 @@ describe('Add user modal', () => {
         description: apiErrorMock.response.data.message,
         variant: 'destructive',
       });
-      expect(onError).toHaveBeenCalled();
     });
   });
 });

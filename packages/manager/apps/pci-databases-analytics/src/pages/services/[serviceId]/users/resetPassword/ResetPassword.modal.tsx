@@ -1,6 +1,6 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -12,34 +12,25 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
-import * as database from '@/types/cloud/project/database';
-import { GenericUser } from '@/data/api/database/user.api';
 import { useResetUserPassword } from '@/hooks/api/database/user/useResetUserPassword.hook';
 import { Alert } from '@/components/ui/alert';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import { useServiceData } from '../../Service.context';
+import { useGetUsers } from '@/hooks/api/database/user/useGetUsers.hook';
+import { Skeleton } from '@/components/ui/skeleton';
 
-interface ResetUserPasswordModalProps {
-  service: database.Service;
-  controller: ModalController;
-  user: GenericUser;
-  onSuccess?: (user: GenericUser) => void;
-  onError?: (error: Error) => void;
-  onClose?: () => void;
-}
+const ResetUserPassword = () => {
+  const { userId } = useParams();
+  const navigate = useNavigate();
+  const { projectId, service } = useServiceData();
+  const usersQuery = useGetUsers(projectId, service.engine, service.id, {
+    enabled: !!service.id,
+  });
+  const users = usersQuery.data;
+  const user = users?.find((u) => u.id === userId);
 
-const ResetUserPassword = ({
-  service,
-  user,
-  controller,
-  onError,
-  onSuccess,
-  onClose,
-}: ResetUserPasswordModalProps) => {
-  // import translations
   const [newPass, setNewPass] = useState<string>();
-  const { projectId } = useParams();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/users',
   );
@@ -51,9 +42,6 @@ const ResetUserPassword = ({
         variant: 'destructive',
         description: getCdbApiErrorMessage(err),
       });
-      if (onError) {
-        onError(err);
-      }
     },
     onSuccess: (userWithPassword) => {
       toast.toast({
@@ -63,17 +51,13 @@ const ResetUserPassword = ({
         }),
       });
       setNewPass(userWithPassword.password);
-      if (onSuccess) {
-        onSuccess(user);
-      }
+      navigate('../');
     },
   });
 
-  const handleClose = () => {
-    if (onClose) {
-      onClose();
-    }
-  };
+  useEffect(() => {
+    if (users && !user) navigate('../');
+  }, [users, user]);
 
   const handleResetPassword = () => {
     resetUserPassword({
@@ -90,8 +74,13 @@ const ResetUserPassword = ({
     });
   };
 
+  const onOpenChange = (open: boolean) => {
+    if (!open) navigate('../');
+  };
+
+  if (!users) return <Skeleton className="w-full h-4" />;
   return (
-    <Dialog {...controller}>
+    <Dialog defaultOpen onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="reset-password-modal">
@@ -122,7 +111,7 @@ const ResetUserPassword = ({
         </DialogHeader>
         <DialogFooter className="flex justify-end">
           {newPass ? (
-            <DialogClose asChild onClick={() => onClose()}>
+            <DialogClose asChild>
               <Button
                 type="button"
                 variant="outline"
@@ -137,7 +126,6 @@ const ResetUserPassword = ({
                 <Button
                   type="button"
                   variant="outline"
-                  onClick={handleClose}
                   data-testid="reset-password-cancel-button"
                 >
                   {t('resetUserPasswordButtonCancel')}

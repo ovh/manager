@@ -54,6 +54,44 @@ export default [
             ...lazyRouteConfig(() =>
               import('@/pages/services/[serviceId]/users/Users.page'),
             ),
+            children: [
+              {
+                id: 'service.{service.engine}.users.add',
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/users/add/AddUser.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.users.edit',
+                path: 'edit/:userId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/users/edit/EditUser.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.users.delete',
+                path: 'delete/:userId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/users/delete/DeleteUser.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.users.resetPassword',
+                path: 'resetPassword/:userId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/users/resetPassword/ResetPassword.modal'
+                  ),
+                ),
+              },
+            ],
           },
           {
             path: 'backups',

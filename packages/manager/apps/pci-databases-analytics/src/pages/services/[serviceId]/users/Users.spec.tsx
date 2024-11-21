@@ -18,6 +18,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedDatabaseUser } from '@/__tests__/helpers/mocks/databaseUser';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
+import { CdbError } from '@/data/api/database';
 
 // Override mock to add capabilities
 const mockedService = {
@@ -34,10 +35,17 @@ const mockedService = {
     },
   },
 };
-
+const mockedUsedNavigate = vi.fn();
 describe('Users page', () => {
   beforeEach(() => {
     // Mock necessary hooks and dependencies
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useNavigate: () => mockedUsedNavigate,
+      };
+    });
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({
         t: (key: string) => key,
@@ -118,7 +126,7 @@ describe('Users page', () => {
         engine: database.EngineEnum.redis,
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     vi.mocked(usersApi.getUsers).mockResolvedValue([
       {
@@ -145,7 +153,7 @@ describe('Users page', () => {
         engine: database.EngineEnum.m3db,
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     vi.mocked(usersApi.getUsers).mockResolvedValue([
       {
@@ -170,7 +178,7 @@ describe('Users page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Users />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.queryByTestId('users-add-button')).toBeInTheDocument();
@@ -183,7 +191,7 @@ describe('Users page', () => {
         capabilities: {},
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Users />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.queryByTestId('users-add-button')).toBeNull();
@@ -200,7 +208,7 @@ describe('Users page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Users />, { wrapper: RouterWithQueryClientWrapper });
     const addButton = screen.queryByTestId('users-add-button');
@@ -241,149 +249,27 @@ describe('Open modals', () => {
   });
 
   it('shows add user modal', async () => {
-    await openButtonInMenu('user-action-delete-button');
+    await openButtonInMenu('users-add-button');
     await waitFor(() => {
-      expect(screen.getByTestId('delete-user-modal')).toBeInTheDocument();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./add');
     });
   });
-  it('closes add user modal', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('users-add-button'));
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('add-edit-user-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('add-edit-user-cancel-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('add-edit-user-modal'),
-      ).not.toBeInTheDocument();
-    });
-  });
-  it('refetch data on add user success', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('users-add-button'));
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('add-edit-user-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.change(screen.getByTestId('add-edit-username-input'), {
-        target: {
-          value: 'newUser',
-        },
-      });
-      fireEvent.click(screen.getByTestId('add-edit-user-submit-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('add-edit-user-modal'),
-      ).not.toBeInTheDocument();
-      expect(usersApi.getUsers).toHaveBeenCalled();
-    });
-  });
-
-  it('shows delete user modal', async () => {
-    await openButtonInMenu('user-action-delete-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('delete-user-modal')).toBeInTheDocument();
-    });
-  });
-  it('closes delete user modal', async () => {
-    await openButtonInMenu('user-action-delete-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('delete-user-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('delete-user-cancel-button'));
-    });
-    await waitFor(() => {
-      expect(screen.queryByTestId('delete-user-modal')).not.toBeInTheDocument();
-    });
-  });
-  it('refetch data on delete user success', async () => {
-    const mockedServiceData = vi
-      .mocked(ServiceContext.useServiceData)
-      .getMockImplementation();
-    mockedServiceData().serviceQuery.refetch = vi.fn();
-    await openButtonInMenu('user-action-delete-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('delete-user-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('delete-user-submit-button'));
-    });
-    await waitFor(() => {
-      expect(screen.queryByTestId('delete-user-modal')).not.toBeInTheDocument();
-      expect(mockedServiceData().serviceQuery.refetch).toHaveBeenCalled();
-    });
-  });
-
   it('shows edit user modal', async () => {
     await openButtonInMenu('user-action-edit-button');
     await waitFor(() => {
-      expect(screen.getByTestId('add-edit-user-modal')).toBeInTheDocument();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./edit/userId');
     });
   });
-  it('closes edit user modal', async () => {
-    await openButtonInMenu('user-action-edit-button');
+  it('shows delete user modal', async () => {
+    await openButtonInMenu('user-action-delete-button');
     await waitFor(() => {
-      expect(screen.getByTestId('add-edit-user-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('add-edit-user-cancel-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('add-edit-user-modal'),
-      ).not.toBeInTheDocument();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete/userId');
     });
   });
-  it('refetch data on edit user success', async () => {
-    const mockedServiceData = vi
-      .mocked(ServiceContext.useServiceData)
-      .getMockImplementation();
-    mockedServiceData().serviceQuery.refetch = vi.fn();
-    await openButtonInMenu('user-action-edit-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('add-edit-user-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('add-edit-user-submit-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('add-edit-user-modal'),
-      ).not.toBeInTheDocument();
-      expect(mockedServiceData().serviceQuery.refetch).toHaveBeenCalled();
-    });
-  });
-
-  it('shows reset password user modal', async () => {
+  it('shows reset user password modal', async () => {
     await openButtonInMenu('user-action-reset-password-button');
     await waitFor(() => {
-      expect(screen.getByTestId('reset-password-modal')).toBeInTheDocument();
-    });
-  });
-  it('closes reset password user modal', async () => {
-    const mockedServiceData = vi
-      .mocked(ServiceContext.useServiceData)
-      .getMockImplementation();
-    mockedServiceData().serviceQuery.refetch = vi.fn();
-    await openButtonInMenu('user-action-reset-password-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('reset-password-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('reset-password-cancel-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('reset-password-modal'),
-      ).not.toBeInTheDocument();
-      expect(mockedServiceData().serviceQuery.refetch).toHaveBeenCalled();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./resetPassword/userId');
     });
   });
 });

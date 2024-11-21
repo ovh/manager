@@ -1,12 +1,17 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import {
+  render,
+  screen,
+  waitFor,
+  fireEvent,
+  act,
+} from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import { act } from 'react-dom/test-utils';
 import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
 import * as usersApi from '@/data/api/database/user.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import DeleteUser from '@/pages/services/[serviceId]/users/_components/DeleteUser.component';
+import DeleteUser from '@/pages/services/[serviceId]/users/delete/DeleteUser.modal';
 import { useToast } from '@/components/ui/use-toast';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { mockedDatabaseUser } from '@/__tests__/helpers/mocks/databaseUser';
@@ -14,6 +19,17 @@ import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 
 describe('Delete user modal', () => {
   beforeEach(() => {
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useParams: () => ({
+          projectId: 'projectId',
+          category: database.engine.CategoryEnum.all,
+          userId: mockedDatabaseUser.id,
+        }),
+      };
+    });
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({
         t: (key: string) => key,
@@ -69,44 +85,20 @@ describe('Delete user modal', () => {
       open: false,
       onOpenChange: vi.fn(),
     };
-    const { rerender } = render(
-      <DeleteUser
-        controller={controller}
-        service={mockedService}
-        user={mockedDatabaseUser}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+    const { rerender } = render(<DeleteUser />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
     await waitFor(() => {
       expect(screen.queryByTestId('delete-user-modal')).not.toBeInTheDocument();
     });
     controller.open = true;
-    rerender(
-      <DeleteUser
-        controller={controller}
-        service={mockedService}
-        user={mockedDatabaseUser}
-      />,
-    );
+    rerender(<DeleteUser />);
     await waitFor(() => {
       expect(screen.queryByTestId('delete-user-modal')).toBeInTheDocument();
     });
   });
   it('should delete a user on submit', async () => {
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
-    const onSuccess = vi.fn();
-    render(
-      <DeleteUser
-        controller={controller}
-        service={mockedService}
-        user={mockedDatabaseUser}
-        onSuccess={onSuccess}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+    render(<DeleteUser />, { wrapper: RouterWithQueryClientWrapper });
     act(() => {
       fireEvent.click(screen.getByTestId('delete-user-submit-button'));
     });
@@ -116,27 +108,13 @@ describe('Delete user modal', () => {
         title: 'deleteUserToastSuccessTitle',
         description: 'deleteUserToastSuccessDescription',
       });
-      expect(onSuccess).toHaveBeenCalled();
     });
   });
   it('should call onError when api failed', async () => {
-    const controller = {
-      open: true,
-      onOpenChange: vi.fn(),
-    };
-    const onError = vi.fn();
     vi.mocked(usersApi.deleteUser).mockImplementation(() => {
       throw apiErrorMock;
     });
-    render(
-      <DeleteUser
-        controller={controller}
-        service={mockedService}
-        user={mockedDatabaseUser}
-        onError={onError}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+    render(<DeleteUser />, { wrapper: RouterWithQueryClientWrapper });
     act(() => {
       fireEvent.click(screen.getByTestId('delete-user-submit-button'));
     });
@@ -147,7 +125,6 @@ describe('Delete user modal', () => {
         description: apiErrorMock.response.data.message,
         variant: 'destructive',
       });
-      expect(onError).toHaveBeenCalled();
     });
   });
 });
