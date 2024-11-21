@@ -4,6 +4,7 @@ export const BADGES_CLASS = {
   cancelling: 'info',
   checking: 'info',
   delivering: 'info',
+  toFinalize: 'info',
   documentsRequested: 'warning',
   unknown: 'warning',
   delivered: 'success',

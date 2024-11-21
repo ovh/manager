@@ -35,6 +35,7 @@ export default class BillingOrdersCtrl {
     this.goToOrderRetractation = goToOrderRetractation;
     this.updateFilterParam = updateFilterParam;
     this.allowOrderTracking = billingFeatureAvailability.allowOrderTracking();
+    this.BADGES_CLASS = BADGES_CLASS;
   }
 
   descriptionOfHeading() {
@@ -47,31 +48,26 @@ export default class BillingOrdersCtrl {
     const user = this.coreConfig.getUser();
     return this.OvhApiMeOrder.v6()
       .getStatus({ orderId: $row.orderId })
-      .$promise.then(({ status: apiStatus }) => {
-        // This code should be removed when API is ready (MANAGER-16109)
+      .$promise.then(({ status }) => {
+        // TODO: This code should be removed when API is ready (MANAGER-16109)
         // As the API does not differentiate not paid and not finalized orders, we are handle it on front side
         // As to impact as little as possible our current behavior we restrict the adaptation to Indian customer
         // with order not paid and not expired
         const isNeedingAdaptation =
           user.ovhSubsidiary === 'IN' &&
-          apiStatus === 'notPaid' &&
+          status === 'notPaid' &&
           moment($row.expirationDate || 0).isAfter(this.timeNow);
-        const status = {
-          badgeClass: BADGES_CLASS[apiStatus],
-          translationKey: `orders_order_status_${apiStatus}`,
-        };
+        let formattedStatus = status;
         if (isNeedingAdaptation) {
-          // If the customer has not yet finished his KYC, we will display a warning badge stating we are waiting for
-          // documents, otherwise we'll display an informative badge stating the order is waiting to be finalized
-          status.badgeClass = user.kycValidated ? 'info' : 'warning';
-          status.translationKey = user.kycValidated
-            ? 'orders_order_status_toFinalize'
-            : 'orders_order_status_documentsRequested';
+          // We override the api order's status with 'toFinalize' if the KYC procedure is done, 'documentsRequested' otherwise
+          formattedStatus = user.kycValidated
+            ? 'toFinalize'
+            : 'documentsRequested';
         }
         return {
           ...$row,
           canRetract: moment($row.retractionDate || 0).isAfter(this.timeNow),
-          status,
+          status: formattedStatus,
           canFinalize: isNeedingAdaptation && user.kycValidated,
         };
       });

@@ -54,16 +54,16 @@
                 target="_top"
             >
                 <span
-                    class="oui-badge oui-badge_{{ $value.badgeClass }}"
-                    data-ng-bind="$value.translationKey | translate"
+                    class="oui-badge oui-badge_{{ $ctrl.BADGES_CLASS[$value] }}"
+                    data-ng-bind="('orders_order_status_' + $value) | translate"
                 >
                 </span>
             </a>
 
             <span
-                class="oui-badge oui-badge_{{ $value.badgeClass }}"
+                class="oui-badge oui-badge_{{ $ctrl.BADGES_CLASS[$value] }}"
                 data-ng-if="!$ctrl.allowOrderTracking"
-                data-ng-bind="$value.translationKey | translate"
+                data-ng-bind="('orders_order_status_' + $value) | translate"
             >
             </span>
         </oui-datagrid-column>
