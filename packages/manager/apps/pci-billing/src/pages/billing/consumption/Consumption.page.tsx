@@ -45,7 +45,11 @@ export default function Consumption() {
   return (
     <>
       {isPending ? (
-        <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+        <OsdsSpinner
+          className="block text-center"
+          inline
+          size={ODS_SPINNER_SIZE.md}
+        />
       ) : (
         <>
           <OsdsText
