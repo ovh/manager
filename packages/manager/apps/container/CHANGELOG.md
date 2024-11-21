@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.87.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.4...@ovh-ux/manager-container-app@0.87.0) (2024-11-21)
+
+
+### Features
+
+* **account:** init account application ([#13133](https://github.com/ovh/manager/issues/13133)) ([1e19a4b](https://github.com/ovh/manager/commit/1e19a4b8a88b030b4821746fa03324ae765f37cf))
+
+
+
+
+
 ## [0.86.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.3...@ovh-ux/manager-container-app@0.86.4) (2024-11-21)
 
 
