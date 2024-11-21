@@ -1,3 +1,6 @@
 {
-  "guides_header_find_out_more": "Saber mais"
+  "guides_header_find_out_more": "Saber mais",
+  "guides_header_quick_start": "Primeiro passo com o OVHcloud KMS",
+  "guides_header_kms_usage": "Utilizar OVHcloud KMS",
+  "guides_header_connect_kmip_product": "Ligar um produto compatível com KMIP"
 }
