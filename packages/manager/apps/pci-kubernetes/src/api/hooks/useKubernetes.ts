@@ -38,7 +38,6 @@ import { getPrivateNetworkName } from '../data/network';
 import { useAllPrivateNetworks } from './useNetwork';
 import { mapPluginsFromArrayToObject } from '../data/plugins';
 
-
 export const getAllKubeQueryKey = (projectId: string) => [
   'project',
   projectId,
