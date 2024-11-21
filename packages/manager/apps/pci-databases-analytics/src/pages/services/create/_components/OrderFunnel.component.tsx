@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AlertCircle, ArrowRight } from 'lucide-react';
@@ -45,6 +45,8 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import OvhLink from '@/components/links/OvhLink.component';
 import { PlanCode } from '@/types/cloud/Project';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import { usePostTracking } from '@/hooks/api/tracking/usePostTracking.hook';
+import { useBeforeUnload } from '@/hooks/useBeforeUnload.hook';
 
 interface OrderFunnelProps {
   availabilities: database.Availability[];
@@ -65,6 +67,17 @@ const OrderFunnel = ({
     suggestions,
     catalog,
   );
+
+  // mutation to post the tracking
+  const { postTracking } = usePostTracking({
+    onError: (err) => {
+      console.log(err);
+    },
+    onSuccess: () => {
+      console.log('posted tracking');
+    },
+  });
+
   const projectData = usePciProject();
   const [showMonthlyPrice, setShowMonthlyPrice] = useState(false);
   const navigate = useNavigate();
@@ -82,8 +95,16 @@ const OrderFunnel = ({
       toast({
         title: t('successCreatingService'),
       });
+      // setEnabled(true);
       navigate(`../${service.id}`);
     },
+  });
+  const { BeforeUnloadDialog, setEnabled } = useBeforeUnload({
+    onUnload: useCallback(() => {
+      postTracking(
+        `${model.result.engine?.name}-${model.result.plan?.name}-${model.result.region?.name}-${model.result.flavor?.name}`,
+      );
+    }, [model]),
   });
 
   const isProjectDiscoveryMode =
@@ -147,6 +168,7 @@ const OrderFunnel = ({
 
   return (
     <>
+      {BeforeUnloadDialog}
       {isProjectDiscoveryMode && (
         <Alert variant="warning">
           <AlertDescription className="text-base">
