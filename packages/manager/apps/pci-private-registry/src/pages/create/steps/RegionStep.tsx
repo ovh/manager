@@ -93,6 +93,8 @@ export default function RegionStep({
         label: tCommonField('common_stepper_next_button_label'),
         isDisabled: !store.state.region,
       }}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       cancel={{
         action: () => {
           tracking?.trackClick({
