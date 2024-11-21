@@ -2,5 +2,7 @@
   "zimbra_auto_replies_name": "Nombre",
   "zimbra_auto_replies_from": "Desde",
   "zimbra_auto_replies_until": "Hasta el",
-  "zimbra_auto_replies_copyTo": "Copiar en"
+  "zimbra_auto_replies_copyTo": "Copiar en",
+  "zimbra_auto_replies_add_cta": "Crear un contestador",
+  "zimbra_auto_replies_account_title": "Gestión de los contestadores"
 }

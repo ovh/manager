@@ -52,5 +52,10 @@
   "zimbra_dashboard_redirections_edit": "Modificar o reencaminhamento",
   "zimbra_dashboard_redirections_delete": "Eliminar o reencaminhamento",
   "zimbra_dashboard_auto_replies": "Respostas automáticas",
-  "zimbra_dashboard_auto_replies_delete": "Eliminar uma resposta automática"
+  "zimbra_dashboard_auto_replies_delete": "Eliminar uma resposta automática",
+  "zimbra_dashboard_email_accounts_auto_replies": "Resposta automática",
+  "zimbra_dashboard_email_accounts_auto_replies_add": "Criar uma resposta automática",
+  "zimbra_dashboard_email_accounts_auto_replies_delete": "Eliminar uma resposta automática",
+  "zimbra_dashboard_redirections_add": "Criar um reencaminhamento",
+  "zimbra_dashboard_auto_replies_add": "Criar uma resposta automática"
 }
