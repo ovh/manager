@@ -1608,10 +1608,12 @@ export default class Exchange {
                 organization,
                 serviceName,
                 account.primaryEmailAddress,
+                'account',
+                0,
                 this.aliasMaxLimit,
-              ).then((aliases) => {
-                angular.forEach(aliases.list.results, (alias) => {
-                  account.aliases.push(alias.displayName);
+              ).then(({ data: aliases }) => {
+                angular.forEach(aliases, (alias) => {
+                  account.aliases.push(alias.alias);
                 });
               }),
             );
