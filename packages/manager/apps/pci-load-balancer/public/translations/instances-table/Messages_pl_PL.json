@@ -1,0 +1,18 @@
+{
+  "octavia_load_balancer_add_listener": "Dodaj listener",
+  "octavia_load_balancer_instances_table_listener": "Listener",
+  "octavia_load_balancer_instances_table_pools": "Poole/Instancje",
+  "octavia_load_balancer_instances_table_protocol_label": "Wybierz protokół",
+  "octavia_load_balancer_instances_table_protocol_tooltip": "Protokół, dla którego front-end nasłuchuje.",
+  "octavia_load_balancer_instances_table_listener_delete": "Usuń listener",
+  "octavia_load_balancer_instances_table_port_label": "Port",
+  "octavia_load_balancer_instances_table_port_tooltip": "Numer portu, na którym nasłuchuje front-end, musi być zawarty między 1 i 65535.",
+  "octavia_load_balancer_instances_table_health_monitor_label": "Wybierz health monitor",
+  "octavia_load_balancer_instances_table_health_monitor_tooltip": "Sposób, w jaki Load Balancer sprawdzi stan Twojej usługi back-end.",
+  "octavia_load_balancer_instances_table_health_monitor_delete": "Usuń health monitor",
+  "octavia_load_balancer_instances_table_health_monitor_empty": "Brak health monitora",
+  "octavia_load_balancer_instances_table_pools_tooltip": "Pule i powiązane z nimi instancje, do których jest przekierowywany ruch.",
+  "octavia_load_balancer_instances_table_pools_search_instance": "Wyszukaj instancję",
+  "octavia_load_balancer_instances_table_instance_add": "Dodaj instancję",
+  "octavia_load_balancer_instances_table_instance_delete": "Usuń instancję"
+}

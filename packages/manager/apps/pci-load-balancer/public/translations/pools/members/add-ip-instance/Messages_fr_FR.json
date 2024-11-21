@@ -1,0 +1,16 @@
+{
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_banner": "Tout changement d'IP d'une instance après la configuration devra être répercuté manuellement dans la configuration du Pool.",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_action": "Continuer",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_description": "Cette table contient les instances de votre projet Public Cloud. En les choisissant, leurs IPs seront configurées comme membre.",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_port_title": "Ajouter les ports de vos IPs d'instances",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_search_not_found": "Aucune instance trouvée",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_search_placeholder": "Rechercher une instance",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_name_label": "Nom",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_ip_label": "IP",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_port_label": "Port",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_duplicate_port_label": "Dupliquer ce port sur tous les membres",
+  "octavia_load_balancer_pools_detail_members_protocol_port_existing": "Cette adresse IP est déjà associée à ce port, veuillez choisir un autre port.",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_add_action": "Valider",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_cancel_action": "Annuler",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_aria_label_close": "Fermer"
+}

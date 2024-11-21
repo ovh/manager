@@ -1,0 +1,22 @@
+{
+  "octavia_load_balancer_listeners_title": "Listeners",
+  "octavia_load_balancer_listeners_description_part_1": "Cada Load Balancer recibe tráfico en uno o varios listeners. Cada listener se configura con una combinación puerto-protocolo única.",
+  "octavia_load_balancer_listeners_description_part_2": "Esta interfaz muestra las opciones más utilizadas. Dispone de otras opciones a través de Horizon. ",
+  "octavia_load_balancer_listeners_description_part_2_link": "Descubra las opciones disponibles",
+  "octavia_load_balancer_listeners_add_button": "Añadir un listener",
+  "octavia_load_balancer_listeners_name": "Nombre",
+  "octavia_load_balancer_listeners_default_pool": "Pool por defecto",
+  "octavia_load_balancer_listeners_default_pool_helper": "El pool por defecto se utiliza para el balanceo de la carga L3/L4",
+  "octavia_load_balancer_listeners_protocol": "Protocolo",
+  "octavia_load_balancer_listeners_protocol_helper": "Protocolo utilizado por el front-end para escuchar las conexiones.",
+  "octavia_load_balancer_listeners_certificate": "Certificado",
+  "octavia_load_balancer_listeners_port": "Puerto",
+  "octavia_load_balancer_listeners_port_helper": "Puerto en el que el front-end escucha. El puerto debe estar comprendido entre 1 y 65535.",
+  "octavia_load_balancer_listeners_actions_detail": "Editar",
+  "octavia_load_balancer_listeners_actions_delete": "Eliminar",
+  "octavia_load_balancer_listeners_create_success": "El nuevo listener {{ listener }} se ha creado correctamente.",
+  "octavia_load_balancer_listeners_edit_success": "El listener {{ listener }} se ha actualizado correctamente.",
+  "octavia_load_balancer_listener_delete_success": "El listener {{ listener }} se ha eliminado correctamente.",
+  "octavia_load_balancer_listeners_actions_policies": "Ver las L7 policies",
+  "octavia_load_balancer_listeners_policies_unavailable": "La gestión de las L7 policies solo está disponible para los listeners que utilizan los protocolos 'HTTP' y 'TERMINATED HTTPS'"
+}

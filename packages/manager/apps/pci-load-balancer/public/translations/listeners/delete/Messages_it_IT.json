@@ -1,0 +1,6 @@
+{
+  "octavia_load_balancer_listener_delete_title": "Elimina un listener",
+  "octavia_load_balancer_listener_delete_description": "Stai per eliminare definitivamente \"{{listener}}\" con la sua configurazione.",
+  "octavia_load_balancer_listener_delete_cancel": "Annullare",
+  "octavia_load_balancer_listener_delete_confirm": "Elimina"
+}

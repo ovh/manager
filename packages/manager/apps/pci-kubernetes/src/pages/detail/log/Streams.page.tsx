@@ -1,10 +1,9 @@
-import { useHref } from 'react-router-dom';
+import { useHref, useParams } from 'react-router-dom';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
-  ODS_SPINNER_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -13,35 +12,31 @@ import {
   OsdsButton,
   OsdsIcon,
   OsdsLink,
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useLogs } from '@/api/hooks/useDbaasLogs';
-import { StreamsList } from './components/StreamsList.component';
-import { TDbaasLog } from '@/api/data/dbaas-logs';
+import {
+  DbaasLogsAccountSelector,
+  StreamsList,
+  TDbaasLog,
+} from '@ovh-ux/manager-pci-common';
 import { LOG_LIST_TRACKING_HITS } from './constants';
+import { KubeLogsProvider } from './KubeLogsProvider';
 
 export default function StreamsPage() {
+  const { kubeId, projectId } = useParams();
   const { t } = useTranslation('logs');
   const { t: tCommon } = useTranslation('common');
   const { navigation, tracking } = useContext(ShellContext).shell;
   const backHref = useHref('../logs');
   const { clearNotifications } = useNotifications();
   const [account, setAccount] = useState<TDbaasLog>();
-  const { data: dbaasLogs, isPending } = useLogs();
-
-  useEffect(() => {
-    setAccount(dbaasLogs?.[0]);
-  }, [dbaasLogs]);
 
   const gotoAddDataStream = async () =>
     navigation
@@ -52,15 +47,8 @@ export default function StreamsPage() {
       )
       .then((url: string) => window.open(url, '_blank'));
 
-  if (isPending)
-    return (
-      <div className="text-center">
-        <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-      </div>
-    );
-
   return (
-    <>
+    <KubeLogsProvider kubeId={kubeId} projectId={projectId}>
       <Notifications />
       <div className="mb-6">
         <OsdsLink
@@ -124,34 +112,16 @@ export default function StreamsPage() {
         {t('logs_list_add_data_stream_button')}
       </OsdsButton>
 
-      {dbaasLogs?.length && (
-        <div className="mt-8">
-          <OsdsSelect
-            className="w-[20rem]"
-            value={account?.serviceName}
-            onOdsValueChange={(event) =>
-              setAccount(
-                dbaasLogs.find(
-                  ({ serviceName }) => serviceName === `${event.detail.value}`,
-                ),
-              )
-            }
-            inline
-          >
-            {dbaasLogs.map((log) => (
-              <OsdsSelectOption value={log.serviceName} key={log.serviceName}>
-                {log.displayName || log.serviceName}
-              </OsdsSelectOption>
-            ))}
-          </OsdsSelect>
-        </div>
-      )}
+      <DbaasLogsAccountSelector
+        account={account}
+        onAccountChange={setAccount}
+      />
 
       {account && (
         <div className="mt-4">
-          <StreamsList account={account} />
+          <StreamsList account={account} serviceName={kubeId} />
         </div>
       )}
-    </>
+    </KubeLogsProvider>
   );
 }

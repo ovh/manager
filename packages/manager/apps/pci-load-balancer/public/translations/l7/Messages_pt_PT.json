@@ -1,0 +1,16 @@
+{
+  "octavia_load_balancer_list_l7_policies_title": "L7 Policies",
+  "octavia_load_balancer_list_l7_policies_description": "As L7 Policies descrevem as ações executadas pelo Load Balancer se todas as regras da Policy tiverem o valor de «True». Assim, é realizada a lógica da distribuição de carga da camada 7 (aplicação)",
+  "octavia_load_balancer_list_l7_policies_add_button": "Adicionar uma L7 policy",
+  "octavia_load_balancer_list_l7_policies_position": "Posição",
+  "octavia_load_balancer_list_l7_policies_name": "Nome",
+  "octavia_load_balancer_list_l7_policies_action": "Ação",
+  "octavia_load_balancer_list_l7_policies_attribute": "Atributo",
+  "octavia_load_balancer_list_l7_policies_redirect_code": "Código de reencaminhamento",
+  "octavia_load_balancer_list_l7_policies_actions_edit": "Editar",
+  "octavia_load_balancer_list_l7_policies_actions_manage_rules": "Gerir as L7 Rules",
+  "octavia_load_balancer_list_l7_policies_actions_delete": "Eliminar",
+  "octavia_load_balancer_create_l7_policy_success": "A sua L7 policy {{ policy }} foi criada com sucesso. Já pode criar uma <a href=\"{{ link }}\">L7 Rule</a>.",
+  "octavia_load_balancer_edit_l7_policy_success": "A sua L7 policy {{ policy }} foi modificada com sucesso.",
+  "octavia_load_balancer_list_l7_policies_delete_success": "A sua L7 policy {{policy}} foi eliminada com sucesso!"
+}
