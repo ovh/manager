@@ -16,10 +16,10 @@ export interface RouteHandle {
   tracking?: string;
 }
 
-export const ROUTE_PATHS = {
+const ROUTE_PATHS = {
   root: '/pci/projects/:projectId/private-networks',
   onboarding: 'onboarding',
-  globalRegions: '',
+  listing: '',
   localZone: 'localZone',
   delete: 'delete',
   new: 'new',
@@ -27,49 +27,39 @@ export const ROUTE_PATHS = {
 
 export default [
   {
-    path: '/',
-    ...lazyRouteConfig(() => import('@/pages/Layout')),
-  },
-  {
-    id: 'private-networks',
     path: ROUTE_PATHS.root,
     loader: async ({ params }) =>
       queryClient.fetchQuery(getProjectQuery(params.projectId)),
     ...lazyRouteConfig(() => import('@/pages/Layout')),
     children: [
       {
-        path: ROUTE_PATHS.globalRegions,
-        handle: {
-          tracking: 'globalRegions',
-        },
-        ...lazyRouteConfig(() => import('@/pages/list/List.page')),
+        path: ROUTE_PATHS.listing,
+        ...lazyRouteConfig(() =>
+          import('@/pages/listing/ListingLayout.component'),
+        ),
         children: [
           {
-            path: ROUTE_PATHS.delete,
+            path: '',
             ...lazyRouteConfig(() =>
-              import('@/pages/delete/DeleteNetwork.page'),
+              import('@/pages/listing/region/PrivateNetworkRegion.page'),
             ),
-            handle: {
-              tracking: 'delete',
-            },
           },
-        ],
-      },
-      {
-        path: ROUTE_PATHS.localZone,
-        handle: {
-          tracking: 'localZone',
-        },
-        ...lazyRouteConfig(() => import('@/pages/list/List.page')),
-        children: [
           {
-            path: ROUTE_PATHS.delete,
+            path: ROUTE_PATHS.localZone,
             ...lazyRouteConfig(() =>
-              import('@/pages/delete/DeleteNetwork.page'),
+              import('@/pages/listing/localZone/PrivateNetworkLZ.page'),
             ),
-            handle: {
-              tracking: 'delete',
-            },
+            children: [
+              {
+                path: ROUTE_PATHS.delete,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/delete/DeleteNetwork.page'),
+                ),
+                handle: {
+                  tracking: 'delete',
+                },
+              },
+            ],
           },
         ],
       },
