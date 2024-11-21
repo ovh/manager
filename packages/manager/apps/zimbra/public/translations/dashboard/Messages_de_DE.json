@@ -57,5 +57,6 @@
   "zimbra_dashboard_email_accounts_auto_replies_add": "Eine Auto-Antwort erstellen",
   "zimbra_dashboard_email_accounts_auto_replies_delete": "Eine Auto-Antwort löschen",
   "zimbra_dashboard_redirections_add": "Weiterleitung erstellen",
-  "zimbra_dashboard_auto_replies_add": "Eine Auto-Antwort erstellen"
+  "zimbra_dashboard_auto_replies_add": "Eine Auto-Antwort erstellen",
+  "zimbra_dashboard_email_accounts_order": "E-Mail Accounts bestellen"
 }

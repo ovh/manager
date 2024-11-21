@@ -11,4 +11,5 @@ export * from './useOverridePage';
 export * from './usePlatform';
 export * from './useAccount';
 export * from './useTasks';
+export * from './useOrderCatalog';
 export * from './types';

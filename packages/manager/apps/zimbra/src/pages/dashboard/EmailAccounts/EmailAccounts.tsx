@@ -47,6 +47,7 @@ import {
   convertOctets,
   DATAGRID_REFRESH_INTERVAL,
   DATAGRID_REFRESH_ON_MOUNT,
+  FEATURE_FLAGS,
 } from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import Loading from '@/components/Loading/Loading';
@@ -163,6 +164,7 @@ export default function EmailAccounts() {
   const webmailUrl = guidesConstants.GUIDES_LIST.webmail.url;
 
   const hrefAddEmailAccount = useGenerateUrl('./add', 'href');
+  const hrefOrderEmailAccount = useGenerateUrl('./order', 'href');
 
   return (
     <div className="py-6 mt-8">
@@ -217,35 +219,16 @@ export default function EmailAccounts() {
               </ManagerText>
             </div>
           </div>
-          {(data?.length > 0 || dataDomains?.length > 0) && (
-            <ManagerButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              inline
-              size={ODS_BUTTON_SIZE.sm}
-              urn={platformUrn}
-              iamActions={[IAM_ACTIONS.account.create]}
-              href={hrefAddEmailAccount}
-              data-testid="add-account-btn"
-              className="mb-6"
-            >
-              <span slot="start">
-                <OsdsIcon
-                  name={ODS_ICON_NAME.PLUS}
-                  size={ODS_ICON_SIZE.sm}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  contrasted
-                ></OsdsIcon>
-              </span>
-              <span slot="end">{t('zimbra_account_account_add')}</span>
-            </ManagerButton>
-          )}
-          {dataDomains?.length === 0 && (
-            <OsdsTooltip className="mb-6">
-              <OsdsButton
+          <div className="flex gap-4 mb-8">
+            {(data?.length > 0 || dataDomains?.length > 0) && (
+              <ManagerButton
                 color={ODS_THEME_COLOR_INTENT.primary}
                 inline
                 size={ODS_BUTTON_SIZE.sm}
-                disabled
+                urn={platformUrn}
+                iamActions={[IAM_ACTIONS.account.create]}
+                href={hrefAddEmailAccount}
+                data-testid="add-account-btn"
               >
                 <span slot="start">
                   <OsdsIcon
@@ -256,18 +239,49 @@ export default function EmailAccounts() {
                   ></OsdsIcon>
                 </span>
                 <span slot="end">{t('zimbra_account_account_add')}</span>
-              </OsdsButton>
-              <OsdsTooltipContent slot="tooltip-content">
-                <OsdsText
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+              </ManagerButton>
+            )}
+            {dataDomains?.length === 0 && (
+              <OsdsTooltip className="mb-6">
+                <OsdsButton
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  inline
+                  size={ODS_BUTTON_SIZE.sm}
+                  disabled
                 >
-                  {t('zimbra_domains_tooltip_need_domain')}
-                </OsdsText>
-              </OsdsTooltipContent>
-            </OsdsTooltip>
-          )}
+                  <span slot="start">
+                    <OsdsIcon
+                      name={ODS_ICON_NAME.PLUS}
+                      size={ODS_ICON_SIZE.sm}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                      contrasted
+                    ></OsdsIcon>
+                  </span>
+                  <span slot="end">{t('zimbra_account_account_add')}</span>
+                </OsdsButton>
+                <OsdsTooltipContent slot="tooltip-content">
+                  <OsdsText
+                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                    size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+                  >
+                    {t('zimbra_domains_tooltip_need_domain')}
+                  </OsdsText>
+                </OsdsTooltipContent>
+              </OsdsTooltip>
+            )}
+            {FEATURE_FLAGS.ORDER && (
+              <OsdsButton
+                color={ODS_THEME_COLOR_INTENT.primary}
+                inline
+                size={ODS_BUTTON_SIZE.sm}
+                href={hrefOrderEmailAccount}
+                data-testid="order-account-btn"
+              >
+                {t('zimbra_account_account_order')}
+              </OsdsButton>
+            )}
+          </div>
           {isLoading ? (
             <Loading />
           ) : (

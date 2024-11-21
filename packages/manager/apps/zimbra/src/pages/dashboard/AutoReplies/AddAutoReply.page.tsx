@@ -108,6 +108,7 @@ export default function AddAutoReply() {
         value: '',
         touched: false,
         required: true,
+        validate: ACCOUNT_REGEX,
       },
       domain: {
         value: '',
@@ -216,12 +217,7 @@ export default function AddAutoReply() {
       ...form[name],
       value,
       touched: true,
-      hasError: !checkValidityField(
-        name,
-        value,
-        { account: ACCOUNT_REGEX },
-        form,
-      ),
+      hasError: !checkValidityField(name, value, form),
     };
     if (name === 'sendCopy') {
       newForm.sendCopyTo.required = !!newForm.sendCopy.value;

@@ -48,11 +48,12 @@ import {
   getZimbraPlatformMailingListsQueryKey,
 } from '@/api/mailinglist';
 import { DomainType } from '@/api/domain';
-import { formInputRegex } from './mailingList.constants';
 import {
+  ACCOUNT_REGEX,
   checkValidityField,
   checkValidityForm,
   FormTypeInterface,
+  OWNER_REGEX,
 } from '@/utils';
 import queryClient from '@/queryClient';
 
@@ -119,6 +120,7 @@ export default function MailingListSettings({
         value: '',
         touched: false,
         required: true,
+        validate: ACCOUNT_REGEX,
       },
       domain: {
         value: '',
@@ -134,6 +136,7 @@ export default function MailingListSettings({
         value: '',
         touched: false,
         required: true,
+        validate: OWNER_REGEX,
       },
       language: {
         value: '',
@@ -202,7 +205,7 @@ export default function MailingListSettings({
       ...form[name],
       value,
       touched: true,
-      hasError: !checkValidityField(name, value, formInputRegex, form),
+      hasError: !checkValidityField(name, value, form),
     };
     setForm((oldForm) => ({ ...oldForm, ...newForm }));
     setIsFormValid(checkValidityForm(form));
@@ -429,6 +432,7 @@ export default function MailingListSettings({
                 <OsdsRadioButton
                   color={ODS_THEME_COLOR_INTENT.primary}
                   size={ODS_RADIO_BUTTON_SIZE.sm}
+                  data-testid={value}
                 >
                   <span slot="end">
                     <OsdsText
@@ -505,6 +509,7 @@ export default function MailingListSettings({
                 <OsdsRadioButton
                   color={ODS_THEME_COLOR_INTENT.primary}
                   size={ODS_RADIO_BUTTON_SIZE.sm}
+                  data-testid={value}
                 >
                   <span slot="end">
                     <OsdsText
