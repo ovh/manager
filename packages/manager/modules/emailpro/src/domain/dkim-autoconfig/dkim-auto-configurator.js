@@ -14,10 +14,11 @@ export default class DkimAutoConfigurator {
     this.showConfiguratingBtn = true;
   }
 
-  async getSelectorNameForNoOvhCloud() {
+  getSelectorNameForNoOvhCloud() {
     if (!this.dkimSelectorsNoDomain) {
-      return;
+      return false;
     }
+    this.loading = true;
     const promises = this.dkimSelectorsNoDomain.map((dkimSelector) => {
       return this.services.EmailProDomains.getDkimSelectorName(
         this.services.$stateParams.productId,
@@ -26,55 +27,90 @@ export default class DkimAutoConfigurator {
       );
     });
 
-    const [selector1NoDomain, selector2NoDomain] = await this.services.$q.all(
-      promises,
-    );
-    this.selector1NoDomain = selector1NoDomain;
-    this.selector1NameInfos = this.getDkimName(1);
-    this.selector1RecordInfos = this.getDkimRecord(1);
-    this.selector2NoDomain = selector2NoDomain;
-    this.selector2NameInfos = this.getDkimName(2);
-    this.selector2RecordInfos = this.getDkimRecord(2);
+    return this.services.$q
+      .all(promises)
+      .then((data) => {
+        const [selector1NoDomain, selector2NoDomain] = data;
+        this.selector1NoDomain = selector1NoDomain;
+        this.selector1NameInfos = this.getDkimName(1);
+        this.selector1RecordInfos = this.getDkimRecord(1);
+        this.selector2NoDomain = selector2NoDomain;
+        this.selector2NameInfos = this.getDkimName(2);
+        this.selector2RecordInfos = this.getDkimRecord(2);
+        this.loading = false;
+        return data;
+      })
+      .catch(() => []);
   }
 
   async loadDataForDkim() {
     this.showConfiguratingBtn = false;
     this.loading = true;
-    this.dkimSelectorsNoDomain = await this.getDkimSelectorForCurrentState();
-    await this.configureDkim();
-    this.isStepConfigureValid = true;
-    this.loading = false;
-  }
-
-  getDkimSelector() {
-    return this.getDkimSelectorForCurrentState().then((dkimSelectors) => {
-      this.dkimSelectorsNoDomain = dkimSelectors;
+    if (!this.isMXPlan) {
+      this.dkimSelectorsNoDomain = await this.getDkimSelectorForCurrentState();
+    }
+    this.configureDkim().then(() => {
+      if (!this.isMXPlan) {
+        return this.activationSelectorsStatus();
+      }
+      this.isStepConfigureValid = true;
+      this.loading = false;
+      return null;
     });
   }
 
+  getDkimSelector() {
+    return this.isMXPlan
+      ? null
+      : this.getDkimSelectorForCurrentState()
+          .then((dkimSelectors) => {
+            this.dkimSelectorsNoDomain = dkimSelectors;
+          })
+          .catch(({ data }) => {
+            this.writeError('emailpro_tab_domain_diagnostic_dkim_error', data);
+          });
+  }
+
   leaveDkimConfigurator(reload = false) {
-    this.services.navigation.resetAction();
+    this.services.$scope.resetAction();
     this.initializeDkimConfiguratorNoOvh();
     this.services.$state.go(
-      'email-pro.dashboard.domain',
-      {},
-      reload ? { reload: 'email-pro.dashboard.domain' } : null,
+      this.services.$state.current.name,
+      { productId: this.services.$stateParams.productId },
+      reload ? { reload: this.services.$state.current.name } : null,
     );
   }
 
   configureDkim() {
-    const promises = this.postDkim(this.dkimSelectorsNoDomain);
-    return this.services.$q
-      .all(promises)
-      .then(() => {
-        this.writeSuccess(
-          `${this.serviceType}_tab_domain_diagnostic_dkim_activation_success`,
-        );
-      })
-      .catch(() => {
+    if (!this.isMXPlan || this.dkimMXplanSelectors.length === 0) {
+      const promises =
+        this.isMXPlan && this.dkimMXplanSelectors.length === 0
+          ? this.services.EmailProDomains.enableDkimForMXplan(this.domain.name)
+          : this.postDkim(this.dkimSelectorsNoDomain);
+      return this.services.$q.all(promises).catch(({ data }) => {
         this.leaveDkimConfigurator();
-        this.writeError(`${this.serviceType}_tab_domain_diagnostic_dkim_error`);
+        return this.writeError(
+          `${this.serviceType}_tab_domain_diagnostic_dkim_error`,
+          data,
+        );
       });
+    }
+    return this.services.$q.resolve();
+  }
+
+  activationSelectorsStatus() {
+    if (
+      this.dkimSelectorsNoDomain &&
+      (!this.selector1NoDomain || !this.selector2NoDomain)
+    ) {
+      setTimeout(async () => {
+        await this.getSelectorNameForNoOvhCloud();
+        return this.activationSelectorsStatus();
+      }, 5000);
+      return false;
+    }
+    this.isStepConfigureValid = true;
+    return this.services.$q.resolve();
   }
 
   getTitleDkimConfigurator() {
@@ -88,15 +124,28 @@ export default class DkimAutoConfigurator {
   }
 
   initContext() {
-    return this.getSelectorNameForNoOvhCloud();
+    if (this.isMXPlan) {
+      this.selector1NoDomain = {
+        customerRecord: this.dkimMXplanSelectors[0].selectorName,
+        targetRecord: this.dkimMXplanSelectors[0].cname,
+      };
+      this.selector1RecordInfos = this.getDkimRecord(1);
+      this.selector2NoDomain = {
+        customerRecord: this.dkimMXplanSelectors[1].selectorName,
+        targetRecord: this.dkimMXplanSelectors[1].cname,
+      };
+      this.selector2RecordInfos = this.getDkimRecord(2);
+    } else {
+      this.getSelectorNameForNoOvhCloud();
+    }
   }
 
   getDkimName(index) {
     return [
       `<b>${this.services.$translate.instant(
-        `${this.serviceType}_tab_domain_diagnostic_dkim_name`,
-      )}`,
-      `${index}</b>: `,
+        `${this.serviceType}_tab_domain_diagnostic_dkim_subdomain`,
+        { value: index },
+      )}</b>: `,
       this[`selector${index}NoDomain`].customerRecord,
     ].join('');
   }
@@ -104,17 +153,23 @@ export default class DkimAutoConfigurator {
   getDkimRecord(index) {
     return [
       `<b>${this.services.$translate.instant(
-        `${this.serviceType}_tab_domain_diagnostic_dkim_target`,
-      )}`,
-      `${index}</b>: `,
+        `${this.serviceType}_tab_domain_diagnostic_dkim_${
+          this.isMXPlan ? 'cname' : 'target'
+        }`,
+        { value: index },
+      )}</b>: `,
       this[`selector${index}NoDomain`].targetRecord,
     ].join('');
   }
 
   hideConfirmButton() {
     return (
-      this.dkimStatus === this.DKIM_STATUS.TO_CONFIGURE &&
-      this.domainDiag.isOvhDomain
+      (!this.isMXPlan &&
+        ([this.DKIM_STATUS.TO_CONFIGURE, this.DKIM_STATUS.IN_PROGRESS].includes(
+          this.dkimStatus,
+        ) ||
+          this.dkimErrorMessage)) ||
+      (this.isMXPlan && [this.DKIM_STATUS.MODIFYING].includes(this.dkimStatus))
     );
   }
 

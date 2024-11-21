@@ -11,8 +11,10 @@ export const DKIM_STATUS = {
 
 export const DKIM_STATUS_TEXT = {
   [DKIM_STATUS.ACTIVE]: 'emailpro_tab_domain_diagnostic_dkim_deactivation',
+  [DKIM_STATUS.ENABLED]: 'emailpro_tab_domain_diagnostic_dkim_deactivation',
   [DKIM_STATUS.DISABLED]: 'emailpro_tab_domain_diagnostic_dkim_activation',
   [DKIM_STATUS.IN_PROGRESS]: 'emailpro_tab_domain_diagnostic_dkim_in_progress',
+  [DKIM_STATUS.MODIFYING]: 'emailpro_tab_domain_diagnostic_dkim_in_progress',
   [DKIM_STATUS.ERROR]: 'emailpro_tab_domain_diagnostic_dkim_configuration_nok',
 };
 
