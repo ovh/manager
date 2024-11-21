@@ -16,6 +16,7 @@ export interface GuideItem {
   target?: string;
   rel?: string;
   label: string;
+  onClick?: () => void;
 }
 
 export interface GuideButtonProps {
@@ -47,6 +48,7 @@ export const GuideButton: React.FC<GuideButtonProps> = ({ items }) => {
               rel={item.rel}
               type={LinkType.external}
               label={item.label}
+              onClickReturn={item.onClick}
             />
           </div>
         ))}

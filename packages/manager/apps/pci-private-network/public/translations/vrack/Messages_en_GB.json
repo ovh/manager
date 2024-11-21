@@ -6,7 +6,7 @@
   "pci_projects_project_network_private_vrack_create_choose": "Select an existing vRack",
   "pci_projects_project_network_private_vrack_create_action": "Create",
   "pci_projects_project_network_private_vrack_create_cancel": "Cancel",
-  "pci_projects_project_network_private_vrack_create_init_error": "An error has occurred loading the information {{ message }}",
-  "pci_projects_project_network_private_vrack_create_error": "An error has occurred enabling the vRack {{ message }}",
-  "pci_projects_project_network_private_vrack_pending": "Your vRack is being enabled. This operation may take several minutes."
+  "pci_projects_project_network_private_vrack_create_init_error": "An error has occurred loading information {{message}}",
+  "pci_projects_project_network_private_vrack_create_error": "An error has occurred enabling the vRack {{message}}",
+  "pci_projects_project_network_private_vrack_pending": "Your vRack is being enabled. This may take several minutes"
 }

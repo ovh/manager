@@ -160,7 +160,7 @@ $ yarn run build -p @ovh-ux/manager-telecom
 
 ## Related
 
-- [@ovh-ux/sao-ovh-manager-app](https://github.com/ovh/manager/blob/develop/packages/manager/tools/sao-ovh-manager-app/README.md) - Scaffolding tool for standalone applications.
+- [@ovh-ux/manager-generator](https://github.com/ovh/manager/blob/master/packages/manager/core/generator/README.md) - Generate standalone manager applications easily.
 
 ## All applications
 

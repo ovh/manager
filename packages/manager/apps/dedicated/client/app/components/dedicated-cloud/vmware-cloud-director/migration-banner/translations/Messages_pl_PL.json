@@ -1,3 +1,4 @@
 {
-  "dedicatedCloud_managed_vcd_migration_pending_warning": "Uwaga: trwa migracja - zmiany wprowadzone w usłudze nie zostaną uwzględnione"
+  "dedicatedCloud_managed_vcd_migration_pending_warning": "Uwaga: trwa migracja - zmiany wprowadzone w usłudze nie zostaną uwzględnione",
+  "dedicatedCloud_managed_vcd_migrated": "Rozwiązanie Hosted Private Cloud zostało migrowane lub trwa jego migracja do VMware Cloud Director. Ta strona umożliwia zarządzanie publicznymi blokami IP (zamówienie nowego bloku, ponowne przypisanie istniejącego bloku do innej usługi), które są aktualnie powiązane z usługą Hosted Private Cloud i połączone z usługą VMware Cloud Director. Sytuacja ta jest tymczasowa i ustanie, kiedy publiczne bloki IP zostaną automatycznie powiązane z Twoją usługą VMware Cloud Director."
 }
