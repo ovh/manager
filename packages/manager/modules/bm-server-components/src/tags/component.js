@@ -6,7 +6,6 @@ export default {
     server: '<',
     goToAssignTags: '<',
     goToUnassignTags: '<',
-    goToViewTagDetails: '<',
   },
   controller,
   template,
