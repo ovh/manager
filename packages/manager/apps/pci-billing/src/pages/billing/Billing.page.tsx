@@ -85,7 +85,7 @@ export default function BillingPage() {
         ]}
       />
 
-      <div className="header mb-6 mt-8">
+      <div className="header mt-8">
         <Headers
           title={t('cpbc_billing_control')}
           headerButton={<PciGuidesHeader category="instances" />}
@@ -98,7 +98,7 @@ export default function BillingPage() {
 
       <Notifications />
 
-      <div className="my-10">
+      <div className="mb-10">
         <TabsPanel tabs={tabs} />
       </div>
 
