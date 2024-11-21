@@ -55,5 +55,6 @@
   "server_configuration_installation_inputs_item_keyValue_add_tooltip": "Haga clic aquí para agregar un par clave-valor",
   "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Haga clic aquí para eliminar este par clave-valor",
   "dedicated_server_dashboard_region_unknown": "Información no disponible",
-  "dedicated_server_dashboard_zone_unknown": "Información no disponible"
+  "dedicated_server_dashboard_zone_unknown": "Información no disponible",
+  "server_configuration_installation_inputs_bad_hostname": "El «hostname» solo debe estar compuesto por números, letras, guiones y puntos según el formato establecido en la RFC 1035"
 }
