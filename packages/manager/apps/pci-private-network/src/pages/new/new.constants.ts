@@ -24,6 +24,7 @@ export const NEW_PRIVATE_NETWORK_FORM_SCHEMA = z.object({
     .max(VLAN_ID.max)
     .optional(),
   subnet: z.object({
+    name: z.string().min(1),
     cidr: z.string().refine((value) => {
       const [ip, mask] = value.split('/');
       return (

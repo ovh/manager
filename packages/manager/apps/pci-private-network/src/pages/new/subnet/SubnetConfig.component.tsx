@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import {
   OsdsFormField,
@@ -33,17 +32,52 @@ const SubnetConfig: React.FC = () => {
   } = useFormContext<NewPrivateNetworkForm>();
   const dhcp = watch('subnet.enableDhcp');
   const cidr = watch('subnet.cidr');
+  const subnetName = watch('subnet.name');
 
-  const cidrHasError = useMemo(() => touched?.cidr && !!error?.cidr, [
-    touched?.cidr,
-    error?.cidr,
-  ]);
+  const cidrHasError = touched?.cidr && !!error?.cidr;
+
+  const subnetHasError = touched?.name && !!error?.name;
 
   return (
     <div className="flex flex-col gap-6 my-8">
       <Subtitle>
         {t('new:pci_projects_project_network_private_create_subnet')}
       </Subtitle>
+      <OsdsFormField
+        data-testid="subnet-name-field"
+        error={subnetHasError ? t('common_field_error_required') : ''}
+      >
+        <OsdsText color={ODS_TEXT_COLOR_INTENT.text} slot="label">
+          {t('new:pci_projects_project_network_private_create_subnet_name')}
+        </OsdsText>
+
+        <OsdsInput
+          data-testid="subnet-name"
+          className="md:w-2/5"
+          type={ODS_INPUT_TYPE.text}
+          color={
+            subnetHasError
+              ? ODS_THEME_COLOR_INTENT.error
+              : ODS_THEME_COLOR_INTENT.primary
+          }
+          value={subnetName}
+          onOdsInputBlur={() => {
+            if (!subnetName) {
+              setValue('subnet.name', '', {
+                shouldValidate: true,
+                shouldTouch: true,
+              });
+            }
+          }}
+          onOdsValueChange={({ target }) =>
+            setValue('subnet.name', target.value as string, {
+              shouldValidate: true,
+              shouldTouch: true,
+            })
+          }
+          error={subnetHasError}
+        />
+      </OsdsFormField>
       <OsdsText
         level={ODS_TEXT_LEVEL.subheading}
         color={ODS_TEXT_COLOR_INTENT.primary}
