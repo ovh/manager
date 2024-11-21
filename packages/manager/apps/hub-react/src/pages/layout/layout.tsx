@@ -213,46 +213,35 @@ export default function Layout() {
                       {t('manager_hub_dashboard_overview')}
                     </OsdsText>
                   )}
-                  <div
-                    className={`flex flex-wrap ${isLoading ? 'mt-8' : '-mx-6'}`}
-                  >
-                    {isLoading && (
-                      <>
-                        <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
-                          <PaymentStatusSkeleton />
-                        </div>
-                        <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
-                          <BillingSummarySkeleton data-testid="billing_summary_skeleton" />
-                        </div>
-                        <div className="md:w-4/12 order-4 px-6 box-border">
-                          <OrderTrackingSkeleton data-testid="order_tracking_skeleton" />
-                        </div>
-                      </>
-                    )}
-                    {!isLoading && !isFreshCustomer && (
-                      <>
-                        <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
-                          <Suspense fallback={<PaymentStatusSkeleton />}>
-                            <PaymentStatus
-                              canManageBilling={availability?.[BILLING_FEATURE]}
-                            />
-                          </Suspense>
-                        </div>
-                        <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
-                          <Suspense
-                            fallback={
-                              <BillingSummarySkeleton data-testid="billing_summary_skeleton" />
-                            }
-                          >
-                            {user.enterprise ? (
-                              <EnterpriseBillingSummary />
-                            ) : (
-                              <BillingSummary />
-                            )}
-                          </Suspense>
-                        </div>
-                      </>
-                    )}
+                  <div className={`flex flex-wrap ${isLoading ? '' : '-mx-6'}`}>
+                    <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
+                      {isLoading && <PaymentStatusSkeleton />}
+                      {!isLoading && !isFreshCustomer && (
+                        <Suspense fallback={<PaymentStatusSkeleton />}>
+                          <PaymentStatus
+                            canManageBilling={availability?.[BILLING_FEATURE]}
+                          />
+                        </Suspense>
+                      )}
+                    </div>
+                    <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
+                      {isLoading && (
+                        <BillingSummarySkeleton data-testid="billing_summary_skeleton" />
+                      )}
+                      {!isLoading && !isFreshCustomer && (
+                        <Suspense
+                          fallback={
+                            <BillingSummarySkeleton data-testid="billing_summary_skeleton" />
+                          }
+                        >
+                          {user.enterprise ? (
+                            <EnterpriseBillingSummary />
+                          ) : (
+                            <BillingSummary />
+                          )}
+                        </Suspense>
+                      )}
+                    </div>
                     <div className="md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 px-6 box-border">
                       <Suspense
                         fallback={
@@ -262,8 +251,11 @@ export default function Layout() {
                         <HubSupport />
                       </Suspense>
                     </div>
-                    {!isLoading && !isFreshCustomer && (
-                      <div className="md:w-4/12 order-4 px-6 box-border">
+                    <div className="md:w-4/12 order-4 px-6 box-border">
+                      {isLoading && (
+                        <OrderTrackingSkeleton data-testid="order_tracking_skeleton" />
+                      )}
+                      {!isLoading && !isFreshCustomer && (
                         <Suspense
                           fallback={
                             <OrderTrackingSkeleton data-testid="order_tracking_skeleton" />
@@ -271,8 +263,8 @@ export default function Layout() {
                         >
                           <OrderTracking />
                         </Suspense>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                   <div className="hub-dashboard-product">
                     {isLoading && <TileGridSkeleton />}
