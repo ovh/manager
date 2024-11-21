@@ -24,6 +24,8 @@ export default defineConfig({
         'src/components/ui',
         'src/configuration',
         'src/**/*constants.ts',
+        'src/main.tsx',
+        'src/routes',
       ],
     },
   },
