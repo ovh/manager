@@ -85,29 +85,25 @@ const ListingLayout: React.FC = () => {
           className="block text-center"
         />
       ) : (
-        <>
-          <OsdsTabs panel={tab} onOdsTabsChanged={handleTabChange}>
-            <OsdsTabBar slot="top">
-              <OsdsTabBarItem
-                panel={PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME}
-                className="flex items-center justify-center"
-              >
-                {t(
-                  'pci_projects_project_network_private_global_regions_tab_label',
-                )}
-              </OsdsTabBarItem>
-              <OsdsTabBarItem
-                panel={PrivateNetworkTabName.LOCAL_ZONE_TAB_NAME}
-                className="flex items-center justify-center"
-              >
-                {t(
-                  'pci_projects_project_network_private_local_zones_tab_label',
-                )}
-              </OsdsTabBarItem>
-            </OsdsTabBar>
-            <Outlet />
-          </OsdsTabs>
-        </>
+        <OsdsTabs panel={tab} onOdsTabsChanged={handleTabChange}>
+          <OsdsTabBar slot="top">
+            <OsdsTabBarItem
+              panel={PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME}
+              className="flex items-center justify-center"
+            >
+              {t(
+                'pci_projects_project_network_private_global_regions_tab_label',
+              )}
+            </OsdsTabBarItem>
+            <OsdsTabBarItem
+              panel={PrivateNetworkTabName.LOCAL_ZONE_TAB_NAME}
+              className="flex items-center justify-center"
+            >
+              {t('pci_projects_project_network_private_local_zones_tab_label')}
+            </OsdsTabBarItem>
+          </OsdsTabBar>
+          <Outlet />
+        </OsdsTabs>
       )}
     </>
   );
