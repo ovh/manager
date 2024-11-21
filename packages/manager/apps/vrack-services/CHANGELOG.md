@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.9.3...@ovh-ux/manager-vrack-services-app@0.10.0) (2024-11-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 136] ([086d955](https://github.com/ovh/manager/commit/086d955faf533a110a4f17cf41b410b51bd2ca88))
+* **i18n:** add missing translations [CDS 3496] ([270dce4](https://github.com/ovh/manager/commit/270dce46b1a993448bfd5dedf8237e2c7fd3a456))
+* **vrack-services:** fix vrs / subnet modification ([#13978](https://github.com/ovh/manager/issues/13978)) ([88b1de9](https://github.com/ovh/manager/commit/88b1de94808705b132b8512619b57d69330f701d))
+
+
+### Features
+
+* **vrack-services:** add helper text for the limit ([8ce85ae](https://github.com/ovh/manager/commit/8ce85aedfab299465bdc5f4497e53a4f0cb7de81))
+* **vrack-services:** efs vrs content changes  ([#14196](https://github.com/ovh/manager/issues/14196)) ([c14431d](https://github.com/ovh/manager/commit/c14431d44e88422b5b4a17bf723cd2d5337b81de))
+* **vrack-services:** limit the vrack subnet ([1b99df0](https://github.com/ovh/manager/commit/1b99df091255c1ec4c5e733462af9b1b5485956d))
+* **vrack-services:** support api new region format changes ([b93ba0b](https://github.com/ovh/manager/commit/b93ba0b97a809752a823378e9ae720a073a1e0b8))
+
+
+
+
+
 ## [0.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.9.2...@ovh-ux/manager-vrack-services-app@0.9.3) (2024-11-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack-services-app

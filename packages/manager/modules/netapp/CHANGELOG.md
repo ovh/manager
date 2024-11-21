@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.0.1...@ovh-ux/manager-netapp@2.1.0) (2024-11-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 136] ([086d955](https://github.com/ovh/manager/commit/086d955faf533a110a4f17cf41b410b51bd2ca88))
+
+
+### Features
+
+* **netapp:** feature flipping for incompatiable banner ([2670d1c](https://github.com/ovh/manager/commit/2670d1cd94fa4b0b3d520f5b3025f1d59566b4d5))
+* **netapp:** move translation ([16f5685](https://github.com/ovh/manager/commit/16f5685e5e0ff60e28510dd918a1c4cf87093c9c))
+* **netapp:** region homoginization in dashbaord ([c1a8c78](https://github.com/ovh/manager/commit/c1a8c78c42ca48bbf415449065dab0c59981d92f))
+* **netapp:** region name homogenization in order page ([1bbc24d](https://github.com/ovh/manager/commit/1bbc24de545607b8b033ade6fe44a63ad226544e))
+* **netapp:** show info banner ([a20b58c](https://github.com/ovh/manager/commit/a20b58c9aa46bcc32da5b11a69aa431eda4a32e4))
+* **vrack-services:** efs vrs content changes  ([#14196](https://github.com/ovh/manager/issues/14196)) ([c14431d](https://github.com/ovh/manager/commit/c14431d44e88422b5b4a17bf723cd2d5337b81de))
+
+
+### Reverts
+
+* Revert "feat(netapp): feature flipping for incompatiable banner" ([485798d](https://github.com/ovh/manager/commit/485798dc0ae33fd2193015738ac0067d042f26d1))
+* Revert "feat(netapp): show info banner" ([6c6c343](https://github.com/ovh/manager/commit/6c6c343e0a7d9f8b1de5fe1bed19592acd9cb78a))
+
+
+
+
+
 ## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.0.0...@ovh-ux/manager-netapp@2.0.1) (2024-11-19)
 
 
