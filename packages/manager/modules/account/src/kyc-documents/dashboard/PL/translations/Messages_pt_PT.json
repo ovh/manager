@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_PL": "Uma cópia frente e verso do seu documento de identificação (bilhete de identidade nacional, passaporte).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_PL": "Um comprovativo de domicílio com menos de 3 meses, com o seu nome e o endereço indicado no seu perfil (extrato bancário, fatura de serviços públicos, etc.).",
+  "documents_dashboard_document_CORPORATE_ID_PL": "Extrato do registo de empresas, do registo de transações ou do registo fiscal de uma empresa associada ao endereço indicado no seu perfil com uma antiguidade inferior a 3 meses.",
+  "documents_dashboard_document_ADMINISTRATION_ID_PL": "Documento de registo correspondente à atividade",
+  "documents_dashboard_document_ASSOCIATION_ID_PL": "Documento de registo correspondente à atividade.",
+  "documents_dashboard_document_individual_OTHER_PL": "Qualquer documento útil para compreender a sua situação atual (alojamento, mudança, etc.).",
+  "documents_dashboard_document_corporation_OTHER_PL": "Para facilitar a validação, assegure a qualidade dos documentos anexados (não são aceites fotocópias a preto e branco e ficheiros provenientes de serviços de partilha externa).",
+  "documents_dashboard_document_association_OTHER_PL": "Para facilitar a validação, assegure a qualidade dos documentos anexados (não são aceites fotocópias a preto e branco e ficheiros provenientes de serviços de partilha externa).",
+  "documents_dashboard_document_administration_OTHER_PL": "Para facilitar a validação, assegure a qualidade dos documentos anexados (não são aceites fotocópias a preto e branco e ficheiros provenientes de serviços de partilha externa).",
+  "documents_dashboard_document_other_OTHER_PL": "Qualquer documento útil para compreender a sua situação (alojamento, mudança, etc.)"
+}

@@ -1,0 +1,15 @@
+{
+  "account_contacts_service_edit": "Edit contacts",
+  "account_contacts_service_edit_description": "Edit contacts for the {{ serviceName }} service",
+  "account_contacts_service_edit_contact_admin": "Admin contact",
+  "account_contacts_service_edit_contact_tech": "Technical contact ",
+  "account_contacts_service_edit_contact_billing": "Billing contact",
+  "account_contacts_service_edit_cancel": "Cancel",
+  "account_contacts_service_edit_confirm": "Confirm",
+  "account_contacts_service_edit_error": "An error has occurred requesting a change of contact: {{ message }}",
+  "account_contacts_service_edit_success": "The contact change request has been submitted successfully. The contacts involved in the request will receive an email containing the validation procedure.",
+  "account_contacts_service_edit_warn_debt": "You cannot edit the billing contact, as there is a bill pending payment for this service. Please pay the bill in order to edit the contact.",
+  "account_contacts_service_edit_pay": "Pay bill",
+  "account_contacts_service_edit_warn_contact_billing": "You cannot edit the billing contact, as there is a bill pending payment for this service. Please contact the current billing contact {{ nicBilling }} so that they can make the change.",
+  "account_contacts_service_edit_description_trusted": "Change the contacts for your service {{serviceName}} in the Trusted Zone."
+}

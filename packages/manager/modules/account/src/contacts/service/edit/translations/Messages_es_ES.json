@@ -1,0 +1,15 @@
+{
+  "account_contacts_service_edit": "Cambiar los contactos",
+  "account_contacts_service_edit_description": "Cambiar los contactos del servicio {{ serviceName }}",
+  "account_contacts_service_edit_contact_admin": "Contacto administrador",
+  "account_contacts_service_edit_contact_tech": "Contacto técnico ",
+  "account_contacts_service_edit_contact_billing": "Contacto de facturación",
+  "account_contacts_service_edit_cancel": "Cancelar",
+  "account_contacts_service_edit_confirm": "Aceptar",
+  "account_contacts_service_edit_error": "Se ha producido un error al solicitar el cambio de contacto: {{ message }}.",
+  "account_contacts_service_edit_success": "La solicitud del cambio de contacto se ha enviado correctamente. Los contactos afectados recibirán por correo electrónico el procedimiento de confirmación.",
+  "account_contacts_service_edit_warn_debt": "No es posible modificar el contacto de facturación, ya que hay una factura pendiente de pago para este servicio. Es necesario abonar previamente el importe pendiente para poder realizar el cambio.",
+  "account_contacts_service_edit_pay": "Abonar la factura",
+  "account_contacts_service_edit_warn_contact_billing": "No es posible modificar el contacto de facturación, ya que hay una factura pendiente de pago para este servicio. Contacte con el actual contacto de facturación {{ nicBilling }} para que realice el cambio.",
+  "account_contacts_service_edit_description_trusted": "Modificar los contactos del servicio {{ serviceName }} en la zona de confianza (Trusted Zone)."
+}

@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_TN": "Una copia por ambas caras de su documento de identidad (pasaporte, DNI)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_TN": "Un justificante de domicilio con una antigüedad inferior a 3 meses, con su nombre y la dirección indicada en su perfil",
+  "documents_dashboard_document_CORPORATE_ID_TN": "Un extracto del registro de empresas, mercantil o de impuestos, o cualquier documento oficial que justifique la existencia de su entidad con una antigüedad inferior a 3 meses.",
+  "documents_dashboard_document_ADMINISTRATION_ID_TN": "Un extracto del registro de empresas, mercantil o de impuestos, o cualquier documento oficial que justifique la existencia de su entidad.",
+  "documents_dashboard_document_ASSOCIATION_ID_TN": "Un extracto del registro de empresas, mercantil o de impuestos, o cualquier documento oficial que justifique la existencia de su entidad.",
+  "documents_dashboard_document_individual_OTHER_TN": "Cualquier documento útil para entender su situación (alojamiento, mudanza...)",
+  "documents_dashboard_document_corporation_OTHER_TN": "Si usted no aparece en los documentos de su empresa o estatutos de la asociación, deberá enviarnos una copia del documento de identidad de una persona que sí figure en ellos.",
+  "documents_dashboard_document_association_OTHER_TN": "Si usted no aparece en los documentos de su empresa o estatutos de la asociación, deberá enviarnos una copia del documento de identidad de una persona que sí figure en ellos.",
+  "documents_dashboard_document_administration_OTHER_TN": "Si usted no aparece en los documentos de su empresa o estatutos de la asociación, deberá enviarnos una copia del documento de identidad de una persona que sí figure en ellos.",
+  "documents_dashboard_document_other_OTHER_TN": "Cualquier documento útil para entender su situación (alojamiento, mudanza...)"
+}

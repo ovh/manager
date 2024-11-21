@@ -1,0 +1,60 @@
+// @rem-base: rem-base(10px);
+
+@import 'css/source.less';
+
+.ovh-manager-dedicated-app {
+  &.in-container .sidebar-menu {
+    top: -2px !important;
+  }
+
+  #nprogress {
+    .peg {
+      box-shadow: none;
+    }
+  }
+
+  .word-break-normal {
+    word-break: normal;
+  }
+
+  .ip-clipboard {
+    min-width: rem-calc(200);
+    max-width: rem-calc(350);
+    margin: 0;
+  }
+
+  // Could be removed with the next version of UI Kit
+  .font-inherit {
+    font-size: inherit;
+  }
+
+  ola-step-checker {
+    display: block;
+
+    @media (min-width: 992px) {
+      .oui-tile {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .oui-tile__body {
+        flex: 1;
+
+        .row {
+          height: 100%;
+        }
+
+        .oui-list,
+        .oui-progress-tracker {
+          height: 100%;
+          margin: 0;
+          border-right: 1px solid #eaeaea;
+        }
+      }
+    }
+  }
+
+  #licenseOrderBlockFilters {
+    cursor: pointer;
+  }
+}

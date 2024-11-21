@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_IT": "Cópia frente e verso de um documento de identificação válido (passaporte, bilhete de identidade nacional).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_IT": "Comprovativo de morada emitido há menos de 3 meses com o seu nome e a morada que nos forneceu (fatura de eletricidade, gás, etc.).",
+  "documents_dashboard_document_CORPORATE_ID_IT": "Certificado de registo da empresa na Câmara de Comércio com menos de 3 meses ou qualquer documento correspondente.",
+  "documents_dashboard_document_ADMINISTRATION_ID_IT": "Certificado de registo da empresa na Câmara de Comércio com menos de 3 meses ou qualquer documento correspondente.",
+  "documents_dashboard_document_ASSOCIATION_ID_IT": "Uma cópia dos estatutos da associação ou de um documento semelhante.",
+  "documents_dashboard_document_individual_OTHER_IT": "Qualquer documento útil para compreender a sua situação atual (domicílio, mudança, etc.)",
+  "documents_dashboard_document_corporation_OTHER_IT": "Se o seu nome não aparecer no certificado de registo da empresa na Câmara de Comércio ou nos estatutos da associação, pode anexar uma cópia do documento de identificação de uma pessoa que figura na documentação oficial.",
+  "documents_dashboard_document_association_OTHER_IT": "Se o seu nome não aparecer no certificado de registo da empresa na Câmara de Comércio ou nos estatutos da associação, pode anexar uma cópia do documento de identificação de uma pessoa que figura na documentação oficial.",
+  "documents_dashboard_document_administration_OTHER_IT": "Se o seu nome não aparecer no certificado de registo da empresa na Câmara de Comércio ou nos estatutos da associação, pode anexar uma cópia do documento de identificação de uma pessoa que figura na documentação oficial.",
+  "documents_dashboard_document_other_OTHER_IT": "Qualquer documento útil para compreender a sua situação (alojamento, mudança, etc.)"
+}

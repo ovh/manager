@@ -1,0 +1,19 @@
+{
+  "user_account_identity_documents_proof_tile_easiest": "Am einfachsten",
+  "user_account_identity_documents_proof_tile_heading_aadhaar_card": "Haben Sie eine Aadhaar-Karte?",
+  "user_account_identity_documents_proof_tile_text_particular_aadhaar_card": "Senden Sie nur ein Dokument für Ihren Identitäts- und Adressnachweis",
+  "user_account_identity_documents_proof_tile_heading_identity": "Identitätsnachweis",
+  "user_account_identity_documents_proof_tile_heading_address": "Adressnachweis",
+  "user_account_identity_documents_proof_tile_heading_vat": "Mehrwertsteuernachweis",
+  "user_account_identity_documents_proof_tile_heading_authority_declaration": "Eidesstattliche Erklärung",
+  "user_account_identity_documents_proof_tile_text_particular_identity": "Aadhaar-Karte, Personalausweis, Reisepass, Führerschein, Wählerkarte Indiens.",
+  "user_account_identity_documents_proof_tile_text_particular_address": "Aadhaar-Karte, GST-Zertifikat, Rechnung (Strom, Gas, Wasser, Internet oder Telefon), Bankauszug.",
+  "user_account_identity_documents_proof_tile_text_non_individual_identity": "Aadhaar-Karte, Personalausweis, Reisepass, Führerschein, Wählerkarte Indiens.",
+  "user_account_identity_documents_proof_tile_text_non_individual_address": "GST-Zertifikat, Rechnung (Strom, Gas, Wasser, Internet oder Telefon), Bankauszug.",
+  "user_account_identity_documents_proof_tile_text_non_individual_vat": "GST-Zertifikat (Steuer auf Waren und Dienstleistungen).",
+  "user_account_identity_documents_proof_tile_text_non_individual_authority_declaration": "Dokument, das Ihnen die Berechtigung erteilt, im Namen des Unternehmens zu handeln.",
+  "user_account_identity_documents_proof_tile_extended_identity": "Dokument des gesetzlichen Vertreters, des Betriebsleiters oder eines anderen im GST-Zertifikat genannten Kontakts.",
+  "user_account_identity_documents_proof_tile_extended_authority_declaration": "Nur, wenn Sie nicht der „gesetzliche Vertreter“ sind.",
+  "user_account_identity_documents_proof_tile_button": "Hinzufügen",
+  "user_account_identity_documents_proof_tile_button_update": "Ändern"
+}
