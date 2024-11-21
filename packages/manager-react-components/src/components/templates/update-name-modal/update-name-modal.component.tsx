@@ -129,7 +129,6 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
         </div>
       )}
       <OsdsButton
-        disabled={isLoading || undefined}
         slot="actions"
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.ghost}
@@ -139,7 +138,12 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
         {cancelButtonLabel || t('updateModalCancelButton')}
       </OsdsButton>
       <OsdsButton
-        disabled={isLoading || isPatternError || undefined}
+        disabled={
+          isLoading ||
+          isPatternError ||
+          displayName === defaultValue ||
+          undefined
+        }
         slot="actions"
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.flat}
