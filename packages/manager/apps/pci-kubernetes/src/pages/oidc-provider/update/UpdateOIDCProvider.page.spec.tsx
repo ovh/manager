@@ -1,47 +1,44 @@
+import { describe, it, vi } from 'vitest';
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
-import { it, vi, describe, expect } from 'vitest';
 import {
-  OsdsInput,
   OdsInputValueChangeEventDetail,
+  OsdsInput,
 } from '@ovhcloud/ods-components';
-import AddOrUpdateOIDCProvider, {
-  OidcFormValues,
-} from '@/pages/oidc-provider/AddOrUpdateOIDCProvider.page';
+import UpdateOIDCProvider, {
+  UpdateOIDCProviderPage,
+} from './UpdateOIDCProvider.page';
 import { wrapper } from '@/wrapperRenders';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { TOidcProvider } from '@/api/data/kubernetes';
+import { OidcFormValues } from '@/types';
 
-type AddOrUpdateOIDCProviderPageReturnType = UseMutationResult<
+type UpdateOIDCProviderPageReturnType = UseMutationResult<
   never,
   Error,
   OidcFormValues,
   unknown
-> & {
-  addOrUpdateOidcProvider: (params: OidcFormValues) => void;
-  isUpdate: boolean;
-};
+> & { upsertOidcProvider: (params: OidcFormValues) => void };
 
-describe('AddOrUpdateOIDCProviderPage', () => {
+describe('UpdateOIDCProviderPage', () => {
   it('renders loading spinner when data is pending', () => {
-    vi.spyOn(useKubernetesModule, 'useOidcProvider').mockReturnValue({
+    vi.spyOn(useKubernetesModule, 'useUpsertOidcProvider').mockReturnValue(({
       isPending: true,
-    } as UseQueryResult<TOidcProvider>);
-    const { getByTestId } = render(<AddOrUpdateOIDCProvider />, { wrapper });
+      isUpdate: false,
+    } as unknown) as UpdateOIDCProviderPageReturnType);
+    const { getByTestId } = render(<UpdateOIDCProviderPage />, { wrapper });
     expect(getByTestId('addOIDCProvider-spinner')).toBeVisible();
   });
 
   it('displays error message when issuer URL is invalid', async () => {
-    vi.spyOn(useKubernetesModule, 'useAddOrUpdateOidcProvider').mockReturnValue(
-      ({
-        addOrUpdateOidcProvider: vi.fn(),
-        isPending: false,
-      } as unknown) as AddOrUpdateOIDCProviderPageReturnType,
-    );
+    vi.spyOn(useKubernetesModule, 'useUpsertOidcProvider').mockReturnValue(({
+      upsertOidcProvider: vi.fn(),
+      isPending: false,
+    } as unknown) as UpdateOIDCProviderPageReturnType);
     vi.spyOn(useKubernetesModule, 'useOidcProvider').mockReturnValue({
       isPending: false,
     } as UseQueryResult<TOidcProvider>);
-    const { getByTestId } = render(<AddOrUpdateOIDCProvider />, {
+    const { getByTestId } = render(<UpdateOIDCProviderPage />, {
       wrapper,
     });
 
@@ -63,22 +60,20 @@ describe('AddOrUpdateOIDCProviderPage', () => {
     waitFor(() => {
       expect(getByTestId('issuerUrl-formfield')).toHaveAttribute(
         'error',
-        'common_field_error_required',
+        'upsert-oidc-provider:pci_projects_project_kubernetes_details_service_upsert_oidc_provider_issue_url_error',
       );
     });
   });
 
   it('displays error message when client ID is invalid', () => {
-    vi.spyOn(useKubernetesModule, 'useAddOrUpdateOidcProvider').mockReturnValue(
-      ({
-        addOrUpdateOIDCProvider: vi.fn(),
-        isPending: false,
-      } as unknown) as AddOrUpdateOIDCProviderPageReturnType,
-    );
+    vi.spyOn(useKubernetesModule, 'useUpsertOidcProvider').mockReturnValue(({
+      upsertOidcProvider: vi.fn(),
+      isPending: false,
+    } as unknown) as UpdateOIDCProviderPageReturnType);
     vi.spyOn(useKubernetesModule, 'useOidcProvider').mockReturnValue({
       isPending: false,
     } as UseQueryResult<TOidcProvider>);
-    const { getByTestId } = render(<AddOrUpdateOIDCProvider />, {
+    const { getByTestId } = render(<UpdateOIDCProvider />, {
       wrapper,
     });
 
@@ -99,26 +94,49 @@ describe('AddOrUpdateOIDCProviderPage', () => {
     waitFor(() => {
       expect(getByTestId('clientId-formfield')).toHaveAttribute(
         'error',
-        'common_field_error_required',
+        'common:common_field_error_required',
       );
     });
   });
 
-  it('calls updateOidcProvider on submit button click when isUpdate is true', async () => {
-    const mockuseAddOrUpdateOidcProvider = vi.fn();
-    vi.spyOn(useKubernetesModule, 'useAddOrUpdateOidcProvider').mockReturnValue(
-      ({
-        addOrUpdateOidcProvider: mockuseAddOrUpdateOidcProvider,
-        isPending: false,
-        isUpdate: true,
-      } as unknown) as AddOrUpdateOIDCProviderPageReturnType,
-    );
+  it('calls UpdateOidcProvider when isUpdate is true', async () => {
+    const mockuseUpsertOidcProvider = vi.fn();
+    vi.spyOn(useKubernetesModule, 'useUpsertOidcProvider').mockReturnValue(({
+      upsertOidcProvider: mockuseUpsertOidcProvider,
+      isPending: false,
+      isUpdate: true,
+      data: { clientId: 'test-client-id', issuerUrl: 'https://test.url' },
+    } as unknown) as UpdateOIDCProviderPageReturnType);
+    vi.spyOn(useKubernetesModule, 'useOidcProvider').mockReturnValue({
+      isPending: false,
+      data: { clientId: '', issuerUrl: '' },
+    } as UseQueryResult<TOidcProvider>);
+
+    const { getByTestId } = render(<UpdateOIDCProvider />, {
+      wrapper,
+    });
+
+    waitFor(() => {
+      expect(getByTestId('"addOIDCProvider-button_submit')).toHaveAttribute(
+        'add-oidc-provider:pci_projects_project_kubernetes_details_service_add_oidc_provider_action_add',
+      );
+    });
+  });
+
+  it('calls UpdateOidcProvider on submit button click when isUpdate is true', async () => {
+    const mockuseUpsertOidcProvider = vi.fn();
+    vi.spyOn(useKubernetesModule, 'useUpsertOidcProvider').mockReturnValue(({
+      upsertOidcProvider: mockuseUpsertOidcProvider,
+      isPending: false,
+      isUpdate: true,
+      data: { clientId: 'test-client-id', issuerUrl: 'https://test.url' },
+    } as unknown) as UpdateOIDCProviderPageReturnType);
     vi.spyOn(useKubernetesModule, 'useOidcProvider').mockReturnValue({
       isPending: false,
       data: { clientId: 'test-client-id', issuerUrl: 'https://test.url' },
     } as UseQueryResult<TOidcProvider>);
 
-    const { getByTestId } = render(<AddOrUpdateOIDCProvider />, {
+    const { getByTestId } = render(<UpdateOIDCProvider />, {
       wrapper,
     });
 
@@ -128,6 +146,8 @@ describe('AddOrUpdateOIDCProviderPage', () => {
     const clientIdInput = (getByTestId(
       'clientId-input',
     ) as unknown) as OsdsInput;
+
+    clientIdInput.odsValueChange.emit({} as OdsInputValueChangeEventDetail);
 
     act(() => {
       issuerUrlInput.odsValueChange.emit({
@@ -141,7 +161,7 @@ describe('AddOrUpdateOIDCProviderPage', () => {
     fireEvent.click(getByTestId('updateOIDCProvider-button_submit'));
 
     await waitFor(() => {
-      expect(mockuseAddOrUpdateOidcProvider).toHaveBeenCalledWith({
+      expect(mockuseUpsertOidcProvider).toHaveBeenCalledWith({
         issuerUrl: 'https://test.url',
         clientId: 'test-client-id',
       });

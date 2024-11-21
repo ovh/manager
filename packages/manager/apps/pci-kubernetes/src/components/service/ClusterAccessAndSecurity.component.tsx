@@ -60,7 +60,7 @@ export default function ClusterAccessAndSecurity({
   const { addError } = useNotifications();
 
   const hrefRestrictions = useHref('../restrictions');
-  const hrefAddOIDCProvider = useHref('./add-oidc-provider');
+  const hrefUAddOIDCProvider = useHref('./add-oidc-provider');
   const hrefUpdateOIDCProvider = useHref('./update-oidc-provider');
   const hrefRemoveOIDCProvider = useHref('./remove-oidc-provider');
 
@@ -257,7 +257,7 @@ export default function ClusterAccessAndSecurity({
                       ),
                       disabled:
                         isProcessing(kubeDetail?.status) || isOidcDefined,
-                      href: hrefAddOIDCProvider,
+                      href: hrefUAddOIDCProvider,
                     },
                     {
                       id: 2,
