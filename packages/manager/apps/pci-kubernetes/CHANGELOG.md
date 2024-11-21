@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.7.0...@ovh-ux/manager-pci-kubernetes-app@0.8.0) (2024-11-21)
+
+
+### Features
+
+* **pci-load-balancer:** refacto ([38e85c9](https://github.com/ovh/manager/commit/38e85c9038cee19be1f9372c58b5d1a200ddc40f))
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.6.1...@ovh-ux/manager-pci-kubernetes-app@0.7.0) (2024-11-18)
 
 

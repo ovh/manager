@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.86.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.3...@ovh-ux/manager-container-app@0.86.4) (2024-11-21)
+
+
+### Bug Fixes
+
+* **container:** add specific octavia routing rule ([1c1c980](https://github.com/ovh/manager/commit/1c1c980f72e4002a86b62af59622419d2f7b1a22))
+
+
+
+
+
 ## [0.86.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.86.2...@ovh-ux/manager-container-app@0.86.3) (2024-11-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
