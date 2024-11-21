@@ -16,7 +16,10 @@ const sumPrices = <T,>(items: T[], key: string) =>
 
 const initMonthlyInstanceList = (data: TCurrentUsage) => {
   if (!data?.monthlyUsage) {
-    return {};
+    return {
+      monthlyInstanceList: [],
+      monthlyInstanceTotalPrice: 0,
+    };
   }
 
   const monthlyInstanceList = data.monthlyUsage.instance.flatMap((instance) =>
@@ -43,7 +46,7 @@ const initMonthlyInstanceList = (data: TCurrentUsage) => {
 
 const initHourlyInstanceList = (data: TCurrentUsage) => {
   if (!data?.hourlyUsage) {
-    return {};
+    return { hourlyInstanceList: [], hourlyInstanceTotalPrice: 0 };
   }
 
   const hourlyInstanceList = data.hourlyUsage.instance.flatMap((instance) =>
@@ -70,14 +73,22 @@ const initHourlyInstanceList = (data: TCurrentUsage) => {
 
 const initObjectStorageList = (data: TCurrentUsage) => {
   if (!data?.hourlyUsage) {
-    return {};
+    return {
+      objectStorageList: [],
+      objectStorageTotalPrice: 0,
+    };
   }
 
   const objectStorageList = data.hourlyUsage.storage?.filter(
     (storage) => storage.type !== 'pca',
   );
 
-  const objectStorageTotalPrice = sumPrices(objectStorageList, 'totalPrice');
+  const objectStorageTotalPrice = roundPrice(
+    objectStorageList.reduce(
+      (sum, storage) => sum + roundPrice(storage.totalPrice),
+      0,
+    ),
+  );
 
   return {
     objectStorageList,
@@ -87,14 +98,22 @@ const initObjectStorageList = (data: TCurrentUsage) => {
 
 const initArchiveStorageList = (data: TCurrentUsage) => {
   if (!data?.hourlyUsage) {
-    return {};
+    return {
+      archiveStorageList: [],
+      archiveStorageTotalPrice: 0,
+    };
   }
 
   const archiveStorageList = data.hourlyUsage.storage?.filter(
     (storage) => storage.type === 'pca',
   );
 
-  const archiveStorageTotalPrice = sumPrices(archiveStorageList, 'totalPrice');
+  const archiveStorageTotalPrice = roundPrice(
+    archiveStorageList.reduce(
+      (sum, storage) => sum + roundPrice(storage.totalPrice),
+      0,
+    ),
+  );
 
   return {
     archiveStorageList,
@@ -104,7 +123,10 @@ const initArchiveStorageList = (data: TCurrentUsage) => {
 
 const initSnapshotList = (data: TCurrentUsage) => {
   if (!data?.hourlyUsage) {
-    return {};
+    return {
+      snapshotList: [],
+      snapshotsTotalPrice: 0,
+    };
   }
 
   const snapshotList = data.hourlyUsage.snapshot.map((snapshot) => ({
@@ -112,7 +134,12 @@ const initSnapshotList = (data: TCurrentUsage) => {
     totalPrice: roundPrice(snapshot.totalPrice),
   }));
 
-  const snapshotsTotalPrice = sumPrices(snapshotList, 'totalPrice');
+  const snapshotsTotalPrice = roundPrice(
+    data.hourlyUsage.snapshot.reduce(
+      (sum, snapshot) => sum + roundPrice(snapshot.totalPrice),
+      0,
+    ),
+  );
 
   return {
     snapshotList,
@@ -122,7 +149,10 @@ const initSnapshotList = (data: TCurrentUsage) => {
 
 const initVolumeList = (data: TCurrentUsage) => {
   if (!data?.hourlyUsage) {
-    return {};
+    return {
+      volumeList: [],
+      volumesTotalPrice: 0,
+    };
   }
 
   const volumeList = data.hourlyUsage.volume.flatMap((volume) =>
@@ -149,7 +179,10 @@ const initVolumeList = (data: TCurrentUsage) => {
 
 const initInstanceBandwidth = (data: TCurrentUsage) => {
   if (!data?.hourlyUsage) {
-    return {};
+    return {
+      bandwidthList: [],
+      bandwidthTotalPrice: 0,
+    };
   }
 
   const bandwidthList = data.hourlyUsage.instanceBandwidth.map(
@@ -168,9 +201,11 @@ const initInstanceBandwidth = (data: TCurrentUsage) => {
     }),
   );
 
-  const bandwidthTotalPrice = bandwidthList.reduce(
-    (sum, item) => sum + item.outgoingBandwidth.totalPrice,
-    0,
+  const bandwidthTotalPrice = roundPrice(
+    bandwidthList.reduce(
+      (sum, item) => sum + item.outgoingBandwidth.totalPrice,
+      0,
+    ),
   );
 
   return {
@@ -238,8 +273,8 @@ const initResourceUsage = (data: TCurrentUsage, resourceType: string) => {
   const totalPrice = sumPrices(resources, 'totalPrice');
 
   return {
-    resources,
-    totalPrice,
+    resources: resources || [],
+    totalPrice: totalPrice || 0,
   };
 };
 
@@ -318,8 +353,6 @@ export type TSnapshot = {
 };
 
 export type TConsumptionDetail = {
-  hourlyBilling: TCurrentUsage;
-  monthlyBilling: TCurrentUsage;
   hourlyInstances: TInstance[];
   monthlyInstances: TInstance[];
   objectStorages: TStorage[];
@@ -370,7 +403,7 @@ export type TConsumptionDetail = {
   };
 };
 
-const getConsumptionDetails = (usage: TCurrentUsage) => {
+export const getConsumptionDetails = (usage: TCurrentUsage) => {
   const resourceMap = [
     { type: 'registry', key: 'privateRegistry' },
     { type: 'loadbalancer', key: 'kubernetesLoadBalancer' },
@@ -445,8 +478,6 @@ const getConsumptionDetails = (usage: TCurrentUsage) => {
   const finalTotal = roundPrice(totals.hourly.total + totals.monthly.total);
 
   return {
-    hourlyBilling: usage,
-    monthlyBilling: usage,
     hourlyInstances: hourlyInstanceList,
     monthlyInstances: monthlyInstanceList,
     objectStorages: objectStorageList,
@@ -466,9 +497,10 @@ export const useGeTCurrentUsage = (projectId: string) =>
   useQuery({
     queryKey: [projectId, 'current', 'usage'],
     queryFn: async () => {
-      const usageData = await getCurrentUsage(projectId);
-      return getConsumptionDetails(usageData);
+      const currentUsage = await getCurrentUsage(projectId);
+      return currentUsage;
     },
+    select: (data) => getConsumptionDetails(data),
   });
 
 type ActivateMonthlyBillingProps = {
