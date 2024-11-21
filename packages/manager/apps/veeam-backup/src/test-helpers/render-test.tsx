@@ -11,22 +11,23 @@ import { render, waitFor, screen } from '@testing-library/react';
 import {
   getServicesMocks,
   GetServicesMocksParams,
-} from '@ovh-ux/manager-react-components/src/hooks/services/mocks/services.mock';
+} from '@ovh-ux/manager-module-common-api';
 import {
   getOrganizationMocks,
   GetOrganizationMocksParams,
-} from '@ovh-ux/manager-module-vcd-api';
-import { toMswHandlers } from '../../../../../../playwright-helpers';
-import { getAuthenticationMocks } from '../../../../../../playwright-helpers/mocks/auth';
-import {
   getVeeamBackupMocks,
   GetVeeamBackupMocksParams,
-  getIamMocks,
   getCatalogMocks,
   GetCatalogMocksParams,
-} from '../../mocks';
-import { productName } from '../veeam-backup.config';
-import { initTestI18n } from './test-i18n';
+} from '@ovh-ux/manager-module-vcd-api';
+import {
+  initTestI18n,
+  toMswHandlers,
+  getAuthenticationMocks,
+} from '@ovh-ux/manager-core-test-utils';
+import { getIamMocks } from '../../mocks';
+import { appName, productName } from '../veeam-backup.config';
+import { translations } from './labels';
 import { TestApp } from './TestApp';
 
 let context: ShellContextType;
@@ -55,7 +56,7 @@ export const renderTest = async ({
   }
 
   if (!i18n) {
-    i18n = await initTestI18n();
+    i18n = await initTestI18n(appName, translations);
   }
 
   const result = render(

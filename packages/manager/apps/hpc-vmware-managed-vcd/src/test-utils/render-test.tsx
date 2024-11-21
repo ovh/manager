@@ -12,7 +12,7 @@ import { render, waitFor, screen } from '@testing-library/react';
 import {
   getServicesMocks,
   GetServicesMocksParams,
-} from '@ovh-ux/manager-react-components/src/hooks/services/mocks/services.mock';
+} from '@ovh-ux/manager-module-common-api';
 import {
   getVeeamBackupMocks,
   getOrganizationMocks,
@@ -24,9 +24,12 @@ import {
   GetVeeamBackupMocksParams,
   getIamMocks,
 } from '@ovh-ux/manager-module-vcd-api';
-import { toMswHandlers } from '../../../../../../playwright-helpers';
-import { getAuthenticationMocks } from '../../../../../../playwright-helpers/mocks/auth';
-import { initTestI18n, labels } from './test-i18n';
+import {
+  initTestI18n,
+  getAuthenticationMocks,
+  toMswHandlers,
+} from '@ovh-ux/manager-core-test-utils';
+import { translations, labels } from './test-i18n';
 import { TestApp } from './TestApp';
 import { APP_NAME } from '@/tracking.constant';
 
@@ -60,7 +63,7 @@ export const renderTest = async ({
   }
 
   if (!i18nState) {
-    i18nState = await initTestI18n();
+    i18nState = await initTestI18n(APP_NAME, translations);
   }
 
   const result = render(

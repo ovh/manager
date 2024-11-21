@@ -1,5 +1,5 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
-import { order } from '../catalog.type';
+import { order } from '../types/veeam-backup-catalog.type';
 import { VCDCatalog } from '../types';
 
 export const getVeeamBackupCatalog = async (

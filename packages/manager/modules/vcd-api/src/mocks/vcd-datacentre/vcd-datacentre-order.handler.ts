@@ -1,4 +1,5 @@
-import { Handler, VCDOrderableResourceData } from '../../types';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
+import { VCDOrderableResourceData } from '../../types';
 import { catalogProductList } from '../vcd-organization/vcd-catalog.mock';
 import { orderableResourceData } from './vdc-orderable-resource.mock';
 

@@ -1,5 +1,5 @@
 import { PathParams } from 'msw';
-import { Handler } from '../../types';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { organizationList } from './vcd-organization.mock';
 
 export type GetOrganizationMocksParams = {

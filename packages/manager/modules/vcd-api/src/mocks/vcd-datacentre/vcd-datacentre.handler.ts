@@ -1,5 +1,5 @@
 import { PathParams } from 'msw';
-import { Handler } from '../../types';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { datacentreList } from './vcd-datacentre.mock';
 import { computeList } from './vdc-compute.mock';
 import { storageList } from './vdc-storage.mock';

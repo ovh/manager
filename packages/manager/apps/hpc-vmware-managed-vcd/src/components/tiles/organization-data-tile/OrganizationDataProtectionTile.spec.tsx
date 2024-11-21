@@ -23,10 +23,15 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import OrganizationDataProtectionTile from './OrganizationDataProtectionTile.component';
 
-vi.mock('@ovh-ux/manager-module-vcd-api', () => ({
-  useVeeamBackup: vi.fn(),
-  getBackupIdFromOrganization: vi.fn(),
-}));
+vi.mock('@ovh-ux/manager-module-vcd-api', async (original) => {
+  const actual: any = await original();
+  return {
+    ...actual,
+    useVeeamBackup: vi.fn(),
+    getBackupIdFromOrganization: vi.fn(),
+  };
+});
+
 vi.mocked(useVeeamBackup).mockReturnValue(
   {} as UseQueryResult<ApiResponse<VeeamBackup>, ApiError>,
 );

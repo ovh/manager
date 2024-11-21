@@ -1,5 +1,5 @@
 import { PathParams } from 'msw';
-import { Handler } from '../../types';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { backupList } from './veeam-backup.mock';
 
 export type GetVeeamBackupMocksParams = {
