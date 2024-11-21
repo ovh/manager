@@ -19,7 +19,6 @@
     "@hookform/resolvers": "^3.3.4",
     "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/manager-core-api": "^0.9.0",
-    "@hookform/resolvers": "^3.3.4",
     "@ovh-ux/manager-core-utils": "^0.3.0",
     "@ovh-ux/manager-pci-common": "^0.14.2",
     "@ovh-ux/manager-react-components": "^1.41.1",
