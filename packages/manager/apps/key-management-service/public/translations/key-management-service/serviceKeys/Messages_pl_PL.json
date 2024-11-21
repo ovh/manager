@@ -90,5 +90,9 @@
   "key_management_service_service-keys_delete_error": "Usunięcie nie powiodło się. {{error}}",
   "key_management_service_service-keys_deactivation_success": "Klucz został wyłączony",
   "key_management_service_service-keys_reactivate_success": "Klucz został ponownie włączony",
-  "key_management_service_service_keys_back_link": "Powrót do listy kluczy"
+  "key_management_service_service_keys_back_link": "Powrót do listy kluczy",
+  "key_management_service_service-keys_create_protection_level_title": "Poziom ochrony",
+  "key_management_service_service-keys_create_protection_level_subtitle": "Określ typ algorytmu używanego dla klucza szyfrowania.",
+  "key_management_service_service-keys_create_software_protection_title": "Ochrona oprogramowania",
+  "key_management_service_service-keys_create_software_protection_subtitle": "Operacje kryptograficzne są wykonywane na oprogramowaniu."
 }
