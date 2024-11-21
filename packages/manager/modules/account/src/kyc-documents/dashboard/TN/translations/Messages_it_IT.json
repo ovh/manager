@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_TN": "Copia fronte e retro di un documento di riconoscimento in corso di validità (passaporto, carta d'identità nazionale)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_TN": "Giustificativo di domicilio datato meno di 3 mesi, a te intestato e in cui compaia l’indirizzo indicato nel tuo profilo",
+  "documents_dashboard_document_CORPORATE_ID_TN": "Estratto del Registro Imprese, Camera del Commercio o Ufficio delle imposte o qualsiasi documento ufficiale che dimostri l'esistenza della tua entità aziendale, datato meno di 3 mesi",
+  "documents_dashboard_document_ADMINISTRATION_ID_TN": "Estratto del Registro Imprese, Camera del Commercio o Ufficio delle imposte o qualsiasi documento ufficiale che dimostri l'esistenza della tua entità aziendale",
+  "documents_dashboard_document_ASSOCIATION_ID_TN": "Estratto del Registro Imprese, Camera del Commercio o Ufficio delle imposte o qualsiasi documento ufficiale che dimostri l'esistenza della tua entità aziendale",
+  "documents_dashboard_document_individual_OTHER_TN": "Qualsiasi documento utile a comprendere la tua situazione attuale (domicilio, trasferimento, etc.)",
+  "documents_dashboard_document_corporation_OTHER_TN": "Se il tuo nome non compare nella visura camerale o nello Statuto dell'Associazione, è possibile allegare una copia del documento d'identità di una persona presente nella documentazione ufficiale.",
+  "documents_dashboard_document_association_OTHER_TN": "Se il tuo nome non compare nella visura camerale o nello Statuto dell'Associazione, è possibile allegare una copia del documento d'identità di una persona presente nella documentazione ufficiale.",
+  "documents_dashboard_document_administration_OTHER_TN": "Se il tuo nome non compare nella visura camerale o nello Statuto dell'Associazione, è possibile allegare una copia del documento d'identità di una persona presente nella documentazione ufficiale.",
+  "documents_dashboard_document_other_OTHER_TN": "Qualsiasi documento utile a comprendere la tua situazione attuale (domicilio, trasferimento, etc.)"
+}

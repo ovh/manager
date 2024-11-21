@@ -27,7 +27,7 @@ export function setupDevApplication(shell: Shell) {
     // then it's a new application, create a default configuration to use
     if (!containerApp) {
       const devConfig = {
-        universe: 'hub',
+        universe: 'dedicated',
         url: `https://www.ovh.com/manager/${devApp}/`,
         publicURL: `https://www.ovh.com/manager/#/${devApp}/`,
         container: {

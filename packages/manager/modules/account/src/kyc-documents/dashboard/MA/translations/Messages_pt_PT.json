@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_MA": "Uma cópia frente e verso do seu documento de identificação (passaporte, cartão de cidadão)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_MA": "Um comprovativo de morada com menos de 3 meses, em seu nome e com o endereço indicado no seu perfil",
+  "documents_dashboard_document_CORPORATE_ID_MA": "Um extrato do registo comercial ou fiscal ou qualquer documento oficial que justifique a existência da sua entidade datado de menos de 3 meses",
+  "documents_dashboard_document_ADMINISTRATION_ID_MA": "Um extrato do registo comercial ou fiscal ou qualquer documento oficial que justifique a existência da sua entidade",
+  "documents_dashboard_document_ASSOCIATION_ID_MA": "Um extrato do registo comercial ou fiscal ou qualquer documento oficial que justifique a existência da sua entidade",
+  "documents_dashboard_document_individual_OTHER_MA": "Qualquer documento útil para compreender a sua situação (alojamento, mudança, etc.)",
+  "documents_dashboard_document_corporation_OTHER_MA": "Se não for mencionado no documento de identificação da sua empresa/estatuto da associação, envie-nos uma cópia do documento de identificação de uma pessoa que nele conste.",
+  "documents_dashboard_document_association_OTHER_MA": "Se não for mencionado no documento de identificação da sua empresa/estatuto da associação, envie-nos uma cópia do documento de identificação de uma pessoa que nele conste.",
+  "documents_dashboard_document_administration_OTHER_MA": "Se não for mencionado no documento de identificação da sua empresa/estatuto da associação, envie-nos uma cópia do documento de identificação de uma pessoa que nele conste.",
+  "documents_dashboard_document_other_OTHER_MA": "Qualquer documento útil para compreender a sua situação (alojamento, mudança, etc.)"
+}

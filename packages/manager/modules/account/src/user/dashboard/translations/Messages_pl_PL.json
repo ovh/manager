@@ -1,0 +1,20 @@
+{
+  "user_account_dashboard_shortcut": "Szybki dostęp",
+  "user_account_dashboard_shortcut_ALL_BILLS": "Sprawdź faktury",
+  "user_account_dashboard_shortcut_PAYMENT_FOLLOW_UP": "Śledź płatności",
+  "user_account_dashboard_shortcut_ADD_PAYMENT_METHOD": "Dodaj sposób płatności",
+  "user_account_dashboard_shortcut_MANAGE_SERVICES": "Zarządzaj usługami",
+  "user_account_dashboard_shortcut_ADD_CONTACT": "Dodaj kontakt",
+  "user_account_dashboard_last_bill": "Ostatnia faktura",
+  "user_account_dashboard_last_bill_reference": "Opis",
+  "user_account_dashboard_last_bill_date": "Data",
+  "user_account_dashboard_last_bill_amount": "Kwota",
+  "user_account_dashboard_last_bill_see": "Sprawdź fakturę",
+  "user_account_dashboard_profile": "Mój profil",
+  "user_account_dashboard_profile_edit": "Edytuj mój profil",
+  "user_account_dashboard_profile_support_level": "Mój poziom wsparcia:",
+  "user_account_dashboard_customer_code": "Kod klienta",
+  "user_account_dashboard_nichandle": "Identyfikator klienta",
+  "user_account_dashboard_shortcut_MANAGE_USERS": "Zarządzanie użytkownikami",
+  "user_account_dashboard_new": "Nowość!"
+}
