@@ -72,7 +72,7 @@ let server: SetupServer;
 const handleError = vi.fn();
 const handleSuccess = vi.fn(
   (instanceId: string, queryClient: QueryClient) => () =>
-    updateDeletedInstanceStatus(queryClient, instanceId),
+    updateDeletedInstanceStatus(fakeProjectId, queryClient, instanceId),
 );
 
 describe('Considering the useInstanceAction hook', () => {
