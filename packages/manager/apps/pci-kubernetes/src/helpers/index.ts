@@ -90,11 +90,11 @@ type ColorThreshold = {
 export function getColorByPercentage(percentage: number): string {
   const colorThresholds: ColorThreshold[] = [
     {
-      threshold: 69,
+      threshold: 70,
       color: 'var(--ods-color-primary-500)',
     }, // Color for less than or equal to 33.333%
     {
-      threshold: 79,
+      threshold: 80,
       color: 'var(--ods-color-warning-500)',
     }, // Color for between 33.333% and 66%
     { threshold: 100, color: 'var(--ods-color-error-500)' }, // Color for greater than 80%
@@ -104,7 +104,10 @@ export function getColorByPercentage(percentage: number): string {
   // Loop through thresholds to find the appropriate color
   for (let i = 0; i < colorThresholds.length; i += 1) {
     const { threshold, color } = colorThresholds[i];
-    if (percentage <= threshold) {
+    if (percentage === 100) {
+      return 'var(--ods-color-error-500)';
+    }
+    if (percentage < threshold) {
       return color;
     }
   }
