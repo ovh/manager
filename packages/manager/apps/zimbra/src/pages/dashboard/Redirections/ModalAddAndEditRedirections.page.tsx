@@ -24,7 +24,6 @@ import Modal from '@/components/Modals/Modal';
 import { useAccount, useDomains, useGenerateUrl } from '@/hooks';
 import {
   FormTypeInterface,
-  FormInputRegexInterface,
   checkValidityField,
   checkValidityForm,
   ACCOUNT_REGEX,
@@ -57,17 +56,13 @@ export default function ModalAddAndEditRedirections() {
     enabled: !!editEmailAccountId,
   });
 
-  const formInputRegex: FormInputRegexInterface = {
-    account: ACCOUNT_REGEX,
-    to: EMAIL_REGEX,
-  };
-
   const [form, setForm] = useState<FormTypeInterface>({
     account: {
       value: '',
       touched: false,
       hasError: false,
       required: !editEmailAccountId,
+      validate: ACCOUNT_REGEX,
     },
     domain: {
       value: '',
@@ -80,6 +75,7 @@ export default function ModalAddAndEditRedirections() {
       touched: false,
       hasError: false,
       required: true,
+      validate: EMAIL_REGEX,
     },
     checked: {
       value: '',
@@ -95,7 +91,7 @@ export default function ModalAddAndEditRedirections() {
       value,
       touched: true,
       required: form[name].required,
-      hasError: !checkValidityField(name, value, formInputRegex, form),
+      hasError: !checkValidityField(name, value, form),
     };
     setForm((oldForm) => ({ ...oldForm, ...newForm }));
     setIsFormValid(checkValidityForm(form));

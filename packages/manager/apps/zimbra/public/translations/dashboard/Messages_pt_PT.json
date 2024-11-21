@@ -57,5 +57,6 @@
   "zimbra_dashboard_email_accounts_auto_replies_add": "Criar uma resposta automática",
   "zimbra_dashboard_email_accounts_auto_replies_delete": "Eliminar uma resposta automática",
   "zimbra_dashboard_redirections_add": "Criar um reencaminhamento",
-  "zimbra_dashboard_auto_replies_add": "Criar uma resposta automática"
+  "zimbra_dashboard_auto_replies_add": "Criar uma resposta automática",
+  "zimbra_dashboard_email_accounts_order": "Encomendar contas de e-mail"
 }

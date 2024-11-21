@@ -218,6 +218,15 @@ export const Routes: any = [
                   ),
                 ),
               },
+              {
+                path: 'order',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/EmailAccounts/EmailAccountsOrder.page'
+                  ),
+                ),
+                handle: { isOverridePage: true },
+              },
             ],
           },
           {

@@ -8,9 +8,11 @@ import {
   taskMocks,
   aliasMock,
   domainZone,
+  orderCatalogMock,
 } from '@/api/_mock_';
 import { AccountType } from '@/api/account';
 import { DomainType } from '@/api/domain';
+import {} from '@/api/_mock_/order';
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
@@ -159,6 +161,15 @@ vi.mock('@/api/task', async (importActual) => {
     ...(await importActual<typeof import('@/api/task')>()),
     getZimbraPlatformTask: vi.fn(() => {
       return Promise.resolve(taskMocks);
+    }),
+  };
+});
+
+vi.mock('@/api/order', async (importActual) => {
+  return {
+    ...(await importActual<typeof import('@/api/order')>()),
+    getOrderCatalog: vi.fn(() => {
+      return Promise.resolve(orderCatalogMock);
     }),
   };
 });

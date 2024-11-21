@@ -24,8 +24,8 @@ import {
   getZimbraPlatformAliasQueryKey,
   postZimbraPlatformAlias,
 } from '@/api/alias';
-import { formInputRegex } from './account.constants';
 import {
+  ACCOUNT_REGEX,
   checkValidityField,
   checkValidityForm,
   FormTypeInterface,
@@ -49,6 +49,7 @@ export default function ModalAddAndEditOrganization() {
       hasError: false,
       required: true,
       touched: false,
+      validate: ACCOUNT_REGEX,
     },
     domain: {
       value: '',
@@ -129,7 +130,7 @@ export default function ModalAddAndEditOrganization() {
       ...form[name],
       value,
       touched: true,
-      hasError: !checkValidityField(name, value, formInputRegex, form),
+      hasError: !checkValidityField(name, value, form),
     };
     setForm((oldForm) => ({ ...oldForm, ...newForm }));
     setIsFormValid(checkValidityForm(form));
