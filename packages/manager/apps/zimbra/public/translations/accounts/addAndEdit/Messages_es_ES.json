@@ -36,5 +36,6 @@
   "zimbra_account_add_input_displayName_tooltip": "Nombre utilizado en el directorio y mostrado a los destinatarios de los emails",
   "zimbra_account_edit_tabs_settings": "Configuración de la cuenta",
   "zimbra_account_edit_tabs_redirections": "Redirecciones",
-  "zimbra_account_edit_tabs_alias": "Alias"
+  "zimbra_account_edit_tabs_alias": "Alias",
+  "zimbra_account_edit_tabs_auto_replies": "Respuesta automática"
 }

@@ -33,10 +33,11 @@ const ActionButtonAutoReply: React.FC<ActionButtonAutoReplyProps> = ({
 
   return (
     <ManagerButton
+      data-testid="delete-auto-reply"
       href={hrefDeleteAutoReply}
       inline
       urn={platformUrn}
-      iamActions={[/* replace it with autoreply */ IAM_ACTIONS.account.delete]}
+      iamActions={[IAM_ACTIONS.autoReply.delete]}
       disabled={autoReplyItem.status !== ResourceStatus.READY ? true : null}
       variant={ODS_BUTTON_VARIANT.ghost}
       color={ODS_THEME_COLOR_INTENT.primary}

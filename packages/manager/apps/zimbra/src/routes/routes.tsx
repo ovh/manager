@@ -185,6 +185,32 @@ export const Routes: any = [
                 ],
               },
               {
+                path: 'auto_replies',
+                handle: { isOverridePage: true },
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount.page'
+                  ),
+                ),
+                children: [
+                  {
+                    path: 'add',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/dashboard/AutoReplies/AddAutoReply.page'),
+                    ),
+                    handle: { isOverridePage: true },
+                  },
+                  {
+                    path: 'delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/AutoReplies/ModalDeleteAutoReply.component'
+                      ),
+                    ),
+                  },
+                ],
+              },
+              {
                 path: 'delete',
                 ...lazyRouteConfig(() =>
                   import(
@@ -233,7 +259,6 @@ export const Routes: any = [
                     '@/pages/dashboard/Redirections/ModalAddAndEditRedirections.page'
                   ),
                 ),
-                handle: { isOverridePage: true },
               },
               {
                 path: 'edit',
@@ -242,7 +267,6 @@ export const Routes: any = [
                     '@/pages/dashboard/Redirections/ModalAddAndEditRedirections.page'
                   ),
                 ),
-                handle: { isOverridePage: true },
               },
               {
                 path: 'delete',
@@ -251,7 +275,6 @@ export const Routes: any = [
                     '@/pages/dashboard/Redirections/ModalDeleteRedirections.component'
                   ),
                 ),
-                handle: { isOverridePage: true },
               },
             ],
           },
@@ -268,7 +291,12 @@ export const Routes: any = [
                     '@/pages/dashboard/AutoReplies/ModalDeleteAutoReply.component'
                   ),
                 ),
-                handle: { isOverridePage: true },
+              },
+              {
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/AutoReplies/AddAutoReply.page'),
+                ),
               },
             ],
           },
