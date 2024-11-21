@@ -47,7 +47,7 @@ export const RGDPForm: FunctionComponent = () => {
 
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
-  const { useUploadDocuments, useUploadLinks } = useProcedures('GDPR');
+  const { useUploadDocuments, useUploadLinks } = useProcedures('gdpr');
 
   const {
     mutate: uploadDocuments,
