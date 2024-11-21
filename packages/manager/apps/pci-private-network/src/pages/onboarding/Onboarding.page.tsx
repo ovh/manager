@@ -24,7 +24,6 @@ import {
   useRouteLoaderData,
 } from 'react-router-dom';
 import { GUIDES } from './onboarding.constants';
-import OnBoardingGuard from './OnboardingGuard';
 import {
   PROJECT_VRACK_QUERY_KEY,
   useProjectVrack,
@@ -83,105 +82,101 @@ export default function OnBoardingPage() {
   ];
 
   return (
-    <OnBoardingGuard projectId={projectId}>
-      <>
-        {project && <OsdsBreadcrumb items={breadcrumbItems} />}
+    <>
+      {project && <OsdsBreadcrumb items={breadcrumbItems} />}
 
-        <OnboardingLayout
-          title={tOnboarding('pci_projects_project_network_private')}
-          description={
-            <>
-              {isVrackCreationPending && (
-                <>
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    level={ODS_TEXT_LEVEL.body}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  >
-                    {tVrack(
-                      'pci_projects_project_network_private_vrack_pending',
-                    )}
-                  </OsdsText>
-                  <OsdsProgressBar
-                    className="mt-8"
-                    value={vrackCreation.percentage}
-                  />
-                </>
-              )}
-              {!isVrackCreationPending && (
-                <>
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    level={ODS_TEXT_LEVEL.body}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  >
-                    {tOnboarding(
-                      'pci_projects_project_network_private_vrack_empty',
-                    )}
-                  </OsdsText>
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    level={ODS_TEXT_LEVEL.body}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-                    className="mt-6 block"
-                  >
-                    {tOnboarding(
-                      'pci_projects_project_network_private_vrack_deploy',
-                    )}
-                  </OsdsText>
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    level={ODS_TEXT_LEVEL.body}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                    className="mt-4 block"
-                  >
-                    {tOnboarding(
-                      'pci_projects_project_network_private_vrack_explanation_1',
-                    )}
-                  </OsdsText>
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    level={ODS_TEXT_LEVEL.body}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                    className="mt-6 block"
-                  >
-                    {tOnboarding(
-                      'pci_projects_project_network_private_vrack_explanation_2',
-                    )}
-                  </OsdsText>
-                </>
-              )}
-            </>
-          }
-          {...(!isVrackCreationPending &&
-            !isPending && {
-              orderButtonLabel: isMissingVrack
-                ? tVrack(
-                    'pci_projects_project_network_private_vrack_create_heading',
-                  )
-                : t('pci_projects_project_network_private_create'),
-            })}
-          onOrderButtonClick={() =>
-            isMissingVrack ? navigate('./new') : navigate('../new')
-          }
-        >
-          {GUIDES.map((guide) => {
-            const card = {
-              id: guide.id,
-              href: guide.links[ovhSubsidiary] || guide.links.DEFAULT,
-              texts: {
-                title: tOnboarding(
-                  `pci_projects_project_network_private_vrack_guides_${guide.id}_title`,
-                ),
-                category: tOnboarding('onboarding_guide_title'),
-              },
-            };
-
-            return <Card key={card.id} href={card.href} texts={card.texts} />;
+      <OnboardingLayout
+        title={tOnboarding('pci_projects_project_network_private')}
+        description={
+          <>
+            {isVrackCreationPending && (
+              <>
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  level={ODS_TEXT_LEVEL.body}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                >
+                  {tVrack('pci_projects_project_network_private_vrack_pending')}
+                </OsdsText>
+                <OsdsProgressBar
+                  className="mt-8"
+                  value={vrackCreation.percentage}
+                />
+              </>
+            )}
+            {!isVrackCreationPending && (
+              <>
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  level={ODS_TEXT_LEVEL.body}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                >
+                  {tOnboarding(
+                    'pci_projects_project_network_private_vrack_empty',
+                  )}
+                </OsdsText>
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  level={ODS_TEXT_LEVEL.body}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+                  className="mt-6 block"
+                >
+                  {tOnboarding(
+                    'pci_projects_project_network_private_vrack_deploy',
+                  )}
+                </OsdsText>
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  level={ODS_TEXT_LEVEL.body}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                  className="mt-4 block"
+                >
+                  {tOnboarding(
+                    'pci_projects_project_network_private_vrack_explanation_1',
+                  )}
+                </OsdsText>
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  level={ODS_TEXT_LEVEL.body}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                  className="mt-6 block"
+                >
+                  {tOnboarding(
+                    'pci_projects_project_network_private_vrack_explanation_2',
+                  )}
+                </OsdsText>
+              </>
+            )}
+          </>
+        }
+        {...(!isVrackCreationPending &&
+          !isPending && {
+            orderButtonLabel: isMissingVrack
+              ? tVrack(
+                  'pci_projects_project_network_private_vrack_create_heading',
+                )
+              : t('pci_projects_project_network_private_create'),
           })}
-        </OnboardingLayout>
-        <Outlet />
-      </>
-    </OnBoardingGuard>
+        onOrderButtonClick={() =>
+          isMissingVrack ? navigate('./new') : navigate('../new')
+        }
+      >
+        {GUIDES.map((guide) => {
+          const card = {
+            id: guide.id,
+            href: guide.links[ovhSubsidiary] || guide.links.DEFAULT,
+            texts: {
+              title: tOnboarding(
+                `pci_projects_project_network_private_vrack_guides_${guide.id}_title`,
+              ),
+              category: tOnboarding('onboarding_guide_title'),
+            },
+          };
+
+          return <Card key={card.id} href={card.href} texts={card.texts} />;
+        })}
+      </OnboardingLayout>
+      <Outlet />
+    </>
   );
 }
