@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.3.2...@ovh-ux/manager-log-to-customer@2.3.3) (2024-11-21)
+
+
+### Bug Fixes
+
+* **log-to-customer:** fix duplicate tracking on subscribe ([#13730](https://github.com/ovh/manager/issues/13730)) ([95fddc9](https://github.com/ovh/manager/commit/95fddc94eaa5fbcd19c54b25a4917092dfe8d989))
+
+
+
+
+
 ## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.3.1...@ovh-ux/manager-log-to-customer@2.3.2) (2024-11-14)
 
 
