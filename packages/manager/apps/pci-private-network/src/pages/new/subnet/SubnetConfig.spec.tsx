@@ -22,6 +22,28 @@ import { NEW_PRIVATE_NETWORK_FORM_SCHEMA } from '../new.constants';
 vi.mock('@/hooks/useGuideLink/useGuideLink');
 vi.mock('@/pages/new/subnet/gateway/GatewayConfig.component');
 
+describe('SubnetConfig name', () => {
+  it('should display error when name is touched and empty', async () => {
+    render(<SubnetConfig />, { wrapper: NewPrivateNetworkWrapper });
+
+    const input = screen.getByTestId('subnet-name');
+    const odsInput = (input as unknown) as OsdsInput;
+
+    act(() => {
+      fireEvent.change(input, { target: { value: '' } });
+      fireEvent.blur(input);
+      odsInput.odsInputBlur.emit();
+    });
+
+    await waitFor(() =>
+      expect(screen.getByTestId('subnet-name-field')).toHaveAttribute(
+        'error',
+        'common_field_error_required',
+      ),
+    );
+  });
+});
+
 describe('SubnetConfig CIDR', () => {
   it('should display CIDR with default vlanId when user does not define a vlanId', async () => {
     render(<SubnetConfig />, {
