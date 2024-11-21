@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.1.14...@ovh-ux/manager-pci-private-registry-app@0.2.0) (2024-11-21)
+
+
+### Features
+
+* **pci-load-balancer:** add modal to change pool name ([42ef82d](https://github.com/ovh/manager/commit/42ef82d46194175e85abfffa526d52a3bf3c8a97))
+* **pci-private-registry:** update snapshots ([2dc170b](https://github.com/ovh/manager/commit/2dc170b2cccc826d6392902d3926701a55c9547e))
+
+
+
+
+
 ## [0.1.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.1.13...@ovh-ux/manager-pci-private-registry-app@0.1.14) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
