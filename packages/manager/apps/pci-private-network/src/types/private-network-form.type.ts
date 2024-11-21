@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { NEW_PRIVATE_NETWORK_FORM_SCHEMA } from '@/pages/new/new.constants';
 
 export type Subnet = {
+  name: string;
   cidr: string;
   enableDhcp: boolean;
   enableGatewayIp: boolean;

@@ -36,6 +36,7 @@ export default function NewPage(): JSX.Element {
   const form = useForm<NewPrivateNetworkForm>({
     defaultValues: {
       subnet: {
+        name: '',
         cidr,
         enableDhcp: true,
         enableGatewayIp: true,

@@ -4,6 +4,7 @@ const privateNetworkForm = {
   region: 'RBX-1',
   name: 'test',
   subnet: {
+    name: 'subnet',
     cidr,
     enableDhcp: true,
     enableGatewayIp: true,
