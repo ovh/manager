@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -20,9 +20,7 @@ import {
   PciDiscoveryBanner,
   useProject,
 } from '@ovh-ux/manager-pci-common';
-import { MaintenanceBanner } from '@/components/maintenance/MaintenanceBanner.component';
 import { usePrivateNetworks } from '@/data/hooks/networks/useNetworks';
-// import { useProductMaintenance } from '@/hooks/useMaintenance/useMaintenance';
 import { PrivateNetworkTabName } from './ListingLayout.constant';
 import { useActiveTab } from '@/hooks/useActiveTab/useActiveTab';
 
@@ -35,15 +33,6 @@ const ListingLayout: React.FC = () => {
   const tab = useActiveTab();
 
   const { isPending, data: networks } = usePrivateNetworks(projectId);
-
-  /* const regions = useMemo(() => networks?.map((network) => network.region), [
-    networks,
-  ]); */
-
-  /* const { hasMaintenance, maintenanceURL } = useProductMaintenance(
-    projectId,
-    regions,
-  ); */
 
   const { clearNotifications } = useNotifications();
 
@@ -87,12 +76,6 @@ const ListingLayout: React.FC = () => {
 
       <div className="mb-5">
         <PciDiscoveryBanner project={project} />
-
-        {/* hasMaintenance && (
-          <div className="mt-5">
-            <MaintenanceBanner maintenanceURL={maintenanceURL} />
-          </div>
-        ) */}
       </div>
 
       {isPending ? (

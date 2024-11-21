@@ -1,4 +1,4 @@
-import { useMemo, useCallback } from 'react';
+import { useMemo } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OsdsSpinner, OsdsTabPanel } from '@ovhcloud/ods-components/react';
@@ -8,21 +8,14 @@ import {
   useColumnFilters,
   useDatagridSearchParams,
 } from '@ovh-ux/manager-react-components';
-import {
-  applyFilters,
-  Filter,
-  FilterCategories,
-  FilterComparator,
-} from '@ovh-ux/manager-core-api';
+import { applyFilters, FilterCategories } from '@ovh-ux/manager-core-api';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { PrivateNetworkTabName } from '../ListingLayout.constant';
 import { useActiveTab } from '@/hooks/useActiveTab/useActiveTab';
 import { usePrivateNetworkLZColumns } from '@/hooks/useColumns/useColumns';
 import { usePrivateNetworkLZ } from '@/data/hooks/networks/useNetworks';
 import { paginateResults } from '@/utils/utils';
-import DataGridHeaderActions, {
-  ColumnFilter,
-} from '@/components/datagrid-header-actions/DatagridHeaderActions.component';
+import DataGridHeaderActions from '@/components/datagrid-header-actions/DatagridHeaderActions.component';
 
 const PrivateNetworkLZ: React.FC = () => {
   const { t } = useTranslation('listing');
@@ -32,7 +25,7 @@ const PrivateNetworkLZ: React.FC = () => {
   const { projectId } = useParams();
   const navigate = useNavigate();
   const { data: networks, isPending } = usePrivateNetworkLZ(projectId);
-  const { filters, addFilter, removeFilter } = useColumnFilters();
+  const { filters } = useColumnFilters();
 
   const data = useMemo(
     () => paginateResults(applyFilters(networks, filters), pagination),
@@ -62,34 +55,6 @@ const PrivateNetworkLZ: React.FC = () => {
     },
   ];
 
-  const initializePagination = useCallback(() => {
-    setPagination({
-      pageIndex: 0,
-      pageSize: pagination.pageSize,
-    });
-  }, [pagination]);
-
-  const handleSearch = useCallback(({ detail }) => {
-    initializePagination();
-    addFilter({
-      key: 'search',
-      value: detail.inputValue,
-      comparator: FilterComparator.Includes,
-      label: '',
-    });
-  }, []);
-
-  const handleAddFilter = useCallback(
-    (addedFilter: Filter, column: ColumnFilter) => {
-      initializePagination();
-      addFilter({
-        ...addedFilter,
-        label: column.label,
-      });
-    },
-    [],
-  );
-
   return (
     <OsdsTabPanel
       active={activeTab === PrivateNetworkTabName.LOCAL_ZONE_TAB_NAME}
@@ -105,11 +70,9 @@ const PrivateNetworkLZ: React.FC = () => {
           <DataGridHeaderActions
             createLabel={t('pci_projects_project_network_private_create')}
             onCreate={() => navigate('../new')}
-            onSearch={handleSearch}
-            filters={filters}
-            removeFilter={removeFilter}
+            pagination={pagination}
+            setPagination={setPagination}
             columnFilters={columnFilters}
-            handleAddFilter={handleAddFilter}
           />
           <div className="mt-10">
             <Datagrid
