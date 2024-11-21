@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.20.0...@ovh-ux/manager-overthebox@6.20.1) (2024-11-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3497] ([d24bda7](https://github.com/ovh/manager/commit/d24bda7d2a2b7e8def8b2379938d134d13b3ed75))
+* remove unused translations [CDS] ([a4e033c](https://github.com/ovh/manager/commit/a4e033c77834b6076ccff5b54442ada5b99051e3))
+
+
+
+
+
 # [6.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.19.3...@ovh-ux/manager-overthebox@6.20.0) (2024-11-18)
 
 

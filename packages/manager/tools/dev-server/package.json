@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dev-server",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "description": "Provide OVHcloud Manager dev server",
   "keywords": [
     "dev-server",

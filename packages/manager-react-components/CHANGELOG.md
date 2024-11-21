@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.2.0...@ovh-ux/manager-react-components@2.3.0) (2024-11-21)
+
+### Bug Fixes
+
+- **manager-components:** add guide onclick callback ([#14193](https://github.com/ovh/manager/issues/14193)) ([8019676](https://github.com/ovh/manager/commit/80196764298cf3c9ae2c102e4b321f0ac6f4460c))
+- **mrc:** icon actionmenu compact ellipsisvertical ([#14176](https://github.com/ovh/manager/issues/14176)) ([7a3f02a](https://github.com/ovh/manager/commit/7a3f02acc8bd3199767ecc596e213b75b3fefa45))
+
+### Features
+
+- **manager-components:** disable update name button if no change ([#13808](https://github.com/ovh/manager/issues/13808)) ([7ce27f3](https://github.com/ovh/manager/commit/7ce27f3713c808d288ce28db5a1befbbe099678c))
+
 ## [1.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0...@ovh-ux/manager-react-components@1.41.1) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-components
