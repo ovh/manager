@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.2...@ovh-ux/manager-react-components@1.42.0) (2024-11-21)
+
+### Bug Fixes
+
+- **manager-components:** add guide onclick callback ([#13859](https://github.com/ovh/manager/issues/13859)) ([93bb059](https://github.com/ovh/manager/commit/93bb05931f77978d22496313c75e80c8f7fbf71d))
+- **manager-react-components:** add convertHourlyPriceToMonthly method ([#14121](https://github.com/ovh/manager/issues/14121)) ([d007719](https://github.com/ovh/manager/commit/d00771960fbaaea11b709a0e412ed3b96b8419b5))
+
+### Features
+
+- **manager-components:** disable update name button if no change ([#14169](https://github.com/ovh/manager/issues/14169)) ([857c7da](https://github.com/ovh/manager/commit/857c7daae363a93e351ddcc83ca6b76106d2ba4d))
+
 # [1.41.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.2...@ovh-ux/manager-react-components@1.41.1) (2024-11-14)
 
 ### Bug Fixes
