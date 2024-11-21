@@ -20,9 +20,7 @@ export const state = {
     isIndianSubsidiary: /* @ngInject */ (subsidiary) =>
       subsidiary === INDIAN_SUBSIDIARY,
   },
-  atInternet: {
-    rename: 'accountcreation-step2',
-  },
+  ignore: true,
 };
 
 export const registerState = /* @ngInject */ ($stateProvider) => {

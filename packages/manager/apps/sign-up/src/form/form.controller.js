@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 import some from 'lodash/some';
 import { INDIAN_SUBSIDIARY } from '../constants';
+import { TRACKING_DETAILS } from '../at-internet.constants';
 
 export default class SignUpFormAppCtrl {
   /* @ngInject */
@@ -62,19 +63,45 @@ export default class SignUpFormAppCtrl {
   }
 
   onStepFormCancel(step) {
-    this.atInternet.trackPage({
-      name: `accountcreation-step${step === 'details' ? '2' : '3'}-${
-        this.me.model.legalform
-      }::cancel`,
+    const { chapter1, chapter2, chapter3 } = TRACKING_DETAILS;
+    const hits = [
+      chapter1,
+      chapter2,
+      chapter3,
+      'page',
+      'button',
+      `create_account_step${step === 'details' ? '3' : '4'}`,
+      'cancel',
+      `${this.me.model.legalform}_${this.me.ovhSubsidiary}`,
+    ];
+    this.atInternet.trackClick({
+      name: hits.join('::'),
+      type: 'action',
     });
     return this.cancelStep(step);
   }
 
   onStepperFinished() {
     this.saveError = null;
+    const { chapter1, chapter2, chapter3, goalType } = TRACKING_DETAILS;
+    const hits = [
+      chapter1,
+      chapter2,
+      chapter3,
+      'page',
+      'button',
+      'create_account_finalstep',
+      'confirmation',
+      `${this.me.model.legalform}_${this.me.ovhSubsidiary}`,
+    ];
 
     const tracking = {
-      name: `accountcreation-ok-${this.me.model.legalform}`,
+      name: hits.join('::'),
+      type: 'action',
+      chapter1,
+      chapter2,
+      chapter3,
+      goalType,
       accountcreationSiretProvided: this.me.model
         .companyNationalIdentificationNumber
         ? 'Provided'
@@ -86,7 +113,7 @@ export default class SignUpFormAppCtrl {
       tracking.accountPhoneType = this.me.model.phoneType;
     }
 
-    this.atInternet.trackPage(tracking);
+    this.atInternet.trackClick(tracking);
 
     // call to finishSignUp binding
     if (isFunction(this.finishSignUp)) {
@@ -116,5 +143,18 @@ export default class SignUpFormAppCtrl {
     if (this.me.state === 'incomplete') {
       this.me.legalform = null;
     }
+
+    const { chapter1, chapter2, chapter3 } = TRACKING_DETAILS;
+    const hits = [
+      chapter1,
+      chapter2,
+      chapter3,
+      'create_account_step3',
+      'fill-in_contact_details',
+    ];
+    this.atInternet.trackPage({
+      name: hits.join('::'),
+      type: 'action',
+    });
   }
 }
