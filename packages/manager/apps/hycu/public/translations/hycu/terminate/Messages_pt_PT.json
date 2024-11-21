@@ -1,0 +1,9 @@
+{
+  "hycu_terminate_headline": "Rescindir o serviço HYCU for OVHcloud",
+  "hycu_terminate_description": "Introduza a palavra «TERMINATE» para confirmar a rescisão do seu serviço HYCU for OVHcloud. Ao realizar esta ação, compromete-se também a não voltar a utilizar o ficheiro de licença que lhe foi anteriormente fornecido.",
+  "hycu_terminate_input_label": "Palavra de confirmação: ",
+  "hycu_terminate_cancel_label": "Anular",
+  "hycu_terminate_confirm_label": "Rescindir",
+  "hycu_terminate_success_message": "O seu pedido de rescisão do {{serviceName}} foi registado. Irá receber um e-mail para a validar.",
+  "hycu_terminate_error_message": "Ocorreu um erro: {{error}}."
+}

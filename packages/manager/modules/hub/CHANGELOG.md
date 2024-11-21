@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@4.0.1...@ovh-ux/manager-hub@4.1.0) (2024-11-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3494] ([cafbeb3](https://github.com/ovh/manager/commit/cafbeb3760646da4ea18528ad3f94f0fd490d0d3))
+
+
+### Features
+
+* **hycu:** add hycu service on hub and my services ([9f10592](https://github.com/ovh/manager/commit/9f1059281f2b8fa3883b04fc41358749d376bb69))
+
+
+
+
+
 ## [4.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@4.0.0...@ovh-ux/manager-hub@4.0.1) (2024-11-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub

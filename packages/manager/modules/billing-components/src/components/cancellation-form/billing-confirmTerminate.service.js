@@ -1,6 +1,7 @@
 import { map } from 'lodash-es';
 import { Service } from '@ovh-ux/manager-models';
 import {
+  SERVICE_GROUP_WITH_AGORA_TERMINATION_REGEX,
   SERVICE_WITH_AGORA_TERMINATION,
   TERMINATION_FORM_NAME,
 } from './confirm-terminate.constants';
@@ -34,11 +35,16 @@ export default class BillingTerminate {
     );
   }
 
-  confirmTermination(service, token) {
-    const isAgoraService = SERVICE_WITH_AGORA_TERMINATION.includes(
-      service.billing?.plan?.code || '',
+  static hasAgoraTermination(planCode) {
+    return (
+      SERVICE_WITH_AGORA_TERMINATION.includes(planCode) ||
+      SERVICE_GROUP_WITH_AGORA_TERMINATION_REGEX.test(planCode)
     );
-    return isAgoraService
+  }
+
+  confirmTermination(service, token) {
+    const planCode = service.billing?.plan?.code || '';
+    return BillingTerminate.hasAgoraTermination(planCode)
       ? this.$http.post(`/services/${service.serviceId}/terminate/confirm`, {
           token,
         })

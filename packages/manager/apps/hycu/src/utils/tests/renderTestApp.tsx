@@ -15,19 +15,34 @@ import { TestApp } from './TestApp';
 import { initTestI18n } from './init.i18n';
 import { toMswHandlers } from '../../../../../../../playwright-helpers';
 import { getAuthenticationMocks } from '../../../../../../../playwright-helpers/mocks/auth';
-import { getLicenseHycuMocks, GetLicenseHycuMocksParams } from '@/mocks';
+import {
+  CatalogHycuMocksParams,
+  getCatalogHycuMocks,
+  getLicenseHycuMocks,
+  GetLicenseHycuMocksParams,
+} from '@/mocks';
+import { getIamMocks } from '@/mocks/iam/iam.handler';
+import { licensesHycuService } from '@/mocks/serviceLicenseHycu/serviceLicenseHycu.data';
 
 let context: ShellContextType;
 let i18nValue: i18n;
 
 export const renderTestApp = async (
-  mockParams: GetServicesMocksParams & GetLicenseHycuMocksParams = {},
+  initialRoute = '/',
+  mockParams: GetServicesMocksParams &
+    GetLicenseHycuMocksParams &
+    CatalogHycuMocksParams = {},
 ) => {
   global.server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),
-      ...getServicesMocks(mockParams),
+      ...getIamMocks(),
       ...getLicenseHycuMocks(mockParams),
+      ...getServicesMocks({
+        ...mockParams,
+        serviceResponse: mockParams.serviceResponse ?? licensesHycuService,
+      }),
+      ...getCatalogHycuMocks(mockParams),
     ]),
   );
 
@@ -42,18 +57,20 @@ export const renderTestApp = async (
   const result = render(
     <I18nextProvider i18n={i18nValue}>
       <ShellContext.Provider value={context}>
-        <TestApp />
+        <TestApp initialRoute={initialRoute} />
       </ShellContext.Provider>
     </I18nextProvider>,
   );
 
-  await waitFor(
-    () =>
-      expect(
-        screen.getAllByText('HYCU', { exact: false }).length,
-      ).toBeGreaterThan(0),
-    { timeout: 30000 },
-  );
+  if (!initialRoute || initialRoute === '/') {
+    await waitFor(
+      () =>
+        expect(
+          screen.getAllByText('HYCU', { exact: false }).length,
+        ).toBeGreaterThan(0),
+      { timeout: 30000 },
+    );
+  }
 
   return result;
 };

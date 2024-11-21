@@ -1,6 +1,6 @@
-import { IHycuDetails, LicenseStatus } from '@/type/hycu.details.interface';
+import { IHycuDetails, LicenseStatus } from '@/types/hycu.details.interface';
 
-export const licensesHycu: IHycuDetails[] = [
+export const licensesHycu: Readonly<IHycuDetails[]> = [
   {
     iam: {
       id: '4a26ef55-d46b-4b71-88c8-76ad71b154b4',
@@ -21,7 +21,7 @@ export const licensesHycu: IHycuDetails[] = [
     },
     comment: '',
     serviceName: 'c1b7cb4f-6b63-45da-9a8a-f731f1a67b2c',
-    controllerId: '',
+    controllerId: 'test-id',
     licenseStatus: LicenseStatus.ACTIVATED,
     expirationDate: '0001-01-01T00:00:00Z',
   },

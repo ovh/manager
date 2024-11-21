@@ -1,16 +1,35 @@
+import { AxiosResponse } from 'axios';
 import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
+import { IHycuDetails } from '@/types/hycu.details.interface';
 
 export type GetlicenseHycuListParams = {
   /** Filter resources on IAM tags */
-  iamTags: any;
+  iamTags: string;
 };
 
-export const getlicenseHycuListQueryKey = ['get/license/hycu'];
+export const getLicenseHycuListQueryKey = () => ['license/hycu', 'get', 'list'];
+export const getLicenseHycuQueryKey = (serviceName: string) => [
+  'license/hycu',
+  'get',
+  serviceName,
+];
+export const postActivateLicenseHycuMutationKey = () => [
+  'license/hycu/activate',
+  'post',
+];
+export const postRegenerateLicenseHycuMutationKey = () => [
+  'license/hycu/refresh',
+  'post',
+];
+export const getDownloadLicenseHycuMutationKey = () => [
+  'license/hycu/download',
+  'get',
+];
 
 /**
  * Manage HYCU licenses : Get list of owned HYCU licenses
  */
-export const getlicenseHycuList = async (
+export const getLicenseHycu = (
   params: GetlicenseHycuListParams,
 ): Promise<unknown> => apiClient.v6.get('/license/hycu', { data: params });
 
@@ -19,16 +38,51 @@ export type GetlicenseHycuServiceParams = {
   serviceName?: string;
 };
 
-export const getlicenseHycuServiceQueryKey = (
-  params: GetlicenseHycuServiceParams,
-) => [`get/license/hycu/${params.serviceName}`];
+export type GetLicenseHycuDownloadServiceParams = { serviceName: string };
 
 /**
  * Manage HYCU licenses : Get HYCU license info
  */
-export const getlicenseHycuService = async (
+export const getLicenseHycuService = (
   params: GetlicenseHycuServiceParams,
-): Promise<any> => apiClient.v6.get(`/license/hycu/${params.serviceName}`);
+): Promise<AxiosResponse<IHycuDetails>> =>
+  apiClient.v6.get<IHycuDetails>(`/license/hycu/${params.serviceName}`);
+
+export type PostLicenseHycuActivateServiceParams = {
+  /** Service name */
+  serviceName: string;
+  licenseContent: string;
+};
+
+export type PostLicenseHycuRegenerateServiceParams = PostLicenseHycuActivateServiceParams;
+
+/**
+ * Activate HYCU licenses : Post HYCU license content
+ */
+export const postLicenseHycuActivateService = (
+  params: PostLicenseHycuActivateServiceParams,
+): Promise<AxiosResponse> =>
+  apiClient.v6.post(`/license/hycu/${params.serviceName}/activate`, {
+    licenseRequest: params.licenseContent,
+  });
+
+/**
+ * Regenerate HYCU licenses : Post HYCU license content
+ */
+export const postLicenseHycuRegenerateService = (
+  params: PostLicenseHycuRegenerateServiceParams,
+): Promise<AxiosResponse> =>
+  apiClient.v6.post(`/license/hycu/${params.serviceName}/refresh`, {
+    licenseRequest: params.licenseContent,
+  });
+
+/**
+ * Regenerate HYCU licenses : Post HYCU license content
+ */
+export const getLicenseHycuDownloadService = (
+  params: GetLicenseHycuDownloadServiceParams,
+): Promise<AxiosResponse> =>
+  apiClient.v6.get(`/license/hycu/${params.serviceName}/license`);
 
 /**
  *  Get listing with iceberg V6

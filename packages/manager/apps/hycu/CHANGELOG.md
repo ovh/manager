@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.2.1...@ovh-ux/manager-hycu-app@0.3.0) (2024-11-20)
+
+
+### Bug Fixes
+
+* **hycu:** breadcrumb and order links ([2fc6842](https://github.com/ovh/manager/commit/2fc684231d95ca205f5f46856628143790e1959f))
+* **hycu:** build errors with tests and sonar ([9319a0e](https://github.com/ovh/manager/commit/9319a0e3178eab64250a3855fe953a7e59c44007))
+* **hycu:** express order URLs and edit pack parameters ([334b709](https://github.com/ovh/manager/commit/334b709426ef463e36fdcc27fbbdb6ec91f3412b))
+* **hycu:** fix display name on listing page ([27d9446](https://github.com/ovh/manager/commit/27d9446743556803467b831ac7ed1e5bb436f6e2))
+* **hycu:** fix margin between tabs and dashboard content ([52d7c50](https://github.com/ovh/manager/commit/52d7c5030423ec396c5d6ffb2318da11df2321b9))
+* **hycu:** fix the value of max file size of license ([2715eae](https://github.com/ovh/manager/commit/2715eaeb846f35e36e39587894e7488da9519328))
+* **hycu:** fix translations on dashboard ([aac3ac1](https://github.com/ovh/manager/commit/aac3ac117ad57989e0b46acb6ea895ce8982d7b4))
+* **hycu:** rootLabel in breadcrumb ([2c57316](https://github.com/ovh/manager/commit/2c573162308d8eb8fce30f57518d27d72416ba78))
+* **i18n:** add missing translations [CDS 3494] ([cafbeb3](https://github.com/ovh/manager/commit/cafbeb3760646da4ea18528ad3f94f0fd490d0d3))
+
+
+### Features
+
+* **hycu:** add activate license modal ([95e0ad7](https://github.com/ovh/manager/commit/95e0ad7d645afacd97b5ec9939898da51c5b0fc2))
+* **hycu:** add alert banner without notification hook to avoid problem ([b313b56](https://github.com/ovh/manager/commit/b313b56e9af0c2501faf770c450cbdc790b3c066))
+* **hycu:** add download license action ([c4735e0](https://github.com/ovh/manager/commit/c4735e08ba6ebb9143b05efe6ecf574c468692b3))
+* **hycu:** add edit license page ([7778c7d](https://github.com/ovh/manager/commit/7778c7d079094b5e4f4037b5c7dd830d12566cbb))
+* **hycu:** add error handling on listing page ([bc8c8de](https://github.com/ovh/manager/commit/bc8c8ded86d50f7101ab5c411c7fadb6f84dddea))
+* **hycu:** add error message when license is in error ([53aa8f1](https://github.com/ovh/manager/commit/53aa8f10e9e406785a4e28d31297bae3ad240d44))
+* **hycu:** add hycu dashboard ([2f32054](https://github.com/ovh/manager/commit/2f320547a022b1961902c0a2ec630c7d038aff1c))
+* **hycu:** add regenerate license modal ([6f123b2](https://github.com/ovh/manager/commit/6f123b28558bba24b85664ecb7b3310f9c0960c2))
+* **hycu:** add rename modal ([6dfab9d](https://github.com/ovh/manager/commit/6dfab9db3974f656ef12bc1cab9edf05754fc5db))
+* **hycu:** add renew link on dashboard ([0c52755](https://github.com/ovh/manager/commit/0c52755692a09bbc804b56cdda9375b379900f2b))
+* **hycu:** add terminate modal page ([b2a3ba3](https://github.com/ovh/manager/commit/b2a3ba31b933a7c4c6db0c46474be98cd4f67e7e))
+* **hycu:** change edit name header wording ([9464e2a](https://github.com/ovh/manager/commit/9464e2a67ffd45ee847f4f8c4dffb4b71428f66a))
+* **hycu:** change file extension accepted to request license ([b1b0808](https://github.com/ovh/manager/commit/b1b08089a865e2d75c931583f0cba9efe8c9ce6e))
+* **hycu:** change name rules for license hycu ([797bf39](https://github.com/ovh/manager/commit/797bf39c0a99a44f05731377a164999303542fee))
+* **hycu:** change onboarding wording ([b898339](https://github.com/ovh/manager/commit/b898339660b784308a37f4e0ef3db8f873c5e277))
+* **hycu:** change order of elements on billing component ([da3d394](https://github.com/ovh/manager/commit/da3d39407200b1f5b524f8a5411546b161994027))
+* **hycu:** change pack wording ([1dc1f52](https://github.com/ovh/manager/commit/1dc1f5294a18f5df768b6fad61214832c875f451))
+* **hycu:** create order page ([da78d05](https://github.com/ovh/manager/commit/da78d05e2d4d254fb185995df3acf508c61a5176))
+* **hycu:** disabled action when service is suspended ([8825e79](https://github.com/ovh/manager/commit/8825e79629e31afc67ecc6b3f341ca1786b1f4ba))
+* **hycu:** disabled change pack ([92fc395](https://github.com/ovh/manager/commit/92fc3958622d1e1f6133963a4cdc000aad65ace7))
+* **hycu:** fix hycu license format file ([8ca2537](https://github.com/ovh/manager/commit/8ca2537290cfd03902d80e691b8f6b0ee6ef6976))
+* **hycu:** fix listing wording ([c19d1f2](https://github.com/ovh/manager/commit/c19d1f2b2f0ea5c41b9c91f4f3c8bad46f440c47))
+* **hycu:** remove manage contact url ([58883b6](https://github.com/ovh/manager/commit/58883b6a55bb8d108b145bd89aaf9654c24a8307))
+* **hycu:** show display name instead servicename on listing page ([83d5c3f](https://github.com/ovh/manager/commit/83d5c3f209d8baf458b32766113bdcc8e7d5918f))
+* **hycu:** update mrc package ([7fc5022](https://github.com/ovh/manager/commit/7fc50223643dfa11a5032ab0372bd9adf570ee3b))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.2.0...@ovh-ux/manager-hycu-app@0.2.1) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-hycu-app

@@ -1,0 +1,9 @@
+{
+  "hycu_edit_pack_title": "Modifier une licence HYCU R-Cloud Hybrid Cloud Edition",
+  "hycu_edit_pack_description": "HYCU R-Cloud Hybrid Cloud Edition est un logiciel de sauvegarde et de restauration spécialement conçu pour Nutanix. Nous vous proposons différents packs de licences selon le nombre de machines virtuelles (VM) utilisées par vos charges de travail Nutanix.",
+  "hycu_edit_pack_subtitle": "Modifier le type de pack pour la licence {{displayName}}",
+  "hycu_edit_pack_subtitle_description": "Si le pack de VM initialement sélectionné ne correspond plus à vos besoins, veuillez choisir un autre type de pack et finaliser votre commande. Le nouveau pack de VM sélectionné remplacera automatiquement votre souscription précédente.",
+  "hycu_edit_pack_initiated_title": "Modification de votre licence HYCU R-Cloud Hybrid Cloud Edition",
+  "hycu_edit_pack_initiated_description": "Si vous n'avez pas encore finalisé votre commande, vous pouvez la compléter en cliquant sur le lien suivant :",
+  "hycu_edit_pack_initiated_info": "Nous vous informerons de la disponibilité de votre licence par e-mail."
+}

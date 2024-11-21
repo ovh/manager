@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.0.1...@ovh-ux/manager-billing-components@4.1.0) (2024-11-20)
+
+
+### Bug Fixes
+
+* **hycu:** fix translations on dashboard ([aac3ac1](https://github.com/ovh/manager/commit/aac3ac117ad57989e0b46acb6ea895ce8982d7b4))
+* **i18n:** add missing translations [CDS 3494] ([cafbeb3](https://github.com/ovh/manager/commit/cafbeb3760646da4ea18528ad3f94f0fd490d0d3))
+
+
+### Features
+
+* **billing-component:** add resiliation agora service for HYCU ([8176b67](https://github.com/ovh/manager/commit/8176b67ab85d2e5258d7764cb7ed05d5cb9d9a37))
+* **hycu:** add agora termination for hycu service ([dfecf5a](https://github.com/ovh/manager/commit/dfecf5a6f404676ae618e1220cd9f44a1f79afb4))
+
+
+
+
+
 ## [4.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.0.0...@ovh-ux/manager-billing-components@4.0.1) (2024-11-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

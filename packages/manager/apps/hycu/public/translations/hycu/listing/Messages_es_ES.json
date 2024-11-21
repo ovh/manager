@@ -10,5 +10,6 @@
   "hycu_commercial_name": "Tipo de pack",
   "hycu_subscribed_date": "Fecha de contratación",
   "hycu_order": "Contratar",
-  "hycu_service_listing_terminate": "Dar de baja"
+  "hycu_service_listing_terminate": "Dar de baja",
+  "hycu_listing_error_loading_data": "Error de carga"
 }

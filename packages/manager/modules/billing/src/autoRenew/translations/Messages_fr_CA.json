@@ -149,6 +149,7 @@
   "billing_autorenew_service_type_LICENSE_SQLSERVER": "Licences SQL Server",
   "billing_autorenew_service_type_LICENCE_SQLSERVER": "Licences SQL Server",
   "billing_autorenew_service_type_LICENSE_OFFICE_PREPAID": "Licences Office 365",
+  "billing_autorenew_service_type_LICENSE_HYCU": "HYCU",
   "billing_autorenew_service_type_MS_SERVICES_SHAREPOINT": "Microsoft SharePoint",
   "billing_autorenew_service_type_PACK_XDSL": "Packs xDSL",
   "billing_autorenew_service_type_VRACK": "vRacks",
