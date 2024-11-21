@@ -1,0 +1,69 @@
+<div class="module-useraccount-sections-emails-container">
+    <oui-header heading="{{:: 'user_account_email_detail' | translate }}">
+    </oui-header>
+    <div>
+        <a
+            class="d-inline-block mb-5"
+            data-ng-href="{{'#/useraccount/emails?currentPage=' + previousPage }}"
+            title="{{ 'user_account_email_back' | translate }}"
+        >
+            <span class="fa fa-chevron-left mr-2" aria-hidden="true"> </span>
+            <span data-translate="user_account_email_back"></span>
+        </a>
+
+        <div data-ovh-alert="user_account_email_detail"></div>
+
+        <div class="text-center" data-ng-if="loaders.email">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <div data-ng-if="!loaders.email">
+            <h2 data-ng-bind="email.subject"></h2>
+
+            <p>
+                <strong
+                    data-translate="user_account_email_detail_date"
+                ></strong>
+                <span data-ng-bind="email.date | date : 'short'"></span>
+            </p>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-10">
+                    <div class="email-preview">
+                        <button
+                            class="btn email-preview-source-toggle"
+                            type="button"
+                            data-ng-if="email.bodyCook"
+                            data-ng-click="email.displayBodyCook = !email.displayBodyCook"
+                        >
+                            <span
+                                data-ng-if="email.displayBodyCook"
+                                data-translate="user_account_detail_raw_version"
+                            >
+                            </span>
+                            <span
+                                data-ng-if="!email.displayBodyCook"
+                                data-translate="user_account_detail_cook_version"
+                            >
+                            </span>
+                            <span
+                                class="fa"
+                                data-ng-class="{ 'fa-eye': email.displayBodyCook, 'fa-eye-slash': !email.displayBodyCook }"
+                                aria-hidden="true"
+                            >
+                            </span>
+                        </button>
+                        <pre
+                            data-ng-if="email.displayBodyCook"
+                            data-ng-bind-html="email.bodyCook"
+                        ></pre>
+                        <pre
+                            data-ng-if="!email.displayBodyCook"
+                            data-ng-bind="email.body"
+                        ></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

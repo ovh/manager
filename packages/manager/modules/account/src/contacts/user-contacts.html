@@ -1,0 +1,26 @@
+<oui-header data-heading="{{:: 'useraccount_contacts' | translate }}">
+    <oui-header-tabs>
+        <oui-header-tabs-item data-state="account.contacts.services"
+            ><span data-translate="useraccount_contacts_tab_SERVICES"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item data-state="account.contacts.requests"
+            ><span data-translate="useraccount_contacts_tab_REQUESTS"></span
+        ></oui-header-tabs-item>
+    </oui-header-tabs>
+</oui-header>
+
+<div>
+    <div data-ovh-alert="useraccount.alerts.dashboardContacts"></div>
+    <div data-ui-view></div>
+</div>
+
+<div id="currentAction" class="modal fade currentAction" role="dialog">
+    <div class="modal-dialog">
+        <div
+            id="modal-container"
+            class="modal-content"
+            data-ng-include="stepPath"
+        ></div>
+        <div id="modal-help" class="help4wizards"></div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_DE": "Copia fronte e retro di un documento di riconoscimento in corso di validità (carta d'identità nazionale, passaporto)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_DE": "Giustificativo di domicilio datato meno di 3 mesi, a te intestato e in cui compaia l’indirizzo indicato nel tuo profilo (per es. estratto conto, bolletta di luce, gas, acqua, etc.)",
+  "documents_dashboard_document_CORPORATE_ID_DE": "Estratto del registro di commercio datato meno di 3 mesi",
+  "documents_dashboard_document_ADMINISTRATION_ID_DE": "Autorità di gestione: prova dello status di autorità",
+  "documents_dashboard_document_ASSOCIATION_ID_DE": "Estratto del Registro Imprese e copia del verbale dell’ultima assemblea.",
+  "documents_dashboard_document_individual_OTHER_DE": "Qualsiasi documento utile a comprendere la tua situazione attuale (per es. domicilio, trasferimento, etc.)",
+  "documents_dashboard_document_corporation_OTHER_DE": "Se il tuo nome non compare nel registro di commercio o nello Statuto dell'Associazione, è possibile allegare una copia del documento d'identità di una persona presente nella documentazione ufficiale.",
+  "documents_dashboard_document_association_OTHER_DE": "Se il tuo nome non compare nell’estratto del registro di commercio o nello Statuto dell'Associazione, è possibile allegare una copia del documento d'identità di una persona presente nella documentazione ufficiale.",
+  "documents_dashboard_document_administration_OTHER_DE": "Se il tuo nome non compare nel registro di commercio o nello Statuto dell'Associazione, è possibile allegare una copia del documento d'identità di una persona presente nella documentazione ufficiale.",
+  "documents_dashboard_document_other_OTHER_DE": "Qualsiasi documento utile a comprendere la tua situazione attuale (domicilio, trasferimento, etc.)"
+}

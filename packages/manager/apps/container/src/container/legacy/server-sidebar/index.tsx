@@ -33,10 +33,11 @@ export default function ServerSidebarIndex() {
       '/ticket',
       '/useraccount',
       '/identity-documents',
-      '/documents'
+      '/documents',
     ],
     iam: '*',
     'carbon-calculator': '*',
+    'account': '*',
   }
 
   useEffect(() => {
