@@ -54,5 +54,6 @@
   "subnetUpdateError": "Ocorreu um erro ao atualizar a sua sub-rede: {{error}}.",
   "subnetUpdatePending": "A sua sub-rede está a ser alterada",
   "modalSubnetUpdateCancelButton": "Anular",
-  "modalSubnetUpdateConfirmButton": "Alterar"
+  "modalSubnetUpdateConfirmButton": "Alterar",
+  "subnetRangeAdditionalText": "O intervalo de endereços da sub-rede deve ser /24."
 }
