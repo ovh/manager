@@ -93,16 +93,6 @@ export default function RegionStep({
         label: tCommonField('common_stepper_next_button_label'),
         isDisabled: !store.state.region,
       }}
-      cancel={{
-        action: () => {
-          tracking?.trackClick({
-            name: 'PCI_PROJECTS_PRIVATEREGISTRY_CREATE_VERSION_NEXT',
-            type: 'action',
-          });
-          navigate('..');
-        },
-        label: tCommonField('common_stepper_cancel_button_label'),
-      }}
       edit={
         !isLocked && {
           action: () => {

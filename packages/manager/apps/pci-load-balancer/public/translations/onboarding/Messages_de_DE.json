@@ -1,0 +1,17 @@
+{
+  "octavia_load_balancer_onboarding_title": "Ihre Anwendungslast auf mehrere Instanzen verteilen",
+  "octavia_load_balancer_onboarding_description_1": "Mit dem Public Cloud Loadbalancer können Sie die Skalierbarkeit und Robustheit Ihrer Public-Cloud-Anwendungen verbessern.",
+  "octavia_load_balancer_onboarding_description_3": "Hier finden Sie die Anleitungen zum Erstellen und Konfigurieren Ihres Loadbalancers.",
+  "octavia_load_balancer_onboarding_cta": "Ihren Loadbalancer erstellen",
+  "octavia_load_balancer_onboarding_guide1_title": "Erste Schritte mit dem Loadbalancer",
+  "octavia_load_balancer_onboarding_guide1_description": "Wie Sie mit einem Public Cloud Loadbalancer starten",
+  "octavia_load_balancer_onboarding_guide2_title": "Einen Loadbalancer deployen",
+  "octavia_load_balancer_onboarding_guide2_description": "Wie Sie einen Public Cloud Loadbalancer konfigurieren",
+  "octavia_load_balancer_onboarding_guide3_title": "Einen sicheren Loadbalancer mit Let's Encrypt konfigurieren",
+  "octavia_load_balancer_onboarding_guide3_description": "Wie Sie mit Let’s Encrypt einen sicheren Public Cloud Loadbalancer konfigurieren",
+  "octavia_load_balancer_onboarding_private_network_modal_title": "Privates Netzwerk erstellen",
+  "octavia_load_balancer_onboarding_private_network_modal_description": "Unser Loadbalancer ist vollständig dediziert und muss unabhängig von der Zielarchitektur (Pub-to-Priv, Pub-to-Pub oder Priv-to-Priv) in einem privaten Netzwerk gestartet werden.",
+  "octavia_load_balancer_onboarding_private_network_modal_more_link": "Mehr erfahren",
+  "octavia_load_balancer_onboarding_private_network_modal_message": "Um einen Loadbalancer zu verwenden, ist ein privates Netzwerk erforderlich. Sie müssen vor der Erstellung Ihres Loadbalancers also ein solches erstellen.",
+  "onboarding_guide_title": "Anleitung"
+}

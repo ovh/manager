@@ -1,0 +1,18 @@
+{
+  "octavia_load_balancer_add_listener": "Aggiungi un listener",
+  "octavia_load_balancer_instances_table_listener": "Listener",
+  "octavia_load_balancer_instances_table_pools": "Pool/Istanze",
+  "octavia_load_balancer_instances_table_protocol_label": "Seleziona un protocollo",
+  "octavia_load_balancer_instances_table_protocol_tooltip": "Protocollo per il quale il front-end ascolta.",
+  "octavia_load_balancer_instances_table_listener_delete": "Elimina il listener",
+  "octavia_load_balancer_instances_table_port_label": "Porta",
+  "octavia_load_balancer_instances_table_port_tooltip": "La porta su cui il front-end ascolta deve essere compresa tra 1 e 65535.",
+  "octavia_load_balancer_instances_table_health_monitor_label": "Seleziona un health monitor",
+  "octavia_load_balancer_instances_table_health_monitor_tooltip": "Modalità di controllo dello stato del servizio back end da parte del Load Balancer.",
+  "octavia_load_balancer_instances_table_health_monitor_delete": "Elimina l'health monitor",
+  "octavia_load_balancer_instances_table_health_monitor_empty": "Nessun health monitoring",
+  "octavia_load_balancer_instances_table_pools_tooltip": "I pool e le istanze associate verso cui viene reindirizzato il traffico.",
+  "octavia_load_balancer_instances_table_pools_search_instance": "Cerca un'istanza",
+  "octavia_load_balancer_instances_table_instance_add": "Aggiungi un'istanza",
+  "octavia_load_balancer_instances_table_instance_delete": "Elimina l'istanza"
+}

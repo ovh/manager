@@ -1,0 +1,5 @@
+{
+  "octavia_load_balancer_create_l7_policy_title": "L7 Policy",
+  "octavia_load_balancer_create_l7_policy_description": "Eine L7 Policy ist die Verbindung zwischen einer oder mehreren L7 Rules und einem Listener. Ihr Hauptattribut ist die Aktion, die ausgeführt wird, wenn alle zugeordneten L7 Rules den Wert „wahr“ bzw. „true“ zurückgeben.",
+  "octavia_load_balancer_create_l7_policy_create_submit": "Hinzufügen"
+}

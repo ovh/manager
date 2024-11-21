@@ -1,0 +1,7 @@
+{
+  "octavia_load_balancer_health_monitor_detail_overview_delete_title": "Eliminare l’health monitor",
+  "octavia_load_balancer_health_monitor_detail_overview_delete_description": "Vuoi davvero eliminare il tuo health monitor <strong>{{healthMonitor}}</strong> dal pool <strong>{{pool}}</strong>?",
+  "octavia_load_balancer_health_monitor_detail_overview_delete_cancel": "Annullare",
+  "octavia_load_balancer_health_monitor_detail_overview_delete_confirm": "Elimina",
+  "octavia_load_balancer_health_monitor_detail_overview_delete_success": "Il tuo health monitor \"{{healthMonitor}}\" del pool \"{{pool}}\" è stato eliminato correttamente!"
+}
