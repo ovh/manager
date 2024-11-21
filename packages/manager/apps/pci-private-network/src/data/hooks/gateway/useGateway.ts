@@ -43,8 +43,8 @@ export const getGatewayWithLowestPrice = (catalog: TCatalog) => {
       .split('-')
       .slice(-1)
       .join(),
-    pricePerMonth: monthlyPriceObj.price,
-    pricePerHour: hourlyPriceObj.price,
+    pricePerMonth: monthlyPriceObj?.price,
+    pricePerHour: hourlyPriceObj?.price,
   };
 };
 
