@@ -126,7 +126,7 @@ const ListingTablePage: React.FC<ListingProps> = ({
   return (
     <>
       <Title>{t('title')}</Title>
-      <div className="pt-5 pb-10">
+      <div className="py-5">
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
@@ -145,6 +145,12 @@ const ListingTablePage: React.FC<ListingProps> = ({
           </span>
         </OsdsButton>
       </div>
+      <OsdsText
+        color={ODS_THEME_COLOR_INTENT.text}
+        className="inline-block my-4"
+      >
+        {t('informationMessage')}
+      </OsdsText>
       {mutationSPChangePeriod.length > 0 && (
         <Banner
           message={renewBannerMessage}

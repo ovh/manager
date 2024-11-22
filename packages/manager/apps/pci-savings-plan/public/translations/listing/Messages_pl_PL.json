@@ -26,5 +26,6 @@
   "banner_renew_activate": "Automatyczne odnowienie Savings Plan {{planName}} zostało włączone. Savings Plan zostanie odnowiony dnia {{endDate}}",
   "banner_renew_deactivate": " Automatyczne odnowienie Savings Plan {{planName}} zostało wyłączone. Savings Plan zakończy się dnia {{endDate}}. Wygaśnięcie Savings Plan nie będzie miało wpływu na Twoje aktywne usługi.",
   "banner_edit_name": "Nazwa Savings Plan została zmieniona.",
-  "banner_create_sp": "Savings Plan został utworzony. Będzie aktywny od {{startDate}}"
+  "banner_create_sp": "Savings Plan został utworzony. Będzie aktywny od {{startDate}}",
+  "informationMessage": "W dalszym ciągu możesz zarządzać swoimi usługami w zwykły sposób. Platforma automatycznie oblicza wykorzystanie zasobów w zależności od konfiguracji planów Savings oraz w zależności od zużycia istniejących lub przyszłych zasobów."
 }
