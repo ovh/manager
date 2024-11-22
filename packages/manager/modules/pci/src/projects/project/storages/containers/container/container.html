@@ -46,6 +46,31 @@
         ></cui-message-container>
     </section>
 
+    <oui-message
+        data-type="info"
+        data-ng-if="$ctrl.showReplicationRulesBanner()"
+    >
+        <p>
+            <span
+                data-translate="pci_projects_project_storages_containers_container_add_replication_rules_info"
+            ></span>
+            <a
+                href="{{:: $ctrl.asyncReplicationLink }}"
+                class="oui-link_icon"
+                rel="noopener noreferrer"
+                target="_blank"
+            >
+                <span
+                    data-translate="pci_projects_project_storages_containers_add_replication_rules_info_link"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </p>
+    </oui-message>
+
     <div data-ng-if="$ctrl.container">
         <div class="row oui-box mx-0 mb-4">
             <!--Container info-->
