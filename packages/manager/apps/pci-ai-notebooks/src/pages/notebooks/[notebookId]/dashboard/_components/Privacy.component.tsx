@@ -64,20 +64,23 @@ const Privacy = () => {
         </div>
         <div className="flex flex-wrap gap-2 mt-2">
           {notebook.spec.labels &&
-            Object.entries(notebook.spec.labels).map(([key, value]) => (
-              <Badge variant={!isOvhTags(key) ? 'default' : 'info'}>
+            Object.entries(notebook.spec.labels).map(([labKey, value]) => (
+              <Badge
+                key={labKey}
+                variant={!isOvhTags(labKey) ? 'default' : 'info'}
+              >
                 <div className="flex flex-row gap-1">
-                  <span key={`span_${key}`}>
-                    {key} = {value}
+                  <span key={`span_${labKey}`}>
+                    {labKey} = {value}
                   </span>
-                  {!isOvhTags(key) && (
+                  {!isOvhTags(labKey) && (
                     <Button
-                      key={`button_${key}`}
+                      key={`button_${labKey}`}
                       disabled={isPending}
                       size="table"
                       type="button"
                       className="inline"
-                      onClick={() => handleDeleteLabel(key)}
+                      onClick={() => handleDeleteLabel(labKey)}
                     >
                       <X className="size-3 mx-auto" />
                     </Button>

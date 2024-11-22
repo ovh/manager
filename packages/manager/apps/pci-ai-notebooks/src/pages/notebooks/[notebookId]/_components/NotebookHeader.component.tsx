@@ -17,11 +17,6 @@ import StartNotebook from './StartNotebook.component';
 import { useModale } from '@/hooks/useModale';
 import StopNotebook from './StopNotebook.component';
 import { isDeletingNotebook, isRunningNotebook } from '@/lib/notebookHelper';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
 import A from '@/components/links/A.component';
 
 export const NotebookHeader = ({
@@ -30,7 +25,7 @@ export const NotebookHeader = ({
   notebook: ai.notebook.Notebook;
 }) => {
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook');
-  const [runningNotebookStatus, setrunningNotebook] = useState(
+  const [runningNotebookStatus, setEunningNotebookStatus] = useState(
     isRunningNotebook(notebook.status.state) ||
       isDeletingNotebook(notebook.status.state),
   );
@@ -40,11 +35,11 @@ export const NotebookHeader = ({
   const stopModale = useModale('stop');
 
   useEffect(() => {
-    setrunningNotebook(
+    setEunningNotebookStatus(
       isRunningNotebook(notebook.status.state) ||
         isDeletingNotebook(notebook.status.state),
     );
-  }, [notebook]);
+  }, [notebook?.status.state]);
 
   return (
     <div
