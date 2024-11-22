@@ -25,6 +25,7 @@ import {
   mockedServiceInteMySQL,
 } from '@/__tests__/helpers/mocks/services';
 import { handleSelectOption } from '@/__tests__/helpers/selectHelper';
+import AddIntegration from './AddIntegration.modal';
 
 describe('Integrations page', () => {
   beforeEach(() => {
@@ -95,12 +96,8 @@ describe('Integrations page', () => {
   });
 
   it('open and close add integrations modal', async () => {
-    render(<Integrations />, { wrapper: RouterWithQueryClientWrapper });
-    act(() => {
-      fireEvent.click(screen.getByTestId('integrations-add-button'));
-    });
+    render(<AddIntegration />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('add-integrations-modal')).toBeInTheDocument();
       expect(screen.getByTestId('add-integrations-modal')).toBeVisible();
       expect(
         screen.getByTestId('select-integration-trigger'),

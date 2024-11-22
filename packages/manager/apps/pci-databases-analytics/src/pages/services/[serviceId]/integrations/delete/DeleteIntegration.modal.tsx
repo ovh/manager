@@ -1,7 +1,7 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import * as dbTypes from '@/types/cloud/project/database';
 import {
   Dialog,
   DialogClose,
@@ -11,28 +11,27 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
-import { IntegrationWithServices } from '../Integrations.page';
 import { useDeleteIntegration } from '@/hooks/api/database/integration/useDeleteIntegration.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import { useServiceData } from '../../Service.context';
+import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
+import { Skeleton } from '@/components/ui/skeleton';
 
-interface DeleteIntegrationProps {
-  service: dbTypes.Service;
-  controller: ModalController;
-  integration: IntegrationWithServices;
-  onSuccess?: (integration: IntegrationWithServices) => void;
-  onError?: (error: Error) => void;
-}
-
-const DeleteIntegration = ({
-  service,
-  integration,
-  controller,
-  onError,
-  onSuccess,
-}: DeleteIntegrationProps) => {
-  const { projectId } = useParams();
+const DeleteIntegration = () => {
+  const { projectId, integrationId } = useParams();
+  const navigate = useNavigate();
+  const { service } = useServiceData();
+  const integrationsQuery = useGetIntegrations(
+    projectId,
+    service.engine,
+    service.id,
+    {
+      enabled: !!service.id,
+    },
+  );
+  const integrations = integrationsQuery.data;
+  const deletedIntegration = integrations?.find((i) => i.id === integrationId);
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/integrations',
   );
@@ -44,41 +43,48 @@ const DeleteIntegration = ({
         variant: 'destructive',
         description: getCdbApiErrorMessage(err),
       });
-      if (onError) {
-        onError(err);
-      }
     },
     onSuccess: () => {
       toast.toast({
         title: t('deleteIntegrationToastSuccessTitle'),
         description: t('deleteIntegrationToastSuccessDescription', {
-          type: integration.type,
+          type: deletedIntegration.type,
         }),
       });
-      if (onSuccess) {
-        onSuccess(integration);
-      }
+      navigate('../');
     },
   });
+
+  useEffect(() => {
+    if (integrations && !deletedIntegration) navigate('../');
+  }, [integrations, deletedIntegration]);
 
   const handleDelete = () => {
     deleteIntegration({
       serviceId: service.id,
       projectId,
       engine: service.engine,
-      integrationId: integration.id,
+      integrationId: deletedIntegration.id,
     });
   };
+  const onOpenChange = (open: boolean) => {
+    if (!open) navigate('../');
+  };
+
+  if (!integrations || !deletedIntegration)
+    return <Skeleton className="w-full h-4" />;
 
   return (
-    <Dialog {...controller}>
+    <Dialog defaultOpen onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="delete-integrations-modal">
             {t('deleteIntegrationTitle')}
           </DialogTitle>
           <DialogDescription>
-            {t('deleteIntegrationDescription', { type: integration.type })}
+            {t('deleteIntegrationDescription', {
+              type: deletedIntegration.type,
+            })}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex justify-end">

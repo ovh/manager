@@ -178,6 +178,26 @@ export default [
                 '@/pages/services/[serviceId]/integrations/Integrations.page'
               ),
             ),
+            children: [
+              {
+                id: 'service.{service.engine}.integrations.add',
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/integrations/add/AddIntegration.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.integrations.delete',
+                path: 'delete/:integrationId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/integrations/delete/DeleteIntegration.modal'
+                  ),
+                ),
+              },
+            ],
           },
           {
             path: 'metrics',

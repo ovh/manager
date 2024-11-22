@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect, useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   Form,
   FormControl,
@@ -12,6 +13,7 @@ import { Button } from '@/components/ui/button';
 import * as database from '@/types/cloud/project/database';
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -28,32 +30,21 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
-import { useServiceData } from '../../Service.context';
 import { useAddIntegrationForm } from './useAddIntegrationForm.hook';
-import { CdbError } from '@/data/api/database';
 import { Alert, AlertTitle } from '@/components/ui/alert';
 import { useAddIntegration } from '@/hooks/api/database/integration/useAddIntegration.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import { useServiceData } from '../../Service.context';
+import { Skeleton } from '@/components/ui/skeleton';
 
-interface AddIntegrationModalProps {
-  service: database.Service;
-  integrations: database.service.Integration[];
-  controller: ModalController;
-  onSuccess?: (integration: database.service.Integration) => void;
-  onError?: (error: CdbError) => void;
-}
-
-const AddIntegration = ({
-  controller,
-  onError,
-  onSuccess,
-}: AddIntegrationModalProps) => {
-  const { service, projectId } = useServiceData();
-  const model = useAddIntegrationForm();
-
+const AddIntegration = () => {
+  const { projectId } = useParams();
+  const { service } = useServiceData();
+  const navigate = useNavigate();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/integrations',
   );
+  const model = useAddIntegrationForm();
   const toast = useToast();
   const { addIntegration, isPending } = useAddIntegration({
     onError: (err) => {
@@ -62,9 +53,6 @@ const AddIntegration = ({
         variant: 'destructive',
         description: getCdbApiErrorMessage(err),
       });
-      if (onError) {
-        onError(err);
-      }
     },
     onSuccess: (addedIntegration) => {
       toast.toast({
@@ -73,9 +61,7 @@ const AddIntegration = ({
           name: addedIntegration.type,
         }),
       });
-      if (onSuccess) {
-        onSuccess(addedIntegration);
-      }
+      navigate('../');
     },
   });
 
@@ -96,10 +82,6 @@ const AddIntegration = ({
     });
   });
 
-  useEffect(() => {
-    if (!controller.open) model.form.reset();
-  }, [controller.open]);
-
   const errors = useMemo(() => {
     const messages: string[] = [];
     const formErrors = model.form.formState.errors;
@@ -109,8 +91,15 @@ const AddIntegration = ({
     }
     return messages;
   }, [model.form.formState.errors]);
+
+  const onOpenChange = (open: boolean) => {
+    if (!open) navigate('../');
+  };
+
+  if (!service) return <Skeleton className="w-full h-4" />;
+
   return (
-    <Dialog {...controller}>
+    <Dialog defaultOpen onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="add-integrations-modal">
@@ -303,6 +292,15 @@ const AddIntegration = ({
               ))}
             </div>
             <DialogFooter className="flex justify-end">
+              <DialogClose asChild>
+                <Button
+                  type="button"
+                  variant="outline"
+                  data-testid="add-database-cancel-button"
+                >
+                  {t('addIntegrationButtonCancel')}
+                </Button>
+              </DialogClose>
               <Button
                 data-testid="integration-submit-button"
                 type="submit"
