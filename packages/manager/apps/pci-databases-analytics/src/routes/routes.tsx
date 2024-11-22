@@ -91,7 +91,7 @@ export default [
               },
               {
                 id: 'service.{service.engine}.users.reset-password',
-                path: 'resetPassword/:userId',
+                path: 'reset-password/:userId',
                 ...lazyRouteConfig(() =>
                   import(
                     '@/pages/services/[serviceId]/users/resetPassword/ResetPassword.modal'

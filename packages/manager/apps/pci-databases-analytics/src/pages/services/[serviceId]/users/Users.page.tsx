@@ -46,7 +46,7 @@ const Users = () => {
       navigate(`./delete/${user.id}`);
     },
     onResetPasswordClicked: (user: GenericUser) => {
-      navigate(`./resetPassword/${user.id}`);
+      navigate(`./reset-password/${user.id}`);
     },
     onEditClicked: (user: GenericUser) => {
       navigate(`./edit/${user.id}`);

@@ -269,7 +269,9 @@ describe('Open modals', () => {
   it('shows reset user password modal', async () => {
     await openButtonInMenu('user-action-reset-password-button');
     await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('./resetPassword/userId');
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(
+        './reset-password/userId',
+      );
     });
   });
 });
