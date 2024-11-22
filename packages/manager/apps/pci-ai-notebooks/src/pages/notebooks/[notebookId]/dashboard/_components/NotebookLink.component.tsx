@@ -8,6 +8,7 @@ import { useNotebookData } from '../../Notebook.context';
 import { Button } from '@/components/ui/button';
 
 import A from '@/components/links/A.component';
+import { isRunningNotebook } from '@/lib/notebookHelper';
 
 const NotebookLink = () => {
   const { notebook } = useNotebookData();
@@ -19,7 +20,12 @@ const NotebookLink = () => {
         <h5>{t('liveCodeEditorTitle')}</h5>
         <NotebookPenIcon className="size-4" />
       </div>
-      <Button className="w-full" type="button" variant="default">
+      <Button
+        className="w-full"
+        type="button"
+        variant="default"
+        disabled={!isRunningNotebook(notebook.status.state)}
+      >
         <A href={notebook.status.url} target="_blank" rel="noopener noreferrer">
           <div className="flex flex-row gap-1 items-center text-white capitalize">
             {notebook.spec.env.editorId}

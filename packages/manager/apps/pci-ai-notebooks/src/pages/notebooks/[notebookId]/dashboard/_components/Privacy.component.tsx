@@ -47,16 +47,19 @@ const Privacy = () => {
   return (
     <>
       <div data-testid="privacy-container">
-        <div className="flex flex-row items-center gap-3 ">
+        <div className="flex flex-row items-center gap-3">
           <h5>Tags</h5>
           <Button
-            size="roundedIcon"
+            size="roundedsmIcon"
             type="button"
             className="inline"
             onClick={() => addModale.open()}
-            disabled={Object.entries(notebook.spec.labels).length >= CONFIGURATION_CONFIG.maxLabelNumber}
+            disabled={
+              Object.entries(notebook.spec.labels).length >=
+              CONFIGURATION_CONFIG.maxLabelNumber
+            }
           >
-            <Plus className="size-5 mx-auto fill-white stroke-2" />
+            <Plus className="size-4 mx-auto fill-white stroke-2" />
           </Button>
         </div>
         <div className="flex flex-wrap gap-2 mt-2">
@@ -64,11 +67,12 @@ const Privacy = () => {
             Object.entries(notebook.spec.labels).map(([key, value]) => (
               <Badge variant={!isOvhTags(key) ? 'default' : 'info'}>
                 <div className="flex flex-row gap-1">
-                  <span key={key}>
+                  <span key={`span_${key}`}>
                     {key} = {value}
                   </span>
                   {!isOvhTags(key) && (
                     <Button
+                      key={`button_${key}`}
                       disabled={isPending}
                       size="table"
                       type="button"

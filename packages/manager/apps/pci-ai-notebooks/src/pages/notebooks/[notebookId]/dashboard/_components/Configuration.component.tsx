@@ -10,7 +10,7 @@ import { useModale } from '@/hooks/useModale';
 import { isRunningNotebook } from '@/lib/notebookHelper';
 
 const Configurations = () => {
-  const { notebook, notebookQuery, projectId } = useNotebookData();
+  const { notebook, projectId } = useNotebookData();
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook/dashboard');
   const navigate = useNavigate();
   const toast = useToast();
@@ -47,9 +47,7 @@ const Configurations = () => {
         variant="destructive"
         className="w-full bg-background border-2 hover:bg-destructive/10 font-semibold border-destructive text-destructive mt-4"
         onClick={() => deleteModale.open()}
-        disabled={
-          isRunningNotebook(notebook.status.state)
-        }
+        disabled={isRunningNotebook(notebook.status.state)}
       >
         {t('deleteNotebookButton')}
       </Button>
@@ -60,7 +58,6 @@ const Configurations = () => {
           navigate(`../../../`);
           deleteModale.close();
           getNotebooksQuery.refetch();
-          
         }}
       />
     </div>

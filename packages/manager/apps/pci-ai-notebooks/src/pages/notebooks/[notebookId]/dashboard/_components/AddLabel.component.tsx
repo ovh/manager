@@ -17,7 +17,6 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -95,7 +94,7 @@ const AddLabel = ({
 
   const onSubmit = form.handleSubmit((formValues) => {
     editLabel({
-      projectId: projectId,
+      projectId,
       notebookId: notebook.id,
       label: {
         name: formValues.name,
@@ -125,7 +124,7 @@ const AddLabel = ({
                     {t('keyFieldLabel')}
                   </FormLabel>
                   <FormControl>
-                    <Input data-testid="key-input-field" {...field}/>
+                    <Input data-testid="key-input-field" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

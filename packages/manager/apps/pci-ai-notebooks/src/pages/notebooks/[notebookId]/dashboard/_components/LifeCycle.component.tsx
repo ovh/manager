@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
+import { Check } from 'lucide-react';
+import { format } from 'date-fns';
 import { useNotebookData } from '../../Notebook.context';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
-import { Check } from 'lucide-react';
-import { format } from 'date-fns';
 import { TIMELINE_MAX } from '@/configuration/polling.constants';
 
 const LifeCycle = () => {
-  const { notebook, notebookQuery, projectId } = useNotebookData();
+  const { notebook } = useNotebookData();
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook/dashboard');
 
   console.log(notebook.status.lastJobStatus.history);
@@ -22,7 +22,7 @@ const LifeCycle = () => {
           {notebook.status?.lastJobStatus?.history
             ?.slice(TIMELINE_MAX)
             .map((state, index) => (
-              <TableRow key={index} className='text-sm'>
+              <TableRow key={`cycle-${index}`} className="text-sm">
                 <TableCell>
                   <Check className="size-4 text-sky-600" />
                 </TableCell>

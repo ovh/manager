@@ -33,6 +33,8 @@ const buttonVariants = cva(
         menu: 'size-8 p-0',
         input: "h-10 w-full rounded-md px-3 py-2 text-sm",
         roundedIcon: "h-6 w-6 rounded-full",
+        roundedsmIcon: "h-4 w-4 rounded-full",
+        badge: "h-6 rounded-md px-2.5 py-0.5 text-xs"
       },
     },
     defaultVariants: {
