@@ -16,7 +16,7 @@
                         data-ng-repeat="license in $ctrl.licenses track by $index"
                         name="license"
                         model="$ctrl.selectedLicense"
-                        label="{{:: ('netapp_order_performance_level_type_' + license.name) | translate }}"
+                        label="{{:: $ctrl.LICENSE_TYPE[license.name]}}"
                         values="[license]"
                     >
                         <oui-select-picker-description>
