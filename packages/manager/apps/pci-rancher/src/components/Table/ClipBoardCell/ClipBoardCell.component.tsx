@@ -1,14 +1,13 @@
 import React from 'react';
 import { Clipboard, DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { Cell } from '@tanstack/react-table';
-import './Table.scss';
 import { RancherService } from '@/types/api.type';
 
-interface DataGridCellInterface {
+interface ClipBoardCellProps {
   readonly cell: Cell<RancherService, unknown>;
 }
 
-const DataGridCell = ({ cell }: DataGridCellInterface) => {
+const ClipBoardCell = ({ cell }: ClipBoardCellProps) => {
   const id = cell.renderValue() as RancherService['id'];
 
   return (
@@ -18,4 +17,4 @@ const DataGridCell = ({ cell }: DataGridCellInterface) => {
   );
 };
 
-export default DataGridCell;
+export default ClipBoardCell;
