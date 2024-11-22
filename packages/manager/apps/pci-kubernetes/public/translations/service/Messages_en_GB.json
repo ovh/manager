@@ -93,5 +93,9 @@
   "kube_service_cluster_admission_plugins_always_pull_image_explanation": "Forces each new pod to download the required images each time.",
   "kube_service_cluster_admission_plugins_node_restriction_explanation": "Using the NodeRestriction admission controller plug-in limits the Node and Pod objects that a Kubelet can modify. When throttled by this admission controller, Kubelets are only allowed to modify their own API Node object and only those API Pod objects that are bound to their node.",
   "kube_service_cluster_admission_plugins_error": "An error has occurred resetting your cluster: {{ message }}",
-  "kube_service_cluster_admission_plugins_success": "The Admission Plugins modification has been processed."
+  "kube_service_cluster_admission_plugins_success": "The Admission Plugins modification has been processed.",
+  "kube_service_cluster_etcd_quota": "Use of ETCD quota",
+  "kube_service_cluster_etcd_quota_info": "The ETCD quota represents the space allocated to the ETCD database in your managed cluster.",
+  "kube_service_etcd_quota_error": "This cluster uses more than 80% of the allocated ETCD space.",
+  "kube_service_etcd_quota_error_link": "How do I manage my ETCD resources?"
 }

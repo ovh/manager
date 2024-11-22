@@ -1,4 +1,6 @@
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useEffect } from 'react';
+
 import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
@@ -13,12 +15,15 @@ import { useTranslation } from 'react-i18next';
 import {
   Clipboard,
   TileBlock as TileLine,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { TKube } from '@/types';
 import ClusterStatus from './ClusterStatus.component';
-
+import ClusterETCD from './ClusterETCD.component';
+import TileLineLegacy from './TileLine.component';
 import AdmissionPlugins from './AdmissionPlugins.component';
 import { isProcessing } from './ClusterManagement.component';
+import ClusterTile from './ClusterTile.component';
 
 export type ClusterInformationProps = {
   kubeDetail: TKube;
@@ -29,6 +34,9 @@ export default function ClusterInformation({
 }: Readonly<ClusterInformationProps>) {
   const { t } = useTranslation('service');
   const { t: tDetail } = useTranslation('listing');
+  const { clearNotifications } = useNotifications();
+
+  useEffect(() => clearNotifications, []);
 
   return (
     <OsdsTile
@@ -46,7 +54,6 @@ export default function ClusterInformation({
           {t('kube_service_cluster_information')}
         </OsdsText>
         <OsdsDivider separator />
-
         <TileLine label={tDetail('kube_list_id')}>
           <Clipboard aria-label="clipboard" value={kubeDetail.id} />
         </TileLine>
@@ -65,6 +72,7 @@ export default function ClusterInformation({
         <TileLine label={t('kube_service_cluster_status')}>
           <ClusterStatus status={kubeDetail.status} />
         </TileLine>
+
         <TileLine label={t('kube_service_cluster_version')}>
           <OsdsText
             className="mb-4"
@@ -75,6 +83,7 @@ export default function ClusterInformation({
             {kubeDetail.version}
           </OsdsText>
         </TileLine>
+        <TileLineLegacy title={<ClusterTile />} value={<ClusterETCD />} />
         <TileLine label={t('kube_service_cluster_admission_plugins')}>
           <AdmissionPlugins
             plugins={kubeDetail.plugins}
