@@ -15,6 +15,7 @@ import restoreContainer from './restore';
 import deleteContainer from './delete-container';
 import flushArchive from './flush-archive';
 import manageArchive from './manage-archive';
+import editRetention from './edit-retention';
 
 const moduleName = 'ovhManagerPciStoragesColdArchiveContainersList';
 
@@ -32,6 +33,7 @@ angular
     deleteContainer,
     flushArchive,
     manageArchive,
+    editRetention,
   ])
   .component('pciProjectStorageColdArchiveContainers', component)
   .config(routing)
