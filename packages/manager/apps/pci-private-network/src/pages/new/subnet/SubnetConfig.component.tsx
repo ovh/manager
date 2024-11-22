@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import {
   OsdsFormField,
@@ -34,10 +33,7 @@ const SubnetConfig: React.FC = () => {
   const dhcp = watch('subnet.enableDhcp');
   const cidr = watch('subnet.cidr');
 
-  const cidrHasError = useMemo(() => touched?.cidr && !!error?.cidr, [
-    touched?.cidr,
-    error?.cidr,
-  ]);
+  const cidrHasError = touched?.cidr && !!error?.cidr;
 
   return (
     <div className="flex flex-col gap-6 my-8">
