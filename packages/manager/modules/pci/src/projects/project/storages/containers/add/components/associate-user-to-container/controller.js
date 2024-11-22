@@ -17,13 +17,17 @@ export default class CreateLinkedUserController {
     $translate,
     CucCloudMessage,
     PciStoragesUsersService,
+    PciStoragesObjectStorageService,
     atInternet,
+    $scope,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.PciStoragesUsersService = PciStoragesUsersService;
+    this.PciStoragesObjectStorageService = PciStoragesObjectStorageService;
     this.atInternet = atInternet;
+    this.$scope = $scope;
   }
 
   $onInit() {
@@ -176,32 +180,47 @@ export default class CreateLinkedUserController {
     this.userModel.createOrLinkedMode = CONTAINER_USER_ASSOCIATION_MODES.CREATE;
   }
 
-  onLinkedUserClicked() {
+  async onLinkedUserClicked() {
     this.trackClick(`${TRACKING_ASSOCIATE_USER}-confirm`);
-
-    const service = this.PciStoragesUsersService;
     const { selected: user } = this.userModel.linkedMode;
-    const defaultCredential = user.s3Credentials;
-    const functionToCallPromise = defaultCredential
+    const service = this.PciStoragesUsersService;
+
+    const credentialPromise = user.s3Credentials
       ? service.getS3Credential(
           this.projectId,
           user.id,
-          defaultCredential.access,
+          user.s3Credentials.access,
         )
       : service.generateS3Credential(this.projectId, user.id);
+
+    const secretPromise = this.PciStoragesObjectStorageService.getS3Secret(
+      this.projectId,
+      user.id,
+      user.s3Credentials?.access,
+    );
+
     this.userModel.linkedMode.isInProgress = true;
 
-    return functionToCallPromise
-      .then((credential) => {
+    return Promise.all([credentialPromise, secretPromise])
+      .then(([credential, secretData]) => {
         this.trackPage(`${TRACKING_ASSOCIATE_USER}-success`);
+
         user.s3Credentials = credential;
-        this.userModel.linkedMode.credential = credential;
+        this.userModel.linkedMode.credential = {
+          ...credential,
+          secret: secretData.secret,
+        };
       })
       .catch(() => {
         this.trackPage(`${TRACKING_ASSOCIATE_USER}-error`);
       })
       .finally(() => {
         this.userModel.linkedMode.isInProgress = false;
+
+        // Ensure the final state updates trigger a digest cycle
+        if (!this.$scope.$$phase) {
+          this.$scope.$apply();
+        }
       });
   }
 
