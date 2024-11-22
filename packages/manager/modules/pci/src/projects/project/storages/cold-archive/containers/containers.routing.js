@@ -110,6 +110,18 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
 
+      goToEditRetentionContainer: /* @ngInject */ ($state, projectId) => (
+        container,
+      ) => {
+        return $state.go(
+          COLD_ARCHIVE_STATES.CONTAINERS_CONTAINER_EDIT_RETENTION,
+          {
+            projectId,
+            container,
+          },
+        );
+      },
+
       goBack: /* @ngInject */ (goToColdArchiveContainers) => (
         message = false,
         type = 'success',

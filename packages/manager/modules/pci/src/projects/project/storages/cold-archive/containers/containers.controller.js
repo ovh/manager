@@ -32,6 +32,7 @@ export default class PciStoragesColdArchiveContainersController {
     this.containers = this.containers.map((container) => ({
       ...container,
       gridPropertyCreationDate: new Date(container.createdAt),
+      gridPropertyLockedUntil: new Date(container.lockedUntil),
     }));
   }
 
@@ -70,6 +71,11 @@ export default class PciStoragesColdArchiveContainersController {
     return this.goToRestoreContainer(container);
   }
 
+  onEditRetentionContainerClick(container) {
+    this.trackContainerslClick(COLD_ARCHIVE_TRACKING.CONTAINERS.EDIT_RETENTION);
+    return this.goToEditRetentionContainer(container);
+  }
+
   onDeleteContainerClick(container) {
     this.trackContainerslClick(
       COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER,
@@ -105,6 +111,7 @@ export default class PciStoragesColdArchiveContainersController {
       Ctrl.isActionArchiveAvailable(container),
       Ctrl.isActionRestoredAvailable(container),
       Ctrl.isActionFlushContainerAvailable(container),
+      Ctrl.isActionEditRetentionContainerAvailable(container),
       Ctrl.isActionDeleteContainerAvailable(container),
     ].some((isActionAvailable) => isActionAvailable === true);
   }
@@ -127,11 +134,26 @@ export default class PciStoragesColdArchiveContainersController {
     return [COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED].includes(status);
   }
 
-  static isActionFlushContainerAvailable({ status }) {
+  static isActionEditRetentionContainerAvailable({ status }) {
     return [
       COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED,
       COLD_ARCHIVE_CONTAINER_STATUS.RESTORED,
     ].includes(status);
+  }
+
+  static isActionFlushContainerAvailable({ status, lockedUntil }) {
+    const validStatuses = [
+      COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED,
+      COLD_ARCHIVE_CONTAINER_STATUS.RESTORED,
+    ];
+
+    if (lockedUntil) {
+      return (
+        new Date(lockedUntil) < new Date() && validStatuses.includes(status)
+      );
+    }
+
+    return validStatuses.includes(status);
   }
 
   static isActionDeleteContainerAvailable({ status }) {
