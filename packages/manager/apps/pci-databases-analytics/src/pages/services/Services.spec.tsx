@@ -81,7 +81,9 @@ describe('Services List page', () => {
     vi.mocked(serviceApi.getServices).mockImplementationOnce(() => null);
     render(<Services />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('onbaording-container')).toBeInTheDocument();
+      expect(
+        screen.getByTestId('services-guides-container'),
+      ).toBeInTheDocument();
     });
   });
 

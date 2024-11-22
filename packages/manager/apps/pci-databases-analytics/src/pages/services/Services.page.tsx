@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { Plus } from 'lucide-react';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import ServicesList from './_components/ServiceListTable.component';
-import Onboarding from './_components/Onboarding.component';
 import LegalMentions from '../_components/LegalMentions.component';
 import { POLLING } from '@/configuration/polling.constants';
 import Link from '@/components/links/Link.component';
@@ -35,9 +34,6 @@ const Services = () => {
   }, [servicesQuery.data, category]);
 
   if (servicesQuery.isLoading) return <ServicesList.Skeleton />;
-  if (servicesQuery.isSuccess && filteredServices.length === 0) {
-    return <Onboarding />;
-  }
   return (
     <>
       <div

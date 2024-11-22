@@ -31,6 +31,13 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/Root.page')),
       },
       {
+        path: 'onboarding',
+        id: 'onboarding',
+        ...lazyRouteConfig(() =>
+          import('@/pages/services/onboarding/Onboarding.page'),
+        ),
+      },
+      {
         path: 'new',
         id: 'create',
         ...lazyRouteConfig(() => import('@/pages/services/create/Create.page')),
