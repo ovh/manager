@@ -34,5 +34,6 @@
   "supportLink": "Contact support",
   "connectionDetailsCertificateLabel": "Certificate",
   "connectionDetailsCertificateCopyToast": "The CA certificate has been copied to your clipboard",
-  "connectionDetailsCertificateDownloadToast": "The CA certificate has been uploaded"
+  "connectionDetailsCertificateDownloadToast": "The CA certificate has been uploaded",
+  "subnetTitle": "Subnet:"
 }

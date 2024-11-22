@@ -25,7 +25,7 @@
   "noMaintenanceLink": "Planear as minhas futuras manutenções",
   "maintenanceLink": "Gerir e planear as minhas manutenções",
   "networkTitle": "Rede utilizada",
-  "networkLink": "Rede privada: vRack n°{{vrack}}",
+  "networkLink": "Rede privada: vRack n.°{{vrack}}",
   "networkPublicTitle": "Rede pública (Internet)",
   "priceBillingTitle": "Suporte &amp; Faturação",
   "serviceIdLabel": "ID do serviço",
@@ -34,5 +34,6 @@
   "supportLink": "Contactar o Apoio ao Cliente",
   "connectionDetailsCertificateLabel": "Certificado",
   "connectionDetailsCertificateCopyToast": "O certificado CA foi copiado para a área de transferência",
-  "connectionDetailsCertificateDownloadToast": "O certificado CA foi descarregado"
+  "connectionDetailsCertificateDownloadToast": "O certificado CA foi descarregado",
+  "subnetTitle": "Sub-rede:"
 }
