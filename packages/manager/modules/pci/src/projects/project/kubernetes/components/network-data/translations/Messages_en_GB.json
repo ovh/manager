@@ -1,6 +1,0 @@
-{
-  "pci_kubernetes_network_data_public": "Nodes public interface",
-  "pci_kubernetes_network_data_private": "Nodes private interface",
-  "pci_kubernetes_network_data_ip": "Your gateway’s IP address",
-  "pci_kubernetes_network_data_dhcp": "DHCP-defined"
-}

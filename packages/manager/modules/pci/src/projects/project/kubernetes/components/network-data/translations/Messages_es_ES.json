@@ -1,6 +1,0 @@
-{
-  "pci_kubernetes_network_data_public": "Interfaz pública de los nodos",
-  "pci_kubernetes_network_data_private": "Interfaz privada de los nodos",
-  "pci_kubernetes_network_data_ip": "Dirección IP de la puerta de enlace",
-  "pci_kubernetes_network_data_dhcp": "definida por DHCP"
-}

@@ -1,9 +1,0 @@
-{
-  "kube_node_pool_autoscaling_scale_success": "Die Anpassung Ihres Node-Pools wird gerade durchgeführt.",
-  "kube_node_pool_autoscaling_scale_error": "Beim Anpassen des Node-Pools ist ein Fehler aufgetreten: {{message}}",
-  "kube_node_pool_autoscaling_scale_error_InsufficientVCPUsQuota": "Das Quota für vCPU Ihres Projekts reicht für diesen Vorgang nicht aus. Sie haben die Möglichkeit, Ihr Quota zu steigern, oder aber weniger Ressourcen anzufordern.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientRAMQuota": "Das Quota für RAM Ihres Projekts reicht für diesen Vorgang nicht aus. Sie haben die Möglichkeit, Ihr Quota zu steigern, oder aber weniger Ressourcen anzufordern.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientPortsQuota": "Das Quota für Ports Ihres Projekts reicht für diesen Vorgang nicht aus. Sie haben die Möglichkeit, Ihr Quota zu steigern, oder aber weniger Ressourcen anzufordern.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientInstancesQuota": "Das Quota für Instanzen Ihres Projekts reicht für diesen Vorgang nicht aus. Sie haben die Möglichkeit, Ihr Quota zu steigern, oder aber weniger Ressourcen anzufordern.",
-  "kube_node_pool_autoscaling_scale_error_quota_link": "Mein Quota erhöhen."
-}
