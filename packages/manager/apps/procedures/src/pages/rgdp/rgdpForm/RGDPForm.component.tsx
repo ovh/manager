@@ -94,7 +94,7 @@ export const RGDPForm: FunctionComponent = () => {
       email,
       category,
       description,
-      nichandle,
+      ...(nichandle !== null ? { nichandle } : {}),
       firstName,
       name,
       numberOfDocuments: extractFiles(data).length,
