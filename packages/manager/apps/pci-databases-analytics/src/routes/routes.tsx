@@ -83,7 +83,7 @@ export default [
                 ),
               },
               {
-                id: 'service.{service.engine}.users.resetPassword',
+                id: 'service.{service.engine}.users.reset-password',
                 path: 'resetPassword/:userId',
                 ...lazyRouteConfig(() =>
                   import(
