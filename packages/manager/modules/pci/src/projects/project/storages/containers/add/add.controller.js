@@ -90,9 +90,7 @@ export default class PciStoragesContainersAddController {
       deploymentMode: null,
     });
     this.container.region = null;
-    this.container.offer = this.archive
-      ? null
-      : OBJECT_CONTAINER_OFFER_STORAGE_STANDARD;
+    this.container.offer = null;
 
     this.userModel = {
       linkedMode: {
@@ -311,6 +309,11 @@ export default class PciStoragesContainersAddController {
   }
 
   onOfferFocus() {
+    this.container.offer =
+      this.container.offer === null
+        ? OBJECT_CONTAINER_OFFER_STORAGE_STANDARD
+        : null;
+
     this.displaySelectedOffer = false;
     this.container.deploymentMode = null;
   }
