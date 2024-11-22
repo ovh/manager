@@ -1,4 +1,4 @@
-import { vitest } from 'vitest';
+import { vi, vitest } from 'vitest';
 import React, { useEffect } from 'react';
 import { render } from '@testing-library/react';
 import { useNotifications, NotificationType } from './useNotifications';
@@ -29,17 +29,25 @@ function ClearNotifications() {
 }
 
 describe('notifications component', () => {
-  it('should list notifications', async () => {
+  it('should render and clear notifications only after 1000ms', async () => {
+    vi.useFakeTimers();
     let { container } = render(<Notifications />);
+    expect(container.children.length).toBe(0);
     render(<AddNotification />);
-    container = await render(<Notifications />).container;
     expect(container.children.length).toBe(2);
-  });
-  it('should clear notifications', async () => {
-    let { container } = render(<Notifications />);
-    expect(container.children.length).not.toBe(0);
+
+    vi.advanceTimersByTime(999);
+
+    render(<ClearNotifications />);
+    container = render(<Notifications />).container;
+    expect(container.children.length).toBe(2);
+
+    vi.advanceTimersByTime(1);
+
     render(<ClearNotifications />);
     container = render(<Notifications />).container;
     expect(container.children.length).toBe(0);
+
+    vi.restoreAllMocks();
   });
 });
