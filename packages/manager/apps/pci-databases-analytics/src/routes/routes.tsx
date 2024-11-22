@@ -121,6 +121,26 @@ export default [
             ...lazyRouteConfig(() =>
               import('@/pages/services/[serviceId]/databases/Database.page'),
             ),
+            children: [
+              {
+                id: 'service.{service.engine}.databases.add',
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/databases/add/AddDatabase.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.databases.delete',
+                path: 'delete/:databaseId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/databases/delete/DeleteDatabase.modal'
+                  ),
+                ),
+              },
+            ],
           },
           {
             path: 'namespaces',

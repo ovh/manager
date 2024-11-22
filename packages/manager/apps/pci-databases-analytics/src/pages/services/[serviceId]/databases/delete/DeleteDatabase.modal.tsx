@@ -1,8 +1,7 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import * as dbTypes from '@/types/cloud/project/database';
-
 import {
   Dialog,
   DialogClose,
@@ -12,28 +11,29 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
 import { useDeleteDatabase } from '@/hooks/api/database/database/useDeleteDatabase.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
+import { useServiceData } from '../../Service.context';
+import { Skeleton } from '@/components/ui/skeleton';
 
-interface DeleteDatabaseModalProps {
-  service: dbTypes.Service;
-  controller: ModalController;
-  database: dbTypes.service.Database;
-  onSuccess?: (database: dbTypes.service.Database) => void;
-  onError?: (error: Error) => void;
-}
-
-const DeleteDatabase = ({
-  service,
-  database,
-  controller,
-  onError,
-  onSuccess,
-}: DeleteDatabaseModalProps) => {
+const DeleteDatabase = () => {
   // import translations
-  const { projectId } = useParams();
+  const { projectId, databaseId } = useParams();
+  const navigate = useNavigate();
+  const { service } = useServiceData();
+  const databasesQuery = useGetDatabases(
+    projectId,
+    service.engine,
+    service.id,
+    {
+      enabled: !!service.id,
+    },
+  );
+  const databases = databasesQuery.data;
+  const deletedDatabase = databases?.find((d) => d.id === databaseId);
+
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/databases',
   );
@@ -45,41 +45,47 @@ const DeleteDatabase = ({
         variant: 'destructive',
         description: getCdbApiErrorMessage(err),
       });
-      if (onError) {
-        onError(err);
-      }
     },
     onSuccess: () => {
       toast.toast({
         title: t('deleteDatabaseToastSuccessTitle'),
         description: t('deleteDatabaseToastSuccessDescription', {
-          name: database.name,
+          name: deletedDatabase.name,
         }),
       });
-      if (onSuccess) {
-        onSuccess(database);
-      }
+      navigate('../');
     },
   });
+
+  useEffect(() => {
+    if (databases && !deletedDatabase) navigate('../');
+  }, [databases, deletedDatabase]);
 
   const handleDelete = () => {
     deleteDatabase({
       serviceId: service.id,
       projectId,
       engine: service.engine,
-      databaseId: database.id,
+      databaseId: deletedDatabase.id,
     });
   };
 
+  const onOpenChange = (open: boolean) => {
+    if (!open) navigate('../');
+  };
+
+  if (!databases || !deletedDatabase)
+    return <Skeleton className="w-full h-4" />;
+
   return (
-    <Dialog {...controller}>
+    <Dialog defaultOpen onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="delete-database-modal">
             {t('deleteDatabaseTitle')}
           </DialogTitle>
           <DialogDescription>
-            {t('deleteDatabaseDescription', { name: database.name })}
+            {t('deleteDatabaseDescription', { name: deletedDatabase.name })}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex justify-end">

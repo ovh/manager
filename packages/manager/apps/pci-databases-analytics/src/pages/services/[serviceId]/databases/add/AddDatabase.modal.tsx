@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
@@ -13,7 +13,6 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import * as database from '@/types/cloud/project/database';
 import {
   Dialog,
   DialogClose,
@@ -23,26 +22,17 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
 import { useAddDatabase } from '@/hooks/api/database/database/useAddDatabase.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import { useServiceData } from '../../Service.context';
+import { Skeleton } from '@/components/ui/skeleton';
 
-interface AddDatabaseModalProps {
-  service: database.Service;
-  controller: ModalController;
-  onSuccess?: (database: database.service.Database) => void;
-  onError?: (error: Error) => void;
-}
-
-const AddDatabase = ({
-  service,
-  controller,
-  onError,
-  onSuccess,
-}: AddDatabaseModalProps) => {
+const AddDatabase = () => {
   // import translations
   const { projectId } = useParams();
+  const { service } = useServiceData();
+  const navigate = useNavigate();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/databases',
   );
@@ -54,9 +44,6 @@ const AddDatabase = ({
         variant: 'destructive',
         description: getCdbApiErrorMessage(err),
       });
-      if (onError) {
-        onError(err);
-      }
     },
     onSuccess: (addedDb) => {
       toast.toast({
@@ -65,9 +52,7 @@ const AddDatabase = ({
           name: addedDb.name,
         }),
       });
-      if (onSuccess) {
-        onSuccess(addedDb);
-      }
+      navigate('../');
     },
   });
   // define the schema for the form
@@ -98,8 +83,14 @@ const AddDatabase = ({
     });
   });
 
+  const onOpenChange = (open: boolean) => {
+    if (!open) navigate('../');
+  };
+
+  if (!service) return <Skeleton className="w-full h-4" />;
+
   return (
-    <Dialog {...controller}>
+    <Dialog defaultOpen onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="add-database-modal">
