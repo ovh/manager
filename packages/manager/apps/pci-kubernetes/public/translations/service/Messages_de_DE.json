@@ -93,5 +93,9 @@
   "kube_service_cluster_admission_plugins_always_pull_image_explanation": "Erzwingt, dass jeder neue Pod jedes Mal die benötigten Images herunterlädt.",
   "kube_service_cluster_admission_plugins_node_restriction_explanation": "Die Verwendung des Plug-Ins für den NodeRestriction-Zugangscontroller schränkt die Node- und POD-Objekte ein, die ein Kubelet ändern kann. Wenn sie durch diesen Zugangscontroller eingeschränkt sind, dürfen Kubelets nur ihr eigenes API-Node-Objekt und nur die API-Pod-Objekte ändern, die an ihren Node gebunden sind.",
   "kube_service_cluster_admission_plugins_error": "Beim Zurücksetzen Ihres Clusters ist ein Fehler aufgetreten: {{ message }}",
-  "kube_service_cluster_admission_plugins_success": "Die Änderung der Plugins wurde registriert."
+  "kube_service_cluster_admission_plugins_success": "Die Änderung der Plugins wurde registriert.",
+  "kube_service_cluster_etcd_quota": "Verwendung des ETCD-Quotas",
+  "kube_service_cluster_etcd_quota_info": "Das ETCD-Quota stellt den der ETCD-Datenbank Ihres verwalteten Clusters zugewiesenen Speicherplatz dar.",
+  "kube_service_etcd_quota_error": "Dieser Cluster verwendet mehr als 80% des zugewiesenen ETCD-Speicherplatzes.",
+  "kube_service_etcd_quota_error_link": "Wie verwalte ich meine ETCD-Ressourcen?"
 }

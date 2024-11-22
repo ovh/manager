@@ -325,3 +325,10 @@ export async function editNetwork(
   }
   return Promise.all(todo);
 }
+
+export const getKubeEtcdUsage = async (projectId: string, kubeId: string) => {
+  const { data } = await v6.get(
+    `/cloud/project/${projectId}/kube/${kubeId}/metrics/etcdUsage`,
+  );
+  return data;
+};

@@ -16,7 +16,13 @@ export const shellContext = {
   },
 };
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
 
 export const wrapper = ({ children }) => (
   <QueryClientProvider client={queryClient}>
