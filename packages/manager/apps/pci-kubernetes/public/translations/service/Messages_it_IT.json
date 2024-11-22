@@ -80,7 +80,7 @@
   "kube_service_cluster_network_subnet": "Sottorete",
   "kube_service_cluster_network_lb_subnet": "Sottorete Load Balancer",
   "kube_service_cluster_network_error": "Si è verificato un errore durante il caricamento delle informazioni di rete: {{ error }}",
-  "kube_service_network_edit": "Modificare i parametri della rete",
+  "kube_service_network_edit": "Modificare le impostazioni di rete",
   "kubernetes_add_private_network": "Configurare una rete",
   "kube_service_cluster_admission_plugins": "Admission Plugins",
   "kube_service_cluster_admission_plugins_mutation": "Attivare/disattivare i plugin",
@@ -93,5 +93,9 @@
   "kube_service_cluster_admission_plugins_always_pull_image_explanation": "Forza ogni nuovo pod a scaricare le immagini necessarie ogni volta.",
   "kube_service_cluster_admission_plugins_node_restriction_explanation": "L'utilizzo del plugin del controller di ammissione NodeRestriction limita gli oggetti Node e Pod che un kubelet può modificare. Quando sono limitati da questo controller di ammissione, i kubelet sono autorizzati a modificare solo il proprio oggetto API Node ed esclusivamente gli oggetti API Pod associati al loro nodo.",
   "kube_service_cluster_admission_plugins_error": "Si è verificato un errore durante il ripristino del cluster: {{ message }}",
-  "kube_service_cluster_admission_plugins_success": "La modifica degli Admission Plugins è stata presa in carico."
+  "kube_service_cluster_admission_plugins_success": "La modifica degli Admission Plugins è stata presa in carico.",
+  "kube_service_cluster_etcd_quota": "Utilizzo della quota ETCD",
+  "kube_service_cluster_etcd_quota_info": "La quota ETCD rappresenta lo spazio assegnato al database ETCD del cluster gestito.",
+  "kube_service_etcd_quota_error": "Questo cluster utilizza oltre l'80% dello spazio ETCD assegnato.",
+  "kube_service_etcd_quota_error_link": "Come si gestiscono le risorse ETCD?"
 }

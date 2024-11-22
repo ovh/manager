@@ -93,5 +93,9 @@
   "kube_service_cluster_admission_plugins_always_pull_image_explanation": "Wprowadź regułę, zgodnie z którą każdy nowy pod zawsze pobiera wymagane obrazy.",
   "kube_service_cluster_admission_plugins_node_restriction_explanation": "Użycie wtyczki kontrolera dostępu NodeRestriction ogranicza obiekty Node i Pod, które kubelet może modyfikować. Gdy obiekty te są ograniczone przez kontroler dostępu, kublety mogą modyfikować tylko własny obiekt API Node i tylko obiekty API Pod powiązane z ich węzłem.",
   "kube_service_cluster_admission_plugins_error": "Wystąpił błąd podczas resetu klastra: {{ message }}.",
-  "kube_service_cluster_admission_plugins_success": "Dyspozycja modyfikacji Admission Plugins została przyjęta."
+  "kube_service_cluster_admission_plugins_success": "Dyspozycja modyfikacji Admission Plugins została przyjęta.",
+  "kube_service_cluster_etcd_quota": "Wykorzystanie limitu ETCD",
+  "kube_service_cluster_etcd_quota_info": "Rozmiar ETCD to przestrzeń przydzielona do bazy danych ETCD zarządzanego klastra.",
+  "kube_service_etcd_quota_error": "Ten klaster zużywa ponad 80% przydzielonego miejsca ETCD.",
+  "kube_service_etcd_quota_error_link": "Jak zarządzać zasobami ETCD?"
 }

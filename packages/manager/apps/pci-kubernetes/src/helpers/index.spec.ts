@@ -5,6 +5,7 @@ import {
   getFormatedKubeVersion,
   isIPValid,
   paginateResults,
+  getColorByPercentage,
 } from '@/helpers/index';
 
 describe('helper', () => {
@@ -64,5 +65,25 @@ describe('helper', () => {
     const ip = '192.168.1.1/999';
     const result = isIPValid(ip);
     expect(result).toBe(false);
+  });
+});
+
+describe('getColorByPercentage', () => {
+  it('should return primary color for percentage <= 69', () => {
+    expect(getColorByPercentage(50)).toBe('var(--ods-color-primary-500)');
+    expect(getColorByPercentage(69)).toBe('var(--ods-color-primary-500)');
+  });
+
+  it('should return warning color for percentage between 70 and 79', () => {
+    expect(getColorByPercentage(75)).toBe('var(--ods-color-warning-500)');
+  });
+
+  it('should return error color for percentage between 80 and 100', () => {
+    expect(getColorByPercentage(85)).toBe('var(--ods-color-error-500)');
+    expect(getColorByPercentage(100)).toBe('var(--ods-color-error-500)');
+  });
+
+  it('should return last color in thresholds if percentage exceeds 100', () => {
+    expect(getColorByPercentage(120)).toBe('var(--ods-color-error-500)');
   });
 });
