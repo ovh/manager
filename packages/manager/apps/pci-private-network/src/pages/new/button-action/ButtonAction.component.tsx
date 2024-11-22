@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -30,7 +30,7 @@ const ButtonAction: React.FC = () => {
   const form = useFormContext<NewPrivateNetworkForm>();
 
   const { data: project } = useProject();
-  const projectId = useMemo(() => project.project_id, [project]);
+  const projectId = project.project_id;
   const isDiscovery = isDiscoveryProject(project);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);

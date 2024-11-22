@@ -17,11 +17,16 @@ export default function useExistingGatewayRegion(
     region,
   );
 
-  return useMemo(() => {
+  const gateway = useMemo(() => {
     const existingGateway = gateways?.find(
       ({ externalInformation }) => externalInformation,
     );
 
-    return { gateway: existingGateway ?? gateways?.[0], isLoading };
-  }, [gateways, region, isLoading]);
+    return existingGateway ?? gateways?.[0];
+  }, [gateways]);
+
+  return {
+    gateway,
+    isLoading,
+  };
 }
