@@ -1,5 +1,0 @@
-export const DELETE_CONFIRMATION_INPUT = /^DELETE$/;
-
-export default {
-  DELETE_CONFIRMATION_INPUT,
-};

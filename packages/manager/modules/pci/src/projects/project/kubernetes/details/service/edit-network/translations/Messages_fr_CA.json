@@ -1,7 +1,0 @@
-{
-  "pci_kubernetes_edit_network_title": "Modifier les paramètres du réseau attaché",
-  "pci_kubernetes_edit_network_submit": "Confirmer",
-  "pci_kubernetes_edit_network_cancel": "Annuler",
-  "pci_kubernetes_edit_network_success": "Les paramètres du réseau attaché sont en cours de modification",
-  "pci_kubernetes_edit_network_error": "Impossible de modifier les paramètres du réseau attaché : {{ message }}"
-}

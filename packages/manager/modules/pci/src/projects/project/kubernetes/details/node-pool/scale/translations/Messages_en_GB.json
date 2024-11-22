@@ -1,9 +1,0 @@
-{
-  "kube_node_pool_autoscaling_scale_success": "Your node pool is being adjusted.",
-  "kube_node_pool_autoscaling_scale_error": "An error has occurred adjusting the node pool: {{message}}",
-  "kube_node_pool_autoscaling_scale_error_InsufficientVCPUsQuota": "Your project’s vCPU quota is too low to perform the operation. Please increase your quota, or request fewer resources.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientRAMQuota": "Your project’s RAM quota is too low to perform the operation. Please increase your quota, or request fewer resources.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientPortsQuota": "Your project’s port quota is too low to complete the operation. Please increase your quota, or request fewer resources.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientInstancesQuota": "Your project’s instance quota is too low to complete the operation. Please increase your quota, or request fewer resources.",
-  "kube_node_pool_autoscaling_scale_error_quota_link": "Increase your quota."
-}
