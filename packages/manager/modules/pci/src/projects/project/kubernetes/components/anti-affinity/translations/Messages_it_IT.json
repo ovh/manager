@@ -1,4 +1,0 @@
-{
-  "kubernetes_node_pool_anti_affinity": "Anti-affinità",
-  "kubernetes_node_pool_anti_affinity_description": "L’attivazione dell'anti-affinità permette di avviare i nodi correnti e futuri su hypervisor (server fisici) differenti, garantendo una maggiore tolleranza ai guasti. I pool di nodi con anti-affinità possono contenere un massimo di {{ maxNodes }} nodi."
-}

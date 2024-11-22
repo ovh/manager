@@ -1,6 +1,0 @@
-{
-  "pci_kubernetes_network_data_public": "Interface publique des noeuds",
-  "pci_kubernetes_network_data_private": "Interface privée des noeuds",
-  "pci_kubernetes_network_data_ip": "Adresse IP de votre passerelle",
-  "pci_kubernetes_network_data_dhcp": "définie par DHCP"
-}

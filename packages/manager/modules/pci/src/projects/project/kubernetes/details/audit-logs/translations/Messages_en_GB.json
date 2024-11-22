@@ -1,5 +1,0 @@
-{
-  "kube_logs_tab_title": "Logs",
-  "kube_logs_main_description": "Below are the audit logs of your Kubernetes cluster. These logs track security-related activities in chronological order and record your cluster’s operations, including user actions and API usage by applications and the control plane.",
-  "logs_list_description_audit": "By subscribing to your Kubernetes cluster’s audit logs, they will be seamlessly transferred to the Logs Data Platform. This allows you to integrate them with your other logs, conduct advanced searches, manage retention, set alerts, and create dashboards to easily monitor your clusters."
-}
