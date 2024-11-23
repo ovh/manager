@@ -9,7 +9,7 @@
   "octavia_load_balancer_list_l7_policies_redirect_code": "Redirect code",
   "octavia_load_balancer_list_l7_policies_actions_edit": "Modifica",
   "octavia_load_balancer_list_l7_policies_actions_manage_rules": "Gestire le L7 rules",
-  "octavia_load_balancer_list_l7_policies_actions_delete": "Elimina",
+  "octavia_load_balancer_list_l7_policies_actions_delete": "Eliminare",
   "octavia_load_balancer_create_l7_policy_success": "La L7 policy {{ policy }} è stata creata correttamente. A questo punto è possibile creare una <a href=\"{{ link }}\">L7 rule</a>.",
   "octavia_load_balancer_edit_l7_policy_success": "La L7 policy {{ policy }} è stata modificata correttamente.",
   "octavia_load_balancer_list_l7_policies_delete_success": "La L7 policy {{policy}} è stata eliminata correttamente."

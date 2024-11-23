@@ -10,7 +10,7 @@
   "octavia_load_balancer_pools_detail_members_add_ip_instance_port_label": "Port",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_duplicate_port_label": "Duplicate this port for all members",
   "octavia_load_balancer_pools_detail_members_protocol_port_existing": "This IP address is already associated with this port. Please choose another port.",
-  "octavia_load_balancer_pools_detail_members_add_ip_instance_add_action": "Validate",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_add_action": "Confirm",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_cancel_action": "Cancel",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_aria_label_close": "Close"
 }

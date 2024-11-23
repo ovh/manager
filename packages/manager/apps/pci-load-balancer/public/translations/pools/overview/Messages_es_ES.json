@@ -4,7 +4,7 @@
   "octavia_load_balancer_pools_detail_overview_management_add_manually": "Añadir un miembro manualmente",
   "octavia_load_balancer_pools_detail_overview_management_delete": "Eliminar",
   "octavia_load_balancer_pools_detail_overview_info_title": "Información",
-  "octavia_load_balancer_pools_detail_overview_info_name": "Nombre",
+  "octavia_load_balancer_pools_detail_overview_info_name": "Apellido",
   "octavia_load_balancer_pools_detail_overview_info_pool_id": "ID del Pool",
   "octavia_load_balancer_pools_detail_overview_info_listener_id": "ID del listener asociado",
   "octavia_load_balancer_pools_detail_overview_info_provisioning_status": "Estado de aprovisionamiento",
