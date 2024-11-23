@@ -2,7 +2,7 @@
   "octavia_load_balancer_health_monitor_form_description_1": "Health monitor służy do określania kondycji członków puli. Kontrole kondycji są regularnie wykonywane w odniesieniu do każdego członka puli, a wyniki kontroli pozwalają określić, czy członek otrzymuje nowe połączenia. Dla każdej puli można zdefiniować tylko jeden health monitor.",
   "octavia_load_balancer_health_monitor_form_description_2": "Odkryj dodatkowe opcje w interfejsie Horizon.",
   "octavia_load_balancer_health_monitor_form_description_link": "Sprawdź opcje",
-  "octavia_load_balancer_health_monitor_form_name": "Nazwa",
+  "octavia_load_balancer_health_monitor_form_name": "Nazwisko",
   "octavia_load_balancer_health_monitor_form_name_help": "Może zawierać jedynie cyfry, litery, podkreślenia, myślniki lub kropki.",
   "octavia_load_balancer_health_monitor_form_type": "Typ",
   "octavia_load_balancer_health_monitor_form_type_default": "Wybierz typ",

@@ -26,7 +26,7 @@
   "list_column_stream_retention": "Retencja",
   "list_column_stream_subscription": "Subskrypcje",
   "list_empty": "Brak pasujących strumieni danych",
-  "list_indexation_status_true": "Aktywna",
+  "list_indexation_status_true": "Aktywny",
   "list_indexation_status_false": "Zatrzymana",
   "list_button_subscribe": "Subskrybuj",
   "list_button_unsubscribe": "Rezygnacja z subskrypcji",
