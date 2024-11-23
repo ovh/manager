@@ -1,5 +1,5 @@
 {
-  "octavia_load_balancer_listeners_create_name": "Nazwa",
+  "octavia_load_balancer_listeners_create_name": "Nazwisko",
   "octavia_load_balancer_listeners_create_protocol": "Protokół",
   "octavia_load_balancer_listeners_create_protocol_tooltip": "Protokół dla którego front-end nasłuchuje połączenia.",
   "octavia_load_balancer_listeners_create_protocol_default": "Wybierz protokół",

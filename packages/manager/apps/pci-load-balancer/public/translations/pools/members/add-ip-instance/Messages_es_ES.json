@@ -5,7 +5,7 @@
   "octavia_load_balancer_pools_detail_members_add_ip_instance_port_title": "Añadir los puertos de las IP de las instancias",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_search_not_found": "No se ha encontrado ninguna instancia",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_search_placeholder": "Buscar una instancia",
-  "octavia_load_balancer_pools_detail_members_add_ip_instance_name_label": "Nombre",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_name_label": "Apellido",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_ip_label": "IP",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_port_label": "Puerto",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_duplicate_port_label": "Duplicar este puerto en todos los miembros",
