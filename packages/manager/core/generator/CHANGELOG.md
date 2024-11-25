@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.17.2...@ovh-ux/manager-generator@0.18.0) (2024-11-25)
+
+
+### Features
+
+* **generator:** add vitest in generator ([9149927](https://github.com/ovh/manager/commit/914992750247d2dcd297cfbedaac50d7bc801e30))
+
+
+
+
+
 ## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.17.1...@ovh-ux/manager-generator@0.17.2) (2024-11-19)
 
 
