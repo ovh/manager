@@ -3,6 +3,7 @@ import find from 'lodash/find';
 import { SANITIZATION, FEATURES } from './constants';
 
 import signupFormComponent from './form/component';
+import { TRACKING_DETAILS } from './at-internet.constants';
 
 export const state = {
   name: 'sign-up',
@@ -97,9 +98,41 @@ export const state = {
         '#/identity-documents',
       );
     },
-    onStepFocus: /* @ngInject */ ($state, getStepByName) => (stepName) => {
+    onStepFocus: /* @ngInject */ (
+      $state,
+      atInternet,
+      getStepByName,
+      isActiveStep,
+      me,
+    ) => (stepName) => {
       const focusedStep = getStepByName(stepName);
       if ($state.current.name !== focusedStep.state) {
+        const { chapter1, chapter2, chapter3 } = TRACKING_DETAILS;
+        const trackingHits = [chapter1, chapter2, chapter3, 'page', 'button'];
+        if (stepName === 'details' && isActiveStep('activity')) {
+          const additionalHits = [
+            'create_account_step4',
+            'edit-step3',
+            `${me.model.legalform}_${me.ovhSubsidiary}`,
+          ];
+          trackingHits.push(...additionalHits);
+          atInternet.trackPage({
+            name: trackingHits.join('::'),
+            page_category: chapter1,
+          });
+        }
+        if (stepName === 'activity') {
+          const additionalHits = [
+            'create_account_step3',
+            'next',
+            `${me.model.legalform}_${me.ovhSubsidiary}`,
+          ];
+          trackingHits.push(...additionalHits);
+          atInternet.trackPage({
+            name: trackingHits.join('::'),
+            page_category: chapter1,
+          });
+        }
         $state.transitionTo(focusedStep.state, $state.params, {
           location: false,
         });
@@ -152,10 +185,19 @@ export const state = {
         state: 'sign-up.activity',
       },
     ],
-    trackError: /* @ngInject */ (atInternet, me) => (step, field) => {
+    trackError: /* @ngInject */ (atInternet) => (step, field) => {
+      const { chapter1, chapter2, chapter3 } = TRACKING_DETAILS;
+      const errorTrackingHits = [
+        chapter1,
+        chapter2,
+        chapter3,
+        'create_account_step',
+        'banner-error',
+        `error_${field}`,
+      ];
       atInternet.trackPage({
-        name: `accountcreation-${step}-error${field}-${me.legalform}`,
-        customObject: { event: 'ACCOUNT_CREATION_VALIDATION' },
+        name: errorTrackingHits.join('::'),
+        page_category: 'banner',
       });
     },
 

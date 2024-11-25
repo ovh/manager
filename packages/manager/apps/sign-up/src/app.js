@@ -30,7 +30,7 @@ import { registerState } from './routing';
 
 import controller from './index.controller';
 import { SANITIZATION } from './constants';
-import { TRACKING, TRACKING_DETAILS } from './at-internet.constants';
+import { TRACKING } from './at-internet.constants';
 
 // styles
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -112,11 +112,6 @@ export default (containerEl, environment) => {
             replacement: 'accountcreation',
           },
         ]);
-        const { chapter1, chapter2, chapter3 } = TRACKING_DETAILS;
-        // FIXME: does not work
-        atInternetConfigurationProvider.setPrefix(
-          `${chapter1}::${chapter2}::${chapter3}`,
-        );
       },
     )
     .config(registerState)

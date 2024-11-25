@@ -77,6 +77,7 @@ export default class SignUpFormAppCtrl {
     this.atInternet.trackClick({
       name: hits.join('::'),
       type: 'action',
+      page_category: chapter1,
     });
     return this.cancelStep(step);
   }
@@ -98,14 +99,12 @@ export default class SignUpFormAppCtrl {
     const tracking = {
       name: hits.join('::'),
       type: 'action',
-      chapter1,
-      chapter2,
-      chapter3,
       goalType,
       accountcreationSiretProvided: this.me.model
         .companyNationalIdentificationNumber
         ? 'Provided'
         : '',
+      page_category: chapter1,
     };
 
     if (this.isSmsConsentAvailable) {
@@ -117,12 +116,30 @@ export default class SignUpFormAppCtrl {
 
     // call to finishSignUp binding
     if (isFunction(this.finishSignUp)) {
+      const getTrackingHits = (status) => [
+        chapter1,
+        chapter2,
+        'validation',
+        'account-creation-finalstep',
+        'banner-success',
+        `confirmation_${status}`,
+        `${this.me.model.legalform}_${this.me.ovhSubsidiary}`,
+      ];
       return this.finishSignUp(this.smsConsent)
         .then(() => {
+          this.atInternet.trackPage({
+            name: getTrackingHits('success').join('::'),
+            page_category: 'banner',
+          });
           if (this.needkyc) this.goToKycDocumentUploadPage();
         })
         .catch((error) => {
           this.saveError = error;
+          this.atInternet.trackPage({
+            name: getTrackingHits('error').join('::'),
+            page_category: 'banner',
+            goalType: 'account-creation-finalstep',
+          });
         });
     }
     if (this.needkyc) {
@@ -149,12 +166,12 @@ export default class SignUpFormAppCtrl {
       chapter1,
       chapter2,
       chapter3,
-      'create_account_step3',
+      'account-creation-step3',
       'fill-in_contact_details',
     ];
     this.atInternet.trackPage({
       name: hits.join('::'),
-      type: 'action',
+      page_category: chapter1,
     });
   }
 }
