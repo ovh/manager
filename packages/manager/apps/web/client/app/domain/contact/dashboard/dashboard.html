@@ -36,6 +36,9 @@
                     class="h-100"
                     data-heading="{{:: 'domain_tab_CONTACT_owner' | translate }}"
                 >
+                    <div class="oui-message oui-message_info oui-message_no-icon" role="alert">
+                        <p class="oui-message__body"  data-translate="domain_tab_CONTACT_edit_form_owner_infos"></p>
+                    </div>
                     <p class="mb-5" data-translate="domain_tab_CONTACT_description_owner"></p>
                     <oui-button
                         data-disabled="!$ctrl.isNicAdmin"
@@ -54,8 +57,8 @@
                     class="h-100"
                     data-heading="{{:: 'domain_tab_CONTACT_admin' | translate }}"
                 >
-                    <span data-ng-if="!$ctrl.isNicAdmin"
-                          class="d-block font-weight-bold"
+                    <span
+                          class="d-block font-weight-bold pb-2"
                           data-ng-bind="::$ctrl.domainInfos.contactAdmin">
                     </span>
                     <div data-ng-if="$ctrl.isNicAdmin" class="mb-2">
@@ -105,8 +108,8 @@
                     class="h-100"
                     data-heading="{{:: 'domain_tab_CONTACT_technical' | translate }}"
                 >
-                    <span data-ng-if="$ctrl.domainInfos.contactTech !== $ctrl.user.nichandle"
-                          class="d-block font-weight-bold"
+                    <span
+                          class="d-block font-weight-bold pb-2"
                           data-ng-bind="::$ctrl.domainInfos.contactTech">
                     </span>
                     <div
@@ -142,8 +145,8 @@
                 <oui-tile
                     data-heading="{{:: 'domain_tab_CONTACT_billing' | translate }}"
                 >
-                    <span data-ng-if="$ctrl.domainInfos.contactBilling !== $ctrl.user.nichandle"
-                          class="d-block font-weight-bold"
+                    <span
+                          class="d-block font-weight-bold pb-2"
                           data-ng-bind="::$ctrl.domainInfos.contactBilling">
                     </span>
                     <div

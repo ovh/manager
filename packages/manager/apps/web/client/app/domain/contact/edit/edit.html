@@ -1,3 +1,6 @@
+<oui-back-button data-on-click=":: $ctrl.goBack()">
+</oui-back-button>
+
 <h3 data-translate="domain_tab_CONTACT_edit_title"></h3>
 <p data-translate="domain_tab_CONTACT_edit_owner_description"></p>
 
@@ -17,8 +20,8 @@
         <div class="col-md-6">
             <!-- FORM SECTIONS -->
             <fieldset
-                data-ng-form="$ctrl['form_part_' + section]"
-                class="mb-2"
+                data-ng-form="{{'form_part_' + section}}"
+                class="mb-4"
                 data-ng-repeat="section in ::$ctrl.getSections('left') track by $index"
                 data-ng-if="$ctrl.getRulesBySection(section).length"
             >
@@ -40,7 +43,7 @@
         <div class="col-md-6">
             <!-- FORM SECTIONS -->
             <fieldset
-                data-ng-form="$ctrl['form_part_' + section]"
+                data-ng-form="{{'form_part_' + section}}"
                 data-ng-repeat="section in ::$ctrl.getSections('right') track by $index"
                 data-ng-if="$ctrl.getRulesBySection(section).length"
             >
@@ -58,19 +61,31 @@
             </fieldset>
         </div>
     </div>
-    <div class="row mt-2">
+    <div class="row mt-2 pl-2">
+        <div class="col-md-12">
+            <oui-message
+                class="mb-2"
+                type="warning"
+                data-ng-if="ovhEditContactForm.$invalid"
+            >
+                <span data-translate="domain_tab_CONTACT_edit_form_content_check_validation"></span>
+            </oui-message>
+        </div>
+    </div>
+    <div class="row mt-2 pl-2">
         <div class="col-md-6">
             <button
                 type="button"
                 data-ng-click="$ctrl.goBack()"
-                class="oui-inline-adder__action oui-button oui-button_secondary"
+                class="oui-button oui-button_secondary"
                 data-ng-attr-title="{{ ::'domain_tab_CONTACT_edit_form_cancel_btn' | translate }}"
             >
                 <span data-translate="domain_tab_CONTACT_edit_form_cancel_btn"></span>
             </button>
             <button
+                data-ng-disabled="ovhEditContactForm.$invalid || $ctrl.isSubmitting"
                 type="submit"
-                class="oui-inline-adder__action oui-button oui-button_primary"
+                class="oui-button oui-button_primary"
                 data-ng-attr-title="{{ ::'domain_tab_CONTACT_edit_form_submit_btn' | translate }}"
             >
                 <span data-translate="domain_tab_CONTACT_edit_form_submit_btn"></span>
@@ -78,7 +93,6 @@
         </div>
     </div>
 </form>
-
 
 
 

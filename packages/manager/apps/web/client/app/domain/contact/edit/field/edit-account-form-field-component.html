@@ -1,7 +1,8 @@
 <div
+    class="pt-2"
     data-ng-class="{ 'oui-field': $ctrl.rule.hasBottomMargin,
-                    'col-sm-12': $ctrl.rule.fieldName !== $ctrl.FIELD_NAME_LIST.city && $ctrl.rule.fieldName !== $ctrl.FIELD_NAME_LIST.zip,
-                    'col-sm-6': $ctrl.rule.fieldName === $ctrl.FIELD_NAME_LIST.city || $ctrl.rule.fieldName === $ctrl.FIELD_NAME_LIST.zip,
+                    'col-sm-12': $ctrl.rule.label !== $ctrl.FIELD_NAME_LIST.city && $ctrl.rule.label !== $ctrl.FIELD_NAME_LIST.zip,
+                    'col-sm-6': $ctrl.rule.label === $ctrl.FIELD_NAME_LIST.city || $ctrl.rule.label === $ctrl.FIELD_NAME_LIST.zip,
                     'oui-field mb-0': !$ctrl.rule.hasBottomMargin,
                     'oui-field_error': $ctrl.isInvalid()
     }"
@@ -18,8 +19,8 @@
             data-ng-if="$ctrl.getFieldType() === 'text'"
             type="text"
             class="oui-input"
-            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.label }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.label }}"
             data-ng-model="$ctrl.value"
             data-ng-model-options="{ debounce: $ctrl.debounce }"
             data-ng-change="$ctrl.onChange()"
@@ -28,6 +29,26 @@
             data-ng-pattern="$ctrl.inputValidator"
             data-ng-disabled="$ctrl.disableInputField"
             data-ng-required="$ctrl.rule.mandatory"
+            data-maxlength="$ctrl.rule.maxLength"
+        />
+
+        <!-- READONLY TEXT INPUT -->
+        <input
+            data-ng-if="$ctrl.getFieldType() === 'text-readonly'"
+            type="text"
+            class="oui-input"
+            readonly
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.label }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.label }}"
+            data-ng-model="$ctrl.value"
+            data-ng-model-options="{ debounce: $ctrl.debounce }"
+            data-ng-change="$ctrl.onChange()"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+            data-ng-pattern="$ctrl.inputValidator"
+            data-ng-disabled="$ctrl.disableInputField"
+            data-ng-required="$ctrl.rule.mandatory"
+            data-maxlength="$ctrl.rule.maxLength"
         />
 
         <!-- SELECT INPUT -->
@@ -36,8 +57,8 @@
             items="$ctrl.getTranslatedEnums()"
             match="translated"
             model="$ctrl.value"
-            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.label }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.label }}"
             on-change="$ctrl.onChange()"
             data-ng-focus="$ctrl.focused = true"
             data-ng-blur="$ctrl.focused = false"
@@ -52,9 +73,9 @@
         <oui-calendar
             data-ng-if="$ctrl.getFieldType() === 'date'"
             data-alt-format="{{ $ctrl.dateFormat() }}"
-            placeholder="{{ 'signup_field_date_placeholder' | translate }}"
-            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            placeholder="{{ 'domain_tab_CONTACT_edit_form_field_date_placeholder' | translate }}"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.label }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.label }}"
             model="$ctrl.value"
             model-options="{ debounce: $ctrl.debounce }"
             on-change="$ctrl.onChange()"
@@ -101,8 +122,8 @@
             <input
                 type="text"
                 class="oui-input oui-input_phone m-0"
-                data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-                data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+                data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.label }}"
+                data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.label }}"
                 data-ng-model="$ctrl.value"
                 data-ng-model-options="{ debounce: $ctrl.debounce }"
                 data-ng-required="$ctrl.rule.mandatory"
@@ -111,6 +132,7 @@
                 data-ng-focus="$ctrl.focused = true"
                 data-ng-blur="$ctrl.focused = false"
                 data-ng-pattern="$ctrl.inputValidator"
+                data-maxlength="$ctrl.rule.maxLength"
             />
         </div>
 
@@ -118,8 +140,8 @@
             data-ng-if="$ctrl.getFieldType() === $ctrl.FIELD_NAME_LIST.email"
             type="email"
             class="oui-input"
-            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.label }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.label }}"
             data-ng-model="$ctrl.value"
             data-ng-model-options="{ debounce: $ctrl.debounce }"
             data-ng-change="$ctrl.onChange()"
@@ -127,25 +149,32 @@
             data-ng-blur="$ctrl.focused = false"
             data-ng-pattern="$ctrl.inputValidator"
             data-ng-required="$ctrl.rule.mandatory"
+            data-maxlength="$ctrl.rule.maxLength"
         />
+
+        <b
+            data-translate="domain_tab_CONTACT_edit_form_change_owner"
+            data-ng-if="[$ctrl.FIELD_NAME_LIST.email, $ctrl.FIELD_NAME_LIST.firstname].includes($ctrl.rule.label)"
+        ></b>
 
         <p
             class="help-block text-danger"
             role="alert"
-            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error.required"
-            data-translate="signup_field_required_error"
+            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.label].$error.required"
+            data-translate="domain_tab_CONTACT_edit_form_required_error"
         ></p>
         <p
             class="help-block text-danger"
             role="alert"
-            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error.pattern"
-            data-translate="{{ $ctrl.rule.fieldName !== 'password' ? 'signup_field_pattern_error' : 'signup_password_invalid' }}"
+            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.label].$error.pattern"
+            data-translate="domain_tab_CONTACT_edit_form_pattern_error"
         ></p>
         <p
             class="help-block text-danger"
             role="alert"
-            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error.emailAvailable && $ctrl.value"
-            data-translate="signup_email_in_use"
+            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.label].$error.emailAvailable && $ctrl.value"
+            data-translate="domain_tab_CONTACT_edit_form_email_in_use"
         ></p>
+
     </div>
 </div>

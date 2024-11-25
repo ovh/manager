@@ -67,9 +67,9 @@ export default class DomainContactDashboardCtrl {
       .join(' ');
   }
 
-  editContact(owner=false) {
-    if (!owner){
-      return window.open(this.USER_ACCOUNT_INFOS_LINK,'_blank');
+  editContact(owner = false) {
+    if (!owner) {
+      return window.open(this.USER_ACCOUNT_INFOS_LINK, '_blank');
     }
     this.$state.go('app.domain.product.contact.edit',
       {

@@ -62,5 +62,16 @@
   "domain_tab_CONTACT_edit_form_error_msg": "Le formulaire a généré une erreur: {{ errorMsg }}",
   "domain_tab_CONTACT_edit_form_submit_btn": "Valider",
   "domain_tab_CONTACT_edit_form_cancel_btn": "Annuler",
-  "domain_tab_CONTACT_edit_form_phone_label": "Téléphone"
+  "domain_tab_CONTACT_edit_form_phone_label": "Téléphone",
+  "domain_tab_CONTACT_edit_form_legalForm_other": "Autre",
+  "domain_tab_CONTACT_edit_form_legalForm_association": "Association",
+  "domain_tab_CONTACT_edit_form_legalForm_corporation": "Entreprise",
+  "domain_tab_CONTACT_edit_form_required_error": "Ce champ est requis",
+  "domain_tab_CONTACT_edit_form_content_check_validation": "Le formulaire n'est pas valide",
+  "domain_tab_CONTACT_edit_form_pattern_error": "Ce champ est mal formaté",
+  "domain_tab_CONTACT_edit_form_email_in_use": "L'email est déjà pris",
+  "domain_tab_CONTACT_edit_form_field_date_placeholder": "Date de naissance",
+  "domain_tab_CONTACT_edit_form_change_owner": "La modification est considérée comme un changement de propriétaire.",
+  "domain_tab_CONTACT_edit_form_owner_infos": "Pour voir les informations du titulaire veuillez vous connecter avec le compte administrateur.",
+  "domain_tab_CONTACT_edit_form_legalForm_individual": "Personne individuelle"
 }

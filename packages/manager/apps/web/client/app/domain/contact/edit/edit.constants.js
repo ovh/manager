@@ -2,12 +2,6 @@ export const ROUTE = {
   accountCreation: 'TODO',
 };
 
-// TODO: check fields that are read only
-// export const READY_ONLY_RULES_PARAMS = [
-//   'companyNationalIdentificationNumber',
-// ];
-
-
 export const GENERAL_KEY = 'general';
 export const PROFILE_KEY = 'profile';
 export const CONTACT_KEY = 'contact';
@@ -58,10 +52,7 @@ export const MODEL_DEBOUNCE_DELAY = 500;
 
 // TODO: check this!
 export const FIELD_NAME_LIST = {
-  customerCode: 'customerCode',
-  ovhCompany: 'ovhCompany',
-  ovhSubsidiary: 'ovhSubsidiary',
-  legalform: 'legalform',
+  legalform: 'legalForm',
   firstname: 'firstname',
   name: 'name',
   sex: 'sex',
@@ -69,28 +60,17 @@ export const FIELD_NAME_LIST = {
   birthCity: 'birthCity',
   nationalIdentificationNumber: 'nationalIdentificationNumber',
   email: 'email',
-  commercialCommunicationsApproval: 'commercialCommunicationsApproval',
-  spareEmail: 'spareEmail',
-  password: 'password',
-  timezone: 'timezone',
-  country: 'country',
-  area: 'area',
+  addressCountry: 'address.country',
   address: 'address',
   zip: 'zip',
   city: 'city',
+  phoneType: 'phoneType',
   phoneCountry: 'phoneCountry',
   phone: 'phone',
-  smsConsent: 'smsConsent',
-  fax: 'fax',
-  language: 'language',
-  managerLanguage: 'managerLanguage',
   organisation: 'organisation',
   corporationType: 'corporationType',
   companyNationalIdentificationNumber: 'companyNationalIdentificationNumber',
   vat: 'vat',
-  gst: 'gst',
-  iceNumber: 'iceNumber',
-  purposeOfPurchase: 'purposeOfPurchase',
 };
 
 // TODO: check this!
@@ -350,6 +330,12 @@ export const GENERAL_SECTION = 'general';
 export const PROFILE_SECTION = 'profile';
 export const CONTACT_SECTION = 'contact';
 
+export const REQUIRED = 'required';
+export const READ_ONLY = 'readonly';
+export const MAX_LENGTH = 'maxlength';
+export const STRICT_EQUAL = 'eq';
+export const CONTAINS = 'contains';
+
 export default {
   ROUTE,
   SECTIONS,
@@ -363,4 +349,9 @@ export default {
   GENERAL_KEY,
   PROFILE_KEY,
   CONTACT_KEY,
+  REQUIRED,
+  READ_ONLY,
+  MAX_LENGTH,
+  STRICT_EQUAL,
+  CONTAINS
 }
