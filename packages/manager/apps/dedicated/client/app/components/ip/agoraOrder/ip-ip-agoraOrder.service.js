@@ -81,7 +81,7 @@ export default class IpAgoraOrder {
       const [region] = productRegionName?.split('-') || [];
       productToOrder.configuration.push({
         label: 'region',
-        value: region?.trim()?.toLowerCase(),
+        value: region === 'USA' ? 'us' : region?.trim()?.toLowerCase(),
       });
     }
 
