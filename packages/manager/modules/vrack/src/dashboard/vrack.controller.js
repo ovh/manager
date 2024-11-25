@@ -444,6 +444,24 @@ export default class VrackMoveDialogCtrl {
     this.data.eligibleServices.legacyVrack = legacyVrackUpdated;
   }
 
+  updateVrackServicesProductInfo() {
+    return this.$q
+      .all(
+        this.data.eligibleServices.vrackServices.map((serviceId) => {
+          return this.vrackService
+            .getVrackServices(serviceId)
+            .then(({ data: vrackServicesDetail }) => {
+              return VrackMoveDialogCtrl.getVrackServicesFormatted(
+                vrackServicesDetail,
+              );
+            });
+        }),
+      )
+      .then((vrackServices) => {
+        this.data.eligibleServices.vrackServices = vrackServices;
+      });
+  }
+
   updateEligibleServices(services) {
     SERVICES.forEach((service) => {
       if (services[service]) {
@@ -558,6 +576,16 @@ export default class VrackMoveDialogCtrl {
               this.updateOvhCloudConnect();
             }
             break;
+          case TYPE_SERVICE.vrackServices:
+            // Update vRack Services
+            if (
+              !this.data.eligibleServices?.vrackServices?.length !==
+              services.vrackServices.length
+            ) {
+              this.data.eligibleServices.vrackServices = services.vrackServices;
+              this.updateVrackServicesProductInfo();
+            }
+            break;
           default:
             this.updateExcludedServices();
             break;
@@ -579,6 +607,9 @@ export default class VrackMoveDialogCtrl {
   updateExcludedServices() {
     if (this.data.eligibleServices?.vrackServices?.length > 0) {
       this.data.eligibleServices.vrackServices = [];
+    }
+    if (this.data.eligibleServices?.ovhCloudConnect?.length > 0) {
+      this.data.eligibleServices.ovhCloudConnect = [];
     }
   }
 
@@ -657,6 +688,10 @@ export default class VrackMoveDialogCtrl {
                 case TYPE_SERVICE.ovhCloudConnect:
                   if (this.data.eligibleServices?.ovhCloudConnect?.length > 0) {
                     this.updateOvhCloudConnect();
+                  }
+                case TYPE_SERVICE.vrackServices:
+                  if (this.data.eligibleServices?.vrackServices?.length > 0) {
+                    this.updateVrackServicesProductInfo();
                   }
                   break;
                 default:
@@ -1216,6 +1251,12 @@ export default class VrackMoveDialogCtrl {
                 service.id,
               );
               break;
+            case 'vrackServices':
+              task = this.vrackService.addVrackServicesToVrack(
+                this.serviceName,
+                service.id,
+              );
+              break;
             default:
               break;
           }
@@ -1363,6 +1404,12 @@ export default class VrackMoveDialogCtrl {
                 service.id,
               );
               break;
+            case 'vrackServices':
+              task = this.vrackService.deleteVrackServicesFromVrack(
+                this.serviceName,
+                service.id,
+              );
+              break;
             default:
               break;
           }
@@ -1460,6 +1507,14 @@ export default class VrackMoveDialogCtrl {
       niceName: service.uuid,
       trueServiceType: 'ovhCloudConnect',
     };
+    return formattedService;
+  }
+
+  static getVrackServicesFormatted(service) {
+    const formattedService = {};
+    angular.copy(service, formattedService);
+    formattedService.niceName = service.iam.displayName;
+    formattedService.trueServiceType = 'vrackServices';
     return formattedService;
   }
 
@@ -1570,6 +1625,11 @@ export default class VrackMoveDialogCtrl {
         break;
       case 'ipLoadbalancing':
         formattedService = VrackMoveDialogCtrl.getIpLoadbalancingNiceName(
+          service,
+        );
+        break;
+      case 'vrackServices':
+        formattedService = VrackMoveDialogCtrl.getVrackServicesFormatted(
           service,
         );
         break;
