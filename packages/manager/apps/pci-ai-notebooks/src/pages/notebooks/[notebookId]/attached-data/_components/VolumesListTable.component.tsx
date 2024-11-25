@@ -11,7 +11,7 @@ interface VolumesListProps {
   volumes: ai.volume.Volume[];
 }
 
-export default function VolumesList({ volumes }: VolumesListProps) {
+export default function VolumesList({ volumes }: Readonly<VolumesListProps>) {
   const dataSyncModale = useModale('datasync');
 
   const dataSyncVolume: ai.volume.Volume = useMemo(
