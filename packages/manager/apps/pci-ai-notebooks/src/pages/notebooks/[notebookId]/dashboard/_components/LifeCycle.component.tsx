@@ -22,7 +22,10 @@ const LifeCycle = () => {
           {notebook.status?.lastJobStatus?.history
             ?.slice(TIMELINE_MAX)
             .map((state) => (
-              <TableRow className="text-sm">
+              <TableRow
+                key={`${state.date}-${state.state}`}
+                className="text-sm"
+              >
                 <TableCell>
                   <Check className="size-4 text-sky-600" />
                 </TableCell>

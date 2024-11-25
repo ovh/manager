@@ -25,21 +25,10 @@ export const NotebookHeader = ({
   notebook: ai.notebook.Notebook;
 }) => {
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook');
-  const [runningNotebookStatus, setEunningNotebookStatus] = useState(
-    isRunningNotebook(notebook.status.state) ||
-      isDeletingNotebook(notebook.status.state),
-  );
 
   const { t: tRegions } = useTranslation('regions');
   const startModale = useModale('start');
   const stopModale = useModale('stop');
-
-  useEffect(() => {
-    setEunningNotebookStatus(
-      isRunningNotebook(notebook.status.state) ||
-        isDeletingNotebook(notebook.status.state),
-    );
-  }, [notebook?.status.state]);
 
   return (
     <div
@@ -53,7 +42,8 @@ export const NotebookHeader = ({
         <div className="flex flex-row items-center gap-3">
           <h2>{notebook.spec.name ?? 'Dashboard'}</h2>
           <div className="mt-1">
-            {runningNotebookStatus ? (
+            {isRunningNotebook(notebook.status.state) ||
+            isDeletingNotebook(notebook.status.state) ? (
               <Button
                 type="button"
                 size="roundedIcon"
