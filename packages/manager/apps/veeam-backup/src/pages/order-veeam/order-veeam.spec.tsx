@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
 import {
-  waitForOptions,
+  WAIT_FOR_DEFAULT_OPTIONS,
   getButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
 import { renderTest, labels } from '@/test-helpers';
@@ -17,7 +17,7 @@ describe('order', () => {
     await waitFor(() => {
       orderButton = screen.getByText(labels.listing.order_button);
       return expect(orderButton).toBeEnabled();
-    }, waitForOptions);
+    }, WAIT_FOR_DEFAULT_OPTIONS);
 
     await waitFor(() => userEvent.click(orderButton));
 
@@ -26,7 +26,7 @@ describe('order', () => {
         expect(
           screen.getByText(labels.orderVeeam.description),
         ).toBeInTheDocument(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 
@@ -50,7 +50,7 @@ describe('order', () => {
             { exact: false },
           ),
         ).toBeInTheDocument(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 
@@ -62,7 +62,7 @@ describe('order', () => {
         expect(
           screen.getByText(labels.orderVeeam.description),
         ).toBeInTheDocument(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
     const nextButton = await getButtonByLabel({
@@ -76,7 +76,7 @@ describe('order', () => {
         expect(
           screen.getByText(labels.orderVeeam.choose_org_title),
         ).toBeInTheDocument(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 
@@ -91,7 +91,7 @@ describe('order', () => {
         expect(
           screen.getByText(labels.orderVeeam.description),
         ).toBeInTheDocument(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
     const nextButton = await getButtonByLabel({
@@ -107,7 +107,7 @@ describe('order', () => {
             labels.orderVeeam.all_organization_backed_up_message,
           ),
         ).toBeInTheDocument(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 
@@ -122,7 +122,7 @@ describe('order', () => {
         expect(
           screen.getByText(labels.orderVeeam.description),
         ).toBeInTheDocument(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
     const nextButton = await getButtonByLabel({
@@ -138,7 +138,7 @@ describe('order', () => {
             exact: false,
           }),
         ).toBeInTheDocument(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 });
