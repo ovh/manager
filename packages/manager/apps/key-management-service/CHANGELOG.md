@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.11.2...@ovh-ux/manager-key-management-service-app@0.12.0) (2024-11-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 134] ([1f1431c](https://github.com/ovh/manager/commit/1f1431cfb13b99369f4b35126457d425960201a7))
+* **i18n:** add missing translations [CDS 135] ([dc23904](https://github.com/ovh/manager/commit/dc239046796b19876b49993dd35c31898483ed3c))
+* **kms:** fix unused skipped UT ([e49e3d3](https://github.com/ovh/manager/commit/e49e3d3eb526e43416c821fe8659cdb8bd5ae5ac))
+* **kms:** remove kms contact management from US ([83fb6de](https://github.com/ovh/manager/commit/83fb6de08ba46e60bb97d7cb0aa9bb4c83787f8b))
+
+
+### Features
+
+* **key-management-service:** add FF to display specific guides ([e558a06](https://github.com/ovh/manager/commit/e558a061de4ae6bbb87abeb04cc061f1b0a23f05))
+* **key-management-service:** add guides usage & KMIP product ([bcdd516](https://github.com/ovh/manager/commit/bcdd5166815581cd9233e5185e5efad329acc759))
+* **kms:** fix lint import after rebase ([7d84002](https://github.com/ovh/manager/commit/7d840029a4d113693eab712bee773382d19e9c72))
+* **kms:** insert payment infos on servicekey creation ([4eeed24](https://github.com/ovh/manager/commit/4eeed24ed44af30ca7eff5ffae623cf859b97519))
+
+
+
+
+
 ## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.11.1...@ovh-ux/manager-key-management-service-app@0.11.2) (2024-11-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app

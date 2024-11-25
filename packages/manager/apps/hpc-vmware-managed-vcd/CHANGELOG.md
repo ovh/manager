@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.2.4...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.2.5) (2024-11-25)
+
+
+### Bug Fixes
+
+* **vcd:** fix refresh error on datacentre compute order page ([1b023fd](https://github.com/ovh/manager/commit/1b023fd89fe90c8bd9aea062aba799c77ef2d07e))
+
+
+
+
+
 ## [0.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.2.3...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.2.4) (2024-11-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
