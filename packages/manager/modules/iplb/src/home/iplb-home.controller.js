@@ -8,6 +8,7 @@ import map from 'lodash/map';
 import 'moment';
 
 import IplbHomeUpdateQuotaTemplate from './updateQuota/iplb-update-quota.html';
+import IpLoadBalancerTerminateTemplate from '../modal/terminate/terminate.html';
 import {
   INFO_LINK,
   MESSAGE_DISPLAY_DATE,
@@ -40,6 +41,7 @@ export default class IpLoadBalancerHomeCtrl {
     ovhManagerRegionService,
     CucVrackService,
     ovhFeatureFlipping,
+    isDeleteOptionsAvailable,
   ) {
     this.$http = $http;
     this.$state = $state;
@@ -63,6 +65,7 @@ export default class IpLoadBalancerHomeCtrl {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.VrackService = CucVrackService;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
+    this.isDeleteOptionsAvailable = isDeleteOptionsAvailable;
 
     this.serviceName = this.$stateParams.serviceName;
 
@@ -246,6 +249,24 @@ export default class IpLoadBalancerHomeCtrl {
         // TODO: Implementation of modal for changing offer
         text: this.$translate.instant('iplb_edit'),
         isAvailable: () => false,
+      },
+      deleteService: {
+        callback: () =>
+          this.CucControllerHelper.modal.showModal({
+            modalConfig: {
+              template: IpLoadBalancerTerminateTemplate,
+              controller: 'IpLoadBalancerTerminateCtrl',
+              controllerAs: '$ctrl',
+              resolve: {
+                service: () => this,
+              },
+            },
+          }),
+        text: this.$translate.instant('iplb_delete'),
+        isAvailable: () =>
+          this.isDeleteOptionsAvailable &&
+          !this.subscription.loading &&
+          !this.subscription.hasErrors,
       },
       manageAutorenew: {
         text: this.$translate.instant('iplb_manage'),

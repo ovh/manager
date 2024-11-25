@@ -7,19 +7,15 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
-import routing from './iplb.routing';
-
 const moduleName = 'ovhManagerIpLoadBalancer';
 
-angular
-  .module(moduleName, [
-    ngOvhFeatureFlipping,
-    ngTranslateAsyncLoader,
-    'oui',
-    'pascalprecht.translate',
-    'ovhManagerFilters',
-    ListLayoutHelper.moduleName,
-  ])
-  .config(routing);
+angular.module(moduleName, [
+  ngOvhFeatureFlipping,
+  ngTranslateAsyncLoader,
+  'oui',
+  'pascalprecht.translate',
+  'ovhManagerFilters',
+  ListLayoutHelper.moduleName,
+]);
 
 export default moduleName;
