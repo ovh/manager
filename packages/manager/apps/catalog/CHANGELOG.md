@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.14.24...@ovh-ux/manager-catalog-app@1.14.25) (2024-11-25)
+
+
+### Bug Fixes
+
+* **catalog:** clear url search param based on search field ([#14162](https://github.com/ovh/manager/issues/14162)) ([95035ff](https://github.com/ovh/manager/commit/95035ff0794e112b946873a4235d8b04955e3b77))
+
+
+
+
+
 ## [1.14.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.14.23...@ovh-ux/manager-catalog-app@1.14.24) (2024-11-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-catalog-app

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.88.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.87.1...@ovh-ux/manager-container-app@0.88.0) (2024-11-25)
+
+
+### Features
+
+* **kms:** remove new and beta tag from menu for KMS ([#14130](https://github.com/ovh/manager/issues/14130)) ([a6bd9fa](https://github.com/ovh/manager/commit/a6bd9fa57c23f6c92a675a81815b753f9d0c5b19))
+
+
+
+
+
 ## [0.87.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.87.0...@ovh-ux/manager-container-app@0.87.1) (2024-11-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
