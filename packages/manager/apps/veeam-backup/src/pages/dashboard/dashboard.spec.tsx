@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
-  waitForOptions,
+  WAIT_FOR_DEFAULT_OPTIONS,
   getButtonByIcon,
   getButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
@@ -24,7 +24,7 @@ describe('dashboard', () => {
             ),
           ),
         ),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 
@@ -42,7 +42,7 @@ describe('dashboard', () => {
             ),
           ),
         ),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
     await getButtonByIcon({

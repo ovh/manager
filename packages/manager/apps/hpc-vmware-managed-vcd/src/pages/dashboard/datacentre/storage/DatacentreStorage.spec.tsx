@@ -4,8 +4,8 @@ import {
   organizationList,
   datacentreList,
 } from '@ovh-ux/manager-module-vcd-api';
+import { checkTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import {
-  checkTextVisibility,
   DEFAULT_LISTING_ERROR,
   labels,
   renderTest,
