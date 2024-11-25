@@ -17,6 +17,7 @@ import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
 import Loading from '@/components/Loading/Loading';
+import { BadgeStatus } from '@/components/BadgeStatus';
 
 export type RedirectionsItem = {
   id: string;
@@ -58,6 +59,11 @@ const columns: DatagridColumn<RedirectionsItem>[] = [
     id: 'organization',
     cell: (item) => <div>{item.organization}</div>,
     label: 'zimbra_redirections_organization',
+  },
+  {
+    id: 'status',
+    cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
+    label: 'zimbra_redirections_status',
   },
   {
     id: 'tooltip',

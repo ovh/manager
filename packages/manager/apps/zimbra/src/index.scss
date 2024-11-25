@@ -18,3 +18,8 @@ ods-button.action-menu-item::part(button) {
 ods-modal::part(dialog) {
   max-height: 100vh;
 }
+
+// tag doesn't seems centered if line is bigger
+ods-tag.org-tag::part(tag) {
+  transform: translateY(-10%);
+}

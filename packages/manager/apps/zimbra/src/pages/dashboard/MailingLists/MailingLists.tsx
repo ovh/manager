@@ -26,6 +26,7 @@ import { ResourceStatus } from '@/api/api.type';
 import { MailingListType } from '@/api/mailinglist';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 import Loading from '@/components/Loading/Loading';
+import { BadgeStatus } from '@/components/BadgeStatus';
 
 export type MailingListItem = {
   id: string;
@@ -84,6 +85,11 @@ const columns: DatagridColumn<MailingListItem>[] = [
     label: 'zimbra_mailinglists_datagrid_subscribers_label',
   },
   {
+    id: 'status',
+    cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
+    label: 'zimbra_mailinglists_datagrid_status_label',
+  },
+  {
     id: 'tooltip',
     cell: (item) => <ActionButtonMailingList mailingListItem={item} />,
     label: '',
@@ -131,7 +137,7 @@ export default function MailingLists() {
   const quota = platformData?.currentState?.quota || 0;
 
   return (
-    <div className="py-6 mt-8">
+    <div className="py-6">
       <Outlet />
       {platformUrn && !isOverridedPage && (
         <>
