@@ -71,7 +71,7 @@ export default class DomainContactDashboardCtrl {
     if (!owner){
       return window.open(this.USER_ACCOUNT_INFOS_LINK,'_blank');
     }
-    this.$state.go('app.domain.edit-contact',
+    this.$state.go('app.domain.product.contact.edit',
       {
         domainName: this.domainName,
         contactId: this.domain.whoisOwner.id,

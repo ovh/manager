@@ -1,15 +1,84 @@
 <h3 data-translate="domain_tab_CONTACT_edit_title"></h3>
 <p data-translate="domain_tab_CONTACT_edit_owner_description"></p>
 
-<div class="row">
-    <div class="col-md-6">
-        <h4 data-translation="domain_tab_CONTACT_edit_form_general_infos_title"></h4>
-        <h4 data-translation="domain_tab_CONTACT_edit_form_general_infos_title"></h4>
+<!-- ALERT -->
+<div data-ovh-alert="InfoErrors"></div>
+
+<h4 data-translation="domain_tab_CONTACT_edit_form_general_infos_title"></h4>
+<form
+    id="ovhEditContactForm"
+    name="ovhEditContactForm"
+    data-ng-if="$ctrl.rules"
+    data-ng-submit="$ctrl.submit()"
+    novalidate
+>
+    <div class="row">
+
+        <div class="col-md-6">
+            <!-- FORM SECTIONS -->
+            <fieldset
+                data-ng-form="$ctrl['form_part_' + section]"
+                class="mb-2"
+                data-ng-repeat="section in ::$ctrl.getSections('left') track by $index"
+                data-ng-if="$ctrl.getRulesBySection(section).length"
+            >
+                <h3 data-translate="{{ :: 'domain_tab_CONTACT_edit_form_general_' + section }}"></h3>
+                <div data-ng-attr-id="{{ :: 'ovh_form_content_' + section }}">
+                    <!-- SECTION FIELDS -->
+                    <edit-account-form-field
+                        data-ng-repeat="rule in $ctrl.getRulesBySection(section) track by rule.label"
+                        data-rule="rule"
+                        data-contact-informations="$ctrl.contactInformations"
+                        data-fieldset=":: ovhEditContactForm['form_part_' + section]"
+                    >
+                    </edit-account-form-field>
+
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="col-md-6">
+            <!-- FORM SECTIONS -->
+            <fieldset
+                data-ng-form="$ctrl['form_part_' + section]"
+                data-ng-repeat="section in ::$ctrl.getSections('right') track by $index"
+                data-ng-if="$ctrl.getRulesBySection(section).length"
+            >
+                <h3 data-translate="{{ :: 'domain_tab_CONTACT_edit_form_general_' + section }}"></h3>
+                <div data-ng-attr-id="{{ :: 'ovh_form_content_' + section }}">
+                    <!-- SECTION FIELDS -->
+                    <edit-account-form-field
+                        data-ng-repeat="rule in $ctrl.getRulesBySection(section) track by rule.label"
+                        data-rule="rule"
+                        data-contact-informations="$ctrl.contactInformations"
+                        data-fieldset=":: ovhEditContactForm['form_part_' + section]"
+                    >
+                    </edit-account-form-field>
+                </div>
+            </fieldset>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <h4 data-translation="domain_tab_CONTACT_edit_form_general_infos_title"></h4>
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <button
+                type="button"
+                data-ng-click="$ctrl.goBack()"
+                class="oui-inline-adder__action oui-button oui-button_secondary"
+                data-ng-attr-title="{{ ::'domain_tab_CONTACT_edit_form_cancel_btn' | translate }}"
+            >
+                <span data-translate="domain_tab_CONTACT_edit_form_cancel_btn"></span>
+            </button>
+            <button
+                type="submit"
+                class="oui-inline-adder__action oui-button oui-button_primary"
+                data-ng-attr-title="{{ ::'domain_tab_CONTACT_edit_form_submit_btn' | translate }}"
+            >
+                <span data-translate="domain_tab_CONTACT_edit_form_submit_btn"></span>
+            </button>
+        </div>
     </div>
-</div>
+</form>
+
+
+
 

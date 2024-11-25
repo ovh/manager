@@ -1,5 +1,3 @@
-import ContactService from './contact.service';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain.product.contact', {
     url: '/contact-management',
@@ -15,8 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.domain.product.zone'),
     },
   });
-  $stateProvider.state('app.domain.edit-contact', {
-    url: '/edit-contact',
+  $stateProvider.state('app.domain.product.contact.edit', {
+    url: '/edit-contact/:contactId/:domainName', // TODO/ remove suffix after testing
     params: {
       contactId: null,
       domainName: null,
@@ -29,7 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
       contactInformations: /* @ngInject */ ($transition$, ContactService) =>
         ContactService.getDomainContactInformations($transition$.params().contactId),
       goBack: /* @ngInject */ ($state) => () =>
-        $state.go('app.domain.product.contact'),
+        $state.go('^'),
     },
   });
 };
