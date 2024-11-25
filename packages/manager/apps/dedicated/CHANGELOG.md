@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.2.2...@ovh-ux/manager-dedicated@20.3.0) (2024-11-25)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** fix wrong display of light dashboard ([c232091](https://github.com/ovh/manager/commit/c232091974fb9c4a336615b23ad8139ecef1647a))
+* **i18n:** add missing translations [CDS 126] ([12dc4ca](https://github.com/ovh/manager/commit/12dc4cac5aef4c7f9bba900ba997a0ae6f1bc886))
+
+
+### Features
+
+* **dedicated.pcc:** add a reminder banner for VCD migration ([cff2a44](https://github.com/ovh/manager/commit/cff2a449e5eec532a0bc319637efe243e95eff61))
+* **dedicated:** make hostname dynamic in os installation wizard ([95d147e](https://github.com/ovh/manager/commit/95d147ee196b07815419c46a9b63d801b968c2a2))
+
+
+### Reverts
+
+* Revert "revert(dedicated.pcc): add dashboard light when vcd and pcc is migrated" ([cded3ba](https://github.com/ovh/manager/commit/cded3baba10cef3dfac968d52053fc88ccf2f883))
+
+
+
+
+
 ## [20.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.2.1...@ovh-ux/manager-dedicated@20.2.2) (2024-11-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
