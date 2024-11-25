@@ -22,6 +22,7 @@ import {
 import { mockedMaintenance } from '@/__tests__/helpers/mocks/maintenances';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import { Locale } from '@/hooks/useLocale';
+import { CdbError } from '@/data/api/database';
 
 // Override mock to add capabilities
 const mockedService = {
@@ -179,7 +180,7 @@ describe('Settings page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Settings />, { wrapper: RouterWithQueryClientWrapper });
     expect(

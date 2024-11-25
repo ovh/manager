@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {

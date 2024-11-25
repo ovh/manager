@@ -20,6 +20,7 @@ import { mockedConnectionPool } from '@/__tests__/helpers/mocks/connectionPool';
 import { mockedDatabase } from '@/__tests__/helpers/mocks/databases';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import { useToast } from '@/components/ui/use-toast';
+import { CdbError } from '@/data/api/database';
 
 // Override mock to add capabilities
 const mockedService = {
@@ -126,7 +127,7 @@ describe('Connection pool page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Pools />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.queryByTestId('pools-add-button')).toBeInTheDocument();
@@ -139,7 +140,7 @@ describe('Connection pool page', () => {
         capabilities: {},
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Pools />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.queryByTestId('pools-add-button')).toBeNull();
@@ -157,7 +158,7 @@ describe('Connection pool page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Pools />, { wrapper: RouterWithQueryClientWrapper });
     const addButton = screen.queryByTestId('pools-add-button');
@@ -200,7 +201,7 @@ describe('Open modals', () => {
       projectId: 'projectId',
       service: mockedService,
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Pools />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {

@@ -16,6 +16,7 @@ import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedBackup } from '@/__tests__/helpers/mocks/backup';
+import { CdbError } from '@/data/api/database';
 
 // Override mock to add capabilities
 const mockedService = {
@@ -107,7 +108,7 @@ describe('Backups page', () => {
         capabilities: {},
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Backups />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.queryByTestId('fork-button')).toBeNull();
@@ -129,7 +130,7 @@ describe('Backups page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Backups />, { wrapper: RouterWithQueryClientWrapper });
     const restoreButton = screen.queryByTestId('restore-backup-button');
@@ -172,7 +173,7 @@ describe('Open restore modals', () => {
       projectId: 'projectId',
       service: mockedService,
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     const ResizeObserverMock = vi.fn(() => ({
       observe: vi.fn(),
