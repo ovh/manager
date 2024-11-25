@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_storages_blocks_add_object_label": "Crea un container di oggetti",
+  "pci_projects_project_storages_containers_my_containers_label": "I tuoi container",
+  "pci_projects_project_storages_containers_s3_users_label": "Utenti S3",
+  "pci_projects_project_storages_containers_object_title": "Object Storage",
+  "pci_projects_project_storages_containers_object_description": "Ospita il tuo catalogo di dati nella nostra soluzione Object Storage. Puoi gestire questi dati dalla tua applicazione con le API S3."
+}
