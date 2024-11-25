@@ -1,0 +1,34 @@
+<div class="iplb">
+    <oui-header class="mb-2" data-heading="{{:: $ctrl.header }}"></oui-header>
+</div>
+<oui-datagrid
+    id="{{ $ctrl.datagridId }}"
+    rows-loader="$ctrl.loadPage()"
+    row-loader="$ctrl.loadResource($row)"
+    columns="$ctrl.columns"
+    customizable="true"
+    criteria="$ctrl.criteria"
+    on-columns-parameters-change="$ctrl.onColumnChange(id, columns)"
+    on-page-change="$ctrl.onPageChange($pagination)"
+    on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+    page-size="{{ $ctrl.paginationSize }}"
+    page="{{ $ctrl.paginationNumber }}"
+    on-sort-change="$ctrl.onSortChange($sort)"
+    data-navi-id="{{ $ctrl.dataNaviId }}"
+>
+    <oui-datagrid-topbar data-ng-if="$ctrl.topbarOptions">
+        <topbar-cta data-options="$ctrl.topbarOptions"> </topbar-cta>
+    </oui-datagrid-topbar>
+    <oui-action-menu
+        data-compact
+        data-placement="end"
+        data-ng-if="$ctrl.isDeleteOptionsAvailable"
+    >
+        <oui-action-menu-item data-on-click="$ctrl.gotoService($row)">
+            <span data-translate="iplb_listing_action_detail"></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item data-on-click="$ctrl.deleteIplb($row)">
+            <span data-translate="iplb_listing_action_delete"></span>
+        </oui-action-menu-item>
+    </oui-action-menu>
+</oui-datagrid>
