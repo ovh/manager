@@ -303,9 +303,9 @@ export default class AgoraIpV4OrderController {
     });
     return ipOffer.details.product.configurations.find(
       (config) => config.name === 'country',
-    )?.values;  
+    )?.values;
   }
-  
+
   static getRegionFromServiceRegion(region) {
     const serviceExt = first(region.split('-'));
     if (serviceExt === 'eu') {
@@ -452,6 +452,14 @@ export default class AgoraIpV4OrderController {
   }
 
   manageLoadIpOffers() {
+    if (this.model.selectedRegion) {
+      this.trackClick(
+        `select_region::next_${this.model.selectedRegion.location.replaceAll(
+          ' ',
+          '-',
+        )}`,
+      );
+    }
     this.loading.ipOffers = true;
     this.ipOffers = [];
     this.failoverIpOffers = [];
@@ -850,10 +858,6 @@ export default class AgoraIpV4OrderController {
       type: 'action',
       level2: 57,
     });
-  }
-
-  trackSelectRegion(region) {
-    this.trackClick(`select_region::next_${region}`);
   }
 
   trackSelectLocation(location) {
