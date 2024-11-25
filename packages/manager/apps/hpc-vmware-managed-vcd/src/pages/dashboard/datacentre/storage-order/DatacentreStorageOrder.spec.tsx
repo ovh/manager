@@ -4,11 +4,8 @@ import {
   organizationList,
   datacentreList,
 } from '@ovh-ux/manager-module-vcd-api';
-import {
-  checkTextVisibility,
-  labels,
-  renderTest,
-} from '../../../../test-utils';
+import { checkTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { labels, renderTest } from '../../../../test-utils';
 
 const orderCTA = labels.datacentresStorage.managed_vcd_vdc_storage_order_cta;
 const orderTitle = labels.datacentresOrder.managed_vcd_vdc_order_storage_title;
