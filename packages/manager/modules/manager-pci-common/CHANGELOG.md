@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.9.0...@ovh-ux/manager-pci-common@0.9.1) (2024-11-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.8.1...@ovh-ux/manager-pci-common@0.9.0) (2024-11-21)
+
+
+### Bug Fixes
+
+* **manager-pci-common:** accordion icon and padding ([a36cabb](https://github.com/ovh/manager/commit/a36cabbced429347cb8513bc17ccf760cd9a8886))
+* **pci-common:** add missing global react imports ([737b73a](https://github.com/ovh/manager/commit/737b73a4a82934981e6dbcb1014ecf05345047f1))
+* **pci-common:** rebase ([6acf595](https://github.com/ovh/manager/commit/6acf595786b67ed0ced25ff7b81249fe8c9f9973))
+* **pci-common:** shapes component columns count and mobile display ([921b03c](https://github.com/ovh/manager/commit/921b03c5a974e903a734732f8ec015f5866e0446))
+* **pci-common:** shapes input dynamic columns count ([0e1a7bd](https://github.com/ovh/manager/commit/0e1a7bdb875b52338d7c4bb072c141bb81e775d0))
+* **pci-load-balancer:** overflowing input on region step ([2eb463e](https://github.com/ovh/manager/commit/2eb463e0e8542784725031e0346c8018415c88d5))
+
+
+### Features
+
+* **manager-pci-common:** refactor modal and rename banners components ([053f219](https://github.com/ovh/manager/commit/053f219eca937eebb1adba697d96dd02aac0e259))
+* **pci-common:** default components for shapesinput ([00e9824](https://github.com/ovh/manager/commit/00e9824ab4704b3c058b90885b30ec524d6d9386))
+* **pci-common:** new components: Accordion & ShapesInput ([cea283d](https://github.com/ovh/manager/commit/cea283d9b9c4efc387c81605736dbe5d9449f8ee))
+* **pci-load-balancer:** add create l7 policy page ([c7d18eb](https://github.com/ovh/manager/commit/c7d18ebd8dfe9dfe6317563f1fda713cd83a4200))
+* **pci-load-balancer:** add instance table component ([7d278c7](https://github.com/ovh/manager/commit/7d278c7d334ef5bd87dd26a816a0a3571b9591f1))
+* **pci-load-balancer:** add rename health monitor modal ([9a4952f](https://github.com/ovh/manager/commit/9a4952fa536db9e746544db6bcfe4410d8279340))
+* **pci-load-balancer:** create a pool ([29da17f](https://github.com/ovh/manager/commit/29da17fea93870a6c1c1c6256714d368f5fc20ca))
+* **pci-load-balancer:** create health monitor section ([4475d0e](https://github.com/ovh/manager/commit/4475d0e4c2c47c150a9438c245ed5399ead241db))
+* **pci-load-balancer:** logs ([e27a746](https://github.com/ovh/manager/commit/e27a746a46a64159240afb3d02cf775bb4c96f6d))
+* **pci-load-balancer:** review design ([1248418](https://github.com/ovh/manager/commit/124841836a7057bb448aa0f67e49b7d70b1553ec))
+* **pci-private-registry:** ad rename modal and generic modal ([97a599f](https://github.com/ovh/manager/commit/97a599f63425e083c55a286aaf42e37faad27402))
+* **pci-private-registry:** delete modal and translations pci-common ([3ad00b6](https://github.com/ovh/manager/commit/3ad00b6e4ed928a8b13dd3b762cfe9663cf90b24))
+
+
+
+
+
 ## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.8.0...@ovh-ux/manager-pci-common@0.8.1) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common

@@ -2,7 +2,7 @@
   "title": "vRack Services",
   "description": "The vRack Services product allows you to benefit from network services on the vRack. By creating a Service Endpoint, you can expose a service managed by OVHcloud on your vRack using a private IP address.",
   "overviewTabLabel": "General",
-  "subnetsTabLabel": "Subnetwork",
+  "subnetsTabLabel": "Subnet",
   "endpointsTabLabel": "Service Endpoints",
   "tileTitle": "Information",
   "displayName": "Name",

@@ -1,0 +1,63 @@
+<div class="user-account">
+    <oui-header
+        data-heading="{{ :: 'user_account_title_infos' | translate }}"
+        data-description="{{ :: $ctrl.descriptionOfHeading() }}"
+    >
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{ $ctrl.$state.href('account.user.dashboard') }}"
+                data-active="$ctrl.$state.includes('account.user.dashboard')"
+                ><span data-translate="user_account_title_dashboard"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{ $ctrl.$state.href('account.user.security') }}"
+                data-active="$ctrl.$state.includes('account.user.security')"
+                ><span data-translate="user_account_security_title"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{ $ctrl.$state.href('account.user.emails') }}"
+                data-ng-if="$ctrl.$state.href('account.user.emails')"
+                data-active="$ctrl.$state.includes('account.user.emails')"
+                ><span data-translate="user_account_emails_title"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{ $ctrl.$state.href('account.user.support-level') }}"
+                data-active="$ctrl.$state.includes('account.user.support-level')"
+                data-ng-if="$ctrl.supportLevel"
+                ><span data-translate="user_account_support_level_title"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{ $ctrl.$state.href('account.user.advanced') }}"
+                data-active="$ctrl.$state.includes('account.user.advanced')"
+                ><span data-translate="user_account_advanced_title"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+        <oui-guide-menu
+            data-text="{{:: 'user_account_guides_header' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.guides track by $index"
+                data-href="{{:: guide.url }}"
+                data-on-click="$ctrl.trackClick(guide.tracking)"
+                data-external
+            >
+                <span
+                    data-translate="{{:: 'user_account_guides_header_' + guide.key }}"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+
+    <div data-ui-view></div>
+
+    <div id="currentAction" class="modal fade currentAction" role="dialog">
+        <div class="modal-dialog">
+            <div
+                id="modal-container"
+                class="modal-content"
+                data-ng-include="stepPath"
+            ></div>
+            <div id="modal-help" class="help4wizards"></div>
+        </div>
+    </div>
+</div>

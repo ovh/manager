@@ -26,7 +26,16 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         };
       }
-      return 'app.dedicatedCloud.details.dashboard';
+
+      return transition
+        .injector()
+        .getAsync('hasVCDMigration')
+        .then((hasVCDMigration) =>
+          hasVCDMigration
+            ? 'app.dedicatedCloud.details.dashboard-light'
+            : 'app.dedicatedCloud.details.dashboard',
+        )
+        .catch(() => 'app.dedicatedCloud.details.dashboard');
     },
     resolve: {
       currentService: /* @ngInject */ (DedicatedCloud, productId) =>
@@ -101,7 +110,6 @@ export default /* @ngInject */ ($stateProvider) => {
               'dedicated-cloud:vcd-migration',
             ),
           ),
-
       dedicatedCloudServiceInfos: /* @ngInject */ (
         $stateParams,
         OvhApiDedicatedCloud,
@@ -109,6 +117,24 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiDedicatedCloud.v6().getServiceInfos({
           serviceName: $stateParams.productId,
         }),
+      dedicatedCloudVCDMigrationState: /* @ngInject */ (
+        DedicatedCloud,
+        $stateParams,
+        managedVCDAvailability,
+      ) =>
+        managedVCDAvailability
+          ? DedicatedCloud.getVCDMigrationState($stateParams.productId)
+          : null,
+      dedicatedCloudPCCMigrationState: /* @ngInject */ (
+        DedicatedCloud,
+        $stateParams,
+        managedVCDAvailability,
+      ) =>
+        managedVCDAvailability
+          ? DedicatedCloud.getPCCMigrationState($stateParams.productId)
+          : null,
+      hasVCDMigration: /* @ngInject */ (dedicatedCloudVCDMigrationState) =>
+        dedicatedCloudVCDMigrationState?.hasMigration,
 
       drpAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
@@ -216,13 +242,15 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      goBackToDashboard: /* @ngInject */ (goBackToState) => (
+      goBackToDashboard: /* @ngInject */ (goBackToState, hasVCDMigration) => (
         message = false,
         type = 'success',
         reload,
       ) =>
         goBackToState(
-          'app.dedicatedCloud.details.dashboard',
+          `app.dedicatedCloud.details.dashboard${
+            hasVCDMigration ? '-light' : ''
+          }`,
           message,
           type,
           reload,
@@ -287,6 +315,7 @@ export default /* @ngInject */ ($stateProvider) => {
         Alerter.set(`alert-${type}`, message, null, 'dedicatedCloud');
       },
       trackingPrefix: () => 'dedicated::dedicatedClouds',
+      vcdTrackingPrefix: () => 'Enterprise::PrivateCloud::',
       usesLegacyOrder: /* @ngInject */ (currentService) =>
         currentService.usesLegacyOrder,
       newProductUrl: /* @ngInject */ (ovhFeatureFlipping, coreConfig) =>

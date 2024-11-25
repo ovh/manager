@@ -9,6 +9,7 @@ export default class PciBlockStorageDetailsArchiveController {
 
   $onInit() {
     this.isLoading = false;
+    this.hasRetention = true;
   }
 
   trackArchiveModalPage(action) {
@@ -21,15 +22,24 @@ export default class PciBlockStorageDetailsArchiveController {
     this.trackClick(hit);
   }
 
+  onLockedUntilDaysChange(modelValue) {
+    this.retentionDate = new Date();
+    this.retentionDate.setDate(this.retentionDate.getDate() + modelValue);
+  }
+
   archiveContainer() {
     this.trackArchiveModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
     this.isLoading = true;
+
+    const params = {
+      serviceName: this.projectId,
+      regionName: this.regions[0],
+      archiveName: this.container.name,
+      ...(this.hasRetention && { lockedUntilDays: this.lockedUntilDays }),
+    };
+
     return this.pciStoragesColdArchiveService
-      .startArchiveContainer(
-        this.projectId,
-        this.regions[0],
-        this.container.name,
-      )
+      .startArchiveContainer(params)
       .then(() => {
         this.trackArchiveModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
         return this.goBack(

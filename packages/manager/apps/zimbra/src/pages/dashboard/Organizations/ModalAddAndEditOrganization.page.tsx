@@ -51,23 +51,20 @@ export default function ModalAddAndEditOrganization() {
   const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(goBackUrl);
 
-  const formInputRegex: FormInputRegexInterface = {
-    name: /^.+$/,
-    label: /^.{1,12}$/,
-  };
-
   const [form, setForm] = useState<FormTypeInterface>({
     name: {
       value: '',
       touched: false,
       hasError: false,
       required: true,
+      validate: /^.+$/,
     },
     label: {
       value: '',
       touched: false,
       hasError: false,
       required: true,
+      validate: /^.{1,12}$/,
     },
   });
 
@@ -144,7 +141,7 @@ export default function ModalAddAndEditOrganization() {
       ...form[name],
       value,
       touched: true,
-      hasError: !checkValidityField(name, value, formInputRegex, form),
+      hasError: !checkValidityField(name, value, form),
     };
     setForm((oldForm) => ({ ...oldForm, ...newForm }));
     setIsFormValid(checkValidityForm(form));

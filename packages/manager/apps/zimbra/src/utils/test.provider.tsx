@@ -23,6 +23,7 @@ import accountAliasTranslation from '@/public/translations/accounts/alias/Messag
 import accountAliasAddTranslation from '@/public/translations/accounts/alias/add/Messages_fr_FR.json';
 import accountAliasDeleteTranslation from '@/public/translations/accounts/alias/delete/Messages_fr_FR.json';
 import accountDeleteTranslation from '@/public/translations/accounts/delete/Messages_fr_FR.json';
+import accountOrderTranslation from '@/public/translations/accounts/order/Messages_fr_FR.json';
 import mailingListsTranslation from '@/public/translations/mailinglists/Messages_fr_FR.json';
 import mailingListsAddAndEditTranslation from '@/public/translations/mailinglists/addAndEdit/Messages_fr_FR.json';
 import redirectionsTranslation from '@/public/translations/redirections/Messages_fr_FR.json';
@@ -30,6 +31,7 @@ import redirectionsAddAndEditTranslation from '@/public/translations/redirection
 import redirectionsDeleteTranslation from '@/public/translations/redirections/delete/Messages_fr_FR.json';
 import onboardingTranslation from '@/public/translations/onboarding/Messages_fr_FR.json';
 import autoRepliesTranslation from '@/public/translations/autoReplies/Messages_fr_FR.json';
+import autoRepliesAddTranslation from '@/public/translations/autoReplies/add/Messages_fr_FR.json';
 import autoRepliesDeleteTranslation from '@/public/translations/autoReplies/delete/Messages_fr_FR.json';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
@@ -54,12 +56,14 @@ i18n.use(initReactI18next).init({
       'accounts/alias/add': accountAliasAddTranslation,
       'accounts/alias/delete': accountAliasDeleteTranslation,
       'accounts/delete': accountDeleteTranslation,
+      'accounts/order': accountOrderTranslation,
       mailinglists: mailingListsTranslation,
       'mailinglists/addAndEdit': mailingListsAddAndEditTranslation,
       redirections: redirectionsTranslation,
       'redirections/addAndEdit': redirectionsAddAndEditTranslation,
       'redirections/delete': redirectionsDeleteTranslation,
       autoReplies: autoRepliesTranslation,
+      'autoReplies/add': autoRepliesAddTranslation,
       'autoReplies/delete': autoRepliesDeleteTranslation,
       onboarding: onboardingTranslation,
     },
@@ -73,6 +77,8 @@ export const getShellContext = () => {
       getUser: () => ({
         ovhSubsidiary: 'FR',
       }),
+      getRegion: () => 'EU',
+      getUserLocale: () => 'fr_FR',
     },
     shell: {
       routing: {

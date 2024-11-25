@@ -30,7 +30,7 @@ export const createVrackServicesCart = async ({
           pricingMode: 'default',
           quantity: 1,
         },
-        configurations: [{ label: 'region', value: region }],
+        configurations: [{ label: 'region_name', value: region }],
       },
       hasVrack && vrackItem,
     ].filter(Boolean),

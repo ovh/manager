@@ -54,5 +54,6 @@
   "subnetUpdateError": "An error has occurred updating your subnet: {{error}}.",
   "subnetUpdatePending": "Modifying your subnet...",
   "modalSubnetUpdateCancelButton": "Cancel",
-  "modalSubnetUpdateConfirmButton": "Edit"
+  "modalSubnetUpdateConfirmButton": "Edit",
+  "subnetRangeAdditionalText": "The subnet address range must be /24."
 }

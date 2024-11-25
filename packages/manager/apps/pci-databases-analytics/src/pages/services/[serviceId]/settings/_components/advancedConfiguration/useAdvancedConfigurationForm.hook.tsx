@@ -92,7 +92,7 @@ export const useAdvancedConfigurationForm = ({
       case database.capabilities.advancedConfiguration.property.TypeEnum.string:
         return property.values
           ? z.enum(property.values as [string, ...string[]])
-          : z.string().min(1, t('advancedConfigurationErrorRequired'));
+          : z.string();
       default:
         return z.string();
     }

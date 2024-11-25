@@ -33,6 +33,7 @@ import {
   useVrackService,
   isValidVlanNumber,
   getSubnetFromCidr,
+  isValidCidr,
 } from '@/data';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import { LoadingText } from '@/components/LoadingText.component';
@@ -164,6 +165,9 @@ export default function EditSubnetModal() {
       </FormField>
 
       <FormField label={t('cidrLabel')} fullWidth>
+        <span slot="helper">
+          <OsdsText>{t('subnetRangeAdditionalText')}</OsdsText>
+        </span>
         <OsdsInput
           disabled={disabledInputs}
           type={ODS_INPUT_TYPE.text}
@@ -172,6 +176,7 @@ export default function EditSubnetModal() {
           onOdsValueChange={(e: OdsInputValueChangeEvent) =>
             setNewCidr(e?.detail.value)
           }
+          error={!!newCidr && !isValidCidr(newCidr)}
         />
       </FormField>
 
@@ -212,6 +217,7 @@ export default function EditSubnetModal() {
       </OsdsButton>
       <OsdsButton
         disabled={
+          (!!newCidr && !isValidCidr(newCidr)) ||
           (vlan && !isValidVlanNumber(vlan)) ||
           !hasDirtyInputs ||
           disabledInputs

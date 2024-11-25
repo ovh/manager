@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.9.1...@ovh-ux/manager-zimbra-app@0.10.0) (2024-11-25)
+
+
+### Features
+
+* **zimbra:** add account order cta & page ([#13863](https://github.com/ovh/manager/issues/13863)) ([056c35d](https://github.com/ovh/manager/commit/056c35d52b3ed99d192bddbbe1079296fa917e81))
+* **zimbra:** implement add autoreply page ([#14011](https://github.com/ovh/manager/issues/14011)) ([791170c](https://github.com/ovh/manager/commit/791170cb1105503e546fc3934cc0eb7b7e183ded))
+
+
+
+
+
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.9.0...@ovh-ux/manager-zimbra-app@0.9.1) (2024-11-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
 # [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.8.6...@ovh-ux/manager-zimbra-app@0.9.0) (2024-11-18)
 
 

@@ -26,5 +26,6 @@ export default {
     trackClick: '<',
     trackPage: '<',
     regions: '<',
+    goToEditRetentionContainer: '<',
   },
 };

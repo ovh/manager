@@ -213,37 +213,6 @@
                         </span>
                     </div>
 
-                    <!-- customHostname -->
-                    <div
-                        class="form-group"
-                        data-ng-class="{
-                             'has-error': optionForm.customHostname.$touched && optionForm.customHostname.$invalid
-                         }"
-                    >
-                        <label
-                            for="customHostname"
-                            class="control-label"
-                            data-translate="server_configuration_installation_form_customHostname"
-                        >
-                        </label>
-                        <input
-                            type="text"
-                            name="customHostname"
-                            id="customHostname"
-                            class="form-control"
-                            data-ng-model="installation.options.customHostname"
-                            data-ng-pattern="/^[a-zA-Z0-9._-]{1,50}$/"
-                            data-ng-trim="true"
-                        />
-                        <span
-                            class="help-block errorFormLabel"
-                            role="alert"
-                            data-ng-if="optionForm.customHostname.$invalid && optionForm.$dirty"
-                            data-translate="server_configuration_installation_form_customHostname_pattern"
-                        >
-                        </span>
-                    </div>
-
                     <!-- diskgroup -->
                     <oui-field
                         data-label="{{ 'server_configuration_installation_ovh_step1_disk_group' | translate }}"

@@ -90,5 +90,9 @@
   "key_management_service_service-keys_delete_error": "L'eliminazione non è stata presa in carico: {{error}}",
   "key_management_service_service-keys_deactivation_success": "La chiave è stata disattivata correttamente",
   "key_management_service_service-keys_reactivate_success": "La chiave è stata riattivata correttamente",
-  "key_management_service_service_keys_back_link": "Ritorna alla lista delle chiavi"
+  "key_management_service_service_keys_back_link": "Ritorna alla lista delle chiavi",
+  "key_management_service_service-keys_create_protection_level_title": "Livello di protezione",
+  "key_management_service_service-keys_create_protection_level_subtitle": "Specificare il tipo di algoritmo utilizzato per la chiave di crittografia.",
+  "key_management_service_service-keys_create_software_protection_title": "Protezione software",
+  "key_management_service_service-keys_create_software_protection_subtitle": "Le operazioni crittografiche vengono effettuate su un software."
 }

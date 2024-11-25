@@ -25,6 +25,7 @@ import {
   useUpdateVrackServices,
   useVrackService,
   isValidVlanNumber,
+  isValidCidr,
 } from '@/data';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import {
@@ -117,7 +118,8 @@ export default function SubnetCreate() {
       isFormSubmittable={
         !vrackServices?.isLoading &&
         !isPending &&
-        (!hasVlan || isValidVlanNumber(vlan))
+        (!hasVlan || isValidVlanNumber(vlan)) &&
+        ((!!cidr && isValidCidr(cidr)) || (!cidr && !!defaultCidr))
       }
     >
       <FormField label={t('subnetNameLabel')}>
@@ -135,6 +137,9 @@ export default function SubnetCreate() {
       </FormField>
 
       <FormField label={t('cidrLabel')}>
+        <span slot="helper">
+          <OsdsText>{t('subnetRangeAdditionalText')}</OsdsText>
+        </span>
         <OsdsInput
           inline
           disabled={isPending || undefined}
@@ -145,6 +150,7 @@ export default function SubnetCreate() {
           onOdsValueChange={(e: OdsInputValueChangeEvent) =>
             setCidr(e?.detail.value)
           }
+          error={!!cidr && !isValidCidr(cidr)}
         />
       </FormField>
 

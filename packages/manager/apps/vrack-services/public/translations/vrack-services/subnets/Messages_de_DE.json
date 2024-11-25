@@ -54,5 +54,6 @@
   "subnetUpdateError": "Bei der Aktualisierung Ihres Subnetzes ist ein Fehler aufgetreten: {{error}}.",
   "subnetUpdatePending": "Subnetz wird geändert",
   "modalSubnetUpdateCancelButton": "Abbrechen",
-  "modalSubnetUpdateConfirmButton": "Ändern"
+  "modalSubnetUpdateConfirmButton": "Ändern",
+  "subnetRangeAdditionalText": "Der Subnetzadressbereich muss in /24 angegeben werden."
 }

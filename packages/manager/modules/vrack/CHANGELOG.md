@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.12.1...@ovh-ux/manager-vrack@1.12.2) (2024-11-21)
+
+
+### Bug Fixes
+
+* **dedicated.vrack:** remove vrack services from eligible list ([#13994](https://github.com/ovh/manager/issues/13994)) ([405e4c2](https://github.com/ovh/manager/commit/405e4c2cb255da275649adf154ba5040a13253a7))
+
+
+
+
+
 ## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.12.0...@ovh-ux/manager-vrack@1.12.1) (2024-11-20)
 
 

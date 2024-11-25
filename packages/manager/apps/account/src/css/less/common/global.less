@@ -1,0 +1,161 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: @defaultbackground;
+}
+
+select,
+textarea,
+input[type='text'],
+input[type='password'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='date'],
+input[type='month'],
+input[type='time'],
+input[type='week'],
+input[type='number'],
+input[type='email'],
+input[type='url'],
+input[type='search'],
+input[type='tel'],
+input[type='color'],
+.uneditable-input {
+  margin-bottom: 0;
+}
+
+select:focus,
+input:focus,
+.wizard-container:focus {
+  outline: none;
+  -moz-outline: none;
+}
+
+//
+// MODULE CONTAINER
+// TODO DELETE
+// --------------------------------------------------
+
+.module-billing-container,
+.module-useraccount-container {
+  margin-left: -305px;
+
+  .popover {
+    position: fixed;
+    padding: 0;
+  }
+}
+
+.module-useraccount-menu {
+  width: 305px;
+  z-index: 2;
+}
+
+.module-billing-sections-container,
+.module-useraccount-sections-container {
+  margin-left: 305px;
+}
+
+//
+// MAIN CONTAINER
+// --------------------------------------------------
+.mainContainer {
+  // height: 100%;
+  // overflow: auto;
+  // position: absolute;
+  // left: 306px;
+  // top: 0;
+  // right: 0;
+
+  .oui-message {
+    margin: 4px;
+  }
+
+  .browser-alert__container {
+    margin: 4px;
+  }
+}
+
+#main-container {
+  .wreckme {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+.alert-account {
+  position: absolute;
+  top: 28px;
+  left: 261px;
+  right: 0;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #b94a48;
+  background-color: #f2dede;
+  border-bottom: 1px solid #eed3d7;
+
+  p {
+    margin: 0;
+  }
+}
+
+.warning-account {
+  position: absolute;
+  top: 28px;
+  left: 261px;
+  right: 0;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #c09853;
+  background-color: #fcf8e3;
+  border-bottom: 1px solid #fbeed5;
+
+  p {
+    margin: 0;
+  }
+}
+
+.alert.me-alerts {
+  display: block;
+  position: relative;
+  margin: 4px 0 0 0;
+  padding: 4px 15px;
+  border-radius: 0;
+  z-index: 1;
+  font-size: 12px;
+
+  ul {
+    padding-left: 18px;
+    margin: 0;
+  }
+
+  .close {
+    display: none;
+  }
+}
+
+.col-container,
+.row-container {
+  display: flex;
+  overflow: hidden;
+}
+
+.col-container {
+  padding-top: @navbar_height;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+
+  .col-item {
+    display: flex;
+    height: 100%;
+    position: relative;
+  }
+}

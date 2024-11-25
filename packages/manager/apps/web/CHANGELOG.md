@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.1.2...@ovh-ux/manager-web@19.1.3) (2024-11-25)
+
+
+### Bug Fixes
+
+* **web.hosting.task:** replace 2api call by iceberg call ([471ef9d](https://github.com/ovh/manager/commit/471ef9d790f03399163456f72ea5612a6246bfd3))
+
+
+
+
+
+## [19.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.1.1...@ovh-ux/manager-web@19.1.2) (2024-11-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [19.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.1.0...@ovh-ux/manager-web@19.1.1) (2024-11-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

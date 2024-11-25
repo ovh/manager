@@ -1,9 +1,0 @@
-{
-  "kube_node_pool_autoscaling_scale_success": "Trwa dostosowywanie puli węzłów.",
-  "kube_node_pool_autoscaling_scale_error": "Wystąpił błąd podczas dostosowywania puli węzłów: {{message}}",
-  "kube_node_pool_autoscaling_scale_error_InsufficientVCPUsQuota": "Limit vCPUs dla Twojego projektu jest niewystarczający, aby przeprowadzić operację. Zwiększ limit lub zmniejsz ilość zasobów.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientRAMQuota": "Limit RAM dla Twojego projektu jest niewystarczający, aby przeprowadzić operację. Zwiększ limit lub zmniejsz ilość zasobów.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientPortsQuota": "Limit portów dla Twojego projektu jest niewystarczający, aby przeprowadzić operację. Zwiększ limit lub zmniejsz ilość zasobów.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientInstancesQuota": "Limit instancji dla Twojego projektu jest niewystarczający, aby przeprowadzić operację. Zwiększ limit lub zmniejsz ilość zasobów.",
-  "kube_node_pool_autoscaling_scale_error_quota_link": "Zwiększ limit."
-}

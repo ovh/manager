@@ -1,10 +1,13 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useContext, useEffect, useState } from 'react';
 import {
   BaseLayout,
   CommonTitle,
   Description,
   ErrorBanner,
+  IntervalUnitType,
   Notifications,
+  OvhSubsidiary,
+  Price,
   Subtitle,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -26,6 +29,7 @@ import {
   OsdsRadioGroup,
   OsdsSelect,
   OsdsSelectOption,
+  OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
@@ -34,6 +38,7 @@ import {
   PageLocation,
   PageType,
   useOvhTracking,
+  ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { OkmsServiceKeyReference } from '@/types/okmsServiceKeyReference.type';
@@ -57,11 +62,15 @@ import { ServiceKeyTypeRadioButton } from '@/components/serviceKey/create/servic
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import Loading from '@/components/Loading/Loading';
+import { KEY_SOFTWARE_PROTECTION_PRICE } from './CreateKey.constants';
 
 export default function CreateKey() {
   const { okmsId } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/serviceKeys');
+  const { environment } = useContext(ShellContext);
+  const { ovhSubsidiary } = environment.getUser();
+  const userLocale = environment.getUserLocale();
 
   const {
     data: okms,
@@ -235,6 +244,47 @@ export default function CreateKey() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             <div className="flex flex-col gap-7 md:gap-9">
+              <div className="flex flex-col gap-6 md:gap-8">
+                <Subtitle>
+                  {t(
+                    'key_management_service_service-keys_create_protection_level_title',
+                  )}
+                </Subtitle>
+                <Description>
+                  {t(
+                    'key_management_service_service-keys_create_protection_level_subtitle',
+                  )}
+                </Description>
+                <OsdsTile
+                  rounded
+                  inline
+                  color={ODS_THEME_COLOR_INTENT.info}
+                  className="flex flex-col w-full h-fit"
+                >
+                  <div className="flex flex-col gap-6 pb-4 justify-center align-middle text-center">
+                    <CommonTitle>
+                      {t(
+                        'key_management_service_service-keys_create_software_protection_title',
+                      )}
+                    </CommonTitle>
+                    <Description>
+                      {t(
+                        'key_management_service_service-keys_create_software_protection_subtitle',
+                      )}
+                    </Description>
+                    <Price
+                      value={KEY_SOFTWARE_PROTECTION_PRICE}
+                      ovhSubsidiary={
+                        OvhSubsidiary[
+                          ovhSubsidiary as keyof typeof OvhSubsidiary
+                        ]
+                      }
+                      locale={userLocale}
+                      intervalUnit={IntervalUnitType.month}
+                    ></Price>
+                  </div>
+                </OsdsTile>
+              </div>
               <div className="flex flex-col gap-6 md:gap-8">
                 <Subtitle>
                   {t(

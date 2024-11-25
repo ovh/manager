@@ -78,8 +78,9 @@ export function Redirections() {
   const { t } = useTranslation('redirections');
   const { platformUrn } = usePlatform();
   const [searchParams] = useSearchParams();
+  const params = Object.fromEntries(searchParams.entries());
   const editEmailAccountId = searchParams.get('editEmailAccountId');
-  const hrefAddRedirection = useGenerateUrl('./add', 'href');
+  const hrefAddRedirection = useGenerateUrl('./add', 'href', params);
   // to update
   const isLoading = false;
 

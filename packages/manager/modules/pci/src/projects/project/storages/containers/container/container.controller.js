@@ -5,6 +5,9 @@ import {
   CONTAINER_GUIDES,
   OBJECT_CONTAINER_S3_STATIC_URL_INFO,
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
+  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  OBJECT_CONTAINER_MODE_MONO_ZONE,
+  STORAGE_ASYNC_REPLICATION_LINK,
 } from '../containers.constants';
 
 export default class PciStoragesContainersContainerController {
@@ -40,6 +43,12 @@ export default class PciStoragesContainersContainerController {
     }));
     this.defaultUser = CONTAINER_DEFAULT_USER;
     this.objectS3staticUrlInfo = OBJECT_CONTAINER_S3_STATIC_URL_INFO;
+    this.OBJECT_CONTAINER_MODE_MULTI_ZONES = OBJECT_CONTAINER_MODE_MULTI_ZONES;
+    this.OBJECT_CONTAINER_MODE_MONO_ZONE = OBJECT_CONTAINER_MODE_MONO_ZONE;
+    const { ovhSubsidiary } = coreConfig.getUser();
+    this.asyncReplicationLink =
+      STORAGE_ASYNC_REPLICATION_LINK[ovhSubsidiary] ||
+      STORAGE_ASYNC_REPLICATION_LINK.DEFAULT;
   }
 
   $onInit() {
@@ -68,6 +77,21 @@ export default class PciStoragesContainersContainerController {
   isLocalZone() {
     return (
       this.container?.regionDetails?.type === OBJECT_CONTAINER_MODE_LOCAL_ZONE
+    );
+  }
+
+  showReplicationRulesBanner() {
+    const hasEnabledRule = this.container.replication?.rules?.some(
+      (rule) => rule.status === 'enabled',
+    );
+
+    const validTypes = [
+      this.OBJECT_CONTAINER_MODE_MONO_ZONE,
+      this.OBJECT_CONTAINER_MODE_MULTI_ZONES,
+    ];
+
+    return (
+      !hasEnabledRule && validTypes.includes(this.container.regionDetails?.type)
     );
   }
 

@@ -357,8 +357,6 @@
   "server_configuration_installation_form_option": "Options d'installation :",
   "server_configuration_installation_form_gabaritNameSave": "Nom du gabarit :",
   "server_configuration_installation_form_gabaritNameSave_pattern": "Format invalide.",
-  "server_configuration_installation_form_customHostname": "Hostname :",
-  "server_configuration_installation_form_customHostname_pattern": "Format invalide.",
   "server_configuration_installation_form_useSpla": "Utiliser licence SPLA",
   "server_configuration_installation_form_ssh": "Clés ssh :",
   "server_configuration_installation_form_ssh_fail": "Impossible d'afficher vos clés ssh",

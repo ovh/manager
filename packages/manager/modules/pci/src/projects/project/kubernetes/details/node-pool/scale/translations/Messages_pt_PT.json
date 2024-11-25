@@ -1,9 +1,0 @@
-{
-  "kube_node_pool_autoscaling_scale_success": "O ajustamento do pool de nós está em curso.",
-  "kube_node_pool_autoscaling_scale_error": "Ocorreu um erro aquando do ajustamento do pool de nós: {{message}}",
-  "kube_node_pool_autoscaling_scale_error_InsufficientVCPUsQuota": "A quota de vCPU do seu projeto é insuficiente para realizar a operação. Aumente a sua quota ou solicite menos recursos.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientRAMQuota": "A quota de RAM do seu projeto é insuficiente para realizar a operação. Aumente a sua quota ou solicite menos recursos.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientPortsQuota": "A quota de portas do seu projeto é insuficiente para realizar a operação. Aumente a sua quota ou solicite menos recursos.",
-  "kube_node_pool_autoscaling_scale_error_InsufficientInstancesQuota": "A quota de instâncias do seu projeto é insuficiente para realizar a operação. Aumente a sua quota ou solicite menos recursos.",
-  "kube_node_pool_autoscaling_scale_error_quota_link": "Aumentar a minha quota."
-}

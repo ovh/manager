@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.0.1...@ovh-ux/manager-bm-server-components@2.1.0) (2024-11-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3500] ([93bf5d4](https://github.com/ovh/manager/commit/93bf5d49a250a47731c584563f144b746b01a3ce))
+
+
+### Features
+
+* **dedicated:** make hostname dynamic in os installation wizard ([95d147e](https://github.com/ovh/manager/commit/95d147ee196b07815419c46a9b63d801b968c2a2))
+
+
+
+
+
+## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.0.0...@ovh-ux/manager-bm-server-components@2.0.1) (2024-11-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3492] ([352d447](https://github.com/ovh/manager/commit/352d4472802c2529196cb0556807b286ef19f15d))
+* **i18n:** add missing translations [CDS 3495] ([6bc40ca](https://github.com/ovh/manager/commit/6bc40caaceca134913e542bfa037784a6703183c))
+
+
+
+
+
 # 2.0.0 (2024-11-12)
 
 

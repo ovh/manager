@@ -34,5 +34,6 @@
   "supportLink": "Contattare il supporto",
   "connectionDetailsCertificateLabel": "Certificato",
   "connectionDetailsCertificateCopyToast": "Il certificato CA è stato copiato negli appunti",
-  "connectionDetailsCertificateDownloadToast": "Il certificato CA è stato scaricato"
+  "connectionDetailsCertificateDownloadToast": "Il certificato CA è stato scaricato",
+  "subnetTitle": "Sottorete:"
 }

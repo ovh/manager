@@ -54,5 +54,6 @@
   "subnetUpdateError": "Se ha producido un error al actualizar la subred: {{error}}.",
   "subnetUpdatePending": "Modificando la subred...",
   "modalSubnetUpdateCancelButton": "Cancelar",
-  "modalSubnetUpdateConfirmButton": "Modificar"
+  "modalSubnetUpdateConfirmButton": "Modificar",
+  "subnetRangeAdditionalText": "El intervalo de direcciones de la subred debe ser /24."
 }

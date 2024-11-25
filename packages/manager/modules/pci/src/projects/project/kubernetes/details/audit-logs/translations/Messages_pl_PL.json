@@ -1,5 +1,0 @@
-{
-  "kube_logs_tab_title": "Logi",
-  "kube_logs_main_description": "Poniżej znajdują się dzienniki audytu klastra Kubernetes, stanowiące chronologiczny zbiór istotnych z punktu widzenia bezpieczeństwa zapisów dokumentujących sekwencję działań w klastrze: działań generowanych przez użytkowników, przez aplikacje korzystające z interfejsu API Kubernetes oraz przez sam „control plane”.",
-  "logs_list_description_audit": "Po tym, jak zasubskrybujesz logi klastra Kubernetes, zostaną one przeniesione do Logs Data Platform. Będziesz mógł je scentralizować za pomocą innych logów, realizować zaawansowane wyszukiwanie, zarządzać retencją, definiować alerty oraz dashboardy i, co za tym idzie, łatwo obserwować klastry."
-}

@@ -1,5 +1,0 @@
-{
-  "kube_logs_tab_title": "Logs",
-  "kube_logs_main_description": "Im Folgenden finden Sie die Audit-Logs Ihres Kubernetes-Clusters, die eine chronologische Auflistung sicherheitsrelevanter Datensätze enthalten und die Abfolge der Aktionen in Ihrem Cluster dokumentieren: von den Usern, den Anwendungen, die die Kubernetes-API verwenden, und dem Kontrollplan selbst generierte Aktivitäten.",
-  "logs_list_description_audit": "Wenn Sie die Logs Ihres Kubernetes-Clusters abonnieren, werden sie auf die Logs Data Platform übertragen. Sie können sie mit Ihren anderen Logs zentralisieren, erweiterte Suchvorgänge durchführen, ihre Aufbewahrung verwalten, Alarme definieren und Dashboards verwenden, um Ihre Cluster einfach zu überwachen."
-}

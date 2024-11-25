@@ -6,7 +6,7 @@ import user from './user';
 import identityDocuments from './identity-documents';
 import kycDocuments from './kyc-documents';
 
-const moduleName = 'ovhManagerDedicatedAccount';
+const moduleName = 'ovhManagerAppAccount';
 
 angular
   .module(moduleName, [

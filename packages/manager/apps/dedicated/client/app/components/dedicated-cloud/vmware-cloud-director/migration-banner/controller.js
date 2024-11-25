@@ -1,12 +1,25 @@
 export default class ManagedVcdMigrationBannerCtrl {
   /* @ngInject */
-  constructor(DedicatedCloud, atInternet) {
+  constructor(DedicatedCloud, atInternet, ovhFeatureFlipping) {
     this.DedicatedCloud = DedicatedCloud;
     this.atInternet = atInternet;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
   $onInit() {
-    this.loadMigrationState();
+    this.loadReminderFeatureAvailability();
+    this.trackMigrationState();
+  }
+
+  loadReminderFeatureAvailability() {
+    const feature = 'dedicated-cloud:vcd-migration:reminder';
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability(feature)
+      .then((featureAvailability) => {
+        this.hasReminderAvailability = featureAvailability.isFeatureAvailable(
+          feature,
+        );
+      });
   }
 
   trackPage(name) {
@@ -15,26 +28,17 @@ export default class ManagedVcdMigrationBannerCtrl {
     });
   }
 
-  loadMigrationState() {
-    this.migrationState = null;
+  trackMigrationState() {
+    if (this.vcdMigrationState?.isEnabling) {
+      this.trackPage(
+        'vmware::vmware::banner-info::migrate_to_managed_vcd_pending',
+      );
+    }
 
-    this.DedicatedCloud.getPCCMigrationState(this.serviceName).then((state) => {
-      this.migrationState = state;
-      if (state.isEnabling) {
-        this.trackPage(
-          'vmware::vmware::banner-info::migrate_to_managed_vcd_pending',
-        );
-      }
-    });
-
-    this.DedicatedCloud.getManagedVCDMigrationState(this.serviceName).then(
-      (state) => {
-        if (state.isDone) {
-          this.trackPage(
-            'vmware::vmware::banner-info::migrate_to_managed_vcd_success',
-          );
-        }
-      },
-    );
+    if (this.vcdMigrationState?.isEnabled) {
+      this.trackPage(
+        'vmware::vmware::banner-info::migrate_to_managed_vcd_success',
+      );
+    }
   }
 }

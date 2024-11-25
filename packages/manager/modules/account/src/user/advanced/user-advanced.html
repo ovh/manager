@@ -1,0 +1,107 @@
+<div class="module-useraccount-sections-advanced-container">
+    <div data-ovh-alert="useraccount.alerts.dashboardAdvanced"></div>
+
+    <h2 data-translate="user_account_advanced_section_beta"></h2>
+
+    <ovh-manager-beta-preference
+        data-on-success="advancedCtrl.onBetaSuccess(message)"
+        data-on-error="advancedCtrl.onBetaError(message)"
+    >
+    </ovh-manager-beta-preference>
+
+    <h2 data-translate="user_account_advanced_section_developer_title"></h2>
+
+    <form>
+        <div class="row my-5">
+            <div class="col-md-4 text-center">
+                <span
+                    class="fa fa-desktop fa-3x d-inline-block mb-3"
+                    aria-hidden="true"
+                >
+                </span>
+                <p
+                    data-translate="user_account_advanced_section_developer_interface_opensource"
+                ></p>
+            </div>
+            <div class="col-md-4 text-center">
+                <span
+                    class="fa fa-puzzle-piece fa-3x d-inline-block mb-3"
+                    aria-hidden="true"
+                >
+                </span>
+                <p
+                    data-translate="user_account_advanced_section_developer_component_library"
+                ></p>
+            </div>
+            <div class="col-md-4 text-center">
+                <span
+                    class="fa fa-code fa-3x d-inline-block mb-3"
+                    aria-hidden="true"
+                >
+                </span>
+                <p
+                    data-translate="user_account_advanced_section_developer_api"
+                ></p>
+            </div>
+        </div>
+
+        <div class="oui-box oui-box_light mb-5">
+            <div class="oui-switch oui-switch_inline">
+                <label class="oui-switch__label-container">
+                    <input
+                        type="checkbox"
+                        class="oui-switch__checkbox"
+                        data-ng-model="advancedCtrl.developmentMode.enabled"
+                        data-ng-change="advancedCtrl.updateDevelopmentMode()"
+                        data-ng-disabled="advancedCtrl.isLoadingDeveloperMode"
+                        data-track-on="click"
+                        data-track-type="action"
+                        data-track-name="account::advanced_settings::edit::developer_mode"
+                    />
+                    <span class="oui-switch__slider" aria-hidden="true"></span>
+                </label>
+            </div>
+            <span
+                data-translate="user_account_advanced_section_developer_label"
+            ></span>
+        </div>
+
+        <h3
+            class="mb-5"
+            data-translate="user_account_advanced_section_developer_join_us"
+        ></h3>
+
+        <ul class="follow-link-list list-unstyled">
+            <li class="mb-2">
+                <span
+                    class="fa fa-2x fa-github text-center mr-2"
+                    aria-hidden="true"
+                >
+                </span>
+                <a
+                    target="_blank"
+                    href="https://github.com/ovh"
+                    class="align-bottom"
+                    rel="noopener"
+                >
+                    https://github.com/ovh
+                </a>
+            </li>
+            <li class="mb-2">
+                <span
+                    class="fa fa-2x fa-comments text-center mr-2"
+                    aria-hidden="true"
+                >
+                </span>
+                <a
+                    target="_blank"
+                    href="https://github.com/ovh/manager/discussions"
+                    class="align-bottom"
+                    rel="noopener"
+                >
+                    https://github.com/ovh/manager/discussions
+                </a>
+            </li>
+        </ul>
+    </form>
+</div>

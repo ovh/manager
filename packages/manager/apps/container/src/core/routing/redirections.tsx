@@ -1,5 +1,5 @@
-import React from 'react';
 import { Navigate, Route, useLocation, useParams } from 'react-router-dom';
+import { Application } from '@ovh-ux/manager-config';
 
 function Rewrite({ to }: { to: string }): JSX.Element {
   const location = useLocation();
@@ -12,13 +12,40 @@ function Rewrite({ to }: { to: string }): JSX.Element {
   return <Navigate to={`${target}${location.search}`} replace={true} />;
 }
 
-export function Redirections(): JSX.Element {
+export function Redirections(configuration: Record<string, Application>): JSX.Element {
+  const isNewAccountAvailable = !!configuration?.['new-account'];
+
   return (
     <>
-      <Route
-        path="/useraccount/*"
-        element={<Rewrite to="/dedicated/useraccount/*" />}
-      />
+      {isNewAccountAvailable ? (
+        <>
+          <Route
+            path="/useraccount/*"
+            element={<Rewrite to="/account/useraccount/*" />}
+          />
+          <Route
+            path="/dedicated/useraccount/*"
+            element={<Rewrite to="/account/useraccount/*" />}
+          />
+          <Route
+            path="/dedicated/contacts/*"
+            element={<Rewrite to="/account/contacts/*" />}
+          />
+          <Route
+            path="/dedicated/identity-documents/*"
+            element={<Rewrite to="/account/identity-documents/*" />}
+          />
+          <Route
+            path="/dedicated/documents/*"
+            element={<Rewrite to="/account/documents/*" />}
+          />
+        </>
+      ) : (
+        <Route
+          path="/useraccount/*"
+          element={<Rewrite to="/dedicated/useraccount/*" />}
+        />
+      )}
       <Route
         path="/billing/*"
         element={<Rewrite to="/dedicated/billing/*" />}

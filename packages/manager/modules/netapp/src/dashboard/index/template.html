@@ -24,8 +24,14 @@
             </oui-tile-definition>
             <oui-tile-definition
                 term="{{:: 'netapp_dashboard_information_region' | translate }}"
-                description="{{ $ctrl.storage.region }}"
             >
+                <oui-tile-description>
+                    <span
+                        data-translate="{{ :: 'netapp_location_' + $ctrl.storage.region }}"
+                    ></span>
+                    <br />
+                    <span data-ng-bind=":: $ctrl.storage.region"></span>
+                </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition
                 term="{{:: 'netapp_dashboard_information_performance_level' | translate }}"
@@ -67,9 +73,7 @@
                 </oui-tile-description>
             </oui-tile-definition>
             <div data-ng-if="$ctrl.networkInformations.vRackServicesURN">
-                <oui-tile-definition
-                    term="{{:: 'netapp_dashboard_network_configuration_vrack_id' | translate }}"
-                >
+                <oui-tile-definition term="{{:: $ctrl.LABELS.VRACK}}">
                     <oui-tile-description>
                         <a
                             data-ng-if="$ctrl.networkInformations.vrackServices.currentState.vrackId"
