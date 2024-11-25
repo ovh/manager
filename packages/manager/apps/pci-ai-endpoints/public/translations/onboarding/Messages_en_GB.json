@@ -1,0 +1,14 @@
+{
+  "title": "Enhance your applications with AI Endpoints",
+  "description": "Designed with simplicity in mind, our platform allows developers of all skill levels to enhance their applications with cutting-edge AI APIs — no AI expertise required.",
+  "descriptionBis": "These APIs require <strong>no AI</strong> expertise or dedicated infrastructure, as the serverless platform provides access <strong>to advanced</strong> AI models , including language models (LLMs), natural language processing, translation, voice recognition, image recognition, and much more. Developers can choose from a range of models, particularly open-<strong>source options like Mistral AI, Llama and Stable Diffusion.</strong> .",
+  "goToAiEndpoint": "AI Endpoints",
+  "guideCategory": "Guide",
+  "guide1Title": "Getting started with AI Endpoints",
+  "guide1Description": "Discover AI Endpoints, OVHcloud's secure server platform for developers that provides access to the best AI models through easy-to-use APIs. No AI expertise is required.",
+  "guide2Title": "Features, capabilities and limitations",
+  "guide2Description": "Discover the current features, capabilities and limitations of AI Endpoints",
+  "tutoCategory": "Tutorials ",
+  "guide3Title": "Use cases with AI Endpoints",
+  "guide3Description": "Explore our tutorials to enrich your applications with AI Endpoints. Learn how to build chatbots, integrate LLM or tools for powerful AI solutions."
+}
