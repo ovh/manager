@@ -6,9 +6,9 @@
             <oui-guide-menu-item
                 data-href="{{ ::$ctrl.GUIDE_URL }}"
                 data-external="true"
-            ><span
-                data-translate="domain_tab_CONTACT_guide_manage_contact_and_services"
-            ></span>
+                ><span
+                    data-translate="domain_tab_CONTACT_guide_manage_contact_and_services"
+                ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
     </oui-header>
@@ -36,7 +36,20 @@
                     class="h-100"
                     data-heading="{{:: 'domain_tab_CONTACT_owner' | translate }}"
                 >
-                    <p class="mb-5" data-translate="domain_tab_CONTACT_description_owner"></p>
+                    <div
+                        class="oui-message oui-message_info oui-message_no-icon"
+                        data-ng-if="!$ctrl.isNicAdmin"
+                        role="alert"
+                    >
+                        <p
+                            class="oui-message__body"
+                            data-translate="domain_tab_CONTACT_edit_form_owner_infos"
+                        ></p>
+                    </div>
+                    <p
+                        class="mb-5"
+                        data-translate="domain_tab_CONTACT_description_owner"
+                    ></p>
                     <oui-button
                         data-disabled="!$ctrl.isNicAdmin"
                         data-on-click="$ctrl.editContact(true)"
@@ -54,9 +67,10 @@
                     class="h-100"
                     data-heading="{{:: 'domain_tab_CONTACT_admin' | translate }}"
                 >
-                    <span data-ng-if="!$ctrl.isNicAdmin"
-                          class="d-block font-weight-bold"
-                          data-ng-bind="::$ctrl.domainInfos.contactAdmin">
+                    <span
+                        class="d-block font-weight-bold pb-2"
+                        data-ng-bind="::$ctrl.domainInfos.contactAdmin"
+                    >
                     </span>
                     <div data-ng-if="$ctrl.isNicAdmin" class="mb-2">
                         <span
@@ -73,9 +87,14 @@
                         data-ng-click="$ctrl.toggleAdminDescription()"
                         data-ng-hide="$ctrl.user.legalform!==$ctrl.INFO_PROPERTIES.ORGANISATION"
                     >
-                        <span data-translate="domain_tab_CONTACT_view_more"></span>
+                        <span
+                            data-translate="domain_tab_CONTACT_view_more"
+                        ></span>
                     </oui-button>
-                    <div data-ng-if="$ctrl.isNicAdmin && !$ctrl.hideOrganisationFields" class="mb-2">
+                    <div
+                        data-ng-if="$ctrl.isNicAdmin && !$ctrl.hideOrganisationFields"
+                        class="mb-2"
+                    >
                         <span
                             data-ng-repeat="infoPropertyOrga in $ctrl.infoPropertiesOrganisation track by $index"
                             data-ng-if="::$ctrl.showContactInfo(infoPropertyOrga)"
@@ -105,20 +124,21 @@
                     class="h-100"
                     data-heading="{{:: 'domain_tab_CONTACT_technical' | translate }}"
                 >
-                    <span data-ng-if="$ctrl.domainInfos.contactTech !== $ctrl.user.nichandle"
-                          class="d-block font-weight-bold"
-                          data-ng-bind="::$ctrl.domainInfos.contactTech">
+                    <span
+                        class="d-block font-weight-bold pb-2"
+                        data-ng-bind="::$ctrl.domainInfos.contactTech"
+                    >
                     </span>
                     <div
                         class="mb-2"
                         data-ng-if="$ctrl.domainInfos.contactTech === $ctrl.user.nichandle"
                     >
-                    <span
-                        data-ng-repeat="infoProperty in $ctrl.infoProperties track by $index"
-                        data-ng-if="::$ctrl.showContactInfo(infoProperty)"
-                        class="d-block font-weight-bold"
-                        data-ng-bind="::$ctrl.getDisplayedField(infoProperty)"
-                    ></span>
+                        <span
+                            data-ng-repeat="infoProperty in $ctrl.infoProperties track by $index"
+                            data-ng-if="::$ctrl.showContactInfo(infoProperty)"
+                            class="d-block font-weight-bold"
+                            data-ng-bind="::$ctrl.getDisplayedField(infoProperty)"
+                        ></span>
                     </div>
 
                     <p
@@ -142,24 +162,27 @@
                 <oui-tile
                     data-heading="{{:: 'domain_tab_CONTACT_billing' | translate }}"
                 >
-                    <span data-ng-if="$ctrl.domainInfos.contactBilling !== $ctrl.user.nichandle"
-                          class="d-block font-weight-bold"
-                          data-ng-bind="::$ctrl.domainInfos.contactBilling">
+                    <span
+                        class="d-block font-weight-bold pb-2"
+                        data-ng-bind="::$ctrl.domainInfos.contactBilling"
+                    >
                     </span>
                     <div
                         class="mb-2"
                         data-ng-if="$ctrl.domainInfos.contactBilling === $ctrl.user.nichandle"
                     >
-                <span
-                    data-ng-repeat="infoProperty in $ctrl.infoProperties track by $index"
-                    data-ng-if="::$ctrl.showContactInfo(infoProperty)"
-                    class="d-block font-weight-bold"
-                    data-ng-bind="::$ctrl.getDisplayedField(infoProperty)"
-                ></span>
+                        <span
+                            data-ng-repeat="infoProperty in $ctrl.infoProperties track by $index"
+                            data-ng-if="::$ctrl.showContactInfo(infoProperty)"
+                            class="d-block font-weight-bold"
+                            data-ng-bind="::$ctrl.getDisplayedField(infoProperty)"
+                        ></span>
                     </div>
 
-                    <p class="mb-5"
-                       data-translate="domain_tab_CONTACT_description_billing"></p>
+                    <p
+                        class="mb-5"
+                        data-translate="domain_tab_CONTACT_description_billing"
+                    ></p>
                     <oui-button
                         data-disabled="$ctrl.domainInfos.contactBilling !== $ctrl.user.nichandle"
                         data-on-click="$ctrl.editContact()"

@@ -22,16 +22,18 @@ export default class ContactService {
       .then(({ data }) => data);
   }
 
-  postDomainConfigurationRule(action, domain) {
+  postDomainConfigurationRuleCheck(action, domain, data) {
     return this.$http
-      .post(`/domain/configurationRule?action=${action}&domain=${domain}`)
+      .post(
+        `/domain/configurationRule/check?action=${action}&domain=${domain}`,
+        data,
+      )
       .then(({ data }) => data);
   }
 
   putDomainContact(contactId, data) {
     return this.$http
-      .post(`/domain/contact/${contactId}`, data)
+      .put(`/domain/contact/${contactId}`, data)
       .then(({ data }) => data);
   }
-
 }

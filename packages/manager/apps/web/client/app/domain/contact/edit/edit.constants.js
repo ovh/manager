@@ -1,16 +1,17 @@
-export const ROUTE = {
-  accountCreation: 'TODO',
-};
-
-// TODO: check fields that are read only
-// export const READY_ONLY_RULES_PARAMS = [
-//   'companyNationalIdentificationNumber',
-// ];
-
+export const FORM_PART_PREFIX = 'form_part_';
+export const OVH_FIELD_PREFIX = 'ovh_field_';
+export const POINT_SEPARATOR = '.';
 
 export const GENERAL_KEY = 'general';
 export const PROFILE_KEY = 'profile';
 export const CONTACT_KEY = 'contact';
+
+const ADDRESS_ZIP = 'address.zip';
+const ADDRESS_CITY = 'address.city';
+const ADDRESS_COUNTRY = 'address.country';
+const ADDRESS_LINE1 = 'address.line1';
+const ADDRESS_LINE2 = 'address.line2';
+const ADDRESS_LINE3 = 'address.line3';
 
 export const SECTIONS = {
   [GENERAL_KEY]: [
@@ -19,81 +20,62 @@ export const SECTIONS = {
     'ovhCompany',
     'corporationType',
     'firstName',
-    'name',
+    'lastName',
     'companyNationalIdentificationNumber',
     'legalform',
-    // 'customerCode',
-    'vat'
+    'vat',
   ],
   [PROFILE_KEY]: [
-    // 'civility', // TODO: find
+    // 'civility', // same as gender
     'firstName',
-    'name',
+    'lastName',
     'nationalIdentificationNumber',
-    'sex', // TODO: check if gender
+    'gender',
     'nationality',
     'birthDay',
     'birthCountry',
     'birthCity',
     'birthZip',
     'language',
-  ],
-  [CONTACT_KEY]: [
     'address',
-    'address.line1',
-    'address.line2',
-    'address.line3',
-    'address.city',
-    'address.country',
-    'area',
-    'cellPhone',
-    'phone',
-    'email',
-  ]
+    ADDRESS_ZIP,
+    ADDRESS_LINE1,
+    ADDRESS_LINE2,
+    ADDRESS_LINE3,
+    ADDRESS_CITY,
+    ADDRESS_COUNTRY,
+  ],
+  [CONTACT_KEY]: ['cellPhone', 'phone', 'email'],
 };
 
-
-// TODO: check this!
-export const MODEL_DEBOUNCE_DELAY = 500;
-
-// TODO: check this!
 export const FIELD_NAME_LIST = {
-  customerCode: 'customerCode',
-  ovhCompany: 'ovhCompany',
-  ovhSubsidiary: 'ovhSubsidiary',
-  legalform: 'legalform',
-  firstname: 'firstname',
-  name: 'name',
+  legalform: 'legalForm',
+  firstname: 'firstName',
+  organisationName: 'organisationName',
+  lastName: 'lastName',
   sex: 'sex',
   birthDay: 'birthDay',
   birthCity: 'birthCity',
   nationalIdentificationNumber: 'nationalIdentificationNumber',
   email: 'email',
-  commercialCommunicationsApproval: 'commercialCommunicationsApproval',
-  spareEmail: 'spareEmail',
-  password: 'password',
-  timezone: 'timezone',
   country: 'country',
-  area: 'area',
+  addressCountry: 'address.country',
   address: 'address',
+  line1: 'line1',
+  line2: 'line2',
+  line3: 'line3',
   zip: 'zip',
   city: 'city',
+  phoneType: 'phoneType',
   phoneCountry: 'phoneCountry',
   phone: 'phone',
-  smsConsent: 'smsConsent',
-  fax: 'fax',
-  language: 'language',
-  managerLanguage: 'managerLanguage',
+  cellPhone: 'cellPhone',
   organisation: 'organisation',
   corporationType: 'corporationType',
   companyNationalIdentificationNumber: 'companyNationalIdentificationNumber',
   vat: 'vat',
-  gst: 'gst',
-  iceNumber: 'iceNumber',
-  purposeOfPurchase: 'purposeOfPurchase',
 };
 
-// TODO: check this!
 export const PHONE_PREFIX = {
   AC: '247',
   AD: '376',
@@ -341,26 +323,27 @@ export const PHONE_PREFIX = {
   ZW: '263',
 };
 
-
-// TODO: check this!
-export const USER_TYPE_ENTERPRISE = 'corporation';
-
-
-export const GENERAL_SECTION = 'general';
-export const PROFILE_SECTION = 'profile';
-export const CONTACT_SECTION = 'contact';
+export const REQUIRED = 'required';
+export const READ_ONLY = 'readonly';
+export const MAX_LENGTH = 'maxlength';
+export const STRICT_EQUAL = 'eq';
+export const NOT_EQUAL = 'neq';
+export const CONTAINS = 'contains';
 
 export default {
-  ROUTE,
+  POINT_SEPARATOR,
+  FORM_PART_PREFIX,
+  OVH_FIELD_PREFIX,
   SECTIONS,
-  MODEL_DEBOUNCE_DELAY,
   FIELD_NAME_LIST,
   PHONE_PREFIX,
-  GENERAL_SECTION,
-  PROFILE_SECTION,
-  CONTACT_SECTION,
-  USER_TYPE_ENTERPRISE,
   GENERAL_KEY,
   PROFILE_KEY,
   CONTACT_KEY,
-}
+  REQUIRED,
+  READ_ONLY,
+  MAX_LENGTH,
+  STRICT_EQUAL,
+  NOT_EQUAL,
+  CONTAINS,
+};

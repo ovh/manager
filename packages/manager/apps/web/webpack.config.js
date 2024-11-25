@@ -70,6 +70,13 @@ module.exports = (env = {}) => {
             to: 'resources/angular/i18n',
           },
           { from: foundNodeModulesFolder('ckeditor'), to: 'ckeditor' },
+          {
+            from: path.resolve(
+              __dirname,
+              '../../../../node_modules/flag-icon-css/flags/4x3',
+            ),
+            to: 'flag-icon-css/flags/4x3',
+          },
         ],
       },
     },

@@ -9,6 +9,8 @@ export default {
     rule: '<', // api rule
     fieldset: '<', // parent form fieldset,
     contactInformations: '<',
+    domainName: '<', // domainName required for order funnel
+    rules: '<', // all rules for applying legacy order code
   },
   template,
   controller,

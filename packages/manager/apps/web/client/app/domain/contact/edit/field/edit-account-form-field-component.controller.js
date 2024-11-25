@@ -1,13 +1,14 @@
-import find from 'lodash/find';
-import get from 'lodash/get';
 import head from 'lodash/head';
-import isObject from 'lodash/isObject';
 import map from 'lodash/map';
-import startsWith from 'lodash/startsWith';
 import {
-  PHONE_PREFIX,
-  MODEL_DEBOUNCE_DELAY,
   FIELD_NAME_LIST,
+  POINT_SEPARATOR,
+  FORM_PART_PREFIX,
+  GENERAL_KEY,
+  CONTACT_KEY,
+  PROFILE_KEY,
+  SECTIONS,
+  PHONE_PREFIX,
 } from '../edit.constants';
 
 export default class EditAccountFormFieldController {
@@ -27,19 +28,25 @@ export default class EditAccountFormFieldController {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.atInternet = atInternet;
+
+    this.FORM_PART_PREFIX = FORM_PART_PREFIX;
+    this.POINT_SEPARATOR = POINT_SEPARATOR;
     this.FIELD_NAME_LIST = FIELD_NAME_LIST;
+    this.GENERAL_KEY = GENERAL_KEY;
+    this.CONTACT_KEY = CONTACT_KEY;
+    this.PROFILE_KEY = PROFILE_KEY;
+    this.SECTIONS = SECTIONS;
+    this.PHONE_PREFIX = PHONE_PREFIX;
+
     this.user = coreConfig.getUser();
   }
 
   $onInit() {
-
     // unique field identifier
     this.id = `ovh_field_${this.rule.label}`;
 
     // field value
     this.value = undefined;
-
-    this.debounce = MODEL_DEBOUNCE_DELAY;
 
     // set value
     this.setDefaultValue();
@@ -53,7 +60,7 @@ export default class EditAccountFormFieldController {
     // validate input on rule update
     this.$scope.$watch('$ctrl.rule', () => {
       this.translatedEnumCache = null;
-      if (this.fieldset[this.id]) {
+      if (this.fieldset && this.fieldset[this.id]) {
         this.fieldset[this.id].$validate();
       }
     });
@@ -67,71 +74,27 @@ export default class EditAccountFormFieldController {
       });
     }
 
-    // reset sms consent value when phone type is no longer 'mobile'
-    if (this.rule.label === 'smsConsent') {
-      this.$scope.$on('account.smsConsent.reset', () => {
-        // switch value to false only if it is true
-        if (this.value) {
-          this.onChange();
-          this.value = false;
-        }
-      });
-    }
-
     // handle special phone prefix case
     if (this.getFieldType() === 'phone') {
       this.$scope.$watch(
-        '$ctrl.editAccountForm.rules',
+        '$ctrl.domainZoneDashboardContactEdit.rules',
         (rules) => {
-          const rule = rules.find(
-            (value) => value.fieldName === this.FIELD_NAME_LIST.phoneCountry,
+          const rule = rules.fields.and.find(
+            (value) => value.label === this.FIELD_NAME_LIST.addressCountry,
           );
-          this.phoneCountryList = rule?.in.map((country) => ({
-            country,
-            prefix: PHONE_PREFIX[country],
-            label: this.$translate.instant(`signup_enum_country_${country}`),
-          }));
+          this.phoneCountryList = rule?.constraints
+            .find((constraint) => constraint.operator === 'contains')
+            .values?.map((country) => ({
+              country,
+              prefix: PHONE_PREFIX[country],
+              label: this.$translate.instant(`country_${country}`),
+            }));
           this.phoneCountryList = this.$filter('orderBy')(
             this.phoneCountryList,
             'label',
             false,
             (a, b) => String(a.value).localeCompare(String(b.value)),
           );
-
-          const current = this.phoneCountryList.find(
-            (value) => value.country === this.editAccountForm.model.phoneCountry,
-          );
-          const orig = this.phoneCountryList.find(
-            (value) =>
-              value.country === this.editAccountForm.originalModel.phoneCountry,
-          );
-          const country = this.phoneCountryList.find(
-            (value) => value.country === this.editAccountForm.model.country,
-          );
-          const subCountry = this.phoneCountryList.find(
-            (value) =>
-              value.country === this.editAccountForm.model.ovhSubsidiary,
-          );
-
-          this.phoneCountry =
-            current ||
-            orig ||
-            country ||
-            subCountry ||
-            head(this.phoneCountryList);
-
-          if (current !== this.phoneCountry.country) {
-            this.$timeout(() => {
-              if (this.editAccountForm.onFieldChange) {
-                this.editAccountForm.onFieldChange(
-                  {
-                    fieldName: this.FIELD_NAME_LIST.phoneCountry,
-                  },
-                  this.phoneCountry.country,
-                );
-              }
-            });
-          }
         },
         true,
       );
@@ -150,26 +113,30 @@ export default class EditAccountFormFieldController {
           value = EditAccountFormFieldController.cleanIdentifier(value);
         }
 
-        if (this.rule.regularExpression) {
-          if (
-            this.rule.prefix &&
-            value &&
-            this.fieldName !== this.FIELD_NAME_LIST.zip
-          ) {
-            value = this.rule.prefix + value;
-          }
-          const regex = this.rule.regularExpression.replace(/\//g, '\\/');
-          return new RegExp(regex).test(value);
+        if (this.rule.label === this.FIELD_NAME_LIST.email) {
+          return new RegExp(/^(?:[\w-.]+@[\w-.]+\.[\w-]+)?$/).test(value);
         }
-        if (this.rule.label === this.FIELD_NAME_LIST.password) {
-          return /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(value);
+        if (
+          [this.FIELD_NAME_LIST.phone, this.FIELD_NAME_LIST.cellphone].includes(
+            this.rule.label,
+          )
+        ) {
+          return new RegExp(/^\d+$/g).test(value);
         }
-        if (this.rule.in) {
-          if (this.rule.mandatory) {
-            return value && this.rule.in.includes(value.key);
+
+        const contains = this.rule.constraints.find(
+          (constraint) => constraint.operator === 'contains',
+        );
+        const mandatory = this.rule.constraints.find(
+          (constraint) => constraint.operator === 'required',
+        );
+
+        if (contains) {
+          if (mandatory) {
+            return value && contains.values.includes(value.key);
           }
           if (value) {
-            return this.rule.in.includes(value.key);
+            return contains.values.includes(value.key);
           }
         }
 
@@ -178,57 +145,64 @@ export default class EditAccountFormFieldController {
     };
   }
 
-  $onChanges({ isEditionDisabledByKyc }) {
-    if (
-      isEditionDisabledByKyc &&
-      typeof isEditionDisabledByKyc.currentValue !== 'undefined'
-    ) {
-      // Indian subsidiary changes
-      this.disableInputField = this.canInputFieldDisabled();
-      this.disableDropDownSelection = this.canDropDownDisabled();
-    }
+  goToTunnelOrder() {
+    window.open(
+      `https://www.ovh.com/fr/order/domain/#/legacy/domain/trade/list?options/trade/list?options=${JSURL.stringify(
+        [this.domainName],
+      )}`,
+      '_blank',
+    );
   }
 
+  isNotEmpty(constraintToCheck) {
+    const notEmptyConstraints =
+      constraintToCheck.conditions?.fields?.constraints[0]?.operator ===
+      'notempty';
+    if (notEmptyConstraints) {
+      const fieldNotEmpty = constraintToCheck.conditions?.fields?.label;
+      const isDirty = this.fieldset.$dirty;
+      if (isDirty) {
+        return false;
+      }
+      return this.rule.label === fieldNotEmpty && this.value;
+    }
+    return false;
+  }
+
+  isRequired() {
+    const required = this.rule.constraints.find(
+      (constraint) => constraint.operator === 'required',
+    );
+
+    const fieldNotEqual = required.conditions?.fields.label;
+    const notEqualConstraint =
+      required.conditions?.fields.constraints[0]?.operator === 'ne';
+    const valueNotEqual = required.conditions?.fields.constraints[0]?.value;
+
+    if (notEqualConstraint) {
+      return this.contactInformations[fieldNotEqual] !== valueNotEqual;
+    }
+    return !!required;
+  }
 
   getDescendantProp(obj, desc) {
-      var arr = desc.split(".");
-      while(arr.length && (obj = obj[arr.shift()]));
-      return obj;
+    const arr = desc.split(this.POINT_SEPARATOR);
+    // eslint-disable-next-line no-param-reassign, no-cond-assign
+    while (arr.length && (obj = obj[arr.shift()]));
+    return obj;
   }
 
   setDefaultValue() {
-
-    const value = this.getDescendantProp(this.contactInformations, this.rule.label);
+    const value = this.getDescendantProp(
+      this.contactInformations,
+      this.rule.label,
+    );
     if (this.rule.placeholder && !value) {
       if (this.getFieldType() === 'select') {
         this.value = {
           key: this.rule.placeholder,
-          // translated:
-          //   this.rule.label === this.FIELD_NAME_LIST.timezone
-          //     ? this.rule.defaultValue
-          //     : this.$translate.instant(
-          //         `signup_enum_${this.rule.label}_${this.rule.defaultValue}`,
-          //       ),
         };
-        //   if (this.editAccountForm.onFieldChange) {
-        //     this.editAccountForm.onFieldChange(
-        //       this.rule,
-        //       this.value.key,
-        //       this.fieldset,
-        //     );
-        //   }
-        // } else {
-        //   this.value = this.rule.defaultValue;
-        //   if (this.editAccountForm.onFieldChange) {
-        //     this.editAccountForm.onFieldChange(
-        //       this.rule,
-        //       this.value,
-        //       this.fieldset,
-        //     );
-        //   }
-        // }
-      }
-      else {
+      } else {
         this.value = this.rule.placeholder;
       }
     }
@@ -236,58 +210,124 @@ export default class EditAccountFormFieldController {
 
   // if rule has an initialValue, use it
   setInitialValue() {
-    const initialValue = this.getDescendantProp(this.contactInformations, this.rule.label);
+    const invertKeyValues = (obj, fn) =>
+      Object.keys(obj).reduce((acc, key) => {
+        const val = fn ? fn(obj[key]) : obj[key];
+        acc[val] = acc[val] || [];
+        acc[val].push(key);
+        return acc;
+      }, {});
+
+    const initialValue = this.getDescendantProp(
+      this.contactInformations,
+      this.rule.label,
+    );
     if (initialValue) {
       let value = angular.copy(initialValue);
-      if (this.getFieldType() === 'select') {
+      if (
+        [this.FIELD_NAME_LIST.phone, this.FIELD_NAME_LIST.cellPhone].includes(
+          this.getFieldType(),
+        )
+      ) {
+        [this.rule.phonePrefix, value] = initialValue.split(
+          this.POINT_SEPARATOR,
+        );
+        const country = invertKeyValues(this.PHONE_PREFIX)[
+          (this.rule.phonePrefix ?? this.PHONE_PREFIX.FR).replace('+', '')
+        ][0];
+        this.phoneCountry = { country };
+      } else if (this.getFieldType() === 'select') {
+        const translated = this.getFormattedTranslation(this.rule, value);
         value = {
           key: value,
-          // translated:
-          //   this.rule.label === this.FIELD_NAME_LIST.timezone
-          //     ? value
-          //     : this.$translate.instant(
-          //       `signup_enum_${
-          //         this.rule.label === this.FIELD_NAME_LIST.area
-          //           ? `${this.editAccountForm.model.country}_`
-          //           : ''
-          //       }${this.rule.label}_${value}`,
-          //     ),
+          translated,
         };
+      } else if (this.getFieldType() === 'date') {
+        value = moment(initialValue, 'YYYY-MM-DD').toDate();
       }
-      // else if (this.getFieldType() === 'date') {
-      //   value = moment(this.rule.initialValue, 'YYYY-MM-DD').toDate();
-      // }
-      // else if (this.rule.prefix && startsWith(value, this.rule.prefix)) {
-      //   value = value.slice(this.rule.prefix.length);
-      // }
       this.value = value;
     }
   }
 
+  getFormattedTranslation(rule, value) {
+    if ([this.FIELD_NAME_LIST.addressCountry].includes(rule.label)) {
+      return this.$translate.instant(
+        `${rule.label}_${value}`
+          .replace(/\./g, '_')
+          .replace('address_country', 'country'),
+      );
+    }
+
+    return [this.FIELD_NAME_LIST.legalform].includes(rule.label)
+      ? this.$translate.instant(
+          `domain_tab_CONTACT_edit_form_${rule.label}_${value}`.replace(
+            /\./g,
+            '_',
+          ),
+        )
+      : this.$translate.instant(
+          `${this.rule.label}_${value}`.replace(/\./g, '_'),
+        );
+  }
+
   // returns field type depending of current rule
   getFieldType() {
-    if (this.rule.type) {
-      return this.rule.type;
-    }
-    if (this.rule.label === this.FIELD_NAME_LIST.phone) {
-      return 'radio';
-    }
-    if (this.rule.in) {
+    if (
+      this.rule.constraints.find(
+        (constraint) => constraint.operator === 'contains',
+      )
+    ) {
+      if (
+        this.rule.constraints.find(
+          (constraint) => constraint.operator === 'readonly',
+        )
+      ) {
+        return 'select-readonly';
+      }
       return 'select';
     }
     if (/email/.test((this.rule.label || '').toLowerCase())) {
+      const maxLength = this.rule.constraints.find(
+        (constraint) => constraint.operator === 'maxlength',
+      );
+      if (maxLength) {
+        this.rule.maxLength = maxLength.value;
+      }
+      if (
+        this.rule.constraints.find(
+          (constraint) => constraint.operator === 'readonly',
+        )
+      ) {
+        return 'email-readonly';
+      }
       return 'email';
+    }
+    if (this.rule.label === this.FIELD_NAME_LIST.phone) {
+      const maxLength = this.rule.constraints.find(
+        (constraint) => constraint.operator === 'maxlength',
+      );
+      if (maxLength) {
+        this.rule.maxLength = maxLength.value;
+      }
+      return 'phone';
     }
     if ((this.rule.label || '') === this.FIELD_NAME_LIST.birthDay) {
       return 'date';
     }
-    if (
-      this.rule.label === this.FIELD_NAME_LIST.phone &&
-      find(this.editAccountForm.rules, {
-        fieldName: this.FIELD_NAME_LIST.phoneCountry,
-      })
-    ) {
-      return 'phone';
+    if (this.rule.type === 'string') {
+      const isReadOnly = this.rule.constraints.find(
+        (constraint) => constraint.operator === 'readonly',
+      );
+      if (isReadOnly) {
+        return this.isNotEmpty(isReadOnly) ? 'text-readonly' : 'text';
+      }
+      const maxLength = this.rule.constraints.find(
+        (constraint) => constraint.operator === 'maxlength',
+      );
+      if (maxLength) {
+        this.rule.maxLength = maxLength.value;
+      }
+      return 'text';
     }
     return 'text';
   }
@@ -298,24 +338,25 @@ export default class EditAccountFormFieldController {
       return this.translatedEnumCache;
     }
 
-    let result = map(this.rule.in || [], (value) => {
-      let translated;
-      if (
-        this.rule.label === this.FIELD_NAME_LIST.area &&
-        this.editAccountForm.model.country
-      ) {
-        translated = this.$translate.instant(
-          `signup_enum_${this.editAccountForm.model.country}_${this.rule.label}_${value}`,
-        );
-      } else if (this.rule.label === this.FIELD_NAME_LIST.timezone) {
-        translated = value;
-      } else if (this.rule.label === this.FIELD_NAME_LIST.managerLanguage) {
-        translated = get(find(LANGUAGES.available, { key: value }), 'name');
-      } else {
-        translated = this.$translate.instant(
-          `signup_enum_${this.rule.label}_${value}`,
-        );
-      }
+    const containsArray = this.rule.constraints.find(
+      (constraint) => constraint.operator === 'contains',
+    );
+
+    let result = map(containsArray.values || [], (value) => {
+      const translated = [this.FIELD_NAME_LIST.legalform].includes(
+        this.rule.label,
+      )
+        ? this.$translate.instant(
+            `domain_tab_CONTACT_edit_form_${this.rule.label}_${value}`.replace(
+              /\./g,
+              '_',
+            ),
+          )
+        : this.$translate.instant(
+            `${this.rule.label}_${value}`
+              .replace(/\./g, '_')
+              .replace('address_country', 'country'),
+          );
       return {
         key: value,
         translated,
@@ -349,31 +390,32 @@ export default class EditAccountFormFieldController {
 
   // handle special area translation cases
   getLabelTranslation() {
-    // 3 cases
-    // Void
-    // Mandatory
-    // Optionnal
+    this.rule.mandatory = this.isRequired();
+    const mandatoryLabel = this.rule.mandatory ? 'mandatory' : 'optionnal';
 
-    // TODO: handle void case here!
-    const mandatory = this.rule.constraints.find(item => item.operator === 'required');
-    return this.$translate
+    const translatedLabel = this.$translate
       .instant(
-        'domain_tab_CONTACT_edit_form_' +
-        this.rule.label.split('.').join('_') +
-        (!!mandatory ? '' : 'signup_not_mandatory_field') +
-        '_label',
-      );
+        `domain_tab_CONTACT_edit_form_${this.rule.label
+          .split(this.POINT_SEPARATOR)
+          .join('_')}_label`,
+      )
+      .replace('address_country', 'country');
+
+    return [
+      translatedLabel,
+      this.$translate.instant(`domain_tab_CONTACT_edit_form_${mandatoryLabel}`),
+    ].join(' ');
   }
 
   // true if current modified field is valid, false otherwise
   isValid() {
-    const field = this.fieldset[this.id];
+    const field = this.getField();
     return this.value && field && field.$valid;
   }
 
   // true if current field is dirty and invalid
   isInvalid() {
-    const field = this.fieldset[this.id];
+    const field = this.getField();
     return field && field.$invalid;
   }
 
@@ -408,7 +450,7 @@ export default class EditAccountFormFieldController {
 
   // true if field is a phone number
   isPhoneNumberField() {
-    return ['phone', 'fax'].includes(this.rule.label);
+    return ['phone', 'cellPhone', 'fax'].includes(this.rule.label);
   }
 
   shouldDisplayLabel() {
@@ -433,7 +475,11 @@ export default class EditAccountFormFieldController {
     } else if (fieldType === 'date') {
       // avoids datepicker setting value to null
       if (!value) {
-        this.editAccountForm.onFieldChange(this.rule, undefined, this.fieldset);
+        this.domainZoneDashboardContactEdit.onFieldChange(
+          this.rule,
+          undefined,
+          this.fieldset,
+        );
         return;
       }
       value = moment(value).format('YYYY-MM-DD');
@@ -449,8 +495,12 @@ export default class EditAccountFormFieldController {
     }
 
     // notify field changes
-    if (this.editAccountForm.onFieldChange) {
-      this.editAccountForm.onFieldChange(this.rule, value, this.fieldset);
+    if (this.domainZoneDashboardContactEdit.onFieldChange) {
+      this.domainZoneDashboardContactEdit.onFieldChange(
+        this.rule,
+        value,
+        this.fieldset,
+      );
     }
 
     // if email or ovhCompany changes, we need to check for email availability
@@ -460,18 +510,14 @@ export default class EditAccountFormFieldController {
     ) {
       this.$scope.$emit('account.email.request.validity');
     }
-
-    if (isObject(this.rule.tracking)) {
-      this.atInternet.trackClick(this.rule.tracking);
-    }
   }
 
   onPhonePrefixChange() {
     this.phonePrefixChanged = true;
-    if (this.editAccountForm.onFieldChange) {
-      this.editAccountForm.onFieldChange(
+    if (this.domainZoneDashboardContactEdit.onFieldChange) {
+      this.domainZoneDashboardContactEdit.onFieldChange(
         {
-          fieldName: this.FIELD_NAME_LIST.phoneCountry,
+          fieldName: this.FIELD_NAME_LIST.phone,
         },
         this.phoneCountry.country,
       );
@@ -485,4 +531,29 @@ export default class EditAccountFormFieldController {
       .replace(/yy|y/g, 'Y');
   }
 
+  getField() {
+    const formPartGeneral = this.domainZoneDashboardContactEdit[
+      this.FORM_PART_PREFIX + this.GENERAL_KEY
+    ];
+    const formPartContact = this.domainZoneDashboardContactEdit[
+      this.FORM_PART_PREFIX + this.CONTACT_KEY
+    ];
+    const formPartProfile = this.domainZoneDashboardContactEdit[
+      this.FORM_PART_PREFIX + this.PROFILE_KEY
+    ];
+
+    if (formPartGeneral && this.SECTIONS[this.GENERAL_KEY].includes(this.id)) {
+      return formPartGeneral[this.id];
+    }
+
+    if (formPartContact && this.SECTIONS[this.CONTACT_KEY].includes(this.id)) {
+      return formPartContact[this.id];
+    }
+
+    if (formPartProfile) {
+      return formPartProfile[this.id];
+    }
+
+    return null;
+  }
 }
