@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.2.3...@ovh-ux/manager-pci-savings-plan-app@1.3.0) (2024-11-25)
+
+
+### Features
+
+* **savings-plan:** information message on listing ([#13853](https://github.com/ovh/manager/issues/13853)) ([8da0e07](https://github.com/ovh/manager/commit/8da0e07c1863d7c81c50cbe56bfde1009a5a3e96))
+* **svp:** mobile display ([#13909](https://github.com/ovh/manager/issues/13909)) ([6ea8ef7](https://github.com/ovh/manager/commit/6ea8ef7dbdfc79ff4c0e57edb8b276b0fcf01049))
+
+
+
+
+
 ## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.2.2...@ovh-ux/manager-pci-savings-plan-app@1.2.3) (2024-11-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app

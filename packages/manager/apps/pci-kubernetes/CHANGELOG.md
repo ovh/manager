@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.8.1...@ovh-ux/manager-pci-kubernetes-app@0.9.0) (2024-11-25)
+
+
+### Features
+
+* **pci.kubernetes:** display etcd quota and usage ([#14143](https://github.com/ovh/manager/issues/14143)) ([4cd88ac](https://github.com/ovh/manager/commit/4cd88ac0a7919dfa80f76ad9ee0081173ab4f8a7))
+
+
+
+
+
 ## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.8.0...@ovh-ux/manager-pci-kubernetes-app@0.8.1) (2024-11-21)
 
 
