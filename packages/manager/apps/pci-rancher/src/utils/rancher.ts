@@ -1,4 +1,10 @@
-import { RancherPlan, RancherService, RancherVersion } from '@/types/api.type';
+import { TOptions } from 'i18next';
+import {
+  OVHError,
+  RancherPlan,
+  RancherService,
+  RancherVersion,
+} from '@/types/api.type';
 
 export const isValidRancherName = (name: string) =>
   /^[a-z0-9][-_.A-Za-z0-9]{1,61}[a-z0-9]$/.test(name);
@@ -68,4 +74,73 @@ export const getRancherPlanDescription = (rancherPlan: RancherPlan['name']) => {
     default:
       return null;
   }
+};
+
+/**
+ * Extracts drivers and plan information from a switch plan error message.
+ *
+ * @param inputString - The input error message string.
+ * @returns - An object containing the drivers and plan, or null if extraction fails.
+ * */
+export function extractDriversAndPlanFromSwitchPlanError(
+  inputString: string,
+): null | { drivers: string[]; plan: string } {
+  const bracketMatch = inputString.match(/\[([^\]]*)\]/);
+  if (!bracketMatch) {
+    return null;
+  }
+  const contentInsideBrackets = bracketMatch[1].trim();
+  const textBeforeBracket = inputString.substring(0, bracketMatch.index).trim();
+  const beginPhrase = 'Unable to switch to plan';
+  if (textBeforeBracket.startsWith(beginPhrase)) {
+    const [plan] =
+      textBeforeBracket.match(/OVHCLOUD_EDITION/) ??
+      textBeforeBracket.match(/STANDARD/) ??
+      [];
+    if (!plan) {
+      return null;
+    }
+
+    if (contentInsideBrackets) {
+      const drivers = contentInsideBrackets.split(',');
+      if (drivers.length) {
+        return { drivers, plan };
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Type guard to check if the error is an OVHError.
+ *
+ * @param error - The error object to check.
+ * @returns - True if the error is an OVHError, false otherwise.
+ */
+function isOVHError(error: unknown): error is OVHError {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    'class' in error &&
+    typeof (error as OVHError).class === 'string' &&
+    'message' in error &&
+    typeof (error as OVHError).message === 'string'
+  );
+}
+
+/**
+ * Manages Rancher driver error and return appropriate error messages for internationalization.
+ *
+ * @param error - The error object containing the message and class.
+ * @returns - An array containing the error message key and optional options for internationalization, or null if the error is not recognized.
+ */
+export const getI18nextDriverError = (
+  error: string,
+): [string?, TOptions?] | null => {
+  const content = extractDriversAndPlanFromSwitchPlanError(error);
+  if (content) {
+    const { plan, drivers } = content;
+    return ['badRequestSwitchPlan', { plan, drivers: `[${drivers}]` }];
+  }
+  return null;
 };

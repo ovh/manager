@@ -15,9 +15,11 @@ export type ResponseData<T = unknown> = {
 export type ErrorResponse = {
   response: {
     status: number;
-    data: { message: string };
+    data: { message: string; class: string };
   };
 };
+
+export type OVHError = ErrorResponse['response']['data'];
 
 export enum PciProjectPlanCode {
   DISCOVERY = 'project.discovery',
