@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.7.2...@ovh-ux/manager-pci-databases-analytics-app@1.8.0) (2024-11-25)
+
+
+### Bug Fixes
+
+* remove min value for string in advanced configuration ([#14155](https://github.com/ovh/manager/issues/14155)) ([a900de0](https://github.com/ovh/manager/commit/a900de01a5ad11b824e8ae1d405feaf3d1e16d2b))
+
+
+### Features
+
+* **pci-datatabases-analytics:** display subnet in dashboard ([#14104](https://github.com/ovh/manager/issues/14104)) ([fa57e7b](https://github.com/ovh/manager/commit/fa57e7b66b6c50395c29596ae3bd6015acbdfcf2))
+
+
+
+
+
 ## [1.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.7.1...@ovh-ux/manager-pci-databases-analytics-app@1.7.2) (2024-11-21)
 
 

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.69.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.68.0...@ovh-ux/manager-pci@6.69.0) (2024-11-25)
+
+
+### Features
+
+* **pci-cold-archive:** define retention period ([#13960](https://github.com/ovh/manager/issues/13960)) ([33e85c6](https://github.com/ovh/manager/commit/33e85c6bf7161be39350c9eae8dedf8c7378c54f))
+* **pci-object-storage:** add bucket warning in creation ([#13836](https://github.com/ovh/manager/issues/13836)) ([bb91cb9](https://github.com/ovh/manager/commit/bb91cb93e2a7206793c6eca734dec7445b2bbe4e))
+* **pci:** remove kubernetes section ([#14070](https://github.com/ovh/manager/issues/14070)) ([c0b10ba](https://github.com/ovh/manager/commit/c0b10baee82e7b9ee445c3a84b9002741072a101))
+
+
+
+
+
 # [6.68.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.67.0...@ovh-ux/manager-pci@6.68.0) (2024-11-18)
 
 
