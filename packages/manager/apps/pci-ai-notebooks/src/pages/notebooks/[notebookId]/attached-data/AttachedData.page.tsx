@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { ArrowUpRightFromSquare, HelpCircle, Info } from 'lucide-react';
+import { ArrowUpRightFromSquare, Info } from 'lucide-react';
 import { useNotebookData } from '../Notebook.context';
 import A from '@/components/links/A.component';
 import { Button } from '@/components/ui/button';
@@ -8,11 +8,6 @@ import * as ai from '@/types/cloud/project/ai';
 import DataSync from './_components/DataSync.component';
 import { useModale } from '@/hooks/useModale';
 import { isDataSyncNotebook } from '@/lib/notebookHelper';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
 
 const AttachedData = () => {
   const { notebook, notebookQuery } = useNotebookData();
