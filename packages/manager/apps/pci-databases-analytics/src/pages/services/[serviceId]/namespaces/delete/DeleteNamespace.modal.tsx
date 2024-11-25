@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -11,27 +12,27 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
-import { ModalController } from '@/hooks/useModale';
-import * as database from '@/types/cloud/project/database';
 import { useDeleteNamespace } from '@/hooks/api/database/namespace/useDeleteNamespace.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import { useServiceData } from '../../Service.context';
+import { useGetNamespaces } from '@/hooks/api/database/namespace/useGetNamespaces.hook';
+import { Skeleton } from '@/components/ui/skeleton';
 
-interface DeleteNamespaceModalProps {
-  service: database.Service;
-  controller: ModalController;
-  namespace: database.m3db.Namespace;
-  onSuccess?: (namespace: database.m3db.Namespace) => void;
-  onError?: (error: Error) => void;
-}
+const DeleteNamespaceModal = () => {
+  const { projectId, namespaceId } = useParams();
+  const navigate = useNavigate();
+  const { service } = useServiceData();
+  const namespacesQuery = useGetNamespaces(
+    projectId,
+    service.engine,
+    service.id,
+    {
+      enabled: !!service.id,
+    },
+  );
+  const namespaces = namespacesQuery.data;
+  const deletedNamespace = namespaces?.find((n) => n.id === namespaceId);
 
-const DeleteNamespaceModal = ({
-  service,
-  namespace,
-  controller,
-  onError,
-  onSuccess,
-}: DeleteNamespaceModalProps) => {
-  const { projectId } = useParams();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/namespaces',
   );
@@ -43,33 +44,40 @@ const DeleteNamespaceModal = ({
         variant: 'destructive',
         description: getCdbApiErrorMessage(err),
       });
-      if (onError) {
-        onError(err);
-      }
     },
     onSuccess: () => {
       toast.toast({
         title: t('deleteNamespaceToastSuccessTitle'),
         description: t('deleteNamespaceToastSuccessDescription', {
-          name: namespace.name,
+          name: deletedNamespace.name,
         }),
       });
-      if (onSuccess) {
-        onSuccess(namespace);
-      }
+      navigate('../');
     },
   });
+
+  useEffect(() => {
+    if (namespaces && !deletedNamespace) navigate('../');
+  }, [namespaces, deletedNamespace]);
 
   const handleDelete = () => {
     deleteNamespace({
       serviceId: service.id,
       projectId,
       engine: service.engine,
-      namespaceId: namespace.id,
+      namespaceId: deletedNamespace.id,
     });
   };
+
+  const onOpenChange = (open: boolean) => {
+    if (!open) navigate('../');
+  };
+
+  if (!namespaces || !deletedNamespace)
+    return <Skeleton className="w-full h-4" />;
+
   return (
-    <Dialog {...controller}>
+    <Dialog defaultOpen onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="delete-namespaces-modal">
@@ -77,7 +85,7 @@ const DeleteNamespaceModal = ({
           </DialogTitle>
           <DialogDescription>
             {t('deleteNamespaceDescription', {
-              name: namespace.name,
+              name: deletedNamespace.name,
             })}
           </DialogDescription>
         </DialogHeader>

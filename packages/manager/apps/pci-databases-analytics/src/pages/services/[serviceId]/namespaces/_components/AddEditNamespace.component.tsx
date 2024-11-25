@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { ChevronDown, ChevronRight, HelpCircle } from 'lucide-react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -31,7 +31,6 @@ import {
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/components/ui/use-toast';
 
-import { ModalController } from '@/hooks/useModale';
 import { useNamespaceForm } from './formNamespace/useNamespaceForm.hook';
 
 import * as database from '@/types/cloud/project/database';
@@ -46,23 +45,16 @@ import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface AddEditNamespaceModalProps {
-  isEdition: boolean;
   editedNamespace?: database.m3db.Namespace;
   namespaces: database.m3db.Namespace[];
   service: database.Service;
-  controller: ModalController;
-  onSuccess?: (namespace?: database.m3db.Namespace) => void;
-  onError?: (error: Error) => void;
 }
 const AddEditNamespace = ({
-  isEdition,
   editedNamespace,
   namespaces,
   service,
-  controller,
-  onSuccess,
-  onError,
 }: AddEditNamespaceModalProps) => {
+  const isEdition = !!editedNamespace?.id;
   const [advancedConfiguration, setAdvancedConfiguration] = useState(
     isEdition &&
       (editedNamespace.snapshotEnabled ||
@@ -72,16 +64,12 @@ const AddEditNamespace = ({
         editedNamespace.retention.bufferFutureDuration ||
         editedNamespace.retention.bufferPastDuration),
   );
-
+  const navigate = useNavigate();
   const { projectId } = useParams();
   const { form } = useNamespaceForm({
     editedNamespace,
     existingNamespaces: namespaces,
   });
-
-  useEffect(() => {
-    if (!controller.open) form.reset();
-  }, [controller.open]);
 
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/namespaces',
@@ -97,9 +85,6 @@ const AddEditNamespace = ({
         description: getCdbApiErrorMessage(err),
         duration: TOAST.ERROR_DURATION,
       });
-      if (onError) {
-        onError(err);
-      }
     },
     onSuccess(ns) {
       form.reset();
@@ -110,9 +95,7 @@ const AddEditNamespace = ({
           name: ns.name,
         }),
       });
-      if (onSuccess) {
-        onSuccess(ns);
-      }
+      navigate('../');
     },
   };
 
@@ -144,7 +127,6 @@ const AddEditNamespace = ({
 
     if (isEdition) {
       if (Object.entries(form.formState.dirtyFields).length === 0) {
-        onSuccess();
         return;
       }
 
@@ -184,8 +166,12 @@ const AddEditNamespace = ({
     }
   });
 
+  const onOpenChange = (open: boolean) => {
+    if (!open) navigate('../');
+  };
+
   return (
-    <Dialog {...controller}>
+    <Dialog defaultOpen onOpenChange={onOpenChange}>
       <DialogContent className="px-0 sm:max-w-2xl">
         <ScrollArea className="max-h-[80vh] px-6">
           <DialogHeader>

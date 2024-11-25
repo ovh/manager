@@ -155,6 +155,35 @@ export default [
             ...lazyRouteConfig(() =>
               import('@/pages/services/[serviceId]/namespaces/Namespace.page'),
             ),
+            children: [
+              {
+                id: 'service.{service.engine}.namespaces.add',
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/namespaces/add/AddNamespace.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.namespaces.edit',
+                path: 'edit/:namespaceId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/namespaces/edit/EditNamespace.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.namespaces.delete',
+                path: 'delete/:namespaceId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/namespaces/delete/DeleteNamespace.modal'
+                  ),
+                ),
+              },
+            ],
           },
           {
             path: 'pools',

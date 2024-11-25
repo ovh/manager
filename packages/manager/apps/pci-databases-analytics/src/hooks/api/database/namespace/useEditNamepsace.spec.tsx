@@ -43,11 +43,7 @@ describe('useEditNamepsace', () => {
       expect(databaseAPI.editNamespace).toHaveBeenCalledWith(
         editNamespaceProps,
       );
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedNamespaces,
-        editNamespaceProps,
-        undefined,
-      );
+      expect(onSuccess).toHaveBeenCalledWith(mockedNamespaces);
     });
   });
 });
