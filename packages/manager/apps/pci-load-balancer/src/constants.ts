@@ -55,7 +55,7 @@ export const ACTION_LABELS = {
 };
 
 export const AGORA_ADDON_FAMILY = 'octavia-loadbalancer';
-export const SIZE_FLAVOUR_REGEX = /octavia-loadbalancer.loadbalancer-([sml]).hour.consumption/;
+export const SIZE_FLAVOUR_REGEX = /octavia-loadbalancer.loadbalancer-([23]?xl|[sml]).hour.consumption/;
 export const AGORA_FLOATING_IP_REGEX = /floatingip.floatingip.hour.consumption/;
 export const NETWORK_PRIVATE_VISIBILITY = 'private';
 export const FLOATING_IP_TYPE = {

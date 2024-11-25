@@ -2,7 +2,7 @@ import { useCatalog } from '@ovh-ux/manager-pci-common';
 import { useMemo } from 'react';
 import { TAddon } from '@/pages/create/store';
 
-const SIZE_FLAVOUR_REGEX = /octavia-loadbalancer.loadbalancer-([sml]).hour.consumption/;
+const SIZE_FLAVOUR_REGEX = /octavia-loadbalancer.loadbalancer-([23]?xl|[sml]).hour.consumption/;
 
 export const useGetAddons = () => {
   const { data: catalog, isPending: isCatalogPending } = useCatalog();
