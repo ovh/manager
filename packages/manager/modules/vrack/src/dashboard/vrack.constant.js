@@ -37,6 +37,7 @@ export const FEATURE_NAMES = {
   legacyVrack: 'vrack',
   managedBareMetal: 'managed-bare-metal',
   managedBareMetalDatacenter: 'managed-bare-metal',
+  vrackServices: 'vrack-services',
 };
 
 export const POLLING_INTERVAL = 3000;
@@ -65,6 +66,7 @@ export const TYPE_SERVICE = {
   ip: 'ip',
   legacyVrack: 'legacyVrack',
   ipv6: 'ipv6',
+  vrackServices: 'vrackServices',
 };
 
 // ALL ELIGIBLE SERVICES FOR VRACK

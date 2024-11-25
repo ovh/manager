@@ -1,7 +1,8 @@
 export default class Vrack {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, Apiv2Service) {
     this.$http = $http;
+    this.Apiv2Service = Apiv2Service;
   }
 
   addIpv6(serviceName, ipv6) {
@@ -40,5 +41,24 @@ export default class Vrack {
 
   getIpLoadbalancing(serviceName) {
     return this.$http.get(`/ipLoadbalancing/${serviceName}`);
+  }
+
+  getVrackServices(serviceName) {
+    return this.Apiv2Service.httpApiv2({
+      method: 'get',
+      url: `/engine/api/v2/vrackServices/resource/${serviceName}`,
+    });
+  }
+
+  addVrackServicesToVrack(vrackId, vrackServicesId) {
+    return this.$http.post(`/vrack/${vrackId}/vrackServices`, {
+      vrackServices: vrackServicesId,
+    });
+  }
+
+  deleteVrackServicesFromVrack(vrackId, vrackServicesId) {
+    return this.$http.delete(
+      `/vrack/${vrackId}/vrackServices/${vrackServicesId}`,
+    );
   }
 }
