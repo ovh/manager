@@ -40,5 +40,7 @@
   "pci_projects_network_cidr": "Veuillez saisir une adresse IP valide",
   "pci_project_network_private_localisation": "Sélectionnez une localisation",
   "pci_projects_project_network_private_create_subnet": "Configurer votre sous-réseau",
-  "pci_projects_project_network_private_gateway_options": "Options de Gateway"
+  "pci_projects_project_network_private_gateway_options": "Options de Gateway",
+  "pci_projects_project_network_private_advanced_settings": "Paramètres avancés",
+  "pci_projects_project_network_private_allocation_ip": "Adresses IP allouées"
 }

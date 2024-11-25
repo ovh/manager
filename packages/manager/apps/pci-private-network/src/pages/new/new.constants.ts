@@ -34,6 +34,13 @@ export const NEW_PRIVATE_NETWORK_FORM_SCHEMA = z.object({
     enableDhcp: z.boolean(),
     ipVersion: z.number(),
     enableGatewayIp: z.boolean(),
+    allocationPooles: z
+      .object({
+        start: z.string().ip(),
+        end: z.string().ip(),
+      })
+      .array()
+      .optional(),
   }),
   gateway: z
     .object({
