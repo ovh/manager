@@ -2,14 +2,13 @@ import userEvents from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
 import { organizationList } from '@ovh-ux/manager-module-vcd-api';
 import {
-  renderTest,
-  labels,
-  checkModalVisibility,
-  mockSubmitNewValue,
-  checkModalError,
-  DEFAULT_TIMEOUT,
+  getButtonByLabel,
+  assertModalVisibility,
+  assertModalText,
+  WAIT_FOR_DEFAULT_OPTIONS,
   checkTextVisibility,
-} from '../../../../test-utils';
+} from '@ovh-ux/manager-core-test-utils';
+import { renderTest, labels, mockSubmitNewValue } from '../../../../test-utils';
 
 const submitButtonLabel =
   labels.dashboard.managed_vcd_dashboard_edit_modal_cta_edit;
@@ -25,20 +24,17 @@ describe('Organization General Information Page', () => {
     );
 
     let editButton;
-    await waitFor(
-      () => {
-        editButton = screen.getAllByTestId('editIcon').at(0);
-        return expect(editButton).toBeEnabled();
-      },
-      { timeout: DEFAULT_TIMEOUT },
-    );
+    await waitFor(() => {
+      editButton = screen.getAllByTestId('editIcon').at(0);
+      return expect(editButton).toBeEnabled();
+    }, WAIT_FOR_DEFAULT_OPTIONS);
     await waitFor(() => userEvents.click(editButton));
 
-    await checkModalVisibility({ container, isVisible: true });
+    await assertModalVisibility({ container, isVisible: true });
 
     await mockSubmitNewValue({ submitButtonLabel });
 
-    await checkModalVisibility({ container, isVisible: false });
+    await assertModalVisibility({ container, isVisible: false });
     await checkTextVisibility(
       labels.dashboard.managed_vcd_dashboard_edit_name_modal_success,
     );
@@ -50,12 +46,12 @@ describe('Organization General Information Page', () => {
       isOrganizationUpdateKo: true,
     });
 
-    await checkModalVisibility({ container, isVisible: true });
+    await assertModalVisibility({ container, isVisible: true });
 
     await mockSubmitNewValue({ submitButtonLabel });
 
-    await checkModalVisibility({ container, isVisible: true });
-    await checkModalError({ container, error: 'Organization update error' });
+    await assertModalVisibility({ container, isVisible: true });
+    await assertModalText({ container, text: 'Organization update error' });
   });
 
   it('modify the description of the organization', async () => {
@@ -68,20 +64,17 @@ describe('Organization General Information Page', () => {
     );
 
     let editButton;
-    await waitFor(
-      () => {
-        editButton = screen.getAllByTestId('editIcon').at(1);
-        return expect(editButton).toBeEnabled();
-      },
-      { timeout: DEFAULT_TIMEOUT },
-    );
+    await waitFor(() => {
+      editButton = screen.getAllByTestId('editIcon').at(1);
+      return expect(editButton).toBeEnabled();
+    }, WAIT_FOR_DEFAULT_OPTIONS);
     await waitFor(() => userEvents.click(editButton));
 
-    await checkModalVisibility({ container, isVisible: true });
+    await assertModalVisibility({ container, isVisible: true });
 
     await mockSubmitNewValue({ submitButtonLabel });
 
-    await checkModalVisibility({ container, isVisible: false });
+    await assertModalVisibility({ container, isVisible: false });
     await checkTextVisibility(
       labels.dashboard.managed_vcd_dashboard_edit_description_modal_success,
     );
@@ -93,11 +86,61 @@ describe('Organization General Information Page', () => {
       isOrganizationUpdateKo: true,
     });
 
-    await checkModalVisibility({ container, isVisible: true });
+    await assertModalVisibility({ container, isVisible: true });
 
     await mockSubmitNewValue({ submitButtonLabel });
 
-    await checkModalVisibility({ container, isVisible: true });
-    await checkModalError({ container, error: 'Organization update error' });
+    await assertModalVisibility({ container, isVisible: true });
+    await assertModalText({ container, text: 'Organization update error' });
+  });
+
+  it('resets the password of the organization', async () => {
+    const { container } = await renderTest({
+      initialRoute: `/${organizationList[1].id}`,
+    });
+
+    await checkTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_password_renew,
+    );
+
+    const resetPasswordLink = await getButtonByLabel({
+      container,
+      label: labels.dashboard.managed_vcd_dashboard_password_renew,
+      isLink: true,
+    });
+    await waitFor(() => userEvents.click(resetPasswordLink));
+
+    await assertModalVisibility({ container, isVisible: true });
+
+    const validateButton = await getButtonByLabel({
+      container,
+      label: labels.dashboard.managed_vcd_dashboard_edit_modal_cta_validate,
+    });
+    await waitFor(() => userEvents.click(validateButton));
+
+    await assertModalVisibility({ container, isVisible: false });
+    await checkTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_password_renew_success,
+    );
+  });
+
+  it('trying to reset password displays an error if reset password service is KO', async () => {
+    const { container } = await renderTest({
+      initialRoute: `/${organizationList[0].id}/reset-password`,
+      isOrganizationResetPasswordKo: true,
+    });
+
+    await assertModalVisibility({ container, isVisible: true });
+
+    const validateButton = await getButtonByLabel({
+      container,
+      label: labels.dashboard.managed_vcd_dashboard_edit_modal_cta_validate,
+    });
+    await waitFor(() => userEvents.click(validateButton));
+
+    await assertModalVisibility({ container, isVisible: false });
+    await checkTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_password_renew_error,
+    );
   });
 });

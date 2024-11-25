@@ -1,7 +1,7 @@
 import userEvents from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
 import {
-  checkModal,
+  assertModalVisibility,
   changeInputValue,
   getButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
@@ -22,7 +22,7 @@ describe('Delete veeam-backup', () => {
     });
     await waitFor(() => userEvents.click(deleteButton));
 
-    await checkModal({ container, isVisible: true });
+    await assertModalVisibility({ container, isVisible: true });
 
     await changeInputValue({
       inputLabel: 'delete-input',
@@ -37,7 +37,7 @@ describe('Delete veeam-backup', () => {
 
     await waitFor(() => userEvents.click(confirmButton));
 
-    await checkModal({ container, isVisible: false });
+    await assertModalVisibility({ container, isVisible: false });
 
     expect(
       screen.getByText(labels.deleteVeeam.terminate_veeam_backup_success),
