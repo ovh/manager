@@ -38,6 +38,7 @@ export const FEATURE_NAMES = {
   managedBareMetal: 'managed-bare-metal',
   managedBareMetalDatacenter: 'managed-bare-metal',
   ovhCloudConnect: 'cloud-connect',
+  vrackServices: 'vrack-services',
 };
 
 export const POLLING_INTERVAL = 3000;
@@ -67,6 +68,7 @@ export const TYPE_SERVICE = {
   legacyVrack: 'legacyVrack',
   ipv6: 'ipv6',
   ovhCloudConnect: 'ovhCloudConnect',
+  vrackServices: 'vrackServices',
 };
 
 // ALL ELIGIBLE SERVICES FOR VRACK
