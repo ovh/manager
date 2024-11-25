@@ -29,7 +29,8 @@
                 'ovh-font ovh-font-ip': serviceType === 'ip',
                 'ovh-font ovh-font-server': serviceType === 'dedicatedServer' || serviceType === 'dedicatedServerInterface',
                 'ovh-font ovh-font-network': serviceType === 'dedicatedConnect',
-                'ovh-font ovh-font-vRack': serviceType === 'legacyVrack'}"
+                'ovh-font ovh-font-vRack': serviceType === 'legacyVrack',
+                'oui-icon oui-icon-vRack-services_concept': serviceType === 'vrackServices'}"
             >
             </i>
             <span data-ng-bind="::$ctrl.getDisplayName(serviceType)"></span>
