@@ -1,6 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
 import {
-  waitForOptions,
+  WAIT_FOR_DEFAULT_OPTIONS,
   getButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
 import { renderTest, labels } from '@/test-helpers';
@@ -11,7 +11,7 @@ describe('listing', () => {
     await renderTest();
     await waitFor(
       () => expect(screen.getByText(labels.listing.description)).toBeVisible(),
-      waitForOptions,
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 

@@ -133,3 +133,15 @@ export const changeInputValue = async ({
   });
   return waitFor(() => fireEvent(input, event));
 };
+
+/**
+ * @description Standard check: wait and expect some text to be visible on the screen
+ * @param text expected to be visible
+ * @param timeout time to wait for (default to 30sec)
+ * @returns
+ */
+export const checkTextVisibility = (text: string): Promise<void> =>
+  waitFor(
+    () => expect(screen.getByText(text)).toBeVisible(),
+    WAIT_FOR_DEFAULT_OPTIONS,
+  );
