@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import {
   OsdsButton,
-  OsdsChip,
   OsdsIcon,
   OsdsText,
   OsdsTooltip,
@@ -12,7 +11,6 @@ import {
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
-  ODS_CHIP_SIZE,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_TEXT_COLOR_INTENT,
@@ -23,8 +21,13 @@ import {
   ODS_THEME_COLOR_INTENT,
 } from '@ovhcloud/ods-common-theming';
 import DatagridActions from '@/components/datagrid-actions/DatagridActions.component';
-import { TGroupedNetwork, TGroupedSubnet } from '@/types/network.type';
-import SlicedRegions from '@/components/sliced-regions/SlicedRegions';
+import {
+  ResourceStatus,
+  TGroupedNetwork,
+  TGroupedSubnet,
+} from '@/types/network.type';
+import SlicedRegions from '@/components/sliced-regions/SlicedRegions.component';
+import StatusInfo from '@/components/status-info/StatusInfo.component';
 
 export function usePrivateNetworkRegionColumns() {
   const { t } = useTranslation(['listing', 'common']);
@@ -128,12 +131,6 @@ export function usePrivateNetworkRegionColumns() {
   ];
 }
 
-const renderChip = (text: string, color: ODS_THEME_COLOR_INTENT) => (
-  <OsdsChip className="inline-flex m-3" size={ODS_CHIP_SIZE.sm} color={color}>
-    {text}
-  </OsdsChip>
-);
-
 export function usePrivateNetworkLZColumns() {
   const { t } = useTranslation(['listing', 'common']);
   const navigate = useNavigate();
@@ -171,15 +168,11 @@ export function usePrivateNetworkLZColumns() {
       id: 'dhcp',
       cell: ({ dhcpEnabled }: TGroupedSubnet) => (
         <DataGridTextCell>
-          {dhcpEnabled
-            ? renderChip(
-                t('pci_projects_project_network_private_dhcp_active'),
-                ODS_THEME_COLOR_INTENT.success,
-              )
-            : renderChip(
-                t('pci_projects_project_network_private_dhcp_disabled'),
-                ODS_THEME_COLOR_INTENT.warning,
-              )}
+          <StatusInfo
+            label={
+              dhcpEnabled ? ResourceStatus.ACTIVE : ResourceStatus.DISABLED
+            }
+          />
         </DataGridTextCell>
       ),
       label: 'DHCP',

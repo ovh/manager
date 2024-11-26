@@ -4,7 +4,7 @@ import { Translation } from 'react-i18next';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import DeleteModal from '@/components/delete/DeleteModal.component';
-import { deletePrivateNetworks } from '@/data/hooks/networks/useNetworks';
+import { deletePrivateNetwork } from '@/data/hooks/networks/useNetworks';
 
 export default function DeleteLocalZone() {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function DeleteLocalZone() {
     setIsPending(true);
 
     try {
-      await deletePrivateNetworks(projectId, region, networkId);
+      await deletePrivateNetwork(projectId, region, networkId);
       addSuccess(
         <Translation ns="listing">
           {(t) =>

@@ -96,3 +96,8 @@ export type ErrorResponse = {
   };
   message?: string;
 };
+
+export enum ResourceStatus {
+  ACTIVE = 'ACTIVE',
+  DISABLED = 'DISABLED',
+}

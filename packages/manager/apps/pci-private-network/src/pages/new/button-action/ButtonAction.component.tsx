@@ -17,10 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import { useFormContext } from 'react-hook-form';
 import { ErrorResponse } from '@/types/network.type';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
-import {
-  createPrivateNetwork,
-  refreshPrivateNetworkList,
-} from '@/data/services/services';
+import { createPrivateNetwork } from '@/data/services/services';
 
 const ButtonAction: React.FC = () => {
   const { t } = useTranslation(['new', 'common']);
@@ -64,7 +61,6 @@ const ButtonAction: React.FC = () => {
 
     try {
       await createPrivateNetwork(values, projectId);
-      refreshPrivateNetworkList(projectId);
       onSuccess(values.name);
     } catch (e) {
       onError(e);
