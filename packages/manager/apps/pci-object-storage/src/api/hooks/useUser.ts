@@ -1,9 +1,16 @@
-import { useQueries, useQuery } from '@tanstack/react-query';
+import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
-import { getAllUsers, getS3Credentials, TUser } from '@/api/data/user';
 import { paginateResults, sortResults } from '@/helpers';
+import {
+  deleteUser,
+  getAllUsers,
+  getS3Credentials,
+  TS3Credentials,
+  TUser,
+} from '@/api/data/user';
+import queryClient from '@/queryClient';
 
 const getQueryKeyUsers = (projectId: string) => ['project', projectId, 'users'];
 
@@ -18,9 +25,9 @@ export const useUsers = (projectId: string) => {
   return useQueries({
     queries: (users || [])?.map((user) => ({
       queryKey: [...getQueryKeyUsers(projectId), user.id, 's3Credentials'],
-      queryFn: () => getS3Credentials(projectId, user.id),
+      queryFn: () => getS3Credentials(projectId, `${user.id}`),
       enabled: !isPending,
-      select: (s3Credentials) => s3Credentials[0],
+      select: (s3Credentials: TS3Credentials[]) => s3Credentials[0],
     })),
     combine: (results) => ({
       isPending: results.some((result) => result.isPending),
@@ -66,4 +73,35 @@ export const usePaginatedUsers = (
     }),
     [users, error, isLoading, isPending, pagination, sorting, filters],
   );
+};
+
+type DeleteUserProps = {
+  projectId: string;
+  userId: string;
+  access: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useDeleteUser = ({
+  projectId,
+  userId,
+  access,
+  onError,
+  onSuccess,
+}: DeleteUserProps) => {
+  const mutation = useMutation({
+    mutationFn: async () => deleteUser(projectId, userId, access),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['project', projectId, 'users'],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    deleteUser: () => mutation.mutate(),
+    ...mutation,
+  };
 };
