@@ -17,30 +17,25 @@ import {
 import queryClient from '@/queryClient';
 import { groupedPrivateNetworkByVlanId, paginateResults } from '@/utils/utils';
 
-const networkQueryKey = (projectId: string, rest: string[] = []): string[] => [
+const networksQueryKey = (projectId: string, rest: string[] = []): string[] => [
   'project',
   projectId,
   'network',
   ...rest,
 ];
 
-const getPrivateNetworkQuery = (projectId: string) => ({
-  queryKey: networkQueryKey(projectId),
-  queryFn: () => getPrivateNetworks(projectId),
-});
-
-const fetchPrivateNetwork = async (projectId: string) =>
-  queryClient.fetchQuery(getPrivateNetworkQuery(projectId));
-
 export const usePrivateNetworks = (projectId: string) =>
-  useQuery(getPrivateNetworkQuery(projectId));
+  useQuery({
+    queryKey: networksQueryKey(projectId),
+    queryFn: () => getPrivateNetworks(projectId),
+  });
 
 export const usePrivateNetworksRegion = (
   projectId: string,
   pagination: PaginationState,
   filters: Filter[] = [],
 ) => {
-  const queryKey = networkQueryKey(projectId);
+  const queryKey = networksQueryKey(projectId);
   const data = queryClient.getQueryData<TNetwork[]>(queryKey) || [];
 
   return useMemo(
@@ -88,13 +83,13 @@ const getFormattedSubnets = (
   );
 
 export const usePrivateNetworkLZ = (projectId: string) => {
-  const queryKey = networkQueryKey(projectId);
+  const queryKey = networksQueryKey(projectId);
   const data = queryClient.getQueryData<TNetwork[]>(queryKey) || [];
   const networks = data.filter((network) => !network.vlanId);
 
   return useQueries({
     queries: networks.map(({ id, region, name }) => ({
-      queryKey: networkQueryKey(projectId, ['subnets', region, id]),
+      queryKey: networksQueryKey(projectId, ['subnets', region, id]),
       queryFn: () => getSubnets(projectId, region, id),
       select: (subnets: TSubnet[]) =>
         getFormattedSubnets(id, name, region, subnets),
@@ -149,16 +144,14 @@ export const useSubnets = (
     enabled: !!(projectId && networkId && region),
   });
 
-export const addPrivateNetwork = async (
+export const updatePrivateNetworksList = async (
   projectId: string,
   newNetwork: TNetwork,
 ) => {
-  const queryKey = networkQueryKey(projectId);
+  const queryKey = networksQueryKey(projectId);
   const networks = queryClient.getQueryData<TNetwork[]>(queryKey);
 
-  if (!networks) {
-    await fetchPrivateNetwork(projectId);
-  } else {
+  if (networks) {
     queryClient.setQueryData(queryKey, (data: TNetwork[]) => [
       newNetwork,
       ...data,
@@ -166,20 +159,17 @@ export const addPrivateNetwork = async (
   }
 };
 
-export const deletePrivateNetworks = async (
+export const deletePrivateNetwork = async (
   projectId: string,
   region: string,
   networkId: string,
 ) => {
   await apiDeleteNetwork(projectId, region, networkId);
 
-  const queryKey = networkQueryKey(projectId);
-  const networks = queryClient.getQueryData<TNetwork[]>(queryKey);
+  const queryKey = networksQueryKey(projectId);
 
-  if (!networks) {
-    await fetchPrivateNetwork(projectId);
-  } else {
-    const newNetworks = networks.filter((network) => network.id !== networkId);
-    queryClient.setQueryData(queryKey, newNetworks);
-  }
+  const networks = await queryClient.ensureQueryData<TNetwork[]>({ queryKey });
+
+  const newNetworks = networks.filter((network) => network.id !== networkId);
+  queryClient.setQueryData(queryKey, newNetworks);
 };

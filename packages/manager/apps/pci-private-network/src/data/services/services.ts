@@ -7,7 +7,7 @@ import {
 import { assignGateway, enableSnatOnGateway } from '@/data/api/gateway';
 import {
   fetchCheckPrivateNetworkCreationStatus,
-  addPrivateNetwork,
+  updatePrivateNetworksList,
 } from '../hooks/networks/useNetworks';
 import queryClient from '@/queryClient';
 
@@ -46,19 +46,18 @@ export const createPrivateNetwork = async (
     await assignGateway(projectId, region, resourceId, existingGatewayId);
   }
 
-  let createdVlanId = data.vlanId || null;
-
-  if (!createdVlanId && !isLocalZone) {
+  // had to fetch network to get vlanId if user does not define
+  if (!data.vlanId && !isLocalZone) {
     const createdNetwork = await getNetwork(projectId, region, resourceId);
-    createdVlanId = createdNetwork.vlanId;
+    data.vlanId = createdNetwork.vlanId;
   }
 
-  await addPrivateNetwork(projectId, {
+  await updatePrivateNetworksList(projectId, {
     id: resourceId,
     name: data.name,
     region,
     visibility: NetworkVisibility.Private,
-    vlanId: createdVlanId,
+    vlanId: data.vlanId,
   });
 };
 

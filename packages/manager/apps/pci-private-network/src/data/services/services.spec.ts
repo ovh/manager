@@ -8,7 +8,7 @@ import {
 import { enableSnatOnGateway, assignGateway } from '@/data/api/gateway';
 import {
   fetchCheckPrivateNetworkCreationStatus,
-  addPrivateNetwork,
+  updatePrivateNetworksList,
 } from '@/data/hooks/networks/useNetworks';
 import { createPrivateNetwork } from './services';
 import { privateNetworkForm as form, projectId } from '@/__mocks__/network';
@@ -73,7 +73,7 @@ describe('Create Private Network', () => {
       operationId,
     );
 
-    expect(addPrivateNetwork).toHaveBeenCalledWith(projectId, {
+    expect(updatePrivateNetworksList).toHaveBeenCalledWith(projectId, {
       id: resourceId,
       name,
       region,
@@ -108,7 +108,7 @@ describe('Create Private Network', () => {
     );
   });
 
-  it('should call getNetwork and addPrivateNetwork when region is not LZ and vlanId not defined by user', async () => {
+  it('should call getNetwork and updatePrivateNetworksList when region is not LZ and vlanId not defined by user', async () => {
     const { vlanId, ...values } = form;
 
     await createPrivateNetwork(values, projectId);
@@ -119,7 +119,7 @@ describe('Create Private Network', () => {
       resourceId,
     );
 
-    expect(addPrivateNetwork).toHaveBeenCalledWith(projectId, {
+    expect(updatePrivateNetworksList).toHaveBeenCalledWith(projectId, {
       id: resourceId,
       name: values.name,
       region: values.region,
