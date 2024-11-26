@@ -101,7 +101,6 @@ export default function ResourceUsageList({
         totalItems={paginatedResourcesUsage.totalRows}
         pagination={pagination}
         onPaginationChange={setPagination}
-        className="overflow-x-visible"
       />
     </div>
   );
