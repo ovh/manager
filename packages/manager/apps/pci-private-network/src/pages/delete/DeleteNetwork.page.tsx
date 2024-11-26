@@ -1,10 +1,9 @@
-import { useState } from 'react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Translation } from 'react-i18next';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import DeleteModal from '@/components/delete/DeleteModal.component';
-import { deletePrivateNetwork } from '@/data/hooks/networks/useNetworks';
+import { useDeletePrivateNetwork } from '@/data/hooks/networks/useNetworks';
 
 export default function DeleteLocalZone() {
   const navigate = useNavigate();
@@ -19,24 +18,11 @@ export default function DeleteLocalZone() {
 
   const onClose = () => navigate('..');
 
-  const [isPending, setIsPending] = useState<boolean>(false);
-
-  const onDeleteNetwork = async () => {
-    setIsPending(true);
-
-    try {
-      await deletePrivateNetwork(projectId, region, networkId);
-      addSuccess(
-        <Translation ns="listing">
-          {(t) =>
-            t('pci_projects_project_network_private_delete_success', {
-              name: networkId,
-            })
-          }
-        </Translation>,
-        true,
-      );
-    } catch (e) {
+  const { deletePrivateNetwork, isPending } = useDeletePrivateNetwork({
+    projectId,
+    region,
+    networkId,
+    onError: (e) => {
       const error = (e as unknown) as ApiError;
       addError(
         <Translation ns="listing">
@@ -48,18 +34,29 @@ export default function DeleteLocalZone() {
         </Translation>,
         true,
       );
-    }
-
-    setIsPending(false);
-    onClose();
-  };
+      onClose();
+    },
+    onSuccess: () => {
+      addSuccess(
+        <Translation ns="listing">
+          {(t) =>
+            t('pci_projects_project_network_private_delete_success', {
+              name: networkId,
+            })
+          }
+        </Translation>,
+        true,
+      );
+      onClose();
+    },
+  });
 
   return (
     <DeleteModal
       networkId={networkId}
       isPending={isPending}
       onClose={onClose}
-      onConfirm={onDeleteNetwork}
+      onConfirm={deletePrivateNetwork}
     />
   );
 }
