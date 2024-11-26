@@ -1,4 +1,4 @@
-import { useProject } from '@ovh-ux/manager-pci-common';
+import { TabsPanel, useProject } from '@ovh-ux/manager-pci-common';
 import {
   Headers,
   Notifications,
@@ -11,9 +11,8 @@ import { Suspense, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation, useResolvedPath } from 'react-router-dom';
 import { ROUTE_PATHS } from '@/routes';
-import TabsPanel from '@/components/TabsPanel.component';
 
-export default function BillingPage() {
+export default function ObjectsPage() {
   const { t } = useTranslation('objects');
   const location = useLocation();
   const hrefProject = useProjectUrl('public-cloud');
@@ -62,7 +61,6 @@ export default function BillingPage() {
           'pci_projects_project_storages_containers_object_description',
         )}
       />
-      <Notifications />
 
       <div className="my-10 mt-8">
         <TabsPanel tabs={tabs} />
