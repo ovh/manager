@@ -1,11 +1,21 @@
 import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
+import { useHref } from 'react-router-dom';
+import { TUser } from '@/api/data/user';
 
-export default function ActionsComponent() {
+type ActionsComponentProps = {
+  user: TUser;
+};
+
+export default function ActionsComponent({
+  user,
+}: Readonly<ActionsComponentProps>) {
   const { t } = useTranslation('objects/users');
   const { t: tPciStoragesContainers } = useTranslation(
     'pci-storages-containers',
   );
+
+  const deleteHref = useHref(`./${user.id}/delete`);
   const items = [
     {
       id: 0,
@@ -27,6 +37,7 @@ export default function ActionsComponent() {
     },
     {
       id: 4,
+      href: deleteHref,
       label: tPciStoragesContainers(
         'pci_projects_project_storages_containers_delete_label',
       ),
