@@ -72,9 +72,6 @@ export default function Listing() {
     queryClient.invalidateQueries({
       queryKey: ['project', projectId, 'users'],
     });
-    queryClient.invalidateQueries({
-      queryKey: ['user'],
-    });
   };
 
   return (

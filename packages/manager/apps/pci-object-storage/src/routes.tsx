@@ -5,6 +5,7 @@ export const ROUTE_PATHS = {
   ROOT: '/pci/projects/:projectId/storages/objects',
   OBJECTS: '',
   USER_LIST: 'users',
+  USER_DELETE: ':userId/delete',
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
@@ -15,13 +16,18 @@ const ContainerListPage = lazy(() =>
 const UserListPage = lazy(() =>
   import('@/pages/objects/container/users/Listing.page'),
 );
+const DeletePage = lazy(() =>
+  import('@/pages/objects/container/users/delete/Delete.page'),
+);
 
 const RoutesComponent = () => (
   <Routes>
     <Route id="root" path={ROUTE_PATHS.ROOT} Component={LayoutPage}>
       <Route path={ROUTE_PATHS.OBJECTS} Component={ObjectsPage}>
         <Route path={ROUTE_PATHS.OBJECTS} Component={ContainerListPage} />
-        <Route path={ROUTE_PATHS.USER_LIST} Component={UserListPage} />
+        <Route path={ROUTE_PATHS.USER_LIST} Component={UserListPage}>
+          <Route path={ROUTE_PATHS.USER_DELETE} Component={DeletePage} />
+        </Route>
       </Route>
     </Route>
     <Route path="" element={<>Page not found</>}></Route>
