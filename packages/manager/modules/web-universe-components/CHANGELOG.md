@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.19.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.19.0...@ovh-ux/ng-ovh-web-universe-components@9.19.1) (2024-11-26)
+
+
+### Bug Fixes
+
+* **web.exchange:** fix account with aliases csv export ([4dabf22](https://github.com/ovh/manager/commit/4dabf22f8bab25ec2f7d750d66344c4c3cffaf5b))
+
+
+
+
+
 # [9.19.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.18.2...@ovh-ux/ng-ovh-web-universe-components@9.19.0) (2024-11-18)
 
 
