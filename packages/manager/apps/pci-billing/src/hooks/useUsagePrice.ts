@@ -14,15 +14,25 @@ const getTotalPrice = (
 ) => {
   const total = (products || []).reduce(
     (sum, { totalPrice }) =>
-      sum + (round.items ? roundNumber(totalPrice) : totalPrice),
+      roundNumber(sum + (round.items ? roundNumber(totalPrice) : totalPrice)),
     0,
   );
 
   return round.all ? roundNumber(total) : total;
 };
 
-export const useEstimate = (projectId: string, kind: TUsageKind) => {
-  const { data: usage } = useUsage(projectId, kind);
+export type TUsagePrices = {
+  totalHourlyPrice: number;
+  totalMonthlyPrice: number;
+  totalPrice: number;
+  isPending: boolean;
+};
+
+export const useUsagePrice = (
+  projectId: string,
+  kind: TUsageKind,
+): TUsagePrices => {
+  const { data: usage, isPending: isUsagePending } = useUsage(projectId, kind);
 
   const getResourcePrice = useCallback(
     (resourceUsage: TResourceUsage) =>
@@ -31,7 +41,7 @@ export const useEstimate = (projectId: string, kind: TUsageKind) => {
           .find((r) => r.type === resourceUsage)
           ?.resources.map((r) => r.components)
           .flat(2),
-        { items: false, all: false },
+        { items: true, all: true },
       ),
     [usage],
   );
@@ -43,19 +53,17 @@ export const useEstimate = (projectId: string, kind: TUsageKind) => {
         case 'instance':
           return roundNumber(
             usage?.hourlyUsage?.instance
-              ? usage?.hourlyUsage?.instance?.reduce(
-                  (sum, { totalPrice }) => sum + roundNumber(totalPrice),
-                  0,
-                )
+              ? usage?.hourlyUsage?.instance
+                  ?.map((s) => roundNumber(s.totalPrice))
+                  .reduce((sum, item) => roundNumber(sum + item), 0)
               : 0,
           );
         case 'snapshot':
           return roundNumber(
             usage?.hourlyUsage?.snapshot
-              ? usage?.hourlyUsage?.snapshot?.reduce(
-                  (sum, { totalPrice }) => sum + roundNumber(totalPrice),
-                  0,
-                )
+              ? usage?.hourlyUsage?.snapshot
+                  ?.map((s) => roundNumber(s.totalPrice))
+                  .reduce((sum, item) => roundNumber(sum + item), 0)
               : 0,
           );
         case 'objectStorage':
@@ -64,7 +72,7 @@ export const useEstimate = (projectId: string, kind: TUsageKind) => {
               ? usage?.hourlyUsage.storage
                   .filter((s) => s.type !== 'pca')
                   .map((s) => roundNumber(s.totalPrice))
-                  .reduce((sum, item) => sum + roundNumber(item), 0)
+                  .reduce((sum, item) => roundNumber(sum + item), 0)
               : 0,
           );
         case 'archiveStorage':
@@ -73,17 +81,15 @@ export const useEstimate = (projectId: string, kind: TUsageKind) => {
               ? usage?.hourlyUsage.storage
                   .filter((s) => s.type === 'pca')
                   .map((s) => roundNumber(s.totalPrice))
-                  .reduce((sum, item) => sum + roundNumber(item), 0)
+                  .reduce((sum, item) => roundNumber(sum + item), 0)
               : 0,
           );
         case 'volume':
           return roundNumber(
             usage?.hourlyUsage?.volume
-              ? usage?.hourlyUsage?.volume?.reduce(
-                  (resourceAcc, { totalPrice }) =>
-                    resourceAcc + roundNumber(totalPrice),
-                  0,
-                )
+              ? usage?.hourlyUsage?.volume
+                  ?.map((s) => roundNumber(s.totalPrice))
+                  .reduce((sum, item) => roundNumber(sum + item), 0)
               : 0,
           );
         case 'bandwidth':
@@ -92,7 +98,7 @@ export const useEstimate = (projectId: string, kind: TUsageKind) => {
               ? usage?.hourlyUsage.instanceBandwidth
                   .filter((b) => b.outgoingBandwidth)
                   .map((b) => roundNumber(b.totalPrice))
-                  .reduce((sum, item) => sum + roundNumber(item), 0)
+                  .reduce((sum, item) => roundNumber(sum + item), 0)
               : 0,
           );
         case 'privateRegistry':
@@ -126,21 +132,22 @@ export const useEstimate = (projectId: string, kind: TUsageKind) => {
     [usage],
   );
 
-  const getMonthlyPrice = useCallback(() => {
-    const instancePrice = roundNumber(
-      usage?.monthlyUsage?.instance
-        ? usage?.monthlyUsage?.instance?.reduce(
-            (sum, { totalPrice }) => sum + roundNumber(totalPrice),
-            0,
-          )
-        : 0,
-    );
-    return instancePrice;
-  }, [usage]);
+  const getMonthlyPrice = useCallback(
+    () =>
+      roundNumber(
+        usage?.monthlyUsage?.instance
+          ? usage?.monthlyUsage?.instance?.reduce(
+              (sum, { totalPrice }) => sum + roundNumber(totalPrice),
+              0,
+            )
+          : 0,
+      ),
+    [usage],
+  );
 
   const totalHourlyPrice = roundNumber(
     HOURLY_PRODUCTS.map((product) => getHourlyPrice(product)).reduce(
-      (sum, price) => sum + price,
+      (sum, price) => roundNumber(sum + price),
       0,
     ),
   );
@@ -154,6 +161,7 @@ export const useEstimate = (projectId: string, kind: TUsageKind) => {
       totalHourlyPrice,
       totalMonthlyPrice,
       totalPrice,
+      isPending: isUsagePending,
     }),
     [usage],
   );
