@@ -355,6 +355,7 @@ export function getPciProjectMenu(
       'training',
       'ai-apps',
       'ai-endpoints',
+      'pci-ai-endpoints'
     )
   ) {
     pciMenu.push({
