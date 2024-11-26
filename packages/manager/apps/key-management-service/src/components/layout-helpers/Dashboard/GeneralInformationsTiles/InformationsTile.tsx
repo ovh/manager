@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Clipboard,
+  Description,
   Region,
   ServiceDetails,
 } from '@ovh-ux/manager-react-components';
@@ -51,20 +52,24 @@ const InformationsTile = ({
       <TileSeparator />
       <TileItem title={t('key_management_service_dashboard_field_label_name')}>
         <div className="flex justify-between items-center">
-          <TileValue value={okmsServiceInfos?.resource.displayName} />
-          <OsdsButton
-            circle
-            variant={ODS_BUTTON_VARIANT.stroked}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => navigate('update-name')}
-          >
-            <OsdsIcon
-              aria-label="edit"
-              name={ODS_ICON_NAME.PEN}
-              size={ODS_ICON_SIZE.xs}
+          <Description className="break-all">
+            {okmsServiceInfos?.resource.displayName}
+          </Description>
+          <div className="min-w-fit">
+            <OsdsButton
+              circle
+              variant={ODS_BUTTON_VARIANT.stroked}
               color={ODS_THEME_COLOR_INTENT.primary}
-            />
-          </OsdsButton>
+              onClick={() => navigate('update-name')}
+            >
+              <OsdsIcon
+                aria-label="edit"
+                name={ODS_ICON_NAME.PEN}
+                size={ODS_ICON_SIZE.xs}
+                color={ODS_THEME_COLOR_INTENT.primary}
+              />
+            </OsdsButton>
+          </div>
         </div>
       </TileItem>
       <TileSeparator />
