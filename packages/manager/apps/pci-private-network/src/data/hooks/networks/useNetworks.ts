@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useQuery, useQueries } from '@tanstack/react-query';
+import { useQuery, useQueries, useMutation } from '@tanstack/react-query';
 import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
 import { PaginationState } from '@ovh-ux/manager-react-components';
 import {
@@ -152,24 +152,39 @@ export const updatePrivateNetworksList = async (
   const networks = queryClient.getQueryData<TNetwork[]>(queryKey);
 
   if (networks) {
-    queryClient.setQueryData(queryKey, (data: TNetwork[]) => [
-      newNetwork,
-      ...data,
-    ]);
+    queryClient.setQueryData(queryKey, [newNetwork, ...networks]);
   }
 };
 
-export const deletePrivateNetwork = async (
-  projectId: string,
-  region: string,
-  networkId: string,
-) => {
-  await apiDeleteNetwork(projectId, region, networkId);
+type DeletePrivateNetworkProps = {
+  projectId: string;
+  region: string;
+  networkId: string;
+  onError: (error: Error) => void;
+  onSuccess: () => void;
+};
 
-  const queryKey = networksQueryKey(projectId);
+export const useDeletePrivateNetwork = ({
+  projectId,
+  region,
+  networkId,
+  onError,
+  onSuccess,
+}: DeletePrivateNetworkProps) => {
+  const mutation = useMutation({
+    mutationFn: () => apiDeleteNetwork(projectId, region, networkId),
+    onError,
+    onSuccess: async () => {
+      const queryKey = networksQueryKey(projectId);
+      queryClient.setQueryData(queryKey, (networks: TNetwork[]) =>
+        networks.filter((network) => network.id !== networkId),
+      );
+      onSuccess();
+    },
+  });
 
-  const networks = await queryClient.ensureQueryData<TNetwork[]>({ queryKey });
-
-  const newNetworks = networks.filter((network) => network.id !== networkId);
-  queryClient.setQueryData(queryKey, newNetworks);
+  return {
+    deletePrivateNetwork: () => mutation.mutate(),
+    ...mutation,
+  };
 };
