@@ -22,7 +22,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   useOidcProvider,
@@ -54,6 +54,7 @@ export function OidcProviderModal() {
       issuerUrl: '',
       clientId: '',
     },
+    mode: 'onTouched',
   });
 
   const { addError, addSuccess } = useNotifications();
