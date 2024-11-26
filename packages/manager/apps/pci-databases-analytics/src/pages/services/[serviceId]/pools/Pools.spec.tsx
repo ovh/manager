@@ -13,13 +13,11 @@ import Pools, {
 } from '@/pages/services/[serviceId]/pools/Pools.page';
 import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
-import * as connectionPoolApi from '@/data/api/database/connectionPool.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedConnectionPool } from '@/__tests__/helpers/mocks/connectionPool';
 import { mockedDatabase } from '@/__tests__/helpers/mocks/databases';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
-import { useToast } from '@/components/ui/use-toast';
 import { CdbError } from '@/data/api/database';
 
 // Override mock to add capabilities
@@ -36,11 +34,19 @@ const mockedService = {
   },
 };
 const mockCertificate = { ca: 'certificateCA' };
+const mockedUsedNavigate = vi.fn();
 
 describe('Connection pool page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     // Mock necessary hooks and dependencies
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useNavigate: () => mockedUsedNavigate,
+      };
+    });
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({
         t: (key: string) => key,
@@ -212,114 +218,30 @@ describe('Open modals', () => {
     vi.clearAllMocks();
   });
 
-  it('open and close add pool modal', async () => {
+  it('open add pool modal', async () => {
     act(() => {
       fireEvent.click(screen.getByTestId('pools-add-button'));
     });
     await waitFor(() => {
-      expect(screen.getByTestId('add-edit-pools-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('add-edit-pools-cancel-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('add-edit-pools-modal'),
-      ).not.toBeInTheDocument();
-    });
-  });
-  it('refetch data on add pool success', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('pools-add-button'));
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('add-edit-pools-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.change(screen.getByTestId('add-edit-pools-name-input'), {
-        target: {
-          value: 'newConnectionPools',
-        },
-      });
-      fireEvent.change(screen.getByTestId('add-edit-pools-size-input'), {
-        target: {
-          value: 3,
-        },
-      });
-      fireEvent.click(screen.getByTestId('add-edit-pools-submit-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('add-edit-pools-modal'),
-      ).not.toBeInTheDocument();
-      expect(connectionPoolApi.addConnectionPool).toHaveBeenCalled();
-      expect(connectionPoolApi.getConnectionPools).toHaveBeenCalled();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./add');
     });
   });
 
   it('shows edit pool modal', async () => {
     await openButtonInMenu('pools-action-edit-button');
     await waitFor(() => {
-      expect(screen.getByTestId('add-edit-pools-modal')).toBeInTheDocument();
-    });
-  });
-
-  it('refetch data on edit pool success', async () => {
-    await openButtonInMenu('pools-action-edit-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('add-edit-pools-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.change(screen.getByTestId('add-edit-pools-size-input'), {
-        target: {
-          value: 2,
-        },
-      });
-      fireEvent.click(screen.getByTestId('add-edit-pools-submit-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('add-edit-pools-modal'),
-      ).not.toBeInTheDocument();
-      expect(connectionPoolApi.editConnectionPool).toHaveBeenCalled();
-      expect(connectionPoolApi.getConnectionPools).toHaveBeenCalled();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(
+        `./edit/${mockedConnectionPool.id}`,
+      );
     });
   });
 
   it('shows delete pool modal', async () => {
     await openButtonInMenu('pools-action-delete-button');
     await waitFor(() => {
-      expect(screen.getByTestId('delete-pools-modal')).toBeInTheDocument();
-    });
-  });
-  it('closes delete pool modal', async () => {
-    await openButtonInMenu('pools-action-delete-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('delete-pools-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('delete-pools-cancel-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('delete-pools-modal'),
-      ).not.toBeInTheDocument();
-    });
-  });
-  it('refetch data on delete pool success', async () => {
-    await openButtonInMenu('pools-action-delete-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('delete-pools-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('delete-pools-submit-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('delete-pools-modal'),
-      ).not.toBeInTheDocument();
-      expect(connectionPoolApi.getConnectionPools).toHaveBeenCalled();
-      expect(connectionPoolApi.deleteConnectionPool).toHaveBeenCalled();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(
+        `./delete/${mockedConnectionPool.id}`,
+      );
     });
   });
 
@@ -331,40 +253,9 @@ describe('Open modals', () => {
     });
     await openButtonInMenu('pools-action-info-button');
     await waitFor(() => {
-      expect(screen.getByTestId('info-pools-modal')).toBeInTheDocument();
-      expect(screen.getByTestId('info-pools-table')).toBeInTheDocument();
-    });
-
-    act(() => {
-      fireEvent.click(screen.getByTestId('info-pools-copy-certificate-action'));
-    });
-    await waitFor(() => {
-      expect(window.navigator.clipboard.writeText).toHaveBeenCalled();
-      expect(useToast().toast).toHaveBeenCalled();
-    });
-
-    act(() => {
-      fireEvent.click(screen.getByTestId('info-pools-copy-uri-action'));
-    });
-    await waitFor(() => {
-      expect(window.navigator.clipboard.writeText).toHaveBeenCalled();
-      expect(useToast().toast).toHaveBeenCalled();
-    });
-  });
-
-  it('closes info pool modal', async () => {
-    await openButtonInMenu('pools-action-info-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('info-pools-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.keyDown(screen.getByTestId('info-pools-modal'), {
-        key: 'Escape',
-        code: 'Escape',
-      });
-    });
-    await waitFor(() => {
-      expect(screen.queryByTestId('info-pools-modal')).not.toBeInTheDocument();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(
+        `./informations/${mockedConnectionPool.id}`,
+      );
     });
   });
 });

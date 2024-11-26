@@ -191,6 +191,44 @@ export default [
             ...lazyRouteConfig(() =>
               import('@/pages/services/[serviceId]/pools/Pools.page'),
             ),
+            children: [
+              {
+                id: 'service.{service.engine}.pools.add',
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/pools/add/AddPool.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.pools.edit',
+                path: 'edit/:poolId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/pools/edit/EditPool.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.pools.delete',
+                path: 'delete/:poolId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/pools/delete/DeletePool.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.pools.informations',
+                path: 'informations/:poolId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/pools/informations/InfoConnectionPool.modal'
+                  ),
+                ),
+              },
+            ],
           },
           {
             path: 'queries',

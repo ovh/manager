@@ -42,11 +42,7 @@ describe('useEditConnectionPool', () => {
       expect(databaseAPI.editConnectionPool).toHaveBeenCalledWith(
         editConnectionPoolProps,
       );
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedConnectionPool,
-        editConnectionPoolProps,
-        undefined,
-      );
+      expect(onSuccess).toHaveBeenCalledWith(mockedConnectionPool);
     });
   });
 });

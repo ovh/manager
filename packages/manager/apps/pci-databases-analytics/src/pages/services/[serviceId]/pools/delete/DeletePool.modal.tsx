@@ -1,6 +1,6 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
+import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -12,29 +12,27 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
-
-import { ModalController } from '@/hooks/useModale';
-
-import * as database from '@/types/cloud/project/database';
 import { useDeleteConnectionPool } from '@/hooks/api/database/connectionPool/useDeleteConnectionPool.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import { useServiceData } from '../../Service.context';
+import { useGetConnectionPools } from '@/hooks/api/database/connectionPool/useGetConnectionPools.hook';
+import { Skeleton } from '@/components/ui/skeleton';
 
-interface DeleteConnectionPoolModalProps {
-  service: database.Service;
-  controller: ModalController;
-  connectionPool: database.postgresql.ConnectionPool;
-  onSuccess?: (connectionPool: database.postgresql.ConnectionPool) => void;
-  onError?: (connectionPool: Error) => void;
-}
+const DeletePool = () => {
+  const { projectId, poolId } = useParams();
+  const navigate = useNavigate();
+  const { service } = useServiceData();
+  const poolsQuery = useGetConnectionPools(
+    projectId,
+    service.engine,
+    service.id,
+    {
+      enabled: !!service.id,
+    },
+  );
+  const pools = poolsQuery.data;
+  const deletedPool = pools?.find((p) => p.id === poolId);
 
-const DeleteConnectionPool = ({
-  service,
-  connectionPool,
-  controller,
-  onError,
-  onSuccess,
-}: DeleteConnectionPoolModalProps) => {
-  const { projectId } = useParams();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/pools',
   );
@@ -46,33 +44,38 @@ const DeleteConnectionPool = ({
         variant: 'destructive',
         description: getCdbApiErrorMessage(err),
       });
-      if (onError) {
-        onError(err);
-      }
     },
     onSuccess: () => {
       toast.toast({
         title: t('deleteConnectionPoolToastSuccessTitle'),
         description: t('deleteConnectionPoolToastSuccessDescription', {
-          name: connectionPool.name,
+          name: deletedPool.name,
         }),
       });
-      if (onSuccess) {
-        onSuccess(connectionPool);
-      }
+      navigate('../');
     },
   });
+
+  useEffect(() => {
+    if (pools && !deletedPool) navigate('../');
+  }, [pools, deletedPool]);
 
   const handleDelete = () => {
     deleteConnectionPool({
       serviceId: service.id,
       projectId,
       engine: service.engine,
-      connectionPoolId: connectionPool.id,
+      connectionPoolId: deletedPool.id,
     });
   };
+  const onOpenChange = (open: boolean) => {
+    if (!open) navigate('../');
+  };
+
+  if (!pools || !deletedPool) return <Skeleton className="w-full h-4" />;
+
   return (
-    <Dialog {...controller}>
+    <Dialog defaultOpen onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="delete-pools-modal">
@@ -80,7 +83,7 @@ const DeleteConnectionPool = ({
           </DialogTitle>
           <DialogDescription>
             {t('deleteConnectionPoolDescription', {
-              name: connectionPool.name,
+              name: deletedPool.name,
             })}
           </DialogDescription>
         </DialogHeader>
@@ -108,4 +111,4 @@ const DeleteConnectionPool = ({
   );
 };
 
-export default DeleteConnectionPool;
+export default DeletePool;

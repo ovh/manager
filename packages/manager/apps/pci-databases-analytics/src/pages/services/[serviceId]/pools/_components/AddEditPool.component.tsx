@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -29,10 +28,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useToast } from '@/components/ui/use-toast';
-
 import { useConnectionPoolForm } from './formPools/useConnectionPoolForm.hook';
-import { ModalController } from '@/hooks/useModale';
-
 import { GenericUser } from '@/data/api/database/user.api';
 import * as database from '@/types/cloud/project/database';
 import { ConnectionPoolEdition } from '@/data/api/database/connectionPool.api';
@@ -44,37 +40,27 @@ import { useEditConnectionPool } from '@/hooks/api/database/connectionPool/useEd
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 
 interface AddEditConnectionPoolModalProps {
-  isEdition: boolean;
   editedConnectionPool?: database.postgresql.ConnectionPool;
   connectionPools: database.postgresql.ConnectionPool[];
   users: GenericUser[];
   databases: database.service.Database[];
   service: database.Service;
-  controller: ModalController;
-  onSuccess?: (connectionPool?: database.postgresql.ConnectionPool) => void;
-  onError?: (error: Error) => void;
 }
 const AddEditConnectionPool = ({
-  isEdition,
   editedConnectionPool,
   connectionPools,
   users,
   databases,
   service,
-  controller,
-  onSuccess,
-  onError,
 }: AddEditConnectionPoolModalProps) => {
+  const isEdition = !!editedConnectionPool?.id;
   const { projectId } = useParams();
+  const navigate = useNavigate();
   const { form } = useConnectionPoolForm({
     editedConnectionPool,
     existingConnectionPools: connectionPools,
     databases,
   });
-
-  useEffect(() => {
-    if (!controller.open) form.reset();
-  }, [controller.open]);
 
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/pools',
@@ -89,9 +75,6 @@ const AddEditConnectionPool = ({
         variant: 'destructive',
         description: getCdbApiErrorMessage(err),
       });
-      if (onError) {
-        onError(err);
-      }
     },
     onSuccess(cp) {
       form.reset();
@@ -101,9 +84,7 @@ const AddEditConnectionPool = ({
           name: cp.name,
         }),
       });
-      if (onSuccess) {
-        onSuccess(cp);
-      }
+      navigate('../');
     },
   };
 
@@ -117,44 +98,50 @@ const AddEditConnectionPool = ({
     isPending: isPendingEditPool,
   } = useEditConnectionPool(connectionPoolMutationConfig);
 
-  const onSubmit = form.handleSubmit((formValues) => {
-    if (isEdition) {
-      const connectionPool: ConnectionPoolEdition = {
-        id: editedConnectionPool.id,
-        databaseId: formValues.databaseId,
-        mode: formValues.mode,
-        size: formValues.size,
-        userId: formValues.userId || null,
-      };
-      if (Object.entries(form.formState.dirtyFields).length === 0) {
-        onSuccess();
-        return;
+  const onSubmit = form.handleSubmit(
+    (formValues) => {
+      if (isEdition) {
+        const connectionPool: ConnectionPoolEdition = {
+          id: editedConnectionPool.id,
+          databaseId: formValues.databaseId,
+          mode: formValues.mode,
+          size: formValues.size,
+          userId: formValues.userId || null,
+        };
+        if (Object.entries(form.formState.dirtyFields).length === 0) {
+          return;
+        }
+        editConnectionPool({
+          projectId,
+          engine: service.engine,
+          serviceId: service.id,
+          connectionPool,
+        });
+      } else {
+        const connectionPool: Partial<database.postgresql.ConnectionPoolCreation> = {
+          databaseId: formValues.databaseId,
+          mode: formValues.mode,
+          name: formValues.name,
+          size: formValues.size,
+        };
+        if (formValues.userId) connectionPool.userId = formValues.userId;
+        addConnectionPool({
+          projectId,
+          engine: service.engine,
+          serviceId: service.id,
+          connectionPool,
+        });
       }
-      editConnectionPool({
-        projectId,
-        engine: service.engine,
-        serviceId: service.id,
-        connectionPool,
-      });
-    } else {
-      const connectionPool: Partial<database.postgresql.ConnectionPoolCreation> = {
-        databaseId: formValues.databaseId,
-        mode: formValues.mode,
-        name: formValues.name,
-        size: formValues.size,
-      };
-      if (formValues.userId) connectionPool.userId = formValues.userId;
-      addConnectionPool({
-        projectId,
-        engine: service.engine,
-        serviceId: service.id,
-        connectionPool,
-      });
-    }
-  });
+    },
+    (e) => console.log(e),
+  );
+
+  const onOpenChange = (open: boolean) => {
+    if (!open) navigate('../');
+  };
 
   return (
-    <Dialog {...controller}>
+    <Dialog defaultOpen onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle data-testid="add-edit-pools-modal">

@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { Download, Files } from 'lucide-react';
+import { useEffect } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -11,45 +12,68 @@ import {
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
-
-import { ModalController } from '@/hooks/useModale';
 import useDownload from '@/hooks/useDownload';
 
 import * as database from '@/types/cloud/project/database';
 import { useGetCertificate } from '@/hooks/api/database/certificate/useGetCertificate.hook';
+import { useServiceData } from '../../Service.context';
+import { useGetConnectionPools } from '@/hooks/api/database/connectionPool/useGetConnectionPools.hook';
+import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
+import { Skeleton } from '@/components/ui/skeleton';
 
-interface InfoConnectionPoolModalProps {
-  service: database.Service;
-  connectionPool: database.postgresql.ConnectionPool;
-  databases: database.service.Database[];
-  controller: ModalController;
-}
-const InfoConnectionPool = ({
-  service,
-  connectionPool,
-  databases,
-  controller,
-}: InfoConnectionPoolModalProps) => {
-  const { projectId } = useParams();
+const InfoConnectionPool = () => {
+  const { projectId, poolId } = useParams();
+  const navigate = useNavigate();
+  const { service } = useServiceData();
+  const connectionPoolsQuery = useGetConnectionPools(
+    projectId,
+    service.engine,
+    service.id,
+    {
+      enabled: !!service.id,
+    },
+  );
+  const connectionPools = connectionPoolsQuery.data;
+  const connectionPool = connectionPools?.find((c) => c.id === poolId);
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/pools',
   );
   const toast = useToast();
+  const { download } = useDownload();
 
   const certificateQuery = useGetCertificate(
     projectId,
     service.engine,
     service.id,
+    {
+      enabled: !!service.id,
+    },
   );
-
-  const { download } = useDownload();
-
-  const poolDb: database.service.Database = databases.find(
-    (db) => db.id === connectionPool.databaseId,
+  const databasesQuery = useGetDatabases(
+    projectId,
+    service.engine,
+    service.id,
+    {
+      enabled: !!service.id,
+    },
   );
+  const databases = databasesQuery.data;
 
+  useEffect(() => {
+    if (connectionPools && !connectionPool) navigate('../');
+  }, [connectionPools, connectionPool]);
+
+  const onOpenChange = (open: boolean) => {
+    if (!open) navigate('../');
+  };
+
+  const poolDb: database.service.Database = databases?.find(
+    (db) => db.id === connectionPool?.databaseId,
+  );
+  if (!poolDb || !connectionPool || !certificateQuery.data)
+    return <Skeleton className="w-full h-4" />;
   return (
-    <Dialog {...controller}>
+    <Dialog defaultOpen onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle data-testid="info-pools-modal">
