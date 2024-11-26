@@ -8,6 +8,19 @@ export const CLUSTER_STATUS = {
   DEPLOYING: 'deploying',
   ERROR: 'error',
 };
+
+export const NODE_STATUS = {
+  DEPLOYED: 'deployed',
+  DEPLOYING: 'deploying',
+  DEPLOY_CANCELLED: 'deploy_cancelled',
+  DEPLOY_FAILURE: 'deploy_failure',
+  UNDEPLOYED: 'undeployed',
+  UNDEPLOYING: 'undeploying',
+  UNDEPLOY_CANCELLED: 'undeploy_cancelled',
+  UNDEPLOY_FAILURE: 'undeploy_failure',
+  UNKNOWN: 'unknown',
+};
+
 export const NUTANIX_SERVICE_TYPE = 'NUTANIX';
 
 export const NUTANIX_ORDER_URL = {
@@ -44,6 +57,7 @@ export function getNutanixOrderUrl(subsidiary) {
 
 export default {
   CLUSTER_STATUS,
+  NODE_STATUS,
   NOT_SUBSCRIBED,
   SERVER_OPTIONS,
   NUTANIX_SERVICE_TYPE,
