@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { NEW_PRIVATE_NETWORK_FORM_SCHEMA } from '@/pages/new/new.constants';
-import { IP_ALLOCATION_SCHEMA } from '@/pages/new/subnet/advanced/ipAllocation/ipAllocation.constant';
+import { IP_ALLOCATION_SCHEMA } from '@/pages/new/subnet/advanced/ipAllocation/IpAllocation.constant';
 
 export type Subnet = {
   cidr: string;

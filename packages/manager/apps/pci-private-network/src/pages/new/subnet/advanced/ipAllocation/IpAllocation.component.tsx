@@ -24,7 +24,7 @@ import {
   IpAllocationForm,
   NewPrivateNetworkForm,
 } from '@/types/private-network-form.type';
-import { IP_ALLOCATION_SCHEMA } from './ipAllocation.constant';
+import { IP_ALLOCATION_SCHEMA } from './IpAllocation.constant';
 
 const IpAllocation: React.FC = () => {
   const { t } = useTranslation('new');
@@ -46,6 +46,26 @@ const IpAllocation: React.FC = () => {
 
   const isIpStartHasError = touchedFields.ipStart && !!errors.ipStart;
   const isIpEndHasError = touchedFields.ipEnd && !!errors.ipEnd;
+
+  const onStartIpChange = ({ target }) => {
+    const value = target.value as string;
+    if (value) {
+      setAllocationIp('ipStart', value, {
+        shouldValidate: true,
+        shouldTouch: true,
+      });
+    }
+  };
+
+  const onEndIpChange = ({ target }) => {
+    const value = target.value as string;
+    if (value) {
+      setAllocationIp('ipEnd', value, {
+        shouldValidate: true,
+        shouldTouch: true,
+      });
+    }
+  };
 
   const onAddAllocationIp = () => {
     setValue('subnet.allocationPooles', [...allocationPools, { start, end }]);
@@ -77,12 +97,7 @@ const IpAllocation: React.FC = () => {
             }
             value={start}
             placeholder="1.0.0.0"
-            onOdsValueChange={({ target }) =>
-              setAllocationIp('ipStart', target.value as string, {
-                shouldValidate: true,
-                shouldTouch: true,
-              })
-            }
+            onOdsValueChange={onStartIpChange}
             error={isIpStartHasError}
           />
         </OsdsFormField>
@@ -100,12 +115,7 @@ const IpAllocation: React.FC = () => {
             }
             value={end}
             placeholder="1.0.0.0"
-            onOdsValueChange={({ target }) =>
-              setAllocationIp('ipEnd', target.value as string, {
-                shouldValidate: true,
-                shouldTouch: true,
-              })
-            }
+            onOdsValueChange={onEndIpChange}
             error={isIpEndHasError}
           />
         </OsdsFormField>
