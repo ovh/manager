@@ -357,8 +357,6 @@
   "server_configuration_installation_form_option": "Opcje instalacji:",
   "server_configuration_installation_form_gabaritNameSave": "Nazwa szablonu:",
   "server_configuration_installation_form_gabaritNameSave_pattern": "Nieprawidłowy format.",
-  "server_configuration_installation_form_customHostname": "Hostname:",
-  "server_configuration_installation_form_customHostname_pattern": "Nieprawidłowy format.",
   "server_configuration_installation_form_useSpla": "Skorzystaj z licencji SPLA",
   "server_configuration_installation_form_ssh": "Klucz SSH:",
   "server_configuration_installation_form_ssh_fail": "Nie można wyświetlić kluczy SSH.",

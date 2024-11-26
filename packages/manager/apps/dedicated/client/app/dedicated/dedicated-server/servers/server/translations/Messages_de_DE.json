@@ -356,8 +356,6 @@
   "server_configuration_installation_form_option": "Installationsoptionen:",
   "server_configuration_installation_form_gabaritNameSave": "Name des Templates:",
   "server_configuration_installation_form_gabaritNameSave_pattern": "Ungültiges Format.",
-  "server_configuration_installation_form_customHostname": "Hostname:",
-  "server_configuration_installation_form_customHostname_pattern": "Ungültiges Format.",
   "server_configuration_installation_form_nbdisk": "Anzahl partitionierter Festplatten:",
   "server_configuration_installation_ovh_title": "Installation mit einem OVHcloud Template",
   "server_configuration_installation_ovh_fail_os": "Beim Abruf der für den Server {{t0}} verfügbaren Distributionen ist ein Fehler aufgetreten",

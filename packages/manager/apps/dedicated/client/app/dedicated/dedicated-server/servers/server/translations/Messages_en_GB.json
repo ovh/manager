@@ -356,8 +356,6 @@
   "server_configuration_installation_form_option": "Installation options:",
   "server_configuration_installation_form_gabaritNameSave": "Template name:",
   "server_configuration_installation_form_gabaritNameSave_pattern": "Invalid format.",
-  "server_configuration_installation_form_customHostname": "Host name:",
-  "server_configuration_installation_form_customHostname_pattern": "Invalid format.",
   "server_configuration_installation_form_nbdisk": "Number of disks partitioned:",
   "server_configuration_installation_ovh_title": "Installation from an OVHcloud template",
   "server_configuration_installation_ovh_fail_os": "An error has occurred retrieving the operating systems available for the {{t0}} server",
