@@ -356,8 +356,6 @@
   "server_configuration_installation_form_option": "Opcje instalacji:",
   "server_configuration_installation_form_gabaritNameSave": "Nazwa szablonu:",
   "server_configuration_installation_form_gabaritNameSave_pattern": "Nieprawidłowy format.",
-  "server_configuration_installation_form_customHostname": "Hostname:",
-  "server_configuration_installation_form_customHostname_pattern": "Nieprawidłowy format.",
   "server_configuration_installation_form_nbdisk": "Liczba partycjonowanych dysków:",
   "server_configuration_installation_ovh_title": "Instalacja szablonu OVHcloud",
   "server_configuration_installation_ovh_fail_os": "Wystąpił błąd podczas pobierania dystrybucji dostępnych dla serwera {{t0}}.",

@@ -357,8 +357,6 @@
   "server_configuration_installation_form_option": "Installationsoptionen:",
   "server_configuration_installation_form_gabaritNameSave": "Name des Templates:",
   "server_configuration_installation_form_gabaritNameSave_pattern": "Ungültiges Format.",
-  "server_configuration_installation_form_customHostname": "Hostname:",
-  "server_configuration_installation_form_customHostname_pattern": "Ungültiges Format.",
   "server_configuration_installation_form_useSpla": "SPLA-Lizenz verwenden",
   "server_configuration_installation_form_ssh": "SSH-Schlüssel:",
   "server_configuration_installation_form_ssh_fail": "SSH-Schlüssel können nicht angezeigt werden",

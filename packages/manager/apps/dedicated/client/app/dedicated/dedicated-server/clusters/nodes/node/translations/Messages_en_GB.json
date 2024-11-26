@@ -357,8 +357,6 @@
   "server_configuration_installation_form_option": "Installation options:",
   "server_configuration_installation_form_gabaritNameSave": "Template name:",
   "server_configuration_installation_form_gabaritNameSave_pattern": "Invalid format.",
-  "server_configuration_installation_form_customHostname": "Host name:",
-  "server_configuration_installation_form_customHostname_pattern": "Invalid format.",
   "server_configuration_installation_form_useSpla": "Use SPLA licence ",
   "server_configuration_installation_form_ssh": "SSH keys:",
   "server_configuration_installation_form_ssh_fail": "Unable to display your SSH keys",

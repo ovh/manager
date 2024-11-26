@@ -356,8 +356,6 @@
   "server_configuration_installation_form_option": "Opciones de instalación:",
   "server_configuration_installation_form_gabaritNameSave": "Nombre de la plantilla:",
   "server_configuration_installation_form_gabaritNameSave_pattern": "Formato no válido",
-  "server_configuration_installation_form_customHostname": "Hostname:",
-  "server_configuration_installation_form_customHostname_pattern": "Formato no válido",
   "server_configuration_installation_form_nbdisk": "Número de discos particionados:",
   "server_configuration_installation_ovh_title": "Instalación desde una plantilla de OVHcloud",
   "server_configuration_installation_ovh_fail_os": "Se ha producido un error al obtener las distribuciones disponibles para el servidor {{t0}}.",
