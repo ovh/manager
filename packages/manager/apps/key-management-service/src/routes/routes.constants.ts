@@ -8,6 +8,7 @@ export const ROUTES_URLS = {
   okmsUpdateName: 'update-name',
   keys: 'keys',
   keyId: ':keyId',
+  logs: 'logs',
   createKmsServiceKey: 'create',
   serviceKeyEditName: 'edit-name',
   serviceKeyDeactivate: 'deactivate',

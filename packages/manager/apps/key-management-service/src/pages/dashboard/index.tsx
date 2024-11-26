@@ -32,6 +32,8 @@ export default function DashboardPage() {
   const { t: tCredentials } = useTranslation(
     'key-management-service/credential',
   );
+  const { t: tLogs } = useTranslation('key-management-service/logs');
+
   const { okmsId } = useParams();
   const {
     data: okms,
@@ -82,6 +84,10 @@ export default function DashboardPage() {
       url: ROUTES_URLS.credentials,
       title: tDashboard('access_certificates'),
     },
+    {
+      url: ROUTES_URLS.logs,
+      title: tDashboard('logs'),
+    },
   ];
 
   const breadcrumbItems: BreadcrumbItem[] = [
@@ -104,6 +110,11 @@ export default function DashboardPage() {
       id: ROUTES_URLS.okmsUpdateName,
       label: tDashboard('key_management_service_update_name'),
       navigateTo: `/${okmsId}/${ROUTES_URLS.okmsUpdateName}`,
+    },
+    {
+      id: ROUTES_URLS.logs,
+      label: tLogs('key_management_service_logs'),
+      navigateTo: `/${okmsId}/${ROUTES_URLS.logs}`,
     },
   ];
 
