@@ -6,6 +6,7 @@ export default {
     serviceName: '<',
     nodeId: '<',
     server: '<',
+    isTerminated: '<',
     user: '<',
     bandwidthInformations: '<',
     serviceInfos: '<',

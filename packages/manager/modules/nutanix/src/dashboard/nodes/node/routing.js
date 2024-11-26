@@ -12,7 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
       return Promise.all([$translatePromise, serviceInfoPromise]).then(
         ([$translate, serviceInfo]) => {
-          if (serviceInfo.isResiliated()) {
+          if (serviceInfo.isTerminated()) {
             return {
               state: 'error',
               params: {
@@ -37,6 +37,8 @@ export default /* @ngInject */ ($stateProvider) => {
       nodeId: /* @ngInject */ ($transition$) => $transition$.params().nodeId,
       node: /* @ngInject */ (nodeId, NutanixService) =>
         NutanixService.getServer(nodeId),
+      isTerminated: /* @ngInject */ (node) =>
+        node.serviceStatus === SERVICE_STATES.SUSPENDED,
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       trackingPrefix: /* @ngInject */ () => 'hpc::nutanix::cluster::node',
