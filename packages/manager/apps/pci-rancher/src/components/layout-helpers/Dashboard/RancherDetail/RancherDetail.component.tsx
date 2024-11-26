@@ -334,7 +334,7 @@ const RancherDetail = ({
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
                   {rancher.currentState.usage?.orchestratedVcpus}
                 </OsdsText>
-                {displayDate && (
+                {dateUsage && (
                   <div className="mt-3">
                     <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
                       {t('last_update_date', {
