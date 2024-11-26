@@ -33,7 +33,7 @@ import {
 } from '@/mocks/credentials/credentials.handler';
 import { kmsServicesMock } from '@/mocks/services/services.mock';
 import {
-  GetFeatureAvailabilituMocksParams,
+  GetFeatureAvailabilityMocksParams,
   getFeatureAvailabilityMocks,
 } from '@/mocks/feature-availability/feature-availability.handler';
 import {
@@ -54,7 +54,7 @@ export const renderTestApp = async (
     GetServiceKeysMockParams &
     GetCredentialsMockParams &
     GetServicesMocksParams &
-    GetFeatureAvailabilituMocksParams &
+    GetFeatureAvailabilityMocksParams &
     GetCatalogKmsMocksParams &
     GetReferenceMockParams &
     GetIamAuthorizationMockParams = {},

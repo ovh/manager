@@ -1,0 +1,18 @@
+{
+  "log_subscription_tile_title": "Diese Logs werden auf die Logs Data Platform übertragen.",
+  "log_subscription_serviceName_tile_label": "Name des Dienstes",
+  "log_subscription_button_unsubscribe_label": "Abmelden",
+  "log_subscription_empty_tile_title": "Feed",
+  "log_subscription_empty_tile_description": "Wenn Sie diesen Feed abonnieren, können Sie Ihre Logs direkt auf die Logs Data Platform von OVHcloud übertragen, auf der Sie erweiterte Suchvorgänge durchführen, Alarme und Visualisierungen erstellen oder diese einfach archivieren können.",
+  "log_subscription_empty_tile_button_know_more": "Mehr Informationen zur Logs Data Platform",
+  "log_subscription_empty_tile_button_subscribe": "Abonnieren",
+  "log_subscription_list_title": "Ihre Logs verwenden",
+  "log_subscription_list_button_subscribe_more": "Einen anderen Stream abonnieren",
+  "log_subscription_terminate_modal_headline": "Abmelden",
+  "log_subscription_terminate_modal_delete_input_label": "Bitte geben Sie das Wort „TERMINATE“ ein, um sich vom Stream abzumelden.",
+  "log_subscription_terminate_modal_confirm_button_label": "Abmelden",
+  "log_subscription_unsubscribe_success": "Das Abonnement wurde erfolgreich gekündigt.",
+  "log_subscription_unsubscribe_error": "Bei der Kündigung des Abonnements ist ein Fehler aufgetreten. {{error}}",
+  "log_subscription_subscribe_success": "Ihr Abonnement war erfolgreich.",
+  "log_subscription_subscribe_error": "Bei Ihrem Abonnement ist ein Fehler aufgetreten. {{error}}"
+}
