@@ -38,8 +38,8 @@ import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { usePaginatedUsers } from '@/api/hooks/useUser';
 import { useDatagridColumn } from './useDatagridColumn';
-import { PCI_FEATURES_FREE_LOCAL_ZONES_BANNER } from '@/constants';
 import queryClient from '@/queryClient';
+import { AVAILABILITY } from '@/constants';
 
 export default function Listing() {
   const { t } = useTranslation('objects/users');
@@ -65,7 +65,7 @@ export default function Listing() {
   const columns = useDatagridColumn();
 
   const { data: availability } = useFeatureAvailability([
-    PCI_FEATURES_FREE_LOCAL_ZONES_BANNER,
+    AVAILABILITY.LOCALZONE,
   ]);
 
   const refresh = async () => {
@@ -102,7 +102,7 @@ export default function Listing() {
       >
         {t('pci_projects_project_storages_containers_users_user_description')}
       </OsdsText>
-      {availability?.[PCI_FEATURES_FREE_LOCAL_ZONES_BANNER] && (
+      {availability?.[AVAILABILITY.LOCALZONE] && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="mt-6">
           {t('pci_projects_project_storages_containers_users_user_info_banner')}
         </OsdsMessage>
