@@ -34,12 +34,10 @@ export default function SnapshotList({
       },
     )}`;
 
-  const paginatedSnapshots = useMemo(() => {
-    const sortedSnapshots = snapshots?.sort((a, b) =>
-      a.region.localeCompare(b.region),
-    );
-    return paginateResults(sortedSnapshots || [], pagination);
-  }, [snapshots, pagination, setPagination]);
+  const paginatedSnapshots = useMemo(
+    () => paginateResults(snapshots || [], pagination),
+    [snapshots, pagination, setPagination],
+  );
 
   const columns = [
     {
@@ -85,7 +83,6 @@ export default function SnapshotList({
         totalItems={paginatedSnapshots.totalRows}
         pagination={pagination}
         onPaginationChange={setPagination}
-        className="overflow-x-visible"
       />
     </div>
   );

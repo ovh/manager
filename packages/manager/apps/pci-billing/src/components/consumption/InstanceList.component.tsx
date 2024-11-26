@@ -292,7 +292,6 @@ export default function InstanceList({
         totalItems={instanceConsumptionDetails.totalRows}
         pagination={pagination}
         onPaginationChange={setPagination}
-        className="overflow-x-visible"
       />
     </div>
   );
