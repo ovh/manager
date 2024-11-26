@@ -1,5 +1,6 @@
 import { PaginationState } from '@ovh-ux/manager-react-components';
 import { ColumnSort } from '@tanstack/react-table';
+import { TStorage } from '@/api/data/storages';
 
 export const paginateResults = <T>(
   items: T[],
@@ -37,3 +38,6 @@ export const sortResults = <T>(items: T[], sorting: ColumnSort): T[] => {
 
   return data;
 };
+
+export const isSwiftType = (storage: TStorage) =>
+  !storage.archive && !storage.s3StorageType;
