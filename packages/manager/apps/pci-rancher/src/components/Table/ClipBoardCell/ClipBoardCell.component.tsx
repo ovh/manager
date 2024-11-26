@@ -8,7 +8,7 @@ interface ClipBoardCellProps {
 }
 
 const ClipBoardCell = ({ cell }: ClipBoardCellProps) => {
-  const id = cell.renderValue() as RancherService['id'];
+  const id = cell.renderValue<RancherService['id']>();
 
   return (
     <DataGridTextCell>
