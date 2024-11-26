@@ -8,6 +8,7 @@ import { GuideLinks, GUIDES_LIST } from '@/guides.constants';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import GuideLink from '@/components/GuideLink';
 import { BadgeStatus } from '@/components/BadgeStatus';
+import { OngoingTasks } from './OngoingTasks';
 
 function GeneralInformation() {
   const { t } = useTranslation('dashboard');
@@ -44,15 +45,14 @@ function GeneralInformation() {
         : []),
       {
         id: 'ongoing-task',
-        label: t(
-          'Coming Soon',
-        ) /* label={t('zimbra_dashboard_tile_status_ongoingTask')} */,
+        label: t('zimbra_dashboard_tile_status_ongoingTask'),
         value: platformUrn && (
           <ManagerText
+            className="w-full flex"
             urn={platformUrn}
-            iamActions={[IAM_ACTIONS.platform.get]}
+            iamActions={[IAM_ACTIONS.task.get]}
           >
-            Coming Soon
+            <OngoingTasks />
           </ManagerText>
         ),
       },
