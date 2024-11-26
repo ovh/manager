@@ -119,7 +119,6 @@ export default function ColdArchiveList({
         totalItems={paginatedColdArchives.totalRows}
         pagination={pagination}
         onPaginationChange={setPagination}
-        className="overflow-x-visible"
       />
     </div>
   );
