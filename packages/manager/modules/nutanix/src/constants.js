@@ -1,3 +1,6 @@
+export const PRODUCT_ID = 'nutanixPreprod';
+export const DEFAULT_OS_NODE_NUTANIX = 'none_64.en';
+
 export const NOT_SUBSCRIBED = 'notSubscribed';
 export const SERVER_OPTIONS = {
   BANDWIDTH: 'BANDWIDTH',
@@ -8,6 +11,19 @@ export const CLUSTER_STATUS = {
   DEPLOYING: 'deploying',
   ERROR: 'error',
 };
+
+export const NODE_STATUS = {
+  DEPLOYED: 'deployed',
+  DEPLOYING: 'deploying',
+  DEPLOY_CANCELLED: 'deploy_cancelled',
+  DEPLOY_FAILURE: 'deploy_failure',
+  UNDEPLOYED: 'undeployed',
+  UNDEPLOYING: 'undeploying',
+  UNDEPLOY_CANCELLED: 'undeploy_cancelled',
+  UNDEPLOY_FAILURE: 'undeploy_failure',
+  UNKNOWN: 'unknown',
+};
+
 export const NUTANIX_SERVICE_TYPE = 'NUTANIX';
 
 export const NUTANIX_ORDER_URL = {
@@ -52,7 +68,10 @@ export const NUTANIX_AUTHORIZATION_TYPE = {
 };
 
 export default {
+  PRODUCT_ID,
+  DEFAULT_OS_NODE_NUTANIX,
   CLUSTER_STATUS,
+  NODE_STATUS,
   NOT_SUBSCRIBED,
   SERVER_OPTIONS,
   NUTANIX_SERVICE_TYPE,
