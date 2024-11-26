@@ -85,29 +85,47 @@ export const getRancherPlanDescription = (rancherPlan: RancherPlan['name']) => {
 export function extractDriversAndPlanFromSwitchPlanError(
   inputString: string,
 ): null | { drivers: string[]; plan: string } {
-  const bracketMatch = inputString.match(/\[([^\]]*?)\]/);
-  if (!bracketMatch) {
+  const beginPhrase = 'Unable to switch to plan';
+  const planKeywords = ['OVHCLOUD_EDITION', 'STANDARD'];
+
+  // Find the start and end of the bracket content
+  const bracketStartIndex = inputString.indexOf('[');
+  const bracketEndIndex = inputString.indexOf(']');
+
+  if (
+    bracketStartIndex === -1 ||
+    bracketEndIndex === -1 ||
+    bracketStartIndex >= bracketEndIndex
+  ) {
     return null;
   }
-  const contentInsideBrackets = bracketMatch[1].trim();
-  const textBeforeBracket = inputString.substring(0, bracketMatch.index).trim();
-  const beginPhrase = 'Unable to switch to plan';
-  if (textBeforeBracket.startsWith(beginPhrase)) {
-    const [plan] =
-      textBeforeBracket.match(/OVHCLOUD_EDITION/) ??
-      textBeforeBracket.match(/STANDARD/) ??
-      [];
-    if (!plan) {
-      return null;
-    }
 
-    if (contentInsideBrackets) {
-      const drivers = contentInsideBrackets.split(',');
-      if (drivers.length) {
-        return { drivers, plan };
-      }
+  const contentInsideBrackets = inputString
+    .substring(bracketStartIndex + 1, bracketEndIndex)
+    .trim();
+  const textBeforeBracket = inputString.substring(0, bracketStartIndex).trim();
+
+  if (!textBeforeBracket.startsWith(beginPhrase)) {
+    return null;
+  }
+
+  const plan = planKeywords.find((keyword) =>
+    textBeforeBracket.includes(keyword),
+  );
+
+  if (!plan) {
+    return null;
+  }
+
+  if (contentInsideBrackets) {
+    const drivers = contentInsideBrackets
+      .split(',')
+      .map((driver) => driver.trim());
+    if (drivers.length) {
+      return { drivers, plan };
     }
   }
+
   return null;
 }
 
