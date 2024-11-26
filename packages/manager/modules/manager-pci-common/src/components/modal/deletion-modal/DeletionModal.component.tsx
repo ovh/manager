@@ -30,7 +30,7 @@ enum FormErrorEnum {
 
 export function DeletionModal({
   children,
-  type,
+  type = 'warning',
   title,
   cancelText,
   submitText,
