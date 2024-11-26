@@ -24,10 +24,30 @@ export const getAllUsers = async (projectId: string): Promise<TUser[]> => {
 
 export const getS3Credentials = async (
   projectId: string,
-  userId: number,
-): Promise<TS3Credentials> => {
-  const { data } = await v6.get<TS3Credentials>(
+  userId: string,
+): Promise<TS3Credentials[]> => {
+  const { data } = await v6.get<TS3Credentials[]>(
     `/cloud/project/${projectId}/user/${userId}/s3Credentials`,
   );
   return data;
+};
+
+export const getUser = async (
+  projectId: string,
+  userId: string,
+): Promise<TUser> => {
+  const { data } = await v6.get<TUser>(
+    `/cloud/project/${projectId}/user/${userId}`,
+  );
+  return data;
+};
+
+export const deleteUser = async (
+  projectId: string,
+  userId: string,
+  accessKey: string,
+) => {
+  await v6.delete(
+    `/cloud/project/${projectId}/user/${userId}/s3Credentials/${accessKey}`,
+  );
 };
