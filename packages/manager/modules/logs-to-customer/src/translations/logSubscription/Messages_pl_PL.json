@@ -1,0 +1,18 @@
+{
+  "log_subscription_tile_title": "Logi te są przesyłane do Logs Data Platform",
+  "log_subscription_serviceName_tile_label": "Nazwa usługi",
+  "log_subscription_button_unsubscribe_label": "Rezygnacja z subskrypcji",
+  "log_subscription_empty_tile_title": "Strumień",
+  "log_subscription_empty_tile_description": "Subskrybując ten strumień, możesz przenieść logi bezpośrednio do Logs Data Platform, co pozwoli na bardziej zaawansowane wyszukiwanie, tworzenie alertów i wizualizacji lub po prostu ich archiwizację.",
+  "log_subscription_empty_tile_button_know_more": "Więcej informacji o Logs Data Platform",
+  "log_subscription_empty_tile_button_subscribe": "Subskrybuj",
+  "log_subscription_list_title": "Korzystaj z logów",
+  "log_subscription_list_button_subscribe_more": "Subskrybuj inny strumień danych",
+  "log_subscription_terminate_modal_headline": "Rezygnacja z subskrypcji",
+  "log_subscription_terminate_modal_delete_input_label": "Wpisz słowo „TERMINATE”, aby zrezygnować z subskrypcji strumienia danych.",
+  "log_subscription_terminate_modal_confirm_button_label": "Rezygnacja z subskrypcji",
+  "log_subscription_unsubscribe_success": "Rezygnacja z subskrypcji została pomyślnie przetworzona.",
+  "log_subscription_unsubscribe_error": "Wystąpił błąd podczas składania rezygnacji z subskrypcji. {{error}}",
+  "log_subscription_subscribe_success": "Subskrypcja została pomyślnie aktywowana.",
+  "log_subscription_subscribe_error": "Wystąpił błąd podczas aktywowania subskrypcji. {{error}}"
+}

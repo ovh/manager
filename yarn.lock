@@ -9234,6 +9234,13 @@
   dependencies:
     "@tanstack/virtual-core" "3.2.0"
 
+"@tanstack/react-virtual@^3.10.9":
+  version "3.10.9"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-virtual/-/react-virtual-3.10.9.tgz#40606b6dd8aba8e977f576d8f7df07f69ca63eea"
+  integrity sha512-OXO2uBjFqA4Ibr2O3y0YMnkrRWGVNqcvHQXmGvMu6IK8chZl3PrDxFXdGZ2iZkSrKh3/qUYoFqYe+Rx23RoU0g==
+  dependencies:
+    "@tanstack/virtual-core" "3.10.9"
+
 "@tanstack/table-core@8.11.8":
   version "8.11.8"
   resolved "https://registry.yarnpkg.com/@tanstack/table-core/-/table-core-8.11.8.tgz#7f46c31894249dbb57e43ad95c80e891236a895f"
@@ -9243,6 +9250,11 @@
   version "8.20.1"
   resolved "https://registry.yarnpkg.com/@tanstack/table-core/-/table-core-8.20.1.tgz#74bfab10fa35bed51fa0bd2f3539a331d7e78f1b"
   integrity sha512-5Ly5TIRHnWH7vSDell9B/OVyV380qqIJVg7H7R7jU4fPEmOD4smqAX7VRflpYI09srWR8aj5OLD2Ccs1pI5mTg==
+
+"@tanstack/virtual-core@3.10.9":
+  version "3.10.9"
+  resolved "https://registry.yarnpkg.com/@tanstack/virtual-core/-/virtual-core-3.10.9.tgz#55710c92b311fdaa8d8c66682a0dbdd684bc77c4"
+  integrity sha512-kBknKOKzmeR7lN+vSadaKWXaLS0SZZG+oqpQ/k80Q6g9REn6zRHS/ZYdrIzHnpHgy/eWs00SujveUN/GJT2qTw==
 
 "@tanstack/virtual-core@3.2.0":
   version "3.2.0"
@@ -11357,9 +11369,9 @@ acorn@^8.1.0, acorn@^8.11.3, acorn@^8.2.4, acorn@^8.4.1, acorn@^8.7.1, acorn@^8.
   integrity sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==
 
 acorn@^8.11.0, acorn@^8.14.0:
-  version "8.14.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.14.0.tgz#063e2c70cac5fb4f6467f0b11152e04c682795b0"
-  integrity sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==
+  version "8.14.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.14.1.tgz#721d5dc10f7d5b5609a891773d47731796935dfb"
+  integrity sha512-OvQ/2pUDKmgfCg++xsTX1wGxfTaszcHVcTctW4UJB4hibJx2HXxxO5UmVgyjMa+ZDsiaf5wWLXYpRWMmBI0QHg==
 
 add-stream@^1.0.0:
   version "1.0.0"

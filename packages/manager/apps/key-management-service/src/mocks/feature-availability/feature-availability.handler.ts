@@ -1,17 +1,19 @@
-import { PathParams } from 'msw';
 import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { featuresAvailabilityMock } from './feature-availability.mock';
 
-export type GetFeatureAvailabilituMocksParams = {
+export type GetFeatureAvailabilityMocksParams = {
   isFeatureAvailabilityKO?: boolean;
+  feature?: string;
 };
 
-const findAvailavilityByFeature = (params: PathParams) =>
-  featuresAvailabilityMock[params.feature.toString()];
+const findAvailabilityByFeature = (feature: string) => ({
+  [feature]: featuresAvailabilityMock[feature] ?? false,
+});
 
 export const getFeatureAvailabilityMocks = ({
   isFeatureAvailabilityKO,
-}: GetFeatureAvailabilituMocksParams): Handler[] => [
+  feature,
+}: GetFeatureAvailabilityMocksParams): Handler[] => [
   {
     url: '/feature/:feature/availability',
     response: isFeatureAvailabilityKO
@@ -21,7 +23,7 @@ export const getFeatureAvailabilityMocks = ({
             message: 'feature availability error',
           },
         }
-      : (_: unknown, params: PathParams) => findAvailavilityByFeature(params),
+      : () => findAvailabilityByFeature(feature),
     status: isFeatureAvailabilityKO ? 500 : 200,
     api: 'aapi',
   },
