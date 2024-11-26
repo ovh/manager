@@ -17,7 +17,6 @@ import {
   ManagerLinkProps,
 } from '@/components/ManagerLink/ManagerLink.component';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
-import { HYCU_CHANGE_PACK_FEATURE_ACTIVATED } from '@/constants';
 
 const ShortcutsItem = ({ children, ...rest }: ManagerLinkProps) => (
   <ManagerLink color={ODS_THEME_COLOR_INTENT.primary} {...rest}>
@@ -117,9 +116,7 @@ const ShortcutsTile = ({ serviceName }: { serviceName: string }) => {
         !hycuDetail?.data.controllerId
           ? links.linkActivated
           : links.linkReactivated,
-        ((HYCU_CHANGE_PACK_FEATURE_ACTIVATED &&
-          hycuDetail?.data.licenseStatus === LicenseStatus.ACTIVATED) ||
-          undefined) &&
+        hycuDetail?.data.licenseStatus === LicenseStatus.ACTIVATED &&
           links.linkChangePackType,
       ].filter(Boolean)}
     ></DashboardTile>
