@@ -9,6 +9,7 @@ import {
   NUTANIX_AUTHORIZATION_TYPE,
 } from './constants';
 import Cluster from './cluster.class';
+import Node from './node.class';
 
 export default class NutanixService {
   /* @ngInject */
@@ -38,7 +39,7 @@ export default class NutanixService {
   /**
    *
    * @param {string} nodeServiceName
-   * @param {clusrer[]} clusters
+   * @param {cluster[]} clusters
    * @returns {*} - cluster if found, null otherwise
    */
   static getClusterByNodeName(nodeServiceName, clusters = []) {
@@ -73,6 +74,31 @@ export default class NutanixService {
 
   getServicesDetails(serviceId) {
     return this.$http.get(`/services/${serviceId}`).then(({ data }) => data);
+  }
+
+  getAllServicesDetails(serviceId) {
+    return this.$q
+      .all([
+        this.getServicesDetails(serviceId),
+        this.getServiceOptions(serviceId),
+      ])
+      .then(([serviceDetails, optionsDetails]) => ({
+        serviceDetails,
+        optionsDetails,
+      }));
+  }
+
+  static getServicesTotalPrice(serviceDetails, optionsDetails) {
+    const optionsPrices = optionsDetails.reduce((sum, service) => {
+      const price = service.billing?.pricing?.priceInUcents || 0;
+      return sum + price;
+    }, 0);
+
+    return {
+      priceInUcents:
+        optionsPrices + serviceDetails.billing?.pricing.priceInUcents,
+      currency: serviceDetails.billing?.pricing?.price?.currencyCode,
+    };
   }
 
   getNodeHardwareInfo(nodeId) {
@@ -171,6 +197,14 @@ export default class NutanixService {
     return this.$q
       .all(nodes.map((node) => this.getServer(node.server)))
       .then((res) => res);
+  }
+
+  getNodesWithState(serviceName) {
+    return this.$http
+      .get(`/nutanix/${serviceName}/nodes`, {
+        serviceType: 'apiv6',
+      })
+      .then(({ data }) => data.map((node) => new Node(node)));
   }
 
   getServer(nodeId) {

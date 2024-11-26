@@ -37,6 +37,15 @@ export default /* @ngInject */ ($stateProvider) => {
       user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
       cluster: /* @ngInject */ (NutanixService, serviceName) =>
         NutanixService.getCluster(serviceName),
+      clusterAddOns: /* @ngInject */ (NutanixService, serviceInfo) =>
+        NutanixService.getServiceOptions(serviceInfo.serviceId).catch(
+          (error) => {
+            if (error.status === 403) {
+              return [];
+            }
+            throw error;
+          },
+        ),
       nodes: /* @ngInject */ (cluster, NutanixService) =>
         NutanixService.getNodeDetails(cluster.getNodes()),
       nodeId: /* @ngInject */ (cluster) => cluster.getFirstNode(),
