@@ -75,7 +75,10 @@ const GeneralInformationsTile = ({ serviceName }: { serviceName: string }) => {
   const { t: tCommon } = useTranslation('hycu');
   const { t } = useTranslation('hycu/dashboard');
   const navigate = useNavigate();
-  const { data: hycuDetail } = useDetailsLicenseHYCU(serviceName);
+  const {
+    data: hycuDetail,
+    isLoading: isLoadingLicence,
+  } = useDetailsLicenseHYCU(serviceName);
   const { data: serviceDetails, isLoading } = useServiceDetails({
     resourceName: serviceName,
   });
@@ -123,7 +126,7 @@ const GeneralInformationsTile = ({ serviceName }: { serviceName: string }) => {
         {
           id: 'status',
           label: t('hycu_dashboard_label_status'),
-          value: isLoading ? (
+          value: isLoadingLicence ? (
             <OsdsSkeleton />
           ) : (
             <OsdsChip
