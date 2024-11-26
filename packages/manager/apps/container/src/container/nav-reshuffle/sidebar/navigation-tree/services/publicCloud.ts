@@ -496,7 +496,7 @@ pciNode.children = [
     idAttr: 'pci-ai-link',
     universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_ai',
-    features: ['notebooks', 'ai-apps', 'training', 'ai-dashboard'],
+    features: ['notebooks', 'ai-apps', 'training', 'ai-dashboard', 'pci-ai-notebooks'],
     forceVisibility: true,
     children: [
       {
@@ -523,6 +523,19 @@ pciNode.children = [
           hash: '#/pci/projects/{projectId}/notebooks',
         },
         features: ['notebooks'],
+        forceVisibility: true,
+      },
+      {
+        id: 'pci-ai-notebooks',
+        idAttr: 'pci-ai-notebooks-link',
+        universe: PUBLICCLOUD_UNIVERSE_ID,
+        translation: 'sidebar_pci_ai_notebooks',
+        serviceType: 'CLOUD_PROJECT_AI_NOTEBOOK',
+        routing: {
+          application: 'public-cloud',
+          hash: '#/pci/projects/{projectId}/ai/notebooks',
+        },
+        features: ['pci-ai-notebooks'],
         forceVisibility: true,
       },
       {

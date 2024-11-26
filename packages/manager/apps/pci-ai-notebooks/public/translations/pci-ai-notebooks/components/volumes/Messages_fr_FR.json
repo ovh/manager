@@ -1,0 +1,19 @@
+{
+  "containerFieldLabel": "Container",
+  "containerFieldPlaceholder": "Séléctionner un container",
+  "gitBranchFieldLabel": "Branch Git",
+  "mountDirectoryFieldLabel": "Répertoire de montage",
+  "permissionsFieldLabel": "Permission",
+  "permissionDescription": "En `Lecture Seule` aucune synchronisation n'est lancée en fin de job. Le job se finalise ainsi plus rapidement.",
+  "permission_RO": "Lecture Seule",
+  "permission_RW": "Lecture & Ecriture",
+  "permission_RWD": "Lecture & Ecriture & Suppression",
+  "cachingFieldLabel": "Cache",
+  "cachingDescription": "Les conteneurs en cache peuvent être réutilisés par d'autres jobs sans synchronisation additionnelle. Les conteneurs sont retirés du cache après une période d'inactivité.",
+  "duplicateMountPathError": "Ce répertoire de montage existe déjà",
+  "mountPathError": "Ce répertoire de montage est réservé",
+  "mountPathErrorFormat": "Format incorrect (ex : /files/test)",
+  "numberOfConfiguredVolumes_zero": "{{count}} volumes configurés",
+  "numberOfConfiguredVolumes_one": "{{count}} volume configuré sur {{max}}",
+  "numberOfConfiguredVolumes_other": "{{count}} volumes configurés sur {{max}}"
+}
