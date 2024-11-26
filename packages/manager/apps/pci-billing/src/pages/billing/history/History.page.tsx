@@ -47,80 +47,78 @@ export default function History() {
     TRUSTED_ZONE,
   ]);
 
-  const isTrustedZone = availability && availability[TRUSTED_ZONE];
-  const isPostPaidUsageBilling =
-    availability && availability[PCI_FEATURES_BILLING_POST_PAID];
+  const isTrustedZone = availability?.[TRUSTED_ZONE];
+  const isPostPaidUsageBilling = availability?.[PCI_FEATURES_BILLING_POST_PAID];
 
   return (
     <div>
       <HistoryHeader />
-      <>
-        {isPending ? (
-          <OsdsSpinner
-            className="block text-center"
-            inline
-            size={ODS_SPINNER_SIZE.md}
+
+      {isPending ? (
+        <OsdsSpinner
+          className="block text-center"
+          inline
+          size={ODS_SPINNER_SIZE.md}
+        />
+      ) : (
+        <>
+          <HistoryResume
+            totalPrice={consumption?.totals.total}
+            isPostPaidUsageBilling={isPostPaidUsageBilling}
           />
-        ) : (
-          <>
-            <HistoryResume
-              totalPrice={consumption?.totals.total}
-              isPostPaidUsageBilling={isPostPaidUsageBilling}
-            />
 
-            <div className="flex items-start flex-col xl:flex-row gap-7">
-              <OsdsTile
-                className="shadow-custom-tile"
-                rounded
-                variant={ODS_TILE_VARIANT.flat}
-              >
-                <div className="flex flex-col w-full">
-                  <OsdsText
-                    size={ODS_TEXT_SIZE._400}
-                    level={ODS_TEXT_LEVEL.heading}
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    className="mb-5"
-                  >
-                    {t(
-                      isPostPaidUsageBilling
-                        ? 'cpbhd_monthly_post_paid_header'
-                        : 'cpbhd_monthly_header',
-                      {
-                        ...translationValues,
-                      },
-                    )}
-                  </OsdsText>
+          <div className="flex items-start flex-col xl:flex-row gap-7">
+            <OsdsTile
+              className="shadow-custom-tile"
+              rounded
+              variant={ODS_TILE_VARIANT.flat}
+            >
+              <div className="flex flex-col w-full">
+                <OsdsText
+                  size={ODS_TEXT_SIZE._400}
+                  level={ODS_TEXT_LEVEL.heading}
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  className="mb-5"
+                >
+                  {t(
+                    isPostPaidUsageBilling
+                      ? 'cpbhd_monthly_post_paid_header'
+                      : 'cpbhd_monthly_header',
+                    {
+                      ...translationValues,
+                    },
+                  )}
+                </OsdsText>
 
-                  <MonthlyConsumption consumption={consumption} />
-                </div>
-              </OsdsTile>
+                <MonthlyConsumption consumption={consumption} />
+              </div>
+            </OsdsTile>
 
-              <OsdsTile
-                className="shadow-custom-tile"
-                rounded
-                variant={ODS_TILE_VARIANT.flat}
-              >
-                <div className="flex flex-col w-full">
-                  <OsdsText
-                    size={ODS_TEXT_SIZE._400}
-                    level={ODS_TEXT_LEVEL.heading}
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    className="mb-5"
-                  >
-                    {t('cpbhd_hourly_header', { ...translationValues })}
-                  </OsdsText>
+            <OsdsTile
+              className="shadow-custom-tile"
+              rounded
+              variant={ODS_TILE_VARIANT.flat}
+            >
+              <div className="flex flex-col w-full">
+                <OsdsText
+                  size={ODS_TEXT_SIZE._400}
+                  level={ODS_TEXT_LEVEL.heading}
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  className="mb-5"
+                >
+                  {t('cpbhd_hourly_header', { ...translationValues })}
+                </OsdsText>
 
-                  <HourlyConsumption
-                    consumption={consumption}
-                    isTrustedZone={isTrustedZone}
-                  />
-                </div>
-              </OsdsTile>
-            </div>
-            <Outlet />
-          </>
-        )}
-      </>
+                <HourlyConsumption
+                  consumption={consumption}
+                  isTrustedZone={isTrustedZone}
+                />
+              </div>
+            </OsdsTile>
+          </div>
+          <Outlet />
+        </>
+      )}
     </div>
   );
 }

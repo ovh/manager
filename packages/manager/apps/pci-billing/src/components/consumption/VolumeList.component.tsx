@@ -158,7 +158,6 @@ export default function VolumeList({ volumes }: Readonly<VolumeListProps>) {
         totalItems={paginatedVolumes.totalRows}
         pagination={pagination}
         onPaginationChange={setPagination}
-        className="overflow-x-visible"
       />
     </div>
   );

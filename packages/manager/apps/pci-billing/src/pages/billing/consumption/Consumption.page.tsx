@@ -33,7 +33,7 @@ export default function Consumption() {
 
   const { data: consumption, isPending } = useGeTCurrentUsage(projectId);
 
-  const isTrustedZone = availability && availability[TRUSTED_ZONE];
+  const isTrustedZone = availability?.[TRUSTED_ZONE];
 
   const monthlyTotal = `${consumption?.totals?.monthly?.total?.toFixed(2)} ${
     currency.symbol

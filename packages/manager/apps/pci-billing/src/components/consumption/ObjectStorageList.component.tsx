@@ -103,7 +103,6 @@ export default function ObjectStorageList({
         totalItems={paginatedStorages.totalRows}
         pagination={pagination}
         onPaginationChange={setPagination}
-        className="overflow-x-visible"
       />
     </div>
   );
