@@ -8,17 +8,15 @@ const SlicedRegions: FC<{ regions: string[]; length: number }> = ({
   regions,
   length,
 }) => {
-  const { formattedRegion, slicedText } = useMemo(
-    () => ({
-      formattedRegion: regions.join(', '),
-      slicedText:
-        regions.length > length
-          ? regions
-              .slice(0, length)
-              .concat('...')
-              .join(', ')
-          : '',
-    }),
+  const formattedRegion = useMemo(() => regions.join(', '), [regions]);
+  const slicedText = useMemo(
+    () =>
+      regions.length > length
+        ? regions
+            .slice(0, length)
+            .concat('...')
+            .join(', ')
+        : '',
     [regions, length],
   );
 
