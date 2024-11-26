@@ -20,7 +20,7 @@ export type TabsProps = {
   tabs: TabItemProps[];
 };
 
-export default function TabsPanel({ tabs }: Readonly<TabsProps>) {
+export function TabsPanel({ tabs }: Readonly<TabsProps>) {
   const [activePanel, setActivePanel] = useState('');
   const location = useLocation();
   const { clearNotifications } = useNotifications();
