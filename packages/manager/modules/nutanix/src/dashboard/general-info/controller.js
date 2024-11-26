@@ -28,10 +28,12 @@ export default class NutanixGeneralInfoCtrl {
     this.REPLICATION_FACTOR_PREFIX = REPLICATION_FACTOR_PREFIX;
     this.NUTANIX_PERSONAL_LICENSE_EDITION = NUTANIX_PERSONAL_LICENSE_EDITION;
     this.GENERAL_INFO_TILE_TITLE = GENERAL_INFO_TILE_TITLE;
+    this.nodesDetails = [];
   }
 
   $onInit() {
     this.loadServicesDetails();
+    this.loadNodesStatus();
     this.setPrivateBandwidthServiceId();
     this.clusterRedeploying = this.cluster.status === CLUSTER_STATUS.DEPLOYING;
     this.showRedeployWarningModal = false;
@@ -51,7 +53,7 @@ export default class NutanixGeneralInfoCtrl {
 
   loadServicesDetails() {
     this.loadingServicesDetails = true;
-    return this.NutanixService.getServicesDetails(this.serviceInfo.serviceId)
+    return this.NutanixService.getServicesDetails(this.serviceId)
       .then((servicesDetails) => {
         this.servicesDetails = servicesDetails;
         this.getPackType();
@@ -59,6 +61,25 @@ export default class NutanixGeneralInfoCtrl {
       .finally(() => {
         this.loadingServicesDetails = false;
       });
+  }
+
+  loadNodesStatus() {
+    this.loadingNodesStatus = true;
+    return this.NutanixService.getNodesWithState(this.serviceName)
+      .then((nodesDetails) => {
+        this.nodesDetails = nodesDetails;
+      })
+      .finally(() => {
+        this.loadingNodesStatus = false;
+      });
+  }
+
+  get numberNodesDeployed() {
+    return this.nodesDetails.filter((node) => node.isDeployed).length;
+  }
+
+  get numberNodesToDeploy() {
+    return this.nodesDetails.filter((node) => node.isWaitForConfigure).length;
   }
 
   setPrivateBandwidthServiceId() {
