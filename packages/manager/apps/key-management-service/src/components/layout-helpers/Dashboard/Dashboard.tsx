@@ -30,8 +30,9 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
   useEffect(() => {
     const activeTab = tabs.find(
       (tab) =>
-        `/${okmsId}${tab.url ? '/' : ''}${tab.url}` === location.pathname,
+        tab.url !== '' && location.pathname.startsWith(`/${okmsId}/${tab.url}`),
     );
+
     if (!activeTab) return;
     setActivePanel(activeTab?.url);
   }, [location]);
