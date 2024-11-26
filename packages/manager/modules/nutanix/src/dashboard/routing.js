@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
       return Promise.all([$translatePromise, serviceInfoPromise]).then(
         ([$translate, serviceInfo]) => {
-          if (serviceInfo.isResiliated()) {
+          if (serviceInfo.isTerminated()) {
             return {
               state: 'error',
               params: {
@@ -37,8 +37,17 @@ export default /* @ngInject */ ($stateProvider) => {
       user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
       cluster: /* @ngInject */ (NutanixService, serviceName) =>
         NutanixService.getCluster(serviceName),
+      clusterAddOns: /* @ngInject */ (NutanixService, serviceInfo) =>
+        NutanixService.getServiceOptions(serviceInfo.serviceId).catch(
+          (error) => {
+            if (error.status === 403) {
+              return [];
+            }
+            throw error;
+          },
+        ),
       nodes: /* @ngInject */ (cluster, NutanixService) =>
-        NutanixService.getNodeDetails(cluster.getNodes()),
+        NutanixService.getNodeDetails(cluster),
       nodeId: /* @ngInject */ (cluster) => cluster.getFirstNode(),
       server: /* @ngInject */ (nodeId, NutanixService) =>
         NutanixService.getServer(nodeId),
