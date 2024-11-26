@@ -3,7 +3,12 @@ import find from 'lodash/find';
 import { SANITIZATION, FEATURES } from './constants';
 
 import signupFormComponent from './form/component';
-import { TRACKING_DETAILS } from './at-internet.constants';
+import {
+  BUTTON_TRACKING_PREFIX,
+  CHAPTER_1,
+  DISPLAY_ROOT_PAGE_TRACKING,
+  ERROR_TRACKING_PREFIX,
+} from './at-internet.constants';
 
 export const state = {
   name: 'sign-up',
@@ -107,30 +112,36 @@ export const state = {
     ) => (stepName) => {
       const focusedStep = getStepByName(stepName);
       if ($state.current.name !== focusedStep.state) {
-        const { chapter1, chapter2, chapter3 } = TRACKING_DETAILS;
-        const trackingHits = [chapter1, chapter2, chapter3, 'page', 'button'];
         if (stepName === 'details' && isActiveStep('activity')) {
-          const additionalHits = [
+          const trackingHits = [
+            BUTTON_TRACKING_PREFIX,
             'create_account_step4',
             'edit-step3',
             `${me.model.legalform}_${me.ovhSubsidiary}`,
           ];
-          trackingHits.push(...additionalHits);
-          atInternet.trackPage({
+          atInternet.trackClick({
             name: trackingHits.join('::'),
-            page_category: chapter1,
+            page_category: CHAPTER_1,
+            page: {
+              name: DISPLAY_ROOT_PAGE_TRACKING,
+            },
+            type: 'action',
           });
         }
         if (stepName === 'activity') {
-          const additionalHits = [
+          const trackingHits = [
+            BUTTON_TRACKING_PREFIX,
             'create_account_step3',
             'next',
             `${me.model.legalform}_${me.ovhSubsidiary}`,
           ];
-          trackingHits.push(...additionalHits);
-          atInternet.trackPage({
+          atInternet.trackClick({
             name: trackingHits.join('::'),
-            page_category: chapter1,
+            page_category: CHAPTER_1,
+            page: {
+              name: DISPLAY_ROOT_PAGE_TRACKING,
+            },
+            type: 'action',
           });
         }
         $state.transitionTo(focusedStep.state, $state.params, {
@@ -186,15 +197,7 @@ export const state = {
       },
     ],
     trackError: /* @ngInject */ (atInternet) => (step, field) => {
-      const { chapter1, chapter2, chapter3 } = TRACKING_DETAILS;
-      const errorTrackingHits = [
-        chapter1,
-        chapter2,
-        chapter3,
-        'create_account_step',
-        'banner-error',
-        `error_${field}`,
-      ];
+      const errorTrackingHits = [ERROR_TRACKING_PREFIX, `error_${field}`];
       atInternet.trackPage({
         name: errorTrackingHits.join('::'),
         page_category: 'banner',
