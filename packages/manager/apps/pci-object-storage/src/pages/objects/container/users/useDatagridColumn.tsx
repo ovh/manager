@@ -33,9 +33,9 @@ export const useDatagridColumn = () => {
     },
     {
       id: 'actions',
-      cell: () => (
+      cell: (props: TUser) => (
         <div className="min-w-16">
-          <ActionsComponent />
+          <ActionsComponent user={props} />
         </div>
       ),
       label: '',
