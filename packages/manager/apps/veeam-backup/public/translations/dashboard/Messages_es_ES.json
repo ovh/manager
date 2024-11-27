@@ -21,5 +21,6 @@
   "administrator_contact": "{{code}} Administrador",
   "billing_contact": "{{code}} Facturación",
   "technical_contact": "{{code}} Técnico",
-  "location": "Localización"
+  "location": "Localización",
+  "terminated_service": "El servicio se ha dado de baja."
 }

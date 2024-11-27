@@ -21,5 +21,6 @@
   "administrator_contact": "{{code}} Administrator",
   "billing_contact": "{{code}} Billing",
   "technical_contact": "{{code}} Technical",
-  "location": "Location"
+  "location": "Location",
+  "terminated_service": "The service has been cancelled."
 }

@@ -21,5 +21,6 @@
   "administrator_contact": "{{code}} Kontakt administracyjny",
   "billing_contact": "{{code}} Kontakt księgowy",
   "technical_contact": "{{code}} Kontakt techniczny",
-  "location": "Lokalizacja"
+  "location": "Lokalizacja",
+  "terminated_service": "Usługa została zakończona."
 }

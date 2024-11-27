@@ -21,5 +21,6 @@
   "administrator_contact": "{{code}} Administrator",
   "billing_contact": "{{code}} Abrechnung",
   "technical_contact": "{{code}} Technik",
-  "location": "Standort"
+  "location": "Standort",
+  "terminated_service": "Der Dienst wurde gekündigt."
 }
