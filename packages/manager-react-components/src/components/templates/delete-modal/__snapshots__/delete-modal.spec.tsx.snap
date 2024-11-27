@@ -62,7 +62,7 @@ exports[`Delete Modal component > renders loading modal 1`] = `
       type="button"
       variant="flat"
     >
-      Supprimer
+      Résilier
     </osds-button>
   </osds-modal>
 </DocumentFragment>
