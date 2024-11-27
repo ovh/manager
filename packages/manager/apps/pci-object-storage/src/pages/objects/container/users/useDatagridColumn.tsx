@@ -4,7 +4,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { TUser } from '@/api/data/user';
-import ActionsComponent from '@/components/Actions.component';
+import ActionsComponent from '@/pages/objects/container/users/Actions';
 
 export const useDatagridColumn = () => {
   const { t } = useTranslation('objects/users');
