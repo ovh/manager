@@ -3,18 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.3.0...@ovh-ux/manager-react-components@2.4.0) (2024-11-27)
+
+### Bug Fixes
+
+- **mrc:** datagrid no results should be centered ([#14202](https://github.com/ovh/manager/issues/14202)) ([
+  5eec121](https://github.com/ovh/manager/commit/5eec12134b6e6fcfafeb9806be150ca6285257df))
+- **manager-react-components:** sync with v1.x ([#14170](https://github.com/ovh/manager/issues/14170)) ([ce3d1dd](https://github.com/ovh/manager/commit/ce3d1dd9b6926a2218d6add4edfa0c602475a067))
+
+### Features
+
+- switch link button and cta ([#14270](https://github.com/ovh/manager/issues/14270)) ([633e8a2](https://github.com/ovh/manager/commit/633e8a2a83c2c547fa785bf50604dc53966038c5))
+- **mrc:** uniformize confirm button label on delete modal ([#14293](https://github.com/ovh/manager/issues/14293)) ([2c6ce3d](https://github.com/ovh/manager/commit/2c6ce3d20e13711b6b0a216afb88e5952a36316e))
+
+# [1.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.42.0...@ovh-ux/manager-react-components@1.43.0) (2024-11-27)
+
+### Bug Fixes
+
+- **mrc:** datagrid no results should be centered ([#14251](https://github.com/ovh/manager/issues/14251)) ([df12a90](https://github.com/ovh/manager/commit/df12a9093116679af3a7cf95d843d65e335c9a00))
+- **mrc:** ensure useAuthorizationIam query option enabled is a boolean ([#14273](https://github.com/ovh/manager/issues/14273)) ([3eade54](https://github.com/ovh/manager/commit/3eade547872cecc27d8f545df7fc63205b1cad92))
+
+### Features
+
+- **mrc:** uniformize confirm button label on delete modal ([#14294](https://github.com/ovh/manager/issues/14294)) ([dd1a6a9](https://github.com/ovh/manager/commit/dd1a6a9f86a4d2aeae52899d63d0f257a803cb7e))
+- switch link button and cta ([#14272](https://github.com/ovh/manager/issues/14272)) ([243f5f0](https://github.com/ovh/manager/commit/243f5f011420feb3c87c76bef90a70da7bf03dc4))
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.2.0...@ovh-ux/manager-react-components@2.3.0) (2024-11-21)
 
 ### Bug Fixes
 
 - **manager-components:** add guide onclick callback ([#14193](https://github.com/ovh/manager/issues/14193)) ([8019676](https://github.com/ovh/manager/commit/80196764298cf3c9ae2c102e4b321f0ac6f4460c))
 - **mrc:** icon actionmenu compact ellipsisvertical ([#14176](https://github.com/ovh/manager/issues/14176)) ([7a3f02a](https://github.com/ovh/manager/commit/7a3f02acc8bd3199767ecc596e213b75b3fefa45))
+- **pci.project:** update continent for Rabat ([#13105](https://github.com/ovh/manager/issues/13105)) ([6818e73](https://github.com/ovh/manager/commit/6818e73fd9632fecd023010019e647c97c8507f4))
 
 ### Features
 
 - **manager-components:** disable update name button if no change ([#13808](https://github.com/ovh/manager/issues/13808)) ([7ce27f3](https://github.com/ovh/manager/commit/7ce27f3713c808d288ce28db5a1befbbe099678c))
+- **hycu:** add activate license modal ([95e0ad7](https://github.com/ovh/manager/commit/95e0ad7d645afacd97b5ec9939898da51c5b0fc2))
 
-## [1.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0...@ovh-ux/manager-react-components@1.41.1) (2024-11-13)
+# [1.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.2...@ovh-ux/manager-react-components@1.42.0) (2024-11-21)
+
+### Bug Fixes
+
+- **manager-components:** add guide onclick callback ([#13859](https://github.com/ovh/manager/issues/13859)) ([93bb059](https://github.com/ovh/manager/commit/93bb05931f77978d22496313c75e80c8f7fbf71d))
+- **manager-react-components:** add convertHourlyPriceToMonthly method ([#14121](https://github.com/ovh/manager/issues/14121)) ([d007719](https://github.com/ovh/manager/commit/d00771960fbaaea11b709a0e412ed3b96b8419b5))
+
+### Features
+
+- **manager-components:** disable update name button if no change ([#14169](https://github.com/ovh/manager/issues/14169)) ([857c7da](https://github.com/ovh/manager/commit/857c7daae363a93e351ddcc83ca6b76106d2ba4d))
+
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.1.0...@ovh-ux/manager-react-components@2.2.0) (2024-11-15)
+
+## Features
+
+- **manager-react-components:** bump ods version 18.3.0 ([#14080](https://github.com/ovh/manager/issues/14080)) ([040237b](https://github.com/ovh/manager/commit/040237b6b436b9c1e5b76c9fed3076102aee3c1e))
+
+# [1.41.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.2...@ovh-ux/manager-react-components@1.41.1) (2024-11-14)
+
+### Bug Fixes
+
+- **manager-react-components**new trad for continent container (#14095) ([#14095](https://github.com/ovh/manager/pull/14095)) ([c3447fc](https://github.com/ovh/manager/commit/c3447fc85eece49a494745be935e1ebe01e62ab7))
+- **manager-react-components**useCatalogPrice ([#14056](https://github.com/ovh/manager/pull/14056)) ([744965e5](https://github.com/ovh/manager/commit/74965e5c096dba555e9ec59b47716bd8e562733b))
+- **manager-react-components**useNotifications prevent early clears ([#14056](https://github.com/ovh/manager/pull/14056)) ([8816453](https://github.com/ovh/manager/commit/881645356019834987bdd43af05cb25b0b5a638a))
+- **manager-react-components**add skip to StepComponent ([#14056](https://github.com/ovh/manager/pull/14056)) ([52a71a4](https://github.com/ovh/manager/commit/52a71a438a54b6e470c9821610710b6ef7ea211f))
+- add missing translations [CDS 3468] (#14095) ([#14021](https://github.com/ovh/manager/pull/14021)) ([455aa34](https://github.com/ovh/manager/commit/455aa34f6d0331040e64ce640d29c5b6d361aef3))
+
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.1...@ovh-ux/manager-react-components@2.1.0) (2024-11-13)
+
+### BREAKING CHANGES
+
+- **manager-react-components:** bump ODS V18 ([#14035](https://github.com/ovh/manager/issues/14035)) ([377f420](https://github.com/ovh/manager/commit/377f4206c7e9a4f43aec27b25a1a617e62aa5dba))
+
+# [1.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.0...@ovh-ux/manager-react-components@1.41.1) (2024-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-components
 
@@ -156,8 +216,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### BREAKING CHANGES
 
 - **manager-react-components:** update manager react version
-
-Signed-off-by: Alex Boungnaseng <alex.boungnaseng.ext@corp.ovh.com>
 
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.0.0...@ovh-ux/manager-react-components@3.0.0) (2024-10-11)
 
