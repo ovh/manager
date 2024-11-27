@@ -3,15 +3,15 @@ import { RetrievalStateEnum } from '@/types/cloud/storage/RetrievalStateEnum';
 /** ContainerObject */
 export interface ContainerObject {
   /** Object content type */
-  contentType?: string;
+  contentType: string;
   /** Last modification date */
-  lastModified?: string;
+  lastModified: string;
   /** Object name */
-  name?: string;
+  name: string;
   /** Object retrieval delay (when unsealing) */
-  retrievalDelay?: number;
+  retrievalDelay: number;
   /** Object retrieval state */
-  retrievalState?: RetrievalStateEnum;
+  retrievalState: RetrievalStateEnum;
   /** Object size */
-  size?: number;
+  size: number;
 }

@@ -3,9 +3,9 @@ import { PresignedURLMethodEnum } from '@/types/cloud/storage/PresignedURLMethod
 /** Presigned URL */
 export interface PresignedURL {
   /** Presigned URL method */
-  method?: PresignedURLMethodEnum;
+  method: PresignedURLMethodEnum;
   /** Signed headers */
-  signedHeaders?: { [key: string]: string };
+  signedHeaders: { [key: string]: string };
   /** Presigned URL */
-  url?: string;
+  url: string;
 }

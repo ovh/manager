@@ -1,15 +1,15 @@
 /** AI Solutions Data Object */
 export interface Editor {
   /** Short description of the code editor */
-  description?: string;
+  description: string;
   /** URL toward the code editor documentation */
-  docUrl?: string;
+  docUrl: string;
   /** Unique identifier of the code editor */
-  id?: string;
+  id: string;
   /** URL toward the logo to illustrate the editor */
-  logoUrl?: string;
+  logoUrl: string;
   /** Name of the code editor */
-  name?: string;
+  name: string;
   /** Version of the code editor */
-  version?: string;
+  version: string;
 }

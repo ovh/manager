@@ -3,7 +3,7 @@ import { Permission } from '@/types/cloud/role/Permission';
 /** OpenStack service */
 export interface Service {
   /** Name of the service */
-  name?: string;
+  name: string;
   /** List of permissions */
-  permissions?: Permission[];
+  permissions: Permission[];
 }

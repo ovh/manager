@@ -9,9 +9,9 @@ export interface NotebookSpecInput {
   /** Environment to deploy in this notebook */
   env: NotebookEnv;
   /** List of environment variables to be set inside the notebook */
-  envVars: JobEnv[];
+  envVars?: JobEnv[];
   /** Labels are used to scope tokens, labels prefixed by 'ovh/' are owned by the platform and overridden */
-  labels: { [key: string]: string };
+  labels?: { [key: string]: string };
   /** Notebook name */
   name: string;
   /** Host region of the notebook */
@@ -21,11 +21,11 @@ export interface NotebookSpecInput {
   /** Shutdown strategy (if any) */
   shutdown?: ShutdownStrategyEnum;
   /** SSH keys authorized to access the notebook */
-  sshPublicKeys: string[];
+  sshPublicKeys?: string[];
   /** Whether notebook is set to be restarted after timeout */
-  timeoutAutoRestart: boolean;
+  timeoutAutoRestart?: boolean;
   /** Whether notebook api port can be accessed without any authentication token */
-  unsecureHttp: boolean;
+  unsecureHttp?: boolean;
   /** Notebook Data linked */
-  volumes: Volume[];
+  volumes?: Volume[];
 }

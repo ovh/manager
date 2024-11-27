@@ -3,9 +3,9 @@ import { RegionalizedResource } from '@/types/cloud/billingView/RegionalizedReso
 /** TypedResources */
 export interface TypedResources {
   /** Resources per region */
-  resources?: RegionalizedResource[];
+  resources: RegionalizedResource[];
   /** Total price */
-  totalPrice?: number;
+  totalPrice: number;
   /** Type of the resources */
-  type?: string;
+  type: string;
 }
