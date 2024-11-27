@@ -72,3 +72,5 @@ export const STANDARD_S3 = [
     },
   },
 ];
+export const DOWNLOAD_FILENAME = 'import.json';
+export const DOWNLOAD_TYPE = 'application/json"';

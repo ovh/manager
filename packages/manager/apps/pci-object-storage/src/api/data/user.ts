@@ -51,3 +51,12 @@ export const deleteUser = async (
     `/cloud/project/${projectId}/user/${userId}/s3Credentials/${accessKey}`,
   );
 };
+export const getUserStoragePolicy = async (
+  projectId: string,
+  userId: number,
+): Promise<{ policy: string }> => {
+  const { data } = await v6.get(
+    `/cloud/project/${projectId}/user/${userId}/policy`,
+  );
+  return data;
+};
