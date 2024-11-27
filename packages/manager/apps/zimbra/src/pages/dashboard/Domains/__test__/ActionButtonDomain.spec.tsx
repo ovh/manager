@@ -4,6 +4,7 @@ import ActionButtonDomain from '../ActionButtonDomain.component';
 import { render } from '@/utils/test.provider';
 import domainTranslation from '@/public/translations/domains/Messages_fr_FR.json';
 import { domainDetailMock } from '@/api/_mock_';
+import { FEATURE_FLAGS } from '@/utils';
 
 describe('Domains datagrid action menu', () => {
   it('we have good number of item with good content', () => {
@@ -13,16 +14,35 @@ describe('Domains datagrid action menu', () => {
 
     const menuItems = container.querySelectorAll('ods-popover ods-button');
 
-    expect(menuItems.length).toBe(2);
+    if (FEATURE_FLAGS.DOMAIN_DIAGNOSTICS) {
+      expect(menuItems.length).toBe(3);
 
-    expect(menuItems[0]).toHaveAttribute(
-      'label',
-      domainTranslation.zimbra_domains_tooltip_configure,
-    );
+      expect(menuItems[0]).toHaveAttribute(
+        'label',
+        domainTranslation.zimbra_domains_tooltip_configure,
+      );
 
-    expect(menuItems[1]).toHaveAttribute(
-      'label',
-      domainTranslation.zimbra_domains_tooltip_delete,
-    );
+      expect(menuItems[1]).toHaveAttribute(
+        'label',
+        domainTranslation.zimbra_domains_tooltip_diagnostics,
+      );
+
+      expect(menuItems[2]).toHaveAttribute(
+        'label',
+        domainTranslation.zimbra_domains_tooltip_delete,
+      );
+    } else {
+      expect(menuItems.length).toBe(2);
+
+      expect(menuItems[0]).toHaveAttribute(
+        'label',
+        domainTranslation.zimbra_domains_tooltip_configure,
+      );
+
+      expect(menuItems[1]).toHaveAttribute(
+        'label',
+        domainTranslation.zimbra_domains_tooltip_delete,
+      );
+    }
   });
 });
