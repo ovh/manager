@@ -14,7 +14,6 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useDomains, useGenerateUrl, usePlatform, useAccount } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
-import { TabItemProps, AccountTabsPanel } from './AccountTabsPanel.component';
 import { urls } from '@/routes/routes.constants';
 import EmailAccountSettings from './EmailAccountSettings.page';
 import EmailAccountsAlias from './EmailAccountsAlias.page';
@@ -29,6 +28,11 @@ import {
   EMAIL_ACCOUNT_AUTO_REPLY,
   EMAIL_ACCOUNT_REDIRECTION,
 } from '@/tracking.constant';
+import TabsPanel, {
+  activatedTabs,
+  computePathMatchers,
+  TabItemProps,
+} from '@/components/layout-helpers/Dashboard/TabsPanel';
 
 export default function AddAndEditAccount() {
   const { trackClick } = useOvhTracking();
@@ -61,45 +65,46 @@ export default function AddAndEditAccount() {
     shouldFetchAll: true,
   });
 
-  function activatedTabs(pathMatchers: RegExp[]) {
-    return pathMatchers?.some((pathMatcher) =>
-      pathMatcher.test(location.pathname),
-    );
-  }
-  function computePathMatchers(routes: string[]) {
-    return routes.map(
-      (path) => new RegExp(path.replace(':serviceName', platformId)),
-    );
-  }
-  const pathMatcherSettingsTabs = computePathMatchers([
-    urls.email_accounts_add,
-    urls.email_accounts_edit,
-  ]);
+  const pathMatcherSettingsTabs = computePathMatchers(
+    [urls.email_accounts_add, urls.email_accounts_edit],
+    platformId,
+  );
 
-  const pathMatcherAliasTabs = computePathMatchers([
-    urls.email_accounts_alias,
-    urls.email_accounts_alias_add,
-    urls.email_accounts_alias_delete,
-  ]);
+  const pathMatcherAliasTabs = computePathMatchers(
+    [
+      urls.email_accounts_alias,
+      urls.email_accounts_alias_add,
+      urls.email_accounts_alias_delete,
+    ],
+    platformId,
+  );
 
-  const pathMatcherRedirectionsTabs = computePathMatchers([
-    urls.email_accounts_redirections,
-    urls.email_accounts_redirections_add,
-    urls.email_accounts_redirections_delete,
-  ]);
+  const pathMatcherRedirectionsTabs = computePathMatchers(
+    [
+      urls.email_accounts_redirections,
+      urls.email_accounts_redirections_add,
+      urls.email_accounts_redirections_delete,
+    ],
+    platformId,
+  );
 
-  const pathMatcherAutoRepliesTabs = computePathMatchers([
-    urls.email_accounts_auto_replies,
-    urls.email_accounts_auto_replies_add,
-    urls.email_accounts_auto_replies_delete,
-  ]);
+  const pathMatcherAutoRepliesTabs = computePathMatchers(
+    [
+      urls.email_accounts_auto_replies,
+      urls.email_accounts_auto_replies_add,
+      urls.email_accounts_auto_replies_delete,
+    ],
+    platformId,
+  );
 
   useEffect(() => {
     if (!isLoadingEmailDetailRequest && !isLoadingDomainRequest && platformId) {
-      setIsSettingsTab(activatedTabs(pathMatcherSettingsTabs));
-      setIsAliasTab(activatedTabs(pathMatcherAliasTabs));
-      setIsRedirectionsTab(activatedTabs(pathMatcherRedirectionsTabs));
-      setIsAutoRepliesTab(activatedTabs(pathMatcherAutoRepliesTabs));
+      setIsSettingsTab(activatedTabs(pathMatcherSettingsTabs, location));
+      setIsAliasTab(activatedTabs(pathMatcherAliasTabs, location));
+      setIsRedirectionsTab(
+        activatedTabs(pathMatcherRedirectionsTabs, location),
+      );
+      setIsAutoRepliesTab(activatedTabs(pathMatcherAutoRepliesTabs, location));
       setIsLoading(false);
     }
   }, [isLoadingEmailDetailRequest, isLoadingDomainRequest, location.pathname]);
@@ -183,7 +188,7 @@ export default function AddAndEditAccount() {
           </div>
           {editAccountDetail && (
             <div className="mt-5 mb-8">
-              <AccountTabsPanel tabs={tabsList} />
+              <TabsPanel tabs={tabsList} />
             </div>
           )}
           {isSettingsTab && (

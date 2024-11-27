@@ -74,7 +74,7 @@ export default function EmailAccountsAlias() {
     },
   ];
 
-  const hrefAddAlias = useGenerateUrl('./add', 'href', params);
+  const hrefAddAlias = useGenerateUrl('./add', 'path', params);
   const handleAddAliasClick = () => {
     trackClick({
       location: PageLocation.page,
