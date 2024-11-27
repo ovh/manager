@@ -50,7 +50,10 @@ import LinkIcon from '@/components/LinkIcon/LinkIcon.component';
 import StatusChip from '@/components/StatusChip/StatusChip.component';
 import UpdateVersionBanner from '@/components/UpdateRancherVersionBanner/UpdateVersionBanner.component';
 import { useTrackingAction } from '@/hooks/useTrackingPage/useTrackingPage';
-import { getLatestVersionAvailable } from '@/utils/rancher';
+import {
+  getI18nextDriverError,
+  getLatestVersionAvailable,
+} from '@/utils/rancher';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 export interface RancherDetailProps {
@@ -90,8 +93,11 @@ const RancherDetail = ({
 
   useEffect(() => {
     if (updateOfferErrorMessage) {
+      const driverError = getI18nextDriverError(updateOfferErrorMessage);
       addError(
-        t('updateOfferError', { errorMessage: updateOfferErrorMessage }),
+        driverError
+          ? t(...driverError)
+          : t('updateOfferError', { errorMessage: updateOfferErrorMessage }),
       );
     }
   }, [updateOfferErrorMessage]);
@@ -166,9 +172,8 @@ const RancherDetail = ({
             color={ODS_THEME_COLOR_INTENT.text}
             className="inline-block"
           >
-            {editNameResponseType === ODS_MESSAGE_TYPE.success
-              ? t('editNameRancherSuccess')
-              : t('editNameRancherError')}
+            {editNameResponseType === ODS_MESSAGE_TYPE.success &&
+              t('editNameRancherSuccess')}
           </OsdsText>
         </OsdsMessage>
       )}
@@ -329,7 +334,7 @@ const RancherDetail = ({
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
                   {rancher.currentState.usage?.orchestratedVcpus}
                 </OsdsText>
-                {displayDate && (
+                {dateUsage && (
                   <div className="mt-3">
                     <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
                       {t('last_update_date', {
