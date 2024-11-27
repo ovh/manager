@@ -51,7 +51,11 @@ export function useAuthorizationIam(
     queryKey: [urn, actions],
     queryFn: () => fetchAuthorizationCheck(actions, urn),
     enabled:
-      urn && urn.length > 0 && actions && actions.length > 0 && isTrigger,
+      Boolean(urn) &&
+      urn.length > 0 &&
+      Boolean(actions) &&
+      actions.length > 0 &&
+      isTrigger,
     placeholderData: keepPreviousData,
   });
 
