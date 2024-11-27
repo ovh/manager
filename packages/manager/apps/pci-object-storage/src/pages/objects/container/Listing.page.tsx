@@ -2,7 +2,6 @@ import {
   Datagrid,
   FilterAdd,
   FilterList,
-  RedirectionGuard,
   useColumnFilters,
   useDataGrid,
   useFeatureAvailability,
@@ -13,6 +12,7 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -22,6 +22,7 @@ import {
   OsdsPopover,
   OsdsPopoverContent,
   OsdsSearchBar,
+  OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import { Suspense, useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -68,12 +69,12 @@ export default function ListingPage() {
 
   const isPending = isAvailabilityPending || isStoragesPending;
 
+  if (isPending) {
+    return <OsdsSpinner size={ODS_SPINNER_SIZE.md} inline />;
+  }
+
   return (
-    <RedirectionGuard
-      isLoading={isPending}
-      condition={!isPending && allStorages?.resources.length === 0}
-      route="./onboarding"
-    >
+    <>
       <div className="sm:flex items-center justify-between mt-4">
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
@@ -225,6 +226,6 @@ export default function ListingPage() {
       <Suspense>
         <Outlet />
       </Suspense>
-    </RedirectionGuard>
+    </>
   );
 }
