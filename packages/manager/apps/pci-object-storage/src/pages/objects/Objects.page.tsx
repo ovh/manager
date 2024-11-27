@@ -3,6 +3,7 @@ import {
   Headers,
   Notifications,
   PciGuidesHeader,
+  RedirectionGuard,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
@@ -11,12 +12,14 @@ import { Suspense, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation, useResolvedPath } from 'react-router-dom';
 import { ROUTE_PATHS } from '@/routes';
+import { useAllStorages } from '@/api/hooks/useStorages';
 
 export default function ObjectsPage() {
   const { t } = useTranslation('objects');
   const location = useLocation();
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
+  const { data: allStorages, isPending } = useAllStorages(project.project_id);
 
   const tabs = [
     {
@@ -39,7 +42,11 @@ export default function ObjectsPage() {
   }, [location.pathname]);
 
   return (
-    <>
+    <RedirectionGuard
+      isLoading={isPending}
+      condition={!isPending && allStorages?.resources.length === 0}
+      route="./onboarding"
+    >
       <OsdsBreadcrumb
         items={[
           {
@@ -69,6 +76,6 @@ export default function ObjectsPage() {
       <Suspense>
         <Outlet />
       </Suspense>
-    </>
+    </RedirectionGuard>
   );
 }
