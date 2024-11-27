@@ -20,7 +20,7 @@ export const EstimatePart = ({
   forecastPrices: TUsagePrices;
   locale: string;
 }): JSX.Element => {
-  const { t: tLegacy } = useTranslation('legacy');
+  const { t: tConsumption } = useTranslation('consumption');
   const { t: tEstimate } = useTranslation('estimate');
 
   const formatMonth = useCallback(
@@ -46,7 +46,7 @@ export const EstimatePart = ({
         size={ODS_THEME_TYPOGRAPHY_SIZE._600}
         color={ODS_THEME_COLOR_INTENT.text}
       >
-        {tLegacy('cpbc_tab_forecast')}
+        {tConsumption('cpbc_tab_forecast')}
       </OsdsText>
       <p>
         <OsdsText
@@ -58,7 +58,7 @@ export const EstimatePart = ({
             month: nextMonth,
           })}{' '}
           <strong>
-            {forecastPrices.totalPrice} {currency.symbol}
+            {forecastPrices.totalPrice.toFixed(2)} {currency.symbol}
           </strong>
         </OsdsText>
       </p>
@@ -77,7 +77,9 @@ export const EstimatePart = ({
                   __html: tEstimate(
                     'cpbe_estimate_summary_renew_monthly_sub_label',
                     {
-                      total: `${forecastPrices.totalMonthlyPrice} ${currency.symbol}`,
+                      total: `${forecastPrices.totalMonthlyPrice.toFixed(2)} ${
+                        currency.symbol
+                      }`,
                     },
                   ),
                 }}
@@ -96,7 +98,9 @@ export const EstimatePart = ({
                     'cpbe_estimate_summary_hourly_consumption_label',
                     {
                       month: currentMonth,
-                      total: `${forecastPrices.totalHourlyPrice} ${currency.symbol}`,
+                      total: `${forecastPrices.totalHourlyPrice.toFixed(2)} ${
+                        currency.symbol
+                      }`,
                     },
                   ),
                 }}
