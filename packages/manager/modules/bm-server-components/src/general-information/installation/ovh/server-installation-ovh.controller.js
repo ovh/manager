@@ -192,10 +192,9 @@ export default class ServerInstallationOvhCtrl {
       fileSystem: null,
       mountPoint: null,
       volumeName: null,
-      raid: null,
-      partitionSize: 0,
+      raidLevel: null,
+      size: 0,
 
-      canBeDelete: true,
       display: false,
       hasWarning: false,
       realSize: 0,
@@ -601,7 +600,7 @@ export default class ServerInstallationOvhCtrl {
   }
 
   // get real use size for partition with 0 in size (in fact remaining size)
-  getRealRemainingSize(raid) {
+  getRealRemainingSize(raidLevel) {
     const remainingSize = this.getRemainingSize();
     let realRemainingSize = 0;
 
@@ -611,8 +610,8 @@ export default class ServerInstallationOvhCtrl {
         this.$scope.informations.raidController
       ) {
         realRemainingSize = remainingSize;
-      } else if (raid) {
-        switch (raid) {
+      } else if (raidLevel) {
+        switch (raidLevel) {
           case this.$scope.constants.warningRaid0:
             realRemainingSize = remainingSize;
             break;
@@ -664,19 +663,33 @@ export default class ServerInstallationOvhCtrl {
       (partitionSchemeModels) => {
         this.$scope.loader.loading = false;
         this.$scope.installation.partitionSchemeModels =
-          partitionSchemeModels.results;
+          partitionSchemeModels.partitions;
 
-        // get total use size (remainingSize)
-        // rename order by orderTable
-        this.$scope.installation.partitionSchemeModels.forEach((partition) => {
-          set(partition, 'orderTable', angular.copy(partition.order));
-        });
+        for (
+          let partitionId = 0;
+          partitionId < this.$scope.installation.partitionSchemeModels.length;
+          partitionId += 1
+        ) {
+          // this is an adaptation to minimize changes due to removal of order attribute in 2API call
+          set(
+            this.$scope.installation.partitionSchemeModels[partitionId],
+            'order',
+            angular.copy(partitionId + 1),
+          );
+
+          // rename order by orderTable
+          set(
+            this.$scope.installation.partitionSchemeModels[partitionId],
+            'orderTable',
+            angular.copy(partitionId + 1),
+          );
+        }
 
         // if one partition has size = 0 => replace by remaining size
         let hasEmptyPartitionSize = false;
 
         forEachRight(
-          partitionSchemeModels.results,
+          partitionSchemeModels.partitions,
           (partitionSchemeModel, partitionIndex) => {
             if (!hasEmptyPartitionSize) {
               set(
@@ -687,17 +700,17 @@ export default class ServerInstallationOvhCtrl {
 
               if (
                 this.$scope.installation.partitionSchemeModels[partitionIndex]
-                  ?.partitionSize === 0
+                  ?.size === 0
               ) {
                 set(
                   this.$scope.installation.partitionSchemeModels[
                     partitionIndex
                   ],
-                  'partitionSize',
+                  'size',
                   this.getRealRemainingSize(
                     this.$scope.installation.partitionSchemeModels[
                       partitionIndex
-                    ].raid,
+                    ].raidLevel,
                   ),
                 );
 
@@ -859,7 +872,7 @@ export default class ServerInstallationOvhCtrl {
 
           if (
             this.$scope.informations.nbDisk > 2 &&
-            !raidList.includes(partitionSchemeModel.raid)
+            !raidList.includes(partitionSchemeModel.raidLevel)
           ) {
             this.$scope.configError.raidDiskUse = true;
             set(partitionSchemeModel, 'hasWarning', true);
@@ -878,11 +891,11 @@ export default class ServerInstallationOvhCtrl {
     if (!this.$scope.configError.raidDiskUse && indexVarPartition !== null) {
       this.$scope.installation.partitionSchemeModels[
         indexVarPartition
-      ].partitionSize = 0;
+      ].size = 0;
       this.$scope.installation.partitionSchemeModels[
         indexVarPartition
-      ].partitionSize = this.getRealRemainingSize(
-        this.$scope.installation.partitionSchemeModels[indexVarPartition].raid,
+      ].size = this.getRealRemainingSize(
+        this.$scope.installation.partitionSchemeModels[indexVarPartition].raidLevel,
       );
     }
 
@@ -955,11 +968,11 @@ export default class ServerInstallationOvhCtrl {
       : this.$scope.newPartition.mountPoint;
     const raidList = this.getRaidList(this.$scope.installation.nbDiskUse);
     this.clearError();
-    this.$scope.newPartition.raid =
+    this.$scope.newPartition.raidLevel =
       (raidList.length > 0 && raidList[raidList.length - 1]) ||
       this.$scope.constants.warningRaid1;
-    this.$scope.newPartition.partitionSize = this.getRealRemainingSize(
-      this.$scope.newPartition.raid,
+    this.$scope.newPartition.size = this.getRealRemainingSize(
+      this.$scope.newPartition.raidLevel,
     );
 
     if (
@@ -997,13 +1010,11 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.informations.softRaidOnlyMirroring &&
       this.$scope.newPartition.mountPoint ===
         this.$scope.constants.warningCwin &&
-      this.$scope.newPartition.partitionSize <
-        this.$scope.constants.minSizeWindows
+      this.$scope.newPartition.size < this.$scope.constants.minSizeWindows
     ) {
       this.$scope.errorInst.partitionSizeWindows = true;
     } else if (
-      this.$scope.newPartition.partitionSize <
-      this.$scope.constants.minSizePartition
+      this.$scope.newPartition.size < this.$scope.constants.minSizePartition
     ) {
       this.$scope.errorInst.partitionSizeToAdd = true;
     } else {
@@ -1038,7 +1049,7 @@ export default class ServerInstallationOvhCtrl {
         this.$scope.buttonControl.displayAddConfirmation = true;
         this.$scope.buttonControl.addInProgress = false;
       } else {
-        trueSize = this.$scope.newPartition.partitionSize;
+        trueSize = this.$scope.newPartition.size;
         if (
           this.$scope.newPartition.fileSystem !==
           this.$scope.constants.warningZFS
@@ -1050,11 +1061,11 @@ export default class ServerInstallationOvhCtrl {
           this.$scope.informations.raidController ||
           this.$scope.informations.nbDisk === 1
         ) {
-          this.$scope.newPartition.raid = null;
+          this.$scope.newPartition.raidLevel = null;
         }
 
         this.$scope.warning.raid0 = false;
-        this.$scope.newPartition.partitionSize = trueSize;
+        this.$scope.newPartition.size = trueSize;
         this.$scope.newPartition.orderTable = angular.copy(
           this.$scope.newPartition.order,
         );
@@ -1066,8 +1077,8 @@ export default class ServerInstallationOvhCtrl {
         this.$scope.newPartition.fileSystem = null;
         this.$scope.newPartition.mountPoint = null;
         this.$scope.newPartition.volumeName = null;
-        this.$scope.newPartition.raid = null;
-        this.$scope.newPartition.partitionSize = null;
+        this.$scope.newPartition.raidLevel = null;
+        this.$scope.newPartition.size = null;
 
         this.$scope.newPartition.display = false;
 
@@ -1122,7 +1133,7 @@ export default class ServerInstallationOvhCtrl {
         this.$scope.buttonControl.displayAddConfirmation = true;
         this.$scope.buttonControl.setInProgress = false;
       } else {
-        trueSize = partitionToSet.partitionSize;
+        trueSize = partitionToSet.size;
         if (
           (!this.$scope.installation.selectDistribution.lvmReady &&
             partitionToSet.fileSystem !== this.$scope.constants.warningZFS) ||
@@ -1136,7 +1147,7 @@ export default class ServerInstallationOvhCtrl {
         }
         this.$scope.warning.raid0 = false;
 
-        partitionToSet.partitionSize = trueSize;
+        partitionToSet.size = trueSize;
         partitionToSet.orderTable = angular.copy(partitionToSet.order);
 
         this.$scope.setPartition.save = null;
@@ -1363,7 +1374,7 @@ export default class ServerInstallationOvhCtrl {
 
   validationRaid(partition) {
     if (partition.fileSystem === this.$scope.constants.warningSwap) {
-      set(partition, 'raid', this.$scope.constants.warningRaid1);
+      set(partition, 'raidLevel', this.$scope.constants.warningRaid1);
     }
     if (
       this.$scope.installation.nbDiskUse > 1 &&
@@ -1371,7 +1382,7 @@ export default class ServerInstallationOvhCtrl {
     ) {
       this.$scope.warning.raid0 =
         !this.$scope.errorInst.raid0 &&
-        partition.raid === this.$scope.constants.warningRaid0;
+        partition.raidLevel === this.$scope.constants.warningRaid0;
     }
     this.validationSize(partition);
   }
@@ -1423,15 +1434,15 @@ export default class ServerInstallationOvhCtrl {
   }
 
   validationSize(partition) {
-    if (partition.partitionSize) {
+    if (partition.size) {
       set(
         partition,
-        'partitionSize',
-        parseInt(partition.partitionSize.toString().replace('.', ''), 10),
+        'size',
+        parseInt(partition.size.toString().replace('.', ''), 10),
       );
     }
     this.$scope.errorInst.partitionSizeRequired = !/^[0-9]{1,20}$/.test(
-      partition.partitionSize,
+      partition.size,
     );
 
     this.getRemainingSize();
@@ -1560,8 +1571,8 @@ export default class ServerInstallationOvhCtrl {
   }
 
   getFullSize(partition) {
-    set(partition, 'partitionSize', 0); // important
-    set(partition, 'partitionSize', this.getRealRemainingSize(partition.raid));
+    set(partition, 'size', 0); // important
+    set(partition, 'size', this.getRealRemainingSize(partition.raidLevel));
     this.validationSize(partition);
   }
 
@@ -1571,14 +1582,14 @@ export default class ServerInstallationOvhCtrl {
     if (option.partition && option.partition.takeRemainingSpace) {
       return this.getDisplaySize(this.getRemainingSize());
     }
-    if (option.partition && !Number.isNaN(option.partition.partitionSize)) {
+    if (option.partition && !Number.isNaN(option.partition.size)) {
       if (
         option.noRaid ||
         this.$scope.installation.nbDiskUse === 1 ||
         this.$scope.informations.raidController
       ) {
-        set(option, 'partition.realSize', option.partition.partitionSize);
-      } else if (option.partition.raid === this.$scope.constants.warningRaid7) {
+        set(option, 'partition.realSize', option.partition.size);
+      } else if (option.partition.raidLevel === this.$scope.constants.warningRaid7) {
         const { nbDiskUse: nbDisks } = this.$scope.installation;
         const nbParityDisks = 3;
         const nbDataDisks = nbDisks - nbParityDisks;
@@ -1586,27 +1597,26 @@ export default class ServerInstallationOvhCtrl {
         set(
           option,
           'partition.realSize',
-          option.partition.partitionSize / realSizeRatio,
+          option.partition.size / realSizeRatio,
         );
-      } else if (option.partition.raid) {
-        switch (option.partition.raid) {
+      } else if (option.partition.raidLevel) {
+        switch (option.partition.raidLevel) {
           case this.$scope.constants.warningRaid0:
-            set(option, 'partition.realSize', option.partition.partitionSize);
+            set(option, 'partition.realSize', option.partition.size);
             break;
           case this.$scope.constants.warningRaid1:
             set(
               option,
               'partition.realSize',
-              option.partition.partitionSize *
-                this.$scope.installation.nbDiskUse,
+              option.partition.size * this.$scope.installation.nbDiskUse,
             );
             break;
           case this.$scope.constants.warningRaid5:
             set(
               option,
               'partition.realSize',
-              option.partition.partitionSize +
-                option.partition.partitionSize /
+              option.partition.size +
+                option.partition.size /
                   (this.$scope.installation.nbDiskUse - 1),
             );
             break;
@@ -1614,7 +1624,7 @@ export default class ServerInstallationOvhCtrl {
             set(
               option,
               'partition.realSize',
-              (option.partition.partitionSize /
+              (option.partition.size /
                 (this.$scope.installation.nbDiskUse - 2)) *
                 this.$scope.installation.nbDiskUse,
             );
@@ -1623,8 +1633,7 @@ export default class ServerInstallationOvhCtrl {
             set(
               option,
               'partition.realSize',
-              option.partition.partitionSize *
-                (this.$scope.installation.nbDiskUse / 2),
+              option.partition.size * (this.$scope.installation.nbDiskUse / 2),
             );
             break;
           default:
@@ -1645,7 +1654,7 @@ export default class ServerInstallationOvhCtrl {
 
     // all partition
     this.$scope.installation.partitionSchemeModels.forEach((partition) => {
-      if (partition.partitionSize) {
+      if (partition.size) {
         remainingSize -= this.getRealDisplaySize({
           partition,
           notDisplay: true,
@@ -1656,7 +1665,7 @@ export default class ServerInstallationOvhCtrl {
     // new partition
     if (
       this.$scope.newPartition.display &&
-      !Number.isNaN(this.$scope.newPartition.partitionSize)
+      !Number.isNaN(this.$scope.newPartition.size)
     ) {
       remainingSize -= this.getRealDisplaySize({
         partition: this.$scope.newPartition,
@@ -1673,7 +1682,7 @@ export default class ServerInstallationOvhCtrl {
       !Number.isNaN(
         this.$scope.installation.partitionSchemeModels[
           this.$scope.setPartition.delModel
-        ].partitionSize,
+        ].size,
       )
     ) {
       remainingSize += this.getRealDisplaySize({
@@ -2042,10 +2051,9 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.installation.partitionSchemeModels.forEach((partition) => {
         if (
           !this.$scope.installation.options.variablePartition ||
-          (this.$scope.installation.options.variablePartition.partitionSize <
-            partition.partitionSize &&
-            this.$scope.installation.options.variablePartition.partitionSize !==
-              0)
+          (this.$scope.installation.options.variablePartition.size <
+            partition.size &&
+            this.$scope.installation.options.variablePartition.size !== 0)
         ) {
           this.$scope.installation.options.variablePartition = partition;
         }
@@ -2084,7 +2092,7 @@ export default class ServerInstallationOvhCtrl {
       if (!size) {
         size = 0;
         if (this.$scope.installation.options.variablePartition) {
-          this.$scope.installation.saveSize = this.$scope.installation.options.variablePartition.partitionSize;
+          this.$scope.installation.saveSize = this.$scope.installation.options.variablePartition.size;
         }
       }
 
@@ -2161,8 +2169,8 @@ export default class ServerInstallationOvhCtrl {
         const newPartition = {
           fileSystem: partition.fileSystem,
           mountPoint: partition.mountPoint,
-          size: partition.partitionSize,
-          raidLevel: partition.raid,
+          size: partition.size,
+          raidLevel: partition.raidLevel,
           extras: {},
         };
         if (
