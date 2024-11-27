@@ -125,6 +125,47 @@ export const Routes: any = [
                 ),
                 handle: {
                   isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_domains_verify',
+                },
+              },
+              {
+                path: 'diagnostics/mx',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/Diagnostics.page'),
+                ),
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
+                },
+              },
+              {
+                path: 'diagnostics/srv',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/Diagnostics.page'),
+                ),
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
+                },
+              },
+              {
+                path: 'diagnostics/spf',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/Diagnostics.page'),
+                ),
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
+                },
+              },
+              {
+                path: 'diagnostics/dkim',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/Diagnostics.page'),
+                ),
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
                 },
               },
             ],
