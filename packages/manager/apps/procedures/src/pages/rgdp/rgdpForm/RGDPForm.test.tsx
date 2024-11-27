@@ -59,24 +59,22 @@ describe('RGDPForm', () => {
     const { getByText } = renderForm();
 
     await waitFor(() => {
+      expect(getByText('rgdp_form_field_label_firstname')).toBeInTheDocument();
+      expect(getByText('rgdp_form_field_label_name')).toBeInTheDocument();
+      expect(getByText('rgdp_form_field_label_email')).toBeInTheDocument();
       expect(
-        getByText('rgdp_form_field_label_firstname :'),
-      ).toBeInTheDocument();
-      expect(getByText('rgdp_form_field_label_name :')).toBeInTheDocument();
-      expect(getByText('rgdp_form_field_label_email :')).toBeInTheDocument();
-      expect(
-        getByText('rgdp_form_field_label_confirm_email :'),
+        getByText('rgdp_form_field_label_confirm_email'),
       ).toBeInTheDocument();
       expect(getByText('rgdp_form_field_label_category')).toBeInTheDocument();
       expect(
         getByText('rgdp_form_field_label_category_detail'),
       ).toBeInTheDocument();
       expect(
-        getByText('rgdp_form_field_label_request_description :'),
+        getByText('rgdp_form_field_label_request_description'),
       ).toBeInTheDocument();
 
       expect(
-        getByText('rgdp_form_field_label_other_documents :'),
+        getByText('rgdp_form_field_label_other_documents'),
       ).toBeInTheDocument();
     });
   });
