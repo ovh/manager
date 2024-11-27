@@ -40,12 +40,6 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
   }
   return (
     <div className="flex sm:pt-8 xs:pt-2.5 flex-row items-center space-x-4 justify-center">
-      <OdsButton
-        size={ODS_BUTTON_SIZE.md}
-        onClick={onOrderButtonClick}
-        label={orderButtonLabel}
-      />
-
       {moreInfoButtonLabel && moreInfoHref && (
         <OdsLink
           onClick={onmoreInfoButtonClick}
@@ -55,6 +49,11 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
           icon={ODS_ICON_NAME.externalLink}
         />
       )}
+      <OdsButton
+        size={ODS_BUTTON_SIZE.md}
+        onClick={onOrderButtonClick}
+        label={orderButtonLabel}
+      />
     </div>
   );
 };
