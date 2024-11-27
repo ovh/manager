@@ -129,6 +129,29 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <option value={'SG'}>SG</option>
               <option value={'IN'}>IN</option>
               <option value={'WE'}>WE (World English)</option>
+              <option value={'KSFR'}>KSFR</option>
+              <option value={'KSDE'}>KSDE</option>
+              <option value={'KSES'}>KSES</option>
+              <option value={'KSPL'}>KSPL</option>
+              <option value={'KSIE'}>KSIE</option>
+              <option value={'KSIT'}>KSIT</option>
+              <option value={'KSNL'}>KSNL</option>
+              <option value={'KSPT'}>KSPT</option>
+              <option value={'KSGB'}>KSGB</option>
+              <option value={'KSTN'}>KSTN</option>
+              <option value={'KSMA'}>KSMA</option>
+              <option value={'KSSN'}>KSSN</option>
+              <option value={'SYSFR'}>SYSFR</option>
+              <option value={'SYSDE'}>SYSDE</option>
+              <option value={'SYSES'}>SYSES</option>
+              <option value={'SYSPL'}>SYSPL</option>
+              <option value={'SYSIE'}>SYSIE</option>
+              <option value={'SYSIT'}>SYSIT</option>
+              <option value={'SYSNL'}>SYSNL</option>
+              <option value={'SYSPT'}>SYSPT</option>
+              <option value={'SYSGB'}>SYSGB</option>
+              <option value={'SYSTN'}>SYSTN</option>
+              <option value={'SYSMA'}>SYSMA</option>
             </select>
           </div>
           <div className={'row'}>
