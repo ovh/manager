@@ -97,5 +97,5 @@
   "overTheBox_unlink_device_error": "Não foi possível desassociar o dispositivo: {{errorMessage}}",
   "overTheBox_unlink_device_success": "O dispositivo foi dissociado com sucesso.",
   "overTheBox_change_offer": "Mudar de oferta",
-  "overTheBox_release_channel_deprecated": "Versão com imparidade {{version}}"
+  "overTheBox_release_channel_deprecated": "Versão obsoleta {{version}}"
 }
