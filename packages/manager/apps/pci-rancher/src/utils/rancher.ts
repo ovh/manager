@@ -89,6 +89,14 @@ export const PLAN_REGEX = [
   /^Unable$/,
   /^Unable to switch to [plan]{4} \[driver9, driver10]$/,
   /^Unable to switch to [plan]+ \[driver9, driver10]$/,
+  /^Unable to switch to [^\d]{4} \[driver9, driver10]$/,
+  /^Unable to switch to [^\d]+ \[driver9, driver10]$/,
+  /^Unable to switch to ([^\d]{4}) \[driver9, driver10]$/,
+  /^Unable to switch to ([^\d]+) \[driver9, driver10]$/,
+  /^Unable to switch to plan/,
+  /^Unable to switch to plan (?<plan>[^\s]+)/,
+  /^Unable to switch to plan (?<plan>[^\s]+)[^[]+/,
+  /^Unable to switch to plan (?<plan>[^\s]+)[^[]+\[(?<drivers>[^\]]+)]/,
 ];
 
 /**
