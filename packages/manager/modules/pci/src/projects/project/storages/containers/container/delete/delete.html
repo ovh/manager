@@ -25,4 +25,13 @@
             ></span>
         </oui-message>
     </div>
+
+    <div data-ng-if="$ctrl.container && $ctrl.container.storedObjects === 0">
+        <oui-message data-type="warning">
+            <span
+                data-translate="pci_projects_project_storages_containers_container_delete_empty_warning"
+                data-translate-values="{ container: $ctrl.container.name }"
+            ></span>
+        </oui-message>
+    </div>
 </oui-modal>
