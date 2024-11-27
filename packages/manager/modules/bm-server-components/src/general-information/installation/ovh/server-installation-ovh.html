@@ -650,7 +650,7 @@
                                     }"
                                 >
                                     <span
-                                        data-ng-hide="$ctrl.isSetPartition(partition) && partition.fileSystem !== constants.warningSwap && partition.canBeDelete"
+                                        data-ng-hide="$ctrl.isSetPartition(partition) && partition.fileSystem !== constants.warningSwap && partition.mountPoint !== installation.selectDistribution.rootMountPoint"
                                         data-ng-bind="partition.mountPoint"
                                     >
                                     </span>
@@ -658,7 +658,7 @@
                                         type="text"
                                         class="form-control"
                                         data-ng-if="$ctrl.isSetPartition(partition)"
-                                        data-ng-show="$ctrl.isSetPartition(partition) && partition.fileSystem !== constants.warningSwap && partition.canBeDelete"
+                                        data-ng-show="$ctrl.isSetPartition(partition) && partition.fileSystem !== constants.warningSwap && partition.mountPoint !== installation.selectDistribution.rootMountPoint"
                                         data-ng-model="partition.mountPoint"
                                         data-ng-required="partition.fileSystem !== constants.warningSwap"
                                         data-ng-change="$ctrl.validationMountPoint(partition)"
@@ -720,20 +720,20 @@
                                     </span>
                                     <span
                                         data-ng-hide="$ctrl.isSetPartition(partition) || partition.fileSystem == constants.warningSwap"
-                                        data-ng-bind="partition.raid"
+                                        data-ng-bind="partition.raidLevel"
                                     >
                                     </span>
                                     <select
                                         class="form-control"
                                         data-ng-if="$ctrl.isSetPartition(partition) && partition.fileSystem != constants.warningSwap && !informations.softRaidOnlyMirroring"
-                                        data-ng-options="raid as raid for raid in $ctrl.getRaidList(installation.nbDiskUse)"
-                                        data-ng-model="partition.raid"
+                                        data-ng-options="raidLevel as raidLevel for raidLevel in $ctrl.getRaidList(installation.nbDiskUse)"
+                                        data-ng-model="partition.raidLevel"
                                         data-ng-change="$ctrl.validationRaid(partition)"
                                     >
                                     </select>
                                     <span
                                         data-ng-if="$ctrl.isSetPartition(partition) && partition.fileSystem != constants.warningSwap && informations.softRaidOnlyMirroring"
-                                        data-ng-bind="partition.raid"
+                                        data-ng-bind="partition.raidLevel"
                                     >
                                     </span>
                                     <span
@@ -747,7 +747,7 @@
                                     <span
                                         class="oui-icon oui-icon-warning-circle"
                                         aria-label="{{ 'server_configuration_installation_ovh_step2_error_raid_0' | translate }}"
-                                        data-ng-show="!partition.hasWarning && !$ctrl.isSetPartition(partition) && partition.raid == constants.warningRaid0"
+                                        data-ng-show="!partition.hasWarning && !$ctrl.isSetPartition(partition) && partition.raidLevel == constants.warningRaid0"
                                         data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_error_raid_0' | translate }}"
                                         data-oui-tooltip-placement="top"
                                     >
@@ -781,7 +781,7 @@
                                     </span>
                                     <span
                                         data-ng-hide="$ctrl.isSetPartition(partition)"
-                                        data-ng-bind="$ctrl.getDisplaySize(partition.partitionSize)"
+                                        data-ng-bind="$ctrl.getDisplaySize(partition.size)"
                                     >
                                     </span>
                                     <div class="input-group">
@@ -807,7 +807,7 @@
                                             maxlength="10"
                                             max="9999999999"
                                             data-ng-show="$ctrl.isSetPartition(partition)"
-                                            data-ng-model="partition.partitionSize"
+                                            data-ng-model="partition.size"
                                             data-ng-change="$ctrl.validationSize(partition)"
                                         />
                                         <span
@@ -852,8 +852,8 @@
                                     <button
                                         type="button"
                                         class="btn btn-link"
-                                        data-ng-hide="!partition.canBeDelete || setPartition.save || newPartition.display || setPartition.delModel != null"
-                                        data-ng-click="partition.canBeDelete && !setPartition.save && !newPartition.display && setPartition.delModel == null && $ctrl.deletePartition(partition)"
+                                        data-ng-hide="partition.mountPoint === installation.selectDistribution.rootMountPoint || setPartition.save || newPartition.display || setPartition.delModel != null"
+                                        data-ng-click="partition.mountPoint !== installation.selectDistribution.rootMountPoint && !setPartition.save && !newPartition.display && setPartition.delModel == null && $ctrl.deletePartition(partition)"
                                     >
                                         <span
                                             class="oui-icon oui-icon-trash_concept"
@@ -977,14 +977,14 @@
                                     <select
                                         class="form-control"
                                         data-ng-if="newPartition.fileSystem !== constants.warningSwap && !informations.softRaidOnlyMirroring"
-                                        data-ng-options="raid as raid for raid in $ctrl.getRaidList(installation.nbDiskUse)"
-                                        data-ng-model="newPartition.raid"
+                                        data-ng-options="raidLevel as raidLevel for raidLevel in $ctrl.getRaidList(installation.nbDiskUse)"
+                                        data-ng-model="newPartition.raidLevel"
                                         data-ng-change="$ctrl.validationRaid(newPartition)"
                                     >
                                     </select>
                                     <span
                                         data-ng-if="informations.softRaidOnlyMirroring"
-                                        data-ng-bind="newPartition.raid"
+                                        data-ng-bind="newPartition.raidLevel"
                                     >
                                     </span>
                                 </td>
@@ -1017,7 +1017,7 @@
                                             class="form-control"
                                             maxlength="10"
                                             max="9999999999"
-                                            data-ng-model="newPartition.partitionSize"
+                                            data-ng-model="newPartition.size"
                                             data-ng-change="$ctrl.validationSize(newPartition)"
                                         />
                                         <span
@@ -1688,7 +1688,7 @@
                                         </span>
                                         <span
                                             data-ng-if="partition.fileSystem != constants.warningSwap"
-                                            data-ng-bind="partition.raid"
+                                            data-ng-bind="partition.raidLevel"
                                         >
                                         </span>
                                         <span
@@ -1712,12 +1712,12 @@
                                         </span>
                                         <span
                                             data-ng-if="partition.fileSystem == constants.warningSwap"
-                                            data-ng-bind="$ctrl.getDisplaySize(partition.partitionSize)"
+                                            data-ng-bind="$ctrl.getDisplaySize(partition.size)"
                                         >
                                         </span>
                                         <span
                                             data-ng-if="partition.fileSystem != constants.warningSwap"
-                                            data-ng-bind="$ctrl.getDisplaySize(partition.partitionSize)"
+                                            data-ng-bind="$ctrl.getDisplaySize(partition.size)"
                                         >
                                         </span>
                                     </td>
