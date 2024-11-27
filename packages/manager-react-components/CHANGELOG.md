@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.42.0...@ovh-ux/manager-react-components@1.43.0) (2024-11-27)
+
+### Bug Fixes
+
+- **mrc:** datagrid no results should be centered ([#14251](https://github.com/ovh/manager/issues/14251)) ([df12a90](https://github.com/ovh/manager/commit/df12a9093116679af3a7cf95d843d65e335c9a00))
+- **mrc:** ensure useAuthorizationIam query option enabled is a boolean ([#14273](https://github.com/ovh/manager/issues/14273)) ([3eade54](https://github.com/ovh/manager/commit/3eade547872cecc27d8f545df7fc63205b1cad92))
+
+### Features
+
+- **mrc:** uniformize confirm button label on delete modal ([#14294](https://github.com/ovh/manager/issues/14294)) ([dd1a6a9](https://github.com/ovh/manager/commit/dd1a6a9f86a4d2aeae52899d63d0f257a803cb7e))
+- switch link button and cta ([#14272](https://github.com/ovh/manager/issues/14272)) ([243f5f0](https://github.com/ovh/manager/commit/243f5f011420feb3c87c76bef90a70da7bf03dc4))
+
 # [1.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.41.2...@ovh-ux/manager-react-components@1.42.0) (2024-11-21)
 
 ### Bug Fixes
