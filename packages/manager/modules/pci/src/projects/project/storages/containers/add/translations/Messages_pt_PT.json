@@ -46,14 +46,14 @@
   "pci_projects_project_storages_containers_add_deployment_mode_soon": "Em breve",
   "pci_projects_project_storages_containers_add_offers_estimated_price": "A partir de {{price}} /mês por TB + IVA",
   "pci_projects_project_storages_containers_add_deployment_mode_price": "{{price}} /mês por TB* + IVA",
-  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "*O preço indicado corresponde ao preço público de 1 TB de armazenamento durante 30 dias. Para mais informações, ",
-  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "consulte a página dedicada aos preços.",
+  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "*O preço indicado corresponde ao preço público de 1 TB de armazenamento durante 30 dias. Para mais informações, ",
+  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "consulte a página de preços.",
   "pci_projects_project_storages_containers_add_deployment_mode_localzone": "Local Zones",
   "pci_projects_project_storages_containers_add_deployment_mode_localzone_description": "Implementação das suas aplicações mais próxima dos seus utilizadores para uma latência reduzida e residência dos dados.",
   "pci_projects_project_storages_containers_add_deployment_mode_localzone_label": "Local Zone",
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_region-3-az": "Regiões 3-AZ",
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_region": "Regiões",
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_localzone": "Local Zones",
-  "pci_projects_project_storages_containers_add_replication_rules_info": "Parabéns! O seu bucket está quase pronto a ser utilizado com uma resiliência integrada para assegurar um tempo de funcionamento máximo. Tenha em conta que esta opção não inclui a replicação fora das instalações dos seus dados. Se o seu caso de utilização necessitar desta camada de proteção suplementar, considere a utilização da nossa replicação assíncrona numa ou várias regiões (disponível apenas através das API). ",
+  "pci_projects_project_storages_containers_add_replication_rules_info": "Parabéns, o seu container está pronto a ser utilizado! Se a sua utilização requer uma replicação multi-site dos seus dados para uma maior resiliência e disponibilidade, considere a possibilidade de utilizar a nossa replicação assíncrona numa ou várias regiões (disponível via API).",
   "pci_projects_project_storages_containers_add_replication_rules_info_link": "Para saber mais e começar."
 }
