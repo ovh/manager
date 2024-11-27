@@ -5,6 +5,7 @@ import Flavor from '../../../../../components/project/flavors-list/flavor.class'
 import Instance from '../../../../../components/project/instance/instance.class';
 import { EDIT_PAGE_SECTIONS } from '../instance.constants';
 import { INSTANCE_PRICING_LINKS } from '../../instances.constants';
+import { PCI_FEATURES } from '../../../project.constants';
 
 export default class PciInstanceEditController {
   /* @ngInject */
@@ -55,12 +56,25 @@ export default class PciInstanceEditController {
 
     this.loadMessages();
     this.updateInstanceFlavor();
+    this.getUAppUrl(
+      'public-cloud',
+      `#/pci/projects/${this.projectId}/savings-plan`,
+    ).then((url) => {
+      this.savingsPlanUrl = url;
+    });
   }
 
   updateInstanceFlavor() {
     this.instance.flavor.tags = this.catalog.addons.find(
       (addon) => addon.planCode === this.instance.flavor.planCodes.hourly,
     )?.blobs?.tags;
+  }
+
+  get isSavingsPlanAvailable() {
+    return (
+      this.pciFeatures.isFeatureAvailable(PCI_FEATURES.PRODUCTS.SAVINGS_PLAN) &&
+      !this.instance.isLocalZone
+    );
   }
 
   loadMessages() {

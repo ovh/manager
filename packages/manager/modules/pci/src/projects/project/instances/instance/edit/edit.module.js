@@ -16,6 +16,6 @@ angular
   ])
   .config(routing)
   .component('pciProjectsProjectInstancesInstanceEdit', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations ./../../../instances/add/translations */);
 
 export default moduleName;
