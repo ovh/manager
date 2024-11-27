@@ -15,7 +15,7 @@ type TTileProps = {
 export default function DatacentreUsageTile({
   vcdDatacentre,
 }: Readonly<TTileProps>) {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+  const { t } = useTranslation('datacentres');
 
   return (
     <div>

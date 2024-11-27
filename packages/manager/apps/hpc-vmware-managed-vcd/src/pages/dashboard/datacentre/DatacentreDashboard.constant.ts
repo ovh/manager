@@ -1,2 +1,2 @@
-export const COMPUTE_TITLE = 'Compute';
-export const STORAGE_TITLE = 'Storage';
+export const COMPUTE_LABEL = 'Compute';
+export const STORAGE_LABEL = 'Storage';

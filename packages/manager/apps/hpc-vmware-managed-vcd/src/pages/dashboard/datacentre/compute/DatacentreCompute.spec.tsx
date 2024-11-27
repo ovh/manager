@@ -10,8 +10,8 @@ import {
   labels,
   renderTest,
 } from '../../../../test-utils';
-import { COMPUTE_TITLE } from '../DatacentreDashboard.constant';
-import { VHOSTS_TITLE } from '../compute/DatacentreCompute.constants';
+import { COMPUTE_LABEL } from '../DatacentreDashboard.constant';
+import { VHOSTS_LABEL } from '../compute/DatacentreCompute.constants';
 
 describe('Datacentre Compute Listing Page', () => {
   it('access and display compute listing page', async () => {
@@ -20,12 +20,12 @@ describe('Datacentre Compute Listing Page', () => {
     });
 
     // access compute tab
-    await assertTextVisibility(COMPUTE_TITLE);
-    const tab = screen.getByText(COMPUTE_TITLE);
+    await assertTextVisibility(COMPUTE_LABEL);
+    const tab = screen.getByText(COMPUTE_LABEL);
     await waitFor(() => userEvent.click(tab));
 
     // check page title & CTA
-    await assertTextVisibility(VHOSTS_TITLE);
+    await assertTextVisibility(VHOSTS_LABEL);
     await assertTextVisibility(
       labels.datacentresCompute.managed_vcd_vdc_compute_order_cta,
     );

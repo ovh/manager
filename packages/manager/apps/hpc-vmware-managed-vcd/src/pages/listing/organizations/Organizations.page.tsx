@@ -16,6 +16,7 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { urls } from '@/routes/routes.constant';
+import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/OrganizationDashboard.constants';
 
 /* ========= datagrid cells ========== */
 const DatagridIdCell = (vdcOrg: VCDOrganization) => {
@@ -91,7 +92,7 @@ export default function Listing() {
 
   return (
     <DatagridContainer
-      title={t('managed_vcd_listing_title')}
+      title={MANAGED_VCD_LABEL}
       queryKey={vcdOrganizationListQueryKey}
       route={{
         api: VCD_ORGANIZATION_ROUTE,
