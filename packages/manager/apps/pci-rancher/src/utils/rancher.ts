@@ -85,6 +85,10 @@ export const PLAN_REGEX = [
   /\[([^\]]+)]$/,
   /\[((?=([^\]]+))\2)+$/,
   /((?=(a+))\2)+$/,
+  /^Unable to switch to plan \[driver9, driver10]$/,
+  /^Unable$/,
+  /^Unable to switch to [plan]{4} \[driver9, driver10]$/,
+  /^Unable to switch to [plan]+ \[driver9, driver10]$/,
 ];
 
 /**
