@@ -5,6 +5,11 @@ export const getZimbraPlatformDomainsQueryKey = (
   `get/zimbra/platform/${platformId}/domain?organizationId=${organizationId}`,
 ];
 
+export const getZimbraPlatformDomainDiagnosticQueryKey = (
+  platformId: string,
+  domainId: string,
+) => [`get/zimbra/platform/${platformId}/domain/${domainId}/diagnostic`];
+
 export const getZimbraPlatformDomainQueryKey = (
   platformId: string,
   domainId: string,

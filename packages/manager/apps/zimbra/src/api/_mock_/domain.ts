@@ -1,4 +1,4 @@
-import { DomainType } from '@/api/domain';
+import { DiagnosticResponse, DomainType } from '@/api/domain';
 import { ResourceStatus } from '@/api/api.type';
 
 export const domainDetailMock: DomainType = {
@@ -118,3 +118,35 @@ export const domainsMock: DomainType[] = [
 ];
 
 export const domainZone: string[] = ['test.fr', 'mydomain.fr', 'domain.fr'];
+
+export const domainDiagnosticMock = {
+  diagnostic: {
+    dkim: {
+      errorCode: 'INCORRECT_CNAME_RECORD',
+      errorMessage: 'string',
+      recordsFound: ['string'],
+      status: 'ERROR',
+    },
+    errorCode: 'DNS_TIMEOUT',
+    errorMessage: 'string',
+    mx: {
+      errorCode: 'MISSING_VALID_MX_RECORD',
+      errorMessage: 'string',
+      recordsFound: [
+        {
+          priority: 0,
+          target: 'string',
+        },
+      ],
+      status: 'ERROR',
+    },
+    spf: {
+      recordFound: 'string',
+      status: 'OK',
+    },
+    status: 'ERROR',
+  },
+  domainId: '19386dad-2e50-4000-8838-d6c283317e01',
+  domainName: 'string',
+  id: '19386dad-2e50-4000-86d3-0698199f4a01',
+} as DiagnosticResponse;

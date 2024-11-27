@@ -23,3 +23,16 @@ ods-modal::part(dialog) {
 ods-tag.org-tag::part(tag) {
   transform: translateY(-10%);
 }
+
+table.dns-fields {
+  border-collapse: collapse;
+
+  tr {
+    // match Clipboard fixed height
+    height: 32px;
+  }
+}
+
+.diag-dns-icon {
+  color: var(--ods-color-critical-400);
+}

@@ -6,22 +6,25 @@ import {
 import { usePlatform } from '@/hooks';
 
 import {
-  DomainType,
-  getZimbraPlatformDomainDetail,
-  getZimbraPlatformDomainQueryKey,
+  DiagnosticResponse,
+  getZimbraPlatformDomainDiagnostic,
+  getZimbraPlatformDomainDiagnosticQueryKey,
 } from '@/api/domain';
 
-type UseDomainParams = Omit<UseQueryOptions, 'queryKey' | 'queryFn'> & {
+type UseDomainDiagnosticParams = Omit<
+  UseQueryOptions,
+  'queryKey' | 'queryFn'
+> & {
   domainId: string;
 };
 
-export const useDomain = (params: UseDomainParams) => {
+export const useDomainDiagnostic = (params: UseDomainDiagnosticParams) => {
   const { domainId, ...options } = params;
   const { platformId } = usePlatform();
 
   return useQuery({
-    queryKey: getZimbraPlatformDomainQueryKey(platformId, domainId),
-    queryFn: () => getZimbraPlatformDomainDetail(platformId, domainId),
+    queryKey: getZimbraPlatformDomainDiagnosticQueryKey(platformId, domainId),
+    queryFn: () => getZimbraPlatformDomainDiagnostic(platformId, domainId),
     enabled: (query) =>
       (typeof options.enabled === 'function'
         ? options.enabled(query)
@@ -29,5 +32,5 @@ export const useDomain = (params: UseDomainParams) => {
       !!platformId &&
       !!domainId,
     ...options,
-  }) as UseQueryResult<DomainType>;
+  }) as UseQueryResult<DiagnosticResponse>;
 };

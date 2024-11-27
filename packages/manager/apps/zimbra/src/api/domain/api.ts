@@ -1,6 +1,7 @@
 import { fetchIcebergV2, v2, v6 } from '@ovh-ux/manager-core-api';
-import { DomainBodyParamsType, DomainType } from './type';
+import { DiagnosticResponse, DomainBodyParamsType, DomainType } from './type';
 import { getApiPath } from '../utils/apiPath';
+import { domainDiagnosticMock } from '../_mock_';
 
 // GET
 
@@ -32,6 +33,24 @@ export const getZimbraPlatformDomainDetail = async (
 ) => {
   const { data } = await v2.get<DomainType>(
     `${getApiPath(platformId)}domain/${domainId}`,
+  );
+  return data;
+};
+
+export const getZimbraPlatformDomainDiagnostic = async (
+  platformId: string,
+  domainId: string,
+  mock = true,
+) => {
+  if (mock) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(domainDiagnosticMock);
+      }, 1000);
+    });
+  }
+  const { data } = await v2.get<DiagnosticResponse>(
+    `${getApiPath(platformId)}domain/${domainId}/diagnostic`,
   );
   return data;
 };
