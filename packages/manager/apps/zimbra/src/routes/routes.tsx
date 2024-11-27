@@ -16,6 +16,10 @@ import {
   DELETE_ORGANIZATION,
   DELETE_REDIRECTION,
   DOMAIN,
+  DOMAIN_DIAGNOSTICS_DKIM,
+  DOMAIN_DIAGNOSTICS_MX,
+  DOMAIN_DIAGNOSTICS_SPF,
+  DOMAIN_DIAGNOSTICS_SRV,
   EDIT_DOMAIN,
   EDIT_EMAIL_ACCOUNT,
   EDIT_MAILING_LIST,
@@ -194,14 +198,6 @@ export const Routes: any = [
                 },
               },
               {
-                path: 'diagnostic',
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/dashboard/Domains/ModalDiagnosticDnsRecord.component'
-                  ),
-                ),
-              },
-              {
                 path: 'verify',
                 ...lazyRouteConfig(() =>
                   import('@/pages/dashboard/Domains/VerifyDomain.page'),
@@ -212,6 +208,63 @@ export const Routes: any = [
                     pageName: VERIFY_DOMAIN,
                     pageType: PageType.funnel,
                   },
+                  breadcrumbLabel: 'zimbra_dashboard_domains_verify',
+                },
+              },
+              {
+                path: 'diagnostics/mx',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/Diagnostics.page'),
+                ),
+                handle: {
+                  isOverridePage: true,
+                  tracking: {
+                    pageName: DOMAIN_DIAGNOSTICS_MX,
+                    pageType: PageType.funnel,
+                  },
+                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
+                },
+              },
+              {
+                path: 'diagnostics/srv',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/Diagnostics.page'),
+                ),
+                handle: {
+                  isOverridePage: true,
+                  tracking: {
+                    pageName: DOMAIN_DIAGNOSTICS_SRV,
+                    pageType: PageType.funnel,
+                  },
+                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
+                },
+              },
+              {
+                path: 'diagnostics/spf',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/Diagnostics.page'),
+                ),
+                handle: {
+                  isOverridePage: true,
+                  tracking: {
+                    pageName: DOMAIN_DIAGNOSTICS_SPF,
+                    pageType: PageType.funnel,
+                  },
+                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
+                },
+              },
+              {
+                path: 'diagnostics/dkim',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/Diagnostics.page'),
+                ),
+                handle: {
+                  isOverridePage: true,
+                  tracking: {
+                    pageName: DOMAIN_DIAGNOSTICS_DKIM,
+                    pageType: PageType.funnel,
+                  },
+                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
                 },
               },
             ],
