@@ -9,5 +9,6 @@
   "createdat_cell": "Data utworzenia",
   "edit_name_action": "Zmień nazwę",
   "delete_action": "Rezygnacja",
-  "load_more_button": "Załaduj następujące kopie zapasowe"
+  "load_more_button": "Załaduj następujące kopie zapasowe",
+  "location_cell": "Lokalizacja"
 }
