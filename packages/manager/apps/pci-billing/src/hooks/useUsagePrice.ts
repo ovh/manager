@@ -8,17 +8,13 @@ import {
 } from '@/api/data/usage';
 import { roundNumber } from '@/pages/billing/estimate/utils';
 
-const getTotalPrice = (
-  products: { totalPrice: number }[],
-  round: { items: boolean; all: boolean } = { items: true, all: true },
-) => {
+const getTotalPrice = (products: { totalPrice: number }[]) => {
   const total = (products || []).reduce(
-    (sum, { totalPrice }) =>
-      roundNumber(sum + (round.items ? roundNumber(totalPrice) : totalPrice)),
+    (sum, { totalPrice }) => sum + totalPrice,
     0,
   );
 
-  return round.all ? roundNumber(total) : total;
+  return roundNumber(total);
 };
 
 export type TUsagePrices = {
@@ -41,7 +37,6 @@ export const useUsagePrice = (
           .find((r) => r.type === resourceUsage)
           ?.resources.map((r) => r.components)
           .flat(2),
-        { items: true, all: true },
       ),
     [usage],
   );
@@ -125,6 +120,7 @@ export const useUsagePrice = (
           return getResourcePrice('octavia-loadbalancer');
         case 'publicIP':
           return getResourcePrice('publicip');
+
         default:
           return 0;
       }
