@@ -4,15 +4,15 @@ import { JobStatus } from '@/types/cloud/project/ai/job/JobStatus';
 /** AI Solutions Job Object */
 export interface Job {
   /** Job creation date */
-  createdAt?: string;
+  createdAt: string;
   /** Job Id */
-  id?: string;
+  id: string;
   /** Job specifications */
-  spec?: JobSpec;
+  spec: JobSpec;
   /** Job status */
-  status?: JobStatus;
+  status: JobStatus;
   /** Job update date */
-  updatedAt?: string;
+  updatedAt: string;
   /** Job user owner */
-  user?: string;
+  user: string;
 }

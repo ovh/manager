@@ -42,12 +42,12 @@ export function getNotebookSpec(formResult: NotebookOrderResult) {
   if (formResult.flavor.type === ai.capabilities.FlavorTypeEnum.cpu) {
     notebookInfos.resources = {
       flavor: formResult.flavor.id,
-      cpu: formResult.resourcesQuantity,
+      cpu: Number(formResult.resourcesQuantity),
     };
   } else {
     notebookInfos.resources = {
       flavor: formResult.flavor.id,
-      gpu: formResult.resourcesQuantity,
+      gpu: Number(formResult.resourcesQuantity),
     };
   }
 

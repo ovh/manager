@@ -15,11 +15,11 @@ export interface HourlyStorage {
   /** Storage outgoing internal bandwidth details */
   outgoingInternalBandwidth?: BandwidthStorage;
   /** Region */
-  region?: string;
+  region: string;
   /** Information about stored data */
   stored?: StoredStorage;
   /** Total price */
-  totalPrice?: number;
+  totalPrice: number;
   /** Storage type */
-  type?: StorageTypeEnum;
+  type: StorageTypeEnum;
 }

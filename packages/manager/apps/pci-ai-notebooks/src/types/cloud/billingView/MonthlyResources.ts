@@ -7,7 +7,7 @@ export interface MonthlyResources {
   /** Details about certifications */
   certification?: MonthlyCertification[];
   /** Details about monthly instances */
-  instance?: MonthlyInstance[];
+  instance: MonthlyInstance[];
   /** Details about monthly instances options */
-  instanceOption?: MonthlyInstanceOption[];
+  instanceOption: MonthlyInstanceOption[];
 }

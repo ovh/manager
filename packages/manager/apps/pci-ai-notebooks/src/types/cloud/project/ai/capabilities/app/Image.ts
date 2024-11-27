@@ -3,21 +3,21 @@ import { LicensingTypeEnum } from '@/types/cloud/project/ai/capabilities/Licensi
 /** AI Solutions App image object */
 export interface Image {
   /** Short description of the image */
-  description?: string;
+  description: string;
   /** URL of the image documentation */
-  docUrl?: string;
+  docUrl: string;
   /** Unique identifier of the image */
-  id?: string;
+  id: string;
   /** Type of licensing */
-  licensing?: LicensingTypeEnum;
+  licensing: LicensingTypeEnum;
   /** URL of the logo of the image */
-  logoUrl?: string;
+  logoUrl: string;
   /** Name of the image */
-  name?: string;
+  name: string;
   /** ID of the partner providing the image */
-  partnerId?: string;
+  partnerId: string;
   /** Name of the partner providing the image */
-  partnerName?: string;
+  partnerName: string;
   /** List of available versions of this image */
-  versions?: string[];
+  versions: string[];
 }

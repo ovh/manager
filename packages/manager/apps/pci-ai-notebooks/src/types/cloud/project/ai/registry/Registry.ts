@@ -1,19 +1,19 @@
 /** Representation of a registry */
 export interface Registry {
   /** Registry creation date */
-  createdAt?: string;
+  createdAt: string;
   /** Registry Id */
-  id?: string;
+  id: string;
   /** Docker registry password */
-  password: string;
+  password?: string;
   /** Region where the registry is available */
   region: string;
   /** Registry update date */
-  updatedAt?: string;
+  updatedAt: string;
   /** Docker registry URL */
-  url: string;
+  url?: string;
   /** Registry user creator */
-  user?: string;
+  user: string;
   /** Docker registry username */
-  username: string;
+  username?: string;
 }
