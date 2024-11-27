@@ -33,7 +33,8 @@ export const PUBLIC_CLOUD_STORAGE_GUIDES = {
   PT: 'https://docs.ovh.com/pt/storage/',
   IE: 'https://docs.ovh.com/ie/en/storage/',
   DEFAULT: 'https://docs.ovh.com/gb/en/storage/',
-  US: 'https://support.us.ovhcloud.com/hc/en-us/sections/115000624590-Storage',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/sections/20495312447763-Block-Storage',
   ASIA: 'https://docs.ovh.com/asia/en/storage/',
   AU: 'https://docs.ovh.com/au/en/storage/',
   CA: 'https://docs.ovh.com/ca/en/storage/',
