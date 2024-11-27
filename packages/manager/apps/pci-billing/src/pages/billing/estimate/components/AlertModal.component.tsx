@@ -1,17 +1,11 @@
 import {
-  OsdsButton,
   OsdsFormField,
   OsdsInput,
-  OsdsModal,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { QuantitySelector } from '@ovh-ux/manager-pci-common';
+import { PciModal, QuantitySelector } from '@ovh-ux/manager-pci-common';
 import { useContext, useState } from 'react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-} from '@ovhcloud/ods-components';
+import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -26,6 +20,7 @@ type TAlertModalProps = {
   threshold?: number;
   onClose: () => void;
   onInput: (val: { email: string; threshold: number }) => void;
+  isPending: boolean;
 };
 
 type TState = {
@@ -42,6 +37,7 @@ export const AlertModalComponent = ({
   threshold,
   onClose,
   onInput,
+  isPending,
 }: TAlertModalProps): JSX.Element => {
   const { t: tEstimate } = useTranslation('estimate');
   const { currency } = useContext(ShellContext).environment.getUser();
@@ -56,7 +52,18 @@ export const AlertModalComponent = ({
   });
 
   return (
-    <OsdsModal onOdsModalClose={onClose}>
+    <PciModal
+      title={tEstimate('cpbea_estimate_alert_add_header_title')}
+      onCancel={onClose}
+      onClose={onClose}
+      onConfirm={() =>
+        onInput({ email: state.email.value, threshold: state.threshold })
+      }
+      cancelText={tEstimate('cpbea_estimate_alert_add_cancel_btn')}
+      submitText={tEstimate('cpbea_estimate_alert_add_submit_btn')}
+      isDisabled={!state.email.isValid || state.threshold === 0}
+      isPending={isPending}
+    >
       <OsdsFormField
         error={
           state.email.isTouched && !state.email.isValid
@@ -69,7 +76,7 @@ export const AlertModalComponent = ({
         <OsdsText
           slot="label"
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           color={ODS_THEME_COLOR_INTENT.text}
         >
           {t('cpbea_estimate_alert_add_mail_label')}
@@ -94,7 +101,7 @@ export const AlertModalComponent = ({
         <OsdsText
           slot="label"
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           color={ODS_THEME_COLOR_INTENT.text}
         >
           {t('cpbea_estimate_alert_add_threshold_label', {
@@ -113,29 +120,6 @@ export const AlertModalComponent = ({
           }}
         />
       </OsdsFormField>
-      <OsdsButton
-        slot="actions"
-        size={ODS_BUTTON_SIZE.sm}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={onClose}
-      >
-        {tEstimate('cpbea_estimate_alert_add_cancel_btn')}
-      </OsdsButton>
-      <OsdsButton
-        slot="actions"
-        onClick={() =>
-          onInput({ email: state.email.value, threshold: state.threshold })
-        }
-        size={ODS_BUTTON_SIZE.sm}
-        variant={ODS_BUTTON_VARIANT.flat}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        {...(!state.email.isValid || state.threshold === 0
-          ? { disabled: true }
-          : {})}
-      >
-        {tEstimate('cpbea_estimate_alert_add_submit_btn')}
-      </OsdsButton>
-    </OsdsModal>
+    </PciModal>
   );
 };
