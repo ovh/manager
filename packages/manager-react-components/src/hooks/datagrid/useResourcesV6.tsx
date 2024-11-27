@@ -4,6 +4,7 @@ import {
   IcebergFetchParamsV6,
   fetchIcebergV6,
   applyFilters,
+  FilterTypeCategories,
 } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 import { useColumnFilters, ColumnSort } from '../../components';
@@ -17,28 +18,29 @@ export interface ColumnDatagrid {
 
 export interface ResourcesV6Hook {
   queryKey: string[];
-  columns?: ColumnDatagrid[];
+  columns: ColumnDatagrid[];
 }
 
 export function dataType(a: any) {
-  if (Number.isInteger(a)) return 'number';
-  if (isDate(a)) return 'date';
+  if (Number.isInteger(a)) return FilterTypeCategories.Numeric;
+  if (isDate(a)) return FilterTypeCategories.Date;
+  if (typeof a === 'string') return FilterTypeCategories.String;
   return typeof a;
 }
 
 function sortColumn(type: string, a: any, b: any, desc: boolean) {
   switch (type) {
-    case 'number':
+    case FilterTypeCategories.Numeric:
       return desc
         ? parseFloat(a) - parseFloat(b)
         : parseFloat(b) - parseFloat(a);
-    case 'date':
+    case FilterTypeCategories.Date:
       return desc
         ? new Date(a).getTime() - new Date(b).getTime()
         : new Date(b).getTime() - new Date(a).getTime();
-    case 'boolean':
+    case FilterTypeCategories.Boolean:
       return desc ? Number(a) - Number(b) : Number(b) - Number(a);
-    case 'string':
+    case FilterTypeCategories.String:
       return desc
         ? a
             ?.trim()
@@ -82,7 +84,7 @@ export function useResourcesV6<T = unknown>({
       setTotalCount(data.data.length);
       setSortData(data.data);
     }
-  }, [data]);
+  }, [data, filters]);
 
   useEffect(() => {
     if (sortData) {
@@ -108,6 +110,15 @@ export function useResourcesV6<T = unknown>({
     }
   }, [sorting]);
 
+  useEffect(() => {
+    if (sortData.length > 0) {
+      setPageIndex(0);
+      const dataFiltered = applyFilters(data?.data, filters);
+      setFlattenData([]);
+      setSortData([...dataFiltered]);
+    }
+  }, [filters]);
+
   const onFetchNextPage = () => {
     setPageIndex(pageIndex + 1);
   };
@@ -121,7 +132,7 @@ export function useResourcesV6<T = unknown>({
     flattenData: applyFilters(flattenData, filters),
     isError,
     isLoading,
-    hasNextPage: pageIndex * pageSize + pageSize <= totalCount,
+    hasNextPage: pageIndex * pageSize + pageSize <= flattenData.length,
     fetchNextPage: onFetchNextPage,
     error,
     status,
