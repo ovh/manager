@@ -182,6 +182,6 @@ describe('InfoConnectionPool', () => {
   it('should show a skeleton if data is loading', () => {
     vi.mocked(connectionPoolApi.getConnectionPools).mockResolvedValueOnce([]);
     render(<InfoConnectionPool />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('skeleton')).toBeInTheDocument();
+    expect(screen.getAllByTestId('skeleton').length).toBeGreaterThan(0);
   });
 });

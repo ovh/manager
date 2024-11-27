@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -16,7 +15,7 @@ import { useDeleteNamespace } from '@/hooks/api/database/namespace/useDeleteName
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
 import { useGetNamespaces } from '@/hooks/api/database/namespace/useGetNamespaces.hook';
-import { Skeleton } from '@/components/ui/skeleton';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 const DeleteNamespaceModal = () => {
   const { projectId, namespaceId } = useParams();
@@ -69,15 +68,8 @@ const DeleteNamespaceModal = () => {
     });
   };
 
-  const onOpenChange = (open: boolean) => {
-    if (!open) navigate('../');
-  };
-
-  if (!namespaces || !deletedNamespace)
-    return <Skeleton className="w-full h-4" />;
-
   return (
-    <Dialog defaultOpen onOpenChange={onOpenChange}>
+    <RouteModal isLoading={!namespaces || !deletedNamespace}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="delete-namespaces-modal">
@@ -85,7 +77,7 @@ const DeleteNamespaceModal = () => {
           </DialogTitle>
           <DialogDescription>
             {t('deleteNamespaceDescription', {
-              name: deletedNamespace.name,
+              name: deletedNamespace?.name,
             })}
           </DialogDescription>
         </DialogHeader>
@@ -109,7 +101,7 @@ const DeleteNamespaceModal = () => {
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

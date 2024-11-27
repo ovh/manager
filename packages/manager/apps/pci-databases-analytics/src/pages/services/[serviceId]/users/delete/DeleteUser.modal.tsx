@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -16,13 +15,13 @@ import { useDeleteUser } from '@/hooks/api/database/user/useDeleteUser.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
 import { useGetUsers } from '@/hooks/api/database/user/useGetUsers.hook';
-import { Skeleton } from '@/components/ui/skeleton';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 const DeleteUser = () => {
   const { userId } = useParams();
   const navigate = useNavigate();
   const { projectId, service } = useServiceData();
-  const usersQuery = useGetUsers(projectId, service.engine, service.id, {
+  const usersQuery = useGetUsers(projectId, service?.engine, service.id, {
     enabled: !!service.id,
   });
   const users = usersQuery.data;
@@ -55,8 +54,6 @@ const DeleteUser = () => {
     if (users && !deletedUser) navigate('../');
   }, [users, deletedUser]);
 
-  if (!users || !deletedUser) return <Skeleton className="w-full h-4" />;
-
   const handleDelete = () => {
     deleteUser({
       serviceId: service.id,
@@ -66,19 +63,15 @@ const DeleteUser = () => {
     });
   };
 
-  const onOpenChange = (open: boolean) => {
-    if (!open) navigate('../');
-  };
-
   return (
-    <Dialog defaultOpen onOpenChange={onOpenChange}>
+    <RouteModal isLoading={!users || !deletedUser}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="delete-user-modal">
             {t('deleteUserTitle')}
           </DialogTitle>
           <DialogDescription>
-            {t('deleteUserDescription', { name: deletedUser.username })}
+            {t('deleteUserDescription', { name: deletedUser?.username })}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex justify-end">
@@ -101,7 +94,7 @@ const DeleteUser = () => {
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

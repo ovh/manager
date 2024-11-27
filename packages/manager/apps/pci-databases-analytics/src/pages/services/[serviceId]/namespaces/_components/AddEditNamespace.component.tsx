@@ -43,6 +43,7 @@ import {
 import { useEditNamespace } from '@/hooks/api/database/namespace/useEditNamespace.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 interface AddEditNamespaceModalProps {
   editedNamespace?: database.m3db.Namespace;
@@ -166,12 +167,8 @@ const AddEditNamespace = ({
     }
   });
 
-  const onOpenChange = (open: boolean) => {
-    if (!open) navigate('../');
-  };
-
   return (
-    <Dialog defaultOpen onOpenChange={onOpenChange}>
+    <RouteModal>
       <DialogContent className="px-0 sm:max-w-2xl">
         <ScrollArea className="max-h-[80vh] px-6">
           <DialogHeader>
@@ -594,7 +591,7 @@ const AddEditNamespace = ({
           </Form>
         </ScrollArea>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -16,7 +15,7 @@ import { useDeleteConnectionPool } from '@/hooks/api/database/connectionPool/use
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
 import { useGetConnectionPools } from '@/hooks/api/database/connectionPool/useGetConnectionPools.hook';
-import { Skeleton } from '@/components/ui/skeleton';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 const DeletePool = () => {
   const { projectId, poolId } = useParams();
@@ -68,14 +67,9 @@ const DeletePool = () => {
       connectionPoolId: deletedPool.id,
     });
   };
-  const onOpenChange = (open: boolean) => {
-    if (!open) navigate('../');
-  };
-
-  if (!pools || !deletedPool) return <Skeleton className="w-full h-4" />;
 
   return (
-    <Dialog defaultOpen onOpenChange={onOpenChange}>
+    <RouteModal isLoading={!pools || !deletedPool}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="delete-pools-modal">
@@ -83,7 +77,7 @@ const DeletePool = () => {
           </DialogTitle>
           <DialogDescription>
             {t('deleteConnectionPoolDescription', {
-              name: deletedPool.name,
+              name: deletedPool?.name,
             })}
           </DialogDescription>
         </DialogHeader>
@@ -107,7 +101,7 @@ const DeletePool = () => {
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

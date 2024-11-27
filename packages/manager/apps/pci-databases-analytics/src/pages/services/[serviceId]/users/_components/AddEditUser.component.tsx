@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -38,6 +37,7 @@ import { useUserForm } from './formUser/useUserForm.hook';
 import RolesSelect from './formUser/RolesSelect.component';
 import { useServiceData } from '../../Service.context';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 interface AddEditUserModalProps {
   editedUser?: GenericUser;
@@ -119,12 +119,8 @@ const AddEditUserModal = ({
     }
   });
 
-  const onOpenChange = (open: boolean) => {
-    if (!open) navigate('../');
-  };
-
   return (
-    <Dialog defaultOpen onOpenChange={onOpenChange}>
+    <RouteModal isLoading={!existingUsers}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle data-testid="add-edit-user-modal">
@@ -332,7 +328,7 @@ const AddEditUserModal = ({
           </form>
         </Form>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

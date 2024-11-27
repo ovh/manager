@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   Form,
@@ -12,7 +12,6 @@ import {
 import { Button } from '@/components/ui/button';
 import * as database from '@/types/cloud/project/database';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -20,7 +19,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
 import {
   Select,
@@ -35,7 +33,7 @@ import { Alert, AlertTitle } from '@/components/ui/alert';
 import { useAddIntegration } from '@/hooks/api/database/integration/useAddIntegration.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
-import { Skeleton } from '@/components/ui/skeleton';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 const AddIntegration = () => {
   const { projectId } = useParams();
@@ -92,14 +90,8 @@ const AddIntegration = () => {
     return messages;
   }, [model.form.formState.errors]);
 
-  const onOpenChange = (open: boolean) => {
-    if (!open) navigate('../');
-  };
-
-  if (!service) return <Skeleton className="w-full h-4" />;
-
   return (
-    <Dialog defaultOpen onOpenChange={onOpenChange}>
+    <RouteModal isLoading={!service}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="add-integrations-modal">
@@ -312,7 +304,7 @@ const AddIntegration = () => {
           </form>
         </Form>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

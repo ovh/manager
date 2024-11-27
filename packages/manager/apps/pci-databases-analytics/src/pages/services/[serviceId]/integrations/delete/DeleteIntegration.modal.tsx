@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -16,7 +15,7 @@ import { useDeleteIntegration } from '@/hooks/api/database/integration/useDelete
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
 import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
-import { Skeleton } from '@/components/ui/skeleton';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 const DeleteIntegration = () => {
   const { projectId, integrationId } = useParams();
@@ -67,15 +66,9 @@ const DeleteIntegration = () => {
       integrationId: deletedIntegration.id,
     });
   };
-  const onOpenChange = (open: boolean) => {
-    if (!open) navigate('../');
-  };
-
-  if (!integrations || !deletedIntegration)
-    return <Skeleton className="w-full h-4" />;
 
   return (
-    <Dialog defaultOpen onOpenChange={onOpenChange}>
+    <RouteModal isLoading={!integrations || !deletedIntegration}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="delete-integrations-modal">
@@ -83,7 +76,7 @@ const DeleteIntegration = () => {
           </DialogTitle>
           <DialogDescription>
             {t('deleteIntegrationDescription', {
-              type: deletedIntegration.type,
+              type: deletedIntegration?.type,
             })}
           </DialogDescription>
         </DialogHeader>
@@ -107,7 +100,7 @@ const DeleteIntegration = () => {
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

@@ -14,7 +14,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -26,7 +25,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { useAddDatabase } from '@/hooks/api/database/database/useAddDatabase.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
-import { Skeleton } from '@/components/ui/skeleton';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 const AddDatabase = () => {
   // import translations
@@ -83,14 +82,8 @@ const AddDatabase = () => {
     });
   });
 
-  const onOpenChange = (open: boolean) => {
-    if (!open) navigate('../');
-  };
-
-  if (!service) return <Skeleton className="w-full h-4" />;
-
   return (
-    <Dialog defaultOpen onOpenChange={onOpenChange}>
+    <RouteModal isLoading={!service}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="add-database-modal">
@@ -135,7 +128,7 @@ const AddDatabase = () => {
           </form>
         </Form>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

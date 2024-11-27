@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -18,7 +17,7 @@ import { Alert } from '@/components/ui/alert';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
 import { useGetUsers } from '@/hooks/api/database/user/useGetUsers.hook';
-import { Skeleton } from '@/components/ui/skeleton';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 const ResetUserPassword = () => {
   const { userId } = useParams();
@@ -74,13 +73,8 @@ const ResetUserPassword = () => {
     });
   };
 
-  const onOpenChange = (open: boolean) => {
-    if (!open) navigate('../');
-  };
-
-  if (!users) return <Skeleton className="w-full h-4" />;
   return (
-    <Dialog defaultOpen onOpenChange={onOpenChange}>
+    <RouteModal isLoading={!users}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="reset-password-modal">
@@ -105,7 +99,7 @@ const ResetUserPassword = () => {
             </Alert>
           ) : (
             <DialogDescription>
-              {t('resetUserPasswordDescription', { name: user.username })}
+              {t('resetUserPasswordDescription', { name: user?.username })}
             </DialogDescription>
           )}
         </DialogHeader>
@@ -143,7 +137,7 @@ const ResetUserPassword = () => {
           )}
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

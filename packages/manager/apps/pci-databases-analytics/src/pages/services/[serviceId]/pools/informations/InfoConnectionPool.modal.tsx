@@ -20,6 +20,7 @@ import { useServiceData } from '../../Service.context';
 import { useGetConnectionPools } from '@/hooks/api/database/connectionPool/useGetConnectionPools.hook';
 import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
 import { Skeleton } from '@/components/ui/skeleton';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 const InfoConnectionPool = () => {
   const { projectId, poolId } = useParams();
@@ -63,17 +64,14 @@ const InfoConnectionPool = () => {
     if (connectionPools && !connectionPool) navigate('../');
   }, [connectionPools, connectionPool]);
 
-  const onOpenChange = (open: boolean) => {
-    if (!open) navigate('../');
-  };
-
   const poolDb: database.service.Database = databases?.find(
     (db) => db.id === connectionPool?.databaseId,
   );
-  if (!poolDb || !connectionPool || !certificateQuery.data)
-    return <Skeleton className="w-full h-4" />;
+
   return (
-    <Dialog defaultOpen onOpenChange={onOpenChange}>
+    <RouteModal
+      isLoading={!poolDb || !connectionPool || !certificateQuery.data}
+    >
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle data-testid="info-pools-modal">
@@ -88,19 +86,19 @@ const InfoConnectionPool = () => {
                   <TableCell className="font-semibold">
                     {t('infoConnectionPoolDatabaseLabel')}
                   </TableCell>
-                  <TableCell>{poolDb.name}</TableCell>
+                  <TableCell>{poolDb?.name}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="font-semibold">
                     {t('infoConnectionPoolPortLabel')}
                   </TableCell>
-                  <TableCell>{connectionPool.port}</TableCell>
+                  <TableCell>{connectionPool?.port}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="font-semibold">
                     {t('infoConnectionPoolSslLabel')}
                   </TableCell>
-                  <TableCell>{connectionPool.sslMode}</TableCell>
+                  <TableCell>{connectionPool?.sslMode}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="font-semibold">
@@ -109,9 +107,9 @@ const InfoConnectionPool = () => {
                   <TableCell>
                     <p
                       className="flex-1 truncate h-6 max-w-[320px]"
-                      title={certificateQuery.data.ca}
+                      title={certificateQuery.data?.ca}
                     >
-                      {certificateQuery.data.ca}
+                      {certificateQuery.data?.ca}
                     </p>
                   </TableCell>
                   <TableCell>
@@ -123,7 +121,7 @@ const InfoConnectionPool = () => {
                         variant="table"
                         onClick={() => {
                           navigator.clipboard.writeText(
-                            certificateQuery.data.ca,
+                            certificateQuery.data?.ca,
                           );
                           toast.toast({
                             title: t('infoConnectionPoolCertificateCopyToast'),
@@ -138,7 +136,7 @@ const InfoConnectionPool = () => {
                         size="table"
                         variant="table"
                         onClick={() => {
-                          download(certificateQuery.data.ca, 'ca.pem');
+                          download(certificateQuery.data?.ca, 'ca.pem');
                           toast.toast({
                             title: t(
                               'infoConnectionPoolCertificateDownloadToast',
@@ -158,9 +156,9 @@ const InfoConnectionPool = () => {
                   <TableCell>
                     <p
                       className="flex-1 truncate h-6 max-w-[320px]"
-                      title={connectionPool.uri}
+                      title={connectionPool?.uri}
                     >
-                      {connectionPool.uri}
+                      {connectionPool?.uri}
                     </p>
                   </TableCell>
                   <TableCell>
@@ -171,7 +169,7 @@ const InfoConnectionPool = () => {
                         size="table"
                         variant="table"
                         onClick={() => {
-                          navigator.clipboard.writeText(connectionPool.uri);
+                          navigator.clipboard.writeText(connectionPool?.uri);
                           toast.toast({
                             title: t('infoConnectionPoolUriToast'),
                           });
@@ -186,13 +184,13 @@ const InfoConnectionPool = () => {
                   <TableCell className="font-semibold">
                     {t('infoConnectionPoolModeLabel')}
                   </TableCell>
-                  <TableCell>{connectionPool.mode}</TableCell>
+                  <TableCell>{connectionPool?.mode}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className="font-semibold">
                     {t('infoConnectionPoolSizeLabel')}
                   </TableCell>
-                  <TableCell>{connectionPool.size}</TableCell>
+                  <TableCell>{connectionPool?.size}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
@@ -201,7 +199,7 @@ const InfoConnectionPool = () => {
           <p>{t('infoConnectionPoolLoading')}</p>
         )}
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

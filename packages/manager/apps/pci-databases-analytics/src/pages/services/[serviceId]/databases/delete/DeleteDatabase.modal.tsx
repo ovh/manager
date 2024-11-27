@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -16,7 +15,7 @@ import { useDeleteDatabase } from '@/hooks/api/database/database/useDeleteDataba
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
 import { useServiceData } from '../../Service.context';
-import { Skeleton } from '@/components/ui/skeleton';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 const DeleteDatabase = () => {
   // import translations
@@ -70,22 +69,15 @@ const DeleteDatabase = () => {
     });
   };
 
-  const onOpenChange = (open: boolean) => {
-    if (!open) navigate('../');
-  };
-
-  if (!databases || !deletedDatabase)
-    return <Skeleton className="w-full h-4" />;
-
   return (
-    <Dialog defaultOpen onOpenChange={onOpenChange}>
+    <RouteModal isLoading={!databases || !deletedDatabase}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="delete-database-modal">
             {t('deleteDatabaseTitle')}
           </DialogTitle>
           <DialogDescription>
-            {t('deleteDatabaseDescription', { name: deletedDatabase.name })}
+            {t('deleteDatabaseDescription', { name: deletedDatabase?.name })}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex justify-end">
@@ -108,7 +100,7 @@ const DeleteDatabase = () => {
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

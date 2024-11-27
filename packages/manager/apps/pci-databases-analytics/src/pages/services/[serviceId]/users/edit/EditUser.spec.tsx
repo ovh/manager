@@ -48,19 +48,6 @@ describe('EditUser modal', () => {
     vi.clearAllMocks();
   });
 
-  it('should render a skeleton loader while users are being fetched', () => {
-    // Simulate loading state in the useGetUsers hook
-    vi.mocked(usersApi.getUsers).mockImplementationOnce(() => {
-      throw apiErrorMock;
-    });
-
-    render(<EditUser />, {
-      wrapper: RouterWithQueryClientWrapper,
-    });
-
-    expect(screen.getByTestId('skeleton')).toBeInTheDocument();
-  });
-
   it('should render the modal when data is fetched successfully', async () => {
     // Simulate successful data fetching in the useGetUsers hook
     vi.mocked(usersApi.getUsers).mockResolvedValue([mockedDatabaseUser]);

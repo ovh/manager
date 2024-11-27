@@ -19,7 +19,6 @@ const AddUserModal = () => {
     if (users && !editedUser) navigate('../');
   }, [users, editedUser]);
 
-  if (!users) return <Skeleton className="w-full h-4" />;
   return (
     <AddEditUserModal
       existingUsers={users}

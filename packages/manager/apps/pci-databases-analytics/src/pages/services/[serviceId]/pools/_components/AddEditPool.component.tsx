@@ -38,6 +38,7 @@ import {
 } from '@/hooks/api/database/connectionPool/useAddConnectionPool.hook';
 import { useEditConnectionPool } from '@/hooks/api/database/connectionPool/useEditConnectionPool.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 interface AddEditConnectionPoolModalProps {
   editedConnectionPool?: database.postgresql.ConnectionPool;
@@ -98,50 +99,43 @@ const AddEditConnectionPool = ({
     isPending: isPendingEditPool,
   } = useEditConnectionPool(connectionPoolMutationConfig);
 
-  const onSubmit = form.handleSubmit(
-    (formValues) => {
-      if (isEdition) {
-        const connectionPool: ConnectionPoolEdition = {
-          id: editedConnectionPool.id,
-          databaseId: formValues.databaseId,
-          mode: formValues.mode,
-          size: formValues.size,
-          userId: formValues.userId || null,
-        };
-        if (Object.entries(form.formState.dirtyFields).length === 0) {
-          return;
-        }
-        editConnectionPool({
-          projectId,
-          engine: service.engine,
-          serviceId: service.id,
-          connectionPool,
-        });
-      } else {
-        const connectionPool: Partial<database.postgresql.ConnectionPoolCreation> = {
-          databaseId: formValues.databaseId,
-          mode: formValues.mode,
-          name: formValues.name,
-          size: formValues.size,
-        };
-        if (formValues.userId) connectionPool.userId = formValues.userId;
-        addConnectionPool({
-          projectId,
-          engine: service.engine,
-          serviceId: service.id,
-          connectionPool,
-        });
+  const onSubmit = form.handleSubmit((formValues) => {
+    if (isEdition) {
+      const connectionPool: ConnectionPoolEdition = {
+        id: editedConnectionPool.id,
+        databaseId: formValues.databaseId,
+        mode: formValues.mode,
+        size: formValues.size,
+        userId: formValues.userId || null,
+      };
+      if (Object.entries(form.formState.dirtyFields).length === 0) {
+        return;
       }
-    },
-    (e) => console.log(e),
-  );
-
-  const onOpenChange = (open: boolean) => {
-    if (!open) navigate('../');
-  };
+      editConnectionPool({
+        projectId,
+        engine: service.engine,
+        serviceId: service.id,
+        connectionPool,
+      });
+    } else {
+      const connectionPool: Partial<database.postgresql.ConnectionPoolCreation> = {
+        databaseId: formValues.databaseId,
+        mode: formValues.mode,
+        name: formValues.name,
+        size: formValues.size,
+      };
+      if (formValues.userId) connectionPool.userId = formValues.userId;
+      addConnectionPool({
+        projectId,
+        engine: service.engine,
+        serviceId: service.id,
+        connectionPool,
+      });
+    }
+  });
 
   return (
-    <Dialog defaultOpen onOpenChange={onOpenChange}>
+    <RouteModal>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle data-testid="add-edit-pools-modal">
@@ -304,7 +298,7 @@ const AddEditConnectionPool = ({
           </form>
         </Form>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 
