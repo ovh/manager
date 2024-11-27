@@ -20,5 +20,7 @@
   "manual_renew": "Manuelle Verlängerung",
   "administrator_contact": "{{code}} Administrator",
   "billing_contact": "{{code}} Abrechnung",
-  "technical_contact": "{{code}} Technik"
+  "technical_contact": "{{code}} Technik",
+  "location": "Standort",
+  "terminated_service": "Der Dienst wurde gekündigt."
 }

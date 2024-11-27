@@ -1,5 +1,5 @@
 {
   "headline": "Meinen Dienst kündigen",
   "delete_input_label": "Bitte geben Sie das Wort „TERMINATE“ ein, um die Kündigung Ihres Dienstes zu bestätigen.",
-  "terminate_veeam_backup_success": "Ihre Kündigungsanfrage für {{name}} wurde registriert. Sie erhalten in Kürze eine E-Mail mit weiteren Informationen"
+  "terminate_veeam_backup_success": "Ihre Kündigungsanfrage wurde registriert. Eine E-Mail mit weiteren Informationen zur Vorgehensweise wurde soeben an Sie versandt."
 }

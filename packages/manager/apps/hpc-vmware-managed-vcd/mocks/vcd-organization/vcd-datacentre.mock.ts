@@ -6,8 +6,7 @@ export const datacentreList: IVcdDatacentre[] = [
     resourceStatus: 'READY',
     currentState: {
       commercialRange: 'STANDARD',
-      description:
-        'Pour vous proposer une description adaptée, pourriez-vous me donner plus de détails sur votre service ? Cela me permettra de créer une description précise et impactante qui tient dans la limite des 255 caractères.',
+      description: 'VDC Description',
       ipQuota: 10,
       memoryQuota: 64,
       name: 'vdc-eu-central-waw-adc311b5-0c0b-4071-b48f-b20813868bcf',
@@ -18,8 +17,7 @@ export const datacentreList: IVcdDatacentre[] = [
     },
     currentTasks: [],
     targetSpec: {
-      description:
-        'Pour vous proposer une description adaptée, pourriez-vous me donner plus de détails sur votre service ? Cela me permettra de créer une description précise et impactante qui tient dans la limite des 255 caractères.',
+      description: 'VDC Description targetSpec',
       vCPUSpeed: 3,
     },
     updatedAt: '2024-09-23T13:53:49Z',

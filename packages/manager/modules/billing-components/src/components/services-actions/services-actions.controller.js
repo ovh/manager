@@ -117,6 +117,7 @@ export default class ServicesActionsCtrl {
       case SERVICE_TYPE.OKMS:
       case SERVICE_TYPE.VRACK_SERVICES:
       case SERVICE_TYPE.LICENSE_HYCU:
+      case SERVICE_TYPE.VEEAM_BACKUP:
         this.resiliateLink = `${this.autorenewLink}/terminate-service?id=${this.service.id}${serviceTypeParam}`;
         break;
       default:

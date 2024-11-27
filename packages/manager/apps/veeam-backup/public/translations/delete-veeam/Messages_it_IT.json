@@ -1,5 +1,5 @@
 {
   "headline": "Disattivare il servizio",
   "delete_input_label": "Inserisci la parola \"TERMINATE\" per confermare la disattivazione del tuo servizio.",
-  "terminate_veeam_backup_success": "La richiesta di disattivazione per {{name}} è stata presa in carico, riceverai un’email con maggiori informazioni."
+  "terminate_veeam_backup_success": "La tua richiesta di disattivazione è stata presa in carico. Ti abbiamo inviato un’email con la procedura da seguire."
 }
