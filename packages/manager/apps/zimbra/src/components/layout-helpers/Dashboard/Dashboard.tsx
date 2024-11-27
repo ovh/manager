@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import {
   Outlet,
   useResolvedPath,
   useLocation,
   useParams,
   useNavigate,
+  useSearchParams,
 } from 'react-router-dom';
 
 import {
@@ -19,19 +20,22 @@ import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsTag } from '@ovhcloud/ods-components/react';
 import { ODS_TAG_COLOR, ODS_TAG_SIZE } from '@ovhcloud/ods-components';
-import TabsPanel, { TabItemProps } from './TabsPanel';
+import TabsPanel, { computePathMatchers, TabItemProps } from './TabsPanel';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { GUIDES_LIST } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
 
 import './Dashboard.scss';
 import { FEATURE_FLAGS } from '@/utils';
-import { useOrganization } from '@/hooks';
+import { useGenerateUrl, useOrganization, useOverridePage } from '@/hooks';
+
+const whiteListedSearchParams = ['organizationId'];
 
 export const Dashboard: React.FC = () => {
   const { platformId } = useParams();
   const { notifications } = useNotifications();
   const { data: organization } = useOrganization();
+  const isOverridePage = useOverridePage();
   const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
   const context = useContext(ShellContext);
@@ -49,73 +53,78 @@ export const Dashboard: React.FC = () => {
     },
   ];
 
-  const params = new URLSearchParams(location.search);
-  const selectedOrganizationId = params.get('organizationId');
-  function computePathMatchers(routes: string[]) {
-    return routes.map(
-      (path) => new RegExp(path.replace(':serviceName', platformId)),
+  const [searchParams] = useSearchParams();
+  const selectedOrganizationId = searchParams.get('organizationId');
+  const params = useMemo(() => {
+    return Object.fromEntries(
+      Array.from(searchParams.entries()).filter(([key]) =>
+        whiteListedSearchParams.includes(key),
+      ),
     );
-  }
+  }, [searchParams]);
+
   const tabsList: TabItemProps[] = [
     {
       name: 'general_informations',
       title: t('zimbra_dashboard_general_informations'),
-      to: basePath,
-      pathMatchers: computePathMatchers([urls.dashboard]),
+      to: useGenerateUrl(basePath, 'path', params),
+      pathMatchers: computePathMatchers([urls.dashboard], platformId),
     },
     {
       name: 'organizations',
       title: t('zimbra_dashboard_organizations'),
-      to: `${basePath}/organizations`,
-      pathMatchers: computePathMatchers([
-        urls.organizations,
-        urls.organizationsDelete,
-      ]),
+      to: useGenerateUrl(`${basePath}/organizations`, 'path', params),
+      pathMatchers: computePathMatchers(
+        [urls.organizations, urls.organizationsDelete],
+        platformId,
+      ),
       hidden: selectedOrganizationId !== null,
     },
     {
       name: 'domains',
       title: t('zimbra_dashboard_domains'),
-      to: `${basePath}/domains`,
-      pathMatchers: computePathMatchers([
-        urls.domains,
-        urls.domainsEdit,
-        urls.domainsDelete,
-        urls.domains_diagnostic,
-      ]),
+      to: useGenerateUrl(`${basePath}/domains`, 'path', params),
+      pathMatchers: computePathMatchers(
+        [
+          urls.domains,
+          urls.domainsEdit,
+          urls.domainsDelete,
+          urls.domains_diagnostic,
+        ],
+        platformId,
+      ),
     },
     {
       name: 'email_accounts',
       title: t('zimbra_dashboard_email_accounts'),
-      to: `${basePath}/email_accounts`,
-      pathMatchers: computePathMatchers([urls.email_accounts]),
+      to: useGenerateUrl(`${basePath}/email_accounts`, 'path', params),
+      pathMatchers: computePathMatchers([urls.email_accounts], platformId),
     },
     {
       name: 'mailing_lists',
       title: t('zimbra_dashboard_mailing_lists'),
-      to: `${basePath}/mailing_lists`,
-      pathMatchers: computePathMatchers([
-        urls.mailing_lists,
-        urls.mailing_lists_delete,
-      ]),
+      to: useGenerateUrl(`${basePath}/mailing_lists`, 'path', params),
+      pathMatchers: computePathMatchers(
+        [urls.mailing_lists, urls.mailing_lists_delete],
+        platformId,
+      ),
       hidden: !FEATURE_FLAGS.MAILINGLISTS,
     },
     {
       name: 'redirections',
       title: t('zimbra_dashboard_redirections'),
-      to: `${basePath}/redirections`,
-      pathMatchers: computePathMatchers([
-        urls.redirections,
-        urls.redirections_delete,
-        urls.redirections_edit,
-      ]),
+      to: useGenerateUrl(`${basePath}/redirections`, 'path', params),
+      pathMatchers: computePathMatchers(
+        [urls.redirections, urls.redirections_delete, urls.redirections_edit],
+        platformId,
+      ),
       hidden: !FEATURE_FLAGS.REDIRECTIONS,
     },
     {
       name: 'auto_replies',
       title: t('zimbra_dashboard_auto_replies'),
-      to: `${basePath}/auto_replies`,
-      pathMatchers: computePathMatchers([urls.auto_replies]),
+      to: useGenerateUrl(`${basePath}/auto_replies`, 'path', params),
+      pathMatchers: computePathMatchers([urls.auto_replies], platformId),
       hidden: !FEATURE_FLAGS.AUTOREPLIES,
     },
   ];
@@ -146,7 +155,7 @@ export const Dashboard: React.FC = () => {
         // temporary fix margin even if empty
         notifications.length ? <Notifications /> : null
       }
-      tabs={<TabsPanel tabs={tabsList} />}
+      tabs={isOverridePage ? null : <TabsPanel tabs={tabsList} />}
     >
       <Outlet />
     </BaseLayout>
