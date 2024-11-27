@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.89.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.89.0...@ovh-ux/manager-container-app@0.89.1) (2024-11-27)
+
+
+### Bug Fixes
+
+* **pci-ai-endpoints:** change ff pci menu management ([#14277](https://github.com/ovh/manager/issues/14277)) ([80c634c](https://github.com/ovh/manager/commit/80c634ccceb06535cf579539bef5781a74659173))
+
+
+
+
+
 # [0.89.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.88.0...@ovh-ux/manager-container-app@0.89.0) (2024-11-26)
 
 
