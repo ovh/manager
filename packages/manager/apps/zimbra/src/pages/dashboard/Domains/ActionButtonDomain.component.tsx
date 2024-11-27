@@ -53,6 +53,14 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
     navigate(hrefEditDomain);
   };
 
+  const hrefDiagnosticsDomain = useGenerateUrl('./diagnostics/mx', 'path', {
+    domainId: domainItem.id,
+  });
+
+  const handleDiagnosticsDomainClick = () => {
+    navigate(hrefDiagnosticsDomain);
+  };
+
   const actionItems = [
     {
       id: 1,
@@ -63,6 +71,13 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
     },
     {
       id: 2,
+      onclick: handleDiagnosticsDomainClick,
+      label: t('zimbra_domains_tooltip_diagnostics'),
+      urn: platformUrn,
+      iamActions: [IAM_ACTIONS.domain.edit],
+    },
+    {
+      id: 3,
       onclick: handleDeleteDomainClick,
       label: t('zimbra_domains_tooltip_delete'),
       urn: platformUrn,
@@ -70,6 +85,7 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
       color: ODS_BUTTON_COLOR.critical,
     },
   ];
+
   return (
     <ActionMenu
       id={domainItem.id}

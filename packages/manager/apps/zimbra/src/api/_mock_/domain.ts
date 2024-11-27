@@ -1,4 +1,4 @@
-import { DomainType } from '@/api/domain';
+import { DomainDiagnosisResponse, DomainType } from '@/api/domain';
 import { ResourceStatus } from '@/api/api.type';
 
 export const domainDetailMock: DomainType = {
@@ -24,7 +24,21 @@ export const domainDetailMock: DomainType = {
       },
     ],
     expectedDNSConfig: {
-      mx: [],
+      spf: 'string',
+      dkim: {
+        cnames: [
+          {
+            name: 'string',
+            value: 'string',
+          },
+        ],
+      },
+      mx: [
+        {
+          priority: 0,
+          target: 'string',
+        },
+      ],
       ownership: {
         cname: 'test',
       },
@@ -64,10 +78,24 @@ export const domainsMock: DomainType[] = [
         },
       ],
       expectedDNSConfig: {
-        mx: [],
-        ownership: {
-          cname: null,
+        dkim: {
+          cnames: [
+            {
+              name: 'string',
+              value: 'string',
+            },
+          ],
         },
+        mx: [
+          {
+            priority: 0,
+            target: 'string',
+          },
+        ],
+        ownership: {
+          cname: 'string',
+        },
+        spf: 'string',
       },
     },
     currentTasks: [
@@ -101,10 +129,24 @@ export const domainsMock: DomainType[] = [
         },
       ],
       expectedDNSConfig: {
-        mx: [],
-        ownership: {
-          cname: 'mycname',
+        dkim: {
+          cnames: [
+            {
+              name: 'string',
+              value: 'string',
+            },
+          ],
         },
+        mx: [
+          {
+            priority: 0,
+            target: 'string',
+          },
+        ],
+        ownership: {
+          cname: 'string',
+        },
+        spf: 'string',
       },
     },
     currentTasks: [
@@ -118,3 +160,76 @@ export const domainsMock: DomainType[] = [
 ];
 
 export const domainZone: string[] = ['test.fr', 'mydomain.fr', 'domain.fr'];
+
+export const domainDiagnosticMock = {
+  domainId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+  domainName: 'zimbra.fr',
+  error: {
+    code: 'BAD_CONFIGURATION',
+    message: 'string',
+  },
+  recommendations: {
+    expectedDNSConfig: {
+      dkim: {
+        cnames: [
+          {
+            name: 'string',
+            value: 'string',
+          },
+        ],
+      },
+      mx: [
+        {
+          priority: 0,
+          target: 'string',
+        },
+      ],
+      ownership: {
+        cname: 'string',
+      },
+      spf: 'string',
+    },
+  },
+  result: {
+    dkim: {
+      errors: [
+        {
+          code: 'INCORRECT_CNAME_RECORD',
+          message: 'The CNAME setup on your DNS records is incorrect.',
+        },
+      ],
+      recordsFound: ['string'],
+      status: 'ERROR',
+    },
+    mx: {
+      errors: [
+        {
+          code: 'EXTERNAL_MX_RECORD',
+          message: 'string',
+        },
+      ],
+      recordsFound: [
+        {
+          priority: 0,
+          target: 'string',
+        },
+      ],
+      status: 'WARNING',
+    },
+    spf: {
+      errors: [
+        {
+          code: 'DANGEROUS_SPF_POLICY',
+          message: 'string',
+        },
+      ],
+      recordsFound: ['string'],
+      status: 'ERROR',
+    },
+  },
+  status: 'ERROR',
+};
+
+export const domainsDiagnosticMock = [
+  domainDiagnosticMock,
+] as DomainDiagnosisResponse[];

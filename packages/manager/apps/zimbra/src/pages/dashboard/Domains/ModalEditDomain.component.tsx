@@ -46,9 +46,9 @@ export default function ModalEditDomain() {
 
   const { platformId } = usePlatform();
 
-  const { data: detailDomain, isLoading: isLoadingDomain } = useDomain(
-    editDomainId,
-  );
+  const { data: detailDomain, isLoading: isLoadingDomain } = useDomain({
+    domainId: editDomainId,
+  });
   const {
     data: organizationsList,
     isLoading: isLoadingOrganizations,
