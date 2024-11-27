@@ -1,1 +1,1 @@
-export type Procedure = '2FA' | 'GDPR';
+export type Procedure = '2FA' | 'gdpr';
