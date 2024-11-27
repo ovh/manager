@@ -6,3 +6,6 @@ export const AVAILABILITY = {
   LOCALZONE: 'public-cloud:object-storage:localzone',
   '3AZ': 'public-cloud:object-storage:3az',
 };
+
+export const DOWNLOAD_FILENAME = 'import.json';
+export const DOWNLOAD_TYPE = 'application/json"';
