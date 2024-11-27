@@ -48,7 +48,7 @@ export const DatacentreOrder = <T extends OrderType>({
   minQuantity = 1,
   maxQuantity = 100,
 }: DatacentreOrderProps<T>) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/order');
+  const { t } = useTranslation('datacentres/order');
   const navigate = useNavigate();
   const { id, vdcId } = useParams();
   const {

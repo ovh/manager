@@ -14,6 +14,7 @@ import { subRoutes } from '@/routes/routes.constant';
 import { iamActions } from '@/utils/iam.constants';
 import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
 import { capitalize } from '@/utils/capitalize';
+import { ID_LABEL } from '@/pages/dashboard/dashboard.constants';
 
 type TTileProps = {
   vcdDatacentre: VCDDatacentre;
@@ -25,7 +26,7 @@ export default function DatacentreGenerationInformationTile({
   vcdOrganization,
 }: TTileProps) {
   const { t } = useTranslation('dashboard');
-  const { t: tVdc } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+  const { t: tVdc } = useTranslation('datacentres');
   const navigate = useNavigate();
 
   return (
@@ -105,7 +106,7 @@ export default function DatacentreGenerationInformationTile({
         },
         {
           id: 'vdcId',
-          label: tVdc('managed_vcd_vdc_id'),
+          label: ID_LABEL,
           value: <Clipboard value={vcdDatacentre?.id} />,
         },
       ]}

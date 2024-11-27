@@ -29,9 +29,10 @@ import {
   getAuthenticationMocks,
   toMswHandlers,
 } from '@ovh-ux/manager-core-test-utils';
-import { translations, labels } from './test-i18n';
+import { translations } from './test-i18n';
 import { TestApp } from './TestApp';
 import { APP_NAME } from '@/tracking.constant';
+import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/OrganizationDashboard.constants';
 
 let context: ShellContextType;
 let i18nState: i18n;
@@ -78,7 +79,7 @@ export const renderTest = async ({
     await waitFor(
       () =>
         expect(
-          screen.getAllByText(labels.listing.managed_vcd_listing_title, {
+          screen.getAllByText(MANAGED_VCD_LABEL, {
             exact: false,
           }).length,
         ).toBeGreaterThan(0),
