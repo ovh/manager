@@ -13,7 +13,7 @@ describe('Domains datagrid action menu', () => {
 
     const menuItems = container.querySelectorAll('ods-popover ods-button');
 
-    expect(menuItems.length).toBe(2);
+    expect(menuItems.length).toBe(3);
 
     expect(menuItems[0]).toHaveAttribute(
       'label',
@@ -21,6 +21,11 @@ describe('Domains datagrid action menu', () => {
     );
 
     expect(menuItems[1]).toHaveAttribute(
+      'label',
+      domainTranslation.zimbra_domains_tooltip_diagnostics,
+    );
+
+    expect(menuItems[2]).toHaveAttribute(
       'label',
       domainTranslation.zimbra_domains_tooltip_delete,
     );
