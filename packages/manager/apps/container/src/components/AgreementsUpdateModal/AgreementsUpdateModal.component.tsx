@@ -11,6 +11,7 @@ import useAccountUrn from '@/hooks/accountUrn/useAccountUrn';
 import { ModalTypes } from '@/context/modals/modals.context';
 import { useModals } from '@/context/modals';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { requiredStatusKey } from '@/identity-documents-modal/constants';
 
 export default function AgreementsUpdateModal () {
   const { shell } = useContext(ApplicationContext);
@@ -36,22 +37,27 @@ export default function AgreementsUpdateModal () {
   };
 
   useEffect(() => {
+    const shouldManageModal = region !== 'US' && current === ModalTypes.agreements && window.location.href !== myContractsLink;
     // We consider we have loaded all information if conditions are not respected to try to display the modal
-    const hasFullyLoaded = !shouldTryToDisplay
+    const hasFullyLoaded = !shouldManageModal
       // Or authorization are loaded but user does have right to accept contract or has no contract to accept
       || !isAuthorizationLoading && (!canUserAcceptAgreements || !areAgreementsLoading);
-    // If current modal to be displayed is the agreements one and everything has loaded we can handle the display
-    if (shouldTryToDisplay && hasFullyLoaded) {
-      // If no contract are to be accepted we go to the next modal (if it exists)
-      if (!agreements?.length) {
-        shell.getPlugin('ux').notifyModalActionDone();
-      }
-      // Otherwise we display the modal
-      else {
-        setShowModal(true);
+    // We handle the modal display only when the Agreements modal is the current one, contract management is available
+    // (region is not US) and we are not on the page where the user can do the related action (accepts his contract)
+    if (shouldManageModal) {
+      // We will wait for all data to be retrieved before handling the modal lifecycle
+      if (hasFullyLoaded) {
+        // If no contract are to be accepted we go to the next modal (if it exists)
+        if (!agreements?.length) {
+          shell.getPlugin('ux').notifyModalActionDone();
+        }
+        // Otherwise we display the modal
+        else {
+          setShowModal(true);
+        }
       }
     }
-  }, [shouldTryToDisplay, canUserAcceptAgreements, agreements, current]);
+  }, [canUserAcceptAgreements, isAuthorizationLoading, canUserAcceptAgreements, areAgreementsLoading, agreements, current]);
 
   return showModal ? (
     <>
