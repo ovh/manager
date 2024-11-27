@@ -64,12 +64,12 @@ export const AlertsPart = ({
   const chartData = [
     {
       label: tEstimate('cpbe_estimate_alert_chart_label_now'),
-      value: currentPrices?.totalHourlyPrice,
+      value: currentPrices?.totalHourlyPrice.toFixed(2),
       fill: '#777',
     },
     {
       label: tEstimate('cpbe_estimate_alert_chart_label_future'),
-      value: forecastPrices?.totalHourlyPrice,
+      value: forecastPrices?.totalHourlyPrice.toFixed(2),
       fill: '#ddd',
     },
   ];
@@ -114,10 +114,8 @@ export const AlertsPart = ({
     (err: ApiError) => {
       clearNotifications();
       addError(
-        `${tEstimate('cpbe_estimate_alert_delete_error')} ${(err.response
-          .data &&
-          err.response.data.message) ||
-          ''}`,
+        `${tEstimate('cpbe_estimate_alert_delete_error')} ${err.response?.data
+          ?.message || ''}`,
         true,
       );
     },
@@ -285,6 +283,7 @@ export const AlertsPart = ({
           threshold={alert?.monthlyThreshold}
           onClose={closeModal}
           onInput={createOrUpdate}
+          isPending={isAlertCreating || isAlertUpdating}
         />
       )}
     </div>
