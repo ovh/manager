@@ -128,6 +128,17 @@ export default [
                 ...lazyRouteConfig(() =>
                   import('@/pages/services/[serviceId]/backups/Backups.page'),
                 ),
+                children: [
+                  {
+                    path: 'restore/:backupId?',
+                    id: 'service.{service.engine}.backups.restore',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/services/[serviceId]/backups/restore/Restore.modal'
+                      ),
+                    ),
+                  },
+                ],
               },
               {
                 path: 'fork',
