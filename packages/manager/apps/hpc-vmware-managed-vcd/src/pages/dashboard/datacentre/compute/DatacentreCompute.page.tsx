@@ -10,9 +10,10 @@ import {
   getVdcComputeQueryKey,
   VCDCompute,
 } from '@ovh-ux/manager-module-vcd-api';
-import { VHOSTS_TITLE } from './DatacentreCompute.constants';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
+import { VHOST_LABEL, VHOSTS_LABEL } from './DatacentreCompute.constants';
+import { ID_LABEL } from '../../dashboard.constants';
 
 const DatagridIdCell = (vcdCompute: VCDCompute) => (
   <DataGridTextCell>{vcdCompute?.id}</DataGridTextCell>
@@ -25,7 +26,7 @@ const DatagridCpuCountCell = (vcdCompute: VCDCompute) => (
   <DataGridTextCell>{vcdCompute.currentState?.vCPUCount}</DataGridTextCell>
 );
 const DatagridBillingCell = (vcdCompute: VCDCompute) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/compute');
+  const { t } = useTranslation('datacentres/compute');
   return (
     <DataGridTextCell>
       {t(
@@ -36,7 +37,7 @@ const DatagridBillingCell = (vcdCompute: VCDCompute) => {
 };
 
 const DatagridRamCountCell = (vcdCompute: VCDCompute) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+  const { t } = useTranslation('datacentres');
 
   return (
     <DataGridTextCell>
@@ -49,21 +50,21 @@ const DatagridRamCountCell = (vcdCompute: VCDCompute) => {
 
 export default function ComputeListingPage() {
   const { id, vdcId } = useParams();
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/compute');
-  const { t: tVdc } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+  const { t } = useTranslation('datacentres/compute');
+  const { t: tVdc } = useTranslation('datacentres');
   const navigate = useNavigate();
 
   const columns = [
     {
       id: 'id',
       cell: DatagridIdCell,
-      label: t('managed_vcd_vdc_compute_id'),
+      label: ID_LABEL,
       isSortable: false,
     },
     {
       id: 'vHostProfile',
       cell: DatagridVHostProfilCell,
-      label: t('managed_vcd_vdc_compute_vhost_profile'),
+      label: VHOST_LABEL,
       isSortable: false,
     },
     {
@@ -88,7 +89,7 @@ export default function ComputeListingPage() {
 
   return (
     <DatagridContainer
-      title={VHOSTS_TITLE}
+      title={VHOSTS_LABEL}
       queryKey={getVdcComputeQueryKey(vdcId)}
       columns={columns}
       route={{
