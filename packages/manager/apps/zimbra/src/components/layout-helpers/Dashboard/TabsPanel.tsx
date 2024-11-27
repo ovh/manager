@@ -9,6 +9,7 @@ export type TabItemProps = {
   to: string;
   hidden?: boolean;
   isDisabled?: boolean;
+  component?: ReactNode;
 };
 
 export type TabsProps = {
@@ -50,7 +51,7 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
         setActivePanel(activeTab.name);
       }
     }
-  }, [location.pathname]);
+  }, [location.pathname, tabs]);
 
   return (
     <OdsTabs>
@@ -60,6 +61,11 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
             <NavLink
               key={`osds-tab-bar-item-${tab.name}`}
               to={tab.to}
+              onClick={(e) => {
+                if (tab.isDisabled) {
+                  e.preventDefault();
+                }
+              }}
               className="no-underline"
             >
               <OdsTab
