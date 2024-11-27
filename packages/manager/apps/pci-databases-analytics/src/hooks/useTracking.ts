@@ -1,5 +1,5 @@
 import { useLocation, useMatches, useParams } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import usePciProject from './api/project/usePciProject.hook';
 import { PCI_LEVEL2 } from '@/configuration/tracking.constants';
@@ -62,8 +62,10 @@ export function useTrackPageAuto() {
     enabled: !!m.params.serviceId,
   });
   const service = s.data;
+  const hasTrackedRef = useRef(false);
 
   useEffect(() => {
+    if (hasTrackedRef.current) return;
     if (params.serviceId && !service) return;
     const prefix = 'PublicCloud::databases_analytics::{category}';
     const { id } = m;
@@ -98,10 +100,15 @@ export function useTrackPageAuto() {
     // replace . by ::
     injectedTrackingKey = injectedTrackingKey.replaceAll('.', '::');
 
-    console.log(injectedTrackingKey);
+    console.log(`[Tracking] ${injectedTrackingKey}`);
     trackPage({
       name: injectedTrackingKey,
       level2: PCI_LEVEL2,
     });
+    hasTrackedRef.current = true;
+  }, [location, params.serviceId, service, s.isLoading]);
+
+  useEffect(() => {
+    hasTrackedRef.current = false;
   }, [location]);
 }

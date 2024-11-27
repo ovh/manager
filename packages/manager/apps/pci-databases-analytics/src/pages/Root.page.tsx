@@ -11,7 +11,6 @@ interface ServicesProps {
   request: Request;
 }
 export const Loader = ({ params }: ServicesProps) => {
-  console.log('loader');
   // check if we have a correct category
   const { category, projectId } = params;
   // check if we have a correct projectId
