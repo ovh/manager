@@ -7,9 +7,12 @@ import { wrapper } from '@/utils/test.provider';
 
 describe('useDomain', () => {
   it('should return the detail of a domain', async () => {
-    const { result } = renderHook(() => useDomain(domainDetailMock.id), {
-      wrapper,
-    });
+    const { result } = renderHook(
+      () => useDomain({ domainId: domainDetailMock.id }),
+      {
+        wrapper,
+      },
+    );
 
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);

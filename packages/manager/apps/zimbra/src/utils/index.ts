@@ -11,7 +11,8 @@ export const FEATURE_FLAGS = {
   REDIRECTIONS_EDIT: false,
   AUTOREPLIES: false,
   MAILINGLISTS: false,
-  DOMAIN_DIAGNOSTICS: false,
+  DOMAIN_DIAGNOSTICS_SRV: false,
+  ORDER: false,
 };
 
 export const APIV2_MAX_PAGESIZE = 9999;

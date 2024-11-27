@@ -15,6 +15,7 @@ export type TabItemProps = {
   to: string;
   hidden?: boolean;
   isDisabled?: boolean;
+  component?: ReactNode;
 };
 
 export type TabsProps = {
@@ -57,7 +58,7 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
         setActivePanel(activeTab.name);
       }
     }
-  }, [location.pathname]);
+  }, [location.pathname, tabs]);
 
   return (
     <OdsTabs>

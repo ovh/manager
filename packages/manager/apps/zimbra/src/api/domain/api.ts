@@ -1,7 +1,13 @@
 import { fetchIcebergV2, v2, v6 } from '@ovh-ux/manager-core-api';
-import { DomainBodyParamsType, DomainType } from './type';
+import {
+  DomainBodyParamsType,
+  DomainDiagnosisResponse,
+  DomainType,
+  ZoneWithIAM,
+} from './type';
 import { getApiPath } from '../utils/apiPath';
 import { APIV2_DEFAULT_PAGESIZE } from '@/utils';
+import { domainDiagnosticMock } from '../_mock_';
 
 // GET
 
@@ -29,6 +35,11 @@ export const getDomainsZoneList = async () => {
   return data;
 };
 
+export const getDomainZoneByName = async (name: string) => {
+  const { data } = await v6.get<ZoneWithIAM>(`/domain/zone/${name}`);
+  return data;
+};
+
 export const getZimbraPlatformDomainDetail = async (
   platformId: string,
   domainId: string,
@@ -40,6 +51,27 @@ export const getZimbraPlatformDomainDetail = async (
 };
 
 // POST
+
+export const postZimbraPlatformDomainsDiagnostic = async (
+  platformId: string,
+  domains: string[],
+  mock = false,
+) => {
+  // TODO: remove
+  if (mock) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const [domainId] = domains;
+        resolve([{ ...domainDiagnosticMock, domainId }]);
+      }, 1000);
+    });
+  }
+  const { data } = await v2.post<DomainDiagnosisResponse[]>(
+    `${getApiPath(platformId)}diagnostic/domain`,
+    { domains },
+  );
+  return data;
+};
 
 export const postZimbraDomain = async (
   platformId: string,
