@@ -6,6 +6,7 @@ import {
   getVersion,
   isValidRancherName,
   getI18nextDriverError,
+  PLAN_REGEX,
 } from './rancher';
 import { versionsMocked } from '@/_mock_/version';
 
@@ -143,8 +144,8 @@ describe('extractDriversFromSwitchPlanError', () => {
     ['Unable to switch to plan [driver9, driver10]', null],
     ['Unable to switch to plan OVHCLOUD_EDITION []', null],
   ])('should return %s', (inputString, expected) => {
-    expect(extractDriversAndPlanFromSwitchPlanError(inputString)).toEqual(
-      expected,
+    PLAN_REGEX.forEach((planRegex) =>
+      expect(planRegex.exec(inputString)).toEqual(expected),
     );
   });
 });

@@ -76,6 +76,16 @@ export const getRancherPlanDescription = (rancherPlan: RancherPlan['name']) => {
   }
 };
 
+export const PLAN_REGEX = [
+  /^Unable to switch to plan (?<plan>[^\s]+)[^[]+\[(?<drivers>[^\]]+)]/,
+  /^Unable to switch to plan (?<plan>[^\s]+)[^[]+\[(?<drivers>[^\]]+)]$/,
+  /\[([^\]]*)]/,
+  /\[([^\]]+)]$/,
+  /\[([^\]]+)]/,
+  /\[([^\]]+)]$/,
+  /\[((?=([^\]]+))\2)+$/,
+];
+
 /**
  * Extracts drivers and plan information from a switch plan error message.
  *
