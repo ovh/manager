@@ -68,23 +68,31 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
   };
 
   useEffect(() => {
-    const shouldTryToDisplay = isKycAvailable && current === ModalTypes.kyc && window.location.href !== kycURL;
-    // We consider we have loaded all information if conditions are not respected to try to display the modal
-    const hasFullyLoaded = !shouldTryToDisplay
-      // Or procedure status is loaded
-      || !isProcedureStatusLoading;
-    // If current modal to be displayed is the kyc one and everything has loaded we can handle the display
-    if (shouldTryToDisplay && hasFullyLoaded) {
-      // If procedure's status is required we display the modal
-      if (statusDataResponse?.data?.status === requiredStatusKey) {
-        setShowModal(true);
-      }
-      // Otherwise we go to the next modal (if it exists)
-      else {
-        shell.getPlugin('ux').notifyModalActionDone();
+    const shouldManageModal = current === ModalTypes.kyc && window.location.href !== kycURL;
+    // We handle the modal display only when the KYC modal is the current one, and we are not on the page
+    // where the user can do the related action (upload his documents)
+    if (shouldManageModal) {
+      // We will wait for feature availability response before handling the modal lifecycle
+      if (!isFeatureAvailabilityLoading && availability) {
+        // If the KYC feature is not available we can safely switch to the next modal
+        if (!isKycAvailable) {
+          shell.getPlugin('ux').notifyModalActionDone();
+        }
+        // Otherwise we will wait for the KYC procedure status to decide either we display th modal or switch to the
+        // next one
+        else if (!isProcedureStatusLoading && statusDataResponse) {
+          // If the procedure's status is 'required' we display the modal
+          if (statusDataResponse?.data?.status === requiredStatusKey) {
+            setShowModal(true);
+          }
+          // Otherwise we go to the next modal (if it exists)
+          else if (shouldManageModal) {
+            shell.getPlugin('ux').notifyModalActionDone();
+          }
+        }
       }
     }
-  }, [isKycAvailable, current, isProcedureStatusLoading, statusDataResponse]);
+  }, [current, isFeatureAvailabilityLoading, availability, isKycAvailable, isProcedureStatusLoading, statusDataResponse]);
 
   useEffect(() => {
     if (showModal) {
