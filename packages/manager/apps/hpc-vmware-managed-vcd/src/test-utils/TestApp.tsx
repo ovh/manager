@@ -2,6 +2,7 @@ import React from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { Routes } from '../routes/routes';
+import { MessageContextProvider } from '@/context/Message.context';
 
 export function TestApp({ initialRoute = '/' }) {
   const router = createMemoryRouter(Routes, {
@@ -15,7 +16,9 @@ export function TestApp({ initialRoute = '/' }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <MessageContextProvider>
+        <RouterProvider router={router} />
+      </MessageContextProvider>
     </QueryClientProvider>
   );
 }

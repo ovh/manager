@@ -5,6 +5,7 @@
   "status_cell": "Statut",
   "ovhref_cell": "Référence",
   "vcdorg_cell": "Organisation VCD",
+  "location_cell": "Localisation",
   "region_cell": "Région",
   "createdat_cell": "Date de création",
   "edit_name_action": "Modifier le nom",

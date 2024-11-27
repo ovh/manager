@@ -124,6 +124,7 @@
   "billing_autorenew_service_type_VEEAM_CLOUD_CONNECT": "Veeam Cloud Connect",
   "billing_autorenew_service_type_VEEAM_ENTERPRISE": "Veeam Enterprise",
   "billing_autorenew_service_type_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Managed VCD",
+  "billing_autorenew_service_type_VMWARE_CLOUD_DIRECTOR_BACKUP": "Managed Veeam for VCD",
   "billing_autorenew_service_type_METRICS": "Metrics",
   "billing_autorenew_service_type_kube": "Kubernetes",
   "billing_autorenew_service_type_WEBCOACH": "WebCoach",

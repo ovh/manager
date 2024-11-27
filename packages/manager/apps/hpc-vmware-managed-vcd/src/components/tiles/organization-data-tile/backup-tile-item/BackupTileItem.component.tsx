@@ -39,18 +39,22 @@ export default function BackupTileItem({
       .then((url: string) => setVeeamHref(url));
   }, []);
 
-  if (isLoading) return <OsdsSkeleton data-testid="backupLoading" />;
-
   return (
     <div className="flex flex-col items-start">
-      <OsdsChip
-        inline
-        data-testid={badgeParams.testIdLabel}
-        color={badgeParams.color}
-        size={ODS_CHIP_SIZE.sm}
-      >
-        {t(badgeParams.translationKey)}
-      </OsdsChip>
+      <div className="my-3">
+        {isLoading ? (
+          <OsdsSkeleton data-testid="backupLoading" />
+        ) : (
+          <OsdsChip
+            inline
+            data-testid={badgeParams.testIdLabel}
+            color={badgeParams.color}
+            size={ODS_CHIP_SIZE.sm}
+          >
+            {t(badgeParams.translationKey)}
+          </OsdsChip>
+        )}
+      </div>
       <Links
         type={LinkType.external}
         label={t('managed_vcd_dashboard_backup_link')}

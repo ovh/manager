@@ -18,22 +18,45 @@ import {
   ODS_RADIO_BUTTON_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  getVeeamBackupProductSettings,
+  useOrderURL,
+} from '@ovh-ux/manager-module-order';
 import { urls } from '@/routes/routes.constant';
 import {
   BackupStatus,
+  VCDOrganization,
   VCDOrganizationWithBackupStatus,
+  getAvailabilityZone,
+  getOrganizationUuid,
   useOrganizationWithBackupStatusList,
 } from '@/data';
 import { Loading } from '@/components/Loading/Loading';
 import {
   BackupStatusCell,
   DescriptionCell,
+  LocationCell,
   NameCell,
   RegionCell,
 } from './VCDOrganiationDatagridCell.component';
 import { NoOrganizationMessage } from '@/components/NoOrganizationMessage/NoOrganizationMessage.component';
 
-const getExpressOrderLink = (orgId: string) => `${orgId}`;
+const useExpressOrderLink = () => {
+  const orderBaseUrl = useOrderURL('express_review_base');
+
+  return {
+    getVeeamBackupOrderLink: ({
+      datacenterZone,
+      orgId,
+    }: {
+      datacenterZone?: string;
+      orgId: string;
+    }) => {
+      const settings = getVeeamBackupProductSettings({ datacenterZone, orgId });
+      return `${orderBaseUrl}?products=~(${settings})`;
+    },
+  };
+};
 
 const isOrganizationDisabled = (
   organization: VCDOrganizationWithBackupStatus,
@@ -41,7 +64,10 @@ const isOrganizationDisabled = (
 
 export const OrderVeeamStep2: React.FC = () => {
   const { t } = useTranslation('order-veeam');
-  const [selectedVcdOrg, setSelectedVcdOrg] = React.useState('');
+  const [selectedVcdOrg, setSelectedVcdOrg] = React.useState<VCDOrganization>(
+    null,
+  );
+  const { getVeeamBackupOrderLink } = useExpressOrderLink();
   const navigate = useNavigate();
   const {
     data,
@@ -64,10 +90,10 @@ export const OrderVeeamStep2: React.FC = () => {
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => {
             if (!isOrganizationDisabled(organization)) {
-              setSelectedVcdOrg(organization?.id);
+              setSelectedVcdOrg(organization);
             }
           }}
-          checked={organization?.id === selectedVcdOrg || undefined}
+          checked={organization?.id === selectedVcdOrg?.id || undefined}
           disabled={isOrganizationDisabled(organization) || undefined}
         />
       ),
@@ -83,6 +109,12 @@ export const OrderVeeamStep2: React.FC = () => {
       label: 'Veeam Managed Backup',
       isSortable: false,
       cell: BackupStatusCell,
+    },
+    {
+      id: 'location',
+      label: t('location_cell'),
+      isSortable: false,
+      cell: LocationCell,
     },
     {
       id: 'region',
@@ -154,7 +186,13 @@ export const OrderVeeamStep2: React.FC = () => {
           size={ODS_BUTTON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => {
-            window.open(getExpressOrderLink(selectedVcdOrg), '_blank');
+            window.open(
+              getVeeamBackupOrderLink({
+                orgId: getOrganizationUuid(selectedVcdOrg),
+                datacenterZone: getAvailabilityZone(selectedVcdOrg),
+              }),
+              '_blank',
+            );
             navigate(urls.listing);
           }}
           disabled={!selectedVcdOrg || undefined}
