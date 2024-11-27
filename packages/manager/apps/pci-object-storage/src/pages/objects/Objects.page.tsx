@@ -1,7 +1,6 @@
 import { TabsPanel, useProject } from '@ovh-ux/manager-pci-common';
 import {
   Headers,
-  Notifications,
   PciGuidesHeader,
   RedirectionGuard,
   useProjectUrl,
