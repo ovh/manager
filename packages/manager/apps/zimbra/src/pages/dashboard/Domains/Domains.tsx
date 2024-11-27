@@ -27,11 +27,9 @@ import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import {
   DATAGRID_REFRESH_INTERVAL,
   DATAGRID_REFRESH_ON_MOUNT,
-  DnsRecordType,
   FEATURE_FLAGS,
 } from '@/utils';
 import Loading from '@/components/Loading/Loading';
-import { DiagnosticBadge } from '@/components/DiagnosticBadge';
 import { DomainType } from '@/api/domain/type';
 import { AccountStatistics, ResourceStatus } from '@/api/api.type';
 import { BadgeStatus } from '@/components/BadgeStatus';
@@ -66,36 +64,6 @@ const columns: DatagridColumn<DomainsItem>[] = [
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.account}</OdsText>
     ),
     label: 'zimbra_domains_datagrid_account_number',
-  },
-  {
-    id: 'diagnostic',
-    cell: (item) => {
-      return (
-        <div className="flex gap-4">
-          <DiagnosticBadge
-            diagType={DnsRecordType.MX}
-            domainId={item.id}
-            status={ODS_BADGE_COLOR.critical}
-          />
-          <DiagnosticBadge
-            diagType={DnsRecordType.SRV}
-            domainId={item.id}
-            status={ODS_BADGE_COLOR.critical}
-          />
-          <DiagnosticBadge
-            diagType={DnsRecordType.SPF}
-            domainId={item.id}
-            status={ODS_BADGE_COLOR.critical}
-          />
-          <DiagnosticBadge
-            diagType={DnsRecordType.DKIM}
-            domainId={item.id}
-            status={ODS_BADGE_COLOR.success}
-          />
-        </div>
-      );
-    },
-    label: 'zimbra_domains_datagrid_diagnostic_label',
   },
   {
     id: 'status',
@@ -191,18 +159,10 @@ export default function Domains() {
           ) : (
             <>
               <Datagrid
-                columns={columns
-                  .filter(
-                    (c) =>
-                      !(
-                        !FEATURE_FLAGS.DOMAIN_DIAGNOSTICS &&
-                        c.id === 'diagnostic'
-                      ),
-                  )
-                  .map((column) => ({
-                    ...column,
-                    label: t(column.label),
-                  }))}
+                columns={columns.map((column) => ({
+                  ...column,
+                  label: t(column.label),
+                }))}
                 items={items}
                 totalItems={items.length}
                 hasNextPage={!isFetchingNextPage && hasNextPage}
