@@ -4,13 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { useServiceData } from '../../Service.context';
 import { Button } from '@/components/ui/button';
-import { useModale } from '@/hooks/useModale';
-import RenameService from '../../_components/RenameService.component';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import { useToast } from '@/components/ui/use-toast';
 import TimeUpdate from './serviceConfiguration/TimeUpdate.component';
-import DeleteService from '../../_components/DeleteService.component';
 import * as database from '@/types/cloud/project/database';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 
@@ -19,12 +16,7 @@ const ServiceConfiguration = () => {
     'pci-databases-analytics/services/service/settings',
   );
   const navigate = useNavigate();
-  const renameModale = useModale('rename');
-  const deleteModale = useModale('delete');
   const { service, projectId, serviceQuery } = useServiceData();
-  const getServicesQuery = useGetServices(projectId, {
-    enabled: false,
-  });
   const toast = useToast();
   const { editService } = useEditService({
     onError: (err) => {
@@ -101,7 +93,7 @@ const ServiceConfiguration = () => {
                   variant="ghost"
                   size="table"
                   className="py-0 h-auto"
-                  onClick={() => renameModale.open()}
+                  onClick={() => navigate('./rename')}
                 >
                   <Pen />
                 </Button>
@@ -157,29 +149,11 @@ const ServiceConfiguration = () => {
           }
           variant="destructive"
           className="w-full bg-background border-2 hover:bg-destructive/10 font-semibold border-destructive text-destructive"
-          onClick={() => deleteModale.open()}
+          onClick={() => navigate('./delete')}
         >
           {t('serviceConfigurationDeleteService')}
         </Button>
       )}
-      <RenameService
-        controller={renameModale.controller}
-        service={service}
-        onSuccess={() => {
-          renameModale.close();
-          serviceQuery.refetch();
-        }}
-      />
-      <DeleteService
-        controller={deleteModale.controller}
-        service={service}
-        onSuccess={() => {
-          deleteModale.close();
-          serviceQuery.refetch();
-          getServicesQuery.refetch();
-          navigate(`../../`);
-        }}
-      />
     </>
   );
 };

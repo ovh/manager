@@ -9,7 +9,6 @@ import {
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
-import * as serviceApi from '@/data/api/database/service.api';
 import Settings from '@/pages/services/[serviceId]/settings/Settings.page';
 import * as database from '@/types/cloud/project/database';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
@@ -29,7 +28,6 @@ import { mockedMaintenance } from '@/__tests__/helpers/mocks/maintenances';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import { Locale } from '@/hooks/useLocale';
 import { mockedIntegrations } from '@/__tests__/helpers/mocks/integrations';
-import { TERMINATE_CONFIRMATION } from '@/configuration/polling.constants';
 import { CdbError } from '@/data/api/database';
 
 // Override mock to add capabilities
@@ -60,10 +58,18 @@ const mockedService = {
   },
 };
 
+const mockedUsedNavigate = vi.fn();
 describe('Service configuration page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     // Mock necessary hooks and dependencies
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useNavigate: () => mockedUsedNavigate,
+      };
+    });
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({
         t: (key: string) => key,
@@ -257,92 +263,21 @@ describe('Open modals', () => {
     vi.clearAllMocks();
   });
 
-  it('open and close rename service Modal', async () => {
+  it('open rename service Modal', async () => {
     act(() => {
       fireEvent.click(screen.getByTestId('service-confi-rename-button'));
     });
     await waitFor(() => {
-      expect(screen.getByTestId('rename-service-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.keyDown(screen.getByTestId('rename-service-modal'), {
-        key: 'Escape',
-        code: 'Escape',
-      });
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('rename-service-modal'),
-      ).not.toBeInTheDocument();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./rename');
     });
   });
 
-  it('call update service on rename success', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('service-confi-rename-button'));
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('rename-service-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.change(screen.getByTestId('rename-service-input'), {
-        target: {
-          value: 'newName',
-        },
-      });
-      fireEvent.click(screen.getByTestId('rename-service-submit-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('rename-service-modal'),
-      ).not.toBeInTheDocument();
-      expect(serviceApi.editService).toHaveBeenCalled();
-    });
-  });
-
-  it('open and close delete service Modal', async () => {
+  it('open delete service Modal', async () => {
     act(() => {
       fireEvent.click(screen.getByTestId('service-confi-delete-button'));
     });
     await waitFor(() => {
-      expect(screen.getByTestId('delete-service-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('delete-service-cancel-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('delete-service-modal'),
-      ).not.toBeInTheDocument();
-    });
-  });
-
-  it('call delete service on success', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('service-confi-delete-button'));
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('delete-service-modal')).toBeInTheDocument();
-      expect(
-        screen.getByTestId('delete-service-confirmation-input'),
-      ).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.change(
-        screen.getByTestId('delete-service-confirmation-input'),
-        {
-          target: {
-            value: TERMINATE_CONFIRMATION,
-          },
-        },
-      );
-      fireEvent.click(screen.getByTestId('delete-service-submit-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('delete-service-modal'),
-      ).not.toBeInTheDocument();
-      expect(serviceApi.deleteService).toHaveBeenCalled();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete');
     });
   });
 });

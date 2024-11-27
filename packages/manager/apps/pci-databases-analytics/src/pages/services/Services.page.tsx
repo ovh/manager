@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Plus } from 'lucide-react';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
@@ -10,14 +10,13 @@ import Link from '@/components/links/Link.component';
 import { Button } from '@/components/ui/button';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
-import { useTrackPage, useTrackAction } from '@/hooks/useTracking';
+import { useTrackAction } from '@/hooks/useTracking';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { TRACKING } from '@/configuration/tracking.constants';
 import * as database from '@/types/cloud/project/database';
 
 const Services = () => {
   const { t } = useTranslation('pci-databases-analytics/services');
-  useTrackPage(TRACKING.servicesList.page());
   const track = useTrackAction();
   const { projectId, category } = useParams();
   const { isUserActive } = useUserActivityContext();
@@ -70,6 +69,7 @@ const Services = () => {
         refetchFn={servicesQuery.refetch}
       />
       <LegalMentions className="mt-4" />
+      <Outlet />
     </>
   );
 };

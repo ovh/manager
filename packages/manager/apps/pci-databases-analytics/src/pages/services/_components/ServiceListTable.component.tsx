@@ -1,12 +1,9 @@
-import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
 import { DataTable } from '@/components/ui/data-table';
 import * as database from '@/types/cloud/project/database';
 import { Skeleton } from '@/components/ui/skeleton';
 import { getColumns } from './ServiceListColumns.component';
-import { useModale } from '@/hooks/useModale';
-import RenameService from '../[serviceId]/_components/RenameService.component';
-import DeleteService from '../[serviceId]/_components/DeleteService.component';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
 
@@ -15,26 +12,14 @@ interface ServicesListProps {
   refetchFn: () => void;
 }
 
-export default function ServicesList({
-  services,
-  refetchFn,
-}: ServicesListProps) {
+export default function ServicesList({ services }: ServicesListProps) {
   const track = useTrackAction();
-  const renameModale = useModale('rename');
-  const deleteModale = useModale('delete');
-  const editingService = useMemo(
-    () => services.find((s) => s.id === renameModale.value),
-    [renameModale.value, services],
-  );
-  const deletingService = useMemo(
-    () => services.find((s) => s.id === deleteModale.value),
-    [deleteModale.value, services],
-  );
+  const navigate = useNavigate();
 
   const columns: ColumnDef<database.Service>[] = getColumns({
     onRenameClicked: (service: database.Service) => {
       track(TRACKING.servicesList.renameClick(service.engine));
-      renameModale.open(service.id);
+      navigate(`./rename/${service.id}`);
     },
     onDeleteClicked: (service: database.Service) => {
       track(
@@ -43,7 +28,7 @@ export default function ServicesList({
           service.nodes[0].region,
         ),
       );
-      deleteModale.open(service.id);
+      navigate(`./delete/${service.id}`);
     },
   });
 
@@ -55,26 +40,6 @@ export default function ServicesList({
         pageSize={25}
         itemNumber={services.length}
       />
-      {editingService && (
-        <RenameService
-          controller={renameModale.controller}
-          service={editingService}
-          onSuccess={() => {
-            renameModale.close();
-            refetchFn();
-          }}
-        />
-      )}
-      {deletingService && (
-        <DeleteService
-          controller={deleteModale.controller}
-          service={deletingService}
-          onSuccess={() => {
-            deleteModale.close();
-            refetchFn();
-          }}
-        />
-      )}
     </>
   );
 }

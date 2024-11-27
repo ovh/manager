@@ -4,13 +4,12 @@ import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
 import { Button } from '@/components/ui/button';
 import Link from '@/components/links/Link.component';
-import { useTrackPage, useTrackAction } from '@/hooks/useTracking';
+import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
 import OnboardingTile from './OnboardingTile.component';
 
 const Onboarding = () => {
   const { t } = useTranslation('pci-databases-analytics/services/onboarding');
-  useTrackPage(TRACKING.onboarding.page());
   const track = useTrackAction();
 
   return (

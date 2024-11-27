@@ -29,6 +29,22 @@ export default [
         path: '',
         id: 'services',
         ...lazyRouteConfig(() => import('@/pages/Root.page')),
+        children: [
+          {
+            path: 'delete/:serviceId',
+            id: 'services.delete.{service.engine}',
+            ...lazyRouteConfig(() =>
+              import('@/pages/services/delete/Delete.modal'),
+            ),
+          },
+          {
+            path: 'rename/:serviceId',
+            id: 'services.rename.{service.engine}',
+            ...lazyRouteConfig(() =>
+              import('@/pages/services/rename/Rename.modal'),
+            ),
+          },
+        ],
       },
       {
         path: 'onboarding',
@@ -292,6 +308,71 @@ export default [
                 ...lazyRouteConfig(() =>
                   import('@/pages/services/[serviceId]/settings/Settings.page'),
                 ),
+                children: [
+                  {
+                    path: 'delete',
+                    id: 'service.{service.engine}.settings.delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/services/[serviceId]/settings/delete/Delete.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'rename',
+                    id: 'service.{service.engine}.settings.rename',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/services/[serviceId]/settings/rename/Rename.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'update-version',
+                    id: 'service.{service.engine}.settings.update-version',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/services/[serviceId]/settings/update/updateVersion/UpdateVersion.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'update-plan',
+                    id: 'service.{service.engine}.settings.update-plan',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/services/[serviceId]/settings/update/updatePlan/UpdatePlan.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'update-flavor',
+                    id: 'service.{service.engine}.settings.update-flavor',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/services/[serviceId]/settings/update/updateFlavor/UpdateFlavor.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'add-node',
+                    id: 'service.{service.engine}.settings.add-node',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/services/[serviceId]/settings/update/addNode/AddNode.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'delete-node',
+                    id: 'service.{service.engine}.settings.delete-node',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/services/[serviceId]/settings/update/deleteNode/DeleteNode.modal'
+                      ),
+                    ),
+                  },
+                ],
               },
             ],
           },
