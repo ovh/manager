@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
-import { getInstance, getInstances } from './instance';
+import { getInstance, getInstances, getInstancesByRegion } from './instance';
 
 describe('getInstance', () => {
   it('returns instance data successfully', async () => {
@@ -65,6 +65,21 @@ describe('getInstances', () => {
     expect(result).toEqual(mockData);
   });
 
+  it('throws an error when API call fails', async () => {
+    const errorMessage = 'Network Error';
+    vi.mocked(v6.get).mockRejectedValueOnce(new Error(errorMessage));
+    await expect(getInstances('projectId')).rejects.toThrow(errorMessage);
+  });
+
+  it('returns empty array when no instances are available', async () => {
+    const mockData = [];
+    vi.mocked(v6.get).mockResolvedValueOnce({ data: mockData });
+    const result = await getInstances('projectId');
+    expect(result).toEqual(mockData);
+  });
+});
+
+describe('getInstancesByRegion', () => {
   it('returns instances data filtered by region successfully', async () => {
     const mockData = [
       {
@@ -88,20 +103,22 @@ describe('getInstances', () => {
       },
     ];
     vi.mocked(v6.get).mockResolvedValueOnce({ data: mockData });
-    const result = await getInstances('projectId', 'region1');
+    const result = await getInstancesByRegion('projectId', 'region1');
     expect(result).toEqual(mockData);
   });
 
   it('throws an error when API call fails', async () => {
     const errorMessage = 'Network Error';
     vi.mocked(v6.get).mockRejectedValueOnce(new Error(errorMessage));
-    await expect(getInstances('projectId')).rejects.toThrow(errorMessage);
+    await expect(getInstancesByRegion('projectId', 'region1')).rejects.toThrow(
+      errorMessage,
+    );
   });
 
   it('returns empty array when no instances are available', async () => {
     const mockData = [];
     vi.mocked(v6.get).mockResolvedValueOnce({ data: mockData });
-    const result = await getInstances('projectId');
+    const result = await getInstancesByRegion('projectId', 'region1');
     expect(result).toEqual(mockData);
   });
 });
