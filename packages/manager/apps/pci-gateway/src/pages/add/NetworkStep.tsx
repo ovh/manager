@@ -313,7 +313,9 @@ export const NetworkStep = (): JSX.Element => {
         <OsdsText
           slot="label"
           color={ODS_THEME_COLOR_INTENT.text}
-          className="mt-4"
+          size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          className="mt-4 font-bold"
         >
           {tAdd(
             'pci_projects_project_public_gateways_add_modal_add_public_gateway_field_label',
@@ -338,7 +340,9 @@ export const NetworkStep = (): JSX.Element => {
           <OsdsText
             slot="label"
             color={ODS_THEME_COLOR_INTENT.text}
-            className="mt-4"
+            size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            className="mt-4 font-bold"
           >
             {tAdd(
               'pci_projects_project_public_gateways_add_select_private_network',

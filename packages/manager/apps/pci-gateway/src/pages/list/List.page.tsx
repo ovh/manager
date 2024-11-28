@@ -2,10 +2,12 @@ import {
   Datagrid,
   FilterAdd,
   FilterList,
+  Headers,
   Notifications,
   PciGuidesHeader,
   useColumnFilters,
   useDataGrid,
+  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -45,12 +47,11 @@ import HidePreloader from '@/core/HidePreloader';
 export default function ListingPage() {
   const { t } = useTranslation('common');
   const { t: tFilter } = useTranslation('filter');
-  const [projectUrl, setProjectUrl] = useState('');
-  const [privateNetworkUrl, setPrivateNetworkUrl] = useState('');
+  const projectUrl = useProjectUrl('public-cloud');
 
   const hrefAdd = useHref(`./new`);
 
-  const { navigation, tracking } = useContext(ShellContext).shell;
+  const { tracking } = useContext(ShellContext).shell;
   const { projectId } = useParams();
   const [searchField, setSearchField] = useState('');
   const { data: project } = useProject();
@@ -59,24 +60,7 @@ export default function ListingPage() {
 
   const { pagination, setPagination } = useDataGrid();
 
-  useEffect(() => {
-    navigation
-      .getURL('public-cloud', `#/pci/projects/${projectId}`, {})
-      .then((data) => {
-        setProjectUrl(data as string);
-      });
-    navigation
-      .getURL(
-        'public-cloud',
-        `#/pci/projects/${projectId}/private-networks`,
-        {},
-      )
-      .then((data) => {
-        setPrivateNetworkUrl(data as string);
-      });
-  }, [projectId, navigation]);
-
-  const columns = useDatagridColumn(projectId, privateNetworkUrl);
+  const columns = useDatagridColumn(projectId);
   const {
     data: aggregatedGateways,
     isLoading: isGatewayLoading,
@@ -108,30 +92,15 @@ export default function ListingPage() {
           />
         )}
         <div className="header mb-6 mt-8">
-          <div className="flex items-center justify-between">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            >
-              {t('pci_projects_project_public_gateway_title')}
-            </OsdsText>
-            <PciGuidesHeader category="instances"></PciGuidesHeader>
-          </div>
-        </div>
-        <div>
+          <Headers
+            title={t('pci_projects_project_public_gateway_title')}
+            description={t('pci_projects_project_public_gateways_intro_part_1')}
+            headerButton={<PciGuidesHeader category="instances" />}
+          />
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          >
-            {t('pci_projects_project_public_gateways_intro_part_1')}
-          </OsdsText>
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            className="mt-3"
           >
             <ul>
               <li>{t('pci_projects_project_public_gateways_intro_part_2')}</li>
@@ -148,7 +117,7 @@ export default function ListingPage() {
         <div className="sm:flex items-center justify-between mt-4">
           <OsdsButton
             size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.stroked}
+            variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
             className="xs:mb-0.5 sm:mb-0"
             href={hrefAdd}
@@ -162,7 +131,7 @@ export default function ListingPage() {
             <OsdsIcon
               size={ODS_ICON_SIZE.xs}
               name={ODS_ICON_NAME.PLUS}
-              className="mr-2"
+              className="mr-2 bg-white"
               color={ODS_THEME_COLOR_INTENT.primary}
             />
             {t('pci_projects_project_public_gateway_create')}
@@ -255,7 +224,7 @@ export default function ListingPage() {
         )}
 
         {!isLoading && !error && (
-          <div>
+          <div className="mt-8">
             <Datagrid
               columns={columns}
               items={aggregatedGateways?.rows || []}
