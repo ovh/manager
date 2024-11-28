@@ -55,5 +55,6 @@
   "savingsPlanCTA": "Ihre Savings Plans konfigurieren",
   "createRancherOfferDescription": "Mit mindestens 20 abgerechneten vCPUs pro Rancher",
   "egress_title": "Rancher egress CIDRs",
-  "egress_tooltip": "Diese CIDRs stellen die IP-Adressbereiche für den Ausgang dar, die von Rancher verwendet werden. Es kann notwendig sein, diese IP-Adressen per Whitelisting für den Zugriff auf Ihre Drittplattformen zu autorisieren (z. B. API-Aufrufe zum Bereitstellen von Ressourcen)."
+  "egress_tooltip": "Diese CIDRs stellen die IP-Adressbereiche für den Ausgang dar, die von Rancher verwendet werden. Es kann notwendig sein, diese IP-Adressen per Whitelisting für den Zugriff auf Ihre Drittplattformen zu autorisieren (z. B. API-Aufrufe zum Bereitstellen von Ressourcen).",
+  "badRequestSwitchPlan": "Beim Wechsel des Angebots Ihres Managed Rancher Service ist ein Fehler aufgetreten. Sie verwenden derzeit Treiber, die im Angebot {{plan}}: {{drivers}} nicht unterstützt werden"
 }
