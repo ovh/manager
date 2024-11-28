@@ -100,13 +100,13 @@ export default class HostingGeneralInformationsCtrl {
       this.$scope.pendingTasks.length === 0;
 
     const quotaUsed = this.$scope.convertBytesSize(
-      this.$scope.hosting.quotaUsed.value,
-      this.$scope.hosting.quotaUsed.unit,
+      this.$scope.hosting?.quotaUsed.value,
+      this.$scope.hosting?.quotaUsed.unit,
       QUOTA_DECIMAL_PRECISION,
     );
     const quotaSize = this.$scope.convertBytesSize(
-      this.$scope.hosting.quotaSize.value,
-      this.$scope.hosting.quotaSize.unit,
+      this.$scope.hosting?.quotaSize.value,
+      this.$scope.hosting?.quotaSize.unit,
       QUOTA_DECIMAL_PRECISION,
     );
 
