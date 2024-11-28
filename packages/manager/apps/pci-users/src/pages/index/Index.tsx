@@ -9,13 +9,8 @@ import {
   OsdsIcon,
   OsdsSearchBar,
   OsdsSpinner,
-  OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 
@@ -37,6 +32,7 @@ import {
   FilterList,
   FilterAdd,
   useDataGrid,
+  Headers,
 } from '@ovh-ux/manager-react-components';
 import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import { useUsers } from '@/api/hooks/useUser';
@@ -110,7 +106,7 @@ export default function ListingPage() {
       id: 'actions',
       cell: (props: User) => {
         return (
-          <div className="min-w-16">
+          <div className="text-center">
             <Actions user={props} />
           </div>
         );
@@ -158,16 +154,18 @@ export default function ListingPage() {
           ]}
         ></OsdsBreadcrumb>
       )}
-      <div className={'flex items-center justify-between mt-4'}>
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        >
-          {t('pci_projects_project_users_title')}
-        </OsdsText>
-        <PciGuidesHeader category="instances"></PciGuidesHeader>
+
+      <div className="header mt-8">
+        <Headers
+          title={t('pci_projects_project_users_title')}
+          headerButton={
+            <div className="min-w-[7rem]">
+              <PciGuidesHeader category="instances" />
+            </div>
+          }
+        ></Headers>
       </div>
+
       <OsdsDivider></OsdsDivider>
       <Notifications />
 
@@ -176,7 +174,7 @@ export default function ListingPage() {
       <div className={'sm:flex items-center justify-between mt-4'}>
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.stroked}
+          variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
           href={hrefAdd}
           className="xs:mb-0.5 sm:mb-0"
@@ -184,7 +182,7 @@ export default function ListingPage() {
           <OsdsIcon
             size={ODS_ICON_SIZE.xs}
             name={ODS_ICON_NAME.PLUS}
-            className={'mr-2'}
+            className={'mr-4 bg-white'}
             color={ODS_THEME_COLOR_INTENT.primary}
           />
           {t('pci_projects_project_users_add_label')}
@@ -262,7 +260,7 @@ export default function ListingPage() {
       )}
 
       {!isLoading && !error && (
-        <div>
+        <div className="mt-8">
           <Datagrid
             columns={columns}
             items={users?.rows || []}

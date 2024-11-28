@@ -150,7 +150,6 @@ export default function AddUserPage(): JSX.Element {
                       : ODS_THEME_COLOR_INTENT.error
                   }
                   error={state.hasError}
-                  className="border"
                   style={
                     state.hasError
                       ? {
