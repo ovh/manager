@@ -1708,4 +1708,47 @@ export default class PciInstancesAddController {
       `${modelValue ? '' : 'de'}activate_private_network_compatible_lz`,
     ]);
   }
+
+  getImagesLicensePriceText(images, distribution) {
+    const {
+      coreConfig,
+      windowsGen3: { isFeatureAvailable, price },
+      model: { flavorGroup },
+    } = this;
+    const isWindowsDistribution = distribution.match(/^windows/i);
+    const hasWindowsServerImages =
+      isWindowsDistribution &&
+      images.some(({ name }) => name.match(/20(16|19|22)/));
+    const isGen3Flavor = flavorGroup?.name?.match(/^.3/i);
+    const isRTX5000Flavor = flavorGroup?.name?.match(/^rtx5000/i);
+    const isLicensedFlavor = isGen3Flavor || isRTX5000Flavor;
+    const isA1Region = !this.isLocalZone();
+
+    if (
+      isFeatureAvailable &&
+      isWindowsDistribution &&
+      hasWindowsServerImages &&
+      isLicensedFlavor &&
+      isA1Region
+    ) {
+      const convertedPrice = price / 10 ** 8;
+      const formattedPrice = new Intl.NumberFormat(
+        coreConfig.getUserLocale().replace('_', '-'),
+        {
+          style: 'currency',
+          currency: coreConfig.getUser().currency.code,
+          maximumFractionDigits: Math.max(
+            `${convertedPrice}`.split('.').pop().length,
+            3,
+          ),
+        },
+      ).format(convertedPrice);
+      const unit = this.$translate.instant(
+        'pci_projects_project_instances_add_windows_gen3_license_unit',
+      );
+      return `+ ${formattedPrice} ${unit}`;
+    }
+
+    return '';
+  }
 }
