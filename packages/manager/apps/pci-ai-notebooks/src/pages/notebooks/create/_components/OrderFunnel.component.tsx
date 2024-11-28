@@ -89,7 +89,7 @@ const OrderFunnel = ({
   const navigate = useNavigate();
 
   const { toast } = useToast();
-  const [command, setCommand] = useState<ai.Command>({});
+  const [command, setCommand] = useState<ai.Command>({ command: '' });
 
   const addSshKeyModale = useModale('addSshKey');
   const { addNotebook, isPending: isPendingAddNotebook } = useAddNotebook({
@@ -122,7 +122,7 @@ const OrderFunnel = ({
   });
 
   const getCliCommand = () => {
-    const notebookInfos: ai.notebook.NotebookSpec = getNotebookSpec(
+    const notebookInfos: ai.notebook.NotebookSpecInput = getNotebookSpec(
       model.result,
     );
     getCommand(notebookInfos);
@@ -130,7 +130,7 @@ const OrderFunnel = ({
 
   const onSubmit = model.form.handleSubmit(
     () => {
-      const notebookInfos: ai.notebook.NotebookSpec = getNotebookSpec(
+      const notebookInfos: ai.notebook.NotebookSpecInput = getNotebookSpec(
         model.result,
       );
       addNotebook(notebookInfos);

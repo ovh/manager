@@ -14,7 +14,7 @@ export function useAddSshKey({ onError, onAddKeySuccess }: UseAddSshKey) {
   const mutation = useMutation({
     mutationFn: (sshKey: AddSSHKey) => addSSHKey(sshKey),
     onError,
-    onSuccess: (data: sshkey.SshKey) => {
+    onSuccess: (data: sshkey.SshKeyDetail) => {
       onAddKeySuccess(data);
       // Invalidate service list query to get the latest data
       queryClient.invalidateQueries({

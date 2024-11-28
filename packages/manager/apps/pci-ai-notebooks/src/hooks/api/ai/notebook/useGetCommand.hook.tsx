@@ -14,7 +14,7 @@ export function useGetCommand({ onError, onSuccess }: GetCommandProps) {
   const queryClient = useQueryClient();
   const { projectId } = useParams();
   const mutation = useMutation({
-    mutationFn: (notebookInfo: ai.notebook.NotebookSpec) => {
+    mutationFn: (notebookInfo: ai.notebook.NotebookSpecInput) => {
       return getCommand({ projectId, notebookInfo });
     },
     onError,
@@ -30,7 +30,7 @@ export function useGetCommand({ onError, onSuccess }: GetCommandProps) {
   });
 
   return {
-    getCommand: (notebookInfo: ai.notebook.NotebookSpec) => {
+    getCommand: (notebookInfo: ai.notebook.NotebookSpecInput) => {
       return mutation.mutate(notebookInfo);
     },
     ...mutation,

@@ -28,7 +28,7 @@ const Dashboard = () => {
   const { notebook, projectId } = useNotebookData();
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook/dashboard');
   const { toast } = useToast();
-  const [command, setCommand] = useState<ai.Command>({});
+  const [command, setCommand] = useState<ai.Command>();
 
   const { getCommand } = useGetCommand({
     onError: (err) => {
