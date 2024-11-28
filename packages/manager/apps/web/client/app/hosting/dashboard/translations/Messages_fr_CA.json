@@ -869,6 +869,8 @@
   "hosting_configuration_tab_modules_create_step1_question": "Vous allez installer un module.",
   "hosting_configuration_tab_modules_create_step1_question_domain": "Vous allez installer un module sur le domaine {{t0}}.",
   "hosting_configuration_tab_modules_create_step1_module_type": "Choisissez le type de module à installer :",
+  "hosting_configuration_tab_modules_create_step1_module_type_select_is_database_use": "Toutes vos bases de données sont déjà utilisées. Pour installer un module en 1 clic, vous devez en disposer d'une disponible.",
+  "hosting_configuration_tab_modules_create_step1_module_type_select_is_database_use_order_link": "Commander une base de données",
   "hosting_configuration_tab_modules_create_step1_module_type_select": "Sélectionner le module",
   "hosting_configuration_tab_modules_create_step1_module_advanced_mode": "Installation en mode avancé",
   "hosting_configuration_tab_modules_create_step1_module_domain": "Choisissez le domaine sur lequel installer le module :",

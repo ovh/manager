@@ -9,14 +9,13 @@
     >
         <div
             data-wizard-step
-            data-wizard-step-on-load="loadModuleTemplates"
+            data-wizard-step-on-load="loadModuleTemplates(); loadDatabasesCapabilities()"
             data-wizard-step-on-next="onNextStep"
-            data-wizard-step-valid="model.templateSelected"
+            data-wizard-step-valid="model.templateSelected && (!advancedMode.value ? (model.capabilities && model.capabilities.length > 0) : true)"
         >
             <div class="text-center" data-ng-if="!model.moduleTemplates">
                 <oui-spinner></oui-spinner>
             </div>
-
             <div
                 data-ng-if="model.moduleTemplates && model.moduleTemplates.length > 0"
             >
@@ -80,6 +79,25 @@
                         class="help-block"
                         data-ng-bind-html="'hosting_configuration_tab_modules_create_step1_module_default_path' | translate: { t0: defaultInstallationPath }"
                     ></p>
+                    <div
+                        class="oui-message oui-message_warning"
+                        role="alert"
+                        data-ng-if="model.capabilities && model.capabilities.length === 0"
+                    >
+                        <span
+                            class="oui-message__icon oui-icon oui-icon-warning-circle"
+                            aria-hidden="true"
+                        ></span>
+                        <p
+                            class="oui-message__body"
+                            data-translate="hosting_configuration_tab_modules_create_step1_module_type_select_is_database_use"
+                        ></p>
+                        <span
+                            class="oui-link"
+                            data-ui-sref="app.hosting.dashboard.database.order-public({preselectDbCategory: 'starter'})"
+                            data-translate="hosting_configuration_tab_modules_create_step1_module_type_select_is_database_use_order_link"
+                        ></span>
+                    </div>
                 </div>
 
                 <div class="mt-5" data-ng-if="model.templateSelected">

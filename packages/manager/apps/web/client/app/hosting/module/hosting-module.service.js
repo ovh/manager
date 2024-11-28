@@ -94,6 +94,17 @@
       }
 
       /**
+       * Get database capabilities
+       * @param {string} serviceName
+       */
+      getDatabasesCapabilities(serviceName) {
+        return this.OvhHttp.get(
+          `/hosting/web/${serviceName}/databaseCreationCapabilities`,
+          { rootPath: 'apiv6' },
+        );
+      }
+
+      /**
        * Obtain a list of installed modules
        * @param {string} serviceName
        * @param {object} opts
