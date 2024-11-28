@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.69.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.69.0...@ovh-ux/manager-pci@6.69.1) (2024-11-28)
+
+
+### Bug Fixes
+
+* **pci-object-storage:** fix object storage 3az and s3 prices ([#14312](https://github.com/ovh/manager/issues/14312)) ([fd1ae37](https://github.com/ovh/manager/commit/fd1ae37b47472e04b8466b9b256ff1eb1194e9f8))
+
+
+
+
+
 # [6.69.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.68.0...@ovh-ux/manager-pci@6.69.0) (2024-11-25)
 
 
