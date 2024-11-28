@@ -1,5 +1,5 @@
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OdsChipAttribute } from '@ovhcloud/ods-components';
+import { ODS_CHIP_SIZE, OdsChipAttribute } from '@ovhcloud/ods-components';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -50,6 +50,7 @@ export default function StatusComponent({
     <OsdsChip
       {...chipAttribute}
       className="w-fit"
+      size={ODS_CHIP_SIZE.sm}
       data-testid="StatusComponent_chip"
     >
       {getStatusLabel(statusGroup) || status}
