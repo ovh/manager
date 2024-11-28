@@ -8,7 +8,7 @@ import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
 import {
   DATA_PROTECTION_BACKUP_LABEL,
   DATA_PROTECTION_RECOVERY_LABEL,
-} from '@/pages/dashboard/organization/OrganizationDashboard.constants';
+} from '@/pages/dashboard/organization/organizationDashboard.constants';
 import BackupTileItem from './backup-tile-item/BackupTileItem.component';
 
 type TTileProps = {

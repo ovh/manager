@@ -15,9 +15,9 @@ import {
 import {
   COMPUTE_ORDER_MAX_QUANTITY,
   COMPUTE_ORDER_MIN_QUANTITY,
-} from './DatacentreComputeOrder.constants';
+} from './datacentreComputeOrder.constants';
 import { subRoutes } from '@/routes/routes.constant';
-import { RAM_LABEL, VHOST_LABEL } from '../compute/DatacentreCompute.constants';
+import { RAM_LABEL, VHOST_LABEL } from '../compute/datacentreCompute.constants';
 
 export default function ComputeOrderPage() {
   const { t } = useTranslation('datacentres/order');
