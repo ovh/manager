@@ -1,4 +1,4 @@
-import { aapi } from '@ovh-ux/manager-core-api';
+import { aapi, v6 } from '@ovh-ux/manager-core-api';
 
 export type TStorage = {
   archive?: boolean;
@@ -45,4 +45,22 @@ export const getStorages = async (
     },
   );
   return data;
+};
+
+export const deleteContainer = async (
+  projectId: string,
+  containerId: string,
+) => {
+  await v6.delete(`/cloud/project/${projectId}/storage/${containerId}`);
+};
+
+export const deleteS3Container = async (
+  projectId: string,
+  region: string,
+  s3StorageType: string,
+  name: string,
+) => {
+  await v6.delete(
+    `/cloud/project/${projectId}/region/${region}/${s3StorageType}/${name}`,
+  );
 };

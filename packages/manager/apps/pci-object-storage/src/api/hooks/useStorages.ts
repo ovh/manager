@@ -1,10 +1,15 @@
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
+import { ApiError, applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useGetProjectRegions } from '@ovh-ux/manager-pci-common';
-import { getStorages, TStorage } from '../data/storages';
+import {
+  deleteContainer,
+  deleteS3Container,
+  getStorages,
+  TStorage,
+} from '../data/storages';
 import {
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
   OBJECT_CONTAINER_MODE_MONO_ZONE,
@@ -147,4 +152,44 @@ export const useStorages = (
       filters,
     ],
   );
+};
+
+export interface UseDeleteStorageProps {
+  projectId: string;
+  onSuccess: () => void;
+  onError: (error: ApiError) => void;
+}
+
+export const useDeleteStorage = ({
+  projectId,
+  onSuccess,
+  onError,
+}: UseDeleteStorageProps) => {
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: async (storage: TStorage) => {
+      if (storage.s3StorageType) {
+        return deleteS3Container(
+          projectId,
+          storage.region,
+          storage.s3StorageType,
+          storage.name,
+        );
+      }
+      return deleteContainer(projectId, storage.id);
+    },
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getStorageQueryKey(projectId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    deleteStorage(storage: TStorage) {
+      return mutation.mutate(storage);
+    },
+    ...mutation,
+  };
 };
