@@ -35,7 +35,19 @@
                 class="col-md-3 m-1 align-self-stretch"
                 data-heading="{{:: 'domain_tab_CONTACT_owner' | translate }}"
             >
-                <p data-translate="domain_tab_CONTACT_description_owner"></p>
+                <div
+                    class="oui-message oui-message_info oui-message_no-icon"
+                    role="alert"
+                >
+                    <p
+                        class="oui-message__body"
+                        data-translate="domain_tab_CONTACT_edit_form_owner_infos"
+                    ></p>
+                </div>
+                <p
+                    class="mb-5"
+                    data-translate="domain_tab_CONTACT_description_owner"
+                ></p>
                 <oui-button
                     data-ng-if="$ctrl.isNicAdmin"
                     data-variant="link"
@@ -49,6 +61,11 @@
                 class="col-md-3 m-1 align-self-stretch"
                 data-heading="{{:: 'domain_tab_CONTACT_admin' | translate }}"
             >
+                <span
+                    class="d-block font-weight-bold pb-2"
+                    data-ng-bind="::$ctrl.domainInfos.contactAdmin"
+                >
+                </span>
                 <div data-ng-if="$ctrl.isNicAdmin" class="mb-2">
                     <span
                         data-ng-repeat="infoProperty in $ctrl.infoProperties track by $index"
@@ -85,6 +102,11 @@
                 class="col-md-3 m-1 align-self-stretch"
                 data-heading="{{:: 'domain_tab_CONTACT_technical' | translate }}"
             >
+                <span
+                    class="d-block font-weight-bold pb-2"
+                    data-ng-bind="::$ctrl.domainInfos.contactTech"
+                >
+                </span>
                 <div
                     class="mb-2"
                     data-ng-if="$ctrl.domainInfos.contactTech === $ctrl.user.nichandle"
@@ -116,6 +138,11 @@
             class="col-md-3 m-1 align-self-stretch"
             data-heading="{{:: 'domain_tab_CONTACT_billing' | translate }}"
         >
+            <span
+                class="d-block font-weight-bold pb-2"
+                data-ng-bind="::$ctrl.domainInfos.contactBilling"
+            >
+            </span>
             <div
                 class="mb-2"
                 data-ng-if="$ctrl.domainInfos.contactBilling === $ctrl.user.nichandle"
