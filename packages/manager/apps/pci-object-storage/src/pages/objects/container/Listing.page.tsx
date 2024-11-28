@@ -2,6 +2,8 @@ import {
   Datagrid,
   FilterAdd,
   FilterList,
+  Notifications,
+  RedirectionGuard,
   useColumnFilters,
   useDataGrid,
   useFeatureAvailability,
@@ -74,7 +76,12 @@ export default function ListingPage() {
   }
 
   return (
-    <>
+    <RedirectionGuard
+      isLoading={isPending}
+      condition={!isPending && allStorages?.resources.length === 0}
+      route="./onboarding"
+    >
+      <Notifications />
       <div className="sm:flex items-center justify-between mt-4">
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
@@ -226,6 +233,6 @@ export default function ListingPage() {
       <Suspense>
         <Outlet />
       </Suspense>
-    </>
+    </RedirectionGuard>
   );
 }
