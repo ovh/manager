@@ -30,6 +30,14 @@
             </div>
         </div>
 
+        <oui-button
+            class="mb-3 mt-3"
+            data-variant="secondary"
+            data-ng-click="$ctrl.openReassignContacts()"
+        >
+            <span data-translate="domain_tab_CONTACT_reassign_contacts"></span>
+        </oui-button>
+
         <div class="row d-flex align-items-stretch">
             <oui-tile
                 class="col-md-3 m-1 align-self-stretch"
@@ -38,6 +46,7 @@
                 <div
                     class="oui-message oui-message_info oui-message_no-icon"
                     role="alert"
+                    data-ng-if="!$ctrl.domainInfos.contactAdmin && ($ctrl.domainInfos.contactBilling || $ctrl.domainInfos.contactTech)"
                 >
                     <p
                         class="oui-message__body"
@@ -49,7 +58,7 @@
                     data-translate="domain_tab_CONTACT_description_owner"
                 ></p>
                 <oui-button
-                    data-ng-if="$ctrl.isNicAdmin"
+                    data-disabled="!$ctrl.isNicAdmin"
                     data-variant="link"
                     data-icon-right="oui-icon-arrow-right"
                     class="mb-2"
@@ -90,7 +99,7 @@
                 ></p>
 
                 <oui-button
-                    data-ng-if="$ctrl.isNicAdmin"
+                    data-disabled="!$ctrl.isNicAdmin"
                     data-variant="link"
                     data-icon-right="oui-icon-arrow-right"
                     class="mb-2"
@@ -123,7 +132,7 @@
                     data-translate="domain_tab_CONTACT_description_technical"
                 ></p>
                 <oui-button
-                    data-ng-if="$ctrl.domainInfos.contactTech === $ctrl.user.nichandle"
+                    data-disabled="$ctrl.domainInfos.contactTech !== $ctrl.user.nichandle"
                     data-variant="link"
                     data-icon-right="oui-icon-arrow-right"
                     class="mb-2"
@@ -157,7 +166,7 @@
 
             <p data-translate="domain_tab_CONTACT_description_billing"></p>
             <oui-button
-                data-ng-if="$ctrl.domainInfos.contactBilling === $ctrl.user.nichandle"
+                data-disabled="$ctrl.domainInfos.contactBilling !== $ctrl.user.nichandle"
                 data-variant="link"
                 data-icon-right="oui-icon-arrow-right"
                 class="mb-2"

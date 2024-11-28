@@ -1,3 +1,5 @@
+import { PRODUCT_TYPE } from '../list/list-domain-layout.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain.product.contact', {
     url: '/contact-management',
@@ -7,6 +9,13 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
+      contactsManagementUrl: /* @ngInject */ (coreURLBuilder, $transition$) =>
+        coreURLBuilder.buildURL('dedicated', '#/contacts/services/edit', {
+          serviceName: $transition$.params().productId,
+          category: PRODUCT_TYPE,
+          service: $transition$.params().productId,
+          categoryType: PRODUCT_TYPE,
+        }),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('contact_management'),
       goBack: /* @ngInject */ ($state) => () =>

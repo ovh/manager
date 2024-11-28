@@ -67,4 +67,8 @@ export default class DomainContactDashboardCtrl {
       infoProperty.name !== this.INFO_PROPERTIES.ORGANISATION
     );
   }
+
+  openReassignContacts() {
+    window.open(this.contactsManagementUrl, '_blank');
+  }
 }
