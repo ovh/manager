@@ -5,6 +5,7 @@ export const ROUTE_PATHS = {
   ROOT: '/pci/projects/:projectId/storages/objects',
   ONBOARDING: 'onboarding',
   OBJECTS: '',
+  CONTAINER_DELETE: 'delete',
   USER_LIST: 'users',
   USER_DELETE: ':userId/delete',
   USER_IMPORT_POLICY: 'import-policy',
@@ -16,10 +17,13 @@ const ObjectsPage = lazy(() => import('@/pages/objects/Objects.page'));
 const ContainerListPage = lazy(() =>
   import('@/pages/objects/container/Listing.page'),
 );
+const DeleteContainerPage = lazy(() =>
+  import('@/pages/objects/container/delete/Delete.page'),
+);
 const UserListPage = lazy(() =>
   import('@/pages/objects/container/users/Listing.page'),
 );
-const DeletePage = lazy(() =>
+const DeleteUserPage = lazy(() =>
   import('@/pages/objects/container/users/delete/Delete.page'),
 );
 const ImportPolicyPage = lazy(() =>
@@ -31,13 +35,18 @@ const RoutesComponent = () => (
     <Route id="root" path={ROUTE_PATHS.ROOT} Component={LayoutPage}>
       <Route path={ROUTE_PATHS.ONBOARDING} Component={OnboardingPage} />
       <Route path={ROUTE_PATHS.OBJECTS} Component={ObjectsPage}>
-        <Route path={ROUTE_PATHS.OBJECTS} Component={ContainerListPage} />
+        <Route path={ROUTE_PATHS.OBJECTS} Component={ContainerListPage}>
+          <Route
+            path={ROUTE_PATHS.CONTAINER_DELETE}
+            Component={DeleteContainerPage}
+          />
+        </Route>
         <Route path={ROUTE_PATHS.USER_LIST} Component={UserListPage}>
-          <Route path={ROUTE_PATHS.USER_DELETE} Component={DeletePage} />
           <Route
             path={ROUTE_PATHS.USER_IMPORT_POLICY}
             Component={ImportPolicyPage}
           />
+          <Route path={ROUTE_PATHS.USER_DELETE} Component={DeleteUserPage} />
         </Route>
       </Route>
     </Route>
