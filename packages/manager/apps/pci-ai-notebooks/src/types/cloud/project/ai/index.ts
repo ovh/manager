@@ -1,3 +1,4 @@
+import exp from 'constants';
 import * as app from './app/index';
 import * as capabilities from './capabilities/index';
 import * as job from './job/index';
@@ -19,6 +20,7 @@ export * from './DataStoreTypeEnum';
 export * from './Env';
 export * from './GenericResponse';
 export * from './GitCredentialsInput';
+export * from './Guide';
 export * from './Info';
 export * from './InfoCodeEnum';
 export * from './Label';
