@@ -1,12 +1,13 @@
-import { Translation, useTranslation } from 'react-i18next';
-import { ActionMenu, useNotifications } from '@ovh-ux/manager-react-components';
-import { useHref, useParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useContext } from 'react';
+import { ActionMenu, useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { getUserStoragePolicy, TUser } from '@/api/data/user';
-import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from '@/constants';
+import { useContext } from 'react';
+import { Translation, useTranslation } from 'react-i18next';
+import { useHref, useParams } from 'react-router-dom';
 import { downloadContent } from '@/utils';
+import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from '@/constants';
+import { usePostS3Secret } from '@/api/hooks/useUser';
+import { getUserStoragePolicy, TUser } from '@/api/data/user';
 
 export default function ActionsComponent({ user }: { user: TUser }) {
   const { t } = useTranslation('objects/users');
@@ -15,8 +16,55 @@ export default function ActionsComponent({ user }: { user: TUser }) {
   );
 
   const { projectId } = useParams();
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccess, addInfo, addError } = useNotifications();
   const { tracking } = useContext(ShellContext).shell;
+
+  const { postS3Secret: showSecretKey } = usePostS3Secret({
+    projectId,
+    userId: user.id,
+    userAccess: user.access,
+    onSuccess: ({ secret }) => {
+      addInfo(
+        <Translation ns="objects/users">
+          {(_t) => (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: _t(
+                  'pci_projects_project_storages_containers_users_show_secret_key_success',
+                  {
+                    user: `<strong>${user.username}</strong>`,
+                    secret: `<code class="text-break">${secret}</code>`,
+                  },
+                ),
+              }}
+            />
+          )}
+        </Translation>,
+        true,
+      );
+    },
+    onError: (error: ApiError) => {
+      addError(
+        <Translation ns="objects/users">
+          {(_t) => (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: _t(
+                  'pci_projects_project_storages_containers_users_show_secret_key_error',
+                  {
+                    user: `<strong>${user.username}</strong>`,
+                    message:
+                      error?.response?.data?.message || error?.message || null,
+                  },
+                ),
+              }}
+            />
+          )}
+        </Translation>,
+        true,
+      );
+    },
+  });
 
   const downloadUserPolicyJson = () => {
     tracking?.trackClick({
@@ -83,6 +131,7 @@ export default function ActionsComponent({ user }: { user: TUser }) {
     {
       id: 3,
       label: t('pci_projects_project_storages_containers_users_see_secret_key'),
+      onclick: showSecretKey,
     },
     {
       id: 4,
