@@ -7,6 +7,7 @@ import { TAGS_BLOB } from '../../../constants';
 import {
   POLLER_INSTANCE_NAMESPACE,
   TYPES_TO_EXCLUDE,
+  WINDOWS_GEN_3_ADDON_PLANCODE,
 } from './instances.constants';
 import Instance from '../../../components/project/instance/instance.class';
 import { PCI_FEATURES } from '../../projects.constant';
@@ -474,6 +475,16 @@ export default /* @ngInject */ ($stateProvider) => {
           PCI_FEATURES.ACTIONS.INSTANCE_LOCALZONE_BACKUP,
         );
       },
+      windowsGen3: /* @ngInject */ (catalog, pciFeatures) => ({
+        price:
+          catalog.addons.find(
+            ({ planCode }) => planCode === WINDOWS_GEN_3_ADDON_PLANCODE,
+          )?.pricings[0]?.price || null,
+        isFeatureAvailable:
+          pciFeatures.isFeatureAvailable(
+            PCI_FEATURES.ACTIONS.INSTANCE_WINDOWS_GEN_3,
+          ) || true,
+      }),
     },
   });
 };
