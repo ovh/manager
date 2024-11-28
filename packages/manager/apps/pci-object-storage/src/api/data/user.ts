@@ -72,3 +72,17 @@ export const postS3Secret = async (
 
   return data;
 };
+
+export const importUserPolicy = async (
+  projectId: string,
+  userId: string,
+  policy: string,
+) => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/user/${userId}/policy`,
+    {
+      policy,
+    },
+  );
+  return data;
+};

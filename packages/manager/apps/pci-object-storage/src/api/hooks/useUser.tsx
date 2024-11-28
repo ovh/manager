@@ -1,17 +1,18 @@
-import { ApiError, applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
-import { useMemo } from 'react';
-import { paginateResults, sortResults } from '@/helpers';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
+import { ApiError, applyFilters, Filter } from '@ovh-ux/manager-core-api';
+import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { isJson, paginateResults, sortResults } from '@/helpers';
 import {
   deleteUser,
   getAllUsers,
   getS3Credentials,
+  importUserPolicy,
+  postS3Secret,
   TS3Credentials,
   TUser,
-  postS3Secret,
 } from '@/api/data/user';
-
 import queryClient from '@/queryClient';
 
 const getQueryKeyUsers = (projectId: string) => ['project', projectId, 'users'];
@@ -104,6 +105,7 @@ export const useDeleteUser = ({
   });
   return {
     deleteUser: () => mutation.mutate(),
+    ...mutation,
   };
 };
 
@@ -135,5 +137,61 @@ export const usePostS3Secret = ({
   return {
     postS3Secret: () => mutation.mutate(),
     ...mutation,
+  };
+};
+
+type ImportPolicyProps = {
+  projectId: string;
+  userId: string;
+  files: File[];
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+const readFileAsJSON = (file: File, t): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      if (isJson(reader.result.toString())) {
+        resolve(reader.result.toString());
+      } else {
+        reject(
+          new Error(
+            t(
+              'pci_projects_project_storages_containers_users_import_read_page_error',
+            ),
+          ),
+        );
+      }
+    };
+
+    reader.readAsText(file);
+  });
+};
+
+export const useImportPolicy = ({
+  projectId,
+  userId,
+  files,
+  onError,
+  onSuccess,
+}: ImportPolicyProps) => {
+  const [isPending, setIsPending] = useState(false);
+  const { t } = useTranslation('objects/users/import-policy');
+  const importPolicy = async () => {
+    try {
+      setIsPending(true);
+      const policy = await readFileAsJSON(files[0], t);
+      importUserPolicy(projectId, userId, policy);
+      onSuccess();
+    } catch (e) {
+      onError(e as Error);
+    } finally {
+      setIsPending(false);
+    }
+  };
+  return {
+    isPending,
+    importPolicy,
   };
 };

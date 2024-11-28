@@ -7,6 +7,7 @@ export const ROUTE_PATHS = {
   OBJECTS: '',
   USER_LIST: 'users',
   USER_DELETE: ':userId/delete',
+  USER_IMPORT_POLICY: 'import-policy',
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
@@ -21,6 +22,9 @@ const UserListPage = lazy(() =>
 const DeletePage = lazy(() =>
   import('@/pages/objects/container/users/delete/Delete.page'),
 );
+const ImportPolicyPage = lazy(() =>
+  import('@/pages/objects/container/users/import-policy/ImportPolicy.page'),
+);
 
 const RoutesComponent = () => (
   <Routes>
@@ -30,6 +34,10 @@ const RoutesComponent = () => (
         <Route path={ROUTE_PATHS.OBJECTS} Component={ContainerListPage} />
         <Route path={ROUTE_PATHS.USER_LIST} Component={UserListPage}>
           <Route path={ROUTE_PATHS.USER_DELETE} Component={DeletePage} />
+          <Route
+            path={ROUTE_PATHS.USER_IMPORT_POLICY}
+            Component={ImportPolicyPage}
+          />
         </Route>
       </Route>
     </Route>

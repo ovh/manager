@@ -41,3 +41,12 @@ export const sortResults = <T>(items: T[], sorting: ColumnSort): T[] => {
 
 export const isSwiftType = (storage: TStorage) =>
   !storage.archive && !storage.s3StorageType;
+
+export const isJson = (str: string) => {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+};
