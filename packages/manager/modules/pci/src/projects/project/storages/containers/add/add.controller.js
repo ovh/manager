@@ -18,6 +18,7 @@ import {
   OBJECT_CONTAINER_OFFER_SWIFT,
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
   OBJECT_CONTAINER_MODE_MONO_ZONE,
+  STORAGE_STANDARD_REGION_PLANCODE,
   STORAGE_STANDARD_PLANCODE,
   SWIFT_PLANCODE,
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
@@ -239,7 +240,7 @@ export default class PciStoragesContainersAddController {
       this.coreConfig.getUser().ovhSubsidiary,
     ).then((productCapabilities) => {
       const productCapability = productCapabilities.plans?.filter((plan) =>
-        plan.code?.startsWith(STORAGE_STANDARD_PLANCODE),
+        plan.code?.startsWith(STORAGE_STANDARD_REGION_PLANCODE),
       );
 
       this.OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[
