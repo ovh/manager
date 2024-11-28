@@ -49,7 +49,7 @@
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "*O preço indicado corresponde ao preço público de 1 TB de armazenamento durante 30 dias. Para mais informações, ",
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "consulte a página dedicada aos preços.",
   "pci_projects_project_storages_containers_add_deployment_mode_localzone": "Local Zones",
-  "pci_projects_project_storages_containers_add_deployment_mode_localzone_description": "Implementação das suas aplicações mais próxima dos seus utilizadores para uma latência reduzida e residência dos dados.",
+  "pci_projects_project_storages_containers_add_deployment_mode_localzone_description": "Baixa latência com a melhor relação preço/desempenho para as suas cargas de trabalho de dados sensíveis.",
   "pci_projects_project_storages_containers_add_deployment_mode_localzone_label": "Local Zone",
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_region-3-az": "Regiões 3-AZ",
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_region": "Regiões",
