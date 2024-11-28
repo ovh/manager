@@ -16,7 +16,7 @@ export interface RouteHandle {
   tracking?: string;
 }
 
-const ROUTE_PATHS = {
+export const ROUTE_PATHS = {
   root: '/pci/projects/:projectId/private-networks',
   onboarding: 'onboarding',
   globalRegions: '',
