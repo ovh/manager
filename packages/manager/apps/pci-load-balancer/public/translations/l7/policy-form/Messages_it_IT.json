@@ -1,5 +1,5 @@
 {
-  "octavia_load_balancer_create_l7_policy_name": "Nome",
+  "octavia_load_balancer_create_l7_policy_name": "Cognome",
   "octavia_load_balancer_create_l7_policy_position": "Posizione",
   "octavia_load_balancer_create_l7_policy_position_description": "La posizione di questa L7 policy. Le posizioni iniziano da 1.",
   "octavia_load_balancer_create_l7_policy_action": "Azione",

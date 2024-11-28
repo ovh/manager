@@ -1,14 +1,14 @@
 {
-  "title": "Ulepsz swoje aplikacje za pomocą AI Endpoints",
-  "description": "Nasza platforma, zaprojektowana z myślą o prostocie, pozwala programistom o różnych umiejętnościach ulepszać aplikacje za pomocą najnowocześniejszych interfejsów API AI — bez konieczności posiadania specjalistycznej wiedzy w zakresie sztucznej inteligencji.",
-  "descriptionBis": "Interfejsy API nie wymagają <strong> wiedzy w zakresie AI</strong> ani dedykowanej infrastruktury, ponieważ platforma serverless umożliwia dostęp <strong>do zaawansowanych</strong> modeli AI, w tym modeli językowych (LLM), przetwarzania języka naturalnego, tłumaczeń, rozpoznawania mowy, rozpoznawania obrazów i wielu innych. Programiści mogą wybierać spośród gamy modeli, w szczególności opcje open source, takie jak <strong>Mistral AI, Llama i Stable Diffusion.</strong> .",
+  "title": "Ulepsz aplikacje za pomocą AI Endpoints",
+  "description": "Dzięki naszej prostej w obsłudze platformie deweloperzy o różnym poziomie umiejętności mogą ulepszać aplikacje za pomocą najnowocześniejszych interfejsów API AI — nie jest wymagana specjalistyczna wiedza w zakresie AI.",
+  "descriptionBis": "Obsługa API nie wymaga <strong>specjalistycznej wiedzy z zakresu AI</strong>, ponieważ bezserwerowa platforma umożliwia dostęp <strong>do zaawansowanych modeli AI</strong>, w tym modeli językowych (LLM), przetwarzania języka naturalnego, tłumaczenia, rozpoznawania mowy, rozpoznawania obrazów i wielu innych. Deweloperzy mogą wybierać spośród wielu modeli, w szczególności opcje <strong>open source, takie jak Mistral AI, Llama i Stable Diffusion</strong>.",
   "goToAiEndpoint": "AI Endpoints",
   "guideCategory": "Przewodnik",
   "guide1Title": "Pierwsze kroki z AI Endpoints",
-  "guide1Description": "Odkryj AI Endpoints, bezpieczną platformę serwerową OVHcloud dla programistów, która umożliwia dostęp do najlepszych modeli sztucznej inteligencji za pomocą łatwych w użyciu interfejsów API. Doświadczenie w zakresie sztucznej inteligencji nie jest wymagane.",
+  "guide1Description": "Odkryj AI Endpoints, bezpieczną bezserwerową platformę od OVHcloud, która pozwala deweloperom na łatwy dostęp do zaawansowanych modeli sztucznej inteligencji poprzez proste interfejsy API. Nie jest wymagana specjalistyczna wiedza w zakresie AI.",
   "guide2Title": "Funkcje, możliwości i ograniczenia",
-  "guide2Description": "Poznaj aktualne funkcje, możliwości i ograniczenia rozwiązania AI Endpoints",
-  "tutoCategory": "Dokumentacja",
-  "guide3Title": "Przykłady zastosowania z AI Endpoints",
-  "guide3Description": "Przejrzyj nasze tutoriale, aby wzbogacić Twoje aplikacje za pomocą AI Endpoints. Dowiedz się, jak tworzyć chatbota, integrować LLM lub narzędzia do wydajnych rozwiązań AI."
+  "guide2Description": "Poznaj aktualne funkcje, możliwości i ograniczenia AI Endpoints",
+  "tutoCategory": "Tutoriale",
+  "guide3Title": "Przykłady zastosowania AI Endpoints",
+  "guide3Description": "Sprawdź w naszych tutorialach, jak wzbogacić aplikacje za pomocą AI Endpoints. Dowiedz się, jak tworzyć chatboty, integrować LLM lub narzędzia w celu uzyskania wydajnych rozwiązań AI."
 }

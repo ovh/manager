@@ -2,7 +2,7 @@
   "octavia_load_balancer_overview_info_title": "Information",
   "octavia_load_balancer_overview_info_name": "Name",
   "octavia_load_balancer_overview_info_region": "Region",
-  "octavia_load_balancer_overview_info_creation_date": "Creation date",
+  "octavia_load_balancer_overview_info_creation_date": "Created on",
   "octavia_load_balancer_overview_info_id": "ID",
   "octavia_load_balancer_overview_config_title": "Configuration",
   "octavia_load_balancer_overview_config_provisioning_status": "Provisioning status",

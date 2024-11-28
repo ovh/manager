@@ -135,9 +135,11 @@ export default class ServicesActionsCtrl {
   }
 
   canResiliate() {
-    return ![this.SERVICE_TYPE.PACK_XDSL, this.SERVICE_TYPE.VRACK].includes(
-      this.service.serviceType,
-    );
+    return ![
+      SERVICE_TYPE.PACK_XDSL,
+      SERVICE_TYPE.VRACK,
+      SERVICE_TYPE.VMWARE_CLOUD_DIRECTOR_ORGANIZATION,
+    ].includes(this.service.serviceType);
   }
 
   getExchangeBilling() {

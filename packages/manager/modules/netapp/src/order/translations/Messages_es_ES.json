@@ -1,10 +1,11 @@
 {
   "netapp_order": "Contratar Enterprise File Storage",
-  "netapp_order_datacenter": "Localización del datacenter",
+  "netapp_order_region": "Zona",
   "netapp_order_performance_level": "Nivel de rendimiento",
   "netapp_order_performance_level_description": "Elija el nivel de rendimiento del servicio en función de sus necesidades",
   "netapp_order_performance_level_type_Premium": "Licencia Premium",
   "netapp_order_performance_level_type_Premium_description": "Equilibrio entre precio y rendimiento",
+  "netapp_order_performance_level_type_Premium_additionnal_description": "64 MB/s y 4000 IOPS por TB de capacidad aprovisionada.",
   "netapp_order_performance_level_type_Standard": "Licencia Standard",
   "netapp_order_performance_level_type_Standard_description": "Para sus necesidades de almacenamiento",
   "netapp_order_performance_level_type_Extreme": "Licencia Ultra",
@@ -17,7 +18,5 @@
   "netapp_order_commitment_duration_description": "Disfrute de un descuento al contratar el servicio con compromiso de permanencia.",
   "netapp_order_commitment_payment": "Modalidades de pago",
   "netapp_order_confirm": "Aceptar",
-  "netapp_order_performance_level_type_Premium_additionnal_description": "64 MB/s y 4000 IOPS por TB de capacidad aprovisionada.",
-  "netapp_order_performance_customization": "Asimismo, al aprovisionar su capacidad, deberá establecer el nivel de prestaciones de su servicio. Le recordamos que dispone de 64 MB/s y 4000 IOPS por TB de capacidad aprovisionada.",
-  "netapp_order_region": "Zona"
+  "netapp_order_performance_customization": "Asimismo, al aprovisionar su capacidad, deberá establecer el nivel de prestaciones de su servicio. Le recordamos que dispone de 64 MB/s y 4000 IOPS por TB de capacidad aprovisionada."
 }

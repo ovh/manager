@@ -54,6 +54,6 @@
   "savingsPlanMessage": "Profitieren Sie von günstigen monatlichen Preisen mit den Savings Plans und behalten Sie die Flexibilität der Instanzen auf Stundenbasis bei.",
   "savingsPlanCTA": "Ihre Savings Plans konfigurieren",
   "createRancherOfferDescription": "Mit mindestens 20 abgerechneten vCPUs pro Rancher",
-  "egress_title": "Rancher gress CIDRs",
-  "egress_tooltip": "Diese CIDRs stellen die IP-Ausgabebereiche dar, die von Rancher verwendet werden. Es kann notwendig sein, diese IP-Adressen (Whitelisting) für den Zugriff auf Ihre Drittanbieterplattformen zu autorisieren (z. B. API-Aufrufe zur Bereitstellung von Ressourcen)."
+  "egress_title": "Rancher egress CIDRs",
+  "egress_tooltip": "Diese CIDRs stellen die IP-Adressbereiche für den Ausgang dar, die von Rancher verwendet werden. Es kann notwendig sein, diese IP-Adressen per Whitelisting für den Zugriff auf Ihre Drittplattformen zu autorisieren (z. B. API-Aufrufe zum Bereitstellen von Ressourcen)."
 }
