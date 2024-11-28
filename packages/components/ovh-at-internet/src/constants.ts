@@ -51,6 +51,7 @@ export const AT_INTERNET_CUSTOM_PROPS: Record<string, string> = {
   accountPhoneType: 'account_phone_type',
   accountcreationSiretProvided: 'accountcreation_siret_provided',
   pciProjectMode: 'pci_project_mode',
+  goalType: 'goal_type',
 };
 
 export const TMS_SCRIPT_URL = 'https://analytics.ovh.com/ovh/ovh_manager.js';
