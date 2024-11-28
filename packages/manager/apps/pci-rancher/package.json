@@ -18,7 +18,8 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-rancher-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-rancher-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-rancher-app' --include-dependencies -- npm run dev:watch --if-present",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.0.1",
