@@ -67,7 +67,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
 
   const { data: defaultPciProject, status: defaultPciProjectStatus } = useDefaultPublicCloudProject(
     {
-      select: (defaultProjectId: string | null) => {
+      select: (defaultProjectId: string | null): PciProject | null => {
         return defaultProjectId !== null
           ? pciProjects?.find((project: PciProject) => project.project_id === defaultProjectId) || null
           : null;

@@ -4,6 +4,7 @@ import { Node } from '../navigation-tree/node';
 import { PublicCloudPanel, PublicCloudPanelProps } from './PublicCloudPanel';
 import { mockShell } from '../mocks/sidebarMocks';
 import { PciProject } from '../ProjectSelector/PciProject';
+import { Props as ProjectSelectorProps } from '../ProjectSelector/ProjectSelector';
 import { pciNode } from '../navigation-tree/services/publicCloud';
 
 const node: Node = {
@@ -79,7 +80,7 @@ vi.mock('react-router-dom', () => ({
 }));
 
 vi.mock('../ProjectSelector/ProjectSelector', () => ({
-  default: ({ selectedProject }) => {
+  default: ({ selectedProject }: ProjectSelectorProps) => {
     return (<div data-testid="public-cloud-panel-project-selector">{selectedProject?.project_id}</div>);
   },
 }));
