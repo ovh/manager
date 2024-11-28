@@ -35,7 +35,7 @@ const UserAccountMenu = ({
   const [isKycDocumentsVisible, setIsDocumentsVisible] = useState<boolean>(
     false,
   );
-
+  const [isNewAccountAvailable, setIsNewAccountAvailable] = useState<boolean>(false);
   const user = shell
     .getPlugin('environment')
     .getEnvironment()
@@ -75,7 +75,7 @@ const UserAccountMenu = ({
   const getAllLinks = useMemo(
     () => async () => {
       let isIdentityDocumentsAvailable = false;
-      const featureAvailability = await fetchFeatureAvailabilityData(['identity-documents', 'procedures:fraud']);
+      const featureAvailability = await fetchFeatureAvailabilityData(['new-account', 'identity-documents', 'procedures:fraud']);
       if (featureAvailability['identity-documents']) {
         const { status } = await reketInstance.get(`/me/procedure/identity`);
         isIdentityDocumentsAvailable = ['required', 'open'].includes(status);
@@ -85,11 +85,20 @@ const UserAccountMenu = ({
         setIsDocumentsVisible(['required', 'open'].includes(status));
       }
 
+      setIsNewAccountAvailable(!!featureAvailability['new-account'])
+
+
       setAllLinks([
-        ...links,
+        ...links.map((link: UserLink) => {
+          if (['user-account-menu-profile', 'myCommunications', 'myContacts'].includes(link.key)) {
+            link.app = isNewAccountAvailable ? 'account' : 'dedicated';
+          }
+          return link;
+        }),
         ...(isIdentityDocumentsAvailable
           ? [
             {
+              app: isNewAccountAvailable ? 'account' : 'dedicated',
               key: 'myIdentityDocuments',
               hash: '#/identity-documents',
               i18nKey: 'user_account_menu_my_identity_documents',
@@ -99,6 +108,7 @@ const UserAccountMenu = ({
         ...(region === 'US'
           ? [
             {
+              app: isNewAccountAvailable ? 'account' : 'dedicated',
               key: 'myAssistanceTickets',
               hash: '#/ticket',
               i18nKey: 'user_account_menu_my_assistance_tickets',
@@ -208,6 +218,7 @@ const UserAccountMenu = ({
               id={'account_kyc_documents'}
               onClick={() => onLinkClick(
                 {
+                  app: isNewAccountAvailable ? 'account': 'dedicated',
                   key: 'account_kyc_documents',
                   hash: '#/documents',
                   i18nKey: 'sidebar_account_kyc_documents'
