@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.16.0...@ovh-ux/ovh-at-internet@0.17.0) (2024-11-28)
+
+
+### Features
+
+* **ovh-at-internet:** added custom property goal_type ([#14258](https://github.com/ovh/manager/issues/14258)) ([b555de2](https://github.com/ovh/manager/commit/b555de287c041cbe3e43b2f82ec3171416abac25))
+
+
+
+
+
 # 0.16.0 (2024-11-12)
 
 

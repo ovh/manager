@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.9.1...@ovh-ux/manager-pci-common@0.10.0) (2024-11-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3503] ([d78ddd9](https://github.com/ovh/manager/commit/d78ddd97fe6ebe3d2929b9c563c9f487a4e11302))
+
+
+### Features
+
+* **manager-pci-common:** add get instances by region ([#14188](https://github.com/ovh/manager/issues/14188)) ([969e267](https://github.com/ovh/manager/commit/969e267c811aa71f8edac3b02d6ef3f5bbab2475))
+
+
+
+
+
 ## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.9.0...@ovh-ux/manager-pci-common@0.9.1) (2024-11-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common
