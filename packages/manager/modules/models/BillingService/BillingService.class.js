@@ -293,6 +293,8 @@ export default class BillingService {
       'XDSL',
       'OKMS_RESOURCE',
       'VRACK_SERVICES_RESOURCE',
+      'VMWARE_CLOUD_DIRECTOR_ORGANIZATION',
+      'VMWARE_CLOUD_DIRECTOR_BACKUP',
     ].includes(this.serviceType);
   }
 
