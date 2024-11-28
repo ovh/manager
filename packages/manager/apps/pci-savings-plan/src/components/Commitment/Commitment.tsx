@@ -47,7 +47,11 @@ const Commitment = ({
       rounded
       inline
       variant={ODS_TILE_VARIANT.stroked}
-      className="flex flex-row items-center mr-5 my-4 justify-between w-full cursor-pointer"
+      className={`flex flex-row items-center mr-5 my-4 justify-between w-full cursor-pointer ${
+        isActive
+          ? 'bg-[--ods-color-blue-100] border-[--ods-color-blue-600]'
+          : ''
+      }`}
       color={
         isActive
           ? ODS_THEME_COLOR_INTENT.primary
@@ -59,7 +63,10 @@ const Commitment = ({
         <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
           {t('commitment_month', { value: duration })}
         </OsdsText>
-        <OsdsText color={ODS_THEME_COLOR_INTENT.success} className="ml-3">
+        <OsdsText
+          size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+          className="ml-3 text-[#AC246F]"
+        >
           {diffInPercent ? `- ${diffInPercent} %` : ''}
         </OsdsText>
       </span>
@@ -75,8 +82,7 @@ const Commitment = ({
           )}
           <OsdsText
             size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-            color={ODS_THEME_COLOR_INTENT.success}
-            className="ml-3"
+            className="ml-3 text-[#AC246F]"
           >
             {getTextPrice(priceNumber * CENTS_PRICE)}
           </OsdsText>
