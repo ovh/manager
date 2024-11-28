@@ -8,7 +8,7 @@
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.isLoading"
 >
-    <div data-ng-if="$ctrl.container">
+    <div data-ng-if="$ctrl.container && $ctrl.container.storedObjects > 0">
         <oui-message data-type="warning">
             <span
                 data-translate="pci_projects_project_storages_containers_container_delete_archive_erase_message"
@@ -24,5 +24,12 @@
                 data-ng-if="$ctrl.container.s3StorageType"
             ></span>
         </oui-message>
+    </div>
+
+    <div data-ng-if="$ctrl.container && $ctrl.container.storedObjects === 0">
+        <span
+            data-translate="pci_projects_project_storages_containers_container_delete_empty_warning"
+            data-translate-values="{ container: $ctrl.container.name }"
+        ></span>
     </div>
 </oui-modal>
