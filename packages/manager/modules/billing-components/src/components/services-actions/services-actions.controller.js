@@ -119,6 +119,11 @@ export default class ServicesActionsCtrl {
       case SERVICE_TYPE.LICENSE_HYCU:
         this.resiliateLink = `${this.autorenewLink}/terminate-service?id=${this.service.id}${serviceTypeParam}`;
         break;
+      case SERVICE_TYPE.VRACK:
+        if (this.service.status !== 'suspended') {
+          this.resiliateLink = `${this.autorenewLink}/terminate-vrack?service=${this.service.serviceId}${serviceTypeParam}`;
+        }
+        break;
       default:
         this.resiliateLink = this.service.canResiliateByEndRule()
           ? resiliationByEndRuleLink
@@ -135,9 +140,11 @@ export default class ServicesActionsCtrl {
   }
 
   canResiliate() {
-    return ![this.SERVICE_TYPE.PACK_XDSL, this.SERVICE_TYPE.VRACK].includes(
-      this.service.serviceType,
-    );
+    if (this.service.serviceType === this.SERVICE_TYPE.VRACK) {
+      return this.deleteVrackAvailability && !!this.resiliateLink;
+    }
+
+    return ![this.SERVICE_TYPE.PACK_XDSL].includes(this.service.serviceType);
   }
 
   getExchangeBilling() {
