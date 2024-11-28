@@ -10,7 +10,7 @@ import {
   labels,
   renderTest,
 } from '../../../../test-utils';
-import { STORAGE_LABEL } from '../DatacentreDashboard.constant';
+import { STORAGE_LABEL } from '../datacentreDashboard.constants';
 
 describe('Datacentre Storage Listing Page', () => {
   it('access and display storage listing page', async () => {

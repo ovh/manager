@@ -10,8 +10,8 @@ import {
   labels,
   renderTest,
 } from '../../../../test-utils';
-import { COMPUTE_LABEL } from '../DatacentreDashboard.constant';
-import { VHOSTS_LABEL } from '../compute/DatacentreCompute.constants';
+import { COMPUTE_LABEL } from '../datacentreDashboard.constants';
+import { VHOSTS_LABEL } from '../compute/datacentreCompute.constants';
 
 describe('Datacentre Compute Listing Page', () => {
   it('access and display compute listing page', async () => {

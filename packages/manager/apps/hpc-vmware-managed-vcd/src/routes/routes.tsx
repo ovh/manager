@@ -106,7 +106,7 @@ export const Routes: any = [
             id: 'datacentres',
             path: urls.datacentres,
             ...lazyRouteConfig(() =>
-              import('@/pages/listing/datacentres/datacentres.page'),
+              import('@/pages/listing/datacentres/Datacentres.page'),
             ),
             handle: {
               tracking: {

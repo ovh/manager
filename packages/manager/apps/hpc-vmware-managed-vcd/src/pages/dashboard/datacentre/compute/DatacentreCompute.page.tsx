@@ -12,7 +12,7 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
-import { VHOST_LABEL, VHOSTS_LABEL } from './DatacentreCompute.constants';
+import { VHOST_LABEL, VHOSTS_LABEL } from './datacentreCompute.constants';
 import { ID_LABEL } from '../../dashboard.constants';
 
 const DatagridIdCell = (vcdCompute: VCDCompute) => (

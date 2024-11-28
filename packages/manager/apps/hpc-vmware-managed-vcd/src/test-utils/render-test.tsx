@@ -32,7 +32,7 @@ import {
 import { translations } from './test-i18n';
 import { TestApp } from './TestApp';
 import { APP_NAME } from '@/tracking.constant';
-import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/OrganizationDashboard.constants';
+import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 
 let context: ShellContextType;
 let i18nState: i18n;
