@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-sso-auth",
-  "version": "4.8.1",
+  "version": "4.8.2",
   "description": "OVH Single Sign On module",
   "keywords": [
     "angularjs",
@@ -39,7 +39,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-sso-auth' --include-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.1"
+    "@ovh-ux/component-rollup-config": "^13.0.2"
   },
   "peerDependencies": {
     "angular": "^1.8.0",

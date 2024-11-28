@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.1.0...@ovh-ux/manager-models@2.2.0) (2024-11-28)
+
+
+### Features
+
+* disable CTA payment for VCD/VEEAM offer in my services page ([#13929](https://github.com/ovh/manager/issues/13929)) ([e965bd0](https://github.com/ovh/manager/commit/e965bd0bad429b17a96977ce83e68d1101333a26))
+
+
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.0.0...@ovh-ux/manager-models@2.1.0) (2024-11-19)
 
 

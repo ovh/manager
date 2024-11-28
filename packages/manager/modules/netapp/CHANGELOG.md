@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.1.0...@ovh-ux/manager-netapp@2.1.1) (2024-11-28)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([6846968](https://github.com/ovh/manager/commit/6846968a1a6da4a6815486d7f7780fc52177c210))
+
+
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.0.1...@ovh-ux/manager-netapp@2.1.0) (2024-11-21)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-log-to-customer",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "Module to handle logs to customer",
   "keywords": [
     "angularjs",
@@ -38,7 +38,7 @@
     "lodash": "~4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.1"
+    "@ovh-ux/component-rollup-config": "^13.0.2"
   },
   "peerDependencies": {
     "@ovh-ux/manager-ng-layout-helpers": "^2.8.1",

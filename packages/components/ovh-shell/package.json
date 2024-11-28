@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/shell",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Communication and interaction between applications",
   "repository": {
     "type": "git",
@@ -26,9 +26,9 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/shell' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.0.0",
-    "@ovh-ux/ovh-at-internet": "^0.16.0",
-    "@ovh-ux/ovh-reket": "^2.1.6",
+    "@ovh-ux/manager-config": "^8.0.1",
+    "@ovh-ux/ovh-at-internet": "^0.17.0",
+    "@ovh-ux/ovh-reket": "^2.1.7",
     "@ovh-ux/request-tagger": "^0.4.0",
     "@ovh-ux/url-builder": "^2.0.0",
     "@types/react": "^18.0.0",
