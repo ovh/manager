@@ -135,8 +135,10 @@ export default class ServicesActionsCtrl {
   }
 
   canResiliate() {
-    return ![this.SERVICE_TYPE.PACK_XDSL, this.SERVICE_TYPE.VRACK].includes(
-      this.service.serviceType,
+    return (
+      ![this.SERVICE_TYPE.PACK_XDSL, this.SERVICE_TYPE.VRACK].includes(
+        this.service.serviceType,
+      ) && !this.service.hasManualRenew()
     );
   }
 
