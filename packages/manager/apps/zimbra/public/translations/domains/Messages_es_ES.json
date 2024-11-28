@@ -9,5 +9,6 @@
   "zimbra_domains_tooltip_need_organization": "En primer lugar, debe configurar una organización",
   "zimbra_domains_datagrid_diagnostic_configuration_ok": "Configuración OK",
   "zimbra_domains_datagrid_diagnostic_tooltip_title": "Diagnóstico {{ diagType }}",
-  "zimbra_domains_tooltip_configure": "Configurar"
+  "zimbra_domains_tooltip_configure": "Configurar",
+  "zimbra_domains_datagrid_status_label": "Estado"
 }

@@ -10,5 +10,6 @@
   "zimbra_mailinglists_datagrid_action_configure_delegation": "Configurare la delega",
   "zimbra_mailinglists_datagrid_action_delete": "Eliminare la mailing list",
   "zimbra_mailinglists_datagrid_cta": "Creare una mailing list",
-  "zimbra_mailinglists_quota_label": "Quota di mailing list"
+  "zimbra_mailinglists_quota_label": "Quota di mailing list",
+  "zimbra_mailinglists_datagrid_status_label": "Status"
 }
