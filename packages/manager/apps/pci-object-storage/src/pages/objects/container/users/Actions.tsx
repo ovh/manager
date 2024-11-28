@@ -111,11 +111,13 @@ export default function ActionsComponent({ user }: { user: TUser }) {
   };
 
   const deleteHref = useHref(`./${user.id}/delete`);
+  const importHref = useHref(`./import-policy?userId=${user.id}`);
 
   const items = [
     {
       id: 0,
       label: t('pci_projects_project_storages_containers_users_import_json'),
+      href: importHref,
     },
     {
       id: 1,
