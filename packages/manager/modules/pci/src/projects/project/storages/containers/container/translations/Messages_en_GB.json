@@ -45,5 +45,5 @@
   "pci_projects_project_storages_containers_container_storage_class_HIGH_PERF": "High Performance",
   "pci_projects_project_storages_containers_container_maintenance_message": "Maintenance is currently being carried out to merge S3 endpoints. Adding objects is temporarily suspended.",
   "pci_projects_project_storages_containers_container_region": "Location: {{ region }}",
-  "pci_projects_project_storages_containers_container_add_replication_rules_info": "Please note that your bucket does not include off-site replication of your data. If your use case requires this additional layer of protection, consider using our asynchronous replication across one or more regions (currently only available via the API)."
+  "pci_projects_project_storages_containers_container_add_replication_rules_info": "Please note that your container does not include off-site replication of your data. If your use case requires this additional layer of protection, consider using our asynchronous replication across one or more regions (currently only available via the API)."
 }
