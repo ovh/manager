@@ -66,9 +66,7 @@ export const useDatagridColumn = (projectId: string, projectUrl: string) => {
     {
       id: 'actions',
       cell: (props) => (
-        <div className="min-w-16">
-          <ActionsComponent projectUrl={projectUrl} volume={props} />
-        </div>
+        <ActionsComponent projectUrl={projectUrl} volume={props} />
       ),
       label: t(''),
     },
