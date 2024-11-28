@@ -99,7 +99,6 @@ export function useTrackPageAuto() {
 
     // replace . by ::
     injectedTrackingKey = injectedTrackingKey.replaceAll('.', '::');
-    console.log(`[Tracking] ${injectedTrackingKey}`);
     trackPage({
       name: injectedTrackingKey,
       level2: PCI_LEVEL2,

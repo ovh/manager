@@ -4,7 +4,6 @@ import EditUser from './EditUser.modal'; // Adjust the path as needed
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { mockedDatabaseUser } from '@/__tests__/helpers/mocks/databaseUser';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import * as usersApi from '@/data/api/database/user.api';
 import * as database from '@/types/cloud/project/database';
 
