@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-chart",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "description": "ChartJS library wrapper for AngularJS",
   "keywords": [
@@ -38,7 +38,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.1"
+    "@ovh-ux/component-rollup-config": "^13.0.2"
   },
   "peerDependencies": {
     "angular": "~1.6",

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.2.5...@ovh-ux/ng-ovh-contact@5.2.6) (2024-11-28)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-contact
+
+
+
+
+
 ## [5.2.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.2.4...@ovh-ux/ng-ovh-contact@5.2.5) (2024-10-31)
 
 
