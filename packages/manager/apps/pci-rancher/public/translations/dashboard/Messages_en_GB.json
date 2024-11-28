@@ -55,5 +55,5 @@
   "savingsPlanCTA": "Set up your Savings Plan",
   "createRancherOfferDescription": "With at least 20 vCPUs charged per Rancher",
   "egress_title": "Rancher egress CIDRs",
-  "egress_tooltip": "These CIDRs represent the output IP address ranges used by Rancher. You may need to authorize these IP addresses (whitelisting) to access your third-party platforms (e.g. API calls to provision resources)."
+  "egress_tooltip": "These CIDRs list the output IP address ranges used by Rancher. You might need to whitelist these IP addresses to access your third-party platforms (e.g. API calls to provision resources)."
 }
