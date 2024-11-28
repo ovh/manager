@@ -36,7 +36,9 @@ export const RegionInputComponent = ({
   onInput,
 }: TProps): JSX.Element => {
   const { me } = useMe();
-  const [selectedMacroName, setSelectedMacroName] = useState<string>(null);
+  const [selectedMacroName, setSelectedMacroName] = useState<string | null>(
+    value?.macroName || null,
+  );
   const isDesktop: boolean = useMedia(`(min-width: 760px)`);
 
   const isMacroRegionStandalone = useCallback(
