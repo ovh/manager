@@ -125,19 +125,19 @@ describe('extractDriversFromSwitchPlanError', () => {
   it.each([
     [
       'Unable to switch to plan OVHCLOUD_EDITION [driver1, driver2]',
-      { drivers: ['driver1', ' driver2'], plan: 'OVHCLOUD_EDITION' },
+      { drivers: ['driver1', 'driver2'], plan: 'OVHCLOUD_EDITION' },
     ],
     [
       'Unable to switch to plan STANDARD [driver3, driver4]',
-      { drivers: ['driver3', ' driver4'], plan: 'STANDARD' },
+      { drivers: ['driver3', 'driver4'], plan: 'STANDARD' },
     ],
     [
       'Unable to switch to plan OVHCLOUD_EDITION [ driver5 , driver6 ]',
-      { drivers: ['driver5 ', ' driver6'], plan: 'OVHCLOUD_EDITION' },
+      { drivers: ['driver5', 'driver6'], plan: 'OVHCLOUD_EDITION' },
     ],
     [
       'Unable to switch to plan STANDARD [ driver7 , driver8 ]',
-      { drivers: ['driver7 ', ' driver8'], plan: 'STANDARD' },
+      { drivers: ['driver7', 'driver8'], plan: 'STANDARD' },
     ],
     ['Invalid input string', null],
     ['Unable to switch to plan [driver9, driver10]', null],
@@ -151,17 +151,17 @@ describe('extractDriversFromSwitchPlanError', () => {
 
 describe('getI18nextDriverError', () => {
   it.each([
-    ['plan and drivers', ['rancherError']],
+    ['plan and drivers', null],
     [
       'Unable to switch to plan OVHCLOUD_EDITION: You are currently using drivers that are not supported in plan OVHCLOUD_EDITION: [myDriver1, myDriver2]',
 
       [
         'badRequestSwitchPlan',
-        { plan: 'OVHCLOUD_EDITION', drivers: '[myDriver1, myDriver2]' },
+        { plan: 'OVHCLOUD_EDITION', drivers: '[myDriver1,myDriver2]' },
       ],
     ],
-    ['some message', ['rancherError']],
-    [null, ['rancherError']],
+    ['some message', null],
+    [null, null],
   ])(
     'should return the correct error message for %o',
     (input, expectedOutput) => {

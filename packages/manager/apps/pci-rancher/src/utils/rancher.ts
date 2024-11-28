@@ -88,6 +88,10 @@ export function extractDriversAndPlanFromSwitchPlanError(
   const beginPhrase = 'Unable to switch to plan';
   const planKeywords = ['OVHCLOUD_EDITION', 'STANDARD'];
 
+  if (!inputString) {
+    return null;
+  }
+
   // Find the start and end of the bracket content
   const bracketStartIndex = inputString.indexOf('[');
   const bracketEndIndex = inputString.indexOf(']');
