@@ -456,6 +456,10 @@
         data-valid="!$ctrl.isDiscoveryProject && !$ctrl.isAddingRegion && !$ctrl.isAddingRegionError"
         data-prevent-next
     >
+        <oui-spinner
+            data-size="s"
+            data-ng-if="$ctrl.isAddingRegion"
+        ></oui-spinner>
         <oui-field
             data-size="xl"
             data-help-text="{{ ::'pci_projects_project_storages_containers_add_pattern_help_storage-s3' | translate }}"
