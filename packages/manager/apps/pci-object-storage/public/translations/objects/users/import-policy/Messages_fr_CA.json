@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_storages_containers_users_import_title": "Importer un fichier",
+  "pci_projects_project_storages_containers_users_import_submit_label": "Importer",
+  "pci_projects_project_storages_containers_users_import_add_files_label": "Importer des fichiers",
+  "pci_projects_project_storages_containers_users_import_description": "Vous pouvez importer un fichier JSON pour gérer les droits de votre utilisateur.",
+
+  "pci_projects_project_storages_containers_users_import_success": "Le fichier JSON lié à l’utilisateur {{ username }} a été importé avec succès.",
+  "pci_projects_project_storages_containers_users_import_error": "Le fichier JSON lié à l’utilisateur {{ username }} n’a pas été correctement importé : {{ message }}",
+  "pci_projects_project_storages_containers_users_import_read_page_error": "Une erreur s'est produite lors de la tentative de téléchargement du fichier."
+}

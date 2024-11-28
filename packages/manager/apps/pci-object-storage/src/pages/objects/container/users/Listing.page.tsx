@@ -3,7 +3,6 @@ import {
   FilterAdd,
   FilterList,
   Notifications,
-  RedirectionGuard,
   useColumnFilters,
   useDataGrid,
   useFeatureAvailability,
@@ -55,7 +54,7 @@ export default function Listing() {
   const [searchQueries, setSearchQueries] = useState<string[]>([]);
   const filterPopoverRef = useRef(undefined);
 
-  const { allUsers, paginatedUsers, isPending } = usePaginatedUsers(
+  const { paginatedUsers, isPending } = usePaginatedUsers(
     projectId,
     pagination,
     sorting,
@@ -75,11 +74,7 @@ export default function Listing() {
   };
 
   return (
-    <RedirectionGuard
-      isLoading={isPending}
-      condition={!isPending && allUsers?.length === 0}
-      route="../onboarding"
-    >
+    <>
       <div className="header mt-8">
         <Notifications />
       </div>
@@ -246,6 +241,6 @@ export default function Listing() {
       <Suspense>
         <Outlet />
       </Suspense>
-    </RedirectionGuard>
+    </>
   );
 }
