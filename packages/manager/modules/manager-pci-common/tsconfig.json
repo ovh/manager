@@ -4,13 +4,17 @@
     "useDefineForClassFields": true,
     "lib": ["ES2020", "dom"],
     "types": ["vite/client", "node"],
+    "outDir": "dist",
     "module": "ESNext",
+    "allowJs": true,
     "skipLibCheck": true,
     "moduleResolution": "node",
     "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "emitDeclarationOnly": true,
     "jsx": "react-jsx",
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
@@ -22,5 +26,5 @@
     "esModuleInterop": true
   },
   "include": ["src/**/*", "*.spec.tsx"],
-  "exclude": ["node_modules", "dist", "types"]
+  "exclude": ["node_modules", "dist"]
 }
