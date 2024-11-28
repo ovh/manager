@@ -12,8 +12,6 @@ import RenameService from './RenameService.component';
 import { useToast } from '@/components/ui/use-toast';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
-import { TRACKING } from '@/configuration/tracking.constants';
-import { useTrackAction } from '@/hooks/useTracking';
 
 describe('Rename service modal', () => {
   beforeEach(() => {

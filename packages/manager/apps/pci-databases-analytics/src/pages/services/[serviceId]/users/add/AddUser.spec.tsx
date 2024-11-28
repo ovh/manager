@@ -4,7 +4,6 @@ import AddUserModal from './AddUser.modal'; // Adjust the path as needed
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { mockedDatabaseUser } from '@/__tests__/helpers/mocks/databaseUser';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import * as usersApi from '@/data/api/database/user.api';
 
 vi.mock('@/components/ui/skeleton', () => ({

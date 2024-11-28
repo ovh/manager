@@ -7,7 +7,6 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import Integrations from '@/pages/services/[serviceId]/integrations/Integrations.page';
 import * as database from '@/types/cloud/project/database';
 import { Locale } from '@/hooks/useLocale';
 import * as integrationApi from '@/data/api/database/integration.api';

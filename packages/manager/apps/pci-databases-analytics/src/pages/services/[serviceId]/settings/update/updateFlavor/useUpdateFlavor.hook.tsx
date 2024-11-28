@@ -2,7 +2,6 @@ import { useEffect, useMemo } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslation } from 'react-i18next';
 import { Engine, Flavor, Plan, Region, Version } from '@/types/orderFunnel';
 import * as databases from '@/types/cloud/project/database';
 import { computeServicePrice } from '@/lib/pricingHelper';

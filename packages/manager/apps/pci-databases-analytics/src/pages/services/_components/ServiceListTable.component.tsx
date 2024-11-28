@@ -9,7 +9,6 @@ import { TRACKING } from '@/configuration/tracking.constants';
 
 interface ServicesListProps {
   services: database.Service[];
-  refetchFn: () => void;
 }
 
 export default function ServicesList({ services }: ServicesListProps) {

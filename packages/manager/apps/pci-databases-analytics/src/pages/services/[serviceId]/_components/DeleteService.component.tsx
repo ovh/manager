@@ -58,18 +58,6 @@ const DeleteService = ({
   const integratedServices = useMemo(() => {
     // return empty arrray if there are no integrations for
     // the selected engine (eg mongoDB)
-    console.log(
-      'en',
-      !!service?.id,
-      service?.capabilities.integrations?.read ===
-        database.service.capability.StateEnum.enabled,
-    );
-    console.log(
-      'memo',
-      service?.id,
-      integrationsQuery?.data?.length,
-      serivcesQuery?.data?.length,
-    );
     if (
       service?.capabilities.integrations?.read !==
       database.service.capability.StateEnum.enabled
@@ -128,8 +116,6 @@ const DeleteService = ({
       engine: service.engine,
     });
   };
-
-  console.log(integratedServices);
 
   return (
     <RouteModal isLoading={!service?.id || !integratedServices}>

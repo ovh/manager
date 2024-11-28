@@ -99,16 +99,15 @@ export function useTrackPageAuto() {
 
     // replace . by ::
     injectedTrackingKey = injectedTrackingKey.replaceAll('.', '::');
-
     console.log(`[Tracking] ${injectedTrackingKey}`);
     trackPage({
       name: injectedTrackingKey,
       level2: PCI_LEVEL2,
     });
     hasTrackedRef.current = true;
-  }, [location, params.serviceId, service, s.isLoading]);
+  }, [location.pathname, params.serviceId, service, s.isLoading]);
 
   useEffect(() => {
     hasTrackedRef.current = false;
-  }, [location]);
+  }, [location.pathname]);
 }

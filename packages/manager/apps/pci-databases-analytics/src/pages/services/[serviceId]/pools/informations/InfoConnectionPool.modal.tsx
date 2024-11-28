@@ -4,7 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Download, Files } from 'lucide-react';
 import { useEffect } from 'react';
 import {
-  Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -19,7 +18,6 @@ import { useGetCertificate } from '@/hooks/api/database/certificate/useGetCertif
 import { useServiceData } from '../../Service.context';
 import { useGetConnectionPools } from '@/hooks/api/database/connectionPool/useGetConnectionPools.hook';
 import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
-import { Skeleton } from '@/components/ui/skeleton';
 import RouteModal from '@/components/route-modal/RouteModal';
 
 const InfoConnectionPool = () => {

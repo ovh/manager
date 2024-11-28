@@ -64,10 +64,7 @@ const Services = () => {
           {t('createNewService')}
         </Link>
       </Button>
-      <ServicesList
-        services={filteredServices}
-        refetchFn={servicesQuery.refetch}
-      />
+      <ServicesList services={filteredServices} />
       <LegalMentions className="mt-4" />
       <Outlet />
     </>

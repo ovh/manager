@@ -68,73 +68,71 @@ const UpdateTable = () => {
     },
   ].filter((row) => Boolean(row));
   return (
-    <>
-      <Table>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.title}>
-              <TableCell className="font-semibold">{row.title}</TableCell>
-              <TableCell>{row.cell}</TableCell>
-              {row.updateButtonDisplayed && (
-                <TableCell className="text-right">
-                  <Button
-                    data-testid={`update-button-${row.title}`}
-                    variant="default"
-                    size="default"
-                    className="py-0 h-auto"
-                    onClick={row.onClick}
-                    disabled={
-                      service.capabilities.service.update ===
-                      database.service.capability.StateEnum.disabled
-                    }
-                  >
-                    {t('tableUpdateButton')}
-                  </Button>
-                </TableCell>
-              )}
-            </TableRow>
-          ))}
-          <TableRow>
-            <TableCell className="font-semibold">{t('tableNodes')}</TableCell>
-            <TableCell>{service.nodes.length}</TableCell>
-            {availabilitiesFlavorQuery.data?.length > 1 && (
-              <TableCell className="flex gap-2 justify-end">
-                {service.capabilities.nodes?.delete && (
-                  <Button
-                    data-testid="delete-node-button"
-                    variant={'ghost'}
-                    size="table"
-                    className="p-0 h-auto text-destructive"
-                    onClick={() => navigate('./delete-node')}
-                    disabled={
-                      service.capabilities.nodes?.delete ===
-                      database.service.capability.StateEnum.disabled
-                    }
-                  >
-                    <MinusCircle />
-                  </Button>
-                )}
-                {service.capabilities.nodes?.create && (
-                  <Button
-                    data-testid="create-node-button"
-                    variant={'ghost'}
-                    size="table"
-                    className="p-0 h-auto text-primary"
-                    onClick={() => navigate('./add-node')}
-                    disabled={
-                      service.capabilities.nodes?.create ===
-                      database.service.capability.StateEnum.disabled
-                    }
-                  >
-                    <PlusCircle />
-                  </Button>
-                )}
+    <Table>
+      <TableBody>
+        {rows.map((row) => (
+          <TableRow key={row.title}>
+            <TableCell className="font-semibold">{row.title}</TableCell>
+            <TableCell>{row.cell}</TableCell>
+            {row.updateButtonDisplayed && (
+              <TableCell className="text-right">
+                <Button
+                  data-testid={`update-button-${row.title}`}
+                  variant="default"
+                  size="default"
+                  className="py-0 h-auto"
+                  onClick={row.onClick}
+                  disabled={
+                    service.capabilities.service.update ===
+                    database.service.capability.StateEnum.disabled
+                  }
+                >
+                  {t('tableUpdateButton')}
+                </Button>
               </TableCell>
             )}
           </TableRow>
-        </TableBody>
-      </Table>
-    </>
+        ))}
+        <TableRow>
+          <TableCell className="font-semibold">{t('tableNodes')}</TableCell>
+          <TableCell>{service.nodes.length}</TableCell>
+          {availabilitiesFlavorQuery.data?.length > 1 && (
+            <TableCell className="flex gap-2 justify-end">
+              {service.capabilities.nodes?.delete && (
+                <Button
+                  data-testid="delete-node-button"
+                  variant={'ghost'}
+                  size="table"
+                  className="p-0 h-auto text-destructive"
+                  onClick={() => navigate('./delete-node')}
+                  disabled={
+                    service.capabilities.nodes?.delete ===
+                    database.service.capability.StateEnum.disabled
+                  }
+                >
+                  <MinusCircle />
+                </Button>
+              )}
+              {service.capabilities.nodes?.create && (
+                <Button
+                  data-testid="create-node-button"
+                  variant={'ghost'}
+                  size="table"
+                  className="p-0 h-auto text-primary"
+                  onClick={() => navigate('./add-node')}
+                  disabled={
+                    service.capabilities.nodes?.create ===
+                    database.service.capability.StateEnum.disabled
+                  }
+                >
+                  <PlusCircle />
+                </Button>
+              )}
+            </TableCell>
+          )}
+        </TableRow>
+      </TableBody>
+    </Table>
   );
 };
 
