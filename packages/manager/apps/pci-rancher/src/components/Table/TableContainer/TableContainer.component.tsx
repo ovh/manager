@@ -23,6 +23,7 @@ import '../Table.scss';
 import { deleteRancherServiceQueryKey } from '@/data/api/services';
 import StatusChip from '../../StatusChip/StatusChip.component';
 import DisplayCellNumber from '../NumberCell/NumberCell.component';
+import ClipBoardCell from '../ClipBoardCell/ClipBoardCell.component';
 
 export default function TableContainer({
   data,
@@ -57,6 +58,12 @@ export default function TableContainer({
         header: t('name'),
         accessorKey: 'currentState.name',
         cell: LinkService,
+      },
+      {
+        id: 'id',
+        header: 'ID',
+        accessorKey: 'id',
+        cell: ClipBoardCell,
       },
       {
         id: 'serviceLevel',
