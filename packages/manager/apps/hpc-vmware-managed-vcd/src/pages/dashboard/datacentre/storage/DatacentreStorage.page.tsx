@@ -11,7 +11,7 @@ import {
   VCDStorage,
 } from '@ovh-ux/manager-module-vcd-api';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
-import { STORAGE_LABEL } from '../DatacentreDashboard.constant';
+import { STORAGE_LABEL } from '../datacentreDashboard.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { capitalize } from '@/utils/capitalize';
 import { ID_LABEL } from '../../dashboard.constants';
