@@ -19,7 +19,6 @@ export default class CreateLinkedUserController {
     PciStoragesUsersService,
     PciStoragesObjectStorageService,
     atInternet,
-    $scope,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -27,7 +26,6 @@ export default class CreateLinkedUserController {
     this.PciStoragesUsersService = PciStoragesUsersService;
     this.PciStoragesObjectStorageService = PciStoragesObjectStorageService;
     this.atInternet = atInternet;
-    this.$scope = $scope;
   }
 
   $onInit() {
@@ -180,7 +178,7 @@ export default class CreateLinkedUserController {
     this.userModel.createOrLinkedMode = CONTAINER_USER_ASSOCIATION_MODES.CREATE;
   }
 
-  async onLinkedUserClicked() {
+  onLinkedUserClicked() {
     this.trackClick(`${TRACKING_ASSOCIATE_USER}-confirm`);
     const { selected: user } = this.userModel.linkedMode;
     const service = this.PciStoragesUsersService;
@@ -201,7 +199,8 @@ export default class CreateLinkedUserController {
 
     this.userModel.linkedMode.isInProgress = true;
 
-    return Promise.all([credentialPromise, secretPromise])
+    return this.$q
+      .all([credentialPromise, secretPromise])
       .then(([credential, secretData]) => {
         this.trackPage(`${TRACKING_ASSOCIATE_USER}-success`);
 
@@ -216,11 +215,6 @@ export default class CreateLinkedUserController {
       })
       .finally(() => {
         this.userModel.linkedMode.isInProgress = false;
-
-        // Ensure the final state updates trigger a digest cycle
-        if (!this.$scope.$$phase) {
-          this.$scope.$apply();
-        }
       });
   }
 
