@@ -77,6 +77,7 @@ describe('useDatagridColumn', () => {
     );
     expect(statusCell.props.statusGroup).toBe(volumeTestData[0].statusGroup);
     expect(statusCell.props.status).toBe(volumeTestData[0].status);
-    expect(actionsCell.props.children).toBeDefined();
+    expect(actionsCell.props.projectUrl).toBeDefined();
+    expect(actionsCell.props.volume).toBe(volumeTestData[0]);
   });
 });
