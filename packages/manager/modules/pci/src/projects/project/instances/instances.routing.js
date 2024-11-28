@@ -159,6 +159,7 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId,
         trackGridAction,
         checkFloatingIpAvailability,
+        ovhShell,
       ) => (instance) => {
         trackGridAction('assign-floating-ip');
         if (instance.privateIpV4.length === 0) {
@@ -173,12 +174,10 @@ export default /* @ngInject */ ($stateProvider) => {
         return checkFloatingIpAvailability(instance.region).then(
           (isFloatingIpAvailableInInstanceRegion) => {
             return isFloatingIpAvailableInInstanceRegion
-              ? $state.go('pci.projects.project.additional-ips.order', {
-                  projectId,
-                  ipType: 'floating_ip',
-                  region: instance.region,
-                  instance: instance.id,
-                })
+              ? ovhShell.navigation.navigateTo(
+                  'public-cloud',
+                  `/pci/projects/${projectId}/public-ips/order?ipType=floating_ip&region=${instance.region}&instance=${instance.id}`,
+                )
               : null;
           },
         );

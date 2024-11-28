@@ -21,7 +21,9 @@ import { FailoverSteps } from '@/pages/order/steps/FailoverSteps';
 import { FloatingSteps } from '@/pages/order/steps/FloatingSteps';
 import { IPTypeEnum } from '@/api/types';
 import { useOrderStore } from '@/pages/order/hooks/useStore';
+import { useOrderParams } from '@/pages/order/hooks/useParams';
 import { initStartupSteps } from '@/pages/order/utils/startupSteps';
+import { useData } from '@/api/hooks/useData';
 
 export default function OrderPage(): JSX.Element {
   const { projectId } = useParams();
@@ -33,8 +35,11 @@ export default function OrderPage(): JSX.Element {
   const { t: tOrder } = useTranslation('order');
   const { t: tStepper } = useTranslation('stepper');
 
-  const { form, setSteps } = useOrderStore();
+  const { form, setSteps, setForm } = useOrderStore();
   const { data: project } = useProject();
+
+  const { state } = useData(projectId, context.environment.getRegion());
+  const orderParams = useOrderParams(state);
 
   const [projectUrl, setProjectUrl] = useState('');
   const backLink = useHref('..');
@@ -50,6 +55,17 @@ export default function OrderPage(): JSX.Element {
   useEffect(() => {
     setSteps(initStartupSteps());
   }, []);
+
+  useEffect(() => {
+    const { ipType, failoverCountry, floatingRegion, instance } = orderParams;
+    setForm({
+      ...form,
+      ...(ipType && { ipType }),
+      ...(failoverCountry && { failoverCountry }),
+      ...(floatingRegion && { floatingRegion }),
+      ...(instance && { instance }),
+    });
+  }, [orderParams]);
 
   return (
     <>
