@@ -1,11 +1,11 @@
 /** Role */
 export interface Role {
   /** Role Description */
-  description?: string;
+  description: string;
   /** Role id */
-  id?: string;
+  id: string;
   /** Role Name */
-  name?: string;
+  name: string;
   /** Permissions granted by this role */
-  permissions?: string[];
+  permissions: string[];
 }

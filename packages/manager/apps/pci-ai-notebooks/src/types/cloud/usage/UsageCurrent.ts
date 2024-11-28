@@ -8,11 +8,11 @@ export interface UsageCurrent {
   /** Hourly usage */
   hourlyUsage?: HourlyResources;
   /** Entry last update */
-  lastUpdate?: string;
+  lastUpdate: string;
   /** Monthly usage */
   monthlyUsage?: MonthlyResources;
   /** Usage dates (from/to) */
-  period?: Period;
+  period: Period;
   /** Resource usage (billed per hour/minute/second/unit) */
   resourcesUsage?: TypedResources[];
 }

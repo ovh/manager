@@ -8,7 +8,6 @@ import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
 import { useGetFramework } from '@/hooks/api/ai/notebook/capabilities/useGetFramework.hook';
 import { useGetEditor } from '@/hooks/api/ai/notebook/capabilities/useGetEditor.hook';
 import { useGetSshkey } from '@/hooks/api/sshkey/useGetSshkey.hook';
-import { mockedSuggestion } from '@/__tests__/helpers/mocks/suggestion';
 import { useGetSuggestions } from '@/hooks/api/ai/notebook/useGetSuggestions.hook';
 
 export function breadcrumb() {

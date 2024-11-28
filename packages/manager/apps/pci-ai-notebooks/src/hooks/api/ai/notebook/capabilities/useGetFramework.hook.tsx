@@ -13,5 +13,5 @@ export function useGetFramework(
     queryKey,
     queryFn: () => getFramework({ projectId }),
     ...options,
-  }) as UseQueryResult<ai.notebook.Editor[], Error>;
+  }) as UseQueryResult<ai.capabilities.notebook.Framework[], Error>;
 }

@@ -3,9 +3,9 @@ import { Period } from '@/types/cloud/usage/Period';
 /** UsageHistory */
 export interface UsageHistory {
   /** Usage id */
-  id?: string;
+  id: string;
   /** Entry last update */
-  lastUpdate?: string;
+  lastUpdate: string;
   /** Usage dates (from/to) */
-  period?: Period;
+  period: Period;
 }

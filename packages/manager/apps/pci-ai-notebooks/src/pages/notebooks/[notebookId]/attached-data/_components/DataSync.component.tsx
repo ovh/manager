@@ -71,7 +71,6 @@ const DataSync = ({
       }
     },
     onSuccess: () => {
-      console.log('in on success');
       const toastdesc: string = volume
         ? t('dataSyncMountPathToastSuccessDescription', {
             name: volume.mountPath,
@@ -90,6 +89,7 @@ const DataSync = ({
   const onSubmit = form.handleSubmit((formValues) => {
     const dataSyncFormValues: ai.volume.DataSyncSpec = {
       direction: formValues.type,
+      manual: true,
     };
     if (volume)
       dataSyncFormValues.volume = notebook.status.volumes.find(

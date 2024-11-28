@@ -1,9 +1,9 @@
 /** MonthlyInstanceDetail */
 export interface MonthlyInstanceDetail {
   /** Monthly instance activation */
-  activation?: string;
+  activation: string;
   /** Instance ID */
-  instanceId?: string;
+  instanceId: string;
   /** Total price */
-  totalPrice?: number;
+  totalPrice: number;
 }

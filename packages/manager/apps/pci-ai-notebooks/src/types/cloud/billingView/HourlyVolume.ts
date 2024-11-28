@@ -4,13 +4,13 @@ import { Quantity } from '@/types/cloud/billingView/Quantity';
 /** HourlyVolume */
 export interface HourlyVolume {
   /** Detail about volume consumption */
-  details?: HourlyVolumeDetail[];
+  details: HourlyVolumeDetail[];
   /** Total GiBh of volume */
-  quantity?: Quantity;
+  quantity: Quantity;
   /** Region */
-  region?: string;
+  region: string;
   /** Total price */
-  totalPrice?: number;
+  totalPrice: number;
   /** Volume type */
-  type?: string;
+  type: string;
 }

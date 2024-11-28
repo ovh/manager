@@ -7,13 +7,13 @@ export interface DataSyncStatus {
   /** Date when the data sync ended */
   endedAt?: string;
   /** Information about the data sync */
-  info?: Info;
+  info: Info;
   /** Progress status of the data sync */
-  progress?: Progress[];
+  progress: Progress[];
   /** Date when the data sync was queued */
-  queuedAt?: string;
+  queuedAt: string;
   /** Date when the data sync was started */
   startedAt?: string;
   /** State of the data sync */
-  state?: DataSyncStateEnum;
+  state: DataSyncStateEnum;
 }

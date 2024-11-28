@@ -3,9 +3,9 @@ import { MonthlyCertificationDetail } from '@/types/cloud/billingView/MonthlyCer
 /** MonthlyCertification */
 export interface MonthlyCertification {
   /** Details about certifications */
-  details?: MonthlyCertificationDetail[];
+  details: MonthlyCertificationDetail[];
   /** Certification reference */
-  reference?: string;
+  reference: string;
   /** Total price */
-  totalPrice?: number;
+  totalPrice: number;
 }

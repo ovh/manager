@@ -9,11 +9,11 @@ export interface UsageForecast {
   /** Hourly forecast */
   hourlyUsage?: HourlyResources;
   /** Entry last update */
-  lastUpdate?: string;
+  lastUpdate: string;
   /** Monthly forecast */
   monthlyUsage?: MonthlyResources;
   /** Forecast dates (from/to) */
-  period?: Period;
+  period: Period;
   /** Resource usage forecast (billed per hour/minute/second/unit) */
   resourcesUsage?: TypedResources[];
   /** Usable credit to pay next bill */

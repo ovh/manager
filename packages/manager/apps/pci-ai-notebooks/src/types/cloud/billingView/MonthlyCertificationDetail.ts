@@ -1,7 +1,7 @@
 /** MonthlyCertificationDetail */
 export interface MonthlyCertificationDetail {
   /** Certification activation */
-  activation?: string;
+  activation: string;
   /** Total price */
-  totalPrice?: number;
+  totalPrice: number;
 }

@@ -2,7 +2,10 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as sshkeyApi from '@/data/api/sshkey/sshkey.api';
-import { mockedSshKey } from '@/__tests__/helpers/mocks/sshkey';
+import {
+  mockedSshKey,
+  mockedSshKeyDetail,
+} from '@/__tests__/helpers/mocks/sshkey';
 import { useAddSshKey } from './useAddSshKey.hook';
 
 vi.mock('@/data/api/sshkey/sshkey.api', () => ({
@@ -14,7 +17,7 @@ describe('useAddSshKey', () => {
     const onAddKeySuccess = vi.fn();
     const onError = vi.fn();
 
-    vi.mocked(sshkeyApi.addSSHKey).mockResolvedValue(mockedSshKey);
+    vi.mocked(sshkeyApi.addSSHKey).mockResolvedValue(mockedSshKeyDetail);
 
     const { result } = renderHook(
       () => useAddSshKey({ onError, onAddKeySuccess }),

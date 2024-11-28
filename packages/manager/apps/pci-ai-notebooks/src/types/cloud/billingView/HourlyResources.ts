@@ -8,15 +8,15 @@ import { HourlyVolume } from '@/types/cloud/billingView/HourlyVolume';
 /** HourlyResources */
 export interface HourlyResources {
   /** Details about hourly instances */
-  instance?: HourlyInstance[];
+  instance: HourlyInstance[];
   /** Details about instances bandwidth consumption */
-  instanceBandwidth?: HourlyInstanceBandwidth[];
+  instanceBandwidth: HourlyInstanceBandwidth[];
   /** Details about hourly instances options */
-  instanceOption?: HourlyInstanceOption[];
+  instanceOption: HourlyInstanceOption[];
   /** Details about hourly snapshots */
-  snapshot?: HourlySnapshot[];
+  snapshot: HourlySnapshot[];
   /** Details about hourly storage */
-  storage?: HourlyStorage[];
+  storage: HourlyStorage[];
   /** Details about hourly volumes */
-  volume?: HourlyVolume[];
+  volume: HourlyVolume[];
 }

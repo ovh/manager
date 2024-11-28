@@ -8,6 +8,16 @@ import * as ai from '@/types/cloud/project/ai';
 import DataSync from './_components/DataSync.component';
 import { useModale } from '@/hooks/useModale';
 import { isDataSyncNotebook } from '@/lib/notebookHelper';
+import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+
+export function breadcrumb() {
+  return (
+    <BreadcrumbItem
+      translationKey="breadcrumb"
+      namespace="pci-ai-notebooks/notebooks/notebook/attached-data"
+    />
+  );
+}
 
 const AttachedData = () => {
   const { notebook, notebookQuery } = useNotebookData();

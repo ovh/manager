@@ -1,0 +1,6 @@
+{
+  "breadcrumb": "Logs",
+  "title": "Logs",
+  "description": "Pour vous aider à suivre et à piloter votre notebook, vous trouverez les derniers événements (logs) ci-dessous, quasiment en direct.",
+  "autoRefreshInputLabel": "Auto-Refresh"
+}

@@ -27,29 +27,31 @@ export function humanizeFramework(
 }
 
 export function getNotebookSpec(formResult: NotebookOrderResult) {
-  const notebookInfos: ai.notebook.NotebookSpec = {
-    env: {
-      frameworkId: formResult.framework.id,
-      frameworkVersion: formResult.version,
-      editorId: formResult.editor.id,
-    },
+  const notebookEnv: ai.notebook.NotebookEnv = {
+    frameworkId: formResult.framework.id,
+    frameworkVersion: formResult.version,
+    editorId: formResult.editor.id,
+  };
+  const notebookResource: ai.ResourcesInput =
+    formResult.flavor.type === ai.capabilities.FlavorTypeEnum.cpu
+      ? {
+          flavor: formResult.flavor.id,
+          cpu: Number(formResult.resourcesQuantity),
+        }
+      : {
+          flavor: formResult.flavor.id,
+          gpu: Number(formResult.resourcesQuantity),
+        };
+
+  const notebookInfos: ai.notebook.NotebookSpecInput = {
+    env: notebookEnv,
+    resources: notebookResource,
+    name: formResult.notebookName,
     region: formResult.region.id,
     unsecureHttp: formResult.unsecureHttp,
     sshPublicKeys: formResult.sshKey,
     labels: formResult.labels,
   };
-
-  if (formResult.flavor.type === ai.capabilities.FlavorTypeEnum.cpu) {
-    notebookInfos.resources = {
-      flavor: formResult.flavor.id,
-      cpu: formResult.resourcesQuantity,
-    };
-  } else {
-    notebookInfos.resources = {
-      flavor: formResult.flavor.id,
-      gpu: formResult.resourcesQuantity,
-    };
-  }
 
   if (formResult.volumes.length > 0) {
     notebookInfos.volumes = formResult.volumes.map((volume: OrderVolumes) => ({

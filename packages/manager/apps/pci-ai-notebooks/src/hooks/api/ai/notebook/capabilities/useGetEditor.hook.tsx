@@ -13,5 +13,5 @@ export function useGetEditor(
     queryKey,
     queryFn: () => getEditor({ projectId }),
     ...options,
-  }) as UseQueryResult<ai.notebook.Editor[], Error>;
+  }) as UseQueryResult<ai.capabilities.notebook.Editor[], Error>;
 }

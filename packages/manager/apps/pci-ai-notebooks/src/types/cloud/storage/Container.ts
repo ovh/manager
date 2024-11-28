@@ -7,13 +7,13 @@ export interface Container {
   /** Container type */
   containerType?: TypeEnum;
   /** Storage id */
-  id?: string;
+  id: string;
   /** Storage name */
-  name?: string;
+  name: string;
   /**  */
-  region?: string;
+  region: string;
   /** Total bytes stored */
-  storedBytes?: number;
+  storedBytes: number;
   /** Total objects stored */
-  storedObjects?: number;
+  storedObjects: number;
 }

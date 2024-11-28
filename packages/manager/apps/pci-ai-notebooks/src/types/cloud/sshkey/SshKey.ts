@@ -3,9 +3,9 @@ export interface SshKey {
   /** SSH key id */
   id?: string;
   /** SSH key name */
-  name?: string;
+  name: string;
   /** SSH public key */
-  publicKey?: string;
+  publicKey: string;
   /** SSH key regions */
   regions?: string[];
 }

@@ -28,7 +28,7 @@ const Dashboard = () => {
   const { notebook, projectId } = useNotebookData();
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook/dashboard');
   const { toast } = useToast();
-  const [command, setCommand] = useState<ai.Command>({});
+  const [command, setCommand] = useState<ai.Command>();
 
   const { getCommand } = useGetCommand({
     onError: (err) => {
@@ -62,12 +62,12 @@ const Dashboard = () => {
             </h4>
           </CardHeader>
           <CardContent>
-           <NotebookLink/>
+            <NotebookLink />
           </CardContent>
-            <h4 className='px-6 mb-4'>
-              <Globe2 className="size-4 inline mr-2" />
-              <span>Privacy</span>
-            </h4>
+          <h4 className="px-6 mb-4">
+            <Globe2 className="size-4 inline mr-2" />
+            <span>Privacy</span>
+          </h4>
           <CardContent>
             <Privacy />
           </CardContent>
