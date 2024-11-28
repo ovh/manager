@@ -1,6 +1,6 @@
-import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
+import { ApiError, applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
+import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { paginateResults, sortResults } from '@/helpers';
 import {
@@ -9,7 +9,9 @@ import {
   getS3Credentials,
   TS3Credentials,
   TUser,
+  postS3Secret,
 } from '@/api/data/user';
+
 import queryClient from '@/queryClient';
 
 const getQueryKeyUsers = (projectId: string) => ['project', projectId, 'users'];
@@ -102,6 +104,36 @@ export const useDeleteUser = ({
   });
   return {
     deleteUser: () => mutation.mutate(),
+  };
+};
+
+type UsePostS3SecretParams = {
+  projectId: string;
+  userId: number;
+  userAccess: string;
+  onSuccess: ({ secret }: { secret: string }) => void;
+  onError: (cause: ApiError) => void;
+};
+
+export const usePostS3Secret = ({
+  projectId,
+  userId,
+  userAccess,
+  onSuccess,
+  onError,
+}: UsePostS3SecretParams) => {
+  const mutation = useMutation({
+    mutationFn: async () => postS3Secret(projectId, userId, userAccess),
+    onError: (cause: ApiError) => {
+      onError(cause);
+    },
+    onSuccess: async (response) => {
+      onSuccess(response);
+    },
+  });
+
+  return {
+    postS3Secret: () => mutation.mutate(),
     ...mutation,
   };
 };
