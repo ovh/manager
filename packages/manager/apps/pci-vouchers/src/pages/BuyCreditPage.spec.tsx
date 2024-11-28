@@ -50,6 +50,6 @@ describe('BuyCreditPage', () => {
   it('renders BuyCreditModal with correct props', () => {
     const { getByTestId } = render(<BuyCreditPage />, { wrapper });
 
-    expect(getByTestId('BuyCreditPage-modal')).toBeInTheDocument();
+    expect(getByTestId('pciModal-modal')).toBeInTheDocument();
   });
 });

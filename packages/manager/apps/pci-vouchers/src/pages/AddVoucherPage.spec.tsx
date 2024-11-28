@@ -51,6 +51,6 @@ describe('AddVoucherPage', () => {
   it('renders AddVoucherModal with correct props', () => {
     const { getByTestId } = render(<AddVoucherPage />, { wrapper });
 
-    expect(getByTestId('AddVoucherModal-modal')).toBeInTheDocument();
+    expect(getByTestId('pciModal-modal')).toBeInTheDocument();
   });
 });
