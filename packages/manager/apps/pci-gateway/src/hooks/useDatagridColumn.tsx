@@ -13,10 +13,7 @@ import { Gateway } from '@/interface';
 import PrivateIPs from '@/components/list/PrivateIPs.component';
 import Actions from '@/components/list/Actions.component';
 
-export const useDatagridColumn = (
-  projectId: string,
-  privateNetworkUrl: string,
-) => {
+export const useDatagridColumn = (privateNetworkUrl: string) => {
   const { t } = useTranslation('common');
   const columns: DatagridColumn<Gateway>[] = [
     {
@@ -92,7 +89,7 @@ export const useDatagridColumn = (
       id: 'actions',
       cell: (props: Gateway) => (
         <div className="min-w-16">
-          <Actions projectId={projectId} gateway={props} />
+          <Actions gateway={props} />
         </div>
       ),
       label: '',
