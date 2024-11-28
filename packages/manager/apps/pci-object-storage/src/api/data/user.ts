@@ -60,3 +60,15 @@ export const getUserStoragePolicy = async (
   );
   return data;
 };
+
+export const postS3Secret = async (
+  projectId: string,
+  userId: number,
+  userAccess: string,
+): Promise<{ secret: string }> => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/user/${userId}/s3Credentials/${userAccess}/secret`,
+  );
+
+  return data;
+};
