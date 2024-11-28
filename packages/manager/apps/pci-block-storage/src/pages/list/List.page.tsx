@@ -130,7 +130,7 @@ export default function ListingPage() {
         <div className="sm:flex items-center justify-between mt-4">
           <OsdsButton
             size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.stroked}
+            variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
             className="xs:mb-0.5 sm:mb-0"
             onClick={() => {
@@ -141,8 +141,7 @@ export default function ListingPage() {
             <OsdsIcon
               size={ODS_ICON_SIZE.xs}
               name={ODS_ICON_NAME.PLUS}
-              className="mr-2"
-              color={ODS_THEME_COLOR_INTENT.primary}
+              className="mr-4 bg-white"
             />
             {t('pci_projects_project_storages_blocks_add_label')}
           </OsdsButton>
@@ -241,7 +240,7 @@ export default function ListingPage() {
           </div>
         )}
         {!isLoading && !error && (
-          <div>
+          <div className="mt-8">
             <Datagrid
               columns={columns}
               items={volumes?.rows || []}

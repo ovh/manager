@@ -70,8 +70,8 @@ export function VolumeTypeStep({
           <div className="w-full">
             <div className="border-solid border-0 border-b border-b-[#85d9fd] py-3 d-flex">
               <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._600}
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._300}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
                 {vType.blobs.technical.name}
