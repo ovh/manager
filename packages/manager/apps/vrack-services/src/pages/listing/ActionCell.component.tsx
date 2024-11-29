@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -19,6 +19,14 @@ export const ActionCell: React.FC<VrackServicesWithIAM> = (vs) => {
   const vrackActionsMenuItems = useVrackMenuItems({ vs, isListing: true });
 
   const disabled = !isEditable(vs);
+  const isVrackserviceAlreadyAssociated = useMemo<boolean>(
+    () =>
+      Boolean(
+        vs?.currentState?.subnets &&
+          vs?.currentState?.subnets[0]?.serviceEndpoints.length > 0,
+      ),
+    [vs],
+  );
 
   return (
     <ActionMenu
@@ -55,7 +63,7 @@ export const ActionCell: React.FC<VrackServicesWithIAM> = (vs) => {
         {
           id: 2,
           label: t('action-deleteVrackServices'),
-          disabled,
+          disabled: disabled && isVrackserviceAlreadyAssociated,
           color: ODS_THEME_COLOR_INTENT.error,
           onClick: () => {
             trackClick({
