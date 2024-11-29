@@ -6,8 +6,8 @@
   "octavia_load_balancer_create_size_intro_link": "Produktseite anzeigen",
   "octavia_load_balancer_create_size_flavour_title": "Größe {{sizeCode}}",
   "octavia_load_balancer_create_size_flavour_description_s": "Geeignet für kleine Anwendungen. Ideal für Tests und Entwicklungsumgebungen oder für kleine Projekte.",
-  "octavia_load_balancer_create_size_flavour_description_m": "Geeignet für die meisten Projekte mit mittlerem Traffic.",
-  "octavia_load_balancer_create_size_flavour_description_l": "Wenn der Traffic Ihrer Anwendungen seine höchste Dichte erreicht, benötigen Sie möglicherweise die beste Loadbalancer-Leistung, um dies zu bewältigen.",
+  "octavia_load_balancer_create_size_flavour_description_m": "Für die meisten Projekte mit mittlerem Traffic geeignet.",
+  "octavia_load_balancer_create_size_flavour_description_l": "Für Anwendungen mit hoher Traffic-Dichte. Sorgt für optimale Leistung zum Bewältigen großer Workloads.",
   "octavia_load_balancer_create_size_flavour_price_interval": " /Stunde abgerechnet.",
   "octavia_load_balancer_create_region_title": "Wählen Sie eine Region aus",
   "octavia_load_balancer_create_region_intro": "Bitte wählen Sie die Public-Cloud-Region aus, in der Ihr Loadbalancer gehostet wird. Wählen Sie aus den Public-Cloud-Regionen, in denen ein privates Netzwerk definiert ist, die Region aus, in der der Loadbalancer gehostet wird. Ist die gewünschte Region nicht in der Liste? Um mehr über die Verfügbarkeit der Funktionen je nach Region zu erfahren, ",
@@ -38,5 +38,8 @@
   "octavia_load_balancer_create_name_field_label": "Name des Loadbalancers",
   "octavia_load_balancer_create_submit": "Einen Loadbalancer erstellen",
   "octavia_load_balancer_create_banner": "Ihr Loadbalancer wird erstellt. Es dauert nur wenige Minuten.",
-  "octavia_load_balancer_create_name_field_help": "Darf ausschließlich Zahlen, Buchstaben, Unterstriche, Gedankenstriche und Punkte enthalten."
+  "octavia_load_balancer_create_name_field_help": "Darf ausschließlich Zahlen, Buchstaben, Unterstriche, Gedankenstriche und Punkte enthalten.",
+  "octavia_load_balancer_create_size_flavour_description_xl": "Ideal für Anwendungen mit hohem Traffic, die eine größere Bandbreite erfordern, um eine hohe Leistung aufrechtzuerhalten.",
+  "octavia_load_balancer_create_size_flavour_description_2xl": "Perfekt für trafficintensive Projekte. Bietet eine hohe Bandbreitenkapazität für starke Leistung.",
+  "octavia_load_balancer_create_size_flavour_description_3xl": "Konzipiert für kritische Umgebungen mit hohem Traffic. Gewährleistet maximale Leistung dank großer Bandbreite."
 }
