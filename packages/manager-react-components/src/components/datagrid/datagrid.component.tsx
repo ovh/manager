@@ -30,7 +30,6 @@ import { FilterAdd, FilterList } from '../filters';
 import { FilterWithLabel } from '../filters/interface';
 import { DataGridTextCell } from './text-cell.component';
 import './translations';
-import { type } from 'os';
 
 export type ColumnSort = TanstackColumnSort;
 export type PaginationState = TanstackPaginationState;
