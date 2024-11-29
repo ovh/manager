@@ -59,6 +59,19 @@
                         >
                     </oui-tile-description>
                 </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'emails_general_information_diagnostic' | translate }}"
+                    data-ng-if="ctrlTabGeneralInformations.domain.offer !== 'redirect'"
+                >
+                    <oui-tile-description>
+                        <button
+                            class="oui-badge"
+                            data-ng-class="ctrlTabGeneralInformations.DKIM_STATUS_CLASS[ctrlTabGeneralInformations.getDkimStatus()]"
+                            data-ng-click="ctrlTabGeneralInformations.goToDkimManagement()"
+                            data-translate="emails_general_information_diagnostic_dkim"
+                        ></button>
+                    </oui-tile-description>
+                </oui-tile-definition>
             </oui-tile>
         </div>
         <div class="col-sm-4 mb-5">
