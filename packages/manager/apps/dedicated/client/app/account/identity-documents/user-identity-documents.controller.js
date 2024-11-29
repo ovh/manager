@@ -100,7 +100,9 @@ export default class AccountUserIdentityDocumentsController {
           this.tryToFinalizeProcedure(this.links)
         : // In order to start the KYC procedure we need to request the upload links for the number of documents
           // the user wants to upload
-          this.getUploadDocumentsLinks(Object.values(this.files).flatMap(({ files }) => files).length)
+          this.getUploadDocumentsLinks(
+            Object.values(this.files).flatMap(({ files }) => files).length,
+          )
             // Once we retrieved the upload links, we'll try to upload them and then "finalize" the procedure creation
             .then(({ data: { uploadLinks } }) => {
               this.links = uploadLinks;
@@ -167,11 +169,11 @@ export default class AccountUserIdentityDocumentsController {
         ? this.checkInvidualValidity()
         : Object.keys(this.proofs).reduce(
             (acc, proofType) =>
-              (acc &&
-                (this.files[proofType] ||
-                  proofType === this.PROOF_TYPE.authority_declaration)) ||
-              (this.user_type === this.USER_TYPE.default &&
-                proofType === this.PROOF_TYPE.vat),
+              acc &&
+              (!!this.files[proofType] ||
+                proofType === this.PROOF_TYPE.authority_declaration ||
+                (this.user_type === this.USER_TYPE.default &&
+                  proofType === this.PROOF_TYPE.vat)),
             true,
           );
   }

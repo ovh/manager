@@ -3,8 +3,6 @@ import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 
 import component from './user-identitiy-documents.component';
 import routing from './user-identity-documents.routes';
-import uploadConfirmModule from './upload-identity-documents-confirm';
-import documentUploadValidationModalModule from './document-upload-validation-modal';
 import uploadDocumentsProofTile from './components/identity-documents-proof-tile';
 import uploadDocumentsDetail from './components/identity-documents-upload-detail';
 
@@ -14,8 +12,6 @@ angular
   .module(moduleName, [
     ngAtInternet,
     ngOvhHttp,
-    uploadConfirmModule,
-    documentUploadValidationModalModule,
     uploadDocumentsProofTile,
     uploadDocumentsDetail,
     'oui',
