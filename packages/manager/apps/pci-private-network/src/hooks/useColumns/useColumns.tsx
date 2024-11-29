@@ -132,7 +132,7 @@ export function usePrivateNetworkRegionColumns() {
   ];
 }
 
-type LZColumns = TGroupedSubnet & { isPending: boolean };
+type LZPrivateNetworkColumn = TGroupedSubnet & { isPending: boolean };
 
 export function usePrivateNetworkLZColumns() {
   const { t } = useTranslation(['listing', 'common']);
@@ -141,21 +141,21 @@ export function usePrivateNetworkLZColumns() {
   return [
     {
       id: 'name',
-      cell: ({ name }: LZColumns) => (
+      cell: ({ name }: LZPrivateNetworkColumn) => (
         <DataGridTextCell>{name}</DataGridTextCell>
       ),
       label: t('pci_projects_project_network_private_name'),
     },
     {
       id: 'region',
-      cell: ({ region }: LZColumns) => (
+      cell: ({ region }: LZPrivateNetworkColumn) => (
         <DataGridTextCell>{region}</DataGridTextCell>
       ),
       label: t('pci_projects_project_network_private_region'),
     },
     {
       id: 'cidr',
-      cell: ({ cidr, isPending }: LZColumns) => (
+      cell: ({ cidr, isPending }: LZPrivateNetworkColumn) => (
         <SkeletonWrapper isPending={isPending}>
           <DataGridTextCell>{cidr}</DataGridTextCell>
         </SkeletonWrapper>
@@ -164,7 +164,7 @@ export function usePrivateNetworkLZColumns() {
     },
     {
       id: 'gatewayIp',
-      cell: ({ gatewayIp, isPending }: LZColumns) => (
+      cell: ({ gatewayIp, isPending }: LZPrivateNetworkColumn) => (
         <SkeletonWrapper isPending={isPending}>
           <DataGridTextCell>{gatewayIp}</DataGridTextCell>
         </SkeletonWrapper>
@@ -173,7 +173,7 @@ export function usePrivateNetworkLZColumns() {
     },
     {
       id: 'dhcp',
-      cell: ({ dhcpEnabled, isPending }: LZColumns) => (
+      cell: ({ dhcpEnabled, isPending }: LZPrivateNetworkColumn) => (
         <SkeletonWrapper isPending={isPending}>
           <DataGridTextCell>
             <StatusInfo
@@ -188,7 +188,7 @@ export function usePrivateNetworkLZColumns() {
     },
     {
       id: 'ip_allocation',
-      cell: ({ allocatedIp, isPending }: LZColumns) => (
+      cell: ({ allocatedIp, isPending }: LZPrivateNetworkColumn) => (
         <SkeletonWrapper isPending={isPending}>
           <DataGridTextCell>{allocatedIp}</DataGridTextCell>
         </SkeletonWrapper>
@@ -197,7 +197,7 @@ export function usePrivateNetworkLZColumns() {
     },
     {
       id: 'actions',
-      cell: ({ region, networkId }: LZColumns) => (
+      cell: ({ region, networkId }: LZPrivateNetworkColumn) => (
         <div>
           <OsdsTooltip>
             <OsdsButton
