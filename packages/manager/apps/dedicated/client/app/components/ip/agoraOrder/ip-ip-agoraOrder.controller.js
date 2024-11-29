@@ -1,6 +1,6 @@
 import {
   ADDITIONAL_IP,
-  TRACKING_PREFIX,
+  FUNNEL_TRACKING_PREFIX,
   DASHBOARD_STATE_NAME,
   ALERT_ID,
   IP_TYPE,
@@ -53,17 +53,28 @@ export default class AgoraIpOrderCtrl {
   }
 
   goToIpv4Order() {
+    this.atInternet.trackClick({
+      name: `${FUNNEL_TRACKING_PREFIX}tile::add_additional_ip::select_version::next_ipv4`,
+      type: 'action',
+      level2: 57,
+    });
     this.$state.go('app.ip.agora-order.ipv4');
   }
 
   goToIpv6Order() {
+    this.atInternet.trackClick({
+      name: `${FUNNEL_TRACKING_PREFIX}tile::add_additional_ip::select_version::next_ipv6`,
+      type: 'action',
+      level2: 57,
+    });
     this.$state.go('app.ip.agora-order.ipv6');
   }
 
   resumeOrder() {
     this.atInternet.trackClick({
-      name: `${TRACKING_PREFIX}cancel`,
+      name: `${FUNNEL_TRACKING_PREFIX}link::back_previous_page`,
       type: 'action',
+      level2: 57,
     });
     return this.$state.go(DASHBOARD_STATE_NAME);
   }
