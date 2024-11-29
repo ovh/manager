@@ -2,17 +2,13 @@ import {
   Notifications,
   useNotifications,
   useProjectUrl,
+  Headers,
 } from '@ovh-ux/manager-react-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OsdsBreadcrumb,
   OsdsIcon,
   OsdsLink,
-  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { Suspense, useEffect } from 'react';
 
@@ -137,13 +133,9 @@ export default function NewPage(): JSX.Element {
           </span>
         </OsdsLink>
         <div className="mt-[20px]">
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          >
-            {tNew('pci_projects_project_network_private_create')}
-          </OsdsText>
+          <Headers
+            title={tNew('pci_projects_project_network_private_create')}
+          />
 
           <Notifications />
         </div>

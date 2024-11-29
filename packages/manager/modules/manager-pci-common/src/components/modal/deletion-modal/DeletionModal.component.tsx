@@ -87,7 +87,7 @@ export function DeletionModal({
   return (
     <PciModal
       title={title}
-      type={type}
+      type={type || 'warning'}
       isPending={isPending}
       isDisabled={isDisabled}
       cancelText={cancelText}

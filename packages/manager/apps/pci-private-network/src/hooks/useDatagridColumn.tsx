@@ -46,7 +46,7 @@ export const useDatagridColumn = (): DatagridColumn<TLocalZoneNetwork>[] => {
       cell: (props: TLocalZoneNetwork) =>
         props.dhcpEnabled ? (
           <OsdsChip
-            className="inline-flex m-3"
+            className="inline-flex m-3 capitalize"
             color={ODS_THEME_COLOR_INTENT.success}
             size={ODS_CHIP_SIZE.sm}
           >
@@ -54,7 +54,7 @@ export const useDatagridColumn = (): DatagridColumn<TLocalZoneNetwork>[] => {
           </OsdsChip>
         ) : (
           <OsdsChip
-            className="inline-flex m-3"
+            className="inline-flex m-3 capitalize"
             color={ODS_THEME_COLOR_INTENT.warning}
             size={ODS_CHIP_SIZE.sm}
           >
