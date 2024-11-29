@@ -38,6 +38,7 @@ import {
   CONFIG_FILENAME,
   KUBE_INSTALLING_STATUS,
   KUBECONFIG_URL,
+  PROCESSING_STATUS,
 } from '@/constants';
 import {
   useClusterRestrictions,
@@ -59,7 +60,7 @@ export default function ClusterAccessAndSecurity({
   const { addError } = useNotifications();
 
   const hrefRestrictions = useHref('../restrictions');
-  const hrefAddOIDCProvider = useHref('./add-oidc-provider');
+  const hrefUAddOIDCProvider = useHref('./add-oidc-provider');
   const hrefUpdateOIDCProvider = useHref('./update-oidc-provider');
   const hrefRemoveOIDCProvider = useHref('./remove-oidc-provider');
 
@@ -94,6 +95,7 @@ export default function ClusterAccessAndSecurity({
         true,
       ),
   });
+  const isProcessing = (status: string) => PROCESSING_STATUS.includes(status);
 
   return (
     <OsdsTile
@@ -253,15 +255,17 @@ export default function ClusterAccessAndSecurity({
                       label: t(
                         'kube_service_access_security_oidc_menu_action_add_provider',
                       ),
-                      disabled: isOidcDefined,
-                      href: hrefAddOIDCProvider,
+                      disabled:
+                        isProcessing(kubeDetail?.status) || isOidcDefined,
+                      href: hrefUAddOIDCProvider,
                     },
                     {
                       id: 2,
                       label: t(
                         'kube_service_access_security_oidc_menu_action_set_provider',
                       ),
-                      disabled: !isOidcDefined,
+                      disabled:
+                        isProcessing(kubeDetail?.status) || !isOidcDefined,
                       href: hrefUpdateOIDCProvider,
                     },
                     {
@@ -269,7 +273,8 @@ export default function ClusterAccessAndSecurity({
                       label: t(
                         'kube_service_access_security_oidc_menu_action_remove_provider',
                       ),
-                      disabled: !isOidcDefined,
+                      disabled:
+                        isProcessing(kubeDetail?.status) || !isOidcDefined,
                       href: hrefRemoveOIDCProvider,
                     },
                   ]}
