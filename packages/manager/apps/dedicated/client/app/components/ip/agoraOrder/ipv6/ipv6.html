@@ -7,6 +7,7 @@
             data-id="options"
             data-name="options_selection"
             data-header="{{ 'ip_agora_ipv6_option_step_question' | translate }}"
+            data-on-focus="$ctrl.model.option && $ctrl.onEditStep('option')"
             data-on-submit="$ctrl.loadServices()"
         >
             <oui-header
@@ -47,6 +48,7 @@
             data-valid="true"
             data-editable="!$ctrl.isLoading"
             data-navigation="$ctrl.model.selectedService"
+            data-on-focus="$ctrl.model.selectedService && $ctrl.onEditStep('service')"
             data-on-submit="$ctrl.loadRegions()"
         >
             <div data-ng-show="$ctrl.loading.services" class="text-center">
