@@ -5,12 +5,11 @@ import {
   DASHBOARD_STATE_NAME,
   ADDITIONAL_IP,
   IP_TYPE_TITLE,
+  TRACKING_PREFIX,
+  FUNNEL_TRACKING_PREFIX,
 } from '../ip-ip-agoraOrder.constant';
-import {
-  FLAGS,
-  DEDICATED_IP_ORDER_TRACKING_PREFIX,
-  ACTIONS_SUFFIX,
-} from './ipv6.constant';
+
+import { FLAGS, ACTIONS_SUFFIX } from './ipv6.constant';
 
 export default class AgoraIpV6OrderController {
   /* @ngInject */
@@ -74,6 +73,14 @@ export default class AgoraIpV6OrderController {
     });
   }
 
+  onEditStep(step) {
+    this.atInternet.trackClick({
+      name: `${FUNNEL_TRACKING_PREFIX}tile::add_additional_ip::edit_step_select_${step}`,
+      type: ACTIONS_SUFFIX,
+      level2: 57,
+    });
+  }
+
   getIpv6OrderableNumber() {
     return (
       Array.from(
@@ -83,7 +90,8 @@ export default class AgoraIpV6OrderController {
   }
 
   loadServices() {
-    this.trackClick('ipv6-additonal-option');
+    this.model.option = true;
+    this.trackClick('select_option::next_free');
     this.loading.services = true;
     return this.$q
       .all({
@@ -136,7 +144,7 @@ export default class AgoraIpV6OrderController {
   }
 
   loadRegions() {
-    this.trackClick('next-step-2');
+    this.trackClick(`select_service::next_${this.model.selectedService}`);
 
     this.catalogByLocation = this.ipv6RegionsWithPlan.map(
       ({ regionId, plan }) => {
@@ -183,6 +191,10 @@ export default class AgoraIpV6OrderController {
   }
 
   redirectToPaymentPage() {
+    this.trackSelectRegion(
+      this.model.selectedPlan.location.replaceAll(' ', '-'),
+    );
+    let trakingService = '';
     const { planCode, regionId } = this.model.selectedPlan;
     const productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
       productId: 'ip',
@@ -195,8 +207,12 @@ export default class AgoraIpV6OrderController {
     });
 
     this.atInternet.trackClick({
-      name: `order::confirm_ipv6_${this.model.selectedService}_${regionId}`,
-      type: ACTIONS_SUFFIX,
+      name: `${FUNNEL_TRACKING_PREFIX}button::add_additional_ip::confirm::ipv6_${trakingService}_${this.model.selectedPlan.location.replaceAll(
+        ' ',
+        '-',
+      )}__free`,
+      type: 'action',
+      level2: 57,
     });
 
     return this.User.getUrlOf('express_order')
@@ -205,9 +221,15 @@ export default class AgoraIpV6OrderController {
           `${url}review?products=${JSURL.stringify([productToOrder])}`,
           '_blank',
         );
-        this.goToDashboard();
+        this.$state.go(DASHBOARD_STATE_NAME);
       })
-      .catch(() => {
+      .catch((error) => {
+        this.atInternet.trackClick({
+          name: `${TRACKING_PREFIX}ip::banner-error::add_additional_ip_error::${error}`,
+          type: 'display',
+          level2: 57,
+        });
+
         this.Alerter.error(
           this.$translate.instant('ip_order_finish_error'),
           this.ALERT_ID,
@@ -225,6 +247,17 @@ export default class AgoraIpV6OrderController {
   }
 
   goToDashboard() {
+    this.trackSelectRegion(
+      this.model.selectedPlan.location.replaceAll(' ', '-'),
+    );
+    this.atInternet.trackClick({
+      name: `${FUNNEL_TRACKING_PREFIX}button::add_additional_ip::cancel::ipv6_${
+        this.model.selectedService
+      }_${this.model.selectedPlan.location.replaceAll(' ', '-')}_free`,
+      type: 'action',
+      level2: 57,
+    });
+
     return this.$state.go(DASHBOARD_STATE_NAME);
   }
 
@@ -232,12 +265,19 @@ export default class AgoraIpV6OrderController {
     this.$state.go('vrack.index');
   }
 
-  trackClick(hit) {
+  trackSelectRegion(name) {
     this.atInternet.trackClick({
-      name: hit
-        ? `${DEDICATED_IP_ORDER_TRACKING_PREFIX}::${hit}`
-        : DEDICATED_IP_ORDER_TRACKING_PREFIX,
+      name: `${FUNNEL_TRACKING_PREFIX}select::add_additional_ip::select_region::next_${name}`,
+      type: 'action',
+      level2: 57,
+    });
+  }
+
+  trackClick(name) {
+    this.atInternet.trackClick({
+      name: `${FUNNEL_TRACKING_PREFIX}select::add_additional_ip::${name}`,
       type: ACTIONS_SUFFIX,
+      level2: 57,
     });
   }
 }

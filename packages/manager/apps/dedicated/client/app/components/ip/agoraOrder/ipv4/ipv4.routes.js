@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX } from '../ip-ip-agoraOrder.constant';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip.agora-order.ipv4', {
     url: '/ipv4',
@@ -15,7 +17,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ () => false,
     },
     atInternet: {
-      rename: 'dedicated::ip::dashboard::order::ipv4',
+      rename: `${TRACKING_PREFIX}ip::funnel::add_additional_ip`,
+      level2: 57,
     },
   });
 };
