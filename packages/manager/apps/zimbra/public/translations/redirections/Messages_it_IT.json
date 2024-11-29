@@ -1,9 +1,10 @@
 {
   "zimbra_redirections_cta": "Crea un reindirizzamento ",
   "zimbra_redirections_from": "Da",
-  "zimbra_redirections_to": "A",
+  "zimbra_redirections_to": "Verso",
   "zimbra_redirections_organization": "Organizzazione",
   "zimbra_redirections_datagrid_tooltip_modification": "Modificare",
   "zimbra_redirections_datagrid_tooltip_delete": "Eliminare",
-  "zimbra_redirections_account_title": "Gestisci i reindirizzamenti"
+  "zimbra_redirections_account_title": "Gestisci i reindirizzamenti",
+  "zimbra_redirections_status": "Status"
 }
