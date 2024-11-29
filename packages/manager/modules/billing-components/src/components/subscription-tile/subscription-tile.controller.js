@@ -1,5 +1,8 @@
 import { BillingService as ServiceInfos } from '@ovh-ux/manager-models';
-import { AUTO_COMMITMENT_STRATEGY } from './subscription-tile.constants';
+import {
+  AUTO_COMMITMENT_STRATEGY,
+  SERVICE_TYPE,
+} from './subscription-tile.constants';
 
 export default class ServicesActionsCtrl {
   /* @ngInject */
@@ -13,6 +16,7 @@ export default class ServicesActionsCtrl {
     coreURLBuilder,
     BillingService,
     ovhFeatureFlipping,
+    BillingLinksService,
   ) {
     this.$attrs = $attrs;
     this.$q = $q;
@@ -23,9 +27,16 @@ export default class ServicesActionsCtrl {
     this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
+    this.SERVICE_TYPE = SERVICE_TYPE;
+    this.BillingLinksService = BillingLinksService;
   }
 
   $onInit() {
+    this.billingLink = this.coreURLBuilder.buildURL(
+      'dedicated',
+      '#/billing/history',
+    );
+
     this.user = this.coreConfig.getUser();
     this.disableServiceActions = this.$attrs.disableServiceActions
       ? this.disableServiceActions
@@ -113,6 +124,36 @@ export default class ServicesActionsCtrl {
           ) {
             this.trackImpression();
           }
+
+          return this.BillingLinksService.generateAutorenewLinks(
+            this.serviceInfos,
+            {
+              billingManagementAvailability: this.featuresAvailability.isFeatureAvailable(
+                'billing:management',
+              ),
+              getCommitmentLink: this.goToCommit,
+              getCancelCommitmentLink: this.goToCancelCommit,
+              getCancelResiliationLink: this.goToCancelResiliation,
+              getResiliationLink: this.goToResiliation,
+            },
+          );
+        },
+      )
+      .then(
+        ({
+          autorenewLink,
+          resiliateLink,
+          renewLink,
+          cancelResiliationLink,
+          updateLink,
+          warningLink,
+        }) => {
+          this.autorenewLink = autorenewLink;
+          this.resiliateLink = resiliateLink;
+          this.renewLink = renewLink;
+          this.cancelResiliationLink = cancelResiliationLink;
+          this.updateLink = updateLink;
+          this.warningLink = warningLink;
         },
       )
       .catch((error) =>
@@ -147,6 +188,16 @@ export default class ServicesActionsCtrl {
     });
   }
 
+  trackAction(action, hasActionInEvent = true) {
+    if (this.trackingPrefix) {
+      const name = hasActionInEvent
+        ? `${this.trackingPrefix}::action::${action}`
+        : `${this.trackingPrefix}::${action}`;
+
+      this.atInternet.trackClick({ name, type: 'action' });
+    }
+  }
+
   trackImpression() {
     if (this.commitImpressionData) {
       this.atInternet.trackImpression(this.commitImpressionData);
@@ -166,6 +217,12 @@ export default class ServicesActionsCtrl {
       serviceInfos.canBeEngaged &&
       !serviceInfos.hasPendingEngagement &&
       (!isEngaged || highlightEngagement)
+    );
+  }
+
+  canResiliate() {
+    return ![this.SERVICE_TYPE.PACK_XDSL, this.SERVICE_TYPE.VRACK].includes(
+      this.serviceInfos.serviceType,
     );
   }
 }
