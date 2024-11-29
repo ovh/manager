@@ -1,6 +1,10 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import {
+  MutationOptions,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { getOkmsServicesResourceListQueryKey } from '../api/okms';
 import {
@@ -10,15 +14,14 @@ import {
   terminateOKmsQueryKey,
 } from '../api/okmsService';
 
+export type UseTerminateOkmsParams = {
+  okmsId: string;
+} & MutationOptions<ApiResponse<{ message: string }>, ApiError>;
+
 export const useTerminateOKms = ({
   okmsId,
-  onSuccess,
-  onError,
-}: {
-  okmsId: string;
-  onSuccess?: () => void;
-  onError?: () => void;
-}) => {
+  ...options
+}: UseTerminateOkmsParams) => {
   const queryClient = useQueryClient();
   const { addError, addSuccess, clearNotifications } = useNotifications();
   const { t } = useTranslation('key-management-service/terminate');
@@ -34,7 +37,7 @@ export const useTerminateOKms = ({
       });
       return terminateOKms({ serviceId: servicesId[0] });
     },
-    onSuccess: () => {
+    onSuccess: (...params) => {
       clearNotifications();
       addSuccess(
         t('key_management_service_terminate_success_banner', {
@@ -45,9 +48,9 @@ export const useTerminateOKms = ({
       queryClient.invalidateQueries({
         queryKey: getOkmsServicesResourceListQueryKey,
       });
-      onSuccess?.();
+      options?.onSuccess?.(...params);
     },
-    onError: (result: ApiError) => {
+    onError: (result: ApiError, ...params) => {
       clearNotifications();
       addError(
         t('key_management_service_terminate_error', {
@@ -55,8 +58,9 @@ export const useTerminateOKms = ({
         }),
         true,
       );
-      onError?.();
+      options?.onError?.(result, ...params);
     },
+    ...options,
   });
 
   return {
