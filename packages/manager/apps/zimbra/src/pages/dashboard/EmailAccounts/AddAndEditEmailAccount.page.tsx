@@ -128,7 +128,7 @@ export default function AddAndEditAccount() {
       {!isLoading && (
         <>
           <div
-            className="flex flex-col items-start space-y-4 mb-5"
+            className="flex flex-col items-start space-y-4 mb-6"
             data-testid="page-title"
           >
             <Links

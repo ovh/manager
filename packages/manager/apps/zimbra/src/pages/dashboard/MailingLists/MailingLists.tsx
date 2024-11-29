@@ -137,7 +137,7 @@ export default function MailingLists() {
   const quota = platformData?.currentState?.quota || 0;
 
   return (
-    <div className="py-6">
+    <div>
       <Outlet />
       {platformUrn && !isOverridedPage && (
         <>

@@ -148,11 +148,11 @@ export default function EmailAccounts() {
   };
 
   return (
-    <div className="py-6">
+    <div>
       <Outlet />
       {platformUrn && !isOverridedPage && (
         <>
-          <div className="mb-8 flex gap-8">
+          <div className="mb-6 flex gap-8">
             <div>
               <OdsText
                 preset={ODS_TEXT_PRESET.heading6}
