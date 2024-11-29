@@ -5,13 +5,13 @@ export enum NetworkVisibility {
   Public = 'public',
 }
 
-type AllocationPools = {
+export type AllocationPool = {
   start: string;
   end: string;
 };
 
 export type TSubnet = {
-  allocationPools?: AllocationPools[];
+  allocationPools?: AllocationPool[];
   allocatedIp?: string;
   cidr: string;
   dhcpEnabled: boolean;

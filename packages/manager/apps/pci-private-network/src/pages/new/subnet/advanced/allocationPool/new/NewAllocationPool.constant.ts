@@ -1,0 +1,1 @@
+export const ALLOCATION_POOL_LIMIT = 1000;

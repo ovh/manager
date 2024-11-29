@@ -6,7 +6,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { OsdsAccordion, OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import IpAllocation from './ipAllocation/IpAllocation.component';
+import IpAllocation from './allocationPool/AllocationPool.component';
 
 const AdvancedSettings: React.FC = () => {
   const { t } = useTranslation('new');

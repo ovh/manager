@@ -9,10 +9,24 @@ export const VLAN_ID = {
 export const GATEWAY_HOURLY_PLAN_CODE = 'gateway.s.hour.consumption';
 
 const ipSchema = z.string().ip();
+const ipNullableSchema = z
+  .string()
+  .refine((value) => value === '' || ipSchema.safeParse(value).success)
+  .nullish();
 const maskSchema = z
   .number()
   .min(9)
   .max(29);
+
+const allocationPoolSchema = z
+  .object({
+    start: ipNullableSchema,
+    end: ipNullableSchema,
+  })
+  .refine(
+    ({ start, end }) => !(start || end) || (start && end),
+    ({ start }) => ({ path: start ? ['end'] : ['start'] }),
+  );
 
 export const NEW_PRIVATE_NETWORK_FORM_SCHEMA = z.object({
   region: z.string().min(1),
@@ -34,13 +48,11 @@ export const NEW_PRIVATE_NETWORK_FORM_SCHEMA = z.object({
     enableDhcp: z.boolean(),
     ipVersion: z.number(),
     enableGatewayIp: z.boolean(),
-    allocationPooles: z
-      .object({
-        start: z.string().ip(),
-        end: z.string().ip(),
-      })
+    allocationPools: allocationPoolSchema
       .array()
-      .optional(),
+      .transform((allocationIps) =>
+        allocationIps.filter(({ start, end }) => start && end),
+      ),
   }),
   gateway: z
     .object({
