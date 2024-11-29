@@ -10,5 +10,6 @@
   "zimbra_mailinglists_datagrid_action_configure_delegation": "Deleguj uprawnienia",
   "zimbra_mailinglists_datagrid_action_delete": "Usuń listę mailingową",
   "zimbra_mailinglists_datagrid_cta": "Utwórz listę mailingową",
-  "zimbra_mailinglists_quota_label": "Limit listy mailingowej"
+  "zimbra_mailinglists_quota_label": "Limit listy mailingowej",
+  "zimbra_mailinglists_datagrid_status_label": "Status"
 }

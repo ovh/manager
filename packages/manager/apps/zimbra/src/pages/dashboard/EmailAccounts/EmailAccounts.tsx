@@ -75,11 +75,6 @@ const columns: DatagridColumn<EmailsItem>[] = [
     label: 'zimbra_account_datagrid_offer_label',
   },
   {
-    id: 'status',
-    cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
-    label: 'zimbra_account_datagrid_status_label',
-  },
-  {
     id: 'quota',
     cell: (item) => (
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
@@ -87,6 +82,11 @@ const columns: DatagridColumn<EmailsItem>[] = [
       </OdsText>
     ),
     label: 'zimbra_account_datagrid_quota',
+  },
+  {
+    id: 'status',
+    cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
+    label: 'zimbra_account_datagrid_status_label',
   },
   {
     id: 'tooltip',

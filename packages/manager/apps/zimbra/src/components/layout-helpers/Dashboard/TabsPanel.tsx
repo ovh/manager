@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { OdsTabs, OdsTab, OdsTag } from '@ovhcloud/ods-components/react';
-import { Headers } from '@ovh-ux/manager-react-components';
-import { ODS_TAG_COLOR, ODS_TAG_SIZE } from '@ovhcloud/ods-components';
+import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import { useOverridePage, useOrganization } from '@/hooks';
 
 export type TabItemProps = {
@@ -45,19 +43,6 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
 
   return (
     <>
-      {organization && (
-        <div className="flex items-center mb-4">
-          <Headers subtitle={organization.currentState.name} />
-          <OdsTag
-            color={ODS_TAG_COLOR.information}
-            onClick={() => navigate(location.pathname)}
-            className="ml-4"
-            size={ODS_TAG_SIZE.lg}
-            label={organization.currentState.label}
-          />
-        </div>
-      )}
-
       {!isOverriddedPage && (
         <OdsTabs>
           {tabs.map(

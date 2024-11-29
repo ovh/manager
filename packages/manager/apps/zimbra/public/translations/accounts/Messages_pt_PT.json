@@ -1,5 +1,5 @@
 {
-  "zimbra_account_datagrid_email_label": "Contas de email",
+  "zimbra_account_datagrid_email_label": "Conta de e-mail",
   "zimbra_account_datagrid_organization_label": "Organização",
   "zimbra_account_datagrid_offer_label": "Plano",
   "zimbra_account_datagrid_webmail_label": "Webmail:",
@@ -13,6 +13,6 @@
   "zimbra_account_datagrid_tooltip_delete": "Eliminar",
   "zimbra_account_account_add": "Criar uma conta",
   "zimbra_domains_tooltip_need_domain": "Comece por configurar um domínio",
-  "zimbra_account_datagrid_status_label": "Informações",
+  "zimbra_account_datagrid_status_label": "Estado",
   "zimbra_account_account_order": "Encomendar uma conta"
 }

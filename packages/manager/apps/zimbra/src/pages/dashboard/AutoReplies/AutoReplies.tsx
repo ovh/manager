@@ -21,6 +21,7 @@ import ActionButtonAutoReply from './ActionButtonAutoReply.component';
 import { ResourceStatus } from '@/api/api.type';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { BadgeStatus } from '@/components/BadgeStatus';
 
 export type AutoRepliesItem = {
   id: string;
@@ -71,7 +72,12 @@ const columns: DatagridColumn<AutoRepliesItem>[] = [
     label: 'zimbra_auto_replies_copyTo',
   },
   {
-    id: 'deleteButton',
+    id: 'status',
+    cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
+    label: 'zimbra_auto_replies_status',
+  },
+  {
+    id: 'actions',
     cell: (item) => <ActionButtonAutoReply autoReplyItem={item} />,
     label: '',
   },
@@ -93,7 +99,7 @@ export function AutoReplies() {
   ]);
 
   return (
-    <div data-testid="autoreplies" className="py-6 mt-8">
+    <div data-testid="autoreplies" className="py-6">
       <Outlet />
       {platformUrn && !shouldHide && (
         <>
