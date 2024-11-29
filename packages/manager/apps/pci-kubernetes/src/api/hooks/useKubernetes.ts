@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TKube } from '@/types';
+import { OidcFormValues, TKube } from '@/types';
 import queryClient from '@/queryClient';
 import { paginateResults, REFETCH_INTERVAL_DURATION } from '@/helpers';
 import { STATUS } from '@/constants';
@@ -27,7 +27,6 @@ import {
   resetCluster,
   resetKubeConfig,
   terminateCluster,
-  TOidcProvider,
   TResetClusterParams,
   updateKubePolicy,
   updateKubernetesCluster,
@@ -421,23 +420,26 @@ export const useResetCluster = ({
   };
 };
 
-type AddOidcProviderProps = {
+type UpsertOidcProviderProps = {
   projectId: string;
   kubeId: string;
-  params: TOidcProvider;
   onError: (cause: Error) => void;
   onSuccess: () => void;
+  isUpdate: boolean;
 };
 
-export const useAddOidcProvider = ({
+export const useUpsertOidcProvider = ({
   projectId,
   kubeId,
-  params,
   onError,
   onSuccess,
-}: AddOidcProviderProps) => {
+  isUpdate,
+}: UpsertOidcProviderProps) => {
   const mutation = useMutation({
-    mutationFn: async () => addOidcProvider(projectId, kubeId, params),
+    mutationFn: async (params: OidcFormValues) =>
+      isUpdate
+        ? updateOidcProvider(projectId, kubeId, params)
+        : addOidcProvider(projectId, kubeId, params),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
@@ -447,38 +449,7 @@ export const useAddOidcProvider = ({
     },
   });
   return {
-    addOidcProvider: () => mutation.mutate(),
-    ...mutation,
-  };
-};
-
-type UpdateOidcProviderProps = {
-  projectId: string;
-  kubeId: string;
-  params: TOidcProvider;
-  onError: (cause: Error) => void;
-  onSuccess: () => void;
-};
-
-export const useUpdateOidcProvider = ({
-  projectId,
-  kubeId,
-  params,
-  onError,
-  onSuccess,
-}: UpdateOidcProviderProps) => {
-  const mutation = useMutation({
-    mutationFn: async () => updateOidcProvider(projectId, kubeId, params),
-    onError,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: getKubernetesClusterQuery(projectId, kubeId),
-      });
-      onSuccess();
-    },
-  });
-  return {
-    updateOidcProvider: () => mutation.mutate(),
+    upsertOidcProvider: (params: OidcFormValues) => mutation.mutate(params),
     ...mutation,
   };
 };

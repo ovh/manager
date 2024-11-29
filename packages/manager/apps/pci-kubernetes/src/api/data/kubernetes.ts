@@ -1,5 +1,5 @@
 import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
-import { TKube, TNetworkConfiguration } from '@/types';
+import { OidcFormValues, TKube, TNetworkConfiguration } from '@/types';
 
 export const getKubernetesCluster = async (
   projectId: string,
@@ -82,13 +82,13 @@ export const getClusterRestrictions = async (
 export type TOidcProvider = {
   issuerUrl: string;
   clientId: string;
-  usernameClaim: string;
-  usernamePrefix: string;
-  groupsClaim: string | null;
-  groupsPrefix: string;
-  signingAlgorithms: string | null;
-  caContent: string;
-  requiredClaim: string | null;
+  usernameClaim?: string;
+  usernamePrefix?: string;
+  groupsClaim?: string | null;
+  groupsPrefix?: string;
+  signingAlgorithms?: string | null;
+  caContent?: string;
+  requiredClaim?: string | null;
 };
 
 export const getOidcProvider = async (
@@ -171,7 +171,7 @@ export const resetCluster = async (
 export const addOidcProvider = async (
   projectId: string,
   kubeId: string,
-  params: TOidcProvider,
+  params: OidcFormValues,
 ) => {
   const { data } = await v6.post(
     `/cloud/project/${projectId}/kube/${kubeId}/openIdConnect`,
@@ -183,7 +183,7 @@ export const addOidcProvider = async (
 export const updateOidcProvider = async (
   projectId: string,
   kubeId: string,
-  params: TOidcProvider,
+  params: OidcFormValues,
 ) => {
   const { data } = await v6.put(
     `/cloud/project/${projectId}/kube/${kubeId}/openIdConnect`,
