@@ -12,6 +12,7 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { useMemo } from 'react';
 import {
   LoadBalancerOperatingStatusEnum,
   LoadBalancerProvisioningStatusEnum,
@@ -39,6 +40,12 @@ export default function Configuration({
 }: ConfigurationProps) {
   const { t: tOverview } = useTranslation('load-balancer/overview');
   const { t } = useTranslation('load-balancer');
+
+  const translatedFlavorName = useMemo<string>(() => {
+    const key = `octavia_load_balancer_overview_config_size_${flavorName}`;
+    const translation = tOverview(key);
+    return key === translation ? flavorName : translation;
+  }, [flavorName]);
 
   return (
     <div>
@@ -97,13 +104,7 @@ export default function Configuration({
 
           <TileLine
             title={tOverview('octavia_load_balancer_overview_config_size')}
-            value={
-              flavorName
-                ? tOverview(
-                    `octavia_load_balancer_overview_config_size_${flavorName}`,
-                  )
-                : undefined
-            }
+            value={flavorName ? translatedFlavorName : undefined}
           />
 
           <TileLine
