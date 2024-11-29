@@ -12,7 +12,7 @@ interface Item {
   price: number;
 }
 
-export const columsTmp = [
+const columsTmp = [
   {
     id: 'label',
     cell: (item: Item) => {
@@ -29,7 +29,7 @@ export const columsTmp = [
   },
 ];
 
-export const columsFilters = [
+const columsFilters = [
   {
     id: 'label',
     cell: (item: Item) => {

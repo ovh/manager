@@ -1,16 +1,52 @@
 import React, { useState } from 'react';
 import { ColumnSort } from '@tanstack/react-table';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import { applyFilters } from '@ovh-ux/manager-core-api';
+import { applyFilters, FilterCategories } from '@ovh-ux/manager-core-api';
 import { useSearchParams } from 'react-router-dom';
+import DataGridTextCell from './text-cell.component';
 import { Datagrid } from './datagrid.component';
 import { useColumnFilters } from '../filters';
-import { columsTmp, columsFilters } from './datagrid.stories';
 
 interface Item {
   label: string;
   price: number;
 }
+
+const columsTmp = [
+  {
+    id: 'label',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.label}</DataGridTextCell>;
+    },
+    label: 'Label',
+  },
+  {
+    id: 'price',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
+    },
+    label: 'Price',
+  },
+];
+
+const columsFilters = [
+  {
+    id: 'label',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.label}</DataGridTextCell>;
+    },
+    label: 'Label',
+    comparator: FilterCategories.String,
+  },
+  {
+    id: 'price',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
+    },
+    label: 'Price',
+    comparator: FilterCategories.String,
+  },
+];
 
 const DatagridStory = ({
   items,
