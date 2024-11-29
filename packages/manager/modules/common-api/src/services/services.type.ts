@@ -1,4 +1,20 @@
-import { CurrencyCode } from '@ovh-ux/manager-react-components';
+export enum CurrencyCode {
+  AUD = 'AUD',
+  CAD = 'CAD',
+  CZK = 'CZK',
+  EUR = 'EUR',
+  GBP = 'GBP',
+  INR = 'INR',
+  MAD = 'MAD',
+  PLN = 'PLN',
+  SGD = 'SGD',
+  USD = 'USD',
+  TND = 'TND',
+  XOF = 'XOF',
+  LTL = 'LTL',
+  NA = 'N/A',
+  points = 'points',
+}
 
 export type EndRuleStrategy =
   | 'CANCEL_SERVICE'

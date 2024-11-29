@@ -1,5 +1,4 @@
-import { CurrencyCode } from '@ovh-ux/manager-react-components';
-import { ServiceDetails } from '../services.type';
+import { CurrencyCode, ServiceDetails } from '../services.type';
 
 export const servicesMockErrors = {
   delete: 'Delete services error',
