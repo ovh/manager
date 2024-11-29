@@ -20,7 +20,7 @@ export function useDeleteConnectionPool({
       return deleteConnectionPool(connectionPoolInfo);
     },
     onError,
-    onSuccess: (data, variables) => {
+    onSuccess: (_data, variables) => {
       queryClient.invalidateQueries({
         queryKey: [
           variables.projectId,

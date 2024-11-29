@@ -51,7 +51,7 @@ const DeleteService = ({
           database.service.capability.StateEnum.enabled,
     },
   );
-  const serivcesQuery = useGetServices(projectId, {
+  const servicesQuery = useGetServices(projectId, {
     enabled: !!integrationsQuery.data,
   });
 
@@ -64,8 +64,8 @@ const DeleteService = ({
     ) {
       return [];
     }
-    if (!integrationsQuery.data || !serivcesQuery.data) return null;
-    return serivcesQuery.data.filter((serv) =>
+    if (!integrationsQuery.data || !servicesQuery.data) return null;
+    return servicesQuery.data.filter((serv) =>
       integrationsQuery.data.find(
         (integration) =>
           (integration.destinationServiceId === serv.id &&
@@ -74,7 +74,7 @@ const DeleteService = ({
             integration.sourceServiceId !== service.id),
       ),
     );
-  }, [integrationsQuery, serivcesQuery]);
+  }, [integrationsQuery, servicesQuery]);
 
   const { deleteService, isPending } = useDeleteService({
     onError: (err) => {
@@ -192,7 +192,7 @@ const DeleteService = ({
             type="button"
             disabled={
               isPending ||
-              serivcesQuery.isLoading ||
+              servicesQuery.isLoading ||
               integrationsQuery.isLoading ||
               confirmationInput !== TERMINATE_CONFIRMATION
             }

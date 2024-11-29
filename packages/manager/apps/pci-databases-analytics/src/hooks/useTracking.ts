@@ -57,19 +57,25 @@ export function useTrackPageAuto() {
   const matches = useMatches();
   const location = useLocation();
   const params = useParams();
-  const m = matches[matches.length - 1];
-  const s = useGetService(m.params.projectId, m.params.serviceId, {
-    enabled: !!m.params.serviceId,
-  });
-  const service = s.data;
+  // Last match is the current route, we need it
+  // to get the tracking key associated with the route
+  const match = matches[matches.length - 1];
+  const serviceQuery = useGetService(
+    match.params.projectId,
+    match.params.serviceId,
+    {
+      enabled: !!match.params.serviceId,
+    },
+  );
+  const service = serviceQuery.data;
   const hasTrackedRef = useRef(false);
 
   useEffect(() => {
     if (hasTrackedRef.current) return;
     if (params.serviceId && !service) return;
     const prefix = 'PublicCloud::databases_analytics::{category}';
-    const { id } = m;
-    const routerTrackingKey = (m?.handle as { tracking: string })?.tracking;
+    const { id } = match;
+    const routerTrackingKey = (match?.handle as { tracking: string })?.tracking;
     const suffix =
       routerTrackingKey || id || location.pathname.split('/').pop();
     let injectedTrackingKey = `${prefix}::${suffix}`;
@@ -104,7 +110,7 @@ export function useTrackPageAuto() {
       level2: PCI_LEVEL2,
     });
     hasTrackedRef.current = true;
-  }, [location.pathname, params.serviceId, service, s.isLoading]);
+  }, [location.pathname, params.serviceId, service, serviceQuery.isLoading]);
 
   useEffect(() => {
     hasTrackedRef.current = false;
