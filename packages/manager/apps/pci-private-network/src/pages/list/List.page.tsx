@@ -1,19 +1,14 @@
 import {
+  Headers,
   PciGuidesHeader,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
 import {
   OsdsBreadcrumb,
   OsdsTabBar,
   OsdsTabBarItem,
   OsdsTabPanel,
   OsdsTabs,
-  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -86,14 +81,8 @@ export default function ListingPage() {
         )}
         <div className="header mb-10 mt-8">
           <div className="flex items-center justify-between">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            >
-              {t('pci_projects_project_network_private')}
-            </OsdsText>
-            <PciGuidesHeader category="instances" />
+            <Headers title={t('pci_projects_project_network_private')} />
+            <PciGuidesHeader category="instances"></PciGuidesHeader>
           </div>
         </div>
 

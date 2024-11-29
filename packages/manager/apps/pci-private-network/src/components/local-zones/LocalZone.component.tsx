@@ -83,7 +83,7 @@ export default function LocalZoneComponent({
         <OsdsButton
           className="mr-1 xs:mb-1 sm:mb-0"
           size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.stroked}
+          variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => {
             store.reset();
@@ -93,8 +93,7 @@ export default function LocalZoneComponent({
           <OsdsIcon
             name={ODS_ICON_NAME.ADD}
             size={ODS_ICON_SIZE.xxs}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            className="mr-3"
+            className="mr-3 bg-white"
           />
           {t('pci_projects_project_network_private_create')}
         </OsdsButton>
