@@ -49,7 +49,7 @@ const RandomWidthSkeletons = ({
 };
 
 const Logs = () => {
-  const { projectId, notebook, notebookQuery } = useNotebookData();
+  const { projectId, notebook } = useNotebookData();
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook/logs');
 
   const [poll, setPoll] = useState(false);
