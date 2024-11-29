@@ -2,13 +2,13 @@ import { RancherPlanCode, RancherPlanName } from '@/types/api.type';
 import {
   findPlanByCode,
   isConsumptionPlan,
-  calculateMonthlyPrice,
   getRancherPlanName,
   getPlanPricing,
 } from './rancherPrices';
 import { mockCatalog } from '@/_mock_/catalog';
 
 describe('Rancher Prices Utilities', () => {
+  const EXPECTED_MONTHLY_PRICING = 73_000;
   describe('findPlanByCode', () => {
     it('should find a plan by its code', () => {
       const result = findPlanByCode(
@@ -39,18 +39,6 @@ describe('Rancher Prices Utilities', () => {
     });
   });
 
-  describe('calculateMonthlyPrice', () => {
-    it('should calculate monthly price from hourly price', () => {
-      const result = calculateMonthlyPrice(100);
-      expect(result).toBe(72000);
-    });
-
-    it('should return 0 if hourly price is 0', () => {
-      const result = calculateMonthlyPrice(0);
-      expect(result).toBe(0);
-    });
-  });
-
   describe('getRancherPlanName', () => {
     it('should return OVHCLOUD_EDITION for ovhcloud plans', () => {
       const result = getRancherPlanName(RancherPlanCode.OVHCLOUD_EDITION);
@@ -64,7 +52,7 @@ describe('Rancher Prices Utilities', () => {
   });
 
   describe('getPlanPricing', () => {
-    it('should calculate pricing correctly for OVHCLOUD_EDITION', () => {
+    it('should calculate EXPECTED_MONTHLY_PRICING correctly for OVHCLOUD_EDITION', () => {
       const result = getPlanPricing(
         mockCatalog,
         RancherPlanCode.OVHCLOUD_EDITION,
@@ -72,7 +60,7 @@ describe('Rancher Prices Utilities', () => {
       expect(result).toEqual({
         name: RancherPlanName.OVHCLOUD_EDITION,
         hourlyPrice: 100,
-        monthlyPrice: 72000,
+        monthlyPrice: EXPECTED_MONTHLY_PRICING,
       });
     });
 
