@@ -4,6 +4,7 @@ import {
   useResolvedPath,
   useLocation,
   useParams,
+  useNavigate,
 } from 'react-router-dom';
 
 import {
@@ -16,6 +17,8 @@ import {
 
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { OdsTag } from '@ovhcloud/ods-components/react';
+import { ODS_TAG_COLOR, ODS_TAG_SIZE } from '@ovhcloud/ods-components';
 import TabsPanel, { TabItemProps } from './TabsPanel';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { GUIDES_LIST } from '@/guides.constants';
@@ -23,10 +26,13 @@ import { urls } from '@/routes/routes.constants';
 
 import './Dashboard.scss';
 import { FEATURE_FLAGS } from '@/utils';
+import { useOrganization } from '@/hooks';
 
 export const Dashboard: React.FC = () => {
   const { platformId } = useParams();
   const { notifications } = useNotifications();
+  const { data: organization } = useOrganization();
+  const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
@@ -121,6 +127,21 @@ export const Dashboard: React.FC = () => {
         title: 'Zimbra',
         headerButton: <GuideButton items={guideItems} />,
       }}
+      subtitle={
+        organization &&
+        (((
+          <>
+            <span>{organization.currentState.name}</span>
+            <OdsTag
+              color={ODS_TAG_COLOR.information}
+              onClick={() => navigate(location.pathname)}
+              className="ml-6 font-normal org-tag"
+              size={ODS_TAG_SIZE.lg}
+              label={organization.currentState.label}
+            />
+          </>
+        ) as unknown) as string) // subtitle should accept a ReactElement
+      }
       message={
         // temporary fix margin even if empty
         notifications.length ? <Notifications /> : null

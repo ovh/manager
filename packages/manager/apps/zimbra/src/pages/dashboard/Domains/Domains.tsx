@@ -34,6 +34,7 @@ import Loading from '@/components/Loading/Loading';
 import { DiagnosticBadge } from '@/components/DiagnosticBadge';
 import { DomainType } from '@/api/domain/type';
 import { AccountStatistics, ResourceStatus } from '@/api/api.type';
+import { BadgeStatus } from '@/components/BadgeStatus';
 
 export type DomainsItem = {
   id: string;
@@ -95,6 +96,11 @@ const columns: DatagridColumn<DomainsItem>[] = [
       );
     },
     label: 'zimbra_domains_datagrid_diagnostic_label',
+  },
+  {
+    id: 'status',
+    cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
+    label: 'zimbra_domains_datagrid_status_label',
   },
   {
     id: 'tooltip',
