@@ -16,7 +16,7 @@ describe('DeleteModal', () => {
         onConfirm={mockOnConfirm}
       />,
     );
-    expect(screen.getByTestId('deleteModal-spinner')).toBeInTheDocument();
+    expect(screen.getByTestId('pciModal-spinner')).toBeInTheDocument();
   });
 
   it('should render confirmation text when isPending is false', () => {
@@ -44,7 +44,7 @@ describe('DeleteModal', () => {
         onConfirm={mockOnConfirm}
       />,
     );
-    const cancelButton = getByTestId('deleteModal-button_cancel');
+    const cancelButton = getByTestId('pciModal-button_cancel');
 
     act(() => {
       fireEvent.click(cancelButton);
@@ -64,7 +64,7 @@ describe('DeleteModal', () => {
         onConfirm={mockOnConfirm}
       />,
     );
-    const confirmButton = getByTestId('deleteModal-button_confirm');
+    const confirmButton = getByTestId('pciModal-button_submit');
 
     act(() => {
       fireEvent.click(confirmButton);
