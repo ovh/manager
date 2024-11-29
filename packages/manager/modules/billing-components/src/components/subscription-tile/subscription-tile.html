@@ -71,32 +71,16 @@
 
                 <a
                     class="oui-link_icon"
-                    data-ng-href="{{ $ctrl.commitmentLink }}"
-                    data-ng-if="$ctrl.serviceInfos.canBeEngaged && !$ctrl.serviceInfos.hasPendingEngagement && !$ctrl.serviceInfos.isSuspended() && $ctrl.service.isEngaged()"
-                    data-ng-click="$ctrl.trackAction('go-to-manage-commitment', false)"
-                    target="_top"
-                >
-                    <p>
-                        <span
-                            data-translate="{{ 'manager_billing_subscription_engagement_manage' }}"
-                        ></span>
-                        <span
-                            aria-hidden="true"
-                            class="oui-icon oui-icon-arrow-right"
-                        ></span>
-                    </p>
-                </a>
-
-                <a
-                    class="oui-link_icon"
                     data-ng-href="{{ $ctrl.cancelResiliationLink }}"
                     data-ng-if="$ctrl.serviceInfos.serviceType !== $ctrl.SERVICE_TYPE.VRACK && $ctrl.cancelResiliationLink && ($ctrl.serviceInfos.canBeUnresiliated($ctrl.user.nichandle) || $ctrl.serviceInfos.canCancelResiliationByEndRule())"
                     data-ng-click="$ctrl.trackClick('go-to-cancel-resiliation')"
+                    ng-mouseenter="$ctrl.isHoveredResiliateCancel = true"
+                    ng-mouseleave="$ctrl.isHoveredResiliateCancel = false"
                     target="_top"
                 >
                     <p>
                         <span
-                            data-translate="{{ 'manager_billing_subscription_resiliate_cancel' }}"
+                            data-translate="{{ $ctrl.isHoveredResiliateCancel ? 'manager_billing_subscription_resiliate_cancel_re_engage' : 'manager_billing_subscription_resiliate_cancel' }}"
                         ></span>
                         <span
                             aria-hidden="true"
