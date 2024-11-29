@@ -9,6 +9,7 @@ export default /* @ngInject */ function IpMainCtrl(
   $scope,
   $timeout,
   $translate,
+  atInternet,
   Alerter,
   coreConfig,
   currentUser,
@@ -116,6 +117,15 @@ export default /* @ngInject */ function IpMainCtrl(
       trackClick(DASHBOARD_TRACKING_PREFIX.DEFAULT, DASHBOARD_TRACKING_HIT.TAB);
     }
     goToDashboard();
+  };
+
+  $scope.goToFailoverWithTracking = (params) => {
+    atInternet.trackClick({
+      name: `DedicatedServers::network::ip::banner::link::see_unused_ips`,
+      type: 'action',
+      level2: 57,
+    });
+    goToFailover(params);
   };
 
   $scope.onFailoverTabClick = function onFailoverTabClick() {
