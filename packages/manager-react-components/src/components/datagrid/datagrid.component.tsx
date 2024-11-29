@@ -32,7 +32,6 @@ import { FilterWithLabel } from '../filters/interface';
 import { DataGridTextCell } from './text-cell.component';
 import { defaultNumberOfLoadingRows } from './datagrid.contants';
 import './translations';
-import { type } from 'os';
 
 export type ColumnSort = TanstackColumnSort;
 export type PaginationState = TanstackPaginationState;
