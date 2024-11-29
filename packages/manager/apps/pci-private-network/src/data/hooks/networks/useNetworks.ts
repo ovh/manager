@@ -30,7 +30,7 @@ export const usePrivateNetworks = (projectId: string) =>
     queryFn: () => getPrivateNetworks(projectId),
   });
 
-export const usePrivateNetworksRegion = (
+export const useRegionPrivateNetworks = (
   projectId: string,
   pagination: PaginationState,
   filters: Filter[] = [],
@@ -82,7 +82,7 @@ const getFormattedSubnets = (
     },
   );
 
-export const usePrivateNetworkLZ = (projectId: string) => {
+export const useLZPrivateNetworks = (projectId: string) => {
   const queryKey = networksQueryKey(projectId);
   const data = queryClient.getQueryData<TNetwork[]>(queryKey) || [];
   const networks = data.filter((network) => !network.vlanId);
@@ -95,9 +95,17 @@ export const usePrivateNetworkLZ = (projectId: string) => {
         getFormattedSubnets(id, name, region, subnets),
     })),
     combine: (results) => ({
-      data: results.map((result) => ({
-        ...result.data?.[0],
-      })),
+      data: results.map((result, index) => {
+        const { id: networkId, region, name } = networks[index];
+
+        return {
+          ...result.data?.[0],
+          networkId,
+          region,
+          name,
+          isPending: result.isPending,
+        };
+      }),
       isPending: results.some((result) => result.isPending),
     }),
   });

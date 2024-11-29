@@ -5,14 +5,15 @@ import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { ResourceStatus } from '@/types/network.type';
 
+const color = {
+  [ResourceStatus.ACTIVE]: ODS_THEME_COLOR_INTENT.success,
+  [ResourceStatus.DISABLED]: ODS_THEME_COLOR_INTENT.warning,
+};
+
 const StatusInfo: FC<{
   label: ResourceStatus;
 }> = ({ label }) => {
   const { t } = useTranslation('listing');
-  const color = {
-    [ResourceStatus.ACTIVE]: ODS_THEME_COLOR_INTENT.success,
-    [ResourceStatus.DISABLED]: ODS_THEME_COLOR_INTENT.warning,
-  };
 
   return (
     <OsdsChip

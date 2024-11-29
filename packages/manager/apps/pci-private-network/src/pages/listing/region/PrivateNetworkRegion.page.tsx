@@ -10,7 +10,7 @@ import {
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { PrivateNetworkTabName } from '../ListingLayout.constant';
 import { usePrivateNetworkRegionColumns } from '@/hooks/useColumns/useColumns';
-import { usePrivateNetworksRegion } from '@/data/hooks/networks/useNetworks';
+import { useRegionPrivateNetworks } from '@/data/hooks/networks/useNetworks';
 import DataGridHeaderActions from '@/components/datagrid-header-actions/DatagridHeaderActions.component';
 import { useActiveTab } from '@/hooks/useActiveTab/useActiveTab';
 
@@ -23,7 +23,7 @@ const PrivateNetworkRegion: React.FC = () => {
   const { pagination, setPagination } = useDatagridSearchParams();
   const activeTab = useActiveTab();
 
-  const data = usePrivateNetworksRegion(projectId, pagination, filters);
+  const data = useRegionPrivateNetworks(projectId, pagination, filters);
 
   const columnFilters = [
     {

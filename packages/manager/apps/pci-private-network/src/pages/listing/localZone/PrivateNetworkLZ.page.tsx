@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { OsdsSpinner, OsdsTabPanel } from '@ovhcloud/ods-components/react';
+import { OsdsTabPanel } from '@ovhcloud/ods-components/react';
 import {
   Datagrid,
   Notifications,
@@ -9,11 +9,10 @@ import {
   useDatagridSearchParams,
 } from '@ovh-ux/manager-react-components';
 import { applyFilters, FilterCategories } from '@ovh-ux/manager-core-api';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { PrivateNetworkTabName } from '../ListingLayout.constant';
 import { useActiveTab } from '@/hooks/useActiveTab/useActiveTab';
 import { usePrivateNetworkLZColumns } from '@/hooks/useColumns/useColumns';
-import { usePrivateNetworkLZ } from '@/data/hooks/networks/useNetworks';
+import { useLZPrivateNetworks } from '@/data/hooks/networks/useNetworks';
 import { paginateResults } from '@/utils/utils';
 import DataGridHeaderActions from '@/components/datagrid-header-actions/DatagridHeaderActions.component';
 
@@ -24,7 +23,7 @@ const PrivateNetworkLZ: React.FC = () => {
   const columns = usePrivateNetworkLZColumns();
   const { projectId } = useParams();
   const navigate = useNavigate();
-  const { data: networks, isPending } = usePrivateNetworkLZ(projectId);
+  const { data: networks } = useLZPrivateNetworks(projectId);
   const { filters } = useColumnFilters();
 
   const data = useMemo(
@@ -61,30 +60,22 @@ const PrivateNetworkLZ: React.FC = () => {
       name={PrivateNetworkTabName.LOCAL_ZONE_TAB_NAME}
     >
       <Notifications />
-      {isPending ? (
-        <div className="mt-8 text-center">
-          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-        </div>
-      ) : (
-        <>
-          <DataGridHeaderActions
-            createLabel={t('pci_projects_project_network_private_create')}
-            onCreate={() => navigate('../new')}
-            pagination={pagination}
-            setPagination={setPagination}
-            columnFilters={columnFilters}
-          />
-          <div className="mt-10">
-            <Datagrid
-              columns={columns}
-              items={data.rows}
-              totalItems={data.totalRows}
-              pagination={pagination}
-              onPaginationChange={setPagination}
-            />
-          </div>
-        </>
-      )}
+      <DataGridHeaderActions
+        createLabel={t('pci_projects_project_network_private_create')}
+        onCreate={() => navigate('../new')}
+        pagination={pagination}
+        setPagination={setPagination}
+        columnFilters={columnFilters}
+      />
+      <div className="mt-10">
+        <Datagrid
+          columns={columns}
+          items={data.rows}
+          totalItems={data.totalRows}
+          pagination={pagination}
+          onPaginationChange={setPagination}
+        />
+      </div>
       <Outlet />
     </OsdsTabPanel>
   );

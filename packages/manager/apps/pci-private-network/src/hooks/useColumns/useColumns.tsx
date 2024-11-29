@@ -28,6 +28,7 @@ import {
 } from '@/types/network.type';
 import SlicedRegions from '@/components/sliced-regions/SlicedRegions.component';
 import StatusInfo from '@/components/status-info/StatusInfo.component';
+import SkeletonWrapper from '@/components/skeleton/SkeletonWrapper.component';
 
 export function usePrivateNetworkRegionColumns() {
   const { t } = useTranslation(['listing', 'common']);
@@ -131,6 +132,8 @@ export function usePrivateNetworkRegionColumns() {
   ];
 }
 
+type LZColumns = TGroupedSubnet & { isPending: boolean };
+
 export function usePrivateNetworkLZColumns() {
   const { t } = useTranslation(['listing', 'common']);
   const navigate = useNavigate();
@@ -138,55 +141,63 @@ export function usePrivateNetworkLZColumns() {
   return [
     {
       id: 'name',
-      cell: ({ name }: TGroupedSubnet) => (
+      cell: ({ name }: LZColumns) => (
         <DataGridTextCell>{name}</DataGridTextCell>
       ),
       label: t('pci_projects_project_network_private_name'),
     },
     {
       id: 'region',
-      cell: ({ region }: TGroupedSubnet) => (
+      cell: ({ region }: LZColumns) => (
         <DataGridTextCell>{region}</DataGridTextCell>
       ),
       label: t('pci_projects_project_network_private_region'),
     },
     {
       id: 'cidr',
-      cell: ({ cidr }: TGroupedSubnet) => (
-        <DataGridTextCell>{cidr}</DataGridTextCell>
+      cell: ({ cidr, isPending }: LZColumns) => (
+        <SkeletonWrapper isPending={isPending}>
+          <DataGridTextCell>{cidr}</DataGridTextCell>
+        </SkeletonWrapper>
       ),
       label: 'CIDR',
     },
     {
       id: 'gatewayIp',
-      cell: ({ gatewayIp }: TGroupedSubnet) => (
-        <DataGridTextCell>{gatewayIp}</DataGridTextCell>
+      cell: ({ gatewayIp, isPending }: LZColumns) => (
+        <SkeletonWrapper isPending={isPending}>
+          <DataGridTextCell>{gatewayIp}</DataGridTextCell>
+        </SkeletonWrapper>
       ),
       label: t('pci_projects_project_network_private_gateway'),
     },
     {
       id: 'dhcp',
-      cell: ({ dhcpEnabled }: TGroupedSubnet) => (
-        <DataGridTextCell>
-          <StatusInfo
-            label={
-              dhcpEnabled ? ResourceStatus.ACTIVE : ResourceStatus.DISABLED
-            }
-          />
-        </DataGridTextCell>
+      cell: ({ dhcpEnabled, isPending }: LZColumns) => (
+        <SkeletonWrapper isPending={isPending}>
+          <DataGridTextCell>
+            <StatusInfo
+              label={
+                dhcpEnabled ? ResourceStatus.ACTIVE : ResourceStatus.DISABLED
+              }
+            />
+          </DataGridTextCell>
+        </SkeletonWrapper>
       ),
       label: 'DHCP',
     },
     {
       id: 'ip_allocation',
-      cell: ({ allocatedIp }: TGroupedSubnet) => (
-        <DataGridTextCell>{allocatedIp}</DataGridTextCell>
+      cell: ({ allocatedIp, isPending }: LZColumns) => (
+        <SkeletonWrapper isPending={isPending}>
+          <DataGridTextCell>{allocatedIp}</DataGridTextCell>
+        </SkeletonWrapper>
       ),
       label: t('pci_projects_project_network_private_ip_allocation'),
     },
     {
       id: 'actions',
-      cell: ({ region, networkId }: TGroupedSubnet) => (
+      cell: ({ region, networkId }: LZColumns) => (
         <div>
           <OsdsTooltip>
             <OsdsButton
