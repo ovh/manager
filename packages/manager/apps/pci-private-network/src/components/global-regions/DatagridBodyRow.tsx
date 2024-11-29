@@ -50,7 +50,11 @@ export default function DataGridBodyRow({
   );
 
   const renderChip = (text: string, color: ODS_THEME_COLOR_INTENT) => (
-    <OsdsChip className="inline-flex m-3" color={color} size={ODS_CHIP_SIZE.sm}>
+    <OsdsChip
+      className="inline-flex m-3 capitalize"
+      color={color}
+      size={ODS_CHIP_SIZE.sm}
+    >
       {text}
     </OsdsChip>
   );
