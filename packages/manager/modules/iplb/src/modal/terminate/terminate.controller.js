@@ -29,6 +29,7 @@ export default class IpLoadBalancerTerminateCtrl {
       .then(() => {
         this.Alerter.success(
           this.$translate.instant('iplb_terminate_service_success'),
+          'InfoErrors',
         );
       })
       .catch((err) => {
@@ -36,7 +37,7 @@ export default class IpLoadBalancerTerminateCtrl {
           this.$translate.instant('iplb_terminate_service_error', {
             t0: err.data ? err.data.message : err.message,
           }),
-          this.alertId,
+          'InfoErrors',
         );
       });
     this.$uibModalInstance.close();

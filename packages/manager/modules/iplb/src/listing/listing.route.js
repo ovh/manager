@@ -1,5 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import { LB_DELETE_FEATURE } from './constants';
+import { LB_DELETE_FEATURE } from '../home/iplb-home.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iplb.index', {
@@ -31,5 +31,12 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       header: /* @ngInject */ ($translate) => $translate.instant('iplb_title'),
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('resources')
+        .then((resources) =>
+          resources.data.length === 0 ? { state: 'iplb.onboarding' } : false,
+        ),
   });
 };
