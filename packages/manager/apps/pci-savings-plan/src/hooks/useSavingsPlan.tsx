@@ -1,34 +1,19 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useServices } from './useService';
 import {
-  SavingsPlanContract,
-  SavingsPlanPlanedChangeStatus,
-  SavingsPlanService,
-} from '@/types/api.type';
+  useGetServicesServiceIdSavingsPlansSubscribed,
+  usePostServicesServiceIdSavingsPlansSubscribedSavingsPlanIdChangePeriodEndAction,
+} from '@ovh-ux/manager-hooks-api';
+import { useServices } from './useService';
+import { SavingsPlanContract, SavingsPlanService } from '@/types/api.type';
 import { getSavingsPlansUrl } from '@/utils/routes';
-import { useSubscribedAllQuery } from '@/axios-client/Query';
 
 export const getSubscribedSavingsPlan = async (
   serviceId: number,
 ): Promise<SavingsPlanService[]> => {
   const { data } = await v6.get<SavingsPlanService[]>(
     `services/${serviceId}/savingsPlans/subscribed`,
-  );
-  return data;
-};
-
-export const postSubscribedSavingsPlanChangePeriod = async (
-  serviceId: number,
-  savingsPlanId: string,
-  periodEndAction: SavingsPlanPlanedChangeStatus,
-): Promise<SavingsPlanService[]> => {
-  const { data } = await v6.post<SavingsPlanService[]>(
-    `/services/${serviceId}/savingsPlans/subscribed/${savingsPlanId}/changePeriodEndAction`,
-    {
-      periodEndAction,
-    },
   );
   return data;
 };
@@ -81,7 +66,7 @@ export const postSavingsPlan = async ({
 export const useServiceId = () => {
   const { projectId } = useParams();
   const { data: services } = useServices({
-    projectId: projectId as string,
+    projectId,
   });
   return services?.[0];
 };
@@ -89,16 +74,7 @@ export const useServiceId = () => {
 export const useSavingsPlan = () => {
   const serviceId = useServiceId();
 
-  const { data, isLoading } = useSubscribedAllQuery({ serviceId }, {
-    refetchInterval: 1000,
-
-  });
-
-  return useQuery({
-    queryKey: ['savings-plan', serviceId],
-    queryFn: () => getSubscribedSavingsPlan(serviceId),
-    enabled: !!serviceId,
-  });
+  return useGetServicesServiceIdSavingsPlansSubscribed(serviceId, {});
 };
 
 export const getMutationKeySPChangePeriod = (
@@ -108,22 +84,14 @@ export const getMutationKeySPChangePeriod = (
 
 export const useSavingsPlanChangePeriod = (savingsPlanId: string) => {
   const { refetch } = useSavingsPlan();
-  const serviceId = useServiceId();
 
-  return useMutation({
-    onSuccess: () => refetch(),
-    mutationKey: getMutationKeySPChangePeriod(savingsPlanId, serviceId),
-    mutationFn: ({
-      periodEndAction,
-    }: {
-      periodEndAction: SavingsPlanPlanedChangeStatus;
-    }) =>
-      postSubscribedSavingsPlanChangePeriod(
-        serviceId,
-        savingsPlanId,
-        periodEndAction,
-      ),
-  });
+  return usePostServicesServiceIdSavingsPlansSubscribedSavingsPlanIdChangePeriodEndAction(
+    {
+      mutation: {
+        onSuccess: () => refetch(),
+      },
+    },
+  );
 };
 
 export const getMutationKeySPEditName = (

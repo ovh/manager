@@ -1,0 +1,39 @@
+{
+  "name": "@ovh-ux/manager-hooks-api",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Manage all react hooks and TS TYPE FROM ovh Cloud Api",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/modules/account-migration"
+  },
+  "type": "module",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "./src/api/index.ts",
+  "scripts": {
+    "generate": "npx tsx ./src/scripts/orchestrator.ts",
+    "generate-dist": "npx tsx ./src/scripts/generate-swagger.ts",
+    "generate-api": "npx tsx ./src/scripts/generate-type-and-hooks.ts",
+    "generate-single-api": "npx tsx ./src/scripts/generate-type-and-hooks.ts me.json"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.51.21",
+    "@ovh-ux/manager-core-api": "^0.9.0",
+    "axios": "^1.6.8"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.7.4",
+    "@typescript-eslint/parser": "^4.7.4",
+    "typescript": "^5.1.6"
+  },
+  "exports": {
+    ".": "./src/api/index.js",
+    "./*": "./src/api/*"
+  }
+}

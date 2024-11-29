@@ -5,6 +5,7 @@ import RenewModal from '@/components/Modal/RenewModal';
 import {
   useSavingsPlan,
   useSavingsPlanChangePeriod,
+  useServiceId,
 } from '@/hooks/useSavingsPlan';
 import { SavingsPlanPlanedChangeStatus } from '@/types/api.type';
 
@@ -12,6 +13,7 @@ const RenewModalPage = () => {
   const navigate = useNavigate();
   const { savingsPlanId } = useParams();
 
+  const serviceId = useServiceId();
   const { data: savingsPlan, error, isError } = useSavingsPlan();
   const { mutate: changePeriod } = useSavingsPlanChangePeriod(savingsPlanId);
   const [searchParams] = useSearchParams();
@@ -28,9 +30,13 @@ const RenewModalPage = () => {
 
   const onConfirm = () => {
     changePeriod({
-      periodEndAction: periodEndAction
-        ? SavingsPlanPlanedChangeStatus.TERMINATE
-        : SavingsPlanPlanedChangeStatus.REACTIVATE,
+      serviceId,
+      savingsPlanId,
+      data: {
+        periodEndAction: periodEndAction
+          ? SavingsPlanPlanedChangeStatus.TERMINATE
+          : SavingsPlanPlanedChangeStatus.REACTIVATE,
+      },
     });
     goToPrevious();
   };
