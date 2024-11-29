@@ -56,7 +56,8 @@ const AttachedData = () => {
       </div>
       <VolumesList
         volumes={notebook.spec.volumes.filter(
-          (vol: ai.volume.Volume) => vol.dataStore.internal === false,
+          (vol: ai.volume.Volume) =>
+            vol.volumeSource.dataStore.internal === false,
         )}
       />
       <DataSync

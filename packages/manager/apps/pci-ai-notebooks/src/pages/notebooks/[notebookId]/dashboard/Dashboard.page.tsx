@@ -45,7 +45,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const filteredVolume: ai.volume.Volume[] = notebook.spec.volumes.filter(
-      (vol) => vol.dataStore.internal === false,
+      (vol) => vol.volumeSource.dataStore.internal === false,
     );
     getCommand({ ...notebook.spec, volumes: filteredVolume });
   }, [notebook]);

@@ -66,6 +66,13 @@ export default [
               import('@/pages/notebooks/[notebookId]/logs/Logs.page'),
             ),
           },
+          {
+            path: 'backups',
+            id: 'notebook.backups',
+            ...lazyRouteConfig(() =>
+              import('@/pages/notebooks/[notebookId]/backups/Backups.page'),
+            ),
+          },
         ],
       },
     ],
