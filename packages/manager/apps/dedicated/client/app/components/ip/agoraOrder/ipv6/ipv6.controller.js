@@ -194,7 +194,7 @@ export default class AgoraIpV6OrderController {
     this.trackSelectRegion(
       this.model.selectedPlan.location.replaceAll(' ', '-'),
     );
-    let trakingService = '';
+
     const { planCode, regionId } = this.model.selectedPlan;
     const productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
       productId: 'ip',
@@ -207,10 +207,9 @@ export default class AgoraIpV6OrderController {
     });
 
     this.atInternet.trackClick({
-      name: `${FUNNEL_TRACKING_PREFIX}button::add_additional_ip::confirm::ipv6_${trakingService}_${this.model.selectedPlan.location.replaceAll(
-        ' ',
-        '-',
-      )}__free`,
+      name: `${FUNNEL_TRACKING_PREFIX}button::add_additional_ip::confirm::ipv6_${
+        this.model.selectedService
+      }_${this.model.selectedPlan.location.replaceAll(' ', '-')}__free`,
       type: 'action',
       level2: 57,
     });
