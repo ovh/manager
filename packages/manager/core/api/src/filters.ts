@@ -17,6 +17,14 @@ export type Filter = {
   comparator: FilterComparator;
 };
 
+export enum FilterTypeCategories {
+  Numeric = 'Numeric',
+  String = 'String',
+  Date = 'Date',
+  Boolean = 'Boolean',
+  Options = 'Options',
+}
+
 export const FilterCategories = {
   Numeric: [
     FilterComparator.IsEqual,
