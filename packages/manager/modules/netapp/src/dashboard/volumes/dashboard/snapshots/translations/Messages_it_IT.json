@@ -30,12 +30,9 @@
   "netapp_volumes_snapshots_policies_apply_error": "Non è stato possibile applicare la regola. Ti preghiamo di riprovare.",
   "netapp_volumes_snapshots_type_automatic": "Automatico",
   "netapp_volumes_snapshots_type_system": "Sistema",
-<<<<<<< HEAD
-  "netapp_volumes_snapshots_created_at_helper": "Le date sono specificate in formato UTC"
-=======
+  "netapp_volumes_snapshots_created_at_helper": "Le date sono specificate in formato UTC",
   "netapp_volumes_snapshots_actions_hold": "Salva",
   "netapp_volumes_snapshots_hold_action_doing": "Il backup del tuo Snapshot è stato preso in carico e sarà effettivo entro pochi istanti.",
   "netapp_volumes_snapshots_hold_action_success": "Il backup del tuo Snapshot è stato effettuato correttamente.",
   "netapp_volumes_snapshots_hold_action_error": "Si è verificato un problema durante il backup del tuo Snapshot"
->>>>>>> 826be6c2f7 (fix(i18n): add missing translations [CDS 3519])
 }
