@@ -1,9 +1,9 @@
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
-import '@testing-library/jest-dom';
 import { labels } from '@/utils/tests/init.i18n';
 import { okmsMock } from '@/mocks/kms/okms.mock';
+import '@testing-library/jest-dom';
 
 describe('KMS dashboard test suite', () => {
   it('should display an error if the API is KO', async () => {
@@ -134,12 +134,12 @@ describe('KMS dashboard test suite', () => {
     await waitFor(
       () =>
         expect(
-          screen.getByText(
+          screen.getAllByText(
             labels.serviceKeys[
               'key_management_service_service-keys_dashboard_field_name'
             ],
           ),
-        ).toBeVisible(),
+        ).toHaveLength(2),
       {
         timeout: 30_000,
       },

@@ -99,6 +99,18 @@ export default [
                   },
                 },
               },
+              {
+                path: ROUTES_URLS.terminateOkms,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/listing/terminate/TerminateKms'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'terminate',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
             ],
           },
           {
