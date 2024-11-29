@@ -28,7 +28,7 @@
   "rgdp_form_category_portability_right": "Droit à la portabilité",
   "rgdp_form_category_payment_method_remove": "Supprimer un moyen de paiement",
   "rgdp_form_category_other_request": "Autre demande au DPO",
-  "rgdp_legal_information": "Les données collectées ci-dessus sont nécessaires au traitement de votre demande. Elles seront conservées pour une durée de 5 ans. Dans l'hypothèse où une copie de votre pièce d'identité viendrait à vous être demandée, celle-ci sera conservée pour une durée maximale de 15 jours.",
+  "rgdp_legal_information": "Les données collectées ci-dessus sont nécessaires au traitement de votre demande. Elles seront conservées pour une durée de 5 ans. Dans l'hypothèse où une copie de votre pièce d'identité viendrait à vous être demandée, celle-ci sera conservée pour une durée maximale de {{retentionDays}} jours.",
   "rgdp_legal_information_policy": "Pour en savoir plus, sur le traitement de vos données personnelles et connaître vos droits, vous pouvez consulter notre <a style='color:#2563eb; font-weight: 700;' href='{{legalPolicyLink}}' target='_blank'>Politique d'utilisation de données à caractère personnel OVHcloud.</a>",
   "rgdp_form_upload_documents_title": "Déposez vos documents",
   "rgdp_form_upload_documents_notice": "Vous pouvez ajouter tout document qui vous semble utile à l'appui de votre demande.",

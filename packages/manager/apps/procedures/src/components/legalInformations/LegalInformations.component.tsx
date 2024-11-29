@@ -5,7 +5,7 @@ import {
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import React, { FunctionComponent } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { CanadianPolicyLinks } from '@/types/links.type';
 import useUser from '@/context/User/useUser';
 import { LegalPolicyLinkByLanguage } from '@/constants';
@@ -13,12 +13,14 @@ import { LegalPolicyLinkByLanguage } from '@/constants';
 type Props = {
   translationNamespace: string;
   informationTranslationKey: string;
+  informationInterpolation?: Record<string, string | number | JSX.Element>;
   policyTanslationKey: string;
 };
 
 export const LegalInformations: FunctionComponent<Props> = ({
   translationNamespace,
   informationTranslationKey,
+  informationInterpolation,
   policyTanslationKey,
 }) => {
   const {
@@ -46,7 +48,7 @@ export const LegalInformations: FunctionComponent<Props> = ({
         className="block"
         size={ODS_TEXT_SIZE._100}
       >
-        {t(informationTranslationKey)}
+        {t(informationTranslationKey, informationInterpolation)}
       </OsdsText>
 
       <OsdsText
