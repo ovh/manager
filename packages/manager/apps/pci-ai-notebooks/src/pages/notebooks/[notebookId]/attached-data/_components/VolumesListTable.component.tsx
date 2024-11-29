@@ -16,13 +16,15 @@ export default function VolumesList({ volumes }: Readonly<VolumesListProps>) {
 
   const dataSyncVolume: ai.volume.Volume = useMemo(
     () =>
-      volumes.find((vol) => vol.dataStore.container === dataSyncModale.value),
+      volumes.find(
+        (vol) => vol.volumeSource.dataStore.container === dataSyncModale.value,
+      ),
     [dataSyncModale.value, volumes],
   );
 
   const columns: ColumnDef<ai.volume.Volume>[] = getColumns({
     onDataSyncClicked: (volume: ai.volume.Volume) => {
-      dataSyncModale.open(volume.dataStore.container);
+      dataSyncModale.open(volume.volumeSource.dataStore.container);
     },
   });
 

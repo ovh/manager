@@ -1,7 +1,7 @@
 {
   "dashboardTab": "Dashboard",
   "dataTab": "Données attachées",
-  "backupTab": "Backup",
+  "backupTab": "Backups",
   "logsTab": "Logs",
   "publicAccessLabel": "Public",
   "privateAccessLabel": "Privé",
