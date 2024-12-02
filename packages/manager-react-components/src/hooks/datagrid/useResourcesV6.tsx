@@ -25,6 +25,7 @@ export function dataType(a: any) {
   if (Number.isInteger(a)) return FilterTypeCategories.Numeric;
   if (isDate(a)) return FilterTypeCategories.Date;
   if (typeof a === 'string') return FilterTypeCategories.String;
+  if (typeof a === 'boolean') return FilterTypeCategories.Boolean;
   return typeof a;
 }
 

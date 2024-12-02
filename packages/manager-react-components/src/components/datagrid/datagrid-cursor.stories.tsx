@@ -2,19 +2,11 @@ import React, { useState } from 'react';
 import { ColumnSort } from '@tanstack/react-table';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { withRouter } from 'storybook-addon-react-router-v6';
-<<<<<<< HEAD
-=======
-import { applyFilters, FilterCategories } from '@ovh-ux/manager-core-api';
->>>>>>> 2f9eca4b15 (feat(generator): update v6 listing filter)
 import { useSearchParams } from 'react-router-dom';
-import DataGridTextCell from './text-cell.component';
 import { Datagrid } from './datagrid.component';
 import { useColumnFilters } from '../filters';
-<<<<<<< HEAD
-import { columsTmp, columsFilters } from './datagrid.stories';
+import { columsTmp, columsFilters } from './datagrid.mock';
 import { ActionMenu } from '../navigation';
-=======
->>>>>>> 2f9eca4b15 (feat(generator): update v6 listing filter)
 
 interface Item {
   label: string;
@@ -22,55 +14,7 @@ interface Item {
   actions: React.ReactElement;
 }
 
-<<<<<<< HEAD
 const DatagridStory = (args) => {
-=======
-const columsTmp = [
-  {
-    id: 'label',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.label}</DataGridTextCell>;
-    },
-    label: 'Label',
-  },
-  {
-    id: 'price',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
-    },
-    label: 'Price',
-  },
-];
-
-const columsFilters = [
-  {
-    id: 'label',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.label}</DataGridTextCell>;
-    },
-    label: 'Label',
-    comparator: FilterCategories.String,
-  },
-  {
-    id: 'price',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
-    },
-    label: 'Price',
-    comparator: FilterCategories.String,
-  },
-];
-
-const DatagridStory = ({
-  items,
-  isSortable,
-  columns = columsTmp,
-}: {
-  items: Item[];
-  isSortable: boolean;
-  columns?: any;
-}) => {
->>>>>>> 2f9eca4b15 (feat(generator): update v6 listing filter)
   const [sorting, setSorting] = useState<ColumnSort>();
   const [data, setData] = useState(args.items);
   const [searchParams] = useSearchParams();

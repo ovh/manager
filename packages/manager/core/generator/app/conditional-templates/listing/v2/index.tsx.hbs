@@ -1,6 +1,5 @@
 import React, { useState, useEffect, } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { {{#if isPCI }}useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
 
 import { OdsButton, OdsSpinner } from '@ovhcloud/ods-components/react';
@@ -39,7 +38,6 @@ export default function Listing() {
     setSorting,
     error,
     status,
-    filters,
   } = useResourcesIcebergV2({
     route: `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`,
     queryKey: ['{{appName}}', `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`],
@@ -49,13 +47,6 @@ export default function Listing() {
     let path =
       location.pathname.indexOf('pci') > -1 ? `${location.pathname}/` : '/';
     navigate(`${path}${label}`);
-  };
-
-  // Code to remove
-  const comparatorType = {
-    number: FilterCategories.Numeric,
-    data: FilterCategories.Date,
-    string: FilterCategories.String,
   };
 
   // Code to remove and declare definition columns in const variable
@@ -68,12 +59,6 @@ export default function Listing() {
         .map((element) => ({
           id: element,
           label: element,
-          // @ts-ignore
-          ...(comparatorType[dataType(data?.pages[0].data[0][element])] && {
-            comparator:
-              // @ts-ignore
-              comparatorType[dataType(data?.pages[0].data[0][element])],
-          }),
           cell: (props: any) => {
             const label = props[element] as string;
             if (typeof label === 'string' || typeof label === 'number') {
@@ -131,7 +116,6 @@ export default function Listing() {
             sorting={sorting}
             onSortChange={setSorting}
             manualSorting={false}
-            filters={filters}
           />
         )}
       </React.Suspense>
