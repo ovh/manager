@@ -13,6 +13,7 @@ export const ROUTE_PATHS = {
   OBJECTS: `/pci/projects/:projectId/storages/objects/:storageId`,
   DELETE_OBJECT: `:objectName/delete`,
   ENABLE_VERSIONING: 'enableVersioning',
+  DOWNLOAD_RCLONE: 'rclone/download',
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
@@ -46,6 +47,10 @@ const EnableVersioningPage = lazy(() =>
   import('@/pages/objects/container/enable-versioning/EnableVersioning.page'),
 );
 
+const DownloadRClonePage = lazy(() =>
+  import('@/pages/objects/container/users/rclone-download/RCloneDownload.page'),
+);
+
 const RoutesComponent = () => (
   <Routes>
     <Route id="root" path={ROUTE_PATHS.ROOT} Component={LayoutPage}>
@@ -64,6 +69,10 @@ const RoutesComponent = () => (
             Component={ImportPolicyPage}
           />
           <Route path={ROUTE_PATHS.USER_DELETE} Component={DeleteUserPage} />
+          <Route
+            path={ROUTE_PATHS.DOWNLOAD_RCLONE}
+            Component={DownloadRClonePage}
+          />
         </Route>
       </Route>
       <Route path="" element={<>Page not found</>}></Route>
