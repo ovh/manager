@@ -17,6 +17,7 @@ export * from './hooks';
 export * from './constants';
 export * from './components/quantity-selector';
 export * from './components/Pricing';
+export * from './components/rclone-download/RCloneDownload';
 export * from './components/shape-input/ShapeInput.component';
 export * from './translations/storages/containers';
 export * from './translations/storages/containers/object/delete';
