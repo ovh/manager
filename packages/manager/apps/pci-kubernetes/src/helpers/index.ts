@@ -114,3 +114,17 @@ export function getColorByPercentage(percentage: number): string {
   // If percentage exceeds all thresholds, return the last color
   return colorThresholds[colorThresholds.length - 1].color;
 }
+
+export const getErrorMessage = (error: any): string => {
+  if (!error) return '';
+  if (typeof error === 'string') return error;
+  if ('message' in error && typeof error.message === 'string')
+    return error.message;
+  return '';
+};
+
+export const camelToSnake = (camelCase: string): string =>
+  camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
+
+export const filterSchemaKeys = (schema, excludeKeys) =>
+  Object.keys(schema.shape).filter((key) => !excludeKeys.includes(key));

@@ -1,7 +1,9 @@
 import {
   OsdsButton,
   OsdsFormField,
+  OsdsIcon,
   OsdsInput,
+  OsdsLink,
   OsdsModal,
   OsdsSpinner,
   OsdsText,
@@ -9,6 +11,8 @@ import {
 import {
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
   ODS_INPUT_TYPE,
   ODS_SPINNER_SIZE,
   ODS_TEXT_COLOR_INTENT,
@@ -17,7 +21,12 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Translation, useTranslation } from 'react-i18next';
-import { Controller, useForm } from 'react-hook-form';
+import {
+  Controller,
+  useForm,
+  FormProvider,
+  useFieldArray,
+} from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
@@ -28,33 +37,43 @@ import {
   useOidcProvider,
   useUpsertOidcProvider,
 } from '@/api/hooks/useKubernetes';
-import { OidcFormValues, oidcSchema } from '@/types';
+import { TOidcFormValues, oidcSchema } from '@/types';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
+import { OptionalFormField } from './OptionalField.component';
+import useFormFields from '@/hooks/useFormField';
 
 export function OidcProviderModal() {
-  const { t } = useTranslation([
-    'upsert-oidc-provider',
-    'add-oidc-provider',
-    'update-oidc-provider',
-    'common',
-  ]);
+  const { t } = useTranslation(['oidc-provider', 'common']);
+  const [isOptional, setIsOptional] = useState<boolean>(false);
   const { projectId, kubeId } = useParams();
   const navigate = useNavigate();
   const onClose = () => navigate('..');
   const { tracking } = useContext(ShellContext)?.shell || {};
+
+  const methods = useForm<TOidcFormValues>({
+    resolver: zodResolver(oidcSchema),
+    defaultValues: {
+      issuerUrl: '',
+      clientId: '',
+      usernameClaim: '',
+      usernamePrefix: '',
+      caContent: '',
+      groupsClaim: [''],
+      requiredClaim: [''],
+    },
+  });
+
+  // const { fields, append, remove } = useFieldArray({
+  //   control,
+  //   name: 'groupsClaim',
+  // });
 
   const {
     handleSubmit,
     formState: { errors, isSubmitting },
     setValue,
     control,
-  } = useForm<OidcFormValues>({
-    resolver: zodResolver(oidcSchema),
-    defaultValues: {
-      issuerUrl: '',
-      clientId: '',
-    },
-  });
+  } = methods;
 
   const { addError, addSuccess } = useNotifications();
 
@@ -65,8 +84,14 @@ export function OidcProviderModal() {
 
   useEffect(() => {
     if (oidcProvider) {
+      console.log('oidcprovider', oidcProvider);
+
       setValue('issuerUrl', oidcProvider.issuerUrl);
       setValue('clientId', oidcProvider.clientId);
+      setValue('usernameClaim', oidcProvider.usernameClaim);
+      setValue('usernamePrefix', oidcProvider.usernamePrefix);
+      setValue('caContent', oidcProvider.caContent);
+      // setValue('groupsClaim', oidcProvider.groupsClaim || []);
     }
   }, [oidcProvider]);
 
@@ -113,19 +138,22 @@ export function OidcProviderModal() {
   });
   const isPending = isPendingOidcProvider || isPendingUpsertOidcProvider;
 
-  const onSubmit = (data: OidcFormValues) => {
+  const fields = useFormFields();
+
+  const onSubmit = (data: TOidcFormValues) => {
     upsertOidcProvider(data);
   };
+
   return (
     <OsdsModal
       onOdsModalClose={() => {
         tracking?.trackClick({
-          name: `${KUBE_TRACK_PREFIX}::details::service::${mode}-oidc-provider::cancel`,
+          name: `${KUBE_TRACK_PREFIX}::details::service:::cancel`,
         });
         onClose();
       }}
       headline={t(
-        `${mode}-oidc-provider:pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_title`,
+        `pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_title`,
       )}
     >
       <slot name="content">
@@ -149,6 +177,7 @@ export function OidcProviderModal() {
                 'pci_projects_project_kubernetes_details_service_upsert_oidc_provider_description',
               )}
             </OsdsText>
+
             <OsdsFormField
               class="mt-6"
               data-testid="issuerUrl-formfield"
@@ -161,10 +190,9 @@ export function OidcProviderModal() {
                 slot="label"
               >
                 {t(
-                  `${mode}-oidc-provider:pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_field_url`,
+                  `pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_field_url`,
                 )}
               </OsdsText>
-
               <OsdsText
                 size={ODS_TEXT_SIZE._400}
                 level={ODS_TEXT_LEVEL.body}
@@ -189,6 +217,7 @@ export function OidcProviderModal() {
                 )}
               />
             </OsdsFormField>
+
             <OsdsFormField
               class="mt-10"
               data-testid="clientId-formfield"
@@ -201,7 +230,7 @@ export function OidcProviderModal() {
                 slot="label"
               >
                 {t(
-                  `${mode}-oidc-provider:pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_field_client_id`,
+                  `pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_field_client_id`,
                 )}
               </OsdsText>
               <OsdsText
@@ -228,15 +257,54 @@ export function OidcProviderModal() {
                 )}
               />
             </OsdsFormField>
+
+            <OsdsLink
+              onClick={() => setIsOptional(!isOptional)}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              className="flex font-bold justify-end items-center mt-4 "
+              onClickCapture={() => setIsOptional(!isOptional)}
+            >
+              {isOptional
+                ? t(
+                    'pci_projects_project_kubernetes_details_service_hide_optional',
+                  )
+                : t(
+                    'pci_projects_project_kubernetes_details_service_show_optional',
+                  )}
+              <OsdsIcon
+                name={
+                  isOptional
+                    ? ODS_ICON_NAME.CHEVRON_UP
+                    : ODS_ICON_NAME.CHEVRON_DOWN
+                }
+                color={ODS_THEME_COLOR_INTENT.primary}
+                size={ODS_ICON_SIZE.sm}
+                aria-hidden="true"
+                className="ml-4"
+              />
+            </OsdsLink>
+            <FormProvider {...methods}>
+              {isOptional &&
+                fields?.map(({ name, label, description, component }) => (
+                  <OptionalFormField
+                    key={name}
+                    name={name}
+                    label={label}
+                    description={description}
+                    component={component}
+                  />
+                ))}
+            </FormProvider>
+
             <div className="mt-6 flex justify-end gap-4">
               <OsdsButton
                 color={ODS_THEME_COLOR_INTENT.primary}
                 variant={ODS_BUTTON_VARIANT.ghost}
                 onClick={onClose}
-                data-testid={`${mode}-oidc-provider:${mode}OIDCProvider-button_cancel`}
+                data-testid={`${mode}OIDCProvider-button_cancel`}
               >
                 {t(
-                  `${mode}-oidc-provider:pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_action_cancel`,
+                  `pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_action_cancel`,
                 )}
               </OsdsButton>
               <OsdsButton
@@ -246,7 +314,7 @@ export function OidcProviderModal() {
                 data-testid={`${mode}OIDCProvider-button_submit`}
               >
                 {t(
-                  `${mode}-oidc-provider:pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_action_${mode}`,
+                  `pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_action_${mode}`,
                 )}
               </OsdsButton>
             </div>
