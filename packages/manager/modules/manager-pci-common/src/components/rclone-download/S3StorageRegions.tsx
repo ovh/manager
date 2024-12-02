@@ -1,7 +1,13 @@
 import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
-import { OsdsSelect, OsdsSelectOption } from '@ovhcloud/ods-components/react';
+import {
+  OsdsSelect,
+  OsdsSelectOption,
+  OsdsSpinner,
+} from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useS3StorageRegions } from '../../api/hook/useRegions';
+import { TRegion } from '../../api/data';
 
 interface S3StorageRegionsProps {
   projectId: string;
@@ -11,13 +17,11 @@ interface S3StorageRegionsProps {
 export default function S3StorageRegions({
   projectId,
   onS3StorageRegionChange,
-}: S3StorageRegionsProps) {
+}: Readonly<S3StorageRegionsProps>) {
   const [currentRegion, setCurrentRegion] = useState('');
 
   const { translateMicroRegion } = useTranslatedMicroRegions();
-  const { data: s3StorageRegions, isLoading } = useS3StorageRegions(
-    `${projectId}`,
-  );
+  const { data: s3StorageRegions, isLoading } = useS3StorageRegions(projectId);
 
   useEffect(() => {
     if (s3StorageRegions?.length) {
@@ -26,24 +30,30 @@ export default function S3StorageRegions({
     }
   }, [s3StorageRegions]);
 
+  if (isLoading || !currentRegion) {
+    return (
+      <OsdsSpinner
+        data-testid="s3StorageRegions_spinner"
+        inline
+        size={ODS_SPINNER_SIZE.md}
+      />
+    );
+  }
+
   return (
-    <>
-      {!isLoading && currentRegion && (
-        <OsdsSelect
-          value={currentRegion}
-          data-testid="currentRegionSelect"
-          onOdsValueChange={(event) => {
-            setCurrentRegion(`${event.detail.value}`);
-            onS3StorageRegionChange(`${event.detail.value}`);
-          }}
-        >
-          {s3StorageRegions?.map((region: TRegion, index: number) => (
-            <OsdsSelectOption key={index} value={region.name}>
-              {translateMicroRegion(region.name)}
-            </OsdsSelectOption>
-          ))}
-        </OsdsSelect>
-      )}
-    </>
+    <OsdsSelect
+      value={currentRegion}
+      data-testid="s3StorageRegions_select"
+      onOdsValueChange={(event) => {
+        setCurrentRegion(`${event.detail.value}`);
+        onS3StorageRegionChange(`${event.detail.value}`);
+      }}
+    >
+      {s3StorageRegions?.map((region: TRegion, index: number) => (
+        <OsdsSelectOption key={`${region.name}-${index}`} value={region.name}>
+          {translateMicroRegion(region.name)}
+        </OsdsSelectOption>
+      ))}
+    </OsdsSelect>
   );
 }
