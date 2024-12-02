@@ -64,3 +64,21 @@ export const deleteS3Container = async (
     `/cloud/project/${projectId}/region/${region}/${s3StorageType}/${name}`,
   );
 };
+
+export const getStorage = async (
+  projectId: string,
+  region: string,
+  s3StorageType: string,
+  storageId: string,
+): Promise<TStorage> => {
+  if (s3StorageType) {
+    const { data } = await v6.get<TStorage>(
+      `/cloud/project/${projectId}/region/${region}/${s3StorageType}/${storageId}`,
+    );
+    return data;
+  }
+  const { data } = await v6.get<TStorage>(
+    `/cloud/project/${projectId}/storage/${storageId}`,
+  );
+  return data;
+};
