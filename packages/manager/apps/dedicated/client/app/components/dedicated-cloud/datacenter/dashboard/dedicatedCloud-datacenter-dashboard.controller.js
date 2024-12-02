@@ -68,9 +68,8 @@ export default class {
       this.datacenter.model.id,
     ).then((data) => {
       this.datacenter.model.edgesCount = data.length;
-      this.datacenter.model.edgesLevel = data[0]?.size
-        ? data[0].size.chatAt(0).toUpperCase() + data[0].size.slice(1)
-        : '';
+      this.datacenter.model.edgesLevel = data[0] ? data[0].size : '';
+      this.datacenter.model.edgesStatus = data[0] ? data[0].state : '';
     });
   }
 
