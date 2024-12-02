@@ -7,6 +7,7 @@ import {
 import DatacentreGenerationInformationTile from '@/components/tiles/datacentre-general-information-tile/DatacentreGeneralInformationTile.component';
 import Loading from '@/components/loading/Loading.component';
 import Errors from '@/components/error/Error.component';
+import DatacentreUsageTile from '@/components/tiles/datacentre-usage-tile/DatacentreUsageTile.component';
 
 export default function DatacentresGeneralInformationPage() {
   const { id, vdcId } = useParams();
@@ -42,6 +43,7 @@ export default function DatacentresGeneralInformationPage() {
           vcdDatacentre={vcdDatacentre?.data}
           vcdOrganization={vcdOrganization?.data}
         />
+        <DatacentreUsageTile vcdDatacentre={vcdDatacentre?.data} />
       </div>
       <Outlet />
     </React.Suspense>
