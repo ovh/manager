@@ -8,7 +8,7 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import VcdDashboardLayout from '@/components/dashboard/layout/VcdDashboardLayout.component';
-import { COMPUTE_TITLE, STORAGE_TITLE } from './DatacentreDashboard.constant';
+import { COMPUTE_LABEL, STORAGE_LABEL } from './datacentreDashboard.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import { isUpdatingTargetSpec } from '@/utils/refetchConditions';
@@ -33,12 +33,12 @@ function DatacentreDashboardPage() {
     },
     {
       name: 'compute',
-      title: COMPUTE_TITLE,
+      title: COMPUTE_LABEL,
       to: useResolvedPath('compute').pathname,
     },
     {
       name: 'storage',
-      title: STORAGE_TITLE,
+      title: STORAGE_LABEL,
       to: useResolvedPath('storage').pathname,
     },
   ];

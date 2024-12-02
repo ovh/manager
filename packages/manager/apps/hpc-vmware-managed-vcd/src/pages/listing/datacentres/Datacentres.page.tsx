@@ -12,6 +12,7 @@ import DatagridContainer, {
 } from '@/components/datagrid/container/DatagridContainer.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { capitalize } from '@/utils/capitalize';
+import { ID_LABEL } from '@/pages/dashboard/dashboard.constants';
 
 /* ========= datagrid cells ========= */
 const DatagridIdCell = (vcdDatacentre: VCDDatacentre) => {
@@ -43,7 +44,7 @@ const DatagridCpuCountCell = (vcdDatacentre: VCDDatacentre) => (
 );
 
 const DatagridCpuSpeedCell = (vcdDatacentre: VCDDatacentre) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+  const { t } = useTranslation('datacentres');
 
   return (
     <DataGridTextCell>
@@ -55,7 +56,7 @@ const DatagridCpuSpeedCell = (vcdDatacentre: VCDDatacentre) => {
 };
 
 const DatagridRamCountCell = (vcdDatacentre: VCDDatacentre) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+  const { t } = useTranslation('datacentres');
 
   return (
     <DataGridTextCell>
@@ -75,14 +76,14 @@ const DatagridCommercialRange = (vcdDatacentre: VCDDatacentre) => (
 /* ======= listing page ======== */
 export default function DatacentresListing() {
   const { t } = useTranslation('listing');
-  const { t: tVdc } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+  const { t: tVdc } = useTranslation('datacentres');
   const { id } = useParams();
 
   const columns = [
     {
       id: 'id',
       cell: DatagridIdCell,
-      label: t('managed_vcd_listing_id'),
+      label: ID_LABEL,
     },
     {
       id: 'description',

@@ -10,7 +10,7 @@ import {
   labels,
   renderTest,
 } from '../../../../test-utils';
-import { STORAGE_TITLE } from '../DatacentreDashboard.constant';
+import { STORAGE_LABEL } from '../datacentreDashboard.constants';
 
 describe('Datacentre Storage Listing Page', () => {
   it('access and display storage listing page', async () => {
@@ -19,12 +19,12 @@ describe('Datacentre Storage Listing Page', () => {
     });
 
     // access storage tab
-    await checkTextVisibility(STORAGE_TITLE);
-    const tab = screen.getByText(STORAGE_TITLE);
+    await checkTextVisibility(STORAGE_LABEL);
+    const tab = screen.getByText(STORAGE_LABEL);
     await waitFor(() => userEvent.click(tab));
 
     // check page title & CTA
-    await checkTextVisibility(STORAGE_TITLE);
+    await checkTextVisibility(STORAGE_LABEL);
     await checkTextVisibility(
       labels.datacentresStorage.managed_vcd_vdc_storage_order_cta,
     );

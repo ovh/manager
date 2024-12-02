@@ -35,7 +35,7 @@ export const ComputeOrderVhostCell = (vHost: VCDOrderableVhostPriced) => (
 );
 
 export const ComputeOrderCpuSpeedCell = (vHost: VCDOrderableVhostPriced) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+  const { t } = useTranslation('datacentres');
   return (
     <DataGridTextCell>
       {t('managed_vcd_vdc_vcpu_value', { speed: vHost.vCPUSpeed })}
@@ -44,7 +44,7 @@ export const ComputeOrderCpuSpeedCell = (vHost: VCDOrderableVhostPriced) => {
 };
 
 export const ComputeOrderRamCell = (vHost: VCDOrderableVhostPriced) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/order');
+  const { t } = useTranslation('datacentres/order');
   return (
     <DataGridTextCell>
       {t('managed_vcd_vdc_order_ram_value', {
@@ -59,7 +59,7 @@ export const ComputeOrderCpuCountCell = (vHost: VCDOrderableVhostPriced) => (
 );
 
 export const ComputeOrderPriceCell = (vHost: VCDOrderableVhostPriced) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/order');
+  const { t } = useTranslation('datacentres/order');
   return (
     <DataGridTextCell>
       <Description className="font-semibold">
