@@ -3,9 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.4.0...@ovh-ux/manager-react-components@2.4.1) (2024-11-28)
+## [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.4.1...@ovh-ux/manager-react-components@2.5.0) (2024-12-02)
 
-**Note:** Version bump only for package @ovh-ux/manager-react-components
+### Features
+
+- **manager-react-components:** export style css from mrc ([#14369](https://github.com/ovh/manager/pull/14369)) ([673f614](https://github.com/ovh/manager/commit/673f6147764420bac8feaaedf8656d9d1eae7fe1))
+
+- **manager-react-components:** update changelog config ([#14369](https://github.com/ovh/manager/pull/14369)) ([9f959d2](https://github.com/ovh/manager/commit/9f959d2778df6f3d0e6f083c6a83236db8040c73))
+
+- **manager-react-components:** delete table component ([#14369](https://github.com/ovh/manager/pull/14369)) ([4160c1e](https://github.com/ovh/manager/commit/4160c1eb673f4b0262db9326f9b3e9d90187de07))
+
+# [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.4.0...@ovh-ux/manager-react-components@2.4.1) (2024-11-28)
+
+### Features
+
+- **mrc:** ensure useAuthorizationIam query option enabled is a boolean ([#14322](https://github.com/ovh/manager/pull/14322)) ([a0fc11a](https://github.com/ovh/manager/pull/14322/commits/a0fc11a97e36e606e86daaf44455e8fa7fbf3dac))
 
 # [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.3.0...@ovh-ux/manager-react-components@2.4.0) (2024-11-27)
 
