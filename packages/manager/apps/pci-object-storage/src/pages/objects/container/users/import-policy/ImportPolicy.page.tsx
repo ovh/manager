@@ -18,7 +18,10 @@ export default function ImportPolicyPage() {
   const [searchParams] = useSearchParams();
   const userId = searchParams.get('userId');
   const [user, setUser] = useState<TUser>(undefined);
-  const { data: listUsers, isPending: isPendingUsers } = useUsers(projectId);
+  const {
+    validUsersWithCredentials: listUsers,
+    isPending: isPendingUsers,
+  } = useUsers(projectId);
   const { t } = useTranslation('objects/users/import-policy');
   const [filesToUpload, setFilesToUpload] = useState<File[]>([]);
   const navigate = useNavigate();
