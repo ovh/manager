@@ -64,11 +64,11 @@ export const oidcSchema = z.object({
     .string()
     .url({
       message:
-        'upsert-oidc-provider:pci_projects_project_kubernetes_details_service_upsert_oidc_provider_issue_url_error',
+        'pci_projects_project_kubernetes_details_service_upsert_oidc_provider_issue_url_error',
     })
     .refine((url) => url.startsWith('https://'), {
       message:
-        'upsert-oidc-provider:pci_projects_project_kubernetes_details_service_upsert_oidc_provider_issue_https_error',
+        'pci_projects_project_kubernetes_details_service_upsert_oidc_provider_issue_https_error',
     }),
   clientId: z
     .string()
@@ -76,24 +76,36 @@ export const oidcSchema = z.object({
   usernameClaim: z.string().optional(),
   usernamePrefix: z.string().optional(),
   groupsClaim: z
-    .string()
+    .array(z.string())
     .nullable()
     .optional(),
   groupsPrefix: z.string().optional(),
   signingAlgorithms: z
-    .string()
+    .array(z.string())
     .nullable()
     .optional(),
   caContent: z.string().optional(),
   requiredClaim: z
-    .string()
+    .array(z.string())
     .nullable()
     .optional(),
 });
 
 export type FormValues = z.infer<typeof oidcSchema>;
 
-export type OidcFormValues = Omit<FormValues, 'clientId | issuerUrl'> & {
+export type TOidcFormValues = Omit<FormValues, 'clientId | issuerUrl'> & {
   clientId: string;
   issuerUrl: string;
 };
+
+export enum SigningAlgorithms {
+  ES256 = 'ES256',
+  ES384 = 'ES384',
+  ES512 = 'ES512',
+  PS256 = 'PS256',
+  PS384 = 'PS384',
+  PS512 = 'PS512',
+  RS256 = 'RS256',
+  RS384 = 'RS384',
+  RS512 = 'RS512',
+}
