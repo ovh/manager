@@ -1,63 +1,7 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { Markdown, Source } from '@storybook/blocks';
+import Changelog from './../../../CHANGELOG.md?raw';
 
 <Meta title="Manager React Components/What's news ?/Changelog" />
 
-# Changelog
-
-## Release Notes
-
-> ### Version 2.2.0
->
-> > #### What's news ?
-> >
-> > - **Bump Ods version 18.3.0**
-
-> ### Version 2.1.0
->
-> > #### Bugfixes
-> >
-> > - Fix units tests
-> > - Update vite config, to build the library
-
-> ### Version 2.0.0
->
-> > #### What's news ?
-> >
-> > - **Bump Ods version 18.0.0**
-
-> ### Version 1.36.0
->
-> > #### Bugfixes
-> >
-> > - **datagrid component** Fix text cells and align left by default
-> > - **Units test** Fix some problems of playwright import
-
-> ### Version 1.35.1
->
-> > #### What's news ?
-> >
-> > The repository is available is npm registry **[link](https://www.npmjs.com/package/@ovh-ux/manager-react-components)**
-
-> ### Version 1.26.0
->
-> > #### What's news ?
-> >
-> > - **@manager-react-components** : Update a new package name for npm registry
-
-> ### Version 1.25.0
->
-> > #### What's news ?
-> >
-> > - **BaseLayout** : Integration of a brand new component template for better visual consistency in the manager
->
-> > #### Feature updates:
-> >
-> > - **Onboarding** : Update of this existing component with the new specification of design team
->
-> > #### Bugfixes
-> >
-> > - ...
->
-> > #### Deprecated
-> >
-> > - **Dashboard** : Dashboard template componet is deprecated replace by the new BaseLayout component
+<Markdown>{Changelog}</Markdown>
