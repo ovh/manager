@@ -25,10 +25,10 @@ export const useAllUsers = (projectId: string) =>
 
 export const useUsers = (projectId: string) => {
   const { data: users, isPending } = useAllUsers(projectId);
-  return useQueries({
+  const allUsersQueries = useQueries({
     queries: (users || [])?.map((user) => ({
       queryKey: [...getQueryKeyUsers(projectId), user.id, 's3Credentials'],
-      queryFn: () => getS3Credentials(projectId, `${user.id}`),
+      queryFn: () => getS3Credentials(projectId, user.id),
       enabled: !isPending,
       select: (s3Credentials: TS3Credentials[]) => s3Credentials[0],
     })),
@@ -41,18 +41,32 @@ export const useUsers = (projectId: string) => {
           (result) => result.data?.userId === user.openstackId,
         )?.data;
 
-        if (s3Credentials) {
-          all.push({
-            ...user,
-            access: s3Credentials.access,
-            search: `${user.username} ${user.description} ${s3Credentials.access}`,
-          });
-        }
+        all.push({
+          ...user,
+          access: s3Credentials?.access,
+          search: `${user.username} ${user.description} ${
+            s3Credentials ? s3Credentials?.access : ''
+          }`.trimEnd(),
+        });
 
         return all;
       }, []),
     }),
   });
+
+  const allUsers = allUsersQueries.data;
+  const validUsers = allUsers?.filter((user) => user.status === 'ok');
+  const validUsersWithCredentials = validUsers?.filter((user) => !!user.access);
+  const validUsersWithoutCredentials = validUsers?.filter(
+    (user) => !user.access,
+  );
+
+  return {
+    ...allUsersQueries,
+    validUsers,
+    validUsersWithCredentials,
+    validUsersWithoutCredentials,
+  };
 };
 
 export const usePaginatedUsers = (
@@ -111,7 +125,7 @@ export const useDeleteUser = ({
 
 type UsePostS3SecretParams = {
   projectId: string;
-  userId: number;
+  userId: string;
   userAccess: string;
   onSuccess: ({ secret }: { secret: string }) => void;
   onError: (cause: ApiError) => void;

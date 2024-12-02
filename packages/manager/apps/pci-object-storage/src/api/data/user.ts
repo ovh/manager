@@ -1,20 +1,40 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { OBJECT_STORAGE_USER_ROLE } from '@/constants';
 
 export type TS3Credentials = {
   userId: string;
   tenantId: string;
   access: string;
+  secret: string;
 };
 
 export type TUser = {
-  id: number;
+  id: string;
   username: string;
   creationDate: string;
   description: string;
   openstackId: string;
-  status: string;
+  // TODO add status when necessery
+  status: 'creating' | 'ok';
   access?: string;
   search?: string;
+  password: string;
+  roles: {
+    id: string;
+    name: string;
+    description: string;
+    permissions: string[];
+  }[];
+};
+
+export const getUser = async (
+  projectId: string,
+  userId: string,
+): Promise<TUser> => {
+  const { data } = await v6.get<TUser>(
+    `/cloud/project/${projectId}/user/${userId}`,
+  );
+  return data;
 };
 
 export const getAllUsers = async (projectId: string): Promise<TUser[]> => {
@@ -32,16 +52,6 @@ export const getS3Credentials = async (
   return data;
 };
 
-export const getUser = async (
-  projectId: string,
-  userId: string,
-): Promise<TUser> => {
-  const { data } = await v6.get<TUser>(
-    `/cloud/project/${projectId}/user/${userId}`,
-  );
-  return data;
-};
-
 export const deleteUser = async (
   projectId: string,
   userId: string,
@@ -53,7 +63,7 @@ export const deleteUser = async (
 };
 export const getUserStoragePolicy = async (
   projectId: string,
-  userId: number,
+  userId: string,
 ): Promise<{ policy: string }> => {
   const { data } = await v6.get(
     `/cloud/project/${projectId}/user/${userId}/policy`,
@@ -63,7 +73,7 @@ export const getUserStoragePolicy = async (
 
 export const postS3Secret = async (
   projectId: string,
-  userId: number,
+  userId: string,
   userAccess: string,
 ): Promise<{ secret: string }> => {
   const { data } = await v6.post(
@@ -84,5 +94,28 @@ export const importUserPolicy = async (
       policy,
     },
   );
+  return data;
+};
+
+export const generateS3Credentials = async (
+  projectId: string,
+  userId: string,
+): Promise<TS3Credentials> => {
+  const { data } = await v6.post<TS3Credentials>(
+    `/cloud/project/${projectId}/user/${userId}/s3Credentials`,
+  );
+  return data;
+};
+
+export const createUser = async (
+  projectId: string,
+  description: string,
+  role: string = OBJECT_STORAGE_USER_ROLE,
+): Promise<TUser> => {
+  const { data } = await v6.post<TUser>(`/cloud/project/${projectId}/user`, {
+    description,
+    role,
+  });
+
   return data;
 };

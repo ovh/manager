@@ -17,7 +17,10 @@ export default function DeletePage() {
   const onClose = () => navigate(`..`);
   const onCancel = () => navigate(`..`);
   const [user, setUser] = useState<TUser>(undefined);
-  const { data: listUsers, isPending: isPendingUsers } = useUsers(projectId);
+  const {
+    validUsersWithCredentials: listUsers,
+    isPending: isPendingUsers,
+  } = useUsers(projectId);
   const { deleteUser, isPending: isPendingDelete } = useDeleteUser({
     projectId,
     userId,
