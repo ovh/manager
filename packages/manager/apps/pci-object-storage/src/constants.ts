@@ -78,3 +78,6 @@ export const DOWNLOAD_TYPE = 'application/json"';
 export const OBJECT_STORAGE_USER_ROLE = 'objectstore_operator';
 
 export const TRACKING_S3_POLICY_ADD = 's3-policies-users::add';
+export const OPENIO_DEFAULT_REGION = 'SBG';
+
+export const OBJECT_CONTAINER_OFFER_STORAGE_STANDARD = 'storage-s3-standard';

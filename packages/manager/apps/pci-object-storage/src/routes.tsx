@@ -4,17 +4,25 @@ import { Route, Routes } from 'react-router-dom';
 export const ROUTE_PATHS = {
   ROOT: '/pci/projects/:projectId/storages/objects',
   ONBOARDING: 'onboarding',
-  OBJECTS: '',
   CONTAINER_DELETE: 'delete',
+  STORAGES: '',
   USER_LIST: 'users',
   USER_CREATE: 'new',
   USER_DELETE: ':userId/delete',
   USER_IMPORT_POLICY: 'import-policy',
+  OBJECTS: `/pci/projects/:projectId/storages/objects/:storageId`,
+  DELETE_OBJECT: `/pci/projects/:projectId/storages/objects/:storageId/:objectName/delete`,
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
-const ObjectsPage = lazy(() => import('@/pages/objects/Objects.page'));
+const StoragePage = lazy(() => import('@/pages/objects/Storage.page'));
+const ObjectPage = lazy(() =>
+  import('@/pages/objects/container/object/Object.page'),
+);
+const DeleteObjectPage = lazy(() =>
+  import('@/pages/objects/container/object/delete/Delete.page'),
+);
 const ContainerListPage = lazy(() =>
   import('@/pages/objects/container/Listing.page'),
 );
@@ -38,8 +46,8 @@ const RoutesComponent = () => (
   <Routes>
     <Route id="root" path={ROUTE_PATHS.ROOT} Component={LayoutPage}>
       <Route path={ROUTE_PATHS.ONBOARDING} Component={OnboardingPage} />
-      <Route path={ROUTE_PATHS.OBJECTS} Component={ObjectsPage}>
-        <Route path={ROUTE_PATHS.OBJECTS} Component={ContainerListPage}>
+      <Route path={ROUTE_PATHS.STORAGES} Component={StoragePage}>
+        <Route path={ROUTE_PATHS.STORAGES} Component={ContainerListPage}>
           <Route
             path={ROUTE_PATHS.CONTAINER_DELETE}
             Component={DeleteContainerPage}
@@ -54,8 +62,11 @@ const RoutesComponent = () => (
           <Route path={ROUTE_PATHS.USER_DELETE} Component={DeleteUserPage} />
         </Route>
       </Route>
+      <Route path={ROUTE_PATHS.OBJECTS} Component={ObjectPage}>
+        <Route path={ROUTE_PATHS.DELETE_OBJECT} Component={DeleteObjectPage} />
+      </Route>
+      <Route path="" element={<>Page not found</>}></Route>
     </Route>
-    <Route path="" element={<>Page not found</>}></Route>
   </Routes>
 );
 
