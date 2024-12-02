@@ -179,12 +179,17 @@ export const Datagrid = <T,>({
     setColumnsFilters(clmFilters);
   }, [columns]);
 
+  console.info('*************************');
+  console.info('columns : ', columns);
+  console.info('isFilterable : ', isFilterable);
+  console.info('columnsFilters : ', columnsFilters);
   return (
     <div>
       {isFilterable && (
         <>
+          <div>TOTO ALEX Filtre</div>
           {columnsFilters.length > 0 && (
-            <div className="flex flex-row-reverse pb-[5px]">
+            <div className="flex flex-row-reverse py-[24px]">
               <div id="datagrid-filter-popover-trigger">
                 <OdsButton
                   slot="datagrid-filter-popover-trigger"
@@ -211,7 +216,7 @@ export const Datagrid = <T,>({
             </div>
           )}
           {filters?.filters.length > 0 && (
-            <div id="datagrid-filter-list" className="my-5">
+            <div id="datagrid-filter-list" className="mb-[24px]">
               <FilterList
                 filters={filters.filters}
                 onRemoveFilter={filters.remove}
