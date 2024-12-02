@@ -12,12 +12,14 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import {
   ODS_RADIO_BUTTON_SIZE,
+  ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
   OsdsRadioGroupCustomEvent,
 } from '@ovhcloud/ods-components';
 import {
   OsdsFormField,
+  OsdsLink,
   OsdsRadio,
   OsdsRadioButton,
   OsdsRadioGroup,
@@ -26,7 +28,11 @@ import {
 import { useCallback, useContext, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { DOWNLOAD_FILETYPE, RCLONE_GUIDE } from './constants';
+import {
+  DOWNLOAD_FILETYPE,
+  DOWNLOAD_RCLONE_FILENAME,
+  RCLONE_GUIDE,
+} from './constants';
 import S3StorageRegions from './S3StorageRegions';
 import StorageRegions from './StorageRegions';
 
@@ -35,7 +41,11 @@ import { useDownloadRCloneConfig } from '../../api/hook/useRclone';
 import '../../translations/rclone-download';
 import { PciModal } from '../modal';
 
-export default function RCloneDownloadModal({ userId }: { userId: string }) {
+type RCloneDownloadModalProps = { userId: string };
+
+export default function RCloneDownloadModal({
+  userId,
+}: Readonly<RCloneDownloadModalProps>) {
   const { t } = useTranslation('pci-rclone-download');
 
   const { projectId } = useParams();
@@ -45,7 +55,7 @@ export default function RCloneDownloadModal({ userId }: { userId: string }) {
 
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
-  const [fileType, setFileType] = useState(DOWNLOAD_FILETYPE.SWIFT as string);
+  const [fileType, setFileType] = useState(DOWNLOAD_FILETYPE.SWIFT);
   const [region, setRegion] = useState('');
 
   const handleFileTypeChanged = useCallback(
@@ -86,14 +96,17 @@ export default function RCloneDownloadModal({ userId }: { userId: string }) {
           {(_t) => (
             <OsdsText>
               {_t('pci_projects_project_users_download-rclone_success_message')}
-              <Links
-                className="ml-3"
+              <OsdsLink
                 href={content}
+                className={'ml-3'}
+                color={ODS_TEXT_COLOR_INTENT.primary}
+                download={DOWNLOAD_RCLONE_FILENAME}
                 target={OdsHTMLAnchorElementTarget._top}
-                label={t(
+              >
+                {t(
                   'pci_projects_project_users_download-rclone_success_message_link',
                 )}
-              />
+              </OsdsLink>
             </OsdsText>
           )}
         </Translation>,
