@@ -9,6 +9,7 @@ import {
   deleteS3Container,
   getStorages,
   TStorage,
+  getStorage,
 } from '../data/storages';
 import {
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
@@ -192,4 +193,36 @@ export const useDeleteStorage = ({
     },
     ...mutation,
   };
+};
+
+export const useStorage = (
+  projectId: string,
+  region: string,
+  storageId: string,
+) => {
+  const {
+    data: storages,
+    error: errorStorages,
+    isPending: isStoragesPending,
+  } = useAllStorages(projectId);
+
+  const storage = storages?.resources.find(
+    (s) => s.id === storageId || s.name === storageId,
+  );
+
+  const { data, error: errorStorage, isPending: isPendingStorage } = useQuery({
+    queryKey: [...getStorageQueryKey(projectId), storageId],
+    enabled: !!storage,
+    queryFn: () =>
+      getStorage(projectId, region, storage.s3StorageType, storageId),
+  });
+
+  return useMemo(() => {
+    return {
+      isPending: isStoragesPending || isPendingStorage,
+      storage: data,
+      error: errorStorages || errorStorage,
+      storages,
+    };
+  }, [isPendingStorage, isStoragesPending, storage, data, storages]);
 };
