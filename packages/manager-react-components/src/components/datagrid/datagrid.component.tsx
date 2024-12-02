@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ColumnDef,
@@ -51,8 +51,10 @@ export interface DatagridColumn<T> {
   isSortable?: boolean;
   /** set column comparator for the filter */
   comparator?: FilterComparator;
-  /* Filters displayed for the column */
+  /** Filters displayed for the column */
   type?: FilterTypeCategories;
+  /** Trigger the column filter */
+  isFilterable?: boolean;
 }
 
 type ColumnFilterProps = {
@@ -105,15 +107,12 @@ export interface DatagridProps<T> {
   numberOfLoadingRows?: number;
   /** List of filters and handlers to add, remove */
   filters?: FilterProps;
-  /** Enables columns filters */
-  isFilterable?: boolean;
 }
 
 export const Datagrid = <T,>({
   columns,
   items,
   filters,
-  isFilterable = true,
   totalItems,
   pagination,
   sorting,
@@ -130,6 +129,7 @@ export const Datagrid = <T,>({
   numberOfLoadingRows,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
+  const filterPopoverRef = useRef(null);
   const pageCount = pagination
     ? Math.ceil(totalItems / pagination.pageSize)
     : 1;
@@ -178,6 +178,12 @@ export const Datagrid = <T,>({
   useEffect(() => {
     const clmFilters = columns
       .filter((item) => 'comparator' in item || 'type' in item)
+      // .filter(
+      //   (item) =>
+      //     ('comparator' in item || 'type' in item) &&
+      //     'isFilterable' in item &&
+      //     item['isFilterable'],
+      // )
       .map((column) => ({
         id: column.id,
         label: column.label,
@@ -187,47 +193,48 @@ export const Datagrid = <T,>({
     setColumnsFilters(clmFilters);
   }, [columns]);
 
+  console.info('columnsFilters : ', columnsFilters);
+
   return (
     <div>
-      {isFilterable && (
-        <>
-          {columnsFilters.length > 0 && (
-            <div className="flex flex-row-reverse pb-[5px]">
-              <div id="datagrid-filter-popover-trigger">
-                <OdsButton
-                  slot="datagrid-filter-popover-trigger"
-                  size={ODS_BUTTON_SIZE.sm}
-                  variant={ODS_BUTTON_VARIANT.ghost}
-                  icon={ODS_ICON_NAME.filter}
-                  label=""
-                />
-              </div>
-              <OdsPopover
-                triggerId="datagrid-filter-popover-trigger"
-                with-arrow
-              >
-                <FilterAdd
-                  columns={columnsFilters}
-                  onAddFilter={(addedFilter, column) => {
-                    filters.add({
-                      ...addedFilter,
-                      label: column.label,
-                    });
-                  }}
-                />
-              </OdsPopover>
-            </div>
-          )}
-          {filters?.filters.length > 0 && (
-            <div id="datagrid-filter-list" className="my-5">
-              <FilterList
-                filters={filters.filters}
-                onRemoveFilter={filters.remove}
-              />
-            </div>
-          )}
-        </>
+      {columnsFilters.length > 0 && (
+        <div className="flex flex-row-reverse py-[24px]">
+          <div id="datagrid-filter-popover-trigger">
+            <OdsButton
+              slot="datagrid-filter-popover-trigger"
+              size={ODS_BUTTON_SIZE.sm}
+              variant={ODS_BUTTON_VARIANT.ghost}
+              icon={ODS_ICON_NAME.filter}
+              label=""
+            />
+          </div>
+          <OdsPopover
+            ref={filterPopoverRef}
+            triggerId="datagrid-filter-popover-trigger"
+            with-arrow
+          >
+            <FilterAdd
+              columns={columnsFilters}
+              onAddFilter={(addedFilter, column) => {
+                filters.add({
+                  ...addedFilter,
+                  label: column.label,
+                });
+                filterPopoverRef.current?.hide();
+              }}
+            />
+          </OdsPopover>
+        </div>
       )}
+      {filters?.filters.length > 0 && (
+        <div id="datagrid-filter-list" className="mb-[24px]">
+          <FilterList
+            filters={filters.filters}
+            onRemoveFilter={filters.remove}
+          />
+        </div>
+      )}
+
       <div className={`contents px-[1px] ${className || ''}`}>
         <OdsTable className="overflow-x-visible">
           <table className="w-full border-collapse">

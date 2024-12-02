@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  IcebergFetchParamsV2,
-  fetchIcebergV2,
-  applyFilters,
-} from '@ovh-ux/manager-core-api';
+import { IcebergFetchParamsV2, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { defaultPageSize } from './index';
 import { useColumnFilters, ColumnSort } from '../../components';
@@ -52,7 +48,6 @@ export function useResourcesIcebergV2<T = unknown>({
     retry: false,
     getNextPageParam: (lastPage) => lastPage.cursorNext,
   });
-  const { filters, addFilter, removeFilter } = useColumnFilters();
 
   useEffect(() => {
     const flatten = data?.pages.map((page) => page.data).flat() as T[];
@@ -63,13 +58,6 @@ export function useResourcesIcebergV2<T = unknown>({
       fetchNextPage();
     }
   }, [data]);
-
-  useEffect(() => {
-    if (flattenData.length > 0) {
-      const flatten = data?.pages.map((page) => page.data).flat() as T[];
-      setFlattenData(applyFilters(flatten, filters));
-    }
-  }, [filters]);
 
   return {
     data,
@@ -82,10 +70,5 @@ export function useResourcesIcebergV2<T = unknown>({
     sorting,
     error,
     status,
-    filters: {
-      filters,
-      add: addFilter,
-      remove: removeFilter,
-    },
   };
 }
