@@ -108,7 +108,7 @@ export default function Listing() {
           className="xs:mb-0.5 sm:mb-0"
           onClick={() => {
             clearNotifications();
-            navigate('../create');
+            navigate('./new');
           }}
         >
           <OsdsIcon
