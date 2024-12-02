@@ -5,6 +5,7 @@ import tailwindcss from 'tailwindcss';
 const app = async (): Promise<UserConfigExport> => {
   return defineConfig({
     plugins: [react()],
+    assetsInclude: ['*.md'],
     css: {
       postcss: {
         plugins: [tailwindcss],
