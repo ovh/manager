@@ -205,7 +205,7 @@ const UserAccountMenu = ({
                 className="d-block"
                 aria-label={t(i18nKey)}
                 title={t(i18nKey)}
-                href={getUrl('dedicated', hash)}
+                href={getUrl(isNewAccountAvailable ? 'account': 'dedicated', hash)}
                 target="_top"
               >
                 {t(i18nKey)}
@@ -227,7 +227,7 @@ const UserAccountMenu = ({
               className="d-block"
               aria-label={sidebarTranslation.t('sidebar_account_kyc_documents')}
               title={sidebarTranslation.t('sidebar_account_kyc_documents')}
-              href={getUrl('dedicated', '#/documents')}
+              href={getUrl(isNewAccountAvailable ? 'account': 'dedicated', '#/documents')}
               target="_top"
             >
               {sidebarTranslation.t('sidebar_account_kyc_documents')}
