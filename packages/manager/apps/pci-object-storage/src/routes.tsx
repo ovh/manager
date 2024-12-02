@@ -9,6 +9,7 @@ export const ROUTE_PATHS = {
   USER_LIST: 'users',
   USER_DELETE: ':userId/delete',
   USER_IMPORT_POLICY: 'import-policy',
+  DOWNLOAD_RCLONE: 'rclone/download',
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
@@ -30,6 +31,10 @@ const ImportPolicyPage = lazy(() =>
   import('@/pages/objects/container/users/import-policy/ImportPolicy.page'),
 );
 
+const DownloadRClonePage = lazy(() =>
+  import('@/pages/objects/container/users/rclone-download/RCloneDownload.page'),
+);
+
 const RoutesComponent = () => (
   <Routes>
     <Route id="root" path={ROUTE_PATHS.ROOT} Component={LayoutPage}>
@@ -47,6 +52,10 @@ const RoutesComponent = () => (
             Component={ImportPolicyPage}
           />
           <Route path={ROUTE_PATHS.USER_DELETE} Component={DeleteUserPage} />
+          <Route
+            path={ROUTE_PATHS.DOWNLOAD_RCLONE}
+            Component={DownloadRClonePage}
+          />
         </Route>
       </Route>
     </Route>

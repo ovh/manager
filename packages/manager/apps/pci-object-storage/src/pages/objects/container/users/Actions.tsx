@@ -112,6 +112,7 @@ export default function ActionsComponent({ user }: { user: TUser }) {
 
   const deleteHref = useHref(`./${user.id}/delete`);
   const importHref = useHref(`./import-policy?userId=${user.id}`);
+  const downloadRCloneHref = useHref(`./rclone/download?userId=${user.id}`);
 
   const items = [
     {
@@ -129,6 +130,7 @@ export default function ActionsComponent({ user }: { user: TUser }) {
       label: t(
         'pci_projects_project_storages_containers_users_download_rclone_file',
       ),
+      href: downloadRCloneHref,
     },
     {
       id: 3,
