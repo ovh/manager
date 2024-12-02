@@ -9,14 +9,14 @@ import AddOIDCProvider, { AddOIDCProviderPage } from './AddOIDCProvider.page';
 import { wrapper } from '@/wrapperRenders';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { TOidcProvider } from '@/api/data/kubernetes';
-import { OidcFormValues } from '@/types';
+import { TOidcFormValues } from '@/types';
 
 type AddOIDCProviderPageReturnType = UseMutationResult<
   never,
   Error,
-  OidcFormValues,
+  TOidcFormValues,
   unknown
-> & { upsertOidcProvider: (params: OidcFormValues) => void };
+> & { upsertOidcProvider: (params: TOidcFormValues) => void };
 
 describe('AddOIDCProviderPage', () => {
   it('renders loading spinner when data is pending', () => {

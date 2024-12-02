@@ -1,5 +1,5 @@
 import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
-import { OidcFormValues, TKube, TNetworkConfiguration } from '@/types';
+import { TOidcFormValues, TKube, TNetworkConfiguration } from '@/types';
 
 export const getKubernetesCluster = async (
   projectId: string,
@@ -171,7 +171,7 @@ export const resetCluster = async (
 export const addOidcProvider = async (
   projectId: string,
   kubeId: string,
-  params: OidcFormValues,
+  params: TOidcFormValues,
 ) => {
   const { data } = await v6.post(
     `/cloud/project/${projectId}/kube/${kubeId}/openIdConnect`,
@@ -183,7 +183,7 @@ export const addOidcProvider = async (
 export const updateOidcProvider = async (
   projectId: string,
   kubeId: string,
-  params: OidcFormValues,
+  params: TOidcFormValues,
 ) => {
   const { data } = await v6.put(
     `/cloud/project/${projectId}/kube/${kubeId}/openIdConnect`,

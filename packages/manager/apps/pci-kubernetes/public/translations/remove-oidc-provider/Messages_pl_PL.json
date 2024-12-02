@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_kubernetes_details_service_remove_oidc_provider_title": "Usuń dostawcę OIDC",
-  "pci_projects_project_kubernetes_details_service_remove_oidc_provider_description": "Czy na pewno chcesz usunąć dostawcę OIDC {{clientId}}?",
-  "pci_projects_project_kubernetes_details_service_remove_oidc_provider_action_remove": "Zatwierdź",
-  "pci_projects_project_kubernetes_details_service_remove_oidc_provider_action_cancel": "Anuluj",
-  "pci_projects_project_kubernetes_details_service_remove_oidc_provider_request_success": "Dostawca OIDC został usunięty",
-  "pci_projects_project_kubernetes_details_service_remove_oidc_provider_request_error": "Wystąpił błąd podczas usuwania dostawcy OIDC: {{message}}."
-}
