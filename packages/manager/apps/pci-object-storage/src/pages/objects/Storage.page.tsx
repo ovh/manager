@@ -24,7 +24,7 @@ export default function ObjectsPage() {
     {
       name: 'pci_projects_project_storages_containers_my_containers_label',
       title: t('pci_projects_project_storages_containers_my_containers_label'),
-      to: useResolvedPath(ROUTE_PATHS.OBJECTS).pathname,
+      to: useResolvedPath(ROUTE_PATHS.STORAGES).pathname,
     },
     {
       name: 'pci_projects_project_storages_containers_s3_users_label',
