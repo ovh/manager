@@ -6,6 +6,10 @@
     * TYPOGRAPHY
 ***************************************/
 
+html {
+  font-family: var(--ods-font-family-default);
+}
+
 html body *:not(pre):not(code),
 html body .sbdocs-content *:not(pre):not(code) {
   font-family: var(--ods-font-family-default);
