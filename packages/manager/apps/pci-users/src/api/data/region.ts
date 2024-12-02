@@ -1,51 +1,7 @@
-import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
-import {
-  REGION_CAPACITY,
-  S3_REGION_CAPACITY,
-} from '@/download-rclone.constants';
+import { TRegion } from '@ovh-ux/manager-pci-common';
 import { ALPHA_CHARACTERS_REGEX } from '@/constants';
 
-export type Region = {
-  name: string;
-  type: string;
-  status: string;
-  ipCountries: string[];
-  continentCode: string;
-  datacenterLocation: string;
-  services: RegionService[];
-};
-
-export type RegionService = {
-  name: string;
-  status: string;
-  endpoint: string;
-};
-
-export const getAllRegions = async (projectId: string): Promise<Region[]> => {
-  const { data } = await fetchIcebergV6<Region>({
-    route: `/cloud/project/${projectId}/region`,
-  });
-
-  return data;
-};
-
-export const getS3StorageRegions = async (
-  regions: Region[],
-): Promise<Region[]> => {
-  return regions.filter(({ services }) => {
-    return services.find(({ name }) => S3_REGION_CAPACITY.includes(name));
-  });
-};
-
-export const getStorageRegions = async (
-  regions: Region[],
-): Promise<Region[]> => {
-  return regions.filter(({ services }) => {
-    return services.find(({ name }) => name === REGION_CAPACITY);
-  });
-};
-
-export const getOpenRcApiVersion = (regions: Region[], region: string) => {
+export const getOpenRcApiVersion = (regions: TRegion[], region: string) => {
   const hasGlobalRegions = regions.some((r) =>
     ALPHA_CHARACTERS_REGEX.test(r.name),
   );
