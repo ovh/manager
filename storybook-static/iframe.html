@@ -18,9 +18,11 @@
     window.LOGLEVEL = 'info';
     window.FRAMEWORK_OPTIONS = {"builder":{"viteConfigPath":".storybook/vite.config.ts"}};
     window.CHANNEL_OPTIONS = {};
-    window.FEATURES = {"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":true,"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false};
+    window.FEATURES = {"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":true,"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false,"disallowImplicitActionsInRenderV8":false};
     window.STORIES = [{"titlePrefix":"","directory":"./src","files":"**/*.stories.@(js|jsx|ts|tsx|mdx)","importPathMatcher":"^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(js|jsx|ts|tsx|mdx))$"},{"titlePrefix":"","directory":"./src/docs","files":"*.mdx","importPathMatcher":"^\\.[\\\\/](?:src\\/docs\\/(?!\\.)(?=.)[^/]*?\\.mdx)$"},{"titlePrefix":"","directory":"./src/docs/whatsnew/migration-guide","files":"*.mdx","importPathMatcher":"^\\.[\\\\/](?:src\\/docs\\/whatsnew\\/migration-guide\\/(?!\\.)(?=.)[^/]*?\\.mdx)$"}];
     window.DOCS_OPTIONS = {"defaultName":"Docs","autodocs":"tag"};
+
+    
 
     // We do this so that "module && module.hot" etc. in Storybook source code
     // doesn't fail (it will simply be disabled)
@@ -357,7 +359,7 @@
   }
 </script>
 
-  <script type="module" crossorigin src="./assets/iframe-BW04Thgz.js"></script>
+  <script type="module" crossorigin src="./assets/iframe-DRgUifYE.js"></script>
 </head>
 
 <body>
