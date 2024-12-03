@@ -7,7 +7,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { DeepReadonly } from '@/types/utils.type';
-import { TSectionType } from '@/hooks/url/useUrlLastSection';
+import { TSectionType } from '../InstanceAction.page';
 
 type TActionModalProps = DeepReadonly<{
   type: TSectionType;
@@ -19,28 +19,38 @@ export const ActionModalContent: FC<TActionModalProps> = ({
   instanceName,
 }) => {
   const { t } = useTranslation('actions');
-  const getLabel = useCallback((): string => {
-    const i18nKey = `pci_instances_actions_${type}_instance_confirmation_message`;
+  const getLabels = useCallback((): string[] => {
+    const confirmationMessage = t(
+      `pci_instances_actions_${type}_instance_confirmation_message`,
+      {
+        name: instanceName,
+      },
+    );
+    const notaMessage = t(
+      `pci_instances_actions_${type}_instance_nota_message`,
+    );
     switch (type) {
       case 'delete':
       case 'stop':
       case 'start':
-        return t(i18nKey, {
-          name: instanceName,
-        });
+      case 'unshelve':
+        return [confirmationMessage];
+      case 'shelve':
+        return [confirmationMessage, notaMessage];
       default:
-        return '';
+        return [];
     }
   }, [instanceName, t, type]);
 
-  return (
+  return getLabels().map((label) => (
     <OsdsText
+      key={label}
       level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
       color={ODS_THEME_COLOR_INTENT.text}
       size={ODS_TEXT_SIZE._400}
       className="block mt-6"
     >
-      {getLabel()}
+      {label}
     </OsdsText>
-  );
+  ));
 };
