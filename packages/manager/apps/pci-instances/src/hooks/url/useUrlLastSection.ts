@@ -1,17 +1,18 @@
 import { useMemo } from 'react';
-import { useMatch, useResolvedPath } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-export type TSectionType = 'delete' | 'start' | 'stop';
+export type TUseUrlLastSectionPredicateFn = (section: string) => boolean;
 
-const sectionRegex = /^(delete|start|stop)$/;
-
-export const useUrlLastSection = (): TSectionType | null => {
-  const basePath = useResolvedPath('..');
-  const match = useMatch<'section', string>(`${basePath.pathname}/:section`);
+export const useUrlLastSection = <T extends string>(
+  predicateFn?: TUseUrlLastSectionPredicateFn,
+): T | null => {
+  const { pathname } = useLocation();
 
   return useMemo(() => {
-    if (!match?.params.section || !sectionRegex.test(match.params.section))
-      return null;
-    return match.params.section as TSectionType;
-  }, [match?.params.section]);
+    const sections = pathname.split('/').filter(Boolean);
+    if (sections.length === 0) return null;
+    const lastSection = sections[sections.length - 1];
+    if (predicateFn && !predicateFn(lastSection)) return null;
+    return lastSection as T;
+  }, [pathname, predicateFn]);
 };
