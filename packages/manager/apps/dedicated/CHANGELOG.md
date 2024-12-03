@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.3.2...@ovh-ux/manager-dedicated@20.4.0) (2024-12-03)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** fix ipv4 vrack order on us ([4292386](https://github.com/ovh/manager/commit/4292386ac9242201ffce0626884ab12d50530813))
+* **dedicated:** fix conflict and linter ([5632ae5](https://github.com/ovh/manager/commit/5632ae5973c83b9da7c514ad6486077e5591b266))
+
+
+### Features
+
+* **dedicated.ip:** fix action menu with overflow table ([7ae95bc](https://github.com/ovh/manager/commit/7ae95bcb4ce511a50a7e78775c4ae9b3e321696a))
+* **dedicated.license:** enable license upgrade with new routes ([#12343](https://github.com/ovh/manager/issues/12343)) ([3730a35](https://github.com/ovh/manager/commit/3730a35dbcd0f57d2873e80a344077e61f616bd2))
+* **dedicated.pcc:** add line break on software solution tile item ([e8d0d89](https://github.com/ovh/manager/commit/e8d0d89f9e0b9b435a18f6e0d0b6b447e86c5ae5))
+* **dedicated:** implement new traking nomenclature ([#13755](https://github.com/ovh/manager/issues/13755)) ([ad5c098](https://github.com/ovh/manager/commit/ad5c098803140879559a2bcdc23c784221b530bc))
+
+
+
+
+
 ## [20.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.3.1...@ovh-ux/manager-dedicated@20.3.2) (2024-11-28)
 
 
