@@ -1,0 +1,31 @@
+<div data-ng-if="$ctrl.isOpenModal">
+    <div class="modal d-block">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <oui-modal
+                    data-on-dismiss="$ctrl.onCancel()"
+                    data-primary-action="$ctrl.onConfirm()"
+                    data-secondary-action="$ctrl.onCancel()"
+                    data-type="warning"
+                    data-primary-label="{{:: 'vrack_common_confirm' | translate }}"
+                    data-secondary-label="{{:: 'vrack_common_cancel' | translate }}"
+                    data-heading="{{:: 'vrack_terminate_title' | translate }}"
+                    data-primary-disabled="!$ctrl.isTerminateFieldValid"
+                >
+                    <p data-translate="vrack_terminate_modal_description"></p>
+                    <oui-field
+                        data-label="{{:: 'vrack_terminate' | translate }}"
+                    >
+                        <input
+                            class="oui-input"
+                            name="field"
+                            type="text"
+                            data-ng-model="$ctrl.terminateField"
+                            data-ng-change="$ctrl.validateField()"
+                        />
+                    </oui-field>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+</div>
