@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { TLocalisation } from '@/api/hooks/useRegions';
 
 export type TAvailableVolumesResponse = {
   plans: {
@@ -6,6 +7,7 @@ export type TAvailableVolumesResponse = {
     regions: {
       name: string;
       enabled: boolean;
+      type: string;
     }[];
   }[];
 };
@@ -20,3 +22,15 @@ export const getProjectsAvailableVolumes = async (
 
   return data;
 };
+
+export function isRegionWith3AZ(region: Pick<TLocalisation, 'type'>) {
+  return region.type === 'region-3-az';
+}
+
+/**
+ * TODO: use real informations
+ * @param planCode
+ */
+export function isProductWithAvailabilityZone(planCode: string) {
+  return planCode.startsWith('volume.high-speed');
+}

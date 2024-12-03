@@ -8,15 +8,32 @@ import {
   useProject,
   RegionSelector,
   RegionSummary,
+  usePCICommonContextFactory,
+  PCICommonContext,
 } from '@ovh-ux/manager-pci-common';
 import { TLocalisation } from '@/api/hooks/useRegions';
 import { StepState } from '@/pages/new/hooks/useStep';
+import { useProjectsAvailableVolumes } from '@/api/hooks/useProjectsAvailableVolumes';
+import { isRegionWith3AZ } from '@/api/data/availableVolumes';
 
 interface LocationProps {
   projectId: string;
   step: StepState;
   onSubmit: (region: TLocalisation) => void;
 }
+
+const useHas3AZRegion = (projectId: string) => {
+  const { data: availableVolumes, isPending } = useProjectsAvailableVolumes(
+    projectId,
+  );
+
+  return {
+    has3AZ:
+      availableVolumes?.plans.some((p) => p.regions.some(isRegionWith3AZ)) ||
+      false,
+    isPending,
+  };
+};
 
 export function LocationStep({
   projectId,
@@ -28,8 +45,12 @@ export function LocationStep({
   const { data: project } = useProject();
   const isDiscovery = isDiscoveryProject(project);
   const hasRegion = !!region;
+
+  const { has3AZ } = useHas3AZRegion(projectId);
+  const pciCommonProperties = usePCICommonContextFactory({ has3AZ });
+
   return (
-    <>
+    <PCICommonContext.Provider value={pciCommonProperties}>
       {hasRegion && step.isLocked && <RegionSummary region={region} />}
       {(!step.isLocked || isDiscovery) && (
         <RegionSelector
@@ -37,7 +58,8 @@ export function LocationStep({
           onSelectRegion={setRegion}
           regionFilter={(r) =>
             r.isMacro ||
-            r.services.some((s) => s.name === 'volume' && s.status === 'UP')
+            r.services.some((s) => s.name === 'volume' && s.status === 'UP') ||
+            r.type === 'region-3-az'
           }
         />
       )}
@@ -51,6 +73,6 @@ export function LocationStep({
           {tStepper('common_stepper_next_button_label')}
         </OsdsButton>
       )}
-    </>
+    </PCICommonContext.Provider>
   );
 }
