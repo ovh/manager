@@ -90,6 +90,7 @@ const RegionSelector = ({
           {orderCatalogOKMS && !isLoading && (
             <OsdsSelect
               inline
+              data-testid="select-region"
               size={ODS_SELECT_SIZE.md}
               onOdsValueChange={(v) => {
                 const value = v.detail.value.toString();
@@ -110,7 +111,11 @@ const RegionSelector = ({
               {orderCatalogOKMS.plans[0].configurations[0].values.map(
                 (region) => {
                   return (
-                    <OsdsSelectOption value={region} key={region}>
+                    <OsdsSelectOption
+                      value={region}
+                      key={region}
+                      data-testid={`select-region-option-${region}`}
+                    >
                       <Region
                         mode={'region'}
                         name={region.toLowerCase().replaceAll('_', '-')}
@@ -123,7 +128,7 @@ const RegionSelector = ({
           )}
         </OsdsFormField>
       </div>
-      <div className="flex flex-row mt-6">
+      <div className="flex flex-row mt-6 gap-4">
         <OsdsButton
           className="mr-1"
           size={ODS_BUTTON_SIZE.sm}
@@ -146,7 +151,7 @@ const RegionSelector = ({
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
-          disabled={selectedRegion ? undefined : true}
+          disabled={!selectedRegion || undefined}
           onClick={() => {
             trackClick({
               location: PageLocation.funnel,
