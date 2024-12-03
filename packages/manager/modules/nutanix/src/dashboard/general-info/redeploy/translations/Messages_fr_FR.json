@@ -29,6 +29,7 @@
   "nutanix_redeploy_custom_config_ip_unique_error": "Cette IP est déjà utilisée sur ce cluster",
   "nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error": "Les adresses ne sont pas sur le même réseau.",
   "nutanix_redeploy_custom_config_ip_format_error": "Le format de l'IP n'est pas correct",
+  "nutanix_redeploy_custom_config_vlan_id_error": "Le champ VLAN ID doit être un numéro compris entre 0 et 4000",
   "nutanix_redeploy_button": "Redéployer",
   "nutanix_redeploy_prism_element_vip": "Prism Element Virtual IP (VIP)",
   "nutanix_redeploy_gateway_CIDR": "Gateway CIDR",
@@ -40,5 +41,7 @@
   "nutanix_redeploy_erasure_coding": "Fonction Erasure Coding",
   "nutanix_redeploy_aos": "AOS Version",
   "nutanix_redeploy_node_ahv_ip": "AHV IP",
-  "nutanix_redeploy_node_cvm_ip": "CVM IP"
+  "nutanix_redeploy_node_cvm_ip": "CVM IP",
+  "nutanix_redeploy_vlan_id": "VLAN ID",
+  "nutanix_redeploy_vlan_id_description": "Désignez le VLAN ID utilisé pour le déploiement du cluster."
 }
