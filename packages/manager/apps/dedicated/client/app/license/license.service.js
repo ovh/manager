@@ -62,6 +62,103 @@ export default /* @ngInject */ function LicenseService(
     }).then((data) => data.options);
   };
 
+  this.getActualUpgradeVersion = (serviceId) => {
+    return OvhHttp.get(`/services/{serviceId}`, {
+      rootPath: 'apiv6',
+      urlParams: {
+        serviceId,
+      },
+    });
+  };
+
+  this.getAllUpgradeVersion = (serviceId) => {
+    return OvhHttp.get(`/services/{serviceId}/upgrade`, {
+      rootPath: 'apiv6',
+      urlParams: {
+        serviceId,
+      },
+    });
+  };
+
+  this.getUpgradeVersion = (serviceId) => {
+    return $q
+      .all({
+        actualUpgradeVersion: this.getActualUpgradeVersion(serviceId),
+        upgradableVersions: this.getAllUpgradeVersion(serviceId),
+      })
+      .then((result) => {
+        // Below filter is only for old licenses, new licenses dont need it.
+        switch (true) {
+          case result.actualUpgradeVersion.billing.plan.code.includes(
+            '-for-vps',
+          ):
+            return this.getFilteredUpgradeVersions(
+              result.upgradableVersions,
+              '-for-vps',
+              result.actualUpgradeVersion.billing.plan.code,
+            );
+          case result.actualUpgradeVersion.billing.plan.code.includes(
+            '-premier-metal',
+          ):
+            return this.getFilteredUpgradeVersions(
+              result.upgradableVersions,
+              '-premier-metal',
+              result.actualUpgradeVersion.billing.plan.code,
+            );
+          case result.actualUpgradeVersion.billing.plan.code.includes(
+            '-premier-cloud',
+          ):
+            return this.getFilteredUpgradeVersions(
+              result.upgradableVersions,
+              '-premier-cloud',
+              result.actualUpgradeVersion.billing.plan.code,
+            );
+          case result.actualUpgradeVersion.billing.plan.code.endsWith('-ca'):
+            return result.upgradableVersions.filter((version) => {
+              return version.planCode.endsWith('-ca');
+            });
+          default:
+            return result.upgradableVersions;
+        }
+      });
+  };
+
+  this.getFilteredUpgradeVersions = function getFilteredUpgradeVersions(
+    results,
+    expression,
+    planCode,
+  ) {
+    if (planCode?.endsWith('-ca')) {
+      return results.filter((version) => {
+        return version.planCode.endsWith(`${expression}-ca`);
+      });
+    }
+    return results.filter((version) => {
+      return version.planCode.includes(expression);
+    });
+  };
+
+  this.simulateLicenseUpgrade = function simulateLicenseUpgrade(data) {
+    const payload = this.getServiceUpgradeParams();
+    return OvhHttp.post('/services/{serviceName}/upgrade/{planCode}/simulate', {
+      rootPath: 'apiv6',
+      urlParams: {
+        serviceName: data.serviceId,
+        planCode: data.options.version.planCode,
+      },
+      data: payload,
+    });
+  };
+
+  this.getServiceUpgradeParams = function getServiceUpgradeParams() {
+    return {
+      autoPayWithPreferredPaymentMethod: false,
+      duration: 'P1M',
+      pricingMode: 'default',
+      quantity: 1,
+    };
+  };
+
   this.migrate = function migrate(data) {
     switch (data.urlParams.type) {
       case 'CLOUDLINUX':
@@ -236,18 +333,17 @@ export default /* @ngInject */ function LicenseService(
   this.upgradeLicenseOrderForDuration = function upgradeLicenseOrderForDuration(
     data,
   ) {
-    const opts = getOptsForLicenseOrderOrUpgrade(data);
-    if (opts !== null) {
+    const payload = this.getServiceUpgradeParams();
+    if (data !== null) {
       return OvhHttp.post(
-        '/order/license/{type}/{serviceName}/upgrade/{duration}',
+        '/services/{serviceName}/upgrade/{planCode}/execute',
         {
           rootPath: 'apiv6',
           urlParams: {
-            type: getLicenseType(data.licenseType),
-            serviceName: data.id,
-            duration: data.duration,
+            serviceName: data.serviceId,
+            planCode: data.options.version.planCode,
           },
-          data: opts,
+          data: payload,
         },
       );
     }
@@ -271,11 +367,11 @@ export default /* @ngInject */ function LicenseService(
   this.upgradeDuration = function upgradeDuration(data) {
     const opts = getOptsForLicenseOrderOrUpgrade(data);
     if (opts !== null) {
-      return OvhHttp.get('/order/license/{type}/{serviceName}/upgrade', {
+      return OvhHttp.get('/services/{serviceName}/upgrade/{planCode}', {
         rootPath: 'apiv6',
         urlParams: {
-          type: getLicenseType(data.licenseType),
-          serviceName: data.id,
+          serviceName: data.serviceId,
+          planCode: data.options.version.planCode,
         },
         params: opts,
       });
@@ -370,6 +466,16 @@ export default /* @ngInject */ function LicenseService(
           forced: license.renew.forced,
           deleteAtExpiration: !license.renew.deleteAtExpiration,
         },
+      },
+    });
+  };
+
+  this.getServiceId = function getServiceId(license) {
+    return OvhHttp.get('/license/{type}/{serviceName}/serviceInfos', {
+      rootPath: 'apiv6',
+      urlParams: {
+        type: getLicenseType(license.type),
+        serviceName: license.id,
       },
     });
   };

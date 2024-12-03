@@ -702,6 +702,20 @@ export default class IpListController {
       $rootScope.$broadcast('ips.table.reload');
     };
 
+    $scope.calculateDropdownPosition = function calculateDropdownPosition(
+      event,
+    ) {
+      const listContainer = document.getElementById(
+        'ip-components-list-container',
+      );
+      const listY = listContainer.getBoundingClientRect().top;
+      const listX = listContainer.getBoundingClientRect().left;
+      $scope.dropDownMenuStyle = {
+        left: event.target.getBoundingClientRect().x - listX,
+        top: event.target.getBoundingClientRect().top - listY,
+      };
+    };
+
     refreshTable();
   }
 }

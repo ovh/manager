@@ -546,6 +546,18 @@ export default class VrackMoveDialogCtrl {
               this.updateLegacyVrackServiceInfo();
             }
             break;
+          case TYPE_SERVICE.ovhCloudConnect:
+            // Update ovhcloudconnect
+            if (
+              !this.data.eligibleServices?.ovhCloudConnect?.length !==
+              services.ovhCloudConnect.length
+            ) {
+              this.data.eligibleServices.ovhCloudConnect =
+                services.ovhCloudConnect;
+              // Update ovhcloudconnect
+              this.updateOvhCloudConnect();
+            }
+            break;
           default:
             this.updateExcludedServices();
             break;
@@ -565,12 +577,28 @@ export default class VrackMoveDialogCtrl {
   }
 
   updateExcludedServices() {
-    if (this.data.eligibleServices?.ovhCloudConnect?.length > 0) {
-      this.data.eligibleServices.ovhCloudConnect = [];
-    }
     if (this.data.eligibleServices?.vrackServices?.length > 0) {
       this.data.eligibleServices.vrackServices = [];
     }
+  }
+
+  updateOvhCloudConnect() {
+    return this.$q
+      .all(
+        this.data.eligibleServices.ovhCloudConnect.map((serviceId) => {
+          return this.vrackService
+            .getOvhCloudConnectServer(serviceId)
+            .then(({ data }) => {
+              const occ = VrackMoveDialogCtrl.getOvhCloudConnectServerNiceName(
+                data,
+              );
+              return occ;
+            });
+        }),
+      )
+      .then((ovhCloudConnect) => {
+        this.data.eligibleServices.ovhCloudConnect = ovhCloudConnect;
+      });
   }
 
   getEligibleServices() {
@@ -624,6 +652,11 @@ export default class VrackMoveDialogCtrl {
                 case TYPE_SERVICE.ipLoadbalancing:
                   if (this.data.eligibleServices?.ipLoadbalancing?.length > 0) {
                     this.updateIpLoadbalancingServiceInfo();
+                  }
+                  break;
+                case TYPE_SERVICE.ovhCloudConnect:
+                  if (this.data.eligibleServices?.ovhCloudConnect?.length > 0) {
+                    this.updateOvhCloudConnect();
                   }
                   break;
                 default:
@@ -1177,6 +1210,12 @@ export default class VrackMoveDialogCtrl {
                   },
                 ).$promise;
               break;
+            case 'ovhCloudConnect':
+              task = this.vrackService.associateOvhCloudConnectToVrack(
+                this.serviceName,
+                service.id,
+              );
+              break;
             default:
               break;
           }
@@ -1318,6 +1357,12 @@ export default class VrackMoveDialogCtrl {
                   ipLoadbalancing: service.id,
                 }).$promise;
               break;
+            case 'ovhCloudConnect':
+              task = this.vrackService.dissociateOvhCloudConnectFromVrack(
+                this.serviceName,
+                service.id,
+              );
+              break;
             default:
               break;
           }
@@ -1405,6 +1450,16 @@ export default class VrackMoveDialogCtrl {
       formattedService.niceName = service.name;
     }
     formattedService.trueServiceType = 'dedicatedServer';
+    return formattedService;
+  }
+
+  static getOvhCloudConnectServerNiceName(service) {
+    const formattedService = {
+      ...service,
+      id: service.uuid,
+      niceName: service.uuid,
+      trueServiceType: 'ovhCloudConnect',
+    };
     return formattedService;
   }
 
@@ -1501,6 +1556,13 @@ export default class VrackMoveDialogCtrl {
           id: service,
           niceName: service,
           trueServiceType: 'ip',
+        };
+        break;
+      case 'ovhCloudConnect':
+        formattedService = {
+          id: service,
+          niceName: service,
+          trueServiceType: 'ovhCloudConnect',
         };
         break;
       case 'cloudProject':

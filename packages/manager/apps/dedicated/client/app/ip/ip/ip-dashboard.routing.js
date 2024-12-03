@@ -26,6 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     atInternet: {
       rename: `${TRACKING_PREFIX}::${DASHBOARD_TRACKING_PREFIX.DEFAULT}`,
+      level2: 57,
     },
   });
 };

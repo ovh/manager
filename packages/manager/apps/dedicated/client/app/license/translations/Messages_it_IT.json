@@ -517,7 +517,7 @@
   "license_dashboard_table_popover_details": "Dettagli",
   "license_dashboard_table_popover_move": "Trasferisci",
   "license_dashboard_table_popover_revoke": "Rimuovi",
-  "license_dashboard_table_popover_upgrade": "Upgrade",
+  "license_dashboard_table_popover_upgrade": "Aggiornare",
   "license_dashboard_table_popover_delete": "Elimina",
   "license_details_back": "Ritorna alla gestione delle licenze",
   "license_details_title_ip": "IP",
@@ -1417,5 +1417,10 @@
   "license_designation_SQLSERVER_version_sql-server-2022-license-web-edition-62-cores": "SQL Server 2022 license - Web edition - 62 core",
   "license_designation_SQLSERVER_version_sql-server-2022-license-web-edition-64-cores": "SQL Server 2022 license - Web edition - 64 core",
   "license_designation_SQLSERVER_version_sql-server-2022-license-web-edition-8-cores": "SQL Server 2022 license - Web edition - 8 core",
-  "license_designation_SQLSERVER_version_sql-server-2022-license-web-edition-96-cores": "SQL Server 2022 license - Web edition - 96 core"
+  "license_designation_SQLSERVER_version_sql-server-2022-license-web-edition-96-cores": "SQL Server 2022 license - Web edition - 96 core",
+  "license_designation_CPANEL_version_version-pro-cloud": "Licenza cPanel Pro Cloud",
+  "license_designation_CPANEL_version_version-solo-cloud": "Licenza cPanel Solo Cloud",
+  "license_designation_CPANEL_version_version-admin-cloud": "Licenza cPanel Admin Cloud",
+  "license_designation_CPANEL_version_version-plus-cloud": "Licenza cPanel Plus Cloud",
+  "license_order_step4_pay_upgrade_amount": "Da pagare: {{ price }}"
 }

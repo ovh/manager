@@ -5,11 +5,13 @@
   "netapp_volumes_snapshots_actions_create": "Créer un snapshot",
   "netapp_volumes_snapshots_actions_create_label": "Snapshot: Créer un snapshot",
   "netapp_volumes_snapshots_actions_edit": "Éditer",
+  "netapp_volumes_snapshots_actions_hold": "Sauvegarder",
   "netapp_volumes_snapshots_actions_delete": "Supprimer",
   "netapp_volumes_snapshots_id": "ID",
   "netapp_volumes_snapshots_name": "Nom",
   "netapp_volumes_snapshots_description": "Description",
   "netapp_volumes_snapshots_created_at": "Date de création",
+  "netapp_volumes_snapshots_created_at_helper": "Les dates sont spécifiées au format UTC",
   "netapp_volumes_snapshots_type": "Type",
   "netapp_volumes_snapshots_type_manual": "Manuelle",
   "netapp_volumes_snapshots_type_automatic": "Automatique",
@@ -29,5 +31,8 @@
   "netapp_volumes_snapshots_policies_description": "Vous pouvez appliquer une règle de snapshot à votre volume.",
   "netapp_volumes_snapshots_policies_apply": "Appliquer la policy",
   "netapp_volumes_snapshots_policies_apply_success": "La règle a été appliquée avec succès.",
-  "netapp_volumes_snapshots_policies_apply_error": "La règle n'a pas pu être appliquée. Merci d'essayer ultérieurement."
+  "netapp_volumes_snapshots_policies_apply_error": "La règle n'a pas pu être appliquée. Merci d'essayer ultérieurement.",
+  "netapp_volumes_snapshots_hold_action_doing": "La sauvegarde de votre snapshot a bien été prise en compte et sera effective dans quelques instants.",
+  "netapp_volumes_snapshots_hold_action_success": "La sauvegarde de votre snapshot a été réalisé avec succès.",
+  "netapp_volumes_snapshots_hold_action_error": "Un problème est survenu lors de la sauvegarde de votre Snapshot"
 }

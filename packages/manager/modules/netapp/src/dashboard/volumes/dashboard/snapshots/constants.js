@@ -18,8 +18,17 @@ export const STATUS = {
   PENDING: ['creating', 'deleting', 'restoring'],
 };
 
+export const SNAPSHOT_STATUS = {
+  AVAILABLE: 'available',
+  MANAGE_ERROR: 'manage_error',
+};
+
+export const FETCH_INTERVAL = 1000;
+
 export default {
   MAXIMUM_SNAPSHOT_ALLOWED,
   SNAPSHOT_TYPE,
   STATUS,
+  SNAPSHOT_STATUS,
+  FETCH_INTERVAL,
 };
