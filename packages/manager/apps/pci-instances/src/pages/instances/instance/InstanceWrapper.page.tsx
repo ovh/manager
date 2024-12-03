@@ -1,6 +1,7 @@
 import { FC, PropsWithChildren, useMemo } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { validate } from 'uuid';
+import NotFound from '@/pages/404/NotFound.page';
 
 const InstanceWrapper: FC<PropsWithChildren> = ({ children }) => {
   const { instanceId } = useParams();
@@ -9,7 +10,7 @@ const InstanceWrapper: FC<PropsWithChildren> = ({ children }) => {
     [instanceId],
   );
 
-  if (!instanceId || !isValidUUID) return <Navigate to=".." />;
+  if (!instanceId || !isValidUUID) return <NotFound />;
 
   return children;
 };
