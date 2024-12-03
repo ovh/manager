@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.2.7...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.0) (2024-12-03)
+
+
+### Features
+
+* vcd veeam GA ([#14048](https://github.com/ovh/manager/issues/14048)) ([8bc7cdb](https://github.com/ovh/manager/commit/8bc7cdbc0343aeff345f44c019cd4cddb125a73c))
+* **vcd:** revert vdc usage tile for ga ([28bc1e1](https://github.com/ovh/manager/commit/28bc1e1f729559b3b7d2ee65bbb0b810ad4c5202))
+
+
+
+
+
 ## [0.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.2.6...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.2.7) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
