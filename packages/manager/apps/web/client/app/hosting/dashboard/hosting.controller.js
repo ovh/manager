@@ -41,7 +41,6 @@ export default class {
     emailOptionIds,
     emailOptionDetachInformation,
     envvarsLink,
-    freedomLink,
     ftpLink,
     isEmailDomainAvailable,
     isLocalSeoAvailable,
@@ -53,7 +52,6 @@ export default class {
     WucUser,
     HostingDatabase,
     HostingDomain,
-    HostingFreedom,
     HostingIndy,
     HostingOvhConfig,
     HostingTask,
@@ -112,7 +110,6 @@ export default class {
     this.emailOptionIds = emailOptionIds;
     this.emailOptionDetachInformation = emailOptionDetachInformation;
     this.envvarsLink = envvarsLink;
-    this.freedomLink = freedomLink;
     this.ftpLink = ftpLink;
     this.isEmailDomainAvailable = isEmailDomainAvailable;
     this.isLocalSeoAvailable = isLocalSeoAvailable;
@@ -123,7 +120,6 @@ export default class {
     this.WucUser = WucUser;
     this.HostingDatabase = HostingDatabase;
     this.HostingDomain = HostingDomain;
-    this.HostingFreedom = HostingFreedom;
     this.HostingIndy = HostingIndy;
     this.HostingOvhConfig = HostingOvhConfig;
     this.HostingTask = HostingTask;
@@ -441,17 +437,12 @@ export default class {
           : this.$q.all({
               email: this.getAssociatedEmail(),
               indys: this.HostingIndy.getIndys(this.$stateParams.productId),
-              freedoms: this.HostingFreedom.getFreedoms(
-                this.$stateParams.productId,
-                { forceRefresh: false },
-              ),
               hosting,
             }),
       )
-      .then(({ indys, freedoms, hosting }) => {
+      .then(({ indys, hosting }) => {
         this.hosting = hosting;
         this.indys = indys;
-        this.freedoms = freedoms;
       });
   }
 
