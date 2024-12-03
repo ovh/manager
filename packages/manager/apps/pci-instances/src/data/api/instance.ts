@@ -4,6 +4,17 @@ import {
   TRetrieveInstancesQueryParams,
 } from '@/types/instance/api.types';
 
+type TInstanceAction = 'delete' | 'stop' | 'start' | 'shelve' | 'unshelve';
+
+const instanceActionUrl = (
+  projectId: string,
+  instanceId: string,
+  action: TInstanceAction,
+): string => {
+  const basePathname = `/cloud/project/${projectId}/instance/${instanceId}`;
+  return action === 'delete' ? basePathname : `${basePathname}/${action}`;
+};
+
 export const getInstances = (
   projectId: string,
   {
@@ -32,16 +43,25 @@ export const deleteInstance = (
   projectId: string,
   instanceId: string,
 ): Promise<null> =>
-  v6.delete(`/cloud/project/${projectId}/instance/${instanceId}`);
+  v6.delete(instanceActionUrl(projectId, instanceId, 'delete'));
 
 export const stopInstance = (
   projectId: string,
   instanceId: string,
-): Promise<null> =>
-  v6.post(`/cloud/project/${projectId}/instance/${instanceId}/stop`);
+): Promise<null> => v6.post(instanceActionUrl(projectId, instanceId, 'stop'));
 
 export const startInstance = (
   projectId: string,
   instanceId: string,
+): Promise<null> => v6.post(instanceActionUrl(projectId, instanceId, 'start'));
+
+export const shelveInstance = (
+  projectId: string,
+  instanceId: string,
+): Promise<null> => v6.post(instanceActionUrl(projectId, instanceId, 'shelve'));
+
+export const unshelveInstance = (
+  projectId: string,
+  instanceId: string,
 ): Promise<null> =>
-  v6.post(`/cloud/project/${projectId}/instance/${instanceId}/start`);
+  v6.post(instanceActionUrl(projectId, instanceId, 'unshelve'));

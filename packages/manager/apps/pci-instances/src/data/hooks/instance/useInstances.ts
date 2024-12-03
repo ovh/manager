@@ -81,7 +81,7 @@ export const updateDeletedInstanceStatus = (
 
 export const getInstanceNameById = (
   projectId: string,
-  id: string | null,
+  id: string | undefined,
   queryClient: QueryClient,
 ): string | undefined => {
   if (!id) return undefined;
