@@ -43,7 +43,6 @@ angular
         databases: false,
         domains: false,
       };
-
       $scope.rootPathPrefix = './';
       $scope.defaultInstallationPath =
         constants.HOSTING.MODULES.DEFAULT_INSTALL_PATH;
@@ -150,6 +149,26 @@ angular
           $scope.portValid = true;
         }
       });
+
+      $scope.loadDatabasesCapabilities = () => {
+        $scope.loading.databases = true;
+        HostingModule.getDatabasesCapabilities($stateParams.productId)
+          .then((capabilities) => {
+            $scope.model.capabilities = capabilities;
+          })
+          .catch((err) => {
+            Alerter.alertFromSWS(
+              $translate.instant(
+                'hosting_tab_DATABASES_configuration_create_step1_loading_error',
+              ),
+              get(err, 'data', err),
+              $scope.alerts.main,
+            );
+          })
+          .finally(() => {
+            $scope.loading.databases = false;
+          });
+      };
 
       $scope.loadDatabases = () => {
         $scope.loading.databases = true;

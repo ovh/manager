@@ -21,6 +21,8 @@ describe('add auto reply page', () => {
     );
   });
 
+  // could not migrate these tests due to the behavior of the radio elements
+  // and the test library
   it.skip('should have a correct form validation without accountId', async () => {
     const { getByTestId, queryByTestId } = render(<AddAutoReply />);
 
@@ -31,46 +33,49 @@ describe('add auto reply page', () => {
     const button = getByTestId('confirm-btn');
     const inputAccount = getByTestId('input-account');
     const selectDomain = getByTestId('select-domain');
-    const radioDuration = getByTestId('radio-group-duration');
+    const radioPermanent = getByTestId(AutoReplyDurations.PERMANENT);
     const inputFrom = getByTestId('from');
     const inputUntil = getByTestId('until');
     const message = getByTestId('message');
-    const sendCopy = getByTestId('sendcopy');
+    const sendCopy = getByTestId('sendCopy');
 
-    expect(button).toBeDisabled();
+    expect(button).toHaveAttribute('is-disabled', 'true');
     expect(queryByTestId('create-for-account')).toBeNull();
     expect(queryByTestId('select-send-copy-to')).toBeNull();
 
-    await act(() => {
+    act(() => {
       fireEvent.change(inputAccount, { target: { value: 'test' } });
       fireEvent.change(selectDomain, { target: { value: 'test.fr' } });
-      radioDuration.odsValueChange.emit({
-        detail: {
-          newValue: AutoReplyDurations.PERMANENT,
-        },
+      // doesnt work
+      radioPermanent.odsChange.emit({
+        detail: { value: AutoReplyDurations.PERMANENT },
       });
+      // doesnt work
+      fireEvent.click(radioPermanent);
       fireEvent.change(message, { target: { value: 'message' } });
     });
 
     expect(inputFrom).not.toBeInTheDocument();
     expect(inputUntil).not.toBeInTheDocument();
-    expect(button).toBeEnabled();
+    expect(button).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.click(sendCopy);
     });
 
     const selectSendCopyTo = getByTestId('select-send-copy-to');
 
-    expect(button).toBeDisabled();
+    expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(selectSendCopyTo, { target: { value: 'test@test.fr' } });
     });
 
-    expect(button).toBeEnabled();
+    expect(button).toHaveAttribute('is-disabled', 'false');
   });
 
+  // could not migrate these tests due to the behavior of the radio elements
+  // and the test library
   it.skip('should have a correct form validation with accountId', async () => {
     vi.mocked(useSearchParams).mockReturnValue([
       new URLSearchParams({
@@ -86,41 +91,37 @@ describe('add auto reply page', () => {
     });
 
     const button = getByTestId('confirm-btn');
-    const radioDuration = getByTestId('radio-group-duration');
+    const radioPermanent = getByTestId(AutoReplyDurations.PERMANENT);
     const message = getByTestId('message');
-    const sendCopy = getByTestId('sendcopy');
+    const sendCopy = getByTestId('sendCopy');
     const header = getByTestId('create-for-account');
 
-    expect(button).toBeDisabled();
+    expect(button).toHaveAttribute('is-disabled', 'true');
     expect(queryByTestId('select-send-copy-to')).toBeNull();
     expect(queryByTestId('input-account')).toBeNull();
     expect(queryByTestId('select-domain')).toBeNull();
 
     expect(header).toHaveTextContent(accountDetailMock.currentState.email);
 
-    await act(() => {
-      radioDuration.odsValueChange.emit({
-        detail: {
-          newValue: AutoReplyDurations.PERMANENT,
-        },
-      });
+    act(() => {
+      fireEvent.click(radioPermanent);
       fireEvent.change(message, { target: { value: 'message' } });
     });
 
-    expect(button).toBeEnabled();
+    expect(button).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.click(sendCopy);
     });
 
     const selectSendCopyTo = getByTestId('select-send-copy-to');
 
-    expect(button).toBeDisabled();
+    expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(selectSendCopyTo, { target: { value: 'test@test.fr' } });
     });
 
-    expect(button).toBeEnabled();
+    expect(button).toHaveAttribute('is-disabled', 'false');
   });
 });

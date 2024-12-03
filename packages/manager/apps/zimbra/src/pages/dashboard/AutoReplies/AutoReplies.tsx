@@ -2,23 +2,26 @@ import {
   Datagrid,
   DatagridColumn,
   ManagerButton,
-  Notifications,
   Subtitle,
 } from '@ovh-ux/manager-react-components';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
 import {
+  Outlet,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
+import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import ActionButtonAutoReply from './ActionButtonAutoReply.component';
 import { ResourceStatus } from '@/api/api.type';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { BadgeStatus } from '@/components/BadgeStatus';
 
 export type AutoRepliesItem = {
   id: string;
@@ -69,7 +72,12 @@ const columns: DatagridColumn<AutoRepliesItem>[] = [
     label: 'zimbra_auto_replies_copyTo',
   },
   {
-    id: 'deleteButton',
+    id: 'status',
+    cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
+    label: 'zimbra_auto_replies_status',
+  },
+  {
+    id: 'actions',
     cell: (item) => <ActionButtonAutoReply autoReplyItem={item} />,
     label: '',
   },
@@ -78,10 +86,12 @@ const columns: DatagridColumn<AutoRepliesItem>[] = [
 export function AutoReplies() {
   const { t } = useTranslation('autoReplies');
   const { platformUrn } = usePlatform();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const params = Object.fromEntries(searchParams.entries());
   const editEmailAccountId = searchParams.get('editEmailAccountId');
   const hrefAddAutoReply = useGenerateUrl('./add', 'href', params);
+  const handleAddClick = () => navigate(hrefAddAutoReply);
   const location = useLocation();
 
   const shouldHide = useMemo(() => location?.pathname?.endsWith('add'), [
@@ -89,8 +99,7 @@ export function AutoReplies() {
   ]);
 
   return (
-    <div data-testid="autoreplies" className="py-6 mt-8">
-      {!editEmailAccountId && <Notifications />}
+    <div data-testid="autoreplies" className="py-6">
       <Outlet />
       {platformUrn && !shouldHide && (
         <>
@@ -100,25 +109,17 @@ export function AutoReplies() {
             </div>
           )}
           <ManagerButton
-            color={ODS_THEME_COLOR_INTENT.primary}
-            inline
+            id="add-auto-reply-btn"
+            data-testid="add-auto-reply-btn"
+            color={ODS_BUTTON_COLOR.primary}
             size={ODS_BUTTON_SIZE.sm}
-            href={hrefAddAutoReply}
+            onClick={handleAddClick}
             urn={platformUrn}
             iamActions={[IAM_ACTIONS.autoReply.create]}
-            data-testid="add-auto-reply-btn"
+            icon={ODS_ICON_NAME.plus}
+            label={t('zimbra_auto_replies_add_cta')}
             className="mb-6"
-          >
-            <span slot="start">
-              <OsdsIcon
-                name={ODS_ICON_NAME.PLUS}
-                size={ODS_ICON_SIZE.sm}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                contrasted
-              ></OsdsIcon>
-            </span>
-            <span slot="end">{t('zimbra_auto_replies_add_cta')}</span>
-          </ManagerButton>
+          ></ManagerButton>
           <Datagrid
             columns={columns.map((column) => ({
               ...column,

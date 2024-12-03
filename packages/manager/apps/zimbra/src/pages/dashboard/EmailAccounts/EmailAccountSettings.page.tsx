@@ -3,28 +3,21 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
-  OsdsButton,
-  OsdsFormField,
-  OsdsInput,
-  OsdsMessage,
-  OsdsPassword,
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsText,
-  OsdsTextarea,
+  OdsButton,
+  OdsFormField,
+  OdsInput,
+  OdsMessage,
+  OdsPassword,
+  OdsSelect,
+  OdsText,
+  OdsTextarea,
 } from '@ovhcloud/ods-components/react';
 import {
-  ODS_THEME_COLOR_HUE,
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
-  ODS_INPUT_SIZE,
   ODS_INPUT_TYPE,
-  ODS_MESSAGE_TYPE,
-  ODS_TEXTAREA_SIZE,
+  ODS_MESSAGE_COLOR,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
@@ -73,6 +66,7 @@ export default function EmailAccountSettings({
     ...{
       account: {
         value: '',
+        defaultValue: '',
         touched: false,
         hasError: false,
         required: true,
@@ -80,23 +74,35 @@ export default function EmailAccountSettings({
       },
       domain: {
         value: '',
+        defaultValue: '',
         touched: false,
+        hasError: false,
         required: true,
       },
       lastName: {
         value: '',
+        defaultValue: '',
         touched: false,
+        hasError: false,
+        required: false,
       },
       firstName: {
         value: '',
+        defaultValue: '',
         touched: false,
+        hasError: false,
+        required: false,
       },
       displayName: {
         value: '',
+        defaultValue: '',
         touched: false,
+        hasError: false,
+        required: false,
       },
       password: {
         value: '',
+        defaultValue: '',
         touched: false,
         hasError: false,
         required: !editEmailAccountId,
@@ -106,7 +112,10 @@ export default function EmailAccountSettings({
     ...(editEmailAccountId && {
       description: {
         value: '',
+        defaultValue: '',
         touched: false,
+        hasError: false,
+        required: false,
       },
     }),
   });
@@ -160,29 +169,19 @@ export default function EmailAccountSettings({
     },
     onSuccess: () => {
       addSuccess(
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
             editEmailAccountId
               ? 'zimbra_account_edit_success_message'
               : 'zimbra_account_add_success_message',
           )}
-        </OsdsText>,
+        </OdsText>,
         true,
       );
     },
     onError: (error: ApiError) => {
       addError(
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
             editEmailAccountId
               ? 'zimbra_account_edit_error_message'
@@ -191,7 +190,7 @@ export default function EmailAccountSettings({
               error: error?.response?.data?.message,
             },
           )}
-        </OsdsText>,
+        </OdsText>,
         true,
       );
     },
@@ -228,308 +227,231 @@ export default function EmailAccountSettings({
 
   return (
     <div className="w-full md:w-3/4 space-y-5">
-      <OsdsText
-        className="mt-5"
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-      >
+      <OdsText preset={ODS_TEXT_PRESET.caption} className="block">
         {t('zimbra_account_add_input_mandatory')}
-      </OsdsText>
-
-      <OsdsFormField>
-        <div slot="label">
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          >
-            {t('zimbra_account_add_input_email_label')} *
-          </OsdsText>
-        </div>
+      </OdsText>
+      <OdsFormField className="w-full">
+        <label slot="label">
+          {t('zimbra_account_add_input_email_label')} *
+        </label>
         <div className="flex">
-          <OsdsInput
+          <OdsInput
             type={ODS_INPUT_TYPE.text}
             name="account"
             placeholder={t('zimbra_account_add_input_email_placeholder')}
-            color={
-              form.account.hasError
-                ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.default
-            }
-            size={ODS_INPUT_SIZE.md}
+            hasError={form.account.hasError}
             value={form.account.value}
-            onOdsInputBlur={({ target: { name, value } }) =>
+            defaultValue={form.account.defaultValue}
+            isRequired={form.account.required}
+            onOdsBlur={({ target: { name, value } }) =>
               handleFormChange(name, value.toString())
             }
-            onOdsValueChange={({ detail: { name, value } }) => {
-              handleFormChange(name, value);
+            onOdsChange={({ detail: { name, value } }) => {
+              handleFormChange(name, String(value));
             }}
-            required
-            className="rounded-r-none w-1/2"
+            className="w-1/2"
             data-testid="input-account"
-          ></OsdsInput>
-          <OsdsInput
+          ></OdsInput>
+          <OdsInput
             type={ODS_INPUT_TYPE.text}
-            color={ODS_THEME_COLOR_INTENT.default}
-            size={ODS_INPUT_SIZE.md}
+            name={'@'}
             value={'@'}
-            readOnly={true}
-            disabled={true}
-            className="w-10 rounded-none"
-          ></OsdsInput>
-          <OsdsSelect
+            defaultValue={'@'}
+            isReadonly
+            isDisabled
+            className="input-at w-10"
+          ></OdsInput>
+          <OdsSelect
             name="domain"
             value={form.domain.value}
-            className="rounded-l-none w-1/2"
-            color={
-              form.domain.hasError
-                ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.default
-            }
-            required
-            onOdsValueChange={(e) =>
-              handleDomainChange(e.detail.value as string)
-            }
+            isRequired={form.domain.required}
+            hasError={form.domain.hasError}
+            className="w-1/2"
+            placeholder={t('zimbra_account_add_select_domain_placeholder')}
+            onOdsChange={(e) => handleDomainChange(e.detail.value)}
             data-testid="select-domain"
           >
-            <span slot="placeholder">
-              {t('zimbra_account_add_select_domain_placeholder')}
-            </span>
             {domainList?.map(({ currentState: domain }) => (
-              <OsdsSelectOption key={domain.name} value={domain.name}>
+              <option key={domain.name} value={domain.name}>
                 {domain.name}
-              </OsdsSelectOption>
+              </option>
             ))}
-          </OsdsSelect>
+          </OdsSelect>
         </div>
-        <div slot="helper">
-          <OsdsText
-            color={
-              form.account.hasError
-                ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.default
-            }
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            className="flex flex-col"
-          >
-            <span>{t('zimbra_account_add_input_email_helper')}</span>
-            {[1, 2, 3].map((elm) => (
-              <span key={elm}>
-                - {t(`zimbra_account_add_input_email_helper_rule_${elm}`)}
-              </span>
-            ))}
-          </OsdsText>
-        </div>
-      </OsdsFormField>
-      {selectedDomainOrganization && (
-        <OsdsMessage
-          color={ODS_THEME_COLOR_INTENT.primary}
-          type={ODS_MESSAGE_TYPE.info}
+        <OdsText
+          slot="helper"
+          preset={ODS_TEXT_PRESET.caption}
+          className="flex flex-col"
         >
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          >
+          <span className="block">
+            {t('zimbra_account_add_input_email_helper')}
+          </span>
+          {[1, 2, 3].map((elm) => (
+            <span key={elm} className="block">
+              - {t(`zimbra_account_add_input_email_helper_rule_${elm}`)}
+            </span>
+          ))}
+        </OdsText>
+      </OdsFormField>
+      {selectedDomainOrganization && (
+        <OdsMessage isDismissible={false} color={ODS_MESSAGE_COLOR.information}>
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             {t('zimbra_account_add_message_organization', {
               organizationLabel: selectedDomainOrganization,
             })}
-          </OsdsText>
-        </OsdsMessage>
+          </OdsText>
+        </OdsMessage>
       )}
       <div className="flex">
-        <OsdsFormField className="w-full md:w-1/2 pr-6">
-          <div slot="label">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            >
-              {t('zimbra_account_add_input_lastName_label')}
-            </OsdsText>
-          </div>
-          <OsdsInput
+        <OdsFormField className="w-full md:w-1/2 pr-6">
+          <label slot="label">
+            {t('zimbra_account_add_input_lastName_label')}
+          </label>
+          <OdsInput
             type={ODS_INPUT_TYPE.text}
             name="lastName"
             placeholder={t('zimbra_account_add_input_lastName_placeholder')}
-            color={ODS_THEME_COLOR_INTENT.default}
-            size={ODS_INPUT_SIZE.md}
             value={form.lastName.value}
-            onOdsInputBlur={({ target: { name, value } }) =>
+            defaultValue={form.lastName.defaultValue}
+            isRequired={form.lastName.required}
+            onOdsBlur={({ target: { name, value } }) =>
               handleFormChange(name, value.toString())
             }
-            onOdsValueChange={({ detail: { name, value } }) => {
-              handleFormChange(name, value);
+            onOdsChange={({ detail: { name, value } }) => {
+              handleFormChange(name, String(value));
             }}
-          ></OsdsInput>
-        </OsdsFormField>
+          ></OdsInput>
+        </OdsFormField>
 
-        <OsdsFormField className="w-full md:w-1/2 pl-6">
-          <div slot="label">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            >
-              {t('zimbra_account_add_input_firstName_label')}
-            </OsdsText>
-          </div>
-          <OsdsInput
+        <OdsFormField className="w-full md:w-1/2 pl-6">
+          <label slot="label">
+            {t('zimbra_account_add_input_firstName_label')}
+          </label>
+          <OdsInput
             type={ODS_INPUT_TYPE.text}
             name="firstName"
             placeholder={t('zimbra_account_add_input_firstName_placeholder')}
-            color={ODS_THEME_COLOR_INTENT.default}
-            size={ODS_INPUT_SIZE.md}
             value={form.firstName.value}
-            onOdsInputBlur={({ target: { name, value } }) =>
+            defaultValue={form.firstName.defaultValue}
+            isRequired={form.firstName.required}
+            onOdsBlur={({ target: { name, value } }) =>
               handleFormChange(name, value.toString())
             }
-            onOdsValueChange={({ detail: { name, value } }) => {
-              handleFormChange(name, value);
+            onOdsChange={({ detail: { name, value } }) => {
+              handleFormChange(name, String(value));
             }}
-          ></OsdsInput>
-        </OsdsFormField>
+          ></OdsInput>
+        </OdsFormField>
       </div>
 
       <div className={'flex w-full md:w-1/2'}>
-        <OsdsFormField className="w-full md:pr-6">
-          <div slot="label">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            >
-              {t('zimbra_account_add_input_displayName_label')}
-            </OsdsText>
-          </div>
-          <OsdsInput
+        <OdsFormField className="w-full md:pr-6">
+          <label slot="label">
+            {t('zimbra_account_add_input_displayName_label')}
+          </label>
+          <OdsInput
             type={ODS_INPUT_TYPE.text}
             name="displayName"
             placeholder={t('zimbra_account_add_input_displayName_placeholder')}
-            color={ODS_THEME_COLOR_INTENT.default}
-            size={ODS_INPUT_SIZE.md}
             value={form.displayName.value}
-            onOdsInputBlur={({ target: { name, value } }) =>
+            defaultValue={form.displayName.defaultValue}
+            isRequired={form.displayName.required}
+            onOdsBlur={({ target: { name, value } }) =>
               handleFormChange(name, value.toString())
             }
-            onOdsValueChange={({ detail: { name, value } }) => {
-              handleFormChange(name, value);
+            onOdsChange={({ detail: { name, value } }) => {
+              handleFormChange(name, String(value));
             }}
-          ></OsdsInput>
-        </OsdsFormField>
+          ></OdsInput>
+        </OdsFormField>
       </div>
 
       {editAccountDetail && (
         <div className="flex">
-          <OsdsFormField className="w-full">
-            <div slot="label">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                color={ODS_THEME_COLOR_INTENT.text}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-              >
-                {t('zimbra_account_add_input_description_label')}
-              </OsdsText>
-            </div>
-            <OsdsTextarea
-              color={ODS_THEME_COLOR_INTENT.default}
+          <OdsFormField className="w-full">
+            <label slot="label">
+              {t('zimbra_account_add_input_description_label')}
+            </label>
+            <OdsTextarea
               name="description"
               placeholder={t(
                 'zimbra_account_add_input_description_placeholder',
               )}
-              resizable
-              size={ODS_TEXTAREA_SIZE.md}
+              isResizable
               value={form.description.value}
+              defaultValue={form.description.defaultValue}
               onOdsBlur={({ target: { name, value } }) =>
                 handleFormChange(name, value.toString())
               }
-              onOdsValueChange={({ detail: { name, value } }) => {
+              onOdsChange={({ detail: { name, value } }) => {
                 handleFormChange(name, value);
               }}
-            ></OsdsTextarea>
-          </OsdsFormField>
+            ></OdsTextarea>
+          </OdsFormField>
         </div>
       )}
 
       <div className="flex w-full md:w-1/2">
-        <OsdsFormField className="w-full md:pr-6">
-          <div slot="label">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            >
-              {t('zimbra_account_add_input_password_label')}
-              {!editAccountDetail && ' *'}
-            </OsdsText>
-          </div>
-          <OsdsPassword
-            color={
-              form.password.hasError
-                ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.default
-            }
-            masked={true}
+        <OdsFormField className="w-full md:pr-6">
+          <label slot="label">
+            {t('zimbra_account_add_input_password_label')}
+            {!editAccountDetail && ' *'}
+          </label>
+          <OdsPassword
+            isMasked
             name="password"
-            size={ODS_INPUT_SIZE.md}
+            className="w-full"
             value={form.password.value}
+            defaultValue={form.password.defaultValue}
+            hasError={form.password.hasError}
             onOdsBlur={({ target: { name, value } }) =>
               handleFormChange(name, value.toString())
             }
-            onOdsValueChange={({ detail: { name, value } }) => {
-              handleFormChange(name, value);
+            onOdsChange={({ detail: { name, value } }) => {
+              handleFormChange(name, String(value));
             }}
             data-testid="input-password"
-          ></OsdsPassword>
-          <div slot="helper">
-            <OsdsText
-              color={
-                form.password.hasError
-                  ? ODS_THEME_COLOR_INTENT.error
-                  : ODS_THEME_COLOR_INTENT.default
-              }
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              className="flex flex-col"
-            >
-              <span>{t('zimbra_account_add_input_password_helper')}</span>
-              {[1, 2, 3].map((elm) => (
-                <span key={elm}>
-                  - {t(`zimbra_account_add_input_password_helper_rule_${elm}`)}
-                </span>
-              ))}
-            </OsdsText>
-          </div>
-        </OsdsFormField>
+          ></OdsPassword>
+          <OdsText
+            slot="helper"
+            preset={ODS_TEXT_PRESET.caption}
+            className="flex flex-col"
+          >
+            <span className="block">
+              {t('zimbra_account_add_input_password_helper')}
+            </span>
+            {[1, 2, 3].map((elm) => (
+              <span key={elm} className="block">
+                - {t(`zimbra_account_add_input_password_helper_rule_${elm}`)}
+              </span>
+            ))}
+          </OdsText>
+        </OdsFormField>
       </div>
 
       <div className="flex space-x-5">
-        <OsdsButton
+        <OdsButton
           slot="actions"
-          inline
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.flat}
-          {...(!isFormValid || isSending ? { disabled: true } : {})}
+          color={ODS_BUTTON_COLOR.primary}
+          isDisabled={!isFormValid}
+          isLoading={isSending}
           onClick={handleSaveClick}
           data-testid="confirm-btn"
-        >
-          {!editAccountDetail
-            ? t('zimbra_account_add_button_confirm')
-            : t('zimbra_account_add_button_save')}
-        </OsdsButton>
+          label={
+            !editAccountDetail
+              ? t('zimbra_account_add_button_confirm')
+              : t('zimbra_account_add_button_save')
+          }
+        />
 
         {editAccountDetail && (
-          <OsdsButton
+          <OdsButton
             slot="actions"
-            inline
             onClick={goBack}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            variant={ODS_BUTTON_VARIANT.stroked}
-          >
-            {t('zimbra_account_add_button_cancel')}
-          </OsdsButton>
+            color={ODS_BUTTON_COLOR.primary}
+            variant={ODS_BUTTON_VARIANT.outline}
+            label={t('zimbra_account_add_button_cancel')}
+          />
         )}
       </div>
     </div>

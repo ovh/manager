@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { Links, LinkType, Subtitle } from '@ovh-ux/manager-react-components';
+import {
+  IconLinkAlignmentType,
+  Links,
+  LinkType,
+  Subtitle,
+} from '@ovh-ux/manager-react-components';
+import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
 import {
   useDomains,
   useGenerateUrl,
@@ -21,9 +27,7 @@ export default function AddAndEditMailingList() {
   const [isLoading, setIsLoading] = useState(true);
   const goBackUrl = useGenerateUrl('..', 'path');
 
-  const goBack = () => {
-    return navigate(goBackUrl);
-  };
+  const goBack = () => navigate(goBackUrl);
 
   const {
     data: editMailingListDetail,
@@ -58,7 +62,9 @@ export default function AddAndEditMailingList() {
             <Links
               data-testid="back-btn"
               type={LinkType.back}
+              iconAlignment={IconLinkAlignmentType.left}
               onClickReturn={goBack}
+              color={ODS_LINK_COLOR.primary}
               label={t('zimbra_mailinglist_add_cta_back')}
             />
             <Subtitle>

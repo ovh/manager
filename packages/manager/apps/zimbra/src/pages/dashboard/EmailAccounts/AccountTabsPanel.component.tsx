@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import {
-  OsdsTabs,
-  OsdsTabBar,
-  OsdsTabBarItem,
-} from '@ovhcloud/ods-components/react';
+import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 
 export type TabItemProps = {
   name: string;
@@ -24,39 +20,45 @@ export const AccountTabsPanel: React.FC<TabsProps> = ({ tabs }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!location.pathname) {
-      setActivePanel(tabs[0].name);
-      navigate(tabs[0].to);
-    } else {
-      const activeTab = tabs.find(
-        (tab) =>
-          tab.to === location.pathname ||
-          tab.pathMatchers?.some((pathMatcher) =>
-            pathMatcher.test(location.pathname),
-          ),
-      );
-      if (activeTab) {
-        setActivePanel(activeTab.name);
+    if (tabs.length > 0) {
+      if (!location.pathname) {
+        setActivePanel(tabs[0].name);
+        navigate(tabs[0].to);
+      } else {
+        const activeTab = tabs.find(
+          (tab) =>
+            tab.to === location.pathname ||
+            tab.pathMatchers?.some((pathMatcher) =>
+              pathMatcher.test(location.pathname),
+            ),
+        );
+        if (activeTab) {
+          setActivePanel(activeTab.name);
+        }
       }
     }
-  }, [location.pathname]);
+  }, [location.pathname, tabs]);
 
   return (
-    <OsdsTabBar slot="top">
-      <OsdsTabs panel={activePanel}>
-        {tabs.map(
-          (tab: TabItemProps) =>
-            !tab.hidden && (
-              <NavLink
-                key={`osds-tab-bar-item-${tab.name}`}
-                to={tab.to}
-                className="no-underline"
+    <OdsTabs>
+      {tabs.map(
+        (tab: TabItemProps) =>
+          !tab.hidden && (
+            <NavLink
+              key={`osds-tab-bar-item-${tab.name}`}
+              to={tab.to}
+              className="no-underline"
+            >
+              <OdsTab
+                id={tab.name}
+                role="tab"
+                isSelected={activePanel === tab.name}
               >
-                <OsdsTabBarItem panel={tab.name}>{tab.title}</OsdsTabBarItem>
-              </NavLink>
-            ),
-        )}
-      </OsdsTabs>
-    </OsdsTabBar>
+                {tab.title}
+              </OdsTab>
+            </NavLink>
+          ),
+      )}
+    </OdsTabs>
   );
 };

@@ -13,16 +13,16 @@ import {
 } from '@/api/organization';
 
 describe('Organizations add and edit modal', () => {
-  it('if i have not editOrganizationId params', () => {
-    const { getByTestId } = render(<ModalAddAndEditOrganization />);
-    const modal = getByTestId('modal');
-    expect(modal).toHaveProperty(
-      'headline',
-      organizationsAddAndEditTranslation.zimbra_organization_add_modal_title,
-    );
+  it('if i have not editOrganizationId params', async () => {
+    const { findByText } = render(<ModalAddAndEditOrganization />);
+    expect(
+      await findByText(
+        organizationsAddAndEditTranslation.zimbra_organization_add_modal_title,
+      ),
+    ).toBeVisible();
   });
 
-  it('if i have editOrganizationId params', () => {
+  it('if i have editOrganizationId params', async () => {
     vi.mocked(useSearchParams).mockReturnValue([
       new URLSearchParams({
         editOrganizationId: organizationDetailMock.id,
@@ -30,12 +30,12 @@ describe('Organizations add and edit modal', () => {
       vi.fn(),
     ]);
 
-    const { getByTestId } = render(<ModalAddAndEditOrganization />);
-    const modal = getByTestId('modal');
-    expect(modal).toHaveProperty(
-      'headline',
-      organizationsAddAndEditTranslation.zimbra_organization_edit_modal_title,
-    );
+    const { findByText } = render(<ModalAddAndEditOrganization />);
+    expect(
+      await findByText(
+        organizationsAddAndEditTranslation.zimbra_organization_edit_modal_title,
+      ),
+    ).toBeVisible();
   });
 
   it('check validity form', async () => {
@@ -48,48 +48,38 @@ describe('Organizations add and edit modal', () => {
     });
 
     const button = getByTestId('confirm-btn');
-    const input1 = getByTestId('input-name');
-    const input2 = getByTestId('input-label');
+    const inputName = getByTestId('input-name');
+    const inputLabel = getByTestId('input-label');
 
-    expect(getByTestId('confirm-btn')).not.toBeEnabled();
+    expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
-      fireEvent.change(input1, { target: { value: '' } });
+    act(() => {
+      inputName.odsChange.emit({ name: 'name', value: '' });
+      inputLabel.odsChange.emit({ name: 'label', value: '' });
     });
 
-    expect(input1).toHaveAttribute('color', 'error');
-    expect(getByTestId('field-name')).toHaveAttribute(
-      'error',
-      organizationsAddAndEditTranslation.zimbra_organization_add_form_input_name_error,
-    );
+    expect(inputName).toHaveAttribute('has-error', 'true');
+    expect(inputLabel).toHaveAttribute('has-error', 'true');
 
-    await act(() => {
-      fireEvent.change(input1, { target: { value: 'Name' } });
-      fireEvent.change(input2, { target: { value: 'Label' } });
+    act(() => {
+      inputName.odsChange.emit({ name: 'name', value: 'Name' });
+      inputName.odsChange.emit({ name: 'label', value: 'Label' });
     });
 
-    expect(input1).toHaveAttribute('color', 'default');
-    expect(input2).toHaveAttribute('color', 'default');
-    expect(button).toBeEnabled();
+    expect(inputName).toHaveAttribute('has-error', 'false');
+    expect(inputLabel).toHaveAttribute('has-error', 'false');
+    expect(button).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
-      fireEvent.change(input1, { target: { value: 'Name' } });
-      fireEvent.change(input2, {
-        target: { value: 'NoValidLabelWithMore12Digit' },
+    act(() => {
+      inputName.odsChange.emit({
+        name: 'label',
+        value: 'NoValidLabelWithMore12Digit',
       });
     });
 
-    expect(input1).toHaveAttribute('color', 'default');
-    expect(input2).toHaveAttribute('color', 'error');
-    expect(getByTestId('field-label')).toHaveAttribute(
-      'error',
-      organizationsAddAndEditTranslation.zimbra_organization_add_form_input_label_error.replace(
-        '{{ value }}',
-        12,
-      ),
-    );
+    expect(inputLabel).toHaveAttribute('has-error', 'true');
 
-    expect(button).not.toBeEnabled();
+    expect(button).toHaveAttribute('is-disabled', 'true');
   });
 
   it('should add a new organization', async () => {
@@ -106,20 +96,20 @@ describe('Organizations add and edit modal', () => {
     });
 
     const button = getByTestId('confirm-btn');
-    const input1 = getByTestId('input-name');
-    const input2 = getByTestId('input-label');
+    const inputName = getByTestId('input-name');
+    const inputLabel = getByTestId('input-label');
 
-    expect(button).not.toBeEnabled();
+    expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
-      fireEvent.change(input1, { target: { value: 'Name' } });
-      fireEvent.change(input2, { target: { value: 'Label' } });
+    act(() => {
+      inputName.odsChange.emit({ name: 'name', value: 'Name' });
+      inputName.odsChange.emit({ name: 'label', value: 'Label' });
     });
 
-    expect(input1).toHaveAttribute('color', 'default');
-    expect(input2).toHaveAttribute('color', 'default');
+    expect(inputName).toHaveAttribute('has-error', 'false');
+    expect(inputLabel).toHaveAttribute('has-error', 'false');
 
-    expect(button).toBeEnabled();
+    expect(button).toHaveAttribute('is-disabled', 'false');
 
     await act(() => {
       fireEvent.click(button);
@@ -128,7 +118,7 @@ describe('Organizations add and edit modal', () => {
     expect(postZimbraPlatformOrganization).toHaveBeenCalledOnce();
   });
 
-  it('should add a new organization', async () => {
+  it('should edit an organization', async () => {
     vi.mocked(useSearchParams).mockReturnValue([
       new URLSearchParams({
         editOrganizationId: organizationDetailMock.id,
@@ -144,18 +134,18 @@ describe('Organizations add and edit modal', () => {
     });
 
     const button = getByTestId('confirm-btn');
-    const input1 = getByTestId('input-name');
-    const input2 = getByTestId('input-label');
+    const inputName = getByTestId('input-name');
+    const inputLabel = getByTestId('input-label');
 
-    await act(() => {
-      fireEvent.change(input1, { target: { value: 'Name' } });
-      fireEvent.change(input2, { target: { value: 'Label' } });
+    act(() => {
+      inputName.odsChange.emit({ name: 'name', value: 'Name' });
+      inputName.odsChange.emit({ name: 'label', value: 'Label' });
     });
 
-    expect(input1).toHaveAttribute('color', 'default');
-    expect(input2).toHaveAttribute('color', 'default');
+    expect(inputName).toHaveAttribute('has-error', 'false');
+    expect(inputLabel).toHaveAttribute('has-error', 'false');
 
-    expect(button).toBeEnabled();
+    expect(button).toHaveAttribute('is-disabled', 'false');
 
     await act(() => {
       fireEvent.click(button);

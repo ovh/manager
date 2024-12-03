@@ -1,13 +1,25 @@
 @tailwind utilities;
 
-.border-ods-primary-100 {
-  border-color: var(--ods-color-primary-100);
+@import '@ovhcloud/ods-themes/default';
+
+html {
+  font-family: var(--ods-font-family-default);
 }
 
-.background-ods-primary-100 {
-  background-color: var(--ods-color-primary-100);
+.input-at::part(input) {
+  text-align: center;
 }
 
-.background-ods-primary-000 {
-  background-color: var(--ods-color-primary-000);
+ods-button.action-menu-item::part(button) {
+  width: 100%;
+  justify-content: left;
+}
+
+ods-modal::part(dialog) {
+  max-height: 100vh;
+}
+
+// tag doesn't seems centered if line is bigger
+ods-tag.org-tag::part(tag) {
+  transform: translateY(-10%);
 }

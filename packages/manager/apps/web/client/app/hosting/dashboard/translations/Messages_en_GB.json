@@ -1400,5 +1400,7 @@
   "hosting_dashboard_service_common_inactive": "Disabled",
   "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "More"
+  "hosting_dashboard_tabs_dropdown": "More",
+  "hosting_configuration_tab_modules_create_step1_module_type_select_is_database_use": "All your databases are already in use. To install a 1-click module, you need an available database.",
+  "hosting_configuration_tab_modules_create_step1_module_type_select_is_database_use_order_link": "Order a database"
 }

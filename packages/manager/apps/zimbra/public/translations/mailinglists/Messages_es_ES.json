@@ -10,5 +10,6 @@
   "zimbra_mailinglists_datagrid_action_configure_delegation": "Configurar la delegación",
   "zimbra_mailinglists_datagrid_action_delete": "Eliminar la lista de difusión",
   "zimbra_mailinglists_datagrid_cta": "Crear una lista de difusión",
-  "zimbra_mailinglists_quota_label": "Cuota de lista de difusión"
+  "zimbra_mailinglists_quota_label": "Cuota de lista de difusión",
+  "zimbra_mailinglists_datagrid_status_label": "Estado"
 }

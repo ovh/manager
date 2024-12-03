@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react';
 import {
+  IconLinkAlignmentType,
   Links,
   LinkType,
   Subtitle,
@@ -14,35 +15,23 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
-  OsdsButton,
-  OsdsFormField,
-  OsdsInput,
-  OsdsRadio,
-  OsdsRadioButton,
-  OsdsRadioGroup,
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsText,
-  OsdsTextarea,
-  OsdsDatepicker,
-  OsdsCheckboxButton,
+  OdsButton,
+  OdsFormField,
+  OdsInput,
+  OdsRadio,
+  OdsSelect,
+  OdsText,
+  OdsTextarea,
+  OdsDatepicker,
+  OdsCheckbox,
 } from '@ovhcloud/ods-components/react';
 import {
-  ODS_THEME_COLOR_HUE,
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
-  ODS_CHECKBOX_BUTTON_SIZE,
-  ODS_INPUT_SIZE,
+  ODS_DATEPICKER_LOCALE,
   ODS_INPUT_TYPE,
-  ODS_LOCALE,
-  ODS_RADIO_BUTTON_SIZE,
   ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
@@ -106,6 +95,7 @@ export default function AddAutoReply() {
     ...{
       account: {
         value: '',
+        defaultValue: '',
         touched: false,
         required: true,
         validate: ACCOUNT_REGEX,
@@ -142,6 +132,7 @@ export default function AddAutoReply() {
       },
       message: {
         value: '',
+        defaultValue: '',
         touched: false,
         required: true,
       },
@@ -221,6 +212,7 @@ export default function AddAutoReply() {
     };
     if (name === 'sendCopy') {
       newForm.sendCopyTo.required = !!newForm.sendCopy.value;
+      newForm.sendCopyTo.hasError = false;
     }
     if (name === 'duration') {
       newForm.from.required =
@@ -255,29 +247,19 @@ export default function AddAutoReply() {
     },
     onSuccess: () => {
       addSuccess(
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_auto_replies_add_success_message')}
-        </OsdsText>,
+        </OdsText>,
         true,
       );
     },
     onError: (error: ApiError) => {
       addError(
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_auto_replies_add_error_message', {
             error: error.response?.data?.message,
           })}
-        </OsdsText>,
+        </OdsText>,
         true,
       );
     },
@@ -298,335 +280,247 @@ export default function AddAutoReply() {
       <Links
         type={LinkType.back}
         onClickReturn={goBack}
+        iconAlignment={IconLinkAlignmentType.left}
         label={t('zimbra_auto_replies_add_cta_back')}
       />
       <Subtitle>{t('zimbra_auto_replies_add_title')}</Subtitle>
       {editEmailAccountId && account && !isLoadingAccount && (
-        <OsdsText
+        <OdsText
           data-testid="create-for-account"
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          preset={ODS_TEXT_PRESET.paragraph}
         >
           {t('zimbra_auto_replies_add_header_create_for_account')}
           <b> {account.currentState?.email}</b>
-        </OsdsText>
+        </OdsText>
       )}
-      <OsdsText
-        data-testid="page-header"
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-      >
+      <OdsText data-testid="page-header" preset={ODS_TEXT_PRESET.paragraph}>
         {t('zimbra_auto_replies_add_header')}
-      </OsdsText>
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-      >
+      </OdsText>
+      <OdsText preset={ODS_TEXT_PRESET.caption}>
         {t('zimbra_auto_replies_mandatory_fields')}
-      </OsdsText>
+      </OdsText>
       {!editEmailAccountId && (
-        <OsdsFormField>
-          <div slot="label">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            >
-              {t('zimbra_auto_replies_add_account_label')} *
-            </OsdsText>
-          </div>
+        <OdsFormField>
+          <label htmlFor="account" slot="label">
+            {t('zimbra_auto_replies_add_account_label')} *
+          </label>
           <div className="flex">
-            <OsdsInput
+            <OdsInput
               type={ODS_INPUT_TYPE.text}
               id="account"
               name="account"
-              color={
-                form.account.hasError
-                  ? ODS_THEME_COLOR_INTENT.error
-                  : ODS_THEME_COLOR_INTENT.default
-              }
-              size={ODS_INPUT_SIZE.md}
+              list="list"
+              hasError={form.account.hasError}
               value={form.account.value}
-              required
+              defaultValue={form.account.defaultValue}
               className="w-1/2"
               data-testid="input-account"
-              disabled={editEmailAccountId ? true : null}
-              onOdsInputBlur={({ target: { name, value } }) =>
-                handleFormChange(name, value.toString())
+              isDisabled={editEmailAccountId ? true : null}
+              onOdsBlur={(event) =>
+                handleFormChange(
+                  event.target.name,
+                  event.target.value.toString(),
+                )
               }
-              onOdsValueChange={({ detail: { name, value } }) => {
-                handleFormChange(name, value);
+              onOdsChange={(event) => {
+                handleFormChange(
+                  event.detail.name,
+                  event.detail.value.toString(),
+                );
               }}
             >
-              <datalist id="account">
-                {domainAccounts?.map((acc) => {
-                  const [head] = (acc.currentState?.email || '@').split('@');
-                  return (
-                    <option key={head} value={head}>
-                      {head}
-                    </option>
-                  );
-                })}
-              </datalist>
-            </OsdsInput>
-            <OsdsInput
+              {domainAccounts && (
+                <datalist slot="list">
+                  {domainAccounts.map((acc) => {
+                    const [head] = (acc.currentState?.email || '@').split('@');
+                    return <option key={head} value={head}></option>;
+                  })}
+                </datalist>
+              )}
+            </OdsInput>
+            <OdsInput
+              name="@"
               type={ODS_INPUT_TYPE.text}
-              color={ODS_THEME_COLOR_INTENT.default}
-              size={ODS_INPUT_SIZE.md}
               value={'@'}
-              readOnly={true}
-              disabled={true}
+              isReadonly={true}
+              isDisabled={true}
               className="w-10"
-            ></OsdsInput>
-            <OsdsSelect
+            ></OdsInput>
+            <OdsSelect
+              id="domain"
               name="domain"
               value={form.domain.value}
               className="w-1/2"
-              required
-              color={
-                form.domain.hasError
-                  ? ODS_THEME_COLOR_INTENT.error
-                  : ODS_THEME_COLOR_INTENT.default
-              }
-              disabled={isLoading || editEmailAccountId ? true : null}
-              onOdsValueChange={(event) =>
+              hasError={form.from.hasError}
+              isDisabled={isLoading || editEmailAccountId ? true : null}
+              onOdsChange={(event) =>
                 handleFormChange('domain', event.detail.value as string)
               }
               data-testid="select-domain"
+              placeholder={t(
+                'zimbra_auto_replies_add_select_domain_placeholder',
+              )}
             >
-              <span slot="placeholder">
-                {t('zimbra_auto_replies_add_select_domain_placeholder')}
-              </span>
               {domains?.map(({ currentState: domain }) => (
-                <OsdsSelectOption key={domain.name} value={domain.name}>
+                <option key={domain.name} value={domain.name}>
                   {domain.name}
-                </OsdsSelectOption>
+                </option>
               ))}
-            </OsdsSelect>
+            </OdsSelect>
             {isLoading && <Loading size={ODS_SPINNER_SIZE.sm} />}
           </div>
-        </OsdsFormField>
+        </OdsFormField>
       )}
-
-      <OsdsFormField>
-        <div slot="label">
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          >
-            {t('zimbra_auto_replies_add_duration_label')} *
-          </OsdsText>
-        </div>
-        <OsdsRadioGroup
-          id="duration"
-          name="duration"
-          value={form.duration.value}
-          defaultValue={form.duration.value}
-          data-testid="radio-group-duration"
-          onOdsValueChange={(event) =>
-            handleFormChange('duration', event.detail.newValue)
-          }
-        >
-          {durationChoices.map(({ value, key }) => (
-            <OsdsRadio key={value} value={value}>
-              <OsdsRadioButton
-                data-testid={value}
-                className="cursor-pointer"
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_RADIO_BUTTON_SIZE.xs}
-              >
-                <span slot="end">
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    size={ODS_TEXT_SIZE._400}
-                    level={ODS_TEXT_LEVEL.body}
-                  >
-                    {t(key)}
-                  </OsdsText>
-                </span>
-              </OsdsRadioButton>
-            </OsdsRadio>
-          ))}
-        </OsdsRadioGroup>
-      </OsdsFormField>
+      <OdsFormField>
+        <label htmlFor="duration" slot="label">
+          {t('zimbra_auto_replies_add_duration_label')} *
+        </label>
+        {durationChoices.map(({ value, key }) => (
+          <div key={value} className="flex leading-none gap-4">
+            <OdsRadio
+              id={value}
+              name={value}
+              value={value}
+              isChecked={form.duration.value === value}
+              onOdsChange={(event) =>
+                handleFormChange('duration', event.detail.value)
+              }
+              data-testid={value}
+              className="cursor-pointer"
+            ></OdsRadio>
+            <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t(key)}</OdsText>
+          </div>
+        ))}
+      </OdsFormField>
       {form.duration.value === AutoReplyDurations.TEMPORARY && (
         <div className="flex gap-4">
-          <OsdsFormField className="w-1/2">
-            <div slot="label">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                color={ODS_THEME_COLOR_INTENT.text}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-              >
-                {t('zimbra_auto_replies_add_from_label')} *
-              </OsdsText>
-            </div>
-            <OsdsDatepicker
+          <OdsFormField className="w-1/2">
+            <label htmlFor="from" slot="label">
+              {t('zimbra_auto_replies_add_from_label')} *
+            </label>
+            <OdsDatepicker
               name="from"
               id="from"
               data-testid="from"
               placeholder={t('zimbra_auto_replies_add_datepicker_placeholder')}
               format="dd/mm/yyyy"
-              locale={locale as ODS_LOCALE}
-              color={
-                form.from.hasError
-                  ? ODS_THEME_COLOR_INTENT.error
-                  : ODS_THEME_COLOR_INTENT.primary
-              }
+              locale={locale as ODS_DATEPICKER_LOCALE}
+              hasError={form.from.hasError}
               value={fromDate}
-              minDate={now}
-              onOdsDatepickerValueChange={(event) => {
+              min={now}
+              onOdsChange={(event) => {
                 handleFormChange('from', event.detail.formattedValue);
               }}
-            ></OsdsDatepicker>
-          </OsdsFormField>
-          <OsdsFormField className="w-1/2">
-            <div slot="label">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                color={ODS_THEME_COLOR_INTENT.text}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-              >
-                {t('zimbra_auto_replies_add_until_label')} *
-              </OsdsText>
-            </div>
-            <OsdsDatepicker
+            ></OdsDatepicker>
+          </OdsFormField>
+          <OdsFormField className="w-1/2">
+            <label htmlFor="until" slot="label">
+              {t('zimbra_auto_replies_add_until_label')} *
+            </label>
+            <OdsDatepicker
               name="until"
               id="until"
               data-testid="until"
               placeholder={t('zimbra_auto_replies_add_datepicker_placeholder')}
               format="dd/mm/yyyy"
-              locale={locale as ODS_LOCALE}
-              color={
-                form.until.hasError
-                  ? ODS_THEME_COLOR_INTENT.error
-                  : ODS_THEME_COLOR_INTENT.primary
-              }
+              locale={locale as ODS_DATEPICKER_LOCALE}
+              hasError={form.from.hasError}
               value={untilDate}
-              minDate={fromDate || now}
-              onOdsDatepickerValueChange={(event) =>
+              min={fromDate || now}
+              onOdsChange={(event) =>
                 handleFormChange('until', event.detail.formattedValue)
               }
-            ></OsdsDatepicker>
-          </OsdsFormField>
+            ></OdsDatepicker>
+          </OdsFormField>
         </div>
       )}
-      <OsdsFormField>
-        <OsdsCheckboxButton
-          color={ODS_THEME_COLOR_INTENT.primary}
-          size={ODS_CHECKBOX_BUTTON_SIZE.sm}
-          checked={form.sendCopy.value === 'checked'}
-          data-testid="sendcopy"
-          onClick={() =>
-            handleFormChange(
-              'sendCopy',
-              form.sendCopy.value === 'checked' ? '' : 'checked',
-            )
-          }
-        >
-          <span slot="end">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            >
-              {t('zimbra_auto_replies_add_send_copy_label')}
-            </OsdsText>
-          </span>
-        </OsdsCheckboxButton>
-      </OsdsFormField>
-      {!!form.sendCopy.value && (
-        <OsdsFormField>
-          <OsdsSelect
-            name="sendCopyTo"
-            value={form.sendCopyTo.value}
-            color={
-              form.sendCopyTo.hasError
-                ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.default
+      <OdsFormField>
+        <div className="flex leading-none gap-4">
+          <OdsCheckbox
+            id="sendCopy"
+            inputId="sendCopy"
+            name="sendCopy"
+            data-testid="sendCopy"
+            isChecked={form.sendCopy.value === 'checked'}
+            onClick={() =>
+              handleFormChange(
+                'sendCopy',
+                form.sendCopy.value === 'checked' ? '' : 'checked',
+              )
             }
+          ></OdsCheckbox>
+          <label htmlFor="sendCopy">
+            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+              {t('zimbra_auto_replies_add_send_copy_label')}
+            </OdsText>
+          </label>
+        </div>
+      </OdsFormField>
+      {!!form.sendCopy.value && (
+        <OdsFormField>
+          <OdsSelect
+            id="sendCopyTo"
+            name="sendCopyTo"
+            data-testid="select-send-copy-to"
+            placeholder={t('zimbra_auto_replies_add_select_send_copy_to')}
+            value={form.sendCopyTo.value}
+            hasError={form.sendCopyTo.hasError}
             className="w-1/2"
-            disabled={
+            isDisabled={
               !orgAccounts || orgAccounts?.length === 0 || isOrgAccountsLoading
                 ? true
                 : null
             }
-            onOdsValueChange={(event) =>
-              handleFormChange('sendCopyTo', event.detail.value as string)
+            onOdsChange={(event) =>
+              handleFormChange('sendCopyTo', event.detail.value)
             }
-            data-testid="select-send-copy-to"
           >
-            <span slot="placeholder">
-              {t('zimbra_auto_replies_add_select_send_copy_to')}
-            </span>
             {orgAccounts?.map(({ currentState: acc }) => (
-              <OsdsSelectOption key={acc.email} value={acc.email}>
+              <option key={acc.email} value={acc.email}>
                 {acc.email}
-              </OsdsSelectOption>
+              </option>
             ))}
-          </OsdsSelect>
-        </OsdsFormField>
+          </OdsSelect>
+        </OdsFormField>
       )}
-      <OsdsFormField>
-        <div slot="label">
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          >
-            {t('zimbra_auto_replies_add_message_label')} *
-          </OsdsText>
-        </div>
-        <OsdsTextarea
-          name="message"
+      <OdsFormField>
+        <label htmlFor="message" slot="label">
+          {t('zimbra_auto_replies_add_message_label')} *
+        </label>
+        <OdsTextarea
           id="message"
+          name="message"
           data-testid="message"
           value={form.message.value}
+          defaultValue={form.message.defaultValue}
           placeholder={t('zimbra_auto_replies_add_message_placeholder')}
-          onOdsValueChange={(event) =>
+          hasError={form.message.hasError}
+          onOdsChange={(event) =>
             handleFormChange('message', event.target.value)
           }
-          color={
-            form.message.hasError
-              ? ODS_THEME_COLOR_INTENT.error
-              : ODS_THEME_COLOR_INTENT.default
-          }
-        ></OsdsTextarea>
-        <div slot="helper">
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.caption}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          >
-            {t('zimbra_auto_replies_add_message_helper')}
-          </OsdsText>
-        </div>
-      </OsdsFormField>
+        ></OdsTextarea>
+        <OdsText preset={ODS_TEXT_PRESET.caption}>
+          {t('zimbra_auto_replies_add_message_helper')}
+        </OdsText>
+      </OdsFormField>
       <div className="flex space-x-5">
-        <OsdsButton
+        <OdsButton
           slot="actions"
-          inline
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.flat}
-          disabled={!isFormValid || isSending ? true : null}
+          color={ODS_BUTTON_COLOR.primary}
+          variant={ODS_BUTTON_VARIANT.default}
+          isDisabled={!isFormValid}
+          isLoading={isSending}
           onClick={handleSavelick}
           data-testid="confirm-btn"
-        >
-          {t('zimbra_auto_replies_add_button_confirm')}
-        </OsdsButton>
-        <OsdsButton
+          label={t('zimbra_auto_replies_add_button_confirm')}
+        ></OdsButton>
+        <OdsButton
           slot="actions"
-          inline
           onClick={goBack}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.stroked}
-        >
-          {t('zimbra_auto_replies_add_button_cancel')}
-        </OsdsButton>
+          color={ODS_BUTTON_COLOR.primary}
+          variant={ODS_BUTTON_VARIANT.outline}
+          label={t('zimbra_auto_replies_add_button_cancel')}
+        ></OdsButton>
       </div>
     </div>
   );

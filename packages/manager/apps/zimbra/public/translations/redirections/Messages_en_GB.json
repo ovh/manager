@@ -5,5 +5,6 @@
   "zimbra_redirections_organization": "Organisation",
   "zimbra_redirections_datagrid_tooltip_modification": "Edit",
   "zimbra_redirections_datagrid_tooltip_delete": "Delete",
-  "zimbra_redirections_account_title": "Manage redirections"
+  "zimbra_redirections_account_title": "Manage redirections",
+  "zimbra_redirections_status": "Status"
 }

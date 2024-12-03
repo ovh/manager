@@ -1,73 +1,25 @@
 import React from 'react';
 import { describe, expect, it } from 'vitest';
-import { act } from 'react-dom/test-utils';
-import { render, fireEvent, screen, waitFor } from '@/utils/test.provider';
+import { render, screen, waitFor, act } from '@/utils/test.provider';
 import AddDomain from '../AddDomain.page';
 import addDomainTranslation from '@/public/translations/domains/addDomain/Messages_fr_FR.json';
 
 describe('Add Domain page', () => {
-  const clickSelectOrganization = async (selectOrganization) => {
-    await act(async () => {
-      fireEvent.change(selectOrganization, {
-        target: { value: '1903b491-4d10-4000-8b70-f474d1abe601' },
+  const clickSelectOrganization = (selectOrganization) => {
+    act(() => {
+      selectOrganization.odsChange.emit({
+        name: 'organization',
+        value: '1903b491-4d10-4000-8b70-f474d1abe601',
       });
-      selectOrganization.dispatchEvent(
-        new CustomEvent('odsValueChange', {
-          detail: { value: '1903b491-4d10-4000-8b70-f474d1abe601' },
-        }),
-      );
     });
   };
 
-  const clickRadioDomainOvh = async (radioGroup) => {
-    await act(async () => {
-      radioGroup.dispatchEvent(
-        new CustomEvent('odsValueChange', {
-          detail: { newValue: 'ovhDomain' },
-        }),
-      );
-    });
-  };
-
-  const clickRadioDomainExternal = async (radioGroup) => {
-    await act(async () => {
-      radioGroup.dispatchEvent(
-        new CustomEvent('odsValueChange', {
-          detail: { newValue: 'externalDomain' },
-        }),
-      );
-    });
-  };
-
-  const clickRadioConfigType = async (radioGroup, type) => {
-    await act(async () => {
-      radioGroup.dispatchEvent(
-        new CustomEvent('odsValueChange', {
-          detail: { newValue: type },
-        }),
-      );
-    });
-  };
-
-  const clickIsselectedDomainOvh = async (selectDomain) => {
-    await act(async () => {
-      fireEvent.change(selectDomain, { target: { value: 'test.fr' } });
-      selectDomain.dispatchEvent(
-        new CustomEvent('odsValueChange', {
-          detail: { value: 'test.fr' },
-        }),
-      );
-    });
-  };
-
-  const clickIsselectedDomainExternal = async (input) => {
-    await act(async () => {
-      fireEvent.change(input, { target: { value: 'external-example.com' } });
-      input.dispatchEvent(
-        new CustomEvent('odsValueChange', {
-          detail: { value: 'external-example.com' },
-        }),
-      );
+  const clickIsselectedDomainOvh = (selectDomain) => {
+    act(() => {
+      selectDomain.odsChange.emit({
+        name: 'domain',
+        value: 'test.fr',
+      });
     });
   };
 
@@ -84,11 +36,11 @@ describe('Add Domain page', () => {
     const { getByTestId } = render(<AddDomain />);
 
     const selectOrganization = getByTestId('select-organization');
-    await clickSelectOrganization(selectOrganization);
+    clickSelectOrganization(selectOrganization);
 
     // No domain is selected or input is provided
     const submitButton = getByTestId('add-domain-submit-btn');
-    expect(submitButton).toBeDisabled();
+    expect(submitButton).toHaveAttribute('is-disabled', 'true');
   });
 
   // TODO: Remove skip when FEATURE_FLAGS.DOMAIN_DNS_CONFIGURATION && FEATURE_FLAGS.DOMAIN_NOT_OVH are removed
@@ -96,21 +48,24 @@ describe('Add Domain page', () => {
     const { getByTestId } = render(<AddDomain />);
 
     const selectOrganization = getByTestId('select-organization');
-    await clickSelectOrganization(selectOrganization);
+    clickSelectOrganization(selectOrganization);
 
-    const radioGroup = getByTestId('radio-group');
-    await waitFor(() => {
-      expect(radioGroup).toBeDefined();
+    const radioOvhDomain = getByTestId('radio-externalDomain');
+    act(() => {
+      radioOvhDomain.odsChange.emit({
+        value: 'ovhDomain',
+      });
     });
 
-    await clickRadioDomainOvh(radioGroup);
-
     const selectedDomain = getByTestId('select-domain');
-    await clickIsselectedDomainOvh(selectedDomain);
+    clickIsselectedDomainOvh(selectedDomain);
 
     await waitFor(() => {
       expect(selectedDomain).toBeDefined();
-      expect(getByTestId('add-domain-submit-btn')).toBeDisabled();
+      expect(getByTestId('add-domain-submit-btn')).toHaveAttribute(
+        'is-disabled',
+        'true',
+      );
     });
   });
 
@@ -119,27 +74,33 @@ describe('Add Domain page', () => {
     const { getByTestId } = render(<AddDomain />);
 
     const selectOrganization = getByTestId('select-organization');
-    await clickSelectOrganization(selectOrganization);
+    clickSelectOrganization(selectOrganization);
 
-    const radioGroup = getByTestId('radio-group');
-    await waitFor(() => {
-      expect(radioGroup).toBeDefined();
+    const radioOvhDomain = getByTestId('radio-externalDomain');
+    act(() => {
+      radioOvhDomain.odsChange.emit({
+        value: 'ovhDomain',
+      });
     });
 
-    await clickRadioDomainOvh(radioGroup);
-
     const selectedDomain = getByTestId('select-domain');
-    await clickIsselectedDomainOvh(selectedDomain);
+    clickIsselectedDomainOvh(selectedDomain);
 
-    const selectedRadioConfigType = getByTestId('radio-group-config');
-    await clickRadioConfigType(
-      selectedRadioConfigType,
-      'standardConfiguration',
+    const selectedRadioConfigTypeStandard = getByTestId(
+      'radio-config-standardConfiguration',
     );
+    act(() => {
+      selectedRadioConfigTypeStandard.odsChange.emit({
+        value: 'standardConfiguration',
+      });
+    });
 
     await waitFor(() => {
       expect(selectedDomain).toBeDefined();
-      expect(getByTestId('add-domain-submit-btn')).toBeEnabled();
+      expect(getByTestId('add-domain-submit-btn')).toHaveAttribute(
+        'is-disabled',
+        'false',
+      );
     });
   });
 
@@ -148,24 +109,38 @@ describe('Add Domain page', () => {
     const { getByTestId } = render(<AddDomain />);
 
     const selectOrganization = getByTestId('select-organization');
-    await clickSelectOrganization(selectOrganization);
+    clickSelectOrganization(selectOrganization);
 
     const radioGroup = getByTestId('radio-group');
     await waitFor(() => {
       expect(radioGroup).toBeDefined();
     });
 
-    await clickRadioDomainOvh(radioGroup);
+    const radioOvhDomain = getByTestId('radio-externalDomain');
+    act(() => {
+      radioOvhDomain.odsChange.emit({
+        value: 'ovhDomain',
+      });
+    });
 
     const selectedDomain = getByTestId('select-domain');
-    await clickIsselectedDomainOvh(selectedDomain);
+    clickIsselectedDomainOvh(selectedDomain);
 
-    const selectedRadioConfigType = getByTestId('radio-group-config');
-    await clickRadioConfigType(selectedRadioConfigType, 'expertConfiguration');
+    const selectedRadioConfigTypeExpert = getByTestId(
+      'radio-config-expertConfiguration',
+    );
+    act(() => {
+      selectedRadioConfigTypeExpert.odsChange.emit({
+        value: 'expertConfiguration',
+      });
+    });
 
     await waitFor(() => {
       expect(selectedDomain).toBeDefined();
-      expect(getByTestId('add-domain-submit-btn')).toBeEnabled();
+      expect(getByTestId('add-domain-submit-btn')).toHaveAttribute(
+        'is-disabled',
+        'false',
+      );
     });
   });
 
@@ -174,17 +149,23 @@ describe('Add Domain page', () => {
     const { getByTestId } = render(<AddDomain />);
 
     const selectOrganization = getByTestId('select-organization');
-    await clickSelectOrganization(selectOrganization);
+    clickSelectOrganization(selectOrganization);
 
-    const radioGroup = getByTestId('radio-group');
-    await waitFor(() => {
-      expect(radioGroup).toBeDefined();
+    const radioExternalDomain = getByTestId('radio-externalDomain');
+    act(() => {
+      radioExternalDomain.odsChange.emit({
+        value: 'externalDomain',
+      });
     });
 
-    await clickRadioDomainExternal(radioGroup);
-
     const externalDomainInput = getByTestId('input-external-domain');
-    await clickIsselectedDomainExternal(externalDomainInput);
+
+    act(() => {
+      externalDomainInput.odsChange.emit({
+        name: 'ext-domain',
+        value: 'external-example.com',
+      });
+    });
     expect(externalDomainInput).toHaveValue('external-example.com');
 
     const warningMessage = screen.getByText(
@@ -193,6 +174,6 @@ describe('Add Domain page', () => {
     expect(warningMessage).toBeVisible();
 
     const submitButton = getByTestId('add-domain-submit-btn');
-    expect(submitButton).toBeEnabled();
+    expect(submitButton).toHaveAttribute('is-disabled', 'false');
   });
 });

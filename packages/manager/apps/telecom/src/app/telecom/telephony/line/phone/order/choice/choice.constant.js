@@ -77,14 +77,11 @@ export const TELEPHONY_LINE_PHONE_CHOICE = {
   },
 };
 
-export const TELEPHONY_LINE_PHONE_CHOICE_FOR_MGCP_PHONE = ['yealink.t53'];
-
 export const PHONE_PROTOCOL = {
   MGCP: 'mgcp',
 };
 
 export default {
   TELEPHONY_LINE_PHONE_CHOICE,
-  TELEPHONY_LINE_PHONE_CHOICE_FOR_MGCP_PHONE,
   PHONE_PROTOCOL,
 };
