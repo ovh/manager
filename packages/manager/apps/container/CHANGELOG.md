@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.91.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.90.0...@ovh-ux/manager-container-app@0.91.0) (2024-12-03)
+
+
+### Features
+
+* **container:** update pci menu entries order ([#14069](https://github.com/ovh/manager/issues/14069)) ([3096b5e](https://github.com/ovh/manager/commit/3096b5e4a729d3b95e980730bf1edfea4ab3f202))
+
+
+
+
+
 # [0.90.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.89.3...@ovh-ux/manager-container-app@0.90.0) (2024-12-03)
 
 
