@@ -14,6 +14,8 @@ const initialProps: TActionsCellProps = {
     autobackupHref: 'foo/autobackup',
     startHref: 'foo/start',
     stopHref: 'foo/stop',
+    shelveHref: 'foo/shelve',
+    unshelvetHref: 'foo/unshelve',
   },
 };
 
