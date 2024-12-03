@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.0.6...@ovh-ux/manager-telecom@16.0.7) (2024-12-03)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** remove mgcp restriction list for change phone ([#14086](https://github.com/ovh/manager/issues/14086)) ([bb858cd](https://github.com/ovh/manager/commit/bb858cd73b0cb844d137ed51d9712df30d9beca7))
+
+
+
+
+
 ## [16.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.0.5...@ovh-ux/manager-telecom@16.0.6) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
