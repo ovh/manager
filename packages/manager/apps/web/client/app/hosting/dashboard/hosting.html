@@ -237,11 +237,6 @@
             >
                 <span data-translate="hosting_tab_INDY"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-ng-if="$ctrl.freedoms.length > 0"
-                href="{{ $ctrl.freedomLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.freedomLink"
-            ></oui-header-tabs-item>
             <oui-header-tabs-divider
                 data-ng-if="!$ctrl.hosting.isCloudWeb && $ctrl.isEmailDomainAvailable"
             ></oui-header-tabs-divider>
