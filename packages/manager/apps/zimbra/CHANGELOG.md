@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.10.2...@ovh-ux/manager-zimbra-app@0.11.0) (2024-12-03)
+
+
+### Bug Fixes
+
+* **zimbra:** ods css imported twice ([#14355](https://github.com/ovh/manager/issues/14355)) ([8b4cbd6](https://github.com/ovh/manager/commit/8b4cbd640ccfe6922a0ecaeaf0e5f2f01d8a736c))
+* **zimbra:** wording & ui improvments ([#14261](https://github.com/ovh/manager/issues/14261)) ([9a64c78](https://github.com/ovh/manager/commit/9a64c78f6fc57ced9993b354ee5f424f3e158682))
+
+
+### Features
+
+* **zimbra:** bump @ovhcloud/ods-components v18.3 ([4285131](https://github.com/ovh/manager/commit/4285131027fe94654c9f4a6a65dffd2ac9ff4ce8))
+
+
+
+
+
 ## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.10.1...@ovh-ux/manager-zimbra-app@0.10.2) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app
