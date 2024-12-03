@@ -7,6 +7,7 @@ import {
 
 export const serviceKeyMock: OkmsAllServiceKeys[] = [
   {
+    name: 'ServiceKeyTest',
     createdAt: '2024-10-23T15:24:23Z',
     id: '8f8a75b0-3bde-4b8d-a8c0-928ba2ceb8ed',
     operations: [
@@ -17,10 +18,26 @@ export const serviceKeyMock: OkmsAllServiceKeys[] = [
     type: OkmsKeyTypes.EC,
     curve: 'P-256',
     iam: {
-      id: '8f8a75b0-3bde-4b8d-a8c0-928basvced',
+      id: '8f8a75b0-3bde-4b8d-a8c0-928ba2ceb8ed',
       urn:
-        'urn:v1:eu:resource:okms:8f8a75b0-b57d-45fc-8d4f-256664DFE/serviceKey/dqd63-5688-409c-234-125e24538f34',
+        'urn:v1:eu:resource:okms:7f3a82ac-a8d8-4c2a-ab0c-f6e86ddf6a7c/serviceKey/8f8a75b0-3bde-4b8d-a8c0-928ba2ceb8ed',
       displayName: 'ServiceKeyTest',
     },
   },
 ];
+
+export const createdKeyMock: OkmsAllServiceKeys = {
+  name: 'New Key',
+  createdAt: '2024-10-23T15:24:23Z',
+  id: '4575b0-3bde-4b8d-a8c0-928ba2ceb8ed',
+  operations: [OkmsServiceKeyOperations.sign, OkmsServiceKeyOperations.verify],
+  state: OkmsServiceKeyState.active,
+  type: OkmsKeyTypes.EC,
+  curve: 'P-256',
+  iam: {
+    id: '4575b0-3bde-4b8d-a8c0-928ba2ceb8ed',
+    urn:
+      'urn:v1:eu:resource:okms:7f3a82ac-a8d8-4c2a-ab0c-f6e86ddf6a7c/serviceKey/4575b0-3bde-4b8d-a8c0-928ba2ceb8ed',
+    displayName: 'New Key',
+  },
+};
