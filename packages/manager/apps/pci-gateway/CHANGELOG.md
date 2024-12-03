@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.9.16...@ovh-ux/manager-pci-gateway-app@0.9.17) (2024-12-03)
+
+
+### Bug Fixes
+
+* **pci-gateway:** design css fixes ([#14038](https://github.com/ovh/manager/issues/14038)) ([dd5313a](https://github.com/ovh/manager/commit/dd5313a4619f8294c7f52614f060a0851e6dc8ae))
+
+
+
+
+
 ## [0.9.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.9.15...@ovh-ux/manager-pci-gateway-app@0.9.16) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.3.2...@ovh-ux/manager-pci-savings-plan-app@1.4.0) (2024-12-03)
+
+
+### Features
+
+* **pci-savings-plan:** change tile background color and price promotion ([#14262](https://github.com/ovh/manager/issues/14262)) ([b55cc8e](https://github.com/ovh/manager/commit/b55cc8e1809584ea44f02fe413a220cc6b203d8c))
+
+
+
+
+
 ## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.3.1...@ovh-ux/manager-pci-savings-plan-app@1.3.2) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
