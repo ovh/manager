@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.2.0...@ovh-ux/manager-billing-components@4.3.0) (2024-12-03)
+
+
+### Features
+
+* vcd veeam GA ([#14048](https://github.com/ovh/manager/issues/14048)) ([8bc7cdb](https://github.com/ovh/manager/commit/8bc7cdbc0343aeff345f44c019cd4cddb125a73c))
+
+
+
+
+
 # [4.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.1.0...@ovh-ux/manager-billing-components@4.2.0) (2024-11-28)
 
 
