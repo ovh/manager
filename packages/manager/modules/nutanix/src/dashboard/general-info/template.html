@@ -31,6 +31,7 @@
                 term="{{:: 'nutanix_dashboard_cluster_commercial_name' | translate }}"
             >
                 <oui-tile-description>
+                    <<<<<<< HEAD
                     <iam-protected-data
                         is-hidden="!$ctrl.haveServicesAuthorizations()"
                     >
@@ -44,6 +45,17 @@
                         >
                         </span>
                     </iam-protected-data>
+                    =======
+                    <oui-spinner
+                        data-ng-if="$ctrl.loadingServicesDetails"
+                        data-size="s"
+                    ></oui-spinner>
+                    <span
+                        data-ng-bind="$ctrl.servicesDetails.billing.plan.invoiceName"
+                    >
+                    </span>
+                    >>>>>>> 3938adea2f (feat(nutanix): display BYOL instead of
+                    pack type in dashboard)
                 </oui-tile-description>
             </oui-tile-definition>
 
@@ -115,7 +127,16 @@
                             data-track-name="{{:: $ctrl.TRACKING.ACCESS_NUTANIX}}"
                             data-track-type="action"
                         >
-                            <span data-ng-bind="$ctrl.packType"></span>
+                            <span
+                                data-ng-if="$ctrl.packType !== $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
+                                data-ng-bind="$ctrl.packType"
+                            >
+                            </span>
+                            <span
+                                data-ng-if="$ctrl.packType === $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
+                                data-ng-bind="$ctrl.NUTANIX_BYOL"
+                            >
+                            </span>
                             <i
                                 class="oui-icon oui-icon-external-link"
                                 aria-hidden="true"
