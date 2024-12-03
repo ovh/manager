@@ -3,40 +3,35 @@ import { describe, vi } from 'vitest';
 import * as module from 'react-router-dom';
 import { useUrlLastSection } from './useUrlLastSection';
 
-const fakeBasePath: module.Path = {
-  pathname: '/foo/bar',
+const mockedUseLocation = vi.spyOn(module, 'useLocation');
+const fakePredicateRegex = /^(delete|start)$/;
+const fakePredicateFn = (section: string) => fakePredicateRegex.test(section);
+
+const buildLocation = (pathname: string): module.Location<null> => ({
+  pathname,
+  state: null,
+  key: 'fakeKey',
   search: '',
   hash: '',
-};
-
-const buildPathMatch = (section?: string): module.PathMatch => ({
-  params: {
-    section,
-  },
-  pathname: '',
-  pathnameBase: '',
-  pattern: {
-    path: '',
-  },
 });
 
-const mockedUseResolvedPath = vi.spyOn(module, 'useResolvedPath');
-const mockedUseMatch = vi.spyOn(module, 'useMatch');
-
 describe('Condidering the useUrlLastSection hook', () => {
+  afterEach(() => {
+    mockedUseLocation.mockClear();
+  });
   test.each`
-    pathMatch                   | expectedResult
-    ${buildPathMatch('foo')}    | ${null}
-    ${buildPathMatch()}         | ${null}
-    ${buildPathMatch('delete')} | ${'delete'}
-    ${buildPathMatch('start')}  | ${'start'}
-    ${buildPathMatch('stop')}   | ${'stop'}
+    location                            | predicateFn        | expectedResult
+    ${buildLocation('/')}               | ${undefined}       | ${null}
+    ${buildLocation('/foo/bar')}        | ${undefined}       | ${'bar'}
+    ${buildLocation('/foo/bar')}        | ${() => false}     | ${null}
+    ${buildLocation('/foo/bar/delete')} | ${fakePredicateFn} | ${'delete'}
   `(
-    `When invoking the useUrlLastSection() hook, then expect section to be <$expectedResult>`,
-    ({ pathMatch, expectedResult }) => {
-      mockedUseResolvedPath.mockReturnValueOnce(fakeBasePath);
-      mockedUseMatch.mockReturnValueOnce(pathMatch);
-      const { result } = renderHook(() => useUrlLastSection());
+    `When invoking the useUrlLastSection() hook with optional predicate function, then expect section to be <$expectedResult>`,
+    ({ location, expectedResult, predicateFn }) => {
+      mockedUseLocation.mockReturnValueOnce(location);
+      const { result } = renderHook(() => useUrlLastSection(predicateFn), {
+        wrapper: module.HashRouter,
+      });
       expect(result.current).toStrictEqual(expectedResult);
     },
   );
