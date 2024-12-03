@@ -70,7 +70,7 @@ const UserAccountMenu = ({
   const getUrl = (key: string, hash: string) =>
     shell.getPlugin('navigation').getURL(key, hash);
   const ssoLink = getUrl('iam', '#/dashboard/users');
-  const supportLink = getUrl('dedicated', '#/useraccount/support/level');
+  let [supportLink, setSupportLink] = useState(getUrl('dedicated', '#/useraccount/support/level'));
 
   const getAllLinks = useMemo(
     () => async () => {
@@ -87,6 +87,9 @@ const UserAccountMenu = ({
 
       setIsNewAccountAvailable(!!featureAvailability['new-account'])
 
+      if (isNewAccountAvailable) {
+        setSupportLink(getUrl('account', '#/useraccount/support/level'));
+      }
 
       setAllLinks([
         ...links.map((link: UserLink) => {
@@ -196,7 +199,7 @@ const UserAccountMenu = ({
         </div>
         <div className="border-bottom pb-2 pt-2">
           {allLinks.map((link: UserLink) => {
-            const { key, hash, i18nKey } = link;
+            const { app, key, hash, i18nKey } = link;
             return (
               <a
                 key={key}
@@ -205,7 +208,7 @@ const UserAccountMenu = ({
                 className="d-block"
                 aria-label={t(i18nKey)}
                 title={t(i18nKey)}
-                href={getUrl(isNewAccountAvailable ? 'account': 'dedicated', hash)}
+                href={getUrl(app, hash)}
                 target="_top"
               >
                 {t(i18nKey)}

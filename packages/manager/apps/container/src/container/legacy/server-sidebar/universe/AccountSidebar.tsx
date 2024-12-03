@@ -14,7 +14,8 @@ import constants from '../../account-sidebar/UsefulLinks/constants';
 
 const kycIndiaFeature = 'identity-documents';
 const kycFraudFeature = 'procedures:fraud';
-const kycFeatures = [kycIndiaFeature, kycFraudFeature]
+const newAccount = 'new-account';
+const accountFeatures = [kycIndiaFeature, kycFraudFeature, newAccount];
 
 export default function AccountSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
@@ -153,7 +154,7 @@ export default function AccountSidebar() {
     return menu;
   };
 
-  const {data: availability} = useFeatureAvailability(features.concat(kycFeatures));
+  const {data: availability} = useFeatureAvailability(features.concat(accountFeatures));
 
   const buildMenu = async () =>
     Promise.resolve({
