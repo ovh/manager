@@ -57,6 +57,14 @@ module.exports = (env = {}) => {
     env,
   );
 
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      WEBPACK_ENV: {
+        production: JSON.stringify(env.production),
+      },
+    }),
+  );
+
   // Extra config files
   const extras = glob.sync(`./.extras/**/*.js`);
 

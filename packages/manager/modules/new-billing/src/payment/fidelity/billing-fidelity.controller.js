@@ -130,7 +130,7 @@ export default class {
       this.$scope.currentAction = action;
       this.$scope.currentActionData = data;
 
-      this.$scope.stepPath = `/payment/fidelity/${this.$scope.currentAction}/billing-fidelity-${this.$scope.currentAction}.html`;
+      this.$scope.stepPath = `billing/payment/fidelity/${this.$scope.currentAction}/billing-fidelity-${this.$scope.currentAction}.html`;
       $('#currentAction').modal({
         keyboard: true,
         backdrop: 'static',

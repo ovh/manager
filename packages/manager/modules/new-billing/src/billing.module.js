@@ -1,23 +1,6 @@
 import angular from 'angular';
-import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
-import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
-import ngRoute from 'angular-route';
-import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
-import ngSanitize from 'angular-sanitize';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import set from 'lodash/set';
-import uiBootstrap from 'angular-ui-bootstrap';
-import uiRouter from '@uirouter/angularjs';
-import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
-import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
-import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
-import '@ovh-ux/ng-ui-router-breadcrumb';
-import 'ovh-api-services';
-import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
-import ngOvhOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
-import ngOvhContacts from '@ovh-ux/ng-ovh-contacts';
-
-import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import autorenew from './autoRenew/autorenew.module';
 import billingMain from './main/billing-main.module';
 import dateRangeSelectionService from './common/dateRangeSelection';
@@ -48,21 +31,27 @@ import renewFrequenceFilter from './components/filters/renewFrequence';
 import routing from './billing.routing';
 import billingTracking from './atInternetTracking.config';
 
+import '@ovh-ux/ng-ui-router-breadcrumb';
+import '@uirouter/angularjs';
+import 'angular-translate';
+import '@ovh-ux/ng-ovh-feature-flipping';
+import 'angular-ui-bootstrap';
+
 const moduleName = 'Billing';
 
 angular
   .module(moduleName, [
+    'oui',
+    'pascalprecht.translate',
+    'ui.bootstrap',
+    'ui.router',
+    'ngUiRouterBreadcrumb',
+    'oc.lazyLoad',
+    'ui.select',
+    'ngOvhFeatureFlipping',
     autorenew,
     billingMain,
     history,
-    'oui',
-    'ui.bootstrap',
-    'ui.router',
-    'ui.select',
-    'ngRoute',
-    'ngSanitize',
-    'ovh-api-services',
-    ngOvhUserPref,
     paymentCreditAdd,
     order,
     ordersMain,
@@ -70,25 +59,11 @@ angular
     ordersPurchases,
     ovhAccountRefund,
     refunds,
-    ngOvhExportCsv,
-    ngOvhUtils,
-    ngRoute,
-    ngSanitize,
-    ngTranslateAsyncLoader,
-    ngOvhContacts,
-    ngOvhFeatureFlipping,
-    ngOvhOrderTracking,
-    ngOvhPaymentMethod,
-    ngUiRouterLayout,
     ovhManagerCore,
     payment,
     paymentMehtod,
     sla,
     termination,
-    uiBootstrap,
-    uiRouter,
-    'ngUiRouterBreadcrumb',
-    ngAtInternetUiRouterPlugin,
   ])
   .service('billingFeatureAvailability', featureAvailability)
   .service('BillingdateRangeSelection', dateRangeSelectionService)
