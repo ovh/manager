@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.12.3...@ovh-ux/manager-vrack@1.13.0) (2024-12-03)
+
+
+### Features
+
+* **dedicated.vrack:** add occ as new eligibility service in vrack ([cdd738c](https://github.com/ovh/manager/commit/cdd738cc4e3ef9d6568720bcac35d50d9570fa71))
+
+
+
+
+
 ## [1.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.12.2...@ovh-ux/manager-vrack@1.12.3) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack

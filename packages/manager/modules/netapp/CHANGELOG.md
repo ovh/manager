@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.1.1...@ovh-ux/manager-netapp@2.2.0) (2024-12-03)
+
+
+### Bug Fixes
+
+* **dedicated:** fix conflict and linter ([5632ae5](https://github.com/ovh/manager/commit/5632ae5973c83b9da7c514ad6486077e5591b266))
+* **netapp:** show creation date in UTC timezone ([369ebc7](https://github.com/ovh/manager/commit/369ebc72544db1009e6e2b64675052f50242c0bb))
+
+
+### Features
+
+* **dedicated.netapp:** add hold snapshot feature ([b37426f](https://github.com/ovh/manager/commit/b37426f17b271410c3744971f4605302f8c3d734))
+
+
+
+
+
 ## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.1.0...@ovh-ux/manager-netapp@2.1.1) (2024-11-28)
 
 
