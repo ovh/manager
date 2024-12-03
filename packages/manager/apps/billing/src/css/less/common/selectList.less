@@ -1,0 +1,20 @@
+ul.selectList {
+  width: 60%;
+  margin: 10px auto 20px auto;
+  background-color: @defaultbackground;
+  border: solid 1px @barblockborder;
+  max-height: 150px;
+  overflow-y: scroll;
+
+  li {
+    line-height: 24px;
+    font-size: 12px;
+    cursor: pointer;
+    padding-left: 10px;
+
+    &.lineSelected {
+      background-color: @defaultlineselectedbackground;
+      color: @defaultlineselectedfont;
+    }
+  }
+}

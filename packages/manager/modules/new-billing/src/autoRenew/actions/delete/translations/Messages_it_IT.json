@@ -1,0 +1,10 @@
+{
+  "autorenew_service_delete_title": "Disattiva il servizio alla data di scadenza",
+  "autorenew_service_delete_confirm": "Il servizio {{ service }} <strong>verrà disattivato automaticamente</strong> il {{ date }}.",
+  "autorenew_service_delete_validate": "Conferma",
+  "autorenew_service_delete_warn": "I dati associati a questo servizio verranno eliminati automaticamente e in modo irreversibile. È possibile annullare l'operazione entro 24 ore prima della data di scadenza.",
+  "autorenew_service_delete_support": "Per disattivare questo servizio, contatta il nostro supporto tecnico al numero <strong>{{ phoneNumber }} o apri un ticket. Grazie per la comprensione e per la fiducia riposta in OVH.",
+  "autorenew_service_delete_success": "La tua richiesta di disattivazione è stata presa in carico. Se la modifica non compare nella lista, aggiorna la pagina.",
+  "autorenew_service_delete_error": "Si è verificato un errore durante la disattivazione del servizio {{ message }}",
+  "autorenew_service_delete_cancel": "Annulla disattivazione"
+}

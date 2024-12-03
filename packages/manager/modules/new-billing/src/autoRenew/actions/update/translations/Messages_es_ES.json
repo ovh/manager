@@ -1,0 +1,15 @@
+{
+  "billing_autorenew_service_update_title": "Configuración de la renovación",
+  "billing_autorenew_service_update_description": "Elija el tipo de renovación que desee (automática o manual). Para la renovación automática, también puede elegir la frecuencia de los cargos.",
+  "billing_autorenew_service_update_service_renewal": "Modo de renovación",
+  "billing_autorenew_service_update_service_automatic": "Automática",
+  "billing_autorenew_service_update_service_manualPayment": "Manual",
+  "billing_autorenew_service_update_service_period": "Frecuencia",
+  "billing_autorenew_service_update_service_period_value": "{{ month }} mes(es)",
+  "billing_autorenew_service_update_confirm": "Confirmar",
+  "billing_autorenew_service_update_success": "La renovación del servicio {{ service }} se ha actualizado. Si el cambio no aparece en la lista, por favor, vuelva a cargar la página.",
+  "billing_autorenew_service_update_error": "Se ha producido un error al configurar la renovación: {{message}}.",
+  "billing_autorenew_service_update_add_mean": "Añadir una forma de pago",
+  "billing_autorenew_service_update_validate": "Validación",
+  "billing_autorenew_service_update_next": "Siguiente"
+}

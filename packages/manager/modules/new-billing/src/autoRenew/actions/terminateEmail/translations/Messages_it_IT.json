@@ -1,0 +1,8 @@
+{
+  "autorenew_service_EMAIL_DOMAIN_terminate": "Elimina subito MX Plan",
+  "autorenew_service_EMAIL_DOMAIN_terminate_info": "L'eliminazione di un MX Plan comporta la cancellazione definitiva di tutti i dati ad esso associati. L'operazione di eliminazione non dà diritto ad alcun rimborso.",
+  "autorenew_service_EMAIL_DOMAIN_terminate_info_impossible": "Impossibile eliminare l’indirizzo email in quanto risulta associato a un hosting Web.",
+  "autorenew_service_EMAIL_DOMAIN_terminate_procedure": "Riceverai un'email con la procedura da seguire per confermare l'eliminazione immediata del tuo MX Plan.",
+  "autorenew_service_EMAIL_DOMAIN_terminate_success": "La richiesta di disattivazione del servizio MX Plan è stata presa in carico. Ti abbiamo inviato un’email con la procedura da seguire.",
+  "autorenew_service_EMAIL_DOMAIN_terminate_error": "Si è verificato un errore durante l'invio della richiesta di disattivazione del tuo MX Plan: {{ message }}"
+}

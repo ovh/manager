@@ -1,4 +1,6 @@
 import 'script-loader!jquery'; // eslint-disable-line
+import 'script-loader!jsurl/lib/jsurl.js'; // eslint-disable-line
+import 'script-loader!moment/min/moment.min.js'; // eslint-disable-line
 import 'core-js/stable';
 import 'whatwg-fetch';
 import 'regenerator-runtime/runtime';

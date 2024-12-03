@@ -1,0 +1,20 @@
+{
+  "billing_autorenew_bulk": "Wybrałeś {{count}} usług",
+  "billing_autorenew_bulk_cancel": "Anuluj",
+  "billing_autorenew_bulk_confirm": "Zatwierdź",
+  "billing_autorenew_bulk_unavailable_pending_debt": "Usługi oczekujące na płatność",
+  "billing_autorenew_bulk_unavailable_already_automatic": "Usługi automatycznie opłacane",
+  "billing_autorenew_bulk_unavailable_already_manual": "Usługi odnawiane ręcznie",
+  "billing_autorenew_bulk_unavailable_one_shot_automatic": "Usługi, które nie mogą być objęte automatyczną płatnością",
+  "billing_autorenew_bulk_unavailable_one_shot_manual": "Usługi, które nie mogą być objęte ręcznym odnowieniem ",
+  "billing_autorenew_bulk_unavailable_nic_rights": "Usługi, w przypadku których nie jesteś kontaktem księgowym",
+  "billing_autorenew_bulk_unavailable_resiliation_pending": "Usługi, dla których wysłałeś zlecenie rezygnacji",
+  "billing_autorenew_bulk_unavailable_expired": "Zakończone usługi",
+  "billing_autorenew_bulk_service": "(1 usługa)",
+  "billing_autorenew_bulk_services": "({{ count}} usługi/usług)",
+  "billing_autorenew_bulk_more": "Wyświetl więcej",
+  "billing_autorenew_bulk_less": "Wyświetl mniej",
+  "billing_autorenew_bulk_one": "Wybrałeś jedną usługę",
+  "billing_autorenew_bulk_available_more": "Wyświetl szczegóły dotyczące kompatybilnych usług",
+  "billing_autorenew_bulk_available_less": "Ukryj szczegóły dotyczące kompatybilnych usług"
+}

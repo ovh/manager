@@ -1,0 +1,6 @@
+{
+  "autorenew_service_debt_warn_title": "Wichtige Information",
+  "autorenew_service_debt_warn_settle": "Begleichen",
+  "autorenew_service_debt_warn_cancel": "Abbrechen",
+  "autorenew_service_debt_warn_deletion": "Sie können den Dienst erst kündigen, wenn der ausstehende Betrag beglichen wurde. Bitte gehen Sie in den Bereich „Abrechnung“, um die Rechnung für den Dienst <strong>{{service}}</strong> zu begleichen"
+}

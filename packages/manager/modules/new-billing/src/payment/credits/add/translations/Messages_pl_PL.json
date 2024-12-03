@@ -1,0 +1,8 @@
+{
+  "voucher_credit_code_add_label": "Wprowadź kod vouchera",
+  "voucher_credit_code_add_placeholder": "Kod vouchera",
+  "voucher_credit_code_add_submit": "Dodaj",
+  "voucher_credit_code_success": "Zasilenie o wartości <strong>{{credit}}</strong> zostało aktywowane. Możesz złożyć zamówienie.",
+  "voucher_credit_code_error": "Wystąpił błąd podczas dodawania kodu vouchera.",
+  "voucher_credit_code_cancel": "Anuluj"
+}

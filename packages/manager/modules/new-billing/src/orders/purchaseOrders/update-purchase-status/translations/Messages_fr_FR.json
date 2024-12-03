@@ -1,0 +1,9 @@
+{
+  "purchaseOrders_modal_title": "Désactiver",
+  "purchaseOrders_modal_content": "Êtes vous certain de vouloir désactiver votre référence interne ? Si vous désactivez cette référence, elle n'apparaîtra plus sur vos prochaines factures.",
+  "purchaseOrders_modal_primary_action": "Valider",
+  "purchaseOrders_modal_secondary_action": "Annuler",
+  "purchaseOrders_confirmation_desactivation_REFERENCE_ORDER_success": "Votre référence interne a bien été désactivée.",
+  "purchaseOrders_confirmation_desactivation_PURCHASE_ORDER_success": "Votre purchase order a bien été désactivé.",
+  "purchaseOrders_confirmation_desactivation_error": "Votre demande n'a pas pu être prise en compte. Merci d'essayer ultérieurement."
+}

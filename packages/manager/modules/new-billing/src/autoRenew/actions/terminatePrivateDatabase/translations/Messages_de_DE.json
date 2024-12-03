@@ -1,0 +1,9 @@
+{
+  "autorenew_privateDatabase_dashboard_close_service": "Mein SQL Private Hosting sofort löschen",
+  "autorenew_privateDatabase_dashboard_close_service_success": "Ihre Anfrage zur Schließung des SQL Private Hostings wurde registriert. Eine E-Mail mit weiteren Informationen zur Vorgehensweise wurde soeben an Sie versandt.",
+  "autorenew_privateDatabase_dashboard_close_service_error": "Bei der Kündigungsanfrage für Ihr SQL Private Hosting ist ein Fehler aufgetreten:",
+  "autorenew_privateDatabase_dashboard_close_service_warning": "Beim Löschen eines Hostings werden automatisch alle zugehörigen Daten unwiderruflich gelöscht. Das Löschen des Hostings bedeutet keine Garantie zur Rückerstattung.",
+  "autorenew_privateDatabase_dashboard_close_service_desc1": "Sie erhalten in Kürze eine E-Mail mit Informationen zur Schließung Ihres Hostings von uns und können die Löschung dann sofort bestätigen.",
+  "autorenew_privateDatabase_dashboard_close_confirm": "Bestätigen",
+  "autorenew_privateDatabase_dashboard_close_cancel": "Abbrechen"
+}

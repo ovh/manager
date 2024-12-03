@@ -36,7 +36,23 @@ module.exports = (env = {}) => {
       template: './src/index.html',
       basePath: './src',
       lessPath: ['./node_modules'],
+      lessJavascriptEnabled: true,
       root: path.resolve(__dirname, './src'),
+      assets: {
+        files: [
+          {
+            from: path.resolve(
+              __dirname,
+              '../../../../node_modules/flag-icon-css/flags/4x3',
+            ),
+            to: 'flag-icon-css/flags/4x3',
+          },
+          {
+            from: path.resolve(__dirname, './src/images/**/*.*'),
+            context: 'src',
+          },
+        ],
+      },
     },
     env,
   );
@@ -62,6 +78,10 @@ module.exports = (env = {}) => {
       mainFields: ['module', 'browser', 'main'],
     },
     plugins: [
+      new webpack.ContextReplacementPlugin(
+        /moment[/\\]locale$/,
+        /de|en-gb|es|es-us|fr-ca|fr|it|pl|pt/,
+      ),
       new webpack.DefinePlugin({
         __NODE_ENV__: process.env.NODE_ENV
           ? `'${process.env.NODE_ENV}'`
