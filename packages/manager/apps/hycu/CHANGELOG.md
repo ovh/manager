@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.3.4...@ovh-ux/manager-hycu-app@0.3.5) (2024-12-03)
+
+
+### Bug Fixes
+
+* **hycu:** fix wrong loading state for licence data ([02973b4](https://github.com/ovh/manager/commit/02973b46c460d6bbfe32da303e84a392e69e587c))
+
+
+
+
+
 ## [0.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.3.3...@ovh-ux/manager-hycu-app@0.3.4) (2024-12-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-hycu-app
