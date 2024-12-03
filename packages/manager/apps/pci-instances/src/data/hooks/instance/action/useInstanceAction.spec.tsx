@@ -32,7 +32,7 @@ const initQueryClient = () => {
 // test data
 type Data = {
   projectId: string;
-  instanceId: string | null;
+  instanceId: string | undefined;
   type: TMutationFnType | null;
   queryPayload?: TInstanceDto[];
   mutationPayload?: null;
@@ -77,12 +77,14 @@ const handleSuccess = vi.fn(
 
 describe('Considering the useInstanceAction hook', () => {
   describe.each`
-    projectId        | instanceId     | type        | queryPayload        | mutationPayload
-    ${fakeProjectId} | ${'fake-id-1'} | ${'delete'} | ${undefined}        | ${undefined}
-    ${fakeProjectId} | ${'fake-id-1'} | ${null}     | ${undefined}        | ${undefined}
-    ${fakeProjectId} | ${null}        | ${'stop'}   | ${undefined}        | ${undefined}
-    ${fakeProjectId} | ${'fake-id-1'} | ${'start'}  | ${fakeInstancesDto} | ${undefined}
-    ${fakeProjectId} | ${'fake-id-1'} | ${'stop'}   | ${fakeInstancesDto} | ${null}
+    projectId        | instanceId     | type          | queryPayload        | mutationPayload
+    ${fakeProjectId} | ${'fake-id-1'} | ${'delete'}   | ${undefined}        | ${undefined}
+    ${fakeProjectId} | ${'fake-id-1'} | ${null}       | ${undefined}        | ${undefined}
+    ${fakeProjectId} | ${null}        | ${'stop'}     | ${undefined}        | ${undefined}
+    ${fakeProjectId} | ${'fake-id-1'} | ${'start'}    | ${fakeInstancesDto} | ${null}
+    ${fakeProjectId} | ${'fake-id-1'} | ${'stop'}     | ${fakeInstancesDto} | ${null}
+    ${fakeProjectId} | ${'fake-id-1'} | ${'shelve'}   | ${fakeInstancesDto} | ${null}
+    ${fakeProjectId} | ${'fake-id-1'} | ${'unshelve'} | ${fakeInstancesDto} | ${null}
   `(
     'Given a projectId <$projectId> and an instanceId <$instanceId>',
     ({ projectId, instanceId, type, queryPayload, mutationPayload }: Data) => {
