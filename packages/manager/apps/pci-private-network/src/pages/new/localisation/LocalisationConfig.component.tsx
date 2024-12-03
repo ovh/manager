@@ -7,7 +7,7 @@ import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 const LocalisationConfig: React.FC = () => {
   const { t } = useTranslation('new');
   const { data: project } = useProject();
-  const { setValue } = useFormContext<NewPrivateNetworkForm>();
+  const { unregister, setValue } = useFormContext<NewPrivateNetworkForm>();
 
   return (
     <div className="flex flex-col gap-6 my-8">
@@ -15,6 +15,7 @@ const LocalisationConfig: React.FC = () => {
       <RegionSelector
         projectId={project.project_id}
         onSelectRegion={(region) => {
+          unregister('region');
           // region isMacro
           if (region) {
             setValue('region', region.name, { shouldValidate: true });
