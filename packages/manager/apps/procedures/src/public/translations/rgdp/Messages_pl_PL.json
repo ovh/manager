@@ -27,7 +27,7 @@
   "rgdp_form_category_portability_right": "Prawo do przenoszenia danych",
   "rgdp_form_category_payment_method_remove": "Usunięcie sposobu płatności",
   "rgdp_form_category_other_request": "Inny wniosek do inspektora danych osobowych (DPO)",
-  "rgdp_legal_information": "Powyższe dane są niezbędne do przetworzenia Twojego wniosku. Będą one przechowywane przez okres 5 lat. W przypadku gdybyś został poproszony o dostarczenie kopii dowodu tożsamości, będzie ona przechowywana przez maksymalnie 15 dni.",
+  "rgdp_legal_information": "Powyższe dane są niezbędne do przetworzenia Twojego wniosku. Będą one przechowywane przez okres 5 lat. W przypadku gdybyś został poproszony o dostarczenie kopii dowodu tożsamości, będzie ona przechowywana przez maksymalnie {{retentionDays}} dni.",
   "rgdp_legal_information_policy": "Aby dowiedzieć się więcej o przetwarzaniu Twoich danych osobowych i przysługujących Ci prawach, zapoznaj się z <a style='color:#2563eb; font-weight: 700;' href='{{legalPolicyLink}}' target='_blank'>Polityką ochrony danych osobowych</a> OVHcloud.",
   "rgdp_form_upload_documents_title": "Dołącz dokumenty",
   "rgdp_form_upload_documents_notice": "Możesz dodać dowolny dokument, który uznasz za przydatny do rozpatrzenia wniosku.",

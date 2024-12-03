@@ -27,7 +27,7 @@
   "rgdp_form_category_portability_right": "Right to data portability",
   "rgdp_form_category_payment_method_remove": "Delete a payment method",
   "rgdp_form_category_other_request": "Other request for the DPO",
-  "rgdp_legal_information": "We need the above-mentioned information to process your request. They will be kept for a period of 5 years. If you are asked to provide a copy of your ID, it will be kept for a maximum of 15 days.",
+  "rgdp_legal_information": "We need the above-mentioned information to process your request. They will be kept for a period of 5 years. If you are asked to provide a copy of your ID, it will be kept for a maximum of {{retentionDays}} days.",
   "rgdp_legal_information_policy": "To find out more about how your data is processed, as well as your rights, please refer to our <a style='color:#2563eb; font-weight: 700;' href='{{legalPolicyLink}}' target='_blank'>OVHcloud Policy on the Use of Personal Data.</a>",
   "rgdp_form_upload_documents_title": "Upload your documents",
   "rgdp_form_upload_documents_notice": "You can upload any supporting documents you deem relevant to your request.",

@@ -27,7 +27,7 @@
   "rgdp_form_category_portability_right": "Recht auf Datenübertragbarkeit",
   "rgdp_form_category_payment_method_remove": "Ein Zahlungsmittel löschen",
   "rgdp_form_category_other_request": "Andere Anfrage an den DPO",
-  "rgdp_legal_information": "Die oben erhobenen Daten sind für die Bearbeitung Ihrer Anfrage erforderlich. Sie werden für einen Zeitraum von 5 Jahren aufbewahrt. Falls Sie nach einer Kopie Ihres Ausweises gefragt werden, wird diese maximal 15 Tage aufbewahrt.",
+  "rgdp_legal_information": "Die oben erhobenen Daten sind für die Bearbeitung Ihrer Anfrage erforderlich. Sie werden für einen Zeitraum von 5 Jahren aufbewahrt. Falls Sie nach einer Kopie Ihres Ausweises gefragt werden, wird diese maximal {{retentionDays}} Tage aufbewahrt.",
   "rgdp_legal_information_policy": "Weitere Informationen zur Verarbeitung Ihrer Daten und zu Ihren Rechten finden Sie in unseren <a style='color:#2563eb; font-weight: 700;' href='{{legalPolicyLink}}' target='_blank'>Richtlinien zur Nutzung personenbezogener Daten bei OVHcloud.</a>",
   "rgdp_form_upload_documents_title": "Dokumente einreichen",
   "rgdp_form_upload_documents_notice": "Sie können jedes Dokument hinzufügen, das Sie für Ihre Anfrage als hilfreich erachten.",
