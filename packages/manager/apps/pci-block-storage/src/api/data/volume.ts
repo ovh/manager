@@ -185,6 +185,7 @@ export interface AddVolumeProps {
   regionName: string;
   volumeCapacity: number;
   volumeType: string;
+  availabilityZone?: string;
 }
 
 export const addVolume = async ({

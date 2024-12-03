@@ -6,4 +6,5 @@ export type TFormState = {
   volumeType: TAddon;
   volumeName: string;
   volumeCapacity: number;
+  availabilityZone: string;
 };
