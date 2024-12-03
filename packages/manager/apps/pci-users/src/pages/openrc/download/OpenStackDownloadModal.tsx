@@ -21,13 +21,14 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
+import { getMacroRegion } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 import { useEffect, useState } from 'react';
 import { useDownloadOpenStackConfig } from '@/api/hooks/useUser';
 import { OPENSTACK_GUIDE } from '@/download-openrc.constants';
 import { useAllRegions } from '@/api/hooks/useRegion';
-import { getMacroRegion, getOpenRcApiVersion } from '@/api/data/region';
+import { getOpenRcApiVersion } from '@/api/data/region';
 
 interface OpenStackDownloadModalProps {
   projectId: string;
