@@ -1,9 +1,15 @@
-import"./blocks-BV28lYiK.js";import{M as c,d as m}from"./index-BtRe4z3Y.js";import{j as a}from"./jsx-runtime-CKrituN3.js";import{useMDXComponents as s}from"./index-DI5IigMn.js";import"./iframe-DRgUifYE.js";import"../sb-preview/runtime.js";import"./index-CBqU2yxZ.js";import"./_commonjsHelpers-BosuxZz1.js";import"./index-BtM5VmRH.js";import"./index-D_r38UMq.js";import"./index-Cmc67Rxs.js";import"./index-DrFu-skq.js";const h=`# Change Log
+import"./blocks-BV28lYiK.js";import{M as c,d as m}from"./index-BUpw2D1y.js";import{j as a}from"./jsx-runtime-CKrituN3.js";import{useMDXComponents as s}from"./index-DI5IigMn.js";import"./iframe-CTEIpmxk.js";import"../sb-preview/runtime.js";import"./index-CBqU2yxZ.js";import"./_commonjsHelpers-BosuxZz1.js";import"./index-BtM5VmRH.js";import"./index-D_r38UMq.js";import"./index-Cmc67Rxs.js";import"./index-DrFu-skq.js";const h=`# Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.4.1...@ovh-ux/manager-react-components@2.5.0) (2024-12-02)
+## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.5.0...@ovh-ux/manager-react-components@2.5.1) (2024-12-03)
+
+### Bug Fixes
+
+- **manager-react-components** copy lib scss file in dist src ([#14393](https://github.com/ovh/manager/pull/14393)) ([a153458](https://github.com/ovh/manager/commit/a1534586effa72a1168a12951cd5c2d44ca2b48e))
+
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.4.1...@ovh-ux/manager-react-components@2.5.0) (2024-12-02)
 
 ### Features
 
