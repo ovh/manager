@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.9.2...@ovh-ux/manager-pci-kubernetes-app@0.10.0) (2024-12-03)
+
+
+### Features
+
+* **pci.kubernetes:** refacto oidc provider  ([#14071](https://github.com/ovh/manager/issues/14071)) ([aaca072](https://github.com/ovh/manager/commit/aaca072daace1d9335a81e8f24977f7e921c0971))
+
+
+
+
+
 ## [0.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.9.1...@ovh-ux/manager-pci-kubernetes-app@0.9.2) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

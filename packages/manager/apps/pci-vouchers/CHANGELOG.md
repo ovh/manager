@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.26](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.8.25...@ovh-ux/manager-pci-vouchers-app@0.8.26) (2024-12-03)
+
+
+### Bug Fixes
+
+* **pci-vouchers:** design css fixes ([#13891](https://github.com/ovh/manager/issues/13891)) ([8186b55](https://github.com/ovh/manager/commit/8186b55087848fedf2e316a17631f4f63874e7c4))
+
+
+
+
+
 ## [0.8.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.8.24...@ovh-ux/manager-pci-vouchers-app@0.8.25) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-vouchers-app

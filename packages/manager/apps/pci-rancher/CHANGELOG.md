@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.21.6...@ovh-ux/manager-pci-rancher-app@1.21.7) (2024-12-03)
+
+
+### Bug Fixes
+
+* **pci.rancher:** change method for pricing ([#14229](https://github.com/ovh/manager/issues/14229)) ([1a4dcb8](https://github.com/ovh/manager/commit/1a4dcb829a17055f7b432c10b748f11e71122ad8))
+
+
+
+
+
 ## [1.21.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.21.5...@ovh-ux/manager-pci-rancher-app@1.21.6) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.11.16...@ovh-ux/manager-pci-users-app@0.11.17) (2024-12-03)
+
+
+### Bug Fixes
+
+* **pci-users:** design css fixes ([#13892](https://github.com/ovh/manager/issues/13892)) ([b604fec](https://github.com/ovh/manager/commit/b604fec6135388ad740a68453601807b5daae409))
+
+
+
+
+
 ## [0.11.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.11.15...@ovh-ux/manager-pci-users-app@0.11.16) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-users-app

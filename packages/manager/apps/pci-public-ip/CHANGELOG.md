@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.7.17...@ovh-ux/manager-pci-public-ip-app@0.7.18) (2024-12-03)
+
+
+### Bug Fixes
+
+* **pci.instances:** use shell to navigate to public-ip ([#13948](https://github.com/ovh/manager/issues/13948)) ([adef06f](https://github.com/ovh/manager/commit/adef06fd12d3a2c2de6cd1442ece9463ca9e6361))
+
+
+
+
+
 ## [0.7.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.7.16...@ovh-ux/manager-pci-public-ip-app@0.7.17) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
