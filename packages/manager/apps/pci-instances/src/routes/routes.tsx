@@ -14,23 +14,39 @@ const lazyRouteConfig = (importFn: CallableFunction) => ({
 });
 
 export const ROOT_PATH = '/pci/projects/:projectId/instances';
-export const SUB_PATHS = {
+export const REGION_PATH = 'region/:regionId';
+export const INSTANCE_PATH = 'instance/:instanceId';
+export const SECTIONS = {
   onboarding: 'onboarding',
   new: 'new',
   instance: ':instanceId',
   delete: 'delete',
   stop: 'stop',
   start: 'start',
+  shelve: 'shelve',
+  unshelve: 'unshelve',
 };
+const instanceActionsSections = [
+  SECTIONS.delete,
+  SECTIONS.start,
+  SECTIONS.stop,
+  SECTIONS.shelve,
+  SECTIONS.unshelve,
+];
 
-const actionRoutes = [SUB_PATHS.delete, SUB_PATHS.start, SUB_PATHS.stop].map(
-  (path) => ({
-    path,
-    ...lazyRouteConfig(() =>
-      import('@/pages/instances/action/InstanceAction.page'),
-    ),
-  }),
-);
+const instanceActionLegacyRoutes = instanceActionsSections.map((section) => ({
+  path: section,
+  ...lazyRouteConfig(() =>
+    import('@/pages/instances/action/LegacyInstanceAction.page'),
+  ),
+}));
+
+const instanceActionRoutes = instanceActionsSections.map((section) => ({
+  path: `${REGION_PATH}/${INSTANCE_PATH}/${section}`,
+  ...lazyRouteConfig(() =>
+    import('@/pages/instances/action/InstanceAction.page'),
+  ),
+}));
 
 const routes: RouteObject[] = [
   {
@@ -47,22 +63,22 @@ const routes: RouteObject[] = [
       {
         path: '',
         ...lazyRouteConfig(() => import('@/pages/instances/Instances.page')),
-        children: actionRoutes,
+        children: [...instanceActionLegacyRoutes, ...instanceActionRoutes],
       },
       {
-        path: SUB_PATHS.onboarding,
+        path: SECTIONS.onboarding,
         ...lazyRouteConfig(() =>
           import('@/pages/instances/onboarding/Onboarding.page'),
         ),
       },
       {
-        path: SUB_PATHS.new,
+        path: SECTIONS.new,
         ...lazyRouteConfig(() =>
           import('@/pages/instances/create/CreateInstance.page'),
         ),
       },
       {
-        path: SUB_PATHS.instance,
+        path: SECTIONS.instance,
         ...lazyRouteConfig(() =>
           import('@/pages/instances/instance/Instance.page'),
         ),
@@ -71,7 +87,7 @@ const routes: RouteObject[] = [
   },
   {
     path: '*',
-    element: <h1>Not found page</h1>,
+    ...lazyRouteConfig(() => import('@/pages/404/NotFound.page')),
   },
 ];
 
