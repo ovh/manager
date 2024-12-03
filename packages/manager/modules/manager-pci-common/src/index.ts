@@ -15,3 +15,4 @@ export * from './constants';
 export * from './components/quantity-selector';
 export * from './components/Pricing';
 export * from './components/shape-input/ShapeInput.component';
+// export * from './components/Pricing';
