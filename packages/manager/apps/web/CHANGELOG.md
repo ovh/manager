@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.1.5...@ovh-ux/manager-web@19.2.0) (2024-12-03)
+
+
+### Bug Fixes
+
+* **web:** add optionnal chaining for quotas in DB ([#13695](https://github.com/ovh/manager/issues/13695)) ([d98c743](https://github.com/ovh/manager/commit/d98c743a5e1d5845c17ff9c1bec54da0690bebfa))
+
+
+### Features
+
+* **web.hosting:** edit database notification banner ([#13911](https://github.com/ovh/manager/issues/13911)) ([859fa88](https://github.com/ovh/manager/commit/859fa8888a7a2a27caef659d50a61c856c32c824))
+
+
+
+
+
 ## [19.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.1.4...@ovh-ux/manager-web@19.1.5) (2024-11-28)
 
 
