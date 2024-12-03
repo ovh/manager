@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.1.3...@ovh-ux/manager-pci-load-balancer-app@0.2.0) (2024-12-03)
+
+
+### Features
+
+* **pci.load-balancer:** add xl flavors ([#14186](https://github.com/ovh/manager/issues/14186)) ([f2305ad](https://github.com/ovh/manager/commit/f2305ad278cff2132784eb014576a08322b14b89))
+
+
+
+
+
 ## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.1.2...@ovh-ux/manager-pci-load-balancer-app@0.1.3) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-load-balancer-app

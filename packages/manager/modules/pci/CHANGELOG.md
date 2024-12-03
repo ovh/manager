@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.70.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.69.2...@ovh-ux/manager-pci@6.70.0) (2024-12-03)
+
+
+### Bug Fixes
+
+* **pci-object-storage:** fix wording ([#14298](https://github.com/ovh/manager/issues/14298)) ([9fad179](https://github.com/ovh/manager/commit/9fad1790bb595f18246a9b105e3ebc74ea2cc60b))
+* **pci-object-storage:** spinner when adding a localzone ([#14268](https://github.com/ovh/manager/issues/14268)) ([7fe1bf7](https://github.com/ovh/manager/commit/7fe1bf7d0d545665c5600d32ae5fb4641721d7e7))
+* **pci.instances:** use shell to navigate to public-ip ([#13948](https://github.com/ovh/manager/issues/13948)) ([adef06f](https://github.com/ovh/manager/commit/adef06fd12d3a2c2de6cd1442ece9463ca9e6361))
+
+
+### Features
+
+* **pci-object-storage:** do not show warning when deleting empty bucket ([#14256](https://github.com/ovh/manager/issues/14256)) ([cac568f](https://github.com/ovh/manager/commit/cac568f87df38be28ab9baf79835b0a9aefd0288))
+
+
+
+
+
 ## [6.69.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.69.1...@ovh-ux/manager-pci@6.69.2) (2024-11-28)
 
 

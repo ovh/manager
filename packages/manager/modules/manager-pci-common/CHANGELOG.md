@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.10.2...@ovh-ux/manager-pci-common@0.11.0) (2024-12-03)
+
+
+### Bug Fixes
+
+* **pci-gateway:** design css fixes ([#14038](https://github.com/ovh/manager/issues/14038)) ([dd5313a](https://github.com/ovh/manager/commit/dd5313a4619f8294c7f52614f060a0851e6dc8ae))
+
+
+### Features
+
+* **pci-private-network:** apply design reviews ([#13921](https://github.com/ovh/manager/issues/13921)) ([f9a34a8](https://github.com/ovh/manager/commit/f9a34a83481ddb96cdd9425206c0f038b22d2626))
+
+
+
+
+
 ## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.10.1...@ovh-ux/manager-pci-common@0.10.2) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common
