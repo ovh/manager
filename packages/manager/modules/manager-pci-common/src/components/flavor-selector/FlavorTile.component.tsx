@@ -17,6 +17,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { useBytes } from '../../hooks';
 import { FlavorLocalzoneChip } from './FlavorLocalzoneChip';
+import { selectableTileClass, selectedTileClass } from '../../constants/style';
 
 export interface FlavorDiskType {
   number: number;
@@ -52,10 +53,6 @@ export interface FlavorTileProps {
   onClick: () => void;
 }
 
-const checkedClass =
-  'cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600]';
-const uncheckedClass =
-  'cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600]';
 const separatorClass = 'h-px my-5 bg-[#85d9fd] border-0';
 const gigabytes = 10 ** 9;
 
@@ -79,7 +76,7 @@ export function FlavorTile({
   return (
     <OdsCard
       className={clsx(
-        isSelected ? checkedClass : uncheckedClass,
+        isSelected ? selectedTileClass : selectableTileClass,
         !hasEnoughQuota && 'opacity-50',
       )}
       onClick={() => hasEnoughQuota && onClick?.()}
