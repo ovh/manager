@@ -1,8 +1,6 @@
 import {
-  OsdsButton,
   OsdsFormField,
   OsdsInput,
-  OsdsModal,
   OsdsSelect,
   OsdsSelectOption,
   OsdsText,
@@ -12,9 +10,10 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_VARIANT, ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
+import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { PciModal } from '@ovh-ux/manager-pci-common';
 import { AVAILABLE_SUBNET } from '@/pages/add/NetworkStep';
 import { useNewGatewayStore } from '@/pages/add/useStore';
 
@@ -30,17 +29,23 @@ export const SubnetModal = ({
   });
 
   return (
-    <OsdsModal onOdsModalClose={onClose}>
+    <PciModal
+      onClose={onClose}
+      title={tAdd('pci_projects_project_public_gateways_add_modal_title')}
+      onCancel={onClose}
+      onConfirm={() => {
+        onClose();
+        store.updateForm.network('new', store.form.network.subnetId);
+      }}
+      isDisabled={!store.form.newNetwork.name || !store.form.newNetwork.subnet}
+      submitText={tAdd(
+        'pci_projects_project_public_gateways_add_modal_submit_label',
+      )}
+      cancelText={tAdd(
+        'pci_projects_project_public_gateways_add_modal_cancel_label',
+      )}
+    >
       <>
-        <p>
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {tAdd('pci_projects_project_public_gateways_add_modal_title')}
-          </OsdsText>
-        </p>
         <p>
           <OsdsText
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -130,27 +135,6 @@ export const SubnetModal = ({
           </OsdsSelect>
         </OsdsFormField>
       </>
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
-        onClick={onClose}
-      >
-        {tAdd('pci_projects_project_public_gateways_add_modal_cancel_label')}
-      </OsdsButton>
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={() => {
-          onClose();
-          store.updateForm.network('new', store.form.network.subnetId);
-        }}
-        {...(!store.form.newNetwork.name || !store.form.newNetwork.subnet
-          ? { disabled: true }
-          : {})}
-      >
-        {tAdd('pci_projects_project_public_gateways_add_modal_submit_label')}
-      </OsdsButton>
-    </OsdsModal>
+    </PciModal>
   );
 };

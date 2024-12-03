@@ -30,7 +30,7 @@ enum FormErrorEnum {
 
 export function DeletionModal({
   children,
-  type,
+  type = 'warning',
   title,
   cancelText,
   submitText,
@@ -87,7 +87,7 @@ export function DeletionModal({
   return (
     <PciModal
       title={title}
-      type={type}
+      type={type || 'warning'}
       isPending={isPending}
       isDisabled={isDisabled}
       cancelText={cancelText}

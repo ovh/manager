@@ -1,25 +1,24 @@
 import {
-  OsdsButton,
   OsdsFormField,
   OsdsInput,
-  OsdsModal,
-  OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
-  ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
-  ODS_SPINNER_SIZE,
+  ODS_TEXT_COLOR_INTENT,
+  ODS_TEXT_LEVEL,
   OdsInputValueChangeEvent,
 } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 
 import { useCallback, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { PciModal } from '@ovh-ux/manager-pci-common';
 import { useBuyCredit } from '@/api/hooks/useVouchers';
 
 interface BuyCreditModalProps {
@@ -66,86 +65,62 @@ export default function BuyCreditModal({
   );
 
   return (
-    <>
-      <OsdsModal
-        data-testid="BuyCreditPage-modal"
-        headline={t('cpb_vouchers_add_credit_title')}
-        onOdsModalClose={onClose}
+    <PciModal
+      data-testid="BuyCreditPage-modal"
+      title={t('cpb_vouchers_add_credit_title')}
+      onClose={onClose}
+      onCancel={onClose}
+      onConfirm={() => buy(amount)}
+      isPending={isPending}
+      isDisabled={isPending || !isValidInputAmount}
+      submitText={t('cpb_vouchers_add_credit_valid')}
+    >
+      <OsdsText
+        color={ODS_TEXT_COLOR_INTENT.text}
+        level={ODS_TEXT_LEVEL.body}
+        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
       >
-        <slot name="content">
-          {!isPending && (
-            <>
-              <span>{t('cpb_vouchers_add_credit_info')}</span>
-              <OsdsFormField className="pt-4">
-                <OsdsText
-                  slot="label"
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
-                  {t('cpb_vouchers_add_credit_amount', {
-                    currency: user.currency.symbol,
-                  })}
-                </OsdsText>
-                <OsdsInput
-                  type={ODS_INPUT_TYPE.number}
-                  min={1}
-                  value={amount}
-                  onOdsValueChange={handleInputChange}
-                  ariaLabel={t('cpb_vouchers_your_voucher')}
-                  {...(isValidInputAmount && isMinimalAmount
-                    ? {}
-                    : { color: ODS_THEME_COLOR_INTENT.error })}
-                  className={`border ${
-                    isValidInputAmount && isMinimalAmount
-                      ? ''
-                      : 'border-red-500'
-                  }`}
-                  {...(isValidInputAmount && isMinimalAmount
-                    ? {}
-                    : { error: true })}
-                  data-testid="amountInput"
-                />
-
-                {!isMinimalAmount && (
-                  <OsdsText slot="helper" color={ODS_THEME_COLOR_INTENT.error}>
-                    {t('common_field_error_min', {
-                      min: 1,
-                    })}
-                  </OsdsText>
-                )}
-
-                {!isValidInputAmount && (
-                  <OsdsText slot="helper" color={ODS_THEME_COLOR_INTENT.error}>
-                    {t('common_field_error_number')}
-                  </OsdsText>
-                )}
-              </OsdsFormField>
-            </>
-          )}
-          {isPending && (
-            <div>
-              <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-            </div>
-          )}
-        </slot>
-        <OsdsButton
-          slot="actions"
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          onClick={onClose}
+        {t('cpb_vouchers_add_credit_info')}
+      </OsdsText>
+      <OsdsFormField className="mt-6">
+        <OsdsText
+          slot="label"
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+          color={ODS_THEME_COLOR_INTENT.text}
         >
-          {t('common_cancel')}
-        </OsdsButton>
-        <OsdsButton
-          slot="actions"
-          color={ODS_THEME_COLOR_INTENT.primary}
-          {...(isValidInputAmount && isMinimalAmount ? {} : { disabled: true })}
-          onClick={() => buy(amount)}
-          data-testid="submitButton"
-        >
-          {t('cpb_vouchers_add_credit_valid')}
-        </OsdsButton>
-      </OsdsModal>
-    </>
+          {t('cpb_vouchers_add_credit_amount', {
+            currency: user.currency.symbol,
+          })}
+        </OsdsText>
+        <OsdsInput
+          type={ODS_INPUT_TYPE.number}
+          min={1}
+          value={amount}
+          color={
+            !isValidInputAmount || !isMinimalAmount
+              ? ODS_THEME_COLOR_INTENT.error
+              : ODS_THEME_COLOR_INTENT.default
+          }
+          onOdsValueChange={handleInputChange}
+          ariaLabel={t('cpb_vouchers_your_voucher')}
+          error={!isValidInputAmount || !isMinimalAmount}
+          data-testid="amountInput"
+        />
+
+        {!isMinimalAmount && (
+          <OsdsText slot="helper" color={ODS_THEME_COLOR_INTENT.error}>
+            {t('common_field_error_min', {
+              min: 1,
+            })}
+          </OsdsText>
+        )}
+
+        {!isValidInputAmount && (
+          <OsdsText slot="helper" color={ODS_THEME_COLOR_INTENT.error}>
+            {t('common_field_error_number')}
+          </OsdsText>
+        )}
+      </OsdsFormField>
+    </PciModal>
   );
 }

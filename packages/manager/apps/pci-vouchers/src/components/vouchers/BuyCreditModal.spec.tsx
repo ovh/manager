@@ -64,7 +64,7 @@ describe('Buy credit modal', () => {
   it('should call the buy function with given amount', async () => {
     const { getByTestId } = renderModal();
     const amountInput = getByTestId('amountInput');
-    const submitButton = getByTestId('submitButton');
+    const submitButton = getByTestId('pciModal-button_submit');
     // expect(result.current.buy).not.toHaveBeenCalled();
     act(() => {
       fireEvent.change(amountInput, {
@@ -89,7 +89,7 @@ describe('Buy credit modal', () => {
   it('should disable submit button if no amount is specified', async () => {
     const { getByTestId } = renderModal();
     const amountInput = getByTestId('amountInput');
-    const submitButton = getByTestId('submitButton');
+    const submitButton = getByTestId('pciModal-button_submit');
     expect(submitButton).not.toHaveAttribute('disabled');
     act(() => {
       fireEvent.change(amountInput, {
@@ -109,7 +109,7 @@ describe('Buy credit modal', () => {
   it('should only allows numerical values for amount', async () => {
     const { getByTestId } = renderModal();
     const amountInput = getByTestId('amountInput');
-    const submitButton = getByTestId('submitButton');
+    const submitButton = getByTestId('pciModal-button_submit');
     expect(submitButton).not.toHaveAttribute('disabled');
     act(() => {
       fireEvent.change(amountInput, {
@@ -130,7 +130,7 @@ describe('Buy credit modal', () => {
   it('should only allows up to 8 digits for amount', async () => {
     const { getByTestId } = renderModal();
     const amountInput = getByTestId('amountInput');
-    const submitButton = getByTestId('submitButton');
+    const submitButton = getByTestId('pciModal-button_submit');
     expect(submitButton).not.toHaveAttribute('disabled');
     act(() => {
       fireEvent.change(amountInput, {

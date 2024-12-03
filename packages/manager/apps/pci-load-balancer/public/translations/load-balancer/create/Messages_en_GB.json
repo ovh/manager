@@ -6,8 +6,8 @@
   "octavia_load_balancer_create_size_intro_link": "Visit product page",
   "octavia_load_balancer_create_size_flavour_title": "Size {{sizeCode}}",
   "octavia_load_balancer_create_size_flavour_description_s": "Suitable for small applications. Ideal for testing and development environments, or for small projects.",
-  "octavia_load_balancer_create_size_flavour_description_m": "Suitable for most projects that handle moderate traffic.",
-  "octavia_load_balancer_create_size_flavour_description_l": "When your application traffic reaches its highest density, you may need the best Load Balancer performance to handle it.",
+  "octavia_load_balancer_create_size_flavour_description_m": "Suitable for most projects with moderate traffic needs.",
+  "octavia_load_balancer_create_size_flavour_description_l": "Designed for high traffic applications, it delivers peak performance to handle heavy loads.",
   "octavia_load_balancer_create_size_flavour_price_interval": " /hour",
   "octavia_load_balancer_create_region_title": "Select a region",
   "octavia_load_balancer_create_region_intro": "Please select the Public Cloud region where your Load Balancer will be hosted. From the list of Public Cloud regions with defined private network, choose the region where the Load Balancer will be hosted. Can't find the region you want in the list? To learn more about feature availability by region, ",
@@ -38,5 +38,8 @@
   "octavia_load_balancer_create_submit": "Create a Load Balancer",
   "octavia_load_balancer_create_banner": "Creating your Load Balancer... This will only take a few minutes.",
   "octavia_load_balancer_create_instance_banner_health_monitor_text": "In this first integration of the Load Balancer in the OVHcloud Control Panel, the Health Monitors can only be configured when the Load Balancer is created.",
-  "octavia_load_balancer_create_name_field_help": "May contain numbers, letters, underscores, dashes and full stops only."
+  "octavia_load_balancer_create_name_field_help": "May contain numbers, letters, underscores, dashes and full stops only.",
+  "octavia_load_balancer_create_size_flavour_description_xl": "An excellent choice for high traffic applications requiring extra bandwidth for optimal performance.",
+  "octavia_load_balancer_create_size_flavour_description_2xl": "Ideal for projects with high traffic volume, as it provides ample bandwidth for consistent performance.",
+  "octavia_load_balancer_create_size_flavour_description_3xl": "Built for critical systems with heavy traffic, it maximises performance through its high bandwidth capabilities."
 }
