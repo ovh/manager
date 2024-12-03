@@ -17,6 +17,11 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   SavingsPlanPlanedChangeStatus,
   SavingsPlanStatus,
 } from '@/types/api.type';
@@ -46,6 +51,7 @@ const MenuItems = ({
   pciUrl: string;
 }) => {
   const { t } = useTranslation('listing');
+  const { trackClick } = useOvhTracking();
 
   // We don't have a better way to check that, api return only a specific code and not an id related to scope (instance, rancher),
   // So if we have number in the flavor (b3-8, c3-16) it's an instance else it's a Rancher
@@ -93,6 +99,14 @@ const MenuItems = ({
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.ghost}
           text-align="start"
+          onClick={() => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'navigation',
+              actions: ['add_instance'],
+            });
+          }}
           href={
             isInstance ? `${pciUrl}/instances/new` : `${pciUrl}/rancher/new`
           }
