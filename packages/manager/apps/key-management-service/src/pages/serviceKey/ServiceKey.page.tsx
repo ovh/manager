@@ -162,6 +162,8 @@ export default function Key() {
                   color={ODS_THEME_COLOR_INTENT.primary}
                   urn={serviceKey.data.iam.urn}
                   iamActions={[kmsIamActions.serviceKeyUpdate]}
+                  aria-label="edit"
+                  data-testid="edit-button-modal"
                   onClick={() => {
                     trackClick({
                       location: PageLocation.page,
