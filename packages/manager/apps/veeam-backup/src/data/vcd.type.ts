@@ -1,8 +1,18 @@
+import { CurrencyCode, OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
 export type IamData = {
   displayName?: string;
   id: string;
   urn: string;
 };
+
+export type AvailabilityZone =
+  | 'ca-east-bhs-a'
+  | 'eu-central-waw-a'
+  | 'eu-west-eri-a'
+  | 'eu-west-lim-a'
+  | 'eu-west-rbx-a'
+  | 'eu-west-sbg-a';
 
 export type VCDRegion =
   | 'AP-SOUTH-MUM'
@@ -52,7 +62,7 @@ export type VeeamBackup = {
   currentState: {
     vms?: number;
     offers: VeeamBackupOffer[];
-    region: VCDRegion;
+    azName: AvailabilityZone;
   };
   updatedAt: string;
   createdAt: string;
@@ -63,11 +73,6 @@ export type VeeamBackup = {
 };
 
 export type VeeamBackupWithIam = VeeamBackup & { iam: IamData };
-
-export type VCDLocation = {
-  location: string;
-  region: VCDRegion;
-};
 
 export enum BackupStatus {
   active = 'active',

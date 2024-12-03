@@ -2,10 +2,7 @@ import {
   IVdcOrderableResource,
   IVdcOrderableResourcePriced,
 } from '@/types/vcd-vdc-orderable-resource.interface';
-import {
-  ProductPricingCapacity,
-  TVcdCatalog,
-} from '@/types/vcd-catalog.interface';
+import { TVcdCatalog } from '@/types/vcd-catalog.interface';
 
 export const getVdcResourcePrice = (resource: IVdcOrderableResourcePriced) =>
   resource.pricing?.priceInUcents;
@@ -30,7 +27,7 @@ export const getPricedVdcResources = ({
         ({ planCode }) => planCode === resource.profile,
       )?.prices;
       const pricing = prices?.find(({ capacities }) =>
-        capacities.includes(ProductPricingCapacity.RENEW),
+        capacities.includes('renew'),
       );
       return pricing ? [...list, { ...resource, pricing }] : list;
     }, [])

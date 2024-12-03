@@ -12,6 +12,10 @@ export const getVcdOrganizationBackupQueryKey = (id: string) => [
   ...getVcdOrganizationQueryKey(id),
   'backup',
 ];
+export const getVcdOrganizationResetPasswordQueryKey = (id: string) => [
+  ...getVcdOrganizationQueryKey(id),
+  'resetPassword',
+];
 export const getVcdCatalogQueryKey = (serviceName: string) => [
   'order',
   'cartServiceOption',

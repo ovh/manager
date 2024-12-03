@@ -20,5 +20,7 @@
   "manual_renew": "Manual renewal",
   "administrator_contact": "{{code}} Administrator",
   "billing_contact": "{{code}} Billing",
-  "technical_contact": "{{code}} Technical"
+  "technical_contact": "{{code}} Technical",
+  "location": "Location",
+  "terminated_service": "The service has been cancelled."
 }

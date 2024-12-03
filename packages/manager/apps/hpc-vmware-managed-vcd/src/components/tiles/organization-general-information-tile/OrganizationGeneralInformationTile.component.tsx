@@ -4,6 +4,7 @@ import {
   Clipboard,
   DashboardTile,
   Region,
+  Description,
 } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_HUE,
@@ -66,10 +67,9 @@ export default function OrganizationGenerationInformationTile({
         },
         {
           id: 'location',
-          label: t('managed_vcd_dashboard_localisation'),
+          label: t('managed_vcd_dashboard_location'),
           value: (
             <OsdsText
-              className="mb-4"
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
               color={ODS_THEME_COLOR_INTENT.text}
@@ -80,6 +80,15 @@ export default function OrganizationGenerationInformationTile({
                 mode="region"
               />
             </OsdsText>
+          ),
+        },
+        {
+          id: 'region',
+          label: t('managed_vcd_dashboard_region'),
+          value: (
+            <Description>
+              {vcdOrganization?.currentState?.region?.toLowerCase()}
+            </Description>
           ),
         },
         {
