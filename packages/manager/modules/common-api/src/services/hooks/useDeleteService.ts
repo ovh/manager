@@ -1,5 +1,9 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import {
+  MutationOptions,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 import {
   getResourceServiceId,
   getResourceServiceIdQueryKey,
@@ -12,21 +16,20 @@ export type DeleteServiceMutationParams = {
 
 export const deleteServiceMutationKey = ['delete-service'];
 
-export type UseDeleteServiceParams = {
-  onSuccess?: () => void;
-  onError?: (result: ApiError) => void;
-  mutationKey?: string[];
-};
+export type UseDeleteServiceParams = MutationOptions<
+  ApiResponse<{ message: string }>,
+  ApiError,
+  DeleteServiceMutationParams
+>;
 
 export const useDeleteService = ({
-  onSuccess,
-  onError,
   mutationKey = deleteServiceMutationKey,
+  ...options
 }: UseDeleteServiceParams) => {
   const queryClient = useQueryClient();
   const { mutate: terminateService, ...mutation } = useMutation({
     mutationKey,
-    mutationFn: async ({ resourceName }: DeleteServiceMutationParams) => {
+    mutationFn: async ({ resourceName }) => {
       const { data } = await queryClient.fetchQuery<
         ApiResponse<number[]>,
         ApiError
@@ -36,8 +39,7 @@ export const useDeleteService = ({
       });
       return deleteService({ serviceId: data[0] });
     },
-    onSuccess,
-    onError,
+    ...options,
   });
 
   return {

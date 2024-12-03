@@ -1,5 +1,9 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
+import {
+  useQueryClient,
+  useMutation,
+  MutationOptions,
+} from '@tanstack/react-query';
 import {
   updateServiceName,
   getResourceServiceId,
@@ -12,27 +16,23 @@ export type UpdateServiceNameMutationParams = {
   /** Resource name or id */
   resourceName: string;
   /** Resource new display name */
-  displayName?: string;
+  displayName: string;
 };
 
-export type UseUpdateServiceDisplayNameParams = {
-  onSuccess?: () => void;
-  onError?: (result: ApiError) => void;
-  mutationKey?: string[];
-};
+export type UseUpdateServiceDisplayNameParams = MutationOptions<
+  ApiResponse<{ message: string }>,
+  ApiError,
+  UpdateServiceNameMutationParams
+>;
 
 export const useUpdateServiceDisplayName = ({
-  onSuccess,
-  onError,
   mutationKey = updateServiceNameMutationKey,
+  ...options
 }: UseUpdateServiceDisplayNameParams) => {
   const queryClient = useQueryClient();
   const { mutate: updateDisplayName, ...mutation } = useMutation({
     mutationKey,
-    mutationFn: async ({
-      resourceName,
-      displayName,
-    }: UpdateServiceNameMutationParams) => {
+    mutationFn: async ({ resourceName, displayName }) => {
       const { data: servicesId } = await queryClient.fetchQuery<
         ApiResponse<number[]>
       >({
@@ -41,8 +41,7 @@ export const useUpdateServiceDisplayName = ({
       });
       return updateServiceName({ serviceId: servicesId[0], displayName });
     },
-    onSuccess,
-    onError,
+    ...options,
   });
   return {
     updateDisplayName,

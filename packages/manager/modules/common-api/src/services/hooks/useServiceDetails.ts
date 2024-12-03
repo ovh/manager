@@ -1,5 +1,9 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  DefinedInitialDataOptions,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import {
   getResourceServiceId,
   getResourceServiceIdQueryKey,
@@ -15,11 +19,15 @@ export const getServiceDetailsQueryKey = (resourceName: string) => [
 export type UseServiceDetailsParams = {
   queryKey?: string[];
   resourceName: string;
+  options?: Partial<
+    DefinedInitialDataOptions<ApiResponse<ServiceDetails>, ApiError>
+  >;
 };
 
 export const useServiceDetails = ({
   queryKey,
   resourceName,
+  options = {},
 }: UseServiceDetailsParams) => {
   const queryClient = useQueryClient();
   return useQuery<ApiResponse<ServiceDetails>, ApiError>({
@@ -34,5 +42,6 @@ export const useServiceDetails = ({
       });
       return getServiceDetails(data[0]);
     },
+    ...options,
   });
 };

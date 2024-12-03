@@ -9,7 +9,7 @@ export const featureAvailabilityError = 'Feature availability service error';
 
 export const getFeatureAvailabilityMocks = ({
   isFeatureAvailabilityServiceKo,
-  featureAvailabilityResponse,
+  featureAvailabilityResponse = {},
 }: GetFeatureAvailabilityMocksParams): Handler[] => [
   {
     url: `/feature/${Object.keys(featureAvailabilityResponse).join(

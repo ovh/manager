@@ -90,7 +90,7 @@ export const useTask = ({
       if (apiVersion === 'v6') {
         return query.state.status !== 'error' ? refetchIntervalTime : undefined;
       }
-      return !['DONE', 'ERROR'].includes(query.state.data?.data?.status)
+      return !['DONE', 'ERROR'].includes(query.state.data?.data?.status || '')
         ? refetchIntervalTime
         : undefined;
     },

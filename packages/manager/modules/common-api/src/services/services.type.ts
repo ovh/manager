@@ -86,11 +86,11 @@ export type ServiceDetails = {
     engagementRequest: {
       pricingMode: string;
       requestDate: string;
-    };
+    } | null;
     expirationDate: string;
     group: {
       id: number;
-    };
+    } | null;
     lifecycle: {
       capacities: {
         actions: LifecycleAction[];
@@ -99,7 +99,7 @@ export type ServiceDetails = {
         creationDate: string;
         pendingActions: LifecycleAction[];
         state: LifecycleState;
-        terminationDate: string;
+        terminationDate: string | null;
       };
     };
     nextBillingDate: string;
@@ -115,7 +115,7 @@ export type ServiceDetails = {
         defaultEndAction: EndAction;
         duration: string;
         type: EngagementType;
-      };
+      } | null;
       interval: number;
       maximumQuantity: number | null;
       maximumRepeat: number | null;
@@ -151,7 +151,7 @@ export type ServiceDetails = {
       description: string;
       name: string;
     };
-    resellingProvider: 'ovh.ca' | 'ovh.eu';
+    resellingProvider: 'ovh.ca' | 'ovh.eu' | null;
     state: ResourceStatus;
   };
   route: {
