@@ -27,6 +27,7 @@ export default class ServicesActionsCtrl {
 
   $onInit() {
 
+    this.user = this.coreConfig.getUser();
     this.BillingLinksService.generateAutorenewLinks(this.service, {
       billingManagementAvailability: this.billingManagementAvailability,
       getCommitmentLink: this.getCommitmentLink,
