@@ -84,44 +84,43 @@ const DatagridStory = ({
   );
 };
 
-export const Empty: any = {
-  args: {
-    items: [],
-  },
+export const Basic = DatagridStory.bind({});
+
+Basic.args = {
+  columns: columns,
+  items: [...Array(50).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+  })),
+  isPaginated: true,
+  isSortable: true,
 };
 
-export const Basic = {
-  args: {
-    items: [...Array(15).keys()].map((_, i) => ({
-      label: `Item #${i}`,
-      price: Math.floor(1 + Math.random() * 100),
-    })),
-  },
+export const Empty = DatagridStory.bind({});
+
+Empty.args = {
+  columns: columns,
+  items: [],
 };
 
-export const Sortable = {
-  args: {
-    items: [...Array(15).keys()].map((_, i) => ({
-      label: `Item #${i}`,
-      price: Math.floor(1 + Math.random() * 100),
-    })),
-    isSortable: true,
-  },
-};
+export const Sortable = DatagridStory.bind({});
 
-export const Pagination = {
-  args: {
-    items: [...Array(50).keys()].map((_, i) => ({
-      label: `Item #${i}`,
-      price: Math.floor(1 + Math.random() * 100),
-    })),
-    isPaginated: true,
-    isSortable: true,
-  },
+Sortable.args = {
+  columns: columns,
+  items: [...Array(10).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+  })),
+  isSortable: true,
 };
 
 export default {
   title: 'Components/Datagrid Paginated',
-  component: DatagridStory,
+  component: Datagrid,
   decorators: [withRouter],
+  parameters: {
+    status: {
+      type: 'deprecated',
+    },
+  },
 };

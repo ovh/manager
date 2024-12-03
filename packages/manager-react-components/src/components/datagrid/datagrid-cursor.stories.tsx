@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ColumnSort } from '@tanstack/react-table';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import { useSearchParams } from 'react-router-dom';
 import { Datagrid } from './datagrid.component';
 import { DataGridTextCell } from './text-cell.component';
 
@@ -27,19 +26,12 @@ const columns = [
   },
 ];
 
-const DatagridStory = ({
-  items,
-  isSortable,
-}: {
-  items: Item[];
-  isSortable: boolean;
-}) => {
+const DatagridStory = (args) => {
   const [sorting, setSorting] = useState<ColumnSort>();
-  const [data, setData] = useState(items);
-  const [searchParams] = useSearchParams();
+  const [data, setData] = useState(args.items);
 
   const fetchNextPage = () => {
-    const itemsIndex = data.length;
+    const itemsIndex = data?.length;
     const tmp = [...Array(10).keys()].map((_, i) => ({
       label: `Item #${i + itemsIndex}`,
       price: Math.floor(1 + Math.random() * 100),
@@ -49,19 +41,13 @@ const DatagridStory = ({
 
   return (
     <>
-      {`${searchParams}` && (
-        <>
-          <pre>Search params: ?{`${searchParams}`}</pre>
-          <hr />
-        </>
-      )}
       <Datagrid
         columns={columns}
         items={data}
-        totalItems={data.length}
-        hasNextPage={data.length > 0 && data.length < 30}
+        totalItems={data?.length}
+        hasNextPage={data?.length > 0 && data.length < 30}
         onFetchNextPage={fetchNextPage}
-        {...(isSortable
+        {...(args.isSortable
           ? {
               sorting,
               onSortChange: setSorting,
@@ -73,34 +59,39 @@ const DatagridStory = ({
   );
 };
 
-export const Empty: any = {
-  args: {
-    items: [],
-  },
+export const Basic = DatagridStory.bind({});
+
+Basic.args = {
+  columns: columns,
+  items: [...Array(10).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+  })),
+  totalItems: 20,
+  isSortable: false,
+  onFetchNextPage: true,
 };
 
-export const Basic = {
-  args: {
-    items: [...Array(10).keys()].map((_, i) => ({
-      label: `Item #${i}`,
-      price: Math.floor(1 + Math.random() * 100),
-    })),
-    isSortable: false,
-  },
+export const Empty = DatagridStory.bind({});
+
+Empty.args = {
+  columns: columns,
+  items: [],
 };
 
-export const Sortable = {
-  args: {
-    items: [...Array(10).keys()].map((_, i) => ({
-      label: `Item #${i}`,
-      price: Math.floor(1 + Math.random() * 100),
-    })),
-    isSortable: true,
-  },
+export const Sortable = DatagridStory.bind({});
+
+Sortable.args = {
+  columns: columns,
+  items: [...Array(10).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+  })),
+  isSortable: true,
 };
 
 export default {
   title: 'Components/Datagrid Cursor',
-  component: DatagridStory,
+  component: Datagrid,
   decorators: [withRouter],
 };
