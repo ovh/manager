@@ -50,7 +50,7 @@ export default function AccountSidebar() {
     menu.push({
       id: 'my-account',
       label: t('sidebar_account'),
-      href: navigation.getURL(isNewAccountAvailable ? 'account' : 'dedicated', '/useraccount/dashboard'),
+      href: navigation.getURL(isNewAccountAvailable ? 'new-account' : 'dedicated', '/useraccount/dashboard'),
       routeMatcher: new RegExp('^/useraccount'),
     });
 
@@ -60,7 +60,7 @@ export default function AccountSidebar() {
         menu.push({
           id: 'my-identity-documents',
           label: t('sidebar_account_identity_documents'),
-          href: navigation.getURL(isNewAccountAvailable ? 'account' : 'dedicated', '/identity-documents'),
+          href: navigation.getURL(isNewAccountAvailable ? 'new-account' : 'dedicated', '/identity-documents'),
           routeMatcher: new RegExp('^/identity-documents'),
         });
       }
@@ -72,7 +72,7 @@ export default function AccountSidebar() {
         menu.push({
           id: 'kyc-documents',
           label: t('sidebar_account_kyc_documents'),
-          href: navigation.getURL(isNewAccountAvailable ? 'account' : 'dedicated', '/documents'),
+          href: navigation.getURL(isNewAccountAvailable ? 'new-account' : 'dedicated', '/documents'),
           routeMatcher: new RegExp('^/documents'),
         });
       }
@@ -121,7 +121,7 @@ export default function AccountSidebar() {
       menu.push({
         id: 'my-contacts',
         label: t('sidebar_account_contacts'),
-        href: navigation.getURL(isNewAccountAvailable ? 'account' : 'dedicated', '/contacts'),
+        href: navigation.getURL(isNewAccountAvailable ? 'new-account' : 'dedicated', '/contacts'),
         routeMatcher: new RegExp('^/contacts'),
       });
     }

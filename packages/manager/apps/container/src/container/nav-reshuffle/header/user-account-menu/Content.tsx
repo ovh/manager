@@ -88,20 +88,20 @@ const UserAccountMenu = ({
       setIsNewAccountAvailable(!!featureAvailability['new-account'])
 
       if (isNewAccountAvailable) {
-        setSupportLink(getUrl('account', '#/useraccount/support/level'));
+        setSupportLink(getUrl('new-account', '#/useraccount/support/level'));
       }
 
       setAllLinks([
         ...links.map((link: UserLink) => {
           if (['user-account-menu-profile', 'myCommunications', 'myContacts'].includes(link.key)) {
-            link.app = isNewAccountAvailable ? 'account' : 'dedicated';
+            link.app = isNewAccountAvailable ? 'new-account' : 'dedicated';
           }
           return link;
         }),
         ...(isIdentityDocumentsAvailable
           ? [
             {
-              app: isNewAccountAvailable ? 'account' : 'dedicated',
+              app: isNewAccountAvailable ? 'new-account' : 'dedicated',
               key: 'myIdentityDocuments',
               hash: '#/identity-documents',
               i18nKey: 'user_account_menu_my_identity_documents',
@@ -111,7 +111,7 @@ const UserAccountMenu = ({
         ...(region === 'US'
           ? [
             {
-              app: isNewAccountAvailable ? 'account' : 'dedicated',
+              app: isNewAccountAvailable ? 'new-account' : 'dedicated',
               key: 'myAssistanceTickets',
               hash: '#/ticket',
               i18nKey: 'user_account_menu_my_assistance_tickets',
@@ -221,7 +221,7 @@ const UserAccountMenu = ({
               id={'account_kyc_documents'}
               onClick={() => onLinkClick(
                 {
-                  app: isNewAccountAvailable ? 'account': 'dedicated',
+                  app: isNewAccountAvailable ? 'new-account': 'dedicated',
                   key: 'account_kyc_documents',
                   hash: '#/documents',
                   i18nKey: 'sidebar_account_kyc_documents'
@@ -230,7 +230,7 @@ const UserAccountMenu = ({
               className="d-block"
               aria-label={sidebarTranslation.t('sidebar_account_kyc_documents')}
               title={sidebarTranslation.t('sidebar_account_kyc_documents')}
-              href={getUrl(isNewAccountAvailable ? 'account': 'dedicated', '#/documents')}
+              href={getUrl(isNewAccountAvailable ? 'new-account': 'dedicated', '#/documents')}
               target="_top"
             >
               {sidebarTranslation.t('sidebar_account_kyc_documents')}
