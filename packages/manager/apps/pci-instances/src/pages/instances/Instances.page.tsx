@@ -3,6 +3,7 @@ import {
   Navigate,
   Outlet,
   useHref,
+  useLocation,
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
@@ -43,7 +44,7 @@ import { FilterComparator } from '@ovh-ux/manager-core-api';
 import { Spinner } from '@/components/spinner/Spinner.component';
 import { TInstance, useInstances } from '@/data/hooks/instance/useInstances';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
-import { SUB_PATHS } from '@/routes/routes';
+import { SECTIONS } from '@/routes/routes';
 import { StatusCell } from './datagrid/cell/StatusCell.component';
 import {
   ActionsCell,
@@ -52,6 +53,7 @@ import {
 import { NameIdCell } from './datagrid/cell/NameIdCell.component';
 import { TextCell } from '@/components/datagrid/cell/TextCell.component';
 import { AddressesCell } from './datagrid/cell/AddressesCell.component';
+import NotFoundPage from '../404/NotFound.page';
 
 const initialSorting = {
   id: 'name',
@@ -74,6 +76,8 @@ const Instances: FC = () => {
   } = useNotifications();
   const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(null);
   const { translateMicroRegion } = useTranslatedMicroRegions();
+  const location = useLocation();
+  const notFoundAction: boolean = location.state?.notFoundAction;
 
   const {
     data,
@@ -96,13 +100,18 @@ const Instances: FC = () => {
   const projectUrl = useProjectUrl('public-cloud');
 
   const actionsCellHrefs = useCallback(
-    (instance: TInstance): TActionsCellHrefs => ({
-      deleteHref: `delete?instanceId=${instance.id}`,
-      stopHref: `stop?instanceId=${instance.id}`,
-      startHref: `start?instanceId=${instance.id}`,
-      autobackupHref: `${projectUrl}/workflow/new`,
-      detailsHref: instance.id,
-    }),
+    (instance: TInstance): TActionsCellHrefs => {
+      const basePath = `region/${instance.region}/instance/${instance.id}`;
+      return {
+        deleteHref: `${basePath}/delete`,
+        stopHref: `${basePath}/stop`,
+        startHref: `${basePath}/start`,
+        shelveHref: `${basePath}/shelve`,
+        unshelvetHref: `${basePath}/unshelve`,
+        autobackupHref: `${projectUrl}/workflow/new`,
+        detailsHref: instance.id,
+      };
+    },
     [projectUrl],
   );
 
@@ -285,7 +294,11 @@ const Instances: FC = () => {
   if (instancesQueryLoading) return <Spinner />;
 
   if (data && !data.length && !filters.length && !isFetching)
-    return <Navigate to={SUB_PATHS.onboarding} />;
+    return <Navigate to={SECTIONS.onboarding} />;
+
+  if (notFoundAction) {
+    return <NotFoundPage />;
+  }
 
   return (
     <>

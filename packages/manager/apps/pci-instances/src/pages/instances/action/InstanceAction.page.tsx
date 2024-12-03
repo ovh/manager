@@ -9,25 +9,30 @@ import {
 } from '@/data/hooks/instance/useInstances';
 import queryClient from '@/queryClient';
 import { useUrlLastSection } from '@/hooks/url/useUrlLastSection';
-import { useUrlSearchParams } from '@/hooks/url/useUrlSearchParams';
 import { ActionModalContent } from './modal/ActionModalContent.component';
 import { useInstanceAction } from '@/data/hooks/instance/action/useInstanceAction';
+import NotFound from '@/pages/404/NotFound.page';
+
+export type TSectionType = 'delete' | 'start' | 'stop' | 'shelve' | 'unshelve';
+const actionSectionRegex = /^(delete|start|stop|shelve|unshelve)$/;
 
 const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
   const navigate = useNavigate();
-  const { projectId } = useParams() as {
+  const { projectId, instanceId } = useParams() as {
     projectId: string;
+    instanceId?: string;
   };
   const { addError, addSuccess } = useNotifications();
-  const section = useUrlLastSection();
-  const { instanceId } = useUrlSearchParams('instanceId');
+  const section = useUrlLastSection<TSectionType>(
+    actionSectionRegex.test.bind(actionSectionRegex),
+  );
   const instanceName = useMemo(
     () => getInstanceNameById(projectId, instanceId, queryClient),
     [instanceId, projectId],
   );
 
-  const canExecuteAction = instanceId && instanceName && section;
+  const canExecuteAction = !!instanceId && !!instanceName && !!section;
 
   const executeSuccessCallback = useCallback((): void => {
     if (!instanceId) return;
@@ -79,7 +84,8 @@ const InstanceAction: FC = () => {
     handleUnknownError();
   }, [handleUnknownError, instanceId, instanceName, section]);
 
-  if (!canExecuteAction) return <Navigate to=".." />;
+  if (!instanceId || !section) return <NotFound />;
+  if (!instanceName) return <Navigate to={'..'} />;
 
   return (
     <PciModal

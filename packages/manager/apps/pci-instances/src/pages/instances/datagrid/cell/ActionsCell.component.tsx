@@ -13,7 +13,9 @@ type TActionsCellHref =
   | 'autobackupHref'
   | 'detailsHref'
   | 'stopHref'
-  | 'startHref';
+  | 'startHref'
+  | 'shelveHref'
+  | 'unshelvetHref';
 export type TActionsCellHrefs = Record<TActionsCellHref, string>;
 
 export type TActionsCellProps = DeepReadonly<{
@@ -43,6 +45,16 @@ export const ActionsCell: FC<TActionsCellProps> = ({ isLoading, hrefs }) => {
       label: t('pci_instances_list_action_stop_instance'),
       href: useHref(hrefs.stopHref),
       group: 'boot',
+    },
+    {
+      label: t('pci_instances_list_action_shelve_instance'),
+      href: useHref(hrefs.shelveHref),
+      group: 'shelve',
+    },
+    {
+      label: t('pci_instances_list_action_unshelve_instance'),
+      href: useHref(hrefs.unshelvetHref),
+      group: 'shelve',
     },
     {
       label: t('pci_instances_list_action_delete_instance'),
