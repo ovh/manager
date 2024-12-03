@@ -1,9 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import {
   Form,
   FormControl,
@@ -29,6 +25,7 @@ import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import RouteModal from '@/components/route-modal/RouteModal';
+import { useRenameServiceForm } from './useRenameServiceForm';
 
 interface RenameServiceProps {
   service: database.Service;
@@ -42,6 +39,7 @@ const RenameService = ({ service, onError, onSuccess }: RenameServiceProps) => {
   const track = useTrackAction();
   const { t } = useTranslation('pci-databases-analytics/services/service');
   const toast = useToast();
+  const form = useRenameServiceForm(service);
   const { editService, isPending } = useEditService({
     onError: (err) => {
       toast.toast({
@@ -65,29 +63,7 @@ const RenameService = ({ service, onError, onSuccess }: RenameServiceProps) => {
       }
     },
   });
-  // define the schema for the form
-  const schema = z.object({
-    description: z
-      .string()
-      .min(3, {
-        message: t('renameServiceErrorMinLength', { min: 3 }),
-      })
-      .max(30, {
-        message: t('renameServiceErrorMaxLength', { max: 30 }),
-      }),
-  });
-  // generate a form controller
-  const form = useForm<z.infer<typeof schema>>({
-    resolver: zodResolver(schema),
-    defaultValues: {
-      description: '',
-    },
-  });
-  // fill form with service values
-  useEffect(() => {
-    if (!service) return;
-    form.setValue('description', service.description);
-  }, [service, form]);
+  
 
   const onSubmit = form.handleSubmit((formValues) => {
     track(TRACKING.renameService.confirm(service.engine));
