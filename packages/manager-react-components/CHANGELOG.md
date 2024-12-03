@@ -3,7 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.4.1...@ovh-ux/manager-react-components@2.5.0) (2024-12-02)
+## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.5.0...@ovh-ux/manager-react-components@2.5.1) (2024-12-03)
+
+### Bug Fixes
+
+- **manager-react-components** copy lib scss file in dist src ([#14393](https://github.com/ovh/manager/pull/14393)) ([a153458](https://github.com/ovh/manager/commit/a1534586effa72a1168a12951cd5c2d44ca2b48e))
+
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.4.1...@ovh-ux/manager-react-components@2.5.0) (2024-12-02)
 
 ### Features
 
