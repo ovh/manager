@@ -44,10 +44,10 @@ export default class vrackOrderService {
       .then(({ data }) => data);
   }
 
-  order(cartId) {
+  order(cartId, withPaymentMethod = true) {
     return this.$http
       .post(`/order/cart/${cartId}/checkout`, {
-        autoPayWithPreferredPaymentMethod: true,
+        autoPayWithPreferredPaymentMethod: withPaymentMethod,
         waiveRetractationPeriod: true,
       })
       .then(({ data }) => data);
