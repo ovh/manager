@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
@@ -42,6 +42,10 @@ const trackingParams: TrackingClickParams = {
 };
 
 export default function CreateConfirmModal() {
+  const [hasVrackServiceOrderAsked, setHasVrackServiceOrderAsked] = useState<
+    boolean
+  >(false);
+  const [hasVrackOrderAsked, setHasVrackOrderAsked] = useState<boolean>(false);
   const { t } = useTranslation('vrack-services/create');
   const { trackClick } = useOvhTracking();
   const { region } = useParams();
@@ -76,22 +80,46 @@ export default function CreateConfirmModal() {
       headline={t('modalHeadline')}
       onOdsModalClose={cancel}
     >
-      <OsdsText
-        className="block mb-4"
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_TEXT_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
-        {t('modalDescriptionLine1')}
-      </OsdsText>
-      <OsdsText
-        className="block mb-4"
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_TEXT_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
-        {t('modalDescriptionLine2')}
-      </OsdsText>
+      {hasVrackOrderAsked && (
+        <OsdsText
+          className="block mb-4"
+          level={ODS_TEXT_LEVEL.body}
+          size={ODS_TEXT_SIZE._400}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {t('modalDescriptionLine4')}
+        </OsdsText>
+      )}
+      {hasVrackServiceOrderAsked && (
+        <OsdsText
+          className="block mb-4"
+          level={ODS_TEXT_LEVEL.body}
+          size={ODS_TEXT_SIZE._400}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {t('modalDescriptionLine5')}
+        </OsdsText>
+      )}
+      {!hasVrackServiceOrderAsked && (
+        <>
+          <OsdsText
+            className="block mb-4"
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('modalDescriptionLine1')}
+          </OsdsText>
+          <OsdsText
+            className="block mb-4"
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('modalDescriptionLine2')}
+          </OsdsText>
+        </>
+      )}
       {isError && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.error}
@@ -150,6 +178,7 @@ export default function CreateConfirmModal() {
             color={ODS_THEME_COLOR_INTENT.primary}
             disabled={isPending || undefined}
             {...handleClick(() => {
+              setHasVrackServiceOrderAsked(true);
               trackClick({
                 ...trackingParams,
                 actions: ['no-vrack', 'confirm'],
@@ -166,6 +195,8 @@ export default function CreateConfirmModal() {
             color={ODS_THEME_COLOR_INTENT.primary}
             disabled={isPending || undefined}
             {...handleClick(() => {
+              setHasVrackOrderAsked(true);
+              setHasVrackServiceOrderAsked(true);
               trackClick({
                 ...trackingParams,
                 actions: ['create-vrack', 'confirm'],
