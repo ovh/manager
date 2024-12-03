@@ -6,6 +6,7 @@ export const ROUTE_PATHS = {
   ONBOARDING: 'onboarding',
   CONTAINER_DELETE: 'delete',
   STORAGES: '',
+  CONTAINER_NEW: 'new',
   USER_LIST: 'users',
   USER_CREATE: 'new',
   USER_DELETE: ':userId/delete',
@@ -25,6 +26,9 @@ const ObjectPage = lazy(() =>
 );
 const DeleteObjectPage = lazy(() =>
   import('@/pages/objects/container/object/delete/Delete.page'),
+);
+const ContainerNewPage = lazy(() =>
+  import('@/pages/objects/container/new/New.page'),
 );
 const ContainerListPage = lazy(() =>
   import('@/pages/objects/container/Listing.page'),
@@ -59,6 +63,7 @@ const RoutesComponent = () => (
   <Routes>
     <Route id="root" path={ROUTE_PATHS.ROOT} Component={LayoutPage}>
       <Route path={ROUTE_PATHS.ONBOARDING} Component={OnboardingPage} />
+      <Route path={ROUTE_PATHS.CONTAINER_NEW} Component={ContainerNewPage} />
       <Route path={ROUTE_PATHS.STORAGES} Component={StoragePage}>
         <Route path={ROUTE_PATHS.STORAGES} Component={ContainerListPage}>
           <Route
