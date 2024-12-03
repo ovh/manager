@@ -23,6 +23,10 @@ export default defineConfig({
           src: '../public/assets/*.png',
           dest: 'public/assets',
         },
+        {
+          src: './lib.scss',
+          dest: 'src',
+        },
       ],
     }),
   ],
