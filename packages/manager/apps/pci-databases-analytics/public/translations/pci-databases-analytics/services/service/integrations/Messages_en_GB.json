@@ -43,5 +43,6 @@
   "addIntegrationErrorNoDuplicate": "A similar integration already exists",
   "addIntegrationErrorStringParamRequired": "Required",
   "addIntegrationErrorIntegerParamRequired": "Please enter a positive number",
-  "addIntegrationButtonAdd": "Add"
+  "addIntegrationButtonAdd": "Add",
+  "addIntegrationButtonCancel": "Cancel"
 }
