@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    '../../../manager-react-components/src/**/*.{js,jsx,ts,tsx}',
+    '../../modules/manager-pci-common/**/*.{js,jsx,ts,tsx}',
+  ],
   theme: {
     container: {
       center: true,

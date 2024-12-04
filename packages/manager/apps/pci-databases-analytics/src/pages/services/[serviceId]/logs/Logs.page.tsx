@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { LogsView } from '@ovh-ux/manager-pci-common';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { Label } from '@/components/ui/label';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
@@ -12,6 +13,8 @@ import { POLLING } from '@/configuration/polling.constants';
 import { GuideSections } from '@/types/guide';
 import Guides from '@/components/guides/Guides.component';
 import { useGetServiceLogs } from '@/hooks/api/database/logs/useGetServiceLogs.hook';
+import { KubeLogsProvider } from './KubeLogsProvider';
+import { Input } from '@/components/ui/input';
 
 export function breadcrumb() {
   return (
@@ -54,6 +57,8 @@ const RandomWidthSkeletons = ({
 const Logs = () => {
   const { t } = useTranslation('pci-databases-analytics/services/service/logs');
   const [poll, setPoll] = useState(false);
+  const [l2c, setL2c] = useState(true);
+  const [kubeId, setKubeId] = useState<string>('');
   const listLogRef = useRef<HTMLUListElement>(null);
   const { projectId, service } = useServiceData();
   const { isUserActive } = useUserActivityContext();
@@ -89,25 +94,50 @@ const Logs = () => {
         />
         <Label htmlFor="poll-logs">{t('autoRefreshInputLabel')}</Label>
       </div>
-      <ScrollArea className="p-2 h-[500px] bg-[#122844]">
-        {logsQuery.isSuccess ? (
-          <ul ref={listLogRef}>
-            {logsQuery.data.map((log, index) => (
-              <li
-                className="whitespace-pre text-white font-mono text-sm"
-                key={index}
-              >
-                <FormattedDate date={new Date(log.timestamp * 1000)} />
-                <span>{log.hostname}</span>
-                <span>{log.message}</span>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <RandomWidthSkeletons itemCount={24} minWidth={9} maxWidth={20} />
-        )}
-        <ScrollBar orientation="horizontal" />
-      </ScrollArea>
+      <div className="flex items-center space-x-2">
+        <Switch
+          className="rounded-xl"
+          id="poll-logs"
+          checked={l2c}
+          onCheckedChange={(checked: boolean) => setL2c(checked)}
+        />
+        <Label htmlFor="poll-logs">{t('autoRefreshInputLabel')}</Label>
+      </div>
+      <Label htmlFor="kubiId">Kube Id</Label>
+      <Input
+        id="kubiId"
+        placeholder="5f152cc2-6021-4a45-bd24-24c34bf3027c"
+        value={kubeId}
+        onChange={(e) => setKubeId(e.target.value)}
+      />
+      {l2c && kubeId.length === 36 && (
+        <div className="overflow-hidden pb-4">
+          <KubeLogsProvider kubeId={kubeId} projectId={projectId}>
+            <LogsView onGotoStreams={() => console.log('go to stream')} />
+          </KubeLogsProvider>
+        </div>
+      )}
+      {!l2c && (
+        <ScrollArea className="p-2 h-[500px] bg-[#122844]">
+          {logsQuery.isSuccess ? (
+            <ul ref={listLogRef}>
+              {logsQuery.data.map((log, index) => (
+                <li
+                  className="whitespace-pre text-white font-mono text-sm"
+                  key={index}
+                >
+                  <FormattedDate date={new Date(log.timestamp * 1000)} />
+                  <span>{log.hostname}</span>
+                  <span>{log.message}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <RandomWidthSkeletons itemCount={24} minWidth={9} maxWidth={20} />
+          )}
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
+      )}
     </>
   );
 };
