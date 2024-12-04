@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import isEqual from 'lodash.isequal';
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { AccordionComponent } from '../accordion/Accordion.component';
 import { DefaultItemLabelComponent } from './default-components/item-label';
 import { DefaultStackLabelComponent } from './default-components/stack-label';
@@ -118,19 +118,23 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
     group: undefined,
   });
 
-  const LabelComponent = memo(
-    item?.LabelComponent || DefaultItemLabelComponent,
+  const LabelComponent = useMemo(
+    () => item?.LabelComponent || DefaultItemLabelComponent,
+    [item?.LabelComponent],
   );
-  const StackLabelComponent = memo(
-    stack?.LabelComponent || DefaultStackLabelComponent,
+  const StackLabelComponent = useMemo(
+    () => stack?.LabelComponent || DefaultStackLabelComponent,
+    [stack?.LabelComponent],
   );
-  const StackTitleComponent = memo(
-    stack?.TitleComponent || DefaultStackTitleComponent,
+  const StackTitleComponent = useMemo(
+    () => stack?.TitleComponent || DefaultStackTitleComponent,
+    [stack?.TitleComponent],
   );
-  const GroupLabelComponent = memo(
-    group?.LabelComponent || DefaultGroupLabelComponent,
+  const GroupLabelComponent = useMemo(
+    () => group?.LabelComponent || DefaultGroupLabelComponent,
+    [group?.LabelComponent],
   );
-  const ShapeComponent = memo(DefaultShapeComponent);
+  const ShapeComponent = DefaultShapeComponent;
 
   const groupHandler = {
     itemsMap: useMemo(() => {
