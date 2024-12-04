@@ -1,4 +1,4 @@
-import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
 import {
   REGION_CAPACITY,
   S3_REGION_CAPACITY,
@@ -39,3 +39,13 @@ export const getStorageRegions = async (
   regions.filter(({ services }) =>
     services.find(({ name }) => name === REGION_CAPACITY),
   );
+
+export const addProjectRegion = async (
+  projectId: string,
+  region: string,
+): Promise<void> => {
+  const { data } = await v6.post<void>(`/cloud/project/${projectId}/region`, {
+    region,
+  });
+  return data;
+};
