@@ -7,7 +7,7 @@ import { humanizeEngine } from '@/lib/engineNameHelper';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import { Button } from '@/components/ui/button';
-import { formatStorage } from '@/lib/bytesHelper';
+import { compareStorage, formatStorage } from '@/lib/bytesHelper';
 import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
 
 const UpdateTable = () => {
@@ -64,7 +64,13 @@ const UpdateTable = () => {
       title: t('tableStorage'),
       cell: `${formatStorage(service.storage.size)} ${service.storage.type}`,
       onClick: () => navigate('./update-flavor'),
-      updateButtonDisplayed: availabilitiesFlavorQuery.data?.length > 1,
+      updateButtonDisplayed:
+        availabilitiesFlavorQuery.data?.length > 0 &&
+        availabilitiesFlavorQuery.data[0].specifications.storage &&
+        compareStorage(
+          availabilitiesFlavorQuery.data[0].specifications.storage.minimum,
+          availabilitiesFlavorQuery.data[0].specifications.storage.maximum,
+        ) !== 0,
     },
   ].filter((row) => Boolean(row));
   return (
