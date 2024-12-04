@@ -67,6 +67,7 @@ export default class PciProjectInstanceService {
     this.FLAVORS_WITHOUT_SUSPEND = FLAVORS_WITHOUT_SUSPEND;
     this.FLAVORS_WITHOUT_VNC = FLAVORS_WITHOUT_VNC;
     this.FLAVORS_WITHOUT_ADDITIONAL_IPS = FLAVORS_WITHOUT_ADDITIONAL_IPS;
+    this.FLAVORS_WITHOUT_AUTOMATED_BACKUP = FLAVORS_WITHOUT_AUTOMATED_BACKUP;
   }
 
   getBaseApiRoute(projectId) {
@@ -916,9 +917,8 @@ export default class PciProjectInstanceService {
   }
 
   automatedBackupIsAvailable(flavorType) {
-    return (
-      !this.coreConfig.isRegion('US') &&
-      !FLAVORS_WITHOUT_AUTOMATED_BACKUP.find((value) => value.test(flavorType))
+    return !this.FLAVORS_WITHOUT_AUTOMATED_BACKUP.find((value) =>
+      value.test(flavorType),
     );
   }
 
