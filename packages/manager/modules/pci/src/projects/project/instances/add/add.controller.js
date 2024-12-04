@@ -37,7 +37,10 @@ import {
   LOCAL_PRIVATE_NETWORK_MODE,
 } from './add.constants';
 
-import { INSTANCE_PRICING_LINKS } from '../instances.constants';
+import {
+  INSTANCE_PRICING_LINKS,
+  WINDOWS_GEN_3_ADDON_PLANCODE,
+} from '../instances.constants';
 import { useURLModel } from '../../project.utils';
 
 export default class PciInstancesAddController {
@@ -1709,46 +1712,82 @@ export default class PciInstancesAddController {
     ]);
   }
 
-  getImagesLicensePriceText(images, distribution) {
+  shouldShowWindowsGen3Data(
+    distribution = this.model?.image?.distribution,
+    images = [this.model?.image],
+  ) {
     const {
-      coreConfig,
-      windowsGen3: { isFeatureAvailable, price },
+      windowsGen3: { isFeatureAvailable },
       model: { flavorGroup },
     } = this;
-    const isWindowsDistribution = distribution.match(/^windows/i);
+
+    if (!distribution || !images.length || !flavorGroup) {
+      return false;
+    }
+
+    const isWindowsDistribution = Boolean(distribution.match(/^windows/i));
     const hasWindowsServerImages =
       isWindowsDistribution &&
       images.some(({ name }) => name.match(/20(16|19|22)/));
-    const isGen3Flavor = flavorGroup?.name?.match(/^.3/i);
-    const isRTX5000Flavor = flavorGroup?.name?.match(/^rtx5000/i);
-    const isLicensedFlavor = isGen3Flavor || isRTX5000Flavor;
-    const isA1Region = !this.isLocalZone();
+    const isLicensedFlavor = Boolean(
+      this.catalog.addons
+        .find(({ planCode }) => planCode === flavorGroup?.planCodes.hourly)
+        ?.addonFamilies.some(({ addons }) =>
+          addons.includes(WINDOWS_GEN_3_ADDON_PLANCODE),
+        ),
+    );
+    const is1AZRegion = !this.isLocalZone();
 
-    if (
+    return (
       isFeatureAvailable &&
       isWindowsDistribution &&
       hasWindowsServerImages &&
       isLicensedFlavor &&
-      isA1Region
-    ) {
-      const convertedPrice = price / 10 ** 8;
-      const formattedPrice = new Intl.NumberFormat(
-        coreConfig.getUserLocale().replace('_', '-'),
-        {
-          style: 'currency',
-          currency: coreConfig.getUser().currency.code,
-          maximumFractionDigits: Math.max(
-            `${convertedPrice}`.split('.').pop().length,
-            3,
-          ),
-        },
-      ).format(convertedPrice);
-      const unit = this.$translate.instant(
-        'pci_projects_project_instances_add_windows_gen3_license_unit',
-      );
-      return `+ ${formattedPrice} ${unit}`;
+      is1AZRegion
+    );
+  }
+
+  getWindowsLicensePrice(multiplier = 1) {
+    const { coreConfig, windowsGen3 } = this;
+    const convertedPrice = windowsGen3.price / 10 ** 8;
+
+    return new Intl.NumberFormat(coreConfig.getUserLocale().replace('_', '-'), {
+      style: 'currency',
+      currency: coreConfig.getUser().currency.code,
+      maximumFractionDigits: Math.max(
+        `${convertedPrice}`.split('.').pop().length,
+        3,
+      ),
+    }).format(convertedPrice * multiplier);
+  }
+
+  getWindowsLicensePriceText(distribution, images) {
+    if (!this.shouldShowWindowsGen3Data(distribution, images)) {
+      return '';
     }
 
-    return '';
+    const price = this.getWindowsLicensePrice();
+    const unit = this.$translate.instant(
+      'pci_projects_project_instances_add_windows_gen3_license_unit_w_core',
+    );
+
+    return `+ ${price} ${unit}`;
+  }
+
+  getWindowsLicenseTotalPriceText() {
+    const { flavorGroup } = this.model;
+
+    if (!flavorGroup || !this.shouldShowWindowsGen3Data()) {
+      return '';
+    }
+
+    const price = this.getWindowsLicensePrice(
+      flavorGroup.technicalBlob.cpu.cores,
+    );
+    const unit = this.$translate.instant(
+      'pci_projects_project_instances_add_windows_gen3_license_unit',
+    );
+
+    return `${price} ${unit}`;
   }
 }

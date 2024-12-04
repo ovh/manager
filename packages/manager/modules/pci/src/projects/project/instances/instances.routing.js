@@ -480,10 +480,11 @@ export default /* @ngInject */ ($stateProvider) => {
           catalog.addons.find(
             ({ planCode }) => planCode === WINDOWS_GEN_3_ADDON_PLANCODE,
           )?.pricings[0]?.price || null,
-        isFeatureAvailable:
+        isFeatureAvailable: Boolean(
           pciFeatures.isFeatureAvailable(
             PCI_FEATURES.ACTIONS.INSTANCE_WINDOWS_GEN_3,
           ) || true,
+        ),
       }),
     },
   });

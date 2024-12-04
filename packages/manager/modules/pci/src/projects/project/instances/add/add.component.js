@@ -31,6 +31,7 @@ export default {
     goToDiscoveryProjectActivationPage: '&',
     getUAppUrl: '<',
     windowsGen3: '<',
+    catalog: '<',
   },
   controller,
   template,
