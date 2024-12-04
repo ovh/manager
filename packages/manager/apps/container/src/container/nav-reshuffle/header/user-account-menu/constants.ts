@@ -17,30 +17,35 @@ export const tracking = {
 
 export const links: UserLink[] = [
   {
+    app: 'dedicated',
     key: 'user-account-menu-profile',
     hash: '#/useraccount/dashboard',
     i18nKey: 'user_account_menu_profile',
     trackingHit: tracking.goToProfile,
   },
   {
+    app: 'dedicated',
     key: 'myInvoices',
     hash: '#/billing/history',
     i18nKey: 'user_account_menu_my_invoices',
     trackingHit: tracking.billingBills,
   },
   {
+    app: 'dedicated',
     key: 'myServices',
     hash: '#/billing/autorenew',
     i18nKey: 'user_account_menu_my_services',
     trackingHit: tracking.myServices
   },
   {
+    app: 'dedicated',
     key: 'myCommunications',
     hash: '#/useraccount/emails',
     i18nKey: 'user_account_menu_my_communication',
     trackingHit: tracking.accountContacts,
   },
   {
+    app: 'dedicated',
     key: 'myPaymentMethods',
     hash: '#/billing/payment/method',
     i18nKey: 'user_account_menu_my_payment_methods',
@@ -48,12 +53,14 @@ export const links: UserLink[] = [
 
   },
   {
+    app: 'dedicated',
     key: 'myCommands',
     hash: '#/billing/orders',
     i18nKey: 'user_account_menu_my_commands',
     trackingHit: tracking.orders,
   },
   {
+    app: 'dedicated',
     key: 'myContacts',
     hash: '#/contacts/services',
     i18nKey: 'user_account_menu_my_contacts',

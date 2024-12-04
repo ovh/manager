@@ -35,7 +35,7 @@ const UserAccountMenu = ({
   const [isKycDocumentsVisible, setIsDocumentsVisible] = useState<boolean>(
     false,
   );
-
+  const [isNewAccountAvailable, setIsNewAccountAvailable] = useState<boolean>(false);
   const user = shell
     .getPlugin('environment')
     .getEnvironment()
@@ -70,12 +70,12 @@ const UserAccountMenu = ({
   const getUrl = (key: string, hash: string) =>
     shell.getPlugin('navigation').getURL(key, hash);
   const ssoLink = getUrl('iam', '#/dashboard/users');
-  const supportLink = getUrl('dedicated', '#/useraccount/support/level');
+  let [supportLink, setSupportLink] = useState(getUrl('dedicated', '#/useraccount/support/level'));
 
   const getAllLinks = useMemo(
     () => async () => {
       let isIdentityDocumentsAvailable = false;
-      const featureAvailability = await fetchFeatureAvailabilityData(['identity-documents', 'procedures:fraud']);
+      const featureAvailability = await fetchFeatureAvailabilityData(['new-account', 'identity-documents', 'procedures:fraud']);
       if (featureAvailability['identity-documents']) {
         const { status } = await reketInstance.get(`/me/procedure/identity`);
         isIdentityDocumentsAvailable = ['required', 'open'].includes(status);
@@ -85,11 +85,23 @@ const UserAccountMenu = ({
         setIsDocumentsVisible(['required', 'open'].includes(status));
       }
 
+      setIsNewAccountAvailable(!!featureAvailability['new-account'])
+
+      if (isNewAccountAvailable) {
+        setSupportLink(getUrl('new-account', '#/useraccount/support/level'));
+      }
+
       setAllLinks([
-        ...links,
+        ...links.map((link: UserLink) => {
+          if (['user-account-menu-profile', 'myCommunications', 'myContacts'].includes(link.key)) {
+            link.app = isNewAccountAvailable ? 'new-account' : 'dedicated';
+          }
+          return link;
+        }),
         ...(isIdentityDocumentsAvailable
           ? [
             {
+              app: isNewAccountAvailable ? 'new-account' : 'dedicated',
               key: 'myIdentityDocuments',
               hash: '#/identity-documents',
               i18nKey: 'user_account_menu_my_identity_documents',
@@ -99,6 +111,7 @@ const UserAccountMenu = ({
         ...(region === 'US'
           ? [
             {
+              app: isNewAccountAvailable ? 'new-account' : 'dedicated',
               key: 'myAssistanceTickets',
               hash: '#/ticket',
               i18nKey: 'user_account_menu_my_assistance_tickets',
@@ -186,7 +199,7 @@ const UserAccountMenu = ({
         </div>
         <div className="border-bottom pb-2 pt-2">
           {allLinks.map((link: UserLink) => {
-            const { key, hash, i18nKey } = link;
+            const { app, key, hash, i18nKey } = link;
             return (
               <a
                 key={key}
@@ -195,7 +208,7 @@ const UserAccountMenu = ({
                 className="d-block"
                 aria-label={t(i18nKey)}
                 title={t(i18nKey)}
-                href={getUrl('dedicated', hash)}
+                href={getUrl(app, hash)}
                 target="_top"
               >
                 {t(i18nKey)}
@@ -208,6 +221,7 @@ const UserAccountMenu = ({
               id={'account_kyc_documents'}
               onClick={() => onLinkClick(
                 {
+                  app: isNewAccountAvailable ? 'new-account': 'dedicated',
                   key: 'account_kyc_documents',
                   hash: '#/documents',
                   i18nKey: 'sidebar_account_kyc_documents'
@@ -216,7 +230,7 @@ const UserAccountMenu = ({
               className="d-block"
               aria-label={sidebarTranslation.t('sidebar_account_kyc_documents')}
               title={sidebarTranslation.t('sidebar_account_kyc_documents')}
-              href={getUrl('dedicated', '#/documents')}
+              href={getUrl(isNewAccountAvailable ? 'new-account': 'dedicated', '#/documents')}
               target="_top"
             >
               {sidebarTranslation.t('sidebar_account_kyc_documents')}
