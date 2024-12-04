@@ -20,15 +20,14 @@
     <oui-datagrid-topbar data-ng-if="$ctrl.topbarOptions">
         <topbar-cta data-options="$ctrl.topbarOptions"> </topbar-cta>
     </oui-datagrid-topbar>
-    <oui-action-menu
-        data-compact
-        data-placement="end"
-        data-ng-if="$ctrl.isDeleteOptionsAvailable"
-    >
+    <oui-action-menu data-compact data-placement="end">
         <oui-action-menu-item data-on-click="$ctrl.gotoService($row)">
             <span data-translate="iplb_listing_action_detail"></span>
         </oui-action-menu-item>
-        <oui-action-menu-item data-on-click="$ctrl.deleteIplb($row)">
+        <oui-action-menu-item
+            data-on-click="$ctrl.deleteIplb($row)"
+            data-ng-if="$ctrl.isDeleteOptionsAvailable"
+        >
             <span data-translate="iplb_listing_action_delete"></span>
         </oui-action-menu-item>
     </oui-action-menu>
