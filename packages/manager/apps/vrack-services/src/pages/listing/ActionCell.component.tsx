@@ -63,7 +63,7 @@ export const ActionCell: React.FC<VrackServicesWithIAM> = (vs) => {
         {
           id: 2,
           label: t('action-deleteVrackServices'),
-          disabled: disabled && isVrackserviceAlreadyAssociated,
+          disabled: disabled || isVrackserviceAlreadyAssociated,
           color: ODS_THEME_COLOR_INTENT.error,
           onClick: () => {
             trackClick({
