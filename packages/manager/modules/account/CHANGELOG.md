@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.1.1...@ovh-ux/manager-account@0.2.0) (2024-12-04)
+
+
+### Features
+
+* **account:** reintegrate feat/manager-14875 ([#14267](https://github.com/ovh/manager/issues/14267)) ([007650e](https://github.com/ovh/manager/commit/007650e81e6fc64269c482a9e090d5463e0e0509))
+
+
+
+
+
 ## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.1.0...@ovh-ux/manager-account@0.1.1) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-account

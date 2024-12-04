@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.91.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.91.0...@ovh-ux/manager-container-app@0.91.1) (2024-12-04)
+
+
+### Bug Fixes
+
+* **account:** redirect to account in sidebars ([#14352](https://github.com/ovh/manager/issues/14352)) ([32ece71](https://github.com/ovh/manager/commit/32ece719c54bce8812bfd4481122e078efbc1b5f))
+
+
+
+
+
 # [0.91.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.90.0...@ovh-ux/manager-container-app@0.91.0) (2024-12-03)
 
 
