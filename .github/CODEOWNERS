@@ -6,13 +6,17 @@
 
 # Packages
 /packages/manager/apps/ @ovh/team-manager-dev-angularjs
-packages/manager/core/ @ovh/team-manager-dev-reactjs
-packages/manager/modules/ @ovh/team-manager-dev-angularjs
+/packages/manager/core/ @ovh/team-manager-dev-reactjs
+/packages/manager/modules/ @ovh/team-manager-dev-angularjs
 
 # React Stack
 *.jsx @ovh/team-manager-dev-reactjs @ovh/su-digital-tools-core-stack
 *.tsx @ovh/team-manager-dev-reactjs @ovh/su-digital-tools-core-stack
 /playwright-helpers/ @ovh/team-manager-dev-reactjs
+
+# Manager-pci-common
+# TODO: Update owners to be TAPC & Core-stack groups instead of particular users.
+/packages/manager/modules/manager-pci-common/ @fredericvilcot @frenautvh
 
 # Manager-components
 /packages/manager-components @ovh/team-manager-control-tower
