@@ -1,45 +1,40 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { ODS_RADIO_BUTTON_SIZE } from '@ovhcloud/ods-components';
-import { OsdsRadioButton, OsdsText } from '@ovhcloud/ods-components/react';
+  ODS_TEXT_PRESET,
+  OdsRadio as OdsRadioType,
+} from '@ovhcloud/ods-components';
+import { OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
 import { useServiceKeyTypeTranslations } from '@/hooks/serviceKey/useServiceKeyTypeTranslations';
 import { OkmsKeyTypes } from '@/types/okmsServiceKey.type';
 
 type TServiceKeyTypeRadioButton = {
+  name: string;
   type: OkmsKeyTypes;
-  onClick: React.MouseEventHandler<HTMLOsdsRadioButtonElement>;
-};
+  onClick: React.MouseEventHandler<HTMLOdsRadioElement>;
+} & Partial<OdsRadioType>;
 
 export const ServiceKeyTypeRadioButton = ({
   type,
-  onClick,
+  ...props
 }: TServiceKeyTypeRadioButton) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const translatedType = useServiceKeyTypeTranslations(type);
+  const buttonId = `serviceKeyType-${type}`;
 
   return (
-    <OsdsRadioButton
-      size={ODS_RADIO_BUTTON_SIZE.sm}
-      color={ODS_THEME_COLOR_INTENT.primary}
-      onClick={onClick}
-    >
-      <span slot="end">
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        >
+    <div className="flex items-center">
+      <OdsRadio inputId={buttonId} {...props} />
+      <label className="ml-2" htmlFor={buttonId}>
+        <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
           {translatedType}
-        </OsdsText>
-        <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+        </OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.caption}>
           {t(
             `key_management_service_service-keys_create_crypto_field_type_description_${type.toLowerCase()}`,
           )}
-        </OsdsText>
-      </span>
-    </OsdsRadioButton>
+        </OdsText>
+      </label>
+    </div>
   );
 };

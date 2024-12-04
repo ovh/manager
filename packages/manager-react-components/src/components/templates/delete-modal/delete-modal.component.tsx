@@ -20,6 +20,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { handleClick } from '../../../utils/click-utils';
 import './translations/translations';
+import { Subtitle } from '../../typography';
 
 export const defaultDeleteModalTerminateValue = 'TERMINATE';
 

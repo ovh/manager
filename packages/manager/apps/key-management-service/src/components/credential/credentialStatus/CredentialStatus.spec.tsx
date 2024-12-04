@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  ODS_TEXT_COLOR_INTENT,
-  OdsChipAttribute,
+  ODS_BADGE_COLOR,
+  OdsBadge as OdsBadgeType,
 } from '@ovhcloud/ods-components';
 import { render } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
@@ -12,37 +12,37 @@ describe('CredentialStatus component test suite', () => {
   const useCases: {
     state: OkmsCredentialStatus;
     label: string;
-    colorValue: OdsChipAttribute['color'];
+    colorValue: OdsBadgeType['color'];
   }[] = [
     {
       state: OkmsCredentialStatus.creating,
       label: 'key_management_service_credential_status_creating',
-      colorValue: ODS_TEXT_COLOR_INTENT.primary,
+      colorValue: ODS_BADGE_COLOR.information,
     },
     {
       state: OkmsCredentialStatus.deleting,
       label: 'key_management_service_credential_status_deleting',
-      colorValue: ODS_TEXT_COLOR_INTENT.warning,
+      colorValue: ODS_BADGE_COLOR.warning,
     },
     {
       state: OkmsCredentialStatus.error,
       label: 'key_management_service_credential_status_error',
-      colorValue: ODS_TEXT_COLOR_INTENT.error,
+      colorValue: ODS_BADGE_COLOR.critical,
     },
     {
       state: OkmsCredentialStatus.expired,
       label: 'key_management_service_credential_status_expired',
-      colorValue: ODS_TEXT_COLOR_INTENT.default,
+      colorValue: ODS_BADGE_COLOR.neutral,
     },
     {
       state: OkmsCredentialStatus.ready,
       label: 'key_management_service_credential_status_ready',
-      colorValue: ODS_TEXT_COLOR_INTENT.success,
+      colorValue: ODS_BADGE_COLOR.success,
     },
   ];
 
   test.each(useCases)(
-    'should return the right <OsdsChip /> configuration for $state state',
+    'should return the right <OdsBadge /> configuration for $state state',
     ({ state, colorValue, label }) => {
       // given state, colorValue and label
 
@@ -53,12 +53,12 @@ describe('CredentialStatus component test suite', () => {
       const component = getByTestId('test');
 
       // then
-      expect(component).toHaveTextContent(label);
+      expect(component).toHaveProperty('label', label);
       expect(component).toHaveProperty('color', colorValue);
     },
   );
 
-  it('should return default <OsdsChip /> configuration for unexpected state', () => {
+  it('should return default <OdsBadge /> configuration for unexpected state', () => {
     // given
     const serviceKeyState = 'AAA' as OkmsCredentialStatus;
 
@@ -69,7 +69,7 @@ describe('CredentialStatus component test suite', () => {
     const component = getByTestId('test');
 
     // then
-    expect(component).toHaveTextContent(serviceKeyState);
-    expect(component).toHaveProperty('color', ODS_TEXT_COLOR_INTENT.default);
+    expect(component).toHaveProperty('label', serviceKeyState);
+    expect(component).toHaveProperty('color', ODS_BADGE_COLOR.neutral);
   });
 });

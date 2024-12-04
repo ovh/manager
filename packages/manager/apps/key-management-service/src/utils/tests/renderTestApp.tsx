@@ -9,12 +9,15 @@ import { I18nextProvider } from 'react-i18next';
 import {
   getServicesMocks,
   GetServicesMocksParams,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-module-common-api';
 import { render, waitFor, screen } from '@testing-library/react';
 import { TestApp } from './TestApp';
 import { initTestI18n } from './init.i18n';
-import { toMswHandlers } from '../../../../../../../playwright-helpers';
-import { getAuthenticationMocks } from '../../../../../../../playwright-helpers/mocks/auth';
+import {
+  getAuthenticationMocks,
+  toMswHandlers,
+  WAIT_FOR_DEFAULT_OPTIONS,
+} from '@ovh-ux/manager-core-test-utils';
 import { getOkmsMocks, GetOkmsMocksParams } from '@/mocks/kms/okms.handler';
 import {
   getServiceKeysMock,
@@ -93,7 +96,7 @@ export const renderTestApp = async (
           screen.getAllByText('Key Management Service', { exact: false })
             .length,
         ).toBeGreaterThan(0),
-      { timeout: 30000 },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   }
 

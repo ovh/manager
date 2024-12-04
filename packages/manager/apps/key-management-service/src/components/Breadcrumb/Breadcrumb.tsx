@@ -1,6 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import {
+  OdsBreadcrumb,
+  OdsBreadcrumbItem,
+} from '@ovhcloud/ods-components/react';
 import {
   BreadcrumbItem,
   useBreadcrumb,
@@ -18,7 +21,13 @@ function Breadcrumb({ items }: Readonly<BreadcrumbProps>): JSX.Element {
     items,
   });
 
-  return <OsdsBreadcrumb items={breadcrumbItems} />;
+  return (
+    <OdsBreadcrumb>
+      {breadcrumbItems.map(({ label, ...props }) => (
+        <OdsBreadcrumbItem key={label} label={label} {...props} />
+      ))}
+    </OdsBreadcrumb>
+  );
 }
 
 export default Breadcrumb;

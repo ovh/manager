@@ -5,7 +5,7 @@ import {
   ODS_ICON_NAME,
   ODS_BUTTON_COLOR,
 } from '@ovhcloud/ods-components';
-import { OdsButton, OdsPopover } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsLink, OdsPopover } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import '../translations/translation';
 

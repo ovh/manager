@@ -1,42 +1,46 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { OsdsCheckboxButton, OsdsText } from '@ovhcloud/ods-components/react';
+  ODS_TEXT_PRESET,
+  OdsCheckboxCustomEvent,
+  OdsCheckboxChangeEventDetail,
+  OdsCheckbox as OdsCheckboxType,
+} from '@ovhcloud/ods-components';
+import { OdsCheckbox, OdsText } from '@ovhcloud/ods-components/react';
 import { useServiceKeyOperationsTranslations } from '@/hooks/serviceKey/useServiceKeyOperationsTranslations';
 import { OkmsServiceKeyReferenceOperations } from '@/types/okmsServiceKeyReference.type';
 
 type TServiceKeyOperationCheckbox = {
+  name: string;
   operation: OkmsServiceKeyReferenceOperations;
-};
+  onOdsChange?: (
+    e: OdsCheckboxCustomEvent<OdsCheckboxChangeEventDetail>,
+  ) => void;
+} & Partial<OdsCheckboxType>;
 
 export const ServiceKeyOperationCheckbox = ({
   operation,
+  ...props
 }: TServiceKeyOperationCheckbox) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const translatedOperations = useServiceKeyOperationsTranslations(
     operation.value,
   );
+  const key = operation.value.join('_');
 
   return (
-    <OsdsCheckboxButton color={ODS_THEME_COLOR_INTENT.primary}>
-      <span slot="end">
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        >
+    <div className="flex items-center">
+      <OdsCheckbox inputId={key} value={key} {...props} />
+      <label className="ml-2" htmlFor={key}>
+        <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
           {translatedOperations.join(' / ')}
-        </OsdsText>
-        <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+        </OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.caption}>
           {t(
-            `key_management_service_service-keys_create_crypto_field_usage_description_${operation.value.join(
-              '_',
-            )}`,
+            `key_management_service_service-keys_create_crypto_field_usage_description_${key}`,
           )}
-        </OsdsText>
-      </span>
-    </OsdsCheckboxButton>
+        </OdsText>
+      </label>
+    </div>
   );
 };

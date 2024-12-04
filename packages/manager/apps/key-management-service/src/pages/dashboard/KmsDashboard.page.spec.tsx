@@ -1,7 +1,11 @@
-import { act, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import {
+  WAIT_FOR_DEFAULT_OPTIONS,
+  assertTextVisibility,
+  getOds18ButtonByLabel,
+} from '@ovh-ux/manager-core-test-utils';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
-import '@testing-library/jest-dom';
 import { labels } from '@/utils/tests/init.i18n';
 import { okmsMock } from '@/mocks/kms/okms.mock';
 
@@ -13,9 +17,7 @@ describe('KMS dashboard test suite', () => {
 
     await waitFor(
       () => expect(screen.getByAltText('OOPS')).toBeInTheDocument(),
-      {
-        timeout: 30_000,
-      },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 
@@ -28,41 +30,25 @@ describe('KMS dashboard test suite', () => {
           screen.getAllByText(labels.dashboard.general_informations)[0],
         ).toBeVisible(),
 
-      { timeout: 30_000 },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
     expect(screen.queryByAltText('OOPS')).not.toBeInTheDocument();
   });
 
   it(`should navigate back to the kms list on click on ${labels.dashboard.key_management_service_dashboard_back_link}`, async () => {
-    await renderTestApp(`/${okmsMock[0].id}`);
+    const { container } = await renderTestApp(`/${okmsMock[0].id}`);
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.dashboard.key_management_service_dashboard_back_link,
-          ),
-        ).toBeEnabled(),
-      {
-        timeout: 30_000,
-      },
-    );
+    const backLink = await getOds18ButtonByLabel({
+      container,
+      label: labels.dashboard.key_management_service_dashboard_back_link,
+      isLink: true,
+    });
 
-    await act(() =>
-      userEvent.click(
-        screen.getByText(
-          labels.dashboard.key_management_service_dashboard_back_link,
-        ),
-      ),
-    );
+    await waitFor(() => userEvent.click(backLink));
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(labels.listing.key_management_service_listing_title),
-        ).toBeVisible(),
-      { timeout: 30_000 },
+    await assertTextVisibility(
+      labels.listing.key_management_service_listing_title,
     );
   });
 
@@ -72,12 +58,10 @@ describe('KMS dashboard test suite', () => {
     await waitFor(
       () =>
         expect(screen.getByText(labels.dashboard.encrypted_keys)).toBeEnabled(),
-      {
-        timeout: 30_000,
-      },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    await act(() =>
+    await waitFor(() =>
       userEvent.click(screen.getByText(labels.dashboard.encrypted_keys)),
     );
 
@@ -88,7 +72,7 @@ describe('KMS dashboard test suite', () => {
             labels.serviceKeys['key_management_service_service-keys_headline'],
           ),
         ).toBeVisible(),
-      { timeout: 30_000 },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 
@@ -100,12 +84,10 @@ describe('KMS dashboard test suite', () => {
         expect(
           screen.getByText(labels.dashboard.access_certificates),
         ).toBeEnabled(),
-      {
-        timeout: 30_000,
-      },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    await act(() =>
+    await waitFor(() =>
       userEvent.click(screen.getByText(labels.dashboard.access_certificates)),
     );
 
@@ -116,33 +98,30 @@ describe('KMS dashboard test suite', () => {
             labels.credentials.key_management_service_credential_headline,
           ),
         ).toBeVisible(),
-      {
-        timeout: 30_000,
-      },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 
   it('should navigate to the rename modal on click on rename button', async () => {
     await renderTestApp(`/${okmsMock[0].id}`);
 
-    await waitFor(() => expect(screen.getByLabelText('edit')).toBeEnabled(), {
-      timeout: 30_000,
-    });
+    await waitFor(
+      () => expect(screen.getByLabelText('edit')).toBeEnabled(),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
 
-    await act(() => userEvent.click(screen.getByLabelText('edit')));
+    await waitFor(() => userEvent.click(screen.getByLabelText('edit')));
 
     await waitFor(
       () =>
         expect(
-          screen.getByText(
+          screen.getAllByText(
             labels.serviceKeys[
               'key_management_service_service-keys_dashboard_field_name'
             ],
           ),
-        ).toBeVisible(),
-      {
-        timeout: 30_000,
-      },
+        ).toHaveLength(2),
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 });

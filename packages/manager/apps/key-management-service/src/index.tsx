@@ -6,9 +6,9 @@ import {
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
 import App from './App';
-
+import '@ovh-ux/manager-react-components/dist/style.css';
+import '@ovhcloud/ods-themes/default';
 import './global.css';
-import '@ovhcloud/ods-theme-blue-jeans';
 
 import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { OdsBreadcrumbAttributeItem } from '@ovhcloud/ods-components';
+import { OdsBreadcrumbItem as OdsBreadcrumbItemType } from '@ovhcloud/ods-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 
@@ -9,25 +9,21 @@ export type BreadcrumbItem = {
   navigateTo: string;
 };
 
-export type BreadcrumbAttributeItem = OdsBreadcrumbAttributeItem & {
-  onClick?: () => void;
-};
-
 export interface BreadcrumbProps {
   rootLabel: string;
   items?: BreadcrumbItem[];
 }
 
 export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
-  const [pathItems, setPathItems] = useState<BreadcrumbAttributeItem[]>([]);
+  const [pathItems, setPathItems] = useState<OdsBreadcrumbItemType[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
   const pathnames = location.pathname.split('/').filter((x) => x);
 
-  const rootItem: BreadcrumbAttributeItem = {
+  const rootItem = ({
     label: rootLabel,
-    onClick: () => navigate(ROUTES_URLS.root),
-  };
+    onOdsClick: () => navigate(ROUTES_URLS.root),
+  } as unknown) as OdsBreadcrumbItemType;
 
   useEffect(() => {
     const pathNamesItems = pathnames.map((value) => {
@@ -41,11 +37,11 @@ export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
 
       return {
         label: item.label,
-        onClick: () => navigate(item.navigateTo),
+        onOdsClick: () => navigate(item.navigateTo),
       };
     });
 
-    setPathItems(pathNamesItems);
+    setPathItems(pathNamesItems as OdsBreadcrumbItemType[]);
   }, [location, items]);
 
   return [rootItem, ...pathItems];
