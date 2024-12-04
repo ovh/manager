@@ -1,6 +1,6 @@
 import { StorybookConfig } from '@storybook/react-vite';
 
-const config = {
+const config: StorybookConfig = {
   stories: [
     '../src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
     '../src/docs/*.mdx',
@@ -29,13 +29,6 @@ const config = {
   },
   typescript: {
     reactDocgen: 'react-docgen-typescript', // Necessary for extracting TypeScript types
-  },
-  webpackFinal: async (config) => {
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
-      path: require.resolve('path-browserify'),
-    };
-    return config;
   },
 };
 export default config;
