@@ -10,7 +10,6 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { applyFilters, FilterCategories } from '@ovh-ux/manager-core-api';
 import { PrivateNetworkTabName } from '../ListingLayout.constant';
-import { useActiveTab } from '@/hooks/useActiveTab/useActiveTab';
 import { usePrivateNetworkLZColumns } from '@/hooks/useColumns/useColumns';
 import { useLZPrivateNetworks } from '@/data/hooks/networks/useNetworks';
 import { paginateResults } from '@/utils/utils';
@@ -18,7 +17,6 @@ import DataGridHeaderActions from '@/components/datagrid-header-actions/Datagrid
 
 const PrivateNetworkLZ: React.FC = () => {
   const { t } = useTranslation('listing');
-  const activeTab = useActiveTab();
   const { pagination, setPagination } = useDatagridSearchParams();
   const columns = usePrivateNetworkLZColumns();
   const { projectId } = useParams();
@@ -55,10 +53,7 @@ const PrivateNetworkLZ: React.FC = () => {
   ];
 
   return (
-    <OsdsTabPanel
-      active={activeTab === PrivateNetworkTabName.LOCAL_ZONE_TAB_NAME}
-      name={PrivateNetworkTabName.LOCAL_ZONE_TAB_NAME}
-    >
+    <OsdsTabPanel active name={PrivateNetworkTabName.LOCAL_ZONE_TAB_NAME}>
       <Notifications />
       <DataGridHeaderActions
         createLabel={t('pci_projects_project_network_private_create')}
