@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { ColumnSort } from '@tanstack/react-table';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { Datagrid } from './datagrid.component';
 import { DataGridTextCell } from './text-cell.component';
+import { ActionMenu } from '../navigation';
 
 interface Item {
   label: string;
   price: number;
+  actions: React.ReactElement;
 }
 
 const columns = [
@@ -40,29 +43,27 @@ const DatagridStory = (args) => {
   };
 
   return (
-    <>
-      <Datagrid
-        columns={columns}
-        items={data}
-        totalItems={data?.length}
-        hasNextPage={data?.length > 0 && data.length < 30}
-        onFetchNextPage={fetchNextPage}
-        {...(args.isSortable
-          ? {
-              sorting,
-              onSortChange: setSorting,
-              manualSorting: false,
-            }
-          : {})}
-      />
-    </>
+    <Datagrid
+      items={data}
+      columns={args.columns}
+      hasNextPage={data?.length > 0 && data.length < 30}
+      onFetchNextPage={fetchNextPage}
+      totalItems={data?.length}
+      {...(args.isSortable
+        ? {
+            sorting,
+            onSortChange: setSorting,
+            manualSorting: false,
+          }
+        : {})}
+    />
   );
 };
 
 export const Basic = DatagridStory.bind({});
 
 Basic.args = {
-  columns: columns,
+  columns,
   items: [...Array(10).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
@@ -75,18 +76,66 @@ Basic.args = {
 export const Empty = DatagridStory.bind({});
 
 Empty.args = {
-  columns: columns,
+  columns,
   items: [],
 };
 
 export const Sortable = DatagridStory.bind({});
 
 Sortable.args = {
-  columns: columns,
+  columns,
   items: [...Array(10).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
   })),
+  isSortable: true,
+};
+
+const actionsColumns = {
+  id: 'actions',
+  cell: (item: Item) => {
+    return item.actions;
+  },
+  label: '',
+};
+
+export const WithActions = DatagridStory.bind({});
+
+WithActions.args = {
+  columns: [...columns, actionsColumns],
+  items: [...Array(8).keys()].map((_, i) => {
+    return {
+      label: `Service #${i}`,
+      price: Math.floor(1 + Math.random() * 100),
+      actions: (
+        <div className="flex items-center justify-center">
+          <div>
+            <ActionMenu
+              isCompact={true}
+              variant={ODS_BUTTON_VARIANT.ghost}
+              id={i.toString()}
+              items={[
+                {
+                  id: 1,
+                  target: '_blank',
+                  label: 'Action 1',
+                  urn: 'urn:v9:eu:resource:manatestkds-fdsfsd',
+                  iamActions: ['vrackServices:apiovh:iam/resource/update'],
+                },
+                {
+                  id: 2,
+                  target: '_blank',
+                  label: 'Action 2',
+                  urn: 'urn:v9:eu:resource:manate',
+                  iamActions: ['vrackServices:apiovh:iam/resource/delete'],
+                },
+              ]}
+            />
+          </div>
+        </div>
+      ),
+    };
+  }),
   isSortable: true,
 };
 

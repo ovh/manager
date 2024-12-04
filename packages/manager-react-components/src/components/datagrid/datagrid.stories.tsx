@@ -87,7 +87,7 @@ const DatagridStory = ({
 export const Basic = DatagridStory.bind({});
 
 Basic.args = {
-  columns: columns,
+  columns,
   items: [...Array(50).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
@@ -96,19 +96,12 @@ Basic.args = {
   isSortable: true,
 };
 
-export const Empty = DatagridStory.bind({});
-
-Empty.args = {
-  columns: columns,
-  items: [],
-};
-
 export const Sortable = DatagridStory.bind({});
 
 Sortable.args = {
-  columns: columns,
-  items: [...Array(10).keys()].map((_, i) => ({
-    label: `Item #${i}`,
+  columns,
+  items: [...Array(8).keys()].map((_, i) => ({
+    label: `Service #${i}`,
     price: Math.floor(1 + Math.random() * 100),
   })),
   isSortable: true,
@@ -121,6 +114,12 @@ export default {
   parameters: {
     status: {
       type: 'deprecated',
+    },
+    docs: {
+      description: {
+        component:
+          'The `Datagrid` component in pagination mode is now `deprecated`. Please switch to the cursor navigation mode',
+      },
     },
   },
 };
