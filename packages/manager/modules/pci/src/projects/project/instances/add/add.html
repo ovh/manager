@@ -302,7 +302,7 @@
             data-is-image-compatible="$ctrl.model.isImageCompatible"
             data-on-change="$ctrl.onImageSelected(image)"
             data-on-tab-change="$ctrl.onImageTabChange(tab)"
-            data-get-price-text="$ctrl.getImagesLicensePriceText(images, distribution)"
+            data-get-price-text="$ctrl.getWindowsLicensePriceText(distribution, images)"
         >
             <div class="d-flex justify-content-between">
                 <span
@@ -1000,7 +1000,7 @@
             data-ng-if="$ctrl.IsSavingsPlanBannerDisplayed() && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
         >
             <p
-                data-translate="pci_projects_project_instances_add_billing_savings_plan_banner"
+                data-translate="{{ 'pci_projects_project_instances_add_billing_savings_plan_banner' + ($ctrl.shouldShowWindowsGen3Data() ? '_windows_gen_3' : '') }}"
             ></p>
             <a
                 class="oui-link oui-link_icon"
@@ -1095,6 +1095,18 @@
             data-disabled="false"
             data-on-change="$ctrl.onBillingChange(billing)"
         >
+            <pci-project-flavor-billing-hourly-price
+                data-ng-if="$ctrl.shouldShowWindowsGen3Data()"
+            >
+                <span class="d-block">
+                    <strong
+                        data-translate="pci_projects_project_instances_add_windows_gen3_license_total_price_label"
+                    ></strong>
+                    <span
+                        data-ng-bind="$ctrl.getWindowsLicenseTotalPriceText()"
+                    ></span>
+                </span>
+            </pci-project-flavor-billing-hourly-price>
         </pci-project-flavor-billing>
 
         <pci-trusted-zone-banner
