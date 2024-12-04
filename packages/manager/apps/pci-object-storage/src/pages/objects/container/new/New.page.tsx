@@ -18,12 +18,20 @@ import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
+  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
   OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
+  OBJECT_CONTAINER_OFFER_SWIFT,
   STORAGE_PRICES_LINK,
 } from '@/constants';
 import { SolutionStepComponent } from './step/SolutionStep.component';
 import { DeploymentModeStep } from './step/DeploymentModeStep.component';
 import { useContainerCreationStore } from './useContainerCreationStore';
+import { RegionStep } from './step/RegionStep.component';
+import { ContainerType } from './step/ContainerTypeStep.component';
+import { ContainerNameStep } from './step/ContainerNameStep.component';
+import { LinkUserStep } from './step/LinkUserStep.component';
+import { VersioningStep } from './step/VersioningStep.component';
+import { EncryptionStep } from './step/EncryptionStep.component';
 
 export default function ContainerNewPage() {
   const { t } = useTranslation('containers/add');
@@ -89,6 +97,17 @@ export default function ContainerNewPage() {
         {form.offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD && (
           <DeploymentModeStep />
         )}
+        <RegionStep />
+        {form.offer === OBJECT_CONTAINER_OFFER_SWIFT && <ContainerType />}
+        {form.offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD &&
+          form.deploymentMode !== OBJECT_CONTAINER_MODE_LOCAL_ZONE && (
+            <>
+              <LinkUserStep />
+              <VersioningStep />
+              <EncryptionStep />
+            </>
+          )}
+        <ContainerNameStep />
       </div>
     </>
   );
