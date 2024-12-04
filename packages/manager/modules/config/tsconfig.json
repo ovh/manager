@@ -1,20 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es2015",
-    "moduleResolution": "Node",
-    "lib": ["dom"],
-    "module": "esnext",
-    "removeComments": true,
+    "lib": ["dom", "es2020"],
+    "target": "es2020",
+    "types": ["vite/client", "node"],
+    "module": "ES2020",
     "outDir": "dist",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "sourceMap": true,
-    "allowJs": true,
-    "declaration": true,
+    "allowJs": false,
     "skipLibCheck": true,
-    "declarationDir": "dist/types"
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node",
+    "isolatedModules": true,
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "jsx": "react"
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "types", "**/__tests__"]
 }

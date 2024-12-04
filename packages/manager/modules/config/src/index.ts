@@ -14,7 +14,7 @@ export const RESTRICTED_DEFAULTS: Record<string, string> = {
   publicURL: '/manager/restricted/',
 };
 
-export { Environment, User };
+export { Environment };
 export * from './locale';
 
 export * from './locale/locale.constants';
