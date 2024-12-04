@@ -211,6 +211,7 @@ export const PLAN_CODES = {
 };
 
 export const STORAGE_STANDARD_PLANCODE = 'storage-standard.consumption';
+export const STORAGE_STANDARD_REGION_PLANCODE = 'storage-standard';
 
 export const OBJECT_CONTAINER_OFFERS = [
   OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
