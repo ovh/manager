@@ -82,27 +82,29 @@ const DeleteNode = () => {
         <Label>{t('priceUnitSwitchLabel')}</Label>
         <PriceUnitSwitch showMonthly={showMonthly} onChange={setShowMonthly} />
         <p>
-          <Trans
-            t={t}
-            i18nKey={'deleteNodeDescription'}
-            values={{
-              nbNodes: service.nodes.length,
-              unit: showMonthly
-                ? t('deleteNodeDescriptionUnitMonth')
-                : t('deleteNodeDescriptionUnitHour'),
-            }}
-            components={{
-              price: (
-                <Price
-                  priceInUcents={
-                    price[showMonthly ? 'monthly' : 'hourly'].price
-                  }
-                  taxInUcents={price[showMonthly ? 'monthly' : 'hourly'].tax}
-                  decimals={showMonthly ? 2 : 3}
-                />
-              ),
-            }}
-          ></Trans>
+          {price && (
+            <Trans
+              t={t}
+              i18nKey={'deleteNodeDescription'}
+              values={{
+                nbNodes: service.nodes.length,
+                unit: showMonthly
+                  ? t('deleteNodeDescriptionUnitMonth')
+                  : t('deleteNodeDescriptionUnitHour'),
+              }}
+              components={{
+                price: (
+                  <Price
+                    priceInUcents={
+                      price[showMonthly ? 'monthly' : 'hourly'].price
+                    }
+                    taxInUcents={price[showMonthly ? 'monthly' : 'hourly'].tax}
+                    decimals={showMonthly ? 2 : 3}
+                  />
+                ),
+              }}
+            ></Trans>
+          )}
         </p>
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
