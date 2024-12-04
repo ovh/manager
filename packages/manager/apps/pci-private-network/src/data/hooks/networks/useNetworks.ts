@@ -106,7 +106,6 @@ export const useLZPrivateNetworks = (projectId: string) => {
           isPending: result.isPending,
         };
       }),
-      isPending: results.some((result) => result.isPending),
     }),
   });
 };
