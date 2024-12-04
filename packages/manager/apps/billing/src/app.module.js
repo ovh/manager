@@ -100,7 +100,6 @@ export default async (containerEl, shellClient) => {
 
   const defaultErrorHandler = /* @ngInject */ ($state) => {
     $state.defaultErrorHandler((error) => {
-      console.log(error);
       if (error.type === RejectType.ERROR) {
         $state.go(
           'error',
