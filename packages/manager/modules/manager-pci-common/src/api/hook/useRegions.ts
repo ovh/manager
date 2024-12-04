@@ -1,5 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
+  addProjectRegion,
   getProjectRegions,
   getS3StorageRegions,
   getStorageRegions,
@@ -35,4 +36,32 @@ export const useStorageRegions = (projectId: string) => {
     retry: false,
     enabled: !!regions,
   });
+};
+
+export interface AddProjectRegionProps {
+  projectId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+}
+
+export const useAddProjectRegion = ({
+  projectId,
+  onError,
+  onSuccess,
+}: AddProjectRegionProps) => {
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: (region: string) => addProjectRegion(projectId, region),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['project', projectId, 'regions'],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    addRegion: (region: string) => mutation.mutate(region),
+    ...mutation,
+  };
 };
