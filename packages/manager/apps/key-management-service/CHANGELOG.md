@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.12.5...@ovh-ux/manager-key-management-service-app@0.12.6) (2024-12-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3505] ([8d17327](https://github.com/ovh/manager/commit/8d17327099c3e63d2ecdc2a6170267221801732c))
+* **i18n:** add missing translations [CDS 3506] ([22b3287](https://github.com/ovh/manager/commit/22b328751a23c0916f819b16f263e6276f54db6c))
+* **kms:** display name style issue ([5c807b9](https://github.com/ovh/manager/commit/5c807b990621014a20b185f1768b77916930b80e))
+* **kms:** fix delete credential ([3ed5c0d](https://github.com/ovh/manager/commit/3ed5c0d1bfd3e55bd32ba81238ab76803d7e9fde))
+* **kms:** fix service accounts typo ([4e18537](https://github.com/ovh/manager/commit/4e185374f0f086b5f252b845fab4942a310b02d2))
+* **kms:** fix urn region on credential creation root account ([f70f44d](https://github.com/ovh/manager/commit/f70f44dd1f1b7d5bd586e4e0eb67c487bd85e620))
+
+
+
+
+
+## [0.12.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.12.4...@ovh-ux/manager-key-management-service-app@0.12.5) (2024-12-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3505] ([8d17327](https://github.com/ovh/manager/commit/8d17327099c3e63d2ecdc2a6170267221801732c))
+* **i18n:** add missing translations [CDS 3506] ([22b3287](https://github.com/ovh/manager/commit/22b328751a23c0916f819b16f263e6276f54db6c))
+* **kms:** display name style issue ([5c807b9](https://github.com/ovh/manager/commit/5c807b990621014a20b185f1768b77916930b80e))
+* **kms:** fix delete credential ([3ed5c0d](https://github.com/ovh/manager/commit/3ed5c0d1bfd3e55bd32ba81238ab76803d7e9fde))
+* **kms:** fix service accounts typo ([4e18537](https://github.com/ovh/manager/commit/4e185374f0f086b5f252b845fab4942a310b02d2))
+* **kms:** fix urn region on credential creation root account ([f70f44d](https://github.com/ovh/manager/commit/f70f44dd1f1b7d5bd586e4e0eb67c487bd85e620))
+
+
+
+
+
 ## [0.12.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.12.3...@ovh-ux/manager-key-management-service-app@0.12.4) (2024-12-03)
 
 
