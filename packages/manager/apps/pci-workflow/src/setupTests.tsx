@@ -35,8 +35,8 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
-  const actual = (await importOriginal()) as Record<string, unknown>;
+vi.mock('@ovh-ux/manager-pci-common', async () => {
+  const actual = await vi.importActual('@ovh-ux/manager-pci-common');
   return {
     ...actual,
     useProject: vi.fn().mockReturnValue({}),
