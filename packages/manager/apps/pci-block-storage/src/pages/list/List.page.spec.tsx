@@ -6,8 +6,8 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
+import * as pciCommonModule from '@ovh-ux/manager-pci-common';
 import ListingPage from './List.page';
-import * as useAnnouncementBannerModule from '../../../../../modules/manager-pci-common/src/components/banner/announcement-banner/useAnnouncementBanner.hook';
 
 vi.mock('react-i18next', async (importOrig) => {
   const orig = await importOrig<typeof import('react-i18next')>();
@@ -166,10 +166,7 @@ describe('ListingPage', () => {
   });
 
   it('renders announcement banner when banner is visible', async () => {
-    vi.spyOn(
-      useAnnouncementBannerModule,
-      'useAnnouncementBanner',
-    ).mockReturnValue({
+    vi.spyOn(pciCommonModule, 'useAnnouncementBanner').mockReturnValue({
       isBannerVisible: true,
       isLoading: false,
     });
