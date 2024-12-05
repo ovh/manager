@@ -24,6 +24,7 @@ exports[`Scale > should render correctly 1`] = `
     </osds-button>
     <osds-button
       color="primary"
+      disabled="true"
       slot="actions"
     >
       kube_common_save

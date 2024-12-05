@@ -61,16 +61,31 @@ export const useFlavors = (projectId: string, region: string) =>
     enabled: !!projectId && !!region,
   });
 
-export const getKubeFlavorsQueryKey = (projectId: string, region: string) => [
-  'kube-flavors',
+export const getKubeFlavorsQueryKey = ({
   projectId,
   region,
-];
+  clusterId,
+}: {
+  projectId: string;
+  region?: string;
+  clusterId: string;
+}) =>
+  clusterId
+    ? ['kube-flavors', projectId, 'cluster', clusterId]
+    : ['kube-flavors', projectId, 'region', region];
 
-export const useKubeFlavors = (projectId: string, region: string) =>
+export const useKubeFlavors = ({
+  projectId,
+  region,
+  clusterId,
+}: {
+  projectId: string;
+  region?: string;
+  clusterId: string;
+}) =>
   useQuery({
-    queryKey: getKubeFlavorsQueryKey(projectId, region),
-    queryFn: () => getKubeFlavors(projectId, region),
+    queryKey: getKubeFlavorsQueryKey({ projectId, region, clusterId }),
+    queryFn: () => getKubeFlavors({ projectId, region, clusterId }),
     enabled: !!projectId,
   });
 
@@ -84,14 +99,25 @@ export const hasEnoughQuota = (flavor: TFlavor, quota: TQuota) => {
   return true;
 };
 
-export const useMergedKubeFlavors = (projectId: string, region: string) => {
+export const useMergedKubeFlavors = ({
+  projectId,
+  region,
+  clusterId,
+}: {
+  projectId: string;
+  region?: string;
+  clusterId: string;
+}) => {
   const { data: flavors, isPending: isFlavorsPending } = useFlavors(
     projectId,
     region,
   );
   const { data: kubeFlavors, isPending: isKubeFlavorsPending } = useKubeFlavors(
-    projectId,
-    region,
+    {
+      projectId,
+      region,
+      clusterId,
+    },
   );
   const { data: catalog, isPending: isCatalogPending } = useCatalog();
   const {
@@ -122,6 +148,7 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
       ...kubeFlavors.find((_flavor) => _flavor.name === name),
     }));
     return result
+      .filter((flavor) => flavor.state !== 'unavailable')
       .map((flavor) => {
         const addon = catalog.addons.find(
           (_addon) => _addon.planCode === flavor.planCodes.hourly,
@@ -163,6 +190,7 @@ export const useMergedKubeFlavors = (projectId: string, region: string) => {
         return bGroup - aGroup;
       });
   }, [availability, catalog, flavors, kubeFlavors, quota]);
+
   return {
     mergedFlavors,
     isPending,
