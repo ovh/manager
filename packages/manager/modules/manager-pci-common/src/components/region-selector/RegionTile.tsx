@@ -1,7 +1,5 @@
-import React from 'react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
+import clsx from 'clsx';
 import { TLocalisation } from './useRegions';
 import { RegionLocalzoneChip } from './RegionLocalzoneChip.component';
 import { RegionGlobalzoneChip } from './RegionGlobalzoneChip.component';
@@ -19,22 +17,18 @@ export const RegionTile = ({
 }: Readonly<RegionTileProps>) => (
   <div className="flex flex-col w-full items-center">
     <div className={isCompact ? 'my-4' : ''}>
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.body}
-        size={isSelected ? ODS_TEXT_SIZE._500 : ODS_TEXT_SIZE._400}
-      >
+      <OdsText preset="span" className={clsx(isSelected && 'font-bold')}>
         {region.isMacro ? region.macroLabel : region.microLabel}
-      </OsdsText>
+      </OdsText>
     </div>
     {!isCompact && (
       <>
         <hr className="w-full border-solid border-0 border-b border-ods-primary-200" />
         <div>
           {region?.isLocalZone ? (
-            <RegionLocalzoneChip />
+            <RegionLocalzoneChip id={`popover-localzone-${region.name}`} />
           ) : (
-            <RegionGlobalzoneChip />
+            <RegionGlobalzoneChip id={`popover-globalzone-${region.name}`} />
           )}
         </div>
       </>

@@ -1,26 +1,20 @@
-import React from 'react';
-import {
-  OsdsChip,
-  OsdsLink,
-  OsdsText,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_CHIP_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 import {
   useCatalogPrice,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
+import {
+  OdsBadge,
+  OdsCard,
+  OdsLink,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_BADGE_COLOR,
+  ODS_BADGE_SIZE,
+  ODS_LINK_COLOR,
+} from '@ovhcloud/ods-components';
 import { useBytes } from '../../hooks';
 import { FlavorLocalzoneChip } from './FlavorLocalzoneChip';
 
@@ -32,6 +26,7 @@ export interface FlavorDiskType {
 }
 
 export interface FlavorTileProps {
+  id: string;
   flavorName: string;
   flavorSpecs: {
     ram: number;
@@ -65,6 +60,7 @@ const separatorClass = 'h-px my-5 bg-[#85d9fd] border-0';
 const gigabytes = 10 ** 9;
 
 export function FlavorTile({
+  id,
   flavorName,
   flavorSpecs,
   flavorCompatibility,
@@ -81,165 +77,106 @@ export function FlavorTile({
   });
   const projectHref = useProjectUrl('public-cloud');
   return (
-    <OsdsTile
+    <OdsCard
       className={clsx(
         isSelected ? checkedClass : uncheckedClass,
         !hasEnoughQuota && 'opacity-50',
       )}
-      checked={isSelected}
       onClick={() => hasEnoughQuota && onClick?.()}
     >
       <div className="w-full">
         <div className="flex justify-between">
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
+          <OdsText preset="span">
             <span className={clsx(isSelected && 'font-bold')}>
               {flavorName}
             </span>
-          </OsdsText>
+          </OdsText>
           {isNewFlavor && (
-            <OsdsChip
-              color={ODS_THEME_COLOR_INTENT.info}
-              size={ODS_CHIP_SIZE.sm}
-              inline
-            >
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.primary}
-                level={ODS_TEXT_LEVEL.body}
-                size={ODS_TEXT_SIZE._500}
-              >
-                {t('pci_project_flavors_category_new')}
-              </OsdsText>
-            </OsdsChip>
+            <OdsBadge
+              label={t('pci_project_flavors_category_new')}
+              color={ODS_BADGE_COLOR.information}
+              size={ODS_BADGE_SIZE.sm}
+              className="text-[--ods-color-primary-500] text-[16px] font-bold"
+            />
           )}
         </div>
         <hr className={separatorClass} />
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
+        <OdsText preset="span" className="text-[14px]">
           {t('pci_project_flavors_spec_ram', { ram: `${flavorSpecs.ram} GB` })}
-        </OsdsText>
-        <OsdsText
-          className="block"
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
+        </OdsText>
+        <OdsText preset="span" className="block text-[14px]">
           {t('pci_project_flavors_spec_vCore_details', {
             vcores: flavorSpecs.vcores,
             frequency: flavorSpecs.frequency,
           })}
-        </OsdsText>
+        </OdsText>
         {flavorSpecs.disk?.map((disk, index) => (
-          <OsdsText
-            key={index}
-            className="block"
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
+          <OdsText key={index} preset="span" className="block text-[14px]">
             {disk.number > 1 ? `${disk.number} x ` : ''}
             {`${formatBytes(disk.capacity * gigabytes, 2)}`}
             {` ${disk.technology}`}
-          </OsdsText>
+          </OdsText>
         ))}
         {flavorSpecs.nvme?.map((disk, index) => (
-          <OsdsText
-            key={index}
-            className="block"
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
+          <OdsText key={index} preset="span" className="block text-[14px]">
             {disk.number > 1 ? `${disk.number} x ` : ''}
             {`${formatBytes(disk.capacity * gigabytes, 2)}`}
             {` NVMe`}
-          </OsdsText>
+          </OdsText>
         ))}
-        <OsdsText
-          className="block"
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
+        <OdsText preset="span" className="block text-[14px]">
           {t('pci_project_flavors_spec_bandwidth_detail', {
             bandwidth: flavorSpecs.bandwidth,
           })}
-        </OsdsText>
-        <OsdsText
-          className="block"
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
+        </OdsText>
+        <OdsText preset="span" className="block text-[14px]">
           {flavorSpecs.gpuNumber > 1 ? `${flavorSpecs.gpuNumber}x ` : ''}
           {flavorSpecs.gpuModel}
-        </OsdsText>
+        </OdsText>
         <hr className={separatorClass} />
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
+        <OdsText preset="span" className="text-[14px] font-bold">
           {t('pci_project_flavors_zone_compatible')}
-        </OsdsText>
+        </OdsText>
         <div className="flex gap-4 mt-3">
-          {flavorCompatibility.localzone && <FlavorLocalzoneChip isLocalZone />}
+          {flavorCompatibility.localzone && (
+            <FlavorLocalzoneChip isLocalZone id={`popover-localzone-${id}`} />
+          )}
           {flavorCompatibility.globalzone && (
-            <FlavorLocalzoneChip isLocalZone={false} />
+            <FlavorLocalzoneChip
+              isLocalZone={false}
+              id={`popover-globalzone-${id}`}
+            />
           )}
         </div>
         <hr className={separatorClass} />
         {flavorPrice.monthly && (
-          <OsdsText
-            className="block"
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
+          <OdsText preset="span" className="block text-[14px] font-bold">
             {t('pci_project_flavors_price_monthly', {
               price: getTextPrice(flavorPrice.monthly),
             })}
-          </OsdsText>
+          </OdsText>
         )}
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
+        <OdsText preset="span" className="text-[14px]">
           {getFormattedHourlyCatalogPrice(flavorPrice.hourly)}
-        </OsdsText>
+        </OdsText>
         {!hasEnoughQuota && (
           <>
             <hr className={separatorClass} />
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-              color={ODS_THEME_COLOR_INTENT.error}
+            <OdsText
+              preset="span"
+              className="text-[--ods-color-critical-500] text-[14px]"
             >
               {t('pci_project_flavors_quota_info')}
-            </OsdsText>
-            <OsdsLink
-              className="ml-3"
-              color={ODS_THEME_COLOR_INTENT.primary}
+            </OdsText>
+            <OdsLink
+              className="ml-3 text-[14px] "
+              color={ODS_LINK_COLOR.primary}
               href={`${projectHref}/quota`}
-            >
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-                color={ODS_THEME_COLOR_INTENT.primary}
-              >
-                {t('pci_project_flavors_quota_manage')}
-              </OsdsText>
-            </OsdsLink>
+              label={t('pci_project_flavors_quota_manage')}
+            />
           </>
         )}
       </div>
-    </OsdsTile>
+    </OdsCard>
   );
 }

@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatDuration } from 'date-fns';
 import * as dateFnsLocales from 'date-fns/locale';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
-import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { useRetention } from '../../api/hook/useDbaasLogs';
 
 export interface StreamRetentionProps {
@@ -41,7 +41,7 @@ export function StreamRetention({
   );
   return (
     <>
-      {isPending && <OsdsSkeleton />}
+      {isPending && <OdsSkeleton />}
       {!isPending && !retention?.duration && '-'}
       {!isPending &&
         retention?.duration &&

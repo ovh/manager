@@ -1,15 +1,10 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
-import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsSearchBar,
-} from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { OdsButton, OdsInput } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
+  OdsInputChangeEvent,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useTailLogs } from '../../api/hook/useLogs';
@@ -104,47 +99,38 @@ export function TailLogs({
     <div className="font-mono bg-black text-white">
       <div className="p-4 relative">
         <div className="flex">
-          <OsdsSearchBar
+          <OdsInput
+            name="search"
             className="w-[25%] min-w-[10rem]"
-            value={search}
             placeholder={t('search_placeholder')}
-            onOdsValueChange={({ detail }) => {
-              setSearch(detail.value);
-            }}
-            onOdsSearchSubmit={({ detail }) => {
-              setSearch(detail.inputValue);
+            type="search"
+            value={search}
+            onOdsChange={(event: OdsInputChangeEvent) => {
+              setSearch(event.detail.value as string);
             }}
           />
-          <OsdsButton
+          <OdsButton
             className="ml-4 min-w-[2.5rem]"
-            inline
-            color={ODS_THEME_COLOR_INTENT.primary}
-            variant={ODS_BUTTON_VARIANT.stroked}
+            variant={ODS_BUTTON_VARIANT.outline}
             size={ODS_BUTTON_SIZE.sm}
             onClick={() => setIsPolling((state) => !state)}
-          >
-            {isPolling ? '⏸︎' : '▶'}
-          </OsdsButton>
-          <OsdsButton
+            label={isPolling ? '⏸︎' : '▶'}
+          />
+          <OdsButton
             className="ml-4 min-w-[5rem]"
-            inline
-            color={ODS_THEME_COLOR_INTENT.primary}
-            variant={ODS_BUTTON_VARIANT.stroked}
+            variant={ODS_BUTTON_VARIANT.outline}
             size={ODS_BUTTON_SIZE.sm}
             onClick={clearLogs}
-          >
-            {t('clear_session')}
-          </OsdsButton>
-          <OsdsButton
+            label={t('clear_session')}
+          />
+
+          <OdsButton
             className="ml-auto min-w-[2.5rem] w-[2.5rem]"
-            inline
-            color={ODS_THEME_COLOR_INTENT.primary}
-            variant={ODS_BUTTON_VARIANT.stroked}
+            variant={ODS_BUTTON_VARIANT.outline}
             size={ODS_BUTTON_SIZE.sm}
             onClick={onToggleFullscreen}
-          >
-            {isFullscreen ? '-' : '⛶'}
-          </OsdsButton>
+            label={isFullscreen ? '-' : '⛶'}
+          />
         </div>
         <div
           ref={logsContainer}
@@ -163,20 +149,14 @@ export function TailLogs({
         </div>
         {output && (
           <div className="flex py-2">
-            <OsdsButton
+            <OdsButton
               className="ml-auto"
-              inline
-              color={ODS_THEME_COLOR_INTENT.primary}
-              variant={ODS_BUTTON_VARIANT.stroked}
+              label=""
+              icon={ODS_ICON_NAME.arrowDown}
+              variant={ODS_BUTTON_VARIANT.outline}
               size={ODS_BUTTON_SIZE.sm}
               onClick={scrollToBottom}
-            >
-              <OsdsIcon
-                name={ODS_ICON_NAME.ARROW_DOWN}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_ICON_SIZE.xxs}
-              ></OsdsIcon>
-            </OsdsButton>
+            />
           </div>
         )}
       </div>

@@ -1,12 +1,18 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { RegionGlobalzoneChip } from './RegionGlobalzoneChip.component';
 import { wrapper } from '@/wrapperRenders';
 
 describe('RegionGlobalzoneChip', () => {
-  it('renders chip with correct text', () => {
-    render(<RegionGlobalzoneChip />, { wrapper });
-    expect(
-      screen.getByText('pci_project_flavors_zone_global_region'),
-    ).toBeInTheDocument();
+  it('renders tag with correct text', () => {
+    const { container } = render(<RegionGlobalzoneChip id="fake-id" />, {
+      wrapper,
+    });
+    const tagElt = container.querySelector('#fake-id').firstChild;
+
+    expect(tagElt).toBeInTheDocument();
+    expect(tagElt).toHaveAttribute(
+      'label',
+      'pci_project_flavors_zone_global_region',
+    );
   });
 });

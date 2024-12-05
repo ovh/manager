@@ -1,17 +1,8 @@
-import React from 'react';
-import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
 import { TabsComponent } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { TLocalisation } from './useRegions';
 import { useRegionSelector } from './useRegionSelector';
 import { RegionTile } from './RegionTile';
@@ -48,7 +39,7 @@ export function RegionSelector({
   } = useRegionSelector({ projectId, onSelectRegion, regionFilter });
 
   if (isPending) {
-    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
+    return <OdsSpinner size={ODS_SPINNER_SIZE.md} />;
   }
 
   return (
@@ -73,14 +64,9 @@ export function RegionSelector({
           {microRegions?.length > 0 && (
             <>
               <div className="ml-8">
-                <OsdsText
-                  className="font-bold"
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_TEXT_SIZE._400}
-                >
+                <OdsText preset="span" className="font-bold">
                   {t('pci_project_regions_list_region')}
-                </OsdsText>
+                </OdsText>
               </div>
               <RegionList
                 regions={microRegions}
@@ -93,24 +79,14 @@ export function RegionSelector({
         </>
       )}
       titleElement={(continent, isSelected) => (
-        <OsdsText
-          breakSpaces={false}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-          color={
-            isSelected
-              ? ODS_THEME_COLOR_INTENT.text
-              : ODS_THEME_COLOR_INTENT.primary
-          }
+        <div
+          className={clsx(
+            isSelected && 'font-bold',
+            'whitespace-nowrap px-2 text-lg',
+          )}
         >
-          <div
-            className={clsx(
-              isSelected && 'font-bold',
-              'whitespace-nowrap px-2 text-lg',
-            )}
-          >
-            {continent.name}
-          </div>
-        </OsdsText>
+          <OdsText>{continent.name}</OdsText>
+        </div>
       )}
       onChange={setSelectedContinent}
     />
