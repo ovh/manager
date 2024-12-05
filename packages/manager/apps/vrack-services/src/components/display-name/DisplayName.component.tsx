@@ -38,6 +38,7 @@ export const DisplayName: React.FC<DisplayNameProps> = ({
           });
           navigate(urls.overview.replace(':id', vs.id));
         }}
+        data-testid="display-name-link"
       >
         {name}
       </OsdsLink>
@@ -55,6 +56,7 @@ export const DisplayName: React.FC<DisplayNameProps> = ({
         });
         navigate(urls.overviewEdit.replace(':id', vs.id));
       }}
+      data-testid="display-name-edit-button"
     >
       {name}
     </EditButton>

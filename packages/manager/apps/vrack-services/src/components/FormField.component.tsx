@@ -51,7 +51,7 @@ export const FormField: React.FC<FormFieldProps> = ({
     {children}
     {helperText && (
       <div slot="helper">
-        <OsdsText>{label}</OsdsText>
+        <OsdsText>{helperText}</OsdsText>
       </div>
     )}
     {visualHint && (

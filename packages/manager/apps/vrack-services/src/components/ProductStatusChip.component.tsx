@@ -24,6 +24,10 @@ export const ProductStatusChip: React.FC<ProductStatusChipProps> = ({
       {t(productStatus)}
     </OsdsChip>
   ) : (
-    <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />
+    <OsdsSpinner
+      inline
+      size={ODS_SPINNER_SIZE.sm}
+      data-testid="status-chip-spinner"
+    />
   );
 };
