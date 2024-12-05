@@ -1,6 +1,7 @@
 export { default as pollingService } from './polling/polling.service';
 export { default as serverSupport } from './support';
 export { default as serverTasks } from './tasks';
+export { default as serverTags } from './tags';
 export { default as serverInterventions } from './interventions';
 export { default as serverIpmi } from './ipmi';
 export { default as serverNetboot } from './netboot';
