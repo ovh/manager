@@ -1,4 +1,4 @@
-import { Handler } from '@playwright-helpers';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { vrackDetails, vrackList } from './vrack';
 import { getAllowedServicesResponse } from './association';
 
@@ -8,6 +8,8 @@ export type GetVrackMocksParams = {
   nbVrack?: number;
   dissociateKo?: boolean;
   vrackTaskKo?: boolean;
+  getVrackKo?: boolean;
+  getVrackEligibleServicesKo?: boolean;
 };
 
 export const getVrackMocks = ({
@@ -16,11 +18,13 @@ export const getVrackMocks = ({
   nbVrack = 5,
   dissociateKo = false,
   vrackTaskKo = false,
+  getVrackKo = false,
+  getVrackEligibleServicesKo = false,
 }: GetVrackMocksParams): Handler[] => [
   {
     url: '/vrack/:id/task/:taskId',
     response: vrackTaskKo ? { message: 'Task error' } : {},
-    status: vrackTaskKo ? 500 : 404,
+    status: vrackTaskKo ? 400 : 404,
     api: 'v6',
   },
   {
@@ -31,14 +35,19 @@ export const getVrackMocks = ({
           function: '',
           id: 123456,
         },
-    status: dissociateKo ? 500 : 200,
+    status: dissociateKo ? 400 : 200,
     api: 'v6',
     method: 'delete',
   },
   {
     url: '/vrack/:id/allowedServices',
-    response: getAllowedServicesResponse(nbEligibleVrackServices),
+    response: getVrackEligibleServicesKo
+      ? {
+          message: 'eligible services KO',
+        }
+      : getAllowedServicesResponse(nbEligibleVrackServices),
     api: 'v6',
+    status: getVrackEligibleServicesKo ? 400 : 200,
   },
   {
     url: '/vrack/:id/vrackServices',
@@ -51,7 +60,7 @@ export const getVrackMocks = ({
           id: 123456,
         },
     method: 'post',
-    status: associationKo ? 500 : 200,
+    status: associationKo ? 400 : 200,
     api: 'v6',
   },
   {
@@ -61,7 +70,12 @@ export const getVrackMocks = ({
   },
   {
     url: '/vrack',
-    response: vrackList.slice(0, nbVrack),
+    response: getVrackKo
+      ? {
+          message: 'Get vRack KO',
+        }
+      : vrackList.slice(0, nbVrack),
     api: 'v6',
+    status: getVrackKo ? 400 : 200,
   },
 ];

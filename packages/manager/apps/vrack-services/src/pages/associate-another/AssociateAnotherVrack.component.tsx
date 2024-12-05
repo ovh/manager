@@ -190,6 +190,7 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
               onOdsValueChange={(event: OdsSelectValueChangeEvent) =>
                 setSelectedVrack(event.detail.value as string)
               }
+              data-testid="select-another-vrack"
             >
               <span slot="placeholder">{t('vrackSelectPlaceholder')}</span>
               {vrackList

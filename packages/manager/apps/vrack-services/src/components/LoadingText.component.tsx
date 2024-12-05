@@ -17,7 +17,11 @@ export const LoadingText: React.FC<LoadingTextProps> = ({
   description,
 }) => (
   <div className="flex items-center">
-    <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+    <OsdsSpinner
+      inline
+      size={ODS_SPINNER_SIZE.md}
+      data-testid="loading-text-spinner"
+    />
     <div className="ml-5 mb-3 flex flex-col">
       <OsdsText
         level={ODS_TEXT_LEVEL.body}

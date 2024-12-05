@@ -1,4 +1,4 @@
-import { Handler } from '@playwright-helpers';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
 
 const regionList = [
   {
@@ -23,5 +23,13 @@ export const getRegionMocks = ({
     url: '/vrackServices/reference/region',
     response: regionList.slice(0, nbRegion),
     api: 'v2',
+  },
+];
+
+export const getRegionFlagsMocks = (): Handler[] => [
+  {
+    url: '/flags/:country',
+    response: '',
+    baseUrl: '',
   },
 ];
