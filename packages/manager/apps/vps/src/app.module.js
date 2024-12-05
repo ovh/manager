@@ -9,6 +9,7 @@ import { isString, get } from 'lodash-es';
 
 import angular from 'angular';
 import cloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
+import * as dateFnsLocales from 'date-fns/locale';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
@@ -19,6 +20,17 @@ import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
+
+const getDateFnsLocale = (language) => {
+  if (language === 'en_GB') {
+    return 'enGB';
+  }
+  if (language === 'fr_CA') {
+    return 'frCA';
+  }
+  const [locale] = language.split('_');
+  return locale;
+};
 
 export default (containerEl, environment) => {
   const moduleName = 'vpsApp';
@@ -56,6 +68,10 @@ export default (containerEl, environment) => {
       /* @ngInject */ ($urlRouterProvider) => {
         $urlRouterProvider.otherwise('/vps');
       },
+    )
+    .constant(
+      'DATEFNS_LOCALE',
+      dateFnsLocales[getDateFnsLocale(environment.userLocale)],
     )
     .run(
       /* @ngInject */ ($translate) => {
