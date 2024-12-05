@@ -10,4 +10,5 @@ export const useUsage = (projectId: string, kind: TUsageKind) =>
   useQuery({
     ...getUsageQuery(projectId, kind),
     enabled: !!projectId,
+    retry: 1,
   });
