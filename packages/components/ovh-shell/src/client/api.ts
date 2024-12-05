@@ -209,6 +209,11 @@ export default function exposeApi(shellClient: ShellClient) {
           plugin: 'ux',
           method: 'showPreloader',
         }),
+      notifyModalActionDone: () =>
+        shellClient.invokePluginMethod<void>({
+          plugin: 'ux',
+          method: 'notifyModalActionDone',
+        }),
     },
     navigation: clientNavigation(shellClient),
     tracking: exposeTrackingAPI(shellClient),
