@@ -1,0 +1,11 @@
+{
+  "autorenew_service_disable_all_domains_title": "Disattiva il rinnovo automatico",
+  "autorenew_service_disable_all_domains_desc1": "Questa azione disattiverà il rinnovo automatico di <strong>tutti i domini</strong> di cui sei il contatto di fatturazione.",
+  "autorenew_service_disable_all_domains_desc2": "Per conservare i tuoi servizi, effettua il pagamento prima della loro data di scadenza.",
+  "autorenew_service_disable_all_domains_desc3": "In caso contrario, i servizi <strong>saranno disattivati automaticamente alla data di scadenza</strong>. I dati associati al pagamento automatico dei servizi saranno eliminati in modo irreversibile.",
+  "autorenew_service_disable_all_domains_desc4": "È possibile riattivare il pagamento automatico dei tuoi servizi fino a 24 ore prima della loro data di scadenza.",
+  "autorenew_service_disable_all_domains_success": "La richiesta di disattivazione del pagamento automatico è stata presa in carico. Diventerà effettiva tra poche ore.",
+  "autorenew_service_disable_all_domains_error": "Si è verificato un errore, ci scusiamo per il disagio.",
+  "autorenew_service_disable_all_domains_validate": "Conferma",
+  "autorenew_service_disable_all_domains_cancel": "Annulla"
+}

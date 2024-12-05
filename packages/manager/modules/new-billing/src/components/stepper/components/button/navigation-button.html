@@ -1,0 +1,15 @@
+<oui-button
+    data-disabled="$ctrl.disabled"
+    data-id="{{:: $ctrl.id }}"
+    data-name="{{:: $ctrl.name }}"
+    data-on-click="$ctrl.handleOnClick()"
+    data-type="{{:: $ctrl.type || 'button' }}"
+    data-variant="{{:: $ctrl.variant }}"
+    data-variant-nav="{{:: $ctrl.variantNav }}"
+>
+    <ng-transclude>
+        <span
+            data-translate="{{:: 'oui_stepper_v_navigation_button_' + $ctrl.computedNavigationType }}"
+        ></span>
+    </ng-transclude>
+</oui-button>

@@ -13,17 +13,19 @@ import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-confi
 import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 // TODO: Change to '@ovh-ux/manager-billing' when module is deployed
 // import Billing from '@ovh-ux/manager-billing';
-import Billing from '../../../modules/billing/src';
+import Billing from '../../../modules/new-billing/src';
 import errorPage from './error';
-
+import dedicatedUniverseComponents from '../../../modules/account/src/dedicatedUniverseComponents';
 import TRACKING from './tracking/at-internet.constants';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
+import './app.less';
+import './css/source.scss';
 
 export default async (containerEl, shellClient) => {
   const moduleName = 'BillingApp';
 
   const routingConfig = /* @ngInject */ ($urlRouterProvider) => {
-    $urlRouterProvider.otherwise('/billing');
+    $urlRouterProvider.otherwise('/');
   };
 
   const trackingConfig = /* @ngInject */ (atInternetConfigurationProvider) => {
@@ -126,6 +128,7 @@ export default async (containerEl, shellClient) => {
         ngUiRouterBreadcrumb,
         'oui',
         uiRouter,
+        dedicatedUniverseComponents,
         errorPage,
         Billing,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),

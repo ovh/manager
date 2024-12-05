@@ -15,7 +15,8 @@ import constants from '../../account-sidebar/UsefulLinks/constants';
 const kycIndiaFeature = 'identity-documents';
 const kycFraudFeature = 'procedures:fraud';
 const newAccount = 'new-account';
-const accountFeatures = [kycIndiaFeature, kycFraudFeature, newAccount];
+const newBilling = 'new-billing';
+const accountFeatures = [kycIndiaFeature, kycFraudFeature, newAccount, newBilling];
 
 export default function AccountSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
@@ -40,6 +41,7 @@ export default function AccountSidebar() {
 
     const isEUOrCA = ['EU', 'CA'].includes(region);
     const isNewAccountAvailable = !!availability['new-account'];
+    const isNewBillingAvailable = !!availability['new-billing'];
 
     menu.push({
       id: 'back-to-home',
@@ -83,7 +85,7 @@ export default function AccountSidebar() {
         id: 'my-bills',
         label: t('sidebar_billing'),
         href: navigation.getURL(
-          'dedicated',
+          isNewBillingAvailable ? 'new-billing' : 'dedicated',
           region === 'US' ? '/billing/payAsYouGo' : '/billing/history',
         ),
         routeMatcher: new RegExp(
@@ -96,7 +98,7 @@ export default function AccountSidebar() {
       id: 'my-services',
       label: t('sidebar_billing_services'),
       href: navigation.getURL(
-        'dedicated',
+        isNewBillingAvailable ? 'new-billing' : 'dedicated',
         `/billing/autorenew${isEnterprise ? '/ssh' : '/'}`,
       ),
       routeMatcher: new RegExp('^/billing/autorenew', 'i'),
@@ -106,13 +108,13 @@ export default function AccountSidebar() {
       menu.push({
         id: 'payment-method',
         label: t('sidebar_billing_payment'),
-        href: navigation.getURL('dedicated', '/billing/payment'),
+        href: navigation.getURL(isNewBillingAvailable ? 'new-billing' : 'dedicated', '/billing/payment'),
         routeMatcher: new RegExp('^/billing/payment[^s]'),
       });
       menu.push({
         id: 'my-orders',
         label: t('sidebar_orders'),
-        href: navigation.getURL('dedicated', '/billing/orders'),
+        href: navigation.getURL(isNewBillingAvailable ? 'new-billing' : 'dedicated', '/billing/orders'),
         routeMatcher: new RegExp('^/billing/orders'),
       });
     }

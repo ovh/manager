@@ -1,0 +1,8 @@
+{
+  "billing_autorenew_service_update_form_description": "Choisissez le type de renouvellement souhaité (automatique ou manuel). Pour le renouvellement automatique, vous pourrez également choisir la fréquence des prélèvements.",
+  "billing_autorenew_service_update_form_service_renewal": "Type de renouvellement",
+  "billing_autorenew_service_update_form_service_automatic": "Automatique",
+  "billing_autorenew_service_update_form_service_manualPayment": "Manuel",
+  "billing_autorenew_service_update_form_service_period": "Fréquence",
+  "billing_autorenew_service_update_form_service_period_value": "{{ month }} mois"
+}

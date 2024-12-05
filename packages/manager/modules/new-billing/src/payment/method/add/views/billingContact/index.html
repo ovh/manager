@@ -1,0 +1,98 @@
+<div class="billing-payment-method-add-billing-contact">
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <oui-tabs class="mb-3" data-ng-if="!$ctrl.loading.init">
+        <oui-tabs-item
+            data-heading="{{ :: 'billing_payment_method_add_billing_contact_existing' | translate }}"
+            data-on-active="$ctrl.onExistingContactTabActive()"
+        >
+            <div class="row">
+                <div class="col-sm-9">
+                    <dl class="dl-horizontal">
+                        <dt
+                            data-ng-class="{ 'mt-2': $ctrl.contactList.length > 1 }"
+                            data-translate="billing_payment_method_add_billing_contact_existing_name"
+                        ></dt>
+                        <dd>
+                            <span
+                                data-ng-if="$ctrl.contactList.length === 1"
+                                data-ng-bind="$ctrl.model.billingContact.fullName"
+                            >
+                            </span>
+                            <oui-select
+                                data-ng-if="$ctrl.contactList.length > 1"
+                                data-name="contact"
+                                data-model="$ctrl.model.billingContact"
+                                data-items="$ctrl.contactList"
+                                data-match="fullName"
+                                data-searchable
+                            >
+                                <span
+                                    class="d-block text-truncate w-100"
+                                    data-ng-bind="$item.fullName"
+                                >
+                                </span>
+                                <small>
+                                    <span
+                                        class="d-block text-truncate w-100"
+                                        data-ng-bind="$item.address.line1"
+                                    >
+                                    </span>
+                                    <span
+                                        class="d-block text-truncate w-100"
+                                        data-ng-bind="($item.address.zip || '') + ' ' + ($item.address.city || '')  + ' (' + $item.address.country + ')'"
+                                    >
+                                    </span>
+                                </small>
+                            </oui-select>
+                        </dd>
+
+                        <dt
+                            data-translate="billing_payment_method_add_billing_contact_existing_address"
+                        ></dt>
+                        <dd>
+                            <span
+                                class="d-block text-truncate w-100"
+                                data-ng-bind="$ctrl.model.billingContact.address.line1"
+                            >
+                            </span>
+                            <span
+                                class="d-inline-block  text-truncate w-100"
+                                data-ng-bind="($ctrl.model.billingContact.address.zip || '') + ' ' + ($ctrl.model.billingContact.address.city || '')  + ' (' + $ctrl.model.billingContact.address.country + ')'"
+                            >
+                            </span>
+                        </dd>
+
+                        <dt
+                            data-translate="billing_payment_method_add_billing_contact_existing_phone"
+                        ></dt>
+                        <dd
+                            data-ng-bind="$ctrl.model.billingContact.phone"
+                        ></dd>
+
+                        <dt
+                            data-translate="billing_payment_method_add_billing_contact_existing_email"
+                        ></dt>
+                        <dd
+                            data-ng-bind="$ctrl.model.billingContact.email"
+                        ></dd>
+                    </dl>
+                </div>
+            </div>
+        </oui-tabs-item>
+        <oui-tabs-item
+            data-heading="{{ :: 'billing_payment_method_add_billing_contact_create' | translate }}"
+            data-on-active="$ctrl.onNewContactTabActive()"
+        >
+            <ovh-contact-form
+                data-ng-if="$ctrl.activeTab === 'new'"
+                data-mode="fieldset"
+                data-model="$ctrl.model.billingContact"
+                data-predefined-profile="billing"
+            >
+            </ovh-contact-form>
+        </oui-tabs-item>
+    </oui-tabs>
+</div>

@@ -1,0 +1,8 @@
+{
+  "autorenew_service_EMAIL_DOMAIN_terminate": "Supprimer immédiatement le MX Plan",
+  "autorenew_service_EMAIL_DOMAIN_terminate_info": "La suppression d'un MX Plan entraîne l'effacement définitif de toutes les données correspondantes. L'action de supprimer un MX Plan n'octroie aucun remboursement.",
+  "autorenew_service_EMAIL_DOMAIN_terminate_info_impossible": "Vous ne pouvez pas supprimer votre adresse e-mail car elle est liée à un hébergement web.",
+  "autorenew_service_EMAIL_DOMAIN_terminate_procedure": "Un e-mail contenant la procédure de fermeture de votre MX Plan vous permettant de valider la suppression immédiate vous sera envoyé.",
+  "autorenew_service_EMAIL_DOMAIN_terminate_success": "Votre demande de fermeture de votre MX Plan a été prise en compte. Un e-mail contenant la procédure vous a été envoyé.",
+  "autorenew_service_EMAIL_DOMAIN_terminate_error": "Une erreur est survenue lors de la demande de fermeture de votre MX Plan : {{ message }}"
+}
