@@ -28,6 +28,7 @@ const CliEquivalent = ({ command, controller }: CliEquivalentModalProps) => {
           title={t('cliEquivalentModalDescription')}
           code={command.command}
           toastMessage={t('cliEquivalentModalToastMessage')}
+          size="max-h-[60vh] px-6"
         />
       </DialogContent>
     </Dialog>

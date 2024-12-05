@@ -3,9 +3,8 @@ import {
   Globe,
   HardDrive,
   Hash,
+  LockKeyhole,
   MemoryStick,
-  ShieldAlert,
-  ShieldCheck,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
@@ -232,12 +231,12 @@ const PrivacyDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         {order.unsecureHttp ? (
           <div className="flex flex-row gap-2 items-center">
             <span>{t('summaryFieldPublicLabel')}</span>
-            <ShieldAlert className="size-4 text-amber-400" />
+            <Globe className="size-4" />
           </div>
         ) : (
           <div className="flex flex-row gap-2 items-center">
             <span>{t('summaryFieldPrivateLabel')}</span>
-            <ShieldCheck className="size-4 text-green-500" />
+            <LockKeyhole className="size-4" />
           </div>
         )}
       </div>

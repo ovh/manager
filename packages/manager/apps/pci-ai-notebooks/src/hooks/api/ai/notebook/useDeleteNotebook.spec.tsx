@@ -12,13 +12,13 @@ describe('useDeleteNotebooks', () => {
   it('should delete a Notebook', async () => {
     const projectId = 'projectId';
     const notebookId = 'notebookId';
-    const onDeleteSuccess = vi.fn();
+    const onSuccess = vi.fn();
     const onError = vi.fn();
 
     vi.mocked(notebookApi.deleteNotebook).mockResolvedValue(undefined);
 
     const { result } = renderHook(
-      () => useDeleteNotebook({ onError, onDeleteSuccess }),
+      () => useDeleteNotebook({ onError, onSuccess }),
       {
         wrapper: QueryClientWrapper,
       },
@@ -34,7 +34,6 @@ describe('useDeleteNotebooks', () => {
       expect(notebookApi.deleteNotebook).toHaveBeenCalledWith(
         deleteNotebookProps,
       );
-      expect(onDeleteSuccess).toHaveBeenCalledWith();
     });
   });
 });

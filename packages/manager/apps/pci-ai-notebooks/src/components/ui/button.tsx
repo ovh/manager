@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary-600",
+        default: "bg-primary text-primary-foreground hover:bg-primary-600 hover:text-primary-foreground",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
@@ -31,7 +31,10 @@ const buttonVariants = cva(
         link: "text-base",
         table: "h-4 w-4 my-auto",
         menu: 'size-8 p-0',
-        input: "h-10 w-full rounded-md px-3 py-2 text-sm"
+        input: "h-10 w-full rounded-md px-3 py-2 text-sm",
+        roundedIcon: "h-6 w-6 rounded-full",
+        roundedsmIcon: "h-4 w-4 rounded-full",
+        badge: "h-6 rounded-md px-2.5 py-0.5 text-xs"
       },
     },
     defaultVariants: {

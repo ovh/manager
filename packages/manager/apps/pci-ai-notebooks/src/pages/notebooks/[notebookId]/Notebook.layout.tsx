@@ -7,6 +7,8 @@ import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { getNotebook } from '@/data/api/ai/notebook/notebook.api';
 import { useGetNotebook } from '@/hooks/api/ai/notebook/useGetNotebook.hook';
 import { NotebookLayoutContext } from './Notebook.context';
+import { NotebookHeader } from './_components/NotebookHeader.component';
+import NotebookTabs from './_components/NotebookTabs.component';
 
 interface NotebookLayoutProps {
   params: {
@@ -55,6 +57,7 @@ export default function NotebookLayout() {
   if (!notebook) {
     return (
       <>
+        <NotebookHeader.Skeleton />
         <TabsMenu.Skeleton />
         Loading your notebook data
       </>
@@ -67,7 +70,8 @@ export default function NotebookLayout() {
 
   return (
     <>
-      <div>{notebook.spec.name}</div>
+      <NotebookHeader notebook={notebook} />
+      <NotebookTabs notebook={notebook} />
       <div className="space-y-2">
         <Outlet context={notebookLayoutContext} />
       </div>

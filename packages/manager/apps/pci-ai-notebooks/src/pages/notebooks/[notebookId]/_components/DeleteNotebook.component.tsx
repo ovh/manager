@@ -44,7 +44,7 @@ const DeleteNotebook = ({
         onError(err);
       }
     },
-    onDeleteSuccess: () => {
+    onSuccess: () => {
       toast.toast({
         title: t('notebookToastSuccessTitle'),
         description: t('deleteNotebookToastSuccessDescription', {

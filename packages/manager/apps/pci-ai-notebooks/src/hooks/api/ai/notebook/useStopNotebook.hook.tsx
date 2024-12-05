@@ -17,11 +17,11 @@ export function useStopNotebook({ onError, onStopSuccess }: UseStopNotebook) {
     },
     onError,
     onSuccess: () => {
-      onStopSuccess();
       // Invalidate service list query to get the latest data
       queryClient.invalidateQueries({
         queryKey: [projectId, 'ai/notebook'],
       });
+      onStopSuccess();
     },
   });
 
