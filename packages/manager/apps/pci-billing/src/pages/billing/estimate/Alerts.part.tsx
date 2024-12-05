@@ -64,12 +64,12 @@ export const AlertsPart = ({
   const chartData = [
     {
       label: tEstimate('cpbe_estimate_alert_chart_label_now'),
-      value: currentPrices?.totalHourlyPrice.toFixed(2),
+      value: currentPrices?.totalHourlyPrice,
       fill: '#777',
     },
     {
       label: tEstimate('cpbe_estimate_alert_chart_label_future'),
-      value: forecastPrices?.totalHourlyPrice.toFixed(2),
+      value: forecastPrices?.totalHourlyPrice,
       fill: '#ddd',
     },
   ];
@@ -202,6 +202,7 @@ export const AlertsPart = ({
                         position: 'top',
                         fill: 'black',
                         className: 'font-bold text-xs',
+                        formatter: (value: number) => value.toFixed(2),
                       }}
                       dataKey="value"
                       barSize={100}
