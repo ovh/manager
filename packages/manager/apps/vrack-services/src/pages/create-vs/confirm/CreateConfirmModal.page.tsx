@@ -161,11 +161,6 @@ export default function CreateConfirmModal() {
               queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
             });
 
-            addSuccessMessage(t('vrackServicesCreationSuccess'), {
-              linkLabel: t('vrackServicesOrderLinkLabel'),
-              linkUrl: orderResponse.data.url,
-            });
-
             navigate(urls.listing);
           }}
         />
