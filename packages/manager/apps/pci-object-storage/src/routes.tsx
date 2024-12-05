@@ -11,7 +11,8 @@ export const ROUTE_PATHS = {
   USER_DELETE: ':userId/delete',
   USER_IMPORT_POLICY: 'import-policy',
   OBJECTS: `/pci/projects/:projectId/storages/objects/:storageId`,
-  DELETE_OBJECT: `/pci/projects/:projectId/storages/objects/:storageId/:objectName/delete`,
+  DELETE_OBJECT: `:objectName/delete`,
+  ENABLE_VERSIONING: 'enableVersioning',
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
@@ -41,6 +42,9 @@ const DeleteUserPage = lazy(() =>
 const ImportPolicyPage = lazy(() =>
   import('@/pages/objects/container/users/import-policy/ImportPolicy.page'),
 );
+const EnableVersioningPage = lazy(() =>
+  import('@/pages/objects/container/enable-versioning/EnableVersioning.page'),
+);
 
 const RoutesComponent = () => (
   <Routes>
@@ -62,10 +66,14 @@ const RoutesComponent = () => (
           <Route path={ROUTE_PATHS.USER_DELETE} Component={DeleteUserPage} />
         </Route>
       </Route>
-      <Route path={ROUTE_PATHS.OBJECTS} Component={ObjectPage}>
-        <Route path={ROUTE_PATHS.DELETE_OBJECT} Component={DeleteObjectPage} />
-      </Route>
       <Route path="" element={<>Page not found</>}></Route>
+    </Route>
+    <Route path={ROUTE_PATHS.OBJECTS} Component={ObjectPage}>
+      <Route path={ROUTE_PATHS.DELETE_OBJECT} Component={DeleteObjectPage} />
+      <Route
+        path={ROUTE_PATHS.ENABLE_VERSIONING}
+        Component={EnableVersioningPage}
+      />
     </Route>
   </Routes>
 );
