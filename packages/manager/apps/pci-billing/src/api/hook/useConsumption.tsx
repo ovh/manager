@@ -403,6 +403,57 @@ export type TConsumptionDetail = {
   };
 };
 
+export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
+  hourlyInstances: [],
+  monthlyInstances: [],
+  objectStorages: [],
+  archiveStorages: [],
+  snapshots: [],
+  volumes: [],
+  bandwidthByRegions: [],
+  privateRegistry: [],
+  kubernetesLoadBalancer: [],
+  training: [],
+  notebooks: [],
+  aiDeploy: [],
+  coldArchive: [],
+  dataProcessing: [],
+  databases: [],
+  floatingIP: [],
+  publicIP: [],
+  gateway: [],
+  octaviaLoadBalancer: [],
+  totals: {
+    total: 0,
+    hourly: {
+      total: 0,
+      instance: 0,
+      objectStorage: 0,
+      archiveStorage: 0,
+      snapshot: 0,
+      volume: 0,
+      bandwidth: 0,
+      privateRegistry: 0,
+      kubernetesLoadBalancer: 0,
+      notebooks: 0,
+      coldArchive: 0,
+      serving: 0,
+      training: 0,
+      aiDeploy: 0,
+      dataProcessing: 0,
+      databases: 0,
+      floatingIP: 0,
+      gateway: 0,
+      octaviaLoadBalancer: 0,
+      publicIP: 0,
+    },
+    monthly: {
+      total: 0,
+      instance: 0,
+    },
+  },
+});
+
 export const getConsumptionDetails = (usage: TCurrentUsage) => {
   const resourceMap = [
     { type: 'registry', key: 'privateRegistry' },

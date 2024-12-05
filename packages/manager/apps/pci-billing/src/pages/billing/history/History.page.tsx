@@ -31,7 +31,10 @@ export default function History() {
   const { projectId } = useParams();
   const { billingDate, prevMonthDate, translationValues } = useComputeDate();
 
-  const { data: historyPeriods } = useUsageHistoryPeriod(
+  const {
+    data: historyPeriods,
+    isPending: isHistoryPending,
+  } = useUsageHistoryPeriod(
     projectId,
     format(prevMonthDate, "yyyy-MM-dd'T'HH:mm:ss'Z'"),
     format(billingDate, "yyyy-MM-dd'T'HH:mm:ss'Z'"),
@@ -54,7 +57,7 @@ export default function History() {
     <div>
       <HistoryHeader />
 
-      {isPending ? (
+      {isPending || isHistoryPending ? (
         <OsdsSpinner
           className="block text-center"
           inline
