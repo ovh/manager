@@ -1,0 +1,9 @@
+{
+  "purchaseOrders_modal_title": "Disable",
+  "purchaseOrders_modal_content": "Are you sure you want to disable your internal reference? If you disable this reference, it will no longer appear on your future bills.",
+  "purchaseOrders_modal_primary_action": "Validate",
+  "purchaseOrders_modal_secondary_action": "Cancel",
+  "purchaseOrders_confirmation_desactivation_REFERENCE_ORDER_success": "Your internal reference has been disabled.",
+  "purchaseOrders_confirmation_desactivation_PURCHASE_ORDER_success": "Your purchase order has been disabled.",
+  "purchaseOrders_confirmation_desactivation_error": "Your request could not be processed. Please try again later."
+}

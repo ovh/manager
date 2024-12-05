@@ -1,0 +1,13 @@
+{
+  "billing_payment_method_add_bank_account_address_number": "Número",
+  "billing_payment_method_add_bank_account_address_street": "Nombre de la vía",
+  "billing_payment_method_add_bank_account_address_zip": "Código postal",
+  "billing_payment_method_add_bank_account_address_city": "Localidad",
+  "billing_payment_method_add_bank_account_owner_name": "Nombre y apellidos del propietario o nombre de la organización propietaria",
+  "billing_payment_method_add_bank_account_owner_address": "Dirección del titular de la cuenta",
+  "billing_payment_method_add_bank_account_owner_notification_info": "En las próximas 24-48 horas, recibirá un mensaje en la dirección de correo electrónico de su cuenta de OVHcloud con un enlace para la firma electrónica de su mandato de adeudo.",
+  "billing_payment_method_add_bank_account_owner_info": "Atención: El propietario de la cuenta bancaria debe ser el mismo que el propietario de la cuenta de OVHcloud.",
+  "billing_payment_method_add_bank_account_owner_confirmation_info": "Una vez que nuestro equipo haya validado su mandato, ya podrá utilizar esta nueva forma de pago.",
+  "billing_payment_method_add_bank_account_data_process_by_ovh_info": "Los datos recogidos a través de este formulario serán tratados por OVHcloud como responsable del tratamiento para poder crear y gestionar su adeudo directo SEPA. <a href=\" {{ dataProtectionOvhLink }} \" target=\" _blank \">Más información</a> sobre el tratamiento de sus datos por parte de OVHcloud y cómo ejercer sus derechos.",
+  "billing_payment_method_add_bank_account_data_process_by_yousign_info": "Para poder crear un adeudo directo SEPA, deberá firmar electrónicamente un mandato utilizando una solución proporcionada por Yousign, un proveedor autorizado para prestar servicios de confianza, tal como se establece en el Reglamento (UE) n.º 910/2014 de 23 de julio de 2014, también conocido como «eIDAS». Los datos serán comunicados a Yousign en el marco de esta operación de firma. <a href=\" {{ dataProtectionYouSignLink }} \" target=\" _blank \">Más información</a> sobre la gestión de sus datos por parte de Yousign."
+}

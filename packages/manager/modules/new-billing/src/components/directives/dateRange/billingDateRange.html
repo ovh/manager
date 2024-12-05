@@ -1,0 +1,57 @@
+<div>
+    <div data-ng-if="$ctrl.presets" class="btn-group btn-group-sm">
+        <button
+            type="button"
+            class="btn btn-default"
+            data-ng-repeat="preset in $ctrl.presets track by preset.id"
+            data-ng-class="{ active: $ctrl.dateRangeSelection.mode === preset.id }"
+            data-ng-click="$ctrl.onPresetBtn(preset);"
+            data-ng-bind=":: preset.label"
+            data-toggle="{{ $ctrl.dateRangeSelection.mode === preset.id }}"
+            aria-pressed="{{ $ctrl.dateRangeSelection.mode === preset.id ? 'true' : 'false' }}"
+        ></button>
+
+        <button
+            type="button"
+            class="btn btn-default"
+            data-ng-class="{ active: $ctrl.dateRangeSelection.mode === $ctrl.CUSTOM_RANGE_MODE }"
+            data-ng-click="$ctrl.onCustomRangeBtn()"
+            data-translate="billing_date_range_choose_custom_date"
+            aria-pressed="{{ $ctrl.dateRangeSelection.mode === $ctrl.CUSTOM_RANGE_MODE ? 'true' : 'false' }}"
+        ></button>
+    </div>
+
+    <div
+        data-ng-show="$ctrl.dateRangeSelection.mode !== $ctrl.CUSTOM_RANGE_MODE"
+    >
+        <span
+            data-translate="billing_date_range_text"
+            data-translate-values="{
+                    t0: ($ctrl.dateRangeSelection.dateFrom.toDate() | date:mediumDate),
+                    t1: ($ctrl.dateRangeSelection.dateTo.toDate() | date:mediumDate)
+              }"
+        >
+        </span>
+    </div>
+
+    <div
+        class="mt-2"
+        data-ng-show="$ctrl.dateRangeSelection.mode === $ctrl.CUSTOM_RANGE_MODE"
+    >
+        <span
+            data-ng-if="$ctrl.dateRangeSelection.mode === $ctrl.CUSTOM_RANGE_MODE"
+        >
+            <oui-field data-size="m">
+                <oui-calendar
+                    data-mode="range"
+                    data-model="$ctrl.customDateRangeModel"
+                    data-format="Z"
+                    data-alt-format="j M Y"
+                    data-max-date="$ctrl.today"
+                    data-on-close="$ctrl.onDateRangeChange(selectedDates, dateStr)"
+                >
+                </oui-calendar>
+            </oui-field>
+        </span>
+    </div>
+</div>

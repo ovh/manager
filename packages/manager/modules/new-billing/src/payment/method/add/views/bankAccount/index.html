@@ -1,0 +1,35 @@
+<div class="billing-payment-method-add-legacy-bank-account">
+    <!-- IBAN -->
+    <oui-field
+        data-label="{{ :: 'billing_payment_method_add_bank_account_informations_iban' | translate }}"
+        data-error-messages="{ iban: ('billing_payment_method_add_bank_account_informations_iban_format' | translate) }"
+    >
+        <input
+            type="text"
+            class="oui-input"
+            id="iban"
+            name="iban"
+            data-ng-model="$ctrl.model.bankAccount.iban"
+            data-required
+            data-ui-validate="{ iban: '$ctrl.isValidIban($value)' }"
+        />
+    </oui-field>
+    <!-- End of IBAN -->
+
+    <!-- BIC -->
+    <oui-field
+        data-label="{{ :: 'billing_payment_method_add_bank_account_informations_bic' | translate }}"
+        data-error-messages="{ bic: ('billing_payment_method_add_bank_account_informations_bic_format' | translate) }"
+    >
+        <input
+            type="text"
+            class="oui-input"
+            id="bic"
+            name="bic"
+            data-ng-model="$ctrl.model.bankAccount.bic"
+            data-required
+            data-ui-validate="{ bic: '$ctrl.isValidBic($value)' }"
+        />
+    </oui-field>
+    <!-- End of BIC -->
+</div>

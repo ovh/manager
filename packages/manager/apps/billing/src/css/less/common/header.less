@@ -1,0 +1,279 @@
+/* stylelint-disable */
+//
+// HEADER
+// --------------------------------------------------
+
+.navbar {
+  &#header-top-navigation {
+    position: relative;
+    margin: 0;
+    z-index: 3;
+  }
+
+  .navbar-inner {
+    border-color: @nav_border_const;
+
+    // Stargate
+    &.stargate {
+      background: @navbar_bg;
+      border: 0;
+      border-radius: 0;
+
+      .nav {
+        display: inline-block;
+        margin: 0 5px 0 0;
+
+        &:nth-last-child(1) {
+          margin-right: 0;
+
+          > li > a {
+            padding-right: 0;
+          }
+        }
+
+        &.nav-stargate {
+          li {
+            a {
+              font-size: 14px;
+              letter-spacing: 0.015em;
+            }
+          }
+        }
+
+        li {
+          font-size: 12px;
+
+          a:hover,
+          a:focus {
+            background: @navbar_hover;
+          }
+
+          &.logo {
+            a {
+              line-height: 0;
+              padding: 9px 9px 9px 0;
+
+              &:hover,
+              &:focus {
+                background-color: transparent;
+              }
+
+              svg {
+                width: 44px;
+                height: 26px;
+                overflow: hidden;
+              }
+            }
+          }
+
+          a {
+            color: @white_const;
+            text-shadow: none;
+            font-size: @fontsizedefault;
+            padding: 0 15px;
+            background: 0 0;
+            border: none;
+            line-height: @navbar_height;
+          }
+
+          &.selected {
+            font-weight: bold;
+          }
+
+          &.univers-cloud {
+            &.selected a,
+            a:hover,
+            a:focus {
+              color: @cloud;
+            }
+          }
+
+          &.univers-dedicated {
+            &.selected a,
+            a:hover,
+            a:focus {
+              color: @dedicated;
+            }
+          }
+
+          &.univers-telecom {
+            &.selected a,
+            a:hover,
+            a:focus {
+              color: @telecom;
+            }
+          }
+
+          &.univers-web {
+            &.selected a,
+            a:hover,
+            a:focus {
+              color: @web;
+            }
+          }
+
+          &.univers-sunrise {
+            &.selected a,
+            a:hover,
+            a:focus {
+              color: @sunrise;
+            }
+          }
+
+          &.univers-partners {
+            &.selected a,
+            a:hover,
+            a:focus {
+              color: @partners;
+            }
+          }
+
+          &.older {
+            a {
+              color: @older_univers;
+              font-size: 10px;
+
+              &:hover {
+                color: @white_const;
+              }
+            }
+          }
+
+          &.dropdown {
+            //overload boostrap style
+            .dropdown-toggle {
+              .caret {
+                display: none;
+                border-top-color: @white_const;
+                border-bottom-color: @white_const;
+                margin: 20px 0 0 1px;
+              }
+            }
+            //overload boostrap style
+            &.open,
+            &.active,
+            &.open.active {
+              .dropdown-toggle {
+                background-color: @nav_active_const;
+                color: @white_const;
+              }
+            }
+
+            .dropdown-menu {
+              border-radius: 0;
+
+              &::before,
+              &::after {
+                border: none !important;
+                content: none !important;
+              }
+
+              li {
+                &.divider {
+                  margin-top: 0;
+                  margin-bottom: 0;
+                }
+
+                a {
+                  color: @univers;
+                  cursor: pointer;
+                  font-size: 12px;
+
+                  i {
+                    width: 18px;
+                    height: 18px;
+                    float: left;
+                    background-repeat: no-repeat;
+                    background-color: transparent;
+                    margin: 12px 7px 0 0;
+                    background-image: url('../../../images/header/icn_header_profil.png');
+
+                    &.icon_feedback {
+                      background-position: 0 0;
+                    }
+
+                    &.icon_changelog {
+                      background-position: -18px 0;
+                    }
+
+                    &.icon_disconnect {
+                      background-position: -36px 0;
+                    }
+
+                    &.icon_preference {
+                      background-position: -72px 0;
+                    }
+                  }
+
+                  span {
+                    font-weight: normal;
+                  }
+
+                  &:hover,
+                  &:focus {
+                    background-color: @univers;
+                    color: @white_const;
+                    background-image: none;
+
+                    i {
+                      &.icon_feedback {
+                        background-position: 0 100%;
+                      }
+
+                      &.icon_changelog {
+                        background-position: -18px 100%;
+                      }
+
+                      &.icon_disconnect {
+                        background-position: -36px 100%;
+                      }
+
+                      &.icon_preference {
+                        background-position: -72px 100%;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Univers menu
+    &.univers {
+      background: url('../../../images/login-bg.png') repeat-x;
+
+      .brand {
+        width: 210px;
+      }
+
+      .nav {
+        padding-top: 37px;
+
+        li {
+          a {
+            color: @white_const;
+            font-weight: bold;
+            font-size: @fontsizelarge;
+            text-shadow: none;
+          }
+
+          &.selected a,
+          &:hover a,
+          &.active a {
+            color: @white_const;
+          }
+
+          &.active a {
+            box-shadow: none !important;
+            margin-left: 2px;
+            background-color: inherit;
+          }
+        }
+      }
+    }
+  }
+}
+/* stylelint-enable */

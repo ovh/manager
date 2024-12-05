@@ -1,0 +1,72 @@
+<div class="billing-payment-credits" data-ui-view>
+    <div data-ovh-alert></div>
+
+    <h2 data-translate="billing_credits_title"></h2>
+
+    <p data-translate="billing_credits_description"></p>
+
+    <oui-datagrid
+        rows="$ctrl.balances"
+        row-loader="$ctrl.getBalanceDetails($row)"
+        empty-placeholder="{{:: 'billing_credits_none' | translate }}"
+    >
+        <oui-datagrid-topbar>
+            <a
+                data-ng-href="{{:: $ctrl.addVoucherLink }}"
+                class="oui-button oui-button_primary"
+                data-translate="billing_credits_add"
+            ></a>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            title="::'billing_credit_balance_header_name' | translate"
+            property="balanceName"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'billing_credit_balance_header_creation_date' | translate"
+            property="creationDate"
+        >
+            <span data-ng-bind="$row.creationDate | date:'mediumDate'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'billing_credit_balance_header_last_update_date' | translate"
+            property="lastUpdate"
+        >
+            <span data-ng-bind="$row.lastUpdate | date:'mediumDate'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'billing_credit_balance_header_amount' | translate"
+            property="amount.text"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'billing_credit_balance_header_expiration_date' | translate"
+            property="expiringDetails.expirationDate"
+        >
+            <span
+                data-ng-bind="$row.expiringDetails ? ($row.expiringDetails.expirationDate | date:'mediumDate') : '-'"
+                data-ng-class="{ 'oui-badge oui-badge_warning': $row.expiringDetails && $row.expiringDetails.expireSoon }"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'billing_credit_balance_header_expiration_amount' | translate"
+            property="expiringDetails.amount.text"
+        >
+            <span
+                data-ng-bind="$row.expiringDetails ? $row.expiringDetails.amount.text : '-'"
+                data-ng-class="{ 'oui-badge oui-badge_warning': $row.expiringDetails && $row.expiringDetails.expireSoon }"
+            >
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'billing_credit_balance_header_movements' | translate"
+        >
+            <a
+                title="{{ 'billing_credit_balance_movements_details' | translate }}"
+                data-ui-sref="billing.payment.credits.movements({ balanceName: $row.balanceName })"
+            >
+                <span class="oui-icon oui-icon-list"></span>
+            </a>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</div>

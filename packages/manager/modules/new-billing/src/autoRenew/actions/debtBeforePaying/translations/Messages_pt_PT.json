@@ -1,0 +1,7 @@
+{
+  "autorenew_service_debt_before_paying_title": "Informações importantes",
+  "autorenew_service_debt_before_paying_1": "Antes de renovar para um novo período, recomendamos o pagamento da sua dívida.",
+  "autorenew_service_debt_before_paying_2": "Consulte a secção Faturação para proceder ao pagamento da fatura relativa ao serviço <strong>{{service}}</strong>.",
+  "autorenew_service_debt_before_paying_settle": "Regularizar",
+  "autorenew_service_debt_before_paying_cancel": "Anular"
+}
