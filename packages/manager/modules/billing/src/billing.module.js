@@ -10,6 +10,7 @@ import uiBootstrap from 'angular-ui-bootstrap';
 import uiRouter from '@uirouter/angularjs';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import '@ovh-ux/ng-ui-router-breadcrumb';
+import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
 
 import autorenew from './autoRenew/autorenew.module';
 import billingMain from './main/billing-main.module';
@@ -59,6 +60,7 @@ angular
     refunds,
     ngOvhExportCsv,
     ngOvhUtils,
+    ngQAllSettled,
     ngRoute,
     ngSanitize,
     ngTranslateAsyncLoader,

@@ -100,6 +100,9 @@ const UserAccountMenu = ({
           }
           if (['myInvoices', 'myServices', 'myPaymentMethods', 'myCommands'].includes(link.key)) {
             link.app = isNewBillingAvailable ? 'new-billing' : 'dedicated';
+            if (isNewBillingAvailable) {
+              link.hash = link.hash.replace('/billing', '');
+            }
           }
           return link;
         }),
