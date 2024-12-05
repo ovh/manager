@@ -45,6 +45,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 jest.mock('@ovh-ux/manager-pci-common', () => ({
+  ...jest.requireActual('@ovh-ux/manager-pci-common'),
   useProject: jest.fn(() => ({ data: {} })),
   PciDiscoveryBanner: jest.fn(
     () => 'pci_projects_project_activate_project_banner_message',
