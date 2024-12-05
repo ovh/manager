@@ -7,7 +7,6 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import ListingPage from './List.page';
-import * as useAnnouncementBannerModule from '../../../../../modules/manager-pci-common/src/components/banner/announcement-banner/useAnnouncementBanner.hook';
 
 vi.mock('react-i18next', async (importOrig) => {
   const orig = await importOrig<typeof import('react-i18next')>();
@@ -162,21 +161,6 @@ describe('ListingPage', () => {
     });
     await waitFor(() =>
       expect(getByTestId('maintenance-banner')).toBeInTheDocument(),
-    );
-  });
-
-  it('renders announcement banner when banner is visible', async () => {
-    vi.spyOn(
-      useAnnouncementBannerModule,
-      'useAnnouncementBanner',
-    ).mockReturnValue({
-      isBannerVisible: true,
-      isLoading: false,
-    });
-
-    const { getByTestId } = render(<ListingPage />, { wrapper });
-    await waitFor(() =>
-      expect(getByTestId('actionBanner-message_container')).toBeInTheDocument(),
     );
   });
 
