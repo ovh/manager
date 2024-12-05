@@ -132,8 +132,6 @@ const PrivateNetworkConfig: React.FC = () => {
             </OsdsCheckboxButton>
           </OsdsCheckbox>
 
-          {defineVlanId && <VlanIdConfig />}
-
           {vlanId === 0 && defineVlanId && (
             <OsdsMessage className="my-4" type={ODS_MESSAGE_TYPE.warning}>
               <OsdsText
@@ -146,6 +144,8 @@ const PrivateNetworkConfig: React.FC = () => {
               </OsdsText>
             </OsdsMessage>
           )}
+
+          {defineVlanId && <VlanIdConfig />}
 
           {notAvailableIds?.includes(vlanId) && defineVlanId && (
             <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.warning}>
