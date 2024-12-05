@@ -26,7 +26,7 @@
     "@ovh-ux/manager-pci-common": "^0.11.1",
     "@ovh-ux/manager-react-components": "^1.41.1",
     "@ovh-ux/manager-react-core-application": "^0.11.3",
-    "@ovh-ux/manager-react-shell-client": "^0.8.2",
+    "@ovh-ux/manager-react-shell-client": "^0.8.3",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "^0.4.0",
     "@ovh-ux/shell": "^4.1.0",

@@ -121,6 +121,7 @@ export const RouterWithQueryClientWrapper = ({
         stopProgress: vi.fn(),
         hidePreloader: vi.fn(),
         showPreloader: vi.fn(),
+        notifyModalActionDone: vi.fn(),
       },
       navigation: {
         getURL: vi.fn(),
