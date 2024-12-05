@@ -6012,6 +6012,13 @@
   dependencies:
     lodash "^4.17.21"
 
+"@ovh-ux/ng-ovh-user-pref@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-user-pref/-/ng-ovh-user-pref-2.1.1.tgz#cc036939600ba54da1d777b0c82928c798ee4570"
+  integrity sha512-LvxWv+ER5p8hKHntejrcbxPNA6s9MqcAxnnDfvxPTeo292ZVERy6rDZ1ukuV8w6BhRKGGU/IXL8jILgLS6drKg==
+  dependencies:
+    lodash "^4.17.15"
+
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.6.tgz#8db90747f02d2bb95e3a5563d1c5a77a25edd0ad"

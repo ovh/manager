@@ -1,0 +1,57 @@
+<div class="px-5 pt-5" data-ui-view>
+    <oui-back-button data-on-click="$ctrl.goBack()">
+        <span data-translate="billing_autorenew_service_update_title"></span>
+    </oui-back-button>
+
+    <div data-ovh-alert></div>
+
+    <oui-stepper data-on-finish="$ctrl.onFinish()">
+        <oui-step-form
+            data-header="{{:: 'billing_autorenew_service_update_title' | translate }}"
+            data-submit-text="{{:: 'billing_autorenew_service_update_next' | translate}}"
+            data-valid="$ctrl.model.agreements"
+            data-on-cancel="$ctrl.goBack()"
+            data-on-submit="$ctrl.onConfirmation()"
+        >
+            <billing-autorenew-update-form
+                data-has-agreed="$ctrl.model.agreements"
+                data-autorenew-agreements="$ctrl.autorenewAgreements"
+                data-service="$ctrl.billingService"
+            >
+            </billing-autorenew-update-form>
+        </oui-step-form>
+        <oui-step-form
+            data-ng-if="$ctrl.defaultPaymentMean || $ctrl.billingService.hasManualRenew()"
+            data-header="{{:: 'billing_autorenew_service_update_validate' | translate }}"
+            data-submit-text="{{:: 'billing_autorenew_service_update_confirm' | translate}}"
+            data-on-submit="$ctrl.update()"
+            data-on-cancel="$ctrl.goBack()"
+            data-loading="$ctrl.isUpdating"
+        >
+            <billing-autorenew-update-automatic
+                data-ng-if="$ctrl.billingService.hasAutomaticRenew()"
+                data-service="$ctrl.service"
+                data-payment-mean="$ctrl.defaultPaymentMean"
+            >
+            </billing-autorenew-update-automatic>
+            <billing-autorenew-update-manual-payment
+                data-ng-if="!$ctrl.billingService.hasAutomaticRenew()"
+                data-service="$ctrl.service"
+            >
+            </billing-autorenew-update-manual-payment>
+        </oui-step-form>
+        <oui-step-form
+            data-ng-if="$ctrl.billingService.hasAutomaticRenew() && !$ctrl.defaultPaymentMean"
+            data-header="{{:: 'billing_autorenew_service_update_validate' | translate }}"
+            data-on-submit="$ctrl.addPaymentMean()"
+            data-submit-text="{{:: 'billing_autorenew_service_update_add_mean' | translate}}"
+            data-on-cancel="$ctrl.goBack()"
+            data-loading="$ctrl.isUpdating"
+        >
+            <billing-autorenew-update-without-payment-mean
+                data-service="$ctrl.service"
+            >
+            </billing-autorenew-update-without-payment-mean>
+        </oui-step-form>
+    </oui-stepper>
+</div>

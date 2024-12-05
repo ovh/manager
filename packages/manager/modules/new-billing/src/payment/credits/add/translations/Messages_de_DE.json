@@ -1,0 +1,8 @@
+{
+  "voucher_credit_code_add_label": "Einen Gutschein hinzufügen",
+  "voucher_credit_code_add_placeholder": "Gutscheincode",
+  "voucher_credit_code_add_submit": "Hinzufügen",
+  "voucher_credit_code_success": "Ihre Gutschrift in Höhe von <strong>{{credit}}</strong> wurde erstellt. Sie können nun mit Ihrer Bestellung fortfahren.",
+  "voucher_credit_code_error": "Beim Hinzufügen des Gutscheins ist ein Fehler aufgetreten:",
+  "voucher_credit_code_cancel": "Stornieren"
+}

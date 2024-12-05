@@ -1,0 +1,13 @@
+{
+  "billing_autorenew_enable_breadcrumb": "Activer le renouvellement automatique",
+  "billing_autorenew_enable_title": "Activer le renouvellement automatique pour les services sélectionnés",
+  "billing_autorenew_enable_payment_mean": "Une fois le renouvellement automatique mis en place pour vos services sélectionnés, le moyen de paiement utilisé sera votre moyen de paiement par défaut à savoir : {{ type }} {{ label }}",
+  "billing_autorenew_enable_payment_mean_default": "Pour changer votre moyen de paiement par défaut, rendez-vous dans la section \"Mes moyens de paiement\"",
+  "billing_autorenew_enable_payment_mean_frequency": "La fréquence de paiement sera configurée sur la fréquence minimum possible par service.",
+  "billing_autorenew_enable_bulk_unavailable": "Le renouvellement automatique sera activé pour l'ensemble de vos services sélectionnés, exceptés pour {{ count }} services :",
+  "billing_autorenew_enable_bulk_unavailable_one": "Le renouvellement automatique sera activé pour l'ensemble de vos services sélectionnés, exceptés pour 1 service :",
+  "billing_autorenew_enable_bulk": "Le renouvellement automatique sera activé pour l'ensemble de vos services sélectionnés",
+  "billing_autorenew_enable_bulk_single": "Le renouvellement automatique pour votre service {{ serviceName }} sera activé",
+  "billing_autorenew_enable_success": "Le renouvellement des services a bien été mis à jour",
+  "billing_autorenew_enable_error": "Une erreur est survenue lors de l'activation du renouvellement automatique {{ message }}"
+}

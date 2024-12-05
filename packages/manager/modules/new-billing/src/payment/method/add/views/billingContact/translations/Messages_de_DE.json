@@ -1,0 +1,15 @@
+{
+  "billing_payment_method_add_billing_contact_existing": "Vorhandene Adresse auswählen",
+  "billing_payment_method_add_billing_contact_create": "Neue Adresse hinzufügen",
+  "billing_payment_method_add_billing_contact_existing_name": "Name und Vorname",
+  "billing_payment_method_add_billing_contact_existing_address": "Adresse",
+  "billing_payment_method_add_billing_contact_existing_phone": "Telefon",
+  "billing_payment_method_add_billing_contact_existing_email": "E-Mail",
+  "billing_payment_method_add_billing_contact_existing_firstName": "Vorname",
+  "billing_payment_method_add_billing_contact_existing_lastName": "Name",
+  "billing_payment_method_add_billing_contact_existing_country": "Land",
+  "billing_payment_method_add_billing_contact_existing_zip": "Postleitzahl",
+  "billing_payment_method_add_billing_contact_existing_city": "Stadt",
+  "billing_payment_method_add_billing_contact_create_general_infos": "Allgemeine Informationen",
+  "billing_payment_method_add_billing_contact_create_profile": "Profil"
+}
