@@ -1,0 +1,11 @@
+{
+  "autorenew_service_disable_all_domains_title": "Wyłącz automatyczne odnowienie",
+  "autorenew_service_disable_all_domains_desc1": "Operacja ta spowoduje wyłączenie automatycznego odnawiania <strong>wszystkich domen</strong>, dla których jesteś kontaktem księgowym.",
+  "autorenew_service_disable_all_domains_desc2": "Aby zachować usługi, dokonaj płatności przed terminem ich wygaśnięcia.",
+  "autorenew_service_disable_all_domains_desc3": "W przeciwnym razie Twoje usługi <strong> zostaną automatycznie zakończone w dniu ich wygaśnięcia</strong>. Dane związane z płatnością automatyczną za Twoje usługi zostaną nieodwracalnie usunięte.",
+  "autorenew_service_disable_all_domains_desc4": "Będziesz mógł przywrócić płatność automatyczną za usługi do 24 godzin przed datą ich wygaśnięcia.",
+  "autorenew_service_disable_all_domains_success": "Twoje zlecenie wyłączenia automatycznej płatności zostało zarejestrowane. Zmiana zostanie wykonana w ciągu kilku minut.",
+  "autorenew_service_disable_all_domains_error": "Wystąpił błąd. Przepraszamy za niedogodności.",
+  "autorenew_service_disable_all_domains_validate": "Zatwierdź",
+  "autorenew_service_disable_all_domains_cancel": "Anuluj"
+}

@@ -1,0 +1,26 @@
+<div data-ui-view class="container-fluid">
+    <billing-autorenew-bulk
+        data-descriptions=":: $ctrl.descriptions"
+        data-go-back="$ctrl.goBack()"
+        data-services="$ctrl.servicesList"
+        data-update-renew="$ctrl.update(services)"
+    >
+        <bulk-title>
+            <span data-translate="billing_autorenew_disable_title"></span>
+        </bulk-title>
+        <bulk-info-message>
+            <p>
+                <span
+                    class="d-block"
+                    data-translate="billing_autorenew_disable_description"
+                ></span>
+                <span
+                    class="d-block"
+                    data-translate="billing_autorenew_disable_warning"
+                ></span>
+            </p>
+            <p data-translate="billing_autorenew_disable_renew"></p>
+            <strong data-translate="billing_autorenew_disable_data"></strong>
+        </bulk-info-message>
+    </billing-autorenew-bulk>
+</div>

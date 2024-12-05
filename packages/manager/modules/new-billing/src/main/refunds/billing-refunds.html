@@ -1,0 +1,232 @@
+<div class="billing-payment-refunds">
+    <div
+        class="alert"
+        role="alert"
+        data-ng-class="alertType"
+        data-ng-show="message"
+    >
+        <button
+            type="button"
+            class="close"
+            data-ng-click="message=null"
+        ></button>
+        <span data-ng-bind-html="message"></span>
+    </div>
+
+    <h2 data-translate="refunds_title2"></h2>
+
+    <div
+        class="text-right my-2"
+        data-billing-date-range
+        data-on-change="onDateRangeChanged"
+    ></div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center align-middle">
+                    <span
+                        data-ng-if="fuseRefundOpen();"
+                        data-translate="refunds_table_head_date"
+                    >
+                    </span>
+                    <span
+                        data-billing-sorting-field-button=""
+                        data-label="{{ :: 'refunds_table_head_date' | translate }}"
+                        data-associated-field="date"
+                        data-active-field="orderByState.predicate"
+                        data-reverse-order="orderByState.reverse"
+                        data-on-change="onOrderStateChanged"
+                    >
+                    </span>
+                </th>
+                <th scope="col" class="align-middle">
+                    <span
+                        data-ng-if="fuseRefundOpen();"
+                        data-translate="refunds_table_head_id"
+                    >
+                    </span>
+                    <span
+                        data-billing-sorting-field-button=""
+                        data-label="{{ :: 'refunds_table_head_id' | translate }}"
+                        data-associated-field="refundId"
+                        data-active-field="orderByState.predicate"
+                        data-reverse-order="orderByState.reverse"
+                        data-on-change="onOrderStateChanged"
+                    >
+                    </span>
+                </th>
+                <th scope="col" class="align-middle">
+                    <span
+                        data-ng-if="fuseRefundOpen();"
+                        data-translate="refunds_table_head_bill"
+                    >
+                    </span>
+                    <span
+                        data-billing-sorting-field-button=""
+                        data-label="{{ :: 'refunds_table_head_bill' | translate }}"
+                        data-associated-field="originalBillId"
+                        data-active-field="orderByState.predicate"
+                        data-reverse-order="orderByState.reverse"
+                        data-on-change="onOrderStateChanged"
+                    >
+                    </span>
+                </th>
+                <th scope="col" class="align-middle">
+                    <span
+                        data-ng-if="fuseRefundOpen();"
+                        data-translate="refunds_table_head_account"
+                    >
+                    </span>
+                    <label
+                        data-billing-sorting-field-button=""
+                        data-label="{{ :: 'refunds_table_head_account' | translate }}"
+                        data-associated-field="paymentType"
+                        data-active-field="orderByState.predicate"
+                        data-reverse-order="orderByState.reverse"
+                        data-on-change="onOrderStateChanged"
+                        data-ng-if="!historyLoading"
+                    >
+                    </label>
+                    <select
+                        class="form-control input-sm"
+                        data-ng-if="!historyLoading && paymentType.values[0] !== 0"
+                        data-ng-options="('common_payment_type_' + paymentMean | translate) for paymentMean in paymentType.values"
+                        data-ng-model="paymentType.model"
+                    >
+                    </select>
+                </th>
+                <th scope="col" class="text-right align-middle">
+                    <span
+                        data-ng-if="fuseRefundOpen();"
+                        data-ng-bind="isVATNeeded &&
+                                        ('refunds_table_head_total_with_VAT' | translate) ||
+                                        ('refunds_table_head_total' | translate)"
+                    >
+                    </span>
+                    <span
+                        data-billing-sorting-field-button=""
+                        data-label="{{ :: isVATNeeded && ('refunds_table_head_total_with_VAT' | translate) || ('refunds_table_head_total' | translate) }}"
+                        data-associated-field="priceWithTax"
+                        data-active-field="orderByState.predicate"
+                        data-reverse-order="orderByState.reverse"
+                        data-on-change="onOrderStateChanged"
+                    >
+                    </span>
+                </th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody data-ng-show="refundsLoading">
+            <tr>
+                <td colspan="6" class="text-center">
+                    <oui-spinner data-size="s"></oui-spinner>
+                </td>
+            </tr>
+        </tbody>
+        <tbody
+            data-ng-show="refunds.list.results.length == 0 && !refundsLoading"
+        >
+            <tr>
+                <td
+                    colspan="6"
+                    class="text-center"
+                    data-translate="refunds_table_empty"
+                ></td>
+            </tr>
+        </tbody>
+        <tbody data-ng-show="!refundsLoading">
+            <tr
+                data-ng-repeat="refundsLine in refunds.list.results | filter:paymentType.model track by refundsLine.refundId"
+            >
+                <th scope="row" class="text-center">
+                    <span
+                        data-ng-bind-template="{{refundsLine.date | date:'mediumDate'}}"
+                    ></span>
+                </th>
+                <td>
+                    <span data-ng-bind="refundsLine.refundId"></span>
+                </td>
+                <td>
+                    <span data-ng-hide="refundsLine.originalBillId">-</span>
+                    <span
+                        data-ng-show="refundsLine.originalBillId"
+                        data-ng-bind="refundsLine.originalBillId"
+                    >
+                    </span>
+                </td>
+                <td>
+                    <a
+                        data-ng-if="$ctrl.isCreditedOnPrepaidAccount(refundsLine)"
+                        data-ng-href="{{ $ctrl.prepaidAccountLink }}"
+                        data-translate="{{ 'common_payment_type_' + refundsLine.paymentType }}"
+                        target="_top"
+                    ></a>
+                    <span
+                        data-ng-if="!$ctrl.isCreditedOnPrepaidAccount(refundsLine)"
+                        data-ng-bind-template="{{ 'common_payment_type_' + refundsLine.paymentType | translate }} {{refundsLine.paymentIdentifier}}"
+                    >
+                    </span>
+                    <span
+                        data-ng-if="!refundsLine.paymentType"
+                        data-translate="refunds_table_account_no_information"
+                    >
+                    </span>
+                </td>
+                <td class="text-right">
+                    <span data-ng-bind="refundsLine.priceWithTax.text"></span>
+                </td>
+                <td>
+                    <div data-uib-dropdown>
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            data-uib-dropdown-toggle
+                        >
+                            <span
+                                class="ovh-font ovh-font-dots"
+                                aria-hidden="true"
+                            >
+                            </span>
+                        </button>
+                        <ul
+                            data-uib-dropdown-menu
+                            class="dropdown-menu dropdown-menu-right"
+                        >
+                            <li>
+                                <a
+                                    target="_blank"
+                                    rel="noopener"
+                                    data-ng-show="refundsLine.url"
+                                    title="{{ 'table_download_pdf' | translate }} ({{ 'core_new_window' | translate }})"
+                                    href="{{refundsLine.url}}"
+                                    data-ng-bind=":: 'table_download_html' | translate"
+                                >
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    target="_blank"
+                                    rel="noopener"
+                                    data-ng-show="refundsLine.pdfUrl"
+                                    title="{{ 'table_download_pdf' | translate }} ({{ 'core_new_window' | translate }})"
+                                    href="{{refundsLine.pdfUrl}}"
+                                    data-ng-bind=":: 'table_download_pdf' | translate"
+                                >
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div
+        data-ng-show="refunds.list.results.length > 0"
+        data-pagination-server-side="refundTable"
+        data-pagination-server-side-function="loadRefunds"
+        data-pagination-server-side-paginated-stuff="refunds"
+        data-pagination-server-side-table-loading="refundsLoading"
+        data-pagination-server-side-page-size-available="pageSizeAvailables"
+    ></div>
+</div>

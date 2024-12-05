@@ -1,0 +1,20 @@
+{
+  "purchaseOrders_add_page_title": "Interne Referenz erstellen",
+  "purchaseOrders_form_add_internal_reference": "Ihre interne Referenz erstellen",
+  "purchaseOrders_form_add_purchase_order": "Ihre Purchase Order erstellen",
+  "purchaseOrders_form_add_internal_reference_label": "Name der internen Referenz",
+  "purchaseOrders_form_add_internal_reference_placeholder": "Interne Referenz",
+  "purchaseOrders_form_add_internal_reference_sub_info": "Die Referenz darf 20 Zeichen nicht überschreiten",
+  "purchaseOrders_form_add_purchase_order_label": "Name der Purchase Order",
+  "purchaseOrders_form_add_purchase_order_placeholder": "Purchase Order",
+  "purchaseOrders_form_add_purchase_order_sub_info": "Der Name darf maximal 20 Zeichen lang sein",
+  "purchaseOrders_form_add_purchase_startDate": "Startdatum",
+  "purchaseOrders_form_add_purchase_endDate": "Enddatum",
+  "purchaseOrders_form_add_purchase_endDate_helper": "Enddatum ist ausgeschlossen",
+  "purchaseOrders_form_add_purchase_submit": "Bestätigen",
+  "purchaseOrders_form_add_purchase_cancel": "Abbrechen",
+  "purchaseOrders_form_add_purchase_submit_REFERENCE_ORDER_success": "Ihre interne Referenz wurde erfolgreich erstellt!",
+  "purchaseOrders_form_add_purchase_submit_PURCHASE_ORDER_success": "Ihre Purchase Order wurde erfolgreich erstellt!",
+  "purchaseOrders_form_add_purchase_submit_error": "Ihre Anfrage konnte nicht bearbeitet werden. Bitte versuchen Sie es später erneut.",
+  "purchaseOrders_add_page_warning_ongoing_purchase": "Sie haben derzeit eine interne Referenz oder eine frühere Purchase Order ohne Enddatum. Sie können keine neue Referenz einrichten, ohne ein Enddatum für die bestehende Referenz anzugeben."
+}

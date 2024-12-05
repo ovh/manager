@@ -1,0 +1,13 @@
+{
+  "billing_autorenew_enable_title": "Attiva il rinnovo automatico sui servizi selezionati",
+  "billing_autorenew_enable_payment_mean": "Una volta attivato il rinnovo automatico sui servizi selezionati, il pagamento di questa funzionalità verrà effettuato sul metodo di pagamento predefinito: {{ type }} {{ label }}",
+  "billing_autorenew_enable_payment_mean_default": "Per modificare il metodo di pagamento predefinito accedi alla sezione “I tuoi metodi di pagamento”",
+  "billing_autorenew_enable_payment_mean_frequency": "La frequenza di pagamento verrà configurata sul valore minimo per ogni servizio.",
+  "billing_autorenew_enable_bulk_unavailable": "Il rinnovo automatico verrà attivato su tutti i servizi selezionati, fatta eccezione per {{ count }} servizi:",
+  "billing_autorenew_enable_bulk_unavailable_one": "Il rinnovo automatico verrà attivato su tutti i servizi selezionati, fatta eccezione per 1 servizio:",
+  "billing_autorenew_enable_bulk": "Il rinnovo automatico verrà attivato su tutti i servizi selezionati.",
+  "billing_autorenew_enable_bulk_single": "Il rinnovo automatico verrà attivato sul servizio {{ serviceName }}.",
+  "billing_autorenew_enable_success": "Il rinnovo dei servizi è stato aggiornato correttamente",
+  "billing_autorenew_enable_error": "Si è verificato un errore durante l’attivazione del rinnovo automatico: {{ message }}",
+  "billing_autorenew_enable_breadcrumb": "Attiva il rinnovo automatico"
+}

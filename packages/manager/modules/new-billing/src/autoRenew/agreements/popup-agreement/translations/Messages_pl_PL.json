@@ -1,0 +1,7 @@
+{
+  "user_agreements_accept_all_count": "Konto {{current}}/{{total}}",
+  "user_agreements_accept_all_accept_and_next": "Zaakceptuj i przejdź dalej",
+  "user_agreements_accept_all_read_and_accepted": "Przeczytałem i akceptuję {{contractTitle}}",
+  "user_agreements_accept_all_annexes": "Aby zapoznać się z aneksami, które są częścią Regulaminów (w szczególności Regulaminów usług OVHcloud i Umową powierzenia przetwarzania danych osobowych), <a href='{{url}}' target='_blank' rel='noopener' class='oui-link_icon'>kliknij link<span class='oui-icon oui-icon-external-link' aria-hidden='true'></span></a>",
+  "user_agreements_accept_all_error": "Wystąpił błąd podczas przetwarzania regulaminu: {{message}}"
+}

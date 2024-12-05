@@ -1,0 +1,5 @@
+{
+  "autorenew_service_warn_nic_billing_title": "Ważna informacja",
+  "autorenew_service_warn_nic_billing_ok": "OK",
+  "autorenew_service_debt_nic_billing": "Aby zapłacić za tę usługę, zaloguj się do Panelu Twojego konta kontaktu księgowego {{nicBilling}}."
+}
