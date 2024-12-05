@@ -10,6 +10,7 @@ import {
   getStorages,
   TStorage,
   getStorage,
+  updateStorage,
 } from '../data/storages';
 import {
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
@@ -225,4 +226,41 @@ export const useStorage = (
       storages,
     };
   }, [isPendingStorage, isStoragesPending, storage, data, storages]);
+};
+
+export interface UseUpdateStorageProps {
+  projectId: string;
+  region: string;
+  name: string;
+  s3StorageType: string;
+  onSuccess: () => void;
+  onError: (error: ApiError) => void;
+}
+
+export const useUpdateStorage = ({
+  projectId,
+  region,
+  name,
+  s3StorageType,
+  onSuccess,
+  onError,
+}: UseUpdateStorageProps) => {
+  const mutation = useMutation({
+    mutationFn: async ({ versioning }: { versioning: { status: string } }) =>
+      updateStorage({
+        projectId,
+        region,
+        name,
+        versioning,
+        s3StorageType,
+      }),
+    onError,
+    onSuccess,
+  });
+
+  return {
+    updateContainer: ({ versioning }: { versioning: { status: string } }) =>
+      mutation.mutate({ versioning }),
+    ...mutation,
+  };
 };
