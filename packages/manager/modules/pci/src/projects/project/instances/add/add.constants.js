@@ -22,6 +22,8 @@ export const INSTANCE_READ_MORE_GUIDE = {
   ALL_GUIDE: {
     DEFAULT:
       'https://docs.ovh.com/gb/en/public-cloud/attaching-pci-floating-ip-to-instance/',
+    US:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/18466423089811-Attaching-a-Floating-IP-to-a-Public-Cloud-Instance',
   },
 };
 export const WINDOWS_PRIVATE_MODE_LICENSE_GUIDE = {
