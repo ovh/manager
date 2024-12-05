@@ -15,7 +15,7 @@ import {
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { VeeamBackupOffer } from '@/data';
+import { VeeamBackupOffer } from '@ovh-ux/manager-module-vcd-api';
 
 export const OfferProgress: React.FC<VeeamBackupOffer> = ({
   name,

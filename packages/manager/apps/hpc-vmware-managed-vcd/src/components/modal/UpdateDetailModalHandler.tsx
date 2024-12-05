@@ -1,9 +1,11 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import useManagedVcdOrganization from '@/data/hooks/useManagedVcdOrganization';
-import { useUpdateVcdOrganizationDetails } from '@/data/hooks/useUpdateVcdOrganization';
-import { IVcdOrganizationState } from '@/types/vcd-organization.interface';
+import {
+  useVcdOrganization,
+  useUpdateVcdOrganizationDetails,
+  VCDOrganizationTargetSpec,
+} from '@ovh-ux/manager-module-vcd-api';
 import {
   validateDescription,
   validateOrganizationName,
@@ -30,7 +32,7 @@ export const UpdateDetailModalHandler = ({
   const closeModal = () => navigate('..');
   const { addSuccess } = useMessageContext();
   const { id } = useParams();
-  const { data: vcdOrganization } = useManagedVcdOrganization({ id });
+  const { data: vcdOrganization } = useVcdOrganization({ id });
   const { updateDetails, error, isError } = useUpdateVcdOrganizationDetails({
     id,
     onSuccess: () => {
@@ -42,7 +44,8 @@ export const UpdateDetailModalHandler = ({
       closeModal();
     },
   });
-  const currentDetails: IVcdOrganizationState = vcdOrganization.data.targetSpec;
+  const currentDetails: VCDOrganizationTargetSpec =
+    vcdOrganization.data.targetSpec;
 
   const getOrganizationDetailKey = (key: OrganizationDetailName) => {
     const detailKeys: TOrganizationDetails = {

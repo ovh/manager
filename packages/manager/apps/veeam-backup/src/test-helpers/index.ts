@@ -1,3 +1,3 @@
 export { renderTest } from './render-test';
-export { labels } from './test-i18n';
+export { labels } from './labels';
 export * from './test-utils';

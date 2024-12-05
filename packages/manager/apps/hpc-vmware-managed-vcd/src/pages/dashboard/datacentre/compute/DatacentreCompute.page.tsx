@@ -5,24 +5,26 @@ import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  getVcdDatacentreComputeRoute,
+  getVdcComputeQueryKey,
+  VCDCompute,
+} from '@ovh-ux/manager-module-vcd-api';
 import { VHOSTS_TITLE } from './DatacentreCompute.constants';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
-import IVcdCompute from '@/types/vcd-compute.interface';
-import { getVcdDatacentreComputeRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
 import { subRoutes, urls } from '@/routes/routes.constant';
-import { getVdcComputeQueryKey } from '@/utils/queryKeys';
 
-const DatagridIdCell = (vcdCompute: IVcdCompute) => (
+const DatagridIdCell = (vcdCompute: VCDCompute) => (
   <DataGridTextCell>{vcdCompute?.id}</DataGridTextCell>
 );
-const DatagridVHostProfilCell = (vcdCompute: IVcdCompute) => (
+const DatagridVHostProfilCell = (vcdCompute: VCDCompute) => (
   <DataGridTextCell>{vcdCompute?.currentState?.profile}</DataGridTextCell>
 );
 
-const DatagridCpuCountCell = (vcdCompute: IVcdCompute) => (
+const DatagridCpuCountCell = (vcdCompute: VCDCompute) => (
   <DataGridTextCell>{vcdCompute.currentState?.vCPUCount}</DataGridTextCell>
 );
-const DatagridBillingCell = (vcdCompute: IVcdCompute) => {
+const DatagridBillingCell = (vcdCompute: VCDCompute) => {
   const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/compute');
   return (
     <DataGridTextCell>
@@ -33,7 +35,7 @@ const DatagridBillingCell = (vcdCompute: IVcdCompute) => {
   );
 };
 
-const DatagridRamCountCell = (vcdCompute: IVcdCompute) => {
+const DatagridRamCountCell = (vcdCompute: VCDCompute) => {
   const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
 
   return (
