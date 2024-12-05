@@ -1,7 +1,5 @@
 import { PathParams } from 'msw';
-import { Request as PlaywrightRequest } from '@playwright/test';
-import { Handler } from '@playwright-helpers';
-import { getParamsFromUrl } from '../../../../../../playwright-helpers/network';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
 import vrackServicesList from './get-vrack-services.json';
 
 export const vsUpdateErrorMessage = 'Update vs error';
@@ -59,26 +57,22 @@ export const getVrackServicesMocks = ({
   },
   {
     url: '/vrackServices/resource/:id',
-    response: async (request: Request, params: PathParams) => {
+    response: async (_: unknown, params: PathParams) => {
       if (updateKo) {
         return { message: vsUpdateErrorMessage };
       }
-      const body =
-        (await request.json?.()) ||
-        ((request as unknown) as PlaywrightRequest).postData();
-      const vs = vrackServicesList.find(
-        ({ id }) => id === (params || getParamsFromUrl(request, { id: -1 })).id,
-      );
+
+      const vs = vrackServicesList.find(({ id }) => id === params.id);
 
       return {
         ...vs,
         currentTasks: [{ id: '1234', status: 'DONE' }],
         currentState: {
           ...vs.currentState,
-          ...(body.targetSpec
+          ...(vs.targetSpec
             ? {
-                displayName: body.targetSpec.displayName,
-                subnets: body.targetSpec.subnets,
+                displayName: vs.targetSpec.displayName,
+                subnets: vs.targetSpec.subnets,
               }
             : {}),
         },
@@ -90,10 +84,8 @@ export const getVrackServicesMocks = ({
   },
   {
     url: '/vrackServices/resource/:id',
-    response: (request: Request, params: PathParams) => {
-      return vrackServicesList.find(
-        ({ id }) => id === (params || getParamsFromUrl(request, { id: -1 })).id,
-      );
+    response: (_: unknown, params: PathParams) => {
+      return vrackServicesList.find(({ id }) => id === params.id);
     },
     api: 'v2',
   },

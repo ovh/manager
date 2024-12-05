@@ -31,7 +31,7 @@
       "productStatus": "DRAFT",
       "subnets": [
         {
-          "cidr": "192.168.0.0/16",
+          "cidr": "10.0.0.0/24",
           "displayName": "My.Subnet",
           "serviceEndpoints": [
             {
@@ -54,7 +54,7 @@
             }
           ],
           "serviceRange": {
-            "cidr": "192.168.0.0/29",
+            "cidr": "10.0.0.0/29",
             "remainingIps": 1,
             "reservedIps": 5,
             "usedIps": 2
@@ -207,7 +207,12 @@
     "targetSpec": {
       "subnets": []
     },
-    "updatedAt": "2023-03-10T09:10:00Z"
+    "updatedAt": "2023-03-10T09:10:00Z",
+    "iam": {
+      "displayName": "vrs-ahz-9t0-7lb-b5",
+      "id": "f30d4ca1-d183-4484-a408-27b9139dce3d",
+      "urn": "urn:v1:eu:resource:vrackServices:vrs-ahz-9t0-7lb-b5"
+    }
   },
   {
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
