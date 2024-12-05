@@ -7,7 +7,10 @@ import {
   getUsageHistoryPeriod,
   TUsageHistoryPeriod,
 } from '../data/history';
-import { getConsumptionDetails } from './useConsumption';
+import {
+  getConsumptionDetails,
+  initializeTConsumptionDetail,
+} from './useConsumption';
 
 export const useUsageHistoryPeriod = (
   projectId: string,
@@ -46,9 +49,12 @@ export const useGetUsageHistory = (
         monthlyDetails = historyUsage?.monthlyUsage;
       }
 
-      return { ...historyUsage, monthlyUsage: monthlyDetails };
+      const usage = { ...historyUsage, monthlyUsage: monthlyDetails };
+      return getConsumptionDetails(usage);
     },
     enabled: !!periodDetail?.id,
-    select: (data) => getConsumptionDetails(data),
+    placeholderData: !periodDetail?.id
+      ? initializeTConsumptionDetail()
+      : undefined,
   });
 };
