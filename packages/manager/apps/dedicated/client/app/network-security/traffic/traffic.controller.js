@@ -141,7 +141,7 @@ export default class TrafficController {
     this.results = null;
     this.displayGraph = false;
     const currentDate = new Date();
-    const after = new Date();
+    let after = new Date();
     const before = currentDate.toISOString();
     switch (this.period.name) {
       case this.TRAFFIC_PERIOD_LIST.last6h:
@@ -154,7 +154,7 @@ export default class TrafficController {
         after.setDate(after.getDate() - 14);
         break;
       case 'custom':
-        after.setTime(this.dateTime);
+        after = new Date(this.dateTime);
         break;
       default:
         after.setDate(after.getDate() - 1);
