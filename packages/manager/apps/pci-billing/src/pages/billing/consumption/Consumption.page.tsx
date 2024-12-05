@@ -1,12 +1,14 @@
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
+  ODS_ICON_NAME,
   ODS_SPINNER_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
   ODS_TILE_VARIANT,
 } from '@ovhcloud/ods-components';
 import {
+  OsdsMessage,
   OsdsSpinner,
   OsdsText,
   OsdsTile,
@@ -15,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { Outlet, useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { PCI_FEATURES_BILLING_POST_PAID, TRUSTED_ZONE } from '@/constants';
 import MonthlyConsumption from '@/components/consumption/MonthlyConsumption.component';
 import HourlyConsumption from '@/components/consumption/HourlyConsumption.component';
@@ -31,14 +34,13 @@ export default function Consumption() {
     TRUSTED_ZONE,
   ]);
 
-  const { data: consumption, isPending } = useGeTCurrentUsage(projectId);
+  const { data: consumption, isPending, error } = useGeTCurrentUsage(projectId);
 
   const isTrustedZone = availability?.[TRUSTED_ZONE];
 
-  const monthlyTotal = `${consumption?.totals?.monthly?.total?.toFixed(2)} ${
-    currency.symbol
-  }`;
-  const hourlyTotal = `${consumption?.totals?.hourly?.total?.toFixed(2)} ${
+  const monthlyTotal = `${consumption?.totals?.monthly?.total?.toFixed(2) ||
+    0} ${currency.symbol}`;
+  const hourlyTotal = `${consumption?.totals?.hourly?.total?.toFixed(2) || 0} ${
     currency.symbol
   }`;
 
@@ -60,6 +62,16 @@ export default function Consumption() {
           >
             {t('cpbc_tab_consumption')}
           </OsdsText>
+          {error && (
+            <OsdsMessage
+              color={ODS_THEME_COLOR_INTENT.error}
+              icon={ODS_ICON_NAME.ERROR}
+              className="my-6"
+            >
+              {t('cpb_error_message')}{' '}
+              {(error as ApiError).response?.data?.message || error.message}
+            </OsdsMessage>
+          )}
           <div className="flex items-start flex-col xl:flex-row gap-7">
             <OsdsTile
               className="shadow-custom-tile"
@@ -83,8 +95,9 @@ export default function Consumption() {
                 >
                   {`${t('cpbc_monthly_header_description')} (${monthlyTotal})`}
                 </OsdsText>
-
-                <MonthlyConsumption consumption={consumption} />
+                {consumption && (
+                  <MonthlyConsumption consumption={consumption} />
+                )}
               </div>
             </OsdsTile>
 
@@ -111,10 +124,12 @@ export default function Consumption() {
                   {`${t('cpbc_hourly_header_description')} (${hourlyTotal})`}
                 </OsdsText>
 
-                <HourlyConsumption
-                  consumption={consumption}
-                  isTrustedZone={isTrustedZone}
-                />
+                {consumption && (
+                  <HourlyConsumption
+                    consumption={consumption}
+                    isTrustedZone={isTrustedZone}
+                  />
+                )}
               </div>
             </OsdsTile>
           </div>

@@ -149,7 +149,7 @@ export const AlertsPart = ({
 
   const isLoading =
     forecastPrices.isPending ||
-    currentPrices.isPending ||
+    (currentPrices.isPending && !currentPrices.error) ||
     isAlertLoading ||
     isAlertCreating ||
     isAlertUpdating ||
@@ -262,6 +262,7 @@ export const AlertsPart = ({
                 inline
                 size={ODS_BUTTON_SIZE.sm}
                 onClick={openModal}
+                disabled={!!currentPrices.error || undefined}
               >
                 <OsdsIcon
                   name={ODS_ICON_NAME.BELL}
