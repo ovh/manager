@@ -16,7 +16,12 @@ const kycIndiaFeature = 'identity-documents';
 const kycFraudFeature = 'procedures:fraud';
 const newAccount = 'new-account';
 const newBilling = 'new-billing';
-const accountFeatures = [kycIndiaFeature, kycFraudFeature, newAccount, newBilling];
+const accountFeatures = [
+  kycIndiaFeature,
+  kycFraudFeature,
+  newAccount,
+  newBilling,
+];
 
 export default function AccountSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
@@ -32,7 +37,9 @@ export default function AccountSidebar() {
   const subsidiary = environment.getUser()?.ovhSubsidiary;
   const isEnterprise = environment.getUser()?.enterprise;
 
-  const getAccountSidebar = async (availability: Record<string, boolean> | null) => {
+  const getAccountSidebar = async (
+    availability: Record<string, boolean> | null,
+  ) => {
     const menu: SidebarMenuItem[] = [];
 
     if (!availability) {
@@ -52,7 +59,10 @@ export default function AccountSidebar() {
     menu.push({
       id: 'my-account',
       label: t('sidebar_account'),
-      href: navigation.getURL(isNewAccountAvailable ? 'new-account' : 'dedicated', '/useraccount/dashboard'),
+      href: navigation.getURL(
+        isNewAccountAvailable ? 'new-account' : 'dedicated',
+        '/useraccount/dashboard',
+      ),
       routeMatcher: new RegExp('^/useraccount'),
     });
 
@@ -62,7 +72,10 @@ export default function AccountSidebar() {
         menu.push({
           id: 'my-identity-documents',
           label: t('sidebar_account_identity_documents'),
-          href: navigation.getURL(isNewAccountAvailable ? 'new-account' : 'dedicated', '/identity-documents'),
+          href: navigation.getURL(
+            isNewAccountAvailable ? 'new-account' : 'dedicated',
+            '/identity-documents',
+          ),
           routeMatcher: new RegExp('^/identity-documents'),
         });
       }
@@ -74,7 +87,10 @@ export default function AccountSidebar() {
         menu.push({
           id: 'kyc-documents',
           label: t('sidebar_account_kyc_documents'),
-          href: navigation.getURL(isNewAccountAvailable ? 'new-account' : 'dedicated', '/documents'),
+          href: navigation.getURL(
+            isNewAccountAvailable ? 'new-account' : 'dedicated',
+            '/documents',
+          ),
           routeMatcher: new RegExp('^/documents'),
         });
       }
@@ -86,7 +102,9 @@ export default function AccountSidebar() {
         label: t('sidebar_billing'),
         href: navigation.getURL(
           isNewBillingAvailable ? 'new-billing' : 'dedicated',
-          region === 'US' ? '/billing/payAsYouGo' : '/billing/history',
+          region === 'US'
+            ? `${!isNewBillingAvailable ? '/billing' : ''}/payAsYouGo`
+            : `${!isNewBillingAvailable ? '/billing' : ''}/history`,
         ),
         routeMatcher: new RegExp(
           '^/billing/(history|payAsYouGo|payments|refunds)',
@@ -99,7 +117,9 @@ export default function AccountSidebar() {
       label: t('sidebar_billing_services'),
       href: navigation.getURL(
         isNewBillingAvailable ? 'new-billing' : 'dedicated',
-        `/billing/autorenew${isEnterprise ? '/ssh' : '/'}`,
+        `${!isNewBillingAvailable ? '/billing' : ''}/autorenew${
+          isEnterprise ? '/ssh' : '/'
+        }`,
       ),
       routeMatcher: new RegExp('^/billing/autorenew', 'i'),
     });
@@ -108,13 +128,19 @@ export default function AccountSidebar() {
       menu.push({
         id: 'payment-method',
         label: t('sidebar_billing_payment'),
-        href: navigation.getURL(isNewBillingAvailable ? 'new-billing' : 'dedicated', '/billing/payment'),
+        href: navigation.getURL(
+          isNewBillingAvailable ? 'new-billing' : 'dedicated',
+          `${!isNewBillingAvailable ? '/billing' : ''}/payment`,
+        ),
         routeMatcher: new RegExp('^/billing/payment[^s]'),
       });
       menu.push({
         id: 'my-orders',
         label: t('sidebar_orders'),
-        href: navigation.getURL(isNewBillingAvailable ? 'new-billing' : 'dedicated', '/billing/orders'),
+        href: navigation.getURL(
+          isNewBillingAvailable ? 'new-billing' : 'dedicated',
+          `${!isNewBillingAvailable ? '/billing' : ''}/orders`,
+        ),
         routeMatcher: new RegExp('^/billing/orders'),
       });
     }
@@ -123,7 +149,10 @@ export default function AccountSidebar() {
       menu.push({
         id: 'my-contacts',
         label: t('sidebar_account_contacts'),
-        href: navigation.getURL(isNewAccountAvailable ? 'new-account' : 'dedicated', '/contacts'),
+        href: navigation.getURL(
+          isNewAccountAvailable ? 'new-account' : 'dedicated',
+          '/contacts',
+        ),
         routeMatcher: new RegExp('^/contacts'),
       });
     }
@@ -141,7 +170,9 @@ export default function AccountSidebar() {
       id: 'my-support-tickets',
       label: t('sidebar_assistance_tickets'),
       isExternal: isEUOrCA,
-      href: isEUOrCA ? constants[region].support.tickets(subsidiary) : navigation.getURL('dedicated', '/ticket'),
+      href: isEUOrCA
+        ? constants[region].support.tickets(subsidiary)
+        : navigation.getURL('dedicated', '/ticket'),
       routeMatcher: new RegExp('^/(ticket|support)'),
     });
 
@@ -156,7 +187,9 @@ export default function AccountSidebar() {
     return menu;
   };
 
-  const {data: availability} = useFeatureAvailability(features.concat(accountFeatures));
+  const { data: availability } = useFeatureAvailability(
+    features.concat(accountFeatures),
+  );
 
   const buildMenu = async () =>
     Promise.resolve({
