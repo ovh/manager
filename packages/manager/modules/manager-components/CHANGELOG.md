@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.22.2...@ovh-ux/manager-components@1.22.3) (2024-12-05)
+
+
+### Bug Fixes
+
+* **manager-components:** ssh-key-selector margin issues ([#14245](https://github.com/ovh/manager/issues/14245)) ([5a29bf6](https://github.com/ovh/manager/commit/5a29bf682f619f585563d45825e182724e20d901))
+
+
+
+
+
 ## [1.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.22.1...@ovh-ux/manager-components@1.22.2) (2024-11-18)
 
 

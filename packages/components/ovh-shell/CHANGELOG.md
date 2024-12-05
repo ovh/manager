@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.0.2...@ovh-ux/shell@4.1.0) (2024-12-05)
+
+
+### Features
+
+* **shell:** add method to notify container a modal action is done ([#14025](https://github.com/ovh/manager/issues/14025)) ([00bb420](https://github.com/ovh/manager/commit/00bb420256c205290c56de37c06ce3835719c86d))
+
+
+
+
+
 ## [4.0.2](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.0.1...@ovh-ux/shell@4.0.2) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/shell
