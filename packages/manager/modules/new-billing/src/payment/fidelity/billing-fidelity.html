@@ -1,0 +1,190 @@
+<div class="billing-payment-fidelity">
+    <div data-ovh-alert="billingPaymentFidelityAlert"></div>
+    <div
+        class="alert"
+        role="alert"
+        data-ng-class="$ctrl.alertType"
+        data-ng-show="$ctrl.message"
+    >
+        <button
+            type="button"
+            class="close"
+            data-ng-click="$ctrl.message=null"
+        ></button>
+        <span data-ng-bind-html="$ctrl.message"></span>
+    </div>
+
+    <h2 data-translate="fidelity_title"></h2>
+
+    <p
+        data-ng-if="!$ctrl.fidelityAccountLoading && $ctrl.fidelityAccount"
+        data-translate="fidelity_balance_info"
+        data-translate-values="{
+           t0: $ctrl.getLastUpdate('mediumDate'),
+           t1: $ctrl.fidelityAccount.balance
+       }"
+    ></p>
+    <p
+        class="text-center"
+        data-ng-if="!$ctrl.fidelityAccountLoading && !$ctrl.fidelityAccount"
+        data-translate="fidelity_no_account"
+    ></p>
+    <div
+        class="row"
+        data-ng-if="!$ctrl.fidelityAccountLoading && $ctrl.fidelityAccount"
+    >
+        <div class="col-sm-4">
+            <button
+                type="button"
+                class="oui-button oui-button_primary"
+                data-track-on="click"
+                data-track-type="action"
+                data-track-name="loyalty_account::credit_loyalty_account"
+                data-ng-click="$ctrl.setAction('creditOrder', null, 'fidelity')"
+                data-ng-disabled="$ctrl.fidelityAccountLoading || !$ctrl.fidelityAccount.canBeCredited"
+            >
+                <span data-translate="ovhAccount_table_head_crediter"></span>
+            </button>
+        </div>
+        <div class="col-sm-8">
+            <div class="float-right">
+                <oui-button
+                    size="s"
+                    variant="secondary"
+                    data-on-click="$ctrl.onBasicDateRangeChange('3')"
+                >
+                    <span
+                        data-translate="common_time_period_in_months"
+                        data-translate-values="{ 't0': 3 }"
+                    ></span>
+                </oui-button>
+                <oui-button
+                    size="s"
+                    variant="secondary"
+                    data-on-click="$ctrl.onBasicDateRangeChange('6')"
+                >
+                    <span
+                        data-translate="common_time_period_in_months"
+                        data-translate-values="{ 't0': 6 }"
+                    ></span>
+                </oui-button>
+                <oui-button
+                    size="s"
+                    variant="secondary"
+                    data-on-click="$ctrl.onBasicDateRangeChange('12')"
+                >
+                    <span data-translate="common_time_period_one_year"></span>
+                </oui-button>
+                <oui-button
+                    size="s"
+                    variant="secondary"
+                    data-on-click="$ctrl.showCustomRangeDate = !$ctrl.showCustomRangeDate"
+                >
+                    <span
+                        data-translate="billing_date_range_choose_custom_date"
+                    ></span>
+                </oui-button>
+                <p
+                    data-ng-if="!$ctrl.showCustomRangeDate"
+                    data-translate="billing_date_range_text"
+                    data-translate-values="{
+                            t0: ($ctrl.dateFrom.toDate() | date:mediumDate),
+                            t1: ($ctrl.dateTo.toDate() | date:mediumDate)
+                      }"
+                ></p>
+                <div>
+                    <oui-field
+                        data-size="m"
+                        data-ng-if="$ctrl.showCustomRangeDate"
+                    >
+                        <oui-calendar
+                            data-mode="range"
+                            data-model="$ctrl.customDateRangeModel"
+                            data-format="Z"
+                            data-alt-format="j M Y"
+                            data-max-date="$ctrl.today"
+                            data-on-close="$ctrl.onCustomDateRangeChange(selectedDates)"
+                        >
+                        </oui-calendar>
+                    </oui-field>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="table-responsive mt-2"
+        data-ng-if="$ctrl.fidelityAccount && !$ctrl.fidelityLoading"
+    >
+        <oui-datagrid
+            data-rows-loader="$ctrl.getMovements($config)"
+            data-row-loader="$ctrl.getMovementDetails($row)"
+            data-page-size="$ctrl.itemsPerPage"
+        >
+            <oui-datagrid-column
+                title=":: 'fidelity_header_date' | translate"
+                property="date"
+                type="datetime"
+            >
+                <span data-ng-bind="$row.date | date:'mediumDate'"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'fidelity_header_order' | translate"
+                property="order"
+                type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'fidelity_header_operation' | translate"
+                property="description"
+                type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'fidelity_header_credit' | translate"
+                property="date"
+                type="datetime"
+            >
+                <span data-ng-show="$row.previousBalance < $row.balance">
+                    <span data-ng-bind="$row.amount"></span>
+                    <span data-translate="fidelity_points"></span
+                ></span>
+                <span data-ng-hide="$row.previousBalance < $row.balance"
+                    >-</span
+                >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'fidelity_header_debit' | translate"
+                property="date"
+                type="datetime"
+            >
+                <span data-ng-show="task.previousBalance < task.balance"
+                    ><span data-ng-bind="$row.amount"></span>
+                    <span data-translate="fidelity_points"></span
+                ></span>
+                <span data-ng-hide="task.previousBalance < task.balance"
+                    >-</span
+                >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'fidelity_header_balance' | translate"
+                property="date"
+                type="datetime"
+            >
+                <span data-ng-bind="$row.balance"></span>
+                <span data-translate="fidelity_points"></span>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </div>
+
+    <div id="currentAction" class="modal fade currentAction" role="dialog">
+        <div class="modal-dialog">
+            <div
+                id="modal-container"
+                class="modal-content"
+                data-ng-include="$ctrl.$scope.stepPath"
+            ></div>
+            <div id="modal-help" class="help4wizards"></div>
+        </div>
+    </div>
+</div>

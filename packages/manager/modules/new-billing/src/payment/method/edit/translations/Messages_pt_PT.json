@@ -1,0 +1,7 @@
+{
+  "billing_payment_method_edit_title": "Modificação da descrição",
+  "billing_payment_method_edit_action_save": "Guardar a descrição",
+  "billing_payment_method_edit_description": "Insira uma nova descrição",
+  "billing_payment_method_edit_error": "Ocorreu um erro durante a alteração da descrição: {{ errorMessage }}",
+  "billing_payment_method_edit_success": "A modificação da descrição do seu método de pagamento foi efetuada com êxito."
+}

@@ -1,0 +1,17 @@
+{
+  "billing_main_pay_as_you_go_title": "Aktualne zużycie Pay As You Go ",
+  "billing_main_pay_as_you_go_load_error": "Wystąpił błąd podczas pobierania informacji o bieżących płatnościach Pay As You Go.",
+  "billing_main_pay_as_you_go_table_project": "Projekt",
+  "billing_main_pay_as_you_go_table_project_title": "{{ name }}: przejdź do zarządzania projektem.",
+  "billing_main_pay_as_you_go_table_resource": "Zasoby",
+  "billing_main_pay_as_you_go_table_type": "Typ",
+  "billing_main_pay_as_you_go_table_type_instance": "Instancja",
+  "billing_main_pay_as_you_go_table_type_volume": "Wolumin",
+  "billing_main_pay_as_you_go_table_type_snapshot": "Snapshot",
+  "billing_main_pay_as_you_go_table_due_date": "Data wygaśnięcia",
+  "billing_main_pay_as_you_go_table_current": "Aktualne saldo",
+  "billing_main_pay_as_you_go_table_current_forecast": "Prognoza",
+  "billing_main_pay_as_you_go_table_action_manage": "Zarządzanie",
+  "billing_main_pay_as_you_go_table_action_switch_monthly": "Przejdź na abonament miesięczny",
+  "billing_main_pay_as_you_go": "Zużycie Pay As You Go"
+}

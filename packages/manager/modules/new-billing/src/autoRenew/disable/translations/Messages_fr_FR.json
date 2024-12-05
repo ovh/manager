@@ -1,0 +1,14 @@
+{
+  "billing_autorenew_disable_breadcrumb": "Désactiver le renouvellement automatique",
+  "billing_autorenew_disable_title": "Désactiver le renouvellement automatique pour les services sélectionnés",
+  "billing_autorenew_disable_description": "Vous avez souhaité désactiver le renouvellement automatique pour les services sélectionnés.",
+  "billing_autorenew_disable_warning": "Dans ce mode de renouvellement, votre service n'est pas automatiquement reconduit lorsqu'il arrive à échéance. Plusieurs notifications vous seront envoyées par e-mails durant les semaines/jours précédents son terme, afin de vous prévenir de son expiration.",
+  "billing_autorenew_disable_renew": "Il vous suffira de renouveler votre service si vous souhaitez le conserver.",
+  "billing_autorenew_disable_data": "Attention, une fois le service expiré, il sera immédiatement suspendu, il ne sera plus accessible, et les données liées à ce service seront définitivement supprimées au bout de quelques jours sans règlement de votre part",
+  "billing_autorenew_disable_bulk_unavailable": "Le renouvellement automatique sera désactivé pour l'ensemble de vos services sélectionnés, exceptés pour {{ count }} services :",
+  "billing_autorenew_disable_bulk_unavailable_one": "Le renouvellement automatique sera désactivé pour l'ensemble de vos services sélectionnés, exceptés pour 1 service :",
+  "billing_autorenew_disable_bulk": "Le renouvellement automatique sera désactivé pour l'ensemble de vos services sélectionnés.",
+  "billing_autorenew_disable_bulk_single": "Le renouvellement automatique pour votre service {{ serviceName }} sera désactivé.",
+  "billing_autorenew_disable_success": "Le renouvellement des services a bien été mis à jour",
+  "billing_autorenew_disable_error": "Une erreur est survenue lors de la désactivation du renouvellement automatique {{ message }}"
+}

@@ -1,0 +1,8 @@
+{
+  "voucher_credit_code_add_label": "Ajouter un bon d'achat",
+  "voucher_credit_code_add_placeholder": "Code du bon d'achat",
+  "voucher_credit_code_add_submit": "Ajouter",
+  "voucher_credit_code_success": "Votre crédit de <strong>{{credit}}</strong> a bien été généré, vous pouvez procéder à votre commande.",
+  "voucher_credit_code_error": "Une erreur est survenue lors de l'ajout du bon d'achat.",
+  "voucher_credit_code_cancel": "Annuler"
+}

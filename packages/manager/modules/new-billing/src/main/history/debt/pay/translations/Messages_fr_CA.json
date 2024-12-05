@@ -1,0 +1,8 @@
+{
+  "billing_main_history_debt_pay_title": "Réglement du solde",
+  "billing_main_history_debt_pay_confirm": "Régler mon solde",
+  "billing_main_history_debt_pay_explanation": "Cette action créera un bon de commande permettant de payer immédiatement un solde. Ce bon de commande sera valide durant une heure.",
+  "billing_main_history_debt_pay_success": "Le <a href=\"{{t1}}\" target=\"_blank\" rel=\"noopener\">bon de commande {{t0}}</a> a été généré pour vous permettre de régler votre solde.",
+  "billing_main_history_debt_pay_error": "Une erreur est survenue lors du paiment de votre solde.",
+  "billing_main_history_debt_pay_error_nothing_to_pay": "Vous n'avez actuellement aucun paiement en attente."
+}
