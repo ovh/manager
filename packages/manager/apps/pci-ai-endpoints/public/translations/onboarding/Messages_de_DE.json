@@ -1,14 +1,14 @@
 {
-  "title": "Verbessern Sie Ihre Anwendungen mit AI Endpoints",
-  "description": "Unsere einfach zu bedienende Plattform ermöglicht es Entwicklern aller Stufen, ihre Anwendungen mit AI-APIs auf dem neuesten Stand der Technik zu verbessern - ohne KI-Fachwissen.",
-  "descriptionBis": "Für diese APIs ist <strong>keinerlei KI</strong>-Expertise oder dedizierte Infrastruktur erforderlich, da die Serverless-Plattform Zugriff <strong>auf fortgeschrittene</strong> KI-Modelle bietet, darunter Sprachmodelle (LLMs), natürliche Sprachverarbeitung, Übersetzung, Spracherkennung, Bilderkennung und vieles mehr. Entwickler können aus einer Reihe von Modellen wählen, insbesondere Open-Source-Optionen wie Mistral AI, Llama und Stable Diffusion<strong>.</strong> .",
+  "title": "Mit AI Endpoints Ihre Anwendungen verbessern",
+  "description": "Unsere Plattform ist auf Einfachheit ausgelegt und ermöglicht es Entwickler:innen ganz unabhängig von ihren Kompetenzen, ihre Anwendungen mit modernsten AI-APIs zu verbessern – AI-Fachwissen wird nicht benötigt.",
+  "descriptionBis": "Für diese APIs ist <strong>keinerlei AI-Expertise</strong> oder dedizierte Infrastruktur erforderlich, da die Serverless-Plattform Zugriff auf <strong>fortschrittliche AU-Modelle</strong> bietet, darunter Sprachmodelle (LLMs) sowie Modelle für die natürliche Sprachverarbeitung, Übersetzung, Spracherkennung, Bilderkennung und mehr. Entwickler:innen können aus einer Reihe von Modellen wählen, insbesondere <strong>Open-Source-Optionen wie Mistral AI, Llama und Stable Diffusion</strong>.",
   "goToAiEndpoint": "AI Endpoints",
   "guideCategory": "Anleitung",
   "guide1Title": "Erste Schritte mit AI Endpoints",
-  "guide1Description": "Entdecken Sie AI Endpoints, die sichere Serverless-Plattform von OVHcloud für Entwickler, die über benutzerfreundliche APIs Zugriff auf die besten Modelle für künstliche Intelligenz bietet. Es ist keine KI-Expertise erforderlich.",
-  "guide2Title": "Funktionen, Kapazitäten und Einschränkungen",
-  "guide2Description": "Entdecken Sie die aktuellen Funktionen, Kapazitäten und Einschränkungen von AI Endpoints",
-  "tutoCategory": "Tutorials ",
+  "guide1Description": "Entdecken Sie AI Endpoints, die sichere Serverless-Plattform von OVHcloud für Entwickler:innen, die über benutzerfreundliche APIs Zugriff auf die besten AI-Modelle bietet. Es ist keine AI-Expertise erforderlich.",
+  "guide2Title": "Funktionen, Kapazitäten und Beschränkungen",
+  "guide2Description": "Entdecken Sie die aktuellen Funktionen, Kapazitäten und Beschränkungen von AI Endpoints.",
+  "tutoCategory": "Tutorials",
   "guide3Title": "Use Cases mit AI Endpoints",
-  "guide3Description": "Entdecken Sie unsere Tutorials, um Ihre Anwendungen mit AI Endpoints zu erweitern. Hier erfahren Sie, wie Sie Chatbots erstellen, LLMs oder Tools für leistungsstarke KI-Lösungen integrieren."
+  "guide3Description": "Sehen Sie sich unsere Tutorials zum Verbessern Ihrer Anwendungen mit AI Endpoints an. Entdecken Sie, wie Sie Chatbots erstellen und LLMs oder Tools für leistungsstarke AI-Lösungen integrieren."
 }

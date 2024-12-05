@@ -1418,9 +1418,9 @@
   "license_designation_SQLSERVER_version_sql-server-2022-license-web-edition-64-cores": "SQL Server 2022 license - Web edition - 64 cores",
   "license_designation_SQLSERVER_version_sql-server-2022-license-web-edition-8-cores": "SQL Server 2022 license - Web edition - 8 cores",
   "license_designation_SQLSERVER_version_sql-server-2022-license-web-edition-96-cores": "SQL Server 2022 license - Web edition - 96 cores",
-  "license_designation_CPANEL_version_version-pro-cloud": "cPanel licença Pro Cloud",
-  "license_designation_CPANEL_version_version-solo-cloud": "cPanel licença Solo Cloud",
-  "license_designation_CPANEL_version_version-admin-cloud": "cPanel licença Admin Cloud",
-  "license_designation_CPANEL_version_version-plus-cloud": "cPanel licença Plus Cloud",
+  "license_designation_CPANEL_version_version-pro-cloud": "Licença cPanel Pro Cloud",
+  "license_designation_CPANEL_version_version-solo-cloud": "Licença cPanel Solo Cloud",
+  "license_designation_CPANEL_version_version-admin-cloud": "Licença cPanel Admin Cloud",
+  "license_designation_CPANEL_version_version-plus-cloud": "Licença cPanel Plus Cloud",
   "license_order_step4_pay_upgrade_amount": "Preço: {{ price }}"
 }

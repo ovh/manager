@@ -1401,6 +1401,6 @@
   "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo.",
   "hosting_dashboard_stats_status": "Beta",
   "hosting_dashboard_tabs_dropdown": "Más",
-  "hosting_configuration_tab_modules_create_step1_module_type_select_is_database_use": "Todas sus bases de datos están siendo utilizadas. Para instalar un módulo en un clic, debe tener una base de datos disponible.",
+  "hosting_configuration_tab_modules_create_step1_module_type_select_is_database_use": "Todas sus bases de datos están siendo utilizadas. Para instalar un módulo en un clic, es necesario disponer de una disponible.",
   "hosting_configuration_tab_modules_create_step1_module_type_select_is_database_use_order_link": "Contratar una base de datos"
 }

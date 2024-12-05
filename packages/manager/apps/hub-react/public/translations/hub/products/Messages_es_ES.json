@@ -69,5 +69,6 @@
   "manager_hub_products_see_less": "Ver menos servicios",
   "manager_hub_products_see_more": "Ver todos los productos y servicios",
   "manager_hub_products_VMWARE_CLOUD_DIRECTOR": "Managed VCD",
-  "manager_hub_products_LICENSE_HYCU": "HYCU"
+  "manager_hub_products_LICENSE_HYCU": "HYCU",
+  "manager_hub_products_VMWARE_CLOUD_DIRECTOR_BACKUP": "Managed Veeam for VCD"
 }

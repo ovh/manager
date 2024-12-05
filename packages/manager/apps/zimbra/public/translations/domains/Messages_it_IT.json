@@ -10,5 +10,5 @@
   "zimbra_domains_datagrid_diagnostic_configuration_ok": "Configurazione OK",
   "zimbra_domains_datagrid_diagnostic_tooltip_title": "Diagnostica {{ diagType }}",
   "zimbra_domains_tooltip_configure": "Configura",
-  "zimbra_domains_datagrid_status_label": "Status"
+  "zimbra_domains_datagrid_status_label": "Stato"
 }
