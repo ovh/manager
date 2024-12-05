@@ -43,6 +43,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
         size={ODS_BUTTON_SIZE.sm}
         {...handleClick(onClick)}
         disabled={disabled || undefined}
+        data-testid="edit-button"
       >
         <OsdsIcon
           color={ODS_THEME_COLOR_INTENT.primary}
