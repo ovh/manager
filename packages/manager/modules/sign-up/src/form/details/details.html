@@ -144,6 +144,8 @@
                         data-ng-model="$ctrl.phoneModel.model"
                         data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
                         data-ng-required="$ctrl.signUpFormCtrl.rules.phone.mandatory"
+                        data-ng-maxlength="$ctrl.signUpFormCtrl.rules.phone.maxLength"
+                        data-ng-minlength="$ctrl.signUpFormCtrl.rules.phone.minLength"
                         data-ng-pattern="$ctrl.phoneModel.validator"
                         data-ng-attr-placeholder="{{ $ctrl.signUpFormCtrl.phonePlaceHolder }}"
                         data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.phone)"
@@ -185,6 +187,8 @@
                     id="address"
                     data-ng-model="$ctrl.signUpFormCtrl.model.address"
                     data-ng-required="$ctrl.signUpFormCtrl.rules.address.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.address.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.address.minLength"
                     data-ng-pattern="$ctrl.signUpFormCtrl.rules.address.regularExpression"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.address)"
                 />
@@ -243,6 +247,8 @@
                         data-ng-model="$ctrl.zipModel.model"
                         data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
                         data-ng-required="$ctrl.signUpFormCtrl.rules.zip.mandatory"
+                        data-ng-maxlength="$ctrl.signUpFormCtrl.rules.zip.maxLength"
+                        data-ng-minlength="$ctrl.signUpFormCtrl.rules.zip.minLength"
                         data-ng-pattern="$ctrl.zipModel.validator"
                         data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.zip)"
                     />
@@ -266,6 +272,8 @@
                     id="city"
                     data-ng-model="$ctrl.signUpFormCtrl.model.city"
                     data-ng-required="$ctrl.signUpFormCtrl.rules.city.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.city.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.city.minLength"
                     data-ng-pattern="$ctrl.signUpFormCtrl.rules.city.regularExpression"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.city)"
                 />
@@ -322,6 +330,8 @@
                     id="birthDay"
                     data-ng-model="$ctrl.signUpFormCtrl.model.birthDay"
                     data-ng-required="$ctrl.signUpFormCtrl.rules.birthDay.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.birthDay.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.birthDay.minLength"
                     data-ng-pattern="$ctrl.signUpFormCtrl.rules.birthDay.regularExpression"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.birthDay)"
                 />
