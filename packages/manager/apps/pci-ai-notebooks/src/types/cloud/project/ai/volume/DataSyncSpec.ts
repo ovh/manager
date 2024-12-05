@@ -5,7 +5,7 @@ export interface DataSyncSpec {
   /** Direction of the sync */
   direction: DataSyncEnum;
   /** True if the user has created the object */
-  manual: boolean;
+  manual?: boolean;
   /** Only sync this volume */
   volume?: string;
 }

@@ -26,3 +26,8 @@ export interface Project {
   /** Project unleashed */
   unleash: boolean;
 }
+
+export enum PlanCode {
+  DISCOVERY = 'project.discovery',
+  STANDARD = 'project.2018',
+}

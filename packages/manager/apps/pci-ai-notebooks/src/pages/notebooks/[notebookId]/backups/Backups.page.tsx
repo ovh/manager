@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Outlet } from 'react-router-dom';
 import { useNotebookData } from '../Notebook.context';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useGetBackups } from '@/hooks/api/ai/notebook/backups/useGetBackups.hook';
@@ -29,6 +30,7 @@ const Backups = () => {
       <h4>{t('title')}</h4>
       <p>{t('description')}</p>
       {backupsQuery.isSuccess && <BackupsList backups={backupsQuery.data} />}
+      <Outlet />
     </>
   );
 };

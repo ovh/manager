@@ -5,19 +5,27 @@ import { deleteNotebook } from '@/data/api/ai/notebook/notebook.api';
 
 interface UseDeleteNotebook {
   onError: (cause: AIError) => void;
-  onSuccess: () => void;
+  onDeleteSuccess: () => void;
 }
 
 export function useDeleteNotebook({
   onError,
-  onSuccess,
+  onDeleteSuccess,
 }: UseDeleteNotebook) {
+  const queryClient = useQueryClient();
+  const { projectId } = useParams();
   const mutation = useMutation({
     mutationFn: (notebookInfo: NotebookData) => {
       return deleteNotebook(notebookInfo);
     },
     onError,
-    onSuccess,
+    onSuccess: () => {
+      // Invalidate service list query to get the latest data
+      queryClient.invalidateQueries({
+        queryKey: [projectId, 'ai/notebook', { exact: true }],
+      });
+      onDeleteSuccess();
+    },
   });
 
   return {

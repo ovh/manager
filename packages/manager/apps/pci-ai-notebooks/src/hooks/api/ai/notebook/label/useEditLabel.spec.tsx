@@ -13,13 +13,16 @@ describe('useEditLabel', () => {
   it('should call useEditLabel on mutation with data', async () => {
     const projectId = 'projectId';
     const notebookId = 'notebookId';
-    const onSuccess = vi.fn();
+    const onEditSuccess = vi.fn();
     const onError = vi.fn();
 
     vi.mocked(labelApi.editLabel).mockResolvedValue(mockedLabel);
-    const { result } = renderHook(() => useEditLabel({ onError, onSuccess }), {
-      wrapper: QueryClientWrapper,
-    });
+    const { result } = renderHook(
+      () => useEditLabel({ onError, onEditSuccess }),
+      {
+        wrapper: QueryClientWrapper,
+      },
+    );
 
     const editLabelProps = {
       projectId,
@@ -30,11 +33,7 @@ describe('useEditLabel', () => {
 
     await waitFor(() => {
       expect(labelApi.editLabel).toHaveBeenCalledWith(editLabelProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedLabel,
-        editLabelProps,
-        undefined,
-      );
+      expect(onEditSuccess).toHaveBeenCalled();
     });
   });
 });

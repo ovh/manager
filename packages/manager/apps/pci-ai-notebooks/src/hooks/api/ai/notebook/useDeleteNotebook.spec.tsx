@@ -12,13 +12,13 @@ describe('useDeleteNotebooks', () => {
   it('should delete a Notebook', async () => {
     const projectId = 'projectId';
     const notebookId = 'notebookId';
-    const onSuccess = vi.fn();
+    const onDeleteSuccess = vi.fn();
     const onError = vi.fn();
 
     vi.mocked(notebookApi.deleteNotebook).mockResolvedValue(undefined);
 
     const { result } = renderHook(
-      () => useDeleteNotebook({ onError, onSuccess }),
+      () => useDeleteNotebook({ onError, onDeleteSuccess }),
       {
         wrapper: QueryClientWrapper,
       },

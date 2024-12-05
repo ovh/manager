@@ -1,4 +1,5 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 import { AIError } from '@/data/api';
 import {
   EditLabelProps,
@@ -7,16 +8,24 @@ import {
 
 export interface MutateLabelProps {
   onError: (cause: AIError) => void;
-  onSuccess: () => void;
+  onEditSuccess: () => void;
 }
 
-export function useEditLabel({ onError, onSuccess }: MutateLabelProps) {
+export function useEditLabel({ onError, onEditSuccess }: MutateLabelProps) {
+  const queryClient = useQueryClient();
+  const { projectId, notebookId } = useParams();
   const mutation = useMutation({
     mutationFn: (labelInfo: EditLabelProps) => {
       return editLabel(labelInfo);
     },
     onError,
-    onSuccess,
+    onSuccess: () => {
+      // Invalidate service list query to get the latest data
+      queryClient.invalidateQueries({
+        queryKey: [projectId, 'ai/notebook', notebookId],
+      });
+      onEditSuccess();
+    },
   });
 
   return {

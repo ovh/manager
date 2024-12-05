@@ -10,6 +10,7 @@ import {
   UserCheck,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useNotebookData } from '../Notebook.context';
 import Resources from './_components/Resources.component';
@@ -66,7 +67,7 @@ const Dashboard = () => {
           </CardContent>
           <h4 className="px-6 mb-4">
             <Globe2 className="size-4 inline mr-2" />
-            <span>Privacy</span>
+            <span>Confidentialité</span>
           </h4>
           <CardContent>
             <Privacy />
@@ -155,6 +156,7 @@ const Dashboard = () => {
           )}
         </CardContent>
       </Card>
+      <Outlet />
     </>
   );
 };

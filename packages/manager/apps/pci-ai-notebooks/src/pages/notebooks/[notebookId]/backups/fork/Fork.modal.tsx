@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useMemo } from 'react';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogFooter,
@@ -9,23 +10,24 @@ import {
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
 import { useForkBackup } from '@/hooks/api/ai/notebook/backups/useForkBackup.hook';
-import { ModalController } from '@/hooks/useModale';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import * as ai from '@/types/cloud/project/ai';
-import { useNotebookData } from '../../Notebook.context';
 import { Button } from '@/components/ui/button';
+import RouteModal from '@/components/route-modal/RouteModal';
+import { useGetBackup } from '@/hooks/api/ai/notebook/backups/useGetBackup.hook';
+import { useNotebookData } from '../../Notebook.context';
 
-interface ForkModalProps {
-  backup: ai.notebook.Backup;
-  controller: ModalController;
-  onSuccess?: (notebook: ai.notebook.Notebook) => void;
-  onError?: (notebook: Error) => void;
-}
-
-const Fork = ({ backup, controller, onError, onSuccess }: ForkModalProps) => {
+const Fork = () => {
   const { notebook, projectId } = useNotebookData();
+  const { backupId } = useParams();
+  const navigate = useNavigate();
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook/backups');
+  const backupQuery = useGetBackup(projectId, notebook.id, backupId);
   const toast = useToast();
+
+  const backup: ai.notebook.Backup = useMemo(() => {
+    return backupQuery.data;
+  }, [backupId, backupQuery.isSuccess]);
 
   const { forkBackup, isPending } = useForkBackup({
     onError: (err) => {
@@ -34,18 +36,13 @@ const Fork = ({ backup, controller, onError, onSuccess }: ForkModalProps) => {
         variant: 'destructive',
         description: getAIApiErrorMessage(err),
       });
-      if (onError) {
-        onError(err);
-      }
     },
     onSuccess: (newNotebook) => {
       toast.toast({
         title: t('forkToastSuccessTitle'),
         description: t('forkToastSuccessDescription'),
       });
-      if (onSuccess) {
-        onSuccess(newNotebook);
-      }
+      navigate(`../../../${newNotebook.id}`);
     },
   });
 
@@ -58,19 +55,21 @@ const Fork = ({ backup, controller, onError, onSuccess }: ForkModalProps) => {
   };
 
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../" isLoading={!backupQuery.isSuccess || !backup}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="fork-modal">
             {t('forkBackupTitle')}
           </DialogTitle>
         </DialogHeader>
-        <p className="mt-2">
-          {t('forkBackupDescription', {
-            id: backup.id,
-            date: backup.createdAt,
-          })}
-        </p>
+        {backup && (
+          <p className="mt-2">
+            {t('forkBackupDescription', {
+              id: backup.id,
+              date: backup.createdAt,
+            })}
+          </p>
+        )}
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
             <Button
@@ -91,7 +90,7 @@ const Fork = ({ backup, controller, onError, onSuccess }: ForkModalProps) => {
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

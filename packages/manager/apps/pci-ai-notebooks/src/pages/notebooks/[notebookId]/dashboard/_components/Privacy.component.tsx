@@ -1,5 +1,6 @@
 import { Plus, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { useNotebookData } from '../../Notebook.context';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -7,16 +8,13 @@ import { isOvhTags } from '@/lib/notebookHelper';
 import { useEditLabel } from '@/hooks/api/ai/notebook/label/useEditLabel.hook';
 import { useToast } from '@/components/ui/use-toast';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
-import AddLabel from './AddLabel.component';
-import { useModale } from '@/hooks/useModale';
 import { CONFIGURATION_CONFIG } from '@/components/order/configuration/configuration.constants';
 
 const Privacy = () => {
   const { notebook, notebookQuery, projectId } = useNotebookData();
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook/dashboard');
   const toast = useToast();
-  const addModale = useModale('add');
-
+  const navigate = useNavigate();
   const { editLabel, isPending } = useEditLabel({
     onError: (err) => {
       toast.toast({
@@ -25,7 +23,7 @@ const Privacy = () => {
         description: getAIApiErrorMessage(err),
       });
     },
-    onSuccess: () => {
+    onEditSuccess: () => {
       toast.toast({
         title: t('notebookToastSuccessTitle'),
         description: t('deleteNotebookSuccess'),
@@ -53,7 +51,7 @@ const Privacy = () => {
             size="roundedsmIcon"
             type="button"
             className="inline"
-            onClick={() => addModale.open()}
+            onClick={() => navigate('./add-label')}
             disabled={
               Object.entries(notebook.spec.labels).length >=
               CONFIGURATION_CONFIG.maxLabelNumber
@@ -90,14 +88,6 @@ const Privacy = () => {
             ))}
         </div>
       </div>
-      <AddLabel
-        controller={addModale.controller}
-        notebook={notebook}
-        onSuccess={() => {
-          addModale.close();
-          notebookQuery.refetch();
-        }}
-      />
     </>
   );
 };

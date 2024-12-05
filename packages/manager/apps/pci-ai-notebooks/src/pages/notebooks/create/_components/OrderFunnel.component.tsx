@@ -49,11 +49,10 @@ import { useAddNotebook } from '@/hooks/api/ai/notebook/useAddNotebook.hook';
 import { useToast } from '@/components/ui/use-toast';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import ErrorList from '@/components/order/error-list/ErrorList.component';
-import { OrderSshKey, PrivacyEnum, Suggestions } from '@/types/orderFunnel';
+import { PrivacyEnum, Suggestions } from '@/types/orderFunnel';
 import { useModale } from '@/hooks/useModale';
 import { useGetCommand } from '@/hooks/api/ai/notebook/useGetCommand.hook';
 import CliEquivalent from './CliEquivalent.component';
-import AddSSHKey from '@/pages/_components/AddSSHKey.component';
 import { getNotebookSpec } from '@/lib/orderFunnelHelper';
 
 interface OrderFunnelProps {
@@ -91,7 +90,6 @@ const OrderFunnel = ({
   const { toast } = useToast();
   const [command, setCommand] = useState<ai.Command>({ command: '' });
 
-  const addSshKeyModale = useModale('addSshKey');
   const { addNotebook, isPending: isPendingAddNotebook } = useAddNotebook({
     onError: (err) => {
       toast({
@@ -102,7 +100,8 @@ const OrderFunnel = ({
     },
     onSuccess: (notebook) => {
       toast({
-        title: t('successCreatingNotebook'),
+        title: t('successCreatingNotebookTitle'),
+        description: t('successCreatingNotebookDescription'),
       });
       navigate(`../${notebook.id}`);
     },
@@ -495,7 +494,7 @@ const OrderFunnel = ({
                                 size="sm"
                                 className="text-base"
                                 type="button"
-                                onClick={() => addSshKeyModale.open()}
+                                onClick={() => navigate('./add-sshkey')}
                               >
                                 <Plus className="size-4 mr-2" />
                                 {t('sshkeyAddButtonLabel')}
@@ -576,16 +575,6 @@ const OrderFunnel = ({
           </Card>
         </form>
       </Form>
-      <AddSSHKey
-        controller={addSshKeyModale.controller}
-        configuredSshKeys={sshKeys}
-        onSuccess={(sshKey: SshKey) => {
-          addSshKeyModale.close();
-          const newSshKeyList: OrderSshKey[] = model.form.getValues('sshKey');
-          newSshKeyList.push({ name: sshKey.name, sshKey: sshKey.publicKey });
-          model.form.setValue('sshKey', newSshKeyList);
-        }}
-      />
       <CliEquivalent
         controller={cliEquivalentModale.controller}
         command={command}

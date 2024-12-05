@@ -1,8 +1,8 @@
-import { useParams } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   Form,
   FormControl,
@@ -14,36 +14,24 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
-import * as ai from '@/types/cloud/project/ai';
 import { useEditLabel } from '@/hooks/api/ai/notebook/label/useEditLabel.hook';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
+import RouteModal from '@/components/route-modal/RouteModal';
+import { useNotebookData } from '../../Notebook.context';
 
-interface AddLabelProps {
-  notebook: ai.notebook.Notebook;
-  controller: ModalController;
-  onSuccess?: () => void;
-  onError?: (error: Error) => void;
-}
-
-const AddLabel = ({
-  notebook,
-  controller,
-  onError,
-  onSuccess,
-}: AddLabelProps) => {
-  // import translations
+const AddLabel = () => {
   const { projectId } = useParams();
+  const { notebook } = useNotebookData();
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook/dashboard');
   const toast = useToast();
+  const navigate = useNavigate();
 
   const { editLabel, isPending } = useEditLabel({
     onError: (err) => {
@@ -52,18 +40,13 @@ const AddLabel = ({
         variant: 'destructive',
         description: getAIApiErrorMessage(err),
       });
-      if (onError) {
-        onError(err);
-      }
     },
-    onSuccess: () => {
+    onEditSuccess: () => {
       toast.toast({
         title: t('notebookToastSuccessTitle'),
         description: t('deleteNotebookSuccess'),
       });
-      if (onSuccess) {
-        onSuccess();
-      }
+      navigate('../');
     },
   });
   // define the schema for the form
@@ -104,7 +87,7 @@ const AddLabel = ({
   });
 
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../">
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="rename-service-modal">
@@ -165,7 +148,7 @@ const AddLabel = ({
           </form>
         </Form>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 
