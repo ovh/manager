@@ -1,6 +1,6 @@
 import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import Link from '@/components/links/Link.component';
 import { Button } from '@/components/ui/button';
 import { POLLING } from '@/configuration/polling.constants';
@@ -42,10 +42,8 @@ const Notebooks = () => {
           {t('createNewNotebook')}
         </Link>
       </Button>
-      <NotebooksList
-        notebooks={notebooksQuery.data}
-        refetchFn={notebooksQuery.refetch}
-      />
+      <NotebooksList notebooks={notebooksQuery.data} />
+      <Outlet />
     </>
   );
 };

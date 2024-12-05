@@ -10,6 +10,7 @@ import {
   UserCheck,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useNotebookData } from '../Notebook.context';
 import Resources from './_components/Resources.component';
@@ -154,6 +155,23 @@ const Dashboard = () => {
           </CardContent>
         </Card>
       </div>
+      <Card>
+        <CardHeader>
+          <h4>
+            <TerminalSquare className="size-4 inline mr-2" />
+            <span>CLI</span>
+          </h4>
+        </CardHeader>
+        <CardContent>
+          {command && (
+            <CliCodeBlock
+              title="Vous pouvez créer le même notebook en utilisant ces lignes de commande dans votre ovhai CLI."
+              code={command.command}
+            />
+          )}
+        </CardContent>
+      </Card>
+      <Outlet />
     </>
   );
 };

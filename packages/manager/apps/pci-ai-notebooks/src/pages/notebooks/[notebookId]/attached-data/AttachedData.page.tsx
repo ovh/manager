@@ -1,12 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { ArrowUpRightFromSquare, Info } from 'lucide-react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useNotebookData } from '../Notebook.context';
 import A from '@/components/links/A.component';
 import { Button } from '@/components/ui/button';
 import VolumesList from './_components/VolumesListTable.component';
 import * as ai from '@/types/cloud/project/ai';
-import DataSync from './_components/DataSync.component';
-import { useModale } from '@/hooks/useModale';
 import { isDataSyncNotebook } from '@/lib/notebookHelper';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 
@@ -20,12 +19,12 @@ export function breadcrumb() {
 }
 
 const AttachedData = () => {
-  const { notebook, notebookQuery } = useNotebookData();
+  const { notebook } = useNotebookData();
+  const navigate = useNavigate();
   const { t } = useTranslation(
     'pci-ai-notebooks/notebooks/notebook/attached-data',
   );
   const volumeInfoLink = 'https://docs.ovh.com/gb/en/publiccloud/ai/data/';
-  const dataSyncModale = useModale('datasyncglobal');
   return (
     <>
       <h4>{t('attachedDataTitle')}</h4>
@@ -48,7 +47,7 @@ const AttachedData = () => {
           size="sm"
           type="button"
           className="text-base"
-          onClick={() => dataSyncModale.open()}
+          onClick={() => navigate('./data-sync')}
           disabled={!isDataSyncNotebook(notebook.status.state)}
         >
           {t('synchroniseDataButton')}
@@ -60,13 +59,7 @@ const AttachedData = () => {
             vol.volumeSource.dataStore.internal === false,
         )}
       />
-      <DataSync
-        controller={dataSyncModale.controller}
-        onSuccess={() => {
-          dataSyncModale.close();
-          notebookQuery.refetch();
-        }}
-      />
+      <Outlet />
     </>
   );
 };

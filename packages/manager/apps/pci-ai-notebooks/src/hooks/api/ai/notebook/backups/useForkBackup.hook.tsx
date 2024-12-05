@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { AIError } from '@/data/api';
 import * as ai from '@/types/cloud/project/ai';
 import {
-  ForkBackupData,
+  BackupData,
   forkBackup,
 } from '@/data/api/ai/notebook/backups/backups.api';
 
@@ -13,7 +13,7 @@ interface UseForkBackup {
 
 export function useForkBackup({ onError, onSuccess }: UseForkBackup) {
   const mutation = useMutation({
-    mutationFn: (forkInfo: ForkBackupData) => {
+    mutationFn: (forkInfo: BackupData) => {
       return forkBackup(forkInfo);
     },
     onError,
@@ -21,7 +21,7 @@ export function useForkBackup({ onError, onSuccess }: UseForkBackup) {
   });
 
   return {
-    forkBackup: (forkInfo: ForkBackupData) => {
+    forkBackup: (forkInfo: BackupData) => {
       return mutation.mutate(forkInfo);
     },
     ...mutation,
