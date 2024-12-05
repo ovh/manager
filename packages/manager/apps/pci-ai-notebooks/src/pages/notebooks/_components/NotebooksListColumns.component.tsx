@@ -1,12 +1,5 @@
 import { ColumnDef } from '@tanstack/react-table';
-import {
-  Cpu,
-  HelpCircle,
-  MoreHorizontal,
-  ShieldAlert,
-  ShieldCheck,
-  Zap,
-} from 'lucide-react';
+import { Cpu, Globe, LockKeyhole, MoreHorizontal, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as ai from '@/types/cloud/project/ai';
@@ -127,18 +120,10 @@ export const getColumns = ({
       id: 'Operating time',
       accessorFn: (row) =>
         convertSecondsToTimeString(row.status.duration, true),
-      header: () => (
-        <div className="flex flex-row gap-2 font-semibold">
+      header: ({ column }) => (
+        <SortableHeader column={column}>
           {t('tableHeaderDuration')}
-          <Popover>
-            <PopoverTrigger>
-              <HelpCircle className="size-4" />
-            </PopoverTrigger>
-            <PopoverContent>
-              <p>{t('durationHelper')}</p>
-            </PopoverContent>
-          </Popover>
-        </div>
+        </SortableHeader>
       ),
     },
     {
@@ -155,12 +140,12 @@ export const getColumns = ({
           <div>
             {unsecureHttp ? (
               <div className="flex gap-2 items-center">
-                <ShieldAlert className="size-4 inline mr-2 text-amber-400" />
+                <Globe className="size-4 inline mr-2" />
                 {t('networkPublicTitle')}
               </div>
             ) : (
               <div className="flex gap-2 items-center">
-                <ShieldCheck className="size-4 inline mr-2 text-green-500" />
+                <LockKeyhole className="size-4 inline mr-2" />
                 {t('networkSecureTitle')}
               </div>
             )}

@@ -21,14 +21,13 @@ const NotebookLink = () => {
         <NotebookPenIcon className="size-4" />
       </div>
       <Button
-        className="w-full"
         type="button"
         variant="default"
         disabled={!isRunningNotebook(notebook.status.state)}
       >
         <A href={notebook.status.url} target="_blank" rel="noopener noreferrer">
           <div className="flex flex-row gap-1 items-center text-white capitalize">
-            {notebook.spec.env.editorId}
+            Ouvrir {notebook.spec.env.editorId}
             <ArrowUpRightFromSquare className="size-4" />
           </div>
         </A>
@@ -37,7 +36,7 @@ const NotebookLink = () => {
         <h5>{t('grafanaTitle')}</h5>
         <Activity className="size-4" />
       </div>
-      <Button className="w-full" type="button" variant="outline">
+      <Button type="button" variant="outline">
         <A
           href={notebook.status.monitoringUrl}
           target="_blank"

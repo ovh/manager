@@ -28,7 +28,7 @@ const CliCodeBlock = ({
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row items-center justify-between p-2 px-6">
+      <div className="flex flex-row items-center p-2 pr-6 gap-4">
         <p>{title}</p>
         <Button
           data-testid="code-block-copy-button"

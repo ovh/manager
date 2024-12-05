@@ -32,10 +32,9 @@ const Notebooks = () => {
         <Guides />
       </div>
       <Button
+        variant="default"
+        type="button"
         data-testid="create-notebook-button"
-        variant="outline"
-        size="sm"
-        className="text-base"
         asChild
       >
         <Link to="./new" className="hover:no-underline">

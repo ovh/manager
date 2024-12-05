@@ -2,10 +2,10 @@ import { useTranslation } from 'react-i18next';
 import {
   ArrowRight,
   Atom,
-  Globe2,
   Link,
   RefreshCcwDot,
   Settings2,
+  Tag,
   TerminalSquare,
   UserCheck,
 } from 'lucide-react';
@@ -14,7 +14,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useNotebookData } from '../Notebook.context';
 import Resources from './_components/Resources.component';
 import Configurations from './_components/Configuration.component';
-import Privacy from './_components/Privacy.component';
+import Privacy from './_components/Tags.component';
 import { useGetCommand } from '@/hooks/api/ai/notebook/useGetCommand.hook';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import { useToast } from '@/components/ui/use-toast';
@@ -62,12 +62,13 @@ const Dashboard = () => {
             </h4>
           </CardHeader>
           <CardContent>
-           <NotebookLink/>
+            <NotebookLink />
           </CardContent>
-            <h4 className='px-6 mb-4'>
-              <Globe2 className="size-4 inline mr-2" />
-              <span>Privacy</span>
-            </h4>
+          <div className="border-t my-2 pt-2 mx-6"></div>
+          <h4 className="px-6 mb-4">
+            <Tag className="size-4 inline mr-2" />
+            <span>Tags</span>
+          </h4>
           <CardContent>
             <Privacy />
           </CardContent>
@@ -95,8 +96,8 @@ const Dashboard = () => {
           </CardContent>
         </Card>
       </div>
-      <div className="flex flex-col lg:grid lg:grid-flow-col lg:auto-cols-fr gap-2">
-        <Card>
+      <div className="flex flex-col lg:grid lg:grid-cols-3 gap-2">
+        <Card className="lg:col-span-1">
           <CardHeader>
             <h4>
               <UserCheck className="inline size-4 mr-2 mb-1" />
@@ -126,35 +127,33 @@ const Dashboard = () => {
               <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
             </div>
           </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <h4>
-              <Settings2 className="inline size-4 mr-2 mb-1" />
-              Configuration
-            </h4>
-          </CardHeader>
+          <div className="border-t my-2 pt-2 mx-6"></div>
+          <h4 className="px-6 mb-4">
+            <Settings2 className="inline size-4 mr-2 mb-1" />
+            Configuration
+          </h4>
+
           <CardContent>
             <Configurations />
           </CardContent>
         </Card>
+        <Card className="lg:col-span-2">
+          <CardHeader>
+            <h4>
+              <TerminalSquare className="size-4 inline mr-2" />
+              <span>CLI</span>
+            </h4>
+          </CardHeader>
+          <CardContent>
+            {command && (
+              <CliCodeBlock
+                title="Vous pouvez créer le même notebook en utilisant ces lignes de commande dans votre ovhai CLI."
+                code={command.command}
+              />
+            )}
+          </CardContent>
+        </Card>
       </div>
-      <Card>
-        <CardHeader>
-          <h4>
-            <TerminalSquare className="size-4 inline mr-2" />
-            <span>CLI</span>
-          </h4>
-        </CardHeader>
-        <CardContent>
-          {command && (
-            <CliCodeBlock
-              title="Vous pouvez créer le même notebook en utilisant ces lignes de commande dans votre ovhai CLI."
-              code={command.command}
-            />
-          )}
-        </CardContent>
-      </Card>
     </>
   );
 };

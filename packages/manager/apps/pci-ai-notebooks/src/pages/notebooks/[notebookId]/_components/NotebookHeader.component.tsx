@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import {
   ArrowUpRightFromSquare,
+  Globe,
+  LockKeyhole,
   NotebookText,
   PlayIcon,
-  ShieldAlert,
-  ShieldCheck,
   Square,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -40,12 +40,13 @@ export const NotebookHeader = ({
       <div className="w-full">
         <div className="flex flex-row items-center gap-3">
           <h2>{notebook.spec.name ?? 'Dashboard'}</h2>
-          <div className="mt-1">
+          <div>
             {isRunningNotebook(notebook.status.state) ||
             isDeletingNotebook(notebook.status.state) ? (
               <Button
                 type="button"
                 size="roundedIcon"
+                title="Stop notebook"
                 className="bg-red-400 hover:bg-red-600"
                 onClick={() => stopModale.open()}
               >
@@ -55,6 +56,7 @@ export const NotebookHeader = ({
               <Button
                 type="button"
                 size="roundedIcon"
+                title="Start notebook"
                 onClick={() => startModale.open()}
               >
                 <PlayIcon className="size-3 fill-white mx-auto" />
@@ -77,7 +79,7 @@ export const NotebookHeader = ({
               rel="noopener noreferrer"
             >
               <div className="flex flex-row gap-1 items-center text-white capitalize">
-                {notebook.spec.env.editorId}
+                Ouvrir {notebook.spec.env.editorId}
                 <ArrowUpRightFromSquare className="size-3" />
               </div>
             </A>
@@ -95,12 +97,12 @@ export const NotebookHeader = ({
             {notebook.spec.unsecureHttp ? (
               <div className="flex flex-row gap-1 items-center">
                 <span>{t('publicAccessLabel')}</span>
-                <ShieldAlert className="size-3 text-amber-400" />
+                <Globe className="size-3" />
               </div>
             ) : (
               <div className="flex flex-row gap-1 items-center">
                 <span>{t('privateAccessLabel')}</span>
-                <ShieldCheck className="size-3 text-green-500" />
+                <LockKeyhole className="size-3" />
               </div>
             )}
           </Badge>
