@@ -62,7 +62,7 @@
   "ip_table_search": "Rechercher...",
   "ip_table_ipblock_refresh": "Rafraichissement de l'IP {{t0}}...",
   "ip_table_ipBlock_under_creation": "Création en cours",
-  "ip_table_ipblock_under_delete": "Division en cours",
+  "ip_table_ipblock_under_division": "Division en cours",
   "ip_manage_task_pending": "Une opération est en cours sur l'une des IP de votre serveur.",
   "ip_migration": "Importer mes adresses IP de SYS vers OVHcloud",
   "ip_export": "Exporter mes adresses IP dans un fichier CSV",
