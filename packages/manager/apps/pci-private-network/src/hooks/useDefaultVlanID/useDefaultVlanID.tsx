@@ -15,7 +15,7 @@ export default function useDefaultVlanID(): GetDefaultVlanId {
 
   return useMemo(() => {
     const ids = networks?.map((network) => network.vlanId);
-    const vlanIds = ids?.filter((id) => !!id) || [];
+    const vlanIds = ids?.filter((id) => id !== null && id !== undefined) || [];
     const id = getNextAvailableVlanId(vlanIds) || VLAN_ID.default;
 
     return { defaultVlanId: id, notAvailableIds: vlanIds };
