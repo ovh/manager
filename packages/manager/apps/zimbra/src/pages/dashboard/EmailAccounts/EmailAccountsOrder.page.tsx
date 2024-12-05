@@ -27,7 +27,12 @@ import {
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
 import Loading from '@/components/Loading/Loading';
 import { useOrderCatalog } from '@/hooks/useOrderCatalog';
@@ -43,6 +48,11 @@ import {
   FormTypeInterface,
 } from '@/utils';
 import { usePlatform } from '@/hooks';
+import {
+  CANCEL,
+  CONFIRM,
+  ORDER_ZIMBRA_EMAIL_ACCOUNT,
+} from '@/tracking.constant';
 
 type OrderGeneratedTileProps = {
   orderURL: string;
@@ -103,6 +113,7 @@ function OrderCatalogForm({
   locale,
   orderBaseURL,
 }: Readonly<OrderCatalogFormProps>) {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('accounts/order');
   const { platformId } = usePlatform();
   const [orderURL, setOrderURL] = useState('');
@@ -166,6 +177,12 @@ function OrderCatalogForm({
   };
 
   const handleConfirm = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [ORDER_ZIMBRA_EMAIL_ACCOUNT, CONFIRM, form.commitment.value],
+    });
     const products = Object.entries(form)
       .filter(([key]) => whitelistedPlanCodes.includes(key as ZimbraPlanCodes))
       .map(([key, { value }]) => {
@@ -305,6 +322,7 @@ function OrderCatalogForm({
 }
 
 export default function EmailAccountsOrder() {
+  const { trackClick } = useOvhTracking();
   const { addError } = useNotifications();
   const { t } = useTranslation('accounts/order');
   const context = useContext(ShellContext);
@@ -317,6 +335,12 @@ export default function EmailAccountsOrder() {
   const navigate = useNavigate();
 
   const goBack = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [ORDER_ZIMBRA_EMAIL_ACCOUNT, CANCEL],
+    });
     navigate('..');
   };
 

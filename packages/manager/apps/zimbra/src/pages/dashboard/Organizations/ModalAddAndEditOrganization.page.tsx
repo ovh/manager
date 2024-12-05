@@ -18,6 +18,12 @@ import {
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGenerateUrl, useOrganization, usePlatform } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {
@@ -32,12 +38,22 @@ import {
   checkValidityForm,
   FormTypeInterface,
 } from '@/utils';
+import {
+  ADD_ORGANIZATION,
+  CANCEL,
+  CONFIRM,
+  EDIT_ORGANIZATION,
+} from '@/tracking.constant';
 
 export default function ModalAddAndEditOrganization() {
   const { t } = useTranslation('organizations/addAndEdit');
+  const { trackClick, trackPage } = useOvhTracking();
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
   const editOrganizationId = searchParams?.get('editOrganizationId');
+  const trackingName = editOrganizationId
+    ? EDIT_ORGANIZATION
+    : ADD_ORGANIZATION;
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
   const goBackUrl = useGenerateUrl('..', 'path');
@@ -79,6 +95,10 @@ export default function ModalAddAndEditOrganization() {
         : postZimbraPlatformOrganization(platformId, params);
     },
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: trackingName,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
@@ -91,6 +111,10 @@ export default function ModalAddAndEditOrganization() {
       );
     },
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: trackingName,
+      });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
@@ -118,7 +142,24 @@ export default function ModalAddAndEditOrganization() {
       name: { value: name },
       label: { value: label },
     } = form;
+
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CONFIRM],
+    });
     addOrEditOrganization({ name, label });
+  };
+
+  const handleCancelClick = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CANCEL],
+    });
+    onClose();
   };
 
   const handleFormChange = (name: string, value: string) => {
@@ -156,6 +197,10 @@ export default function ModalAddAndEditOrganization() {
       onClose={onClose}
       isDismissible
       isLoading={isLoading}
+      secondaryButton={{
+        label: t('zimbra_organization_add_cancel'),
+        action: handleCancelClick,
+      }}
       primaryButton={{
         testid: 'confirm-btn',
         variant: ODS_BUTTON_VARIANT.default,
