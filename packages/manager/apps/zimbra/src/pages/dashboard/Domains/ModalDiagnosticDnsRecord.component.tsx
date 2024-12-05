@@ -80,7 +80,7 @@ export default function ModalDiagnosticDnsRecord(
   );
 
   const [domain, setDomain] = useState<DomainType>();
-  const { data, isLoading } = useDomain(domainId);
+  const { data, isLoading } = useDomain({ domainId });
 
   useEffect(() => {
     setDomain(data);

@@ -20,6 +20,7 @@ export const IAM_ACTIONS = {
     create: `${IAM_ACTIONS_PREFIX}domain/create`,
     delete: `${IAM_ACTIONS_PREFIX}domain/delete`,
     edit: `${IAM_ACTIONS_PREFIX}domain/edit`,
+    diagnose: `${IAM_ACTIONS_PREFIX}domain/diagnose`,
   },
   mailingList: {
     create: `${IAM_ACTIONS_PREFIX}mailingList/create`,
