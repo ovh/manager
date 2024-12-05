@@ -50,7 +50,6 @@ const ResetUserPassword = () => {
         }),
       });
       setNewPass(userWithPassword.password);
-      navigate('../');
     },
   });
 
