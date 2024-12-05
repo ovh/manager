@@ -30,8 +30,7 @@
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest --watch",
-    "type:check": "tsc --noEmit"
+    "test:watch": "vitest --watch"
   },
   "dependencies": {
     "@ovh-ux/manager-tailwind-config": "^0.2.1",
