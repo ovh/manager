@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_storages_containers_update_versioning_enable_label": "Ativar",
+  "pci_projects_project_storages_containers_update_versioning_enabled_label": "Ativado",
+  "pci_projects_project_storages_containers_update_versioning_disabled_label": "Desativado",
+  "pci_projects_project_storages_containers_update_versioning_suspended_label": "Suspenso",
+  "pci_projects_project_storages_containers_update_versioning_cancel_label": "Anular",
+  "pci_projects_project_storages_containers_update_versioning_title": "Ativar o versioning",
+  "pci_projects_project_storages_containers_update_versioning_versioning": "Versioning:",
+  "pci_projects_project_storages_containers_update_versioning_enable_success_message": "A ativação do versioning foi efetuada com sucesso.",
+  "pci_projects_project_storages_containers_update_versioning_enable_error_message": "Ocorreu um erro aquando da ativação do versioning: {{ message }}.",
+  "pci_projects_project_storages_containers_bucket_versioning_description": "Automatiza a criação de versões de um objeto para compensar a eliminação acidental deste último, ou simplesmente quando um novo objeto é alvo de upload."
+}

@@ -80,5 +80,29 @@ export const getStorage = async (
   const { data } = await v6.get<TStorage>(
     `/cloud/project/${projectId}/storage/${storageId}`,
   );
+
+  return data;
+};
+
+export const updateStorage = async ({
+  projectId,
+  region,
+  name,
+  versioning,
+  s3StorageType,
+}: {
+  projectId: string;
+  region: string;
+  name: string;
+  versioning: { status: string };
+  s3StorageType: string;
+}) => {
+  const url =
+    s3StorageType === 'storage'
+      ? `/cloud/project/${projectId}/region/${region}/storage/${name}`
+      : `/cloud/project/${projectId}/region/${region}/storageStandard/${name}`;
+
+  const { data } = await v6.put(url, { versioning });
+
   return data;
 };
