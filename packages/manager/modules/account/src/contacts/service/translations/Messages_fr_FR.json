@@ -35,6 +35,7 @@
   "account_contacts_service_category_NUTANIX": "Nutanix",
   "account_contacts_service_category_DEDICATED_CLUSTER": "3-AZ server",
   "account_contacts_service_category_PACK_SIP_TRUNK": "Packs SIP Trunk",
+  "account_contacts_service_category_HYCU": "HYCU",
   "account_contacts_service_contact_admin": "Contact administrateur",
   "account_contacts_service_contact_tech": "Contact technique",
   "account_contacts_service_contact_billing": "Contact facturation",
