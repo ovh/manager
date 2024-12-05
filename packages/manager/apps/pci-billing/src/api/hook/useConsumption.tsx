@@ -552,6 +552,7 @@ export const useGeTCurrentUsage = (projectId: string) =>
       return currentUsage;
     },
     select: (data) => getConsumptionDetails(data),
+    retry: 1,
   });
 
 type ActivateMonthlyBillingProps = {
