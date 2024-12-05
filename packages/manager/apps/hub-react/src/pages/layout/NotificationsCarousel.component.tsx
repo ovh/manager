@@ -16,6 +16,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useFetchHubNotifications } from '@/data/hooks/notifications/useNotifications';
 import { Notification, NotificationType } from '@/types/notifications.type';
+import NotificationsCarouselSkeleton from '@/pages/layout/NotificationsCarousel.skeleton';
 
 const getMessageColor = (type: NotificationType) => {
   switch (type) {
@@ -64,7 +65,7 @@ const getTextColor = (type: NotificationType) => {
 
 export default function NotificationsCarousel() {
   const { trackClick } = useOvhTracking();
-  const { data: notifications } = useFetchHubNotifications();
+  const { data: notifications, isLoading } = useFetchHubNotifications();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const showNextNotification = () => {
@@ -77,7 +78,9 @@ export default function NotificationsCarousel() {
     });
   };
 
-  return (
+  return isLoading ? (
+    <NotificationsCarouselSkeleton />
+  ) : (
     <>
       {notifications?.length > 0 && (
         <OsdsMessage

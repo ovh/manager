@@ -40,6 +40,7 @@ import { LastOrderTrackingResponse, OrderHistory } from '@/types/order.type';
 import { Skeletons } from '@/components/skeletons/Skeletons.component';
 // FIXME: lazy load these comoponents
 import TileError from '@/components/tile-error/TileError.component';
+import OrderTrackingSkeleton from '@/components/hub-order-tracking/OrderTracking.skeleton';
 
 export default function HubOrderTracking() {
   const { t } = useTranslation('hub/order');
@@ -117,7 +118,9 @@ export default function HubOrderTracking() {
       />
     );
 
-  return (
+  return isLoading ? (
+    <OrderTrackingSkeleton />
+  ) : (
     <OsdsTile
       className="block p-1 bg-[var(--ods-color-primary-200)] p-6"
       variant={ODS_TILE_VARIANT.ghost}

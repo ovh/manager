@@ -31,6 +31,7 @@ import { Await } from 'react-router-dom';
 import { useFetchHubBillingServices } from '@/data/hooks/billingServices/useBillingServices';
 import { BillingService } from '@/billing/types/billingServices.type';
 import useDateFormat from '@/hooks/dateFormat/useDateFormat';
+import PaymentStatusSkeleton from '@/pages/layout/PaymentStatus.skeleton';
 
 const TileError = lazy(() =>
   import('@/components/tile-error/TileError.component'),
@@ -79,7 +80,9 @@ export default function PaymentStatus({
   const services = data?.services;
   const count = data?.count || 0;
 
-  return (
+  return isLoading ? (
+    <PaymentStatusSkeleton />
+  ) : (
     <OsdsTile
       className="w-full flex flex-col p-6"
       inline
@@ -204,7 +207,10 @@ export default function PaymentStatus({
                       <div className="lg:inline mb-1">
                         <Suspense
                           fallback={
-                            <OsdsSkeleton data-testid="billing_status_skeleton" />
+                            <OsdsSkeleton
+                              className="mb-5"
+                              data-testid="billing_status_skeleton"
+                            />
                           }
                         >
                           <BillingStatus service={service} />
@@ -212,7 +218,7 @@ export default function PaymentStatus({
                       </div>
                       {!service.isBillingSuspended() && (
                         <div
-                          className="d-lg-inline mb-1"
+                          className="lg:inline mb-1"
                           data-testid="service_expiration_date_message"
                         >
                           {service.isOneShot() &&
@@ -279,20 +285,6 @@ export default function PaymentStatus({
                         </Suspense>
                       </td>
                     )}
-                  </tr>
-                ))}
-              {isLoading &&
-                [1, 2, 3, 4].map((index) => (
-                  <tr
-                    key={`payment_status_skeleton_line_${index}`}
-                    data-testid="payment_status_skeleton_line"
-                  >
-                    <td>
-                      <OsdsSkeleton
-                        inline
-                        size={ODS_SKELETON_SIZE.sm}
-                      ></OsdsSkeleton>
-                    </td>
                   </tr>
                 ))}
             </tbody>
