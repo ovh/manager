@@ -10,15 +10,10 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
-import { Suspense, useContext, useEffect, useState } from 'react';
+import { Suspense, useContext, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import {
-  Outlet,
-  useHref,
-  useLocation,
-  useResolvedPath,
-} from 'react-router-dom';
+import { Outlet, useHref, useResolvedPath } from 'react-router-dom';
 import { sub } from 'date-fns';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ROUTE_PATHS } from '@/routes';
@@ -27,9 +22,9 @@ import { PCI_FEATURES_FREE_LOCAL_ZONES_BANNER } from '@/constants';
 
 export default function BillingPage() {
   const { t } = useTranslation('consumption');
-  const location = useLocation();
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
+  const [activePanelName, setActivePanelName] = useState('');
 
   const anteriorDate = sub(new Date(), { months: 1 });
 
@@ -62,13 +57,6 @@ export default function BillingPage() {
     },
   ];
 
-  const [activePanelTranslation, setActivePanelTranslation] = useState(null);
-
-  useEffect(() => {
-    const activeTab = tabs.find((tab) => location.pathname === tab.to);
-    setActivePanelTranslation(t(activeTab?.name));
-  }, [location.pathname]);
-
   return (
     <>
       <OsdsBreadcrumb
@@ -81,7 +69,7 @@ export default function BillingPage() {
             label: t('cpbc_billing_control'),
             href: useHref(ROUTE_PATHS.BILLING),
           },
-          { label: activePanelTranslation },
+          { label: t(activePanelName) },
         ]}
       />
 
@@ -99,7 +87,11 @@ export default function BillingPage() {
       <Notifications />
 
       <div className="mb-10">
-        <TabsPanel tabs={tabs} />
+        <TabsPanel
+          tabs={tabs}
+          activePanelName={activePanelName}
+          setActivePanelName={setActivePanelName}
+        />
       </div>
 
       <Suspense>
