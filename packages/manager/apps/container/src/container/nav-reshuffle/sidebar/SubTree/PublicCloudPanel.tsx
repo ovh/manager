@@ -173,7 +173,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
         )}
         {selectedPciProject && (
           <button
-            className={`d-flex ${style['button-as-div']} ${style.sidebar_clipboard}`}
+            className={`d-flex ${style.button_as_div} ${style.sidebar_clipboard}`}
             title={t('sidebar_clipboard_copy')}
             onClick={() =>
               navigator.clipboard.writeText(selectedPciProject.project_id)

@@ -20,7 +20,7 @@ import {
   shouldHideElement,
   findNodeByRouting,
   splitPathIntoSegmentsWithoutRouteParams,
-  IServicesCount,
+  IServicesCount
 } from './utils';
 import { Node } from './navigation-tree/node';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
@@ -238,6 +238,11 @@ const Sidebar = (): JSX.Element => {
   const closeSubMenu = () => {
     setShowSubTree(false);
     setIsManuallyClosed(true);
+
+    setTimeout(() => {
+      setSelectedNode(null);
+      setSelectedSubMenu(null);
+    }, 400);
   };
 
   const menuClickHandler = (node: Node) => {
@@ -393,6 +398,7 @@ const Sidebar = (): JSX.Element => {
           handleCloseSideBar={closeSubMenu}
           handleOnSubMenuClick={selectSubMenu}
           rootNode={selectedNode}
+          open={showSubTree}
         ></SubTree>
       )}
     </div>

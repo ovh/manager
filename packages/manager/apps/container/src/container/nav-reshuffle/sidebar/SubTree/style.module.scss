@@ -3,14 +3,6 @@
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
 
 .subtree {
-  width: 100%;
-  height: 100%;
-  background-color: rgba($p-500, 0.50);
-  position: fixed;
-  top: 0;
-  left: 20rem;
-  z-index: 901;
-  overflow-y: auto;
   &_content {
     display: flex;
     flex-flow: column;
@@ -18,8 +10,20 @@
     background: $p-800;
     height: auto;
     min-height: 100%;
-    width: 20rem;
+    width: 0rem;
     overflow-y: auto;
+
+    transition: transform 0.3s ease-in, opacity 0.3s ease-in, width 0s ease-out 0.3s;
+    transform: scaleX(0);
+    transform-origin: 0% 50%;
+    opacity: 0;
+
+    &_open {
+      transform: scaleX(1);
+      opacity: 1;
+      width: 20rem;
+      transition: transform 0.3s ease-in 0s, opacity 0.3s ease-in 0s, width 0s ease-out 0s;
+    }
   }
   &_list {
     min-height: 28.125rem;
@@ -32,7 +36,7 @@
       width: 100%;
     }
   }
-  &_back_btn{
+  &_back_btn {
     display: none;
     height: 2.5rem;
     background-color: $p-500;
@@ -44,12 +48,12 @@
     padding: 0 0.625em;
     width: 100%;
   }
-  &_section_title{
+  &_section_title {
     color: $p-200 !important;
     text-transform: uppercase;
     font-size: 1rem !important;
   }
-  &_section{
+  &_section {
     &:after {
       content: '';
       margin: 0 1rem;
@@ -72,21 +76,27 @@
     border: none;
   }
 
-  &_submenu_items, &_submenu_items_selected {
-    a, button {
+  &_submenu_items,
+  &_submenu_items_selected {
+    a,
+    button {
       padding: 0 1rem;
     }
   }
 
   &_submenu_items {
-    a:hover, a:focus, button:hover, button:focus  {
+    a:hover,
+    a:focus,
+    button:hover,
+    button:focus {
       background-color: darken($p-800, 5);
       text-decoration: none;
     }
   }
 
   &_submenu_items_selected {
-    a, button  {
+    a,
+    button {
       background-color: darken($p-800, 5);
       text-decoration: none !important;
     }
