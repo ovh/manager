@@ -1,0 +1,7 @@
+{
+  "billing_payment_method_edit_title": "Beschreibung bearbeiten",
+  "billing_payment_method_edit_action_save": "Beschreibung speichern",
+  "billing_payment_method_edit_description": "Neue Beschreibung eingeben",
+  "billing_payment_method_edit_error": "Bei der Änderung der Beschreibung ist ein Fehler aufgetreten: {{ errorMessage }}",
+  "billing_payment_method_edit_success": "Die Beschreibung Ihres Zahlungsmittels wurde erfolgreich bearbeitet."
+}

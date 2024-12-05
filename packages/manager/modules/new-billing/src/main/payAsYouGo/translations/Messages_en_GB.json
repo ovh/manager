@@ -1,0 +1,17 @@
+{
+  "billing_main_pay_as_you_go_title": "Current Pay As You Go usage",
+  "billing_main_pay_as_you_go_load_error": "An error has occurred loading your Pay As You Go usage. ",
+  "billing_main_pay_as_you_go_table_project": "Project",
+  "billing_main_pay_as_you_go_table_project_title": "{{ name }}: go to the management page for this project.",
+  "billing_main_pay_as_you_go_table_resource": "Resource",
+  "billing_main_pay_as_you_go_table_type": "Type",
+  "billing_main_pay_as_you_go_table_type_instance": "Instance",
+  "billing_main_pay_as_you_go_table_type_volume": "Volume",
+  "billing_main_pay_as_you_go_table_type_snapshot": "Snapshot",
+  "billing_main_pay_as_you_go_table_due_date": "Due date",
+  "billing_main_pay_as_you_go_table_current": "Current balance",
+  "billing_main_pay_as_you_go_table_current_forecast": "Future statement",
+  "billing_main_pay_as_you_go_table_action_manage": "Manage",
+  "billing_main_pay_as_you_go_table_action_switch_monthly": "Switch to monthly subscription",
+  "billing_main_pay_as_you_go": "Current Pay As You Go usage"
+}

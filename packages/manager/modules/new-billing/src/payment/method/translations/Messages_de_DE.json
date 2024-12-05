@@ -1,0 +1,22 @@
+{
+  "billing_payment_method_title": "Meine Zahlungsarten",
+  "billing_payment_method_load_error": "Beim Laden Ihrer Zahlungsmittel ist ein Fehler aufgetreten.",
+  "billing_payment_method_table_type": "Zahlungsart",
+  "billing_payment_method_table_label": "Account",
+  "billing_payment_method_table_expiration_date": "Ablaufdatum",
+  "billing_payment_method_table_description": "Beschreibung",
+  "billing_payment_method_table_default": "Standardzahlungsmittel",
+  "billing_payment_method_table_state": "Status",
+  "billing_payment_method_table_3d_secure": "3D Secure",
+  "billing_payment_method_table_top_add_method": "Zahlungsart hinzufügen",
+  "billing_payment_method_autorenew_guide_help": "Sie benötigen Hilfe bei der Konfiguration Ihrer Verlängerungen?",
+  "billing_payment_method_autorenew_guide_help_link": "Mehr erfahren",
+  "billing_payment_method_bank_account_pending_validation": "Vielen Dank für die Angabe Ihrer Bankdaten. Sie werden nun zügig eine E-Mail unseres Partners Yousign erhalten. Sie erfahren darin, wie Sie Ihr Lastschriftmandat elektronisch unterschreiben können.  Ihr Bankkonto wird dadurch validiert.",
+  "billing_payment_method_bank_account_processing_delay": "Ihr Bankkonto wird 24 bis 48 Stunden nach Eingang Ihrer Einzugsermächtigung freigeschaltet.",
+  "billing_payment_method_table_action_download_procedure": "Dokument herunterladen, das per Post zurückzusenden ist",
+  "billing_payment_method_table_action_description_edit": "Beschreibung ändern",
+  "billing_payment_method_table_action_set_default": "Dieses Zahlungsmittel als Standardzahlungsmittel festlegen",
+  "billing_payment_method_table_action_delete": "Dieses Zahlungsmittel löschen",
+  "billing_payment_method_information_add_ovh_sas": "Mit der Registrierung eines Zahlungsmittels ermächtigen Sie OVH S.A.S., dieses zu speichern, um die Abwicklung zukünftiger Bestellungen zu erleichtern.",
+  "billing_payment_method_information_add_default": "Das hinterlegte und als „Standard“ gekennzeichnete Zahlungsmittel wird automatisch verwendet, um bei jedem Fälligkeitstermin die automatische Verlängerung Ihrer Dienste und die nutzungsbasierte Abrechnung („Pay as you go“) zu gewährleisten. Vor jedem Fälligkeitstermin werden Sie benachrichtigt. Über das unten stehende Interface können Sie jederzeit Zahlungsmittel ändern, löschen oder hinzufügen. Mindestens ein gültiges Zahlungsmittel muss hinterlegt sein, um Dienste mit automatischer Verlängerung oder nutzungsbasierter Abrechnung nutzen zu können."
+}

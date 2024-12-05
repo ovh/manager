@@ -1,0 +1,70 @@
+<div class="billing-main-pay-as-you-go">
+    <h2 data-translate="billing_main_pay_as_you_go_title"></h2>
+
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.loading.init">
+        <oui-datagrid data-rows="$ctrl.consumptions">
+            <oui-datagrid-column
+                data-title=":: 'billing_main_pay_as_you_go_table_project' | translate"
+                data-property="project.name"
+                data-sortable="asc"
+                data-type="string"
+                data-searchable
+                data-filterable
+            >
+                <a
+                    data-ng-bind="$row.project.name"
+                    data-ng-if="$row.project.name"
+                    data-ng-href="{{ $row.project.url }}"
+                    data-translate-attr="{ title: 'billing_main_pay_as_you_go_table_project_title' }"
+                    data-translate-values="{ name: $row.project.name }"
+                    target="_top"
+                >
+                </a>
+                <span data-ng-if="!$row.project.name">-</span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'billing_main_pay_as_you_go_table_resource' | translate"
+                data-property="resource"
+                data-sortable
+                data-type="string"
+                data-searchable
+                data-filterable
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'billing_main_pay_as_you_go_table_type' | translate"
+                data-property="type"
+                data-sortable
+                data-type="string"
+                data-searchable
+                data-filterable
+            >
+                <span
+                    data-translate="{{ 'billing_main_pay_as_you_go_table_type_' + $row.type }}"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'billing_main_pay_as_you_go_table_due_date' | translate"
+                data-property="dueDate"
+                data-sortable
+                data-type="date"
+            >
+                <span data-ng-bind="$row.dueDate | date:'shortDate'"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'billing_main_pay_as_you_go_table_current' | translate"
+                data-property="current.value"
+                data-sortable
+                data-type="number"
+                data-searchable
+                data-filterable
+            >
+                <span data-ng-bind="$row.current.text"></span>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </div>
+</div>
