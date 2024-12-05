@@ -1,4 +1,5 @@
 import { useCallback, useMemo } from 'react';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { useUsage } from '@/api/hooks/useUsage';
 import {
   HOURLY_PRODUCTS,
@@ -22,13 +23,17 @@ export type TUsagePrices = {
   totalMonthlyPrice: number;
   totalPrice: number;
   isPending: boolean;
+  error: ApiError;
 };
 
 export const useUsagePrice = (
   projectId: string,
   kind: TUsageKind,
 ): TUsagePrices => {
-  const { data: usage, isPending: isUsagePending } = useUsage(projectId, kind);
+  const { data: usage, isPending: isUsagePending, error } = useUsage(
+    projectId,
+    kind,
+  );
 
   const getResourcePrice = useCallback(
     (resourceUsage: TResourceUsage) =>
@@ -158,7 +163,8 @@ export const useUsagePrice = (
       totalMonthlyPrice,
       totalPrice,
       isPending: isUsagePending,
+      error: error as ApiError,
     }),
-    [usage],
+    [usage, error],
   );
 };
