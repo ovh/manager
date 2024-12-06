@@ -37,12 +37,14 @@ export const InfoIcon: React.FC<InfoInconProps> = ({ className, vs }) => {
           color={ODS_THEME_COLOR_INTENT.warning}
           size={size}
           name={ODS_ICON_NAME.WARNING_CIRCLE}
+          data-testid="warning-icon"
         />
       ) : (
         <OsdsSpinner
           className={className}
           style={{ maxWidth: 20 }}
           size={ODS_SPINNER_SIZE.sm}
+          data-testid="vs-loader-operation-in-progress"
         />
       )}
       <OsdsTooltipContent slot="tooltip-content">
