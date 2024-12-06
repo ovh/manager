@@ -13,6 +13,14 @@ export const Default = {
 const managerSimpleButton: Meta<ManagerButtonProps> = {
   title: 'Components/Manager Button',
   component: ManagerButton,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'The `ManagerButton` component is used to trigger an action or event.',
+      },
+    },
+  },
 };
 
 export default managerSimpleButton;
