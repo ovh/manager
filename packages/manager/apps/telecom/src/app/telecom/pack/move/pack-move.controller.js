@@ -122,6 +122,11 @@ export default class PackMoveCtrl {
       this.offer.selected.eligibilityReference = this.eligibilityReference;
       this.offer.selected.product = this.offersEligible[0].product;
       this.offer.selected.isOfferFTTH = this.isOfferFTTH;
+
+      // Check if techno changed (from xDSL to Fiber)
+      this.offer.selected.technoChange =
+        !this.offer.current.isFTTH && this.isOfferFTTH;
+
       if (this.isOfferFTTH) {
         // Retrieve multi OTP flag
         const selectedLineOffer = this.selectedLine.offers.filter(
