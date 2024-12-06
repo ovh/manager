@@ -185,6 +185,11 @@ export function usePrivateNetworkLZColumns() {
             <DataGridTextCell>
               <StatusInfo
                 label={
+                  dhcpEnabled
+                    ? t('pci_projects_project_network_private_dhcp_active')
+                    : t('pci_projects_project_network_private_dhcp_disabled')
+                }
+                status={
                   dhcpEnabled ? ResourceStatus.ACTIVE : ResourceStatus.DISABLED
                 }
               />

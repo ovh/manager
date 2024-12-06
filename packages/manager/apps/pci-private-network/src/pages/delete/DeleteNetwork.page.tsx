@@ -18,7 +18,7 @@ export default function DeleteLocalZone() {
 
   const onClose = () => navigate('..');
 
-  const { deletePrivateNetwork, isPending } = useDeletePrivateNetwork({
+  const { mutate: deletePrivateNetwork, isPending } = useDeletePrivateNetwork({
     projectId,
     region,
     networkId,
