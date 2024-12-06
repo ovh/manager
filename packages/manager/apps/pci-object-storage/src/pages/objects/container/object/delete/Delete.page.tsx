@@ -22,8 +22,9 @@ export default function DeletePage() {
     region,
     storageId,
   );
-  const onCancel = () => navigate(`../`);
-  const onClose = () => navigate(`../`);
+  const goBack = () => navigate(`../?region=${region}`);
+  const onCancel = goBack;
+  const onClose = goBack;
   const { deleteObject, isPending: isPendingDelete } = useDeleteObject({
     projectId,
     objectName: decodedObjectName,
@@ -61,12 +62,12 @@ export default function DeletePage() {
         </Translation>,
         true,
       );
-      navigate('..');
+      goBack();
     },
   });
   const onConfirm = () => {
     deleteObject();
-    navigate(`..`);
+    goBack();
   };
   const isPending = isPendingStorage || isPendingDelete;
   return (
