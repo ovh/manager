@@ -220,13 +220,7 @@ export default function ResetClusterPage() {
                     <OsdsText
                       color={ODS_THEME_COLOR_INTENT.text}
                       slot="end"
-                      className={
-                        formState.workerNodesPolicy ===
-                        WORKER_NODE_POLICIES.DELETE
-                          ? 'font-bold'
-                          : 'font-normal'
-                      }
-                      size={ODS_TEXT_SIZE._600}
+                      size={ODS_TEXT_SIZE._400}
                     >
                       {tReset(
                         'pci_projects_project_kubernetes_service_reset_common_delete',
@@ -245,13 +239,7 @@ export default function ResetClusterPage() {
                     <OsdsText
                       color={ODS_THEME_COLOR_INTENT.text}
                       slot="end"
-                      size={ODS_TEXT_SIZE._600}
-                      className={
-                        formState.workerNodesPolicy ===
-                        WORKER_NODE_POLICIES.REINSTALL
-                          ? 'font-bold'
-                          : 'font-normal'
-                      }
+                      size={ODS_TEXT_SIZE._400}
                     >
                       {tReset(
                         'pci_projects_project_kubernetes_service_reset_common_reinstall',
