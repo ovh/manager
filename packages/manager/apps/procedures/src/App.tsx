@@ -10,13 +10,20 @@ import {
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import '@ovhcloud/ods-theme-blue-jeans';
 import queryClient from './query.client';
-import { Routes } from './routes/routes';
+import {
+  accountDisable2faRoute,
+  exercisingYourRightsRoute,
+  Routes,
+} from './routes/routes';
 import { decodeToken, extractToken } from '@/utils/token';
 import initI18n from './i18n';
 import initAuthenticationInterceptor from '@/data/authentication.interceptor';
 import initInterceptor from './data/invisible-challenge.interceptor';
 import UserProvider from '@/context/User/provider';
-import { getRedirectLoginUrl } from '@/utils/url-builder';
+import {
+  getRedirectLoginUrl,
+  getWebSiteRedirectUrl,
+} from '@/utils/url-builder';
 
 function getSubsidiary(subsidiary: string, locale: string) {
   if (subsidiary?.trim()?.length === 0)
@@ -24,22 +31,40 @@ function getSubsidiary(subsidiary: string, locale: string) {
   return subsidiary;
 }
 
+const activateAuthenticationInterceptorForPath = [accountDisable2faRoute];
+const routeRedirectMap: Record<string, string> = {
+  [accountDisable2faRoute]: getRedirectLoginUrl(undefined),
+  [exercisingYourRightsRoute]: getWebSiteRedirectUrl(),
+};
+
 const token = extractToken();
 const user = decodeToken(token);
 const { subsidiary } = user || {};
 
 if (!user) {
-  const redirectUrl = getRedirectLoginUrl(user);
-  window.location.assign(redirectUrl);
-} else {
-  useDefaultLanguage('en_GB');
-  const locale = findAvailableLocale(detectUserLocale());
+  const redirectRoute = Object.keys(routeRedirectMap).find((route) =>
+    window.location.href.includes(route),
+  );
 
-  initI18n(locale, getSubsidiary(subsidiary, locale));
+  if (redirectRoute) {
+    const redirectUrl = routeRedirectMap[redirectRoute];
+    window.location.assign(redirectUrl);
+  }
+}
+
+useDefaultLanguage('en_GB');
+const locale = findAvailableLocale(detectUserLocale());
+
+initI18n(locale, getSubsidiary(subsidiary, locale));
+odsSetup();
+initInterceptor();
+
+if (
+  activateAuthenticationInterceptorForPath.some((path) =>
+    window.location.href.includes(path),
+  )
+) {
   initAuthenticationInterceptor(token);
-  initInterceptor();
-
-  odsSetup();
 }
 
 const router = createHashRouter(Routes);

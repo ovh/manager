@@ -7,7 +7,7 @@
   "sign_up_form_submit_button": "Créer un compte",
   "sign_up_form_submit_error": "Oups ! Une erreur est survenue lors de la création du compte.",
   "sign_up_form_global_information": "Pour poursuivre votre commande, les informations ci-dessous sont requises.",
-  "sign_up_form_global_information_kyc_reminder": "Ces informations sont obligatoires pour commander,veuillez respecter les consignes suivantes:",
+  "sign_up_form_global_information_kyc_reminder": "N'oubliez pas de saisir toutes les informations, et assurez-vous que vos données personnelles correspondent au nom et à l'adresse figurant dans vos documents officiels pour passer une commande.",
   "sign_up_form_global_information_kyc_reminder_fill_address": "Renseignez <strong>votre adresse complète</strong>",
   "sign_up_form_global_information_kyc_reminder_match_address": "L'adresse doit <strong>correspondre à celle figurant sur le justificatif</strong> d’adresse qui vous sera demandé pour vérifier votre identité",
   "sign_up_form_mandatory_fields": "champs obligatoires"

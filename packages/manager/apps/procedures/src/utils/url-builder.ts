@@ -12,3 +12,5 @@ export const getRedirectLoginUrl = (user: User) => {
 
   return `${loginUrl}${subsidiaryParams}`;
 };
+
+export const getWebSiteRedirectUrl = () => 'https://www.ovhcloud.com';
