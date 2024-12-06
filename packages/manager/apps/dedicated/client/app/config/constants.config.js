@@ -594,6 +594,12 @@ const constants = {
               'https://help.ovhcloud.com/csm/fr-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043707',
           },
           {
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'configure-edge-network-firewall',
+            url:
+              'https://help.ovhcloud.com/csm/fr-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043455',
+          },
+          {
             title: 'core_sd_top_guide_7_title',
             atInternetClickTag: 'configure-new-window-server-installation',
             url:
@@ -636,6 +642,12 @@ const constants = {
             atInternetClickTag: 'migrate-data-between-servers',
             url:
               'https://help.ovhcloud.com/csm/de-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043692',
+          },
+          {
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'configure-edge-network-firewall',
+            url:
+              'https://help.ovhcloud.com/csm/de-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0030464',
           },
           {
             title: 'core_sd_top_guide_7_title',
@@ -682,42 +694,16 @@ const constants = {
               'https://help.ovhcloud.com/csm/es-es-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043701',
           },
           {
-            title: 'core_sd_top_guide_1_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-1',
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'configure-edge-network-firewall',
             url:
-              'https://docs.ovh.com/ca/en/dedicated/getting-started-dedicated-server/',
-          },
-          {
-            title: 'core_sd_top_guide_2_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-2',
-            url: 'https://docs.ovh.com/ca/en/dedicated/',
-          },
-          {
-            title: 'core_sd_top_guide_3_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-3',
-            url:
-              'https://docs.ovh.com/ca/en/public-cloud/configure-reverse-dns-instance/',
-          },
-          {
-            title: 'core_sd_top_guide_firewall_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-Firewall',
-            url: 'https://docs.ovh.com/ca/en/dedicated/firewall-network/',
-          },
-          {
-            title: 'core_sd_top_guide_5_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-5',
-            url: 'https://docs.ovh.com/ca/en/dedicated/network-virtual-mac/',
-          },
-          {
-            title: 'core_sd_top_guide_6_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-6',
-            url: 'https://docs.ovh.com/ca/en/dedicated/network-ipaliasing/',
+              'https://help.ovhcloud.com/csm/es-es-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043451',
           },
           {
             title: 'core_sd_top_guide_7_title',
             atInternetClickTag: 'configure-new-window-server-installation',
             url:
-              'https://help.ovhcloud.com/csm/es-es-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044080',
+              'https://help.ovhcloud.com/csm/es-es-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043480',
           },
         ],
         IT: [
@@ -756,6 +742,12 @@ const constants = {
             atInternetClickTag: 'migrate-data-between-servers',
             url:
               'https://help.ovhcloud.com/csm/it-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043708',
+          },
+          {
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'configure-edge-network-firewall',
+            url:
+              'https://help.ovhcloud.com/csm/it-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043454',
           },
           {
             title: 'core_sd_top_guide_7_title',
@@ -802,6 +794,12 @@ const constants = {
               'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043689',
           },
           {
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'configure-edge-network-firewall',
+            url:
+              'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043450',
+          },
+          {
             title: 'core_sd_top_guide_7_title',
             atInternetClickTag: 'configure-new-window-server-installation',
             url:
@@ -844,6 +842,12 @@ const constants = {
             atInternetClickTag: 'migrate-data-between-servers',
             url:
               'https://help.ovhcloud.com/csm/pl-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043709',
+          },
+          {
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'configure-edge-network-firewall',
+            url:
+              'https://help.ovhcloud.com/csm/pl-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043457',
           },
           {
             title: 'core_sd_top_guide_7_title',
@@ -890,6 +894,12 @@ const constants = {
               'https://help.ovhcloud.com/csm/pt-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043702',
           },
           {
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'configure-edge-network-firewall',
+            url:
+              'https://help.ovhcloud.com/csm/pt-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043456',
+          },
+          {
             title: 'core_sd_top_guide_7_title',
             atInternetClickTag: 'configure-new-window-server-installation',
             url:
@@ -932,6 +942,12 @@ const constants = {
             atInternetClickTag: 'migrate-data-between-servers',
             url:
               'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043697',
+          },
+          {
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'configure-edge-network-firewall',
+            url:
+              'https://help.ovhcloud.com/csm/en-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043448',
           },
           {
             title: 'core_sd_top_guide_7_title',
@@ -978,6 +994,12 @@ const constants = {
               'https://help.ovhcloud.com/csm/en-au-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043696',
           },
           {
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'configure-edge-network-firewall',
+            url:
+              'https://help.ovhcloud.com/csm/en-au-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043445',
+          },
+          {
             title: 'core_sd_top_guide_7_title',
             atInternetClickTag: 'configure-new-window-server-installation',
             url:
@@ -1020,6 +1042,12 @@ const constants = {
             atInternetClickTag: 'migrate-data-between-servers',
             url:
               'https://help.ovhcloud.com/csm/asia-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0030724',
+          },
+          {
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'configure-edge-network-firewall',
+            url:
+              'https://help.ovhcloud.com/csm/asia-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043444',
           },
           {
             title: 'core_sd_top_guide_7_title',
@@ -1066,16 +1094,16 @@ const constants = {
               'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043699',
           },
           {
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'configure-edge-network-firewall',
+            url:
+              'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043449',
+          },
+          {
             title: 'core_sd_top_guide_7_title',
             atInternetClickTag: 'configure-new-window-server-installation',
             url:
               'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044079',
-          },
-          {
-            title: 'core_sd_top_guide_8_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-8',
-            url:
-              'https://docs.ovh.com/ca/en/dedicated/find-disk-serial-number/',
           },
         ],
       },
@@ -1734,6 +1762,12 @@ const constants = {
               'https://help.ovhcloud.com/csm/en-ca-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043695',
           },
           {
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'configure-edge-network-firewall',
+            url:
+              'https://help.ovhcloud.com/csm/en-ca-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043446',
+          },
+          {
             title: 'core_sd_top_guide_7_title',
             atInternetClickTag: 'configure-new-window-server-installation',
             url:
@@ -1776,6 +1810,12 @@ const constants = {
             atInternetClickTag: 'migrate-data-between-servers',
             url:
               'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043706',
+          },
+          {
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'configure-edge-network-firewall',
+            url:
+              'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043453',
           },
           {
             title: 'core_sd_top_guide_7_title',
