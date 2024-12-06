@@ -17,5 +17,11 @@
   "iam_delete_entity_resourceType_name": "Usuwanie typu usługi: ",
   "iam_delete_entity_resourceType_success": "Typ usługi został usunięty",
   "iam_delete_entity_resourceType_warn": "Uwaga, ta operacja spowoduje usunięcie zasobów i powiązanych operacji.",
-  "iam_delete_entity_secondary_label": "Anuluj"
+  "iam_delete_entity_secondary_label": "Anuluj",
+  "iam_delete_entity_application_error": "Aplikacja nie mogła zostać usunięta z powodu błędu: {{message}}",
+  "iam_delete_entity_application_field": "Wpisz słowo „{{ statement }}”, aby potwierdzić usunięcie aplikacji.",
+  "iam_delete_entity_application_heading": "Usuń aplikację",
+  "iam_delete_entity_application_name": "Usuwanie aplikacji: ",
+  "iam_delete_entity_application_success": "Aplikacja usunięta",
+  "iam_delete_entity_application_warn": "Ostrzeżenie: ta operacja spowoduje usunięcie aplikacji i unieważni wszystkie certyfikaty powiązane z tą aplikacją."
 }
