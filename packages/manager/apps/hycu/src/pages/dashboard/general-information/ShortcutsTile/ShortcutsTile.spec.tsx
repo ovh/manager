@@ -56,16 +56,48 @@ describe('License Hycu shortcuts tile for dashboard test suite', () => {
         ).toBeVisible(),
       { timeout: 20_000 },
     );
-    // See: MANAGER-16039. Will be decommented on near future
-    // await waitFor(
-    //   () =>
-    //     expect(
-    //       screen.getByText(
-    //         labels.dashboard.hycu_dashboard_link_change_pack_type,
-    //       ),
-    //     ).toBeVisible(),
-    //   { timeout: 20_000 },
-    // );
+    await waitFor(
+      () =>
+        expect(
+          screen.getByText(
+            labels.dashboard.hycu_dashboard_link_change_pack_type,
+          ),
+        ).toBeVisible(),
+      { timeout: 20_000 },
+    );
+  });
+
+  it('should show links of services activated', async () => {
+    await renderTestApp(`/${licensesHycu[0].serviceName}`, {
+      licenseStatus: LicenseStatus.ACTIVATED,
+    });
+
+    await waitFor(
+      () =>
+        expect(
+          screen.getAllByText(
+            labels.dashboard.hycu_dashboard_shortcuts_title,
+          )[0],
+        ).toBeVisible(),
+      { timeout: 30_000 },
+    );
+
+    await waitFor(
+      () =>
+        expect(
+          screen.getByText(labels.dashboard.hycu_dashboard_link_regenerate),
+        ).toBeVisible(),
+      { timeout: 20_000 },
+    );
+    await waitFor(
+      () =>
+        expect(
+          screen.getByText(
+            labels.dashboard.hycu_dashboard_link_change_pack_type,
+          ),
+        ).toBeVisible(),
+      { timeout: 20_000 },
+    );
   });
 
   it('Can open activate modal with IAM authorization', async () => {
@@ -182,8 +214,7 @@ describe('License Hycu shortcuts tile for dashboard test suite', () => {
     );
   });
 
-  // Skip Because: MANAGER-16039. Will be uncommented on near future
-  it.skip('Can open edit page with IAM authorization', async () => {
+  it('Can open edit page with IAM authorization', async () => {
     const user = userEvent.setup();
     await renderTestApp(`/${licensesHycu[0].serviceName}`, {
       licenseStatus: LicenseStatus.ACTIVATED,
@@ -208,8 +239,7 @@ describe('License Hycu shortcuts tile for dashboard test suite', () => {
     );
   });
 
-  // Skip because: MANAGER-16039. Will be decommented on near future
-  it.skip("Can't open edit page without IAM authorization", async () => {
+  it("Can't open edit page without IAM authorization", async () => {
     const user = userEvent.setup();
     await renderTestApp(`/${licensesHycu[1].serviceName}`, {
       licenseStatus: LicenseStatus.ACTIVATED,
