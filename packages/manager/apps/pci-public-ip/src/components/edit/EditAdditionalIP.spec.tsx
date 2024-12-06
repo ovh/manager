@@ -28,8 +28,8 @@ describe('EditInstanceModal component tests', () => {
       <EditInstanceModal {...propsWithIsPendingTrue} />,
     );
 
-    expect(queryByTestId('editInstanceModal-spinner')).toBeInTheDocument();
-    expect(queryByTestId('editInstanceModal-spinner')).toBeVisible();
+    expect(queryByTestId('pciModal-spinner')).toBeInTheDocument();
+    expect(queryByTestId('pciModal-spinner')).toBeVisible();
   });
 
   it('should disable the submit button when the isPending equal true', () => {
@@ -48,7 +48,7 @@ describe('EditInstanceModal component tests', () => {
     );
 
     const submitButton = (queryByTestId(
-      'editInstanceModal-button_submit',
+      'pciModal-button_submit',
     ) as unknown) as OsdsButton;
 
     expect(submitButton).toHaveAttribute('disabled');
@@ -70,7 +70,7 @@ describe('EditInstanceModal component tests', () => {
       <EditInstanceModal {...propsWithIsPendingFalse} />,
     );
 
-    const submitButton = queryByTestId('editInstanceModal-button_submit');
+    const submitButton = queryByTestId('pciModal-button_submit');
 
     expect(submitButton).not.toHaveAttribute('disabled');
   });
@@ -151,7 +151,7 @@ describe('EditInstanceModal component tests', () => {
 
     const { getByTestId } = render(<EditInstanceModal {...props} />);
 
-    const cancelButton = getByTestId('editInstanceModal-button_cancel');
+    const cancelButton = getByTestId('pciModal-button_cancel');
 
     act(() => {
       fireEvent.click(cancelButton);
@@ -173,7 +173,7 @@ describe('EditInstanceModal component tests', () => {
 
     const { queryByTestId } = render(<EditInstanceModal {...props} />);
 
-    const submitButton = queryByTestId('editInstanceModal-button_submit');
+    const submitButton = queryByTestId('pciModal-button_submit');
 
     act(() => {
       fireEvent.click(submitButton);
