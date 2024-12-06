@@ -9,10 +9,49 @@ export const VLAN_ID = {
 export const GATEWAY_HOURLY_PLAN_CODE = 'gateway.s.hour.consumption';
 
 const ipSchema = z.string().ip();
+
+const ipNullableSchema = z
+  .string()
+  .refine((value) => value === '' || ipSchema.safeParse(value).success)
+  .nullish();
+
 const maskSchema = z
   .number()
   .min(9)
   .max(29);
+
+const cidrSchema = z.string().refine((value) => {
+  const [ip, mask] = value.split('/');
+  return (
+    ipSchema.safeParse(ip).success && maskSchema.safeParse(Number(mask)).success
+  );
+});
+
+const allocationPoolSchema = z
+  .object({
+    start: ipNullableSchema,
+    end: ipNullableSchema,
+  })
+  .refine(
+    ({ start, end }) => !(start || end) || (start && end),
+    ({ start }) => ({ path: start ? ['end'] : ['start'] }),
+  );
+
+const hostRoutesSchema = z
+  .object({
+    destination: z
+      .string()
+      .refine((value) => value === '' || cidrSchema.safeParse(value).success)
+      .nullish(),
+    nextHop: ipNullableSchema,
+  })
+  .refine(
+    ({ destination, nextHop }) =>
+      !(destination || nextHop) || (destination && nextHop),
+    ({ destination }) => ({
+      path: destination ? ['nextHop'] : ['destination'],
+    }),
+  );
 
 export const NEW_PRIVATE_NETWORK_FORM_SCHEMA = z.object({
   region: z.string().min(1),
@@ -24,16 +63,20 @@ export const NEW_PRIVATE_NETWORK_FORM_SCHEMA = z.object({
     .max(VLAN_ID.max)
     .optional(),
   subnet: z.object({
-    cidr: z.string().refine((value) => {
-      const [ip, mask] = value.split('/');
-      return (
-        ipSchema.safeParse(ip).success &&
-        maskSchema.safeParse(Number(mask)).success
-      );
-    }),
+    cidr: cidrSchema,
     enableDhcp: z.boolean(),
     ipVersion: z.number(),
     enableGatewayIp: z.boolean(),
+    allocationPools: allocationPoolSchema
+      .array()
+      .transform((allocationIps) =>
+        allocationIps.filter(({ start, end }) => start && end),
+      ),
+    hostRoutes: hostRoutesSchema
+      .array()
+      .transform((hostRoutes) =>
+        hostRoutes.filter(({ destination, nextHop }) => destination && nextHop),
+      ),
   }),
   gateway: z
     .object({

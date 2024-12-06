@@ -20,6 +20,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import GatewayConfig from './gateway/GatewayConfig.component';
+import AdvancedSettings from './advanced/AdvancedSettings.component';
 
 const SubnetConfig: React.FC = () => {
   const { t } = useTranslation(['common', 'new']);
@@ -107,6 +108,7 @@ const SubnetConfig: React.FC = () => {
         </OsdsCheckboxButton>
       </OsdsCheckbox>
       <GatewayConfig />
+      <AdvancedSettings />
     </div>
   );
 };
