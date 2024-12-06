@@ -7,5 +7,6 @@
   "nutanix_dashboard_nodes_list_status_ERROR": "Erro",
   "nutanix_dashboard_nodes_list_status_HACKED": "Pirateado",
   "nutanix_dashboard_nodes_list_status_HACKED_BLOCKED": "Servidor em modo pirateado e bloqueado",
-  "nutanix_dashboard_nodes_list_localisation_value": "{{dcName}} (Rack {{rackName}})"
+  "nutanix_dashboard_nodes_list_localisation_value": "{{dcName}} (Rack {{rackName}})",
+  "nutanix_dashboard_nodes_list_data_hidden": "OCULTO"
 }

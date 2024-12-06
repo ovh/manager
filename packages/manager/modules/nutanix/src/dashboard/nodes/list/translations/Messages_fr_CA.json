@@ -7,5 +7,6 @@
   "nutanix_dashboard_nodes_list_status_ERROR": "En erreur",
   "nutanix_dashboard_nodes_list_status_HACKED": "Hacké",
   "nutanix_dashboard_nodes_list_status_HACKED_BLOCKED": "Hacké et bloqué",
-  "nutanix_dashboard_nodes_list_localisation_value": "{{dcName}} (Baie {{rackName}})"
+  "nutanix_dashboard_nodes_list_localisation_value": "{{dcName}} (Baie {{rackName}})",
+  "nutanix_dashboard_nodes_list_data_hidden": "CACHÉ"
 }

@@ -7,5 +7,6 @@
   "nutanix_dashboard_nodes_list_status_ERROR": "Fehler",
   "nutanix_dashboard_nodes_list_status_HACKED": "Gehackt",
   "nutanix_dashboard_nodes_list_status_HACKED_BLOCKED": "Gehackt und gesperrt",
-  "nutanix_dashboard_nodes_list_localisation_value": "{{dcName}} (Rack {{rackName}})"
+  "nutanix_dashboard_nodes_list_localisation_value": "{{dcName}} (Rack {{rackName}})",
+  "nutanix_dashboard_nodes_list_data_hidden": "VERBORGEN"
 }

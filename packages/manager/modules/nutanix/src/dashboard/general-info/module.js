@@ -9,7 +9,7 @@ import {
   serverTechnicalDetails,
   serverBandwidthTile,
 } from '@ovh-ux/manager-bm-server-components';
-import { region } from '@ovh-ux/manager-components';
+import { region, iamProtectedData } from '@ovh-ux/manager-components';
 import nutanixNetworkTile from '../component/network-tile/network-tile.module';
 import privateBandwidthUpgrade from './private-bandwidth-upgrade';
 import routing from './routing';
@@ -20,12 +20,12 @@ import redeploy from './redeploy';
 import datacenterName from '../component/datacenter-name/module';
 
 const moduleName = 'ovhManagerNutanixGeneralInfo';
-
 angular
   .module(moduleName, [
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
+    iamProtectedData,
     ovhManagerBillingComponents,
     serverSupport,
     serverTechnicalDetails,

@@ -6,7 +6,9 @@
     <!-- level -->
     <oui-tile-definition term="{{:: 'server_support_level' | translate }}">
         <oui-tile-description>
-            <span data-ng-bind=":: $ctrl.getFormatedSupportLevel()"></span>
+            <iam-protected-data is-hidden="$ctrl.isHidden">
+                <span data-ng-bind=":: $ctrl.getFormatedSupportLevel()"></span>
+            </iam-protected-data>
         </oui-tile-description>
     </oui-tile-definition>
     <!-- open tickets -->
@@ -14,15 +16,17 @@
         term="{{:: 'server_support_open_tickets' | translate }}"
     >
         <oui-tile-description data-ng-if="!$ctrl.isSupportExternalWithLinks">
-            <span data-ng-if="$ctrl.numberOfTickets === 0">0</span>
-            <a
-                class="oui-link_icon"
-                data-ng-if="$ctrl.numberOfTickets > 0"
-                data-ng-href="{{ $ctrl.viewTicketsUrl }}"
-                data-ng-click="$ctrl.trackClick('go-to-view-tickets')"
-            >
-                <span data-ng-bind="$ctrl.numberOfTickets"></span>
-            </a>
+            <iam-protected-data is-hidden="$ctrl.isHidden">
+                <span data-ng-if="$ctrl.numberOfTickets === 0">0</span>
+                <a
+                    class="oui-link_icon"
+                    data-ng-if="$ctrl.numberOfTickets > 0"
+                    data-ng-href="{{ $ctrl.viewTicketsUrl }}"
+                    data-ng-click="$ctrl.trackClick('go-to-view-tickets')"
+                >
+                    <span data-ng-bind="$ctrl.numberOfTickets"></span>
+                </a>
+            </iam-protected-data>
             <div class="mt-1">
                 <a
                     class="oui-link_icon"
@@ -38,21 +42,23 @@
             </div>
         </oui-tile-description>
         <oui-tile-description data-ng-if="$ctrl.isSupportExternalWithLinks">
-            <span data-ng-if="!$ctrl.numberOfTickets">0</span>
-            <a
-                class="oui-link_icon"
-                data-ng-if="$ctrl.numberOfTickets > 0"
-                data-ng-href="{{ $ctrl.viewTicketsUrl }}"
-                data-on-click="$ctrl.trackClick('go-to-view-tickets')"
-                target="_blank"
-                rel="noopener"
-            >
-                <span data-ng-bind="$ctrl.numberOfTickets"></span>
-                <span
-                    class="oui-icon oui-icon-external-link"
-                    aria-hidden="true"
-                ></span>
-            </a>
+            <iam-protected-data is-hidden="$ctrl.isHidden">
+                <span data-ng-if="!$ctrl.numberOfTickets">0</span>
+                <a
+                    class="oui-link_icon"
+                    data-ng-if="$ctrl.numberOfTickets > 0"
+                    data-ng-href="{{ $ctrl.viewTicketsUrl }}"
+                    data-on-click="$ctrl.trackClick('go-to-view-tickets')"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span data-ng-bind="$ctrl.numberOfTickets"></span>
+                    <span
+                        class="oui-icon oui-icon-external-link"
+                        aria-hidden="true"
+                    ></span>
+                </a>
+            </iam-protected-data>
             <div class="mt-1">
                 <a
                     class="oui-link_icon"
