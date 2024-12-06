@@ -7,7 +7,6 @@ import {
   Notifications,
   useColumnFilters,
   useDatagridSearchParams,
-  useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -121,7 +120,7 @@ export default function FloatingIPComponent({
         <OsdsButton
           className="mr-1 xs:mb-1 sm:mb-0"
           size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.stroked}
+          variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => navigate('../order')}
         >
@@ -129,7 +128,7 @@ export default function FloatingIPComponent({
             name={ODS_ICON_NAME.ADD}
             size={ODS_ICON_SIZE.xxs}
             color={ODS_THEME_COLOR_INTENT.primary}
-            className="mr-3"
+            className="mr-3 bg-white"
           />
           {t('pci_additional_ips_add_additional_ip')}
         </OsdsButton>

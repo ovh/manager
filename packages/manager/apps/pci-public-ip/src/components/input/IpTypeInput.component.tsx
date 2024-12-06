@@ -58,9 +58,11 @@ export const IpTypeInputComponent = ({
               <div className="text-center border-t border-t-[#bef1ff]">
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
                   {ipType.name === IPTypeEnum.FAILOVER ? (
-                    tOrder('pci_additional_ip_price_per_month', {
-                      price: ipType.price,
-                    })
+                    <strong>
+                      {tOrder('pci_additional_ip_price_per_month', {
+                        price: ipType.price,
+                      })}
+                    </strong>
                   ) : (
                     <CatalogPriceComponent
                       price={Number(ipType.price)}
