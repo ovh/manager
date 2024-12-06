@@ -23,7 +23,7 @@ const LayoutPage = lazy(() => import('@/pages/Layout'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
 const StoragePage = lazy(() => import('@/pages/objects/Storage.page'));
 const ObjectPage = lazy(() =>
-  import('@/pages/objects/container/object/Object.page'),
+  import('@/pages/objects/container/object/show/Show.page'),
 );
 const DeleteObjectPage = lazy(() =>
   import('@/pages/objects/container/object/delete/Delete.page'),
