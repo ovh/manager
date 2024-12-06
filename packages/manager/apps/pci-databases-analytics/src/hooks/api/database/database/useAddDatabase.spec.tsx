@@ -36,11 +36,7 @@ describe('useAddDatabase', () => {
 
     await waitFor(() => {
       expect(databaseAPI.addDatabase).toHaveBeenCalledWith(addDatabaseProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedDatabase,
-        addDatabaseProps,
-        undefined,
-      );
+      expect(onSuccess).toHaveBeenCalledWith(mockedDatabase);
     });
   });
 });

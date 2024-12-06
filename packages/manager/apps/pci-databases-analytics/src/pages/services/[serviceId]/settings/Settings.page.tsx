@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router-dom';
 import { AccordionItem } from '@radix-ui/react-accordion';
 import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
@@ -82,6 +83,7 @@ const Settings = () => {
           </Card>
         )}
       </div>
+      <Outlet />
     </>
   );
 };

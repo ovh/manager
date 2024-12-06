@@ -43,5 +43,6 @@
   "addIntegrationErrorNoDuplicate": "Une intégration similaire existe déjà",
   "addIntegrationErrorStringParamRequired": "Requis",
   "addIntegrationErrorIntegerParamRequired": "Veuillez entrer un nombre positif",
-  "addIntegrationButtonAdd": "Ajouter"
+  "addIntegrationButtonAdd": "Ajouter",
+  "addIntegrationButtonCancel": "Annuler"
 }

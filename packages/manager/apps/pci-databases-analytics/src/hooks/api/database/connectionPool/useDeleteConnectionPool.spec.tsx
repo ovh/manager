@@ -37,11 +37,7 @@ describe('useDeleteConnectionPool', () => {
       expect(databaseAPI.deleteConnectionPool).toHaveBeenCalledWith(
         deleteConnectionPoolProps,
       );
-      expect(onSuccess).toHaveBeenCalledWith(
-        undefined,
-        deleteConnectionPoolProps,
-        undefined,
-      );
+      expect(onSuccess).toHaveBeenCalledWith();
     });
   });
 });

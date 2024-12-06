@@ -40,11 +40,7 @@ describe('useDeleteNamespace', () => {
       expect(databaseAPI.deleteNamespace).toHaveBeenCalledWith(
         deleteNamespaceProps,
       );
-      expect(onSuccess).toHaveBeenCalledWith(
-        undefined,
-        deleteNamespaceProps,
-        undefined,
-      );
+      expect(onSuccess).toHaveBeenCalledWith();
     });
   });
 });

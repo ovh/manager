@@ -14,6 +14,7 @@ import { UserActivityProvider } from '@/contexts/UserActivityContext';
 import { getProject } from '@/data/api/project/project.api';
 import { useLoadingIndicatorContext } from '@/contexts/LoadingIndicator.context';
 import { USER_INACTIVITY_TIMEOUT } from '@/configuration/polling.constants';
+import { useTrackPageAuto } from '@/hooks/useTracking';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return (
@@ -79,6 +80,8 @@ function RoutingSynchronisation() {
     //  We cannot type properly useMatches cause it's not support type inference or passing specific type https://github.com/remix-run/react-router/discussions/10902
     defineCurrentPage(`app.pci-databases-analytics.${match[0].id}`);
   }, [location]);
+
+  useTrackPageAuto();
 
   return <></>;
 }

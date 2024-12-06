@@ -42,11 +42,7 @@ describe('useAddUser', () => {
 
     await waitFor(() => {
       expect(databaseAPI.addUser).toHaveBeenCalledWith(addUserProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedDatabaseUser,
-        addUserProps,
-        undefined,
-      );
+      expect(onSuccess).toHaveBeenCalledWith(mockedDatabaseUser);
     });
   });
 });
