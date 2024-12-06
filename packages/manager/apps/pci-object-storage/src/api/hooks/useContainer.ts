@@ -1,0 +1,53 @@
+import { useQuery } from '@tanstack/react-query';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
+import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
+import { useMemo } from 'react';
+import { getServerContainer, TObject } from '@/api/data/container';
+import { paginateResults, sortResults } from '@/helpers';
+
+export const useServerContainer = (
+  projectId: string,
+  region: string,
+  name: string,
+  id: string,
+) => {
+  return useQuery({
+    queryKey: ['project', projectId, 'region', region, 'server-container', id],
+    queryFn: () => getServerContainer(projectId, region, name, id),
+    enabled: !!projectId && !!name && !!region,
+  });
+};
+
+export const usePaginatedObjects = (
+  projectId: string,
+  region: string,
+  name: string,
+  id: string,
+  pagination: PaginationState,
+  sorting: ColumnSort,
+  filters: Filter[],
+) => {
+  const { data: container, error, isLoading, isPending } = useServerContainer(
+    projectId,
+    region,
+    name,
+    id,
+  );
+
+  return useMemo(
+    () => ({
+      isLoading,
+      isPending,
+      paginatedObjects: paginateResults<TObject>(
+        sortResults<TObject>(
+          applyFilters<TObject>(container?.objects || [], filters),
+          sorting,
+        ),
+        pagination,
+      ),
+      allObjects: container?.objects,
+      error,
+    }),
+    [container, error, isLoading, isPending, pagination, sorting, filters],
+  );
+};
