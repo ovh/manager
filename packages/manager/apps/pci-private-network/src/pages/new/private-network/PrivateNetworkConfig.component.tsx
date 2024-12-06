@@ -132,6 +132,20 @@ const PrivateNetworkConfig: React.FC = () => {
             </OsdsCheckboxButton>
           </OsdsCheckbox>
 
+          <OsdsText
+            className="block ml-4"
+            color={ODS_TEXT_COLOR_INTENT.text}
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+          >
+            {t('pci_projects_project_network_private_create_vlan_tip')}
+            <Links
+              label={t('common:common_find_out_more_here')}
+              href={guides.VLAN}
+              target={OdsHTMLAnchorElementTarget._blank}
+            />
+          </OsdsText>
+
           {vlanId === 0 && defineVlanId && (
             <OsdsMessage className="my-4" type={ODS_MESSAGE_TYPE.warning}>
               <OsdsText
@@ -159,20 +173,6 @@ const PrivateNetworkConfig: React.FC = () => {
               </OsdsText>
             </OsdsMessage>
           )}
-
-          <OsdsText
-            className="block ml-4"
-            color={ODS_TEXT_COLOR_INTENT.text}
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-          >
-            {t('pci_projects_project_network_private_create_vlan_tip')}
-            <Links
-              label={t('common:common_find_out_more_here')}
-              href={guides.VLAN}
-              target={OdsHTMLAnchorElementTarget._blank}
-            />
-          </OsdsText>
         </div>
       )}
     </div>
