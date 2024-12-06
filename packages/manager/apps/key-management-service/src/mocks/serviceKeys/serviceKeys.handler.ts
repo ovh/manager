@@ -7,8 +7,8 @@ export type GetServiceKeysMockParams = {
   nbServiceKey?: number;
 };
 
-const findOkmsById = (params: PathParams) =>
-  serviceKeyMock.find(({ id }) => id === params.id);
+const findServiceKeyById = (params: PathParams) =>
+  serviceKeyMock.find(({ id }) => id === params.serviceKeyId);
 
 export const getServiceKeysMock = ({
   isServiceKeyKO,
@@ -23,7 +23,7 @@ export const getServiceKeysMock = ({
             message: 'serviceKeys error',
           },
         }
-      : (_: unknown, params: PathParams) => findOkmsById(params),
+      : serviceKeyMock.slice(0, nbServiceKey),
     status: isServiceKeyKO ? 500 : 200,
     api: 'v2',
   },
@@ -31,8 +31,24 @@ export const getServiceKeysMock = ({
     url: '/okms/resource/:okmsId/serviceKey/:serviceKeyId',
     response: isServiceKeyKO
       ? { message: 'serviceKey error' }
-      : serviceKeyMock.slice(0, nbServiceKey),
+      : (_: unknown, params: PathParams) => findServiceKeyById(params),
     status: isServiceKeyKO ? 500 : 200,
+    api: 'v2',
+  },
+  {
+    url: '/okms/resource/:okmsId/serviceKey/:serviceKeyId',
+    method: 'put',
+    response: (_: unknown, params: PathParams) => findServiceKeyById(params),
+    status: 200,
+    api: 'v2',
+  },
+  {
+    url: '/okms/resource/:okmsId/serviceKey',
+    method: 'post',
+    response: (_: unknown, params: PathParams) => {
+      findServiceKeyById(params);
+    },
+    status: 200,
     api: 'v2',
   },
 ];
