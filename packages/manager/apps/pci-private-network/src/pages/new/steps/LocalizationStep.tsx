@@ -1,6 +1,7 @@
 import {
   StepComponent,
   TilesInputComponent,
+  getMacroRegion,
 } from '@ovh-ux/manager-react-components';
 import { useSearchParams } from 'react-router-dom';
 
@@ -46,20 +47,6 @@ export default function LocalizationStep(): JSX.Element {
   const [state, setState] = useState<{ selectedContinent: string }>({
     selectedContinent: undefined,
   });
-
-  const getMacroRegion = (regionName: string) => {
-    const regionSubStrings = regionName.split('-');
-
-    const macroRegionMap = [
-      null,
-      regionSubStrings[0].split(/(\d)/)[0],
-      regionSubStrings[0],
-      regionSubStrings[2],
-      regionSubStrings[2] === 'LZ' ? regionSubStrings[3] : regionSubStrings[2],
-      regionSubStrings[3],
-    ];
-    return macroRegionMap[regionSubStrings.length] || 'Unknown_Macro_Region';
-  };
 
   const getTranslatedMacroRegion = ({ name }: TRegion) => {
     const translatedMacroRegion = tRegion(
