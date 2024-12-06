@@ -3,7 +3,6 @@
 exports[`Scale > should render correctly 1`] = `
 <div>
   <osds-modal
-    color="text"
     headline="kube_common_node_pool_autoscaling_title"
   >
     <slot
