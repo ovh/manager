@@ -7,6 +7,7 @@ export default {
     travauxUrl: '@',
     viewInterventionsUrl: '@',
     trackingPrefix: '<',
+    isHidden: '<',
   },
   controller,
   template,

@@ -7,5 +7,6 @@
   "nutanix_dashboard_nodes_list_status_ERROR": "Błąd",
   "nutanix_dashboard_nodes_list_status_HACKED": "Hack",
   "nutanix_dashboard_nodes_list_status_HACKED_BLOCKED": "Zhakowany i zablokowany",
-  "nutanix_dashboard_nodes_list_localisation_value": "{{dcName}} (Szafa {{rackName}})"
+  "nutanix_dashboard_nodes_list_localisation_value": "{{dcName}} (Szafa {{rackName}})",
+  "nutanix_dashboard_nodes_list_data_hidden": "UKRYTE"
 }
