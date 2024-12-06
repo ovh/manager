@@ -11,7 +11,12 @@
                     class="ng-isolate-scope oui-modal oui-modal_shadow oui-modal_warning"
                 >
                     <p
-                        data-translate="vrack_select_dialog_modal_description"
+                        data-ng-if="$ctrl.isIpv6"
+                        data-translate="vrack_select_dialog_modal_description_for_ipv6"
+                    ></p>
+                    <p
+                        data-ng-if="$ctrl.isVrackService"
+                        data-translate="vrack_select_dialog_modal_description_for_vs"
                     ></p>
                 </oui-modal>
             </div>
