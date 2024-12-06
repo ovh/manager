@@ -12,7 +12,7 @@ exports[`NodePools > should show spinner if nodepools are loading 1`] = `
         class="xs:mb-0.5 sm:mb-0"
         color="primary"
         size="sm"
-        variant="stroked"
+        variant="flat"
       >
         kube_node_pool_add
       </osds-button>
@@ -21,10 +21,10 @@ exports[`NodePools > should show spinner if nodepools are loading 1`] = `
         color="primary"
         data-testid="refresh-button"
         size="sm"
-        variant="stroked"
+        variant="flat"
       >
         <osds-icon
-          class="mr-2"
+          class="mr-2 bg-white"
           color="primary"
           name="refresh"
           size="xs"

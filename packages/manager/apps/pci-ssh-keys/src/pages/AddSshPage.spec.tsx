@@ -22,6 +22,6 @@ vi.mock('react-i18next', () => ({
 describe('AddSshPage', () => {
   it('renders AddSshModal correctly', () => {
     const { getByTestId } = render(<AddSshPage />, { wrapper });
-    expect(getByTestId('addSshModal-modal')).toBeInTheDocument();
+    expect(getByTestId('pciModal-modal')).toBeInTheDocument();
   });
 });

@@ -22,6 +22,6 @@ vi.mock('react-i18next', () => ({
 describe('RemoveSshPage', () => {
   it('renders RemoveSshModal correctly', () => {
     const { getByTestId } = render(<RemoveSshPage />, { wrapper });
-    expect(getByTestId('RemoveSshModal-modal')).toBeInTheDocument();
+    expect(getByTestId('pciModal-modal')).toBeInTheDocument();
   });
 });

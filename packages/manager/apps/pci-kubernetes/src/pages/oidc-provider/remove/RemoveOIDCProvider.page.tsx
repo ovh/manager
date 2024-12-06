@@ -87,6 +87,7 @@ export default function RemoveOIDCProvider() {
         });
         onClose();
       }}
+      color={ODS_THEME_COLOR_INTENT.warning}
     >
       <slot name="content">
         {isPending ? (

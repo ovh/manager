@@ -1,20 +1,15 @@
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import {
+  Headers,
   PciGuidesHeader,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
 import {
   OsdsBreadcrumb,
   OsdsTabBar,
   OsdsTabBarItem,
   OsdsTabPanel,
   OsdsTabs,
-  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
 
@@ -96,22 +91,13 @@ export default function ListingPage(): JSX.Element {
         )}
         <div className="header mb-10 mt-8">
           <div className="flex items-center justify-between">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            >
-              {t('pci_additional_ips_title')}
-            </OsdsText>
+            <Headers title={t('pci_additional_ips_title')} />
             <PciGuidesHeader category="instances"></PciGuidesHeader>
           </div>
           <div className="mt-4">
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            >
-              {t('pci_additional_ips_additional_ips_description')}
-            </OsdsText>
+            <Headers
+              description={t('pci_additional_ips_additional_ips_description')}
+            />
           </div>
         </div>
 

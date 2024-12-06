@@ -1,9 +1,0 @@
-{
-  "pci_workflow_onboarding_content1": "Todavía no ha creado ningún servicio de gestión de flujos de trabajo.",
-  "pci_workflow_onboarding_content2": "Automatice tareas para gestionar sus recursos cloud y así dar respuesta a las distintas necesidades de su negocio.",
-  "pci_workflow_onboarding_content3": "Puede programar ejecuciones de flujos de trabajo (workflows) para realizar tareas en su infraestructura. Hemos preconfigurado los flujos de trabajo más comunes para ayudarle, por ejemplo, backups automatizados en las instancias, snapshots automatizados en Block Storage y más.",
-  "pci_workflow_onboarding_content4": "También puede utilizar directamente la API de OpenStack Mistral para gestionar los flujos de trabajo avanzados.",
-  "pci_workflow_onboarding_content5": "La creación, la planificación y la ejecución de los flujos de trabajo son gratuitas (solo se facturarán los recursos creados).",
-  "pci_workflow_onboarding_no_instance": "Para crear un flujo de trabajo necesita al menos una instancia.",
-  "pci_workflow_onboarding_create_instance": "Crear una instancia"
-}

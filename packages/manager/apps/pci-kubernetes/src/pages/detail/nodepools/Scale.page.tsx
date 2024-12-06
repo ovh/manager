@@ -89,7 +89,6 @@ export default function ScalePage(): JSX.Element {
         trackClick(`details::nodepools::scale::cancel`);
         goBack();
       }}
-      color={ODS_THEME_COLOR_INTENT.text}
     >
       <slot name="content">
         {!isPoolsPending && !isScaling ? (

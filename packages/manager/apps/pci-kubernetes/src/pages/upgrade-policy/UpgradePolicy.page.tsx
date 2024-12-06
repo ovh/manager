@@ -117,13 +117,10 @@ export default function UpgradePolicyPage() {
                   color={ODS_THEME_COLOR_INTENT.primary}
                   size={ODS_RADIO_BUTTON_SIZE.xs}
                 >
-                  <div slot="end" className="align-bottom inline-block">
+                  <div slot="end" className="inline-block">
                     <OsdsText
                       color={ODS_THEME_COLOR_INTENT.text}
                       size={ODS_TEXT_SIZE._600}
-                      className={`block ${
-                        updatePolicy === policy ? 'font-bold' : 'font-normal'
-                      }`}
                     >
                       {t(`kube_service_upgrade_policy_${policy}`)}
                     </OsdsText>

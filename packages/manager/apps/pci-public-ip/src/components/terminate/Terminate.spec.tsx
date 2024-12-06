@@ -21,8 +21,8 @@ describe('Terminate component tests', () => {
       <TerminateModal {...propsWithIsPendingTrue} />,
     );
 
-    expect(queryByTestId('terminateModal-spinner')).toBeInTheDocument();
-    expect(queryByTestId('terminateModal-spinner')).toBeVisible();
+    expect(queryByTestId('pciModal-spinner')).toBeInTheDocument();
+    expect(queryByTestId('pciModal-spinner')).toBeVisible();
   });
 
   it('should display spinner when isPendingTerminate equal true', () => {
@@ -38,8 +38,8 @@ describe('Terminate component tests', () => {
       <TerminateModal {...propsWithIsPendingTerminateTrue} />,
     );
 
-    expect(queryByTestId('terminateModal-spinner')).toBeInTheDocument();
-    expect(queryByTestId('terminateModal-spinner')).toBeVisible();
+    expect(queryByTestId('pciModal-spinner')).toBeInTheDocument();
+    expect(queryByTestId('pciModal-spinner')).toBeVisible();
   });
 
   it('should disable the submit button when the isPending equal true', () => {
@@ -56,7 +56,7 @@ describe('Terminate component tests', () => {
     );
 
     const submitButton = (queryByTestId(
-      'terminateModal-button_submit',
+      'pciModal-button_submit',
     ) as unknown) as OsdsButton;
 
     expect(submitButton).toHaveAttribute('disabled');
@@ -77,7 +77,7 @@ describe('Terminate component tests', () => {
     );
 
     const submitButton = (queryByTestId(
-      'terminateModal-button_submit',
+      'pciModal-button_submit',
     ) as unknown) as OsdsButton;
 
     expect(submitButton).toHaveAttribute('disabled');
@@ -97,7 +97,7 @@ describe('Terminate component tests', () => {
       <TerminateModal {...propsWithIsPendingFalse} />,
     );
 
-    const submitButton = queryByTestId('terminateModal-button_submit');
+    const submitButton = queryByTestId('pciModal-button_submit');
 
     expect(submitButton).not.toHaveAttribute('disabled');
   });
@@ -113,7 +113,7 @@ describe('Terminate component tests', () => {
 
     const { getByTestId } = render(<TerminateModal {...props} />);
 
-    const cancelButton = getByTestId('terminateModal-button_cancel');
+    const cancelButton = getByTestId('pciModal-button_cancel');
 
     act(() => {
       fireEvent.click(cancelButton);
@@ -133,7 +133,7 @@ describe('Terminate component tests', () => {
 
     const { queryByTestId } = render(<TerminateModal {...props} />);
 
-    const submitButton = queryByTestId('terminateModal-button_submit');
+    const submitButton = queryByTestId('pciModal-button_submit');
 
     act(() => {
       fireEvent.click(submitButton);

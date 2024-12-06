@@ -78,7 +78,7 @@ export const GatewayModeSelector = ({
           >
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_TEXT_SIZE._500}
+              size={ODS_TEXT_SIZE._400}
               slot="end"
             >
               {tAdd('kubernetes_network_form_gateway_mode_auto')}
@@ -92,7 +92,7 @@ export const GatewayModeSelector = ({
           >
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_TEXT_SIZE._500}
+              size={ODS_TEXT_SIZE._400}
               slot="end"
             >
               {tAdd('kubernetes_network_form_gateway_mode_custom')}

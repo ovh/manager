@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { describe, it, vi } from 'vitest';
-import { getInstances, TInstance } from '@ovh-ux/manager-pci-common';
+import { getInstancesByRegion, TInstance } from '@ovh-ux/manager-pci-common';
 import { useInstance, useInstances } from '@/api/hooks/useInstance';
 import { getInstance, Instance } from '@/api/data/instance';
 
@@ -10,7 +10,7 @@ vi.mock('@/api/data/instance', () => ({
 }));
 
 vi.mock('@ovh-ux/manager-pci-common', () => ({
-  getInstances: vi.fn(),
+  getInstancesByRegion: vi.fn(),
 }));
 
 const queryClient = new QueryClient();
@@ -86,14 +86,14 @@ describe('useInstance', () => {
 
 describe('useInstances', () => {
   it('returns instances data when region is provided', async () => {
-    vi.mocked(getInstances).mockResolvedValue(mockInstances);
+    vi.mocked(getInstancesByRegion).mockResolvedValue(mockInstances);
 
     const { result } = renderHook(() => useInstances('123', 'region1'), {
       wrapper,
     });
 
     await waitFor(() => {
-      expect(getInstances).toHaveBeenCalledWith('123', 'region1');
+      expect(getInstancesByRegion).toHaveBeenCalledWith('123', 'region1');
       expect(result.current.data).toEqual(mockInstances);
     });
   });
@@ -101,7 +101,7 @@ describe('useInstances', () => {
   it('does not fetch data when region is not provided', () => {
     const { result } = renderHook(() => useInstances('123', null), { wrapper });
 
-    expect(getInstances).not.toHaveBeenCalled();
+    expect(getInstancesByRegion).not.toHaveBeenCalled();
     expect(result.current.isPending).toBe(true);
   });
 });

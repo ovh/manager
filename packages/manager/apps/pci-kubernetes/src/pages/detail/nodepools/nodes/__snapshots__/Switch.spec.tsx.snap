@@ -3,7 +3,6 @@
 exports[`SwitchPage > should render correctly 1`] = `
 <div>
   <osds-modal
-    color="text"
     headline="kube_nodes_switch_to_monthly_billing_title"
   >
     <slot

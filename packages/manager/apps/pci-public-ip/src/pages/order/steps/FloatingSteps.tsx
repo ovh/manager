@@ -161,7 +161,6 @@ export const FloatingSteps = ({
           <OsdsMessage
             icon={ODS_ICON_NAME.ERROR_CIRCLE}
             color={ODS_THEME_COLOR_INTENT.error}
-            className="rounded-[8px]"
           >
             <p className="text-base font-sans">
               {tOrder(

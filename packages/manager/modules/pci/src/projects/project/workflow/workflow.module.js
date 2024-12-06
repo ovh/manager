@@ -9,9 +9,6 @@ import '@ovh-ux/ui-kit';
 
 import add from './add';
 import component from './workflow.component';
-import deleteWorkflow from './delete';
-import executions from './executions';
-import onboarding from './onboarding';
 import routing from './workflow.routing';
 
 const moduleName = 'ovhManagerPciProjectsProjectWorkflowModule';
@@ -19,9 +16,6 @@ const moduleName = 'ovhManagerPciProjectsProjectWorkflowModule';
 angular
   .module(moduleName, [
     add,
-    deleteWorkflow,
-    executions,
-    onboarding,
     'ngTranslateAsyncLoader',
     'ngOvhCloudUniverseComponents',
     'oui',

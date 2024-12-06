@@ -23,7 +23,7 @@
   "order_rancher": "Démarrer Managed Rancher Services",
   "listing_resultats": "résultats",
   "months": "{{count}} mois",
-  "months_plural": "{{count}} mois",
+  "months_other": "{{count}} mois",
   "banner_renew_activate": "Le renouvellement automatique du Savings Plan {{planName}} a été activé avec succès. Votre Savings Plan sera renouvelé le {{endDate}}",
   "banner_renew_deactivate": " Le renouvellement automatique du Savings Plan {{planName}} a été désactivé avec succès. Votre Savings Plan prendra fin le {{endDate}}. L'expiration de votre Savings Plan n'aura aucun impact sur vos services actifs.",
   "banner_edit_name": "Le nom du Savings Plan a été modifié avec succès.",

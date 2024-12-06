@@ -4,7 +4,7 @@ import controller from './controller';
 const component = {
   bindings: {
     isDisplayableShowHidePasswordBtn: '<',
-    fieldId: '<',
+    fieldId: '@',
     fieldKeyLabel: '<',
     fieldKeyValue: '<',
     onCopyClick: '&',

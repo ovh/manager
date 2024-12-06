@@ -93,7 +93,7 @@ export const GatewaySelector = ({
           >
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_TEXT_SIZE._500}
+              size={ODS_TEXT_SIZE._400}
               slot="end"
             >
               {tAdd('kubernetes_network_form_gateway_public')}
@@ -103,7 +103,7 @@ export const GatewaySelector = ({
         {!gateway.isEnabled && (
           <OsdsText
             level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
+            size={ODS_TEXT_SIZE._300}
             color={ODS_THEME_COLOR_INTENT.text}
             className="block mx-9 my-4"
           >
@@ -117,7 +117,7 @@ export const GatewaySelector = ({
           >
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_TEXT_SIZE._500}
+              size={ODS_TEXT_SIZE._400}
               slot="end"
             >
               {tAdd('kubernetes_network_form_gateway_private')}

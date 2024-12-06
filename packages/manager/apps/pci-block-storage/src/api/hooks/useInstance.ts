@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getInstances } from '@ovh-ux/manager-pci-common';
+import { getInstancesByRegion } from '@ovh-ux/manager-pci-common';
 import { getInstance, Instance } from '@/api/data/instance';
 
 export const getInstanceQueryKey = (projectId: string, instanceId: string) => [
@@ -26,6 +26,6 @@ export const useInstances = (projectId: string, region: string) =>
   useQuery({
     queryKey: getInstancesQueryKey(projectId, region),
     queryFn: (): Promise<Required<Instance>[]> =>
-      getInstances(projectId, region) as Promise<Required<Instance>[]>,
+      getInstancesByRegion(projectId, region) as Promise<Required<Instance>[]>,
     enabled: !!region,
   });

@@ -7,6 +7,7 @@ import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 
 import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
+import { region } from '@ovh-ux/manager-components';
 
 import routing from './ipv6.routes';
 import component from './ipv6.component';
@@ -25,6 +26,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ovhManagerCatalogPrice',
+    region,
   ])
   .config(routing)
   .component('agoraIpV6Order', component)
