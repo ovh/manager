@@ -1,6 +1,7 @@
 @tailwind utilities;
 
 @import '@ovhcloud/ods-themes/default';
+@import '@ovh-ux/manager-react-components/dist/style.css';
 
 html {
   font-family: var(--ods-font-family-default);
@@ -8,6 +9,10 @@ html {
 
 .input-at::part(input) {
   text-align: center;
+}
+
+ods-text::part(text) {
+  width: 100%;
 }
 
 ods-button.action-menu-item::part(button) {

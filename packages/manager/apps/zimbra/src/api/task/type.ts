@@ -1,4 +1,19 @@
-import { TaskErrorMessage, TaskProgressStatus } from '../api.type';
+export enum TaskStatus {
+  DONE = 'DONE',
+  ERROR = 'ERROR',
+  PENDING = 'PENDING',
+  RUNNING = 'RUNNING',
+  SCHEDULED = 'SCHEDULED',
+}
+
+export type TaskErrorMessage = {
+  message: string;
+};
+
+export type TaskProgressStatus = {
+  name: string;
+  status: TaskStatus;
+};
 
 export type TaskType = {
   createdAt: string;
@@ -9,7 +24,7 @@ export type TaskType = {
   message: string;
   progress: TaskProgressStatus[];
   startedAt: string;
-  status: string;
+  status: TaskStatus;
   type: string;
   updatedAt: string;
 };

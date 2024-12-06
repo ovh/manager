@@ -117,6 +117,7 @@ export default /* @ngInject */ ($compile, $locale, coreConfig) => ({
           const { x, y } = element[0].getBoundingClientRect();
           const nearFromBottomBorder = y >= (3 * window.screen.height) / 4;
           const nearFromRightBorder = x >= (3 * window.screen.width) / 4;
+          const nearFromTopBorder = y <= window.screen.height / 4;
 
           if (nearFromRightBorder) {
             return 'auto right';
@@ -125,7 +126,11 @@ export default /* @ngInject */ ($compile, $locale, coreConfig) => ({
             return 'top left';
           }
 
-          return 'auto left';
+          if (nearFromTopBorder) {
+            return 'bottom auto';
+          }
+
+          return 'top auto';
         },
         'data-popover-is-open': 'event.inEdition',
         'data-popover-class': 'pretty-popover telephony-scheduler-events-popup',

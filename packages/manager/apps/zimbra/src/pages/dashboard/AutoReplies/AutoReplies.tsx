@@ -99,7 +99,7 @@ export function AutoReplies() {
   ]);
 
   return (
-    <div data-testid="autoreplies" className="py-6">
+    <div data-testid="autoreplies">
       <Outlet />
       {platformUrn && !shouldHide && (
         <>

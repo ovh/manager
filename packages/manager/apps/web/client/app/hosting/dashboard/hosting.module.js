@@ -7,7 +7,6 @@ import cron from '../cron/cron.module';
 import database from '../database/hosting-database.module';
 import envvars from '../envvars/envvars.module';
 import generalInformations from '../general-informations/general-informations.module';
-import freedom from '../freedom/freedom.module';
 import ftp from '../ftp/ftp.module';
 import hostingModule from '../module/hosting-module.module';
 import indy from '../indy/indy.module';
@@ -30,7 +29,6 @@ angular
     cron,
     database,
     envvars,
-    freedom,
     ftp,
     generalInformations,
     hostingModule,

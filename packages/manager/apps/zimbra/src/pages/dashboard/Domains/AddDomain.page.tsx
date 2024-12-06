@@ -215,7 +215,7 @@ export default function AddDomain() {
 
   return (
     <div
-      className="flex flex-col items-start w-full"
+      className="flex flex-col items-start w-full gap-4"
       data-testid="add-domain-page"
     >
       <Links
@@ -227,11 +227,8 @@ export default function AddDomain() {
       />
       {!cnameToCheck ? (
         <>
-          <Subtitle className="mt-8">
-            {t('zimbra_domains_add_domain_title_select')}
-          </Subtitle>
-
-          <OdsFormField className="w-full mt-8">
+          <Subtitle>{t('zimbra_domains_add_domain_title_select')}</Subtitle>
+          <OdsFormField className="w-full mt-6">
             <label htmlFor="organization" slot="label">
               {t('zimbra_domains_add_domain_organization')}
             </label>
@@ -264,7 +261,7 @@ export default function AddDomain() {
           {FEATURE_FLAGS.DOMAIN_NOT_OVH &&
             selectedOrganization &&
             !isLoadingDomain && (
-              <OdsFormField className="w-full mt-8 gap-4">
+              <OdsFormField className="w-full gap-4">
                 <div className="flex leading-none gap-4">
                   <OdsRadio
                     value="ovhDomain"
@@ -304,7 +301,7 @@ export default function AddDomain() {
               </OdsFormField>
             )}
           {selectedOrganization && selectedRadioDomain && (
-            <OdsFormField className="w-full mt-8">
+            <OdsFormField className="w-full">
               <label htmlFor="form-field-input" slot="label">
                 {t('zimbra_domains_add_domain_title')}
               </label>
@@ -356,7 +353,7 @@ export default function AddDomain() {
             selectedRadioDomain &&
             ovhDomain &&
             selectedDomainName && (
-              <OdsFormField className="w-full mt-8 space-y-5">
+              <OdsFormField className="w-full space-y-5">
                 <label htmlFor="form-field-input" slot="label">
                   {t('zimbra_domains_add_domain_configuration_title')}
                 </label>
@@ -394,7 +391,7 @@ export default function AddDomain() {
               </OdsFormField>
             )}
           {isExpertConfigurationSelected && (
-            <OdsFormField className="w-full mt-8 space-y-5">
+            <OdsFormField className="w-full space-y-5">
               <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                 <Trans
                   t={t}
@@ -426,7 +423,7 @@ export default function AddDomain() {
           <Subtitle>
             {t('zimbra_domains_add_domain_configuration_cname_title')}
           </Subtitle>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          <OdsText className="mt-6" preset={ODS_TEXT_PRESET.paragraph}>
             {t('zimbra_domains_add_domain_configuration_cname_description')}
           </OdsText>
           <Clipboard value={cnameToCheck} />
@@ -460,7 +457,6 @@ export default function AddDomain() {
             data-testid="add-domain-submit-btn"
             color={ODS_BUTTON_COLOR.primary}
             onClick={handleAddDomainClick}
-            className="mt-8"
             isDisabled={
               !selectedOrganization ||
               !selectedDomainName ||

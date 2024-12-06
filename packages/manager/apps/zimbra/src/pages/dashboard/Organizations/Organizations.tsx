@@ -101,7 +101,7 @@ export default function Organizations() {
   };
 
   return (
-    <div className="py-6">
+    <div>
       <Outlet />
       {platformUrn && (
         <>

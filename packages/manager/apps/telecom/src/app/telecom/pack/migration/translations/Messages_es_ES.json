@@ -207,5 +207,8 @@
   "telecom_pack_migration_ont_shipping_explain": "El ONT (Optical Network Termination) es un dispositivo de red que permite conectar el módem a la PTO.",
   "telecom_pack_migration_ont_shipping_contact": "Contacto de entrega",
   "telecom_pack_migration_ont_shipping_confirm": "Confirmar este contacto de entrega",
-  "telecom_pack_migration_ont_shipping_addresses_error": "Se ha producido un error al cargar los contactos. {{error}}"
+  "telecom_pack_migration_ont_shipping_addresses_error": "Se ha producido un error al cargar los contactos. {{error}}",
+  "telecom_pack_migration_confirm_temporary_pack_creation_line_1": "Durante la transición a su nuevo producto, se creará un pack temporal para garantizar la continuidad del servicio",
+  "telecom_pack_migration_confirm_temporary_pack_creation_line_2": "Este pack se eliminará automáticamente una vez finalizado el pedido de Fibra.",
+  "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "No es necesario que realice ninguna acción de modificación o eliminación: el paso a su acceso de fibra se realizará de forma totalmente automatizada."
 }

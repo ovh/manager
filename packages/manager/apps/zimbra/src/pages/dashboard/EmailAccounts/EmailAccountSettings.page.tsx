@@ -226,7 +226,7 @@ export default function EmailAccountSettings({
   };
 
   return (
-    <div className="w-full md:w-3/4 space-y-5">
+    <div className="w-full md:w-3/4 space-y-4">
       <OdsText preset={ODS_TEXT_PRESET.caption} className="block">
         {t('zimbra_account_add_input_mandatory')}
       </OdsText>

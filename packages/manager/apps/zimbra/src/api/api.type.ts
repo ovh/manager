@@ -11,15 +11,6 @@ export type ErrorResponse = {
   };
 };
 
-export type TaskErrorMessage = {
-  message: string;
-};
-
-export type TaskProgressStatus = {
-  name: string;
-  status: string;
-};
-
 export enum ResourceStatus {
   CREATING = 'CREATING',
   DELETING = 'DELETING',
