@@ -468,8 +468,8 @@
   "core_sd_top_guide_1_title": "Erste Schritte mit einem Dedicated Server",
   "core_sd_top_guide_2_title": "Erste Schritte mit einem Kimsufi, So you Start oder Rise Dedicated Server",
   "core_sd_top_guide_3_title": "Einen Dedicated Server absichern",
-  "core_sd_top_guide_4_title": "SSH-Schlüssel erstellen",
-  "core_sd_top_guide_5_title": "Verwendung des IPMI für Dedicated Server",
+  "core_sd_top_guide_4_title": "SSH-Schlüssel erstellen und verwenden",
+  "core_sd_top_guide_5_title": "Wie die IPMI-Konsole mit einem Dedicated Server verwendet wird",
   "core_sd_top_guide_6_title": "Daten von einem Dedicated Server auf einen anderen migrieren",
   "core_sd_top_guide_7_title": "Neuinstallation von Windows Server konfigurieren",
   "core_sd_top_guide_firewall_title": "Firewall Network konfigurieren",
@@ -547,5 +547,6 @@
   "older_interface": "Altes Kundeninterface",
   "core_pcc_top_guide_12_title": "Offizielle Dokumentation zu SAP HANA on Private Cloud",
   "core_pcc_top_guide_13_title": "IPs die Verbindung zum vCenter erlauben",
-  "core_pcc_top_guide_14_title": "VMware on OVHcloud – VMware Cloud Director"
+  "core_pcc_top_guide_14_title": "VMware on OVHcloud – VMware Cloud Director",
+  "core_sd_top_guide_8_title": "Edge Network Firewall aktivieren und konfigurieren"
 }
