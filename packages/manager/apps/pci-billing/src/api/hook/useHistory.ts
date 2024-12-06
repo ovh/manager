@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { isSameMonth } from 'date-fns';
 import { useComputeDate } from '@/components/history/useComputeDate.hook';
-import { getCurrentUsage } from '../data/consumption';
+import { getCurrentUsage, TCurrentUsage } from '../data/consumption';
 import {
   getUsageHistory,
   getUsageHistoryPeriod,
@@ -37,7 +37,7 @@ export const useGetUsageHistory = (
     queryKey: [projectId, periodDetail?.id, 'history', 'usage'],
     queryFn: async () => {
       const historyUsage = await getUsageHistory(projectId, periodDetail?.id);
-      let monthlyDetails;
+      let monthlyDetails: TCurrentUsage['monthlyUsage'];
 
       if (isSameMonth(new Date(), billingDate)) {
         const currentUsage = await getCurrentUsage(projectId);
