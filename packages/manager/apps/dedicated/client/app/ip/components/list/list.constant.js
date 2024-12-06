@@ -77,6 +77,7 @@ export const PAGE_SIZE_MIN = 10;
 export const PAGE_SIZE_MAX = 100;
 
 export const IP_LISTING_ID = 'module-ip-table';
+export const POLLING_INTERVAL = 10000;
 
 export default {
   BADGES,

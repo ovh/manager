@@ -24,6 +24,7 @@ import {
   TRACKING_OPTIONS,
   ADMIN_ROLE,
   IP_LISTING_ID,
+  POLLING_INTERVAL,
 } from './list.constant';
 
 export default class IpListController {
@@ -113,6 +114,7 @@ export default class IpListController {
     $scope.version = versionFilter;
     $scope.selected_option = versionFilter || FILTER_OPTIONS.ALL_IPS;
     $scope.PAGE_SIZE_MAX = PAGE_SIZE_MAX;
+    $scope.poller = null;
 
     this.securityUrl =
       SECURITY_URL[coreConfig.getUser().ovhSubsidiary] || SECURITY_URL.DEFAULT;
@@ -364,6 +366,11 @@ export default class IpListController {
       IpFirewall.killPollFirewallState();
       IpMitigation.killPollMitigationState();
       IpOrganisation.killAllPolling();
+
+      if ($scope.poller) {
+        $timeout.cancel($scope.poller);
+        $scope.poller = null;
+      }
     }
 
     $scope.onPaginationChange = ({ offset, pageSize }) => {
@@ -717,5 +724,65 @@ export default class IpListController {
     };
 
     refreshTable();
+
+    // fonction called from modal
+    $scope.refreshIpList = (removedIps, createdIps) => {
+      const insertPosition = $scope.ipsList.findIndex(
+        (item) => item.ipBlock === removedIps[removedIps.length - 1]?.ipBlock,
+      );
+
+      createdIps.forEach((ip) => {
+        $scope.ipsList.splice(insertPosition + 1, 0, ip);
+      });
+
+      removedIps.forEach((ip) => {
+        // eslint-disable-next-line no-param-reassign
+        ip.tobeRemoved = true;
+      });
+
+      $scope.refreshQueue(removedIps, createdIps);
+    };
+
+    // poller function
+    $scope.refreshQueue = (removedIps, createdIps) => {
+      const task = [];
+      createdIps.forEach((ip) => {
+        if (!ip.done) {
+          task.push(
+            this.Ip.getIpDetails(ip.ipBlock)
+              .then((data) => {
+                const targetIndex = $scope.ipsList.findIndex(
+                  (item) => item.ipBlock === ip.ipBlock,
+                );
+                $scope.ipsList[targetIndex] = { ...data, ipBlock: data.ip };
+                // eslint-disable-next-line no-param-reassign
+                ip.done = true;
+              })
+              .catch((err) => {
+                if (err.message !== 'This service does not exist') {
+                  // eslint-disable-next-line no-param-reassign
+                  ip.done = true;
+                }
+              }),
+          );
+        }
+      });
+
+      return this.$q.all(task).then(() => {
+        if (createdIps.find((ip) => !ip.done)) {
+          $scope.poller = this.$timeout(() => {
+            $scope.refreshQueue(removedIps, createdIps);
+          }, POLLING_INTERVAL);
+        } else {
+          $scope.poller = null;
+          removedIps.forEach((ip) => {
+            const row = $scope.ipsList.findIndex(
+              (item) => item.ipBlock === ip.ipBlock,
+            );
+            $scope.ipsList.splice(row, 1);
+          });
+        }
+      });
+    };
   }
 }

@@ -55,5 +55,5 @@
   "subnetUpdatePending": "Modifica della sottorete in corso...",
   "modalSubnetUpdateCancelButton": "Annullare",
   "modalSubnetUpdateConfirmButton": "Modificare",
-  "subnetRangeAdditionalText": "L'intervallo di indirizzi della sottorete deve essere /24."
+  "subnetRangeAdditionalText": "L'intervallo di indirizzi della sottorete deve essere in /24."
 }
