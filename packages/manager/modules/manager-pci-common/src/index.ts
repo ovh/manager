@@ -1,3 +1,5 @@
+import '@ovhcloud/ods-themes/default';
+
 export * from './api/data';
 export * from './api/hook';
 export * from './components/accordion/Accordion.component';
