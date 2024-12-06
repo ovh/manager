@@ -65,7 +65,7 @@ export default function NodePoolsPage() {
         <div className="flex flex-row">
           <OsdsButton
             size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.stroked}
+            variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
             className="xs:mb-0.5 sm:mb-0"
             onClick={() => {
@@ -77,7 +77,7 @@ export default function NodePoolsPage() {
           <OsdsButton
             data-testid="refresh-button"
             size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.stroked}
+            variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
             className="xs:mb-0.5 sm:mb-0 ml-0.5"
             onClick={() => {
@@ -87,7 +87,7 @@ export default function NodePoolsPage() {
             <OsdsIcon
               size={ODS_ICON_SIZE.xs}
               name={ODS_ICON_NAME.REFRESH}
-              className="mr-2"
+              className="mr-2 bg-white"
               color={ODS_THEME_COLOR_INTENT.primary}
             />
           </OsdsButton>

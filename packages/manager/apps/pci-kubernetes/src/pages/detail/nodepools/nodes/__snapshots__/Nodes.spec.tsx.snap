@@ -2,14 +2,14 @@
 
 exports[`NodesPage > should render correctly 1`] = `
 <div>
-  <osds-text
-    color="text"
-    level="heading"
-    size="700"
-  />
+  <div
+    class="flex items-center justify-between"
+  >
+    <div />
+  </div>
   <div>
     <osds-link
-      class="mt-10"
+      class="mt-6"
       color="primary"
     >
       <osds-icon
@@ -44,10 +44,10 @@ exports[`NodesPage > should render correctly 1`] = `
         class="xs:mb-0.5 sm:mb-0 ml-0.5"
         color="primary"
         size="sm"
-        variant="stroked"
+        variant="flat"
       >
         <osds-icon
-          class="mr-2"
+          class="mr-2 bg-white"
           color="primary"
           name="refresh"
           size="xs"
