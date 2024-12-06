@@ -3,7 +3,6 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import set from 'lodash/set';
-import upperFirst from 'lodash/upperFirst';
 
 import { RENEW_URL } from '@ovh-ux/manager-billing-components';
 import {
@@ -52,10 +51,6 @@ export default class AutorenewCtrl {
       status: {
         hideOperators: true,
         values: this.BillingAutoRenew.getStatusTypes(),
-      },
-      state: {
-        hideOperators: true,
-        values: this.BillingAutoRenew.getStatesTypes(),
       },
       expiration: {
         hideOperators: true,
@@ -266,12 +261,11 @@ export default class AutorenewCtrl {
   }
 
   getAutomaticExpirationDate(service) {
-    return upperFirst(
-      new Intl.DateTimeFormat(this.$translate.use().replace('_', '-'), {
-        year: 'numeric',
-        month: 'long',
-      }).format(new Date(service.expiration)),
-    );
+    return new Intl.DateTimeFormat(this.$translate.use().replace('_', '-'), {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    }).format(new Date(service.expiration));
   }
 
   getDisplayedDateOfEffect(service) {
@@ -280,7 +274,7 @@ export default class AutorenewCtrl {
     }
     if (service.hasPendingResiliation() || service.isResiliated()) {
       return this.$translate.instant('billing_autorenew_service_date_renew', {
-        date: service.formattedExpiration,
+        date: this.getAutomaticExpirationDate(service),
       });
     }
     if (service.hasParticularRenew() || service.isOneShot()) {
@@ -288,7 +282,7 @@ export default class AutorenewCtrl {
     }
     if (service.hasManualRenew() && !service.isResiliated()) {
       return this.$translate.instant('billing_autorenew_service_date_before', {
-        date: service.formattedExpiration,
+        date: this.getAutomaticExpirationDate(service),
       });
     }
     if (service.hasAutomaticRenewal()) {
