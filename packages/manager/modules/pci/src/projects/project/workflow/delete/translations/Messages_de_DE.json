@@ -1,9 +1,0 @@
-{
-  "pci_workflow_delete_confirmation": "Sind Sie sicher, dass Sie den Workflow-Schedule '{{ workflowName }}' löschen möchten?",
-  "pci_workflow_delete_warning": "Dieser Vorgang kann nicht rückgängig gemacht werden.",
-  "pci_workflow_delete_enter": "Geben Sie im folgenden Feld DELETE ein, um den Vorgang zu bestätigen.",
-  "pci_workflow_delete_success": "Workflow-Schedule '{{ workflowName }}' erfolgreich gelöscht",
-  "pci_workflow_delete_error": "Beim Löschen ist ein Fehler aufgetreten: {{ message }}",
-  "pci_workflow_common_delete": "Löschen",
-  "pci_workflow_common_cancel": "Abbrechen"
-}
