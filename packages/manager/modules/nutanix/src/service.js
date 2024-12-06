@@ -34,7 +34,7 @@ export default class NutanixService {
   /**
    *
    * @param {string} nodeServiceName
-   * @param {clusrer[]} clusters
+   * @param {cluster[]} clusters
    * @returns {*} - cluster if found, null otherwise
    */
   static getClusterByNodeName(nodeServiceName, clusters = []) {
@@ -167,6 +167,16 @@ export default class NutanixService {
     return this.$q
       .all(nodes.map((node) => this.getServer(node.server)))
       .then((res) => res);
+  }
+
+  getNodesWithState(serviceName) {
+    return this.$http
+      .get(`/nutanix/${serviceName}/nodes`, {
+        serviceType: 'aapi',
+      })
+      .then(({ data }) => {
+        data.map((node) => new Node(node));
+      });
   }
 
   getServer(nodeId) {
