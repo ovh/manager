@@ -1,4 +1,4 @@
-const lazyRouteConfig = (importFn: CallableFunction) => ({
+export const lazyRouteConfig = (importFn: CallableFunction) => ({
   lazy: async () => {
     const { default: moduleDefault, ...moduleExports } = await importFn();
 
@@ -8,10 +8,13 @@ const lazyRouteConfig = (importFn: CallableFunction) => ({
     };
   },
 });
-
 export interface RouteHandle {
   tracking?: string;
 }
+
+const ROUTE_PATHS = {
+  root: '/pci/projects/:projectId/private-registry',
+};
 
 export default [
   {
@@ -20,7 +23,7 @@ export default [
   },
   {
     id: 'root',
-    path: '/pci/projects/:projectId/private-registry',
+    path: ROUTE_PATHS.root,
     ...lazyRouteConfig(() => import('@/pages/Layout')),
     children: [
       {
@@ -29,16 +32,26 @@ export default [
           tracking: 'registries',
         },
         ...lazyRouteConfig(() => import('@/pages/list/List.page')),
+      },
+      {
+        path: ':registryId',
         children: [
           {
-            path: ':registryId/api-url',
+            path: 'api-url',
             handle: {
               tracking: 'api-url',
             },
             ...lazyRouteConfig(() => import('@/pages/api-url/APIUrl.page')),
           },
           {
-            path: ':registryId/credentials',
+            path: 'manage-cidr',
+            handle: {
+              tracking: 'CIDR',
+            },
+            ...lazyRouteConfig(() => import('@/pages/CIDR/ManageCIDR.page')),
+          },
+          {
+            path: 'credentials',
             handle: {
               tracking: 'credentials',
             },

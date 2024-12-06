@@ -1,0 +1,11 @@
+{
+  "private_registry_noCIDR": "Actuellement votre Managed Private Registry est ouverte à toutes les connexions. \nPour limiter l'accès à votre Managed Private Registry, il est important de définir des adresses IP autorisées (Bloc CIDR). \nEn procédant ainsi, vous assurez que seules les personnes ou les systèmes que vous avez approuvés peuvent accéder à votre Registry, ce qui renforce la sécurité et facilite la gestion des connexions.",
+  "ip_restrictions_add_block": "Ajouter un Bloc CIDR autorisé",
+  "private_registry_bloc_cidr": "Bloc CIDR",
+  "private_registry_cidr_description": "Description",
+  "private_registry_cidr_authorization": "Composant autorisé",
+  "private_registry_cidr_manage_title": "Gérer les adresses IP autorisées",
+  "private_registry_cidr_authorization_select": "Sélectionner un composant",
+  "private_registry_cidr_validation_ipBlock": "Ce bloc CIDR doit être valide (par exemple : 192.168.0.0/24).",
+  "private_registry_cidr_validation_authorization": "Veuillez sélectionner au moins un composant autorisé."
+}

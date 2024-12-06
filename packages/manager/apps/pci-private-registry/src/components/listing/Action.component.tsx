@@ -26,6 +26,7 @@ export default function ActionComponent({
   const hrefHarborUI = registry?.url;
   const hrefHarborAPI = useHref(`${registry?.id}/api-url`);
   const hrefRegenerateCredentials = useHref(`${registry?.id}/credentials`);
+  const hrefManageCIDR = useHref(`${registry?.id}/manage-cidr`);
   const hrefDelete = useHref(`./delete?registryId=${registry.id}`);
 
   const items = [
@@ -97,6 +98,17 @@ export default function ActionComponent({
       onClick: () =>
         tracking?.trackClick({
           name: 'PCI_PROJECTS_PRIVATEREGISTRY_DELETE',
+          type: 'action',
+        }),
+    },
+    {
+      id: 6,
+      label: t('private_registry_manage_CIDR'),
+      href: hrefManageCIDR,
+      disabled: registry.status !== PRIVATE_REGISTRY_STATUS.READY,
+      onClick: () =>
+        tracking?.trackClick({
+          name: 'PCI_PROJECTS_PRIVATEREGISTRY_MANAGE_CIDR',
           type: 'action',
         }),
     },
