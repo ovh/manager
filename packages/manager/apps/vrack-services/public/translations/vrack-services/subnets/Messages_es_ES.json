@@ -7,9 +7,9 @@
   "subnetCreationError": "Error al crear la subred: {{error}}",
   "subnetNameLabel": "Nombre de la subred (opcional)",
   "subnetNamePlaceholder": "Mi subred",
-  "cidrLabel": "Rango de direcciones de subred (CIDR)",
+  "cidrLabel": "Rango de direcciones de la subred (CIDR)",
   "cidrPlaceholder": "10.0.0.0/24",
-  "serviceRangeLabel": "Rango de direcciones de servicio (CIDR)",
+  "serviceRangeLabel": "Rango de direcciones del servicio (CIDR)",
   "serviceRangePlaceholder": "10.0.0.0/29",
   "serviceRangeAdditionalText": "Los servicios del vRack Services utilizarán el rango de direcciones de servicio. Por lo tanto, los nodos conectados al vRack no deben utilizar las direcciones de este rango. El rango de direcciones de servicio debe ser un subconjunto del rango de direcciones de la subred y su tamaño debe estar comprendido entre /27 y /29.",
   "vlanLabel": "VLAN",
@@ -55,5 +55,5 @@
   "subnetUpdatePending": "Modificando la subred...",
   "modalSubnetUpdateCancelButton": "Cancelar",
   "modalSubnetUpdateConfirmButton": "Modificar",
-  "subnetRangeAdditionalText": "El intervalo de direcciones de la subred debe ser /24."
+  "subnetRangeAdditionalText": "El rango de direcciones de la subred debe ser /24."
 }

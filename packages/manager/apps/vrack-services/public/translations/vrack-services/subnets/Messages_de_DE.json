@@ -55,5 +55,5 @@
   "subnetUpdatePending": "Subnetz wird geändert",
   "modalSubnetUpdateCancelButton": "Abbrechen",
   "modalSubnetUpdateConfirmButton": "Ändern",
-  "subnetRangeAdditionalText": "Der Subnetzadressbereich muss in /24 angegeben werden."
+  "subnetRangeAdditionalText": "Für den Adressbereich des Subnetzes ist /24 erforderlich."
 }
