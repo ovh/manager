@@ -1,5 +1,6 @@
 import component from './upscale.component';
 import vpsHeaderComponent from '../header/vps-header.component';
+import { UPSCALE_TRACKING_PREFIX } from './upscale.constants';
 
 export default /* @ngInject */ function($stateProvider) {
   $stateProvider.state('vps.detail.upscale', {
@@ -80,6 +81,9 @@ export default /* @ngInject */ function($stateProvider) {
     translations: {
       value: ['./'],
       format: 'json',
+    },
+    atInternet: {
+      rename: `${UPSCALE_TRACKING_PREFIX}1`,
     },
   });
 }
