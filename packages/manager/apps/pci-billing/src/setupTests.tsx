@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
+import React from 'react';
 import { vi } from 'vitest';
 
 vi.mock('react-router-dom', async () => {
@@ -39,6 +40,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
       setSorting: vi.fn(),
     }),
     PciGuidesHeader: vi.fn().mockReturnValue(<div></div>),
+    Datagrid: vi.fn().mockReturnValue(<div data-testid="datagrid"></div>),
     Notifications: vi
       .fn()
       .mockReturnValue(<div data-testid="notifications"></div>),
@@ -60,16 +62,27 @@ vi.mock('react-i18next', () => ({
   Trans: ({ children }: { children: string }) => children,
 }));
 
-vi.mock('@ovh-ux/manager-react-shell-client', async () => {
-  const mod = await vi.importActual('@ovh-ux/manager-react-shell-client');
-  return {
-    ...mod,
-    useTracking: vi.fn(() => ({
-      trackPage: vi.fn(),
-      trackClick: vi.fn(),
-    })),
-  };
-});
+const mocks = vi.hoisted(() => ({
+  environment: {
+    getRegion: vi.fn(() => 'EU'),
+    getUser: vi.fn(() => ({ ovhSubsidiary: 'FR', currency: '€' })),
+  },
+  shell: {
+    navigation: {
+      getURL: vi.fn().mockResolvedValue('mocked-url'),
+    },
+  },
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  ShellContext: React.createContext({
+    shell: mocks.shell,
+    environment: mocks.environment,
+  }),
+  ButtonType: {
+    link: 'link',
+  },
+}));
 
 vi.mock('@ovh-ux/manager-core-api', async () => {
   const mod = await vi.importActual('@ovh-ux/manager-core-api');

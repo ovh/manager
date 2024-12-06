@@ -159,7 +159,7 @@ export default function HourlyConsumption({
     title: string,
     component: React.ReactNode,
   ) => (
-    <OsdsAccordion key={key}>
+    <OsdsAccordion key={key} data-testid={key}>
       <OsdsText
         size={ODS_TEXT_SIZE._600}
         level={ODS_TEXT_LEVEL.subheading}
