@@ -13,13 +13,8 @@ import {
   OsdsIcon,
   OsdsSearchBar,
   OsdsSpinner,
-  OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import {
@@ -33,6 +28,7 @@ import {
 import {
   Datagrid,
   DataGridTextCell,
+  Headers,
   Notifications,
   PciGuidesHeader,
   useDatagridSearchParams,
@@ -46,7 +42,7 @@ import {
 import { TSshKey } from '@/interface';
 import { useSshKeys } from '@/api/hooks/useSsh';
 import Key from '@/components/ssh-keys/listing/Key';
-import RemoveSsh from '@/components/ssh-keys/listing/RemoveSsh';
+import Actions from '@/components/ssh-keys/listing/Actions';
 import { PCI_LEVEL2 } from '@/tracking.constants';
 
 export default function ListingPage() {
@@ -74,7 +70,7 @@ export default function ListingPage() {
     },
     {
       id: 'actions',
-      cell: (props: TSshKey) => <RemoveSsh sshId={`${props.id}`} />,
+      cell: (props: TSshKey) => <Actions sshId={`${props.id}`} />,
       label: '',
     },
   ];
@@ -110,17 +106,13 @@ export default function ListingPage() {
           ]}
         ></OsdsBreadcrumb>
       )}
-      <div className="flex items-center justify-between mt-4">
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        >
-          {t('pci_projects_project_sshKeys_title')}
-        </OsdsText>
-        <PciGuidesHeader category="instances"></PciGuidesHeader>
+      <div className="mt-4">
+        <Headers
+          title={t('pci_projects_project_sshKeys_title')}
+          headerButton={<PciGuidesHeader category="instances" />}
+        ></Headers>
       </div>
-      <OsdsDivider></OsdsDivider>
+      <OsdsDivider />
       <Notifications />
 
       <PciDiscoveryBanner project={project} />
@@ -128,7 +120,7 @@ export default function ListingPage() {
       <div className="flex flex-col sm:flex-row justify-between mt-4">
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.stroked}
+          variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
           disabled={isDiscoveryProject(project) ? true : undefined}
           onClick={() => {
@@ -146,7 +138,7 @@ export default function ListingPage() {
           <OsdsIcon
             size={ODS_ICON_SIZE.xs}
             name={ODS_ICON_NAME.PLUS}
-            className="mr-2"
+            className="mr-2 bg-white"
             color={ODS_THEME_COLOR_INTENT.primary}
           />
           {t('pci_projects_project_sshKeys_add')}
@@ -173,7 +165,7 @@ export default function ListingPage() {
         />
       </div>
 
-      <div className="flex mt-4">
+      <div className="flex mt-8">
         {searchQueries.map((query, index) => (
           <OsdsChip
             key={index}
@@ -201,7 +193,7 @@ export default function ListingPage() {
       )}
 
       {!isLoading && (!error || (error && isDiscoveryProject(project))) && (
-        <div>
+        <div className="mt-4">
           <Datagrid
             columns={columns}
             items={sshKeys?.rows || []}
