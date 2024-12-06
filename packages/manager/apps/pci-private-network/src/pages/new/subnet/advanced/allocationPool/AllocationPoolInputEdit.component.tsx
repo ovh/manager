@@ -22,7 +22,7 @@ const AllocationPoolInputEdit: FC<PropsWithChildren<{ position: number }>> = ({
   const isEndIpHasError = isTouched && !!isErrors?.end;
 
   const onIpChange = (key: string, value: string) => {
-    if (value) {
+    if (value !== undefined && value !== null) {
       const updatedPools = [...allocationPools];
 
       updatedPools[position] = { ...updatedPools[position], [key]: value };

@@ -47,7 +47,7 @@ const IpRange: FC<PropsWithChildren<IpRangeProps>> = ({
                 : ODS_THEME_COLOR_INTENT.primary
             }
             value={start}
-            placeholder="placeholder"
+            placeholder="10.0.0.1"
             onOdsValueChange={onStartIpChange}
             error={isStartIpHasError}
           />
@@ -65,7 +65,7 @@ const IpRange: FC<PropsWithChildren<IpRangeProps>> = ({
                 : ODS_THEME_COLOR_INTENT.primary
             }
             value={end}
-            placeholder="placeholder"
+            placeholder="10.0.0.5"
             onOdsValueChange={onEndIpChange}
             error={isEndIpHasError}
           />
