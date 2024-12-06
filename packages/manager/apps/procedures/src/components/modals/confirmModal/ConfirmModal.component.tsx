@@ -22,23 +22,25 @@ type Props = {
   isPending: boolean;
   onClose: () => void;
   onValidate: () => void;
+  title: string;
+  descriptionInsure: string;
+  descriptionConfirm: string;
+  noButtonLabel: string;
+  yesButtonLabel: string;
 };
 
 export const ConfirmModal: FunctionComponent<Props> = ({
   onClose,
   onValidate,
   isPending,
+  title,
+  descriptionInsure,
+  descriptionConfirm,
+  noButtonLabel,
+  yesButtonLabel,
 }) => {
-  const { t } = useTranslation('account-disable-2fa');
-
   return (
-    <OsdsModal
-      dismissible={false}
-      onOdsModalClose={onClose}
-      headline={t(
-        'account-disable-2fa-create-form-confirm-modal-send-document-title',
-      )}
-    >
+    <OsdsModal dismissible={false} onOdsModalClose={onClose} headline={title}>
       <div className="flex items-center gap-x-6">
         <div className="rounded-full p-4 bg-[#bef1ff]">
           <OsdsIcon
@@ -56,9 +58,7 @@ export const ConfirmModal: FunctionComponent<Props> = ({
             className="block"
             hue={ODS_TEXT_COLOR_HUE._500}
           >
-            {t(
-              'account-disable-2fa-create-form-confirm-modal-send-document-description-insure',
-            )}
+            {descriptionInsure}
           </OsdsText>
           <OsdsText
             level={ODS_TEXT_LEVEL.caption}
@@ -67,9 +67,7 @@ export const ConfirmModal: FunctionComponent<Props> = ({
             className="block mt-2"
             hue={ODS_TEXT_COLOR_HUE._500}
           >
-            {t(
-              'account-disable-2fa-create-form-confirm-modal-send-document-description-confirm',
-            )}
+            {descriptionConfirm}
           </OsdsText>
         </div>
       </div>
@@ -84,7 +82,7 @@ export const ConfirmModal: FunctionComponent<Props> = ({
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={onClose}
           >
-            {t('account-disable-2fa-confirm-modal-no')}
+            {noButtonLabel}
           </OsdsButton>
           <OsdsButton
             slot="actions"
@@ -93,7 +91,7 @@ export const ConfirmModal: FunctionComponent<Props> = ({
             variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
           >
-            {t('account-disable-2fa-confirm-modal-yes')}
+            {yesButtonLabel}
           </OsdsButton>
         </>
       )}
