@@ -1,12 +1,7 @@
 import { useMemo } from 'react';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import {
-  useCatalogPrice,
-  useTranslatedMicroRegions,
-} from '@ovh-ux/manager-react-components';
+import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useProject } from '@ovh-ux/manager-pci-common';
-import { TPricing } from '@/api/data/catalog';
 import {
   addVolume,
   AddVolumeProps,
@@ -23,7 +18,6 @@ import {
   updateVolume,
   VolumeOptions,
 } from '@/api/data/volume';
-import { useCatalog } from '@/api/hooks/useCatalog';
 import { UCENTS_FACTOR } from '@/hooks/currency-constants';
 import queryClient from '@/queryClient';
 
@@ -263,70 +257,6 @@ export const useUpdateVolume = ({
     updateVolume: () => mutation.mutate(),
     ...mutation,
   };
-};
-
-export const usePriceTransformer = () => {
-  const { getFormattedCatalogPrice } = useCatalogPrice();
-  return (price: TPricing, currencyCode: string) => ({
-    ...price,
-    priceInUcents: price.price,
-    intervalUnit: price.interval,
-    price: {
-      currencyCode,
-      text: getFormattedCatalogPrice(price.price?.value),
-      value: convertUcentsToCurrency(price.price?.value),
-    },
-  });
-};
-
-export const useGetPrices = (projectId: string, volumeId: string) => {
-  const { data: project } = useProject(projectId);
-  const { data: catalog } = useCatalog();
-  const { data: volume } = useVolume(projectId, volumeId);
-
-  const priceFormatter = usePriceTransformer();
-
-  if (project && catalog) {
-    const projectPlan = catalog.plans.find(
-      (plan) => plan.planCode === project.planCode,
-    );
-
-    if (!projectPlan) {
-      throw new Error('Fail to get project plan');
-    }
-
-    const pricesMap = {};
-
-    projectPlan.addonFamilies.forEach((family) => {
-      family.addons.forEach((planCode) => {
-        const addon = catalog.addons.find(
-          (addonCatalog) => addonCatalog.planCode === planCode,
-        );
-
-        const pricing =
-          addon?.pricings.find(
-            ({ capacities }) =>
-              capacities.includes('renew') ||
-              capacities.includes('consumption'),
-          ) || ({} as TPricing);
-
-        pricesMap[planCode] = priceFormatter(
-          pricing as TPricing,
-          catalog.locale.currencyCode,
-        );
-      });
-    });
-
-    if (volume) {
-      const relatedCatalog =
-        pricesMap[`volume.${volume.type}.consumption.${volume.region}`] ||
-        pricesMap[`volume.${volume.type}.consumption`];
-
-      return relatedCatalog;
-    }
-  }
-
-  return {};
 };
 
 type UseAddVolumeProps = AddVolumeProps & {
