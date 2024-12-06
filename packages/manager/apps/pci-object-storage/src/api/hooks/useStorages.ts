@@ -58,18 +58,8 @@ export const useAllStorages = (projectId: string) =>
     queryFn: () => getStorages(projectId),
   });
 
-export const useStorages = (
-  projectId: string,
-  pagination: PaginationState,
-  sorting: ColumnSort,
-  filters: Filter[],
-  availability: {
-    isLocalZoneAvailable: boolean;
-    is3azAvailable: boolean;
-  },
-) => {
+export const useMappedStorages = (projectId: string) => {
   const { i18n, t } = useTranslation('pci-storages-containers');
-  const queryClient = useQueryClient();
 
   const {
     data: storages,
@@ -85,12 +75,67 @@ export const useStorages = (
     isPending: isRegionsPending,
   } = useGetProjectRegions(projectId);
 
+  const isLoading = isStoragesLoading || isRegionsLoading;
+  const isPending = isStoragesPending || isRegionsPending;
+
   const mappedStorages = useMemo(() => {
     if (storages && regions) {
       return storages.resources.map((storage) => {
         const deploymentMode = regions.find(
           (region) => region.name === storage.region,
         )?.type;
+
+        return {
+          ...storage,
+          offer: t(
+            storage?.s3StorageType
+              ? 'pci_projects_project_storages_containers_offer_s3'
+              : 'pci_projects_project_storages_containers_offer_swift',
+          ),
+          deploymentMode,
+          storedObjects: storage.storedObjects || 0,
+          usedSpace: storage.storedBytes || storage.objectsSize || 0,
+        };
+      });
+    }
+    return [];
+  }, [storages, regions, i18n?.language]);
+
+  return {
+    data: mappedStorages,
+    isLoading,
+    isPending,
+    allStorages: storages,
+    error,
+    isRefreshing: isFetching,
+  };
+};
+export const useStorages = (
+  projectId: string,
+  pagination: PaginationState,
+  sorting: ColumnSort,
+  filters: Filter[],
+  availability: {
+    isLocalZoneAvailable: boolean;
+    is3azAvailable: boolean;
+  },
+) => {
+  const { i18n, t } = useTranslation('pci-storages-containers');
+  const queryClient = useQueryClient();
+
+  const {
+    data,
+    isLoading,
+    isPending,
+    isRefreshing,
+    allStorages,
+    error,
+  } = useMappedStorages(projectId);
+
+  const mappedStorages = useMemo(() => {
+    if (data) {
+      return data.map((storage) => {
+        const { deploymentMode } = storage;
         let mode: string;
         switch (deploymentMode) {
           case OBJECT_CONTAINER_MODE_MULTI_ZONES:
@@ -118,22 +163,11 @@ export const useStorages = (
         return {
           ...storage,
           mode,
-          offer: t(
-            storage?.s3StorageType
-              ? 'pci_projects_project_storages_containers_offer_s3'
-              : 'pci_projects_project_storages_containers_offer_swift',
-          ),
-          deploymentMode,
-          storedObjects: storage.storedObjects || 0,
-          usedSpace: storage.storedBytes || storage.objectsSize || 0,
         };
       });
     }
     return [];
-  }, [storages, regions, i18n?.language, availability]);
-
-  const isLoading = isStoragesLoading || isRegionsLoading;
-  const isPending = isStoragesPending || isRegionsPending;
+  }, [data, i18n?.language, availability]);
 
   return useMemo(
     () => ({
@@ -143,9 +177,9 @@ export const useStorages = (
         sortStorages(sorting, applyFilters(mappedStorages, filters)),
         pagination,
       ),
-      allStorages: storages,
+      allStorages,
       error,
-      isRefreshing: isFetching,
+      isRefreshing,
       refresh: () =>
         queryClient.invalidateQueries({
           queryKey: getStorageQueryKey(projectId),
@@ -156,7 +190,7 @@ export const useStorages = (
       error,
       isLoading,
       isPending,
-      isFetching,
+      isRefreshing,
       pagination,
       sorting,
       filters,
