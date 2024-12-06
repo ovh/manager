@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NoDataMessageComponent > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="my-3"
+  >
+    <osds-text
+      class="mb-5"
+      color="text"
+      level="body"
+      size="400"
+    >
+      Aucune donnée disponible
+    </osds-text>
+  </div>
+</DocumentFragment>
+`;
