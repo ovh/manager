@@ -469,8 +469,8 @@
   "core_sd_top_guide_1_title": "Pierwsze kroki z serwerem dedykowanym",
   "core_sd_top_guide_2_title": "Pierwsze kroki z serwerem dedykowanym Kimsufi, So You Start lub Rise",
   "core_sd_top_guide_3_title": "Bezpieczeństwo serwera dedykowanego",
-  "core_sd_top_guide_4_title": "Tworzenie klucza SSH",
-  "core_sd_top_guide_5_title": "Korzystanie z IPMI dla serwerów dedykowanych",
+  "core_sd_top_guide_4_title": "Tworzenie i używanie kluczy SSH",
+  "core_sd_top_guide_5_title": "Jak korzystać z konsoli IPMI na serwerze dedykowanym",
   "core_sd_top_guide_6_title": "Przeniesienie danych z jednego serwera dedykowanego na inny",
   "core_sd_top_guide_7_title": "Konfiguracja nowej instalacji Windows Server",
   "core_sd_top_guide_firewall_title": "Skonfiguruj Firewall Network",
@@ -547,5 +547,6 @@
   "core_pcc_top_guide_11_title": "Oficjalna dokumentacja Nutanix",
   "core_pcc_top_guide_12_title": "Oficjalna dokumentacja SAP HANA on Private Cloud",
   "core_pcc_top_guide_13_title": "Autoryzacja adresów IP, które mogą łączyć się z vCenter",
-  "core_pcc_top_guide_14_title": "VMware on OVHcloud - VMware Cloud Director"
+  "core_pcc_top_guide_14_title": "VMware on OVHcloud - VMware Cloud Director",
+  "core_sd_top_guide_8_title": "Włącz i skonfiguruj Edge Network Firewall"
 }
