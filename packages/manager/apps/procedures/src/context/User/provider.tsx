@@ -11,35 +11,12 @@ type Props = {
 };
 
 export const UserProvider = ({ children = null, user }: Props): JSX.Element => {
-  const {
-    setShowExpiredModal,
-    setShowWarningModal,
-    showExpiredModal,
-    showWarningModal,
-  } = useSessionModal(user, 0.75);
-
-  const handleCloseExpiredModal = useCallback(() => {
-    setShowExpiredModal(false);
-    const redirectUrl = getRedirectLoginUrl(user);
-    window.location.assign(redirectUrl);
-  }, [user]);
-
-  const handleCloseWarningModal = () => setShowWarningModal(false);
-
   const memoizedUser = useMemo(() => ({ user }), []);
 
   return (
-    <>
-      <userContext.Provider value={memoizedUser}>
-        {user && children}
-      </userContext.Provider>
-      {showExpiredModal && (
-        <ExpiredSessionModal onClose={handleCloseExpiredModal} />
-      )}
-      {showWarningModal && (
-        <WarningSessionModal onClose={handleCloseWarningModal} />
-      )}
-    </>
+    <userContext.Provider value={memoizedUser}>
+      {user && children}
+    </userContext.Provider>
   );
 };
 
