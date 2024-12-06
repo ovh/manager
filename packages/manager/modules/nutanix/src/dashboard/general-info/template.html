@@ -38,12 +38,6 @@
                         data-size="s"
                     ></oui-spinner>
                     <span
-                        data-ng-if="!$ctrl.loadingServicesDetails && $ctrl.packType !== $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
-                        data-ng-bind="$ctrl.servicesDetails.billing.plan.invoiceName"
-                    >
-                    </span>
-                    <span
-                        data-ng-if="!$ctrl.loadingServicesDetails && $ctrl.packType === $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
                         data-ng-bind="$ctrl.servicesDetails.billing.plan.invoiceName"
                     >
                     </span>
@@ -115,7 +109,16 @@
                         data-track-name="{{:: $ctrl.TRACKING.ACCESS_NUTANIX}}"
                         data-track-type="action"
                     >
-                        <span data-ng-bind="$ctrl.packType"></span>
+                        <span
+                            data-ng-if="$ctrl.packType !== $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
+                            data-ng-bind="$ctrl.packType"
+                        >
+                        </span>
+                        <span
+                            data-ng-if="$ctrl.packType === $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
+                            data-ng-bind="'BYOL'"
+                        >
+                        </span>
                         <i
                             class="oui-icon oui-icon-external-link"
                             aria-hidden="true"
