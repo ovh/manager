@@ -177,8 +177,8 @@ export const useDeletePrivateNetwork = ({
   networkId,
   onError,
   onSuccess,
-}: DeletePrivateNetworkProps) => {
-  const mutation = useMutation({
+}: DeletePrivateNetworkProps) =>
+  useMutation({
     mutationFn: () => apiDeleteNetwork(projectId, region, networkId),
     onError,
     onSuccess: async () => {
@@ -189,9 +189,3 @@ export const useDeletePrivateNetwork = ({
       onSuccess();
     },
   });
-
-  return {
-    deletePrivateNetwork: () => mutation.mutate(),
-    ...mutation,
-  };
-};
