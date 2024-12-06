@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TooltipIcon > matches snapshot 1`] = `
+<DocumentFragment>
+  <osds-tooltip>
+    <osds-icon
+      class="cursor-pointer"
+      color="text"
+      name="info"
+      size="xxs"
+    />
+    <osds-tooltip-content
+      slot="tooltip-content"
+    >
+      <osds-text
+        class="break-normal"
+        color="text"
+        level="body"
+        size="100"
+      >
+        Information tooltips
+      </osds-text>
+    </osds-tooltip-content>
+  </osds-tooltip>
+</DocumentFragment>
+`;
