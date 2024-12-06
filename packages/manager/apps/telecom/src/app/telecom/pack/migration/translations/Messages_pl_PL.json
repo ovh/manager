@@ -208,5 +208,8 @@
   "telecom_pack_migration_ont_shipping_explain": "ONT (Optical Network Termination) to urządzenie sieciowe, które pozwala na podłączenie modemu do PTO.",
   "telecom_pack_migration_ont_shipping_contact": "Kontakt dostawy",
   "telecom_pack_migration_ont_shipping_confirm": "Potwierdź ten kontakt wysyłkowy",
-  "telecom_pack_migration_ont_shipping_addresses_error": "Wystąpił błąd podczas pobierania kontaktów. {{error}}"
+  "telecom_pack_migration_ont_shipping_addresses_error": "Wystąpił błąd podczas pobierania kontaktów. {{error}}",
+  "telecom_pack_migration_confirm_temporary_pack_creation_line_1": "W trakcie przejścia na Twoją nową ofertę zostanie stworzony tymczasowy pakiet, który ma zapewnić ciągłość usługi",
+  "telecom_pack_migration_confirm_temporary_pack_creation_line_2": "Ten pakiet zostanie automatycznie usunięty po sfinalizowaniu zamówienia Fibre.",
+  "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "Nie musisz wykonywać żadnych czynności związanych z modyfikacją lub usuwaniem danych: migracja na dostęp światłowodowy zostanie wykonana w pełni automatycznie."
 }
