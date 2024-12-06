@@ -3,7 +3,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 type BackButtonProps = {
   onClick?: () => void;
@@ -11,15 +11,17 @@ type BackButtonProps = {
 
 const BackButton: FC<BackButtonProps> = ({ onClick }) => {
   const { t } = useTranslation('common');
-  const backHref = useHref('..');
+  const navigate = useNavigate();
 
   return (
     <OsdsLink
       data-testid="back-btn"
       color={ODS_THEME_COLOR_INTENT.primary}
       className="mt-10"
-      href={backHref}
-      onClick={onClick}
+      onClick={() => {
+        navigate(-1);
+        onClick?.();
+      }}
     >
       <OsdsIcon
         slot="start"
