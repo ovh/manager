@@ -119,6 +119,8 @@ export default class VrackMoveDialogCtrl {
       move: null,
       select: {
         open: false,
+        isIpv6: false,
+        isVrackService: false,
         target: null,
         confirm: () => {
           this.form.servicesToAdd = [this.modals.select.target];
@@ -1025,6 +1027,17 @@ export default class VrackMoveDialogCtrl {
       ) {
         this.modals.select.target = toAdd;
         this.modals.select.open = true;
+        this.modals.select.isIpv6 = true;
+        this.modals.select.isVrackService = false;
+      } else if (
+        this.form.servicesToAdd[0] &&
+        (toAdd.type === TYPE_SERVICE.vrackServices ||
+          this.form.servicesToAdd[0].type === TYPE_SERVICE.vrackServices)
+      ) {
+        this.modals.select.target = toAdd;
+        this.modals.select.open = true;
+        this.modals.select.isVrackService = true;
+        this.modals.select.isIpv6 = false;
       } else {
         this.form.servicesToAdd.push(toAdd);
       }
@@ -1478,7 +1491,7 @@ export default class VrackMoveDialogCtrl {
   }
 
   static isIPv6(service) {
-    return !!service.id.match(/::/);
+    return !!service.id?.match(/::/);
   }
 
   static hasServices(services) {
