@@ -1,9 +1,0 @@
-{
-  "pci_workflow_delete_confirmation": "Czy na pewno chcesz usunąć planowanie workflowu '{{workflowName}}'?",
-  "pci_workflow_delete_warning": "Operacja ta nie może być anulowana.",
-  "pci_workflow_delete_enter": "Wprowadź DELETE w następnym polu, aby potwierdzić operację.",
-  "pci_workflow_delete_success": "Harmonogram workflowu '{{workflowName}}' został usunięty.",
-  "pci_workflow_delete_error": "Wystąpił błąd podczas usuwania: {{ message }}.",
-  "pci_workflow_common_delete": "Usuń",
-  "pci_workflow_common_cancel": "Anuluj"
-}
