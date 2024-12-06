@@ -1,18 +1,26 @@
 import { useNavigate } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
-import { DataTable } from '@/components/ui/data-table';
+import { Plus } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { DataTable } from '@/components/data-table/data-table';
 import * as database from '@/types/cloud/project/database';
 import { Skeleton } from '@/components/ui/skeleton';
 import { getColumns } from './ServiceListColumns.component';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
+import { Button } from '@/components/ui/button';
+import Link from '@/components/links/Link.component';
+import { getFilters } from './ServiceListFilters.component';
+import { DataTableHead } from '@/components/data-table/data-table-head';
 
 interface ServicesListProps {
   services: database.Service[];
 }
 
 export default function ServicesList({ services }: ServicesListProps) {
+  const { t } = useTranslation('pci-databases-analytics/services');
   const track = useTrackAction();
+
   const navigate = useNavigate();
 
   const columns: ColumnDef<database.Service>[] = getColumns({
@@ -30,6 +38,7 @@ export default function ServicesList({ services }: ServicesListProps) {
       navigate(`./delete/${service.id}`);
     },
   });
+  const servicesFilters = getFilters();
 
   return (
     <>
@@ -38,7 +47,51 @@ export default function ServicesList({ services }: ServicesListProps) {
         data={services}
         pageSize={25}
         itemNumber={services.length}
-      />
+        headerContent={(
+          table,
+          globalFilter,
+          filters,
+          addFilter,
+          removeFilter,
+        ) => (
+          <DataTableHead
+            actionButton={
+              <Button
+                data-testid="create-service-button"
+                size="sm"
+                className="text-base"
+                asChild
+              >
+                <Link
+                  to="./new"
+                  className="hover:no-underline"
+                  onClick={() =>
+                    track(TRACKING.servicesList.createDatabaseClick())
+                  }
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  {t('createNewService')}
+                </Link>
+              </Button>
+            }
+            searchBar={{
+              render: 'default',
+              table,
+              globalFilter,
+            }}
+            filterButton={{
+              render: 'default',
+              columnFilters: servicesFilters,
+              addFilter,
+            }}
+            filterList={{
+              render: 'default',
+              filters,
+              removeFilter,
+            }}
+          />
+        )}
+      ></DataTable>
     </>
   );
 }

@@ -6,7 +6,7 @@ import Link from '@/components/links/Link.component';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../Service.context';
 import { getColumns } from './_components/BackupsTableColumns.component';
-import { DataTable } from '@/components/ui/data-table';
+import { DataTable } from '@/components/data-table/data-table';
 import { POLLING } from '@/configuration/polling.constants';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';

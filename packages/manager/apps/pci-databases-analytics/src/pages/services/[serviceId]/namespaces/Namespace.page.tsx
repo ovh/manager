@@ -5,7 +5,7 @@ import { Plus } from 'lucide-react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import * as database from '@/types/cloud/project/database';
 import { Button } from '@/components/ui/button';
-import { DataTable } from '@/components/ui/data-table';
+import { DataTable } from '@/components/data-table/data-table';
 
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { useServiceData } from '../Service.context';

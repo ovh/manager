@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { MoreHorizontal } from 'lucide-react';
 import { ColumnDef } from '@tanstack/react-table';
-import { SortableHeader } from '@/components/ui/data-table';
+import { SortableHeader } from '@/components/data-table/sortable-header';
 import { ExpandableSqlQuery } from './ExpandableSqlQuery.component';
 import {
   DropdownMenu,

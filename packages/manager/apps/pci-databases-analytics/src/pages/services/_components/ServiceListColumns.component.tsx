@@ -14,12 +14,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { SortableHeader } from '@/components/ui/data-table';
+import { SortableHeader } from '@/components/data-table/sortable-header';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import Link from '@/components/links/Link.component';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
+import { formatStorage } from '@/lib/bytesHelper';
 
 interface ServiceListColumnsProps {
   onRenameClicked: (service: database.Service) => void;
@@ -39,7 +40,7 @@ export const getColumns = ({
       header: ({ column }) => (
         <SortableHeader column={column}>{t('tableHeaderName')}</SortableHeader>
       ),
-      accessorFn: (row) => row.description,
+      accessorFn: (row) => `${row.description}-${row.id}`,
       cell: ({ row }) => {
         const { id, description, status, engine, nodes } = row.original;
         return (
@@ -132,7 +133,7 @@ export const getColumns = ({
         return (
           <span>
             {service.storage && service.storage.size.value > 0
-              ? `${service.storage.size.value} ${service.storage.size.unit}`
+              ? `${formatStorage(service.storage.size)}`
               : '-'}
           </span>
         );
@@ -224,6 +225,7 @@ export const getColumns = ({
     },
     {
       id: 'actions',
+      enableGlobalFilter: false,
       cell: ({ row }) => {
         const service = row.original;
 

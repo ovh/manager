@@ -2,7 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { useServiceData } from '../../Service.context';
-import { DataTable } from '@/components/ui/data-table';
+import { DataTable } from '@/components/data-table/data-table';
 import * as database from '@/types/cloud/project/database';
 import { getColumns } from './CurrentQueriesTableColumns.component';
 import { useToast } from '@/components/ui/use-toast';

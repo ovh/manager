@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/badge';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { GenericUser } from '@/data/api/database/user.api';
-import { SortableHeader } from '@/components/ui/data-table';
+import { SortableHeader } from '@/components/data-table/sortable-header';
 import UserStatusBadge from './UserStatusBadge.component';
 import UserActions from './UsersTableActions.component';
 
