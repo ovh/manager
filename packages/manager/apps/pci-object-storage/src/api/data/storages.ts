@@ -44,6 +44,7 @@ export const getStorages = async (
       },
     },
   );
+
   return data;
 };
 
