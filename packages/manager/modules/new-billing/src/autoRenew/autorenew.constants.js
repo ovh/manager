@@ -32,10 +32,10 @@ export const COLUMNS_CONFIG = [
     property: 'serviceType',
   },
   {
-    property: 'state',
+    property: 'status',
   },
   {
-    property: 'status',
+    property: 'renewPeriod',
   },
   {
     property: 'expiration',
