@@ -4,10 +4,11 @@ import {
   OsdsSelectOption,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
+import { getMacroRegion } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useEffect, useState } from 'react';
 import { useStorageRegions } from '@/api/hooks/useRegion';
-import { getMacroRegion, Region } from '@/api/data/region';
+import { Region } from '@/api/data/region';
 
 interface S3StorageRegionsProps {
   projectId: string;
