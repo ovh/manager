@@ -1,4 +1,5 @@
 import { FC, PropsWithChildren } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
 import IpRange from '@/components/ip-range/IpRange.component';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
@@ -7,6 +8,7 @@ const AllocationPoolInputEdit: FC<PropsWithChildren<{ position: number }>> = ({
   children,
   position,
 }) => {
+  const { t } = useTranslation('new');
   const {
     setValue,
     watch,
@@ -43,6 +45,8 @@ const AllocationPoolInputEdit: FC<PropsWithChildren<{ position: number }>> = ({
 
   return (
     <IpRange
+      startLabel={t('pci_projects_project_network_private_allocation_ip_start')}
+      endLabel={t('pci_projects_project_network_private_allocation_ip_end')}
       start={startIp}
       end={endIp}
       isStartIpHasError={isStartIpHasError}

@@ -51,15 +51,17 @@ const AllocationPool: FC = () => {
   );
 
   return (
-    <>
-      <OsdsText
-        level={ODS_TEXT_LEVEL.body}
-        color={ODS_TEXT_COLOR_INTENT.primary}
-        hue={ODS_TEXT_COLOR_HUE._800}
-        size={ODS_TEXT_SIZE._200}
-      >
-        {t('pci_projects_project_network_private_allocation_ip')}
-      </OsdsText>
+    <div>
+      <div className="mb-3">
+        <OsdsText
+          level={ODS_TEXT_LEVEL.body}
+          color={ODS_TEXT_COLOR_INTENT.primary}
+          hue={ODS_TEXT_COLOR_HUE._800}
+          size={ODS_TEXT_SIZE._200}
+        >
+          {t('pci_projects_project_network_private_allocation_ip')}
+        </OsdsText>
+      </div>
       {editablePools.map((item) => (
         <AllocationPoolInputEdit key={item} position={item}>
           <OsdsButton
@@ -93,7 +95,7 @@ const AllocationPool: FC = () => {
           />
         </OsdsButton>
       </AllocationPoolInputEdit>
-    </>
+    </div>
   );
 };
 

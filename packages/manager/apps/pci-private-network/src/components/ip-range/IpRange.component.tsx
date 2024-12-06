@@ -12,22 +12,30 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 type IpRangeProps = {
+  startLabel: string;
+  endLabel: string;
   start: string;
   end: string;
   isStartIpHasError: boolean;
   isEndIpHasError: boolean;
   onStartIpChange: (event: CustomEvent) => void;
   onEndIpChange: (event: CustomEvent) => void;
+  startPlaceholder?: string;
+  endPlaceholder?: string;
 };
 
 const IpRange: FC<PropsWithChildren<IpRangeProps>> = ({
   children,
+  startLabel,
+  endLabel,
   start,
   end,
   isStartIpHasError,
   isEndIpHasError,
   onStartIpChange,
   onEndIpChange,
+  startPlaceholder,
+  endPlaceholder,
 }) => {
   const { t } = useTranslation('new');
 
@@ -36,7 +44,7 @@ const IpRange: FC<PropsWithChildren<IpRangeProps>> = ({
       <div className="flex">
         <OsdsFormField>
           <OsdsText color={ODS_TEXT_COLOR_INTENT.text} slot="label">
-            {t('pci_projects_project_network_private_allocation_ip_start')}
+            {startLabel}
           </OsdsText>
 
           <OsdsInput
@@ -47,14 +55,14 @@ const IpRange: FC<PropsWithChildren<IpRangeProps>> = ({
                 : ODS_THEME_COLOR_INTENT.primary
             }
             value={start}
-            placeholder="10.0.0.1"
+            placeholder={startPlaceholder || '10.0.0.1'}
             onOdsValueChange={onStartIpChange}
             error={isStartIpHasError}
           />
         </OsdsFormField>
         <OsdsFormField className="ml-5">
           <OsdsText color={ODS_TEXT_COLOR_INTENT.text} slot="label">
-            {t('pci_projects_project_network_private_allocation_ip_end')}
+            {endLabel}
           </OsdsText>
 
           <OsdsInput
@@ -65,7 +73,7 @@ const IpRange: FC<PropsWithChildren<IpRangeProps>> = ({
                 : ODS_THEME_COLOR_INTENT.primary
             }
             value={end}
-            placeholder="10.0.0.5"
+            placeholder={endPlaceholder || '10.0.0.5'}
             onOdsValueChange={onEndIpChange}
             error={isEndIpHasError}
           />

@@ -7,6 +7,7 @@ import {
 import { OsdsAccordion, OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import IpAllocation from './allocationPool/AllocationPool.component';
+import HostRoute from './hostRoute/HostRoute.component';
 
 const AdvancedSettings: React.FC = () => {
   const { t } = useTranslation('new');
@@ -21,8 +22,9 @@ const AdvancedSettings: React.FC = () => {
       >
         {t('pci_projects_project_network_private_advanced_settings')}
       </OsdsText>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <IpAllocation />
+        <HostRoute />
       </div>
     </OsdsAccordion>
   );
