@@ -6,12 +6,14 @@ const moduleName = 'ovhManagerVrackDialogModal';
 
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate'])
-  .component('vrackSelectDialogModal', {
+  .component('vrackSingleSelectDialogModal', {
     template,
     bindings: {
       onConfirm: '<',
       onCancel: '<',
       isOpenModal: '<',
+      isIpv6: '<',
+      isVrackService: '<',
     },
   })
   .run(/* @ngTranslationsInject:json ./translations */);
