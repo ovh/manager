@@ -1,6 +1,5 @@
 {
   "netapp_order": "Encomendar Enterprise File Storage",
-  "netapp_order_region": "Area",
   "netapp_order_performance_level": "Nível de desempenho",
   "netapp_order_performance_level_description": "Escolha o nível de desempenho do serviço em função das suas necessidades",
   "netapp_order_performance_level_type_Premium": "Licença Premium",
@@ -18,5 +17,6 @@
   "netapp_order_commitment_duration_description": "Receba um desconto ao contratar o serviço com compromisso.",
   "netapp_order_commitment_payment": "Modalidades de pagamento",
   "netapp_order_confirm": "Validar",
-  "netapp_order_performance_customization": "Aquando do aprovisionamento da sua capacidade vai definir o nível de desempenho do seu serviço. Lembrete: 64MB/s e 4000 IOPS por TB aprovisionado."
+  "netapp_order_performance_customization": "Aquando do aprovisionamento da sua capacidade vai definir o nível de desempenho do seu serviço. Lembrete: 64MB/s e 4000 IOPS por TB aprovisionado.",
+  "netapp_order_region": "Região"
 }
