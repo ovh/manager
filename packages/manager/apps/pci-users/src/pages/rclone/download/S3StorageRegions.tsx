@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { OsdsSelect, OsdsSelectOption } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
+import { getMacroRegion } from '@ovh-ux/manager-react-components';
 import { useS3StorageRegions } from '@/api/hooks/useRegion';
-import { getMacroRegion, Region } from '@/api/data/region';
+import { Region } from '@/api/data/region';
 
 interface S3StorageRegionsProps {
   projectId: string;
