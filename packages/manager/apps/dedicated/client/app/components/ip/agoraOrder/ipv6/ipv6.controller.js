@@ -1,5 +1,4 @@
 import find from 'lodash/find';
-
 import {
   ALERT_ID,
   DASHBOARD_STATE_NAME,
@@ -24,6 +23,7 @@ export default class AgoraIpV6OrderController {
     atInternet,
     User,
     coreConfig,
+    ovhManagerRegionService,
   ) {
     this.$q = $q;
     this.$state = $state;
@@ -40,6 +40,7 @@ export default class AgoraIpV6OrderController {
     this.loading = {};
     this.ADDITIONAL_IP = ADDITIONAL_IP;
     this.type = IP_TYPE_TITLE.IPv6;
+    this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   $onInit() {
@@ -148,7 +149,9 @@ export default class AgoraIpV6OrderController {
 
     this.catalogByLocation = this.ipv6RegionsWithPlan.map(
       ({ regionId, plan }) => {
-        const countryCode = this.constructor.getMacroRegion(regionId);
+        const countryCode = this.ovhManagerRegionService.getMacroRegionLowercase(
+          regionId,
+        );
         const nbIpv6onRegion = this.regionState[regionId]
           ? this.regionState[regionId]
           : 0;
@@ -163,31 +166,6 @@ export default class AgoraIpV6OrderController {
         };
       },
     );
-  }
-
-  static getMacroRegion(region) {
-    const localZonePattern = /^lz/i;
-    const devZonePattern = /^1-/i;
-
-    let macro;
-    const local = region
-      .split('-')
-      ?.slice(2)
-      ?.join('-');
-
-    if (devZonePattern.test(local)) {
-      macro = [local];
-    } else {
-      const nbOfSlice = localZonePattern.test(local) ? 3 : 2;
-      macro = /[\D]{2,3}/.exec(
-        region
-          .split('-')
-          ?.slice(nbOfSlice)
-          ?.join('-'),
-      );
-    }
-
-    return (macro && macro[0]) || '';
   }
 
   redirectToPaymentPage() {
