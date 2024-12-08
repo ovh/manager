@@ -19,6 +19,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-billing-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
+    "@ovh-ux/manager-account-migration": "^1.5.2",
     "@ovh-ux/manager-advices": "^1.8.1",
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-config": "^8.0.0",
