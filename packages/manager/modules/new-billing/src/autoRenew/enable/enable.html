@@ -1,0 +1,31 @@
+<div data-ui-view class="container-fluid">
+    <billing-autorenew-bulk
+        data-descriptions=":: $ctrl.descriptions"
+        data-go-back="$ctrl.goBack()"
+        data-services="$ctrl.servicesList"
+        data-update-renew="$ctrl.update(services)"
+    >
+        <bulk-title>
+            <span data-translate="billing_autorenew_enable_title"></span>
+        </bulk-title>
+        <bulk-info-message>
+            <span
+                class="d-block"
+                data-translate="billing_autorenew_enable_payment_mean"
+                data-translate-values="{
+                    type: $ctrl.defaultPaymentMean.paymentType.text,
+                    label: $ctrl.defaultPaymentMean.label
+                }"
+            >
+            </span>
+            <span
+                class="d-block"
+                data-translate="billing_autorenew_enable_payment_mean_default"
+            ></span>
+            <span
+                class="d-block"
+                data-translate="billing_autorenew_enable_payment_mean_frequency"
+            ></span>
+        </bulk-info-message>
+    </billing-autorenew-bulk>
+</div>

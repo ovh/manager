@@ -1,0 +1,10 @@
+{
+  "autorenew_service_delete_title": "Rezygnacja z usługi w dniu wygaśnięcia",
+  "autorenew_service_delete_confirm": "Usługa {{service}} <strong>zostanie automatycznie wyłączona</strong> dnia {{date}}.",
+  "autorenew_service_delete_validate": "Zatwierdź",
+  "autorenew_service_delete_warn": "Dane powiązane z tą usługą zostaną automatycznie usunięte i operacja ta będzie nieodwracalna. Możesz zmienić tę decyzję do 24 godzin przed datą wygaśnięcia.",
+  "autorenew_service_delete_support": "Aby zrezygnować z usługi, skontaktuj się z pomocą techniczną, dzwoniąc na numer: <strong>{{phoneNumber}}. Dziękujemy za zaufanie.",
+  "autorenew_service_delete_success": "Zlecenie zakończenia usługi zostało zarejestrowane. Jeśli modyfikacja nie wyświetla się na liście, odśwież stronę.",
+  "autorenew_service_delete_error": "Wystąpił błąd podczas rezygnacji z usługi {{message}}.",
+  "autorenew_service_delete_cancel": "Anuluj rezygnację"
+}

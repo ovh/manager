@@ -1,0 +1,11 @@
+{
+  "autorenew_webcoach_service_guide": "WebCoach sofort löschen",
+  "autorenew_webcoach_close_service_question": "Möchten Sie fortfahren?",
+  "autorenew_webcoach_close_service_success": "Ihre Anfrage zur Schließung von WebCoach wurde registriert. Eine E-Mail mit weiteren Informationen zur Vorgehensweise wurde soeben an Sie versandt.",
+  "autorenew_webcoach_close_service_error": "Bei der Anfrage zur Schließung von WebCoach ist ein Fehler aufgetreten:",
+  "autorenew_webcoach_close_service": "WebCoach sofort löschen",
+  "autorenew_webcoach_close_service_warning": "Beim Löschen von WebCoach werden automatisch alle zugehörigen Daten unwiderruflich gelöscht. Das Löschen von WebCoach bedeutet keine Garantie zur Rückerstattung.",
+  "autorenew_webcoach_close_service_desc1": "Sie erhalten in Kürze eine E-Mail mit Informationen zur Schließung von WebCoach, um die sofortige Löschung zu bestätigen.",
+  "autorenew_webcoach_close_confirm": "Bestätigen",
+  "autorenew_webcoach_close_cancel": "Abbrechen"
+}

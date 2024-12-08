@@ -38,6 +38,7 @@ export default function ServerSidebarIndex() {
     iam: '*',
     'carbon-calculator': '*',
     'account': '*',
+    'billing': '*',
   }
 
   useEffect(() => {

@@ -1,0 +1,22 @@
+<oui-modal
+    data-heading="{{:: 'autorenew_service_disable_all_domains_title' | translate }}"
+    data-primary-action="$ctrl.disableAutoRenewForDomains()"
+    data-primary-label="{{:: 'autorenew_service_disable_all_domains_validate' | translate }}"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'autorenew_service_disable_all_domains_cancel' | translate }}"
+    data-loading="$ctrl.loading"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <p
+        data-ng-bind-html=":: 'autorenew_service_disable_all_domains_desc1' | translate"
+    ></p>
+    <p
+        data-ng-bind-html=":: 'autorenew_service_disable_all_domains_desc2' | translate"
+    ></p>
+    <p
+        data-ng-bind-html=":: 'autorenew_service_disable_all_domains_desc3' | translate"
+    ></p>
+    <p
+        data-ng-bind-html=":: 'autorenew_service_disable_all_domains_desc4' | translate"
+    ></p>
+</oui-modal>

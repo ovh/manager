@@ -1,0 +1,11 @@
+{
+  "autorenew_service_disable_all_domains_title": "Desativar a renovação automática",
+  "autorenew_service_disable_all_domains_desc1": "Esta ação desativará a renovação automática <strong>de todos os nomes de domínio</strong> cujo contacto de faturação é o seu.",
+  "autorenew_service_disable_all_domains_desc2": "Para conservar os seus serviços, deve efetuar os próximos pagamentos antes da data de expiração.",
+  "autorenew_service_disable_all_domains_desc3": "Por predefinição, os seus serviços <strong>serão automaticamente rescindidos na sua data de expiração<strong>. Os dados relativos a este serviço serão automaticamente eliminados de forma irreversível.",
+  "autorenew_service_disable_all_domains_desc4": "Poderá reativar o pagamento automático dos seus serviços até 24 horas antes da data de expiração dos mesmos.",
+  "autorenew_service_disable_all_domains_success": "O pedido de desativação do pagamento automático foi registado pelo sistema. O cancelamento será efetivo algumas horas depois.",
+  "autorenew_service_disable_all_domains_error": "Ocorreu um erro. Pedimos desculpa pelo incómodo.",
+  "autorenew_service_disable_all_domains_validate": "Validar",
+  "autorenew_service_disable_all_domains_cancel": "Anular"
+}

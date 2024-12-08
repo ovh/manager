@@ -1,0 +1,32 @@
+.module-useraccount-sections-emails-container {
+  .email-list tbody tr {
+    td {
+      padding: 0;
+      height: auto;
+
+      a {
+        line-height: 2.25rem;
+      }
+    }
+
+    &:hover a {
+      text-decoration: underline;
+      color: #007e9b;
+    }
+  }
+
+  .email-preview {
+    position: relative;
+
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    button.email-preview-source-toggle {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "autorenew_hosting_dashboard_service_guide": "Eliminar imediatamente o alojamento",
+  "autorenew_hosting_dashboard_close_service_question": "Deseja continuar?",
+  "autorenew_hosting_dashboard_close_service_success": "O seu pedido de desativação do alojamento foi registado. Um e-mail com o procedimento foi-lhe enviado.",
+  "autorenew_hosting_dashboard_close_service_error": "Ocorreu um erro durante o pedido de eliminação do seu alojamento:",
+  "autorenew_hosting_dashboard_close_service": "Eliminar imediatamente o meu alojamento",
+  "autorenew_hosting_dashboard_close_service_warning": "A eliminação de um alojamento apaga definitivamente todos os dados correspondentes. A operação de eliminação de um alojamento não garante o direito a reembolso.",
+  "autorenew_hosting_dashboard_close_service_desc1": "Receberá por e-mail o procedimento de encerramento do seu alojamento, e assim que o confirmar, a eliminação será imediata.",
+  "autorenew_hosting_dashboard_close_confirm": "Validar",
+  "autorenew_hosting_dashboard_close_cancel": "Anular"
+}

@@ -1,0 +1,9 @@
+{
+  "autorenew_privateDatabase_dashboard_close_service": "Usuń natychmiast Serwer Private SQL",
+  "autorenew_privateDatabase_dashboard_close_service_success": "Zlecenie zamknięcia serwera Private SQL zostało zarejestrowane. Otrzymasz e-mail z opisem dalszej procedury.",
+  "autorenew_privateDatabase_dashboard_close_service_error": "Wystąpił błąd podczas zlecenia zakończenia umowy dla serwera Private SQL:",
+  "autorenew_privateDatabase_dashboard_close_service_warning": "Rezygnacja z hostingu spowoduje trwałe usunięcie wszystkich powiązanych z nim danych. Usunięcie hostingu nie stanowi podstawy do zwrotu środków.",
+  "autorenew_privateDatabase_dashboard_close_service_desc1": "Otrzymasz e-mail z opisem procedury zamknięcia hostingu.",
+  "autorenew_privateDatabase_dashboard_close_confirm": "Zatwierdź",
+  "autorenew_privateDatabase_dashboard_close_cancel": "Anuluj"
+}

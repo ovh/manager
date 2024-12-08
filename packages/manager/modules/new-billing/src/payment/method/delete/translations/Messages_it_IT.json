@@ -1,0 +1,7 @@
+{
+  "billing_payment_method_delete_title": "Elimina un metodo di pagamento",
+  "billing_payment_method_delete_explain": "Stai per eliminare il metodo di pagamento <strong>{{ label }}</strong>.",
+  "billing_payment_method_delete_question": "Vuoi continuare?",
+  "billing_payment_method_delete_error": "Si è verificato un errore durante l'eliminazione del metodo di pagamento: {{ errorMessage }}",
+  "billing_payment_method_delete_success": "Il tuo metodo di pagamento è stato eliminato correttamente."
+}

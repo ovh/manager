@@ -1,0 +1,183 @@
+<div>
+    <div data-ovh-alert></div>
+
+    <oui-header heading="{{:: 'menu_sla' | translate }}"> </oui-header>
+
+    <div>
+        <div data-ng-show="loaders.slas" class="text-center">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <p
+            class="text-center"
+            data-ng-if="!loaders.slas && (slas.length <= 0 || allNotApplicable())"
+            data-translate="sla_apply_no_data"
+        ></p>
+
+        <div
+            class="panel-group"
+            id="accordionSla"
+            data-ng-if="!loaders.slas && (slas.length > 0 && !allNotApplicable())"
+        >
+            <p
+                data-translate="sla_informations"
+                data-ng-if="!allRequested() && !allCompleted()"
+            ></p>
+            <div class="panel panel-default" data-ng-repeat="sla in slas">
+                <div class="panel-heading">
+                    <a
+                        class="row"
+                        data-toggle="collapse"
+                        data-parent="#accordionSla"
+                        href
+                        data-target="#collapse{{sla.id}}"
+                        data-ng-click="currentSlaOpen.value = sla.id"
+                    >
+                        <div class="col-md-10">
+                            <i
+                                class="fa fa-caret-right"
+                                data-ng-show="currentSlaOpen.value !== sla.id"
+                                aria-hidden="true"
+                            >
+                            </i>
+                            <i
+                                class="fa fa-caret-down"
+                                data-ng-show="currentSlaOpen.value === sla.id"
+                                aria-hidden="true"
+                            >
+                            </i>
+                            <span
+                                data-ng-bind="::sla.date | date:'medium'"
+                            ></span>
+                            <strong class="ml-2" data-ng-bind="::sla.name">
+                            </strong>
+                            <p>
+                                <em data-ng-bind="{{::sla.description}}"></em>
+                            </p>
+                            <div
+                                class="oui-message oui-message_info"
+                                role="alert"
+                                ng-if="sla.status === 'created'"
+                            >
+                                <i
+                                    class="oui-icon oui-icon-info-circle"
+                                    aria-hidden="true"
+                                >
+                                </i>
+                                <p
+                                    class="oui-message__body"
+                                    data-ng-bind="'sla_informations_end' | translate:{ t0: (sla.endDate | date:'short') }"
+                                ></p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="col-md-2"
+                            data-ng-if="sla.status === 'created'"
+                        >
+                            <button
+                                class="btn btn-primary"
+                                data-ng-if="sla.canBeApplied"
+                                data-ng-click="applySla(sla)"
+                                data-translate="sla_table_apply"
+                            ></button>
+                        </div>
+
+                        <div
+                            class="col-md-2"
+                            data-ng-if="sla.status === 'requested' || sla.status === 'completed'"
+                        >
+                            <span
+                                class="label"
+                                data-ng-class="{
+                                      'label-warning': sla.status === 'requested',
+                                      'label-success': sla.status === 'completed',
+                                      'label-info': sla.status === 'created',
+                                      'label-default': sla.status === 'notApplicable'
+                                  }"
+                                data-translate="{{ 'sla_informations_status_' + sla.status }}"
+                            >
+                            </span>
+                        </div>
+                    </a>
+                </div>
+                <div id="collapse{{sla.id}}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th
+                                        scope="col"
+                                        data-translate="sla_table_head_service_name"
+                                    ></th>
+                                    <th
+                                        scope="col"
+                                        data-translate="sla_table_head_service_description"
+                                    ></th>
+                                    <th
+                                        scope="col"
+                                        data-translate="sla_table_head_service_sla_plan"
+                                    ></th>
+                                    <th
+                                        scope="col"
+                                        data-translate="sla_table_head_service_sla_application"
+                                    ></th>
+                                </tr>
+                            </thead>
+                            <tbody data-ng-show="loaders.services">
+                                <tr>
+                                    <td colspan="4" class="text-center">
+                                        <oui-spinner></oui-spinner>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody
+                                data-ng-show="sla.services.length === 0 && !loaders.services"
+                            >
+                                <tr>
+                                    <td
+                                        colspan="4"
+                                        class="text-center"
+                                        data-translate="sla_table_services_empty"
+                                    ></td>
+                                </tr>
+                            </tbody>
+                            <tbody
+                                data-ng-show="!loaders.slas && sla.services.length > 0"
+                                class="data-body"
+                            >
+                                <tr data-ng-repeat="service in sla.services">
+                                    <th
+                                        scope="row"
+                                        data-ng-bind="::service.serviceName"
+                                    ></th>
+                                    <td
+                                        data-ng-bind="::service.description"
+                                    ></td>
+                                    <td data-ng-bind="::service.slaPlan"></td>
+                                    <td
+                                        data-ng-bind="::service.slaApplication"
+                                    ></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            data-ng-show="slaIds.length > 5"
+            data-pagination-front
+            data-items="slaIds"
+            data-paginated-items="slas"
+            data-current-page="currentPage"
+            data-nb-pages="nbPages"
+            data-items-per-page="itemsPerPage"
+            data-transform-item="transformItem(item)"
+            data-on-transform-item-notify="onTransformItemNotify(item)"
+            data-on-transform-item-done="onTransformItemDone(items)"
+            data-page-placeholder="{{'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
+            data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+        ></div>
+    </div>
+</div>

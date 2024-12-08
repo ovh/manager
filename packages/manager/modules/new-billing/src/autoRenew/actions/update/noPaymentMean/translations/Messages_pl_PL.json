@@ -1,0 +1,4 @@
+{
+  "billing_autorenew_service_update_no_payment_mean_description": "Wybrałeś płatność automatyczną za usługę {{service}}.",
+  "billing_autorenew_service_update_no_payment_mean_add": "Aby korzystać z tego sposobu odnowienia, zarejestruj wcześniej sposób płatności w Panelu klienta w sekcji „Sposoby płatności”."
+}

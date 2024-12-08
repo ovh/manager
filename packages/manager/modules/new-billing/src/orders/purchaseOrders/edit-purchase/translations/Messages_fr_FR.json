@@ -1,0 +1,18 @@
+{
+  "purchaseOrders_edit_page_title": "Modifier la référence interne",
+  "purchaseOrders_form_edit_internal_reference": "Modifier votre référence interne",
+  "purchaseOrders_form_edit_purchase_order": "Modifier votre purchase order",
+  "purchaseOrders_form_edit_internal_reference_label": "Nom de la référence interne",
+  "purchaseOrders_form_edit_internal_reference_placeholder": "Référence interne",
+  "purchaseOrders_form_edit_internal_reference_sub_info": "La référence ne doit pas excéder 20 caractères",
+  "purchaseOrders_form_edit_purchase_order_label": "Nom du purchase order",
+  "purchaseOrders_form_edit_purchase_order_sub_info": "Le nom ne doit pas excéder 20 caractères",
+  "purchaseOrders_form_edit_purchase_startDate": "Date de début",
+  "purchaseOrders_form_edit_purchase_endDate": "Date de fin",
+  "purchaseOrders_form_edit_purchase_endDate_helper": "La date de fin est exclue",
+  "purchaseOrders_form_edit_purchase_submit": "Valider",
+  "purchaseOrders_form_edit_purchase_cancel": "Annuler",
+  "purchaseOrders_edit_purchase_submit_REFERENCE_ORDER_success": "Votre référence interne a bien été éditée !",
+  "purchaseOrders_edit_purchase_submit_PURCHASE_ORDER_success": "Votre purchase order a bien été édité !",
+  "purchaseOrders_edit_purchase_submit_error": "Votre demande n'a pas pu être prise en compte. Merci d'essayer ultérieurement."
+}

@@ -1,0 +1,7 @@
+{
+  "billing_payment_method_delete_title": "Zahlungsmittel löschen",
+  "billing_payment_method_delete_explain": "Sie sind dabei, das Zahlungsmittel <strong>{{ label }}</strong> zu löschen.",
+  "billing_payment_method_delete_question": "Sind Sie sicher, dass Sie fortfahren möchten?",
+  "billing_payment_method_delete_error": "Beim Löschen des Zahlungsmittels ist ein Fehler aufgetreten: {{ errorMessage }}",
+  "billing_payment_method_delete_success": "Ihr Zahlungsmittel wurde erfolgreich gelöscht."
+}

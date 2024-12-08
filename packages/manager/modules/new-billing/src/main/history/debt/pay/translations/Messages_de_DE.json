@@ -1,0 +1,8 @@
+{
+  "billing_main_history_debt_pay_title": "Zahlung ",
+  "billing_main_history_debt_pay_confirm": "Konto ausgleichen ",
+  "billing_main_history_debt_pay_explanation": "Mit dieser Aktion wird ein Bestellschein erstellt, damit Sie Ihr Konto sofort ausgleichen können. Der Bestellschein ist eine Stunde lang gültig. ",
+  "billing_main_history_debt_pay_success": "Der <a href=\"{{t1}}\" target=\"_blank\" rel=\"noopener\">Bestellschein {{t0}}</a> wurde erstellt. Sie können Ihre Rechnung jetzt begleichen.",
+  "billing_main_history_debt_pay_error": "Bei der Zahlung Ihrer Rechnung ist ein Fehler aufgetreten.",
+  "billing_main_history_debt_pay_error_nothing_to_pay": "Sie haben aktuell keine ausstehenden Zahlungen."
+}

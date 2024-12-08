@@ -1,0 +1,100 @@
+<div data-ui-view>
+    <oui-header
+        heading="{{:: 'purchaseOrders_add_page_title' | translate }}"
+    ></oui-header>
+    <form novalidate name="newPurchaseForm">
+        <oui-field size="m">
+            <oui-radio-group direction="column" model="$ctrl.model.type">
+                <oui-radio
+                    data-value="$ctrl.TYPE_PURCHASE.REFERENCE_ORDER"
+                    name="type_{{:: $ctrl.TYPE_PURCHASE.REFERENCE_ORDER }}"
+                    model="$ctrl.model.type"
+                >
+                    <span
+                        data-translate="{{:: 'purchaseOrders_form_add_internal_reference' }}"
+                    ></span>
+                </oui-radio>
+                <oui-radio
+                    data-value="$ctrl.TYPE_PURCHASE.PURCHASE_ORDER"
+                    name="type_{{:: $ctrl.TYPE_PURCHASE.PURCHASE_ORDER }}"
+                    model="$ctrl.model.type"
+                >
+                    <span
+                        data-translate="{{:: 'purchaseOrders_form_add_purchase_order' }}"
+                    ></span>
+                </oui-radio>
+            </oui-radio-group>
+        </oui-field>
+        <oui-field
+            data-ng-if="$ctrl.model.type === $ctrl.TYPE_PURCHASE.REFERENCE_ORDER"
+            label="{{:: 'purchaseOrders_form_add_internal_reference_label' | translate }}"
+            help-text="{{:: 'purchaseOrders_form_add_internal_reference_sub_info' | translate }}"
+            size="m"
+        >
+            <input
+                class="oui-input"
+                placeholder="{{:: 'purchaseOrders_form_add_internal_reference_placeholder' | translate }}"
+                type="text"
+                maxlength="20"
+                data-ng-model="$ctrl.model.reference"
+                name="reference_{{ $ctrl.TYPE_PURCHASE.REFERENCE_ORDER }}"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-ng-if="$ctrl.model.type === $ctrl.TYPE_PURCHASE.PURCHASE_ORDER"
+            label="{{:: 'purchaseOrders_form_add_purchase_order_label' | translate }}"
+            help-text="{{:: 'purchaseOrders_form_add_purchase_order_sub_info' | translate }}"
+            size="m"
+        >
+            <input
+                class="oui-input"
+                placeholder="{{:: 'purchaseOrders_form_add_purchase_order_placeholder' | translate }}"
+                type="text"
+                maxlength="20"
+                data-ng-model="$ctrl.model.reference"
+                name="reference_{{ $ctrl.TYPE_PURCHASE.PURCHASE_ORDER }}"
+                required
+            />
+        </oui-field>
+        <oui-field
+            label="{{:: 'purchaseOrders_form_add_purchase_startDate' | translate }}"
+            size="m"
+        >
+            <oui-calendar
+                placeholder="{{:: 'purchaseOrders_form_add_purchase_startDate' | translate }}"
+                model="$ctrl.model.startDate"
+                disable-date="$ctrl.disableDate"
+                min-date="$ctrl.minDate"
+                max-date="$ctrl.maxDate"
+                on-change="$ctrl.onChangeMinDateForEndDate(selectedDates, dateStr)"
+                alt-format="{{ $ctrl.dateFormat }}"
+                required
+            >
+            </oui-calendar>
+        </oui-field>
+        <oui-field
+            label="{{:: 'purchaseOrders_form_add_purchase_endDate' | translate }}"
+            size="m"
+            help-text="{{:: 'purchaseOrders_form_add_purchase_endDate_helper' | translate }}"
+        >
+            <oui-calendar
+                placeholder="{{:: 'purchaseOrders_form_add_purchase_endDate' | translate }}"
+                model="$ctrl.model.endDate"
+                disable-date="$ctrl.disableDateForEndDate"
+                min-date="$ctrl.minDateForEndDate"
+                max-date="$ctrl.maxDateForEndDate"
+                alt-format="{{ $ctrl.dateFormat }}"
+            >
+            </oui-calendar>
+        </oui-field>
+        <oui-form-actions
+            submit-text="{{:: 'purchaseOrders_form_add_purchase_submit' | translate }}"
+            cancel-text="{{:: 'purchaseOrders_form_add_purchase_cancel' | translate }}"
+            on-submit="$ctrl.onSubmit()"
+            on-cancel="$ctrl.onCancel()"
+            disabled="newPurchaseForm.$invalid"
+        >
+        </oui-form-actions>
+    </form>
+</div>

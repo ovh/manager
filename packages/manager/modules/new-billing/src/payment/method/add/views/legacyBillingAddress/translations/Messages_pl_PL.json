@@ -1,0 +1,13 @@
+{
+  "billing_payment_method_add_bank_account_address_number": "Numer",
+  "billing_payment_method_add_bank_account_address_street": "Ulica",
+  "billing_payment_method_add_bank_account_address_zip": "Kod pocztowy",
+  "billing_payment_method_add_bank_account_address_city": "Miasto",
+  "billing_payment_method_add_bank_account_owner_name": "Imię i nazwisko właściciela lub nazwa organizacji",
+  "billing_payment_method_add_bank_account_owner_address": "Adres siedziby/zamieszkania i pobytu właściciela konta",
+  "billing_payment_method_add_bank_account_owner_notification_info": "W ciągu 24-48 godzin na adres e-mail przypisany do Twojego konta OVHcloud prześlemy wiadomość z linkiem do podpisu elektronicznego i autoryzacji obciążenia.",
+  "billing_payment_method_add_bank_account_owner_info": "Uwaga: właściciel konta bankowego oraz  właściciel konta OVHcloud muszą być identyczni.",
+  "billing_payment_method_add_bank_account_owner_confirmation_info": "Jeśli Twoja autoryzacja zostanie zatwierdzona, możesz skorzystać z nowego sposobu płatności. ",
+  "billing_payment_method_add_bank_account_data_process_by_ovh_info": "Dane gromadzone za pomocą tego formularza są przetwarzane przez firmę OVHcloud występującą w charakterze administratora danych w celu realizacji polecenia zapłaty SEPA. <a href=\" {{ dataProtectionOvhLink }} \" target=\" _blank \">Dowiedz się więcej</a> o przetwarzaniu danych przez OVHcloud i korzystaniu z przysługujących Ci praw.",
+  "billing_payment_method_add_bank_account_data_process_by_yousign_info": "Ustanowienie polecenia zapłaty SEPA wymaga Twojego pełnomocnictwa opatrzonego podpisem elektronicznym wygenerowanym za pomocą rozwiązania dostarczonego przez Yousign - dostawcę zaufanych usług określonych w rozporządzeniu eIDAS nr 910/2014 z dnia 23 lipca 2014 r. Dane przekazywane są Yousign wyłącznie do wskazanego wyżej celu. <a href=\" {{ dataProtectionYouSignLink }} \" target=\" _blank \">Dowiedz się więcej</a> na temat zarządzania danymi przez Yousign."
+}

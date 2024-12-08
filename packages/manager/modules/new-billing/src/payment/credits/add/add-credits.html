@@ -1,0 +1,22 @@
+<form name="$ctrl.addCreditsForm" novalidate data-ng-submit="$ctrl.add()">
+    <oui-modal
+        data-heading="{{:: 'voucher_credit_code_add_label' | translate }}"
+        data-primary-label="{{:: 'voucher_credit_code_add_submit' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'voucher_credit_code_cancel' | translate }}"
+        primary-disabled="!$ctrl.creditCode"
+        data-loading="$ctrl.isAdding"
+        data-on-dismiss="$ctrl.goBack()"
+    >
+        <oui-field
+            label="{{:: 'voucher_credit_code_add_placeholder' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="creditCode"
+                type="text"
+                data-ng-model="$ctrl.creditCode"
+            />
+        </oui-field>
+    </oui-modal>
+</form>

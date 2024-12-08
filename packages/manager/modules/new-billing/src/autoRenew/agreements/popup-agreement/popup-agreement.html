@@ -1,0 +1,52 @@
+<oui-modal
+    data-primary-action=":: $ctrl.acceptAndNext()"
+    data-primary-label="{{ (
+        ($ctrl.currentAgreementIndex === ($ctrl.agreements.length - 1))
+            ? 'user_agreements_accept'
+            : 'user_agreements_accept_all_accept_and_next'
+    ) | translate }}"
+    data-primary-disabled="!$ctrl.currentAgreement.accepted"
+    data-secondary-action=":: $ctrl.goBack(false, 'success', true)"
+    data-secondary-label="{{:: 'wizard_cancel' | translate }}"
+    data-loading="$ctrl.AgreementUnderProcess"
+    data-on-dismiss=":: $ctrl.goBack(false, 'success', true)"
+>
+    <strong
+        data-ng-bind="'user_agreements_accept_all_count' | translate: {
+        current: $ctrl.currentAgreementIndex + 1,
+        total: $ctrl.agreements.length
+    }"
+    ></strong>
+    <h3 data-ng-bind=":: $ctrl.currentAgreement.name"></h3>
+    <oui-textarea
+        data-name="agreement"
+        data-model="$ctrl.currentAgreement.text"
+        data-rows="10"
+        data-readonly
+    ></oui-textarea>
+    <div class="oui-checkbox mt-3">
+        <input
+            class="oui-checkbox__input"
+            id="agreement-checkbox"
+            name="agreement-checkbox"
+            type="checkbox"
+            data-ng-model="$ctrl.currentAgreement.accepted"
+        />
+        <label class="oui-checkbox__label-container" for="agreement-checkbox">
+            <span class="oui-checkbox__label">
+                <span class="oui-checkbox__icon"></span>
+                <span
+                    class="oui-checkbox__text"
+                    data-translate="user_agreements_accept_all_read_and_accepted"
+                    data-translate-values="{
+                        contractTitle: $ctrl.currentAgreement.name
+                    }"
+                ></span>
+            </span>
+            <span
+                class="oui-checkbox__description"
+                data-ng-bind-html="'user_agreements_accept_all_annexes' | translate: { url: $ctrl.currentAgreement.pdfUrl }"
+            ></span>
+        </label>
+    </div>
+</oui-modal>

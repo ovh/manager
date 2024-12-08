@@ -1,0 +1,15 @@
+{
+  "billing_autorenew_service_update_title": "Configura il rinnovo",
+  "billing_autorenew_service_update_description": "Scegli il tipo di rinnovo (automatico o manuale). Per il rinnovo automatico, è possibile scegliere anche la frequenza degli addebiti.",
+  "billing_autorenew_service_update_service_renewal": "Tipo di rinnovo",
+  "billing_autorenew_service_update_service_automatic": "Automatico",
+  "billing_autorenew_service_update_service_manualPayment": "Manuale",
+  "billing_autorenew_service_update_service_period": "Frequenza",
+  "billing_autorenew_service_update_service_period_value": "{{ month }} mesi",
+  "billing_autorenew_service_update_confirm": "Conferma",
+  "billing_autorenew_service_update_success": "Il rinnovo del servizio {{ service }} è stato aggiornato correttamente. Se la modifica non compare nella lista, aggiorna la pagina.",
+  "billing_autorenew_service_update_error": "Si è verificato un errore durante la configurazione del rinnovo: {{message}}",
+  "billing_autorenew_service_update_add_mean": "Aggiungi un metodo di pagamento",
+  "billing_autorenew_service_update_validate": "Conferma",
+  "billing_autorenew_service_update_next": "Continua"
+}

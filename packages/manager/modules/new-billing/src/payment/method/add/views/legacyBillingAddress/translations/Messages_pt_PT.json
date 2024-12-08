@@ -1,0 +1,13 @@
+{
+  "billing_payment_method_add_bank_account_address_number": "Número",
+  "billing_payment_method_add_bank_account_address_street": "Nome da rua",
+  "billing_payment_method_add_bank_account_address_zip": "Código postal",
+  "billing_payment_method_add_bank_account_address_city": "Cidade",
+  "billing_payment_method_add_bank_account_owner_name": "Nome e sobrenome do proprietário ou nome da organização proprietária",
+  "billing_payment_method_add_bank_account_owner_address": "Endereço do proprietário da conta",
+  "billing_payment_method_add_bank_account_owner_notification_info": "Nas próximas 24 a 48h, receberá um e-mail para o endereço de e-mail da sua conta OVHcloud com uma ligação de assinatura eletrónica da sua autorização de débito direto.",
+  "billing_payment_method_add_bank_account_owner_info": "Atenção: o proprietário da conta bancária deve ser idêntico ao proprietário da conta OVHcloud.",
+  "billing_payment_method_add_bank_account_owner_confirmation_info": "Depois de a autorização ser recebida pelos nossos serviços e aprovada, poderá utilizar este novo método de pagamento.",
+  "billing_payment_method_add_bank_account_data_process_by_ovh_info": "Os dados recolhidos através deste formulário serão tratados pela OVHcloud na qualidade de responsável pelo tratamento, de forma a poder criar e gerir os seus débitos diretos SEPA. <a href=\" {{ dataProtectionOvhLink }} \" target=\" _blank \">Saber mais</a> sobre o tratamento dos seus dados pela OVHcloud e o exercício dos seus direitos.",
+  "billing_payment_method_add_bank_account_data_process_by_yousign_info": "A criação de um débito direto SEPA requer uma autorização que deverá assinar eletronicamente utilizando uma solução fornecida por Yousign, um prestador autorizado a prestar serviços de confiança, tal como estabelecido no Regulamento \"eIDAS\" n.º 910/2014, de 23 de julho de 2014. Neste contexto, esses dados serão comunicados à Yousign. <a href=\" {{ dataProtectionYouSignLink }} \" target=\" _blank \">Saber mais</a> sobre a gestão dos seus dados por Yousign."
+}

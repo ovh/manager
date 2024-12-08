@@ -1,0 +1,13 @@
+{
+  "billing_payment_method_add_bank_account_address_number": "Nummer",
+  "billing_payment_method_add_bank_account_address_street": "Straße",
+  "billing_payment_method_add_bank_account_address_zip": "Postleitzahl",
+  "billing_payment_method_add_bank_account_address_city": "Stadt",
+  "billing_payment_method_add_bank_account_owner_name": "Name und Vorname des Inhabers oder Name der Inhaber-Organisation",
+  "billing_payment_method_add_bank_account_owner_address": "Adresse des Kontoinhabers",
+  "billing_payment_method_add_bank_account_owner_notification_info": "Sie erhalten in den nächsten 24 bis 48 Stunden einen elektronischen Signaturlink für Ihr Lastschriftmandat per Nachricht an die E-Mail-Adresse Ihres OVHcloud Accounts.",
+  "billing_payment_method_add_bank_account_owner_info": "Bitte beachten Sie: Der Inhaber des Bankkontos muss mit dem Inhaber des OVHcloud Accounts identisch sein.",
+  "billing_payment_method_add_bank_account_owner_confirmation_info": "Diese neue Zahlungsmittel steht Ihnen zur Verfügung, sobald unsere Mitarbeiter das unterzeichnete Lastschriftmandat erhalten und bestätigt haben.",
+  "billing_payment_method_add_bank_account_data_process_by_ovh_info": "OVHcloud verarbeitet die über dieses Formular erhobenen Daten als für die Verarbeitung Verantwortlicher, um Ihre SEPA-Lastschrift einzurichten. <a href=\" {{ dataProtectionOvhLink }} \" target=\" _blank \">Hier erfahren Sie mehr</a> darüber, wie OVHcloud Ihre Daten verarbeitet, und wie Sie Ihre Rechte ausüben können.",
+  "billing_payment_method_add_bank_account_data_process_by_yousign_info": "Das Einrichten einer SEPA-Lastschrift erfordert ein Mandat. Wir bitten Sie, dieses elektronisch zu unterzeichnen. Dies erfolgt mit der IT-Lösung von Yousign, einem Anbieter von zuverlässigen vertrauenswürdigen Dienstleistungen gemäß der EU-Verordnung Nr. 910/2014 vom 23. Juli 2014 über elektronische Identifizierung und Vertrauensdienste für elektronische Transaktionen (Electronic IDentification Authentication and trust Services, eIDAS). In diesem Zusammenhang werden ihm diese Daten übermittelt. <a href=\" {{ dataProtectionYouSignLink }} \" target=\" _blank \">Erfahren Sie mehr</a> zur Verwaltung Ihrer Daten durch Yousign."
+}

@@ -1,0 +1,11 @@
+{
+  "orders_page_title": "Mes commandes",
+  "orders_page_description": "Consultez votre historique et suivez les commandes en cours. Accédez à vos bons de commande.",
+  "orders_date": "Date",
+  "orders_id": "Numéro de commande",
+  "orders_status": "État",
+  "purchaseOrders_page_title": "Mes références internes",
+  "orders_billing": "Facturation",
+  "orders_purchase": "Notion de Numéro de commande ou Purchase Order (PO)",
+  "orders_guides": "Guides"
+}

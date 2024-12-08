@@ -1,0 +1,37 @@
+<oui-header
+    data-heading="{{:: 'billing_main_title' | translate }}"
+    data-description="{{ :: $ctrl.descriptionOfHeading() }}"
+>
+    <oui-header-tabs>
+        <oui-header-tabs-item data-state="billing.main.history"
+            ><span data-translate="billing_main_bills_tab"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.isPayAsYouGoAvailable"
+            data-state="billing.main.pay-as-you-go"
+            ><span data-translate="billing_main_pay_as_you_go_tab"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item state="billing.main.payments"
+            ><span data-translate="billing_main_payments_tab"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item state="billing.main.refunds"
+            ><span data-translate="billing_payment_refunds_title"></span
+        ></oui-header-tabs-item>
+    </oui-header-tabs>
+    <oui-guide-menu data-text="{{:: 'billing_guides_header' | translate }}">
+        <oui-guide-menu-item
+            data-ng-repeat="guide in $ctrl.guides.url.my_invoices track by $index"
+            data-href="{{:: guide.url }}"
+            data-on-click="$ctrl.trackClick($ctrl.guides.tracking.my_invoices + guide.tracking)"
+            data-external
+        >
+            <span
+                data-translate="{{:: 'billing_guides_header_' + guide.key }}"
+            ></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+</oui-header>
+
+<div data-ovh-alert="billing_main_alert"></div>
+
+<div data-ui-view></div>

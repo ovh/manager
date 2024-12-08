@@ -1,0 +1,7 @@
+{
+  "billing_payment_method_default_title": "Definir um método de pagamento predefinido",
+  "billing_payment_method_default_explain": "Está prestes a definir o método de pagamento <strong>{{ label }}</strong> enquanto método de pagamento predefinido.",
+  "billing_payment_method_default_question": "Tem a certeza de que quer continuar?",
+  "billing_payment_method_default_error": "Ocorreu um erro ao modificar o seu método de pagamento predefinido: {{ errorMessage }}",
+  "billing_payment_method_default_success": "O seu método de pagamento predefinido foi modificado com êxito."
+}

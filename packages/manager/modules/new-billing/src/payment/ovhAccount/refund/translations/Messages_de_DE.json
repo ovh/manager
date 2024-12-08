@@ -1,0 +1,9 @@
+{
+  "billing_ovhaccount_refund": "Erstattung fordern",
+  "billing_ovhaccount_refund_cancel": "Abbrechen",
+  "billing_ovhaccount_refund_confirm": "Anfrage bestätigen",
+  "billing_ovhaccount_refund_description": "Sie sind im Begriff, die Erstattung in Höhe von {{ amount }} einzuleiten. Die Erstattung erfolgt auf das ursprüngliche Zahlungsmittel.",
+  "billing_ovhaccount_refund_description_confirm": "Möchten Sie die Erstattung vornehmen?",
+  "billing_ovhaccount_refund_success": "Ihre Forderung einer Erstattung in Höhe von {{amount}} ist eingegangen und wird so schnell wie möglich bearbeitet.",
+  "billing_ovhaccount_refund_error": "Bei der Forderung einer Erstattung ist ein Fehler aufgetreten."
+}

@@ -1,0 +1,7 @@
+{
+  "billing_payment_method_edit_title": "Modification de la description",
+  "billing_payment_method_edit_action_save": "Enregistrer la description",
+  "billing_payment_method_edit_description": "Entrez une nouvelle description",
+  "billing_payment_method_edit_error": "Une erreur est survenue lors de la modification de la description : {{ errorMessage }}",
+  "billing_payment_method_edit_success": "La modification de la description de votre moyen de paiement a bien été effectuée."
+}

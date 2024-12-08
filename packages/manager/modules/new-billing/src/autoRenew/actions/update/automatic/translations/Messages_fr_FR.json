@@ -1,0 +1,5 @@
+{
+  "billing_autorenew_service_update_automatic_sumup": "Vous avez sélectionné le paiement automatique pour votre service {{ serviceName }}",
+  "billing_autorenew_service_update_automatic_frequency": "Ce service sera automatique renouvelé tous les {{ period }} mois à compter du {{ date }}",
+  "billing_autorenew_service_update_automatic_paymentmean": "Le montant sera prélevé sur votre moyen de paiement par défaut : {{ type }} {{ name }}."
+}

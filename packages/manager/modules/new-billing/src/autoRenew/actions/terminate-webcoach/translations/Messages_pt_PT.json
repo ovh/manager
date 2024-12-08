@@ -1,0 +1,11 @@
+{
+  "autorenew_webcoach_service_guide": "Eliminar imediatamente o WebCoach",
+  "autorenew_webcoach_close_service_question": "Deseja continuar?",
+  "autorenew_webcoach_close_service_success": "O seu pedido de desativação do WebCoach foi registado. Um e-mail com o procedimento foi-lhe enviado.",
+  "autorenew_webcoach_close_service_error": "Ocorreu um erro aquando do pedido de eliminação do seu WebCoach:",
+  "autorenew_webcoach_close_service": "Eliminar imediatamente o meu WebCoach",
+  "autorenew_webcoach_close_service_warning": "A eliminação de um WebCoach apaga definitivamente todos os dados correspondentes. A operação de eliminação de um WebCoach não garante o direito a reembolso.",
+  "autorenew_webcoach_close_service_desc1": "Receberá por e-mail o procedimento de encerramento do seu WebCoach, e assim que o confirmar, a eliminação será imediata.",
+  "autorenew_webcoach_close_confirm": "Validar",
+  "autorenew_webcoach_close_cancel": "Anular"
+}

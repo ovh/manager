@@ -1,0 +1,20 @@
+{
+  "purchaseOrders_add_page_title": "Criar uma referência interna",
+  "purchaseOrders_form_add_internal_reference": "Criar a sua referência interna",
+  "purchaseOrders_form_add_purchase_order": "Criar o seu purchase order",
+  "purchaseOrders_form_add_internal_reference_label": "Nome da referência interna",
+  "purchaseOrders_form_add_internal_reference_placeholder": "Referência interna",
+  "purchaseOrders_form_add_internal_reference_sub_info": "A referência não deve exceder 20 caracteres",
+  "purchaseOrders_form_add_purchase_order_label": "Nome do purchase order",
+  "purchaseOrders_form_add_purchase_order_placeholder": "Purchase order",
+  "purchaseOrders_form_add_purchase_order_sub_info": "O nome não deve exceder 20 caracteres",
+  "purchaseOrders_form_add_purchase_startDate": "Data de início",
+  "purchaseOrders_form_add_purchase_endDate": "Data de fim",
+  "purchaseOrders_form_add_purchase_endDate_helper": "A data de fim está excluída",
+  "purchaseOrders_form_add_purchase_submit": "Validar",
+  "purchaseOrders_form_add_purchase_cancel": "Anular",
+  "purchaseOrders_form_add_purchase_submit_REFERENCE_ORDER_success": "A sua referência interna foi criada com êxito!",
+  "purchaseOrders_form_add_purchase_submit_PURCHASE_ORDER_success": "O seu purchase order foi criado com êxito!",
+  "purchaseOrders_form_add_purchase_submit_error": "Não foi possível tratar o seu pedido. Tente novamente mais tarde.",
+  "purchaseOrders_add_page_warning_ongoing_purchase": "Atualmente, tem uma referência interna ou um purchase order anterior sem data de fim. Não é possível introduzir uma nova referência sem indicar uma data de fim sobre a já existente."
+}

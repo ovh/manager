@@ -1,0 +1,74 @@
+<div data-ng-controller="Billing.controllers.OvhAccountRenew">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="displayBC"
+        data-wizard-title="::'ovhAccount_renew_title' | translate"
+        data-wizard-bread-crumb
+        data-wizard-confirm-button-text="::'wizard_order' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="loadAmount"
+            data-wizard-step-valid="renewStepValidator()"
+        >
+            <h2
+                class="wizard-title-sub"
+                data-translate="ovhAccount_renew_step1_msg"
+            ></h2>
+            <div class="form-group">
+                <label
+                    class="control-label"
+                    data-ng-bind="'ovhAccount_renew_step1_amount' | translate:{ t0: ovhAccount.model.balanceCurrencyCode }"
+                >
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    data-ng-model="accountRenew.amount"
+                    data-ng-model-options="{'debounce': 500}"
+                    data-ng-change="checkAmount()"
+                />
+                <span
+                    data-ng-show="accountRenew.erreurMin"
+                    role="alert"
+                    class="text-danger"
+                    data-ng-bind="'ovhAccount_renew_step1_erreurmin' | translate:{ t0: currency(ovhAccount.model.balanceCurrencyCode) }"
+                >
+                </span>
+                <span
+                    data-ng-show="accountRenew.erreurFormat"
+                    role="alert"
+                    class="text-danger"
+                    data-ng-bind="'ovhAccount_renew_step1_erreurformat' | translate"
+                >
+                </span>
+            </div>
+        </div>
+
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="getBC"
+            data-wizard-step-valid="accountRenew.BC.url"
+        >
+            <div data-ng-show="accountRenew.BC.url">
+                <p data-translate="ovhAccount_renew_step2_msg"></p>
+                <p class="text-center">
+                    <span data-translate="ovhAccount_renew_step2_credit"></span>
+                    <strong
+                        data-ng-bind="accountRenew.BC.priceWithTax.text"
+                    ></strong>
+                </p>
+            </div>
+            <div data-ng-show="accountRenew.error">
+                <span
+                    class="text-danger font-weight-bold"
+                    role="alert"
+                    data-translate="ovhAccount_renew_step2_error"
+                >
+                </span>
+            </div>
+            <oui-spinner data-ng-show="accountRenew.loading"></oui-spinner>
+        </div>
+    </div>
+</div>

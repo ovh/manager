@@ -1,0 +1,6 @@
+{
+  "autorenew_service_debt_warn_title": "Informações importantes",
+  "autorenew_service_debt_warn_settle": "Regularizar",
+  "autorenew_service_debt_warn_cancel": "Anular",
+  "autorenew_service_debt_warn_deletion": "Para rescindir o serviço, primeiro é preciso saldar o montante em falta. Consulte a secção Faturação para proceder ao pagamento da fatura relativa ao serviço <strong>{{service}}</strong>"
+}

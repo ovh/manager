@@ -1,0 +1,11 @@
+{
+  "autorenew_enterprise_cloud_database_service_guide": "Eliminar imediatamente o Enterprise Cloud Databases",
+  "autorenew_enterprise_cloud_database_close_service_question": "Deseja continuar?",
+  "autorenew_enterprise_cloud_database_close_service_success": "O seu pedido de desativação do Enterprise Cloud Databases foi realizado. Um e-mail com o procedimento foi-lhe enviado.",
+  "autorenew_enterprise_cloud_database_close_service_error": "Ocorreu um erro ao solicitar o encerramento do seu Enterprise Cloud Databases:",
+  "autorenew_enterprise_cloud_database_close_service": "Eliminar imediatamente o meu Enterprise Cloud Databases",
+  "autorenew_enterprise_cloud_database_close_service_warning": "A eliminação de um Enterprise Cloud Databases elimina definitivamente todos os dados correspondentes. A operação de eliminação de um Enterprise Cloud Databases não garante o direito a reembolso.",
+  "autorenew_enterprise_cloud_database_close_service_desc1": "Receberá por e-mail o procedimento de encerramento do seu Enterprise Cloud Databases, e assim que o confirmar, a eliminação será imediata.",
+  "autorenew_enterprise_cloud_database_close_confirm": "Validar",
+  "autorenew_enterprise_cloud_database_close_cancel": "Anular"
+}

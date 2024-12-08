@@ -1,0 +1,11 @@
+{
+  "autorenew_service_disable_all_domains_title": "Désactiver le renouvellement automatique",
+  "autorenew_service_disable_all_domains_desc1": "Cette action désactivera le renouvellement automatique de <strong>l'intégralité des noms de domaines</strong> dont vous êtes le contact de facturation.",
+  "autorenew_service_disable_all_domains_desc2": "Pour conserver vos services, vous devez effectuer vos prochains paiements avant leurs dates d’expiration.",
+  "autorenew_service_disable_all_domains_desc3": "A défaut, vos services <strong>seront automatiquement résiliés à leurs dates d'expiration</strong>. Les données liées au paiement automatique de vos services seront supprimées de manière irréversible.",
+  "autorenew_service_disable_all_domains_desc4": "Vous pourrez réactiver le paiement automatique de vos services jusqu'à 24 heures avant leurs dates d'expiration.",
+  "autorenew_service_disable_all_domains_success": "Votre demande de désactivation du paiement automatique a été prise en compte. Elle sera effective d'ici quelques heures.",
+  "autorenew_service_disable_all_domains_error": "Une erreur est survenue, veuillez nous excuser pour la gêne occasionnée.",
+  "autorenew_service_disable_all_domains_validate": "Valider",
+  "autorenew_service_disable_all_domains_cancel": "Annuler"
+}

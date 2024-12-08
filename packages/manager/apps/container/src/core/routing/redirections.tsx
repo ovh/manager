@@ -14,6 +14,7 @@ function Rewrite({ to }: { to: string }): JSX.Element {
 
 export function Redirections(configuration: Record<string, Application>): JSX.Element {
   const isNewAccountAvailable = !!configuration?.['new-account'];
+  const isNewBillingAvailable = !!configuration?.['new-billing'];
 
   return (
     <>
@@ -46,10 +47,17 @@ export function Redirections(configuration: Record<string, Application>): JSX.El
           element={<Rewrite to="/dedicated/useraccount/*" />}
         />
       )}
-      <Route
-        path="/billing/*"
-        element={<Rewrite to="/dedicated/billing/*" />}
-      />
+      {isNewBillingAvailable ? (
+        <Route
+          path="/dedicated/billing/*"
+          element={<Rewrite to="/billing/*" />}
+        />
+      ) : (
+        <Route
+          path="/billing/*"
+          element={<Rewrite to="/dedicated/billing/*" />}
+        />  
+      )}
       <Route path="/freefax">
         <Route path=":id/*" element={<Rewrite to="/telecom/freefax/:id/*" />} />
         <Route index element={<Rewrite to="/telecom/freefax/" />} />

@@ -1,0 +1,115 @@
+<div class="billing-payment-method-vouchers-movements">
+    <div data-ovh-alert></div>
+
+    <oui-back-button data-state="^">
+        <span
+            data-ng-bind-html="'vouchers_movements_title' | translate:{ t0: voucherAccountId }"
+        ></span>
+    </oui-back-button>
+
+    <div class="text-center" data-ng-if="loaders.vouchers">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <table class="table table-hover mt-4">
+        <thead>
+            <tr>
+                <th
+                    scope="col"
+                    class="align-middle"
+                    data-translate="voucher_movements_table_head_id"
+                ></th>
+                <th
+                    scope="col"
+                    class="align-middle"
+                    data-translate="voucher_movements_table_head_description"
+                ></th>
+                <th
+                    scope="col"
+                    class="align-middle"
+                    data-translate="voucher_movements_table_head_date"
+                ></th>
+                <th
+                    scope="col"
+                    class="align-middle"
+                    data-translate="voucher_movements_table_head_amount"
+                ></th>
+                <th
+                    scope="col"
+                    class="align-middle"
+                    data-translate="voucher_movements_table_head_previous_balance"
+                ></th>
+                <th
+                    scope="col"
+                    class="align-middle"
+                    data-translate="voucher_movements_table_head_balance"
+                ></th>
+                <th
+                    scope="col"
+                    class="align-middle"
+                    data-translate="voucher_movements_table_head_operation"
+                ></th>
+                <th
+                    scope="col"
+                    class="align-middle"
+                    data-translate="voucher_movements_table_head_order"
+                ></th>
+                <th scope="col" class="text-center">
+                    <button
+                        class="btn btn-link"
+                        data-ng-attr-title="{{ :: 'refresh' | translate }}"
+                        aria-label="{{ :: 'refresh' | translate }}"
+                        data-ng-click="getMovements(true)"
+                    >
+                        <i class="fa fa-refresh" aria-hidden="true"> </i>
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody data-ng-show="loaders.movements">
+            <tr>
+                <td class="text-center" colspan="9">
+                    <oui-spinner></oui-spinner>
+                </td>
+            </tr>
+        </tbody>
+        <tbody data-ng-show="movementIds.length === 0 && !loaders.movements">
+            <tr>
+                <td
+                    colspan="9"
+                    class="text-center"
+                    data-translate="voucher_movements_table_empty"
+                ></td>
+            </tr>
+        </tbody>
+        <tbody data-ng-show="!loaders.movements && movements.length > 0">
+            <tr
+                data-ng-repeat="movement in movements track by movement.movementId+$index"
+            >
+                <th scope="row" data-ng-bind="::movement.movementId"></th>
+                <td data-ng-bind="::movement.description"></td>
+                <td data-ng-bind="::movement.date | date:'medium'"></td>
+                <td data-ng-bind="::movement.amount.text"></td>
+                <td data-ng-bind="::movement.previousBalance.text"></td>
+                <td data-ng-bind="::movement.balance.text"></td>
+                <td
+                    data-ng-bind="::'voucher_movements_operation_type_' + movement.operation | translate"
+                ></td>
+                <td colspan="2" data-ng-bind="::movement.order"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div
+        data-ng-show="movementIds.length > 5"
+        data-pagination-front
+        data-items="movementIds"
+        data-paginated-items="movements"
+        data-current-page="currentPage"
+        data-nb-pages="nbPages"
+        data-items-per-page="itemsPerPage"
+        data-transform-item="transformItem(item)"
+        data-on-transform-item-done="onTransformItemDone(items)"
+        data-page-placeholder="{{'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
+        data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+    ></div>
+</div>

@@ -1,0 +1,18 @@
+{
+  "purchaseOrders_edit_page_title": "Edit internal reference",
+  "purchaseOrders_form_edit_internal_reference": "Edit your internal reference",
+  "purchaseOrders_form_edit_purchase_order": "Edit your purchase order",
+  "purchaseOrders_form_edit_internal_reference_label": "Internal reference name",
+  "purchaseOrders_form_edit_internal_reference_placeholder": "Internal reference",
+  "purchaseOrders_form_edit_internal_reference_sub_info": "The reference must not exceed 20 characters",
+  "purchaseOrders_form_edit_purchase_order_label": "Purchase order name",
+  "purchaseOrders_form_edit_purchase_order_sub_info": "The name must not exceed 20 characters",
+  "purchaseOrders_form_edit_purchase_startDate": "Start date",
+  "purchaseOrders_form_edit_purchase_endDate": "End date ",
+  "purchaseOrders_form_edit_purchase_endDate_helper": "The end date is excluded",
+  "purchaseOrders_form_edit_purchase_submit": "Validate",
+  "purchaseOrders_form_edit_purchase_cancel": "Cancel",
+  "purchaseOrders_edit_purchase_submit_REFERENCE_ORDER_success": "Your internal reference has been edited.",
+  "purchaseOrders_edit_purchase_submit_PURCHASE_ORDER_success": "Your purchase order has been edited.",
+  "purchaseOrders_edit_purchase_submit_error": "Your request could not be processed. Please try again later."
+}

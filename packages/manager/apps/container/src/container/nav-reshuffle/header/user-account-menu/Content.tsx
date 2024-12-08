@@ -36,6 +36,7 @@ const UserAccountMenu = ({
     false,
   );
   const [isNewAccountAvailable, setIsNewAccountAvailable] = useState<boolean>(false);
+  const [isNewBillingAvailable, setIsNewBillingAvailable] = useState<boolean>(false);
   const user = shell
     .getPlugin('environment')
     .getEnvironment()
@@ -75,7 +76,7 @@ const UserAccountMenu = ({
   const getAllLinks = useMemo(
     () => async () => {
       let isIdentityDocumentsAvailable = false;
-      const featureAvailability = await fetchFeatureAvailabilityData(['new-account', 'identity-documents', 'procedures:fraud']);
+      const featureAvailability = await fetchFeatureAvailabilityData(['new-billing', 'new-account', 'identity-documents', 'procedures:fraud']);
       if (featureAvailability['identity-documents']) {
         const { status } = await reketInstance.get(`/me/procedure/identity`);
         isIdentityDocumentsAvailable = ['required', 'open'].includes(status);
@@ -86,6 +87,7 @@ const UserAccountMenu = ({
       }
 
       setIsNewAccountAvailable(!!featureAvailability['new-account'])
+      setIsNewBillingAvailable(!!featureAvailability['new-billing'])
 
       if (isNewAccountAvailable) {
         setSupportLink(getUrl('new-account', '#/useraccount/support/level'));
@@ -95,6 +97,12 @@ const UserAccountMenu = ({
         ...links.map((link: UserLink) => {
           if (['user-account-menu-profile', 'myCommunications', 'myContacts'].includes(link.key)) {
             link.app = isNewAccountAvailable ? 'new-account' : 'dedicated';
+          }
+          if (['myInvoices', 'myServices', 'myPaymentMethods', 'myCommands'].includes(link.key)) {
+            link.app = isNewBillingAvailable ? 'new-billing' : 'dedicated';
+            if (isNewBillingAvailable) {
+              link.hash = link.hash.replace('/billing', '');
+            }
           }
           return link;
         }),

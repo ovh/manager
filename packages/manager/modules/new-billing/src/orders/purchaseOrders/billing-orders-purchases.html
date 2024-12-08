@@ -1,0 +1,116 @@
+<div ui-view>
+    <div data-ovh-alert></div>
+    <oui-header
+        heading="{{:: 'purchaseOrders_page_title' | translate }}"
+        description="{{:: 'purchaseOrders_page_description' | translate }}"
+    >
+    </oui-header>
+    <oui-message
+        class="mb-4"
+        data-type="warning"
+        data-ng-if="$ctrl.hasOnGoingPurchase"
+    >
+        <p
+            data-translate="purchaseOrders_add_page_warning_ongoing_purchase"
+        ></p>
+    </oui-message>
+    <oui-datagrid
+        data-page-size="{{:: $ctrl.PAGE_SIZE }}"
+        data-rows="$ctrl.purchases"
+        data-row-loader="$ctrl.loadRow($row)"
+        data-criteria=":: $ctrl.criteria"
+        data-on-criteria-change=":: $ctrl.onCriteriaChange($criteria)"
+    >
+        <oui-datagrid-topbar>
+            <button
+                class="oui-button oui-button_secondary oui-button_icon-left"
+                data-ng-click="$ctrl.newPurchase()"
+                data-ng-disabled="$ctrl.hasOnGoingPurchase"
+            >
+                <span
+                    class="oui-icon oui-icon-add"
+                    data-ng-if="$ctrl.purchases.length > 0"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    data-translate="{{:: $ctrl.purchases.length > 0 ?
+                    'purchaseOrders_add_reference':'purchaseOrders_create_reference'|
+                    translate }}"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title=":: 'purchaseOrders_reference' | translate"
+            data-property="reference"
+            data-type="string"
+            data-filterable
+            data-searchable
+            data-sortable="asc"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'purchaseOrders_creationDate' | translate"
+            data-property="creationDate"
+            data-type="date"
+            data-filterable
+            data-sortable
+        >
+            <span data-ng-bind="$value | date: 'longDate'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'purchaseOrders_startDate' | translate"
+            data-property="startDate"
+            data-type="date"
+            data-filterable
+            data-sortable
+        >
+            <span data-ng-bind="$value | date: 'longDate'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'purchaseOrders_endDate' | translate"
+            data-property="endDate"
+            data-type="date"
+            data-helper=":: 'purchaseOrders_endDate_helper' | translate"
+            data-filterable
+            data-sortable
+        >
+            <span data-ng-bind="$value | date: 'longDate'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'purchaseOrders_status' | translate"
+            data-property="status"
+            data-type="options"
+            data-type-options="$ctrl.getStateEnumFilter()"
+            data-filterable
+            data-sortable
+        >
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                    'oui-badge_error': $value === 'desactivate',
+                    'oui-badge_success': $value === 'actif',
+                    'oui-background-g-100': $value === 'inactif'
+                }"
+                data-translate="{{ 'purchaseOrders_status_' + $value }}"
+            >
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column>
+            <oui-action-menu
+                aria-label="{{:: 'purchaseOrders_edit_reference' | translate}}"
+                compact
+            >
+                <oui-action-menu-item on-click="$ctrl.editPurchase($row)">
+                    <span data-translate="purchaseOrders_edit_reference"></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item on-click="$ctrl.editPurchaseStatus($row)">
+                    <span
+                        data-translate="{{:: $row.active ?
+                        'purchaseOrders_status_change_desactivation':'purchaseOrders_status_change_reactivation'
+                        | translate}}"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</div>

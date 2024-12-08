@@ -1,0 +1,15 @@
+{
+  "billing_payment_method_add_billing_contact_existing": "Selecionar uma morada existente",
+  "billing_payment_method_add_billing_contact_create": "Adicionar uma nova morada",
+  "billing_payment_method_add_billing_contact_existing_name": "Sobrenome e nome",
+  "billing_payment_method_add_billing_contact_existing_address": "Morada",
+  "billing_payment_method_add_billing_contact_existing_phone": "Telefone",
+  "billing_payment_method_add_billing_contact_existing_email": "E-mail",
+  "billing_payment_method_add_billing_contact_existing_firstName": "Nome",
+  "billing_payment_method_add_billing_contact_existing_lastName": "Sobrenome",
+  "billing_payment_method_add_billing_contact_existing_country": "País",
+  "billing_payment_method_add_billing_contact_existing_zip": "Código postal",
+  "billing_payment_method_add_billing_contact_existing_city": "Cidade",
+  "billing_payment_method_add_billing_contact_create_general_infos": "Informações gerais",
+  "billing_payment_method_add_billing_contact_create_profile": "Perfil"
+}

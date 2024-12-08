@@ -1,0 +1,19 @@
+{
+  "autorenew_agora_terminate_service_OKMS_RESOURCE": "Dar de baja mi KMS",
+  "autorenew_agora_terminate_service_warning_OKMS_RESOURCE": "Confirme la baja de su KMS",
+  "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "La solicitud de baja de su KMS se ha enviado. Le hemos enviado el procedimiento por correo electrónico.",
+  "autorenew_agora_terminate_service_error_OKMS_RESOURCE": "Se ha producido un error al solicitar la baja del KMS. {{error}}",
+  "autorenew_agora_terminate_service_confirm_input": "Introduzca «TERMINATE» en el siguiente campo para confirmar la operación",
+  "autorenew_agora_terminate_service_DBAAS_LOGS": "Dar de baja mi LDP",
+  "autorenew_agora_terminate_service_warning_DBAAS_LOGS": "Por favor, confirme la baja de su LDP.",
+  "autorenew_agora_terminate_service_success_DBAAS_LOGS": "La solicitud de baja de su LDP se ha enviado correctamente. Le hemos enviado un mensaje de correo electrónico con el procedimiento que debe seguir.",
+  "autorenew_agora_terminate_service_error_DBAAS_LOGS": "Se ha producido un error al solicitar la baja de su LDP. {{error}}",
+  "autorenew_agora_terminate_service_VRACK_SERVICES_RESOURCE": "Dar de baja los vRack Services",
+  "autorenew_agora_terminate_service_warning_VRACK_SERVICES_RESOURCE": "Por favor, confirme la baja de los vRack Services",
+  "autorenew_agora_terminate_service_success_VRACK_SERVICES_RESOURCE": "La solicitud de baja de los vRack Services se ha enviado correctamente. Le hemos enviado un mensaje de correo electrónico con el procedimiento que debe seguir.",
+  "autorenew_agora_terminate_service_error_VRACK_SERVICES_RESOURCE": "Se ha producido un error al solicitar la baja de los vRack Services: {{error}}",
+  "autorenew_agora_terminate_service_LICENSE_HYCU": "Dar de baja mi licencia HYCU",
+  "autorenew_agora_terminate_service_warning_LICENSE_HYCU": "Por favor, confirme la baja de su licencia HYCU",
+  "autorenew_agora_terminate_service_success_LICENSE_HYCU": "La solicitud de baja de su licencia HYCU se ha enviado. Le hemos enviado un mensaje de correo electrónico con el procedimiento que debe seguir.",
+  "autorenew_agora_terminate_service_error_LICENSE_HYCU": "Se ha producido un error al solicitar la baja de su licencia HYCU. {{error}}"
+}

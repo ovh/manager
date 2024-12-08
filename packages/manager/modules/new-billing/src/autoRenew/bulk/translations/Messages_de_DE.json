@@ -1,0 +1,20 @@
+{
+  "billing_autorenew_bulk": "Sie haben {{ count }} Dienste ausgewählt",
+  "billing_autorenew_bulk_cancel": "Abbrechen",
+  "billing_autorenew_bulk_confirm": "Bestätigen",
+  "billing_autorenew_bulk_unavailable_pending_debt": "Dienste mit ausstehender Rechnung",
+  "billing_autorenew_bulk_unavailable_already_automatic": "Dienste mit automatischer Verlängerung",
+  "billing_autorenew_bulk_unavailable_already_manual": "Dienste mit manueller Verlängerung",
+  "billing_autorenew_bulk_unavailable_one_shot_automatic": "Dienste, für die keine automatische Verlängerung möglich ist",
+  "billing_autorenew_bulk_unavailable_one_shot_manual": "Dienste, für die keine manuelle Verlängerung möglich ist ",
+  "billing_autorenew_bulk_unavailable_nic_rights": "Dienste, für die Sie nicht als Rechnungskontakt eingetragen sind",
+  "billing_autorenew_bulk_unavailable_resiliation_pending": "Dienste mit ausstehender Kündigungsanfrage",
+  "billing_autorenew_bulk_unavailable_expired": "Gekündigte Dienste",
+  "billing_autorenew_bulk_service": "(1 Dienst)",
+  "billing_autorenew_bulk_services": "({{ count }} Dienste)",
+  "billing_autorenew_bulk_more": "Mehr anzeigen",
+  "billing_autorenew_bulk_less": "Weniger anzeigen",
+  "billing_autorenew_bulk_one": "Sie haben 1 Dienst gewählt",
+  "billing_autorenew_bulk_available_more": "Details der kompatiblen Dienste anzeigen",
+  "billing_autorenew_bulk_available_less": "Details der kompatiblen Dienste verbergen"
+}

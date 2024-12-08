@@ -1,0 +1,14 @@
+{
+  "billing_autorenew_disable_description": "Ha solicitado desactivar la renovación automática para los servicios seleccionados.",
+  "billing_autorenew_disable_title": "Desactivar la renovación automática para los servicios seleccionados.",
+  "billing_autorenew_disable_warning": "Con esta modalidad, el servicio no se renovará automáticamente en la fecha de expiración. Recibirá varios mensajes de correo electrónico en las semanas y días previos a la fecha de expiración.",
+  "billing_autorenew_disable_renew": "Para conservar el servicio, solo tendrá que renovarlo.",
+  "billing_autorenew_disable_data": "Atención: Una vez que el servicio haya expirado, se suspenderá de forma inmediata y no podrá acceder a él. Si no abona el importe pendiente, los datos asociados al servicio se eliminarán de forma definitiva.",
+  "billing_autorenew_disable_bulk_unavailable": "La renovación automática se desactivará en todos los servicios seleccionados, excepto en {{ count }} servicios:",
+  "billing_autorenew_disable_success": "La renovación de los servicios se ha actualizado.",
+  "billing_autorenew_disable_error": "Se ha producido un error al desactivar la renovación automática: {{message}}.",
+  "billing_autorenew_disable_bulk_unavailable_one": "La renovación automática se desactivará en todos los servicios seleccionados, excepto en 1 servicio:",
+  "billing_autorenew_disable_bulk": "La renovación automática se desactivará en todos los servicios seleccionados.",
+  "billing_autorenew_disable_bulk_single": "La renovación automática se desactivará en el servicio {{ serviceName }}.",
+  "billing_autorenew_disable_breadcrumb": "Desactivar la renovación automática"
+}
