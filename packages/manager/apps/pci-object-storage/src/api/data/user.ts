@@ -19,6 +19,7 @@ export type TUser = {
   access?: string;
   search?: string;
   password: string;
+  s3Credentials?: TS3Credentials;
   roles: {
     id: string;
     name: string;

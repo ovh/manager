@@ -25,7 +25,7 @@ import {
   OsdsRadioGroup,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -98,7 +98,7 @@ export default function RCloneDownloadModal({
               {_t('pci_projects_project_users_download-rclone_success_message')}
               <OsdsLink
                 href={content}
-                className={'ml-3'}
+                className="ml-3"
                 color={ODS_TEXT_COLOR_INTENT.primary}
                 download={DOWNLOAD_RCLONE_FILENAME}
                 target={OdsHTMLAnchorElementTarget._top}

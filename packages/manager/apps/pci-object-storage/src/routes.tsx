@@ -14,6 +14,7 @@ export const ROUTE_PATHS = {
   DELETE_OBJECT: `:objectName/delete`,
   ENABLE_VERSIONING: 'enableVersioning',
   DOWNLOAD_RCLONE: 'rclone/download',
+  ADD_USER_OBJECT: `:objectName/addUser`,
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
@@ -30,6 +31,9 @@ const ContainerListPage = lazy(() =>
 );
 const DeleteContainerPage = lazy(() =>
   import('@/pages/objects/container/delete/Delete.page'),
+);
+const AddUserObjectPage = lazy(() =>
+  import('@/pages/objects/container/object/add-user/AddUser.page'),
 );
 const UserListPage = lazy(() =>
   import('@/pages/objects/container/users/Listing.page'),
@@ -74,6 +78,13 @@ const RoutesComponent = () => (
             Component={DownloadRClonePage}
           />
         </Route>
+      </Route>
+      <Route path={ROUTE_PATHS.OBJECTS} Component={ObjectPage}>
+        <Route
+          path={ROUTE_PATHS.ADD_USER_OBJECT}
+          Component={AddUserObjectPage}
+        />
+        <Route path={ROUTE_PATHS.DELETE_OBJECT} Component={DeleteObjectPage} />
       </Route>
       <Route path="" element={<>Page not found</>}></Route>
     </Route>

@@ -44,6 +44,7 @@ export const useUsers = (projectId: string) => {
         all.push({
           ...user,
           access: s3Credentials?.access,
+          s3Credentials,
           search: `${user.username} ${user.description} ${
             s3Credentials ? s3Credentials?.access : ''
           }`.trimEnd(),

@@ -4,7 +4,7 @@ import {
   OsdsSelectOption,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useS3StorageRegions } from '../../api/hook/useRegions';
 import { TRegion } from '../../api/data';
