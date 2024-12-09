@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.2.1...@ovh-ux/manager-web@19.2.2) (2024-12-09)
+
+
+### Bug Fixes
+
+* **web.hosting.freedom:** remove freedom ([0be8571](https://github.com/ovh/manager/commit/0be85717d2fceecf0073bb929803eec2f371b8e8))
+* **web:** fix banner request broken ([b3272bf](https://github.com/ovh/manager/commit/b3272bf01ffaee6d1de27dc28bf2891aa731d153))
+
+
+
+
+
 ## [19.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.2.0...@ovh-ux/manager-web@19.2.1) (2024-12-05)
 
 

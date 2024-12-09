@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.11.3...@ovh-ux/manager-zimbra-app@0.12.0) (2024-12-09)
+
+
+### Bug Fixes
+
+* **zimbra:** import mrc css ([a51434f](https://github.com/ovh/manager/commit/a51434f37c65566cfe377e67e14ff6412b388f97))
+* **zimbra:** mismatchted spacings ([b30004b](https://github.com/ovh/manager/commit/b30004b855965449e05fbcc71e18fd8099232900))
+
+
+### Features
+
+* **zimbra:** add ongoing tasks list ([#14276](https://github.com/ovh/manager/issues/14276)) ([f6550f3](https://github.com/ovh/manager/commit/f6550f3b805bb76ce6b8bd7725ee051e227c3af3))
+
+
+
+
+
 ## [0.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.11.2...@ovh-ux/manager-zimbra-app@0.11.3) (2024-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.0.8...@ovh-ux/manager-telecom@16.1.0) (2024-12-09)
+
+
+### Bug Fixes
+
+* **telecom:** placement of popover ([bd612a4](https://github.com/ovh/manager/commit/bd612a47082e048d4d2cc1618d5c9dfaf72d1aa0))
+
+
+### Features
+
+* **telecom.xdsl:** add message to inform user about temporary pack creation ([#14228](https://github.com/ovh/manager/issues/14228)) ([dd8bf20](https://github.com/ovh/manager/commit/dd8bf2066e1e0f838718ab7f8b7ee069900c46c2))
+
+
+
+
+
 ## [16.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.0.7...@ovh-ux/manager-telecom@16.0.8) (2024-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
