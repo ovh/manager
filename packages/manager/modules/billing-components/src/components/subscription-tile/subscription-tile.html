@@ -110,12 +110,14 @@
 
     <oui-tile-definition
         term="{{:: 'manager_billing_subscription_autorenew_title' | translate }}"
+        data-ng-if="$ctrl.autorenewLink && !$ctrl.serviceInfos.hasParticularRenew() && !$ctrl.serviceInfos.hasPendingResiliation() && !$ctrl.serviceInfos.hasDebt() && !$ctrl.serviceInfos.isOneShot() && !$ctrl.serviceInfos.hasForcedRenew() && !$ctrl.serviceInfos.isResiliated() && $ctrl.serviceInfos.canHandleRenew() && !$ctrl.serviceInfos.hasEngagement()"
     >
         <oui-tile-description>
             <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
 
             <p data-ng-if="!$ctrl.isLoading">
                 <span
+                    data-ng-if="false"
                     data-translate="{{ :: $ctrl.serviceInfos.hasAutomaticRenew() ?
                         'manager_billing_subscription_autorenew_every_'+ $ctrl.serviceInfos.renew.period +'_month' :
                         'manager_billing_subscription_autorenew_none' }}"
