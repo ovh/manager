@@ -21,7 +21,10 @@
     },
     "version": {
       "allowBranch": "master",
-      "ignoreChanges": ["packages/manager-react-components/**"]
+      "ignoreChanges": [
+        "packages/manager-react-components/**",
+        "packages/modules/manager-pci-common/**"
+      ]
     }
   }
 }
