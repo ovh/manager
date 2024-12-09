@@ -44,7 +44,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
     />
   ) : (
     <button
-      className={style['button-as-div']}
+      className={`${style.button_as_div} ${isShortText ? style.button_as_div_short : ''}`}
       title={t(node.translation)}
       onKeyUp={(e) => {
         if (e.key === 'Enter') {
@@ -76,7 +76,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
         ) : null}
         {!isShortText && <SidebarLinkTag node={node} />}
       </span>
-    </button >
+    </button>
   );
 };
 

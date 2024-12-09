@@ -1,5 +1,5 @@
 import style from './style.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 import {
@@ -19,6 +19,7 @@ interface SubTreeProps {
   handleCloseSideBar(): void;
   handleOnSubMenuClick(node: Node): void;
   selectedNode: Node;
+  open: boolean;
 }
 
 const SubTree = ({
@@ -27,16 +28,24 @@ const SubTree = ({
   handleOnSubMenuClick,
   selectedNode,
   handleCloseSideBar,
+  open
 }: SubTreeProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const { isMobile } = useProductNavReshuffle();
+  const [isOpen, setIsOpen] = useState(false);
 
   const [focusOnLast, setFocusOnLast] = useState<boolean>(false);
   const lastElement = getLastElement(rootNode);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsOpen(open);
+    }, 10);
+  }, [open])
+
   return (
     <div
-      className={style.subtree_content}
+      className={`${style.subtree_content} ${isOpen ? style.subtree_content_open : ''}`}
       onBlur={(e: any) => {
         const id = e.relatedTarget?.id.replace('-link', '');
         if (id === lastElement.id) {
