@@ -1,3 +1,4 @@
+import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import React from 'react';
@@ -38,6 +39,9 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
       setPagination: vi.fn(),
       sorting: vi.fn(),
       setSorting: vi.fn(),
+    }),
+    useTranslatedMicroRegions: vi.fn().mockReturnValue({
+      translateMicroRegion: (name: string) => name,
     }),
     PciGuidesHeader: vi.fn().mockReturnValue(<div></div>),
     Notifications: vi

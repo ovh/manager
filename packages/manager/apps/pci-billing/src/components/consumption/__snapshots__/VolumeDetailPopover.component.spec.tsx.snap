@@ -14,7 +14,7 @@ exports[`VolumeDetailPopover > matches snapshot 1`] = `
       <strong>
         cpbc_volume_location : 
       </strong>
-      manager_components_region_region_micro
+      region-1
     </osds-text>
     <osds-text
       class="block"

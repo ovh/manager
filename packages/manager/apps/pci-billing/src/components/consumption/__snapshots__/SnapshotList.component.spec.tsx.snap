@@ -118,7 +118,7 @@ exports[`SnapshotList > matches snapshot 1`] = `
                     color="text"
                     level="body"
                   >
-                    manager_components_region_region_micro
+                    region
                   </osds-text>
                 </td>
                 <td
@@ -176,7 +176,7 @@ exports[`SnapshotList > matches snapshot 1`] = `
                     color="text"
                     level="body"
                   >
-                    manager_components_region_region_micro
+                    region
                   </osds-text>
                 </td>
                 <td

@@ -135,7 +135,7 @@ exports[`ObjectStorageList > matches snapshot with existing storages 1`] = `
                     color="text"
                     level="body"
                   >
-                    manager_components_region_region_micro
+                    region
                   </osds-text>
                 </td>
                 <td
@@ -217,7 +217,7 @@ exports[`ObjectStorageList > matches snapshot with existing storages 1`] = `
                     color="text"
                     level="body"
                   >
-                    manager_components_region_region_micro
+                    region
                   </osds-text>
                 </td>
                 <td
