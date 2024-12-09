@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.application {
+  @apply md:mx-12 mt-8;
+}

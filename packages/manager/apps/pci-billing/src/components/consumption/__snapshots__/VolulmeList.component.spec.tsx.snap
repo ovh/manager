@@ -1,0 +1,545 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`VolumeList > matches snapshot with empty volumes 1`] = `
+<DocumentFragment>
+  <div
+    class="my-3"
+  >
+    <osds-text
+      class="mb-5"
+      color="text"
+      level="body"
+      size="400"
+    >
+      cpbc_no_consumption_data
+    </osds-text>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`VolumeList > matches snapshot with existing volumes 1`] = `
+<DocumentFragment>
+  <div
+    class="my-3"
+  >
+    <div>
+      <div
+        class="contents px-[1px] "
+      >
+        <osds-table
+          class="overflow-x-visible"
+        >
+          <!---->
+          <table
+            class="w-full border-collapse"
+          >
+            <thead>
+              <tr>
+                <th
+                  class="text-left pl-4 h-11 whitespace-nowrap "
+                >
+                  <div
+                    class=""
+                    data-testid="header-name"
+                  >
+                    <span>
+                      <osds-text
+                        color="primary"
+                        hue="800"
+                        level="body"
+                        size="500"
+                      >
+                        cpbc_volume_col_name
+                      </osds-text>
+                    </span>
+                    <span
+                      class="align-middle inline-block h-4 -mt-6"
+                    >
+                      <osds-icon
+                        class="invisible"
+                        color="primary"
+                        name="arrow-down"
+                        size="xxs"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  class="text-left pl-4 h-11 whitespace-nowrap "
+                >
+                  <div
+                    class=""
+                    data-testid="header-consumption"
+                  >
+                    <span>
+                      <osds-text
+                        color="primary"
+                        hue="800"
+                        level="body"
+                        size="500"
+                      >
+                        cpbc_volume_col_consumption
+                      </osds-text>
+                    </span>
+                    <span
+                      class="align-middle inline-block h-4 -mt-6"
+                    >
+                      <osds-icon
+                        class="invisible"
+                        color="primary"
+                        name="arrow-down"
+                        size="xxs"
+                      />
+                    </span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class="border-solid border-[1px] h-[3.25rem] border-[var(--ods-color-blue-200)]"
+              >
+                <td
+                  class="text-left pl-4"
+                >
+                  <osds-text
+                    color="text"
+                    level="body"
+                  >
+                    <osds-popover>
+                      <div
+                        class="cursor-pointer"
+                        slot="popover-trigger"
+                      >
+                        BlockRelease
+                      </div>
+                      <osds-popover-content>
+                        <div
+                          class="flex flex-col gap-3"
+                        >
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_location : 
+                            </strong>
+                            EU-WEST-LZ-BRU-A
+                          </osds-text>
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_type : 
+                            </strong>
+                            high-speed-gen2
+                          </osds-text>
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_size : 
+                            </strong>
+                            10
+                          </osds-text>
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_state : 
+                            </strong>
+                            cloud_common_state_error
+                          </osds-text>
+                        </div>
+                      </osds-popover-content>
+                    </osds-popover>
+                  </osds-text>
+                </td>
+                <td
+                  class="text-left pl-4"
+                >
+                  <div
+                    class="flex gap-2"
+                  >
+                    <osds-text
+                      color="text"
+                      level="body"
+                    >
+                      0.31 undefined
+                    </osds-text>
+                    <osds-tooltip>
+                      <osds-icon
+                        class="cursor-pointer"
+                        color="text"
+                        name="help"
+                        size="xxs"
+                      />
+                      <osds-tooltip-content
+                        slot="tooltip-content"
+                      >
+                        <osds-text
+                          class="break-normal"
+                          color="text"
+                          level="body"
+                          size="100"
+                        >
+                          cpbc_volume_consumption_tooltip_part1 cpbc_volume_consumption_tooltip_part2
+                        </osds-text>
+                      </osds-tooltip-content>
+                    </osds-tooltip>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                class="border-solid border-[1px] h-[3.25rem] border-[var(--ods-color-blue-200)]"
+              >
+                <td
+                  class="text-left pl-4"
+                >
+                  <osds-text
+                    color="text"
+                    level="body"
+                  >
+                    <osds-popover>
+                      <div
+                        class="cursor-pointer"
+                        slot="popover-trigger"
+                      >
+                        test-rabat
+                      </div>
+                      <osds-popover-content>
+                        <div
+                          class="flex flex-col gap-3"
+                        >
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_location : 
+                            </strong>
+                            EU-WEST-LZ-MRS-A
+                          </osds-text>
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_type : 
+                            </strong>
+                            high-speed
+                          </osds-text>
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_size : 
+                            </strong>
+                            10
+                          </osds-text>
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_state : 
+                            </strong>
+                            cloud_common_state_in-use
+                          </osds-text>
+                        </div>
+                      </osds-popover-content>
+                    </osds-popover>
+                  </osds-text>
+                </td>
+                <td
+                  class="text-left pl-4"
+                >
+                  <div
+                    class="flex gap-2"
+                  >
+                    <osds-text
+                      color="text"
+                      level="body"
+                    >
+                      0.29 undefined
+                    </osds-text>
+                    <osds-tooltip>
+                      <osds-icon
+                        class="cursor-pointer"
+                        color="text"
+                        name="help"
+                        size="xxs"
+                      />
+                      <osds-tooltip-content
+                        slot="tooltip-content"
+                      >
+                        <osds-text
+                          class="break-normal"
+                          color="text"
+                          level="body"
+                          size="100"
+                        >
+                          cpbc_volume_consumption_tooltip_part1 cpbc_volume_consumption_tooltip_part2
+                        </osds-text>
+                      </osds-tooltip-content>
+                    </osds-tooltip>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                class="border-solid border-[1px] h-[3.25rem] border-[var(--ods-color-blue-200)]"
+              >
+                <td
+                  class="text-left pl-4"
+                >
+                  <osds-text
+                    color="text"
+                    level="body"
+                  >
+                    <osds-popover>
+                      <div
+                        class="cursor-pointer"
+                        slot="popover-trigger"
+                      >
+                        VolRabaSpeed
+                      </div>
+                      <osds-popover-content>
+                        <div
+                          class="flex flex-col gap-3"
+                        >
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_location : 
+                            </strong>
+                            EU-CENTRAL-LZ-PRG-A
+                          </osds-text>
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_type : 
+                            </strong>
+                            high-speed-gen2
+                          </osds-text>
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_size : 
+                            </strong>
+                            10
+                          </osds-text>
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_state : 
+                            </strong>
+                            cloud_common_state_error
+                          </osds-text>
+                        </div>
+                      </osds-popover-content>
+                    </osds-popover>
+                  </osds-text>
+                </td>
+                <td
+                  class="text-left pl-4"
+                >
+                  <div
+                    class="flex gap-2"
+                  >
+                    <osds-text
+                      color="text"
+                      level="body"
+                    >
+                      0.08 undefined
+                    </osds-text>
+                    <osds-tooltip>
+                      <osds-icon
+                        class="cursor-pointer"
+                        color="text"
+                        name="help"
+                        size="xxs"
+                      />
+                      <osds-tooltip-content
+                        slot="tooltip-content"
+                      >
+                        <osds-text
+                          class="break-normal"
+                          color="text"
+                          level="body"
+                          size="100"
+                        >
+                          cpbc_volume_consumption_tooltip_part1 cpbc_volume_consumption_tooltip_part2
+                        </osds-text>
+                      </osds-tooltip-content>
+                    </osds-tooltip>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                class="border-solid border-[1px] h-[3.25rem] border-[var(--ods-color-blue-200)]"
+              >
+                <td
+                  class="text-left pl-4"
+                >
+                  <osds-text
+                    color="text"
+                    level="body"
+                  >
+                    <osds-popover>
+                      <div
+                        class="cursor-pointer"
+                        slot="popover-trigger"
+                      >
+                        volume-4
+                      </div>
+                      <osds-popover-content>
+                        <div
+                          class="flex flex-col gap-3"
+                        >
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_location : 
+                            </strong>
+                            EU-CENTRAL-LZ-PRG-A
+                          </osds-text>
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_type : 
+                            </strong>
+                            high-speed-gen2
+                          </osds-text>
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_size : 
+                            </strong>
+                          </osds-text>
+                          <osds-text
+                            class="block"
+                            color="text"
+                            level="body"
+                            size="400"
+                          >
+                            <strong>
+                              cpbc_volume_state : 
+                            </strong>
+                            cloud_common_state_deleted
+                          </osds-text>
+                        </div>
+                      </osds-popover-content>
+                    </osds-popover>
+                  </osds-text>
+                </td>
+                <td
+                  class="text-left pl-4"
+                >
+                  <div
+                    class="flex gap-2"
+                  >
+                    <osds-text
+                      color="text"
+                      level="body"
+                    >
+                      0.24 undefined
+                    </osds-text>
+                    <osds-tooltip>
+                      <osds-icon
+                        class="cursor-pointer"
+                        color="text"
+                        name="help"
+                        size="xxs"
+                      />
+                      <osds-tooltip-content
+                        slot="tooltip-content"
+                      >
+                        <osds-text
+                          class="break-normal"
+                          color="text"
+                          level="body"
+                          size="100"
+                        >
+                          cpbc_volume_consumption_tooltip_part1 cpbc_volume_consumption_tooltip_part2
+                        </osds-text>
+                      </osds-tooltip-content>
+                    </osds-tooltip>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </osds-table>
+      </div>
+      <osds-pagination
+        class="flex xs:justify-start md:justify-end"
+        default-current-page="1"
+        default-items-per-page="10"
+        total-items="4"
+        total-pages="1"
+      >
+        <span
+          class="mr-3"
+          slot="before-total-items"
+        >
+          common_pagination_of
+        </span>
+        <span
+          class="ml-3"
+          slot="after-total-items"
+        >
+          common_pagination_results
+        </span>
+      </osds-pagination>
+    </div>
+  </div>
+</DocumentFragment>
+`;
