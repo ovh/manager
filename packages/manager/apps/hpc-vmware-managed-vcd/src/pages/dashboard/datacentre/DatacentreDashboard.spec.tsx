@@ -2,7 +2,7 @@ import {
   organizationList,
   datacentreList,
 } from '@ovh-ux/manager-module-vcd-api';
-import { checkTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { labels, renderTest } from '../../../test-utils';
 
 describe('Datacentre Dashboard Page', () => {
@@ -11,7 +11,7 @@ describe('Datacentre Dashboard Page', () => {
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
     });
 
-    await checkTextVisibility(labels.datacentres.managed_vcd_vdc_vcpu_count);
+    await assertTextVisibility(labels.datacentres.managed_vcd_vdc_vcpu_count);
   });
 
   it('display an error', async () => {
@@ -20,6 +20,6 @@ describe('Datacentre Dashboard Page', () => {
       isDatacentresKo: true,
     });
 
-    await checkTextVisibility('Datacentre error');
+    await assertTextVisibility('Datacentre error');
   });
 });
