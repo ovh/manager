@@ -17,6 +17,7 @@ import GuideButton, {
 } from '../../navigation/menus/guide/guide.component';
 import './base.stories.css';
 import { DashboardGridLayout } from '../layout/layout.component';
+import { ActionMenu } from '../../navigation';
 
 const guideItems: GuideItem[] = [
   {
@@ -155,7 +156,29 @@ const dashboardTemplateProps = {
         items={[
           { id: '1', label: 'Name', value: 'name 1' },
           { id: '2', label: 'Service ID', value: 'xxxx-128875' },
-          { id: '3', label: 'Datacentre location', value: 'Paris Roubaix' },
+          {
+            id: '3',
+            label: 'Datacentre location',
+            value: (
+              <div className="flex">
+                <div className="mr-auto">Test value</div>
+                <ActionMenu
+                  id="base-story-action-menu"
+                  isCompact
+                  items={[
+                    {
+                      id: 1,
+                      label: 'Edit',
+                    },
+                    {
+                      id: 2,
+                      label: 'Delete',
+                    },
+                  ]}
+                />
+              </div>
+            ),
+          },
         ]}
       />
       <DashboardTile

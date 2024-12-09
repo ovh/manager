@@ -3,7 +3,7 @@ import { StorybookConfig } from '@storybook/react-vite';
 const config: StorybookConfig = {
   stories: [
     '../src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
-    '../src/docs/*.mdx',
+    '../src/**/*.mdx',
     '../src/docs/whatsnew/migration-guide/*.mdx',
   ],
   addons: [
@@ -12,6 +12,7 @@ const config: StorybookConfig = {
     '@storybook/addon-interactions',
     '@storybook/addon-styling',
     '@storybook/addon-docs',
+    '@etchteam/storybook-addon-status',
   ],
   framework: {
     name: '@storybook/react-vite',
@@ -22,7 +23,11 @@ const config: StorybookConfig = {
     },
   },
   docs: {
-    autodocs: 'tag',
+    autodocs: true,
+    defaultName: 'Technical information',
+  },
+  typescript: {
+    reactDocgen: 'react-docgen-typescript', // Necessary for extracting TypeScript types
   },
 };
 export default config;
