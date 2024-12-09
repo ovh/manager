@@ -6,7 +6,7 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useStorageRegions } from '../../api/hook/useRegions';
