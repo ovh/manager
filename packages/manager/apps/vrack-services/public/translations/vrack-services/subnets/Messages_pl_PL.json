@@ -55,5 +55,5 @@
   "subnetUpdatePending": "Trwa modyfikacja podsieci",
   "modalSubnetUpdateCancelButton": "Anuluj",
   "modalSubnetUpdateConfirmButton": "Zmień",
-  "subnetRangeAdditionalText": "Zakres adresów podsieci musi mieć maskę /24."
+  "subnetRangeAdditionalText": "Zakres adresów podsieci musi być w przedziale /24."
 }

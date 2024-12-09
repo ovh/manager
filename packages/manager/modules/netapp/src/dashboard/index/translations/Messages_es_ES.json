@@ -2,7 +2,7 @@
   "netapp_dashboard_information": "Información",
   "netapp_dashboard_information_name": "Nombre",
   "netapp_dashboard_information_id": "ID",
-  "netapp_dashboard_information_region": "Región",
+  "netapp_dashboard_information_region": "Zona",
   "netapp_dashboard_information_performance_level": "Nivel de rendimiento",
   "netapp_dashboard_information_quota": "Tamaño de almacenamiento",
   "netapp_dashboard_information_quota_formatted": "{{ quota }} GB",
