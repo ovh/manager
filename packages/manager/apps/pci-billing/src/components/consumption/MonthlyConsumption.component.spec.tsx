@@ -2,6 +2,7 @@ import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import MonthlyConsumption from './MonthlyConsumption.component';
 import { wrapper } from '@/wrapperRenders';
+import { TConsumptionDetail } from '@/api/hook/useConsumption';
 
 describe('MonthlyConsumption Component', () => {
   it('matches snapshot', () => {
@@ -15,7 +16,9 @@ describe('MonthlyConsumption Component', () => {
     };
 
     const { asFragment } = render(
-      <MonthlyConsumption consumption={mockConsumption as any} />,
+      <MonthlyConsumption
+        consumption={(mockConsumption as unknown) as TConsumptionDetail}
+      />,
       { wrapper },
     );
 
