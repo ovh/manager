@@ -20,7 +20,7 @@
       "conventionalCommits": true
     },
     "version": {
-      "allowBranch": "master"
+      "allowBranch": "maintenance/manager-react-components-v1.x"
     }
   }
 }
