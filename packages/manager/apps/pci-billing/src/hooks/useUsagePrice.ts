@@ -19,9 +19,11 @@ const getTotalPrice = (products: { totalPrice: number }[]) => {
 };
 
 export type TUsagePrices = {
-  totalHourlyPrice: number;
-  totalMonthlyPrice: number;
-  totalPrice: number;
+  data: {
+    totalHourlyPrice: number;
+    totalMonthlyPrice: number;
+    totalPrice: number;
+  };
   isPending: boolean;
   error: ApiError;
 };
@@ -159,9 +161,11 @@ export const useUsagePrice = (
 
   return useMemo(
     () => ({
-      totalHourlyPrice,
-      totalMonthlyPrice,
-      totalPrice,
+      data: {
+        totalHourlyPrice,
+        totalMonthlyPrice,
+        totalPrice,
+      },
       isPending: isUsagePending,
       error: error as ApiError,
     }),

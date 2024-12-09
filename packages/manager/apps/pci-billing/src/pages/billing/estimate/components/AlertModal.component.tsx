@@ -4,7 +4,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { PciModal, QuantitySelector } from '@ovh-ux/manager-pci-common';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -12,15 +12,16 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { Currency } from '@ovh-ux/manager-config';
 import { isValidEmail } from '@/pages/billing/estimate/utils';
 
-type TAlertModalProps = {
+export type TAlertModalProps = {
   email?: string;
   threshold?: number;
   onClose: () => void;
   onInput: (val: { email: string; threshold: number }) => void;
   isPending: boolean;
+  currency: Currency;
 };
 
 type TState = {
@@ -38,9 +39,9 @@ export const AlertModalComponent = ({
   onClose,
   onInput,
   isPending,
+  currency,
 }: TAlertModalProps): JSX.Element => {
   const { t: tEstimate } = useTranslation('estimate');
-  const { currency } = useContext(ShellContext).environment.getUser();
   const { t } = useTranslation('estimate');
   const [state, setState] = useState<TState>({
     email: {

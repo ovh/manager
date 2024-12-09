@@ -31,103 +31,77 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Currency } from '@ovh-ux/manager-config';
 import { AlertModalComponent } from '@/pages/billing/estimate/components/AlertModal.component';
-import {
-  useCreateAlert,
-  useDeleteAlert,
-  useGetAlert,
-  useUpdateAlert,
-} from '@/api/hooks/useAlerting';
+
 import queryClient from '@/queryClient';
-import { TUsagePrices } from '@/hooks/useUsagePrice';
+import { TAlert } from '@/api/data/alert';
+
+export type TAlertsPart = {
+  projectId: string;
+  currency: Currency;
+  currentTotalHourlyPrice: number;
+  forecastTotalHourlyPrice: number;
+  currentPricesError: ApiError;
+  alert: TAlert;
+  onCreate: ({
+    email,
+    threshold,
+  }: {
+    email: string;
+    threshold: number;
+  }) => void;
+  onUpdate: ({
+    alertId,
+    email,
+    threshold,
+  }: {
+    alertId: string;
+    email: string;
+    threshold: number;
+  }) => void;
+  onDelete: (id: string) => void;
+  isLoading: boolean;
+};
 
 export const AlertsPart = ({
   projectId,
   currency,
-  currentPrices,
-  forecastPrices,
-}: {
-  projectId: string;
-  currency: Currency;
-  currentPrices: TUsagePrices;
-  forecastPrices: TUsagePrices;
-}): JSX.Element => {
+  currentTotalHourlyPrice,
+  forecastTotalHourlyPrice,
+  currentPricesError,
+  alert,
+  onCreate,
+  onUpdate,
+  onDelete,
+  isLoading,
+}: TAlertsPart): JSX.Element => {
   const { t: tEstimate } = useTranslation('estimate');
 
-  const { addSuccess, addError, clearNotifications } = useNotifications();
+  const { addError } = useNotifications();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const { data: alert, isLoading: isAlertLoading } = useGetAlert(projectId);
-
   const chartData = [
     {
       label: tEstimate('cpbe_estimate_alert_chart_label_now'),
-      value: currentPrices?.totalHourlyPrice,
+      value: currentTotalHourlyPrice,
       fill: '#777',
     },
     {
       label: tEstimate('cpbe_estimate_alert_chart_label_future'),
-      value: forecastPrices?.totalHourlyPrice,
+      value: forecastTotalHourlyPrice,
       fill: '#ddd',
     },
   ];
 
   const maxRange =
     Math.max(
-      currentPrices?.totalHourlyPrice,
-      forecastPrices?.totalHourlyPrice,
+      currentTotalHourlyPrice,
+      forecastTotalHourlyPrice,
       alert?.monthlyThreshold,
     ) * 1.1;
-
-  const invalidateCache = async () => {
-    await queryClient.invalidateQueries({
-      queryKey: ['project', projectId, 'alerting'],
-    });
-  };
-
-  const { createAlert, isPending: isAlertCreating } = useCreateAlert(
-    projectId,
-    async () => {
-      clearNotifications();
-      addSuccess(tEstimate('cpbea_estimate_alert_success'), true);
-      await invalidateCache();
-    },
-    () => {
-      addError(tEstimate('cpbea_estimate_alert_error'), true);
-    },
-  );
-
-  const { updateAlert, isPending: isAlertUpdating } = useUpdateAlert(
-    projectId,
-    async () => {
-      clearNotifications();
-      addSuccess(tEstimate('cpbea_estimate_alert_success'), true);
-      await invalidateCache();
-    },
-    () => {
-      addError(tEstimate('cpbea_estimate_alert_error'), true);
-    },
-  );
-
-  const { deleteAlert, isPending: isAlertDeleting } = useDeleteAlert(
-    projectId,
-    async () => {
-      clearNotifications();
-      addSuccess(tEstimate('cpbe_estimate_alert_delete_success'), true);
-      await invalidateCache();
-    },
-    (err: ApiError) => {
-      clearNotifications();
-      addError(
-        `${tEstimate('cpbe_estimate_alert_delete_error')} ${err.response?.data
-          ?.message || ''}`,
-        true,
-      );
-    },
-  );
 
   const createOrUpdate = async ({
     email,
@@ -138,9 +112,9 @@ export const AlertsPart = ({
   }) => {
     try {
       if (!alert) {
-        createAlert({ email, threshold });
+        onCreate({ email, threshold });
       } else {
-        updateAlert({ alertId: alert?.id, email, threshold });
+        onUpdate({ alertId: alert?.id, email, threshold });
       }
       await queryClient.invalidateQueries({
         queryKey: ['project', projectId, 'alerting'],
@@ -152,16 +126,8 @@ export const AlertsPart = ({
   };
 
   const remove = async () => {
-    deleteAlert(alert?.id);
+    onDelete(alert?.id);
   };
-
-  const isLoading =
-    forecastPrices.isPending ||
-    (currentPrices.isPending && !currentPrices.error) ||
-    isAlertLoading ||
-    isAlertCreating ||
-    isAlertUpdating ||
-    isAlertDeleting;
 
   return (
     <div className="shadow-md rounded-sm p-6">
@@ -271,7 +237,7 @@ export const AlertsPart = ({
                 inline
                 size={ODS_BUTTON_SIZE.sm}
                 onClick={openModal}
-                disabled={!!currentPrices.error || undefined}
+                disabled={!!currentPricesError || undefined}
               >
                 <OsdsIcon
                   name={ODS_ICON_NAME.BELL}
@@ -294,7 +260,8 @@ export const AlertsPart = ({
           threshold={alert?.monthlyThreshold}
           onClose={closeModal}
           onInput={createOrUpdate}
-          isPending={isAlertCreating || isAlertUpdating}
+          isPending={isLoading}
+          currency={currency}
         />
       )}
     </div>
