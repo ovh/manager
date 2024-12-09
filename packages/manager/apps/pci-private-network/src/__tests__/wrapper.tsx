@@ -6,6 +6,11 @@ import { NEW_PRIVATE_NETWORK_FORM_SCHEMA } from '@/pages/new/new.constants';
 
 export function NewPrivateNetworkWrapper({ children }: PropsWithChildren) {
   const form = useForm<NewPrivateNetworkForm>({
+    defaultValues: {
+      subnet: {
+        allocationPools: [],
+      },
+    },
     resolver: zodResolver(NEW_PRIVATE_NETWORK_FORM_SCHEMA),
   });
 

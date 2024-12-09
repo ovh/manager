@@ -40,6 +40,7 @@ export default function NewPage(): JSX.Element {
         enableDhcp: true,
         enableGatewayIp: true,
         ipVersion: 4,
+        allocationPools: [],
       },
     },
     resolver: zodResolver(NEW_PRIVATE_NETWORK_FORM_SCHEMA),
