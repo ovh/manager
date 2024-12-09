@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.71.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.70.0...@ovh-ux/manager-pci@6.71.0) (2024-12-09)
+
+
+### Bug Fixes
+
+* **pci-object-storage:** fix us guide link ([#14304](https://github.com/ovh/manager/issues/14304)) ([825ad57](https://github.com/ovh/manager/commit/825ad57ec726b069e0bca379e65b96d57f56cd55))
+
+
+### Features
+
+* **pci:** secret key not displayed ([#14231](https://github.com/ovh/manager/issues/14231)) ([cfbd0c7](https://github.com/ovh/manager/commit/cfbd0c7b335dbc337659000fedb55d2284de3a1a))
+
+
+
+
+
 # [6.70.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.69.2...@ovh-ux/manager-pci@6.70.0) (2024-12-03)
 
 
