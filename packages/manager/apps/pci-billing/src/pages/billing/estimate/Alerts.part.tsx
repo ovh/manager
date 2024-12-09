@@ -190,7 +190,11 @@ export const AlertsPart = ({
           {alert ? (
             <>
               <div className="h-[300px]">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer
+                  width="100%"
+                  height="100%"
+                  className="ods-font"
+                >
                   <ComposedChart
                     width={500}
                     height={300}
