@@ -35,7 +35,7 @@ export const StorageOrderTypeCell = (storage: VCDOrderableStoragePriced) => (
 );
 
 export const StorageOrderPriceCell = (storage: VCDOrderableStoragePriced) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/order');
+  const { t } = useTranslation('datacentres/order');
   return (
     <DataGridTextCell>
       <Description className="font-semibold">

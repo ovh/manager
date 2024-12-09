@@ -12,11 +12,11 @@ import {
 import {
   STORAGE_ORDER_MAX_QUANTITY,
   STORAGE_ORDER_MIN_QUANTITY,
-} from './DatacentreStorageOrder.constants';
+} from './datacentreStorageOrder.constants';
 import { subRoutes } from '@/routes/routes.constant';
 
 export default function StorageOrderPage() {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/order');
+  const { t } = useTranslation('datacentres/order');
 
   const columns: DatagridColumn<VCDOrderableStoragePriced>[] = [
     {
