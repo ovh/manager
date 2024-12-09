@@ -10,7 +10,7 @@
 >
     <oui-step-form
         data-header="{{ :: 'dedicatedCloud_configuration_add_datacenter_step_1_title' | translate }}"
-        data-description="{{ :: 'dedicatedCloud_configuration_add_datacenter_step_1_description' | translate }}"
+        data-description="{{ :: $ctrl.step1DescriptionLabel }}"
         data-on-cancel="$ctrl.onCancel()"
         data-cancel-text="{{ :: 'dedicatedCloud_configuration_add_datacenter_cta_cancel' | translate }}"
         data-on-submit="$ctrl.hostsLoad()"
