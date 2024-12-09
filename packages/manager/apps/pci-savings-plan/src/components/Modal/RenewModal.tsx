@@ -10,11 +10,12 @@ import {
   OsdsModal,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
+import { ServicesSavingsPlansSavingsPlan } from '@ovh-ux/manager-hooks-api';
 import { useTranslation } from 'react-i18next';
 import { SavingsPlanPlanedChangeStatus } from '@/types/api.type';
 
 type TRenewModal = {
-  periodEndAction: SavingsPlanPlanedChangeStatus;
+  periodEndAction: ServicesSavingsPlansSavingsPlan['periodEndAction'];
   onClose: () => void;
   onConfirm: () => void;
 };
