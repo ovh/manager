@@ -93,6 +93,12 @@
             data-disabled="server.isExpired"
             ><span data-translate="server_tab_task"></span
         ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-href="{{:: $ctrl.getTabItemUrl('tags') }}"
+            active="$ctrl.getTabItemUrl('tags') === $ctrl.currentActiveLink()"
+            data-disabled="server.isExpired"
+            ><span data-translate="server_tab_tags"></span
+        ></oui-header-tabs-item>
     </oui-header-tabs>
 </header>
 
