@@ -17,6 +17,8 @@
                     id="nationalIdentificationNumber"
                     data-ng-model="$ctrl.signUpFormCtrl.model.nationalIdentificationNumber"
                     data-ng-required="$ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.minLength"
                     data-ng-pattern="$ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.regularExpression"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.nationalIdentificationNumber)"
                 />
@@ -40,6 +42,8 @@
                     id="organisation"
                     data-ng-model="$ctrl.signUpFormCtrl.model.organisation"
                     data-ng-required="$ctrl.signUpFormCtrl.rules.organisation.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.organisation.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.organisation.minLength"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.organisation)"
                 />
             </oui-field>
@@ -59,6 +63,8 @@
                     id="vat"
                     data-ng-model="$ctrl.signUpFormCtrl.model.vat"
                     data-ng-required="$ctrl.signUpFormCtrl.rules.vat.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.vat.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.vat.minLength"
                     data-ng-pattern="$ctrl.signUpFormCtrl.rules.vat.regularExpression"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.vat)"
                 />
@@ -113,6 +119,8 @@
                     id="companyNationalIdentificationNumber"
                     data-ng-model="$ctrl.signUpFormCtrl.model.companyNationalIdentificationNumber"
                     data-ng-required="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.minLength"
                     data-ng-pattern="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.regularExpression"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.companyNationalIdentificationNumber)"
                 />
@@ -136,6 +144,8 @@
                     id="italianSDI"
                     data-ng-model="$ctrl.signUpFormCtrl.model.italianSDI"
                     data-ng-required="$ctrl.signUpFormCtrl.rules.italianSDI.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.italianSDI.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.italianSDI.minLength"
                     data-ng-pattern="$ctrl.signUpFormCtrl.rules.italianSDI.regularExpression"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.italianSDI)"
                 />
@@ -191,6 +201,8 @@
                             type="text"
                             data-ng-model="$ctrl.signUpFormCtrl.model.organisation"
                             data-ng-required="$ctrl.signUpFormCtrl.rules.organisation.mandatory"
+                            data-ng-maxlength="$ctrl.signUpFormCtrl.rules.organisation.maxLength"
+                            data-ng-minlength="$ctrl.signUpFormCtrl.rules.organisation.minLength"
                             data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.companyName)"
                             data-required
                         />
