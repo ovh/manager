@@ -2,38 +2,17 @@ import {
   TVolume as TProjectVolume,
   useVolumes,
 } from '@ovh-ux/manager-pci-common';
-import {
-  Datagrid,
-  DataGridTextCell,
-  useDataGrid,
-} from '@ovh-ux/manager-react-components';
+import { Datagrid, useDataGrid } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ODS_ICON_NAME, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import {
-  OsdsPopover,
-  OsdsPopoverContent,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { TVolume } from '@/api/hook/useConsumption';
 import { paginateResults } from '@/api/data/consumption';
 import NoDataMessage from './NoDataMessage.component';
-import TooltipIcon from './TooltipIcon.component';
-import VolumeDetailPopover from './VolumeDetailPopover.component';
-
-export type TMappedVolume = {
-  totalPrice: string;
-  volumeId: string;
-  quantity: number;
-  region: string;
-  type: string;
-  amount: number;
-  name: string;
-  size?: number;
-  status: string;
-};
+import { useVolumeListColumns } from './useVolumeListColumns';
 
 type VolumeListProps = {
   volumes: TVolume[];
@@ -45,52 +24,13 @@ export default function VolumeList({ volumes }: Readonly<VolumeListProps>) {
   const { currency } = useContext(ShellContext).environment.getUser();
   const { projectId } = useParams();
   const { pagination, setPagination } = useDataGrid();
+  const columns = useVolumeListColumns();
 
   const [volumeConsumptionDetails, setVolumeConsumptionDetails] = useState([]);
 
   const { data: allVolumes, isPending: allVolumesPending } = useVolumes(
     projectId,
   );
-
-  const getVolumePriceInfoTooltip = (volume: TMappedVolume) =>
-    `${t('cpbc_volume_consumption_tooltip_part1')} ${t(
-      'cpbc_volume_consumption_tooltip_part2',
-      {
-        amount: volume.amount,
-      },
-    )}`;
-
-  const columns = [
-    {
-      id: 'name',
-      cell: (row: TMappedVolume) => (
-        <DataGridTextCell>
-          <OsdsPopover>
-            <div slot="popover-trigger" className="cursor-pointer">
-              {row.name}
-            </div>
-            <OsdsPopoverContent>
-              <VolumeDetailPopover row={row} />
-            </OsdsPopoverContent>
-          </OsdsPopover>
-        </DataGridTextCell>
-      ),
-      label: t('cpbc_volume_col_name'),
-    },
-    {
-      id: 'consumption',
-      cell: (row: TMappedVolume) => (
-        <div className="flex gap-2">
-          <DataGridTextCell>{row.totalPrice}</DataGridTextCell>
-          <TooltipIcon
-            icon={ODS_ICON_NAME.HELP}
-            content={getVolumePriceInfoTooltip(row)}
-          />
-        </div>
-      ),
-      label: t('cpbc_volume_col_consumption'),
-    },
-  ];
 
   const updateVolumeConsumptionDetails = (
     allProjectVolumes: TProjectVolume[],
