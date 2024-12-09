@@ -12,7 +12,9 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-billing-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-billing-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-billing-app' --include-dependencies -- npm run dev:watch --if-present",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:watch:coverage": "vitest --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.0.1",
@@ -46,13 +48,10 @@
     "zustand": "^4.5.5"
   },
   "devDependencies": {
-    "@jest/globals": "^29.7.0",
     "@ovh-ux/manager-vite-config": "^0.8.3",
     "@testing-library/dom": "^10.1.0",
-    "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
-    "@types/jest": "^29.5.12",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.0",

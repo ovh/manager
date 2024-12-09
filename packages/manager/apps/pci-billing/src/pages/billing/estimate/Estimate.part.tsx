@@ -9,17 +9,24 @@ import { addMonths, format } from 'date-fns';
 import * as locales from 'date-fns/locale';
 import { Currency } from '@ovh-ux/manager-config';
 import { useCallback } from 'react';
-import { TUsagePrices } from '@/hooks/useUsagePrice';
+
+export type TEstimateProps = {
+  currency: Currency;
+  totalMonthlyPrice: number;
+  totalHourlyPrice: number;
+  totalPrice: number;
+  isPending: boolean;
+  locale: string;
+};
 
 export const EstimatePart = ({
   currency,
-  forecastPrices,
+  totalMonthlyPrice,
+  totalHourlyPrice,
+  isPending,
+  totalPrice,
   locale,
-}: {
-  currency: Currency;
-  forecastPrices: TUsagePrices;
-  locale: string;
-}): JSX.Element => {
+}: TEstimateProps): JSX.Element => {
   const { t: tConsumption } = useTranslation('consumption');
   const { t: tEstimate } = useTranslation('estimate');
 
@@ -58,11 +65,11 @@ export const EstimatePart = ({
             month: nextMonth,
           })}{' '}
           <strong>
-            {forecastPrices.totalPrice.toFixed(2)} {currency.symbol}
+            {totalPrice.toFixed(2)} {currency.symbol}
           </strong>
         </OsdsText>
       </p>
-      {forecastPrices.isPending ? (
+      {isPending ? (
         <OsdsSpinner inline />
       ) : (
         <div>
@@ -77,7 +84,7 @@ export const EstimatePart = ({
                   __html: tEstimate(
                     'cpbe_estimate_summary_renew_monthly_sub_label',
                     {
-                      total: `${forecastPrices.totalMonthlyPrice.toFixed(2)} ${
+                      total: `${totalMonthlyPrice.toFixed(2)} ${
                         currency.symbol
                       }`,
                     },
@@ -98,7 +105,7 @@ export const EstimatePart = ({
                     'cpbe_estimate_summary_hourly_consumption_label',
                     {
                       month: currentMonth,
-                      total: `${forecastPrices.totalHourlyPrice.toFixed(2)} ${
+                      total: `${totalHourlyPrice.toFixed(2)} ${
                         currency.symbol
                       }`,
                     },
