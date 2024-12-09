@@ -1,0 +1,38 @@
+.new-security-section {
+  margin-bottom: 32px;
+}
+
+.new-security-section > .span10 > .oui-heading_2:first-child {
+  font-size: 36px;
+}
+
+.new-security-section > .span10 > .oui-message {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 32px;
+}
+
+.new-security-section > .span10 > .oui-box {
+  margin-top: 32px;
+}
+
+.new-security-section .new-security-section__2fa-lists {
+  margin-top: 32px;
+}
+
+.new-security-section
+  .new-security-section__2fa-lists
+  > .media:not(:last-child)
+  > .media-body {
+  margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #e9ebed;
+}
+
+.new-security-section-wizard-choice-icon {
+  margin-right: 12px;
+}
+
+.new-security-section-wizard-backup-codes {
+  display: inline-block;
+}

@@ -1,0 +1,16 @@
+<oui-modal
+    data-heading="{{ ::'autorenew_service_debt_before_paying_title' | translate }}"
+    data-primary-action="$ctrl.payDebt()"
+    data-primary-label="{{:: 'autorenew_service_debt_warn_settle' | translate }}"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{ 'autorenew_service_debt_warn_cancel' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <span
+        data-translate="autorenew_service_debt_warn_deletion"
+        data-translate-values="{
+                'service': $ctrl.serviceName
+            }"
+    >
+    </span>
+</oui-modal>

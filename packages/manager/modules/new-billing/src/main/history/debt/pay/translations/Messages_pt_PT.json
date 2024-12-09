@@ -1,0 +1,8 @@
+{
+  "billing_main_history_debt_pay_title": "Pagamento do montante pendente",
+  "billing_main_history_debt_pay_confirm": "Pagar o montante pendente",
+  "billing_main_history_debt_pay_explanation": "Esta ação levará à criação de uma nota de encomenda que irá permitir pagar um montante pendente. Esta nota de encomenda terá a validade de uma hora.",
+  "billing_main_history_debt_pay_success": "A <a href=\"{{t1}}\" target=\"_blank\" rel=\"noopener\">nota de encomenda {{t0}}</a> foi gerada para permitir que efetue o pagamento do montante pendente.",
+  "billing_main_history_debt_pay_error": "Ocorreu um erro durante o pagamento do montante pendente.",
+  "billing_main_history_debt_pay_error_nothing_to_pay": "Neste momento, não tem qualquer pagamento pendente."
+}

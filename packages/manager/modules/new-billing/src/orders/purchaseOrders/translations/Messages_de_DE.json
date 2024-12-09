@@ -1,0 +1,21 @@
+{
+  "purchaseOrders_page_title": "Meine internen Referenzen",
+  "purchaseOrders_page_description": "Ihre interne Referenz entspricht einer Purchase Order (PO), einem Projektnamen oder einer internen Kennzeichnung. Diese Referenz wird auf allen ausgestellten Rechnungen ausgewiesen.",
+  "purchaseOrders_reference": "Referenz",
+  "purchaseOrders_creationDate": "Erstellungsdatum",
+  "purchaseOrders_startDate": "Startdatum",
+  "purchaseOrders_endDate": "Enddatum",
+  "purchaseOrders_endDate_helper": "Enddatum ist ausgeschlossen",
+  "purchaseOrders_status": "Status",
+  "purchaseOrders_status_actif": "Aktiv",
+  "purchaseOrders_status_inactif": "Inaktiv",
+  "purchaseOrders_status_desactivate": "Deaktiviert",
+  "purchaseOrders_create_reference": "Interne Referenz erstellen",
+  "purchaseOrders_add_reference": "Interne Referenz hinzufügen",
+  "purchaseOrders_edit_reference": "Bearbeiten",
+  "purchaseOrders_status_change_reactivation": "Reaktivieren",
+  "purchaseOrders_status_change_desactivation": "Deaktivieren",
+  "purchaseOrders_confirmation_reactivation_REFERENCE_ORDER_success": "Ihre interne Referenz wurde erneut aktiviert.",
+  "purchaseOrders_confirmation_reactivation_PURCHASE_ORDER_success": "Ihre Purchase Order wurde erneut aktiviert.",
+  "purchaseOrders_confirmation_reactivation_error": "Ihre Anfrage konnte nicht bearbeitet werden. Bitte versuchen Sie es später erneut."
+}
