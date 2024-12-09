@@ -47,3 +47,21 @@ export const deleteObject = async (
   );
   return response.json();
 };
+
+export const addUser = async (
+  projectId: string,
+  region: string,
+  objectName: string,
+  storageId: string,
+  userId: string,
+  role: string,
+) => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/region/${region}/storage/${storageId}/policy/${userId}`,
+    {
+      roleName: role,
+      objectKey: objectName,
+    },
+  );
+  return data;
+};

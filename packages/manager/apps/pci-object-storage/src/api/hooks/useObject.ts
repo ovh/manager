@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {
+  addUser,
   deleteObject,
   deleteS3Object,
   getAccessToken,
@@ -60,6 +61,43 @@ export const useDeleteObject = ({
   });
   return {
     deleteObject: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type AddUserProps = {
+  projectId: string;
+  storageId: string;
+  objectName: string;
+  region: string;
+  userId: string;
+  role: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+export const useAddUser = ({
+  projectId,
+  storageId,
+  objectName,
+  region,
+  userId,
+  role,
+  onError,
+  onSuccess,
+}: AddUserProps) => {
+  const mutation = useMutation({
+    mutationFn: async () =>
+      addUser(projectId, region, objectName, storageId, userId, role),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['project', projectId, 'objects'],
+      });
+      onSuccess();
+    },
+  });
+  return {
+    addUser: () => mutation.mutate(),
     ...mutation,
   };
 };
