@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.10.3...@ovh-ux/manager-pci-kubernetes-app@0.11.0) (2024-12-09)
+
+
+### Bug Fixes
+
+* **pci-common:** import styles from manager-pci-common ([76e1860](https://github.com/ovh/manager/commit/76e1860df2db20659567f397456ef86e22005d27))
+
+
+### Features
+
+* **pci-kubernetes:** design review alignments ([#14093](https://github.com/ovh/manager/issues/14093)) ([ea9516e](https://github.com/ovh/manager/commit/ea9516e411d8be23560f7d8c6c54eab9b4300984))
+
+
+
+
+
 ## [0.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.10.2...@ovh-ux/manager-pci-kubernetes-app@0.10.3) (2024-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
