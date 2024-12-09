@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.0.2...@ovh-ux/sign-up-app@4.1.0) (2024-12-09)
+
+
+### Features
+
+* **signup:** reassuring wording for kyc india emphasing on address ([#14122](https://github.com/ovh/manager/issues/14122)) ([ae07364](https://github.com/ovh/manager/commit/ae07364390baaeafe1b6566094cc5c3b937af7e4))
+
+
+
+
+
 ## [4.0.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.0.1...@ovh-ux/sign-up-app@4.0.2) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app
