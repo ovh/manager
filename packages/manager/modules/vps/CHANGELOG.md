@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.43.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.43.1...@ovh-ux/manager-vps@2.43.2) (2024-12-09)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** add tracking on upscale funnel ([#14082](https://github.com/ovh/manager/issues/14082)) ([ff4f283](https://github.com/ovh/manager/commit/ff4f283f0c31fde6a4a3b2fead4c5599efdb3f48))
+* **dedicated.vps:** fix the access to vps dashboard with iam rules ([#14124](https://github.com/ovh/manager/issues/14124)) ([c6b280e](https://github.com/ovh/manager/commit/c6b280ecae93be8a0cc07bf464186ecc61bf2119))
+
+
+
+
+
 ## [2.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.43.0...@ovh-ux/manager-vps@2.43.1) (2024-10-24)
 
 
