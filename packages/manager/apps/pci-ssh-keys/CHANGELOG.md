@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.7.0...@ovh-ux/manager-pci-ssh-keys-app@0.8.0) (2024-12-09)
+
+
+### Features
+
+* **pci-ssh-keys:** ui design review ([#13992](https://github.com/ovh/manager/issues/13992)) ([58930f5](https://github.com/ovh/manager/commit/58930f57a073bf27dcc2ea1d72220285dba7c163))
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.6.29...@ovh-ux/manager-pci-ssh-keys-app@0.7.0) (2024-12-09)
 
 
