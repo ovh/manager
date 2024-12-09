@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.10.6...@ovh-ux/manager-vrack-services-app@0.10.7) (2024-12-09)
+
+
+### Reverts
+
+* Revert "release infra-hpc-w50" (#14497) ([8685266](https://github.com/ovh/manager/commit/8685266542e7e6895b0d307ba0f90ef1ba0a91f7)), closes [#14497](https://github.com/ovh/manager/issues/14497) [#14288](https://github.com/ovh/manager/issues/14288) [#13563](https://github.com/ovh/manager/issues/13563) [#14124](https://github.com/ovh/manager/issues/14124) [#14091](https://github.com/ovh/manager/issues/14091) [#13387](https://github.com/ovh/manager/issues/13387) [#14082](https://github.com/ovh/manager/issues/14082) [#14438](https://github.com/ovh/manager/issues/14438)
+
+
+
+
+
 ## [0.10.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.10.5...@ovh-ux/manager-vrack-services-app@0.10.6) (2024-12-09)
 
 
