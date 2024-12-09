@@ -23,7 +23,6 @@ import notebooks from './notebooks';
 import ai from './ai';
 import quota from './quota';
 import quotaExceedError from './quota-exceed-error';
-import privateRegistry from './private-registry';
 import storages from './storages';
 import users from './users';
 import regions from './regions';
@@ -62,7 +61,6 @@ angular
     quota,
     quotaExceedError,
     regions,
-    privateRegistry,
     ngOvhUtils,
     'oui',
     'ovhManagerCore',

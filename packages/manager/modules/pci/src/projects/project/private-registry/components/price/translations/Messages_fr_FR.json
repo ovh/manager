@@ -1,8 +1,0 @@
-{
-  "price_ht_label": "{{ price }} HT",
-  "price_ttc_label": "{{ price }} TTC",
-  "price_free": "Inclus",
-  "price_gst_excl_label": "{{ price }} ex. GST",
-  "price_gst_incl_label": "{{ price }} incl. GST",
-  "price_per_month": "/mois"
-}
