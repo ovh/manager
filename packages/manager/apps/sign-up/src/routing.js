@@ -3,6 +3,12 @@ import find from 'lodash/find';
 import { SANITIZATION, FEATURES } from './constants';
 
 import signupFormComponent from './form/component';
+import {
+  BUTTON_TRACKING_PREFIX,
+  CHAPTER_1,
+  DISPLAY_ROOT_PAGE_TRACKING,
+  ERROR_TRACKING_PREFIX,
+} from './at-internet.constants';
 
 export const state = {
   name: 'sign-up',
@@ -97,9 +103,47 @@ export const state = {
         '#/identity-documents',
       );
     },
-    onStepFocus: /* @ngInject */ ($state, getStepByName) => (stepName) => {
+    onStepFocus: /* @ngInject */ (
+      $state,
+      atInternet,
+      getStepByName,
+      isActiveStep,
+      me,
+    ) => (stepName) => {
       const focusedStep = getStepByName(stepName);
       if ($state.current.name !== focusedStep.state) {
+        if (stepName === 'details' && isActiveStep('activity')) {
+          const trackingHits = [
+            BUTTON_TRACKING_PREFIX,
+            'create_account_step4',
+            'edit-step3',
+            `${me.model.legalform}_${me.ovhSubsidiary}`,
+          ];
+          atInternet.trackClick({
+            name: trackingHits.join('::'),
+            page_category: CHAPTER_1,
+            page: {
+              name: DISPLAY_ROOT_PAGE_TRACKING,
+            },
+            type: 'action',
+          });
+        }
+        if (stepName === 'activity') {
+          const trackingHits = [
+            BUTTON_TRACKING_PREFIX,
+            'create_account_step3',
+            'next',
+            `${me.model.legalform}_${me.ovhSubsidiary}`,
+          ];
+          atInternet.trackClick({
+            name: trackingHits.join('::'),
+            page_category: CHAPTER_1,
+            page: {
+              name: DISPLAY_ROOT_PAGE_TRACKING,
+            },
+            type: 'action',
+          });
+        }
         $state.transitionTo(focusedStep.state, $state.params, {
           location: false,
         });
@@ -152,10 +196,11 @@ export const state = {
         state: 'sign-up.activity',
       },
     ],
-    trackError: /* @ngInject */ (atInternet, me) => (step, field) => {
+    trackError: /* @ngInject */ (atInternet) => (step, field) => {
+      const errorTrackingHits = [ERROR_TRACKING_PREFIX, `error_${field}`];
       atInternet.trackPage({
-        name: `accountcreation-${step}-error${field}-${me.legalform}`,
-        customObject: { event: 'ACCOUNT_CREATION_VALIDATION' },
+        name: errorTrackingHits.join('::'),
+        page_category: 'banner',
       });
     },
 
