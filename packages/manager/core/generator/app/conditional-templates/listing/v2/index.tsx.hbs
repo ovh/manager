@@ -1,13 +1,13 @@
 import React, { useState, useEffect, } from 'react';
 import { useTranslation } from 'react-i18next';
+import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { {{#if isPCI }}useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
-
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-
 import {
   BaseLayout,
   Datagrid,
+  dataType,
   DataGridTextCell,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
@@ -40,6 +40,7 @@ export default function Listing() {
     setSorting,
     error,
     status,
+    filters,
   } = useResourcesIcebergV2({
     route: `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`,
     queryKey: ['{{appName}}', `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`],
@@ -51,6 +52,14 @@ export default function Listing() {
     navigate(`${path}${label}`);
   };
 
+  // Code to remove
+  const comparatorType = {
+    number: FilterCategories.Numeric,
+    data: FilterCategories.Date,
+    string: FilterCategories.String,
+  };
+
+  // Code to remove and declare definition columns in const variable
   useEffect(() => {
     if (status === 'success' && data?.pages[0].data.length === 0) {
       navigate(urls.onboarding);
@@ -60,6 +69,12 @@ export default function Listing() {
         .map((element) => ({
           id: element,
           label: element,
+          // @ts-ignore
+          ...(comparatorType[dataType(data?.pages[0].data[0][element])] && {
+            comparator:
+              // @ts-ignore
+              comparatorType[dataType(data?.pages[0].data[0][element])],
+          }),
           cell: (props: any) => {
             const label = props[element] as string;
             if (typeof label === 'string' || typeof label === 'number') {
@@ -107,6 +122,7 @@ export default function Listing() {
             sorting={sorting}
             onSortChange={setSorting}
             manualSorting={false}
+            filters={filters}
           />
         )}
       </React.Suspense>
