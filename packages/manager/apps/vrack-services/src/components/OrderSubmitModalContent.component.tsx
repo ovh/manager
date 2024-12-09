@@ -76,7 +76,7 @@ export const OrderSubmitModalContent: React.FC<OrderSubmitModalContentProps> = (
             autoPayWithPreferredPaymentMethod: false,
             waiveRetractationPeriod: true,
           });
-          window.location.href = data.url;
+          window.top.location.href = data.url;
         } catch (err) {
           onError(response);
         }
