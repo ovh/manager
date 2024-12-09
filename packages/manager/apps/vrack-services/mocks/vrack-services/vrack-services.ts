@@ -1,6 +1,6 @@
 import { PathParams } from 'msw';
 import { Request as PlaywrightRequest } from '@playwright/test';
-import { Handler } from '@playwright-helpers';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { getParamsFromUrl } from '../../../../../../playwright-helpers/network';
 import vrackServicesList from './get-vrack-services.json';
 

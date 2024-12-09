@@ -1,9 +1,13 @@
+// V Should be first V
+import '@/test-utils/setupTests';
+// -----
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { act, fireEvent, render } from '@testing-library/react';
 import { DisplayName } from '@/components/display-name/DisplayName.component';
 import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
 import { VrackServicesWithIAM } from '@/data';
+import '@testing-library/jest-dom';
 
 const defaultVs = vrackServicesList[0] as VrackServicesWithIAM;
 
