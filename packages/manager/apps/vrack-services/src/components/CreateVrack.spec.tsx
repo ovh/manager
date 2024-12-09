@@ -33,6 +33,13 @@ const renderComponent = ({ closeModal }: CreateVrackProps) => {
 /** MOCKS */
 const closeModalMock = vi.fn();
 
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (translationKey: string) => translationKey,
+    i18n: { language: 'fr_FR' },
+  }),
+}));
+
 vi.mock('@/utils/cart', async (importOriginal) => {
   const original: typeof import('@/utils/cart') = await importOriginal();
   return {

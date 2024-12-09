@@ -1,12 +1,12 @@
 import { vi } from 'vitest';
 import '@testing-library/jest-dom';
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (translationKey: string) => translationKey,
-    i18n: { language: 'fr_FR' },
-  }),
-}));
+// vi.mock('react-i18next', () => ({
+//   useTranslation: () => ({
+//     t: (translationKey: string) => translationKey,
+//     i18n: { language: 'fr_FR' },
+//   }),
+// }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
