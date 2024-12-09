@@ -1,6 +1,10 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { aggregateBySpecificKey } from '@/helpers';
-import { FilterRestrictionsServer, TIPRestrictionsDefault } from '@/types';
+import {
+  FilterRestrictionsServer,
+  TIPRestrictionsDefault,
+  TIPRestrictionsMethodEnum,
+} from '@/types';
 
 const baseUrl = (projectId: string, registryId: string) =>
   `/cloud/project/${projectId}/containerRegistry/${registryId}/ipRestrictions`;
@@ -46,7 +50,10 @@ export const processIpBlock = async (
   registryId: string,
   authorization: FilterRestrictionsServer,
   values: TIPRestrictionsDefault[],
-  action: 'DELETE' | 'REPLACE',
+  action:
+    | TIPRestrictionsMethodEnum.DELETE
+    | TIPRestrictionsMethodEnum.REPLACE
+    | TIPRestrictionsMethodEnum.ADD,
 ) => {
   const dataRegistry = await fetchV6URl(
     `${baseUrl(projectId, registryId)}/${authorization}`,
@@ -58,10 +65,10 @@ export const processIpBlock = async (
     );
 
     if (blockIndex !== -1) {
-      if (action === 'DELETE') {
+      if (action === TIPRestrictionsMethodEnum.DELETE) {
         dataRegistry.splice(blockIndex, 1);
       }
-      if (action === 'REPLACE') {
+      if (action === TIPRestrictionsMethodEnum.REPLACE) {
         dataRegistry[blockIndex] = value;
       }
     } else {
@@ -71,7 +78,10 @@ export const processIpBlock = async (
 
   return v6.put(
     `${baseUrl(projectId, registryId)}/${authorization}`,
-    dataRegistry,
+    dataRegistry.map((registry) => ({
+      ipBlock: registry.ipBlock,
+      description: registry.description,
+    })),
   );
 };
 
@@ -79,11 +89,20 @@ export const updateIpRestriction = async (
   projectId: string,
   registryId: string,
   cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault[]>,
-  action: 'DELETE' | 'REPLACE',
+  action:
+    | TIPRestrictionsMethodEnum.DELETE
+    | TIPRestrictionsMethodEnum.REPLACE
+    | TIPRestrictionsMethodEnum.ADD,
 ) => {
   const entries = Object.entries(cidrToUpdate);
   const promises = entries.map(([authorization, values]) =>
-    processIpBlock(projectId, registryId, authorization, values, action),
+    processIpBlock(
+      projectId,
+      registryId,
+      authorization as FilterRestrictionsServer,
+      values,
+      action,
+    ),
   );
   return Promise.all(promises);
 };
