@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { ColumnSort } from '@tanstack/react-table';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import { useSearchParams } from 'react-router-dom';
 import { Datagrid } from './datagrid.component';
 import { DataGridTextCell } from './text-cell.component';
+import { ActionMenu } from '../navigation';
 
 interface Item {
   label: string;
   price: number;
+  actions: React.ReactElement;
 }
 
 const columns = [
@@ -27,19 +29,12 @@ const columns = [
   },
 ];
 
-const DatagridStory = ({
-  items,
-  isSortable,
-}: {
-  items: Item[];
-  isSortable: boolean;
-}) => {
+const DatagridStory = (args) => {
   const [sorting, setSorting] = useState<ColumnSort>();
-  const [data, setData] = useState(items);
-  const [searchParams] = useSearchParams();
+  const [data, setData] = useState(args.items);
 
   const fetchNextPage = () => {
-    const itemsIndex = data.length;
+    const itemsIndex = data?.length;
     const tmp = [...Array(10).keys()].map((_, i) => ({
       label: `Item #${i + itemsIndex}`,
       price: Math.floor(1 + Math.random() * 100),
@@ -48,59 +43,104 @@ const DatagridStory = ({
   };
 
   return (
-    <>
-      {`${searchParams}` && (
-        <>
-          <pre>Search params: ?{`${searchParams}`}</pre>
-          <hr />
-        </>
-      )}
-      <Datagrid
-        columns={columns}
-        items={data}
-        totalItems={data.length}
-        hasNextPage={data.length > 0 && data.length < 30}
-        onFetchNextPage={fetchNextPage}
-        {...(isSortable
-          ? {
-              sorting,
-              onSortChange: setSorting,
-              manualSorting: false,
-            }
-          : {})}
-      />
-    </>
+    <Datagrid
+      items={data}
+      columns={args.columns}
+      hasNextPage={data?.length > 0 && data.length < 30}
+      onFetchNextPage={fetchNextPage}
+      totalItems={data?.length}
+      {...(args.isSortable
+        ? {
+            sorting,
+            onSortChange: setSorting,
+            manualSorting: false,
+          }
+        : {})}
+    />
   );
 };
 
-export const Empty: any = {
-  args: {
-    items: [],
-  },
+export const Basic = DatagridStory.bind({});
+
+Basic.args = {
+  columns,
+  items: [...Array(10).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+  })),
+  totalItems: 20,
+  isSortable: false,
+  onFetchNextPage: true,
 };
 
-export const Basic = {
-  args: {
-    items: [...Array(10).keys()].map((_, i) => ({
-      label: `Item #${i}`,
-      price: Math.floor(1 + Math.random() * 100),
-    })),
-    isSortable: false,
-  },
+export const Empty = DatagridStory.bind({});
+
+Empty.args = {
+  columns,
+  items: [],
 };
 
-export const Sortable = {
-  args: {
-    items: [...Array(10).keys()].map((_, i) => ({
-      label: `Item #${i}`,
-      price: Math.floor(1 + Math.random() * 100),
-    })),
-    isSortable: true,
+export const Sortable = DatagridStory.bind({});
+
+Sortable.args = {
+  columns,
+  items: [...Array(10).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+  })),
+  isSortable: true,
+};
+
+const actionsColumns = {
+  id: 'actions',
+  cell: (item: Item) => {
+    return item.actions;
   },
+  label: '',
+};
+
+export const WithActions = DatagridStory.bind({});
+
+WithActions.args = {
+  columns: [...columns, actionsColumns],
+  items: [...Array(8).keys()].map((_, i) => {
+    return {
+      label: `Service #${i}`,
+      price: Math.floor(1 + Math.random() * 100),
+      actions: (
+        <div className="flex items-center justify-center">
+          <div>
+            <ActionMenu
+              isCompact={true}
+              variant={ODS_BUTTON_VARIANT.ghost}
+              id={i.toString()}
+              items={[
+                {
+                  id: 1,
+                  target: '_blank',
+                  label: 'Action 1',
+                  urn: 'urn:v9:eu:resource:manatestkds-fdsfsd',
+                  iamActions: ['vrackServices:apiovh:iam/resource/update'],
+                },
+                {
+                  id: 2,
+                  target: '_blank',
+                  label: 'Action 2',
+                  urn: 'urn:v9:eu:resource:manate',
+                  iamActions: ['vrackServices:apiovh:iam/resource/delete'],
+                },
+              ]}
+            />
+          </div>
+        </div>
+      ),
+    };
+  }),
+  isSortable: true,
 };
 
 export default {
   title: 'Components/Datagrid Cursor',
-  component: DatagridStory,
+  component: Datagrid,
   decorators: [withRouter],
 };
