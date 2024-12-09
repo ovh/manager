@@ -164,7 +164,7 @@ exports[`ColdArchiveList > matches snapshot with existing coldArchives 1`] = `
                     color="text"
                     level="body"
                   >
-                    manager_components_region_RBX_micro
+                    RBX-ARCHIVE
                   </osds-text>
                 </td>
                 <td
@@ -210,7 +210,7 @@ exports[`ColdArchiveList > matches snapshot with existing coldArchives 1`] = `
                     color="text"
                     level="body"
                   >
-                    manager_components_region_RBX_micro
+                    RBX-ARCHIVE
                   </osds-text>
                 </td>
                 <td
@@ -256,7 +256,7 @@ exports[`ColdArchiveList > matches snapshot with existing coldArchives 1`] = `
                     color="text"
                     level="body"
                   >
-                    manager_components_region_RBX_micro
+                    RBX-ARCHIVE
                   </osds-text>
                 </td>
                 <td
