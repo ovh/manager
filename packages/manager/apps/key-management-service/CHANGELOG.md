@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.12.8...@ovh-ux/manager-key-management-service-app@0.13.0) (2024-12-09)
+
+
+### Bug Fixes
+
+* **kms:** change guide links ([e8714b3](https://github.com/ovh/manager/commit/e8714b36d5f8b4d0a018c1e94b67384ff79fe95c))
+
+
+### Features
+
+* **key-management-service:** add polling after KMS order ([778265f](https://github.com/ovh/manager/commit/778265fbad801ab4ecae80b1fc2853df6bc80a92))
+
+
+
+
+
 ## [0.12.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.12.7...@ovh-ux/manager-key-management-service-app@0.12.8) (2024-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
