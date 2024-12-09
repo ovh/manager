@@ -1523,7 +1523,6 @@ export default /* @ngInject */ function VpsService(
   ) {
     return $http
       .get(`/services/${serviceId}`)
-      .then(({ data }) => data?.resource?.product?.name.includes('-resell'))
-      .catch(() => false);
+      .then(({ data }) => data?.resource?.product?.name.includes('-resell'));
   };
 }
