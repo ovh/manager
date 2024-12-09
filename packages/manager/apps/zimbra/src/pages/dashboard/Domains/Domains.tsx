@@ -155,7 +155,7 @@ export default function Domains() {
   }, [domains]);
 
   return (
-    <div className="py-6">
+    <div>
       <Outlet />
       {platformUrn && !isOverridedPage && (
         <>

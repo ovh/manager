@@ -333,6 +333,14 @@
             </div>
         </div>
 
+        <oui-message type="info" data-ng-if="$ctrl.offer.selected.technoChange">
+            <p
+                class="mb-0"
+                data-ng-repeat="line in [1,2,3] track by $index"
+                data-translate="{{ 'pack_move_confirm_temporary_pack_creation_line_' + line}}"
+            ></p>
+        </oui-message>
+
         <div class="widget-presentation">
             <h2
                 class="widget-presentation-title"

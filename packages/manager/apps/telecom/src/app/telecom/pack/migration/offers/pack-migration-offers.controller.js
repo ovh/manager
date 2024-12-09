@@ -176,7 +176,7 @@ export default class TelecomPackMigrationOffersCtrl {
       }
     });
 
-    // Update meeting flag if xDSL => fiber offer
+    // Update meeting flag and techno change if xDSL => fiber offer
     if (
       this.process.pack.offerDescription
         .toLowerCase()
@@ -184,6 +184,7 @@ export default class TelecomPackMigrationOffersCtrl {
       selectedOffer.offerName.toLowerCase().includes(this.OFFER_FIBER)
     ) {
       set(selectedOffer, 'needMeeting', true);
+      set(selectedOffer, 'changeTechno', true);
     }
 
     this.loading.init = true;

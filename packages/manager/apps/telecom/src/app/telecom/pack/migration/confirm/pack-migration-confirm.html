@@ -304,6 +304,17 @@
             </div>
         </div>
 
+        <oui-message
+            type="info"
+            data-ng-if="$ctrl.process.selectedOffer.changeTechno"
+        >
+            <p
+                class="mb-0"
+                data-ng-repeat="line in [1,2,3] track by $index"
+                data-translate="{{ 'telecom_pack_migration_confirm_temporary_pack_creation_line_' + line}}"
+            ></p>
+        </oui-message>
+
         <div class="widget-presentation" data-ng-if="!$ctrl.loading.migrate">
             <h2
                 class="widget-presentation-title"
