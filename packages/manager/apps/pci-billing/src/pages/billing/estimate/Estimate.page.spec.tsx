@@ -1,7 +1,6 @@
-import { describe, Mock, vi } from 'vitest';
+import { describe, Mock, vi, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import { wrapper } from '@ovh-ux/manager-pci-load-balancer-app/src/wrapperRenders';
-import React from 'react';
 import {
   EstimatePart,
   TEstimateProps,
@@ -75,25 +74,15 @@ vi.mock('@/hooks/useEnvironment', () => ({
   })),
 }));
 
-vi.mock('react-router-dom', async () => {
-  const { ...rest } = await vi.importActual('@ovhcloud/ods-components/react');
-  return {
-    ...rest,
-    useParams: vi.fn().mockImplementation(() => ({
-      projectId: 'projectId',
-    })),
-  };
-});
-
 const renderComponent = () => render(<EstimatePage />, { wrapper });
 
 describe('EstimatePage', () => {
-  it.skip('should render', () => {
+  it('should render', () => {
     const { container } = renderComponent();
     expect(container).toMatchSnapshot();
   });
 
-  it.skip('should render EstimatePart', () => {
+  it('should render EstimatePart', () => {
     const { getByTestId } = renderComponent();
     expect(getByTestId('estimate-part')).toBeInTheDocument();
 
@@ -117,7 +106,7 @@ describe('EstimatePage', () => {
 
     const call = (AlertsPart as Mock).mock.lastCall[0] as TAlertsPart;
 
-    expect(call.projectId).toBe('projectId');
+    expect(call.projectId).toBe('project-id');
 
     expect(call.currency).toEqual({
       symbol: '€',
