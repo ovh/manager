@@ -1,0 +1,103 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HistoryResume > matches snapshot with falsy isPostPaidUsageBilling 1`] = `
+<DocumentFragment>
+  <div
+    class="my-4 p-4 bg-[--ods-color-default-050] border border-solid border-[--ods-color-default-200]"
+  >
+    <osds-text
+      class="block"
+      color="text"
+      level="heading"
+      size="400"
+    >
+      cpbhd_monthly_bill_header
+    </osds-text>
+    <osds-text
+      class="block my-4"
+      color="text"
+      level="heading"
+      size="700"
+    >
+      23.00 undefined
+    </osds-text>
+    <osds-link
+      color="primary"
+      href=""
+      target="_top"
+    >
+      <span
+        slot="start"
+      />
+      cpbhd_bill_link
+      <span
+        slot="end"
+      >
+        <osds-icon
+          aria-hidden="true"
+          class="ml-4"
+          color="primary"
+          hoverable="true"
+          name="arrow-right"
+          size="xxs"
+        />
+      </span>
+    </osds-link>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`HistoryResume > matches snapshot with truthy isPostPaidUsageBilling 1`] = `
+<DocumentFragment>
+  <div
+    class="my-4 p-4 bg-[--ods-color-default-050] border border-solid border-[--ods-color-default-200]"
+  >
+    <osds-text
+      class="block"
+      color="text"
+      level="heading"
+      size="400"
+    >
+      cpbhd_monthly_bill_header
+    </osds-text>
+    <osds-text
+      class="mb-5"
+      color="text"
+      level="body"
+      size="400"
+    >
+      cpbhd_monthly_bill_description
+    </osds-text>
+    <osds-text
+      class="block my-4"
+      color="text"
+      level="heading"
+      size="700"
+    >
+      2000.00 undefined
+    </osds-text>
+    <osds-link
+      color="primary"
+      href=""
+      target="_top"
+    >
+      <span
+        slot="start"
+      />
+      cpbhd_bill_link
+      <span
+        slot="end"
+      >
+        <osds-icon
+          aria-hidden="true"
+          class="ml-4"
+          color="primary"
+          hoverable="true"
+          name="arrow-right"
+          size="xxs"
+        />
+      </span>
+    </osds-link>
+  </div>
+</DocumentFragment>
+`;
