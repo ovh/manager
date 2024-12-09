@@ -3,7 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { categorizeByKey } from '@/helpers';
 import { useUpdateIpRestriction } from '@/api/hooks/useIpRestrictions';
-import { TIPRestrictionsData } from '@/types';
+import {
+  FilterRestrictionsServer,
+  TIPRestrictionsData,
+  TIPRestrictionsDefault,
+} from '@/types';
 
 export default function ActionComponent({
   cidr,
@@ -34,7 +38,13 @@ export default function ActionComponent({
           'authorization',
           cidr.authorization,
         );
-        updateIpRestrictions(categorizeByKeyResult, 'delete');
+        updateIpRestrictions({
+          cidrToUpdate: categorizeByKeyResult as Record<
+            FilterRestrictionsServer,
+            TIPRestrictionsDefault[]
+          >,
+          action: 'DELETE',
+        });
       },
     },
   ];

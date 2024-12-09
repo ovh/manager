@@ -60,6 +60,7 @@ const Buttons = () => {
   return (
     <div className="grid grid-cols-[0.45fr,0.45fr] gap-4">
       <OsdsButton
+        data-testid="remove-draft-button"
         onClick={removeDraftRow}
         type={ODS_BUTTON_TYPE.submit}
         color={ODS_THEME_COLOR_INTENT.primary}
@@ -74,6 +75,8 @@ const Buttons = () => {
       </OsdsButton>
 
       <OsdsButton
+        data-testid="submit-button"
+        role="submit"
         type={ODS_BUTTON_TYPE.submit}
         onClick={handleSubmit(onSubmit)}
         color={ODS_THEME_COLOR_INTENT.primary}
