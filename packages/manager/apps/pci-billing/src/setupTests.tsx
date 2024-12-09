@@ -1,4 +1,3 @@
-import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import React from 'react';
