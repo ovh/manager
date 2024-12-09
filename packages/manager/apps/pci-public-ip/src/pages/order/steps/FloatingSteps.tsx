@@ -107,6 +107,7 @@ export const FloatingSteps = ({
             </div>
             <OsdsSelect
               className="mb-4"
+              inline
               required
               value={form.instance?.id}
               onOdsValueChange={(event) => {
@@ -134,6 +135,7 @@ export const FloatingSteps = ({
                 </div>
                 <OsdsSelect
                   required
+                  inline
                   value={form.ipAddress?.ip}
                   onOdsValueChange={(event) => {
                     setForm({
