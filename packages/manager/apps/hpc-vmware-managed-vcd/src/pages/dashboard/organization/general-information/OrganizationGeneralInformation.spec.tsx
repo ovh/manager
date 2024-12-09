@@ -6,7 +6,7 @@ import {
   assertModalVisibility,
   assertModalText,
   WAIT_FOR_DEFAULT_OPTIONS,
-  checkTextVisibility,
+  assertTextVisibility,
 } from '@ovh-ux/manager-core-test-utils';
 import { renderTest, labels, mockSubmitNewValue } from '../../../../test-utils';
 
@@ -19,7 +19,7 @@ describe('Organization General Information Page', () => {
       initialRoute: `/${organizationList[1].id}`,
     });
 
-    await checkTextVisibility(
+    await assertTextVisibility(
       labels.dashboard.managed_vcd_dashboard_data_protection,
     );
 
@@ -35,7 +35,7 @@ describe('Organization General Information Page', () => {
     await mockSubmitNewValue({ submitButtonLabel });
 
     await assertModalVisibility({ container, isVisible: false });
-    await checkTextVisibility(
+    await assertTextVisibility(
       labels.dashboard.managed_vcd_dashboard_edit_name_modal_success,
     );
   });
@@ -59,7 +59,7 @@ describe('Organization General Information Page', () => {
       initialRoute: `/${organizationList[1].id}`,
     });
 
-    await checkTextVisibility(
+    await assertTextVisibility(
       labels.dashboard.managed_vcd_dashboard_data_protection,
     );
 
@@ -75,7 +75,7 @@ describe('Organization General Information Page', () => {
     await mockSubmitNewValue({ submitButtonLabel });
 
     await assertModalVisibility({ container, isVisible: false });
-    await checkTextVisibility(
+    await assertTextVisibility(
       labels.dashboard.managed_vcd_dashboard_edit_description_modal_success,
     );
   });
@@ -99,7 +99,7 @@ describe('Organization General Information Page', () => {
       initialRoute: `/${organizationList[1].id}`,
     });
 
-    await checkTextVisibility(
+    await assertTextVisibility(
       labels.dashboard.managed_vcd_dashboard_password_renew,
     );
 
@@ -119,7 +119,7 @@ describe('Organization General Information Page', () => {
     await waitFor(() => userEvents.click(validateButton));
 
     await assertModalVisibility({ container, isVisible: false });
-    await checkTextVisibility(
+    await assertTextVisibility(
       labels.dashboard.managed_vcd_dashboard_password_renew_success,
     );
   });
@@ -139,7 +139,7 @@ describe('Organization General Information Page', () => {
     await waitFor(() => userEvents.click(validateButton));
 
     await assertModalVisibility({ container, isVisible: false });
-    await checkTextVisibility(
+    await assertTextVisibility(
       labels.dashboard.managed_vcd_dashboard_password_renew_error,
     );
   });
