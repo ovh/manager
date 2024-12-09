@@ -41,6 +41,12 @@ import {
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   useOrganization,
   useOrganizationList,
   usePlatform,
@@ -58,11 +64,12 @@ import { GUIDES_LIST } from '@/guides.constants';
 import { DomainType } from '@/api/domain/type';
 import { DNS_CONFIG_TYPE, DnsRecordType, FEATURE_FLAGS } from '@/utils';
 import GuideLink from '@/components/GuideLink';
+import { ADD_DOMAIN, CONFIRM, BACK_PREVIOUS_PAGE } from '@/tracking.constant';
 
 export default function AddDomain() {
   const { t } = useTranslation('domains/addDomain');
   const navigate = useNavigate();
-
+  const { trackClick, trackPage } = useOvhTracking();
   const { addError, addSuccess } = useNotifications();
 
   const { platformId } = usePlatform();
@@ -171,6 +178,10 @@ export default function AddDomain() {
       return postZimbraDomain(platformId, params);
     },
     onSuccess: (domain: DomainType) => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: ADD_DOMAIN,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_domains_add_domain_success_message')}
@@ -182,6 +193,10 @@ export default function AddDomain() {
       }
     },
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: ADD_DOMAIN,
+      });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_domains_add_domain_error_message', {
@@ -206,6 +221,12 @@ export default function AddDomain() {
       name: selectedDomainName,
       autoConfigureMX: selectedRadioDomain !== 'externalDomain',
     };
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [ADD_DOMAIN, CONFIRM],
+    });
     addDomain(formData);
   };
 
@@ -222,6 +243,14 @@ export default function AddDomain() {
         iconAlignment={IconLinkAlignmentType.left}
         type={LinkType.back}
         href={backLinkUrl}
+        onClickReturn={() => {
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.button,
+            actionType: 'navigation',
+            actions: [ADD_DOMAIN, BACK_PREVIOUS_PAGE],
+          });
+        }}
         color={ODS_LINK_COLOR.primary}
         label={t('zimbra_domains_add_domain_cta_back')}
       />

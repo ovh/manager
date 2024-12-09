@@ -12,6 +12,12 @@ import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useDomains, usePlatform } from '@/hooks';
 import {
   deleteZimbraPlatformOrganization,
@@ -19,9 +25,11 @@ import {
 } from '@/api/organization';
 import Modal from '@/components/Modals/Modal';
 import queryClient from '@/queryClient';
+import { CANCEL, CONFIRM, DELETE_ORGANIZATION } from '@/tracking.constant';
 
 export default function ModalDeleteOrganization() {
   const [searchParams] = useSearchParams();
+  const { trackClick, trackPage } = useOvhTracking();
   const deleteOrganizationId = searchParams.get('deleteOrganizationId');
   const { t } = useTranslation('organizations/delete');
   const { platformId } = usePlatform();
@@ -38,6 +46,10 @@ export default function ModalDeleteOrganization() {
     mutationFn: (organizationId: string) =>
       deleteZimbraPlatformOrganization(platformId, organizationId),
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: DELETE_ORGANIZATION,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_organization_delete_success_message')}
@@ -45,8 +57,11 @@ export default function ModalDeleteOrganization() {
         true,
       );
     },
-
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: DELETE_ORGANIZATION,
+      });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_organization_delete_error_message', {
@@ -66,7 +81,23 @@ export default function ModalDeleteOrganization() {
   });
 
   const handleDeleteClick = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [DELETE_ORGANIZATION, CONFIRM],
+    });
     deleteOrganization(deleteOrganizationId);
+  };
+
+  const handleCancelClick = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [DELETE_ORGANIZATION, CANCEL],
+    });
+    onClose();
   };
 
   return (
@@ -77,6 +108,10 @@ export default function ModalDeleteOrganization() {
       onClose={onClose}
       isDismissible
       isLoading={isLoading}
+      secondaryButton={{
+        label: t('zimbra_organization_delete_cancel'),
+        action: handleCancelClick,
+      }}
       primaryButton={{
         testid: 'delete-btn',
         variant: ODS_BUTTON_VARIANT.default,
