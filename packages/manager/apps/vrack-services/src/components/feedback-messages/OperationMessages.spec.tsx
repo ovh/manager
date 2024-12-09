@@ -1,17 +1,16 @@
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
-import { OperationMessages } from "./OperationMessages.component";
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { UseQueryResult } from '@tanstack/react-query';
+import { OperationMessages } from './OperationMessages.component';
 import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
-import { useVrackServicesList } from '@/data';
-import { ApiResponse } from '@ovh-ux/manager-core-api';
+import { VrackServicesWithIAM, useVrackServicesList } from '@/data';
 
 /** Render */
 
-const renderComponent = ({id}: {id?:string}) => {
-  return render(
-      <OperationMessages id={id}/>
-  );
+const renderComponent = ({ id }: { id?: string }) => {
+  return render(<OperationMessages id={id} />);
 };
 
 /** END RENDER */
@@ -42,33 +41,60 @@ vi.mock('react-i18next', () => ({
 }));
 /** END MOCKS */
 
-
 describe('OperationMessages Component', () => {
   it('should display a message for all vrs which are not ready', async () => {
-    vi.mocked(useVrackServicesList).mockReturnValue({data: {data: vrackServicesList}} as ApiResponse);
+    vi.mocked(useVrackServicesList).mockReturnValue({
+      data: { data: vrackServicesList },
+    } as UseQueryResult<ApiResponse<VrackServicesWithIAM[]>, ApiError>);
     const { queryAllByText } = renderComponent({});
-    expect(queryAllByText('vrackServicesInErrorMessage', {exact: false}).length).toBe(2);
-    expect(queryAllByText('vrackServicesNotReadyInfoMessage', {exact: false}).length).toBe(4);
+    expect(
+      queryAllByText('vrackServicesInErrorMessage', { exact: false }).length,
+    ).toBe(2);
+    expect(
+      queryAllByText('vrackServicesNotReadyInfoMessage', { exact: false })
+        .length,
+    ).toBe(4);
   });
 
   it('should display a message for a single vrs which is in error', async () => {
-    vi.mocked(useVrackServicesList).mockReturnValue({data: {data: vrackServicesList}} as ApiResponse);
-    const { queryAllByText } = renderComponent({id: 'vrs-asp-dtl-lym-wza'});
-    expect(queryAllByText('vrackServicesInErrorMessage', {exact: false}).length).toBe(1);
-    expect(queryAllByText('vrackServicesNotReadyInfoMessage', {exact: false}).length).toBe(0);
+    vi.mocked(useVrackServicesList).mockReturnValue({
+      data: { data: vrackServicesList },
+    } as UseQueryResult<ApiResponse<VrackServicesWithIAM[]>, ApiError>);
+    const { queryAllByText } = renderComponent({ id: 'vrs-asp-dtl-lym-wza' });
+    expect(
+      queryAllByText('vrackServicesInErrorMessage', { exact: false }).length,
+    ).toBe(1);
+    expect(
+      queryAllByText('vrackServicesNotReadyInfoMessage', { exact: false })
+        .length,
+    ).toBe(0);
   });
 
   it('should display a message for a single vrs which is updating', async () => {
-    vi.mocked(useVrackServicesList).mockReturnValue({data: {data: vrackServicesList}} as ApiResponse);
-    const { queryAllByText } = renderComponent({id: 'vrs-ahz-9t0-7lb-b5l'});
-    expect(queryAllByText('vrackServicesInErrorMessage', {exact: false}).length).toBe(0);
-    expect(queryAllByText('vrackServicesNotReadyInfoMessage', {exact: false}).length).toBe(1);
+    vi.mocked(useVrackServicesList).mockReturnValue({
+      data: { data: vrackServicesList },
+    } as UseQueryResult<ApiResponse<VrackServicesWithIAM[]>, ApiError>);
+    const { queryAllByText } = renderComponent({ id: 'vrs-ahz-9t0-7lb-b5l' });
+    expect(
+      queryAllByText('vrackServicesInErrorMessage', { exact: false }).length,
+    ).toBe(0);
+    expect(
+      queryAllByText('vrackServicesNotReadyInfoMessage', { exact: false })
+        .length,
+    ).toBe(1);
   });
 
   it('should not display any messages if there is no vrs', async () => {
-    vi.mocked(useVrackServicesList).mockReturnValue({data: {data: []}} as ApiResponse);
+    vi.mocked(useVrackServicesList).mockReturnValue({
+      data: { data: [] },
+    } as UseQueryResult<ApiResponse<VrackServicesWithIAM[]>, ApiError>);
     const { queryAllByText } = renderComponent({});
-    expect(queryAllByText('vrackServicesInErrorMessage', {exact: false}).length).toBe(0);
-    expect(queryAllByText('vrackServicesNotReadyInfoMessage', {exact: false}).length).toBe(0);
+    expect(
+      queryAllByText('vrackServicesInErrorMessage', { exact: false }).length,
+    ).toBe(0);
+    expect(
+      queryAllByText('vrackServicesNotReadyInfoMessage', { exact: false })
+        .length,
+    ).toBe(0);
   });
 });
