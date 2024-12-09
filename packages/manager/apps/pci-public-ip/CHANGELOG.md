@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.8.0...@ovh-ux/manager-pci-public-ip-app@0.9.0) (2024-12-09)
+
+
+### Features
+
+* **pci-public-ip:** ui design review ([#13945](https://github.com/ovh/manager/issues/13945)) ([d72dfd2](https://github.com/ovh/manager/commit/d72dfd200b79eb913891021c4bf9063c78cd70f4))
+
+
+
+
+
 # [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.7.22...@ovh-ux/manager-pci-public-ip-app@0.8.0) (2024-12-09)
 
 

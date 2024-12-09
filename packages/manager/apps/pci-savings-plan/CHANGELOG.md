@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.5.0...@ovh-ux/manager-pci-savings-plan-app@1.6.0) (2024-12-09)
+
+
+### Features
+
+* **svp:** update i18n to handle plural ([#13938](https://github.com/ovh/manager/issues/13938)) ([2f67d83](https://github.com/ovh/manager/commit/2f67d8382b7cae7af1584528bda41c24caf0190e))
+
+
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.4.3...@ovh-ux/manager-pci-savings-plan-app@1.5.0) (2024-12-09)
 
 
