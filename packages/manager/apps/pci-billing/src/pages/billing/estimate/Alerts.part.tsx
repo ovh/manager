@@ -17,6 +17,7 @@ import {
   ResponsiveContainer,
   Tooltip,
   XAxis,
+  YAxis,
 } from 'recharts';
 import {
   ODS_BUTTON_SIZE,
@@ -73,6 +74,13 @@ export const AlertsPart = ({
       fill: '#ddd',
     },
   ];
+
+  const maxRange =
+    Math.max(
+      currentPrices?.totalHourlyPrice,
+      forecastPrices?.totalHourlyPrice,
+      alert?.monthlyThreshold,
+    ) * 1.1;
 
   const invalidateCache = async () => {
     await queryClient.invalidateQueries({
@@ -196,6 +204,7 @@ export const AlertsPart = ({
                   >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="label" />
+                    <YAxis domain={[0, maxRange]} />
                     <Tooltip />
                     <Bar
                       label={{
