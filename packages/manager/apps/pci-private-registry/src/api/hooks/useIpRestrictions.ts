@@ -43,10 +43,13 @@ export const useUpdateIpRestriction = ({
   onSuccess,
 }: TUpdateIpRestrictionParams) => {
   const mutation = useMutation({
-    mutationFn: async (
-      cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault>,
-      actions: 'DELETE' | 'REPLACE',
-    ) => updateIpRestriction(projectId, registryId, cidrToUpdate, actions),
+    mutationFn: async ({
+      cidrToUpdate,
+      action,
+    }: {
+      cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault[]>;
+      action: 'DELETE' | 'REPLACE';
+    }) => updateIpRestriction(projectId, registryId, cidrToUpdate, action),
     onError,
     onSuccess: async () => {
       queryClient.invalidateQueries({
@@ -60,10 +63,13 @@ export const useUpdateIpRestriction = ({
   });
 
   return {
-    updateIpRestrictions: (
-      cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault>,
-      actions: 'DELETE' | 'REPLACE',
-    ) => mutation.mutate(cidrToUpdate),
+    updateIpRestrictions: ({
+      cidrToUpdate,
+      action,
+    }: {
+      cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault[]>;
+      action: 'DELETE' | 'REPLACE';
+    }) => mutation.mutate({ cidrToUpdate, action }),
     ...mutation,
   };
 };

@@ -1,6 +1,12 @@
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
+import { queryClient } from './wrapperRenders';
+
+afterEach(() => {
+  queryClient.clear();
+  vi.resetAllMocks();
+});
 
 vi.mock('react-router-dom', async () => {
   const mod = await vi.importActual('react-router-dom');

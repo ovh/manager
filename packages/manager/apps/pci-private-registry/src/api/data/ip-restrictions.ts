@@ -5,7 +5,9 @@ import { FilterRestrictionsServer, TIPRestrictionsDefault } from '@/types';
 const baseUrl = (projectId: string, registryId: string) =>
   `/cloud/project/${projectId}/containerRegistry/${registryId}/ipRestrictions`;
 
-const fetchV6URl = async (url: string): Promise<TIPRestrictionsDefault[]> => {
+export const fetchV6URl = async (
+  url: string,
+): Promise<TIPRestrictionsDefault[]> => {
   const { data } = await v6.get(url);
   return data;
 };
@@ -39,10 +41,10 @@ export const getIpRestrictions = async (
 };
 
 // Function to iterate through entries and handle each authorization
-const processIpBlock = async (
+export const processIpBlock = async (
   projectId: string,
   registryId: string,
-  authorization: string,
+  authorization: FilterRestrictionsServer,
   values: TIPRestrictionsDefault[],
   action: 'DELETE' | 'REPLACE',
 ) => {
@@ -77,11 +79,11 @@ export const updateIpRestriction = async (
   projectId: string,
   registryId: string,
   cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault[]>,
-  actions: 'DELETE' | 'REPLACE',
+  action: 'DELETE' | 'REPLACE',
 ) => {
   const entries = Object.entries(cidrToUpdate);
   const promises = entries.map(([authorization, values]) =>
-    processIpBlock(projectId, registryId, authorization, values, actions),
+    processIpBlock(projectId, registryId, authorization, values, action),
   );
   return Promise.all(promises);
 };
