@@ -11,7 +11,10 @@ export const shellContext = {
   },
   shell: {
     navigation: {
-      getURL: vi.fn(),
+      getURL: vi.fn().mockResolvedValue('mocked-url'),
+    },
+    tracking: {
+      trackClick: vi.fn(),
     },
   },
 };

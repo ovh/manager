@@ -8,7 +8,7 @@ vi.mock('react-router-dom', async () => {
   const mod = await vi.importActual('react-router-dom');
   return {
     ...mod,
-    useSearchParams: () => [new URLSearchParams({})],
+    useSearchParams: () => [new URLSearchParams({ instanceId: 'instance-id' })],
     useParams: () => ({ projectId: 'project-id', kubeId: 'kube-id' }),
     useHref: vi.fn(),
     useLocation: vi.fn(),
@@ -50,6 +50,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     useNotifications: () => ({
       addError: vi.fn(),
       addSuccess: vi.fn(),
+      clearNotifications: vi.fn(),
     }),
   };
 });
@@ -73,6 +74,9 @@ const mocks = vi.hoisted(() => ({
   shell: {
     navigation: {
       getURL: vi.fn().mockResolvedValue('mocked-url'),
+    },
+    tracking: {
+      trackClick: vi.fn(),
     },
   },
 }));
