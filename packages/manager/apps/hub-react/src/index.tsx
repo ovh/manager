@@ -24,6 +24,7 @@ const trackingContext = {
 
 const init = async (appName: string) => {
   const context = await initShellContext(appName, trackingContext);
+  console.log('FAKE CHANGE TO REMOVE');
 
   const isSidebarMenuVisible = await context.shell.ux.isMenuSidebarVisible();
   if (!isTopLevelApplication()) {
