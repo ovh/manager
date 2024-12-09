@@ -51,6 +51,16 @@ export const getAllRegistries = async (
   return data;
 };
 
+export const getRegistry = async (
+  projectId: string,
+  registryId: string,
+): Promise<TRegistry> => {
+  const { data } = await v6.get(
+    `cloud/project/${projectId}/containerRegistry/${registryId}`,
+  );
+  return data;
+};
+
 export const getRegistryPlan = async (
   projectId: string,
   registryId: string,
